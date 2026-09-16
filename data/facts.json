@@ -230424,6 +230424,581 @@
       "corroboration": "待交叉验证",
       "notes": "**这是 mPUE（机械制冷子系统的局部 PUE），不是整站 PUE**——只算冷却塔这一段的能耗比，1.009 意味着该设备自身耗电仅占其承担冷量的 0.9%，**绝不可与整站 PUE（1.1-1.5 那一族）并列比较**。basis 记「厂商宣称」。配套规格：冷量 1MW 与 5MW 两档、设计寿命 15 年、有预测时交期 4 周。region 未披露：原文未限定地域。",
       "asserter": "超微"
+    },
+    {
+      "fact_id": "acc2403-miit-national-utilization-2023",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "miit-national-utilization-2023",
+        "label": "全国数据中心平均利用率目标"
+      },
+      "value": 60.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域内平均",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2023E@2021-07",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 9-10 页 表 3「上架率指标相关政策」：《新型数据中心发展三年行动计划（2021—2023 年）》「到 2023 年底，全国数据中心平均利用率力争提升到 60% 以上」",
+        "grade": "S3",
+        "originator": "工业和信息化部（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）第 9-10 页 表 3「上架率指标相关政策」转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "全国数据中心平均利用率目标。**「力争提升到 60% 以上」是目标不是门槛**，policy_type 取「准入门槛」是枚举所限，实为全国性引导目标；bound 记 lower。库内另有《新型数据中心发展三年行动计划》的 PUE 条款，同一份文件。",
+      "asserter": "工业和信息化部"
+    },
+    {
+      "fact_id": "acc2403-shanghai-occupancy-half-year",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "shanghai-occupancy-half-year",
+        "label": "上海自用数据中心上架率的**半年期**门槛"
+      },
+      "value": 50.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单项目",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 9-10 页 表 3「上架率指标相关政策」：《上海市数据中心建设导则》「上架率半年内不应低于 50%（仅针对自用的数据中心），一年内不应低于 70%，第二年及以后不低于 90%，Prack 不应低于上架机架的平均机架设计功率的 80%」",
+        "grade": "S3",
+        "originator": "上海市经济和信息化委员会（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）第 9-10 页 表 3「上架率指标相关政策」转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "上海自用数据中心上架率的**半年期**门槛。**同一条导则给出三级时间表：半年 50%、一年 70%、第二年起 90%**（第二年那条已在库：sh-dcguide2021-occupancy-year2）；**只引其中一档会误读为「上海要求 50%」**。仅针对自用数据中心。",
+      "asserter": "上海市经济和信息化委员会"
+    },
+    {
+      "fact_id": "acc2403-shanghai-occupancy-year1",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "shanghai-occupancy-year1",
+        "label": "上海自用数据中心上架率的**一年期**门槛，三级时间表的中间档，说明同半年档条目"
+      },
+      "value": 70.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单项目",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2021-04",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 9-10 页 表 3「上架率指标相关政策」：同条「一年内不应低于 70%」",
+        "grade": "S3",
+        "originator": "上海市经济和信息化委员会（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）第 9-10 页 表 3「上架率指标相关政策」转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "上海自用数据中心上架率的**一年期**门槛，三级时间表的中间档，说明同半年档条目。",
+      "asserter": "上海市经济和信息化委员会"
+    },
+    {
+      "fact_id": "acc2403-beijing-occupancy-2y",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "beijing-occupancy-2y",
+        "label": "**北京的上架率口径是「功率上架率」而不是「机架数上架率」**——分子是实际上架"
+      },
+      "value": 80.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单项目",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2021",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 9-10 页 表 3「上架率指标相关政策」：《关于印发进一步加强数据中心项目节能审查若干规定的通知》「项目获得节能审查意见后，两年内上架率（实际上架的机柜总功率/节能报告中的机柜设计总功率）未达到 80% 的，建设单位应向原节能审查机关提出变更申请」",
+        "grade": "S3",
+        "originator": "北京市发展和改革委员会（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）第 9-10 页 表 3「上架率指标相关政策」转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**北京的上架率口径是「功率上架率」而不是「机架数上架率」**——分子是实际上架机柜总功率、分母是节能报告的机柜设计总功率，与上海按机架数的口径不可直接比。未达标的后果是须提出变更申请，属事后核查而非事前准入。",
+      "asserter": "北京市发展和改革委员会"
+    },
+    {
+      "fact_id": "acc2403-guian-occupancy-2025",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "guian-occupancy-2025",
+        "label": "贵安集群的**区域平均**上架率目标（2025 年），不是单项目门槛"
+      },
+      "value": 65.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "区域内平均",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2025E@2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 9-10 页 表 3「上架率指标相关政策」：《关于加快推进「东数西算」工程建设全国一体化算力网络国家（贵州）枢纽节点的实施意见》「贵安集群数据中心到 2025 年平均上架率不低于 65%」",
+        "grade": "S3",
+        "originator": "贵州省人民政府办公厅（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）第 9-10 页 表 3「上架率指标相关政策」转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "贵安集群的**区域平均**上架率目标（2025 年），不是单项目门槛。",
+      "asserter": "贵州省人民政府办公厅"
+    },
+    {
+      "fact_id": "acc2403-helingeer-occupancy-3y",
+      "metric_id": "occupancy_policy_threshold",
+      "entity": {
+        "type": "policy",
+        "id": "helingeer-occupancy-3y",
+        "label": "和林格尔集群的 IT 设备上架率要求，**时限为三年内**"
+      },
+      "value": 70.0,
+      "unit": "%",
+      "caliber": {
+        "scope": "单项目",
+        "policy_type": "准入门槛",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 9-10 页 表 3「上架率指标相关政策」：《关于内蒙古和林格尔新区推进数据中心项目绿色化建设的意见》「内蒙古和林格尔集群 IT 设备上架率三年内达到 70%」",
+        "grade": "S3",
+        "originator": "内蒙古和林格尔新区管理委员会（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）第 9-10 页 表 3「上架率指标相关政策」转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "和林格尔集群的 IT 设备上架率要求，**时限为三年内**。同一份文件另对超 10000 标准机柜的自用数据中心规定设计 PUE ≤1.25、投用第二年年均 ≤1.4、第三年及以后 ≤1.25。",
+      "asserter": "内蒙古和林格尔新区管理委员会"
+    },
+    {
+      "fact_id": "acc2403-helingeer-pue-design",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "helingeer-dc-pue-design",
+        "label": "和林格尔数据中心 PUE 要求（设计值）"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "寒冷地区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 8 页 表 2「PUE 指标相关政策」内蒙古行：「和林格尔数据中心集群对于规模超过 10000 个标准机柜的以自用为主的数据中心项目，设计 PUE 值不高于 1.25，项目建成投用后，PUE 第二年年度平均值不高于 1.4，第三年度及以后年度平均值不高于 1.25」",
+        "grade": "S3",
+        "originator": "内蒙古和林格尔新区管理委员会《关于内蒙古和林格尔新区推进数据中心项目绿色化建设的意见》（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）第 8 页 表 2 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**设计值口径**：适用对象限定为「规模超过 10000 个标准机柜、以自用为主」的项目。**同一政策对同一项目给出三档：设计 ≤1.25、投用第二年年均 ≤1.4、第三年起年均 ≤1.25**——中间那档放宽到 1.4 是承认爬坡期负载率低，**不带 build_type/period 维会读成互相矛盾**。",
+      "asserter": "内蒙古和林格尔新区管理委员会"
+    },
+    {
+      "fact_id": "acc2403-helingeer-pue-year2",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "helingeer-dc-pue-year2",
+        "label": "和林格尔数据中心 PUE 要求（投用第二年年均）"
+      },
+      "value": 1.4,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "寒冷地区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 8 页 表 2「PUE 指标相关政策」内蒙古行：「和林格尔数据中心集群对于规模超过 10000 个标准机柜的以自用为主的数据中心项目，设计 PUE 值不高于 1.25，项目建成投用后，PUE 第二年年度平均值不高于 1.4，第三年度及以后年度平均值不高于 1.25」",
+        "grade": "S3",
+        "originator": "内蒙古和林格尔新区管理委员会《关于内蒙古和林格尔新区推进数据中心项目绿色化建设的意见》（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）第 8 页 表 2 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**投用第二年的年度平均值上限**，比设计值宽 0.15，对应上架率爬坡期。说明同设计值条目。period 记年均。",
+      "asserter": "内蒙古和林格尔新区管理委员会"
+    },
+    {
+      "fact_id": "acc2403-helingeer-pue-year3",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "helingeer-dc-pue-year3",
+        "label": "和林格尔数据中心 PUE 要求（第三年及以后年均）"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "寒冷地区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 8 页 表 2「PUE 指标相关政策」内蒙古行：「和林格尔数据中心集群对于规模超过 10000 个标准机柜的以自用为主的数据中心项目，设计 PUE 值不高于 1.25，项目建成投用后，PUE 第二年年度平均值不高于 1.4，第三年度及以后年度平均值不高于 1.25」",
+        "grade": "S3",
+        "originator": "内蒙古和林格尔新区管理委员会《关于内蒙古和林格尔新区推进数据中心项目绿色化建设的意见》（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）第 8 页 表 2 转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**第三年及以后的年度平均值上限**，回到与设计值相同的 1.25。说明同设计值条目。",
+      "asserter": "内蒙古和林格尔新区管理委员会"
+    },
+    {
+      "fact_id": "acc2403-miit-cn-dc-electricity-2022",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenter",
+        "label": "中国数据中心"
+      },
+      "value": 270.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "统计上报"
+      },
+      "as_of": "2022",
+      "bound": "point",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 16 页（二）数据中心能耗水平分析：「根据工信部统计预测数据，2022 年全国数据中心耗电量约为 2700 亿 kWh，占全国用电量的 3.20% 左右，预计 2025 年耗电量将增至近 4000 亿 kWh，占比约为 5.8%」",
+        "grade": "S3",
+        "originator": "工业和信息化部（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位亿 kWh，本指标单位 TWh：2700 亿 kWh = 270 TWh、4000 亿 kWh = 400 TWh。****这组数与库内中国口径差异极大**：信通院 2024 年 166 TWh、伯恩斯坦 2024 年 178 TWh、IEA 2024 年 102 TWh，而本条 2022 年就已 270 TWh。差异根源是「数据中心」的边界（含不含通信机房、含不含自用小机房）与统计方式，原文未交代。**引用前必须先确认口径，不可与信通院序列拼成一条曲线。**占全国用电量约 3.20%。",
+      "asserter": "工业和信息化部"
+    },
+    {
+      "fact_id": "acc2403-miit-cn-dc-electricity-2025e",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenter",
+        "label": "中国数据中心"
+      },
+      "value": 400.0,
+      "unit": "TWh",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 16 页（二）数据中心能耗水平分析：「根据工信部统计预测数据，2022 年全国数据中心耗电量约为 2700 亿 kWh，占全国用电量的 3.20% 左右，预计 2025 年耗电量将增至近 4000 亿 kWh，占比约为 5.8%」",
+        "grade": "S3",
+        "originator": "工业和信息化部（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原文单位亿 kWh，本指标单位 TWh：2700 亿 kWh = 270 TWh、4000 亿 kWh = 400 TWh。****这组数与库内中国口径差异极大**：信通院 2024 年 166 TWh、伯恩斯坦 2024 年 178 TWh、IEA 2024 年 102 TWh，而本条 2022 年就已 270 TWh。差异根源是「数据中心」的边界（含不含通信机房、含不含自用小机房）与统计方式，原文未交代。**引用前必须先确认口径，不可与信通院序列拼成一条曲线。**原文写「增至近 4000 亿 kWh」，占比约 5.8%。",
+      "asserter": "工业和信息化部"
+    },
+    {
+      "fact_id": "acc2403-miit-cn-dc-power-share-2025e",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "industry",
+        "id": "cn-datacenter",
+        "label": "中国数据中心"
+      },
+      "value": 5.8,
+      "unit": "%",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 16 页（二）数据中心能耗水平分析：「根据工信部统计预测数据，2022 年全国数据中心耗电量约为 2700 亿 kWh，占全国用电量的 3.20% 左右，预计 2025 年耗电量将增至近 4000 亿 kWh，占比约为 5.8%」",
+        "grade": "S3",
+        "originator": "工业和信息化部（经先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**与分子口径配套**：同句 2022 年占比 3.20%、2025 年 5.8%。**这与库内 2026Q1「互联网数据服务行业占全社会用电 1.0%」（kysec）差近 6 倍**——后者是统计局的行业分类口径（只算 IDC 服务业），本条是含自用机房的宽口径。两条不可比。",
+      "asserter": "工业和信息化部"
+    },
+    {
+      "fact_id": "acc2403-coldplate-secondary-supply-max",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "coldplate-secondary-supply-cn",
+        "label": "冷板式液冷二次侧供液（行业方案）"
+      },
+      "value": 35.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 36 页：「冷板式液冷系统二次侧支持 35℃ 以下供液温度，一次侧支持 15℃～33℃ 进水温度，自然环境完全满足液冷系统一次侧散热需求，无需冷水机组等高能耗制冷设备，冷板式液冷数据中心 PUE 可低至 1.2 以下，相比传统风冷方式节能 20% 以上」",
+        "grade": "S3",
+        "originator": "先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「35℃ 以下」是方案支持的供液温度上限**，与库内中讯邮电「二次侧设计供液不宜低于 40℃」方向相反——那是为提高自然冷却时长设的下限，这是设备可接受的上限，**两者不矛盾但绝不可混为一条**。配套：一次侧进水 15-33℃、PUE 可低至 1.2 以下、较风冷节能 20% 以上。",
+      "asserter": "先进计算产业联盟绿色计算组"
+    },
+    {
+      "fact_id": "acc2403-coldplate-primary-inlet-lower",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "coldplate-primary-inlet-cn",
+        "label": "冷板式液冷一次侧进水（行业方案）"
+      },
+      "value": 15.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 36 页：「冷板式液冷系统二次侧支持 35℃ 以下供液温度，一次侧支持 15℃～33℃ 进水温度，自然环境完全满足液冷系统一次侧散热需求，无需冷水机组等高能耗制冷设备，冷板式液冷数据中心 PUE 可低至 1.2 以下，相比传统风冷方式节能 20% 以上」",
+        "grade": "S3",
+        "originator": "先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "一次侧进水温度区间下界（15℃），上界 33℃ 见配对条目。**这一区间是「自然冷却即可满足、无需冷水机组」的依据。**",
+      "asserter": "先进计算产业联盟绿色计算组"
+    },
+    {
+      "fact_id": "acc2403-coldplate-primary-inlet-upper",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "coldplate-primary-inlet-cn",
+        "label": "冷板式液冷一次侧进水（行业方案）"
+      },
+      "value": 33.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 36 页：「冷板式液冷系统二次侧支持 35℃ 以下供液温度，一次侧支持 15℃～33℃ 进水温度，自然环境完全满足液冷系统一次侧散热需求，无需冷水机组等高能耗制冷设备，冷板式液冷数据中心 PUE 可低至 1.2 以下，相比传统风冷方式节能 20% 以上」",
+        "grade": "S3",
+        "originator": "先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "一次侧进水温度区间上界（33℃），下界见配对条目。",
+      "asserter": "先进计算产业联盟绿色计算组"
+    },
+    {
+      "fact_id": "acc2403-immersion-secondary-supply-max",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "immersion-secondary-supply-cn",
+        "label": "相变浸没式液冷二次侧供液（行业方案）"
+      },
+      "value": 40.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "浸没液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 41 页：「相变浸没式液冷系统二次侧支持 38℃～40℃ 以下供液温度，一次侧支持 15～35℃ 供水温度……实现 PUE 低至 1.1 以下，相比传统风冷方式节能 30% 以上」",
+        "grade": "S3",
+        "originator": "先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**「38℃～40℃ 以下」的上限取 40℃**。相变浸没可用比冷板更高的供液温度，因为靠相变潜热换热而非温差。配套：一次侧供水 15-35℃、PUE 低至 1.1 以下、较风冷节能 30% 以上。",
+      "asserter": "先进计算产业联盟绿色计算组"
+    },
+    {
+      "fact_id": "acc2403-immersion-primary-supply-upper",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "immersion-primary-supply-cn",
+        "label": "相变浸没式液冷一次侧供水（行业方案）"
+      },
+      "value": 35.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "浸没液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 41 页：「相变浸没式液冷系统二次侧支持 38℃～40℃ 以下供液温度，一次侧支持 15～35℃ 供水温度……实现 PUE 低至 1.1 以下，相比传统风冷方式节能 30% 以上」",
+        "grade": "S3",
+        "originator": "先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "一次侧供水温度上界 35℃（下界 15℃）。一次侧可选开式/闭式冷却塔或干冷器；用开式塔时须在 CDM 与塔之间加一道板式换热以保证水质。",
+      "asserter": "先进计算产业联盟绿色计算组"
+    },
+    {
+      "fact_id": "acc2403-phase-change-immersion-rack-168kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "phase-change-immersion-rack-cn",
+        "label": "相变浸没式液冷机柜（「一拖二」方案）"
+      },
+      "value": 168.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "架构上限",
+        "era": "当期",
+        "power_basis": "铭牌值",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "afcbf7550d5a90ed1e263de1f055a12c298b72733952ddc055ba0b2e00454c7f",
+        "local_file": "20240302-2024绿色数据中心冷却方式研究报告-先进计算产业联盟绿色计算组(120页).pdf",
+        "locator": "第 41 页：「相变浸没式液冷机柜通过『一拖二』冷却系统的解决方案……在实际应用项目中，CDM 额定制冷量高达 340kW，单机柜额定功率高达 168kW」",
+        "grade": "S3",
+        "originator": "先进计算产业联盟绿色计算组《2024 绿色数据中心冷却方式研究报告》（2024-03-02）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**单机柜额定功率 168kW（铭牌值），对应 CDM 额定制冷量 340kW（一拖二即一台 CDM 带两个机柜）**——340 ÷ 2 = 170 ≈ 168，两数自洽。**这是国内相变浸没方案的额定值，与库内曙光 C8000 V3.0「突破 750kW」不是同代产品**（后者是 2026 年的 MW 级整机柜）。rack_type 取「整机柜系统(NVL类)」是枚举所限，实为浸没式液冷柜。",
+      "asserter": "先进计算产业联盟绿色计算组"
     }
   ]
 }
