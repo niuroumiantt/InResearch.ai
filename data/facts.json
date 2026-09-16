@@ -223682,6 +223682,41 @@
       "corroboration": "待交叉验证",
       "asserter": "IDC",
       "notes": "全球 SSD（含 Commercial/Client/Enterprise 三类）季度出货容量；环比 +16%。同页 2021Q1 SSD 均价 0.121 美元/GB（环比 −7.4%）无对应指标。"
+    },
+    {
+      "fact_id": "snia25-idc-global-datasphere-2020",
+      "metric_id": "data_created_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-datasphere",
+        "label": "全球数据圈（创建与复制）"
+      },
+      "value": 72000.0,
+      "unit": "EB",
+      "caliber": {
+        "measure": "未注明",
+        "segment": "合计",
+        "location": "不分位置",
+        "cloud": "不分",
+        "data_type": "不分类型",
+        "realtime": "不分",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2020@2024-05",
+      "bound": "point",
+      "evidence": {
+        "sha256": "d2f3b54d697bcd3275841b8777740c977a292b6801ea2c42899a7542c275ca29",
+        "local_file": "SNIA-SDC25-El-Batal-Prohofsky-AI-Driven-Mass-Storage-Evolution.pdf",
+        "locator": "PDF 第 2 页：「<1ZB Generated in CY2005 / 72 ZB Generated in CY2020」，注「Source: IDC Worldwide Global Datasphere Forecast 2024-2028 doc #US52076424, May 2024；Zettabytes represent the estimated annual volume of data created and replicated」",
+        "grade": "S2",
+        "originator": "IDC Worldwide Global Datasphere Forecast 2024-2028（#US52076424，2024-05），经 SNIA SDC 2025 希捷演讲转引"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "asserter": "IDC",
+      "notes": "口径为「年度创建与复制数据量」（created and replicated），与库内 Data Age「数据创建量」口径不同，measure 记未注明。原文 72 ZB = 72,000 EB；同页 2005 年 <1ZB 未记。as_of 带版本 2024-05（该 DataSphere 版本）。"
     }
   ]
 }
