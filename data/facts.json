@@ -230999,6 +230999,722 @@
       "corroboration": "待交叉验证",
       "notes": "**单机柜额定功率 168kW（铭牌值），对应 CDM 额定制冷量 340kW（一拖二即一台 CDM 带两个机柜）**——340 ÷ 2 = 170 ≈ 168，两数自洽。**这是国内相变浸没方案的额定值，与库内曙光 C8000 V3.0「突破 750kW」不是同代产品**（后者是 2026 年的 MW 级整机柜）。rack_type 取「整机柜系统(NVL类)」是枚举所限，实为浸没式液冷柜。",
       "asserter": "先进计算产业联盟绿色计算组"
+    },
+    {
+      "fact_id": "odcc2024-jiangsu-bigdata-park-primary-supply",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-jiangsu-bigdata-park",
+        "label": "江苏某大数据产业园液冷项目（曙光数创交付）"
+      },
+      "value": 35.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 55-56 页「（三）典型案例介绍 1. 江苏某大数据产业园项目」：「单机柜功率：21kW，气液比 1:1；CDU 颗粒度 445kW，3+1 备份；一次侧进出水温度 35/40℃；二次侧供回液温度 40/45℃；二次侧冷却介质：去离子水添加药剂；单个服务器节点设计流量范围 1.0～1.2 L/min；单个服务器节点（含快速接头）流阻 35kPa@1L/min」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/40℃ 对 40/45℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-jiangsu-bigdata-park-primary-return",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-jiangsu-bigdata-park",
+        "label": "江苏某大数据产业园液冷项目（曙光数创交付）"
+      },
+      "value": 40.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "回水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 55-56 页「（三）典型案例介绍 1. 江苏某大数据产业园项目」：「单机柜功率：21kW，气液比 1:1；CDU 颗粒度 445kW，3+1 备份；一次侧进出水温度 35/40℃；二次侧供回液温度 40/45℃；二次侧冷却介质：去离子水添加药剂；单个服务器节点设计流量范围 1.0～1.2 L/min；单个服务器节点（含快速接头）流阻 35kPa@1L/min」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/40℃ 对 40/45℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-jiangsu-bigdata-park-secondary-supply",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-jiangsu-bigdata-park",
+        "label": "江苏某大数据产业园液冷项目（曙光数创交付）"
+      },
+      "value": 40.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 55-56 页「（三）典型案例介绍 1. 江苏某大数据产业园项目」：「单机柜功率：21kW，气液比 1:1；CDU 颗粒度 445kW，3+1 备份；一次侧进出水温度 35/40℃；二次侧供回液温度 40/45℃；二次侧冷却介质：去离子水添加药剂；单个服务器节点设计流量范围 1.0～1.2 L/min；单个服务器节点（含快速接头）流阻 35kPa@1L/min」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/40℃ 对 40/45℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-jiangsu-bigdata-park-secondary-return",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-jiangsu-bigdata-park",
+        "label": "江苏某大数据产业园液冷项目（曙光数创交付）"
+      },
+      "value": 45.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "回水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 55-56 页「（三）典型案例介绍 1. 江苏某大数据产业园项目」：「单机柜功率：21kW，气液比 1:1；CDU 颗粒度 445kW，3+1 备份；一次侧进出水温度 35/40℃；二次侧供回液温度 40/45℃；二次侧冷却介质：去离子水添加药剂；单个服务器节点设计流量范围 1.0～1.2 L/min；单个服务器节点（含快速接头）流阻 35kPa@1L/min」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/40℃ 对 40/45℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-jiangsu-bigdata-park-rack-power",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-jiangsu-bigdata-park",
+        "label": "江苏某大数据产业园液冷项目（曙光数创交付）"
+      },
+      "value": 21.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 55-56 页「（三）典型案例介绍 1. 江苏某大数据产业园项目」：「单机柜功率：21kW，气液比 1:1；CDU 颗粒度 445kW，3+1 备份；一次侧进出水温度 35/40℃；二次侧供回液温度 40/45℃；二次侧冷却介质：去离子水添加药剂；单个服务器节点设计流量范围 1.0～1.2 L/min；单个服务器节点（含快速接头）流阻 35kPa@1L/min」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这四个已投运冷板项目的单机柜功率跨度是 10-50kW**（广州科云 2019 年 10kW、峰值 13.2kW；江苏 21kW；华北 20+kW；厦门 50kW 且 100% 冷板液冷），可作为国内冷板液冷实际落地密度的参照——**远低于同期 NVL72 类整机柜的 120kW+**。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-xiamen-aidc-primary-supply",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-xiamen-aidc",
+        "label": "东部（厦门）某智算中心"
+      },
+      "value": 35.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 58 页「图 4-3 东部（厦门）某智算中心」：「IT 规模 800kW；单机柜功率 50kW，100% 冷板液冷；CDU 颗粒度 400kW，2+1 备份；一次侧进出水温度 35/45℃；二次侧供回液温度 40/50℃；二次侧冷却介质：去离子水；室外冷源 700kW 闭式冷却塔，1+1 备份；设计年均 PUE ＜1.2」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/45℃ 对 40/50℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-xiamen-aidc-primary-return",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-xiamen-aidc",
+        "label": "东部（厦门）某智算中心"
+      },
+      "value": 45.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "回水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 58 页「图 4-3 东部（厦门）某智算中心」：「IT 规模 800kW；单机柜功率 50kW，100% 冷板液冷；CDU 颗粒度 400kW，2+1 备份；一次侧进出水温度 35/45℃；二次侧供回液温度 40/50℃；二次侧冷却介质：去离子水；室外冷源 700kW 闭式冷却塔，1+1 备份；设计年均 PUE ＜1.2」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/45℃ 对 40/50℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-xiamen-aidc-secondary-supply",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-xiamen-aidc",
+        "label": "东部（厦门）某智算中心"
+      },
+      "value": 40.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 58 页「图 4-3 东部（厦门）某智算中心」：「IT 规模 800kW；单机柜功率 50kW，100% 冷板液冷；CDU 颗粒度 400kW，2+1 备份；一次侧进出水温度 35/45℃；二次侧供回液温度 40/50℃；二次侧冷却介质：去离子水；室外冷源 700kW 闭式冷却塔，1+1 备份；设计年均 PUE ＜1.2」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/45℃ 对 40/50℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-xiamen-aidc-secondary-return",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-xiamen-aidc",
+        "label": "东部（厦门）某智算中心"
+      },
+      "value": 50.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "回水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 58 页「图 4-3 东部（厦门）某智算中心」：「IT 规模 800kW；单机柜功率 50kW，100% 冷板液冷；CDU 颗粒度 400kW，2+1 备份；一次侧进出水温度 35/45℃；二次侧供回液温度 40/50℃；二次侧冷却介质：去离子水；室外冷源 700kW 闭式冷却塔，1+1 备份；设计年均 PUE ＜1.2」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/45℃ 对 40/50℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-xiamen-aidc-rack-power",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-xiamen-aidc",
+        "label": "东部（厦门）某智算中心"
+      },
+      "value": 50.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 58 页「图 4-3 东部（厦门）某智算中心」：「IT 规模 800kW；单机柜功率 50kW，100% 冷板液冷；CDU 颗粒度 400kW，2+1 备份；一次侧进出水温度 35/45℃；二次侧供回液温度 40/50℃；二次侧冷却介质：去离子水；室外冷源 700kW 闭式冷却塔，1+1 备份；设计年均 PUE ＜1.2」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这四个已投运冷板项目的单机柜功率跨度是 10-50kW**（广州科云 2019 年 10kW、峰值 13.2kW；江苏 21kW；华北 20+kW；厦门 50kW 且 100% 冷板液冷），可作为国内冷板液冷实际落地密度的参照——**远低于同期 NVL72 类整机柜的 120kW+**。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-xiamen-aidc-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-xiamen-aidc",
+        "label": "东部（厦门）某智算中心"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 58 页「图 4-3 东部（厦门）某智算中心」：「IT 规模 800kW；单机柜功率 50kW，100% 冷板液冷；CDU 颗粒度 400kW，2+1 备份；一次侧进出水温度 35/45℃；二次侧供回液温度 40/50℃；二次侧冷却介质：去离子水；室外冷源 700kW 闭式冷却塔，1+1 备份；设计年均 PUE ＜1.2」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**设计年均 PUE 上限，不是运行实测**（原文写「设计年均 PUE ＜1.2」）。**设计值系统性低于运行值**（本库既有口径：超大型运行 1.63 对设计 1.41），引用时不可当实际能效。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-huabei-large-coldplate-primary-supply",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-huabei-large-coldplate",
+        "label": "华北某大型冷板液冷数据中心"
+      },
+      "value": 35.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59 页「图 4-4 华北大型冷板液冷数据中心」：「机柜功率 20+kW，气液比 1:1；一次侧进出水温度 35/42℃；二次侧供回液温度 40/45℃；一次侧冷却介质 45% 乙二醇溶液；二次侧冷却介质：去离子水；CDU 规模 350kW，1+1 备份」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/42℃ 对 40/45℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-huabei-large-coldplate-primary-return",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-huabei-large-coldplate",
+        "label": "华北某大型冷板液冷数据中心"
+      },
+      "value": 42.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "回水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59 页「图 4-4 华北大型冷板液冷数据中心」：「机柜功率 20+kW，气液比 1:1；一次侧进出水温度 35/42℃；二次侧供回液温度 40/45℃；一次侧冷却介质 45% 乙二醇溶液；二次侧冷却介质：去离子水；CDU 规模 350kW，1+1 备份」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/42℃ 对 40/45℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-huabei-large-coldplate-secondary-supply",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-huabei-large-coldplate",
+        "label": "华北某大型冷板液冷数据中心"
+      },
+      "value": 40.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59 页「图 4-4 华北大型冷板液冷数据中心」：「机柜功率 20+kW，气液比 1:1；一次侧进出水温度 35/42℃；二次侧供回液温度 40/45℃；一次侧冷却介质 45% 乙二醇溶液；二次侧冷却介质：去离子水；CDU 规模 350kW，1+1 备份」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/42℃ 对 40/45℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-huabei-large-coldplate-secondary-return",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-huabei-large-coldplate",
+        "label": "华北某大型冷板液冷数据中心"
+      },
+      "value": 45.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "回水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59 页「图 4-4 华北大型冷板液冷数据中心」：「机柜功率 20+kW，气液比 1:1；一次侧进出水温度 35/42℃；二次侧供回液温度 40/45℃；一次侧冷却介质 45% 乙二醇溶液；二次侧冷却介质：去离子水；CDU 规模 350kW，1+1 备份」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：35/42℃ 对 40/45℃，中间隔着 CDU 板换，趋近温差 5℃。一次侧 35℃ 进水意味着可全年自然冷却、无需冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-huabei-large-coldplate-rack-power",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-huabei-large-coldplate",
+        "label": "华北某大型冷板液冷数据中心"
+      },
+      "value": 20.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59 页「图 4-4 华北大型冷板液冷数据中心」：「机柜功率 20+kW，气液比 1:1；一次侧进出水温度 35/42℃；二次侧供回液温度 40/45℃；一次侧冷却介质 45% 乙二醇溶液；二次侧冷却介质：去离子水；CDU 规模 350kW，1+1 备份」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "原文写「20+kW」，记为下界。**这四个已投运冷板项目的单机柜功率跨度是 10-50kW**（广州科云 2019 年 10kW、峰值 13.2kW；江苏 21kW；华北 20+kW；厦门 50kW 且 100% 冷板液冷），可作为国内冷板液冷实际落地密度的参照——**远低于同期 NVL72 类整机柜的 120kW+**。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-guangzhou-keyun-primary-supply",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-guangzhou-keyun",
+        "label": "广州科云数据中心（2019 年试点）"
+      },
+      "value": 12.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59-60 页「4. 广州科云数据中心」：「IT 规模 120kW；单机柜功率 10kW，峰值 13.2kW；CDU 颗粒度 120kW，1+1 备份；一次侧进出水温度 12/18℃；二次侧供回液温度 30/35℃；二次侧冷却介质：乙二醇溶液；冷冻水列间空调 40kW，1+1 备份；设计年均 PUE ＜1.18」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：12/18℃ 对 30/35℃，中间隔着 CDU 板换，趋近温差 18℃。广州科云是 2019 年试点项目，用的是 12/18℃ 冷冻水口径——**与另外三例的 35℃ 高温水一次侧差了一个时代**，说明早期冷板项目仍依赖冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-guangzhou-keyun-primary-return",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-guangzhou-keyun",
+        "label": "广州科云数据中心（2019 年试点）"
+      },
+      "value": 18.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "回水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59-60 页「4. 广州科云数据中心」：「IT 规模 120kW；单机柜功率 10kW，峰值 13.2kW；CDU 颗粒度 120kW，1+1 备份；一次侧进出水温度 12/18℃；二次侧供回液温度 30/35℃；二次侧冷却介质：乙二醇溶液；冷冻水列间空调 40kW，1+1 备份；设计年均 PUE ＜1.18」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：12/18℃ 对 30/35℃，中间隔着 CDU 板换，趋近温差 18℃。广州科云是 2019 年试点项目，用的是 12/18℃ 冷冻水口径——**与另外三例的 35℃ 高温水一次侧差了一个时代**，说明早期冷板项目仍依赖冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-guangzhou-keyun-secondary-supply",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-guangzhou-keyun",
+        "label": "广州科云数据中心（2019 年试点）"
+      },
+      "value": 30.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59-60 页「4. 广州科云数据中心」：「IT 规模 120kW；单机柜功率 10kW，峰值 13.2kW；CDU 颗粒度 120kW，1+1 备份；一次侧进出水温度 12/18℃；二次侧供回液温度 30/35℃；二次侧冷却介质：乙二醇溶液；冷冻水列间空调 40kW，1+1 备份；设计年均 PUE ＜1.18」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：12/18℃ 对 30/35℃，中间隔着 CDU 板换，趋近温差 18℃。广州科云是 2019 年试点项目，用的是 12/18℃ 冷冻水口径——**与另外三例的 35℃ 高温水一次侧差了一个时代**，说明早期冷板项目仍依赖冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-guangzhou-keyun-secondary-return",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-guangzhou-keyun",
+        "label": "广州科云数据中心（2019 年试点）"
+      },
+      "value": 35.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "回水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "工程测算"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59-60 页「4. 广州科云数据中心」：「IT 规模 120kW；单机柜功率 10kW，峰值 13.2kW；CDU 颗粒度 120kW，1+1 备份；一次侧进出水温度 12/18℃；二次侧供回液温度 30/35℃；二次侧冷却介质：乙二醇溶液；冷冻水列间空调 40kW，1+1 备份；设计年均 PUE ＜1.18」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是已建成项目的设计参数，不是行业通例**。同一项目的一次侧与二次侧必须成对读：12/18℃ 对 30/35℃，中间隔着 CDU 板换，趋近温差 18℃。广州科云是 2019 年试点项目，用的是 12/18℃ 冷冻水口径——**与另外三例的 35℃ 高温水一次侧差了一个时代**，说明早期冷板项目仍依赖冷机。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-guangzhou-keyun-rack-power",
+      "metric_id": "rack_power_design",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-guangzhou-keyun",
+        "label": "广州科云数据中心（2019 年试点）"
+      },
+      "value": 10.0,
+      "unit": "kW/架",
+      "caliber": {
+        "basis": "设计取值",
+        "scope": "全场平均",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59-60 页「4. 广州科云数据中心」：「IT 规模 120kW；单机柜功率 10kW，峰值 13.2kW；CDU 颗粒度 120kW，1+1 备份；一次侧进出水温度 12/18℃；二次侧供回液温度 30/35℃；二次侧冷却介质：乙二醇溶液；冷冻水列间空调 40kW，1+1 备份；设计年均 PUE ＜1.18」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这四个已投运冷板项目的单机柜功率跨度是 10-50kW**（广州科云 2019 年 10kW、峰值 13.2kW；江苏 21kW；华北 20+kW；厦门 50kW 且 100% 冷板液冷），可作为国内冷板液冷实际落地密度的参照——**远低于同期 NVL72 类整机柜的 120kW+**。",
+      "asserter": "开放数据中心委员会"
+    },
+    {
+      "fact_id": "odcc2024-guangzhou-keyun-pue",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "project",
+        "id": "odcc-case-guangzhou-keyun",
+        "label": "广州科云数据中心（2019 年试点）"
+      },
+      "value": 1.18,
+      "unit": "比值",
+      "caliber": {
+        "basis": "设计值",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "单项目",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "ed2cdfc46618aec36bc552c4a424ffe30b2fd4ee9722143bbcbeccfbdd0142c2",
+        "local_file": "20240926-开放数据中心委员会：02004+冷板液冷标准化及技术优化白皮书(116页).pdf",
+        "locator": "第 59-60 页「4. 广州科云数据中心」：「IT 规模 120kW；单机柜功率 10kW，峰值 13.2kW；CDU 颗粒度 120kW，1+1 备份；一次侧进出水温度 12/18℃；二次侧供回液温度 30/35℃；二次侧冷却介质：乙二醇溶液；冷冻水列间空调 40kW，1+1 备份；设计年均 PUE ＜1.18」",
+        "grade": "S3",
+        "originator": "开放数据中心委员会 ODCC-2023-02004《冷板液冷标准化及技术优化白皮书》（2024-09-26）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**设计年均 PUE 上限，不是运行实测**（原文写「设计年均 PUE ＜1.18」）。**设计值系统性低于运行值**（本库既有口径：超大型运行 1.63 对设计 1.41），引用时不可当实际能效。",
+      "asserter": "开放数据中心委员会"
     }
   ]
 }
