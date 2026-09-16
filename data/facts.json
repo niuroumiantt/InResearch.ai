@@ -224151,7 +224151,9 @@
       "disputed_by": [
         "gh2509-aircooled-rack-limit-20kw",
         "gx2509-aircooled-rack-limit-lower",
-        "gx2509-aircooled-rack-limit-upper"
+        "gx2509-aircooled-rack-limit-upper",
+        "gj-tgg-aircooled-rack-limit-lower",
+        "gj-tgg-aircooled-rack-limit-upper"
       ]
     },
     {
@@ -224188,7 +224190,9 @@
       "disputed_by": [
         "gh2509-aircooled-rack-limit-20kw",
         "gx2509-aircooled-rack-limit-lower",
-        "gx2509-aircooled-rack-limit-upper"
+        "gx2509-aircooled-rack-limit-upper",
+        "gj-tgg-aircooled-rack-limit-lower",
+        "gj-tgg-aircooled-rack-limit-upper"
       ]
     },
     {
@@ -225636,7 +225640,9 @@
       ],
       "disputed_by": [
         "gx2509-aircooled-rack-limit-lower",
-        "gx2509-aircooled-rack-limit-upper"
+        "gx2509-aircooled-rack-limit-upper",
+        "gj-tgg-aircooled-rack-limit-lower",
+        "gj-tgg-aircooled-rack-limit-upper"
       ]
     },
     {
@@ -226179,6 +226185,10 @@
         "gh2509-aircooled-rack-limit-20kw",
         "dfzq2605-aircooled-rack-design-ceiling-lower",
         "dfzq2605-aircooled-rack-design-ceiling-upper"
+      ],
+      "disputed_by": [
+        "gj-tgg-aircooled-rack-limit-lower",
+        "gj-tgg-aircooled-rack-limit-upper"
       ]
     },
     {
@@ -226216,6 +226226,10 @@
         "gh2509-aircooled-rack-limit-20kw",
         "dfzq2605-aircooled-rack-design-ceiling-lower",
         "dfzq2605-aircooled-rack-design-ceiling-upper"
+      ],
+      "disputed_by": [
+        "gj-tgg-aircooled-rack-limit-lower",
+        "gj-tgg-aircooled-rack-limit-upper"
       ]
     },
     {
@@ -227806,6 +227820,310 @@
       "corroboration": "待交叉验证",
       "notes": "**本条单位是 %（本指标单位随 parameter 变）**，指液冷较风冷节省的投资成本比例。原文：「经施耐德电气测算，以功率为 20kW、40kW 的液冷数据中心为例，液冷较风冷分别可节省 10%、14% 的投资成本，每瓦投资成本随功率密度提升持续降低」——**节省幅度随机架功率密度上升，两条必须带 density_band 才读得懂**。region 未披露：原文未限定地域。",
       "asserter": "施耐德电气"
+    },
+    {
+      "fact_id": "gj-tf-global-dc-lc-penetration-2024",
+      "metric_id": "liquid_cooling_penetration",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter",
+        "label": "全球数据中心（全部）"
+      },
+      "value": 10.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "按容量",
+        "cooling_type": "全部液冷",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c4a606f8b9a7c414be06c06e8b9fd9e33920aaa59ffbc4dc18b1145452c05f57",
+        "local_file": "AIDC系列深度（二）_液冷行业深度_智算需求驱动冷却技术升级_液冷生态迎成长契机_34页_4mb.pdf",
+        "locator": "第 6 页：「根据 TrendForce 预测，2025 年液冷在全球数据中心的渗透率将从 2024 年的 10% 增长至 20% 以上」",
+        "grade": "S4",
+        "originator": "TrendForce（经国金证券《AIDC 系列深度（二）·液冷行业深度：智算需求驱动冷却技术升级，液冷生态迎成长契机》转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**分母是全球全部数据中心，不是新增 AI 数据中心**——库内国信转述的同一家 TrendForce 给出「AI 数据中心液冷渗透率 2024 年 14%→2025 年 33%」（gx2509-tf-ai-dc-lc-penetration-*），两组数分母不同、不构成矛盾，也不可放进同一条序列。本指标名为「新建 AI 容量液冷渗透率」而 denominator 维只有按容量/按项目数/按投资额，装不下「全部数据中心 vs 新增 AI 容量」之别，已记缺口。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "gj-tf-global-dc-lc-penetration-2025e",
+      "metric_id": "liquid_cooling_penetration",
+      "entity": {
+        "type": "industry",
+        "id": "global-datacenter",
+        "label": "全球数据中心（全部）"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "caliber": {
+        "denominator": "按容量",
+        "cooling_type": "全部液冷",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "c4a606f8b9a7c414be06c06e8b9fd9e33920aaa59ffbc4dc18b1145452c05f57",
+        "local_file": "AIDC系列深度（二）_液冷行业深度_智算需求驱动冷却技术升级_液冷生态迎成长契机_34页_4mb.pdf",
+        "locator": "第 6 页：「根据 TrendForce 预测，2025 年液冷在全球数据中心的渗透率将从 2024 年的 10% 增长至 20% 以上」",
+        "grade": "S4",
+        "originator": "TrendForce（经国金证券《AIDC 系列深度（二）·液冷行业深度：智算需求驱动冷却技术升级，液冷生态迎成长契机》转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**分母是全球全部数据中心，不是新增 AI 数据中心**——库内国信转述的同一家 TrendForce 给出「AI 数据中心液冷渗透率 2024 年 14%→2025 年 33%」（gx2509-tf-ai-dc-lc-penetration-*），两组数分母不同、不构成矛盾，也不可放进同一条序列。本指标名为「新建 AI 容量液冷渗透率」而 denominator 维只有按容量/按项目数/按投资额，装不下「全部数据中心 vs 新增 AI 容量」之别，已记缺口。原文写「20% 以上」，20 记为下界。",
+      "asserter": "TrendForce"
+    },
+    {
+      "fact_id": "gj-full-b200-tdp",
+      "metric_id": "chip_design_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-full-b200",
+        "label": "NVIDIA Full B200"
+      },
+      "value": 1200.0,
+      "unit": "数值（见 parameter）",
+      "caliber": {
+        "product": "NVIDIA Full B200",
+        "parameter": "TDP(W)",
+        "memory_type": "不适用",
+        "design_partner": "未注明",
+        "relative_to": "绝对值",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c4a606f8b9a7c414be06c06e8b9fd9e33920aaa59ffbc4dc18b1145452c05f57",
+        "local_file": "AIDC系列深度（二）_液冷行业深度_智算需求驱动冷却技术升级_液冷生态迎成长契机_34页_4mb.pdf",
+        "locator": "第 7 页 图表 3「英伟达系列芯片功耗随着算力逐代提升」：Full B200 列「功耗」行 = 1200W、「FP16 稠密算力」行 = 2.5P，表下来源《智算中心基础设施演进白皮书》",
+        "grade": "S4",
+        "originator": "《智算中心基础设施演进白皮书》（经国金证券《AIDC 系列深度（二）·液冷行业深度：智算需求驱动冷却技术升级，液冷生态迎成长契机》转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "本条单位 W。**原表把 B200（1000W/2.25P）与 Full B200（1200W/2.5P）并列为两个型号**，本条记后者；同表 A100 400W、H100/H200 700W、GH200 1000W、B100 700W、B200 1000W、GB200 2700W 与库内既有条目同值，不另记。正文另称「B300 TDP 较 B200 增加 200W」（即 1200W），与库内 SemiAnalysis 的 B300（HGX 配置）1200W 一致。",
+      "asserter": "国金证券"
+    },
+    {
+      "fact_id": "gj-tgg-aircooled-rack-limit-lower",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-aircooled-rack",
+        "label": "传统数据中心单机柜（风冷）"
+      },
+      "value": 15.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "架构上限",
+        "era": "未注明",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "c4a606f8b9a7c414be06c06e8b9fd9e33920aaa59ffbc4dc18b1145452c05f57",
+        "local_file": "AIDC系列深度（二）_液冷行业深度_智算需求驱动冷却技术升级_液冷生态迎成长契机_34页_4mb.pdf",
+        "locator": "第 7 页：「TGG 建议把 15-25 kW 机柜功率作为『未使用背板换热器等其他制冷设备』的风冷解决方案的上限，一般认为机柜功率密度 20 kW 以上的人工智能集群不适宜采用风冷方案」",
+        "grade": "S4",
+        "originator": "TGG（The Green Grid）（经国金证券《AIDC 系列深度（二）·液冷行业深度：智算需求驱动冷却技术升级，液冷生态迎成长契机》转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是本库「风冷上限」这一问题下的第五组数**：TGG 15-25kW（限定「未加背板换热器」）、国海 20kW、东方 30-40kW、国信 30-50kW、中泰 40-60kW（称加背板换热器可解 60kW 以内）。**TGG 与中泰其实不矛盾——两家都把「加不加背板换热器」当成分界，只是一个报下限一个报上限**；其余三家未交代前提。region 未披露：原文未限定地域。asserter 记 TGG（The Green Grid），国金只是转述。",
+      "asserter": "TGG",
+      "disputes": [
+        "gh2509-aircooled-rack-limit-20kw",
+        "gx2509-aircooled-rack-limit-lower",
+        "gx2509-aircooled-rack-limit-upper",
+        "dfzq2605-aircooled-rack-design-ceiling-lower",
+        "dfzq2605-aircooled-rack-design-ceiling-upper"
+      ]
+    },
+    {
+      "fact_id": "gj-tgg-aircooled-rack-limit-upper",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "industry",
+        "id": "traditional-aircooled-rack",
+        "label": "传统数据中心单机柜（风冷）"
+      },
+      "value": 25.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "架构上限",
+        "era": "未注明",
+        "power_basis": "设计功率",
+        "region": "未披露"
+      },
+      "as_of": "2025",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c4a606f8b9a7c414be06c06e8b9fd9e33920aaa59ffbc4dc18b1145452c05f57",
+        "local_file": "AIDC系列深度（二）_液冷行业深度_智算需求驱动冷却技术升级_液冷生态迎成长契机_34页_4mb.pdf",
+        "locator": "第 7 页：「TGG 建议把 15-25 kW 机柜功率作为『未使用背板换热器等其他制冷设备』的风冷解决方案的上限，一般认为机柜功率密度 20 kW 以上的人工智能集群不适宜采用风冷方案」",
+        "grade": "S4",
+        "originator": "TGG（The Green Grid）（经国金证券《AIDC 系列深度（二）·液冷行业深度：智算需求驱动冷却技术升级，液冷生态迎成长契机》转述）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是本库「风冷上限」这一问题下的第五组数**：TGG 15-25kW（限定「未加背板换热器」）、国海 20kW、东方 30-40kW、国信 30-50kW、中泰 40-60kW（称加背板换热器可解 60kW 以内）。**TGG 与中泰其实不矛盾——两家都把「加不加背板换热器」当成分界，只是一个报下限一个报上限**；其余三家未交代前提。region 未披露：原文未限定地域。asserter 记 TGG（The Green Grid），国金只是转述。",
+      "asserter": "TGG",
+      "disputes": [
+        "gh2509-aircooled-rack-limit-20kw",
+        "gx2509-aircooled-rack-limit-lower",
+        "gx2509-aircooled-rack-limit-upper",
+        "dfzq2605-aircooled-rack-design-ceiling-lower",
+        "dfzq2605-aircooled-rack-design-ceiling-upper"
+      ]
+    },
+    {
+      "fact_id": "gj-sa-gb200-nvl72-bf16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72"
+      },
+      "value": 180.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "NVIDIA GB200 NVL72",
+        "precision": "BF16",
+        "scope": "整机柜",
+        "sparsity": "稠密",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c4a606f8b9a7c414be06c06e8b9fd9e33920aaa59ffbc4dc18b1145452c05f57",
+        "local_file": "AIDC系列深度（二）_液冷行业深度_智算需求驱动冷却技术升级_液冷生态迎成长契机_34页_4mb.pdf",
+        "locator": "第 7 页 图表 5「华为 CM384 系统算力优于英伟达 NVL72」系统级别「BF16 稠密算力（PFLOPS）」行",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国金证券《AIDC 系列深度（二）·液冷行业深度：智算需求驱动冷却技术升级，液冷生态迎成长契机》转述，图表 5 标注来源 Semi Analysis 官网）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**精度是 BF16 稠密，不是 FP16 或稀疏口径**，跨精度不可比。原表同行华为 CM384 为 300 PFLOPS（华为/英伟达 = 1.7×）。同表芯片级另给 GB200 单芯片 2500 TFLOPS、华为 910C 780 TFLOPS。**这是 SemiAnalysis 的对比表经国金转述，非英伟达规格书。**",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gj-sa-cm384-bf16-pflops",
+      "metric_id": "accelerator_compute_spec",
+      "entity": {
+        "type": "product",
+        "id": "huawei-cloudmatrix-384",
+        "label": "华为 CloudMatrix CM384"
+      },
+      "value": 300.0,
+      "unit": "PFLOPS",
+      "caliber": {
+        "product": "华为 CloudMatrix CM384",
+        "precision": "BF16",
+        "scope": "SuperPod",
+        "sparsity": "稠密",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c4a606f8b9a7c414be06c06e8b9fd9e33920aaa59ffbc4dc18b1145452c05f57",
+        "local_file": "AIDC系列深度（二）_液冷行业深度_智算需求驱动冷却技术升级_液冷生态迎成长契机_34页_4mb.pdf",
+        "locator": "第 7 页 图表 5「华为 CM384 系统算力优于英伟达 NVL72」系统级别「BF16 稠密算力（PFLOPS）」行",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国金证券《AIDC 系列深度（二）·液冷行业深度：智算需求驱动冷却技术升级，液冷生态迎成长契机》转述，图表 5 标注来源 Semi Analysis 官网）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**scope 记 SuperPod：CM384 是 384 颗昇腾 910C 的超节点，不是一个机柜**（中泰口径称其单机柜 42kW、系统总功耗 559kW），与 GB200 NVL72 的「整机柜」口径不同层级，1.7× 这个比值是原表按系统级给出的。精度 BF16 稠密。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gj-sa-gb200-nvl72-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "nvidia-gb200-nvl72",
+        "label": "NVIDIA GB200 NVL72"
+      },
+      "value": 13800.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "NVIDIA GB200 NVL72",
+        "parameter": "容量",
+        "memory_type": "未注明",
+        "scope": "整机柜",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c4a606f8b9a7c414be06c06e8b9fd9e33920aaa59ffbc4dc18b1145452c05f57",
+        "local_file": "AIDC系列深度（二）_液冷行业深度_智算需求驱动冷却技术升级_液冷生态迎成长契机_34页_4mb.pdf",
+        "locator": "第 7 页 图表 5 系统级别「HBM 容量（TB）」行",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国金证券《AIDC 系列深度（二）·液冷行业深度：智算需求驱动冷却技术升级，液冷生态迎成长契机》转述，图表 5 标注来源 Semi Analysis 官网）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原表单位 TB，本指标单位 GB，已换算：13.8 TB = 13,800 GB。**memory_type 未注明：原表只写 HBM 容量，未标代际（GB200 实际为 HBM3e，但原表没写，不替它补）。原表同行 CM384 为 49.2 TB（3.6×）。",
+      "asserter": "SemiAnalysis"
+    },
+    {
+      "fact_id": "gj-sa-cm384-hbm-capacity",
+      "metric_id": "accelerator_memory_spec",
+      "entity": {
+        "type": "product",
+        "id": "huawei-cloudmatrix-384",
+        "label": "华为 CloudMatrix CM384"
+      },
+      "value": 49200.0,
+      "unit": "GB",
+      "caliber": {
+        "product": "华为 CloudMatrix CM384",
+        "parameter": "容量",
+        "memory_type": "未注明",
+        "scope": "SuperPod",
+        "spec_basis": "券商转述",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c4a606f8b9a7c414be06c06e8b9fd9e33920aaa59ffbc4dc18b1145452c05f57",
+        "local_file": "AIDC系列深度（二）_液冷行业深度_智算需求驱动冷却技术升级_液冷生态迎成长契机_34页_4mb.pdf",
+        "locator": "第 7 页 图表 5 系统级别「HBM 容量（TB）」行",
+        "grade": "S4",
+        "originator": "SemiAnalysis（经国金证券《AIDC 系列深度（二）·液冷行业深度：智算需求驱动冷却技术升级，液冷生态迎成长契机》转述，图表 5 标注来源 Semi Analysis 官网）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**原表单位 TB，已换算：49.2 TB = 49,200 GB。**scope 为 SuperPod（384 颗 910C），与 NVL72 的整机柜口径不同层级——**3.6× 这个倍数来自系统规模差（384 vs 72 颗），不是单芯片显存优势**（芯片级 910C 128GB 对 GB200 192GB，只有 0.7×）。",
+      "asserter": "SemiAnalysis"
     }
   ]
 }
