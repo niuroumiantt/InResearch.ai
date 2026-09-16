@@ -222930,6 +222930,41 @@
         "grade": "S2"
       },
       "notes": "最坏情况 TDP 口径，与同机柜实测交流功率 11.7–14.1kW 不可混用。后续升级方案为每机架 18.4kW（更高功率 PSU），属规划不记。"
+    },
+    {
+      "fact_id": "ocp24-seagate-global-datasphere-2028e",
+      "metric_id": "data_created_volume",
+      "entity": {
+        "type": "market",
+        "id": "global-datasphere",
+        "label": "全球每年新产生数据总量"
+      },
+      "value": 394000.0,
+      "unit": "EB",
+      "caliber": {
+        "measure": "数据创建量",
+        "segment": "合计",
+        "location": "不分位置",
+        "cloud": "不分",
+        "data_type": "不分类型",
+        "realtime": "不分",
+        "region": "Global",
+        "basis": "预测"
+      },
+      "as_of": "2028E@2024-10",
+      "bound": "point",
+      "evidence": {
+        "sha256": "61d77086f3514b52b1a6252ef2a33a39190dc281963b2d8d791eba167003a89a",
+        "local_file": "5516 - Mass-Storage Connectivity Evolution In The AI Era.pdf",
+        "locator": "PDF 第 4 页「The Global Datasphere will Triple in Size Between 2023 and 2028」：「394 Zettabytes (ZB) Generated in 2028」；第 5 页「< 5% of Data Generated will be stored in Cloud, Enterprise & Consumer」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "derived": true,
+      "derivation": "as_of 取 OCP Global Summit 2024（2024-10）会期；幻灯片未写日期",
+      "corroboration": "待交叉验证",
+      "asserter": "希捷",
+      "notes": "原文 394 ZB = 394,000 EB。幻灯片未注明数据出处（形如 IDC Global DataSphere 口径），按 PR #197 判据由演讲方希捷担断言者，[未核]。同页「2023–2028 年数据圈规模翻三倍」与次页「生成数据中被存下来的不足 5%」无对应指标。库内华为《数据存储 2030》2028 年 460 ZB（hwds2024-global-data-created-2028e）为另一断言者口径。"
     }
   ]
 }
