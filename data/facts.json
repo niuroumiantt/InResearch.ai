@@ -241319,6 +241319,35 @@
       },
       "depth": "精读",
       "notes": "两家合计、原文未拆分；「as much as」是上限口径的测算值，按点值记并在此说明。同段给出的 1.9 亿颗/年华为 SoC 份额，库内无对应指标。[未核]"
+    },
+    {
+      "fact_id": "sa2310-smic-n2-capacity",
+      "asserter": "SemiAnalysis",
+      "metric_id": "foundry_capacity",
+      "entity": {
+        "type": "company",
+        "id": "smic",
+        "label": "中芯国际 N+2（7nm）产线"
+      },
+      "value": 20.0,
+      "unit": "千片/月",
+      "bound": "point",
+      "caliber": {
+        "foundry": "SMIC",
+        "chip": "N+2（7nm）",
+        "allocation": "总产能",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023-10",
+      "evidence": {
+        "sha256": "ef9aabbec495bca0bd6bcebe55fa5342ac95b8eb5d83092673f0b9bc21b45b3a",
+        "local_file": "Wafer Wars_ Deciphering Latest Restrictions On AI And Semiconductor Manufacturing.pdf",
+        "grade": "S2",
+        "locator": "第 5 页：「The new N+2 node (7nm) is approaching 20,000 WPM of capacity, which is enough for millions of accelerators at even 50% yields」"
+      },
+      "depth": "精读",
+      "notes": "同一家在一个月前的《China AI & Semiconductors Rise》里说的是「很容易爬到 30k WPM」——那是对首座 7nm 厂满产后的判断（装机到 2024Q2 末），本条是 2023-10 的当期产能，两者不是同一口径，也不构成修订。[未核]"
     }
   ]
 }
