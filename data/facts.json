@@ -241348,6 +241348,568 @@
       },
       "depth": "精读",
       "notes": "同一家在一个月前的《China AI & Semiconductors Rise》里说的是「很容易爬到 30k WPM」——那是对首座 7nm 厂满产后的判断（装机到 2024Q2 末），本条是 2023-10 的当期产能，两者不是同一口径，也不构成修订。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-nea-cn-dc-power-2020",
+      "asserter": "国家能源局",
+      "metric_id": "dc_electricity_consumption",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 200.0,
+      "unit": "TWh",
+      "bound": "lower",
+      "caliber": {
+        "scenario": "单一情景",
+        "scope": "全部数据中心",
+        "energy_scope": "全站用电",
+        "sector_basis": "数据中心",
+        "region": "CN",
+        "basis": "统计上报"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "一、(二) 投资背景前：「据国家能源局数据显示，2020 年我国数据中心耗电量已逾 2000 亿千瓦时，约占全社会用电量 2%，电能利用率（PUE）高达 1.49」",
+        "grade": "S2",
+        "originator": "长城超云白皮书转述"
+      },
+      "depth": "精读",
+      "notes": "2000 亿千瓦时 = 200 TWh，原文写「已逾」记下界。**这是中国数据中心用电量那组口径分歧里最高的一档**：同为官方系统，国家能源局 2020 年 >200 TWh，而 CDCC 口径 2021 年才 93.7 TWh、信通院口径更低——差两倍以上，且本条同时给出「约占全社会用电量 2%」，与 CDCC 的 1.13% 同样差近一倍。待裁。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-nea-cn-dc-power-share-2020",
+      "asserter": "国家能源局",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "CN",
+        "basis": "实测"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "同上句：「约占全社会用电量 2%」",
+        "grade": "S2",
+        "originator": "长城超云白皮书转述"
+      },
+      "depth": "精读",
+      "notes": "与库内 CDCC 口径的 2021 年 1.13% 正面冲突（年份更早反而更高），源于用电量口径不同，见配对的用电量那条。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-nea-cn-dc-carbon-2020",
+      "asserter": "国家能源局",
+      "metric_id": "dc_carbon_footprint",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 135.0,
+      "unit": "百万吨 CO₂e",
+      "bound": "point",
+      "caliber": {
+        "scope": "全部数据中心",
+        "method": "未注明",
+        "region": "CN",
+        "basis": "第三方测算"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "同段：「二氧化碳排放量约 1.35 亿吨，约占全国二氧化碳排放量的 1.14%」",
+        "grade": "S2",
+        "originator": "长城超云白皮书转述"
+      },
+      "depth": "精读",
+      "notes": "1.35 亿吨 = 135 百万吨。与库内 CDCC 口径 2021 年 78.3 百万吨相差 1.7 倍，与用电量口径分歧同源。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-nea-cn-dc-pue-2020",
+      "asserter": "国家能源局",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.49,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "同段：「电能利用率（PUE）高达 1.49」",
+        "grade": "S2",
+        "originator": "长城超云白皮书转述"
+      },
+      "depth": "精读",
+      "notes": "与库内 CDCC 口径的 2021 年全国平均 1.49 数值相同但年份差一年、署名不同（本条署国家能源局），两条应是同一来源在不同年份的转述，不作为交叉验证。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-ndrc-east-west-investment",
+      "asserter": "国家发展改革委",
+      "metric_id": "policy_program_investment",
+      "entity": {
+        "type": "policy",
+        "id": "cn-east-data-west-compute",
+        "label": "「东数西算」工程"
+      },
+      "value": 4000.0,
+      "unit": "亿（原币）",
+      "bound": "lower",
+      "caliber": {
+        "program": "「东数西算」数据中心建设吸引的社会投资",
+        "window": "未注明",
+        "investment_basis": "规划总额",
+        "currency": "人民币",
+        "region": "CN",
+        "basis": "官方公布"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "一、(二) 投资背景：「根据国家发改委预测，『东数西算』数据中心的建设将吸引超过 4000 亿元的社会投资。『东数西算』工程预计未来 5 年或将带动每年千亿元的投资」",
+        "grade": "S2",
+        "originator": "长城超云白皮书转述"
+      },
+      "depth": "精读",
+      "notes": "「超过 4000 亿元」记下界；同句的「未来 5 年每年千亿元」是年度口径，与本条的总额口径不同，5×1000=5000 亿与 4000 亿也对不上，未另记。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-cn-dc-revenue-share-telco-total",
+      "asserter": "长城超云",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 54.3,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "operator_type": "基础电信运营商",
+        "service_scope": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "一、(三)：「从 2020 年数据中心业务市场收入占比来看，基础电信运营商约占总市场规模的 54.3%，其中中国电信约占 23.8%、中国联通约占 16.7%、中国移动约占 13.8%。第三方数据中心运营商市场规模占比为 45.7%，对比 2019 年的 40.7%，市场收入占比有明显提升」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文标注了「注 5」但抽取文本里没有注释页，出处不可溯，按 PR #197 口径断言者记直接陈述的长城超云。三家运营商 23.8+16.7+13.8 = 54.3，与合计自洽。三家运营商合计 [未核]"
+    },
+    {
+      "fact_id": "gwcy2022-cn-dc-revenue-share-ct",
+      "asserter": "长城超云",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 23.8,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "operator_type": "中国电信",
+        "service_scope": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "一、(三)：「从 2020 年数据中心业务市场收入占比来看，基础电信运营商约占总市场规模的 54.3%，其中中国电信约占 23.8%、中国联通约占 16.7%、中国移动约占 13.8%。第三方数据中心运营商市场规模占比为 45.7%，对比 2019 年的 40.7%，市场收入占比有明显提升」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文标注了「注 5」但抽取文本里没有注释页，出处不可溯，按 PR #197 口径断言者记直接陈述的长城超云。三家运营商 23.8+16.7+13.8 = 54.3，与合计自洽。 [未核]"
+    },
+    {
+      "fact_id": "gwcy2022-cn-dc-revenue-share-cu",
+      "asserter": "长城超云",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 16.7,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "operator_type": "中国联通",
+        "service_scope": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "一、(三)：「从 2020 年数据中心业务市场收入占比来看，基础电信运营商约占总市场规模的 54.3%，其中中国电信约占 23.8%、中国联通约占 16.7%、中国移动约占 13.8%。第三方数据中心运营商市场规模占比为 45.7%，对比 2019 年的 40.7%，市场收入占比有明显提升」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文标注了「注 5」但抽取文本里没有注释页，出处不可溯，按 PR #197 口径断言者记直接陈述的长城超云。三家运营商 23.8+16.7+13.8 = 54.3，与合计自洽。 [未核]"
+    },
+    {
+      "fact_id": "gwcy2022-cn-dc-revenue-share-cm",
+      "asserter": "长城超云",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 13.8,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "operator_type": "中国移动",
+        "service_scope": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "一、(三)：「从 2020 年数据中心业务市场收入占比来看，基础电信运营商约占总市场规模的 54.3%，其中中国电信约占 23.8%、中国联通约占 16.7%、中国移动约占 13.8%。第三方数据中心运营商市场规模占比为 45.7%，对比 2019 年的 40.7%，市场收入占比有明显提升」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文标注了「注 5」但抽取文本里没有注释页，出处不可溯，按 PR #197 口径断言者记直接陈述的长城超云。三家运营商 23.8+16.7+13.8 = 54.3，与合计自洽。 [未核]"
+    },
+    {
+      "fact_id": "gwcy2022-cn-dc-revenue-share-third-party",
+      "asserter": "长城超云",
+      "metric_id": "dc_service_revenue_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-datacenter-market",
+        "label": "中国数据中心业务市场"
+      },
+      "value": 45.7,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "operator_type": "第三方",
+        "service_scope": "未注明",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2020",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "一、(三)：「从 2020 年数据中心业务市场收入占比来看，基础电信运营商约占总市场规模的 54.3%，其中中国电信约占 23.8%、中国联通约占 16.7%、中国移动约占 13.8%。第三方数据中心运营商市场规模占比为 45.7%，对比 2019 年的 40.7%，市场收入占比有明显提升」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文标注了「注 5」但抽取文本里没有注释页，出处不可溯，按 PR #197 口径断言者记直接陈述的长城超云。三家运营商 23.8+16.7+13.8 = 54.3，与合计自洽。原文并给 2019 年第三方占比 40.7%，一年提升 5 个百分点 [未核]"
+    },
+    {
+      "fact_id": "gwcy2022-coldplate-inlet-temp-lower",
+      "asserter": "长城超云",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "coldplate-generic-cn",
+        "label": "冷板式液冷（通用参考设计）"
+      },
+      "value": 35.0,
+      "unit": "°C",
+      "bound": "lower",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "三、2 冷板式液冷：「冷板式液冷采用温水制冷技术，进液温度范围一般在 35-55℃」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "进液温度区间下界；与 55℃ 上界成对。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-coldplate-inlet-temp-upper",
+      "asserter": "长城超云",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "coldplate-generic-cn",
+        "label": "冷板式液冷（通用参考设计）"
+      },
+      "value": 55.0,
+      "unit": "°C",
+      "bound": "upper",
+      "caliber": {
+        "position": "供水",
+        "loop": "二次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "CN",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "同上：「进液温度范围一般在 35-55℃」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "进液温度区间上界。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-coldplate-heat-share-lower",
+      "asserter": "长城超云",
+      "metric_id": "cooling_capacity_ratio",
+      "entity": {
+        "type": "component",
+        "id": "coldplate-generic-cn",
+        "label": "冷板式液冷（通用参考设计）"
+      },
+      "value": 40.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "cooling_tech": "直接液冷 DLC",
+        "denominator": "总冷量",
+        "region": "CN",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "三、2 冷板式液冷：「通常采用板式液冷带走高功耗元件热量，包括 CPU、GPU、VR、DIMM 等部件，可占整机散热需求的 40-65%，其它部件仍采用风冷将热量带走」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "冷板承担的散热占整机散热需求的比例区间，其余由风冷承担（气液双通道）。分母是整机散热需求即总冷量。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-coldplate-heat-share-upper",
+      "asserter": "长城超云",
+      "metric_id": "cooling_capacity_ratio",
+      "entity": {
+        "type": "component",
+        "id": "coldplate-generic-cn",
+        "label": "冷板式液冷（通用参考设计）"
+      },
+      "value": 65.0,
+      "unit": "%",
+      "bound": "upper",
+      "caliber": {
+        "cooling_tech": "直接液冷 DLC",
+        "denominator": "总冷量",
+        "region": "CN",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "三、2 冷板式液冷：「通常采用板式液冷带走高功耗元件热量，包括 CPU、GPU、VR、DIMM 等部件，可占整机散热需求的 40-65%，其它部件仍采用风冷将热量带走」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "冷板承担的散热占整机散热需求的比例区间，其余由风冷承担（气液双通道）。分母是整机散热需求即总冷量。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-coldplate-pue",
+      "asserter": "长城超云",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "component",
+        "id": "gwcy-coldplate-dc",
+        "label": "长城超云冷板式液冷数据中心（中型，参考设计）"
+      },
+      "value": 1.1,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "中小型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "三、2 冷板式液冷：「以中型数据中心为例，年均 PUE 能够达到 1.1，相较于国家东数西算要求机房年均 PUE1.25 可节省约 12% 用电费用，若按 2000 个标准机柜折合 0.5 元/度电费，亦可节省近千余万费用」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "厂商对自家冷板方案的年均 PUE 宣称值；原文同时给出对比基准（东数西算 1.25）与由此折算的 12% 电费节省（按 2000 个标准机柜、0.5 元/度）。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-immersion-pue",
+      "asserter": "长城超云",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "component",
+        "id": "gwcy-immersion-dc",
+        "label": "长城超云浸没式液冷数据中心（中型，参考设计）"
+      },
+      "value": 1.05,
+      "unit": "比值",
+      "bound": "point",
+      "caliber": {
+        "basis": "厂商宣称",
+        "cooling_tech": "浸没液冷",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "中小型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "三、3 浸没液冷：「对于浸没液冷最大优势特点，即大规模部署时其节能性，一般情况下，年均 PUE 能够达到 1.05」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "厂商宣称值，条件是「大规模部署」。同段称浸没方案单柜部署功率密度可高达 160kW/Rack、完全去风扇化。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-immersion-rack-density",
+      "asserter": "长城超云",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "gwcy-immersion-rack",
+        "label": "长城超云浸没液冷机柜"
+      },
+      "value": 160.0,
+      "unit": "kW/机柜",
+      "bound": "upper",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "架构上限",
+        "era": "当期",
+        "power_basis": "架构宣称",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "三、3 浸没液冷：「第三单柜部署功率密度能够高达 160kW/Rack」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**架构宣称、不是出货事实**：原文写「能够高达」，stat 记架构上限、power_basis 记架构宣称，与库内 NVL72 类 120-140kW 的出货口径不可混列。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-east-west-west-hub-pue",
+      "asserter": "国家发展改革委",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "east-west-west-hub-pue",
+        "label": "「东数西算」西部枢纽节点 PUE 要求"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "二、4 能效水平需求：「根据『东数西算』的文件要求，对自然环境优越、可再生资源充足的西部枢纽要求数据中心能耗水平 PUE 达到 1.2 以下，对东部枢纽地区数据中心能耗水平 PUE 要求达到 1.25 以下」",
+        "grade": "S2",
+        "originator": "长城超云白皮书转述"
+      },
+      "depth": "精读",
+      "notes": "库内此前只有「东数西算」东部/枢纽 1.25 那一档（cn-policy-pue-hub-nodes-2022、dc5g-plan-2021-hub-node-pue），本条补的是西部枢纽更严的 1.2。断言者按牵头部门记国家发展改革委（该工程由发改委、中央网信办、工信部、国家能源局联合部署）。[未核]"
+    },
+    {
+      "fact_id": "gwcy2022-east-west-east-hub-pue",
+      "asserter": "国家发展改革委",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "east-west-east-hub-pue",
+        "label": "「东数西算」东部枢纽节点 PUE 要求"
+      },
+      "value": 1.25,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2022",
+      "evidence": {
+        "sha256": "7f1906dee85af4cd001ac4435b700f7881b6d30819fb12c8e7a3758a70929279",
+        "local_file": "5C_2022_2022_东数西算数据中心基_未署名.pdf（长城超云《东数西算数据中心基础架构设计方案白皮书》）",
+        "locator": "二、4 能效水平需求：「根据『东数西算』的文件要求，对自然环境优越、可再生资源充足的西部枢纽要求数据中心能耗水平 PUE 达到 1.2 以下，对东部枢纽地区数据中心能耗水平 PUE 要求达到 1.25 以下」",
+        "grade": "S2",
+        "originator": "长城超云白皮书转述"
+      },
+      "depth": "精读",
+      "notes": "与西部 1.2 成对；库内已有同值的另一处表述（署名未注明），本条给出了部门署名，两条并存。[未核]"
     }
   ]
 }
