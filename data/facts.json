@@ -248397,6 +248397,420 @@
       },
       "depth": "精读",
       "notes": "**这是按 CPU 架构而不是按厂商的份额**，借用 vendor_market_share 记录、实体标签承载含义；一年内 x86 从 86% 降到 79%、ARM 从 10% 升到 18.9%。同段另给 x86 服务器市场中 AMD 占比超 32%（四季度 35.5%）。[未核]"
+    },
+    {
+      "fact_id": "jll2025-rack-density-h100",
+      "asserter": "JLL",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "jll-rack-h100",
+        "label": "NVIDIA H100 机架"
+      },
+      "value": 41.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第一章：「基于 7 纳米技术的 NVIDIA 的 H100 芯片拥有约 2080 亿个晶体管，机架密度为 41 千瓦（kW）。下一代，名为 GB200 或 Project Blackwell，采用 5 纳米技术，预期机架密度为 130 kW。更遥远的展望是，预计 2 纳米芯片每个机架将达到惊人的 250 kW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "原文把 41kW 与 H100（7nm、约 2080 亿晶体管）对应——**库内 H100 单卡 TDP 是 700W，41kW 是整机柜口径**。注意 2080 亿晶体管与库内 H100 的 800 亿不符，原文可能把双芯片封装或后续型号混入，晶体管数未录。 [未核]"
+    },
+    {
+      "fact_id": "jll2025-rack-density-gb200",
+      "asserter": "JLL",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "jll-rack-gb200",
+        "label": "NVIDIA GB200（Project Blackwell）机架"
+      },
+      "value": 130.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "主流机型",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第一章：「基于 7 纳米技术的 NVIDIA 的 H100 芯片拥有约 2080 亿个晶体管，机架密度为 41 千瓦（kW）。下一代，名为 GB200 或 Project Blackwell，采用 5 纳米技术，预期机架密度为 130 kW。更遥远的展望是，预计 2 纳米芯片每个机架将达到惊人的 250 kW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与库内 GB300 NVL72 的 120-130kW 同档。 [未核]"
+    },
+    {
+      "fact_id": "jll2025-rack-density-2nm",
+      "asserter": "JLL",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "product",
+        "id": "jll-rack-2nm",
+        "label": "2 纳米芯片时代的机架"
+      },
+      "value": 250.0,
+      "unit": "kW/机柜",
+      "bound": "point",
+      "caliber": {
+        "rack_type": "整机柜系统(NVL类)",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第一章：「基于 7 纳米技术的 NVIDIA 的 H100 芯片拥有约 2080 亿个晶体管，机架密度为 41 千瓦（kW）。下一代，名为 GB200 或 Project Blackwell，采用 5 纳米技术，预期机架密度为 130 kW。更遥远的展望是，预计 2 纳米芯片每个机架将达到惊人的 250 kW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是按制程外推的路线图值**，原文用「预计」；与国泰海通给 Rubin Ultra 整柜 >250kW 数值相同，两者路径不同（一个按制程外推、一个按具体型号）。 [未核]"
+    },
+    {
+      "fact_id": "jll2025-dc-power-share-singapore",
+      "asserter": "JLL",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "dc-power-singapore",
+        "label": "新加坡数据中心用电占比"
+      },
+      "value": 7.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "denominator": "某地区用电量",
+        "region": "APAC",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第二章：「新加坡的数据中心占总用电量的约 7%。在爱尔兰，它们占总用电量的 21%。而在美国，它们占弗吉尼亚州总用电量的约 26%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是该国/州的总用电量**，与全球口径的「约 2%」差一个量级——数据中心的电力压力是局地的，这三个数是该判断的标准引用。[未核]"
+    },
+    {
+      "fact_id": "jll2025-dc-power-share-ireland",
+      "asserter": "JLL",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "dc-power-ireland",
+        "label": "爱尔兰数据中心用电占比"
+      },
+      "value": 21.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "denominator": "某地区用电量",
+        "region": "EU",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第二章：「新加坡的数据中心占总用电量的约 7%。在爱尔兰，它们占总用电量的 21%。而在美国，它们占弗吉尼亚州总用电量的约 26%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是该国/州的总用电量**，与全球口径的「约 2%」差一个量级——数据中心的电力压力是局地的，这三个数是该判断的标准引用。[未核]"
+    },
+    {
+      "fact_id": "jll2025-dc-power-share-virginia",
+      "asserter": "JLL",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "region",
+        "id": "dc-power-virginia",
+        "label": "美国弗吉尼亚州数据中心用电占比"
+      },
+      "value": 26.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "denominator": "某地区用电量",
+        "region": "US",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第二章：「新加坡的数据中心占总用电量的约 7%。在爱尔兰，它们占总用电量的 21%。而在美国，它们占弗吉尼亚州总用电量的约 26%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是该国/州的总用电量**，与全球口径的「约 2%」差一个量级——数据中心的电力压力是局地的，这三个数是该判断的标准引用。[未核]"
+    },
+    {
+      "fact_id": "jll2025-global-dc-power-share",
+      "asserter": "JLL",
+      "metric_id": "dc_power_share_of_grid",
+      "entity": {
+        "type": "market",
+        "id": "global-datacenter",
+        "label": "全球数据中心"
+      },
+      "value": 2.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "denominator": "全社会用电量",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第二章：「2025 年，数据中心只占全球电力消耗的约 2%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "与同页新加坡 7%、爱尔兰 21%、弗吉尼亚 26% 成对读：全球占比小而局地占比大。[未核]"
+    },
+    {
+      "fact_id": "jll2025-global-dc-power-demand-5y",
+      "asserter": "JLL",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "global-datacenter",
+        "label": "全球数据中心"
+      },
+      "value": 100.0,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2030E@2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第二章：「预测估计全球数据中心能源需求将在未来五年翻倍，达到 100GW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「未来五年翻倍达 100GW」——即当前约 50GW；原文未说明是 IT 负载还是设施总功率。[未核]"
+    },
+    {
+      "fact_id": "jll2025-hybrid-cooling-liquid-share",
+      "asserter": "JLL",
+      "metric_id": "cooling_capacity_ratio",
+      "entity": {
+        "type": "industry",
+        "id": "global-high-density-rack",
+        "label": "全球高密度机架的混合冷却方案"
+      },
+      "value": 70.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "cooling_tech": "直接液冷 DLC",
+        "denominator": "总冷量",
+        "region": "Global",
+        "basis": "工程测算"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第三章：「液冷正在成为高密度机架的必备组件。如今通常采用混合方式，液冷占 70%，风冷占 30%。液冷安装目前采用后门换热器（RDHx）和直接对芯片（DTC）技术」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这是单个混合方案内部的散热分担比例，不是市场渗透率**——70/30 指同一机柜里液冷与风冷各承担多少，与 liquid_cooling_penetration（有多少项目上了液冷）不是一回事。[未核]"
+    },
+    {
+      "fact_id": "jll2025-loan-share-dev-lower",
+      "asserter": "JLL",
+      "metric_id": "bank_loan_share",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-development-finance",
+        "label": "全球数据中心开发融资的贷款比例"
+      },
+      "value": 65.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "basis": "计划投资",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第四章 资本市场：「预计 2025 年全球将有约 10GW 的超大规模和托管式数据中心开始施工。另外，预计将有 7GW 的项目完成。这相当于 2025 年约 1700 亿美元的资产价值需要获得融资」「数据中心开发融资通常安排在 65% 至 80% 的成本贷款，而永久融资通常安排在 65% 至 75% 的（估值）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**两档的分母不同**：开发融资按成本（LTC）65-80%，永久融资按估值（LTV）65-75%，原文的中文表述把后者的分母省略了。**本指标只有「计划投资/实际放款」一维，装不下开发融资与永久融资的区别，靠实体标签承载。** [未核]"
+    },
+    {
+      "fact_id": "jll2025-loan-share-dev-upper",
+      "asserter": "JLL",
+      "metric_id": "bank_loan_share",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-development-finance",
+        "label": "全球数据中心开发融资的贷款比例"
+      },
+      "value": 80.0,
+      "unit": "%",
+      "bound": "upper",
+      "caliber": {
+        "basis": "计划投资",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第四章 资本市场：「预计 2025 年全球将有约 10GW 的超大规模和托管式数据中心开始施工。另外，预计将有 7GW 的项目完成。这相当于 2025 年约 1700 亿美元的资产价值需要获得融资」「数据中心开发融资通常安排在 65% 至 80% 的成本贷款，而永久融资通常安排在 65% 至 75% 的（估值）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**两档的分母不同**：开发融资按成本（LTC）65-80%，永久融资按估值（LTV）65-75%，原文的中文表述把后者的分母省略了。**本指标只有「计划投资/实际放款」一维，装不下开发融资与永久融资的区别，靠实体标签承载。** [未核]"
+    },
+    {
+      "fact_id": "jll2025-loan-share-perm-lower",
+      "asserter": "JLL",
+      "metric_id": "bank_loan_share",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-permanent-finance",
+        "label": "全球数据中心永久融资的贷款比例"
+      },
+      "value": 65.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "basis": "计划投资",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第四章 资本市场：「预计 2025 年全球将有约 10GW 的超大规模和托管式数据中心开始施工。另外，预计将有 7GW 的项目完成。这相当于 2025 年约 1700 亿美元的资产价值需要获得融资」「数据中心开发融资通常安排在 65% 至 80% 的成本贷款，而永久融资通常安排在 65% 至 75% 的（估值）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**两档的分母不同**：开发融资按成本（LTC）65-80%，永久融资按估值（LTV）65-75%，原文的中文表述把后者的分母省略了。**本指标只有「计划投资/实际放款」一维，装不下开发融资与永久融资的区别，靠实体标签承载。** [未核]"
+    },
+    {
+      "fact_id": "jll2025-loan-share-perm-upper",
+      "asserter": "JLL",
+      "metric_id": "bank_loan_share",
+      "entity": {
+        "type": "market",
+        "id": "global-dc-permanent-finance",
+        "label": "全球数据中心永久融资的贷款比例"
+      },
+      "value": 75.0,
+      "unit": "%",
+      "bound": "upper",
+      "caliber": {
+        "basis": "计划投资",
+        "region": "Global"
+      },
+      "as_of": "2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第四章 资本市场：「预计 2025 年全球将有约 10GW 的超大规模和托管式数据中心开始施工。另外，预计将有 7GW 的项目完成。这相当于 2025 年约 1700 亿美元的资产价值需要获得融资」「数据中心开发融资通常安排在 65% 至 80% 的成本贷款，而永久融资通常安排在 65% 至 75% 的（估值）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**两档的分母不同**：开发融资按成本（LTC）65-80%，永久融资按估值（LTV）65-75%，原文的中文表述把后者的分母省略了。**本指标只有「计划投资/实际放款」一维，装不下开发融资与永久融资的区别，靠实体标签承载。** [未核]"
+    },
+    {
+      "fact_id": "jll2025-global-capacity-start",
+      "asserter": "JLL",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "global-hyperscale-colo-start",
+        "label": "全球超大规模与托管数据中心（2025 年开工）"
+      },
+      "value": 10.0,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第四章 资本市场：「预计 2025 年全球将有约 10GW 的超大规模和托管式数据中心开始施工。另外，预计将有 7GW 的项目完成。这相当于 2025 年约 1700 亿美元的资产价值需要获得融资」「数据中心开发融资通常安排在 65% 至 80% 的成本贷款，而永久融资通常安排在 65% 至 75% 的（估值）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**开工 10GW 与完工 7GW 是两个不同阶段的流量，不可相加也不可与存量并列**；对应约 1700 亿美元的资产价值需要融资。[未核]"
+    },
+    {
+      "fact_id": "jll2025-global-capacity-complete",
+      "asserter": "JLL",
+      "metric_id": "global_dc_it_load",
+      "entity": {
+        "type": "market",
+        "id": "global-hyperscale-colo-complete",
+        "label": "全球超大规模与托管数据中心（2025 年完工）"
+      },
+      "value": 7.0,
+      "unit": "GW",
+      "bound": "point",
+      "caliber": {
+        "power_scope": "未注明",
+        "workload": "全部负载",
+        "scenario": "单一情景",
+        "basis": "预测",
+        "region": "Global"
+      },
+      "as_of": "2025E@2025",
+      "evidence": {
+        "sha256": "aef7454b85615b59ce7c70679fc55b621bd4cd34a82f678d905f8119a6f647ce",
+        "local_file": "2025年全球数据中心展望：塑造明日数字基础设施.pdf",
+        "locator": "第四章 资本市场：「预计 2025 年全球将有约 10GW 的超大规模和托管式数据中心开始施工。另外，预计将有 7GW 的项目完成。这相当于 2025 年约 1700 亿美元的资产价值需要获得融资」「数据中心开发融资通常安排在 65% 至 80% 的成本贷款，而永久融资通常安排在 65% 至 75% 的（估值）」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**开工 10GW 与完工 7GW 是两个不同阶段的流量，不可相加也不可与存量并列**；对应约 1700 亿美元的资产价值需要融资。[未核]"
     }
   ]
 }
