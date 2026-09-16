@@ -251465,6 +251465,62 @@
       },
       "depth": "精读",
       "notes": "原表单位台，换算千台。**六档相加约 184.1 万台即 2022H1 中国服务器总出货**：Intel 一家占 90.4%，AMD 4.8%，非 x86 合计不到 0.3%（另有 System Z 9 台）。[未核]"
+    },
+    {
+      "fact_id": "jll2203-mumbai-capacity-share",
+      "asserter": "JLL",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "mumbai-dc",
+        "label": "孟买数据中心容量占印度全国"
+      },
+      "value": 41.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "APAC",
+        "basis": "行业机构"
+      },
+      "as_of": "2022-03",
+      "evidence": {
+        "sha256": "f547f2037e37ea332907697d29811663007ac27d5d0fefc41544ae4a8990e46b",
+        "local_file": "20220309-数据中心：崛起的新增长极(20页).pdf（JLL 仲量联行）",
+        "locator": "第 3 章 多样化需求增长：「孟买凭借其海缆登陆站和强大的供电容量，以一己之力贡献了该国 41% 的数据中心容量。未来 5 年内，孟买极有可能为印度贡献近 60% 的总附加容量」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分子分母都是数据中心容量（MW），不是算力**——measure 维没有容量取值，借算力规模记并在此写明（同 World Bank 那批的处理）。分母是印度全国。[未核]"
+    },
+    {
+      "fact_id": "jll2203-mumbai-future-addition-share",
+      "asserter": "JLL",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "mumbai-dc-addition",
+        "label": "孟买占印度未来五年新增数据中心容量"
+      },
+      "value": 60.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "APAC",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2022-03",
+      "evidence": {
+        "sha256": "f547f2037e37ea332907697d29811663007ac27d5d0fefc41544ae4a8990e46b",
+        "local_file": "20220309-数据中心：崛起的新增长极(20页).pdf（JLL 仲量联行）",
+        "locator": "同上句",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**这一条的分母是「未来五年新增容量」而不是存量**，与上一条 41% 的分母不同，两条不可放在一条曲线上读。[未核]"
     }
   ]
 }
