@@ -241026,6 +241026,124 @@
       },
       "depth": "精读",
       "notes": "「全楼统一大荷载」是液冷机柜重量上升后的建筑侧要求，按建议下限记；同表还要求外市电扩容能力不小于 30%、架空地板高度不宜小于 700mm、空调管井同时满足水冷与液冷两套系统。[未核]"
+    },
+    {
+      "fact_id": "db4403t367-pue-full-score-large",
+      "asserter": "深圳市市场监督管理局",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "db4403t367-2023-large",
+        "label": "深圳 DB4403/T 367—2023《绿色数据中心评价规范》电能比满分线（超大型）"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "夏热冬暖",
+        "build_type": "未注明",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "dd4c33f88b07a58c35cfe2230e3590e08d69491b6a79ea1823e1bd35790f6e1f",
+        "local_file": "【标准】绿色数据中心评价规范DB4403T 367—2023.pdf",
+        "locator": "附录 A 表 A.2 能源资源高效利用评价指标表，「数据中心电能比」一行：「超大型、大型、中型数据中心按下列规则评分：1、电能比低于 1.2 时，得 30 分；2、电能比大于等于 1.2 时，按式（A.1）或式（A.2）计算得分」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "**这不是准入限值，是评分满分线**：低于 1.2 拿满 30 分，高于 1.2 按 SR=90−50×RM 线性折算，仍可得分。规模档位按标准的表述覆盖超大型、大型、中型三档，本条记超大型、另一条记小微型；标准按标准机架（2.5kW 为一个标准机架）数量划分规模类型。深圳属夏热冬暖地区。[未核]"
+    },
+    {
+      "fact_id": "db4403t367-pue-full-score-small",
+      "asserter": "深圳市市场监督管理局",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "policy",
+        "id": "db4403t367-2023-small",
+        "label": "深圳 DB4403/T 367—2023《绿色数据中心评价规范》电能比满分线（中小型）"
+      },
+      "value": 1.4,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "政策限值",
+        "cooling_tech": "未注明",
+        "climate_zone": "夏热冬暖",
+        "build_type": "未注明",
+        "scale": "中小型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "dd4c33f88b07a58c35cfe2230e3590e08d69491b6a79ea1823e1bd35790f6e1f",
+        "local_file": "【标准】绿色数据中心评价规范DB4403T 367—2023.pdf",
+        "locator": "附录 A 表 A.2 同一行：「小微型数据中心按下列规则评分：1、电能比低于 1.4 时，得 30 分；2、电能比大于等于 1.4 时，按式（A.3）或式（A.4）计算得分」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "小微型数据中心的评分满分线，比大中型宽 0.2；同样不是准入限值。[未核]"
+    },
+    {
+      "fact_id": "db4403t367-renewable-purchase-threshold",
+      "asserter": "深圳市市场监督管理局",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "policy",
+        "id": "db4403t367-2023-renewable",
+        "label": "深圳 DB4403/T 367—2023 可再生能源评分门槛"
+      },
+      "value": 20.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "measure": "绿证与绿电交易折算",
+        "scope": "单项目",
+        "region": "CN",
+        "basis": "目标值"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "dd4c33f88b07a58c35cfe2230e3590e08d69491b6a79ea1823e1bd35790f6e1f",
+        "local_file": "【标准】绿色数据中心评价规范DB4403T 367—2023.pdf",
+        "locator": "附录 A 表 A.2「清洁能源与可再生能源」一行：「认购绿电或直接购买应用可再生能源电力，0%＜可再生能源使用比率＜20%，得 1 分；20%≤可再生能源使用比率，得 3 分」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "评分门槛而非实际达成值：外购绿电口径下达到 20% 即可拿满 3 分。[未核]"
+    },
+    {
+      "fact_id": "db4403t367-renewable-selfbuilt-threshold",
+      "asserter": "深圳市市场监督管理局",
+      "metric_id": "dc_renewable_share",
+      "entity": {
+        "type": "policy",
+        "id": "db4403t367-2023-renewable",
+        "label": "深圳 DB4403/T 367—2023 可再生能源评分门槛"
+      },
+      "value": 2.5,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "measure": "自建新能源装机占比",
+        "scope": "单项目",
+        "region": "CN",
+        "basis": "目标值"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "dd4c33f88b07a58c35cfe2230e3590e08d69491b6a79ea1823e1bd35790f6e1f",
+        "local_file": "【标准】绿色数据中心评价规范DB4403T 367—2023.pdf",
+        "locator": "附录 A 表 A.2 同一行：「自建可再生能源发电设施等方式利用，0%＜可再生能源使用比率＜2.5%，得 1 分；2.5%≤可再生能源使用比率，得 3 分」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "同一评分项的另一条路径：自建口径只要 2.5% 即可拿满分，与外购口径的 20% 相差 8 倍——两条路径二选一即可得 3 分。[未核]"
     }
   ]
 }
