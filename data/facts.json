@@ -230109,6 +230109,165 @@
       "corroboration": "待交叉验证",
       "notes": "**这是「每机柜 4 台 8 卡服务器」这一假设下的推算值，不是出货实测**——换个装机密度结论就变。**与 NVL72 类整机柜（120-145kW）不是一回事**：那是一体化机架系统，这是传统 19 英寸机柜装 4 台风冷/液冷服务器。同页另称「风冷散热所适配的单机柜功率在 4-40kW 左右，液冷的最佳适配区间在 50kW 及以上」。region 未披露：原文未限定地域。",
       "asserter": "国信证券"
+    },
+    {
+      "fact_id": "se133-dlc-heat-share-lower",
+      "metric_id": "cooling_capacity_ratio",
+      "entity": {
+        "type": "industry",
+        "id": "dlc-server-heat-share",
+        "label": "液冷服务器由液体带走的热量占比"
+      },
+      "value": 60.0,
+      "unit": "%",
+      "caliber": {
+        "cooling_tech": "直接液冷 DLC",
+        "denominator": "总冷量",
+        "region": "Global",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2024",
+      "bound": "lower",
+      "evidence": {
+        "sha256": "c3421b0b9620e47ba33c94bd3ac1503390618239a06c20153f4b029ffa1649a0",
+        "local_file": "2024年13页-计算机行业：智算中心液冷架构探讨.pdf",
+        "locator": "正文「现有散热系统——将热量排入到设施水系统中」：「液冷服务器 60% 至 90% 的热量可以通过液体转移，具体取决于液冷组件的数量。剩余的热量通过风冷方式（例如，CRAC、CRAH、冷门背板）进行散热」",
+        "grade": "S3",
+        "originator": "施耐德电气能源管理研究中心第 133 号白皮书《智算中心液冷架构探讨》（Paul Lin、Robert Bunger、Victor Avelar，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**区间宽度取决于「服务器内有多少部件上了液冷」**——只冷 GPU/CPU 时接近 60%，覆盖内存、电源等更多部件时接近 90%；剩余热量仍需 CRAC/CRAH 或背板换热器处理。**与库内维谛 75%（gx2025-vertiv-nvidia-hybrid-dlc-share，实测、分母为 IT 负载）落在本区间内**，但两者分母不同（本条为总冷量），不可直接互证。同库另有中泰「液冷/气冷 80%、20%」与国海「设备节点或整机柜液冷占比 60%~80%」的同类表述，此前误记为缺口，实际本指标可容纳。",
+      "asserter": "施耐德电气"
+    },
+    {
+      "fact_id": "se133-dlc-heat-share-upper",
+      "metric_id": "cooling_capacity_ratio",
+      "entity": {
+        "type": "industry",
+        "id": "dlc-server-heat-share",
+        "label": "液冷服务器由液体带走的热量占比"
+      },
+      "value": 90.0,
+      "unit": "%",
+      "caliber": {
+        "cooling_tech": "直接液冷 DLC",
+        "denominator": "总冷量",
+        "region": "Global",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c3421b0b9620e47ba33c94bd3ac1503390618239a06c20153f4b029ffa1649a0",
+        "local_file": "2024年13页-计算机行业：智算中心液冷架构探讨.pdf",
+        "locator": "正文「现有散热系统——将热量排入到设施水系统中」：「液冷服务器 60% 至 90% 的热量可以通过液体转移，具体取决于液冷组件的数量。剩余的热量通过风冷方式（例如，CRAC、CRAH、冷门背板）进行散热」",
+        "grade": "S3",
+        "originator": "施耐德电气能源管理研究中心第 133 号白皮书《智算中心液冷架构探讨》（Paul Lin、Robert Bunger、Victor Avelar，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**区间宽度取决于「服务器内有多少部件上了液冷」**——只冷 GPU/CPU 时接近 60%，覆盖内存、电源等更多部件时接近 90%；剩余热量仍需 CRAC/CRAH 或背板换热器处理。**与库内维谛 75%（gx2025-vertiv-nvidia-hybrid-dlc-share，实测、分母为 IT 负载）落在本区间内**，但两者分母不同（本条为总冷量），不可直接互证。同库另有中泰「液冷/气冷 80%、20%」与国海「设备节点或整机柜液冷占比 60%~80%」的同类表述，此前误记为缺口，实际本指标可容纳。",
+      "asserter": "施耐德电气"
+    },
+    {
+      "fact_id": "se133-dlc-dedicated-dry-cooler-supply-40c",
+      "metric_id": "dlc_water_temperature",
+      "entity": {
+        "type": "component",
+        "id": "dlc-dedicated-heat-rejection",
+        "label": "液冷专用散热系统（干冷器）供水"
+      },
+      "value": 40.0,
+      "unit": "°C",
+      "caliber": {
+        "position": "供水",
+        "loop": "一次侧",
+        "design_basis": "参考设计",
+        "cooling_tech": "冷板液冷",
+        "region": "Global",
+        "basis": "厂商参考设计"
+      },
+      "as_of": "2024",
+      "bound": "point",
+      "evidence": {
+        "sha256": "c3421b0b9620e47ba33c94bd3ac1503390618239a06c20153f4b029ffa1649a0",
+        "local_file": "2024年13页-计算机行业：智算中心液冷架构探讨.pdf",
+        "locator": "正文「专用散热系统——将热量排入到独立水系统中」：「为了实现液冷，采用带辅助功能压缩机的干冷器来提供较高的供水温度（40℃）；而为了实现风冷，采用带自然冷却冷机来提供较低的冷冻水温度（20℃）」",
+        "grade": "S3",
+        "originator": "施耐德电气能源管理研究中心第 133 号白皮书《智算中心液冷架构探讨》（Paul Lin、Robert Bunger、Victor Avelar，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是液冷专用散热回路的一次侧供水温度**，同句对照的风冷冷冻水 20℃ 不属本指标（那是风冷侧），未另记。**液冷之所以能用 40℃ 供水，正是它相对风冷的节能来源**：干冷器可大幅减少压缩机运行时间。与库内中讯邮电「一次侧设计进水不宜低于 35℃」方向一致。",
+      "asserter": "施耐德电气"
+    },
+    {
+      "fact_id": "se133-inrack-cdu-l2a-rack-limit-40kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "inrack-cdu-l2a",
+        "label": "机柜内安装式 CDU（L2A）可支撑的最大机柜密度"
+      },
+      "value": 40.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "架构上限",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c3421b0b9620e47ba33c94bd3ac1503390618239a06c20153f4b029ffa1649a0",
+        "local_file": "2024年13页-计算机行业：智算中心液冷架构探讨.pdf",
+        "locator": "正文「机柜内安装式 CDU」缺点：「将最大机柜密度限制在约 40 kW（L2A）到 80 kW（L2L）」；另「CDU 的容量范围：机柜内安装式 L2A 20-40 kW、L2L 40-80 kW；落地式 L2A 最高约 60 kW、L2L 300 kW 到 1 MW 以上」",
+        "grade": "S3",
+        "originator": "施耐德电气能源管理研究中心第 133 号白皮书《智算中心液冷架构探讨》（Paul Lin、Robert Bunger、Victor Avelar，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「CDU 形态对机柜密度的约束」，不是机柜自身的功率**：机柜内安装式 CDU 因体积与换热能力受限，L2A（液-气）约 40kW、L2L（液-液）约 80kW 封顶；要再高就得改用落地式 CDU（L2L 型容量 300kW 至 1MW 以上）。**与「风冷上限」争议族不同层级，不要混读。**",
+      "asserter": "施耐德电气"
+    },
+    {
+      "fact_id": "se133-inrack-cdu-l2l-rack-limit-80kw",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "inrack-cdu-l2l",
+        "label": "机柜内安装式 CDU（L2L）可支撑的最大机柜密度"
+      },
+      "value": 80.0,
+      "unit": "kW/机柜",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "架构上限",
+        "era": "当期",
+        "power_basis": "设计功率",
+        "region": "Global"
+      },
+      "as_of": "2024",
+      "bound": "upper",
+      "evidence": {
+        "sha256": "c3421b0b9620e47ba33c94bd3ac1503390618239a06c20153f4b029ffa1649a0",
+        "local_file": "2024年13页-计算机行业：智算中心液冷架构探讨.pdf",
+        "locator": "正文「机柜内安装式 CDU」缺点：「将最大机柜密度限制在约 40 kW（L2A）到 80 kW（L2L）」；另「CDU 的容量范围：机柜内安装式 L2A 20-40 kW、L2L 40-80 kW；落地式 L2A 最高约 60 kW、L2L 300 kW 到 1 MW 以上」",
+        "grade": "S3",
+        "originator": "施耐德电气能源管理研究中心第 133 号白皮书《智算中心液冷架构探讨》（Paul Lin、Robert Bunger、Victor Avelar，2024）"
+      },
+      "depth": "精读",
+      "derived": false,
+      "corroboration": "待交叉验证",
+      "notes": "**这是「CDU 形态对机柜密度的约束」，不是机柜自身的功率**：机柜内安装式 CDU 因体积与换热能力受限，L2A（液-气）约 40kW、L2L（液-液）约 80kW 封顶；要再高就得改用落地式 CDU（L2L 型容量 300kW 至 1MW 以上）。**与「风冷上限」争议族不同层级，不要混读。**",
+      "asserter": "施耐德电气"
     }
   ]
 }
