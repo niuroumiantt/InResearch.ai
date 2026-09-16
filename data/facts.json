@@ -247479,6 +247479,178 @@
       "depth": "精读",
       "supersedes": "gh2406-idc-cn-lc-server-market-2028e",
       "notes": "同一机构对同一年的第二版预测：库内 2024 年版给 102 亿美元，本版（2025-02）给 105 亿美元，CAGR 从 2023 年起算 48.3%。差 3 亿美元属小幅上修，按修订链接。[未核]"
+    },
+    {
+      "fact_id": "wb2512-colo-capacity-share-hic",
+      "asserter": "世界银行",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "colo-capacity-hic",
+        "label": "高收入国家（HIC）的托管数据中心容量（占全球）"
+      },
+      "value": 77.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "全球总量",
+        "region": "未披露",
+        "basis": "官方统计"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "73f3e31eca4f2fca81d1971b9a435306592091778d2e5ce5119268ce79a67089",
+        "local_file": "20251216-2025年数字进步和趋势报告：加强人工智能基础2025(136页).pdf",
+        "locator": "第 2 章 Key Messages「Data centers」：「As of June 2025, HICs accounted for 77 percent of global co-location data center capacity (proxied by total megawatts); upper-middle-income countries (UMICs), 18 percent; lower-middle-income countries (LMICs), 5 percent; and LICs, less than 0.1 percent」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "**分子分母都是托管（co-location）数据中心的总兆瓦数，不是算力**——measure 维没有「容量（MW）」取值，取最接近的算力规模并在此写明；按收入组分类而非地理区域，region 记未披露。四档相加 100%（LIC 不足 0.1%）。同页另给 HPC 口径：HIC 占全球 TOP500 系统的 86%、容量的 97%。[未核]"
+    },
+    {
+      "fact_id": "wb2512-colo-capacity-share-umic",
+      "asserter": "世界银行",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "colo-capacity-umic",
+        "label": "中高收入国家（UMIC）的托管数据中心容量（占全球）"
+      },
+      "value": 18.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "全球总量",
+        "region": "未披露",
+        "basis": "官方统计"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "73f3e31eca4f2fca81d1971b9a435306592091778d2e5ce5119268ce79a67089",
+        "local_file": "20251216-2025年数字进步和趋势报告：加强人工智能基础2025(136页).pdf",
+        "locator": "第 2 章 Key Messages「Data centers」：「As of June 2025, HICs accounted for 77 percent of global co-location data center capacity (proxied by total megawatts); upper-middle-income countries (UMICs), 18 percent; lower-middle-income countries (LMICs), 5 percent; and LICs, less than 0.1 percent」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "**分子分母都是托管（co-location）数据中心的总兆瓦数，不是算力**——measure 维没有「容量（MW）」取值，取最接近的算力规模并在此写明；按收入组分类而非地理区域，region 记未披露。四档相加 100%（LIC 不足 0.1%）。同页另给 HPC 口径：HIC 占全球 TOP500 系统的 86%、容量的 97%。[未核]"
+    },
+    {
+      "fact_id": "wb2512-colo-capacity-share-lmic",
+      "asserter": "世界银行",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "colo-capacity-lmic",
+        "label": "中低收入国家（LMIC）的托管数据中心容量（占全球）"
+      },
+      "value": 5.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "全球总量",
+        "region": "未披露",
+        "basis": "官方统计"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "73f3e31eca4f2fca81d1971b9a435306592091778d2e5ce5119268ce79a67089",
+        "local_file": "20251216-2025年数字进步和趋势报告：加强人工智能基础2025(136页).pdf",
+        "locator": "第 2 章 Key Messages「Data centers」：「As of June 2025, HICs accounted for 77 percent of global co-location data center capacity (proxied by total megawatts); upper-middle-income countries (UMICs), 18 percent; lower-middle-income countries (LMICs), 5 percent; and LICs, less than 0.1 percent」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "**分子分母都是托管（co-location）数据中心的总兆瓦数，不是算力**——measure 维没有「容量（MW）」取值，取最接近的算力规模并在此写明；按收入组分类而非地理区域，region 记未披露。四档相加 100%（LIC 不足 0.1%）。同页另给 HPC 口径：HIC 占全球 TOP500 系统的 86%、容量的 97%。[未核]"
+    },
+    {
+      "fact_id": "wb2512-colo-capacity-share-lic",
+      "asserter": "世界银行",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "market",
+        "id": "colo-capacity-lic",
+        "label": "低收入国家（LIC）的托管数据中心容量（占全球）"
+      },
+      "value": 0.1,
+      "unit": "%",
+      "bound": "upper",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "全球总量",
+        "region": "未披露",
+        "basis": "官方统计"
+      },
+      "as_of": "2025-06",
+      "evidence": {
+        "sha256": "73f3e31eca4f2fca81d1971b9a435306592091778d2e5ce5119268ce79a67089",
+        "local_file": "20251216-2025年数字进步和趋势报告：加强人工智能基础2025(136页).pdf",
+        "locator": "第 2 章 Key Messages「Data centers」：「As of June 2025, HICs accounted for 77 percent of global co-location data center capacity (proxied by total megawatts); upper-middle-income countries (UMICs), 18 percent; lower-middle-income countries (LMICs), 5 percent; and LICs, less than 0.1 percent」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "**分子分母都是托管（co-location）数据中心的总兆瓦数，不是算力**——measure 维没有「容量（MW）」取值，取最接近的算力规模并在此写明；按收入组分类而非地理区域，region 记未披露。四档相加 100%（LIC 不足 0.1%）。同页另给 HPC 口径：HIC 占全球 TOP500 系统的 86%、容量的 97%。[未核]"
+    },
+    {
+      "fact_id": "wb2512-ai-dc-cumulative-capex-2023-2027",
+      "asserter": "New Street Research",
+      "metric_id": "dc_cumulative_capex",
+      "entity": {
+        "type": "market",
+        "id": "global-ai-datacenter",
+        "label": "全球 AI 数据中心"
+      },
+      "value": 1400.0,
+      "unit": "十亿美元",
+      "bound": "point",
+      "caliber": {
+        "component": "全部",
+        "window": "2023-2027",
+        "scenario": "单一情景",
+        "region": "Global",
+        "basis": "行业机构"
+      },
+      "as_of": "2027E@2024",
+      "evidence": {
+        "sha256": "73f3e31eca4f2fca81d1971b9a435306592091778d2e5ce5119268ce79a67089",
+        "local_file": "20251216-2025年数字进步和趋势报告：加强人工智能基础2025(136页).pdf",
+        "locator": "第 2 章 Compute：「New Street Research estimates that Alphabet, Amazon, Meta, and Microsoft together invested US$104 billion in building AI data centers in 2024. When spending by smaller tech firms and other industries is added in, the total AI data center investment between 2023 and 2027 could reach US$1.4 trillion」",
+        "grade": "S1",
+        "originator": "New Street Research，世界银行转述"
+      },
+      "depth": "精读",
+      "notes": "1.4 万亿美元是 2023-2027 五年累计、含小型科技公司与其他行业，不只是四大。**同句的「四家 2024 年合计 1040 亿美元」与库内同为 New Street Research 的分公司明细（微软 400+Meta 230+谷歌 290+亚马逊 160＝1080 亿美元）差 40 亿，两处出自同一机构却对不上，按规则不录第二个总数、只记矛盾**（见同批缺口）。[未核]"
+    },
+    {
+      "fact_id": "wb2512-nvidia-dc-gpu-share-2023",
+      "asserter": "世界银行",
+      "metric_id": "vendor_market_share",
+      "entity": {
+        "type": "company",
+        "id": "nvidia",
+        "label": "英伟达（数据中心 GPU）"
+      },
+      "value": 92.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "按金额",
+        "product_line": "未拆分",
+        "subregion": "不适用（非中国口径）",
+        "vertical": "未拆分",
+        "region": "Global",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "73f3e31eca4f2fca81d1971b9a435306592091778d2e5ce5119268ce79a67089",
+        "local_file": "20251216-2025年数字进步和趋势报告：加强人工智能基础2025(136页).pdf",
+        "locator": "第 2 章：「NVIDIA controls 70–95 percent of the market for AI chips. It leads the data center GPU market by a long shot, with a staggering 92 percent market share as of 2023」",
+        "grade": "S1"
+      },
+      "depth": "精读",
+      "notes": "**92% 是数据中心 GPU 口径，与同句「AI 芯片 70-95%」不是同一分母**（后者是区间且更宽）。product_line 维没有 GPU/AI 芯片取值，记未拆分并在此写明。[未核]"
     }
   ]
 }
