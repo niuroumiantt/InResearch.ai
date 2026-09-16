@@ -242290,6 +242290,182 @@
       },
       "depth": "精读",
       "notes": "四年实地考察得出的在用水平，原文说这已经算「比较高」；同句给出该供电能力可支持 16~22 台 2U 双路服务器，可与机柜 U 数（腾讯云怀来瑞北 52U、UCloud 乌兰察布 47U/54U）互相印证。[未核]"
+    },
+    {
+      "fact_id": "caict2105-cn-racks-2020",
+      "asserter": "中国信通院",
+      "metric_id": "dc_rack_total",
+      "entity": {
+        "type": "market",
+        "id": "cn-mainland",
+        "label": "中国大陆算力中心（行业口径）"
+      },
+      "value": 400.0,
+      "unit": "万标准机架",
+      "bound": "lower",
+      "caliber": {
+        "counting": "标准机架折算",
+        "region": "CN"
+      },
+      "as_of": "2020-12",
+      "evidence": {
+        "sha256": "44d4ce5e664035d9cbc88622aaf0e7455ca690dbc65b4c4aea48b63e8e57b18b",
+        "local_file": "【2021年5月】【数据中心高质量发展大会】《数据中心产业发展指数2021》.pdf",
+        "locator": "前言后正文：「近年来，数据中心产业规模高速增长，近 5 年年均增速超过 30%。截至 2020 年底，我国在用数据中心机架总规模达到 400+ 万架」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「400+ 万架」记下界。库内工信部口径 2020 年为 428.6 万架（gp2105-cn-dc-racks-2020），两者不矛盾（本条是下界表述），但署名不同、来源不同。同句「近 5 年年均增速超过 30%」无对应指标。[未核]"
+    },
+    {
+      "fact_id": "caict2105-cn-top-occupancy-2020",
+      "asserter": "中国信通院",
+      "metric_id": "dc_occupancy_rate",
+      "entity": {
+        "type": "region",
+        "id": "cn-provincial-top",
+        "label": "我国上架率最高省份（东部地区）"
+      },
+      "value": 75.0,
+      "unit": "%",
+      "bound": "upper",
+      "caliber": {
+        "scope": "区域市场",
+        "region": "CN"
+      },
+      "as_of": "2020-12",
+      "evidence": {
+        "sha256": "44d4ce5e664035d9cbc88622aaf0e7455ca690dbc65b4c4aea48b63e8e57b18b",
+        "local_file": "【2021年5月】【数据中心高质量发展大会】《数据中心产业发展指数2021》.pdf",
+        "locator": "（三）数据中心发展质量分指数：「不同省份上架率差距较大，东部地区整体上架率较高，最高可达 75%，中西部地区上架率有待进一步提升。我国上架率较高的 Top10 省市为上海、北京、广东、浙江、河北、山西、河南、安徽、宁夏和陕西」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「最高可达 75%」是省级上架率的最高值，不是全国平均——同期全国平均在 55%~62% 之间（库内工信部 2021 年 >55%、信通院 2022 年 62.7%）。原文只给 Top10 名单没给逐省数值。[未核]"
+    },
+    {
+      "fact_id": "caict2105-pue-hyperscale-lower",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.2,
+      "unit": "比值",
+      "bound": "lower",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020-12",
+      "evidence": {
+        "sha256": "44d4ce5e664035d9cbc88622aaf0e7455ca690dbc65b4c4aea48b63e8e57b18b",
+        "local_file": "【2021年5月】【数据中心高质量发展大会】《数据中心产业发展指数2021》.pdf",
+        "locator": "（三）数据中心发展质量分指数：「大型以上数据中心 PUE 相对较低，超大型数据中心 PUE 值大多在 1.2-1.5 之间，大型数据中心 PUE 值大多在 1.3-1.6 间」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「大多在……之间」是分布区间不是平均值，四条按 超大型/大型 各一对上下界记；原文同时指出各省 PUE 因气候差异显著。[未核]"
+    },
+    {
+      "fact_id": "caict2105-pue-hyperscale-upper",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.5,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "超大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020-12",
+      "evidence": {
+        "sha256": "44d4ce5e664035d9cbc88622aaf0e7455ca690dbc65b4c4aea48b63e8e57b18b",
+        "local_file": "【2021年5月】【数据中心高质量发展大会】《数据中心产业发展指数2021》.pdf",
+        "locator": "（三）数据中心发展质量分指数：「大型以上数据中心 PUE 相对较低，超大型数据中心 PUE 值大多在 1.2-1.5 之间，大型数据中心 PUE 值大多在 1.3-1.6 间」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「大多在……之间」是分布区间不是平均值，四条按 超大型/大型 各一对上下界记；原文同时指出各省 PUE 因气候差异显著。[未核]"
+    },
+    {
+      "fact_id": "caict2105-pue-large-lower",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.3,
+      "unit": "比值",
+      "bound": "lower",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020-12",
+      "evidence": {
+        "sha256": "44d4ce5e664035d9cbc88622aaf0e7455ca690dbc65b4c4aea48b63e8e57b18b",
+        "local_file": "【2021年5月】【数据中心高质量发展大会】《数据中心产业发展指数2021》.pdf",
+        "locator": "（三）数据中心发展质量分指数：「大型以上数据中心 PUE 相对较低，超大型数据中心 PUE 值大多在 1.2-1.5 之间，大型数据中心 PUE 值大多在 1.3-1.6 间」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「大多在……之间」是分布区间不是平均值，四条按 超大型/大型 各一对上下界记；原文同时指出各省 PUE 因气候差异显著。[未核]"
+    },
+    {
+      "fact_id": "caict2105-pue-large-upper",
+      "asserter": "中国信通院",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "region",
+        "id": "cn-national",
+        "label": "全国数据中心（行业统计口径）"
+      },
+      "value": 1.6,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "第三方推算",
+        "cooling_tech": "未注明",
+        "climate_zone": "未分区",
+        "build_type": "存量",
+        "scale": "大型",
+        "period": "年均",
+        "region": "CN"
+      },
+      "as_of": "2020-12",
+      "evidence": {
+        "sha256": "44d4ce5e664035d9cbc88622aaf0e7455ca690dbc65b4c4aea48b63e8e57b18b",
+        "local_file": "【2021年5月】【数据中心高质量发展大会】《数据中心产业发展指数2021》.pdf",
+        "locator": "（三）数据中心发展质量分指数：「大型以上数据中心 PUE 相对较低，超大型数据中心 PUE 值大多在 1.2-1.5 之间，大型数据中心 PUE 值大多在 1.3-1.6 间」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "「大多在……之间」是分布区间不是平均值，四条按 超大型/大型 各一对上下界记；原文同时指出各省 PUE 因气候差异显著。[未核]"
     }
   ]
 }
