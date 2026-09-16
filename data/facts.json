@@ -237497,6 +237497,211 @@
       "corroboration": "待交叉验证",
       "notes": "**德国《能源效率法》（2023）对新建数据中心的余热利用强制门槛，按投运时点分三档**：2026 年 7 月起投运 ≥10%、2027 年 7 月起 ≥15%、2028 年 7 月起 ≥20%。**三条必须成套读**——单引一条会读成「德国要求 10%」而错过逐年收紧的节奏。该法同时对既有数据中心设立能效要求。 region 记 EU（枚举无 DE），region_scope 记「全国」指德国全国；policy_type 为强制线。",
       "asserter": "OCP"
+    },
+    {
+      "fact_id": "cmcc-nicc-2023-general-server-rack-lower",
+      "asserter": "中国移动",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "cn-general-server-rack-2023",
+        "label": "通用服务器机柜（中国移动口径）"
+      },
+      "value": 5.0,
+      "unit": "kW/机柜",
+      "bound": "lower",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "CN"
+      },
+      "as_of": "2023-09",
+      "evidence": {
+        "sha256": "83ed2563f762f7ffe92633af66689b857259517c6b4e032b80f7fd1088e85293",
+        "local_file": "中国移动NICC新型智算中心技术体系解读.pdf",
+        "locator": "p.16 图「单机架功率」通用服务器一栏 5-10kW/架",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动 NICC 解读 p.16 柱状图给通用服务器机柜 5-10kW/架，与 AI 服务器 30-60kW/架 并列；原文未说明是实测还是设计口径，power_basis 记未披露。[未核]"
+    },
+    {
+      "fact_id": "cmcc-nicc-2023-general-server-rack-upper",
+      "asserter": "中国移动",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "cn-general-server-rack-2023",
+        "label": "通用服务器机柜（中国移动口径）"
+      },
+      "value": 10.0,
+      "unit": "kW/机柜",
+      "bound": "upper",
+      "caliber": {
+        "rack_type": "传统风冷",
+        "stat": "市场普遍水平",
+        "era": "当期",
+        "power_basis": "未披露",
+        "region": "CN"
+      },
+      "as_of": "2023-09",
+      "evidence": {
+        "sha256": "83ed2563f762f7ffe92633af66689b857259517c6b4e032b80f7fd1088e85293",
+        "local_file": "中国移动NICC新型智算中心技术体系解读.pdf",
+        "locator": "p.16 图「单机架功率」通用服务器一栏 5-10kW/架",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "同上，区间上限。[未核]"
+    },
+    {
+      "fact_id": "cmcc-nicc-2023-liquid-rack-target",
+      "asserter": "中国移动",
+      "metric_id": "rack_density_shipping",
+      "entity": {
+        "type": "component",
+        "id": "cmcc-nicc-liquid-rack",
+        "label": "NICC 标准化液冷机柜"
+      },
+      "value": 40.0,
+      "unit": "kW/机柜",
+      "bound": "lower",
+      "caliber": {
+        "rack_type": "AI液冷机柜",
+        "stat": "设计目标",
+        "era": "路线图目标",
+        "power_basis": "设计功率",
+        "region": "CN"
+      },
+      "as_of": "2023-09目标",
+      "evidence": {
+        "sha256": "83ed2563f762f7ffe92633af66689b857259517c6b4e032b80f7fd1088e85293",
+        "local_file": "中国移动NICC新型智算中心技术体系解读.pdf",
+        "locator": "p.16「三『极』目标：极高密度 单机柜功耗＞40kW」；p.5 演进表「超级池化时期（2025~）节能：单机柜40KW，冷板式液冷」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动 NICC 技术体系「三极目标」之一，是标准化液冷机柜的设计门槛而非出货实绩；原文未在该页标年份，p.5 演进表把「单机柜40KW，冷板式液冷」放在 2025 年起的超级池化时期，as_of 按发布时点记 2023-09目标。"
+    },
+    {
+      "fact_id": "cmcc-nicc-2023-pue-target",
+      "asserter": "中国移动",
+      "metric_id": "dc_pue",
+      "entity": {
+        "type": "component",
+        "id": "cmcc-nicc-liquid-rack",
+        "label": "NICC 新型智算中心（标准化液冷）"
+      },
+      "value": 1.15,
+      "unit": "比值",
+      "bound": "upper",
+      "caliber": {
+        "basis": "企标要求",
+        "cooling_tech": "冷板液冷",
+        "climate_zone": "未分区",
+        "build_type": "新建",
+        "scale": "未分档",
+        "period": "设计工况",
+        "region": "CN"
+      },
+      "as_of": "2023-09目标",
+      "evidence": {
+        "sha256": "83ed2563f762f7ffe92633af66689b857259517c6b4e032b80f7fd1088e85293",
+        "local_file": "中国移动NICC新型智算中心技术体系解读.pdf",
+        "locator": "p.16「三『极』目标：极致能效 PUE≤1.15」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "NICC 技术体系对标准化大规模液冷提出的能效目标，配套「五大统一」标准；原文未给达成年份，也未说明是年均还是设计工况，按设计工况记。冷却路线取 p.5 演进表标注的冷板式液冷。"
+    },
+    {
+      "fact_id": "cmcc-nicc-2023-ai-server-power",
+      "asserter": "中国移动",
+      "metric_id": "server_power_and_training_time",
+      "entity": {
+        "type": "component",
+        "id": "cn-ai-server-2023",
+        "label": "AI 服务器（中国移动口径）"
+      },
+      "value": 10.0,
+      "unit": "数值（见 parameter）",
+      "bound": "lower",
+      "caliber": {
+        "chip": "未注明（AI 服务器通称）",
+        "parameter": "单机算力功耗(kW)",
+        "pue_included": "不含",
+        "region": "CN",
+        "basis": "第三方跟踪"
+      },
+      "as_of": "2023-09",
+      "evidence": {
+        "sha256": "83ed2563f762f7ffe92633af66689b857259517c6b4e032b80f7fd1088e85293",
+        "local_file": "中国移动NICC新型智算中心技术体系解读.pdf",
+        "locator": "p.16「挑战1：单AI服务器功耗超过10kW」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "中国移动列为液冷必要性的两大挑战之一，未指明具体机型与芯片，chip 维记通称；原文未说明是否含 PUE，按机内 IT 功耗理解记不含。[未核]"
+    },
+    {
+      "fact_id": "caict-cn-intelligent-compute-share-2023",
+      "asserter": "中国信通院",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力（占国内算力规模）"
+      },
+      "value": 25.4,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "行业机构"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "83ed2563f762f7ffe92633af66689b857259517c6b4e032b80f7fd1088e85293",
+        "local_file": "中国移动NICC新型智算中心技术体系解读.pdf",
+        "locator": "p.2 右图「国内：智能算力占比快速提升」2023 年 25.4%，图注「来源：中国信通院」",
+        "grade": "S2",
+        "originator": "中国移动《NICC新型智算中心技术体系解读》转述"
+      },
+      "depth": "精读",
+      "notes": "中国移动转述中国信通院数据；原文未说明分母是按 FP16 折算的总算力还是其他口径，分母维按本区域总量记。[未核]"
+    },
+    {
+      "fact_id": "caict-cn-intelligent-compute-share-2025e",
+      "asserter": "中国信通院",
+      "metric_id": "region_compute_share",
+      "entity": {
+        "type": "region",
+        "id": "cn-intelligent-compute",
+        "label": "中国智能算力（占国内算力规模）"
+      },
+      "value": 85.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "measure": "算力规模",
+        "denominator": "本区域总量",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2025E@2023-09",
+      "evidence": {
+        "sha256": "83ed2563f762f7ffe92633af66689b857259517c6b4e032b80f7fd1088e85293",
+        "local_file": "中国移动NICC新型智算中心技术体系解读.pdf",
+        "locator": "p.2 右图「国内：智能算力占比快速提升」2025 年 85%，图注「来源：中国信通院」",
+        "grade": "S2",
+        "originator": "中国移动《NICC新型智算中心技术体系解读》转述"
+      },
+      "depth": "精读",
+      "notes": "同图 2025 年预测值，2023-09 时点做出；与库内政策目标「2025 年智能算力占比 35%（另一文件 50%）」口径与量级都不同，前者是官方政策目标、这条是信通院预测，不可互相校验。[未核]"
     }
   ]
 }
