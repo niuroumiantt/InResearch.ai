@@ -250129,6 +250129,145 @@
       },
       "depth": "精读",
       "notes": "**口径不明**：原文只说「global data center investment」，未说明含不含 IT 设备，也未说明是年度投资还是累计，scope 记未注明。这一档（350 亿美元）比同期其它口径的美国单国建设投入（315 亿美元）还低，很可能只覆盖某一细分，三年增长 55%。 [未核]"
+    },
+    {
+      "fact_id": "qz2024-cn-liquid-cooling-market-2027e",
+      "asserter": "方正证券",
+      "metric_id": "liquid_cooling_market_size",
+      "entity": {
+        "type": "market",
+        "id": "cn-liquid-cooling",
+        "label": "中国液冷市场"
+      },
+      "value": 89.0,
+      "unit": "亿（原币）",
+      "bound": "point",
+      "caliber": {
+        "market_scope": "未注明",
+        "currency": "美元",
+        "cooling_route": "未注明",
+        "region": "CN",
+        "basis": "预测"
+      },
+      "as_of": "2027E@2024",
+      "evidence": {
+        "sha256": "a3c1cd15adc5fd1f60dd92179a6de83c5ef869787e83895b39a800b5abf11647",
+        "local_file": "2024年27页-计算机行业：基于定量视角的测算…….pdf（方正证券，2024-07-18，分析师张初晨）",
+        "locator": "报告摘要：「2025 年，国内算力规划超 300EFLOPS，智算占比达到 35%」「国家枢纽节点智算中心平均 PUE 要求降至 1.25 以下，至 27 年，国内液冷市场规模将达 89 亿美元」「建设主体看，2023 年，政府、运营商、企业分别占国内总建设数量的 22%、26%、52%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "方正证券 2024-07-18 的行业报告（文件名未带机构名，正文首页署「证券研究报告 | 计算机 | 2024年07月18日」、分析师张初晨）。库内 IDC 口径的中国液冷服务器市场 2027E 同为 89.0 亿美元（hfzq2402-idc-cn-lc-server-market-2027e），本报告资料来源里列了 IDC，极可能是同源转引，**不作交叉验证**。[未核]"
+    },
+    {
+      "fact_id": "fz2407-aidc-builder-share-gov",
+      "asserter": "方正证券",
+      "metric_id": "investor_composition_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-builders",
+        "label": "中国智算中心建设主体（按建设数量）"
+      },
+      "value": 22.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "dimension": "机构类型",
+        "bucket": "政府",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "a3c1cd15adc5fd1f60dd92179a6de83c5ef869787e83895b39a800b5abf11647",
+        "local_file": "2024年27页-计算机行业：基于定量视角的测算…….pdf（方正证券，2024-07-18，分析师张初晨）",
+        "locator": "报告摘要：「建设主体看，2023 年，政府、运营商、企业分别占国内总建设数量的 22%、26%、52%」「23 年国产方案算力中心建设数量上升至 19 座，华为在 23 年公布的智算中心方案中占比约 85%」「中国移动智算中心（呼和浩特）部署约 2 万张 AI 加速卡，AI 芯片国产化率超 85%」「24 年 3 月……企业为主体的建设项目占比 72%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是建设数量（座），不是容量也不是投资额**；三档合计 100%。同报告另给 2024 年 3 月招标中企业为主体的项目占比 72%，口径又变（按招标项目数），未混记。[未核]"
+    },
+    {
+      "fact_id": "fz2407-aidc-builder-share-telco",
+      "asserter": "方正证券",
+      "metric_id": "investor_composition_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-builders",
+        "label": "中国智算中心建设主体（按建设数量）"
+      },
+      "value": 26.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "dimension": "机构类型",
+        "bucket": "运营商",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "a3c1cd15adc5fd1f60dd92179a6de83c5ef869787e83895b39a800b5abf11647",
+        "local_file": "2024年27页-计算机行业：基于定量视角的测算…….pdf（方正证券，2024-07-18，分析师张初晨）",
+        "locator": "报告摘要：「建设主体看，2023 年，政府、运营商、企业分别占国内总建设数量的 22%、26%、52%」「23 年国产方案算力中心建设数量上升至 19 座，华为在 23 年公布的智算中心方案中占比约 85%」「中国移动智算中心（呼和浩特）部署约 2 万张 AI 加速卡，AI 芯片国产化率超 85%」「24 年 3 月……企业为主体的建设项目占比 72%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是建设数量（座），不是容量也不是投资额**；三档合计 100%。同报告另给 2024 年 3 月招标中企业为主体的项目占比 72%，口径又变（按招标项目数），未混记。[未核]"
+    },
+    {
+      "fact_id": "fz2407-aidc-builder-share-enterprise",
+      "asserter": "方正证券",
+      "metric_id": "investor_composition_share",
+      "entity": {
+        "type": "market",
+        "id": "cn-aidc-builders",
+        "label": "中国智算中心建设主体（按建设数量）"
+      },
+      "value": 52.0,
+      "unit": "%",
+      "bound": "point",
+      "caliber": {
+        "dimension": "机构类型",
+        "bucket": "企业",
+        "region": "CN",
+        "basis": "券商测算"
+      },
+      "as_of": "2023",
+      "evidence": {
+        "sha256": "a3c1cd15adc5fd1f60dd92179a6de83c5ef869787e83895b39a800b5abf11647",
+        "local_file": "2024年27页-计算机行业：基于定量视角的测算…….pdf（方正证券，2024-07-18，分析师张初晨）",
+        "locator": "报告摘要：「建设主体看，2023 年，政府、运营商、企业分别占国内总建设数量的 22%、26%、52%」「23 年国产方案算力中心建设数量上升至 19 座，华为在 23 年公布的智算中心方案中占比约 85%」「中国移动智算中心（呼和浩特）部署约 2 万张 AI 加速卡，AI 芯片国产化率超 85%」「24 年 3 月……企业为主体的建设项目占比 72%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**分母是建设数量（座），不是容量也不是投资额**；三档合计 100%。同报告另给 2024 年 3 月招标中企业为主体的项目占比 72%，口径又变（按招标项目数），未混记。[未核]"
+    },
+    {
+      "fact_id": "fz2407-cmcc-hohhot-domestic-chip-share",
+      "asserter": "方正证券",
+      "metric_id": "domestic_ai_chip_share_units",
+      "entity": {
+        "type": "project",
+        "id": "cmcc-hohhot-aidc",
+        "label": "中国移动智算中心（呼和浩特）"
+      },
+      "value": 85.0,
+      "unit": "%",
+      "bound": "lower",
+      "caliber": {
+        "basis": "实测",
+        "region": "CN"
+      },
+      "as_of": "2024",
+      "evidence": {
+        "sha256": "a3c1cd15adc5fd1f60dd92179a6de83c5ef869787e83895b39a800b5abf11647",
+        "local_file": "2024年27页-计算机行业：基于定量视角的测算…….pdf（方正证券，2024-07-18，分析师张初晨）",
+        "locator": "报告摘要：「建设主体看，2023 年，政府、运营商、企业分别占国内总建设数量的 22%、26%、52%」「23 年国产方案算力中心建设数量上升至 19 座，华为在 23 年公布的智算中心方案中占比约 85%」「中国移动智算中心（呼和浩特）部署约 2 万张 AI 加速卡，AI 芯片国产化率超 85%」「24 年 3 月……企业为主体的建设项目占比 72%」",
+        "grade": "S2"
+      },
+      "depth": "精读",
+      "notes": "**单项目口径，不是全国国产化率**：该中心部署约 2 万张 AI 加速卡、国产芯片占比超 85%。库内该指标此前多为全国或市场口径，两者不可比。[未核]"
     }
   ]
 }
