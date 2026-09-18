@@ -266,6 +266,42 @@ class ReaderTests(unittest.TestCase):
         self.run_reader()
         self.assertEqual(self.first_doc()["state"], "complete")
 
+    def test_retry_by_error_code_leaves_the_other_blocks_alone(self):
+        """一次解析修复只退役一类阻塞,不是全部。
+
+        2026-09-18 这个台账有 10,101 份 blocked,其中 6,501 份是 CAD 与大幅面
+        图纸 —— 它们是**按设计**阻塞的,无差别重试会把它们重新渲染、重新阻塞,
+        白烧几天。所以按 error_code 选择性重试不是便利,是正确性。
+        """
+        # 两份内容必须不同:相同字节会被按内容去重成一份文档,那是正确行为。
+        self.register(name="a.txt", text="甲文:服务器功率为 300 W。\n")
+        self.register(name="b.txt", text="乙文:机柜功率为 12 kW。\n")
+        rows = self.reader.conn.execute(
+            "SELECT job_id,doc_id,revision_id FROM jobs ORDER BY job_id").fetchall()
+        self.assertEqual(len(rows), 2, "夹具要两份各自一个 job")
+        codes = ("ocr_output_invalid", "large_format_page_requires_drawing_workflow")
+        with self.reader.transaction():
+            for row, code in zip(rows, codes):
+                self.reader.conn.execute(
+                    "UPDATE jobs SET state='blocked',error_code=? WHERE job_id=?", (code, row["job_id"]))
+                self.reader.conn.execute(
+                    "UPDATE reading_runs SET state='blocked',error_code=? WHERE revision_id=?",
+                    (code, row["revision_id"]))
+
+        self.assertEqual(self.reader.retry(error_code=codes[0])["retried"], 1)
+        after = {r["job_id"]: dict(r) for r in self.reader.conn.execute(
+            "SELECT job_id,state,error_code FROM jobs")}
+        self.assertEqual(after[rows[0]["job_id"]]["state"], "pending")
+        self.assertIsNone(after[rows[0]["job_id"]]["error_code"])
+        # 图纸那份必须原样不动 —— 它才是这条测试真正守的东西。
+        self.assertEqual(after[rows[1]["job_id"]]["state"], "blocked")
+        self.assertEqual(after[rows[1]["job_id"]]["error_code"], codes[1])
+        self.assertEqual(self.reader.conn.execute(
+            "SELECT state FROM reading_runs WHERE revision_id=?",
+            (rows[1]["revision_id"],)).fetchone()[0], "blocked")
+        # 不给 error_code 时行为不变:两份都回到 pending。
+        self.assertEqual(self.reader.retry()["retried"], 1)
+
     def test_failed_chunk_does_not_allow_other_chunks_to_clear_failure(self):
         self.register(text="长篇正文与注释。" * 100)
         self.run_reader(max_jobs=2)

@@ -144,7 +144,19 @@ python3 ~/code/inresearch.ai/manage.py reader rollback --doc-id doc-完整哈希
 systemctl --user start inresearch-reader.service
 ```
 
-`retry` 不带 doc-id 会重试全部 failed/blocked，仅在已修复原因时使用。`rollback` 只移除台账中与原件相符的 library 符号链接，不删除原件、raw、阅读结果或来源链；已回滚的操作不会在启动时自动重建。崩溃前处于 prepared 的改名，或正常 committed 但丢失的视图，可从操作台账恢复。目标被用户文件占用/指向别处时转 needs_review，绝不覆盖。修正占位冲突后可 retry organize 任务。
+`retry` 不带 doc-id 会重试全部 failed/blocked，仅在已修复原因时使用。**修复只退役一类阻塞时用 `--error-code` 限定**：
+
+```bash
+python3 ~/code/inresearch.ai/manage.py reader retry --error-code ocr_output_invalid
+```
+
+2026-09-18 真机清点说明了为什么这不是便利而是正确性：台账里 10,101 份 blocked 中，**6,501 份（64%）是 CAD、DWF 与大幅面图纸**，它们按本节「不读图纸」的规定是**设计上阻塞**的；无差别 `retry` 会把这 6,501 份重新渲染、重新阻塞，白烧几天，而真正该重试的只有几百份。同次清点的其余分布：Office 类 1,059、日志/输出 846、`ocr_output_invalid` 346、jpg 316、`text_encoding_requires_conversion` 147。
+
+两类值得单独说：
+
+- **`ocr_output_invalid`（346 份）**——视觉模型返回了解析不了的输出。`b2858e6`（2026-09-13）给 Ollama 路径加了 `content` 为空时取 `thinking` 字段的回退，而这 346 份全部是 2026-09-09 之前阻塞的，**那个回退从未对它们跑过**。升级源码后按上面的 `--error-code` 重试一次，是成本最低的验证。
+- **`text_encoding_requires_conversion`（147 份）**——`.txt/.md/.csv/.tsv` 只按 `utf-8-sig` 解码，失败即阻塞。中文语料里 GBK/GB18030/Big5 很常见。**不要简单加 fallback**：GB18030 几乎能"成功"解码任意字节序列，拿它解 Big5 会解出乱码而不报错——解码成功不等于解对了。这一批需要先看字节证据再定方案，尚未有结论。
+`rollback` 只移除台账中与原件相符的 library 符号链接，不删除原件、raw、阅读结果或来源链；已回滚的操作不会在启动时自动重建。崩溃前处于 prepared 的改名，或正常 committed 但丢失的视图，可从操作台账恢复。目标被用户文件占用/指向别处时转 needs_review，绝不覆盖。修正占位冲突后可 retry organize 任务。
 
 一份材料只维护一套有效阅读结果；更换默认模型只影响新任务，已完成材料不会重读。执行配方冻结 backend/model/context、输出预算、请求路由、可选 revision、分块和注册表快照；旧配方补齐默认值后兼容本次升级。已有任务的推理配置不符时仍阻塞，恢复匹配配置后可 retry；自动选择旧配置仍未实现，显式重读流程见下节，不能用删除台账来重读。可在同一配方追加已明确配置的 OCR 能力，逐页记录实际视觉模型，retry 从已保存页继续。
 

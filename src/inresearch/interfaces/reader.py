@@ -35,6 +35,8 @@ def main(argv=None):
     retry = sub.add_parser("retry")
     retry.add_argument("--doc-id")
     retry.add_argument("--revision-id")
+    retry.add_argument("--error-code",
+                       help="only this block reason; a parser fix retires one class, not all")
     reread = sub.add_parser('reread', help='create a separately reviewed reading candidate')
     for name in ('doc-id','expected-current','request-id','reason'):
         reread.add_argument('--' + name, required=True)
@@ -96,7 +98,7 @@ def main(argv=None):
             result = reader.write_status()
         elif args.command == "retry":
             with reader.worker_session():
-                result = reader.retry(args.doc_id, args.revision_id)
+                result = reader.retry(args.doc_id, args.revision_id, args.error_code)
             reader.write_status()
         elif args.command == 'reread':
             result = reader.revisions.request(args.doc_id,args.expected_current,args.request_id,args.reason)

@@ -13,7 +13,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "4c47b5250417be9dac7d897aca839867bc07c1497ba858017b6d5eb85d7eefe6",
+    "docs/local_reader/SPARK_OPERATIONS.md": "39fcbea12cb4f74b4a9fd3b844bbb976d738fec1c2b55d249a6398f1e1f47fbe",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
     "framework/01_data_standards.md": "77caca1fff5e86e4b5307492199558d21a9de610093c5ea3bcb2896f06b6e51f",
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
@@ -40,7 +40,7 @@
     "tests/unit/test_catalog_bridge.py": "47ed253f19bd29eeff4221e07215084526b1b7fae85e58b4aab051d4b6ac8405",
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_commands.py": "0eda9d7ee92eadb0b187f8e83901ae42c016c783fcdcfeec1d0e74b89dbb15a7",
-    "tests/unit/test_continuous_reader.py": "7ddb5fa49a503977829b010533e24d521601b9cdca1f34ee21edfb0756232e0b",
+    "tests/unit/test_continuous_reader.py": "b7ba58d83d15e9294b497d197c8e61ab2f93049d98a51e1ad9f82ea8193aa44c",
     "tests/unit/test_deep_read.py": "f4399a1287d9fd7ced79059d351c6edd08a48ca0c3a752dbf94bc4964705d4f9",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
     "tests/unit/test_display_regressions.py": "b3461db2c0648d4ca88f6d8dd646edbcb8c8242df4aeeb43be7a6182d8d94cbe",
@@ -211,7 +211,7 @@
       "policy": "operations-20260906",
       "scope": "project",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
-      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界",
+      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_backup_restores_catalog_and_views_under_new_root",
         "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle",
@@ -220,7 +220,8 @@
         "tests/unit/test_catalog_migration.py::CatalogMigrationTests.test_active_old_worker_prevents_schema_upgrade",
         "tests/unit/test_reading_results.py::ReadingResultsTests.test_missing_catalog_query_does_not_create_directories_or_initialize",
         "tests/unit/test_reading_results.py::ReadingResultsTests.test_old_or_new_catalog_refuses_without_migration_or_backup",
-        "tests/unit/test_reading_results.py::ReadingResultsTests.test_read_only_catalog_cannot_write_even_through_connection"
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_read_only_catalog_cannot_write_even_through_connection",
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_retry_by_error_code_leaves_the_other_blocks_alone"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。"

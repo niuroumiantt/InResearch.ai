@@ -506,12 +506,24 @@ class Reader:
         self.write_status()
         return state
 
-    def retry(self, doc_id=None, revision_id=None):
+    def retry(self, doc_id=None, revision_id=None, error_code=None):
+        """Re-queue failed or blocked work; every filter given must match.
+
+        error_code exists because a code fix retires one class of block, not
+        all of them. On 2026-09-18 this catalog held 10,101 blocked documents,
+        of which 6,501 were CAD and large-format drawings that are blocked *by
+        design* and would re-render, re-block and burn days on the way. An
+        unfiltered retry after fixing one parser is therefore not thorough, it
+        is a way to spend a week re-proving what the catalog already knows.
+        """
         if doc_id:
             self.doc(doc_id, revision_id)
+        selector = ("state IN ('failed','blocked') AND (? IS NULL OR doc_id=?)"
+                    " AND (? IS NULL OR revision_id=?) AND (? IS NULL OR error_code=?)")
+        where = (doc_id, doc_id, revision_id, revision_id, error_code, error_code)
         with self.transaction():
-            rows = self.conn.execute("SELECT DISTINCT doc_id,revision_id FROM jobs WHERE state IN ('failed','blocked') AND (? IS NULL OR doc_id=?) AND (? IS NULL OR revision_id=?)", (doc_id,doc_id,revision_id,revision_id)).fetchall()
-            cur = self.conn.execute("UPDATE jobs SET state='pending',attempts=0,available=?,error_code=NULL WHERE state IN ('failed','blocked') AND (? IS NULL OR doc_id=?) AND (? IS NULL OR revision_id=?)", (self.clock(),doc_id,doc_id,revision_id,revision_id))
+            rows = self.conn.execute("SELECT DISTINCT doc_id,revision_id FROM jobs WHERE " + selector, where).fetchall()
+            cur = self.conn.execute("UPDATE jobs SET state='pending',attempts=0,available=?,error_code=NULL WHERE " + selector, (self.clock(),) + where)
             for row in rows:
                 self.conn.execute("UPDATE reading_runs SET state='queued',error_code=NULL WHERE revision_id=?",(row['revision_id'],))
                 self.conn.execute("UPDATE intake_operations SET state='prepared',error_code=NULL WHERE doc_id=? AND state='needs_review'",(row['doc_id'],))
