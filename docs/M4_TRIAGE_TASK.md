@@ -13,7 +13,7 @@
 | 提取摘要与 L2 交付 | 用例已拆分并补齐准入/重放/计划冲突规则 | `inresearch.workflow.attribution`、`inresearch.workflow.deep_read.DeepRead`；CLI 为 `inresearch.interfaces.deep_read`；不是 Spark 全文流程的替代 |
 | 改名移动、日志与恢复 | 已实现并通过隔离故障测试 | `inresearch.storage.moves`、`inresearch.storage.jsonl`、`inresearch.materials.organize`；未操作生产原件 |
 | M4 对照表导出与对账 | 已有代码 | `inresearch.materials.mapping` |
-| Spark catalog 的 apply-triage | 未实现 | §7.2 描述目标契约；不由脚本存在推断已完成 |
+| Spark catalog 的 apply-triage | 已实现（2026-09-18），**尚未在真机 catalog 上执行** | `inresearch.workflow.apply_triage`；CLI `manage.py reader apply-triage`；见 §7.3 |
 
 清单和阅读入口不移动原件；实际文件操作仍须按已给授权、对应操作计划和验收执行。模型更换不扩大原件操作范围。本次未操作 M4/Spark 原件，也未核对生产完成量。
 
@@ -110,9 +110,20 @@ python3 manage.py inventory summary
 
 两个根必须并列、同卷，文件系统支持硬链接与同步。若不支持，保留原件并停止，不自动改用跨卷复制。读取端只报告日志已提交的移动；中断待恢复的操作不计完成。进度中的 moved 是当前仍离开原位置的文件数，重复改名不会重复计数。
 
-### 7.3 Spark catalog 接口（尚未实现）
+### 7.3 Spark catalog 接口
 
-当前物理移动命令只适用于独立、未被 reader catalog 管理的副本；不是 Spark originals 的迁移命令。已识别的 reader `originals/` 根会被移动器拒绝。Spark 恢复后另做 `apply-triage`：核对 catalog 内容身份，仅更新优先级、元数据和 library 链接，保持 originals 不变。受控重读和采用替代另按 04 / 08 执行，不能把命名重排当成新阅读。
+当前物理移动命令只适用于独立、未被 reader catalog 管理的副本；不是 Spark originals 的迁移命令。已识别的 reader `originals/` 根会被移动器拒绝。catalog 侧改用 `apply-triage`：核对 catalog 内容身份，仅更新优先级和 library 链接，保持 originals 不变。受控重读和采用替代另按 04 / 08 执行，不能把命名重排当成新阅读。
+
+```bash
+python3 manage.py reader apply-triage --mapping /path/to/mapping.jsonl
+python3 manage.py reader apply-triage --mapping /path/to/mapping.jsonl --commit
+```
+
+不带 `--commit` 只出计划，一个字节都不写。两步都在 reader 的排他锁内执行，因此不会与正在运行的 reader 交错；`--commit` 会逐份重新哈希原件（这正是校验本身），所以计划是秒级的，提交要把语料整读一遍。
+
+匹配只按 `sha256`，不按路径 —— 目录是人手重排过的，内容是唯一还能对上的键。只处理 `stage=library` 的行；`duplicates` 不归置。已有 `library_rel` 且与目标不同的文档报 `conflict` 并原样保留，不覆盖：哪个归置正确是判断，不是本命令能替人做的决定。`importance` 超出 1–9 就不改优先级（与阅读产出同一道边界）。目标路径逃出 `library/` 一律拒绝。
+
+写入只有两处：`documents.library_rel` 和初始 reading_run 的 `priority`。链接由 reader 自己那条已验证路径创建（`library/… → originals/…` 软链，建前比对 catalog 记录的摘要），因此与 reader 自己归置的条目共用同一套 `operations` 日志与 `reader rollback` 回退。**不创建 reading_run，不设置 `report_rel`/`activated`，不改 `current_revision_id`** —— 这条由 `tests/unit/test_apply_triage.py` 钉死。
 
 ## 8. 模型与客户端协议
 

@@ -78,7 +78,18 @@ python3 manage.py mapping export --out /path/to/mapping.jsonl
 python3 manage.py mapping verify --mapping /path/to/mapping.jsonl
 ```
 
-在另一台机器先切到独立数据集并清点自己的原件，再 verify。只有未被 reader catalog 管理的独立副本才使用物理 apply；missing/extra 须先对清。旧手册中的跨机器执行记录不表示已经实现 Spark catalog 的 apply-triage。Spark 当前不可用，恢复后按任务卡 §7.3 接元数据与链接接口。
+在另一台机器先切到独立数据集并清点自己的原件，再 verify。只有未被 reader catalog 管理的独立副本才使用物理 apply；missing/extra 须先对清。
+
+**接收方是 reader catalog（Spark）时不要走 `mapping verify`/`mapping apply`**：前者要求先对本机原件做一次全量清点，而 catalog 的 `documents.sha256` 本来就是同一批哈希，直接读台账即可对账，不必把语料重读一遍；后者会物理移动文件，catalog 管理的 originals 不可移动。改用任务卡 §7.3 的接口：
+
+```bash
+python3 manage.py reader apply-triage --mapping /path/to/mapping.jsonl
+python3 manage.py reader apply-triage --mapping /path/to/mapping.jsonl --commit
+```
+
+不带 `--commit` 只出计划。计划里的 `absent_here` 是 M4 有而本机没有的内容，它们需要的是物理入库（走接收流程），不是改元数据；`conflict` 是本机已归置到别处的文档，要人来判哪个对。
+
+2026-09-18 在真机上做过一次只读对账（catalog 32,734 份 ↔ M4 导出）：两边都有 32,727 份，只在 Spark 的 7 份，只在 M4 的 3,169 份，`library_rel` 当时为 0。**apply-triage 的真机执行尚未进行。**
 
 ## 5. 验收边界
 
