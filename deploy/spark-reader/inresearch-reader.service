@@ -21,6 +21,15 @@ Nice=10
 CPUWeight=10
 IOWeight=10
 IOSchedulingClass=idle
+# Hard ceilings, not just relative weights. CPUWeight only decides who yields
+# when the machine is contended; it cannot stop this service from occupying the
+# machine on its own. On 2026-09-09 the Spark ran READER_WORKERS=4 unattended and
+# was found nine days later still at full load and 92 C, with nothing able to
+# stop it. These bound the blast radius of any future runaway.
+CPUQuota=400%
+MemoryHigh=4G
+MemoryMax=8G
+TasksMax=256
 NoNewPrivileges=true
 PrivateTmp=true
 ProtectSystem=strict

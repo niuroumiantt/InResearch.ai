@@ -76,9 +76,13 @@ class Reader:
         with self.catalog.read_snapshot():
             return reader_delivery.export(dest, self.conn, self.data, self.snapshot(), self.status())
 
-    def export_snapshot(self):
+    def export_snapshot(self, verify=None):
+        # The projection cache lives beside the other state; it is rebuildable,
+        # so it stays out of the catalog and out of any backup contract.
+        # verify=True re-reads and re-verifies every report's digest.
         with self.catalog.read_snapshot():
-            return reader_delivery.export_snapshot(self.conn, self.data, self.snapshot(), self.status())
+            return reader_delivery.export_snapshot(self.conn, self.data, self.snapshot(), self.status(),
+                                                   cache_root=self.state, verify=verify)
 
     def backup(self, dest):
         return reader_delivery.backup(dest, self.conn, self.data, self.state)

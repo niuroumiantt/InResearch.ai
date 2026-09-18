@@ -729,5 +729,61 @@ class WorkerThreadTests(ReaderTests):
             self.run_reader(workers=3)
 
 
+class SnapshotProjectionCacheTests(ReaderTests):
+    """The publish path re-projects every document on a five-minute timer.
+
+    At the Spark's 32,734 documents that meant re-hashing and re-parsing every
+    report each run, which cannot finish inside the unit's TimeoutStartSec=180 —
+    publish failed every attempt from 2026-09-09 onward. These pin the cache that
+    fixes it: identical output, and an unchanged document is not read again.
+    """
+
+    def exported(self, **kwargs):
+        with contextlib.redirect_stdout(io.StringIO()):
+            return self.reader.export_snapshot(**kwargs)["knowledge"]
+
+    def prepared(self):
+        self.install_registry()
+        self.put(text="服务器功率为 300 W。表格及注释应完整保留。\n" * 6)
+        self.run_reader()
+        doc = self.first_doc()
+        self.assertTrue(doc["report_rel"], "fixture must produce a report to project")
+        return doc
+
+    def corrupt_report(self, doc):
+        """Make any re-read fail loudly, so a silent re-read cannot pass a test."""
+        path = artifacts.safe_path(self.reader.data, doc["report_rel"])
+        path.write_text(path.read_text(encoding="utf-8") + " ", encoding="utf-8")
+
+    def test_second_export_matches_the_first(self):
+        self.prepared()
+        self.assertEqual(self.exported(), self.exported())
+
+    def test_unchanged_document_is_not_read_again(self):
+        doc = self.prepared()
+        first = self.exported()
+        # Only a cache hit can survive this: read_report would raise on the digest.
+        self.corrupt_report(doc)
+        self.assertEqual(first, self.exported())
+
+    def test_verify_bypasses_the_cache_and_still_checks_the_digest(self):
+        doc = self.prepared()
+        self.exported()
+        self.corrupt_report(doc)
+        with self.assertRaises(reader_contracts.IntegrityError):
+            self.exported(verify=True)
+
+    def test_registry_version_change_reprojects(self):
+        doc = self.prepared()
+        self.exported()
+        self.corrupt_report(doc)
+        # A new registry version changes the allowed id sets, so every cached
+        # projection must be rebuilt rather than served stale.
+        artifacts.atomic_json(self.base / "repo/framework/research_graph.json",
+                              {"version": "9.0.0", "objects": [{"id": "obj-server", "name": "服务器"}]})
+        with self.assertRaises(reader_contracts.IntegrityError):
+            self.exported()
+
+
 if __name__ == "__main__":
     unittest.main()

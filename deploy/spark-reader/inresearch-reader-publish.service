@@ -12,6 +12,12 @@ ExecStart=/usr/bin/python3 %h/code/inresearch.ai/manage.py publish
 UMask=0077
 Nice=15
 TimeoutStartSec=180
+# Every run before 2026-09-18 burned the full 180 s of CPU and was killed: the
+# export re-read and re-hashed all 32,734 reports each time. The projection cache
+# fixes that; these keep a future regression from spending the machine on it.
+CPUQuota=200%
+MemoryMax=4G
+TasksMax=64
 NoNewPrivileges=yes
 PrivateTmp=yes
 

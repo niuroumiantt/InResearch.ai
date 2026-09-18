@@ -1,9 +1,9 @@
 """Candidate projections and recoverable backups from explicit catalog inputs."""
 from __future__ import annotations
-import os, shutil, sqlite3
+import json, os, shutil, sqlite3
 from pathlib import Path
 from inresearch.materials.reader_contracts import UnsafePath, IntegrityError
-from inresearch.materials.artifacts import now_iso, digest_file, private_dir, safe_path, atomic_bytes, atomic_json, read_json, signature, is_partial
+from inresearch.materials.artifacts import now_iso, digest_bytes, digest_file, encoded, private_dir, safe_path, atomic_bytes, atomic_json, read_json, signature, is_partial
 
 def read_report(data, doc):
     if not doc['report_rel']:
@@ -37,52 +37,131 @@ def export(dest, conn, data, registry, status):
     atomic_json(safe_path(dest, "status.json"), status)
     return {"exported": len(reports), "directory": str(dest)}
 
-def export_snapshot(conn, data, registry, status):
+PROJECTION_CACHE = "publish-projection-cache.sqlite"
+
+
+def projection_cache(cache_root):
+    """Derived, disposable and deliberately outside the catalog.
+
+    Losing this file costs one slow export, never a fact: every row is recomputed
+    from the catalog and the reports it points at. Keeping it out of
+    catalog.sqlite also keeps the publish path a reader of the ledger.
+    """
+    if cache_root is None:
+        return None
+    path = Path(cache_root).expanduser().resolve() / PROJECTION_CACHE
+    os.close(os.open(str(path), os.O_CREAT | os.O_RDWR, 0o600))
+    conn = sqlite3.connect(str(path), timeout=30, isolation_level=None)
+    conn.execute("PRAGMA journal_mode=WAL")
+    conn.execute("CREATE TABLE IF NOT EXISTS projection "
+                 "(doc_id TEXT PRIMARY KEY, fingerprint TEXT NOT NULL, payload TEXT NOT NULL)")
+    return conn
+
+
+def fingerprint(doc, sources, registry_key):
+    """Every input the projection reads, report content included via report_sha256.
+
+    Any catalog column, any source row or a registry version change all miss the
+    cache, so a stale projection cannot outlive what it was built from.
+    """
+    stable = {k: (v if isinstance(v, (str, int, float, bool)) or v is None else repr(v))
+              for k, v in doc.items()}
+    return digest_bytes(encoded({"registry": registry_key, "doc": stable,
+                                 "sources": sources}).encode("utf-8"))
+
+
+def project_document(doc, sources, report, allowed):
+    """Everything one document contributes to a snapshot, from its inputs alone."""
+    mapped, missing = {}, {}
+    for key in allowed:
+        mapped[key] = sorted(set(report.get(key, [])) & allowed[key])
+        missing[key] = sorted(set(report.get(key, [])) - allowed[key])
+    needs_review = any(missing.values()) or not any(mapped.values())
+    entry = {"id": doc["doc_id"], "doc_id": doc["doc_id"], "content_sha256": doc["sha256"],
+             "title": report.get("classification", {}).get("title") or doc["original_name"],
+             "stored_path": doc["original_rel"], "sources": sources, "library_path": doc["library_rel"],
+             "coverage": report.get("coverage", {"complete": False, "chunks_total": doc["chunks_total"], "chunks_read": doc["chunks_read"]}),
+             "read_status": doc["state"], "mapping_status": "needs_review" if needs_review else "candidate_mapped",
+             "reading_revision_id": doc["revision_id"] if doc["report_rel"] else None,
+             "report_sha256": doc["report_sha256"],
+             "model": report.get("model"), "status": "candidate", "acceptance": "candidate", **mapped}
+    evidence_out = []
+    for evidence in report.get("evidence", []):
+        ids = {key: sorted(set(evidence.get(key, [])) & allowed[key]) for key in allowed}
+        page = evidence.get('page_index')
+        # Reader artifact v1 uses PDF page numbers (1..N). The knowledge
+        # contract uses array indices (0..N-1). Convert only at this boundary;
+        # old immutable reports keep their original locator and numbering.
+        if type(page) is not int or not 1 <= page <= report.get('coverage', {}).get('pages_total', 0):
+            raise IntegrityError()
+        evidence_out.append({**evidence, "page_index": page - 1, "document_id": doc["doc_id"], **ids,
+                             "status": "candidate", "acceptance": "candidate"})
+    statements = []
+    for n, claim in enumerate(report.get("claims", [])):
+        ids = {key: sorted(set(claim.get(key, [])) & allowed[key]) for key in allowed}
+        statements.append({**claim, "id": claim.get("id") or doc["doc_id"] + ":statement:" + str(n),
+                           "document_id": doc["doc_id"], **ids,
+                           "status": "candidate", "acceptance": "candidate"})
+    proposal = None
+    if needs_review:
+        proposal = {"doc_id": doc["doc_id"], "unknown_ids": missing,
+                    "classification": report.get("classification"), "reason": "unmapped_or_registry_changed"}
+    return {"entry": entry, "evidence": evidence_out, "statements": statements, "proposal": proposal}
+
+
+def export_snapshot(conn, data, registry, status, cache_root=None, verify=None):
     """Web is a rebuildable projection; old reading artifacts retain their versions.
 
     Revalidate the ID projection against the currently installed registry. Unknown
     IDs stay in a local proposal file; they never make a whole web batch invalid.
+
+    Each document's contribution depends only on its catalog row, its sources and
+    its report; a projection cache keyed by all three lets an unchanged document
+    skip re-hashing and re-parsing its report. That is what makes this finish:
+    the Spark catalog reached 32,734 documents, and re-reading every report on a
+    five-minute timer cannot complete inside the unit's TimeoutStartSec.
+    Pass verify=True (or READER_PUBLISH_VERIFY=1) to bypass the cache and
+    re-verify every report's digest — see docs/local_reader/SPARK_OPERATIONS.md.
     """
     allowed = {"object_ids": {r["id"] for r in registry["objects"] if isinstance(r, dict) and "id" in r},
                "question_ids": {r["id"] for r in registry["questions"] if isinstance(r, dict) and "id" in r}}
+    registry_key = [registry["graph_version"], registry["questions_version"]]
+    if verify is None:
+        verify = os.environ.get("READER_PUBLISH_VERIFY") == "1"
+    cache = None if verify else projection_cache(cache_root)
+    # One query for every document's sources; the per-document query this replaces
+    # was one round trip per row and dominated the export at catalog scale.
+    grouped = {}
+    for row in conn.execute("SELECT doc_id,source_key,version_seq,previous_doc_id,received "
+                            "FROM sources ORDER BY doc_id,received,id"):
+        source = dict(row)
+        grouped.setdefault(source.pop("doc_id"), []).append(source)
     knowledge = {"documents": [], "evidence": [], "statements": [], "answers": []}
     proposals = []
-    for row in conn.execute("SELECT * FROM current_readings ORDER BY created,doc_id"):
-        doc = dict(row)
-        report = read_report(data, doc)
-        mapped, missing = {}, {}
-        for key in allowed:
-            mapped[key] = sorted(set(report.get(key, [])) & allowed[key])
-            missing[key] = sorted(set(report.get(key, [])) - allowed[key])
-        needs_review = any(missing.values()) or not any(mapped.values())
-        if needs_review:
-            proposals.append({"doc_id": doc["doc_id"], "unknown_ids": missing,
-                              "classification": report.get("classification"), "reason": "unmapped_or_registry_changed"})
-        sources = [dict(r) for r in conn.execute("SELECT source_key,version_seq,previous_doc_id,received FROM sources WHERE doc_id=? ORDER BY received,id", (doc["doc_id"],))]
-        entry = {"id": doc["doc_id"], "doc_id": doc["doc_id"], "content_sha256": doc["sha256"],
-                 "title": report.get("classification", {}).get("title") or doc["original_name"],
-                 "stored_path": doc["original_rel"], "sources": sources, "library_path": doc["library_rel"],
-                 "coverage": report.get("coverage", {"complete": False, "chunks_total": doc["chunks_total"], "chunks_read": doc["chunks_read"]}),
-                 "read_status": doc["state"], "mapping_status": "needs_review" if needs_review else "candidate_mapped",
-                 "reading_revision_id": doc["revision_id"] if doc["report_rel"] else None,
-                 "report_sha256": doc["report_sha256"],
-                 "model": report.get("model"), "status": "candidate", "acceptance": "candidate", **mapped}
-        knowledge["documents"].append(entry)
-        for evidence in report.get("evidence", []):
-            ids = {key: sorted(set(evidence.get(key, [])) & allowed[key]) for key in allowed}
-            page = evidence.get('page_index')
-            # Reader artifact v1 uses PDF page numbers (1..N). The knowledge
-            # contract uses array indices (0..N-1). Convert only at this boundary;
-            # old immutable reports keep their original locator and numbering.
-            if type(page) is not int or not 1 <= page <= report.get('coverage', {}).get('pages_total', 0):
-                raise IntegrityError()
-            knowledge["evidence"].append({**evidence, "page_index": page - 1, "document_id": doc["doc_id"], **ids,
-                                           "status": "candidate", "acceptance": "candidate"})
-        for n, claim in enumerate(report.get("claims", [])):
-            ids = {key: sorted(set(claim.get(key, [])) & allowed[key]) for key in allowed}
-            knowledge["statements"].append({**claim, "id": claim.get("id") or doc["doc_id"] + ":statement:" + str(n),
-                                             "document_id": doc["doc_id"], **ids,
-                                             "status": "candidate", "acceptance": "candidate"})
+    try:
+        for row in conn.execute("SELECT * FROM current_readings ORDER BY created,doc_id"):
+            doc = dict(row)
+            sources = grouped.get(doc["doc_id"], [])
+            key = fingerprint(doc, sources, registry_key)
+            piece = None
+            if cache is not None:
+                hit = cache.execute("SELECT payload FROM projection WHERE doc_id=? AND fingerprint=?",
+                                    (doc["doc_id"], key)).fetchone()
+                if hit is not None:
+                    piece = json.loads(hit[0])
+            if piece is None:
+                piece = project_document(doc, sources, read_report(data, doc), allowed)
+                if cache is not None:
+                    cache.execute("INSERT OR REPLACE INTO projection VALUES(?,?,?)",
+                                  (doc["doc_id"], key, encoded(piece)))
+            knowledge["documents"].append(piece["entry"])
+            knowledge["evidence"].extend(piece["evidence"])
+            knowledge["statements"].extend(piece["statements"])
+            if piece["proposal"] is not None:
+                proposals.append(piece["proposal"])
+    finally:
+        if cache is not None:
+            cache.close()
     atomic_json(safe_path(data, "candidates/mapping-proposals.json"), {"generated": now_iso(), "acceptance": "candidate", "records": proposals})
     return {"schema_version": 1, "generated": now_iso(), "graph_version": registry["graph_version"],
             "questions_version": registry["questions_version"], "knowledge": knowledge, "reader": status, "acceptance": "candidate"}
