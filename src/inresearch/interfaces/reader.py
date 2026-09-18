@@ -65,6 +65,14 @@ def main(argv=None):
         except (ReaderError, OSError, ValueError, sqlite3.Error) as exc:
             print(encoded({'error': exc.code if isinstance(exc, ReaderError) else str(exc)}), file=sys.stderr)
             return 1
+    if args.command == 'apply-triage':
+        # Checked before the Reader exists, because constructing it migrates a
+        # v1 catalog -- which a plan must never do as a side effect.
+        from inresearch.workflow.apply_triage import refuse_unless_current
+        refusal = refuse_unless_current(args.data_root)
+        if refusal:
+            print(encoded({'error': refusal}), file=sys.stderr)
+            return 1
     if args.stable_seconds < 0 or (args.timeout is not None and args.timeout <= 0):
         ap.error("stability must be >= 0 and timeout > 0")
     from inresearch.adapters import models

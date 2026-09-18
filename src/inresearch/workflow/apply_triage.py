@@ -21,9 +21,45 @@ committing reads every matched original once, because that check is the point.
 """
 from __future__ import annotations
 
-from pathlib import PurePosixPath
+import sqlite3
+from pathlib import Path, PurePosixPath
 
 LIBRARY_STAGE = 'library'
+CATALOG_VERSION = 2
+
+
+def catalog_path(data_root=None):
+    root = Path(data_root or Path.home() / '.local/share/inresearch.ai').expanduser().resolve()
+    return root / 'catalog/catalog.sqlite'
+
+
+def refuse_unless_current(data_root=None):
+    """Return an error string when this catalog is not one this command may plan against.
+
+    Reader.initialize() upgrades a v1 catalog on its way in. That is right for a
+    reader about to read and wrong here: a plan promises to write nothing, and
+    the upgrade rewrites every row of the ledger. The 2026-09-18 Spark catalog
+    was still v1 -- 32,734 documents, no reading_runs table -- so planning there
+    would have silently migrated it. The version is therefore read from a
+    read-only connection first, and an old catalog is named, not converted.
+    """
+    path = catalog_path(data_root)
+    if not path.is_file():
+        return 'catalog_missing: ' + str(path)
+    try:
+        connection = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+    except sqlite3.Error:
+        return 'catalog_unreadable: ' + str(path)
+    try:
+        version = connection.execute('PRAGMA user_version').fetchone()[0]
+    finally:
+        connection.close()
+    if version == CATALOG_VERSION:
+        return None
+    if version < CATALOG_VERSION:
+        return ('catalog_needs_upgrade: schema v%s; run `manage.py reader init` first '
+                '(it backs the catalog up and migrates it), then re-run apply-triage' % version)
+    return 'catalog_newer_than_this_reader: schema v%s' % version
 
 
 def target_rel(row):
