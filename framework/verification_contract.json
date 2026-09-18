@@ -7,7 +7,7 @@
     "AGENTS.md": "724d29fbab3a097c490eeb294f71724625d045e20ec080c6a9a252dadc72e22b",
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
-    "docs/M4_TRIAGE_TASK.md": "a01bd60defbbdbaca8fab221384ba6b8d3d7c21ed9ae3c4180dc2d7ff21bcefc",
+    "docs/M4_TRIAGE_TASK.md": "52fcf11e54b9bc085fad9e55ed1efc98e0cc01727ca133255168700a09480ec2",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "91d862b923f292d337771f17dbfc965357b76039df162c78b97003237f9feb85",
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
@@ -75,7 +75,8 @@
     "tests/model_assets.cjs": "4b35173513874da2b146404cde1dfe3ab0aaafd340f44741ec03bbac2b1dfaaa",
     "tests/unit/test_model_assets.py": "243b694e858a87efcbd2212e1a8924080119d63415d7065ccd5812a0b46402c5",
     "tests/scene_framing.cjs": "a5d6c37a9f7aa43ab194ac0175a785a71d2af9b318211e7e139c7349046cb1c0",
-    "tests/datacenter_cost.cjs": "e9e3c31dcd7914c02020688cd040be671d61bd4d8d2e5da8e96b7f589d6c63c9"
+    "tests/datacenter_cost.cjs": "e9e3c31dcd7914c02020688cd040be671d61bd4d8d2e5da8e96b7f589d6c63c9",
+    "tests/unit/test_apply_triage.py": "9e732ca4883ae09f8689420c274899c5e45c5157b6f7313c296fa4b2d7358f1e"
   },
   "policies": [
     {
@@ -333,7 +334,7 @@
       "policy": "reading-m4-triage-20260912",
       "scope": "m4-triage",
       "source": "docs/M4_TRIAGE_TASK.md",
-      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界",
+      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝",
       "tests": [
         "tests/unit/test_m4_triage.py::InventoryTests.test_identical_bytes_are_one_sha_with_every_path_recorded",
         "tests/unit/test_deep_read.py::EffectiveResultTests.test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue",
@@ -356,10 +357,14 @@
         "tests/unit/test_deep_read_transactions.py::DeepReadTransactionTests.test_processes_cannot_both_replace_the_same_l1_revision",
         "tests/unit/test_reading_results.py::ReadingResultsTests.test_record_skip_and_again_only_change_processing_not_current_reading",
         "tests/unit/test_reading_results.py::ReadingResultsTests.test_zero_fact_and_legacy_receipts_do_not_create_full_reading_proof",
-        "tests/unit/test_reading_results.py::ReadingResultsTests.test_query_uses_explicit_root_or_shared_environment_not_another_catalog"
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_query_uses_explicit_root_or_shared_environment_not_another_catalog",
+        "tests/unit/test_apply_triage.py::ApplyTriageTests.test_commit_leaves_every_original_byte_identical",
+        "tests/unit/test_apply_triage.py::ApplyTriageTests.test_filing_never_records_a_reading",
+        "tests/unit/test_apply_triage.py::ApplyTriageTests.test_matches_on_content_when_every_path_was_renamed",
+        "tests/unit/test_apply_triage.py::ApplyTriageTests.test_existing_placement_is_a_conflict_not_an_overwrite"
       ],
       "not_verified": [
-        "真实 M4 50 份当前模型小样及新版执行未验；Spark apply-triage catalog 桥未实现。"
+        "真实 M4 50 份当前模型小样及新版执行未验;apply-triage 已实现并有隔离测试,但**尚未在真机 catalog 上执行过** —— 2026-09-18 的 32,727/32,734 匹配数来自一次只读对账,实际归置未做;M4 有而 Spark 没有的 3,169 份需要物理入库,不在本命令范围内。"
       ]
     },
     {

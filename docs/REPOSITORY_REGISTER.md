@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：805。
+在册文件：807。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 265 |
-| 运行代码 | 144 |
+| 运行代码 | 145 |
 | 现行规范 | 13 |
 | 项目配置 | 35 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 41 |
-| 测试 | 61 |
+| 测试 | 62 |
 
 ## 在册记录集合
 
@@ -1002,6 +1002,7 @@
 | `src/inresearch/storage/layout.py` | 运行代码 |
 | `src/inresearch/storage/moves.py` | 运行代码 |
 | `src/inresearch/workflow/__init__.py` | 运行代码 |
+| `src/inresearch/workflow/apply_triage.py` | 运行代码 |
 | `src/inresearch/workflow/attribution.py` | 运行代码 |
 | `src/inresearch/workflow/commands.py` | 运行代码 |
 | `src/inresearch/workflow/deep_read.py` | 运行代码 |
@@ -1037,6 +1038,7 @@
 | `tests/ui_skin.cjs` | 测试 |
 | `tests/unit/deep_read_fixtures.py` | 测试 |
 | `tests/unit/test_acquisition.py` | 测试 |
+| `tests/unit/test_apply_triage.py` | 测试 |
 | `tests/unit/test_auth.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
 | `tests/unit/test_catalog_migration.py` | 测试 |

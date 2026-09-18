@@ -270,15 +270,28 @@ class Reader:
             self.conn.execute("UPDATE operations SET state='committed',updated=? WHERE operation_id=?", (self.clock(), operation["operation_id"]))
             self.conn.execute("UPDATE documents SET library_rel=? WHERE doc_id=?", (operation["target_rel"], operation["doc_id"]))
 
+    def place_in_library(self, doc_id, original_rel, relative, op_id):
+        """Journal one library view link and commit it through the verified path.
+
+        The caller decides where the document belongs; this decides nothing and
+        verifies everything, so a placement imported from another machine gets
+        the same digest check, the same journal and the same rollback as one
+        this reader derived itself. None means the operation was rolled back.
+        """
+        self.conn.execute("INSERT OR IGNORE INTO operations VALUES(?,?,?,?,?,?,?)",
+                          (op_id, doc_id, relative, original_rel, "prepared", self.clock(), self.clock()))
+        operation = dict(self.conn.execute("SELECT * FROM operations WHERE operation_id=?", (op_id,)).fetchone())
+        if operation["state"] == "rolled_back":
+            return None
+        self._apply_link(operation)
+        return relative
+
     def _organize(self, doc):
         relative = self._link_target(doc)
         op_id = "organize:" + doc["doc_id"] + ":" + doc["recipe"]
-        self.conn.execute("INSERT OR IGNORE INTO operations VALUES(?,?,?,?,?,?,?)",
-                          (op_id, doc["doc_id"], relative, doc["original_rel"], "prepared", self.clock(), self.clock()))
-        operation = dict(self.conn.execute("SELECT * FROM operations WHERE operation_id=?", (op_id,)).fetchone())
-        if operation["state"] == "rolled_back":
+        placed = self.place_in_library(doc["doc_id"], doc["original_rel"], relative, op_id)
+        if placed is None:
             return {"library_rel": None, "state": "rolled_back"}
-        self._apply_link(operation)
         return {"library_rel": relative, "state": "committed"}
 
     def reconcile_operations(self):

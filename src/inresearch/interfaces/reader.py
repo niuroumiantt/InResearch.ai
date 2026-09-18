@@ -50,6 +50,10 @@ def main(argv=None):
         reject.add_argument('--' + name, required=True)
     rollback = sub.add_parser("rollback")
     rollback.add_argument("--doc-id", required=True)
+    triage = sub.add_parser('apply-triage', help="adopt another machine's filing; plans unless --commit")
+    triage.add_argument('--mapping', required=True)
+    triage.add_argument('--commit', action='store_true',
+                        help='place the links and set priorities; without it nothing is written')
     for command in ("export", "backup"):
         parser = sub.add_parser(command)
         parser.add_argument("--dest", required=True)
@@ -99,6 +103,25 @@ def main(argv=None):
         elif args.command == "rollback":
             with reader.worker_session():
                 result = reader.rollback(args.doc_id)
+        elif args.command == 'apply-triage':
+            from pathlib import Path as _Path
+            from inresearch.materials.mapping import load_mapping
+            from inresearch.workflow import apply_triage
+            header, rows = load_mapping(_Path(args.mapping))
+            # The worker lock is held for the plan too: a plan made while the
+            # reader is filing documents describes a catalog that no longer
+            # exists by the time anyone reads it.
+            with reader.worker_session():
+                actions, counts = apply_triage.plan(reader.conn, rows)
+                result = {'mapping': header.get('generated'), 'dataset': header.get('dataset'),
+                          'plan': counts, 'actions': len(actions), 'committed': bool(args.commit)}
+                if args.commit:
+                    done, failures = apply_triage.commit(reader, actions)
+                    result.update(done)
+                    if failures:
+                        result['failures'] = failures[:20]
+                        result['failed_total'] = len(failures)
+            reader.write_status()
         elif args.command == "export":
             result = reader.export(args.dest)
         else:
