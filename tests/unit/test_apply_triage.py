@@ -10,12 +10,14 @@ from __future__ import annotations
 
 import hashlib
 import json
+import sqlite3
 import sys
 import tempfile
 import unittest
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'src'))
+sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from inresearch.materials import artifacts
 from inresearch.materials.mapping import MAPPING_VERSION, load_mapping
@@ -83,6 +85,20 @@ class ApplyTriageTests(unittest.TestCase):
         actions, counts = apply_triage.plan(self.reader.conn, rows)
         done, failures = apply_triage.commit(self.reader, actions)
         return counts, done, failures
+
+    def legacy_catalog(self, name):
+        """A v1 catalog built from the migration test's own schema, empty but real."""
+        from test_catalog_migration import LEGACY_SCHEMA
+        root = self.base / name
+        (root / 'catalog').mkdir(parents=True)
+        with sqlite3.connect(str(root / 'catalog/catalog.sqlite')) as conn:
+            conn.executescript(LEGACY_SCHEMA)
+            conn.execute('PRAGMA user_version=1')
+        return root
+
+    def schema_version(self, root):
+        with sqlite3.connect(str(root / 'catalog/catalog.sqlite')) as conn:
+            return conn.execute('PRAGMA user_version').fetchone()[0]
 
     def library_rel(self, doc_id):
         return self.reader.conn.execute(
@@ -228,6 +244,68 @@ class ApplyTriageTests(unittest.TestCase):
         self.assertEqual(counts.get('not_library'), 1)
 
     # -- the real file format ------------------------------------------------
+
+    def test_an_old_catalog_is_named_not_silently_migrated(self):
+        """A plan promises to write nothing; Reader.initialize() would migrate.
+
+        The 2026-09-18 Spark catalog was still v1 -- 32,734 documents and no
+        reading_runs table -- so a plan run there would have rewritten every
+        row of the ledger as a side effect of being asked what it would do.
+        """
+        legacy = self.base / 'legacy'
+        (legacy / 'catalog').mkdir(parents=True)
+        database = legacy / 'catalog/catalog.sqlite'
+        with sqlite3.connect(str(database)) as conn:
+            conn.execute('CREATE TABLE documents(doc_id TEXT PRIMARY KEY)')
+            conn.execute('PRAGMA user_version=1')
+        refusal = apply_triage.refuse_unless_current(legacy)
+        self.assertIn('catalog_needs_upgrade', refusal)
+        self.assertIn('reader init', refusal)
+        with sqlite3.connect(str(database)) as conn:
+            self.assertEqual(conn.execute('PRAGMA user_version').fetchone()[0], 1)
+            self.assertEqual(
+                conn.execute("SELECT COUNT(*) FROM sqlite_master WHERE name='reading_runs'").fetchone()[0], 0)
+
+    def test_a_current_catalog_is_accepted_and_a_missing_one_is_named(self):
+        self.assertIsNone(apply_triage.refuse_unless_current(self.reader.data))
+        self.assertIn('catalog_missing', apply_triage.refuse_unless_current(self.base / 'nowhere'))
+
+    def test_the_command_itself_refuses_an_old_catalog_before_building_a_reader(self):
+        """Testing the guard is not the same as testing that the CLI calls it.
+
+        The legacy schema here is the real one, deliberately: a toy table would
+        make the migration fail on its own and the test would pass because the
+        upgrade crashed rather than because the guard stopped it. The migration
+        has to be able to succeed for this to be worth anything -- the sibling
+        assertion below proves it does.
+        """
+        from inresearch.interfaces import reader as reader_cli
+        legacy = self.legacy_catalog('cli-legacy')
+        mapping = self.base / 'unused-mapping.jsonl'
+        mapping.write_text('', encoding='utf-8')
+        code = reader_cli.main(['--data-root', str(legacy), '--state-root', str(self.base / 'cli-state'),
+                                'apply-triage', '--mapping', str(mapping)])
+        self.assertEqual(code, 1)
+        self.assertEqual(self.schema_version(legacy), 1)
+        with sqlite3.connect(str(legacy / 'catalog/catalog.sqlite')) as conn:
+            self.assertEqual(
+                conn.execute("SELECT COUNT(*) FROM sqlite_master WHERE name='reading_runs'").fetchone()[0], 0)
+
+    def test_that_same_catalog_really_would_have_been_migrated(self):
+        """The other half of the guard test: without it, this catalog upgrades.
+
+        Without this, a legacy fixture that simply cannot migrate would make the
+        guard test green forever while guarding nothing.
+        """
+        legacy = self.legacy_catalog('would-migrate')
+        self.assertEqual(self.schema_version(legacy), 1)
+        reader = cr.Reader(legacy, self.base / 'would-migrate-state', self.base / 'repo',
+                           Model(), 0, 200, self.clock)
+        try:
+            reader.initialize()
+        finally:
+            reader.close()
+        self.assertEqual(self.schema_version(legacy), 2)
 
     def test_reads_a_real_exported_mapping_file(self):
         doc = self.register()

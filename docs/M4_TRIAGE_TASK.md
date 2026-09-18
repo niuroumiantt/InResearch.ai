@@ -121,6 +121,8 @@ python3 manage.py reader apply-triage --mapping /path/to/mapping.jsonl --commit
 
 不带 `--commit` 只出计划，一个字节都不写。两步都在 reader 的排他锁内执行，因此不会与正在运行的 reader 交错；`--commit` 会逐份重新哈希原件（这正是校验本身），所以计划是秒级的，提交要把语料整读一遍。
 
+**前置条件：catalog 必须已是 v2。** 命令在构造 Reader 之前先只读地查 `PRAGMA user_version`，v1 直接拒绝并指向 `manage.py reader init`（它会先整库备份再迁移），**不会顺手替你迁移** —— `Reader.initialize()` 本来会，而那对一个「只出计划」的命令是错的副作用。2026-09-18 真机核对：Spark 的 catalog 仍是 v1，32,734 份文档、没有 `reading_runs` 表，所以这一步在真机上是必经的。
+
 匹配只按 `sha256`，不按路径 —— 目录是人手重排过的，内容是唯一还能对上的键。只处理 `stage=library` 的行；`duplicates` 不归置。已有 `library_rel` 且与目标不同的文档报 `conflict` 并原样保留，不覆盖：哪个归置正确是判断，不是本命令能替人做的决定。`importance` 超出 1–9 就不改优先级（与阅读产出同一道边界）。目标路径逃出 `library/` 一律拒绝。
 
 写入只有两处：`documents.library_rel` 和初始 reading_run 的 `priority`。链接由 reader 自己那条已验证路径创建（`library/… → originals/…` 软链，建前比对 catalog 记录的摘要），因此与 reader 自己归置的条目共用同一套 `operations` 日志与 `reader rollback` 回退。**不创建 reading_run，不设置 `report_rel`/`activated`，不改 `current_revision_id`** —— 这条由 `tests/unit/test_apply_triage.py` 钉死。

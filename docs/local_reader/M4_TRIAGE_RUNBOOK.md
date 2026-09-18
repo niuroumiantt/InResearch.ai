@@ -91,6 +91,11 @@ python3 manage.py reader apply-triage --mapping /path/to/mapping.jsonl --commit
 
 2026-09-18 在真机上做过一次只读对账（catalog 32,734 份 ↔ M4 导出）：两边都有 32,727 份，只在 Spark 的 7 份，只在 M4 的 3,169 份，`library_rel` 当时为 0。**apply-triage 的真机执行尚未进行。**
 
+同日两项必须先知道的真机事实：
+
+1. **Spark 的 catalog 仍是 v1**（没有 `reading_runs` 表）。apply-triage 会拒绝并指向 `manage.py reader init`，那一步会先做整库备份再迁移。**先迁移，再 apply-triage。**
+2. **`absent_here` 的 3,169 份里 3,135 份不该入库**：3,119 份分类为 `_derived_artifact`，其判定条件是该内容的每个路径都位于 M4 的 `要删/reader/` 下（`materials/triage.py` 的 `excluded()`）——也就是 reader 自己的衍生产物被拷到 M4 待删；另有 13 份 `_junk_review`（`.log`/`.tmp`/`.partial` 之类）与 3 份 `_to_delete`。真正缺的研究文档约 34 份、合计约 1.5 GiB 中的一小部分。**把衍生物灌回 `originals/` 是循环，且污染一个设计上永不清理的账本。**
+
 ## 5. 验收边界
 
 程序测试使用临时合成文件，覆盖内容变化、断行、移动中断、目标冲突、重复运行及回退。真实语料的 50 份质量验收、运行完成量与主机服务状态须实机核对；源码通过不代替这些结果。L2 交付工具已有，自动全文覆盖按各自账本和证据计量。
