@@ -1,6 +1,6 @@
 # Spark 持续 reader 运行手册
 
-> CURRENT · 2026-09-13。规则归属与替代关系见 framework/CURRENT.md。
+> CURRENT · 2026-09-19（首版 2026-09-13）。规则归属与替代关系见 framework/CURRENT.md。
 
 本手册对应 `src/inresearch/workflow/reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际模型验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
 
@@ -11,7 +11,8 @@
 | 路径 | 用途与保留规则 |
 |---|---|
 | `~/code/inresearch.ai` | 源码与只读研究注册表；运行原文、数据库与凭据不进 Git |
-| `~/.local/share/inresearch.ai/raw-materials/` | 持续投料；建议上传临时 `.partial` 文件，完整传输后在同目录原子改名 |
+| `~/.local/share/inresearch.ai/incoming/<YYYYMMDD-来源>/` | **大批未筛语料的落地区**；reader 不扫描，可随时删。传输中用 `.<批次>.partial`，完整后原子改名；分拣后只把要入永久台账的**提升**到 `raw-materials/`（见下文「大批未筛语料」） |
+| `~/.local/share/inresearch.ai/raw-materials/` | **reader 的入库口，不是投料区**：这里的一切都会被 `scan()` 写进永久台账（`originals/` + `catalog`，设计上不清理）。只放已确认要入库的文件。建议上传临时 `.partial` 文件，完整传输后在同目录原子改名 |
 | `~/.local/share/inresearch.ai/originals/<sha前2位>/<sha>/<原名安全副本>` | 只读原件副本，完整 SHA256 定义内容身份；原始文件名另存台账 |
 | `~/.local/share/inresearch.ai/catalog/catalog.sqlite` | 永久文档、每次投递、版本、任务与操作台账；不可当作缓存清理 |
 | `~/.local/share/inresearch.ai/extracted/<doc_id>/` | 逐页提取、OCR 双读记录、无损分块；永久保留 |
@@ -59,6 +60,21 @@ ssh spark@100.100.1.2 'cd /home/spark/.local/share/inresearch.ai/raw-materials &
 ```
 
 开放后阅读服务会处理稳定文件。Mac 原始资料继续保留；上传成功不等于已阅读，更不等于 C3 已采用。
+
+### 大批未筛语料：先落 `incoming/`，分拣后再提升
+
+上面的流程适用于**已确认要入库**的小批语料。整库批量下载、来源混杂、大部分与研究无关的大批语料（例如全行业研报包）**不要**直接投进 `raw-materials/`：`scan()` 会把它们全部写进永不清理的台账，之后删不掉。
+
+2026-09-19 真机事实：一批 459 GB / 117,023 份被投到 `raw-materials/.nas-industry-reports-20260906.partial/`，没有被吃进台账**纯属侥幸**——目录名同时撞上 `is_partial()` 的两条规则（前导 `.` 与后缀 `.partial`），对 `scan()` 隐形了 12 天。事后按内容分析，其中 93% 是与数据中心研究无关的研报。
+
+大批语料的路径改为：
+
+1. **落地**到 `~/.local/share/inresearch.ai/incoming/<YYYYMMDD-来源>/`（传输中带 `.partial`，完整后原子改名）。reader 不扫描这里。
+2. **分拣**：`INRESEARCH_SOURCE` 指向该目录、`INRESEARCH_DATASET` 用批次名单开一本账，按 [M4 任务卡](../M4_TRIAGE_TASK.md) 和 [分拣手册](M4_TRIAGE_RUNBOOK.md) 走 `inventory` → 文件名分档 → `batch pack/record` → `organize`。硬链接不复制字节，`incoming/` 里的原件在分拣期间一个字节不动。
+3. **提升**：只把打分达到深读门槛（任务卡 §11：7 分）的文件硬链接进 `raw-materials/`，由 `scan()` 正常入库。其余留在分类视图里按文件名可检索，随时可再提升；`_review` 桶按 §2.7 复核后才谈删除。
+4. 分拣完、且已有异机备份后，`incoming/` 里筛掉的部分可以删（可重新获取的语料），留 `inventory.jsonl` 作永久索引。
+
+09-19 那批按此流程：文件名分档砍掉 89%，12,764 份进 L1（M4 Claude CLI 执行，37 份/分钟），≥7 分 397 份为深读候选；筛掉的 415 GB 已删，磁盘 24.4% → 15%。跨机器分工与数字见 infra `docs/dgx-spark.md` §0j。
 
 `doc_id = doc-<完整 SHA256>`。相同字节只读一次，多个来源各有 source 记录。同一路径重新投递保留新的来源记录与 `version_seq/previous_doc_id`；路径改名不换内容身份。不同文件名与同名不同内容不会互相覆盖。完整阅读且 library 操作 committed 后，仍匹配登记签名与 SHA 的 raw 接收副本会先改名至隐藏隔离位置，核对移动后字节，再移至永久 `intake-receipts/received/`。这使处理后的文件退出 raw，**不会删除原件或接收副本**。同路径已被新投料替换时跳过旧来源搬运；隔离后发生变化则原样恢复，若原路径又有新文件则两份都保留并转 needs_review。每次操作持久记录，崩溃恢复不覆盖新投料。raw 为空仍不能证明全库阅读或采用完成，须查台账、coverage 与异常状态。相同字节再次投递只增加来源与接收归档任务，不再次调用模型。原件与 receipts 都在同盘，尚不等于异机备份。
 
