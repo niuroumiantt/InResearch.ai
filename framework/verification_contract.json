@@ -13,7 +13,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "39fcbea12cb4f74b4a9fd3b844bbb976d738fec1c2b55d249a6398f1e1f47fbe",
+    "docs/local_reader/SPARK_OPERATIONS.md": "604997686efe4328de6854056eaccd9be006a5ed74548922068bcc81e44ac6ad",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
     "framework/01_data_standards.md": "77caca1fff5e86e4b5307492199558d21a9de610093c5ea3bcb2896f06b6e51f",
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
@@ -224,7 +224,8 @@
         "tests/unit/test_continuous_reader.py::ReaderTests.test_retry_by_error_code_leaves_the_other_blocks_alone"
       ],
       "not_verified": [
-        "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。"
+        "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。",
+        "2026-09-19 文档新增 `incoming/` 落地区与「先分拣再提升」流程:reader 不扫描该目录这一点只靠 `scan()` 硬编码读 `raw-materials/` 的实现事实,没有专门测试钉住;真机只走过一次(459 GB→43 GB,12,764 份 L1 判定),**提升到 `raw-materials/` 的步骤尚未执行**;此前那批以 `.xxx.partial` 命名的目录撞上 `is_partial()` 两条规则隐形了 12 天,说明投料契约在此之前只有约定、没有程序保障。"
       ]
     },
     {
