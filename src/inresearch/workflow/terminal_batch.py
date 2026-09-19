@@ -171,7 +171,7 @@ def cmd_record(a):
                       'meta': b.get('meta') or {},
                       **({'base_revision': b['base_revision']} if 'base_revision' in b else {})}
     inv = {i['sha256'][:12]: i for i in L1.load_inventory()}
-    n = bad = 0
+    n = bad = 0; invalid = []
     for v in verdicts:
         b = batch.get(v.get('id')); item = inv.get(v.get('id'))
         if not b or not item: bad += 1; continue
@@ -184,6 +184,16 @@ def cmd_record(a):
                      ('org', '未知'), ('year', '未知'), ('rationale', ''), ('keep_original_name', True)):
             parsed.setdefault(k, d)
         if 'score' not in parsed or 'module' not in parsed or 'title' not in parsed: bad += 1; continue
+        # The API path validates every judgement against SCHEMA before it is
+        # filed (workflow/triage.py); this path did not, so a line whose module
+        # field carried a doc_type value -- `whitepaper`, `report` -- went into
+        # the ledger as-is and later became a top-level library directory of
+        # that name.  Same contract, same gate.  The id is kept so the operator
+        # can `pack --sha` exactly the rows that need re-judging.
+        try:
+            L1.validate_judgement(parsed)
+        except ValueError as exc:
+            bad += 1; invalid.append({'id': v.get('id'), 'reason': str(exc)}); continue
         out = L1.finalize(rec, parsed, {'judge': getattr(a, 'executor', 'terminal')}, None)
         out['proposed_name'] = L1.proposed_name(out)
         out['executor'] = getattr(a, 'executor', 'terminal')
@@ -206,6 +216,7 @@ def cmd_record(a):
     # in the cohort and can be recorded later - it just must not be silent.
     short = len(batch) - n
     print(json.dumps({'recorded': n, 'rejected': bad, 'batch_size': len(batch),
+                      **({'invalid': invalid[:10], 'invalid_total': len(invalid)} if invalid else {}),
                       **({'未判的': short,
                           'note': '批次里还有 %d 份没有判定。如果判定文件还在写，'
                                   '等它写完再对同一个文件跑一次 record——已录的会以'
