@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.15.1",
-  "reviewed_at": "2026-09-18",
+  "version": "2026.09.21.1",
+  "reviewed_at": "2026-09-21",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
     ".github/workflows/validate.yml": "1424142306d608e4834d92f6ac17c7ee4275e70daed27b1fe87bbe2e0ef3b0ff",
@@ -19,12 +19,12 @@
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "d358fb9f6568c35d04cf93fc9fdb4a469c37e07136531f71913727f929ec53a9",
     "framework/04_reading_scoring_standard.md": "23f1e2a4086ac2d77e81d4239dfc739b038668d4f9558e31a720969fbe8934c5",
-    "framework/05_interface_system.md": "be0c87e8bbb672127b83a7c4699bd878ec33aa8fa1353c210b9d7c58c1a1cd3e",
-    "framework/06_acquisition.md": "d05a9da1c558d5882443ded1b2508e72c8a8c35eb486b9bc1cd2644305149270",
+    "framework/05_interface_system.md": "8a05e0e044639a58645b17ee3f4bb1498ee0eaa69e01180b51b3d67bfc10f863",
+    "framework/06_acquisition.md": "6f4e4e86734f38f052f77aa639c538e89cd662c4e81f3ba5e6598a2bbea09c16",
     "framework/07_product_ecosystems.md": "a6239c5cb221120394ec706cf3ded786dd6b1cf34cc526b167dc157d50bd3fce",
     "framework/08_model_execution.md": "6c1be72c11c0948ae349cba63bf6704e1c6cb5544eb2a0c5605386d65b2a7be9",
-    "framework/09_software_contracts.md": "36cbf389afbb09480207f273cb0711a3e91ef6d29ea0f39c17a601164867e8bb",
-    "framework/CURRENT.md": "ebc0e60a6b8c39f7a55cbd9560c73c667351f6dba88cb7656245b3f3b43c6a73",
+    "framework/09_software_contracts.md": "0d04fdbc7b4075d61753ec02639ea126265f049de0c9be2af902537482e1e7bb",
+    "framework/CURRENT.md": "897c41821ec7d05e571ba84f55dd10e6103cb29b6e392530094ba01d2edff31e",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "tests/auth_appearance.cjs": "40f4e5feb30d2cec89bcf7cb90b89e780862a30580a4708e7dcb4dee1b9b8142",
     "tests/hardware_ecosystems.cjs": "4317d7b56ae541c1537d4a22ac6538d8faa96a66b545cfc5f1c146c86c84e80d",
@@ -32,7 +32,7 @@
     "tests/part_dossier.cjs": "160f3777c5c85d4a93cd9ea73fb4771e6c3591d4c027dc50f3201ca70c7e089d",
     "tests/product_node_hover.cjs": "720258d27a7c69d4926ff1b711c7c57ce1e7ae83264e4d48a2dad370a0ba4779",
     "tests/research_delivery.cjs": "77f8ddb63479e8b82bea7bbf694769f7ca3baa759d5a5f663f5b89282d8a9e2f",
-    "tests/run_browser.cjs": "1b591dac0199461ec4b17c28a9664fa270ff5f91d481b8530a151eed4e45f7ae",
+    "tests/run_browser.cjs": "9d7b55aa6d9906a28abdac48eecd38d2a4c9d5599e5e96dbe6dc51651f7cbceb",
     "tests/scene_resources.cjs": "f514a7b25dc47f1d5f4befe96d840f6361ade7df3b78d828b8948e7a9679d3e2",
     "tests/ui_skin.cjs": "f3a1fa6223715cacb0c72a04102dde38e5cad3b8c43117be54bcccdab1be22fa",
     "tests/unit/deep_read_fixtures.py": "8f625d276b9224ba46c1d990dbecf669f8a458cd9c446fc525a3669520410af8",
@@ -76,7 +76,9 @@
     "tests/unit/test_model_assets.py": "243b694e858a87efcbd2212e1a8924080119d63415d7065ccd5812a0b46402c5",
     "tests/scene_framing.cjs": "a5d6c37a9f7aa43ab194ac0175a785a71d2af9b318211e7e139c7349046cb1c0",
     "tests/datacenter_cost.cjs": "e9e3c31dcd7914c02020688cd040be671d61bd4d8d2e5da8e96b7f589d6c63c9",
-    "tests/unit/test_apply_triage.py": "dad79b6f60099206f6f5d32eb1cd3ebf8c9a46af9e0ea055a33ca3ece2bd51f1"
+    "tests/unit/test_apply_triage.py": "dad79b6f60099206f6f5d32eb1cd3ebf8c9a46af9e0ea055a33ca3ece2bd51f1",
+    "tests/unit/test_supply.py": "c2cdc8f589345fe2b59d3126a11f8c109166b9cf8adff5cc6c4f18ce84b613fb",
+    "tests/supply.cjs": "9c27bdec2178ab55f17d285d5d18895102aef64227d2d323da2d039e9978488d"
   },
   "policies": [
     {
@@ -247,7 +249,7 @@
       "policy": "interface-20260906",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "14 页皮肤/明暗/宽度、认证外观、状态保持与安全链接；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、恢复与窄屏边界",
+      "checked_requirement": "14 页皮肤/明暗/宽度、认证外观、状态保持与安全链接；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、恢复与窄屏边界；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；计划不冒充执行或采用。",
       "tests": [
         "tests/ui_skin.cjs",
         "tests/auth_appearance.cjs",
@@ -262,19 +264,25 @@
         "tests/model_assets.cjs",
         "tests/scene_framing.cjs",
         "tests/scene_resources.cjs",
-        "tests/datacenter_cost.cjs"
+        "tests/datacenter_cost.cjs",
+        "tests/unit/test_supply.py::SupplyTests.test_persistence_replay_and_conflict",
+        "tests/unit/test_supply.py::SupplyTests.test_validation_and_corruption_never_replace_state",
+        "tests/unit/test_supply.py::SupplyTests.test_multiple_suppliers_and_concurrent_revision",
+        "tests/unit/test_supply.py::SupplyTests.test_http_roles_and_private_storage",
+        "tests/supply.cjs"
       ],
       "not_verified": [
         "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。",
         "交互场景 HDR/面板纹理及页面退出已共享；离线 bake、比较台环境和下钻加载仍分别保留，全部 GPU/触摸设备与帧率未验。",
-        "交互计算器验证公式一致性与页面状态，不证明研究假设代表任何具体项目报价，也不证明不同硬件、模型和任务具有可直接比较的有效设备小时。"
+        "交互计算器验证公式一致性与页面状态，不证明研究假设代表任何具体项目报价，也不证明不同硬件、模型和任务具有可直接比较的有效设备小时。",
+        "供应首版仅计划管理：尚未接通外部任务执行、交付包验收、Spark 历史材料映射或正式研究采用；示例操作不构成生产交付验证。"
       ]
     },
     {
       "policy": "acquisition-20260906",
       "scope": "project",
       "source": "framework/06_acquisition.md",
-      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states",
+      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；计划不冒充执行或采用。",
       "tests": [
         "tests/unit/test_acquisition.py::AcquisitionTests.test_archive_preserves_revisions_and_is_idempotent",
         "tests/unit/test_acquisition.py::AcquisitionTests.test_failure_is_recorded_and_not_success",
@@ -284,10 +292,16 @@
         "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_news_missing_stale_fresh_replacement_and_replay_follow_one_snapshot",
         "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_invalid_news_metadata_fails_the_view_without_rewriting_the_snapshot",
         "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_invalid_runtime_preserves_curated_http_view",
-        "tests/datacenter_news.cjs"
+        "tests/datacenter_news.cjs",
+        "tests/unit/test_supply.py::SupplyTests.test_persistence_replay_and_conflict",
+        "tests/unit/test_supply.py::SupplyTests.test_validation_and_corruption_never_replace_state",
+        "tests/unit/test_supply.py::SupplyTests.test_multiple_suppliers_and_concurrent_revision",
+        "tests/unit/test_supply.py::SupplyTests.test_http_roles_and_private_storage",
+        "tests/supply.cjs"
       ],
       "not_verified": [
-        "全文翻译、可靠 acquisition→reader handoff、撤回增量、全局限速与 GPU 调度仍未完整实现。"
+        "全文翻译、可靠 acquisition→reader handoff、撤回增量、全局限速与 GPU 调度仍未完整实现。",
+        "供应首版仅计划管理：尚未接通外部任务执行、交付包验收、Spark 历史材料映射或正式研究采用；示例操作不构成生产交付验证。"
       ]
     },
     {
@@ -393,7 +407,7 @@
       "policy": "software-contracts-20260913",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界; published/runtime authority, initialization recovery and concurrent writers, immutable source, HTTP/CLI, release rollback；视觉资产独占创建和登记主提交，中断重放、跨进程并发、同名不覆盖与采用决定保留；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；CLI 全局/子接口目录所有权，失败前拒绝、顺序委派参数恢复及真实派工/候选版本重放；场景资源加载超时、并发重试、A→fallback→A 替换、迟到回收与退出释放",
+      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界; published/runtime authority, initialization recovery and concurrent writers, immutable source, HTTP/CLI, release rollback；视觉资产独占创建和登记主提交，中断重放、跨进程并发、同名不覆盖与采用决定保留；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；CLI 全局/子接口目录所有权，失败前拒绝、顺序委派参数恢复及真实派工/候选版本重放；场景资源加载超时、并发重试、A→fallback→A 替换、迟到回收与退出释放；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；计划不冒充执行或采用。",
       "tests": [
         "tests/unit/test_commands.py::CommandFlows.test_independent_processes_do_not_lose_records",
         "tests/unit/test_commands.py::CommandFlows.test_exception_and_failed_replace_keep_old_bytes",
@@ -442,14 +456,20 @@
         "tests/unit/test_commands.py::CommandDispatch.test_child_arguments_are_forwarded_and_argv_restored_after_success_and_failure",
         "tests/unit/test_commands.py::CommandDispatch.test_default_invocation_does_not_reuse_a_previous_child_command",
         "tests/unit/test_commands.py::CommandFlows.test_common_root_keeps_assignment_and_snapshot_versions_in_selected_workspace",
-        "tests/scene_resources.cjs"
+        "tests/scene_resources.cjs",
+        "tests/unit/test_supply.py::SupplyTests.test_persistence_replay_and_conflict",
+        "tests/unit/test_supply.py::SupplyTests.test_validation_and_corruption_never_replace_state",
+        "tests/unit/test_supply.py::SupplyTests.test_multiple_suppliers_and_concurrent_revision",
+        "tests/unit/test_supply.py::SupplyTests.test_http_roles_and_private_storage",
+        "tests/supply.cjs"
       ],
       "not_verified": [
         "L2 已拆开参数/用例/准入/相似度/缺口/来源职责；两个 3D 场景仍需收敛。并非其他所有多文件流程均已逐阶段验收。",
         "来源计划验证是身份解析与提交保护，不证明 38 条历史缺口已经补齐；M4/Spark 实机资料连接与历史完整结果导入未验；本机 shared catalog 不代表跨机器同步已完成。",
         "Runtime layout 1 has no generic mapping migration tool: incompatible layouts must be restored or explicitly migrated. Historical volume copies are retained but no longer current consumers; private data is outside Git inventory.",
         "CLI 恢复进程参数只保证顺序调用，不支持线程同时委派；各子命令历史目录策略仍分别保留，不代表全命令数据权威已收敛。",
-        "资源代次覆盖两张交互场景；bake/compare 的环境生命周期、场景几何/材质全面释放、上下文丢失恢复和真实设备 GPU 内存/帧率仍未验。"
+        "资源代次覆盖两张交互场景；bake/compare 的环境生命周期、场景几何/材质全面释放、上下文丢失恢复和真实设备 GPU 内存/帧率仍未验。",
+        "供应首版仅计划管理：尚未接通外部任务执行、交付包验收、Spark 历史材料映射或正式研究采用；示例操作不构成生产交付验证。"
       ]
     }
   ]
