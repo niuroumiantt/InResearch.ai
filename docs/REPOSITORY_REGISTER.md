@@ -1,6 +1,6 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.15.1。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.21.1。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
@@ -11,19 +11,19 @@
 | 身份 | 文件数 |
 |---|---|
 | 静态资源 | 39 |
-| 候选与外部输入 | 144 |
+| 候选与外部输入 | 145 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 265 |
 | 运行代码 | 147 |
 | 现行规范 | 13 |
-| 项目配置 | 35 |
+| 项目配置 | 36 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 41 |
-| 测试 | 63 |
+| 测试 | 65 |
 
 ## 在册记录集合
 
@@ -326,7 +326,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 14 |
+| `framework/interface_manifest.json` | static_pages | 16 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
@@ -337,6 +337,7 @@
 | `framework/research_graph.json` | catalog_topic_mappings | 35 |
 | `framework/research_graph.json` | research_topics | 9 |
 | `framework/research_questions.json` | records | 449 |
+| `framework/supply_contract.json` | providers | 10 |
 | `framework/verification_contract.json` | policies | 13 |
 | `reports/blindspot.json` | modules | 15 |
 | `reports/workorders.json` | orders | 564 |
@@ -489,6 +490,7 @@
 | `docs/inbox/facts_candidates/m14_china_20260817.json` | 候选与外部输入 |
 | `docs/inbox/facts_candidates/m15_scenario_20260817.json` | 候选与外部输入 |
 | `docs/inbox/framework_proposals/2026-09-06-attachments.json` | 候选与外部输入 |
+| [docs/inbox/framework_proposals/2026-09-21-feeder-repos.md](inbox/framework_proposals/2026-09-21-feeder-repos.md) | 候选与外部输入 |
 | [docs/inbox/framework_proposals/README.md](inbox/framework_proposals/README.md) | 候选与外部输入 |
 | `docs/inbox/framework_proposals/framework_proposal_L1-L4_20260831.html` | 候选与外部输入 |
 | [docs/inbox/inresearch-alignment/ALIGNMENT.md](inbox/inresearch-alignment/ALIGNMENT.md) | 候选与外部输入 |
@@ -850,6 +852,7 @@
 | `docs/reviews/2026-09-15/task-authority/audit.py` | 历史快照 |
 | [docs/reviews/2026-09-15/task-authority/file-plan.csv](reviews/2026-09-15/task-authority/file-plan.csv) | 历史快照 |
 | `docs/reviews/2026-09-15/task-authority/scope.json` | 历史快照 |
+| [docs/reviews/2026-09-21/supply-center/DELIVERY.md](reviews/2026-09-21/supply-center/DELIVERY.md) | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -892,6 +895,7 @@
 | `framework/research_graph.json` | 项目配置 |
 | `framework/research_questions.json` | 项目配置 |
 | `framework/storage_contract.json` | 项目配置 |
+| `framework/supply_contract.json` | 项目配置 |
 | `framework/verification_contract.json` | 项目配置 |
 | `manage.py` | 运行代码 |
 | [reports/HOW_TO_OUTPUT.md](../reports/HOW_TO_OUTPUT.md) | 生成物 |
@@ -1019,6 +1023,7 @@
 | `src/inresearch/workflow/reading_stages.py` | 运行代码 |
 | `src/inresearch/workflow/score.py` | 运行代码 |
 | `src/inresearch/workflow/submissions.py` | 运行代码 |
+| `src/inresearch/workflow/supply.py` | 运行代码 |
 | `src/inresearch/workflow/terminal_batch.py` | 运行代码 |
 | `src/inresearch/workflow/triage.py` | 运行代码 |
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
@@ -1037,6 +1042,7 @@
 | `tests/scene_bootstrap.cjs` | 测试 |
 | `tests/scene_framing.cjs` | 测试 |
 | `tests/scene_resources.cjs` | 测试 |
+| `tests/supply.cjs` | 测试 |
 | `tests/ui_skin.cjs` | 测试 |
 | `tests/unit/deep_read_fixtures.py` | 测试 |
 | `tests/unit/test_acquisition.py` | 测试 |
@@ -1082,6 +1088,7 @@
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_storage_layout.py` | 测试 |
 | `tests/unit/test_suite_integrity.py` | 测试 |
+| `tests/unit/test_supply.py` | 测试 |
 | `tests/unit/test_text_similarity.py` | 测试 |
 | `tests/unit/test_verification_contract.py` | 测试 |
 | `tests/url_rendering.cjs` | 测试 |
@@ -1148,6 +1155,7 @@
 | `web/components/scene-view.js` | 运行代码 |
 | `web/components/series-summary.js` | 运行代码 |
 | `web/components/site-shell.js` | 运行代码 |
+| `web/components/supply.js` | 运行代码 |
 | `web/pages/admin/product/index.html` | 运行代码 |
 | `web/pages/auth/forbidden.html` | 运行代码 |
 | `web/pages/auth/layout.html` | 运行代码 |
@@ -1168,8 +1176,11 @@
 | `web/pages/rack3d.html` | 运行代码 |
 | `web/pages/report.html` | 运行代码 |
 | `web/pages/research.html` | 运行代码 |
+| `web/pages/supply-demo.html` | 运行代码 |
+| `web/pages/supply.html` | 运行代码 |
 | `web/pages/team.html` | 运行代码 |
 | `web/routes.json` | 项目配置 |
 | `web/themes/datacenter-cost.css` | 运行代码 |
 | `web/themes/preference.js` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
+| `web/themes/supply.css` | 运行代码 |

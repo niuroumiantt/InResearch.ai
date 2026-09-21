@@ -1,0 +1,134 @@
+{
+  "version": "1.0",
+  "effective_at": "2026-09-21",
+  "phase": "planning_live",
+  "providers": [
+    {
+      "id": "fetchspec",
+      "name": "fetchspec",
+      "capability": "产品与技术资料",
+      "kind": "existing_repo",
+      "repository": "https://github.com/niuroumiantt/fetchspec",
+      "mapping": "P/F · T02/T04/T09",
+      "acceptance": "型号、配置、软件版本、原文及参数条件",
+      "connection": "not_connected"
+    },
+    {
+      "id": "inews",
+      "name": "inews.today",
+      "capability": "新闻与事件",
+      "kind": "existing_feed",
+      "repository": "https://github.com/niuroumiantt/inews.today",
+      "mapping": "V/D · T03/T05/T06/T07",
+      "acceptance": "事件、发布时间、正文状态、聚类及撤回",
+      "connection": "not_connected"
+    },
+    {
+      "id": "disclosures",
+      "name": "披露采集",
+      "capability": "公司经营与披露",
+      "kind": "proposed",
+      "repository": null,
+      "mapping": "V · T05/T06/T07/T08",
+      "acceptance": "报告期、分部口径、原件、修订与附件",
+      "connection": "not_connected"
+    },
+    {
+      "id": "projects",
+      "name": "项目采集",
+      "capability": "项目与建设",
+      "kind": "proposed",
+      "repository": null,
+      "mapping": "P/V · T06/T09",
+      "acceptance": "项目身份、许可、阶段、地点与容量口径",
+      "connection": "not_connected"
+    },
+    {
+      "id": "statistics",
+      "name": "公共数据采集",
+      "capability": "公共统计与资源",
+      "kind": "proposed",
+      "repository": null,
+      "mapping": "P/V/D · T03/T05/T09",
+      "acceptance": "地域、单位、统计期、方法与数据修订",
+      "connection": "not_connected"
+    },
+    {
+      "id": "literature",
+      "name": "文献采集",
+      "capability": "论文、报告与白皮书",
+      "kind": "proposed",
+      "repository": null,
+      "mapping": "P/F/V/D · T01—T09",
+      "acceptance": "全文、作者、方法、图表与引用位置",
+      "connection": "not_connected"
+    },
+    {
+      "id": "standards",
+      "name": "规范采集",
+      "capability": "标准、法规与接口规范",
+      "kind": "proposed",
+      "repository": null,
+      "mapping": "F/V · T01/T02/T09",
+      "acceptance": "适用范围、生效、辖区、版本与替代关系",
+      "connection": "not_connected"
+    },
+    {
+      "id": "market",
+      "name": "市场观察",
+      "capability": "报价与市场观察",
+      "kind": "proposed",
+      "repository": null,
+      "mapping": "V/D · T08",
+      "acceptance": "配置、币种、地区、采样时间与全部费用",
+      "connection": "not_connected"
+    },
+    {
+      "id": "empirical",
+      "name": "技术实证",
+      "capability": "性能、运行与实验资料",
+      "kind": "proposed",
+      "repository": null,
+      "mapping": "F/D · T04/T09",
+      "acceptance": "负载、环境、方法、故障复盘与原始结果",
+      "connection": "not_connected"
+    },
+    {
+      "id": "local",
+      "name": "本地材料接入",
+      "capability": "上传 / raw materials",
+      "kind": "existing_channel",
+      "repository": null,
+      "mapping": "按材料内容映射对象、视角及主题",
+      "acceptance": "文件身份、原始出处、完整性与已有处理记录",
+      "connection": "not_connected"
+    }
+  ],
+  "delivery_contract": {
+    "version": "1.0",
+    "required": [
+      "provider_id",
+      "delivery_id",
+      "task_id_or_discovery",
+      "collector_revision",
+      "items"
+    ],
+    "item_required": [
+      "source_item_id",
+      "source",
+      "retrieved_at",
+      "sha256",
+      "content_type",
+      "completeness",
+      "access_scope",
+      "version_relation"
+    ],
+    "receipt_states": [
+      "received",
+      "needs_supplement",
+      "accepted",
+      "rejected"
+    ],
+    "research_adoption_separate": true
+  }
+}
