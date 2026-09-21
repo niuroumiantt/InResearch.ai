@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：808。
+在册文件：810。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,7 +16,7 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 265 |
-| 运行代码 | 145 |
+| 运行代码 | 147 |
 | 现行规范 | 13 |
 | 项目配置 | 35 |
 | 兼容研究记录 | 16 |
@@ -921,6 +921,8 @@
 | [research/M14.md](../research/M14.md) | 兼容研究记录 |
 | [research/M15.md](../research/M15.md) | 兼容研究记录 |
 | [research/SUMMARY.md](../research/SUMMARY.md) | 兼容研究记录 |
+| `scripts/cards_ocr.py` | 运行代码 |
+| `scripts/cards_verify.py` | 运行代码 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
 | [src/inresearch/README.md](../src/inresearch/README.md) | 配套说明 |
 | `src/inresearch/__init__.py` | 运行代码 |
