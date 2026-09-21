@@ -2,6 +2,30 @@
   "version": "1.0",
   "effective_at": "2026-09-21",
   "phase": "planning_live",
+  "operating_plan": {
+    "purpose": "从研究问题出发，先建立数据中心产品资料全景，再为关键产品线形成可复核的深度证据包。",
+    "baseline": {
+      "planned_product_records": 801,
+      "delivery_connection": "not_connected",
+      "meaning": "801 是当前产品资料计划的待补目录数，不是已抓取、已验收或已采用的资料数。"
+    },
+    "phases": [
+      {"id":"foundation","name":"第 0 批：验证闭环","purpose":"用少量代表性产品资料验证 macmini/AWS 到 Spark、审核与研究采用的完整链路。","exit":"每件原件均可追溯至任务、来源、审核结论和 Spark 存档。"},
+      {"id":"breadth","name":"第 1 批：产品地图全覆盖","purpose":"先补齐官方产品页和产品册，覆盖八个硬件生态。","exit":"每条优先产品线均有厂商、产品系列、官方入口和最后检查时间。"},
+      {"id":"depth","name":"第 2 批：关键产品线深抓","purpose":"为算力、网络、供配电、液冷和存储补齐规格、部署和条件资料。","exit":"优先产品线具备产品页、规格书、部署/维护资料及兼容或限制条件。"},
+      {"id":"research","name":"第 3 批：跨产品研究专题","purpose":"围绕功率密度、高速互联、液冷、存储、供配电和运维建立证据链。","exit":"资料已通过验收，并能支持可引用的研究陈述或明确缺口。"},
+      {"id":"continuous","name":"持续批：变化监测","purpose":"发现版本、产品、披露、项目和新闻变化，按既有研究问题回补。","exit":"变更来源、检查时间和失败原因可见；旧版本不被覆盖。"}
+    ],
+    "coverage": [
+      {"name":"算力芯片与服务器","focus":"GPU、CPU、加速卡、服务器与整机"},
+      {"name":"网络与光互联","focus":"交换机、网卡、光模块、线缆与互联芯片"},
+      {"name":"供配电","focus":"UPS、配电、备电、电力模块与变电"},
+      {"name":"液冷与散热","focus":"CDU、冷板、浸没、冷却与管路"},
+      {"name":"存储","focus":"内存、SSD、HDD、阵列与数据管理"},
+      {"name":"机柜与物理设施","focus":"机柜、布线、消防与泄漏检测"},
+      {"name":"DCIM 与运维","focus":"监控、告警、资产和能耗管理"}
+    ]
+  },
   "execution_policy": {
     "continuous": {
       "host": "aws",
