@@ -57,12 +57,21 @@ def mutate(root, payload, actor):
     action = payload.get('action')
     if action not in ('create', 'assign'):
         raise ValueError('不支持的供应操作')
-    providers = {p['id'] for p in catalog(root)['providers']}
+    contract = catalog(root)
+    providers = {p['id'] for p in contract['providers']}
     provider = payload.get('provider_id', '')
     if not isinstance(provider, str) or (provider and provider not in providers):
         raise ValueError('供应方不存在')
     if action == 'assign' and not provider:
         raise ValueError('请选择供应方')
+    mode = payload.get('execution_mode', '')
+    host = payload.get('execution_host', '')
+    if provider:
+        policy = contract['execution_policy'].get(mode)
+        if not policy or host != policy['host']:
+            raise ValueError('执行方式与主机不符合供应策略')
+    elif mode or host:
+        raise ValueError('未分配供应方时不能指定执行方式')
     fingerprint = json.dumps({k:v for k,v in payload.items() if k != 'expected_revision'}, sort_keys=True, ensure_ascii=False)
     with locked(ledger_path(root)):
         state = read(root)
@@ -94,7 +103,8 @@ def mutate(root, payload, actor):
             if any(t['demand_id'] == demand['id'] and t['provider_id'] == provider for t in state['tasks']):
                 raise Conflict('该供应方已有本需求任务')
             state['tasks'].append({'id': 'task-' + operation_id, 'demand_id': demand['id'],
-                                   'provider_id': provider, 'status': 'planned',
+                                   'provider_id': provider, 'execution_mode': mode,
+                                   'execution_host': host, 'status': 'planned',
                                    'created_at': now, 'created_by': actor})
         state['revision'] += 1
         state['operations'].append({'id': operation_id, 'request': fingerprint, 'actor': actor, 'at': now})

@@ -2,6 +2,22 @@
   "version": "1.0",
   "effective_at": "2026-09-21",
   "phase": "planning_live",
+  "execution_policy": {
+    "continuous": {
+      "host": "aws",
+      "label": "持续采集 · AWS",
+      "meaning": "公开 RSS、API 或稳定网页的定时、无人工干预采集"
+    },
+    "assisted": {
+      "host": "macmini",
+      "label": "人工辅助 · macmini",
+      "meaning": "需要浏览器插件、登录状态、人工识别或反爬处理的采集"
+    },
+    "storage_and_analysis": {
+      "host": "spark",
+      "meaning": "接收永久原件、提取与模型分析；不承担采集任务执行"
+    }
+  },
   "providers": [
     {
       "id": "fetchspec",
