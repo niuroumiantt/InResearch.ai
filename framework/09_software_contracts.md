@@ -123,3 +123,7 @@ materials.model_assets 拥有视觉输入内容身份与采用状态；workflow.
 ## 浏览器视口与镜头责任
 
 scene-view 只持有画布尺寸观察、可见几何边界、透视适配及自动/用户镜头所有权；页面提供 renderer/composer 的尺寸回调、研究对象集合、固定导航与领域动作。model-assets 持有采用模型及加载代次，只读 objects 不复制登记或让消费者释放模型。part-inspector 独占预览 renderer 和克隆材质、借用原几何，退出清理观察与独占资源。比较台退出逐帧 setSize；主页面退出窗口尺寸/zoom 猜测，两种预览退出 rad×2.9 距离常数。此边界不表示全部 renderer、HDR、面板纹理或领域几何已统一。
+
+## 资料供应规划（2026-09-21）
+
+workflow.supply 持有需求/任务计划的唯一用例，HTTP 负责权限与参数，supply.js 只消费服务端视图。能力目录随版本发布，运行台账复用 private data/raw 存储边界；台账读改写锁、expected_revision、UUID 回执共同防止覆盖和重复。交付、验收及正式采用尚未接入，前端不得模拟服务端完成状态。具体业务契约唯一见 06。

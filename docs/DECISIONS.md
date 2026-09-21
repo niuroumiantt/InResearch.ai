@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-21：资料供应方向定稿与首版管理入口
+
+用户采用“研究中心 + 专业供应方 + 统一接收验收”：需求映射已有对象、五视角和九主题；九类供应能力与本地渠道分开，Spark 保持处理环境身份。替代 06 中采集职责集中在研究仓库的解释；不另立竞争规范。首版提供真实需求/任务计划持久化、供应能力目录和独立演示页。统一原件交付/验收、爬虫派发和 Spark 批次接入仍是后续阶段，不以静态示例冒充运行。测试与上线证据见 docs/reviews/2026-09-21/supply-center/DELIVERY.md。
+
 ## 2026-09-15：管理员密码由部署声明，账号表位置唯一
 
 站长报告 `admin` 密码反复登录失败。核对源码与部署：密码哈希参数（PBKDF2-SHA256、200,000 轮）与账号表格式自 2026-08-18 起未变；09-13 运行布局切换前后容器读的都是 `/srv/inresearch.ai/data/users.json`；部署、初始化、回退与 reader 快照均不写账号表。失败只能来自账号表里没有这个用户名或哈希与输入不符，最常见的两种成因：在宿主机源码目录运行 `manage.py users passwd`（写进源码 checkout 自己的 `data/users.json`，网站不读），或 `passwd` 未带 `--password` 生成了随机密码；infra 手册里 `pipeline/users.py` 的命令早已失效也促成了绕路。本批：`HUB_ADMIN_USERNAME` / `HUB_ADMIN_PASSWORD` 由容器环境（infra `$KIT/.env.inresearch`）声明，`serve` 启动即幂等对齐账号表（已一致不写文件，留空不碰账号表，只升不降，其他账号原样）；`users list` 打印实际文件位置；测试覆盖创建/重置/幂等/不降级与真实 `serve` 对齐且日志不含密码。infra 侧补 `.env.inresearch` 骨架、compose `env_file`、密钥登记表、回退快照清单与手册，修正失效命令。密码值不进任何仓库。
