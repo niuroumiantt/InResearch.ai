@@ -8,6 +8,8 @@
 
 新增 supply.html（真实需求、任务计划）和 supply-demo.html（独立模拟交付验收）。入口从 materials.html 进入。共享主题和登录保持；成员只读，管理员写需求与分配，实习生按现行规则拒绝。真实后台没有交付/采用按钮，未连接清楚说明。
 
+2026-09-21 后续定稿：每项供应任务按工作方式分配唯一主机。公开、连续、无需人工干预的 RSS/API/稳定网页任务为 `continuous`，固定在 AWS；需要浏览器插件、登录态、人工识别或反爬处理的任务为 `assisted`，固定在 macmini。Spark 只接收永久原件、提取与模型分析，不执行采集。一个 repo 可同时有两类任务，但同一来源和时间范围不允许双跑；现有 iNews 继续在 AWS，除非另有受控迁移。
+
 ## 权威、写入和消费者
 
 framework/supply_contract.json 随源码发布能力与最小交付协议。workflow.supply 唯一管理计划；interfaces.http 只做认证与参数，supply.js 消费视图。data/raw/supply-center/ledger.json 复用已有私有运行目录，版本锁与操作 UUID 防重复和覆盖，损坏不重建，读取不建目录，静态 URL 不可下载。没有存储布局迁移、新种子或原件搬移。

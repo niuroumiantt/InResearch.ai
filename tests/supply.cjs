@@ -11,6 +11,8 @@ const base=process.env.UI_BASE_URL;
   await page.getByRole('button',{name:'研究需求',exact:true}).click();
   await page.locator('#create-panel').waitFor();
   assert.ok(await page.locator('#question option').count()>1);
+  await page.locator('#execution-mode').selectOption('assisted');
+  assert.equal(await page.locator('#execution-mode').inputValue(),'assisted');
   await page.getByRole('button',{name:'交付与验收',exact:true}).click();
   assert.match(await page.locator('#list').innerText(),/统一交付接口待接通/);
   for(const width of [390,1280]){

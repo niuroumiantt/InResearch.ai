@@ -27,7 +27,8 @@ class SupplyTests(unittest.TestCase):
     def request(self, **changes):
         value = dict(action='create', operation_id=str(uuid.uuid4()), expected_revision=0,
                      question_id='M01-Q01', title='容量原件', scope='全球投运容量与统计期',
-                     acceptance='原文、定位与口径', provider_id='statistics')
+                     acceptance='原文、定位与口径', provider_id='statistics',
+                     execution_mode='continuous', execution_host='aws')
         value.update(changes)
         return value
 
@@ -38,6 +39,7 @@ class SupplyTests(unittest.TestCase):
         supply.mutate(self.root, req, 'admin')
         self.assertTrue(supply.mutate(self.root, req, 'admin')['replayed'])
         self.assertEqual(len(supply.snapshot(self.root)['tasks']), 1)
+        self.assertEqual(supply.snapshot(self.root)['tasks'][0]['execution_host'], 'aws')
         with self.assertRaises(supply.Conflict):
             supply.mutate(self.root, self.request(), 'admin')
         with self.assertRaises(supply.Conflict):
@@ -46,7 +48,8 @@ class SupplyTests(unittest.TestCase):
         self.assertFalse(http.source_path('/data/raw/supply-center/ledger.json', self.root).exists())
 
     def test_validation_and_corruption_never_replace_state(self):
-        for update in ({'question_id':'unknown'}, {'provider_id':'unknown'}, {'acceptance':''}, {'action':'adopt'}):
+        for update in ({'question_id':'unknown'}, {'provider_id':'unknown'}, {'acceptance':''}, {'action':'adopt'},
+                       {'execution_mode':'assisted', 'execution_host':'aws'}):
             with self.assertRaises(ValueError):
                 supply.mutate(self.root, self.request(**update), 'admin')
         self.assertEqual(supply.read(self.root)['revision'], 0)
@@ -58,7 +61,8 @@ class SupplyTests(unittest.TestCase):
     def test_multiple_suppliers_and_concurrent_revision(self):
         req=self.request();supply.mutate(self.root,req,'admin')
         demand=supply.read(self.root)['demands'][0]['id']
-        supply.mutate(self.root, self.request(action='assign', demand_id=demand, provider_id='local', expected_revision=1), 'admin')
+        supply.mutate(self.root, self.request(action='assign', demand_id=demand, provider_id='local', expected_revision=1,
+                                               execution_mode='assisted', execution_host='macmini'), 'admin')
         results=[]
         def add():
             try:
@@ -71,6 +75,7 @@ class SupplyTests(unittest.TestCase):
         self.assertCountEqual(results,['saved','conflict'])
         self.assertEqual(len(supply.read(self.root)['tasks']),3)
         self.assertTrue(all(t['status']=='planned' for t in supply.read(self.root)['tasks']))
+        self.assertEqual(supply.read(self.root)['tasks'][1]['execution_host'], 'macmini')
 
     def test_http_roles_and_private_storage(self):
         server=http.ThreadingHTTPServer(('127.0.0.1',0),http.Handler)
