@@ -18,6 +18,7 @@ from inresearch.materials import inbox as material_intake
 from inresearch.materials import model_assets
 import hmac
 from inresearch.workflow import commands as commands
+from inresearch.workflow import supply
 from inresearch.knowledge import registry as research
 from inresearch.delivery import report as report_model
 import posixpath
@@ -253,6 +254,11 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(200, {"ok": True, "users": [
                 {"name": n, "role": u.get("role", "member"), "created": u.get("created", "?")}
                 for n, u in sorted(users.items())]})
+        if self.path == "/api/supply":
+            try:
+                return self._json(200, supply.snapshot(ROOT))
+            except (ValueError, OSError, KeyError, TypeError):
+                return self._json(503, {"ok": False, "error": "供应台账不可用，请重试或修复"})
         if self.path == "/api/materials":
             return self._json(200, {"items": material_intake.records()[:200]})
         if self.path == "/api/status":
@@ -347,6 +353,19 @@ class Handler(SimpleHTTPRequestHandler):
             return self.api_login(payload)
         if user and role == "intern" and self.path not in auth.INTERN_POST_ALLOW:
             return self._json(403, {"ok": False, "error": "该操作需要内部成员权限"})
+        if self.path == "/api/supply":
+            if role != "admin" or self.headers.get("X-Requested-With") != "supply-center":
+                return self._json(403, {"ok": False, "error": "仅管理员可管理供应需求"})
+            try:
+                return self._json(200, supply.mutate(ROOT, payload, user or "local"))
+            except supply.Conflict as exc:
+                return self._json(409, {"ok": False, "error": str(exc)})
+            except CommitUncertain:
+                return self._json(503, {"ok": False, "error": "提交结果需核对，请刷新；重试将复用同一操作身份"})
+            except ValueError as exc:
+                return self._json(400, {"ok": False, "error": str(exc)})
+            except OSError:
+                return self._json(503, {"ok": False, "error": "供应台账暂不可写，请重试"})
         if self.path == "/api/run":
             if role != "admin":
                 return self._json(403, {"ok": False, "error": "跑管线任务仅限 admin"})

@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.15.1",
-  "effective_at": "2026-09-14",
+  "version": "2026.09.21.1",
+  "effective_at": "2026-09-21",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -275,7 +275,7 @@
       "status": "current",
       "source": "framework/05_interface_system.md",
       "scope": "project",
-      "effective_at": "2026-09-14",
+      "effective_at": "2026-09-21",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -327,13 +327,21 @@
         "web/components/datacenter-cost.js",
         "web/themes/datacenter-cost.css",
         "data/datacenter_cost_model.json",
-        "tests/datacenter_cost.cjs"
+        "tests/datacenter_cost.cjs",
+        "framework/supply_contract.json",
+        "src/inresearch/workflow/supply.py",
+        "web/pages/supply.html",
+        "web/pages/supply-demo.html",
+        "web/components/supply.js",
+        "web/themes/supply.css",
+        "tests/unit/test_supply.py",
+        "tests/supply.cjs"
       ],
       "supersedes": [
         "interface-legacy"
       ],
-      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-14 统一实际画布、几何适配和用户镜头所有权，退出固定缩放/距离，补齐雾化反例；完整视觉与 GPU 验收仍有限。；2026-09-14 两场景共用 HDR/PMREM 与 CanvasTexture 所有者，面板失败保留真实程序化纹理，迟到/替换/退出释放资源；bake、compare 与场景几何仍分别待审。；2026-09-14 数据中心成本研究新增独立交互页，网页与 Excel 基准对齐，明确全项目/设施账户、假设边界、重算和窄屏验收。",
-      "implementation_revision": "2026.09.14.6"
+      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-14 统一实际画布、几何适配和用户镜头所有权，退出固定缩放/距离，补齐雾化反例；完整视觉与 GPU 验收仍有限。；2026-09-14 两场景共用 HDR/PMREM 与 CanvasTexture 所有者，面板失败保留真实程序化纹理，迟到/替换/退出释放资源；bake、compare 与场景几何仍分别待审。；2026-09-14 数据中心成本研究新增独立交互页，网页与 Excel 基准对齐，明确全项目/设施账户、假设边界、重算和窄屏验收。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。",
+      "implementation_revision": "2026.09.21.1"
     },
     {
       "id": "acquisition-legacy",
@@ -350,7 +358,7 @@
       "status": "current",
       "source": "framework/06_acquisition.md",
       "scope": "project",
-      "effective_at": "2026-09-13",
+      "effective_at": "2026-09-21",
       "implementations": [
         "web/assets/datacenter-news.css",
         "web/components/datacenter-news.js",
@@ -384,13 +392,21 @@
         "tests/unit/test_storage_layout.py",
         "tests/container_storage.py",
         "tests/datacenter_news.cjs",
-        "tests/unit/test_research.py"
+        "tests/unit/test_research.py",
+        "framework/supply_contract.json",
+        "src/inresearch/workflow/supply.py",
+        "web/pages/supply.html",
+        "web/pages/supply-demo.html",
+        "web/components/supply.js",
+        "web/themes/supply.css",
+        "tests/unit/test_supply.py",
+        "tests/supply.cjs"
       ],
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "News uses a bounded projection of the same validated Reader snapshot; homepage/ops stop polling the full research view. No second authority or original-data migration; stale responses cannot overwrite newer UI state.",
-      "implementation_revision": "2026.09.13.9"
+      "reason": "News uses a bounded projection of the same validated Reader snapshot; homepage/ops stop polling the full research view. No second authority or original-data migration; stale responses cannot overwrite newer UI state.；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。",
+      "implementation_revision": "2026.09.21.1"
     },
     {
       "id": "product-ecosystems-20260906",
@@ -532,9 +548,9 @@
       "status": "current",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "effective_at": "2026-09-14",
+      "effective_at": "2026-09-21",
       "supersedes": [],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、首页和团队页的唯一投影；静态 workorders 只保留模块缺口与统计。",
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、首页和团队页的唯一投影；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -594,9 +610,17 @@
         "src/inresearch/__main__.py",
         "docs/local_setup/README.md",
         "web/components/scene-resources.js",
-        "tests/scene_resources.cjs"
+        "tests/scene_resources.cjs",
+        "framework/supply_contract.json",
+        "src/inresearch/workflow/supply.py",
+        "web/pages/supply.html",
+        "web/pages/supply-demo.html",
+        "web/components/supply.js",
+        "web/themes/supply.css",
+        "tests/unit/test_supply.py",
+        "tests/supply.cjs"
       ],
-      "implementation_revision": "2026.09.14.5"
+      "implementation_revision": "2026.09.21.1"
     }
   ],
   "entrypoints": [
