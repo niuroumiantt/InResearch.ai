@@ -32,19 +32,19 @@ const {chromium} = require('playwright');
       const box = await canvas.boundingBox();
       await page.mouse.move(box.x+40, box.y+40); await page.mouse.down();
       await page.mouse.move(box.x+90, box.y+65, {steps:4}); await page.mouse.up();
-      await page.getByRole('button',{name:'folk',exact:true}).click();
+      await page.locator('#ui-appearance').selectOption('dark');
       assert.ok(await canvas.isVisible());
       if (process.env.REVIEW_SCREENSHOTS) await page.screenshot({path:process.env.REVIEW_SCREENSHOTS + '/' + (url.includes('bom3d') ? 'scene-campus.png' : 'scene-rack.png')});
       await dossier.getByRole('button',{name:'关闭部件档案'}).click();
       assert.ok(!await dossier.isVisible());
       await page.waitForFunction(() => Boolean(globalThis.__sceneForTest));
-      await page.getByRole('button',{name:'Attio',exact:true}).click();
+      await page.locator('#ui-appearance').selectOption('light');
       // Reduced-motion playback finishes at the selected end, without background writers.
       await page.locator('#play').click();
       assert.equal(await page.locator('#explode').inputValue(), '100');
       await page.locator('.rg-stage-control').selectOption({index:1});
       const selected = await page.locator('#explode').inputValue();
-      await page.getByRole('button',{name:'folk',exact:true}).click();
+      await page.locator('#ui-appearance').selectOption('dark');
       assert.equal(await page.locator('#explode').inputValue(), selected);
       // Exercise normal animation too: repeated play then a manual phase owns the state.
       await page.emulateMedia({reducedMotion:'no-preference'});

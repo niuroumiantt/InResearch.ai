@@ -11,7 +11,7 @@
 
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font: 13px/1.5 -apple-system, "PingFang SC", sans-serif; padding-bottom: 60px; }
+  body { background: var(--bg); color: var(--text); font: 13px/1.5 var(--ui-font); padding-bottom: 60px; }
   a { color: var(--accent); text-decoration: none; }
   .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
     display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
@@ -99,7 +99,7 @@
   .foot { color: var(--muted); font-size: 11.5px; margin-top: 14px; line-height: 1.7; }
   .err { background: var(--red-bg); color: var(--red); padding: 14px 18px; margin: 20px 0; }
 </style>
-<link rel="stylesheet" href="/assets/site-skin.css">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
 <inresearch-shell data-section="research"></inresearch-shell>

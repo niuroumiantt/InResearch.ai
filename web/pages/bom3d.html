@@ -10,7 +10,7 @@
 <style>
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 -apple-system, "PingFang SC", sans-serif; overflow: hidden; }
+  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 var(--ui-font); overflow: hidden; }
   a { color: var(--accent); text-decoration: none; }
   .topbar { position: fixed; top: 0; left: 0; right: 0; height: 46px; background: var(--ui-surface);
     backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); display: flex; align-items: center;
@@ -96,7 +96,7 @@
   }
 
 </style>
-<link rel="stylesheet" href="/assets/site-skin.css">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
 <inresearch-shell data-section="research"></inresearch-shell>
@@ -455,7 +455,7 @@ function explode(obj, dx, dy, dz, t0 = 0, t1 = 1) {
 function label(text, x, y, z, size = 1, color = "#9fb4d8", num = null) {
   const S = 2;
   const cv = document.createElement("canvas"), mx = cv.getContext("2d");
-  mx.font = `600 ${26 * S}px -apple-system, PingFang SC`;
+  mx.font = `600 ${26 * S}px Inter, "Noto Sans SC", sans-serif`;
   const tw = mx.measureText(text).width;
   const numW = num ? 40 * S : 0;
   cv.width = tw + 40 * S + numW; cv.height = 52 * S;
@@ -471,7 +471,7 @@ function label(text, x, y, z, size = 1, color = "#9fb4d8", num = null) {
     g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(num, 22 * S, H / 2 + S);
     g.textAlign = "left";
   }
-  g.font = `600 ${26 * S}px -apple-system, PingFang SC`;
+  g.font = `600 ${26 * S}px Inter, "Noto Sans SC", sans-serif`;
   g.fillStyle = "#e8eef8"; g.textBaseline = "middle";
   g.fillText(text, (num ? 42 : 18) * S, H / 2 + S);
   const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;

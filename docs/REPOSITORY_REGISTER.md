@@ -1,22 +1,22 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.21.3。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.22.1。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：820。
+在册文件：834。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 39 |
+| 静态资源 | 52 |
 | 候选与外部输入 | 145 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 266 |
-| 运行代码 | 152 |
+| 运行代码 | 153 |
 | 现行规范 | 13 |
 | 项目配置 | 36 |
 | 兼容研究记录 | 16 |
@@ -1092,9 +1092,23 @@
 | `tests/unit/test_text_similarity.py` | 测试 |
 | `tests/unit/test_verification_contract.py` | 测试 |
 | `tests/url_rendering.cjs` | 测试 |
-| `web/assets/Inter-LICENSE.txt` | 静态资源 |
-| `web/assets/InterVariable.woff2` | 静态资源 |
 | `web/assets/datacenter-news.css` | 运行代码 |
+| `web/assets/fonts/LICENSE-Inter.txt` | 静态资源 |
+| `web/assets/fonts/LICENSE-NotoSansSC.txt` | 静态资源 |
+| `web/assets/fonts/fonts.css` | 运行代码 |
+| `web/assets/fonts/inter-variable-italic.woff2` | 静态资源 |
+| `web/assets/fonts/inter-variable.woff2` | 静态资源 |
+| `web/assets/fonts/manifest.json` | 静态资源 |
+| `web/assets/fonts/noto-sans-sc-1.woff2` | 静态资源 |
+| `web/assets/fonts/noto-sans-sc-10.woff2` | 静态资源 |
+| `web/assets/fonts/noto-sans-sc-2.woff2` | 静态资源 |
+| `web/assets/fonts/noto-sans-sc-3.woff2` | 静态资源 |
+| `web/assets/fonts/noto-sans-sc-4.woff2` | 静态资源 |
+| `web/assets/fonts/noto-sans-sc-5.woff2` | 静态资源 |
+| `web/assets/fonts/noto-sans-sc-6.woff2` | 静态资源 |
+| `web/assets/fonts/noto-sans-sc-7.woff2` | 静态资源 |
+| `web/assets/fonts/noto-sans-sc-8.woff2` | 静态资源 |
+| `web/assets/fonts/noto-sans-sc-9.woff2` | 静态资源 |
 | [web/assets/hdri/README.md](../web/assets/hdri/README.md) | 配套说明 |
 | `web/assets/hdri/lab.exr` | 静态资源 |
 | `web/assets/hdri/studio.exr` | 静态资源 |

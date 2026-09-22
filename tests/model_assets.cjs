@@ -47,8 +47,8 @@ function fixture(name, brokenTexture=false) {
    const status=page.locator('.rg-scene-model-status[data-state=error]');await status.waitFor();
    for(const width of [360,1280]) {
     await page.setViewportSize({width,height:900});
-    for(const skin of ['Attio','folk'])for(const mode of ['light','dark']) {
-     await page.getByRole('button',{name:skin,exact:true}).click();await page.locator('#ui-appearance').selectOption(mode);
+    for(const mode of ['light','dark']) {
+     await page.locator('#ui-appearance').selectOption(mode);
      const b=await status.boundingBox();assert.ok(b.x>=0 && b.x+b.width<=width);
      const retry=status.getByRole('button',{name:'重试',exact:true});assert.ok(await retry.isVisible());
      assert.ok(await retry.evaluate(e=>{const b=e.getBoundingClientRect();return e.contains(document.elementFromPoint(b.x+b.width/2,b.y+b.height/2))}),'retry is covered by another panel');

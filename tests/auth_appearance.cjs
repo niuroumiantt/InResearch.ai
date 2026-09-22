@@ -13,14 +13,14 @@ const pages = JSON.parse(execFileSync(process.env.PYTHON || 'python3', ['-c',
       await page.goto(url); await page.locator('#ui-skinbar').waitFor();
       assert.equal(await page.locator('.ui-navigation').count(),0);
       assert.ok(await page.locator('form label').evaluateAll(labels=>labels.every(label=>label.control)));
-      for (const skin of ['Attio','folk']) for (const mode of ['light','dark']) for (const width of [360,1440]) {
+      assert.equal(await page.locator('[data-ui-choice]').count(),0,'no skin switch on auth pages');
+      for (const mode of ['light','dark']) for (const width of [360,1440]) {
         await page.setViewportSize({width,height:800});
-        await page.getByRole('button',{name:skin,exact:true}).click();
         await page.locator('#ui-appearance').selectOption(mode);
         assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),name);
         assert.ok(await page.locator('form,.ui-auth-message').isVisible(),name);
       }
     }
-    console.log('PASS 24 auth appearances, field labels and public navigation boundary');
+    console.log('PASS 12 auth appearances, field labels and public navigation boundary');
   } finally { await browser.close(); }
 })().catch(error=>{console.error(error);process.exitCode=1;});

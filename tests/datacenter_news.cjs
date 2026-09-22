@@ -14,8 +14,8 @@ const {chromium}=require('playwright');
  assert.deepEqual((await page.locator('.dc-news-time').allTextContents()).slice(0,3),['10:30','00:10','23:50']);
  assert.equal(await page.locator('.dc-news-time').first().getAttribute('datetime'),'2026-09-06T02:30:00.000Z');
  assert.equal(await page.locator('.dc-news-timezone').textContent(),'北京时间');
- if(file==='index.html'){await page.getByRole('button',{name:'folk',exact:true}).click();await page.locator('.dc-news').screenshot({path:'/tmp/news-timeline.png'});}
- for(const skin of ['folk','Attio'])await page.getByRole('button',{name:skin,exact:true}).click();
+ if(file==='index.html'){await page.locator('.dc-news').screenshot({path:'/tmp/news-timeline.png'});}
+ for(const mode of ['dark','light'])await page.locator('#ui-appearance').selectOption(mode);
  await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));await page.setViewportSize({width:1280,height:900});
  }
  assert.equal(fullRequests,0);assert.deepEqual(errors,[]);console.log('PASS homepage and ops shared news: scrolling, titles, safe links, skins, mobile');

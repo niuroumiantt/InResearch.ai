@@ -72,7 +72,7 @@ L1 结果仍只通过 `materials.records.commit_result` 和调用开始时看见
 
 Claude CLI 暂为默认推理执行器，未来 Spark 或更大模型从 role/profile 配置接入；客户端与实际模型分别记录。Python 标准库是核心运行约束。源码目录、公开 URL、生产数据卷和远端启动命令分别登记；迁移源码不隐式搬动原件、账号、密钥或运行数据库。
 
-共享页面结构显式声明，主题仅决定 Attio/folk 外观及偏好，不通过猜测旧导航或重组任意 DOM 决定业务结构。
+共享页面结构显式声明，主题仅决定明暗外观及偏好，不通过猜测旧导航或重组任意 DOM 决定业务结构。
 
 交互场景资源与场景语义分开：`scene-resources.js` 拥有异步 HDR 代次、超时/失败回退、PMREM target 替换及 CanvasTexture 池；bom3d/rack3d 只提供程序化环境和纹理配方。每次 retry 取新代，旧代迟到输入只释放不提交；新 target 提交后才释放旧 target。图片失败沿用同一个已有程序化 CanvasTexture，不把空加载对象称为兜底。dispose 幂等，清空仍由自己持有的 environment，停止页面渲染后释放 composer/renderer；它不释放外部可选模型或把来源许可变成运行判断。
 
