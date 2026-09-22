@@ -194,7 +194,7 @@ ROLES = ("admin", "member", "intern")
 # 实习生白名单（默认拒绝）。为什么不是黑名单：打分表的 summary 里就有招标控制价
 # 数字——敏感的不只是标了 sensitive 的事实记录，账本本身就是。逐条拉黑必漏，
 # **漏一条路径等于没锁门**；白名单只放行工单系统，其余一概 403。
-INTERN_GET_ALLOW = ("/assets/site-skin.js", "/assets/site-skin.css", "/assets/InterVariable.woff2", "/assets/Inter-LICENSE.txt", "/team.html", "/reports/workorders.json", "/data/assignments.json",
+INTERN_GET_ALLOW = ("/assets/site-skin.js", "/assets/site-skin.css", "/assets/fonts/", "/team.html", "/reports/workorders.json", "/data/assignments.json",
                     "/api/status", "/api/tasks", "/api/whoami", "/account", "/login", "/logout",
                     "/assets/", "/favicon")
 INTERN_POST_ALLOW = ("/api/login", "/api/passwd", "/api/assign")

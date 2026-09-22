@@ -3,16 +3,15 @@
   'use strict';
   const root = document.documentElement;
   const KEY = 'inresearch.ui.v1';
-  const defaults = {skin: 'folk', mode: 'light'};
+  const defaults = {mode: 'light'};
   const media = window.matchMedia('(prefers-color-scheme: dark)');
-  const valid = input => ({skin: ['folk', 'attio'].includes(input?.skin) ? input.skin : defaults.skin,
-    mode: ['light', 'dark', 'system'].includes(input?.mode) ? input.mode : defaults.mode});
+  // 2026-09-22 起只有一套视觉; 旧偏好里的 skin 字段忽略, 明暗照旧读取。
+  const valid = input => ({mode: ['light', 'dark', 'system'].includes(input?.mode) ? input.mode : defaults.mode});
   const read = () => { try { return valid(JSON.parse(localStorage.getItem(KEY))); } catch (_) { return {...defaults}; } };
   let preference = read();
   let saved = true;
   const resolved = () => preference.mode === 'system' ? (media.matches ? 'dark' : 'light') : preference.mode;
   function apply() {
-    root.dataset.uiSkin = preference.skin;
     root.dataset.uiMode = preference.mode;
     root.dataset.uiTheme = resolved();
     window.dispatchEvent(new CustomEvent('inresearch:appearance', {detail: {...preference, resolved: resolved(), saved}}));

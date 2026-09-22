@@ -18,8 +18,7 @@ const {chromium} = require('playwright');
    assert.equal(await page.locator('.rg-3d-panel').count(),0);
    for(const width of [1280,360]) {
     await page.setViewportSize({width,height:900});
-    for(const skin of ['Attio','folk']) for(const mode of ['light','dark']) {
-     await page.getByRole('button',{name:skin,exact:true}).click();
+    for(const mode of ['light','dark']) {
      await page.locator('#ui-appearance').selectOption(mode);
      assert.ok(await status.getByRole('button',{name:'重试',exact:true}).isVisible());
      const box=await status.boundingBox();assert.ok(box.x>=0 && box.x+box.width<=width);

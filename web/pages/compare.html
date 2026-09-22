@@ -9,7 +9,7 @@
 <style>
 
   *{margin:0;padding:0;box-sizing:border-box}
-  body{background:var(--bg);color:var(--text);font:13.5px/1.6 -apple-system,"PingFang SC",sans-serif}
+  body{background:var(--bg);color:var(--text);font:13.5px/1.6 var(--ui-font)}
   .topbar{position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);
     display:flex;align-items:center;gap:4px;padding:0 18px;height:46px;z-index:20}
   .topbar b{font-size:15px;margin-right:14px}
@@ -29,7 +29,7 @@
   .kv i{max-width:65%;overflow-wrap:anywhere;font-style:normal;color:var(--text);font-variant-numeric:tabular-nums}
   .empty{color:var(--muted);padding:30px;text-align:center;border:1px dashed var(--line);border-radius: var(--ui-radius)}
 </style>
-<link rel="stylesheet" href="/assets/site-skin.css">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
 <inresearch-shell data-section="admin"></inresearch-shell>

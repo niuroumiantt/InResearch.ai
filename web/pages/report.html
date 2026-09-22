@@ -14,12 +14,12 @@
   a { color: var(--accent); text-decoration: none; }
   .topbar { position: fixed; top: 0; left: 0; right: 0; height: 44px; background: var(--page);
     border-bottom: 1px solid var(--line); display: flex; align-items: center; gap: 18px; padding: 0 20px;
-    font-family: -apple-system, "PingFang SC", sans-serif; font-size: 13px; z-index: 10; }
+    font-family: var(--ui-font); font-size: 13px; z-index: 10; }
   .topbar b { font-size: 14px; }
   .topbar .sp { flex: 1; }
   .layout { display: flex; max-width: 1200px; margin: 64px auto 60px; gap: 24px; padding: 0 16px; }
   nav.toc { width: 230px; flex-shrink: 0; position: sticky; top: 64px; align-self: flex-start;
-    max-height: calc(100vh - 90px); overflow-y: auto; font-family: -apple-system, "PingFang SC", sans-serif;
+    max-height: calc(100vh - 90px); overflow-y: auto; font-family: var(--ui-font);
     font-size: 12.5px; line-height: 1.7; }
   nav.toc a { display: block; color: var(--muted); padding: 3px 10px; border-left: 2px solid var(--line); }
   nav.toc a:hover { color: var(--accent); }
@@ -30,36 +30,36 @@
   .page-doc.cover-page { padding: 60px 68px; }
   .cover { text-align: center; border-bottom: 2px solid var(--text); margin-bottom: 40px; padding-bottom: 28px; }
   .cover h1 { font-size: 30px; letter-spacing: 2px; margin-bottom: 14px; }
-  .cover .meta { font-family: -apple-system, "PingFang SC", sans-serif; color: var(--muted); font-size: 13px; }
+  .cover .meta { font-family: var(--ui-font); color: var(--muted); font-size: 13px; }
   h2.chapter { font-size: 21px; margin: 0 0 6px; }
-  .chapter-sub { font-family: -apple-system, "PingFang SC", sans-serif; font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+  .chapter-sub { font-family: var(--ui-font); font-size: 12px; color: var(--muted); margin-bottom: 18px; }
   .finding { margin: 26px 0; }
   .finding h3 { font-size: 16.5px; line-height: 1.6; margin-bottom: 4px; }
-  .fmeta { font-family: -apple-system, "PingFang SC", sans-serif; font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
+  .fmeta { font-family: var(--ui-font); font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
   .badge { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 0 7px; border-radius: var(--ui-radius);
-    color: #fff; vertical-align: 1px; margin-right: 5px; font-family: -apple-system, sans-serif; }
+    color: #fff; vertical-align: 1px; margin-right: 5px; font-family: var(--ui-font); }
   .b-cur { background: var(--green); } .b-rev { background: var(--yellow); } .b-sta { background: var(--red); }
   .b-q { background: none; color: var(--accent); border: 1px solid var(--accent); }
   .lead { margin: 8px 0 10px; text-align: justify; }
-  .lead b.lbl, .cav b.lbl { font-family: -apple-system, "PingFang SC", sans-serif; font-size: 13px; }
+  .lead b.lbl, .cav b.lbl { font-family: var(--ui-font); font-size: 13px; }
   ul.arg { margin: 6px 0 10px 26px; }
   ul.arg li { margin: 5px 0; text-align: justify; }
   ul.arg ul { margin-left: 22px; }
   .cav { background: var(--caution-bg); border: 1px solid var(--caution-line); border-radius: var(--ui-radius);
     padding: 10px 14px; margin: 10px 0; font-size: 13.5px; text-align: justify; }
   details { margin: 8px 0; font-size: 13px; }
-  details summary { cursor: pointer; color: var(--muted); font-family: -apple-system, "PingFang SC", sans-serif; font-size: 12.5px; }
+  details summary { cursor: pointer; color: var(--muted); font-family: var(--ui-font); font-size: 12.5px; }
   details ul { margin: 6px 0 4px 24px; color: var(--muted); }
   details a { word-break: break-all; }
   .review-note { border-left: 3px solid var(--yellow); }
-  .chapter-src { font-family: -apple-system, "PingFang SC", sans-serif; font-size: 11.5px; color: var(--muted);
+  .chapter-src { font-family: var(--ui-font); font-size: 11.5px; color: var(--muted);
     border-top: 1px dashed var(--line); margin-top: 22px; padding-top: 8px; }
   .summary-list { margin: 14px 0 10px 30px; }
   .summary-list li { margin: 10px 0; text-align: justify; }
   blockquote { color: var(--muted); font-size: 13.5px; border-left: 3px solid var(--line); padding: 4px 14px; margin: 12px 0; }
   .open-q h3 { font-size: 15px; margin: 20px 0 6px; }
   .err { color: var(--red); padding: 20px; }
-  code { font-family: ui-monospace, Menlo, monospace; font-size: 13px; background: var(--bg); padding: 1px 5px; border-radius: var(--ui-radius); }
+  code { font-family: var(--ui-mono); font-size: 13px; background: var(--bg); padding: 1px 5px; border-radius: var(--ui-radius); }
   @media (max-width: 900px) { nav.toc { display: none; } .page-doc { padding: 24px 16px; } }
   @media print {
     .topbar, nav.toc { display: none; }
@@ -67,7 +67,7 @@
     .page-doc { border: none; box-shadow: none; padding: 0; }
   }
 </style>
-<link rel="stylesheet" href="/assets/site-skin.css">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
 <inresearch-shell data-section="reports"></inresearch-shell>

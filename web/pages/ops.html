@@ -10,7 +10,7 @@
 
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font: 14px/1.6 -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding: 24px 16px 60px; }
+  body { background: var(--bg); color: var(--text); font: 14px/1.6 var(--ui-font); padding: 24px 16px 60px; }
   .wrap { max-width: 1100px; margin: 0 auto; }
   h1 { font-size: 22px; margin-bottom: 4px; }
   .sub { color: var(--muted); margin-bottom: 24px; font-size: 13px; }
@@ -72,7 +72,7 @@
   a { color: var(--accent); text-decoration: none; }
   .tablewrap { overflow-x: auto; }
 </style>
-<link rel="stylesheet" href="/assets/site-skin.css">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 <link rel="stylesheet" href="assets/datacenter-news.css">
 <script type="module" src="assets/datacenter-news.js"></script>
 </head>

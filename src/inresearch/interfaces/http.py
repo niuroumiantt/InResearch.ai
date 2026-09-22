@@ -139,7 +139,8 @@ class Handler(SimpleHTTPRequestHandler):
         if "/.hub_secret" in low or "/users.json" in low:
             self._json(404, {"ok": False, "error": "not found"})
             return None
-        if self._norm_path() in {"/assets/site-skin.js", "/assets/theme-state.js", "/assets/auth-form.js", "/assets/auth.css", "/assets/site-skin.css", "/assets/InterVariable.woff2", "/assets/Inter-LICENSE.txt"}:
+        # 登录前只公开外观 CSS/JS 与字体包(含许可证); 字体包目录整体公开, 里面只有 infra 同步来的字体文件。
+        if self._norm_path() in {"/assets/site-skin.js", "/assets/theme-state.js", "/assets/auth-form.js", "/assets/auth.css", "/assets/site-skin.css"} or self._norm_path().startswith("/assets/fonts/"):
             return ""
         user = auth.session_user(self.headers.get("Cookie"))
         if user:

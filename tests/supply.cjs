@@ -24,8 +24,7 @@ const base=process.env.UI_BASE_URL;
   assert.match(await page.locator('#list').innerText(),/统一交付接口待接通/);
   for(const width of [390,1280]){
    await page.setViewportSize({width,height:950});
-   for(const skin of ['folk','attio'])for(const theme of ['light','dark']){
-    await page.getByRole('button',{name:skin==='folk'?'folk':'Attio',exact:true}).click();
+   for(const theme of ['light','dark']){
     await page.locator('#ui-appearance').selectOption(theme);
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
    }
