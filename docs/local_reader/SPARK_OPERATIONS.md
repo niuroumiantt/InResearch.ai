@@ -97,7 +97,7 @@ ssh spark@100.100.1.2 'cd /home/spark/.local/share/inresearch.ai/raw-materials &
 
 ## 首次安装与真模型 smoke
 
-先确保规范源码已落在 `~/code/inresearch.ai`；Python 3.9+，Linux 用户 systemd。PDF 工具需要 Poppler 的 `pdftotext/pdfinfo/pdfimages/pdftoppm`。推理默认配置见 `deploy/models.json`，当前因 Spark 不可用而暂选 Claude CLI；此配置不表示 Spark 服务已改用 CLI。恢复 Spark 部署时，用 `INRESEARCH_MODEL_CONFIG` 指向本机 JSON，将 `research_default` 设为 `spark` 并核对地址；型号、路由、预算及能力按 [08 模型执行](../../framework/08_model_execution.md)。实际响应必须匹配所选型号，失败不换模型兜底。
+先确保规范源码已落在 `~/code/inresearch.ai`；Python 3.9+，Linux 用户 systemd。PDF 工具需要 Poppler 的 `pdftotext/pdfinfo/pdfimages/pdftoppm`。推理默认配置见 `deploy/models.json`，`research_default` 为 M4 上的 Claude CLI（Sonnet 5）；此配置不表示 Spark 服务改用 CLI，Spark reader 由本机 `reader.env` 选用本地模型。恢复 Spark 部署时，用 `INRESEARCH_MODEL_CONFIG` 指向本机 JSON，将 `research_default` 设为 `spark` 并核对地址；型号、路由、预算及能力按 [08 模型执行](../../framework/08_model_execution.md)。实际响应必须匹配所选型号，失败不换模型兜底。
 
 ```bash
 python3 ~/code/inresearch.ai/manage.py reader init
@@ -129,7 +129,7 @@ python3 ~/code/inresearch.ai/manage.py reader \
 
 ## 统一配置与更换型号
 
-默认 JSON 只有 `research_default` 与可选 `ocr` 角色，角色引用 `profiles` 中的配置。复制到本机配置目录后修改；不在各业务脚本中填写型号。旧 reader 的 CLI 参数优先于 READER 环境变量，后者优先于 JSON。从旧 env 迁移时移除已转入 JSON 的覆盖项；安装器保留原有配置，不替用户自动覆盖。
+默认 JSON 有 `research_default`（Claude Sonnet 5）、`core_review`（Claude Opus 5.5）与可选 `ocr` 角色，角色引用 `profiles` 中的配置；Spark 本机配置可引用 `spark`（qwen3.8:27b）和 `spark_ocr`（qwen3-vl:8b）档案。各环节用哪个模型见 [08 模型执行](../../framework/08_model_execution.md) 的“按环节选模型”。复制到本机配置目录后修改；不在各业务脚本中填写型号。旧 reader 的 CLI 参数优先于 READER 环境变量，后者优先于 JSON。从旧 env 迁移时移除已转入 JSON 的覆盖项；安装器保留原有配置，不替用户自动覆盖。
 
 M4 上的共享入口也读取 `INRESEARCH_MODEL_CONFIG`。暂用 Claude CLI 时，在 M4 本机验证 CLI 登录、代理环境及 `python3 manage.py models --probe`。后续切换 Spark 档案时，将 `profile.url` 设为实际可达的 Spark 推理地址或本机到 Spark 的转发地址；`127.0.0.1` 只指执行机器本身。此代码变更不会自动建立网络转发或开放端口。
 

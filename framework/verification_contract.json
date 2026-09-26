@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.26.1",
+  "version": "2026.09.26.2",
   "reviewed_at": "2026-09-26",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -13,7 +13,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "a7a1664715f4bcd0efdd3c28bb705dbbfe2c7aafa8208b9298cbe5a1f2bf3e19",
+    "docs/local_reader/SPARK_OPERATIONS.md": "4550626fa04f1119b70a2c65316ae3b2c849a7f1d6e245d2a60cf2782657d83b",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
@@ -24,9 +24,9 @@
     "framework/05_interface_system.md": "9daf6c2b1a3eb93fd0dbb8e766f3c411aa27a29dc725ebee01f65cf67f4bbefa",
     "framework/06_acquisition.md": "27e99b22383b67e3995a2ee2105892efcd423bc79d329158295b0fda652c67c5",
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
-    "framework/08_model_execution.md": "6c1be72c11c0948ae349cba63bf6704e1c6cb5544eb2a0c5605386d65b2a7be9",
+    "framework/08_model_execution.md": "7840e6599b174f1fbb4f457552ed3b3d80b2981bea182ee14058e7715dc2ed96",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "b365383de20368d750dadb7d019b249026d074dd5b411d99206847865ff51acf",
+    "framework/CURRENT.md": "21e06b0ebc537a4e9b003e8416f549a6b9f07e281a1a7d3b3d3254de6e1f582f",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "a660188467656408b28d744bc466a145e4ebe980399981a2139aad780d0130ae",
@@ -69,6 +69,7 @@
     "tests/unit/test_m4_triage_local.py": "295cae84255354845a742f4603421bd9eb2abc5b4d11bd79e09cadc885312201",
     "tests/unit/test_m4_triage_versions.py": "547ac78e62b5d13ffe10202e3392bf15affcdeda98125726e5abe8c2e3ccea40",
     "tests/unit/test_model_assets.py": "243b694e858a87efcbd2212e1a8924080119d63415d7065ccd5812a0b46402c5",
+    "tests/unit/test_model_roles.py": "7ec7f3887ad30d2f9b930cd568cea65c75a07b8188b05055013892079fb9c085",
     "tests/unit/test_model_runtime.py": "f9e4436b792b4b557017552b0767d8d5cf1c3c67fad0f4bfaad2c18139c12daf",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "b595a4a6b9e1b09c7c7ba4decfcaf0714d90d8ad8194ad461f9ad41534729102",
@@ -403,7 +404,7 @@
       "policy": "model-execution-20260912",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
@@ -411,10 +412,14 @@
         "tests/unit/test_continuous_reader.py::ReaderTests.test_queued_reading_does_not_mix_models",
         "tests/unit/test_reading_revisions.py::ReadingRevisionTests.test_changed_default_used_only_by_new_explicit_revision",
         "tests/unit/test_reading_results.py::ReadingResultsTests.test_reader_and_l2_current_cli_return_same_verified_revision_without_model",
-        "tests/unit/test_reading_results.py::ReadingResultsTests.test_ready_failed_retry_and_changed_model_do_not_change_shared_current"
+        "tests/unit/test_reading_results.py::ReadingResultsTests.test_ready_failed_retry_and_changed_model_do_not_change_shared_current",
+        "tests/unit/test_model_roles.py::DefaultModelRoleTests.test_research_default_is_sonnet_through_claude_cli",
+        "tests/unit/test_model_roles.py::DefaultModelRoleTests.test_core_review_is_opus_through_claude_cli",
+        "tests/unit/test_model_roles.py::DefaultModelRoleTests.test_ocr_stays_unconfigured_by_default_and_spark_profiles_validate"
       ],
       "not_verified": [
-        "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。"
+        "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。",
+        "2026-09-26 按环节选模型未做同型号质量对比；claude-sonnet-5 / claude-opus-5-5 未在 M4 上用 `models --probe` 实测身份核对；L2 终端会话使用的模型由操作者选择，只能靠 record 的 --model 如实记录，程序不强制。"
       ]
     },
     {

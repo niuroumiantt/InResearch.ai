@@ -10,7 +10,7 @@ Claude Code、Codex CLI 等是操作客户端，分别记录 `executor` 与实�
 
 ## 2. 配置与调用
 
-版本化默认配置唯一入口为 `deploy/models.json`；本机可用 `INRESEARCH_MODEL_CONFIG` 指向同结构 JSON。配置通过角色引用模型档案；`research_default` 当前指向 `claude_cli`，使用本机已登录的 Claude CLI。`spark` 档案保留，待恢复并验收后切换角色引用。型号、后端、地址、请求路由、上下文、输出预算、超时和并发上限均属于配置。密钥仅记录环境变量名称，值不入库。
+版本化默认配置唯一入口为 `deploy/models.json`；本机可用 `INRESEARCH_MODEL_CONFIG` 指向同结构 JSON。配置通过角色引用模型档案；`research_default` 指向 `claude_sonnet`（Claude Sonnet 5），`core_review` 指向 `claude_opus`（Claude Opus 5.5），均使用本机已登录的 Claude CLI；`spark`（qwen3.8:27b）与 `spark_ocr`（qwen3-vl:8b）档案供 Spark 本机配置引用。分工按下文“按环节选模型”。型号、后端、地址、请求路由、上下文、输出预算、超时和并发上限均属于配置。密钥仅记录环境变量名称，值不入库。
 
 `src/inresearch/adapters/models.py` 是公共推理接口。任务提示词、评分与证据语义校验由各业务调用者拥有。当前支持 Claude CLI、Ollama 与兼容 chat-completions 的 gateway；每次响应核对实际模型并覆盖模型自填的来源字段。请求路由名与实际模型名分开。接口失败不静默切换供应商或模型。
 
@@ -19,6 +19,23 @@ Claude CLI 在临时目录中以非交互模式运行，材料从标准输入传
 `text_json` 和 `vision_json` 是适配器接受的能力声明，须经目标模型的小样本验收后配置；声明本身不证明质量。OCR 必须显式配置 `ocr` 角色，当前视觉适配支持 Ollama。没有视觉能力的文本模型不能冒充读过图片。
 
 一个进程中的共享客户端冻结配置，重启后读取修改。`max_parallel` 限制该客户端同时请求数；它不等于跨进程或跨项目的 Spark 全局调度。reader 旧 `READER_*` 环境和 CLI 参数在入口转换，优先级为 CLI > 旧环境 > 选定配置；新部署优先使用统一 JSON，迁移时核对旧覆盖项。
+
+### 按环节选模型（2026-09-26 用户采用）
+
+量大、判断简单的环节用本地模型，量小、要引用数字和证据的环节用 Claude，最强型号只留给决定质量的少数材料。不做同型号对比即切换；质量靠下述分工与 04 的覆盖、引文和数字检查保证。
+
+| 环节 | 模型 | 说明 |
+|---|---|---|
+| L0 文件名分档 | 不用模型 | 规则判定 |
+| L1 大批粗筛（Spark） | 本地 qwen3 系列 | 只作排序与粗分；本地模型分数偏宽、有锚定，不单独决定提升 |
+| L1 打分与复核（M4，`research_default`） | Claude Sonnet 5 | 含 5–7 分边界与 ≥7 分待提升的复核 |
+| OCR | 本地 `spark_ocr`（qwen3-vl:8b） | 只对优先级高的扫描件；不为无关扫描件做 OCR |
+| L2 全文深读与事实抽取（终端） | Claude Sonnet 5 | Claude Code 会话以 Sonnet 5 执行 pack/record，`--model` 如实记录 |
+| L2 核心材料与 C3 前审阅（`core_review`） | Claude Opus 5.5 | 9 分白皮书、复杂表格、数据相互矛盾或采用前审阅 |
+| 长尾全文候选（Spark reader） | 本地 qwen3.8:27b | 只作候选阅读，不直接采用 |
+| 翻译 | 本地 qwen3.8:27b-translate | 不变 |
+
+更换默认型号只影响新任务；已冻结配方的 reader 任务和已有 L1 结果不重读、不改写。
 
 ## 3. 一份材料的一套有效结果
 
