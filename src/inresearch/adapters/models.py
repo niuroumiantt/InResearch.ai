@@ -45,6 +45,10 @@ class ModelProfile:
     api_key_env: str = ""
     revision: str = ""
     command: str = "claude"
+    # Ollama sampling guard. qwen3-vl at temperature 0 loops on repeated table
+    # rows until Ollama aborts ("token repeat limit reached"); a mild penalty
+    # lets those pages finish. Unset keeps the backend default and identity.
+    repeat_penalty: object = None
 
     def __post_init__(self):
         if self.backend not in {"ollama", "gateway", "claude_cli"}:
@@ -75,6 +79,12 @@ class ModelProfile:
             raise ValueError("invalid model capabilities")
         if "vision_json" in self.capabilities and self.backend != "ollama":
             raise ValueError("vision_json currently requires the Ollama adapter")
+        if self.repeat_penalty is not None:
+            if (self.backend != "ollama" or isinstance(self.repeat_penalty, bool)
+                    or not isinstance(self.repeat_penalty, (int, float))
+                    or not 1.0 <= self.repeat_penalty <= 2.0):
+                raise ValueError("repeat_penalty must be a number in [1.0, 2.0] on the Ollama backend")
+            object.__setattr__(self, "repeat_penalty", float(self.repeat_penalty))
         object.__setattr__(self, "capabilities", tuple(self.capabilities))
         object.__setattr__(self, "url", self.url.rstrip("/"))
 
@@ -82,9 +92,14 @@ class ModelProfile:
     def identity(self):
         # Endpoint, credentials, timeouts and concurrency are operational settings.
         # They may change without changing the identity of the reading recipe.
-        return {"backend": self.backend, "model": self.model, "context": self.context,
-                "max_output_tokens": self.max_output_tokens,
-                "request_model": self.request_model or self.model, "revision": self.revision}
+        # repeat_penalty changes outputs, so it is recorded when set; frozen
+        # reader recipes compare reading_identity(), which ignores it.
+        identity = {"backend": self.backend, "model": self.model, "context": self.context,
+                    "max_output_tokens": self.max_output_tokens,
+                    "request_model": self.request_model or self.model, "revision": self.revision}
+        if self.repeat_penalty is not None:
+            identity["repeat_penalty"] = self.repeat_penalty
+        return identity
 
 
 def load_profile(role="research_default", path=None):
@@ -161,8 +176,10 @@ class JsonModelClient:
         body = {"model": p.request_model or p.model, "messages": messages, "stream": False}
         if p.backend == "ollama":
             endpoint = "/api/chat"
-            body.update(format="json", options={"num_ctx": p.context,
-                        "num_predict": p.max_output_tokens, "temperature": 0})
+            options = {"num_ctx": p.context, "num_predict": p.max_output_tokens, "temperature": 0}
+            if p.repeat_penalty is not None:
+                options["repeat_penalty"] = p.repeat_penalty
+            body.update(format="json", options=options)
             if think is not None:
                 body["think"] = think
         else:

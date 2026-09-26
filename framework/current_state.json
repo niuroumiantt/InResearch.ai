@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.26.4",
+  "version": "2026.09.26.5",
   "effective_at": "2026-09-26",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -547,10 +547,11 @@
         "src/inresearch/workflow/reading_results.py",
         "src/inresearch/materials/reading_artifacts.py",
         "tests/unit/test_reading_results.py",
-        "tests/unit/test_model_roles.py"
+        "tests/unit/test_model_roles.py",
+        "tests/unit/test_ocr_repeat_penalty.py"
       ],
       "supersedes": [],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。",
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。；2026-09-26 Ollama 档案可选 repeat_penalty（仅 spark_ocr 设 1.05，记入档案身份但不进 reading_identity），ocr-worker 单页 model_failure 重试一次。",
       "implementation_revision": "2026.09.13.7"
     },
     {

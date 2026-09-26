@@ -62,6 +62,18 @@ def ocr(image):
         raise RuntimeError('model_output_invalid')
     return value
 
+def ocr_page(image):
+    """One page read, retried once after a model failure.
+
+    A single failed call used to discard the whole document; at ~2% of pages
+    that lost most long documents. A second consecutive failure still gives
+    up the document, and other errors are never retried."""
+    try:
+        return ocr(image)
+    except models.InferenceError as exc:
+        if exc.code != 'model_failure': raise
+        return ocr(image)
+
 def process(doc):
     with tempfile.TemporaryDirectory(prefix='m4-offload-') as td:
         td=Path(td); source=td/'source.pdf'
@@ -77,7 +89,7 @@ def process(doc):
             render=run(['pdftoppm','-f',str(index),'-l',str(index),'-singlefile','-scale-to','1800','-png',str(source),str(base)],120)
             image=base.with_suffix('.png')
             if render.returncode or not image.is_file(): raise RuntimeError('page_render_failed')
-            first,second=ocr(image),ocr(image)
+            first,second=ocr_page(image),ocr_page(image)
             if first['unreadable'] or second['unreadable'] or first['blank'] != second['blank']: raise RuntimeError('ocr_page_unreadable')
             if numeric_tokens(first['text']) != numeric_tokens(second['text']): raise RuntimeError('ocr_numbers_disagree')
             page={'doc_id':doc['doc_id'],'content_sha256':doc['sha256'],'page_index':index,'text':first['text'],
