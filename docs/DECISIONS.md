@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-26：M4 OCR 重复中止与单页重试
+
+M4 分担 OCR 首批 27 份中头两份（46 页、70 页）整份失败：qwen3-vl:8b 在温度 0 下遇到重复表格行循环，Ollama 以 `prediction aborted, token repeat limit reached` 返回 500，同页复现两次均失败，而 worker 单页失败即放弃整份。用户采用：模型档案新增可选 `repeat_penalty`，只在 `spark_ocr` 设 1.05（该页 4/4 成功且两遍一致）；ocr-worker 单页 `model_failure` 重试一次，连续两次才放弃整份。`reading_identity()` 只取固定字段，Spark reader 冻结配方与其 `READER_OCR_MODEL` 构造的视觉客户端均不受影响。合并后抽查表格密集页的重复数值是否被惩罚吃掉。
+
 ## 2026-09-26：按分数分层阅读深度
 
 Spark 待处理 2.57 万份，全部逐块全文深读需约 30 万次模型调用，按月计。用户采用：0 分不读，1–6 分只做摘要，≥7 分或点名才全文深读。实现：粗读后取“粗读前优先级”与粗读 importance 的较高者（粗读不降低 M4 或点名的判断）；≥ `READER_FULL_READ_MIN_PRIORITY`（默认 7）逐块全文；否则只读首、中、尾三块，终态 `summarized`，不生成全文报告、不成为当前全文结果，可 `reader deepen` 继续到全文；三块以内直接全文。`reader park --reason l1_score_zero|derived_artifact` 停放 L1 0 分或 reader 衍生物回流（如 M4 `要删/` 下约 1.27 万份文本），先出计划，`--commit` 才写，`retry --error-code` 可恢复，不删除任何东西。04 §1 与相关表述同步替代；摘要与停放不计全文完成。
