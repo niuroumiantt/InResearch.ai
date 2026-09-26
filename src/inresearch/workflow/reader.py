@@ -28,7 +28,7 @@ import tempfile
 import threading
 import time
 
-from inresearch.materials.reader_contracts import ReaderError, Blocked, Deferred, UnsafePath, IntegrityError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS, MAX_WORKERS, MODULES, THERMAL_LIMIT_C, THERMAL_PAUSE_SECONDS, THERMAL_SAMPLE_SECONDS
+from inresearch.materials.reader_contracts import ReaderError, Blocked, Deferred, UnsafePath, IntegrityError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS, MAX_WORKERS, MODULES, THERMAL_LIMIT_C, THERMAL_PAUSE_SECONDS, THERMAL_SAMPLE_SECONDS, PARKED_BY_TRIAGE, PARK_REASONS
 from inresearch.materials.artifacts import now_iso, encoded, digest_bytes, digest_file, private_dir, safe_path, atomic_json, durable_rename, read_json, clean_name, signature, is_partial
 from inresearch.adapters.reader_model import ModelClient
 from inresearch.storage.catalog import Catalog
@@ -46,7 +46,8 @@ CONTEXT = models.load_profile(path=models.DEFAULT_CONFIG).context
 
 class Reader:
     def __init__(self, data_root=None, state_root=None, repo_root=None, model=None,
-                 stable_seconds=60, chunk_chars=6000, clock=time.time, temperature=None):
+                 stable_seconds=60, chunk_chars=6000, clock=time.time, temperature=None,
+                 full_read_min_priority=1):
         self.data = Path(data_root or Path.home() / ".local/share/inresearch.ai").expanduser().resolve()
         self.state = Path(state_root or Path.home() / ".local/state/inresearch.ai").expanduser().resolve()
         self.repo = Path(repo_root or project_root()).expanduser().resolve()
@@ -57,6 +58,12 @@ class Reader:
         self.temperature, self.thermal_limit, self.thermal_pause = temperature, THERMAL_LIMIT_C, THERMAL_PAUSE_SECONDS
         self.thermal = {"limit_c": THERMAL_LIMIT_C, "last_c": None, "paused_since": None, "pauses": 0}
         self._thermal_lock, self._thermal_cool_until = threading.Lock(), 0.0
+        # Below this effective priority a document is read at summary depth. The
+        # library default (1) reads everything in full; `reader run` passes the
+        # configured threshold.
+        if type(full_read_min_priority) is not int or not 1 <= full_read_min_priority <= 10:
+            raise ValueError("full_read_min_priority must be an integer 1..10")
+        self.full_read_min_priority = full_read_min_priority
         if stable_seconds < 0 or not 1 <= chunk_chars <= 6000:
             raise ValueError("invalid scan stability or chunk size")
         self.catalog = None
@@ -436,14 +443,22 @@ class Reader:
                 self.conn.execute("UPDATE reading_runs SET pages_total=?,chunks_total=? WHERE revision_id=?", (result["pages_total"], result["chunks_total"], doc["revision_id"]))
                 self._enqueue(doc, "triage")
             elif stage == "triage":
-                self.conn.execute("UPDATE reading_runs SET priority=? WHERE revision_id=?", (result["importance"], doc["revision_id"]))
-                for i in range(doc["chunks_total"]):
+                # A higher priority set before triage (M4 L1, apply-triage, a named
+                # document) is not lowered by the reader's own coarse preview.
+                effective = max(doc["priority"], result["importance"])
+                self.conn.execute("UPDATE reading_runs SET priority=? WHERE revision_id=?", (effective, doc["revision_id"]))
+                for i in self.read_plan(doc["chunks_total"], effective):
                     self._enqueue(doc, "read", i)
             elif stage == "read":
                 done = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE revision_id=? AND stage='read' AND state='succeeded'", (doc["revision_id"],)).fetchone()[0]
+                planned = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE revision_id=? AND stage='read'", (doc["revision_id"],)).fetchone()[0]
                 self.conn.execute("UPDATE reading_runs SET chunks_read=? WHERE revision_id=?", (done, doc["revision_id"]))
                 if done == doc["chunks_total"]:
                     self._enqueue(doc, "synthesize")
+                elif done == planned:
+                    # Summary depth: the sampled chunks are read. No report, no current
+                    # full-text result; `deepen` continues to a full reading.
+                    self.conn.execute("UPDATE reading_runs SET state='summarized',phase='summary' WHERE revision_id=?", (doc["revision_id"],))
             elif stage == "synthesize":
                 seal = result['_seal']
                 self.conn.execute("UPDATE reading_runs SET report_rel=?,report_sha256=?,manifest_sha256=? WHERE revision_id=?",
@@ -509,6 +524,61 @@ class Reader:
             self._refresh_failures(doc["doc_id"])
         self.write_status()
         return state
+
+    def read_plan(self, chunks_total, priority):
+        """Chunk indexes to read: all of them, or the first, middle and last."""
+        sample = sorted({0, chunks_total // 2, chunks_total - 1}) if chunks_total else []
+        if priority >= self.full_read_min_priority or len(sample) >= chunks_total:
+            return list(range(chunks_total))
+        return sample
+
+    def deepen(self, doc_ids):
+        """Continue summary-depth readings to full coverage; cached chunks are reused."""
+        out = {"deepened": [], "skipped": []}
+        with self.transaction():
+            for doc_id in doc_ids:
+                row = self.conn.execute("SELECT * FROM reading_runs WHERE doc_id=? AND base_revision_id IS NULL", (doc_id,)).fetchone()
+                if row is None or row["state"] != "summarized":
+                    out["skipped"].append({"doc_id": doc_id, "state": row["state"] if row else "absent"})
+                    continue
+                run = dict(row)
+                for i in range(run["chunks_total"]):
+                    self._enqueue(run, "read", i)
+                self.conn.execute("UPDATE reading_runs SET state='queued',phase='read',updated=? WHERE revision_id=?", (self.clock(), run["revision_id"]))
+                out["deepened"].append(doc_id)
+        return out
+
+    def park(self, sha256s, commit=False, code=PARKED_BY_TRIAGE):
+        """Park documents a triage judged unrelated (L1 score 0); nothing is deleted.
+
+        Their pending work is blocked with PARKED_BY_TRIAGE, so the reader skips
+        them and `retry --error-code` revives them. Finished, summarized, running
+        and already-blocked readings are left alone. Without commit only the plan
+        is returned."""
+        if code not in PARK_REASONS.values():
+            raise ValueError("unknown park reason")
+        plan = {"park": 0, "absent": 0, "already_done": 0, "already_parked": 0, "already_blocked": 0}
+        targets = []
+        for sha in sha256s:
+            row = self.conn.execute("SELECT * FROM reading_runs WHERE doc_id=? AND base_revision_id IS NULL", ("doc-" + sha,)).fetchone()
+            if row is None:
+                plan["absent"] += 1
+            elif row["state"] in ("complete", "summarized", "ready", "running"):
+                plan["already_done"] += 1
+            elif row["error_code"] in PARK_REASONS.values():
+                plan["already_parked"] += 1
+            elif row["state"] == "blocked":
+                # Keep the existing block reason (drawings, unsupported formats...).
+                plan["already_blocked"] += 1
+            else:
+                plan["park"] += 1
+                targets.append(row["revision_id"])
+        if commit:
+            with self.transaction():
+                for revision in targets:
+                    self.conn.execute("UPDATE jobs SET state='blocked',error_code=? WHERE revision_id=? AND state IN ('pending','failed')", (code, revision))
+                    self.conn.execute("UPDATE reading_runs SET state='blocked',error_code=?,updated=? WHERE revision_id=?", (code, self.clock(), revision))
+        return {"plan": plan, "reason": code, "committed": bool(commit)}
 
     def retry(self, doc_id=None, revision_id=None, error_code=None):
         """Re-queue failed or blocked work; every filter given must match.

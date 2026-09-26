@@ -209,6 +209,8 @@ inspect 返回报告、覆盖、模型与产物摘要；ready 不等于内容正
 
 - **温度保护（2026-09-26 起）**。`reader run` 每次领取任务前读取 GPU（`nvidia-smi`）和全部内核 thermal zone，取最高的有效读数；高于 `READER_THERMAL_LIMIT_C`（默认 `85`）℃ 就不领新任务，等待 `READER_THERMAL_PAUSE_SECONDS`（默认 `60`）秒后重读，降到限值及以下再继续；不超限的读数 10 秒内复用，避免每个短任务都调用一次 `nvidia-smi`。正在执行的任务不会被中断，暂停只挡住下一次领取。每次暂停写一行 `{"thermal": "pause", "celsius": …}` 日志，`status.json` 的 `thermal` 记录限值、最近读数、暂停次数和本轮暂停开始时间。读不到任何传感器时不阻塞队列（`last_c` 为 `null`），`READER_THERMAL_LIMIT_C=0` 关闭该保护。依据：2026-09-09 无人值守满载九天、机身 92 ℃；2026-09-25 全文出卡期间整机读数到过 91 ℃。
 
+- **按分数分层阅读深度（2026-09-26 起）**。`reader run` 在粗读后取“粗读前优先级”与粗读 importance 的较高者：≥ `READER_FULL_READ_MIN_PRIORITY`（默认 `7`）全文深读，否则只读首、中、尾三块，终态 `summarized`（不生成全文报告）；三块以内直接全文。`reader deepen --doc-id …` 把摘要继续到全文。L1 0 分或 reader 衍生物回流的文档用 `reader park --sha256-file 文件 --reason l1_score_zero|derived_artifact`（不带 `--commit` 只出计划）停放，不删除任何东西，`reader retry --error-code parked_l1_score_zero|parked_derived_artifact` 恢复。`READER_FULL_READ_MIN_PRIORITY=1` 恢复全部全文深读。park/deepen 需持队列锁，先停 worker。
+
 修改后需重启服务生效：
 
 ```bash

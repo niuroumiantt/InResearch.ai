@@ -24,6 +24,15 @@ THERMAL_PAUSE_SECONDS = float(os.environ.get("READER_THERMAL_PAUSE_SECONDS", "60
 # How long a reading at or below the limit is trusted before the next claim reads again.
 THERMAL_SAMPLE_SECONDS = 10.0
 
+# Documents whose effective priority after triage is below this get a summary-depth
+# reading (sampled chunks only); at or above it, every chunk is read. 1 reads all in full.
+FULL_READ_MIN_PRIORITY = int(os.environ.get("READER_FULL_READ_MIN_PRIORITY", "7"))
+
+# Error codes for documents parked by a triage decision; `retry --error-code` revives them.
+# derived_artifact: reader output copied back into intake (e.g. M4 要删/reader/), not source material.
+PARKED_BY_TRIAGE = "parked_l1_score_zero"
+PARK_REASONS = {"l1_score_zero": PARKED_BY_TRIAGE, "derived_artifact": "parked_derived_artifact"}
+
 MODULES = {"M%02d" % i for i in range(1, 16)}
 
 class ReaderError(Exception):

@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-26：按分数分层阅读深度
+
+Spark 待处理 2.57 万份，全部逐块全文深读需约 30 万次模型调用，按月计。用户采用：0 分不读，1–6 分只做摘要，≥7 分或点名才全文深读。实现：粗读后取“粗读前优先级”与粗读 importance 的较高者（粗读不降低 M4 或点名的判断）；≥ `READER_FULL_READ_MIN_PRIORITY`（默认 7）逐块全文；否则只读首、中、尾三块，终态 `summarized`，不生成全文报告、不成为当前全文结果，可 `reader deepen` 继续到全文；三块以内直接全文。`reader park --reason l1_score_zero|derived_artifact` 停放 L1 0 分或 reader 衍生物回流（如 M4 `要删/` 下约 1.27 万份文本），先出计划，`--commit` 才写，`retry --error-code` 可恢复，不删除任何东西。04 §1 与相关表述同步替代；摘要与停放不计全文完成。
+
 ## 2026-09-26：M4 OCR 分担可点名排队文档
 
 提升的 35 份深读候选中 26 份是扫描件，在 Spark 首次需要 OCR 时被排后到优先级 1，且本地每篇 OCR 上限 20 页。用户选择修复 M4 分担 OCR：`manage.py ocr-worker` 新增 `--doc-id`（可重复），只读查询点名的排队或阻塞 PDF，逐份在 M4 本机视觉模型双读后上传页结果；排队文档不再调用 `reader retry`（该步需队列锁）。M4 旧 LaunchAgent 指向已删除的 `pipeline/m4_offload_worker.py`，改指新入口。有 M4 页结果的页不受排后与页数上限约束；排后文档优先级仍为 1，需要时停 reader 用 apply-triage 重设。
