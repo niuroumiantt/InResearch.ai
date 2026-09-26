@@ -3,6 +3,7 @@ from http.client import HTTPConnection
 import json
 import os
 from pathlib import Path
+import sqlite3
 import tempfile
 import threading
 import unittest
@@ -58,6 +59,28 @@ class SupplyTests(unittest.TestCase):
             supply.mutate(self.root, self.request(), 'admin')
         self.assertEqual(path.read_text(), 'broken')
 
+    def test_fetchspec_receipt_projects_candidate_reader_state_without_adoption(self):
+        sha = 'a' * 64
+        receipts = Path(self.tmp.name) / 'data/raw/supply-center/receipts.json'
+        receipts.parent.mkdir(parents=True)
+        receipts.write_text(json.dumps({'version': 1, 'deliveries': {'d1': {
+            'delivery_id': 'd1', 'status': 'received', 'received_items': 1,
+            'items': [{'sha256': sha, 'reader_handoff': 'eligible'}]}}}))
+        reader = Path(self.tmp.name) / 'reader'
+        (reader / 'catalog').mkdir(parents=True)
+        db = sqlite3.connect(reader / 'catalog/catalog.sqlite')
+        db.executescript('''CREATE TABLE documents(doc_id TEXT,sha256 TEXT);
+            CREATE TABLE reading_runs(doc_id TEXT,base_revision_id TEXT,state TEXT,phase TEXT,
+            pages_total INTEGER,chunks_total INTEGER,chunks_read INTEGER,report_sha256 TEXT,manifest_sha256 TEXT);''')
+        db.execute('INSERT INTO documents VALUES(?,?)', ('doc-1', sha))
+        db.execute('INSERT INTO reading_runs VALUES(?,?,?,?,?,?,?,?,?)',
+                   ('doc-1', None, 'ready', 'complete', 2, 3, 3, 'report', 'sealed'))
+        db.commit(); db.close()
+        with patch.dict(os.environ, {'READER_DATA_ROOT': str(reader)}):
+            delivery = supply.snapshot(self.root)['deliveries'][0]
+        self.assertEqual(delivery['reading']['candidate_ready'], 1)
+        self.assertEqual(delivery['reading']['adoption'], 'not_inferred')
+
     def test_multiple_suppliers_and_concurrent_revision(self):
         req=self.request();supply.mutate(self.root,req,'admin')
         demand=supply.read(self.root)['demands'][0]['id']
@@ -96,5 +119,7 @@ class SupplyTests(unittest.TestCase):
                 self.assertEqual(call('POST','/api/supply')[0],403)
                 self.assertEqual(call('POST','/api/supply',{'X-Requested-With':'supply-center'})[0],200)
                 self.assertEqual(call('GET','/data/raw/supply-center/ledger.json')[0],404)
+                self.assertEqual(call('GET','/api/product-documents?company_id=nvidia&limit=5')[0],200)
+                self.assertEqual(call('GET','/api/product-documents?company_id=nvidia&bad=1')[0],400)
         finally:
             server.shutdown();server.server_close();thread.join()

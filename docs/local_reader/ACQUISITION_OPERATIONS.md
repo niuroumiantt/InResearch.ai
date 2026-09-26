@@ -17,7 +17,7 @@ inews 导出：在能只读访问正式新闻数据库的运维环境运行 `pyt
 
 GPU 官方搜索需要私有 `VAST_API_KEY`，只放本机私有环境文件/秘密管理，不写入脚本、参数、日志或 Git。本阶段未配置时任务记录 `vast_api_key_missing`，不得以测试报价顶替。SEC 使用明确身份 User-Agent，可由 `SEC_USER_AGENT` 设置；抓取失败留在 `runs`，不要并发绕过限流。
 
-网页“inews / SEC / GPU 采集状态”只读取 Spark 随 reader 发布的摘要。显示的是来源项总数及最近运行，不是全文数、阅读数或采用数。不存在后台采集服务时，不把按钮命名为“启动连续采集”。
+采集台账覆盖 iNews、SEC、GPU 与 Fetchspec。网页采集状态只读取 Spark 随 Reader 发布的摘要。显示的是来源项总数及最近运行，不是全文数、阅读数或采用数。Fetchspec 的 `product-documents` 检索是候选资料目录，按公司、一级产品分类、研究问题、格式和语言筛选；它不表示全文已读或事实已采用。不存在后台采集服务时，不把按钮命名为“启动连续采集”。
 
 `acquisition/catalog.sqlite` 与 `acquisition/blobs` 应纳入异机备份方案。第一阶段不会改动现有 reader 的数据库备份规则，因此原有 reader 备份并不自动覆盖新采集目录；新闻定时上线前使用 `python3 manage.py backup --dest /新的备份目录` 在线备份台账与引用原件，校验 SQLite 与 SHA256，再复制至异机并复核清单。此工具不删除旧备份；异机长期轮转与统一备份调度仍须落实。
 

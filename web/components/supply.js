@@ -13,12 +13,13 @@
   function render() {
     if (!data) return;
     document.querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tab === tab)));
-    $('counts').textContent = `${data.catalog.providers.length} 个供应入口 · ${data.demands.length} 项资料需求 · ${data.tasks.length} 项计划任务 · 交付状态尚未接通`;
+    const receivedItems=data.deliveries.reduce((n,d)=>n+(d.received_items||0),0);
+    $('counts').textContent = `${data.catalog.providers.length} 个供应入口 · ${data.demands.length} 项资料需求 · ${data.tasks.length} 项计划任务 · ${data.deliveries.length} 个交付回执 · ${receivedItems} 件原件已接收`;
     $('create-panel').hidden = !admin || tab !== 'demands';
     if (tab === 'overview') {
       const p=plan(), c=taskCounts();
-      $('list').innerHTML=`<h2>目的与当前进展</h2><p>${escape(p.purpose)}</p><div class="plan-grid"><div class="plan-card"><strong>${p.baseline.planned_product_records} 条</strong><small>当前产品资料待补目录</small></div><div class="plan-card"><strong>${data.catalog.providers.length} 个</strong><small>已登记资料供应入口</small></div><div class="plan-card"><strong>${data.demands.length} 项</strong><small>已登记研究需求</small></div><div class="plan-card"><strong>${c.planned} 项</strong><small>已计划任务；尚未开始采集</small></div></div><p class="muted">${escape(p.baseline.meaning)}</p>`;
-      $('detail').innerHTML=`<h2>本页如何使用</h2><ol><li><b>广度与深度</b>：确认先补哪一类产品和何时进入深抓。</li><li><b>资源与执行</b>：确认 AWS、macmini、Spark 的固定职责。</li><li><b>供应方与任务</b>：查看各供应入口承担的计划任务。</li><li><b>研究需求</b>：由研究问题创建可验收的资料任务。</li><li><b>交付与验收</b>：查看原件接收、审核和研究采用状态。</li></ol><p class="status-waiting">交付接口当前未接通，因此不会把历史文件或新闻数量误报为本计划的完成量。</p>`;
+      $('list').innerHTML=`<h2>目的与当前进展</h2><p>${escape(p.purpose)}</p><div class="plan-grid"><div class="plan-card"><strong>${p.baseline.planned_product_records} 条</strong><small>当前产品资料待补目录</small></div><div class="plan-card"><strong>${data.catalog.providers.length} 个</strong><small>已登记资料供应入口</small></div><div class="plan-card"><strong>${data.demands.length} 项</strong><small>已登记研究需求</small></div><div class="plan-card"><strong>${c.planned} 项</strong><small>计划任务</small></div><div class="plan-card"><strong>${data.deliveries.length} 个</strong><small>真实交付回执</small></div><div class="plan-card"><strong>${receivedItems} 件</strong><small>已校验并接收原件</small></div></div><p class="muted">${escape(p.baseline.meaning)}</p>`;
+      $('detail').innerHTML=`<h2>本页如何使用</h2><ol><li><b>广度与深度</b>：确认先补哪一类产品和何时进入深抓。</li><li><b>资源与执行</b>：确认 AWS、macmini、Spark 的固定职责。</li><li><b>供应方与任务</b>：查看各供应入口承担的计划任务。</li><li><b>研究需求</b>：由研究问题创建可验收的资料任务。</li><li><b>交付与验收</b>：查看原件接收、审核和研究采用状态。</li></ol><p class="${data.deliveries.length?'status-ready':'status-waiting'}">${data.deliveries.length?'已接通 Fetchspec 交付回执；阅读、证据审核和研究采用仍分别计量。':'等待第一份 Fetchspec 交付包；不把历史文件或新闻数量计入本流程。'}</p>`;
     } else if (tab === 'coverage') {
       const p=plan();
       $('list').innerHTML=`<h2>先广后深</h2>${p.phases.map(x=>`<div class="phase"><b>${escape(x.name)}</b><span>${escape(x.purpose)}<br><small>退出条件：${escape(x.exit)}</small></span></div>`).join('')}`;
@@ -41,9 +42,28 @@
       document.querySelectorAll('[data-demand]').forEach(b=>b.onclick=()=>{selected=b.dataset.demand;render();});
       if ($('assign-form')) $('assign-form').onsubmit=e=>{e.preventDefault();const mode=$('assign-mode').value;save({action:'assign',demand_id:d.id,provider_id:$('assign-provider').value,execution_mode:mode,execution_host:data.catalog.execution_policy[mode].host});};
     } else {
-      $('list').innerHTML='<h3>统一交付接口待接通</h3><p>此处没有将旧新闻同步、上传回执或 Spark 阅读数量混计为已验收资料。</p><p>第一批对接 fetchspec 与本地 raw materials，再扩展其他供应方。</p><a href="/supply-demo.html">查看交付验收演示 →</a>';
-      $('detail').innerHTML='<h3>后续交付闭环</h3><ol><li>原件、来源和版本登记</li><li>逐项完整性与范围验收</li><li>合格项入库，缺件项补交</li><li>Spark 提取与深读</li><li>候选证据与独立研究采用</li></ol><a href="/materials.html">现有资料上传入口</a>';
+      $('list').innerHTML=(data.deliveries.length?`<h2>已登记交付</h2>${data.deliveries.map(d=>`<button type="button" class="record" data-delivery="${escape(d.delivery_id)}" aria-pressed="false"><strong>${escape(d.delivery_id)}</strong><small>${escape(d.status)} · ${d.received_items||0} 件 · ${escape(d.task_id_or_discovery||'discovery')}</small></button>`).join('')}`:'<h3>等待第一份交付包</h3><p>Fetchspec 在采集机生成包含 manifest、SHA256SUMS 和去重原件的 package；Spark 使用接收命令校验后登记。</p>')+`<h2>跨产品资料检索</h2><form id="product-search" class="product-search"><label>公司 ID<input name="company_id" placeholder="nvidia"></label><label>第一层产品分类<input name="category" placeholder="Networking"></label><label>研究问题 ID<input name="question_id" placeholder="Q-SCOPE-arch-nvidia-gpu"></label><label>格式<input name="format" placeholder="pdf"></label><button type="submit">检索已接收资料</button></form><div id="product-results" role="status">正在读取资料索引…</div>`;
+      if ($('product-search')) {
+        $('product-search').onsubmit=e=>{e.preventDefault();searchProducts(new FormData(e.currentTarget));};
+        searchProducts(new FormData($('product-search')));
+      }
+      const d=data.deliveries[0];
+      $('detail').innerHTML=d?`<h3>${escape(d.delivery_id)}</h3><dl><dt>交付状态</dt><dd>${escape(d.status)}</dd><dt>研究任务关联</dt><dd>${escape(d.task_id_or_discovery||'discovery')} · ${escape((d.research_context?.question_ids||[]).join(', ')||'待分配研究问题')}</dd><dt>原件回执</dt><dd>${d.received_items||0} 件</dd><dt>Reader 候选报告</dt><dd>${d.reading?.candidate_ready||0} 件就绪 · ${d.reading?.blocked||0} 件阻塞 · ${d.reading?.not_registered||0} 件尚未登记</dd><dt>后续动作</dt><dd>${escape(d.next||'查看接收回执')}</dd></dl><div class="task">Reader 报告仍是候选；证据审核和 C3 采用不从“已接收/已阅读”推断。</div>`:'<h3>交付闭环</h3><ol><li>采集包逐文件验 SHA256 与契约</li><li>保留不可变原件、URL、第一层产品分类和版本关系</li><li>合格格式进入 Reader，其他格式明确待补</li><li>抽取/深读结果仍为候选证据</li><li>人工复核并按研究标准单独采用</li></ol><p>接收命令：<code>python3 manage.py fetchspec-receive /path/to/deliveries/&lt;delivery-id&gt;</code></p>';
     }
+  }
+  async function searchProducts(form) {
+    const query=new URLSearchParams();
+    for(const [key,value] of form.entries())if(String(value).trim())query.set(key,String(value).trim());
+    query.set('limit','50');
+    const out=$('product-results');if(!out)return;
+    out.textContent='正在检索…';
+    try {
+      const response=await fetch('/api/product-documents?'+query.toString());
+      if(!response.ok)throw Error('资料索引读取失败');
+      const result=await response.json();
+      if(result.status==='not_initialized'){out.textContent='尚无 Fetchspec 资料索引；收到第一批后即可按公司、一级产品分类和研究问题检索。';return;}
+      out.innerHTML=`<p>命中 ${result.total} 件候选资料（当前显示 ${result.records.length} 件）。</p>`+(result.records.length?result.records.map(r=>`<article class="task"><strong>${escape(r.title||r.original_filename||r.sha256.slice(0,16))}</strong><br><small>${escape(r.company_id)} · ${escape(r.first_category)} · ${escape(r.format)} · ${escape(r.language)} · ${escape(r.question_id||'未关联问题')} · ${escape(r.version_relation?.type||'')}</small><br><small>SHA256 ${escape(r.sha256)} · ${escape(r.acceptance)}</small><br><a href="${escape(r.source_url)}" target="_blank" rel="noopener">打开官方来源 ↗</a></article>`).join(''):'<p>没有匹配结果。</p>');
+    } catch(error){out.textContent=error.message;}
   }
   async function load() {
     const seq=++generation;

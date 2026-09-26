@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.26.5。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.26.6。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：878。
+在册文件：882。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 266 |
-| 运行代码 | 172 |
+| 运行代码 | 174 |
 | 现行规范 | 13 |
 | 项目配置 | 56 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 41 |
-| 测试 | 70 |
+| 测试 | 72 |
 
 ## 在册记录集合
 
@@ -993,6 +993,7 @@
 | `src/inresearch/adapters/asset_compare.py` | 运行代码 |
 | `src/inresearch/adapters/asset_download.py` | 运行代码 |
 | `src/inresearch/adapters/historical_brief.py` | 运行代码 |
+| `src/inresearch/adapters/html_document.py` | 运行代码 |
 | `src/inresearch/adapters/models.py` | 运行代码 |
 | `src/inresearch/adapters/news_projection.py` | 运行代码 |
 | `src/inresearch/adapters/news_sync.py` | 运行代码 |
@@ -1041,6 +1042,7 @@
 | `src/inresearch/knowledge/verify.py` | 运行代码 |
 | `src/inresearch/materials/__init__.py` | 运行代码 |
 | `src/inresearch/materials/artifacts.py` | 运行代码 |
+| `src/inresearch/materials/fetchspec_receive.py` | 运行代码 |
 | `src/inresearch/materials/inbox.py` | 运行代码 |
 | `src/inresearch/materials/inventory.py` | 运行代码 |
 | `src/inresearch/materials/library.py` | 运行代码 |
@@ -1115,8 +1117,10 @@
 | `tests/unit/test_deep_read_transactions.py` | 测试 |
 | `tests/unit/test_display_regressions.py` | 测试 |
 | `tests/unit/test_fact_contract.py` | 测试 |
+| `tests/unit/test_fetchspec_receive.py` | 测试 |
 | `tests/unit/test_file_moves.py` | 测试 |
 | `tests/unit/test_governance.py` | 测试 |
+| `tests/unit/test_html_document.py` | 测试 |
 | `tests/unit/test_http_workflow.py` | 测试 |
 | `tests/unit/test_intake.py` | 测试 |
 | `tests/unit/test_interface_system.py` | 测试 |

@@ -21,7 +21,9 @@ const base=process.env.UI_BASE_URL;
   await page.locator('#execution-mode').selectOption('assisted');
   assert.equal(await page.locator('#execution-mode').inputValue(),'assisted');
   await page.getByRole('button',{name:'交付与验收',exact:true}).click();
-  assert.match(await page.locator('#list').innerText(),/统一交付接口待接通/);
+  assert.match(await page.locator('#list').innerText(),/等待第一份交付包/);
+  await page.getByRole('heading',{name:'跨产品资料检索',exact:true}).waitFor();
+  assert.ok(await page.getByRole('button',{name:'检索已接收资料',exact:true}).count());
   for(const width of [390,1280]){
    await page.setViewportSize({width,height:950});
    for(const theme of ['light','dark']){

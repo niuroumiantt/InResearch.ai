@@ -8,6 +8,7 @@ import shutil
 import sqlite3
 import tempfile
 import unittest
+import zipfile
 from unittest import mock
 
 from inresearch.workflow import reader as cr
@@ -312,17 +313,26 @@ class ReaderTests(unittest.TestCase):
             self.assertIsNone(self.reader.claim())
         self.assertEqual(self.first_doc()["state"], "failed")
 
-    def test_scanned_pdf_and_office_block_without_fake_coverage(self):
+    def test_scanned_pdf_blocks_and_office_document_is_structurally_read(self):
         self.put("scan.pdf", "%PDF-test-scanned-page")
-        self.put("office.docx", "unsupported")
+        office_path = self.put("office.docx", "")
+        with zipfile.ZipFile(office_path, "w") as archive:
+            archive.writestr("[Content_Types].xml", "<Types/>")
+            archive.writestr("word/document.xml", "<document><p><t>Model X supports 8 GPUs and 10 kW.</t></p></document>")
         def fake_command(args, timeout):
             return "Pages: 1\n" if args[0] == "pdfinfo" else ""
         with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), mock.patch.object(self.reader.stages, "_command", side_effect=fake_command):
             self.run_reader()
         docs = list(self.reader.conn.execute("SELECT * FROM current_readings"))
-        self.assertEqual({d["error_code"] for d in docs}, {"scanned_page_requires_ocr", "unsupported_format_docx"})
-        self.assertTrue(all(d["report_rel"] is None for d in docs))
-        self.assertEqual(self.model.calls, [])
+        by_suffix = {d["suffix"]: d for d in docs}
+        self.assertEqual(by_suffix[".pdf"]["error_code"], "scanned_page_requires_ocr")
+        self.assertIsNone(by_suffix[".pdf"]["report_rel"])
+        self.assertIsNotNone(by_suffix[".docx"]["report_rel"])
+        extraction = artifacts.read_json(self.reader.artifact_path(by_suffix[".docx"]["doc_id"], "extraction.json"))
+        self.assertTrue(extraction["characters_total"] > 0)
+        extracted = (self.reader.data / extraction["chunks"][0]["text_rel"]).read_text()
+        self.assertIn("8 GPUs", extracted)
+        self.assertGreaterEqual(len(self.model.calls), 3)
 
     def test_ocr_can_be_enabled_after_block_and_retains_double_pass(self):
         self.register("scan.pdf", "%PDF-test-scanned-page")

@@ -1,7 +1,10 @@
 """Supply planning authority; no collector execution or evidence adoption here."""
 import json
+import os
+import sqlite3
 import uuid
 from datetime import datetime, timezone
+from pathlib import Path
 from inresearch.storage.layout import workspace_path
 from inresearch.storage.files import locked, write_json
 
@@ -33,10 +36,69 @@ def read(root):
 def snapshot(root):
     state = read(root)
     questions = json.loads((root / 'framework/research_questions.json').read_text())['records']
+    receipts_path = workspace_path('data/raw/supply-center/receipts.json', root)
+    receipts = json.loads(receipts_path.read_text()) if receipts_path.exists() else {'version': 1, 'deliveries': {}}
+    if receipts.get('version') != 1 or not isinstance(receipts.get('deliveries'), dict):
+        raise ValueError('供应回执台账损坏，请修复；不会重建或覆盖')
+    deliveries = list(receipts['deliveries'].values())
+    _attach_reader_status(deliveries)
     return {'catalog': catalog(root), 'revision': state['revision'],
             'demands': state['demands'], 'tasks': state['tasks'],
             'questions': [{'id': q['id'], 'text': q['text'], 'object_ids': q.get('object_ids', [])} for q in questions],
-            'delivery_connection': 'not_connected'}
+            'deliveries': deliveries,
+            'delivery_connection': 'connected' if receipts['deliveries'] else 'awaiting_first_delivery'}
+
+
+def _attach_reader_status(deliveries):
+    """Read-only projection from the existing Reader catalog; never initializes it."""
+    data = Path(os.environ.get('READER_DATA_ROOT', Path.home() / '.local/share/inresearch.ai')).expanduser()
+    catalog_path = data / 'catalog/catalog.sqlite'
+    wanted = {item.get('sha256') for delivery in deliveries for item in delivery.get('items', [])
+              if isinstance(item, dict) and isinstance(item.get('sha256'), str)}
+    states = {}
+    if wanted and catalog_path.is_file() and not catalog_path.is_symlink():
+        try:
+            db = sqlite3.connect(catalog_path.resolve().as_uri() + '?mode=ro', uri=True, timeout=2)
+            db.row_factory = sqlite3.Row
+            try:
+                placeholders = ','.join('?' for _ in wanted)
+                rows = db.execute('''SELECT d.sha256,d.doc_id,r.state,r.phase,r.pages_total,r.chunks_total,
+                                    r.chunks_read,r.report_sha256,r.manifest_sha256
+                                    FROM documents d LEFT JOIN reading_runs r
+                                    ON r.doc_id=d.doc_id AND r.base_revision_id IS NULL
+                                    WHERE d.sha256 IN (''' + placeholders + ')', tuple(sorted(wanted))).fetchall()
+                for row in rows:
+                    if row['state'] == 'ready' and row['manifest_sha256']:
+                        status = 'candidate_ready'
+                    elif row['state'] in {'blocked', 'failed'}:
+                        status = row['state']
+                    elif row['state']:
+                        status = row['state']
+                    else:
+                        status = 'registered'
+                    states[row['sha256']] = {'status': status, 'doc_id': row['doc_id'],
+                        'phase': row['phase'], 'pages_total': row['pages_total'],
+                        'chunks_total': row['chunks_total'], 'chunks_read': row['chunks_read'],
+                        'candidate_report': bool(row['report_sha256'])}
+            finally:
+                db.close()
+        except sqlite3.Error:
+            states = {}
+    for delivery in deliveries:
+        readings = []
+        for item in delivery.get('items', []):
+            if not isinstance(item, dict):
+                continue
+            reading = states.get(item.get('sha256'))
+            if reading is None:
+                reading = {'status': 'not_registered' if item.get('reader_handoff') == 'eligible'
+                           else 'extractor_required'}
+            readings.append(reading)
+        delivery['reading'] = {'items': readings,
+            'candidate_ready': sum(row['status'] == 'candidate_ready' for row in readings),
+            'blocked': sum(row['status'] in {'blocked', 'failed'} for row in readings),
+            'not_registered': sum(row['status'] == 'not_registered' for row in readings),
+            'adoption': 'not_inferred'}
 
 
 def text(payload, key, limit):

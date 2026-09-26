@@ -44,6 +44,24 @@ class ReadingStages(ReadingArtifacts):
                 raise Blocked("binary_text_input")
             texts = [text]
             page_meta = [{"page_index": 1, "method": "utf8_text"}]
+        elif suffix in {".html", ".htm"}:
+            from inresearch.adapters.html_document import extract
+            text, meta = extract(source)
+            if meta["truncated"]:
+                raise Blocked("html_extraction_truncated")
+            if not text.strip():
+                raise Blocked("html_no_substantive_text")
+            texts = [text]
+            page_meta = [{"page_index": 1, **meta}]
+        elif suffix in {".docx", ".pptx", ".xlsx", ".xls", ".ppt", ".et", ".wps", ".dps"}:
+            from inresearch.adapters.office import extract
+            text, meta = extract(source, limit=10_000_000)
+            if meta.get("truncated"):
+                raise Blocked("office_extraction_truncated")
+            if meta.get("extract_error") or not text.strip():
+                raise Blocked("office_extraction_failed")
+            texts = [text]
+            page_meta = [{"page_index": 1, "method": "office_structural_text_v1", **meta}]
         elif suffix == ".pdf":
             if not all(shutil.which(name) for name in ("pdftotext", "pdfinfo", "pdfimages")):
                 raise Blocked("pdf_tools_missing")

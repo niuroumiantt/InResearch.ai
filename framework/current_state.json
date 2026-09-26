@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.26.5",
+  "version": "2026.09.26.6",
   "effective_at": "2026-09-26",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -408,13 +408,21 @@
         "web/components/supply.js",
         "web/themes/supply.css",
         "tests/unit/test_supply.py",
-        "tests/supply.cjs"
+        "tests/supply.cjs",
+        "src/inresearch/materials/fetchspec_receive.py",
+        "src/inresearch/adapters/html_document.py",
+        "src/inresearch/workflow/reading_stages.py",
+        "src/inresearch/interfaces/cli.py",
+        "src/inresearch/interfaces/http.py",
+        "tests/unit/test_fetchspec_receive.py",
+        "tests/unit/test_html_document.py",
+        "docs/local_reader/SPARK_OPERATIONS.md"
       ],
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "News uses a bounded projection of the same validated Reader snapshot; homepage/ops stop polling the full research view. No second authority or original-data migration; stale responses cannot overwrite newer UI state.；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-09-21 执行机器按任务方式固定：continuous 在 AWS，assisted 在 macmini，Spark 只保存和分析；同一来源范围不双跑。；2026-09-21 供应中心新增同页作战工作台，固定展示广度、深度、资源分工与真实计划进展。",
-      "implementation_revision": "2026.09.21.3"
+      "reason": "News uses a bounded projection of the same validated Reader snapshot; homepage/ops stop polling the full research view. No second authority or original-data migration; stale responses cannot overwrite newer UI state.；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与任务计划持久化，执行与交付接入待完成。；2026-09-21 执行机器按任务方式固定：continuous 在 AWS，assisted 在 macmini，Spark 只保存和分析；同一来源范围不双跑。；2026-09-21 供应中心新增同页作战工作台，固定展示广度、深度、资源分工与真实计划进展。；2026-09-26 供应流水线阶段 1-6 首批代码落地：Fetchspec 1.0/1.1 包验签、内容 SHA 去重归档、来源/分类/语言/问题索引、支持格式接入现有 Reader，HTML 与 Office 结构提取，PCN/规格新版保留旧版并触发影响复核；UI 展示交付与 Reader 候选状态；仍须 Spark 部署、NVIDIA 实包与运行健康验收。",
+      "implementation_revision": "2026.09.26.6"
     },
     {
       "id": "product-ecosystems-20260906",
@@ -630,9 +638,17 @@
         "web/components/supply.js",
         "web/themes/supply.css",
         "tests/unit/test_supply.py",
-        "tests/supply.cjs"
+        "tests/supply.cjs",
+        "src/inresearch/materials/fetchspec_receive.py",
+        "src/inresearch/adapters/html_document.py",
+        "src/inresearch/adapters/acquisition.py",
+        "src/inresearch/workflow/reading_stages.py",
+        "src/inresearch/interfaces/cli.py",
+        "src/inresearch/interfaces/http.py",
+        "tests/unit/test_fetchspec_receive.py",
+        "tests/unit/test_html_document.py"
       ],
-      "implementation_revision": "2026.09.21.1"
+      "implementation_revision": "2026.09.26.6"
     }
   ],
   "entrypoints": [
