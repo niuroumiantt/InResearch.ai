@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-26：按环节选模型
+
+用户要求按环节选择合适的模型，既不浪费也保证质量，并明确不做对比直接切换。`deploy/models.json` 的 `research_default` 由 Opus 改为 Claude Sonnet 5（M4 上的 L1 打分与复核、属性抽取），新增 `core_review` 指向 Claude Opus 5.5（核心材料深读与 C3 前审阅），新增 `spark_ocr`（qwen3-vl:8b）档案供 Spark 本机配置引用。L2 终端深读默认用 Sonnet 5，核心材料用 Opus 5.5；Spark 本地模型承担大批 L1 粗筛、OCR 与长尾候选阅读。分工表见 08“按环节选模型”。已冻结配方的 reader 任务与已有 L1 结果不重读；未做同型号质量对比，质量由 04 的覆盖、引文与数字检查把关。
+
 ## 2026-09-26：reader 领取任务前的温度保护
 
 用户要求：温度高于 85 ℃ 时先暂停任务降温，等待一分钟再继续。`reader run` 每次领取任务前读取 GPU（`nvidia-smi`）与全部内核 thermal zone 的最高有效读数，高于 `READER_THERMAL_LIMIT_C`（默认 85）就不领新任务，等 `READER_THERMAL_PAUSE_SECONDS`（默认 60）秒后重读；正在执行的任务不中断。读不到传感器不阻塞队列，限值设 0 关闭。暂停写日志并计入 `status.json` 的 `thermal`。依据是 09-09 无人值守满载九天到 92 ℃、09-25 全文出卡期间整机读数到过 91 ℃。只有 `reader run` 读取传感器，其他 reader 命令不受影响。未在 Spark 真机核对传感器读数，单个长任务运行期间仍可能超过限值。

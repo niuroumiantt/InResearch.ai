@@ -1,7 +1,8 @@
 {
   "schema_version": 1,
   "roles": {
-    "research_default": "claude_cli",
+    "research_default": "claude_sonnet",
+    "core_review": "claude_opus",
     "ocr": null
   },
   "profiles": {
@@ -17,10 +18,10 @@
         "text_json"
       ]
     },
-    "claude_cli": {
+    "claude_sonnet": {
       "backend": "claude_cli",
       "url": "",
-      "model": "claude-opus-5",
+      "model": "claude-sonnet-5",
       "command": "claude",
       "context": 32768,
       "max_output_tokens": 4096,
@@ -28,6 +29,31 @@
       "max_parallel": 1,
       "capabilities": [
         "text_json"
+      ]
+    },
+    "claude_opus": {
+      "backend": "claude_cli",
+      "url": "",
+      "model": "claude-opus-5-5",
+      "command": "claude",
+      "context": 32768,
+      "max_output_tokens": 4096,
+      "timeout": 900,
+      "max_parallel": 1,
+      "capabilities": [
+        "text_json"
+      ]
+    },
+    "spark_ocr": {
+      "backend": "ollama",
+      "url": "http://127.0.0.1:11434",
+      "model": "qwen3-vl:8b",
+      "context": 8192,
+      "max_output_tokens": 4096,
+      "timeout": 900,
+      "max_parallel": 1,
+      "capabilities": [
+        "vision_json"
       ]
     }
   }
