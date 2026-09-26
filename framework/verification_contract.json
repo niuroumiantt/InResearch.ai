@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.26.2",
+  "version": "2026.09.26.3",
   "reviewed_at": "2026-09-26",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -13,7 +13,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "4550626fa04f1119b70a2c65316ae3b2c849a7f1d6e245d2a60cf2782657d83b",
+    "docs/local_reader/SPARK_OPERATIONS.md": "f6e0c6c8f4fb74cf9210f33b0828475315f6ac033b6c60a27a89c041db8aa5ac",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
@@ -26,7 +26,7 @@
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
     "framework/08_model_execution.md": "7840e6599b174f1fbb4f457552ed3b3d80b2981bea182ee14058e7715dc2ed96",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "21e06b0ebc537a4e9b003e8416f549a6b9f07e281a1a7d3b3d3254de6e1f582f",
+    "framework/CURRENT.md": "521fd09e12880280e7126959fc969b9882830a91a7ea38580d790032f2cb0287",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "a660188467656408b28d744bc466a145e4ebe980399981a2139aad780d0130ae",
@@ -71,6 +71,7 @@
     "tests/unit/test_model_assets.py": "243b694e858a87efcbd2212e1a8924080119d63415d7065ccd5812a0b46402c5",
     "tests/unit/test_model_roles.py": "7ec7f3887ad30d2f9b930cd568cea65c75a07b8188b05055013892079fb9c085",
     "tests/unit/test_model_runtime.py": "f9e4436b792b4b557017552b0767d8d5cf1c3c67fad0f4bfaad2c18139c12daf",
+    "tests/unit/test_ocr_worker_named.py": "aac669cf87bc1ba153d64b9e90264e520f1b5862bdbbc7d1afaadb9430ecefbd",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "b595a4a6b9e1b09c7c7ba4decfcaf0714d90d8ad8194ad461f9ad41534729102",
     "tests/unit/test_reader_thermal.py": "145dcd0f71a557707379b5c5470516839c122eb9b4be7235d3871dc3a460d739",
@@ -365,7 +366,7 @@
       "policy": "reading-m4-triage-20260912",
       "scope": "m4-triage",
       "source": "docs/M4_TRIAGE_TASK.md",
-      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝;计划不得以副作用迁移 v1 catalog(守卫测试配一条「该夹具确实能迁移」的对照,否则守卫测试恒绿而不守)",
+      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝;计划不得以副作用迁移 v1 catalog(守卫测试配一条「该夹具确实能迁移」的对照,否则守卫测试恒绿而不守)；ocr-worker 点名时只取未完成的 PDF、只读查询、逐份处理且排队文档不 retry，未点名时仍只取被阻塞的 OCR 文档",
       "tests": [
         "tests/unit/test_m4_triage.py::InventoryTests.test_identical_bytes_are_one_sha_with_every_path_recorded",
         "tests/unit/test_deep_read.py::EffectiveResultTests.test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue",
@@ -394,10 +395,15 @@
         "tests/unit/test_apply_triage.py::ApplyTriageTests.test_matches_on_content_when_every_path_was_renamed",
         "tests/unit/test_apply_triage.py::ApplyTriageTests.test_existing_placement_is_a_conflict_not_an_overwrite",
         "tests/unit/test_apply_triage.py::ApplyTriageTests.test_the_command_itself_refuses_an_old_catalog_before_building_a_reader",
-        "tests/unit/test_apply_triage.py::ApplyTriageTests.test_that_same_catalog_really_would_have_been_migrated"
+        "tests/unit/test_apply_triage.py::ApplyTriageTests.test_that_same_catalog_really_would_have_been_migrated",
+        "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_named_documents_include_queued_deferred_pdfs_only",
+        "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_without_names_only_blocked_ocr_errors_are_offered",
+        "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_queued_document_is_not_retried_and_every_named_one_is_processed",
+        "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_retry_only_follows_a_blocked_document"
       ],
       "not_verified": [
-        "真实 M4 50 份当前模型小样及新版执行未验;apply-triage 已实现并有隔离测试,但**尚未在真机 catalog 上执行过** —— 2026-09-18 的 32,727/32,734 匹配数来自一次只读对账,实际归置未做;真机 catalog 仍是 v1,须先 `reader init` 迁移;M4 独有的 3,169 份中 3,135 份是 `要删/reader/` 下的衍生物与垃圾件,不应入库,真正缺的研究文档约 34 份,其入库路径未实现也未验证。"
+        "真实 M4 50 份当前模型小样及新版执行未验;apply-triage 已实现并有隔离测试,但**尚未在真机 catalog 上执行过** —— 2026-09-18 的 32,727/32,734 匹配数来自一次只读对账,实际归置未做;真机 catalog 仍是 v1,须先 `reader init` 迁移;M4 独有的 3,169 份中 3,135 份是 `要删/reader/` 下的衍生物与垃圾件,不应入库,真正缺的研究文档约 34 份,其入库路径未实现也未验证。",
+        "2026-09-26 ocr-worker --doc-id 只在模拟 ssh/scp 与替身 catalog 视图上测试；未在 M4 真机跑通，M4 Ollama 视觉模型的每页耗时与双读一致率未知，M4 LaunchAgent 改指新入口由操作者执行。"
       ]
     },
     {
