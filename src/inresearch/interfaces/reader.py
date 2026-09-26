@@ -2,7 +2,7 @@
 from __future__ import annotations
 import os
 import argparse, sqlite3, sys
-from inresearch.materials.reader_contracts import ReaderError, MAX_WORKERS
+from inresearch.materials.reader_contracts import ReaderError, MAX_WORKERS, FULL_READ_MIN_PRIORITY, PARK_REASONS
 from inresearch.materials.artifacts import encoded
 from inresearch.workflow.reading_results import ReadingResults
 
@@ -50,6 +50,12 @@ def main(argv=None):
     reject = sub.add_parser('reject-revision')
     for name in ('revision-id','reviewer','reason'):
         reject.add_argument('--' + name, required=True)
+    deepen = sub.add_parser('deepen', help='continue summary-depth readings to full coverage')
+    deepen.add_argument('--doc-id', action='append', required=True)
+    park = sub.add_parser('park', help='park documents triage ruled out of reading; plans unless --commit')
+    park.add_argument('--sha256-file', required=True, help='one full SHA-256 per line')
+    park.add_argument('--reason', choices=sorted(PARK_REASONS), required=True)
+    park.add_argument('--commit', action='store_true')
     rollback = sub.add_parser("rollback")
     rollback.add_argument("--doc-id", required=True)
     triage = sub.add_parser('apply-triage', help="adopt another machine's filing; plans unless --commit")
@@ -90,7 +96,7 @@ def main(argv=None):
     if args.command == "run":
         from inresearch.adapters.thermal import read_celsius as temperature
     reader = Reader(args.data_root, args.state_root, args.repo_root, model, args.stable_seconds,
-                    temperature=temperature)
+                    temperature=temperature, full_read_min_priority=FULL_READ_MIN_PRIORITY)
     try:
         reader.initialize()
         if args.command == "run":
@@ -104,6 +110,19 @@ def main(argv=None):
         elif args.command == "retry":
             with reader.worker_session():
                 result = reader.retry(args.doc_id, args.revision_id, args.error_code)
+            reader.write_status()
+        elif args.command == 'deepen':
+            with reader.worker_session():
+                result = reader.deepen(args.doc_id)
+            reader.write_status()
+        elif args.command == 'park':
+            import re as _re
+            from pathlib import Path as _Path
+            shas = [line.strip().lower() for line in _Path(args.sha256_file).read_text(encoding='utf-8').splitlines() if line.strip()]
+            if any(not _re.fullmatch(r'[0-9a-f]{64}', sha) for sha in shas):
+                ap.error('sha256 file must hold one full SHA-256 per line')
+            with reader.worker_session():
+                result = reader.park(shas, args.commit, PARK_REASONS[args.reason])
             reader.write_status()
         elif args.command == 'reread':
             result = reader.revisions.request(args.doc_id,args.expected_current,args.request_id,args.reason)

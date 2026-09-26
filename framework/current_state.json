@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.26.3",
+  "version": "2026.09.26.4",
   "effective_at": "2026-09-26",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -464,12 +464,13 @@
         "tests/unit/test_catalog_migration.py",
         "src/inresearch/workflow/reading_results.py",
         "src/inresearch/materials/reading_artifacts.py",
-        "tests/unit/test_reading_results.py"
+        "tests/unit/test_reading_results.py",
+        "tests/unit/test_reader_depth.py"
       ],
       "supersedes": [
         "reading-20260906"
       ],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按分数分层阅读深度：有效优先级 ≥7 或点名全文深读，1–6 摘要深度（summarized），0 分与衍生物回流 park 停放，替代“所有独立文章都全文深读”。",
       "implementation_revision": "2026.09.13.7"
     },
     {
