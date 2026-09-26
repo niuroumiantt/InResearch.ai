@@ -207,6 +207,8 @@ inspect 返回报告、覆盖、模型与产物摘要；ready 不等于内容正
 > 要调大就盯着跑，别过夜。单元现已加 `CPUQuota=400%` / `MemoryMax=8G` / `TasksMax=256`，
 > 但那只限制这个服务的用量，**挡不住 GPU 驱动层面的问题**。
 
+- **温度保护（2026-09-26 起）**。`reader run` 每次领取任务前读取 GPU（`nvidia-smi`）和全部内核 thermal zone，取最高的有效读数；高于 `READER_THERMAL_LIMIT_C`（默认 `85`）℃ 就不领新任务，等待 `READER_THERMAL_PAUSE_SECONDS`（默认 `60`）秒后重读，降到限值及以下再继续；不超限的读数 10 秒内复用，避免每个短任务都调用一次 `nvidia-smi`。正在执行的任务不会被中断，暂停只挡住下一次领取。每次暂停写一行 `{"thermal": "pause", "celsius": …}` 日志，`status.json` 的 `thermal` 记录限值、最近读数、暂停次数和本轮暂停开始时间。读不到任何传感器时不阻塞队列（`last_c` 为 `null`），`READER_THERMAL_LIMIT_C=0` 关闭该保护。依据：2026-09-09 无人值守满载九天、机身 92 ℃；2026-09-25 全文出卡期间整机读数到过 91 ℃。
+
 修改后需重启服务生效：
 
 ```bash
