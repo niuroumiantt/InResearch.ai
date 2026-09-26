@@ -76,6 +76,16 @@ class FetchspecReceiveTests(unittest.TestCase):
             receive(self.repo, self.package, self.data)
         self.assertFalse((self.data / 'originals').exists())
 
+    def test_dot_path_categories_cannot_escape_the_fetchspec_library(self):
+        self.item['source']['categories'] = ['..']
+        manifest = json.loads((self.package / 'manifest.json').read_text())
+        manifest['items'] = [self.item]
+        (self.package / 'manifest.json').write_text(json.dumps(manifest))
+        receive(self.repo, self.package, self.data)
+        expected = self.data / 'raw-materials/fetchspec/uncategorized' / (self.sha + '.pdf')
+        self.assertTrue(expected.exists())
+        self.assertFalse((self.data / 'raw-materials' / (self.sha + '.pdf')).exists())
+
     def test_unsupported_legacy_doc_file_is_preserved_but_not_reader_handed_off(self):
         self.body = bytes.fromhex('d0cf11e0a1b11ae1') + b'WordDocument test content'
         self.sha = hashlib.sha256(self.body).hexdigest()
@@ -104,6 +114,15 @@ class FetchspecReceiveTests(unittest.TestCase):
         (self.package / 'manifest.json').write_text(json.dumps(manifest))
         with self.assertRaises(PackageError):
             receive(self.repo, self.package, self.data)
+
+    def test_same_delivery_rehydrates_a_different_empty_data_root(self):
+        first = receive(self.repo, self.package, self.data)
+        second_root = self.base / 'restored-data'
+        second = receive(self.repo, self.package, second_root)
+        self.assertEqual(second, first)
+        handoff = second_root / 'raw-materials/fetchspec/GPU' / (self.sha + '.pdf')
+        self.assertTrue(handoff.exists())
+        self.assertEqual(product_documents(second_root, company_id='nvidia')['total'], 1)
 
     def test_new_version_is_preserved_as_a_review_event(self):
         old_sha = 'b' * 64

@@ -14,6 +14,7 @@ import os
 from pathlib import Path, PurePosixPath
 import re
 import shutil
+import sqlite3
 import tempfile
 import zipfile
 
@@ -180,6 +181,14 @@ def _write_json(path: Path, value):
             os.unlink(name)
 
 
+def _categories(source: dict) -> list[str]:
+    values = source.get("categories") or ["uncategorized"]
+    if not isinstance(values, list) or any(not isinstance(value, str) for value in values):
+        return ["uncategorized"]
+    result = [re.sub(r"[^\w.-]+", "_", value, flags=re.UNICODE)[:100] or "uncategorized" for value in values]
+    return ["uncategorized" if value in {".", ".."} else value for value in result]
+
+
 def _archive_acquisition(package: Path, manifest: dict, data_root: Path, context: dict):
     """Use the shared candidate acquisition catalog and content-addressed blob store."""
     from inresearch.adapters.acquisition import Collector
@@ -231,6 +240,44 @@ def _archive_acquisition(package: Path, manifest: dict, data_root: Path, context
         collector.close()
 
 
+def _materialized_in(data_root: Path, manifest: dict) -> bool:
+    """Only acknowledge replay when this data root still has every durable projection."""
+    catalog = data_root / "acquisition" / "catalog.sqlite"
+    if not catalog.is_file():
+        return False
+    try:
+        db = sqlite3.connect(catalog.resolve().as_uri() + "?mode=ro", uri=True, timeout=3)
+        try:
+            checked_inodes = set()
+            for item in manifest["items"]:
+                sha, suffix = item["sha256"], "." + item["format"].lower()
+                safe_categories = _categories(item["source"])
+                paths = [data_root / "acquisition" / "blobs" / sha[:2] / (sha + suffix),
+                         data_root / "originals" / sha[:2] / sha / (sha + suffix)]
+                paths.extend(data_root / "product-library" / "fetchspec" / category / (sha + suffix)
+                             for category in safe_categories)
+                if suffix in SUPPORTED:
+                    paths.append(data_root / "raw-materials" / "fetchspec" / safe_categories[0] / (sha + suffix))
+                for path in paths:
+                    if path.is_symlink() or not path.is_file() or path.stat().st_size != item["bytes"]:
+                        return False
+                    stat = path.stat()
+                    inode = (stat.st_dev, stat.st_ino, stat.st_size)
+                    if inode not in checked_inodes:
+                        if _digest(path) != sha:
+                            return False
+                        checked_inodes.add(inode)
+                row = db.execute("SELECT 1 FROM product_documents WHERE sha256=? AND source_item_id=? LIMIT 1",
+                                 (sha, item["source_item_id"])).fetchone()
+                if row is None:
+                    return False
+        finally:
+            db.close()
+    except sqlite3.Error:
+        return False
+    return True
+
+
 def _receive(root: Path, package_path: Path, data_root: Path):
     package, manifest = _load_package(package_path)
     receipt_file = _ledger(root)
@@ -246,7 +293,8 @@ def _receive(root: Path, package_path: Path, data_root: Path):
     if prior:
         if prior["manifest_sha256"] != identity:
             raise PackageError("delivery_id_reused_with_different_manifest")
-        return prior
+        if _materialized_in(Path(data_root).expanduser().resolve(), manifest):
+            return prior
 
     task_ref = manifest.get("task_id_or_discovery", "discovery")
     research_context = {"task_id": None, "demand_id": None, "question_ids": [], "object_ids": []}
@@ -290,9 +338,7 @@ def _receive(root: Path, package_path: Path, data_root: Path):
                 shutil.copy2(archive_blob, original)
                 if _digest(original) != sha:
                     raise PackageError("staged_original_digest_mismatch")
-        categories = item["source"].get("categories") or ["uncategorized"]
-        safe_categories = [re.sub(r"[^\w.-]+", "_", str(value), flags=re.UNICODE)[:100] or "uncategorized"
-                           for value in categories]
+        safe_categories = _categories(item["source"])
         for category in safe_categories:
             view = library / category / (sha + suffix)
             private_dir(view.parent)
