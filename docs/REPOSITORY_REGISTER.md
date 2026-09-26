@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：834。
+在册文件：872。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,9 +16,9 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 266 |
-| 运行代码 | 153 |
+| 运行代码 | 171 |
 | 现行规范 | 13 |
-| 项目配置 | 36 |
+| 项目配置 | 56 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
@@ -339,6 +339,24 @@
 | `framework/research_questions.json` | records | 449 |
 | `framework/supply_contract.json` | providers | 10 |
 | `framework/verification_contract.json` | policies | 13 |
+| `outputs/geluoke-research/2026-09-26/checks/validation.json` | images | 5 |
+| `outputs/geluoke-research/2026-09-26/sources.json` | published_source_numbering | 48 |
+| `outputs/geluoke-research/2026-09-26/sources.json` | events | 15 |
+| `outputs/geluoke-research/2026-09-26/sources.json` | commentary_named_cases | 5 |
+| `outputs/geluoke-research/2026-09-26/sources.json` | figures | 4 |
+| `outputs/geluoke-research/2026-09-26/sources.json` | excluded_verified_candidates | 25 |
+| `outputs/geluoke-research/2026-09-26/validation.json` | images | 5 |
+| `outputs/geluoke-research/2026-09-26/work/content.json` | lead | 2 |
+| `outputs/geluoke-research/2026-09-26/work/content.json` | events | 15 |
+| `outputs/geluoke-research/2026-09-26/work/content.json` | commentary | 3 |
+| `outputs/geluoke-research/2026-09-26/work/content.json` | sources | 48 |
+| `outputs/geluoke-research/2026-09-26/work/cover.json` | modules | 5 |
+| `outputs/geluoke-research/2026-09-26/work/cover.json` | regions | 4 |
+| `outputs/geluoke-research/2026-09-26/work/cover.json` | maps | 5 |
+| `outputs/geluoke-research/2026-09-26/work/event_plan.json` | events | 15 |
+| `outputs/geluoke-research/2026-09-26/work/event_plan.json` | related_for_commentary | 24 |
+| `outputs/geluoke-research/2026-09-26/work/event_plan.json` | sweep_related | 5 |
+| `outputs/geluoke-research/2026-09-26/work/event_plan.json` | sweep_related_cards | 5 |
 | `reports/blindspot.json` | modules | 15 |
 | `reports/workorders.json` | orders | 564 |
 | `research/M01.md` | Finding | 7 |
@@ -898,6 +916,44 @@
 | `framework/supply_contract.json` | 项目配置 |
 | `framework/verification_contract.json` | 项目配置 |
 | `manage.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/2026-09-26-article-summary-wechat.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/2026-09-26-article-summary.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/2026-09-26-daily-wechat.html` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/2026-09-26-fig1-jupiter-power-chain.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/2026-09-26-fig2-us-power-cost.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/2026-09-26-fig3-funding-stages.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/2026-09-26-fig4-asia-conditions.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/checks/render-desktop.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/checks/render-mobile390.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/checks/validation.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/sources.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/validation.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/work/assemble.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/build_all.sh` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/build_html.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/charts.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/composite_qr.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/content.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/work/cover.html` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/cover.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/work/cover_template.html` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/event_plan.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/work/facts_all.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/work/fig_asia.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/work/fig_funding.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/work/fig_jupiter.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/work/fig_us_power.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-26/work/fill_cover.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/gen_xsec_A.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/make_figs.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/postedit.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/render.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/tojpeg.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/validate.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/wf_lead.js` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/wf_verify_slice.js` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/wf_write.js` | 运行代码 |
+| `outputs/geluoke-research/2026-09-26/work/xsec_final.svg` | 项目配置 |
 | [reports/HOW_TO_OUTPUT.md](../reports/HOW_TO_OUTPUT.md) | 生成物 |
 | `reports/blindspot.json` | 生成物 |
 | [reports/blindspot.md](../reports/blindspot.md) | 生成物 |
