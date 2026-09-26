@@ -20,11 +20,25 @@ def run(args, timeout=300, input=None):
     return subprocess.run(args, input=input, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
                           timeout=timeout, check=False)
 
-def remote_candidates(limit):
+FIELDS = ('doc_id','sha256','original_rel','original_name','revision_id','state')
+
+def remote_candidates(limit, doc_ids=()):
+    """Blocked OCR PDFs, or exactly the named documents that are not done yet.
+
+    Named documents may still be queued behind text documents
+    (ocr_deferred_behind_text_documents); OCR done here lets the reader take
+    them without the local deferral or page budget."""
+    if doc_ids:
+        where = "suffix='.pdf' and state in ('queued','blocked') and doc_id in (%s)" % ','.join('?' * len(doc_ids))
+        params = repr(tuple(doc_ids))
+    else:
+        where = ("state='blocked' and suffix='.pdf' and error_code in "
+                 "('ocr_page_unreadable','ocr_numbers_disagree','scanned_page_requires_ocr') order by updated limit ?")
+        params = repr((int(limit),))
     code = """import sqlite3,json
-c=sqlite3.connect('/home/spark/.local/share/inresearch.ai/catalog/catalog.sqlite')
-for r in c.execute(\"select doc_id,sha256,original_rel,original_name,revision_id from execution_readings where state='blocked' and suffix='.pdf' and error_code in ('ocr_page_unreadable','ocr_numbers_disagree','scanned_page_requires_ocr') order by updated limit ?\",(%d,)):
- print(json.dumps(dict(zip(('doc_id','sha256','original_rel','original_name','revision_id'),r))))""" % limit
+c=sqlite3.connect('file:/home/spark/.local/share/inresearch.ai/catalog/catalog.sqlite?mode=ro',uri=True)
+for r in c.execute(%r,%s):
+ print(json.dumps(dict(zip(%r,r))))""" % ("select " + ','.join(FIELDS) + " from execution_readings where " + where, params, FIELDS)
     # ssh joins argument strings into a remote shell command; encode the
     # multiline query so it cannot be split or interpreted by that shell.
     encoded = base64.b64encode(code.encode()).decode()
@@ -75,20 +89,29 @@ def process(doc):
         if mkdir.returncode: raise RuntimeError('result_directory_failed')
         put=run(['scp','-q']+[str(p) for p in sorted(output.glob('*.json'))]+[REMOTE+':'+target+'/'],600)
         if put.returncode: raise RuntimeError('result_upload_failed')
+    if doc.get('state', 'blocked') != 'blocked':
+        # Still queued: the reader reads the uploaded pages when it claims the job.
+        return
     retry=run(['ssh','-o','BatchMode=yes',REMOTE,'python3',DATA.replace('/.local/share/inresearch.ai','/code/inresearch.ai')+'/manage.py','reader','retry','--doc-id',doc['doc_id'],'--revision-id',doc['revision_id']],60)
     if retry.returncode: raise RuntimeError('spark_retry_failed')
 
 def main():
-    ap=argparse.ArgumentParser(); ap.add_argument('--limit',type=int,default=1); args=ap.parse_args()
+    ap=argparse.ArgumentParser(); ap.add_argument('--limit',type=int,default=1)
+    ap.add_argument('--doc-id',action='append',default=[],help='OCR exactly these documents (repeatable), even while queued')
+    args=ap.parse_args()
     models.configured_client("ocr")
-    for doc in remote_candidates(args.limit):
+    handled = False
+    for doc in remote_candidates(args.limit, tuple(args.doc_id)):
         if not claim(doc): continue
+        handled = True
         try: process(doc); print(json.dumps({'doc_id':doc['doc_id'],'outcome':'submitted'}))
         except Exception as exc:
             # Claim directories are intentionally empty.  Remove only our own
             # empty claim on failure so the next scheduled run can retry.
             run(['ssh','-o','BatchMode=yes',REMOTE,'rmdir',DATA+'/offload/m4/claims/'+doc['revision_id']],30)
             print(json.dumps({'doc_id':doc['doc_id'],'outcome':'failed','error':str(exc)[:160]}))
-        return
-    print(json.dumps({'outcome':'idle'}))
+        if not args.doc_id:
+            return
+    if not handled:
+        print(json.dumps({'outcome':'idle'}))
 if __name__=='__main__': main()

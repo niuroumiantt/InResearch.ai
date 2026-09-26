@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.26.2",
+  "version": "2026.09.26.3",
   "effective_at": "2026-09-26",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -513,12 +513,13 @@
         "src/inresearch/delivery/reading_packet.py",
         "src/inresearch/workflow/reading_results.py",
         "src/inresearch/materials/reading_artifacts.py",
-        "tests/unit/test_reading_results.py"
+        "tests/unit/test_reading_results.py",
+        "tests/unit/test_ocr_worker_named.py"
       ],
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
-      "reason": "2026-09-15：L1 的待处理选择、预览预算、活动速率和版本候选收敛到 workflow.l1_batch；各 CLI 仅处理参数和呈现，triage 不再转发 score run。reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。",
+      "reason": "2026-09-15：L1 的待处理选择、预览预算、活动速率和版本候选收敛到 workflow.l1_batch；各 CLI 仅处理参数和呈现，triage 不再转发 score run。reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 ocr-worker 支持 --doc-id 点名处理仍在排队（含 OCR 排后）的文档，排队文档上传页结果后不 retry。",
       "implementation_revision": "2026.09.15.2"
     },
     {

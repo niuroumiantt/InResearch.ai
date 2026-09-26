@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-26：M4 OCR 分担可点名排队文档
+
+提升的 35 份深读候选中 26 份是扫描件，在 Spark 首次需要 OCR 时被排后到优先级 1，且本地每篇 OCR 上限 20 页。用户选择修复 M4 分担 OCR：`manage.py ocr-worker` 新增 `--doc-id`（可重复），只读查询点名的排队或阻塞 PDF，逐份在 M4 本机视觉模型双读后上传页结果；排队文档不再调用 `reader retry`（该步需队列锁）。M4 旧 LaunchAgent 指向已删除的 `pipeline/m4_offload_worker.py`，改指新入口。有 M4 页结果的页不受排后与页数上限约束；排后文档优先级仍为 1，需要时停 reader 用 apply-triage 重设。
+
 ## 2026-09-26：按环节选模型
 
 用户要求按环节选择合适的模型，既不浪费也保证质量，并明确不做对比直接切换。`deploy/models.json` 的 `research_default` 由 Opus 改为 Claude Sonnet 5（M4 上的 L1 打分与复核、属性抽取），新增 `core_review` 指向 Claude Opus 5.5（核心材料深读与 C3 前审阅），新增 `spark_ocr`（qwen3-vl:8b）档案供 Spark 本机配置引用。L2 终端深读默认用 Sonnet 5，核心材料用 Opus 5.5；Spark 本地模型承担大批 L1 粗筛、OCR 与长尾候选阅读。分工表见 08“按环节选模型”。已冻结配方的 reader 任务与已有 L1 结果不重读；未做同型号质量对比，质量由 04 的覆盖、引文与数字检查把关。
