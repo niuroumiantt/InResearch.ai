@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.22.1",
+  "version": "2026.09.26.1",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -458,8 +458,8 @@
     {
       "path": "deploy/spark-reader/reader.env.example",
       "role": "project_config",
-      "bytes": 1533,
-      "sha256": "f667956e9a0a9bdaadda7ac73102af20f18ef16835654179573390b50ba15940",
+      "bytes": 1768,
+      "sha256": "9359c8435e191093c84a26d4366ba2867b34d9c5ba2b78998ab377cf8300b6d8",
       "collections": []
     },
     {
@@ -506,8 +506,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 75346,
-      "sha256": "a9a2f8b21fde3c194cf56c6b77f7d663087571cf7005b1ef9f35184faddf9b8d",
+      "bytes": 76155,
+      "sha256": "805d3148a940ff633f79805231c25d015324ba31714460722150f8989eedd7a9",
       "collections": []
     },
     {
@@ -3239,8 +3239,8 @@
     {
       "path": "docs/local_reader/SPARK_OPERATIONS.md",
       "role": "normative",
-      "bytes": 31143,
-      "sha256": "604997686efe4328de6854056eaccd9be006a5ed74548922068bcc81e44ac6ad",
+      "bytes": 32047,
+      "sha256": "a7a1664715f4bcd0efdd3c28bb705dbbfe2c7aafa8208b9298cbe5a1f2bf3e19",
       "collections": []
     },
     {
@@ -6434,7 +6434,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5448,
-      "sha256": "75359b3969df3254101a1ecbc11952e4c0577159b946871dc72b73aaf95656b5",
+      "sha256": "b365383de20368d750dadb7d019b249026d074dd5b411d99206847865ff51acf",
       "collections": []
     },
     {
@@ -6456,8 +6456,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 30446,
-      "sha256": "6e6f4cc20ddf61782b060201eb416afc604988986360f41bb838a0a846d44f61",
+      "bytes": 30811,
+      "sha256": "710c71a64eb92714d7ff8de3da3cd8c0d7bd62b21b509c0224db9d7811caf947",
       "collections": [
         {
           "name": "policies",
@@ -6732,8 +6732,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 50451,
-      "sha256": "dcc37a246778d371122a6d35b7f580974e07fd53c4a1e003bf0b4eb938e4182b",
+      "bytes": 51675,
+      "sha256": "a3c54c005372a36788cfbba5a3e5b091d9e854e13be1952c7ef601b7790bfc8b",
       "collections": [
         {
           "name": "policies",
@@ -7543,6 +7543,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/adapters/thermal.py",
+      "role": "implementation",
+      "bytes": 1339,
+      "sha256": "0ff6a9fe9f3c290788039125e448c3626978bb20279031b6609bd7323c17c1f6",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/delivery/__init__.py",
       "role": "implementation",
       "bytes": 0,
@@ -7664,8 +7671,8 @@
     {
       "path": "src/inresearch/interfaces/reader.py",
       "role": "implementation",
-      "bytes": 8277,
-      "sha256": "cd61d93b269f51246a7973404f05e0ec70a3fb48cc806e1c8b28a0a4396fb585",
+      "bytes": 8546,
+      "sha256": "84b5b1e90b1150b51717829217b11657096177fc92960e1717daa425b915fb1d",
       "collections": []
     },
     {
@@ -7860,8 +7867,8 @@
     {
       "path": "src/inresearch/materials/reader_contracts.py",
       "role": "implementation",
-      "bytes": 1116,
-      "sha256": "bb5735cbf8e045ec487b39a161486043b5423be787d168d6a898c9d155de2557",
+      "bytes": 1555,
+      "sha256": "30e5dd2d31d328c77b84baef221ae074151f4e6d4400b78b5be9102bc6fc8a55",
       "collections": []
     },
     {
@@ -8014,8 +8021,8 @@
     {
       "path": "src/inresearch/workflow/reader.py",
       "role": "implementation",
-      "bytes": 38436,
-      "sha256": "e950965bd83e08bcf9df44d9f076cbcddc130f52e7432bcc4ec6632f1aa104d9",
+      "bytes": 40485,
+      "sha256": "06b90b017055d56d5cce85006f2fcb6237db5d0919e198f53aec78fca4807f50",
       "collections": []
     },
     {
@@ -8457,6 +8464,13 @@
       "role": "test",
       "bytes": 2697,
       "sha256": "b595a4a6b9e1b09c7c7ba4decfcaf0714d90d8ad8194ad461f9ad41534729102",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_reader_thermal.py",
+      "role": "test",
+      "bytes": 4539,
+      "sha256": "145dcd0f71a557707379b5c5470516839c122eb9b4be7235d3871dc3a460d739",
       "collections": []
     },
     {
@@ -9315,13 +9329,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 266,
-    "implementation": 171,
+    "implementation": 172,
     "normative": 13,
     "project_config": 56,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 26,
     "supporting_document": 41,
-    "test": 65
+    "test": 66
   }
 }

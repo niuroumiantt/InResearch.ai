@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.22.1",
-  "effective_at": "2026-09-22",
+  "version": "2026.09.26.1",
+  "effective_at": "2026-09-26",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -216,12 +216,16 @@
         "tests/unit/test_catalog_migration.py",
         "src/inresearch/workflow/reading_results.py",
         "src/inresearch/materials/reading_artifacts.py",
-        "tests/unit/test_reading_results.py"
+        "tests/unit/test_reading_results.py",
+        "src/inresearch/adapters/thermal.py",
+        "src/inresearch/workflow/reader.py",
+        "tests/unit/test_reader_thermal.py",
+        "deploy/spark-reader/reader.env.example"
       ],
       "supersedes": [
         "operations-legacy"
       ],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。",
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。",
       "implementation_revision": "2026.09.14.7"
     },
     {

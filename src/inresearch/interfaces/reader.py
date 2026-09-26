@@ -85,7 +85,12 @@ def main(argv=None):
                             args.context, args.max_output_tokens, args.request_model)
     except (ValueError, TypeError, OSError, models.InferenceError) as exc:
         ap.error(str(exc))
-    reader = Reader(args.data_root, args.state_root, args.repo_root, model, args.stable_seconds)
+    # Only the long-running worker reads machine sensors; one-off commands never wait on them.
+    temperature = None
+    if args.command == "run":
+        from inresearch.adapters.thermal import read_celsius as temperature
+    reader = Reader(args.data_root, args.state_root, args.repo_root, model, args.stable_seconds,
+                    temperature=temperature)
     try:
         reader.initialize()
         if args.command == "run":

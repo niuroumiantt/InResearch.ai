@@ -15,6 +15,15 @@ LARGE_FORMAT_POINTS = float(os.environ.get("READER_LARGE_FORMAT_POINTS", "1150")
 
 MAX_WORKERS = 16
 
+# Before claiming a job the reader pauses while the hottest GPU/thermal-zone reading
+# is above this limit, then re-reads after the pause. 0 disables the guard.
+THERMAL_LIMIT_C = float(os.environ.get("READER_THERMAL_LIMIT_C", "85"))
+
+THERMAL_PAUSE_SECONDS = float(os.environ.get("READER_THERMAL_PAUSE_SECONDS", "60"))
+
+# How long a reading at or below the limit is trusted before the next claim reads again.
+THERMAL_SAMPLE_SECONDS = 10.0
+
 MODULES = {"M%02d" % i for i in range(1, 16)}
 
 class ReaderError(Exception):

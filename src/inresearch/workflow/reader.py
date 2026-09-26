@@ -28,7 +28,7 @@ import tempfile
 import threading
 import time
 
-from inresearch.materials.reader_contracts import ReaderError, Blocked, Deferred, UnsafePath, IntegrityError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS, MAX_WORKERS, MODULES
+from inresearch.materials.reader_contracts import ReaderError, Blocked, Deferred, UnsafePath, IntegrityError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS, MAX_WORKERS, MODULES, THERMAL_LIMIT_C, THERMAL_PAUSE_SECONDS, THERMAL_SAMPLE_SECONDS
 from inresearch.materials.artifacts import now_iso, encoded, digest_bytes, digest_file, private_dir, safe_path, atomic_json, durable_rename, read_json, clean_name, signature, is_partial
 from inresearch.adapters.reader_model import ModelClient
 from inresearch.storage.catalog import Catalog
@@ -46,13 +46,17 @@ CONTEXT = models.load_profile(path=models.DEFAULT_CONFIG).context
 
 class Reader:
     def __init__(self, data_root=None, state_root=None, repo_root=None, model=None,
-                 stable_seconds=60, chunk_chars=6000, clock=time.time):
+                 stable_seconds=60, chunk_chars=6000, clock=time.time, temperature=None):
         self.data = Path(data_root or Path.home() / ".local/share/inresearch.ai").expanduser().resolve()
         self.state = Path(state_root or Path.home() / ".local/state/inresearch.ai").expanduser().resolve()
         self.repo = Path(repo_root or project_root()).expanduser().resolve()
         self.model = model or ModelClient()
         self.stable_seconds, self.chunk_chars, self.clock = stable_seconds, chunk_chars, clock
         self.ocr_max_pages, self.ocr_defer_seconds, self.large_format_points = OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS
+        # temperature() -> Celsius or None. Without a sensor source the guard is off.
+        self.temperature, self.thermal_limit, self.thermal_pause = temperature, THERMAL_LIMIT_C, THERMAL_PAUSE_SECONDS
+        self.thermal = {"limit_c": THERMAL_LIMIT_C, "last_c": None, "paused_since": None, "pauses": 0}
+        self._thermal_lock, self._thermal_cool_until = threading.Lock(), 0.0
         if stable_seconds < 0 or not 1 <= chunk_chars <= 6000:
             raise ValueError("invalid scan stability or chunk size")
         self.catalog = None
@@ -544,7 +548,7 @@ class Reader:
                 "stage_counts": stages, "oldest_pending_seconds": max(0, self.clock() - pending) if pending is not None else None,
                 "oldest_pending": datetime.fromtimestamp(pending, timezone.utc).isoformat() if pending is not None else None,
                 "recent_failures": failures, "backend": self.model.identity,
-                "last_scan": scan,
+                "last_scan": scan, "thermal": dict(self.thermal),
                 "roots": {"data": str(self.data), "state": str(self.state)},
                 "acceptance": "candidate_only", "free_bytes": shutil.disk_usage(self.data).free}
 
@@ -552,6 +556,34 @@ class Reader:
         status = self.status()
         atomic_json(safe_path(self.state, "status.json"), status)
         return status
+
+    def cool_down(self, stop):
+        """Hold the next claim while the machine is hotter than the limit.
+
+        A job already running is never interrupted; the pause only gates the next
+        claim. An unreadable sensor does not hold the queue."""
+        if self.temperature is None or not self.thermal_limit > 0:
+            return
+        while not stop.is_set():
+            with self._thermal_lock:
+                # A cool reading stands for a few seconds so fast jobs do not each spawn nvidia-smi.
+                if time.monotonic() < self._thermal_cool_until:
+                    return
+                celsius = self.temperature()
+                hot = celsius is not None and celsius > self.thermal_limit
+                self.thermal.update(limit_c=self.thermal_limit, last_c=celsius)
+                if hot:
+                    self.thermal["pauses"] += 1
+                    self.thermal["paused_since"] = self.thermal["paused_since"] or now_iso()
+                else:
+                    self.thermal["paused_since"] = None
+                    self._thermal_cool_until = time.monotonic() + THERMAL_SAMPLE_SECONDS
+            if not hot:
+                return
+            print(encoded({"at": now_iso(), "thermal": "pause", "celsius": celsius,
+                           "limit_c": self.thermal_limit, "seconds": self.thermal_pause}), flush=True)
+            self.write_status()
+            stop.wait(self.thermal_pause)
 
     def run(self, once=False, max_jobs=None, poll_seconds=10, workers=1):
         """One process owns the queue; `workers` threads claim and process jobs.
@@ -575,6 +607,9 @@ class Reader:
                         if exhausted():
                             stop.set()
                             break
+                    self.cool_down(stop)
+                    if stop.is_set():
+                        break
                     # BEGIN IMMEDIATE inside claim() serializes the claim, so two
                     # threads never take the same job.
                     job = self.claim()
