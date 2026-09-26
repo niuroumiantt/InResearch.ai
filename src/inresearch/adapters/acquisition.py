@@ -16,6 +16,7 @@ import os as os
 from pathlib import Path
 import sqlite3
 import statistics
+import shutil
 import tempfile
 import time as time
 from urllib.parse import quote, urlsplit
@@ -23,7 +24,7 @@ from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.error import HTTPError
 
 ROOT = project_root()
-SOURCES = ('inews', 'sec', 'gpu')
+SOURCES = ('inews', 'sec', 'gpu', 'fetchspec')
 from inresearch.knowledge.news_policy import INEWS_DATACENTER_URL, build_terms, AMBIGUOUS, ENTITY_CONTEXT, classify
 _DIRECT_FEED_PROOF = object()
 
@@ -49,9 +50,22 @@ CREATE TABLE IF NOT EXISTS links (
 CREATE TABLE IF NOT EXISTS runs (
  id INTEGER PRIMARY KEY, source TEXT NOT NULL, started TEXT NOT NULL, finished TEXT,
  status TEXT NOT NULL, count INTEGER NOT NULL DEFAULT 0, error_code TEXT);
+CREATE TABLE IF NOT EXISTS product_documents (
+ id INTEGER PRIMARY KEY, sha256 TEXT NOT NULL, source_item_id TEXT NOT NULL,
+ company_id TEXT NOT NULL, first_category TEXT NOT NULL, categories_json TEXT NOT NULL,
+ format TEXT NOT NULL, language TEXT NOT NULL, question_id TEXT NOT NULL, object_ids_json TEXT NOT NULL,
+ task_id TEXT, source_url TEXT NOT NULL, original_filename TEXT, version_relation_json TEXT NOT NULL,
+ title TEXT NOT NULL, received_at TEXT NOT NULL, UNIQUE(sha256,source_item_id,question_id));
+CREATE INDEX IF NOT EXISTS product_documents_company_category ON product_documents(company_id,first_category,format,language);
+CREATE INDEX IF NOT EXISTS product_documents_question ON product_documents(question_id,company_id,first_category);
 '''
 def now(): return datetime.now(timezone.utc).isoformat()
 def encoded(x): return json.dumps(x,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()
+def hash_file(path):
+    h=hashlib.sha256()
+    with Path(path).open('rb') as stream:
+        for block in iter(lambda:stream.read(1024*1024),b''):h.update(block)
+    return h.hexdigest()
 def data_root(): return Path(os.environ.get('READER_DATA_ROOT', Path.home()/'.local/share/inresearch.ai'))
 def error_code(e):
     return ('http_'+str(e.code)) if isinstance(e,HTTPError) else str(e)[:100] if isinstance(e,ValueError) and str(e).replace('_','').isalnum() else type(e).__name__
@@ -92,6 +106,37 @@ class Collector:
             self.db.execute('INSERT OR IGNORE INTO observations(item_id,sha256,relative_path,observed_at,request_json) VALUES(?,?,?,?,?)',(ident,sha,rel,now(),encoded(request).decode()))
             self.db.execute('UPDATE items SET state=?,updated=? WHERE id=?',('archived',now(),ident))
         return sha
+    def archive_file(self, ident, source, suffix, request):
+        """Stream an already-verified supplier file into the shared SHA blob store."""
+        source = Path(source)
+        sha = hashlib.sha256()
+        with source.open('rb') as stream:
+            for block in iter(lambda: stream.read(1024 * 1024), b''):
+                sha.update(block)
+        hexdigest = sha.hexdigest()
+        rel = 'acquisition/blobs/' + hexdigest[:2] + '/' + hexdigest + suffix
+        dest = self.root / rel
+        dest.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
+        if dest.exists():
+            if hash_file(dest) != hexdigest:
+                raise ValueError('archive_integrity')
+        else:
+            fd, tmp = tempfile.mkstemp(prefix='.partial-', dir=dest.parent)
+            try:
+                with os.fdopen(fd, 'wb') as output, source.open('rb') as incoming:
+                    shutil.copyfileobj(incoming, output, 1024 * 1024)
+                    output.flush(); os.fsync(output.fileno())
+                if hash_file(Path(tmp)) != hexdigest:
+                    raise ValueError('archive_integrity')
+                os.replace(tmp, dest)
+                os.chmod(dest, 0o400)
+            finally:
+                if os.path.exists(tmp): os.unlink(tmp)
+        with self.db:
+            self.db.execute('INSERT OR IGNORE INTO observations(item_id,sha256,relative_path,observed_at,request_json) VALUES(?,?,?,?,?)',
+                (ident, hexdigest, rel, now(), encoded(request).decode()))
+            self.db.execute('UPDATE items SET state=?,updated=? WHERE id=?', ('archived', now(), ident))
+        return hexdigest
     def run(self,source,fn):
         with self.db: rid=self.db.execute('INSERT INTO runs(source,started,status) VALUES(?,?,?)',(source,now(),'running')).lastrowid
         try:
@@ -231,6 +276,39 @@ def summary(root):
         return {'status':'candidate_acquisition','sources':sources,'news_feed':feed(root),'note':'新闻标题线索；全文翻译、SEC/GPU 周期采集与自动采用尚未开启。'}
     finally:con.close()
 
+def product_documents(root, *, company_id=None, category=None, question_id=None,
+                      format=None, language=None, limit=50, offset=0):
+    """Indexed cross-company/product/research-question view of Fetchspec candidates."""
+    if type(limit) is not int or not 1 <= limit <= 200 or type(offset) is not int or not 0 <= offset <= 1000000:
+        raise ValueError('invalid_product_document_page')
+    path=Path(root)/'acquisition/catalog.sqlite'
+    if not path.is_file():return {'status':'not_initialized','total':0,'records':[],'acceptance':'candidate'}
+    clauses=[];params=[]
+    for column,value in (('company_id',company_id),('first_category',category),('question_id',question_id),('format',format),('language',language)):
+        if value:
+            if not isinstance(value,str) or len(value)>160:raise ValueError('invalid_product_document_filter')
+            clauses.append(column+'=?');params.append(value)
+    where=' WHERE '+' AND '.join(clauses) if clauses else ''
+    con=sqlite3.connect(path.resolve().as_uri()+'?mode=ro',uri=True,timeout=3);con.row_factory=sqlite3.Row
+    try:
+        try:
+            total=con.execute('SELECT COUNT(*) FROM product_documents'+where,params).fetchone()[0]
+            rows=con.execute('''SELECT sha256,source_item_id,company_id,first_category,categories_json,format,language,
+            question_id,object_ids_json,task_id,source_url,original_filename,version_relation_json,title,received_at
+            FROM product_documents'''+where+' ORDER BY received_at DESC,sha256 LIMIT ? OFFSET ?',
+            (*params,limit,offset)).fetchall()
+        except sqlite3.OperationalError:
+            return {'status':'not_initialized','total':0,'records':[],'acceptance':'candidate'}
+        return {'status':'available','total':total,'limit':limit,'offset':offset,
+            'filters':{'company_id':company_id,'category':category,'question_id':question_id,'format':format,'language':language},
+            'records':[{'sha256':r['sha256'],'source_item_id':r['source_item_id'],'company_id':r['company_id'],
+                'first_category':r['first_category'],'categories':json.loads(r['categories_json']),
+                'format':r['format'],'language':r['language'],'question_id':r['question_id'] or None,
+                'object_ids':json.loads(r['object_ids_json']),'task_id':r['task_id'],'source_url':r['source_url'],
+                'original_filename':r['original_filename'],'version_relation':json.loads(r['version_relation_json']),
+                'title':r['title'],'received_at':r['received_at'],'acceptance':'candidate'} for r in rows]}
+    finally:con.close()
+
 def main():
     os.umask(0o077)
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--data-root',type=Path,default=data_root());sub=p.add_subparsers(dest='command',required=True)
@@ -238,11 +316,17 @@ def main():
     n=sub.add_parser('news');n.add_argument('--input',type=Path,required=True);n.add_argument('--question')
     s=sub.add_parser('sec');s.add_argument('--company',required=True);s.add_argument('--limit',type=int,default=1);s.add_argument('--question')
     g=sub.add_parser('gpu');g.add_argument('--gpu',default='H100 SXM');g.add_argument('--question')
+    d=sub.add_parser('product-documents',help='search received Fetchspec documents by company/product/research scope')
+    d.add_argument('--company-id');d.add_argument('--category');d.add_argument('--question-id');d.add_argument('--format');d.add_argument('--language')
+    d.add_argument('--limit',type=int,default=50);d.add_argument('--offset',type=int,default=0)
     sub.add_parser('status');a=p.parse_args()
     if a.command=='export-news':
         if not 1<=a.days<=90 or not 1<=a.limit<=10000:p.error('bounded days/limit required')
         print(encoded(export_news(a.db,a.days,a.limit)).decode());return 0
     if a.command=='status':print(encoded(summary(a.data_root)).decode());return 0
+    if a.command=='product-documents':
+        print(encoded(product_documents(a.data_root,company_id=a.company_id,category=a.category,
+            question_id=a.question_id,format=a.format,language=a.language,limit=a.limit,offset=a.offset)).decode());return 0
     if a.command=='sec' and not 0<=a.limit<=10:p.error('SEC primary document limit must be 0..10')
     c=Collector(a.data_root)
     try:

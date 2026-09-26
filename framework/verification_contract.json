@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.26.5",
+  "version": "2026.09.26.6",
   "reviewed_at": "2026-09-26",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -9,11 +9,11 @@
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
     "docs/M4_TRIAGE_TASK.md": "5c2994d6b3f5820b3ca92a5c701565561dfc093cede5d90d3b2884e02ab875d2",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
-    "docs/local_reader/ACQUISITION_OPERATIONS.md": "91d862b923f292d337771f17dbfc965357b76039df162c78b97003237f9feb85",
+    "docs/local_reader/ACQUISITION_OPERATIONS.md": "b9f53df23a4d181b335ec7e80efe687bdcab97c3c3886f5083e0834e31ab8acc",
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "4e107a56fa1a4c94d95d4aae5564720f4affcda84b79d71c47513a49da6d29fc",
+    "docs/local_reader/SPARK_OPERATIONS.md": "47bdc533fe5a099617ddd20e6b2fb64ff62da08c5b55543838c055322fa0c2e0",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
@@ -22,15 +22,15 @@
     "framework/03_bom_and_collaboration.md": "d358fb9f6568c35d04cf93fc9fdb4a469c37e07136531f71913727f929ec53a9",
     "framework/04_reading_scoring_standard.md": "54b969f2c34e0d17bfe91ec28d7b8f13f8618641adc1aae5e598cd43a07a2493",
     "framework/05_interface_system.md": "9daf6c2b1a3eb93fd0dbb8e766f3c411aa27a29dc725ebee01f65cf67f4bbefa",
-    "framework/06_acquisition.md": "b2fe3b3fb0321644f59fbd31e4ab0b44f1cf89f3512aa63aa2a069f641361f5b",
+    "framework/06_acquisition.md": "6f95c8e2a6dd9665aa9c230a445a5a09dd4ca8d2ba8cff569c75b51e75cc4d88",
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
     "framework/08_model_execution.md": "916b6a87fa1de84422f12f892c2fb129068040860662a31551f28c3c10da03e5",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "9d01d207a4d333a8761f36fd950e316c919390a288afecca8232c9398e4f7acc",
+    "framework/CURRENT.md": "bca99e9fcfea76e7b66bfcdb6d0a644f24f28e9c4d91d93611357abcae0ecada",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
-    "framework/supply_contract.json": "a660188467656408b28d744bc466a145e4ebe980399981a2139aad780d0130ae",
-    "src/inresearch/workflow/supply.py": "d9ae718422b5c2469fed5eb7ee84b043a954c7a0cea89df181368d155c161666",
+    "framework/supply_contract.json": "0b2d98765b3a9a78b9b380365721d844712e0bed19d6c625779c2a46a37a157e",
+    "src/inresearch/workflow/supply.py": "575ae0478387f1c00fe46fb984bb6b11839fb69fbbe9253225acb211fc855b65",
     "tests/auth_appearance.cjs": "12fe45ce1017034aebce9d5f330ef4a63b510fb3fdb887331c338a965bd60c51",
     "tests/container_storage.py": "a8574a75275460d2a50c0eab7f524857eccd8a32cf2f9e8bb01009ec12dd5ba0",
     "tests/datacenter_cost.cjs": "e9e3c31dcd7914c02020688cd040be671d61bd4d8d2e5da8e96b7f589d6c63c9",
@@ -46,7 +46,7 @@
     "tests/scene_bootstrap.cjs": "6ca988b8d01e5fce7d598ef4b276471b7dd5bf9203254b8159ffa13e3d0c2f1c",
     "tests/scene_framing.cjs": "a5d6c37a9f7aa43ab194ac0175a785a71d2af9b318211e7e139c7349046cb1c0",
     "tests/scene_resources.cjs": "f514a7b25dc47f1d5f4befe96d840f6361ade7df3b78d828b8948e7a9679d3e2",
-    "tests/supply.cjs": "44ae48b110fd5568f7e39a7378a8a0faa1c9d8b3e2acf1eec6ba50f19366b337",
+    "tests/supply.cjs": "5f407f46ca41ee9f01434dbf89ab314aee4e364d1cd451db04904cd9f3f31301",
     "tests/ui_skin.cjs": "baf08fe64b8e3d78325152b868de04e6e71f55fa3a35b64a6f7aab81c829116e",
     "tests/unit/deep_read_fixtures.py": "8f625d276b9224ba46c1d990dbecf669f8a458cd9c446fc525a3669520410af8",
     "tests/unit/test_acquisition.py": "9df70bf9f5f2453e45a9f5af50baf9d4bc8cccae0afe3a76555b00c6b5099110",
@@ -54,11 +54,13 @@
     "tests/unit/test_catalog_bridge.py": "47ed253f19bd29eeff4221e07215084526b1b7fae85e58b4aab051d4b6ac8405",
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_commands.py": "0eda9d7ee92eadb0b187f8e83901ae42c016c783fcdcfeec1d0e74b89dbb15a7",
-    "tests/unit/test_continuous_reader.py": "b7ba58d83d15e9294b497d197c8e61ab2f93049d98a51e1ad9f82ea8193aa44c",
+    "tests/unit/test_continuous_reader.py": "945c29f85b5b9dfa8e4ce35d937b16b1a64cba1283e9c136a5a869dc36b90ddd",
     "tests/unit/test_deep_read.py": "f4399a1287d9fd7ced79059d351c6edd08a48ca0c3a752dbf94bc4964705d4f9",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
     "tests/unit/test_display_regressions.py": "b3461db2c0648d4ca88f6d8dd646edbcb8c8242df4aeeb43be7a6182d8d94cbe",
     "tests/unit/test_fact_contract.py": "4e739f6e3a3a9cae74057824615db912e38c2acc20f91ae109a2efb0c08f3dd7",
+    "tests/unit/test_fetchspec_receive.py": "abae694261328a1b0d94891be68fe4b145acd5478179c5f0b490104af4d83073",
+    "tests/unit/test_html_document.py": "346d25fc828cbae2abccccd51b687a102693dc9b35911d641ba4fd534ae23535",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
@@ -83,12 +85,12 @@
     "tests/unit/test_research.py": "8b10248feaa3fdd6eeb631bcaf74d045e4750d71dfaafa113cd746d50c6f0959",
     "tests/unit/test_research_navigation.py": "8edaecdc3a3a3050000746453cb41e1c38b4a699f14037e4d9b0eac84429ac44",
     "tests/unit/test_storage_layout.py": "6a1e204df0028c1fe3cd3c824022d0f7caa173083545a7933b8eec9b286fbd8c",
-    "tests/unit/test_supply.py": "9c6c58d03ca1bfc39291edee1350e11203dd77352e8790f042882f0ed8eecbc1",
+    "tests/unit/test_supply.py": "3e78b1c20e938deac2aef2da32e1b79723d4be4e66c5200b5d4ae100b4186760",
     "tests/unit/test_text_similarity.py": "428e0d72f97461a57a4bf4ec1c459abdeea8e3847638787a893881bfba621dcd",
     "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
     "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d",
-    "web/components/supply.js": "67497ef1cb528ef4ac0c2e79112b95a864e0c3c45d5dfb36e76e27ed996c172b",
-    "web/pages/supply.html": "5a8632da05f6f508d6594d2fcea4618399c89e12dabe1ef04af9e76266c31a4a"
+    "web/components/supply.js": "4926c056dda058d975bf185e7eea28fff8d36b33cc44afcb46fab4d4ce787fb1",
+    "web/pages/supply.html": "99e455c6c78a772be9136464e3d01b2f6e79aa091d8ebd929e581b66c373afeb"
   },
   "policies": [
     {
@@ -293,14 +295,14 @@
         "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。字体包切片覆盖率来自仓库文本频率，真实用户输入的生僻字仍会触发后续片下载。",
         "交互场景 HDR/面板纹理及页面退出已共享；离线 bake、比较台环境和下钻加载仍分别保留，全部 GPU/触摸设备与帧率未验。",
         "交互计算器验证公式一致性与页面状态，不证明研究假设代表任何具体项目报价，也不证明不同硬件、模型和任务具有可直接比较的有效设备小时。",
-        "供应首版仅计划管理：尚未接通外部任务执行、交付包验收、Spark 历史材料映射或正式研究采用；示例操作不构成生产交付验证。"
+        "Fetchspec 接收与 Reader handoff 已有代码验收；Spark 部署、真实 NVIDIA 包、服务/备份实测、采集任务调度、历史材料回填和正式研究证据采用仍未完成。"
       ]
     },
     {
       "policy": "acquisition-20260906",
       "scope": "project",
       "source": "framework/06_acquisition.md",
-      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；计划不冒充执行或采用。",
+      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、来源与研究关联、支持格式 Reader handoff、版本复核与候选不等于采用；计划不冒充执行或采用。",
       "tests": [
         "tests/unit/test_acquisition.py::AcquisitionTests.test_archive_preserves_revisions_and_is_idempotent",
         "tests/unit/test_acquisition.py::AcquisitionTests.test_failure_is_recorded_and_not_success",
@@ -315,11 +317,23 @@
         "tests/unit/test_supply.py::SupplyTests.test_validation_and_corruption_never_replace_state",
         "tests/unit/test_supply.py::SupplyTests.test_multiple_suppliers_and_concurrent_revision",
         "tests/unit/test_supply.py::SupplyTests.test_http_roles_and_private_storage",
-        "tests/supply.cjs"
+        "tests/supply.cjs",
+        "tests/unit/test_fetchspec_receive.py::FetchspecReceiveTests.test_receive_archives_by_content_and_hands_pdf_to_reader",
+        "tests/unit/test_fetchspec_receive.py::FetchspecReceiveTests.test_bad_hash_is_rejected_before_data_write",
+        "tests/unit/test_fetchspec_receive.py::FetchspecReceiveTests.test_unsupported_legacy_doc_file_is_preserved_but_not_reader_handed_off",
+        "tests/unit/test_fetchspec_receive.py::FetchspecReceiveTests.test_delivery_identity_collision_does_not_overwrite_receipt",
+        "tests/unit/test_fetchspec_receive.py::FetchspecReceiveTests.test_new_version_is_preserved_as_a_review_event",
+        "tests/unit/test_fetchspec_receive.py::FetchspecReceiveTests.test_contract_11_rejects_non_english_or_chinese_attachment",
+        "tests/unit/test_fetchspec_receive.py::FetchspecReceiveTests.test_restricted_attachment_is_rejected_before_archiving",
+        "tests/unit/test_html_document.py::HtmlDocumentTests.test_extracts_product_content_tables_and_links_without_executing_markup",
+        "tests/unit/test_html_document.py::HtmlDocumentTests.test_explicitly_marks_text_truncation",
+        "tests/unit/test_supply.py::SupplyTests.test_fetchspec_receipt_projects_candidate_reader_state_without_adoption",
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_scanned_pdf_blocks_and_office_document_is_structurally_read"
       ],
       "not_verified": [
-        "全文翻译、可靠 acquisition→reader handoff、撤回增量、全局限速与 GPU 调度仍未完整实现。",
-        "供应首版仅计划管理：尚未接通外部任务执行、交付包验收、Spark 历史材料映射或正式研究采用；执行主机的真实服务健康与避免源站双跑仍需在接通各 repo 时验证。"
+        "全文翻译、撤回增量、全局限速与 GPU 调度仍未完整实现。",
+        "Fetchspec receiver 已在源码与临时样本验收；尚未部署 Spark、接收 NVIDIA 真实交付包或核对 Spark 服务/备份健康。采集任务调度、历史材料回填与正式研究证据采用仍未接通。",
+        "PCN/规格新版语义、厂商分类/语言标记与产品身份需研究人员复核；源站抓取不完整时不能可靠推断产品已下架。"
       ]
     },
     {
@@ -511,7 +525,7 @@
         "Runtime layout 1 has no generic mapping migration tool: incompatible layouts must be restored or explicitly migrated. Historical volume copies are retained but no longer current consumers; private data is outside Git inventory.",
         "CLI 恢复进程参数只保证顺序调用，不支持线程同时委派；各子命令历史目录策略仍分别保留，不代表全命令数据权威已收敛。",
         "资源代次覆盖两张交互场景；bake/compare 的环境生命周期、场景几何/材质全面释放、上下文丢失恢复和真实设备 GPU 内存/帧率仍未验。",
-        "供应首版仅计划管理：尚未接通外部任务执行、交付包验收、Spark 历史材料映射或正式研究采用；示例操作不构成生产交付验证。"
+        "Fetchspec 接收与 Reader handoff 已有代码验收；Spark 部署、真实 NVIDIA 包、服务/备份实测、采集任务调度、历史材料回填和正式研究证据采用仍未完成。"
       ]
     }
   ]

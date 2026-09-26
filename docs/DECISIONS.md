@@ -2,6 +2,12 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-26：产品资料交付进入 Reader 候选闭环
+
+用户要求把供应中心从计划页推进为可验收流程。Fetchspec 交付包（兼容 1.0/1.1）先校验 manifest、完整 SHA256 集合、路径、格式签名与大小，再按字节 SHA 归档到现有 acquisition blob/catalog；来源观察、公司、官方一级产品分类、语言、Fetchspec 任务、问题/对象关系进入 `product_documents` 候选索引。同字节重投幂等，不同 SHA 保留旧版；PCN/规格新版提出影响复核，抓取失败或页面消失不自动撤销产品。支持提取的 PDF、HTML 与 Office 文件进入既有 Reader 队列，HTML 安全提取正文/表格/链接，Office 复用结构解析器；不支持格式保留为需补处理，不伪称已阅读。
+
+Reader 的报告仍是候选，沿用已有证据审核与采用流程。供应中心显示真实回执、Reader 状态，并支持按公司/分类/问题/格式/语言检索。实现和回归属于本地源码验收；Spark 尚未部署本版本，NVIDIA 真实投递包、实机 Reader/备份及研究证据采用仍未验，不宣称整条链路已生产交付。正式边界见 `framework/06_acquisition.md`、`framework/supply_contract.json` 与 `framework/verification_contract.json`。
+
 ## 2026-09-26：M4 OCR 重复中止与单页重试
 
 M4 分担 OCR 首批 27 份中头两份（46 页、70 页）整份失败：qwen3-vl:8b 在温度 0 下遇到重复表格行循环，Ollama 以 `prediction aborted, token repeat limit reached` 返回 500，同页复现两次均失败，而 worker 单页失败即放弃整份。用户采用：模型档案新增可选 `repeat_penalty`，只在 `spark_ocr` 设 1.05（该页 4/4 成功且两遍一致）；ocr-worker 单页 `model_failure` 重试一次，连续两次才放弃整份。`reading_identity()` 只取固定字段，Spark reader 冻结配方与其 `READER_OCR_MODEL` 构造的视觉客户端均不受影响。合并后抽查表格密集页的重复数值是否被惩罚吃掉。

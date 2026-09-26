@@ -19,6 +19,7 @@ from inresearch.materials import model_assets
 import hmac
 from inresearch.workflow import commands as commands
 from inresearch.workflow import supply
+from inresearch.adapters import acquisition
 from inresearch.knowledge import registry as research
 from inresearch.delivery import report as report_model
 import posixpath
@@ -260,6 +261,18 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, supply.snapshot(ROOT))
             except (ValueError, OSError, KeyError, TypeError):
                 return self._json(503, {"ok": False, "error": "供应台账不可用，请重试或修复"})
+        if urlsplit(self.path).path == "/api/product-documents":
+            query=parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+            allowed={'company_id','category','question_id','format','language','limit','offset'}
+            if set(query)-allowed or any(len(v)!=1 for v in query.values()):
+                return self._json(400, {'ok':False,'error':'invalid_product_document_query'})
+            try:
+                page={'limit':int(query.get('limit',['50'])[0]),'offset':int(query.get('offset',['0'])[0])}
+                filters={key:query[key][0] for key in allowed-{'limit','offset'} if key in query}
+                data_root=Path(os.environ.get('READER_DATA_ROOT',Path.home()/'.local/share/inresearch.ai')).expanduser()
+                return self._json(200,acquisition.product_documents(data_root,**filters,**page))
+            except (ValueError,TypeError):
+                return self._json(400, {'ok':False,'error':'invalid_product_document_filter'})
         if self.path == "/api/materials":
             return self._json(200, {"items": material_intake.records()[:200]})
         if self.path == "/api/status":
