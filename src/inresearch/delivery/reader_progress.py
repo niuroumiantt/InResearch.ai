@@ -107,6 +107,9 @@ def collect(data, now=None, journal=_journal, service=_service, celsius=_celsius
                      run['revision_id'])
             run['jobs'] = jobs
             priority.append(run)
+        floor_value = int(os.environ.get('READER_CLAIM_MIN_PRIORITY', '0') or 0)
+        held = conn.execute("SELECT COUNT(DISTINCT j.revision_id) FROM jobs j JOIN reading_runs d ON d.revision_id=j.revision_id "
+                            "WHERE j.state='pending' AND d.state NOT IN ('blocked','failed') AND d.priority<?", (floor_value,)).fetchone()[0]
         claims = []
         claim_root = data / 'offload' / 'm4' / 'claims'
         if claim_root.is_dir() and not claim_root.is_symlink():
@@ -122,7 +125,8 @@ def collect(data, now=None, journal=_journal, service=_service, celsius=_celsius
         run['m4_pages'] = _count_pages(results / run['doc_id']) if results.is_dir() else 0
     return {'generated': now, 'service': service(), 'release': os.environ.get('READER_RELEASE', 'unknown'),
             'celsius': celsius(), 'heat': heat(journal(3600), 3600), 'documents': documents, 'stages': stages,
-            'done': done, 'errors': errors, 'priority': priority, 'claims': claims, 'floor': floor}
+            'done': done, 'errors': errors, 'priority': priority, 'claims': claims, 'floor': floor,
+            'claim_floor': {'min_priority': floor_value, 'held_documents': held}}
 
 
 STATE_LABEL = {'complete': '完成', 'queued': '排队', 'running': '进行中', 'blocked': '阻塞', 'failed': '失败',
@@ -185,7 +189,8 @@ def render(s):
                     '<td><span class="pill %s">%s</span>%s</td><td class="sub">%s</td><td class="num">%s</td><td class="num">%s</td></tr>' % (
                         r['priority'], _e(name), _e(name), _jobs_line(r['jobs']), _tone(r['state']),
                         _e(STATE_LABEL.get(r['state'], r['state'])),
-                        ' <span class="sub">%s</span>' % _e(r['error_code']) if r['error_code'] else '',
+                        # A recovered document keeps its last error code; show it only while it still blocks.
+                        ' <span class="sub">%s</span>' % _e(r['error_code']) if r['error_code'] and r['state'] in ('blocked', 'failed') else '',
                         _e(r['phase']), '%s/%s' % (r['chunks_read'], r['chunks_total'] or '?'),
                         ('%d/%s' % (r['m4_pages'], r['pages_total'] or '?')) if r['m4_pages'] else '—'))
     stage_rows = ''.join('<tr><td>%s</td><td>%s</td><td class="num">%d</td></tr>' % (
@@ -199,6 +204,8 @@ def render(s):
     return PAGE % {
         'refresh': REFRESH_SECONDS, 'generated': _t(s['generated']), 'release': _e(s['release'][:12]),
         'tiles': tile_html, 'heat': _e(heat_text), 'heat_tone': 'bad' if hot else 'ok', 'floor': s['floor'],
+        'claim_floor': _e(('只读优先级 ≥ %d 的文档，其余 %d 份暂停（未删除）' % (s['claim_floor']['min_priority'], s['claim_floor']['held_documents']))
+                          if s.get('claim_floor', {}).get('min_priority') else '读取全部排队文档'),
         'count': len(s['priority']), 'rows': ''.join(rows) or '<tr><td colspan="6" class="sub">无</td></tr>',
         'claims': claim_rows, 'stages': stage_rows, 'errors': error_rows}
 
@@ -228,6 +235,7 @@ th{font-size:12px;color:var(--sub);font-weight:500}td.num{text-align:right;font-
 <div class="meta">生成于 %(generated)s · 版本 %(release)s · 每 %(refresh)d 秒自动刷新（需本机循环脚本在跑）</div>
 <div class="tiles">%(tiles)s</div>
 <div class="banner %(heat_tone)s">降温：%(heat)s</div>
+<div class="banner">范围：%(claim_floor)s</div>
 <h2>重点文档（优先级 ≥ %(floor)d，共 %(count)d 份）</h2>
 <div class="scroll"><table><thead><tr><th>分</th><th>文档 / 各环节 成功/总数</th><th>状态</th><th>环节</th><th>已读块</th><th>M4 OCR 页</th></tr></thead>
 <tbody>%(rows)s</tbody></table></div>

@@ -28,7 +28,7 @@ import tempfile
 import threading
 import time
 
-from inresearch.materials.reader_contracts import ReaderError, Blocked, Deferred, UnsafePath, IntegrityError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS, MAX_WORKERS, MODULES, THERMAL_LIMIT_C, THERMAL_PAUSE_SECONDS, THERMAL_SAMPLE_SECONDS, PARKED_BY_TRIAGE, PARK_REASONS, OCR_BLOCK_CODES
+from inresearch.materials.reader_contracts import ReaderError, Blocked, Deferred, UnsafePath, IntegrityError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS, MAX_WORKERS, MODULES, THERMAL_LIMIT_C, THERMAL_PAUSE_SECONDS, THERMAL_SAMPLE_SECONDS, PARKED_BY_TRIAGE, PARK_REASONS, OCR_BLOCK_CODES, CLAIM_MIN_PRIORITY
 from inresearch.materials.artifacts import now_iso, encoded, digest_bytes, digest_file, private_dir, safe_path, atomic_json, durable_rename, read_json, clean_name, signature, is_partial
 from inresearch.adapters.reader_model import ModelClient
 from inresearch.storage.catalog import Catalog
@@ -47,7 +47,7 @@ CONTEXT = models.load_profile(path=models.DEFAULT_CONFIG).context
 class Reader:
     def __init__(self, data_root=None, state_root=None, repo_root=None, model=None,
                  stable_seconds=60, chunk_chars=6000, clock=time.time, temperature=None,
-                 full_read_min_priority=1):
+                 full_read_min_priority=1, claim_min_priority=0):
         self.data = Path(data_root or Path.home() / ".local/share/inresearch.ai").expanduser().resolve()
         self.state = Path(state_root or Path.home() / ".local/state/inresearch.ai").expanduser().resolve()
         self.repo = Path(repo_root or project_root()).expanduser().resolve()
@@ -64,6 +64,9 @@ class Reader:
         if type(full_read_min_priority) is not int or not 1 <= full_read_min_priority <= 10:
             raise ValueError("full_read_min_priority must be an integer 1..10")
         self.full_read_min_priority = full_read_min_priority
+        if type(claim_min_priority) is not int or not 0 <= claim_min_priority <= 10:
+            raise ValueError("claim_min_priority must be an integer 0..10")
+        self.claim_min_priority = claim_min_priority
         if stable_seconds < 0 or not 1 <= chunk_chars <= 6000:
             raise ValueError("invalid scan stability or chunk size")
         self.catalog = None
@@ -423,7 +426,8 @@ class Reader:
             n = int(self.conn.execute("SELECT value FROM meta WHERE key='dispatch_count'").fetchone()[0])
             # Every fourth dispatch serves the oldest eligible job, independently of new priorities.
             order = "j.created,j.doc_id,j.chunk,j.job_id" if n % 4 == 0 else "d.priority DESC,j.created,j.doc_id,j.chunk,j.job_id"
-            row = self.conn.execute("SELECT j.* FROM jobs j JOIN reading_runs d ON d.revision_id=j.revision_id WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed') ORDER BY " + order + " LIMIT 1", (self.clock(),)).fetchone()
+            # The oldest-first turn also respects the floor: held documents wait, they do not starve the rest.
+            row = self.conn.execute("SELECT j.* FROM jobs j JOIN reading_runs d ON d.revision_id=j.revision_id WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed') AND d.priority>=? ORDER BY " + order + " LIMIT 1", (self.clock(), self.claim_min_priority)).fetchone()
             if not row:
                 return None
             self.conn.execute("UPDATE jobs SET state='running',attempts=attempts+1,started=?,error_code=NULL WHERE job_id=?", (self.clock(), row["job_id"]))
@@ -643,6 +647,8 @@ class Reader:
                 "oldest_pending": datetime.fromtimestamp(pending, timezone.utc).isoformat() if pending is not None else None,
                 "recent_failures": failures, "backend": self.model.identity,
                 "last_scan": scan, "thermal": dict(self.thermal),
+                "claim_floor": {"min_priority": self.claim_min_priority,
+                                "held_documents": self.conn.execute("SELECT COUNT(DISTINCT j.revision_id) FROM jobs j JOIN reading_runs d ON d.revision_id=j.revision_id WHERE j.state='pending' AND d.state NOT IN ('blocked','failed') AND d.priority<?", (self.claim_min_priority,)).fetchone()[0]},
                 "roots": {"data": str(self.data), "state": str(self.state)},
                 "acceptance": "candidate_only", "free_bytes": shutil.disk_usage(self.data).free}
 

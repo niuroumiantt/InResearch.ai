@@ -145,6 +145,8 @@ journalctl --user -u inresearch-reader.service -n 40 --no-pager
 python3 ~/code/inresearch.ai/manage.py reader status
 ```
 
+**认领下限（2026-09-27 起）**。`READER_CLAIM_MIN_PRIORITY`（默认 0 = 全部认领）设为 N 时，reader 只认领有效优先级 ≥ N 的文档的任务，每 4 次中取最老任务的那一次也受此限制；低于下限的文档任务原样留在队列（不计尝试、不删除），`reader status` 的 `claim_floor` 与进度页列出暂停份数，调低下限并重启即恢复。用户采用：Spark 先设 7，只读 191 份重点文档，其余约 1.15 万份暂停，因为 Spark 过去 1 小时 47% 时间在降温、峰值 94.6 ℃，每小时约 28 块，读全队列需数月。新到文档在 triage 前默认优先级 5，也会暂停。
+
 **进度页（2026-09-27 起）**。`manage.py reader-progress` 只读生成一页 HTML：reader 服务与机温、过去 1 小时降温暂停占比（取自 reader 日志）、优先级 ≥7 文档逐份的各环节成功/总数与失败原因、M4 已上传的 OCR 页数与当前认领、近 24 小时失败原因、全队列任务数。它以 `mode=ro` 打开 catalog，不初始化、不迁移、不抢队列锁，reader 运行中可随时生成。在 Mac 上运行 `sh ~/code/inresearch.ai/docs/local_setup/progress.sh`，每 60 秒从 Spark 取一次到 `~/inresearch-progress.html` 并首次用浏览器打开，页面自动刷新；M4 终端里 Claude 的逐页排查等不经 Spark 的工作不在页上。
 
 状态为 `idle/running/degraded`，另列每阶段数量、最老等待任务和错误码。`idle` 可能有退避中的重试或等待稳定的新文件，不能解释为全库已读完。状态中不记录模型响应正文、HTTP 凭据或异常响应体。
