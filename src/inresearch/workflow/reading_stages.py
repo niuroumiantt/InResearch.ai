@@ -163,7 +163,9 @@ class ReadingStages(ReadingArtifacts):
                 return {"text": "", "text_second_pass": "", "method": "m4_vision_ocr_gap", "gap": True,
                         "gap_reason": result["gap_reason"], "ocr_model": result.get("ocr_model"), "blank": False,
                         "verification": "page_not_read_after_rescue"}
-            if result.get("method") != "m4_vision_ocr_double_pass":
+            # A gap page re-read by the stronger gap_ocr model (adapters.gap_ocr) is held
+            # to the same double-read rules as the Ollama pages.
+            if result.get("method") not in {"m4_vision_ocr_double_pass", "m4_claude_vision_ocr_double_pass"}:
                 raise IntegrityError()
             if not isinstance(result.get("text"), str) or not isinstance(result.get("text_second_pass"), str):
                 raise IntegrityError()

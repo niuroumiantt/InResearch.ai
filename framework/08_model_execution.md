@@ -16,7 +16,7 @@ Claude Code、Codex CLI 等是操作客户端，分别记录 `executor` 与实�
 
 Claude CLI 在临时目录中以非交互模式运行，材料从标准输入传入；禁用工具、MCP、浏览器、项目指令与会话持久化。Reader 按 triage/read/synthesize 阶段传入 JSON Schema，由 CLI 以结构化结果返回；只有结果确实携带 `structured_output` 时，CLI 的 `stop_reason=tool_use` 才作为结构化输出完成接受。其余停止原因仍失败，模型身份照常核验。其他支持的后端使用各自 JSON 模式，由项目再次解析与校验。阅读引文还要逐字绑定原文；引用校验失败最多触发一次带明确反馈的重新生成；第二次仍不符的主张被剔除并留档，其余已核对的主张照常保存，不降低证据门槛（2026-09-27 起：此前整块阻断；b6b6、dd2d 首页侧栏文字抽取时混入正文，模型引用跨侧栏的句子，一条引文不符使整份文档失败）。认证与代理由 CLI 及运行环境负责，项目不复制 OAuth 凭据、不写死本机代理。`command` 可配置可执行文件的绝对路径；模型身份来自 CLI 的实际回答事件，并记录 `executor=claude-code`。用量统计可能包含 CLI 的辅助模型，不冒充阅读模型。这一推理适配器与终端操作客户端共享业务契约，但职责不同。
 
-`text_json` 和 `vision_json` 是适配器接受的能力声明，须经目标模型的小样本验收后配置；声明本身不证明质量。OCR 必须显式配置 `ocr` 角色，当前视觉适配支持 Ollama。没有视觉能力的文本模型不能冒充读过图片。
+`text_json` 和 `vision_json` 是适配器接受的能力声明，须经目标模型的小样本验收后配置；声明本身不证明质量。OCR 必须显式配置 `ocr` 角色，视觉适配支持 Ollama 与 Claude CLI。没有视觉能力的文本模型不能冒充读过图片。Claude CLI 看图时，页面图片以一条 stream-json 用户消息（图片块加提示文字）经标准输入传入，工具仍全部禁用，图片哈希记入 `_model.image_sha256`。
 
 reader 各环节 schema 中 `object_ids`、`question_ids` 不是必填字段（2026-09-27 起）：它们本可为空数组，reader 把缺失当空数组；设为必填时，Sonnet 偶尔省略空的 `object_ids`，Claude CLI 按 `--json-schema` 内部重试 5 次后以 `is_error` 退出，整份文档被阻塞。正文字段（摘要、claims、引文等）仍为必填。M4 另两次 CLI 失败是 Sonnet 把 read 摘要写成整份文档概述（3678 字，上限 1200）并漏掉 `claims`；read 提示因此写明摘要只写本块、1200 字以内（约 3–6 句），且顶层必须返回 `chunk_sha256`、`summary`、`claims`（无内容时为 []）。
 
@@ -44,6 +44,7 @@ Reader JSON 快照可用重复的 `--doc-id` 显式限定交付范围。限定�
 | L1 大批粗筛（Spark） | 本地 qwen3 系列 | 只作排序与粗分；本地模型分数偏宽、有锚定，不单独决定提升 |
 | L1 打分与复核（M4，`research_default`） | Claude Sonnet 5 | 含 5–7 分边界与 ≥7 分待提升的复核 |
 | OCR | 本地 `spark_ocr`（qwen3-vl:8b） | 只对优先级高的扫描件；不为无关扫描件做 OCR |
+| OCR 缺页补读（M4，`gap_ocr`） | Claude Sonnet 5（`claude_sonnet_vision`） | 只读 qwen 救援后仍失败的显式缺页；同样双读一致才采用，否则仍为缺页 |
 | L2 全文深读与事实抽取（终端） | Claude Sonnet 5 | Claude Code 会话以 Sonnet 5 执行 pack/record，`--model` 如实记录 |
 | L2 核心材料与 C3 前审阅（`core_review`） | Claude Opus 5.5 | 9 分白皮书、复杂表格、数据相互矛盾或采用前审阅 |
 | 长尾全文候选（Spark reader） | 本地 qwen3.8:27b | 只作候选阅读，不直接采用 |
@@ -64,3 +65,5 @@ Reader JSON 快照可用重复的 `--doc-id` 显式限定交付范围。限定�
 代码契约测试覆盖配置切换、旧配方兼容、模型身份、结构化输出、失败恢复及不重复阅读。生产能力另用代表性材料验证覆盖、引文、数字与边界、耗时和失败原因；第二型号未实测时不能声称已经兼容。常驻服务是否生效以实际源码、配置与运行记录为准。
 
 `python3 manage.py models --probe` 通过所选配置发送一条无研究材料的真实 JSON 请求，核对结构和实际模型；配置校验或交互式 CLI 登录成功不能代替这项检查。CLI 参数依据本机 `claude --help` 及 [官方非交互文档](https://code.claude.com/docs/en/headless)。
+
+缺页补读（2026-09-28 起，用户采用）：`python3 -m inresearch.adapters.gap_ocr --data-root <数据根> --doc-id <id>` 只处理该文档 `offload/m4/results` 下的 `m4_vision_ocr_gap` 页。先核对原件哈希，逐页渲染后由 `gap_ocr` 角色读两次，按与其他 OCR 页相同的规则（不可读、空白不一致、数字不一致、非空页无字、空白页有字）判定；通过的页写为 `m4_claude_vision_ocr_double_pass`，原缺页记录移到 `offload/m4/gap-history`，并删除该页的抽取缓存，下一次 `reader retry` 重新抽取。未通过的页保持缺页。工具不写台账、原件或其他页。起因：48c8、ce50、ea7d 共 11 页 qwen 救援后仍失败，超过缺页上限而阻断。

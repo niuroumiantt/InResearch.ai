@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.28.26",
+  "version": "2026.09.28.28",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -24,9 +24,9 @@
     "framework/05_interface_system.md": "aed7a1d55678af60c257f5845e728891de02373586bcc9a062efd4a02d7958a1",
     "framework/06_acquisition.md": "2a7a976da0a6c88a8dc610c296dab7b1bade62e43e48d698c978a07e9466341c",
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
-    "framework/08_model_execution.md": "6c7ca8eb8c8c07cd35040b4017fd38cd15b75bcbe4cedec5a52b94db55163b66",
+    "framework/08_model_execution.md": "0356abb567daaae73482fd23a07ee88cd09899c470c4e1ced164d40946cf3386",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "065a41e1941fcf51d8a03804358d8868d454eb2191baeda95947451d9c67b2f7",
+    "framework/CURRENT.md": "d3426449a548b8523081e4e4a55b8f066287dd68cc5acf2924014ddb77fdd802",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "957110086c4f4affad40a8ddf0f7029693137c3221319f1ec16ecc1453df7b8a",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -107,7 +107,8 @@
     "web/pages/supply.html": "8d239586466f575fb52c194fc933326689f55e07e4c07d67fb9ffa89cfa5f32c",
     "tests/unit/test_product_catalog.py": "0e5761bfcb7d1c4b442647656c487955264c03d7685d0b5d69b87b8df278b3a1",
     "tests/product_catalog.cjs": "99f168cace55c05fc9acabc286a42f23298c45388a443ff755ce15984357e369",
-    "tests/unit/test_dropped_claims.py": "99983da6847024aca4592bcf7d89fbfe38522d45d9c645919c17d686bcb8e08e"
+    "tests/unit/test_dropped_claims.py": "99983da6847024aca4592bcf7d89fbfe38522d45d9c645919c17d686bcb8e08e",
+    "tests/unit/test_gap_ocr.py": "991f1d49e189e8ac5230e6140e4b367de4d63498855d04e9cf0994da70dcda1c"
   },
   "policies": [
     {
@@ -519,7 +520,7 @@
       "policy": "model-execution-20260912",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims；read 的 schema 与提示中 claims 排在摘要之前，提示要求先写 claims、摘要只简述本块；CLI 超出输出上限时同一调用以 --effort low 重试一次并记录 effort，再次超限报 model_cli_output_limit（按临时错误重试），其他错误与正常调用不带 --effort",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims；read 的 schema 与提示中 claims 排在摘要之前，提示要求先写 claims、摘要只简述本块；CLI 超出输出上限时同一调用以 --effort low 重试一次并记录 effort，再次超限报 model_cli_output_limit（按临时错误重试），其他错误与正常调用不带 --effort；Claude CLI 看图：图片以 stream-json 图片块经标准输入传入、工具仍禁用、图片哈希记入 _model，纯文本调用不变；gap_ocr 只读显式缺页，原件哈希不符不调用模型，双读一致才写入并移走缺页记录、只删该页抽取缓存，未通过仍为缺页；reader 接受补读页；中断后重跑会清掉已补页残留的缺页缓存，试运行不写任何文件",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
@@ -558,7 +559,15 @@
         "tests/unit/test_optional_mapping_ids.py::SchemaTests.test_claims_come_before_the_summary",
         "tests/unit/test_model_runtime.py::CliOutputLimitTests.test_output_limit_is_retried_once_at_low_effort_and_recorded",
         "tests/unit/test_model_runtime.py::CliOutputLimitTests.test_a_second_output_limit_is_reported_and_other_errors_are_not_retried",
-        "tests/unit/test_model_runtime.py::CliOutputLimitTests.test_normal_calls_carry_no_effort_flag"
+        "tests/unit/test_model_runtime.py::CliOutputLimitTests.test_normal_calls_carry_no_effort_flag",
+        "tests/unit/test_gap_ocr.py::CliImageTests.test_image_goes_in_as_one_stream_json_message",
+        "tests/unit/test_gap_ocr.py::CliImageTests.test_text_calls_are_unchanged",
+        "tests/unit/test_gap_ocr.py::CliImageTests.test_the_shipped_gap_role_is_a_claude_vision_profile",
+        "tests/unit/test_gap_ocr.py::FillTests.test_agreeing_reads_fill_the_gap_and_drop_only_its_cached_page",
+        "tests/unit/test_gap_ocr.py::FillTests.test_changed_original_is_refused_before_any_model_call",
+        "tests/unit/test_gap_ocr.py::FillTests.test_dry_run_lists_gaps_without_reading",
+        "tests/unit/test_gap_ocr.py::FillTests.test_the_reader_accepts_the_filled_page",
+        "tests/unit/test_gap_ocr.py::FillTests.test_a_rerun_after_an_interrupted_fill_drops_the_stale_cache"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。",
