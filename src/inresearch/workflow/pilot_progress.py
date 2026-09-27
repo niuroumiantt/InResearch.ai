@@ -2,6 +2,7 @@
 import json
 import os
 from pathlib import Path
+from datetime import datetime, timezone
 
 from inresearch.storage.files import locked, write_json
 from inresearch.storage.layout import workspace_path
@@ -73,10 +74,12 @@ def public_snapshot(root):
     value = json.loads(target.read_text(encoding='utf-8'))
     status = value['status']
     docs = value['snapshot']['knowledge']['documents']
+    received_at = value.get('received_at') or datetime.fromtimestamp(
+        target.stat().st_mtime, timezone.utc).isoformat()
     # Deliberately expose summaries only; candidate evidence remains in /api/research.
     return {'available': True, 'project': 'nvidia', 'source': value['source'],
         'acceptance': 'candidate_only', 'generated': status.get('generated'),
         'counts': status.get('counts', {}), 'documents_total': status.get('documents_total'),
         'documents': [{'id': d.get('id'), 'title': d.get('title'),
             'coverage': d.get('coverage')}
-            for d in docs], 'received_at': value.get('received_at')}
+            for d in docs], 'received_at': received_at}
