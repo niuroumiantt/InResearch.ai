@@ -285,7 +285,7 @@ cat ~/.local/state/inresearch.ai/publish-status.json
 
 ### NAS 不可用时接收 M5 阅读候选（临时 NVIDIA 流程）
 
-原件仍留在 Spark。M5 只拿按 SHA 选出的临时副本，在本机 Reader 导出 JSON 快照；不得把 `reader-sync.token` 复制到 M5。将快照经 SSH 传到 Spark 的私有临时目录（不要放入 `raw-materials/`），核对传输前后 SHA256 后，在 Spark 新版 checkout 上执行：
+原件仍留在 Spark。M5 只拿按 SHA 选出的临时副本，在本机 Reader 导出 JSON 快照；不得把 `reader-sync.token` 复制到 M5。可重复 `reader export --doc-id <完整 doc-ID>`，只导出已有完整 coverage 的指定文档，不会让同批其他未完成材料阻断已完成文档的候选交付；`reader.status` 仍如实反映整批 degraded 状态。没有完整报告的所选文档会拒绝导出。将快照经 SSH 传到 Spark 的私有临时目录（不要放入 `raw-materials/`），核对传输前后 SHA256 后，在 Spark 新版 checkout 上执行：
 
 ```bash
 python3 manage.py publish --snapshot /明确路径/candidate-snapshot.json

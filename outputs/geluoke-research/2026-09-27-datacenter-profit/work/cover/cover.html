@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta charset="utf-8">
+<link rel="stylesheet" href="file:///home/user/InResearch.ai/web/assets/fonts/fonts.css">
+<style>
+:root{--navy:#0B1F3A;--ink:#F4F6FA;--gold:#E0B45C;--cyan:#7FD3FF;--mute:#9FB3CC;--line:rgba(244,246,250,0.22);}
+*{box-sizing:border-box}
+body{margin:0;width:1200px;height:1800px;background:var(--navy);color:var(--ink);font-family:"Noto Sans SC","WenQuanYi Zen Hei",sans-serif;overflow:hidden;position:relative}
+.grid{position:absolute;inset:0;background-image:linear-gradient(rgba(127,211,255,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(127,211,255,0.06) 1px,transparent 1px);background-size:60px 60px}
+.sheet{position:absolute;inset:0;padding:44px 56px 40px;display:flex;flex-direction:column}
+.brand{display:flex;justify-content:space-between;align-items:baseline;border-bottom:2px solid var(--gold);padding-bottom:12px}
+.brand .l{font-size:30px;font-weight:700;letter-spacing:2px}
+.brand .r{font-size:22px;color:var(--mute);letter-spacing:1px}
+h1{margin:24px 0 10px;font-size:56px;line-height:1.25;font-weight:700;color:#fff}
+h1 em{font-style:normal;color:var(--gold)}
+.sub{font-size:30px;line-height:1.5;color:var(--cyan);margin:0 0 6px}
+.claim{font-size:25px;line-height:1.5;color:var(--mute);margin:0}
+.band{margin:18px 0 6px;border:1px solid var(--line);border-radius:6px;padding:14px 0 6px;position:relative}
+.band .tag{position:absolute;top:-14px;left:16px;background:var(--navy);padding:0 10px;font-size:20px;color:var(--gold);letter-spacing:2px}
+.band img{display:block;width:1088px;height:auto;margin:0 auto}
+.paths{display:flex;gap:12px;margin-top:14px}
+.path{flex:1;background:rgba(255,255,255,0.05);border:1px solid var(--line);border-radius:6px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center}
+.path .n{font-size:22px;line-height:1.3;color:var(--ink)}
+.path .v{font-size:34px;font-weight:700;color:var(--gold);margin-left:10px;white-space:nowrap}
+.pnote{font-size:18px;color:var(--mute);margin:6px 0 0 4px}
+.layers{display:flex;gap:10px;margin-top:12px}
+.layer{flex:1;border:1px solid var(--line);border-radius:6px;padding:8px 12px;position:relative}
+.layer .h{font-size:23px;font-weight:700;color:var(--cyan);margin-bottom:4px}
+.layer .t{font-size:19px;line-height:1.35;color:var(--mute)}
+.layer:after{content:"›";position:absolute;right:-12px;top:22px;color:var(--gold);font-size:30px}
+.layer:last-child:after{content:""}
+.mods{margin-top:14px}
+.mod{display:flex;align-items:flex-start;gap:14px;padding:9px 0;border-top:1px solid var(--line)}
+.mod:last-child{border-bottom:1px solid var(--line)}
+.mod .n{flex:0 0 46px;height:46px;border-radius:50%;border:2px solid var(--gold);color:var(--gold);font-size:25px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.mod .k{flex:0 0 250px;font-size:28px;font-weight:700;line-height:1.3;padding-top:4px}
+.mod .v{flex:1;font-size:29px;line-height:1.4;color:var(--ink);padding-top:4px}
+.mod .v b{color:var(--gold);font-weight:700}
+.foot{margin-top:auto;display:flex;align-items:flex-end;gap:24px;padding-top:12px;border-top:2px solid var(--gold)}
+.foot .c{flex:1}
+.foot .concl{font-size:29px;line-height:1.45;font-weight:700;color:#fff;margin:0 0 10px}
+.foot .sig{font-size:22px;color:var(--mute)}
+.qr{flex:0 0 170px;height:170px;background:transparent;border:1px dashed rgba(244,246,250,0.35);border-radius:4px;display:flex;align-items:center;justify-content:center}
+.qr img{width:100%;height:100%;display:block;background:#fff}
+</style></head><body>
+<div class="grid"></div>
+<div class="sheet">
+  <div class="brand"><div class="l">格洛可数据中心专题｜2026年9月27日</div><div class="r">造价 · 回报 · 融资 · 电力 · 中国参照</div></div>
+  <h1>造一座数据中心有多挣钱——<em>四层账本</em></h1>
+  <p class="sub">摩根士丹利1GW GB300账本剖面，预测估算</p>
+  <p class="claim">GB300账本ROIC 31%，需8.5美元/GPU·小时与75%利用率同时成立</p>
+  <div class="band"><span class="tag">1GW 账本剖面（摩根士丹利2026年9月估算，示意）</span><img src="ledger_xsec.svg"></div>
+  <div class="paths"><div class="path"><div class="n">超大规模厂商出租GPU</div><div class="v">31%</div></div><div class="path"><div class="n">自有基础设施上的模型API</div><div class="v">46%</div></div><div class="path"><div class="n">租第三方算力跑API</div><div class="v">25%*</div></div></div>
+  <div class="pnote">*第三条为NOPAT利润率（NOPAT÷收入），前两条为ROIC（NOPAT÷总资本开支）</div>
+  <div class="layers"><div class="layer"><div class="h">带电的壳</div><div class="t">美元/MW·年，10–25年长期租约</div></div><div class="layer"><div class="h">机柜托管</div><div class="t">美元/kW·月，按约定功率计费</div></div><div class="layer"><div class="h">GPU云</div><div class="t">美元/GPU·小时，按需或多年承诺</div></div><div class="layer"><div class="h">模型API</div><div class="t">美元/百万token，按用量计价</div></div></div>
+  <div class="mods"><div class="mod"><div class="n">1</div><div class="k">壳层租约</div><div class="v">三案成本收益率<b>16%–20%</b>；20年租约年租金<b>217–238万美元/MW</b></div></div><div class="mod"><div class="n">2</div><div class="k">融资结构</div><div class="v">三年需<b>3.21万亿美元</b>，信贷占<b>54.5%</b>；壳层票据票息<b>6.75%–9.25%</b></div></div><div class="mod"><div class="n">3</div><div class="k">电力与监管</div><div class="v">电价每变1美分/kWh，年电费变<b>1.05亿美元</b>；表后自发电每GW加<b>30亿美元</b></div></div><div class="mod"><div class="n">4</div><div class="k">折旧与价格</div><div class="v">IT寿命3年ROIC降至<b>25%</b>；单价7美元<b>23%</b>、利用率60%<b>22%</b></div></div><div class="mod"><div class="n">5</div><div class="k">中国参照</div><div class="v">万国数据新建托管<b>11%</b>（220万元÷2,000万元/MW），DLR <b>11.5%</b></div></div></div>
+  <div class="foot">
+    <div class="c"><p class="concl">估算的回报在上层，合同锁定的回报在壳层；中间隔着单价、利用率与票息</p><div class="sig">格洛可数据中心研究 · 2026年9月27日</div></div>
+    <div class="qr"></div>
+  </div>
+</div>
+</body></html>

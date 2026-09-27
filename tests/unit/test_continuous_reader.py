@@ -129,6 +129,28 @@ class ReaderTests(unittest.TestCase):
         self.assertEqual(report["claims"][0]["object_ids"], ["obj-server"])
         self.assertEqual(report["evidence"][0]["question_ids"], ["q-power"])
 
+    def test_scoped_candidate_export_includes_only_complete_selected_docs(self):
+        self.register("first.txt", "第一份资料有可核实的完整内容。\n")
+        self.run_reader()
+        complete = self.first_doc()
+        self.register("second.txt", "第二份资料仍在排队。\n")
+        proposals = self.reader.data / "candidates/mapping-proposals.json"
+        proposals.parent.mkdir(parents=True, exist_ok=True)
+        proposals.write_text("preserve-global-proposals", encoding="utf-8")
+
+        snapshot = self.reader.export_snapshot(verify=True, doc_ids=[complete["doc_id"]])
+        self.assertEqual([row["id"] for row in snapshot["knowledge"]["documents"]], [complete["doc_id"]])
+        self.assertTrue(snapshot["knowledge"]["documents"][0]["coverage"]["complete"])
+        self.assertEqual(proposals.read_text(encoding="utf-8"), "preserve-global-proposals")
+        queued = dict(self.reader.conn.execute(
+            "SELECT * FROM current_readings WHERE original_name='second.txt'").fetchone())
+        with self.assertRaisesRegex(ValueError, "complete coverage"):
+            self.reader.export_snapshot(verify=True, doc_ids=[queued["doc_id"]])
+        with self.assertRaisesRegex(ValueError, "unknown current document"):
+            self.reader.export_snapshot(verify=True, doc_ids=["doc-" + "f" * 64])
+        with self.assertRaisesRegex(ValueError, "unique full document IDs"):
+            self.reader.export_snapshot(doc_ids=[])
+
     def test_switching_default_keeps_one_completed_reading(self):
         self.put()
         self.run_reader()
