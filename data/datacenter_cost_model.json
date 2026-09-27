@@ -291,64 +291,81 @@
     }
   },
   "model_note": "参数均为研究假设。单位成本采用同一参考硬件配置下的有效设备小时；它不是跨 GPU 代际、模型或任务的等效计算单位。资本年化采用恒定更新／持续服务近似，不是逐期现金流、采购报价、利润预测或税后估值。 收益参照只把市场租金与同口径的每有效设备小时全成本相减：全成本已含资本成本率对应的资本回收，因此“每小时盈余”是超过该资本成本的部分，不是会计利润、NOPAT 或税后回报；租金基准来自各自时点的公开指数、厂商价目与研究报告，不代表当期成交价。",
-  "benchmarks": [
-    {
-      "label": "H100 一年期合约（25–75 分位）",
-      "value": "2.10–2.70",
-      "unit": "美元/GPU·小时",
-      "as_of": "2026-04",
-      "source": "SemiAnalysis GPU 租金指数",
-      "evidence_class": "研究实测",
-      "url": "https://gpu-index.semianalysis.com/"
-    },
-    {
-      "label": "H100 / B200 按需加权指数",
-      "value": "2.82 / 3.68",
-      "unit": "美元/GPU·小时",
-      "as_of": "2026-04",
-      "source": "SemiAnalysis GPU 租金指数",
-      "evidence_class": "研究实测",
-      "url": "https://gpu-index.semianalysis.com/"
-    },
-    {
-      "label": "GB300 出租基准价（ROIC 31% 对应）",
-      "value": "8.5（情景 7–10）",
-      "unit": "美元/GPU·小时",
-      "as_of": "2026-09",
-      "source": "摩根士丹利《AI 指南》p26–27",
-      "evidence_class": "预测估算",
-      "url": ""
-    },
-    {
-      "label": "GB300 NVL72 五年折旧全成本（80–90% 利用率）",
-      "value": "2.56–2.88",
-      "unit": "美元/有效 GPU·小时",
-      "as_of": "2026-08-31",
-      "source": "Data Gravity",
-      "evidence_class": "研究估算",
-      "url": ""
-    },
-    {
-      "label": "1GW GB300 资本开支（IT 23 + 非 IT 16）",
-      "value": "39",
-      "unit": "十亿美元/GW",
-      "as_of": "2026-09",
-      "source": "摩根士丹利《AI 指南》p22、p27",
-      "evidence_class": "预测估算",
-      "url": ""
-    },
-    {
-      "label": "绿地开发造价（不含 GPU）",
-      "value": "17.6",
-      "unit": "百万美元/MW",
-      "as_of": "2026-09-03",
-      "source": "Cushman & Wakefield 2026 开发成本指南公告",
-      "evidence_class": "研究实测",
-      "url": "https://ir.cushmanwakefield.com/news/press-release-details/2026/Cushman--Wakefield-Releases-2026-Data-Center-Development-Cost-Guide-Citing-21-Rise-in-Per-MW-Construction-Costs/default.aspx"
-    }
-  ],
   "provenance": {
     "2026-09-14": "docs/research/2026-09-14/datacenter-cost/（基准成本模型与 Excel）",
-    "2026-09-27": "docs/research/2026-09-27/datacenter-profit/（收益参照、GB300 预设与租金基准来自《造一座数据中心有多挣钱》研究卡）"
-  }
+    "2026-09-27": "docs/research/2026-09-27/datacenter-profit/（收益参照、GB300 预设与租金基准来自《造一座数据中心有多挣钱》研究卡）",
+    "prices": "data/prices.json（页面按 series_id 取最新时点；新数据经 add-price 或 docs/research/<日期>/<主题>/price_records.py 录入后自动显示）"
+  },
+  "benchmark_series": [
+    {
+      "series_id": "gpu-hourly-h100-contract-1y",
+      "label": "H100 一年期合约指数（区间中值）",
+      "group": "租金指数"
+    },
+    {
+      "series_id": "gpu-hourly-h100-neocloud-index",
+      "label": "H100 新兴云分段指数",
+      "group": "租金指数"
+    },
+    {
+      "series_id": "gpu-hourly-h100-hyperscaler-index",
+      "label": "H100 超大规模云分段指数",
+      "group": "租金指数"
+    },
+    {
+      "series_id": "gpu-hourly-h100-ondemand-median",
+      "label": "H100 按需挂牌中位数",
+      "group": "租金指数"
+    },
+    {
+      "series_id": "gpu-hourly-b200-index",
+      "label": "B200 综合指数",
+      "group": "租金指数"
+    },
+    {
+      "series_id": "gpu-hourly-b300-index",
+      "label": "B300 综合指数",
+      "group": "租金指数"
+    },
+    {
+      "series_id": "benchmark-ms-gb300-rent-baseline",
+      "label": "GB300 出租基准价（研报假设）",
+      "group": "租金指数"
+    },
+    {
+      "series_id": "benchmark-gb300-nvl72-tco-hour",
+      "label": "GB300 NVL72 每有效 GPU·小时全成本",
+      "group": "造价与资本开支"
+    },
+    {
+      "series_id": "benchmark-ms-capex-per-gw-gb300",
+      "label": "1GW GB300 资本开支（IT + 非 IT）",
+      "group": "造价与资本开支"
+    },
+    {
+      "series_id": "construction-cost-greenfield-na",
+      "label": "北美绿地开发造价（不含 GPU）",
+      "group": "造价与资本开支"
+    },
+    {
+      "series_id": "shell-lease-rent-per-it-mw-year",
+      "label": "带电壳租约期均租金（最新一单）",
+      "group": "造价与资本开支"
+    },
+    {
+      "series_id": "colo-asking-rent-nova-250-500kw",
+      "label": "北弗吉尼亚 250–500 kW 托管报价",
+      "group": "电价与托管"
+    },
+    {
+      "series_id": "industrial-power-price-us-us",
+      "label": "美国工业零售电价（全美）",
+      "group": "电价与托管"
+    },
+    {
+      "series_id": "cn-idc-ebitda-per-mw-gds",
+      "label": "万国数据在手订单 EBITDA/MW",
+      "group": "电价与托管"
+    }
+  ]
 }

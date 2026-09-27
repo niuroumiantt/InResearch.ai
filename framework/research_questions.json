@@ -1,6 +1,6 @@
 {
-  "version": "2.1.1",
-  "updated": "2026-09-06",
+  "version": "2.2.0",
+  "updated": "2026-09-27",
   "records": [
     {
       "id": "M01-Q01",
@@ -9636,6 +9636,210 @@
         "counterevidence"
       ],
       "acceptance": "提供具体型号及拆解或官方材料定位；未知单列，经 C3 核验后采用。"
+    },
+    {
+      "id": "M11-Q11",
+      "module_id": "M11",
+      "text": "带电壳（powered shell）租约的成本收益率（年 NOI ÷ 自报造价）在已披露合同中的分布是多少？与 REIT 开发项目稳定收益率（Digital Realty 约 11.5%）和超大规模自建的差距来自租期、三净条款还是造价口径？",
+      "object_ids": [
+        "scope:M11"
+      ],
+      "views": [
+        "R"
+      ],
+      "status": "open",
+      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "evidence_requirements": [
+        "primary_source",
+        "locator",
+        "scope",
+        "counterevidence",
+        "reproducible_calculation"
+      ],
+      "origin": "study-feedback",
+      "study": "docs/research/2026-09-27/datacenter-profit/"
+    },
+    {
+      "id": "M11-Q12",
+      "module_id": "M11",
+      "text": "同一 GW 级 AI 数据中心的利润在芯片、壳层、算力出租、模型四层之间如何分配？租金或芯片价格变动时利润在层间怎样转移？",
+      "object_ids": [
+        "scope:M11",
+        "scope:M12",
+        "scope:M13"
+      ],
+      "views": [
+        "R"
+      ],
+      "status": "open",
+      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "evidence_requirements": [
+        "primary_source",
+        "locator",
+        "scope",
+        "counterevidence",
+        "reproducible_calculation"
+      ],
+      "origin": "study-feedback",
+      "study": "docs/research/2026-09-27/datacenter-profit/"
+    },
+    {
+      "id": "M11-Q13",
+      "module_id": "M11",
+      "text": "超大规模厂商未开始租赁承诺（微软 3,291 亿美元、Meta 2,790 亿美元等）与表外算力/电力采购承诺如何计入资本成本与 ROIC？评级机构的调整后债务口径与公司口径差多少？",
+      "object_ids": [
+        "scope:M11"
+      ],
+      "views": [
+        "R"
+      ],
+      "status": "open",
+      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "evidence_requirements": [
+        "primary_source",
+        "locator",
+        "scope",
+        "counterevidence",
+        "reproducible_calculation"
+      ],
+      "origin": "study-feedback",
+      "study": "docs/research/2026-09-27/datacenter-profit/"
+    },
+    {
+      "id": "M11-Q14",
+      "module_id": "M11",
+      "text": "服务器折旧年限差异（亚马逊 5 年、Meta 5.5 年、Alphabet/甲骨文 6 年、微软 2–6 年）对每 GW NOPAT 与 ROIC 的影响能否量化？年限延长带来的利润有多少是会计而非现金？",
+      "object_ids": [
+        "scope:M11"
+      ],
+      "views": [
+        "R"
+      ],
+      "status": "open",
+      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "evidence_requirements": [
+        "primary_source",
+        "locator",
+        "scope",
+        "counterevidence",
+        "reproducible_calculation"
+      ],
+      "origin": "study-feedback",
+      "study": "docs/research/2026-09-27/datacenter-profit/"
+    },
+    {
+      "id": "M12-Q09",
+      "module_id": "M12",
+      "text": "模型 API 自有基础设施（研报 NOPAT 利润率约 46%）与租用第三方算力（约 25%）的差距随算力租金变化的临界点在哪里？租金降到什么水平租用比自建更优？",
+      "object_ids": [
+        "scope:M12",
+        "scope:M13"
+      ],
+      "views": [
+        "R"
+      ],
+      "status": "open",
+      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "evidence_requirements": [
+        "primary_source",
+        "locator",
+        "scope",
+        "counterevidence",
+        "reproducible_calculation"
+      ],
+      "origin": "study-feedback",
+      "study": "docs/research/2026-09-27/datacenter-profit/"
+    },
+    {
+      "id": "M13-Q11",
+      "module_id": "M13",
+      "text": "GB300 / GB200 的市场租金与每有效 GPU·小时全成本之间的差距是多少？研报 8.5 美元基准假设与实际报价（Verda 9.62、CoreWeave GB200 10.50、Oracle 18）如何对照？需要建立 GB300 租价追踪序列。",
+      "object_ids": [
+        "scope:M13",
+        "part:gpu"
+      ],
+      "views": [
+        "R"
+      ],
+      "status": "open",
+      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "evidence_requirements": [
+        "primary_source",
+        "locator",
+        "scope",
+        "counterevidence",
+        "reproducible_calculation"
+      ],
+      "origin": "study-feedback",
+      "study": "docs/research/2026-09-27/datacenter-profit/"
+    },
+    {
+      "id": "M13-Q12",
+      "module_id": "M13",
+      "text": "H100 租金各口径（SemiAnalysis 合约指数、Silicon Data 分段指数、厂商挂牌、聚合站中位数）之间的差异如何调和为一条可比序列？分段（超大规模云 vs 新兴云）的价差是否会收敛？",
+      "object_ids": [
+        "scope:M13"
+      ],
+      "views": [
+        "R"
+      ],
+      "status": "open",
+      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "evidence_requirements": [
+        "primary_source",
+        "locator",
+        "scope",
+        "counterevidence",
+        "reproducible_calculation"
+      ],
+      "origin": "study-feedback",
+      "study": "docs/research/2026-09-27/datacenter-profit/"
+    },
+    {
+      "id": "M14-Q11",
+      "module_id": "M14",
+      "text": "中国托管每 MW EBITDA ÷ 每 MW 造价（万国数据约 11%）与海外壳层 16%–20% 的差距，由电价、上架率、租金、折旧年限各解释多少？中国 IDC REIT 分派率（5%–6%）是否与之自洽？",
+      "object_ids": [
+        "scope:M14",
+        "scope:M11"
+      ],
+      "views": [
+        "R"
+      ],
+      "status": "open",
+      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "evidence_requirements": [
+        "primary_source",
+        "locator",
+        "scope",
+        "counterevidence",
+        "reproducible_calculation"
+      ],
+      "origin": "study-feedback",
+      "study": "docs/research/2026-09-27/datacenter-profit/"
+    },
+    {
+      "id": "M04-Q11",
+      "module_id": "M04",
+      "text": "各区域工业电价差异（得州 7 美分、弗吉尼亚 10 美分、爱尔兰 25 欧分、宁夏 0.36 元）对每 GPU 小时全成本的弹性是多少？租金差异能否覆盖电价差异？",
+      "object_ids": [
+        "scope:M04",
+        "scope:M13"
+      ],
+      "views": [
+        "R"
+      ],
+      "status": "open",
+      "acceptance": "须有原文定位、适用范围、分母与时点；作者计算须附可复算脚本；经过 C3 采用审核的回答才能关闭。",
+      "evidence_requirements": [
+        "primary_source",
+        "locator",
+        "scope",
+        "counterevidence",
+        "reproducible_calculation"
+      ],
+      "origin": "study-feedback",
+      "study": "docs/research/2026-09-27/datacenter-profit/"
     }
   ],
   "policy": "ID 固定；旧问题文本与 modules.json 逐字校验。对象专属问题不通过同模块材料或父节点材料自动关闭。"

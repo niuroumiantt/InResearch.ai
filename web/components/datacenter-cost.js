@@ -51,13 +51,22 @@
   }
   function setActivePreset(id){document.querySelectorAll('#presets button').forEach(b=>b.classList.toggle('active',b.dataset.id===id));}
   function applyPreset(id){values={...spec.assumptions,...(spec.presets[id]?.changes||{})};renderInputs();setActivePreset(id);byId('preset-note').textContent=spec.presets[id]?.note||'';render();}
-  function renderBenchmarks(){
+  const GRADE_LABEL={regulatory:'监管披露',company:'公司披露',research:'研究实测',media:'媒体转述',estimate:'估算'};
+  const REGION_LABEL={global:'全球','north-america':'北美',europe:'欧洲','asia-pacific':'亚太',CN:'中国'};
+  function latestBySeries(records){const out={};for(const r of records||[]){if(!out[r.series_id]||r.as_of>out[r.series_id].as_of)out[r.series_id]=r;}return out;}
+  function renderBenchmarks(prices){
     const host=byId('benchmark-list');if(!host)return;host.replaceChildren();
-    for(const b of spec.benchmarks||[]){
-      const row=make('div','benchmark-row'),head=make('div'),name=make('b','',b.label),val=make('strong','',b.value+' '+b.unit),meta=make('small','',b.source+' · '+b.as_of+' · '+b.evidence_class);
-      head.append(name,meta);row.append(head,val);host.append(row);
+    const latest=latestBySeries(prices.records),shown=[];let group='';
+    for(const b of spec.benchmark_series||[]){
+      const r=latest[b.series_id];if(!r)continue;shown.push(r);
+      if(b.group&&b.group!==group){group=b.group;host.append(make('h3','benchmark-group',group));}
+      const row=make('div','benchmark-row'),head=make('div'),name=make('b','',b.label),val=make('strong','',formatValue(r.value)+' '+r.unit),
+        meta=make('small','',[r.as_of,GRADE_LABEL[r.grade]||r.grade,REGION_LABEL[r.region]||r.region||''].filter(Boolean).join(' · '));
+      head.append(name,meta);row.append(head,val);row.title=(r.note||'')+(r.assumptions?'；'+r.assumptions:'');host.append(row);
     }
+    const stamp=byId('benchmark-updated');if(stamp)stamp.textContent=shown.length?'数据更新至 '+shown.map(r=>r.as_of).sort().pop()+'，共 '+shown.length+' 条序列的最新时点':'价格库暂无对应序列';
   }
+  const formatValue=v=>Math.abs(v)>=1000?Math.round(v).toLocaleString():Number(v).toLocaleString(undefined,{maximumFractionDigits:2});
   function renderPresets(){const host=byId('presets');host.replaceChildren();for(const [id,p] of Object.entries(spec.presets)){const b=make('button','',p.label);b.type='button';b.dataset.id=id;b.addEventListener('click',()=>applyPreset(id));host.append(b);}}
   function renderBars(out){
     const labels={servers:'服务器资本年化',network:'集群网络资本年化',facility:'设施与接入资本年化',land:'土地机会成本',energy:'电量费',demand:'计费需量费用',opex:'其他运营支出',water:'现场水费'};
@@ -95,8 +104,9 @@
     byId('return-state').textContent=hasRent?(out.surplusPerHour>=0?'租金覆盖全成本（含 '+number(values.rate*100,1)+'% 资本回收）':'租金低于全成本，资本回收不足'):'在左侧“收益参照”填入租金，或选择带租金的情景预设';
     renderBars(out);renderMatrix();
   }
-  fetch('/data/datacenter_cost_model.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(data=>{
+  const getJson=url=>fetch(url,{cache:'no-store'}).then(r=>{if(!r.ok)throw Error(url+' HTTP '+r.status);return r.json()});
+  Promise.all([getJson('/data/datacenter_cost_model.json'),getJson('/data/prices.json').catch(()=>({records:[]}))]).then(([data,prices])=>{
     spec=data;values={...spec.assumptions};baseline=calculate(values);byId('model-date').textContent='口径 '+spec.as_of;byId('model-note').textContent=spec.model_note;
-    renderPresets();renderBenchmarks();renderInputs();applyPreset('baseline');byId('reset-model').addEventListener('click',()=>applyPreset('baseline'));app.removeAttribute('aria-busy');
+    renderPresets();renderBenchmarks(prices);renderInputs();applyPreset('baseline');byId('reset-model').addEventListener('click',()=>applyPreset('baseline'));app.removeAttribute('aria-busy');
   }).catch(error=>{const el=byId('cost-error');el.hidden=false;el.textContent='成本模型加载失败：'+error.message;app.setAttribute('aria-busy','false')});
 })();

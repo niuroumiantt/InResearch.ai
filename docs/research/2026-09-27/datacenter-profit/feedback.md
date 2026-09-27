@@ -30,24 +30,44 @@
 
 预设中的作者拆分：100MW 折算后 IT capex 23 亿拆为服务器 20 亿 + 网络 3 亿；非 IT 16 亿拆为设施 13.5 亿 + 接入 2 亿 + 土地 0.5 亿；“能源及其他 2 亿/年”扣除模型电费 0.61 亿与需量费 0.18 亿后，其他运营支出取 1.21 亿。研报没有这些拆分，页面预设说明已注明。
 
-## 三、数据候选（未采用，等待事实层与价格序列录入）
+## 三、价格序列录入（2026-09-27 第二轮，已采用）
 
-研究卡 `cards.json` 共 369 个数据点，本次只把与计算器直接相关的 7 条写入页面。以下类别建议下一步进入 `data/prices.json`（价格序列）或 `data/facts.json`（事实层），录入时按 `knowledge.fact_contract` 补齐 asserter、caliber、locator：
+`price_records.py --apply` 向 `data/prices.json` 追加 160 条记录、105 个序列，`manage.py validate --strict` 通过。页面“租金、造价与电价基准”改为按 `benchmark_series` 从价格库取每个序列的最新时点，新数据录入即显示，页面本身不再保存数字。
 
-- GPU 小时租金序列：SemiAnalysis 2023H1–2026-04 合约区间、Silicon Data 分段价、Lambda / CoreWeave / Nebius / RunPod / Verda / AWS / Azure / Oracle 2026-09-27 价目（研究卡 gpu-rental-prices）。
-- 带电壳租约：TeraWulf、Cipher、Hut 8、Riot、Core Scientific 已披露合同的 MW、年租金、期限、自报造价（研究卡 shell-lease-terms）。
-- 超大规模 capex 与容量：2025–2028 分公司 capex、总算力 GW、ASIC 占比（report_facts A3）。
-- 融资结构：2026–2028 数据中心资本需求 3.21 万亿美元的股权/信贷拆分（report_facts A4）。
-- 中国托管经济：万国数据、世纪互联、润泽等每 MW EBITDA、造价、上架率、电价（研究卡 china-idc-companies、china-policy-costs）。
-- 高盛 2026–2031 AI capex 分年（算力/数据中心/电力）（report_facts B）。
+| 类别 | 序列（示例） | 记录数 | 来源等级 | 研究卡 |
+|---|---|---|---|---|
+| H100 一年期合约指数（区间中值） | gpu-hourly-h100-contract-1y，2023H1–2026-04 共 18 点 | 18 | research | gpu-rental-prices |
+| H100 分段指数与历史中位数 | gpu-hourly-h100-{neocloud,hyperscaler,marketplace}-index | 16 | research | gpu-rental-prices |
+| H200 / B200 / B300 / MI300X 指数、按需指数、挂牌中位数 | gpu-hourly-*-index、-ondemand-index、-ondemand-median | 11 | research / media | gpu-rental-prices |
+| 厂商按需与预留价目 | gpu-hourly-*-ondemand-{lambda,nebius,runpod,verda,coreweave,aws,azure,oracle}、-capacity-block-aws | 29 | company / media | gpu-rental-prices |
+| 中国整机月租 | gpu-monthly-*-cn-* | 3 | media | china-policy-costs |
+| 研报假设与 TCO 估算 | benchmark-ms-gb300-rent-baseline、benchmark-ms-capex-per-gw-*、benchmark-gb300-nvl72-* | 10 | research / estimate | report_facts A1/A2、gpu-rental-prices |
+| 造价 | construction-cost-greenfield-na、construction-cost-shell-per-it-mw-* | 7 | research / estimate | shell-lease-terms |
+| 带电壳租约期均租金（作者计算） | shell-lease-rent-per-it-mw-year，11 单 | 11 | estimate | shell-lease-terms |
+| 托管报价、REIT 收益率、空置率 | colo-asking-rent-*、colo-wholesale-rent-flapd-20mw-plus-eur、colo-rent-new-lease-dlr、reit-development-yield-dlr、vacancy-rate-na-cbre | 12 | research / company | cbre-jll-pricing-europe-apac、dlr-equinix-q2-2026 |
+| 中国单位经济与电价 | cn-idc-*-gds、cn-colo-mrr-per-cabinet-vnet、cn-reit-fee-per-kw-month-gds、cn-dc-power-price-* | 9 | company / media | china-idc-companies、china-policy-costs |
+| 电价与容量市场 | industrial-power-price-{us-*,ie,de,nl,no,se,fi,eu,my,jp,id}、pjm-capacity-price-bra-rto、ercot-realtime-all-in-power-cost | 34 | regulatory / research / media | power-price-benchmarks |
 
-## 四、规范反哺
+录入规则：`series_id + as_of` 唯一；区间取中值并在 `assumptions` 写明区间；作者由合同总额折算的租金记 `estimate` 并写明分母；公开页面不再更新的序列（SemiAnalysis 合约指数、研报假设）显式 `frequency: default`，避免按季度口径催更新。
+
+## 三之二、仍未录入（候选）
+
+- 超大规模 capex 与容量（2025–2028 分公司 capex、总算力 GW、ASIC 占比，report_facts A3）：属预测序列，等 `capex-*-annual` 序列口径确认后录入。
+- 融资结构（3.21 万亿美元的股权/信贷拆分，report_facts A4）与高盛 2026–2031 分年 capex（report_facts B）：单次预测表，建议进事实层而非价格序列。
+- 超大规模厂商折旧年限与未开始租赁承诺（研究卡 hyperscaler-depreciation-leases）：事实层候选，按 `knowledge.fact_contract` 补 asserter、caliber、locator。
+- CoreWeave / Nebius / Applied Digital 财报与积压（研究卡 coreweave-q2-2026、nebius-applied-digital）：公司事实，进事实层。
+
+## 四、研究问题（已立项）
+
+`framework/research_questions.json` 新增 9 条 `origin: study-feedback` 问题（版本 2.2.0）：M11-Q11 带电壳成本收益率分布、M11-Q12 四层利润分配、M11-Q13 表外租赁承诺与 ROIC、M11-Q14 折旧年限对 NOPAT 的量化、M12-Q09 自建与租用算力的临界租金、M13-Q11 GB300/GB200 租金与全成本差距、M13-Q12 H100 租金口径调和、M14-Q11 中国托管收益率差距分解、M04-Q11 电价对 GPU 小时成本的弹性。验收要求作者计算附可复算脚本。
+
+## 五、规范反哺
 
 - `docs/geluoke/专题写作规则.md` 新增第九节“研究反哺”，指向本规则。
-- 新建 `docs/geluoke/专题反哺规则.md`，规定每篇长文交付后的反哺步骤、落点与验收。
+- 新建 `docs/geluoke/专题反哺规则.md`，规定每篇长文交付后的反哺步骤、落点与验收；第二轮补充“价格库是唯一数字来源，页面按序列取最新时点”。
 
-## 五、本次未完成
+## 六、本次未完成
 
 - Excel 工作簿未加收益页（缺 openpyxl，且 09-14 基准不变，不影响一致性声明）。
-- 事实层与价格序列录入未做，见第三节候选。
-- 研究问题库（`research_questions.json`）尚无“盈利/回报”类问题，建议下一次专题前先立问题。
+- 事实层录入未做，见“三之二”候选；价格序列已录入。
+- GB300 尚无公开租金指数，只有厂商挂牌与研报假设；M13-Q11 要求建立追踪序列。

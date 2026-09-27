@@ -37,10 +37,10 @@
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
 | `data/datacenter_cost_model.json` | groups | 5 |
-| `data/datacenter_cost_model.json` | benchmarks | 6 |
+| `data/datacenter_cost_model.json` | benchmark_series | 14 |
 | `data/facts.json` | records | 7849 |
 | `data/policies.json` | records | 2 |
-| `data/prices.json` | records | 207 |
+| `data/prices.json` | records | 367 |
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 120 |
@@ -338,7 +338,7 @@
 | `framework/research_graph.json` | hardware_domains | 8 |
 | `framework/research_graph.json` | catalog_topic_mappings | 35 |
 | `framework/research_graph.json` | research_topics | 9 |
-| `framework/research_questions.json` | records | 449 |
+| `framework/research_questions.json` | records | 458 |
 | `framework/supply_contract.json` | providers | 10 |
 | `framework/verification_contract.json` | policies | 13 |
 | `outputs/geluoke-research/2026-09-26/checks/validation.json` | images | 5 |
@@ -652,6 +652,7 @@
 | [docs/research/2026-09-27/datacenter-profit/README.md](research/2026-09-27/datacenter-profit/README.md) | 配套说明 |
 | [docs/research/2026-09-27/datacenter-profit/article.md](research/2026-09-27/datacenter-profit/article.md) | 配套说明 |
 | [docs/research/2026-09-27/datacenter-profit/feedback.md](research/2026-09-27/datacenter-profit/feedback.md) | 配套说明 |
+| `docs/research/2026-09-27/datacenter-profit/price_records.py` | 运行代码 |
 | `docs/research/2026-09-27/datacenter-profit/profit-model-results.json` | 项目配置 |
 | `docs/research/2026-09-27/datacenter-profit/profit-model.py` | 运行代码 |
 | [docs/research/2026-09-27/datacenter-profit/sources.md](research/2026-09-27/datacenter-profit/sources.md) | 配套说明 |
