@@ -21,7 +21,8 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
  // Powered shell: 19% yield on cost; landlord row appears in the split
  await page.getByRole('button',{name:'带电壳三净租约（矿企转型）'}).click();
  assert.equal(await page.locator('#kpi-shell').textContent(),'19.0%');
- assert.ok((await page.locator('#shell-table').textContent()).includes('DSCR'));
+ assert.ok((await page.locator('#shell-table').textContent()).includes('DSCR'));assert.ok((await page.locator('#shell-table').textContent()).includes('含 15 年期权'));assert.ok((await page.locator('#shell-table').textContent()).includes('税后'));
+ await page.getByRole('button',{name:'新兴云 H100 租壳（2026 合约价）'}).click();assert.ok((await page.locator('#compute-table').textContent()).includes('租金年变动 -10.0%'));assert.ok((await page.locator('#compute-table').textContent()).includes('0.41×'));
  // China colocation: 11% yield
  await page.getByRole('button',{name:'中国托管（万国数据口径）'}).click();assert.equal(await page.locator('#kpi-shell').textContent(),'11.0%');
  // Changing an input drops the preset highlight and recomputes

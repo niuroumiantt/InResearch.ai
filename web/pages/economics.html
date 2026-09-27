@@ -65,6 +65,7 @@
           <div class="card-head"><div><p class="eyebrow">COMPUTE LEDGER</p><h2>算力层：收入到 NOPAT</h2></div><span>年度 · 当前项目</span></div>
           <div id="waterfall" class="chart-host"></div>
           <p class="footnote" id="waterfall-note"></p>
+          <ul class="ledger-table" id="compute-table"></ul>
         </article>
         <article class="card">
           <div class="card-head"><div><p class="eyebrow">PROFIT SPLIT</p><h2>四层利润分配</h2></div><span>每年 · 当前项目</span></div>
@@ -112,8 +113,8 @@
         <article class="card formula-card">
           <div class="card-head"><div><p class="eyebrow">RECONCILIATION</p><h2>四本账怎么算</h2></div></div>
           <ol>
-            <li><b>算力层</b><span>收入 = GPU 数 × 8,760 × 付费利用率 × 租金；EBITDA = 收入 − 电费 − 其他运营 − 壳租/托管费；NOPAT = (EBITDA − 折旧) × (1 − 税率)；ROIC = NOPAT ÷ 投入资本；盈亏平衡价 = (资本按资本成本率年化回收 + 运营支出) ÷ 付费 GPU 小时</span></li>
-            <li><b>壳层</b><span>NOI = 租金 × NOI 利润率；成本收益率 = NOI ÷ (非 IT 资本开支 + 土地)；债务按租期等额还本付息；DSCR = NOI ÷ 还本付息；IRR 按租期现金流与期末残值</span></li>
+            <li><b>算力层</b><span>收入 = GPU 数 × 8,760 × 付费利用率 × 租金；EBITDA = 收入 − 电费 − 其他运营 − 壳租/托管费；NOPAT = (EBITDA − 折旧) × (1 − 税率)；ROIC = NOPAT ÷ 投入资本；盈亏平衡价 = (资本按资本成本率年化回收 + 运营支出) ÷ 付费 GPU 小时；IRR 用租金年变动的收入路径；杠杆 IRR 按 GPU 债务等额还本付息、利息抵税</span></li>
+            <li><b>壳层</b><span>NOI = 租金 × NOI 利润率；成本收益率 = NOI ÷ (非 IT 资本开支 + 土地)；债务按租期等额还本付息；DSCR = NOI ÷ 还本付息；现金税 = (NOI − 设施折旧 − 利息) × 税率；IRR 按租期现金流与期末残值；含期权 IRR 把续约期 NOI 按行权概率加权</span></li>
             <li><b>模型层</b><span>token = 收费 GPU 小时 × 3,600 × 吞吐；收入 = token ÷ 10⁶ × 单价；自有算力成本 = 运营支出 + 折旧，租用成本 = GPU 小时 × 租金；NOPAT 利润率 = NOPAT ÷ 收入</span></li>
             <li><b>芯片层</b><span>厂商毛利 = IT 资本开支 × 加速器占比 × 毛利率，在 IT 折旧年限内年化；只表示项目资本开支中流向芯片厂商的利润，不是厂商财务预测</span></li>
           </ol>

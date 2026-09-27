@@ -38,7 +38,13 @@
     "rent_price": 8.5,
     "tokens_per_gpu_sec": 2000,
     "price_per_m_tokens": 1.57,
-    "monetized_share": 1.0
+    "monetized_share": 1.0,
+    "renewal_options": 0,
+    "renewal_years": 5,
+    "renewal_probability": 0.5,
+    "price_change": 0,
+    "compute_ltc": 0,
+    "compute_debt_rate": 0.1
   },
   "groups": [
     {
@@ -62,6 +68,7 @@
         "facility_mode",
         "utilization",
         "gpu_price",
+        "price_change",
         "power_load",
         "pue",
         "power_price",
@@ -70,7 +77,9 @@
         "it_life",
         "shell_life",
         "tax",
-        "wacc"
+        "wacc",
+        "compute_ltc",
+        "compute_debt_rate"
       ]
     },
     {
@@ -83,7 +92,10 @@
         "noi_margin",
         "shell_ltc",
         "debt_rate",
-        "residual_share"
+        "residual_share",
+        "renewal_options",
+        "renewal_years",
+        "renewal_probability"
       ]
     },
     {
@@ -373,6 +385,56 @@
       "max": 100,
       "step": 1,
       "display": "percent"
+    },
+    "price_change": {
+      "label": "租金年变动",
+      "unit": "%/年",
+      "min": -50,
+      "max": 50,
+      "step": 0.5,
+      "display": "percent",
+      "note": "用于 IRR 的收入路径；首年指标不变"
+    },
+    "compute_ltc": {
+      "label": "GPU 抵押债务占 IT 投资",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "display": "percent",
+      "note": "0 = 全权益"
+    },
+    "compute_debt_rate": {
+      "label": "GPU 债务利率",
+      "unit": "%",
+      "min": 0,
+      "max": 30,
+      "step": 0.1,
+      "display": "percent",
+      "note": "按 IT 折旧年限等额还本付息"
+    },
+    "renewal_options": {
+      "label": "续约期权个数",
+      "unit": "个",
+      "min": 0,
+      "max": 6,
+      "step": 1
+    },
+    "renewal_years": {
+      "label": "每个期权年限",
+      "unit": "年",
+      "min": 1,
+      "max": 20,
+      "step": 1
+    },
+    "renewal_probability": {
+      "label": "行权概率",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "display": "percent",
+      "note": "概率加权进含期权 IRR"
     }
   },
   "generations": {
@@ -521,9 +583,12 @@
         "facility_mode": "lease",
         "gpu_price": 2.4,
         "shell_rent_per_mw": 1.9,
-        "rent_price": 2.4
+        "rent_price": 2.4,
+        "price_change": -0.1,
+        "compute_ltc": 0.6,
+        "compute_debt_rate": 0.11
       },
-      "note": "H100 一年期合约指数 2026-04 区间 2.10–2.70 中值；租壳 190 万美元/MW·年为已披露带电壳合同的期均值；IT 资本开支为作者估算。"
+      "note": "H100 一年期合约指数 2026-04 区间 2.10–2.70 中值；租壳 190 万美元/MW·年为已披露带电壳合同的期均值；IT 资本开支为作者估算。租金路径按年 −10%（H100 合约指数 2023–2025 年均降幅量级）；60% GPU 抵押债务、11% 利率为新兴云项目债量级的作者假设。"
     },
     "shell_three_net": {
       "label": "带电壳三净租约（矿企转型）",
@@ -536,9 +601,12 @@
         "escalator": 0.03,
         "noi_margin": 1.0,
         "shell_ltc": 0.85,
-        "debt_rate": 0.066
+        "debt_rate": 0.066,
+        "renewal_options": 3,
+        "renewal_years": 5,
+        "renewal_probability": 0.5
       },
-      "note": "造价 1,000 万美元/IT MW（TeraWulf、Cipher 公告 800–1,100 万）；租金取 Hut 8、Cipher、TeraWulf 已披露合同期均值约 190 万美元/MW·年；三净；85% 项目融资、利率参照 Hut 8 River Bend 6.58% 票据。"
+      "note": "造价 1,000 万美元/IT MW（TeraWulf、Cipher 公告 800–1,100 万）；租金取 Hut 8、Cipher、TeraWulf 已披露合同期均值约 190 万美元/MW·年；三净；85% 项目融资、利率参照 Hut 8 River Bend 6.58% 票据。三个 5 年续约期权按 50% 概率加权。"
     },
     "china_colo_gds": {
       "label": "中国托管（万国数据口径）",
@@ -552,9 +620,10 @@
         "noi_margin": 1.0,
         "shell_ltc": 0.6,
         "debt_rate": 0.04,
-        "power_price": 0.07
+        "power_price": 0.07,
+        "residual_share": 0.5
       },
-      "note": "万国数据 2026Q2 电话会：在建资本开支约 2,000 万元/MW、在手订单 EBITDA 220 万元/MW·年，按 7.2 元/美元折算（作者假设）；EBITDA 视作 NOI；杠杆与利率为作者假设。成本收益率约 11%。"
+      "note": "万国数据 2026Q2 电话会：在建资本开支约 2,000 万元/MW、在手订单 EBITDA 220 万元/MW·年，按 7.2 元/美元折算（作者假设）；EBITDA 视作 NOI；杠杆与利率为作者假设。成本收益率约 11%。10 年租期后按壳层投资 50% 计残值（作者假设）。"
     },
     "model_api_own": {
       "label": "模型 API · 自有基础设施",
@@ -716,7 +785,7 @@
     "prices": "data/prices.json（页面按 series_id 取最新时点）",
     "reference_implementation": "docs/research/datacenter-economics/model.py"
   },
-  "model_note": "四本账共用同一项目定义。算力层的 ROIC 按研报口径（直线折旧、税后 NOPAT ÷ 总投资）；每 GPU 小时全成本另按资本成本率做年化回收，用于盈亏平衡价。壳层用租约现金流算成本收益率、杠杆现金回报、DSCR 与 IRR。模型层把 GPU 小时换成 token 收入。芯片层只显示厂商毛利在项目资本开支中的份额。所有结果是同一套研究假设下的说明性计算，不是对任何公司的预测。 GPU 密度按 density_rule 由厂商机柜功率折算，各代际的来源与口径见 generations.density_basis。",
+  "model_note": "四本账共用同一项目定义。算力层的 ROIC 按研报口径（直线折旧、税后 NOPAT ÷ 总投资）；每 GPU 小时全成本另按资本成本率做年化回收，用于盈亏平衡价。壳层用租约现金流算成本收益率、杠杆现金回报、DSCR 与 IRR。模型层把 GPU 小时换成 token 收入。芯片层只显示厂商毛利在项目资本开支中的份额。所有结果是同一套研究假设下的说明性计算，不是对任何公司的预测。 GPU 密度按 density_rule 由厂商机柜功率折算，各代际的来源与口径见 generations.density_basis。 壳层现金税 = (NOI − 设施折旧 − 利息) × 税率；算力层杠杆 IRR 按 GPU 债务等额还本付息、利息抵税计算。",
   "density_rule": {
     "rack_share_of_it_power": 0.81,
     "text": "每 MW GPU 数 = 1,000 kW × 加速器机柜占 IT 功率份额 ÷ (机柜功率 ÷ 每柜 GPU 数)。份额 81% 由研报 GB300 每 GW 410,256 颗与 NVIDIA 142 kW/72 颗反推，其余 IT 功率为网络、存储、CPU 主机。"
