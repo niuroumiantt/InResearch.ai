@@ -19,6 +19,7 @@ class PilotProgressTests(unittest.TestCase):
         self.old = os.environ.get('INRESEARCH_NVIDIA_PILOT_PROGRESS')
         os.environ['INRESEARCH_NVIDIA_PILOT_PROGRESS'] = str(self.target)
         snapshot = json.loads(Path('/tmp/inresearch-m5-nvidia-pilot.14cpTZ/exports/nvidia-three-complete-candidate.json').read_text())
+        snapshot['questions_version'] = json.loads((self.root / 'framework/research_questions.json').read_text())['version']
         # Unit fixture with no dependency on M5's ephemeral temporary directory.
         snapshot['knowledge']['documents'] = [{
             'id': 'doc-' + 'a' * 64, 'content_sha256': 'a' * 64,

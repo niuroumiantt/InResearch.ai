@@ -68,5 +68,5 @@ def public_snapshot(root):
         'acceptance': 'candidate_only', 'generated': status.get('generated'),
         'counts': status.get('counts', {}), 'documents_total': status.get('documents_total'),
         'documents': [{'id': d.get('id'), 'title': d.get('title'),
-            'coverage': d.get('coverage'), 'source_url': d.get('source_url')}
+            'coverage': d.get('coverage')}
             for d in docs], 'received_at': value.get('received_at')}

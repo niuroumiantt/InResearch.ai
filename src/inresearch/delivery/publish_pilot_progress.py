@@ -18,7 +18,8 @@ def main(argv=None):
             raise ValueError('input must be a regular file')
     if args.status.stat().st_size > 2 * 1024 * 1024 or args.snapshot.stat().st_size > 14 * 1024 * 1024:
         raise ValueError('pilot progress payload exceeds upload limit')
-    token_path = Path(os.environ['INRESEARCH_PILOT_TOKEN_FILE']).expanduser()
+    token_path = Path(os.environ.get('INRESEARCH_PILOT_TOKEN_FILE',
+        Path.home() / '.local/state/inresearch.ai/nvidia-pilot.token')).expanduser()
     if token_path.is_symlink() or stat.S_IMODE(token_path.stat().st_mode) & 0o077:
         raise ValueError('receiver credential must be a private regular file')
     token = token_path.read_text().strip()

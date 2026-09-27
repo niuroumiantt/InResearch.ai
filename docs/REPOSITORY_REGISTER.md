@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：961。
+在册文件：967。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 266 |
-| 运行代码 | 203 |
+| 历史快照 | 267 |
+| 运行代码 | 206 |
 | 现行规范 | 13 |
 | 项目配置 | 87 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 27 |
 | 配套说明 | 53 |
-| 测试 | 78 |
+| 测试 | 80 |
 
 ## 在册记录集合
 
@@ -330,7 +330,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 17 |
+| `framework/interface_manifest.json` | static_pages | 18 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
@@ -1185,6 +1185,7 @@
 | `tests/datacenter_news.cjs` | 测试 |
 | `tests/hardware_ecosystems.cjs` | 测试 |
 | `tests/model_assets.cjs` | 测试 |
+| `tests/nvidia_pilot.cjs` | 测试 |
 | `tests/object_network.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_node_hover.cjs` | 测试 |
@@ -1238,6 +1239,7 @@
 | `tests/unit/test_ocr_worker_named.py` | 测试 |
 | `tests/unit/test_ocr_worker_resume.py` | 测试 |
 | `tests/unit/test_ollama_schema.py` | 测试 |
+| `tests/unit/test_pilot_progress.py` | 测试 |
 | `tests/unit/test_product_library.py` | 测试 |
 | `tests/unit/test_publish_reader.py` | 测试 |
 | `tests/unit/test_reader_depth.py` | 测试 |
