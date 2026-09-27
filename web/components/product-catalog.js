@@ -11,7 +11,9 @@
     return `<h3>${rich(table.section || `官方表格 ${table.index}`)}</h3><div class="table-wrap"><table aria-label="${esc(table.section)}"><tbody>${table.rows.map(row=>`<tr>${row.map(c=>{const tag=c.header?'th':'td';return `<${tag} colspan="${Number(c.colspan)||1}" rowspan="${Number(c.rowspan)||1}">${rich(c.text)}</${tag}>`;}).join('')}</tr>`).join('')}</tbody></table></div>${table.notes?`<p class="notes">${rich(table.notes)}</p>`:''}`;
   }
   function details(p, compact = false) {
-    return `<h2>${esc(p.name)}</h2><p>${esc(p.navigation?.family_label)} · ${esc(kinds[p.kind])}</p><details><summary>官方原始分类与获取记录</summary><p>${esc(p.category)}</p><p class="muted">在售状态：待核对 · 获取于 ${esc(p.observed_at)}</p></details>${compact?'':`<button id="compare">${compared.has(p.id)?'移出并排核查':'加入并排核查（最多 4 项）'}</button>`}${p.tables.length?p.tables.map(tableHtml).join(''):'<p class="notice">已发现官方产品入口，具体规格仍待寻找或提取。这里不以相邻产品参数补值。</p>'}<p class="source"><a href="${esc(p.source_url)}" target="_blank" rel="noopener">查看官方来源</a> · 原文快照 SHA-256：${esc(p.source_sha256)}</p>${p.attachments.length?`<details><summary>关联附件（${p.attachments.length}）</summary><ul>${p.attachments.map(a=>`<li><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.label||a.url.split('/').pop())}</a></li>`).join('')}</ul></details>`:''}`;
+    const parent=p.parent_id?catalog.products.find(x=>x.id===p.parent_id):null;
+    const resources=p.official_resources||[];
+    return `<h2>${esc(p.name)}</h2><p>${esc(p.navigation?.family_label)} · ${esc(kinds[p.kind])}${parent?` · 所属平台：${esc(parent.name)}`:''}</p><details><summary>官方原始分类与获取记录</summary><p>${esc(p.category)}</p><p class="muted">在售状态：待核对 · 地图状态：${esc(p.map_change_status||'已登记')} · 获取于 ${esc(p.observed_at)}</p></details>${compact?'':`<button id="compare">${compared.has(p.id)?'移出并排核查':'加入并排核查（最多 4 项）'}</button>`}${p.tables.length?p.tables.map(tableHtml).join(''):'<p class="notice">已发现官方产品入口，具体规格仍待寻找或提取。这里不以相邻产品参数补值。</p>'}<p class="source"><a href="${esc(p.source_url)}" target="_blank" rel="noopener">查看官方来源</a> · 原文快照 SHA-256：${esc(p.source_sha256)}</p>${resources.length?`<details open><summary>官方规格资料入口（${resources.length}，尚未确认文件可直接下载）</summary><ul>${resources.map(a=>`<li><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.label||a.url)}</a> · ${esc(a.access_status||'待核实')}</li>`).join('')}</ul></details>`:''}${p.attachments.length?`<details><summary>关联附件（${p.attachments.length}）</summary><ul>${p.attachments.map(a=>`<li><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.label||a.url.split('/').pop())}</a></li>`).join('')}</ul></details>`:''}`;
   }
   function select(id) {
     selected=id;
@@ -67,7 +69,9 @@
       catalog=data;
       if(!data.available){$('#status').textContent='等待 M5 首次交付产品清单。';return;}
       const c=data.coverage;
-      $('#status').textContent=`更新于 ${data.generated_at} · 官方清单整理中，尚未确认全公司产品总数`;
+      const pm=c.product_map||{};
+      const delta=Object.entries(pm.changes||{}).map(([k,v])=>`${k} ${v}`).join(' / ');
+      $('#status').textContent=`更新于 ${data.generated_at} · 产品地图 ${pm.entries||c.entity_counts.named_product||0} 项${delta?` · 本次 ${delta}`:''} · 官方清单整理中，尚未确认全公司产品总数`;
       $('#metrics').innerHTML=[['官方目录入口',c.directory_entries],['已识别型号页',c.entity_counts.named_product||0],['有规格表的条目',c.with_spec_tables],['待访问页面',c.pending_pages],['访问失败',c.failed_pages]].map(([label,n])=>`<div class="metric"><strong>${esc(n)}</strong>${esc(label)}</div>`).join('');
       $('#limitations').innerHTML=c.limitations.map(v=>`<li>${esc(v)}</li>`).join('');filter();
     } catch(e) {if(current===generation)$('#status').textContent=e.message;}

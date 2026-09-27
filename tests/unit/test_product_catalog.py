@@ -58,6 +58,24 @@ class ProductCatalogTests(unittest.TestCase):
             with self.assertRaises(ValueError): catalog.receive(self.root, data)
         self.assertFalse(catalog.database(self.root).exists())
 
+    def test_child_product_keeps_parent_resource_links_and_csv_alignment(self):
+        data = bundle()
+        parent = data['products'][0]
+        child = copy.deepcopy(parent)
+        child.update(id='nvidia-'+'b'*20, name='NVIDIA BlueField-4 DPU', parent_id=parent['id'], product_url=parent['source_url'],
+                     official_resources=[{'url':'https://resources.nvidia.com/en-us/bluefield-4-datasheet','label':'BlueField-4 Datasheet','access_status':'not_checked'}],
+                     map_change_status='new')
+        data['products'].append(child)
+        data['product_map'] = {'entries': 2, 'changes': {'new': 1}}
+        catalog.receive(self.root, data)
+        snapshot = catalog.snapshot(self.root)
+        received = next(p for p in snapshot['products'] if p['id'] == child['id'])
+        self.assertEqual(received['parent_id'], parent['id'])
+        self.assertEqual(received['official_resources'][0]['url'], child['official_resources'][0]['url'])
+        self.assertEqual(snapshot['coverage']['product_map']['entries'], 2)
+        rows = list(csv.DictReader(io.StringIO(catalog.csv_export(snapshot, scope='all').lstrip('\ufeff'))))
+        self.assertEqual(next(r for r in rows if r['product_id'] == child['id'])['parent_id'], parent['id'])
+
     def test_csv_preserves_variants_notes_and_prevents_formula_execution(self):
         catalog.receive(self.root, bundle())
         data = catalog.snapshot(self.root)
