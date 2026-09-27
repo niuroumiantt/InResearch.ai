@@ -361,6 +361,7 @@
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/checks/validation.json` | images | 7 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | lead | 2 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | chapters | 6 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | summary | 3 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | commentary | 3 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | sources | 62 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/chapters.json` | chapters | 6 |
@@ -370,6 +371,7 @@
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/cover.json` | modules | 5 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | commentary | 3 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | sources_added | 0 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | summary | 3 |
 | `reports/blindspot.json` | modules | 15 |
 | `reports/workorders.json` | orders | 564 |
 | `research/M01.md` | Finding | 7 |
