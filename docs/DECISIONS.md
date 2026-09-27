@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-27：NVIDIA 首轮端到端验证改为 M5 → AWS，Spark 暂不参与
+
+用户明确要求先验证最短链路：M5 本地 Fetchspec 原件、M5 Claude Code CLI 阅读研究、候选与独立进度状态直传 AWS，inresearch.ai 线上可查看；Spark 本轮不接收原件、不运行 NVIDIA Reader、不被推送任务。候选只作为候选，不写正式采用结论；3 篇现有完整候选与失败/阻塞状态分别展示。NVIDIA 完成该验证后，再按永久架构补齐 Spark 原件归档与运行处理。详细流程登记于 `framework/06_acquisition.md` 的 NVIDIA 验证例外及 `framework/supply_contract.json` v1.3。实施与上线证据见 `docs/reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md`。
+
 ## 2026-09-27：数据中心经济模型（四本账）取代“按文章算角度”的计算器思路
 
 用户要求一个系统的、专业的模型，从多个主体衡量一座数据中心的投入与盈利，研报数据只作校准。新增 `economics.html` 与 `data/datacenter_economics_model.json`：一个项目定义（IT 容量、芯片代际、设施获得方式）驱动四本账——芯片厂商毛利份额、壳层出租方（NOI、成本收益率、DSCR、杠杆现金回报、IRR、合同总额）、算力运营方（收入到 NOPAT 瀑布、ROIC、盈亏平衡价、回收期、IRR）、模型方（token 收入、NOPAT 利润率、ROIC）；页面另有按代际的每 GW 资本开支堆叠、四层利润分配、ROIC 龙卷风与租金×利用率热力图、六个预设的情景对比、价格库基准与公式对账，可导出假设与结果。参考实现 `docs/research/datacenter-economics/model.py` 断言研报三条路径（ROIC 31%、46%、NOPAT 利润率 25%）、带电壳 19%、中国托管 11%。GB300 以外代际的拆分与 GPU 密度、模型层的吞吐与 token 价格、中国情景的汇率与杠杆均标为作者估算。`cost.html` 保留为单账本成本计算器并链接到新页。未决：续约选项与逐期现金税不建模；GB300 无公开租金指数；代际密度待厂商规格核验。#230 合并时丢失的两条 2026-09-27 反哺记录在此恢复。
