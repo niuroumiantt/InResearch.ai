@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.10",
+  "version": "2026.09.27.11",
   "effective_at": "2026-09-27",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -366,7 +366,7 @@
         "interface-legacy"
       ],
       "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-14 统一实际画布、几何适配和用户镜头所有权，退出固定缩放/距离，补齐雾化反例；完整视觉与 GPU 验收仍有限。；2026-09-14 两场景共用 HDR/PMREM 与 CanvasTexture 所有者，面板失败保留真实程序化纹理，迟到/替换/退出释放资源；bake、compare 与场景几何仍分别待审。；2026-09-14 数据中心成本研究新增独立交互页，网页与 Excel 基准对齐，明确全项目/设施账户、假设边界、重算和窄屏验收。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-09-22 收敛为一套视觉加明暗（去掉 Attio/folk 切换与顶栏切换器，令牌改由本仓库拥有，不再内嵌 infra CRM 块）；全站改用 infra 字体包 Inter + Noto Sans SC，页面与 3D 画布不再自带系统字体栈；共享外观统一表单控件；旧偏好中的 skin 字段忽略。",
-        "implementation_revision": "2026.09.27.1"
+      "implementation_revision": "2026.09.27.1"
     },
     {
       "id": "acquisition-legacy",
@@ -583,10 +583,11 @@
         "tests/unit/test_model_roles.py",
         "tests/unit/test_ocr_repeat_penalty.py",
         "tests/unit/test_ollama_schema.py",
-        "tests/unit/test_transient_model_errors.py"
+        "tests/unit/test_transient_model_errors.py",
+        "tests/unit/test_optional_mapping_ids.py"
       ],
       "supersedes": [],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。；2026-09-26 Ollama 档案可选 repeat_penalty（仅 spark_ocr 设 1.05，记入档案身份但不进 reading_identity），ocr-worker 单页 model_failure 重试一次。；2026-09-27 档案新增 repeat_last_n（仅 Ollama），spark_ocr 改为 repeat_penalty 1.1 / repeat_last_n 256；OCR 双读不能发现一致误读，关键数字回原件核对。；2026-09-27 M5 Claude CLI 实测曾返回 Markdown 围栏，Reader 现按阅读阶段提交 JSON Schema，并仅对引文不匹配执行一次纠正请求；原文匹配、模型身份和候选边界继续强制校验。；2026-09-27 Ollama 文本任务以 reader schema 作 format（受约束解码），修复 ASCII 引号导致缺字段的 model_output_invalid。；2026-09-27 spark_ocr 输出上限 8192、上下文 16384。；2026-09-27 Claude CLI 的 model_cli_failed / model_cli_timeout 改走普通重试，认证、未安装、身份不符仍阻塞。",
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。；2026-09-26 Ollama 档案可选 repeat_penalty（仅 spark_ocr 设 1.05，记入档案身份但不进 reading_identity），ocr-worker 单页 model_failure 重试一次。；2026-09-27 档案新增 repeat_last_n（仅 Ollama），spark_ocr 改为 repeat_penalty 1.1 / repeat_last_n 256；OCR 双读不能发现一致误读，关键数字回原件核对。；2026-09-27 M5 Claude CLI 实测曾返回 Markdown 围栏，Reader 现按阅读阶段提交 JSON Schema，并仅对引文不匹配执行一次纠正请求；原文匹配、模型身份和候选边界继续强制校验。；2026-09-27 Ollama 文本任务以 reader schema 作 format（受约束解码），修复 ASCII 引号导致缺字段的 model_output_invalid。；2026-09-27 spark_ocr 输出上限 8192、上下文 16384。；2026-09-27 Claude CLI 的 model_cli_failed / model_cli_timeout 改走普通重试，认证、未安装、身份不符仍阻塞。；2026-09-27 reader schema 的 object_ids/question_ids 改为非必填，避免 Claude CLI 因省略空数组而内部重试失败。",
       "implementation_revision": "2026.09.27.1"
     },
     {
