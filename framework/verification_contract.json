@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.2",
+  "version": "2026.09.27.4",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -20,13 +20,13 @@
     "framework/01_data_standards.md": "77caca1fff5e86e4b5307492199558d21a9de610093c5ea3bcb2896f06b6e51f",
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "d358fb9f6568c35d04cf93fc9fdb4a469c37e07136531f71913727f929ec53a9",
-    "framework/04_reading_scoring_standard.md": "54b969f2c34e0d17bfe91ec28d7b8f13f8618641adc1aae5e598cd43a07a2493",
+    "framework/04_reading_scoring_standard.md": "9487f230120999120e048d48563cf2d41d982bb06b041dc10912d783ac752062",
     "framework/05_interface_system.md": "9daf6c2b1a3eb93fd0dbb8e766f3c411aa27a29dc725ebee01f65cf67f4bbefa",
     "framework/06_acquisition.md": "1364d7f57dcad6dadd6cc9fe73b4cec54443ec92c37eea8b9e88774f3fbe8bff",
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
-    "framework/08_model_execution.md": "91509a55bbfbb6989268215f72f4e5861b693c0b896bea2df458b69333e26277",
+    "framework/08_model_execution.md": "f9696431f0bcf5df08c0b3b54e526a9b1d0d07b96cce957211f93d0147d80388",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "4aafb9057ed7ba64616e36d5fea2e7751086ee14732cc4ca8609de34c356ef43",
+    "framework/CURRENT.md": "107a66ab352979d9a3ebcd11015e39ef96a8f99b0fdb530748cd1b041cccddeb",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "df28e4e220f0df9e7bb6dbb47252b9656be374ac08eb090ca3dbb268a63750de",
@@ -54,7 +54,7 @@
     "tests/unit/test_catalog_bridge.py": "47ed253f19bd29eeff4221e07215084526b1b7fae85e58b4aab051d4b6ac8405",
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_commands.py": "0eda9d7ee92eadb0b187f8e83901ae42c016c783fcdcfeec1d0e74b89dbb15a7",
-    "tests/unit/test_continuous_reader.py": "945c29f85b5b9dfa8e4ce35d937b16b1a64cba1283e9c136a5a869dc36b90ddd",
+    "tests/unit/test_continuous_reader.py": "1d62cae96335492c5381efd4a5e98365aa9fec8714078200f024bd1dbffd09b3",
     "tests/unit/test_deep_read.py": "f4399a1287d9fd7ced79059d351c6edd08a48ca0c3a752dbf94bc4964705d4f9",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
     "tests/unit/test_display_regressions.py": "b3461db2c0648d4ca88f6d8dd646edbcb8c8242df4aeeb43be7a6182d8d94cbe",
@@ -74,7 +74,7 @@
     "tests/unit/test_m4_triage_versions.py": "547ac78e62b5d13ffe10202e3392bf15affcdeda98125726e5abe8c2e3ccea40",
     "tests/unit/test_model_assets.py": "243b694e858a87efcbd2212e1a8924080119d63415d7065ccd5812a0b46402c5",
     "tests/unit/test_model_roles.py": "7ec7f3887ad30d2f9b930cd568cea65c75a07b8188b05055013892079fb9c085",
-    "tests/unit/test_model_runtime.py": "f9e4436b792b4b557017552b0767d8d5cf1c3c67fad0f4bfaad2c18139c12daf",
+    "tests/unit/test_model_runtime.py": "f27d9484d0d7c034bfabe703e8a145a4c28c4429021298eeb04b8ec75624f07d",
     "tests/unit/test_ocr_repeat_penalty.py": "726ecb2ad5655b913ce7ea1286091b84169dd833fd89583d8b72169faf3eabe8",
     "tests/unit/test_ocr_worker_named.py": "cebfc4268d7580aca5e9232e1c3233b656ea0b91886ec771fd348373b0c8f969",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
@@ -371,7 +371,7 @@
       "policy": "reading-20260912",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
@@ -393,11 +393,14 @@
         "tests/unit/test_reader_depth.py::ReadingDepthTests.test_short_document_is_read_in_full_even_below_threshold",
         "tests/unit/test_reader_depth.py::ReadingDepthTests.test_deepen_continues_to_full_without_rereading_sampled_chunks",
         "tests/unit/test_reader_depth.py::ReadingDepthTests.test_park_plans_then_blocks_and_retry_revives",
-        "tests/unit/test_reader_depth.py::ReadingDepthTests.test_derived_artifacts_park_under_their_own_code_and_unknown_reason_is_refused"
+        "tests/unit/test_reader_depth.py::ReadingDepthTests.test_derived_artifacts_park_under_their_own_code_and_unknown_reason_is_refused",
+        "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_reader_prompt_requires_verbatim_source_quotes",
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_bad_quote_gets_one_targeted_retry_and_only_verified_result_is_saved"
       ],
       "not_verified": [
         "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality.",
-        "2026-09-26 分层深度：首中尾三块的摘要是否足以支撑 1–6 分材料的研究用途未经语义验收；summarized 结果目前不进入 reading_results/导出/发布，只在产物目录；park 名单（M4 0 分、要删/ 衍生物）由操作者生成，程序只校验 SHA 格式与台账状态；未在 Spark 真机执行。"
+        "2026-09-26 分层深度：首中尾三块的摘要是否足以支撑 1–6 分材料的研究用途未经语义验收；summarized 结果目前不进入 reading_results/导出/发布，只在产物目录；park 名单（M4 0 分、要删/ 衍生物）由操作者生成，程序只校验 SHA 格式与台账状态；未在 Spark 真机执行。",
+        "2026-09-27 M5 NVIDIA 一块 A100 表格分块经一次反馈式纠正后通过逐字引文校验（7 条主张、33 条证据）；另一份 Ada GPU Artistry 为 26/26 块且封印校验通过。其余资料未完成，不能将有限实测视为全批或语义质量验收。"
       ]
     },
     {
@@ -448,7 +451,7 @@
       "policy": "model-execution-20260912",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
@@ -468,12 +471,15 @@
         "tests/unit/test_ocr_repeat_penalty.py::PageRetryTests.test_two_consecutive_failures_give_up",
         "tests/unit/test_ocr_repeat_penalty.py::PageRetryTests.test_other_errors_are_not_retried",
         "tests/unit/test_ocr_repeat_penalty.py::RepeatPenaltyProfileTests.test_window_is_recorded_but_not_part_of_the_frozen_reading_identity",
-        "tests/unit/test_ocr_repeat_penalty.py::RepeatPenaltyProfileTests.test_out_of_range_or_non_ollama_windows_are_refused"
+        "tests/unit/test_ocr_repeat_penalty.py::RepeatPenaltyProfileTests.test_out_of_range_or_non_ollama_windows_are_refused",
+        "tests/unit/test_model_runtime.py::ClaudeCliTests.test_cli_schema_requests_structured_output_and_accepts_its_tool_use_stop",
+        "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_reader_prompt_requires_verbatim_source_quotes",
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_bad_quote_gets_one_targeted_retry_and_only_verified_result_is_saved"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。",
         "2026-09-26 按环节选模型未做同型号质量对比；claude-sonnet-5 / claude-opus-5-5 未在 M4 上用 `models --probe` 实测身份核对；L2 终端会话使用的模型由操作者选择，只能靠 record 的 --model 如实记录，程序不强制。",
-        "2026-09-27 repeat_penalty 1.1 / repeat_last_n 256 在两页循环页（df93 p23、0d50 p3）上两遍成功且一致，与已核 1.05 结果的三页比数字无丢失（仅页脚页码差一处）；样本仅 5 页，整批成功率与更强惩罚对表格重复数值的影响待重跑后统计。OCR 双读不能发现一致误读（旋转小字、生僻字）。"
+        "2026-09-27 repeat_penalty 1.1 / repeat_last_n 256 在两页循环页（df93 p23、0d50 p3）上两遍成功且一致，与已核 1.05 结果的三页比数字无丢失（仅页脚页码差一处）；样本仅 5 页，整批成功率与更强惩罚对表格重复数值的影响待重跑后统计。OCR 双读不能发现一致误读（旋转小字、生僻字）。；Claude JSON Schema 与反馈纠正由 M5 当前 sonnet CLI 做了探针和两块 NVIDIA 真实阅读；全集阅读仍未完成，Spark/第二模型与结构化模式兼容性未验。"
       ]
     },
     {

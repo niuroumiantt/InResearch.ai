@@ -58,6 +58,24 @@ class ModelRuntimeTests(unittest.TestCase):
         self.assertEqual(body["options"]["num_predict"], 8192)
         self.assertEqual(value["_model"]["actual"], profile.model)
 
+    def test_reader_prompt_requires_verbatim_source_quotes(self):
+        client = reader_model.ModelClient()
+        payload = {"doc_id": "doc-test", "page_index": 1, "chunk_index": 0,
+                   "chunk_sha256": "a" * 64, "text": "source", "allowed_ids": {"objects": [], "questions": []}}
+        with mock.patch.object(client.client, "generate", return_value={"chunk_sha256": "a" * 64,
+                "summary": "summary", "claims": [], "object_ids": [], "question_ids": []}) as generate:
+            client.generate("read", payload)
+        prompt = generate.call_args.args[0]
+        self.assertIn("short, contiguous, verbatim excerpt", prompt)
+        self.assertIn("exact substring", prompt)
+        self.assertIn("whitespace-only normalization", prompt)
+        self.assertIn("omit that claim", prompt)
+        schema = generate.call_args.kwargs["json_schema"]
+        self.assertEqual(schema["type"], "object")
+        self.assertIn("claims", schema["required"])
+        self.assertEqual(schema["properties"]["claims"]["items"]["properties"]["evidence"]["items"]
+                         ["properties"]["quote"]["maxLength"], 500)
+
     def test_gateway_route_and_actual_model_are_separate(self):
         profile = replace(self.profile, backend="gateway", model="larger-model",
                           request_model="research-route", api_key_env="TEST_MODEL_KEY")
@@ -181,11 +199,11 @@ class ClaudeCliTests(unittest.TestCase):
         kwargs["stdout"].write("\n".join(json.dumps(event) for event in events).encode())
         return SimpleNamespace(returncode=self.exit_code)
 
-    def invoke(self, envelope, exit_code=0, actual_models=None):
+    def invoke(self, envelope, exit_code=0, actual_models=None, json_schema=None):
         self.envelope, self.exit_code = envelope, exit_code
         self.actual_models = [self.profile.model] if actual_models is None else actual_models
         with mock.patch.object(models.subprocess, "run", side_effect=self.fake_process):
-            return self.client.generate("task contract", "private document text")
+            return self.client.generate("task contract", "private document text", json_schema=json_schema)
 
     def test_cli_uses_stdin_and_returns_verified_model_metadata(self):
         value = self.invoke({"result": '{"answer":42}', "is_error": False,
@@ -234,6 +252,14 @@ class ClaudeCliTests(unittest.TestCase):
         self.assertEqual(value["_model"]["actual"], self.profile.model)
         with self.assertRaisesRegex(models.InferenceError, "model_output_invalid"):
             self.invoke({"result": '[]', "is_error": False, "modelUsage": {self.profile.model: {}}})
+
+    def test_cli_schema_requests_structured_output_and_accepts_its_tool_use_stop(self):
+        schema = {"type": "object", "properties": {"answer": {"type": "integer"}}, "required": ["answer"]}
+        value = self.invoke({"structured_output": {"answer": 42}, "is_error": False,
+                             "stop_reason": "tool_use", "modelUsage": {self.profile.model: {}}},
+                            json_schema=schema)
+        self.assertEqual(value["answer"], 42)
+        self.assertEqual(json.loads(self.command[self.command.index("--json-schema") + 1]), schema)
 
 
 class TriageRoutingTests(unittest.TestCase):
