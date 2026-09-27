@@ -37,6 +37,9 @@ for ch in spec['chapters']:
     fig=ch.get('figure')
     if fig and fig.get('file') and fig.get('after_para',0)>=len(ch['paras']):
         out.append(img(fig['file'], fig.get('alt','图'))); out.append(caption(fig['caption']))
+if spec.get('summary'):
+    out.append('<h2 style="margin:30px 0 12px;font-size:22px;line-height:1.4;font-weight:700;color:%s;font-family:%s;">小结</h2>'%(H2C,SANS))
+    for t in spec['summary']: out.append(p(t))
 out.append('<h2 style="margin:30px 0 10px;font-size:22px;line-height:1.4;font-weight:700;color:%s;font-family:%s;">格洛可点评</h2>'%(H2C,SANS))
 for t in spec['commentary']:
     out.append('<p style="margin:0 0 16px;font-size:17px;line-height:1.85;color:%s;font-family:%s;text-align:justify;">%s</p>'%(INK,FANG,rich(t)))
