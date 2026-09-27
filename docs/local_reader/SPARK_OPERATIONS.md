@@ -283,6 +283,17 @@ systemctl --user start inresearch-reader-publish.service
 cat ~/.local/state/inresearch.ai/publish-status.json
 ```
 
+### NAS 不可用时接收 M5 阅读候选（临时 NVIDIA 流程）
+
+原件仍留在 Spark。M5 只拿按 SHA 选出的临时副本，在本机 Reader 导出 JSON 快照；不得把 `reader-sync.token` 复制到 M5。将快照经 SSH 传到 Spark 的私有临时目录（不要放入 `raw-materials/`），核对传输前后 SHA256 后，在 Spark 新版 checkout 上执行：
+
+```bash
+python3 manage.py publish --snapshot /明确路径/candidate-snapshot.json
+cat ~/.local/state/inresearch.ai/publish-relay-status.json
+```
+
+此模式不初始化/修改 Spark Reader catalog，只用 Spark 本机 0600 发布凭证把 M5 candidate-only 快照交给同一个 HTTPS 接收端；部署端仍会按当前 graph/questions 校验并把所有条目标为 candidate。只有成功回执且 InResearch 可检索时才算回传成功。失败时保留快照供同一批次重试；确认回执、SHA 和网页候选前不得清理 M5 工作副本或 Spark 中转快照。该入口须先部署包含 `--snapshot` 的版本；不要在旧版 Spark 上尝试，也不意味着 NVIDIA 五份试读目前已完成。
+
 首次源码由 m5 对 GitHub main 核对 SHA 后以 Git bundle 传入，在规范目录初始化完整 Git checkout。Spark 没有保存通用 GitHub token；后续可从已认证 m5 生成 main 的 bundle，传到 Spark 并 fetch。更新前核对当前源码无未提交/未跟踪文件，停止 reader，在 main 上 `git merge --ff-only` 已验证远端 SHA，再安装版本化 units、更新 release 配置并重启。不要 reset/stash/覆盖 dirty 工作区，也不要 rsync 覆盖正在执行的源码。
 
 主站按 infra 的正式整体发布流程跟随 GitHub main；不能为提速旁路其部署锁、数据库保护或发布提交。Web 快照是派生副本，不代替 Spark 永久台账和原件备份。

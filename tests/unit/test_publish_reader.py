@@ -5,6 +5,7 @@ import io
 import json
 import os
 from pathlib import Path
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -32,7 +33,7 @@ class PublisherTests(unittest.TestCase):
                 run.return_value.returncode = worker_code
                 response = opener.return_value.open.return_value.__enter__.return_value
                 response.read.return_value = b'{"ok":true,"received_at":"2026-09-06T00:00:00Z"}'
-                self.assertEqual(0, publish_reader.main())
+                self.assertEqual(0, publish_reader.main([]))
                 request = opener.return_value.open.call_args.args[0]
                 self.assertEqual('Bearer ' + token.read_text(), request.get_header('Authorization'))
                 self.assertEqual('ok', json.loads((state / 'publish-status.json').read_text())['status'])
@@ -49,6 +50,68 @@ class PublisherTests(unittest.TestCase):
         snapshot = self.publish(worker_code=3)
         self.assertEqual('degraded', snapshot['reader']['status'])
         self.assertEqual('worker_service_inactive', snapshot['reader']['recent_failures'][-1]['error_code'])
+
+    def test_external_snapshot_relay_uses_spark_token_without_opening_reader(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            state = root / 'state'
+            state.mkdir()
+            token = state / 'reader-sync.token'
+            token.write_text('spark-only-credential-' * 3)
+            token.chmod(0o600)
+            candidate = root / 'candidate.json'
+            payload = {'reader': {'status': 'ok'}, 'knowledge': {'documents': [
+                {'id': 'nvidia:a100', 'acceptance': 'candidate', 'coverage': {'complete': True}}]}}
+            candidate.write_text(json.dumps(payload))
+            env = {'READER_STATE_ROOT': str(state),
+                   'READER_PUBLISH_URL': 'https://receiver.example.test/api/reader-snapshot'}
+            with patch.dict(os.environ, env), patch.object(sys, 'argv', ['publish', '--snapshot', str(candidate)]), \
+                    patch.object(publish_reader, 'Reader') as reader, \
+                    patch.object(publish_reader, 'ModelClient') as model, \
+                    patch.object(publish_reader.urllib.request, 'build_opener') as opener, \
+                    contextlib.redirect_stdout(io.StringIO()):
+                response = opener.return_value.open.return_value.__enter__.return_value
+                response.read.return_value = b'{"ok":true,"received_at":"2026-09-27T00:00:00Z"}'
+                self.assertEqual(0, publish_reader.main())
+                reader.assert_not_called()
+                model.assert_not_called()
+                request = opener.return_value.open.call_args.args[0]
+                self.assertEqual('Bearer ' + token.read_text(), request.get_header('Authorization'))
+                self.assertEqual(payload, json.loads(request.data))
+                result = json.loads((state / 'publish-relay-status.json').read_text())
+                self.assertEqual('external_candidate_snapshot', result['source'])
+
+    def test_external_snapshot_relay_rejects_non_candidate_content(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            state = root / 'state'
+            state.mkdir()
+            token = state / 'reader-sync.token'
+            token.write_text('spark-only-credential-' * 3)
+            token.chmod(0o600)
+            candidate = root / 'candidate.json'
+            candidate.write_text(json.dumps({'knowledge': {'documents': [
+                {'id': 'promoted', 'acceptance': 'adopted', 'coverage': {'complete': True}}]}}))
+            with patch.dict(os.environ, {'READER_STATE_ROOT': str(state)}), \
+                    patch.object(sys, 'argv', ['publish', '--snapshot', str(candidate)]), \
+                    self.assertRaisesRegex(ValueError, 'candidates only'):
+                publish_reader.main()
+
+    def test_external_snapshot_relay_rejects_incomplete_reading(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            state = root / 'state'
+            state.mkdir()
+            token = state / 'reader-sync.token'
+            token.write_text('spark-only-credential-' * 3)
+            token.chmod(0o600)
+            candidate = root / 'candidate.json'
+            candidate.write_text(json.dumps({'knowledge': {'documents': [
+                {'id': 'incomplete', 'acceptance': 'candidate', 'coverage': {'complete': False}}]}}))
+            with patch.dict(os.environ, {'READER_STATE_ROOT': str(state)}), \
+                    patch.object(sys, 'argv', ['publish', '--snapshot', str(candidate)]), \
+                    self.assertRaisesRegex(ValueError, 'complete reading coverage'):
+                publish_reader.main()
 
 
 if __name__ == '__main__':

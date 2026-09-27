@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-27：NAS 暂不可用时的 Spark 原件与 M5 分析分工
+
+用户明确：原始 NVIDIA 文件仍留在 Spark，阅读分析交给 M5 的 Claude Code CLI。作为 NAS 恢复前的临时试点，Spark 保持原件/永久存储与发布凭证；M5 仅处理按 SHA 选取的临时副本，视觉 OCR 与 Claude 阅读分开记账。M5 导出 Reader candidate-only 快照并回传 Spark，由 Spark 凭证经现有 HTTPS 接收端提交，不能把分析候选自动升级成采用证据。Fetchspec 默认接收只归档、编目，不再自动扩大 Spark Reader 队列；需要在 Spark 阅读的个别资料须显式选择 SHA。NVIDIA 五份试点仍未完整交付：OCR/提取部分成功，但 Claude 输出结构校验间歇失败，逐篇 coverage、成功回执和网站候选尚未齐备。实施与临时流程见 `framework/06_acquisition.md`、`framework/supply_contract.json`。
+
 ## 2026-09-26：产品资料交付进入 Reader 候选闭环
 
 用户要求把供应中心从计划页推进为可验收流程。Fetchspec 交付包（兼容 1.0/1.1）先校验 manifest、完整 SHA256 集合、路径、格式签名与大小，再按字节 SHA 归档到现有 acquisition blob/catalog；来源观察、公司、官方一级产品分类、语言、Fetchspec 任务、问题/对象关系进入 `product_documents` 候选索引。同字节重投幂等，不同 SHA 保留旧版；PCN/规格新版提出影响复核，抓取失败或页面消失不自动撤销产品。支持提取的 PDF、HTML 与 Office 文件进入既有 Reader 队列，HTML 安全提取正文/表格/链接，Office 复用结构解析器；不支持格式保留为需补处理，不伪称已阅读。
