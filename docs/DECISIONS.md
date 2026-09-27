@@ -2,9 +2,9 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
-## 2026-09-27：NVIDIA 首轮端到端验证改为 M5 → AWS，Spark 暂不参与
+## 2026-09-27：Claude CLI 临时错误改为重试
 
-用户明确要求先验证最短链路：M5 本地 Fetchspec 原件、M5 Claude Code CLI 阅读研究、候选与独立进度状态直传 AWS，inresearch.ai 线上可查看；Spark 本轮不接收原件、不运行 NVIDIA Reader、不被推送任务。候选只作为候选，不写正式采用结论；3 篇现有完整候选与失败/阻塞状态分别展示。NVIDIA 完成该验证后，再按永久架构补齐 Spark 原件归档与运行处理。详细流程登记于 `framework/06_acquisition.md` 的 NVIDIA 验证例外及 `framework/supply_contract.json` v1.3。实施与上线证据见 `docs/reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md`。
+M4 上 Claude 深读 21 份重点文档（试点 df93：30 页 12 分钟、引文与原件一致），两份并行时 4 份（e142、3081、1765、9ec5）因 `model_cli_failed` 被整份阻塞，而它们已完成的块失败数为 0、引文全部核对通过。原因是 reader 把 `model_failure` 以外的模型错误一律当作阻塞。采用：`model_cli_failed` 与 `model_cli_timeout` 改走普通重试（3 次、退避），错误码照记；认证失败、CLI 未安装、模型身份无法核实仍阻塞。
 
 ## 2026-09-27：数据中心经济模型（四本账）取代“按文章算角度”的计算器思路
 
