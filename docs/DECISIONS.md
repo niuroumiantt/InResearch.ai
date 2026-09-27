@@ -2,6 +2,12 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-27：Claude 深读引文必须逐字绑定原文
+
+NVIDIA 五篇 M5 试读里，Claude Code CLI 身份与传输正常，输出 JSON 可解析；失败集中在证据引文不能逐字匹配分块原文（一次 A100 样本 13 条引文中 7 条未通过空白归一化）。`model_output_invalid` 原先同时承载结构与证据校验错误，容易误判成 CLI 故障。用户要求继续排查后，对同一临时分块强化提示并复测，10 条主张/14 条证据通过原文校验。现行阅读标准明确连续逐字摘录、只忽略空白差异、无法核实时舍弃主张；阅读提示同步执行。已有机械证据门槛保留，候选仍不等于采用。此实测只证明一个分块的提示修复有效，不证明五篇全部完成或语义质量；完整试点继续要求 coverage 完整后才导出。
+
+继续检查发现另一个失败：CLI 返回码 0、`stop_reason=end_turn`，但正文以 Markdown fence 起始而非 JSON，解析器按预期拒绝。使用 CLI 原生 `--json-schema` 后可得到结构化输出（该机制的 `stop_reason=tool_use` 仅在确有 `structured_output` 时接受）。Reader 现在按阶段发送结构 schema；若阅读输出的引文不匹配，只做一次明确纠正请求，并由相同严格校验决定成功或失败。A100 chunk 2 经纠正后通过，产出 7 条主张/33 条证据；Ada GPU Artistry 已有 26/26 块、报告覆盖与封印校验通过。尚未完成五份全集、Spark relay 或网站候选验收。
+
 ## 2026-09-27：NAS 暂不可用时的 Spark 原件与 M5 分析分工
 
 用户明确：原始 NVIDIA 文件仍留在 Spark，阅读分析交给 M5 的 Claude Code CLI。作为 NAS 恢复前的临时试点，Spark 保持原件/永久存储与发布凭证；M5 仅处理按 SHA 选取的临时副本，视觉 OCR 与 Claude 阅读分开记账。M5 导出 Reader candidate-only 快照并回传 Spark，由 Spark 凭证经现有 HTTPS 接收端提交，不能把分析候选自动升级成采用证据。Fetchspec 默认接收只归档、编目，不再自动扩大 Spark Reader 队列；需要在 Spark 阅读的个别资料须显式选择 SHA。NVIDIA 五份试点仍未完整交付：OCR/提取部分成功，但 Claude 输出结构校验间歇失败，逐篇 coverage、成功回执和网站候选尚未齐备。实施与临时流程见 `framework/06_acquisition.md`、`framework/supply_contract.json`。

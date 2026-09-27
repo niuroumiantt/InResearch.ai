@@ -37,9 +37,12 @@ class Model:
         self.fail_stage = None
         self.bad_quote = False
         self.bad_mapping = False
+        self.retry_instructions = []
 
-    def generate(self, stage, payload):
+    def generate(self, stage, payload, retry_instruction=None):
         self.calls.append((stage, payload))
+        if retry_instruction:
+            self.retry_instructions.append(retry_instruction)
         if stage == self.fail_stage:
             raise reader_contracts.ModelError()
         allowed = payload.get("allowed_ids", {"objects": [], "questions": []})
@@ -446,6 +449,24 @@ class ReaderTests(unittest.TestCase):
         with self.assertRaises(reader_contracts.ModelOutputError):
             self.reader.stages._read_chunk(self.first_doc(), 0)
         self.assertIsNone(self.first_doc()["report_rel"])
+
+    def test_bad_quote_gets_one_targeted_retry_and_only_verified_result_is_saved(self):
+        self.register()
+        self.run_reader(max_jobs=2)
+        original = self.model.generate
+        attempts = 0
+        def first_bad_then_valid(stage, payload, retry_instruction=None):
+            nonlocal attempts
+            attempts += 1
+            self.model.bad_quote = attempts == 1
+            return original(stage, payload, retry_instruction=retry_instruction)
+        with mock.patch.object(self.model, "generate", side_effect=first_bad_then_valid):
+            result = self.reader.stages._read_chunk(self.first_doc(), 0)
+        self.assertEqual(attempts, 2)
+        self.assertEqual(len(self.model.retry_instructions), 1)
+        self.assertIn("exactly occur in the source chunk", self.model.retry_instructions[0])
+        self.assertEqual(len(result["evidence"]), 1)
+        self.assertEqual(result["evidence"][0]["quote"], "服务器功率为 300 W。\n这是完整正文与注释。")
 
     def test_tampered_or_missing_chunks_cannot_synthesize(self):
         self.register()

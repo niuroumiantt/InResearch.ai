@@ -163,7 +163,7 @@ class JsonModelClient:
         self.profile = profile
         self._slots = threading.BoundedSemaphore(profile.max_parallel)
 
-    def generate(self, system, user, *, image_path=None, think=None):
+    def generate(self, system, user, *, image_path=None, think=None, json_schema=None):
         p = self.profile
         capability = "vision_json" if image_path is not None else "text_json"
         if capability not in p.capabilities:
@@ -172,7 +172,7 @@ class JsonModelClient:
         if len((system + user).encode("utf-8")) > p.context - p.max_output_tokens - 1024:
             raise InferenceError("input_exceeds_context_budget")
         if p.backend == "claude_cli":
-            return self._generate_cli(system, user)
+            return self._generate_cli(system, user, json_schema=json_schema)
         messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
         if image_path is not None:
             messages[-1]["images"] = [base64.b64encode(Path(image_path).read_bytes()).decode("ascii")]
@@ -240,13 +240,17 @@ class JsonModelClient:
             result["_model"]["executor"] = "claude-code"
         return result
 
-    def _generate_cli(self, system, user):
+    def _generate_cli(self, system, user, *, json_schema=None):
         """Treat the CLI as a bounded, tool-free inference process, not a writer."""
         p = self.profile
         command = [p.command, "-p", "--output-format", "stream-json", "--verbose", "--model", p.model,
                    "--safe-mode", "--tools", "", "--no-session-persistence",
                    "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}', "--no-chrome",
                    "--system-prompt", system]
+        if json_schema is not None:
+            if not isinstance(json_schema, dict) or json_schema.get("type") != "object":
+                raise InferenceError("model_output_schema_invalid")
+            command.extend(["--json-schema", json.dumps(json_schema, ensure_ascii=False, allow_nan=False)])
         env = {**os.environ, "CLAUDE_CODE_MAX_OUTPUT_TOKENS": str(p.max_output_tokens)}
         try:
             # Stdin carries document text. Spool output so a broken CLI cannot
@@ -276,10 +280,12 @@ class JsonModelClient:
             if len(actual_models) != 1:
                 raise InferenceError("model_identity_unverified")
             actual = actual_models.pop()
-            if envelope.get("stop_reason") not in (None, "end_turn", "stop_sequence"):
+            structured = envelope.get("structured_output")
+            if (envelope.get("stop_reason") not in (None, "end_turn", "stop_sequence")
+                    and not (structured is not None and envelope.get("stop_reason") == "tool_use")):
                 raise InferenceError("model_output_incomplete")
-            if envelope.get("structured_output") is not None:
-                result = json_object(json.dumps(envelope["structured_output"], allow_nan=False))
+            if structured is not None:
+                result = json_object(json.dumps(structured, allow_nan=False))
             else:
                 result = json_object(envelope.get("result"))
             return self._provenance(result, actual, system, user)

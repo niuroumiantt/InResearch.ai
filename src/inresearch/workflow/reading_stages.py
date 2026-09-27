@@ -307,8 +307,22 @@ class ReadingStages(ReadingArtifacts):
         chunk = extraction["chunks"][index]
         text = self._chunk_text(chunk)
         context = self._context(doc, text)
-        result = self.model.generate("read", {"doc_id": doc["doc_id"], "page_index": chunk["page_index"],
-                    "chunk_index": index, "chunk_sha256": chunk["sha256"], "text": text, "allowed_ids": context})
+        payload = {"doc_id": doc["doc_id"], "page_index": chunk["page_index"], "chunk_index": index,
+                   "chunk_sha256": chunk["sha256"], "text": text, "allowed_ids": context}
+        result = self.model.generate("read", payload)
+        normalized = re.sub(r"\s+", "", text)
+        claims = result.get("claims")
+        has_unverifiable_quote = (isinstance(claims, list) and any(
+            isinstance(e, dict) and isinstance(e.get("quote"), str)
+            and re.sub(r"\s+", "", e["quote"]) not in normalized
+            for claim in claims if isinstance(claim, dict)
+            for e in claim.get("evidence", []) if isinstance(claim.get("evidence"), list)))
+        if has_unverifiable_quote:
+            result = self.model.generate("read", payload, retry_instruction=(
+                "The previous response was rejected because one or more evidence quotes did not exactly occur in the source chunk. "
+                "Correct this once: retain only claims supported by a short, contiguous, verbatim source excerpt; preserve every source character except whitespace may differ. "
+                "Do not translate, paraphrase, join passages, or exceed the quote length limit. If an exact excerpt cannot be copied, omit that claim; an empty claims list is valid. Recheck every quote before returning."
+            ))
         if result.get("chunk_sha256") != chunk["sha256"]:
             raise ModelOutputError()
         require_text(result.get("summary"), 1200)
@@ -316,7 +330,6 @@ class ReadingStages(ReadingArtifacts):
         if not isinstance(claims, list) or len(claims) > 30:
             raise ModelOutputError()
         evs, clean_claims = [], []
-        normalized = re.sub(r"\s+", "", text)
         for c_index, claim in enumerate(claims):
             if not isinstance(claim, dict):
                 raise ModelOutputError()
