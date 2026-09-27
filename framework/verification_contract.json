@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.4",
+  "version": "2026.09.27.5",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -13,7 +13,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "48a5be1e41640a3573e24be8d73b4b7851a0488dcfcaecad36d6c0c0b3379a76",
+    "docs/local_reader/SPARK_OPERATIONS.md": "1421d3ae80dc80ec5a87bb7b23645580de5e23f9106a51b8f783cec3b30962e8",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
@@ -26,7 +26,7 @@
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
     "framework/08_model_execution.md": "f9696431f0bcf5df08c0b3b54e526a9b1d0d07b96cce957211f93d0147d80388",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "107a66ab352979d9a3ebcd11015e39ef96a8f99b0fdb530748cd1b041cccddeb",
+    "framework/CURRENT.md": "79edb32431d9f9ae44e8d0e7ba5366f8bca1294bae84ed7062ee4869b726ebb8",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "df28e4e220f0df9e7bb6dbb47252b9656be374ac08eb090ca3dbb268a63750de",
@@ -60,7 +60,6 @@
     "tests/unit/test_display_regressions.py": "b3461db2c0648d4ca88f6d8dd646edbcb8c8242df4aeeb43be7a6182d8d94cbe",
     "tests/unit/test_fact_contract.py": "4e739f6e3a3a9cae74057824615db912e38c2acc20f91ae109a2efb0c08f3dd7",
     "tests/unit/test_fetchspec_receive.py": "727ed2dafe5a57e7358b49ec05d2feb798947a0887b398bf8ebab89b36b43b84",
-    "tests/unit/test_html_document.py": "346d25fc828cbae2abccccd51b687a102693dc9b35911d641ba4fd534ae23535",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
     "tests/unit/test_html_document.py": "346d25fc828cbae2abccccd51b687a102693dc9b35911d641ba4fd534ae23535",
@@ -77,6 +76,7 @@
     "tests/unit/test_model_runtime.py": "f27d9484d0d7c034bfabe703e8a145a4c28c4429021298eeb04b8ec75624f07d",
     "tests/unit/test_ocr_repeat_penalty.py": "726ecb2ad5655b913ce7ea1286091b84169dd833fd89583d8b72169faf3eabe8",
     "tests/unit/test_ocr_worker_named.py": "cebfc4268d7580aca5e9232e1c3233b656ea0b91886ec771fd348373b0c8f969",
+    "tests/unit/test_ocr_worker_resume.py": "f7ecde3fc31d8a75d6d13c071366b7b11857aee1af38a3b3bc3f2f111b826c39",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "13d781d6bb35801eb8a7b4592008e2a87f9a3b48a2c685e442c860bcddde220c",
     "tests/unit/test_reader_depth.py": "3e9a0ace8150391afd8f9d50cc3cfeb99f6da189657279e157d458917f2e2d13",
@@ -407,7 +407,7 @@
       "policy": "reading-m4-triage-20260912",
       "scope": "m4-triage",
       "source": "docs/M4_TRIAGE_TASK.md",
-      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝;计划不得以副作用迁移 v1 catalog(守卫测试配一条「该夹具确实能迁移」的对照,否则守卫测试恒绿而不守)；ocr-worker 点名时只取未完成的 PDF、只读查询、逐份处理且上传页结果后从不在 Spark 上 retry，未点名时仍只取被阻塞的 OCR 文档",
+      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝;计划不得以副作用迁移 v1 catalog(守卫测试配一条「该夹具确实能迁移」的对照,否则守卫测试恒绿而不守)；ocr-worker 点名时只取未完成的 PDF、只读查询、逐份处理且上传页结果后从不在 Spark 上 retry，未点名时仍只取被阻塞的 OCR 文档；ocr-worker 某页失败时上传此前已完成的页、错误写明失败页与保留页数，上传失败时写明未保留；重跑只跳过 Spark 上同一 SHA256 且文件名与页号一致的页，查询失败则全部重做",
       "tests": [
         "tests/unit/test_m4_triage.py::InventoryTests.test_identical_bytes_are_one_sha_with_every_path_recorded",
         "tests/unit/test_deep_read.py::EffectiveResultTests.test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue",
@@ -440,11 +440,18 @@
         "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_named_documents_include_queued_deferred_pdfs_only",
         "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_without_names_only_blocked_ocr_errors_are_offered",
         "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_queued_document_is_not_retried_and_every_named_one_is_processed",
-        "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_worker_never_asks_spark_to_retry"
+        "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_worker_never_asks_spark_to_retry",
+        "tests/unit/test_ocr_worker_resume.py::ResumeTests.test_failed_page_keeps_the_pages_before_it_and_names_the_page",
+        "tests/unit/test_ocr_worker_resume.py::ResumeTests.test_rerun_skips_pages_spark_already_holds",
+        "tests/unit/test_ocr_worker_resume.py::ResumeTests.test_nothing_left_to_read_uploads_nothing",
+        "tests/unit/test_ocr_worker_resume.py::ResumeTests.test_failed_upload_after_a_failed_page_says_nothing_was_kept",
+        "tests/unit/test_ocr_worker_resume.py::DonePagesTests.test_only_well_named_pages_for_the_same_bytes_count",
+        "tests/unit/test_ocr_worker_resume.py::DonePagesTests.test_missing_directory_or_ssh_failure_means_redo_everything"
       ],
       "not_verified": [
         "真实 M4 50 份当前模型小样及新版执行未验;apply-triage 已实现并有隔离测试,但**尚未在真机 catalog 上执行过** —— 2026-09-18 的 32,727/32,734 匹配数来自一次只读对账,实际归置未做;真机 catalog 仍是 v1,须先 `reader init` 迁移;M4 独有的 3,169 份中 3,135 份是 `要删/reader/` 下的衍生物与垃圾件,不应入库,真正缺的研究文档约 34 份,其入库路径未实现也未验证。",
-        "2026-09-26 ocr-worker --doc-id 已在 M4 真机试跑一份（ee35，4 页，约 17 秒/页，qwen3-vl:8b 两遍一致）；首批长文档因重复中止整份失败，改进见 model-execution。M4 旧 LaunchAgent 已停用（bootout + disable），未改指新入口。spark-lan 别名在 M4 上链路层不通（ARP 未解析），当次运行改用 Tailscale 别名。"
+        "2026-09-26 ocr-worker --doc-id 已在 M4 真机试跑一份（ee35，4 页，约 17 秒/页，qwen3-vl:8b 两遍一致）；首批长文档因重复中止整份失败，改进见 model-execution。M4 旧 LaunchAgent 已停用（bootout + disable），未改指新入口。spark-lan 别名在 M4 上链路层不通（ARP 未解析），当次运行改用 Tailscale 别名。",
+        "续跑与部分上传只用伪造的 ssh/scp 与模型测试；未在 M4→Spark 真机核对。截断/重复失败页的参数调整未定。"
       ]
     },
     {

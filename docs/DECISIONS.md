@@ -18,6 +18,10 @@ NVIDIA 五篇 M5 试读里，Claude Code CLI 身份与传输正常，输出 JSON
 
 Reader 的报告仍是候选，沿用已有证据审核与采用流程。供应中心显示真实回执、Reader 状态，并支持按公司/分类/问题/格式/语言检索。实现和回归属于本地源码验收；Spark 尚未部署本版本，NVIDIA 真实投递包、实机 Reader/备份及研究证据采用仍未验，不宣称整条链路已生产交付。正式边界见 `framework/06_acquisition.md`、`framework/supply_contract.json` 与 `framework/verification_contract.json`。
 
+## 2026-09-27：M4 OCR 保留已完成页、续跑与失败页号
+
+15 份扫描件在 1.1/256 下重跑，7 份仍真失败（4 份 `model_output_truncated`、2 份 `model_failure`、1 份 `ocr_page_unreadable`）。ocr-worker 在临时目录累积全部页、任一页失败即整份丢弃，不上传也不记页号：46 页文档错一页即丢 45 页，每次重跑从第 1 页开始，定位失败页还需逐页重放。用户采用：失败时仍上传已完成页，错误写明失败页与保留页数；运行前查 Spark 上同一 SHA256、命名一致的已有页并跳过。reader 仍须全部页齐备才使用 M4 结果。截断与重复的参数调整待逐页重放给出失败页与错误原文后另定。
+
 ## 2026-09-27：M4 OCR 空白页与自动重新排队
 
 Spark 本机 OCR 与 27B 阅读同跑导致整机过热关机后，`READER_OCR_MODEL` 已注释，扫描件全部交 M4 点名 OCR。两处缺口：M4 结果中的空白页（`blank=true`）被一律拒为 `m4_offload_page_unreadable`，而本机 OCR 允许两遍皆空的空白页；因 OCR 阻塞的文档须停 reader 才能 `retry`（队列锁）。用户采用：M4 结果按本机 OCR 同一空白页规则接收；运行中的 reader 每轮扫描前，把因 OCR 阻塞、且有晚于上次尝试的 M4 页结果的提取任务重新排队；ocr-worker 不再在 Spark 上 retry。结果早于上次尝试或阻塞原因与 OCR 无关的不动。
