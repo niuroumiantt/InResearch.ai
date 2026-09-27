@@ -33,7 +33,19 @@
 | 带电壳三净租约 | 成本收益率 19% | 造价取 TeraWulf/Cipher 公告 800–1,100 万美元/MW，租金取 Hut 8/Cipher/TeraWulf 合同期均值 | 作者说明性计算 |
 | 中国托管（万国数据） | 成本收益率 11% | 万国数据 2026Q2 电话会：资本开支 2,000 万元/MW、EBITDA 220 万元/MW·年，按 7.2 折算 | 已披露事实 + 作者折算 |
 
-芯片代际：GB300 的 IT/非 IT 拆分与 GPU 密度来自研报；GB200、Vera Rubin、Rubin Ultra、TPUv7、Trainium3 的总额来自研报 p22，拆分与密度为作者估算，H100 全部为作者估算。页面对每个代际标注来源。
+芯片代际：GB300 的 IT/非 IT 拆分来自研报；其他代际的总额来自研报 p22，拆分为作者估算。GPU 密度按 `density_rule` 由厂商机柜功率折算：每 MW GPU 数 = 1,000 kW × 81% ÷ (机柜功率 ÷ 每柜 GPU 数)，81% 是加速器机柜占 IT 功率的份额，由研报 GB300 每 GW 410,256 颗与 NVIDIA 142 kW/72 颗反推。
+
+| 代际 | 机柜功率 / 每柜 GPU | 每 MW GPU | 来源 |
+|---|---|---|---|
+| GB300 NVL72 | 142 kW / 72 | 410.3 | NVIDIA NVL72 AI Factory 参考架构；密度取研报值 |
+| GB200 NVL72 | 140 kW（TDP）/ 72 | 416.6 | 库内事实（《绿色数据中心行业洞察 2026》）；SemiAnalysis 实际约 125 kW 为另一口径 |
+| H100 HGX | 10.2 kW / 8 | 635.3 | NVIDIA DGX H100 用户指南 |
+| Vera Rubin NVL72 | 未公开 / 72 封装 | 400 | NVIDIA 产品页“100 MW AI 工厂对应 4 万 GPU”；第三方 190 kW 折算 307，口径未统一 |
+| Rubin Ultra NVL576 | 600 kW / 144 封装 | 194.4 | NVIDIA GTC 2025（DCD、Tom's Hardware 报道） |
+| TPUv7 Ironwood | pod 9,216 芯片 / 近 10 MW | 746.5 | 谷歌 2025-04-09 博客，pod 功率视作加速器机柜口径 |
+| Trainium3 | 未取得 | 410（沿用 GB300） | 待核验 |
+
+每个代际的 `density_basis` 记录机柜功率、每柜数量、份额、来源与属性。
 
 ## 与 cost.html 的关系
 

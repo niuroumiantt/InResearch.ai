@@ -27,7 +27,7 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
  // Changing an input drops the preset highlight and recomputes
  await page.getByRole('button',{name:'恢复研报基准'}).click();assert.equal(await page.locator('#kpi-compute').textContent(),'30.9%');
  await page.locator('#input-gpu_price').fill('7');assert.equal(await page.locator('#presets button.active').count(),0);assert.equal(await page.locator('#kpi-compute').textContent(),'22.7%');
- await page.locator('#input-generation').selectOption('h100');assert.equal(await page.locator('#input-gpus_per_mw').inputValue(),'625');
+ await page.locator('#input-generation').selectOption('h100');assert.equal(await page.locator('#input-gpus_per_mw').inputValue(),'635.3');
  if(process.env.UI_QA_DIR){fs.mkdirSync(process.env.UI_QA_DIR,{recursive:true});await page.screenshot({path:path.join(process.env.UI_QA_DIR,'economics-desktop.png'),fullPage:true});}
  await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
  if(process.env.UI_QA_DIR)await page.screenshot({path:path.join(process.env.UI_QA_DIR,'economics-mobile.png'),fullPage:true});
