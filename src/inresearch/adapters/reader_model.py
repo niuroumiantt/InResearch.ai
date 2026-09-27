@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 from dataclasses import replace
 from inresearch.adapters import models as models
-from inresearch.materials.reader_contracts import Blocked, ModelError, ModelOutputError
+from inresearch.materials.reader_contracts import Blocked, ModelError, ModelOutputError, TransientModelError, TRANSIENT_MODEL_CODES
 from inresearch.materials.artifacts import encoded
 
 
@@ -71,6 +71,8 @@ class ModelClient:
                 raise ModelError() from None
             if exc.code == "model_output_invalid":
                 raise ModelOutputError() from None
+            if exc.code in TRANSIENT_MODEL_CODES:
+                raise TransientModelError(exc.code) from None
             raise Blocked(exc.code) from None
 
     def generate(self, stage, payload, retry_instruction=None):

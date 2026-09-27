@@ -76,3 +76,13 @@ class ModelError(ReaderError):
 
 class ModelOutputError(ModelError):
     code = "model_output_invalid"
+
+# Claude CLI exits that say nothing about the document (overload, a dropped
+# connection, a stalled process). They take the normal retry-with-backoff path
+# instead of blocking the whole document; authentication and a missing CLI stay
+# blocked because retrying cannot fix them.
+TRANSIENT_MODEL_CODES = ("model_cli_failed", "model_cli_timeout")
+
+class TransientModelError(ModelError):
+    def __init__(self, code):
+        self.code = code

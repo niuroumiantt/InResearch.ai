@@ -18,6 +18,8 @@ Claude CLI 在临时目录中以非交互模式运行，材料从标准输入传
 
 `text_json` 和 `vision_json` 是适配器接受的能力声明，须经目标模型的小样本验收后配置；声明本身不证明质量。OCR 必须显式配置 `ocr` 角色，当前视觉适配支持 Ollama。没有视觉能力的文本模型不能冒充读过图片。
 
+Claude CLI 的非零退出或 `is_error`（过载、断线、进程卡死）记 `model_cli_failed`，超时记 `model_cli_timeout`；reader 把这两种按普通模型失败处理：保留错误码，走每任务 3 次、30/60/120 秒退避的重试，不再整份阻塞（2026-09-27 起：M4 深读 21 份时 4 份因此阻塞，已完成的块均无失败、引文均核对通过）。认证失败、CLI 未安装、模型身份无法核实仍直接阻塞，重试解决不了。
+
 Ollama 文本任务把 reader 各环节（triage/read/synthesize）的 JSON Schema 直接放进请求的 `format`，由受约束解码保证输出符合结构；未给 schema 的调用（如 OCR）仍用 `format="json"`。2026-09-27 起：此前仅 `claude_cli` 使用 schema，Ollama 只用 JSON 模式，中文摘要里的 ASCII 引号会提前结束字符串，整块丢掉必填的 `claims`（df93 第 2 块），表现为 `model_output_invalid`。schema 不进入档案身份与 `reading_identity()`，已冻结配方不受影响；受约束解码只保证结构，不保证引文正确，引文仍按原文逐字校验。
 
 Ollama 档案可选 `repeat_penalty`（1.0–2.0）与 `repeat_last_n`（1 至档案上下文，惩罚回看的最近 token 数，Ollama 默认 64），均仅 Ollama：qwen3-vl 在温度 0 下遇到重复表格行或重复标语会循环，被 Ollama 以 `token repeat limit reached` 中止或写满 `num_predict` 截断；重复块长于回看窗口时惩罚不起作用。当前只有 `spark_ocr` 设 1.1 / 256；M4 ocr-worker 对仍失败的页再以 1.3 / 512 做一次救援双读（2026-09-27 起），实际参数记入该页 `_model`。`spark_ocr` 输出上限为 8192 token、上下文 16384（2026-09-27 起，ea7d 第 7 页正文超过 4096）；M4 本机配置是副本，须同步修改。两者都会改变输出，所以设了才记入档案身份与每页 `_model`；reader 冻结配方只比较 `reading_identity()` 的固定字段，不因此失效。惩罚可能压掉合法的连续相同数值（如“0.0 0.0 0.0”），双读一致不能发现这类误差，须抽查原件。
