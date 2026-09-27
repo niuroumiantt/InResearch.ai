@@ -33,6 +33,13 @@ FULL_READ_MIN_PRIORITY = int(os.environ.get("READER_FULL_READ_MIN_PRIORITY", "7"
 PARKED_BY_TRIAGE = "parked_l1_score_zero"
 PARK_REASONS = {"l1_score_zero": PARKED_BY_TRIAGE, "derived_artifact": "parked_derived_artifact"}
 
+# Extraction blocks that new M4 OCR page results can clear. The reader requeues such a
+# document once when results arrive after its last attempt; nobody needs the queue lock.
+OCR_BLOCK_CODES = ("scanned_page_requires_ocr", "ocr_page_budget_exceeded", "ocr_page_unreadable",
+                   "ocr_numbers_disagree", "ocr_output_invalid", "ocr_blank_disagreement",
+                   "ocr_empty_nonblank_page", "ocr_blank_has_text", "m4_offload_page_unreadable",
+                   "m4_offload_numbers_disagree")
+
 MODULES = {"M%02d" % i for i in range(1, 16)}
 
 class ReaderError(Exception):

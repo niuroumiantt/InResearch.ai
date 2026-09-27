@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.1",
+  "version": "2026.09.27.2",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -506,8 +506,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 81362,
-      "sha256": "f5bf528e9c175cb8fcffdc38cd0babd5b7a7569f86653bd1ac90ee42be9033c6",
+      "bytes": 82072,
+      "sha256": "a2a1594fcd3adf35023ef4cbe26072d9c74beee8c2a31709a036c68cbaf18285",
       "collections": []
     },
     {
@@ -544,8 +544,8 @@
     {
       "path": "docs/M4_TRIAGE_TASK.md",
       "role": "normative",
-      "bytes": 18553,
-      "sha256": "5c2994d6b3f5820b3ca92a5c701565561dfc093cede5d90d3b2884e02ab875d2",
+      "bytes": 18924,
+      "sha256": "924326e63de3dc50835609d2009c6550e228f7e1018972b1d4b75dd897701ed9",
       "collections": []
     },
     {
@@ -3239,8 +3239,8 @@
     {
       "path": "docs/local_reader/SPARK_OPERATIONS.md",
       "role": "normative",
-      "bytes": 34914,
-      "sha256": "9dab18d1cf4806cd22be9b1ba46779c4cc3527395848518e0ef9b581fc55061b",
+      "bytes": 35480,
+      "sha256": "64f8b340e98f7aab73ba27657af411ff88badf0116b7385f0acd5be738193c46",
       "collections": []
     },
     {
@@ -6434,7 +6434,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5448,
-      "sha256": "0ccfe683e43d2671136b0e8b9a5c2af0df4dcfd3c9db5eee0abb9f921ec06d94",
+      "sha256": "4aafb9057ed7ba64616e36d5fea2e7751086ee14732cc4ca8609de34c356ef43",
       "collections": []
     },
     {
@@ -6456,8 +6456,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 33103,
-      "sha256": "bcaf205b09aa2f07e7b172001a013512a78541d542e88d73bfefb89a7a3fd653",
+      "bytes": 33521,
+      "sha256": "0fa0f75c25c6e07bfb4b347d13eb4275f2a06d7dc4b8ccf12a1ccf3361f08d94",
       "collections": [
         {
           "name": "policies",
@@ -6732,8 +6732,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 59372,
-      "sha256": "c83074a541655193f2fb6ebbc7419d40da57e427e0e00585f82e6d7b8d1a63dd",
+      "bytes": 60909,
+      "sha256": "d31308c8e2bd6eb4ebfaf0f70fec0935ab4cc6a50eebb2bbaa367e47a87dde6b",
       "collections": [
         {
           "name": "policies",
@@ -7496,8 +7496,8 @@
     {
       "path": "src/inresearch/adapters/ocr_worker.py",
       "role": "implementation",
-      "bytes": 7739,
-      "sha256": "98bf99ecd287c65268544280fb2f02425129ed9dedd00cf4605f155eb64eaecd",
+      "bytes": 7501,
+      "sha256": "de05dabac994a6d57a0bc7a4c49974d031a149f769f845986e9fadcf7e75a171",
       "collections": []
     },
     {
@@ -7881,8 +7881,8 @@
     {
       "path": "src/inresearch/materials/reader_contracts.py",
       "role": "implementation",
-      "bytes": 2152,
-      "sha256": "80b55c77a50e1e5163d9c0c1be011c90fc288caee7af6f8920704b03d756aa1e",
+      "bytes": 2667,
+      "sha256": "9c98409f00d7be0ba68935ed380bdbd8f81f9ae2e06ea15bcf2f4bc51f19f3e4",
       "collections": []
     },
     {
@@ -8035,8 +8035,8 @@
     {
       "path": "src/inresearch/workflow/reader.py",
       "role": "implementation",
-      "bytes": 44885,
-      "sha256": "746b8cc09cbd6bbc70ff51d518c9d20570938147ad92bb7deb9adc0c263b770c",
+      "bytes": 46278,
+      "sha256": "ac97b8ed1533d94d211307456d83913bfbbcfdc878174c1fabbd25903fd6a4b3",
       "collections": []
     },
     {
@@ -8070,8 +8070,8 @@
     {
       "path": "src/inresearch/workflow/reading_stages.py",
       "role": "implementation",
-      "bytes": 24345,
-      "sha256": "19b4c94e8e9d4dc939284349b78fa5d17f018241f199d685f9e2fcc5a6ca9e42",
+      "bytes": 24777,
+      "sha256": "c5447e4703c0ea9c943c7caa56c84cdc31bca1358c4e2f8200291889c233fe26",
       "collections": []
     },
     {
@@ -8390,6 +8390,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_m4_offload_requeue.py",
+      "role": "test",
+      "bytes": 4261,
+      "sha256": "b22b873cdc190c8e248e9e6ca748f482a4f3c8665fbf95dd36886643c0c65f88",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_m4_paths.py",
       "role": "test",
       "bytes": 3122,
@@ -8497,8 +8504,8 @@
     {
       "path": "tests/unit/test_ocr_worker_named.py",
       "role": "test",
-      "bytes": 4767,
-      "sha256": "aac669cf87bc1ba153d64b9e90264e520f1b5862bdbbc7d1afaadb9430ecefbd",
+      "bytes": 4817,
+      "sha256": "cebfc4268d7580aca5e9232e1c3233b656ea0b91886ec771fd348373b0c8f969",
       "collections": []
     },
     {
@@ -9392,6 +9399,6 @@
     "retired_entrypoint": 3,
     "source_record": 26,
     "supporting_document": 41,
-    "test": 72
+    "test": 73
   }
 }

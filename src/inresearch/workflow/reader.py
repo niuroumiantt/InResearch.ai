@@ -28,7 +28,7 @@ import tempfile
 import threading
 import time
 
-from inresearch.materials.reader_contracts import ReaderError, Blocked, Deferred, UnsafePath, IntegrityError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS, MAX_WORKERS, MODULES, THERMAL_LIMIT_C, THERMAL_PAUSE_SECONDS, THERMAL_SAMPLE_SECONDS, PARKED_BY_TRIAGE, PARK_REASONS
+from inresearch.materials.reader_contracts import ReaderError, Blocked, Deferred, UnsafePath, IntegrityError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, OCR_MAX_PAGES, OCR_DEFER_SECONDS, LARGE_FORMAT_POINTS, MAX_WORKERS, MODULES, THERMAL_LIMIT_C, THERMAL_PAUSE_SECONDS, THERMAL_SAMPLE_SECONDS, PARKED_BY_TRIAGE, PARK_REASONS, OCR_BLOCK_CODES
 from inresearch.materials.artifacts import now_iso, encoded, digest_bytes, digest_file, private_dir, safe_path, atomic_json, durable_rename, read_json, clean_name, signature, is_partial
 from inresearch.adapters.reader_model import ModelClient
 from inresearch.storage.catalog import Catalog
@@ -525,6 +525,30 @@ class Reader:
         self.write_status()
         return state
 
+    def requeue_offloaded(self):
+        """Requeue OCR-blocked extractions that received M4 page results after their last attempt.
+
+        Runs on the queue-owning thread, so M4 never needs the queue lock. A document
+        is requeued once per new batch of results: a renewed block sets a later
+        finish time than the uploaded pages."""
+        root = safe_path(self.data, "offload/m4/results")
+        if not root.is_dir():
+            return 0
+        placeholders = ",".join("?" * len(OCR_BLOCK_CODES))
+        requeued = 0
+        for directory in sorted(root.iterdir()):
+            pages = directory / "pages"
+            if directory.is_symlink() or not pages.is_dir():
+                continue
+            newest = max((p.stat().st_mtime for p in pages.glob("*.json")), default=None)
+            if newest is None:
+                continue
+            row = self.conn.execute("SELECT revision_id,finished FROM jobs WHERE doc_id=? AND stage='extract' AND state='blocked' AND error_code IN (%s)" % placeholders,
+                                    (directory.name, *OCR_BLOCK_CODES)).fetchone()
+            if row is not None and newest > (row["finished"] or 0):
+                requeued += self.retry(directory.name, row["revision_id"])["retried"]
+        return requeued
+
     def read_plan(self, chunks_total, priority):
         """Chunk indexes to read: all of them, or the first, middle and last."""
         sample = sorted({0, chunks_total // 2, chunks_total - 1}) if chunks_total else []
@@ -715,6 +739,7 @@ class Reader:
                 self.catalog._close_thread()
 
         with self.worker_session():
+            self.requeue_offloaded()
             self.scan()
             threads = [threading.Thread(target=loop, name="reader-worker-%d" % i, daemon=True)
                        for i in range(workers)]
@@ -728,6 +753,7 @@ class Reader:
                         thread.join()
                 else:
                     while not stop.wait(poll_seconds):
+                        self.requeue_offloaded()
                         self.scan()
             finally:
                 stop.set()

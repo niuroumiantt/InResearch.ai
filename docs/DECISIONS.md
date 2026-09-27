@@ -8,6 +8,10 @@
 
 Reader 的报告仍是候选，沿用已有证据审核与采用流程。供应中心显示真实回执、Reader 状态，并支持按公司/分类/问题/格式/语言检索。实现和回归属于本地源码验收；Spark 尚未部署本版本，NVIDIA 真实投递包、实机 Reader/备份及研究证据采用仍未验，不宣称整条链路已生产交付。正式边界见 `framework/06_acquisition.md`、`framework/supply_contract.json` 与 `framework/verification_contract.json`。
 
+## 2026-09-27：M4 OCR 空白页与自动重新排队
+
+Spark 本机 OCR 与 27B 阅读同跑导致整机过热关机后，`READER_OCR_MODEL` 已注释，扫描件全部交 M4 点名 OCR。两处缺口：M4 结果中的空白页（`blank=true`）被一律拒为 `m4_offload_page_unreadable`，而本机 OCR 允许两遍皆空的空白页；因 OCR 阻塞的文档须停 reader 才能 `retry`（队列锁）。用户采用：M4 结果按本机 OCR 同一空白页规则接收；运行中的 reader 每轮扫描前，把因 OCR 阻塞、且有晚于上次尝试的 M4 页结果的提取任务重新排队；ocr-worker 不再在 Spark 上 retry。结果早于上次尝试或阻塞原因与 OCR 无关的不动。
+
 ## 2026-09-27：OCR 重复惩罚回看窗口
 
 `repeat_penalty` 1.05 重跑 26 份后仍有 15 份失败：8 份写满 4096 token 截断（如 df93 第 23 页循环两行标语），7 份仍被重复中止（如 0d50 第 3 页）。原因是惩罚只回看最近 64 token，重复块更长时不起作用。逐项对照：1.05/256、1.1/64 各只救一页，1.1/256 两页均成功且两遍一致。用户采用：档案新增 `repeat_last_n`（仅 Ollama、与 `repeat_penalty` 同样校验与身份记录），`spark_ocr` 改为 1.1 / 256；1.05 下已完成的 11 份保留。抽查 5 页表格与目录页数字无丢失（1.1/256 与已核 1.05 结果比，唯一差异为页脚页码）。OCR 双读只能发现两遍不一致，旋转小字、生僻字的一致误读发现不了，深读引用关键数字须回原件核对。
