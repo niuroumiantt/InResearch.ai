@@ -15,8 +15,8 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 266 |
-| 运行代码 | 203 |
+| 历史快照 | 267 |
+| 运行代码 | 206 |
 | 现行规范 | 13 |
 | 项目配置 | 87 |
 | 兼容研究记录 | 16 |
@@ -330,7 +330,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 17 |
+| `framework/interface_manifest.json` | static_pages | 18 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
@@ -904,6 +904,7 @@
 | [docs/reviews/2026-09-15/task-authority/file-plan.csv](reviews/2026-09-15/task-authority/file-plan.csv) | 历史快照 |
 | `docs/reviews/2026-09-15/task-authority/scope.json` | 历史快照 |
 | [docs/reviews/2026-09-21/supply-center/DELIVERY.md](reviews/2026-09-21/supply-center/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md](reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md) | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -1100,6 +1101,7 @@
 | `src/inresearch/delivery/export.py` | 运行代码 |
 | `src/inresearch/delivery/map.py` | 运行代码 |
 | `src/inresearch/delivery/publish.py` | 运行代码 |
+| `src/inresearch/delivery/publish_pilot_progress.py` | 运行代码 |
 | `src/inresearch/delivery/reader_export.py` | 运行代码 |
 | `src/inresearch/delivery/reader_progress.py` | 运行代码 |
 | `src/inresearch/delivery/reader_status.py` | 运行代码 |
@@ -1162,6 +1164,7 @@
 | `src/inresearch/workflow/deep_read.py` | 运行代码 |
 | `src/inresearch/workflow/l1_batch.py` | 运行代码 |
 | `src/inresearch/workflow/model_assets.py` | 运行代码 |
+| `src/inresearch/workflow/pilot_progress.py` | 运行代码 |
 | `src/inresearch/workflow/progress.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
 | `src/inresearch/workflow/reading_gaps.py` | 运行代码 |
@@ -1182,6 +1185,7 @@
 | `tests/datacenter_news.cjs` | 测试 |
 | `tests/hardware_ecosystems.cjs` | 测试 |
 | `tests/model_assets.cjs` | 测试 |
+| `tests/nvidia_pilot.cjs` | 测试 |
 | `tests/object_network.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_node_hover.cjs` | 测试 |
@@ -1235,6 +1239,7 @@
 | `tests/unit/test_ocr_worker_named.py` | 测试 |
 | `tests/unit/test_ocr_worker_resume.py` | 测试 |
 | `tests/unit/test_ollama_schema.py` | 测试 |
+| `tests/unit/test_pilot_progress.py` | 测试 |
 | `tests/unit/test_product_library.py` | 测试 |
 | `tests/unit/test_publish_reader.py` | 测试 |
 | `tests/unit/test_reader_depth.py` | 测试 |
@@ -1349,6 +1354,7 @@
 | `web/pages/framework_poster.html` | 运行代码 |
 | `web/pages/index.html` | 运行代码 |
 | `web/pages/materials.html` | 运行代码 |
+| `web/pages/nvidia-pilot.html` | 运行代码 |
 | `web/pages/ops.html` | 运行代码 |
 | `web/pages/poster.html` | 运行代码 |
 | `web/pages/rack3d.html` | 运行代码 |

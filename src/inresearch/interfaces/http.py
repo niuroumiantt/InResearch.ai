@@ -19,6 +19,7 @@ from inresearch.materials import model_assets
 import hmac
 from inresearch.workflow import commands as commands
 from inresearch.workflow import supply
+from inresearch.workflow import pilot_progress
 from inresearch.adapters import acquisition
 from inresearch.knowledge import registry as research
 from inresearch.delivery import report as report_model
@@ -256,6 +257,11 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(200, {"ok": True, "users": [
                 {"name": n, "role": u.get("role", "member"), "created": u.get("created", "?")}
                 for n, u in sorted(users.items())]})
+        if urlsplit(self.path).path == '/api/pilot-progress/nvidia':
+            try:
+                return self._json(200, pilot_progress.public_snapshot(ROOT))
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'ok': False, 'error': 'pilot progress unavailable'})
         if self.path == "/api/supply":
             try:
                 return self._json(200, supply.snapshot(ROOT))
@@ -331,6 +337,8 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, {'ok': True})
             except (ValueError, KeyError, OSError):
                 return self._json(400, {'ok': False})
+        if self.path == '/api/pilot-progress/nvidia':
+            return self.api_nvidia_pilot_progress()
         if self.path == '/api/materials':
             user = self._gate()
             if user is None:
@@ -422,6 +430,27 @@ class Handler(SimpleHTTPRequestHandler):
         except (ValueError, TypeError, KeyError, AttributeError) as e:
             return self._json(400, {"ok": False, "error": str(e)[:500]})
         return self._json(200, reply)
+
+    def api_nvidia_pilot_progress(self):
+        token_path = Path(os.environ.get('INRESEARCH_PILOT_TOKEN_FILE',
+            workspace_path('data/.nvidia_pilot_token', ROOT)))
+        try:
+            token = token_path.read_text().strip()
+        except OSError:
+            return self._json(503, {'ok': False, 'error': 'pilot receiver is not configured'})
+        authorization = self.headers.get('Authorization', '')
+        supplied = authorization.removeprefix('Bearer ')
+        if (not authorization.startswith('Bearer ') or len(token) < 32
+                or not hmac.compare_digest(token.encode(), supplied.encode())):
+            return self._json(401, {'ok': False, 'error': 'invalid pilot credential'})
+        try:
+            size = int(self.headers.get('Content-Length', 0))
+            if size <= 0 or size > 16 * 1024 * 1024:
+                return self._json(413, {'ok': False, 'error': 'progress payload must be 1 byte to 16 MiB'})
+            payload = json.loads(self.rfile.read(size))
+            return self._json(200, pilot_progress.receive(ROOT, payload))
+        except (ValueError, TypeError, KeyError, OSError) as exc:
+            return self._json(400, {'ok': False, 'error': str(exc)[:300]})
 
     def api_passwd(self, payload, user):
         """登录用户自助改密。必须验旧密码——cookie 被顺走 ≠ 知道密码，

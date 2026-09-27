@@ -1,16 +1,16 @@
 {
-  "version": "1.2",
-  "effective_at": "2026-09-21",
+  "version": "1.3",
+  "effective_at": "2026-09-27",
   "phase": "planning_live",
   "operating_plan": {
     "purpose": "从研究问题出发，先建立数据中心产品资料全景，再为关键产品线形成可复核的深度证据包。",
     "baseline": {
       "planned_product_records": 801,
       "delivery_connection": "receiver_implemented_pending_deployment",
-      "meaning": "801 是当前产品资料计划的待补目录数，不是已抓取、已验收或已采用的资料数；Fetchspec 接收、索引与 Reader handoff 已实现，仍须合并后部署 Spark 并接收真实包才算运行接通。"
+      "meaning": "801 是当前产品资料计划的待补目录数，不是已抓取、已验收或已采用的资料数；Fetchspec 接收与索引已实现。NVIDIA 验证现采用 M5 本地抓取/阅读并直传 AWS 的临时路径，Spark 接收与原件归档待后续补齐。"
     },
     "phases": [
-      {"id":"foundation","name":"第 0 批：验证闭环","purpose":"用少量代表性产品资料验证 macmini/AWS 到 Spark、审核与研究采用的完整链路。","exit":"每件原件均可追溯至任务、来源、审核结论和 Spark 存档。"},
+      {"id":"foundation","name":"第 0 批：验证闭环","purpose":"先用 M5 本地原件和本地阅读验证候选交付至 AWS、线上查看，再补永久归档与正式采用链路。","exit":"原件 SHA 可追溯；M5 完整候选与进度获 AWS 回执并在线可见；候选/采用身份分离。"},
       {"id":"breadth","name":"第 1 批：产品地图全覆盖","purpose":"先补齐官方产品页和产品册，覆盖八个硬件生态。","exit":"每条优先产品线均有厂商、产品系列、官方入口和最后检查时间。"},
       {"id":"depth","name":"第 2 批：关键产品线深抓","purpose":"为算力、网络、供配电、液冷和存储补齐规格、部署和条件资料。","exit":"优先产品线具备产品页、规格书、部署/维护资料及兼容或限制条件。"},
       {"id":"research","name":"第 3 批：跨产品研究专题","purpose":"围绕功率密度、高速互联、液冷、存储、供配电和运维建立证据链。","exit":"资料已通过验收，并能支持可引用的研究陈述或明确缺口。"},
@@ -44,15 +44,15 @@
   },
   "temporary_execution": {
     "nvidia_nas_unavailable": {
-      "source_and_permanent_storage": "spark",
+      "source_and_permanent_storage": "m5_local_for_validation; spark_deferred",
       "analysis_worker": "m5",
       "reading_client": "claude_code_cli",
       "ocr": "local_vision_model_separate_from_reading_model",
       "worker_data": "content-addressed temporary copies and candidate outputs only",
-      "publish_credential_host": "spark",
-      "publish_route": "M5 candidate snapshot -> Spark relay -> HTTPS candidate receiver",
-      "acceptance": "complete per-document coverage, original SHA matches Spark, receiver acknowledgement, candidate visible on InResearch",
-      "scope": "NVIDIA pilot while NAS is unavailable; does not change permanent execution policy"
+      "publish_credential_host": "m5",
+      "publish_route": "M5 local original + Claude candidate/status -> HTTPS AWS candidate/progress receiver",
+      "acceptance": "local SHA manifest, complete per-document coverage for candidates, receiver acknowledgement, candidate/progress visible on InResearch; Spark excluded",
+      "scope": "NVIDIA end-to-end validation only; Spark original archive and permanent processing deferred"
     }
   },
   "providers": [
