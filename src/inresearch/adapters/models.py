@@ -81,8 +81,8 @@ class ModelProfile:
                 or not set(self.capabilities) <= {"text_json", "vision_json"}
                 or not self.capabilities):
             raise ValueError("invalid model capabilities")
-        if "vision_json" in self.capabilities and self.backend != "ollama":
-            raise ValueError("vision_json currently requires the Ollama adapter")
+        if "vision_json" in self.capabilities and self.backend not in {"ollama", "claude_cli"}:
+            raise ValueError("vision_json requires the Ollama or Claude CLI adapter")
         if self.repeat_penalty is not None:
             if (self.backend != "ollama" or isinstance(self.repeat_penalty, bool)
                     or not isinstance(self.repeat_penalty, (int, float))
@@ -176,7 +176,7 @@ class JsonModelClient:
         if len((system + user).encode("utf-8")) > p.context - p.max_output_tokens - 1024:
             raise InferenceError("input_exceeds_context_budget")
         if p.backend == "claude_cli":
-            return self._generate_cli(system, user, json_schema=json_schema)
+            return self._generate_cli(system, user, json_schema=json_schema, image_path=image_path)
         messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
         if image_path is not None:
             messages[-1]["images"] = [base64.b64encode(Path(image_path).read_bytes()).decode("ascii")]
@@ -247,7 +247,7 @@ class JsonModelClient:
             result["_model"]["executor"] = "claude-code"
         return result
 
-    def _generate_cli(self, system, user, *, json_schema=None):
+    def _generate_cli(self, system, user, *, json_schema=None, image_path=None):
         """One CLI read; one low-effort retry when thinking filled the output budget.
 
         Adaptive-thinking models (Sonnet 5, Opus 5.5) ignore MAX_THINKING_TOKENS,
@@ -255,16 +255,20 @@ class JsonModelClient:
         answer never fits. Only that failure is retried, once, with --effort low;
         the effort used is recorded on the result. Every other call is unchanged."""
         try:
-            return self._generate_cli_once(system, user, json_schema=json_schema)
+            return self._generate_cli_once(system, user, json_schema=json_schema, image_path=image_path)
         except InferenceError as exc:
             if exc.code != "model_cli_output_limit":
                 raise
-        result = self._generate_cli_once(system, user, json_schema=json_schema, effort=CLI_RESCUE_EFFORT)
+        result = self._generate_cli_once(system, user, json_schema=json_schema, image_path=image_path,
+                                         effort=CLI_RESCUE_EFFORT)
         result["_model"]["effort"] = CLI_RESCUE_EFFORT
         return result
 
-    def _generate_cli_once(self, system, user, *, json_schema=None, effort=None):
-        """Treat the CLI as a bounded, tool-free inference process, not a writer."""
+    def _generate_cli_once(self, system, user, *, json_schema=None, effort=None, image_path=None):
+        """Treat the CLI as a bounded, tool-free inference process, not a writer.
+
+        An image goes in as one stream-json user message (image block, then the
+        prompt text); tools stay disabled, so the CLI never opens the file itself."""
         p = self.profile
         command = [p.command, "-p", "--output-format", "stream-json", "--verbose", "--model", p.model,
                    "--safe-mode", "--tools", "", "--no-session-persistence",
@@ -276,13 +280,22 @@ class JsonModelClient:
             if not isinstance(json_schema, dict) or json_schema.get("type") != "object":
                 raise InferenceError("model_output_schema_invalid")
             command.extend(["--json-schema", json.dumps(json_schema, ensure_ascii=False, allow_nan=False)])
+        stdin, image_sha256 = user, None
+        if image_path is not None:
+            image = Path(image_path).read_bytes()
+            image_sha256 = hashlib.sha256(image).hexdigest()
+            command.extend(["--input-format", "stream-json"])
+            stdin = json.dumps({"type": "user", "message": {"role": "user", "content": [
+                {"type": "image", "source": {"type": "base64", "media_type": "image/png",
+                                             "data": base64.b64encode(image).decode("ascii")}},
+                {"type": "text", "text": user}]}}) + "\n"
         env = {**os.environ, "CLAUDE_CODE_MAX_OUTPUT_TOKENS": str(p.max_output_tokens)}
         try:
             # Stdin carries document text. Spool output so a broken CLI cannot
             # allocate unbounded memory; no payload or stderr enters error logs.
             with self._slots, tempfile.TemporaryDirectory(prefix="inresearch-inference-") as directory:
                 with tempfile.TemporaryFile() as output, tempfile.TemporaryFile() as errors:
-                    process = subprocess.run(command, input=user, text=True, stdout=output, stderr=errors,
+                    process = subprocess.run(command, input=stdin, text=True, stdout=output, stderr=errors,
                                              cwd=directory, env=env, timeout=p.timeout, check=False)
                     output.seek(0)
                     raw = output.read(MAX_RESPONSE + 1)
@@ -314,7 +327,10 @@ class JsonModelClient:
                 result = json_object(json.dumps(structured, allow_nan=False))
             else:
                 result = json_object(envelope.get("result"))
-            return self._provenance(result, actual, system, user)
+            result = self._provenance(result, actual, system, user)
+            if image_sha256:
+                result["_model"]["image_sha256"] = image_sha256
+            return result
         except FileNotFoundError:
             raise InferenceError("model_cli_not_installed") from None
         except subprocess.TimeoutExpired:
