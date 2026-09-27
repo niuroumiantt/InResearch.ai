@@ -1,0 +1,137 @@
+{
+  "as_of": "2026-09-27",
+  "status": "author_illustrative_calculation",
+  "note": "预设按摩根士丹利 1GW GB300 出租算例折算到 100MW。calculator 一栏是本站全成本模型（资本按 8% 资本成本率与寿命做年化回收）；report 一栏按研报口径（直线折旧、21% 税率、ROIC = NOPAT ÷ 总 capex）。两者收入相同，成本口径不同，不能把“每小时盈余”当成 NOPAT。",
+  "preset_inputs": {
+    "it_mw": 100,
+    "devices": 41026,
+    "power_load": 0.7,
+    "pue": 1.25,
+    "productive": 0.75,
+    "energy_price": 0.08,
+    "billed_kw": 125000,
+    "demand_rate": 12,
+    "facility": 1350000000,
+    "utility": 200000000,
+    "land": 50000000,
+    "servers": 2000000000,
+    "network": 300000000,
+    "facility_life": 15,
+    "it_life": 5,
+    "rate": 0.08,
+    "fixed_opex": 121000000,
+    "facility_opex": 35000000,
+    "site_water_l": 0.8,
+    "water_price": 2,
+    "rent_price": 8.5
+  },
+  "calculator": {
+    "components": {
+      "servers": 500912909.13367283,
+      "network": 75136936.37005092,
+      "facility": 181085794.65083098,
+      "land": 4000000.0,
+      "energy": 61320000.0,
+      "demand": 18000000,
+      "opex": 121000000,
+      "water": 981120.0
+    },
+    "total": 962436760.1545547,
+    "hours": 269540820.0,
+    "per_hour": 3.57065308384294,
+    "revenue": 2291096970.0,
+    "surplus_per_hour": 4.92934691615706,
+    "surplus": 1328660209.8454452,
+    "coverage": 2.3805168971643185
+  },
+  "report_frame": {
+    "price": 8.5,
+    "hours": 269538192.00000006,
+    "revenue": 2291074632.0000005,
+    "depreciation_it": 460000000.0,
+    "depreciation_non_it": 106666666.66666667,
+    "opex": 766666666.6666666,
+    "ebit": 1524407965.333334,
+    "ebit_margin": 0.6653680958453096,
+    "nopat": 1204282292.613334,
+    "capex": 3900000000.0,
+    "roic": 0.3087903314393164
+  },
+  "report_price_paths": [
+    {
+      "price": 7.0,
+      "hours": 269538192.00000006,
+      "revenue": 1886767344.0000005,
+      "depreciation_it": 460000000.0,
+      "depreciation_non_it": 106666666.66666667,
+      "opex": 766666666.6666666,
+      "ebit": 1120100677.333334,
+      "ebit_margin": 0.5936612592407332,
+      "nopat": 884879535.0933338,
+      "capex": 3900000000.0,
+      "roic": 0.22689218848547021
+    },
+    {
+      "price": 8.0,
+      "hours": 269538192.00000006,
+      "revenue": 2156305536.0000005,
+      "depreciation_it": 460000000.0,
+      "depreciation_non_it": 106666666.66666667,
+      "opex": 766666666.6666666,
+      "ebit": 1389638869.333334,
+      "ebit_margin": 0.6444536018356416,
+      "nopat": 1097814706.7733338,
+      "capex": 3900000000.0,
+      "roic": 0.28149095045470096
+    },
+    {
+      "price": 8.5,
+      "hours": 269538192.00000006,
+      "revenue": 2291074632.0000005,
+      "depreciation_it": 460000000.0,
+      "depreciation_non_it": 106666666.66666667,
+      "opex": 766666666.6666666,
+      "ebit": 1524407965.333334,
+      "ebit_margin": 0.6653680958453096,
+      "nopat": 1204282292.613334,
+      "capex": 3900000000.0,
+      "roic": 0.3087903314393164
+    },
+    {
+      "price": 9.0,
+      "hours": 269538192.00000006,
+      "revenue": 2425843728.0000005,
+      "depreciation_it": 460000000.0,
+      "depreciation_non_it": 106666666.66666667,
+      "opex": 766666666.6666666,
+      "ebit": 1659177061.333334,
+      "ebit_margin": 0.683958757187237,
+      "nopat": 1310749878.4533339,
+      "capex": 3900000000.0,
+      "roic": 0.33608971242393176
+    },
+    {
+      "price": 10.0,
+      "hours": 269538192.00000006,
+      "revenue": 2695381920.0000005,
+      "depreciation_it": 460000000.0,
+      "depreciation_non_it": 106666666.66666667,
+      "opex": 766666666.6666666,
+      "ebit": 1928715253.333334,
+      "ebit_margin": 0.7155628814685132,
+      "nopat": 1523685050.133334,
+      "capex": 3900000000.0,
+      "roic": 0.39068847439316257
+    }
+  ],
+  "baseline_2026_09_14": {
+    "total": 1167777119.4007535,
+    "per_hour": 4.101781241309285
+  },
+  "h100_contract_reference": {
+    "rent": 2.4,
+    "per_hour_cost": 4.101781241309285,
+    "surplus_per_hour": -1.7017812413092854,
+    "coverage": 0.5851116524278418
+  }
+}
