@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.22",
+  "version": "2026.09.27.24",
   "effective_at": "2026-09-27",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -459,8 +459,8 @@
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "News uses a bounded projection of the same validated Reader snapshot; homepage/ops stop polling the full research view. No second authority or original-data migration; stale responses cannot overwrite newer UI state.；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与任务计划持久化，执行与交付接入待完成。；2026-09-21 执行机器按任务方式固定：continuous 在 AWS，assisted 在 macmini，Spark 只保存和分析；同一来源范围不双跑。；2026-09-26 供应流水线阶段 1-6 首批代码落地：Fetchspec 1.0/1.1 包验签、内容 SHA 去重归档、来源/分类/语言/问题索引、支持格式接入现有 Reader，HTML 与 Office 结构提取，PCN/规格新版保留旧版并触发影响复核；UI 展示交付与 Reader 候选状态。；2026-09-27 用户将 NVIDIA 本轮验证范围缩至 M5 本地 Fetchspec/Claude 阅读、候选和进度直传 AWS；Spark 完全不参与，候选不自动正式采用；Spark 永久存储为后续补齐。本地实现和进度入口按该短链路验收，线上实际发布状态见本批 DELIVERY。；2026-09-27 用户采用产品优先替代附件优先：官方目录→逐产品原厂规格→独立 SQLite→轻量网页/CSV；原件在 M5，结构化数据交 AWS，缺口显式，正式采用另行。；2026-09-27 替代目录平铺为五大浏览组与产品系列导航；官网十栏目原证据保留，辅助入口分离，CSV 共用筛选。；2026-09-27 产品地图对齐：官方目录页将明确型号拆为稳定子产品并关联父系列/平台；常规增量只检查目录和分类入口，新条目扩展入队，部分扫描未见不判下架；资源落地页、下载件和已提取规格分别计态，inresearch 校验父级并展示产品变更及来源。",
-      "implementation_revision": "2026.09.27.21"
+      "reason": "新闻使用 Reader 的有界投影；供应执行、资料接收与 NVIDIA 产品库按用户确定的职责保存状态。2026-09-27 NVIDIA 采用产品优先：M5 本地发现/阅读，结构化候选发布 AWS，Spark 本轮不参与；页面按官方分类证据映射为五大浏览组。产品地图将明确型号关联父系列/平台，保留来源与参数版本。增量先对账官方英文与中文 XML sitemap，仅筛已审阅的产品路径，条件请求避免重复下载；产品路径新增入队、lastmod 变化重查。NVIDIA 中文站 www.nvidia.cn 使用根路径并纳入，路径匹配的中英页归并身份但各留快照。官方 sitemap 不完整不判缺失；即使完整，URL 未出现也只待复核不自动下架。网站 XML sitemap 是更新索引，不是产品总表；网站另生成公司产品 sitemap，线上分开导出产品清单、产品地图与原生规格 CSV。产品/来源/规格处理状态分别计量；公开页面明确清点未完与未知项。",
+      "implementation_revision": "2026.09.27.23"
     },
     {
       "id": "product-ecosystems-20260906",

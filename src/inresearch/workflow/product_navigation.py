@@ -45,6 +45,7 @@ AUXILIARY = re.compile(
     r'help-me-choose|stem-majors|virtualization/resources)/|'
     r'/solutions/(?:ai|mlops|confidential-computing)/|/max-q-technologies/|'
     r'/data-center/(?:products/)?$|/networking/(?:products/)?$|'
+    r'/(?:buy-desktop|buy-gpu|features|performance|product-images|videos|reviews|specifications|compare)(?:/|$)|'
     r'/(?:tensor-cores|ai-cloud-validation)/', re.I)
 
 
