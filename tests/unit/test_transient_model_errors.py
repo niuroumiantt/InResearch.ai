@@ -21,7 +21,7 @@ class CallMappingTests(unittest.TestCase):
             return type(exc), exc.code
 
     def test_transient_cli_exits_are_retryable_and_keep_their_code(self):
-        for code in ("model_cli_failed", "model_cli_timeout"):
+        for code in ("model_cli_failed", "model_cli_timeout", "model_cli_output_limit"):
             kind, recorded = self.mapped(code)
             self.assertTrue(issubclass(kind, reader_contracts.ModelError), code)
             self.assertFalse(issubclass(kind, reader_contracts.Blocked), code)
