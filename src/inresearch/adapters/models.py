@@ -158,6 +158,10 @@ def json_object(text):
     return value
 
 
+# Effort for the single retry after thinking filled the CLI output budget.
+CLI_RESCUE_EFFORT = "low"
+
+
 class JsonModelClient:
     def __init__(self, profile):
         self.profile = profile
@@ -244,12 +248,30 @@ class JsonModelClient:
         return result
 
     def _generate_cli(self, system, user, *, json_schema=None):
+        """One CLI read; one low-effort retry when thinking filled the output budget.
+
+        Adaptive-thinking models (Sonnet 5, Opus 5.5) ignore MAX_THINKING_TOKENS,
+        and on a dense chunk their thinking can use the whole output budget so the
+        answer never fits. Only that failure is retried, once, with --effort low;
+        the effort used is recorded on the result. Every other call is unchanged."""
+        try:
+            return self._generate_cli_once(system, user, json_schema=json_schema)
+        except InferenceError as exc:
+            if exc.code != "model_cli_output_limit":
+                raise
+        result = self._generate_cli_once(system, user, json_schema=json_schema, effort=CLI_RESCUE_EFFORT)
+        result["_model"]["effort"] = CLI_RESCUE_EFFORT
+        return result
+
+    def _generate_cli_once(self, system, user, *, json_schema=None, effort=None):
         """Treat the CLI as a bounded, tool-free inference process, not a writer."""
         p = self.profile
         command = [p.command, "-p", "--output-format", "stream-json", "--verbose", "--model", p.model,
                    "--safe-mode", "--tools", "", "--no-session-persistence",
                    "--strict-mcp-config", "--mcp-config", '{"mcpServers":{}}', "--no-chrome",
                    "--system-prompt", system]
+        if effort is not None:
+            command.extend(["--effort", effort])
         if json_schema is not None:
             if not isinstance(json_schema, dict) or json_schema.get("type") != "object":
                 raise InferenceError("model_output_schema_invalid")
@@ -274,7 +296,8 @@ class JsonModelClient:
             if process.returncode or envelope.get("is_error"):
                 detail = str(envelope.get("result", "")).lower()
                 code = ("model_cli_authentication_failed" if any(word in detail for word in
-                        ("authenticate", "authentication", "not logged", "403", "401")) else "model_cli_failed")
+                        ("authenticate", "authentication", "not logged", "403", "401"))
+                        else "model_cli_output_limit" if "output token maximum" in detail else "model_cli_failed")
                 raise InferenceError(code)
             # Usage includes auxiliary CLI requests (e.g. Haiku classifiers).
             # Only actual assistant messages identify the model that read input.

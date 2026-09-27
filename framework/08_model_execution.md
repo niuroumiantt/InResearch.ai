@@ -22,6 +22,8 @@ reader 各环节 schema 中 `object_ids`、`question_ids` 不是必填字段（2
 
 read 回复的字段顺序为 `chunk_sha256`、`claims`、ID、`summary`（2026-09-27 起）：模型按 schema 顺序填写，摘要在前时 Sonnet 把发现写成长段摘要（1346–2805 字，比块本身还长）、漏掉 claims，CLI 5 次内部重试都重复同样错误。提示同时要求先写 claims、每条发现连同原文引文放入 claims 而不是摘要，摘要只简述本块。受约束解码的 Ollama 同样先生成 claims。
 
+Claude CLI 报「response exceeded the … output token maximum」时记 `model_cli_output_limit`，同一次调用内以 `--effort low` 重试一次，并在该块 `_model.effort` 记录（2026-09-27 起）。原因：Sonnet 5、Opus 5.5 为自适应思考，忽略 `MAX_THINKING_TOKENS`；遇到密集块时思考占满输出预算（一例 14,282/16,384），回答放不下。其余调用不带 `--effort`；重试仍失败则按临时错误走 reader 的普通重试。
+
 Claude CLI 的非零退出或 `is_error`（过载、断线、进程卡死）记 `model_cli_failed`，超时记 `model_cli_timeout`；reader 把这两种按普通模型失败处理：保留错误码，走每任务 3 次、30/60/120 秒退避的重试，不再整份阻塞（2026-09-27 起：M4 深读 21 份时 4 份因此阻塞，已完成的块均无失败、引文均核对通过）。认证失败、CLI 未安装、模型身份无法核实仍直接阻塞，重试解决不了。
 
 Ollama 文本任务把 reader 各环节（triage/read/synthesize）的 JSON Schema 直接放进请求的 `format`，由受约束解码保证输出符合结构；未给 schema 的调用（如 OCR）仍用 `format="json"`。2026-09-27 起：此前仅 `claude_cli` 使用 schema，Ollama 只用 JSON 模式，中文摘要里的 ASCII 引号会提前结束字符串，整块丢掉必填的 `claims`（df93 第 2 块），表现为 `model_output_invalid`。schema 不进入档案身份与 `reading_identity()`，已冻结配方不受影响；受约束解码只保证结构，不保证引文正确，引文仍按原文逐字校验。
