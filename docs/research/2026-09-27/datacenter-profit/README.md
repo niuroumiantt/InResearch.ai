@@ -9,6 +9,7 @@
 - 网页计算器当前口径：`data/datacenter_cost_model.json`（schema 2，本专题新增收益参照、两个情景预设与租金/造价基准）
 - 计算公式实现：`web/components/datacenter-cost.js`
 - 与研报口径对账：`profit-model.py` → `profit-model-results.json`
+- 价格序列录入：`price_records.py`（160 条、105 个序列，`--apply` 追加到 `data/prices.json`；页面基准按序列取最新时点）
 - 研究叙事：`article.md`；来源：`sources.md`（62 个机构组）
 - 研究卡（10 张、369 个数据点）与研报页码摘录：`outputs/geluoke-research/2026-09-27-datacenter-profit/work/research/cards.json`、`work/report_facts.md`
 - 本次反哺内容与去向：`feedback.md`
