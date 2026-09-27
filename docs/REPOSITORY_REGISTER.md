@@ -1,6 +1,6 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.18。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.19。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
@@ -41,11 +41,11 @@
 | `data/datacenter_economics_model.json` | groups | 5 |
 | `data/datacenter_economics_model.json` | benchmark_series | 15 |
 | `data/datacenter_tco_model.json` | groups | 7 |
-| `data/datacenter_tco_model.json` | benchmark_series | 11 |
+| `data/datacenter_tco_model.json` | benchmark_series | 25 |
 | `data/datacenter_tco_model.json` | sensitivity_drivers | 10 |
 | `data/facts.json` | records | 7849 |
 | `data/policies.json` | records | 2 |
-| `data/prices.json` | records | 367 |
+| `data/prices.json` | records | 512 |
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 120 |
