@@ -20,6 +20,8 @@ Claude CLI 在临时目录中以非交互模式运行，材料从标准输入传
 
 Ollama 档案可选 `repeat_penalty`（1.0–2.0）与 `repeat_last_n`（1 至档案上下文，惩罚回看的最近 token 数，Ollama 默认 64），均仅 Ollama：qwen3-vl 在温度 0 下遇到重复表格行或重复标语会循环，被 Ollama 以 `token repeat limit reached` 中止或写满 `num_predict` 截断；重复块长于回看窗口时惩罚不起作用。当前只有 `spark_ocr` 设 1.1 / 256。两者都会改变输出，所以设了才记入档案身份与每页 `_model`；reader 冻结配方只比较 `reading_identity()` 的固定字段，不因此失效。惩罚可能压掉合法的连续相同数值（如“0.0 0.0 0.0”），双读一致不能发现这类误差，须抽查原件。
 
+Reader JSON 快照可用重复的 `--doc-id` 显式限定交付范围。限定导出只包含所选且已有完整覆盖报告的当前文档；未知 ID 或尚未完成的文档整体拒绝，不部分导出。限定导出不覆盖 catalog 全局的 mapping-proposals 派生文件。快照里的 Reader 总体状态仍反映整个队列，局部材料成功不冒充整批健康；发布端继续逐文档核验完整 coverage，并只接收 candidate。
+
 一个进程中的共享客户端冻结配置，重启后读取修改。`max_parallel` 限制该客户端同时请求数；它不等于跨进程或跨项目的 Spark 全局调度。reader 旧 `READER_*` 环境和 CLI 参数在入口转换，优先级为 CLI > 旧环境 > 选定配置；新部署优先使用统一 JSON，迁移时核对旧覆盖项。
 
 ### 按环节选模型（2026-09-26 用户采用）
