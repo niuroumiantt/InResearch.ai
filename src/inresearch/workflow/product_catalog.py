@@ -15,6 +15,7 @@ from urllib.request import Request, build_opener
 from inresearch.paths import project_root
 from inresearch.storage.layout import workspace_path
 from inresearch.delivery.publish_pilot_progress import NoRedirect
+from inresearch.workflow import product_navigation
 
 
 def database(root):
@@ -159,20 +160,24 @@ def snapshot(root):
         for row in db.execute('SELECT payload,run_id FROM products WHERE run_id=? ORDER BY id', (run['id'],)):
             p = json.loads(row['payload'])
             p['seen_in_latest_run'] = row['run_id'] == run['id']
+            p['navigation'] = product_navigation.classify(p)
             # Tables are data, never injected source HTML. Source text stays private.
             for table in p['tables']:
                 table.pop('text', None)
             products.append(p)
         return {'available': True, 'company_id': 'nvidia', 'generated_at': run['generated'],
                 'received_at': run['received'], 'acceptance': 'source_extracted_not_research_adopted',
-                'coverage': json.loads(run['coverage']), 'products': products}
+                'coverage': json.loads(run['coverage']), 'products': products,
+                'navigation': {'version': product_navigation.VERSION, 'groups': product_navigation.GROUPS,
+                               'official_source': product_navigation.SOURCE}}
     finally:
         db.close()
 
 
-def csv_export(value, mode='products', query='', kind='', with_specs=False):
+def csv_export(value, mode='products', query='', kind='', with_specs=False, group='', family='', scope='all'):
     products = [p for p in value['products'] if (not kind or p['kind'] == kind)
                 and (not with_specs or p['tables'])
+                and product_navigation.matches(p, group, family, scope)
                 and query.casefold() in (p['name'] + ' ' + p['category']).casefold()]
     stream = io.StringIO(newline='')
     writer = csv.writer(stream)
@@ -182,9 +187,10 @@ def csv_export(value, mode='products', query='', kind='', with_specs=False):
     def row(values):
         writer.writerow([safe(v) for v in values])
     if mode == 'products':
-        row(['product_id', 'name', 'official_category', 'entity_kind', 'availability', 'extraction_status', 'specification_tables', 'source_url', 'source_sha256', 'observed_at'])
+        row(['product_id', 'name', 'official_category', 'entity_kind', 'availability', 'extraction_status', 'specification_tables', 'source_url', 'source_sha256', 'observed_at', 'display_group', 'display_family', 'navigation_role'])
         for p in products:
-            row([p['id'], p['name'], p['category'], p['kind'], p['availability'], p['extraction_status'], len(p['tables']), p['source_url'], p['source_sha256'], p['observed_at']])
+            nav = product_navigation.classify(p)
+            row([p['id'], p['name'], p['category'], p['kind'], p['availability'], p['extraction_status'], len(p['tables']), p['source_url'], p['source_sha256'], p['observed_at'], nav['group'], nav['family'], nav['role']])
     elif mode == 'specs':
         row(['product_id', 'name', 'official_section', 'table', 'row', 'official_parameter', 'official_values', 'official_column_headers', 'official_cells_json', 'official_notes', 'source_url', 'source_sha256'])
         for p in products:

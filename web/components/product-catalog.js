@@ -3,13 +3,15 @@
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const kinds = {named_product:'具体型号页 · 待身份复核',family_or_directory:'系列 / 平台 / 目录',software_service:'软件 / 服务'};
   let catalog = {products:[]}, selected = '', generation = 0;
+  let group = 'datacenter', family = '', scope = 'catalog', page = 0;
+  const pageSize = 15;
   const compared = new Set();
   function tableHtml(table) {
     const rich=s=>esc(s).replace(/\^\{([^{}]*)\}/g,'<sup>$1</sup>').replace(/_\{([^{}]*)\}/g,'<sub>$1</sub>');
     return `<h3>${rich(table.section || `官方表格 ${table.index}`)}</h3><div class="table-wrap"><table aria-label="${esc(table.section)}"><tbody>${table.rows.map(row=>`<tr>${row.map(c=>{const tag=c.header?'th':'td';return `<${tag} colspan="${Number(c.colspan)||1}" rowspan="${Number(c.rowspan)||1}">${rich(c.text)}</${tag}>`;}).join('')}</tr>`).join('')}</tbody></table></div>${table.notes?`<p class="notes">${rich(table.notes)}</p>`:''}`;
   }
   function details(p, compact = false) {
-    return `<h2>${esc(p.name)}</h2><p>${esc(p.category)} · ${esc(kinds[p.kind])}</p><p class="muted">在售状态：待核对 · 获取于 ${esc(p.observed_at)}</p>${compact?'':`<button id="compare">${compared.has(p.id)?'移出并排核查':'加入并排核查（最多 4 项）'}</button>`}${p.tables.length?p.tables.map(tableHtml).join(''):'<p class="notice">已发现官方产品入口，具体规格仍待寻找或提取。这里不以相邻产品参数补值。</p>'}<p class="source"><a href="${esc(p.source_url)}" target="_blank" rel="noopener">查看官方来源</a> · 原文快照 SHA-256：${esc(p.source_sha256)}</p>${p.attachments.length?`<details><summary>关联附件（${p.attachments.length}）</summary><ul>${p.attachments.map(a=>`<li><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.label||a.url.split('/').pop())}</a></li>`).join('')}</ul></details>`:''}`;
+    return `<h2>${esc(p.name)}</h2><p>${esc(p.navigation?.family_label)} · ${esc(kinds[p.kind])}</p><details><summary>官方原始分类与获取记录</summary><p>${esc(p.category)}</p><p class="muted">在售状态：待核对 · 获取于 ${esc(p.observed_at)}</p></details>${compact?'':`<button id="compare">${compared.has(p.id)?'移出并排核查':'加入并排核查（最多 4 项）'}</button>`}${p.tables.length?p.tables.map(tableHtml).join(''):'<p class="notice">已发现官方产品入口，具体规格仍待寻找或提取。这里不以相邻产品参数补值。</p>'}<p class="source"><a href="${esc(p.source_url)}" target="_blank" rel="noopener">查看官方来源</a> · 原文快照 SHA-256：${esc(p.source_sha256)}</p>${p.attachments.length?`<details><summary>关联附件（${p.attachments.length}）</summary><ul>${p.attachments.map(a=>`<li><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.label||a.url.split('/').pop())}</a></li>`).join('')}</ul></details>`:''}`;
   }
   function select(id) {
     selected=id;
@@ -24,14 +26,35 @@
       select(id);
     };
   }
+  function navigation() {
+    const items=catalog.products.filter(p=>p.navigation.role==='catalog');
+    $('#groups').innerHTML=catalog.navigation.groups.map(g=>`<button data-group="${esc(g.id)}" aria-pressed="${scope==='catalog'&&group===g.id&&!$('#query').value}"><strong>${esc(g.label)}</strong><small>${items.filter(p=>p.navigation.group===g.id).length} 个产品 / 系列条目</small></button>`).join('');
+    $('#auxiliary').textContent=`辅助资料 / 待归类（${catalog.products.length-items.length}）`;
+    $('#auxiliary').setAttribute('aria-pressed',String(scope==='auxiliary'));
+    $('#groups').querySelectorAll('button').forEach(b=>b.onclick=()=>{group=b.dataset.group;family='';scope='catalog';page=0;$('#query').value='';filter();});
+    const families=new Map();
+    items.filter(p=>p.navigation.group===group).forEach(p=>families.set(p.navigation.family,p.navigation.family_label));
+    const choices=[...families].sort((a,b)=>a[1].localeCompare(b[1],'zh-CN'));
+    if(!family||!families.has(family))family=choices.some(([id])=>id==='accelerators')?'accelerators':choices[0]?.[0]||'';
+    $('#families').innerHTML=choices.map(([id,label])=>`<button data-family="${esc(id)}" aria-pressed="${family===id}">${esc(label)} <small>${items.filter(p=>p.navigation.group===group&&p.navigation.family===id).length}</small></button>`).join('');
+    $('#families').hidden=scope!=='catalog'||!!$('#query').value;
+    $('#families').querySelectorAll('button').forEach(b=>b.onclick=()=>{family=b.dataset.family;page=0;filter();});
+  }
   function filter() {
+    if(!catalog.navigation)return;
+    navigation();
     const q=$('#query').value.trim().toLowerCase(), kind=$('#kind').value;
-    const products=catalog.products.filter(p=>(!kind||p.kind===kind)&&(!$('#with-specs').checked||p.tables.length)&&(p.name+' '+p.category).toLowerCase().includes(q));
-    $('#products').innerHTML=products.map(p=>`<button class="product" data-id="${esc(p.id)}" aria-pressed="${p.id===selected}"><strong>${esc(p.name)}</strong><small>${esc(p.category)} · ${p.tables.length?`${p.tables.length} 张官方规格表`:'待提取规格'}</small></button>`).join('')||'<p>没有符合筛选条件的产品。</p>';
-    $('#matches').textContent=`${products.length} 项`;
-    for(const mode of ['products','specs'])$('#export-'+mode).href='/api/product-catalog/nvidia?'+new URLSearchParams({export:mode,q,kind,with_specs:$('#with-specs').checked?'1':''});
+    const activeGroup=q||scope!=='catalog'?'':group, activeFamily=q||scope!=='catalog'?'':family;
+    const products=catalog.products.filter(p=>(scope==='catalog'?p.navigation.role==='catalog':p.navigation.role!=='catalog')&&(!activeGroup||p.navigation.group===activeGroup)&&(!activeFamily||p.navigation.family===activeFamily)&&(!kind||p.kind===kind)&&(!$('#with-specs').checked||p.tables.length)&&(p.name+' '+p.category).toLowerCase().includes(q)).sort((a,b)=>Number(b.kind==='named_product')-Number(a.kind==='named_product')||Number(!!b.tables.length)-Number(!!a.tables.length)||a.name.localeCompare(b.name,'en',{numeric:true}));
+    page=Math.min(page,Math.max(0,Math.ceil(products.length/pageSize)-1));
+    const shown=products.slice(page*pageSize,(page+1)*pageSize);
+    $('#products').innerHTML=shown.map(p=>`<button class="product" data-id="${esc(p.id)}" aria-pressed="${p.id===selected}"><strong>${esc(p.name)}</strong><small>${p.tables.length?`${p.tables.length} 张规格表`:'规格待补齐'} · ${p.kind==='named_product'?'型号候选':p.kind==='software_service'?'软件 / 服务':'系列 / 目录'}</small></button>`).join('')||'<p>没有符合筛选条件的条目。</p>';
+    $('#matches').textContent=`${products.length} 项 · 当前显示 ${products.length?page*pageSize+1:0}–${Math.min(products.length,(page+1)*pageSize)}`;
+    $('#breadcrumb').textContent=scope!=='catalog'?'辅助资料 / 待归类（不计作具体产品）':q?'跨大类搜索结果':`${catalog.navigation.groups.find(g=>g.id===group)?.label||''} › ${catalog.products.find(p=>p.navigation.family===family)?.navigation.family_label||''}`;
+    $('#previous').disabled=page===0;$('#next').disabled=(page+1)*pageSize>=products.length;
+    for(const mode of ['products','specs'])$('#export-'+mode).href='/api/product-catalog/nvidia?'+new URLSearchParams({export:mode,q,kind,with_specs:$('#with-specs').checked?'1':'',group:activeGroup,family:activeFamily,scope});
     document.querySelectorAll('.product').forEach(b=>b.onclick=()=>select(b.dataset.id));
-    if(products.length&&!products.some(p=>p.id===selected))select(products[0].id);
+    if(shown.length)select(shown.some(p=>p.id===selected)?selected:shown[0].id);
     if(!products.length)$('#detail').textContent='没有符合筛选条件的产品。';
   }
   async function load() {
@@ -49,5 +72,7 @@
       $('#limitations').innerHTML=c.limitations.map(v=>`<li>${esc(v)}</li>`).join('');filter();
     } catch(e) {if(current===generation)$('#status').textContent=e.message;}
   }
-  $('#query').oninput=filter;$('#kind').onchange=filter;$('#with-specs').onchange=filter;$('#retry').onclick=load;load();
+  $('#query').oninput=()=>{page=0;filter();};$('#kind').onchange=()=>{page=0;filter();};$('#with-specs').onchange=()=>{page=0;filter();};$('#retry').onclick=load;
+  $('#auxiliary').onclick=()=>{scope=scope==='auxiliary'?'catalog':'auxiliary';page=0;$('#query').value='';filter();};
+  $('#previous').onclick=()=>{page--;filter();};$('#next').onclick=()=>{page++;filter();};load();
 })();

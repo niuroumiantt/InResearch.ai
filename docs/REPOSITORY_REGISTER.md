@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：986。
+在册文件：987。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,7 +16,7 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 267 |
-| 运行代码 | 213 |
+| 运行代码 | 214 |
 | 现行规范 | 13 |
 | 项目配置 | 89 |
 | 兼容研究记录 | 16 |
@@ -1176,6 +1176,7 @@
 | `src/inresearch/workflow/model_assets.py` | 运行代码 |
 | `src/inresearch/workflow/pilot_progress.py` | 运行代码 |
 | `src/inresearch/workflow/product_catalog.py` | 运行代码 |
+| `src/inresearch/workflow/product_navigation.py` | 运行代码 |
 | `src/inresearch/workflow/progress.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
 | `src/inresearch/workflow/reading_gaps.py` | 运行代码 |
