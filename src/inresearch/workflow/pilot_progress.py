@@ -14,6 +14,16 @@ def path(root):
         'data/raw/pilot-progress/nvidia.json', root)
 
 
+def token_path(root):
+    configured = os.environ.get('INRESEARCH_PILOT_TOKEN_FILE')
+    if configured:
+        return Path(configured).expanduser()
+    runtime = os.environ.get('INRESEARCH_RUNTIME_ROOT')
+    if runtime:
+        return Path(runtime).expanduser() / 'data/.nvidia_pilot_token'
+    return workspace_path('data/.nvidia_pilot_token', root)
+
+
 def receive(root, payload):
     """Validate a bounded status + candidate snapshot before storing separately."""
     if not isinstance(payload, dict) or payload.get('schema_version') != 1:

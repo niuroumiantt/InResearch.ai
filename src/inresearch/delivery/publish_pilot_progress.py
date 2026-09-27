@@ -8,6 +8,11 @@ import urllib.request
 from urllib.parse import urlsplit
 
 
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, request, file_pointer, code, message, headers, new_url):
+        return None
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--status', type=Path, required=True)
@@ -35,9 +40,9 @@ def main(argv=None):
         raise ValueError('publisher requires an HTTPS endpoint without embedded credentials')
     request = urllib.request.Request(endpoint, data=body, method='POST', headers={
         'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token})
-    with urllib.request.build_opener() as opener:
-        with opener.open(request, timeout=120) as response:
-            result = json.loads(response.read(4096))
+    opener = urllib.request.build_opener(NoRedirect)
+    with opener.open(request, timeout=120) as response:
+        result = json.loads(response.read(4096))
     if result.get('ok') is not True:
         raise ValueError('receiver did not acknowledge pilot progress')
     print(json.dumps(result, ensure_ascii=False))

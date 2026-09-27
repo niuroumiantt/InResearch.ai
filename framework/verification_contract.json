@@ -83,7 +83,7 @@
     "tests/unit/test_ocr_worker_resume.py": "6a0fc026fdd22ddc3b303e51b67fea8d4b7a8ee9ba9fdb4e130572076541863e",
     "tests/unit/test_ollama_schema.py": "b70ab619eba8b6a3e5a565831a9c838a50c12e30bdd4cdc9473c3cde9cad14d8",
     "tests/unit/test_optional_mapping_ids.py": "5855afeaa96c64a825ffdc49fe1708efe9762ea60c65826f6a95b647ea341a2c",
-    "tests/unit/test_pilot_progress.py": "9a5c54e39d28b07bf497a844a906366c8b8053e3368a8b4260089f145b195259",
+    "tests/unit/test_pilot_progress.py": "0752a52a252dc555d48f451b0062dd9203d5a08416e752547c466836f1502e6e",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "13d781d6bb35801eb8a7b4592008e2a87f9a3b48a2c685e442c860bcddde220c",
     "tests/unit/test_reader_depth.py": "3e9a0ace8150391afd8f9d50cc3cfeb99f6da189657279e157d458917f2e2d13",
@@ -336,7 +336,7 @@
       "policy": "acquisition-20260906",
       "scope": "project",
       "source": "framework/06_acquisition.md",
-      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用受限凭证直接向 AWS 上传进度与完整候选，Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。",
+      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。",
       "tests": [
         "tests/unit/test_acquisition.py::AcquisitionTests.test_archive_preserves_revisions_and_is_idempotent",
         "tests/unit/test_acquisition.py::AcquisitionTests.test_failure_is_recorded_and_not_success",
@@ -370,11 +370,13 @@
         "tests/unit/test_supply.py::SupplyTests.test_fetchspec_receipt_projects_candidate_reader_state_without_adoption",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_scanned_pdf_blocks_and_office_document_is_structurally_read",
         "tests/unit/test_pilot_progress.py::PilotProgressTests.test_receive_projects_candidate_only_status_and_is_idempotently_rejected",
-        "tests/unit/test_pilot_progress.py::PilotProgressTests.test_rejects_incomplete_or_non_claude_payload"
+        "tests/unit/test_pilot_progress.py::PilotProgressTests.test_rejects_incomplete_or_non_claude_payload",
+        "tests/unit/test_pilot_progress.py::PilotProgressTests.test_receiver_credential_resolves_inside_deployed_runtime",
+        "tests/unit/test_pilot_progress.py::PilotPublisherTests.test_publisher_posts_with_private_token_and_requires_receiver_ack"
       ],
       "not_verified": [
         "全文翻译、撤回增量、全局限速与 GPU 调度仍未完整实现。",
-        "本次新增的 M5 NVIDIA 进度接收端和网页仅代码验收，AWS 尚未部署；M5 到 AWS 的真实上传/在线可见性仍待实测。五篇试读中 3 份完整、1 份阻塞、1 份失败；全站 449 PDF 尚未本地全文阅读，采集任务调度、Spark 永久归档和正式研究证据采用仍未接通。",
+        "AWS 已部署 NVIDIA 进度页与接收端，但生产运行时未把专用凭证解析到挂载数据根，真实 M5 上传尚未收到回执；本批修复合入并部署后仍须实测直传与线上可见性。五篇试读中 3 份完整、1 份阻塞、1 份失败；全站 449 PDF 尚未本地全文阅读，采集任务调度、Spark 永久归档和正式研究证据采用仍未接通。",
         "PCN/规格新版语义、厂商分类/语言标记与产品身份需研究人员复核；源站抓取不完整时不能可靠推断产品已下架。"
       ]
     },

@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-27：NVIDIA 临时验证链路改为 M5 → AWS，Spark 完全不参与
+
+用户明确：本轮为尽快验证 NVIDIA 产品资料从抓取、阅读研究到线上呈现的闭环，M5 本地保存原件、由 M5 Claude Code CLI 阅读，候选快照与进度直接交到 AWS 上的 inresearch.ai；Spark 不接收原件、候选或任务，既有 Spark L1/L2 工作不动。449 份 PDF 已下载并做包级 SHA/大小核验，但目前只试读 5 份（3 完整、1 阻塞、1 失败），不得称为 449 份均已阅读。候选保持 candidate-only，仍须走现行审核与 C3 流程；Spark 永久归档以后另行补齐。本决定取代下方 NAS 阶段的 NVIDIA M5→Spark 路径，仅限定本轮试点，不更改长期生产存储策略。
+
 ## 2026-09-27：reader schema 的映射 ID 改为非必填
 
 M4 深读中 4 份文档的 `model_cli_failed` 并非限流：Sonnet 偶尔省略空的 `object_ids`，schema 将其列为必填，Claude CLI 内部重试 5 次后报错，每个卡住的块最多耗 15 次生成。reader 本来就把缺失的 ID 数组当空数组，采用：triage、read 及 claim 的 schema 不再要求 `object_ids`/`question_ids`，校验与引文核对不变。另两次失败是摘要写成整份文档概述（3678 字，上限 1200）并漏掉 `claims`：read 提示写明摘要只写本块、1200 字以内，顶层必须返回 claims（可为空）。同批修复 #234 的 nvidia-pilot.html 全局 `nav` 样式撑高站点头栏（手机上 118px，检查要求两行以内），改为只作用于 `main>nav`。
@@ -44,7 +48,7 @@ NVIDIA 五篇 M5 试读里，Claude Code CLI 身份与传输正常，输出 JSON
 
 NVIDIA 试点需让已完成资料先交付，而不把未完成材料伪装为完整。Reader `export --doc-id` 可重复指定完整当前文档 ID；只有全部选中文档 coverage 完整时才生成限定快照，未知或未完成 ID 拒绝，且不覆写全 catalog 的 mapping-proposals。五份中仅三份完整，限定快照含 3 documents、274 evidence、194 statements，整批 reader 状态仍标为 degraded，所有知识都保持 candidate。快照通过当前图谱/问题版本、校验与合并预检；M5→Spark SHA256 一致，Spark HTTPS 接收回执确认 3 documents。网站查询与人工语义审核未做；接收不代表采用。
 
-## 2026-09-27：NAS 暂不可用时的 Spark 原件与 M5 分析分工
+## 2026-09-27：NAS 暂不可用时的 Spark 原件与 M5 分析分工（已由 M5 → AWS 试点取代）
 
 用户明确：原始 NVIDIA 文件仍留在 Spark，阅读分析交给 M5 的 Claude Code CLI。作为 NAS 恢复前的临时试点，Spark 保持原件/永久存储与发布凭证；M5 仅处理按 SHA 选取的临时副本，视觉 OCR 与 Claude 阅读分开记账。M5 候选快照由 Spark 凭证经现有 HTTPS 接收端提交，绝不自动升级成采用证据；本轮 3 份完整候选已收到回执。五份试点还有 2 份受阻，Spark Reader 服务保持原状未重启，整批状态 degraded。Fetchspec 默认接收只归档、编目，不再自动扩大 Spark Reader 队列；需要在 Spark 阅读的个别资料须显式选择 SHA。实施与临时流程见 `framework/06_acquisition.md`、`framework/supply_contract.json`。
 
