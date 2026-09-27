@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.18",
+  "version": "2026.09.27.19",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -546,8 +546,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 99966,
-      "sha256": "c515da0120ec2a6e818db6e3cdfc251187be9ba7f11ff4ffdfc3ba67f7d60f33",
+      "bytes": 100616,
+      "sha256": "12086314192119d61b8511554ceb8c2e7c98450cc428acb36559b587e3dc733c",
       "collections": []
     },
     {
@@ -765,6 +765,13 @@
       "role": "supporting_document",
       "bytes": 6569,
       "sha256": "d185de91ec53ee7b83aad186be09c9d49089dc41acc7429fb8c236febff17435",
+      "collections": []
+    },
+    {
+      "path": "docs/handoff/nvidia-product-catalog.md",
+      "role": "supporting_document",
+      "bytes": 2146,
+      "sha256": "54d3bbd1031bd6c47193cab6578a72bb1cd0eb2d5d963e830bc184706ccc0f2c",
       "collections": []
     },
     {
@@ -6569,8 +6576,8 @@
     {
       "path": "framework/06_acquisition.md",
       "role": "normative",
-      "bytes": 32533,
-      "sha256": "58853731d86b3e710e77276047f568fc2be5726e5b39558ae8c9534714fe81f6",
+      "bytes": 33423,
+      "sha256": "6dab9c85968ce271e8222c2fff75f51009c0cbdf27a925c8466f3e45255f84fc",
       "collections": []
     },
     {
@@ -6598,7 +6605,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5449,
-      "sha256": "6f556df19831c11fd318e9b3fbf3d492366cc6b8d17b5ebeff90aca36456d649",
+      "sha256": "9242ee9c34381f287426f5e178d6888f4f57650594978c8133695da07639a1aa",
       "collections": []
     },
     {
@@ -6620,8 +6627,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 37127,
-      "sha256": "e4d74a3c0108327e6df763b5d89bf1d49aec4d7fad69b94423b4c6dc0a3c5abe",
+      "bytes": 37561,
+      "sha256": "6a219f9c8c06dac1223647ad65fa03efaf9ce212e03c814c90d5274de082a3fa",
       "collections": [
         {
           "name": "policies",
@@ -6684,12 +6691,12 @@
     {
       "path": "framework/interface_manifest.json",
       "role": "project_config",
-      "bytes": 3870,
-      "sha256": "069b32849d24ae0e962272f75adfda7686bf326b3ac3e2b5a5c9e86b04ccb89f",
+      "bytes": 3960,
+      "sha256": "b91477ce084ec289ecf7f4c1fd9e229a5fe9b490f09de5e1f1b7bcffd87cf5a3",
       "collections": [
         {
           "name": "static_pages",
-          "count": 19
+          "count": 20
         },
         {
           "name": "template_fragments",
@@ -6908,8 +6915,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 73770,
-      "sha256": "ed066907339f5919f2cdd162b9729c87b9d229bdea175ebcda31f7fff132607e",
+      "bytes": 74863,
+      "sha256": "1cb1dbb86aaa98378b77103d998dae9d4f7b20c38391a922231811c905dea222",
       "collections": [
         {
           "name": "policies",
@@ -8285,8 +8292,8 @@
     {
       "path": "src/inresearch/interfaces/cli.py",
       "role": "implementation",
-      "bytes": 4791,
-      "sha256": "a3d58ed85dd05bc10b7c56639e79eb79916ccb60b35d004dbae99c9fcf417b08",
+      "bytes": 4853,
+      "sha256": "21a0b969b2757f53f16236766817f54cbd5fa8c4707be048eed944726e54908d",
       "collections": []
     },
     {
@@ -8306,8 +8313,8 @@
     {
       "path": "src/inresearch/interfaces/http.py",
       "role": "implementation",
-      "bytes": 31136,
-      "sha256": "daae5cf5f72f82a6b6f6a573e957ef93d5839243c502313c40834179b90615a8",
+      "bytes": 32322,
+      "sha256": "3e64c547cb32e5f17367b6dc19fa63ba77b901b30e83d6a2bab7639563b8821a",
       "collections": []
     },
     {
@@ -8675,6 +8682,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/workflow/product_catalog.py",
+      "role": "implementation",
+      "bytes": 12351,
+      "sha256": "e0ef5d707240eb8cc69065a9b4f27e50b79378965e1d9d494eb081dcdcab5510",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/workflow/progress.py",
       "role": "implementation",
       "bytes": 5630,
@@ -8843,6 +8857,13 @@
       "collections": []
     },
     {
+      "path": "tests/product_catalog.cjs",
+      "role": "test",
+      "bytes": 2305,
+      "sha256": "26e90e5e1687e7df5aeaa4c73648b7c26402cde278a1c8ca5ec3b7dd592697f9",
+      "collections": []
+    },
+    {
       "path": "tests/product_node_hover.cjs",
       "role": "test",
       "bytes": 3880,
@@ -8866,8 +8887,8 @@
     {
       "path": "tests/run_browser.cjs",
       "role": "test",
-      "bytes": 2803,
-      "sha256": "d06b413b7e56850126e3de8f87a7bbe66904f1bf35a2f077e9abbd2071e10c68",
+      "bytes": 2822,
+      "sha256": "2d4e1564eac021341275dd0617bdd22fbf4f36f451d7a2178410d5edf8efaab1",
       "collections": []
     },
     {
@@ -9218,6 +9239,13 @@
       "role": "test",
       "bytes": 5607,
       "sha256": "e3d47746edfac17ebf6c76960f5dd53a05bc057eb411150e130f82c1c3128f41",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_product_catalog.py",
+      "role": "test",
+      "bytes": 5109,
+      "sha256": "f240e869096008c00ed7969f83388e8e1ebc3ec329830eff4468d78cfc704a22",
       "collections": []
     },
     {
@@ -9873,6 +9901,13 @@
       "collections": []
     },
     {
+      "path": "web/components/product-catalog.js",
+      "role": "implementation",
+      "bytes": 5043,
+      "sha256": "65dcb165630f05210569bb0d67815689fdc64300fcdbfb66ef6f65e9d950ae1a",
+      "collections": []
+    },
+    {
       "path": "web/components/research-graph.js",
       "role": "implementation",
       "bytes": 59111,
@@ -10050,8 +10085,8 @@
     {
       "path": "web/pages/nvidia-pilot.html",
       "role": "implementation",
-      "bytes": 3727,
-      "sha256": "c5a8fbe88dc6561e9e7d4a2f31cb7a95b082310d79c4c5529341080f1c7cbd16",
+      "bytes": 3802,
+      "sha256": "54a77a5898f9dff1bd84fd75f3737cc052be7eb2901f2d2d7fd125877c834279",
       "collections": []
     },
     {
@@ -10066,6 +10101,13 @@
       "role": "implementation",
       "bytes": 11060,
       "sha256": "dded29a1fd4335c34975bc4fdaf9e9f8c618d7d8603cf113192e3ab7b26aac69",
+      "collections": []
+    },
+    {
+      "path": "web/pages/product-catalog.html",
+      "role": "implementation",
+      "bytes": 4624,
+      "sha256": "77db2c0c992b2e655c2c0f7df864e2ae5302d879cc8bb95eebedd2ce934d4d05",
       "collections": []
     },
     {
@@ -10120,8 +10162,8 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 7731,
-      "sha256": "30ff1df12c9d44c5f01c711349c223951b4f08168bc5e572d7297364cff41809",
+      "bytes": 7861,
+      "sha256": "271eff87c0dc892ffce1d8976733df3d37ff5aebbdb8d42cff27d2515202c1fe",
       "collections": []
     },
     {
@@ -10174,13 +10216,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 267,
-    "implementation": 210,
+    "implementation": 213,
     "normative": 13,
     "project_config": 89,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 28,
-    "supporting_document": 54,
-    "test": 85
+    "supporting_document": 55,
+    "test": 87
   }
 }
