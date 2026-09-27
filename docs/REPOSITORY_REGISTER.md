@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.7。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.8。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：943。
+在册文件：955。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 266 |
-| 运行代码 | 197 |
+| 历史快照 | 267 |
+| 运行代码 | 201 |
 | 现行规范 | 13 |
 | 项目配置 | 86 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
-| 配套说明 | 47 |
-| 测试 | 75 |
+| 配套说明 | 52 |
+| 测试 | 76 |
 
 ## 在册记录集合
 
@@ -897,6 +897,7 @@
 | [docs/reviews/2026-09-15/task-authority/file-plan.csv](reviews/2026-09-15/task-authority/file-plan.csv) | 历史快照 |
 | `docs/reviews/2026-09-15/task-authority/scope.json` | 历史快照 |
 | [docs/reviews/2026-09-21/supply-center/DELIVERY.md](reviews/2026-09-21/supply-center/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md](reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md) | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -1093,6 +1094,7 @@
 | `src/inresearch/delivery/export.py` | 运行代码 |
 | `src/inresearch/delivery/map.py` | 运行代码 |
 | `src/inresearch/delivery/publish.py` | 运行代码 |
+| `src/inresearch/delivery/publish_pilot_progress.py` | 运行代码 |
 | `src/inresearch/delivery/reader_export.py` | 运行代码 |
 | `src/inresearch/delivery/reader_progress.py` | 运行代码 |
 | `src/inresearch/delivery/reader_status.py` | 运行代码 |
@@ -1155,6 +1157,7 @@
 | `src/inresearch/workflow/deep_read.py` | 运行代码 |
 | `src/inresearch/workflow/l1_batch.py` | 运行代码 |
 | `src/inresearch/workflow/model_assets.py` | 运行代码 |
+| `src/inresearch/workflow/pilot_progress.py` | 运行代码 |
 | `src/inresearch/workflow/progress.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
 | `src/inresearch/workflow/reading_gaps.py` | 运行代码 |
@@ -1225,6 +1228,7 @@
 | `tests/unit/test_ocr_repeat_penalty.py` | 测试 |
 | `tests/unit/test_ocr_worker_named.py` | 测试 |
 | `tests/unit/test_ocr_worker_resume.py` | 测试 |
+| `tests/unit/test_pilot_progress.py` | 测试 |
 | `tests/unit/test_product_library.py` | 测试 |
 | `tests/unit/test_publish_reader.py` | 测试 |
 | `tests/unit/test_reader_depth.py` | 测试 |
@@ -1336,6 +1340,7 @@
 | `web/pages/framework_poster.html` | 运行代码 |
 | `web/pages/index.html` | 运行代码 |
 | `web/pages/materials.html` | 运行代码 |
+| `web/pages/nvidia-pilot.html` | 运行代码 |
 | `web/pages/ops.html` | 运行代码 |
 | `web/pages/poster.html` | 运行代码 |
 | `web/pages/rack3d.html` | 运行代码 |

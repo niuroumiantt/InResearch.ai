@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-27：NVIDIA 首轮端到端验证改为 M5 → AWS，Spark 暂不参与
+
+用户明确要求先验证最短链路：M5 本地 Fetchspec 原件、M5 Claude Code CLI 阅读研究、候选与独立进度状态直传 AWS，inresearch.ai 线上可查看；Spark 本轮不接收原件、不运行 NVIDIA Reader、不被推送任务。候选只作为候选，不写正式采用结论；3 篇现有完整候选与失败/阻塞状态分别展示。NVIDIA 完成该验证后，再按永久架构补齐 Spark 原件归档与运行处理。唯一现行详细流程登记于 `framework/06_acquisition.md` 的 NVIDIA 验证例外及 `framework/supply_contract.json` v1.3。当前实施状态见 `docs/reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md`。
+
 ## 2026-09-27：Spark 阅读进度页
 
 用户要求能实时看到谁在做什么、进度如何。reader status 的 JSON 只给总数，看不出 35 份重点文档各卡在哪，也看不出降温占去多少时间（当日日志显示几乎每个任务后都暂停 120 秒，机温 83–87 ℃）。用户采用：新增只读 `reader-progress` 生成自动刷新的 HTML 页，Mac 端循环脚本每 60 秒拉取；不改动 catalog、不经公网，M4 只显示经 Spark 可见的认领与已上传页。
