@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.27.22",
-  "effective_at": "2026-09-27",
+  "version": "2026.09.28.26",
+  "effective_at": "2026-09-28",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
     {
@@ -459,8 +459,8 @@
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "News uses a bounded projection of the same validated Reader snapshot; homepage/ops stop polling the full research view. No second authority or original-data migration; stale responses cannot overwrite newer UI state.；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与任务计划持久化，执行与交付接入待完成。；2026-09-21 执行机器按任务方式固定：continuous 在 AWS，assisted 在 macmini，Spark 只保存和分析；同一来源范围不双跑。；2026-09-26 供应流水线阶段 1-6 首批代码落地：Fetchspec 1.0/1.1 包验签、内容 SHA 去重归档、来源/分类/语言/问题索引、支持格式接入现有 Reader，HTML 与 Office 结构提取，PCN/规格新版保留旧版并触发影响复核；UI 展示交付与 Reader 候选状态。；2026-09-27 用户将 NVIDIA 本轮验证范围缩至 M5 本地 Fetchspec/Claude 阅读、候选和进度直传 AWS；Spark 完全不参与，候选不自动正式采用；Spark 永久存储为后续补齐。本地实现和进度入口按该短链路验收，线上实际发布状态见本批 DELIVERY。；2026-09-27 用户采用产品优先替代附件优先：官方目录→逐产品原厂规格→独立 SQLite→轻量网页/CSV；原件在 M5，结构化数据交 AWS，缺口显式，正式采用另行。；2026-09-27 替代目录平铺为五大浏览组与产品系列导航；官网十栏目原证据保留，辅助入口分离，CSV 共用筛选。；2026-09-27 产品地图对齐：官方目录页将明确型号拆为稳定子产品并关联父系列/平台；常规增量只检查目录和分类入口，新条目扩展入队，部分扫描未见不判下架；资源落地页、下载件和已提取规格分别计态，inresearch 校验父级并展示产品变更及来源。",
-      "implementation_revision": "2026.09.27.21"
+      "reason": "新闻使用 Reader 的有界投影；供应执行、资料接收与 NVIDIA 产品库按用户确定的职责保存状态。2026-09-27 NVIDIA 采用产品优先：M5 本地发现/阅读，结构化候选发布 AWS，Spark 本轮不参与；页面按官方分类证据映射为五大浏览组。产品地图将明确型号关联父系列/平台，保留来源与参数版本。增量先对账官方英文与中文 XML sitemap，仅筛已审阅的产品路径，条件请求避免重复下载；产品路径新增入队、lastmod 变化重查。NVIDIA 中文站 www.nvidia.cn 使用根路径并纳入，路径匹配的中英页归并身份但各留快照。官方跳转仅放行核实过的 NVIDIA developer/networking 文档子域及具体页面，并分别遵守 robots.txt。产品 sitemap URL 抓取进度独立于广泛辅助页面队列计量。官方 sitemap 不完整不判缺失；即使完整，URL 未出现也只待复核不自动下架。网站 XML sitemap 是更新索引，不是产品总表；网站另生成公司产品 sitemap，线上分开导出产品清单、产品地图与原生规格 CSV。产品/来源/规格处理状态分别计量；公开页面明确清点未完与未知项。",
+      "implementation_revision": "2026.09.28.25"
     },
     {
       "id": "product-ecosystems-20260906",
@@ -512,12 +512,13 @@
         "src/inresearch/workflow/reading_results.py",
         "src/inresearch/materials/reading_artifacts.py",
         "tests/unit/test_reading_results.py",
-        "tests/unit/test_reader_depth.py"
+        "tests/unit/test_reader_depth.py",
+        "tests/unit/test_dropped_claims.py"
       ],
       "supersedes": [
         "reading-20260906"
       ],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按分数分层阅读深度：有效优先级 ≥7 或点名全文深读，1–6 摘要深度（summarized），0 分与衍生物回流 park 停放，替代“所有独立文章都全文深读”。；2026-09-27 M5 NVIDIA 实测发现 Claude CLI 传输正常但部分证据引文不匹配原文；强化逐字引文提示，无法核实的主张须舍弃，完整报告仍受原文校验门槛约束；继续排查发现 CLI 偶发 Markdown 代码围栏，Reader 改用阶段 JSON Schema 结构化输出并对不匹配引文仅作一次定向纠正重试，硬性逐字校验不变。；Reader 支持按完整 doc ID 生成限定候选快照，必须每个所选文档 coverage 完整；未知/未完成项拒绝，且不改全局 mapping-proposals。",
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按分数分层阅读深度：有效优先级 ≥7 或点名全文深读，1–6 摘要深度（summarized），0 分与衍生物回流 park 停放，替代“所有独立文章都全文深读”。；2026-09-27 M5 NVIDIA 实测发现 Claude CLI 传输正常但部分证据引文不匹配原文；强化逐字引文提示，无法核实的主张须舍弃，完整报告仍受原文校验门槛约束；继续排查发现 CLI 偶发 Markdown 代码围栏，Reader 改用阶段 JSON Schema 结构化输出并对不匹配引文仅作一次定向纠正重试，硬性逐字校验不变。；Reader 支持按完整 doc ID 生成限定候选快照，必须每个所选文档 coverage 完整；未知/未完成项拒绝，且不改全局 mapping-proposals。；2026-09-27 用户采用：纠正一次后引文仍不符时只剔除该主张并留档（dropped_claims，报告计数与警告），不再整块阻断。",
       "implementation_revision": "2026.09.27.3"
     },
     {
@@ -602,7 +603,7 @@
         "tests/unit/test_optional_mapping_ids.py"
       ],
       "supersedes": [],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。；2026-09-26 Ollama 档案可选 repeat_penalty（仅 spark_ocr 设 1.05，记入档案身份但不进 reading_identity），ocr-worker 单页 model_failure 重试一次。；2026-09-27 档案新增 repeat_last_n（仅 Ollama），spark_ocr 改为 repeat_penalty 1.1 / repeat_last_n 256；OCR 双读不能发现一致误读，关键数字回原件核对。；2026-09-27 M5 Claude CLI 实测曾返回 Markdown 围栏，Reader 现按阅读阶段提交 JSON Schema，并仅对引文不匹配执行一次纠正请求；原文匹配、模型身份和候选边界继续强制校验。；2026-09-27 Ollama 文本任务以 reader schema 作 format（受约束解码），修复 ASCII 引号导致缺字段的 model_output_invalid。；2026-09-27 spark_ocr 输出上限 8192、上下文 16384。；2026-09-27 Claude CLI 的 model_cli_failed / model_cli_timeout 改走普通重试，认证、未安装、身份不符仍阻塞。；2026-09-27 reader schema 的 object_ids/question_ids 改为非必填，避免 Claude CLI 因省略空数组而内部重试失败。",
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。；2026-09-26 Ollama 档案可选 repeat_penalty（仅 spark_ocr 设 1.05，记入档案身份但不进 reading_identity），ocr-worker 单页 model_failure 重试一次。；2026-09-27 档案新增 repeat_last_n（仅 Ollama），spark_ocr 改为 repeat_penalty 1.1 / repeat_last_n 256；OCR 双读不能发现一致误读，关键数字回原件核对。；2026-09-27 M5 Claude CLI 实测曾返回 Markdown 围栏，Reader 现按阅读阶段提交 JSON Schema，并仅对引文不匹配执行一次纠正请求；原文匹配、模型身份和候选边界继续强制校验。；2026-09-27 Ollama 文本任务以 reader schema 作 format（受约束解码），修复 ASCII 引号导致缺字段的 model_output_invalid。；2026-09-27 spark_ocr 输出上限 8192、上下文 16384。；2026-09-27 Claude CLI 的 model_cli_failed / model_cli_timeout 改走普通重试，认证、未安装、身份不符仍阻塞。；2026-09-27 reader schema 的 object_ids/question_ids 改为非必填，避免 Claude CLI 因省略空数组而内部重试失败。；2026-09-27 引文二次不符改为剔除该主张并留档，不整块阻断。",
       "implementation_revision": "2026.09.27.1"
     },
     {

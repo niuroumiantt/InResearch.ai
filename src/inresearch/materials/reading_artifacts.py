@@ -57,6 +57,8 @@ class ReadingArtifacts:
         gaps = sorted(p['page_index'] for p in extraction['pages'] if p.get('gap'))
         if report['coverage'].get('gap_pages', []) != gaps:
             raise IntegrityError()
+        if report['coverage'].get('dropped_claims', 0) != sum(len(c.get('dropped_claims', [])) for c in chunks):
+            raise IntegrityError()
         counts = {'pages_total': extraction['pages_total'], 'pages_read': len(pages),
                   'chunks_total': len(chunks), 'chunks_read': len(chunks),
                   'characters_total': extraction['characters_total'],

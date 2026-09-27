@@ -460,13 +460,19 @@ class ReaderTests(unittest.TestCase):
                 self.reader.stages._ocr_page(doc, self.reader.data / doc["original_rel"], 1)
         self.assertEqual(exc.exception.code, "ocr_numbers_disagree")
 
-    def test_bad_quotes_and_unknown_ids_are_rejected(self):
+    def test_quotes_still_wrong_after_the_correction_are_dropped_not_the_chunk(self):
         self.register()
         self.run_reader(max_jobs=2)
         self.model.bad_quote = True
-        with self.assertRaises(reader_contracts.ModelOutputError):
-            self.reader.stages._read_chunk(self.first_doc(), 0)
-        self.model.bad_quote = False
+        result = self.reader.stages._read_chunk(self.first_doc(), 0)
+        self.assertEqual(len(self.model.retry_instructions), 1)
+        self.assertEqual((result["claims"], result["evidence"]), ([], []))
+        self.assertEqual(result["dropped_claims"], [{"text": "文中有可定位的内容", "kind": "author_claim",
+                                                     "unverified_quotes": ["FABRICATED QUOTE"]}])
+
+    def test_unknown_ids_are_rejected(self):
+        self.register()
+        self.run_reader(max_jobs=2)
         self.model.bad_mapping = True
         with self.assertRaises(reader_contracts.ModelOutputError):
             self.reader.stages._read_chunk(self.first_doc(), 0)
