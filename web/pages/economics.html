@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+<script src="/assets/theme-state.js"></script>
+<script src="/assets/site-skin.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="数据中心经济模型：一个项目定义，芯片、壳层、算力、模型四本账的投入与回报">
+<title>数据中心经济模型 — inresearch.ai</title>
+<link rel="stylesheet" href="/assets/datacenter-economics.css">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+<script defer src="/assets/datacenter-economics.js"></script>
+</head>
+<body>
+<inresearch-shell data-section="research"></inresearch-shell>
+<nav class="econ-topbar" aria-label="经济模型导航">
+  <a href="/index.html">行业总览</a>
+  <a href="/bom.html">物理爆炸图</a>
+  <a href="/cost.html">成本计算</a>
+  <a class="on" href="/economics.html" aria-current="page">经济模型</a>
+  <span></span>
+  <a href="/research/datacenter-economics.md">模型说明 ↗</a>
+</nav>
+
+<main class="econ-shell" id="econ-app" aria-busy="true">
+  <header class="econ-hero">
+    <div>
+      <p class="eyebrow">DATA CENTER ECONOMICS · FOUR-LEDGER MODEL</p>
+      <h1>一座数据中心，四本账</h1>
+      <p class="lede">同一个项目定义，分别站在芯片厂商、壳层出租方、算力运营方和模型方的账上，看投入、成本、回报与利润分配。参数是研究假设，研报数字只作校准。</p>
+    </div>
+    <div class="hero-actions">
+      <button type="button" class="primary" id="reset-model">恢复研报基准</button>
+      <button type="button" id="export-json">导出假设与结果</button>
+    </div>
+  </header>
+
+  <section class="ledgers" aria-label="四本账">
+    <article class="ledger kpi"><b>L0</b><strong>芯片厂商</strong><span id="kpi-chip">—</span><small id="kpi-chip-sub"></small></article>
+    <article class="ledger kpi"><b>L1</b><strong>壳层出租方</strong><span id="kpi-shell">—</span><small id="kpi-shell-sub"></small></article>
+    <article class="ledger kpi"><b>L2</b><strong>算力运营方</strong><span id="kpi-compute">—</span><small id="kpi-compute-sub"></small></article>
+    <article class="ledger kpi"><b>L3</b><strong>模型方</strong><span id="kpi-model">—</span><small id="kpi-model-sub"></small></article>
+  </section>
+  <p class="project-line" id="project-line"></p>
+
+  <div class="econ-layout">
+    <aside class="control-panel" aria-label="模型输入">
+      <div class="panel-head"><div><p class="eyebrow">SCENARIOS</p><h2>情景与假设</h2></div><span id="model-date"></span></div>
+      <div class="presets" id="presets" aria-label="情景预设"></div>
+      <p class="preset-note" id="preset-note"></p>
+      <form id="econ-inputs"></form>
+      <p class="model-caution">所有参数均为可修改的研究假设，不是报价、预算承诺或投资建议。</p>
+    </aside>
+
+    <div class="results">
+      <section class="card">
+        <div class="card-head"><div><p class="eyebrow">CAPEX STACK</p><h2>每 GW 资本开支：按芯片代际</h2></div><span>$B/GW · 当前代际高亮</span></div>
+        <div id="capex-stack" class="chart-host"></div>
+        <div id="capex-legend" class="legend"></div>
+        <p class="footnote">GB300 的 IT/非 IT 拆分来自研报；其他代际的总额来自研报、拆分与 GPU 密度为作者估算，切换代际后可在左侧改写。</p>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="card">
+          <div class="card-head"><div><p class="eyebrow">COMPUTE LEDGER</p><h2>算力层：收入到 NOPAT</h2></div><span>年度 · 当前项目</span></div>
+          <div id="waterfall" class="chart-host"></div>
+          <p class="footnote" id="waterfall-note"></p>
+        </article>
+        <article class="card">
+          <div class="card-head"><div><p class="eyebrow">PROFIT SPLIT</p><h2>四层利润分配</h2></div><span>每年 · 当前项目</span></div>
+          <div id="profit-split" class="split"></div>
+          <p class="footnote" id="split-note"></p>
+        </article>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="card">
+          <div class="card-head"><div><p class="eyebrow">SHELL LEDGER</p><h2>壳层：租约现金流与融资</h2></div><span>按左侧租约与融资假设</span></div>
+          <ul class="ledger-table" id="shell-table"></ul>
+        </article>
+        <article class="card">
+          <div class="card-head"><div><p class="eyebrow">MODEL LEDGER</p><h2>模型层：token 变现</h2></div><span>自有算力或租用</span></div>
+          <ul class="ledger-table" id="model-table"></ul>
+        </article>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="card">
+          <div class="card-head"><div><p class="eyebrow">SENSITIVITY</p><h2>算力 ROIC 敏感性</h2></div><span>单因素 · 其他不变</span></div>
+          <div id="tornado" class="chart-host"></div>
+          <p class="footnote" id="tornado-note"></p>
+        </article>
+        <article class="card">
+          <div class="card-head"><div><p class="eyebrow">PRICE × UTILIZATION</p><h2>租金 × 利用率 → ROIC</h2></div><span>算力层</span></div>
+          <div id="heatmap" class="matrix-wrap"></div>
+          <p class="footnote">列为当前租金的 0.6–1.4 倍，行为付费利用率；颜色表示相对高低，不是评级。</p>
+        </article>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><div><p class="eyebrow">SCENARIOS</p><h2>情景对比</h2></div><span>全部预设按各自假设计算</span></div>
+        <div id="scenario-table" class="matrix-wrap"></div>
+        <p class="footnote">壳层与模型层指标按该情景的租约、融资与 token 假设计算；同一行内四本账共用一个项目定义。</p>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="card">
+          <div class="card-head"><div><p class="eyebrow">MARKET BENCHMARKS</p><h2>价格库基准</h2></div><span id="benchmark-updated">读取价格库…</span></div>
+          <div id="benchmark-list" class="benchmark-list"></div>
+          <p class="footnote">每行取价格库同一序列的最新时点；悬停查看口径。新数据录入价格库即显示。</p>
+        </article>
+        <article class="card formula-card">
+          <div class="card-head"><div><p class="eyebrow">RECONCILIATION</p><h2>四本账怎么算</h2></div></div>
+          <ol>
+            <li><b>算力层</b><span>收入 = GPU 数 × 8,760 × 付费利用率 × 租金；EBITDA = 收入 − 电费 − 其他运营 − 壳租/托管费；NOPAT = (EBITDA − 折旧) × (1 − 税率)；ROIC = NOPAT ÷ 投入资本；盈亏平衡价 = (资本按资本成本率年化回收 + 运营支出) ÷ 付费 GPU 小时</span></li>
+            <li><b>壳层</b><span>NOI = 租金 × NOI 利润率；成本收益率 = NOI ÷ (非 IT 资本开支 + 土地)；债务按租期等额还本付息；DSCR = NOI ÷ 还本付息；IRR 按租期现金流与期末残值</span></li>
+            <li><b>模型层</b><span>token = 收费 GPU 小时 × 3,600 × 吞吐；收入 = token ÷ 10⁶ × 单价；自有算力成本 = 运营支出 + 折旧，租用成本 = GPU 小时 × 租金；NOPAT 利润率 = NOPAT ÷ 收入</span></li>
+            <li><b>芯片层</b><span>厂商毛利 = IT 资本开支 × 加速器占比 × 毛利率，在 IT 折旧年限内年化；只表示项目资本开支中流向芯片厂商的利润，不是厂商财务预测</span></li>
+          </ol>
+        </article>
+      </section>
+    </div>
+  </div>
+
+  <footer class="econ-footer">
+    <div><b>口径说明</b><p id="model-note"></p></div>
+    <div><b>研究依据</b><p>校准数据来自摩根士丹利 2026 年 9 月《AI 指南》、带电壳公司 SEC 公告、万国数据电话会与租金指数；模型说明与参考实现见 <a href="/research/datacenter-economics.md">研究档案</a>，单层成本计算器见 <a href="/cost.html">成本计算</a>。</p></div>
+  </footer>
+  <div class="load-error" id="econ-error" hidden></div>
+</main>
+</body>
+</html>

@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.8。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.9。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：952。
+在册文件：961。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 266 |
-| 运行代码 | 198 |
+| 运行代码 | 203 |
 | 现行规范 | 13 |
-| 项目配置 | 86 |
+| 项目配置 | 87 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 26 |
-| 配套说明 | 52 |
-| 测试 | 77 |
+| 在册数据/索引 | 27 |
+| 配套说明 | 53 |
+| 测试 | 78 |
 
 ## 在册记录集合
 
@@ -38,6 +38,8 @@
 | `data/contracts.json` | records | 2 |
 | `data/datacenter_cost_model.json` | groups | 5 |
 | `data/datacenter_cost_model.json` | benchmark_series | 14 |
+| `data/datacenter_economics_model.json` | groups | 5 |
+| `data/datacenter_economics_model.json` | benchmark_series | 15 |
 | `data/facts.json` | records | 7849 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 367 |
@@ -328,7 +330,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 16 |
+| `framework/interface_manifest.json` | static_pages | 17 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
@@ -413,6 +415,7 @@
 | `data/companies.json` | 在册数据/索引 |
 | `data/contracts.json` | 在册数据/索引 |
 | `data/datacenter_cost_model.json` | 在册数据/索引 |
+| `data/datacenter_economics_model.json` | 在册数据/索引 |
 | `data/facts.json` | 在册数据/索引 |
 | `data/metric_gaps.jsonl` | 在册数据/索引 |
 | `data/policies.json` | 在册数据/索引 |
@@ -656,6 +659,9 @@
 | `docs/research/2026-09-27/datacenter-profit/profit-model-results.json` | 项目配置 |
 | `docs/research/2026-09-27/datacenter-profit/profit-model.py` | 运行代码 |
 | [docs/research/2026-09-27/datacenter-profit/sources.md](research/2026-09-27/datacenter-profit/sources.md) | 配套说明 |
+| [docs/research/datacenter-economics/README.md](research/datacenter-economics/README.md) | 配套说明 |
+| `docs/research/datacenter-economics/model.py` | 运行代码 |
+| `docs/research/datacenter-economics/results.json` | 项目配置 |
 | [docs/reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md](reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md) | 历史快照 |
 | [docs/reviews/2026-09-06/IMPLEMENTATION.md](reviews/2026-09-06/IMPLEMENTATION.md) | 历史快照 |
 | [docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md](reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md) | 已采用设计依据 |
@@ -1172,6 +1178,7 @@
 | `tests/auth_appearance.cjs` | 测试 |
 | `tests/container_storage.py` | 测试 |
 | `tests/datacenter_cost.cjs` | 测试 |
+| `tests/datacenter_economics.cjs` | 测试 |
 | `tests/datacenter_news.cjs` | 测试 |
 | `tests/hardware_ecosystems.cjs` | 测试 |
 | `tests/model_assets.cjs` | 测试 |
@@ -1309,6 +1316,7 @@
 | `web/components/auth-form.js` | 运行代码 |
 | `web/components/auth.css` | 运行代码 |
 | `web/components/datacenter-cost.js` | 运行代码 |
+| `web/components/datacenter-economics.js` | 运行代码 |
 | `web/components/datacenter-news.js` | 运行代码 |
 | `web/components/markdown-inline.js` | 运行代码 |
 | `web/components/model-assets.js` | 运行代码 |
@@ -1336,6 +1344,7 @@
 | `web/pages/compare.html` | 运行代码 |
 | `web/pages/cost.html` | 运行代码 |
 | `web/pages/doc.html` | 运行代码 |
+| `web/pages/economics.html` | 运行代码 |
 | `web/pages/framework_poster.html` | 运行代码 |
 | `web/pages/index.html` | 运行代码 |
 | `web/pages/materials.html` | 运行代码 |
@@ -1349,6 +1358,7 @@
 | `web/pages/team.html` | 运行代码 |
 | `web/routes.json` | 项目配置 |
 | `web/themes/datacenter-cost.css` | 运行代码 |
+| `web/themes/datacenter-economics.css` | 运行代码 |
 | `web/themes/preference.js` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
 | `web/themes/supply.css` | 运行代码 |
