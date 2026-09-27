@@ -30,6 +30,7 @@ COMMANDS = {
     'coverage': 'inresearch.knowledge.coverage', 'reading-queue': 'inresearch.workflow.reading_queue', 'workorders': 'inresearch.workflow.workorders',
     'submissions': 'inresearch.workflow.submissions', 'export': 'inresearch.delivery.export', 'map': 'inresearch.delivery.map',
     'fetchspec-receive': 'inresearch.materials.fetchspec_receive',
+    'publish-pilot-progress': 'inresearch.delivery.publish_pilot_progress',
 }
 
 

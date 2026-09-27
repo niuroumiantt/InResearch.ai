@@ -44,6 +44,10 @@ Spark 不执行采集任务；它接收已交付的永久原件、运行提取�
 
 NAS 未恢复期间，NVIDIA Fetchspec 原件继续留在 Spark（incoming 或已归档的 SHA 原件），Spark 是来源与永久存储权威。按 SHA 从 Spark 复制本轮明确选择的少量文件到 M5 临时工作区；M5 不接收永久资料库、不持有 Spark 发布凭证。M5 的 Reader 在本机完成解析/OCR 和候选阅读，阅读分析使用 M5 的 Claude Code CLI；本地视觉 OCR 模型是单独环节，不记作阅读模型。通过 Reader 导出 candidate-only 快照后，将快照回传 Spark，由 Spark 上的 `manage.py publish --snapshot <文件>` 使用 Spark 私有凭证转交既有 HTTPS 候选接收端。服务端按部署中的 graph/questions 再校验，候选不会自动成为已采用证据。完整交付需同时满足：原件 SHA 与 Spark 相同、逐篇阅读 coverage complete、快照成功回执、网站候选可检索；M5 本地模型输出或单次运行成功不等于交付完成。此路径是 NAS 恢复前的临时分工，不改变永久执行策略。
 
+#### 2026-09-27 NVIDIA 流程验证例外（Spark 完全不参与）
+
+用户明确将本轮 NVIDIA 端到端验证改为 M5 → AWS：Fetchspec 在 M5 抓取并把原件留在 M5 本地；M5 的 Claude Code CLI 在本地阅读/研究；M5 使用专用 `publish-pilot-progress` 受限机器凭证直接推送运行状态与已完成 candidate-only 快照到 AWS。AWS 将候选与正式研究权威分开保存，进度页只投影状态/候选摘要，正式 `/api/research` 仍按登录权限提供候选内容。此测试不得传输、接收或排队至 Spark，不改变 Spark 上已有 L1/L2 阅读任务。后续另行补齐 M5→Spark 永久原件交付与 Spark 运行存储；不可把该临时例外描述为正式永久运行策略。
+
 接收账本位于私有 `data/raw/supply-center/receipts.json`，用锁和原子替换防止并发覆盖；重复同一 delivery_id + manifest 是幂等，重用 ID 但内容不同则拒绝。任务包按现有 research question/object 绑定，主动发现标明 discovery；不接受错误供应方或不存在的任务。`GET /api/product-documents` 与 `acquisition product-documents` 只读筛选已收资料，可按公司、一级分类、研究问题、格式和语言跨产品查询；它们不会生成事实/结论。研究解析索引仍由 Reader `catalog/catalog.sqlite`、`extracted/`、`artifacts/` 负责，Fetchspec 接收端不造第二套全文数据库或事实库。Reader 状态从其既有 catalog 只读投影到供应中心，目录缺失不创建库。
 
 ### 端到端实施阶段、现状与退出条件
