@@ -264,7 +264,7 @@ class Handler(SimpleHTTPRequestHandler):
             export = query.get('export', [''])[0]
             if export:
                 try:
-                    body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1').encode('utf-8')
+                    body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1', query.get('group', [''])[0], query.get('family', [''])[0], query.get('scope', ['all'])[0]).encode('utf-8')
                 except ValueError as exc:
                     return self._json(400, {'error': str(exc)})
                 self.send_response(200)

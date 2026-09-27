@@ -6,14 +6,28 @@
 <style>
 main{max-width:1240px;margin:2rem auto;padding:0 1.2rem}main>nav{margin-bottom:1.5rem}.intro{max-width:850px;line-height:1.7}.metrics{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:1rem;margin:1.5rem 0}.metric{padding:1rem;border:1px solid var(--line)}.metric strong{display:block;font-size:2rem}.controls{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;margin:1.5rem 0}.controls input{min-width:200px;flex:1}.controls input,.controls select,.controls button{padding:.6rem}.layout{display:grid;grid-template-columns:minmax(230px,330px) minmax(0,1fr);gap:1.5rem}.products{max-height:75vh;overflow:auto}.product{display:block;width:100%;text-align:left;padding:1rem;border:0;border-bottom:1px solid var(--line);background:transparent;color:inherit;cursor:pointer}.product[aria-pressed=true]{border-left:3px solid var(--accent);background:var(--surface2)}.product small{display:block;opacity:.7;margin-top:.4rem}.table-wrap{overflow:auto;max-width:100%;margin:1rem 0}table{border-collapse:collapse;min-width:100%;font-size:.9rem}td,th{padding:.65rem;border:1px solid var(--line);text-align:left;vertical-align:top;min-width:130px;white-space:pre-line}th{background:var(--surface2)}details{margin:1rem 0}#detail{min-width:0}#detail h2{margin-top:0}.muted{opacity:.72}.source{overflow-wrap:anywhere}.notice{padding:1rem;border:1px solid var(--line);line-height:1.7}.notes{font-size:.88rem;line-height:1.6}.compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem}.compare-grid>article{min-width:0}button:focus-visible,a:focus-visible{outline:2px solid var(--accent)}@media(max-width:700px){main{margin:1rem auto}.layout{grid-template-columns:1fr}.products{max-height:280px}.controls>*{max-width:100%}}
 .controls input[type=checkbox]{min-width:0;width:1rem;height:1rem;flex:none;padding:0}.controls label:has(input[type=checkbox]){display:flex;gap:.4rem;align-items:center}
+</style><style>
+/* Product navigation is a hierarchy, not the shared pill-button treatment. */
+html[data-ui-skin] #groups{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.6rem;margin:1.4rem 0 .8rem}
+html[data-ui-skin] #groups button,html[data-ui-skin] #families button,html[data-ui-skin] .product{border-radius:0;box-shadow:none;background:var(--ui-surface);color:var(--ui-ink);border:1px solid var(--ui-line);text-align:left;white-space:normal;min-width:0}
+html[data-ui-skin] #groups button{padding:.9rem;min-height:82px}#groups small{display:block;margin-top:.5rem;opacity:.65}
+html[data-ui-skin] #groups button[aria-pressed=true],html[data-ui-skin] #families button[aria-pressed=true],html[data-ui-skin] .product[aria-pressed=true]{border-color:var(--ui-accent);background:var(--ui-surface2,var(--ui-surface));box-shadow:inset 3px 0 var(--ui-accent)}
+#families{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}html[data-ui-skin] #families button{padding:.55rem .8rem}#families[hidden]{display:none}
+#breadcrumb{font-size:1.1rem;margin:1.5rem 0 1rem}.products{max-height:65vh}html[data-ui-skin] .product{padding:.65rem .8rem;border-width:0 0 1px;width:100%}.product small{font-size:.8rem}.pager{display:flex;gap:.5rem;margin:.7rem 0}.catalog-note{font-size:.85rem;line-height:1.6;opacity:.75}.metrics{margin:.7rem 0}.metric strong{font-size:1.4rem}.controls{margin:1rem 0}#detail{border-left:1px solid var(--ui-line);padding-left:1.2rem}
+@media(max-width:700px){html[data-ui-skin] #groups{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups button{min-height:72px}.products{max-height:240px}#detail{border-left:0;border-top:1px solid var(--ui-line);padding:1rem 0 0}.controls input[type=search]{min-width:0;width:100%}#families{gap:.35rem}}
 </style><link rel="stylesheet" href="/assets/site-skin.css"></head>
 <body><inresearch-shell data-section="materials"></inresearch-shell><main>
 <nav><a href="/materials.html">资料库</a> / <a href="/nvidia-pilot.html">NVIDIA 处理进度</a> / 产品规格库</nav>
 <h1>NVIDIA 产品规格库</h1><p class="intro">按官方产品目录寻找规格。保留每个产品自己的参数、配置列和来源，支持筛选、核查与导出。页面直接读取数据库中的表格数据。</p>
-<p id="status" role="status" aria-live="polite">正在读取产品清单…</p><div id="metrics" class="metrics"></div>
-<details><summary>统计口径与待补齐范围</summary><ul id="limitations"></ul><p>“型号页”按官方标题识别，是待复核清单；系列、平台、软件服务单列。官网列出不代表已经确认在售。配置尚未逐一拆成 SKU，参数尚未进入正式研究采用。</p></details>
+<p id="status" role="status" aria-live="polite">正在读取产品清单…</p>
+<nav id="groups" aria-label="产品大类"></nav>
+<p class="catalog-note">五个入口是本站浏览分组，依据 <a href="https://www.nvidia.com/en-us/products/" target="_blank" rel="noopener">NVIDIA 官方产品目录</a>的十个栏目整理，并非原厂原样分类。官方原始分类保留在每项详情中。</p>
+<button id="auxiliary" aria-pressed="false">辅助资料 / 待归类</button>
+<nav id="families" aria-label="产品系列"></nav>
+<details><summary>采集统计与待补齐范围</summary><div id="metrics" class="metrics"></div><ul id="limitations"></ul><p>“型号页”按官方标题识别，是待复核清单；系列、平台、软件服务单列。官网列出不代表已经确认在售。配置尚未逐一拆成 SKU，参数尚未进入正式研究采用。宣传、培训和未知分类入口留在辅助资料中，未删除原始记录。</p></details>
 <div class="controls"><label for="query">搜索</label><input id="query" type="search" placeholder="型号或官方分类，如 H200、Networking"><label for="kind">类型</label><select id="kind"><option value="">全部目录实体</option value="named_product">具体型号页</option value="family_or_directory">系列 / 平台 / 目录</option value="software_service">软件 / 服务</option></select><label><input id="with-specs" type="checkbox">已有规格表</label><button id="retry">刷新</button></div>
 <div class="controls"><a id="export-products" href="/api/product-catalog/nvidia?export=products">导出产品清单 CSV</a><a id="export-specs" href="/api/product-catalog/nvidia?export=specs">导出官方参数 CSV</a><span id="matches"></span></div>
-<div class="layout"><div id="products" class="products" aria-label="产品清单"></div><section id="detail" aria-label="产品规格"><p>选择产品查看官方规格。</p></section></div>
+<h2 id="breadcrumb">先选大类，再选系列</h2>
+<div class="layout"><aside><div id="products" class="products" aria-label="产品清单"></div><div class="pager"><button id="previous" disabled>上一页</button><button id="next" disabled>下一页</button></div></aside><section id="detail" aria-label="产品规格"><p>选择产品查看官方规格。</p></section></div>
 <section id="comparison" hidden><h2>并排核查</h2><p class="muted">按各自官方参数展示，注意配置、精度、稀疏性和测试条件。尚未自动判定跨产品可比性。</p><div id="comparison-items" class="compare-grid"></div></section>
 </main><script src="/assets/product-catalog.js" defer></script></body></html>
