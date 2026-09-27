@@ -19,10 +19,13 @@ def bundle():
     sha = 'a' * 64
     cell = lambda s: {'text': s, 'colspan': 1, 'rowspan': 1, 'header': False}
     return {'schema_version': 1, 'company_id': 'nvidia', 'generated_at': '2026-09-27T12:00:00+00:00',
-        'coverage': {'complete': False}, 'sources': [{'sha256': sha, 'source_url': url}],
+        'coverage': {'complete': False, 'website_sitemap': {'candidate_urls': 7062, 'product_source_pages_matched': 1}},
+        'sources': [{'sha256': sha, 'source_url': url}, {'sha256': 'b'*64, 'source_url': 'https://www.nvidia.cn/data-center/h200/'}],
         'products': [{'id': 'nvidia-'+'a'*20, 'name': '=H200', 'category': 'Data Center',
           'kind': 'named_product', 'availability': 'not_verified', 'source_url': url,
           'source_sha256': sha, 'observed_at': '2026-09-27', 'extraction_status': 'native_tables_extracted',
+          'website_sitemap': {'matched': True, 'roles': ['en_us'], 'lastmod_claims': ['2026-09-26']},
+          'official_pages': [{'url': url, 'sha256': sha}, {'url': 'https://www.nvidia.cn/data-center/h200/', 'sha256': 'b'*64}],
           'attachments': [], 'tables': [{'index': 1, 'section': 'Specifications', 'notes': 'per GPU',
             'rows': [[cell(''), cell('SXM'), cell('NVL')], [cell('Memory'), cell('141 GB'), cell('141 GB')]]}]}]}
 
@@ -50,11 +53,12 @@ class ProductCatalogTests(unittest.TestCase):
         self.assertEqual(catalog.snapshot(self.root)['products'][0]['source_sha256'], 'b'*64)
 
     def test_missing_evidence_and_unsafe_attachment_rejected_without_writes(self):
-        for mutation in ('source', 'attachment', 'span'):
+        for mutation in ('source', 'attachment', 'span', 'localized_source'):
             data = bundle()
             if mutation == 'source': data['sources'] = []
             if mutation == 'attachment': data['products'][0]['attachments'] = [{'url': 'javascript:alert(1)'}]
             if mutation == 'span': data['products'][0]['tables'][0]['rows'][0][0]['colspan'] = 0
+            if mutation == 'localized_source': data['products'][0]['official_pages'] = [{'url': 'javascript:alert(1)', 'sha256': 'b'*64}]
             with self.assertRaises(ValueError): catalog.receive(self.root, data)
         self.assertFalse(catalog.database(self.root).exists())
 
@@ -73,8 +77,22 @@ class ProductCatalogTests(unittest.TestCase):
         self.assertEqual(received['parent_id'], parent['id'])
         self.assertEqual(received['official_resources'][0]['url'], child['official_resources'][0]['url'])
         self.assertEqual(snapshot['coverage']['product_map']['entries'], 2)
+        self.assertEqual(snapshot['coverage']['website_sitemap']['candidate_urls'], 7062)
+        product_rows = list(csv.DictReader(io.StringIO(catalog.csv_export(snapshot, mode='map').lstrip('\ufeff'))))
+        self.assertEqual(product_rows[0]['official_sitemap_match'], 'True')
+        self.assertEqual(product_rows[0]['official_sitemap_roles'], 'en_us')
         rows = list(csv.DictReader(io.StringIO(catalog.csv_export(snapshot, scope='all').lstrip('\ufeff'))))
         self.assertEqual(next(r for r in rows if r['product_id'] == child['id'])['parent_id'], parent['id'])
+
+    def test_product_sitemap_metadata_and_map_csv_are_preserved(self):
+        data = bundle()
+        catalog.receive(self.root, data)
+        snapshot = catalog.snapshot(self.root)
+        self.assertEqual(snapshot['coverage']['website_sitemap']['product_source_pages_matched'], 1)
+        self.assertEqual(len(snapshot['products'][0]['official_pages']), 2)
+        mapped = list(csv.DictReader(io.StringIO(catalog.csv_export(snapshot, mode='map').lstrip('\ufeff'))))
+        self.assertEqual(mapped[0]['official_sitemap_roles'], 'en_us')
+        self.assertEqual(mapped[0]['official_sitemap_match'], 'True')
 
     def test_csv_preserves_variants_notes_and_prevents_formula_execution(self):
         catalog.receive(self.root, bundle())
@@ -101,6 +119,8 @@ class ProductCatalogTests(unittest.TestCase):
         ]:
             product.update(name=name, source_url='https://www.nvidia.com/en-us'+path)
             self.assertEqual(navigation.classify(product)['group'], group)
+        product.update(name='Specifications', source_url='https://www.nvidia.com/en-us/geforce/graphics-cards/gtx-780/specifications/')
+        self.assertEqual(navigation.classify(product)['role'], 'auxiliary')
         self.assertEqual(len(navigation.GROUPS), 5)
 
     def test_auxiliary_unknown_and_components_keep_explicit_navigation_roles(self):
