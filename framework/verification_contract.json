@@ -13,7 +13,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "2acd4009615afcf9d002100a1e14f2d4f523c9efc5d2c620d90ef226d452266a",
+    "docs/local_reader/SPARK_OPERATIONS.md": "40d2719a10486ee4c416fee2d9a4e65d10c227b36fa57ebe748cd9f7a422562c",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
@@ -24,7 +24,7 @@
     "framework/05_interface_system.md": "9daf6c2b1a3eb93fd0dbb8e766f3c411aa27a29dc725ebee01f65cf67f4bbefa",
     "framework/06_acquisition.md": "1364d7f57dcad6dadd6cc9fe73b4cec54443ec92c37eea8b9e88774f3fbe8bff",
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
-    "framework/08_model_execution.md": "b6dc22119098a0ff85eb029c2bde146c9132a67083e63dff01f9a4188736e629",
+    "framework/08_model_execution.md": "1fc6c139fef9d2fce1eef543929e8157b197856d670e1ae0a838f3e91cfd5e17",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
     "framework/CURRENT.md": "093a088d5738d42ee5e1ade478bc0f1aa1aba2e20060920e910aa0f24ac6f0ab",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
@@ -65,6 +65,7 @@
     "tests/unit/test_html_document.py": "346d25fc828cbae2abccccd51b687a102693dc9b35911d641ba4fd534ae23535",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
     "tests/unit/test_interface_system.py": "4393a20eb699a68d36fe05376753fa2da8bb469ee6005585a75cba76f8f88357",
+    "tests/unit/test_m4_ocr_gaps.py": "70114c9521a37ea5ac2b75f471e4c267bbc820b2504da2f90c8b14436d01cfb4",
     "tests/unit/test_m4_office_text.py": "92228bf2a15d3cd2ed85af962db95ecba47a76ebe69c9efe7e54ad3c751442c2",
     "tests/unit/test_m4_offload_requeue.py": "b22b873cdc190c8e248e9e6ca748f482a4f3c8665fbf95dd36886643c0c65f88",
     "tests/unit/test_m4_triage.py": "028d627d24c321632410f7845856f94953dfa6d9eb82569a206c042d378f7949",
@@ -76,7 +77,7 @@
     "tests/unit/test_model_runtime.py": "f27d9484d0d7c034bfabe703e8a145a4c28c4429021298eeb04b8ec75624f07d",
     "tests/unit/test_ocr_repeat_penalty.py": "726ecb2ad5655b913ce7ea1286091b84169dd833fd89583d8b72169faf3eabe8",
     "tests/unit/test_ocr_worker_named.py": "cebfc4268d7580aca5e9232e1c3233b656ea0b91886ec771fd348373b0c8f969",
-    "tests/unit/test_ocr_worker_resume.py": "f7ecde3fc31d8a75d6d13c071366b7b11857aee1af38a3b3bc3f2f111b826c39",
+    "tests/unit/test_ocr_worker_resume.py": "6a0fc026fdd22ddc3b303e51b67fea8d4b7a8ee9ba9fdb4e130572076541863e",
     "tests/unit/test_ollama_schema.py": "b70ab619eba8b6a3e5a565831a9c838a50c12e30bdd4cdc9473c3cde9cad14d8",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "13d781d6bb35801eb8a7b4592008e2a87f9a3b48a2c685e442c860bcddde220c",
@@ -229,7 +230,7 @@
       "policy": "operations-20260906",
       "scope": "project",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
-      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换",
+      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_backup_restores_catalog_and_views_under_new_root",
         "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle",
@@ -257,14 +258,20 @@
         "tests/unit/test_reader_progress.py::ProgressPageTests.test_page_never_writes_to_the_catalog",
         "tests/unit/test_reader_progress.py::ProgressPageTests.test_names_are_escaped",
         "tests/unit/test_reader_progress.py::ProgressPageTests.test_missing_catalog_is_reported_not_created",
-        "tests/unit/test_reader_progress.py::ProgressPageTests.test_html_file_is_written_whole"
+        "tests/unit/test_reader_progress.py::ProgressPageTests.test_html_file_is_written_whole",
+        "tests/unit/test_m4_ocr_gaps.py::M4GapPageTests.test_gap_page_is_listed_and_the_rest_of_the_document_is_read",
+        "tests/unit/test_m4_ocr_gaps.py::M4GapPageTests.test_too_many_gaps_block_the_document",
+        "tests/unit/test_m4_ocr_gaps.py::M4GapPageTests.test_document_without_gaps_reports_no_gap_field",
+        "tests/unit/test_m4_ocr_gaps.py::M4GapPageTests.test_malformed_gap_is_an_integrity_error",
+        "tests/unit/test_m4_ocr_gaps.py::M4GapPageTests.test_a_tampered_gap_list_fails_report_validation"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。",
         "2026-09-19 文档新增 `incoming/` 落地区与「先分拣再提升」流程:reader 不扫描该目录这一点只靠 `scan()` 硬编码读 `raw-materials/` 的实现事实,没有专门测试钉住;真机只走过一次(459 GB→43 GB,12,764 份 L1 判定),**提升到 `raw-materials/` 的步骤尚未执行**;此前那批以 `.xxx.partial` 命名的目录撞上 `is_partial()` 两条规则隐形了 12 天,说明投料契约在此之前只有约定、没有程序保障。",
         "温度保护只用脚本化读数与伪造的传感器文件测试；未在 Spark 真机核对 GB10 的 nvidia-smi 与 thermal zone 实际读数、各 zone 含义及 85 ℃ 是否合适。暂停只挡下一次领取，单个长任务（如大文档 OCR）运行期间温度仍可能超过限值。",
         "M4 结果空白页接收与 reader 自动重新排队只用隔离夹具测试；未在 Spark 真机核对 M4 结果目录 mtime 与任务 finished 时钟的一致性（两者都在 Spark 上生成，scp 写入时间以 Spark 为准）。Spark 本机 OCR 已关闭，READER_OCR_MODEL 恢复前扫描件只能由 M4 处理。",
-        "进度页只用临时 catalog 与伪造的日志/服务/温度测试；未在 Spark 真机核对 journalctl --user 权限、大库上的查询耗时，Mac 循环脚本未实跑。"
+        "进度页只用临时 catalog 与伪造的日志/服务/温度测试；未在 Spark 真机核对 journalctl --user 权限、大库上的查询耗时，Mac 循环脚本未实跑。",
+        "缺页只用伪造的 M4 结果与 PDF 工具测试；未在 Spark 真机用 7 份失败文档验证，也未核对网站候选接收对 gap_pages 的展示。"
       ]
     },
     {
@@ -417,7 +424,7 @@
       "policy": "reading-m4-triage-20260912",
       "scope": "m4-triage",
       "source": "docs/M4_TRIAGE_TASK.md",
-      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝;计划不得以副作用迁移 v1 catalog(守卫测试配一条「该夹具确实能迁移」的对照,否则守卫测试恒绿而不守)；ocr-worker 点名时只取未完成的 PDF、只读查询、逐份处理且上传页结果后从不在 Spark 上 retry，未点名时仍只取被阻塞的 OCR 文档；ocr-worker 某页失败时上传此前已完成的页、错误写明失败页与保留页数，上传失败时写明未保留；重跑只跳过 Spark 上同一 SHA256 且文件名与页号一致的页，查询失败则全部重做",
+      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝;计划不得以副作用迁移 v1 catalog(守卫测试配一条「该夹具确实能迁移」的对照,否则守卫测试恒绿而不守)；ocr-worker 点名时只取未完成的 PDF、只读查询、逐份处理且上传页结果后从不在 Spark 上 retry，未点名时仍只取被阻塞的 OCR 文档；ocr-worker 某页失败时上传此前已完成的页、错误写明失败页与保留页数，上传失败时写明未保留；重跑只跳过 Spark 上同一 SHA256 且文件名与页号一致的页，查询失败则全部重做；页级失败先以 1.3/512 救援双读，仍失败的模型/页面类错误上传为显式缺页并在输出中列出，基础错误（如超上下文预算、渲染失败）不记缺页",
       "tests": [
         "tests/unit/test_m4_triage.py::InventoryTests.test_identical_bytes_are_one_sha_with_every_path_recorded",
         "tests/unit/test_deep_read.py::EffectiveResultTests.test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue",
@@ -456,7 +463,10 @@
         "tests/unit/test_ocr_worker_resume.py::ResumeTests.test_nothing_left_to_read_uploads_nothing",
         "tests/unit/test_ocr_worker_resume.py::ResumeTests.test_failed_upload_after_a_failed_page_says_nothing_was_kept",
         "tests/unit/test_ocr_worker_resume.py::DonePagesTests.test_only_well_named_pages_for_the_same_bytes_count",
-        "tests/unit/test_ocr_worker_resume.py::DonePagesTests.test_missing_directory_or_ssh_failure_means_redo_everything"
+        "tests/unit/test_ocr_worker_resume.py::DonePagesTests.test_missing_directory_or_ssh_failure_means_redo_everything",
+        "tests/unit/test_ocr_worker_resume.py::RescueAndGapTests.test_page_the_rescue_read_fixes_is_an_ordinary_page",
+        "tests/unit/test_ocr_worker_resume.py::RescueAndGapTests.test_page_that_still_fails_is_uploaded_as_a_gap_and_the_rest_are_read",
+        "tests/unit/test_ocr_worker_resume.py::RescueAndGapTests.test_errors_that_are_not_page_properties_never_become_gaps"
       ],
       "not_verified": [
         "真实 M4 50 份当前模型小样及新版执行未验;apply-triage 已实现并有隔离测试,但**尚未在真机 catalog 上执行过** —— 2026-09-18 的 32,727/32,734 匹配数来自一次只读对账,实际归置未做;真机 catalog 仍是 v1,须先 `reader init` 迁移;M4 独有的 3,169 份中 3,135 份是 `要删/reader/` 下的衍生物与垃圾件,不应入库,真正缺的研究文档约 34 份,其入库路径未实现也未验证。",
@@ -468,7 +478,7 @@
       "policy": "model-execution-20260912",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
@@ -495,7 +505,8 @@
         "tests/unit/test_ollama_schema.py::OllamaSchemaTests.test_task_schema_constrains_ollama_decoding",
         "tests/unit/test_ollama_schema.py::OllamaSchemaTests.test_without_a_schema_plain_json_mode_is_kept",
         "tests/unit/test_ollama_schema.py::OllamaSchemaTests.test_every_reader_stage_sends_its_schema",
-        "tests/unit/test_ollama_schema.py::OllamaSchemaTests.test_schema_does_not_change_the_frozen_reading_identity"
+        "tests/unit/test_ollama_schema.py::OllamaSchemaTests.test_schema_does_not_change_the_frozen_reading_identity",
+        "tests/unit/test_ocr_worker_resume.py::RescueProfileTests.test_rescue_read_uses_the_stronger_penalty_and_the_raised_output_limit"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。",

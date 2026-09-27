@@ -225,12 +225,13 @@
         "tests/unit/test_m4_offload_requeue.py",
         "src/inresearch/delivery/reader_progress.py",
         "docs/local_setup/progress.sh",
-        "tests/unit/test_reader_progress.py"
+        "tests/unit/test_reader_progress.py",
+        "tests/unit/test_m4_ocr_gaps.py"
       ],
       "supersedes": [
         "operations-legacy"
       ],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。",
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。；2026-09-27 用户采用 OCR 两步降级：救援双读 1.3/512，仍失败的页作显式缺页，报告列出，每份至多 max(1, 页数÷20)。",
       "implementation_revision": "2026.09.14.7"
     },
     {
@@ -570,7 +571,7 @@
         "tests/unit/test_ollama_schema.py"
       ],
       "supersedes": [],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。；2026-09-26 Ollama 档案可选 repeat_penalty（仅 spark_ocr 设 1.05，记入档案身份但不进 reading_identity），ocr-worker 单页 model_failure 重试一次。；2026-09-27 档案新增 repeat_last_n（仅 Ollama），spark_ocr 改为 repeat_penalty 1.1 / repeat_last_n 256；OCR 双读不能发现一致误读，关键数字回原件核对。；2026-09-27 M5 Claude CLI 实测曾返回 Markdown 围栏，Reader 现按阅读阶段提交 JSON Schema，并仅对引文不匹配执行一次纠正请求；原文匹配、模型身份和候选边界继续强制校验。；2026-09-27 Ollama 文本任务以 reader schema 作 format（受约束解码），修复 ASCII 引号导致缺字段的 model_output_invalid。",
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。；2026-09-26 Ollama 档案可选 repeat_penalty（仅 spark_ocr 设 1.05，记入档案身份但不进 reading_identity），ocr-worker 单页 model_failure 重试一次。；2026-09-27 档案新增 repeat_last_n（仅 Ollama），spark_ocr 改为 repeat_penalty 1.1 / repeat_last_n 256；OCR 双读不能发现一致误读，关键数字回原件核对。；2026-09-27 M5 Claude CLI 实测曾返回 Markdown 围栏，Reader 现按阅读阶段提交 JSON Schema，并仅对引文不匹配执行一次纠正请求；原文匹配、模型身份和候选边界继续强制校验。；2026-09-27 Ollama 文本任务以 reader schema 作 format（受约束解码），修复 ASCII 引号导致缺字段的 model_output_invalid。；2026-09-27 spark_ocr 输出上限 8192、上下文 16384。",
       "implementation_revision": "2026.09.27.1"
     },
     {

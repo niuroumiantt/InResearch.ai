@@ -2,7 +2,7 @@
 from __future__ import annotations
 import re, shutil, subprocess, tempfile
 from pathlib import Path
-from inresearch.materials.reader_contracts import Blocked, Deferred, UnsafePath, IntegrityError, ModelOutputError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, MODULES
+from inresearch.materials.reader_contracts import Blocked, Deferred, UnsafePath, IntegrityError, ModelOutputError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, MODULES, OCR_GAP_REASONS, max_gap_pages
 from inresearch.materials.artifacts import numeric_tokens, now_iso, encoded, digest_bytes, digest_file, safe_path, atomic_bytes, atomic_json, read_json, signature, split_text, require_text
 
 from inresearch.materials.reading_artifacts import ReadingArtifacts
@@ -112,6 +112,9 @@ class ReadingStages(ReadingArtifacts):
             raise Blocked("unsupported_format_" + (suffix.lstrip(".") or "unknown"))
         if signature(source) != before:
             raise IntegrityError()
+        gaps = [p["page_index"] for p in page_meta if p.get("gap")]
+        if len(gaps) > max_gap_pages(len(texts)):
+            raise Blocked("ocr_gap_pages_exceed_limit")
         if not any(t.strip() for t in texts):
             raise Blocked("no_substantive_text")
         chunks = []
@@ -149,9 +152,18 @@ class ReadingStages(ReadingArtifacts):
         offload = self._offload_path(doc, i)
         if offload.exists():
             result = read_json(offload)
-            required = {"doc_id": doc["doc_id"], "content_sha256": doc["sha256"], "page_index": i,
-                        "method": "m4_vision_ocr_double_pass"}
+            required = {"doc_id": doc["doc_id"], "content_sha256": doc["sha256"], "page_index": i}
             if any(result.get(key) != value for key, value in required.items()):
+                raise IntegrityError()
+            if result.get("method") == "m4_vision_ocr_gap":
+                # M4 could not read this page even with the rescue pass. It stays an
+                # explicit gap: no text, listed in the report, capped per document.
+                if result.get("gap") is not True or result.get("gap_reason") not in OCR_GAP_REASONS:
+                    raise IntegrityError()
+                return {"text": "", "text_second_pass": "", "method": "m4_vision_ocr_gap", "gap": True,
+                        "gap_reason": result["gap_reason"], "ocr_model": result.get("ocr_model"), "blank": False,
+                        "verification": "page_not_read_after_rescue"}
+            if result.get("method") != "m4_vision_ocr_double_pass":
                 raise IntegrityError()
             if not isinstance(result.get("text"), str) or not isinstance(result.get("text_second_pass"), str):
                 raise IntegrityError()
@@ -406,10 +418,14 @@ class ReadingStages(ReadingArtifacts):
         context = read_json(self.artifact_path(doc, "context.json"))
         object_ids = sorted(set(v for c in chunks + [triage] for v in c["object_ids"]))
         question_ids = sorted(set(v for c in chunks + [triage] for v in c["question_ids"]))
-        pages_read = len({c["page_index"] for c in chunks} | {p["page_index"] for p in extraction["pages"] if p.get("blank")})
+        # Blank and gap pages are processed without text; gaps are named in the report.
+        pages_read = len({c["page_index"] for c in chunks} | {p["page_index"] for p in extraction["pages"] if p.get("blank") or p.get("gap")})
         coverage = {"pages_total": extraction["pages_total"], "pages_read": pages_read,
                     "chunks_total": len(extraction["chunks"]), "chunks_read": len(chunks),
                     "characters_total": extraction["characters_total"], "characters_read": sum(c["characters"] for c in chunks)}
+        gap_pages = sorted(p["page_index"] for p in extraction["pages"] if p.get("gap"))
+        if gap_pages:
+            coverage["gap_pages"] = gap_pages
         coverage["complete"] = (coverage["pages_total"] == coverage["pages_read"] and coverage["chunks_total"] == coverage["chunks_read"]
                                 and coverage["characters_total"] == coverage["characters_read"])
         if not coverage["complete"]:
@@ -424,4 +440,6 @@ class ReadingStages(ReadingArtifacts):
                   "evidence": [e for c in chunks for e in c["evidence"]], "claims": [c for x in chunks for c in x["claims"]],
                   "quality": "model_read_candidate_requires_adoption_review",
                   "warning": "Coverage is processing coverage, not proof that every interpretation or number is correct."}
+        if gap_pages:
+            report["warning"] += " Pages %s could not be read by OCR and are not covered by this report." % ", ".join(map(str, gap_pages))
         return self._persist(doc, "report.json", "report", report)

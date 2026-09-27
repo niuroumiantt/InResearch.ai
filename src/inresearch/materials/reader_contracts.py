@@ -35,9 +35,19 @@ PARK_REASONS = {"l1_score_zero": PARKED_BY_TRIAGE, "derived_artifact": "parked_d
 
 # Extraction blocks that new M4 OCR page results can clear. The reader requeues such a
 # document once when results arrive after its last attempt; nobody needs the queue lock.
+# Page failures M4 may record as an explicit gap after its rescue pass. A document
+# may carry at most max_gap_pages(pages) of them; more blocks it.
+OCR_GAP_REASONS = ("model_failure", "model_output_truncated", "model_output_invalid",
+                   "ocr_page_unreadable", "ocr_numbers_disagree")
+
+
+def max_gap_pages(pages_total):
+    return max(1, pages_total // 20)
+
+
 OCR_BLOCK_CODES = ("scanned_page_requires_ocr", "ocr_page_budget_exceeded", "ocr_page_unreadable",
                    "ocr_numbers_disagree", "ocr_output_invalid", "ocr_blank_disagreement",
-                   "ocr_empty_nonblank_page", "ocr_blank_has_text", "m4_offload_page_unreadable",
+                   "ocr_empty_nonblank_page", "ocr_blank_has_text", "m4_offload_page_unreadable", "ocr_gap_pages_exceed_limit",
                    "m4_offload_numbers_disagree")
 
 MODULES = {"M%02d" % i for i in range(1, 16)}
