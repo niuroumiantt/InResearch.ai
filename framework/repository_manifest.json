@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.6",
+  "version": "2026.09.27.7",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -506,8 +506,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 86152,
-      "sha256": "2243ba1880febb79ea84f1f66c898cff713189b1a40dd35b9f7a66be64fce2c2",
+      "bytes": 86663,
+      "sha256": "c48b442b704e93b4ea784d6c0fedd1eac7acb10d880b97b7be028fec83acdccc",
       "collections": []
     },
     {
@@ -3246,8 +3246,8 @@
     {
       "path": "docs/local_reader/SPARK_OPERATIONS.md",
       "role": "normative",
-      "bytes": 37226,
-      "sha256": "4bd48b615af34d633eefd3b2c87382f9365e2f3e411e29ce3718b905c668c979",
+      "bytes": 37944,
+      "sha256": "2acd4009615afcf9d002100a1e14f2d4f523c9efc5d2c620d90ef226d452266a",
       "collections": []
     },
     {
@@ -3269,6 +3269,13 @@
       "role": "supporting_document",
       "bytes": 3741,
       "sha256": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
+      "collections": []
+    },
+    {
+      "path": "docs/local_setup/progress.sh",
+      "role": "implementation",
+      "bytes": 823,
+      "sha256": "99fc4ef7b26293f6241f415040fa15c357b0b762445083ed7a3003dba38928c9",
       "collections": []
     },
     {
@@ -6441,7 +6448,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5448,
-      "sha256": "a6efbef2b05ffbeae0fe746f6bebe119872ae3cde04eb238c96371d6b61812eb",
+      "sha256": "e355da948ab928222b773ec88cb0e84b99816da9fb0f262536ee85502f7641c5",
       "collections": []
     },
     {
@@ -6463,8 +6470,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 34738,
-      "sha256": "0948c0f6e4a40e348a9a423ca6a8f896fd544938db76286e81d4cbdf23dc4c69",
+      "bytes": 34989,
+      "sha256": "83345368df97ba7f973078874ddfb2e9c4cf611397b1677ee1aa78d228025d9f",
       "collections": [
         {
           "name": "policies",
@@ -6739,8 +6746,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 64715,
-      "sha256": "7a1436402057e8396f861cc334e7abfae7a97f8ced6837c45fdc785152355294",
+      "bytes": 65882,
+      "sha256": "50e98e8153cb02efb91f0b6cfb7b1f5c08132fd4a90d3706f46d1c4801cd1942",
       "collections": [
         {
           "name": "policies",
@@ -8065,6 +8072,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/delivery/reader_progress.py",
+      "role": "implementation",
+      "bytes": 14456,
+      "sha256": "42eb230c67a422693044204e02ad445d0c589b4cd7efa9fe5dff4ea1e5af1fa3",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/delivery/reader_status.py",
       "role": "implementation",
       "bytes": 551,
@@ -8102,8 +8116,8 @@
     {
       "path": "src/inresearch/interfaces/cli.py",
       "role": "implementation",
-      "bytes": 4653,
-      "sha256": "3599c98fb5bda3d2d9f7e56bc7d855a6d94dc564c1f7799215c1b0a797567158",
+      "bytes": 4715,
+      "sha256": "0caf0d36508bf5e7eea88a6661c81adf6ef591ee4f32cbe7754ad7deb5b770af",
       "collections": []
     },
     {
@@ -8996,6 +9010,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_reader_progress.py",
+      "role": "test",
+      "bytes": 5176,
+      "sha256": "4eb279a15cfd9b98b630be2592038bc5f045bfc47cba36eeedc2f09ee5bc4260",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_reader_thermal.py",
       "role": "test",
       "bytes": 4539,
@@ -9858,13 +9879,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 266,
-    "implementation": 195,
+    "implementation": 197,
     "normative": 13,
     "project_config": 85,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 26,
     "supporting_document": 47,
-    "test": 74
+    "test": 75
   }
 }

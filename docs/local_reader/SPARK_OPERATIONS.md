@@ -145,6 +145,8 @@ journalctl --user -u inresearch-reader.service -n 40 --no-pager
 python3 ~/code/inresearch.ai/manage.py reader status
 ```
 
+**进度页（2026-09-27 起）**。`manage.py reader-progress` 只读生成一页 HTML：reader 服务与机温、过去 1 小时降温暂停占比（取自 reader 日志）、优先级 ≥7 文档逐份的各环节成功/总数与失败原因、M4 已上传的 OCR 页数与当前认领、近 24 小时失败原因、全队列任务数。它以 `mode=ro` 打开 catalog，不初始化、不迁移、不抢队列锁，reader 运行中可随时生成。在 Mac 上运行 `sh ~/code/inresearch.ai/docs/local_setup/progress.sh`，每 60 秒从 Spark 取一次到 `~/inresearch-progress.html` 并首次用浏览器打开，页面自动刷新；M4 终端里 Claude 的逐页排查等不经 Spark 的工作不在页上。
+
 状态为 `idle/running/degraded`，另列每阶段数量、最老等待任务和错误码。`idle` 可能有退避中的重试或等待稳定的新文件，不能解释为全库已读完。状态中不记录模型响应正文、HTTP 凭据或异常响应体。
 
 每轮最多入库 32 个稳定文件，扫描默认间隔 10 秒；文件须在连续扫描中稳定至少 60 秒。忽略 partial/隐藏文件及符号链接，入库读取前后检查 stat，并重新核对哈希；跨目录路径不允许逃出管理根目录。写原件后模型失败只重试阅读，不反复归档。原件复制与台账之间中断后，下次按内容寻址核对再登记；不会覆盖同名资料。

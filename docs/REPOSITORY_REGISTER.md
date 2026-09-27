@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.6。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.7。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：940。
+在册文件：943。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 266 |
-| 运行代码 | 195 |
+| 运行代码 | 197 |
 | 现行规范 | 13 |
 | 项目配置 | 85 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
 | 配套说明 | 47 |
-| 测试 | 74 |
+| 测试 | 75 |
 
 ## 在册记录集合
 
@@ -634,6 +634,7 @@
 | [docs/local_setup/ADD_3D_MODEL.md](local_setup/ADD_3D_MODEL.md) | 配套说明 |
 | [docs/local_setup/PRODUCT_LIBRARY.md](local_setup/PRODUCT_LIBRARY.md) | 配套说明 |
 | [docs/local_setup/README.md](local_setup/README.md) | 配套说明 |
+| `docs/local_setup/progress.sh` | 运行代码 |
 | `docs/local_setup/setup.sh` | 已退役入口 |
 | `docs/local_setup/sync.sh` | 运行代码 |
 | [docs/research/2026-09-14/datacenter-cost/README.md](research/2026-09-14/datacenter-cost/README.md) | 配套说明 |
@@ -1084,6 +1085,7 @@
 | `src/inresearch/delivery/map.py` | 运行代码 |
 | `src/inresearch/delivery/publish.py` | 运行代码 |
 | `src/inresearch/delivery/reader_export.py` | 运行代码 |
+| `src/inresearch/delivery/reader_progress.py` | 运行代码 |
 | `src/inresearch/delivery/reader_status.py` | 运行代码 |
 | `src/inresearch/delivery/reading_packet.py` | 运行代码 |
 | `src/inresearch/delivery/report.py` | 运行代码 |
@@ -1217,6 +1219,7 @@
 | `tests/unit/test_product_library.py` | 测试 |
 | `tests/unit/test_publish_reader.py` | 测试 |
 | `tests/unit/test_reader_depth.py` | 测试 |
+| `tests/unit/test_reader_progress.py` | 测试 |
 | `tests/unit/test_reader_thermal.py` | 测试 |
 | `tests/unit/test_reading_results.py` | 测试 |
 | `tests/unit/test_reading_revisions.py` | 测试 |
