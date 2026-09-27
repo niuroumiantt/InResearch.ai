@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.19",
+  "version": "2026.09.27.20",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -22,13 +22,13 @@
     "framework/03_bom_and_collaboration.md": "d358fb9f6568c35d04cf93fc9fdb4a469c37e07136531f71913727f929ec53a9",
     "framework/04_reading_scoring_standard.md": "9487f230120999120e048d48563cf2d41d982bb06b041dc10912d783ac752062",
     "framework/05_interface_system.md": "aed7a1d55678af60c257f5845e728891de02373586bcc9a062efd4a02d7958a1",
-    "framework/06_acquisition.md": "58853731d86b3e710e77276047f568fc2be5726e5b39558ae8c9534714fe81f6",
+    "framework/06_acquisition.md": "6dab9c85968ce271e8222c2fff75f51009c0cbdf27a925c8466f3e45255f84fc",
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
     "framework/08_model_execution.md": "0a949fc79642c4a013a5a8b198dc4358eff162298cab2163e0f5b776c885eda8",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "9242ee9c34381f287426f5e178d6888f4f57650594978c8133695da07639a1aa",
+    "framework/CURRENT.md": "d8bb574a224b83626a3c5b3e1bf937c99802d2e7ab06b64739db60508e6023b1",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
-    "framework/interface_manifest.json": "069b32849d24ae0e962272f75adfda7686bf326b3ac3e2b5a5c9e86b04ccb89f",
+    "framework/interface_manifest.json": "b91477ce084ec289ecf7f4c1fd9e229a5fe9b490f09de5e1f1b7bcffd87cf5a3",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "d1531978f153602d9dab4edb58aeec3761f5c7c5d56f63988024134be992ae27",
     "src/inresearch/workflow/supply.py": "575ae0478387f1c00fe46fb984bb6b11839fb69fbbe9253225acb211fc855b65",
@@ -46,7 +46,7 @@
     "tests/product_node_hover.cjs": "720258d27a7c69d4926ff1b711c7c57ce1e7ae83264e4d48a2dad370a0ba4779",
     "tests/research_delivery.cjs": "77f8ddb63479e8b82bea7bbf694769f7ca3baa759d5a5f663f5b89282d8a9e2f",
     "tests/research_summary.cjs": "d8bb777aec3b9fd7a6958bcb2028a4e578ba5cc0dae9f8b755424e1ef179b17c",
-    "tests/run_browser.cjs": "d06b413b7e56850126e3de8f87a7bbe66904f1bf35a2f077e9abbd2071e10c68",
+    "tests/run_browser.cjs": "2d4e1564eac021341275dd0617bdd22fbf4f36f451d7a2178410d5edf8efaab1",
     "tests/scene_bootstrap.cjs": "6ca988b8d01e5fce7d598ef4b276471b7dd5bf9203254b8159ffa13e3d0c2f1c",
     "tests/scene_framing.cjs": "a5d6c37a9f7aa43ab194ac0175a785a71d2af9b318211e7e139c7349046cb1c0",
     "tests/scene_resources.cjs": "f514a7b25dc47f1d5f4befe96d840f6361ade7df3b78d828b8948e7a9679d3e2",
@@ -103,8 +103,10 @@
     "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
     "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d",
     "web/components/supply.js": "77fc1f9669f723d0e30ee5157355852016f07e6de0ceaaaf7fd42e22e014b86b",
-    "web/pages/nvidia-pilot.html": "c5a8fbe88dc6561e9e7d4a2f31cb7a95b082310d79c4c5529341080f1c7cbd16",
-    "web/pages/supply.html": "8d239586466f575fb52c194fc933326689f55e07e4c07d67fb9ffa89cfa5f32c"
+    "web/pages/nvidia-pilot.html": "54a77a5898f9dff1bd84fd75f3737cc052be7eb2901f2d2d7fd125877c834279",
+    "web/pages/supply.html": "8d239586466f575fb52c194fc933326689f55e07e4c07d67fb9ffa89cfa5f32c",
+    "tests/unit/test_product_catalog.py": "f240e869096008c00ed7969f83388e8e1ebc3ec329830eff4468d78cfc704a22",
+    "tests/product_catalog.cjs": "26e90e5e1687e7df5aeaa4c73648b7c26402cde278a1c8ca5ec3b7dd592697f9"
   },
   "policies": [
     {
@@ -344,7 +346,7 @@
       "policy": "acquisition-20260906",
       "scope": "project",
       "source": "framework/06_acquisition.md",
-      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。",
+      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。",
       "tests": [
         "tests/unit/test_acquisition.py::AcquisitionTests.test_archive_preserves_revisions_and_is_idempotent",
         "tests/unit/test_acquisition.py::AcquisitionTests.test_failure_is_recorded_and_not_success",
@@ -380,12 +382,18 @@
         "tests/unit/test_pilot_progress.py::PilotProgressTests.test_receive_projects_candidate_only_status_and_is_idempotently_rejected",
         "tests/unit/test_pilot_progress.py::PilotProgressTests.test_rejects_incomplete_or_non_claude_payload",
         "tests/unit/test_pilot_progress.py::PilotProgressTests.test_receiver_credential_resolves_inside_deployed_runtime",
-        "tests/unit/test_pilot_progress.py::PilotPublisherTests.test_publisher_posts_with_private_token_and_requires_receiver_ack"
+        "tests/unit/test_pilot_progress.py::PilotPublisherTests.test_publisher_posts_with_private_token_and_requires_receiver_ack",
+        "tests/unit/test_product_catalog.py::ProductCatalogTests.test_import_replay_versions_and_stale_write",
+        "tests/unit/test_product_catalog.py::ProductCatalogTests.test_missing_evidence_and_unsafe_attachment_rejected_without_writes",
+        "tests/unit/test_product_catalog.py::ProductCatalogTests.test_csv_preserves_variants_notes_and_prevents_formula_execution",
+        "tests/product_catalog.cjs",
+        "tests/unit/test_product_catalog.py::ProductCatalogTests.test_http_authentication_and_receiver_validation"
       ],
       "not_verified": [
         "全文翻译、撤回增量、全局限速与 GPU 调度仍未完整实现。",
         "M5→AWS 实际上传已获成功回执；AWS release 96dceb9 为 HEALTHY，容器内只读查询已确认 candidate-only 记录可用、5 份试读为 3 完整/1 阻塞/1 失败，线上页受登录保护；首次记录 received_at 为空，页面接收时间回退修复待部署。全站 449 PDF 尚未本地全文阅读，采集任务调度、Spark 永久归档、正式研究证据采用及生产登录态下人工浏览器验收仍未完成。",
-        "PCN/规格新版语义、厂商分类/语言标记与产品身份需研究人员复核；源站抓取不完整时不能可靠推断产品已下架。"
+        "PCN/规格新版语义、厂商分类/语言标记与产品身份需研究人员复核；源站抓取不完整时不能可靠推断产品已下架。",
+        "产品总量和在售 SKU 尚未穷尽；型号分类需复核，配置拆分、动态规格/PDF 定向提取、跨产品通用映射和正式研究采用尚未完成。"
       ]
     },
     {

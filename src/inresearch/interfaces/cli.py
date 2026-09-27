@@ -11,6 +11,7 @@ from inresearch.storage.files import CommitUncertain
 ROOT = project_root()
 JSON_COMMANDS = ('add-price', 'assign', 'receive-snapshot')
 COMMANDS = {
+    'product-catalog': 'inresearch.workflow.product_catalog',
     'storage': 'inresearch.storage.layout',
     'models': 'inresearch.adapters.models',
     'serve': 'inresearch.interfaces.http', 'users': 'inresearch.interfaces.users', 'reader': 'inresearch.interfaces.reader',
