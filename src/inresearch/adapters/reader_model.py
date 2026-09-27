@@ -8,6 +8,10 @@ from inresearch.materials.artifacts import encoded
 
 
 def _schema(stage):
+    # object_ids/question_ids may be empty and the reader reads a missing list as
+    # empty, so they are not "required": the Claude CLI rejects a reply that omits
+    # a required field and retries internally (5 generations per attempt), which
+    # blocked whole documents when Sonnet left out an empty object_ids.
     text = {"type": "string"}
     ids = {"type": "array", "items": text, "maxItems": 100}
     if stage == "read":
@@ -16,11 +20,11 @@ def _schema(stage):
         claim = {"type": "object", "properties": {"text": {"type": "string", "maxLength": 1500},
                  "kind": {"type": "string", "enum": ["observation", "author_claim", "author_forecast", "calculation", "unverified"]},
                  "object_ids": ids, "question_ids": ids, "evidence": evidence},
-                 "required": ["text", "kind", "object_ids", "question_ids", "evidence"]}
+                 "required": ["text", "kind", "evidence"]}
         return {"type": "object", "properties": {"chunk_sha256": text, "summary": {"type": "string", "maxLength": 1200},
                 "object_ids": ids, "question_ids": ids,
                 "claims": {"type": "array", "items": claim, "maxItems": 30}},
-                "required": ["chunk_sha256", "summary", "object_ids", "question_ids", "claims"]}
+                "required": ["chunk_sha256", "summary", "claims"]}
     if stage == "triage":
         classification = {"type": "object", "properties": {"title": text, "org": text, "year": text,
                           "module_id": {"type": "string", "enum": ["M%02d" % i for i in range(1, 16)] + ["unknown"]}},
@@ -28,7 +32,7 @@ def _schema(stage):
         return {"type": "object", "properties": {"classification": classification,
                 "importance": {"type": "integer", "minimum": 1, "maximum": 9}, "rationale": text,
                 "object_ids": ids, "question_ids": ids},
-                "required": ["classification", "importance", "rationale", "object_ids", "question_ids"]}
+                "required": ["classification", "importance", "rationale"]}
     return {"type": "object", "properties": {"summary": text,
             "key_points": {"type": "array", "items": text, "maxItems": 20}},
             "required": ["summary", "key_points"]}

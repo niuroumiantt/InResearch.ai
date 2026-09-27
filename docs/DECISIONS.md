@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-27：reader schema 的映射 ID 改为非必填
+
+M4 深读中 4 份文档的 `model_cli_failed` 并非限流：Sonnet 偶尔省略空的 `object_ids`，schema 将其列为必填，Claude CLI 内部重试 5 次后报错，每个卡住的块最多耗 15 次生成。reader 本来就把缺失的 ID 数组当空数组，采用：triage、read 及 claim 的 schema 不再要求 `object_ids`/`question_ids`，校验与引文核对不变。
+
 ## 2026-09-27：Claude CLI 临时错误改为重试
 
 M4 上 Claude 深读 21 份重点文档（试点 df93：30 页 12 分钟、引文与原件一致），两份并行时 4 份（e142、3081、1765、9ec5）因 `model_cli_failed` 被整份阻塞，而它们已完成的块失败数为 0、引文全部核对通过。原因是 reader 把 `model_failure` 以外的模型错误一律当作阻塞。采用：`model_cli_failed` 与 `model_cli_timeout` 改走普通重试（3 次、退避），错误码照记；认证失败、CLI 未安装、模型身份无法核实仍阻塞。
