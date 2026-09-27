@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：937。
+在册文件：938。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,7 +16,7 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 266 |
-| 运行代码 | 194 |
+| 运行代码 | 195 |
 | 现行规范 | 13 |
 | 项目配置 | 85 |
 | 兼容研究记录 | 16 |
@@ -971,6 +971,7 @@
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-cover-wechat.jpg` | 项目配置 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-cover.png` | 项目配置 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-datacenter-profit-full.html` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-datacenter-profit-lite.html` | 运行代码 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-datacenter-profit-wechat.html` | 运行代码 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-fig1-1gw-capex-by-chip.png` | 项目配置 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-fig2-three-paths-roic.png` | 项目配置 |
