@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：938。
+在册文件：939。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
-| 配套说明 | 46 |
+| 配套说明 | 47 |
 | 测试 | 73 |
 
 ## 在册记录集合
@@ -361,6 +361,7 @@
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/checks/validation.json` | images | 7 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | lead | 2 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | chapters | 6 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | summary | 3 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | commentary | 3 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | sources | 62 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/chapters.json` | chapters | 6 |
@@ -370,6 +371,7 @@
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/cover.json` | modules | 5 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | commentary | 3 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | sources_added | 0 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | summary | 3 |
 | `reports/blindspot.json` | modules | 15 |
 | `reports/workorders.json` | orders | 564 |
 | `research/M01.md` | Finding | 7 |
@@ -469,6 +471,7 @@
 | [docs/archive/2026-09-14/deploy__README.md](archive/2026-09-14/deploy__README.md) | 历史快照 |
 | [docs/archive/2026-09-14/deploy__docker-compose.yml.md](archive/2026-09-14/deploy__docker-compose.yml.md) | 历史快照 |
 | [docs/archive/2026-09-14/docs__LIBRARY_INDEX.md](archive/2026-09-14/docs__LIBRARY_INDEX.md) | 历史快照 |
+| [docs/geluoke/专题写作规则.md](geluoke/专题写作规则.md) | 配套说明 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
 | [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
 | [docs/inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md](inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md) | 候选与外部输入 |

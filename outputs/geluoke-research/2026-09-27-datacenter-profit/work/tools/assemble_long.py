@@ -41,7 +41,7 @@ for c in ch['chapters']:
     chapters_out.append({'no':c['no'],'title':c['title'],'paras':paras,'figure':figure})
 for s in lead.get('sources_added',[]): add_source(s)
 art={'title':lead['title'],'date_display':date_display,'cover':{'file':figmap['cover']['file']},'lead':[lead['lead1'],lead['lead2']],'coverage':lead['coverage_line'],
-     'chapters':chapters_out,'commentary':lead['commentary'],'sources':[{'n':i+1,'org':s['org']} for i,s in enumerate(srcs)],'notes':lead['notes'],'signature':lead.get('signature','格洛可数据中心研究'),'qr':figmap.get('qr',{}).get('file')}
+     'chapters':chapters_out,'summary':lead.get('summary',[]),'commentary':lead['commentary'],'sources':[{'n':i+1,'org':s['org']} for i,s in enumerate(srcs)],'notes':lead['notes'],'signature':lead.get('signature','格洛可数据中心研究'),'qr':figmap.get('qr',{}).get('file')}
 json.dump(art,open(os.path.join(wd,'article.json'),'w'),ensure_ascii=False,indent=1)
 json.dump([{'n':i+1,'org':s['org'],'items':s['details']} for i,s in enumerate(srcs)],open(os.path.join(wd,'sources.json'),'w'),ensure_ascii=False,indent=1)
 # editable markdown
@@ -51,6 +51,7 @@ for c in chapters_out:
     for i,p in enumerate(c['paras']):
         md.append(p+'\n')
         if c['figure'] and c['figure']['after_para']==i: md.append(f"![{c['figure']['alt']}]({os.path.basename(c['figure']['file'])})\n\n*{c['figure']['caption']}*\n")
+md+=(['## 小结','']+[s+'\n' for s in art.get('summary',[])]) if art.get('summary') else []
 md+=['## 格洛可点评','']+[t+'\n' for t in art['commentary']]
 md+=['','来源：'+'；'.join(f"[{s['n']}] {s['org']}" for s in art['sources'])+'。','','备注：'+art['notes'],'',art['signature']]
 open(os.path.join(wd,'article.md'),'w').write('\n'.join(md))
