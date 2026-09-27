@@ -29,9 +29,25 @@ class RepeatPenaltyProfileTests(unittest.TestCase):
 
     def test_only_the_ocr_profile_carries_the_penalty(self):
         config = json.loads((ROOT / 'deploy/models.json').read_text(encoding='utf-8'))
-        carrying = {name for name, p in config['profiles'].items() if 'repeat_penalty' in p}
-        self.assertEqual(carrying, {'spark_ocr'})
-        self.assertEqual(models.ModelProfile(**config['profiles']['spark_ocr']).repeat_penalty, 1.05)
+        for field in ('repeat_penalty', 'repeat_last_n'):
+            carrying = {name for name, p in config['profiles'].items() if field in p}
+            self.assertEqual(carrying, {'spark_ocr'}, field)
+        ocr = models.ModelProfile(**config['profiles']['spark_ocr'])
+        self.assertEqual((ocr.repeat_penalty, ocr.repeat_last_n), (1.1, 256))
+
+    def test_window_is_recorded_but_not_part_of_the_frozen_reading_identity(self):
+        plain = models.ModelProfile(**OCR)
+        windowed = models.ModelProfile(**OCR, repeat_penalty=1.1, repeat_last_n=256)
+        self.assertNotIn('repeat_last_n', plain.identity)
+        self.assertEqual(windowed.identity['repeat_last_n'], 256)
+        self.assertEqual(models.reading_identity(windowed.identity), models.reading_identity(plain.identity))
+
+    def test_out_of_range_or_non_ollama_windows_are_refused(self):
+        for value in (0, -1, 8193, True, 256.0, '256'):
+            with self.assertRaises(ValueError):
+                models.ModelProfile(**OCR, repeat_last_n=value)
+        with self.assertRaises(ValueError):
+            models.ModelProfile(backend='claude_cli', url='', model='claude-sonnet-5', repeat_last_n=256)
 
     def request_options(self, profile):
         sent = {}
@@ -52,7 +68,10 @@ class RepeatPenaltyProfileTests(unittest.TestCase):
     def test_penalty_reaches_ollama_only_when_configured(self):
         text = replace(models.ModelProfile(**OCR), capabilities=('text_json',))
         self.assertNotIn('repeat_penalty', self.request_options(text))
+        self.assertNotIn('repeat_last_n', self.request_options(text))
         self.assertEqual(self.request_options(replace(text, repeat_penalty=1.05))['repeat_penalty'], 1.05)
+        guarded = self.request_options(replace(text, repeat_penalty=1.1, repeat_last_n=256))
+        self.assertEqual((guarded['repeat_penalty'], guarded['repeat_last_n']), (1.1, 256))
 
 
 class PageRetryTests(unittest.TestCase):

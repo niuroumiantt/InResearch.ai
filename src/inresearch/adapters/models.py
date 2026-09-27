@@ -49,6 +49,10 @@ class ModelProfile:
     # rows until Ollama aborts ("token repeat limit reached"); a mild penalty
     # lets those pages finish. Unset keeps the backend default and identity.
     repeat_penalty: object = None
+    # How many recent tokens the penalty looks back over (Ollama default 64).
+    # A loop whose repeated block is longer than the window escapes the
+    # penalty, e.g. a two-line slogan repeated until num_predict runs out.
+    repeat_last_n: object = None
 
     def __post_init__(self):
         if self.backend not in {"ollama", "gateway", "claude_cli"}:
@@ -85,6 +89,10 @@ class ModelProfile:
                     or not 1.0 <= self.repeat_penalty <= 2.0):
                 raise ValueError("repeat_penalty must be a number in [1.0, 2.0] on the Ollama backend")
             object.__setattr__(self, "repeat_penalty", float(self.repeat_penalty))
+        if self.repeat_last_n is not None:
+            if (self.backend != "ollama" or type(self.repeat_last_n) is not int
+                    or not 1 <= self.repeat_last_n <= self.context):
+                raise ValueError("repeat_last_n must be an integer in [1, context] on the Ollama backend")
         object.__setattr__(self, "capabilities", tuple(self.capabilities))
         object.__setattr__(self, "url", self.url.rstrip("/"))
 
@@ -99,6 +107,8 @@ class ModelProfile:
                     "request_model": self.request_model or self.model, "revision": self.revision}
         if self.repeat_penalty is not None:
             identity["repeat_penalty"] = self.repeat_penalty
+        if self.repeat_last_n is not None:
+            identity["repeat_last_n"] = self.repeat_last_n
         return identity
 
 
@@ -179,6 +189,8 @@ class JsonModelClient:
             options = {"num_ctx": p.context, "num_predict": p.max_output_tokens, "temperature": 0}
             if p.repeat_penalty is not None:
                 options["repeat_penalty"] = p.repeat_penalty
+            if p.repeat_last_n is not None:
+                options["repeat_last_n"] = p.repeat_last_n
             body.update(format="json", options=options)
             if think is not None:
                 body["think"] = think
