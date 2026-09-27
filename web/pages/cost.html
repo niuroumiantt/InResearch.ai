@@ -46,6 +46,7 @@
     <aside class="control-panel" aria-label="模型输入">
       <div class="panel-head"><div><p class="eyebrow">INPUTS</p><h2>研究假设</h2></div><span id="model-date"></span></div>
       <div class="presets" id="presets" aria-label="情景预设"></div>
+      <p class="preset-note" id="preset-note"></p>
       <form id="cost-inputs"></form>
       <p class="model-caution">所有参数均为可修改的研究假设，不是报价、预算承诺或投资建议。</p>
     </aside>
@@ -80,6 +81,25 @@
         </article>
       </section>
 
+      <section class="analysis-grid return-grid">
+        <article class="card return-card">
+          <div class="card-head"><div><p class="eyebrow">RETURN VIEW</p><h2>租金能否覆盖全成本</h2></div><span>同一参考设备口径</span></div>
+          <div class="return-compare">
+            <div><small>年租金收入</small><strong id="return-revenue">—</strong><span>有效设备小时 × 市场租金</span></div>
+            <div><small>每小时盈余</small><strong id="return-surplus-hour">—</strong><span>租金 − 每有效设备小时全成本</span></div>
+            <div><small>年度盈余</small><strong id="return-surplus">—</strong><span>超过资本成本率的部分</span></div>
+            <div><small>租金覆盖率</small><strong id="return-coverage">—</strong><span>年租金收入 ÷ 年度全成本</span></div>
+          </div>
+          <p id="return-state" class="return-state"></p>
+          <p>全成本已含资本回收，盈余为超出资本成本率的部分，<b>不是会计利润、NOPAT 或税后回报</b>。要与研报的 ROIC 口径对照，请看研究档案里的复算脚本。</p>
+        </article>
+        <article class="card benchmark-card">
+          <div class="card-head"><div><p class="eyebrow">MARKET BENCHMARKS</p><h2>租金与造价基准</h2></div><span>各自时点，不是当期报价</span></div>
+          <div id="benchmark-list" class="benchmark-list"></div>
+          <p class="footnote">来自《造一座数据中心有多挣钱》（2026-09-27）研究卡，属性按研究实测／预测估算／研究估算标注；完整来源见研究档案。</p>
+        </article>
+      </section>
+
       <section class="card matrix-card">
         <div class="card-head"><div><p class="eyebrow">SENSITIVITY MAP</p><h2>电价 × 有效设备时间</h2></div><span>美元 / 有效设备小时</span></div>
         <div id="sensitivity-matrix" class="matrix-wrap"></div>
@@ -101,7 +121,7 @@
 
   <footer class="cost-footer">
     <div><b>口径说明</b><p id="model-note"></p></div>
-    <div><b>研究依据</b><p>完整叙事、来源核验、Bernstein 与 SemiAnalysis 材料审阅均保存在本仓库的研究档案中。</p></div>
+    <div><b>研究依据</b><p>基准成本模型来自 <a href="/research/datacenter-cost-study.md">2026-09-14 成本专题</a>；收益参照、GB300 预设与租金基准来自 <a href="/research/datacenter-profit-study.md">2026-09-27 盈利专题</a>。完整叙事、来源核验与材料审阅均保存在本仓库的研究档案中。</p></div>
   </footer>
   <div class="load-error" id="cost-error" hidden></div>
 </main>

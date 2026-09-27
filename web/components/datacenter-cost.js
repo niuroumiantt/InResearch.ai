@@ -24,7 +24,10 @@
       perHour:total/productiveHours,capex:a.facility+a.utility+a.land+a.servers+a.network,
       waterM3:itEnergy*a.site_water_l/1000,
       itAccount:components.servers+components.network,
-      facilityAccount:components.facility+components.land+components.energy+components.demand+components.water+a.facility_opex};
+      facilityAccount:components.facility+components.land+components.energy+components.demand+components.water+a.facility_opex,
+      rent:a.rent_price||0,revenue:(a.rent_price||0)*productiveHours,
+      surplusPerHour:(a.rent_price||0)-total/productiveHours,surplus:(a.rent_price||0)*productiveHours-total,
+      coverage:(a.rent_price||0)*productiveHours/total};
   }
   window.InresearchCost={calculate,crf};
   const app=document.getElementById('cost-app'); if(!app)return;
@@ -47,7 +50,14 @@
     }
   }
   function setActivePreset(id){document.querySelectorAll('#presets button').forEach(b=>b.classList.toggle('active',b.dataset.id===id));}
-  function applyPreset(id){values={...spec.assumptions,...(spec.presets[id]?.changes||{})};renderInputs();setActivePreset(id);render();}
+  function applyPreset(id){values={...spec.assumptions,...(spec.presets[id]?.changes||{})};renderInputs();setActivePreset(id);byId('preset-note').textContent=spec.presets[id]?.note||'';render();}
+  function renderBenchmarks(){
+    const host=byId('benchmark-list');if(!host)return;host.replaceChildren();
+    for(const b of spec.benchmarks||[]){
+      const row=make('div','benchmark-row'),head=make('div'),name=make('b','',b.label),val=make('strong','',b.value+' '+b.unit),meta=make('small','',b.source+' · '+b.as_of+' · '+b.evidence_class);
+      head.append(name,meta);row.append(head,val);host.append(row);
+    }
+  }
   function renderPresets(){const host=byId('presets');host.replaceChildren();for(const [id,p] of Object.entries(spec.presets)){const b=make('button','',p.label);b.type='button';b.dataset.id=id;b.addEventListener('click',()=>applyPreset(id));host.append(b);}}
   function renderBars(out){
     const labels={servers:'服务器资本年化',network:'集群网络资本年化',facility:'设施与接入资本年化',land:'土地机会成本',energy:'电量费',demand:'计费需量费用',opex:'其他运营支出',water:'现场水费'};
@@ -77,10 +87,16 @@
     byId('account-facility').textContent=money(out.facilityAccount);
     byId('formula-it-energy').textContent=number(out.itEnergy/1e6,1)+' GWh';byId('formula-facility-energy').textContent=number(out.facilityEnergy/1e6,1)+' GWh';
     byId('formula-capital').textContent=money(out.capital);byId('formula-total').textContent=money(out.total);byId('formula-unit').textContent='$'+out.perHour.toFixed(2)+'/h';
+    const hasRent=out.rent>0;
+    byId('return-revenue').textContent=hasRent?money(out.revenue):'—';
+    byId('return-surplus-hour').textContent=hasRent?(out.surplusPerHour>=0?'+':'−')+'$'+Math.abs(out.surplusPerHour).toFixed(2)+'/h':'—';
+    byId('return-surplus').textContent=hasRent?(out.surplus>=0?'+':'−')+money(Math.abs(out.surplus)):'—';
+    byId('return-coverage').textContent=hasRent?number(out.coverage*100,0)+'%':'—';
+    byId('return-state').textContent=hasRent?(out.surplusPerHour>=0?'租金覆盖全成本（含 '+number(values.rate*100,1)+'% 资本回收）':'租金低于全成本，资本回收不足'):'在左侧“收益参照”填入租金，或选择带租金的情景预设';
     renderBars(out);renderMatrix();
   }
   fetch('/data/datacenter_cost_model.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('HTTP '+r.status);return r.json()}).then(data=>{
     spec=data;values={...spec.assumptions};baseline=calculate(values);byId('model-date').textContent='口径 '+spec.as_of;byId('model-note').textContent=spec.model_note;
-    renderPresets();renderInputs();setActivePreset('baseline');render();byId('reset-model').addEventListener('click',()=>applyPreset('baseline'));app.removeAttribute('aria-busy');
+    renderPresets();renderBenchmarks();renderInputs();applyPreset('baseline');byId('reset-model').addEventListener('click',()=>applyPreset('baseline'));app.removeAttribute('aria-busy');
   }).catch(error=>{const el=byId('cost-error');el.hidden=false;el.textContent='成本模型加载失败：'+error.message;app.setAttribute('aria-busy','false')});
 })();

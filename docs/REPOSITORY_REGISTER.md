@@ -18,7 +18,7 @@
 | 历史快照 | 266 |
 | 运行代码 | 197 |
 | 现行规范 | 13 |
-| 项目配置 | 85 |
+| 项目配置 | 86 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
@@ -36,7 +36,8 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
-| `data/datacenter_cost_model.json` | groups | 4 |
+| `data/datacenter_cost_model.json` | groups | 5 |
+| `data/datacenter_cost_model.json` | benchmarks | 6 |
 | `data/facts.json` | records | 7849 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
@@ -165,6 +166,7 @@
 | `docs/research/2026-09-14/datacenter-cost/model-results.json` | delay | 5 |
 | `docs/research/2026-09-14/datacenter-cost/model-results.json` | apac | 7 |
 | `docs/research/2026-09-14/datacenter-cost/model-results.json` | epoch | 10 |
+| `docs/research/2026-09-27/datacenter-profit/profit-model-results.json` | report_price_paths | 5 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
@@ -472,6 +474,7 @@
 | [docs/archive/2026-09-14/deploy__docker-compose.yml.md](archive/2026-09-14/deploy__docker-compose.yml.md) | 历史快照 |
 | [docs/archive/2026-09-14/docs__LIBRARY_INDEX.md](archive/2026-09-14/docs__LIBRARY_INDEX.md) | 历史快照 |
 | [docs/geluoke/专题写作规则.md](geluoke/专题写作规则.md) | 配套说明 |
+| [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
 | [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
 | [docs/inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md](inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md) | 候选与外部输入 |
@@ -646,6 +649,12 @@
 | `docs/research/2026-09-14/datacenter-cost/model.py` | 运行代码 |
 | [docs/research/2026-09-14/datacenter-cost/semianalysis-materials-review.md](research/2026-09-14/datacenter-cost/semianalysis-materials-review.md) | 配套说明 |
 | [docs/research/2026-09-14/datacenter-cost/sources.md](research/2026-09-14/datacenter-cost/sources.md) | 配套说明 |
+| [docs/research/2026-09-27/datacenter-profit/README.md](research/2026-09-27/datacenter-profit/README.md) | 配套说明 |
+| [docs/research/2026-09-27/datacenter-profit/article.md](research/2026-09-27/datacenter-profit/article.md) | 配套说明 |
+| [docs/research/2026-09-27/datacenter-profit/feedback.md](research/2026-09-27/datacenter-profit/feedback.md) | 配套说明 |
+| `docs/research/2026-09-27/datacenter-profit/profit-model-results.json` | 项目配置 |
+| `docs/research/2026-09-27/datacenter-profit/profit-model.py` | 运行代码 |
+| [docs/research/2026-09-27/datacenter-profit/sources.md](research/2026-09-27/datacenter-profit/sources.md) | 配套说明 |
 | [docs/reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md](reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md) | 历史快照 |
 | [docs/reviews/2026-09-06/IMPLEMENTATION.md](reviews/2026-09-06/IMPLEMENTATION.md) | 历史快照 |
 | [docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md](reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md) | 已采用设计依据 |

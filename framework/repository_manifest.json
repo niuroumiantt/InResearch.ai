@@ -129,12 +129,16 @@
     {
       "path": "data/datacenter_cost_model.json",
       "role": "source_record",
-      "bytes": 3755,
-      "sha256": "64481380499e5094359f7152239635bc3fc3c42a285b1868bdb16593fd8a2935",
+      "bytes": 9428,
+      "sha256": "2f9c04466d5b2427b317d9e85655bc40643e6157f3e1ffd783fda875c7c0b404",
       "collections": [
         {
           "name": "groups",
-          "count": 4
+          "count": 5
+        },
+        {
+          "name": "benchmarks",
+          "count": 6
         }
       ]
     },
@@ -716,8 +720,15 @@
     {
       "path": "docs/geluoke/专题写作规则.md",
       "role": "supporting_document",
-      "bytes": 14306,
-      "sha256": "05c04f82da09dc840cb8170ee90c3d0f8dac10fe687593dc052f349706b7ed00",
+      "bytes": 14823,
+      "sha256": "c44b40709de25a4a0c35df90bff8fbeabaffbacdff860eacf778397d187a9f04",
+      "collections": []
+    },
+    {
+      "path": "docs/geluoke/专题反哺规则.md",
+      "role": "supporting_document",
+      "bytes": 5237,
+      "sha256": "dd6fdaf22c8a215bd284548703d1f7303c87043500508999e6ccf978be5f6cc4",
       "collections": []
     },
     {
@@ -3295,8 +3306,8 @@
     {
       "path": "docs/research/2026-09-14/datacenter-cost/README.md",
       "role": "supporting_document",
-      "bytes": 1052,
-      "sha256": "c4ec975b534ae9aa54f3e6b0e399dc7832cc085c6e74b203abb9686dc87221e7",
+      "bytes": 1220,
+      "sha256": "130882a27f20eab40872344d314504fe3f303da40d62f1e3002db94c1600f1d7",
       "collections": []
     },
     {
@@ -3374,6 +3385,53 @@
       "role": "supporting_document",
       "bytes": 18749,
       "sha256": "ec4309d073431df61fe813ebf27ebfb958178317e47a103fe6f0ddff2cc833a8",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-27/datacenter-profit/README.md",
+      "role": "supporting_document",
+      "bytes": 2003,
+      "sha256": "70a98289b45b2fe2ada07d8d7c3ce48b76686e0f00808ccec6634f564eedc81e",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-27/datacenter-profit/article.md",
+      "role": "supporting_document",
+      "bytes": 48452,
+      "sha256": "f8e447009d560edd3ed0e23114f6e9f73955d23b3c8fb5316b22ce1291759bc1",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-27/datacenter-profit/feedback.md",
+      "role": "supporting_document",
+      "bytes": 4877,
+      "sha256": "fd249c3d4ce1e819fd094e029390e6f571923d07e619e7011b899ca04d2185b5",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-27/datacenter-profit/profit-model-results.json",
+      "role": "project_config",
+      "bytes": 4146,
+      "sha256": "174618d86a2e66fb2feaff777a6b00e092bc596ba3e7dd459b1dc398dee3dfae",
+      "collections": [
+        {
+          "name": "report_price_paths",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "path": "docs/research/2026-09-27/datacenter-profit/profit-model.py",
+      "role": "implementation",
+      "bytes": 4852,
+      "sha256": "7bd8145becf4e0a45c03fa26a7c177a4f4e703a56b0aafbe373bce2e5b50a4ec",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-27/datacenter-profit/sources.md",
+      "role": "supporting_document",
+      "bytes": 25557,
+      "sha256": "9f9ab049143e04682f40f43b7644988b8e7f9944d213dd5e7862205eacb88d9a",
       "collections": []
     },
     {
@@ -8606,8 +8664,8 @@
     {
       "path": "tests/datacenter_cost.cjs",
       "role": "test",
-      "bytes": 1852,
-      "sha256": "e9e3c31dcd7914c02020688cd040be671d61bd4d8d2e5da8e96b7f589d6c63c9",
+      "bytes": 2774,
+      "sha256": "ed0d0060350944968fa0ab8eb2a842535e96c1a937fe839f72daabe6fe745227",
       "collections": []
     },
     {
@@ -9566,8 +9624,8 @@
     {
       "path": "web/components/datacenter-cost.js",
       "role": "implementation",
-      "bytes": 7439,
-      "sha256": "8c2029fda6b565938742bbd2c1810896d1343728b7314fa851ee658beb7e978a",
+      "bytes": 8878,
+      "sha256": "08ed67ac0c9e71acd83a0fb4c49c9784b33aaca8593843a899b09dee7ac2d5fa",
       "collections": []
     },
     {
@@ -9748,8 +9806,8 @@
     {
       "path": "web/pages/cost.html",
       "role": "implementation",
-      "bytes": 6692,
-      "sha256": "6f35bc4a6bdce7546a0c4e9e0855ade485e4fec5089a85baded640d616765a32",
+      "bytes": 8625,
+      "sha256": "2af02b27ab7308663f45cf4eb00ebe62ba1b1f3c2fc3c8a2f5973c045821cde1",
       "collections": []
     },
     {
@@ -9839,15 +9897,15 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 6786,
-      "sha256": "23e41cb38c848882948721e8e8155e85c0d740f146b91dbf93046f7ca4edf9d1",
+      "bytes": 6885,
+      "sha256": "26961e2a977876997e77dfd90f2305039dbac30528e7d96f7268ddbb244cbc09",
       "collections": []
     },
     {
       "path": "web/themes/datacenter-cost.css",
       "role": "implementation",
-      "bytes": 8412,
-      "sha256": "d59affce57e59695ac074f24617af75d7b64ae468fcc569ecf7dccf8cd630dbf",
+      "bytes": 9769,
+      "sha256": "7636eec16d4221883048ec29b281c962291dcacc31d48625e2e0d4baa7b0f384",
       "collections": []
     },
     {
@@ -9881,7 +9939,7 @@
     "historical": 266,
     "implementation": 197,
     "normative": 13,
-    "project_config": 85,
+    "project_config": 86,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 26,
