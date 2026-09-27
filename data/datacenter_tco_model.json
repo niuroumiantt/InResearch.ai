@@ -1,0 +1,1104 @@
+{
+  "schema_version": 1,
+  "model_id": "datacenter-tco-lifecycle-20260927",
+  "as_of": "2026-09-27",
+  "currency": "USD",
+  "status": "illustrative_research_model",
+  "summary": "通用数据中心全生命周期 TCO 模型：项目定义 → 站点 → 设计 → IT → 建设 → 运营 → 财务，逐年现金流，折现后按每 MW·年、每 kW·月、每 IT kWh、每 GPU 小时给出平准化成本。参数为研究假设，站点与设计预设只作起点。",
+  "assumptions": {
+    "it_mw": 100,
+    "redundancy": "n_plus_1",
+    "construction_years": 2,
+    "horizon_years": 15,
+    "ramp_year1": 0.6,
+    "ramp_year2": 0.9,
+    "site": "us_virginia",
+    "power_price": 0.1,
+    "demand_rate": 12,
+    "power_escalation": 0.02,
+    "land_per_mw": 0.5,
+    "labor_index": 1.0,
+    "property_tax_rate": 0.008,
+    "water_price": 2.0,
+    "cooling": "liquid",
+    "pue": 1.18,
+    "wue": 0.3,
+    "it_class": "gb300",
+    "it_capex_per_kw": 23000,
+    "load_factor": 0.7,
+    "it_refresh_years": 5,
+    "refresh_cost_factor": 0.85,
+    "gpus_per_mw": 410,
+    "gpu_utilization": 0.75,
+    "facility_mode": "own",
+    "shell_rent_per_mw": 1.9,
+    "colo_rate": 180,
+    "capex_building": 2.5,
+    "capex_electrical": 5.5,
+    "capex_mechanical": 3.0,
+    "capex_fitout": 1.2,
+    "soft_cost_pct": 0.12,
+    "contingency_pct": 0.08,
+    "fte_per_mw": 0.6,
+    "cost_per_fte": 130000,
+    "maint_pct_facility": 0.02,
+    "maint_pct_it": 0.03,
+    "software_per_mw": 0.05,
+    "insurance_pct": 0.004,
+    "bandwidth_per_mw": 0.08,
+    "other_opex_per_mw": 0.1,
+    "opex_escalation": 0.025,
+    "decommission_pct": 0.02,
+    "wacc": 0.08,
+    "business_model": "gpu_rental",
+    "price_gpu_hour": 8.5,
+    "price_colo_kw_month": 180
+  },
+  "groups": [
+    {
+      "id": "project",
+      "label": "1 · 项目定义",
+      "hint": "规模、冗余等级与时间轴",
+      "inputs": [
+        "it_mw",
+        "redundancy",
+        "construction_years",
+        "horizon_years",
+        "ramp_year1",
+        "ramp_year2"
+      ]
+    },
+    {
+      "id": "site",
+      "label": "2 · 站点",
+      "hint": "电价、土地、人力与税费由所在地决定",
+      "inputs": [
+        "site",
+        "power_price",
+        "demand_rate",
+        "power_escalation",
+        "land_per_mw",
+        "labor_index",
+        "property_tax_rate",
+        "water_price"
+      ]
+    },
+    {
+      "id": "design",
+      "label": "3 · 设计",
+      "hint": "冷却方式决定 PUE、WUE 与机械造价",
+      "inputs": [
+        "cooling",
+        "pue",
+        "wue"
+      ]
+    },
+    {
+      "id": "it",
+      "label": "4 · IT 设备",
+      "hint": "设备类型决定单位造价、负载与更新周期",
+      "inputs": [
+        "it_class",
+        "it_capex_per_kw",
+        "load_factor",
+        "it_refresh_years",
+        "refresh_cost_factor",
+        "gpus_per_mw",
+        "gpu_utilization"
+      ]
+    },
+    {
+      "id": "build",
+      "label": "5 · 建设",
+      "hint": "设施资本开支按系统分项，或改为租壳/托管",
+      "inputs": [
+        "facility_mode",
+        "capex_building",
+        "capex_electrical",
+        "capex_mechanical",
+        "capex_fitout",
+        "soft_cost_pct",
+        "contingency_pct",
+        "shell_rent_per_mw",
+        "colo_rate"
+      ]
+    },
+    {
+      "id": "operate",
+      "label": "6 · 运营",
+      "hint": "人员、维护、软件、保险、带宽",
+      "inputs": [
+        "fte_per_mw",
+        "cost_per_fte",
+        "maint_pct_facility",
+        "maint_pct_it",
+        "software_per_mw",
+        "insurance_pct",
+        "bandwidth_per_mw",
+        "other_opex_per_mw",
+        "opex_escalation",
+        "decommission_pct"
+      ]
+    },
+    {
+      "id": "finance",
+      "label": "7 · 财务与对标",
+      "hint": "折现率与用于对比的市场价格",
+      "inputs": [
+        "wacc",
+        "business_model",
+        "price_gpu_hour",
+        "price_colo_kw_month"
+      ]
+    }
+  ],
+  "inputs": {
+    "it_mw": {
+      "label": "关键 IT 容量",
+      "unit": "MW",
+      "min": 1,
+      "max": 5000,
+      "step": 1
+    },
+    "redundancy": {
+      "label": "冗余等级",
+      "type": "select",
+      "choices": [
+        [
+          "n",
+          "N（无冗余）"
+        ],
+        [
+          "n_plus_1",
+          "N+1"
+        ],
+        [
+          "2n",
+          "2N"
+        ]
+      ],
+      "note": "作用于电气与机械造价"
+    },
+    "construction_years": {
+      "label": "建设期",
+      "unit": "年",
+      "min": 1,
+      "max": 5,
+      "step": 1
+    },
+    "horizon_years": {
+      "label": "运营期",
+      "unit": "年",
+      "min": 5,
+      "max": 30,
+      "step": 1
+    },
+    "ramp_year1": {
+      "label": "第 1 年负载爬坡",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "display": "percent"
+    },
+    "ramp_year2": {
+      "label": "第 2 年负载爬坡",
+      "unit": "%",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "display": "percent"
+    },
+    "site": {
+      "label": "站点预设",
+      "type": "select",
+      "options": "sites",
+      "note": "切换会重置电价、需量、土地、人力指数、财产税、水价"
+    },
+    "power_price": {
+      "label": "电量单价",
+      "unit": "$/kWh",
+      "min": 0,
+      "max": 1,
+      "step": 0.005
+    },
+    "demand_rate": {
+      "label": "需量费率",
+      "unit": "$/kW·月",
+      "min": 0,
+      "max": 100,
+      "step": 0.5
+    },
+    "power_escalation": {
+      "label": "电价年涨幅",
+      "unit": "%/年",
+      "min": -10,
+      "max": 20,
+      "step": 0.5,
+      "display": "percent"
+    },
+    "land_per_mw": {
+      "label": "土地",
+      "unit": "$M/MW",
+      "min": 0,
+      "max": 20,
+      "step": 0.05
+    },
+    "labor_index": {
+      "label": "人力成本指数",
+      "unit": "×",
+      "min": 0.1,
+      "max": 3,
+      "step": 0.05,
+      "note": "1.0 = 美国东部"
+    },
+    "property_tax_rate": {
+      "label": "财产税率",
+      "unit": "%/年",
+      "min": 0,
+      "max": 5,
+      "step": 0.05,
+      "display": "percent",
+      "note": "按设施资本开支"
+    },
+    "water_price": {
+      "label": "水价",
+      "unit": "$/m³",
+      "min": 0,
+      "max": 30,
+      "step": 0.1
+    },
+    "cooling": {
+      "label": "冷却方式",
+      "type": "select",
+      "options": "coolings",
+      "note": "切换会重置 PUE、WUE 与机械造价"
+    },
+    "pue": {
+      "label": "设计 PUE",
+      "unit": "PUE",
+      "min": 1,
+      "max": 3,
+      "step": 0.01
+    },
+    "wue": {
+      "label": "WUE",
+      "unit": "L/kWh IT",
+      "min": 0,
+      "max": 5,
+      "step": 0.05
+    },
+    "it_class": {
+      "label": "IT 设备类型",
+      "type": "select",
+      "options": "it_classes",
+      "note": "切换会重置单位造价、负载、更新周期与 GPU 密度"
+    },
+    "it_capex_per_kw": {
+      "label": "IT 单位造价",
+      "unit": "$/kW",
+      "min": 0,
+      "max": 200000,
+      "step": 100,
+      "note": "服务器、加速器、网络、存储"
+    },
+    "load_factor": {
+      "label": "满载后平均负载",
+      "unit": "%",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "display": "percent"
+    },
+    "it_refresh_years": {
+      "label": "IT 更新周期",
+      "unit": "年",
+      "min": 1,
+      "max": 15,
+      "step": 1
+    },
+    "refresh_cost_factor": {
+      "label": "更新时造价比例",
+      "unit": "×",
+      "min": 0.1,
+      "max": 2,
+      "step": 0.05,
+      "note": "相对首批 IT 造价"
+    },
+    "gpus_per_mw": {
+      "label": "每 MW GPU 数",
+      "unit": "颗/MW",
+      "min": 0,
+      "max": 2000,
+      "step": 1,
+      "note": "0 = 非 GPU 负载"
+    },
+    "gpu_utilization": {
+      "label": "付费 GPU 利用率",
+      "unit": "%",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "display": "percent"
+    },
+    "facility_mode": {
+      "label": "设施获得方式",
+      "type": "select",
+      "choices": [
+        [
+          "own",
+          "自建自持"
+        ],
+        [
+          "lease",
+          "租带电壳"
+        ],
+        [
+          "colo",
+          "托管（按 kW 付费）"
+        ]
+      ]
+    },
+    "capex_building": {
+      "label": "建筑与土建",
+      "unit": "$M/MW",
+      "min": 0,
+      "max": 30,
+      "step": 0.1
+    },
+    "capex_electrical": {
+      "label": "电气（变电、UPS、柴发、配电）",
+      "unit": "$M/MW",
+      "min": 0,
+      "max": 30,
+      "step": 0.1
+    },
+    "capex_mechanical": {
+      "label": "机械（冷却、水系统）",
+      "unit": "$M/MW",
+      "min": 0,
+      "max": 30,
+      "step": 0.1
+    },
+    "capex_fitout": {
+      "label": "机房装配（机柜、布线、DCIM）",
+      "unit": "$M/MW",
+      "min": 0,
+      "max": 10,
+      "step": 0.1
+    },
+    "soft_cost_pct": {
+      "label": "软成本（设计、许可、管理）",
+      "unit": "% 硬成本",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "display": "percent"
+    },
+    "contingency_pct": {
+      "label": "不可预见费",
+      "unit": "% 硬成本",
+      "min": 0,
+      "max": 40,
+      "step": 1,
+      "display": "percent"
+    },
+    "shell_rent_per_mw": {
+      "label": "带电壳租金",
+      "unit": "$M/MW·年",
+      "min": 0,
+      "max": 20,
+      "step": 0.01,
+      "note": "仅租壳模式"
+    },
+    "colo_rate": {
+      "label": "托管费率",
+      "unit": "$/kW·月",
+      "min": 0,
+      "max": 1000,
+      "step": 1,
+      "note": "仅托管模式；电费另计"
+    },
+    "fte_per_mw": {
+      "label": "运维人员",
+      "unit": "FTE/MW",
+      "min": 0,
+      "max": 10,
+      "step": 0.05
+    },
+    "cost_per_fte": {
+      "label": "人均年成本",
+      "unit": "$/人·年",
+      "min": 0,
+      "max": 500000,
+      "step": 1000
+    },
+    "maint_pct_facility": {
+      "label": "设施维护",
+      "unit": "% 设施造价/年",
+      "min": 0,
+      "max": 20,
+      "step": 0.1,
+      "display": "percent"
+    },
+    "maint_pct_it": {
+      "label": "IT 维护与支持",
+      "unit": "% IT 造价/年",
+      "min": 0,
+      "max": 20,
+      "step": 0.1,
+      "display": "percent"
+    },
+    "software_per_mw": {
+      "label": "软件与 DCIM",
+      "unit": "$M/MW·年",
+      "min": 0,
+      "max": 5,
+      "step": 0.01
+    },
+    "insurance_pct": {
+      "label": "保险",
+      "unit": "% 设施造价/年",
+      "min": 0,
+      "max": 5,
+      "step": 0.05,
+      "display": "percent"
+    },
+    "bandwidth_per_mw": {
+      "label": "网络带宽",
+      "unit": "$M/MW·年",
+      "min": 0,
+      "max": 5,
+      "step": 0.01
+    },
+    "other_opex_per_mw": {
+      "label": "其他（安保、清洁、行政）",
+      "unit": "$M/MW·年",
+      "min": 0,
+      "max": 5,
+      "step": 0.01
+    },
+    "opex_escalation": {
+      "label": "运营成本年涨幅",
+      "unit": "%/年",
+      "min": -10,
+      "max": 20,
+      "step": 0.5,
+      "display": "percent"
+    },
+    "decommission_pct": {
+      "label": "退役与拆除",
+      "unit": "% 设施造价",
+      "min": 0,
+      "max": 20,
+      "step": 0.5,
+      "display": "percent"
+    },
+    "wacc": {
+      "label": "折现率（资本成本）",
+      "unit": "%",
+      "min": 0,
+      "max": 50,
+      "step": 0.5,
+      "display": "percent"
+    },
+    "business_model": {
+      "label": "对标口径",
+      "type": "select",
+      "choices": [
+        [
+          "gpu_rental",
+          "GPU 出租（$/GPU·小时）"
+        ],
+        [
+          "colo",
+          "批发托管（$/kW·月）"
+        ],
+        [
+          "self_use",
+          "自用（只看成本）"
+        ]
+      ]
+    },
+    "price_gpu_hour": {
+      "label": "市场 GPU 小时租金",
+      "unit": "$/GPU·h",
+      "min": 0,
+      "max": 100,
+      "step": 0.05
+    },
+    "price_colo_kw_month": {
+      "label": "市场托管报价",
+      "unit": "$/kW·月",
+      "min": 0,
+      "max": 1000,
+      "step": 1
+    }
+  },
+  "redundancy_factors": {
+    "n": {
+      "electrical": 0.85,
+      "mechanical": 0.85,
+      "label": "N"
+    },
+    "n_plus_1": {
+      "electrical": 1.0,
+      "mechanical": 1.0,
+      "label": "N+1"
+    },
+    "2n": {
+      "electrical": 1.35,
+      "mechanical": 1.2,
+      "label": "2N"
+    }
+  },
+  "sites": {
+    "us_virginia": {
+      "label": "美国 · 北弗吉尼亚",
+      "power_price": 0.1,
+      "demand_rate": 12,
+      "land_per_mw": 0.8,
+      "labor_index": 1.0,
+      "property_tax_rate": 0.008,
+      "water_price": 2.0,
+      "source": "EIA 2026-07 弗吉尼亚工业电价 10.07 美分（price series industrial-power-price-us-va）；土地与税率为作者假设"
+    },
+    "us_texas": {
+      "label": "美国 · 得州",
+      "power_price": 0.071,
+      "demand_rate": 10,
+      "land_per_mw": 0.3,
+      "labor_index": 0.9,
+      "property_tax_rate": 0.015,
+      "water_price": 1.5,
+      "source": "EIA 2026-07 得州工业电价 7.07 美分；ERCOT 全口径约 38 美元/MWh；财产税率为作者假设"
+    },
+    "ireland": {
+      "label": "欧洲 · 爱尔兰",
+      "power_price": 0.255,
+      "demand_rate": 8,
+      "land_per_mw": 0.6,
+      "labor_index": 1.1,
+      "property_tax_rate": 0.003,
+      "water_price": 2.5,
+      "source": "Eurostat 2025H2 非居民电价 25.52 欧分（band IC，不含增值税）；其余为作者假设"
+    },
+    "malaysia_johor": {
+      "label": "东南亚 · 柔佛",
+      "power_price": 0.105,
+      "demand_rate": 10,
+      "land_per_mw": 0.2,
+      "labor_index": 0.35,
+      "property_tax_rate": 0.002,
+      "water_price": 0.8,
+      "source": "TNB RP4 基础电价 45.62 仙/kWh 与 E3 容量费折算（作者折算，汇率 4.35）；其余为作者假设"
+    },
+    "cn_ningxia": {
+      "label": "中国 · 宁夏中卫",
+      "power_price": 0.05,
+      "demand_rate": 4,
+      "land_per_mw": 0.1,
+      "labor_index": 0.25,
+      "property_tax_rate": 0.0,
+      "water_price": 0.6,
+      "source": "中卫数据中心电价 0.36 元/kWh（新华网 2026-03），按 7.2 折算；其余为作者假设"
+    }
+  },
+  "coolings": {
+    "air": {
+      "label": "风冷（传统机房）",
+      "pue": 1.45,
+      "wue": 1.8,
+      "capex_mechanical": 2.2,
+      "source": "PUE/WUE 为行业常见区间中值（作者假设）"
+    },
+    "hybrid": {
+      "label": "风液混合（冷板 + 风冷）",
+      "pue": 1.28,
+      "wue": 0.8,
+      "capex_mechanical": 2.6,
+      "source": "作者假设"
+    },
+    "liquid": {
+      "label": "液冷为主（AI 机房）",
+      "pue": 1.18,
+      "wue": 0.3,
+      "capex_mechanical": 3.0,
+      "source": "作者假设；GB200/GB300 类机柜要求"
+    }
+  },
+  "it_classes": {
+    "gb300": {
+      "label": "AI 加速器机柜（GB300 级）",
+      "it_capex_per_kw": 23000,
+      "load_factor": 0.7,
+      "it_refresh_years": 5,
+      "gpus_per_mw": 410,
+      "source": "研报 IT 230 亿美元/GW 与 410,256 颗/GW；更新周期按超大规模厂商 5–6 年折旧"
+    },
+    "h100": {
+      "label": "AI 加速器机柜（H100 级）",
+      "it_capex_per_kw": 22000,
+      "load_factor": 0.7,
+      "it_refresh_years": 5,
+      "gpus_per_mw": 635,
+      "source": "作者估算：约 3.5 万美元/GPU 含网络；DGX H100 10.2 kW/8 折算密度"
+    },
+    "cpu_cloud": {
+      "label": "通用云服务器（CPU）",
+      "it_capex_per_kw": 8000,
+      "load_factor": 0.6,
+      "it_refresh_years": 6,
+      "gpus_per_mw": 0,
+      "source": "作者假设"
+    },
+    "enterprise": {
+      "label": "企业混合负载",
+      "it_capex_per_kw": 6000,
+      "load_factor": 0.45,
+      "it_refresh_years": 6,
+      "gpus_per_mw": 0,
+      "source": "作者假设"
+    }
+  },
+  "presets": {
+    "ai_virginia_own": {
+      "label": "AI 自建 · 北弗吉尼亚",
+      "changes": {}
+    },
+    "ai_texas_own": {
+      "label": "AI 自建 · 得州",
+      "changes": {
+        "site": "us_texas"
+      }
+    },
+    "ai_johor_lease": {
+      "label": "AI 租壳 · 柔佛",
+      "changes": {
+        "site": "malaysia_johor",
+        "facility_mode": "lease",
+        "shell_rent_per_mw": 1.2
+      }
+    },
+    "ai_ningxia_own": {
+      "label": "AI 自建 · 宁夏",
+      "changes": {
+        "site": "cn_ningxia",
+        "capex_building": 1.2,
+        "capex_electrical": 2.6,
+        "capex_mechanical": 1.6,
+        "capex_fitout": 0.6
+      }
+    },
+    "cloud_air_virginia": {
+      "label": "通用云 · 风冷 · 北弗吉尼亚",
+      "changes": {
+        "cooling": "air",
+        "it_class": "cpu_cloud",
+        "business_model": "colo"
+      }
+    },
+    "colo_wholesale_texas": {
+      "label": "批发托管 · 得州 · 风液混合",
+      "changes": {
+        "site": "us_texas",
+        "cooling": "hybrid",
+        "it_class": "enterprise",
+        "business_model": "colo"
+      }
+    }
+  },
+  "benchmark_series": [
+    {
+      "series_id": "construction-cost-greenfield-na",
+      "label": "北美绿地开发造价（不含 GPU）",
+      "group": "造价"
+    },
+    {
+      "series_id": "construction-cost-shell-core",
+      "label": "标准数据中心造价（不含 GPU）",
+      "group": "造价"
+    },
+    {
+      "series_id": "cn-idc-capex-per-mw-gds",
+      "label": "万国数据在建造价",
+      "group": "造价"
+    },
+    {
+      "series_id": "colo-asking-rent-nova-250-500kw",
+      "label": "北弗吉尼亚托管报价",
+      "group": "市场价格"
+    },
+    {
+      "series_id": "colo-asking-rent-singapore-250-500kw",
+      "label": "新加坡托管报价",
+      "group": "市场价格"
+    },
+    {
+      "series_id": "gpu-hourly-h100-contract-1y",
+      "label": "H100 一年期合约租金",
+      "group": "市场价格"
+    },
+    {
+      "series_id": "benchmark-ms-gb300-rent-baseline",
+      "label": "GB300 出租基准价（研报假设）",
+      "group": "市场价格"
+    },
+    {
+      "series_id": "industrial-power-price-us-va",
+      "label": "弗吉尼亚工业电价",
+      "group": "电价"
+    },
+    {
+      "series_id": "industrial-power-price-us-tx",
+      "label": "得州工业电价",
+      "group": "电价"
+    },
+    {
+      "series_id": "industrial-power-price-ie-band-ic",
+      "label": "爱尔兰非居民电价",
+      "group": "电价"
+    },
+    {
+      "series_id": "cn-dc-power-price-zhongwei",
+      "label": "宁夏中卫数据中心电价",
+      "group": "电价"
+    }
+  ],
+  "sensitivity_drivers": [
+    {
+      "key": "power_price",
+      "label": "电价",
+      "delta": 0.2
+    },
+    {
+      "key": "pue",
+      "label": "PUE",
+      "delta": 0.1
+    },
+    {
+      "key": "it_capex_per_kw",
+      "label": "IT 单位造价",
+      "delta": 0.2
+    },
+    {
+      "key": "capex_electrical",
+      "label": "电气造价",
+      "delta": 0.2
+    },
+    {
+      "key": "capex_mechanical",
+      "label": "机械造价",
+      "delta": 0.2
+    },
+    {
+      "key": "load_factor",
+      "label": "平均负载",
+      "delta": 0.2
+    },
+    {
+      "key": "it_refresh_years",
+      "label": "IT 更新周期",
+      "delta_abs": 1
+    },
+    {
+      "key": "wacc",
+      "label": "折现率",
+      "delta_abs": 0.02
+    },
+    {
+      "key": "fte_per_mw",
+      "label": "运维人员",
+      "delta": 0.3
+    },
+    {
+      "key": "opex_escalation",
+      "label": "运营涨幅",
+      "delta_abs": 0.01
+    }
+  ],
+  "provenance": {
+    "reference_implementation": "docs/research/datacenter-tco/model.py",
+    "prices": "data/prices.json（页面按 series_id 取最新时点）",
+    "related": "economics.html 为主体账本视图（谁付钱、谁挣钱）；cost.html 为 2026-09-14 单账本计算器"
+  },
+  "model_note": "全生命周期现金流：建设期均摊设施资本开支（含软成本与不可预见费）；IT 首批在投运年投入，按更新周期重置；运营期逐年计电费（含爬坡与电价涨幅）、需量费、水费、人员、维护、软件、保险、财产税、带宽、其他，运营成本按年涨幅；期末计退役。全部现金流按折现率折现为 TCO 现值，再按运营年数平准化为年成本，除以容量、IT 电量或付费 GPU 小时得到单位成本。不含所得税、折旧抵税与融资结构；对标口径只把平准化单位成本与市场价格相减。",
+  "evidence": {
+    "it_mw": {
+      "status": "input",
+      "note": "项目规模，由用户给定"
+    },
+    "redundancy": {
+      "status": "assumed",
+      "note": "冗余系数 N 0.85 / N+1 1.0 / 2N 1.35（电气）为作者假设",
+      "fetch_kind": "report",
+      "fetch_what": "Uptime Tier 造价差异、总包商分级报价"
+    },
+    "construction_years": {
+      "status": "assumed",
+      "note": "典型 18–30 个月",
+      "fetch_kind": "report",
+      "fetch_what": "C&W/T&T 建设周期统计、公司公告交付时间"
+    },
+    "horizon_years": {
+      "status": "assumed",
+      "note": "设施寿命常取 15 年",
+      "fetch_kind": "report",
+      "fetch_what": "REIT 折旧年限、租约期限分布"
+    },
+    "ramp_year1": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "运营商披露的上架率爬坡（万国、世纪互联、DLR 已签未起租）"
+    },
+    "ramp_year2": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "同上"
+    },
+    "site": {
+      "status": "input",
+      "note": "站点预设"
+    },
+    "power_price": {
+      "status": "sourced",
+      "note": "EIA 2026-07 各州工业电价、Eurostat 2025H2、宁夏 0.36 元（价格库序列）",
+      "fetch_kind": "data",
+      "fetch_what": "按站点更新工业电价与数据中心专项费率"
+    },
+    "demand_rate": {
+      "status": "assumed",
+      "note": "需量费率为作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "公用事业费率表（大负荷条款）"
+    },
+    "power_escalation": {
+      "status": "assumed",
+      "note": "作者假设 2%",
+      "fetch_kind": "data",
+      "fetch_what": "EIA 年度电价历史、监管机构费率案"
+    },
+    "land_per_mw": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "园区地价交易与每 MW 用地"
+    },
+    "labor_index": {
+      "status": "assumed",
+      "note": "相对美国东部的人力指数为作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "BLS 工资、各国数据中心运维薪酬调查"
+    },
+    "property_tax_rate": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "州/县财产税率与数据中心减免"
+    },
+    "water_price": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "当地工业水价"
+    },
+    "cooling": {
+      "status": "input",
+      "note": "设计预设"
+    },
+    "pue": {
+      "status": "assumed",
+      "note": "按冷却方式给出区间中值",
+      "fetch_kind": "data",
+      "fetch_what": "运营商披露年度 PUE；厂商设计 PUE"
+    },
+    "wue": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "运营商披露 WUE"
+    },
+    "it_class": {
+      "status": "input",
+      "note": "设备预设"
+    },
+    "it_capex_per_kw": {
+      "status": "sourced",
+      "note": "GB300：研报 IT 230 亿美元/GW；其他为作者估算",
+      "fetch_kind": "product",
+      "fetch_what": "厂商/ODM 报价、研报 BOM"
+    },
+    "load_factor": {
+      "status": "assumed",
+      "note": "作者假设 70%",
+      "fetch_kind": "report",
+      "fetch_what": "集群平均功率对铭牌功率比值的实测"
+    },
+    "it_refresh_years": {
+      "status": "sourced",
+      "note": "超大规模厂商 5–6 年折旧（10-K）",
+      "fetch_kind": "report",
+      "fetch_what": "10-K 折旧年限变更"
+    },
+    "refresh_cost_factor": {
+      "status": "assumed",
+      "note": "作者假设 0.85",
+      "fetch_kind": "product",
+      "fetch_what": "代际价格曲线"
+    },
+    "gpus_per_mw": {
+      "status": "sourced",
+      "note": "厂商机柜功率折算（经济模型 density_rule）",
+      "fetch_kind": "product",
+      "fetch_what": "厂商机柜规格"
+    },
+    "gpu_utilization": {
+      "status": "assumed",
+      "note": "研报 75%",
+      "fetch_kind": "report",
+      "fetch_what": "集群实际利用率研究"
+    },
+    "facility_mode": {
+      "status": "input",
+      "note": "商业选择"
+    },
+    "capex_building": {
+      "status": "assumed",
+      "note": "作者假设；C&W 绿地 1,760 万美元/MW 为全包参照",
+      "fetch_kind": "report",
+      "fetch_what": "造价指南分项（土建）"
+    },
+    "capex_electrical": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "report",
+      "fetch_what": "造价指南分项（电气）、设备报价"
+    },
+    "capex_mechanical": {
+      "status": "assumed",
+      "note": "按冷却方式给出",
+      "fetch_kind": "report",
+      "fetch_what": "造价指南分项（机械）"
+    },
+    "capex_fitout": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "product",
+      "fetch_what": "机柜、布线、DCIM 报价"
+    },
+    "soft_cost_pct": {
+      "status": "assumed",
+      "note": "作者假设 12%",
+      "fetch_kind": "report",
+      "fetch_what": "项目可研与决算"
+    },
+    "contingency_pct": {
+      "status": "assumed",
+      "note": "作者假设 8%",
+      "fetch_kind": "report",
+      "fetch_what": "项目可研"
+    },
+    "shell_rent_per_mw": {
+      "status": "sourced",
+      "note": "已披露带电壳合同期均值（价格库）",
+      "fetch_kind": "news",
+      "fetch_what": "8-K 租约公告"
+    },
+    "colo_rate": {
+      "status": "sourced",
+      "note": "CBRE 报价（价格库）",
+      "fetch_kind": "report",
+      "fetch_what": "CBRE/JLL 半年报"
+    },
+    "fte_per_mw": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "report",
+      "fetch_what": "运营商披露人员/MW"
+    },
+    "cost_per_fte": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "薪酬调查"
+    },
+    "maint_pct_facility": {
+      "status": "assumed",
+      "note": "作者假设 2%",
+      "fetch_kind": "report",
+      "fetch_what": "维护合同占造价比例"
+    },
+    "maint_pct_it": {
+      "status": "assumed",
+      "note": "作者假设 3%",
+      "fetch_kind": "product",
+      "fetch_what": "厂商支持合同报价"
+    },
+    "software_per_mw": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "product",
+      "fetch_what": "DCIM/软件报价"
+    },
+    "insurance_pct": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "保险费率"
+    },
+    "bandwidth_per_mw": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "data",
+      "fetch_what": "带宽合同价格"
+    },
+    "other_opex_per_mw": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "report",
+      "fetch_what": "运营商成本分解"
+    },
+    "opex_escalation": {
+      "status": "assumed",
+      "note": "作者假设 2.5%",
+      "fetch_kind": "data",
+      "fetch_what": "CPI/工资指数"
+    },
+    "decommission_pct": {
+      "status": "assumed",
+      "note": "作者假设",
+      "fetch_kind": "report",
+      "fetch_what": "退役案例"
+    },
+    "wacc": {
+      "status": "assumed",
+      "note": "作者假设 8%",
+      "fetch_kind": "data",
+      "fetch_what": "项目债利率、REIT 资本成本"
+    },
+    "business_model": {
+      "status": "input",
+      "note": "对标口径"
+    },
+    "price_gpu_hour": {
+      "status": "sourced",
+      "note": "研报基准 8.5；市场指数见价格库",
+      "fetch_kind": "data",
+      "fetch_what": "租金指数与厂商挂牌价"
+    },
+    "price_colo_kw_month": {
+      "status": "sourced",
+      "note": "CBRE 北弗吉尼亚报价（价格库）",
+      "fetch_kind": "report",
+      "fetch_what": "CBRE/JLL"
+    }
+  },
+  "evidence_legend": {
+    "input": "用户给定",
+    "sourced": "已有来源（价格库或研报）",
+    "assumed": "作者假设，待数据替换",
+    "needed": "尚无任何依据"
+  }
+}

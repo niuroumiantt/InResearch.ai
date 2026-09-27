@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.14",
+  "version": "2026.09.27.15",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -155,6 +155,26 @@
         {
           "name": "benchmark_series",
           "count": 15
+        }
+      ]
+    },
+    {
+      "path": "data/datacenter_tco_model.json",
+      "role": "source_record",
+      "bytes": 28577,
+      "sha256": "fa0aafab1463b023351091152a0fdbcdedc61ec55676b5ce0f45c3db150a5000",
+      "collections": [
+        {
+          "name": "groups",
+          "count": 7
+        },
+        {
+          "name": "benchmark_series",
+          "count": 11
+        },
+        {
+          "name": "sensitivity_drivers",
+          "count": 10
         }
       ]
     },
@@ -526,8 +546,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 95885,
-      "sha256": "05c6952a0426976a807c22da47e8210692107e7bd3d9b468860b6c9792fa5250",
+      "bytes": 97258,
+      "sha256": "b10dd9269636269f9a00317a8a8f5ed21d5491af613460aa409041806cd97a63",
       "collections": []
     },
     {
@@ -3476,6 +3496,27 @@
       "role": "project_config",
       "bytes": 22266,
       "sha256": "bedf0011c843f659b33f301f4f4deeb86742e064aea3004f475aa77bdeba78da",
+      "collections": []
+    },
+    {
+      "path": "docs/research/datacenter-tco/README.md",
+      "role": "supporting_document",
+      "bytes": 4610,
+      "sha256": "c6e36bc738ea55f6170615b9907fcb522bbd23cea23eccc6efe09948dbd0b7b1",
+      "collections": []
+    },
+    {
+      "path": "docs/research/datacenter-tco/model.py",
+      "role": "implementation",
+      "bytes": 8868,
+      "sha256": "6c0e45e11495271da520c08936d296ba5bc89b6487f1db142a11921c7a7a68cd",
+      "collections": []
+    },
+    {
+      "path": "docs/research/datacenter-tco/results.json",
+      "role": "project_config",
+      "bytes": 88662,
+      "sha256": "4a2f7acbff9e3f2a2e1ac115f753fd638df423b3d5318309f2b8a18335148542",
       "collections": []
     },
     {
@@ -6514,8 +6555,8 @@
     {
       "path": "framework/05_interface_system.md",
       "role": "normative",
-      "bytes": 18892,
-      "sha256": "c6c245f0343fcad4d0860aefa3920b455072d18530cc57a3a5bc95a1ddcf1bb0",
+      "bytes": 19762,
+      "sha256": "aed7a1d55678af60c257f5845e728891de02373586bcc9a062efd4a02d7958a1",
       "collections": []
     },
     {
@@ -6557,7 +6598,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5449,
-      "sha256": "3cc28f9a7dc3dde257c4192637b11c865d77c24e3fff20b534932b4a6254f11d",
+      "sha256": "68d8ab9426ec8e8f8a10338f79109dd0e79d392b4f264253c0bdd3a68f39b5df",
       "collections": []
     },
     {
@@ -6579,8 +6620,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 36648,
-      "sha256": "28d606edfebdfb5a405bf1a006bf534c5369d3534e23695b99c52d773166e952",
+      "bytes": 36890,
+      "sha256": "73206e71af1c5b67208a7fe68f9c2c59124f860a0c20c9bd4c4859ff56a72368",
       "collections": [
         {
           "name": "policies",
@@ -6643,12 +6684,12 @@
     {
       "path": "framework/interface_manifest.json",
       "role": "project_config",
-      "bytes": 3816,
-      "sha256": "afc8fa66cd6d2c07268518c4aa6ba6c395877047f4c80dad5b6483decd307a98",
+      "bytes": 3870,
+      "sha256": "069b32849d24ae0e962272f75adfda7686bf326b3ac3e2b5a5c9e86b04ccb89f",
       "collections": [
         {
           "name": "static_pages",
-          "count": 18
+          "count": 19
         },
         {
           "name": "template_fragments",
@@ -6867,8 +6908,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 71750,
-      "sha256": "e2278f59d12877f51d2d9c2ee8307231bcc5fcf22ba06f964a7f6009a1b55a32",
+      "bytes": 72022,
+      "sha256": "987cdcd74b5f31a0ca90c55b61bd0d01406d57acbc7ecb8263ea5d00ad3f3502",
       "collections": [
         {
           "name": "policies",
@@ -8760,6 +8801,13 @@
       "collections": []
     },
     {
+      "path": "tests/datacenter_tco.cjs",
+      "role": "test",
+      "bytes": 3641,
+      "sha256": "1eac63cd676f98a789f39628a79492200a0c82e30232621ad7759626d7bbdd3e",
+      "collections": []
+    },
+    {
       "path": "tests/hardware_ecosystems.cjs",
       "role": "test",
       "bytes": 2447,
@@ -8818,8 +8866,8 @@
     {
       "path": "tests/run_browser.cjs",
       "role": "test",
-      "bytes": 2785,
-      "sha256": "1a2df6ca13bf2581c28bb3094eee6654f554e28620e7d3f0ffb33d253431e4bc",
+      "bytes": 2803,
+      "sha256": "d06b413b7e56850126e3de8f87a7bbe66904f1bf35a2f077e9abbd2071e10c68",
       "collections": []
     },
     {
@@ -9776,6 +9824,13 @@
       "collections": []
     },
     {
+      "path": "web/components/datacenter-tco.js",
+      "role": "implementation",
+      "bytes": 26433,
+      "sha256": "dd97522a96e34e25a0357124a675f597fce175d00e25df51ed5dcdd16e47d605",
+      "collections": []
+    },
+    {
       "path": "web/components/markdown-inline.js",
       "role": "implementation",
       "bytes": 1729,
@@ -9946,8 +10001,8 @@
     {
       "path": "web/pages/cost.html",
       "role": "implementation",
-      "bytes": 8776,
-      "sha256": "d1dcc808cd58be2c22b9ed933e2dd6e61add86506c89536d73a1ad4161de9ce2",
+      "bytes": 8813,
+      "sha256": "c09ac5cf4e8858b2bc399551f5377e3056a2c05bcda7236f7c5b81239a5c3793",
       "collections": []
     },
     {
@@ -9960,8 +10015,8 @@
     {
       "path": "web/pages/economics.html",
       "role": "implementation",
-      "bytes": 9600,
-      "sha256": "60c4595a2ec7af1d6b61a51c6eb427099cbc8542af1c10b1371b3b0d0f439491",
+      "bytes": 9637,
+      "sha256": "823d4a5ba805bd7aff923b5afb1fcf542e1e70a42008f1d539f9221348e271e7",
       "collections": []
     },
     {
@@ -10042,6 +10097,13 @@
       "collections": []
     },
     {
+      "path": "web/pages/tco.html",
+      "role": "implementation",
+      "bytes": 7710,
+      "sha256": "a449536122bb2e16a5c135adfbccacaa3e212621ac3d04cf9b9f3a2de14f385a",
+      "collections": []
+    },
+    {
       "path": "web/pages/team.html",
       "role": "implementation",
       "bytes": 14472,
@@ -10051,8 +10113,8 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 7416,
-      "sha256": "4262f58ca69a1d6a23a13f2fa5a5d23c8734b737dff104d1bfe8f596686aca43",
+      "bytes": 7731,
+      "sha256": "30ff1df12c9d44c5f01c711349c223951b4f08168bc5e572d7297364cff41809",
       "collections": []
     },
     {
@@ -10067,6 +10129,13 @@
       "role": "implementation",
       "bytes": 9445,
       "sha256": "af49a448304c086719c61b4109d289b1d1cd973c858f4aa3602a7090d6a02776",
+      "collections": []
+    },
+    {
+      "path": "web/themes/datacenter-tco.css",
+      "role": "implementation",
+      "bytes": 10191,
+      "sha256": "dfbb131ee34e33a357fc8710cb9b663274bff4bdba07bc853a1dba98aaec6266",
       "collections": []
     },
     {
@@ -10098,13 +10167,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 267,
-    "implementation": 206,
+    "implementation": 210,
     "normative": 13,
-    "project_config": 88,
+    "project_config": 89,
     "research_record": 16,
     "retired_entrypoint": 3,
-    "source_record": 27,
-    "supporting_document": 53,
-    "test": 83
+    "source_record": 28,
+    "supporting_document": 54,
+    "test": 84
   }
 }

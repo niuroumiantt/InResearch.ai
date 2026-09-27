@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+<script src="/assets/theme-state.js"></script>
+<script src="/assets/site-skin.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="数据中心全生命周期 TCO 模型：项目、站点、设计、IT、建设、运营、财务七组输入，逐年现金流与平准化单位成本，带基准对比与数据缺口清单">
+<title>数据中心 TCO 模型 — inresearch.ai</title>
+<link rel="stylesheet" href="/assets/datacenter-tco.css">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+<script defer src="/assets/datacenter-tco.js"></script>
+</head>
+<body>
+<inresearch-shell data-section="research"></inresearch-shell>
+<nav class="tco-topbar" aria-label="成本模型导航">
+  <a href="/index.html">行业总览</a>
+  <a href="/bom.html">物理爆炸图</a>
+  <a class="on" href="/tco.html" aria-current="page">TCO 模型</a>
+  <a href="/economics.html">主体账本</a>
+  <a href="/cost.html">成本计算</a>
+  <span></span>
+  <a href="/research/datacenter-tco.md">模型说明 ↗</a>
+</nav>
+
+<main class="tco-shell" id="tco-app" aria-busy="true">
+  <header class="tco-hero">
+    <div>
+      <p class="eyebrow">DATA CENTER TCO · LIFECYCLE COST MODEL</p>
+      <h1>数据中心全生命周期成本</h1>
+      <p class="lede">七组输入按决策顺序排列：项目、站点、设计、IT、建设、运营、财务。每一处改动，年度现金流、成本结构、单位成本与对标都即时重算，并标出相对基准的变化。参数是研究假设；哪些还没有数据，页面单列。</p>
+    </div>
+    <div class="hero-actions">
+      <button type="button" class="primary" id="reset-model">恢复基准情景</button>
+      <button type="button" id="set-baseline">把当前设为对比基准</button>
+      <button type="button" id="copy-results">复制假设与结果</button>
+    </div>
+  </header>
+
+  <section class="kpis" aria-label="核心指标">
+    <article class="kpi" id="kpi-lev"></article>
+    <article class="kpi" id="kpi-mw"></article>
+    <article class="kpi" id="kpi-kw"></article>
+    <article class="kpi" id="kpi-kwh"></article>
+    <article class="kpi" id="kpi-gpu"></article>
+    <article class="kpi" id="kpi-capex"></article>
+  </section>
+  <p class="project-line"><span id="project-line"></span> <span class="baseline-tag" id="baseline-label"></span></p>
+
+  <div class="tco-layout">
+    <aside class="control-panel" aria-label="模型输入">
+      <div class="panel-head"><div><p class="eyebrow">INPUTS</p><h2>假设</h2></div><span id="model-date"></span></div>
+      <div class="presets" id="presets" aria-label="情景预设"></div>
+      <p class="legend-inline"><i class="badge input"></i>用户给定 <i class="badge sourced"></i>已有来源 <i class="badge assumed"></i>作者假设 <i class="badge needed"></i>待获取</p>
+      <form id="tco-inputs"></form>
+      <p class="model-caution">所有参数均为可修改的研究假设，不是报价、预算承诺或投资建议。</p>
+    </aside>
+
+    <div class="results">
+      <section class="card">
+        <div class="card-head"><div><p class="eyebrow">COST STRUCTURE</p><h2>平准化年成本结构</h2></div><span>当前 vs 基准 · 占比</span></div>
+        <div id="structure" class="chart-host"></div>
+        <div id="structure-legend" class="legend-grid"></div>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><div><p class="eyebrow">CASH FLOW</p><h2>逐年现金流</h2></div><span>建设期 + 运营期 · 名义</span></div>
+        <div id="timeline" class="chart-host"></div>
+        <p class="footnote" id="timeline-note"></p>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><div><p class="eyebrow">BREAKDOWN</p><h2>成本明细</h2></div><span>平准化 · 现值 · 名义 · 对基准</span></div>
+        <div id="cost-table" class="table-wrap"></div>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="card">
+          <div class="card-head"><div><p class="eyebrow">CAPEX</p><h2>资本开支拆分</h2></div><span>$M/MW · 浅色为基准</span></div>
+          <div id="capex-bars" class="bars"></div>
+          <p class="footnote" id="capex-note"></p>
+        </article>
+        <article class="card">
+          <div class="card-head"><div><p class="eyebrow">SENSITIVITY</p><h2>每 kW·月成本敏感性</h2></div><span>单因素</span></div>
+          <div id="tornado" class="chart-host"></div>
+          <p class="footnote" id="tornado-note"></p>
+        </article>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><div><p class="eyebrow">SCENARIOS</p><h2>情景对比</h2></div><span>全部预设按各自假设计算</span></div>
+        <div id="scenario-table" class="table-wrap"></div>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="card">
+          <div class="card-head"><div><p class="eyebrow">BENCHMARK</p><h2>成本对市场价格</h2></div><span>按左侧对标口径</span></div>
+          <div id="benchmark-compare" class="bars"></div>
+          <div id="benchmark-list" class="benchmark-list"></div>
+          <p class="footnote"><span id="benchmark-updated">读取价格库…</span>；每行取价格库同一序列的最新时点。</p>
+        </article>
+        <article class="card gap-card">
+          <div class="card-head"><div><p class="eyebrow">DATA GAPS</p><h2>数据缺口清单</h2></div><span>框架先于数据</span></div>
+          <p class="footnote" id="gap-summary"></p>
+          <div id="gap-list" class="table-wrap"></div>
+        </article>
+      </section>
+
+      <section class="card formula-card">
+        <div class="card-head"><div><p class="eyebrow">METHOD</p><h2>模型怎么算</h2></div></div>
+        <ol>
+          <li><b>资本开支</b><span>设施 = (建筑 + 电气 × 冗余系数 + 机械 × 冗余系数 + 装配 + 土地) + 软成本 + 不可预见费，建设期均摊；IT = 单位造价 × IT 容量，投运年投入，按更新周期以更新造价比例重置</span></li>
+          <li><b>运营成本</b><span>电费 = IT 容量 × 负载 × 爬坡 × PUE × 8,760 × 电价（按电价涨幅）；需量费 = IT 容量 × PUE × 需量费率 × 12；水费 = IT 电量 × WUE × 水价；人员、维护、软件、保险与财产税、带宽、其他按运营涨幅；租壳或托管替代设施资本开支</span></li>
+          <li><b>折现与平准化</b><span>全部现金流按折现率折现为 TCO 现值；除以运营期年金因子得平准化年成本；再除以容量、折现 IT 电量或折现付费 GPU 小时得单位成本</span></li>
+          <li><b>对标</b><span>GPU 出租：每付费 GPU 小时成本对市场租金；批发托管：不含 IT 的每 kW·月成本对市场报价；自用只看成本。不含所得税、折旧抵税与融资结构</span></li>
+        </ol>
+      </section>
+    </div>
+  </div>
+
+  <footer class="tco-footer">
+    <div><b>口径说明</b><p id="model-note"></p></div>
+    <div><b>相关视图</b><p><a href="/economics.html">主体账本</a>回答谁付钱、谁挣钱；<a href="/cost.html">成本计算</a>保留 2026-09-14 单账本基准；因子树与抓取目标见 <a href="/research/datacenter-tco.md">模型说明</a>。</p></div>
+  </footer>
+  <div class="load-error" id="tco-error" hidden></div>
+</main>
+</body>
+</html>
