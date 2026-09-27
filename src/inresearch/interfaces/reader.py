@@ -65,6 +65,9 @@ def main(argv=None):
     for command in ("export", "backup"):
         parser = sub.add_parser(command)
         parser.add_argument("--dest", required=True)
+        if command == "export":
+            parser.add_argument("--doc-id", action="append",
+                                help="include only this complete document in a scoped candidate export; repeat as needed")
     args = ap.parse_args(argv)
     if args.command == 'current':
         try:
@@ -157,7 +160,7 @@ def main(argv=None):
                         result['failed_total'] = len(failures)
             reader.write_status()
         elif args.command == "export":
-            result = reader.export(args.dest)
+            result = reader.export(args.dest, doc_ids=args.doc_id)
         else:
             result = reader.backup(args.dest)
         print(encoded(result))

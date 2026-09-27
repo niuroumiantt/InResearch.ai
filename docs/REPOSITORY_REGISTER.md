@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.5。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.6。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：884。
+在册文件：940。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,13 +16,13 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 266 |
-| 运行代码 | 174 |
+| 运行代码 | 195 |
 | 现行规范 | 13 |
-| 项目配置 | 56 |
+| 项目配置 | 85 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
-| 配套说明 | 41 |
+| 配套说明 | 47 |
 | 测试 | 74 |
 
 ## 在册记录集合
@@ -357,6 +357,21 @@
 | `outputs/geluoke-research/2026-09-26/work/event_plan.json` | related_for_commentary | 24 |
 | `outputs/geluoke-research/2026-09-26/work/event_plan.json` | sweep_related | 5 |
 | `outputs/geluoke-research/2026-09-26/work/event_plan.json` | sweep_related_cards | 5 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-sources.json` | items | 62 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/checks/validation.json` | images | 7 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | lead | 2 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | chapters | 6 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | summary | 3 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | commentary | 3 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | sources | 62 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/chapters.json` | chapters | 6 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/chapters_final.json` | chapters | 6 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/cover.json` | paths | 3 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/cover.json` | layers | 4 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/cover.json` | modules | 5 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | commentary | 3 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | sources_added | 0 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | summary | 3 |
 | `reports/blindspot.json` | modules | 15 |
 | `reports/workorders.json` | orders | 564 |
 | `research/M01.md` | Finding | 7 |
@@ -456,6 +471,7 @@
 | [docs/archive/2026-09-14/deploy__README.md](archive/2026-09-14/deploy__README.md) | 历史快照 |
 | [docs/archive/2026-09-14/deploy__docker-compose.yml.md](archive/2026-09-14/deploy__docker-compose.yml.md) | 历史快照 |
 | [docs/archive/2026-09-14/docs__LIBRARY_INDEX.md](archive/2026-09-14/docs__LIBRARY_INDEX.md) | 历史快照 |
+| [docs/geluoke/专题写作规则.md](geluoke/专题写作规则.md) | 配套说明 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
 | [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
 | [docs/inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md](inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md) | 候选与外部输入 |
@@ -954,6 +970,61 @@
 | `outputs/geluoke-research/2026-09-26/work/wf_verify_slice.js` | 运行代码 |
 | `outputs/geluoke-research/2026-09-26/work/wf_write.js` | 运行代码 |
 | `outputs/geluoke-research/2026-09-26/work/xsec_final.svg` | 项目配置 |
+| [outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-article.md](../outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-article.md) | 配套说明 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-cover-wechat.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-cover.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-datacenter-profit-full.html` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-datacenter-profit-lite.html` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-datacenter-profit-wechat.html` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-fig1-1gw-capex-by-chip.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-fig2-three-paths-roic.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-fig3-shell-lease-contracts.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-fig4-capital-stack.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-fig5-roic-sensitivity.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-fig6-china-vs-us.png` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/2026-09-27-sources.json` | 项目配置 |
+| [outputs/geluoke-research/2026-09-27-datacenter-profit/README.md](../outputs/geluoke-research/2026-09-27-datacenter-profit/README.md) | 配套说明 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/checks/render-desktop.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/checks/render-mobile390.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/checks/validation.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/article.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/canon.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/chapters.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/chapters_final.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/cover.html` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/cover.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/cover_long.html` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/fill_cover_long.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/ledger.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/ledger_xsec.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/cover/ledger_xsec.svg` | 项目配置 |
+| [outputs/geluoke-research/2026-09-27-datacenter-profit/work/dropped_numbers.md](../outputs/geluoke-research/2026-09-27-datacenter-profit/work/dropped_numbers.md) | 配套说明 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/figmap.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/figs/fig1.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/figs/fig2.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/figs/fig3.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/figs/fig4.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/figs/fig5.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/figs/fig6.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | 项目配置 |
+| [outputs/geluoke-research/2026-09-27-datacenter-profit/work/outline_v1.md](../outputs/geluoke-research/2026-09-27-datacenter-profit/work/outline_v1.md) | 配套说明 |
+| [outputs/geluoke-research/2026-09-27-datacenter-profit/work/report_facts.md](../outputs/geluoke-research/2026-09-27-datacenter-profit/work/report_facts.md) | 配套说明 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/research/cards.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/assemble_long.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/build_all_long.sh` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/build_long.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/charts.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/export_figs.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/figdata.json` | 项目配置 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/make_cover_long.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/make_figs_long.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/render.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/tojpeg.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/validate.py` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/wf_condense.js` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/wf_lead_long.js` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/wf_research.js` | 运行代码 |
+| `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/wf_write_long.js` | 运行代码 |
 | [reports/HOW_TO_OUTPUT.md](../reports/HOW_TO_OUTPUT.md) | 生成物 |
 | `reports/blindspot.json` | 生成物 |
 | [reports/blindspot.md](../reports/blindspot.md) | 生成物 |
