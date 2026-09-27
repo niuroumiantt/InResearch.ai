@@ -73,6 +73,9 @@ def validate(payload):
         for attachment in product.get('attachments', []):
             if not official(attachment['url']):
                 raise ValueError('attachment must be an official HTTPS source')
+        for resource in product.get('official_resources', []):
+            if not official(resource['url']):
+                raise ValueError('product resource must be an official HTTPS source')
         for table in product['tables']:
             if type(table['index']) is not int or table['index'] < 1 or len(table['rows']) > 1000:
                 raise ValueError('invalid table')
@@ -84,6 +87,9 @@ def validate(payload):
                         raise ValueError('invalid cell')
                     if any(type(cell[k]) is not int or not 1 <= cell[k] <= 100 for k in ('rowspan', 'colspan')):
                         raise ValueError('invalid cell span')
+    for product in products:
+        if product.get('parent_id') and product['parent_id'] not in ids:
+            raise ValueError('product parent is missing from this catalog')
     return payload
 
 
@@ -128,7 +134,8 @@ def receive(root, payload):
                 return {'ok': True, 'replayed': True, 'products': len(payload['products']), 'run_id': run_id}
             if latest and datetime.fromisoformat(payload['generated_at']) <= datetime.fromisoformat(latest['generated']):
                 raise ValueError('older catalog cannot replace current observations')
-            db.execute('INSERT INTO runs VALUES(?,?,?,?)', (run_id, payload['generated_at'], datetime.now(timezone.utc).isoformat(), json.dumps(payload['coverage'], ensure_ascii=False)))
+            coverage = {**payload['coverage'], 'product_map': payload.get('product_map', {})}
+            db.execute('INSERT INTO runs VALUES(?,?,?,?)', (run_id, payload['generated_at'], datetime.now(timezone.utc).isoformat(), json.dumps(coverage, ensure_ascii=False)))
             for source in payload['sources']:
                 # Source evidence remains private; webpage API only projects tables.
                 db.execute('INSERT OR IGNORE INTO sources VALUES(?,?)', (source['sha256'], json.dumps(source, ensure_ascii=False)))
@@ -187,10 +194,10 @@ def csv_export(value, mode='products', query='', kind='', with_specs=False, grou
     def row(values):
         writer.writerow([safe(v) for v in values])
     if mode == 'products':
-        row(['product_id', 'name', 'official_category', 'entity_kind', 'availability', 'extraction_status', 'specification_tables', 'source_url', 'source_sha256', 'observed_at', 'display_group', 'display_family', 'navigation_role'])
+        row(['product_id', 'name', 'parent_id', 'official_category', 'entity_kind', 'availability', 'extraction_status', 'specification_tables', 'map_change_status', 'official_resource_urls', 'source_url', 'source_sha256', 'observed_at', 'display_group', 'display_family', 'navigation_role'])
         for p in products:
             nav = product_navigation.classify(p)
-            row([p['id'], p['name'], p['category'], p['kind'], p['availability'], p['extraction_status'], len(p['tables']), p['source_url'], p['source_sha256'], p['observed_at'], nav['group'], nav['family'], nav['role']])
+            row([p['id'], p['name'], p.get('parent_id', ''), p['category'], p['kind'], p['availability'], p['extraction_status'], len(p['tables']), p.get('map_change_status', ''), ' | '.join(a['url'] for a in p.get('official_resources', [])), p['source_url'], p['source_sha256'], p['observed_at'], nav['group'], nav['family'], nav['role']])
     elif mode == 'specs':
         row(['product_id', 'name', 'official_section', 'table', 'row', 'official_parameter', 'official_values', 'official_column_headers', 'official_cells_json', 'official_notes', 'source_url', 'source_sha256'])
         for p in products:
