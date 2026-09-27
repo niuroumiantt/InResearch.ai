@@ -41,11 +41,11 @@
 | `data/datacenter_economics_model.json` | groups | 5 |
 | `data/datacenter_economics_model.json` | benchmark_series | 15 |
 | `data/datacenter_tco_model.json` | groups | 7 |
-| `data/datacenter_tco_model.json` | benchmark_series | 11 |
+| `data/datacenter_tco_model.json` | benchmark_series | 25 |
 | `data/datacenter_tco_model.json` | sensitivity_drivers | 10 |
 | `data/facts.json` | records | 7849 |
 | `data/policies.json` | records | 2 |
-| `data/prices.json` | records | 367 |
+| `data/prices.json` | records | 512 |
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 120 |
