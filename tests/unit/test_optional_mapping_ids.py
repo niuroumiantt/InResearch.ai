@@ -18,9 +18,13 @@ class SchemaTests(unittest.TestCase):
             for node in walk(reader_model._schema(stage)):
                 self.assertFalse({"object_ids", "question_ids"} & set(node.get("required", [])), stage)
 
+    def test_claims_come_before_the_summary(self):
+        order = list(reader_model._schema("read")["properties"])
+        self.assertLess(order.index("claims"), order.index("summary"))
+
     def test_content_fields_stay_required(self):
         read = reader_model._schema("read")
-        self.assertEqual(read["required"], ["chunk_sha256", "summary", "claims"])
+        self.assertEqual(read["required"], ["chunk_sha256", "claims", "summary"])
         self.assertEqual(read["properties"]["claims"]["items"]["required"], ["text", "kind", "evidence"])
         self.assertEqual(reader_model._schema("triage")["required"], ["classification", "importance", "rationale"])
 
@@ -39,6 +43,9 @@ class PromptTests(unittest.TestCase):
         self.assertIn("within 1200 characters", seen["system"])
         self.assertIn("THIS chunk only", seen["system"])
         self.assertIn("claims as [] when there is none", seen["system"])
+        self.assertIn("Write the claims first", seen["system"])
+        self.assertNotIn("explain the document content", seen["system"])
+        self.assertLess(seen["system"].index('"claims":['), seen["system"].index('"summary":'))
 
 
 class NoIds(fixtures.Model):
