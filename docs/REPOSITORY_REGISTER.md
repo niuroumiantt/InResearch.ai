@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.6。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.27.7。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：940。
+在册文件：947。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,13 +16,13 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 266 |
-| 运行代码 | 195 |
+| 运行代码 | 196 |
 | 现行规范 | 13 |
-| 项目配置 | 85 |
+| 项目配置 | 86 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 26 |
-| 配套说明 | 47 |
+| 配套说明 | 52 |
 | 测试 | 74 |
 
 ## 在册记录集合
@@ -36,7 +36,8 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
-| `data/datacenter_cost_model.json` | groups | 4 |
+| `data/datacenter_cost_model.json` | groups | 5 |
+| `data/datacenter_cost_model.json` | benchmarks | 6 |
 | `data/facts.json` | records | 7849 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 207 |
@@ -165,6 +166,7 @@
 | `docs/research/2026-09-14/datacenter-cost/model-results.json` | delay | 5 |
 | `docs/research/2026-09-14/datacenter-cost/model-results.json` | apac | 7 |
 | `docs/research/2026-09-14/datacenter-cost/model-results.json` | epoch | 10 |
+| `docs/research/2026-09-27/datacenter-profit/profit-model-results.json` | report_price_paths | 5 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
@@ -472,6 +474,7 @@
 | [docs/archive/2026-09-14/deploy__docker-compose.yml.md](archive/2026-09-14/deploy__docker-compose.yml.md) | 历史快照 |
 | [docs/archive/2026-09-14/docs__LIBRARY_INDEX.md](archive/2026-09-14/docs__LIBRARY_INDEX.md) | 历史快照 |
 | [docs/geluoke/专题写作规则.md](geluoke/专题写作规则.md) | 配套说明 |
+| [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
 | [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
 | [docs/inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md](inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md) | 候选与外部输入 |
@@ -645,6 +648,12 @@
 | `docs/research/2026-09-14/datacenter-cost/model.py` | 运行代码 |
 | [docs/research/2026-09-14/datacenter-cost/semianalysis-materials-review.md](research/2026-09-14/datacenter-cost/semianalysis-materials-review.md) | 配套说明 |
 | [docs/research/2026-09-14/datacenter-cost/sources.md](research/2026-09-14/datacenter-cost/sources.md) | 配套说明 |
+| [docs/research/2026-09-27/datacenter-profit/README.md](research/2026-09-27/datacenter-profit/README.md) | 配套说明 |
+| [docs/research/2026-09-27/datacenter-profit/article.md](research/2026-09-27/datacenter-profit/article.md) | 配套说明 |
+| [docs/research/2026-09-27/datacenter-profit/feedback.md](research/2026-09-27/datacenter-profit/feedback.md) | 配套说明 |
+| `docs/research/2026-09-27/datacenter-profit/profit-model-results.json` | 项目配置 |
+| `docs/research/2026-09-27/datacenter-profit/profit-model.py` | 运行代码 |
+| [docs/research/2026-09-27/datacenter-profit/sources.md](research/2026-09-27/datacenter-profit/sources.md) | 配套说明 |
 | [docs/reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md](reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md) | 历史快照 |
 | [docs/reviews/2026-09-06/IMPLEMENTATION.md](reviews/2026-09-06/IMPLEMENTATION.md) | 历史快照 |
 | [docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md](reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md) | 已采用设计依据 |
