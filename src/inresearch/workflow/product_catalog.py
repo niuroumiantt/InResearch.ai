@@ -76,6 +76,9 @@ def validate(payload):
         for resource in product.get('official_resources', []):
             if not official(resource['url']):
                 raise ValueError('product resource must be an official HTTPS source')
+        for source in product.get('official_pages', []):
+            if not official(source['url']) or not re.fullmatch('[0-9a-f]{64}', source['sha256']):
+                raise ValueError('localized product source must have an official URL and SHA-256')
         for table in product['tables']:
             if type(table['index']) is not int or table['index'] < 1 or len(table['rows']) > 1000:
                 raise ValueError('invalid table')
@@ -193,11 +196,12 @@ def csv_export(value, mode='products', query='', kind='', with_specs=False, grou
         return "'" + text if text.lstrip().startswith(('=', '+', '-', '@')) else text
     def row(values):
         writer.writerow([safe(v) for v in values])
-    if mode == 'products':
-        row(['product_id', 'name', 'parent_id', 'official_category', 'entity_kind', 'availability', 'extraction_status', 'specification_tables', 'map_change_status', 'official_resource_urls', 'source_url', 'source_sha256', 'observed_at', 'display_group', 'display_family', 'navigation_role'])
+    if mode in {'products', 'map'}:
+        row(['product_id', 'name', 'parent_id', 'official_category', 'entity_kind', 'availability', 'extraction_status', 'specification_tables', 'map_change_status', 'official_sitemap_match', 'official_sitemap_roles', 'official_sitemap_lastmod_claims', 'official_resource_urls', 'source_url', 'source_sha256', 'observed_at', 'display_group', 'display_family', 'navigation_role'])
         for p in products:
             nav = product_navigation.classify(p)
-            row([p['id'], p['name'], p.get('parent_id', ''), p['category'], p['kind'], p['availability'], p['extraction_status'], len(p['tables']), p.get('map_change_status', ''), ' | '.join(a['url'] for a in p.get('official_resources', [])), p['source_url'], p['source_sha256'], p['observed_at'], nav['group'], nav['family'], nav['role']])
+            sitemap = p.get('website_sitemap', {})
+            row([p['id'], p['name'], p.get('parent_id', ''), p['category'], p['kind'], p['availability'], p['extraction_status'], len(p['tables']), p.get('map_change_status', ''), sitemap.get('matched', False), ' | '.join(sitemap.get('roles', [])), ' | '.join(sitemap.get('lastmod_claims', [])), ' | '.join(a['url'] for a in p.get('official_resources', [])), p['source_url'], p['source_sha256'], p['observed_at'], nav['group'], nav['family'], nav['role']])
     elif mode == 'specs':
         row(['product_id', 'name', 'official_section', 'table', 'row', 'official_parameter', 'official_values', 'official_column_headers', 'official_cells_json', 'official_notes', 'source_url', 'source_sha256'])
         for p in products:
@@ -216,7 +220,7 @@ def main(argv=None):
     ap.add_argument('action', choices=['import', 'publish', 'status', 'export'])
     ap.add_argument('--input', type=Path)
     ap.add_argument('--out', type=Path)
-    ap.add_argument('--mode', choices=['products', 'specs'], default='products')
+    ap.add_argument('--mode', choices=['products', 'map', 'specs'], default='products')
     ap.add_argument('--archive-root', type=Path)
     ap.add_argument('--token-file', default='~/.local/state/inresearch.ai/nvidia-pilot.token')
     args = ap.parse_args(argv)
