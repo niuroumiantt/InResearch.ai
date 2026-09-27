@@ -140,6 +140,7 @@ python3 manage.py reader apply-triage --mapping /path/to/mapping.jsonl --commit
 1. 先清单与哈希，再验证预览抽取。
 2. 用当前配置模型完成 50 份代表性小样，核对模型身份、评分、引文、命名及耗时；不能沿用旧模型费用/耗时估算。
 3. 按实测并发预算处理 L1；L2 范围保留本任务既有规则，Spark 按 04 §1 分层阅读：有效优先级 ≥7 或点名全文深读，1–6 摘要深度，0 分与 reader 衍生物回流停放。OCR 单独验收其模型能力。
+5. Spark 不做本机 OCR；扫描件由 M4 `manage.py ocr-worker --doc-id` 点名处理，只上传页结果（空白页按本机 OCR 同一规则接收），不在 Spark 上 retry。因 OCR 阻塞的文档由运行中的 reader 在收到更新的页结果后自动重新排队，不停 reader、不抢队列锁（契约见 `docs/local_reader/SPARK_OPERATIONS.md`）。
 4. 客户端并发上限只约束对应进程，共享 GPU 的全局容量仍须结合实际运行调度。
 
 ## 10. 与 04 阅读标准的关系

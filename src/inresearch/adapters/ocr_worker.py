@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """M4 autonomous OCR worker for Spark documents blocked at extraction.
 
-Spark remains the catalog owner.  This worker claims only already-blocked PDFs
-over SSH, copies one immutable original, verifies its SHA-256, writes separate
-OCR pages back to Spark's offload area, then asks Spark to retry that document.
-It never edits the SQLite catalogue or original bytes.
+Spark remains the catalog owner.  This worker claims blocked (or named) PDFs
+over SSH, copies one immutable original, verifies its SHA-256 and writes separate
+OCR pages back to Spark's offload area. The running reader requeues a blocked
+document once the pages arrive. It never edits the SQLite catalogue or original bytes.
 """
 from __future__ import annotations
 import argparse, base64, hashlib, json, subprocess, tempfile
@@ -101,11 +101,8 @@ def process(doc):
         if mkdir.returncode: raise RuntimeError('result_directory_failed')
         put=run(['scp','-q']+[str(p) for p in sorted(output.glob('*.json'))]+[REMOTE+':'+target+'/'],600)
         if put.returncode: raise RuntimeError('result_upload_failed')
-    if doc.get('state', 'blocked') != 'blocked':
-        # Still queued: the reader reads the uploaded pages when it claims the job.
-        return
-    retry=run(['ssh','-o','BatchMode=yes',REMOTE,'python3',DATA.replace('/.local/share/inresearch.ai','/code/inresearch.ai')+'/manage.py','reader','retry','--doc-id',doc['doc_id'],'--revision-id',doc['revision_id']],60)
-    if retry.returncode: raise RuntimeError('spark_retry_failed')
+    # No retry from here: a queued document reads the pages when claimed, and the
+    # running reader requeues a blocked one itself once newer page results arrive.
 
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--limit',type=int,default=1)

@@ -1,19 +1,19 @@
 {
-  "version": "2026.09.27.1",
-  "reviewed_at": "2026-09-26",
+  "version": "2026.09.27.2",
+  "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
     ".github/workflows/validate.yml": "1424142306d608e4834d92f6ac17c7ee4275e70daed27b1fe87bbe2e0ef3b0ff",
     "AGENTS.md": "724d29fbab3a097c490eeb294f71724625d045e20ec080c6a9a252dadc72e22b",
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
-    "docs/M4_TRIAGE_TASK.md": "5c2994d6b3f5820b3ca92a5c701565561dfc093cede5d90d3b2884e02ab875d2",
+    "docs/M4_TRIAGE_TASK.md": "924326e63de3dc50835609d2009c6550e228f7e1018972b1d4b75dd897701ed9",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "b9f53df23a4d181b335ec7e80efe687bdcab97c3c3886f5083e0834e31ab8acc",
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "9dab18d1cf4806cd22be9b1ba46779c4cc3527395848518e0ef9b581fc55061b",
+    "docs/local_reader/SPARK_OPERATIONS.md": "64f8b340e98f7aab73ba27657af411ff88badf0116b7385f0acd5be738193c46",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
@@ -26,7 +26,7 @@
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
     "framework/08_model_execution.md": "91509a55bbfbb6989268215f72f4e5861b693c0b896bea2df458b69333e26277",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "0ccfe683e43d2671136b0e8b9a5c2af0df4dcfd3c9db5eee0abb9f921ec06d94",
+    "framework/CURRENT.md": "4aafb9057ed7ba64616e36d5fea2e7751086ee14732cc4ca8609de34c356ef43",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "0b2d98765b3a9a78b9b380365721d844712e0bed19d6c625779c2a46a37a157e",
@@ -60,12 +60,13 @@
     "tests/unit/test_display_regressions.py": "b3461db2c0648d4ca88f6d8dd646edbcb8c8242df4aeeb43be7a6182d8d94cbe",
     "tests/unit/test_fact_contract.py": "4e739f6e3a3a9cae74057824615db912e38c2acc20f91ae109a2efb0c08f3dd7",
     "tests/unit/test_fetchspec_receive.py": "7312b1981c30fd9104d0b5074eb664bf1fbe0543269960f8cc0651510d1d245e",
-    "tests/unit/test_html_document.py": "346d25fc828cbae2abccccd51b687a102693dc9b35911d641ba4fd534ae23535",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
     "tests/unit/test_governance.py": "ee59b285f13ea82d6df0426d0fbd519b7b8f9e7695fde569708c0dac10d71f39",
+    "tests/unit/test_html_document.py": "346d25fc828cbae2abccccd51b687a102693dc9b35911d641ba4fd534ae23535",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
     "tests/unit/test_interface_system.py": "4393a20eb699a68d36fe05376753fa2da8bb469ee6005585a75cba76f8f88357",
     "tests/unit/test_m4_office_text.py": "92228bf2a15d3cd2ed85af962db95ecba47a76ebe69c9efe7e54ad3c751442c2",
+    "tests/unit/test_m4_offload_requeue.py": "b22b873cdc190c8e248e9e6ca748f482a4f3c8665fbf95dd36886643c0c65f88",
     "tests/unit/test_m4_triage.py": "028d627d24c321632410f7845856f94953dfa6d9eb82569a206c042d378f7949",
     "tests/unit/test_m4_triage_extract.py": "f407a9713f82899a7e5c32284e360e86e772e993f086d00e435791628c049d07",
     "tests/unit/test_m4_triage_local.py": "295cae84255354845a742f4603421bd9eb2abc5b4d11bd79e09cadc885312201",
@@ -74,7 +75,7 @@
     "tests/unit/test_model_roles.py": "7ec7f3887ad30d2f9b930cd568cea65c75a07b8188b05055013892079fb9c085",
     "tests/unit/test_model_runtime.py": "f9e4436b792b4b557017552b0767d8d5cf1c3c67fad0f4bfaad2c18139c12daf",
     "tests/unit/test_ocr_repeat_penalty.py": "726ecb2ad5655b913ce7ea1286091b84169dd833fd89583d8b72169faf3eabe8",
-    "tests/unit/test_ocr_worker_named.py": "aac669cf87bc1ba153d64b9e90264e520f1b5862bdbbc7d1afaadb9430ecefbd",
+    "tests/unit/test_ocr_worker_named.py": "cebfc4268d7580aca5e9232e1c3233b656ea0b91886ec771fd348373b0c8f969",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "b595a4a6b9e1b09c7c7ba4decfcaf0714d90d8ad8194ad461f9ad41534729102",
     "tests/unit/test_reader_depth.py": "3e9a0ace8150391afd8f9d50cc3cfeb99f6da189657279e157d458917f2e2d13",
@@ -225,7 +226,7 @@
       "policy": "operations-20260906",
       "scope": "project",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
-      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭",
+      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_backup_restores_catalog_and_views_under_new_root",
         "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle",
@@ -241,12 +242,19 @@
         "tests/unit/test_reader_thermal.py::ThermalGuardTests.test_unreadable_sensor_does_not_hold_the_queue",
         "tests/unit/test_reader_thermal.py::ThermalGuardTests.test_zero_limit_disables_the_guard",
         "tests/unit/test_reader_thermal.py::ReadCelsiusTests.test_takes_hottest_plausible_reading_and_ignores_bogus_zones",
-        "tests/unit/test_reader_thermal.py::ThermalGuardTests.test_cool_reading_is_reused_between_quick_claims"
+        "tests/unit/test_reader_thermal.py::ThermalGuardTests.test_cool_reading_is_reused_between_quick_claims",
+        "tests/unit/test_m4_offload_requeue.py::OffloadPageRuleTests.test_blank_page_with_empty_passes_is_accepted",
+        "tests/unit/test_m4_offload_requeue.py::OffloadPageRuleTests.test_blank_page_with_text_or_nonblank_without_text_is_blocked",
+        "tests/unit/test_m4_offload_requeue.py::OffloadPageRuleTests.test_unreadable_or_missing_blank_flag_is_still_blocked",
+        "tests/unit/test_m4_offload_requeue.py::OffloadRequeueTests.test_new_results_requeue_once_and_the_document_completes",
+        "tests/unit/test_m4_offload_requeue.py::OffloadRequeueTests.test_results_older_than_the_last_attempt_do_not_requeue",
+        "tests/unit/test_m4_offload_requeue.py::OffloadRequeueTests.test_other_block_reasons_and_missing_results_are_left_alone"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。",
         "2026-09-19 文档新增 `incoming/` 落地区与「先分拣再提升」流程:reader 不扫描该目录这一点只靠 `scan()` 硬编码读 `raw-materials/` 的实现事实,没有专门测试钉住;真机只走过一次(459 GB→43 GB,12,764 份 L1 判定),**提升到 `raw-materials/` 的步骤尚未执行**;此前那批以 `.xxx.partial` 命名的目录撞上 `is_partial()` 两条规则隐形了 12 天,说明投料契约在此之前只有约定、没有程序保障。",
-        "温度保护只用脚本化读数与伪造的传感器文件测试；未在 Spark 真机核对 GB10 的 nvidia-smi 与 thermal zone 实际读数、各 zone 含义及 85 ℃ 是否合适。暂停只挡下一次领取，单个长任务（如大文档 OCR）运行期间温度仍可能超过限值。"
+        "温度保护只用脚本化读数与伪造的传感器文件测试；未在 Spark 真机核对 GB10 的 nvidia-smi 与 thermal zone 实际读数、各 zone 含义及 85 ℃ 是否合适。暂停只挡下一次领取，单个长任务（如大文档 OCR）运行期间温度仍可能超过限值。",
+        "M4 结果空白页接收与 reader 自动重新排队只用隔离夹具测试；未在 Spark 真机核对 M4 结果目录 mtime 与任务 finished 时钟的一致性（两者都在 Spark 上生成，scp 写入时间以 Spark 为准）。Spark 本机 OCR 已关闭，READER_OCR_MODEL 恢复前扫描件只能由 M4 处理。"
       ]
     },
     {
@@ -391,7 +399,7 @@
       "policy": "reading-m4-triage-20260912",
       "scope": "m4-triage",
       "source": "docs/M4_TRIAGE_TASK.md",
-      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝;计划不得以副作用迁移 v1 catalog(守卫测试配一条「该夹具确实能迁移」的对照,否则守卫测试恒绿而不守)；ocr-worker 点名时只取未完成的 PDF、只读查询、逐份处理且排队文档不 retry，未点名时仍只取被阻塞的 OCR 文档",
+      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝;计划不得以副作用迁移 v1 catalog(守卫测试配一条「该夹具确实能迁移」的对照,否则守卫测试恒绿而不守)；ocr-worker 点名时只取未完成的 PDF、只读查询、逐份处理且上传页结果后从不在 Spark 上 retry，未点名时仍只取被阻塞的 OCR 文档",
       "tests": [
         "tests/unit/test_m4_triage.py::InventoryTests.test_identical_bytes_are_one_sha_with_every_path_recorded",
         "tests/unit/test_deep_read.py::EffectiveResultTests.test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue",
@@ -424,7 +432,7 @@
         "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_named_documents_include_queued_deferred_pdfs_only",
         "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_without_names_only_blocked_ocr_errors_are_offered",
         "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_queued_document_is_not_retried_and_every_named_one_is_processed",
-        "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_retry_only_follows_a_blocked_document"
+        "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_worker_never_asks_spark_to_retry"
       ],
       "not_verified": [
         "真实 M4 50 份当前模型小样及新版执行未验;apply-triage 已实现并有隔离测试,但**尚未在真机 catalog 上执行过** —— 2026-09-18 的 32,727/32,734 匹配数来自一次只读对账,实际归置未做;真机 catalog 仍是 v1,须先 `reader init` 迁移;M4 独有的 3,169 份中 3,135 份是 `要删/reader/` 下的衍生物与垃圾件,不应入库,真正缺的研究文档约 34 份,其入库路径未实现也未验证。",

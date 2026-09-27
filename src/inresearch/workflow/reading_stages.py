@@ -155,8 +155,14 @@ class ReadingStages(ReadingArtifacts):
                 raise IntegrityError()
             if not isinstance(result.get("text"), str) or not isinstance(result.get("text_second_pass"), str):
                 raise IntegrityError()
-            if result.get("blank") is not False or result.get("unreadable") is not False:
+            # Same page rules as local OCR: a blank page is allowed, but both passes
+            # must be empty; a non-blank page must carry text.
+            if result.get("unreadable") is not False or not isinstance(result.get("blank"), bool):
                 raise Blocked("m4_offload_page_unreadable")
+            if result["blank"] and (result["text"].strip() or result["text_second_pass"].strip()):
+                raise Blocked("ocr_blank_has_text")
+            if not result["blank"] and not result["text"].strip():
+                raise Blocked("ocr_empty_nonblank_page")
             if numeric_tokens(result["text"]) != numeric_tokens(result["text_second_pass"]):
                 raise Blocked("m4_offload_numbers_disagree")
             return {key: result[key] for key in ("text", "text_second_pass", "method", "ocr_model", "blank", "verification")}

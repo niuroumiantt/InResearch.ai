@@ -67,13 +67,13 @@ class NamedDocumentTests(unittest.TestCase):
         self.assertEqual([c.args[0]["doc_id"] for c in process.call_args_list], ["doc-a", "doc-f"])
         self.assertEqual([json.loads(l)["outcome"] for l in out.getvalue().splitlines()], ["submitted", "submitted"])
 
-    def test_retry_only_follows_a_blocked_document(self):
+    def test_worker_never_asks_spark_to_retry(self):
         calls = []
 
         def fake_run(args, timeout=300, input=None):
             calls.append(args)
             return mock.Mock(returncode=0, stdout="Pages: 1\n", stderr="")
-        for state, expect_retry in (("queued", False), ("blocked", True)):
+        for state in ("queued", "blocked"):
             calls.clear()
             doc = {"doc_id": "doc-a", "revision_id": "rev-a", "sha256": "x", "original_rel": "o/a.pdf", "state": state}
             with mock.patch.object(ocr_worker, "run", fake_run), \
@@ -82,7 +82,8 @@ class NamedDocumentTests(unittest.TestCase):
                  mock.patch.object(Path, "is_file", return_value=True), \
                  mock.patch.object(ocr_worker, "ocr", return_value={"text": "1", "blank": False, "unreadable": False, "_model": "m"}):
                 ocr_worker.process(doc)
-            self.assertEqual(any("retry" in a for a in calls), expect_retry, state)
+            self.assertFalse(any("retry" in a for a in calls), state)
+            self.assertTrue(any(a[0] == "scp" and a[-1].endswith("/pages/") for a in calls), state)
 
 
 if __name__ == "__main__":
