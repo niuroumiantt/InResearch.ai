@@ -74,7 +74,39 @@ def ocr_page(image):
         if exc.code != 'model_failure': raise
         return ocr(image)
 
+def remote_done_pages(doc, target):
+    """Page numbers Spark already holds for this exact content.
+
+    A rerun skips them, so a document that failed on one page only redoes the
+    pages it is missing. A page for other bytes or under the wrong name is not
+    counted, and an unreadable answer counts nothing (every page is redone)."""
+    code = ("import json,pathlib\n"
+            "d=pathlib.Path(%r)\n"
+            "for p in (sorted(d.glob('*.json')) if d.is_dir() else []):\n"
+            " try: v=json.loads(p.read_text(encoding='utf-8'))\n"
+            " except Exception: continue\n"
+            " i=v.get('page_index')\n"
+            " if v.get('content_sha256')==%r and type(i) is int and p.name=='%%06d.json'%%i: print(i)\n") % (target, doc['sha256'])
+    encoded = base64.b64encode(code.encode()).decode()
+    result = run(['ssh', '-o', 'BatchMode=yes', REMOTE, "python3 -c \"import base64;exec(base64.b64decode('%s'))\"" % encoded], 60)
+    if result.returncode: return set()
+    return {int(line) for line in result.stdout.splitlines() if line.strip().isdigit()}
+
+def upload(output, target):
+    pages = sorted(output.glob('*.json'))
+    if not pages: return
+    mkdir=run(['ssh','-o','BatchMode=yes',REMOTE,'mkdir','-p',target],30)
+    if mkdir.returncode: raise RuntimeError('result_directory_failed')
+    put=run(['scp','-q']+[str(p) for p in pages]+[REMOTE+':'+target+'/'],600)
+    if put.returncode: raise RuntimeError('result_upload_failed')
+
 def process(doc):
+    """OCR every page Spark does not already hold, then upload.
+
+    A failed page no longer discards the document: the pages finished before
+    it are uploaded, the error names the page, and the next run resumes there.
+    Spark reads a document only once every page is present."""
+    target=DATA+'/offload/m4/results/'+doc['doc_id']+'/pages'
     with tempfile.TemporaryDirectory(prefix='m4-offload-') as td:
         td=Path(td); source=td/'source.pdf'
         fetch=run(['scp','-q',REMOTE + ':' + DATA + '/' + doc['original_rel'],str(source)],600)
@@ -83,24 +115,29 @@ def process(doc):
         info=run(['pdfinfo',str(source)],60)
         pages=next((int(x.split(':',1)[1]) for x in info.stdout.splitlines() if x.startswith('Pages:')),0)
         if not 0 < pages <= 2000: raise RuntimeError('pdf_page_count_unavailable_or_excessive')
+        done=remote_done_pages(doc, target)
         output=td/'out'; output.mkdir()
-        for index in range(1,pages+1):
-            base=td/('page-%06d'%index)
-            render=run(['pdftoppm','-f',str(index),'-l',str(index),'-singlefile','-scale-to','1800','-png',str(source),str(base)],120)
-            image=base.with_suffix('.png')
-            if render.returncode or not image.is_file(): raise RuntimeError('page_render_failed')
-            first,second=ocr_page(image),ocr_page(image)
-            if first['unreadable'] or second['unreadable'] or first['blank'] != second['blank']: raise RuntimeError('ocr_page_unreadable')
-            if numeric_tokens(first['text']) != numeric_tokens(second['text']): raise RuntimeError('ocr_numbers_disagree')
-            page={'doc_id':doc['doc_id'],'content_sha256':doc['sha256'],'page_index':index,'text':first['text'],
-                  'text_second_pass':second['text'],'method':'m4_vision_ocr_double_pass','ocr_model':first['_model'],
-                  'blank':first['blank'],'unreadable':False,'verification':'candidate_ocr_agreement_not_accuracy_certification'}
-            (output/('%06d.json'%index)).write_text(json.dumps(page,ensure_ascii=False,sort_keys=True),encoding='utf-8')
-        target=DATA+'/offload/m4/results/'+doc['doc_id']+'/pages'
-        mkdir=run(['ssh','-o','BatchMode=yes',REMOTE,'mkdir','-p',target],30)
-        if mkdir.returncode: raise RuntimeError('result_directory_failed')
-        put=run(['scp','-q']+[str(p) for p in sorted(output.glob('*.json'))]+[REMOTE+':'+target+'/'],600)
-        if put.returncode: raise RuntimeError('result_upload_failed')
+        index=0
+        try:
+            for index in range(1,pages+1):
+                if index in done: continue
+                base=td/('page-%06d'%index)
+                render=run(['pdftoppm','-f',str(index),'-l',str(index),'-singlefile','-scale-to','1800','-png',str(source),str(base)],120)
+                image=base.with_suffix('.png')
+                if render.returncode or not image.is_file(): raise RuntimeError('page_render_failed')
+                first,second=ocr_page(image),ocr_page(image)
+                if first['unreadable'] or second['unreadable'] or first['blank'] != second['blank']: raise RuntimeError('ocr_page_unreadable')
+                if numeric_tokens(first['text']) != numeric_tokens(second['text']): raise RuntimeError('ocr_numbers_disagree')
+                page={'doc_id':doc['doc_id'],'content_sha256':doc['sha256'],'page_index':index,'text':first['text'],
+                      'text_second_pass':second['text'],'method':'m4_vision_ocr_double_pass','ocr_model':first['_model'],
+                      'blank':first['blank'],'unreadable':False,'verification':'candidate_ocr_agreement_not_accuracy_certification'}
+                (output/('%06d.json'%index)).write_text(json.dumps(page,ensure_ascii=False,sort_keys=True),encoding='utf-8')
+        except Exception as exc:
+            kept = len(list(output.glob('*.json')))
+            try: upload(output, target)
+            except Exception as up: raise RuntimeError('%s@page%d/%d; kept 0 new pages (%s)' % (exc, index, pages, up)) from exc
+            raise RuntimeError('%s@page%d/%d; kept %d new pages, %d already on spark' % (exc, index, pages, kept, len(done))) from exc
+        upload(output, target)
     # No retry from here: a queued document reads the pages when claimed, and the
     # running reader requeues a blocked one itself once newer page results arrive.
 

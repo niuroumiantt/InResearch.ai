@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.5",
+  "version": "2026.09.27.6",
   "effective_at": "2026-09-27",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -527,12 +527,13 @@
         "src/inresearch/workflow/reading_results.py",
         "src/inresearch/materials/reading_artifacts.py",
         "tests/unit/test_reading_results.py",
-        "tests/unit/test_ocr_worker_named.py"
+        "tests/unit/test_ocr_worker_named.py",
+        "tests/unit/test_ocr_worker_resume.py"
       ],
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
-      "reason": "2026-09-15：L1 的待处理选择、预览预算、活动速率和版本候选收敛到 workflow.l1_batch；各 CLI 仅处理参数和呈现，triage 不再转发 score run。reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 ocr-worker 支持 --doc-id 点名处理仍在排队（含 OCR 排后）的文档，排队文档上传页结果后不 retry。；2026-09-27 ocr-worker 只上传页结果，不再在 Spark 上 retry；OCR 阻塞文档由运行中的 reader 自动重新排队。",
+      "reason": "2026-09-15：L1 的待处理选择、预览预算、活动速率和版本候选收敛到 workflow.l1_batch；各 CLI 仅处理参数和呈现，triage 不再转发 score run。reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 ocr-worker 支持 --doc-id 点名处理仍在排队（含 OCR 排后）的文档，排队文档上传页结果后不 retry。；2026-09-27 ocr-worker 只上传页结果，不再在 Spark 上 retry；OCR 阻塞文档由运行中的 reader 自动重新排队。；2026-09-27 ocr-worker 失败时上传已完成页并写明失败页，重跑跳过 Spark 上同一内容已有的页。",
       "implementation_revision": "2026.09.15.2"
     },
     {
