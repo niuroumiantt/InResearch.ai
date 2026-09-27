@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.16",
+  "version": "2026.09.27.17",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -498,8 +498,8 @@
     {
       "path": "deploy/spark-reader/reader.env.example",
       "role": "project_config",
-      "bytes": 1942,
-      "sha256": "5c1b4105e26d2749c8b6354e1c3d2b700f9be6c3609acb9a79ebbd3817b5a8d6",
+      "bytes": 2155,
+      "sha256": "febf01d1c63dec5a597e91d7e01bc686a64853f2115805a7b1e4d7071a84cd9b",
       "collections": []
     },
     {
@@ -546,8 +546,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 98849,
-      "sha256": "d5d8813eef8fc6c9f148819a96f4bc058b8051f3f65076706a38de398c811b56",
+      "bytes": 99598,
+      "sha256": "06db13bb4de99d7da68cfbad8d71372ecae619f830c45db9527fb5f81c8fe6e7",
       "collections": []
     },
     {
@@ -3293,8 +3293,8 @@
     {
       "path": "docs/local_reader/SPARK_OPERATIONS.md",
       "role": "normative",
-      "bytes": 38684,
-      "sha256": "40d2719a10486ee4c416fee2d9a4e65d10c227b36fa57ebe748cd9f7a422562c",
+      "bytes": 39357,
+      "sha256": "fc05e95ede23a3a5b13e79cadf7e08087cf0a80643ccfd517d39f923d1d491aa",
       "collections": []
     },
     {
@@ -6598,7 +6598,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5449,
-      "sha256": "a57bee50dd5219608e16597e43398397809c82d741c1c68dde0588c41e3e676b",
+      "sha256": "d6e5de54294f7d1647c7e656da3f55b39d2d02d327f0f928061500fa9d7cb5af",
       "collections": []
     },
     {
@@ -6620,8 +6620,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 36890,
-      "sha256": "1ae1587b8a6766121c9c11b1d3a9792c27df8aec9c315656cd2df49b37d45d82",
+      "bytes": 37127,
+      "sha256": "504d9a4f3a1be14d22091ff930b79508a3f745c625d6d2955ad8029596c3ef8e",
       "collections": [
         {
           "name": "policies",
@@ -6908,8 +6908,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 72707,
-      "sha256": "fb176f512e1acd5caeb1887644c4c74f46109568ae570cba8422ba62a7d0da5e",
+      "bytes": 73721,
+      "sha256": "e6a67d84f73eb01db8aa365e12ecee72a4e36b64f97a0c8bd007d8f225839549",
       "collections": [
         {
           "name": "policies",
@@ -8243,8 +8243,8 @@
     {
       "path": "src/inresearch/delivery/reader_progress.py",
       "role": "implementation",
-      "bytes": 14456,
-      "sha256": "42eb230c67a422693044204e02ad445d0c589b4cd7efa9fe5dff4ea1e5af1fa3",
+      "bytes": 15374,
+      "sha256": "761bb77193dd419be593dade4b906e26f8d04d86b71430262106d9de8e56eb15",
       "collections": []
     },
     {
@@ -8320,8 +8320,8 @@
     {
       "path": "src/inresearch/interfaces/reader.py",
       "role": "implementation",
-      "bytes": 10087,
-      "sha256": "4ba72f46264d9d4b46ba88ffd456a36047cd9fe51284731c2b8d97ec88c0488e",
+      "bytes": 10166,
+      "sha256": "374e8bd34f03ae9b99c28ddb765c8390a7a0d4eb4edeeaa42718fb842d417866",
       "collections": []
     },
     {
@@ -8523,8 +8523,8 @@
     {
       "path": "src/inresearch/materials/reader_contracts.py",
       "role": "implementation",
-      "bytes": 3512,
-      "sha256": "536f0aa13430b898d87522944bb3f769d64b11d71f230a74b1c089174b2afaec",
+      "bytes": 3852,
+      "sha256": "ef76c0fb73987f9282bfe9896d1f018097cef632c7fd5b061d042961e1439c75",
       "collections": []
     },
     {
@@ -8684,8 +8684,8 @@
     {
       "path": "src/inresearch/workflow/reader.py",
       "role": "implementation",
-      "bytes": 46340,
-      "sha256": "749f3203d67564b2ad0f9822d5dfd880bee9e07da74ccd162b6703965f072502",
+      "bytes": 47118,
+      "sha256": "d321471510fedfbb93684a50749278fb9f007b6e34ec6351448605539055f7e5",
       "collections": []
     },
     {
@@ -8945,6 +8945,13 @@
       "role": "test",
       "bytes": 10016,
       "sha256": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_claim_floor.py",
+      "role": "test",
+      "bytes": 2102,
+      "sha256": "d90c2b9ab948d922768cd25b0bface4dc7f2a94fcbcc749e53e9f8446d95da0c",
       "collections": []
     },
     {
@@ -9237,8 +9244,8 @@
     {
       "path": "tests/unit/test_reader_progress.py",
       "role": "test",
-      "bytes": 5176,
-      "sha256": "4eb279a15cfd9b98b630be2592038bc5f045bfc47cba36eeedc2f09ee5bc4260",
+      "bytes": 6173,
+      "sha256": "22f5514887bcac6cf9fd9096cab6256f8c293408e7885d0c60f0188ea36b3772",
       "collections": []
     },
     {
@@ -10174,6 +10181,6 @@
     "retired_entrypoint": 3,
     "source_record": 28,
     "supporting_document": 54,
-    "test": 84
+    "test": 85
   }
 }

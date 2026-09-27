@@ -28,6 +28,12 @@ THERMAL_SAMPLE_SECONDS = 10.0
 # reading (sampled chunks only); at or above it, every chunk is read. 1 reads all in full.
 FULL_READ_MIN_PRIORITY = int(os.environ.get("READER_FULL_READ_MIN_PRIORITY", "7"))
 
+# Documents below this effective priority are not claimed at all: their jobs stay
+# pending, untouched, until the floor is lowered. 0 claims everything. Set on a
+# machine that cannot keep up (Spark: heat halves throughput) so the valued
+# documents finish first.
+CLAIM_MIN_PRIORITY = int(os.environ.get("READER_CLAIM_MIN_PRIORITY", "0"))
+
 # Error codes for documents parked by a triage decision; `retry --error-code` revives them.
 # derived_artifact: reader output copied back into intake (e.g. M4 要删/reader/), not source material.
 PARKED_BY_TRIAGE = "parked_l1_score_zero"
