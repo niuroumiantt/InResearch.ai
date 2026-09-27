@@ -20,6 +20,7 @@ import hmac
 from inresearch.workflow import commands as commands
 from inresearch.workflow import supply
 from inresearch.workflow import pilot_progress
+from inresearch.workflow import product_catalog
 from inresearch.adapters import acquisition
 from inresearch.knowledge import registry as research
 from inresearch.delivery import report as report_model
@@ -257,6 +258,22 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(200, {"ok": True, "users": [
                 {"name": n, "role": u.get("role", "member"), "created": u.get("created", "?")}
                 for n, u in sorted(users.items())]})
+        if urlsplit(self.path).path == '/api/product-catalog/nvidia':
+            query = parse_qs(urlsplit(self.path).query)
+            value = product_catalog.snapshot(ROOT)
+            export = query.get('export', [''])[0]
+            if export:
+                try:
+                    body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1').encode('utf-8')
+                except ValueError as exc:
+                    return self._json(400, {'error': str(exc)})
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/csv; charset=utf-8')
+                self.send_header('Content-Disposition', 'attachment; filename="nvidia-' + export + '.csv"')
+                self.send_header('Content-Length', str(len(body)))
+                self.end_headers()
+                return self.wfile.write(body)
+            return self._json(200, value)
         if urlsplit(self.path).path == '/api/pilot-progress/nvidia':
             try:
                 return self._json(200, pilot_progress.public_snapshot(ROOT))
@@ -337,6 +354,8 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, {'ok': True})
             except (ValueError, KeyError, OSError):
                 return self._json(400, {'ok': False})
+        if self.path == '/api/product-catalog/nvidia':
+            return self.api_nvidia_pilot_progress(receiver=product_catalog.receive)
         if self.path == '/api/pilot-progress/nvidia':
             return self.api_nvidia_pilot_progress()
         if self.path == '/api/materials':
@@ -431,7 +450,7 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(400, {"ok": False, "error": str(e)[:500]})
         return self._json(200, reply)
 
-    def api_nvidia_pilot_progress(self):
+    def api_nvidia_pilot_progress(self, receiver=None):
         token_path = pilot_progress.token_path(ROOT)
         try:
             token = token_path.read_text().strip()
@@ -447,7 +466,7 @@ class Handler(SimpleHTTPRequestHandler):
             if size <= 0 or size > 16 * 1024 * 1024:
                 return self._json(413, {'ok': False, 'error': 'progress payload must be 1 byte to 16 MiB'})
             payload = json.loads(self.rfile.read(size))
-            return self._json(200, pilot_progress.receive(ROOT, payload))
+            return self._json(200, (receiver or pilot_progress.receive)(ROOT, payload))
         except (ValueError, TypeError, KeyError, OSError) as exc:
             return self._json(400, {'ok': False, 'error': str(exc)[:300]})
 

@@ -40,9 +40,17 @@ Spark 不执行采集任务；它接收已交付的永久原件、运行提取�
 
 校验通过的原件以 SHA 为身份同时登记在共享 `acquisition/catalog.sqlite` + `acquisition/blobs/` 的候选采集档案和 Reader 的 `originals/<sha前2位>/<sha>/<sha>.<格式>`。同一数据根内尽量硬链接复用字节，不重复存储。`product_documents` 是 acquisition catalog 内可重建/可校验的索引表，以公司、产品一级分类、格式、语言、研究问题、对象和版本为维度检索；分类浏览硬链接放在私有 `product-library/fetchspec/<分类>/`。接收默认只做验收、归档和编目，不扩张 Spark Reader 队列；只有显式列出 `--reader-sha256` 的、已有解析器的文件才以硬链接投递到 `raw-materials/fetchspec/<第一分类>/`，由后续 Reader scan/run 登记和阅读。其余已校验原件仍永久保存、状态为 needs_supplement，不投入一个无法处理的队列。相同 SHA 复用原件且追加来源；不同 SHA 不覆盖旧版，并保留上游 supersedes 声明。Reader 报告可按 SHA 查询并仅作为 candidate；证据采用仍走现有登记与复核接口。交付包在 Macmini 端落为批次目录，传输到 Spark 的 `incoming/<批次>/<delivery_id>` 后先校验传输，再在 Spark 用 `manage.py fetchspec-receive` 接收；禁止 `--delete`。接收器不主动传输、不删除包或历史原件。
 
-### 临时跨机分析工序（NVIDIA 打样）
+### NVIDIA 打样：产品清单 → 官方规格 → 数据库 → 轻量展示
 
-NAS 未恢复期间，NVIDIA Fetchspec 原件继续留在 Spark（incoming 或已归档的 SHA 原件），Spark 是来源与永久存储权威。按 SHA 从 Spark 复制本轮明确选择的少量文件到 M5 临时工作区；M5 不接收永久资料库、不持有 Spark 发布凭证。M5 的 Reader 在本机完成解析/OCR 和候选阅读，阅读分析使用 M5 的 Claude Code CLI；本地视觉 OCR 模型是单独环节，不记作阅读模型。通过 Reader 导出 candidate-only 快照后，将快照回传 Spark，由 Spark 上的 `manage.py publish --snapshot <文件>` 使用 Spark 私有凭证转交既有 HTTPS 候选接收端。服务端按部署中的 graph/questions 再校验，候选不会自动成为已采用证据。完整交付需同时满足：原件 SHA 与 Spark 相同、逐篇阅读 coverage complete、快照成功回执、网站候选可检索；M5 本地模型输出或单次运行成功不等于交付完成。此路径是 NAS 恢复前的临时分工，不改变永久执行策略。
+2026-09-27 用户采用产品优先流程，替代本轮附件优先、全部规格必须全文阅读的路径。先从原厂产品目录建立清单，区分具体型号、配置、系列/平台、软件服务；官网列出、已发布、确认在售和停产分开，不以 URL 数或 404 推断产品总数与销售状态。官方一级目录关系必须保留。清单缺口、访问失败、待解析来源明确计量。
+
+逐产品寻找官网 HTML、PDF 与 Office 规格资料，来源只是载体。以各产品自己的官方参数分组、字段、单位、配置、测试条件和脚注为准；不得把 H200 模板强套至 B300/GB300，或将机柜总值当作单 GPU 值。公共字段映射属于后续经核验的比较层，原厂独有参数不丢弃。规格定向提取与全文研究分开计量，营销材料/架构白皮书按研究需求深读。
+
+Fetchspec 保存不可变 SHA 页面快照、原件、获取时间、来源 URL、发现父目录与原生表格。M5 接收时核验快照字节身份；AWS 只接收结构化交付，持久 SQLite 放在 `data/raw/product-catalog/nvidia.sqlite3`。产品、来源、观察版本与参数行分别记录；重复交付幂等、旧快照拒绝回退、更新保留历史。不自动覆盖正式研究知识或 C3 采用。
+
+`product-catalog.html` 从认证 API 读取结构化产品/表格，以本站轻量模板筛选、并排核查并导出产品清单与参数明细 CSV；不加载原厂 HTML/PDF 来渲染页面。字段值必须能回查 URL、SHA、官方表格/行及脚注。原文、数据库、凭证和运行交付不进 Git。当前目录扩展/表格提取属于首版，型号复核、配置拆分、PDF 定向抽取和通用字段映射未完成时必须如实显示。
+
+此前 NAS 阶段的 M5→Spark→AWS 工序已被本轮 M5→AWS 替代，旧实现记录保留于 Git 历史。
 
 #### 2026-09-27 NVIDIA 流程验证例外（Spark 完全不参与）
 
