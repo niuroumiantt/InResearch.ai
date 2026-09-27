@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.22",
+  "version": "2026.09.27.23",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -26,24 +26,23 @@
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
     "framework/08_model_execution.md": "6c7ca8eb8c8c07cd35040b4017fd38cd15b75bcbe4cedec5a52b94db55163b66",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "be049cdf27c051f1ac6e75c7e83bb026653c666e2af2d2bedd961e3ec7518989",
+    "framework/CURRENT.md": "a41fce077cb8badf72a495ffeebb9bdc825f08a622b54775e9075d78b8f82039",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
-    "framework/interface_manifest.json": "b91477ce084ec289ecf7f4c1fd9e229a5fe9b490f09de5e1f1b7bcffd87cf5a3",
+    "framework/interface_manifest.json": "957110086c4f4affad40a8ddf0f7029693137c3221319f1ec16ecc1453df7b8a",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "d1531978f153602d9dab4edb58aeec3761f5c7c5d56f63988024134be992ae27",
     "src/inresearch/workflow/supply.py": "575ae0478387f1c00fe46fb984bb6b11839fb69fbbe9253225acb211fc855b65",
     "tests/auth_appearance.cjs": "12fe45ce1017034aebce9d5f330ef4a63b510fb3fdb887331c338a965bd60c51",
     "tests/container_storage.py": "a8574a75275460d2a50c0eab7f524857eccd8a32cf2f9e8bb01009ec12dd5ba0",
     "tests/datacenter_cost.cjs": "3303d4072329dce59408e54b15923b5b469b10225d080fc248f2f16a8c622275",
+    "tests/datacenter_tco.cjs": "b50a810347c2b86a1f9c03b354f069a3bf1ec5601caafa62730a9e58b16761dd",
     "tests/datacenter_economics.cjs": "bf2e44e413e2c6209fd8d04ba8f20a116314676312246c4c090d3eeb7ba8141b",
     "tests/datacenter_news.cjs": "05db3db0ef6d5030e04062ea3dbcc1e1539b8cc4dd5abaa841b3e9f7c22114b0",
-    "tests/datacenter_tco.cjs": "b50a810347c2b86a1f9c03b354f069a3bf1ec5601caafa62730a9e58b16761dd",
     "tests/hardware_ecosystems.cjs": "9fee2cd36632d76fd5ff6850487ac5418c1b198c9dbe8108ca0b5aa04644c506",
     "tests/model_assets.cjs": "44d38edb6494d6df2055e43c0f2b146b03c3cb7d4e9ce7717b0e9674bc0c4bf2",
     "tests/nvidia_pilot.cjs": "285bb293efd9d237fcd3eb8dbe333cc948a7b08aff6d9066b501fa4987668320",
     "tests/object_network.cjs": "638fd3f1d23a5c8f6ee8d87bedb64411ddb64e59d27bf010922e78f4097d95e0",
     "tests/part_dossier.cjs": "d8882b16d88366013dbec8e24e65af9f0ac0e29913cc597b23c652cf350a227c",
-    "tests/product_catalog.cjs": "1ae66e94749fb2607821a11c5c7e5c04e5d334d6bbd9d20461f31ec3dacc4aa9",
     "tests/product_node_hover.cjs": "720258d27a7c69d4926ff1b711c7c57ce1e7ae83264e4d48a2dad370a0ba4779",
     "tests/research_delivery.cjs": "77f8ddb63479e8b82bea7bbf694769f7ca3baa759d5a5f663f5b89282d8a9e2f",
     "tests/research_summary.cjs": "d8bb777aec3b9fd7a6958bcb2028a4e578ba5cc0dae9f8b755424e1ef179b17c",
@@ -64,7 +63,6 @@
     "tests/unit/test_deep_read.py": "f4399a1287d9fd7ced79059d351c6edd08a48ca0c3a752dbf94bc4964705d4f9",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
     "tests/unit/test_display_regressions.py": "b3461db2c0648d4ca88f6d8dd646edbcb8c8242df4aeeb43be7a6182d8d94cbe",
-    "tests/unit/test_dropped_claims.py": "99983da6847024aca4592bcf7d89fbfe38522d45d9c645919c17d686bcb8e08e",
     "tests/unit/test_fact_contract.py": "4e739f6e3a3a9cae74057824615db912e38c2acc20f91ae109a2efb0c08f3dd7",
     "tests/unit/test_fetchspec_receive.py": "727ed2dafe5a57e7358b49ec05d2feb798947a0887b398bf8ebab89b36b43b84",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
@@ -88,7 +86,6 @@
     "tests/unit/test_ollama_schema.py": "b70ab619eba8b6a3e5a565831a9c838a50c12e30bdd4cdc9473c3cde9cad14d8",
     "tests/unit/test_optional_mapping_ids.py": "347a64b97f734ca4654b21083ed0a21f7a0e95a34fcc1bf1a86a3c53af9afdc5",
     "tests/unit/test_pilot_progress.py": "e3d47746edfac17ebf6c76960f5dd53a05bc057eb411150e130f82c1c3128f41",
-    "tests/unit/test_product_catalog.py": "757a8302384e558a7718994b6dd38a3f810c3c4a1a16379404e4245b31274326",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "13d781d6bb35801eb8a7b4592008e2a87f9a3b48a2c685e442c860bcddde220c",
     "tests/unit/test_reader_depth.py": "3e9a0ace8150391afd8f9d50cc3cfeb99f6da189657279e157d458917f2e2d13",
@@ -107,7 +104,10 @@
     "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d",
     "web/components/supply.js": "77fc1f9669f723d0e30ee5157355852016f07e6de0ceaaaf7fd42e22e014b86b",
     "web/pages/nvidia-pilot.html": "54a77a5898f9dff1bd84fd75f3737cc052be7eb2901f2d2d7fd125877c834279",
-    "web/pages/supply.html": "8d239586466f575fb52c194fc933326689f55e07e4c07d67fb9ffa89cfa5f32c"
+    "web/pages/supply.html": "8d239586466f575fb52c194fc933326689f55e07e4c07d67fb9ffa89cfa5f32c",
+    "tests/unit/test_product_catalog.py": "e42bec56ab5de52eb8f3ece45fdd7127a6531f318ad595e6d51f948eb4e9f528",
+    "tests/product_catalog.cjs": "1ae66e94749fb2607821a11c5c7e5c04e5d334d6bbd9d20461f31ec3dacc4aa9",
+    "tests/unit/test_dropped_claims.py": "99983da6847024aca4592bcf7d89fbfe38522d45d9c645919c17d686bcb8e08e"
   },
   "policies": [
     {
@@ -347,7 +347,7 @@
       "policy": "acquisition-20260906",
       "scope": "project",
       "source": "framework/06_acquisition.md",
-      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。；五个展示大类与系列导航、原厂分类保留、辅助入口隔离、型号优先/15项分页、跨类搜索与同范围CSV。",
+      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。；五个展示大类与系列导航、原厂分类保留、辅助入口隔离、型号优先/15项分页、跨类搜索与同范围CSV；产品地图父子身份与来源校验、官方非文件资源入口、仅刷新目录/分类层的增量更新、局部缺席不判下架及CSV对账字段。",
       "tests": [
         "tests/unit/test_acquisition.py::AcquisitionTests.test_archive_preserves_revisions_and_is_idempotent",
         "tests/unit/test_acquisition.py::AcquisitionTests.test_failure_is_recorded_and_not_success",
@@ -386,6 +386,7 @@
         "tests/unit/test_pilot_progress.py::PilotPublisherTests.test_publisher_posts_with_private_token_and_requires_receiver_ack",
         "tests/unit/test_product_catalog.py::ProductCatalogTests.test_import_replay_versions_and_stale_write",
         "tests/unit/test_product_catalog.py::ProductCatalogTests.test_missing_evidence_and_unsafe_attachment_rejected_without_writes",
+        "tests/unit/test_product_catalog.py::ProductCatalogTests.test_child_product_keeps_parent_resource_links_and_csv_alignment",
         "tests/unit/test_product_catalog.py::ProductCatalogTests.test_csv_preserves_variants_notes_and_prevents_formula_execution",
         "tests/product_catalog.cjs",
         "tests/unit/test_product_catalog.py::ProductCatalogTests.test_http_authentication_and_receiver_validation",
@@ -398,7 +399,8 @@
         "M5→AWS 实际上传已获成功回执；AWS release 96dceb9 为 HEALTHY，容器内只读查询已确认 candidate-only 记录可用、5 份试读为 3 完整/1 阻塞/1 失败，线上页受登录保护；首次记录 received_at 为空，页面接收时间回退修复待部署。全站 449 PDF 尚未本地全文阅读，采集任务调度、Spark 永久归档、正式研究证据采用及生产登录态下人工浏览器验收仍未完成。",
         "PCN/规格新版语义、厂商分类/语言标记与产品身份需研究人员复核；源站抓取不完整时不能可靠推断产品已下架。",
         "产品总量和在售 SKU 尚未穷尽；型号分类需复核，配置拆分、动态规格/PDF 定向提取、跨产品通用映射和正式研究采用尚未完成。",
-        "五个展示组不是原厂原样分类；名称/官方路径规则不证明全部型号归属准确，未知保留待归类。"
+        "五个展示组不是原厂原样分类；名称/官方路径规则不证明全部型号归属准确，未知保留待归类。",
+        "BlueField 三个官方 datasheet 入口目前仍是待访问的资源页；公开 PDF 直链、是否门控及规格字段尚未确认，产品页观察不等于文档获取或参数抽取。"
       ]
     },
     {
