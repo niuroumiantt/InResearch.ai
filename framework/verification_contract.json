@@ -83,7 +83,7 @@
     "tests/unit/test_ocr_worker_resume.py": "6a0fc026fdd22ddc3b303e51b67fea8d4b7a8ee9ba9fdb4e130572076541863e",
     "tests/unit/test_ollama_schema.py": "b70ab619eba8b6a3e5a565831a9c838a50c12e30bdd4cdc9473c3cde9cad14d8",
     "tests/unit/test_optional_mapping_ids.py": "5855afeaa96c64a825ffdc49fe1708efe9762ea60c65826f6a95b647ea341a2c",
-    "tests/unit/test_pilot_progress.py": "0752a52a252dc555d48f451b0062dd9203d5a08416e752547c466836f1502e6e",
+    "tests/unit/test_pilot_progress.py": "e3d47746edfac17ebf6c76960f5dd53a05bc057eb411150e130f82c1c3128f41",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "13d781d6bb35801eb8a7b4592008e2a87f9a3b48a2c685e442c860bcddde220c",
     "tests/unit/test_reader_depth.py": "3e9a0ace8150391afd8f9d50cc3cfeb99f6da189657279e157d458917f2e2d13",
@@ -376,7 +376,7 @@
       ],
       "not_verified": [
         "全文翻译、撤回增量、全局限速与 GPU 调度仍未完整实现。",
-        "AWS 已部署 NVIDIA 进度页与接收端，但生产运行时未把专用凭证解析到挂载数据根，真实 M5 上传尚未收到回执；本批修复合入并部署后仍须实测直传与线上可见性。五篇试读中 3 份完整、1 份阻塞、1 份失败；全站 449 PDF 尚未本地全文阅读，采集任务调度、Spark 永久归档和正式研究证据采用仍未接通。",
+        "M5→AWS 实际上传已获成功回执；AWS release 96dceb9 为 HEALTHY，容器内只读查询已确认 candidate-only 记录可用、5 份试读为 3 完整/1 阻塞/1 失败，线上页受登录保护；首次记录 received_at 为空，页面接收时间回退修复待部署。全站 449 PDF 尚未本地全文阅读，采集任务调度、Spark 永久归档、正式研究证据采用及生产登录态下人工浏览器验收仍未完成。",
         "PCN/规格新版语义、厂商分类/语言标记与产品身份需研究人员复核；源站抓取不完整时不能可靠推断产品已下架。"
       ]
     },

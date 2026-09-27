@@ -53,6 +53,7 @@ class PilotProgressTests(unittest.TestCase):
         page = pilot_progress.public_snapshot(self.root)
         self.assertEqual(page['acceptance'], 'candidate_only')
         self.assertEqual(page['counts']['complete'], 1)
+        self.assertTrue(page['received_at'])
         self.assertNotIn('knowledge', page)
         with self.assertRaisesRegex(ValueError, 'stale or repeated'):
             pilot_progress.receive(self.root, self.payload)
