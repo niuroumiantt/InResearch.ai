@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.4",
+  "version": "2026.09.27.5",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -13,7 +13,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "48a5be1e41640a3573e24be8d73b4b7851a0488dcfcaecad36d6c0c0b3379a76",
+    "docs/local_reader/SPARK_OPERATIONS.md": "3026f7a943b98637c8eae9b81f1aab16bcf5ed64ee6e02c39d1ac63cfe4c118b",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
@@ -24,9 +24,9 @@
     "framework/05_interface_system.md": "9daf6c2b1a3eb93fd0dbb8e766f3c411aa27a29dc725ebee01f65cf67f4bbefa",
     "framework/06_acquisition.md": "1364d7f57dcad6dadd6cc9fe73b4cec54443ec92c37eea8b9e88774f3fbe8bff",
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
-    "framework/08_model_execution.md": "f9696431f0bcf5df08c0b3b54e526a9b1d0d07b96cce957211f93d0147d80388",
+    "framework/08_model_execution.md": "9891e0a9de35863cda066157ccc57f2c366ade8ec5319210117e34bfe5275114",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "107a66ab352979d9a3ebcd11015e39ef96a8f99b0fdb530748cd1b041cccddeb",
+    "framework/CURRENT.md": "79edb32431d9f9ae44e8d0e7ba5366f8bca1294bae84ed7062ee4869b726ebb8",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "df28e4e220f0df9e7bb6dbb47252b9656be374ac08eb090ca3dbb268a63750de",
@@ -54,7 +54,7 @@
     "tests/unit/test_catalog_bridge.py": "47ed253f19bd29eeff4221e07215084526b1b7fae85e58b4aab051d4b6ac8405",
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_commands.py": "0eda9d7ee92eadb0b187f8e83901ae42c016c783fcdcfeec1d0e74b89dbb15a7",
-    "tests/unit/test_continuous_reader.py": "1d62cae96335492c5381efd4a5e98365aa9fec8714078200f024bd1dbffd09b3",
+    "tests/unit/test_continuous_reader.py": "1d35825db6e01d3b275c2a4a9c703e0555dd43950f59db43043f9b679ac2834c",
     "tests/unit/test_deep_read.py": "f4399a1287d9fd7ced79059d351c6edd08a48ca0c3a752dbf94bc4964705d4f9",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
     "tests/unit/test_display_regressions.py": "b3461db2c0648d4ca88f6d8dd646edbcb8c8242df4aeeb43be7a6182d8d94cbe",
@@ -371,7 +371,7 @@
       "policy": "reading-20260912",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
@@ -395,12 +395,13 @@
         "tests/unit/test_reader_depth.py::ReadingDepthTests.test_park_plans_then_blocks_and_retry_revives",
         "tests/unit/test_reader_depth.py::ReadingDepthTests.test_derived_artifacts_park_under_their_own_code_and_unknown_reason_is_refused",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_reader_prompt_requires_verbatim_source_quotes",
-        "tests/unit/test_continuous_reader.py::ReaderTests.test_bad_quote_gets_one_targeted_retry_and_only_verified_result_is_saved"
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_bad_quote_gets_one_targeted_retry_and_only_verified_result_is_saved",
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_scoped_candidate_export_includes_only_complete_selected_docs"
       ],
       "not_verified": [
         "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality.",
         "2026-09-26 分层深度：首中尾三块的摘要是否足以支撑 1–6 分材料的研究用途未经语义验收；summarized 结果目前不进入 reading_results/导出/发布，只在产物目录；park 名单（M4 0 分、要删/ 衍生物）由操作者生成，程序只校验 SHA 格式与台账状态；未在 Spark 真机执行。",
-        "2026-09-27 M5 NVIDIA 一块 A100 表格分块经一次反馈式纠正后通过逐字引文校验（7 条主张、33 条证据）；另一份 Ada GPU Artistry 为 26/26 块且封印校验通过。其余资料未完成，不能将有限实测视为全批或语义质量验收。"
+        "2026-09-27 M5 NVIDIA 五份临时副本实测：A100、Ada GPU Artistry、ConnectX-7 完整，A40 有一个块在有界重试后仍 model_output_invalid，Ada 架构白皮书在 31 页 PDF 提取阶段 model_output_truncated；因此整批 degraded。限定导出本地隔离测试、3 文档/274 evidence/194 statements 图谱预检、M5→Spark SHA256 与 HTTPS 接收回执均通过；网站查询及人工语义审核未做，候选不得视为采用。"
       ]
     },
     {

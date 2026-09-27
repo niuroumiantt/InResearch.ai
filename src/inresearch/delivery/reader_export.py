@@ -1,6 +1,6 @@
 """Candidate projections and recoverable backups from explicit catalog inputs."""
 from __future__ import annotations
-import json, os, shutil, sqlite3
+import json, os, re, shutil, sqlite3
 from pathlib import Path
 from inresearch.materials.reader_contracts import UnsafePath, IntegrityError
 from inresearch.materials.artifacts import now_iso, digest_bytes, digest_file, encoded, private_dir, safe_path, atomic_bytes, atomic_json, read_json, signature, is_partial
@@ -14,7 +14,7 @@ def read_report(data, doc):
     return read_json(path)
 
 
-def export(dest, conn, data, registry, status):
+def export(dest, conn, data, registry, status, doc_ids=None):
     dest = Path(dest).expanduser().resolve()
     for protected in ("originals", "catalog", "raw-materials", "library", "artifacts", "extracted", "intake-receipts"):
         try:
@@ -23,9 +23,11 @@ def export(dest, conn, data, registry, status):
         except ValueError:
             pass
     if dest.suffix.lower() == ".json":
-        payload = export_snapshot(conn, data, registry, status)
+        payload = export_snapshot(conn, data, registry, status, doc_ids=doc_ids)
         atomic_json(dest, payload)
         return {"exported": len(payload["knowledge"]["documents"]), "file": str(dest), "status": payload["reader"]["status"]}
+    if doc_ids is not None:
+        raise ValueError("scoped candidate export requires a JSON snapshot destination")
     private_dir(dest)
     reports = []
     for row in conn.execute("SELECT * FROM current_readings WHERE report_rel IS NOT NULL ORDER BY created"):
@@ -109,7 +111,16 @@ def project_document(doc, sources, report, allowed):
     return {"entry": entry, "evidence": evidence_out, "statements": statements, "proposal": proposal}
 
 
-def export_snapshot(conn, data, registry, status, cache_root=None, verify=None):
+def _validate_doc_ids(doc_ids):
+    if (not isinstance(doc_ids, (list, tuple)) or not doc_ids
+            or any(not isinstance(value, str) or not re.fullmatch(r"doc-[0-9a-f]{64}", value)
+                   for value in doc_ids)
+            or len(set(doc_ids)) != len(doc_ids)):
+        raise ValueError("scoped export requires unique full document IDs")
+    return list(doc_ids)
+
+
+def export_snapshot(conn, data, registry, status, cache_root=None, verify=None, doc_ids=None):
     """Web is a rebuildable projection; old reading artifacts retain their versions.
 
     Revalidate the ID projection against the currently installed registry. Unknown
@@ -128,6 +139,15 @@ def export_snapshot(conn, data, registry, status, cache_root=None, verify=None):
     registry_key = [registry["graph_version"], registry["questions_version"]]
     if verify is None:
         verify = os.environ.get("READER_PUBLISH_VERIFY") == "1"
+    if doc_ids is not None:
+        doc_ids = _validate_doc_ids(doc_ids)
+        placeholders = ",".join("?" for _ in doc_ids)
+        rows = conn.execute("SELECT * FROM current_readings WHERE doc_id IN (%s) ORDER BY created,doc_id" % placeholders,
+                            tuple(doc_ids)).fetchall()
+        if len(rows) != len(doc_ids):
+            raise ValueError("scoped export references an unknown current document")
+    else:
+        rows = conn.execute("SELECT * FROM current_readings ORDER BY created,doc_id").fetchall()
     cache = None if verify else projection_cache(cache_root)
     # One query for every document's sources; the per-document query this replaces
     # was one round trip per row and dominated the export at catalog scale.
@@ -139,7 +159,7 @@ def export_snapshot(conn, data, registry, status, cache_root=None, verify=None):
     knowledge = {"documents": [], "evidence": [], "statements": [], "answers": []}
     proposals = []
     try:
-        for row in conn.execute("SELECT * FROM current_readings ORDER BY created,doc_id"):
+        for row in rows:
             doc = dict(row)
             sources = grouped.get(doc["doc_id"], [])
             key = fingerprint(doc, sources, registry_key)
@@ -162,7 +182,11 @@ def export_snapshot(conn, data, registry, status, cache_root=None, verify=None):
     finally:
         if cache is not None:
             cache.close()
-    atomic_json(safe_path(data, "candidates/mapping-proposals.json"), {"generated": now_iso(), "acceptance": "candidate", "records": proposals})
+    if doc_ids is not None and any(entry.get("coverage", {}).get("complete") is not True
+                                   for entry in knowledge["documents"]):
+        raise ValueError("scoped candidate export requires complete coverage for every selected document")
+    if doc_ids is None:
+        atomic_json(safe_path(data, "candidates/mapping-proposals.json"), {"generated": now_iso(), "acceptance": "candidate", "records": proposals})
     return {"schema_version": 1, "generated": now_iso(), "graph_version": registry["graph_version"],
             "questions_version": registry["questions_version"], "knowledge": knowledge, "reader": status, "acceptance": "candidate"}
 

@@ -83,17 +83,17 @@ class Reader:
     def artifact_path(self, doc_id, name):
         return self.stages.artifact_path(self.doc(doc_id), name)
 
-    def export(self, dest):
+    def export(self, dest, doc_ids=None):
         with self.catalog.read_snapshot():
-            return reader_delivery.export(dest, self.conn, self.data, self.snapshot(), self.status())
+            return reader_delivery.export(dest, self.conn, self.data, self.snapshot(), self.status(), doc_ids=doc_ids)
 
-    def export_snapshot(self, verify=None):
+    def export_snapshot(self, verify=None, doc_ids=None):
         # The projection cache lives beside the other state; it is rebuildable,
         # so it stays out of the catalog and out of any backup contract.
         # verify=True re-reads and re-verifies every report's digest.
         with self.catalog.read_snapshot():
             return reader_delivery.export_snapshot(self.conn, self.data, self.snapshot(), self.status(),
-                                                   cache_root=self.state, verify=verify)
+                                                   cache_root=self.state, verify=verify, doc_ids=doc_ids)
 
     def backup(self, dest):
         return reader_delivery.backup(dest, self.conn, self.data, self.state)
