@@ -240,13 +240,25 @@
     byId('benchmark-updated').textContent=shown.length?'价格库更新至 '+shown.map(x=>x.as_of).sort().pop():'价格库暂无对应序列';
   }
 
+  function renderFactors(tree){
+    const host=byId('factor-tree');if(!host||!tree)return;host.replaceChildren();
+    const KIND={product:'产品',news:'新闻',data:'数据',report:'报告'};
+    const children=id=>tree.factors.filter(f=>f.parent===id);
+    const node=(f,depth)=>{const li=make('li','factor');li.style.setProperty('--depth',depth);
+      const head=make('div','factor-head'),name=make('b','',f.label),meta=make('small','',[f.unit,(f.bom_parts||[]).length?'部件 '+f.bom_parts.length:'',(f.price_series||[]).length?'序列 '+f.price_series.length:'',(f.questions||[]).length?'问题 '+(f.questions||[]).join('、'):'',(f.model_inputs||[]).length?'输入 '+f.model_inputs.length:''].filter(Boolean).join(' · '));
+      head.append(name,meta);li.append(head);if(f.formula)li.append(make('code','factor-formula',f.formula));
+      if(f.fetch&&f.fetch.length){const row=make('div','factor-fetch');for(const x of f.fetch){const chip=make('span','fetch-chip',KIND[x.kind]||x.kind);chip.title=x.what+'｜'+x.sources.join('、')+'｜'+x.cadence;row.append(chip,document.createTextNode(' '+x.what));row.append(make('br'));}li.append(row);}
+      li.title=(f.bom_parts||[]).join('、');const kids=children(f.id);if(kids.length){const ul=make('ul','factor-children');kids.forEach(k=>ul.append(node(k,depth+1)));li.append(ul);}return li;};
+    const root=make('ul','factor-root');children(null).forEach(f=>root.append(node(f,0)));host.append(root);
+    byId('factor-meta').textContent='因子树 v'+tree.version+' · '+tree.updated+' · '+tree.factors.length+' 个因子';
+  }
   function render(){
     const r=compute(values);markPreset();renderKpis(r);renderCapexStack(r);renderWaterfall(r);renderSplit(r);renderLedgerTables(r);renderSensitivity(r);renderScenarios(r);
     byId('export-json').onclick=()=>{const blob=new Blob([JSON.stringify({model_id:spec.model_id,as_of:spec.as_of,preset:activePreset||null,assumptions:values,results:r},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='datacenter-economics-'+(activePreset||'custom')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
   }
   const getJson=url=>fetch(url,{cache:'no-store'}).then(res=>{if(!res.ok)throw Error(url+' HTTP '+res.status);return res.json()});
-  Promise.all([getJson('/data/datacenter_economics_model.json'),getJson('/data/prices.json').catch(()=>({records:[]}))]).then(([data,p])=>{
-    spec=data;prices=p;byId('model-date').textContent='口径 '+spec.as_of;byId('model-note').textContent=spec.model_note;
+  Promise.all([getJson('/data/datacenter_economics_model.json'),getJson('/data/prices.json').catch(()=>({records:[]})),getJson('/data/tco_factors.json').catch(()=>null)]).then(([data,p,tree])=>{
+    spec=data;prices=p;renderFactors(tree);byId('model-date').textContent='口径 '+spec.as_of;byId('model-note').textContent=spec.model_note;
     renderPresets();renderBenchmarks();applyPreset('ms_hyperscaler_gb300');
     byId('reset-model').addEventListener('click',()=>applyPreset('ms_hyperscaler_gb300'));app.removeAttribute('aria-busy');
   }).catch(error=>{const el=byId('econ-error');el.hidden=false;el.textContent='经济模型加载失败：'+error.message;app.setAttribute('aria-busy','false')});

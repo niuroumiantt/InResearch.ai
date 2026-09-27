@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.13",
+  "version": "2026.09.27.14",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -526,8 +526,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 94926,
-      "sha256": "dc024c9840bdd80310e55e5d4fbacefa281adc7e55057bbbea7329fce133e583",
+      "bytes": 95885,
+      "sha256": "05c6952a0426976a807c22da47e8210692107e7bd3d9b468860b6c9792fa5250",
       "collections": []
     },
     {
@@ -3460,8 +3460,8 @@
     {
       "path": "docs/research/datacenter-economics/README.md",
       "role": "supporting_document",
-      "bytes": 6155,
-      "sha256": "3f16d579e72aff87f645f0ee601ab6dc8ce1de2c1a7a81d6e82a6eb556e22ad0",
+      "bytes": 7068,
+      "sha256": "54e08c3fb54ce1cf23e3fb6bc90387354a7e9dcd7c73d7b6d70c16eb6201c20a",
       "collections": []
     },
     {
@@ -6557,7 +6557,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5449,
-      "sha256": "49fc6603230b7cbe7fb38e95c750fdd34327ea32d7ac489cce5bdb5e3484c6e6",
+      "sha256": "3cc28f9a7dc3dde257c4192637b11c865d77c24e3fff20b534932b4a6254f11d",
       "collections": []
     },
     {
@@ -6579,8 +6579,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 36568,
-      "sha256": "5fda6379b87affedaafcfd4b4287a517e7fc80401888c840afdaad2e8f25489c",
+      "bytes": 36648,
+      "sha256": "28d606edfebdfb5a405bf1a006bf534c5369d3534e23695b99c52d773166e952",
       "collections": [
         {
           "name": "policies",
@@ -6853,10 +6853,22 @@
       ]
     },
     {
+      "path": "framework/tco_factors.json",
+      "role": "project_config",
+      "bytes": 18174,
+      "sha256": "3de8801912af6b7aae82a3f6d33a8f8b2af7c367a1d8e8a52ef3c9ec061a7a90",
+      "collections": [
+        {
+          "name": "factors",
+          "count": 24
+        }
+      ]
+    },
+    {
       "path": "framework/verification_contract.json",
       "role": "project_config",
       "bytes": 71750,
-      "sha256": "09087d8efa970f2f3639af8243a68d14f2a3645b4fd561814b9ded41500743fb",
+      "sha256": "e2278f59d12877f51d2d9c2ee8307231bcc5fcf22ba06f964a7f6009a1b55a32",
       "collections": [
         {
           "name": "policies",
@@ -8736,8 +8748,8 @@
     {
       "path": "tests/datacenter_economics.cjs",
       "role": "test",
-      "bytes": 3983,
-      "sha256": "c76352df8e3322d44b16c5a68e6135cc9e1b7a86401dee66b656c4dca5d0fd13",
+      "bytes": 4194,
+      "sha256": "bf2e44e413e2c6209fd8d04ba8f20a116314676312246c4c090d3eeb7ba8141b",
       "collections": []
     },
     {
@@ -9259,6 +9271,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_tco_factors.py",
+      "role": "test",
+      "bytes": 2834,
+      "sha256": "cb6442b051e5ca7a7bbebb1b9ba8283b4984ebdb9c83903b529c13a0aa116d43",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_text_similarity.py",
       "role": "test",
       "bytes": 9846,
@@ -9745,8 +9764,8 @@
     {
       "path": "web/components/datacenter-economics.js",
       "role": "implementation",
-      "bytes": 25504,
-      "sha256": "393c0170bd65421c5921302b66f721222bcdb4b3af753c2f00a8cc2f584075be",
+      "bytes": 27163,
+      "sha256": "ca601baad603bfa5e7f90d7cdc26639f0e27238e6a066237966d0df49402aae2",
       "collections": []
     },
     {
@@ -9941,8 +9960,8 @@
     {
       "path": "web/pages/economics.html",
       "role": "implementation",
-      "bytes": 8982,
-      "sha256": "2d1b2f2e5bb8cba695ff658c8d316cc5a327fa2ed93da840b976dd5f3fc24406",
+      "bytes": 9600,
+      "sha256": "60c4595a2ec7af1d6b61a51c6eb427099cbc8542af1c10b1371b3b0d0f439491",
       "collections": []
     },
     {
@@ -10032,8 +10051,8 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 7358,
-      "sha256": "dc613934a49895f33a0579249355de7655ab957d3f5f50801e92f078c8994447",
+      "bytes": 7416,
+      "sha256": "4262f58ca69a1d6a23a13f2fa5a5d23c8734b737dff104d1bfe8f596686aca43",
       "collections": []
     },
     {
@@ -10046,8 +10065,8 @@
     {
       "path": "web/themes/datacenter-economics.css",
       "role": "implementation",
-      "bytes": 8618,
-      "sha256": "c21df64f67aeadc51335f4301512332c624fe94e39b5bb54b0431d746d5a3c28",
+      "bytes": 9445,
+      "sha256": "af49a448304c086719c61b4109d289b1d1cd973c858f4aa3602a7090d6a02776",
       "collections": []
     },
     {
@@ -10081,11 +10100,11 @@
     "historical": 267,
     "implementation": 206,
     "normative": 13,
-    "project_config": 87,
+    "project_config": 88,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 27,
     "supporting_document": 53,
-    "test": 82
+    "test": 83
   }
 }

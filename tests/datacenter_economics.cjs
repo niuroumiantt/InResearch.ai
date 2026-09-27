@@ -14,7 +14,7 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
  assert.ok((await page.locator('#capex-stack svg rect').count())>=20);assert.ok((await page.locator('#waterfall svg rect').count())>=8);
  assert.equal(await page.locator('.split-row').count(),4);assert.ok((await page.locator('#tornado svg rect').count())>=14);
  assert.equal(await page.locator('#heatmap td').count(),30);assert.ok((await page.locator('#scenario-table tbody tr').count())>=6);
- assert.ok((await page.locator('.benchmark-row').count())>=10);assert.ok((await page.locator('#benchmark-updated').textContent()).includes('价格库更新至 2026-'));
+ assert.ok((await page.locator('.benchmark-row').count())>=10);assert.ok((await page.locator('#factor-tree .factor').count())>=20);assert.ok((await page.locator('#factor-meta').textContent()).includes('个因子'));assert.ok((await page.locator('.fetch-chip').count())>=15);assert.ok((await page.locator('#benchmark-updated').textContent()).includes('价格库更新至 2026-'));
  // Model API own infrastructure: NOPAT margin ~59%, ROIC ~46%
  await page.getByRole('button',{name:'模型 API · 自有基础设施'}).click();
  assert.ok((await page.locator('#kpi-model-sub').textContent()).includes('ROIC 46.'));
