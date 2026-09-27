@@ -36,13 +36,15 @@ class FetchspecReceiveTests(unittest.TestCase):
     def tearDown(self):
         self.tmp.cleanup()
 
-    def test_receive_archives_by_content_and_hands_pdf_to_reader(self):
+    def test_default_receive_archives_by_content_but_holds_reader_handoff(self):
         first = receive(self.repo, self.package, self.data)
         self.assertEqual(first['status'], 'received')
         original = self.data / 'originals' / self.sha[:2] / self.sha / (self.sha + '.pdf')
         self.assertEqual(hashlib.sha256(original.read_bytes()).hexdigest(), self.sha)
         handoff = self.data / 'raw-materials/fetchspec/GPU' / (self.sha + '.pdf')
-        self.assertTrue(handoff.exists())
+        self.assertFalse(handoff.exists())
+        self.assertEqual(first['reader_handoff_count'], 0)
+        self.assertEqual(first['items'][0]['reader_handoff'], 'held')
         self.assertEqual(receive(self.repo, self.package, self.data), first)
         receipt = json.loads((self.repo / 'data/raw/supply-center/receipts.json').read_text())
         self.assertEqual(receipt['deliveries']['test-1']['received_items'], 1)
@@ -50,6 +52,37 @@ class FetchspecReceiveTests(unittest.TestCase):
         self.assertEqual(found['total'], 1)
         self.assertEqual(found['records'][0]['sha256'], self.sha)
         self.assertEqual(found['records'][0]['acceptance'], 'candidate')
+
+    def test_explicit_reader_selection_hands_off_only_selected_files(self):
+        second_body = b'%PDF-1.4 second test payload'
+        second_sha = hashlib.sha256(second_body).hexdigest()
+        second_rel = f'files/{second_sha[:2]}/{second_sha}.pdf'
+        second_path = self.package / second_rel
+        second_path.parent.mkdir(parents=True)
+        second_path.write_bytes(second_body)
+        self.item['source']['categories'] = ['Networking']
+        manifest = json.loads((self.package / 'manifest.json').read_text())
+        second_item = dict(self.item, source_item_id='nvidia:item-2', source=dict(self.item['source']),
+                           sha256=second_sha, bytes=len(second_body), path=second_rel)
+        manifest['items'].append(second_item)
+        (self.package / 'manifest.json').write_text(json.dumps(manifest))
+        (self.package / 'SHA256SUMS').write_text(
+            f'{self.sha}  {self.relative}\n{second_sha}  {second_rel}\n')
+
+        result = receive(self.repo, self.package, self.data, reader_sha256=[self.sha])
+
+        selected = self.data / 'raw-materials/fetchspec/GPU' / (self.sha + '.pdf')
+        held = self.data / 'raw-materials/fetchspec/Networking' / (second_sha + '.pdf')
+        self.assertTrue(selected.exists())
+        self.assertFalse(held.exists())
+        self.assertEqual(result['reader_handoff_count'], 1)
+        self.assertEqual({item['sha256']: item['reader_handoff'] for item in result['items']},
+                         {self.sha: 'eligible', second_sha: 'held'})
+
+    def test_reader_selection_must_belong_to_delivery_before_any_write(self):
+        with self.assertRaises(PackageError):
+            receive(self.repo, self.package, self.data, reader_sha256=['f' * 64])
+        self.assertFalse((self.data / 'originals').exists())
 
     def test_bad_hash_is_rejected_before_data_write(self):
         (self.package / self.relative).write_bytes(b'corrupt')
@@ -82,8 +115,9 @@ class FetchspecReceiveTests(unittest.TestCase):
         manifest['items'] = [self.item]
         (self.package / 'manifest.json').write_text(json.dumps(manifest))
         receive(self.repo, self.package, self.data)
-        expected = self.data / 'raw-materials/fetchspec/uncategorized' / (self.sha + '.pdf')
+        expected = self.data / 'product-library/fetchspec/uncategorized' / (self.sha + '.pdf')
         self.assertTrue(expected.exists())
+        self.assertFalse((self.data / 'raw-materials').exists())
         self.assertFalse((self.data / 'raw-materials' / (self.sha + '.pdf')).exists())
 
     def test_unsupported_legacy_doc_file_is_preserved_but_not_reader_handed_off(self):
@@ -121,7 +155,7 @@ class FetchspecReceiveTests(unittest.TestCase):
         second = receive(self.repo, self.package, second_root)
         self.assertEqual(second, first)
         handoff = second_root / 'raw-materials/fetchspec/GPU' / (self.sha + '.pdf')
-        self.assertTrue(handoff.exists())
+        self.assertFalse(handoff.exists())
         self.assertEqual(product_documents(second_root, company_id='nvidia')['total'], 1)
 
     def test_new_version_is_preserved_as_a_review_event(self):

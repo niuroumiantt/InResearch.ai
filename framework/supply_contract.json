@@ -1,5 +1,5 @@
 {
-  "version": "1.1",
+  "version": "1.2",
   "effective_at": "2026-09-21",
   "phase": "planning_live",
   "operating_plan": {
@@ -40,6 +40,19 @@
     "storage_and_analysis": {
       "host": "spark",
       "meaning": "接收永久原件、提取与模型分析；不承担采集任务执行"
+    }
+  },
+  "temporary_execution": {
+    "nvidia_nas_unavailable": {
+      "source_and_permanent_storage": "spark",
+      "analysis_worker": "m5",
+      "reading_client": "claude_code_cli",
+      "ocr": "local_vision_model_separate_from_reading_model",
+      "worker_data": "content-addressed temporary copies and candidate outputs only",
+      "publish_credential_host": "spark",
+      "publish_route": "M5 candidate snapshot -> Spark relay -> HTTPS candidate receiver",
+      "acceptance": "complete per-document coverage, original SHA matches Spark, receiver acknowledgement, candidate visible on InResearch",
+      "scope": "NVIDIA pilot while NAS is unavailable; does not change permanent execution policy"
     }
   },
   "providers": [

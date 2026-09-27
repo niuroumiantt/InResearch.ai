@@ -1,8 +1,8 @@
-"""Verify Fetchspec packages and stage immutable, traceable Reader inputs.
+"""Verify Fetchspec packages and archive immutable, traceable product inputs.
 
 The package is untrusted data. This adapter validates every path and digest,
 archives bytes by content identity, preserves each source observation, and only
-opens formats with a production extractor to the existing Reader queue.
+hands explicitly selected files with a production extractor to the Reader queue.
 """
 from __future__ import annotations
 
@@ -240,7 +240,7 @@ def _archive_acquisition(package: Path, manifest: dict, data_root: Path, context
         collector.close()
 
 
-def _materialized_in(data_root: Path, manifest: dict) -> bool:
+def _materialized_in(data_root: Path, manifest: dict, reader_hashes=()) -> bool:
     """Only acknowledge replay when this data root still has every durable projection."""
     catalog = data_root / "acquisition" / "catalog.sqlite"
     if not catalog.is_file():
@@ -256,7 +256,7 @@ def _materialized_in(data_root: Path, manifest: dict) -> bool:
                          data_root / "originals" / sha[:2] / sha / (sha + suffix)]
                 paths.extend(data_root / "product-library" / "fetchspec" / category / (sha + suffix)
                              for category in safe_categories)
-                if suffix in SUPPORTED:
+                if suffix in SUPPORTED and sha in reader_hashes:
                     paths.append(data_root / "raw-materials" / "fetchspec" / safe_categories[0] / (sha + suffix))
                 for path in paths:
                     if path.is_symlink() or not path.is_file() or path.stat().st_size != item["bytes"]:
@@ -278,8 +278,14 @@ def _materialized_in(data_root: Path, manifest: dict) -> bool:
     return True
 
 
-def _receive(root: Path, package_path: Path, data_root: Path):
+def _receive(root: Path, package_path: Path, data_root: Path, reader_sha256=()):
     package, manifest = _load_package(package_path)
+    requested_reader_hashes = set(reader_sha256 or ())
+    items_by_sha = {item["sha256"]: item for item in manifest["items"]}
+    if requested_reader_hashes - items_by_sha.keys():
+        raise PackageError("reader_handoff_sha256_not_in_delivery")
+    if any("." + items_by_sha[sha]["format"].lower() not in SUPPORTED for sha in requested_reader_hashes):
+        raise PackageError("reader_handoff_extractor_required")
     receipt_file = _ledger(root)
     if receipt_file.exists():
         ledger = json.loads(receipt_file.read_text())
@@ -290,10 +296,15 @@ def _receive(root: Path, package_path: Path, data_root: Path):
     delivery_id = manifest["delivery_id"]
     identity = hashlib.sha256((package / "manifest.json").read_bytes()).hexdigest()
     prior = ledger["deliveries"].get(delivery_id)
+    prior_reader_hashes = {
+        item.get("sha256") for item in (prior or {}).get("items", [])
+        if item.get("reader_handoff") == "eligible"
+    }
+    reader_hashes = prior_reader_hashes | requested_reader_hashes
     if prior:
         if prior["manifest_sha256"] != identity:
             raise PackageError("delivery_id_reused_with_different_manifest")
-        if _materialized_in(Path(data_root).expanduser().resolve(), manifest):
+        if _materialized_in(Path(data_root).expanduser().resolve(), manifest, reader_hashes):
             return prior
 
     task_ref = manifest.get("task_id_or_discovery", "discovery")
@@ -357,7 +368,7 @@ def _receive(root: Path, package_path: Path, data_root: Path):
             updates.append({"change_type": change_type, "source_item_id": item["source_item_id"],
                             "previous_sha256": relation.get("supersedes_sha256"), "current_sha256": sha,
                             "review_required": True, "research_context": research_context})
-        if suffix in SUPPORTED:
+        if suffix in SUPPORTED and sha in reader_hashes:
             handoff = data_root / "raw-materials" / "fetchspec" / safe_categories[0] / (sha + suffix)
             private_dir(handoff.parent)
             if not handoff.exists():
@@ -369,23 +380,26 @@ def _receive(root: Path, package_path: Path, data_root: Path):
                 raise PackageError("reader_handoff_digest_mismatch")
         receipts.append({"sha256": sha, "format": fmt,
                          "status": "received" if suffix in SUPPORTED else "needs_supplement",
-                         "reader_handoff": "eligible" if suffix in SUPPORTED else "extractor_required"})
+                         "reader_handoff": ("eligible" if sha in reader_hashes else "held")
+                         if suffix in SUPPORTED else "extractor_required"})
     result = {"delivery_id": delivery_id, "manifest_sha256": identity,
               "task_id_or_discovery": task_ref, "research_context": research_context,
               "company_id": manifest.get("company_id"), "known_gaps": manifest.get("known_gaps", []),
               "updates": updates,
               "status": "received" if all(x["status"] == "received" for x in receipts) else "needs_supplement",
+              "reader_handoff_count": sum(x["reader_handoff"] == "eligible" for x in receipts),
               "received_items": len(receipts), "items": receipts,
-              "next": "Reader scan registers eligible files; reader run extracts them. Unsupported formats remain preserved and are not reported read."}
+              "next": ("Reader scan registers only explicitly selected files; reader run extracts them. "
+                       "All other files remain archived and held. Unsupported formats require a supplement.")}
     ledger["deliveries"][delivery_id] = result
     _write_json(receipt_file, ledger)
     return result
 
 
-def receive(root: Path, package_path: Path, data_root: Path):
+def receive(root: Path, package_path: Path, data_root: Path, reader_sha256=()):
     receipt_file = _ledger(Path(root))
     with locked(receipt_file):
-        return _receive(Path(root), package_path, data_root)
+        return _receive(Path(root), package_path, data_root, reader_sha256)
 
 
 def main(argv=None):
@@ -393,9 +407,11 @@ def main(argv=None):
     parser.add_argument("package", type=Path)
     parser.add_argument("--data-root", type=Path, default=Path.home() / ".local/share/inresearch.ai")
     parser.add_argument("--repo-root", type=Path, default=Path(__file__).resolve().parents[3])
+    parser.add_argument("--reader-sha256", action="append", default=[], metavar="SHA256",
+                        help="explicitly hand this package item to Reader; repeat for each selected file. Default: archive only")
     args = parser.parse_args(argv)
     try:
-        result = receive(args.repo_root.resolve(), args.package, args.data_root)
+        result = receive(args.repo_root.resolve(), args.package, args.data_root, args.reader_sha256)
         print(json.dumps(result, ensure_ascii=False, indent=2))
         return 0
     except (PackageError, OSError, ValueError, sqlite3.Error) as exc:

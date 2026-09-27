@@ -38,7 +38,11 @@ Spark 不执行采集任务；它接收已交付的永久原件、运行提取�
 
 能力目录随 Git 发布；需求/任务/操作回执保存在 `data/raw/supply-center/ledger.json`，生产由既有 private data/raw 规则映射到持久运行目录，不进 Git、不提供静态下载、不新增种子或迁移原有存储布局。写入使用锁、台账版本比较和操作 UUID 重放，登记真实执行人。读取不创建目录，损坏台账报错而非重建。提交持久性不确定时读取后以相同身份重试。
 
-校验通过的原件以 SHA 为身份同时登记在共享 `acquisition/catalog.sqlite` + `acquisition/blobs/` 的候选采集档案和 Reader 的 `originals/<sha前2位>/<sha>/<sha>.<格式>`。同一数据根内尽量硬链接复用字节，不重复存储。`product_documents` 是 acquisition catalog 内可重建/可校验的索引表，以公司、产品一级分类、格式、语言、研究问题、对象和版本为维度检索；分类浏览硬链接放在私有 `product-library/fetchspec/<分类>/`。支持现有 Reader 的 PDF、HTML、文本与仓库已有 Office 解析格式另以硬链接投递 `raw-materials/fetchspec/<第一分类>/`；Reader scan/run 才登记并阅读。其余已校验原件仍永久保存、状态为 needs_supplement，不投入一个无法处理的队列。相同 SHA 复用原件且追加来源；不同 SHA 不覆盖旧版，并保留上游 supersedes 声明。Reader 报告可按 SHA 查询并仅作为 candidate；证据采用仍走现有登记与复核接口。交付包在 Macmini 端落为批次目录，传输到 Spark 的 `incoming/<批次>/<delivery_id>` 后先校验传输，再在 Spark 用 `manage.py fetchspec-receive` 接收；禁止 `--delete`。接收器不主动传输、不删除包或历史原件。
+校验通过的原件以 SHA 为身份同时登记在共享 `acquisition/catalog.sqlite` + `acquisition/blobs/` 的候选采集档案和 Reader 的 `originals/<sha前2位>/<sha>/<sha>.<格式>`。同一数据根内尽量硬链接复用字节，不重复存储。`product_documents` 是 acquisition catalog 内可重建/可校验的索引表，以公司、产品一级分类、格式、语言、研究问题、对象和版本为维度检索；分类浏览硬链接放在私有 `product-library/fetchspec/<分类>/`。接收默认只做验收、归档和编目，不扩张 Spark Reader 队列；只有显式列出 `--reader-sha256` 的、已有解析器的文件才以硬链接投递到 `raw-materials/fetchspec/<第一分类>/`，由后续 Reader scan/run 登记和阅读。其余已校验原件仍永久保存、状态为 needs_supplement，不投入一个无法处理的队列。相同 SHA 复用原件且追加来源；不同 SHA 不覆盖旧版，并保留上游 supersedes 声明。Reader 报告可按 SHA 查询并仅作为 candidate；证据采用仍走现有登记与复核接口。交付包在 Macmini 端落为批次目录，传输到 Spark 的 `incoming/<批次>/<delivery_id>` 后先校验传输，再在 Spark 用 `manage.py fetchspec-receive` 接收；禁止 `--delete`。接收器不主动传输、不删除包或历史原件。
+
+### 临时跨机分析工序（NVIDIA 打样）
+
+NAS 未恢复期间，NVIDIA Fetchspec 原件继续留在 Spark（incoming 或已归档的 SHA 原件），Spark 是来源与永久存储权威。按 SHA 从 Spark 复制本轮明确选择的少量文件到 M5 临时工作区；M5 不接收永久资料库、不持有 Spark 发布凭证。M5 的 Reader 在本机完成解析/OCR 和候选阅读，阅读分析使用 M5 的 Claude Code CLI；本地视觉 OCR 模型是单独环节，不记作阅读模型。通过 Reader 导出 candidate-only 快照后，将快照回传 Spark，由 Spark 上的 `manage.py publish --snapshot <文件>` 使用 Spark 私有凭证转交既有 HTTPS 候选接收端。服务端按部署中的 graph/questions 再校验，候选不会自动成为已采用证据。完整交付需同时满足：原件 SHA 与 Spark 相同、逐篇阅读 coverage complete、快照成功回执、网站候选可检索；M5 本地模型输出或单次运行成功不等于交付完成。此路径是 NAS 恢复前的临时分工，不改变永久执行策略。
 
 接收账本位于私有 `data/raw/supply-center/receipts.json`，用锁和原子替换防止并发覆盖；重复同一 delivery_id + manifest 是幂等，重用 ID 但内容不同则拒绝。任务包按现有 research question/object 绑定，主动发现标明 discovery；不接受错误供应方或不存在的任务。`GET /api/product-documents` 与 `acquisition product-documents` 只读筛选已收资料，可按公司、一级分类、研究问题、格式和语言跨产品查询；它们不会生成事实/结论。研究解析索引仍由 Reader `catalog/catalog.sqlite`、`extracted/`、`artifacts/` 负责，Fetchspec 接收端不造第二套全文数据库或事实库。Reader 状态从其既有 catalog 只读投影到供应中心，目录缺失不创建库。
 
@@ -136,7 +140,7 @@ SEC 官方要求声明自动访问身份并控制请求频率，当前开发规�
 
 Fetchspec package 以 SHA256 区分字节版本，来源 URL / URL 同现、官方原文件名、英文/中文标记、产品一级分类、抓取时间、完整性、公开范围和同 URL 的 supersedes 关系随 candidate 记录保存。第一分类用于稳定分类浏览；多分类和具体来源链接仍保留在 source metadata，不猜测一份资料仅适用一个型号。PCN URL/role 是变化复核提示，不单凭文件名自动断定产品停产或规格变更。
 
-接收端在 acquisition items/observations 保留上游、source item 与每次交付关系；`product_documents` 按公司、一级产品分类、文件格式、语言、问题与对象建立可筛选索引。产品文件用 Reader 可处理格式和确定的官网文件语言进入 Reader；HTML 是来源页的静态快照，不是浏览器执行或链接资源镜像。Office 结构解析保留可取得的表格/工作簿结构；截断、扫描 PDF OCR 缺失、不支持的 DOC/RTF/ODF 等均阻塞或需补处理，绝不标作完整阅读。PCN、新旧版文件、跨型号规格参数由 Reader 形成带定位的 candidate；工程/研究人员复核来源、参数适用条件、型号与版本后，再通过既有知识登记采用。比较数据手册需对齐单位、典型/最大条件、环境/工作负载、版本和适用对象，不把同一 SHA 的多页面来源算成多项证据。
+接收端在 acquisition items/observations 保留上游、source item 与每次交付关系；`product_documents` 按公司、一级产品分类、文件格式、语言、问题与对象建立可筛选索引。产品文件用 Reader 可处理格式和确定的官网文件语言进入 Reader；接收包本身不等于授权全量投递。HTML 是来源页的静态快照，不是浏览器执行或链接资源镜像。Office 结构解析保留可取得的表格/工作簿结构；截断、扫描 PDF OCR 缺失、不支持的 DOC/RTF/ODF 等均阻塞或需补处理，绝不标作完整阅读。PCN、新旧版文件、跨型号规格参数由 Reader 形成带定位的 candidate；工程/研究人员复核来源、参数适用条件、型号与版本后，再通过既有知识登记采用。比较数据手册需对齐单位、典型/最大条件、环境/工作负载、版本和适用对象，不把同一 SHA 的多页面来源算成多项证据。
 
 ## 存储与阅读入口
 
@@ -150,7 +154,7 @@ Fetchspec package 以 SHA256 区分字节版本，来源 URL / URL 同现、官�
 | `originals/`、`extracted/`、`artifacts/` | 已有 reader 的原件、提取和候选成果 |
 | `library/` | 分类视图，不改变原件内容身份 |
 
-inews 标题、SEC 清单与不可阅读原件、GPU 报价响应**不会自动投入 raw-materials**。只有 Fetchspec 包逐文件完成哈希/格式/访问范围契约校验后，且格式已有提取器的产品资料，会由接收器硬链接至 `raw-materials/fetchspec/`；不支持的文件仍作为已存档接收项并标 needs_supplement。后续 Reader 扫描、粗读/深读与问题证据投影仍经同一个 reader。用户正在上传的批次独立校验、独立开放。
+inews 标题、SEC 清单与不可阅读原件、GPU 报价响应**不会自动投入 raw-materials**。Fetchspec 默认也只验收、归档和编目；只有被显式选择且格式已有提取器的产品资料，才会硬链接至 `raw-materials/fetchspec/`。不支持的文件仍作为已存档接收项并标 needs_supplement。后续 Reader 扫描、粗读/深读与问题证据投影仍经同一个 reader。用户正在上传的批次独立校验、独立开放。
 
 ## 研究模型的翻译与研究合同
 
