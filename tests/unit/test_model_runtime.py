@@ -262,6 +262,50 @@ class ClaudeCliTests(unittest.TestCase):
         self.assertEqual(json.loads(self.command[self.command.index("--json-schema") + 1]), schema)
 
 
+class CliOutputLimitTests(unittest.TestCase):
+    """Thinking that fills the output budget gets one low-effort retry, recorded."""
+    LIMIT = {"is_error": True, "result": "API Error: Claude's response exceeded the 4096 output token maximum. "
+             "To configure this behavior, set the CLAUDE_CODE_MAX_OUTPUT_TOKENS environment variable."}
+    OK = {"result": '{"answer":42}', "is_error": False}
+
+    def setUp(self):
+        self.profile = models.ModelProfile(backend="claude_cli", url="", model="claude-test-model")
+        self.client = models.JsonModelClient(self.profile)
+        self.commands = []
+
+    def run_with(self, *envelopes):
+        queue = list(envelopes)
+
+        def fake(command, **kwargs):
+            self.commands.append(command)
+            envelope = queue.pop(0)
+            events = [{"type": "assistant", "message": {"model": self.profile.model}}, {"type": "result", **envelope}]
+            kwargs["stdout"].write("\n".join(json.dumps(e) for e in events).encode())
+            return SimpleNamespace(returncode=1 if envelope.get("is_error") else 0)
+        with mock.patch.object(models.subprocess, "run", side_effect=fake):
+            return self.client.generate("contract", "source")
+
+    def test_output_limit_is_retried_once_at_low_effort_and_recorded(self):
+        value = self.run_with(self.LIMIT, self.OK)
+        self.assertEqual(value["answer"], 42)
+        self.assertEqual(value["_model"]["effort"], "low")
+        self.assertNotIn("--effort", self.commands[0])
+        self.assertEqual(self.commands[1][self.commands[1].index("--effort") + 1], "low")
+
+    def test_a_second_output_limit_is_reported_and_other_errors_are_not_retried(self):
+        with self.assertRaisesRegex(models.InferenceError, "^model_cli_output_limit$"):
+            self.run_with(self.LIMIT, self.LIMIT)
+        self.commands.clear()
+        with self.assertRaisesRegex(models.InferenceError, "^model_cli_failed$"):
+            self.run_with({"is_error": True, "result": "overloaded"})
+        self.assertEqual(len(self.commands), 1)
+
+    def test_normal_calls_carry_no_effort_flag(self):
+        value = self.run_with(self.OK)
+        self.assertNotIn("--effort", self.commands[0])
+        self.assertNotIn("effort", value["_model"])
+
+
 class TriageRoutingTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()

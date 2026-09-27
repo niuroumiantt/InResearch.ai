@@ -87,7 +87,7 @@ class ModelOutputError(ModelError):
 # connection, a stalled process). They take the normal retry-with-backoff path
 # instead of blocking the whole document; authentication and a missing CLI stay
 # blocked because retrying cannot fix them.
-TRANSIENT_MODEL_CODES = ("model_cli_failed", "model_cli_timeout")
+TRANSIENT_MODEL_CODES = ("model_cli_failed", "model_cli_timeout", "model_cli_output_limit")
 
 class TransientModelError(ModelError):
     def __init__(self, code):
