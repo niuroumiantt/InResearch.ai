@@ -191,7 +191,10 @@ class JsonModelClient:
                 options["repeat_penalty"] = p.repeat_penalty
             if p.repeat_last_n is not None:
                 options["repeat_last_n"] = p.repeat_last_n
-            body.update(format="json", options=options)
+            # A task schema constrains decoding itself, so a stray ASCII quote in
+            # Chinese text cannot end a string early and drop required fields
+            # (df93 chunk 2 lost "claims" that way under plain JSON mode).
+            body.update(format=json_schema if json_schema is not None else "json", options=options)
             if think is not None:
                 body["think"] = think
         else:

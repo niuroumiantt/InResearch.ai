@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.7",
+  "version": "2026.09.27.8",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -24,9 +24,9 @@
     "framework/05_interface_system.md": "9daf6c2b1a3eb93fd0dbb8e766f3c411aa27a29dc725ebee01f65cf67f4bbefa",
     "framework/06_acquisition.md": "1364d7f57dcad6dadd6cc9fe73b4cec54443ec92c37eea8b9e88774f3fbe8bff",
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
-    "framework/08_model_execution.md": "9891e0a9de35863cda066157ccc57f2c366ade8ec5319210117e34bfe5275114",
+    "framework/08_model_execution.md": "b6dc22119098a0ff85eb029c2bde146c9132a67083e63dff01f9a4188736e629",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "e355da948ab928222b773ec88cb0e84b99816da9fb0f262536ee85502f7641c5",
+    "framework/CURRENT.md": "093a088d5738d42ee5e1ade478bc0f1aa1aba2e20060920e910aa0f24ac6f0ab",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "df28e4e220f0df9e7bb6dbb47252b9656be374ac08eb090ca3dbb268a63750de",
@@ -77,6 +77,7 @@
     "tests/unit/test_ocr_repeat_penalty.py": "726ecb2ad5655b913ce7ea1286091b84169dd833fd89583d8b72169faf3eabe8",
     "tests/unit/test_ocr_worker_named.py": "cebfc4268d7580aca5e9232e1c3233b656ea0b91886ec771fd348373b0c8f969",
     "tests/unit/test_ocr_worker_resume.py": "f7ecde3fc31d8a75d6d13c071366b7b11857aee1af38a3b3bc3f2f111b826c39",
+    "tests/unit/test_ollama_schema.py": "b70ab619eba8b6a3e5a565831a9c838a50c12e30bdd4cdc9473c3cde9cad14d8",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "13d781d6bb35801eb8a7b4592008e2a87f9a3b48a2c685e442c860bcddde220c",
     "tests/unit/test_reader_depth.py": "3e9a0ace8150391afd8f9d50cc3cfeb99f6da189657279e157d458917f2e2d13",
@@ -467,7 +468,7 @@
       "policy": "model-execution-20260912",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
@@ -490,12 +491,17 @@
         "tests/unit/test_ocr_repeat_penalty.py::RepeatPenaltyProfileTests.test_out_of_range_or_non_ollama_windows_are_refused",
         "tests/unit/test_model_runtime.py::ClaudeCliTests.test_cli_schema_requests_structured_output_and_accepts_its_tool_use_stop",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_reader_prompt_requires_verbatim_source_quotes",
-        "tests/unit/test_continuous_reader.py::ReaderTests.test_bad_quote_gets_one_targeted_retry_and_only_verified_result_is_saved"
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_bad_quote_gets_one_targeted_retry_and_only_verified_result_is_saved",
+        "tests/unit/test_ollama_schema.py::OllamaSchemaTests.test_task_schema_constrains_ollama_decoding",
+        "tests/unit/test_ollama_schema.py::OllamaSchemaTests.test_without_a_schema_plain_json_mode_is_kept",
+        "tests/unit/test_ollama_schema.py::OllamaSchemaTests.test_every_reader_stage_sends_its_schema",
+        "tests/unit/test_ollama_schema.py::OllamaSchemaTests.test_schema_does_not_change_the_frozen_reading_identity"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。",
         "2026-09-26 按环节选模型未做同型号质量对比；claude-sonnet-5 / claude-opus-5-5 未在 M4 上用 `models --probe` 实测身份核对；L2 终端会话使用的模型由操作者选择，只能靠 record 的 --model 如实记录，程序不强制。",
-        "2026-09-27 repeat_penalty 1.1 / repeat_last_n 256 在两页循环页（df93 p23、0d50 p3）上两遍成功且一致，与已核 1.05 结果的三页比数字无丢失（仅页脚页码差一处）；样本仅 5 页，整批成功率与更强惩罚对表格重复数值的影响待重跑后统计。OCR 双读不能发现一致误读（旋转小字、生僻字）。；Claude JSON Schema 与反馈纠正由 M5 当前 sonnet CLI 做了探针和两块 NVIDIA 真实阅读；全集阅读仍未完成，Spark/第二模型与结构化模式兼容性未验。"
+        "2026-09-27 repeat_penalty 1.1 / repeat_last_n 256 在两页循环页（df93 p23、0d50 p3）上两遍成功且一致，与已核 1.05 结果的三页比数字无丢失（仅页脚页码差一处）；样本仅 5 页，整批成功率与更强惩罚对表格重复数值的影响待重跑后统计。OCR 双读不能发现一致误读（旋转小字、生僻字）。；Claude JSON Schema 与反馈纠正由 M5 当前 sonnet CLI 做了探针和两块 NVIDIA 真实阅读；全集阅读仍未完成，Spark/第二模型与结构化模式兼容性未验。",
+        "Ollama 受约束解码只用伪造 HTTP 测试；未在 Spark 的 qwen3.8:27b 上核对 schema 支持程度（maxLength 等关键字可能被忽略）、速度影响，以及 30 份 model_output_invalid 重试后的实际通过率。"
       ]
     },
     {

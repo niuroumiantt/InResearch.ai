@@ -18,6 +18,8 @@ Claude CLI 在临时目录中以非交互模式运行，材料从标准输入传
 
 `text_json` 和 `vision_json` 是适配器接受的能力声明，须经目标模型的小样本验收后配置；声明本身不证明质量。OCR 必须显式配置 `ocr` 角色，当前视觉适配支持 Ollama。没有视觉能力的文本模型不能冒充读过图片。
 
+Ollama 文本任务把 reader 各环节（triage/read/synthesize）的 JSON Schema 直接放进请求的 `format`，由受约束解码保证输出符合结构；未给 schema 的调用（如 OCR）仍用 `format="json"`。2026-09-27 起：此前仅 `claude_cli` 使用 schema，Ollama 只用 JSON 模式，中文摘要里的 ASCII 引号会提前结束字符串，整块丢掉必填的 `claims`（df93 第 2 块），表现为 `model_output_invalid`。schema 不进入档案身份与 `reading_identity()`，已冻结配方不受影响；受约束解码只保证结构，不保证引文正确，引文仍按原文逐字校验。
+
 Ollama 档案可选 `repeat_penalty`（1.0–2.0）与 `repeat_last_n`（1 至档案上下文，惩罚回看的最近 token 数，Ollama 默认 64），均仅 Ollama：qwen3-vl 在温度 0 下遇到重复表格行或重复标语会循环，被 Ollama 以 `token repeat limit reached` 中止或写满 `num_predict` 截断；重复块长于回看窗口时惩罚不起作用。当前只有 `spark_ocr` 设 1.1 / 256。两者都会改变输出，所以设了才记入档案身份与每页 `_model`；reader 冻结配方只比较 `reading_identity()` 的固定字段，不因此失效。惩罚可能压掉合法的连续相同数值（如“0.0 0.0 0.0”），双读一致不能发现这类误差，须抽查原件。
 
 Reader JSON 快照可用重复的 `--doc-id` 显式限定交付范围。限定导出只包含所选且已有完整覆盖报告的当前文档；未知 ID 或尚未完成的文档整体拒绝，不部分导出。限定导出不覆盖 catalog 全局的 mapping-proposals 派生文件。快照里的 Reader 总体状态仍反映整个队列，局部材料成功不冒充整批健康；发布端继续逐文档核验完整 coverage，并只接收 candidate。

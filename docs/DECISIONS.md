@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-27：Ollama 阅读请求带任务 schema
+
+优先级 9 的核心文档在 read 环节反复 `model_output_invalid`（队列中 30 份，含 df93、c6db、ad60、0d50、2ace、4887）。M4 逐块排查：qwen3.8:27b 输出能解析为 JSON 但缺 `claims`，原因是中文摘要里用了 ASCII 双引号，提前结束了字符串；Ollama 请求只设 `format="json"`，reader 的 schema 只传给了 Claude CLI。采用：Ollama 请求改为把任务 schema 作为 `format`，由受约束解码保证结构；不改模型、不改冻结配方。合并部署后对这些文档按 `--error-code model_output_invalid` 重试一次验证。
+
 ## 2026-09-27：Spark 阅读进度页
 
 用户要求能实时看到谁在做什么、进度如何。reader status 的 JSON 只给总数，看不出 35 份重点文档各卡在哪，也看不出降温占去多少时间（当日日志显示几乎每个任务后都暂停 120 秒，机温 83–87 ℃）。用户采用：新增只读 `reader-progress` 生成自动刷新的 HTML 页，Mac 端循环脚本每 60 秒拉取；不改动 catalog、不经公网，M4 只显示经 Spark 可见的认领与已上传页。
