@@ -3,7 +3,11 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
+import contextlib
+import io
+from unittest.mock import patch
 
+from inresearch.delivery import publish_pilot_progress
 from inresearch.workflow import pilot_progress
 
 
@@ -58,6 +62,40 @@ class PilotProgressTests(unittest.TestCase):
         bad['status']['backend']['backend'] = 'spark_reader'
         with self.assertRaisesRegex(ValueError, 'M5 Claude'):
             pilot_progress.receive(self.root, bad)
+
+    def test_receiver_credential_resolves_inside_deployed_runtime(self):
+        runtime = self.root / 'runtime'
+        with patch.dict(os.environ, {'INRESEARCH_RUNTIME_ROOT': str(runtime)}, clear=False):
+            os.environ.pop('INRESEARCH_PILOT_TOKEN_FILE', None)
+            self.assertEqual(runtime / 'data/.nvidia_pilot_token', pilot_progress.token_path(self.root))
+
+
+class PilotPublisherTests(unittest.TestCase):
+    def test_publisher_posts_with_private_token_and_requires_receiver_ack(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp)
+            status = root / 'status.json'
+            snapshot = root / 'candidate.json'
+            token = root / 'pilot.token'
+            status.write_text(json.dumps({'generated': '2026-09-27T07:34:17Z'}))
+            snapshot.write_text(json.dumps({'knowledge': {'documents': [{'title': 'A100'}]}}))
+            token.write_text('test-pilot-credential-' * 2)
+            token.chmod(0o600)
+            env = {'INRESEARCH_PILOT_TOKEN_FILE': str(token),
+                   'INRESEARCH_PILOT_PROGRESS_URL': 'https://receiver.example.test/api/pilot-progress/nvidia'}
+            with patch.dict(os.environ, env), \
+                    patch.object(publish_pilot_progress.urllib.request, 'build_opener') as build_opener, \
+                    contextlib.redirect_stdout(io.StringIO()):
+                response = build_opener.return_value.open.return_value.__enter__.return_value
+                response.read.return_value = b'{"ok":true,"received_at":"2026-09-27T07:35:00Z"}'
+                self.assertEqual(0, publish_pilot_progress.main([
+                    '--status', str(status), '--snapshot', str(snapshot)]))
+                build_opener.assert_called_once_with(publish_pilot_progress.NoRedirect)
+                request = build_opener.return_value.open.call_args.args[0]
+                self.assertEqual('Bearer ' + token.read_text(), request.get_header('Authorization'))
+                self.assertEqual('https://receiver.example.test/api/pilot-progress/nvidia', request.full_url)
+                self.assertEqual('POST', request.get_method())
+                self.assertEqual({'generated': '2026-09-27T07:34:17Z'}, json.loads(request.data)['status'])
 
 
 if __name__ == '__main__':
