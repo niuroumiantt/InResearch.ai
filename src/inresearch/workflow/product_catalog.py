@@ -121,6 +121,7 @@ def receive(root, payload):
     db = connect(root)
     try:
         with db:
+            db.execute('BEGIN IMMEDIATE')
             latest = db.execute('SELECT generated,id FROM runs ORDER BY generated DESC LIMIT 1').fetchone()
             if latest and latest['id'] == run_id:
                 return {'ok': True, 'replayed': True, 'products': len(payload['products']), 'run_id': run_id}
