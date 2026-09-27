@@ -22,6 +22,7 @@ COMMANDS = {
     'acquisition': 'inresearch.adapters.acquisition', 'news-sync': 'inresearch.adapters.news_sync',
     'historical-brief': 'inresearch.adapters.historical_brief',
     'acquisition-status': 'inresearch.delivery.acquisition_status', 'reader-status': 'inresearch.delivery.reader_status',
+    'reader-progress': 'inresearch.delivery.reader_progress',
     'backup': 'inresearch.delivery.backup', 'library': 'inresearch.materials.library',
     'asset-check': 'inresearch.adapters.asset_check', 'asset-compare': 'inresearch.adapters.asset_compare', 'asset-download': 'inresearch.adapters.asset_download',
     'registry': 'inresearch.knowledge.registry', 'facts': 'inresearch.knowledge.facts', 'validate': 'inresearch.knowledge.validate', 'verify': 'inresearch.knowledge.verify',
