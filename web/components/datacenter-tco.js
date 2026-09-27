@@ -51,12 +51,17 @@
   const num=(x,d=1)=>x==null||!isFinite(x)?'—':Number(x).toLocaleString(undefined,{maximumFractionDigits:d,minimumFractionDigits:d});
   const delta=(cur,base,fmt,lowerIsBetter=true)=>{if(base==null||cur==null||!isFinite(base)||!isFinite(cur))return null;const d=cur-base;if(Math.abs(d)<1e-9*Math.max(1,Math.abs(base)))return {text:'= 基准',cls:'flat'};const rel=base?d/base:null;return {text:(d>0?'+':'−')+fmt(Math.abs(d))+(rel!=null?' ('+(d>0?'+':'−')+Math.abs(rel*100).toFixed(1)+'%)':''),cls:(d<0)===lowerIsBetter?'better':'worse'};};
   const chip=(d)=>{const c=make('span','delta '+(d?d.cls:'flat'),d?d.text:'—');return c;};
-  let values,baseline,baselineLabel='',activePreset='',prices,tree;
+  let values,baseline,baselineLabel='',activePreset='',prices,tree,compareMode='unit';
+  const scaleTo=(res,mw)=>res.inputs.it_mw?mw/res.inputs.it_mw:1;// baseline figures rescaled to the current capacity
+  const baseVal=(bres,key,cur)=>compareMode==='unit'?bres[key]*scaleTo(bres,cur.inputs.it_mw):bres[key];
+  const baseLev=(bres,k,cur)=>compareMode==='unit'?bres.lev[k]*scaleTo(bres,cur.inputs.it_mw):bres.lev[k];
 
   function applyTable(a,key,table){const rec=spec[table][a[key]];if(!rec)return;for(const k in rec){if(k in a&&k!=='label'&&k!=='source')a[k]=rec[k];}}
   function withPreset(id){const a={...spec.assumptions};const p=spec.presets[id];if(!p)return a;const ch={...p.changes};for(const [key,table] of [['site','sites'],['cooling','coolings'],['it_class','it_classes']]){if(ch[key]){a[key]=ch[key];applyTable(a,key,table);}}Object.assign(a,ch);return a;}
   function applyPreset(id){values=withPreset(id);activePreset=id;renderInputs();render();}
-  function setBaseline(label){baseline=compute({...values});baselineLabel=label||(activePreset?spec.presets[activePreset].label:'当前假设');byId('baseline-label').textContent='对比基准：'+baselineLabel;render();}
+  function describe(a){return `${a.it_mw} MW · ${spec.sites[a.site]?.label||a.site} · ${spec.coolings[a.cooling]?.label||a.cooling} · ${spec.it_classes[a.it_class]?.label||a.it_class} · ${spec.redundancy_factors[a.redundancy].label} · ${({own:'自建自持',lease:'租带电壳',colo:'托管'})[a.facility_mode]}`;}
+  function renderBaselineLabel(){if(!baseline)return;byId('baseline-label').textContent='对比基准：'+baselineLabel+'（'+describe(baseline.inputs)+'）· '+(compareMode==='unit'?'按每 MW 折算到当前容量比较':'按绝对金额比较');}
+  function setBaseline(label){baseline=compute({...values});baselineLabel=label||(activePreset?spec.presets[activePreset].label:'当前假设');renderBaselineLabel();render();}
 
   const STATUS={input:['用户给定','input'],sourced:['已有来源','sourced'],assumed:['作者假设','assumed'],needed:['待获取','needed']};
   function renderPresets(){const host=byId('presets');host.replaceChildren();for(const [id,p] of Object.entries(spec.presets)){const b=make('button','',p.label);b.type='button';b.dataset.id=id;b.addEventListener('click',()=>applyPreset(id));host.append(b);}}
@@ -85,7 +90,7 @@
 
   function renderKpis(r){
     const b=baseline||r,a=r.inputs;
-    const tiles=[['kpi-lev','平准化年成本',money(r.levelised),delta(r.levelised,b.levelised,money)],['kpi-mw','每 MW·年',money(r.perMwYear),delta(r.perMwYear,b.perMwYear,money)],['kpi-kw','每 kW·月','$'+num(r.perKwMonth,0),delta(r.perKwMonth,b.perKwMonth,x=>'$'+num(x,0))],['kpi-kwh','每 IT kWh','$'+num(r.perItKwh,3),delta(r.perItKwh,b.perItKwh,x=>'$'+num(x,3))],['kpi-gpu','每付费 GPU 小时',r.perGpuHour?'$'+num(r.perGpuHour,2):'非 GPU',delta(r.perGpuHour,b.perGpuHour,x=>'$'+num(x,2))],['kpi-capex','资本开支占比',pct(r.capexShare,0),delta(r.capexShare,b.capexShare,x=>pct(x,1),false)]];
+    const tiles=[['kpi-lev','平准化年成本',money(r.levelised),delta(r.levelised,baseVal(b,'levelised',r),money)],['kpi-mw','每 MW·年',money(r.perMwYear),delta(r.perMwYear,b.perMwYear,money)],['kpi-kw','每 kW·月','$'+num(r.perKwMonth,0),delta(r.perKwMonth,b.perKwMonth,x=>'$'+num(x,0))],['kpi-kwh','每 IT kWh','$'+num(r.perItKwh,3),delta(r.perItKwh,b.perItKwh,x=>'$'+num(x,3))],['kpi-gpu','每付费 GPU 小时',r.perGpuHour?'$'+num(r.perGpuHour,2):'非 GPU',delta(r.perGpuHour,b.perGpuHour,x=>'$'+num(x,2))],['kpi-capex','资本开支占比',pct(r.capexShare,0),delta(r.capexShare,b.capexShare,x=>pct(x,1),false)]];
     for(const [id,label,val,d] of tiles){const el=byId(id);el.replaceChildren(make('small','',label),make('strong','',val),chip(d));}
     byId('project-line').textContent=`${a.it_mw} MW · ${spec.sites[a.site]?.label||a.site} · ${spec.coolings[a.cooling]?.label||a.cooling} · ${spec.it_classes[a.it_class]?.label||a.it_class} · ${spec.redundancy_factors[a.redundancy].label} · ${({own:'自建自持',lease:'租带电壳',colo:'托管'})[a.facility_mode]} · 建设 ${a.construction_years} 年 + 运营 ${a.horizon_years} 年 · 设施 ${num(r.capexPerMw.facility,1)} $M/MW + IT ${num(r.capexPerMw.it,1)} $M/MW · TCO 现值 ${money(r.pvTotal)}`;
   }
@@ -99,31 +104,32 @@
         if(w>46)svg.append(Object.assign(svgEl('text',{x:x+w/2,y:y+17,'text-anchor':'middle',class:'chart-inbar'}),{textContent:pct(v/total,0)}));x+=w;}};
     draw(r,8,'当前');draw(b,52,'基准');host.append(svg);
     const legend=byId('structure-legend');legend.replaceChildren();
-    for(const k of CATS){const v=r.lev[k],bv=b.lev[k];if(v<=0&&bv<=0)continue;const it=make('div','legend-row');const sw=make('i');sw.style.background=COLOR[k];const d=delta(v,bv,money);it.append(sw,make('span','',LABEL[k]),make('strong','',money(v)),chip(d));legend.append(it);}
+    const mw=r.inputs.it_mw;for(const k of CATS){const v=r.lev[k],bv=baseLev(b,k,r);if(v<=0&&bv<=0)continue;const it=make('div','legend-row');const sw=make('i');sw.style.background=COLOR[k];const d=delta(compareMode==='unit'?v/mw:v,compareMode==='unit'?bv/mw:bv,money);it.append(sw,make('span','',LABEL[k]),make('strong','',compareMode==='unit'?money(v/mw)+'/MW':money(v)),chip(d));legend.append(it);}
+    byId('structure-basis').textContent=compareMode==='unit'?'金额为每 MW·年；变化按同容量基准':'金额为全项目年成本；变化按绝对金额';
   }
 
   function renderTimeline(r){
     const host=byId('timeline');host.replaceChildren();const b=baseline||r;
     const W=760,H=260,left=54,bottom=34,top=12,n=r.years.length,colW=(W-left-10)/n;
-    const max=Math.max(...r.years.map(y=>y.total),...b.years.map(y=>y.total))*1.05,scale=(H-top-bottom)/max;
+    const k=compareMode==='unit'?scaleTo(b,r.inputs.it_mw):1;const max=Math.max(...r.years.map(y=>y.total),...(baseline?b.years.map(y=>y.total*k):[0]))*1.05,scale=(H-top-bottom)/max;
     const svg=svgEl('svg',{viewBox:`0 0 ${W} ${H}`,class:'chart'});
     for(let i=0;i<=4;i++){const v=max/4*i,y=H-bottom-v*scale;svg.append(svgEl('line',{x1:left,y1:y,x2:W-8,y2:y,stroke:'var(--ui-line)','stroke-dasharray':i?'2 3':''}));svg.append(Object.assign(svgEl('text',{x:left-6,y:y+4,'text-anchor':'end',class:'chart-label'}),{textContent:money(v)}));}
     r.years.forEach((row,i)=>{let y0=H-bottom;const x=left+i*colW+2,w=Math.max(2,colW-4);
       for(const k of CATS){const v=row[k];if(v<=0)continue;const h=v*scale;const rect=svgEl('rect',{x,y:y0-h,width:w,height:h,fill:COLOR[k]});rect.append(Object.assign(svgEl('title'),{textContent:`第 ${row.year} 年 · ${LABEL[k]} ${money(v)}`}));svg.append(rect);y0-=h;}
       if(i%Math.ceil(n/12)===0||i===n-1)svg.append(Object.assign(svgEl('text',{x:x+w/2,y:H-bottom+14,'text-anchor':'middle',class:'chart-label'}),{textContent:row.year<=0?'建':String(row.year)}));
     });
-    if(baseline&&b.years.length===n){const pts=b.years.map((row,i)=>`${left+i*colW+colW/2},${H-bottom-row.total*scale}`).join(' ');svg.append(svgEl('polyline',{points:pts,fill:'none',stroke:'var(--ui-ink)','stroke-width':1.5,'stroke-dasharray':'4 3'}));}
-    svg.append(Object.assign(svgEl('text',{x:W-8,y:H-4,'text-anchor':'end',class:'chart-label'}),{textContent:'建 = 建设期；虚线 = 基准年度合计；名义金额'}));
+    if(baseline&&b.years.length===n){const pts=b.years.map((row,i)=>`${left+i*colW+colW/2},${H-bottom-row.total*k*scale}`).join(' ');svg.append(svgEl('polyline',{points:pts,fill:'none',stroke:'var(--ui-ink)','stroke-width':1.5,'stroke-dasharray':'4 3'}));}
+    svg.append(Object.assign(svgEl('text',{x:W-8,y:H-4,'text-anchor':'end',class:'chart-label'}),{textContent:'建 = 建设期；虚线 = 基准年度合计'+(compareMode==='unit'?'（折算到当前容量）':'')+'；名义金额'}));
     host.append(svg);
     byId('timeline-note').textContent=`名义合计 ${money(r.nominalTotal)}，折现后 TCO 现值 ${money(r.pvTotal)}（折现率 ${pct(r.inputs.wacc,1)}）；IT 每 ${r.inputs.it_refresh_years} 年更新一次（更新造价 ${pct(r.inputs.refresh_cost_factor,0)}），电价年涨 ${pct(r.inputs.power_escalation,1)}，运营成本年涨 ${pct(r.inputs.opex_escalation,1)}。`;
   }
 
   function renderTable(r){
     const host=byId('cost-table');host.replaceChildren();const b=baseline||r,itKw=r.inputs.it_mw*1000;
-    const table=make('table','bi'),thead=make('thead'),tr=make('tr');for(const h of ['成本项','平准化年成本','占比','每 kW·月','TCO 现值','名义合计','对基准'])tr.append(make('th','',h));thead.append(tr);table.append(thead);
+    const table=make('table','bi'),thead=make('thead'),tr=make('tr');for(const h of ['成本项','平准化年成本','占比','每 kW·月','TCO 现值','名义合计',compareMode==='unit'?'对基准（同容量折算）':'对基准（绝对）'])tr.append(make('th','',h));thead.append(tr);table.append(thead);
     const body=make('tbody');const nominal={};CATS.forEach(k=>nominal[k]=r.years.reduce((s,y)=>s+y[k],0));
-    for(const k of CATS){const v=r.lev[k];if(v<=0&&(b.lev[k]||0)<=0)continue;const row=make('tr');const sw=make('i');sw.style.background=COLOR[k];const c1=make('td');c1.append(sw,document.createTextNode(LABEL[k]));row.append(c1,make('td','',money(v)),make('td','',pct(v/r.levelised)),make('td','','$'+num(v/itKw/12,0)),make('td','',money(r.pv[k])),make('td','',money(nominal[k])));const dc=make('td');dc.append(chip(delta(v,b.lev[k],money)));row.append(dc);body.append(row);}
-    const tot=make('tr','total');tot.append(make('td','','合计'),make('td','',money(r.levelised)),make('td','','100%'),make('td','','$'+num(r.perKwMonth,0)),make('td','',money(r.pvTotal)),make('td','',money(r.nominalTotal)));const dc=make('td');dc.append(chip(delta(r.levelised,b.levelised,money)));tot.append(dc);body.append(tot);
+    for(const k of CATS){const v=r.lev[k];if(v<=0&&(b.lev[k]||0)<=0)continue;const row=make('tr');const sw=make('i');sw.style.background=COLOR[k];const c1=make('td');c1.append(sw,document.createTextNode(LABEL[k]));row.append(c1,make('td','',money(v)),make('td','',pct(v/r.levelised)),make('td','','$'+num(v/itKw/12,0)),make('td','',money(r.pv[k])),make('td','',money(nominal[k])));const dc=make('td');dc.append(chip(delta(v,baseLev(b,k,r),money)));row.append(dc);body.append(row);}
+    const tot=make('tr','total');tot.append(make('td','','合计'),make('td','',money(r.levelised)),make('td','','100%'),make('td','','$'+num(r.perKwMonth,0)),make('td','',money(r.pvTotal)),make('td','',money(r.nominalTotal)));const dc=make('td');dc.append(chip(delta(r.levelised,baseVal(b,'levelised',r),money)));tot.append(dc);body.append(tot);
     table.append(body);host.append(table);
   }
 
@@ -184,7 +190,7 @@
   }
   const getJson=url=>fetch(url,{cache:'no-store'}).then(res=>{if(!res.ok)throw Error(url+' HTTP '+res.status);return res.json()});
   const boot=([data,p,t])=>{spec=data;prices=p;tree=t;byId('model-date').textContent='口径 '+spec.as_of;byId('model-note').textContent=spec.model_note;renderPresets();renderGaps();values=withPreset('ai_virginia_own');activePreset='ai_virginia_own';renderInputs();setBaseline(spec.presets.ai_virginia_own.label);
-    byId('reset-model').addEventListener('click',()=>applyPreset('ai_virginia_own'));byId('set-baseline').addEventListener('click',()=>setBaseline());app.removeAttribute('aria-busy');};
+    byId('reset-model').addEventListener('click',()=>applyPreset('ai_virginia_own'));byId('set-baseline').addEventListener('click',()=>setBaseline());byId('compare-mode').addEventListener('change',e=>{compareMode=e.target.value;renderBaselineLabel();render();});app.removeAttribute('aria-busy');};
   const fail=error=>{const el=byId('tco-error');el.hidden=false;el.textContent='TCO 模型加载失败：'+error.message;app.setAttribute('aria-busy','false');};
   if(window.__TCO_SPEC)Promise.resolve([window.__TCO_SPEC,{records:window.__TCO_PRICES||[]},window.__TCO_TREE||null]).then(boot).catch(fail);
   else Promise.all([getJson('/data/datacenter_tco_model.json'),getJson('/data/prices.json').catch(()=>({records:[]})),getJson('/data/tco_factors.json').catch(()=>null)]).then(boot).catch(fail);

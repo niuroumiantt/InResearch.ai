@@ -34,6 +34,7 @@
       <button type="button" class="primary" id="reset-model">恢复基准情景</button>
       <button type="button" id="set-baseline">把当前设为对比基准</button>
       <button type="button" id="copy-results">复制假设与结果</button>
+      <label class="compare-select">对比口径 <select id="compare-mode"><option value="unit">每 MW 折算</option><option value="absolute">绝对金额</option></select></label>
     </div>
   </header>
 
@@ -58,7 +59,7 @@
 
     <div class="results">
       <section class="card">
-        <div class="card-head"><div><p class="eyebrow">COST STRUCTURE</p><h2>平准化年成本结构</h2></div><span>当前 vs 基准 · 占比</span></div>
+        <div class="card-head"><div><p class="eyebrow">COST STRUCTURE</p><h2>平准化年成本结构</h2></div><span id="structure-basis">当前 vs 基准 · 占比</span></div>
         <div id="structure" class="chart-host"></div>
         <div id="structure-legend" class="legend-grid"></div>
       </section>

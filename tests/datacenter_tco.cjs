@@ -21,6 +21,10 @@ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8878';
  assert.equal(await page.locator('#input-power_price').inputValue(),'0.071');
  assert.ok((await page.locator('#kpi-lev .delta').textContent()).startsWith('−'));assert.ok((await page.locator('#cost-table tbody tr.total .delta').textContent()).startsWith('−'));
  assert.equal(await page.locator('#presets button.active').count(),0);
+ // Capacity change compares per MW by default: a 10 MW build keeps the same per-MW cost, so the levelised delta stays flat
+ await page.getByRole('button',{name:'恢复基准情景'}).click();await page.locator('#input-it_mw').fill('10');assert.equal(await page.locator('#kpi-lev .delta').textContent(),'= 基准');assert.ok((await page.locator('#baseline-label').textContent()).includes('100 MW'));
+ await page.locator('#compare-mode').selectOption('absolute');assert.ok((await page.locator('#kpi-lev .delta').textContent()).includes('−90.0%'));await page.locator('#compare-mode').selectOption('unit');
+ await page.locator('#input-site').selectOption('us_texas');
  // Setting a new baseline zeroes the deltas
  await page.getByRole('button',{name:'把当前设为对比基准'}).click();assert.equal(await page.locator('#kpi-lev .delta').textContent(),'= 基准');
  // Lease preset removes building capex; colo model benchmarks facility-only cost per kW-month
