@@ -10,7 +10,8 @@
 - M5 原件：`/Users/m5/Downloads/tempfetch/blobs/<SHA前2位>/<SHA>.html`；发现台账和交付：`product-catalog/nvidia/{discovery.sqlite3,catalog.json}`，保留原有 PDF。
 - inresearch 接收：`INRESEARCH_RUNTIME_ROOT=/Users/m5/.local/share/inresearch.ai python3 manage.py product-catalog import --input <catalog.json> --archive-root /Users/m5/Downloads/tempfetch`。
 - 私有运行数据库：`data/raw/product-catalog/nvidia.sqlite3`；产品、历史、来源、参数表独立持久化。GET `/api/product-catalog/nvidia` 遵守网站登录；POST 使用现有 NVIDIA 专用交付凭证，不使用 Spark 凭证。
-- 页面 `/product-catalog.html`：筛选、每产品官方表格、并排核查、CSV。资料验证页提供入口。源码不包含抓取数据。
+- 页面 `/product-catalog.html`：五大类→产品系列→紧凑分页条目，跨类搜索、每产品官方表格、并排核查、CSV。资料验证页提供入口。源码不包含抓取数据。
+- 2026-09-27 导航替代平铺：官网 products 页十栏目合并五个本站浏览组，不伪称官网五分类。`workflow/product_navigation.py` 版本化展示投影；`category/categories` 原始字段不改，辅助/未归类不删除，CSV 共用过滤。现有 208 条分为 166 导航条目、42 辅助入口，不等于 166 具体 SKU。无需重爬、重传原件或迁移数据库；AWS 发布后从现有产品载荷生成投影，Spark 不参与。
 
 ## 验收与未完成
 
