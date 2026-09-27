@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.28.25",
+  "version": "2026.09.28.26",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -20,13 +20,13 @@
     "framework/01_data_standards.md": "77caca1fff5e86e4b5307492199558d21a9de610093c5ea3bcb2896f06b6e51f",
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "d358fb9f6568c35d04cf93fc9fdb4a469c37e07136531f71913727f929ec53a9",
-    "framework/04_reading_scoring_standard.md": "9487f230120999120e048d48563cf2d41d982bb06b041dc10912d783ac752062",
+    "framework/04_reading_scoring_standard.md": "4568da8329d9bee4cec50655c0144f4029f01fabf6bc06d583b324b4a046a78e",
     "framework/05_interface_system.md": "aed7a1d55678af60c257f5845e728891de02373586bcc9a062efd4a02d7958a1",
     "framework/06_acquisition.md": "2a7a976da0a6c88a8dc610c296dab7b1bade62e43e48d698c978a07e9466341c",
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
-    "framework/08_model_execution.md": "ac46d7ec55d79ce9f57dca074d10b9152202e6766d0f735ba684556b533c4dbf",
+    "framework/08_model_execution.md": "6c7ca8eb8c8c07cd35040b4017fd38cd15b75bcbe4cedec5a52b94db55163b66",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "be049cdf27c051f1ac6e75c7e83bb026653c666e2af2d2bedd961e3ec7518989",
+    "framework/CURRENT.md": "065a41e1941fcf51d8a03804358d8868d454eb2191baeda95947451d9c67b2f7",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "957110086c4f4affad40a8ddf0f7029693137c3221319f1ec16ecc1453df7b8a",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -59,7 +59,7 @@
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
     "tests/unit/test_claim_floor.py": "d90c2b9ab948d922768cd25b0bface4dc7f2a94fcbcc749e53e9f8446d95da0c",
     "tests/unit/test_commands.py": "0eda9d7ee92eadb0b187f8e83901ae42c016c783fcdcfeec1d0e74b89dbb15a7",
-    "tests/unit/test_continuous_reader.py": "1d35825db6e01d3b275c2a4a9c703e0555dd43950f59db43043f9b679ac2834c",
+    "tests/unit/test_continuous_reader.py": "ff97a398592f9e581651a049f9db1e138ff65916c13b42ae7ee74c6db894912d",
     "tests/unit/test_deep_read.py": "f4399a1287d9fd7ced79059d351c6edd08a48ca0c3a752dbf94bc4964705d4f9",
     "tests/unit/test_deep_read_transactions.py": "e44abfc65c4550106aa009041a92271a8e5d3c880bd56b680147baaefe633317",
     "tests/unit/test_display_regressions.py": "b3461db2c0648d4ca88f6d8dd646edbcb8c8242df4aeeb43be7a6182d8d94cbe",
@@ -106,7 +106,8 @@
     "web/pages/nvidia-pilot.html": "54a77a5898f9dff1bd84fd75f3737cc052be7eb2901f2d2d7fd125877c834279",
     "web/pages/supply.html": "8d239586466f575fb52c194fc933326689f55e07e4c07d67fb9ffa89cfa5f32c",
     "tests/unit/test_product_catalog.py": "0e5761bfcb7d1c4b442647656c487955264c03d7685d0b5d69b87b8df278b3a1",
-    "tests/product_catalog.cjs": "99f168cace55c05fc9acabc286a42f23298c45388a443ff755ce15984357e369"
+    "tests/product_catalog.cjs": "99f168cace55c05fc9acabc286a42f23298c45388a443ff755ce15984357e369",
+    "tests/unit/test_dropped_claims.py": "99983da6847024aca4592bcf7d89fbfe38522d45d9c645919c17d686bcb8e08e"
   },
   "policies": [
     {
@@ -423,7 +424,7 @@
       "policy": "reading-20260912",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
@@ -448,7 +449,11 @@
         "tests/unit/test_reader_depth.py::ReadingDepthTests.test_derived_artifacts_park_under_their_own_code_and_unknown_reason_is_refused",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_reader_prompt_requires_verbatim_source_quotes",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_bad_quote_gets_one_targeted_retry_and_only_verified_result_is_saved",
-        "tests/unit/test_continuous_reader.py::ReaderTests.test_scoped_candidate_export_includes_only_complete_selected_docs"
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_scoped_candidate_export_includes_only_complete_selected_docs",
+        "tests/unit/test_dropped_claims.py::DroppedClaimTests.test_the_verified_claim_is_kept_and_the_document_completes",
+        "tests/unit/test_dropped_claims.py::DroppedClaimTests.test_a_report_that_hides_a_dropped_claim_fails_the_seal_check",
+        "tests/unit/test_dropped_claims.py::DroppedClaimTests.test_clean_reads_carry_no_dropped_field",
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_quotes_still_wrong_after_the_correction_are_dropped_not_the_chunk"
       ],
       "not_verified": [
         "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality.",
