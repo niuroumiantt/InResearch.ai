@@ -11,6 +11,7 @@ import unittest
 from unittest.mock import patch
 
 from inresearch.workflow import product_catalog as catalog
+from inresearch.workflow import product_navigation as navigation
 
 
 def bundle():
@@ -66,6 +67,43 @@ class ProductCatalogTests(unittest.TestCase):
         self.assertEqual(json.loads(specs[0]['official_cells_json'])[1]['text'], 'SXM')
         self.assertEqual(specs[1]['official_notes'], 'per GPU')
         self.assertEqual(len(list(csv.reader(io.StringIO(catalog.csv_export(data, query='not found'))))), 1)
+
+    def test_navigation_uses_product_identity_not_polluted_parent_categories(self):
+        product = bundle()['products'][0]
+        product['category'] = 'Gaming and Creating / Data Center / Software / Networking'
+        original = copy.deepcopy(product)
+        self.assertEqual(navigation.classify(product)['group'], 'datacenter')
+        self.assertEqual(product, original)
+        for name, path, group in [
+            ('GeForce RTX 5090', '/geforce/graphics-cards/50-series/rtx-5090/', 'consumer'),
+            ('NVIDIA DGX Spark', '/products/workstations/dgx-spark/', 'professional'),
+            ('NVIDIA IGX Thor', '/edge-computing/products/igx/', 'embedded'),
+            ('NVIDIA DOCA', '/networking/products/software/doca/', 'software'),
+            ('NVIDIA RTX PRO Server', '/data-center/products/rtx-pro-server/', 'datacenter'),
+        ]:
+            product.update(name=name, source_url='https://www.nvidia.com/en-us'+path)
+            self.assertEqual(navigation.classify(product)['group'], group)
+        self.assertEqual(len(navigation.GROUPS), 5)
+
+    def test_auxiliary_unknown_and_components_keep_explicit_navigation_roles(self):
+        p = bundle()['products'][0]
+        p.update(name='NVIDIA Training', source_url='https://www.nvidia.com/en-us/learn/organizations/')
+        self.assertEqual(navigation.classify(p)['role'], 'auxiliary')
+        p.update(name='Unknown', source_url='https://www.nvidia.com/en-us/new-path/')
+        self.assertEqual(navigation.classify(p)['role'], 'unclassified')
+        p.update(name='NVIDIA GeForce RTX 5070', product_url='https://www.nvidia.com/en-us/geforce/graphics-cards/50-series/')
+        self.assertEqual(navigation.classify(p)['family'], 'geforce-50')
+
+    def test_navigation_snapshot_and_csv_filters_share_the_same_projection(self):
+        catalog.receive(self.root, bundle())
+        data = catalog.snapshot(self.root)
+        self.assertEqual(len(data['navigation']['groups']), 5)
+        self.assertEqual(data['products'][0]['category'], 'Data Center')
+        self.assertEqual(len(list(csv.reader(io.StringIO(catalog.csv_export(data, group='consumer'))))), 1)
+        text = catalog.csv_export(data, group='datacenter', family='accelerators', scope='catalog')
+        rows = list(csv.DictReader(io.StringIO(text.lstrip('\ufeff'))))
+        self.assertEqual(rows[0]['display_family'], 'accelerators')
+        self.assertEqual(len(list(csv.reader(io.StringIO(catalog.csv_export(data, scope='auxiliary'))))), 1)
 
     def test_http_authentication_and_receiver_validation(self):
         from inresearch.interfaces import http
