@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.7",
+  "version": "2026.09.27.8",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -129,16 +129,16 @@
     {
       "path": "data/datacenter_cost_model.json",
       "role": "source_record",
-      "bytes": 9428,
-      "sha256": "2f9c04466d5b2427b317d9e85655bc40643e6157f3e1ffd783fda875c7c0b404",
+      "bytes": 9819,
+      "sha256": "068583a92513fdbdc91aee1c42c90b83dbcccc9b9c462aa9996a991cc8cf43e0",
       "collections": [
         {
           "name": "groups",
           "count": 5
         },
         {
-          "name": "benchmarks",
-          "count": 6
+          "name": "benchmark_series",
+          "count": 14
         }
       ]
     },
@@ -176,12 +176,12 @@
     {
       "path": "data/prices.json",
       "role": "source_record",
-      "bytes": 118223,
-      "sha256": "4a30ee2da6590d55a662344a64a54295e06f77722123d518368fdbc46ae35811",
+      "bytes": 212927,
+      "sha256": "7723d025f336eed8070fe18a17899492bd603818bde45b381c1147d64ec33cfa",
       "collections": [
         {
           "name": "records",
-          "count": 207
+          "count": 367
         }
       ]
     },
@@ -510,8 +510,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 87255,
-      "sha256": "f81f021a91622ddee7b0804e5ccdb414b3e528a0d61ed7cd819d19b755bf17b9",
+      "bytes": 88413,
+      "sha256": "f51429cd1f8a50183adc44b06851d040e1b6b0d249ff1bdbd7d0f2f642888501",
       "collections": []
     },
     {
@@ -727,8 +727,8 @@
     {
       "path": "docs/geluoke/专题反哺规则.md",
       "role": "supporting_document",
-      "bytes": 5237,
-      "sha256": "dd6fdaf22c8a215bd284548703d1f7303c87043500508999e6ccf978be5f6cc4",
+      "bytes": 6569,
+      "sha256": "d185de91ec53ee7b83aad186be09c9d49089dc41acc7429fb8c236febff17435",
       "collections": []
     },
     {
@@ -3383,8 +3383,8 @@
     {
       "path": "docs/research/2026-09-27/datacenter-profit/README.md",
       "role": "supporting_document",
-      "bytes": 2003,
-      "sha256": "70a98289b45b2fe2ada07d8d7c3ce48b76686e0f00808ccec6634f564eedc81e",
+      "bytes": 2154,
+      "sha256": "e3dd227e5f7ded1cc574e599c9b79a5daa8ccc52d4e9a8a2e4fa54aa443de893",
       "collections": []
     },
     {
@@ -3397,8 +3397,15 @@
     {
       "path": "docs/research/2026-09-27/datacenter-profit/feedback.md",
       "role": "supporting_document",
-      "bytes": 4877,
-      "sha256": "fd249c3d4ce1e819fd094e029390e6f571923d07e619e7011b899ca04d2185b5",
+      "bytes": 7629,
+      "sha256": "495ab0060a20fcc7e46ac72376f34ff8e401f2ae8b1e8701d277a95849ee5682",
+      "collections": []
+    },
+    {
+      "path": "docs/research/2026-09-27/datacenter-profit/price_records.py",
+      "role": "implementation",
+      "bytes": 31156,
+      "sha256": "576ef7a092955a96051438c43e03aee3019c1965c27e9bf93bcfa5f0ec6f3320",
       "collections": []
     },
     {
@@ -6499,7 +6506,7 @@
       "path": "framework/CURRENT.md",
       "role": "normative",
       "bytes": 5448,
-      "sha256": "e355da948ab928222b773ec88cb0e84b99816da9fb0f262536ee85502f7641c5",
+      "sha256": "093a088d5738d42ee5e1ade478bc0f1aa1aba2e20060920e910aa0f24ac6f0ab",
       "collections": []
     },
     {
@@ -6521,8 +6528,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 34854,
-      "sha256": "73a987d8048bfec7b5bd903d9f5fd85521bbc143e09a2077e0773c678bb12d34",
+      "bytes": 34925,
+      "sha256": "4f53203507a201cf3fafc2ff08b00e346369d9e82107dafc96ac0d7f3e43e26e",
       "collections": [
         {
           "name": "policies",
@@ -6766,12 +6773,12 @@
     {
       "path": "framework/research_questions.json",
       "role": "project_config",
-      "bytes": 291386,
-      "sha256": "d587f456f5de48131c52fcc913198809674b9c9ad06c9e78f63869b129c393f6",
+      "bytes": 299016,
+      "sha256": "9f8c7ac10dce7c7ea9ae6f1e8863bb87f933bc99b1fb70da98e93b51e13277e5",
       "collections": [
         {
           "name": "records",
-          "count": 449
+          "count": 458
         }
       ]
     },
@@ -6797,8 +6804,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 64808,
-      "sha256": "192a993c0d49c5963ad366291d36c17dc1ec820010acc0c117d322c3c1c0beb3",
+      "bytes": 64892,
+      "sha256": "cd2669e53efb9bfe8e788c9426f07db4f5954dce8078076f9fcd617accec341a",
       "collections": [
         {
           "name": "policies",
@@ -8650,8 +8657,8 @@
     {
       "path": "tests/datacenter_cost.cjs",
       "role": "test",
-      "bytes": 2774,
-      "sha256": "ed0d0060350944968fa0ab8eb2a842535e96c1a937fe839f72daabe6fe745227",
+      "bytes": 2974,
+      "sha256": "3303d4072329dce59408e54b15923b5b469b10225d080fc248f2f16a8c622275",
       "collections": []
     },
     {
@@ -9603,8 +9610,8 @@
     {
       "path": "web/components/datacenter-cost.js",
       "role": "implementation",
-      "bytes": 8878,
-      "sha256": "08ed67ac0c9e71acd83a0fb4c49c9784b33aaca8593843a899b09dee7ac2d5fa",
+      "bytes": 10160,
+      "sha256": "8c259bdb9d327ee6a8a4d0efed381ec7abc2f9aaa82cc6711d0f5e8bed517a5b",
       "collections": []
     },
     {
@@ -9785,8 +9792,8 @@
     {
       "path": "web/pages/cost.html",
       "role": "implementation",
-      "bytes": 8625,
-      "sha256": "2af02b27ab7308663f45cf4eb00ebe62ba1b1f3c2fc3c8a2f5973c045821cde1",
+      "bytes": 8731,
+      "sha256": "bd96bcc0eb121e8abf86bd1c329b6a54450d1d32a42edfe8bd1309ce8cb07d92",
       "collections": []
     },
     {
@@ -9876,15 +9883,15 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 6885,
-      "sha256": "26961e2a977876997e77dfd90f2305039dbac30528e7d96f7268ddbb244cbc09",
+      "bytes": 6928,
+      "sha256": "bbdfd663602b1efeb089e754da359b1f11ada7d63a73d79a01cbd28a9f7d4609",
       "collections": []
     },
     {
       "path": "web/themes/datacenter-cost.css",
       "role": "implementation",
-      "bytes": 9769,
-      "sha256": "7636eec16d4221883048ec29b281c962291dcacc31d48625e2e0d4baa7b0f384",
+      "bytes": 9873,
+      "sha256": "6dfd3e4ad3dd28874b247e8f25645651d56abd57744faec334070f9f86937695",
       "collections": []
     },
     {
@@ -9916,7 +9923,7 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 266,
-    "implementation": 196,
+    "implementation": 197,
     "normative": 13,
     "project_config": 86,
     "research_record": 16,

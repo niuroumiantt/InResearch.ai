@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.7",
+  "version": "2026.09.27.8",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -26,14 +26,14 @@
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
     "framework/08_model_execution.md": "9891e0a9de35863cda066157ccc57f2c366ade8ec5319210117e34bfe5275114",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "e355da948ab928222b773ec88cb0e84b99816da9fb0f262536ee85502f7641c5",
+    "framework/CURRENT.md": "093a088d5738d42ee5e1ade478bc0f1aa1aba2e20060920e910aa0f24ac6f0ab",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "df28e4e220f0df9e7bb6dbb47252b9656be374ac08eb090ca3dbb268a63750de",
     "src/inresearch/workflow/supply.py": "575ae0478387f1c00fe46fb984bb6b11839fb69fbbe9253225acb211fc855b65",
     "tests/auth_appearance.cjs": "12fe45ce1017034aebce9d5f330ef4a63b510fb3fdb887331c338a965bd60c51",
     "tests/container_storage.py": "a8574a75275460d2a50c0eab7f524857eccd8a32cf2f9e8bb01009ec12dd5ba0",
-    "tests/datacenter_cost.cjs": "ed0d0060350944968fa0ab8eb2a842535e96c1a937fe839f72daabe6fe745227",
+    "tests/datacenter_cost.cjs": "3303d4072329dce59408e54b15923b5b469b10225d080fc248f2f16a8c622275",
     "tests/datacenter_news.cjs": "05db3db0ef6d5030e04062ea3dbcc1e1539b8cc4dd5abaa841b3e9f7c22114b0",
     "tests/hardware_ecosystems.cjs": "9fee2cd36632d76fd5ff6850487ac5418c1b198c9dbe8108ca0b5aa04644c506",
     "tests/model_assets.cjs": "44d38edb6494d6df2055e43c0f2b146b03c3cb7d4e9ce7717b0e9674bc0c4bf2",
@@ -277,7 +277,7 @@
       "policy": "interface-20260906",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "16 页明暗/宽度、字体包已加载与正文字体栈、表单控件去原生、手机顶栏两行、认证外观、旧偏好 skin 字段忽略、状态保持与安全链接；字体包目录登录前公开而其余资源不公开；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、收益参照占位与情景预设（GB300 出租、H100 合约）的租金盈余/覆盖率、恢复与窄屏边界；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；计划不冒充执行或采用。",
+      "checked_requirement": "16 页明暗/宽度、字体包已加载与正文字体栈、表单控件去原生、手机顶栏两行、认证外观、旧偏好 skin 字段忽略、状态保持与安全链接；字体包目录登录前公开而其余资源不公开；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、收益参照占位与情景预设（GB300 出租、H100 合约）的租金盈余/覆盖率、基准卡按价格库序列最新时点渲染（更新时间戳与首行时点）、恢复与窄屏边界；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；计划不冒充执行或采用。",
       "tests": [
         "tests/ui_skin.cjs",
         "tests/auth_appearance.cjs",
