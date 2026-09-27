@@ -21,10 +21,16 @@
     const capitalCharge=itCapex*crf(a.wacc,a.it_life)+(own?shellCapex*crf(a.wacc,a.shell_life)+land*a.wacc:0);
     const unitCost=(capitalCharge+opex)/paidHours,cash=nopat+depIt+depShell;
     const residual=own?shellCapex*Math.max(0,1-a.it_life/a.shell_life)+land:0;
-    const flows=[-invested];for(let t=0;t<a.it_life;t++)flows.push(cash);flows[flows.length-1]+=residual;
+    const debtC=itCapex*a.compute_ltc,adsC=debtC?debtC*crf(a.compute_debt_rate,a.it_life):0,equityC=invested-debtC;
+    const flows=[-invested],levFlows=[-equityC],revenuePath=[];let balance=debtC;
+    for(let t=0;t<a.it_life;t++){const revT=revenue*Math.pow(1+a.price_change,t);revenuePath.push(revT);const ebitdaT=revT-opex,ebitT=ebitdaT-depIt-depShell;
+      flows.push(ebitT*(1-a.tax)+depIt+depShell);const interest=balance*a.compute_debt_rate,principal=debtC?adsC-interest:0;balance-=principal;
+      levFlows.push(ebitdaT-adsC-Math.max(0,ebitT-interest)*a.tax);}
+    flows[flows.length-1]+=residual;levFlows[levFlows.length-1]+=residual;
     const computeLedger={gpus,paidHours,revenue,energy,other,facilityCost,opex,ebitda,depIt,depShell,ebit,nopat,invested,
       roic:invested?nopat/invested:null,ebitdaMargin:revenue?ebitda/revenue:null,ebitMargin:revenue?ebit/revenue:null,
-      unitCost,breakeven:unitCost,surplusPerHour:a.gpu_price-unitCost,payback:cash>0?invested/cash:null,irr:irr(flows),capexTotal:itCapex+shellCapex+land};
+      unitCost,breakeven:unitCost,surplusPerHour:a.gpu_price-unitCost,payback:cash>0?invested/cash:null,irr:irr(flows),capexTotal:itCapex+shellCapex+land,
+      debt:debtC,equity:equityC,debtService:adsC,irrLevered:equityC>0?irr(levFlows):null,equityMultiple:equityC>0?levFlows.slice(1).reduce((x,y)=>x+y,0)/equityC:null,revenuePath};
     // Ledger 1: landlord
     const shellInvested=shellCapex+land,noi=rent*a.noi_margin,term=a.lease_term;
     const rents=[];for(let t=0;t<term;t++)rents.push(rent*Math.pow(1+a.escalator,t));
@@ -32,9 +38,16 @@
     const residualValue=shellCapex*a.residual_share;
     const unlev=[-shellInvested,...nois];unlev[unlev.length-1]+=residualValue;
     const lev=[-equity,...nois.map(n=>n-ads)];lev[lev.length-1]+=residualValue;
+    const depS=shellCapex/a.shell_life;let bal=debt;const afterTax=[-equity];
+    for(const n of nois){const interest=bal*a.debt_rate,principal=debt?ads-interest:0;bal-=principal;afterTax.push(n-ads-Math.max(0,n-depS-interest)*a.tax);}
+    afterTax[afterTax.length-1]+=residualValue;
+    const optYears=a.renewal_options*a.renewal_years,optRents=[];for(let t=0;t<optYears;t++)optRents.push(rent*Math.pow(1+a.escalator,term+t));
+    const withOpt=[-shellInvested,...nois,...optRents.map(r=>r*a.noi_margin*a.renewal_probability)];withOpt[withOpt.length-1]+=residualValue;
+    const taxY1=Math.max(0,noi-depS-debt*a.debt_rate)*a.tax;
     const shellLedger={invested:shellInvested,rentY1:rent,noiY1:noi,yieldOnCost:shellInvested?noi/shellInvested:null,contractValue:rents.reduce((x,y)=>x+y,0),
-      debt,equity,debtService:ads,dscr:ads?noi/ads:null,cashOnCash:equity>0?(noi-ads)/equity:null,payback:noi>0?shellInvested/noi:null,
-      irrUnlevered:irr(unlev),irrLevered:equity>0?irr(lev):null};
+      contractValueWithOptions:rents.reduce((x,y)=>x+y,0)+optRents.reduce((x,y)=>x+y,0),optionYears:optYears,
+      debt,equity,debtService:ads,dscr:ads?noi/ads:null,cashOnCash:equity>0?(noi-ads)/equity:null,cashOnCashAfterTax:equity>0?(noi-ads-taxY1)/equity:null,taxY1,payback:noi>0?shellInvested/noi:null,
+      irrUnlevered:irr(unlev),irrLevered:equity>0?irr(lev):null,irrLeveredAfterTax:equity>0?irr(afterTax):null,irrWithOptions:irr(withOpt)};
     // Ledger 3: model company
     const mHours=paidHours*a.monetized_share,tokens=mHours*3600*a.tokens_per_gpu_sec,mRevenue=tokens/1e6*a.price_per_m_tokens;
     let mCost,mInvested;
@@ -169,9 +182,10 @@
 
   function renderLedgerTables(r){
     const s=r.shell,m=r.model,a=r.inputs;
-    const shellRows=[['壳层投资（非 IT + 土地）',money(s.invested)],['首年租金 / NOI',money(s.rentY1)+' / '+money(s.noiY1)],['成本收益率（NOI ÷ 投资）',pct(s.yieldOnCost)],['租期合同总额（含递增）',money(s.contractValue)],['债务 / 权益',money(s.debt)+' / '+money(s.equity)],['年还本付息 · DSCR',money(s.debtService)+' · '+num(s.dscr,2)],['杠杆现金回报（首年）',pct(s.cashOnCash)],['无杠杆 IRR / 杠杆 IRR（租期）',pct(s.irrUnlevered)+' / '+pct(s.irrLevered)],['简单回收期',years(s.payback)]];
+    const shellRows=[['壳层投资（非 IT + 土地）',money(s.invested)],['首年租金 / NOI',money(s.rentY1)+' / '+money(s.noiY1)],['成本收益率（NOI ÷ 投资）',pct(s.yieldOnCost)],['租期合同总额（含递增）'+(s.optionYears?' / 含 '+s.optionYears+' 年期权全部行权':''),money(s.contractValue)+(s.optionYears?' / '+money(s.contractValueWithOptions):'')],['债务 / 权益',money(s.debt)+' / '+money(s.equity)],['年还本付息 · DSCR',money(s.debtService)+' · '+num(s.dscr,2)],['杠杆现金回报（首年）· 税后',pct(s.cashOnCash)+' · '+pct(s.cashOnCashAfterTax)],['无杠杆 IRR / 杠杆 IRR / 税后杠杆 IRR',pct(s.irrUnlevered)+' / '+pct(s.irrLevered)+' / '+pct(s.irrLeveredAfterTax)],['含续约期权 IRR（概率加权）',s.optionYears?pct(s.irrWithOptions):'无期权'],['简单回收期',years(s.payback)]];
+    const c=r.compute,computeRows=[['收入路径（首年 → 末年）',money(c.revenuePath[0])+' → '+money(c.revenuePath[c.revenuePath.length-1])+(a.price_change?'（租金年变动 '+pct(a.price_change,1)+'）':'')],['无杠杆 IRR（'+a.it_life+' 年，期末非 IT 残值）',pct(c.irr)],['GPU 债务 / 权益',money(c.debt)+' / '+money(c.equity)],['年还本付息',c.debt?money(c.debtService):'无债务'],['税后杠杆 IRR · 权益倍数',(c.debt?pct(c.irrLevered):pct(c.irr))+' · '+(c.equityMultiple==null?'—':num(c.equityMultiple,2)+'×')]];
     const modelRows=[['GPU 小时（收费部分）',num(r.compute.paidHours*a.monetized_share/1e6,1)+'M h'],['token 产出',num(m.tokens/1e12,1)+' 万亿'],['收入',money(m.revenue)+'（每 GPU 小时 $'+num(m.revenuePerGpuHour,2)+'）'],[a.compute_source==='own'?'自有算力成本（运营 + 折旧）':'算力租金',money(m.cost)],['EBIT',money(m.ebit)],['NOPAT · 利润率',money(m.nopat)+' · '+pct(m.nopatMargin)],[a.compute_source==='own'?'ROIC（NOPAT ÷ 投入资本）':'投入资本','—'===pct(m.roic)?'不持有资产':pct(m.roic)]];
-    for(const [id,rows] of [['shell-table',shellRows],['model-table',modelRows]]){const host=byId(id);host.replaceChildren();for(const [k,v] of rows){const li=make('li');li.append(make('span','',k),make('strong','',v));host.append(li);}}
+    for(const [id,rows] of [['shell-table',shellRows],['model-table',modelRows],['compute-table',computeRows]]){const host=byId(id);host.replaceChildren();for(const [k,v] of rows){const li=make('li');li.append(make('span','',k),make('strong','',v));host.append(li);}}
   }
 
   function renderSensitivity(r){
@@ -226,13 +240,25 @@
     byId('benchmark-updated').textContent=shown.length?'价格库更新至 '+shown.map(x=>x.as_of).sort().pop():'价格库暂无对应序列';
   }
 
+  function renderFactors(tree){
+    const host=byId('factor-tree');if(!host||!tree)return;host.replaceChildren();
+    const KIND={product:'产品',news:'新闻',data:'数据',report:'报告'};
+    const children=id=>tree.factors.filter(f=>f.parent===id);
+    const node=(f,depth)=>{const li=make('li','factor');li.style.setProperty('--depth',depth);
+      const head=make('div','factor-head'),name=make('b','',f.label),meta=make('small','',[f.unit,(f.bom_parts||[]).length?'部件 '+f.bom_parts.length:'',(f.price_series||[]).length?'序列 '+f.price_series.length:'',(f.questions||[]).length?'问题 '+(f.questions||[]).join('、'):'',(f.model_inputs||[]).length?'输入 '+f.model_inputs.length:''].filter(Boolean).join(' · '));
+      head.append(name,meta);li.append(head);if(f.formula)li.append(make('code','factor-formula',f.formula));
+      if(f.fetch&&f.fetch.length){const row=make('div','factor-fetch');for(const x of f.fetch){const chip=make('span','fetch-chip',KIND[x.kind]||x.kind);chip.title=x.what+'｜'+x.sources.join('、')+'｜'+x.cadence;row.append(chip,document.createTextNode(' '+x.what));row.append(make('br'));}li.append(row);}
+      li.title=(f.bom_parts||[]).join('、');const kids=children(f.id);if(kids.length){const ul=make('ul','factor-children');kids.forEach(k=>ul.append(node(k,depth+1)));li.append(ul);}return li;};
+    const root=make('ul','factor-root');children(null).forEach(f=>root.append(node(f,0)));host.append(root);
+    byId('factor-meta').textContent='因子树 v'+tree.version+' · '+tree.updated+' · '+tree.factors.length+' 个因子';
+  }
   function render(){
     const r=compute(values);markPreset();renderKpis(r);renderCapexStack(r);renderWaterfall(r);renderSplit(r);renderLedgerTables(r);renderSensitivity(r);renderScenarios(r);
     byId('export-json').onclick=()=>{const blob=new Blob([JSON.stringify({model_id:spec.model_id,as_of:spec.as_of,preset:activePreset||null,assumptions:values,results:r},null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='datacenter-economics-'+(activePreset||'custom')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);};
   }
   const getJson=url=>fetch(url,{cache:'no-store'}).then(res=>{if(!res.ok)throw Error(url+' HTTP '+res.status);return res.json()});
-  Promise.all([getJson('/data/datacenter_economics_model.json'),getJson('/data/prices.json').catch(()=>({records:[]}))]).then(([data,p])=>{
-    spec=data;prices=p;byId('model-date').textContent='口径 '+spec.as_of;byId('model-note').textContent=spec.model_note;
+  Promise.all([getJson('/data/datacenter_economics_model.json'),getJson('/data/prices.json').catch(()=>({records:[]})),getJson('/data/tco_factors.json').catch(()=>null)]).then(([data,p,tree])=>{
+    spec=data;prices=p;renderFactors(tree);byId('model-date').textContent='口径 '+spec.as_of;byId('model-note').textContent=spec.model_note;
     renderPresets();renderBenchmarks();applyPreset('ms_hyperscaler_gb300');
     byId('reset-model').addEventListener('click',()=>applyPreset('ms_hyperscaler_gb300'));app.removeAttribute('aria-busy');
   }).catch(error=>{const el=byId('econ-error');el.hidden=false;el.textContent='经济模型加载失败：'+error.message;app.setAttribute('aria-busy','false')});

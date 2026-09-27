@@ -1,0 +1,710 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-09-27",
+  "title": "数据中心 TCO 因子树",
+  "note": "经济模型的骨架：收入侧与成本侧的最小可变因子。每个因子指向它汇总的爆炸图部件（framework/bom.json）、读取的价格库序列（data/prices.json）、对应的研究问题（framework/research_questions.json）、进入经济模型的输入键（data/datacenter_economics_model.json）以及定向抓取目标。因子树只定义结构与归属，不保存数值；数值在价格库与模型假设里。fetch.kind 取 product / news / data / report。",
+  "formulas": {
+    "revenue": "收入 = GPU 数 × 8,760 × 付费利用率 × 单价；GPU 数 = IT 容量 × 每 MW 密度；密度 = 1,000 kW × 加速器机柜占 IT 功率份额 ÷ (机柜功率 ÷ 每柜 GPU 数)",
+    "cost": "年度成本 = 电费 + 其他运营 + 设施费 + 折旧 + 税；电费 = IT 容量 × 负载率 × PUE × 8,760 × 电价；折旧 = 资本开支 ÷ 寿命（IT 与非 IT 分线）；设施费按自建 / 租壳 / 托管三选一"
+  },
+  "factors": [
+    {
+      "id": "revenue",
+      "label": "收入侧",
+      "side": "revenue",
+      "parent": null,
+      "unit": "$/年",
+      "formula": "gpus × 8760 × utilization × price"
+    },
+    {
+      "id": "revenue.gpus",
+      "label": "GPU 数",
+      "side": "revenue",
+      "parent": "revenue",
+      "unit": "颗",
+      "formula": "it_mw × density",
+      "model_inputs": [
+        "it_mw",
+        "gpus_per_mw"
+      ]
+    },
+    {
+      "id": "revenue.gpus.density",
+      "label": "每 MW GPU 密度",
+      "side": "revenue",
+      "parent": "revenue.gpus",
+      "unit": "颗/MW",
+      "formula": "1000 × rack_share ÷ (rack_kw ÷ gpus_per_rack)",
+      "bom_parts": [
+        "rack-frame",
+        "gpu",
+        "power-shelf"
+      ],
+      "questions": [
+        "M06-Q01",
+        "M06-Q02"
+      ],
+      "model_inputs": [
+        "gpus_per_mw",
+        "generation"
+      ],
+      "fetch": [
+        {
+          "kind": "product",
+          "what": "厂商机柜规格：整柜功率（TDP/额定）、每柜 GPU 封装数、代际发布与出货时间",
+          "sources": [
+            "NVIDIA 参考架构与产品页",
+            "AWS/Google 自研芯片文档",
+            "ODM 数据手册"
+          ],
+          "cadence": "每代际发布时"
+        }
+      ]
+    },
+    {
+      "id": "revenue.utilization",
+      "label": "付费利用率",
+      "side": "revenue",
+      "parent": "revenue",
+      "unit": "%",
+      "questions": [
+        "M13-Q01"
+      ],
+      "model_inputs": [
+        "utilization",
+        "monetized_share"
+      ],
+      "fetch": [
+        {
+          "kind": "report",
+          "what": "集群实际利用率的公开研究与公司披露（已售 GPU 小时 ÷ 可用小时）",
+          "sources": [
+            "SemiAnalysis",
+            "公司财报电话会",
+            "学术实测"
+          ],
+          "cadence": "季度"
+        }
+      ]
+    },
+    {
+      "id": "revenue.price",
+      "label": "GPU 小时单价",
+      "side": "revenue",
+      "parent": "revenue",
+      "unit": "$/GPU·h",
+      "price_series": [
+        "gpu-hourly-h100-contract-1y",
+        "gpu-hourly-h100-neocloud-index",
+        "gpu-hourly-h100-hyperscaler-index",
+        "gpu-hourly-b200-index",
+        "gpu-hourly-b300-index",
+        "gpu-hourly-gb300-ondemand-verda",
+        "benchmark-ms-gb300-rent-baseline"
+      ],
+      "questions": [
+        "M13-Q02",
+        "M13-Q11",
+        "M13-Q12"
+      ],
+      "model_inputs": [
+        "gpu_price",
+        "price_change",
+        "rent_price"
+      ],
+      "fetch": [
+        {
+          "kind": "data",
+          "what": "租金指数与厂商挂牌价：按代际、按期限（现货/1 年/3 年）、按分段（超大规模云/新兴云/市场平台）",
+          "sources": [
+            "SemiAnalysis GPU 指数",
+            "Silicon Data",
+            "Lambda/Nebius/CoreWeave/Verda/AWS/Azure 价目"
+          ],
+          "cadence": "月"
+        }
+      ]
+    },
+    {
+      "id": "revenue.tokens",
+      "label": "模型层变现（L3，本因子树只登记接口）",
+      "side": "revenue",
+      "parent": "revenue",
+      "unit": "$/M token",
+      "formula": "token = 收费 GPU 小时 × 3600 × 吞吐；收入 = token ÷ 1e6 × 单价",
+      "questions": [
+        "M12-Q05"
+      ],
+      "model_inputs": [
+        "compute_source",
+        "tokens_per_gpu_sec",
+        "price_per_m_tokens"
+      ],
+      "fetch": [
+        {
+          "kind": "data",
+          "what": "旗舰/中档模型每百万 token 价格与每 GPU 吞吐实测",
+          "sources": [
+            "模型厂商价目",
+            "推理基准"
+          ],
+          "cadence": "月"
+        }
+      ]
+    },
+    {
+      "id": "cost",
+      "label": "成本侧",
+      "side": "cost",
+      "parent": null,
+      "unit": "$/年",
+      "formula": "energy + other_opex + facility + depreciation + tax"
+    },
+    {
+      "id": "cost.energy",
+      "label": "电费",
+      "side": "cost",
+      "parent": "cost",
+      "unit": "$/年",
+      "formula": "it_mw × power_load × pue × 8760 × power_price",
+      "model_inputs": [
+        "power_load",
+        "pue",
+        "power_price"
+      ]
+    },
+    {
+      "id": "cost.energy.load",
+      "label": "平均 IT 负载率",
+      "side": "cost",
+      "parent": "cost.energy",
+      "unit": "%",
+      "bom_parts": [
+        "server",
+        "gpu"
+      ],
+      "questions": [
+        "M13-Q01"
+      ],
+      "model_inputs": [
+        "power_load"
+      ],
+      "fetch": [
+        {
+          "kind": "report",
+          "what": "AI 集群平均功率对铭牌功率的比值（训练/推理）",
+          "sources": [
+            "SemiAnalysis",
+            "运营商披露"
+          ],
+          "cadence": "半年"
+        }
+      ]
+    },
+    {
+      "id": "cost.energy.pue",
+      "label": "PUE",
+      "side": "cost",
+      "parent": "cost.energy",
+      "unit": "PUE",
+      "bom_parts": [
+        "room-cooling",
+        "cdu",
+        "heat-reject",
+        "manifold",
+        "coldplate",
+        "sidecar-hx",
+        "immersion",
+        "ups",
+        "power-dist"
+      ],
+      "questions": [
+        "M08-Q01",
+        "M08-Q02"
+      ],
+      "model_inputs": [
+        "pue"
+      ],
+      "fetch": [
+        {
+          "kind": "product",
+          "what": "冷却与供配电产品的效率参数（CDU、冷机、UPS 效率曲线）",
+          "sources": [
+            "厂商数据手册"
+          ],
+          "cadence": "每代际"
+        },
+        {
+          "kind": "data",
+          "what": "运营商披露的年度 PUE（超大规模云可持续发展报告）",
+          "sources": [
+            "Google/Microsoft/Meta 报告"
+          ],
+          "cadence": "年"
+        }
+      ]
+    },
+    {
+      "id": "cost.energy.price",
+      "label": "电价",
+      "side": "cost",
+      "parent": "cost.energy",
+      "unit": "$/kWh",
+      "bom_parts": [
+        "grid",
+        "prime-power",
+        "bess",
+        "fuel-supply"
+      ],
+      "price_series": [
+        "industrial-power-price-us-tx",
+        "industrial-power-price-us-va",
+        "industrial-power-price-us-us",
+        "industrial-power-price-de-band-ic",
+        "industrial-power-price-ie-band-ic",
+        "cn-dc-power-price-zhongwei",
+        "cn-dc-power-price-ulanqab",
+        "pjm-capacity-price-bra-rto",
+        "ercot-realtime-all-in-power-cost"
+      ],
+      "questions": [
+        "M04-Q11",
+        "M04-Q02"
+      ],
+      "model_inputs": [
+        "power_price"
+      ],
+      "fetch": [
+        {
+          "kind": "data",
+          "what": "各地区工业电价、容量市场出清价、数据中心专项费率",
+          "sources": [
+            "EIA",
+            "Eurostat",
+            "PJM/ERCOT",
+            "省级电价文件",
+            "公用事业费率表"
+          ],
+          "cadence": "月/年"
+        },
+        {
+          "kind": "news",
+          "what": "数据中心专项费率与大负荷条款（TVA、AEP、PGE 类）",
+          "sources": [
+            "监管机构命令",
+            "行业媒体"
+          ],
+          "cadence": "持续"
+        }
+      ]
+    },
+    {
+      "id": "cost.other_opex",
+      "label": "其他运营支出",
+      "side": "cost",
+      "parent": "cost",
+      "unit": "$/MW·年",
+      "bom_parts": [
+        "dcim",
+        "fire"
+      ],
+      "questions": [
+        "M10-Q02"
+      ],
+      "model_inputs": [
+        "other_opex_per_mw"
+      ],
+      "fetch": [
+        {
+          "kind": "report",
+          "what": "人员、维护、软件、保险的每 MW 运营成本分解",
+          "sources": [
+            "Uptime",
+            "运营商披露",
+            "研报"
+          ],
+          "cadence": "年"
+        }
+      ]
+    },
+    {
+      "id": "cost.facility",
+      "label": "设施费",
+      "side": "cost",
+      "parent": "cost",
+      "unit": "$/年",
+      "formula": "own: 0 | lease: shell_rent_per_mw × it_mw | colo: colo_rate × kW × 12",
+      "model_inputs": [
+        "facility_mode"
+      ]
+    },
+    {
+      "id": "cost.facility.shell_rent",
+      "label": "带电壳租金",
+      "side": "cost",
+      "parent": "cost.facility",
+      "unit": "$M/MW·年",
+      "price_series": [
+        "shell-lease-rent-per-it-mw-year"
+      ],
+      "questions": [
+        "M11-Q11"
+      ],
+      "model_inputs": [
+        "shell_rent_per_mw",
+        "lease_term",
+        "escalator",
+        "noi_margin",
+        "renewal_options",
+        "renewal_years",
+        "renewal_probability"
+      ],
+      "fetch": [
+        {
+          "kind": "news",
+          "what": "带电壳租约公告：MW、期限、合同总额、递增、三净/毛租、期权、担保方",
+          "sources": [
+            "SEC 8-K",
+            "公司新闻稿"
+          ],
+          "cadence": "持续"
+        }
+      ]
+    },
+    {
+      "id": "cost.facility.colo_rate",
+      "label": "托管费率",
+      "side": "cost",
+      "parent": "cost.facility",
+      "unit": "$/kW·月",
+      "price_series": [
+        "colo-asking-rent-nova-250-500kw",
+        "colo-asking-rent-nova-10mw-plus",
+        "colo-asking-rent-chicago-250-500kw",
+        "colo-asking-rent-frankfurt-250-500kw",
+        "colo-asking-rent-singapore-250-500kw",
+        "colo-rent-new-lease-dlr",
+        "cn-reit-fee-per-kw-month-gds",
+        "cn-colo-mrr-per-cabinet-vnet"
+      ],
+      "questions": [
+        "M14-Q11"
+      ],
+      "model_inputs": [
+        "colo_rate"
+      ],
+      "fetch": [
+        {
+          "kind": "report",
+          "what": "托管报价与空置率（按市场、按需求规模）",
+          "sources": [
+            "CBRE",
+            "JLL",
+            "Cushman",
+            "REIT 财报"
+          ],
+          "cadence": "半年"
+        }
+      ]
+    },
+    {
+      "id": "cost.depreciation",
+      "label": "折旧",
+      "side": "cost",
+      "parent": "cost",
+      "unit": "$/年",
+      "formula": "capex ÷ life（IT 与非 IT 分线）",
+      "questions": [
+        "M11-Q09",
+        "M11-Q14"
+      ],
+      "model_inputs": [
+        "it_life",
+        "shell_life"
+      ],
+      "fetch": [
+        {
+          "kind": "report",
+          "what": "超大规模厂商与新兴云的服务器/设施折旧年限及变更",
+          "sources": [
+            "10-K/10-Q"
+          ],
+          "cadence": "季度"
+        }
+      ]
+    },
+    {
+      "id": "cost.depreciation.capex",
+      "label": "资本开支",
+      "side": "cost",
+      "parent": "cost.depreciation",
+      "unit": "$M/MW",
+      "formula": "accelerators + other_it + shell + btm + land",
+      "price_series": [
+        "benchmark-ms-capex-per-gw-gb300",
+        "benchmark-ms-capex-per-gw-gb200",
+        "benchmark-ms-capex-per-gw-vera-rubin",
+        "benchmark-ms-capex-per-gw-rubin-ultra"
+      ]
+    },
+    {
+      "id": "cost.depreciation.capex.accelerators",
+      "label": "加速器",
+      "side": "cost",
+      "parent": "cost.depreciation.capex",
+      "unit": "$M/MW",
+      "bom_parts": [
+        "gpu",
+        "hbm",
+        "fpga"
+      ],
+      "price_series": [
+        "benchmark-gb300-nvl72-rack-price",
+        "benchmark-gb200-nvl72-rack-price"
+      ],
+      "questions": [
+        "M06-Q01",
+        "M06-Q02"
+      ],
+      "model_inputs": [
+        "it_capex_per_mw",
+        "accelerator_share",
+        "chip_gross_margin"
+      ],
+      "fetch": [
+        {
+          "kind": "product",
+          "what": "GPU/ASIC 与 HBM 的代际规格、单卡功率、整柜价格",
+          "sources": [
+            "厂商产品页",
+            "ODM 报价",
+            "研报"
+          ],
+          "cadence": "每代际"
+        },
+        {
+          "kind": "news",
+          "what": "芯片价格变动、供给与交期",
+          "sources": [
+            "行业媒体",
+            "财报"
+          ],
+          "cadence": "持续"
+        }
+      ]
+    },
+    {
+      "id": "cost.depreciation.capex.other_it",
+      "label": "其他 IT（网络、存储、服务器、CPU）",
+      "side": "cost",
+      "parent": "cost.depreciation.capex",
+      "unit": "$M/MW",
+      "bom_parts": [
+        "server",
+        "network-switch",
+        "switch-asic",
+        "storage-array",
+        "power-shelf",
+        "cpu",
+        "nic",
+        "optics",
+        "dram",
+        "ssd",
+        "hdd",
+        "copper-interconnect",
+        "connector",
+        "interconnect-chip",
+        "vrm",
+        "fan-vc"
+      ],
+      "questions": [
+        "M07-Q01"
+      ],
+      "model_inputs": [
+        "it_capex_per_mw",
+        "accelerator_share"
+      ],
+      "fetch": [
+        {
+          "kind": "product",
+          "what": "交换机、光模块、存储、CPU 的单价与每 GPU 配比",
+          "sources": [
+            "厂商价目",
+            "研报 BOM"
+          ],
+          "cadence": "每代际"
+        }
+      ]
+    },
+    {
+      "id": "cost.depreciation.capex.shell",
+      "label": "非 IT：建筑、供配电、冷却（带电壳）",
+      "side": "cost",
+      "parent": "cost.depreciation.capex",
+      "unit": "$M/MW",
+      "bom_parts": [
+        "grid",
+        "substation",
+        "backup-power",
+        "shell",
+        "fire",
+        "ups",
+        "power-dist",
+        "room-cooling",
+        "cdu",
+        "heat-reject",
+        "cabling",
+        "leak-detection",
+        "modular-dc",
+        "network-access",
+        "water"
+      ],
+      "price_series": [
+        "construction-cost-greenfield-na",
+        "construction-cost-shell-core",
+        "construction-cost-shell-per-it-mw-cipher-stingray",
+        "construction-cost-shell-per-it-mw-terawulf-lake-mariner",
+        "cn-idc-capex-per-mw-gds"
+      ],
+      "questions": [
+        "M09-Q01",
+        "M10-Q01"
+      ],
+      "model_inputs": [
+        "shell_capex_per_mw",
+        "shell_life"
+      ],
+      "fetch": [
+        {
+          "kind": "report",
+          "what": "每 MW 造价指南与分项（土建、电气、机械）",
+          "sources": [
+            "Cushman",
+            "Turner & Townsend",
+            "公司公告自报造价"
+          ],
+          "cadence": "年"
+        },
+        {
+          "kind": "product",
+          "what": "变压器、开关柜、UPS、冷机的交期与价格",
+          "sources": [
+            "厂商",
+            "行业媒体"
+          ],
+          "cadence": "季度"
+        }
+      ]
+    },
+    {
+      "id": "cost.depreciation.capex.btm",
+      "label": "表后电力",
+      "side": "cost",
+      "parent": "cost.depreciation.capex",
+      "unit": "$M/MW",
+      "bom_parts": [
+        "prime-power",
+        "bess",
+        "fuel-supply"
+      ],
+      "questions": [
+        "M04-Q02",
+        "M04-Q03"
+      ],
+      "model_inputs": [
+        "btm_capex_per_mw"
+      ],
+      "fetch": [
+        {
+          "kind": "news",
+          "what": "自备电源项目：燃气轮机、燃料电池、储能的投运与造价",
+          "sources": [
+            "项目公告",
+            "监管许可"
+          ],
+          "cadence": "持续"
+        }
+      ]
+    },
+    {
+      "id": "cost.depreciation.capex.land",
+      "label": "土地",
+      "side": "cost",
+      "parent": "cost.depreciation.capex",
+      "unit": "$M/MW",
+      "bom_parts": [
+        "land"
+      ],
+      "questions": [
+        "M05-Q01"
+      ],
+      "model_inputs": [
+        "land_per_mw"
+      ],
+      "fetch": [
+        {
+          "kind": "data",
+          "what": "园区地价与用地规模（每 MW 英亩）",
+          "sources": [
+            "交易公告",
+            "地方政府"
+          ],
+          "cadence": "年"
+        }
+      ]
+    },
+    {
+      "id": "cost.tax",
+      "label": "税",
+      "side": "cost",
+      "parent": "cost",
+      "unit": "%",
+      "formula": "tax × 应税利润（NOPAT 口径；壳层为 NOI − 折旧 − 利息）",
+      "model_inputs": [
+        "tax"
+      ],
+      "fetch": [
+        {
+          "kind": "data",
+          "what": "各法域企业所得税率与数据中心税收优惠",
+          "sources": [
+            "税法",
+            "州/省激励文件"
+          ],
+          "cadence": "年"
+        }
+      ]
+    },
+    {
+      "id": "capital",
+      "label": "资本与融资（跨账本）",
+      "side": "capital",
+      "parent": null,
+      "unit": "%",
+      "formula": "资本成本率、债务比例、利率决定盈亏平衡价、杠杆 IRR 与 DSCR",
+      "questions": [
+        "M11-Q13"
+      ],
+      "model_inputs": [
+        "wacc",
+        "shell_ltc",
+        "debt_rate",
+        "compute_ltc",
+        "compute_debt_rate",
+        "residual_share"
+      ],
+      "fetch": [
+        {
+          "kind": "news",
+          "what": "项目债、GPU 抵押贷、ABS 的利率与杠杆条款",
+          "sources": [
+            "债券定价报道",
+            "8-K",
+            "评级报告"
+          ],
+          "cadence": "持续"
+        }
+      ]
+    }
+  ]
+}

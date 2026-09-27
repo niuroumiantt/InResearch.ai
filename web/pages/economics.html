@@ -16,8 +16,9 @@
 <nav class="econ-topbar" aria-label="经济模型导航">
   <a href="/index.html">行业总览</a>
   <a href="/bom.html">物理爆炸图</a>
+  <a href="/tco.html">TCO 模型</a>
+  <a class="on" href="/economics.html" aria-current="page">主体账本</a>
   <a href="/cost.html">成本计算</a>
-  <a class="on" href="/economics.html" aria-current="page">经济模型</a>
   <span></span>
   <a href="/research/datacenter-economics.md">模型说明 ↗</a>
 </nav>
@@ -57,7 +58,7 @@
         <div class="card-head"><div><p class="eyebrow">CAPEX STACK</p><h2>每 GW 资本开支：按芯片代际</h2></div><span>$B/GW · 当前代际高亮</span></div>
         <div id="capex-stack" class="chart-host"></div>
         <div id="capex-legend" class="legend"></div>
-        <p class="footnote">GB300 的 IT/非 IT 拆分来自研报；其他代际的总额来自研报、拆分与 GPU 密度为作者估算，切换代际后可在左侧改写。</p>
+        <p class="footnote">GB300 的 IT/非 IT 拆分来自研报；其他代际的总额来自研报、拆分为作者估算。GPU 密度按厂商机柜功率 ÷ 每柜 GPU 数 ÷ 加速器机柜占 IT 功率 81% 折算（GB300 142 kW、GB200 140 kW、DGX H100 10.2 kW、Rubin Ultra 600 kW、Ironwood pod 近 10 MW；Vera Rubin 取 NVIDIA‘100 MW 对应 4 万 GPU’口径；Trainium3 未取得功率数据）。切换代际后可在左侧改写。</p>
       </section>
 
       <section class="analysis-grid">
@@ -65,6 +66,7 @@
           <div class="card-head"><div><p class="eyebrow">COMPUTE LEDGER</p><h2>算力层：收入到 NOPAT</h2></div><span>年度 · 当前项目</span></div>
           <div id="waterfall" class="chart-host"></div>
           <p class="footnote" id="waterfall-note"></p>
+          <ul class="ledger-table" id="compute-table"></ul>
         </article>
         <article class="card">
           <div class="card-head"><div><p class="eyebrow">PROFIT SPLIT</p><h2>四层利润分配</h2></div><span>每年 · 当前项目</span></div>
@@ -103,6 +105,12 @@
         <p class="footnote">壳层与模型层指标按该情景的租约、融资与 token 假设计算；同一行内四本账共用一个项目定义。</p>
       </section>
 
+      <section class="card factor-card">
+        <div class="card-head"><div><p class="eyebrow">TCO FACTOR TREE</p><h2>骨架：TCO 因子树</h2></div><span id="factor-meta">读取因子树…</span></div>
+        <div id="factor-tree" class="factor-host"></div>
+        <p class="footnote">每个因子指向它汇总的爆炸图部件、读取的价格库序列、对应的研究问题与模型输入；标签为定向抓取类型（产品 / 新闻 / 数据 / 报告），悬停查看抓取对象、来源与频率。因子树只定义结构与归属，数值在价格库与模型假设里。</p>
+      </section>
+
       <section class="analysis-grid">
         <article class="card">
           <div class="card-head"><div><p class="eyebrow">MARKET BENCHMARKS</p><h2>价格库基准</h2></div><span id="benchmark-updated">读取价格库…</span></div>
@@ -112,8 +120,8 @@
         <article class="card formula-card">
           <div class="card-head"><div><p class="eyebrow">RECONCILIATION</p><h2>四本账怎么算</h2></div></div>
           <ol>
-            <li><b>算力层</b><span>收入 = GPU 数 × 8,760 × 付费利用率 × 租金；EBITDA = 收入 − 电费 − 其他运营 − 壳租/托管费；NOPAT = (EBITDA − 折旧) × (1 − 税率)；ROIC = NOPAT ÷ 投入资本；盈亏平衡价 = (资本按资本成本率年化回收 + 运营支出) ÷ 付费 GPU 小时</span></li>
-            <li><b>壳层</b><span>NOI = 租金 × NOI 利润率；成本收益率 = NOI ÷ (非 IT 资本开支 + 土地)；债务按租期等额还本付息；DSCR = NOI ÷ 还本付息；IRR 按租期现金流与期末残值</span></li>
+            <li><b>算力层</b><span>收入 = GPU 数 × 8,760 × 付费利用率 × 租金；EBITDA = 收入 − 电费 − 其他运营 − 壳租/托管费；NOPAT = (EBITDA − 折旧) × (1 − 税率)；ROIC = NOPAT ÷ 投入资本；盈亏平衡价 = (资本按资本成本率年化回收 + 运营支出) ÷ 付费 GPU 小时；IRR 用租金年变动的收入路径；杠杆 IRR 按 GPU 债务等额还本付息、利息抵税</span></li>
+            <li><b>壳层</b><span>NOI = 租金 × NOI 利润率；成本收益率 = NOI ÷ (非 IT 资本开支 + 土地)；债务按租期等额还本付息；DSCR = NOI ÷ 还本付息；现金税 = (NOI − 设施折旧 − 利息) × 税率；IRR 按租期现金流与期末残值；含期权 IRR 把续约期 NOI 按行权概率加权</span></li>
             <li><b>模型层</b><span>token = 收费 GPU 小时 × 3,600 × 吞吐；收入 = token ÷ 10⁶ × 单价；自有算力成本 = 运营支出 + 折旧，租用成本 = GPU 小时 × 租金；NOPAT 利润率 = NOPAT ÷ 收入</span></li>
             <li><b>芯片层</b><span>厂商毛利 = IT 资本开支 × 加速器占比 × 毛利率，在 IT 折旧年限内年化；只表示项目资本开支中流向芯片厂商的利润，不是厂商财务预测</span></li>
           </ol>

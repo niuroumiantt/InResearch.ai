@@ -61,14 +61,33 @@ def compute(a):
     unit_cost = (capital_charge + opex) / paid_hours
     cash = nopat + dep_it + dep_shell
     residual = (shell_capex * max(0, 1 - a['it_life'] / a['shell_life']) + land) if own else 0
-    flows = [-invested] + [cash] * a['it_life']
+    flows = [-invested]
+    debt_c = it_capex * a['compute_ltc']
+    ads_c = debt_c * crf(a['compute_debt_rate'], a['it_life']) if debt_c else 0
+    equity_c = invested - debt_c
+    lev_flows = [-equity_c]
+    balance = debt_c
+    for t in range(a['it_life']):
+        rev_t = revenue * (1 + a['price_change']) ** t
+        ebitda_t = rev_t - opex
+        ebit_t = ebitda_t - dep_it - dep_shell
+        flows.append(ebit_t * (1 - a['tax']) + dep_it + dep_shell)
+        interest = balance * a['compute_debt_rate']
+        principal = ads_c - interest if debt_c else 0
+        balance -= principal
+        tax_t = max(0, ebit_t - interest) * a['tax']
+        lev_flows.append(ebitda_t - ads_c - tax_t)
     flows[-1] += residual
+    lev_flows[-1] += residual
     compute_ledger = dict(gpus=gpus, paid_hours=paid_hours, revenue=revenue, energy=energy, other=other, facility_cost=facility_cost,
                           opex=opex, ebitda=ebitda, dep_it=dep_it, dep_shell=dep_shell, ebit=ebit, nopat=nopat, invested=invested,
                           roic=nopat / invested if invested else None, ebitda_margin=ebitda / revenue if revenue else None,
                           ebit_margin=ebit / revenue if revenue else None, unit_cost=unit_cost, breakeven_price=unit_cost,
                           surplus_per_hour=a['gpu_price'] - unit_cost, payback=invested / cash if cash > 0 else None,
-                          irr=irr(flows), capex_total=it_capex + shell_capex + land)
+                          irr=irr(flows), capex_total=it_capex + shell_capex + land,
+                          debt=debt_c, equity=equity_c, debt_service=ads_c, irr_levered=irr(lev_flows) if equity_c > 0 else None,
+                          equity_multiple=sum(lev_flows[1:]) / equity_c if equity_c > 0 else None,
+                          revenue_path=[revenue * (1 + a['price_change']) ** t for t in range(a['it_life'])])
 
     # Ledger 1: landlord (powered shell), always evaluated on the shell inputs
     shell_invested = shell_capex + land
@@ -85,10 +104,29 @@ def compute(a):
     unlev[-1] += residual_value
     lev = [-equity] + [n - ads for n in nois]
     lev[-1] += residual_value
+    # cash taxes on the landlord: (NOI - depreciation - interest) x tax, amortising debt
+    dep_s = shell_capex / a['shell_life']
+    balance = debt
+    after_tax = [-equity]
+    for n in nois:
+        interest = balance * a['debt_rate']
+        principal = ads - interest if debt else 0
+        balance -= principal
+        after_tax.append(n - ads - max(0, n - dep_s - interest) * a['tax'])
+    after_tax[-1] += residual_value
+    # renewal options: probability-weighted NOI beyond the base term
+    opt_years = a['renewal_options'] * a['renewal_years']
+    opt_nois = [rent * (1 + esc) ** (term + t) * a['noi_margin'] for t in range(opt_years)]
+    with_opt = [-shell_invested] + nois[:] + [n * a['renewal_probability'] for n in opt_nois]
+    with_opt[-1] += residual_value
+    tax_y1 = max(0, noi - dep_s - debt * a['debt_rate']) * a['tax']
     shell_ledger = dict(invested=shell_invested, rent_y1=rent, noi_y1=noi, yield_on_cost=noi / shell_invested if shell_invested else None,
-                        contract_value=sum(rents), debt=debt, equity=equity, debt_service=ads,
+                        contract_value=sum(rents), contract_value_with_options=sum(rents) + sum(rent * (1 + esc) ** (term + t) for t in range(opt_years)),
+                        debt=debt, equity=equity, debt_service=ads,
                         dscr=noi / ads if ads else None, cash_on_cash=(noi - ads) / equity if equity else None,
-                        payback=shell_invested / noi if noi else None, irr_unlevered=irr(unlev), irr_levered=irr(lev) if equity > 0 else None)
+                        cash_on_cash_after_tax=(noi - ads - tax_y1) / equity if equity else None, tax_y1=tax_y1,
+                        payback=shell_invested / noi if noi else None, irr_unlevered=irr(unlev), irr_levered=irr(lev) if equity > 0 else None,
+                        irr_levered_after_tax=irr(after_tax) if equity > 0 else None, irr_with_options=irr(with_opt), option_years=opt_years)
 
     # Ledger 3: model / API company
     m_hours = paid_hours * a['monetized_share']
@@ -155,6 +193,10 @@ def main():
     cn = out['china_colo_gds']['shell']
     assert abs(cn['yield_on_cost'] - 0.11) < 0.001, cn['yield_on_cost']
     (HERE / 'results.json').write_text(json.dumps(out, ensure_ascii=False, indent=2, default=lambda x: None) + '\n', encoding='utf-8')
+    nc = out['neocloud_h100_2026']['compute']
+    assert nc['debt'] > 0 and nc['revenue_path'][1] < nc['revenue_path'][0] and nc['equity_multiple'] is not None
+    sh = out['shell_three_net']['shell']
+    assert sh['option_years'] == 15 and sh['irr_with_options'] > sh['irr_unlevered'] and sh['cash_on_cash_after_tax'] < sh['cash_on_cash']
     for pid, r in out.items():
         c, s, m = r['compute'], r['shell'], r['model']
         print(f"{pid:24s} compute ROIC {c['roic']*100:6.1f}%  unit ${c['unit_cost']:.2f}/h  payback {c['payback'] or 0:5.1f}y  | shell yield {s['yield_on_cost']*100:5.1f}% CoC {(s['cash_on_cash'] or 0)*100:5.1f}% DSCR {s['dscr'] or 0:4.2f} | model margin {(m['nopat_margin'] or 0)*100:5.1f}%")
