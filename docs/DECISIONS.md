@@ -4,7 +4,7 @@
 
 ## 2026-09-27：reader schema 的映射 ID 改为非必填
 
-M4 深读中 4 份文档的 `model_cli_failed` 并非限流：Sonnet 偶尔省略空的 `object_ids`，schema 将其列为必填，Claude CLI 内部重试 5 次后报错，每个卡住的块最多耗 15 次生成。reader 本来就把缺失的 ID 数组当空数组，采用：triage、read 及 claim 的 schema 不再要求 `object_ids`/`question_ids`，校验与引文核对不变。
+M4 深读中 4 份文档的 `model_cli_failed` 并非限流：Sonnet 偶尔省略空的 `object_ids`，schema 将其列为必填，Claude CLI 内部重试 5 次后报错，每个卡住的块最多耗 15 次生成。reader 本来就把缺失的 ID 数组当空数组，采用：triage、read 及 claim 的 schema 不再要求 `object_ids`/`question_ids`，校验与引文核对不变。另两次失败是摘要写成整份文档概述（3678 字，上限 1200）并漏掉 `claims`：read 提示写明摘要只写本块、1200 字以内，顶层必须返回 claims（可为空）。同批修复 #234 的 nvidia-pilot.html 全局 `nav` 样式撑高站点头栏（手机上 118px，检查要求两行以内），改为只作用于 `main>nav`。
 
 ## 2026-09-27：Claude CLI 临时错误改为重试
 

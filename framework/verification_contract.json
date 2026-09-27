@@ -24,7 +24,7 @@
     "framework/05_interface_system.md": "c6c245f0343fcad4d0860aefa3920b455072d18530cc57a3a5bc95a1ddcf1bb0",
     "framework/06_acquisition.md": "58853731d86b3e710e77276047f568fc2be5726e5b39558ae8c9534714fe81f6",
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
-    "framework/08_model_execution.md": "f1089fe31a9dd75e909a7638f225f3d2a560ffe021b6be50e4fc19d70a333b44",
+    "framework/08_model_execution.md": "cc30dab76dd83a785c99e34d6d165a6dadc2a5d12c31de8298a8858a410f9eee",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
     "framework/CURRENT.md": "cee5c4a2662ea77b7538c0bfbc5b7912f950a5d7d98cf17a564f99f739879906",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
@@ -82,7 +82,7 @@
     "tests/unit/test_ocr_worker_named.py": "cebfc4268d7580aca5e9232e1c3233b656ea0b91886ec771fd348373b0c8f969",
     "tests/unit/test_ocr_worker_resume.py": "6a0fc026fdd22ddc3b303e51b67fea8d4b7a8ee9ba9fdb4e130572076541863e",
     "tests/unit/test_ollama_schema.py": "b70ab619eba8b6a3e5a565831a9c838a50c12e30bdd4cdc9473c3cde9cad14d8",
-    "tests/unit/test_optional_mapping_ids.py": "e75ab23341864e92a7f3cec3fc8e44742c053bf58b70851e76985fe342b5b2f3",
+    "tests/unit/test_optional_mapping_ids.py": "5855afeaa96c64a825ffdc49fe1708efe9762ea60c65826f6a95b647ea341a2c",
     "tests/unit/test_pilot_progress.py": "9a5c54e39d28b07bf497a844a906366c8b8053e3368a8b4260089f145b195259",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "13d781d6bb35801eb8a7b4592008e2a87f9a3b48a2c685e442c860bcddde220c",
@@ -101,7 +101,7 @@
     "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
     "tests/url_rendering.cjs": "b463695816e72417012ef814ebbb4d382f256e61f46017fe54c9167abfdb953d",
     "web/components/supply.js": "77fc1f9669f723d0e30ee5157355852016f07e6de0ceaaaf7fd42e22e014b86b",
-    "web/pages/nvidia-pilot.html": "7e8840fea3f15337168de628b7bc4dad6efc5783a542247ed6b9bc624b28a015",
+    "web/pages/nvidia-pilot.html": "c5a8fbe88dc6561e9e7d4a2f31cb7a95b082310d79c4c5529341080f1c7cbd16",
     "web/pages/supply.html": "8d239586466f575fb52c194fc933326689f55e07e4c07d67fb9ffa89cfa5f32c"
   },
   "policies": [
@@ -489,7 +489,7 @@
       "policy": "model-execution-20260912",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
@@ -523,7 +523,8 @@
         "tests/unit/test_transient_model_errors.py::ReaderRetryTests.test_a_transient_cli_failure_is_retried_and_the_document_completes",
         "tests/unit/test_optional_mapping_ids.py::SchemaTests.test_mapping_ids_are_never_required",
         "tests/unit/test_optional_mapping_ids.py::SchemaTests.test_content_fields_stay_required",
-        "tests/unit/test_optional_mapping_ids.py::ReaderTests.test_replies_without_id_arrays_complete_as_unmapped"
+        "tests/unit/test_optional_mapping_ids.py::ReaderTests.test_replies_without_id_arrays_complete_as_unmapped",
+        "tests/unit/test_optional_mapping_ids.py::PromptTests.test_read_prompt_states_the_summary_limit_and_the_required_fields"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。",

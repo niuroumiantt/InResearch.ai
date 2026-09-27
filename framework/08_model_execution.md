@@ -18,7 +18,7 @@ Claude CLI 在临时目录中以非交互模式运行，材料从标准输入传
 
 `text_json` 和 `vision_json` 是适配器接受的能力声明，须经目标模型的小样本验收后配置；声明本身不证明质量。OCR 必须显式配置 `ocr` 角色，当前视觉适配支持 Ollama。没有视觉能力的文本模型不能冒充读过图片。
 
-reader 各环节 schema 中 `object_ids`、`question_ids` 不是必填字段（2026-09-27 起）：它们本可为空数组，reader 把缺失当空数组；设为必填时，Sonnet 偶尔省略空的 `object_ids`，Claude CLI 按 `--json-schema` 内部重试 5 次后以 `is_error` 退出，整份文档被阻塞。正文字段（摘要、claims、引文等）仍为必填。
+reader 各环节 schema 中 `object_ids`、`question_ids` 不是必填字段（2026-09-27 起）：它们本可为空数组，reader 把缺失当空数组；设为必填时，Sonnet 偶尔省略空的 `object_ids`，Claude CLI 按 `--json-schema` 内部重试 5 次后以 `is_error` 退出，整份文档被阻塞。正文字段（摘要、claims、引文等）仍为必填。M4 另两次 CLI 失败是 Sonnet 把 read 摘要写成整份文档概述（3678 字，上限 1200）并漏掉 `claims`；read 提示因此写明摘要只写本块、1200 字以内（约 3–6 句），且顶层必须返回 `chunk_sha256`、`summary`、`claims`（无内容时为 []）。
 
 Claude CLI 的非零退出或 `is_error`（过载、断线、进程卡死）记 `model_cli_failed`，超时记 `model_cli_timeout`；reader 把这两种按普通模型失败处理：保留错误码，走每任务 3 次、30/60/120 秒退避的重试，不再整份阻塞（2026-09-27 起：M4 深读 21 份时 4 份因此阻塞，已完成的块均无失败、引文均核对通过）。认证失败、CLI 未安装、模型身份无法核实仍直接阻塞，重试解决不了。
 

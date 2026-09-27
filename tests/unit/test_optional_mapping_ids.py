@@ -25,6 +25,22 @@ class SchemaTests(unittest.TestCase):
         self.assertEqual(reader_model._schema("triage")["required"], ["classification", "importance", "rationale"])
 
 
+class PromptTests(unittest.TestCase):
+    def test_read_prompt_states_the_summary_limit_and_the_required_fields(self):
+        seen = {}
+
+        class Recorder:
+            def generate(self, system, user, **kwargs):
+                seen["system"] = system
+                return {}
+        client = reader_model.ModelClient.__new__(reader_model.ModelClient)
+        client.client = Recorder()
+        client.generate("read", {"x": 1})
+        self.assertIn("within 1200 characters", seen["system"])
+        self.assertIn("THIS chunk only", seen["system"])
+        self.assertIn("claims as [] when there is none", seen["system"])
+
+
 class NoIds(fixtures.Model):
     """Replies the way Sonnet sometimes does: the empty id arrays left out."""
     def generate(self, stage, payload, retry_instruction=None):
