@@ -3,7 +3,6 @@ import os
 import tempfile
 import unittest
 from pathlib import Path
-from datetime import datetime, timezone
 
 from inresearch.workflow import pilot_progress
 
@@ -19,17 +18,19 @@ class PilotProgressTests(unittest.TestCase):
         self.target = self.root / 'pilot.json'
         self.old = os.environ.get('INRESEARCH_NVIDIA_PILOT_PROGRESS')
         os.environ['INRESEARCH_NVIDIA_PILOT_PROGRESS'] = str(self.target)
-        graph = json.loads((self.root / 'framework/research_graph.json').read_text())
-        questions = json.loads((self.root / 'framework/research_questions.json').read_text())
-        snapshot = {'generated': datetime.now(timezone.utc).isoformat(),
-            'graph_version': graph['version'], 'questions_version': questions['version'],
-            'reader': {}, 'knowledge': {
-                'documents': [{'id': 'doc-' + 'a' * 64, 'content_sha256': 'a' * 64,
-                    'title': 'NVIDIA A100 datasheet', 'acceptance': 'candidate',
-                    'coverage': {'complete': True, 'pages_read': 3, 'pages_total': 3,
-                        'chunks_read': 1, 'chunks_total': 1, 'characters_read': 100, 'characters_total': 100},
-                    'sources': [], 'question_ids': [], 'object_ids': []}],
-                'answers': [], 'evidence': [], 'statements': []}}
+        # Built from the checked-in framework, not a file left in M5's /tmp (absent in CI).
+        snapshot = {'graph_version': json.loads((self.root / 'framework/research_graph.json').read_text())['version'],
+                    'questions_version': json.loads((self.root / 'framework/research_questions.json').read_text())['version'],
+                    'generated': '2026-09-27T06:00:00Z', 'knowledge': {}, 'reader': {}}
+        # Unit fixture with no dependency on M5's ephemeral temporary directory.
+        snapshot['knowledge']['documents'] = [{
+            'id': 'doc-' + 'a' * 64, 'content_sha256': 'a' * 64,
+            'title': 'NVIDIA A100 datasheet', 'acceptance': 'candidate',
+            'coverage': {'complete': True, 'pages_read': 3, 'pages_total': 3,
+                'chunks_read': 1, 'chunks_total': 1, 'characters_read': 100, 'characters_total': 100},
+            'sources': [], 'question_ids': [], 'object_ids': []}]
+        for key in ('answers', 'evidence', 'statements'):
+            snapshot['knowledge'][key] = []
         self.payload = {'schema_version': 1, 'status': {'acceptance': 'candidate_only',
             'backend': {'backend': 'claude_cli'}, 'generated': '2026-09-27T06:00:00Z',
             'counts': {'complete': 1, 'blocked': 0, 'failed': 0}, 'documents_total': 1},
