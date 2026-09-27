@@ -78,6 +78,23 @@ class ProgressPageTests(unittest.TestCase):
             finally:
                 conn.close()
 
+    def test_a_recovered_error_is_hidden_and_a_blocking_one_shown(self):
+        conn = sqlite3.connect(self.data / "catalog" / "catalog.sqlite")
+        conn.execute("UPDATE reading_runs SET state='running',error_code='model_output_invalid' WHERE doc_id=?", (self.doc[0],))
+        conn.commit()
+        self.assertNotIn("model_output_invalid", progress.render(self.collect()))
+        conn.execute("UPDATE reading_runs SET state='blocked',error_code='model_output_truncated' WHERE doc_id=?", (self.doc[0],))
+        conn.commit(); conn.close()
+        self.assertIn("model_output_truncated", progress.render(self.collect()))
+
+    def test_claim_floor_is_shown(self):
+        import os
+        from unittest import mock
+        with mock.patch.dict(os.environ, {"READER_CLAIM_MIN_PRIORITY": "7"}):
+            page = progress.render(self.collect())
+        self.assertIn("只读优先级 ≥ 7 的文档", page)
+        self.assertIn("读取全部排队文档", progress.render(self.collect()))
+
     def test_names_are_escaped(self):
         conn = sqlite3.connect(self.data / "catalog" / "catalog.sqlite")
         conn.execute("UPDATE documents SET original_name='<script>x</script>.txt' WHERE doc_id=?", (self.doc[0],))

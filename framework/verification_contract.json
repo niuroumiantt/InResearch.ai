@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.12",
+  "version": "2026.09.27.13",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -13,7 +13,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "40d2719a10486ee4c416fee2d9a4e65d10c227b36fa57ebe748cd9f7a422562c",
+    "docs/local_reader/SPARK_OPERATIONS.md": "fc05e95ede23a3a5b13e79cadf7e08087cf0a80643ccfd517d39f923d1d491aa",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
@@ -26,7 +26,7 @@
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
     "framework/08_model_execution.md": "0a949fc79642c4a013a5a8b198dc4358eff162298cab2163e0f5b776c885eda8",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "b1d41e0488aa67dd4b54664a3f6def6cf05ba7f699ee7210a190a7650420297a",
+    "framework/CURRENT.md": "49fc6603230b7cbe7fb38e95c750fdd34327ea32d7ac489cce5bdb5e3484c6e6",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "afc8fa66cd6d2c07268518c4aa6ba6c395877047f4c80dad5b6483decd307a98",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -56,6 +56,7 @@
     "tests/unit/test_apply_triage.py": "dad79b6f60099206f6f5d32eb1cd3ebf8c9a46af9e0ea055a33ca3ece2bd51f1",
     "tests/unit/test_catalog_bridge.py": "47ed253f19bd29eeff4221e07215084526b1b7fae85e58b4aab051d4b6ac8405",
     "tests/unit/test_catalog_migration.py": "463ffb034bd7d1f5b2cd2f8c221e07734ac287dd0df95a7fda127a2f2d69de48",
+    "tests/unit/test_claim_floor.py": "d90c2b9ab948d922768cd25b0bface4dc7f2a94fcbcc749e53e9f8446d95da0c",
     "tests/unit/test_commands.py": "0eda9d7ee92eadb0b187f8e83901ae42c016c783fcdcfeec1d0e74b89dbb15a7",
     "tests/unit/test_continuous_reader.py": "1d35825db6e01d3b275c2a4a9c703e0555dd43950f59db43043f9b679ac2834c",
     "tests/unit/test_deep_read.py": "f4399a1287d9fd7ced79059d351c6edd08a48ca0c3a752dbf94bc4964705d4f9",
@@ -87,7 +88,7 @@
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "13d781d6bb35801eb8a7b4592008e2a87f9a3b48a2c685e442c860bcddde220c",
     "tests/unit/test_reader_depth.py": "3e9a0ace8150391afd8f9d50cc3cfeb99f6da189657279e157d458917f2e2d13",
-    "tests/unit/test_reader_progress.py": "4eb279a15cfd9b98b630be2592038bc5f045bfc47cba36eeedc2f09ee5bc4260",
+    "tests/unit/test_reader_progress.py": "22f5514887bcac6cf9fd9096cab6256f8c293408e7885d0c60f0188ea36b3772",
     "tests/unit/test_reader_thermal.py": "145dcd0f71a557707379b5c5470516839c122eb9b4be7235d3871dc3a460d739",
     "tests/unit/test_reading_results.py": "40e5b2b52876f421fe9e42ee6270062137d15642f33c04bbfe002e778ccddfed",
     "tests/unit/test_reading_revisions.py": "11159514736025f8532fde946401a726cd1c7fb08fb731d5c3195e34707f1c93",
@@ -237,7 +238,7 @@
       "policy": "operations-20260906",
       "scope": "project",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
-      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过",
+      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过；认领下限以下的文档任务不被认领、不计尝试且留在队列，下限 0 全部认领，非法下限拒绝，状态报告暂停份数；进度页只对阻塞/失败文档显示错误码并显示认领范围",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_backup_restores_catalog_and_views_under_new_root",
         "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle",
@@ -270,7 +271,12 @@
         "tests/unit/test_m4_ocr_gaps.py::M4GapPageTests.test_too_many_gaps_block_the_document",
         "tests/unit/test_m4_ocr_gaps.py::M4GapPageTests.test_document_without_gaps_reports_no_gap_field",
         "tests/unit/test_m4_ocr_gaps.py::M4GapPageTests.test_malformed_gap_is_an_integrity_error",
-        "tests/unit/test_m4_ocr_gaps.py::M4GapPageTests.test_a_tampered_gap_list_fails_report_validation"
+        "tests/unit/test_m4_ocr_gaps.py::M4GapPageTests.test_a_tampered_gap_list_fails_report_validation",
+        "tests/unit/test_claim_floor.py::ClaimFloorTests.test_documents_below_the_floor_wait_untouched",
+        "tests/unit/test_claim_floor.py::ClaimFloorTests.test_floor_zero_reads_everything",
+        "tests/unit/test_claim_floor.py::ClaimFloorTests.test_invalid_floor_is_refused",
+        "tests/unit/test_reader_progress.py::ProgressPageTests.test_a_recovered_error_is_hidden_and_a_blocking_one_shown",
+        "tests/unit/test_reader_progress.py::ProgressPageTests.test_claim_floor_is_shown"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。",
@@ -278,7 +284,8 @@
         "温度保护只用脚本化读数与伪造的传感器文件测试；未在 Spark 真机核对 GB10 的 nvidia-smi 与 thermal zone 实际读数、各 zone 含义及 85 ℃ 是否合适。暂停只挡下一次领取，单个长任务（如大文档 OCR）运行期间温度仍可能超过限值。",
         "M4 结果空白页接收与 reader 自动重新排队只用隔离夹具测试；未在 Spark 真机核对 M4 结果目录 mtime 与任务 finished 时钟的一致性（两者都在 Spark 上生成，scp 写入时间以 Spark 为准）。Spark 本机 OCR 已关闭，READER_OCR_MODEL 恢复前扫描件只能由 M4 处理。",
         "进度页只用临时 catalog 与伪造的日志/服务/温度测试；未在 Spark 真机核对 journalctl --user 权限、大库上的查询耗时，Mac 循环脚本未实跑。",
-        "缺页只用伪造的 M4 结果与 PDF 工具测试；未在 Spark 真机用 7 份失败文档验证，也未核对网站候选接收对 gap_pages 的展示。"
+        "缺页只用伪造的 M4 结果与 PDF 工具测试；未在 Spark 真机用 7 份失败文档验证，也未核对网站候选接收对 gap_pages 的展示。",
+        "认领下限只用临时 catalog 测试；未在 Spark 真机核对 1.17 万份队列上的认领查询耗时。GPU 限功率在 GB10 上是否可用、效果如何未验。"
       ]
     },
     {

@@ -2,7 +2,7 @@
 from __future__ import annotations
 import os
 import argparse, sqlite3, sys
-from inresearch.materials.reader_contracts import ReaderError, MAX_WORKERS, FULL_READ_MIN_PRIORITY, PARK_REASONS
+from inresearch.materials.reader_contracts import ReaderError, MAX_WORKERS, FULL_READ_MIN_PRIORITY, CLAIM_MIN_PRIORITY, PARK_REASONS
 from inresearch.materials.artifacts import encoded
 from inresearch.workflow.reading_results import ReadingResults
 
@@ -99,7 +99,8 @@ def main(argv=None):
     if args.command == "run":
         from inresearch.adapters.thermal import read_celsius as temperature
     reader = Reader(args.data_root, args.state_root, args.repo_root, model, args.stable_seconds,
-                    temperature=temperature, full_read_min_priority=FULL_READ_MIN_PRIORITY)
+                    temperature=temperature, full_read_min_priority=FULL_READ_MIN_PRIORITY,
+                    claim_min_priority=CLAIM_MIN_PRIORITY)
     try:
         reader.initialize()
         if args.command == "run":
