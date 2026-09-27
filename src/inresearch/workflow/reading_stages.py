@@ -341,8 +341,8 @@ class ReadingStages(ReadingArtifacts):
         claims = result.get("claims")
         if not isinstance(claims, list) or len(claims) > 30:
             raise ModelOutputError()
-        evs, clean_claims = [], []
-        for c_index, claim in enumerate(claims):
+        evs, clean_claims, dropped = [], [], []
+        for claim in claims:
             if not isinstance(claim, dict):
                 raise ModelOutputError()
             require_text(claim.get("text"), 1500)
@@ -352,11 +352,14 @@ class ReadingStages(ReadingArtifacts):
             claim_ids = self._ids(claim, context)
             if not isinstance(evidence, list) or not 1 <= len(evidence) <= 8:
                 raise ModelOutputError()
-            refs = []
-            for e_index, ev in enumerate(evidence):
-                quote = require_text(ev.get("quote") if isinstance(ev, dict) else None, 500)
-                if re.sub(r"\s+", "", quote) not in normalized:
-                    raise ModelOutputError()
+            quotes = [require_text(ev.get("quote") if isinstance(ev, dict) else None, 500) for ev in evidence]
+            missing = [q for q in quotes if re.sub(r"\s+", "", q) not in normalized]
+            if missing:
+                # Still unverifiable after the one correction: drop this claim, keep the verified ones, and record it.
+                dropped.append({"text": claim["text"], "kind": claim["kind"], "unverified_quotes": missing})
+                continue
+            c_index, refs = len(clean_claims), []
+            for e_index, quote in enumerate(quotes):
                 eid = "%s:chunk:%d:claim:%d:ev:%d" % (doc["revision_id"], index, c_index, e_index)
                 evs.append({"id": eid, "page_index": chunk["page_index"],
                             "locator": "page:%d/chunk:%d" % (chunk["page_index"], index),
@@ -367,6 +370,9 @@ class ReadingStages(ReadingArtifacts):
         result.update(self._ids(result, context))
         for field in ("object_ids", "question_ids"):
             result[field] = sorted(set(result[field]) | {v for claim in clean_claims for v in claim[field]})
+        result.pop("dropped_claims", None)
+        if dropped:
+            result["dropped_claims"] = dropped
         result.update({"claims": clean_claims, "evidence": evs, "chunk_index": index, "page_index": chunk["page_index"], "characters": len(text)})
         return self._persist(doc, relative, marker, result)
 
@@ -426,6 +432,9 @@ class ReadingStages(ReadingArtifacts):
         gap_pages = sorted(p["page_index"] for p in extraction["pages"] if p.get("gap"))
         if gap_pages:
             coverage["gap_pages"] = gap_pages
+        dropped = sum(len(c.get("dropped_claims", [])) for c in chunks)
+        if dropped:
+            coverage["dropped_claims"] = dropped
         coverage["complete"] = (coverage["pages_total"] == coverage["pages_read"] and coverage["chunks_total"] == coverage["chunks_read"]
                                 and coverage["characters_total"] == coverage["characters_read"])
         if not coverage["complete"]:
@@ -442,4 +451,7 @@ class ReadingStages(ReadingArtifacts):
                   "warning": "Coverage is processing coverage, not proof that every interpretation or number is correct."}
         if gap_pages:
             report["warning"] += " Pages %s could not be read by OCR and are not covered by this report." % ", ".join(map(str, gap_pages))
+        if dropped:
+            report["warning"] += (" %d claims were dropped because their quotes still did not match the source after one correction;"
+                                  " they are listed per chunk as dropped_claims and are not evidence." % dropped)
         return self._persist(doc, "report.json", "report", report)
