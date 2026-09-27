@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>InResearch.ai 数据中心经济模型指导：三级四段五层六队</title>
+<link rel="stylesheet" href="../../web/assets/fonts/fonts.css">
+<style>
+@page{size:A4 landscape;margin:11mm 12mm}
+:root{--ink:#1c2230;--muted:#5b6474;--line:#c9ced8;--soft:#f1f3f6;
+ --l1:#1f7a6d;--l1b:#e3f2ee;--l2:#2d6fb0;--l2b:#e4eef9;--l3:#b3661a;--l3b:#fbeedd;--l4:#7a5ab0;--l4b:#ede6f7;--l5:#8a3b3b;--l5b:#f6e4e4;
+ --out:#2b3445;--outb:#e9ecf2;--stage:#3d5a99;--stageb:#e6ebf7;--team:#4a4f5c;--teamb:#eceef2;--gap:#b23a3a;--ok:#2f8f5b;--part:#d9a43a;
+ --font:"Noto Sans SC","Inter","WenQuanYi Zen Hei",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;color:var(--ink);font:11.5px/1.5 var(--font);background:#fff}
+.page{width:273mm;height:186mm;page-break-after:always;position:relative;overflow:hidden}
+.page:last-child{page-break-after:auto}
+.head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1.5px solid var(--ink);padding-bottom:5px;margin-bottom:10px}
+.head h2{margin:0;font-size:17px;font-weight:700}
+.head span{color:var(--muted);font-size:10px}
+.foot{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;color:var(--muted);font-size:9px;border-top:1px solid var(--line);padding-top:4px}
+svg{display:block;width:100%;height:auto;font-family:var(--font)}
+p{margin:0 0 6px}
+h3{font-size:12.5px;margin:0 0 4px}
+table{border-collapse:collapse;width:100%;font-size:10px}
+th,td{text-align:left;padding:4px 6px;border-top:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:500;font-size:9px;letter-spacing:.04em;border-top:0;border-bottom:1px solid var(--ink)}
+td:first-child{font-weight:600;white-space:nowrap}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cols3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.box{border:1px solid var(--line);padding:8px 10px}
+.box h3{color:var(--stage)}
+ul,ol{margin:0;padding-left:16px}li{margin:2px 0}
+.cover-top{display:grid;grid-template-columns:1fr 2.1fr;gap:14px;align-items:start}
+.cover h1{font-size:26px;line-height:1.15;margin:0 0 4px;letter-spacing:-.01em}
+.cover .kicker{font-size:9.5px;letter-spacing:.14em;color:var(--stage);font-weight:700;margin-bottom:6px}
+.cover p{font-size:10.5px}
+.slogan{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0}
+.slogan div{border:1px solid var(--line);padding:5px 8px}
+.slogan b{display:block;font-size:13px}
+.slogan span{color:var(--muted);font-size:9.5px;line-height:1.35;display:block}
+.meta{position:absolute;bottom:14px;left:0;font-size:9px;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 · COVER + MASTER FIGURE ============ -->
+<section class="page cover">
+<div class="cover-top">
+<div>
+<div class="kicker">INRESEARCH.AI · 模型指导 · 2026-09-27</div>
+<h1>数据中心经济模型<br>三级、四段、五层、六队</h1>
+<div class="slogan">
+<div><b>三级</b><span>输出：成本级、收入级、回报级。回报 = 收入 − 成本，再按主体分账。</span></div>
+<div><b>四段</b><span>流程：采集 → 事实 → 规则 → 视图。每段只从上一段取，不能跳。</span></div>
+<div><b>五层</b><span>变量：构成、运行、价格、时间、主体。五层正交，案例 = 五层各取一值。</span></div>
+<div><b>六队</b><span>采集分队按来源机制划分，从五层目标清单领任务，统一交付。</span></div>
+</div>
+<p>骨架大于案例。公司名、案例和数字都会变，本页描述的结构不随它们变。五层说一个变量是什么，四段说它此刻在哪，三级说它最后算成什么，六队说谁去取。</p>
+<p>阅读顺序：第 2 页三级（算成什么），第 3 页四段（数据走哪条路、五层住在哪），第 4 页六队（谁去取、什么时候取），第 5 页闭环与原则。</p>
+<div class="meta">基准版本 2026.09.27.22 · 授权文件：framework/CURRENT.md · 实现进度见 docs/DECISIONS.md</div>
+</div>
+<div>
+<svg viewBox="0 0 760 540" role="img" aria-label="总图：四段流程从左到右为采集、事实、规则、视图；采集段是六队；事实段分参照数据与观测数据；五层变量横贯事实与规则；规则段输出三级：成本、收入、回报；视图段是各页面。">
+<defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1c2230"/></marker></defs>
+<g font-size="9.5" fill="#1c2230">
+<!-- stage headers -->
+<g font-weight="700" font-size="11" fill="#3d5a99">
+<text x="66" y="16" text-anchor="middle">① 采集 · 六队</text>
+<text x="243" y="16" text-anchor="middle">② 事实 · 五层</text>
+<text x="448" y="16" text-anchor="middle">③ 规则 · 三级</text>
+<text x="676" y="16" text-anchor="middle">④ 视图</text>
+</g>
+<g stroke="#c9ced8" stroke-dasharray="3 3"><line x1="140" y1="24" x2="140" y2="500"/><line x1="346" y1="24" x2="346" y2="500"/><line x1="592" y1="24" x2="592" y2="500"/></g>
+
+<!-- teams -->
+<g font-size="9.5">
+<rect x="8" y="30" width="116" height="34" rx="3" fill="#eceef2" stroke="#4a4f5c"/><text x="66" y="44" text-anchor="middle" font-weight="700">fetchspec</text><text x="66" y="57" text-anchor="middle" fill="#5b6474">厂商规格 · 每代</text>
+<rect x="8" y="70" width="116" height="34" rx="3" fill="#eceef2" stroke="#4a4f5c"/><text x="66" y="84" text-anchor="middle" font-weight="700">inews.today</text><text x="66" y="97" text-anchor="middle" fill="#5b6474">新闻事件 · 持续</text>
+<rect x="8" y="110" width="116" height="34" rx="3" fill="#eceef2" stroke="#4a4f5c" stroke-dasharray="4 3"/><text x="66" y="124" text-anchor="middle" font-weight="700">fetchstat</text><text x="66" y="137" text-anchor="middle" fill="#5b6474">统计与费率 · 月/年</text>
+<rect x="8" y="150" width="116" height="34" rx="3" fill="#eceef2" stroke="#4a4f5c" stroke-dasharray="4 3"/><text x="66" y="164" text-anchor="middle" font-weight="700">fetchfilings</text><text x="66" y="177" text-anchor="middle" fill="#5b6474">证券披露 · 季/年</text>
+<rect x="8" y="190" width="116" height="34" rx="3" fill="#eceef2" stroke="#4a4f5c" stroke-dasharray="4 3"/><text x="66" y="204" text-anchor="middle" font-weight="700">fetchreports</text><text x="66" y="217" text-anchor="middle" fill="#5b6474">研报指数 · 年</text>
+<rect x="8" y="230" width="116" height="34" rx="3" fill="#eceef2" stroke="#4a4f5c" stroke-dasharray="4 3"/><text x="66" y="244" text-anchor="middle" font-weight="700">fetchquotes</text><text x="66" y="257" text-anchor="middle" fill="#5b6474">市场报价 · 日/周</text>
+<rect x="8" y="284" width="116" height="40" rx="3" fill="#e6ebf7" stroke="#3d5a99"/><text x="66" y="300" text-anchor="middle" font-weight="700">供应中心</text><text x="66" y="314" text-anchor="middle" fill="#5b6474">验收 · manifest · SHA</text>
+<line x1="66" y1="264" x2="66" y2="284" stroke="#1c2230" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="124" y1="304" x2="152" y2="304" stroke="#1c2230" stroke-width="2" marker-end="url(#ar)"/>
+<text x="66" y="350" text-anchor="middle" fill="#5b6474">实框已有 · 虚框待建</text>
+<text x="66" y="364" text-anchor="middle" fill="#5b6474">任务来自五层目标清单</text>
+</g>
+
+<!-- facts: two stores + five layers -->
+<rect x="152" y="30" width="182" height="20" rx="3" fill="#e6ebf7" stroke="#3d5a99"/><text x="243" y="44" text-anchor="middle" font-weight="700" font-size="10">参照数据 · 按版本改</text>
+<rect x="152" y="110" width="182" height="20" rx="3" fill="#e6ebf7" stroke="#3d5a99"/><text x="243" y="124" text-anchor="middle" font-weight="700" font-size="10">观测数据 · 按时点追加</text>
+<g font-size="9.5">
+<rect x="152" y="54" width="182" height="50" rx="3" fill="#e3f2ee" stroke="#1f7a6d"/><text x="160" y="68" font-weight="700" fill="#1f7a6d">1 构成层</text><text x="160" y="82">部件目录 · 每 MW 工程量</text><text x="160" y="95">站点/冷却/设备预设</text>
+<rect x="152" y="134" width="182" height="42" rx="3" fill="#e4eef9" stroke="#2d6fb0"/><text x="160" y="148" font-weight="700" fill="#2d6fb0">2 运行层</text><text x="160" y="162">PUE/WUE 实测、功率实测、利用率</text>
+<rect x="152" y="180" width="182" height="42" rx="3" fill="#fbeedd" stroke="#b3661a"/><text x="160" y="194" font-weight="700" fill="#b3661a">3 价格层</text><text x="160" y="208">电价、费率、工资、租金、造价指数</text>
+<rect x="152" y="226" width="182" height="42" rx="3" fill="#ede6f7" stroke="#7a5ab0"/><text x="160" y="240" font-weight="700" fill="#7a5ab0">4 时间层</text><text x="160" y="254">交期、建设历时、折旧年限、起租滞后</text>
+<rect x="152" y="272" width="182" height="42" rx="3" fill="#f6e4e4" stroke="#8a3b3b"/><text x="160" y="286" font-weight="700" fill="#8a3b3b">5 主体层</text><text x="160" y="300">票息、贷款利率、税率、租约条款</text>
+<text x="243" y="336" text-anchor="middle" fill="#5b6474">series_id + as_of 唯一 · 一序列一口径</text>
+<text x="243" y="350" text-anchor="middle" fill="#5b6474">估算必带假设 · 预测与案例不入库</text>
+</g>
+
+<!-- rules: aggregation per layer -->
+<g font-size="9.5">
+<rect x="358" y="54" width="180" height="50" rx="3" fill="#e3f2ee" stroke="#1f7a6d"/><text x="366" y="68" font-weight="700" fill="#1f7a6d">构成 → capex 数量</text><text x="366" y="82">因子树：部件 → 造价类目</text><text x="366" y="95">GPU 数 = 容量 × 密度</text>
+<rect x="358" y="134" width="180" height="42" rx="3" fill="#e4eef9" stroke="#2d6fb0"/><text x="366" y="148" font-weight="700" fill="#2d6fb0">运行 → 年流量</text><text x="366" y="162">kWh = 负载率 × PUE × 8,760</text>
+<rect x="358" y="180" width="180" height="42" rx="3" fill="#fbeedd" stroke="#b3661a"/><text x="366" y="194" font-weight="700" fill="#b3661a">价格 → 单价与涨幅</text><text x="366" y="208">取最新时点，按站点</text>
+<rect x="358" y="226" width="180" height="42" rx="3" fill="#ede6f7" stroke="#7a5ab0"/><text x="366" y="240" font-weight="700" fill="#7a5ab0">时间 → 排到年</text><text x="366" y="254">建设期、爬坡、更新、退役</text>
+<rect x="358" y="272" width="180" height="42" rx="3" fill="#f6e4e4" stroke="#8a3b3b"/><text x="366" y="286" font-weight="700" fill="#8a3b3b">主体 → 分账与折现</text><text x="366" y="300">模式、杠杆、r、税、折旧</text>
+</g>
+<!-- three levels -->
+<g font-size="9.5">
+<rect x="358" y="336" width="180" height="46" rx="3" fill="#e9ecf2" stroke="#2b3445"/><text x="366" y="351" font-weight="700" font-size="10.5">成本级 Cost</text><text x="366" y="364">capex = 构成 × 价格</text><text x="366" y="377">opex = 运行 × 价格 · 时间折现</text>
+<rect x="358" y="390" width="180" height="46" rx="3" fill="#e9ecf2" stroke="#2b3445"/><text x="366" y="405" font-weight="700" font-size="10.5">收入级 Revenue</text><text x="366" y="418">GPU 数 × 8,760 × 利用率 × 单价</text><text x="366" y="431">按爬坡与价格路径排到年</text>
+<rect x="358" y="444" width="180" height="46" rx="3" fill="#e9ecf2" stroke="#2b3445"/><text x="366" y="459" font-weight="700" font-size="10.5">回报级 Return</text><text x="366" y="472">收入 − 成本，按主体分账</text><text x="366" y="485">杠杆、税 → IRR、倍数、回本年</text>
+<line x1="448" y1="314" x2="448" y2="336" stroke="#1c2230" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="448" y1="382" x2="448" y2="390" stroke="#1c2230" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="448" y1="436" x2="448" y2="444" stroke="#1c2230" stroke-width="1.5" marker-end="url(#ar)"/>
+<text x="548" y="360" fill="#5b6474" font-size="9">1–4 层</text><text x="548" y="414" fill="#5b6474" font-size="9">1–4 层</text><text x="548" y="468" fill="#5b6474" font-size="9">+ 第 5 层</text>
+</g>
+<!-- flow arrows between stages -->
+<line x1="334" y1="80" x2="358" y2="80" stroke="#1f7a6d" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="334" y1="155" x2="358" y2="155" stroke="#2d6fb0" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="334" y1="201" x2="358" y2="201" stroke="#b3661a" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="334" y1="247" x2="358" y2="247" stroke="#7a5ab0" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="334" y1="293" x2="358" y2="293" stroke="#8a3b3b" stroke-width="1.5" marker-end="url(#ar)"/>
+
+<!-- views -->
+<g font-size="9.5">
+<rect x="606" y="54" width="140" height="42" rx="3" fill="#f1f3f6" stroke="#2b3445"/><text x="676" y="70" text-anchor="middle" font-weight="700">爆炸图页 bom</text><text x="676" y="84" text-anchor="middle" fill="#5b6474">参照数据的目录视图</text>
+<rect x="606" y="134" width="140" height="42" rx="3" fill="#f1f3f6" stroke="#2b3445"/><text x="676" y="150" text-anchor="middle" font-weight="700">价格库页</text><text x="676" y="164" text-anchor="middle" fill="#5b6474">观测数据的序列视图</text>
+<rect x="606" y="336" width="140" height="46" rx="3" fill="#f1f3f6" stroke="#2b3445"/><text x="676" y="353" text-anchor="middle" font-weight="700">TCO 页 tco.html</text><text x="676" y="368" text-anchor="middle" fill="#5b6474">成本级 · 对基准变化</text>
+<rect x="606" y="404" width="140" height="60" rx="3" fill="#f1f3f6" stroke="#2b3445"/><text x="676" y="421" text-anchor="middle" font-weight="700">主体账本页</text><text x="676" y="436" text-anchor="middle" fill="#5b6474">收入级 + 回报级</text><text x="676" y="451" text-anchor="middle" fill="#5b6474">壳层 / 算力层 / 模型层</text>
+<rect x="606" y="226" width="140" height="42" rx="3" fill="#f1f3f6" stroke="#2b3445"/><text x="676" y="242" text-anchor="middle" font-weight="700">供应中心页</text><text x="676" y="256" text-anchor="middle" fill="#5b6474">任务、交付、到期</text>
+<line x1="538" y1="359" x2="606" y2="359" stroke="#1c2230" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="538" y1="413" x2="606" y2="426" stroke="#1c2230" stroke-width="1.5" marker-end="url(#ar)"/>
+<line x1="538" y1="467" x2="606" y2="446" stroke="#1c2230" stroke-width="1.5" marker-end="url(#ar)"/>
+<path d="M334,40 C 470,40 470,75 606,75" fill="none" stroke="#5b6474" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#ar)"/>
+<path d="M334,120 C 470,120 470,155 606,155" fill="none" stroke="#5b6474" stroke-width="1" stroke-dasharray="3 3" marker-end="url(#ar)"/>
+<text x="676" y="490" text-anchor="middle" fill="#5b6474">视图只读，不存值</text>
+<text x="676" y="504" text-anchor="middle" fill="#5b6474">报出到期与缺口 → 回到①</text>
+</g>
+<path d="M676,512 L676,526 L66,526 L66,378" fill="none" stroke="#1c2230" stroke-width="1.2" stroke-dasharray="5 4" marker-end="url(#ar)"/>
+</g>
+</svg>
+</div>
+</div>
+</section>
+
+<!-- ============ PAGE 2 · THREE LEVELS ============ -->
+<section class="page">
+<div class="head"><h2>一 · 三级：最后算成什么</h2><span>成本与收入各由 1–4 层算出；回报 = 收入 − 成本 + 第 5 层</span></div>
+<svg viewBox="0 0 1030 420" role="img" aria-label="三级输出与五层的关系">
+<defs><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+<g font-size="11" fill="#1c2230">
+<g font-weight="700" font-size="12">
+<rect x="10" y="20" width="250" height="34" rx="3" fill="#e3f2ee" stroke="#1f7a6d"/><text x="22" y="42" fill="#1f7a6d">1 构成层</text><text x="110" y="42" font-weight="400" font-size="10.5">部件、工程量、密度</text>
+<rect x="10" y="64" width="250" height="34" rx="3" fill="#e4eef9" stroke="#2d6fb0"/><text x="22" y="86" fill="#2d6fb0">2 运行层</text><text x="110" y="86" font-weight="400" font-size="10.5">负载率、PUE、利用率、人时</text>
+<rect x="10" y="108" width="250" height="34" rx="3" fill="#fbeedd" stroke="#b3661a"/><text x="22" y="130" fill="#b3661a">3 价格层</text><text x="110" y="130" font-weight="400" font-size="10.5">单价、费率、租金、涨幅</text>
+<rect x="10" y="152" width="250" height="34" rx="3" fill="#ede6f7" stroke="#7a5ab0"/><text x="22" y="174" fill="#7a5ab0">4 时间层</text><text x="110" y="174" font-weight="400" font-size="10.5">建设期、爬坡、更新、寿命</text>
+<rect x="10" y="230" width="250" height="34" rx="3" fill="#f6e4e4" stroke="#8a3b3b"/><text x="22" y="252" fill="#8a3b3b">5 主体层</text><text x="110" y="252" font-weight="400" font-size="10.5">模式、杠杆、折现率、税</text>
+</g>
+<rect x="330" y="20" width="320" height="166" rx="4" fill="#e9ecf2" stroke="#2b3445"/>
+<text x="346" y="44" font-weight="700" font-size="14">成本级 Cost · TCO</text>
+<text x="346" y="70">capex = 构成层 × 价格层，投运年投入，按更新周期重复</text>
+<text x="346" y="90">opex = 运行层 × 价格层，逐年发生，按涨幅递增</text>
+<text x="346" y="110">按时间层排到年，折现率 r 从第 5 层取一个数</text>
+<text x="346" y="138" fill="#5b6474">输出：平准化年成本、$/kW·月、$/IT kWh、$/GPU 小时</text>
+<text x="346" y="158" fill="#5b6474">视图：tco.html（基准 $852/kW·月、$4.01/GPU·h）</text>
+<text x="346" y="178" fill="#5b6474">不含所得税、折旧抵税与融资结构</text>
+
+<rect x="690" y="20" width="330" height="166" rx="4" fill="#e9ecf2" stroke="#2b3445"/>
+<text x="706" y="44" font-weight="700" font-size="14">收入级 Revenue</text>
+<text x="706" y="70">收入 = GPU 数 × 8,760 × 付费利用率 × 单价</text>
+<text x="706" y="90">GPU 数来自构成层，利用率来自运行层，</text>
+<text x="706" y="110">单价与价格路径来自价格层，爬坡来自时间层</text>
+<text x="706" y="138" fill="#5b6474">托管模式下：出租 MW × 每 kW·月租金；自用无收入级</text>
+<text x="706" y="158" fill="#5b6474">视图：economics.html 收入侧</text>
+<text x="706" y="178" fill="#5b6474">与成本级同口径同年份，可直接相减</text>
+
+<rect x="330" y="230" width="690" height="150" rx="4" fill="#e9ecf2" stroke="#2b3445"/>
+<text x="346" y="254" font-weight="700" font-size="14">回报级 Return · 主体账本</text>
+<text x="346" y="280">回报 = 收入 − 成本，然后叠上第 5 层：成本变成谁付，收入变成谁收</text>
+<text x="346" y="300">杠杆、税、折旧抵税 → 税后现金流 → 各主体 IRR、股权倍数、回本年、租金覆盖率</text>
+<text x="346" y="328" fill="#5b6474">壳层（业主）、算力层（算力运营者）、模型层各一本账；同一座数据中心换主体，只有第 5 层变，回报级重算而成本级、收入级不变</text>
+<text x="346" y="356" fill="#5b6474">视图：economics.html 主体账本</text>
+
+<g style="color:#1c2230">
+<line x1="260" y1="37" x2="330" y2="60" stroke="#1f7a6d" stroke-width="1.5" marker-end="url(#a2)"/>
+<line x1="260" y1="81" x2="330" y2="84" stroke="#2d6fb0" stroke-width="1.5" marker-end="url(#a2)"/>
+<line x1="260" y1="125" x2="330" y2="100" stroke="#b3661a" stroke-width="1.5" marker-end="url(#a2)"/>
+<line x1="260" y1="169" x2="330" y2="112" stroke="#7a5ab0" stroke-width="1.5" marker-end="url(#a2)"/>
+<path d="M260,45 C 300,45 300,8 690,60" fill="none" stroke="#1f7a6d" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+<path d="M260,90 C 300,90 300,12 690,80" fill="none" stroke="#2d6fb0" stroke-width="1" stroke-dasharray="4 3" marker-end="url(#a2)"/>
+<line x1="260" y1="247" x2="330" y2="290" stroke="#8a3b3b" stroke-width="2" marker-end="url(#a2)"/>
+<line x1="490" y1="186" x2="490" y2="230" stroke="#1c2230" stroke-width="2" marker-end="url(#a2)"/>
+<line x1="855" y1="186" x2="855" y2="230" stroke="#1c2230" stroke-width="2" marker-end="url(#a2)"/>
+<text x="500" y="212" fill="#5b6474" font-size="10">成本进入</text><text x="865" y="212" fill="#5b6474" font-size="10">收入进入</text>
+</g>
+<text x="10" y="300" fill="#5b6474" font-size="10.5">虚线：收入级也读第 1、2 层（GPU 数、利用率）。</text>
+<text x="10" y="318" fill="#5b6474" font-size="10.5">第 5 层只向成本级给一个折现率，</text>
+<text x="10" y="336" fill="#5b6474" font-size="10.5">完整只在回报级展开。</text>
+<text x="10" y="400" font-weight="700">为什么是三级</text>
+<text x="150" y="400" fill="#5b6474" font-size="10.5">成本与收入都是"数量 × 价格排到年"，同构、同口径，各自成级；回报是两者之差加所有权变换，性质不同，单独成级。capex/opex 是成本级内部的分类。</text>
+</g>
+</svg>
+<div class="foot"><span>InResearch.ai · 数据中心经济模型指导 · 2026-09-27</span><span>2 / 5</span></div>
+</section>
+
+<!-- ============ PAGE 3 · FOUR STAGES × FIVE LAYERS ============ -->
+<section class="page">
+<div class="head"><h2>二 · 四段：数据走哪条路，五层住在哪</h2><span>采集 → 事实 → 规则 → 视图；事实按"怎么变"分参照与观测</span></div>
+<div class="cols" style="grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:8px">
+<div class="box"><h3>① 采集</h3><p>六队从外部取材料，按 fetchspec 包格式（manifest、SHA256SUMS、原件）交到供应中心验收。唯一与外界接触的段。</p><p><b>规则</b>：任务只来自五层目标清单；写"披露类型 × 出版方类别 × 日历"，公司只是实例。</p></div>
+<div class="box"><h3>② 事实</h3><p><b>参照数据</b>（按版本改）：部件目录、每 MW 工程量、站点/冷却/设备预设。文件 bom.json、模型的预设表。</p><p><b>观测数据</b>（按时点追加）：价格、费率、实测效率、交期、票息。文件 prices.json，512 条。</p><p><b>规则</b>：series_id + as_of 唯一；一序列一口径；估算必带假设；预测与案例不入库。</p></div>
+<div class="box"><h3>③ 规则</h3><p>事实怎么变成答案：因子树（部件 → 因子 → 输入）、模型口径（公式、单位、证据状态、抓取目标）、参考实现的恒等式断言、五层目标清单（待建）。</p><p><b>规则</b>：只定义结构与归属，不保存数值；改引擎先过断言。输出三级。</p></div>
+<div class="box"><h3>④ 视图</h3><p>答案怎么被看到：爆炸图页、价格库页、tco.html、economics.html、供应中心页。</p><p><b>规则</b>：只读不写；每处改动相对基准显示变化；每个输入显示证据状态、最新时点与下次更新；报出的到期与缺口回到①。</p></div>
+</div>
+<svg viewBox="0 0 1030 300" role="img" aria-label="五层乘四段的矩阵：每层由哪队采集、存为参照还是观测、规则怎么用、在哪个视图显示">
+<g font-size="10" fill="#1c2230">
+<g font-weight="700"><text x="230" y="16" text-anchor="middle">① 采集（队）</text><text x="400" y="16" text-anchor="middle">② 参照数据</text><text x="560" y="16" text-anchor="middle">② 观测数据</text><text x="730" y="16" text-anchor="middle">③ 规则</text><text x="920" y="16" text-anchor="middle">④ 视图</text></g>
+<g font-weight="700"><text x="10" y="58" fill="#1f7a6d">1 构成层</text><text x="10" y="110" fill="#2d6fb0">2 运行层</text><text x="10" y="162" fill="#b3661a">3 价格层</text><text x="10" y="214" fill="#7a5ab0">4 时间层</text><text x="10" y="266" fill="#8a3b3b">5 主体层</text></g>
+<g stroke="#c9ced8"><line x1="10" y1="28" x2="1020" y2="28"/><line x1="10" y1="80" x2="1020" y2="80"/><line x1="10" y1="132" x2="1020" y2="132"/><line x1="10" y1="184" x2="1020" y2="184"/><line x1="10" y1="236" x2="1020" y2="236"/><line x1="10" y1="288" x2="1020" y2="288"/></g>
+<!-- helper: cell(x,y,w,text1,text2,color) -->
+<!-- row 1 -->
+<rect x="150" y="34" width="160" height="40" rx="3" fill="#eceef2" stroke="#4a4f5c"/><text x="230" y="51" text-anchor="middle" font-weight="600">fetchspec</text><text x="230" y="66" text-anchor="middle" fill="#5b6474" font-size="9.5">每代产品发布</text>
+<rect x="320" y="34" width="160" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="400" y="51" text-anchor="middle" font-weight="600">46 部件 · 预设表</text><text x="400" y="66" text-anchor="middle" fill="#b23a3a" font-size="9.5">缺每 MW 工程量</text>
+<rect x="490" y="34" width="140" height="40" rx="3" fill="none" stroke="#c9ced8" stroke-dasharray="4 3"/><text x="560" y="58" text-anchor="middle" fill="#5b6474">不适用</text>
+<rect x="640" y="34" width="180" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="730" y="51" text-anchor="middle" font-weight="600">因子树 44/46 · 密度规则</text><text x="730" y="66" text-anchor="middle" fill="#5b6474" font-size="9.5">psu、coolant 待挂</text>
+<rect x="830" y="34" width="180" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="920" y="58" text-anchor="middle" font-weight="600">爆炸图页</text>
+<!-- row 2 -->
+<rect x="150" y="86" width="160" height="40" rx="3" fill="#eceef2" stroke="#4a4f5c"/><text x="230" y="103" text-anchor="middle" font-weight="600">fetchfilings · fetchreports</text><text x="230" y="118" text-anchor="middle" fill="#5b6474" font-size="9.5">可持续报告、实测论文</text>
+<rect x="320" y="86" width="160" height="40" rx="3" fill="none" stroke="#c9ced8" stroke-dasharray="4 3"/><text x="400" y="110" text-anchor="middle" fill="#5b6474">不适用（系统级量）</text>
+<rect x="490" y="86" width="140" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="560" y="103" text-anchor="middle" font-weight="600">PUE/WUE · 功率实测</text><text x="560" y="118" text-anchor="middle" fill="#b23a3a" font-size="9.5">缺故障率</text>
+<rect x="640" y="86" width="180" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="730" y="103" text-anchor="middle" font-weight="600">电费、水费、人工公式</text><text x="730" y="118" text-anchor="middle" fill="#5b6474" font-size="9.5">维护按比例，待改流量</text>
+<rect x="830" y="86" width="180" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="920" y="110" text-anchor="middle" font-weight="600">TCO 页 · 账本页</text>
+<!-- row 3 -->
+<rect x="150" y="138" width="160" height="40" rx="3" fill="#eceef2" stroke="#4a4f5c"/><text x="230" y="155" text-anchor="middle" font-weight="600">fetchstat · fetchquotes</text><text x="230" y="170" text-anchor="middle" fill="#5b6474" font-size="9.5">统计、费率、报价、指数</text>
+<rect x="320" y="138" width="160" height="40" rx="3" fill="#d9a43a" fill-opacity="0.16" stroke="#d9a43a"/><text x="400" y="162" text-anchor="middle" font-weight="600">部件挂序列引用</text>
+<rect x="490" y="138" width="140" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="560" y="155" text-anchor="middle" font-weight="600">电价、造价、租金、工资</text><text x="560" y="170" text-anchor="middle" fill="#5b6474" font-size="9.5">这一层的正式家</text>
+<rect x="640" y="138" width="180" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="730" y="155" text-anchor="middle" font-weight="600">站点表 · 取最新点</text><text x="730" y="170" text-anchor="middle" fill="#b23a3a" font-size="9.5">电价待拆能量与线路</text>
+<rect x="830" y="138" width="180" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="920" y="162" text-anchor="middle" font-weight="600">价格库页 · 对标区</text>
+<!-- row 4 -->
+<rect x="150" y="190" width="160" height="40" rx="3" fill="#eceef2" stroke="#4a4f5c"/><text x="230" y="207" text-anchor="middle" font-weight="600">fetchfilings · inews</text><text x="230" y="222" text-anchor="middle" fill="#5b6474" font-size="9.5">折旧附注、起租、交期报道</text>
+<rect x="320" y="190" width="160" height="40" rx="3" fill="#d9a43a" fill-opacity="0.16" stroke="#d9a43a"/><text x="400" y="207" text-anchor="middle" font-weight="600">部件状态：紧缺</text><text x="400" y="222" text-anchor="middle" fill="#b23a3a" font-size="9.5">未连到建设期</text>
+<rect x="490" y="190" width="140" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="560" y="207" text-anchor="middle" font-weight="600">交期、历时、折旧年限</text>
+<rect x="640" y="190" width="180" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="730" y="214" text-anchor="middle" font-weight="600">建设期、爬坡、更新、退役</text>
+<rect x="830" y="190" width="180" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="920" y="214" text-anchor="middle" font-weight="600">TCO 页现金流</text>
+<!-- row 5 -->
+<rect x="150" y="242" width="160" height="40" rx="3" fill="#eceef2" stroke="#4a4f5c"/><text x="230" y="259" text-anchor="middle" font-weight="600">fetchfilings · inews</text><text x="230" y="274" text-anchor="middle" fill="#5b6474" font-size="9.5">债务附注、融资公告、税法</text>
+<rect x="320" y="242" width="160" height="40" rx="3" fill="none" stroke="#c9ced8" stroke-dasharray="4 3"/><text x="400" y="266" text-anchor="middle" fill="#5b6474">不适用</text>
+<rect x="490" y="242" width="140" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="560" y="266" text-anchor="middle" font-weight="600">票息、ABS、DDTL 利率</text>
+<rect x="640" y="242" width="180" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="730" y="259" text-anchor="middle" font-weight="600">四本账、杠杆、税、折旧</text><text x="730" y="274" text-anchor="middle" fill="#b23a3a" font-size="9.5">设备动产税、用电税待入</text>
+<rect x="830" y="242" width="180" height="40" rx="3" fill="#2f8f5b" fill-opacity="0.16" stroke="#2f8f5b"/><text x="920" y="266" text-anchor="middle" font-weight="600">主体账本页</text>
+</g>
+</svg>
+<p style="color:var(--muted);font-size:9.5px;margin-top:4px">五层是内容轴（一个变量是什么），四段是流程轴（它此刻在哪）。两轴正交，任何一条数据同时有一个层和一个段；五层目标清单就是这张表的行。绿底 = 已承载；黄底 = 部分；虚框 = 该段不承载该层。红字为待补项。</p>
+<div class="foot"><span>InResearch.ai · 数据中心经济模型指导 · 2026-09-27</span><span>3 / 5</span></div>
+</section>
+
+<!-- ============ PAGE 4 · SIX TEAMS ============ -->
+<section class="page">
+<div class="head"><h2>三 · 六队：按来源机制划分的采集分队</h2><span>repo 边界按"怎么抓"定，不按层定；一个来源常同时喂几层</span></div>
+<table>
+<tr><th style="width:9%">分队</th><th style="width:26%">来源机制（抓什么）</th><th style="width:15%">喂哪几层</th><th style="width:20%">节奏与发布日历</th><th style="width:14%">执行机</th><th>状态与第一批任务</th></tr>
+<tr><td>fetchspec</td><td>厂商产品页、参考架构、数据手册；从中提取整柜功率、每柜 GPU 数、每 MW 用量</td><td>1 构成（参照数据）</td><td>每代产品发布：GTC 3 月、Computex 6 月、OCP 10 月</td><td>AWS 持续；登录门户由 macmini 补抓</td><td>已有。加"参考设计每 MW 用量"提取；补 psu、coolant 规格</td></tr>
+<tr><td>inews.today</td><td>新闻与事件：融资公告、租约与合同、项目开工投运、费率案、交期与供应报道</td><td>4 时间、5 主体；触发 3 价格更新</td><td>持续（RSS / API）</td><td>AWS</td><td>已有。事件打上层与序列标签，触发对应队的补抓</td></tr>
+<tr><td>fetchstat</td><td>公共统计与费率表：EIA、Eurostat、BLS OES/ECI/CPI、公用事业费率 PDF、县税率、评估署用地成交</td><td>3 价格；2 运行（人力）</td><td>EIA 月报每月下旬，861 终值 10 月；BLS OES 3–4 月，CPI 月中，ECI 季后；费率 1 月 1 日与费率案生效日；县预算 4 月</td><td>AWS 持续（API 与固定表格）</td><td>待建，最先建。第一批：EIA 861/EPM 三州、Dominion GS-4/GS-5、Oncor、BLS 四工种、劳登县</td></tr>
+<tr><td>fetchfilings</td><td>证券与公司披露：10-K/10-Q/20-F/8-K 附件、财报电话会、可持续/ESG 报告</td><td>2 运行（PUE、利用率、人效）、4 时间（折旧年限）、5 主体（债务、租约）</td><td>10-K 2–3 月，20-F 4 月，10-Q 5/8/11 月，可持续报告 6–10 月</td><td>AWS 抓 EDGAR 全文与 XBRL；Spark 做附注提取</td><td>待建。第一批：DLR、Equinix、GDS、VNET、CoreWeave 债务表与折旧附注；Google/Microsoft/Meta/Equinix/GDS PUE-WUE</td></tr>
+<tr><td>fetchreports</td><td>研报、指数、白皮书、论文：T&amp;T、C&amp;W、JLL、CBRE、Uptime、Epoch、LBNL、arXiv 实测</td><td>3 价格（造价指数、租金）、2 运行（实测参数）</td><td>JLL 展望 1 月，C&amp;W 成本指南 9 月，Uptime 调查 9 月，T&amp;T 指数 11 月，论文持续</td><td>免费 PDF 走 AWS；需注册下载由 macmini 辅助</td><td>待建。第一批：T&amp;T 完整 PDF（北弗吉尼亚、达拉斯、柔佛每瓦造价）、C&amp;W 分项、Uptime 冷却调查</td></tr>
+<tr><td>fetchquotes</td><td>报价与市场观察：GPU 小时价格指数、托管报价、二手 GPU 价格、部件报价</td><td>3 价格</td><td>日或周</td><td>AWS 抓 API；JS 页面转 macmini</td><td>待建。第一批：H100/B200 小时价指数、二手 H100、NVL72 整柜报价</td></tr>
+</table>
+<div class="cols" style="margin-top:10px">
+<div class="box"><h3>为什么是六个，不是五个</h3><ul><li>一份 10-K 同时喂运行、时间、主体三层；按层分队会让同一来源被抓三次。</li><li>六类来源的抓取机制、失败模式、执行机各不相同：API 表格、EDGAR、注册下载的 PDF、JS 页面、RSS、厂商页。</li><li>符合 06 号采集规范："存在独立运行与维护边界才新建 repo，不按模块机械建仓库"。</li><li>中国来源（信通院、运营商集采、招投标平台）机制又不同，将来可从 fetchstat 与 fetchreports 分出中文分队，现在不建。</li></ul></div>
+<div class="box"><h3>六队共同遵守的三条</h3><ul><li><b>需求只来自一张表</b>：五层目标清单（因子树扩展）写明每层要哪些序列、来自哪类披露、下次更新日期；各队从这张表领任务，不自定抓什么。</li><li><b>交付只走一个入口</b>：按 fetchspec 包格式交到供应中心；数字进观测数据，规格进参照数据，文本进材料档案再提取。</li><li><b>公司是实例，不是单位</b>：任务写"披露类型 × 出版方类别 × 日历"，当前公司列在"实例"栏，可替换。</li></ul></div>
+</div>
+<div class="foot"><span>InResearch.ai · 数据中心经济模型指导 · 2026-09-27</span><span>4 / 5</span></div>
+</section>
+
+<!-- ============ PAGE 5 · LOOP, PRINCIPLES, NEXT ============ -->
+<section class="page">
+<div class="head"><h2>四 · 闭环与原则：怎么运转、先做什么</h2><span>视图报到期 → 生成任务 → 六队采集 → 入事实 → 规则改值 → 视图重算</span></div>
+<svg viewBox="0 0 1030 150" role="img" aria-label="从缺口到入库再到页面的闭环流程">
+<defs><marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#1c2230"/></marker></defs>
+<g font-size="10.5" fill="#1c2230">
+<rect x="10" y="20" width="130" height="64" rx="4" fill="#e6ebf7" stroke="#3d5a99"/><text x="75" y="44" text-anchor="middle" font-weight="700">缺口与到期表</text><text x="75" y="62" text-anchor="middle" font-size="9.5" fill="#5b6474">④ 视图报出</text><text x="75" y="76" text-anchor="middle" font-size="9.5" fill="#5b6474">按敏感度排序</text>
+<rect x="160" y="20" width="130" height="64" rx="4" fill="#e6ebf7" stroke="#3d5a99"/><text x="225" y="44" text-anchor="middle" font-weight="700">供应任务</text><text x="225" y="62" text-anchor="middle" font-size="9.5" fill="#5b6474">层 · 序列 · 披露类型</text><text x="225" y="76" text-anchor="middle" font-size="9.5" fill="#5b6474">执行机 · 到期日</text>
+<rect x="310" y="20" width="130" height="64" rx="4" fill="#eceef2" stroke="#4a4f5c"/><text x="375" y="44" text-anchor="middle" font-weight="700">① 六队采集</text><text x="375" y="62" text-anchor="middle" font-size="9.5" fill="#5b6474">AWS 持续 / macmini 辅助</text><text x="375" y="76" text-anchor="middle" font-size="9.5" fill="#5b6474">原件 + manifest + SHA</text>
+<rect x="460" y="20" width="130" height="64" rx="4" fill="#eceef2" stroke="#4a4f5c"/><text x="525" y="44" text-anchor="middle" font-weight="700">供应中心验收</text><text x="525" y="62" text-anchor="middle" font-size="9.5" fill="#5b6474">来源、SHA、完整性</text><text x="525" y="76" text-anchor="middle" font-size="9.5" fill="#5b6474">逐项接受或补充</text>
+<rect x="610" y="20" width="130" height="64" rx="4" fill="#e6ebf7" stroke="#3d5a99"/><text x="675" y="44" text-anchor="middle" font-weight="700">② 入事实</text><text x="675" y="62" text-anchor="middle" font-size="9.5" fill="#5b6474">数字 → 观测数据</text><text x="675" y="76" text-anchor="middle" font-size="9.5" fill="#5b6474">规格 → 参照数据</text>
+<rect x="760" y="20" width="130" height="64" rx="4" fill="#e6ebf7" stroke="#3d5a99"/><text x="825" y="44" text-anchor="middle" font-weight="700">③ 规则改值</text><text x="825" y="62" text-anchor="middle" font-size="9.5" fill="#5b6474">证据：假设 → 已有来源</text><text x="825" y="76" text-anchor="middle" font-size="9.5" fill="#5b6474">断言通过后改值</text>
+<rect x="910" y="20" width="110" height="64" rx="4" fill="#e6ebf7" stroke="#3d5a99"/><text x="965" y="44" text-anchor="middle" font-weight="700">④ 视图重算</text><text x="965" y="62" text-anchor="middle" font-size="9.5" fill="#5b6474">对基准显示变化</text><text x="965" y="76" text-anchor="middle" font-size="9.5" fill="#5b6474">新缺口、新到期</text>
+<g stroke="#1c2230" stroke-width="1.5"><line x1="140" y1="52" x2="160" y2="52" marker-end="url(#a3)"/><line x1="290" y1="52" x2="310" y2="52" marker-end="url(#a3)"/><line x1="440" y1="52" x2="460" y2="52" marker-end="url(#a3)"/><line x1="590" y1="52" x2="610" y2="52" marker-end="url(#a3)"/><line x1="740" y1="52" x2="760" y2="52" marker-end="url(#a3)"/><line x1="890" y1="52" x2="910" y2="52" marker-end="url(#a3)"/></g>
+<path d="M965,84 L965,118 L75,118 L75,86" fill="none" stroke="#1c2230" stroke-width="1.5" stroke-dasharray="5 4" marker-end="url(#a3)"/>
+<text x="520" y="134" text-anchor="middle" fill="#5b6474" font-size="10">闭环：2026-09-27 第一轮 145 条记录、31 个输入改为有来源，就是按这条路径走完的一次；此后由六队与到期表接手。</text>
+</g>
+</svg>
+<div class="cols3" style="margin-top:8px">
+<div class="box"><h3>六条原则</h3><ol><li><b>骨架大于案例</b>。公司案例只作对标与校准，不直接覆盖因子值。</li><li><b>披露类型是采集单位</b>。公司是实例，随时可换。</li><li><b>一序列一口径</b>。预测值与案例不进观测数据，估算必带假设链。</li><li><b>数量 × 价格 × 时间</b>。成本与收入都是物理量乘单价再排到年上；物理量来自参照数据与运行层，价格来自观测数据。</li><li><b>敏感度 × 不确定性定优先级</b>。龙卷风图排在前的先抓；低敏感度的允许留作假设。</li><li><b>引擎先过断言再改视图</b>。改值前 model.py 恒等式必须通过。</li></ol></div>
+<div class="box"><h3>三种时间行为决定节奏</h3><table style="font-size:9.5px"><tr><th>类型</th><th>例子</th><th>节奏</th></tr><tr><td>结构性慢变量</td><td>折旧年限、造价构成、人效、维护比例</td><td>年，按出版日历</td></tr><tr><td>市场定价变量</td><td>电价、需量费、租金、GPU 小时价、票息、地价</td><td>月或事件</td></tr><tr><td>代际变量</td><td>每 MW GPU 密度、每 kW IT 造价、更新比例</td><td>每代产品发布</td></tr></table><p style="margin-top:6px;font-size:10px;color:var(--muted)">"一次性"与"持续更新"不用人判断：参照数据一年也不到期一次，观测数据里价格层的每月到期。</p></div>
+<div class="box"><h3>近期任务（按顺序）</h3><ol><li>五层目标清单：扩展因子树，补披露类型、当前实例、发布日历、目标序列、目标输入、执行机。</li><li>每 MW 工程量表骨架：列部件与用量单位，数值留待采集；四个造价类目写明部件清单。</li><li>TCO 页缺口表加"最新时点 / 下次更新"两列，变成到期表。</li><li>先建 fetchstat（全是 API 与固定表格，最易无人值守）。</li><li>电价拆成能量与线路两部分，消除需量费重复计入。</li><li>劳登县计算机设备动产税 4.15%、弗州用电税 1.1 美分/kWh、NVAIE 订阅进入模型。</li><li>交期与紧缺状态驱动建设期与电气造价涨幅；psu、coolant 挂进因子树。</li></ol></div>
+</div>
+<div class="foot"><span>InResearch.ai · 数据中心经济模型指导 · 2026-09-27</span><span>5 / 5</span></div>
+</section>
+
+</body>
+</html>
