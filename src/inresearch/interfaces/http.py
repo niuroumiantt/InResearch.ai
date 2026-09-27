@@ -432,8 +432,7 @@ class Handler(SimpleHTTPRequestHandler):
         return self._json(200, reply)
 
     def api_nvidia_pilot_progress(self):
-        token_path = Path(os.environ.get('INRESEARCH_PILOT_TOKEN_FILE',
-            workspace_path('data/.nvidia_pilot_token', ROOT)))
+        token_path = pilot_progress.token_path(ROOT)
         try:
             token = token_path.read_text().strip()
         except OSError:

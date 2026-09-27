@@ -17,6 +17,13 @@
 ## 2026-09-27：经济模型的 GPU 密度改为厂商机柜功率折算
 
 `datacenter_economics_model.json` 新增 `density_rule` 与各代际 `density_basis`：每 MW GPU 数 = 1,000 kW × 81% ÷ (机柜功率 ÷ 每柜 GPU 数)，81% 由研报 GB300 每 GW 410,256 颗与 NVIDIA 参考架构 142 kW/72 颗反推。GB200 按整柜 TDP 140 kW（库内事实）得 416.6，H100 按 DGX H100 10.2 kW 得 635.3，Rubin Ultra 按 Kyber 600 kW/144 封装得 194.4，TPUv7 按 Ironwood pod 9,216 芯片近 10 MW 得 746.5，Vera Rubin 取 NVIDIA 产品页“100 MW 对应 4 万 GPU”的 400（第三方 190 kW 折算 307，口径未统一，两者并记）；Trainium3 未取得功率数据，沿用 GB300 假设并标待核验。校准断言与浏览器测试随新值更新。
+## 2026-09-27：read 回复先写 claims、后写摘要
+
+M4 深读查明「摘要超长、缺 claims」不是输出上限：块只有 540–1704 字，模型却写出 1346–2805 字的摘要，把发现以散文写进摘要、省略 claims 数组，CLI 5 次内部重试都重复；每次失败按调用计 6 轮、1–3 分钟。采用：schema 与提示里 claims 排在摘要之前，提示要求发现连同引文放入 claims、摘要只简述本块，删去诱导整篇概述的「summary must explain the document content」。不改冻结配方，在读文档不受影响。另两次 4096 上限错误是思考占满输出预算，待本批结束后另行处理。
+
+## 2026-09-27：NVIDIA 临时验证链路改为 M5 → AWS，Spark 完全不参与
+
+用户明确：本轮为尽快验证 NVIDIA 产品资料从抓取、阅读研究到线上呈现的闭环，M5 本地保存原件、由 M5 Claude Code CLI 阅读，候选快照与进度直接交到 AWS 上的 inresearch.ai；Spark 不接收原件、候选或任务，既有 Spark L1/L2 工作不动。449 份 PDF 已下载并做包级 SHA/大小核验，但目前只试读 5 份（3 完整、1 阻塞、1 失败），不得称为 449 份均已阅读。2026-09-27 M5→AWS 实际上传收到 3 份候选的成功回执，AWS 查询到 3 完整、1 阻塞、1 失败；候选保持 candidate-only，仍须走现行审核与 C3 流程。Spark 永久归档以后另行补齐。本决定取代下方 NAS 阶段的 NVIDIA M5→Spark 路径，仅限定本轮试点，不更改长期生产存储策略。
 
 ## 2026-09-27：reader schema 的映射 ID 改为非必填
 
@@ -60,7 +67,7 @@ NVIDIA 五篇 M5 试读里，Claude Code CLI 身份与传输正常，输出 JSON
 
 NVIDIA 试点需让已完成资料先交付，而不把未完成材料伪装为完整。Reader `export --doc-id` 可重复指定完整当前文档 ID；只有全部选中文档 coverage 完整时才生成限定快照，未知或未完成 ID 拒绝，且不覆写全 catalog 的 mapping-proposals。五份中仅三份完整，限定快照含 3 documents、274 evidence、194 statements，整批 reader 状态仍标为 degraded，所有知识都保持 candidate。快照通过当前图谱/问题版本、校验与合并预检；M5→Spark SHA256 一致，Spark HTTPS 接收回执确认 3 documents。网站查询与人工语义审核未做；接收不代表采用。
 
-## 2026-09-27：NAS 暂不可用时的 Spark 原件与 M5 分析分工
+## 2026-09-27：NAS 暂不可用时的 Spark 原件与 M5 分析分工（已由 M5 → AWS 试点取代）
 
 用户明确：原始 NVIDIA 文件仍留在 Spark，阅读分析交给 M5 的 Claude Code CLI。作为 NAS 恢复前的临时试点，Spark 保持原件/永久存储与发布凭证；M5 仅处理按 SHA 选取的临时副本，视觉 OCR 与 Claude 阅读分开记账。M5 候选快照由 Spark 凭证经现有 HTTPS 接收端提交，绝不自动升级成采用证据；本轮 3 份完整候选已收到回执。五份试点还有 2 份受阻，Spark Reader 服务保持原状未重启，整批状态 degraded。Fetchspec 默认接收只归档、编目，不再自动扩大 Spark Reader 队列；需要在 Spark 阅读的个别资料须显式选择 SHA。实施与临时流程见 `framework/06_acquisition.md`、`framework/supply_contract.json`。
 
