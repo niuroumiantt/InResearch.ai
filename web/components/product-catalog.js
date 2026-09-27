@@ -75,7 +75,7 @@
       const delta=Object.entries(pm.changes||{}).map(([k,v])=>`${k} ${v}`).join(' / ');
       const sm=c.website_sitemap||{};
       $('#status').textContent=`更新于 ${data.generated_at} · 产品地图 ${pm.entries||c.entity_counts.named_product||0} 项${delta?` · 本次 ${delta}`:''} · 官方 sitemap 候选 ${sm.candidate_urls??'尚未同步'} · 尚未确认全公司产品总数`;
-      $('#metrics').innerHTML=[['产品目录入口',c.directory_entries],['目录实体',pm.entries||c.entity_counts.named_product||0],['型号页候选',c.entity_counts.named_product||0],['有规格表的条目',c.with_spec_tables],['官方 sitemap 候选 URL',sm.candidate_urls??'—'],['产品路径候选',sm.product_path_candidates??'—'],['产品来源命中 sitemap',sm.matched_catalog_sources??'—'],['待访问页面',c.pending_pages],['访问失败',c.failed_pages]].map(([label,n])=>`<div class="metric"><strong>${esc(n)}</strong>${esc(label)}</div>`).join('');
+      $('#metrics').innerHTML=[['产品目录入口',c.directory_entries],['目录实体',pm.entries||c.entity_counts.named_product||0],['型号页候选',c.entity_counts.named_product||0],['有规格表的条目',c.with_spec_tables],['官方 sitemap 候选 URL',sm.candidate_urls??'—'],['已核对产品 URL',`${sm.product_path_observed??0} / ${sm.product_path_candidates??'—'}`],['产品来源命中 sitemap',sm.matched_catalog_sources??'—'],['待访问页面',c.pending_pages],['访问失败',c.failed_pages]].map(([label,n])=>`<div class="metric"><strong>${esc(n)}</strong>${esc(label)}</div>`).join('');
       $('#limitations').innerHTML=c.limitations.map(v=>`<li>${esc(v)}</li>`).join('');filter();
     } catch(e) {if(current===generation)$('#status').textContent=e.message;}
   }
