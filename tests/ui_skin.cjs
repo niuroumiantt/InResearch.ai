@@ -29,7 +29,7 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    if(file==='index.html'){await page.locator('.ui-navigation a',{hasText:'管理'}).waitFor();assert.deepEqual(await page.locator('.ui-navigation a').allTextContents(),['数据中心','账本','爆炸图','采集','成果','管理'],'six directory entries (local mode is admin)');}
    assert.equal(await page.locator('[data-ui-choice]').count(),0,file+' has no skin switch');
    if(file==='company.html') await page.locator('.head h1').waitFor();
-   if(file==='report.html') {await page.locator('.finding').first().waitFor();assert.equal(await page.locator('.finding').count(),150);}
+   if(file==='report.html') {await page.locator('#cover').waitFor();assert.equal(await page.locator('section.chapter').count(),4);}
    if(file==='ops.html'){await page.locator('#modules .mod').first().waitFor();assert.equal(await page.locator('#modules .mod').count(),15);assert.equal(await page.locator('#error').textContent(),'');assert.ok(await page.locator('#projects tr').count()>100);}
    const settledUrl=page.url();
    // Shared fonts: the bundled Inter + Noto Sans SC stack applies to the body of every application page.

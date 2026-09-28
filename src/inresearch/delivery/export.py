@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""报告导出器：从知识层按需汇编研究报告。报告 = 数据库的导出物。
+"""报告导出器：成果 = 树的可发布快照（2026-09-28 换源）。三种导出：Markdown、JSON、打印/PDF（report.html）。
 
-    python3 manage.py export                    # 全部模块 → 全量研究报告
-    python3 manage.py export M08 M09            # 指定模块 → 专题报告
-    python3 manage.py export --docx             # 同时产出 Word（需 python-docx，可选）
-    python3 manage.py export --title "散热专题" M08
+    python3 manage.py export                    # 快照报告 → Markdown + JSON
+    python3 manage.py export --legacy           # 兼容模块结论（旧全量研究报告）
+    python3 manage.py export --legacy M08 M09   # 指定模块 → 专题报告
+    python3 manage.py export --legacy --docx    # 同时产出 Word（需 python-docx，可选）
+    python3 manage.py export --legacy --title "散热专题" M08
 
-产出：reports/output/YYYY-MM-DD_<标题>.md（+ .docx）
+产出：reports/output/YYYY-MM-DD_<标题>.md（快照另有 .json；--legacy 可加 .docx）
 规则（继承口径纪律）：
   - 只导出 current 状态的 Finding 为正文；needs-review/stale 带警示标注导出
   - 状态行与"待办"是内部字段，不进对外产出物
@@ -23,11 +24,28 @@ from datetime import date
 ROOT = project_root()
 OUT_DIR = workspace_path("reports/output", ROOT)
 
-from inresearch.delivery.report import build_report, markdown_report
+from inresearch.delivery.report import build_report, markdown_report, build_snapshot_report, markdown_snapshot
+
+
+def export_snapshot():
+    import json
+    report = build_snapshot_report(ROOT)
+    today = date.today().isoformat()
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    base = OUT_DIR / f"{today}_datacenter_snapshot"
+    atomic_write(base.with_suffix('.md'), ('\n'.join(markdown_snapshot(report, today)) + '\n').encode('utf-8'))
+    atomic_write(base.with_suffix('.json'), (json.dumps(report, ensure_ascii=False, indent=2) + '\n').encode('utf-8'))
+    b = report['boundary']
+    print(f"快照 {report['as_of']} ｜ 四章 ｜ 模型输入 {b['model_inputs']['total']}（已有 {b['model_inputs']['sourced']}）｜ 目标行 {b['targets']['total']}（缺 {b['targets'].get('needed', 0)}）｜ 专题 {report['topics']['finding_count']} 条")
+    print(f"→ {base.with_suffix('.md')}\n→ {base.with_suffix('.json')}")
+    return 0
 
 
 def main():
     args = [a for a in sys.argv[1:]]
+    if "--legacy" not in args:
+        return export_snapshot()
+    args.remove("--legacy")
     want_docx = "--docx" in args
     title = None
     if "--title" in args:

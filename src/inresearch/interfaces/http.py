@@ -381,7 +381,8 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(503, {"ok": False, "error": "研究索引暂不可用", "detail": str(e)[:300]})
         if urlsplit(self.path).path == '/api/report':
             try:
-                return self._json(200, report_model.build_report(ROOT))
+                legacy = parse_qs(urlsplit(self.path).query).get('legacy', [''])[0] == '1'
+                return self._json(200, report_model.build_report(ROOT) if legacy else report_model.build_snapshot_report(ROOT))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '报告暂不可用，请稍后重试'})
         if urlsplit(self.path).path == '/api/tasks':

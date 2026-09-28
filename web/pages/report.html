@@ -72,9 +72,9 @@
 <body>
 <inresearch-shell data-section="results"></inresearch-shell>
 <div class="topbar">
-  <span style="color:var(--muted)">全球数据中心研究 · 活文档</span>
+  <span style="color:var(--muted)">成果 · 树的可发布快照</span>
   <span class="sp"></span>
-   <a href="bom.html">爆炸图</a>  <b style="color:var(--accent)">报告成稿</b>
+   <a href="node.html">数据中心</a> <a href="bom.html">爆炸图</a> <a href="ledger.html">账本</a> <a href="report.html" id="mode-snapshot">快照</a> <a href="report.html?legacy=1" id="mode-legacy">专题全文</a>
   <a href="doc.html?f=framework/01_data_standards.md">口径手册</a>
   <a href="doc.html?f=reports/verify_queue.md">核验队列</a>
   <a href="https://github.com/niuroumiantt/InResearch.ai" target="_blank">GitHub</a>
@@ -168,9 +168,62 @@ function renderGenericBlock(header, lines) {
   return h + "</div>";
 }
 
+const LEGACY = new URLSearchParams(location.search).get("legacy") === "1";
+const STATUS = { sourced: "已有", assumed: "假设", delivered: "已交付", registered: "登记数", needed: "缺" };
+const fmt = (v, u) => v == null ? "缺" : (typeof v === "number" ? (Math.abs(v) >= 1000 ? Math.round(v).toLocaleString() : (Number.isInteger(v) ? String(v) : v.toLocaleString(undefined, { maximumFractionDigits: 3 }))) : esc(String(v))) + (u ? ` <small>${esc(u)}</small>` : "");
+
+/* 快照：封面是可信边界，四章即四问，末章是专题目录（全部由权威文件生成，本页不做聚合） */
+async function renderSnapshot() {
+  const r = await get("/api/report");
+  const b = r.boundary, [q1, q2, q3, q4] = r.chapters, toc = [];
+  const st = s => `<span class="badge b-${s === "sourced" ? "cur" : s === "needed" ? "sta" : "rev"}">${STATUS[s] || esc(s)}</span>`;
+  let html = `<section class="page-doc cover-page" id="cover"><div class="cover"><h1>${esc(r.title)}</h1>
+    <div class="meta">数据时点 ${esc(r.as_of)} ｜ 内容版本 ${esc(r.data_revision.slice(0, 12))} ｜ 图谱 ${esc(b.registries.graph)} · 问题表 ${esc(b.registries.questions)} · 目标表 ${esc(b.registries.targets)} · 模型 ${esc(b.registries.model)}<br>
+    <b>可信边界</b>：模型输入 ${b.model_inputs.total} 个（已有 ${b.model_inputs.sourced} · 假设 ${b.model_inputs.assumed} · 用户给定 ${b.model_inputs.input}）；目标行 ${b.targets.total} 行（已有 ${b.targets.sourced || 0} · 假设 ${b.targets.assumed || 0} · 已交付 ${b.targets.delivered || 0} · 缺 ${b.targets.needed || 0}，待建队名下 ${b.targets.not_connected} 行）。基准情景：${esc(b.scenario)}。<br>
+    ${(b.honesty || []).map(esc).join("；")}。生成日期不代表来源核验日期。</div>
+    <div class="chapter-sub">三种导出：${r.exports.map(e => `<code>${esc(e.label)}</code> ${esc(e.how)}`).join(" · ")}</div></div></section>`;
+  // 一、它值多少
+  toc.push({ id: "q1", label: "一、它值多少" });
+  html += `<section class="page-doc chapter" id="q1"><h2 class="chapter">一、它值多少</h2><div class="chapter-sub">三级账来自唯一的统一经济模型（基准情景）；回报是账的输出，不是一列。</div>
+    <table><tr><th>级</th><th>值</th><th>单位</th><th>说明</th><th>输入的证据</th></tr>${q1.account.map(a => `<tr><td><b>${esc(a.label)}</b></td><td>${a.key === "roic" ? (a.value * 100).toFixed(1) + "%" : fmt(a.value)}</td><td>${esc(a.unit)}</td><td>${esc(a.note)}</td><td>${a.evidence ? `${a.evidence.inputs} 个：已有 ${a.evidence.sourced} · 假设 ${a.evidence.assumed} · 用户给定 ${a.evidence.input}` : ""}</td></tr>`).join("")}</table>
+    <h3>五列的根节点现值</h3><table><tr><th>列</th><th>状态</th><th>值</th></tr>${Object.entries(q1.columns).map(([col, c]) => `<tr><td>${col} ${esc(c.name)}</td><td>${st(c.status)}</td><td>${c.items.filter(i => i.value != null).map(i => `${esc(i.label)} ${fmt(i.value, i.unit)}${i.as_of ? ` <small>${esc(String(i.as_of).slice(0, 7))}</small>` : ""}`).join("；") || "缺"}</td></tr>`).join("")}</table>
+    ${q1.calibration.length ? `<h3>校准锚</h3><table><tr><th>锚</th><th>登记值</th><th>来源</th></tr>${q1.calibration.map(c => `<tr><td>${esc(c.label || c.preset)}</td><td>${Object.entries(c.anchors).map(([k, v]) => `${esc(k)} ${fmt(v)}`).join("；")}</td><td>${esc(c.source || "")}</td></tr>`).join("")}</table>` : ""}
+    <div class="chapter-src">读法入口：${(q1.readings || []).map(x => `<a href="${esc(x.href)}">${esc(x.label)}</a>`).join(" · ")} · 账本 <a href="ledger.html">四个视图</a></div></section>`;
+  // 二、它由什么组成
+  toc.push({ id: "q2", label: "二、它由什么组成" });
+  const rowsOf = list => list.map(e => `<tr><td>${e.parent ? "└ " : ""}<a href="node.html?id=system:${esc(e.id)}">${esc(e.name)}</a></td><td>${e.parts ?? e.children?.length ?? ""}</td><td>${esc((e.chains || []).join(" → "))}</td>${["1", "2", "3", "4", "5"].map(c => `<td>${st(e.cells[c])}</td>`).join("")}</tr>`).join("");
+  html += `<section class="page-doc chapter" id="q2"><h2 class="chapter">二、它由什么组成</h2><div class="chapter-sub">一个骨架：五个系统（IT 展开四个）× 能量流链路 ${q2.counts.chains} 条 × 部件 ${q2.counts.parts} 个（软件 ${q2.counts.software}、基型 ${q2.counts.archetype}）；站点权利 ${q2.counts.rights} 条并列。</div>
+    <table><tr><th>系统</th><th>部件</th><th>链路</th><th>构成</th><th>运行</th><th>价格</th><th>时间</th><th>主体</th></tr>${rowsOf(q2.systems.filter(e => !e.parent))}${rowsOf(q2.parent_systems)}${rowsOf(q2.systems.filter(e => e.parent))}<tr><td><a href="node.html?id=site">站点权利</a></td><td>${q2.site.rights.length}</td><td>不可采购，与五个系统并列</td>${["1", "2", "3", "4", "5"].map(c => `<td>${st(q2.site.cells[c])}</td>`).join("")}</tr></table>
+    <h3>它怎么建：六段建设阶段</h3><table><tr><th>段</th><th>部件</th><th>权利</th></tr>${q2.stages.map(s => `<tr><td>${s.order} ${esc(s.name)}</td><td>${s.parts.length}</td><td>${s.rights.length}</td></tr>`).join("")}</table>
+    <div class="chapter-src">视觉形式：<a href="bom.html">爆炸图</a> · <a href="bom3d.html">3D</a> · 时间线 <a href="node.html?col=4">node.html?col=4</a></div></section>`;
+  // 三、它怎么影响账
+  toc.push({ id: "q3", label: "三、它怎么影响账" });
+  html += `<section class="page-doc chapter" id="q3"><h2 class="chapter">三、它怎么影响账</h2><div class="chapter-sub">规则：因子树从公式往下推，每个因子汇总它的部件与权利，再喂模型输入。</div>
+    ${Object.entries(q3.formulas).map(([k, v]) => `<p class="lead"><b class="lbl">${esc(k)}：</b><code>${esc(v)}</code></p>`).join("")}
+    <table><tr><th>因子</th><th>侧</th><th>公式</th><th>模型输入</th><th>部件</th><th>权利</th><th>抓取登记</th></tr>${q3.factors.map(f => `<tr><td>${f.parent ? "└ " : "<b>"}${esc(f.label)}${f.parent ? "" : "</b>"}</td><td>${esc(f.side)}</td><td><code>${esc(f.formula || "")}</code></td><td>${f.model_inputs}</td><td>${f.bom_parts}</td><td>${f.site_rights}</td><td>${f.fetch}</td></tr>`).join("")}</table></section>`;
+  // 四、数据从哪来、缺什么
+  toc.push({ id: "q4", label: "四、数据从哪来、缺什么" });
+  html += `<section class="page-doc chapter" id="q4"><h2 class="chapter">四、数据从哪来、缺什么</h2><div class="chapter-sub">目标表是唯一任务书：${Object.entries(q4.by_status).map(([k, v]) => `${STATUS[k] || k} ${v}`).join(" · ")}；30 天内到期且仍缺 ${q4.due_30d} 行；待建队名下 ${q4.not_connected} 行不排到期。</div>
+    <table><tr><th>队</th><th>状态</th><th>行</th><th>缺</th><th>已交付</th><th>下一到期</th></tr>${q4.teams.map(t => `<tr><td>${esc(t.name)}</td><td>${t.connected ? "已接入" : "待建队"}</td><td>${t.rows}</td><td>${t.needed}</td><td>${t.delivered}</td><td>${esc(t.next_due || "—")}</td></tr>`).join("")}</table>
+    <h3>四态与 Git 内载体</h3><ul class="arg">${Object.entries(q4.statuses).map(([k, v]) => `<li><b>${esc(k)}</b>：${esc(v)}</li>`).join("")}${Object.entries(q4.carriers).map(([k, v]) => `<li>载体 <b>${esc(k)}</b>：${esc(v)}</li>`).join("")}</ul>
+    <div class="chapter-src">派工与筛选在 <a href="supply.html#targets">采集页</a>；每行链回节点页停在该列。</div></section>`;
+  // 附录：专题目录
+  toc.push({ id: "topics", label: "附录 · 专题目录" });
+  html += `<section class="page-doc" id="topics"><h2 class="chapter">附录 · 专题目录（兼容研究结论）</h2><div class="chapter-sub">${esc(r.topics.note)} 共 ${r.topics.finding_count} 条${r.topics.review_count ? `，${r.topics.review_count} 条待复核` : ""}。<a href="${esc(r.topics.link)}">专题全文 →</a></div>
+    <table><tr><th>专题</th><th>结论</th><th>待复核</th></tr>${r.topics.chapters.map(ch => `<tr><td><a href="report.html?legacy=1#ch-${esc(ch.module)}">${esc(ch.module)} ${esc(ch.name)}</a></td><td>${ch.findings}</td><td>${ch.review}</td></tr>`).join("")}</table></section>`;
+  document.getElementById("docroot").innerHTML = html;
+  document.getElementById("toc").innerHTML = toc.map(t => `<a href="#${t.id}" id="toc-${t.id}">${t.label}</a>`).join("");
+  document.getElementById("mode-snapshot").style.fontWeight = "700";
+  document.title = r.title + " — inresearch.ai";
+  const target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (target) target.scrollIntoView();
+}
+
 (async () => {
   try {
-    const report = await get("/api/report");
+    if (!LEGACY) { await renderSnapshot(); return; }
+    document.getElementById("mode-legacy").style.fontWeight = "700";
+    const report = await get("/api/report?legacy=1");
     const chapters = report.chapters;
     const summaryMd = report.summary;
     const totalFindings = report.finding_count;

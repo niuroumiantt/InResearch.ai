@@ -6,8 +6,15 @@ const base = process.env.UI_BASE_URL;
   try {
     const page = await browser.newPage({viewport:{width:1440,height:1000}});
     const errors=[]; page.on('pageerror', error => errors.push(error.message));
-    const report = await (await page.request.get(base+'/api/report')).json();
-    await page.goto(base+'/report.html#M01-F1');
+    // 2026-09-28：成果页默认是四问快照；专题全文（兼容研究结论）在 ?legacy=1
+    const snap = await (await page.request.get(base+'/api/report')).json();
+    assert.deepEqual(snap.chapters.map(c=>c.id),['q1','q2','q3','q4']);
+    await page.goto(base+'/report.html');await page.locator('#cover').waitFor();
+    assert.equal(await page.locator('section.chapter').count(),4,'four chapters, four questions');
+    assert.match(await page.locator('#cover').innerText(),/可信边界/);
+    assert.match(await page.locator('#topics').innerText(),new RegExp(String(snap.topics.finding_count)));
+    const report = await (await page.request.get(base+'/api/report?legacy=1')).json();
+    await page.goto(base+'/report.html?legacy=1#M01-F1');
     await page.locator('.finding').first().waitFor();
     assert.equal(await page.locator('.finding').count(), report.finding_count);
     assert.equal(report.chapters.length,15);
