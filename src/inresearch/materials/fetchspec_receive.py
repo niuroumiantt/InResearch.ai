@@ -100,7 +100,7 @@ def _load_package(package: Path, max_items: int = 10000, max_bytes: int = 20 * 1
     except (UnicodeError, json.JSONDecodeError):
         raise PackageError("manifest_invalid") from None
     if (not isinstance(manifest, dict) or manifest.get("provider_id") != "fetchspec"
-            or manifest.get("contract_version") not in {"1.0", "1.1"}
+            or manifest.get("contract_version") not in {"1.0", "1.1", "2.0"}
             or not isinstance(manifest.get("delivery_id"), str)
             or not re.fullmatch(r"[A-Za-z0-9._-]{1,160}", manifest["delivery_id"])
             or not isinstance(manifest.get("items"), list)
@@ -108,6 +108,12 @@ def _load_package(package: Path, max_items: int = 10000, max_bytes: int = 20 * 1
             or not manifest["items"]
             or manifest.get("files_included") is not True):
         raise PackageError("manifest_contract_invalid_or_files_absent")
+    if manifest["contract_version"] == "2.0":
+        target_ids = manifest.get("target_ids")
+        if (not isinstance(target_ids, list) or not target_ids or len(target_ids) > 500
+                or len(set(target_ids)) != len(target_ids)
+                or any(not isinstance(value, str) or not value or len(value) > 200 for value in target_ids)):
+            raise PackageError("generated_target_ids_invalid")
     entries = {}
     for line in sums_path.read_text(encoding="ascii").splitlines():
         match = re.fullmatch(r"([a-f0-9]{64})  (files/[0-9a-f]{2}/[a-f0-9]{64}\.[A-Za-z0-9]{1,12})", line)
@@ -121,7 +127,7 @@ def _load_package(package: Path, max_items: int = 10000, max_bytes: int = 20 * 1
         source = item.get("source")
         allowed_language = {"en", "zh", "en_or_unmarked"}
         if (not isinstance(source, dict)
-                or (manifest.get("contract_version") == "1.1"
+                or (manifest.get("contract_version") != "1.0"
                     and (source.get("language") not in allowed_language
                          or not isinstance(source.get("categories", []), list)
                          or any(not isinstance(value, str) or len(value) > 160
@@ -129,6 +135,12 @@ def _load_package(package: Path, max_items: int = 10000, max_bytes: int = 20 * 1
                 or not isinstance(item.get("access_scope"), dict)
                 or item["access_scope"].get("state") != "public"):
             raise PackageError("source_language_or_access_scope_invalid")
+        if manifest["contract_version"] == "2.0":
+            item_targets = item.get("target_ids")
+            if (not isinstance(item_targets, list) or not item_targets
+                    or len(set(item_targets)) != len(item_targets)
+                    or any(value not in manifest["target_ids"] for value in item_targets)):
+                raise PackageError("item_generated_target_ids_invalid")
         sha, relative = item.get("sha256"), item.get("path")
         if (not isinstance(sha, str) or not SHA.fullmatch(sha) or not isinstance(relative, str)
                 or not relative.startswith("files/") or not isinstance(item.get("format"), str)
@@ -203,7 +215,8 @@ def _archive_acquisition(package: Path, manifest: dict, data_root: Path, context
                 "source": item["source"], "retrieved_at": item["retrieved_at"], "sha256": item["sha256"],
                 "format": fmt, "bytes": item["bytes"], "completeness": item["completeness"],
                 "access_scope": item["access_scope"], "version_relation": item["version_relation"],
-                "research_context": context, "acceptance": "candidate"}
+                "research_context": context, "target_ids": item.get("target_ids", []),
+                "acceptance": "candidate"}
             title = item.get("title") or item["source"].get("original_filename") or item["source_item_id"]
             question = context["question_ids"][0] if context["question_ids"] else None
             ident = collector.item("fetchspec", item["source_item_id"], "product_document",
@@ -280,6 +293,19 @@ def _materialized_in(data_root: Path, manifest: dict, reader_hashes=()) -> bool:
 
 def _receive(root: Path, package_path: Path, data_root: Path, reader_sha256=()):
     package, manifest = _load_package(package_path)
+    target_ids, part_ids = [], []
+    if manifest["contract_version"] == "2.0":
+        try:
+            target_document = json.loads((root / "framework/tco_targets.json").read_text())
+        except (OSError, json.JSONDecodeError):
+            raise PackageError("generated_target_registry_unavailable") from None
+        registered = {row["id"]: row for row in target_document.get("targets", [])
+                      if isinstance(row, dict) and row.get("team") == "fetchspec"}
+        target_ids = manifest["target_ids"]
+        if any(target_id not in registered for target_id in target_ids):
+            raise PackageError("generated_target_not_found_or_wrong_provider")
+        part_ids = sorted({registered[target_id]["part_id"] for target_id in target_ids
+                           if registered[target_id].get("part_id")})
     requested_reader_hashes = set(reader_sha256 or ())
     items_by_sha = {item["sha256"]: item for item in manifest["items"]}
     if requested_reader_hashes - items_by_sha.keys():
@@ -308,7 +334,8 @@ def _receive(root: Path, package_path: Path, data_root: Path, reader_sha256=()):
             return prior
 
     task_ref = manifest.get("task_id_or_discovery", "discovery")
-    research_context = {"task_id": None, "demand_id": None, "question_ids": [], "object_ids": []}
+    research_context = {"task_id": None, "demand_id": None, "question_ids": [], "object_ids": [],
+                        "target_ids": target_ids, "part_ids": part_ids}
     if task_ref != "discovery":
         planning_path = workspace_path("data/raw/supply-center/ledger.json", root)
         try:
@@ -324,7 +351,8 @@ def _receive(root: Path, package_path: Path, data_root: Path, reader_sha256=()):
             raise PackageError("supply_demand_not_found")
         research_context = {"task_id": task_ref, "demand_id": demand["id"],
                             "question_ids": [demand["question_id"]],
-                            "object_ids": demand.get("object_ids", [])}
+                            "object_ids": demand.get("object_ids", []),
+                            "target_ids": target_ids, "part_ids": part_ids}
 
     data_root = Path(data_root).expanduser().resolve()
     _archive_acquisition(package, manifest, data_root, research_context)
@@ -378,7 +406,7 @@ def _receive(root: Path, package_path: Path, data_root: Path, reader_sha256=()):
                     shutil.copy2(original, handoff)
             if _digest(handoff) != sha:
                 raise PackageError("reader_handoff_digest_mismatch")
-        receipts.append({"sha256": sha, "format": fmt,
+        receipts.append({"sha256": sha, "format": fmt, "target_ids": item.get("target_ids", []),
                          "status": "received" if suffix in SUPPORTED else "needs_supplement",
                          "reader_handoff": ("eligible" if sha in reader_hashes else "held")
                          if suffix in SUPPORTED else "extractor_required"})

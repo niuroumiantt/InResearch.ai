@@ -1,13 +1,14 @@
 {
-  "version": "1.4",
+  "version": "1.5",
   "effective_at": "2026-09-28",
   "phase": "planning_live",
   "operating_plan": {
     "purpose": "从研究问题出发，先建立数据中心产品资料全景，再为关键产品线形成可复核的深度证据包。",
     "baseline": {
       "planned_product_records": 801,
-      "delivery_connection": "receiver_implemented_pending_deployment",
-      "meaning": "801 是当前产品资料计划的待补目录数，不是已抓取、已验收或已采用的资料数；Fetchspec 接收与索引已实现。NVIDIA 验证现采用 M5 本地抓取/阅读并直传 AWS 的临时路径，Spark 接收与原件归档待后续补齐。"
+      "generated_target_source": "framework/tco_targets.json",
+      "delivery_connection": "receiver_live_generated_targets_exposed",
+      "meaning": "801 是旧版公司中心的待补目录基线，只作历史容量参照；当前派工以生成目标清单为准。Fetchspec 接收、索引和生成目标只读投影已上线。NVIDIA 验证采用 M5 本地抓取/阅读并直传 AWS 的临时路径，Spark 接收与原件归档待后续补齐。"
     },
     "phases": [
       {
@@ -114,7 +115,7 @@
         1
       ],
       "acceptance": "型号、配置、软件版本、原文及参数条件",
-      "connection": "receiver_implemented_pending_deployment"
+      "connection": "receiver_live_generated_targets_exposed"
     },
     {
       "id": "inews",
@@ -212,7 +213,7 @@
     }
   ],
   "delivery_contract": {
-    "version": "1.0",
+    "version": "1.1",
     "required": [
       "provider_id",
       "delivery_id",
@@ -291,6 +292,44 @@
       "rejected"
     ],
     "research_adoption_separate": true
+  },
+  "generated_target_contract": {
+    "version": "2.0",
+    "status": "live_projection_and_receiver_binding",
+    "source": "framework/tco_targets.json",
+    "selection": "team == fetchspec",
+    "projection": "GET /api/supply -> generated_targets",
+    "identity_fields": [
+      "id",
+      "part_id",
+      "factor_ids",
+      "variable_class",
+      "data_class"
+    ],
+    "execution_fields": [
+      "disclosure_type",
+      "publisher_category",
+      "instances",
+      "mechanism",
+      "host",
+      "calendar",
+      "next_due"
+    ],
+    "result_binding": "Fetchspec contract 2.0 deliveries retain validated target_ids per package and item; the receiver resolves part_ids from the current generated registry before archiving. Structured product/spec observations must retain target_id and part_id when a generated target caused the collection; discovery remains explicit and is linked later.",
+    "parameter_observation_fields": [
+      "company_id",
+      "product_id",
+      "target_id",
+      "part_id",
+      "parameter_name",
+      "value",
+      "unit",
+      "condition",
+      "source_url",
+      "source_sha256",
+      "observed_at"
+    ],
+    "authority": "A target is a demand, not evidence. A received specification remains reference/candidate data until separate research review and adoption."
   },
   "teams": {
     "note": "六队按来源机制划分，不按层；一个来源常同时喂几层。任务只来自 framework/tco_targets.json。",

@@ -34,7 +34,14 @@ class SupplyTests(unittest.TestCase):
         return value
 
     def test_persistence_replay_and_conflict(self):
-        self.assertEqual(supply.snapshot(self.root)['demands'], [])
+        initial = supply.snapshot(self.root)
+        self.assertEqual(initial['demands'], [])
+        targets = initial['generated_targets']
+        self.assertEqual(targets['provider_id'], 'fetchspec')
+        self.assertEqual(targets['total'], len(targets['records']))
+        self.assertTrue(targets['records'])
+        self.assertTrue(all(row['team'] == 'fetchspec' for row in targets['records']))
+        self.assertEqual(targets['total'], targets['sourced'] + targets['assumed'] + targets['needed'])
         self.assertFalse((Path(self.tmp.name)/'data').exists())
         req = self.request()
         supply.mutate(self.root, req, 'admin')

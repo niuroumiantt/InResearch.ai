@@ -117,10 +117,29 @@ class ResearchTests(unittest.TestCase):
         row['doc_id'] = 'doc:test'
         self.assertFalse(reading_queue.proven_complete(row, [{'id': 'doc:test', 'coverage': {'complete': True, 'chunks_total': 2, 'chunks_read': 1}}]))
 
-    def test_foreign_framework_snapshot_rejected(self):
+    def test_older_registry_snapshot_is_filtered_and_marked_not_rejected(self):
         payload = self.candidate()
         payload['graph_version'] = 'old'
-        with self.assertRaisesRegex(ValueError, 'graph_version'):
+        object_id = self.graph['objects'][0]['id']
+        payload['knowledge']['evidence'][0]['object_ids'] = [object_id, 'part:retired-by-recut']
+        payload['knowledge']['answers'].append({'id': 'answer:gone', 'question_id': 'Q-retired',
+                                                'text': 'x', 'evidence_ids': ['ev:test']})
+        snapshot = research.candidate_snapshot(payload, self.graph, self.questions)
+        self.assertEqual(snapshot['graph_version'], self.graph['version'])
+        self.assertEqual(snapshot['knowledge']['evidence'][0]['object_ids'], [object_id])
+        self.assertEqual([a['id'] for a in snapshot['knowledge']['answers']], ['answer:test'])
+        self.assertEqual(snapshot['reader']['registry_lag'],
+                         {'snapshot_graph_version': 'old', 'snapshot_questions_version': self.questions['version'],
+                          'dropped_ids': 1, 'dropped_answers': 1})
+
+    def test_current_registry_snapshot_keeps_strict_ids_and_carries_no_lag(self):
+        payload = self.candidate()
+        self.assertNotIn('registry_lag', research.candidate_snapshot(payload, self.graph, self.questions)['reader'])
+        payload['knowledge']['evidence'][0]['object_ids'] = ['part:not-in-registry']
+        with self.assertRaisesRegex(ValueError, 'dangling object_ids'):
+            research.candidate_snapshot(payload, self.graph, self.questions)
+        del payload['graph_version']
+        with self.assertRaisesRegex(ValueError, 'lacks graph_version'):
             research.candidate_snapshot(payload, self.graph, self.questions)
 
 
@@ -477,6 +496,15 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
                                 if d['id'] == curated['documents'][0]['id'])
                 self.assertEqual('a' * 64, original['content_sha256'])
 
+    def test_runtime_from_an_older_registry_is_shown_and_marked_lagging(self):
+        foreign = self.payload()
+        foreign['graph_version'] = 'retired-version'
+        self.snapshot_path.write_text(json.dumps(foreign))
+        code, view = self.request('GET', '/api/research')
+        self.assertEqual(200, code, view)
+        self.assertEqual(view['reader']['registry_lag']['snapshot_graph_version'], 'retired-version')
+        self.assertTrue(any(d['id'] == foreign['knowledge']['documents'][0]['id'] for d in view['knowledge']['documents']))
+
     def test_invalid_runtime_preserves_curated_http_view(self):
         curated = adopted_knowledge()
         research.atomic_json(self.curated_path, curated)
@@ -485,8 +513,7 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
         foreign['graph_version'] = 'retired-version'
         collision = copy.deepcopy(valid)
         collision['knowledge']['evidence'][0]['quote'] = 'Unreviewed replacement quote'
-        for name, content in [('malformed', '{'), ('foreign-framework', json.dumps(foreign)),
-                              ('identity-collision', json.dumps(collision))]:
+        for name, content in [('malformed', '{'), ('identity-collision', json.dumps(collision))]:
             with self.subTest(runtime=name):
                 self.snapshot_path.write_text(content)
                 code, view = self.request('GET', '/api/research')

@@ -36,6 +36,8 @@ def read(root):
 def snapshot(root):
     state = read(root)
     questions = json.loads((root / 'framework/research_questions.json').read_text())['records']
+    target_document = json.loads((root / 'framework/tco_targets.json').read_text())
+    fetchspec_targets = [row for row in target_document['targets'] if row.get('team') == 'fetchspec']
     receipts_path = workspace_path('data/raw/supply-center/receipts.json', root)
     receipts = json.loads(receipts_path.read_text()) if receipts_path.exists() else {'version': 1, 'deliveries': {}}
     if receipts.get('version') != 1 or not isinstance(receipts.get('deliveries'), dict):
@@ -45,6 +47,15 @@ def snapshot(root):
     return {'catalog': catalog(root), 'revision': state['revision'],
             'demands': state['demands'], 'tasks': state['tasks'],
             'questions': [{'id': q['id'], 'text': q['text'], 'object_ids': q.get('object_ids', [])} for q in questions],
+            'generated_targets': {
+                'source': 'framework/tco_targets.json',
+                'provider_id': 'fetchspec',
+                'total': len(fetchspec_targets),
+                'sourced': sum(row['status'] == 'sourced' for row in fetchspec_targets),
+                'assumed': sum(row['status'] == 'assumed' for row in fetchspec_targets),
+                'needed': sum(row['status'] == 'needed' for row in fetchspec_targets),
+                'records': fetchspec_targets,
+            },
             'deliveries': deliveries,
             'delivery_connection': 'connected' if receipts['deliveries'] else 'awaiting_first_delivery'}
 

@@ -4,7 +4,7 @@
   const escape = value => String(value ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const allowedTabs = new Set(['overview','coverage','resources','providers','demands','deliveries']);
   let data, tab = 'overview', selected = 'fetchspec', admin = false, generation = 0, pending, saving = false;
-  const kinds = {existing_repo:'已有 repo · 待接入',existing_feed:'已有新闻接口 · 任务未接入',existing_channel:'已有上传渠道 · 待统一接入',proposed:'能力已登记 · repo 待规划'};
+  const kinds = {existing_repo:'已有 repo · 接收已上线',existing_feed:'已有新闻接口 · 任务未接入',existing_channel:'已有上传渠道 · 待统一接入',proposed:'能力已登记 · repo 待规划'};
   const execution = task => task.execution_mode === 'continuous' ? '持续采集 · AWS' : task.execution_mode === 'assisted' ? '人工辅助 · macmini' : '旧计划 · 尚未指定执行机';
   const providerOptions = () => data.catalog.providers.map(p => `<option value="${escape(p.id)}">${escape(p.name)} · ${escape(p.capability)}</option>`).join('');
   const setTab = next => { tab = allowedTabs.has(next) ? next : 'overview'; if (location.hash !== '#'+tab) history.replaceState(null,'','#'+tab); render(); };
@@ -14,11 +14,11 @@
     if (!data) return;
     document.querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tab === tab)));
     const receivedItems=data.deliveries.reduce((n,d)=>n+(d.received_items||0),0);
-    $('counts').textContent = `${data.catalog.providers.length} 个供应入口 · ${data.demands.length} 项资料需求 · ${data.tasks.length} 项计划任务 · ${data.deliveries.length} 个交付回执 · ${receivedItems} 件原件已接收`;
+    $('counts').textContent = `${data.catalog.providers.length} 个供应入口 · Fetchspec ${data.generated_targets.total} 个生成目标 · ${data.demands.length} 项人工资料需求 · ${data.tasks.length} 项计划任务 · ${data.deliveries.length} 个交付回执 · ${receivedItems} 件原件已接收`;
     $('create-panel').hidden = !admin || tab !== 'demands';
     if (tab === 'overview') {
       const p=plan(), c=taskCounts();
-      $('list').innerHTML=`<h2>目的与当前进展</h2><p>${escape(p.purpose)}</p><div class="plan-grid"><div class="plan-card"><strong>${p.baseline.planned_product_records} 条</strong><small>当前产品资料待补目录</small></div><div class="plan-card"><strong>${data.catalog.providers.length} 个</strong><small>已登记资料供应入口</small></div><div class="plan-card"><strong>${data.demands.length} 项</strong><small>已登记研究需求</small></div><div class="plan-card"><strong>${c.planned} 项</strong><small>计划任务</small></div><div class="plan-card"><strong>${data.deliveries.length} 个</strong><small>真实交付回执</small></div><div class="plan-card"><strong>${receivedItems} 件</strong><small>已校验并接收原件</small></div></div><p class="muted">${escape(p.baseline.meaning)}</p>`;
+      $('list').innerHTML=`<h2>目的与当前进展</h2><p>${escape(p.purpose)}</p><div class="plan-grid"><div class="plan-card"><strong>${data.generated_targets.total} 条</strong><small>Fetchspec 生成目标</small></div><div class="plan-card"><strong>${data.generated_targets.needed} 条</strong><small>仍缺规格目标</small></div><div class="plan-card"><strong>${data.catalog.providers.length} 个</strong><small>已登记资料供应入口</small></div><div class="plan-card"><strong>${data.demands.length} 项</strong><small>人工补充需求</small></div><div class="plan-card"><strong>${data.deliveries.length} 个</strong><small>真实交付回执</small></div><div class="plan-card"><strong>${receivedItems} 件</strong><small>已校验并接收原件</small></div></div><p class="muted">${escape(p.baseline.meaning)}</p>`;
       $('detail').innerHTML=`<h2>本页如何使用</h2><ol><li><b>广度与深度</b>：确认先补哪一类产品和何时进入深抓。</li><li><b>资源与执行</b>：确认 AWS、macmini、Spark 的固定职责。</li><li><b>供应方与任务</b>：查看各供应入口承担的计划任务。</li><li><b>研究需求</b>：由研究问题创建可验收的资料任务。</li><li><b>交付与验收</b>：查看原件接收、审核和研究采用状态。</li></ol><p class="${data.deliveries.length?'status-ready':'status-waiting'}">${data.deliveries.length?'已接通 Fetchspec 交付回执；阅读、证据审核和研究采用仍分别计量。':'等待第一份 Fetchspec 交付包；不把历史文件或新闻数量计入本流程。'}</p>`;
     } else if (tab === 'coverage') {
       const p=plan();
@@ -31,8 +31,8 @@
     } else if (tab === 'providers') {
       $('list').innerHTML = data.catalog.providers.map(p => `<button type="button" class="record" data-provider="${escape(p.id)}" aria-pressed="${selected===p.id}"><em>${escape(kinds[p.kind])}</em><strong>${escape(p.name)}</strong><small>${escape(p.capability)}</small><small>${data.tasks.filter(t=>t.provider_id===p.id).length} 项计划任务</small></button>`).join('');
       const p = data.catalog.providers.find(x => x.id===selected) || data.catalog.providers[0];
-      const tasks = data.tasks.filter(t=>t.provider_id===p.id);
-      $('detail').innerHTML = `<h3>${escape(p.name)}</h3><p>${escape(kinds[p.kind])}</p><dl><dt>研究映射</dt><dd>${escape(p.mapping)}</dd><dt>资料验收重点</dt><dd>${escape(p.acceptance)}</dd></dl>${p.repository?`<p><a href="${escape(p.repository)}" target="_blank" rel="noopener">查看 GitHub 仓库</a></p>`:''}<h3>分配给该供应方的任务</h3>${tasks.length?tasks.map(t=>`<div class="task">${escape(data.demands.find(d=>d.id===t.demand_id)?.title || t.demand_id)}<br><small>${escape(execution(t))} · 已计划，等待执行接入</small></div>`).join(''):'<p>尚未分配任务。</p>'}<div class="actions"><button type="button" id="to-demands">查看需求与分配</button></div>`;
+      const tasks = data.tasks.filter(t=>t.provider_id===p.id), generated=p.id==='fetchspec'?data.generated_targets.records:[];
+      $('detail').innerHTML = `<h3>${escape(p.name)}</h3><p>${escape(kinds[p.kind])}</p><dl><dt>研究映射</dt><dd>${escape(p.mapping)}</dd><dt>资料验收重点</dt><dd>${escape(p.acceptance)}</dd><dt>机器契约</dt><dd>${escape(p.connection)}</dd></dl>${p.repository?`<p><a href="${escape(p.repository)}" target="_blank" rel="noopener">查看 GitHub 仓库</a></p>`:''}${generated.length?`<h3>主线生成目标</h3><p>${generated.length} 条 · 已有 ${data.generated_targets.sourced} · 仍缺 ${data.generated_targets.needed}。这些目标来自部件树与因子树，不由 Fetchspec 自行扩大。</p><div class="target-list">${generated.slice(0,30).map(t=>`<div class="task"><code>${escape(t.id)}</code><br><small>${escape(t.disclosure_type)} × ${escape(t.publisher_category)} · ${escape(t.host)} · ${escape(t.next_due)} · ${escape(t.status)}</small></div>`).join('')}</div>${generated.length>30?`<p class="muted">当前显示前 30 条；完整 ${generated.length} 条在目标清单。</p>`:''}`:`<h3>人工分配任务</h3>${tasks.length?tasks.map(t=>`<div class="task">${escape(data.demands.find(d=>d.id===t.demand_id)?.title || t.demand_id)}<br><small>${escape(execution(t))} · 已计划</small></div>`).join(''):'<p>尚未分配任务。</p>'}`}<div class="actions"><button type="button" id="to-demands">查看人工需求与分配</button></div>`;
       $('to-demands').onclick=()=>setTab('demands');
       document.querySelectorAll('[data-provider]').forEach(b=>b.onclick=()=>{selected=b.dataset.provider;render();});
     } else if (tab === 'demands') {
