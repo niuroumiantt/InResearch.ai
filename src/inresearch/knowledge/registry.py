@@ -251,11 +251,19 @@ def task_board(root=ROOT, questions=None, knowledge=None):
 
 
 def candidate_snapshot(payload, graph, questions):
-    """Normalize untrusted reader JSON; this API cannot promote a claim."""
-    if not isinstance(payload, dict) or payload.get('graph_version') != graph['version']:
-        raise ValueError('reader graph_version does not match deployed framework')
-    if payload.get('questions_version') != questions['version']:
-        raise ValueError('reader questions_version does not match deployed questions')
+    """Normalize untrusted reader JSON; this API cannot promote a claim.
+
+    The site follows main automatically while Spark is updated by hand, so a
+    snapshot mapped against an older registry is normal for a while after each
+    registry change. Such a snapshot is no longer refused: its object/question IDs
+    are filtered to the deployed registry (never guessed), the rest is kept, and
+    ``reader.registry_lag`` says which versions differed and how many IDs went."""
+    if not isinstance(payload, dict):
+        raise ValueError('reader snapshot must be an object')
+    for key in ('graph_version', 'questions_version'):
+        if not isinstance(payload.get(key), str) or not payload[key]:
+            raise ValueError('reader snapshot lacks ' + key)
+    lagging = payload['graph_version'] != graph['version'] or payload['questions_version'] != questions['version']
     generated = payload.get('generated')
     if (parse_time(generated) - datetime.now(timezone.utc)).total_seconds() > 300:
         raise ValueError('snapshot timestamp is in the future')
@@ -267,6 +275,9 @@ def candidate_snapshot(payload, graph, questions):
                'object_ids', 'question_ids', 'document_id', 'page_index', 'locator',
                'quote', 'text', 'kind', 'evidence_ids', 'statement_ids', 'question_id',
                'model', 'read_status', 'mapping_status', 'content_sha256', 'reading_revision_id', 'report_sha256'}
+    known = {'object_ids': {o['id'] for o in graph.get('objects', []) if isinstance(o, dict) and 'id' in o},
+             'question_ids': {q['id'] for q in questions.get('records', []) if isinstance(q, dict) and 'id' in q}}
+    dropped_ids = dropped_answers = 0
     for name in COLLECTIONS:
         rows = knowledge.get(name, [])
         if not isinstance(rows, list):
@@ -276,6 +287,15 @@ def candidate_snapshot(payload, graph, questions):
                 raise ValueError(f'{name} contains a non-object')
             normalized = {k: v for k, v in row.items() if k in allowed}
             normalized.update(status='candidate', acceptance='candidate')
+            if lagging:
+                for field, ids in known.items():
+                    if isinstance(normalized.get(field), list):
+                        kept = [v for v in normalized[field] if v in ids]
+                        dropped_ids += len(normalized[field]) - len(kept)
+                        normalized[field] = kept
+                if name == 'answers' and normalized.get('question_id') not in known['question_ids']:
+                    dropped_answers += 1
+                    continue
             result[name].append(normalized)
     errors = validate(graph, questions, result)
     if errors:
@@ -286,7 +306,11 @@ def candidate_snapshot(payload, graph, questions):
     # It is a derived health snapshot, never an instruction or source of authority.
     reader = {k: v for k, v in reader.items() if k in (
         'generated', 'counts', 'stage_counts', 'oldest_pending', 'recent_failures',
-        'backend', 'model', 'roots', 'status', 'release', 'acquisition', 'reading_revisions')}
+        'backend', 'model', 'roots', 'status', 'release', 'acquisition', 'reading_revisions', 'registry_lag')}
+    if lagging:
+        reader['registry_lag'] = {'snapshot_graph_version': payload['graph_version'],
+                                  'snapshot_questions_version': payload['questions_version'],
+                                  'dropped_ids': dropped_ids, 'dropped_answers': dropped_answers}
     return dict(graph_version=graph['version'], questions_version=questions['version'], generated=generated,
                 received_at=datetime.now(timezone.utc).isoformat(), knowledge=result, reader=reader)
 
