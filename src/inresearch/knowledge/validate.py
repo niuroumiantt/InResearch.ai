@@ -175,6 +175,7 @@ def main():
         bom = json.loads(bom_path.read_text(encoding="utf-8"))
         layer_ids = {ly["id"] for ly in bom.get("layers", [])}
         kinds = set(bom.get("kinds") or {"part": ""})
+        stage_ids = {s["id"] for s in bom.get("stages", [])}
         chain_slots = {}
         bom_part_ids = {p["id"] for p in bom.get("parts", [])}
         if len(bom_part_ids) != len(bom.get("parts", [])):
@@ -183,6 +184,8 @@ def main():
             kind = p.get("kind", "part")
             if kind not in kinds:
                 err(f"bom[{p['id']}]: kind 非法: {kind}")
+            if stage_ids and p.get("stage") not in stage_ids:
+                err(f"bom[{p['id']}]: stage 非法: {p.get('stage')}")
             if kind == "part":
                 if p.get("layer") not in layer_ids:
                     err(f"bom[{p['id']}]: layer 非法: {p.get('layer')}")
@@ -216,6 +219,8 @@ def main():
             for r in json.loads(rights_path.read_text(encoding="utf-8")).get("rights", []):
                 if r.get("scale") not in layer_ids:
                     err(f"site_rights[{r['id']}]: scale 非法: {r.get('scale')}")
+                if stage_ids and r.get("stage") not in stage_ids:
+                    err(f"site_rights[{r['id']}]: stage 非法: {r.get('stage')}")
                 if r.get("from_bom_part") and (bom.get("aliases") or {}).get(r["from_bom_part"]) != "site:" + r["id"]:
                     err(f"site_rights[{r['id']}]: from_bom_part {r['from_bom_part']} 未在 bom.aliases 指回本条")
 
@@ -228,7 +233,7 @@ def main():
             if pid not in bom_part_ids:
                 err(f"part_fetch[{pid}]: 不是现行部件")
             for kind, reg in kinds.items():
-                if kind not in ("spec", "price", "lead_time", "news"):
+                if kind not in ("spec", "operation", "price", "lead_time", "news"):
                     err(f"part_fetch[{pid}]: 未知数据类别 {kind}")
                 if providers and reg.get("team") not in providers:
                     err(f"part_fetch[{pid}/{kind}]: 队不在供应合同里: {reg.get('team')}")
@@ -340,6 +345,14 @@ def main():
                     warn(f"LIBRARY_SCORES[{row['new_path'].split('/')[-1][:48]}]: "
                          f"summary 自述「逐份精读」但 depth 标为半自动——"
                          f"半自动不得进事实层，这条会被证据链拒收")
+
+    # 登记表两列（2026-09-28）：node 与 variable_class 由 knowledge.nodes 从骨架派生，存储值须与派生一致
+    try:
+        from inresearch.knowledge import nodes as node_columns
+        for problem in node_columns.problems(ROOT):
+            err(problem)
+    except (OSError, ValueError, KeyError, TypeError) as exc:
+        err(f"nodes: 无法派生登记表两列: {exc}")
 
     # 汇总
     print(f"记录数: projects={len(projects)} companies={len(companies)} prices={len(prices)} "

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "公司库记录（主键 = company_id）",
   "type": "object",
-  "required": ["company_id", "name", "roles", "verified_date"],
+  "required": ["company_id", "name", "roles", "verified_date", "node", "variable_class"],
   "properties": {
     "company_id": {"type": "string", "description": "小写连字符，如 nvidia / coreweave / delta-electronics"},
     "name": {"type": "string"},
@@ -16,6 +16,8 @@
     "website": {"type": ["string", "null"], "description": "官网域名（产品资料入口），来自产品研究目录"},
     "profile": {"type": ["string", "null"], "description": "一段话档案：在本行业的位置与关键事实"},
     "ir_url": {"type": ["string", "null"]},
-    "verified_date": {"type": ["string", "null"], "description": "null = 待核验（进 verify.py 队列），产品目录合并进来的新公司初始即 null"}
+    "verified_date": {"type": ["string", "null"], "description": "null = 待核验（进 verify.py 队列），产品目录合并进来的新公司初始即 null"},
+    "node": {"type": "string", "description": "骨架节点 actor:<company_id>，由 knowledge.nodes 派生"},
+    "variable_class": {"type": "integer", "enum": [5], "description": "公司是主体（5）"}
   }
 }

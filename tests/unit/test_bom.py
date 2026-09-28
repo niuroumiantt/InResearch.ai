@@ -79,6 +79,22 @@ class BomStructureTests(unittest.TestCase):
             keys = [(chains.index(self.parts[o[5:]]['chain']), self.parts[o[5:]]['chain_order']) for o in d['object_ids'] if o[5:] in self.parts]
             self.assertEqual(keys, sorted(keys), d['id'])
 
+    def test_build_stages(self):
+        # 03「骨架的三个补充」第 1 条：建设阶段是部件的第二个属性，六段有序；站点权利同
+        stages = [s['id'] for s in self.bom['stages']]
+        self.assertEqual(stages, ['rights', 'grid', 'shell', 'mep', 'it', 'commissioning'])
+        self.assertEqual([s['name'] for s in self.bom['stages']], ['权利与审批', '并网与外线', '土建与壳', '机电', 'IT 进场', '调试与上架'])
+        for p in self.bom['parts']:
+            self.assertIn(p['stage'], stages, p['id'])
+            if p['system'] in ('compute', 'memory', 'storage', 'network'):
+                self.assertEqual(p['stage'], 'it', p['id'])
+        for pid in ('hv-switchyard', 'transformer', 'mv-switchgear'):
+            self.assertEqual(self.parts[pid]['stage'], 'grid', pid)
+        self.assertEqual(self.parts['shell']['stage'], 'shell')
+        self.assertEqual(self.parts['dcim']['stage'], 'commissioning')
+        for r in self.rights.values():
+            self.assertEqual(r['stage'], 'grid' if r['id'] == 'grid' else 'rights', r['id'])
+
     def test_aliases_resolve(self):
         for old, target in self.bom['aliases'].items():
             self.assertNotIn(old, self.parts, old)

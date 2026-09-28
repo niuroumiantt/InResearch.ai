@@ -52,9 +52,12 @@ KIND_DEFAULTS = {
 }
 DUE_DAYS = {'reference': 90, 'observation': 30, 'material': 7}
 PART_STATUS_RANK = {'tight': 2, 'transition': 3, 'emerging': 3, 'mature': 4}
+OPERATION_MATCH = ('pue', 'wue', 'utilization', 'penetration', 'density')
 PART_ROWS = {  # data class a physical part has by construction → routing
     'spec': dict(variable_class=1, data_class='reference', mechanism='vendor_page', team='fetchspec',
                  disclosure_type='产品规格、数据手册与参考设计', publisher_category='厂商、ODM', calendar='每代际发布'),
+    'operation': dict(variable_class=2, data_class='reference', mechanism='vendor_page', team='fetchspec',
+                      disclosure_type='额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率', publisher_category='厂商数据手册、实测与运营披露', calendar='每代际发布'),
     'price': dict(variable_class=3, data_class='observation', mechanism='js_page', team='fetchquotes',
                   disclosure_type='挂牌价、报价与成交价', publisher_category='厂商价目、分销商、研报 BOM', calendar='月'),
     'lead_time': dict(variable_class=4, data_class='observation', mechanism='pdf_free', team='fetchreports',
@@ -94,6 +97,7 @@ def build(root=ROOT, as_of=None):
     prices = load(root, 'data/prices.json')['records']
     series_ids = {r['series_id'] for r in prices}
     lead_series = {r['series_id'] for r in prices if r.get('category') == 'lead-time'}
+    eff_series = {r['series_id'] for r in prices if r.get('category') == 'efficiency'}
     indicators = {i['id']: i for i in load(root, 'framework/indicators.json')['indicators']}
     model = load(root, 'data/datacenter_model.json')
     evidence = model.get('evidence', {})
@@ -145,7 +149,7 @@ def build(root=ROOT, as_of=None):
     def delivered(target_id, kind, part_id, right_id):
         if target_id in price_targets or target_id in card_targets:
             return True
-        if kind == 'spec' and part_id in delivered_parts:
+        if kind in ('spec', 'operation') and part_id in delivered_parts:
             return True
         if kind == 'news' and part_id in card_parts:
             return True
@@ -184,7 +188,7 @@ def build(root=ROOT, as_of=None):
             'next_due': due(kw.get('next_due'), kw['data_class']) if connected else None,
             'status': status, 'sourced_by': {'sourced': 'registry', 'delivered': 'delivery'}.get(status),
             'sensitivity_rank': kw['sensitivity_rank'], 'notes': kw.get('notes', ''), 'curated': kw.get('curated', False),
-            'chain': kw.get('chain'), 'chain_order': kw.get('chain_order'),
+            'chain': kw.get('chain'), 'chain_order': kw.get('chain_order'), 'stage': kw.get('stage'),
         }
         return out
 
@@ -225,7 +229,7 @@ def build(root=ROOT, as_of=None):
         fids = part_factors.get(p['id'], [])
         pool = sorted({k for fid in fids for k in factors[fid].get('model_inputs', [])})
         rank = PART_STATUS_RANK.get(p['status'], 4)
-        kinds = ['spec', 'price', 'lead_time'] if p['kind'] == 'part' else ['spec', 'price'] if p['kind'] == 'software' else ['spec']
+        kinds = ['spec', 'operation', 'price', 'lead_time'] if p['kind'] == 'part' else ['spec', 'price'] if p['kind'] == 'software' else ['spec']
         if p['kind'] == 'part' and p['status'] != 'mature':
             kinds.append('news')
         for kind in kinds:
@@ -233,10 +237,15 @@ def build(root=ROOT, as_of=None):
             reg = part_fetch.get(p['id'], {}).get(kind)
             if reg:  # 人工登记覆盖模板：出版方类别、实例、日历、机制、队
                 spec.update({k: reg[k] for k in ('publisher_category', 'calendar', 'mechanism', 'team') if k in reg})
-            series = [s for s in p.get('series', []) if (s in lead_series) == (kind == 'lead_time')] if kind in ('price', 'lead_time') else []
-            inds = [i for i in p.get('indicators', []) if ('lead_time' in i or 'backlog' in i) == (kind == 'lead_time')] if kind in ('price', 'lead_time') else []
+            if kind == 'operation':  # 运行行：效率序列与运行指标（PUE、利用率、渗透率、密度）
+                series = [s for s in p.get('series', []) if s in eff_series]
+                inds = [i for i in p.get('indicators', []) if any(m in i for m in OPERATION_MATCH)]
+            else:
+                series = [s for s in p.get('series', []) if (s in lead_series) == (kind == 'lead_time') and s not in eff_series] if kind in ('price', 'lead_time') else []
+                inds = [i for i in p.get('indicators', []) if ('lead_time' in i or 'backlog' in i) == (kind == 'lead_time') and not any(m in i for m in OPERATION_MATCH)] if kind in ('price', 'lead_time') else []
             sysname = bom['systems'][p['system']]['name'] if isinstance(bom['systems'][p['system']], dict) else bom['systems'][p['system']]
             notes = {'spec': f"{p['name']}：规格与供应商名单（{sysname} · {p.get('chain', '')}，{p['layer'] or p['kind']}）",
+                     'operation': f"{p['name']}：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（{bom['stages'][[s['id'] for s in bom['stages']].index(p['stage'])]['name'] if p.get('stage') else ''} 阶段）",
                      'price': f"{p['name']}：自己的价格——重切规则的第一条件", 'lead_time': f"{p['name']}：自己的交期——重切规则的第三条件",
                      'news': f"{p['name']}：{p['status']} 状态部件的供应事件"}[kind]
             if p['kind'] == 'software' and kind == 'price':
@@ -248,7 +257,7 @@ def build(root=ROOT, as_of=None):
                 disclosure_type=spec['disclosure_type'], publisher_category=spec['publisher_category'],
                 instances=(list(reg['instances']) if reg and reg.get('instances') else instances),
                 mechanism=spec['mechanism'], team=spec['team'], calendar=spec['calendar'], sensitivity_rank=rank, notes=notes,
-                curated=bool(reg), chain=p.get('chain'), chain_order=p.get('chain_order')))
+                curated=bool(reg), chain=p.get('chain'), chain_order=p.get('chain_order'), stage=p.get('stage')))
     # 3. site-right targets: one per registered variable class
     for r in rights:
         fids = right_factors.get(r['id'], [])
@@ -263,7 +272,7 @@ def build(root=ROOT, as_of=None):
                 indicators=list(r.get('indicators', [])) if vc != 5 else [], data_class=spec['data_class'],
                 disclosure_type=spec['disclosure_type'], publisher_category=spec['publisher_category'], instances=instances,
                 mechanism=spec['mechanism'], team=spec['team'], calendar=spec['calendar'], sensitivity_rank=2,
-                notes=f"{r['name']}：{r['desc']}"))
+                notes=f"{r['name']}：{r['desc']}", stage=r.get('stage')))
     for t in targets:
         for sid in t['series']:
             if sid not in series_ids:
@@ -278,11 +287,11 @@ def build(root=ROOT, as_of=None):
         by_status[t['status']] += 1
     teams = sorted({t['team'] for t in targets})
     return {
-        'version': '2.0.0', 'updated': as_of, 'title': '五类变量目标清单',
+        'version': '2.1.0', 'updated': as_of, 'title': '五类变量目标清单',
         'note': ('六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：'
                  '因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；'
                  '每个物理部件按"自己的价格、供应商名单、交期"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；'
-                 '软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。'
+                 '软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。2026-09-28 骨架补齐：每个物理部件再加一行运行（operation，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率）；因子树的 time.build 生成工期、排队与审批行；部件级与权利级行带建设阶段 stage。'
                  '部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。'
                  '每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、'
                  '已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机。'

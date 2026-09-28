@@ -77,6 +77,11 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(set(self.doc['root']['targets']), {'sourced', 'assumed', 'delivered', 'needed', 'not_connected'})
         self.assertEqual(set(self.rules['cell_status']), {'sourced', 'assumed', 'delivered', 'registered', 'needed'})
         self.assertEqual(set(self.doc['parts']), {p['id'] for p in self.bom['parts']})
+        self.assertEqual([s['id'] for s in self.doc['stages']], [s['id'] for s in self.bom['stages']], '建设阶段随骨架进快照')
+        for p in self.doc['parts'].values():
+            self.assertIn(p['stage'], {s['id'] for s in self.bom['stages']}, p['id'])
+        for r in self.doc['site']['rights']:
+            self.assertIn(r['stage'], {s['id'] for s in self.bom['stages']}, r['id'])
         self.assertEqual(set(self.doc['rights']), {r['id'] for r in load('framework/site_rights.json')['rights']})
 
     def test_critical_path_is_max_part_lead_time(self):

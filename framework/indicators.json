@@ -15,7 +15,9 @@
       "source": "projects聚合 vs prices.benchmarks",
       "value": null,
       "as_of": null,
-      "metric_id": "benchmark_spread"
+      "metric_id": "benchmark_spread",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "dc_rent_index_na",
@@ -30,7 +32,9 @@
       "value": 170,
       "as_of": "2026-06-30",
       "auto_note": "prices:dc-rent-index-na 最新点",
-      "metric_id": "dc_rent_index_na"
+      "metric_id": "dc_rent_index_na",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "global_operational_gw",
@@ -45,7 +49,9 @@
       "as_of": "2026-09-26",
       "source": "projects 表聚合",
       "auto_note": "projects 表 L8+ 聚合（库内口径，非全球普查）",
-      "metric_id": "global_operational_gw"
+      "metric_id": "global_operational_gw",
+      "node": "root",
+      "variable_class": 1
     },
     {
       "id": "pipeline_conversion_rate",
@@ -59,7 +65,9 @@
       "value": null,
       "as_of": null,
       "source": "projects 表状态历史",
-      "metric_id": "pipeline_conversion_rate"
+      "metric_id": "pipeline_conversion_rate",
+      "node": "root",
+      "variable_class": 2
     },
     {
       "id": "vacancy_rate_na",
@@ -74,7 +82,9 @@
       "value": 1.0,
       "as_of": "2026-06-30",
       "auto_note": "prices:vacancy-rate-na 最新点",
-      "metric_id": "vacancy_rate_na"
+      "metric_id": "vacancy_rate_na",
+      "node": "root",
+      "variable_class": 2
     },
     {
       "id": "hyperscaler_lease_ratio",
@@ -88,7 +98,9 @@
       "value": null,
       "as_of": null,
       "source": "财报+项目库",
-      "metric_id": "hyperscaler_lease_ratio"
+      "metric_id": "hyperscaler_lease_ratio",
+      "node": "root",
+      "variable_class": 5
     },
     {
       "id": "neocloud_funded_gw",
@@ -102,7 +114,9 @@
       "source": "融资公告+项目库",
       "value": null,
       "as_of": null,
-      "metric_id": "neocloud_funded_gw"
+      "metric_id": "neocloud_funded_gw",
+      "node": "root",
+      "variable_class": 1
     },
     {
       "id": "top10_pipeline_share",
@@ -116,7 +130,9 @@
       "source": "projects 表聚合",
       "value": null,
       "as_of": null,
-      "metric_id": "top10_pipeline_share"
+      "metric_id": "top10_pipeline_share",
+      "node": "root",
+      "variable_class": 5
     },
     {
       "id": "capex_guidance_delta",
@@ -130,7 +146,9 @@
       "value": null,
       "as_of": null,
       "source": "财报电话会",
-      "metric_id": "capex_guidance_delta"
+      "metric_id": "capex_guidance_delta",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "circular_deal_exposure",
@@ -145,7 +163,9 @@
       "value": 25.0,
       "as_of": "2026-09-26",
       "auto_note": "contracts 表金额加权（样本小，仅示意）",
-      "metric_id": "circular_deal_exposure"
+      "metric_id": "circular_deal_exposure",
+      "node": "root",
+      "variable_class": 5
     },
     {
       "id": "mega_contract_backlog",
@@ -160,7 +180,9 @@
       "value": 400,
       "as_of": "2026-09-26",
       "auto_note": "contracts 表合计（种子样本）",
-      "metric_id": "mega_contract_backlog"
+      "metric_id": "mega_contract_backlog",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "btm_operational_mw",
@@ -174,7 +196,9 @@
       "source": "项目公告核验",
       "value": null,
       "as_of": null,
-      "metric_id": "btm_operational_mw"
+      "metric_id": "btm_operational_mw",
+      "node": "part:gas-turbine",
+      "variable_class": 1
     },
     {
       "id": "interconnection_queue_years",
@@ -188,7 +212,9 @@
       "value": null,
       "as_of": null,
       "source": "电网排队数据",
-      "metric_id": "interconnection_queue_years"
+      "metric_id": "interconnection_queue_years",
+      "node": "site:grid",
+      "variable_class": 4
     },
     {
       "id": "ppa_price_index",
@@ -202,7 +228,9 @@
       "source": "LevelTen等PPA市场报告",
       "value": null,
       "as_of": null,
-      "metric_id": "ppa_price_index"
+      "metric_id": "ppa_price_index",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "region_pipeline_share",
@@ -216,7 +244,9 @@
       "source": "projects 表聚合",
       "value": null,
       "as_of": null,
-      "metric_id": "region_pipeline_share"
+      "metric_id": "region_pipeline_share",
+      "node": "site:land",
+      "variable_class": 1
     },
     {
       "id": "zoning_denial_count",
@@ -230,7 +260,9 @@
       "source": "新闻信号+人工核验",
       "value": null,
       "as_of": null,
-      "metric_id": "zoning_denial_count"
+      "metric_id": "zoning_denial_count",
+      "node": "site:land",
+      "variable_class": 4
     },
     {
       "id": "cowos_capacity_wpm",
@@ -244,7 +276,9 @@
       "source": "第三方推算",
       "value": null,
       "as_of": null,
-      "metric_id": "cowos_capacity_wpm"
+      "metric_id": "cowos_capacity_wpm",
+      "node": "part:hbm",
+      "variable_class": 1
     },
     {
       "id": "gpu_lead_time",
@@ -258,7 +292,9 @@
       "source": "渠道信息",
       "value": null,
       "as_of": null,
-      "metric_id": "gpu_lead_time"
+      "metric_id": "gpu_lead_time",
+      "node": "part:server",
+      "variable_class": 4
     },
     {
       "id": "rack_density_shipping",
@@ -272,7 +308,9 @@
       "source": "机构报告",
       "value": null,
       "as_of": null,
-      "metric_id": "rack_density_shipping"
+      "metric_id": "rack_density_shipping",
+      "node": "part:rack-frame",
+      "variable_class": 1
     },
     {
       "id": "ethernet_ai_share",
@@ -286,7 +324,9 @@
       "source": "机构报告",
       "value": null,
       "as_of": null,
-      "metric_id": "ethernet_ai_share"
+      "metric_id": "ethernet_ai_share",
+      "node": "part:network-switch",
+      "variable_class": 1
     },
     {
       "id": "optics_800g_price",
@@ -300,7 +340,9 @@
       "source": "行业调研",
       "value": null,
       "as_of": null,
-      "metric_id": "optics_800g_price"
+      "metric_id": "optics_800g_price",
+      "node": "part:optics",
+      "variable_class": 3
     },
     {
       "id": "cdu_lead_time",
@@ -314,7 +356,9 @@
       "source": "渠道信息",
       "value": null,
       "as_of": null,
-      "metric_id": "cdu_lead_time"
+      "metric_id": "cdu_lead_time",
+      "node": "part:cdu",
+      "variable_class": 4
     },
     {
       "id": "cooling_capex_per_mw",
@@ -328,7 +372,9 @@
       "source": "机构报告+渠道",
       "value": null,
       "as_of": null,
-      "metric_id": "cooling_capex_per_mw"
+      "metric_id": "cooling_capex_per_mw",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "liquid_cooling_penetration",
@@ -342,7 +388,9 @@
       "value": null,
       "as_of": null,
       "source": "机构报告+渠道",
-      "metric_id": "liquid_cooling_penetration"
+      "metric_id": "liquid_cooling_penetration",
+      "node": "part:coldplate",
+      "variable_class": 2
     },
     {
       "id": "gas_turbine_backlog_years",
@@ -356,7 +404,9 @@
       "value": null,
       "as_of": null,
       "source": "GEV/SE 财报",
-      "metric_id": "gas_turbine_backlog_years"
+      "metric_id": "gas_turbine_backlog_years",
+      "node": "part:gas-turbine",
+      "variable_class": 4
     },
     {
       "id": "genset_lead_time",
@@ -370,7 +420,9 @@
       "source": "渠道+财报电话会",
       "value": null,
       "as_of": null,
-      "metric_id": "genset_lead_time"
+      "metric_id": "genset_lead_time",
+      "node": "part:backup-power",
+      "variable_class": 4
     },
     {
       "id": "transformer_lead_time",
@@ -385,7 +437,9 @@
       "as_of": "2026-06-30",
       "source": "渠道+财报电话会",
       "auto_note": "prices:transformer-lead-time 最新点",
-      "metric_id": "transformer_lead_time"
+      "metric_id": "transformer_lead_time",
+      "node": "part:transformer",
+      "variable_class": 4
     },
     {
       "id": "construction_duration_months",
@@ -399,7 +453,9 @@
       "value": null,
       "as_of": null,
       "source": "projects 表时间戳",
-      "metric_id": "construction_duration_months"
+      "metric_id": "construction_duration_months",
+      "node": "part:shell",
+      "variable_class": 4
     },
     {
       "id": "electrician_wage_premium",
@@ -413,7 +469,9 @@
       "source": "招聘数据",
       "value": null,
       "as_of": null,
-      "metric_id": "electrician_wage_premium"
+      "metric_id": "electrician_wage_premium",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "dc_reit_premium",
@@ -427,7 +485,9 @@
       "source": "REIT研究",
       "value": null,
       "as_of": null,
-      "metric_id": "dc_reit_premium"
+      "metric_id": "dc_reit_premium",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "gpu_abs_spread",
@@ -441,7 +501,9 @@
       "value": null,
       "as_of": null,
       "source": "债券发行文件",
-      "metric_id": "gpu_abs_spread"
+      "metric_id": "gpu_abs_spread",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "price_per_mw_operational",
@@ -455,7 +517,9 @@
       "value": null,
       "as_of": null,
       "source": "M&A 交易记录",
-      "metric_id": "price_per_mw_operational"
+      "metric_id": "price_per_mw_operational",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "ai_revenue_capex_ratio",
@@ -469,7 +533,9 @@
       "value": null,
       "as_of": null,
       "source": "公司披露+推算",
-      "metric_id": "ai_revenue_capex_ratio"
+      "metric_id": "ai_revenue_capex_ratio",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "inference_unit_margin",
@@ -483,7 +549,9 @@
       "source": "token价格-成本推算",
       "value": null,
       "as_of": null,
-      "metric_id": "inference_unit_margin"
+      "metric_id": "inference_unit_margin",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "token_price_flagship",
@@ -498,7 +566,9 @@
       "as_of": "2026-08-14",
       "source": "各家定价页",
       "auto_note": "prices:token-price-openai-flagship-output 最新点",
-      "metric_id": "token_price_flagship"
+      "metric_id": "token_price_flagship",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "gpu_hourly_rate_spot",
@@ -513,7 +583,9 @@
       "as_of": "2026-08-15",
       "source": "租赁平台报价",
       "auto_note": "prices:gpu-hourly-h100-spot 最新点",
-      "metric_id": "gpu_hourly_rate_spot"
+      "metric_id": "gpu_hourly_rate_spot",
+      "node": "part:gpu",
+      "variable_class": 3
     },
     {
       "id": "gpu_rate_term_spread",
@@ -527,7 +599,9 @@
       "value": null,
       "as_of": null,
       "source": "租赁平台报价",
-      "metric_id": "gpu_rate_term_spread"
+      "metric_id": "gpu_rate_term_spread",
+      "node": "part:gpu",
+      "variable_class": 3
     },
     {
       "id": "used_gpu_price_index",
@@ -541,7 +615,9 @@
       "value": null,
       "as_of": null,
       "source": "二手市场报价",
-      "metric_id": "used_gpu_price_index"
+      "metric_id": "used_gpu_price_index",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "aidc_utilization_channel",
@@ -555,7 +631,9 @@
       "value": null,
       "as_of": null,
       "source": "产业渠道",
-      "metric_id": "aidc_utilization_channel"
+      "metric_id": "aidc_utilization_channel",
+      "node": "root",
+      "variable_class": 2
     },
     {
       "id": "domestic_gpu_shipment",
@@ -569,7 +647,9 @@
       "source": "第三方推算+渠道",
       "value": null,
       "as_of": null,
-      "metric_id": "domestic_gpu_shipment"
+      "metric_id": "domestic_gpu_shipment",
+      "node": "root",
+      "variable_class": 1
     },
     {
       "id": "east_west_rack_rate",
@@ -583,7 +663,9 @@
       "source": "行业调研+渠道",
       "value": null,
       "as_of": null,
-      "metric_id": "east_west_rack_rate"
+      "metric_id": "east_west_rack_rate",
+      "node": "root",
+      "variable_class": 3
     },
     {
       "id": "project_cancellation_count",
@@ -597,7 +679,9 @@
       "source": "新闻信号+人工核验",
       "value": null,
       "as_of": null,
-      "metric_id": "project_cancellation_count"
+      "metric_id": "project_cancellation_count",
+      "node": "root",
+      "variable_class": 5
     },
     {
       "id": "capex_guidance_downgrade",
@@ -611,7 +695,9 @@
       "source": "财报电话会",
       "value": null,
       "as_of": null,
-      "metric_id": "capex_guidance_downgrade"
+      "metric_id": "capex_guidance_downgrade",
+      "node": "root",
+      "variable_class": 5
     },
     {
       "id": "gpu_spot_drawdown",
@@ -625,7 +711,9 @@
       "source": "租赁平台报价",
       "value": null,
       "as_of": null,
-      "metric_id": "gpu_spot_drawdown"
+      "metric_id": "gpu_spot_drawdown",
+      "node": "root",
+      "variable_class": 3
     }
   ]
 }

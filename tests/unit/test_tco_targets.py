@@ -59,7 +59,7 @@ class TcoTargetListTests(unittest.TestCase):
             if t['part_id']:
                 by_part.setdefault(t['part_id'], set()).add(t['id'].rsplit('.', 1)[1])
         for pid, p in self.parts.items():
-            want = {'part': {'spec', 'price', 'lead_time'}, 'software': {'spec', 'price'}, 'archetype': {'spec'}}[p['kind']]
+            want = {'part': {'spec', 'operation', 'price', 'lead_time'}, 'software': {'spec', 'price'}, 'archetype': {'spec'}}[p['kind']]
             if p['kind'] == 'part' and p['status'] != 'mature':
                 want = want | {'news'}
             self.assertEqual(by_part.get(pid), want, pid)
@@ -119,6 +119,24 @@ class TcoTargetListTests(unittest.TestCase):
                 self.assertTrue(t['series'] or t['indicators'] or t['data_class'] == 'reference', t['id'])
             if t['origin'] != 'factor' and not (t['series'] or t['indicators']):
                 self.assertIn(t['status'], ('needed', 'delivered'), f"{t['id']} generated row without data must stay needed or delivered")
+
+    def test_skeleton_additions_of_2026_09_28(self):
+        # 运行行、建设时间线因子、建设阶段（03「骨架的三个补充」）
+        stages = {s['id'] for s in load('framework/bom.json')['stages']}
+        ops = [t for t in self.targets if t['id'].endswith('.operation')]
+        self.assertEqual(len(ops), sum(1 for p in self.parts.values() if p['kind'] == 'part'))
+        for t in ops:
+            self.assertEqual((t['variable_class'], t['data_class']), (2, 'reference'), t['id'])
+        build = [t for t in self.targets if t['factor_id'] == 'time.build']
+        self.assertEqual(sorted(t['id'] for t in build), ['F.time.build.duration', 'F.time.build.permit', 'F.time.build.queue'])
+        for t in build:
+            self.assertEqual(t['variable_class'], 4, t['id'])
+        self.assertTrue({'construction_years', 'gate_wait_years', 'permit_months'} <= {k for t in build for k in t['model_inputs']})
+        for t in self.targets:
+            if t['part_id'] or t['site_right_id']:
+                self.assertIn(t['stage'], stages, t['id'])
+            else:
+                self.assertIsNone(t['stage'], t['id'])
 
     def test_team_state_follows_the_supply_contract(self):
         contract = load('framework/supply_contract.json')

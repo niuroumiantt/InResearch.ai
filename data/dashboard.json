@@ -2,12 +2,50 @@
  "version": "1.0",
  "updated": "2026-09-28",
  "title": "数据中心 dashboard 快照",
+ "stages": [
+  {
+   "id": "rights",
+   "name": "权利与审批",
+   "order": 1,
+   "desc": "土地、许可、水权、供气、网络接入——项目能否存在"
+  },
+  {
+   "id": "grid",
+   "name": "并网与外线",
+   "order": 2,
+   "desc": "并网排队、外线与园区变电——time-to-power 的长杆"
+  },
+  {
+   "id": "shell",
+   "name": "土建与壳",
+   "order": 3,
+   "desc": "场坪、基础、建筑与机房装修，或预制化交付"
+  },
+  {
+   "id": "mep",
+   "name": "机电",
+   "order": 4,
+   "desc": "发电与储能、UPS、配电、冷却、消防安防的安装"
+  },
+  {
+   "id": "it",
+   "name": "IT 进场",
+   "order": 5,
+   "desc": "机柜、服务器、内存、存储、网络，随机的板级供电与芯片级散热"
+  },
+  {
+   "id": "commissioning",
+   "name": "调试与上架",
+   "order": 6,
+   "desc": "监控与软件、验收、爬坡与上架"
+  }
+ ],
  "note": "由 python3 manage.py dashboard --refresh 生成，规则见 framework/dashboard_rules.json；页面 node.html 只读本文件与目标清单，不做聚合。",
  "generated_from": {
   "rules": "1.0",
-  "bom": "2.1",
-  "targets": "2.0.0",
-  "factors": "1.2.0",
+  "bom": "2.2",
+  "targets": "2.1.0",
+  "factors": "1.3.0",
   "model_as_of": "2026-09-28"
  },
  "columns": {
@@ -19,7 +57,8 @@
  },
  "formulas": {
   "revenue": "收入 = GPU 数 × 8,760 × 付费利用率 × 单价；GPU 数 = IT 容量 × 每 MW 密度；密度 = 1,000 kW × 加速器机柜占 IT 功率份额 ÷ (机柜功率 ÷ 每柜 GPU 数)",
-  "cost": "年度成本 = 电费 + 其他运营 + 设施费 + 折旧 + 税；电费 = IT 容量 × 负载率 × PUE × 8,760 × 电价；折旧 = 资本开支 ÷ 寿命（IT 与非 IT 分线）；设施费按自建 / 租壳 / 托管三选一"
+  "cost": "年度成本 = 电费 + 其他运营 + 设施费 + 折旧 + 税；电费 = IT 容量 × 负载率 × PUE × 8,760 × 电价；折旧 = 资本开支 ÷ 寿命（IT 与非 IT 分线）；设施费按自建 / 租壳 / 托管三选一",
+  "time": "首度收入时点 = 权利与审批 + 并网排队（gate_wait_years）+ 审批（permit_months）+ 建设期（construction_years）；建设阶段：权利与审批 → 并网与外线 → 土建与壳 → 机电 → IT 进场 → 调试与上架（bom.json stages）"
  },
  "root": {
   "id": "root",
@@ -216,10 +255,10 @@
     ],
     "status": "sourced",
     "coverage": {
-     "sourced": 4,
+     "sourced": 5,
      "assumed": 1,
      "delivered": 0,
-     "needed": 1
+     "needed": 3
     }
    },
    "5": {
@@ -265,11 +304,11 @@
    }
   },
   "targets": {
-   "sourced": 36,
+   "sourced": 37,
    "assumed": 4,
    "delivered": 0,
-   "needed": 247,
-   "not_connected": 168
+   "needed": 310,
+   "not_connected": 171
   }
  },
  "systems": {
@@ -392,7 +431,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 4
      },
      "status": "needed"
     },
@@ -474,7 +513,8 @@
      "layer": "S2",
      "supply_status": "tight",
      "chain": "土地与建筑",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "shell"
     },
     {
      "id": "rack-frame",
@@ -483,7 +523,8 @@
      "layer": "S4",
      "supply_status": "transition",
      "chain": "土地与建筑",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "modular-dc",
@@ -492,7 +533,8 @@
      "layer": null,
      "supply_status": "mature",
      "chain": "土地与建筑",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "shell"
     },
     {
      "id": "fire",
@@ -501,7 +543,8 @@
      "layer": "S2",
      "supply_status": "mature",
      "chain": "消防安防",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "security",
@@ -510,7 +553,8 @@
      "layer": "S2",
      "supply_status": "mature",
      "chain": "消防安防",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     }
    ]
   },
@@ -567,7 +611,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 19
      },
      "status": "sourced"
     },
@@ -662,7 +706,8 @@
      "layer": "S1",
      "supply_status": "tight",
      "chain": "电网接入",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "grid"
     },
     {
      "id": "transformer",
@@ -671,7 +716,8 @@
      "layer": "S1",
      "supply_status": "tight",
      "chain": "变电",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "grid"
     },
     {
      "id": "mv-switchgear",
@@ -680,7 +726,8 @@
      "layer": "S1",
      "supply_status": "tight",
      "chain": "变电",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "grid"
     },
     {
      "id": "gas-turbine",
@@ -689,7 +736,8 @@
      "layer": "S1",
      "supply_status": "tight",
      "chain": "发电与储能",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "gas-engine",
@@ -698,7 +746,8 @@
      "layer": "S1",
      "supply_status": "transition",
      "chain": "发电与储能",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "fuel-cell",
@@ -707,7 +756,8 @@
      "layer": "S1",
      "supply_status": "transition",
      "chain": "发电与储能",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "mep"
     },
     {
      "id": "smr",
@@ -716,7 +766,8 @@
      "layer": "S1",
      "supply_status": "emerging",
      "chain": "发电与储能",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "mep"
     },
     {
      "id": "backup-power",
@@ -725,7 +776,8 @@
      "layer": "S1",
      "supply_status": "tight",
      "chain": "发电与储能",
-     "chain_order": 5
+     "chain_order": 5,
+     "stage": "mep"
     },
     {
      "id": "fuel-storage",
@@ -734,7 +786,8 @@
      "layer": "S1",
      "supply_status": "mature",
      "chain": "发电与储能",
-     "chain_order": 6
+     "chain_order": 6,
+     "stage": "mep"
     },
     {
      "id": "bess",
@@ -743,7 +796,8 @@
      "layer": "S1",
      "supply_status": "emerging",
      "chain": "发电与储能",
-     "chain_order": 7
+     "chain_order": 7,
+     "stage": "mep"
     },
     {
      "id": "ups",
@@ -752,7 +806,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "UPS",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "ups-battery",
@@ -761,7 +816,8 @@
      "layer": "S3",
      "supply_status": "transition",
      "chain": "UPS",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "lv-switchgear",
@@ -770,7 +826,8 @@
      "layer": "S3",
      "supply_status": "tight",
      "chain": "配电",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "busway",
@@ -779,7 +836,8 @@
      "layer": "S3",
      "supply_status": "tight",
      "chain": "配电",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "pdu",
@@ -788,7 +846,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "配电",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "mep"
     },
     {
      "id": "power-shelf",
@@ -797,7 +856,8 @@
      "layer": "S4",
      "supply_status": "transition",
      "chain": "机柜与板级供电",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "bbu",
@@ -806,7 +866,8 @@
      "layer": "S4",
      "supply_status": "transition",
      "chain": "机柜与板级供电",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "psu",
@@ -815,7 +876,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "机柜与板级供电",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     },
     {
      "id": "vrm",
@@ -824,7 +886,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "机柜与板级供电",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "it"
     }
    ]
   },
@@ -879,7 +942,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 15
      },
      "status": "sourced"
     },
@@ -964,7 +1027,8 @@
      "layer": "S1",
      "supply_status": "mature",
      "chain": "排热",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "water-treatment",
@@ -973,7 +1037,8 @@
      "layer": "S1",
      "supply_status": "mature",
      "chain": "排热",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "chiller",
@@ -982,7 +1047,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "冷水与 CDU",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "chilled-water-loop",
@@ -991,7 +1057,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "冷水与 CDU",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "cdu",
@@ -1000,7 +1067,8 @@
      "layer": "S3",
      "supply_status": "transition",
      "chain": "冷水与 CDU",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "mep"
     },
     {
      "id": "coolant",
@@ -1009,7 +1077,8 @@
      "layer": "S4",
      "supply_status": "mature",
      "chain": "冷水与 CDU",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "mep"
     },
     {
      "id": "room-cooling",
@@ -1018,7 +1087,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "机房与机柜",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "immersion",
@@ -1027,7 +1097,8 @@
      "layer": "S3",
      "supply_status": "emerging",
      "chain": "机房与机柜",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "sidecar-hx",
@@ -1036,7 +1107,8 @@
      "layer": "S4",
      "supply_status": "transition",
      "chain": "机房与机柜",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "mep"
     },
     {
      "id": "manifold",
@@ -1045,7 +1117,8 @@
      "layer": "S4",
      "supply_status": "tight",
      "chain": "机房与机柜",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "mep"
     },
     {
      "id": "quick-disconnect",
@@ -1054,7 +1127,8 @@
      "layer": "S4",
      "supply_status": "tight",
      "chain": "机房与机柜",
-     "chain_order": 5
+     "chain_order": 5,
+     "stage": "mep"
     },
     {
      "id": "leak-detection",
@@ -1063,7 +1137,8 @@
      "layer": "S3",
      "supply_status": "tight",
      "chain": "机房与机柜",
-     "chain_order": 6
+     "chain_order": 6,
+     "stage": "mep"
     },
     {
      "id": "coldplate",
@@ -1072,7 +1147,8 @@
      "layer": "S5",
      "supply_status": "transition",
      "chain": "芯片级",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "heatsink-vc",
@@ -1081,7 +1157,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "芯片级",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "server-fan",
@@ -1090,7 +1167,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "芯片级",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     }
    ]
   },
@@ -1142,7 +1220,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 8
      },
      "status": "sourced"
     },
@@ -1223,7 +1301,8 @@
      "layer": "S4",
      "supply_status": "tight",
      "chain": "计算",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "server",
@@ -1232,7 +1311,8 @@
      "layer": "S4",
      "supply_status": "tight",
      "chain": "计算",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "general-server",
@@ -1241,7 +1321,8 @@
      "layer": "S4",
      "supply_status": "mature",
      "chain": "计算",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     },
     {
      "id": "gpu",
@@ -1250,7 +1331,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "计算",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "it"
     },
     {
      "id": "ai-asic",
@@ -1259,7 +1341,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "计算",
-     "chain_order": 5
+     "chain_order": 5,
+     "stage": "it"
     },
     {
      "id": "cpu",
@@ -1268,7 +1351,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "计算",
-     "chain_order": 6
+     "chain_order": 6,
+     "stage": "it"
     },
     {
      "id": "fpga",
@@ -1277,7 +1361,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "计算",
-     "chain_order": 7
+     "chain_order": 7,
+     "stage": "it"
     },
     {
      "id": "bmc",
@@ -1286,7 +1371,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "计算",
-     "chain_order": 8
+     "chain_order": 8,
+     "stage": "it"
     }
    ]
   },
@@ -1327,7 +1413,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 3
      },
      "status": "needed"
     },
@@ -1394,7 +1480,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "内存",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "dram",
@@ -1403,7 +1490,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "内存",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "cxl-memory",
@@ -1412,7 +1500,8 @@
      "layer": "S5",
      "supply_status": "emerging",
      "chain": "内存",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     }
    ]
   },
@@ -1453,7 +1542,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 3
      },
      "status": "needed"
     },
@@ -1520,7 +1609,8 @@
      "layer": "S4",
      "supply_status": "mature",
      "chain": "存储",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "ssd",
@@ -1529,7 +1619,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "存储",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "hdd",
@@ -1538,7 +1629,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "存储",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     }
    ]
   },
@@ -1579,7 +1671,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 9
      },
      "status": "needed"
     },
@@ -1648,7 +1740,8 @@
      "layer": "S4",
      "supply_status": "transition",
      "chain": "网络",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "switch-asic",
@@ -1657,7 +1750,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "网络",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "optics",
@@ -1666,7 +1760,8 @@
      "layer": "S5",
      "supply_status": "transition",
      "chain": "网络",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     },
     {
      "id": "copper-interconnect",
@@ -1675,7 +1770,8 @@
      "layer": "S4",
      "supply_status": "tight",
      "chain": "网络",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "it"
     },
     {
      "id": "cabling",
@@ -1684,7 +1780,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "网络",
-     "chain_order": 5
+     "chain_order": 5,
+     "stage": "it"
     },
     {
      "id": "connector",
@@ -1693,7 +1790,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "网络",
-     "chain_order": 6
+     "chain_order": 6,
+     "stage": "it"
     },
     {
      "id": "nic",
@@ -1702,7 +1800,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "网络",
-     "chain_order": 7
+     "chain_order": 7,
+     "stage": "it"
     },
     {
      "id": "retimer",
@@ -1711,7 +1810,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "网络",
-     "chain_order": 8
+     "chain_order": 8,
+     "stage": "it"
     },
     {
      "id": "pcie-switch",
@@ -1720,7 +1820,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "网络",
-     "chain_order": 9
+     "chain_order": 9,
+     "stage": "it"
     }
    ]
   },
@@ -1828,7 +1929,8 @@
      "layer": null,
      "supply_status": "mature",
      "chain": "DCIM/BMS 与固件",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "commissioning"
     }
    ]
   }
@@ -1887,7 +1989,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 23
      },
      "status": "sourced"
     },
@@ -2035,7 +2137,8 @@
     "variable_classes": [
      3,
      5
-    ]
+    ],
+    "stage": "rights"
    },
    {
     "id": "water-rights",
@@ -2044,7 +2147,8 @@
     "variable_classes": [
      5,
      4
-    ]
+    ],
+    "stage": "rights"
    },
    {
     "id": "grid",
@@ -2053,7 +2157,8 @@
     "variable_classes": [
      4,
      5
-    ]
+    ],
+    "stage": "grid"
    },
    {
     "id": "gas-supply",
@@ -2062,7 +2167,8 @@
     "variable_classes": [
      5,
      4
-    ]
+    ],
+    "stage": "rights"
    },
    {
     "id": "network-access",
@@ -2071,7 +2177,8 @@
     "variable_classes": [
      5,
      3
-    ]
+    ],
+    "stage": "rights"
    },
    {
     "id": "permits",
@@ -2080,7 +2187,8 @@
     "variable_classes": [
      4,
      5
-    ]
+    ],
+    "stage": "rights"
    }
   ]
  },
@@ -2093,6 +2201,7 @@
    "system": "power",
    "chain": "电网接入",
    "chain_order": 1,
+   "stage": "grid",
    "module": "M09",
    "supply_status": "tight",
    "desc": "园区侧高压开关与 GIS，与电网交接的第一件可采购设备；厂商示例沿用变电站档案，待补",
@@ -2136,7 +2245,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2197,6 +2306,7 @@
    "system": "power",
    "chain": "变电",
    "chain_order": 1,
+   "stage": "grid",
    "module": "M09",
    "supply_status": "tight",
    "desc": "大型变压器交期最高 4 年，全行业最诚实的供需温度计；单独采购、单独交期，故单列",
@@ -2243,7 +2353,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2328,6 +2438,7 @@
    "system": "power",
    "chain": "变电",
    "chain_order": 2,
+   "stage": "grid",
    "module": "M09",
    "supply_status": "tight",
    "desc": "变电站内的中压开关设备；供应商与交期独立于变压器",
@@ -2373,7 +2484,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2435,6 +2546,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "tight",
    "desc": "燃机订单簿 ≥125GW vs 年产能 ~20GW；交期 3–5 年",
@@ -2480,7 +2592,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2542,6 +2654,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "transition",
    "desc": "与燃气轮机不同的一批厂商与交期（1–2 年）；待补 caterpillar / cummins / innio 档案",
@@ -2585,7 +2698,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2644,6 +2757,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 3,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "transition",
    "desc": "月级交付的桥接电源",
@@ -2689,7 +2803,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2748,6 +2862,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 4,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "emerging",
    "desc": "新兴条目（用户 2026-09-28 决定登记）：尚无可采购机组、价格与交期，只跟踪合同与许可事件",
@@ -2791,7 +2906,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2848,6 +2963,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 5,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "tight",
    "desc": "从静态保险变成动态电力系统组件；排放许可是隐性约束",
@@ -2896,7 +3012,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2959,6 +3075,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 7,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "emerging",
    "desc": "跨越发电机启动间隙、抑制 AI 负载功率阶跃——角色从可选变必需",
@@ -3005,7 +3122,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3065,6 +3182,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 6,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "mature",
    "desc": "备用电源的燃料物流设备；管道天然气接入是站点权利，不在此",
@@ -3108,7 +3226,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3165,6 +3283,7 @@
    "system": "thermal",
    "chain": "排热",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "室外排热设备，与冷水机组不是同一批厂商；待补 evapco / bac 档案",
@@ -3210,7 +3329,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3270,6 +3389,7 @@
    "system": "thermal",
    "chain": "排热",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "取水许可是站点权利，设备在此",
@@ -3315,7 +3435,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3375,6 +3495,7 @@
    "system": "facility",
    "chain": "土地与建筑",
    "chain_order": 1,
+   "stage": "shell",
    "module": "M10",
    "supply_status": "tight",
    "desc": "预制化/模块化压缩周期；电气技工短缺是执行瓶颈",
@@ -3418,7 +3539,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3475,6 +3596,7 @@
    "system": "facility",
    "chain": "消防安防",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M10",
    "supply_status": "mature",
    "desc": "锂电池储能与液冷带来新消防规范议题",
@@ -3520,7 +3642,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3579,6 +3701,7 @@
    "system": "facility",
    "chain": "消防安防",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M10",
    "supply_status": "mature",
    "desc": "与消防不是同一批厂商",
@@ -3624,7 +3747,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3683,6 +3806,7 @@
    "system": "power",
    "chain": "UPS",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "mature",
    "desc": "AI 负载秒级波动重塑 UPS/BBU/超级电容组合",
@@ -3734,7 +3858,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3800,6 +3924,7 @@
    "system": "power",
    "chain": "UPS",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "transition",
    "desc": "价格随电芯独立波动；待补电芯厂档案",
@@ -3845,7 +3970,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3904,6 +4029,7 @@
    "system": "power",
    "chain": "配电",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "tight",
    "desc": "认证柜型与工厂槽位是交付约束，交期 40–60 周",
@@ -3950,7 +4076,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4013,6 +4139,7 @@
    "system": "power",
    "chain": "配电",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "tight",
    "desc": "与开关柜不同的产品线与交期；待补专业母线厂档案",
@@ -4056,7 +4183,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4117,6 +4244,7 @@
    "system": "power",
    "chain": "配电",
    "chain_order": 3,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "mature",
    "desc": "用户 2026-09-28 决定机柜配电条不再单拆",
@@ -4160,7 +4288,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4221,6 +4349,7 @@
    "system": "thermal",
    "chain": "冷水与 CDU",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "按冷吨计价；干冷/蒸发/冷机组合由气候与水价值决定",
@@ -4266,7 +4395,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4327,6 +4456,7 @@
    "system": "thermal",
    "chain": "冷水与 CDU",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "机电分包的一门独立生意；待补泵阀管路厂档案",
@@ -4370,7 +4500,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4427,6 +4557,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "液冷时代空气系统不消失——冷板留下 10-30% 余热仍走空气",
@@ -4473,7 +4604,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4536,6 +4667,7 @@
    "system": "thermal",
    "chain": "冷水与 CDU",
    "chain_order": 3,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "transition",
    "desc": "MW 级 CDU 已量产（2-10MW+ 平台），TCS/FWS 双环路的可用性边界",
@@ -4589,7 +4721,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4659,6 +4791,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "emerging",
    "desc": "浸没式液冷的设备条目（槽体与系统）；技术路线是它的属性，不是零件",
@@ -4705,7 +4838,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4765,6 +4898,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 5,
+   "stage": "it",
    "module": "M07",
    "supply_status": "mature",
    "desc": "结构化布线与光纤——机房的神经末梢",
@@ -4812,7 +4946,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4873,6 +5007,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 6,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "tight",
    "desc": "漏液检测——液冷进机房后的新增安全层",
@@ -4918,7 +5053,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4977,6 +5112,7 @@
    "system": "facility",
    "chain": "土地与建筑",
    "chain_order": 2,
+   "stage": "it",
    "module": "M06",
    "supply_status": "transition",
    "desc": "5-10kW → 130kW（GB200 NVL72）→ 600kW-1MW 路线图，机柜正变成'整机产品'",
@@ -5026,7 +5162,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5091,6 +5227,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 1,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "含 scale-up 交换托盘与背板；整柜功率与每柜 GPU 数正来自它",
@@ -5138,7 +5275,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5202,6 +5339,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 2,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "ODM 直供模式主导 AI 服务器；集成交付能力即壁垒",
@@ -5258,7 +5396,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5328,6 +5466,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 3,
+   "stage": "it",
    "module": "M06",
    "supply_status": "mature",
    "desc": "用户 2026-09-28 决定与加速器服务器分两行",
@@ -5384,7 +5523,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5454,6 +5593,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 1,
+   "stage": "it",
    "module": "M07",
    "supply_status": "transition",
    "desc": "InfiniBand vs 以太网(UEC)之争；scale-up 域扩大改写拓扑",
@@ -5507,7 +5647,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5577,6 +5717,7 @@
    "system": "storage",
    "chain": "存储",
    "chain_order": 1,
+   "stage": "it",
    "module": "M06",
    "supply_status": "mature",
    "desc": "存储系统与阵列——AI 数据管道的容量层与并行文件系统",
@@ -5633,7 +5774,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5703,6 +5844,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 4,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "tight",
    "desc": "快接头/软管/水质是液冷可用性的隐形风险点",
@@ -5748,7 +5890,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5808,6 +5950,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 5,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "tight",
    "desc": "供应商集中、认证周期长的隐形风险点",
@@ -5853,7 +5996,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5912,6 +6055,7 @@
    "system": "power",
    "chain": "机柜与板级供电",
    "chain_order": 1,
+   "stage": "it",
    "module": "M09",
    "supply_status": "transition",
    "desc": "800V HVDC + 机柜级储能重构供电末端；台达系核心地盘",
@@ -5957,7 +6101,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6017,6 +6161,7 @@
    "system": "power",
    "chain": "机柜与板级供电",
    "chain_order": 2,
+   "stage": "it",
    "module": "M09",
    "supply_status": "transition",
    "desc": "电芯价格独立；待补电芯厂档案",
@@ -6062,7 +6207,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6122,6 +6267,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 4,
+   "stage": "it",
    "module": "M07",
    "supply_status": "tight",
    "desc": "DAC/AEC/背板铜互联——机柜内短距连接对光的替代",
@@ -6168,7 +6314,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6228,6 +6374,7 @@
    "system": "thermal",
    "chain": "冷水与 CDU",
    "chain_order": 4,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "冷却液与工质——液冷环路的化学约束",
@@ -6273,7 +6420,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6332,6 +6479,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 3,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "transition",
    "desc": "机柜级液-气热交换（sidecar/RDHx）——NVL72 时代介于 CDU 与机柜之间的新层级，此前两头都不算它",
@@ -6375,7 +6523,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6437,6 +6585,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 4,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "GPU 收入 2025 ~$191.8B、2028 峰值 ~$247.6B（Yole）；ASIC 2030 ~$84.6B——供应商集中度即行业风险",
@@ -6492,7 +6641,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6593,6 +6742,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 5,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "自研/代工的一批厂商，与商用 GPU 不同的定价方式",
@@ -6639,7 +6789,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6703,6 +6853,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 6,
+   "stage": "it",
    "module": "M06",
    "supply_status": "mature",
    "desc": "Grace/自研 Arm 侵蚀 x86；头节点与推理仍是 CPU 战场",
@@ -6757,7 +6908,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6825,6 +6976,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 7,
+   "stage": "it",
    "module": "M06",
    "supply_status": "mature",
    "desc": "FPGA 与异构加速卡——推理与网络卸载的第二战场",
@@ -6870,7 +7022,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6929,6 +7081,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 8,
+   "stage": "it",
    "module": "M06",
    "supply_status": "mature",
    "desc": "近乎单一来源（ASPEED）；用户 2026-09-28 未否决单列，按规则单列",
@@ -6974,7 +7127,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7033,6 +7186,7 @@
    "system": "memory",
    "chain": "内存",
    "chain_order": 1,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "HBM4(2026)→HBM8(2038) 路线图（KAIST）；容量与带宽是 AI 算力的第一瓶颈",
@@ -7081,7 +7235,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7143,6 +7297,7 @@
    "system": "memory",
    "chain": "内存",
    "chain_order": 2,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "从现有hbm节点拆分：服务器内存与HBM供需周期不同步，价格序列应分开",
@@ -7192,7 +7347,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7254,6 +7409,7 @@
    "system": "memory",
    "chain": "内存",
    "chain_order": 3,
+   "stage": "it",
    "module": "M06",
    "supply_status": "emerging",
    "desc": "控制器厂是另一批；用户 2026-09-28 决定单列",
@@ -7300,7 +7456,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7360,6 +7516,7 @@
    "system": "storage",
    "chain": "存储",
    "chain_order": 2,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "整盘产品研究入口；控制器、NAND、固件与电路板通过研究图谱分别展开。厂商列表为历史目录线索，不代表整盘供应能力已核实。",
@@ -7416,7 +7573,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7486,6 +7643,7 @@
    "system": "storage",
    "chain": "存储",
    "chain_order": 3,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "从现有storage节点拆分；建议拆分后删除storage节点",
@@ -7533,7 +7691,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7594,6 +7752,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 7,
+   "stage": "it",
    "module": "M07",
    "supply_status": "mature",
    "desc": "每 GPU 配套一张 400/800G 网卡——数量与 GPU 同步放大",
@@ -7642,7 +7801,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7705,6 +7864,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 3,
+   "stage": "it",
    "module": "M07",
    "supply_status": "transition",
    "desc": "800G→1.6T 迭代 + CPO 2024-2035 渗透曲线（Yole）——密度与功耗逼出共封装",
@@ -7757,7 +7917,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7825,6 +7985,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 2,
+   "stage": "it",
    "module": "M07",
    "supply_status": "tight",
    "desc": "从network-switch中拆出芯片层（Broadcom/Marvell/盛科）",
@@ -7872,7 +8033,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7933,6 +8094,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 8,
+   "stage": "it",
    "module": "M07",
    "supply_status": "tight",
    "desc": "供应商集中；随速率代际量价齐升",
@@ -7980,7 +8142,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8042,6 +8204,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 9,
+   "stage": "it",
    "module": "M07",
    "supply_status": "mature",
    "desc": "服务器内互联的交换层",
@@ -8089,7 +8252,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8149,6 +8312,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 6,
+   "stage": "it",
    "module": "M07",
    "supply_status": "tight",
    "desc": "背板/面板/电源高速连接器——铜互联线缆之外独立的一门生意，随速率代际量价齐升",
@@ -8192,7 +8356,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8251,6 +8415,7 @@
    "system": "thermal",
    "chain": "芯片级",
    "chain_order": 1,
+   "stage": "it",
    "module": "M08",
    "supply_status": "transition",
    "desc": "入液热捕获率 70-90%；GPU/OEM 认证是专业厂商的护城河",
@@ -8296,7 +8461,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8359,6 +8524,7 @@
    "system": "power",
    "chain": "机柜与板级供电",
    "chain_order": 3,
+   "stage": "it",
    "module": "M09",
    "supply_status": "mature",
    "desc": "钛金效率与功率密度竞赛；PDU+PSU 市场独立成研究对象",
@@ -8404,7 +8570,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8464,6 +8630,7 @@
    "system": "power",
    "chain": "机柜与板级供电",
    "chain_order": 4,
+   "stage": "it",
    "module": "M09",
    "supply_status": "tight",
    "desc": "GPU 千瓦时代的板级供电——垂直供电（VPD）与电源级密度是 psu 之外独立的瓶颈件",
@@ -8509,7 +8676,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8569,6 +8736,7 @@
    "system": "thermal",
    "chain": "芯片级",
    "chain_order": 3,
+   "stage": "it",
    "module": "M08",
    "supply_status": "mature",
    "desc": "与均热板/散热器不是同一批厂商",
@@ -8614,7 +8782,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8673,6 +8841,7 @@
    "system": "thermal",
    "chain": "芯片级",
    "chain_order": 2,
+   "stage": "it",
    "module": "M08",
    "supply_status": "mature",
    "desc": "风冷末端与混合散热的常青件",
@@ -8718,7 +8887,7 @@
       "sourced": 0,
       "assumed": 0,
       "delivered": 0,
-      "needed": 0
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8777,6 +8946,7 @@
    "system": "control",
    "chain": "DCIM/BMS 与固件",
    "chain_order": 1,
+   "stage": "commissioning",
    "module": "M13",
    "supply_status": "mature",
    "desc": "软件条目：有订阅价与供应商，进目标表，不进 3D（用户 2026-09-28 决定）",
@@ -8893,6 +9063,7 @@
    "system": "facility",
    "chain": "土地与建筑",
    "chain_order": 3,
+   "stage": "shell",
    "module": "M09",
    "supply_status": "mature",
    "desc": "交付形态，不是零件：同一批部件的另一种包装方式；保留为配置模板",
@@ -9825,6 +9996,36 @@
     "tenant_credit",
     "target_roic",
     "roic_basis"
+   ]
+  },
+  {
+   "id": "time",
+   "label": "时间侧（建设时间线）",
+   "side": "time",
+   "parent": null,
+   "unit": "年",
+   "formula": "gate_wait_years + permit_months/12 + construction_years → 首度收入时点；horizon、refresh、escalation 在各自因子",
+   "bom_parts": [],
+   "site_rights": [],
+   "model_inputs": []
+  },
+  {
+   "id": "time.build",
+   "label": "建设时间线（工期、排队、审批）",
+   "side": "time",
+   "parent": "time",
+   "unit": "年",
+   "formula": "权利与审批 → 并网与外线 → 土建与壳 → 机电 → IT 进场 → 调试与上架；每段的时长决定首度收入时点与爬坡起点",
+   "bom_parts": [],
+   "site_rights": [
+    "grid",
+    "permits"
+   ],
+   "model_inputs": [
+    "construction_years",
+    "gate",
+    "gate_wait_years",
+    "permit_months"
    ]
   }
  ],

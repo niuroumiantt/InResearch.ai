@@ -162,7 +162,7 @@ def build(root=ROOT, as_of=None):
             cells[col]['status'] = status_of(cells[col]['items'], cov)
         parts[p['id']] = {'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'system': p['system'],
                           'chain': p.get('chain'), 'chain_order': p.get('chain_order'),
-                          'module': p['module'], 'supply_status': p['status'], 'desc': p['desc'], 'cells': cells}
+                          'stage': p.get('stage'), 'module': p['module'], 'supply_status': p['status'], 'desc': p['desc'], 'cells': cells}
 
     # ---- site rights
     sr = rules['site_right']
@@ -249,7 +249,7 @@ def build(root=ROOT, as_of=None):
         system_nodes.append({'id': sys_id, 'name': sys_name, 'node_id': 'system:' + sys_id,
                            'parent': sdef.get('parent'), 'chains': sdef.get('chains', []),
                            'cells': cells, 'parts': [{'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'supply_status': p['status'],
-                                                      'chain': p.get('chain'), 'chain_order': p.get('chain_order')} for p in members]})
+                                                      'chain': p.get('chain'), 'chain_order': p.get('chain_order'), 'stage': p.get('stage')} for p in members]})
     # parent systems (IT): one aggregate row over their children, so the matrix can show five systems and expand IT into four
     parents = []
     for pid, pdef in systems.items():
@@ -299,7 +299,7 @@ def build(root=ROOT, as_of=None):
         cov = cov_sum(keys, col)
         site_cells[col] = {'items': items, 'coverage': cov, 'status': status_of(items, cov)}
     site_row = {**RIGHTS_ROW, 'node_id': 'site', 'cells': site_cells,
-                'rights': [{'id': r['id'], 'name': r['name'], 'supply_status': r['status'], 'variable_classes': r['variable_classes']} for r in rights]}
+                'rights': [{'id': r['id'], 'name': r['name'], 'supply_status': r['status'], 'variable_classes': r['variable_classes'], 'stage': r.get('stage')} for r in rights]}
 
     for col in root_cells:
         root_cells[col]['coverage'] = cov_sum(['root'], col)
@@ -325,6 +325,7 @@ def build(root=ROOT, as_of=None):
     totals['not_connected'] = sum(1 for t in targets_doc['targets'] if t.get('team_state') == 'not_connected')
     return {
         'version': '1.0', 'updated': as_of, 'title': '数据中心 dashboard 快照',
+        'stages': bom.get('stages', []),
         'note': '由 python3 manage.py dashboard --refresh 生成，规则见 framework/dashboard_rules.json；页面 node.html 只读本文件与目标清单，不做聚合。',
         'generated_from': {'rules': rules['version'], 'bom': bom.get('version'), 'targets': targets_doc.get('version'), 'factors': factors_doc.get('version'),
                            'model_as_of': model.get('as_of')},

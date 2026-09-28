@@ -83,6 +83,7 @@ reader 和接收 API 只产生 candidate；正式回答需已采用证据、完�
 | 数字事实 | 稳定 ID、metric、value/unit、caliber、as_of、来源；`inresearch.knowledge.facts` |
 | 原件与证据 | doc ID、内容哈希、版本、页/节/表/单元格、引文、对象/问题 ID；`inresearch.knowledge.registry` |
 | 结论与采用 | 陈述类型、支持/反证、状态、审核人/时间/分流档；`inresearch.knowledge.registry` 与兼容 Finding 格式 |
+| 登记表通用（2026-09-28） | 价格库、指标表、指标定义、事实库、产品库、公司库每条记录带 `node`（root / system:x / part:x / site:x / actor:x）与 `variable_class`（1–5）；由 `inresearch.knowledge.nodes` 从骨架派生并回填（`manage.py nodes --refresh`），校验器核对存储值与派生值一致，不手写；旧模块码 `module` 只作兼容属性 |
 
 保鲜阈值的唯一机器定义是 `data_contract.json`：L6–L9 项目 90 天，L1–L5 项目 180 天；项目超阈告警，超过两倍阈值阻断数据校验。价格按序列频率判断：annual 455、quarterly 150、monthly 45、spot 30、default 365 天；显式 frequency 优先，兼容序列名规则见同一声明。一次性 benchmark 与历史序列点保留原时点，不逐点当作当前报价催更新。
 

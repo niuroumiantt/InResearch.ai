@@ -2,6 +2,16 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-28：骨架补齐——建设阶段、运行行、时间因子、登记表两列（第 3 步 a）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §3 与 §9 第 3 步的骨架部分落地；图谱 3.0 与问题表改造放到第 3 步 b，与第 4 步节点页吸收证据同批，避免研究页在两步之间失效。
+
+- **建设阶段。** `bom.json` 2.2 登记 `stages` 六段（rights 权利与审批 → grid 并网与外线 → shell 土建与壳 → mep 机电 → it IT 进场 → commissioning 调试与上架），每个部件与每条站点权利加 `stage`：园区变电三件属并网与外线；发电储能、UPS、配电、冷却、消防安防属机电；机柜、服务器、内存、存储、网络与随机的板级供电、芯片级散热属 IT 进场；DCIM 属调试与上架；并网配额属并网与外线，其余权利属权利与审批。分布：并网 3、土建 2、机电 26、IT 31、调试 1，权利 6 另计。dashboard 快照与目标行都带 `stage`。
+- **时间因子。** `tco_factors.json` 1.3.0 加 `time` / `time.build`：工期、排队、审批三条抓取登记，挂 grid、permits 两条权利，喂 `construction_years`、`gate`、`gate_wait_years`、`permit_months`；目标表新增 `F.time.build.duration / queue / permit` 三行。
+- **运行行。** 部件数据类别加 `operation`（变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率），61 个物理部件各一行；`part_fetch.json` 登记 20 个部件的运行出版方（GPU、ASIC、CPU、服务器、整机柜、HBM、DRAM、SSD、HDD、交换机、光模块、NIC、UPS、变压器、燃气轮机、BESS、冷机、CDU、冷板、干冷器），其余沿用模板。目标表 2.1.0：351 行（因子 53、部件 283、软件 2、基型 1、权利 12）。
+- **登记表两列。** 新模块 `knowledge/nodes.py` 派生并回填 `node` 与 `variable_class`：价格库 512（序列归部件 / 权利 / 根；关键词、类别、单位三级判类）、指标表 44（逐条登记在 `INDICATOR_CLASS`，新指标不登记过不了校验）、指标定义 312（与指标同名者同源，其余按名称与单位判类、挂根）、事实库 7849（随其指标）、产品库 175（第一个 bom_part 派生 `node`、`nodes`、`system`、`chain`，内存单列 6 条）、公司库 248（`actor:<id>`，主体）。`manage.py nodes --refresh / --check`，`validate --strict` 核对存储值与派生值一致；录价接口自动带列。四份 schema 同步；01 加"登记表通用"一行；06 补运行行、时间因子与阶段一句。
+- **实施状态。** 知识库（问题、证据、陈述）的节点随图谱 3.0 的问题表挂，放在第 3 步 b；136 个根级序列与 27 个根级指标是首轮派生结果，规则改进只需改 `nodes.py` 并回填一次。
+
 ## 2026-09-28：目录与路由、公开只读角色 reader（第 2 步）
 
 [提案](reviews/2026-09-28/site/PROPOSAL.md) §2 与 §9 第 2 步落地。一级导航改为四问的全局视图六项：**数据中心**（`/`，节点页）、**账本**（`ledger.html`）、**爆炸图**（`bom.html`）、**采集**（`supply.html`）、**成果**（`report.html`）、**管理**（`ops.html`）；旧的工作流式六项（总览 / 研究 / 资料 / 任务 / 成果 / 管理）退役。`site-shell.js` 按角色出现：admin 六项、member 五项、intern 只见采集入口（第 5 步并入采集页前落在团队看板）、reader 四项（数据中心、账本、爆炸图、成果）加"登录"。每个应用页用 `data-section` 声明归属的目录项，`interface_manifest.json`（1.3.0）新增 `sections` 与 `public_pages`，单元测试对账页面声明、清单、导航脚本与路由目标是否存在。

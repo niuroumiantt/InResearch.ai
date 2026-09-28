@@ -24,7 +24,14 @@
    "spec_fields": "核心数/线程、基频/睿频、L3缓存、内存通道与DDR5速率、PCIe通道、TDP、AMX/加速器",
    "website": "intel.com",
    "note": "ark.intel.com 规格库最全；每代平台有 product brief + 技术白皮书",
-   "library_path": "library/3-算力芯片与核心器件/Intel/x86服务器CPU/"
+   "library_path": "library/3-算力芯片与核心器件/Intel/x86服务器CPU/",
+   "node": "part:cpu",
+   "nodes": [
+    "part:cpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "amd",
@@ -47,7 +54,14 @@
    "spec_fields": "同Intel；另关注Zen架构代际、CCD数、3D V-Cache型号",
    "website": "amd.com",
    "note": "amd.com/epyc 有全系规格对比表与 datasheet",
-   "library_path": "library/3-算力芯片与核心器件/AMD/x86服务器CPU/"
+   "library_path": "library/3-算力芯片与核心器件/AMD/x86服务器CPU/",
+   "node": "part:cpu",
+   "nodes": [
+    "part:cpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "nvidia",
@@ -70,7 +84,14 @@
    "spec_fields": "核心数（Neoverse V2）、LPDDR5X容量/带宽、NVLink-C2C带宽、功耗",
    "website": "nvidia.com",
    "note": "随Grace Hopper/Blackwell白皮书发布",
-   "library_path": "library/3-算力芯片与核心器件/NVIDIA/Arm服务器CPU/"
+   "library_path": "library/3-算力芯片与核心器件/NVIDIA/Arm服务器CPU/",
+   "node": "part:cpu",
+   "nodes": [
+    "part:cpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "ampere-computing",
@@ -93,7 +114,14 @@
    "spec_fields": "核心数、单线程性能、内存通道、功耗、云实例采用情况",
    "website": "amperecomputing.com",
    "note": "被软银收购；云原生CPU代表",
-   "library_path": "library/3-算力芯片与核心器件/Ampere Computing/Arm服务器CPU/"
+   "library_path": "library/3-算力芯片与核心器件/Ampere Computing/Arm服务器CPU/",
+   "node": "part:cpu",
+   "nodes": [
+    "part:cpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "arm",
@@ -116,7 +144,14 @@
    "spec_fields": "IP级：核微架构、互联CMN、参考功耗性能",
    "website": "arm.com",
    "note": "资料为技术手册/白皮书，用于理解各家Arm芯片共性",
-   "library_path": "library/3-算力芯片与核心器件/Arm/Arm IP与CSS/"
+   "library_path": "library/3-算力芯片与核心器件/Arm/Arm IP与CSS/",
+   "node": "part:cpu",
+   "nodes": [
+    "part:cpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "huawei-kunpeng",
@@ -139,7 +174,14 @@
    "spec_fields": "核心数、SPECint、内存通道、生态（openEuler）、整机伙伴",
    "website": "hikunpeng.com",
    "note": "资料在鲲鹏社区；受出口管制影响供应受限",
-   "library_path": "library/3-算力芯片与核心器件/Huawei Kunpeng/国产CPU（Arm）/"
+   "library_path": "library/3-算力芯片与核心器件/Huawei Kunpeng/国产CPU（Arm）/",
+   "node": "part:cpu",
+   "nodes": [
+    "part:cpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "hygon",
@@ -162,7 +204,14 @@
    "spec_fields": "核心数、频率、内存/PCIe、信创目录准入、可运行生态",
    "website": "hygon.cn",
    "note": "信创主力；上市公司公告亦是信息源",
-   "library_path": "library/3-算力芯片与核心器件/Hygon/国产CPU（x86授权）/"
+   "library_path": "library/3-算力芯片与核心器件/Hygon/国产CPU（x86授权）/",
+   "node": "part:cpu",
+   "nodes": [
+    "part:cpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "phytium",
@@ -185,7 +234,14 @@
    "spec_fields": "核心数、SoC规格、多路互联、信创整机适配清单",
    "website": "phytium.com.cn",
    "note": "信创主力",
-   "library_path": "library/3-算力芯片与核心器件/Phytium/国产CPU（Arm）/"
+   "library_path": "library/3-算力芯片与核心器件/Phytium/国产CPU（Arm）/",
+   "node": "part:cpu",
+   "nodes": [
+    "part:cpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "loongson",
@@ -208,7 +264,14 @@
    "spec_fields": "LoongArch指令集、核心数、性能对标、生态适配",
    "website": "loongson.cn",
    "note": "",
-   "library_path": "library/3-算力芯片与核心器件/Loongson/国产CPU（自主指令）/"
+   "library_path": "library/3-算力芯片与核心器件/Loongson/国产CPU（自主指令）/",
+   "node": "part:cpu",
+   "nodes": [
+    "part:cpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "zhaoxin",
@@ -231,7 +294,14 @@
    "spec_fields": "核心数、频率、平台配套",
    "website": "zhaoxin.com",
    "note": "",
-   "library_path": "library/3-算力芯片与核心器件/Zhaoxin/国产CPU（x86授权）/"
+   "library_path": "library/3-算力芯片与核心器件/Zhaoxin/国产CPU（x86授权）/",
+   "node": "part:cpu",
+   "nodes": [
+    "part:cpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "nvidia",
@@ -254,7 +324,14 @@
    "spec_fields": "架构、FP4/FP8/FP16算力、显存类型/容量/带宽（HBM3E）、NVLink代际与带宽、TDP、形态（SXM/PCIe/NVL机柜）、MIG",
    "website": "nvidia.com",
    "note": "每代有架构白皮书+datasheet+产品页；NVL72按机柜级采集",
-   "library_path": "library/3-算力芯片与核心器件/NVIDIA/训练-推理GPU/"
+   "library_path": "library/3-算力芯片与核心器件/NVIDIA/训练-推理GPU/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "amd-instinct",
@@ -277,7 +354,14 @@
    "spec_fields": "同上；另关注Infinity Fabric、ROCm版本支持、UBB8平台",
    "website": "amd.com",
    "note": "amd.com/instinct；OCP UBB规格可交叉参考",
-   "library_path": "library/3-算力芯片与核心器件/AMD Instinct/训练-推理GPU/"
+   "library_path": "library/3-算力芯片与核心器件/AMD Instinct/训练-推理GPU/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "intel-gaudi",
@@ -300,7 +384,14 @@
    "spec_fields": "BF16算力、HBM2E容量带宽、集成RoCE网口数、OAM形态",
    "website": "intel.com",
    "note": "Gaudi白皮书详细；后续路线并入GPU（Falcon Shores取消后关注Jaguar Shores）",
-   "library_path": "library/3-算力芯片与核心器件/Intel Gaudi/训练-推理加速卡/"
+   "library_path": "library/3-算力芯片与核心器件/Intel Gaudi/训练-推理加速卡/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "huawei-ascend",
@@ -323,7 +414,14 @@
    "spec_fields": "算力（FP16/INT8）、显存、互联（HCCS）、CANN软件栈、整机形态",
    "website": "hiascend.com",
    "note": "昇腾社区资料较全；国产训练主力",
-   "library_path": "library/3-算力芯片与核心器件/Huawei Ascend/国产AI芯片/"
+   "library_path": "library/3-算力芯片与核心器件/Huawei Ascend/国产AI芯片/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "cambricon",
@@ -346,7 +444,14 @@
    "spec_fields": "算力、显存、MLU-Link、软件栈（Neuware）",
    "website": "cambricon.com",
    "note": "上市公司，招股书/年报含技术细节",
-   "library_path": "library/3-算力芯片与核心器件/Cambricon/国产AI芯片/"
+   "library_path": "library/3-算力芯片与核心器件/Cambricon/国产AI芯片/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "hygon-dcu",
@@ -369,7 +474,14 @@
    "spec_fields": "算力、显存、类CUDA生态（DTK）",
    "website": "hygon.cn",
    "note": "与海光CPU同源采集",
-   "library_path": "library/3-算力芯片与核心器件/Hygon DCU/国产GPU（GPGPU）/"
+   "library_path": "library/3-算力芯片与核心器件/Hygon DCU/国产GPU（GPGPU）/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "biren",
@@ -392,7 +504,14 @@
    "spec_fields": "算力、显存、互联、量产与整机适配情况",
    "website": "birentech.com",
    "note": "",
-   "library_path": "library/3-算力芯片与核心器件/Biren/国产GPU/"
+   "library_path": "library/3-算力芯片与核心器件/Biren/国产GPU/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "moore-threads",
@@ -415,7 +534,14 @@
    "spec_fields": "算力、显存、MUSA软件栈",
    "website": "mthreads.com",
    "note": "",
-   "library_path": "library/3-算力芯片与核心器件/Moore Threads/国产GPU/"
+   "library_path": "library/3-算力芯片与核心器件/Moore Threads/国产GPU/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "metax",
@@ -438,7 +564,14 @@
    "spec_fields": "算力、显存、MXMACA软件栈",
    "website": "metax-tech.com",
    "note": "",
-   "library_path": "library/3-算力芯片与核心器件/MetaX/国产GPU/"
+   "library_path": "library/3-算力芯片与核心器件/MetaX/国产GPU/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "iluvatar-corex",
@@ -461,7 +594,14 @@
    "spec_fields": "算力、显存、软件栈",
    "website": "iluvatar.com",
    "note": "",
-   "library_path": "library/3-算力芯片与核心器件/Iluvatar CoreX/国产GPU/"
+   "library_path": "library/3-算力芯片与核心器件/Iluvatar CoreX/国产GPU/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "enflame",
@@ -484,7 +624,14 @@
    "spec_fields": "算力、显存、互联",
    "website": "enflame-tech.com",
    "note": "",
-   "library_path": "library/3-算力芯片与核心器件/Enflame/国产AI芯片/"
+   "library_path": "library/3-算力芯片与核心器件/Enflame/国产AI芯片/",
+   "node": "part:gpu",
+   "nodes": [
+    "part:gpu"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "cerebras-groq-sambanova-tenstorrent",
@@ -507,7 +654,14 @@
    "spec_fields": "架构差异点、内存方案、集群形态、目标负载（推理/训练）",
    "website": "cerebras.ai 等",
    "note": "观察项：技术路线对比研究用，非采购对象",
-   "library_path": "library/3-算力芯片与核心器件/Cerebras/海外新兴AI芯片/"
+   "library_path": "library/3-算力芯片与核心器件/Cerebras/海外新兴AI芯片/",
+   "node": "part:ai-asic",
+   "nodes": [
+    "part:ai-asic"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "google-tpu-aws-trainium-ms-maia-meta-mtia",
@@ -530,7 +684,14 @@
    "spec_fields": "算力、HBM、互联拓扑、代工与ASIC设计伙伴（Broadcom/Marvell/Alchip）",
    "website": "cloud.google.com 等",
    "note": "理解需求侧走向与Broadcom/Marvell订单的关键背景",
-   "library_path": "library/3-算力芯片与核心器件/Google TPU/云厂商自研加速器/"
+   "library_path": "library/3-算力芯片与核心器件/Google TPU/云厂商自研加速器/",
+   "node": "part:ai-asic",
+   "nodes": [
+    "part:ai-asic"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "amd-xilinx-alveo-altera-agilex",
@@ -553,7 +714,14 @@
    "spec_fields": "逻辑规模、HBM、网络接口、SmartNIC/加速场景",
    "website": "amd.com / altera.com",
    "note": "合并采集即可",
-   "library_path": "library/3-算力芯片与核心器件/AMD-Xilinx Alveo/数据中心FPGA/"
+   "library_path": "library/3-算力芯片与核心器件/AMD-Xilinx Alveo/数据中心FPGA/",
+   "node": "part:fpga",
+   "nodes": [
+    "part:fpga"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "broadcom",
@@ -577,7 +745,15 @@
    "spec_fields": "PCIe代际、lane数、时延、功耗；定制ASIC客户与代际",
    "website": "broadcom.com",
    "note": "交换芯片与网卡另见网络表；财报电话会是XPU信息主源",
-   "library_path": "library/3-算力芯片与核心器件/Broadcom/PCIe-CXL互联/"
+   "library_path": "library/3-算力芯片与核心器件/Broadcom/PCIe-CXL互联/",
+   "node": "part:retimer",
+   "nodes": [
+    "part:retimer",
+    "part:pcie-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "montage",
@@ -601,7 +777,15 @@
    "spec_fields": "支持速率代际、通道数、与各代RDIMM/MRDIMM配套关系",
    "website": "montage-tech.com",
    "note": "内存贸易强相关：RCD代际决定内存条代际",
-   "library_path": "library/3-算力芯片与核心器件/Montage/PCIe-CXL互联/"
+   "library_path": "library/3-算力芯片与核心器件/Montage/PCIe-CXL互联/",
+   "node": "part:retimer",
+   "nodes": [
+    "part:retimer",
+    "part:pcie-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "astera-labs",
@@ -625,7 +809,15 @@
    "spec_fields": "代际、通道、时延、GPU集群内互联位置",
    "website": "asteralabs.com",
    "note": "AI服务器PCB上的关键小芯片",
-   "library_path": "library/3-算力芯片与核心器件/Astera Labs/PCIe-CXL互联/"
+   "library_path": "library/3-算力芯片与核心器件/Astera Labs/PCIe-CXL互联/",
+   "node": "part:retimer",
+   "nodes": [
+    "part:retimer",
+    "part:pcie-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "rambus-microchip-marvell",
@@ -649,7 +841,15 @@
    "spec_fields": "对应产品代际与设计导入",
    "website": "rambus.com 等",
    "note": "合并采集",
-   "library_path": "library/3-算力芯片与核心器件/Rambus/内存接口-主控/"
+   "library_path": "library/3-算力芯片与核心器件/Rambus/内存接口-主控/",
+   "node": "part:dram",
+   "nodes": [
+    "part:dram",
+    "part:cxl-memory"
+   ],
+   "system": "memory",
+   "chain": "内存",
+   "variable_class": 1
   },
   {
    "company_id": "aspeed",
@@ -672,7 +872,14 @@
    "spec_fields": "工艺、接口、Redfish/OpenBMC支持；几乎所有服务器标配",
    "website": "aspeedtech.com",
    "note": "服务器出货量先行指标；新唐Nuvoton为第二供应商",
-   "library_path": "library/3-算力芯片与核心器件/ASPEED/BMC管理芯片/"
+   "library_path": "library/3-算力芯片与核心器件/ASPEED/BMC管理芯片/",
+   "node": "part:bmc",
+   "nodes": [
+    "part:bmc"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "infineon-mps-renesas-adi-ti",
@@ -695,7 +902,14 @@
    "spec_fields": "相数、电流密度、48V→12V方案（与GPU功耗强相关）",
    "website": "infineon.com 等",
    "note": "合并采集；理解整机BOM即可",
-   "library_path": "library/3-算力芯片与核心器件/Infineon/服务器供电芯片/"
+   "library_path": "library/3-算力芯片与核心器件/Infineon/服务器供电芯片/",
+   "node": "part:vrm",
+   "nodes": [
+    "part:vrm"
+   ],
+   "system": "power",
+   "chain": "机柜与板级供电",
+   "variable_class": 1
   },
   {
    "company_id": "dell-technologies",
@@ -719,7 +933,15 @@
    "spec_fields": "平台代际、CPU/内存/GPU支持矩阵、存储背板、PSU、iDRAC管理、机箱尺寸功耗",
    "website": "dell.com",
    "note": "每型号有 spec sheet + technical guide + owner's manual，资料最规范",
-   "library_path": "library/4-服务器与整机/Dell Technologies/通用-AI服务器/"
+   "library_path": "library/4-服务器与整机/Dell Technologies/通用-AI服务器/",
+   "node": "part:server",
+   "nodes": [
+    "part:server",
+    "part:general-server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "hpe",
@@ -743,7 +965,15 @@
    "spec_fields": "同上；iLO管理、液冷选项",
    "website": "hpe.com",
    "note": "QuickSpecs 体系非常完整",
-   "library_path": "library/4-服务器与整机/HPE/通用-AI服务器/"
+   "library_path": "library/4-服务器与整机/HPE/通用-AI服务器/",
+   "node": "part:server",
+   "nodes": [
+    "part:server",
+    "part:general-server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "lenovo",
@@ -767,7 +997,15 @@
    "spec_fields": "同上；XClarity管理、Neptune水冷规格",
    "website": "lenovo.com",
    "note": "lenovopress.com 的 product guide 是最佳spec来源",
-   "library_path": "library/4-服务器与整机/Lenovo/通用-AI服务器/"
+   "library_path": "library/4-服务器与整机/Lenovo/通用-AI服务器/",
+   "node": "part:server",
+   "nodes": [
+    "part:server",
+    "part:general-server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "supermicro",
@@ -790,7 +1028,14 @@
    "spec_fields": "GPU拓扑、NVLink/PCIe配置、液冷版本、上市速度",
    "website": "supermicro.com",
    "note": "官网datasheet齐全且更新最快，适合首批爬取",
-   "library_path": "library/4-服务器与整机/Supermicro/AI-GPU服务器/"
+   "library_path": "library/4-服务器与整机/Supermicro/AI-GPU服务器/",
+   "node": "part:server",
+   "nodes": [
+    "part:server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "inspur",
@@ -814,7 +1059,15 @@
    "spec_fields": "同国际OEM；另关注国产CPU版本（鲲鹏/海光/飞腾型号）",
    "website": "ieisystem.com",
    "note": "中文资料全；白皮书+彩页下载中心",
-   "library_path": "library/4-服务器与整机/Inspur (IEIT Systems)/通用-AI服务器/"
+   "library_path": "library/4-服务器与整机/Inspur (IEIT Systems)/通用-AI服务器/",
+   "node": "part:server",
+   "nodes": [
+    "part:server",
+    "part:general-server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "h3c",
@@ -838,7 +1091,15 @@
    "spec_fields": "同上",
    "website": "h3c.com",
    "note": "产品彩页+配置指南下载完整",
-   "library_path": "library/4-服务器与整机/H3C/通用-AI服务器/"
+   "library_path": "library/4-服务器与整机/H3C/通用-AI服务器/",
+   "node": "part:server",
+   "nodes": [
+    "part:server",
+    "part:general-server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "xfusion",
@@ -862,7 +1123,15 @@
    "spec_fields": "同上；液冷整机柜交付形态是重点",
    "website": "xfusion.com",
    "note": "承接原华为x86服务器线",
-   "library_path": "library/4-服务器与整机/xFusion/通用-AI服务器/"
+   "library_path": "library/4-服务器与整机/xFusion/通用-AI服务器/",
+   "node": "part:server",
+   "nodes": [
+    "part:server",
+    "part:general-server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "nettrix",
@@ -885,7 +1154,14 @@
    "spec_fields": "同上；定制化能力",
    "website": "nettrix.com.cn",
    "note": "",
-   "library_path": "library/4-服务器与整机/Nettrix/AI-定制服务器/"
+   "library_path": "library/4-服务器与整机/Nettrix/AI-定制服务器/",
+   "node": "part:server",
+   "nodes": [
+    "part:server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "sugon",
@@ -909,7 +1185,15 @@
    "spec_fields": "同上；浸没液冷整机是特色",
    "website": "sugon.com",
    "note": "与曙光数创（液冷）、曙光存储联动采集",
-   "library_path": "library/4-服务器与整机/Sugon/通用-AI服务器/"
+   "library_path": "library/4-服务器与整机/Sugon/通用-AI服务器/",
+   "node": "part:server",
+   "nodes": [
+    "part:server",
+    "part:general-server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "huawei-atlas",
@@ -932,7 +1216,14 @@
    "spec_fields": "昇腾配置、超节点互联、液冷",
    "website": "huawei.com",
    "note": "资料在华为企业业务站+昇腾社区",
-   "library_path": "library/4-服务器与整机/Huawei Atlas/AI训练集群/"
+   "library_path": "library/4-服务器与整机/Huawei Atlas/AI训练集群/",
+   "node": "part:server",
+   "nodes": [
+    "part:server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "zte",
@@ -955,7 +1246,14 @@
    "spec_fields": "同上",
    "website": "zte.com.cn",
    "note": "",
-   "library_path": "library/4-服务器与整机/ZTE/通用服务器/"
+   "library_path": "library/4-服务器与整机/ZTE/通用服务器/",
+   "node": "part:general-server",
+   "nodes": [
+    "part:general-server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "fiberhome",
@@ -978,7 +1276,14 @@
    "spec_fields": "同上",
    "website": "fiberhome.com",
    "note": "",
-   "library_path": "library/4-服务器与整机/FiberHome/通用服务器/"
+   "library_path": "library/4-服务器与整机/FiberHome/通用服务器/",
+   "node": "part:general-server",
+   "nodes": [
+    "part:general-server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "gigabyte",
@@ -1001,7 +1306,14 @@
    "spec_fields": "同上；准系统/主板单卖（贸易可切入）",
    "website": "gigabyte.com",
    "note": "B2B站有完整datasheet",
-   "library_path": "library/4-服务器与整机/GIGABYTE/GPU服务器-准系统/"
+   "library_path": "library/4-服务器与整机/GIGABYTE/GPU服务器-准系统/",
+   "node": "part:server",
+   "nodes": [
+    "part:server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "asus",
@@ -1024,7 +1336,14 @@
    "spec_fields": "同上",
    "website": "servers.asus.com",
    "note": "",
-   "library_path": "library/4-服务器与整机/ASUS/GPU服务器-工作站/"
+   "library_path": "library/4-服务器与整机/ASUS/GPU服务器-工作站/",
+   "node": "part:server",
+   "nodes": [
+    "part:server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "foxconn-industrial-internet",
@@ -1048,7 +1367,15 @@
    "spec_fields": "代工客户结构、NVL机柜产能与交付、液冷集成能力",
    "website": "fii-foxconn.com",
    "note": "官方产品资料少：以财报、OCP大会材料、发布会为主",
-   "library_path": "library/4-服务器与整机/Foxconn Industrial Internet/AI服务器-整机柜代工/"
+   "library_path": "library/4-服务器与整机/Foxconn Industrial Internet/AI服务器-整机柜代工/",
+   "node": "part:server",
+   "nodes": [
+    "part:server",
+    "part:rack-system"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "quanta-qct",
@@ -1072,7 +1399,15 @@
    "spec_fields": "同上；QCT官网有零售化datasheet",
    "website": "qct.io",
    "note": "",
-   "library_path": "library/4-服务器与整机/Quanta/云服务器-整机柜/"
+   "library_path": "library/4-服务器与整机/Quanta/云服务器-整机柜/",
+   "node": "part:general-server",
+   "nodes": [
+    "part:general-server",
+    "part:rack-system"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "wiwynn",
@@ -1096,7 +1431,15 @@
    "spec_fields": "同上",
    "website": "wiwynn.com",
    "note": "纬创子公司，超大规模客户为主",
-   "library_path": "library/4-服务器与整机/Wiwynn/云服务器-整机柜/"
+   "library_path": "library/4-服务器与整机/Wiwynn/云服务器-整机柜/",
+   "node": "part:general-server",
+   "nodes": [
+    "part:general-server",
+    "part:rack-system"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "inventec-pegatron-mitac-compal",
@@ -1119,7 +1462,14 @@
    "spec_fields": "客户结构与产能；TYAN有公开datasheet",
    "website": "各家官网",
    "note": "合并采集；月度营收公告是景气度指标",
-   "library_path": "library/4-服务器与整机/Inventec英业达/服务器代工/"
+   "library_path": "library/4-服务器与整机/Inventec英业达/服务器代工/",
+   "node": "part:server",
+   "nodes": [
+    "part:server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "open-compute-project",
@@ -1142,7 +1492,14 @@
    "spec_fields": "机柜/电源/加速卡模组接口规范原文",
    "website": "opencompute.org",
    "note": "所有contribution文档免费下载，是ODM产品的spec源头",
-   "library_path": "library/4-服务器与整机/Open Compute Project/开放计算规范/"
+   "library_path": "library/4-服务器与整机/Open Compute Project/开放计算规范/",
+   "node": "part:rack-frame",
+   "nodes": [
+    "part:rack-frame"
+   ],
+   "system": "facility",
+   "chain": "土地与建筑",
+   "variable_class": 1
   },
   {
    "company_id": "cn-kunpeng-feiteng-server-group",
@@ -1165,7 +1522,14 @@
    "spec_fields": "CPU平台、目录准入、区域市场",
    "website": "各家官网",
    "note": "合并采集；随信创项目需求触发",
-   "library_path": "library/4-服务器与整机/长城/鲲鹏-飞腾生态整机/"
+   "library_path": "library/4-服务器与整机/长城/鲲鹏-飞腾生态整机/",
+   "node": "part:general-server",
+   "nodes": [
+    "part:general-server"
+   ],
+   "system": "compute",
+   "chain": "计算",
+   "variable_class": 1
   },
   {
    "company_id": "samsung",
@@ -1189,7 +1553,15 @@
    "spec_fields": "容量、速率（6400/8000）、形态、代际工艺（1b/1c nm）、量产时点",
    "website": "semiconductor.samsung.com",
    "note": "半导体官网有产品页与白皮书；价格看TrendForce等第三方",
-   "library_path": "library/5-存储介质与部件/Samsung/DRAM原厂/"
+   "library_path": "library/5-存储介质与部件/Samsung/DRAM原厂/",
+   "node": "part:dram",
+   "nodes": [
+    "part:dram",
+    "part:hbm"
+   ],
+   "system": "memory",
+   "chain": "内存",
+   "variable_class": 1
   },
   {
    "company_id": "sk-hynix",
@@ -1213,7 +1585,15 @@
    "spec_fields": "同上；HBM份额与产能是AI供应链核心变量",
    "website": "skhynix.com",
    "note": "新闻室发布节奏快",
-   "library_path": "library/5-存储介质与部件/SK hynix/DRAM原厂/"
+   "library_path": "library/5-存储介质与部件/SK hynix/DRAM原厂/",
+   "node": "part:dram",
+   "nodes": [
+    "part:dram",
+    "part:hbm"
+   ],
+   "system": "memory",
+   "chain": "内存",
+   "variable_class": 1
   },
   {
    "company_id": "micron",
@@ -1237,7 +1617,15 @@
    "spec_fields": "同上",
    "website": "micron.com",
    "note": "datasheet需注册；product brief公开",
-   "library_path": "library/5-存储介质与部件/Micron/DRAM原厂/"
+   "library_path": "library/5-存储介质与部件/Micron/DRAM原厂/",
+   "node": "part:dram",
+   "nodes": [
+    "part:dram",
+    "part:hbm"
+   ],
+   "system": "memory",
+   "chain": "内存",
+   "variable_class": 1
   },
   {
    "company_id": "cxmt",
@@ -1261,7 +1649,15 @@
    "spec_fields": "代际、容量、良率与产能爬坡、模组厂配套",
    "website": "cxmt.com",
    "note": "官方资料少：结合模组厂（金泰克等）发布与行业报道",
-   "library_path": "library/5-存储介质与部件/CXMT/国产DRAM/"
+   "library_path": "library/5-存储介质与部件/CXMT/国产DRAM/",
+   "node": "part:dram",
+   "nodes": [
+    "part:dram",
+    "part:hbm"
+   ],
+   "system": "memory",
+   "chain": "内存",
+   "variable_class": 1
   },
   {
    "company_id": "samsung",
@@ -1284,7 +1680,14 @@
    "spec_fields": "接口/形态（U.2/E1.S/E3.S）、容量、DWPD、顺序/随机性能、时延QoS、功耗",
    "website": "semiconductor.samsung.com",
    "note": "",
-   "library_path": "library/5-存储介质与部件/Samsung/企业级SSD/"
+   "library_path": "library/5-存储介质与部件/Samsung/企业级SSD/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "kioxia",
@@ -1307,7 +1710,14 @@
    "spec_fields": "同上；BiCS代际",
    "website": "kioxia.com",
    "note": "datasheet公开下载",
-   "library_path": "library/5-存储介质与部件/Kioxia/企业级SSD/"
+   "library_path": "library/5-存储介质与部件/Kioxia/企业级SSD/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "solidigm",
@@ -1330,7 +1740,14 @@
    "spec_fields": "同上；QLC大容量对HDD替代测算",
    "website": "solidigm.com",
    "note": "QLC大容量主力供应商",
-   "library_path": "library/5-存储介质与部件/Solidigm (SK hynix)/企业级SSD/"
+   "library_path": "library/5-存储介质与部件/Solidigm (SK hynix)/企业级SSD/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "micron",
@@ -1353,7 +1770,14 @@
    "spec_fields": "同上",
    "website": "micron.com",
    "note": "",
-   "library_path": "library/5-存储介质与部件/Micron/企业级SSD/"
+   "library_path": "library/5-存储介质与部件/Micron/企业级SSD/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "sandisk",
@@ -1376,7 +1800,14 @@
    "spec_fields": "同上；2025年从WD分拆后企业级路线",
    "website": "sandisk.com",
    "note": "",
-   "library_path": "library/5-存储介质与部件/SanDisk/NAND与SSD/"
+   "library_path": "library/5-存储介质与部件/SanDisk/NAND与SSD/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "ymtc",
@@ -1399,7 +1830,14 @@
    "spec_fields": "层数代际、企业级型号性能、国产化项目适配",
    "website": "ymtc.com",
    "note": "企业级资料少，结合忆联/联想等采用方",
-   "library_path": "library/5-存储介质与部件/YMTC/国产NAND-eSSD/"
+   "library_path": "library/5-存储介质与部件/YMTC/国产NAND-eSSD/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "seagate",
@@ -1422,7 +1860,14 @@
    "spec_fields": "容量、CMR/SMR、转速缓存、工作负载额定、HAMR量产节奏",
    "website": "seagate.com",
    "note": "datasheet齐全",
-   "library_path": "library/5-存储介质与部件/Seagate/近线HDD/"
+   "library_path": "library/5-存储介质与部件/Seagate/近线HDD/",
+   "node": "part:hdd",
+   "nodes": [
+    "part:hdd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "western-digital",
@@ -1445,7 +1890,14 @@
    "spec_fields": "同上",
    "website": "westerndigital.com",
    "note": "分拆后聚焦HDD",
-   "library_path": "library/5-存储介质与部件/Western Digital/近线HDD/"
+   "library_path": "library/5-存储介质与部件/Western Digital/近线HDD/",
+   "node": "part:hdd",
+   "nodes": [
+    "part:hdd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "toshiba-electronic-devices",
@@ -1468,7 +1920,14 @@
    "spec_fields": "同上",
    "website": "toshiba-storage.com",
    "note": "",
-   "library_path": "library/5-存储介质与部件/Toshiba Electronic Devices/近线HDD/"
+   "library_path": "library/5-存储介质与部件/Toshiba Electronic Devices/近线HDD/",
+   "node": "part:hdd",
+   "nodes": [
+    "part:hdd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "unionmemory",
@@ -1491,7 +1950,14 @@
    "spec_fields": "同企业级SSD；国产主控（联芸等）采用情况",
    "website": "unionmem.com",
    "note": "记忆科技子公司",
-   "library_path": "library/5-存储介质与部件/UnionMemory/国产企业级SSD/"
+   "library_path": "library/5-存储介质与部件/UnionMemory/国产企业级SSD/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "dapustor",
@@ -1514,7 +1980,14 @@
    "spec_fields": "同上",
    "website": "dapustor.com",
    "note": "英文站datasheet完整",
-   "library_path": "library/5-存储介质与部件/DapuStor/国产企业级SSD/"
+   "library_path": "library/5-存储介质与部件/DapuStor/国产企业级SSD/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "longsys",
@@ -1537,7 +2010,14 @@
    "spec_fields": "企业级型号、原厂颗粒来源",
    "website": "longsys.com",
    "note": "上市公司",
-   "library_path": "library/5-存储介质与部件/Longsys/存储模组厂/"
+   "library_path": "library/5-存储介质与部件/Longsys/存储模组厂/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "biwin",
@@ -1560,7 +2040,14 @@
    "spec_fields": "同上",
    "website": "biwin.com.cn",
    "note": "",
-   "library_path": "library/5-存储介质与部件/Biwin/存储模组厂/"
+   "library_path": "library/5-存储介质与部件/Biwin/存储模组厂/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "kingston",
@@ -1583,7 +2070,14 @@
    "spec_fields": "型号、颗粒来源、渠道价格体系",
    "website": "kingston.com",
    "note": "渠道贸易参照系",
-   "library_path": "library/5-存储介质与部件/Kingston/第三方模组-内存/"
+   "library_path": "library/5-存储介质与部件/Kingston/第三方模组-内存/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "smi-phison-maxio-innogrit",
@@ -1606,7 +2100,14 @@
    "spec_fields": "主控代际、导入的SSD品牌",
    "website": "siliconmotion.com 等",
    "note": "合并采集；理解白牌/国产SSD供应链",
-   "library_path": "library/5-存储介质与部件/慧荣SMI/SSD主控芯片/"
+   "library_path": "library/5-存储介质与部件/慧荣SMI/SSD主控芯片/",
+   "node": "part:ssd",
+   "nodes": [
+    "part:ssd"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "samsung-cmm-micron-cz120-mxc-smart-modular",
@@ -1629,7 +2130,14 @@
    "spec_fields": "CXL代际（2.0/3.x）、容量带宽、平台支持（Xeon6/EPYC）、落地案例",
    "website": "各家官网",
    "note": "跟踪期：量产落地慢于预期，季度复查",
-   "library_path": "library/5-存储介质与部件/Samsung CMM/CXL内存扩展/"
+   "library_path": "library/5-存储介质与部件/Samsung CMM/CXL内存扩展/",
+   "node": "part:cxl-memory",
+   "nodes": [
+    "part:cxl-memory"
+   ],
+   "system": "memory",
+   "chain": "内存",
+   "variable_class": 1
   },
   {
    "company_id": "huawei-oceanstor",
@@ -1652,7 +2160,14 @@
    "spec_fields": "控制器数/缓存、最大容量、协议（NVMe-oF/FC）、IOPS与时延、双活、纠删、SmartMatrix架构",
    "website": "e.huawei.com",
    "note": "白皮书体系完整（技术白皮书+配置手册+兼容性查询）",
-   "library_path": "library/6-存储系统与数据管理/Huawei OceanStor/全闪-混闪阵列/"
+   "library_path": "library/6-存储系统与数据管理/Huawei OceanStor/全闪-混闪阵列/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "dell",
@@ -1675,7 +2190,14 @@
    "spec_fields": "同上；PowerScale为横向扩展NAS",
    "website": "dell.com",
    "note": "spec sheet + white paper齐全",
-   "library_path": "library/6-存储系统与数据管理/Dell/全闪-混闪阵列/"
+   "library_path": "library/6-存储系统与数据管理/Dell/全闪-混闪阵列/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "netapp",
@@ -1698,7 +2220,14 @@
    "spec_fields": "同上；ONTAP功能矩阵",
    "website": "netapp.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/NetApp/全闪阵列-云数据/"
+   "library_path": "library/6-存储系统与数据管理/NetApp/全闪阵列-云数据/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "pure-storage",
@@ -1721,7 +2250,14 @@
    "spec_fields": "同上；DirectFlash自研模组（替代标准SSD）、订阅模式",
    "website": "purestorage.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/Pure Storage/全闪阵列/"
+   "library_path": "library/6-存储系统与数据管理/Pure Storage/全闪阵列/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "hpe",
@@ -1744,7 +2280,14 @@
    "spec_fields": "同上",
    "website": "hpe.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/HPE/全闪阵列/"
+   "library_path": "library/6-存储系统与数据管理/HPE/全闪阵列/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "ibm",
@@ -1767,7 +2310,14 @@
    "spec_fields": "同上；FlashCore模组",
    "website": "ibm.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/IBM/全闪-磁带/"
+   "library_path": "library/6-存储系统与数据管理/IBM/全闪-磁带/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "hitachi-vantara",
@@ -1790,7 +2340,14 @@
    "spec_fields": "同上",
    "website": "hitachivantara.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/Hitachi Vantara/全闪阵列/"
+   "library_path": "library/6-存储系统与数据管理/Hitachi Vantara/全闪阵列/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "ieit-storage",
@@ -1813,7 +2370,14 @@
    "spec_fields": "同集中式阵列",
    "website": "ieisystem.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/IEIT Storage/全闪-分布式/"
+   "library_path": "library/6-存储系统与数据管理/IEIT Storage/全闪-分布式/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "h3c-unistor",
@@ -1836,7 +2400,14 @@
    "spec_fields": "同上",
    "website": "h3c.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/H3C UniStor/全闪-分布式/"
+   "library_path": "library/6-存储系统与数据管理/H3C UniStor/全闪-分布式/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "sugon-parastor",
@@ -1859,7 +2430,14 @@
    "spec_fields": "并行文件性能（带宽/IOPS/元数据）、AI场景实测数据",
    "website": "sugon.com",
    "note": "AI存储国产主力之一",
-   "library_path": "library/6-存储系统与数据管理/Sugon ParaStor/并行-分布式/"
+   "library_path": "library/6-存储系统与数据管理/Sugon ParaStor/并行-分布式/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "macrosan",
@@ -1882,7 +2460,14 @@
    "spec_fields": "同集中式阵列",
    "website": "macrosan.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/MacroSAN/SAN阵列/"
+   "library_path": "library/6-存储系统与数据管理/MacroSAN/SAN阵列/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "xsky",
@@ -1905,7 +2490,14 @@
    "spec_fields": "架构、性能、硬件兼容清单",
    "website": "xsky.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/XSKY/块-文件-对象SDS/"
+   "library_path": "library/6-存储系统与数据管理/XSKY/块-文件-对象SDS/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "sandstone",
@@ -1928,7 +2520,14 @@
    "spec_fields": "同上",
    "website": "szsandstone.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/SandStone/对象-超融合/"
+   "library_path": "library/6-存储系统与数据管理/SandStone/对象-超融合/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "yanrong",
@@ -1951,7 +2550,14 @@
    "spec_fields": "AI训练场景带宽/IOPS、GPU直通（GDS）支持",
    "website": "yanrongyun.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/YanRong/高性能文件存储/"
+   "library_path": "library/6-存储系统与数据管理/YanRong/高性能文件存储/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "ddn",
@@ -1974,7 +2580,14 @@
    "spec_fields": "单柜带宽、NVIDIA SuperPOD认证配置",
    "website": "ddn.com",
    "note": "NVIDIA参考架构常客",
-   "library_path": "library/6-存储系统与数据管理/DDN/并行文件存储/"
+   "library_path": "library/6-存储系统与数据管理/DDN/并行文件存储/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "vast-data",
@@ -1997,7 +2610,14 @@
    "spec_fields": "架构、QLC+SCM用料、AI数据管道功能（DataBase/DataEngine）",
    "website": "vastdata.com",
    "note": "增长最快的AI存储，白皮书质量高",
-   "library_path": "library/6-存储系统与数据管理/VAST Data/全闪数据平台/"
+   "library_path": "library/6-存储系统与数据管理/VAST Data/全闪数据平台/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "weka",
@@ -2020,7 +2640,14 @@
    "spec_fields": "同DDN",
    "website": "weka.io",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/WEKA/并行文件存储/"
+   "library_path": "library/6-存储系统与数据管理/WEKA/并行文件存储/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "hammerspace",
@@ -2043,7 +2670,14 @@
    "spec_fields": "架构与GPU本地盘利用方案",
    "website": "hammerspace.com",
    "note": "",
-   "library_path": "library/6-存储系统与数据管理/Hammerspace/数据编排/"
+   "library_path": "library/6-存储系统与数据管理/Hammerspace/数据编排/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "cohesity-veritas-commvault-aishu",
@@ -2066,7 +2700,14 @@
    "spec_fields": "备份性能、去重比、勒索防护、一体机硬件规格",
    "website": "各家官网",
    "note": "合并采集",
-   "library_path": "library/6-存储系统与数据管理/Cohesity-Veritas/备份软件-一体机/"
+   "library_path": "library/6-存储系统与数据管理/Cohesity-Veritas/备份软件-一体机/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "ibm-quantum-spectralogic",
@@ -2089,7 +2730,14 @@
    "spec_fields": "槽位/驱动器数、LTO代际容量速率",
    "website": "各家官网",
    "note": "冷数据归档场景",
-   "library_path": "library/6-存储系统与数据管理/IBM/磁带库/"
+   "library_path": "library/6-存储系统与数据管理/IBM/磁带库/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "minio-cloudian-ceph",
@@ -2112,7 +2760,14 @@
    "spec_fields": "性能、纠删、S3兼容度、硬件参考配置",
    "website": "min.io 等",
    "note": "软件形态，配硬件白皮书采集",
-   "library_path": "library/6-存储系统与数据管理/MinIO(AIStor)/S3兼容对象存储/"
+   "library_path": "library/6-存储系统与数据管理/MinIO(AIStor)/S3兼容对象存储/",
+   "node": "part:storage-array",
+   "nodes": [
+    "part:storage-array"
+   ],
+   "system": "storage",
+   "chain": "存储",
+   "variable_class": 1
   },
   {
    "company_id": "broadcom",
@@ -2135,7 +2790,14 @@
    "spec_fields": "交换容量、SerDes代际（112/224G）、端口形态、缓存、遥测；网卡RoCE特性",
    "website": "broadcom.com",
    "note": "product brief公开；是白盒与多数品牌交换机的芯片源",
-   "library_path": "library/7-网络与光互联/Broadcom/数据中心交换芯片/"
+   "library_path": "library/7-网络与光互联/Broadcom/数据中心交换芯片/",
+   "node": "part:switch-asic",
+   "nodes": [
+    "part:switch-asic"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "marvell",
@@ -2158,7 +2820,14 @@
    "spec_fields": "同上；定制ASIC客户（AWS等）",
    "website": "marvell.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/Marvell/数据中心交换芯片/"
+   "library_path": "library/7-网络与光互联/Marvell/数据中心交换芯片/",
+   "node": "part:switch-asic",
+   "nodes": [
+    "part:switch-asic"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "centec",
@@ -2181,7 +2850,14 @@
    "spec_fields": "容量、国产整机采用",
    "website": "centec.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/Centec/国产交换芯片/"
+   "library_path": "library/7-网络与光互联/Centec/国产交换芯片/",
+   "node": "part:switch-asic",
+   "nodes": [
+    "part:switch-asic"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "nvidia-networking",
@@ -2204,7 +2880,14 @@
    "spec_fields": "端口速率/数量、交换容量、时延、SHARP在网计算、自适应路由、DPU协同",
    "website": "nvidia.com",
    "note": "IB与Spectrum-X是AI集群网络事实标准，白皮书必读",
-   "library_path": "library/7-网络与光互联/NVIDIA Networking/IB-以太AI网络/"
+   "library_path": "library/7-网络与光互联/NVIDIA Networking/IB-以太AI网络/",
+   "node": "part:network-switch",
+   "nodes": [
+    "part:network-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "arista-networks",
@@ -2227,7 +2910,14 @@
    "spec_fields": "端口配置、芯片（TH5/Jericho）、缓存、EOS特性、AI负载均衡",
    "website": "arista.com",
    "note": "datasheet+design guide质量高",
-   "library_path": "library/7-网络与光互联/Arista Networks/数据中心以太网/"
+   "library_path": "library/7-网络与光互联/Arista Networks/数据中心以太网/",
+   "node": "part:network-switch",
+   "nodes": [
+    "part:network-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "cisco",
@@ -2250,7 +2940,14 @@
    "spec_fields": "同上；Silicon One自研芯片",
    "website": "cisco.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/Cisco/数据中心以太网/"
+   "library_path": "library/7-网络与光互联/Cisco/数据中心以太网/",
+   "node": "part:network-switch",
+   "nodes": [
+    "part:network-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "juniper",
@@ -2273,7 +2970,14 @@
    "spec_fields": "同上",
    "website": "juniper.net",
    "note": "并入HPE后关注整合",
-   "library_path": "library/7-网络与光互联/Juniper (HPE)/数据中心以太网/"
+   "library_path": "library/7-网络与光互联/Juniper (HPE)/数据中心以太网/",
+   "node": "part:network-switch",
+   "nodes": [
+    "part:network-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "huawei-cloudengine",
@@ -2296,7 +3000,14 @@
    "spec_fields": "同上；超融合以太（NSLB）",
    "website": "e.huawei.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/Huawei CloudEngine/数据中心以太网/"
+   "library_path": "library/7-网络与光互联/Huawei CloudEngine/数据中心以太网/",
+   "node": "part:network-switch",
+   "nodes": [
+    "part:network-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "h3c",
@@ -2319,7 +3030,14 @@
    "spec_fields": "同上",
    "website": "h3c.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/H3C/数据中心以太网/"
+   "library_path": "library/7-网络与光互联/H3C/数据中心以太网/",
+   "node": "part:network-switch",
+   "nodes": [
+    "part:network-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "ruijie",
@@ -2342,7 +3060,14 @@
    "spec_fields": "同上；互联网客户案例",
    "website": "ruijie.com.cn",
    "note": "",
-   "library_path": "library/7-网络与光互联/Ruijie/无损以太-AI网络/"
+   "library_path": "library/7-网络与光互联/Ruijie/无损以太-AI网络/",
+   "node": "part:network-switch",
+   "nodes": [
+    "part:network-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "zte",
@@ -2365,7 +3090,14 @@
    "spec_fields": "同上",
    "website": "zte.com.cn",
    "note": "",
-   "library_path": "library/7-网络与光互联/ZTE/数据中心以太网/"
+   "library_path": "library/7-网络与光互联/ZTE/数据中心以太网/",
+   "node": "part:network-switch",
+   "nodes": [
+    "part:network-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "celestica-edgecore-ufispace",
@@ -2388,7 +3120,14 @@
    "spec_fields": "芯片、端口、SONiC支持度、大客户导入",
    "website": "celestica.com 等",
    "note": "AI以太白盒化是重要趋势，合并采集",
-   "library_path": "library/7-网络与光互联/Celestica/白盒-开放网络/"
+   "library_path": "library/7-网络与光互联/Celestica/白盒-开放网络/",
+   "node": "part:network-switch",
+   "nodes": [
+    "part:network-switch"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "nvidia",
@@ -2411,7 +3150,14 @@
    "spec_fields": "速率、RoCE/IB双模、PCIe代际、DOCA软件栈",
    "website": "nvidia.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/NVIDIA/SuperNIC-DPU/"
+   "library_path": "library/7-网络与光互联/NVIDIA/SuperNIC-DPU/",
+   "node": "part:nic",
+   "nodes": [
+    "part:nic"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "amd-pensando",
@@ -2434,7 +3180,14 @@
    "spec_fields": "速率、UEC超以太联盟特性",
    "website": "amd.com",
    "note": "Ultra Ethernet规范同步跟踪",
-   "library_path": "library/7-网络与光互联/AMD Pensando/AI网卡-DPU/"
+   "library_path": "library/7-网络与光互联/AMD Pensando/AI网卡-DPU/",
+   "node": "part:nic",
+   "nodes": [
+    "part:nic"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "intel-ethernet",
@@ -2457,7 +3210,14 @@
    "spec_fields": "速率、RDMA支持",
    "website": "intel.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/Intel Ethernet/标准网卡/"
+   "library_path": "library/7-网络与光互联/Intel Ethernet/标准网卡/",
+   "node": "part:nic",
+   "nodes": [
+    "part:nic"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "cn-dpu-group",
@@ -2480,7 +3240,14 @@
    "spec_fields": "卸载能力、客户落地",
    "website": "yusur.tech 等",
    "note": "合并采集",
-   "library_path": "library/7-网络与光互联/中科驭数/国产DPU/"
+   "library_path": "library/7-网络与光互联/中科驭数/国产DPU/",
+   "node": "part:nic",
+   "nodes": [
+    "part:nic"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "innolight",
@@ -2503,7 +3270,14 @@
    "spec_fields": "速率、封装、波长与距离（DR/FR/LR）、功耗、DSP方案（LPO/LRO）、硅光比例",
    "website": "innolight.com",
    "note": "全球份额第一；官方资料+扩产公告",
-   "library_path": "library/7-网络与光互联/Innolight/800G-1.6T光模块/"
+   "library_path": "library/7-网络与光互联/Innolight/800G-1.6T光模块/",
+   "node": "part:optics",
+   "nodes": [
+    "part:optics"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "eoptolink",
@@ -2526,7 +3300,14 @@
    "spec_fields": "同上",
    "website": "eoptolink.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/Eoptolink/800G-1.6T光模块/"
+   "library_path": "library/7-网络与光互联/Eoptolink/800G-1.6T光模块/",
+   "node": "part:optics",
+   "nodes": [
+    "part:optics"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "coherent",
@@ -2549,7 +3330,14 @@
    "spec_fields": "同上；激光器自供能力",
    "website": "coherent.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/Coherent/光模块与器件/"
+   "library_path": "library/7-网络与光互联/Coherent/光模块与器件/",
+   "node": "part:optics",
+   "nodes": [
+    "part:optics"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "accelink",
@@ -2572,7 +3360,14 @@
    "spec_fields": "同上",
    "website": "accelink.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/Accelink/光模块/"
+   "library_path": "library/7-网络与光互联/Accelink/光模块/",
+   "node": "part:optics",
+   "nodes": [
+    "part:optics"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "hg-genuine",
@@ -2595,7 +3390,14 @@
    "spec_fields": "同上",
    "website": "hggenuine.com",
    "note": "",
-   "library_path": "library/7-网络与光互联/HG Genuine/光模块/"
+   "library_path": "library/7-网络与光互联/HG Genuine/光模块/",
+   "node": "part:optics",
+   "nodes": [
+    "part:optics"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "cn-optics-group",
@@ -2618,7 +3420,14 @@
    "spec_fields": "同上",
    "website": "各家官网",
    "note": "合并采集",
-   "library_path": "library/7-网络与光互联/索尔思/其他光模块厂/"
+   "library_path": "library/7-网络与光互联/索尔思/其他光模块厂/",
+   "node": "part:optics",
+   "nodes": [
+    "part:optics"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "tfc-optics",
@@ -2641,7 +3450,14 @@
    "spec_fields": "器件类别、CPO导入进度",
    "website": "tfcoptics.com",
    "note": "CPO供应链核心标的",
-   "library_path": "library/7-网络与光互联/TFC Optics/无源器件与光引擎/"
+   "library_path": "library/7-网络与光互联/TFC Optics/无源器件与光引擎/",
+   "node": "part:optics",
+   "nodes": [
+    "part:optics"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "lumentum",
@@ -2664,7 +3480,14 @@
    "spec_fields": "波长、速率、产能",
    "website": "lumentum.com 等",
    "note": "上游激光器供需影响光模块交期",
-   "library_path": "library/7-网络与光互联/Lumentum/激光器芯片/"
+   "library_path": "library/7-网络与光互联/Lumentum/激光器芯片/",
+   "node": "part:optics",
+   "nodes": [
+    "part:optics"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "credo",
@@ -2687,7 +3510,14 @@
    "spec_fields": "速率、长度、功耗 vs DAC/AOC边界",
    "website": "credosemi.com",
    "note": "机柜内/邻柜铜互联趋势受益者",
-   "library_path": "library/7-网络与光互联/Credo/AEC有源电缆/"
+   "library_path": "library/7-网络与光互联/Credo/AEC有源电缆/",
+   "node": "part:copper-interconnect",
+   "nodes": [
+    "part:copper-interconnect"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "amphenol-luxshare-molex-te-connectivity",
@@ -2710,7 +3540,14 @@
    "spec_fields": "速率代际（112/224G）、长度矩阵、NVL72铜背板供应格局",
    "website": "amphenol-cs.com 等",
    "note": "GB200/NVL机柜铜互联价值量大，合并采集",
-   "library_path": "library/7-网络与光互联/安费诺Amphenol/DAC-连接器-背板/"
+   "library_path": "library/7-网络与光互联/安费诺Amphenol/DAC-连接器-背板/",
+   "node": "part:copper-interconnect",
+   "nodes": [
+    "part:copper-interconnect"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "vertiv",
@@ -2733,7 +3570,14 @@
    "spec_fields": "容量kVA/kW、拓扑（在线双变换/模块化）、效率曲线（ECO模式）、并机数、输入谐波、占地功率密度",
    "website": "vertiv.com",
    "note": "官网资料库全（brochure/SL手册/CAD）；覆盖UPS+母线+PDU+温控全链",
-   "library_path": "library/8-供配电/Vertiv/大功率UPS-HVDC/"
+   "library_path": "library/8-供配电/Vertiv/大功率UPS-HVDC/",
+   "node": "part:ups",
+   "nodes": [
+    "part:ups"
+   ],
+   "system": "power",
+   "chain": "UPS",
+   "variable_class": 1
   },
   {
    "company_id": "schneider-electric-apc",
@@ -2756,7 +3600,14 @@
    "spec_fields": "同上；EcoStruxure软件生态",
    "website": "se.com",
    "note": "白皮书库（原APC White Paper）是行业教科书级资料",
-   "library_path": "library/8-供配电/Schneider Electric/大功率UPS-微模块/"
+   "library_path": "library/8-供配电/Schneider Electric/大功率UPS-微模块/",
+   "node": "part:modular-dc",
+   "nodes": [
+    "part:modular-dc"
+   ],
+   "system": "facility",
+   "chain": "土地与建筑",
+   "variable_class": 1
   },
   {
    "company_id": "eaton",
@@ -2779,7 +3630,14 @@
    "spec_fields": "同上",
    "website": "eaton.com",
    "note": "",
-   "library_path": "library/8-供配电/Eaton/大功率UPS/"
+   "library_path": "library/8-供配电/Eaton/大功率UPS/",
+   "node": "part:ups",
+   "nodes": [
+    "part:ups"
+   ],
+   "system": "power",
+   "chain": "UPS",
+   "variable_class": 1
   },
   {
    "company_id": "abb",
@@ -2803,7 +3661,15 @@
    "spec_fields": "同上；中压方案（MV UPS）是超大规模新趋势",
    "website": "abb.com",
    "note": "",
-   "library_path": "library/8-供配电/ABB/中压UPS-配电/"
+   "library_path": "library/8-供配电/ABB/中压UPS-配电/",
+   "node": "part:ups",
+   "nodes": [
+    "part:ups",
+    "part:mv-switchgear"
+   ],
+   "system": "power",
+   "chain": "UPS",
+   "variable_class": 1
   },
   {
    "company_id": "siemens",
@@ -2827,7 +3693,15 @@
    "spec_fields": "开关柜额定电流、短路耐受",
    "website": "siemens.com",
    "note": "",
-   "library_path": "library/8-供配电/Siemens/配电与低压柜/"
+   "library_path": "library/8-供配电/Siemens/配电与低压柜/",
+   "node": "part:ups",
+   "nodes": [
+    "part:ups",
+    "part:lv-switchgear"
+   ],
+   "system": "power",
+   "chain": "UPS",
+   "variable_class": 1
   },
   {
    "company_id": "delta-electronics",
@@ -2850,7 +3724,14 @@
    "spec_fields": "同上；ORv3电源架、48V直流生态",
    "website": "deltaww.com",
    "note": "从芯片级电源到UPS全覆盖，AI机柜供电核心供应商",
-   "library_path": "library/8-供配电/Delta Electronics/UPS-HVDC-ORv3电源/"
+   "library_path": "library/8-供配电/Delta Electronics/UPS-HVDC-ORv3电源/",
+   "node": "part:ups",
+   "nodes": [
+    "part:ups"
+   ],
+   "system": "power",
+   "chain": "UPS",
+   "variable_class": 1
   },
   {
    "company_id": "huawei-digital-power",
@@ -2874,7 +3755,15 @@
    "spec_fields": "同上；预制化PowerPOD交付周期",
    "website": "digitalpower.huawei.com",
    "note": "",
-   "library_path": "library/8-供配电/Huawei Digital Power/全链路电力-锂电/"
+   "library_path": "library/8-供配电/Huawei Digital Power/全链路电力-锂电/",
+   "node": "part:ups",
+   "nodes": [
+    "part:ups",
+    "part:ups-battery"
+   ],
+   "system": "power",
+   "chain": "UPS",
+   "variable_class": 1
   },
   {
    "company_id": "kehua",
@@ -2897,7 +3786,14 @@
    "spec_fields": "同上",
    "website": "kehua.com",
    "note": "",
-   "library_path": "library/8-供配电/Kehua/UPS-微模块/"
+   "library_path": "library/8-供配电/Kehua/UPS-微模块/",
+   "node": "part:modular-dc",
+   "nodes": [
+    "part:modular-dc"
+   ],
+   "system": "facility",
+   "chain": "土地与建筑",
+   "variable_class": 1
   },
   {
    "company_id": "kstar",
@@ -2920,7 +3816,14 @@
    "spec_fields": "同上",
    "website": "kstar.com",
    "note": "",
-   "library_path": "library/8-供配电/Kstar/UPS-微模块/"
+   "library_path": "library/8-供配电/Kstar/UPS-微模块/",
+   "node": "part:modular-dc",
+   "nodes": [
+    "part:modular-dc"
+   ],
+   "system": "facility",
+   "chain": "土地与建筑",
+   "variable_class": 1
   },
   {
    "company_id": "zhongheng-electric",
@@ -2943,7 +3846,14 @@
    "spec_fields": "效率、功率密度、互联网客户采用",
    "website": "zhonghen.com",
    "note": "国内HVDC路线代表",
-   "library_path": "library/8-供配电/Zhongheng Electric/HVDC-巴拿马电源/"
+   "library_path": "library/8-供配电/Zhongheng Electric/HVDC-巴拿马电源/",
+   "node": "part:lv-switchgear",
+   "nodes": [
+    "part:lv-switchgear"
+   ],
+   "system": "power",
+   "chain": "配电",
+   "variable_class": 1
   },
   {
    "company_id": "east",
@@ -2966,7 +3876,14 @@
    "spec_fields": "同上",
    "website": "eastups.com",
    "note": "",
-   "library_path": "library/8-供配电/EAST/UPS/"
+   "library_path": "library/8-供配电/EAST/UPS/",
+   "node": "part:ups",
+   "nodes": [
+    "part:ups"
+   ],
+   "system": "power",
+   "chain": "UPS",
+   "variable_class": 1
   },
   {
    "company_id": "liteon-advanced-energy",
@@ -2990,7 +3907,15 @@
    "spec_fields": "功率等级、效率认证、冗余、48V/±400V新架构跟踪",
    "website": "各家官网",
    "note": "合并采集；AI机柜功率上行最直接受益环节",
-   "library_path": "library/8-供配电/台达/PSU-电源架/"
+   "library_path": "library/8-供配电/台达/PSU-电源架/",
+   "node": "part:power-shelf",
+   "nodes": [
+    "part:power-shelf",
+    "part:psu"
+   ],
+   "system": "power",
+   "chain": "机柜与板级供电",
+   "variable_class": 1
   },
   {
    "company_id": "smartli-vertiv",
@@ -3014,7 +3939,15 @@
    "spec_fields": "容量、循环寿命、消防（UL9540A）、占地",
    "website": "各家官网",
    "note": "合并采集",
-   "library_path": "library/8-供配电/华为SmartLi/机架BBU-锂电柜/"
+   "library_path": "library/8-供配电/华为SmartLi/机架BBU-锂电柜/",
+   "node": "part:bbu",
+   "nodes": [
+    "part:bbu",
+    "part:bess"
+   ],
+   "system": "power",
+   "chain": "机柜与板级供电",
+   "variable_class": 1
   },
   {
    "company_id": "caterpillar",
@@ -3037,7 +3970,14 @@
    "spec_fields": "额定功率（备用/常用）、启动时间、排放等级、并机、油耗",
    "website": "cat.com",
    "note": "数据中心专用页有spec sheet",
-   "library_path": "library/8-供配电/Caterpillar/大功率柴发/"
+   "library_path": "library/8-供配电/Caterpillar/大功率柴发/",
+   "node": "part:backup-power",
+   "nodes": [
+    "part:backup-power"
+   ],
+   "system": "power",
+   "chain": "发电与储能",
+   "variable_class": 1
   },
   {
    "company_id": "cummins",
@@ -3060,7 +4000,14 @@
    "spec_fields": "同上",
    "website": "cummins.com",
    "note": "",
-   "library_path": "library/8-供配电/Cummins/大功率柴发/"
+   "library_path": "library/8-供配电/Cummins/大功率柴发/",
+   "node": "part:backup-power",
+   "nodes": [
+    "part:backup-power"
+   ],
+   "system": "power",
+   "chain": "发电与储能",
+   "variable_class": 1
   },
   {
    "company_id": "rolls-royce-mtu-kohler",
@@ -3083,7 +4030,14 @@
    "spec_fields": "同上",
    "website": "mtu-solutions.com 等",
    "note": "合并采集",
-   "library_path": "library/8-供配电/Rolls-Royce mtu/大功率柴发/"
+   "library_path": "library/8-供配电/Rolls-Royce mtu/大功率柴发/",
+   "node": "part:backup-power",
+   "nodes": [
+    "part:backup-power"
+   ],
+   "system": "power",
+   "chain": "发电与储能",
+   "variable_class": 1
   },
   {
    "company_id": "cn-genset-group",
@@ -3106,7 +4060,14 @@
    "spec_fields": "同上；国产化项目采用",
    "website": "各家官网",
    "note": "合并采集",
-   "library_path": "library/8-供配电/潍柴/国产柴发/"
+   "library_path": "library/8-供配电/潍柴/国产柴发/",
+   "node": "part:backup-power",
+   "nodes": [
+    "part:backup-power"
+   ],
+   "system": "power",
+   "chain": "发电与储能",
+   "variable_class": 1
   },
   {
    "company_id": "cn-dry-transformer-group",
@@ -3129,7 +4090,14 @@
    "spec_fields": "容量、损耗等级、交期",
    "website": "各家官网",
    "note": "合并采集；数据中心订单在其公告中披露",
-   "library_path": "library/8-供配电/金盘科技/干变-预制电力模块/"
+   "library_path": "library/8-供配电/金盘科技/干变-预制电力模块/",
+   "node": "part:transformer",
+   "nodes": [
+    "part:transformer"
+   ],
+   "system": "power",
+   "chain": "变电",
+   "variable_class": 1
   },
   {
    "company_id": "ge-vernova-siemens-energy-mitsubishi-power",
@@ -3152,7 +4120,14 @@
    "spec_fields": "功率等级、简单/联合循环效率、启动时间、订单簿与交期、排放许可",
    "website": "gevernova.com 等",
    "note": "数据中心自备电源新主角：燃机订单簿≥125GW vs 年产能约20GW（Inresearch口径），交期3年+",
-   "library_path": "library/8-供配电/GE Vernova/燃气轮机/"
+   "library_path": "library/8-供配电/GE Vernova/燃气轮机/",
+   "node": "part:gas-turbine",
+   "nodes": [
+    "part:gas-turbine"
+   ],
+   "system": "power",
+   "chain": "发电与储能",
+   "variable_class": 1
   },
   {
    "company_id": "bloom-energy",
@@ -3175,7 +4150,14 @@
    "spec_fields": "单模块功率、发电效率、燃料类型、交付周期（55天级）、度电成本",
    "website": "bloomenergy.com",
    "note": "并网排队期的桥接电源方案，数据中心订单快速增长",
-   "library_path": "library/8-供配电/Bloom Energy/燃料电池/"
+   "library_path": "library/8-供配电/Bloom Energy/燃料电池/",
+   "node": "part:fuel-cell",
+   "nodes": [
+    "part:fuel-cell"
+   ],
+   "system": "power",
+   "chain": "发电与储能",
+   "variable_class": 1
   },
   {
    "company_id": "hitachi-energy-siemens-energy-hyosung-ge-vernova",
@@ -3198,7 +4180,14 @@
    "spec_fields": "容量MVA、电压等级、交期（当前最高4年）、产能扩张计划",
    "website": "hitachienergy.com 等",
    "note": "全行业最紧瓶颈之一；Inresearch已有transformer-lead-time序列，直接复用其数据",
-   "library_path": "library/8-供配电/Hitachi Energy日立能源/大型电力变压器/"
+   "library_path": "library/8-供配电/Hitachi Energy日立能源/大型电力变压器/",
+   "node": "part:transformer",
+   "nodes": [
+    "part:transformer"
+   ],
+   "system": "power",
+   "chain": "变电",
+   "variable_class": 1
   },
   {
    "company_id": "tesla-energy-catl-fluence",
@@ -3221,7 +4210,14 @@
    "spec_fields": "容量MWh/功率、循环寿命、消防认证（UL9540A）、AI负载功率阶跃抑制方案",
    "website": "各家官网",
    "note": "角色从可选变必需：平滑GPU负载阶跃+跨越燃机/柴发启动间隙",
-   "library_path": "library/8-供配电/Tesla Energy/BESS/"
+   "library_path": "library/8-供配电/Tesla Energy/BESS/",
+   "node": "part:bess",
+   "nodes": [
+    "part:bess"
+   ],
+   "system": "power",
+   "chain": "发电与储能",
+   "variable_class": 1
   },
   {
    "company_id": "vertiv",
@@ -3244,7 +4240,14 @@
    "spec_fields": "CDU：冷量kW、一次/二次侧流量与温度、泵冗余（N+1）、过滤精度、控制协议；风冷：显冷量/风量/能效",
    "website": "vertiv.com",
    "note": "NVIDIA参考设计合作方，GB200液冷资料多",
-   "library_path": "library/9-散热与液冷/Vertiv/CDU-全链条温控/"
+   "library_path": "library/9-散热与液冷/Vertiv/CDU-全链条温控/",
+   "node": "part:cdu",
+   "nodes": [
+    "part:cdu"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "coolit-systems",
@@ -3267,7 +4270,14 @@
    "spec_fields": "同上；冷板与各GPU平台适配清单",
    "website": "coolitsystems.com",
    "note": "",
-   "library_path": "library/9-散热与液冷/CoolIT Systems/冷板DLC-CDU/"
+   "library_path": "library/9-散热与液冷/CoolIT Systems/冷板DLC-CDU/",
+   "node": "part:cdu",
+   "nodes": [
+    "part:cdu"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "motivair-by-schneider",
@@ -3290,7 +4300,14 @@
    "spec_fields": "同上",
    "website": "motivaircorp.com",
    "note": "被施耐德收购，与其配电打包",
-   "library_path": "library/9-散热与液冷/Motivair by Schneider/CDU-后门空调/"
+   "library_path": "library/9-散热与液冷/Motivair by Schneider/CDU-后门空调/",
+   "node": "part:cdu",
+   "nodes": [
+    "part:cdu"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "boyd",
@@ -3313,7 +4330,14 @@
    "spec_fields": "同上；OEM导入（直接进服务器BOM）",
    "website": "boydcorp.com",
    "note": "",
-   "library_path": "library/9-散热与液冷/Boyd/冷板-CDU-热管理/"
+   "library_path": "library/9-散热与液冷/Boyd/冷板-CDU-热管理/",
+   "node": "part:cdu",
+   "nodes": [
+    "part:cdu"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "nvent",
@@ -3336,7 +4360,14 @@
    "spec_fields": "同上",
    "website": "nvent.com",
    "note": "",
-   "library_path": "library/9-散热与液冷/nVent/后门-机柜级液冷/"
+   "library_path": "library/9-散热与液冷/nVent/后门-机柜级液冷/",
+   "node": "part:cdu",
+   "nodes": [
+    "part:cdu"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "liquidstack-submer-grc",
@@ -3359,7 +4390,14 @@
    "spec_fields": "单相/两相、槽体功率密度、冷却液类型、PUE实测",
    "website": "liquidstack.com 等",
    "note": "合并采集；浸没渗透率仍低",
-   "library_path": "library/9-散热与液冷/LiquidStack/浸没式液冷/"
+   "library_path": "library/9-散热与液冷/LiquidStack/浸没式液冷/",
+   "node": "part:immersion",
+   "nodes": [
+    "part:immersion"
+   ],
+   "system": "thermal",
+   "chain": "机房与机柜",
+   "variable_class": 1
   },
   {
    "company_id": "zutacore-accelsius",
@@ -3382,7 +4420,14 @@
    "spec_fields": "两相工质、无水方案卖点、落地案例",
    "website": "zutacore.com 等",
    "note": "合并采集",
-   "library_path": "library/9-散热与液冷/ZutaCore/两相直触冷板/"
+   "library_path": "library/9-散热与液冷/ZutaCore/两相直触冷板/",
+   "node": "part:coldplate",
+   "nodes": [
+    "part:coldplate"
+   ],
+   "system": "thermal",
+   "chain": "芯片级",
+   "variable_class": 1
   },
   {
    "company_id": "envicool",
@@ -3405,7 +4450,14 @@
    "spec_fields": "同Vertiv；国内智算中心案例",
    "website": "envicool.com",
    "note": "国内液冷链条最全上市公司",
-   "library_path": "library/9-散热与液冷/Envicool/全链条液冷-机房温控/"
+   "library_path": "library/9-散热与液冷/Envicool/全链条液冷-机房温控/",
+   "node": "part:cdu",
+   "nodes": [
+    "part:cdu"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "shenling",
@@ -3428,7 +4480,14 @@
    "spec_fields": "同上",
    "website": "shenling.com",
    "note": "华为合作紧密",
-   "library_path": "library/9-散热与液冷/Shenling/液冷与专用空调/"
+   "library_path": "library/9-散热与液冷/Shenling/液冷与专用空调/",
+   "node": "part:cdu",
+   "nodes": [
+    "part:cdu"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "goaland",
@@ -3451,7 +4510,14 @@
    "spec_fields": "同上",
    "website": "goaland.com.cn",
    "note": "",
-   "library_path": "library/9-散热与液冷/Goaland/冷板-浸没CDU/"
+   "library_path": "library/9-散热与液冷/Goaland/冷板-浸没CDU/",
+   "node": "part:cdu",
+   "nodes": [
+    "part:cdu"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "sugon-dcu",
@@ -3474,7 +4540,14 @@
    "spec_fields": "同上；相变液冷PUE数据",
    "website": "sugon-dcu.com",
    "note": "与中科曙光整机联动",
-   "library_path": "library/9-散热与液冷/Sugon DCU/浸没相变-冷板整机/"
+   "library_path": "library/9-散热与液冷/Sugon DCU/浸没相变-冷板整机/",
+   "node": "part:immersion",
+   "nodes": [
+    "part:immersion"
+   ],
+   "system": "thermal",
+   "chain": "机房与机柜",
+   "variable_class": 1
   },
   {
    "company_id": "cn-cooling-group",
@@ -3497,7 +4570,14 @@
    "spec_fields": "同上",
    "website": "各家官网",
    "note": "合并采集",
-   "library_path": "library/9-散热与液冷/同飞股份/其他国产温控/"
+   "library_path": "library/9-散热与液冷/同飞股份/其他国产温控/",
+   "node": "part:cdu",
+   "nodes": [
+    "part:cdu"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "stulz",
@@ -3520,7 +4600,14 @@
    "spec_fields": "显冷量、风量、EC风机、能效（AEER）、冷冻水/DX",
    "website": "stulz.com",
    "note": "",
-   "library_path": "library/9-散热与液冷/Stulz/机房空调/"
+   "library_path": "library/9-散热与液冷/Stulz/机房空调/",
+   "node": "part:room-cooling",
+   "nodes": [
+    "part:room-cooling"
+   ],
+   "system": "thermal",
+   "chain": "机房与机柜",
+   "variable_class": 1
   },
   {
    "company_id": "munters",
@@ -3543,7 +4630,14 @@
    "spec_fields": "湿球效率、WUE/PUE、适用气候区",
    "website": "munters.com",
    "note": "",
-   "library_path": "library/9-散热与液冷/Munters/间接蒸发冷却/"
+   "library_path": "library/9-散热与液冷/Munters/间接蒸发冷却/",
+   "node": "part:room-cooling",
+   "nodes": [
+    "part:room-cooling"
+   ],
+   "system": "thermal",
+   "chain": "机房与机柜",
+   "variable_class": 1
   },
   {
    "company_id": "staubli-cpc-parker-danfoss",
@@ -3567,7 +4661,15 @@
    "spec_fields": "通径、流量压降、插拔寿命、漏率、OCP合规",
    "website": "staubli.com 等",
    "note": "合并采集；液冷可靠性的命门部件",
-   "library_path": "library/9-散热与液冷/史陶比尔Staubli/快换接头-manifold/"
+   "library_path": "library/9-散热与液冷/史陶比尔Staubli/快换接头-manifold/",
+   "node": "part:manifold",
+   "nodes": [
+    "part:manifold",
+    "part:quick-disconnect"
+   ],
+   "system": "thermal",
+   "chain": "机房与机柜",
+   "variable_class": 1
   },
   {
    "company_id": "chemours",
@@ -3590,7 +4692,14 @@
    "spec_fields": "粘度、比热、介电强度、GWP与合规（PFAS限制）、MSDS",
    "website": "各家官网",
    "note": "合并采集；3M已退出氟化液",
-   "library_path": "library/9-散热与液冷/Chemours/冷却液-工质/"
+   "library_path": "library/9-散热与液冷/Chemours/冷却液-工质/",
+   "node": "part:coolant",
+   "nodes": [
+    "part:coolant"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "nidec-ebm-papst-avc-auras",
@@ -3614,7 +4723,15 @@
    "spec_fields": "风量静压、功耗、寿命；VC导热能力",
    "website": "各家官网",
    "note": "合并采集；进整机BOM",
-   "library_path": "library/9-散热与液冷/台达/风扇-散热模组-VC/"
+   "library_path": "library/9-散热与液冷/台达/风扇-散热模组-VC/",
+   "node": "part:server-fan",
+   "nodes": [
+    "part:server-fan",
+    "part:heatsink-vc"
+   ],
+   "system": "thermal",
+   "chain": "芯片级",
+   "variable_class": 1
   },
   {
    "company_id": "johnson-controls-trane-carrier-modine",
@@ -3638,7 +4755,15 @@
    "spec_fields": "冷量、COP/IPLV、适配液冷回水温度、WUE、交期",
    "website": "johnsoncontrols.com 等",
    "note": "液冷普及后室外排热侧价值量上升；高水温冷机是新品类",
-   "library_path": "library/9-散热与液冷/Johnson Controls江森自控(York)/冷水机组-干冷器/"
+   "library_path": "library/9-散热与液冷/Johnson Controls江森自控(York)/冷水机组-干冷器/",
+   "node": "part:chiller",
+   "nodes": [
+    "part:chiller",
+    "part:dry-cooler"
+   ],
+   "system": "thermal",
+   "chain": "冷水与 CDU",
+   "variable_class": 1
   },
   {
    "company_id": "ecolab-veolia",
@@ -3661,7 +4786,14 @@
    "spec_fields": "二次侧水质规范（与CDU厂商要求联动）、WUE优化",
    "website": "ecolab.com 等",
    "note": "二次侧水质是液冷可靠性的隐形约束",
-   "library_path": "library/9-散热与液冷/Ecolab(Nalco)/冷却水处理/"
+   "library_path": "library/9-散热与液冷/Ecolab(Nalco)/冷却水处理/",
+   "node": "part:water-treatment",
+   "nodes": [
+    "part:water-treatment"
+   ],
+   "system": "thermal",
+   "chain": "排热",
+   "variable_class": 1
   },
   {
    "company_id": "rittal",
@@ -3684,7 +4816,14 @@
    "spec_fields": "U数、静/动载承重、门穿孔率、宽深尺寸、走线与盲板配件体系",
    "website": "rittal.com",
    "note": "",
-   "library_path": "library/10-机柜布线与物理设施/Rittal/机柜-机柜系统/"
+   "library_path": "library/10-机柜布线与物理设施/Rittal/机柜-机柜系统/",
+   "node": "part:rack-frame",
+   "nodes": [
+    "part:rack-frame"
+   ],
+   "system": "facility",
+   "chain": "土地与建筑",
+   "variable_class": 1
   },
   {
    "company_id": "legrand",
@@ -3707,7 +4846,14 @@
    "spec_fields": "母线：额定电流、插接箱热插拔；PDU：相数/输出口/计量精度/环境监测",
    "website": "legrand.com",
    "note": "Starline在超大规模份额高",
-   "library_path": "library/10-机柜布线与物理设施/Legrand/机柜-PDU-母线/"
+   "library_path": "library/10-机柜布线与物理设施/Legrand/机柜-PDU-母线/",
+   "node": "part:rack-frame",
+   "nodes": [
+    "part:rack-frame"
+   ],
+   "system": "facility",
+   "chain": "土地与建筑",
+   "variable_class": 1
   },
   {
    "company_id": "panduit",
@@ -3730,7 +4876,14 @@
    "spec_fields": "同上",
    "website": "panduit.com",
    "note": "",
-   "library_path": "library/10-机柜布线与物理设施/Panduit/机柜与配线/"
+   "library_path": "library/10-机柜布线与物理设施/Panduit/机柜与配线/",
+   "node": "part:rack-frame",
+   "nodes": [
+    "part:rack-frame"
+   ],
+   "system": "facility",
+   "chain": "土地与建筑",
+   "variable_class": 1
   },
   {
    "company_id": "fusionmodule-smartaisle-ecostruxure-pod-wisemdc",
@@ -3753,7 +4906,14 @@
    "spec_fields": "单柜功率、交付周期、扩容粒度",
    "website": "见供配电表",
    "note": "已在供配电表列出，此处仅提示按微模块口径再采集一次",
-   "library_path": "library/10-机柜布线与物理设施/华为FusionModule/微模块-机柜/"
+   "library_path": "library/10-机柜布线与物理设施/华为FusionModule/微模块-机柜/",
+   "node": "part:modular-dc",
+   "nodes": [
+    "part:modular-dc"
+   ],
+   "system": "facility",
+   "chain": "土地与建筑",
+   "variable_class": 1
   },
   {
    "company_id": "cn-rack-group",
@@ -3776,7 +4936,14 @@
    "spec_fields": "同Rittal",
    "website": "各家官网",
    "note": "合并采集",
-   "library_path": "library/10-机柜布线与物理设施/图腾/国产机柜/"
+   "library_path": "library/10-机柜布线与物理设施/图腾/国产机柜/",
+   "node": "part:rack-frame",
+   "nodes": [
+    "part:rack-frame"
+   ],
+   "system": "facility",
+   "chain": "土地与建筑",
+   "variable_class": 1
   },
   {
    "company_id": "corning",
@@ -3799,7 +4966,14 @@
    "spec_fields": "芯数、连接器类型（MPO8/12/16、MMC）、衰减指标、预端接交付、AI集群布线参考架构",
    "website": "corning.com",
    "note": "AI集群光纤用量数倍增长，参考设计文档多",
-   "library_path": "library/10-机柜布线与物理设施/Corning/数据中心光布线/"
+   "library_path": "library/10-机柜布线与物理设施/Corning/数据中心光布线/",
+   "node": "part:cabling",
+   "nodes": [
+    "part:cabling"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "commscope",
@@ -3822,7 +4996,14 @@
    "spec_fields": "同上；铜缆Cat6A系统",
    "website": "commscope.com",
    "note": "",
-   "library_path": "library/10-机柜布线与物理设施/CommScope/综合布线/"
+   "library_path": "library/10-机柜布线与物理设施/CommScope/综合布线/",
+   "node": "part:cabling",
+   "nodes": [
+    "part:cabling"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "yofc",
@@ -3845,7 +5026,14 @@
    "spec_fields": "同上",
    "website": "各家官网",
    "note": "合并采集",
-   "library_path": "library/10-机柜布线与物理设施/长飞YOFC/国产光纤光缆/"
+   "library_path": "library/10-机柜布线与物理设施/长飞YOFC/国产光纤光缆/",
+   "node": "part:cabling",
+   "nodes": [
+    "part:cabling"
+   ],
+   "system": "network",
+   "chain": "网络",
+   "variable_class": 1
   },
   {
    "company_id": "vesda",
@@ -3868,7 +5056,14 @@
    "spec_fields": "灭火剂类型、保护容积、锂电消防（Pack级探测）",
    "website": "各家官网",
    "note": "液冷+锂电带来新消防需求",
-   "library_path": "library/10-机柜布线与物理设施/气体灭火/机房消防/"
+   "library_path": "library/10-机柜布线与物理设施/气体灭火/机房消防/",
+   "node": "part:fire",
+   "nodes": [
+    "part:fire"
+   ],
+   "system": "facility",
+   "chain": "消防安防",
+   "variable_class": 1
   },
   {
    "company_id": "cn-security-group",
@@ -3891,7 +5086,14 @@
    "spec_fields": "常规安防参数",
    "website": "hikvision.com 等",
    "note": "合并采集，优先级低",
-   "library_path": "library/10-机柜布线与物理设施/海康威视/视频与门禁/"
+   "library_path": "library/10-机柜布线与物理设施/海康威视/视频与门禁/",
+   "node": "part:security",
+   "nodes": [
+    "part:security"
+   ],
+   "system": "facility",
+   "chain": "消防安防",
+   "variable_class": 1
   },
   {
    "company_id": "schneider-ecostruxure-it",
@@ -3914,7 +5116,14 @@
    "spec_fields": "资产/容量/能耗/告警功能矩阵、协议接入（SNMP/Modbus/Redfish）、AI能效优化",
    "website": "se.com",
    "note": "",
-   "library_path": "library/11-DCIM与运维配套/Schneider EcoStruxure IT/DCIM平台/"
+   "library_path": "library/11-DCIM与运维配套/Schneider EcoStruxure IT/DCIM平台/",
+   "node": "part:dcim",
+   "nodes": [
+    "part:dcim"
+   ],
+   "system": "control",
+   "chain": "DCIM/BMS 与固件",
+   "variable_class": 1
   },
   {
    "company_id": "vertiv-environet",
@@ -3937,7 +5146,14 @@
    "spec_fields": "同上",
    "website": "vertiv.com",
    "note": "",
-   "library_path": "library/11-DCIM与运维配套/Vertiv Environet/DCIM平台/"
+   "library_path": "library/11-DCIM与运维配套/Vertiv Environet/DCIM平台/",
+   "node": "part:dcim",
+   "nodes": [
+    "part:dcim"
+   ],
+   "system": "control",
+   "chain": "DCIM/BMS 与固件",
+   "variable_class": 1
   },
   {
    "company_id": "sunbird-dctrack-nlyte",
@@ -3960,7 +5176,14 @@
    "spec_fields": "同上",
    "website": "sunbirddcim.com 等",
    "note": "合并采集",
-   "library_path": "library/11-DCIM与运维配套/Sunbird dcTrack/DCIM平台（海外）/"
+   "library_path": "library/11-DCIM与运维配套/Sunbird dcTrack/DCIM平台（海外）/",
+   "node": "part:dcim",
+   "nodes": [
+    "part:dcim"
+   ],
+   "system": "control",
+   "chain": "DCIM/BMS 与固件",
+   "variable_class": 1
   },
   {
    "company_id": "neteco",
@@ -3983,7 +5206,14 @@
    "spec_fields": "同上",
    "website": "各家官网",
    "note": "合并采集",
-   "library_path": "library/11-DCIM与运维配套/华为NetEco/国产DCIM-动环/"
+   "library_path": "library/11-DCIM与运维配套/华为NetEco/国产DCIM-动环/",
+   "node": "part:dcim",
+   "nodes": [
+    "part:dcim"
+   ],
+   "system": "control",
+   "chain": "DCIM/BMS 与固件",
+   "variable_class": 1
   },
   {
    "company_id": "vertiv-avocent-legrand-raritan",
@@ -4006,7 +5236,14 @@
    "spec_fields": "端口数、4K支持、安全认证",
    "website": "vertiv.com 等",
    "note": "合并采集",
-   "library_path": "library/11-DCIM与运维配套/Vertiv Avocent/KVM-串口-带外/"
+   "library_path": "library/11-DCIM与运维配套/Vertiv Avocent/KVM-串口-带外/",
+   "node": "part:dcim",
+   "nodes": [
+    "part:dcim"
+   ],
+   "system": "control",
+   "chain": "DCIM/BMS 与固件",
+   "variable_class": 1
   },
   {
    "company_id": "ttk-rle-nvent",
@@ -4029,7 +5266,14 @@
    "spec_fields": "定位精度、响应时间、与CDU联动协议",
    "website": "各家官网",
    "note": "液冷普及带动的新必配项，合并采集",
-   "library_path": "library/11-DCIM与运维配套/TTK/漏液检测/"
+   "library_path": "library/11-DCIM与运维配套/TTK/漏液检测/",
+   "node": "part:leak-detection",
+   "nodes": [
+    "part:leak-detection"
+   ],
+   "system": "thermal",
+   "chain": "机房与机柜",
+   "variable_class": 1
   },
   {
    "company_id": "cn-inspection-robot-group",
@@ -4052,7 +5296,14 @@
    "spec_fields": "巡检项、导航方式",
    "website": "各家官网",
    "note": "观察项",
-   "library_path": "library/11-DCIM与运维配套/国自机器人/巡检机器人/"
+   "library_path": "library/11-DCIM与运维配套/国自机器人/巡检机器人/",
+   "node": "part:dcim",
+   "nodes": [
+    "part:dcim"
+   ],
+   "system": "control",
+   "chain": "DCIM/BMS 与固件",
+   "variable_class": 1
   }
  ]
 }

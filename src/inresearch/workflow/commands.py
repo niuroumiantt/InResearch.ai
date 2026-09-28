@@ -72,6 +72,9 @@ def add_price(root, record):
     rec.setdefault('region', None)
     rec.setdefault('assumptions', None)
     rec.setdefault('note', '人工录入')
+    # 登记表两列（2026-09-28）：node 与 variable_class 从骨架派生，录入者不填、填了也以派生为准
+    from inresearch.knowledge import nodes as node_columns
+    rec.update(node_columns.series_fields(rec, node_columns.build_index(root)))
     with json_transaction(workspace_path('data/prices.json', root)) as doc:
         if any((row['series_id'], row['as_of']) == (rec['series_id'], rec['as_of'])
                for row in doc['records']):

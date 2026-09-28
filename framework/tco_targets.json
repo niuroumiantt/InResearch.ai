@@ -1,26 +1,26 @@
 {
-  "version": "2.0.0",
+  "version": "2.1.0",
   "updated": "2026-09-28",
   "title": "五类变量目标清单",
-  "note": "六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；每个物理部件按\"自己的价格、供应商名单、交期\"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机。status 只在已有序列、已录值指标或模型证据支持时为 sourced；2026-09-28 起加第四态 delivered：队已交付到 Git 内载体（资料计划的 doc_id / source_url、带 origin_pointer 的事件卡、带 target_id 的价格记录）但尚未成为序列；只在运行库有的不算。sourced_by 写明 sourced 来自人工登记的序列（registry）还是队交付（delivery）；team_state 写明主责队是否已接入，未接入的队不排到期（next_due 为空，页面显示\"待建队\"）。公司只是实例，随时可换。",
+  "note": "六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；每个物理部件按\"自己的价格、供应商名单、交期\"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。2026-09-28 骨架补齐：每个物理部件再加一行运行（operation，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率）；因子树的 time.build 生成工期、排队与审批行；部件级与权利级行带建设阶段 stage。部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机。status 只在已有序列、已录值指标或模型证据支持时为 sourced；2026-09-28 起加第四态 delivered：队已交付到 Git 内载体（资料计划的 doc_id / source_url、带 origin_pointer 的事件卡、带 target_id 的价格记录）但尚未成为序列；只在运行库有的不算。sourced_by 写明 sourced 来自人工登记的序列（registry）还是队交付（delivery）；team_state 写明主责队是否已接入，未接入的队不排到期（next_due 为空，页面显示\"待建队\"）。公司只是实例，随时可换。",
   "generated_from": {
-    "tco_factors": "1.2.0",
-    "bom": "2.1",
-    "site_rights": "1.0",
+    "tco_factors": "1.3.0",
+    "bom": "2.2",
+    "site_rights": "1.0+stage",
     "rule": "因子抓取条目 + 部件 × 数据类别 + 站点权利 × 变量类"
   },
   "counts": {
-    "factor": 50,
-    "part": 222,
+    "factor": 53,
+    "part": 283,
     "software": 2,
     "archetype": 1,
     "site_right": 12,
-    "total": 287,
+    "total": 351,
     "by_status": {
-      "sourced": 36,
+      "sourced": 37,
       "assumed": 4,
       "delivered": 0,
-      "needed": 247
+      "needed": 310
     }
   },
   "statuses": {
@@ -147,7 +147,8 @@
       "notes": "整柜功率与每柜 GPU 封装数进密度规则",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.revenue.utilization.report",
@@ -190,7 +191,8 @@
       "notes": "集群实际利用率的公开研究与公司披露（已售 GPU 小时 ÷ 可用小时）",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.revenue.utilization.utilization.disclosure",
@@ -240,7 +242,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.revenue.price.gpu_hour.index",
@@ -289,7 +292,8 @@
       "notes": "报价不等于成交；序列取中位并写明配置",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.revenue.tokens.token.price_throughput",
@@ -335,7 +339,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.load.load_factor.measured",
@@ -378,7 +383,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.pue.equipment.efficiency",
@@ -418,7 +424,8 @@
       "notes": "设计 PUE 分解的参照；不替代运营商披露",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.pue.parts.psu_coolant",
@@ -457,7 +464,8 @@
       "notes": "psu、coolant 挂进因子树后填充",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.pue.pue_wue.operator_disclosure",
@@ -509,7 +517,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.pue.pue.survey",
@@ -548,7 +557,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.price.news",
@@ -589,7 +599,8 @@
       "notes": "数据中心专项费率与大负荷条款（TVA、AEP、PGE 类）",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.price.power_price.state_industrial",
@@ -636,7 +647,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.price.power_price.eu_asia",
@@ -681,7 +693,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.price.power_price.cn",
@@ -726,7 +739,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.price.demand_charge.tariff",
@@ -774,7 +788,8 @@
       "notes": "近期任务：电价拆能量与线路两部分",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.energy.price.capacity_market",
@@ -815,7 +830,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.other_opex.staffing.per_mw",
@@ -860,7 +876,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.other_opex.maintenance.share",
@@ -903,7 +920,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.other_opex.other_opex.breakdown",
@@ -945,7 +963,8 @@
       "notes": "四项作者假设；保险与带宽由 fetchreports、fetchquotes 辅助",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.other_opex.wages.bls",
@@ -990,7 +1009,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.other_opex.escalation.eci_cpi",
@@ -1031,7 +1051,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.other_opex.water.rates",
@@ -1069,7 +1090,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.facility.shell_rent.ramp.movein",
@@ -1113,7 +1135,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.facility.shell_rent.rent.shell_lease",
@@ -1157,7 +1180,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.facility.shell_rent.lease.terms",
@@ -1203,7 +1227,8 @@
       "notes": "期限、递增、期权、担保、take-or-pay",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.facility.colo_rate.rent.colo_market",
@@ -1252,7 +1277,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.report",
@@ -1291,7 +1317,8 @@
       "notes": "超大规模厂商与新兴云的服务器/设施折旧年限及变更",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.useful_life.notes",
@@ -1337,7 +1364,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.decommission.aro",
@@ -1375,7 +1403,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.accelerators.product",
@@ -1417,7 +1446,8 @@
       "notes": "GPU/ASIC 与 HBM 的代际规格、单卡功率、整柜价格",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.accelerators.news",
@@ -1458,7 +1488,8 @@
       "notes": "芯片价格变动、供给与交期",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.accelerators.gpu.used_and_rack",
@@ -1503,7 +1534,8 @@
       "notes": "代际价格曲线与残值",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.other_it.boq.reference_design",
@@ -1542,7 +1574,8 @@
       "notes": "每 MW 工程量表：CDU、歧管、电源架、母线、交换机、每 GPU 光模块配比、PSU、冷却液量",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.other_it.components.quotes",
@@ -1581,7 +1614,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.shell.product",
@@ -1633,7 +1667,8 @@
       "notes": "变压器、开关柜、UPS、冷机的交期与价格",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.shell.capex.ppi_escalation",
@@ -1671,7 +1706,8 @@
       "notes": "电气造价涨幅与交期驱动",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.shell.capex.cost_index",
@@ -1728,7 +1764,8 @@
       "notes": "Tier 溢价、软成本与不可预见费仍是作者假设",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.shell.capex.developer_disclosure",
@@ -1774,7 +1811,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.shell.construction.duration",
@@ -1819,7 +1857,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.shell.lead_time.equipment",
@@ -1860,7 +1899,8 @@
       "notes": "近期任务：交期与紧缺驱动建设期与电气造价涨幅",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.shell.interconnection.queue",
@@ -1901,7 +1941,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.btm.btm.generation",
@@ -1941,7 +1982,8 @@
       "notes": "表后电力 MW、造价、COD",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.depreciation.capex.land.land.transactions",
@@ -1984,7 +2026,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.tax.tax_depreciation.macrs",
@@ -2021,7 +2064,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.cost.tax.tax.rates",
@@ -2065,7 +2109,8 @@
       "notes": "动产税与用电税已抓到，待进入模型规则段",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.capital.news",
@@ -2112,7 +2157,8 @@
       "notes": "项目债、GPU 抵押贷、ABS 的利率与杠杆条款",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.capital.debt.terms",
@@ -2163,7 +2209,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.capital.base_rates",
@@ -2201,7 +2248,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.capital.rating.presale",
@@ -2239,7 +2287,8 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "F.capital.exit.cap_rate",
@@ -2281,7 +2330,139 @@
       "notes": "",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": null
+    },
+    {
+      "id": "F.time.build.duration",
+      "variable_class": 4,
+      "layer": 4,
+      "origin": "factor",
+      "factor_ids": [
+        "time.build"
+      ],
+      "factor_id": "time.build",
+      "part_id": null,
+      "site_right_id": null,
+      "model_inputs": [
+        "construction_years"
+      ],
+      "series": [
+        "build-time-to-1gw-months-openai-stargate-abilene",
+        "build-time-to-1gw-months-xai-colossus-2",
+        "build-time-to-1gw-months-anthropic-amazon-new-carlisle",
+        "build-time-to-1gw-months-microsoft-fayetteville",
+        "construction-lead-time-tier3-months"
+      ],
+      "planned_series": [],
+      "indicators": [
+        "construction_duration_months"
+      ],
+      "data_class": "observation",
+      "disclosure_type": "建设期：开工到投运（GW 级园区到 1 GW 历时、Tier III 典型工期）",
+      "publisher_category": "Epoch AI、Uptime Institute、公司里程碑公告与卫星影像",
+      "instances": [
+        "Epoch AI 前沿数据中心跟踪",
+        "Uptime Institute 建设周期调查",
+        "公司项目里程碑公告"
+      ],
+      "mechanism": "pdf_free",
+      "team": "fetchreports",
+      "host": "aws",
+      "calendar": "季度",
+      "team_state": "not_connected",
+      "next_due": null,
+      "status": "sourced",
+      "sourced_by": "registry",
+      "sensitivity_rank": 2,
+      "notes": "建设期进 construction_years；分阶段工期（土建 / 机电 / IT 进场）随部件级交期行汇总",
+      "curated": false,
+      "chain": null,
+      "chain_order": null,
+      "stage": null
+    },
+    {
+      "id": "F.time.build.queue",
+      "variable_class": 4,
+      "layer": 4,
+      "origin": "factor",
+      "factor_ids": [
+        "time.build"
+      ],
+      "factor_id": "time.build",
+      "part_id": null,
+      "site_right_id": null,
+      "model_inputs": [
+        "gate",
+        "gate_wait_years"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [
+        "interconnection_queue_years"
+      ],
+      "data_class": "observation",
+      "disclosure_type": "并网排队年限与大负荷接入流程（哪个门槛先卡：电力还是芯片）",
+      "publisher_category": "LBNL Queued Up、PJM / ERCOT / MISO 队列报告、州公用事业委员会大负荷流程",
+      "instances": [
+        "LBNL Queued Up 年报",
+        "PJM 队列与 ELCC 更新",
+        "ERCOT 大负荷接入报表"
+      ],
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "半年",
+      "team_state": "not_connected",
+      "next_due": null,
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "排队年限进 gate_wait_years；门槛类型进 gate（美国电力、中国芯片）",
+      "curated": false,
+      "chain": null,
+      "chain_order": null,
+      "stage": null
+    },
+    {
+      "id": "F.time.build.permit",
+      "variable_class": 4,
+      "layer": 4,
+      "origin": "factor",
+      "factor_ids": [
+        "time.build"
+      ],
+      "factor_id": "time.build",
+      "part_id": null,
+      "site_right_id": null,
+      "model_inputs": [
+        "permit_months"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "observation",
+      "disclosure_type": "审批期：区划、环评、建设许可的时长，能否与施工重叠",
+      "publisher_category": "SemiAnalysis、地方规划委员会与环评公告、行业律所与咨询报告",
+      "instances": [
+        "SemiAnalysis 2026-09-25 中美建设对比",
+        "弗州 Loudoun 规划委员会议程",
+        "得州与内蒙古审批时限公告"
+      ],
+      "mechanism": "pdf_free",
+      "team": "fetchreports",
+      "host": "aws",
+      "calendar": "季度",
+      "team_state": "not_connected",
+      "next_due": null,
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "审批期进 permit_months；中国 3–6 个月可与施工重叠，美国 12–13 个月不能",
+      "curated": false,
+      "chain": null,
+      "chain_order": null,
+      "stage": null
     },
     {
       "id": "P.shell.spec",
@@ -2323,7 +2504,44 @@
       "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：规格与供应商名单（设施 · 土地与建筑，S2）",
       "curated": true,
       "chain": "土地与建筑",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "shell"
+    },
+    {
+      "id": "P.shell.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.shell"
+      ],
+      "factor_id": "cost.depreciation.capex.shell",
+      "part_id": "shell",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "建筑与土建（含场坪、基础、外墙屋面、机房装修）"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（土建与壳 阶段）",
+      "curated": false,
+      "chain": "土地与建筑",
+      "chain_order": 1,
+      "stage": "shell"
     },
     {
       "id": "P.shell.price",
@@ -2371,7 +2589,8 @@
       "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "土地与建筑",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "shell"
     },
     {
       "id": "P.shell.lead_time",
@@ -2414,7 +2633,8 @@
       "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "土地与建筑",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "shell"
     },
     {
       "id": "P.shell.news",
@@ -2449,7 +2669,8 @@
       "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：tight 状态部件的供应事件",
       "curated": false,
       "chain": "土地与建筑",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "shell"
     },
     {
       "id": "P.rack-frame.spec",
@@ -2491,7 +2712,50 @@
       "notes": "机柜与结构：规格与供应商名单（设施 · 土地与建筑，S4）",
       "curated": true,
       "chain": "土地与建筑",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
+    },
+    {
+      "id": "P.rack-frame.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "revenue.gpus.density"
+      ],
+      "factor_id": "revenue.gpus.density",
+      "part_id": "rack-frame",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [
+        "rack_density_shipping"
+      ],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "OCP社区 · 开放计算规范",
+        "威图 · 机柜/机柜系统",
+        "罗格朗 · 机柜/PDU/母线",
+        "泛达 · 机柜与配线",
+        "图腾 / 一舟 / 威腾电气 · 国产机柜"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "机柜与结构：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "土地与建筑",
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.rack-frame.price",
@@ -2507,9 +2771,7 @@
       "model_inputs": [],
       "series": [],
       "planned_series": [],
-      "indicators": [
-        "rack_density_shipping"
-      ],
+      "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
       "publisher_category": "分销商价目",
@@ -2528,7 +2790,8 @@
       "notes": "机柜与结构：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "土地与建筑",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.rack-frame.lead_time",
@@ -2563,7 +2826,8 @@
       "notes": "机柜与结构：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "土地与建筑",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.rack-frame.news",
@@ -2602,7 +2866,8 @@
       "notes": "机柜与结构：transition 状态部件的供应事件",
       "curated": false,
       "chain": "土地与建筑",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.modular-dc.spec",
@@ -2639,7 +2904,8 @@
       "notes": "预制化/微模块交付（设施基型）：规格与供应商名单（设施 · 土地与建筑，archetype）",
       "curated": true,
       "chain": "土地与建筑",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "shell"
     },
     {
       "id": "P.fire.spec",
@@ -2677,7 +2943,48 @@
       "notes": "消防（探测、气体灭火、喷淋）：规格与供应商名单（设施 · 消防安防，S2）",
       "curated": true,
       "chain": "消防安防",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
+    },
+    {
+      "id": "P.fire.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.other_opex"
+      ],
+      "factor_id": "cost.other_opex",
+      "part_id": "fire",
+      "site_right_id": null,
+      "model_inputs": [
+        "fte_per_mw",
+        "maint_pct_facility",
+        "maint_pct_it"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "气体灭火（七氟丙烷/全氟己酮）+ VESDA极早期探测(Honeywell Xtralis) · 机房消防"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "消防（探测、气体灭火、喷淋）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "消防安防",
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.fire.price",
@@ -2720,7 +3027,8 @@
       "notes": "消防（探测、气体灭火、喷淋）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "消防安防",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.fire.lead_time",
@@ -2757,7 +3065,8 @@
       "notes": "消防（探测、气体灭火、喷淋）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "消防安防",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.security.spec",
@@ -2796,7 +3105,48 @@
       "notes": "安防（门禁、视频、周界）：规格与供应商名单（设施 · 消防安防，S2）",
       "curated": true,
       "chain": "消防安防",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
+    },
+    {
+      "id": "P.security.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.other_opex"
+      ],
+      "factor_id": "cost.other_opex",
+      "part_id": "security",
+      "site_right_id": null,
+      "model_inputs": [
+        "fte_per_mw",
+        "maint_pct_facility",
+        "maint_pct_it"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "海康威视 / 大华 · 视频与门禁"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "安防（门禁、视频、周界）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "消防安防",
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.security.price",
@@ -2839,7 +3189,8 @@
       "notes": "安防（门禁、视频、周界）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "消防安防",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.security.lead_time",
@@ -2876,7 +3227,8 @@
       "notes": "安防（门禁、视频、周界）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "消防安防",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.hv-switchyard.spec",
@@ -2916,7 +3268,46 @@
       "notes": "高压开关站/GIS：规格与供应商名单（电力 · 电网接入，S1）",
       "curated": true,
       "chain": "电网接入",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "grid"
+    },
+    {
+      "id": "P.hv-switchyard.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.shell"
+      ],
+      "factor_id": "cost.depreciation.capex.shell",
+      "part_id": "hv-switchyard",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "日立能源",
+        "西门子能源",
+        "ABB"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "高压开关站/GIS：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（并网与外线 阶段）",
+      "curated": false,
+      "chain": "电网接入",
+      "chain_order": 1,
+      "stage": "grid"
     },
     {
       "id": "P.hv-switchyard.price",
@@ -2961,7 +3352,8 @@
       "notes": "高压开关站/GIS：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "电网接入",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "grid"
     },
     {
       "id": "P.hv-switchyard.lead_time",
@@ -3004,7 +3396,8 @@
       "notes": "高压开关站/GIS：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "电网接入",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "grid"
     },
     {
       "id": "P.hv-switchyard.news",
@@ -3040,7 +3433,8 @@
       "notes": "高压开关站/GIS：tight 状态部件的供应事件",
       "curated": true,
       "chain": "电网接入",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "grid"
     },
     {
       "id": "P.transformer.spec",
@@ -3081,7 +3475,45 @@
       "notes": "大型电力变压器：规格与供应商名单（电力 · 变电，S1）",
       "curated": true,
       "chain": "变电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "grid"
+    },
+    {
+      "id": "P.transformer.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.shell"
+      ],
+      "factor_id": "cost.depreciation.capex.shell",
+      "part_id": "transformer",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与标准",
+      "instances": [
+        "Hitachi Energy / Siemens Energy 变压器损耗与寿命",
+        "DOE 变压器效率标准"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "大型电力变压器：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（并网与外线 阶段）",
+      "curated": true,
+      "chain": "变电",
+      "chain_order": 1,
+      "stage": "grid"
     },
     {
       "id": "P.transformer.price",
@@ -3126,7 +3558,8 @@
       "notes": "大型电力变压器：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "变电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "grid"
     },
     {
       "id": "P.transformer.lead_time",
@@ -3173,7 +3606,8 @@
       "notes": "大型电力变压器：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "变电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "grid"
     },
     {
       "id": "P.transformer.news",
@@ -3209,7 +3643,8 @@
       "notes": "大型电力变压器：tight 状态部件的供应事件",
       "curated": true,
       "chain": "变电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "grid"
     },
     {
       "id": "P.mv-switchgear.spec",
@@ -3250,7 +3685,44 @@
       "notes": "中压开关柜：规格与供应商名单（电力 · 变电，S1）",
       "curated": true,
       "chain": "变电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "grid"
+    },
+    {
+      "id": "P.mv-switchgear.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.shell"
+      ],
+      "factor_id": "cost.depreciation.capex.shell",
+      "part_id": "mv-switchgear",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "ABB · 中压UPS/配电"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "中压开关柜：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（并网与外线 阶段）",
+      "curated": false,
+      "chain": "变电",
+      "chain_order": 2,
+      "stage": "grid"
     },
     {
       "id": "P.mv-switchgear.price",
@@ -3294,7 +3766,8 @@
       "notes": "中压开关柜：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "变电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "grid"
     },
     {
       "id": "P.mv-switchgear.lead_time",
@@ -3337,7 +3810,8 @@
       "notes": "中压开关柜：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "变电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "grid"
     },
     {
       "id": "P.mv-switchgear.news",
@@ -3372,7 +3846,8 @@
       "notes": "中压开关柜：tight 状态部件的供应事件",
       "curated": true,
       "chain": "变电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "grid"
     },
     {
       "id": "P.gas-turbine.spec",
@@ -3412,7 +3887,46 @@
       "notes": "燃气轮机：规格与供应商名单（电力 · 发电与储能，S1）",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
+    },
+    {
+      "id": "P.gas-turbine.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.price",
+        "cost.depreciation.capex.btm"
+      ],
+      "factor_id": "cost.energy.price",
+      "part_id": "gas-turbine",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与运营披露",
+      "instances": [
+        "GE Vernova / Siemens Energy / Mitsubishi 热耗率与可用率",
+        "EIA 860 机组数据"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "季度",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "燃气轮机：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": true,
+      "chain": "发电与储能",
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.gas-turbine.price",
@@ -3457,7 +3971,8 @@
       "notes": "燃气轮机：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.gas-turbine.lead_time",
@@ -3499,7 +4014,8 @@
       "notes": "燃气轮机：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.gas-turbine.news",
@@ -3537,7 +4053,8 @@
       "notes": "燃气轮机：tight 状态部件的供应事件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.gas-engine.spec",
@@ -3578,7 +4095,45 @@
       "notes": "燃气往复式机组：规格与供应商名单（电力 · 发电与储能，S1）",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
+    },
+    {
+      "id": "P.gas-engine.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.price",
+        "cost.depreciation.capex.btm"
+      ],
+      "factor_id": "cost.energy.price",
+      "part_id": "gas-engine",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "瓦锡兰"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "燃气往复式机组：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "发电与储能",
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.gas-engine.price",
@@ -3619,7 +4174,8 @@
       "notes": "燃气往复式机组：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.gas-engine.lead_time",
@@ -3659,7 +4215,8 @@
       "notes": "燃气往复式机组：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.gas-engine.news",
@@ -3695,7 +4252,8 @@
       "notes": "燃气往复式机组：transition 状态部件的供应事件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.fuel-cell.spec",
@@ -3733,7 +4291,45 @@
       "notes": "燃料电池：规格与供应商名单（电力 · 发电与储能，S1）",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
+    },
+    {
+      "id": "P.fuel-cell.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.price",
+        "cost.depreciation.capex.btm"
+      ],
+      "factor_id": "cost.energy.price",
+      "part_id": "fuel-cell",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "Bloom Energy · 燃料电池"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "燃料电池：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "发电与储能",
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.fuel-cell.price",
@@ -3774,7 +4370,8 @@
       "notes": "燃料电池：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.fuel-cell.lead_time",
@@ -3812,7 +4409,8 @@
       "notes": "燃料电池：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.fuel-cell.news",
@@ -3849,7 +4447,8 @@
       "notes": "燃料电池：transition 状态部件的供应事件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.smr.spec",
@@ -3888,7 +4487,44 @@
       "notes": "小型模块化反应堆：规格与供应商名单（电力 · 发电与储能，S1）",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
+    },
+    {
+      "id": "P.smr.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.btm"
+      ],
+      "factor_id": "cost.depreciation.capex.btm",
+      "part_id": "smr",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "小型模块化反应堆"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "小型模块化反应堆：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "发电与储能",
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.smr.price",
@@ -3929,7 +4565,8 @@
       "notes": "小型模块化反应堆：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.smr.lead_time",
@@ -3965,7 +4602,8 @@
       "notes": "小型模块化反应堆：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.smr.news",
@@ -4001,7 +4639,8 @@
       "notes": "小型模块化反应堆：emerging 状态部件的供应事件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.backup-power.spec",
@@ -4042,7 +4681,47 @@
       "notes": "柴油发电机组：规格与供应商名单（电力 · 发电与储能，S1）",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "mep"
+    },
+    {
+      "id": "P.backup-power.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.shell"
+      ],
+      "factor_id": "cost.depreciation.capex.shell",
+      "part_id": "backup-power",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "卡特彼勒 · 大功率柴发",
+        "康明斯 · 大功率柴发",
+        "Rolls-Royce mtu / Kohler / 三菱重工 · 大功率柴发",
+        "潍柴 / 玉柴 / 科泰电源 · 国产柴发"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "柴油发电机组：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "发电与储能",
+      "chain_order": 5,
+      "stage": "mep"
     },
     {
       "id": "P.backup-power.price",
@@ -4087,7 +4766,8 @@
       "notes": "柴油发电机组：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "mep"
     },
     {
       "id": "P.backup-power.lead_time",
@@ -4132,7 +4812,8 @@
       "notes": "柴油发电机组：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "mep"
     },
     {
       "id": "P.backup-power.news",
@@ -4168,7 +4849,8 @@
       "notes": "柴油发电机组：tight 状态部件的供应事件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "mep"
     },
     {
       "id": "P.fuel-storage.spec",
@@ -4205,7 +4887,44 @@
       "notes": "柴油储运（储罐、日用箱、加注）：规格与供应商名单（电力 · 发电与储能，S1）",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "mep"
+    },
+    {
+      "id": "P.fuel-storage.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.btm"
+      ],
+      "factor_id": "cost.depreciation.capex.btm",
+      "part_id": "fuel-storage",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "柴油储运（储罐、日用箱、加注）"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "柴油储运（储罐、日用箱、加注）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "发电与储能",
+      "chain_order": 6,
+      "stage": "mep"
     },
     {
       "id": "P.fuel-storage.price",
@@ -4243,7 +4962,8 @@
       "notes": "柴油储运（储罐、日用箱、加注）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "mep"
     },
     {
       "id": "P.fuel-storage.lead_time",
@@ -4278,7 +4998,8 @@
       "notes": "柴油储运（储罐、日用箱、加注）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "mep"
     },
     {
       "id": "P.bess.spec",
@@ -4319,7 +5040,46 @@
       "notes": "储能系统（BESS）：规格与供应商名单（电力 · 发电与储能，S1）",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "mep"
+    },
+    {
+      "id": "P.bess.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.price",
+        "cost.depreciation.capex.btm"
+      ],
+      "factor_id": "cost.energy.price",
+      "part_id": "bess",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与运营披露",
+      "instances": [
+        "Tesla Megapack / CATL 循环寿命与往返效率",
+        "EIA 860 储能机组"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "季度",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "储能系统（BESS）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": true,
+      "chain": "发电与储能",
+      "chain_order": 7,
+      "stage": "mep"
     },
     {
       "id": "P.bess.price",
@@ -4361,7 +5121,8 @@
       "notes": "储能系统（BESS）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "mep"
     },
     {
       "id": "P.bess.lead_time",
@@ -4400,7 +5161,8 @@
       "notes": "储能系统（BESS）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "mep"
     },
     {
       "id": "P.bess.news",
@@ -4437,7 +5199,8 @@
       "notes": "储能系统（BESS）：emerging 状态部件的供应事件",
       "curated": true,
       "chain": "发电与储能",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "mep"
     },
     {
       "id": "P.ups.spec",
@@ -4479,7 +5242,45 @@
       "notes": "UPS 系统（整流、逆变、静态开关）：规格与供应商名单（电力 · UPS，S3）",
       "curated": true,
       "chain": "UPS",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
+    },
+    {
+      "id": "P.ups.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.shell"
+      ],
+      "factor_id": "cost.depreciation.capex.shell",
+      "part_id": "ups",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与效率认证",
+      "instances": [
+        "Vertiv / Schneider / Eaton UPS 效率曲线",
+        "Energy Star UPS 数据库"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "UPS 系统（整流、逆变、静态开关）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": true,
+      "chain": "UPS",
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.ups.price",
@@ -4524,7 +5325,8 @@
       "notes": "UPS 系统（整流、逆变、静态开关）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "UPS",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.ups.lead_time",
@@ -4567,7 +5369,8 @@
       "notes": "UPS 系统（整流、逆变、静态开关）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "UPS",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.ups-battery.spec",
@@ -4608,7 +5411,44 @@
       "notes": "UPS 电池（锂电/铅酸）：规格与供应商名单（电力 · UPS，S3）",
       "curated": true,
       "chain": "UPS",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
+    },
+    {
+      "id": "P.ups-battery.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.shell"
+      ],
+      "factor_id": "cost.depreciation.capex.shell",
+      "part_id": "ups-battery",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "华为数字能源 · 全链路电力/锂电"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "UPS 电池（锂电/铅酸）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "UPS",
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.ups-battery.price",
@@ -4653,7 +5493,8 @@
       "notes": "UPS 电池（锂电/铅酸）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "UPS",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.ups-battery.lead_time",
@@ -4695,7 +5536,8 @@
       "notes": "UPS 电池（锂电/铅酸）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "UPS",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.ups-battery.news",
@@ -4730,7 +5572,8 @@
       "notes": "UPS 电池（锂电/铅酸）：transition 状态部件的供应事件",
       "curated": true,
       "chain": "UPS",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.lv-switchgear.spec",
@@ -4772,7 +5615,45 @@
       "notes": "低压开关柜：规格与供应商名单（电力 · 配电，S3）",
       "curated": true,
       "chain": "配电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
+    },
+    {
+      "id": "P.lv-switchgear.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.shell"
+      ],
+      "factor_id": "cost.depreciation.capex.shell",
+      "part_id": "lv-switchgear",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "西门子 · 配电与低压柜",
+        "中恒电气 · HVDC/巴拿马电源"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "低压开关柜：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "配电",
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.lv-switchgear.price",
@@ -4816,7 +5697,8 @@
       "notes": "低压开关柜：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "配电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.lv-switchgear.lead_time",
@@ -4859,7 +5741,8 @@
       "notes": "低压开关柜：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "配电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.lv-switchgear.news",
@@ -4895,7 +5778,8 @@
       "notes": "低压开关柜：tight 状态部件的供应事件",
       "curated": true,
       "chain": "配电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.busway.spec",
@@ -4937,7 +5821,46 @@
       "notes": "母线槽：规格与供应商名单（电力 · 配电，S3）",
       "curated": true,
       "chain": "配电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
+    },
+    {
+      "id": "P.busway.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.shell"
+      ],
+      "factor_id": "cost.depreciation.capex.shell",
+      "part_id": "busway",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "伊顿",
+        "施耐德电气",
+        "西门子"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "母线槽：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "配电",
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.busway.price",
@@ -4981,7 +5904,8 @@
       "notes": "母线槽：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "配电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.busway.lead_time",
@@ -5023,7 +5947,8 @@
       "notes": "母线槽：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "配电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.busway.news",
@@ -5058,7 +5983,8 @@
       "notes": "母线槽：tight 状态部件的供应事件",
       "curated": true,
       "chain": "配电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.pdu.spec",
@@ -5100,7 +6026,46 @@
       "notes": "机房配电柜/PDU/RPP（含机柜配电条）：规格与供应商名单（电力 · 配电，S3）",
       "curated": true,
       "chain": "配电",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
+    },
+    {
+      "id": "P.pdu.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.shell"
+      ],
+      "factor_id": "cost.depreciation.capex.shell",
+      "part_id": "pdu",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "维谛技术",
+        "伊顿",
+        "施耐德电气"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "机房配电柜/PDU/RPP（含机柜配电条）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "配电",
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.pdu.price",
@@ -5145,7 +6110,8 @@
       "notes": "机房配电柜/PDU/RPP（含机柜配电条）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "配电",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.pdu.lead_time",
@@ -5186,7 +6152,8 @@
       "notes": "机房配电柜/PDU/RPP（含机柜配电条）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "配电",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.power-shelf.spec",
@@ -5229,7 +6196,44 @@
       "notes": "机柜电源架（AC-DC / HVDC 整流）：规格与供应商名单（电力 · 机柜与板级供电，S4）",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
+    },
+    {
+      "id": "P.power-shelf.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "revenue.gpus.density"
+      ],
+      "factor_id": "revenue.gpus.density",
+      "part_id": "power-shelf",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "台达 / 光宝LiteOn / 群光电能 / Advanced Energy / 麦格米特 / 欧陆通 · PSU/电源架"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "机柜电源架（AC-DC / HVDC 整流）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "机柜与板级供电",
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.power-shelf.price",
@@ -5265,7 +6269,8 @@
       "notes": "机柜电源架（AC-DC / HVDC 整流）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.power-shelf.lead_time",
@@ -5302,7 +6307,8 @@
       "notes": "机柜电源架（AC-DC / HVDC 整流）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.power-shelf.news",
@@ -5338,7 +6344,8 @@
       "notes": "机柜电源架（AC-DC / HVDC 整流）：transition 状态部件的供应事件",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.bbu.spec",
@@ -5375,7 +6382,42 @@
       "notes": "机柜电池备份单元：规格与供应商名单（电力 · 机柜与板级供电，S4）",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
+    },
+    {
+      "id": "P.bbu.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [],
+      "factor_id": null,
+      "part_id": "bbu",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "华为SmartLi / Vertiv / 宁德时代 / 双登 / 南都电源 · 机架BBU/锂电柜"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "机柜电池备份单元：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "机柜与板级供电",
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.bbu.price",
@@ -5408,7 +6450,8 @@
       "notes": "机柜电池备份单元：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.bbu.lead_time",
@@ -5442,7 +6485,8 @@
       "notes": "机柜电池备份单元：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.bbu.news",
@@ -5475,7 +6519,8 @@
       "notes": "机柜电池备份单元：transition 状态部件的供应事件",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.psu.spec",
@@ -5514,7 +6559,44 @@
       "notes": "服务器电源模块（PSU）：规格与供应商名单（电力 · 机柜与板级供电，S5）",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
+    },
+    {
+      "id": "P.psu.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "psu",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "台达 / 光宝LiteOn / 群光电能 / Advanced Energy / 麦格米特 / 欧陆通 · PSU/电源架"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "服务器电源模块（PSU）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "机柜与板级供电",
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.psu.price",
@@ -5553,7 +6635,8 @@
       "notes": "服务器电源模块（PSU）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.psu.lead_time",
@@ -5589,7 +6672,8 @@
       "notes": "服务器电源模块（PSU）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.vrm.spec",
@@ -5629,7 +6713,44 @@
       "notes": "板级供电（VRM/Power Stage）：规格与供应商名单（电力 · 机柜与板级供电，S5）",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
+    },
+    {
+      "id": "P.vrm.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "vrm",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "Infineon / MPS / Renesas / ADI / TI · 服务器供电芯片"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "板级供电（VRM/Power Stage）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "机柜与板级供电",
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.vrm.price",
@@ -5668,7 +6789,8 @@
       "notes": "板级供电（VRM/Power Stage）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.vrm.lead_time",
@@ -5704,7 +6826,8 @@
       "notes": "板级供电（VRM/Power Stage）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "机柜与板级供电",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.vrm.news",
@@ -5739,7 +6862,8 @@
       "notes": "板级供电（VRM/Power Stage）：tight 状态部件的供应事件",
       "curated": false,
       "chain": "机柜与板级供电",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.dry-cooler.spec",
@@ -5780,7 +6904,48 @@
       "notes": "干冷器/冷却塔/蒸发冷：规格与供应商名单（冷却 · 排热，S1）",
       "curated": true,
       "chain": "排热",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
+    },
+    {
+      "id": "P.dry-cooler.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.pue"
+      ],
+      "factor_id": "cost.energy.pue",
+      "part_id": "dry-cooler",
+      "site_right_id": null,
+      "model_inputs": [
+        "pue",
+        "wue"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与 ASHRAE",
+      "instances": [
+        "干冷器 / 冷却塔 WUE 与风机功率",
+        "ASHRAE 冷却设备指南"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "干冷器/冷却塔/蒸发冷：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": true,
+      "chain": "排热",
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.dry-cooler.price",
@@ -5816,7 +6981,8 @@
       "notes": "干冷器/冷却塔/蒸发冷：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "排热",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.dry-cooler.lead_time",
@@ -5853,7 +7019,8 @@
       "notes": "干冷器/冷却塔/蒸发冷：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "排热",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.water-treatment.spec",
@@ -5890,7 +7057,48 @@
       "notes": "水处理与供水（泵站、过滤、软化）：规格与供应商名单（冷却 · 排热，S1）",
       "curated": true,
       "chain": "排热",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
+    },
+    {
+      "id": "P.water-treatment.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.other_opex"
+      ],
+      "factor_id": "cost.other_opex",
+      "part_id": "water-treatment",
+      "site_right_id": null,
+      "model_inputs": [
+        "fte_per_mw",
+        "maint_pct_facility",
+        "maint_pct_it"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "Ecolab(Nalco) / Veolia · 冷却水处理"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "水处理与供水（泵站、过滤、软化）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "排热",
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.water-treatment.price",
@@ -5933,7 +7141,8 @@
       "notes": "水处理与供水（泵站、过滤、软化）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "排热",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.water-treatment.lead_time",
@@ -5970,7 +7179,8 @@
       "notes": "水处理与供水（泵站、过滤、软化）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "排热",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.chiller.spec",
@@ -6011,7 +7221,48 @@
       "notes": "冷水机组：规格与供应商名单（冷却 · 冷水与 CDU，S3）",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
+    },
+    {
+      "id": "P.chiller.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.pue"
+      ],
+      "factor_id": "cost.energy.pue",
+      "part_id": "chiller",
+      "site_right_id": null,
+      "model_inputs": [
+        "pue",
+        "wue"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与效率标准",
+      "instances": [
+        "Carrier / Trane / York 冷机 COP 曲线",
+        "AHRI 550/590 认证"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "冷水机组：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": true,
+      "chain": "冷水与 CDU",
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.chiller.price",
@@ -6047,7 +7298,8 @@
       "notes": "冷水机组：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.chiller.lead_time",
@@ -6084,7 +7336,8 @@
       "notes": "冷水机组：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.chilled-water-loop.spec",
@@ -6124,7 +7377,47 @@
       "notes": "冷冻水泵、管路与阀门：规格与供应商名单（冷却 · 冷水与 CDU，S3）",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
+    },
+    {
+      "id": "P.chilled-water-loop.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.pue"
+      ],
+      "factor_id": "cost.energy.pue",
+      "part_id": "chilled-water-loop",
+      "site_right_id": null,
+      "model_inputs": [
+        "pue",
+        "wue"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "冷冻水泵、管路与阀门"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "冷冻水泵、管路与阀门：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "冷水与 CDU",
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.chilled-water-loop.price",
@@ -6159,7 +7452,8 @@
       "notes": "冷冻水泵、管路与阀门：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.chilled-water-loop.lead_time",
@@ -6194,7 +7488,8 @@
       "notes": "冷冻水泵、管路与阀门：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.cdu.spec",
@@ -6236,7 +7531,49 @@
       "notes": "CDU 与液冷分配：规格与供应商名单（冷却 · 冷水与 CDU，S3）",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
+    },
+    {
+      "id": "P.cdu.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.pue"
+      ],
+      "factor_id": "cost.energy.pue",
+      "part_id": "cdu",
+      "site_right_id": null,
+      "model_inputs": [
+        "pue",
+        "wue"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与实测",
+      "instances": [
+        "Vertiv / Motivair / CoolIT CDU 容量与泵功率",
+        "OCP 液冷规范",
+        "液冷渗透率报告"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "CDU 与液冷分配：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": true,
+      "chain": "冷水与 CDU",
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.cdu.price",
@@ -6273,7 +7610,8 @@
       "notes": "CDU 与液冷分配：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.cdu.lead_time",
@@ -6311,7 +7649,8 @@
       "notes": "CDU 与液冷分配：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.cdu.news",
@@ -6347,7 +7686,8 @@
       "notes": "CDU 与液冷分配：transition 状态部件的供应事件",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.coolant.spec",
@@ -6388,7 +7728,47 @@
       "notes": "冷却液/工质：规格与供应商名单（冷却 · 冷水与 CDU，S4）",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
+    },
+    {
+      "id": "P.coolant.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.pue"
+      ],
+      "factor_id": "cost.energy.pue",
+      "part_id": "coolant",
+      "site_right_id": null,
+      "model_inputs": [
+        "pue",
+        "wue"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "Chemours / 壳牌 / 埃克森美孚 / 中石化润滑油 · 冷却液/工质"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "冷却液/工质：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "冷水与 CDU",
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.coolant.price",
@@ -6423,7 +7803,8 @@
       "notes": "冷却液/工质：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.coolant.lead_time",
@@ -6458,7 +7839,8 @@
       "notes": "冷却液/工质：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "冷水与 CDU",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.room-cooling.spec",
@@ -6499,7 +7881,48 @@
       "notes": "机房空气冷却（CRAH/CRAC/风墙）：规格与供应商名单（冷却 · 机房与机柜，S3）",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
+    },
+    {
+      "id": "P.room-cooling.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.pue"
+      ],
+      "factor_id": "cost.energy.pue",
+      "part_id": "room-cooling",
+      "site_right_id": null,
+      "model_inputs": [
+        "pue",
+        "wue"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "世图兹 · 机房空调",
+        "蒙特 · 间接蒸发冷却"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "机房空气冷却（CRAH/CRAC/风墙）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "机房与机柜",
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.room-cooling.price",
@@ -6535,7 +7958,8 @@
       "notes": "机房空气冷却（CRAH/CRAC/风墙）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.room-cooling.lead_time",
@@ -6571,7 +7995,8 @@
       "notes": "机房空气冷却（CRAH/CRAC/风墙）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "P.immersion.spec",
@@ -6609,7 +8034,45 @@
       "notes": "浸没式液冷槽/系统：规格与供应商名单（冷却 · 机房与机柜，S3）",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
+    },
+    {
+      "id": "P.immersion.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "immersion",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "LiquidStack / Submer / GRC · 浸没式液冷",
+        "曙光数创 · 浸没相变/冷板整机"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "浸没式液冷槽/系统：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "机房与机柜",
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.immersion.price",
@@ -6647,7 +8110,8 @@
       "notes": "浸没式液冷槽/系统：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.immersion.lead_time",
@@ -6682,7 +8146,8 @@
       "notes": "浸没式液冷槽/系统：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.immersion.news",
@@ -6717,7 +8182,8 @@
       "notes": "浸没式液冷槽/系统：emerging 状态部件的供应事件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "P.sidecar-hx.spec",
@@ -6755,7 +8221,47 @@
       "notes": "机柜级液-气换热器（RDHx/Sidecar）：规格与供应商名单（冷却 · 机房与机柜，S4）",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
+    },
+    {
+      "id": "P.sidecar-hx.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "sidecar-hx",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "nVent",
+        "Motivair",
+        "CoolIT",
+        "Boyd"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "机柜级液-气换热器（RDHx/Sidecar）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "机房与机柜",
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.sidecar-hx.price",
@@ -6793,7 +8299,8 @@
       "notes": "机柜级液-气换热器（RDHx/Sidecar）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.sidecar-hx.lead_time",
@@ -6829,7 +8336,8 @@
       "notes": "机柜级液-气换热器（RDHx/Sidecar）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.sidecar-hx.news",
@@ -6867,7 +8375,8 @@
       "notes": "机柜级液-气换热器（RDHx/Sidecar）：transition 状态部件的供应事件",
       "curated": false,
       "chain": "机房与机柜",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "P.manifold.spec",
@@ -6905,7 +8414,44 @@
       "notes": "机柜歧管与管路：规格与供应商名单（冷却 · 机房与机柜，S4）",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
+    },
+    {
+      "id": "P.manifold.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "manifold",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "史陶比尔Staubli / CPC / Parker / Danfoss / 中航光电 · 快换接头/manifold"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "机柜歧管与管路：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "机房与机柜",
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.manifold.price",
@@ -6943,7 +8489,8 @@
       "notes": "机柜歧管与管路：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.manifold.lead_time",
@@ -6979,7 +8526,8 @@
       "notes": "机柜歧管与管路：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.manifold.news",
@@ -7014,7 +8562,8 @@
       "notes": "机柜歧管与管路：tight 状态部件的供应事件",
       "curated": false,
       "chain": "机房与机柜",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "P.quick-disconnect.spec",
@@ -7053,7 +8602,44 @@
       "notes": "快接头：规格与供应商名单（冷却 · 机房与机柜，S4）",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "mep"
+    },
+    {
+      "id": "P.quick-disconnect.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "quick-disconnect",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "史陶比尔Staubli / CPC / Parker / Danfoss / 中航光电 · 快换接头/manifold"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "快接头：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "机房与机柜",
+      "chain_order": 5,
+      "stage": "mep"
     },
     {
       "id": "P.quick-disconnect.price",
@@ -7091,7 +8677,8 @@
       "notes": "快接头：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "mep"
     },
     {
       "id": "P.quick-disconnect.lead_time",
@@ -7128,7 +8715,8 @@
       "notes": "快接头：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "mep"
     },
     {
       "id": "P.quick-disconnect.news",
@@ -7164,7 +8752,8 @@
       "notes": "快接头：tight 状态部件的供应事件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "mep"
     },
     {
       "id": "P.leak-detection.spec",
@@ -7201,7 +8790,48 @@
       "notes": "漏液检测：规格与供应商名单（冷却 · 机房与机柜，S3）",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "mep"
+    },
+    {
+      "id": "P.leak-detection.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.other_opex"
+      ],
+      "factor_id": "cost.other_opex",
+      "part_id": "leak-detection",
+      "site_right_id": null,
+      "model_inputs": [
+        "fte_per_mw",
+        "maint_pct_facility",
+        "maint_pct_it"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "TTK / RLE / nVent / 国产（周立功等） · 漏液检测"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "漏液检测：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（机电 阶段）",
+      "curated": false,
+      "chain": "机房与机柜",
+      "chain_order": 6,
+      "stage": "mep"
     },
     {
       "id": "P.leak-detection.price",
@@ -7244,7 +8874,8 @@
       "notes": "漏液检测：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "mep"
     },
     {
       "id": "P.leak-detection.lead_time",
@@ -7281,7 +8912,8 @@
       "notes": "漏液检测：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "机房与机柜",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "mep"
     },
     {
       "id": "P.leak-detection.news",
@@ -7316,7 +8948,8 @@
       "notes": "漏液检测：tight 状态部件的供应事件",
       "curated": false,
       "chain": "机房与机柜",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "mep"
     },
     {
       "id": "P.coldplate.spec",
@@ -7356,7 +8989,48 @@
       "notes": "冷板：规格与供应商名单（冷却 · 芯片级，S5）",
       "curated": true,
       "chain": "芯片级",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
+    },
+    {
+      "id": "P.coldplate.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "coldplate",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [
+        "liquid_cooling_penetration"
+      ],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与 OCP",
+      "instances": [
+        "冷板热阻与流阻规格",
+        "OCP 冷板规范",
+        "ASHRAE 液冷指南"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "冷板：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "芯片级",
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.coldplate.price",
@@ -7375,9 +9049,7 @@
       ],
       "series": [],
       "planned_series": [],
-      "indicators": [
-        "liquid_cooling_penetration"
-      ],
+      "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
       "publisher_category": "研报 BOM 与厂商月营收",
@@ -7397,7 +9069,8 @@
       "notes": "冷板：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "芯片级",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.coldplate.lead_time",
@@ -7433,7 +9106,8 @@
       "notes": "冷板：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "芯片级",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.coldplate.news",
@@ -7468,7 +9142,8 @@
       "notes": "冷板：transition 状态部件的供应事件",
       "curated": true,
       "chain": "芯片级",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.heatsink-vc.spec",
@@ -7507,7 +9182,44 @@
       "notes": "均热板与散热器：规格与供应商名单（冷却 · 芯片级，S5）",
       "curated": true,
       "chain": "芯片级",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
+    },
+    {
+      "id": "P.heatsink-vc.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "heatsink-vc",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "台达 / Nidec / ebm-papst / 奇鋐AVC / 双鸿Auras · 风扇/散热模组/VC"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "均热板与散热器：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "芯片级",
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.heatsink-vc.price",
@@ -7546,7 +9258,8 @@
       "notes": "均热板与散热器：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "芯片级",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.heatsink-vc.lead_time",
@@ -7582,7 +9295,8 @@
       "notes": "均热板与散热器：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "芯片级",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.server-fan.spec",
@@ -7621,7 +9335,44 @@
       "notes": "服务器风扇：规格与供应商名单（冷却 · 芯片级，S5）",
       "curated": true,
       "chain": "芯片级",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
+    },
+    {
+      "id": "P.server-fan.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "server-fan",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "台达 / Nidec / ebm-papst / 奇鋐AVC / 双鸿Auras · 风扇/散热模组/VC"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "服务器风扇：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "芯片级",
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.server-fan.price",
@@ -7660,7 +9411,8 @@
       "notes": "服务器风扇：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "芯片级",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.server-fan.lead_time",
@@ -7696,7 +9448,8 @@
       "notes": "服务器风扇：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "芯片级",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.rack-system.spec",
@@ -7740,7 +9493,46 @@
       "notes": "整机柜系统（NVL72 类，按柜计价）：规格与供应商名单（IT · 计算 · 计算，S4）",
       "curated": true,
       "chain": "计算",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
+    },
+    {
+      "id": "P.rack-system.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "revenue.gpus.density",
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "revenue.gpus.density",
+      "part_id": "rack-system",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商参考架构",
+      "instances": [
+        "NVL72 整柜功率与冷却负荷",
+        "OCP ORv3 机柜规格"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "整机柜系统（NVL72 类，按柜计价）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "计算",
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.rack-system.price",
@@ -7781,7 +9573,8 @@
       "notes": "整机柜系统（NVL72 类，按柜计价）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.rack-system.lead_time",
@@ -7820,7 +9613,8 @@
       "notes": "整机柜系统（NVL72 类，按柜计价）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.rack-system.news",
@@ -7857,7 +9651,8 @@
       "notes": "整机柜系统（NVL72 类，按柜计价）：tight 状态部件的供应事件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.server.spec",
@@ -7898,7 +9693,49 @@
       "notes": "加速器服务器（AI 服务器整机）：规格与供应商名单（IT · 计算 · 计算，S4）",
       "curated": true,
       "chain": "计算",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
+    },
+    {
+      "id": "P.server.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.load",
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.energy.load",
+      "part_id": "server",
+      "site_right_id": null,
+      "model_inputs": [
+        "load_factor"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "ODM 数据手册与实测",
+      "instances": [
+        "Supermicro / Dell 整机功耗计算器",
+        "OCP 服务器规格",
+        "集群 PUE 分摊报告"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "加速器服务器（AI 服务器整机）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "计算",
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.server.price",
@@ -7939,7 +9776,8 @@
       "notes": "加速器服务器（AI 服务器整机）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.server.lead_time",
@@ -7979,7 +9817,8 @@
       "notes": "加速器服务器（AI 服务器整机）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.server.news",
@@ -8016,7 +9855,8 @@
       "notes": "加速器服务器（AI 服务器整机）：tight 状态部件的供应事件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.general-server.spec",
@@ -8057,7 +9897,58 @@
       "notes": "通用服务器（CPU 节点）：规格与供应商名单（IT · 计算 · 计算，S4）",
       "curated": true,
       "chain": "计算",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
+    },
+    {
+      "id": "P.general-server.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.load",
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.energy.load",
+      "part_id": "general-server",
+      "site_right_id": null,
+      "model_inputs": [
+        "load_factor"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "戴尔 · 通用/AI服务器",
+        "慧与 · 通用/AI服务器",
+        "联想 · 通用/AI服务器",
+        "浪潮信息 · 通用/AI服务器",
+        "新华三 · 通用/AI服务器",
+        "超聚变 · 通用/AI服务器",
+        "中科曙光 · 通用/AI服务器",
+        "中兴通讯 · 通用服务器",
+        "烽火通信 · 通用服务器",
+        "广达（云达） · 云服务器/整机柜",
+        "纬颖 · 云服务器/整机柜",
+        "长城 / 宝德 / 神州鲲泰 / 湘江鲲鹏 / 超越申泰 / 黄河 · 鲲鹏/飞腾生态整机"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "通用服务器（CPU 节点）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "计算",
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.general-server.price",
@@ -8098,7 +9989,8 @@
       "notes": "通用服务器（CPU 节点）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.general-server.lead_time",
@@ -8135,7 +10027,8 @@
       "notes": "通用服务器（CPU 节点）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.gpu.spec",
@@ -8177,7 +10070,50 @@
       "notes": "GPU 加速器：规格与供应商名单（IT · 计算 · 计算，S5）",
       "curated": true,
       "chain": "计算",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
+    },
+    {
+      "id": "P.gpu.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "revenue.gpus.density",
+        "cost.energy.load",
+        "cost.depreciation.capex.accelerators"
+      ],
+      "factor_id": "revenue.gpus.density",
+      "part_id": "gpu",
+      "site_right_id": null,
+      "model_inputs": [
+        "load_factor"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册与实测",
+      "instances": [
+        "NVIDIA GB300 / B200 数据手册 TDP 与功耗曲线",
+        "MLPerf 与 SemiAnalysis 集群功耗实测",
+        "云厂商 GPU 利用率披露"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "GPU 加速器：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "计算",
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.gpu.price",
@@ -8227,7 +10163,8 @@
       "notes": "GPU 加速器：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.gpu.lead_time",
@@ -8266,7 +10203,8 @@
       "notes": "GPU 加速器：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.gpu.news",
@@ -8305,7 +10243,8 @@
       "notes": "GPU 加速器：tight 状态部件的供应事件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.ai-asic.spec",
@@ -8345,7 +10284,48 @@
       "notes": "定制 AI ASIC：规格与供应商名单（IT · 计算 · 计算，S5）",
       "curated": true,
       "chain": "计算",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "it"
+    },
+    {
+      "id": "P.ai-asic.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.energy.load",
+        "cost.depreciation.capex.accelerators"
+      ],
+      "factor_id": "cost.energy.load",
+      "part_id": "ai-asic",
+      "site_right_id": null,
+      "model_inputs": [
+        "load_factor"
+      ],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册与云披露",
+      "instances": [
+        "Google TPU / AWS Trainium 规格页",
+        "云厂商性能功耗白皮书"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "定制 AI ASIC：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "计算",
+      "chain_order": 5,
+      "stage": "it"
     },
     {
       "id": "P.ai-asic.price",
@@ -8387,7 +10367,8 @@
       "notes": "定制 AI ASIC：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "it"
     },
     {
       "id": "P.ai-asic.lead_time",
@@ -8425,7 +10406,8 @@
       "notes": "定制 AI ASIC：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "it"
     },
     {
       "id": "P.ai-asic.news",
@@ -8463,7 +10445,8 @@
       "notes": "定制 AI ASIC：tight 状态部件的供应事件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "it"
     },
     {
       "id": "P.cpu.spec",
@@ -8501,7 +10484,46 @@
       "notes": "CPU：规格与供应商名单（IT · 计算 · 计算，S5）",
       "curated": true,
       "chain": "计算",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "it"
+    },
+    {
+      "id": "P.cpu.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "cpu",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格库",
+      "instances": [
+        "Intel ARK TDP 与频率",
+        "AMD EPYC 规格",
+        "SPEC 功耗基准"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "CPU：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "计算",
+      "chain_order": 6,
+      "stage": "it"
     },
     {
       "id": "P.cpu.price",
@@ -8540,7 +10562,8 @@
       "notes": "CPU：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "it"
     },
     {
       "id": "P.cpu.lead_time",
@@ -8576,7 +10599,8 @@
       "notes": "CPU：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "it"
     },
     {
       "id": "P.fpga.spec",
@@ -8612,7 +10636,44 @@
       "notes": "FPGA/异构加速：规格与供应商名单（IT · 计算 · 计算，S5）",
       "curated": true,
       "chain": "计算",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "it"
+    },
+    {
+      "id": "P.fpga.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.accelerators"
+      ],
+      "factor_id": "cost.depreciation.capex.accelerators",
+      "part_id": "fpga",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "AMD-Xilinx Alveo / Altera Agilex · 数据中心FPGA"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "FPGA/异构加速：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "计算",
+      "chain_order": 7,
+      "stage": "it"
     },
     {
       "id": "P.fpga.price",
@@ -8653,7 +10714,8 @@
       "notes": "FPGA/异构加速：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "it"
     },
     {
       "id": "P.fpga.lead_time",
@@ -8688,7 +10750,8 @@
       "notes": "FPGA/异构加速：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "it"
     },
     {
       "id": "P.bmc.spec",
@@ -8724,7 +10787,44 @@
       "notes": "基板管理控制器：规格与供应商名单（IT · 计算 · 计算，S5）",
       "curated": true,
       "chain": "计算",
-      "chain_order": 8
+      "chain_order": 8,
+      "stage": "it"
+    },
+    {
+      "id": "P.bmc.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "bmc",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "信骅科技 · BMC管理芯片"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "基板管理控制器：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "计算",
+      "chain_order": 8,
+      "stage": "it"
     },
     {
       "id": "P.bmc.price",
@@ -8763,7 +10863,8 @@
       "notes": "基板管理控制器：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 8
+      "chain_order": 8,
+      "stage": "it"
     },
     {
       "id": "P.bmc.lead_time",
@@ -8798,7 +10899,8 @@
       "notes": "基板管理控制器：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "计算",
-      "chain_order": 8
+      "chain_order": 8,
+      "stage": "it"
     },
     {
       "id": "P.hbm.spec",
@@ -8835,7 +10937,45 @@
       "notes": "HBM：规格与供应商名单（IT · 内存 · 内存，S5）",
       "curated": true,
       "chain": "内存",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
+    },
+    {
+      "id": "P.hbm.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.accelerators"
+      ],
+      "factor_id": "cost.depreciation.capex.accelerators",
+      "part_id": "hbm",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与 JEDEC",
+      "instances": [
+        "SK hynix / Samsung / Micron HBM 数据手册功耗",
+        "JEDEC HBM 标准"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "HBM：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "内存",
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.hbm.price",
@@ -8878,7 +11018,8 @@
       "notes": "HBM：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "内存",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.hbm.lead_time",
@@ -8915,7 +11056,8 @@
       "notes": "HBM：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "内存",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.hbm.news",
@@ -8951,7 +11093,8 @@
       "notes": "HBM：tight 状态部件的供应事件",
       "curated": true,
       "chain": "内存",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.dram.spec",
@@ -8989,7 +11132,46 @@
       "notes": "服务器内存模组（RDIMM/MRDIMM）：规格与供应商名单（IT · 内存 · 内存，S5）",
       "curated": true,
       "chain": "内存",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
+    },
+    {
+      "id": "P.dram.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "dram",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与 JEDEC",
+      "instances": [
+        "DDR5 RDIMM 数据手册",
+        "JEDEC DDR5 标准",
+        "MRDIMM 功耗白皮书"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "服务器内存模组（RDIMM/MRDIMM）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "内存",
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.dram.price",
@@ -9028,7 +11210,8 @@
       "notes": "服务器内存模组（RDIMM/MRDIMM）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "内存",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.dram.lead_time",
@@ -9064,7 +11247,8 @@
       "notes": "服务器内存模组（RDIMM/MRDIMM）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "内存",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.dram.news",
@@ -9103,7 +11287,8 @@
       "notes": "服务器内存模组（RDIMM/MRDIMM）：tight 状态部件的供应事件",
       "curated": false,
       "chain": "内存",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.cxl-memory.spec",
@@ -9141,7 +11326,45 @@
       "notes": "CXL 内存扩展：规格与供应商名单（IT · 内存 · 内存，S5）",
       "curated": true,
       "chain": "内存",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
+    },
+    {
+      "id": "P.cxl-memory.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "cxl-memory",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "Rambus / Microchip(Flashtec·Switchtec) / Marvell(Bravera) · 内存接口/主控",
+        "Samsung CMM / Micron CZ120 / 澜起MXC / SMART Modular · CXL内存扩展"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "CXL 内存扩展：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "内存",
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.cxl-memory.price",
@@ -9179,7 +11402,8 @@
       "notes": "CXL 内存扩展：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "内存",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.cxl-memory.lead_time",
@@ -9215,7 +11439,8 @@
       "notes": "CXL 内存扩展：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "内存",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.cxl-memory.news",
@@ -9250,7 +11475,8 @@
       "notes": "CXL 内存扩展：emerging 状态部件的供应事件",
       "curated": true,
       "chain": "内存",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.storage-array.spec",
@@ -9290,7 +11516,55 @@
       "notes": "存储系统：规格与供应商名单（IT · 存储 · 存储，S4）",
       "curated": true,
       "chain": "存储",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
+    },
+    {
+      "id": "P.storage-array.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "storage-array",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "华为 · 全闪/混闪阵列",
+        "戴尔 · 全闪/混闪阵列",
+        "NetApp · 全闪阵列/云数据",
+        "Pure Storage · 全闪阵列",
+        "慧与 · 全闪阵列",
+        "IBM · 全闪/磁带",
+        "日立 · 全闪阵列",
+        "浪潮存储 · 全闪/分布式",
+        "新华三 · 全闪/分布式",
+        "中科曙光（曙光存储） · 并行/分布式",
+        "宏杉科技 · SAN阵列",
+        "星辰天合 · 块/文件/对象SDS"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "存储系统：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "存储",
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.storage-array.price",
@@ -9330,7 +11604,8 @@
       "notes": "存储系统：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "存储",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.storage-array.lead_time",
@@ -9366,7 +11641,8 @@
       "notes": "存储系统：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "存储",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.ssd.spec",
@@ -9404,7 +11680,45 @@
       "notes": "企业级 SSD：规格与供应商名单（IT · 存储 · 存储，S5）",
       "curated": true,
       "chain": "存储",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
+    },
+    {
+      "id": "P.ssd.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "ssd",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与可靠性",
+      "instances": [
+        "企业级 SSD 数据手册（功耗、DWPD、MTBF）",
+        "Backblaze / 云厂商故障率"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "企业级 SSD：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "存储",
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.ssd.price",
@@ -9443,7 +11757,8 @@
       "notes": "企业级 SSD：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "存储",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.ssd.lead_time",
@@ -9479,7 +11794,8 @@
       "notes": "企业级 SSD：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "存储",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.ssd.news",
@@ -9525,7 +11841,8 @@
       "notes": "企业级 SSD：tight 状态部件的供应事件",
       "curated": false,
       "chain": "存储",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.hdd.spec",
@@ -9562,7 +11879,45 @@
       "notes": "近线HDD：规格与供应商名单（IT · 存储 · 存储，S5）",
       "curated": true,
       "chain": "存储",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
+    },
+    {
+      "id": "P.hdd.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "hdd",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商规格与可靠性",
+      "instances": [
+        "近线 HDD 数据手册（功耗、AFR）",
+        "Backblaze 硬盘统计"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "季度",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "近线HDD：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "存储",
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.hdd.price",
@@ -9601,7 +11956,8 @@
       "notes": "近线HDD：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "存储",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.hdd.lead_time",
@@ -9637,7 +11993,8 @@
       "notes": "近线HDD：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "存储",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.hdd.news",
@@ -9674,7 +12031,8 @@
       "notes": "近线HDD：tight 状态部件的供应事件",
       "curated": false,
       "chain": "存储",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.network-switch.spec",
@@ -9714,7 +12072,45 @@
       "notes": "交换机（scale-out 以太网/IB）：规格与供应商名单（IT · 网络 · 网络，S4）",
       "curated": true,
       "chain": "网络",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
+    },
+    {
+      "id": "P.network-switch.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "network-switch",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册",
+      "instances": [
+        "Arista / NVIDIA / Cisco 交换机功耗与吞吐",
+        "OCP 网络规格"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "交换机（scale-out 以太网/IB）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "网络",
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.network-switch.price",
@@ -9756,7 +12152,8 @@
       "notes": "交换机（scale-out 以太网/IB）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.network-switch.lead_time",
@@ -9793,7 +12190,8 @@
       "notes": "交换机（scale-out 以太网/IB）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.network-switch.news",
@@ -9830,7 +12228,8 @@
       "notes": "交换机（scale-out 以太网/IB）：transition 状态部件的供应事件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "P.switch-asic.spec",
@@ -9869,7 +12268,46 @@
       "notes": "交换芯片：规格与供应商名单（IT · 网络 · 网络，S5）",
       "curated": true,
       "chain": "网络",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
+    },
+    {
+      "id": "P.switch-asic.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "switch-asic",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "博通 · 数据中心交换芯片",
+        "迈威尔 · 数据中心交换芯片",
+        "盛科通信 · 国产交换芯片"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "交换芯片：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "网络",
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.switch-asic.price",
@@ -9907,7 +12345,8 @@
       "notes": "交换芯片：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.switch-asic.lead_time",
@@ -9943,7 +12382,8 @@
       "notes": "交换芯片：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.switch-asic.news",
@@ -9980,7 +12420,8 @@
       "notes": "交换芯片：tight 状态部件的供应事件",
       "curated": false,
       "chain": "网络",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "P.optics.spec",
@@ -10021,7 +12462,46 @@
       "notes": "光模块（CPO 为新兴子条目）：规格与供应商名单（IT · 网络 · 网络，S5）",
       "curated": true,
       "chain": "网络",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
+    },
+    {
+      "id": "P.optics.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "optics",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商与标准组织",
+      "instances": [
+        "800G / 1.6T 光模块功耗规格",
+        "OIF 与 IEEE 802.3 标准",
+        "LightCounting 可靠性"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 3,
+      "notes": "光模块（CPO 为新兴子条目）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "网络",
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.optics.price",
@@ -10062,7 +12542,8 @@
       "notes": "光模块（CPO 为新兴子条目）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.optics.lead_time",
@@ -10099,7 +12580,8 @@
       "notes": "光模块（CPO 为新兴子条目）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.optics.news",
@@ -10136,7 +12618,8 @@
       "notes": "光模块（CPO 为新兴子条目）：transition 状态部件的供应事件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "P.copper-interconnect.spec",
@@ -10175,7 +12658,45 @@
       "notes": "高速铜缆（DAC/AEC）：规格与供应商名单（IT · 网络 · 网络，S4）",
       "curated": true,
       "chain": "网络",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
+    },
+    {
+      "id": "P.copper-interconnect.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "copper-interconnect",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "Credo · AEC有源电缆",
+        "安费诺Amphenol / 立讯精密Luxshare / Molex / TE Connectivity · DAC/连接器/背板"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "高速铜缆（DAC/AEC）：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "网络",
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.copper-interconnect.price",
@@ -10214,7 +12735,8 @@
       "notes": "高速铜缆（DAC/AEC）：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.copper-interconnect.lead_time",
@@ -10250,7 +12772,8 @@
       "notes": "高速铜缆（DAC/AEC）：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.copper-interconnect.news",
@@ -10286,7 +12809,8 @@
       "notes": "高速铜缆（DAC/AEC）：tight 状态部件的供应事件",
       "curated": false,
       "chain": "网络",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "P.cabling.spec",
@@ -10325,7 +12849,46 @@
       "notes": "结构化布线与光纤：规格与供应商名单（IT · 网络 · 网络，S3）",
       "curated": true,
       "chain": "网络",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "it"
+    },
+    {
+      "id": "P.cabling.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "cabling",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "康宁 · 数据中心光布线",
+        "康普 · 综合布线",
+        "长飞YOFC / 亨通 / 中天 / 烽火线缆 · 国产光纤光缆"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "结构化布线与光纤：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "网络",
+      "chain_order": 5,
+      "stage": "it"
     },
     {
       "id": "P.cabling.price",
@@ -10364,7 +12927,8 @@
       "notes": "结构化布线与光纤：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "it"
     },
     {
       "id": "P.cabling.lead_time",
@@ -10400,7 +12964,8 @@
       "notes": "结构化布线与光纤：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "it"
     },
     {
       "id": "P.connector.spec",
@@ -10439,7 +13004,44 @@
       "notes": "高速连接器：规格与供应商名单（IT · 网络 · 网络，S5）",
       "curated": true,
       "chain": "网络",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "it"
+    },
+    {
+      "id": "P.connector.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "connector",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "安费诺Amphenol / 立讯精密Luxshare / Molex / TE Connectivity"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "高速连接器：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "网络",
+      "chain_order": 6,
+      "stage": "it"
     },
     {
       "id": "P.connector.price",
@@ -10478,7 +13080,8 @@
       "notes": "高速连接器：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "it"
     },
     {
       "id": "P.connector.lead_time",
@@ -10514,7 +13117,8 @@
       "notes": "高速连接器：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "it"
     },
     {
       "id": "P.connector.news",
@@ -10549,7 +13153,8 @@
       "notes": "高速连接器：tight 状态部件的供应事件",
       "curated": false,
       "chain": "网络",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "it"
     },
     {
       "id": "P.nic.spec",
@@ -10588,7 +13193,45 @@
       "notes": "NIC/DPU：规格与供应商名单（IT · 网络 · 网络，S5）",
       "curated": true,
       "chain": "网络",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "it"
+    },
+    {
+      "id": "P.nic.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "nic",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册",
+      "instances": [
+        "ConnectX / BlueField 功耗规格",
+        "Broadcom NIC 规格"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "NIC/DPU：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": true,
+      "chain": "网络",
+      "chain_order": 7,
+      "stage": "it"
     },
     {
       "id": "P.nic.price",
@@ -10627,7 +13270,8 @@
       "notes": "NIC/DPU：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "it"
     },
     {
       "id": "P.nic.lead_time",
@@ -10663,7 +13307,8 @@
       "notes": "NIC/DPU：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "it"
     },
     {
       "id": "P.retimer.spec",
@@ -10701,7 +13346,46 @@
       "notes": "重定时器 / AEC 芯片：规格与供应商名单（IT · 网络 · 网络，S5）",
       "curated": true,
       "chain": "网络",
-      "chain_order": 8
+      "chain_order": 8,
+      "stage": "it"
+    },
+    {
+      "id": "P.retimer.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "retimer",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "博通 · PCIe/CXL互联",
+        "澜起科技 · PCIe/CXL互联",
+        "阿斯特拉实验室 · PCIe/CXL互联"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 2,
+      "notes": "重定时器 / AEC 芯片：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "网络",
+      "chain_order": 8,
+      "stage": "it"
     },
     {
       "id": "P.retimer.price",
@@ -10739,7 +13423,8 @@
       "notes": "重定时器 / AEC 芯片：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 8
+      "chain_order": 8,
+      "stage": "it"
     },
     {
       "id": "P.retimer.lead_time",
@@ -10774,7 +13459,8 @@
       "notes": "重定时器 / AEC 芯片：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 8
+      "chain_order": 8,
+      "stage": "it"
     },
     {
       "id": "P.retimer.news",
@@ -10810,7 +13496,8 @@
       "notes": "重定时器 / AEC 芯片：tight 状态部件的供应事件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 8
+      "chain_order": 8,
+      "stage": "it"
     },
     {
       "id": "P.pcie-switch.spec",
@@ -10847,7 +13534,46 @@
       "notes": "PCIe/CXL 交换芯片：规格与供应商名单（IT · 网络 · 网络，S5）",
       "curated": true,
       "chain": "网络",
-      "chain_order": 9
+      "chain_order": 9,
+      "stage": "it"
+    },
+    {
+      "id": "P.pcie-switch.operation",
+      "variable_class": 2,
+      "layer": 2,
+      "origin": "part",
+      "factor_ids": [
+        "cost.depreciation.capex.other_it"
+      ],
+      "factor_id": "cost.depreciation.capex.other_it",
+      "part_id": "pcie-switch",
+      "site_right_id": null,
+      "model_inputs": [],
+      "series": [],
+      "planned_series": [],
+      "indicators": [],
+      "data_class": "reference",
+      "disclosure_type": "额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率",
+      "publisher_category": "厂商数据手册、实测与运营披露",
+      "instances": [
+        "博通 · PCIe/CXL互联",
+        "澜起科技 · PCIe/CXL互联",
+        "阿斯特拉实验室 · PCIe/CXL互联"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代际发布",
+      "team_state": "connected",
+      "next_due": "2026-12-27",
+      "status": "needed",
+      "sourced_by": null,
+      "sensitivity_rank": 4,
+      "notes": "PCIe/CXL 交换芯片：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（IT 进场 阶段）",
+      "curated": false,
+      "chain": "网络",
+      "chain_order": 9,
+      "stage": "it"
     },
     {
       "id": "P.pcie-switch.price",
@@ -10886,7 +13612,8 @@
       "notes": "PCIe/CXL 交换芯片：自己的价格——重切规则的第一条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 9
+      "chain_order": 9,
+      "stage": "it"
     },
     {
       "id": "P.pcie-switch.lead_time",
@@ -10921,7 +13648,8 @@
       "notes": "PCIe/CXL 交换芯片：自己的交期——重切规则的第三条件",
       "curated": true,
       "chain": "网络",
-      "chain_order": 9
+      "chain_order": 9,
+      "stage": "it"
     },
     {
       "id": "P.dcim.spec",
@@ -10960,7 +13688,8 @@
       "notes": "DCIM / BMS / EPMS（监控、运维、电力监控软件）：规格与供应商名单（控制与软件 · DCIM/BMS 与固件，software）",
       "curated": true,
       "chain": "DCIM/BMS 与固件",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "commissioning"
     },
     {
       "id": "P.dcim.price",
@@ -11004,7 +13733,8 @@
       "notes": "DCIM / BMS / EPMS（监控、运维、电力监控软件）：订阅价与许可价（软件条目进目标表，用户 2026-09-28 决定）",
       "curated": true,
       "chain": "DCIM/BMS 与固件",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "commissioning"
     },
     {
       "id": "S.land.price",
@@ -11044,7 +13774,8 @@
       "notes": "土地（地价、租金、区划）：time-to-power 已取代地价成为第一选址因子；社区反弹上升",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "rights"
     },
     {
       "id": "S.land.holders",
@@ -11079,7 +13810,8 @@
       "notes": "土地（地价、租金、区划）：time-to-power 已取代地价成为第一选址因子；社区反弹上升",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "rights"
     },
     {
       "id": "S.water-rights.holders",
@@ -11114,7 +13846,8 @@
       "notes": "水权与取水许可：WUE 与流域水压力决定冷却路线；取水量与许可期限是主体类与时间类事实",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "rights"
     },
     {
       "id": "S.water-rights.timeline",
@@ -11151,7 +13884,8 @@
       "notes": "水权与取水许可：WUE 与流域水压力决定冷却路线；取水量与许可期限是主体类与时间类事实",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "rights"
     },
     {
       "id": "S.grid.timeline",
@@ -11160,7 +13894,8 @@
       "origin": "site_right",
       "factor_ids": [
         "cost.energy.price",
-        "cost.depreciation.capex.shell"
+        "cost.depreciation.capex.shell",
+        "time.build"
       ],
       "factor_id": "cost.energy.price",
       "part_id": null,
@@ -11197,7 +13932,8 @@
       "notes": "电力配额与并网（排队年限、并网协议）：并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "grid"
     },
     {
       "id": "S.grid.holders",
@@ -11206,7 +13942,8 @@
       "origin": "site_right",
       "factor_ids": [
         "cost.energy.price",
-        "cost.depreciation.capex.shell"
+        "cost.depreciation.capex.shell",
+        "time.build"
       ],
       "factor_id": "cost.energy.price",
       "part_id": null,
@@ -11234,7 +13971,8 @@
       "notes": "电力配额与并网（排队年限、并网协议）：并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "grid"
     },
     {
       "id": "S.gas-supply.holders",
@@ -11269,7 +14007,8 @@
       "notes": "天然气管道接入（容量、供气合同）：自备电源的真实约束常在管线容量而非机组本身；管线公司待补档案",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "rights"
     },
     {
       "id": "S.gas-supply.timeline",
@@ -11304,7 +14043,8 @@
       "notes": "天然气管道接入（容量、供气合同）：自备电源的真实约束常在管线容量而非机组本身；管线公司待补档案",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "rights"
     },
     {
       "id": "S.network-access.holders",
@@ -11337,7 +14077,8 @@
       "notes": "网络接入（暗光纤、运营商、IXP）：选址三要素「电、水、网」的网；跨园区训练互联的先决条件。运营商（Zayo/Lumen 类）待补档案",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "rights"
     },
     {
       "id": "S.network-access.price",
@@ -11370,7 +14111,8 @@
       "notes": "网络接入（暗光纤、运营商、IXP）：选址三要素「电、水、网」的网；跨园区训练互联的先决条件。运营商（Zayo/Lumen 类）待补档案",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "rights"
     },
     {
       "id": "S.permits.timeline",
@@ -11378,12 +14120,18 @@
       "layer": 4,
       "origin": "site_right",
       "factor_ids": [
-        "cost.depreciation.capex.land"
+        "cost.depreciation.capex.land",
+        "time.build"
       ],
       "factor_id": "cost.depreciation.capex.land",
       "part_id": null,
       "site_right_id": "permits",
-      "model_inputs": [],
+      "model_inputs": [
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "permit_months"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -11405,7 +14153,8 @@
       "notes": "许可（区划、环评、排放、建设）：审批时长与暂停令；来自 2026-09-06 评审覆盖清单的「外部接口与非物理配套」",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "rights"
     },
     {
       "id": "S.permits.holders",
@@ -11413,7 +14162,8 @@
       "layer": 5,
       "origin": "site_right",
       "factor_ids": [
-        "cost.depreciation.capex.land"
+        "cost.depreciation.capex.land",
+        "time.build"
       ],
       "factor_id": "cost.depreciation.capex.land",
       "part_id": null,
@@ -11440,7 +14190,8 @@
       "notes": "许可（区划、环评、排放、建设）：审批时长与暂停令；来自 2026-09-06 评审覆盖清单的「外部接口与非物理配套」",
       "curated": false,
       "chain": null,
-      "chain_order": null
+      "chain_order": null,
+      "stage": "rights"
     }
   ]
 }

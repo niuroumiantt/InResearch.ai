@@ -3,7 +3,7 @@
   "title": "产品目录记录（复合主键 = company_id + product_line）",
   "description": "来源：产品研究目录项目（供应链轴），对齐包 docs/inbox/inresearch-alignment/。两项目仅靠 company_id 与 bom_parts 两个 ID 锚定；spec 资料本体在对方 library/，本库按 library_path 引用。每次对方目录版本更新整文件替换。",
   "type": "object",
-  "required": ["company_id", "product_line", "bom_parts", "module", "status", "priority", "library_path"],
+  "required": ["company_id", "product_line", "bom_parts", "module", "status", "priority", "library_path", "node", "variable_class"],
   "properties": {
     "company_id": {"type": "string", "description": "外键 → data/companies.json"},
     "company_en": {"type": "string"},
@@ -23,6 +23,11 @@
     "spec_fields": {"type": "string", "description": "该产品线要建档的 spec 字段清单（人读）"},
     "website": {"type": "string"},
     "note": {"type": "string"},
-    "library_path": {"type": "string", "description": "对方 library/ 落盘路径前缀；本体不在本仓库"}
+    "library_path": {"type": "string", "description": "对方 library/ 落盘路径前缀；本体不在本仓库"},
+    "node": {"type": "string", "description": "骨架节点 part:<第一个 bom_part>，由 knowledge.nodes 派生，不手写"},
+    "nodes": {"type": "array", "items": {"type": "string"}, "description": "全部 bom_parts 对应的节点"},
+    "system": {"type": "string", "description": "由第一个 bom_part 派生的叶子系统"},
+    "chain": {"type": ["string", "null"], "description": "由第一个 bom_part 派生的链路"},
+    "variable_class": {"type": "integer", "enum": [1], "description": "产品线是构成（1）"}
   }
 }

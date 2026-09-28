@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "updated": "2026-09-28",
-  "note": "部件级目标的人工登记：每个部件的规格、价格、交期（非成熟部件再加新闻事件）各写一条\"出版方类别 × 实例 × 日历 × 机制 × 队\"。目标清单生成器（manage.py targets）用它覆盖模板值；没有登记的部件沿用模板。登记的是公开、可命名的出版方与实例，不是已抓取的证据：登记不改变 status，status 仍只看已有序列、已录值指标与模型证据。公司只是实例，随时可换。",
+  "note": "部件级目标的人工登记：每个部件的规格、价格、交期（非成熟部件再加新闻事件）各写一条\"出版方类别 × 实例 × 日历 × 机制 × 队\"。目标清单生成器（manage.py targets）用它覆盖模板值；没有登记的部件沿用模板。登记的是公开、可命名的出版方与实例，不是已抓取的证据：登记不改变 status，status 仍只看已有序列、已录值指标与模型证据。公司只是实例，随时可换。 2026-09-28 骨架补齐：数据类别加 operation（运行：额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率），没有登记的部件沿用模板生成运行行。",
   "parts": {
     "hv-switchyard": {
       "spec": {
@@ -55,6 +55,16 @@
           "Siemens Energy 变压器",
           "Hyosung 重工",
           "GE Vernova 变压器"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商规格与标准",
+        "instances": [
+          "Hitachi Energy / Siemens Energy 变压器损耗与寿命",
+          "DOE 变压器效率标准"
         ],
         "calendar": "每代际发布",
         "mechanism": "vendor_page",
@@ -144,6 +154,16 @@
           "Mitsubishi Power M501"
         ],
         "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商规格与运营披露",
+        "instances": [
+          "GE Vernova / Siemens Energy / Mitsubishi 热耗率与可用率",
+          "EIA 860 机组数据"
+        ],
+        "calendar": "季度",
         "mechanism": "vendor_page",
         "team": "fetchspec"
       },
@@ -368,6 +388,16 @@
         "mechanism": "vendor_page",
         "team": "fetchspec"
       },
+      "operation": {
+        "publisher_category": "厂商规格与运营披露",
+        "instances": [
+          "Tesla Megapack / CATL 循环寿命与往返效率",
+          "EIA 860 储能机组"
+        ],
+        "calendar": "季度",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
       "price": {
         "publisher_category": "研报与价格调查",
         "instances": [
@@ -439,6 +469,16 @@
           "SPX Cooling",
           "Munters",
           "Modine Airedale"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商规格与 ASHRAE",
+        "instances": [
+          "干冷器 / 冷却塔 WUE 与风机功率",
+          "ASHRAE 冷却设备指南"
         ],
         "calendar": "每代际发布",
         "mechanism": "vendor_page",
@@ -608,6 +648,16 @@
           "Schneider Galaxy VX / VL",
           "ABB MegaFlex",
           "华为数字能源"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商规格与效率认证",
+        "instances": [
+          "Vertiv / Schneider / Eaton UPS 效率曲线",
+          "Energy Star UPS 数据库"
         ],
         "calendar": "每代际发布",
         "mechanism": "vendor_page",
@@ -824,6 +874,16 @@
         "mechanism": "vendor_page",
         "team": "fetchspec"
       },
+      "operation": {
+        "publisher_category": "厂商规格与效率标准",
+        "instances": [
+          "Carrier / Trane / York 冷机 COP 曲线",
+          "AHRI 550/590 认证"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
       "price": {
         "publisher_category": "政府统计与造价指南",
         "instances": [
@@ -932,6 +992,17 @@
           "Boyd",
           "nVent",
           "Delta"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商规格与实测",
+        "instances": [
+          "Vertiv / Motivair / CoolIT CDU 容量与泵功率",
+          "OCP 液冷规范",
+          "液冷渗透率报告"
         ],
         "calendar": "每代际发布",
         "mechanism": "vendor_page",
@@ -1124,6 +1195,16 @@
         "mechanism": "vendor_page",
         "team": "fetchspec"
       },
+      "operation": {
+        "publisher_category": "厂商参考架构",
+        "instances": [
+          "NVL72 整柜功率与冷却负荷",
+          "OCP ORv3 机柜规格"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
       "price": {
         "publisher_category": "研报与财报",
         "instances": [
@@ -1168,6 +1249,17 @@
           "Lenovo ThinkSystem SR780a",
           "浪潮 NF5688",
           "华为 Atlas"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "ODM 数据手册与实测",
+        "instances": [
+          "Supermicro / Dell 整机功耗计算器",
+          "OCP 服务器规格",
+          "集群 PUE 分摊报告"
         ],
         "calendar": "每代际发布",
         "mechanism": "vendor_page",
@@ -1253,6 +1345,16 @@
           "Juniper QFX",
           "Celestica",
           "华为 CloudEngine"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商数据手册",
+        "instances": [
+          "Arista / NVIDIA / Cisco 交换机功耗与吞吐",
+          "OCP 网络规格"
         ],
         "calendar": "每代际发布",
         "mechanism": "vendor_page",
@@ -1610,6 +1712,17 @@
         "mechanism": "vendor_page",
         "team": "fetchspec"
       },
+      "operation": {
+        "publisher_category": "厂商数据手册与实测",
+        "instances": [
+          "NVIDIA GB300 / B200 数据手册 TDP 与功耗曲线",
+          "MLPerf 与 SemiAnalysis 集群功耗实测",
+          "云厂商 GPU 利用率披露"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
       "price": {
         "publisher_category": "现货与二手市场、研报",
         "instances": [
@@ -1658,6 +1771,16 @@
         "mechanism": "vendor_page",
         "team": "fetchspec"
       },
+      "operation": {
+        "publisher_category": "厂商数据手册与云披露",
+        "instances": [
+          "Google TPU / AWS Trainium 规格页",
+          "云厂商性能功耗白皮书"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
       "price": {
         "publisher_category": "研报",
         "instances": [
@@ -1699,6 +1822,17 @@
           "AMD EPYC Turin",
           "NVIDIA Grace",
           "Ampere"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商规格库",
+        "instances": [
+          "Intel ARK TDP 与频率",
+          "AMD EPYC 规格",
+          "SPEC 功耗基准"
         ],
         "calendar": "每代际发布",
         "mechanism": "vendor_page",
@@ -1799,6 +1933,16 @@
         "mechanism": "vendor_page",
         "team": "fetchspec"
       },
+      "operation": {
+        "publisher_category": "厂商规格与 JEDEC",
+        "instances": [
+          "SK hynix / Samsung / Micron HBM 数据手册功耗",
+          "JEDEC HBM 标准"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
       "price": {
         "publisher_category": "价格调查与研报",
         "instances": [
@@ -1839,6 +1983,17 @@
           "SK hynix",
           "Micron",
           "JEDEC DDR5 规范"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商规格与 JEDEC",
+        "instances": [
+          "DDR5 RDIMM 数据手册",
+          "JEDEC DDR5 标准",
+          "MRDIMM 功耗白皮书"
         ],
         "calendar": "每代际发布",
         "mechanism": "vendor_page",
@@ -1920,6 +2075,16 @@
         "mechanism": "vendor_page",
         "team": "fetchspec"
       },
+      "operation": {
+        "publisher_category": "厂商规格与可靠性",
+        "instances": [
+          "企业级 SSD 数据手册（功耗、DWPD、MTBF）",
+          "Backblaze / 云厂商故障率"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
       "price": {
         "publisher_category": "价格调查",
         "instances": [
@@ -1950,6 +2115,16 @@
           "Toshiba MG 系列"
         ],
         "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商规格与可靠性",
+        "instances": [
+          "近线 HDD 数据手册（功耗、AFR）",
+          "Backblaze 硬盘统计"
+        ],
+        "calendar": "季度",
         "mechanism": "vendor_page",
         "team": "fetchspec"
       },
@@ -1988,6 +2163,16 @@
         "mechanism": "vendor_page",
         "team": "fetchspec"
       },
+      "operation": {
+        "publisher_category": "厂商数据手册",
+        "instances": [
+          "ConnectX / BlueField 功耗规格",
+          "Broadcom NIC 规格"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
       "price": {
         "publisher_category": "分销商价目与研报",
         "instances": [
@@ -2020,6 +2205,17 @@
           "Broadcom CPO",
           "NVIDIA Spectrum-X Photonics",
           "华工正源"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商与标准组织",
+        "instances": [
+          "800G / 1.6T 光模块功耗规格",
+          "OIF 与 IEEE 802.3 标准",
+          "LightCounting 可靠性"
         ],
         "calendar": "每代际发布",
         "mechanism": "vendor_page",
@@ -2211,6 +2407,17 @@
           "奇鋐 AVC",
           "健策 Jentech",
           "Delta"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "operation": {
+        "publisher_category": "厂商规格与 OCP",
+        "instances": [
+          "冷板热阻与流阻规格",
+          "OCP 冷板规范",
+          "ASHRAE 液冷指南"
         ],
         "calendar": "每代际发布",
         "mechanism": "vendor_page",

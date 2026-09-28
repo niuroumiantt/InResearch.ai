@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1014。
+在册文件：1016。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 276 |
-| 运行代码 | 214 |
+| 运行代码 | 215 |
 | 现行规范 | 12 |
 | 项目配置 | 94 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 27 |
 | 配套说明 | 59 |
-| 测试 | 97 |
+| 测试 | 98 |
 
 ## 在册记录集合
 
@@ -36,9 +36,10 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
+| `data/dashboard.json` | stages | 6 |
 | `data/dashboard.json` | system_nodes | 8 |
 | `data/dashboard.json` | parent_systems | 1 |
-| `data/dashboard.json` | factors | 24 |
+| `data/dashboard.json` | factors | 26 |
 | `data/datacenter_model.json` | groups | 5 |
 | `data/datacenter_model.json` | anchors | 2 |
 | `data/datacenter_model.json` | sensitivity_drivers | 12 |
@@ -53,12 +54,12 @@
 | `data/research_knowledge.json` | evidence | 0 |
 | `data/research_knowledge.json` | statements | 0 |
 | `data/research_knowledge.json` | answers | 0 |
-| `data/schema/company.schema.json` | required | 4 |
+| `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
 | `data/schema/fact.schema.json` | required | 9 |
 | `data/schema/policy.schema.json` | required | 7 |
 | `data/schema/price.schema.json` | required | 6 |
-| `data/schema/products.schema.json` | required | 7 |
+| `data/schema/products.schema.json` | required | 9 |
 | `data/schema/project.schema.json` | required | 7 |
 | `data/schema/source.schema.json` | required | 5 |
 | `data/schema/submission.schema.json` | required | 4 |
@@ -323,6 +324,7 @@
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 63 |
+| `framework/bom.json` | stages | 6 |
 | `framework/current_state.json` | policies | 26 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
@@ -348,9 +350,9 @@
 | `framework/research_questions.json` | records | 458 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
-| `framework/tco_factors.json` | factors | 24 |
+| `framework/tco_factors.json` | factors | 26 |
 | `framework/tco_targets.json` | principles | 4 |
-| `framework/tco_targets.json` | targets | 287 |
+| `framework/tco_targets.json` | targets | 351 |
 | `framework/verification_contract.json` | policies | 13 |
 | `outputs/geluoke-research/2026-09-26/checks/validation.json` | images | 5 |
 | `outputs/geluoke-research/2026-09-26/sources.json` | published_source_numbering | 48 |
@@ -1164,6 +1166,7 @@
 | `src/inresearch/knowledge/indicators.py` | 运行代码 |
 | `src/inresearch/knowledge/navigation.py` | 运行代码 |
 | `src/inresearch/knowledge/news_policy.py` | 运行代码 |
+| `src/inresearch/knowledge/nodes.py` | 运行代码 |
 | `src/inresearch/knowledge/policy.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
@@ -1285,6 +1288,7 @@
 | `tests/unit/test_model_roles.py` | 测试 |
 | `tests/unit/test_model_runtime.py` | 测试 |
 | `tests/unit/test_news_projection.py` | 测试 |
+| `tests/unit/test_nodes.py` | 测试 |
 | `tests/unit/test_ocr_repeat_penalty.py` | 测试 |
 | `tests/unit/test_ocr_worker_named.py` | 测试 |
 | `tests/unit/test_ocr_worker_resume.py` | 测试 |
