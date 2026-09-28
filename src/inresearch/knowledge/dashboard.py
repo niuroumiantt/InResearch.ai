@@ -1,6 +1,6 @@
 """Generate the dashboard snapshot (data/dashboard.json): one tree, five columns, four questions.
 
-Tree: datacenter root → eight ecosystems + site rights → parts / rights. Every node carries the five
+Tree: datacenter root → five systems (IT expands into four) → chains → parts; site rights alongside. Every node carries the five
 variable classes (构成 运行 价格 时间 主体) as cells whose sources are registered in
 framework/dashboard_rules.json. The page (web/pages/node.html) reads this snapshot and the target
 list; it aggregates nothing itself. ``--refresh`` rewrites the snapshot, ``--check`` (default) fails
@@ -44,7 +44,6 @@ def build(root=ROOT, as_of=None):
     indicators = {i['id']: i for i in load(root, 'framework/indicators.json')['indicators']}
     model = load(root, 'data/datacenter_model.json')
     graph = load(root, 'framework/research_graph.json')
-    eco_names = {o['id'].split(':', 1)[1]: o['name'] for o in graph['objects'] if o['id'].startswith('ecosystem:')}
     as_of = as_of or max(bom.get('updated', ''), targets_doc.get('updated', ''), rules.get('updated', ''))
     base_day = dt.date.fromisoformat(as_of)
 
@@ -168,9 +167,9 @@ def build(root=ROOT, as_of=None):
         rights_out[r['id']] = {'id': r['id'], 'name': r['name'], 'scale': r['scale'], 'module': r['module'], 'variable_classes': r['variable_classes'],
                                'supply_status': r['status'], 'desc': r['desc'], 'cells': cells}
 
-    # ---- ecosystems (aggregate over their parts)
-    er = rules['ecosystem']
-    ecosystems = []
+    # ---- systems (aggregate over their parts)
+    er = rules['system']
+    system_nodes = []
     systems = bom['systems']
     def sysname(sid):
         s = systems[sid]; return s['name'] if isinstance(s, dict) else s
@@ -193,9 +192,9 @@ def build(root=ROOT, as_of=None):
         cells = {}
         cells['1'] = {'items': [{'label': er['1']['label'], 'value': len(physical), 'unit': er['1']['unit'], 'as_of': bom.get('updated'),
                                  'source': {'type': 'count', 'key': 'parts'}}]}
-        spec = er['2']['by_ecosystem'].get(sys_id)
+        spec = er['2']['by_system'].get(sys_id)
         cells['2'] = {'items': [c for c in [series_cell(spec['series'], spec['label']) if spec else None] if c]}
-        spec = er['3']['by_ecosystem'].get(sys_id)
+        spec = er['3']['by_system'].get(sys_id)
         items = []
         if spec:
             basis = a.get(spec['basis'])
@@ -231,7 +230,7 @@ def build(root=ROOT, as_of=None):
             cov = cov_sum(keys, col)
             cells[col]['coverage'] = cov
             cells[col]['status'] = status_of(any(i['value'] is not None for i in cells[col]['items']), cov)
-        ecosystems.append({'id': sys_id, 'name': sys_name, 'graph_name': eco_names.get(sys_id), 'node_id': 'ecosystem:' + sys_id,
+        system_nodes.append({'id': sys_id, 'name': sys_name, 'node_id': 'system:' + sys_id,
                            'parent': sdef.get('parent'), 'chains': sdef.get('chains', []),
                            'cells': cells, 'parts': [{'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'supply_status': p['status'],
                                                       'chain': p.get('chain'), 'chain_order': p.get('chain_order')} for p in members]})
@@ -240,7 +239,7 @@ def build(root=ROOT, as_of=None):
     for pid, pdef in systems.items():
         if not isinstance(pdef, dict) or pid in leaf_ids:
             continue
-        kids = [e for e in ecosystems if e['parent'] == pid]
+        kids = [e for e in system_nodes if e['parent'] == pid]
         cells = {}
         for col in ('1', '2', '3', '4', '5'):
             items = []
@@ -264,9 +263,9 @@ def build(root=ROOT, as_of=None):
                 for s, n in e['cells'][col]['coverage'].items():
                     cov[s] += n
             cells[col] = {'items': items, 'coverage': cov, 'status': status_of(any(i['value'] is not None for i in items), cov)}
-        parents.append({'id': pid, 'name': pdef['name'], 'node_id': 'ecosystem:' + pid, 'parent': None, 'order': pdef['order'], 'chains': [],
+        parents.append({'id': pid, 'name': pdef['name'], 'node_id': 'system:' + pid, 'parent': None, 'order': pdef['order'], 'chains': [],
                         'children': [e['id'] for e in kids], 'cells': cells})
-    # ninth row: site rights
+    # site rights row, alongside the systems
     keys = ['site:' + r['id'] for r in rights]
     site_cells = {}
     for col in ('1', '2', '3', '4', '5'):
@@ -314,7 +313,7 @@ def build(root=ROOT, as_of=None):
         'columns': rules['columns'], 'formulas': factors_doc.get('formulas', {}),
         'root': {'id': 'root', 'name': '一座 AI 数据中心', 'account': account, 'cells': root_cells, 'targets': totals},
         'systems': {sid: (s if isinstance(s, dict) else {'name': s}) for sid, s in systems.items()},
-        'ecosystems': ecosystems, 'parent_systems': sorted(parents, key=lambda x: x['order']), 'site': site_row, 'parts': parts, 'rights': rights_out, 'factors': factors, 'changes': changes,
+        'system_nodes': system_nodes, 'parent_systems': sorted(parents, key=lambda x: x['order']), 'site': site_row, 'parts': parts, 'rights': rights_out, 'factors': factors, 'changes': changes,
     }
 
 
@@ -337,7 +336,7 @@ def main(argv=None):
         print(f'ERROR: {SNAPSHOT}: stale or missing; run manage.py dashboard --refresh')
         return 1
     acct = {r['label']: r['value'] for r in doc['root']['account']['rows']}
-    print(f"Dashboard {doc['version']} @ {doc['updated']}: {len(doc['ecosystems'])} ecosystems + site, {len(doc['parts'])} parts, "
+    print(f"Dashboard {doc['version']} @ {doc['updated']}: {len(doc['system_nodes'])} systems + site, {len(doc['parts'])} parts, "
           f"{len(doc['rights'])} rights; account {acct}")
     return 0
 

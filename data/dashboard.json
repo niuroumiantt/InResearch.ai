@@ -346,12 +346,11 @@
    ]
   }
  },
- "ecosystems": [
+ "system_nodes": [
   {
    "id": "facility",
    "name": "设施",
-   "graph_name": "设施与机柜",
-   "node_id": "ecosystem:facility",
+   "node_id": "system:facility",
    "parent": null,
    "chains": [
     "土地与建筑",
@@ -503,8 +502,7 @@
   {
    "id": "power",
    "name": "电力",
-   "graph_name": "电力与供配电",
-   "node_id": "ecosystem:power",
+   "node_id": "system:power",
    "parent": null,
    "chains": [
     "电网接入",
@@ -810,8 +808,7 @@
   {
    "id": "thermal",
    "name": "冷却",
-   "graph_name": "冷却与热管理",
-   "node_id": "ecosystem:thermal",
+   "node_id": "system:thermal",
    "parent": null,
    "chains": [
     "排热",
@@ -1069,8 +1066,7 @@
   {
    "id": "compute",
    "name": "IT · 计算",
-   "graph_name": "计算与加速",
-   "node_id": "ecosystem:compute",
+   "node_id": "system:compute",
    "parent": "it",
    "chains": [
     "计算"
@@ -1258,8 +1254,7 @@
   {
    "id": "memory",
    "name": "IT · 内存",
-   "graph_name": "内存生态",
-   "node_id": "ecosystem:memory",
+   "node_id": "system:memory",
    "parent": "it",
    "chains": [
     "内存"
@@ -1377,8 +1372,7 @@
   {
    "id": "storage",
    "name": "IT · 存储",
-   "graph_name": "存储生态",
-   "node_id": "ecosystem:storage",
+   "node_id": "system:storage",
    "parent": "it",
    "chains": [
     "存储"
@@ -1496,8 +1490,7 @@
   {
    "id": "network",
    "name": "IT · 网络",
-   "graph_name": "网络与互联",
-   "node_id": "ecosystem:network",
+   "node_id": "system:network",
    "parent": "it",
    "chains": [
     "网络"
@@ -1671,8 +1664,7 @@
   {
    "id": "control",
    "name": "控制与软件",
-   "graph_name": "控制与运维",
-   "node_id": "ecosystem:control",
+   "node_id": "system:control",
    "parent": null,
    "chains": [
     "DCIM/BMS 与固件"
@@ -1774,7 +1766,7 @@
   {
    "id": "it",
    "name": "IT",
-   "node_id": "ecosystem:it",
+   "node_id": "system:it",
    "parent": null,
    "order": 4,
    "chains": [],

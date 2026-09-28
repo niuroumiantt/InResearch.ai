@@ -3,7 +3,7 @@
 The list is not written by hand. It is the cross product of three registered things:
 
 * the factor tree's fetch entries (framework/tco_factors.json) — one target per entry,
-  carrying the factor's TCO model inputs;
+  carrying the factor's model inputs;
 * the BOM parts (framework/bom.json) × the data classes a part has by construction
   (the 2026-09-28 recut rule: every part has its own price, supplier list and lead time),
   plus a news watch for parts that are not mature;
@@ -238,7 +238,7 @@ def build(root=ROOT, as_of=None):
     return {
         'version': '2.0.0', 'updated': as_of, 'title': '五类变量目标清单',
         'note': ('六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：'
-                 '因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的 TCO 模型输入键）各成一行；'
+                 '因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；'
                  '每个物理部件按"自己的价格、供应商名单、交期"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；'
                  '软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。'
                  '部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。'

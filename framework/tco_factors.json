@@ -1,7 +1,7 @@
 {
   "version": "1.2.0",
   "updated": "2026-09-28",
-  "title": "数据中心 TCO 因子树",
+  "title": "数据中心经济模型因子树",
   "note": "经济模型的骨架：收入侧与成本侧的最小可变因子。每个因子指向它汇总的爆炸图部件（framework/bom.json，2026-09-28 起为 2.0）与站点权利（framework/site_rights.json，site_rights 字段）、读取的价格库序列（data/prices.json）、对应的研究问题（framework/research_questions.json）、进入统一经济模型的输入键（data/datacenter_model.json，字段 model_inputs）以及定向抓取目标。因子树只定义结构与归属，不保存数值；数值在价格库与模型假设里。fetch.kind 取 product / news / data / report。 v1.1.0（2026-09-28）：fetch 条目升级为完整抓取目标（slug、变量类、数据类别、机制、队、序列、TCO 模型输入键 tco_inputs、实例、到期、敏感度），原手写的 43 条目标清单行迁入对应因子；目标清单 framework/tco_targets.json 改为由 manage.py targets 生成。 v1.2.0（2026-09-28）：三个模型合成一个，model_inputs 与 tco_inputs 合并为 model_inputs（统一模型的键：generation→it_class、utilization→gpu_utilization、gpu_price→price_gpu_hour、power_load→load_factor、it_life→it_refresh_years、shell_life→horizon_years、it_capex_per_mw→it_capex_per_kw），fetch 条目同名；v3 新增的 14 个输入挂到对应因子。",
   "formulas": {
     "revenue": "收入 = GPU 数 × 8,760 × 付费利用率 × 单价；GPU 数 = IT 容量 × 每 MW 密度；密度 = 1,000 kW × 加速器机柜占 IT 功率份额 ÷ (机柜功率 ÷ 每柜 GPU 数)",

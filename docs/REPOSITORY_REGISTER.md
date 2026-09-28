@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1010。
+在册文件：1012。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,14 +15,14 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 274 |
+| 历史快照 | 276 |
 | 运行代码 | 213 |
-| 现行规范 | 13 |
+| 现行规范 | 12 |
 | 项目配置 | 94 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 27 |
-| 配套说明 | 58 |
+| 配套说明 | 59 |
 | 测试 | 96 |
 
 ## 在册记录集合
@@ -36,7 +36,7 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
-| `data/dashboard.json` | ecosystems | 8 |
+| `data/dashboard.json` | system_nodes | 8 |
 | `data/dashboard.json` | parent_systems | 1 |
 | `data/dashboard.json` | factors | 24 |
 | `data/datacenter_model.json` | groups | 5 |
@@ -323,11 +323,12 @@
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 63 |
-| `framework/current_state.json` | policies | 24 |
+| `framework/current_state.json` | policies | 26 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 11 |
 | `framework/current_state.json` | operational_guides | 9 |
+| `framework/dashboard_rules.json` | honesty | 5 |
 | `framework/data_contract.json` | source_grades | 5 |
 | `framework/data_contract.json` | project_statuses | 9 |
 | `framework/data_contract.json` | current_supply_statuses | 2 |
@@ -483,6 +484,8 @@
 | [docs/archive/2026-09-14/deploy__README.md](archive/2026-09-14/deploy__README.md) | 历史快照 |
 | [docs/archive/2026-09-14/deploy__docker-compose.yml.md](archive/2026-09-14/deploy__docker-compose.yml.md) | 历史快照 |
 | [docs/archive/2026-09-14/docs__LIBRARY_INDEX.md](archive/2026-09-14/docs__LIBRARY_INDEX.md) | 历史快照 |
+| [docs/archive/2026-09-28/framework__00_overview.md](archive/2026-09-28/framework__00_overview.md) | 历史快照 |
+| [docs/archive/2026-09-28/framework__07_product_ecosystems.md](archive/2026-09-28/framework__07_product_ecosystems.md) | 历史快照 |
 | [docs/geluoke/专题写作规则.md](geluoke/专题写作规则.md) | 配套说明 |
 | [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
 | `docs/guides/model-governance-2026-09-27.html` | 运行代码 |
@@ -941,7 +944,7 @@
 | [framework/05_interface_system.md](../framework/05_interface_system.md) | 现行规范 |
 | [framework/05_source_map.md](../framework/05_source_map.md) | 配套说明 |
 | [framework/06_acquisition.md](../framework/06_acquisition.md) | 现行规范 |
-| [framework/07_product_ecosystems.md](../framework/07_product_ecosystems.md) | 现行规范 |
+| [framework/07_product_ecosystems.md](../framework/07_product_ecosystems.md) | 配套说明 |
 | [framework/08_model_execution.md](../framework/08_model_execution.md) | 现行规范 |
 | [framework/09_software_contracts.md](../framework/09_software_contracts.md) | 现行规范 |
 | [framework/CURRENT.md](../framework/CURRENT.md) | 现行规范 |

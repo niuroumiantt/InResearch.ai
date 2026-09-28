@@ -164,7 +164,7 @@ function matrix(d) {
   // 一个骨架：第一层五个系统（IT 作为父级可展开成四个子系统），第九行站点权利
   const parents = d.parent_systems || [];
   const rows = [];
-  const leaves = d.ecosystems;
+  const leaves = d.system_nodes;
   const topOrder = Object.entries(d.systems || {}).filter(([, x]) => !x.parent).sort((a, b) => a[1].order - b[1].order).map(([id]) => id);
   for (const sid of topOrder) {
     const parent = parents.find(x => x.id === sid);
@@ -174,7 +174,7 @@ function matrix(d) {
   rows.push({ ...d.site, kind: "top" });
   const open = new URLSearchParams(location.search).get("it") === "1";
   return `<div class="tscroll"><table id="matrix" class="${open ? "it-open" : ""}"><thead><tr><th>系统 × 五类变量</th>${cols.map(([n, name]) => `<th class="${COL === n ? "hl" : ""}">${n} ${esc(name)}</th>`).join("")}</tr></thead><tbody>${rows.map(r => {
-    const id = r.id === "site" ? "site" : "ecosystem:" + r.id;
+    const id = r.id === "site" ? "site" : "system:" + r.id;
     const label = r.kind === "parent" ? `<button type="button" class="it-toggle" aria-expanded="${open}" title="展开 / 收起 IT 的四个子系统">${open ? "▾" : "▸"}</button> <a href="${nodeHref(id)}">${esc(r.name)}</a>` : r.kind === "child" ? `<span class="child-mark">└</span> <a href="${nodeHref(id)}">${esc(r.name.replace("IT · ", ""))}</a>` : `<a href="${nodeHref(id)}">${esc(r.name)}</a>`;
     return `<tr class="row-${r.kind}"><th>${label}</th>${cols.map(([n]) => {
       const c = r.cells[n]; const i = c.items[0];
@@ -248,56 +248,56 @@ function changes(d) {
   const crumbs = [["root", "数据中心"]];
   let title, kind, cells, children, factorPred, rows, sup = "", desc = "";
   const [type, key] = NODE.includes(":") ? NODE.split(/:(.*)/s) : [NODE, ""];
-  const parentSys = type === "ecosystem" ? (d.parent_systems || []).find(e => e.id === key) : null;
-  const eco = type === "ecosystem" ? d.ecosystems.find(e => e.id === key) : null;
+  const parentSys = type === "system" ? (d.parent_systems || []).find(e => e.id === key) : null;
+  const eco = type === "system" ? d.system_nodes.find(e => e.id === key) : null;
   const part = type === "part" ? d.parts[key] : null;
   const right = type === "site" && key ? d.rights[key] : null;
   if (NODE === "root") {
-    title = `一座 <em>AI 数据中心</em>`; kind = "根节点 · 三级账在上，五列在下，八生态与站点权利是第一层分叉";
+    title = `一座 <em>AI 数据中心</em>`; kind = "根节点 · 三级账在上，五列在下，五个系统与站点权利是第一层分叉";
     cells = d.root.cells; factorPred = f => f.parent === null;
     rows = T.filter(t => t.origin === "factor");
     byId("account").innerHTML = `<div class="account">${d.root.account.rows.map(r => `<div class="acct"><div class="l">${esc(r.label)}</div><div class="v">${r.key === "roic" ? pct(r.value) : fmt(r.value, "")}</div><div class="u">${esc(r.unit)} · ${esc(d.root.account.scenario)}</div><div class="n">${esc(r.note)}</div></div>`).join("")}</div>
-      <div class="links">${d.root.account.links.map(([l, h]) => `<a href="${h}">${esc(l)} ↗</a>`).join("")}<span class="empty">三级由经济模型基准情景计算；回报是账的输出，不是一列。账本先对齐三个模型共用的假设，再各看各的。</span></div>`;
+      <div class="links">${d.root.account.links.map(([l, h]) => `<a href="${h}">${esc(l)} ↗</a>`).join("")}<span class="empty">三级由经济模型基准情景计算；回报是账的输出，不是一列。账本是统一模型的四个视图。</span></div>`;
     byId("q1").textContent = "五类变量在根节点：构成是规模与代际，运行是效率与利用率，价格是资本开支与年成本，时间是寿命与周期，主体是持有与融资方式。";
-    byId("h2").innerHTML = `它由什么组成<small>树 · 八个生态 × 五类变量，第九行是站点权利</small>`;
+    byId("h2").innerHTML = `它由什么组成<small>树 · 五个系统（IT 展开四个）× 五类变量 · 站点权利并列</small>`;
     children = matrix(d);
     byId("q3").textContent = "因子树从公式往下推：每个因子汇总它的部件与权利，再喂经济模型的输入。";
-    byId("q4").textContent = `目标清单 ${T.length} 行：sourced ${d.root.targets.sourced}、assumed ${d.root.targets.assumed}、needed ${d.root.targets.needed}。采集需求、研究工单、价格库新点与新闻事件都从这里出发；因子级目标折叠在下，部件级目标在各生态与部件节点。`;
+    byId("q4").textContent = `目标清单 ${T.length} 行：sourced ${d.root.targets.sourced}、assumed ${d.root.targets.assumed}、needed ${d.root.targets.needed}。采集需求、研究工单、价格库新点与新闻事件都从这里出发；因子级目标折叠在下，部件级目标在各系统与部件节点。`;
     byId("changes").innerHTML = changes(d);
     deliveryBoard().then(html => { byId("grid").innerHTML = html; }).catch(() => {});
   } else if (parentSys) {
     crumbs.push([NODE, parentSys.name]);
     title = `<em>${esc(parentSys.name)}</em> 系统`; kind = `第一层节点 · 展开为 ${parentSys.children.length} 个子系统`;
     cells = parentSys.cells; const kidIds = new Set(parentSys.children);
-    const kidParts = new Set(d.ecosystems.filter(e => kidIds.has(e.id)).flatMap(e => e.parts.map(p => p.id)));
+    const kidParts = new Set(d.system_nodes.filter(e => kidIds.has(e.id)).flatMap(e => e.parts.map(p => p.id)));
     factorPred = f => (f.bom_parts || []).some(p => kidParts.has(p));
     rows = T.filter(t => t.part_id && kidParts.has(t.part_id));
     byId("q1").textContent = "IT 是五个系统之一，再分计算、内存、存储、网络；本行是四个子系统的汇总。";
     byId("h2").innerHTML = `它由什么组成<small>树 · 四个子系统</small>`;
-    children = `<div class="tscroll"><table><thead><tr><th>子系统</th><th>构成</th><th>运行</th><th>价格</th><th>时间</th><th>主体</th></tr></thead><tbody>${d.ecosystems.filter(e => kidIds.has(e.id)).map(e => `<tr><td><a href="${nodeHref("ecosystem:" + e.id)}">${esc(e.name.replace("IT · ", ""))}</a></td>${["1", "2", "3", "4", "5"].map(n => { const c = e.cells[n]; const i = c.items[0]; return `<td><span class="dot st-${c.status}"></span>${i ? fmt(i.value, i.unit) : '<span class="empty">缺</span>'}</td>`; }).join("")}</tr>`).join("")}</tbody></table></div>`;
+    children = `<div class="tscroll"><table><thead><tr><th>子系统</th><th>构成</th><th>运行</th><th>价格</th><th>时间</th><th>主体</th></tr></thead><tbody>${d.system_nodes.filter(e => kidIds.has(e.id)).map(e => `<tr><td><a href="${nodeHref("ecosystem:" + e.id)}">${esc(e.name.replace("IT · ", ""))}</a></td>${["1", "2", "3", "4", "5"].map(n => { const c = e.cells[n]; const i = c.items[0]; return `<td><span class="dot st-${c.status}"></span>${i ? fmt(i.value, i.unit) : '<span class="empty">缺</span>'}</td>`; }).join("")}</tr>`).join("")}</tbody></table></div>`;
     byId("q3").textContent = "挂到 IT 任一部件的因子。";
     byId("q4").textContent = "四个子系统全部部件的目标行，按队汇总。";
   } else if (eco) {
-    if (eco.parent) crumbs.push(["ecosystem:" + eco.parent, d.systems?.[eco.parent]?.name || eco.parent]);
+    if (eco.parent) crumbs.push(["system:" + eco.parent, d.systems?.[eco.parent]?.name || eco.parent]);
     crumbs.push([NODE, eco.name]);
-    title = `<em>${esc(eco.name)}</em> 系统`; kind = `${eco.parent ? "IT 的子系统" : "第一层节点"} · ${eco.parts.length} 个条目 · 链路：${(eco.chains || []).join(" → ") || "—"} · 研究入口 ${esc(eco.graph_name || "")}`;
+    title = `<em>${esc(eco.name)}</em> 系统`; kind = `${eco.parent ? "IT 的子系统" : "第一层节点"} · ${eco.parts.length} 个条目 · 链路：${(eco.chains || []).join(" → ") || "—"}`;
     cells = eco.cells; const ids = new Set(eco.parts.map(p => p.id));
     factorPred = f => (f.bom_parts || []).some(p => ids.has(p));
     rows = T.filter(t => t.part_id && ids.has(t.part_id));
-    byId("q1").textContent = "生态的五列由部件聚合：部件数、系统效率、每 MW 造价（因子树分线 × 份额）、关键路径交期（部件交期取最大）、供应商数与单一来源部件。";
+    byId("q1").textContent = "系统的五列由部件聚合：部件数、系统效率、每 MW 造价（因子树分线 × 份额）、关键路径交期（部件交期取最大）、供应商数与单一来源部件。";
     byId("h2").innerHTML = `它由什么组成<small>树 · 部件按链路分段，每行五个状态点</small>`;
     children = partsTable(eco.parts, d);
-    byId("q3").textContent = "挂到这个生态任一部件的因子。";
-    byId("q4").textContent = "这个生态全部部件的目标行，按队汇总。";
+    byId("q3").textContent = "挂到这个系统任一部件的因子。";
+    byId("q4").textContent = "这个系统全部部件的目标行，按队汇总。";
   } else if (part) {
-    crumbs.push(["ecosystem:" + part.system, d.ecosystems.find(e => e.id === part.system)?.name || part.system], [NODE, part.name]);
+    crumbs.push(["system:" + part.system, d.system_nodes.find(e => e.id === part.system)?.name || part.system], [NODE, part.name]);
     title = `<em>${esc(part.name)}</em>`; kind = `${d.systems?.[part.system]?.name || part.system}${part.chain ? " · 链路「" + esc(part.chain) + "」第 " + part.chain_order + " 位" : ""} · ${part.kind === "part" ? "尺度 " + part.layer : part.kind === "software" ? "软件条目" : "设施基型"} · 模块 ${esc(part.module)}`;
     sup = `<span class="badge sup-${part.supply_status}">${SUP[part.supply_status] || part.supply_status}</span>`; desc = part.desc;
     cells = part.cells; factorPred = f => (f.bom_parts || []).includes(part.id);
     rows = T.filter(t => t.part_id === part.id);
     byId("q1").textContent = "部件的五列就是重切规则的条件：自己的规格、运行指标、价格、交期、供应商名单。";
     byId("h2").innerHTML = `它由什么组成 / 属于什么<small>树 · 装配与研究入口</small>`;
-    children = `<div class="links"><a href="${nodeHref("ecosystem:" + part.system)}">← 回到生态</a><a href="bom.html#${encodeURIComponent(part.id)}">爆炸图档案</a>${part.kind === "part" ? `<a href="bom3d.html?${new URLSearchParams({ p: part.id, node: "part:" + part.id })}">园区 3D 定位</a>` : ""}${["S4", "S5"].includes(part.layer) ? `<a href="rack3d.html?x=100&node=${encodeURIComponent("part:" + part.id)}">机柜拆解</a>` : ""}<a href="research.html?node=${encodeURIComponent("part:" + part.id)}&view=P&tab=overview">研究工作台（九主题）</a></div><div class="empty" style="margin-top:6px">装配关系与空间位置在研究图谱与 3D 场景里登记；本页不复制第二份。</div>`;
+    children = `<div class="links"><a href="${nodeHref("system:" + part.system)}">← 回到系统</a><a href="bom.html#${encodeURIComponent(part.id)}">爆炸图档案</a>${part.kind === "part" ? `<a href="bom3d.html?${new URLSearchParams({ p: part.id, node: "part:" + part.id })}">3D 定位</a>` : ""}${["S4", "S5"].includes(part.layer) ? `<a href="rack3d.html?x=100&node=${encodeURIComponent("part:" + part.id)}">机柜拆解</a>` : ""}<a href="research.html?node=${encodeURIComponent("part:" + part.id)}&view=P&tab=overview">研究问题与证据（旧研究页，待并入节点页）</a></div><div class="empty" style="margin-top:6px">装配关系与空间位置在研究图谱与 3D 场景里登记；本页不复制第二份。</div>`;
     byId("q3").textContent = "这个部件汇到哪些因子，因子的公式与它喂的模型输入。";
     byId("q4").textContent = "这个部件的目标行：规格、价格、交期各一行，非成熟部件另有新闻事件行。";
   } else if (type === "site") {
@@ -308,12 +308,12 @@ function changes(d) {
       cells = right.cells; factorPred = f => (f.site_rights || []).includes(right.id);
       rows = T.filter(t => t.site_right_id === right.id);
       byId("q1").textContent = "权利不可采购，只有价格、时间、主体三列有登记来源。";
-      children = `<div class="links"><a href="${nodeHref("site")}">← 全部站点权利</a><a href="bom3d.html?${new URLSearchParams({ p: right.id })}">园区 3D 定位</a></div>`;
+      children = `<div class="links"><a href="${nodeHref("site")}">← 全部站点权利</a><a href="bom3d.html?${new URLSearchParams({ p: right.id })}">3D 定位</a></div>`;
       byId("q3").textContent = "这条权利汇到哪些因子。";
       byId("q4").textContent = "这条权利按登记的变量类各有一行目标。";
     } else {
       crumbs.push(["site", "站点权利"]);
-      title = `<em>站点权利</em>`; kind = "矩阵第九行 · 不是部件：土地、水权、电力配额与并网、天然气接入、网络接入、许可";
+      title = `<em>站点权利</em>`; kind = "与五个系统并列 · 不是部件：土地、水权、电力配额与并网、天然气接入、网络接入、许可";
       cells = d.site.cells; const ids = new Set(d.site.rights.map(r => r.id));
       factorPred = f => (f.site_rights || []).some(r => ids.has(r));
       rows = T.filter(t => t.site_right_id);

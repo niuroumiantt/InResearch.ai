@@ -1,4 +1,4 @@
-/* Dashboard: one tree, five columns, four questions. Root matrix, ecosystem drill-down, part page, no page errors. */
+/* Dashboard: one tree, five columns, four questions. Root matrix, system drill-down, part page, no page errors. */
 const {chromium}=require('playwright');const assert=require('assert');
 (async()=>{
  const base=process.env.UI_BASE_URL||'http://127.0.0.1:8882';
@@ -18,11 +18,11 @@ const {chromium}=require('playwright');const assert=require('assert');
  assert.ok((await page.locator('#matrix td.cell.needed').count())>0,'grey cells are the acquisition worklist');
  await page.locator('#matrix tbody tr.row-top').nth(1).locator('td.cell').nth(3).locator('a').click();
  await page.locator('#col-4.hl').waitFor();
- const url=new URL(page.url());assert.equal(url.searchParams.get('col'),'4');assert.match(url.searchParams.get('id'),/^ecosystem:/);
+ const url=new URL(page.url());assert.equal(url.searchParams.get('col'),'4');assert.match(url.searchParams.get('id'),/^system:/);
  await page.locator('#children table tbody tr').first().waitFor();
- assert.match(new URL(page.url()).searchParams.get('id'),/^ecosystem:power$/);
+ assert.match(new URL(page.url()).searchParams.get('id'),/^system:power$/);
  assert.deepEqual((await page.locator('#children tr.chain-row th').allTextContents()).slice(0,3),['电网接入','变电','发电与储能'],'parts grouped along the energy-flow chain');
- await page.goto(base+'/node.html?id=ecosystem:it');await page.locator('#children table tbody tr').first().waitFor();
+ await page.goto(base+'/node.html?id=system:it');await page.locator('#children table tbody tr').first().waitFor();
  assert.equal(await page.locator('#children table tbody tr').count(),4,'IT lists its four subsystems');
  await page.goto(base+'/node.html?id=part:transformer');await page.locator('#five .col').first().waitFor();
  assert.match(await page.locator('#head h1').textContent(),/变压器/);
