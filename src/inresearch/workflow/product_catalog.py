@@ -44,6 +44,20 @@ def official(url):
         p.hostname in {'nvidia.com', 'nvidia.cn'} or (p.hostname or '').endswith(('.nvidia.com', '.nvidia.cn')))
 
 
+def official_attachment(url, attachment, source_keys):
+    if official(url):
+        return True
+    p = urlsplit(url)
+    if (p.scheme != 'https' or p.username or p.password or p.port not in (None, 443)
+            or p.hostname != 'dam-cdn.nvd.orangelogic.com'):
+        return False
+    # NVIDIA's public product pages and resource viewers embed PDFs from this
+    # exact DAM host. Require a per-file link back to the captured first-party
+    # page that exposed it; do not broaden hosts.
+    source_url, source_sha = attachment.get('source_url'), attachment.get('source_sha256')
+    return (official(source_url or '') and (source_sha, source_url) in source_keys)
+
+
 def validate(payload):
     if not isinstance(payload, dict) or payload.get('schema_version') != 1 or payload.get('company_id') != 'nvidia':
         raise ValueError('NVIDIA catalog schema 1 required')
@@ -71,7 +85,7 @@ def validate(payload):
         if product['kind'] not in {'named_product', 'software_service', 'family_or_directory'} or product['availability'] != 'not_verified':
             raise ValueError('invalid product classification')
         for attachment in product.get('attachments', []):
-            if not official(attachment['url']):
+            if not official_attachment(attachment['url'], attachment, source_keys):
                 raise ValueError('attachment must be an official HTTPS source')
         for resource in product.get('official_resources', []):
             if not official(resource['url']):
@@ -79,6 +93,8 @@ def validate(payload):
         for source in product.get('official_pages', []):
             if not official(source['url']) or not re.fullmatch('[0-9a-f]{64}', source['sha256']):
                 raise ValueError('localized product source must have an official URL and SHA-256')
+            if (source['sha256'], source['url']) not in source_keys:
+                raise ValueError('localized product source is missing its snapshot receipt')
         for table in product['tables']:
             if type(table['index']) is not int or table['index'] < 1 or len(table['rows']) > 1000:
                 raise ValueError('invalid table')
