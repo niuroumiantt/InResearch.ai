@@ -75,6 +75,30 @@ class ProductCatalogTests(unittest.TestCase):
         catalog.receive(self.root, data)
         self.assertEqual(catalog.snapshot(self.root)['products'][0]['attachments'], product['attachments'])
 
+    def test_pdf_table_evidence_requires_and_preserves_exact_attachment_receipt(self):
+        data = bundle()
+        product = data['products'][0]
+        pdf_url = 'https://dam-cdn.nvd.orangelogic.com/AssetLink/h200.pdf'
+        resource_url = 'https://resources.nvidia.com/en-us-accelerated-networking-resource-library/h200-datasheet'
+        pdf_sha, page_sha = 'c'*64, 'd'*64
+        data['sources'].extend([
+            {'sha256': page_sha, 'source_url': resource_url},
+            {'sha256': pdf_sha, 'source_url': pdf_url, 'snapshot_path': f'blobs/{pdf_sha}.pdf', 'kind': 'official_pdf_attachment'}])
+        product['attachments'] = [{'url': pdf_url, 'label': 'H200 Datasheet', 'source_url': resource_url,
+                                   'source_sha256': page_sha, 'sha256': pdf_sha,
+                                   'snapshot_path': f'blobs/{pdf_sha}.pdf'}]
+        product['official_pages'].append({'url': resource_url, 'sha256': page_sha})
+        product['tables'][0]['source_refs'] = [{'url': pdf_url, 'sha256': pdf_sha, 'label': 'H200 Datasheet', 'kind': 'official_pdf'}]
+        catalog.validate(data)
+        with self.assertRaisesRegex(ValueError, 'table source reference'):
+            broken = copy.deepcopy(data)
+            broken['products'][0]['tables'][0]['source_refs'][0]['sha256'] = 'e'*64
+            catalog.validate(broken)
+        catalog.receive(self.root, data)
+        specs = list(csv.DictReader(io.StringIO(catalog.csv_export(catalog.snapshot(self.root), 'specs').lstrip('\ufeff'))))
+        self.assertEqual(specs[0]['table_evidence_urls'], pdf_url)
+        self.assertEqual(specs[0]['table_evidence_sha256'], pdf_sha)
+
     def test_child_product_keeps_parent_resource_links_and_csv_alignment(self):
         data = bundle()
         parent = data['products'][0]
