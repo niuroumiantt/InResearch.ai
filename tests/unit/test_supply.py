@@ -28,7 +28,7 @@ class SupplyTests(unittest.TestCase):
     def request(self, **changes):
         value = dict(action='create', operation_id=str(uuid.uuid4()), expected_revision=0,
                      question_id='M01-Q01', title='容量原件', scope='全球投运容量与统计期',
-                     acceptance='原文、定位与口径', provider_id='statistics',
+                     acceptance='原文、定位与口径', provider_id='fetchstat',
                      execution_mode='continuous', execution_host='aws')
         value.update(changes)
         return value

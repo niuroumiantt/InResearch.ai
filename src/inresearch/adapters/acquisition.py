@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
-"""Bounded collection into a permanent candidate ledger, never core facts or the reader inbox.
+"""Permanent candidate ledger for delivered leads and documents, never core facts or the reader inbox.
 
+inresearch.ai does not crawl. The ledger receives inews event projections and fetchspec deliveries;
+the built-in SEC and GPU collectors were retired on 2026-09-28 and belong to fetchfilings / fetchquotes
+(fetchdata repository). Historical sec/gpu ledger rows stay readable.
 Run on Spark: --data-root ~/.local/share/inresearch.ai <command>.
-The separate ledger owns discovery/acquisition; catalog/catalog.sqlite owns reading.
 """
 
 from inresearch.paths import project_root
@@ -11,21 +13,22 @@ from dataclasses import dataclass, field
 from datetime import datetime, timezone
 import hashlib
 import json
-import math
 import os as os
 from pathlib import Path
 import sqlite3
-import statistics
 import shutil
 import tempfile
 import time as time
-from urllib.parse import quote, urlsplit
+from urllib.parse import urlsplit
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.error import HTTPError
 
 ROOT = project_root()
 SOURCES = ('inews', 'sec', 'gpu', 'fetchspec')
-from inresearch.knowledge.news_policy import INEWS_DATACENTER_URL, build_terms, AMBIGUOUS, ENTITY_CONTEXT, classify
+ACTIVE_SOURCES = ('inews', 'fetchspec')
+# Retired 2026-09-28: collection moved out of inresearch; rows remain for history only.
+RETIRED_SOURCES = ('sec', 'gpu')
+from inresearch.knowledge.news_policy import INEWS_DATACENTER_URL, FEED_V2_FIELDS, build_terms, AMBIGUOUS, ENTITY_CONTEXT, classify
 _DIRECT_FEED_PROOF = object()
 
 
@@ -148,18 +151,6 @@ class Collector:
         with self.db:self.db.execute('UPDATE runs SET finished=?,status=?,count=? WHERE id=?',(now(),'success',count,rid))
         return count
 
-def fetch(url, data=None, token=None):
-    parsed=urlsplit(url)
-    if parsed.scheme!='https' or parsed.hostname not in {'data.sec.gov','www.sec.gov','console.vast.ai'} or parsed.username or parsed.password: raise ValueError('source_not_allowed')
-    headers={'User-Agent':os.environ.get('SEC_USER_AGENT','InResearch research niuroumiantt@gmail.com'),'Accept':'application/json,text/html'}
-    if token:headers['Authorization']='Bearer '+token
-    if data is not None:headers['Content-Type']='application/json'
-    # No automatic redirection, cookie jar, or credential-bearing URL.
-    with build_opener(NoRedirect).open(Request(url,data=encoded(data) if data is not None else None,headers=headers),timeout=40) as response:
-        body=response.read(32*1024*1024+1)
-        if len(body)>32*1024*1024:raise ValueError('response_too_large')
-        return body
-
 def export_news(db_path,days=7,limit=2000):
     """Project public article fields only. Never export the shared identity/session tables."""
     path=Path(db_path).resolve()
@@ -192,6 +183,9 @@ def import_news(c,payload,question=None):
         allowed={key:row.get(key) for key in ('id','guid','url','title','title_zh','title_zh_profile','domain','publisher','published_at','first_seen_at','lang','cluster_id','relevance','genre')}
         if verified:
             allowed['topics'] = row['topics']
+            # Event tags are leads for the owning team (fetchfilings, fetchstat...), never evidence.
+            for key in FEED_V2_FIELDS:
+                if row.get(key) is not None: allowed[key] = row[key]
         meta={**allowed,'matched_entity_ids':matches,'match_status':'candidate','content_scope':'headline_only','exported_at':payload.get('exported_at'),'export_truncated':payload.get('truncated',False)}
         if verified:
             meta['upstream_selection'] = {
@@ -210,58 +204,6 @@ def import_news(c,payload,question=None):
         'truncated':payload.get('truncated',False), 'guids':[r['guid'] for r in payload['articles']]})
     return count
 
-def sec(c,company,limit=1,question=None):
-    companies=json.loads((ROOT/'data/companies.json').read_text())['records']
-    target=next((x for x in companies if x['company_id']==company and x.get('cik')),None)
-    if not target:raise ValueError('company_cik_missing')
-    cik=str(int(target['cik'])).zfill(10);url='https://data.sec.gov/submissions/CIK'+cik+'.json'
-    body=fetch(url);data=json.loads(body)
-    if str(int(data['cik'])).zfill(10)!=cik:raise ValueError('cik_mismatch')
-    ident=c.item('sec',cik+':submissions','filing_index',url,target['name'],{'company_id':company,'cik':cik},question=question)
-    c.archive(ident,body,'.json',{'url':url,'method':'GET'})
-    recent=data.get('filings',{}).get('recent',{});count=0
-    for form,accession,doc,date in zip(recent.get('form',[]),recent.get('accessionNumber',[]),recent.get('primaryDocument',[]),recent.get('filingDate',[])):
-        if form not in {'10-K','10-Q','8-K','20-F','6-K','10-K/A','10-Q/A','8-K/A','20-F/A','6-K/A'}:continue
-        link=f'https://www.sec.gov/Archives/edgar/data/{int(cik)}/{accession.replace("-", "")}/{quote(doc,safe="")}'
-        fid=c.item('sec',cik+':'+accession+':'+doc,'filing_document',link,company+' '+form+' '+date,
-            {'company_id':company,'cik':cik,'accession':accession,'primary_document':doc,'form':form,'filing_date':date,'scope':'primary_document_only; exhibits and historical pages not yet fetched'},question=question)
-        if count<limit:
-            # An accession/document is immutable in this phase; amendments have distinct IDs.
-            seen=c.db.execute('SELECT 1 FROM observations WHERE item_id=?',(fid,)).fetchone()
-            if not seen:
-                time.sleep(.6)
-                raw=fetch(link)
-                if not raw.strip():raise ValueError('empty_filing')
-                suffix=Path(doc).suffix.lower()
-                suffix='.html' if suffix in {'.htm','.html'} else suffix if suffix in {'.pdf','.txt','.xml'} else '.bin'
-                c.archive(fid,raw,suffix,{'url':link,'method':'GET'})
-            count+=1
-    return count
-
-def summarize_offers(offers,gpu):
-    accepted=[];seen=set();rejected=0
-    for row in offers:
-        value=row.get('dph_total');key=row.get('id',row.get('ask_contract_id'))
-        if key is None or key in seen or row.get('gpu_name')!=gpu or row.get('num_gpus')!=1 or row.get('rentable') is not True or row.get('rented') is not False or row.get('is_bid') is True or isinstance(value,bool) or not isinstance(value,(int,float)) or not math.isfinite(value) or value<=0:
-            rejected+=1;continue
-        seen.add(key);accepted.append(value)
-    return {'sample_n':len(accepted),'rejected_n':rejected,'median':statistics.median(accepted) if accepted else None,
-            'unit':'USD/offer-hour','rental_type':'on-demand','gpu_count':1,'gpu_name':gpu,
-            'scope':'lowest-price bounded offers; not a market-wide index, transaction price, or interruptible price',
-            'price_field':'dph_total','cost_boundary':'listed offer hourly total; preserve raw storage/bandwidth charges separately','acceptance':'candidate'}
-
-def gpu(c,gpu_name,question=None):
-    token=os.environ.get('VAST_API_KEY','').strip()
-    if not token:raise ValueError('vast_api_key_missing')
-    query={'gpu_name':{'eq':gpu_name},'num_gpus':{'eq':1},'rentable':{'eq':True},'rented':{'eq':False},'type':'on-demand','order':[['dph_total','asc']],'limit':20}
-    url='https://console.vast.ai/api/v0/bundles';body=fetch(url,query,token);rows=json.loads(body).get('offers')
-    if not isinstance(rows,list):raise ValueError('unexpected_offer_schema')
-    summary=summarize_offers(rows,gpu_name)
-    stamp=now();ident=c.item('gpu',gpu_name+':'+stamp,'quote_snapshot',url,gpu_name+' 按需报价',summary,question=question)
-    c.archive(ident,body,'.json',{'url':url,'method':'POST','query':query,'recipe':'vast-ondemand-single-low20-v1'})
-    if not summary['sample_n']:raise ValueError('no_valid_offers')
-    return summary['sample_n']
-
 def summary(root):
     path=Path(root)/'acquisition/catalog.sqlite'
     if not path.exists():return {'status':'not_initialized','sources':{}}
@@ -273,7 +215,7 @@ def summary(root):
             sources[source]={'items':con.execute('SELECT count(*) FROM items WHERE source=?',(source,)).fetchone()[0],
                 'last_run':dict(row) if row else None}
         from inresearch.adapters.news_projection import feed
-        return {'status':'candidate_acquisition','sources':sources,'news_feed':feed(root),'note':'新闻标题线索；全文翻译、SEC/GPU 周期采集与自动采用尚未开启。'}
+        return {'status':'candidate_acquisition','sources':sources,'news_feed':feed(root),'retired_sources':list(RETIRED_SOURCES),'note':'新闻事件卡与 Fetchspec 交付的候选台账；inresearch 不爬取，SEC/GPU 采集已于 2026-09-28 移交 fetchdata（fetchfilings、fetchquotes）；自动采用未开启。'}
     finally:con.close()
 
 def product_documents(root, *, company_id=None, category=None, question_id=None,
@@ -314,8 +256,6 @@ def main():
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--data-root',type=Path,default=data_root());sub=p.add_subparsers(dest='command',required=True)
     n=sub.add_parser('export-news');n.add_argument('--db',required=True);n.add_argument('--days',type=int,default=7);n.add_argument('--limit',type=int,default=2000)
     n=sub.add_parser('news');n.add_argument('--input',type=Path,required=True);n.add_argument('--question')
-    s=sub.add_parser('sec');s.add_argument('--company',required=True);s.add_argument('--limit',type=int,default=1);s.add_argument('--question')
-    g=sub.add_parser('gpu');g.add_argument('--gpu',default='H100 SXM');g.add_argument('--question')
     d=sub.add_parser('product-documents',help='search received Fetchspec documents by company/product/research scope')
     d.add_argument('--company-id');d.add_argument('--category');d.add_argument('--question-id');d.add_argument('--format');d.add_argument('--language')
     d.add_argument('--limit',type=int,default=50);d.add_argument('--offset',type=int,default=0)
@@ -327,12 +267,9 @@ def main():
     if a.command=='product-documents':
         print(encoded(product_documents(a.data_root,company_id=a.company_id,category=a.category,
             question_id=a.question_id,format=a.format,language=a.language,limit=a.limit,offset=a.offset)).decode());return 0
-    if a.command=='sec' and not 0<=a.limit<=10:p.error('SEC primary document limit must be 0..10')
     c=Collector(a.data_root)
     try:
-        if a.command=='news':count=c.run('inews',lambda:import_news(c,json.loads(a.input.read_text()),a.question))
-        elif a.command=='sec':count=c.run('sec',lambda:sec(c,a.company,a.limit,a.question))
-        else:count=c.run('gpu',lambda:gpu(c,a.gpu,a.question))
+        count=c.run('inews',lambda:import_news(c,json.loads(a.input.read_text()),a.question))
         print(json.dumps({'status':'success','source':a.command,'processed':count,'acceptance':'candidate'}));return 0
     except Exception as e:
         print(json.dumps({'status':'failed','source':a.command,'error_code':error_code(e),'detail':'See acquisition ledger; no core facts written.'}));return 1

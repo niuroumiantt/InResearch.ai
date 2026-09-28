@@ -2,6 +2,18 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-28：六队三仓库采用，inresearch 本身不爬取，SEC/GPU 采集器退役
+
+用户采用采集侧的结论：六个采集分队按来源机制划分（fetchspec、inews.today、fetchstat、fetchfilings、fetchreports、fetchquotes），建队顺序 fetchstat → fetchfilings → fetchreports → fetchquotes；仓库先按三个起步，即保留 `inews.today` 与 `fetchspec`，新建一个 `fetchdata` 承载四个分队目录，不够再拆。inresearch.ai 本身不爬取：`adapters.acquisition` 删除 `sec`、`gpu` 采集函数与 CLI 子命令，退役前实现由 Git 历史保留并作为 fetchfilings、fetchquotes 的种子迁入 fetchdata；采集台账中历史 `sec`/`gpu` 行只读保留，运维页对应按钮移除。`supply_contract.json` 升 1.4：providers 改为六队加本地上传，登记三仓库、九类能力到六队的映射、来源归属规则（一个来源只属一个队、一台主执行机、一个日历；inews 只给事件卡与原件指针，不抓原件）。06 采集规范新增"六队、三仓库与来源归属"与"inews 两条线"两节，五页指导文件登记为已采用的设计快照。基准版本升 2026.09.28.30。`fetchdata` 仓库尚未创建，四个分队在契约中保持 `proposed`，启动说明见 `docs/handoff/fetchdata-bootstrap.md`。
+
+## 2026-09-28：五层目标清单成为六队唯一任务来源
+
+新建 `framework/tco_targets.json`（43 行目标），每行登记层、因子、模型输入、已有与计划序列、数据类别（参照 / 观测 / 材料）、披露类型、出版方类别、当前实例、抓取机制、主责队、主执行机、日历、下次到期、状态与敏感度序号。单元测试校验：引用的因子、输入、序列、分队、执行机都存在；注册下载与浏览器页面必须落在 macmini；inews 只产材料类事件卡；TCO 模型全部非用户输入都有目标；目标状态不比模型 evidence 乐观。清单经 `/data/tco_targets.json` 暴露，供供应中心与到期表后续读取。近期任务里的"tco.html 缺口表加最新时点 / 下次更新"改为读本清单的 `next_due`。
+
+## 2026-09-28：inews 拆采集线与编辑线，挑选在先、翻译在后
+
+用户确认三句调子：inews 拆两条线，各有预算、节奏与产出物，共享一库一套标签；给 inresearch 的采集默认不翻译；挑选在先、翻译在后，翻译只花在被挑出来的对象上。研究端配套：`news_sync` 校验并保留事件 feed 的附加字段 `event_type`（十类事件）、`research_angle`、`layer_tags`、`origin_pointer`、`editorial_pick`，schema_version 保持 1、只增不改，缺字段的旧 feed 照常消费；标签随事件卡保存为线索，不构成证据、不授予采用。inews.today 侧的对应实现（按主机拆令牌桶、翻译只收初选簇头并批量、事件类型分类器、news_events 按簇聚合、选题批次与批准闸）在该仓库同日提交。未决：选题的配额主维度、自动批准档、节奏与排序权重，待单独讨论后登记。
+
 ## 2026-09-28：拒收占位输出；缺页补读加第三次读
 
 M4 抽查发现：30 份报告中 11 份的综合（其中 5 份是最终报告摘要）与 6 个块摘要是 Sonnet 写的占位文字（"测试摘要""测试要点一"），结构合法所以未被拦下；主张与引文 1099 块均无占位，抽查 3 份（b3ff、b6b6、0d50）引文 890/890 逐字相符。用户采用：reader 拒收占位的摘要与要点并重试；受影响的 13 份（11 份加上块摘要占位的 3081、e142）经 `reader reread` 重读、审阅后切换，修好前不发布。48c8 第 20、27 页 Claude 两次读数字不一致，用户采用：gap_ocr 前两次不一致时读第三次，任意两次一致即采用，否则留存各次原文与数字差异。7 份 .md 的 park 计划为 park 7、absent 0。

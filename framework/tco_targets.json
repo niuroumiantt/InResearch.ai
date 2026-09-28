@@ -1,0 +1,1360 @@
+{
+  "version": "1.0.0",
+  "updated": "2026-09-28",
+  "title": "五层目标清单",
+  "note": "六队采集分队的唯一任务来源：每一行是一个采集目标，写明它属于五层中的哪一层、汇到因子树的哪个因子、喂模型的哪些输入、进价格库的哪些序列（已有或计划）、来自什么披露类型与出版方类别、当前实例、抓取机制、主责队、主执行机、发布日历与下次到期。公司只是实例，随时可换；数字进观测数据、规格进参照数据、文本进材料档案再提取。",
+  "principles": [
+    "需求只来自本清单，各队不自定抓什么",
+    "一个来源只属一个队、一台主执行机；换主机等于结束旧任务开新任务",
+    "交付只走供应中心一个入口，按 fetchspec 包格式",
+    "给 inresearch 的采集默认不翻译；挑选在先，翻译在后"
+  ],
+  "layers": {
+    "1": "构成",
+    "2": "运行",
+    "3": "价格",
+    "4": "时间",
+    "5": "主体"
+  },
+  "data_classes": {
+    "reference": "参照数据，按版本改",
+    "observation": "观测数据，按时点追加（series_id + as_of）",
+    "material": "材料档案，交由 Spark 提取后再入事实"
+  },
+  "mechanisms": {
+    "api": "公开 API 或固定表格下载",
+    "table": "固定网页表格",
+    "pdf_free": "可直接下载的 PDF",
+    "pdf_registered": "需注册下载的 PDF（macmini）",
+    "edgar": "EDGAR 与 IR 站",
+    "vendor_page": "厂商产品页与规格文件",
+    "rss": "新闻 RSS、API 与页面监控",
+    "js_page": "需浏览器渲染或登录的页面（macmini）"
+  },
+  "teams": {
+    "fetchspec": {
+      "name": "fetchspec",
+      "repository": "https://github.com/niuroumiantt/fetchspec",
+      "mechanism_family": "厂商页与公开 PDF",
+      "host_default": "aws"
+    },
+    "inews": {
+      "name": "inews.today",
+      "repository": "https://github.com/niuroumiantt/inews.today",
+      "mechanism_family": "新闻 RSS / API / 页面监控",
+      "host_default": "aws"
+    },
+    "fetchstat": {
+      "name": "fetchstat",
+      "repository": "fetchdata（待建仓库）/teams/fetchstat",
+      "mechanism_family": "统计 API 与固定表格、费率 PDF",
+      "host_default": "aws"
+    },
+    "fetchfilings": {
+      "name": "fetchfilings",
+      "repository": "fetchdata（待建仓库）/teams/fetchfilings",
+      "mechanism_family": "EDGAR、IR 站、可持续报告",
+      "host_default": "aws"
+    },
+    "fetchreports": {
+      "name": "fetchreports",
+      "repository": "fetchdata（待建仓库）/teams/fetchreports",
+      "mechanism_family": "免费与注册下载 PDF、论文 API",
+      "host_default": "aws"
+    },
+    "fetchquotes": {
+      "name": "fetchquotes",
+      "repository": "fetchdata（待建仓库）/teams/fetchquotes",
+      "mechanism_family": "价目 API、价目页快照",
+      "host_default": "aws"
+    }
+  },
+  "targets": [
+    {
+      "id": "L1.density.rack_spec",
+      "layer": 1,
+      "factor_id": "revenue.gpus.density",
+      "model_inputs": [
+        "gpus_per_mw",
+        "it_class"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "reference",
+      "disclosure_type": "参考架构 / 机柜与整机数据手册",
+      "publisher_category": "芯片厂商、ODM、云自研",
+      "instances": [
+        "NVIDIA GB300 NVL72 参考架构",
+        "Kyber 机柜",
+        "DGX 系列",
+        "Google TPU pod"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代产品发布：GTC 3 月、Computex 6 月、OCP 10 月、SC 11 月",
+      "next_due": "2026-10-15",
+      "status": "sourced",
+      "sensitivity_rank": 3,
+      "notes": "整柜功率与每柜 GPU 封装数进密度规则"
+    },
+    {
+      "id": "L1.boq.reference_design",
+      "layer": 1,
+      "factor_id": "cost.depreciation.capex.other_it",
+      "model_inputs": [
+        "it_capex_per_kw"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "reference",
+      "disclosure_type": "部署指南 / 站点准备指南 / 参考设计",
+      "publisher_category": "芯片厂商、供配电与冷却厂商",
+      "instances": [
+        "NVL72 站点准备指南",
+        "Vertiv/Schneider NVL72 参考设计",
+        "OCP ORV3 规范"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代",
+      "next_due": "2026-10-15",
+      "status": "needed",
+      "sensitivity_rank": null,
+      "notes": "每 MW 工程量表：CDU、歧管、电源架、母线、交换机、每 GPU 光模块配比、PSU、冷却液量"
+    },
+    {
+      "id": "L1.equipment.efficiency",
+      "layer": 1,
+      "factor_id": "cost.energy.pue",
+      "model_inputs": [
+        "pue"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "reference",
+      "disclosure_type": "数据手册效率曲线",
+      "publisher_category": "UPS、CDU、冷机、变压器厂商",
+      "instances": [
+        "Vertiv",
+        "Schneider",
+        "Eaton",
+        "Delta"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "aws",
+      "calendar": "每代",
+      "next_due": "2026-12-31",
+      "status": "sourced",
+      "sensitivity_rank": 2,
+      "notes": "设计 PUE 分解的参照；不替代运营商披露"
+    },
+    {
+      "id": "L1.parts.psu_coolant",
+      "layer": 1,
+      "factor_id": "cost.energy.pue",
+      "model_inputs": [
+        "pue",
+        "wue"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "reference",
+      "disclosure_type": "电源与冷却介质规格",
+      "publisher_category": "厂商",
+      "instances": [
+        "PSU 规格",
+        "冷却液类型与用量"
+      ],
+      "mechanism": "vendor_page",
+      "team": "fetchspec",
+      "host": "macmini",
+      "calendar": "每代；登录门户由 macmini 补抓",
+      "next_due": "2026-10-31",
+      "status": "needed",
+      "sensitivity_rank": null,
+      "notes": "psu、coolant 挂进因子树后填充"
+    },
+    {
+      "id": "L1.btm.generation",
+      "layer": 1,
+      "factor_id": "cost.depreciation.capex.btm",
+      "model_inputs": [
+        "capex_electrical"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "material",
+      "disclosure_type": "自备电源项目公告与许可",
+      "publisher_category": "项目公司、监管机构",
+      "instances": [
+        "燃气轮机",
+        "燃料电池",
+        "储能",
+        "核电 PPA"
+      ],
+      "mechanism": "rss",
+      "team": "inews",
+      "host": "aws",
+      "calendar": "持续；事件卡触发 fetchstat 抓许可原文",
+      "next_due": "2026-10-31",
+      "status": "needed",
+      "sensitivity_rank": null,
+      "notes": "表后电力 MW、造价、COD"
+    },
+    {
+      "id": "L2.pue_wue.operator_disclosure",
+      "layer": 2,
+      "factor_id": "cost.energy.pue",
+      "model_inputs": [
+        "pue",
+        "wue"
+      ],
+      "series": [
+        "pue-google-fleet-annual",
+        "pue-microsoft-fleet-fy25",
+        "pue-meta-fleet-annual",
+        "pue-equinix-global-annual",
+        "pue-digital-realty-global-annual",
+        "pue-gds-average-annual",
+        "wue-microsoft-fleet-fy25",
+        "wue-meta-fleet-annual",
+        "wue-nebius-finland-liquid-cooled"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "可持续 / ESG 报告、CDP 回复",
+      "publisher_category": "超大规模云、REIT、新兴云",
+      "instances": [
+        "Google 环境报告",
+        "Microsoft 环境可持续报告",
+        "Meta 环境数据索引",
+        "Equinix 可持续报告",
+        "GDS ESG 报告"
+      ],
+      "mechanism": "pdf_free",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "6 到 10 月",
+      "next_due": "2027-06-30",
+      "status": "sourced",
+      "sensitivity_rank": 2,
+      "notes": ""
+    },
+    {
+      "id": "L2.pue.survey",
+      "layer": 2,
+      "factor_id": "cost.energy.pue",
+      "model_inputs": [
+        "pue"
+      ],
+      "series": [
+        "pue-uptime-survey-weighted-avg"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "行业调查",
+      "publisher_category": "研究机构",
+      "instances": [
+        "Uptime Global Data Center Survey"
+      ],
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
+      "host": "macmini",
+      "calendar": "9 月",
+      "next_due": "2027-09-30",
+      "status": "sourced",
+      "sensitivity_rank": 2,
+      "notes": ""
+    },
+    {
+      "id": "L2.load_factor.measured",
+      "layer": 2,
+      "factor_id": "cost.energy.load",
+      "model_inputs": [
+        "load_factor"
+      ],
+      "series": [
+        "gpu-node-avg-power-share-of-tdp-h100",
+        "gpu-share-of-server-power-acme",
+        "gpu-cluster-it-power-per-gpu-llama3-semianalysis"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "集群功率实测论文与研究",
+      "publisher_category": "学术机构、研究机构",
+      "instances": [
+        "arXiv 集群功率实测",
+        "SemiAnalysis",
+        "Meta Llama 训练功率"
+      ],
+      "mechanism": "api",
+      "team": "fetchreports",
+      "host": "aws",
+      "calendar": "论文持续；半年复核",
+      "next_due": "2027-03-31",
+      "status": "sourced",
+      "sensitivity_rank": 6,
+      "notes": ""
+    },
+    {
+      "id": "L2.utilization.disclosure",
+      "layer": 2,
+      "factor_id": "revenue.utilization",
+      "model_inputs": [
+        "gpu_utilization"
+      ],
+      "series": [
+        "ai-dc-utilization-assumption-epoch",
+        "neocloud-active-to-contracted-power-coreweave",
+        "cn-idc-utilization-rate-gds",
+        "cn-idc-utilization-rate-wholesale-vnet",
+        "gpu-cluster-utilization-median-acme-kalos",
+        "gpu-cluster-p90-utilization-alibaba-pai"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "季报运营指标、集群实测",
+      "publisher_category": "托管运营商、新兴云、学术",
+      "instances": [
+        "GDS 20-F",
+        "VNET 20-F",
+        "CoreWeave 10-Q",
+        "Epoch AI",
+        "集群 trace 论文"
+      ],
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "10-Q 5/8/11 月；20-F 4 月",
+      "next_due": "2026-11-15",
+      "status": "sourced",
+      "sensitivity_rank": 5,
+      "notes": ""
+    },
+    {
+      "id": "L2.ramp.movein",
+      "layer": 2,
+      "factor_id": "cost.facility.shell_rent",
+      "model_inputs": [
+        "ramp_year1",
+        "ramp_year2"
+      ],
+      "series": [
+        "cn-idc-move-in-period-hyperscale-gds",
+        "cn-idc-wholesale-movein-to-delivery-ratio-vnet",
+        "colo-lease-commencement-lag-dlr"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "上架率、入驻周期、已签未起租",
+      "publisher_category": "托管运营商、REIT",
+      "instances": [
+        "GDS",
+        "VNET",
+        "DLR 季度补充材料"
+      ],
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "季",
+      "next_due": "2026-11-15",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L2.staffing.per_mw",
+      "layer": 2,
+      "factor_id": "cost.other_opex",
+      "model_inputs": [
+        "fte_per_mw"
+      ],
+      "series": [
+        "dc-operator-fte-per-mw-dlr",
+        "dc-operator-ops-fte-per-mw-vnet",
+        "dc-labor-cost-per-mw-year-epoch",
+        "dc-staffing-ratio-hyperscale-recruiter"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "员工数与在运 MW",
+      "publisher_category": "REIT、托管运营商、研究机构",
+      "instances": [
+        "DLR 10-K",
+        "VNET 20-F",
+        "Epoch AI",
+        "Uptime 人员调查"
+      ],
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "年；10-K 2 到 3 月",
+      "next_due": "2027-03-15",
+      "status": "sourced",
+      "sensitivity_rank": 9,
+      "notes": ""
+    },
+    {
+      "id": "L2.maintenance.share",
+      "layer": 2,
+      "factor_id": "cost.other_opex",
+      "model_inputs": [
+        "maint_pct_facility",
+        "maint_pct_it"
+      ],
+      "series": [
+        "dc-maintenance-share-of-facility-capex-epoch",
+        "dc-maintenance-cost-per-mw-year-epoch",
+        "nvidia-ai-enterprise-subscription-per-gpu-year"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "维护合同占造价比例、支持合同价目",
+      "publisher_category": "研究机构、厂商",
+      "instances": [
+        "Epoch 1 GW TCO",
+        "NVIDIA 支持与订阅价目"
+      ],
+      "mechanism": "pdf_free",
+      "team": "fetchreports",
+      "host": "aws",
+      "calendar": "年",
+      "next_due": "2027-06-30",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L2.other_opex.breakdown",
+      "layer": 2,
+      "factor_id": "cost.other_opex",
+      "model_inputs": [
+        "other_opex_per_mw",
+        "insurance_pct",
+        "bandwidth_per_mw",
+        "software_per_mw"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "物业运营费用分解、保险市场指数、DCIM 价目",
+      "publisher_category": "REIT、保险经纪、软件厂商",
+      "instances": [
+        "DLR/Equinix 10-K 物业运营费用",
+        "Marsh 保险市场指数",
+        "DCIM 公开价目"
+      ],
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "10-K 2 到 3 月；Marsh 季",
+      "next_due": "2027-03-15",
+      "status": "assumed",
+      "sensitivity_rank": null,
+      "notes": "四项作者假设；保险与带宽由 fetchreports、fetchquotes 辅助"
+    },
+    {
+      "id": "L3.power_price.state_industrial",
+      "layer": 3,
+      "factor_id": "cost.energy.price",
+      "model_inputs": [
+        "power_price",
+        "power_escalation"
+      ],
+      "series": [
+        "industrial-power-price-us-va",
+        "industrial-power-price-us-tx",
+        "industrial-power-price-us-us",
+        "industrial-power-price-us-az",
+        "industrial-power-price-us-ga",
+        "industrial-power-price-us-oh",
+        "industrial-power-price-us-or"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "统计月报与年报",
+      "publisher_category": "政府统计机构",
+      "instances": [
+        "EIA EPM 表 5.6.B",
+        "EIA 861"
+      ],
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "EPM 每月下旬；861 终值 10 月",
+      "next_due": "2026-10-25",
+      "status": "sourced",
+      "sensitivity_rank": 1,
+      "notes": ""
+    },
+    {
+      "id": "L3.power_price.eu_asia",
+      "layer": 3,
+      "factor_id": "cost.energy.price",
+      "model_inputs": [
+        "power_price"
+      ],
+      "series": [
+        "industrial-power-price-ie-band-ic",
+        "industrial-power-price-eu-band-ic",
+        "industrial-power-price-de-band-ic",
+        "industrial-power-price-my-tnb-base-tariff",
+        "industrial-power-price-jp-special-hv"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "统计半年报、公用事业费率表",
+      "publisher_category": "统计机构、公用事业",
+      "instances": [
+        "Eurostat nrg_pc_205",
+        "TNB 费率",
+        "东京电力特高压"
+      ],
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "Eurostat 半年；费率生效日",
+      "next_due": "2026-11-30",
+      "status": "sourced",
+      "sensitivity_rank": 1,
+      "notes": ""
+    },
+    {
+      "id": "L3.power_price.cn",
+      "layer": 3,
+      "factor_id": "cost.energy.price",
+      "model_inputs": [
+        "power_price"
+      ],
+      "series": [
+        "cn-dc-power-price-zhongwei",
+        "cn-dc-power-price-ulanqab",
+        "cn-dc-power-price-guian",
+        "cn-dc-power-price-helinger",
+        "cn-dc-power-price-east-south"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "省级代理购电价格与数据中心专项电价",
+      "publisher_category": "省级发改委、电网公司",
+      "instances": [
+        "宁夏",
+        "内蒙古",
+        "贵州"
+      ],
+      "mechanism": "table",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "月；将来可分出中文分队",
+      "next_due": "2026-10-31",
+      "status": "sourced",
+      "sensitivity_rank": 1,
+      "notes": ""
+    },
+    {
+      "id": "L3.demand_charge.tariff",
+      "layer": 3,
+      "factor_id": "cost.energy.price",
+      "model_inputs": [
+        "demand_rate"
+      ],
+      "series": [
+        "dominion-gs4-generation-demand-charge-onpeak-primary",
+        "dominion-gs4-transmission-demand-charge-onpeak-primary",
+        "dominion-gs4-distribution-demand-charge-first-5000kw",
+        "dominion-gs5-min-demand-charge-transmission-distribution",
+        "oncor-tcrf-transmission-service-4cp",
+        "oncor-transmission-service-distribution-system-charge"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "公用事业费率表与费率案卷",
+      "publisher_category": "公用事业、州公用事业委员会",
+      "instances": [
+        "Dominion GS-4/GS-5",
+        "Oncor TCRF",
+        "AEP Ohio 数据中心费率",
+        "Georgia Power",
+        "APS"
+      ],
+      "mechanism": "pdf_free",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "1 月 1 日与费率案生效日；inews 费率案事件触发",
+      "next_due": "2027-01-01",
+      "status": "sourced",
+      "sensitivity_rank": 1,
+      "notes": "近期任务：电价拆能量与线路两部分"
+    },
+    {
+      "id": "L3.capacity_market",
+      "layer": 3,
+      "factor_id": "cost.energy.price",
+      "model_inputs": [
+        "power_price"
+      ],
+      "series": [
+        "pjm-capacity-price-bra-rto",
+        "ercot-realtime-all-in-power-cost"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "容量拍卖结果与实时市场数据",
+      "publisher_category": "ISO/RTO",
+      "instances": [
+        "PJM BRA",
+        "ERCOT"
+      ],
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "BRA 年；实时市场月",
+      "next_due": "2026-10-31",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L3.wages.bls",
+      "layer": 3,
+      "factor_id": "cost.other_opex",
+      "model_inputs": [
+        "cost_per_fte",
+        "labor_index"
+      ],
+      "series": [
+        "wage-us-electrician-median",
+        "wage-us-network-support-specialist-median",
+        "wage-us-network-systems-admin-median",
+        "wage-us-telecom-equipment-installer-median",
+        "wage-cn-ops-engineer-median-monthly"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "职业工资统计",
+      "publisher_category": "政府统计机构",
+      "instances": [
+        "BLS OES 四工种",
+        "中国招聘平台薪酬"
+      ],
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "OES 3 到 4 月",
+      "next_due": "2027-04-15",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L3.escalation.eci_cpi",
+      "layer": 3,
+      "factor_id": "cost.other_opex",
+      "model_inputs": [
+        "opex_escalation"
+      ],
+      "series": [
+        "us-eci-private-compensation-yoy",
+        "us-cpi-u-all-items-yoy"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "物价与就业成本指数",
+      "publisher_category": "政府统计机构",
+      "instances": [
+        "BLS ECI",
+        "BLS CPI"
+      ],
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "ECI 季后；CPI 月中",
+      "next_due": "2026-10-15",
+      "status": "sourced",
+      "sensitivity_rank": 10,
+      "notes": ""
+    },
+    {
+      "id": "L3.capex.ppi_escalation",
+      "layer": 3,
+      "factor_id": "cost.depreciation.capex.shell",
+      "model_inputs": [
+        "capex_electrical"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "生产者价格指数与建造支出",
+      "publisher_category": "政府统计机构",
+      "instances": [
+        "BLS PPI 变压器与开关设备",
+        "Census 数据中心建造支出"
+      ],
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "月中",
+      "next_due": "2026-10-15",
+      "status": "needed",
+      "sensitivity_rank": 4,
+      "notes": "电气造价涨幅与交期驱动"
+    },
+    {
+      "id": "L3.capex.cost_index",
+      "layer": 3,
+      "factor_id": "cost.depreciation.capex.shell",
+      "model_inputs": [
+        "capex_building",
+        "capex_electrical",
+        "capex_mechanical",
+        "capex_fitout",
+        "redundancy",
+        "soft_cost_pct",
+        "contingency_pct"
+      ],
+      "series": [
+        "construction-cost-per-watt-silicon-valley",
+        "construction-cost-per-watt-dublin",
+        "construction-cost-per-watt-tokyo",
+        "construction-cost-share-electrical-liquid-cooled",
+        "construction-cost-share-mechanical-liquid-cooled",
+        "construction-cost-share-core-shell-liquid-cooled",
+        "construction-cost-share-other-liquid-cooled",
+        "construction-cost-premium-liquid-cooled-vs-air-us",
+        "construction-cost-greenfield-na",
+        "construction-cost-shell-core-global-jll",
+        "power-infrastructure-share-greenfield-cost"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "造价指数与开发成本指南",
+      "publisher_category": "工程顾问、地产顾问",
+      "instances": [
+        "T&T Data Centre Cost Index",
+        "C&W Data Center Development Cost Guide",
+        "JLL 建造成本"
+      ],
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
+      "host": "macmini",
+      "calendar": "T&T 11 月；C&W 9 月",
+      "next_due": "2026-11-30",
+      "status": "sourced",
+      "sensitivity_rank": 4,
+      "notes": "Tier 溢价、软成本与不可预见费仍是作者假设"
+    },
+    {
+      "id": "L3.capex.developer_disclosure",
+      "layer": 3,
+      "factor_id": "cost.depreciation.capex.shell",
+      "model_inputs": [
+        "it_capex_per_kw",
+        "capex_electrical"
+      ],
+      "series": [
+        "construction-cost-shell-per-it-mw-cipher-barber-lake",
+        "construction-cost-shell-per-it-mw-riot-rockdale-191mw",
+        "construction-cost-shell-per-it-mw-terawulf-lake-mariner",
+        "neocloud-revenue-per-mw-coreweave",
+        "benchmark-ms-capex-per-gw-gb300"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "开发管线每 MW 投资、capex 指引",
+      "publisher_category": "REIT、新兴云、矿转算运营商",
+      "instances": [
+        "DLR 季度补充材料开发管线表",
+        "Cipher/Riot/TeraWulf 公告",
+        "CoreWeave 10-Q"
+      ],
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "季",
+      "next_due": "2026-11-15",
+      "status": "sourced",
+      "sensitivity_rank": 3,
+      "notes": ""
+    },
+    {
+      "id": "L3.rent.colo_market",
+      "layer": 3,
+      "factor_id": "cost.facility.colo_rate",
+      "model_inputs": [
+        "colo_rate",
+        "price_colo_kw_month"
+      ],
+      "series": [
+        "colo-asking-rent-nova-250-500kw",
+        "colo-asking-rent-nova-10mw-plus",
+        "colo-asking-rent-chicago-250-500kw",
+        "colo-asking-rent-frankfurt-250-500kw",
+        "colo-asking-rent-singapore-250-500kw",
+        "colo-asking-rent-tokyo-250-500kw",
+        "vacancy-rate-na-cbre",
+        "dc-rent-index-na"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "市场半年报与展望",
+      "publisher_category": "地产顾问",
+      "instances": [
+        "CBRE North America Data Center Trends",
+        "JLL Data Center Outlook",
+        "C&W Global Data Center Market Comparison"
+      ],
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
+      "host": "macmini",
+      "calendar": "半年；JLL 1 月",
+      "next_due": "2027-02-28",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L3.rent.shell_lease",
+      "layer": 3,
+      "factor_id": "cost.facility.shell_rent",
+      "model_inputs": [
+        "shell_rent_per_mw"
+      ],
+      "series": [
+        "shell-lease-rent-per-it-mw-year",
+        "colo-rent-new-lease-dlr",
+        "colo-wholesale-rent-flapd-20mw-plus-eur",
+        "cn-reit-fee-per-kw-month-gds"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "租约公告与租金附注",
+      "publisher_category": "REIT、托管运营商",
+      "instances": [
+        "8-K 重大合同",
+        "DLR/EQIX 季度补充材料 MRR/kW",
+        "GDS REIT 费率"
+      ],
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "季；inews 租约事件触发",
+      "next_due": "2026-11-15",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L3.gpu_hour.index",
+      "layer": 3,
+      "factor_id": "revenue.price",
+      "model_inputs": [
+        "price_gpu_hour"
+      ],
+      "series": [
+        "gpu-hourly-h100-neocloud-index",
+        "gpu-hourly-h100-hyperscaler-index",
+        "gpu-hourly-h100-contract-1y",
+        "gpu-hourly-b200-index",
+        "gpu-hourly-b300-index",
+        "gpu-hourly-h100-ondemand-median",
+        "gpu-hourly-b200-ondemand-median"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "价格指数与云厂商价目",
+      "publisher_category": "指数机构、云厂商",
+      "instances": [
+        "SemiAnalysis GPU Cloud Index",
+        "Silicon Data SDH100RT",
+        "AWS/CoreWeave/Lambda/Nebius/Verda/RunPod 价目页",
+        "Vast.ai API"
+      ],
+      "mechanism": "api",
+      "team": "fetchquotes",
+      "host": "aws",
+      "calendar": "日或周",
+      "next_due": "2026-10-05",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": "报价不等于成交；序列取中位并写明配置"
+    },
+    {
+      "id": "L3.gpu.used_and_rack",
+      "layer": 3,
+      "factor_id": "cost.depreciation.capex.accelerators",
+      "model_inputs": [
+        "refresh_cost_factor"
+      ],
+      "series": [
+        "gpu-unit-price-h100-used",
+        "gpu-unit-price-h100-new",
+        "gpu-unit-price-b200-new",
+        "gpu-server-price-h100-8gpu-used",
+        "benchmark-gb300-nvl72-rack-price"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "二手成交与整柜报价",
+      "publisher_category": "交易市场、经销商",
+      "instances": [
+        "eBay 成交",
+        "经销商报价",
+        "NVL72 整柜报价报道"
+      ],
+      "mechanism": "js_page",
+      "team": "fetchquotes",
+      "host": "macmini",
+      "calendar": "周",
+      "next_due": "2026-10-07",
+      "status": "assumed",
+      "sensitivity_rank": null,
+      "notes": "代际价格曲线与残值"
+    },
+    {
+      "id": "L3.components.quotes",
+      "layer": 3,
+      "factor_id": "cost.depreciation.capex.other_it",
+      "model_inputs": [
+        "it_capex_per_kw"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "部件与设备价目、库存状态",
+      "publisher_category": "分销商、厂商配置器",
+      "instances": [
+        "变压器/开关柜/发电机价目",
+        "DRAM/NAND/HBM 现货合约价",
+        "服务器配置器"
+      ],
+      "mechanism": "js_page",
+      "team": "fetchquotes",
+      "host": "macmini",
+      "calendar": "周",
+      "next_due": "2026-10-07",
+      "status": "needed",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L3.token.price_throughput",
+      "layer": 3,
+      "factor_id": "revenue.tokens",
+      "model_inputs": [
+        "price_gpu_hour"
+      ],
+      "series": [
+        "token-price-openai-flagship-output",
+        "token-price-anthropic-flagship-output",
+        "token-price-google-flagship-output"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "模型价目与吞吐基准",
+      "publisher_category": "模型厂商、基准机构",
+      "instances": [
+        "OpenAI/Anthropic/Google 价目页",
+        "Artificial Analysis",
+        "OpenRouter"
+      ],
+      "mechanism": "api",
+      "team": "fetchquotes",
+      "host": "aws",
+      "calendar": "周",
+      "next_due": "2026-10-05",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L3.land.transactions",
+      "layer": 3,
+      "factor_id": "cost.depreciation.capex.land",
+      "model_inputs": [
+        "land_per_mw"
+      ],
+      "series": [
+        "land-price-per-acre-loudoun-dc-mean",
+        "land-price-per-acre-loudoun-dc-median",
+        "powered-land-cost-per-mw-us-primary",
+        "improved-sale-price-per-mw-loudoun-160mw-hyperscale"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "评估署成交记录",
+      "publisher_category": "县评估署、地产顾问",
+      "instances": [
+        "Loudoun 评估署成交",
+        "C&W 带电土地报告"
+      ],
+      "mechanism": "js_page",
+      "team": "fetchstat",
+      "host": "macmini",
+      "calendar": "年；评估署门户带验证码",
+      "next_due": "2027-03-31",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L3.water.rates",
+      "layer": 3,
+      "factor_id": "cost.other_opex",
+      "model_inputs": [
+        "water_price"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "市政工业水价与排污费率表",
+      "publisher_category": "市政水务",
+      "instances": [
+        "Loudoun Water 费率表",
+        "得州与爱尔兰市政水价"
+      ],
+      "mechanism": "pdf_free",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "费率生效日；年",
+      "next_due": "2026-12-31",
+      "status": "assumed",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L4.useful_life.notes",
+      "layer": 4,
+      "factor_id": "cost.depreciation",
+      "model_inputs": [
+        "it_refresh_years",
+        "horizon_years"
+      ],
+      "series": [
+        "useful-life-machinery-equipment-dlr-max",
+        "useful-life-buildings-improvements-dlr-max",
+        "useful-life-core-systems-equinix-max",
+        "useful-life-buildings-equinix-max"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "固定资产附注与估计变更",
+      "publisher_category": "超大规模云、REIT、新兴云",
+      "instances": [
+        "MSFT/GOOG/META/AMZN 10-K",
+        "DLR 10-K",
+        "Equinix 10-K",
+        "CoreWeave 10-K"
+      ],
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "10-K 2 到 3 月；20-F 4 月",
+      "next_due": "2027-03-15",
+      "status": "sourced",
+      "sensitivity_rank": 7,
+      "notes": ""
+    },
+    {
+      "id": "L4.construction.duration",
+      "layer": 4,
+      "factor_id": "cost.depreciation.capex.shell",
+      "model_inputs": [
+        "construction_years"
+      ],
+      "series": [
+        "build-time-to-1gw-months-openai-stargate-abilene",
+        "build-time-to-1gw-months-microsoft-fayetteville",
+        "build-time-to-1gw-months-xai-colossus-2",
+        "construction-lead-time-tier3-months"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "项目里程碑跟踪",
+      "publisher_category": "研究机构、项目公告",
+      "instances": [
+        "Epoch AI 前沿数据中心跟踪",
+        "Uptime"
+      ],
+      "mechanism": "api",
+      "team": "fetchreports",
+      "host": "aws",
+      "calendar": "持续；inews 项目里程碑事件补充",
+      "next_due": "2026-12-31",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L4.lead_time.equipment",
+      "layer": 4,
+      "factor_id": "cost.depreciation.capex.shell",
+      "model_inputs": [
+        "construction_years",
+        "capex_electrical"
+      ],
+      "series": [
+        "transformer-lead-time"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "交期研究与财报电话会",
+      "publisher_category": "研究机构、设备厂商",
+      "instances": [
+        "Wood Mackenzie 变压器交期",
+        "Vertiv/Eaton/GE Vernova/Siemens Energy 电话会"
+      ],
+      "mechanism": "pdf_free",
+      "team": "fetchreports",
+      "host": "aws",
+      "calendar": "年；电话会季；inews 交期事件触发",
+      "next_due": "2026-12-31",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": "近期任务：交期与紧缺驱动建设期与电气造价涨幅"
+    },
+    {
+      "id": "L4.interconnection.queue",
+      "layer": 4,
+      "factor_id": "cost.depreciation.capex.shell",
+      "model_inputs": [
+        "construction_years"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "并网排队统计与公用事业 IRP",
+      "publisher_category": "国家实验室、ISO、公用事业",
+      "instances": [
+        "LBNL Queued Up",
+        "PJM/ERCOT 排队",
+        "Dominion IRP"
+      ],
+      "mechanism": "pdf_free",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "年",
+      "next_due": "2027-04-30",
+      "status": "needed",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L4.decommission.aro",
+      "layer": 4,
+      "factor_id": "cost.depreciation",
+      "model_inputs": [
+        "decommission_pct"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "资产退役义务附注",
+      "publisher_category": "REIT、托管运营商",
+      "instances": [
+        "DLR 10-K ARO",
+        "Equinix 10-K ARO"
+      ],
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "10-K 2 到 3 月",
+      "next_due": "2027-03-15",
+      "status": "assumed",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L4.tax_depreciation.macrs",
+      "layer": 4,
+      "factor_id": "cost.tax",
+      "model_inputs": [
+        "it_refresh_years"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "reference",
+      "disclosure_type": "税务折旧年限表",
+      "publisher_category": "税务机关",
+      "instances": [
+        "IRS Publication 946 MACRS"
+      ],
+      "mechanism": "pdf_free",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "年",
+      "next_due": "2027-01-31",
+      "status": "needed",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L5.debt.terms",
+      "layer": 5,
+      "factor_id": "capital",
+      "model_inputs": [
+        "wacc"
+      ],
+      "series": [
+        "dlr-total-debt-wavg-interest-rate",
+        "equinix-senior-notes-wavg-coupon",
+        "equinix-senior-notes-new-issue-coupon-5y",
+        "coreweave-ddtl-4-fixed-rate",
+        "coreweave-ddtl-5-5-floating-spread-over-sofr",
+        "dc-abs-coupon-compass-2025-1a-class-a1",
+        "dc-abs-coupon-aligned-2026-1a-class-b"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "债务附注、信贷协议附件、ABS 说明书",
+      "publisher_category": "REIT、新兴云、证券化发行人",
+      "instances": [
+        "DLR/EQIX 10-K 债务表",
+        "CoreWeave 8-K DDTL",
+        "424B 数据中心 ABS"
+      ],
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "季；inews 融资事件触发",
+      "next_due": "2026-11-15",
+      "status": "sourced",
+      "sensitivity_rank": 8,
+      "notes": ""
+    },
+    {
+      "id": "L5.base_rates",
+      "layer": 5,
+      "factor_id": "capital",
+      "model_inputs": [
+        "wacc"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "基准利率与国债收益率",
+      "publisher_category": "央行与统计数据库",
+      "instances": [
+        "FRED SOFR",
+        "美国国债收益率"
+      ],
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "日",
+      "next_due": "2026-10-05",
+      "status": "needed",
+      "sensitivity_rank": 8,
+      "notes": ""
+    },
+    {
+      "id": "L5.rating.presale",
+      "layer": 5,
+      "factor_id": "capital",
+      "model_inputs": [
+        "wacc"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "material",
+      "disclosure_type": "评级预售报告与方法论",
+      "publisher_category": "评级机构",
+      "instances": [
+        "KBRA 数据中心 ABS 预售",
+        "Moody's/S&P 方法论"
+      ],
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
+      "host": "macmini",
+      "calendar": "事件；inews 发债事件触发",
+      "next_due": "2026-12-31",
+      "status": "needed",
+      "sensitivity_rank": null,
+      "notes": ""
+    },
+    {
+      "id": "L5.tax.rates",
+      "layer": 5,
+      "factor_id": "cost.tax",
+      "model_inputs": [
+        "property_tax_rate"
+      ],
+      "series": [
+        "loudoun-real-property-tax-rate",
+        "loudoun-computer-equipment-tax-rate",
+        "va-datacenter-electricity-consumption-tax"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "县预算与税率、州税法",
+      "publisher_category": "县政府、州议会",
+      "instances": [
+        "Loudoun 预算与税率",
+        "弗州用电税",
+        "州销售税豁免"
+      ],
+      "mechanism": "pdf_free",
+      "team": "fetchstat",
+      "host": "aws",
+      "calendar": "县 4 月；法规生效日",
+      "next_due": "2027-04-30",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": "动产税与用电税已抓到，待进入模型规则段"
+    },
+    {
+      "id": "L5.lease.terms",
+      "layer": 5,
+      "factor_id": "cost.facility.shell_rent",
+      "model_inputs": [
+        "shell_rent_per_mw"
+      ],
+      "series": [],
+      "planned_series": [],
+      "data_class": "material",
+      "disclosure_type": "租约与算力合同公告",
+      "publisher_category": "REIT、新兴云、超大规模云",
+      "instances": [
+        "8-K 重大合同",
+        "新闻稿"
+      ],
+      "mechanism": "rss",
+      "team": "inews",
+      "host": "aws",
+      "calendar": "持续；事件卡指向 8-K，由 fetchfilings 抓原件",
+      "next_due": "2026-10-31",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": "期限、递增、期权、担保、take-or-pay"
+    },
+    {
+      "id": "L5.exit.cap_rate",
+      "layer": 5,
+      "factor_id": "capital",
+      "model_inputs": [
+        "wacc"
+      ],
+      "series": [
+        "reit-development-yield-dlr"
+      ],
+      "planned_series": [],
+      "data_class": "observation",
+      "disclosure_type": "资产交易与开发收益率",
+      "publisher_category": "REIT、地产顾问",
+      "instances": [
+        "CBRE cap rate survey",
+        "DLR 开发收益率"
+      ],
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
+      "host": "macmini",
+      "calendar": "半年；inews 交易事件触发",
+      "next_due": "2027-02-28",
+      "status": "sourced",
+      "sensitivity_rank": null,
+      "notes": ""
+    }
+  ]
+}

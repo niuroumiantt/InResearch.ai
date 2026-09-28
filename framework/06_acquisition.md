@@ -1,6 +1,6 @@
 # 06 · 采集、翻译与研究材料闭环
 
-> CURRENT · 2026-09-26 · 一个研究中心、多个专业资料供应方、统一接收与验收。inresearch 负责需求、研究侧资料与知识权威；专业采集 repo 负责来源获取与交付。下列供应方向已采用，运行接入按实施阶段分别验收。
+> CURRENT · 2026-09-28 · 一个研究中心、六个采集分队、三个采集仓库、统一接收与验收。inresearch 负责需求（五层目标清单）、研究侧资料与知识权威，**本身不爬取**；采集仓库负责来源获取与交付。下列供应方向已采用，运行接入按实施阶段分别验收。
 
 ## 资料供应中心：采用的方向与第一阶段
 
@@ -104,15 +104,34 @@ flowchart LR
 
 已有 `research_questions.json` 与缺口任务是需求源，不再手写另一份竞争性任务树。第一阶段 CLI 的 `--question` 会验证现行问题 ID 并登记 `top_down` 关联；未指定问题的线索保留为 bottom-up 待映射材料。实体词命中只是候选，不构成回答或采用。
 
+## 六队、三仓库与来源归属（2026-09-28 采用）
+
+采集按来源机制分成六队，不按层分：fetchspec（厂商规格）、inews.today（新闻事件）、fetchstat（公共统计、费率表、税率与法规原文）、fetchfilings（证券与公司披露、可持续报告、财报电话会）、fetchreports（研报、指数、白皮书、论文与标准）、fetchquotes（报价与市场观察）。建队顺序 fetchstat → fetchfilings → fetchreports → fetchquotes。六队的角度、素材、日历与执行机登记在 [五层目标清单](tco_targets.json)；能力标签与分队的对应关系登记在 `supply_contract.json` 的 `teams.capability_map`。数据中心经济模型的"三级、四段、五层、六队"骨架以 `docs/guides/model-governance-2026-09-27.{html,pdf}` 为已采用的设计快照，可执行规则以本文件与目标清单为准。
+
+仓库只有三个：`inews.today`、`fetchspec` 保持；新建 `fetchdata` 一个仓库承载 fetchstat、fetchfilings、fetchreports、fetchquotes 四个分队目录，共用内核（条件请求、限速、SHA、包构建、运行台账、交付上传）、一张来源登记表与一个交付入口。存在不同协议、依赖或失败隔离需求时再拆，见 `docs/handoff/fetchdata-bootstrap.md`。`fetchdata` 建成前 `supply_contract.json` 中四个分队保持 `proposed`，不宣称已接通。
+
+六队共同规则：需求只来自五层目标清单，各队不自定抓什么；交付只走供应中心一个入口，按 fetchspec 包格式，数字进观测数据、规格进参照数据、文本进材料档案再提取；任务写"披露类型 × 出版方类别 × 日历"，公司只是实例。**来源归属**：每个来源只属一个队、一台主执行机、一个日历；两队需要同一来源时由拥有方抓原件，另一方引用交付包；换主机等于结束旧任务、开新任务；接收端仍按 SHA 与来源身份去重。执行机沿用下节：API、EDGAR、RSS、固定表格与免费 PDF 由 AWS 持续采集，登录门户、注册下载与需浏览器渲染的价目页由 macmini 辅助，Spark 只做提取与模型分析。
+
+inresearch 内置的 SEC 与 GPU 采集器于 2026-09-28 退役：`adapters.acquisition` 不再提供 `sec`、`gpu` 子命令，其实现由 Git 历史保留并作为 fetchfilings、fetchquotes 的种子迁入 `fetchdata`；采集台账中历史 `sec`、`gpu` 行只读保留，网页运维台账不再提供对应按钮。下文"SEC"与"GPU"两小节记录的口径要求（清单、原文与结构化事实分开；报价是低价样本不是成交价）继续对迁出后的分队有效。
+
+### inews 两条线与"挑选在先，翻译在后"
+
+inews.today 同时是采集队与媒体产品，拆成两条线，共享一个库、一套标签，各有预算、节奏与产出物：
+
+- **采集线**求广：发现 → 闸门 → 打标（事件类型、研究角度、层标签）→ 事件 feed。给 inresearch 的采集**默认不翻译**；inews 只给事件卡与原件指针，不抓原件，原件由拥有该来源的分队按目标清单抓取。
+- **编辑线**求精：从打标池按配额选簇 → 取正文 → 全文翻译 → 发布。**挑选在先，翻译在后**：翻译只花在被挑出来的对象上，先翻再挑一律不做；簇头标题翻译只在机器初选之后、按批量进行，与编辑选题后的全文翻译分开计预算。选题单位是簇不是文章；批准（approved）是精选、日报与全文翻译的唯一发布闸。如何挑的配额与排序规则另行讨论后登记。
+
+事件 feed（`/api/feeds/datacenter`）在 schema_version 1 上**只增不改**，附加字段 `event_type`（融资发债、租约合同、项目里程碑、费率电力政策、交期供应链、自备电源并网、税收法规、运行事故、交易估值、产品价格变动）、`research_angle`、`layer_tags`（1–5 层）、`origin_pointer`（通稿或监管原文链接，没有则空）、`editorial_pick`。研究端在 `news_sync` 校验形状、随事件卡保存，标签只是线索，不构成证据；缺字段的旧 feed 照常消费。
+
 ## 产品与机器边界
 
 | 层 | 责任与正式状态归属 |
 |---|---|
-| inews.today | 统一负责数据中心及 AI 产业生态新闻发现、采集、聚类、筛选、翻译与新闻产品；含媒体报道、官方新闻稿和产品事件。新闻数据库、编辑记录与账号由 inews 自己管理 |
-| 专业供应方 | 按需求采集、专业提取、保存原件与版本、交付及补交；fetchspec 负责产品资料方向，其他能力按登记逐步实现 |
-| inresearch.ai | 统一需求、接收与资料验收，研究侧原件与结构化数据、对象、问题、证据、口径、深读、采用与交付；现有采集器在接入迁移前保留 |
+| inews.today | 采集线：数据中心及 AI 产业生态新闻发现、聚类、打标与事件 feed（不翻译）；编辑线：配额选簇、正文、全文翻译与新闻产品。新闻数据库、编辑记录与账号由 inews 自己管理 |
+| 采集分队 | fetchspec 负责厂商规格；fetchstat、fetchfilings、fetchreports、fetchquotes 在 `fetchdata` 仓库内按目标清单采集、保存原件与版本、交付及补交 |
+| inresearch.ai | 五层目标清单与供应任务、接收与资料验收，研究侧原件与结构化数据、对象、问题、证据、口径、深读、采用与交付；本身不爬取，内置 SEC/GPU 采集器已退役 |
 | AWS | 新闻产品和研究网页；研究网页显示 Spark 的派生状态，不把网页按钮直接变成模型长任务 |
-| Spark | inresearch 新采集原件、报价快照、永久采集台账、reader 台账、研究模型阅读与翻译产物 |
+| Spark | 交付原件的永久归档、采集台账、reader 台账、研究模型阅读、提取与翻译产物；不执行采集 |
 | macmini | 必须使用已授权浏览器登录态的采集；原件交给所属研究产品，登录态留在原机器 |
 | m4 / m5 | 人的操作、上传、开发、校验和交付 |
 
@@ -134,7 +153,7 @@ inews 的数据库当前包含身份和内容，研究端只接显式字段投�
 
 第一阶段是有界投影，不是完整历史镜像或可靠增量游标。`truncated=true` 明示窗口被截断。正文补抓、撤回传播、历史回填、推送/游标是下一阶段。
 
-### SEC：清单、原文、结构化事实分开
+### SEC：清单、原文、结构化事实分开（口径要求，实现已移交 fetchfilings）
 
 使用 SEC Submissions JSON 发现披露，再按 CIK / accession / primaryDocument 获取正文。10-K、10-Q、8-K、20-F、6-K 及修订件各保留身份；修订文件不能覆盖历史原件。第一阶段默认只抓一家公司的 1 份主文件，支持最多 10 份；附件及更久历史清单尚未自动回填。
 
@@ -142,9 +161,9 @@ inews 的数据库当前包含身份和内容，研究端只接显式字段投�
 
 SEC 官方要求声明自动访问身份并控制请求频率，当前开发规则上限为总计 10 次/秒。第一阶段串行，文件请求间隔至少 0.6 秒，遇到 403/429 等记录失败，不冒充采集成功或绕过限制。参见 [SEC Developer Resources](https://www.sec.gov/about/developer-resources)、[EDGAR API](https://www.sec.gov/search-filings/edgar-application-programming-interfaces)。后续定时器必须共享来源限速、退避和预算。
 
-### GPU：结构化观察，不需要模型猜价格
+### GPU：结构化观察，不需要模型猜价格（口径要求，实现已移交 fetchquotes）
 
-现行接口使用 Vast 官方 Search Offers 的 POST 查询；需要部署 `VAST_API_KEY` 时明确显示缺凭据，不假装返回了空市场。[官方 API](https://docs.vast.ai/api-reference/search/search-offers) 与 [计价说明](https://docs.vast.ai/guides/instances/pricing)区分按需、可中断和其他成本。
+退役前的接口使用 Vast 官方 Search Offers 的 POST 查询；迁入 fetchquotes 后仍须在缺 `VAST_API_KEY` 时明确显示缺凭据，不假装返回了空市场。[官方 API](https://docs.vast.ai/api-reference/search/search-offers) 与 [计价说明](https://docs.vast.ai/guides/instances/pricing)区分按需、可中断和其他成本。
 
 第一阶段查询固定 GPU、1 卡、可租且未租、on-demand、按列示小时总价排序的最多 20 个报价。保存完整响应、查询条件、采集 UTC 时间、GPU 数量、价格字段、地区、可靠性、存储和网络费等原字段。统计时排除重复、错误型号/卡数、可中断记录及非有限/非正价格。
 
@@ -170,7 +189,7 @@ Fetchspec package 以 SHA256 区分字节版本，来源 URL / URL 同现、官�
 | `originals/`、`extracted/`、`artifacts/` | 已有 reader 的原件、提取和候选成果 |
 | `library/` | 分类视图，不改变原件内容身份 |
 
-inews 标题、SEC 清单与不可阅读原件、GPU 报价响应**不会自动投入 raw-materials**。Fetchspec 默认也只验收、归档和编目；只有被显式选择且格式已有提取器的产品资料，才会硬链接至 `raw-materials/fetchspec/`。不支持的文件仍作为已存档接收项并标 needs_supplement。后续 Reader 扫描、粗读/深读与问题证据投影仍经同一个 reader。用户正在上传的批次独立校验、独立开放。
+inews 事件卡、退役前的 SEC 清单与 GPU 报价响应**不会自动投入 raw-materials**。Fetchspec 默认也只验收、归档和编目；只有被显式选择且格式已有提取器的产品资料，才会硬链接至 `raw-materials/fetchspec/`。不支持的文件仍作为已存档接收项并标 needs_supplement。后续 Reader 扫描、粗读/深读与问题证据投影仍经同一个 reader。用户正在上传的批次独立校验、独立开放。
 
 ## 研究模型的翻译与研究合同
 
@@ -188,9 +207,9 @@ inews 标题、SEC 清单与不可阅读原件、GPU 报价响应**不会自动�
 
 | 阶段 | 范围与退出条件 |
 |---|---|
-| 1 · 本次基础实现 | 修复旧新闻目录契约、统一采集台账；新闻字段投影、SEC 清单及有界主文件抓取、GPU 原始响应与严格口径；失败明确；停止直接写正式价格；网页能查看 Spark 状态 |
+| 1 · 基础实现（已完成，SEC/GPU 部分于 2026-09-28 移交 fetchdata） | 修复旧新闻目录契约、统一采集台账；新闻字段投影；失败明确；停止直接写正式价格；网页能查看 Spark 状态 |
 | 2 · 正文与翻译小闭环 | 选新闻原始出处和 SEC 章节小样本；保留原文/提取/译文三份关系；数字与覆盖率校验；从采集台账可靠 handoff 到 reader |
-| 3 · 持续运行 | 新闻增量接口与撤回传播、SEC 修订与附件、GPU 多来源可比面板；定时、退避、断点、模型公平调度；运行监控区分新鲜度与成功数 |
+| 3 · 持续运行 | 新闻增量接口与撤回传播；fetchdata 四队按目标清单日历运行，SEC 修订与附件、报价多来源可比面板归 fetchfilings、fetchquotes；定时、退避、断点、模型公平调度；运行监控区分新鲜度与成功数 |
 | 4 · 研究缺口驱动 | 对现行问题登记按证据类型与价值排优先级，补规格、标准、工程案例、区域电力/土地、供应商交付等；逐层补齐 P/F/V/D/R 与 3D 入口 |
 
 每阶段以实测结果验收，不把计划写成服务已运行。没有全文、没有有效报价、缺凭据、被源站拒绝分别展示。采集完成、深读完成、译文校验、C3 采用分别计量。

@@ -4,7 +4,7 @@ import sqlite3
 import time
 from pathlib import Path
 
-from inresearch.knowledge.news_policy import POLICY, classify, trusted_news_selection
+from inresearch.knowledge.news_policy import POLICY, FEED_V2_FIELDS, classify, trusted_news_selection
 
 def feed(root, limit=80):
     path = Path(root)/'acquisition/catalog.sqlite'
@@ -44,7 +44,8 @@ def feed(root, limit=80):
                 'title_zh':meta.get('title_zh'), 'translation_profile':meta.get('title_zh_profile'),
                 'domain':meta.get('domain'), 'publisher':meta.get('publisher') or meta.get('domain'), 'published_at':stamp,
                 'category':category, 'cluster_id':meta.get('cluster_id'),
-                'topics':meta.get('topics', []) if trusted else []})
+                'topics':meta.get('topics', []) if trusted else [],
+                **({k: meta.get(k) for k in FEED_V2_FIELDS} if trusted else {})})
         seen = set()
         for item in sorted(selected,key=lambda r:r['published_at'],reverse=True):
             key = item['cluster_id'] or item['url']

@@ -39,8 +39,6 @@ PY = sys.executable
 TASKS = {
     "collect":    ("兼容历史简报", ["manage.py", "historical-brief"], 600),
     "news":       ("inews 采集状态", ["manage.py", "acquisition-status", "inews"], 30),
-    "sec":        ("SEC 采集状态", ["manage.py", "acquisition-status", "sec"], 30),
-    "gpu":        ("GPU 采集状态", ["manage.py", "acquisition-status", "gpu"], 30),
     "indicators": ("指标回填", ["manage.py", "indicators"], 30),
     "verify":     ("生成核验队列", ["manage.py", "verify"], 30),
     "validate":   ("数据校验", ["manage.py", "validate"], 30),
