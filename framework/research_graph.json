@@ -1,6 +1,6 @@
 {
-  "version": "2.1.2",
-  "updated": "2026-09-06",
+  "version": "2.2.0",
+  "updated": "2026-09-28",
   "views": [
     {
       "id": "P",
@@ -325,7 +325,7 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "substation",
-      "description": "大型变压器交期最高 4 年，全行业最诚实的供需温度计",
+      "description": "后台兼容身份（2026-09-28 部件重切）。旧入口转向 大型电力变压器；原范围的历史由版本记录保留。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
@@ -333,7 +333,10 @@
         "transformer"
       ],
       "ecosystem_id": "power",
-      "research_sections": []
+      "research_sections": [],
+      "navigation_hidden": true,
+      "redirect_to": "part:transformer",
+      "legacy_scope": true
     },
     {
       "id": "part:prime-power",
@@ -350,7 +353,7 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "prime-power",
-      "description": "燃机订单簿 ≥125GW vs 年产能 ~20GW；燃料电池 55 天交付成为桥接方案",
+      "description": "后台兼容身份（2026-09-28 部件重切）。旧入口转向 燃气轮机；原范围的历史由版本记录保留。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
@@ -359,7 +362,10 @@
         "gas turbine"
       ],
       "ecosystem_id": "power",
-      "research_sections": []
+      "research_sections": [],
+      "navigation_hidden": true,
+      "redirect_to": "part:gas-turbine",
+      "legacy_scope": true
     },
     {
       "id": "part:backup-power",
@@ -554,7 +560,7 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "power-dist",
-      "description": "认证柜型与工厂槽位是交付约束；800V HVDC 架构切换在即",
+      "description": "后台兼容身份（2026-09-28 部件重切）。旧入口转向 低压开关柜；原范围的历史由版本记录保留。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
@@ -564,7 +570,10 @@
         "switchgear"
       ],
       "ecosystem_id": "power",
-      "research_sections": []
+      "research_sections": [],
+      "navigation_hidden": true,
+      "redirect_to": "part:lv-switchgear",
+      "legacy_scope": true
     },
     {
       "id": "part:room-cooling",
@@ -633,7 +642,7 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "heat-reject",
-      "description": "干冷/蒸发/冷机组合由气候与水价值决定——没有全球最优解",
+      "description": "后台兼容身份（2026-09-28 部件重切）。旧入口转向 冷水机组；原范围的历史由版本记录保留。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
@@ -643,7 +652,10 @@
         "dry cooler"
       ],
       "ecosystem_id": "thermal",
-      "research_sections": []
+      "research_sections": [],
+      "navigation_hidden": true,
+      "redirect_to": "part:chiller",
+      "legacy_scope": true
     },
     {
       "id": "part:dcim",
@@ -1073,7 +1085,7 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "interconnect-chip",
-      "description": "Retimer/CXL/PCIe Switch/BMC——服务器内互联与管理的隐形层",
+      "description": "后台兼容身份（2026-09-28 部件重切）。旧入口转向 重定时器 / AEC 芯片；原范围的历史由版本记录保留。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
@@ -1083,7 +1095,10 @@
         "BMC"
       ],
       "ecosystem_id": "network",
-      "research_sections": []
+      "research_sections": [],
+      "navigation_hidden": true,
+      "redirect_to": "part:retimer",
+      "legacy_scope": true
     },
     {
       "id": "part:dram",
@@ -1347,7 +1362,7 @@
       ],
       "representation": "conceptual",
       "legacy_bom_id": "fan-vc",
-      "description": "风扇/VC/均热板散热模组——风冷末端与混合散热的常青件",
+      "description": "后台兼容身份（2026-09-28 部件重切）。旧入口转向 服务器风扇；原范围的历史由版本记录保留。",
       "evidence_status": "unverified",
       "configuration_id": null,
       "aliases": [
@@ -1356,7 +1371,10 @@
         "heat sink"
       ],
       "ecosystem_id": "thermal",
-      "research_sections": []
+      "research_sections": [],
+      "navigation_hidden": true,
+      "redirect_to": "part:server-fan",
+      "legacy_scope": true
     },
     {
       "id": "part:leak-detection",
@@ -2133,9 +2151,10 @@
       "description": "与 GPU 分开研究的专用加速产品；比较软件栈、算子、负载与部署，不把所有 AI 芯片称为 GPU。",
       "kind": "component_type",
       "views": [
+        "P",
+        "F",
         "R",
-        "V",
-        "P"
+        "V"
       ],
       "modules": [
         "M06"
@@ -2144,7 +2163,8 @@
       "evidence_status": "unverified",
       "aliases": [],
       "ecosystem_id": "compute",
-      "research_sections": []
+      "research_sections": [],
+      "legacy_bom_id": "ai-asic"
     },
     {
       "id": "arch:x86",
@@ -2516,7 +2536,10 @@
             "arch:nvidia-gpu",
             "arch:amd-gpu",
             "arch:other-gpu",
-            "tech:gpu-memory"
+            "tech:gpu-memory",
+            "part:rack-system",
+            "part:general-server",
+            "part:bmc"
           ]
         }
       ]
@@ -2543,7 +2566,8 @@
             "part:hbm",
             "part:dram",
             "part:lpddr",
-            "part:gddr"
+            "part:gddr",
+            "part:cxl-memory"
           ]
         }
       ]
@@ -2569,13 +2593,14 @@
           "object_ids": [
             "part:nic",
             "part:optics",
-            "part:interconnect-chip",
             "part:switch-asic",
             "part:connector",
             "part:network-switch",
             "part:copper-interconnect",
             "part:cabling",
-            "part:network-access"
+            "part:network-access",
+            "part:retimer",
+            "part:pcie-switch"
           ]
         }
       ]
@@ -2600,16 +2625,26 @@
           "title": "研究入口",
           "object_ids": [
             "part:grid",
-            "part:substation",
-            "part:prime-power",
             "part:backup-power",
             "part:bess",
             "part:ups",
-            "part:power-dist",
             "part:power-shelf",
             "part:psu",
             "part:vrm",
-            "part:fuel-supply"
+            "part:fuel-supply",
+            "part:hv-switchyard",
+            "part:transformer",
+            "part:mv-switchgear",
+            "part:gas-turbine",
+            "part:gas-engine",
+            "part:fuel-cell",
+            "part:smr",
+            "part:fuel-storage",
+            "part:ups-battery",
+            "part:lv-switchgear",
+            "part:busway",
+            "part:pdu",
+            "part:bbu"
           ]
         }
       ]
@@ -2636,14 +2671,19 @@
             "part:water",
             "part:room-cooling",
             "part:cdu",
-            "part:heat-reject",
             "part:manifold",
             "part:coldplate",
             "part:coolant",
             "part:immersion",
-            "part:fan-vc",
             "part:leak-detection",
-            "part:sidecar-hx"
+            "part:sidecar-hx",
+            "part:dry-cooler",
+            "part:water-treatment",
+            "part:chiller",
+            "part:chilled-water-loop",
+            "part:quick-disconnect",
+            "part:server-fan",
+            "part:heatsink-vc"
           ]
         }
       ]
@@ -2671,7 +2711,8 @@
             "part:shell",
             "part:fire",
             "part:rack-frame",
-            "part:modular-dc"
+            "part:modular-dc",
+            "part:security"
           ]
         }
       ]
@@ -2792,6 +2833,600 @@
         "SSD PCB",
         "board"
       ],
+      "research_sections": []
+    },
+    {
+      "id": "part:hv-switchyard",
+      "name": "高压开关站/GIS",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "hv-switchyard",
+      "description": "园区侧高压开关与 GIS，与电网交接的第一件可采购设备；厂商示例沿用变电站档案，待补",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:transformer",
+      "name": "大型电力变压器",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "transformer",
+      "description": "大型变压器交期最高 4 年，全行业最诚实的供需温度计；单独采购、单独交期，故单列",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:mv-switchgear",
+      "name": "中压开关柜",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "mv-switchgear",
+      "description": "变电站内的中压开关设备；供应商与交期独立于变压器",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:gas-turbine",
+      "name": "燃气轮机",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "gas-turbine",
+      "description": "燃机订单簿 ≥125GW vs 年产能 ~20GW；交期 3–5 年",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:gas-engine",
+      "name": "燃气往复式机组",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "gas-engine",
+      "description": "与燃气轮机不同的一批厂商与交期（1–2 年）；待补 caterpillar / cummins / innio 档案",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:fuel-cell",
+      "name": "燃料电池",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "fuel-cell",
+      "description": "月级交付的桥接电源",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:smr",
+      "name": "小型模块化反应堆",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "smr",
+      "description": "新兴条目（用户 2026-09-28 决定登记）：尚无可采购机组、价格与交期，只跟踪合同与许可事件",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:fuel-storage",
+      "name": "柴油储运（储罐、日用箱、加注）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M04"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "fuel-storage",
+      "description": "备用电源的燃料物流设备；管道天然气接入是站点权利，不在此",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:dry-cooler",
+      "name": "干冷器/冷却塔/蒸发冷",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "dry-cooler",
+      "description": "室外排热设备，与冷水机组不是同一批厂商；待补 evapco / bac 档案",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "thermal",
+      "research_sections": []
+    },
+    {
+      "id": "part:water-treatment",
+      "name": "水处理与供水（泵站、过滤、软化）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "water-treatment",
+      "description": "取水许可是站点权利，设备在此",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "thermal",
+      "research_sections": []
+    },
+    {
+      "id": "part:security",
+      "name": "安防（门禁、视频、周界）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M10"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "security",
+      "description": "与消防不是同一批厂商",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "facility",
+      "research_sections": []
+    },
+    {
+      "id": "part:ups-battery",
+      "name": "UPS 电池（锂电/铅酸）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "ups-battery",
+      "description": "价格随电芯独立波动；待补电芯厂档案",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:lv-switchgear",
+      "name": "低压开关柜",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "lv-switchgear",
+      "description": "认证柜型与工厂槽位是交付约束，交期 40–60 周",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:busway",
+      "name": "母线槽",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "busway",
+      "description": "与开关柜不同的产品线与交期；待补专业母线厂档案",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:pdu",
+      "name": "机房配电柜/PDU/RPP（含机柜配电条）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "pdu",
+      "description": "用户 2026-09-28 决定机柜配电条不再单拆",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:chiller",
+      "name": "冷水机组",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "chiller",
+      "description": "按冷吨计价；干冷/蒸发/冷机组合由气候与水价值决定",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "thermal",
+      "research_sections": []
+    },
+    {
+      "id": "part:chilled-water-loop",
+      "name": "冷冻水泵、管路与阀门",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "chilled-water-loop",
+      "description": "机电分包的一门独立生意；待补泵阀管路厂档案",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "thermal",
+      "research_sections": []
+    },
+    {
+      "id": "part:rack-system",
+      "name": "整机柜系统（NVL72 类，按柜计价）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "rack-system",
+      "description": "含 scale-up 交换托盘与背板；整柜功率与每柜 GPU 数正来自它",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "compute",
+      "research_sections": []
+    },
+    {
+      "id": "part:general-server",
+      "name": "通用服务器（CPU 节点）",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "general-server",
+      "description": "用户 2026-09-28 决定与加速器服务器分两行",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "compute",
+      "research_sections": []
+    },
+    {
+      "id": "part:quick-disconnect",
+      "name": "快接头",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "quick-disconnect",
+      "description": "供应商集中、认证周期长的隐形风险点",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "thermal",
+      "research_sections": []
+    },
+    {
+      "id": "part:bbu",
+      "name": "机柜电池备份单元",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M09"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "bbu",
+      "description": "电芯价格独立；待补电芯厂档案",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "power",
+      "research_sections": []
+    },
+    {
+      "id": "part:bmc",
+      "name": "基板管理控制器",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "bmc",
+      "description": "近乎单一来源（ASPEED）；用户 2026-09-28 未否决单列，按规则单列",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "compute",
+      "research_sections": []
+    },
+    {
+      "id": "part:cxl-memory",
+      "name": "CXL 内存扩展",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M06"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "cxl-memory",
+      "description": "控制器厂是另一批；用户 2026-09-28 决定单列",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "memory",
+      "research_sections": []
+    },
+    {
+      "id": "part:retimer",
+      "name": "重定时器 / AEC 芯片",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "retimer",
+      "description": "供应商集中；随速率代际量价齐升",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "network",
+      "research_sections": []
+    },
+    {
+      "id": "part:pcie-switch",
+      "name": "PCIe/CXL 交换芯片",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M07"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "pcie-switch",
+      "description": "服务器内互联的交换层",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "network",
+      "research_sections": []
+    },
+    {
+      "id": "part:server-fan",
+      "name": "服务器风扇",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "server-fan",
+      "description": "与均热板/散热器不是同一批厂商",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "thermal",
+      "research_sections": []
+    },
+    {
+      "id": "part:heatsink-vc",
+      "name": "均热板与散热器",
+      "kind": "component_type",
+      "views": [
+        "P",
+        "F",
+        "R",
+        "V"
+      ],
+      "modules": [
+        "M08"
+      ],
+      "representation": "conceptual",
+      "legacy_bom_id": "heatsink-vc",
+      "description": "风冷末端与混合散热的常青件",
+      "evidence_status": "unverified",
+      "configuration_id": null,
+      "aliases": [],
+      "ecosystem_id": "thermal",
       "research_sections": []
     }
   ],
@@ -3597,33 +4232,6 @@
       "representation": "conceptual"
     },
     {
-      "id": "powers:part:grid>part:substation",
-      "type": "powers",
-      "source": "part:grid",
-      "target": "part:substation",
-      "representation": "conceptual",
-      "configuration_id": "template:dc-v2",
-      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
-    },
-    {
-      "id": "powers:part:substation>part:power-dist",
-      "type": "powers",
-      "source": "part:substation",
-      "target": "part:power-dist",
-      "representation": "conceptual",
-      "configuration_id": "template:dc-v2",
-      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
-    },
-    {
-      "id": "powers:part:power-dist>part:ups",
-      "type": "powers",
-      "source": "part:power-dist",
-      "target": "part:ups",
-      "representation": "conceptual",
-      "configuration_id": "template:dc-v2",
-      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
-    },
-    {
       "id": "powers:part:ups>part:power-shelf",
       "type": "powers",
       "source": "part:ups",
@@ -3682,15 +4290,6 @@
       "type": "transfers_heat_to",
       "source": "part:manifold",
       "target": "part:cdu",
-      "representation": "conceptual",
-      "configuration_id": "template:dc-v2",
-      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
-    },
-    {
-      "id": "transfers_heat_to:part:cdu>part:heat-reject",
-      "type": "transfers_heat_to",
-      "source": "part:cdu",
-      "target": "part:heat-reject",
       "representation": "conceptual",
       "configuration_id": "template:dc-v2",
       "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
@@ -3852,6 +4451,508 @@
       "target": "system:compute",
       "representation": "conceptual",
       "supersedes_relation_id": "member_of_system:part:ssd>system:compute"
+    },
+    {
+      "id": "research_scope:part:hv-switchyard>scope:M09",
+      "type": "research_scope",
+      "source": "part:hv-switchyard",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:hv-switchyard>system:power",
+      "type": "member_of_system",
+      "source": "part:hv-switchyard",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:transformer>scope:M09",
+      "type": "research_scope",
+      "source": "part:transformer",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:transformer>system:power",
+      "type": "member_of_system",
+      "source": "part:transformer",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:mv-switchgear>scope:M09",
+      "type": "research_scope",
+      "source": "part:mv-switchgear",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:mv-switchgear>system:power",
+      "type": "member_of_system",
+      "source": "part:mv-switchgear",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:gas-turbine>scope:M04",
+      "type": "research_scope",
+      "source": "part:gas-turbine",
+      "target": "scope:M04",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:gas-turbine>system:power",
+      "type": "member_of_system",
+      "source": "part:gas-turbine",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:gas-engine>scope:M04",
+      "type": "research_scope",
+      "source": "part:gas-engine",
+      "target": "scope:M04",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:gas-engine>system:power",
+      "type": "member_of_system",
+      "source": "part:gas-engine",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:fuel-cell>scope:M04",
+      "type": "research_scope",
+      "source": "part:fuel-cell",
+      "target": "scope:M04",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:fuel-cell>system:power",
+      "type": "member_of_system",
+      "source": "part:fuel-cell",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:smr>scope:M04",
+      "type": "research_scope",
+      "source": "part:smr",
+      "target": "scope:M04",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:smr>system:power",
+      "type": "member_of_system",
+      "source": "part:smr",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:fuel-storage>scope:M04",
+      "type": "research_scope",
+      "source": "part:fuel-storage",
+      "target": "scope:M04",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:fuel-storage>system:power",
+      "type": "member_of_system",
+      "source": "part:fuel-storage",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:dry-cooler>scope:M08",
+      "type": "research_scope",
+      "source": "part:dry-cooler",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:dry-cooler>system:thermal",
+      "type": "member_of_system",
+      "source": "part:dry-cooler",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:water-treatment>scope:M08",
+      "type": "research_scope",
+      "source": "part:water-treatment",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:water-treatment>system:thermal",
+      "type": "member_of_system",
+      "source": "part:water-treatment",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:security>scope:M10",
+      "type": "research_scope",
+      "source": "part:security",
+      "target": "scope:M10",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:security>system:safety",
+      "type": "member_of_system",
+      "source": "part:security",
+      "target": "system:safety",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:ups-battery>scope:M09",
+      "type": "research_scope",
+      "source": "part:ups-battery",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:ups-battery>system:power",
+      "type": "member_of_system",
+      "source": "part:ups-battery",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:lv-switchgear>scope:M09",
+      "type": "research_scope",
+      "source": "part:lv-switchgear",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:lv-switchgear>system:power",
+      "type": "member_of_system",
+      "source": "part:lv-switchgear",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:busway>scope:M09",
+      "type": "research_scope",
+      "source": "part:busway",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:busway>system:power",
+      "type": "member_of_system",
+      "source": "part:busway",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:pdu>scope:M09",
+      "type": "research_scope",
+      "source": "part:pdu",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:pdu>system:power",
+      "type": "member_of_system",
+      "source": "part:pdu",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:chiller>scope:M08",
+      "type": "research_scope",
+      "source": "part:chiller",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:chiller>system:thermal",
+      "type": "member_of_system",
+      "source": "part:chiller",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:chilled-water-loop>scope:M08",
+      "type": "research_scope",
+      "source": "part:chilled-water-loop",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:chilled-water-loop>system:thermal",
+      "type": "member_of_system",
+      "source": "part:chilled-water-loop",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:rack-system>scope:M06",
+      "type": "research_scope",
+      "source": "part:rack-system",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:rack-system>system:compute",
+      "type": "member_of_system",
+      "source": "part:rack-system",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:general-server>scope:M06",
+      "type": "research_scope",
+      "source": "part:general-server",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:general-server>system:compute",
+      "type": "member_of_system",
+      "source": "part:general-server",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:quick-disconnect>scope:M08",
+      "type": "research_scope",
+      "source": "part:quick-disconnect",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:quick-disconnect>system:thermal",
+      "type": "member_of_system",
+      "source": "part:quick-disconnect",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:bbu>scope:M09",
+      "type": "research_scope",
+      "source": "part:bbu",
+      "target": "scope:M09",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:bbu>system:power",
+      "type": "member_of_system",
+      "source": "part:bbu",
+      "target": "system:power",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:bmc>scope:M06",
+      "type": "research_scope",
+      "source": "part:bmc",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:bmc>system:compute",
+      "type": "member_of_system",
+      "source": "part:bmc",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:cxl-memory>scope:M06",
+      "type": "research_scope",
+      "source": "part:cxl-memory",
+      "target": "scope:M06",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:cxl-memory>system:compute",
+      "type": "member_of_system",
+      "source": "part:cxl-memory",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:retimer>scope:M07",
+      "type": "research_scope",
+      "source": "part:retimer",
+      "target": "scope:M07",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:retimer>system:network",
+      "type": "member_of_system",
+      "source": "part:retimer",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:pcie-switch>scope:M07",
+      "type": "research_scope",
+      "source": "part:pcie-switch",
+      "target": "scope:M07",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:pcie-switch>system:network",
+      "type": "member_of_system",
+      "source": "part:pcie-switch",
+      "target": "system:network",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:server-fan>scope:M08",
+      "type": "research_scope",
+      "source": "part:server-fan",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:server-fan>system:thermal",
+      "type": "member_of_system",
+      "source": "part:server-fan",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "research_scope:part:heatsink-vc>scope:M08",
+      "type": "research_scope",
+      "source": "part:heatsink-vc",
+      "target": "scope:M08",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:heatsink-vc>system:thermal",
+      "type": "member_of_system",
+      "source": "part:heatsink-vc",
+      "target": "system:thermal",
+      "representation": "conceptual"
+    },
+    {
+      "id": "member_of_system:part:ai-asic>system:compute",
+      "type": "member_of_system",
+      "source": "part:ai-asic",
+      "target": "system:compute",
+      "representation": "conceptual"
+    },
+    {
+      "id": "powers:part:grid>part:transformer",
+      "type": "powers",
+      "source": "part:grid",
+      "target": "part:transformer",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "powers:part:transformer>part:lv-switchgear",
+      "type": "powers",
+      "source": "part:transformer",
+      "target": "part:lv-switchgear",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "powers:part:lv-switchgear>part:ups",
+      "type": "powers",
+      "source": "part:lv-switchgear",
+      "target": "part:ups",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "transfers_heat_to:part:cdu>part:chiller",
+      "type": "transfers_heat_to",
+      "source": "part:cdu",
+      "target": "part:chiller",
+      "representation": "conceptual",
+      "configuration_id": "template:dc-v2",
+      "note": "研究示意链，拓扑与冗余方案须以实物设计为准。"
+    },
+    {
+      "id": "part_of:part:bmc>part:server",
+      "type": "part_of",
+      "source": "part:bmc",
+      "target": "part:server",
+      "representation": "conceptual",
+      "note": "概念装配示例；具体型号与数量须单独取证。",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "part_of:part:server-fan>part:server",
+      "type": "part_of",
+      "source": "part:server-fan",
+      "target": "part:server",
+      "representation": "conceptual",
+      "note": "概念装配示例；具体型号与数量须单独取证。",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "part_of:part:heatsink-vc>part:server",
+      "type": "part_of",
+      "source": "part:heatsink-vc",
+      "target": "part:server",
+      "representation": "conceptual",
+      "note": "概念装配示例；具体型号与数量须单独取证。",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "part_of:part:retimer>part:server",
+      "type": "part_of",
+      "source": "part:retimer",
+      "target": "part:server",
+      "representation": "conceptual",
+      "note": "概念装配示例；具体型号与数量须单独取证。",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "part_of:part:pcie-switch>part:server",
+      "type": "part_of",
+      "source": "part:pcie-switch",
+      "target": "part:server",
+      "representation": "conceptual",
+      "note": "概念装配示例；具体型号与数量须单独取证。",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "part_of:part:cxl-memory>part:server",
+      "type": "part_of",
+      "source": "part:cxl-memory",
+      "target": "part:server",
+      "representation": "conceptual",
+      "note": "概念装配示例；具体型号与数量须单独取证。",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "part_of:part:bbu>part:rack-frame",
+      "type": "part_of",
+      "source": "part:bbu",
+      "target": "part:rack-frame",
+      "representation": "conceptual",
+      "note": "概念装配示例；具体型号与数量须单独取证。",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "part_of:part:quick-disconnect>part:manifold",
+      "type": "part_of",
+      "source": "part:quick-disconnect",
+      "target": "part:manifold",
+      "representation": "conceptual",
+      "note": "概念装配示例；具体型号与数量须单独取证。",
+      "configuration_id": "template:dc-v2"
+    },
+    {
+      "id": "part_of:part:ups-battery>part:ups",
+      "type": "part_of",
+      "source": "part:ups-battery",
+      "target": "part:ups",
+      "representation": "conceptual",
+      "note": "概念装配示例；具体型号与数量须单独取证。",
+      "configuration_id": "template:dc-v2"
     }
   ],
   "policy": {
@@ -3894,10 +4995,16 @@
             "id": "p-site-power",
             "label": "园区电源设施",
             "object_ids": [
-              "part:substation",
-              "part:prime-power",
               "part:backup-power",
-              "part:bess"
+              "part:bess",
+              "part:hv-switchyard",
+              "part:transformer",
+              "part:mv-switchgear",
+              "part:gas-turbine",
+              "part:gas-engine",
+              "part:fuel-cell",
+              "part:smr",
+              "part:fuel-storage"
             ],
             "children": []
           }
@@ -3915,7 +5022,8 @@
             "label": "结构与安全设施",
             "object_ids": [
               "part:shell",
-              "part:fire"
+              "part:fire",
+              "part:security"
             ],
             "children": []
           }
@@ -3941,7 +5049,10 @@
             "label": "供配电设备",
             "object_ids": [
               "part:ups",
-              "part:power-dist"
+              "part:ups-battery",
+              "part:lv-switchgear",
+              "part:busway",
+              "part:pdu"
             ],
             "children": []
           },
@@ -3951,8 +5062,11 @@
             "object_ids": [
               "part:room-cooling",
               "part:cdu",
-              "part:heat-reject",
-              "part:immersion"
+              "part:immersion",
+              "part:dry-cooler",
+              "part:water-treatment",
+              "part:chiller",
+              "part:chilled-water-loop"
             ],
             "children": []
           },
@@ -3986,7 +5100,8 @@
             "id": "p-rack-structure",
             "label": "机柜结构",
             "object_ids": [
-              "part:rack-frame"
+              "part:rack-frame",
+              "part:rack-system"
             ],
             "children": []
           },
@@ -3996,7 +5111,8 @@
             "object_ids": [
               "part:server",
               "part:network-switch",
-              "part:storage-array"
+              "part:storage-array",
+              "part:general-server"
             ],
             "children": []
           },
@@ -4004,7 +5120,8 @@
             "id": "p-rack-power",
             "label": "机柜供电",
             "object_ids": [
-              "part:power-shelf"
+              "part:power-shelf",
+              "part:bbu"
             ],
             "children": []
           },
@@ -4014,7 +5131,8 @@
             "object_ids": [
               "part:manifold",
               "part:sidecar-hx",
-              "part:coolant"
+              "part:coolant",
+              "part:quick-disconnect"
             ],
             "children": []
           },
@@ -4041,7 +5159,8 @@
               "part:cpu",
               "part:fpga",
               "part:gpu-device",
-              "part:ai-asic"
+              "part:ai-asic",
+              "part:bmc"
             ],
             "children": []
           },
@@ -4057,7 +5176,8 @@
               "part:ssd-controller",
               "part:lpddr",
               "part:gddr",
-              "part:ssd-board"
+              "part:ssd-board",
+              "part:cxl-memory"
             ],
             "children": []
           },
@@ -4067,9 +5187,10 @@
             "object_ids": [
               "part:nic",
               "part:optics",
-              "part:interconnect-chip",
               "part:switch-asic",
-              "part:connector"
+              "part:connector",
+              "part:retimer",
+              "part:pcie-switch"
             ],
             "children": []
           },
@@ -4087,7 +5208,8 @@
             "label": "散热部件",
             "object_ids": [
               "part:coldplate",
-              "part:fan-vc"
+              "part:server-fan",
+              "part:heatsink-vc"
             ],
             "children": []
           }
@@ -4107,16 +5229,26 @@
             "label": "已关联的系统成员",
             "object_ids": [
               "part:grid",
-              "part:substation",
-              "part:prime-power",
               "part:backup-power",
               "part:bess",
               "part:ups",
-              "part:power-dist",
               "part:power-shelf",
               "part:psu",
               "part:vrm",
-              "part:fuel-supply"
+              "part:fuel-supply",
+              "part:hv-switchyard",
+              "part:transformer",
+              "part:mv-switchgear",
+              "part:gas-turbine",
+              "part:gas-engine",
+              "part:fuel-cell",
+              "part:smr",
+              "part:fuel-storage",
+              "part:ups-battery",
+              "part:lv-switchgear",
+              "part:busway",
+              "part:pdu",
+              "part:bbu"
             ],
             "children": []
           }
@@ -4137,14 +5269,19 @@
               "part:water",
               "part:room-cooling",
               "part:cdu",
-              "part:heat-reject",
               "part:manifold",
               "part:coldplate",
               "part:coolant",
               "part:immersion",
-              "part:fan-vc",
               "part:leak-detection",
-              "part:sidecar-hx"
+              "part:sidecar-hx",
+              "part:dry-cooler",
+              "part:water-treatment",
+              "part:chiller",
+              "part:chilled-water-loop",
+              "part:quick-disconnect",
+              "part:server-fan",
+              "part:heatsink-vc"
             ],
             "children": []
           }
@@ -4171,7 +5308,12 @@
               "part:hdd",
               "part:storage-array",
               "part:fpga",
-              "part:interconnect-chip"
+              "part:ssd-drive",
+              "part:rack-system",
+              "part:general-server",
+              "part:bmc",
+              "part:cxl-memory",
+              "part:ai-asic"
             ],
             "children": []
           },
@@ -4204,7 +5346,9 @@
               "part:switch-asic",
               "part:copper-interconnect",
               "part:cabling",
-              "part:connector"
+              "part:connector",
+              "part:retimer",
+              "part:pcie-switch"
             ],
             "children": []
           }
@@ -4244,7 +5388,8 @@
               "part:land",
               "part:shell",
               "part:fire",
-              "part:modular-dc"
+              "part:modular-dc",
+              "part:security"
             ],
             "children": []
           }
@@ -4313,10 +5458,16 @@
                 "id": "v-p-site-power",
                 "label": "园区电源设施",
                 "object_ids": [
-                  "part:substation",
-                  "part:prime-power",
                   "part:backup-power",
-                  "part:bess"
+                  "part:bess",
+                  "part:hv-switchyard",
+                  "part:transformer",
+                  "part:mv-switchgear",
+                  "part:gas-turbine",
+                  "part:gas-engine",
+                  "part:fuel-cell",
+                  "part:smr",
+                  "part:fuel-storage"
                 ],
                 "children": []
               }
@@ -4332,7 +5483,8 @@
                 "label": "结构与安全设施",
                 "object_ids": [
                   "part:shell",
-                  "part:fire"
+                  "part:fire",
+                  "part:security"
                 ],
                 "children": []
               }
@@ -4356,7 +5508,10 @@
                 "label": "供配电设备",
                 "object_ids": [
                   "part:ups",
-                  "part:power-dist"
+                  "part:ups-battery",
+                  "part:lv-switchgear",
+                  "part:busway",
+                  "part:pdu"
                 ],
                 "children": []
               },
@@ -4366,8 +5521,11 @@
                 "object_ids": [
                   "part:room-cooling",
                   "part:cdu",
-                  "part:heat-reject",
-                  "part:immersion"
+                  "part:immersion",
+                  "part:dry-cooler",
+                  "part:water-treatment",
+                  "part:chiller",
+                  "part:chilled-water-loop"
                 ],
                 "children": []
               },
@@ -4399,7 +5557,8 @@
                 "id": "v-p-rack-structure",
                 "label": "机柜结构",
                 "object_ids": [
-                  "part:rack-frame"
+                  "part:rack-frame",
+                  "part:rack-system"
                 ],
                 "children": []
               },
@@ -4409,7 +5568,8 @@
                 "object_ids": [
                   "part:server",
                   "part:network-switch",
-                  "part:storage-array"
+                  "part:storage-array",
+                  "part:general-server"
                 ],
                 "children": []
               },
@@ -4417,7 +5577,8 @@
                 "id": "v-p-rack-power",
                 "label": "机柜供电",
                 "object_ids": [
-                  "part:power-shelf"
+                  "part:power-shelf",
+                  "part:bbu"
                 ],
                 "children": []
               },
@@ -4427,7 +5588,8 @@
                 "object_ids": [
                   "part:manifold",
                   "part:sidecar-hx",
-                  "part:coolant"
+                  "part:coolant",
+                  "part:quick-disconnect"
                 ],
                 "children": []
               },
@@ -4452,7 +5614,8 @@
                 "object_ids": [
                   "part:gpu",
                   "part:cpu",
-                  "part:fpga"
+                  "part:fpga",
+                  "part:bmc"
                 ],
                 "children": []
               },
@@ -4462,7 +5625,8 @@
                 "object_ids": [
                   "part:hbm",
                   "part:dram",
-                  "part:hdd"
+                  "part:hdd",
+                  "part:cxl-memory"
                 ],
                 "children": []
               },
@@ -4472,9 +5636,10 @@
                 "object_ids": [
                   "part:nic",
                   "part:optics",
-                  "part:interconnect-chip",
                   "part:switch-asic",
-                  "part:connector"
+                  "part:connector",
+                  "part:retimer",
+                  "part:pcie-switch"
                 ],
                 "children": []
               },
@@ -4492,7 +5657,8 @@
                 "label": "散热部件",
                 "object_ids": [
                   "part:coldplate",
-                  "part:fan-vc"
+                  "part:server-fan",
+                  "part:heatsink-vc"
                 ],
                 "children": []
               }
@@ -4717,10 +5883,16 @@
                 "id": "r-p-site-power",
                 "label": "园区电源设施",
                 "object_ids": [
-                  "part:substation",
-                  "part:prime-power",
                   "part:backup-power",
-                  "part:bess"
+                  "part:bess",
+                  "part:hv-switchyard",
+                  "part:transformer",
+                  "part:mv-switchgear",
+                  "part:gas-turbine",
+                  "part:gas-engine",
+                  "part:fuel-cell",
+                  "part:smr",
+                  "part:fuel-storage"
                 ],
                 "children": []
               }
@@ -4738,7 +5910,8 @@
                 "label": "结构与安全设施",
                 "object_ids": [
                   "part:shell",
-                  "part:fire"
+                  "part:fire",
+                  "part:security"
                 ],
                 "children": []
               }
@@ -4764,7 +5937,10 @@
                 "label": "供配电设备",
                 "object_ids": [
                   "part:ups",
-                  "part:power-dist"
+                  "part:ups-battery",
+                  "part:lv-switchgear",
+                  "part:busway",
+                  "part:pdu"
                 ],
                 "children": []
               },
@@ -4774,8 +5950,11 @@
                 "object_ids": [
                   "part:room-cooling",
                   "part:cdu",
-                  "part:heat-reject",
-                  "part:immersion"
+                  "part:immersion",
+                  "part:dry-cooler",
+                  "part:water-treatment",
+                  "part:chiller",
+                  "part:chilled-water-loop"
                 ],
                 "children": []
               },
@@ -4809,7 +5988,8 @@
                 "id": "r-p-rack-structure",
                 "label": "机柜结构",
                 "object_ids": [
-                  "part:rack-frame"
+                  "part:rack-frame",
+                  "part:rack-system"
                 ],
                 "children": []
               },
@@ -4819,7 +5999,8 @@
                 "object_ids": [
                   "part:server",
                   "part:network-switch",
-                  "part:storage-array"
+                  "part:storage-array",
+                  "part:general-server"
                 ],
                 "children": []
               },
@@ -4827,7 +6008,8 @@
                 "id": "r-p-rack-power",
                 "label": "机柜供电",
                 "object_ids": [
-                  "part:power-shelf"
+                  "part:power-shelf",
+                  "part:bbu"
                 ],
                 "children": []
               },
@@ -4837,7 +6019,8 @@
                 "object_ids": [
                   "part:manifold",
                   "part:sidecar-hx",
-                  "part:coolant"
+                  "part:coolant",
+                  "part:quick-disconnect"
                 ],
                 "children": []
               },
@@ -4862,7 +6045,8 @@
                 "object_ids": [
                   "part:gpu",
                   "part:cpu",
-                  "part:fpga"
+                  "part:fpga",
+                  "part:bmc"
                 ],
                 "children": []
               },
@@ -4872,7 +6056,8 @@
                 "object_ids": [
                   "part:hbm",
                   "part:dram",
-                  "part:hdd"
+                  "part:hdd",
+                  "part:cxl-memory"
                 ],
                 "children": []
               },
@@ -4882,9 +6067,10 @@
                 "object_ids": [
                   "part:nic",
                   "part:optics",
-                  "part:interconnect-chip",
                   "part:switch-asic",
-                  "part:connector"
+                  "part:connector",
+                  "part:retimer",
+                  "part:pcie-switch"
                 ],
                 "children": []
               },
@@ -4902,7 +6088,8 @@
                 "label": "散热部件",
                 "object_ids": [
                   "part:coldplate",
-                  "part:fan-vc"
+                  "part:server-fan",
+                  "part:heatsink-vc"
                 ],
                 "children": []
               }
@@ -5119,7 +6306,10 @@
         "arch:hopper",
         "arch:blackwell",
         "arch:cdna",
-        "arch:rdna"
+        "arch:rdna",
+        "part:rack-system",
+        "part:general-server",
+        "part:bmc"
       ]
     },
     {
@@ -5130,7 +6320,8 @@
         "part:hbm",
         "part:dram",
         "part:lpddr",
-        "part:gddr"
+        "part:gddr",
+        "part:cxl-memory"
       ]
     },
     {
@@ -5140,13 +6331,14 @@
       "object_ids": [
         "part:nic",
         "part:optics",
-        "part:interconnect-chip",
         "part:switch-asic",
         "part:connector",
         "part:network-switch",
         "part:copper-interconnect",
         "part:cabling",
-        "part:network-access"
+        "part:network-access",
+        "part:retimer",
+        "part:pcie-switch"
       ]
     },
     {
@@ -5155,16 +6347,26 @@
       "node_id": "ecosystem:power",
       "object_ids": [
         "part:grid",
-        "part:substation",
-        "part:prime-power",
         "part:backup-power",
         "part:bess",
         "part:ups",
-        "part:power-dist",
         "part:power-shelf",
         "part:psu",
         "part:vrm",
-        "part:fuel-supply"
+        "part:fuel-supply",
+        "part:hv-switchyard",
+        "part:transformer",
+        "part:mv-switchgear",
+        "part:gas-turbine",
+        "part:gas-engine",
+        "part:fuel-cell",
+        "part:smr",
+        "part:fuel-storage",
+        "part:ups-battery",
+        "part:lv-switchgear",
+        "part:busway",
+        "part:pdu",
+        "part:bbu"
       ]
     },
     {
@@ -5175,14 +6377,19 @@
         "part:water",
         "part:room-cooling",
         "part:cdu",
-        "part:heat-reject",
         "part:manifold",
         "part:coldplate",
         "part:coolant",
         "part:immersion",
-        "part:fan-vc",
         "part:leak-detection",
-        "part:sidecar-hx"
+        "part:sidecar-hx",
+        "part:dry-cooler",
+        "part:water-treatment",
+        "part:chiller",
+        "part:chilled-water-loop",
+        "part:quick-disconnect",
+        "part:server-fan",
+        "part:heatsink-vc"
       ]
     },
     {
@@ -5194,7 +6401,8 @@
         "part:shell",
         "part:fire",
         "part:rack-frame",
-        "part:modular-dc"
+        "part:modular-dc",
+        "part:security"
       ]
     },
     {

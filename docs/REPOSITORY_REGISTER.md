@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1001。
+在册文件：1003。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,12 +18,12 @@
 | 历史快照 | 268 |
 | 运行代码 | 217 |
 | 现行规范 | 13 |
-| 项目配置 | 91 |
+| 项目配置 | 92 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
 | 配套说明 | 58 |
-| 测试 | 92 |
+| 测试 | 93 |
 
 ## 在册记录集合
 
@@ -322,7 +322,7 @@
 | `docs/reviews/2026-09-15/task-authority/file-plan.csv` | rows | 796 |
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
 | `framework/bom.json` | layers | 5 |
-| `framework/bom.json` | parts | 46 |
+| `framework/bom.json` | parts | 63 |
 | `framework/current_state.json` | policies | 24 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
@@ -338,12 +338,13 @@
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | views | 5 |
-| `framework/research_graph.json` | objects | 118 |
-| `framework/research_graph.json` | relations | 142 |
+| `framework/research_graph.json` | objects | 145 |
+| `framework/research_graph.json` | relations | 206 |
 | `framework/research_graph.json` | hardware_domains | 8 |
 | `framework/research_graph.json` | catalog_topic_mappings | 35 |
 | `framework/research_graph.json` | research_topics | 9 |
 | `framework/research_questions.json` | records | 458 |
+| `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
 | `framework/tco_factors.json` | factors | 24 |
 | `framework/tco_targets.json` | principles | 4 |
@@ -963,6 +964,7 @@
 | `framework/repository_manifest.json` | 生成物 |
 | `framework/research_graph.json` | 项目配置 |
 | `framework/research_questions.json` | 项目配置 |
+| `framework/site_rights.json` | 项目配置 |
 | `framework/storage_contract.json` | 项目配置 |
 | `framework/supply_contract.json` | 项目配置 |
 | `framework/tco_factors.json` | 项目配置 |
@@ -1226,6 +1228,7 @@
 | `tests/unit/test_acquisition.py` | 测试 |
 | `tests/unit/test_apply_triage.py` | 测试 |
 | `tests/unit/test_auth.py` | 测试 |
+| `tests/unit/test_bom.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
 | `tests/unit/test_catalog_migration.py` | 测试 |
 | `tests/unit/test_claim_floor.py` | 测试 |

@@ -1,0 +1,111 @@
+{
+  "version": "1.0",
+  "updated": "2026-09-28",
+  "note": "站点权利与配额（不是可采购的物件，故不在 bom.json 的部件表）：土地、水权、电力配额与并网、天然气接入、网络接入、许可。有价格、有主体、有时间（排队与许可年限），进主体类与时间类事实，进目标表。variable_classes 用五类变量编号（1 构成 2 运行 3 价格 4 时间 5 主体）。合同（PPA、租约、算力合同、融资）不在此表，按主体类事实处理。",
+  "rights": [
+    {
+      "id": "land",
+      "name": "土地（地价、租金、区划）",
+      "from_bom_part": "land",
+      "scale": "S1",
+      "module": "M05",
+      "variable_classes": [
+        3,
+        5
+      ],
+      "companies": [],
+      "series": [],
+      "indicators": [
+        "region_pipeline_share",
+        "zoning_denial_count"
+      ],
+      "status": "mature",
+      "desc": "time-to-power 已取代地价成为第一选址因子；社区反弹上升"
+    },
+    {
+      "id": "water-rights",
+      "name": "水权与取水许可",
+      "from_bom_part": "water",
+      "scale": "S1",
+      "module": "M08",
+      "variable_classes": [
+        5,
+        4
+      ],
+      "companies": [],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "WUE 与流域水压力决定冷却路线；取水量与许可期限是主体类与时间类事实"
+    },
+    {
+      "id": "grid",
+      "name": "电力配额与并网（排队年限、并网协议）",
+      "from_bom_part": "grid",
+      "scale": "S1",
+      "module": "M04",
+      "variable_classes": [
+        4,
+        5
+      ],
+      "companies": [
+        "aep",
+        "constellation-energy"
+      ],
+      "series": [],
+      "indicators": [
+        "interconnection_queue_years"
+      ],
+      "status": "tight",
+      "desc": "并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）"
+    },
+    {
+      "id": "gas-supply",
+      "name": "天然气管道接入（容量、供气合同）",
+      "from_bom_part": "fuel-supply",
+      "scale": "S1",
+      "module": "M04",
+      "variable_classes": [
+        5,
+        4
+      ],
+      "companies": [],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "自备电源的真实约束常在管线容量而非机组本身；管线公司待补档案"
+    },
+    {
+      "id": "network-access",
+      "name": "网络接入（暗光纤、运营商、IXP）",
+      "from_bom_part": "network-access",
+      "scale": "S1",
+      "module": "M07",
+      "variable_classes": [
+        5,
+        3
+      ],
+      "companies": [],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "选址三要素「电、水、网」的网；跨园区训练互联的先决条件。运营商（Zayo/Lumen 类）待补档案"
+    },
+    {
+      "id": "permits",
+      "name": "许可（区划、环评、排放、建设）",
+      "from_bom_part": null,
+      "scale": "S1",
+      "module": "M10",
+      "variable_classes": [
+        4,
+        5
+      ],
+      "companies": [],
+      "series": [],
+      "indicators": [],
+      "status": "tight",
+      "desc": "审批时长与暂停令；来自 2026-09-06 评审覆盖清单的「外部接口与非物理配套」"
+    }
+  ]
+}

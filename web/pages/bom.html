@@ -99,7 +99,7 @@
 <div class="wrap">
   <div class="stage">
     <h1>一张图拆解 <em>AI 数据中心</em></h1>
-    <div class="sub">按五层 BOM 从部件炸到园区——每个部件都挂着它的研究模块、供应商、价格序列与监测指标。点击任意部件或词条查看档案。</div>
+    <div class="sub">按五个尺度从部件炸到园区——每个部件都挂着它的研究模块、供应商、价格序列与监测指标。点击任意部件或词条查看档案。</div>
     <div class="legend">供应状态：<i style="background:var(--red)"></i>紧缺 <i style="background:var(--yellow)"></i>技术切换中
       <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴
       <a class="go3d" href="bom3d.html">🧊 进入 3D 立体拆解 →</a></div>
@@ -181,20 +181,22 @@ function isoSlab(layer, parts, idx) {
 }
 
 (async () => {
-  const [bom, companies, prices, inds, reg] = await Promise.all([
+  const [bom, companies, prices, inds, reg, rights] = await Promise.all([
     get("framework/bom.json"), get("data/companies.json"), get("data/prices.json"),
-    get("framework/indicators.json"), get("framework/modules.json")]);
+    get("framework/indicators.json"), get("framework/modules.json"),
+    get("framework/site_rights.json").catch(() => ({ rights: [] }))]);
   BOM = bom; PRICES = prices.records;
-  document.getElementById("partCount").textContent = bom.parts.length;
+  const isPart = p => (p.kind || "part") === "part";
+  document.getElementById("partCount").textContent = bom.parts.filter(isPart).length;
   companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
   inds.indicators.forEach(i => INDS[i.id] = i);
   reg.modules.forEach(m => MODNAME[m.id] = m.name);
 
-  // 层从上到下 = L5 → L1（部件在最上，园区在最下），编号 1-5 = 拆解次序
-  const order = ["L5", "L4", "L3", "L2", "L1"];
+  // 尺度从上到下 = S5 → S1（部件在最上，园区在最下），编号 1-5 = 拆解次序
+  const order = bom.layers.map(l => l.id).reverse();
   document.getElementById("stack").innerHTML = '<div class="axis"></div>' + order.map((lid, i) => {
     const layer = bom.layers.find(l => l.id === lid);
-    const parts = bom.parts.filter(p => p.layer === lid);
+    const parts = bom.parts.filter(p => isPart(p) && p.layer === lid);
     return `<div class="lrow" style="margin-left:${i * 1.5}%">
       <div class="slab">${isoSlab(layer, parts, i)}</div>
       <div class="lead"></div>
@@ -205,14 +207,34 @@ function isoSlab(layer, parts, idx) {
           `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</span>`).join("")}</div>
       </div>
     </div>`;
-  }).join("");
+  }).join("") + otherEntries(bom, rights.rights || []);
 
   document.querySelectorAll("[data-part]").forEach(el =>
     el.addEventListener("click", () => show(el.dataset.part)));
 
-  const first = location.hash.slice(1);
+  const first = resolveId(location.hash.slice(1));
   if (first && bom.parts.find(p => p.id === first)) show(first);
 })().catch(e => document.getElementById("stack").textContent = "加载失败：" + e.message);
+
+// 不占尺度的条目（软件、设施基型）与站点权利（framework/site_rights.json）：有价格、有主体，但不是零件
+function otherEntries(bom, rights) {
+  const others = bom.parts.filter(p => (p.kind || "part") !== "part");
+  const chips = others.map(p =>
+    `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)} <small>${esc(p.kind)}</small></span>`).join("");
+  const rchips = rights.map(r =>
+    `<span class="pchip" title="${esc(r.desc || "")}"><i style="background:${SC[r.status]}"></i>${esc(r.name)}</span>`).join("");
+  if (!chips && !rchips) return "";
+  return `<div class="lrow" style="margin-left:7.5%"><div class="slab"></div><div class="lead"></div>
+    <div class="callout"><div class="ch"><b>不占尺度的条目</b><span class="en">Software · Archetype · Site rights</span></div>
+      <div class="cd">软件与设施基型有订阅价与供应商但不是零件；站点权利（土地、水权、电力配额、燃气接入、网络接入、许可）不可采购，进目标表不进 3D。</div>
+      <div class="plist">${chips}${rchips}</div></div></div>`;
+}
+// 旧部件 ID（重切前的 substation、fan-vc 等）经 bom.aliases 指向去处；指向权利的旧 ID 没有部件档案
+function resolveId(id) {
+  const a = BOM.aliases?.[id];
+  if (!a) return id;
+  return a.startsWith("site:") ? "" : a;
+}
 
 function latestSeries(sid) {
   const pts = PRICES.filter(r => r.series_id === sid).sort((a, b) => a.as_of < b.as_of ? 1 : -1);
@@ -220,6 +242,7 @@ function latestSeries(sid) {
 }
 
 function show(pid) {
+  pid = resolveId(pid);
   const p = BOM.parts.find(x => x.id === pid);
   if (!p) return;
   document.querySelectorAll(".pbox.sel, .pchip.sel").forEach(el => el.classList.remove("sel"));
@@ -227,7 +250,7 @@ function show(pid) {
   history.replaceState(null, "", "#" + pid);
 
   let h = `<h2>${esc(p.name)}</h2>
-    <div class="meta">${p.layer} ${BOM.layers.find(l => l.id === p.layer).name} ·
+    <div class="meta">${p.layer ? p.layer + " " + (BOM.layers.find(l => l.id === p.layer)?.name || "") : (BOM.kinds?.[p.kind] || p.kind)} ·
       <span class="badge" style="background:${SC[p.status]}">${SN[p.status]}</span></div>
     <div style="font-size:13px">${esc(p.desc)}</div>`;
 

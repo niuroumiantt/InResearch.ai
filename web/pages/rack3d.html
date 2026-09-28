@@ -138,6 +138,8 @@ const CN = {}; companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.
 const INDS = {}; inds.indicators.forEach(i => INDS[i.id] = i);
 const MODNAME = {}; reg.modules.forEach(m => MODNAME[m.id] = m.name);
 const PART = {}; BOM.parts.forEach(p => PART[p.id] = p);
+// 重切前的旧部件 ID（bom.aliases）继续打开去处的档案；指向站点权利的旧 ID 在机柜里没有对象
+Object.entries(BOM.aliases || {}).forEach(([old, to]) => { if (!PART[old] && PART[to]) PART[old] = PART[to]; });
 const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
 const SBADGE = { tight: "#ef4444", transition: "#f59e0b", mature: "#22c55e", emerging: "#a78bfa" };
 
