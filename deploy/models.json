@@ -3,7 +3,8 @@
   "roles": {
     "research_default": "claude_sonnet",
     "core_review": "claude_opus",
-    "ocr": null
+    "ocr": null,
+    "gap_ocr": "claude_sonnet_vision"
   },
   "profiles": {
     "spark": {
@@ -54,6 +55,19 @@
       "max_parallel": 1,
       "repeat_penalty": 1.1,
       "repeat_last_n": 256,
+      "capabilities": [
+        "vision_json"
+      ]
+    },
+    "claude_sonnet_vision": {
+      "backend": "claude_cli",
+      "url": "",
+      "model": "claude-sonnet-5",
+      "command": "claude",
+      "context": 32768,
+      "max_output_tokens": 8192,
+      "timeout": 900,
+      "max_parallel": 1,
       "capabilities": [
         "vision_json"
       ]
