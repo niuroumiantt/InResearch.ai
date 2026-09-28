@@ -88,7 +88,18 @@ def build(root=ROOT, as_of=None):
                 cell = indicator_cell(spec['key'], spec['label'])
                 items.append(cell or {'label': spec['label'], 'value': None, 'unit': spec.get('unit'), 'as_of': None,
                                       'source': {'type': 'indicator', 'key': spec['key']}})
-        root_cells[col] = {'items': items, 'status': 'sourced' if any(i['value'] is not None for i in items) else 'needed'}
+        # a root cell is only as good as the evidence behind its model inputs
+        ev = model.get('evidence', {})
+        statuses = set()
+        for i in items:
+            if i['value'] is None:
+                continue
+            if i['source']['type'] == 'model_input':
+                statuses.add(ev.get(i['source']['key'], {}).get('status', 'assumed'))
+            else:
+                statuses.add('sourced')
+        root_cells[col] = {'items': items, 'status': ('sourced' if 'sourced' in statuses else 'assumed' if 'assumed' in statuses
+                                                      else 'registered' if 'input' in statuses else 'needed')}
 
     # ---- targets coverage per (owner node, column)
     coverage = {}
@@ -101,19 +112,24 @@ def build(root=ROOT, as_of=None):
         if t['origin'] == 'factor':
             keys.append('root')
         for k in keys:
-            coverage.setdefault((k, str(t['variable_class'])), {'sourced': 0, 'assumed': 0, 'needed': 0})[t['status']] += 1
+            coverage.setdefault((k, str(t['variable_class'])), {'sourced': 0, 'assumed': 0, 'delivered': 0, 'needed': 0})[t['status']] += 1
 
     def cov_sum(keys, col):
-        total = {'sourced': 0, 'assumed': 0, 'needed': 0}
+        total = {'sourced': 0, 'assumed': 0, 'delivered': 0, 'needed': 0}
         for k in keys:
             for s, n in coverage.get((k, col), {}).items():
                 total[s] += n
         return total
 
-    def status_of(value_present, cov):
-        if value_present:
+    def status_of(items, cov):
+        """Honesty rule: counts registered by us (parts, product lines, suppliers) are 'registered', never 'sourced'."""
+        if any(i['value'] is not None and i.get('kind') != 'count' for i in items):
             return 'sourced'
-        return 'assumed' if cov['sourced'] or cov['assumed'] else 'needed'
+        if cov['sourced'] or cov['assumed']:
+            return 'assumed'
+        if cov['delivered']:
+            return 'delivered'
+        return 'registered' if any(i.get('kind') == 'count' and i['value'] for i in items) else 'needed'
 
     # ---- parts
     prod_lines = {}
@@ -126,7 +142,7 @@ def build(root=ROOT, as_of=None):
         cells = {}
         lines = prod_lines.get(p['id'], [])
         cells['1'] = {'items': [{'label': pr['1']['label'], 'value': len(lines), 'unit': pr['1']['unit'], 'as_of': bom.get('updated'),
-                                 'source': {'type': 'bom', 'key': p['id']}},
+                                 'source': {'type': 'bom', 'key': p['id']}, 'kind': 'count'},
                                 {'label': '尺度', 'value': p['layer'] or p['kind'], 'unit': None, 'as_of': bom.get('updated'), 'source': {'type': 'bom', 'key': 'layer'}}],
                       'instances': lines[:12]}
         run_items = [c for c in (indicator_cell(i) for i in p['indicators'] if any(m in i for m in pr['2']['match'])) if c]
@@ -138,12 +154,12 @@ def build(root=ROOT, as_of=None):
         lead_items += [c for c in (indicator_cell(i) for i in p['indicators'] if any(m in i for m in pr['4']['indicator_match'])) if c]
         cells['4'] = {'items': lead_items}
         cells['5'] = {'items': [{'label': pr['5']['label'], 'value': len(p['companies']), 'unit': pr['5']['unit'], 'as_of': bom.get('updated'),
-                                 'source': {'type': 'bom', 'key': 'companies'}}],
+                                 'source': {'type': 'bom', 'key': 'companies'}, 'kind': 'count'}],
                       'instances': [companies.get(c, c) for c in p['companies']][:12]}
         for col in cells:
             cov = cov_sum(['part:' + p['id']], col)
             cells[col]['coverage'] = cov
-            cells[col]['status'] = status_of(any(i['value'] is not None for i in cells[col]['items']), cov)
+            cells[col]['status'] = status_of(cells[col]['items'], cov)
         parts[p['id']] = {'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'system': p['system'],
                           'chain': p.get('chain'), 'chain_order': p.get('chain_order'),
                           'module': p['module'], 'supply_status': p['status'], 'desc': p['desc'], 'cells': cells}
@@ -160,9 +176,9 @@ def build(root=ROOT, as_of=None):
                 items = [c for c in (indicator_cell(i) for i in r.get('indicators', []) if any(m in i for m in sr['4']['match'])) if c]
             else:
                 items = [{'label': sr['5']['label'], 'value': len(r.get('companies', [])), 'unit': sr['5']['unit'], 'as_of': as_of,
-                          'source': {'type': 'site_rights', 'key': 'companies'}}]
+                          'source': {'type': 'site_rights', 'key': 'companies'}, 'kind': 'count'}]
             cov = cov_sum(['site:' + r['id']], col)
-            cells[col] = {'items': items, 'coverage': cov, 'status': status_of(any(i['value'] is not None for i in items), cov),
+            cells[col] = {'items': items, 'coverage': cov, 'status': status_of(items, cov),
                           'instances': [companies.get(c, c) for c in r.get('companies', [])] if col == '5' else []}
         rights_out[r['id']] = {'id': r['id'], 'name': r['name'], 'scale': r['scale'], 'module': r['module'], 'variable_classes': r['variable_classes'],
                                'supply_status': r['status'], 'desc': r['desc'], 'cells': cells}
@@ -191,7 +207,7 @@ def build(root=ROOT, as_of=None):
         keys = ['part:' + p['id'] for p in members]
         cells = {}
         cells['1'] = {'items': [{'label': er['1']['label'], 'value': len(physical), 'unit': er['1']['unit'], 'as_of': bom.get('updated'),
-                                 'source': {'type': 'count', 'key': 'parts'}}]}
+                                 'source': {'type': 'count', 'key': 'parts'}, 'kind': 'count'}]}
         spec = er['2']['by_system'].get(sys_id)
         cells['2'] = {'items': [c for c in [series_cell(spec['series'], spec['label']) if spec else None] if c]}
         spec = er['3']['by_system'].get(sys_id)
@@ -222,14 +238,14 @@ def build(root=ROOT, as_of=None):
         suppliers = {c for p in members for c in p['companies']}
         single = [p['name'] for p in physical if len(p['companies']) <= 1]
         cells['5'] = {'items': [{'label': er['5']['label'], 'value': len(suppliers), 'unit': er['5']['unit'], 'as_of': bom.get('updated'),
-                                 'source': {'type': 'count', 'key': 'companies'}},
+                                 'source': {'type': 'count', 'key': 'companies'}, 'kind': 'count'},
                                 {'label': '单一来源部件', 'value': len(single), 'unit': '个', 'as_of': bom.get('updated'),
-                                 'source': {'type': 'count', 'key': 'single_source'}}],
+                                 'source': {'type': 'count', 'key': 'single_source'}, 'kind': 'count'}],
                       'instances': single[:12]}
         for col in cells:
             cov = cov_sum(keys, col)
             cells[col]['coverage'] = cov
-            cells[col]['status'] = status_of(any(i['value'] is not None for i in cells[col]['items']), cov)
+            cells[col]['status'] = status_of(cells[col]['items'], cov)
         system_nodes.append({'id': sys_id, 'name': sys_name, 'node_id': 'system:' + sys_id,
                            'parent': sdef.get('parent'), 'chains': sdef.get('chains', []),
                            'cells': cells, 'parts': [{'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'supply_status': p['status'],
@@ -244,7 +260,7 @@ def build(root=ROOT, as_of=None):
         for col in ('1', '2', '3', '4', '5'):
             items = []
             if col == '1':
-                items = [{'label': '部件数', 'value': sum(i['value'] for e in kids for i in e['cells']['1']['items'] if i['label'] == '部件数'), 'unit': '个', 'as_of': bom.get('updated'), 'source': {'type': 'count', 'key': 'parts'}}]
+                items = [{'label': '部件数', 'value': sum(i['value'] for e in kids for i in e['cells']['1']['items'] if i['label'] == '部件数'), 'unit': '个', 'as_of': bom.get('updated'), 'source': {'type': 'count', 'key': 'parts'}, 'kind': 'count'}]
             elif col == '3':
                 vals = [i for e in kids for i in e['cells']['3']['items'] if isinstance(i['value'], (int, float))]
                 if vals:
@@ -255,14 +271,14 @@ def build(root=ROOT, as_of=None):
                     top = max(vals, key=lambda i: i['value']); items = [{**top, 'source': {'type': 'max', 'key': 'children'}}]
             elif col == '5':
                 sup = {c for e in kids for p in bom['parts'] if p['system'] == e['id'] for c in p['companies']}
-                items = [{'label': '供应商数', 'value': len(sup), 'unit': '家', 'as_of': bom.get('updated'), 'source': {'type': 'count', 'key': 'companies'}}]
+                items = [{'label': '供应商数', 'value': len(sup), 'unit': '家', 'as_of': bom.get('updated'), 'source': {'type': 'count', 'key': 'companies'}, 'kind': 'count'}]
             else:
                 items = [i for e in kids for i in e['cells']['2']['items']][:1]
-            cov = {'sourced': 0, 'assumed': 0, 'needed': 0}
+            cov = {'sourced': 0, 'assumed': 0, 'delivered': 0, 'needed': 0}
             for e in kids:
                 for s, n in e['cells'][col]['coverage'].items():
                     cov[s] += n
-            cells[col] = {'items': items, 'coverage': cov, 'status': status_of(any(i['value'] is not None for i in items), cov)}
+            cells[col] = {'items': items, 'coverage': cov, 'status': status_of(items, cov)}
         parents.append({'id': pid, 'name': pdef['name'], 'node_id': 'system:' + pid, 'parent': None, 'order': pdef['order'], 'chains': [],
                         'children': [e['id'] for e in kids], 'cells': cells})
     # site rights row, alongside the systems
@@ -271,7 +287,7 @@ def build(root=ROOT, as_of=None):
     for col in ('1', '2', '3', '4', '5'):
         items = []
         if col == '1':
-            items = [{'label': '权利条目', 'value': len(rights), 'unit': '条', 'as_of': as_of, 'source': {'type': 'count', 'key': 'rights'}}]
+            items = [{'label': '权利条目', 'value': len(rights), 'unit': '条', 'as_of': as_of, 'source': {'type': 'count', 'key': 'rights'}, 'kind': 'count'}]
         elif col in ('3', '4'):
             items = [i for r in rights for i in rights_out[r['id']]['cells'][col]['items']]
             if col == '4' and items:
@@ -279,9 +295,9 @@ def build(root=ROOT, as_of=None):
                 items = [top] if top else []
         elif col == '5':
             holders = {c for r in rights for c in r.get('companies', [])}
-            items = [{'label': '登记持有方', 'value': len(holders), 'unit': '家', 'as_of': as_of, 'source': {'type': 'count', 'key': 'companies'}}]
+            items = [{'label': '登记持有方', 'value': len(holders), 'unit': '家', 'as_of': as_of, 'source': {'type': 'count', 'key': 'companies'}, 'kind': 'count'}]
         cov = cov_sum(keys, col)
-        site_cells[col] = {'items': items, 'coverage': cov, 'status': status_of(any(i['value'] is not None for i in items), cov)}
+        site_cells[col] = {'items': items, 'coverage': cov, 'status': status_of(items, cov)}
     site_row = {**RIGHTS_ROW, 'node_id': 'site', 'cells': site_cells,
                 'rights': [{'id': r['id'], 'name': r['name'], 'supply_status': r['status'], 'variable_classes': r['variable_classes']} for r in rights]}
 
@@ -293,7 +309,8 @@ def build(root=ROOT, as_of=None):
     # forecast points (as_of in the future) are not 'what changed'
     newest = sorted((r for r in latest.values() if (r.get('as_of') or '') <= as_of), key=lambda r: r.get('as_of') or '', reverse=True)[:n_points]
     due_limit = (base_day + dt.timedelta(days=rules['changes']['due_within_days'])).isoformat()
-    due = sorted((t for t in targets_doc['targets'] if t['next_due'] <= due_limit and t['status'] != 'sourced'), key=lambda t: (t['next_due'], t['id']))
+    due = sorted((t for t in targets_doc['targets'] if t.get('next_due') and t['next_due'] <= due_limit and t['status'] not in ('sourced', 'delivered')),
+                 key=lambda t: (t['next_due'], t['id']))
     changes = {'series_points': [{'series_id': r['series_id'], 'value': r.get('value'), 'unit': r.get('unit'), 'as_of': r.get('as_of'), 'module': r.get('module')} for r in newest],
                'due_targets': [{'id': t['id'], 'team': t['team'], 'next_due': t['next_due'], 'status': t['status'], 'variable_class': t['variable_class']} for t in due[:40]],
                'due_total': len(due)}
@@ -302,9 +319,10 @@ def build(root=ROOT, as_of=None):
     factors = [{'id': f['id'], 'label': f['label'], 'side': f['side'], 'parent': f['parent'], 'unit': f.get('unit'), 'formula': f.get('formula'),
                 'bom_parts': f.get('bom_parts', []), 'site_rights': f.get('site_rights', []), 'model_inputs': f.get('model_inputs', [])}
                for f in factors_doc['factors']]
-    totals = {'sourced': 0, 'assumed': 0, 'needed': 0}
+    totals = {'sourced': 0, 'assumed': 0, 'delivered': 0, 'needed': 0}
     for t in targets_doc['targets']:
         totals[t['status']] += 1
+    totals['not_connected'] = sum(1 for t in targets_doc['targets'] if t.get('team_state') == 'not_connected')
     return {
         'version': '1.0', 'updated': as_of, 'title': '数据中心 dashboard 快照',
         'note': '由 python3 manage.py dashboard --refresh 生成，规则见 framework/dashboard_rules.json；页面 node.html 只读本文件与目标清单，不做聚合。',

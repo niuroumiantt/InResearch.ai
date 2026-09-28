@@ -68,8 +68,14 @@ class DashboardTests(unittest.TestCase):
         for row in self.doc['system_nodes'] + [self.doc['site']]:
             self.assertEqual(set(row['cells']), {'1', '2', '3', '4', '5'}, row['id'])
             for c in row['cells'].values():
-                self.assertIn(c['status'], ('sourced', 'assumed', 'needed'))
-                self.assertEqual(c['status'] == 'sourced', any(i['value'] is not None for i in c['items']), row['id'])
+                self.assertIn(c['status'], ('sourced', 'assumed', 'delivered', 'registered', 'needed'))
+                self.assertEqual(c['status'] == 'sourced', any(i['value'] is not None and i.get('kind') != 'count' for i in c['items']),
+                                 f"{row['id']}: sourced only for non-count values")
+                self.assertEqual(set(c['coverage']), {'sourced', 'assumed', 'delivered', 'needed'}, row['id'])
+        # honesty: the part count we registered ourselves is 'registered', never 'sourced'
+        self.assertEqual(self.doc['system_nodes'][0]['cells']['1']['status'], 'registered')
+        self.assertEqual(set(self.doc['root']['targets']), {'sourced', 'assumed', 'delivered', 'needed', 'not_connected'})
+        self.assertEqual(set(self.rules['cell_status']), {'sourced', 'assumed', 'delivered', 'registered', 'needed'})
         self.assertEqual(set(self.doc['parts']), {p['id'] for p in self.bom['parts']})
         self.assertEqual(set(self.doc['rights']), {r['id'] for r in load('framework/site_rights.json')['rights']})
 

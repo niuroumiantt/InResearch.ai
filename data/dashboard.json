@@ -95,6 +95,7 @@
     "coverage": {
      "sourced": 6,
      "assumed": 0,
+     "delivered": 0,
      "needed": 1
     }
    },
@@ -135,6 +136,7 @@
     "coverage": {
      "sourced": 7,
      "assumed": 1,
+     "delivered": 0,
      "needed": 2
     }
    },
@@ -175,6 +177,7 @@
     "coverage": {
      "sourced": 14,
      "assumed": 2,
+     "delivered": 0,
      "needed": 2
     }
    },
@@ -215,6 +218,7 @@
     "coverage": {
      "sourced": 4,
      "assumed": 1,
+     "delivered": 0,
      "needed": 1
     }
    },
@@ -255,6 +259,7 @@
     "coverage": {
      "sourced": 3,
      "assumed": 0,
+     "delivered": 0,
      "needed": 6
     }
    }
@@ -262,7 +267,9 @@
   "targets": {
    "sourced": 36,
    "assumed": 4,
-   "needed": 247
+   "delivered": 0,
+   "needed": 247,
+   "not_connected": 168
   }
  },
  "systems": {
@@ -367,21 +374,24 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 5
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -402,6 +412,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 4
      },
      "status": "sourced"
@@ -411,6 +422,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 4
      },
      "status": "needed"
@@ -425,7 +437,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -435,7 +448,8 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -446,9 +460,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 2
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -523,15 +538,17 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 19
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [
@@ -549,6 +566,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "sourced"
@@ -569,6 +587,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 19
      },
      "status": "sourced"
@@ -589,6 +608,7 @@
      "coverage": {
       "sourced": 1,
       "assumed": 0,
+      "delivered": 0,
       "needed": 18
      },
      "status": "sourced"
@@ -603,7 +623,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -613,7 +634,8 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -626,9 +648,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 15
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -827,15 +850,17 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 15
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [
@@ -853,6 +878,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "sourced"
@@ -873,6 +899,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 15
      },
      "status": "sourced"
@@ -882,6 +909,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 15
      },
      "status": "needed"
@@ -896,7 +924,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -906,7 +935,8 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -920,9 +950,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 7
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1082,15 +1113,17 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 8
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [
@@ -1108,6 +1141,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "sourced"
@@ -1128,6 +1162,7 @@
      "coverage": {
       "sourced": 1,
       "assumed": 0,
+      "delivered": 0,
       "needed": 7
      },
      "status": "sourced"
@@ -1137,6 +1172,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 8
      },
      "status": "needed"
@@ -1151,7 +1187,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -1161,7 +1198,8 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -1171,9 +1209,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 4
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1270,21 +1309,24 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -1294,6 +1336,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
      "status": "needed"
@@ -1303,6 +1346,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
      "status": "needed"
@@ -1317,7 +1361,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -1327,16 +1372,18 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1388,21 +1435,24 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -1412,6 +1462,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
      "status": "needed"
@@ -1421,6 +1472,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
      "status": "needed"
@@ -1435,7 +1487,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -1445,16 +1498,18 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 2
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1506,21 +1561,24 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 9
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -1530,6 +1588,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 9
      },
      "status": "needed"
@@ -1539,6 +1598,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 9
      },
      "status": "needed"
@@ -1553,7 +1613,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -1563,7 +1624,8 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -1572,9 +1634,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 6
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1680,21 +1743,24 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "needed"
     },
     "2": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -1704,6 +1770,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -1713,6 +1780,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -1727,7 +1795,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -1737,16 +1806,18 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1787,15 +1858,17 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 23
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [
@@ -1813,6 +1886,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "sourced"
@@ -1833,6 +1907,7 @@
      "coverage": {
       "sourced": 1,
       "assumed": 0,
+      "delivered": 0,
       "needed": 22
      },
      "status": "sourced"
@@ -1842,6 +1917,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 23
      },
      "status": "needed"
@@ -1856,15 +1932,17 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 15
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   }
@@ -1884,21 +1962,24 @@
       "source": {
        "type": "count",
        "key": "rights"
-      }
+      },
+      "kind": "count"
      }
     ],
     "coverage": {
      "sourced": 0,
      "assumed": 0,
+     "delivered": 0,
      "needed": 0
     },
-    "status": "sourced"
+    "status": "registered"
    },
    "2": {
     "items": [],
     "coverage": {
      "sourced": 0,
      "assumed": 0,
+     "delivered": 0,
      "needed": 0
     },
     "status": "needed"
@@ -1908,6 +1989,7 @@
     "coverage": {
      "sourced": 0,
      "assumed": 0,
+     "delivered": 0,
      "needed": 2
     },
     "status": "needed"
@@ -1917,6 +1999,7 @@
     "coverage": {
      "sourced": 0,
      "assumed": 0,
+     "delivered": 0,
      "needed": 4
     },
     "status": "needed"
@@ -1931,15 +2014,17 @@
       "source": {
        "type": "count",
        "key": "companies"
-      }
+      },
+      "kind": "count"
      }
     ],
     "coverage": {
      "sourced": 0,
      "assumed": 0,
+     "delivered": 0,
      "needed": 6
     },
-    "status": "sourced"
+    "status": "registered"
    }
   },
   "rights": [
@@ -2022,7 +2107,8 @@
        "source": {
         "type": "bom",
         "key": "hv-switchyard"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2039,6 +2125,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2048,6 +2135,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -2057,6 +2145,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2066,6 +2155,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2080,7 +2170,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2091,9 +2182,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2119,7 +2211,8 @@
        "source": {
         "type": "bom",
         "key": "transformer"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2139,6 +2232,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2148,6 +2242,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -2157,6 +2252,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2187,6 +2283,7 @@
      "coverage": {
       "sourced": 1,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "sourced"
@@ -2201,7 +2298,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2215,9 +2313,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2243,7 +2342,8 @@
        "source": {
         "type": "bom",
         "key": "mv-switchgear"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2262,6 +2362,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2271,6 +2372,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -2280,6 +2382,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2289,6 +2392,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2303,7 +2407,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2315,9 +2420,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2343,7 +2449,8 @@
        "source": {
         "type": "bom",
         "key": "gas-turbine"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2362,6 +2469,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2371,6 +2479,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -2380,6 +2489,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2389,6 +2499,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2403,7 +2514,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2415,9 +2527,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2443,7 +2556,8 @@
        "source": {
         "type": "bom",
         "key": "gas-engine"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2460,6 +2574,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2469,6 +2584,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -2478,6 +2594,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2487,6 +2604,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2501,7 +2619,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2510,9 +2629,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2538,7 +2658,8 @@
        "source": {
         "type": "bom",
         "key": "fuel-cell"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2557,6 +2678,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2566,6 +2688,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -2575,6 +2698,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2584,6 +2708,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2598,7 +2723,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2607,9 +2733,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2635,7 +2762,8 @@
        "source": {
         "type": "bom",
         "key": "smr"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2652,6 +2780,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2661,6 +2790,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -2670,6 +2800,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2679,6 +2810,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2693,16 +2825,18 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "needed"
     }
    }
   },
@@ -2728,7 +2862,8 @@
        "source": {
         "type": "bom",
         "key": "backup-power"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2750,6 +2885,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2759,6 +2895,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -2768,6 +2905,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2777,6 +2915,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2791,7 +2930,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2804,9 +2944,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2832,7 +2973,8 @@
        "source": {
         "type": "bom",
         "key": "bess"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2852,6 +2994,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2861,6 +3004,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -2870,6 +3014,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2879,6 +3024,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2893,7 +3039,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2903,9 +3050,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2931,7 +3079,8 @@
        "source": {
         "type": "bom",
         "key": "fuel-storage"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2948,6 +3097,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2957,6 +3107,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -2966,6 +3117,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2975,6 +3127,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2989,16 +3142,18 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "needed"
     }
    }
   },
@@ -3024,7 +3179,8 @@
        "source": {
         "type": "bom",
         "key": "dry-cooler"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3043,6 +3199,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3052,6 +3209,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -3061,6 +3219,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3070,6 +3229,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3084,7 +3244,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3094,9 +3255,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3122,7 +3284,8 @@
        "source": {
         "type": "bom",
         "key": "water-treatment"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3141,6 +3304,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3150,6 +3314,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -3159,6 +3324,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3168,6 +3334,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3182,7 +3349,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3192,9 +3360,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3220,7 +3389,8 @@
        "source": {
         "type": "bom",
         "key": "shell"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3237,6 +3407,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3246,6 +3417,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -3255,6 +3427,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3264,6 +3437,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3278,16 +3452,18 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "needed"
     }
    }
   },
@@ -3313,7 +3489,8 @@
        "source": {
         "type": "bom",
         "key": "fire"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3332,6 +3509,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3341,6 +3519,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -3350,6 +3529,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3359,6 +3539,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3373,7 +3554,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3382,9 +3564,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3410,7 +3593,8 @@
        "source": {
         "type": "bom",
         "key": "security"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3429,6 +3613,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3438,6 +3623,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -3447,6 +3633,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3456,6 +3643,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3470,7 +3658,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3479,9 +3668,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3507,7 +3697,8 @@
        "source": {
         "type": "bom",
         "key": "ups"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3532,6 +3723,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3541,6 +3733,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -3550,6 +3743,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3559,6 +3753,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3573,7 +3768,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3589,9 +3785,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3617,7 +3814,8 @@
        "source": {
         "type": "bom",
         "key": "ups-battery"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3636,6 +3834,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3645,6 +3844,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -3654,6 +3854,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3663,6 +3864,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3677,7 +3879,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3686,9 +3889,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3714,7 +3918,8 @@
        "source": {
         "type": "bom",
         "key": "lv-switchgear"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3734,6 +3939,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3743,6 +3949,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -3752,6 +3959,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3761,6 +3969,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3775,7 +3984,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3788,9 +3998,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3816,7 +4027,8 @@
        "source": {
         "type": "bom",
         "key": "busway"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3833,6 +4045,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3842,6 +4055,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -3851,6 +4065,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3860,6 +4075,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3874,7 +4090,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3885,9 +4102,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3913,7 +4131,8 @@
        "source": {
         "type": "bom",
         "key": "pdu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3930,6 +4149,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3939,6 +4159,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -3948,6 +4169,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3957,6 +4179,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3971,7 +4194,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3982,9 +4206,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4010,7 +4235,8 @@
        "source": {
         "type": "bom",
         "key": "chiller"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4029,6 +4255,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4038,6 +4265,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -4047,6 +4275,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4056,6 +4285,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4070,7 +4300,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4081,9 +4312,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4109,7 +4341,8 @@
        "source": {
         "type": "bom",
         "key": "chilled-water-loop"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4126,6 +4359,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4135,6 +4369,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -4144,6 +4379,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4153,6 +4389,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4167,16 +4404,18 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "needed"
     }
    }
   },
@@ -4202,7 +4441,8 @@
        "source": {
         "type": "bom",
         "key": "room-cooling"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4222,6 +4462,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4231,6 +4472,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -4240,6 +4482,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4249,6 +4492,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4263,7 +4507,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4276,9 +4521,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4304,7 +4550,8 @@
        "source": {
         "type": "bom",
         "key": "cdu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4331,6 +4578,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4340,6 +4588,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -4349,6 +4598,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4358,6 +4608,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4372,7 +4623,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4392,9 +4644,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4420,7 +4673,8 @@
        "source": {
         "type": "bom",
         "key": "immersion"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4440,6 +4694,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4449,6 +4704,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -4458,6 +4714,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4467,6 +4724,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4481,7 +4739,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4491,9 +4750,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4519,7 +4779,8 @@
        "source": {
         "type": "bom",
         "key": "cabling"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4540,6 +4801,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4549,6 +4811,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -4558,6 +4821,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4567,6 +4831,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4581,7 +4846,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4592,9 +4858,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4620,7 +4887,8 @@
        "source": {
         "type": "bom",
         "key": "leak-detection"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4639,6 +4907,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4648,6 +4917,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -4657,6 +4927,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4666,6 +4937,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4680,7 +4952,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4689,9 +4962,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4717,7 +4991,8 @@
        "source": {
         "type": "bom",
         "key": "rack-frame"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4740,6 +5015,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4749,6 +5025,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -4758,6 +5035,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4767,6 +5045,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4781,7 +5060,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4796,9 +5076,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4824,7 +5105,8 @@
        "source": {
         "type": "bom",
         "key": "rack-system"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4845,6 +5127,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4854,6 +5137,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -4863,6 +5147,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4872,6 +5157,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4886,7 +5172,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4900,9 +5187,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4928,7 +5216,8 @@
        "source": {
         "type": "bom",
         "key": "server"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4958,6 +5247,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4967,6 +5257,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -4976,6 +5267,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4985,6 +5277,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4999,7 +5292,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5019,9 +5313,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5047,7 +5342,8 @@
        "source": {
         "type": "bom",
         "key": "general-server"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5077,6 +5373,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5086,6 +5383,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -5095,6 +5393,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5104,6 +5403,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5118,7 +5418,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5138,9 +5439,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5166,7 +5468,8 @@
        "source": {
         "type": "bom",
         "key": "network-switch"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5193,6 +5496,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5202,6 +5506,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -5211,6 +5516,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5220,6 +5526,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5234,7 +5541,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5254,9 +5562,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5282,7 +5591,8 @@
        "source": {
         "type": "bom",
         "key": "storage-array"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5312,6 +5622,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5321,6 +5632,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -5330,6 +5642,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5339,6 +5652,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5353,7 +5667,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5373,9 +5688,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5401,7 +5717,8 @@
        "source": {
         "type": "bom",
         "key": "manifold"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5420,6 +5737,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5429,6 +5747,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -5438,6 +5757,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5447,6 +5767,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5461,7 +5782,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5471,9 +5793,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5499,7 +5822,8 @@
        "source": {
         "type": "bom",
         "key": "quick-disconnect"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5518,6 +5842,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5527,6 +5852,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -5536,6 +5862,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5545,6 +5872,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5559,7 +5887,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5568,9 +5897,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5596,7 +5926,8 @@
        "source": {
         "type": "bom",
         "key": "power-shelf"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5615,6 +5946,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5624,6 +5956,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -5633,6 +5966,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5642,6 +5976,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5656,7 +5991,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5666,9 +6002,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5694,7 +6031,8 @@
        "source": {
         "type": "bom",
         "key": "bbu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5713,6 +6051,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5722,6 +6061,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -5731,6 +6071,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5740,6 +6081,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5754,7 +6096,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5764,9 +6107,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5792,7 +6136,8 @@
        "source": {
         "type": "bom",
         "key": "copper-interconnect"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5812,6 +6157,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5821,6 +6167,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -5830,6 +6177,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5839,6 +6187,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5853,7 +6202,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5863,9 +6213,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5891,7 +6242,8 @@
        "source": {
         "type": "bom",
         "key": "coolant"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5910,6 +6262,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5919,6 +6272,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -5928,6 +6282,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5937,6 +6292,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5951,7 +6307,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5960,9 +6317,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5988,7 +6346,8 @@
        "source": {
         "type": "bom",
         "key": "sidecar-hx"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6005,6 +6364,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6014,6 +6374,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -6023,6 +6384,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6032,6 +6394,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6046,7 +6409,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6058,9 +6422,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6086,7 +6451,8 @@
        "source": {
         "type": "bom",
         "key": "gpu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6115,6 +6481,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6124,6 +6491,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -6164,6 +6532,7 @@
      "coverage": {
       "sourced": 1,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "sourced"
@@ -6173,6 +6542,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6187,7 +6557,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6207,9 +6578,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6235,7 +6607,8 @@
        "source": {
         "type": "bom",
         "key": "ai-asic"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6255,6 +6628,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6264,6 +6638,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -6273,6 +6648,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6282,6 +6658,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6296,7 +6673,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6310,9 +6688,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6338,7 +6717,8 @@
        "source": {
         "type": "bom",
         "key": "cpu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6366,6 +6746,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6375,6 +6756,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -6384,6 +6766,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6393,6 +6776,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6407,7 +6791,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6425,9 +6810,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6453,7 +6839,8 @@
        "source": {
         "type": "bom",
         "key": "fpga"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6472,6 +6859,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6481,6 +6869,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -6490,6 +6879,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6499,6 +6889,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6513,7 +6904,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6522,9 +6914,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6550,7 +6943,8 @@
        "source": {
         "type": "bom",
         "key": "bmc"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6569,6 +6963,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6578,6 +6973,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -6587,6 +6983,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6596,6 +6993,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6610,7 +7008,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6619,9 +7018,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6647,7 +7047,8 @@
        "source": {
         "type": "bom",
         "key": "hbm"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6669,6 +7070,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6678,6 +7080,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -6687,6 +7090,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6696,6 +7100,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6710,7 +7115,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6722,9 +7128,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6750,7 +7157,8 @@
        "source": {
         "type": "bom",
         "key": "dram"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6773,6 +7181,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6782,6 +7191,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -6791,6 +7201,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6800,6 +7211,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6814,7 +7226,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6826,9 +7239,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6854,7 +7268,8 @@
        "source": {
         "type": "bom",
         "key": "cxl-memory"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6874,6 +7289,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6883,6 +7299,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -6892,6 +7309,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6901,6 +7319,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6915,7 +7334,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6925,9 +7345,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6953,7 +7374,8 @@
        "source": {
         "type": "bom",
         "key": "ssd"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6983,6 +7405,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6992,6 +7415,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -7001,6 +7425,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7010,6 +7435,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7024,7 +7450,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7044,9 +7471,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7072,7 +7500,8 @@
        "source": {
         "type": "bom",
         "key": "hdd"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7093,6 +7522,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7102,6 +7532,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -7111,6 +7542,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7120,6 +7552,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7134,7 +7567,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7145,9 +7579,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7173,7 +7608,8 @@
        "source": {
         "type": "bom",
         "key": "nic"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7195,6 +7631,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7204,6 +7641,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -7213,6 +7651,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7222,6 +7661,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7236,7 +7676,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7249,9 +7690,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7277,7 +7719,8 @@
        "source": {
         "type": "bom",
         "key": "optics"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7303,6 +7746,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7312,6 +7756,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -7321,6 +7766,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7330,6 +7776,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7344,7 +7791,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7362,9 +7810,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7390,7 +7839,8 @@
        "source": {
         "type": "bom",
         "key": "switch-asic"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7411,6 +7861,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7420,6 +7871,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -7429,6 +7881,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7438,6 +7891,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7452,7 +7906,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7463,9 +7918,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7491,7 +7947,8 @@
        "source": {
         "type": "bom",
         "key": "retimer"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7512,6 +7969,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7521,6 +7979,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -7530,6 +7989,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7539,6 +7999,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7553,7 +8014,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7565,9 +8027,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7593,7 +8056,8 @@
        "source": {
         "type": "bom",
         "key": "pcie-switch"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7614,6 +8078,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7623,6 +8088,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -7632,6 +8098,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7641,6 +8108,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7655,7 +8123,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7665,9 +8134,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7693,7 +8163,8 @@
        "source": {
         "type": "bom",
         "key": "connector"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7710,6 +8181,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7719,6 +8191,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -7728,6 +8201,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7737,6 +8211,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7751,7 +8226,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7760,9 +8236,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7788,7 +8265,8 @@
        "source": {
         "type": "bom",
         "key": "coldplate"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7807,6 +8285,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7816,6 +8295,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -7825,6 +8305,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7834,6 +8315,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7848,7 +8330,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7861,9 +8344,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7889,7 +8373,8 @@
        "source": {
         "type": "bom",
         "key": "psu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7908,6 +8393,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7917,6 +8403,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -7926,6 +8413,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7935,6 +8423,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7949,7 +8438,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7959,9 +8449,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7987,7 +8478,8 @@
        "source": {
         "type": "bom",
         "key": "vrm"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -8006,6 +8498,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -8015,6 +8508,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8024,6 +8518,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8033,6 +8528,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8047,7 +8543,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -8057,9 +8554,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -8085,7 +8583,8 @@
        "source": {
         "type": "bom",
         "key": "server-fan"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -8104,6 +8603,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -8113,6 +8613,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8122,6 +8623,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8131,6 +8633,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8145,7 +8648,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -8154,9 +8658,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -8182,7 +8687,8 @@
        "source": {
         "type": "bom",
         "key": "heatsink-vc"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -8201,6 +8707,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -8210,6 +8717,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8219,6 +8727,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8228,6 +8737,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8242,7 +8752,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -8251,9 +8762,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -8279,7 +8791,8 @@
        "source": {
         "type": "bom",
         "key": "dcim"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -8303,6 +8816,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -8312,6 +8826,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8321,6 +8836,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8330,6 +8846,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8344,7 +8861,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -8360,9 +8878,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -8388,7 +8907,8 @@
        "source": {
         "type": "bom",
         "key": "modular-dc"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -8410,6 +8930,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -8419,6 +8940,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8428,6 +8950,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8437,6 +8960,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8451,7 +8975,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -8463,9 +8988,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   }
@@ -8488,6 +9014,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
@@ -8498,6 +9025,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
@@ -8513,15 +9041,17 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
+     "status": "needed",
      "instances": []
     }
    }
@@ -8543,6 +9073,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
@@ -8553,6 +9084,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
@@ -8568,15 +9100,17 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
+     "status": "needed",
      "instances": []
     }
    }
@@ -8598,6 +9132,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
@@ -8608,6 +9143,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
@@ -8623,15 +9159,17 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
+     "status": "registered",
      "instances": [
       "美国电力",
       "星座能源"
@@ -8656,6 +9194,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
@@ -8666,6 +9205,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
@@ -8681,15 +9221,17 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
+     "status": "needed",
      "instances": []
     }
    }
@@ -8711,6 +9253,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
@@ -8721,6 +9264,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
@@ -8736,15 +9280,17 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
+     "status": "needed",
      "instances": []
     }
    }
@@ -8766,6 +9312,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
@@ -8776,6 +9323,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
@@ -8791,15 +9339,17 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
+     "status": "needed",
      "instances": []
     }
    }
@@ -9367,13 +9917,6 @@
   ],
   "due_targets": [
    {
-    "id": "F.capital.base_rates",
-    "team": "fetchstat",
-    "next_due": "2026-10-05",
-    "status": "needed",
-    "variable_class": 5
-   },
-   {
     "id": "F.capital.news",
     "team": "inews",
     "next_due": "2026-10-05",
@@ -9645,8 +10188,15 @@
     "next_due": "2026-10-05",
     "status": "needed",
     "variable_class": 5
+   },
+   {
+    "id": "P.transformer.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
    }
   ],
-  "due_total": 181
+  "due_total": 48
  }
 }

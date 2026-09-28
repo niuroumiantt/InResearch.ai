@@ -45,9 +45,12 @@ class TcoTargetListTests(unittest.TestCase):
             self.assertTrue(t['id'].startswith({'factor': 'F.', 'site_right': 'S.'}.get(t['origin'], 'P.')), t['id'])
             self.assertIn(t['data_class'], self.doc['data_classes'], t['id'])
             self.assertIn(t['mechanism'], self.doc['mechanisms'], t['id'])
-            self.assertIn(t['status'], ('sourced', 'assumed', 'needed'), t['id'])
-            for key in ('disclosure_type', 'publisher_category', 'calendar', 'next_due'):
+            self.assertIn(t['status'], ('sourced', 'assumed', 'delivered', 'needed'), t['id'])
+            for key in ('disclosure_type', 'publisher_category', 'calendar', 'team_state'):
                 self.assertTrue(t.get(key), f"{t['id']} missing {key}")
+            self.assertIn(t['team_state'], ('connected', 'not_connected'), t['id'])
+            self.assertEqual(bool(t.get('next_due')), t['team_state'] == 'connected', f"{t['id']} due dates only for connected teams")
+            self.assertEqual(t.get('sourced_by'), {'sourced': 'registry', 'delivered': 'delivery'}.get(t['status']), t['id'])
             self.assertTrue(t['instances'], t['id'])
 
     def test_every_part_and_right_is_covered(self):
@@ -115,7 +118,37 @@ class TcoTargetListTests(unittest.TestCase):
                 self.assertIn('sourced', statuses, f"{t['id']} claims sourced but model evidence is {statuses}")
                 self.assertTrue(t['series'] or t['indicators'] or t['data_class'] == 'reference', t['id'])
             if t['origin'] != 'factor' and not (t['series'] or t['indicators']):
-                self.assertEqual(t['status'], 'needed', f"{t['id']} generated row without data must stay needed")
+                self.assertIn(t['status'], ('needed', 'delivered'), f"{t['id']} generated row without data must stay needed or delivered")
+
+    def test_team_state_follows_the_supply_contract(self):
+        contract = load('framework/supply_contract.json')
+        connected = {p['id'] for p in contract['providers'] if p.get('connection') != 'not_connected'}
+        for t in self.targets:
+            self.assertEqual(t['team_state'], 'connected' if t['team'] in connected else 'not_connected', t['id'])
+
+    def test_delivered_needs_a_git_carrier(self):
+        """delivered is only claimed when a carrier inside Git holds the delivery: the docs plan (doc_id / source_url),
+        an event card with origin_pointer, or a price record with target_id. Runtime-only deliveries never count."""
+        import csv
+        self.assertEqual(set(self.doc['statuses']), {'sourced', 'assumed', 'delivered', 'needed'})
+        self.assertTrue(self.doc['carriers'])
+        with (ROOT / targets_mod.DOCS_PLAN).open(encoding='utf-8', newline='') as fh:
+            plan_parts = {r['part_id'] for r in csv.DictReader(fh) if r.get('status', 'todo') != 'todo' and (r.get('doc_id') or r.get('source_url'))}
+        cards_path = ROOT / targets_mod.EVENT_CARDS
+        cards = json.loads(cards_path.read_text(encoding='utf-8')).get('records', []) if cards_path.exists() else []
+        card_parts = {c.get('part_id') for c in cards if c.get('origin_pointer')}
+        card_rights = {c.get('site_right_id') for c in cards if c.get('origin_pointer')}
+        card_targets = {c.get('target_id') for c in cards if c.get('origin_pointer')}
+        price_targets = {r.get('target_id') for r in load('data/prices.json')['records'] if r.get('target_id')}
+        for t in self.targets:
+            if t['status'] != 'delivered':
+                continue
+            kind = t['id'].rsplit('.', 1)[1]
+            held = (t['id'] in price_targets or t['id'] in card_targets
+                    or (kind == 'spec' and t['part_id'] in plan_parts)
+                    or (kind == 'news' and t['part_id'] in card_parts)
+                    or (kind == 'holders' and t['site_right_id'] in card_rights))
+            self.assertTrue(held, f"{t['id']} is delivered without a Git carrier")
 
 
 if __name__ == '__main__':

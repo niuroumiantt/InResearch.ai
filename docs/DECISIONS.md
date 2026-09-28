@@ -2,6 +2,14 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-28：目标行状态四态与 Git 内登记载体（第 1 步）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §5 与 §9 第 1 步落地。目标表 `framework/tco_targets.json`（2.0.0）的 `status` 由三态改四态：`sourced`（已有序列、已录值指标或模型证据）、`assumed`（因子行的模型输入仍为作者假设）、`delivered`（队已交付到 Git 内载体但尚未成为序列）、`needed`（缺）。`delivered` 只认三种 Git 内载体：`data/product_docs_plan.csv` 里 status ≠ todo 且带 doc_id / source_url 的规格登记；`data/event_cards.json` 里带 `origin_pointer` 的事件卡（新闻行、持有方行；文件可选，尚未建立时视为空）；`data/prices.json` 里带 `target_id` 的价格记录（价格库 schema 新增可选的 `target_id`、`variable_class`、`node`）。只在运行库有的不计。生成行另写 `sourced_by`（registry / delivery）与 `team_state`（按 `supply_contract.json` 的 `connection`）；四个待建队名下的行 `next_due` 为空，页面显示"待建队"，不排到期，也不进"30 天内到期"的清单。当前 287 行：已有 36、假设 4、已交付 0、缺 247；待建队名下 168 行。
+
+dashboard 格的状态在四态外多一个 `registered`：格里只有我们自己登记的计数（部件数、产品线数、供应商数、持有方数）时用它，绝不标 `sourced`；`sourced` 只在格里有非计数值时成立。规则文件 `dashboard_rules.json` 新增 `cell_status` 图例；`node.html` 的色条、队卡片（待建队标记）、目标表（状态旁注"人工登记 / 队交付"、到期列的"待建队"）与根节点第四问文案同步。单元测试锁定：状态集合、到期日只对已接入队、`sourced_by` 与状态的对应、`delivered` 必须有 Git 内载体、计数格只能是 `registered`；浏览器测试锁定图例、登记格与"待建队"的渲染。
+
+**实施状态。** 第 1 步只改目标表生成器、dashboard 生成器、规则图例、节点页与测试；事件卡文件、价格记录的 `target_id` 由后续采集接入时写入，本步不造数据。第 2 步（目录与路由、reader 角色）接着做。
+
 ## 2026-09-28：唯一逻辑落地——目录、公开只读、状态四态、旧模块降为兼容、骨架补三样（第 0 步：规范先行）
 
 用户对 [目录与页面框架 v3 提案](reviews/2026-09-28/site/PROPOSAL.md) 第 10 节的批复：目录按建议定为 **数据中心 / 账本 / 爆炸图 / 采集 / 成果 / 管理**；开设公开只读角色 reader；目标行状态四态化并要求 Git 内登记载体；15 模块 Finding、十大判断与模块工单降为兼容记录，派工只走目标表；骨架补三样（部件的建设阶段属性与时间因子、部件级运行行、登记表加 `node` 与 `variable_class`）。同时用户已让 Spark 停机听指挥，图谱 3.0 的契约由本仓库定义后交 Spark 与 M4 一次重同步。实施按提案第 9 节八步推进；每步末尾治理刷新、评审摘要复审、本文一条。

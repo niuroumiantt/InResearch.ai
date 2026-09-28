@@ -57,6 +57,8 @@
   #matrix td.cell.sourced a { border-left-color: var(--green); }
   #matrix td.cell.assumed a { border-left-color: var(--yellow); }
   #matrix td.cell.needed a { border-left-color: var(--gray); color: var(--muted); }
+  #matrix td.cell.delivered a { border-left-color: var(--accent); }
+  #matrix td.cell.registered a { border-left-color: var(--gray); border-left-style: dashed; }
   #matrix td.cell.hl a { background: var(--bg); }
   #matrix .v { font-weight: 600; } #matrix .u { color: var(--muted); font-size: 11px; margin-left: 3px; }
   #matrix .c { display: block; font-size: 10.5px; color: var(--muted); }
@@ -66,6 +68,7 @@
   tr.chain-row th { background: var(--bg); color: var(--text); font-weight: 600; font-size: 12px; border-left: 3px solid var(--accent); }
   .dot { display: inline-block; width: 9px; height: 9px; border-radius: var(--ui-radius); margin-right: 3px; vertical-align: -1px; }
   .st-sourced { background: var(--green); } .st-assumed { background: var(--yellow); } .st-needed { background: var(--gray); }
+  .st-delivered { background: var(--accent); } .st-registered { background: transparent; border: 1px dashed var(--muted); box-sizing: border-box; }
   .sup-tight { background: var(--red); } .sup-transition { background: var(--yellow); } .sup-mature { background: var(--green); } .sup-emerging { background: var(--purple); }
   .links a { margin-right: 12px; font-size: 12.5px; }
   .factor { border-top: 1px dashed var(--line); padding: 6px 0; }
@@ -128,7 +131,7 @@ async function get(p) {
   return r.json();
 }
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-const STATUS = { sourced: "已有数据", assumed: "模型假设", needed: "缺" };
+const STATUS = { sourced: "已有数据", assumed: "模型假设", delivered: "已交付未成序列", registered: "登记数", needed: "缺" };
 const SUP = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
 const q = new URLSearchParams(location.search);
 const NODE = q.get("id") || "root";
@@ -147,7 +150,7 @@ const pct = v => v == null ? "缺" : (v * 100).toFixed(1) + "%";
 function nodeHref(id, col) { return "node.html?" + new URLSearchParams(col ? { id, col } : { id }); }
 function covLine(c) {
   if (!c) return "";
-  return `<div class="cov">目标：<i class="st-sourced"></i>${c.sourced} <i class="st-assumed"></i>${c.assumed} <i class="st-needed"></i>${c.needed}</div>`;
+  return `<div class="cov">目标：<i class="st-sourced"></i>${c.sourced} <i class="st-assumed"></i>${c.assumed} <i class="st-delivered"></i>${c.delivered || 0} <i class="st-needed"></i>${c.needed}</div>`;
 }
 
 function fiveColumns(cells, columns) {
@@ -178,10 +181,10 @@ function matrix(d) {
     const label = r.kind === "parent" ? `<button type="button" class="it-toggle" aria-expanded="${open}" title="展开 / 收起 IT 的四个子系统">${open ? "▾" : "▸"}</button> <a href="${nodeHref(id)}">${esc(r.name)}</a>` : r.kind === "child" ? `<span class="child-mark">└</span> <a href="${nodeHref(id)}">${esc(r.name.replace("IT · ", ""))}</a>` : `<a href="${nodeHref(id)}">${esc(r.name)}</a>`;
     return `<tr class="row-${r.kind}"><th>${label}</th>${cols.map(([n]) => {
       const c = r.cells[n]; const i = c.items[0];
-      return `<td class="cell ${c.status} ${COL === n ? "hl" : ""}"><a href="${nodeHref(id, n)}" title="${esc(i ? i.label : "缺")} · 目标 ${c.coverage.sourced}/${c.coverage.assumed}/${c.coverage.needed}">${i ? `<span class="v">${fmt(i.value, i.unit)}</span>` : '<span class="v">缺</span>'}<span class="c">${esc(i ? i.label : "无来源")}</span></a></td>`;
+      return `<td class="cell ${c.status} ${COL === n ? "hl" : ""}"><a href="${nodeHref(id, n)}" title="${esc(i ? i.label : "缺")} · 目标 已有 ${c.coverage.sourced} / 假设 ${c.coverage.assumed} / 已交付 ${c.coverage.delivered || 0} / 缺 ${c.coverage.needed}">${i ? `<span class="v">${fmt(i.value, i.unit)}</span>` : '<span class="v">缺</span>'}<span class="c">${esc(i ? i.label : "无来源")}</span></a></td>`;
     }).join("")}</tr>`;
   }).join("")}</tbody></table></div>
-  <div class="cov" style="margin-top:8px">左侧色条：<i class="st-sourced"></i>已有数据 <i class="st-assumed"></i>模型假设或部分目标已有 <i class="st-needed"></i>缺。每格点开进入系统节点并停在那一列；IT 一行可展开四个子系统；灰格就是采集任务书。</div>`;
+  <div class="cov" style="margin-top:8px">左侧色条：<i class="st-sourced"></i>已有数据 <i class="st-assumed"></i>模型假设或部分目标已有 <i class="st-delivered"></i>队已交付、未成序列 <i class="st-registered"></i>只有登记数 <i class="st-needed"></i>缺。每格点开进入系统节点并停在那一列；IT 一行可展开四个子系统；灰格与虚线格就是采集任务书。</div>`;
 }
 
 function partsTable(parts, snapshot) {
@@ -207,10 +210,10 @@ function factorList(factors, pred, formulas) {
 function targetPanel(rows, teams) {
   if (!rows.length) return '<div class="empty">没有目标行指向这个节点。</div>';
   const byTeam = {};
-  rows.forEach(t => { const b = byTeam[t.team] ||= { sourced: 0, assumed: 0, needed: 0 }; b[t.status]++; });
-  const cards = Object.entries(byTeam).map(([team, b]) => `<div class="team"><b>${esc(teams[team]?.name || team)}</b><i class="dot st-sourced"></i>${b.sourced} <i class="dot st-assumed"></i>${b.assumed} <i class="dot st-needed"></i>${b.needed}</div>`).join("");
+  rows.forEach(t => { const b = byTeam[t.team] ||= { sourced: 0, assumed: 0, delivered: 0, needed: 0, state: t.team_state }; b[t.status]++; });
+  const cards = Object.entries(byTeam).map(([team, b]) => `<div class="team"><b>${esc(teams[team]?.name || team)}</b>${b.state === "not_connected" ? '<span class="chip">待建队</span>' : ""}<i class="dot st-sourced"></i>${b.sourced} <i class="dot st-assumed"></i>${b.assumed} <i class="dot st-delivered"></i>${b.delivered} <i class="dot st-needed"></i>${b.needed}</div>`).join("");
   const table = `<div class="tscroll"><table><thead><tr><th>目标</th><th>类</th><th>数据类别</th><th>披露类型 × 出版方</th><th>队 / 主机</th><th>状态</th><th>到期</th></tr></thead><tbody>${rows.map(t =>
-    `<tr><td><code>${esc(t.id)}</code></td><td>${t.variable_class}</td><td>${esc(t.data_class)}</td><td>${esc(t.disclosure_type)} × ${esc(t.publisher_category)}</td><td>${esc(t.team)} / ${esc(t.host)}</td><td><span class="dot st-${t.status}"></span>${STATUS[t.status]}</td><td>${esc(t.next_due)}</td></tr>`).join("")}</tbody></table></div>`;
+    `<tr><td><code>${esc(t.id)}</code></td><td>${t.variable_class}</td><td>${esc(t.data_class)}</td><td>${esc(t.disclosure_type)} × ${esc(t.publisher_category)}</td><td>${esc(t.team)} / ${esc(t.host)}</td><td><span class="dot st-${t.status}"></span>${STATUS[t.status]}${t.sourced_by === "registry" ? '<small class="empty"> 人工登记</small>' : t.sourced_by === "delivery" ? '<small class="empty"> 队交付</small>' : ""}</td><td>${t.next_due ? esc(t.next_due) : '<span class="empty">待建队</span>'}</td></tr>`).join("")}</tbody></table></div>`;
   return `<div class="teams">${cards}</div>${table}`;
 }
 
@@ -262,7 +265,7 @@ function changes(d) {
     byId("h2").innerHTML = `它由什么组成<small>树 · 五个系统（IT 展开四个）× 五类变量 · 站点权利并列</small>`;
     children = matrix(d);
     byId("q3").textContent = "因子树从公式往下推：每个因子汇总它的部件与权利，再喂经济模型的输入。";
-    byId("q4").textContent = `目标清单 ${T.length} 行：sourced ${d.root.targets.sourced}、assumed ${d.root.targets.assumed}、needed ${d.root.targets.needed}。采集需求、研究工单、价格库新点与新闻事件都从这里出发；因子级目标折叠在下，部件级目标在各系统与部件节点。`;
+    byId("q4").textContent = `目标清单 ${T.length} 行：已有 ${d.root.targets.sourced}、假设 ${d.root.targets.assumed}、已交付未成序列 ${d.root.targets.delivered || 0}、缺 ${d.root.targets.needed}；其中 ${d.root.targets.not_connected || 0} 行归待建队，不排到期。采集需求、研究工单、价格库新点与新闻事件都从这里出发；因子级目标折叠在下，部件级目标在各系统与部件节点。`;
     byId("changes").innerHTML = changes(d);
     deliveryBoard().then(html => { byId("grid").innerHTML = html; }).catch(() => {});
   } else if (parentSys) {
