@@ -3,6 +3,12 @@ import json
 import re
 
 INEWS_DATACENTER_URL = 'https://inews.today/api/feeds/datacenter'
+# Additive feed v2 fields (schema_version stays 1). inews tags events; inresearch never
+# treats a tag as adopted evidence, only as a lead that names the team owning the original.
+EVENT_TYPES = ('financing', 'lease_contract', 'project_milestone', 'tariff_power_policy', 'lead_time_supply',
+               'onsite_power_grid', 'tax_regulation', 'operations_incident', 'transaction_valuation', 'product_price_change')
+RESEARCH_ANGLES = ('technology', 'supply', 'market', 'capital', 'deployment', 'policy', 'safety', 'society', 'other')
+FEED_V2_FIELDS = ('event_type', 'research_angle', 'layer_tags', 'origin_pointer', 'editorial_pick')
 
 def trusted_news_selection(metadata):
     selection = metadata.get('upstream_selection')

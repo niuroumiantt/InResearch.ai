@@ -29,10 +29,16 @@ class AcquisitionTests(unittest.TestCase):
         self.assertEqual(row['item_id'],i);self.assertEqual(row['direction'],'top_down')
         self.assertEqual(self.c.db.execute('SELECT state FROM items').fetchone()[0],'discovered')
     def test_failure_is_recorded_and_not_success(self):
-        def fail():raise ValueError('vast_api_key_missing')
-        with self.assertRaises(ValueError):self.c.run('gpu',fail)
-        last=a.summary(self.root)['sources']['gpu']['last_run']
-        self.assertEqual(last['status'],'failed');self.assertEqual(last['error_code'],'vast_api_key_missing')
+        def fail():raise ValueError('feed_unreachable')
+        with self.assertRaises(ValueError):self.c.run('inews',fail)
+        summary=a.summary(self.root);last=summary['sources']['inews']['last_run']
+        self.assertEqual(last['status'],'failed');self.assertEqual(last['error_code'],'feed_unreachable')
+        self.assertEqual(summary['retired_sources'],['sec','gpu'])
+    def test_retired_collectors_are_gone_but_history_stays_readable(self):
+        for name in ('sec','gpu','fetch','summarize_offers'):self.assertFalse(hasattr(a,name),name)
+        ident=self.c.item('sec','legacy','filing_document','https://www.sec.gov/a','legacy',{})
+        self.assertEqual(a.summary(self.root)['sources']['sec']['items'],1)
+        self.assertEqual(a.ACTIVE_SOURCES,('inews','fetchspec'))
     def test_news_title_is_only_a_lead_and_duplicate_is_not_new(self):
         payload={'schema':'inews-research-signals-v1','articles':[{'guid':'g1','id':1,'title':'NVIDIA data center GPU capacity','url':'https://example.com/1','title_zh':'英伟达数据中心容量'}]}
         self.assertEqual(a.import_news(self.c,payload),1);a.import_news(self.c,payload)
@@ -49,22 +55,4 @@ class AcquisitionTests(unittest.TestCase):
         c.execute('INSERT INTO articles VALUES('+','.join('?' for _ in row)+')',row)
         hidden=list(row);hidden[0]=2;hidden[-1]=123;c.execute('INSERT INTO articles VALUES('+','.join('?' for _ in row)+')',hidden);c.commit();c.close()
         export=a.export_news(db);self.assertEqual(len(export['articles']),1);self.assertNotIn('DO_NOT_EXPORT',json.dumps(export))
-    def test_quote_contract_rejects_mixed_and_invalid_prices(self):
-        valid={'id':1,'gpu_name':'H100 SXM','num_gpus':1,'rentable':True,'rented':False,'dph_total':2.5,'is_bid':False}
-        rows=[valid,{**valid,'id':2,'num_gpus':8},{**valid,'id':3,'dph_total':float('nan')},{**valid,'id':4,'is_bid':True},valid]
-        s=a.summarize_offers(rows,'H100 SXM');self.assertEqual(s['sample_n'],1);self.assertEqual(s['median'],2.5)
-        self.assertEqual(s['rental_type'],'on-demand');self.assertEqual(s['acceptance'],'candidate')
-    def test_missing_gpu_key_does_not_fetch(self):
-        with patch.dict(a.os.environ,{'VAST_API_KEY':''}),patch.object(a,'fetch') as fetch:
-            with self.assertRaisesRegex(ValueError,'vast_api_key_missing'):a.gpu(self.c,'H100 SXM')
-            fetch.assert_not_called()
-    def test_network_origin_allowlist(self):
-        for url in ['http://data.sec.gov/a','https://localhost/a','https://user:secret@www.sec.gov/a','https://www.sec.gov.evil/a']:
-            with self.assertRaises(ValueError):a.fetch(url)
-    def test_sec_keeps_accession_and_raw_document(self):
-        data={'cik':1045810,'filings':{'recent':{'form':['10-Q'],'accessionNumber':['0001-26-001'],'primaryDocument':['quarter.htm'],'filingDate':['2026-09-01']}}}
-        with patch.object(a,'fetch',side_effect=[a.encoded(data),b'<html>Original table</html>']),patch.object(a.time,'sleep'):
-            self.assertEqual(a.sec(self.c,'nvidia',1),1)
-        docs=self.c.db.execute("SELECT * FROM items WHERE kind='filing_document'").fetchall();self.assertEqual(len(docs),1)
-        self.assertIn('0001-26-001',docs[0]['source_key']);self.assertEqual(docs[0]['state'],'archived')
 if __name__=='__main__':unittest.main()

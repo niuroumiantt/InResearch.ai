@@ -1,23 +1,21 @@
 # Spark 采集操作
 
-现行规范：[06 采集与翻译](../../framework/06_acquisition.md)。运行数据不进 Git；新闻标题投影每小时同步；SEC/GPU 和全文翻译不自动调度。
+现行规范：[06 采集与翻译](../../framework/06_acquisition.md)。运行数据不进 Git；新闻事件投影每小时同步；全文翻译不自动调度。inresearch 本身不爬取：内置 SEC 与 GPU 采集器已于 2026-09-28 退役，改由 fetchdata 仓库的 fetchfilings 与 fetchquotes 分队按 [五层目标清单](../../framework/tco_targets.json) 采集并经供应中心交付；历史 `sec`/`gpu` 台账行保留只读。
 
 在 Spark 的 `~/code/inresearch.ai` 执行：
 
 ```bash
 python3 manage.py acquisition status
 python3 manage.py acquisition news --input /明确路径/inews-research-export.json
-python3 manage.py acquisition sec --company nvidia --limit 1
-python3 manage.py acquisition gpu --gpu 'H100 SXM'
 ```
 
 显式 `--question M13-Q01` 只登记研究任务关联；必须是现行问题 ID，不代表来源已回答问题。自定义数据根使用命令前的 `--data-root /路径`；正式 Spark 用默认永久目录。
 
 inews 导出：在能只读访问正式新闻数据库的运维环境运行 `python3 manage.py acquisition export-news --db /实际新闻数据库路径 --days 7 --limit 2000`，将标准输出保存为私有 JSON 后传入 Spark。只投影文章字段，不打包含账号/会话的数据库。Node-only 容器可运行本仓库 `scripts/export_inews_research.cjs`，使用容器已有数据库路径配置。
 
-GPU 官方搜索需要私有 `VAST_API_KEY`，只放本机私有环境文件/秘密管理，不写入脚本、参数、日志或 Git。本阶段未配置时任务记录 `vast_api_key_missing`，不得以测试报价顶替。SEC 使用明确身份 User-Agent，可由 `SEC_USER_AGENT` 设置；抓取失败留在 `runs`，不要并发绕过限流。
+SEC 与 GPU 报价的采集凭据（如 `VAST_API_KEY`、`SEC_USER_AGENT`）不再属于本仓库；它们随采集器迁入 fetchdata，只放采集机的私有环境文件，不写入脚本、参数、日志或 Git。
 
-采集台账覆盖 iNews、SEC、GPU 与 Fetchspec。网页采集状态只读取 Spark 随 Reader 发布的摘要。显示的是来源项总数及最近运行，不是全文数、阅读数或采用数。Fetchspec 的 `product-documents` 检索是候选资料目录，按公司、一级产品分类、研究问题、格式和语言筛选；它不表示全文已读或事实已采用。不存在后台采集服务时，不把按钮命名为“启动连续采集”。
+采集台账覆盖 iNews 与 Fetchspec，并只读保留退役前的 SEC、GPU 历史行。网页采集状态只读取 Spark 随 Reader 发布的摘要。显示的是来源项总数及最近运行，不是全文数、阅读数或采用数。Fetchspec 的 `product-documents` 检索是候选资料目录，按公司、一级产品分类、研究问题、格式和语言筛选；它不表示全文已读或事实已采用。不存在后台采集服务时，不把按钮命名为“启动连续采集”。
 
 `acquisition/catalog.sqlite` 与 `acquisition/blobs` 应纳入异机备份方案。第一阶段不会改动现有 reader 的数据库备份规则，因此原有 reader 备份并不自动覆盖新采集目录；新闻定时上线前使用 `python3 manage.py backup --dest /新的备份目录` 在线备份台账与引用原件，校验 SQLite 与 SHA256，再复制至异机并复核清单。此工具不删除旧备份；异机长期轮转与统一备份调度仍须落实。
 

@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.28.27",
+  "version": "2026.09.28.28",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -546,8 +546,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 106889,
-      "sha256": "22f74dcb8e86b3c686c7a13272145d7f514b61845a5f911c724daa657cbdb075",
+      "bytes": 109980,
+      "sha256": "9745fd63b6fbf3e6ad406a4365ee231a093ab5af1ff2537b09f9b12ccf150a1e",
       "collections": []
     },
     {
@@ -782,6 +782,13 @@
       "collections": []
     },
     {
+      "path": "docs/handoff/fetchdata-bootstrap.md",
+      "role": "supporting_document",
+      "bytes": 3398,
+      "sha256": "b34899d216ee0aa133cfcfbdd199731e713e74a78f3e1e1e43b83541e62a2ffb",
+      "collections": []
+    },
+    {
       "path": "docs/handoff/nvidia-product-catalog.md",
       "role": "supporting_document",
       "bytes": 3399,
@@ -791,8 +798,8 @@
     {
       "path": "docs/handoff/tco-model-fetch-teams.md",
       "role": "supporting_document",
-      "bytes": 4733,
-      "sha256": "07d8ce0b9c0545d08ea50eb7694121b60ca0a3c7d6f0105bfed2cf18d0ce27f4",
+      "bytes": 5676,
+      "sha256": "d5105db511a7e05125cb65a77f40a423a095508500b4b7a2382234f636e478e2",
       "collections": []
     },
     {
@@ -3258,8 +3265,8 @@
     {
       "path": "docs/local_reader/ACQUISITION_OPERATIONS.md",
       "role": "supporting_document",
-      "bytes": 3709,
-      "sha256": "b9f53df23a4d181b335ec7e80efe687bdcab97c3c3886f5083e0834e31ab8acc",
+      "bytes": 3776,
+      "sha256": "3fa978a16eec8d2fbd385c02c8d4d8ef95d57bb7b8d3b3d5d928a75e6c04cff2",
       "collections": []
     },
     {
@@ -6597,8 +6604,8 @@
     {
       "path": "framework/06_acquisition.md",
       "role": "normative",
-      "bytes": 35232,
-      "sha256": "2a7a976da0a6c88a8dc610c296dab7b1bade62e43e48d698c978a07e9466341c",
+      "bytes": 39730,
+      "sha256": "7ba088e8e640a8d16b3c4d06400d547b39c16d8b2fe44e52b8282ad01468f3da",
       "collections": []
     },
     {
@@ -6625,8 +6632,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 5449,
-      "sha256": "2d1cf76d3d68b924184365e521e3fafea1e5689ecf762cf3a5a95f662bfa6eb2",
+      "bytes": 5680,
+      "sha256": "d3236a2fb22ad6aa1df0d68777c908b42f48d3a7f6079e03ab5f43e649877381",
       "collections": []
     },
     {
@@ -6648,8 +6655,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 37765,
-      "sha256": "ab7c79ddb1c328371c9c40313eec2350eb91b2e7015e278a87b306db1684178b",
+      "bytes": 38502,
+      "sha256": "3684b9470a37f16577d020e31edc4f3f77a9d417b8a63a4e10e3bc3b877f443f",
       "collections": [
         {
           "name": "policies",
@@ -6912,12 +6919,12 @@
     {
       "path": "framework/supply_contract.json",
       "role": "project_config",
-      "bytes": 8838,
-      "sha256": "d1531978f153602d9dab4edb58aeec3761f5c7c5d56f63988024134be992ae27",
+      "bytes": 11977,
+      "sha256": "7ddb193b4915195c09e303b35e8b10eedffc2c09529a957c913fc2bd14f4a44a",
       "collections": [
         {
           "name": "providers",
-          "count": 10
+          "count": 7
         }
       ]
     },
@@ -6934,10 +6941,26 @@
       ]
     },
     {
+      "path": "framework/tco_targets.json",
+      "role": "project_config",
+      "bytes": 40987,
+      "sha256": "3b5afe9b859934df054a0c8380e8981cb2d909faee28d34193bc04674fa01838",
+      "collections": [
+        {
+          "name": "principles",
+          "count": 4
+        },
+        {
+          "name": "targets",
+          "count": 43
+        }
+      ]
+    },
+    {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 78160,
-      "sha256": "b1d4d84bd005a9f09e80513194d322fe2dbd08b84f5a7b1ec55f4298040948d1",
+      "bytes": 79541,
+      "sha256": "20d3b372e4832c22553d670b35f6af8620fdf515eb7f006afc47db31da2a55c1",
       "collections": [
         {
           "name": "policies",
@@ -8089,8 +8112,8 @@
     {
       "path": "src/inresearch/adapters/acquisition.py",
       "role": "implementation",
-      "bytes": 22338,
-      "sha256": "cf4e25de59311a30057b2d6a3e0e7ed6a632afeca43e652ae07de33a87f5d0ad",
+      "bytes": 17636,
+      "sha256": "a3b464085c01a6489f6dc0f0c499cd579a40616baa7f1c258fb29bde1d276a44",
       "collections": []
     },
     {
@@ -8138,15 +8161,15 @@
     {
       "path": "src/inresearch/adapters/news_projection.py",
       "role": "implementation",
-      "bytes": 3123,
-      "sha256": "8c515e019f28db954bb646bb06f891f2054e7272ddbc181ee1b1c8349b0c8b9f",
+      "bytes": 3220,
+      "sha256": "cf35294c75bd5380e62bfc26be052e26da2707a22c6f240aca1235844ee20d6c",
       "collections": []
     },
     {
       "path": "src/inresearch/adapters/news_sync.py",
       "role": "implementation",
-      "bytes": 5548,
-      "sha256": "f2b0c530116114e23ea9c1ea77a2a4a993fc2d17a7a3eeb49d1ddb01b0fa4c24",
+      "bytes": 6647,
+      "sha256": "baeebdacf012f9d0160f055eccd620652f9230b7ee4de24ad2292e1388d87442",
       "collections": []
     },
     {
@@ -8334,8 +8357,8 @@
     {
       "path": "src/inresearch/interfaces/http.py",
       "role": "implementation",
-      "bytes": 32413,
-      "sha256": "acf22cf45ac641797eb494df61a55d21b8f642990a197d14d6233ebac0dbb8d8",
+      "bytes": 32237,
+      "sha256": "248116b5305b18953f7ae40c61cac3a0b70b918bda8f716d26705ad776241c51",
       "collections": []
     },
     {
@@ -8425,8 +8448,8 @@
     {
       "path": "src/inresearch/knowledge/news_policy.py",
       "role": "implementation",
-      "bytes": 3851,
-      "sha256": "52d59211fcf68103dc11666c1bbc2f6d247986fd6e4ae4b29e741c29b3a88c7e",
+      "bytes": 4485,
+      "sha256": "383ecbab90d86754ce604addfba8ed84ae9bdd2b48428dca9eec6dfaecd925c9",
       "collections": []
     },
     {
@@ -8964,8 +8987,8 @@
     {
       "path": "tests/unit/test_acquisition.py",
       "role": "test",
-      "bytes": 5565,
-      "sha256": "9df70bf9f5f2453e45a9f5af50baf9d4bc8cccae0afe3a76555b00c6b5099110",
+      "bytes": 4369,
+      "sha256": "9759d573e19ed4714c58c790785ab2043beebc05c20d4b04b26531751c6a01dd",
       "collections": []
     },
     {
@@ -9230,8 +9253,8 @@
     {
       "path": "tests/unit/test_news_projection.py",
       "role": "test",
-      "bytes": 7836,
-      "sha256": "dc823cf4ac3b0c13dc7ec984423e559d019af8f4b75f5dd28e43968e900357a6",
+      "bytes": 9473,
+      "sha256": "093fb2939a97d979c7b11f2b0d6d06f2a8369692ecb402f8abdfb314d2ef4bc4",
       "collections": []
     },
     {
@@ -9384,8 +9407,8 @@
     {
       "path": "tests/unit/test_supply.py",
       "role": "test",
-      "bytes": 7305,
-      "sha256": "3e78b1c20e938deac2aef2da32e1b79723d4be4e66c5200b5d4ae100b4186760",
+      "bytes": 7304,
+      "sha256": "81d4214c7df85f8a914cf15aba855bad7736ec474b5ad7defe1cebbe13be9613",
       "collections": []
     },
     {
@@ -9393,6 +9416,13 @@
       "role": "test",
       "bytes": 2834,
       "sha256": "cb6442b051e5ca7a7bbebb1b9ba8283b4984ebdb9c83903b529c13a0aa116d43",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_tco_targets.py",
+      "role": "test",
+      "bytes": 3819,
+      "sha256": "205940e1087a7974afa812521427e7d09389c16dbe6a30bf6bfaeae19b044fcf",
       "collections": []
     },
     {
@@ -10127,8 +10157,8 @@
     {
       "path": "web/pages/ops.html",
       "role": "implementation",
-      "bytes": 26645,
-      "sha256": "bb2a4c6d7ab65732227248cd9e429a5c3a2594534c17eab23a01caa0b3f3cf47",
+      "bytes": 26488,
+      "sha256": "3fefb49b8013adf9f7181de789cb1f7d9d50f792e1752b5f3776db57e9d5d0b4",
       "collections": []
     },
     {
@@ -10197,8 +10227,8 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 7861,
-      "sha256": "271eff87c0dc892ffce1d8976733df3d37ff5aebbdb8d42cff27d2515202c1fe",
+      "bytes": 7919,
+      "sha256": "fcc95d047139b11044dea0a8fe4d24920a2b8ce38351074b642af6ef65e3f58f",
       "collections": []
     },
     {
@@ -10253,11 +10283,11 @@
     "historical": 267,
     "implementation": 215,
     "normative": 13,
-    "project_config": 90,
+    "project_config": 91,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 28,
-    "supporting_document": 56,
-    "test": 88
+    "supporting_document": 57,
+    "test": 89
   }
 }

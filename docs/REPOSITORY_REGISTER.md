@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.28.27。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.09.28.28。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：991。
+在册文件：994。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,12 +18,12 @@
 | 历史快照 | 267 |
 | 运行代码 | 215 |
 | 现行规范 | 13 |
-| 项目配置 | 90 |
+| 项目配置 | 91 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 56 |
-| 测试 | 88 |
+| 配套说明 | 57 |
+| 测试 | 89 |
 
 ## 在册记录集合
 
@@ -344,8 +344,10 @@
 | `framework/research_graph.json` | catalog_topic_mappings | 35 |
 | `framework/research_graph.json` | research_topics | 9 |
 | `framework/research_questions.json` | records | 458 |
-| `framework/supply_contract.json` | providers | 10 |
+| `framework/supply_contract.json` | providers | 7 |
 | `framework/tco_factors.json` | factors | 24 |
+| `framework/tco_targets.json` | principles | 4 |
+| `framework/tco_targets.json` | targets | 43 |
 | `framework/verification_contract.json` | policies | 13 |
 | `outputs/geluoke-research/2026-09-26/checks/validation.json` | images | 5 |
 | `outputs/geluoke-research/2026-09-26/sources.json` | published_source_numbering | 48 |
@@ -485,6 +487,7 @@
 | [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
 | `docs/guides/model-governance-2026-09-27.html` | 运行代码 |
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
+| [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
 | [docs/handoff/nvidia-product-catalog.md](handoff/nvidia-product-catalog.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
@@ -961,6 +964,7 @@
 | `framework/storage_contract.json` | 项目配置 |
 | `framework/supply_contract.json` | 项目配置 |
 | `framework/tco_factors.json` | 项目配置 |
+| `framework/tco_targets.json` | 项目配置 |
 | `framework/verification_contract.json` | 项目配置 |
 | `manage.py` | 运行代码 |
 | `outputs/geluoke-research/2026-09-26/2026-09-26-article-summary-wechat.jpg` | 项目配置 |
@@ -1277,6 +1281,7 @@
 | `tests/unit/test_suite_integrity.py` | 测试 |
 | `tests/unit/test_supply.py` | 测试 |
 | `tests/unit/test_tco_factors.py` | 测试 |
+| `tests/unit/test_tco_targets.py` | 测试 |
 | `tests/unit/test_text_similarity.py` | 测试 |
 | `tests/unit/test_transient_model_errors.py` | 测试 |
 | `tests/unit/test_verification_contract.py` | 测试 |

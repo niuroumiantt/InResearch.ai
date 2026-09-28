@@ -1,6 +1,6 @@
 {
-  "version": "1.3",
-  "effective_at": "2026-09-27",
+  "version": "1.4",
+  "effective_at": "2026-09-28",
   "phase": "planning_live",
   "operating_plan": {
     "purpose": "从研究问题出发，先建立数据中心产品资料全景，再为关键产品线形成可复核的深度证据包。",
@@ -10,20 +10,66 @@
       "meaning": "801 是当前产品资料计划的待补目录数，不是已抓取、已验收或已采用的资料数；Fetchspec 接收与索引已实现。NVIDIA 验证现采用 M5 本地抓取/阅读并直传 AWS 的临时路径，Spark 接收与原件归档待后续补齐。"
     },
     "phases": [
-      {"id":"foundation","name":"第 0 批：验证闭环","purpose":"先用 M5 本地原件和本地阅读验证候选交付至 AWS、线上查看，再补永久归档与正式采用链路。","exit":"原件 SHA 可追溯；M5 完整候选与进度获 AWS 回执并在线可见；候选/采用身份分离。"},
-      {"id":"breadth","name":"第 1 批：产品地图全覆盖","purpose":"先补齐官方产品页和产品册，覆盖八个硬件生态。","exit":"每条优先产品线均有厂商、产品系列、官方入口和最后检查时间。"},
-      {"id":"depth","name":"第 2 批：关键产品线深抓","purpose":"为算力、网络、供配电、液冷和存储补齐规格、部署和条件资料。","exit":"优先产品线具备产品页、规格书、部署/维护资料及兼容或限制条件。"},
-      {"id":"research","name":"第 3 批：跨产品研究专题","purpose":"围绕功率密度、高速互联、液冷、存储、供配电和运维建立证据链。","exit":"资料已通过验收，并能支持可引用的研究陈述或明确缺口。"},
-      {"id":"continuous","name":"持续批：变化监测","purpose":"发现版本、产品、披露、项目和新闻变化，按既有研究问题回补。","exit":"变更来源、检查时间和失败原因可见；旧版本不被覆盖。"}
+      {
+        "id": "foundation",
+        "name": "第 0 批：验证闭环",
+        "purpose": "先用 M5 本地原件和本地阅读验证候选交付至 AWS、线上查看，再补永久归档与正式采用链路。",
+        "exit": "原件 SHA 可追溯；M5 完整候选与进度获 AWS 回执并在线可见；候选/采用身份分离。"
+      },
+      {
+        "id": "breadth",
+        "name": "第 1 批：产品地图全覆盖",
+        "purpose": "先补齐官方产品页和产品册，覆盖八个硬件生态。",
+        "exit": "每条优先产品线均有厂商、产品系列、官方入口和最后检查时间。"
+      },
+      {
+        "id": "depth",
+        "name": "第 2 批：关键产品线深抓",
+        "purpose": "为算力、网络、供配电、液冷和存储补齐规格、部署和条件资料。",
+        "exit": "优先产品线具备产品页、规格书、部署/维护资料及兼容或限制条件。"
+      },
+      {
+        "id": "research",
+        "name": "第 3 批：跨产品研究专题",
+        "purpose": "围绕功率密度、高速互联、液冷、存储、供配电和运维建立证据链。",
+        "exit": "资料已通过验收，并能支持可引用的研究陈述或明确缺口。"
+      },
+      {
+        "id": "continuous",
+        "name": "持续批：变化监测",
+        "purpose": "发现版本、产品、披露、项目和新闻变化，按既有研究问题回补。",
+        "exit": "变更来源、检查时间和失败原因可见；旧版本不被覆盖。"
+      }
     ],
     "coverage": [
-      {"name":"算力芯片与服务器","focus":"GPU、CPU、加速卡、服务器与整机"},
-      {"name":"网络与光互联","focus":"交换机、网卡、光模块、线缆与互联芯片"},
-      {"name":"供配电","focus":"UPS、配电、备电、电力模块与变电"},
-      {"name":"液冷与散热","focus":"CDU、冷板、浸没、冷却与管路"},
-      {"name":"存储","focus":"内存、SSD、HDD、阵列与数据管理"},
-      {"name":"机柜与物理设施","focus":"机柜、布线、消防与泄漏检测"},
-      {"name":"DCIM 与运维","focus":"监控、告警、资产和能耗管理"}
+      {
+        "name": "算力芯片与服务器",
+        "focus": "GPU、CPU、加速卡、服务器与整机"
+      },
+      {
+        "name": "网络与光互联",
+        "focus": "交换机、网卡、光模块、线缆与互联芯片"
+      },
+      {
+        "name": "供配电",
+        "focus": "UPS、配电、备电、电力模块与变电"
+      },
+      {
+        "name": "液冷与散热",
+        "focus": "CDU、冷板、浸没、冷却与管路"
+      },
+      {
+        "name": "存储",
+        "focus": "内存、SSD、HDD、阵列与数据管理"
+      },
+      {
+        "name": "机柜与物理设施",
+        "focus": "机柜、布线、消防与泄漏检测"
+      },
+      {
+        "name": "DCIM 与运维",
+        "focus": "监控、告警、资产和能耗管理"
+      }
     ]
   },
   "execution_policy": {
@@ -60,9 +106,13 @@
       "id": "fetchspec",
       "name": "fetchspec",
       "capability": "产品与技术资料",
+      "team": "fetchspec",
       "kind": "existing_repo",
       "repository": "https://github.com/niuroumiantt/fetchspec",
       "mapping": "P/F · T02/T04/T09",
+      "layers": [
+        1
+      ],
       "acceptance": "型号、配置、软件版本、原文及参数条件",
       "connection": "receiver_implemented_pending_deployment"
     },
@@ -70,89 +120,93 @@
       "id": "inews",
       "name": "inews.today",
       "capability": "新闻与事件",
+      "team": "inews",
       "kind": "existing_feed",
       "repository": "https://github.com/niuroumiantt/inews.today",
       "mapping": "V/D · T03/T05/T06/T07",
-      "acceptance": "事件、发布时间、正文状态、聚类及撤回",
+      "layers": [
+        4,
+        5
+      ],
+      "acceptance": "事件、发布时间、正文状态、聚类及撤回；事件卡带事件类型、层标签与原件指针，默认不翻译",
+      "connection": "feed_v1_consumed"
+    },
+    {
+      "id": "fetchstat",
+      "name": "fetchstat",
+      "capability": "公共统计、费率表、税率与法规原文",
+      "team": "fetchstat",
+      "kind": "proposed",
+      "repository": "fetchdata（待建）",
+      "mapping": "P/V/D · T03/T05/T09",
+      "layers": [
+        3,
+        2,
+        4,
+        5
+      ],
+      "acceptance": "地域、单位、统计期、方法、费率生效日与数据修订",
       "connection": "not_connected"
     },
     {
-      "id": "disclosures",
-      "name": "披露采集",
-      "capability": "公司经营与披露",
+      "id": "fetchfilings",
+      "name": "fetchfilings",
+      "capability": "证券与公司披露、可持续报告、财报电话会",
+      "team": "fetchfilings",
       "kind": "proposed",
-      "repository": null,
+      "repository": "fetchdata（待建）",
       "mapping": "V · T05/T06/T07/T08",
+      "layers": [
+        2,
+        4,
+        5,
+        3
+      ],
       "acceptance": "报告期、分部口径、原件、修订与附件",
       "connection": "not_connected"
     },
     {
-      "id": "projects",
-      "name": "项目采集",
-      "capability": "项目与建设",
+      "id": "fetchreports",
+      "name": "fetchreports",
+      "capability": "研报、指数、白皮书、论文与标准",
+      "team": "fetchreports",
       "kind": "proposed",
-      "repository": null,
-      "mapping": "P/V · T06/T09",
-      "acceptance": "项目身份、许可、阶段、地点与容量口径",
-      "connection": "not_connected"
-    },
-    {
-      "id": "statistics",
-      "name": "公共数据采集",
-      "capability": "公共统计与资源",
-      "kind": "proposed",
-      "repository": null,
-      "mapping": "P/V/D · T03/T05/T09",
-      "acceptance": "地域、单位、统计期、方法与数据修订",
-      "connection": "not_connected"
-    },
-    {
-      "id": "literature",
-      "name": "文献采集",
-      "capability": "论文、报告与白皮书",
-      "kind": "proposed",
-      "repository": null,
+      "repository": "fetchdata（待建）",
       "mapping": "P/F/V/D · T01—T09",
-      "acceptance": "全文、作者、方法、图表与引用位置",
+      "layers": [
+        3,
+        2,
+        4,
+        5
+      ],
+      "acceptance": "全文、作者、方法、图表、引用位置与版本",
       "connection": "not_connected"
     },
     {
-      "id": "standards",
-      "name": "规范采集",
-      "capability": "标准、法规与接口规范",
-      "kind": "proposed",
-      "repository": null,
-      "mapping": "F/V · T01/T02/T09",
-      "acceptance": "适用范围、生效、辖区、版本与替代关系",
-      "connection": "not_connected"
-    },
-    {
-      "id": "market",
-      "name": "市场观察",
+      "id": "fetchquotes",
+      "name": "fetchquotes",
       "capability": "报价与市场观察",
+      "team": "fetchquotes",
       "kind": "proposed",
-      "repository": null,
+      "repository": "fetchdata（待建）",
       "mapping": "V/D · T08",
-      "acceptance": "配置、币种、地区、采样时间与全部费用",
-      "connection": "not_connected"
-    },
-    {
-      "id": "empirical",
-      "name": "技术实证",
-      "capability": "性能、运行与实验资料",
-      "kind": "proposed",
-      "repository": null,
-      "mapping": "F/D · T04/T09",
-      "acceptance": "负载、环境、方法、故障复盘与原始结果",
+      "layers": [
+        3,
+        1,
+        5
+      ],
+      "acceptance": "配置、币种、地区、采样时间与全部费用；报价不等于成交",
       "connection": "not_connected"
     },
     {
       "id": "local",
       "name": "本地材料接入",
       "capability": "上传 / raw materials",
+      "team": null,
       "kind": "existing_channel",
       "repository": null,
       "mapping": "按材料内容映射对象、视角及主题",
+      "layers": [],
       "acceptance": "文件身份、原始出处、完整性与已有处理记录",
       "connection": "not_connected"
     }
@@ -176,10 +230,53 @@
       "access_scope",
       "version_relation"
     ],
-    "package_required": ["manifest.json", "SHA256SUMS", "files/"],
-    "source_optional": ["original_filename", "language", "discovery_role", "categories", "also_seen_at"],
-    "accepted_formats": ["pdf", "doc", "docm", "docx", "dot", "dotm", "dotx", "ppt", "pptm", "pptx", "pps", "ppsm", "ppsx", "pot", "potm", "potx", "xls", "xlsb", "xlsm", "xlsx", "xlt", "xltm", "xltx", "csv", "rtf", "odt", "ods", "odp", "html"],
-    "item_receipt_states": ["received", "needs_supplement"],
+    "package_required": [
+      "manifest.json",
+      "SHA256SUMS",
+      "files/"
+    ],
+    "source_optional": [
+      "original_filename",
+      "language",
+      "discovery_role",
+      "categories",
+      "also_seen_at"
+    ],
+    "accepted_formats": [
+      "pdf",
+      "doc",
+      "docm",
+      "docx",
+      "dot",
+      "dotm",
+      "dotx",
+      "ppt",
+      "pptm",
+      "pptx",
+      "pps",
+      "ppsm",
+      "ppsx",
+      "pot",
+      "potm",
+      "potx",
+      "xls",
+      "xlsb",
+      "xlsm",
+      "xlsx",
+      "xlt",
+      "xltm",
+      "xltx",
+      "csv",
+      "rtf",
+      "odt",
+      "ods",
+      "odp",
+      "html"
+    ],
+    "item_receipt_states": [
+      "received",
+      "needs_supplement"
+    ],
     "receipt_policy": {
       "content_identity": "sha256",
       "same_bytes": "one immutable original with multiple source observations",
@@ -194,5 +291,61 @@
       "rejected"
     ],
     "research_adoption_separate": true
+  },
+  "teams": {
+    "note": "六队按来源机制划分，不按层；一个来源常同时喂几层。任务只来自 framework/tco_targets.json。",
+    "repositories": [
+      {
+        "id": "inews.today",
+        "url": "https://github.com/niuroumiantt/inews.today",
+        "teams": [
+          "inews"
+        ],
+        "status": "existing"
+      },
+      {
+        "id": "fetchspec",
+        "url": "https://github.com/niuroumiantt/fetchspec",
+        "teams": [
+          "fetchspec"
+        ],
+        "status": "existing"
+      },
+      {
+        "id": "fetchdata",
+        "url": null,
+        "teams": [
+          "fetchstat",
+          "fetchfilings",
+          "fetchreports",
+          "fetchquotes"
+        ],
+        "status": "planned",
+        "note": "一个仓库、四个分队目录，共用内核、来源登记表与交付构建；不够再拆。见 docs/handoff/fetchdata-bootstrap.md"
+      }
+    ],
+    "capability_map": {
+      "产品与技术资料": "fetchspec",
+      "新闻与事件": "inews",
+      "公司经营与披露": "fetchfilings",
+      "项目与建设": "inews 事件卡 + fetchstat 县级与公用事业记录 + fetchfilings 开发商披露",
+      "公共统计与资源": "fetchstat",
+      "论文/报告/白皮书": "fetchreports",
+      "标准/法规/接口规范": "fetchreports（标准 PDF）/ fetchstat（费率与税法原文）/ fetchspec（厂商接口规范）",
+      "报价与市场观察": "fetchquotes",
+      "性能/运行/实验资料": "fetchreports（论文）+ fetchfilings（可持续报告）+ 人工执行者"
+    },
+    "build_order": [
+      "fetchstat",
+      "fetchfilings",
+      "fetchreports",
+      "fetchquotes"
+    ],
+    "source_ownership": "每个来源（source_id）只属一个队、一台主执行机、一个日历；两队需要同一来源时由拥有方抓原件，另一方引用交付包；inews 只给事件卡与原件指针，不抓原件；换主机即结束旧任务、开新任务。",
+    "inresearch_role": "inresearch.ai 本身不爬取：只登记需求（目标清单）、接收交付、验收与研究采用。2026-09-28 起内置 SEC 与 GPU 采集器退役，改由 fetchfilings 与 fetchquotes 实现。",
+    "inews_two_lines": {
+      "collection_line": "求广：发现 → 闸门 → 打标（事件类型、研究角度、层标签）→ 事件 feed；默认不翻译",
+      "editorial_line": "求精：从打标池按配额选簇 → 取正文 → 全文翻译 → 发布；挑选在先，翻译在后，翻译只花在被挑出的对象上"
+    }
   }
 }

@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.09.28.27 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.09.28.28 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -14,7 +14,7 @@
 | 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
 | 全站界面、字体与外观 | [05 界面规范](05_interface_system.md) | web/components/site-shell.js、web/themes、web/assets/fonts（infra 字体包）、interface_manifest.json |
 | 产品生态与总览 | [07 产品生态规范](07_product_ecosystems.md) | 生态/技术入口、中心关系图、九主题、厂商索引及旧 ID 映射 |
-| 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json、workflow.supply、供应中心；既有 acquisition / inews / Spark 台账 |
+| 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（六队、三仓库、来源归属）、[五层目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；inresearch 本身不爬取 |
 | 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
 | 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
 | 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
@@ -42,6 +42,6 @@
 - 当前规范、兼容研究记录、资料候选、设计依据、历史审计和生成物分别标识；打开文档页会显示身份。
 - 旧决策、旧全景和旧 reader 指令已移入 `docs/archive/2026-09-06/`。原路径保留当前说明或转向，避免旧链接继续发出操作指令。
 - 在册清单覆盖 Git 源码与记录；不枚举百度网盘、Spark 原件、运行数据库、密钥或本机忽略文件。Spark 资料以内容身份和 SQLite 台账计量，网页候选以收到的快照计量，不能拿源码行数代替。
-- 12 页架构 PDF 是已采用设计的交付快照；持续变更的执行规则以这里登记的现行文档为准。
+- 12 页架构 PDF 与 5 页数据中心经济模型指导（`docs/guides/model-governance-2026-09-27`，三级四段五层六队）是已采用设计的交付快照；持续变更的执行规则以这里登记的现行文档为准。
 
 主规范保留稳定文件名及最后更新日期；新讨论/评审/交付快照文件名以日期开头，必要时加时间。当前状态决定执行依据，日期不授予覆盖权。

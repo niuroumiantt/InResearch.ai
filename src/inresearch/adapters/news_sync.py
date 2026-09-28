@@ -9,6 +9,7 @@ from datetime import datetime
 from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, build_opener
 from inresearch.adapters.acquisition import Collector, NoRedirect, data_root, now, import_news, INEWS_DATACENTER_URL, VerifiedNewsProjection, _DIRECT_FEED_PROOF, encoded
+from inresearch.knowledge.news_policy import EVENT_TYPES, RESEARCH_ANGLES, FEED_V2_FIELDS
 
 URL=INEWS_DATACENTER_URL
 WEEK_MS=7*86400000
@@ -61,7 +62,24 @@ def validate_page(page, expected_window):
         if (not isinstance(topics,list) or not 1<=len(topics)<=32
                 or any(not isinstance(t,str) or not re.fullmatch(r'[a-z][a-z0-9_-]{0,63}',t) for t in topics)):
             raise ValueError('invalid_news_topics')
+        validate_v2_fields(item)
     return window
+
+
+def validate_v2_fields(item):
+    """Optional additive fields; absent or null is fine, a wrong shape rejects the page."""
+    event_type=item.get('event_type')
+    if event_type is not None and event_type not in EVENT_TYPES: raise ValueError('invalid_news_event_type')
+    angle=item.get('research_angle')
+    if angle is not None and angle not in RESEARCH_ANGLES: raise ValueError('invalid_news_research_angle')
+    layers=item.get('layer_tags')
+    if layers is not None and (not isinstance(layers,list) or len(layers)>5
+            or any(type(l) is not int or not 1<=l<=5 for l in layers) or len(set(layers))!=len(layers)):
+        raise ValueError('invalid_news_layer_tags')
+    pointer=item.get('origin_pointer')
+    if pointer is not None and not public_url(pointer): raise ValueError('invalid_news_origin_pointer')
+    pick=item.get('editorial_pick')
+    if pick is not None and type(pick) is not bool: raise ValueError('invalid_news_editorial_pick')
 
 def projection():
     articles=[]; seen=set(); cursors=set(); cursor=None; window=None; guids={}
@@ -82,7 +100,7 @@ def projection():
             guids[guid]=ident
             if ident in seen: continue
             seen.add(ident)
-            row={k:item.get(k) for k in ('id','title','title_zh','title_zh_profile','url','domain','publisher','published_at','cluster_id','topics')}
+            row={k:item.get(k) for k in ('id','title','title_zh','title_zh_profile','url','domain','publisher','published_at','cluster_id','topics')+FEED_V2_FIELDS}
             # Same article ID identity as historical export when GUID is unavailable.
             row['guid']=guid
             articles.append(row)

@@ -1,4 +1,4 @@
-# TCO 模型与采集分队交接（2026-09-27）
+# TCO 模型与采集分队交接（2026-09-27，2026-09-28 更新）
 
 供新会话直接接手。本文只记结论与待办，推导过程见 `docs/DECISIONS.md` 当日条目与 `docs/guides/model-governance-2026-09-27.pdf`。
 
@@ -38,7 +38,13 @@
 6. 劳登县计算机设备动产税 4.15%、弗州用电税 1.1¢/kWh、NVAIE 订阅进入模型。
 7. 交期与紧缺状态驱动建设期与电气造价涨幅。
 
-## 待新会话讨论的问题（用户提出）
+## 2026-09-28 已定与已做
+
+- 已定：六队三仓库（inews.today、fetchspec 保持，新建 fetchdata 承载四队）；inresearch 本身不爬取，sec/gpu 采集器已删除；建队顺序 fetchstat → fetchfilings → fetchreports → fetchquotes；inews 拆采集线与编辑线，给 inresearch 的采集默认不翻译，挑选在先翻译在后。
+- 已做：`framework/tco_targets.json` 五层目标清单（43 行）与测试；`supply_contract.json` 1.4 六队与来源归属；06 采集规范两节新增；news_sync 透传 feed v2 附加字段；DECISIONS 三条；`docs/handoff/fetchdata-bootstrap.md`。
+- 待做：创建 fetchdata 仓库并按 bootstrap 迁入 sec/gpu 种子；tco.html 缺口表读 `next_due`；选题配额与排序规则（单独讨论）。
+
+## 讨论记录（已在 2026-09-28 收口）
 
 - 基于 3-4-5-6，各队要抓取的**角度**与**素材**清单，尤其 inews.today 要增加哪些角度（融资、租约、项目、费率案、交期、供应链事件等）。
 - 爬取架构：一个爬虫统抓，还是多个爬虫并行各管一类来源；并行时如何避免同一来源被抓多次（06 规范：一个来源一个主执行机，不静默双跑）。
@@ -46,8 +52,8 @@
 
 ## 待用户决定
 
-- 是否把指导文件升级为 `CURRENT.md` 现行规范。
-- 近期任务是否按上面顺序开始。
+- 指导文件已登记为已采用设计快照（CURRENT.md 记录与运行边界），可执行规则在 06 与目标清单；是否另立独立规范文件待定。
+- 近期任务第 1 项（目标清单）已完成，其余按顺序开始。
 
 ## 操作提醒
 

@@ -76,6 +76,28 @@ class NewsProjectionTest(unittest.TestCase):
         self.assertEqual(shown[0]['topics'], ['compute_hardware'])
         self.assertFalse((self.root/'raw-materials').exists())
 
+    def test_feed_v2_event_tags_are_kept_as_leads_and_validated(self):
+        row = self.row()
+        row.update(event_type='financing', research_angle='capital', layer_tags=[5, 3],
+                   origin_pointer='https://www.sec.gov/Archives/edgar/data/1/0001-26-001/ex10.htm', editorial_pick=True)
+        projection = self.fetch([self.page([row])])
+        self.assertEqual(acquisition.import_news(self.collector, projection), 1)
+        metadata = json.loads(self.collector.db.execute('SELECT metadata FROM items').fetchone()[0])
+        self.assertEqual(metadata['event_type'], 'financing')
+        self.assertEqual(metadata['layer_tags'], [5, 3])
+        self.assertEqual(metadata['match_status'], 'candidate', 'a tag is a lead, not adopted evidence')
+        shown = feed(self.root)['items'][0]
+        self.assertEqual((shown['event_type'], shown['research_angle'], shown['editorial_pick']), ('financing', 'capital', True))
+        self.assertEqual(shown['origin_pointer'], row['origin_pointer'])
+        for field, value in [('event_type', 'rumour'), ('research_angle', 'x'), ('layer_tags', [0]), ('layer_tags', [1, 1]),
+                             ('layer_tags', ['3']), ('origin_pointer', 'javascript:alert(1)'), ('editorial_pick', 'yes')]:
+            bad = self.row(); bad[field] = value
+            with self.assertRaises(ValueError, msg=field):
+                self.fetch([self.page([bad])])
+        # Older feeds without the fields still validate and project without them.
+        plain = json.loads(self.fetch([self.page([self.row()])]).payload_json)['articles'][0]
+        self.assertIsNone(plain['event_type'])
+
     def test_forged_json_and_roundtrip_do_not_grant_authority(self):
         payload = json.loads(self.fetch([self.page()]).payload_json)
         payload['verified'] = True
