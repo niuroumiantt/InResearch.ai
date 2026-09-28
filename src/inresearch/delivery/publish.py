@@ -13,6 +13,7 @@ from urllib.parse import urlsplit
 from inresearch.workflow.reader import Reader
 from inresearch.adapters.reader_model import ModelClient
 from inresearch.materials.artifacts import encoded, atomic_json, now_iso
+from inresearch.delivery import snapshot_overlay
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -42,18 +43,7 @@ def main(argv=None):
             raise ValueError('candidate snapshot must be a regular file')
         if snapshot_path.stat().st_size > 64 * 1024 * 1024:
             raise ValueError('snapshot exceeds receiver limit; incremental export is required')
-        payload = json.loads(snapshot_path.read_text(encoding='utf-8'))
-        if not isinstance(payload, dict) or not isinstance(payload.get('knowledge'), dict):
-            raise ValueError('candidate snapshot is not a Reader snapshot')
-        documents = payload['knowledge'].get('documents')
-        if (not isinstance(documents, list) or not documents
-                or any(not isinstance(doc, dict) or not isinstance(doc.get('coverage'), dict)
-                       or doc['coverage'].get('complete') is not True
-                       for doc in documents)):
-            raise ValueError('external snapshot requires complete reading coverage for every document')
-        if any(row.get('acceptance') != 'candidate' for rows in payload['knowledge'].values()
-               if isinstance(rows, list) for row in rows if isinstance(row, dict)):
-            raise ValueError('external snapshot may contain candidates only')
+        payload = snapshot_overlay.validate_external(json.loads(snapshot_path.read_text(encoding='utf-8')), overlay=False)
         reader = None
     else:
         model = ModelClient()
@@ -73,6 +63,9 @@ def main(argv=None):
             payload['reader']['release'] = os.environ.get('READER_RELEASE', 'unknown')
             from inresearch.adapters import acquisition as acquisition
             payload['reader']['acquisition'] = acquisition.summary(reader.data)
+            # Readings finished on another worker (M4) survive Spark's next publish.
+            external = Path(os.environ.get('READER_EXTERNAL_SNAPSHOT_DIR', state / 'external-snapshots'))
+            payload['reader']['external_overlay'] = snapshot_overlay.overlay(payload, snapshot_overlay.load_directory(external))
         body = encoded(payload).encode('utf-8')
         if len(body) > 64 * 1024 * 1024:
             raise ValueError('snapshot exceeds receiver limit; incremental export is required')

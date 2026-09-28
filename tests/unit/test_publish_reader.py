@@ -14,11 +14,14 @@ from inresearch.delivery import publish as publish_reader
 
 
 class PublisherTests(unittest.TestCase):
-    def publish(self, worker_code=0):
+    def publish(self, worker_code=0, external=None):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)
             state = root / 'state'
             state.mkdir()
+            if external is not None:
+                (state / 'external-snapshots').mkdir()
+                (state / 'external-snapshots' / 'm4.json').write_text(json.dumps(external))
             token = state / 'reader-sync.token'
             token.write_text('test-credential-' * 4)
             token.chmod(0o600)
@@ -45,6 +48,18 @@ class PublisherTests(unittest.TestCase):
         self.assertEqual('configured-test-model', snapshot['reader']['backend']['model'])
         self.assertEqual(json.loads((project_root() / 'framework/research_graph.json').read_text())['version'], snapshot['graph_version'])
         self.assertEqual([], snapshot['knowledge']['answers'])
+
+    def test_readings_from_another_worker_are_overlaid_on_every_publish(self):
+        entry = {'doc_id': 'doc-m4', 'id': 'doc-m4', 'coverage': {'complete': True}, 'acceptance': 'candidate'}
+        statement = {'id': 'doc-m4:s0', 'document_id': 'doc-m4', 'acceptance': 'candidate'}
+        external = {'schema_version': 1, 'generated': '2026-09-28T05:00:00Z', 'acceptance': 'candidate',
+                    'knowledge': {'documents': [entry], 'evidence': [], 'statements': [statement], 'answers': []}}
+        snapshot = self.publish(external=external)
+        self.assertEqual([d['projection_source'] for d in snapshot['knowledge']['documents'] if d['doc_id'] == 'doc-m4'],
+                         ['external:m4.json'])
+        self.assertIn(statement, snapshot['knowledge']['statements'])
+        self.assertEqual(snapshot['reader']['external_overlay'], {'added': 1, 'kept_spark_reading': 0, 'files': ['m4.json']})
+        self.assertEqual(self.publish()['reader']['external_overlay'], {'added': 0, 'kept_spark_reading': 0, 'files': []})
 
     def test_stopped_worker_is_not_reported_as_healthy_idle(self):
         snapshot = self.publish(worker_code=3)
