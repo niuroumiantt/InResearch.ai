@@ -1,6 +1,8 @@
 import base64
 import contextlib
+import importlib
 import io
+import os
 import json
 import re
 import sqlite3
@@ -54,17 +56,18 @@ class NamedDocumentTests(unittest.TestCase):
         self.assertEqual([r["doc_id"] for r in found], ["doc-e"])
 
     def test_queued_document_is_not_retried_and_every_named_one_is_processed(self):
-        docs = [{"doc_id": "doc-a", "revision_id": "rev-a", "state": "queued"},
-                {"doc_id": "doc-f", "revision_id": "rev-f", "state": "queued"}]
+        a, f = "doc-" + "a" * 64, "doc-" + "f" * 64
+        docs = [{"doc_id": a, "revision_id": "rev-a", "state": "queued"},
+                {"doc_id": f, "revision_id": "rev-f", "state": "queued"}]
         with mock.patch.object(ocr_worker.models, "configured_client"), \
              mock.patch.object(ocr_worker, "remote_candidates", return_value=docs) as candidates, \
              mock.patch.object(ocr_worker, "claim", return_value=True), \
              mock.patch.object(ocr_worker, "process") as process, \
-             mock.patch("sys.argv", ["ocr-worker", "--doc-id", "doc-a", "--doc-id", "doc-f"]), \
+             mock.patch("sys.argv", ["ocr-worker", "--doc-id", a, "--doc-id", f]), \
              contextlib.redirect_stdout(io.StringIO()) as out:
             ocr_worker.main()
-        candidates.assert_called_once_with(1, ("doc-a", "doc-f"))
-        self.assertEqual([c.args[0]["doc_id"] for c in process.call_args_list], ["doc-a", "doc-f"])
+        candidates.assert_called_once_with(1, (a, f))
+        self.assertEqual([c.args[0]["doc_id"] for c in process.call_args_list], [a, f])
         self.assertEqual([json.loads(l)["outcome"] for l in out.getvalue().splitlines()], ["submitted", "submitted"])
 
     def test_worker_never_asks_spark_to_retry(self):
@@ -84,6 +87,29 @@ class NamedDocumentTests(unittest.TestCase):
                 ocr_worker.process(doc)
             self.assertFalse(any("retry" in a for a in calls), state)
             self.assertTrue(any(a[0] == "scp" and a[-1].endswith("/pages/") for a in calls), state)
+
+    def test_malformed_doc_id_is_refused_before_any_remote_call(self):
+        for bad in ("doc-a", "doc-" + "A" * 64, "doc-" + "a" * 63, "rev-" + "a" * 64, "doc-" + "a" * 64 + ";ls"):
+            with mock.patch.object(ocr_worker, "run") as run, \
+                 mock.patch.object(ocr_worker.models, "configured_client") as client, \
+                 mock.patch("sys.argv", ["ocr-worker", "--doc-id", bad]), \
+                 contextlib.redirect_stderr(io.StringIO()), self.assertRaises(SystemExit) as stop:
+                ocr_worker.main()
+            self.assertEqual(stop.exception.code, 2, bad)
+            run.assert_not_called()
+            client.assert_not_called()
+
+    def test_remote_alias_can_be_overridden(self):
+        try:
+            with mock.patch.dict(os.environ, {"INRESEARCH_SPARK_HOST": "spark"}):
+                self.assertEqual(importlib.reload(ocr_worker).REMOTE, "spark")
+            with mock.patch.dict(os.environ, {"INRESEARCH_SPARK_HOST": ""}):
+                self.assertEqual(importlib.reload(ocr_worker).REMOTE, "spark-lan")
+            env = {k: v for k, v in os.environ.items() if k != "INRESEARCH_SPARK_HOST"}
+            with mock.patch.dict(os.environ, env, clear=True):
+                self.assertEqual(importlib.reload(ocr_worker).REMOTE, "spark-lan")
+        finally:
+            importlib.reload(ocr_worker)
 
 
 if __name__ == "__main__":

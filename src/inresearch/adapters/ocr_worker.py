@@ -7,14 +7,17 @@ OCR pages back to Spark's offload area. The running reader requeues a blocked
 document once the pages arrive. It never edits the SQLite catalogue or original bytes.
 """
 from __future__ import annotations
-import argparse, base64, hashlib, json, subprocess, tempfile
+import argparse, base64, hashlib, json, os, re, subprocess, tempfile
 from dataclasses import replace
 from pathlib import Path
 
-REMOTE = 'spark-lan'
+# ssh alias for Spark; a machine that reaches it by another route (M4 over the
+# tailnet uses `spark`) sets INRESEARCH_SPARK_HOST instead of editing the code.
+REMOTE = os.environ.get('INRESEARCH_SPARK_HOST') or 'spark-lan'
 DATA = '/home/spark/.local/share/inresearch.ai'
 from inresearch.adapters import models as models
 from inresearch.materials.artifacts import numeric_tokens
+DOC_ID = re.compile(r'doc-[0-9a-f]{64}')
 ERRORS = ('ocr_page_unreadable', 'ocr_numbers_disagree', 'scanned_page_requires_ocr')
 
 def run(args, timeout=300, input=None):
@@ -177,9 +180,14 @@ def process(doc):
     # running reader requeues a blocked one itself once newer page results arrive.
     return gaps
 
+def doc_id(value):
+    # Checked while parsing, so a malformed name stops before any ssh call.
+    if not DOC_ID.fullmatch(value): raise argparse.ArgumentTypeError('expected doc-<64 hex sha256>, got %r' % value)
+    return value
+
 def main():
     ap=argparse.ArgumentParser(); ap.add_argument('--limit',type=int,default=1)
-    ap.add_argument('--doc-id',action='append',default=[],help='OCR exactly these documents (repeatable), even while queued')
+    ap.add_argument('--doc-id',action='append',type=doc_id,default=[],help='OCR exactly these documents (repeatable), even while queued')
     args=ap.parse_args()
     models.configured_client("ocr")
     handled = False

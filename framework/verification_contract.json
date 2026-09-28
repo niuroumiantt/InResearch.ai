@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.28.38",
+  "version": "2026.09.28.39",
   "reviewed_at": "2026-09-28",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -13,7 +13,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "d6283a210b1cf7b29fc78d3c084edb5092f59e8f3242cdd615b52b44fd31bb69",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "96d686ed90dd37d196a7c4bbb357755e90f651eb40e760c024e02e533fda1b5d",
+    "docs/local_reader/SPARK_OPERATIONS.md": "493a48c96fa1aceff532afa53b1919579f08d7199cd8448b95cb565fe2ae28be",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "c3cae64b4144a04acd93eb91f40fb7e7f4cb756434fa3af1ea2d098bef3ce31d",
     "framework/00_overview.md": "75f2d2f14c3f2b3f3cd9f4949cc4e7c788710764871e1368a7dac023f7371226",
@@ -86,7 +86,7 @@
     "tests/unit/test_model_runtime.py": "f434b652ec46feb59826eeb74f229894f93213b65b78a9e1f7245da04cf9eb24",
     "tests/unit/test_news_projection.py": "093fb2939a97d979c7b11f2b0d6d06f2a8369692ecb402f8abdfb314d2ef4bc4",
     "tests/unit/test_ocr_repeat_penalty.py": "726ecb2ad5655b913ce7ea1286091b84169dd833fd89583d8b72169faf3eabe8",
-    "tests/unit/test_ocr_worker_named.py": "cebfc4268d7580aca5e9232e1c3233b656ea0b91886ec771fd348373b0c8f969",
+    "tests/unit/test_ocr_worker_named.py": "9e75fe0977f54e3279bc3c02609bc43a371dc33ea2157681e38870679438eb64",
     "tests/unit/test_ocr_worker_resume.py": "6a0fc026fdd22ddc3b303e51b67fea8d4b7a8ee9ba9fdb4e130572076541863e",
     "tests/unit/test_ollama_schema.py": "b70ab619eba8b6a3e5a565831a9c838a50c12e30bdd4cdc9473c3cde9cad14d8",
     "tests/unit/test_optional_mapping_ids.py": "347a64b97f734ca4654b21083ed0a21f7a0e95a34fcc1bf1a86a3c53af9afdc5",
@@ -487,7 +487,7 @@
       "policy": "reading-m4-triage-20260912",
       "scope": "m4-triage",
       "source": "docs/M4_TRIAGE_TASK.md",
-      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝;计划不得以副作用迁移 v1 catalog(守卫测试配一条「该夹具确实能迁移」的对照,否则守卫测试恒绿而不守)；ocr-worker 点名时只取未完成的 PDF、只读查询、逐份处理且上传页结果后从不在 Spark 上 retry，未点名时仍只取被阻塞的 OCR 文档；ocr-worker 某页失败时上传此前已完成的页、错误写明失败页与保留页数，上传失败时写明未保留；重跑只跳过 Spark 上同一 SHA256 且文件名与页号一致的页，查询失败则全部重做；页级失败先以 1.3/512 救援双读，仍失败的模型/页面类错误上传为显式缺页并在输出中列出，基础错误（如超上下文预算、渲染失败）不记缺页",
+      "checked_requirement": "同字节多路径、失败不盖成功、迟到拒写、移动可恢复；L1 选择、预览预算、活动速率和版本候选由 l1_batch 唯一实现；并发先占预算、失败可重试、旧 revision 拒写；L2 ≥7 或点名、唯一 SHA、共同准入；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；apply-triage 按内容身份归置:originals 字节不变、重排不记为阅读、已归置文档报冲突不覆盖、越界目标与越界 importance 拒绝;计划不得以副作用迁移 v1 catalog(守卫测试配一条「该夹具确实能迁移」的对照,否则守卫测试恒绿而不守)；ocr-worker 点名时只取未完成的 PDF、只读查询、逐份处理且上传页结果后从不在 Spark 上 retry，未点名时仍只取被阻塞的 OCR 文档；ocr-worker 某页失败时上传此前已完成的页、错误写明失败页与保留页数，上传失败时写明未保留；重跑只跳过 Spark 上同一 SHA256 且文件名与页号一致的页，查询失败则全部重做；页级失败先以 1.3/512 救援双读，仍失败的模型/页面类错误上传为显式缺页并在输出中列出，基础错误（如超上下文预算、渲染失败）不记缺页；ocr-worker 的 Spark ssh 别名取自 INRESEARCH_SPARK_HOST（空或未设时为 spark-lan），格式不是 doc-<64 位十六进制> 的 --doc-id 在解析参数时拒绝、不做任何远程调用",
       "tests": [
         "tests/unit/test_m4_triage.py::InventoryTests.test_identical_bytes_are_one_sha_with_every_path_recorded",
         "tests/unit/test_deep_read.py::EffectiveResultTests.test_failed_retry_does_not_remove_a_document_from_the_deep_read_queue",
@@ -521,6 +521,8 @@
         "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_without_names_only_blocked_ocr_errors_are_offered",
         "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_queued_document_is_not_retried_and_every_named_one_is_processed",
         "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_worker_never_asks_spark_to_retry",
+        "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_malformed_doc_id_is_refused_before_any_remote_call",
+        "tests/unit/test_ocr_worker_named.py::NamedDocumentTests.test_remote_alias_can_be_overridden",
         "tests/unit/test_ocr_worker_resume.py::ResumeTests.test_failed_page_keeps_the_pages_before_it_and_names_the_page",
         "tests/unit/test_ocr_worker_resume.py::ResumeTests.test_rerun_skips_pages_spark_already_holds",
         "tests/unit/test_ocr_worker_resume.py::ResumeTests.test_nothing_left_to_read_uploads_nothing",
