@@ -22,7 +22,7 @@ return function showDossier(p) {
   close.type = "button"; close.setAttribute("aria-label", "关闭部件档案");
   close.addEventListener("click", () => { el.style.display = "none"; inspector.hide(); });
   el.append(close, dossierNode("h2", p.name));
-  const meta = dossierNode("div", [p.layer, BOM.layers.find(l => l.id === p.layer)?.name || ""].join(" "), "meta");
+  const meta = dossierNode("div", p.layer ? [p.layer, BOM.layers.find(l => l.id === p.layer)?.name || ""].join(" ") : (BOM.kinds?.[p.kind] || p.kind || ""), "meta");
   const badge = dossierNode("span", "产业状态：" + (SN[p.status] || "未知"), "badge");
   badge.style.background = SBADGE[p.status] || "#64748b";
   meta.append(" · ", badge); el.append(meta);
@@ -37,7 +37,7 @@ return function showDossier(p) {
   links.append(dossierNode("h3", "参考研究与结构"));
   links.append(dossierLink("研究模块 " + p.module + " " + (MODNAME[p.module] || ""), "report.html#ch-" + encodeURIComponent(p.module)));
   links.append(dossierLink("模块原文", "doc.html?f=" + encodeURIComponent("research/" + p.module + ".md")));
-  if (view === "campus" && ["rack-frame", "server", "network-switch", "power-shelf", "manifold", "gpu", "cpu", "hbm", "dram", "nic", "psu", "coldplate", "ssd"].includes(p.id))
+  if (view === "campus" && ["S4", "S5"].includes(p.layer))
     links.append(dossierLink("继续拆解机柜 →", "rack3d.html?x=100&node=" + encodeURIComponent("part:" + p.id) + "#" + encodeURIComponent(p.id)));
   if (view === "rack")
     links.append(dossierLink("返回园区定位", "bom3d.html?" + new URLSearchParams({ p: p.id, node: "part:" + p.id })));

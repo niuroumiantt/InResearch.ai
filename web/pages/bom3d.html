@@ -147,18 +147,30 @@ import {mountSceneModels} from "/assets/model-assets.js";
 import {createSceneEnvironment, createTexturePool} from "/assets/scene-resources.js";
 
 import {loadSceneData} from "/assets/scene-data.js";
-const [BOM, companies, prices, inds, reg, products] = await loadSceneData([
+const [BOM, companies, prices, inds, reg, products, siteRights] = await loadSceneData([
   {url:"framework/bom.json", collection:"parts"},
   {url:"data/companies.json", collection:"records"},
   {url:"data/prices.json", collection:"records"},
   {url:"framework/indicators.json", collection:"indicators"},
   {url:"framework/modules.json", collection:"modules"},
   {url:"data/products.json", collection:"records"},
+  {url:"framework/site_rights.json", collection:"rights"},
 ], {controls:[document.querySelector(".hud")]});
 const CN = {}; companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
 const INDS = {}; inds.indicators.forEach(i => INDS[i.id] = i);
 const MODNAME = {}; reg.modules.forEach(m => MODNAME[m.id] = m.name);
 const PART = {}; BOM.parts.forEach(p => PART[p.id] = p);
+/* 站点权利（土地、水权、并网、燃气接入、网络接入）不是部件，但园区场景里有它们的位置：
+   按重切前的旧部件 ID 挂进 PART，档案与研究节点沿用 part:<旧 ID>。 */
+const RIGHTS = (siteRights.rights || []).map(r => ({ ...r, id: r.from_bom_part || r.id, layer: r.scale, kind: "site_right" }));
+RIGHTS.forEach(r => { PART[r.id] ||= r; });
+/* 被拆分的旧部件 ID（bom.aliases：substation → transformer 等）解析到去处，场景造型不必随重切改名 */
+const ALIAS = {};
+Object.entries(BOM.aliases || {}).forEach(([old, to]) => {
+  const target = to.startsWith("site:") ? RIGHTS.find(r => r.id === old || r.id === to.slice(5)) : PART[to];
+  if (target && !PART[old]) PART[old] = target;
+  if (target) ALIAS[old] = target.id;
+});
 const PRODCOUNT = {}; (products.records || []).forEach(r => (r.bom_parts || []).forEach(bp => PRODCOUNT[bp] = (PRODCOUNT[bp] || 0) + 1));
 /* 数据覆盖四维：公司/产品/价格序列/已录值指标——覆盖度热图与档案卡共用同一套口径 */
 const COVC = ["#ef4444", "#f59e0b", "#eab308", "#84cc16", "#22c55e"];
@@ -835,7 +847,7 @@ document.getElementById("play").onclick = () => animateSlider(+slider.value > 90
 
 /* ─────────── 领域导航：一键飞进想探索的领域 ─────────── */
 const PARTMESH = {};
-pickables.forEach(m => { (PARTMESH[m.userData.part] ||= []).push(m); });
+pickables.forEach(m => { (PARTMESH[m.userData.part] ||= []).push(m); if (ALIAS[m.userData.part] && ALIAS[m.userData.part] !== m.userData.part) (PARTMESH[ALIAS[m.userData.part]] ||= []).push(m); });
 
 /* ─────────── 数据覆盖热图（2026-08-26 用户批复）：爆炸图同时是盲区仪表盘 ───────────
    开启时按 covScore 换成纯色材质（每网格独立克隆，不动原材质、不与 hover/dim 共享状态），
@@ -868,7 +880,7 @@ const DOMAINS = [
   { key: "campus",  icon: "🏗️", name: "园区楼宇", mods: ["M05", "M10"], t: 32, cam: [58, 44, 64], tgt: [0, 4, 0] },
   { key: "dcim",    icon: "🖥️", name: "软件",   mods: ["M13"],        t: 55,  cam: [-42, 20, 26], tgt: [-22, 7, 4] },
 ];
-DOMAINS.forEach(d => d.parts = BOM.parts.filter(p => d.mods.includes(p.module)));
+DOMAINS.forEach(d => d.parts = [...BOM.parts, ...RIGHTS].filter(p => d.mods.includes(p.module)));
 
 const cameraMotion = createSceneMotion();
 function flyTo(cam, tgt, duration = 1100) {
@@ -920,7 +932,7 @@ function enterDomain(d) {
   animateSlider(d.t);
   flyTo(d.cam, d.tgt);
   document.getElementById("domainParts").innerHTML = d.parts.map(p =>
-    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${COVC[covScore(p)]}" title="数据覆盖 ${covScore(p)}/4（公司/产品/序列/指标）">${covScore(p)}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.layer}</span></div>`).join("");
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${COVC[covScore(p)]}" title="数据覆盖 ${covScore(p)}/4（公司/产品/序列/指标）">${covScore(p)}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.layer || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
   document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
     const p = PART[el.dataset.part];
     showDossier(p);

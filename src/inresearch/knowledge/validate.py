@@ -152,20 +152,58 @@ def main():
     # 两项目仅靠 company_id + bom_part_id 两个 ID 锚定；锚点断了对齐就断了，所以必须校验。
     # 顺带发现 bom.json 的 companies 此前从没人检查——coldplate 挂着的 motivair
     # 在 companies.json 里根本不存在，爆炸图上点开就是死链。
+    # 2026-09-28 BOM 2.0：kind 区分 part / software / archetype，只有 part 占尺度；
+    # 权利与配额移到 framework/site_rights.json；被拆分的旧 ID 经 aliases 指向去处，
+    # 网页与 3D 场景靠这张别名表解析旧 ID，所以别名目标断了就是死链。
     bom_path = ROOT / "framework" / "bom.json"
+    rights_path = ROOT / "framework" / "site_rights.json"
     bom_part_ids = set()
+    right_ids = set()
+    layer_ids = set()
+    if rights_path.exists():
+        rights = json.loads(rights_path.read_text(encoding="utf-8")).get("rights", [])
+        right_ids = {r["id"] for r in rights}
+        if len(right_ids) != len(rights):
+            err("site_rights.json: 权利 id 重复")
+        for r in rights:
+            if not set(r.get("variable_classes", [])) <= {1, 2, 3, 4, 5} or not r.get("variable_classes"):
+                err(f"site_rights[{r['id']}]: variable_classes 须是 1–5 的非空子集")
+            for c in r.get("companies", []):
+                if c not in comp_by_id:
+                    err(f"site_rights[{r['id']}]: 引用了不存在的 company_id: {c}")
     if bom_path.exists():
         bom = json.loads(bom_path.read_text(encoding="utf-8"))
         layer_ids = {ly["id"] for ly in bom.get("layers", [])}
+        kinds = set(bom.get("kinds") or {"part": ""})
         bom_part_ids = {p["id"] for p in bom.get("parts", [])}
         if len(bom_part_ids) != len(bom.get("parts", [])):
             err("bom.json: 部件 id 重复")
         for p in bom.get("parts", []):
-            if p.get("layer") not in layer_ids:
-                err(f"bom[{p['id']}]: layer 非法: {p.get('layer')}")
+            kind = p.get("kind", "part")
+            if kind not in kinds:
+                err(f"bom[{p['id']}]: kind 非法: {kind}")
+            if kind == "part":
+                if p.get("layer") not in layer_ids:
+                    err(f"bom[{p['id']}]: layer 非法: {p.get('layer')}")
+            elif p.get("layer") is not None:
+                err(f"bom[{p['id']}]: {kind} 条目不占尺度，layer 须为 null")
+            if bom.get("systems") and p.get("system") not in bom["systems"]:
+                err(f"bom[{p['id']}]: system 非法: {p.get('system')}")
             for c in p.get("companies", []):
                 if c not in comp_by_id:
                     err(f"bom[{p['id']}]: 引用了不存在的 company_id: {c}")
+        for old, target in (bom.get("aliases") or {}).items():
+            if old in bom_part_ids:
+                err(f"bom.aliases[{old}]: 旧 ID 仍是现行部件")
+            ok = target[5:] in right_ids if target.startswith("site:") else target in bom_part_ids
+            if not ok:
+                err(f"bom.aliases[{old}]: 去处不存在: {target}")
+        if rights_path.exists():
+            for r in json.loads(rights_path.read_text(encoding="utf-8")).get("rights", []):
+                if r.get("scale") not in layer_ids:
+                    err(f"site_rights[{r['id']}]: scale 非法: {r.get('scale')}")
+                if r.get("from_bom_part") and (bom.get("aliases") or {}).get(r["from_bom_part"]) != "site:" + r["id"]:
+                    err(f"site_rights[{r['id']}]: from_bom_part {r['from_bom_part']} 未在 bom.aliases 指回本条")
 
     prod_status = {"mature", "tight", "transition", "emerging"}
     products = load("products") if (DATA / "products.json").exists() else []

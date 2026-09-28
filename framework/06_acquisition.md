@@ -108,7 +108,7 @@ flowchart LR
 
 采集按来源机制分成六队，不按层分：fetchspec（厂商规格）、inews.today（新闻事件）、fetchstat（公共统计、费率表、税率与法规原文）、fetchfilings（证券与公司披露、可持续报告、财报电话会）、fetchreports（研报、指数、白皮书、论文与标准）、fetchquotes（报价与市场观察）。建队顺序 fetchstat → fetchfilings → fetchreports → fetchquotes。六队的角度、素材、日历与执行机登记在 [五类变量目标清单](tco_targets.json)；能力标签与分队的对应关系登记在 `supply_contract.json` 的 `teams.capability_map`。数据中心经济模型的"三级、四段、五类变量、六队"骨架以 `docs/guides/model-governance-2026-09-27.{html,pdf}` 为已采用的设计快照（快照中称"五层"），可执行规则以本文件与目标清单为准。
 
-**2026-09-28 更名**：经济模型的五个变量类别改称**五类变量**（构成、运行、价格、时间、主体），不再称"五层"。五类互相正交，没有先后、层级或递推，一条数据只属一类；指导快照与历史记录中的"五层"按此阅读。`tco_targets.json` 与 inews 事件 feed 里的 `layer`、`layer_tags` 键是兼容名，含义是变量类别，随 feed 合同下次升版更名。`bom.json` 的 L1–L5（园区、建筑、机房、机柜、部件）是部件"装在哪"的五个**尺度**，与变量类别无关。
+**2026-09-28 更名**：经济模型的五个变量类别改称**五类变量**（构成、运行、价格、时间、主体），不再称"五层"。五类互相正交，没有先后、层级或递推，一条数据只属一类；指导快照与历史记录中的"五层"按此阅读。`tco_targets.json` 与 inews 事件 feed 里的 `layer`、`layer_tags` 键是兼容名，含义是变量类别，随 feed 合同下次升版更名。`bom.json` 的 S1–S5（园区、建筑、机房、机柜、部件；2026-09-28 前写作 L1–L5）是部件"装在哪"的五个**尺度**，与变量类别无关。
 
 仓库只有三个：`inews.today`、`fetchspec` 保持；新建 `fetchdata` 一个仓库承载 fetchstat、fetchfilings、fetchreports、fetchquotes 四个分队目录，共用内核（条件请求、限速、SHA、包构建、运行台账、交付上传）、一张来源登记表与一个交付入口。存在不同协议、依赖或失败隔离需求时再拆，见 `docs/handoff/fetchdata-bootstrap.md`。`fetchdata` 建成前 `supply_contract.json` 中四个分队保持 `proposed`，不宣称已接通。
 
