@@ -188,6 +188,28 @@ class ProductCatalogTests(unittest.TestCase):
         self.assertEqual(rows[0]['display_family'], 'accelerators')
         self.assertEqual(len(list(csv.reader(io.StringIO(catalog.csv_export(data, scope='auxiliary'))))), 1)
 
+    def test_index_is_lightweight_and_detail_is_loaded_by_stable_product_id(self):
+        (self.root / 'framework').mkdir()
+        (self.root / 'framework/tco_targets.json').write_text(json.dumps({'targets': [{
+            'id': 'P.compute_accelerator.spec', 'team': 'fetchspec', 'part_id': 'compute_accelerator',
+            'instances': ['NVIDIA H200']
+        }]}))
+        catalog.receive(self.root, bundle())
+        index = catalog.index_snapshot(self.root)
+        summary = index['products'][0]
+        self.assertEqual(index['view'], 'index')
+        self.assertEqual(summary['table_count'], 1)
+        self.assertNotIn('tables', summary)
+        self.assertNotIn('official_pages', summary)
+        self.assertEqual(index['research_alignment']['acceptance'], 'target_demand_only_not_research_adoption')
+        self.assertTrue(index['research_alignment']['target_ids'])
+        detail = catalog.product_snapshot(self.root, summary['id'])
+        self.assertEqual(detail['product']['tables'][0]['section'], 'Specifications')
+        self.assertEqual(detail['acceptance'], 'source_extracted_not_research_adopted')
+        self.assertIsNone(catalog.product_snapshot(self.root, 'nvidia-' + 'b' * 20)['product'])
+        with self.assertRaisesRegex(ValueError, 'invalid product ID'):
+            catalog.product_snapshot(self.root, '../data/users.json')
+
     def test_http_authentication_and_receiver_validation(self):
         from inresearch.interfaces import http
         token_file = self.root / 'token'
@@ -197,9 +219,9 @@ class ProductCatalogTests(unittest.TestCase):
             thread = threading.Thread(target=server.serve_forever, daemon=True)
             thread.start()
             try:
-                def request(method, body=None, token=''):
+                def request(method, body=None, token='', path='/api/product-catalog/nvidia'):
                     client = HTTPConnection('127.0.0.1', server.server_port, timeout=3)
-                    client.request(method, '/api/product-catalog/nvidia', json.dumps(body) if body else None,
+                    client.request(method, path, json.dumps(body) if body else None,
                                    {'Authorization': 'Bearer '+token, 'Content-Type': 'application/json'})
                     response = client.getresponse(); status = response.status
                     data = json.loads(response.read()); client.close()
@@ -209,6 +231,16 @@ class ProductCatalogTests(unittest.TestCase):
                 self.assertFalse(catalog.database(self.root).exists())
                 self.assertEqual(request('POST', bundle(), 'x'*48)[0], 200)
                 self.assertEqual(len(catalog.snapshot(self.root)['products']), 1)
+                (self.root / 'framework').mkdir()
+                (self.root / 'framework/tco_targets.json').write_text(json.dumps({'targets': []}))
+                http.AUTH_ON = False
+                status, index = request('GET', path='/api/product-catalog/nvidia?view=index')
+                self.assertEqual(status, 200)
+                self.assertNotIn('tables', index['products'][0])
+                status, detail = request('GET', path='/api/product-catalog/nvidia?product_id=nvidia-' + 'a'*20)
+                self.assertEqual(status, 200)
+                self.assertEqual(detail['product']['tables'][0]['section'], 'Specifications')
+                self.assertEqual(request('GET', path='/api/product-catalog/nvidia?product_id=bad')[0], 400)
             finally:
                 server.shutdown(); thread.join(); server.server_close()
 

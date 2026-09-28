@@ -218,6 +218,70 @@ def snapshot(root):
         db.close()
 
 
+def index_snapshot(root):
+    """Return the lightweight product map used for initial catalog rendering.
+
+    Specification tables, attachments and source receipts stay behind the
+    per-product endpoint.  Keeping the index projection here (rather than in
+    the browser) makes the transfer size independent of table density.
+    """
+    value = snapshot(root)
+    value['view'] = 'index'
+    value['products'] = [{
+        'id': p['id'],
+        'name': p['name'],
+        'parent_id': p.get('parent_id'),
+        'category': p['category'],
+        'kind': p['kind'],
+        'availability': p['availability'],
+        'extraction_status': p['extraction_status'],
+        'observed_at': p['observed_at'],
+        'map_change_status': p.get('map_change_status', ''),
+        'table_count': len(p['tables']),
+        'navigation': p['navigation'],
+    } for p in value['products']]
+    target_document = json.loads((root / 'framework/tco_targets.json').read_text())
+    related = [row for row in target_document['targets'] if row.get('team') == 'fetchspec'
+               and any('nvidia' in str(instance).casefold() for instance in row.get('instances', []))]
+    value['research_alignment'] = {
+        'target_ids': [row['id'] for row in related],
+        'part_ids': sorted({row['part_id'] for row in related if row.get('part_id')}),
+        'acceptance': 'target_demand_only_not_research_adoption',
+    }
+    return value
+
+
+def product_snapshot(root, product_id):
+    """Return one evidence-backed product detail from the current run."""
+    if not re.fullmatch(r'nvidia-[0-9a-f]{20}', product_id):
+        raise ValueError('invalid product ID')
+    if not database(root).is_file():
+        return {'available': False, 'company_id': 'nvidia', 'product': None}
+    db = sqlite3.connect(f'file:{database(root)}?mode=ro', uri=True)
+    db.row_factory = sqlite3.Row
+    try:
+        run = db.execute('SELECT * FROM runs ORDER BY generated DESC LIMIT 1').fetchone()
+        if run is None:
+            return {'available': False, 'company_id': 'nvidia', 'product': None}
+        row = db.execute('SELECT payload FROM products WHERE run_id=? AND id=?',
+                         (run['id'], product_id)).fetchone()
+        product = json.loads(row['payload']) if row else None
+        if product:
+            product['seen_in_latest_run'] = True
+            product['navigation'] = product_navigation.classify(product)
+            for table in product['tables']:
+                table.pop('text', None)
+        return {
+            'available': True,
+            'company_id': 'nvidia',
+            'generated_at': run['generated'],
+            'acceptance': 'source_extracted_not_research_adopted',
+            'product': product,
+        }
+    finally:
+        db.close()
+
+
 def csv_export(value, mode='products', query='', kind='', with_specs=False, group='', family='', scope='all'):
     products = [p for p in value['products'] if (not kind or p['kind'] == kind)
                 and (not with_specs or p['tables'])
