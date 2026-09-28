@@ -1,0 +1,28 @@
+/* Dashboard: one tree, five columns, four questions. Root matrix, ecosystem drill-down, part page, no page errors. */
+const {chromium}=require('playwright');const assert=require('assert');
+(async()=>{
+ const base=process.env.UI_BASE_URL||'http://127.0.0.1:8882';
+ const browser=await chromium.launch();const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(base+'/node.html');await page.locator('#matrix tbody tr').first().waitFor();
+ assert.equal(await page.locator('#matrix tbody tr').count(),9,'eight ecosystems plus the site-rights row');
+ assert.equal(await page.locator('#matrix td.cell').count(),45,'nine rows by five variable classes');
+ assert.equal(await page.locator('.acct').count(),3,'cost, revenue and return above the five columns');
+ assert.equal(await page.locator('#five .col').count(),5);
+ for(const id of ['p1','p2','p3','p4'])assert.ok(await page.locator('#'+id+' > h2').isVisible(),id);
+ assert.ok((await page.locator('#matrix td.cell.needed').count())>0,'grey cells are the acquisition worklist');
+ await page.locator('#matrix tbody tr').first().locator('td.cell').nth(3).locator('a').click();
+ await page.locator('#col-4.hl').waitFor();
+ const url=new URL(page.url());assert.equal(url.searchParams.get('col'),'4');assert.match(url.searchParams.get('id'),/^ecosystem:/);
+ await page.locator('#children table tbody tr').first().waitFor();
+ await page.goto(base+'/node.html?id=part:transformer');await page.locator('#five .col').first().waitFor();
+ assert.match(await page.locator('#head h1').textContent(),/变压器/);
+ assert.ok((await page.locator('#col-4 .kv').count())>0,'transformer lead time is a sourced time cell');
+ assert.ok((await page.locator('#targets table tbody tr').count())>=3,'spec, price and lead-time targets');
+ assert.ok((await page.locator('#factors .factor').count())>=1);
+ await page.goto(base+'/node.html?id=site:grid');await page.locator('#five .col').first().waitFor();
+ assert.match(await page.locator('#head h1').textContent(),/并网/);
+ await page.goto(base+'/node.html?id=nope');await page.locator('#error .err').waitFor();
+ assert.deepEqual(errors,[]);
+ console.log('PASS dashboard: root matrix 9×5, drill-down keeps the column, part and right pages, unknown node reports');
+ await browser.close();
+})().catch(e=>{console.error(e);process.exit(1)});

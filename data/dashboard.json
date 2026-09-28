@@ -1,0 +1,9135 @@
+{
+ "version": "1.0",
+ "updated": "2026-09-28",
+ "title": "数据中心 dashboard 快照",
+ "note": "由 python3 manage.py dashboard --refresh 生成，规则见 framework/dashboard_rules.json；页面 node.html 只读本文件与目标清单，不做聚合。",
+ "generated_from": {
+  "rules": "1.0",
+  "bom": "2.0",
+  "targets": "2.0.0",
+  "factors": "1.1.0",
+  "model_as_of": "2026-09-27"
+ },
+ "columns": {
+  "1": "构成",
+  "2": "运行",
+  "3": "价格",
+  "4": "时间",
+  "5": "主体"
+ },
+ "formulas": {
+  "revenue": "收入 = GPU 数 × 8,760 × 付费利用率 × 单价；GPU 数 = IT 容量 × 每 MW 密度；密度 = 1,000 kW × 加速器机柜占 IT 功率份额 ÷ (机柜功率 ÷ 每柜 GPU 数)",
+  "cost": "年度成本 = 电费 + 其他运营 + 设施费 + 折旧 + 税；电费 = IT 容量 × 负载率 × PUE × 8,760 × 电价；折旧 = 资本开支 ÷ 寿命（IT 与非 IT 分线）；设施费按自建 / 租壳 / 托管三选一"
+ },
+ "root": {
+  "id": "root",
+  "name": "一座 AI 数据中心",
+  "account": {
+   "scenario": "超大规模自建出租 GB300",
+   "model": "data/datacenter_economics_model.json",
+   "rows": [
+    {
+     "key": "cost_per_mw",
+     "label": "成本",
+     "unit": "$M/MW·年",
+     "note": "电费 + 其他运营 + 设施费 + 折旧 + 所得税",
+     "value": 10.87
+    },
+    {
+     "key": "revenue_per_mw",
+     "label": "收入",
+     "unit": "$M/MW·年",
+     "note": "GPU 数 × 8,760 × 付费利用率 × 单价",
+     "value": 22.911
+    },
+    {
+     "key": "roic",
+     "label": "回报",
+     "unit": "ROIC",
+     "note": "NOPAT ÷ 投入资本",
+     "value": 0.309
+    }
+   ],
+   "links": [
+    [
+     "经济模型",
+     "economics.html"
+    ],
+    [
+     "TCO 模型",
+     "tco.html"
+    ],
+    [
+     "成本计算",
+     "cost.html"
+    ]
+   ]
+  },
+  "cells": {
+   "1": {
+    "items": [
+     {
+      "label": "IT 容量",
+      "value": 100,
+      "unit": "MW",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "it_mw"
+      }
+     },
+     {
+      "label": "GPU 数",
+      "value": 41025.6,
+      "unit": "颗",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_output",
+       "key": "gpus"
+      }
+     },
+     {
+      "label": "芯片代际",
+      "value": "gb300",
+      "unit": null,
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "generation"
+      }
+     }
+    ],
+    "status": "sourced",
+    "coverage": {
+     "sourced": 5,
+     "assumed": 1,
+     "needed": 1
+    }
+   },
+   "2": {
+    "items": [
+     {
+      "label": "PUE",
+      "value": 1.25,
+      "unit": null,
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "pue"
+      }
+     },
+     {
+      "label": "IT 负载率",
+      "value": 70.0,
+      "unit": "%",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "power_load"
+      }
+     },
+     {
+      "label": "付费利用率",
+      "value": 75.0,
+      "unit": "%",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "utilization"
+      }
+     }
+    ],
+    "status": "sourced",
+    "coverage": {
+     "sourced": 7,
+     "assumed": 1,
+     "needed": 2
+    }
+   },
+   "3": {
+    "items": [
+     {
+      "label": "每 MW 资本开支",
+      "value": 39.0,
+      "unit": "$M/MW",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_output",
+       "key": "capex_per_mw"
+      }
+     },
+     {
+      "label": "每 MW 年成本",
+      "value": 10.87,
+      "unit": "$M/MW·年",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_output",
+       "key": "cost_per_mw"
+      }
+     },
+     {
+      "label": "GPU 小时租金",
+      "value": 8.5,
+      "unit": "$/GPU·h",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "gpu_price"
+      }
+     }
+    ],
+    "status": "sourced",
+    "coverage": {
+     "sourced": 14,
+     "assumed": 2,
+     "needed": 2
+    }
+   },
+   "4": {
+    "items": [
+     {
+      "label": "IT 寿命",
+      "value": 5,
+      "unit": "年",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "it_life"
+      }
+     },
+     {
+      "label": "非 IT 寿命",
+      "value": 15,
+      "unit": "年",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "shell_life"
+      }
+     },
+     {
+      "label": "建设周期",
+      "value": null,
+      "unit": "月",
+      "as_of": null,
+      "source": {
+       "type": "indicator",
+       "key": "construction_duration_months"
+      }
+     }
+    ],
+    "status": "sourced",
+    "coverage": {
+     "sourced": 4,
+     "assumed": 1,
+     "needed": 1
+    }
+   },
+   "5": {
+    "items": [
+     {
+      "label": "设施获得方式",
+      "value": "own",
+      "unit": null,
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "facility_mode"
+      }
+     },
+     {
+      "label": "壳层杠杆 LTC",
+      "value": 85.0,
+      "unit": "%",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "shell_ltc"
+      }
+     },
+     {
+      "label": "WACC",
+      "value": 8.0,
+      "unit": "%",
+      "as_of": "2026-09-27",
+      "source": {
+       "type": "model_input",
+       "key": "wacc"
+      }
+     }
+    ],
+    "status": "sourced",
+    "coverage": {
+     "sourced": 3,
+     "assumed": 1,
+     "needed": 5
+    }
+   }
+  },
+  "targets": {
+   "sourced": 34,
+   "assumed": 7,
+   "needed": 246
+  }
+ },
+ "ecosystems": [
+  {
+   "id": "facility",
+   "name": "设施",
+   "graph_name": "设施与机柜",
+   "node_id": "ecosystem:facility",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "部件数",
+       "value": 4,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "parts"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 5
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [
+      {
+       "label": "每 MW 造价",
+       "value": 1.44,
+       "unit": "$M/MW",
+       "as_of": "2025-11-05",
+       "source": {
+        "type": "sum_share",
+        "key": "shell_capex_per_mw × construction-cost-share-core-shell-liquid-cooled"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 4
+     },
+     "status": "sourced"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 4
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 13,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "companies"
+       }
+      },
+      {
+       "label": "单一来源部件",
+       "value": 3,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "single_source"
+       }
+      }
+     ],
+     "instances": [
+      "建筑与土建（含场坪、基础、外墙屋面、机房装修）",
+      "消防（探测、气体灭火、喷淋）",
+      "安防（门禁、视频、周界）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 2
+     },
+     "status": "sourced"
+    }
+   },
+   "parts": [
+    {
+     "id": "shell",
+     "name": "建筑与土建（含场坪、基础、外墙屋面、机房装修）",
+     "kind": "part",
+     "layer": "S2",
+     "supply_status": "tight"
+    },
+    {
+     "id": "fire",
+     "name": "消防（探测、气体灭火、喷淋）",
+     "kind": "part",
+     "layer": "S2",
+     "supply_status": "mature"
+    },
+    {
+     "id": "security",
+     "name": "安防（门禁、视频、周界）",
+     "kind": "part",
+     "layer": "S2",
+     "supply_status": "mature"
+    },
+    {
+     "id": "rack-frame",
+     "name": "机柜与结构",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "transition"
+    },
+    {
+     "id": "modular-dc",
+     "name": "预制化/微模块交付（设施基型）",
+     "kind": "archetype",
+     "layer": null,
+     "supply_status": "mature"
+    }
+   ]
+  },
+  {
+   "id": "power",
+   "name": "电力",
+   "graph_name": "电力与供配电",
+   "node_id": "ecosystem:power",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "部件数",
+       "value": 19,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "parts"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 19
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [
+      {
+       "label": "平均功率 / 铭牌",
+       "value": 76,
+       "unit": "%",
+       "as_of": "2025-06-17",
+       "source": {
+        "type": "series",
+        "key": "gpu-node-avg-power-share-of-tdp-h100"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    },
+    "3": {
+     "items": [
+      {
+       "label": "每 MW 造价",
+       "value": 7.68,
+       "unit": "$M/MW",
+       "as_of": "2025-11-05",
+       "source": {
+        "type": "sum_share",
+        "key": "shell_capex_per_mw × construction-cost-share-electrical-liquid-cooled"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 19
+     },
+     "status": "sourced"
+    },
+    "4": {
+     "items": [
+      {
+       "label": "关键路径交期（大型电力变压器）",
+       "value": 30,
+       "unit": "月",
+       "as_of": "2026-06-30",
+       "source": {
+        "type": "max",
+        "key": "transformer-lead-time"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 1,
+      "assumed": 0,
+      "needed": 18
+     },
+     "status": "sourced"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 28,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "companies"
+       }
+      },
+      {
+       "label": "单一来源部件",
+       "value": 5,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "single_source"
+       }
+      }
+     ],
+     "instances": [
+      "燃气往复式机组",
+      "燃料电池",
+      "小型模块化反应堆",
+      "柴油储运（储罐、日用箱、加注）",
+      "UPS 电池（锂电/铅酸）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 15
+     },
+     "status": "sourced"
+    }
+   },
+   "parts": [
+    {
+     "id": "hv-switchyard",
+     "name": "高压开关站/GIS",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "tight"
+    },
+    {
+     "id": "transformer",
+     "name": "大型电力变压器",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "tight"
+    },
+    {
+     "id": "mv-switchgear",
+     "name": "中压开关柜",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "tight"
+    },
+    {
+     "id": "gas-turbine",
+     "name": "燃气轮机",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "tight"
+    },
+    {
+     "id": "gas-engine",
+     "name": "燃气往复式机组",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "transition"
+    },
+    {
+     "id": "fuel-cell",
+     "name": "燃料电池",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "transition"
+    },
+    {
+     "id": "smr",
+     "name": "小型模块化反应堆",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "emerging"
+    },
+    {
+     "id": "backup-power",
+     "name": "柴油发电机组",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "tight"
+    },
+    {
+     "id": "bess",
+     "name": "储能系统（BESS）",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "emerging"
+    },
+    {
+     "id": "fuel-storage",
+     "name": "柴油储运（储罐、日用箱、加注）",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "mature"
+    },
+    {
+     "id": "ups",
+     "name": "UPS 系统（整流、逆变、静态开关）",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "mature"
+    },
+    {
+     "id": "ups-battery",
+     "name": "UPS 电池（锂电/铅酸）",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "transition"
+    },
+    {
+     "id": "lv-switchgear",
+     "name": "低压开关柜",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "tight"
+    },
+    {
+     "id": "busway",
+     "name": "母线槽",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "tight"
+    },
+    {
+     "id": "pdu",
+     "name": "机房配电柜/PDU/RPP（含机柜配电条）",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "mature"
+    },
+    {
+     "id": "power-shelf",
+     "name": "机柜电源架（AC-DC / HVDC 整流）",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "transition"
+    },
+    {
+     "id": "bbu",
+     "name": "机柜电池备份单元",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "transition"
+    },
+    {
+     "id": "psu",
+     "name": "服务器电源模块（PSU）",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "mature"
+    },
+    {
+     "id": "vrm",
+     "name": "板级供电（VRM/Power Stage）",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "tight"
+    }
+   ]
+  },
+  {
+   "id": "thermal",
+   "name": "冷却",
+   "graph_name": "冷却与热管理",
+   "node_id": "ecosystem:thermal",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "部件数",
+       "value": 15,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "parts"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 15
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [
+      {
+       "label": "PUE（Uptime 调查）",
+       "value": 1.54,
+       "unit": "PUE",
+       "as_of": "2025-12-31",
+       "source": {
+        "type": "series",
+        "key": "pue-uptime-survey-weighted-avg"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    },
+    "3": {
+     "items": [
+      {
+       "label": "每 MW 造价",
+       "value": 5.28,
+       "unit": "$M/MW",
+       "as_of": "2025-11-05",
+       "source": {
+        "type": "sum_share",
+        "key": "shell_capex_per_mw × construction-cost-share-mechanical-liquid-cooled"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 15
+     },
+     "status": "sourced"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 15
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 28,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "companies"
+       }
+      },
+      {
+       "label": "单一来源部件",
+       "value": 6,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "single_source"
+       }
+      }
+     ],
+     "instances": [
+      "冷冻水泵、管路与阀门",
+      "漏液检测",
+      "快接头",
+      "冷却液/工质",
+      "服务器风扇",
+      "均热板与散热器"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 7
+     },
+     "status": "sourced"
+    }
+   },
+   "parts": [
+    {
+     "id": "dry-cooler",
+     "name": "干冷器/冷却塔/蒸发冷",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "mature"
+    },
+    {
+     "id": "water-treatment",
+     "name": "水处理与供水（泵站、过滤、软化）",
+     "kind": "part",
+     "layer": "S1",
+     "supply_status": "mature"
+    },
+    {
+     "id": "chiller",
+     "name": "冷水机组",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "mature"
+    },
+    {
+     "id": "chilled-water-loop",
+     "name": "冷冻水泵、管路与阀门",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "mature"
+    },
+    {
+     "id": "room-cooling",
+     "name": "机房空气冷却（CRAH/CRAC/风墙）",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "mature"
+    },
+    {
+     "id": "cdu",
+     "name": "CDU 与液冷分配",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "transition"
+    },
+    {
+     "id": "immersion",
+     "name": "浸没式液冷槽/系统",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "emerging"
+    },
+    {
+     "id": "leak-detection",
+     "name": "漏液检测",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "tight"
+    },
+    {
+     "id": "manifold",
+     "name": "机柜歧管与管路",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "tight"
+    },
+    {
+     "id": "quick-disconnect",
+     "name": "快接头",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "tight"
+    },
+    {
+     "id": "coolant",
+     "name": "冷却液/工质",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "mature"
+    },
+    {
+     "id": "sidecar-hx",
+     "name": "机柜级液-气换热器（RDHx/Sidecar）",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "transition"
+    },
+    {
+     "id": "coldplate",
+     "name": "冷板",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "transition"
+    },
+    {
+     "id": "server-fan",
+     "name": "服务器风扇",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "mature"
+    },
+    {
+     "id": "heatsink-vc",
+     "name": "均热板与散热器",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "mature"
+    }
+   ]
+  },
+  {
+   "id": "compute",
+   "name": "IT · 计算",
+   "graph_name": "计算与加速",
+   "node_id": "ecosystem:compute",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "部件数",
+       "value": 8,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "parts"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 8
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [
+      {
+       "label": "集群利用率中位数",
+       "value": 99,
+       "unit": "%",
+       "as_of": "2023-08-31",
+       "source": {
+        "type": "series",
+        "key": "gpu-cluster-utilization-median-acme-kalos"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    },
+    "3": {
+     "items": [
+      {
+       "label": "每 MW 造价",
+       "value": 11.73,
+       "unit": "$M/MW",
+       "as_of": "2026-09-27",
+       "source": {
+        "type": "sum_share",
+        "key": "it_capex_per_mw × accelerator_share"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 1,
+      "needed": 7
+     },
+     "status": "sourced"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 8
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 49,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "companies"
+       }
+      },
+      {
+       "label": "单一来源部件",
+       "value": 2,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "single_source"
+       }
+      }
+     ],
+     "instances": [
+      "FPGA/异构加速",
+      "基板管理控制器"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 4
+     },
+     "status": "sourced"
+    }
+   },
+   "parts": [
+    {
+     "id": "rack-system",
+     "name": "整机柜系统（NVL72 类，按柜计价）",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "tight"
+    },
+    {
+     "id": "server",
+     "name": "加速器服务器（AI 服务器整机）",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "tight"
+    },
+    {
+     "id": "general-server",
+     "name": "通用服务器（CPU 节点）",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "mature"
+    },
+    {
+     "id": "gpu",
+     "name": "GPU 加速器",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "tight"
+    },
+    {
+     "id": "ai-asic",
+     "name": "定制 AI ASIC",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "tight"
+    },
+    {
+     "id": "cpu",
+     "name": "CPU",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "mature"
+    },
+    {
+     "id": "fpga",
+     "name": "FPGA/异构加速",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "mature"
+    },
+    {
+     "id": "bmc",
+     "name": "基板管理控制器",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "mature"
+    }
+   ]
+  },
+  {
+   "id": "memory",
+   "name": "IT · 内存",
+   "graph_name": "内存生态",
+   "node_id": "ecosystem:memory",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "部件数",
+       "value": 3,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "parts"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 3
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 3
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 3
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 6,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "companies"
+       }
+      },
+      {
+       "label": "单一来源部件",
+       "value": 0,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "single_source"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 3
+     },
+     "status": "sourced"
+    }
+   },
+   "parts": [
+    {
+     "id": "hbm",
+     "name": "HBM",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "tight"
+    },
+    {
+     "id": "dram",
+     "name": "服务器内存模组（RDIMM/MRDIMM）",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "tight"
+    },
+    {
+     "id": "cxl-memory",
+     "name": "CXL 内存扩展",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "emerging"
+    }
+   ]
+  },
+  {
+   "id": "storage",
+   "name": "IT · 存储",
+   "graph_name": "存储生态",
+   "node_id": "ecosystem:storage",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "部件数",
+       "value": 3,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "parts"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 3
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 3
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 3
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 36,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "companies"
+       }
+      },
+      {
+       "label": "单一来源部件",
+       "value": 0,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "single_source"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 2
+     },
+     "status": "sourced"
+    }
+   },
+   "parts": [
+    {
+     "id": "storage-array",
+     "name": "存储系统",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "mature"
+    },
+    {
+     "id": "ssd",
+     "name": "企业级 SSD",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "tight"
+    },
+    {
+     "id": "hdd",
+     "name": "近线HDD",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "tight"
+    }
+   ]
+  },
+  {
+   "id": "network",
+   "name": "IT · 网络",
+   "graph_name": "网络与互联",
+   "node_id": "ecosystem:network",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "部件数",
+       "value": 9,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "parts"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 9
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 9
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 9
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 33,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "companies"
+       }
+      },
+      {
+       "label": "单一来源部件",
+       "value": 1,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "single_source"
+       }
+      }
+     ],
+     "instances": [
+      "高速连接器"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 6
+     },
+     "status": "sourced"
+    }
+   },
+   "parts": [
+    {
+     "id": "cabling",
+     "name": "结构化布线与光纤",
+     "kind": "part",
+     "layer": "S3",
+     "supply_status": "mature"
+    },
+    {
+     "id": "network-switch",
+     "name": "交换机（scale-out 以太网/IB）",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "transition"
+    },
+    {
+     "id": "copper-interconnect",
+     "name": "高速铜缆（DAC/AEC）",
+     "kind": "part",
+     "layer": "S4",
+     "supply_status": "tight"
+    },
+    {
+     "id": "nic",
+     "name": "NIC/DPU",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "mature"
+    },
+    {
+     "id": "optics",
+     "name": "光模块（CPO 为新兴子条目）",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "transition"
+    },
+    {
+     "id": "switch-asic",
+     "name": "交换芯片",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "tight"
+    },
+    {
+     "id": "retimer",
+     "name": "重定时器 / AEC 芯片",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "tight"
+    },
+    {
+     "id": "pcie-switch",
+     "name": "PCIe/CXL 交换芯片",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "mature"
+    },
+    {
+     "id": "connector",
+     "name": "高速连接器",
+     "kind": "part",
+     "layer": "S5",
+     "supply_status": "tight"
+    }
+   ]
+  },
+  {
+   "id": "control",
+   "name": "控制与软件",
+   "graph_name": "控制与运维",
+   "node_id": "ecosystem:control",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "部件数",
+       "value": 0,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "parts"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 8,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "companies"
+       }
+      },
+      {
+       "label": "单一来源部件",
+       "value": 0,
+       "unit": "个",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "count",
+        "key": "single_source"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   },
+   "parts": [
+    {
+     "id": "dcim",
+     "name": "DCIM / BMS / EPMS（监控、运维、电力监控软件）",
+     "kind": "software",
+     "layer": null,
+     "supply_status": "mature"
+    }
+   ]
+  }
+ ],
+ "site": {
+  "id": "site",
+  "name": "站点权利",
+  "node_id": "site",
+  "cells": {
+   "1": {
+    "items": [
+     {
+      "label": "权利条目",
+      "value": 6,
+      "unit": "条",
+      "as_of": "2026-09-28",
+      "source": {
+       "type": "count",
+       "key": "rights"
+      }
+     }
+    ],
+    "coverage": {
+     "sourced": 0,
+     "assumed": 0,
+     "needed": 0
+    },
+    "status": "sourced"
+   },
+   "2": {
+    "items": [],
+    "coverage": {
+     "sourced": 0,
+     "assumed": 0,
+     "needed": 0
+    },
+    "status": "needed"
+   },
+   "3": {
+    "items": [],
+    "coverage": {
+     "sourced": 0,
+     "assumed": 0,
+     "needed": 2
+    },
+    "status": "needed"
+   },
+   "4": {
+    "items": [],
+    "coverage": {
+     "sourced": 0,
+     "assumed": 0,
+     "needed": 4
+    },
+    "status": "needed"
+   },
+   "5": {
+    "items": [
+     {
+      "label": "登记持有方",
+      "value": 2,
+      "unit": "家",
+      "as_of": "2026-09-28",
+      "source": {
+       "type": "count",
+       "key": "companies"
+      }
+     }
+    ],
+    "coverage": {
+     "sourced": 0,
+     "assumed": 0,
+     "needed": 6
+    },
+    "status": "sourced"
+   }
+  },
+  "rights": [
+   {
+    "id": "land",
+    "name": "土地（地价、租金、区划）",
+    "supply_status": "mature",
+    "variable_classes": [
+     3,
+     5
+    ]
+   },
+   {
+    "id": "water-rights",
+    "name": "水权与取水许可",
+    "supply_status": "tight",
+    "variable_classes": [
+     5,
+     4
+    ]
+   },
+   {
+    "id": "grid",
+    "name": "电力配额与并网（排队年限、并网协议）",
+    "supply_status": "tight",
+    "variable_classes": [
+     4,
+     5
+    ]
+   },
+   {
+    "id": "gas-supply",
+    "name": "天然气管道接入（容量、供气合同）",
+    "supply_status": "tight",
+    "variable_classes": [
+     5,
+     4
+    ]
+   },
+   {
+    "id": "network-access",
+    "name": "网络接入（暗光纤、运营商、IXP）",
+    "supply_status": "tight",
+    "variable_classes": [
+     5,
+     3
+    ]
+   },
+   {
+    "id": "permits",
+    "name": "许可（区划、环评、排放、建设）",
+    "supply_status": "tight",
+    "variable_classes": [
+     4,
+     5
+    ]
+   }
+  ]
+ },
+ "parts": {
+  "hv-switchyard": {
+   "id": "hv-switchyard",
+   "name": "高压开关站/GIS",
+   "kind": "part",
+   "layer": "S1",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "tight",
+   "desc": "园区侧高压开关与 GIS，与电网交接的第一件可采购设备；厂商示例沿用变电站档案，待补",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 0,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "hv-switchyard"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 3,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "日立能源",
+      "西门子能源",
+      "ABB"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "transformer": {
+   "id": "transformer",
+   "name": "大型电力变压器",
+   "kind": "part",
+   "layer": "S1",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "tight",
+   "desc": "大型变压器交期最高 4 年，全行业最诚实的供需温度计；单独采购、单独交期，故单列",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 2,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "transformer"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 干变/预制电力模块",
+      "（多家） · 大型电力变压器"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [
+      {
+       "label": "大型电力变压器",
+       "value": 30,
+       "unit": "月",
+       "as_of": "2026-06-30",
+       "source": {
+        "type": "series",
+        "key": "transformer-lead-time"
+       }
+      },
+      {
+       "label": "大型变压器交期",
+       "value": 30,
+       "unit": "月",
+       "as_of": "2026-06-30",
+       "source": {
+        "type": "indicator",
+        "key": "transformer_lead_time"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 1,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 6,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "日立能源",
+      "西门子能源",
+      "晓星重工",
+      "GE 弗诺瓦",
+      "（多家）",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "mv-switchgear": {
+   "id": "mv-switchgear",
+   "name": "中压开关柜",
+   "kind": "part",
+   "layer": "S1",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "tight",
+   "desc": "变电站内的中压开关设备；供应商与交期独立于变压器",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "mv-switchgear"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "ABB · 中压UPS/配电"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 4,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "ABB",
+      "施耐德电气",
+      "伊顿",
+      "西门子"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "gas-turbine": {
+   "id": "gas-turbine",
+   "name": "燃气轮机",
+   "kind": "part",
+   "layer": "S1",
+   "system": "power",
+   "module": "M04",
+   "supply_status": "tight",
+   "desc": "燃机订单簿 ≥125GW vs 年产能 ~20GW；交期 3–5 年",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "gas-turbine"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 燃气轮机"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 4,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "GE 弗诺瓦",
+      "西门子能源",
+      "三菱重工电力",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "gas-engine": {
+   "id": "gas-engine",
+   "name": "燃气往复式机组",
+   "kind": "part",
+   "layer": "S1",
+   "system": "power",
+   "module": "M04",
+   "supply_status": "transition",
+   "desc": "与燃气轮机不同的一批厂商与交期（1–2 年）；待补 caterpillar / cummins / innio 档案",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 0,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "gas-engine"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "瓦锡兰"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "fuel-cell": {
+   "id": "fuel-cell",
+   "name": "燃料电池",
+   "kind": "part",
+   "layer": "S1",
+   "system": "power",
+   "module": "M04",
+   "supply_status": "transition",
+   "desc": "月级交付的桥接电源",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "fuel-cell"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "Bloom Energy · 燃料电池"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "Bloom Energy"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "smr": {
+   "id": "smr",
+   "name": "小型模块化反应堆",
+   "kind": "part",
+   "layer": "S1",
+   "system": "power",
+   "module": "M04",
+   "supply_status": "emerging",
+   "desc": "新兴条目（用户 2026-09-28 决定登记）：尚无可采购机组、价格与交期，只跟踪合同与许可事件",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 0,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "smr"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 0,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "backup-power": {
+   "id": "backup-power",
+   "name": "柴油发电机组",
+   "kind": "part",
+   "layer": "S1",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "tight",
+   "desc": "从静态保险变成动态电力系统组件；排放许可是隐性约束",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 4,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "backup-power"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "卡特彼勒 · 大功率柴发",
+      "康明斯 · 大功率柴发",
+      "（多家） · 大功率柴发",
+      "（多家） · 国产柴发"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 5,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "卡特彼勒",
+      "康明斯",
+      "罗尔斯-罗伊斯",
+      "（多家）",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "bess": {
+   "id": "bess",
+   "name": "储能系统（BESS）",
+   "kind": "part",
+   "layer": "S1",
+   "system": "power",
+   "module": "M04",
+   "supply_status": "emerging",
+   "desc": "跨越发电机启动间隙、抑制 AI 负载功率阶跃——角色从可选变必需",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 2,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "bess"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 机架BBU/锂电柜",
+      "（多家） · BESS"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "fuel-storage": {
+   "id": "fuel-storage",
+   "name": "柴油储运（储罐、日用箱、加注）",
+   "kind": "part",
+   "layer": "S1",
+   "system": "power",
+   "module": "M04",
+   "supply_status": "mature",
+   "desc": "备用电源的燃料物流设备；管道天然气接入是站点权利，不在此",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 0,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "fuel-storage"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 0,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "dry-cooler": {
+   "id": "dry-cooler",
+   "name": "干冷器/冷却塔/蒸发冷",
+   "kind": "part",
+   "layer": "S1",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "mature",
+   "desc": "室外排热设备，与冷水机组不是同一批厂商；待补 evapco / bac 档案",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "dry-cooler"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 冷水机组/干冷器"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "蒙特",
+      "摩丁制造"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "water-treatment": {
+   "id": "water-treatment",
+   "name": "水处理与供水（泵站、过滤、软化）",
+   "kind": "part",
+   "layer": "S1",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "mature",
+   "desc": "取水许可是站点权利，设备在此",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "water-treatment"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S1",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（两家） · 冷却水处理"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "艺康",
+      "（两家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "shell": {
+   "id": "shell",
+   "name": "建筑与土建（含场坪、基础、外墙屋面、机房装修）",
+   "kind": "part",
+   "layer": "S2",
+   "system": "facility",
+   "module": "M10",
+   "supply_status": "tight",
+   "desc": "预制化/模块化压缩周期；电气技工短缺是执行瓶颈",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 0,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "shell"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S2",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 0,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "fire": {
+   "id": "fire",
+   "name": "消防（探测、气体灭火、喷淋）",
+   "kind": "part",
+   "layer": "S2",
+   "system": "facility",
+   "module": "M10",
+   "supply_status": "mature",
+   "desc": "锂电池储能与液冷带来新消防规范议题",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "fire"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S2",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 机房消防"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "security": {
+   "id": "security",
+   "name": "安防（门禁、视频、周界）",
+   "kind": "part",
+   "layer": "S2",
+   "system": "facility",
+   "module": "M10",
+   "supply_status": "mature",
+   "desc": "与消防不是同一批厂商",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "security"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S2",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 视频与门禁"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "ups": {
+   "id": "ups",
+   "name": "UPS 系统（整流、逆变、静态开关）",
+   "kind": "part",
+   "layer": "S3",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "mature",
+   "desc": "AI 负载秒级波动重塑 UPS/BBU/超级电容组合",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 7,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "ups"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "维谛技术 · 大功率UPS/HVDC",
+      "伊顿 · 大功率UPS",
+      "ABB · 中压UPS/配电",
+      "西门子 · 配电与低压柜",
+      "台达电子 · UPS/HVDC/ORv3电源",
+      "华为数字能源 · 全链路电力/锂电",
+      "易事特 · UPS"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 8,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "施耐德电气",
+      "伊顿",
+      "维谛技术",
+      "ABB",
+      "台达电子",
+      "西门子",
+      "华为数字能源",
+      "易事特"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "ups-battery": {
+   "id": "ups-battery",
+   "name": "UPS 电池（锂电/铅酸）",
+   "kind": "part",
+   "layer": "S3",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "transition",
+   "desc": "价格随电芯独立波动；待补电芯厂档案",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "ups-battery"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "华为数字能源 · 全链路电力/锂电"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "lv-switchgear": {
+   "id": "lv-switchgear",
+   "name": "低压开关柜",
+   "kind": "part",
+   "layer": "S3",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "tight",
+   "desc": "认证柜型与工厂槽位是交付约束，交期 40–60 周",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 2,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "lv-switchgear"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "西门子 · 配电与低压柜",
+      "中恒电气 · HVDC/巴拿马电源"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 5,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "ABB",
+      "施耐德电气",
+      "伊顿",
+      "西门子",
+      "中恒电气"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "busway": {
+   "id": "busway",
+   "name": "母线槽",
+   "kind": "part",
+   "layer": "S3",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "tight",
+   "desc": "与开关柜不同的产品线与交期；待补专业母线厂档案",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 0,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "busway"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 3,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "伊顿",
+      "施耐德电气",
+      "西门子"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "pdu": {
+   "id": "pdu",
+   "name": "机房配电柜/PDU/RPP（含机柜配电条）",
+   "kind": "part",
+   "layer": "S3",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "mature",
+   "desc": "用户 2026-09-28 决定机柜配电条不再单拆",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 0,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "pdu"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 3,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "维谛技术",
+      "伊顿",
+      "施耐德电气"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "chiller": {
+   "id": "chiller",
+   "name": "冷水机组",
+   "kind": "part",
+   "layer": "S3",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "mature",
+   "desc": "按冷吨计价；干冷/蒸发/冷机组合由气候与水价值决定",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "chiller"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 冷水机组/干冷器"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 3,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "江森自控",
+      "特灵科技",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "chilled-water-loop": {
+   "id": "chilled-water-loop",
+   "name": "冷冻水泵、管路与阀门",
+   "kind": "part",
+   "layer": "S3",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "mature",
+   "desc": "机电分包的一门独立生意；待补泵阀管路厂档案",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 0,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "chilled-water-loop"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 0,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "room-cooling": {
+   "id": "room-cooling",
+   "name": "机房空气冷却（CRAH/CRAC/风墙）",
+   "kind": "part",
+   "layer": "S3",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "mature",
+   "desc": "液冷时代空气系统不消失——冷板留下 10-30% 余热仍走空气",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 2,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "room-cooling"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "世图兹 · 机房空调",
+      "蒙特 · 间接蒸发冷却"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 5,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "维谛技术",
+      "蒙特",
+      "江森自控",
+      "摩丁制造",
+      "世图兹"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "cdu": {
+   "id": "cdu",
+   "name": "CDU 与液冷分配",
+   "kind": "part",
+   "layer": "S3",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "transition",
+   "desc": "MW 级 CDU 已量产（2-10MW+ 平台），TCS/FWS 双环路的可用性边界",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 9,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "cdu"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "维谛技术 · CDU/全链条温控",
+      "CoolIT · 冷板DLC/CDU",
+      "Motivair（施耐德） · CDU/后门空调",
+      "Boyd · 冷板/CDU/热管理",
+      "nVent · 后门/机柜级液冷",
+      "英维克 · 全链条液冷/机房温控",
+      "申菱环境 · 液冷与专用空调",
+      "高澜股份 · 冷板/浸没CDU",
+      "（多家） · 其他国产温控"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 13,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "CoolIT",
+      "维谛技术",
+      "施耐德电气",
+      "蒙特",
+      "江森自控",
+      "摩丁制造",
+      "Motivair（施耐德）",
+      "Boyd",
+      "nVent",
+      "英维克",
+      "申菱环境",
+      "高澜股份"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "immersion": {
+   "id": "immersion",
+   "name": "浸没式液冷槽/系统",
+   "kind": "part",
+   "layer": "S3",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "emerging",
+   "desc": "浸没式液冷的设备条目（槽体与系统）；技术路线是它的属性，不是零件",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 2,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "immersion"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 浸没式液冷",
+      "曙光数创 · 浸没相变/冷板整机"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）",
+      "曙光数创"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "cabling": {
+   "id": "cabling",
+   "name": "结构化布线与光纤",
+   "kind": "part",
+   "layer": "S3",
+   "system": "network",
+   "module": "M07",
+   "supply_status": "mature",
+   "desc": "结构化布线与光纤——机房的神经末梢",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 3,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "cabling"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "康宁 · 数据中心光布线",
+      "康普 · 综合布线",
+      "（多家） · 国产光纤光缆"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 3,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "康宁",
+      "康普",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "leak-detection": {
+   "id": "leak-detection",
+   "name": "漏液检测",
+   "kind": "part",
+   "layer": "S3",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "tight",
+   "desc": "漏液检测——液冷进机房后的新增安全层",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "leak-detection"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S3",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 漏液检测"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "rack-frame": {
+   "id": "rack-frame",
+   "name": "机柜与结构",
+   "kind": "part",
+   "layer": "S4",
+   "system": "facility",
+   "module": "M06",
+   "supply_status": "transition",
+   "desc": "5-10kW → 130kW（GB200 NVL72）→ 600kW-1MW 路线图，机柜正变成'整机产品'",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 5,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "rack-frame"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "OCP社区 · 开放计算规范",
+      "威图 · 机柜/机柜系统",
+      "罗格朗 · 机柜/PDU/母线",
+      "泛达 · 机柜与配线",
+      "（多家） · 国产机柜"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 7,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "天弘",
+      "台达电子",
+      "OCP社区",
+      "威图",
+      "罗格朗",
+      "泛达",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "rack-system": {
+   "id": "rack-system",
+   "name": "整机柜系统（NVL72 类，按柜计价）",
+   "kind": "part",
+   "layer": "S4",
+   "system": "compute",
+   "module": "M06",
+   "supply_status": "tight",
+   "desc": "含 scale-up 交换托盘与背板；整柜功率与每柜 GPU 数正来自它",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 3,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "rack-system"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "工业富联 · AI服务器/整机柜代工",
+      "广达（云达） · 云服务器/整机柜",
+      "纬颖 · 云服务器/整机柜"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 6,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "英伟达",
+      "工业富联",
+      "广达（云达）",
+      "纬颖",
+      "戴尔",
+      "超微"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "server": {
+   "id": "server",
+   "name": "加速器服务器（AI 服务器整机）",
+   "kind": "part",
+   "layer": "S4",
+   "system": "compute",
+   "module": "M06",
+   "supply_status": "tight",
+   "desc": "ODM 直供模式主导 AI 服务器；集成交付能力即壁垒",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 14,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "server"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "戴尔 · 通用/AI服务器",
+      "慧与 · 通用/AI服务器",
+      "联想 · 通用/AI服务器",
+      "超微 · AI/GPU服务器",
+      "浪潮信息 · 通用/AI服务器",
+      "新华三 · 通用/AI服务器",
+      "超聚变 · 通用/AI服务器",
+      "宁畅 · AI/定制服务器",
+      "中科曙光 · 通用/AI服务器",
+      "华为 · AI训练集群",
+      "技嘉 · GPU服务器/准系统",
+      "华硕 · GPU服务器/工作站"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 21,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "天弘",
+      "华为",
+      "戴尔",
+      "慧与",
+      "联想",
+      "超微",
+      "浪潮信息",
+      "新华三",
+      "超聚变",
+      "宁畅",
+      "中科曙光",
+      "华为"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "general-server": {
+   "id": "general-server",
+   "name": "通用服务器（CPU 节点）",
+   "kind": "part",
+   "layer": "S4",
+   "system": "compute",
+   "module": "M06",
+   "supply_status": "mature",
+   "desc": "用户 2026-09-28 决定与加速器服务器分两行",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 12,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "general-server"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "戴尔 · 通用/AI服务器",
+      "慧与 · 通用/AI服务器",
+      "联想 · 通用/AI服务器",
+      "浪潮信息 · 通用/AI服务器",
+      "新华三 · 通用/AI服务器",
+      "超聚变 · 通用/AI服务器",
+      "中科曙光 · 通用/AI服务器",
+      "中兴通讯 · 通用服务器",
+      "烽火通信 · 通用服务器",
+      "广达（云达） · 云服务器/整机柜",
+      "纬颖 · 云服务器/整机柜",
+      "（多家） · 鲲鹏/飞腾生态整机"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 12,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "戴尔",
+      "慧与",
+      "联想",
+      "浪潮信息",
+      "新华三",
+      "超聚变",
+      "中科曙光",
+      "中兴通讯",
+      "烽火通信",
+      "华为",
+      "（多家）",
+      "超微"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "network-switch": {
+   "id": "network-switch",
+   "name": "交换机（scale-out 以太网/IB）",
+   "kind": "part",
+   "layer": "S4",
+   "system": "network",
+   "module": "M07",
+   "supply_status": "transition",
+   "desc": "InfiniBand vs 以太网(UEC)之争；scale-up 域扩大改写拓扑",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 9,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "network-switch"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "英伟达 · IB/以太AI网络",
+      "Arista · 数据中心以太网",
+      "思科 · 数据中心以太网",
+      "瞻博（慧与） · 数据中心以太网",
+      "华为 · 数据中心以太网",
+      "新华三 · 数据中心以太网",
+      "锐捷网络 · 无损以太/AI网络",
+      "中兴通讯 · 数据中心以太网",
+      "（多家） · 白盒/开放网络"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 12,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "博通",
+      "天弘",
+      "英伟达",
+      "英伟达",
+      "Arista",
+      "思科",
+      "瞻博（慧与）",
+      "华为",
+      "新华三",
+      "锐捷网络",
+      "中兴通讯",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "storage-array": {
+   "id": "storage-array",
+   "name": "存储系统",
+   "kind": "part",
+   "layer": "S4",
+   "system": "storage",
+   "module": "M06",
+   "supply_status": "mature",
+   "desc": "存储系统与阵列——AI 数据管道的容量层与并行文件系统",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 21,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "storage-array"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "华为 · 全闪/混闪阵列",
+      "戴尔 · 全闪/混闪阵列",
+      "NetApp · 全闪阵列/云数据",
+      "Pure Storage · 全闪阵列",
+      "慧与 · 全闪阵列",
+      "IBM · 全闪/磁带",
+      "日立 · 全闪阵列",
+      "浪潮存储 · 全闪/分布式",
+      "新华三 · 全闪/分布式",
+      "中科曙光（曙光存储） · 并行/分布式",
+      "宏杉科技 · SAN阵列",
+      "星辰天合 · 块/文件/对象SDS"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 21,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "华为",
+      "戴尔",
+      "NetApp",
+      "Pure Storage",
+      "慧与",
+      "IBM",
+      "日立",
+      "浪潮存储",
+      "新华三",
+      "中科曙光（曙光存储）",
+      "宏杉科技",
+      "星辰天合"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "manifold": {
+   "id": "manifold",
+   "name": "机柜歧管与管路",
+   "kind": "part",
+   "layer": "S4",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "tight",
+   "desc": "快接头/软管/水质是液冷可用性的隐形风险点",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "manifold"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 快换接头/manifold"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "CoolIT",
+      "维谛技术"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "quick-disconnect": {
+   "id": "quick-disconnect",
+   "name": "快接头",
+   "kind": "part",
+   "layer": "S4",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "tight",
+   "desc": "供应商集中、认证周期长的隐形风险点",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "quick-disconnect"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 快换接头/manifold"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "power-shelf": {
+   "id": "power-shelf",
+   "name": "机柜电源架（AC-DC / HVDC 整流）",
+   "kind": "part",
+   "layer": "S4",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "transition",
+   "desc": "800V HVDC + 机柜级储能重构供电末端；台达系核心地盘",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "power-shelf"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · PSU/电源架"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "台达电子",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "bbu": {
+   "id": "bbu",
+   "name": "机柜电池备份单元",
+   "kind": "part",
+   "layer": "S4",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "transition",
+   "desc": "电芯价格独立；待补电芯厂档案",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "bbu"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 机架BBU/锂电柜"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "台达电子",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "copper-interconnect": {
+   "id": "copper-interconnect",
+   "name": "高速铜缆（DAC/AEC）",
+   "kind": "part",
+   "layer": "S4",
+   "system": "network",
+   "module": "M07",
+   "supply_status": "tight",
+   "desc": "DAC/AEC/背板铜互联——机柜内短距连接对光的替代",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 2,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "copper-interconnect"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "Credo · AEC有源电缆",
+      "（多家） · DAC/连接器/背板"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "Credo",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "coolant": {
+   "id": "coolant",
+   "name": "冷却液/工质",
+   "kind": "part",
+   "layer": "S4",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "mature",
+   "desc": "冷却液与工质——液冷环路的化学约束",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "coolant"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 冷却液/工质"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "sidecar-hx": {
+   "id": "sidecar-hx",
+   "name": "机柜级液-气换热器（RDHx/Sidecar）",
+   "kind": "part",
+   "layer": "S4",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "transition",
+   "desc": "机柜级液-气热交换（sidecar/RDHx）——NVL72 时代介于 CDU 与机柜之间的新层级，此前两头都不算它",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 0,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "sidecar-hx"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S4",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 4,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "nVent",
+      "Motivair",
+      "CoolIT",
+      "Boyd"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "gpu": {
+   "id": "gpu",
+   "name": "GPU 加速器",
+   "kind": "part",
+   "layer": "S5",
+   "system": "compute",
+   "module": "M06",
+   "supply_status": "tight",
+   "desc": "GPU 收入 2025 ~$191.8B、2028 峰值 ~$247.6B（Yole）；ASIC 2030 ~$84.6B——供应商集中度即行业风险",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 11,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "gpu"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "英伟达 · 训练/推理GPU",
+      "超威半导体 · 训练/推理GPU",
+      "英特尔 · 训练/推理加速卡",
+      "华为（昇腾） · 国产AI芯片",
+      "寒武纪 · 国产AI芯片",
+      "海光信息 · 国产GPU（GPGPU）",
+      "壁仞科技 · 国产GPU",
+      "摩尔线程 · 国产GPU",
+      "沐曦 · 国产GPU",
+      "天数智芯 · 国产GPU",
+      "燧原科技 · 国产AI芯片"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [
+      {
+       "label": "H100 SXM 单卡现货时租",
+       "value": 2.78,
+       "unit": "$/hr",
+       "as_of": "2026-08-15",
+       "source": {
+        "type": "series",
+        "key": "gpu-hourly-h100-spot"
+       }
+      },
+      {
+       "label": "B200 单卡现货时租",
+       "value": 6.81,
+       "unit": "$/hr",
+       "as_of": "2026-08-15",
+       "source": {
+        "type": "series",
+        "key": "gpu-hourly-b200-spot"
+       }
+      },
+      {
+       "label": "旗舰GPU现货时租",
+       "value": 2.78,
+       "unit": "$/hr",
+       "as_of": "2026-08-15",
+       "source": {
+        "type": "indicator",
+        "key": "gpu_hourly_rate_spot"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 1,
+      "needed": 0
+     },
+     "status": "sourced"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 12,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "英伟达",
+      "超威",
+      "超威半导体",
+      "英特尔",
+      "华为（昇腾）",
+      "寒武纪",
+      "海光信息",
+      "壁仞科技",
+      "摩尔线程",
+      "沐曦",
+      "天数智芯",
+      "燧原科技"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "ai-asic": {
+   "id": "ai-asic",
+   "name": "定制 AI ASIC",
+   "kind": "part",
+   "layer": "S5",
+   "system": "compute",
+   "module": "M06",
+   "supply_status": "tight",
+   "desc": "自研/代工的一批厂商，与商用 GPU 不同的定价方式",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 2,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "ai-asic"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 海外新兴AI芯片",
+      "（自研） · 云厂商自研加速器"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 6,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "博通",
+      "谷歌",
+      "亚马逊",
+      "OpenAI",
+      "（自研）",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "cpu": {
+   "id": "cpu",
+   "name": "CPU",
+   "kind": "part",
+   "layer": "S5",
+   "system": "compute",
+   "module": "M06",
+   "supply_status": "mature",
+   "desc": "Grace/自研 Arm 侵蚀 x86；头节点与推理仍是 CPU 战场",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 10,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "cpu"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "英特尔 · x86服务器CPU",
+      "超威 · x86服务器CPU",
+      "英伟达 · Arm服务器CPU",
+      "安晶科技 · Arm服务器CPU",
+      "安谋 · Arm IP与CSS",
+      "华为（鲲鹏） · 国产CPU（Arm）",
+      "海光信息 · 国产CPU（x86授权）",
+      "飞腾 · 国产CPU（Arm）",
+      "龙芯中科 · 国产CPU（自主指令）",
+      "兆芯 · 国产CPU（x86授权）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 10,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "超威",
+      "英伟达",
+      "英特尔",
+      "安晶科技",
+      "安谋",
+      "华为（鲲鹏）",
+      "海光信息",
+      "飞腾",
+      "龙芯中科",
+      "兆芯"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "fpga": {
+   "id": "fpga",
+   "name": "FPGA/异构加速",
+   "kind": "part",
+   "layer": "S5",
+   "system": "compute",
+   "module": "M06",
+   "supply_status": "mature",
+   "desc": "FPGA 与异构加速卡——推理与网络卸载的第二战场",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "fpga"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（两家） · 数据中心FPGA"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（两家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "bmc": {
+   "id": "bmc",
+   "name": "基板管理控制器",
+   "kind": "part",
+   "layer": "S5",
+   "system": "compute",
+   "module": "M06",
+   "supply_status": "mature",
+   "desc": "近乎单一来源（ASPEED）；用户 2026-09-28 未否决单列，按规则单列",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "bmc"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "信骅科技 · BMC管理芯片"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "信骅科技"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "hbm": {
+   "id": "hbm",
+   "name": "HBM",
+   "kind": "part",
+   "layer": "S5",
+   "system": "memory",
+   "module": "M06",
+   "supply_status": "tight",
+   "desc": "HBM4(2026)→HBM8(2038) 路线图（KAIST）；容量与带宽是 AI 算力的第一瓶颈",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 4,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "hbm"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "三星电子 · DRAM原厂",
+      "SK海力士 · DRAM原厂",
+      "美光 · DRAM原厂",
+      "长鑫存储 · 国产DRAM"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 4,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "三星电子",
+      "SK海力士",
+      "美光",
+      "长鑫存储"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "dram": {
+   "id": "dram",
+   "name": "服务器内存模组（RDIMM/MRDIMM）",
+   "kind": "part",
+   "layer": "S5",
+   "system": "memory",
+   "module": "M06",
+   "supply_status": "tight",
+   "desc": "从现有hbm节点拆分：服务器内存与HBM供需周期不同步，价格序列应分开",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 5,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "dram"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 内存接口/主控",
+      "三星电子 · DRAM原厂",
+      "SK海力士 · DRAM原厂",
+      "美光 · DRAM原厂",
+      "长鑫存储 · 国产DRAM"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 4,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "三星电子",
+      "SK海力士",
+      "美光",
+      "长鑫存储"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "cxl-memory": {
+   "id": "cxl-memory",
+   "name": "CXL 内存扩展",
+   "kind": "part",
+   "layer": "S5",
+   "system": "memory",
+   "module": "M06",
+   "supply_status": "emerging",
+   "desc": "控制器厂是另一批；用户 2026-09-28 决定单列",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 2,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "cxl-memory"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 内存接口/主控",
+      "（多家） · CXL内存扩展"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）",
+      "澜起科技"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "ssd": {
+   "id": "ssd",
+   "name": "企业级 SSD",
+   "kind": "part",
+   "layer": "S5",
+   "system": "storage",
+   "module": "M06",
+   "supply_status": "tight",
+   "desc": "整盘产品研究入口；控制器、NAND、固件与电路板通过研究图谱分别展开。厂商列表为历史目录线索，不代表整盘供应能力已核实。",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 12,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "ssd"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "三星电子 · 企业级SSD",
+      "铠侠 · 企业级SSD",
+      "Solidigm（SK海力士旗下） · 企业级SSD",
+      "美光 · 企业级SSD",
+      "闪迪 · NAND与SSD",
+      "长江存储 · 国产NAND/eSSD",
+      "忆联 · 国产企业级SSD",
+      "大普微 · 国产企业级SSD",
+      "江波龙 · 存储模组厂",
+      "佰维存储 · 存储模组厂",
+      "金士顿 · 第三方模组/内存",
+      "（多家） · SSD主控芯片"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 12,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "三星电子",
+      "铠侠",
+      "Solidigm（SK海力士旗下）",
+      "美光",
+      "闪迪",
+      "长江存储",
+      "忆联",
+      "大普微",
+      "江波龙",
+      "佰维存储",
+      "金士顿",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "hdd": {
+   "id": "hdd",
+   "name": "近线HDD",
+   "kind": "part",
+   "layer": "S5",
+   "system": "storage",
+   "module": "M06",
+   "supply_status": "tight",
+   "desc": "从现有storage节点拆分；建议拆分后删除storage节点",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 3,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "hdd"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "希捷 · 近线HDD",
+      "西部数据 · 近线HDD",
+      "东芝电子 · 近线HDD"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 3,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "希捷",
+      "西部数据",
+      "东芝电子"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "nic": {
+   "id": "nic",
+   "name": "NIC/DPU",
+   "kind": "part",
+   "layer": "S5",
+   "system": "network",
+   "module": "M07",
+   "supply_status": "mature",
+   "desc": "每 GPU 配套一张 400/800G 网卡——数量与 GPU 同步放大",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 4,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "nic"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "英伟达 · SuperNIC/DPU",
+      "超威半导体 · AI网卡/DPU",
+      "英特尔 · 标准网卡",
+      "（多家） · 国产DPU"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 5,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "英伟达",
+      "博通",
+      "超威半导体",
+      "英特尔",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "optics": {
+   "id": "optics",
+   "name": "光模块（CPO 为新兴子条目）",
+   "kind": "part",
+   "layer": "S5",
+   "system": "network",
+   "module": "M07",
+   "supply_status": "transition",
+   "desc": "800G→1.6T 迭代 + CPO 2024-2035 渗透曲线（Yole）——密度与功耗逼出共封装",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 8,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "optics"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "中际旭创 · 800G/1.6T光模块",
+      "新易盛 · 800G/1.6T光模块",
+      "Coherent · 光模块与器件",
+      "光迅科技 · 光模块",
+      "华工正源 · 光模块",
+      "（多家） · 其他光模块厂",
+      "天孚通信 · 无源器件与光引擎",
+      "Lumentum等 · 激光器芯片"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 10,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "博通",
+      "天弘",
+      "中际旭创",
+      "新易盛",
+      "Coherent",
+      "光迅科技",
+      "华工正源",
+      "（多家）",
+      "天孚通信",
+      "Lumentum等"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "switch-asic": {
+   "id": "switch-asic",
+   "name": "交换芯片",
+   "kind": "part",
+   "layer": "S5",
+   "system": "network",
+   "module": "M07",
+   "supply_status": "tight",
+   "desc": "从network-switch中拆出芯片层（Broadcom/Marvell/盛科）",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 3,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "switch-asic"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "博通 · 数据中心交换芯片",
+      "迈威尔 · 数据中心交换芯片",
+      "盛科通信 · 国产交换芯片"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 3,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "博通",
+      "迈威尔",
+      "盛科通信"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "retimer": {
+   "id": "retimer",
+   "name": "重定时器 / AEC 芯片",
+   "kind": "part",
+   "layer": "S5",
+   "system": "network",
+   "module": "M07",
+   "supply_status": "tight",
+   "desc": "供应商集中；随速率代际量价齐升",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 3,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "retimer"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "博通 · PCIe/CXL互联",
+      "澜起科技 · PCIe/CXL互联",
+      "阿斯特拉实验室 · PCIe/CXL互联"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 4,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "阿斯特拉实验室",
+      "澜起科技",
+      "博通",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "pcie-switch": {
+   "id": "pcie-switch",
+   "name": "PCIe/CXL 交换芯片",
+   "kind": "part",
+   "layer": "S5",
+   "system": "network",
+   "module": "M07",
+   "supply_status": "mature",
+   "desc": "服务器内互联的交换层",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 3,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "pcie-switch"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "博通 · PCIe/CXL互联",
+      "澜起科技 · PCIe/CXL互联",
+      "阿斯特拉实验室 · PCIe/CXL互联"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "博通",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "connector": {
+   "id": "connector",
+   "name": "高速连接器",
+   "kind": "part",
+   "layer": "S5",
+   "system": "network",
+   "module": "M07",
+   "supply_status": "tight",
+   "desc": "背板/面板/电源高速连接器——铜互联线缆之外独立的一门生意，随速率代际量价齐升",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 0,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "connector"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "coldplate": {
+   "id": "coldplate",
+   "name": "冷板",
+   "kind": "part",
+   "layer": "S5",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "transition",
+   "desc": "入液热捕获率 70-90%；GPU/OEM 认证是专业厂商的护城河",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "coldplate"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（两家） · 两相直触冷板"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 5,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "CoolIT",
+      "Motivair",
+      "ZutaCore",
+      "Accelsius",
+      "（两家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "psu": {
+   "id": "psu",
+   "name": "服务器电源模块（PSU）",
+   "kind": "part",
+   "layer": "S5",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "mature",
+   "desc": "钛金效率与功率密度竞赛；PDU+PSU 市场独立成研究对象",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "psu"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · PSU/电源架"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "台达电子",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "vrm": {
+   "id": "vrm",
+   "name": "板级供电（VRM/Power Stage）",
+   "kind": "part",
+   "layer": "S5",
+   "system": "power",
+   "module": "M09",
+   "supply_status": "tight",
+   "desc": "GPU 千瓦时代的板级供电——垂直供电（VPD）与电源级密度是 psu 之外独立的瓶颈件",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "vrm"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 服务器供电芯片"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）",
+      "台达电子"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "server-fan": {
+   "id": "server-fan",
+   "name": "服务器风扇",
+   "kind": "part",
+   "layer": "S5",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "mature",
+   "desc": "与均热板/散热器不是同一批厂商",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "server-fan"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 风扇/散热模组/VC"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "heatsink-vc": {
+   "id": "heatsink-vc",
+   "name": "均热板与散热器",
+   "kind": "part",
+   "layer": "S5",
+   "system": "thermal",
+   "module": "M08",
+   "supply_status": "mature",
+   "desc": "风冷末端与混合散热的常青件",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 1,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "heatsink-vc"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "S5",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "（多家） · 风扇/散热模组/VC"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 1,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "dcim": {
+   "id": "dcim",
+   "name": "DCIM / BMS / EPMS（监控、运维、电力监控软件）",
+   "kind": "software",
+   "layer": null,
+   "system": "control",
+   "module": "M13",
+   "supply_status": "mature",
+   "desc": "软件条目：有订阅价与供应商，进目标表，不进 3D（用户 2026-09-28 决定）",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 6,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "dcim"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "software",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "施耐德 · DCIM平台",
+      "维谛 · DCIM平台",
+      "（多家） · DCIM平台（海外）",
+      "（多家） · 国产DCIM/动环",
+      "（两家） · KVM/串口/带外",
+      "（多家） · 巡检机器人"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 8,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "施耐德电气",
+      "维谛技术",
+      "施耐德",
+      "维谛",
+      "（多家）",
+      "（多家）",
+      "（两家）",
+      "（多家）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  },
+  "modular-dc": {
+   "id": "modular-dc",
+   "name": "预制化/微模块交付（设施基型）",
+   "kind": "archetype",
+   "layer": null,
+   "system": "facility",
+   "module": "M09",
+   "supply_status": "mature",
+   "desc": "交付形态，不是零件：同一批部件的另一种包装方式；保留为配置模板",
+   "cells": {
+    "1": {
+     "items": [
+      {
+       "label": "产品线数",
+       "value": 4,
+       "unit": "条",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "modular-dc"
+       }
+      },
+      {
+       "label": "尺度",
+       "value": "archetype",
+       "unit": null,
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "layer"
+       }
+      }
+     ],
+     "instances": [
+      "施耐德电气 · 大功率UPS/微模块",
+      "科华数能 · UPS/微模块",
+      "科士达 · UPS/微模块",
+      "（交叉引用） · 微模块/机柜"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced"
+    },
+    "2": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed"
+    },
+    "5": {
+     "items": [
+      {
+       "label": "供应商数",
+       "value": 4,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "bom",
+        "key": "companies"
+       }
+      }
+     ],
+     "instances": [
+      "施耐德电气",
+      "科华数能",
+      "科士达",
+      "（交叉引用）"
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "sourced"
+    }
+   }
+  }
+ },
+ "rights": {
+  "land": {
+   "id": "land",
+   "name": "土地（地价、租金、区划）",
+   "scale": "S1",
+   "module": "M05",
+   "variable_classes": [
+    3,
+    5
+   ],
+   "supply_status": "mature",
+   "desc": "time-to-power 已取代地价成为第一选址因子；社区反弹上升",
+   "cells": {
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "5": {
+     "items": [
+      {
+       "label": "持有方",
+       "value": 0,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "site_rights",
+        "key": "companies"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced",
+     "instances": []
+    }
+   }
+  },
+  "water-rights": {
+   "id": "water-rights",
+   "name": "水权与取水许可",
+   "scale": "S1",
+   "module": "M08",
+   "variable_classes": [
+    5,
+    4
+   ],
+   "supply_status": "tight",
+   "desc": "WUE 与流域水压力决定冷却路线；取水量与许可期限是主体类与时间类事实",
+   "cells": {
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "5": {
+     "items": [
+      {
+       "label": "持有方",
+       "value": 0,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "site_rights",
+        "key": "companies"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced",
+     "instances": []
+    }
+   }
+  },
+  "grid": {
+   "id": "grid",
+   "name": "电力配额与并网（排队年限、并网协议）",
+   "scale": "S1",
+   "module": "M04",
+   "variable_classes": [
+    4,
+    5
+   ],
+   "supply_status": "tight",
+   "desc": "并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）",
+   "cells": {
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "5": {
+     "items": [
+      {
+       "label": "持有方",
+       "value": 2,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "site_rights",
+        "key": "companies"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced",
+     "instances": [
+      "美国电力",
+      "星座能源"
+     ]
+    }
+   }
+  },
+  "gas-supply": {
+   "id": "gas-supply",
+   "name": "天然气管道接入（容量、供气合同）",
+   "scale": "S1",
+   "module": "M04",
+   "variable_classes": [
+    5,
+    4
+   ],
+   "supply_status": "tight",
+   "desc": "自备电源的真实约束常在管线容量而非机组本身；管线公司待补档案",
+   "cells": {
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "5": {
+     "items": [
+      {
+       "label": "持有方",
+       "value": 0,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "site_rights",
+        "key": "companies"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced",
+     "instances": []
+    }
+   }
+  },
+  "network-access": {
+   "id": "network-access",
+   "name": "网络接入（暗光纤、运营商、IXP）",
+   "scale": "S1",
+   "module": "M07",
+   "variable_classes": [
+    5,
+    3
+   ],
+   "supply_status": "tight",
+   "desc": "选址三要素「电、水、网」的网；跨园区训练互联的先决条件。运营商（Zayo/Lumen 类）待补档案",
+   "cells": {
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "5": {
+     "items": [
+      {
+       "label": "持有方",
+       "value": 0,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "site_rights",
+        "key": "companies"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced",
+     "instances": []
+    }
+   }
+  },
+  "permits": {
+   "id": "permits",
+   "name": "许可（区划、环评、排放、建设）",
+   "scale": "S1",
+   "module": "M10",
+   "variable_classes": [
+    4,
+    5
+   ],
+   "supply_status": "tight",
+   "desc": "审批时长与暂停令；来自 2026-09-06 评审覆盖清单的「外部接口与非物理配套」",
+   "cells": {
+    "3": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 0
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "4": {
+     "items": [],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "needed",
+     "instances": []
+    },
+    "5": {
+     "items": [
+      {
+       "label": "持有方",
+       "value": 0,
+       "unit": "家",
+       "as_of": "2026-09-28",
+       "source": {
+        "type": "site_rights",
+        "key": "companies"
+       }
+      }
+     ],
+     "coverage": {
+      "sourced": 0,
+      "assumed": 0,
+      "needed": 1
+     },
+     "status": "sourced",
+     "instances": []
+    }
+   }
+  }
+ },
+ "factors": [
+  {
+   "id": "revenue",
+   "label": "收入侧",
+   "side": "revenue",
+   "parent": null,
+   "unit": "$/年",
+   "formula": "gpus × 8760 × utilization × price",
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": []
+  },
+  {
+   "id": "revenue.gpus",
+   "label": "GPU 数",
+   "side": "revenue",
+   "parent": "revenue",
+   "unit": "颗",
+   "formula": "it_mw × density",
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": []
+  },
+  {
+   "id": "revenue.gpus.density",
+   "label": "每 MW GPU 密度",
+   "side": "revenue",
+   "parent": "revenue.gpus",
+   "unit": "颗/MW",
+   "formula": "1000 × rack_share ÷ (rack_kw ÷ gpus_per_rack)",
+   "bom_parts": [
+    "rack-frame",
+    "rack-system",
+    "gpu",
+    "power-shelf"
+   ],
+   "site_rights": [],
+   "tco_inputs": [
+    "gpus_per_mw",
+    "it_class"
+   ]
+  },
+  {
+   "id": "revenue.utilization",
+   "label": "付费利用率",
+   "side": "revenue",
+   "parent": "revenue",
+   "unit": "%",
+   "formula": null,
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": [
+    "gpu_utilization"
+   ]
+  },
+  {
+   "id": "revenue.price",
+   "label": "GPU 小时单价",
+   "side": "revenue",
+   "parent": "revenue",
+   "unit": "$/GPU·h",
+   "formula": null,
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": [
+    "price_gpu_hour"
+   ]
+  },
+  {
+   "id": "revenue.tokens",
+   "label": "模型层变现（L3，本因子树只登记接口）",
+   "side": "revenue",
+   "parent": "revenue",
+   "unit": "$/M token",
+   "formula": "token = 收费 GPU 小时 × 3600 × 吞吐；收入 = token ÷ 1e6 × 单价",
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": [
+    "price_gpu_hour"
+   ]
+  },
+  {
+   "id": "cost",
+   "label": "成本侧",
+   "side": "cost",
+   "parent": null,
+   "unit": "$/年",
+   "formula": "energy + other_opex + facility + depreciation + tax",
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": []
+  },
+  {
+   "id": "cost.energy",
+   "label": "电费",
+   "side": "cost",
+   "parent": "cost",
+   "unit": "$/年",
+   "formula": "it_mw × power_load × pue × 8760 × power_price",
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": []
+  },
+  {
+   "id": "cost.energy.load",
+   "label": "平均 IT 负载率",
+   "side": "cost",
+   "parent": "cost.energy",
+   "unit": "%",
+   "formula": null,
+   "bom_parts": [
+    "server",
+    "general-server",
+    "gpu",
+    "ai-asic"
+   ],
+   "site_rights": [],
+   "tco_inputs": [
+    "load_factor"
+   ]
+  },
+  {
+   "id": "cost.energy.pue",
+   "label": "PUE",
+   "side": "cost",
+   "parent": "cost.energy",
+   "unit": "PUE",
+   "formula": null,
+   "bom_parts": [
+    "room-cooling",
+    "cdu",
+    "chiller",
+    "dry-cooler",
+    "chilled-water-loop",
+    "coolant"
+   ],
+   "site_rights": [],
+   "tco_inputs": [
+    "pue",
+    "wue"
+   ]
+  },
+  {
+   "id": "cost.energy.price",
+   "label": "电价",
+   "side": "cost",
+   "parent": "cost.energy",
+   "unit": "$/kWh",
+   "formula": null,
+   "bom_parts": [
+    "gas-turbine",
+    "gas-engine",
+    "fuel-cell",
+    "bess"
+   ],
+   "site_rights": [
+    "grid"
+   ],
+   "tco_inputs": [
+    "demand_rate",
+    "power_escalation",
+    "power_price"
+   ]
+  },
+  {
+   "id": "cost.other_opex",
+   "label": "其他运营支出",
+   "side": "cost",
+   "parent": "cost",
+   "unit": "$/MW·年",
+   "formula": null,
+   "bom_parts": [
+    "dcim",
+    "fire",
+    "security",
+    "water-treatment",
+    "leak-detection"
+   ],
+   "site_rights": [
+    "water-rights"
+   ],
+   "tco_inputs": [
+    "bandwidth_per_mw",
+    "cost_per_fte",
+    "fte_per_mw",
+    "insurance_pct",
+    "labor_index",
+    "maint_pct_facility",
+    "maint_pct_it",
+    "opex_escalation",
+    "other_opex_per_mw",
+    "software_per_mw",
+    "water_price"
+   ]
+  },
+  {
+   "id": "cost.facility",
+   "label": "设施费",
+   "side": "cost",
+   "parent": "cost",
+   "unit": "$/年",
+   "formula": "own: 0 | lease: shell_rent_per_mw × it_mw | colo: colo_rate × kW × 12",
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": []
+  },
+  {
+   "id": "cost.facility.shell_rent",
+   "label": "带电壳租金",
+   "side": "cost",
+   "parent": "cost.facility",
+   "unit": "$M/MW·年",
+   "formula": null,
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": [
+    "ramp_year1",
+    "ramp_year2",
+    "shell_rent_per_mw"
+   ]
+  },
+  {
+   "id": "cost.facility.colo_rate",
+   "label": "托管费率",
+   "side": "cost",
+   "parent": "cost.facility",
+   "unit": "$/kW·月",
+   "formula": null,
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": [
+    "colo_rate",
+    "price_colo_kw_month"
+   ]
+  },
+  {
+   "id": "cost.depreciation",
+   "label": "折旧",
+   "side": "cost",
+   "parent": "cost",
+   "unit": "$/年",
+   "formula": "capex ÷ life（IT 与非 IT 分线）",
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": [
+    "decommission_pct",
+    "horizon_years",
+    "it_refresh_years"
+   ]
+  },
+  {
+   "id": "cost.depreciation.capex",
+   "label": "资本开支",
+   "side": "cost",
+   "parent": "cost.depreciation",
+   "unit": "$M/MW",
+   "formula": "accelerators + other_it + shell + btm + land",
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": []
+  },
+  {
+   "id": "cost.depreciation.capex.accelerators",
+   "label": "加速器",
+   "side": "cost",
+   "parent": "cost.depreciation.capex",
+   "unit": "$M/MW",
+   "formula": null,
+   "bom_parts": [
+    "gpu",
+    "ai-asic",
+    "hbm",
+    "fpga"
+   ],
+   "site_rights": [],
+   "tco_inputs": [
+    "refresh_cost_factor"
+   ]
+  },
+  {
+   "id": "cost.depreciation.capex.other_it",
+   "label": "其他 IT（网络、存储、服务器、CPU）",
+   "side": "cost",
+   "parent": "cost.depreciation.capex",
+   "unit": "$M/MW",
+   "formula": null,
+   "bom_parts": [
+    "server",
+    "general-server",
+    "rack-system",
+    "cpu",
+    "bmc",
+    "dram",
+    "cxl-memory",
+    "ssd",
+    "hdd",
+    "storage-array",
+    "network-switch",
+    "switch-asic",
+    "nic",
+    "optics",
+    "retimer",
+    "pcie-switch",
+    "copper-interconnect",
+    "connector",
+    "cabling",
+    "psu",
+    "vrm",
+    "coldplate",
+    "manifold",
+    "quick-disconnect",
+    "sidecar-hx",
+    "immersion",
+    "server-fan",
+    "heatsink-vc"
+   ],
+   "site_rights": [],
+   "tco_inputs": [
+    "it_capex_per_kw"
+   ]
+  },
+  {
+   "id": "cost.depreciation.capex.shell",
+   "label": "非 IT：建筑、供配电、冷却（带电壳）",
+   "side": "cost",
+   "parent": "cost.depreciation.capex",
+   "unit": "$M/MW",
+   "formula": null,
+   "bom_parts": [
+    "shell",
+    "hv-switchyard",
+    "transformer",
+    "mv-switchgear",
+    "backup-power",
+    "ups",
+    "ups-battery",
+    "lv-switchgear",
+    "busway",
+    "pdu"
+   ],
+   "site_rights": [
+    "grid"
+   ],
+   "tco_inputs": [
+    "capex_building",
+    "capex_electrical",
+    "capex_fitout",
+    "capex_mechanical",
+    "construction_years",
+    "contingency_pct",
+    "it_capex_per_kw",
+    "redundancy",
+    "soft_cost_pct"
+   ]
+  },
+  {
+   "id": "cost.depreciation.capex.btm",
+   "label": "表后电力",
+   "side": "cost",
+   "parent": "cost.depreciation.capex",
+   "unit": "$M/MW",
+   "formula": null,
+   "bom_parts": [
+    "gas-turbine",
+    "gas-engine",
+    "fuel-cell",
+    "smr",
+    "bess",
+    "fuel-storage"
+   ],
+   "site_rights": [
+    "gas-supply"
+   ],
+   "tco_inputs": [
+    "capex_electrical"
+   ]
+  },
+  {
+   "id": "cost.depreciation.capex.land",
+   "label": "土地",
+   "side": "cost",
+   "parent": "cost.depreciation.capex",
+   "unit": "$M/MW",
+   "formula": null,
+   "bom_parts": [],
+   "site_rights": [
+    "land",
+    "permits"
+   ],
+   "tco_inputs": [
+    "land_per_mw"
+   ]
+  },
+  {
+   "id": "cost.tax",
+   "label": "税",
+   "side": "cost",
+   "parent": "cost",
+   "unit": "%",
+   "formula": "tax × 应税利润（NOPAT 口径；壳层为 NOI − 折旧 − 利息）",
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": [
+    "it_refresh_years",
+    "property_tax_rate"
+   ]
+  },
+  {
+   "id": "capital",
+   "label": "资本与融资（跨账本）",
+   "side": "capital",
+   "parent": null,
+   "unit": "%",
+   "formula": "资本成本率、债务比例、利率决定盈亏平衡价、杠杆 IRR 与 DSCR",
+   "bom_parts": [],
+   "site_rights": [],
+   "tco_inputs": [
+    "wacc"
+   ]
+  }
+ ],
+ "changes": {
+  "series_points": [
+   {
+    "series_id": "gpu-hourly-b200-index",
+    "value": 5.87,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-b300-index",
+    "value": 6.8,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-mi300x-index",
+    "value": 2.62,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-h100-ondemand-lambda",
+    "value": 3.99,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-b200-ondemand-lambda",
+    "value": 6.69,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-h100-ondemand-nebius",
+    "value": 3.85,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-h200-ondemand-nebius",
+    "value": 4.5,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-b200-ondemand-nebius",
+    "value": 7.15,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-b300-ondemand-nebius",
+    "value": 7.85,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-h100-ondemand-runpod",
+    "value": 3.49,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-h200-ondemand-runpod",
+    "value": 4.59,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   },
+   {
+    "series_id": "gpu-hourly-b200-ondemand-runpod",
+    "value": 6.79,
+    "unit": "$/hr",
+    "as_of": "2026-09-27",
+    "module": "M13"
+   }
+  ],
+  "due_targets": [
+   {
+    "id": "F.capital.base_rates",
+    "team": "fetchstat",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "F.capital.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "F.cost.depreciation.capex.accelerators.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "assumed",
+    "variable_class": 5
+   },
+   {
+    "id": "F.cost.energy.price.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.ai-asic.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.backup-power.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.bbu.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.bess.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.busway.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.cdu.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.coldplate.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.connector.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.copper-interconnect.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.cxl-memory.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.dram.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.fuel-cell.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.gas-engine.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.gas-turbine.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.gpu.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.hbm.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.hdd.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.hv-switchyard.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.immersion.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.leak-detection.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.lv-switchgear.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.manifold.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.mv-switchgear.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.network-switch.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.optics.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.power-shelf.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.quick-disconnect.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.rack-frame.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.rack-system.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.retimer.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.server.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.shell.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.sidecar-hx.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.smr.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.ssd.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   },
+   {
+    "id": "P.switch-asic.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
+   }
+  ],
+  "due_total": 182
+ }
+}
