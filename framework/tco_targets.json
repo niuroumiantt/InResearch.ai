@@ -2,7 +2,7 @@
   "version": "2.0.0",
   "updated": "2026-09-28",
   "title": "五类变量目标清单",
-  "note": "六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的 TCO 模型输入键）各成一行；每个物理部件按\"自己的价格、供应商名单、交期\"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机。status 只在已有序列、已录值指标或模型证据支持时为 sourced；公司只是实例，随时可换。",
+  "note": "六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的 TCO 模型输入键）各成一行；每个物理部件按\"自己的价格、供应商名单、交期\"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机。status 只在已有序列、已录值指标或模型证据支持时为 sourced；公司只是实例，随时可换。",
   "generated_from": {
     "tco_factors": "1.1.0",
     "bom": "2.0",
@@ -125,7 +125,8 @@
       "next_due": "2026-10-15",
       "status": "sourced",
       "sensitivity_rank": 3,
-      "notes": "整柜功率与每柜 GPU 封装数进密度规则"
+      "notes": "整柜功率与每柜 GPU 封装数进密度规则",
+      "curated": false
     },
     {
       "id": "F.revenue.utilization.report",
@@ -159,7 +160,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "集群实际利用率的公开研究与公司披露（已售 GPU 小时 ÷ 可用小时）"
+      "notes": "集群实际利用率的公开研究与公司披露（已售 GPU 小时 ÷ 可用小时）",
+      "curated": false
     },
     {
       "id": "F.revenue.utilization.utilization.disclosure",
@@ -202,7 +204,8 @@
       "next_due": "2026-11-15",
       "status": "sourced",
       "sensitivity_rank": 5,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.revenue.price.gpu_hour.index",
@@ -245,7 +248,8 @@
       "next_due": "2026-10-05",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": "报价不等于成交；序列取中位并写明配置"
+      "notes": "报价不等于成交；序列取中位并写明配置",
+      "curated": false
     },
     {
       "id": "F.revenue.tokens.token.price_throughput",
@@ -283,7 +287,8 @@
       "next_due": "2026-10-05",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.energy.load.load_factor.measured",
@@ -321,7 +326,8 @@
       "next_due": "2027-03-31",
       "status": "sourced",
       "sensitivity_rank": 6,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.energy.pue.equipment.efficiency",
@@ -356,7 +362,8 @@
       "next_due": "2026-12-31",
       "status": "sourced",
       "sensitivity_rank": 2,
-      "notes": "设计 PUE 分解的参照；不替代运营商披露"
+      "notes": "设计 PUE 分解的参照；不替代运营商披露",
+      "curated": false
     },
     {
       "id": "F.cost.energy.pue.parts.psu_coolant",
@@ -390,7 +397,8 @@
       "next_due": "2026-10-31",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": "psu、coolant 挂进因子树后填充"
+      "notes": "psu、coolant 挂进因子树后填充",
+      "curated": false
     },
     {
       "id": "F.cost.energy.pue.pue_wue.operator_disclosure",
@@ -437,7 +445,8 @@
       "next_due": "2027-06-30",
       "status": "sourced",
       "sensitivity_rank": 2,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.energy.pue.pue.survey",
@@ -471,7 +480,8 @@
       "next_due": "2027-09-30",
       "status": "sourced",
       "sensitivity_rank": 2,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.energy.price.news",
@@ -506,7 +516,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "数据中心专项费率与大负荷条款（TVA、AEP、PGE 类）"
+      "notes": "数据中心专项费率与大负荷条款（TVA、AEP、PGE 类）",
+      "curated": false
     },
     {
       "id": "F.cost.energy.price.power_price.state_industrial",
@@ -548,7 +559,8 @@
       "next_due": "2026-10-25",
       "status": "sourced",
       "sensitivity_rank": 1,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.energy.price.power_price.eu_asia",
@@ -588,7 +600,8 @@
       "next_due": "2026-11-30",
       "status": "sourced",
       "sensitivity_rank": 1,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.energy.price.power_price.cn",
@@ -628,7 +641,8 @@
       "next_due": "2026-10-31",
       "status": "sourced",
       "sensitivity_rank": 1,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.energy.price.demand_charge.tariff",
@@ -671,7 +685,8 @@
       "next_due": "2027-01-01",
       "status": "sourced",
       "sensitivity_rank": 1,
-      "notes": "近期任务：电价拆能量与线路两部分"
+      "notes": "近期任务：电价拆能量与线路两部分",
+      "curated": false
     },
     {
       "id": "F.cost.energy.price.capacity_market",
@@ -707,7 +722,8 @@
       "next_due": "2026-10-31",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.other_opex.staffing.per_mw",
@@ -747,7 +763,8 @@
       "next_due": "2027-03-15",
       "status": "sourced",
       "sensitivity_rank": 9,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.other_opex.maintenance.share",
@@ -785,7 +802,8 @@
       "next_due": "2027-06-30",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.other_opex.other_opex.breakdown",
@@ -822,7 +840,8 @@
       "next_due": "2027-03-15",
       "status": "assumed",
       "sensitivity_rank": null,
-      "notes": "四项作者假设；保险与带宽由 fetchreports、fetchquotes 辅助"
+      "notes": "四项作者假设；保险与带宽由 fetchreports、fetchquotes 辅助",
+      "curated": false
     },
     {
       "id": "F.cost.other_opex.wages.bls",
@@ -862,7 +881,8 @@
       "next_due": "2027-04-15",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.other_opex.escalation.eci_cpi",
@@ -898,7 +918,8 @@
       "next_due": "2026-10-15",
       "status": "sourced",
       "sensitivity_rank": 10,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.other_opex.water.rates",
@@ -931,7 +952,8 @@
       "next_due": "2026-12-31",
       "status": "assumed",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.facility.shell_rent.ramp.movein",
@@ -970,7 +992,8 @@
       "next_due": "2026-11-15",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.facility.shell_rent.rent.shell_lease",
@@ -1009,7 +1032,8 @@
       "next_due": "2026-11-15",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.facility.shell_rent.lease.terms",
@@ -1042,7 +1066,8 @@
       "next_due": "2026-10-31",
       "status": "needed",
       "sensitivity_rank": null,
-      "notes": "期限、递增、期权、担保、take-or-pay"
+      "notes": "期限、递增、期权、担保、take-or-pay",
+      "curated": false
     },
     {
       "id": "F.cost.facility.colo_rate.rent.colo_market",
@@ -1086,7 +1111,8 @@
       "next_due": "2027-02-28",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.report",
@@ -1120,7 +1146,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "超大规模厂商与新兴云的服务器/设施折旧年限及变更"
+      "notes": "超大规模厂商与新兴云的服务器/设施折旧年限及变更",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.useful_life.notes",
@@ -1161,7 +1188,8 @@
       "next_due": "2027-03-15",
       "status": "sourced",
       "sensitivity_rank": 7,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.decommission.aro",
@@ -1194,7 +1222,8 @@
       "next_due": "2027-03-15",
       "status": "assumed",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.accelerators.product",
@@ -1228,7 +1257,8 @@
       "next_due": "2026-12-27",
       "status": "assumed",
       "sensitivity_rank": 3,
-      "notes": "GPU/ASIC 与 HBM 的代际规格、单卡功率、整柜价格"
+      "notes": "GPU/ASIC 与 HBM 的代际规格、单卡功率、整柜价格",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.accelerators.news",
@@ -1261,7 +1291,8 @@
       "next_due": "2026-10-05",
       "status": "assumed",
       "sensitivity_rank": 3,
-      "notes": "芯片价格变动、供给与交期"
+      "notes": "芯片价格变动、供给与交期",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.accelerators.gpu.used_and_rack",
@@ -1301,7 +1332,8 @@
       "next_due": "2026-10-07",
       "status": "assumed",
       "sensitivity_rank": null,
-      "notes": "代际价格曲线与残值"
+      "notes": "代际价格曲线与残值",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.other_it.boq.reference_design",
@@ -1335,7 +1367,8 @@
       "next_due": "2026-10-15",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": "每 MW 工程量表：CDU、歧管、电源架、母线、交换机、每 GPU 光模块配比、PSU、冷却液量"
+      "notes": "每 MW 工程量表：CDU、歧管、电源架、母线、交换机、每 GPU 光模块配比、PSU、冷却液量",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.other_it.components.quotes",
@@ -1369,7 +1402,8 @@
       "next_due": "2026-10-07",
       "status": "needed",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.shell.product",
@@ -1410,7 +1444,8 @@
       "next_due": "2026-12-27",
       "status": "sourced",
       "sensitivity_rank": 3,
-      "notes": "变压器、开关柜、UPS、冷机的交期与价格"
+      "notes": "变压器、开关柜、UPS、冷机的交期与价格",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.shell.capex.ppi_escalation",
@@ -1443,7 +1478,8 @@
       "next_due": "2026-10-15",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "电气造价涨幅与交期驱动"
+      "notes": "电气造价涨幅与交期驱动",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.shell.capex.cost_index",
@@ -1495,7 +1531,8 @@
       "next_due": "2026-11-30",
       "status": "sourced",
       "sensitivity_rank": 4,
-      "notes": "Tier 溢价、软成本与不可预见费仍是作者假设"
+      "notes": "Tier 溢价、软成本与不可预见费仍是作者假设",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.shell.capex.developer_disclosure",
@@ -1536,7 +1573,8 @@
       "next_due": "2026-11-15",
       "status": "sourced",
       "sensitivity_rank": 3,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.shell.construction.duration",
@@ -1574,7 +1612,8 @@
       "next_due": "2026-12-31",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.shell.lead_time.equipment",
@@ -1610,7 +1649,8 @@
       "next_due": "2026-12-31",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": "近期任务：交期与紧缺驱动建设期与电气造价涨幅"
+      "notes": "近期任务：交期与紧缺驱动建设期与电气造价涨幅",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.shell.interconnection.queue",
@@ -1644,7 +1684,8 @@
       "next_due": "2027-04-30",
       "status": "needed",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.btm.btm.generation",
@@ -1679,7 +1720,8 @@
       "next_due": "2026-10-31",
       "status": "needed",
       "sensitivity_rank": null,
-      "notes": "表后电力 MW、造价、COD"
+      "notes": "表后电力 MW、造价、COD",
+      "curated": false
     },
     {
       "id": "F.cost.depreciation.capex.land.land.transactions",
@@ -1717,7 +1759,8 @@
       "next_due": "2027-03-31",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.tax.tax_depreciation.macrs",
@@ -1749,7 +1792,8 @@
       "next_due": "2027-01-31",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.cost.tax.tax.rates",
@@ -1787,7 +1831,8 @@
       "next_due": "2027-04-30",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": "动产税与用电税已抓到，待进入模型规则段"
+      "notes": "动产税与用电税已抓到，待进入模型规则段",
+      "curated": false
     },
     {
       "id": "F.capital.news",
@@ -1821,7 +1866,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "项目债、GPU 抵押贷、ABS 的利率与杠杆条款"
+      "notes": "项目债、GPU 抵押贷、ABS 的利率与杠杆条款",
+      "curated": false
     },
     {
       "id": "F.capital.debt.terms",
@@ -1863,7 +1909,8 @@
       "next_due": "2026-11-15",
       "status": "sourced",
       "sensitivity_rank": 8,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.capital.base_rates",
@@ -1896,7 +1943,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 8,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.capital.rating.presale",
@@ -1929,7 +1977,8 @@
       "next_due": "2026-12-31",
       "status": "needed",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "F.capital.exit.cap_rate",
@@ -1964,7 +2013,8 @@
       "next_due": "2027-02-28",
       "status": "sourced",
       "sensitivity_rank": null,
-      "notes": ""
+      "notes": "",
+      "curated": false
     },
     {
       "id": "P.hv-switchyard.spec",
@@ -1985,11 +2035,11 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "日立能源",
-        "西门子能源",
-        "ABB"
+        "Hitachi Energy GIS 产品页",
+        "Siemens Energy 8DA/8DQ",
+        "ABB 高压开关"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -1998,7 +2048,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高压开关站/GIS：规格与供应商名单（电力，S1）"
+      "notes": "高压开关站/GIS：规格与供应商名单（电力，S1）",
+      "curated": true
     },
     {
       "id": "P.hv-switchyard.price",
@@ -2025,20 +2076,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "公用事业费率案与项目招标",
       "instances": [
-        "日立能源",
-        "西门子能源",
-        "ABB"
+        "FERC / 州公用事业委员会费率案",
+        "园区变电站招标公告"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高压开关站/GIS：自己的价格——重切规则的第一条件"
+      "notes": "高压开关站/GIS：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.hv-switchyard.lead_time",
@@ -2059,20 +2110,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会与行业报告",
       "instances": [
-        "日立能源",
-        "西门子能源",
-        "ABB"
+        "Hitachi Energy 财报电话会",
+        "Siemens Energy 财报",
+        "Wood Mackenzie 电网设备交期"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高压开关站/GIS：自己的交期——重切规则的第三条件"
+      "notes": "高压开关站/GIS：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.hv-switchyard.news",
@@ -2091,11 +2143,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "日立能源",
-        "西门子能源",
-        "ABB"
+        "开关站/GIS 订单",
+        "电网设备交期"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -2104,7 +2155,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高压开关站/GIS：tight 状态部件的供应事件"
+      "notes": "高压开关站/GIS：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.transformer.spec",
@@ -2125,10 +2177,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "金盘科技 / 特锐德 / 白云电器 · 干变/预制电力模块",
-        "Hitachi Energy日立能源 / Siemens Energy / Hyosung晓星 / GE Vernova · 大型电力变压器"
+        "Hitachi Energy 大型电力变压器",
+        "Siemens Energy 变压器",
+        "Hyosung 重工",
+        "GE Vernova 变压器"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -2137,7 +2191,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "大型电力变压器：规格与供应商名单（电力，S1）"
+      "notes": "大型电力变压器：规格与供应商名单（电力，S1）",
+      "curated": true
     },
     {
       "id": "P.transformer.price",
@@ -2164,19 +2219,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "政府统计与公用事业采购",
       "instances": [
-        "金盘科技 / 特锐德 / 白云电器 · 干变/预制电力模块",
-        "Hitachi Energy日立能源 / Siemens Energy / Hyosung晓星 / GE Vernova · 大型电力变压器"
+        "BLS PPI 电力变压器（PCU335311）",
+        "公用事业变压器采购案"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "大型电力变压器：自己的价格——重切规则的第一条件"
+      "notes": "大型电力变压器：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.transformer.lead_time",
@@ -2201,19 +2257,21 @@
       ],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "研报与财报电话会",
       "instances": [
-        "金盘科技 / 特锐德 / 白云电器 · 干变/预制电力模块",
-        "Hitachi Energy日立能源 / Siemens Energy / Hyosung晓星 / GE Vernova · 大型电力变压器"
+        "Wood Mackenzie 变压器交期报告",
+        "NIAC / DOE 变压器供应链报告",
+        "Hitachi Energy 财报电话会"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "sourced",
       "sensitivity_rank": 2,
-      "notes": "大型电力变压器：自己的交期——重切规则的第三条件"
+      "notes": "大型电力变压器：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.transformer.news",
@@ -2232,10 +2290,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "金盘科技 / 特锐德 / 白云电器 · 干变/预制电力模块",
-        "Hitachi Energy日立能源 / Siemens Energy / Hyosung晓星 / GE Vernova · 大型电力变压器"
+        "变压器交期",
+        "变压器产能扩建"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -2244,7 +2302,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "大型电力变压器：tight 状态部件的供应事件"
+      "notes": "大型电力变压器：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.mv-switchgear.spec",
@@ -2265,9 +2324,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "ABB · 中压UPS/配电"
+        "ABB UniGear",
+        "Schneider SM6 / PIX",
+        "Eaton 中压开关",
+        "Siemens NXAIR"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -2276,7 +2338,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "中压开关柜：规格与供应商名单（电力，S1）"
+      "notes": "中压开关柜：规格与供应商名单（电力，S1）",
+      "curated": true
     },
     {
       "id": "P.mv-switchgear.price",
@@ -2303,18 +2366,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "政府统计",
       "instances": [
-        "ABB · 中压UPS/配电"
+        "BLS PPI 开关设备（PCU335313）"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "中压开关柜：自己的价格——重切规则的第一条件"
+      "notes": "中压开关柜：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.mv-switchgear.lead_time",
@@ -2335,18 +2399,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "ABB · 中压UPS/配电"
+        "Schneider Electric 财报电话会",
+        "ABB 财报",
+        "Eaton 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "中压开关柜：自己的交期——重切规则的第三条件"
+      "notes": "中压开关柜：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.mv-switchgear.news",
@@ -2365,9 +2432,9 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "ABB · 中压UPS/配电"
+        "中压开关柜交期"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -2376,7 +2443,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "中压开关柜：tight 状态部件的供应事件"
+      "notes": "中压开关柜：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.gas-turbine.spec",
@@ -2396,9 +2464,11 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "GE Vernova / Siemens Energy / Mitsubishi Power · 燃气轮机"
+        "GE Vernova LM2500XPRESS / 7HA",
+        "Siemens Energy SGT-800",
+        "Mitsubishi Power M501"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -2407,7 +2477,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "燃气轮机：规格与供应商名单（电力，S1）"
+      "notes": "燃气轮机：规格与供应商名单（电力，S1）",
+      "curated": true
     },
     {
       "id": "P.gas-turbine.price",
@@ -2433,18 +2504,21 @@
       ],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "项目公告与研报",
       "instances": [
-        "GE Vernova / Siemens Energy / Mitsubishi Power · 燃气轮机"
+        "自备电源项目公告（$/kW）",
+        "Lazard LCOE",
+        "研报燃机造价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "燃气轮机：自己的价格——重切规则的第一条件"
+      "notes": "燃气轮机：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.gas-turbine.lead_time",
@@ -2468,18 +2542,21 @@
       ],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "GE Vernova / Siemens Energy / Mitsubishi Power · 燃气轮机"
+        "GE Vernova 财报电话会（订单簿、槽位预订）",
+        "Siemens Energy 财报",
+        "Mitsubishi Heavy 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "燃气轮机：自己的交期——重切规则的第三条件"
+      "notes": "燃气轮机：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.gas-turbine.news",
@@ -2499,9 +2576,11 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "GE Vernova / Siemens Energy / Mitsubishi Power · 燃气轮机"
+        "燃机订单",
+        "燃机槽位",
+        "数据中心自备电源"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -2510,7 +2589,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "燃气轮机：tight 状态部件的供应事件"
+      "notes": "燃气轮机：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.gas-engine.spec",
@@ -2530,9 +2610,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "瓦锡兰"
+        "Wärtsilä 31SG / 50SG",
+        "Caterpillar G3520",
+        "Cummins QSK95",
+        "INNIO Jenbacher"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -2541,7 +2624,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "燃气往复式机组：规格与供应商名单（电力，S1）"
+      "notes": "燃气往复式机组：规格与供应商名单（电力，S1）",
+      "curated": true
     },
     {
       "id": "P.gas-engine.price",
@@ -2565,18 +2649,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "项目公告",
       "instances": [
-        "瓦锡兰"
+        "自备电源项目公告（$/kW）"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "燃气往复式机组：自己的价格——重切规则的第一条件"
+      "notes": "燃气往复式机组：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.gas-engine.lead_time",
@@ -2598,18 +2683,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "瓦锡兰"
+        "Wärtsilä 财报电话会",
+        "Caterpillar 财报",
+        "Cummins 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "燃气往复式机组：自己的交期——重切规则的第三条件"
+      "notes": "燃气往复式机组：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.gas-engine.news",
@@ -2629,9 +2717,9 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "瓦锡兰"
+        "往复式机组 数据中心"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -2640,7 +2728,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "燃气往复式机组：transition 状态部件的供应事件"
+      "notes": "燃气往复式机组：transition 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.fuel-cell.spec",
@@ -2660,9 +2749,9 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "Bloom Energy · 燃料电池"
+        "Bloom Energy Series 10 产品页"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -2671,7 +2760,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "燃料电池：规格与供应商名单（电力，S1）"
+      "notes": "燃料电池：规格与供应商名单（电力，S1）",
+      "curated": true
     },
     {
       "id": "P.fuel-cell.price",
@@ -2695,18 +2785,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "Bloom Energy · 燃料电池"
+        "Bloom Energy 财报（$/kW 与毛利）"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
-      "calendar": "月",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "燃料电池：自己的价格——重切规则的第一条件"
+      "notes": "燃料电池：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.fuel-cell.lead_time",
@@ -2728,18 +2819,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "Bloom Energy · 燃料电池"
+        "Bloom Energy 财报电话会（交付周期）"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "燃料电池：自己的交期——重切规则的第三条件"
+      "notes": "燃料电池：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.fuel-cell.news",
@@ -2759,9 +2851,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "Bloom Energy · 燃料电池"
+        "Bloom Energy 数据中心",
+        "燃料电池 桥接电源"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -2770,7 +2863,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "燃料电池：transition 状态部件的供应事件"
+      "notes": "燃料电池：transition 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.smr.spec",
@@ -2789,18 +2883,23 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "设计文件与监管卷宗",
       "instances": [
-        "小型模块化反应堆"
+        "NuScale VOYGR",
+        "X-energy Xe-100",
+        "Oklo Aurora",
+        "Kairos Hermes",
+        "NRC 许可卷宗"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
       "host": "aws",
-      "calendar": "每代际发布",
+      "calendar": "每里程碑",
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "小型模块化反应堆：规格与供应商名单（电力，S1）"
+      "notes": "小型模块化反应堆：规格与供应商名单（电力，S1）",
+      "curated": true
     },
     {
       "id": "P.smr.price",
@@ -2821,18 +2920,22 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "合同公告与研报",
       "instances": [
-        "小型模块化反应堆"
+        "Google–Kairos 合同",
+        "Amazon–X-energy 合同",
+        "Meta 核电 RFP",
+        "DOE 小堆成本估算"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "小型模块化反应堆：自己的价格——重切规则的第一条件"
+      "notes": "小型模块化反应堆：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.smr.lead_time",
@@ -2851,18 +2954,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "监管里程碑",
       "instances": [
-        "小型模块化反应堆"
+        "NRC 许可时间表",
+        "CNSC 里程碑"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "小型模块化反应堆：自己的交期——重切规则的第三条件"
+      "notes": "小型模块化反应堆：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.smr.news",
@@ -2881,9 +2986,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "小型模块化反应堆"
+        "SMR 数据中心",
+        "小型模块化反应堆 合同"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -2892,7 +2998,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "小型模块化反应堆：emerging 状态部件的供应事件"
+      "notes": "小型模块化反应堆：emerging 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.backup-power.spec",
@@ -2913,12 +3020,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "卡特彼勒 · 大功率柴发",
-        "康明斯 · 大功率柴发",
-        "Rolls-Royce mtu / Kohler / 三菱重工 · 大功率柴发",
-        "潍柴 / 玉柴 / 科泰电源 · 国产柴发"
+        "Caterpillar C175 / 3516",
+        "Cummins QSK",
+        "Rolls-Royce mtu Series 4000",
+        "Kohler KD"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -2927,7 +3034,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "柴油发电机组：规格与供应商名单（电力，S1）"
+      "notes": "柴油发电机组：规格与供应商名单（电力，S1）",
+      "curated": true
     },
     {
       "id": "P.backup-power.price",
@@ -2954,21 +3062,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "招标与分销报价",
       "instances": [
-        "卡特彼勒 · 大功率柴发",
-        "康明斯 · 大功率柴发",
-        "Rolls-Royce mtu / Kohler / 三菱重工 · 大功率柴发",
-        "潍柴 / 玉柴 / 科泰电源 · 国产柴发"
+        "柴发招标公告",
+        "分销商报价"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "柴油发电机组：自己的价格——重切规则的第一条件"
+      "notes": "柴油发电机组：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.backup-power.lead_time",
@@ -2991,21 +3098,21 @@
       ],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "卡特彼勒 · 大功率柴发",
-        "康明斯 · 大功率柴发",
-        "Rolls-Royce mtu / Kohler / 三菱重工 · 大功率柴发",
-        "潍柴 / 玉柴 / 科泰电源 · 国产柴发"
+        "Caterpillar 财报电话会（发电机组订单）",
+        "Cummins 财报",
+        "Rolls-Royce 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "柴油发电机组：自己的交期——重切规则的第三条件"
+      "notes": "柴油发电机组：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.backup-power.news",
@@ -3024,12 +3131,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "卡特彼勒 · 大功率柴发",
-        "康明斯 · 大功率柴发",
-        "Rolls-Royce mtu / Kohler / 三菱重工 · 大功率柴发",
-        "潍柴 / 玉柴 / 科泰电源 · 国产柴发"
+        "柴油发电机组 交期",
+        "柴发 数据中心 订单"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -3038,7 +3143,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "柴油发电机组：tight 状态部件的供应事件"
+      "notes": "柴油发电机组：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.bess.spec",
@@ -3058,10 +3164,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "华为SmartLi / Vertiv / 宁德时代 / 双登 / 南都电源 · 机架BBU/锂电柜",
-        "Tesla Energy / 阳光电源 / CATL / Fluence · BESS"
+        "Tesla Megapack",
+        "Fluence Gridstack",
+        "BYD Cube",
+        "CATL EnerC"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -3070,7 +3178,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "储能系统（BESS）：规格与供应商名单（电力，S1）"
+      "notes": "储能系统（BESS）：规格与供应商名单（电力，S1）",
+      "curated": true
     },
     {
       "id": "P.bess.price",
@@ -3094,19 +3203,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "研报与价格调查",
       "instances": [
-        "华为SmartLi / Vertiv / 宁德时代 / 双登 / 南都电源 · 机架BBU/锂电柜",
-        "Tesla Energy / 阳光电源 / CATL / Fluence · BESS"
+        "BNEF 储能系统价格调查",
+        "TrendForce 储能电芯价格"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "储能系统（BESS）：自己的价格——重切规则的第一条件"
+      "notes": "储能系统（BESS）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.bess.lead_time",
@@ -3128,19 +3238,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "华为SmartLi / Vertiv / 宁德时代 / 双登 / 南都电源 · 机架BBU/锂电柜",
-        "Tesla Energy / 阳光电源 / CATL / Fluence · BESS"
+        "Tesla 财报（储能部署）",
+        "Fluence 财报电话会"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "储能系统（BESS）：自己的交期——重切规则的第三条件"
+      "notes": "储能系统（BESS）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.bess.news",
@@ -3160,10 +3271,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "华为SmartLi / Vertiv / 宁德时代 / 双登 / 南都电源 · 机架BBU/锂电柜",
-        "Tesla Energy / 阳光电源 / CATL / Fluence · BESS"
+        "储能 数据中心",
+        "BESS 订单"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -3172,7 +3283,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "储能系统（BESS）：emerging 状态部件的供应事件"
+      "notes": "储能系统（BESS）：emerging 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.fuel-storage.spec",
@@ -3191,18 +3303,21 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页与规范",
       "instances": [
-        "柴油储运（储罐、日用箱、加注）"
+        "Containment Solutions 储罐",
+        "Highland Tank",
+        "NFPA 110 / 30 规范"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
       "host": "aws",
-      "calendar": "每代际发布",
+      "calendar": "每版本",
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "柴油储运（储罐、日用箱、加注）：规格与供应商名单（电力，S1）"
+      "notes": "柴油储运（储罐、日用箱、加注）：规格与供应商名单（电力，S1）",
+      "curated": true
     },
     {
       "id": "P.fuel-storage.price",
@@ -3223,18 +3338,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "招标",
       "instances": [
-        "柴油储运（储罐、日用箱、加注）"
+        "储罐与加注系统招标"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "柴油储运（储罐、日用箱、加注）：自己的价格——重切规则的第一条件"
+      "notes": "柴油储运（储罐、日用箱、加注）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.fuel-storage.lead_time",
@@ -3253,18 +3369,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "总包报价",
       "instances": [
-        "柴油储运（储罐、日用箱、加注）"
+        "机电总包报价"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "柴油储运（储罐、日用箱、加注）：自己的交期——重切规则的第三条件"
+      "notes": "柴油储运（储罐、日用箱、加注）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.dry-cooler.spec",
@@ -3277,18 +3394,19 @@
       "factor_id": "cost.energy.pue",
       "part_id": "dry-cooler",
       "site_right_id": null,
-      "model_inputs": [
-        "pue",
-        "wue"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "Johnson Controls江森自控(York) / Trane特灵 / Carrier开利 / Modine(Airedale) · 冷水机组/干冷器"
+        "EVAPCO",
+        "Baltimore Aircoil",
+        "SPX Cooling",
+        "Munters",
+        "Modine Airedale"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -3297,7 +3415,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "干冷器/冷却塔/蒸发冷：规格与供应商名单（冷却，S1）"
+      "notes": "干冷器/冷却塔/蒸发冷：规格与供应商名单（冷却，S1）",
+      "curated": true
     },
     {
       "id": "P.dry-cooler.price",
@@ -3316,18 +3435,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "造价指南与分包报价",
       "instances": [
-        "Johnson Controls江森自控(York) / Trane特灵 / Carrier开利 / Modine(Airedale) · 冷水机组/干冷器"
+        "Turner & Townsend 数据中心造价",
+        "机电分包报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "年",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "干冷器/冷却塔/蒸发冷：自己的价格——重切规则的第一条件"
+      "notes": "干冷器/冷却塔/蒸发冷：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.dry-cooler.lead_time",
@@ -3346,18 +3467,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "Johnson Controls江森自控(York) / Trane特灵 / Carrier开利 / Modine(Airedale) · 冷水机组/干冷器"
+        "Modine 财报电话会",
+        "SPX Technologies 财报",
+        "Munters 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "干冷器/冷却塔/蒸发冷：自己的交期——重切规则的第三条件"
+      "notes": "干冷器/冷却塔/蒸发冷：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.water-treatment.spec",
@@ -3376,9 +3500,11 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "Ecolab(Nalco) / Veolia · 冷却水处理"
+        "Ecolab Nalco Water",
+        "Veolia Water Technologies",
+        "Xylem"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -3387,7 +3513,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "水处理与供水（泵站、过滤、软化）：规格与供应商名单（冷却，S1）"
+      "notes": "水处理与供水（泵站、过滤、软化）：规格与供应商名单（冷却，S1）",
+      "curated": true
     },
     {
       "id": "P.water-treatment.price",
@@ -3403,7 +3530,6 @@
       "model_inputs": [
         "bandwidth_per_mw",
         "cost_per_fte",
-        "fte_per_mw",
         "insurance_pct",
         "labor_index",
         "other_opex_per_mw",
@@ -3415,18 +3541,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "服务合同",
       "instances": [
-        "Ecolab(Nalco) / Veolia · 冷却水处理"
+        "水处理服务合同公告"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "年",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "水处理与供水（泵站、过滤、软化）：自己的价格——重切规则的第一条件"
+      "notes": "水处理与供水（泵站、过滤、软化）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.water-treatment.lead_time",
@@ -3447,18 +3574,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "分包报价",
       "instances": [
-        "Ecolab(Nalco) / Veolia · 冷却水处理"
+        "机电分包报价"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "水处理与供水（泵站、过滤、软化）：自己的交期——重切规则的第三条件"
+      "notes": "水处理与供水（泵站、过滤、软化）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.shell.spec",
@@ -3479,18 +3607,23 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "设计与总包公开资料",
       "instances": [
-        "建筑与土建（含场坪、基础、外墙屋面、机房装修）"
+        "Turner Construction",
+        "DPR",
+        "Holder",
+        "Jacobs",
+        "Uptime Tier 标准"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
       "host": "aws",
-      "calendar": "每代际发布",
+      "calendar": "每版本",
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：规格与供应商名单（设施，S2）"
+      "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：规格与供应商名单（设施，S2）",
+      "curated": true
     },
     {
       "id": "P.shell.price",
@@ -3519,18 +3652,21 @@
       ],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "造价指数",
       "instances": [
-        "建筑与土建（含场坪、基础、外墙屋面、机房装修）"
+        "Turner & Townsend Data Centre Cost Index",
+        "Cushman & Wakefield 造价报告",
+        "JLL 造价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "年",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：自己的价格——重切规则的第一条件"
+      "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.shell.lead_time",
@@ -3551,18 +3687,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "建设周期跟踪",
       "instances": [
-        "建筑与土建（含场坪、基础、外墙屋面、机房装修）"
+        "Epoch AI 建设周期跟踪",
+        "Uptime Institute 调查",
+        "公司公告交付时间"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：自己的交期——重切规则的第三条件"
+      "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.shell.news",
@@ -3592,7 +3731,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：tight 状态部件的供应事件"
+      "notes": "建筑与土建（含场坪、基础、外墙屋面、机房装修）：tight 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.fire.spec",
@@ -3611,9 +3751,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "气体灭火（七氟丙烷/全氟己酮）+ VESDA极早期探测(Honeywell Xtralis) · 机房消防"
+        "Xtralis VESDA",
+        "Kidde Fenwal",
+        "Siemens Cerberus",
+        "3M Novec 1230 替代品"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -3622,7 +3765,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "消防（探测、气体灭火、喷淋）：规格与供应商名单（设施，S2）"
+      "notes": "消防（探测、气体灭火、喷淋）：规格与供应商名单（设施，S2）",
+      "curated": true
     },
     {
       "id": "P.fire.price",
@@ -3638,7 +3782,6 @@
       "model_inputs": [
         "bandwidth_per_mw",
         "cost_per_fte",
-        "fte_per_mw",
         "insurance_pct",
         "labor_index",
         "other_opex_per_mw",
@@ -3650,18 +3793,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分包报价",
       "instances": [
-        "气体灭火（七氟丙烷/全氟己酮）+ VESDA极早期探测(Honeywell Xtralis) · 机房消防"
+        "消防分包报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "消防（探测、气体灭火、喷淋）：自己的价格——重切规则的第一条件"
+      "notes": "消防（探测、气体灭火、喷淋）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.fire.lead_time",
@@ -3682,18 +3826,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "分包报价",
       "instances": [
-        "气体灭火（七氟丙烷/全氟己酮）+ VESDA极早期探测(Honeywell Xtralis) · 机房消防"
+        "消防分包交期"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "消防（探测、气体灭火、喷淋）：自己的交期——重切规则的第三条件"
+      "notes": "消防（探测、气体灭火、喷淋）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.security.spec",
@@ -3712,9 +3857,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "海康威视 / 大华 · 视频与门禁"
+        "Axis",
+        "Genetec",
+        "LenelS2",
+        "HID",
+        "海康威视 / 大华"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -3723,7 +3872,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "安防（门禁、视频、周界）：规格与供应商名单（设施，S2）"
+      "notes": "安防（门禁、视频、周界）：规格与供应商名单（设施，S2）",
+      "curated": true
     },
     {
       "id": "P.security.price",
@@ -3739,7 +3889,6 @@
       "model_inputs": [
         "bandwidth_per_mw",
         "cost_per_fte",
-        "fte_per_mw",
         "insurance_pct",
         "labor_index",
         "other_opex_per_mw",
@@ -3751,18 +3900,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分包报价",
       "instances": [
-        "海康威视 / 大华 · 视频与门禁"
+        "安防分包报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "安防（门禁、视频、周界）：自己的价格——重切规则的第一条件"
+      "notes": "安防（门禁、视频、周界）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.security.lead_time",
@@ -3783,18 +3933,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "分包报价",
       "instances": [
-        "海康威视 / 大华 · 视频与门禁"
+        "安防分包交期"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "安防（门禁、视频、周界）：自己的交期——重切规则的第三条件"
+      "notes": "安防（门禁、视频、周界）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.ups.spec",
@@ -3815,15 +3966,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "维谛技术 · 大功率UPS/HVDC",
-        "伊顿 · 大功率UPS",
-        "ABB · 中压UPS/配电",
-        "西门子 · 配电与低压柜",
-        "台达电子 · UPS/HVDC/ORv3电源",
-        "华为数字能源 · 全链路电力/锂电",
-        "易事特 · UPS"
+        "Vertiv Liebert EXL / Trinergy",
+        "Eaton 9395 / Power Xpert",
+        "Schneider Galaxy VX / VL",
+        "ABB MegaFlex",
+        "华为数字能源"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -3832,7 +3981,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "UPS 系统（整流、逆变、静态开关）：规格与供应商名单（电力，S3）"
+      "notes": "UPS 系统（整流、逆变、静态开关）：规格与供应商名单（电力，S3）",
+      "curated": true
     },
     {
       "id": "P.ups.price",
@@ -3859,24 +4009,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "政府统计与财报",
       "instances": [
-        "维谛技术 · 大功率UPS/HVDC",
-        "伊顿 · 大功率UPS",
-        "ABB · 中压UPS/配电",
-        "西门子 · 配电与低压柜",
-        "台达电子 · UPS/HVDC/ORv3电源",
-        "华为数字能源 · 全链路电力/锂电",
-        "易事特 · UPS"
+        "BLS PPI 电源设备",
+        "Vertiv 财报（定价评论）"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "UPS 系统（整流、逆变、静态开关）：自己的价格——重切规则的第一条件"
+      "notes": "UPS 系统（整流、逆变、静态开关）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.ups.lead_time",
@@ -3897,24 +4043,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "维谛技术 · 大功率UPS/HVDC",
-        "伊顿 · 大功率UPS",
-        "ABB · 中压UPS/配电",
-        "西门子 · 配电与低压柜",
-        "台达电子 · UPS/HVDC/ORv3电源",
-        "华为数字能源 · 全链路电力/锂电",
-        "易事特 · UPS"
+        "Vertiv 财报电话会（订单簿与交期）",
+        "Eaton 财报",
+        "Schneider Electric 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "UPS 系统（整流、逆变、静态开关）：自己的交期——重切规则的第三条件"
+      "notes": "UPS 系统（整流、逆变、静态开关）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.ups-battery.spec",
@@ -3935,9 +4078,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "华为数字能源 · 全链路电力/锂电"
+        "Vertiv HPL 锂电柜",
+        "Schneider Galaxy Li-Ion",
+        "Samsung SDI / LG 电芯",
+        "EVE / 亿纬 电芯"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -3946,7 +4092,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "UPS 电池（锂电/铅酸）：规格与供应商名单（电力，S3）"
+      "notes": "UPS 电池（锂电/铅酸）：规格与供应商名单（电力，S3）",
+      "curated": true
     },
     {
       "id": "P.ups-battery.price",
@@ -3973,18 +4120,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "电芯价格调查",
       "instances": [
-        "华为数字能源 · 全链路电力/锂电"
+        "TrendForce 磷酸铁锂电芯价格",
+        "InfoLink 电芯价格"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "UPS 电池（锂电/铅酸）：自己的价格——重切规则的第一条件"
+      "notes": "UPS 电池（锂电/铅酸）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.ups-battery.lead_time",
@@ -4005,18 +4154,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "华为数字能源 · 全链路电力/锂电"
+        "Vertiv 财报",
+        "电芯厂财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "UPS 电池（锂电/铅酸）：自己的交期——重切规则的第三条件"
+      "notes": "UPS 电池（锂电/铅酸）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.ups-battery.news",
@@ -4035,9 +4186,9 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "华为数字能源 · 全链路电力/锂电"
+        "UPS 锂电 数据中心"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -4046,7 +4197,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "UPS 电池（锂电/铅酸）：transition 状态部件的供应事件"
+      "notes": "UPS 电池（锂电/铅酸）：transition 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.lv-switchgear.spec",
@@ -4067,10 +4219,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "西门子 · 配电与低压柜",
-        "中恒电气 · HVDC/巴拿马电源"
+        "ABB MNS",
+        "Schneider Prisma / Okken",
+        "Eaton Power Xpert",
+        "Siemens SIVACON",
+        "中恒电气"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -4079,7 +4234,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "低压开关柜：规格与供应商名单（电力，S3）"
+      "notes": "低压开关柜：规格与供应商名单（电力，S3）",
+      "curated": true
     },
     {
       "id": "P.lv-switchgear.price",
@@ -4106,19 +4262,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "政府统计",
       "instances": [
-        "西门子 · 配电与低压柜",
-        "中恒电气 · HVDC/巴拿马电源"
+        "BLS PPI 开关设备（PCU335313）"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "低压开关柜：自己的价格——重切规则的第一条件"
+      "notes": "低压开关柜：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.lv-switchgear.lead_time",
@@ -4139,19 +4295,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "西门子 · 配电与低压柜",
-        "中恒电气 · HVDC/巴拿马电源"
+        "Schneider Electric 财报电话会",
+        "ABB 财报",
+        "Eaton 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "低压开关柜：自己的交期——重切规则的第三条件"
+      "notes": "低压开关柜：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.lv-switchgear.news",
@@ -4170,10 +4328,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "西门子 · 配电与低压柜",
-        "中恒电气 · HVDC/巴拿马电源"
+        "低压开关柜 交期",
+        "配电设备 数据中心"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -4182,7 +4340,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "低压开关柜：tight 状态部件的供应事件"
+      "notes": "低压开关柜：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.busway.spec",
@@ -4203,11 +4362,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "伊顿",
-        "施耐德电气",
-        "西门子"
+        "Eaton Pow-R-Way",
+        "Schneider Canalis",
+        "Siemens Sentron",
+        "Starline（Legrand）",
+        "E+I Engineering"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -4216,7 +4377,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "母线槽：规格与供应商名单（电力，S3）"
+      "notes": "母线槽：规格与供应商名单（电力，S3）",
+      "curated": true
     },
     {
       "id": "P.busway.price",
@@ -4243,20 +4405,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分包报价",
       "instances": [
-        "伊顿",
-        "施耐德电气",
-        "西门子"
+        "电气分包报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "母线槽：自己的价格——重切规则的第一条件"
+      "notes": "母线槽：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.busway.lead_time",
@@ -4277,20 +4438,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "伊顿",
-        "施耐德电气",
-        "西门子"
+        "Legrand 财报",
+        "Eaton 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "母线槽：自己的交期——重切规则的第三条件"
+      "notes": "母线槽：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.busway.news",
@@ -4309,11 +4470,9 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "伊顿",
-        "施耐德电气",
-        "西门子"
+        "母线槽 数据中心"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -4322,7 +4481,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "母线槽：tight 状态部件的供应事件"
+      "notes": "母线槽：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.pdu.spec",
@@ -4343,11 +4503,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "维谛技术",
-        "伊顿",
-        "施耐德电气"
+        "Vertiv Geist",
+        "Schneider APC",
+        "Eaton",
+        "Raritan / Legrand",
+        "Starline"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -4356,7 +4518,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "机房配电柜/PDU/RPP（含机柜配电条）：规格与供应商名单（电力，S3）"
+      "notes": "机房配电柜/PDU/RPP（含机柜配电条）：规格与供应商名单（电力，S3）",
+      "curated": true
     },
     {
       "id": "P.pdu.price",
@@ -4383,11 +4546,10 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分销商价目",
       "instances": [
-        "维谛技术",
-        "伊顿",
-        "施耐德电气"
+        "CDW 价目",
+        "Insight 价目"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
@@ -4396,7 +4558,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "机房配电柜/PDU/RPP（含机柜配电条）：自己的价格——重切规则的第一条件"
+      "notes": "机房配电柜/PDU/RPP（含机柜配电条）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.pdu.lead_time",
@@ -4417,20 +4580,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "分销商库存",
       "instances": [
-        "维谛技术",
-        "伊顿",
-        "施耐德电气"
+        "CDW 库存状态"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
-      "host": "aws",
-      "calendar": "季度",
+      "mechanism": "js_page",
+      "team": "fetchquotes",
+      "host": "macmini",
+      "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "机房配电柜/PDU/RPP（含机柜配电条）：自己的交期——重切规则的第三条件"
+      "notes": "机房配电柜/PDU/RPP（含机柜配电条）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.chiller.spec",
@@ -4443,18 +4605,19 @@
       "factor_id": "cost.energy.pue",
       "part_id": "chiller",
       "site_right_id": null,
-      "model_inputs": [
-        "pue",
-        "wue"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "Johnson Controls江森自控(York) / Trane特灵 / Carrier开利 / Modine(Airedale) · 冷水机组/干冷器"
+        "Trane",
+        "Carrier",
+        "Johnson Controls York",
+        "Daikin",
+        "Vertiv Liebert AFC"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -4463,7 +4626,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "冷水机组：规格与供应商名单（冷却，S3）"
+      "notes": "冷水机组：规格与供应商名单（冷却，S3）",
+      "curated": true
     },
     {
       "id": "P.chiller.price",
@@ -4482,18 +4646,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "政府统计与造价指南",
       "instances": [
-        "Johnson Controls江森自控(York) / Trane特灵 / Carrier开利 / Modine(Airedale) · 冷水机组/干冷器"
+        "BLS PPI 商用制冷设备",
+        "Turner & Townsend 造价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
+      "mechanism": "api",
+      "team": "fetchstat",
+      "host": "aws",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "冷水机组：自己的价格——重切规则的第一条件"
+      "notes": "冷水机组：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.chiller.lead_time",
@@ -4512,18 +4678,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "Johnson Controls江森自控(York) / Trane特灵 / Carrier开利 / Modine(Airedale) · 冷水机组/干冷器"
+        "Trane Technologies 财报电话会（数据中心订单簿）",
+        "Carrier 财报",
+        "Johnson Controls 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "冷水机组：自己的交期——重切规则的第三条件"
+      "notes": "冷水机组：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.chilled-water-loop.spec",
@@ -4536,18 +4705,18 @@
       "factor_id": "cost.energy.pue",
       "part_id": "chilled-water-loop",
       "site_right_id": null,
-      "model_inputs": [
-        "pue",
-        "wue"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "冷冻水泵、管路与阀门"
+        "Grundfos",
+        "Armstrong Fluid Technology",
+        "Xylem Bell & Gossett",
+        "Victaulic"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -4556,7 +4725,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "冷冻水泵、管路与阀门：规格与供应商名单（冷却，S3）"
+      "notes": "冷冻水泵、管路与阀门：规格与供应商名单（冷却，S3）",
+      "curated": true
     },
     {
       "id": "P.chilled-water-loop.price",
@@ -4575,18 +4745,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "机电分包报价",
       "instances": [
-        "冷冻水泵、管路与阀门"
+        "机电分包报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "冷冻水泵、管路与阀门：自己的价格——重切规则的第一条件"
+      "notes": "冷冻水泵、管路与阀门：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.chilled-water-loop.lead_time",
@@ -4605,18 +4776,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "机电分包报价",
       "instances": [
-        "冷冻水泵、管路与阀门"
+        "机电分包交期"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "冷冻水泵、管路与阀门：自己的交期——重切规则的第三条件"
+      "notes": "冷冻水泵、管路与阀门：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.room-cooling.spec",
@@ -4629,19 +4801,19 @@
       "factor_id": "cost.energy.pue",
       "part_id": "room-cooling",
       "site_right_id": null,
-      "model_inputs": [
-        "pue",
-        "wue"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "世图兹 · 机房空调",
-        "蒙特 · 间接蒸发冷却"
+        "Vertiv Liebert CRV / DSE",
+        "Stulz",
+        "Schneider Uniflair",
+        "Munters",
+        "Airedale"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -4650,7 +4822,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "机房空气冷却（CRAH/CRAC/风墙）：规格与供应商名单（冷却，S3）"
+      "notes": "机房空气冷却（CRAH/CRAC/风墙）：规格与供应商名单（冷却，S3）",
+      "curated": true
     },
     {
       "id": "P.room-cooling.price",
@@ -4669,19 +4842,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商报价与分包",
       "instances": [
-        "世图兹 · 机房空调",
-        "蒙特 · 间接蒸发冷却"
+        "厂商报价",
+        "机电分包报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "机房空气冷却（CRAH/CRAC/风墙）：自己的价格——重切规则的第一条件"
+      "notes": "机房空气冷却（CRAH/CRAC/风墙）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.room-cooling.lead_time",
@@ -4700,19 +4874,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "世图兹 · 机房空调",
-        "蒙特 · 间接蒸发冷却"
+        "Vertiv 财报电话会",
+        "Stulz 公告"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "机房空气冷却（CRAH/CRAC/风墙）：自己的交期——重切规则的第三条件"
+      "notes": "机房空气冷却（CRAH/CRAC/风墙）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.cdu.spec",
@@ -4725,26 +4900,20 @@
       "factor_id": "cost.energy.pue",
       "part_id": "cdu",
       "site_right_id": null,
-      "model_inputs": [
-        "pue",
-        "wue"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "维谛技术 · CDU/全链条温控",
-        "CoolIT · 冷板DLC/CDU",
-        "Motivair（施耐德） · CDU/后门空调",
-        "Boyd · 冷板/CDU/热管理",
-        "nVent · 后门/机柜级液冷",
-        "英维克 · 全链条液冷/机房温控",
-        "申菱环境 · 液冷与专用空调",
-        "高澜股份 · 冷板/浸没CDU",
-        "同飞股份 / 佳力图 / 依米康 / 海悟 · 其他国产温控"
+        "Vertiv CoolChip CDU",
+        "CoolIT Systems",
+        "Motivair（Schneider）",
+        "Boyd",
+        "nVent",
+        "Delta"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -4753,7 +4922,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "CDU 与液冷分配：规格与供应商名单（冷却，S3）"
+      "notes": "CDU 与液冷分配：规格与供应商名单（冷却，S3）",
+      "curated": true
     },
     {
       "id": "P.cdu.price",
@@ -4772,26 +4942,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "研报 BOM",
       "instances": [
-        "维谛技术 · CDU/全链条温控",
-        "CoolIT · 冷板DLC/CDU",
-        "Motivair（施耐德） · CDU/后门空调",
-        "Boyd · 冷板/CDU/热管理",
-        "nVent · 后门/机柜级液冷",
-        "英维克 · 全链条液冷/机房温控",
-        "申菱环境 · 液冷与专用空调",
-        "高澜股份 · 冷板/浸没CDU",
-        "同飞股份 / 佳力图 / 依米康 / 海悟 · 其他国产温控"
+        "Dell'Oro 液冷报告",
+        "SemiAnalysis 液冷 BOM",
+        "Omdia 液冷"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "CDU 与液冷分配：自己的价格——重切规则的第一条件"
+      "notes": "CDU 与液冷分配：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.cdu.lead_time",
@@ -4812,26 +4977,20 @@
       ],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "维谛技术 · CDU/全链条温控",
-        "CoolIT · 冷板DLC/CDU",
-        "Motivair（施耐德） · CDU/后门空调",
-        "Boyd · 冷板/CDU/热管理",
-        "nVent · 后门/机柜级液冷",
-        "英维克 · 全链条液冷/机房温控",
-        "申菱环境 · 液冷与专用空调",
-        "高澜股份 · 冷板/浸没CDU",
-        "同飞股份 / 佳力图 / 依米康 / 海悟 · 其他国产温控"
+        "Vertiv 财报电话会",
+        "nVent 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "CDU 与液冷分配：自己的交期——重切规则的第三条件"
+      "notes": "CDU 与液冷分配：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.cdu.news",
@@ -4850,17 +5009,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "维谛技术 · CDU/全链条温控",
-        "CoolIT · 冷板DLC/CDU",
-        "Motivair（施耐德） · CDU/后门空调",
-        "Boyd · 冷板/CDU/热管理",
-        "nVent · 后门/机柜级液冷",
-        "英维克 · 全链条液冷/机房温控",
-        "申菱环境 · 液冷与专用空调",
-        "高澜股份 · 冷板/浸没CDU",
-        "同飞股份 / 佳力图 / 依米康 / 海悟 · 其他国产温控"
+        "CDU 订单",
+        "液冷 数据中心"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -4869,7 +5021,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "CDU 与液冷分配：transition 状态部件的供应事件"
+      "notes": "CDU 与液冷分配：transition 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.immersion.spec",
@@ -4888,10 +5041,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "LiquidStack / Submer / GRC · 浸没式液冷",
-        "曙光数创 · 浸没相变/冷板整机"
+        "GRC",
+        "Submer",
+        "LiquidStack",
+        "Asperitas"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -4900,7 +5055,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "浸没式液冷槽/系统：规格与供应商名单（冷却，S3）"
+      "notes": "浸没式液冷槽/系统：规格与供应商名单（冷却，S3）",
+      "curated": true
     },
     {
       "id": "P.immersion.price",
@@ -4921,19 +5077,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商报价",
       "instances": [
-        "LiquidStack / Submer / GRC · 浸没式液冷",
-        "曙光数创 · 浸没相变/冷板整机"
+        "厂商报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "浸没式液冷槽/系统：自己的价格——重切规则的第一条件"
+      "notes": "浸没式液冷槽/系统：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.immersion.lead_time",
@@ -4952,19 +5108,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商公告",
       "instances": [
-        "LiquidStack / Submer / GRC · 浸没式液冷",
-        "曙光数创 · 浸没相变/冷板整机"
+        "厂商交付公告"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "浸没式液冷槽/系统：自己的交期——重切规则的第三条件"
+      "notes": "浸没式液冷槽/系统：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.immersion.news",
@@ -4983,10 +5139,9 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "LiquidStack / Submer / GRC · 浸没式液冷",
-        "曙光数创 · 浸没相变/冷板整机"
+        "浸没式液冷 部署"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -4995,7 +5150,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "浸没式液冷槽/系统：emerging 状态部件的供应事件"
+      "notes": "浸没式液冷槽/系统：emerging 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.cabling.spec",
@@ -5014,11 +5170,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "康宁 · 数据中心光布线",
-        "康普 · 综合布线",
-        "长飞YOFC / 亨通 / 中天 / 烽火线缆 · 国产光纤光缆"
+        "Corning",
+        "CommScope",
+        "Panduit",
+        "Belden",
+        "AFL"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -5027,7 +5185,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "结构化布线与光纤：规格与供应商名单（IT · 网络，S3）"
+      "notes": "结构化布线与光纤：规格与供应商名单（IT · 网络，S3）",
+      "curated": true
     },
     {
       "id": "P.cabling.price",
@@ -5048,11 +5207,10 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分销商价目",
       "instances": [
-        "康宁 · 数据中心光布线",
-        "康普 · 综合布线",
-        "长飞YOFC / 亨通 / 中天 / 烽火线缆 · 国产光纤光缆"
+        "Wesco / Anixter",
+        "Graybar"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
@@ -5061,7 +5219,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "结构化布线与光纤：自己的价格——重切规则的第一条件"
+      "notes": "结构化布线与光纤：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.cabling.lead_time",
@@ -5080,20 +5239,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "康宁 · 数据中心光布线",
-        "康普 · 综合布线",
-        "长飞YOFC / 亨通 / 中天 / 烽火线缆 · 国产光纤光缆"
+        "Corning 财报电话会（光纤订单）",
+        "CommScope 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "结构化布线与光纤：自己的交期——重切规则的第三条件"
+      "notes": "结构化布线与光纤：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.leak-detection.spec",
@@ -5112,9 +5271,11 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "TTK / RLE / nVent / 国产（周立功等） · 漏液检测"
+        "nVent RLE",
+        "TTK",
+        "Siemens"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -5123,7 +5284,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "漏液检测：规格与供应商名单（冷却，S3）"
+      "notes": "漏液检测：规格与供应商名单（冷却，S3）",
+      "curated": true
     },
     {
       "id": "P.leak-detection.price",
@@ -5139,7 +5301,6 @@
       "model_inputs": [
         "bandwidth_per_mw",
         "cost_per_fte",
-        "fte_per_mw",
         "insurance_pct",
         "labor_index",
         "other_opex_per_mw",
@@ -5151,18 +5312,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分包报价",
       "instances": [
-        "TTK / RLE / nVent / 国产（周立功等） · 漏液检测"
+        "机电分包报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "漏液检测：自己的价格——重切规则的第一条件"
+      "notes": "漏液检测：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.leak-detection.lead_time",
@@ -5183,18 +5345,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "分包报价",
       "instances": [
-        "TTK / RLE / nVent / 国产（周立功等） · 漏液检测"
+        "机电分包交期"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "漏液检测：自己的交期——重切规则的第三条件"
+      "notes": "漏液检测：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.leak-detection.news",
@@ -5224,7 +5387,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "漏液检测：tight 状态部件的供应事件"
+      "notes": "漏液检测：tight 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.rack-frame.spec",
@@ -5246,13 +5410,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "OCP社区 · 开放计算规范",
-        "威图 · 机柜/机柜系统",
-        "罗格朗 · 机柜/PDU/母线",
-        "泛达 · 机柜与配线",
-        "图腾 / 一舟 / 威腾电气 · 国产机柜"
+        "Vertiv",
+        "Schneider NetShelter",
+        "Rittal",
+        "Eaton",
+        "Legrand Minkels"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -5261,7 +5425,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜与结构：规格与供应商名单（设施，S4）"
+      "notes": "机柜与结构：规格与供应商名单（设施，S4）",
+      "curated": true
     },
     {
       "id": "P.rack-frame.price",
@@ -5282,13 +5447,9 @@
       ],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分销商价目",
       "instances": [
-        "OCP社区 · 开放计算规范",
-        "威图 · 机柜/机柜系统",
-        "罗格朗 · 机柜/PDU/母线",
-        "泛达 · 机柜与配线",
-        "图腾 / 一舟 / 威腾电气 · 国产机柜"
+        "CDW 价目"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
@@ -5297,7 +5458,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜与结构：自己的价格——重切规则的第一条件"
+      "notes": "机柜与结构：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.rack-frame.lead_time",
@@ -5316,22 +5478,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "分销商库存",
       "instances": [
-        "OCP社区 · 开放计算规范",
-        "威图 · 机柜/机柜系统",
-        "罗格朗 · 机柜/PDU/母线",
-        "泛达 · 机柜与配线",
-        "图腾 / 一舟 / 威腾电气 · 国产机柜"
+        "CDW 库存状态"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
-      "host": "aws",
-      "calendar": "季度",
+      "mechanism": "js_page",
+      "team": "fetchquotes",
+      "host": "macmini",
+      "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜与结构：自己的交期——重切规则的第三条件"
+      "notes": "机柜与结构：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.rack-frame.news",
@@ -5365,7 +5524,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜与结构：transition 状态部件的供应事件"
+      "notes": "机柜与结构：transition 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.rack-system.spec",
@@ -5388,11 +5548,14 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "参考架构与厂商产品页",
       "instances": [
-        "工业富联 · AI服务器/整机柜代工",
-        "广达（云达） · 云服务器/整机柜",
-        "纬颖 · 云服务器/整机柜"
+        "NVIDIA GB200 / GB300 NVL72 参考架构",
+        "Foxconn / Ingrasys 整柜",
+        "Quanta QCT",
+        "Wiwynn",
+        "Dell IR7000",
+        "Supermicro"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -5401,7 +5564,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "整机柜系统（NVL72 类，按柜计价）：规格与供应商名单（IT · 计算，S4）"
+      "notes": "整机柜系统（NVL72 类，按柜计价）：规格与供应商名单（IT · 计算，S4）",
+      "curated": true
     },
     {
       "id": "P.rack-system.price",
@@ -5423,20 +5587,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "研报与财报",
       "instances": [
-        "工业富联 · AI服务器/整机柜代工",
-        "广达（云达） · 云服务器/整机柜",
-        "纬颖 · 云服务器/整机柜"
+        "Morgan Stanley 整柜价格估算",
+        "SemiAnalysis 整柜 BOM",
+        "Dell 财报（AI 订单簿）"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "整机柜系统（NVL72 类，按柜计价）：自己的价格——重切规则的第一条件"
+      "notes": "整机柜系统（NVL72 类，按柜计价）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.rack-system.lead_time",
@@ -5456,20 +5621,22 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会与出货跟踪",
       "instances": [
-        "工业富联 · AI服务器/整机柜代工",
-        "广达（云达） · 云服务器/整机柜",
-        "纬颖 · 云服务器/整机柜"
+        "Dell 财报电话会",
+        "Supermicro 财报",
+        "Foxconn / Wistron 月营收",
+        "TrendForce AI 服务器出货"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "整机柜系统（NVL72 类，按柜计价）：自己的交期——重切规则的第三条件"
+      "notes": "整机柜系统（NVL72 类，按柜计价）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.rack-system.news",
@@ -5489,11 +5656,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "工业富联 · AI服务器/整机柜代工",
-        "广达（云达） · 云服务器/整机柜",
-        "纬颖 · 云服务器/整机柜"
+        "NVL72 出货",
+        "AI 整机柜 订单"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -5502,7 +5668,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "整机柜系统（NVL72 类，按柜计价）：tight 状态部件的供应事件"
+      "notes": "整机柜系统（NVL72 类，按柜计价）：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.server.spec",
@@ -5516,28 +5683,20 @@
       "factor_id": "cost.energy.load",
       "part_id": "server",
       "site_right_id": null,
-      "model_inputs": [
-        "load_factor"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "戴尔 · 通用/AI服务器",
-        "慧与 · 通用/AI服务器",
-        "联想 · 通用/AI服务器",
-        "超微 · AI/GPU服务器",
-        "浪潮信息 · 通用/AI服务器",
-        "新华三 · 通用/AI服务器",
-        "超聚变 · 通用/AI服务器",
-        "宁畅 · AI/定制服务器",
-        "中科曙光 · 通用/AI服务器",
-        "华为 · AI训练集群",
-        "技嘉 · GPU服务器/准系统",
-        "华硕 · GPU服务器/工作站"
+        "Dell PowerEdge XE9680",
+        "HPE Cray XD",
+        "Supermicro GPU 服务器",
+        "Lenovo ThinkSystem SR780a",
+        "浪潮 NF5688",
+        "华为 Atlas"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -5546,7 +5705,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "加速器服务器（AI 服务器整机）：规格与供应商名单（IT · 计算，S4）"
+      "notes": "加速器服务器（AI 服务器整机）：规格与供应商名单（IT · 计算，S4）",
+      "curated": true
     },
     {
       "id": "P.server.price",
@@ -5568,29 +5728,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "招标与研报 BOM",
       "instances": [
-        "戴尔 · 通用/AI服务器",
-        "慧与 · 通用/AI服务器",
-        "联想 · 通用/AI服务器",
-        "超微 · AI/GPU服务器",
-        "浪潮信息 · 通用/AI服务器",
-        "新华三 · 通用/AI服务器",
-        "超聚变 · 通用/AI服务器",
-        "宁畅 · AI/定制服务器",
-        "中科曙光 · 通用/AI服务器",
-        "华为 · AI训练集群",
-        "技嘉 · GPU服务器/准系统",
-        "华硕 · GPU服务器/工作站"
+        "中国运营商 AI 服务器集采公告",
+        "SemiAnalysis 服务器 BOM",
+        "IDC 服务器追踪"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "加速器服务器（AI 服务器整机）：自己的价格——重切规则的第一条件"
+      "notes": "加速器服务器（AI 服务器整机）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.server.lead_time",
@@ -5612,29 +5764,21 @@
       ],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会与出货跟踪",
       "instances": [
-        "戴尔 · 通用/AI服务器",
-        "慧与 · 通用/AI服务器",
-        "联想 · 通用/AI服务器",
-        "超微 · AI/GPU服务器",
-        "浪潮信息 · 通用/AI服务器",
-        "新华三 · 通用/AI服务器",
-        "超聚变 · 通用/AI服务器",
-        "宁畅 · AI/定制服务器",
-        "中科曙光 · 通用/AI服务器",
-        "华为 · AI训练集群",
-        "技嘉 · GPU服务器/准系统",
-        "华硕 · GPU服务器/工作站"
+        "Dell 财报电话会",
+        "Supermicro 财报",
+        "TrendForce AI 服务器出货"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "加速器服务器（AI 服务器整机）：自己的交期——重切规则的第三条件"
+      "notes": "加速器服务器（AI 服务器整机）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.server.news",
@@ -5654,20 +5798,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "戴尔 · 通用/AI服务器",
-        "慧与 · 通用/AI服务器",
-        "联想 · 通用/AI服务器",
-        "超微 · AI/GPU服务器",
-        "浪潮信息 · 通用/AI服务器",
-        "新华三 · 通用/AI服务器",
-        "超聚变 · 通用/AI服务器",
-        "宁畅 · AI/定制服务器",
-        "中科曙光 · 通用/AI服务器",
-        "华为 · AI训练集群",
-        "技嘉 · GPU服务器/准系统",
-        "华硕 · GPU服务器/工作站"
+        "AI 服务器 订单",
+        "AI 服务器 出货"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -5676,7 +5810,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "加速器服务器（AI 服务器整机）：tight 状态部件的供应事件"
+      "notes": "加速器服务器（AI 服务器整机）：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.general-server.spec",
@@ -5690,28 +5825,20 @@
       "factor_id": "cost.energy.load",
       "part_id": "general-server",
       "site_right_id": null,
-      "model_inputs": [
-        "load_factor"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "戴尔 · 通用/AI服务器",
-        "慧与 · 通用/AI服务器",
-        "联想 · 通用/AI服务器",
-        "浪潮信息 · 通用/AI服务器",
-        "新华三 · 通用/AI服务器",
-        "超聚变 · 通用/AI服务器",
-        "中科曙光 · 通用/AI服务器",
-        "中兴通讯 · 通用服务器",
-        "烽火通信 · 通用服务器",
-        "广达（云达） · 云服务器/整机柜",
-        "纬颖 · 云服务器/整机柜",
-        "长城 / 宝德 / 神州鲲泰 / 湘江鲲鹏 / 超越申泰 / 黄河 · 鲲鹏/飞腾生态整机"
+        "Dell PowerEdge R760",
+        "HPE ProLiant DL380",
+        "Lenovo SR650",
+        "浪潮 NF5280",
+        "xFusion",
+        "华为 TaiShan"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -5720,7 +5847,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "通用服务器（CPU 节点）：规格与供应商名单（IT · 计算，S4）"
+      "notes": "通用服务器（CPU 节点）：规格与供应商名单（IT · 计算，S4）",
+      "curated": true
     },
     {
       "id": "P.general-server.price",
@@ -5742,29 +5870,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "市场追踪与招标",
       "instances": [
-        "戴尔 · 通用/AI服务器",
-        "慧与 · 通用/AI服务器",
-        "联想 · 通用/AI服务器",
-        "浪潮信息 · 通用/AI服务器",
-        "新华三 · 通用/AI服务器",
-        "超聚变 · 通用/AI服务器",
-        "中科曙光 · 通用/AI服务器",
-        "中兴通讯 · 通用服务器",
-        "烽火通信 · 通用服务器",
-        "广达（云达） · 云服务器/整机柜",
-        "纬颖 · 云服务器/整机柜",
-        "长城 / 宝德 / 神州鲲泰 / 湘江鲲鹏 / 超越申泰 / 黄河 · 鲲鹏/飞腾生态整机"
+        "IDC 服务器 ASP",
+        "Gartner 服务器",
+        "中国运营商通用服务器集采公告"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "通用服务器（CPU 节点）：自己的价格——重切规则的第一条件"
+      "notes": "通用服务器（CPU 节点）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.general-server.lead_time",
@@ -5784,29 +5904,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "出货跟踪",
       "instances": [
-        "戴尔 · 通用/AI服务器",
-        "慧与 · 通用/AI服务器",
-        "联想 · 通用/AI服务器",
-        "浪潮信息 · 通用/AI服务器",
-        "新华三 · 通用/AI服务器",
-        "超聚变 · 通用/AI服务器",
-        "中科曙光 · 通用/AI服务器",
-        "中兴通讯 · 通用服务器",
-        "烽火通信 · 通用服务器",
-        "广达（云达） · 云服务器/整机柜",
-        "纬颖 · 云服务器/整机柜",
-        "长城 / 宝德 / 神州鲲泰 / 湘江鲲鹏 / 超越申泰 / 黄河 · 鲲鹏/飞腾生态整机"
+        "IDC 服务器出货",
+        "厂商财报"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "通用服务器（CPU 节点）：自己的交期——重切规则的第三条件"
+      "notes": "通用服务器（CPU 节点）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.network-switch.spec",
@@ -5825,17 +5936,14 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "英伟达 · IB/以太AI网络",
-        "Arista · 数据中心以太网",
-        "思科 · 数据中心以太网",
-        "瞻博（慧与） · 数据中心以太网",
-        "华为 · 数据中心以太网",
-        "新华三 · 数据中心以太网",
-        "锐捷网络 · 无损以太/AI网络",
-        "中兴通讯 · 数据中心以太网",
-        "Celestica / Edgecore(Accton) / UfiSpace · 白盒/开放网络"
+        "Arista 7800R4 / 7060X6",
+        "NVIDIA Spectrum-X / Quantum-X800",
+        "Cisco Nexus 9000",
+        "Juniper QFX",
+        "Celestica",
+        "华为 CloudEngine"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -5844,7 +5952,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "交换机（scale-out 以太网/IB）：规格与供应商名单（IT · 网络，S4）"
+      "notes": "交换机（scale-out 以太网/IB）：规格与供应商名单（IT · 网络，S4）",
+      "curated": true
     },
     {
       "id": "P.network-switch.price",
@@ -5867,26 +5976,21 @@
       ],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "市场追踪",
       "instances": [
-        "英伟达 · IB/以太AI网络",
-        "Arista · 数据中心以太网",
-        "思科 · 数据中心以太网",
-        "瞻博（慧与） · 数据中心以太网",
-        "华为 · 数据中心以太网",
-        "新华三 · 数据中心以太网",
-        "锐捷网络 · 无损以太/AI网络",
-        "中兴通讯 · 数据中心以太网",
-        "Celestica / Edgecore(Accton) / UfiSpace · 白盒/开放网络"
+        "Dell'Oro 以太网交换机",
+        "650 Group",
+        "Arista 财报"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "交换机（scale-out 以太网/IB）：自己的价格——重切规则的第一条件"
+      "notes": "交换机（scale-out 以太网/IB）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.network-switch.lead_time",
@@ -5905,26 +6009,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "英伟达 · IB/以太AI网络",
-        "Arista · 数据中心以太网",
-        "思科 · 数据中心以太网",
-        "瞻博（慧与） · 数据中心以太网",
-        "华为 · 数据中心以太网",
-        "新华三 · 数据中心以太网",
-        "锐捷网络 · 无损以太/AI网络",
-        "中兴通讯 · 数据中心以太网",
-        "Celestica / Edgecore(Accton) / UfiSpace · 白盒/开放网络"
+        "Arista 财报电话会（供应约束）",
+        "Cisco 财报",
+        "Celestica 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "交换机（scale-out 以太网/IB）：自己的交期——重切规则的第三条件"
+      "notes": "交换机（scale-out 以太网/IB）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.network-switch.news",
@@ -5943,17 +6042,11 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "英伟达 · IB/以太AI网络",
-        "Arista · 数据中心以太网",
-        "思科 · 数据中心以太网",
-        "瞻博（慧与） · 数据中心以太网",
-        "华为 · 数据中心以太网",
-        "新华三 · 数据中心以太网",
-        "锐捷网络 · 无损以太/AI网络",
-        "中兴通讯 · 数据中心以太网",
-        "Celestica / Edgecore(Accton) / UfiSpace · 白盒/开放网络"
+        "AI 交换机 订单",
+        "Spectrum-X",
+        "以太网 scale-out"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -5962,7 +6055,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "交换机（scale-out 以太网/IB）：transition 状态部件的供应事件"
+      "notes": "交换机（scale-out 以太网/IB）：transition 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.storage-array.spec",
@@ -5981,20 +6075,14 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "华为 · 全闪/混闪阵列",
-        "戴尔 · 全闪/混闪阵列",
-        "NetApp · 全闪阵列/云数据",
-        "Pure Storage · 全闪阵列",
-        "慧与 · 全闪阵列",
-        "IBM · 全闪/磁带",
-        "日立 · 全闪阵列",
-        "浪潮存储 · 全闪/分布式",
-        "新华三 · 全闪/分布式",
-        "中科曙光（曙光存储） · 并行/分布式",
-        "宏杉科技 · SAN阵列",
-        "星辰天合 · 块/文件/对象SDS"
+        "Pure Storage FlashBlade",
+        "NetApp AFF",
+        "Dell PowerScale",
+        "VAST Data",
+        "WEKA",
+        "DDN"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -6003,7 +6091,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "存储系统：规格与供应商名单（IT · 存储，S4）"
+      "notes": "存储系统：规格与供应商名单（IT · 存储，S4）",
+      "curated": true
     },
     {
       "id": "P.storage-array.price",
@@ -6024,29 +6113,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "市场追踪与财报",
       "instances": [
-        "华为 · 全闪/混闪阵列",
-        "戴尔 · 全闪/混闪阵列",
-        "NetApp · 全闪阵列/云数据",
-        "Pure Storage · 全闪阵列",
-        "慧与 · 全闪阵列",
-        "IBM · 全闪/磁带",
-        "日立 · 全闪阵列",
-        "浪潮存储 · 全闪/分布式",
-        "新华三 · 全闪/分布式",
-        "中科曙光（曙光存储） · 并行/分布式",
-        "宏杉科技 · SAN阵列",
-        "星辰天合 · 块/文件/对象SDS"
+        "IDC 存储追踪",
+        "Pure Storage 财报",
+        "NetApp 财报"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "存储系统：自己的价格——重切规则的第一条件"
+      "notes": "存储系统：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.storage-array.lead_time",
@@ -6065,29 +6146,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "华为 · 全闪/混闪阵列",
-        "戴尔 · 全闪/混闪阵列",
-        "NetApp · 全闪阵列/云数据",
-        "Pure Storage · 全闪阵列",
-        "慧与 · 全闪阵列",
-        "IBM · 全闪/磁带",
-        "日立 · 全闪阵列",
-        "浪潮存储 · 全闪/分布式",
-        "新华三 · 全闪/分布式",
-        "中科曙光（曙光存储） · 并行/分布式",
-        "宏杉科技 · SAN阵列",
-        "星辰天合 · 块/文件/对象SDS"
+        "Pure Storage 财报电话会",
+        "NetApp 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "存储系统：自己的交期——重切规则的第三条件"
+      "notes": "存储系统：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.manifold.spec",
@@ -6106,9 +6178,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "史陶比尔Staubli / CPC / Parker / Danfoss / 中航光电 · 快换接头/manifold"
+        "CoolIT 歧管",
+        "Vertiv 歧管",
+        "nVent",
+        "Parker"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -6117,7 +6192,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "机柜歧管与管路：规格与供应商名单（冷却，S4）"
+      "notes": "机柜歧管与管路：规格与供应商名单（冷却，S4）",
+      "curated": true
     },
     {
       "id": "P.manifold.price",
@@ -6138,18 +6214,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "研报 BOM",
       "instances": [
-        "史陶比尔Staubli / CPC / Parker / Danfoss / 中航光电 · 快换接头/manifold"
+        "SemiAnalysis 液冷 BOM"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "机柜歧管与管路：自己的价格——重切规则的第一条件"
+      "notes": "机柜歧管与管路：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.manifold.lead_time",
@@ -6168,18 +6245,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "史陶比尔Staubli / CPC / Parker / Danfoss / 中航光电 · 快换接头/manifold"
+        "Vertiv 财报",
+        "nVent 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "机柜歧管与管路：自己的交期——重切规则的第三条件"
+      "notes": "机柜歧管与管路：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.manifold.news",
@@ -6209,7 +6288,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "机柜歧管与管路：tight 状态部件的供应事件"
+      "notes": "机柜歧管与管路：tight 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.quick-disconnect.spec",
@@ -6228,18 +6308,23 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页与规范",
       "instances": [
-        "史陶比尔Staubli / CPC / Parker / Danfoss / 中航光电 · 快换接头/manifold"
+        "Stäubli",
+        "CPC（Dover）",
+        "Parker",
+        "Danfoss Hansen",
+        "OCP 快接头规范"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
       "host": "aws",
-      "calendar": "每代际发布",
+      "calendar": "每版本",
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "快接头：规格与供应商名单（冷却，S4）"
+      "notes": "快接头：规格与供应商名单（冷却，S4）",
+      "curated": true
     },
     {
       "id": "P.quick-disconnect.price",
@@ -6260,18 +6345,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分销商价目",
       "instances": [
-        "史陶比尔Staubli / CPC / Parker / Danfoss / 中航光电 · 快换接头/manifold"
+        "分销商价目"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "快接头：自己的价格——重切规则的第一条件"
+      "notes": "快接头：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.quick-disconnect.lead_time",
@@ -6290,18 +6376,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "史陶比尔Staubli / CPC / Parker / Danfoss / 中航光电 · 快换接头/manifold"
+        "Dover 财报电话会（CPC）",
+        "Stäubli 公告",
+        "OCP 认证进度"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "快接头：自己的交期——重切规则的第三条件"
+      "notes": "快接头：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.quick-disconnect.news",
@@ -6320,9 +6409,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "史陶比尔Staubli / CPC / Parker / Danfoss / 中航光电 · 快换接头/manifold"
+        "快接头 认证",
+        "液冷 快接头"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -6331,7 +6421,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "快接头：tight 状态部件的供应事件"
+      "notes": "快接头：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.power-shelf.spec",
@@ -6353,9 +6444,14 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页与规范",
       "instances": [
-        "台达 / 光宝LiteOn / 群光电能 / Advanced Energy / 麦格米特 / 欧陆通 · PSU/电源架"
+        "Delta 电源架",
+        "LiteOn",
+        "Flex",
+        "Advanced Energy",
+        "Vertiv",
+        "OCP ORv3 规范"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -6364,7 +6460,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜电源架（AC-DC / HVDC 整流）：规格与供应商名单（电力，S4）"
+      "notes": "机柜电源架（AC-DC / HVDC 整流）：规格与供应商名单（电力，S4）",
+      "curated": true
     },
     {
       "id": "P.power-shelf.price",
@@ -6383,18 +6480,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "研报 BOM",
       "instances": [
-        "台达 / 光宝LiteOn / 群光电能 / Advanced Energy / 麦格米特 / 欧陆通 · PSU/电源架"
+        "SemiAnalysis 电源 BOM",
+        "TrendForce 服务器电源"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜电源架（AC-DC / HVDC 整流）：自己的价格——重切规则的第一条件"
+      "notes": "机柜电源架（AC-DC / HVDC 整流）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.power-shelf.lead_time",
@@ -6413,18 +6512,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商月营收与财报",
       "instances": [
-        "台达 / 光宝LiteOn / 群光电能 / Advanced Energy / 麦格米特 / 欧陆通 · PSU/电源架"
+        "台达 月营收",
+        "光宝 月营收",
+        "Delta 财报电话会"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
-      "calendar": "季度",
+      "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜电源架（AC-DC / HVDC 整流）：自己的交期——重切规则的第三条件"
+      "notes": "机柜电源架（AC-DC / HVDC 整流）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.power-shelf.news",
@@ -6443,9 +6545,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "台达 / 光宝LiteOn / 群光电能 / Advanced Energy / 麦格米特 / 欧陆通 · PSU/电源架"
+        "800V HVDC",
+        "电源架 数据中心"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -6454,7 +6557,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜电源架（AC-DC / HVDC 整流）：transition 状态部件的供应事件"
+      "notes": "机柜电源架（AC-DC / HVDC 整流）：transition 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.bbu.spec",
@@ -6471,9 +6575,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "华为SmartLi / Vertiv / 宁德时代 / 双登 / 南都电源 · 机架BBU/锂电柜"
+        "Delta BBU",
+        "LiteOn BBU",
+        "Advanced Energy",
+        "Simplo",
+        "Dynapack"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -6482,7 +6590,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜电池备份单元：规格与供应商名单（电力，S4）"
+      "notes": "机柜电池备份单元：规格与供应商名单（电力，S4）",
+      "curated": true
     },
     {
       "id": "P.bbu.price",
@@ -6499,18 +6608,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "电芯价格调查",
       "instances": [
-        "华为SmartLi / Vertiv / 宁德时代 / 双登 / 南都电源 · 机架BBU/锂电柜"
+        "TrendForce 电芯价格"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜电池备份单元：自己的价格——重切规则的第一条件"
+      "notes": "机柜电池备份单元：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.bbu.lead_time",
@@ -6527,18 +6637,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商月营收",
       "instances": [
-        "华为SmartLi / Vertiv / 宁德时代 / 双登 / 南都电源 · 机架BBU/锂电柜"
+        "台达 月营收",
+        "新普 月营收"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
-      "calendar": "季度",
+      "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜电池备份单元：自己的交期——重切规则的第三条件"
+      "notes": "机柜电池备份单元：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.bbu.news",
@@ -6555,9 +6667,9 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "华为SmartLi / Vertiv / 宁德时代 / 双登 / 南都电源 · 机架BBU/锂电柜"
+        "BBU 机柜 电池"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -6566,7 +6678,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜电池备份单元：transition 状态部件的供应事件"
+      "notes": "机柜电池备份单元：transition 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.copper-interconnect.spec",
@@ -6585,10 +6698,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "Credo · AEC有源电缆",
-        "安费诺Amphenol / 立讯精密Luxshare / Molex / TE Connectivity · DAC/连接器/背板"
+        "Amphenol",
+        "TE Connectivity",
+        "Molex",
+        "Credo AEC",
+        "立讯精密"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -6597,7 +6713,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高速铜缆（DAC/AEC）：规格与供应商名单（IT · 网络，S4）"
+      "notes": "高速铜缆（DAC/AEC）：规格与供应商名单（IT · 网络，S4）",
+      "curated": true
     },
     {
       "id": "P.copper-interconnect.price",
@@ -6618,19 +6735,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "Credo · AEC有源电缆",
-        "安费诺Amphenol / 立讯精密Luxshare / Molex / TE Connectivity · DAC/连接器/背板"
+        "Credo 财报（AEC ASP）",
+        "Amphenol 财报"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
-      "calendar": "月",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高速铜缆（DAC/AEC）：自己的价格——重切规则的第一条件"
+      "notes": "高速铜缆（DAC/AEC）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.copper-interconnect.lead_time",
@@ -6649,19 +6767,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "Credo · AEC有源电缆",
-        "安费诺Amphenol / 立讯精密Luxshare / Molex / TE Connectivity · DAC/连接器/背板"
+        "Credo 财报电话会",
+        "Amphenol 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高速铜缆（DAC/AEC）：自己的交期——重切规则的第三条件"
+      "notes": "高速铜缆（DAC/AEC）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.copper-interconnect.news",
@@ -6692,7 +6811,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高速铜缆（DAC/AEC）：tight 状态部件的供应事件"
+      "notes": "高速铜缆（DAC/AEC）：tight 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.coolant.spec",
@@ -6705,18 +6825,19 @@
       "factor_id": "cost.energy.pue",
       "part_id": "coolant",
       "site_right_id": null,
-      "model_inputs": [
-        "pue",
-        "wue"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "Chemours / 壳牌 / 埃克森美孚 / 中石化润滑油 · 冷却液/工质"
+        "Dow 乙二醇",
+        "Chemours Opteon",
+        "Shell 浸没液",
+        "Castrol",
+        "PG25 供应商"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -6725,7 +6846,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "冷却液/工质：规格与供应商名单（冷却，S4）"
+      "notes": "冷却液/工质：规格与供应商名单（冷却，S4）",
+      "curated": true
     },
     {
       "id": "P.coolant.price",
@@ -6744,18 +6866,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "化工报价",
       "instances": [
-        "Chemours / 壳牌 / 埃克森美孚 / 中石化润滑油 · 冷却液/工质"
+        "化工品报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "冷却液/工质：自己的价格——重切规则的第一条件"
+      "notes": "冷却液/工质：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.coolant.lead_time",
@@ -6774,18 +6897,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商公告",
       "instances": [
-        "Chemours / 壳牌 / 埃克森美孚 / 中石化润滑油 · 冷却液/工质"
+        "厂商供货公告"
       ],
-      "mechanism": "pdf_free",
+      "mechanism": "pdf_registered",
       "team": "fetchreports",
-      "host": "aws",
+      "host": "macmini",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "冷却液/工质：自己的交期——重切规则的第三条件"
+      "notes": "冷却液/工质：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.sidecar-hx.spec",
@@ -6804,12 +6928,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
+        "Vertiv 液-气换热器",
         "nVent",
-        "Motivair",
-        "CoolIT",
-        "Boyd"
+        "Schneider Motivair",
+        "Rittal"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -6818,7 +6942,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜级液-气换热器（RDHx/Sidecar）：规格与供应商名单（冷却，S4）"
+      "notes": "机柜级液-气换热器（RDHx/Sidecar）：规格与供应商名单（冷却，S4）",
+      "curated": true
     },
     {
       "id": "P.sidecar-hx.price",
@@ -6839,21 +6964,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "研报 BOM",
       "instances": [
-        "nVent",
-        "Motivair",
-        "CoolIT",
-        "Boyd"
+        "SemiAnalysis 液冷 BOM"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜级液-气换热器（RDHx/Sidecar）：自己的价格——重切规则的第一条件"
+      "notes": "机柜级液-气换热器（RDHx/Sidecar）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.sidecar-hx.lead_time",
@@ -6872,21 +6995,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "nVent",
-        "Motivair",
-        "CoolIT",
-        "Boyd"
+        "Vertiv 财报",
+        "nVent 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜级液-气换热器（RDHx/Sidecar）：自己的交期——重切规则的第三条件"
+      "notes": "机柜级液-气换热器（RDHx/Sidecar）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.sidecar-hx.news",
@@ -6919,7 +7041,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "机柜级液-气换热器（RDHx/Sidecar）：transition 状态部件的供应事件"
+      "notes": "机柜级液-气换热器（RDHx/Sidecar）：transition 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.gpu.spec",
@@ -6936,27 +7059,18 @@
       "site_right_id": null,
       "model_inputs": [
         "gpus_per_mw",
-        "it_class",
-        "load_factor"
+        "it_class"
       ],
       "series": [],
       "planned_series": [],
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "英伟达 · 训练/推理GPU",
-        "超威半导体 · 训练/推理GPU",
-        "英特尔 · 训练/推理加速卡",
-        "华为（昇腾） · 国产AI芯片",
-        "寒武纪 · 国产AI芯片",
-        "海光信息 · 国产GPU（GPGPU）",
-        "壁仞科技 · 国产GPU",
-        "摩尔线程 · 国产GPU",
-        "沐曦 · 国产GPU",
-        "天数智芯 · 国产GPU",
-        "燧原科技 · 国产AI芯片"
+        "NVIDIA H100 / B200 / B300 / GB300 产品页",
+        "AMD Instinct MI300 / MI350",
+        "华为昇腾 910"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -6965,7 +7079,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "GPU 加速器：规格与供应商名单（IT · 计算，S5）"
+      "notes": "GPU 加速器：规格与供应商名单（IT · 计算，S5）",
+      "curated": true
     },
     {
       "id": "P.gpu.price",
@@ -6994,19 +7109,11 @@
       ],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "现货与二手市场、研报",
       "instances": [
-        "英伟达 · 训练/推理GPU",
-        "超威半导体 · 训练/推理GPU",
-        "英特尔 · 训练/推理加速卡",
-        "华为（昇腾） · 国产AI芯片",
-        "寒武纪 · 国产AI芯片",
-        "海光信息 · 国产GPU（GPGPU）",
-        "壁仞科技 · 国产GPU",
-        "摩尔线程 · 国产GPU",
-        "沐曦 · 国产GPU",
-        "天数智芯 · 国产GPU",
-        "燧原科技 · 国产AI芯片"
+        "GPU 现货价格追踪（eBay / 经销商）",
+        "SemiAnalysis",
+        "研报单卡价格"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
@@ -7015,7 +7122,8 @@
       "next_due": "2026-10-28",
       "status": "assumed",
       "sensitivity_rank": 2,
-      "notes": "GPU 加速器：自己的价格——重切规则的第一条件"
+      "notes": "GPU 加速器：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.gpu.lead_time",
@@ -7036,28 +7144,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会与产能报道",
       "instances": [
-        "英伟达 · 训练/推理GPU",
-        "超威半导体 · 训练/推理GPU",
-        "英特尔 · 训练/推理加速卡",
-        "华为（昇腾） · 国产AI芯片",
-        "寒武纪 · 国产AI芯片",
-        "海光信息 · 国产GPU（GPGPU）",
-        "壁仞科技 · 国产GPU",
-        "摩尔线程 · 国产GPU",
-        "沐曦 · 国产GPU",
-        "天数智芯 · 国产GPU",
-        "燧原科技 · 国产AI芯片"
+        "NVIDIA 财报电话会（供应约束）",
+        "TrendForce CoWoS 产能",
+        "TSMC 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "GPU 加速器：自己的交期——重切规则的第三条件"
+      "notes": "GPU 加速器：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.gpu.news",
@@ -7078,19 +7179,11 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "英伟达 · 训练/推理GPU",
-        "超威半导体 · 训练/推理GPU",
-        "英特尔 · 训练/推理加速卡",
-        "华为（昇腾） · 国产AI芯片",
-        "寒武纪 · 国产AI芯片",
-        "海光信息 · 国产GPU（GPGPU）",
-        "壁仞科技 · 国产GPU",
-        "摩尔线程 · 国产GPU",
-        "沐曦 · 国产GPU",
-        "天数智芯 · 国产GPU",
-        "燧原科技 · 国产AI芯片"
+        "GPU 供应",
+        "CoWoS 产能",
+        "GPU 出口管制"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -7099,7 +7192,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "GPU 加速器：tight 状态部件的供应事件"
+      "notes": "GPU 加速器：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.ai-asic.spec",
@@ -7113,18 +7207,19 @@
       "factor_id": "cost.energy.load",
       "part_id": "ai-asic",
       "site_right_id": null,
-      "model_inputs": [
-        "load_factor"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商文档与财报",
       "instances": [
-        "Cerebras / Groq / SambaNova / Tenstorrent · 海外新兴AI芯片",
-        "Google TPU / AWS Trainium / MS Maia / Meta MTIA · 云厂商自研加速器"
+        "Google TPU（Ironwood）文档",
+        "AWS Trainium2 / 3",
+        "Microsoft Maia",
+        "Meta MTIA",
+        "Broadcom 财报"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -7133,7 +7228,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "定制 AI ASIC：规格与供应商名单（IT · 计算，S5）"
+      "notes": "定制 AI ASIC：规格与供应商名单（IT · 计算，S5）",
+      "curated": true
     },
     {
       "id": "P.ai-asic.price",
@@ -7155,19 +7251,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "研报",
       "instances": [
-        "Cerebras / Groq / SambaNova / Tenstorrent · 海外新兴AI芯片",
-        "Google TPU / AWS Trainium / MS Maia / Meta MTIA · 云厂商自研加速器"
+        "Morgan Stanley ASIC 成本估算",
+        "SemiAnalysis ASIC 分析"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "定制 AI ASIC：自己的价格——重切规则的第一条件"
+      "notes": "定制 AI ASIC：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.ai-asic.lead_time",
@@ -7187,19 +7284,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "Cerebras / Groq / SambaNova / Tenstorrent · 海外新兴AI芯片",
-        "Google TPU / AWS Trainium / MS Maia / Meta MTIA · 云厂商自研加速器"
+        "Broadcom 财报电话会",
+        "Marvell 财报",
+        "Alchip / GUC 月营收"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "定制 AI ASIC：自己的交期——重切规则的第三条件"
+      "notes": "定制 AI ASIC：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.ai-asic.news",
@@ -7219,10 +7318,11 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "Cerebras / Groq / SambaNova / Tenstorrent · 海外新兴AI芯片",
-        "Google TPU / AWS Trainium / MS Maia / Meta MTIA · 云厂商自研加速器"
+        "自研 ASIC",
+        "TPU 出货",
+        "Trainium"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -7231,7 +7331,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "定制 AI ASIC：tight 状态部件的供应事件"
+      "notes": "定制 AI ASIC：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.cpu.spec",
@@ -7250,18 +7351,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "英特尔 · x86服务器CPU",
-        "超威 · x86服务器CPU",
-        "英伟达 · Arm服务器CPU",
-        "安晶科技 · Arm服务器CPU",
-        "安谋 · Arm IP与CSS",
-        "华为（鲲鹏） · 国产CPU（Arm）",
-        "海光信息 · 国产CPU（x86授权）",
-        "飞腾 · 国产CPU（Arm）",
-        "龙芯中科 · 国产CPU（自主指令）",
-        "兆芯 · 国产CPU（x86授权）"
+        "Intel Xeon 6",
+        "AMD EPYC Turin",
+        "NVIDIA Grace",
+        "Ampere"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -7270,7 +7365,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "CPU：规格与供应商名单（IT · 计算，S5）"
+      "notes": "CPU：规格与供应商名单（IT · 计算，S5）",
+      "curated": true
     },
     {
       "id": "P.cpu.price",
@@ -7291,27 +7387,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商价目",
       "instances": [
-        "英特尔 · x86服务器CPU",
-        "超威 · x86服务器CPU",
-        "英伟达 · Arm服务器CPU",
-        "安晶科技 · Arm服务器CPU",
-        "安谋 · Arm IP与CSS",
-        "华为（鲲鹏） · 国产CPU（Arm）",
-        "海光信息 · 国产CPU（x86授权）",
-        "飞腾 · 国产CPU（Arm）",
-        "龙芯中科 · 国产CPU（自主指令）",
-        "兆芯 · 国产CPU（x86授权）"
+        "Intel ARK 推荐客户价",
+        "AMD 1ku 价"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "CPU：自己的价格——重切规则的第一条件"
+      "notes": "CPU：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.cpu.lead_time",
@@ -7330,27 +7419,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "英特尔 · x86服务器CPU",
-        "超威 · x86服务器CPU",
-        "英伟达 · Arm服务器CPU",
-        "安晶科技 · Arm服务器CPU",
-        "安谋 · Arm IP与CSS",
-        "华为（鲲鹏） · 国产CPU（Arm）",
-        "海光信息 · 国产CPU（x86授权）",
-        "飞腾 · 国产CPU（Arm）",
-        "龙芯中科 · 国产CPU（自主指令）",
-        "兆芯 · 国产CPU（x86授权）"
+        "Intel 财报电话会",
+        "AMD 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "CPU：自己的交期——重切规则的第三条件"
+      "notes": "CPU：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.fpga.spec",
@@ -7369,9 +7451,10 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "AMD-Xilinx Alveo / Altera Agilex · 数据中心FPGA"
+        "AMD Versal / Alveo",
+        "Altera Agilex"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -7380,7 +7463,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "FPGA/异构加速：规格与供应商名单（IT · 计算，S5）"
+      "notes": "FPGA/异构加速：规格与供应商名单（IT · 计算，S5）",
+      "curated": true
     },
     {
       "id": "P.fpga.price",
@@ -7401,9 +7485,10 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分销商价目",
       "instances": [
-        "AMD-Xilinx Alveo / Altera Agilex · 数据中心FPGA"
+        "Mouser",
+        "Digi-Key"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
@@ -7412,7 +7497,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "FPGA/异构加速：自己的价格——重切规则的第一条件"
+      "notes": "FPGA/异构加速：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.fpga.lead_time",
@@ -7431,18 +7517,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "分销商交期",
       "instances": [
-        "AMD-Xilinx Alveo / Altera Agilex · 数据中心FPGA"
+        "Mouser / Digi-Key 交期"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
-      "host": "aws",
-      "calendar": "季度",
+      "mechanism": "js_page",
+      "team": "fetchquotes",
+      "host": "macmini",
+      "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "FPGA/异构加速：自己的交期——重切规则的第三条件"
+      "notes": "FPGA/异构加速：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.bmc.spec",
@@ -7461,9 +7548,10 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "信骅科技 · BMC管理芯片"
+        "ASPEED AST2600 / AST2700",
+        "Nuvoton"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -7472,7 +7560,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "基板管理控制器：规格与供应商名单（IT · 计算，S5）"
+      "notes": "基板管理控制器：规格与供应商名单（IT · 计算，S5）",
+      "curated": true
     },
     {
       "id": "P.bmc.price",
@@ -7493,18 +7582,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商月营收与财报",
       "instances": [
-        "信骅科技 · BMC管理芯片"
+        "信骅 月营收",
+        "ASPEED 财报"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "基板管理控制器：自己的价格——重切规则的第一条件"
+      "notes": "基板管理控制器：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.bmc.lead_time",
@@ -7523,18 +7614,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "信骅科技 · BMC管理芯片"
+        "信骅 法说会"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "基板管理控制器：自己的交期——重切规则的第三条件"
+      "notes": "基板管理控制器：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.hbm.spec",
@@ -7553,12 +7645,11 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "三星电子 · DRAM原厂",
-        "SK海力士 · DRAM原厂",
-        "美光 · DRAM原厂",
-        "长鑫存储 · 国产DRAM"
+        "SK hynix HBM3E / HBM4",
+        "Samsung HBM",
+        "Micron HBM3E"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -7567,7 +7658,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "HBM：规格与供应商名单（IT · 内存，S5）"
+      "notes": "HBM：规格与供应商名单（IT · 内存，S5）",
+      "curated": true
     },
     {
       "id": "P.hbm.price",
@@ -7590,21 +7682,20 @@
       ],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "价格调查与研报",
       "instances": [
-        "三星电子 · DRAM原厂",
-        "SK海力士 · DRAM原厂",
-        "美光 · DRAM原厂",
-        "长鑫存储 · 国产DRAM"
+        "TrendForce HBM 合约价",
+        "研报 HBM ASP"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "HBM：自己的价格——重切规则的第一条件"
+      "notes": "HBM：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.hbm.lead_time",
@@ -7623,21 +7714,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "三星电子 · DRAM原厂",
-        "SK海力士 · DRAM原厂",
-        "美光 · DRAM原厂",
-        "长鑫存储 · 国产DRAM"
+        "SK hynix 财报电话会（售罄期限）",
+        "Micron 财报",
+        "Samsung 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "HBM：自己的交期——重切规则的第三条件"
+      "notes": "HBM：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.hbm.news",
@@ -7656,12 +7747,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "三星电子 · DRAM原厂",
-        "SK海力士 · DRAM原厂",
-        "美光 · DRAM原厂",
-        "长鑫存储 · 国产DRAM"
+        "HBM 售罄",
+        "HBM4 量产"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -7670,7 +7759,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "HBM：tight 状态部件的供应事件"
+      "notes": "HBM：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.dram.spec",
@@ -7689,13 +7779,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页与标准",
       "instances": [
-        "Rambus / Microchip(Flashtec·Switchtec) / Marvell(Bravera) · 内存接口/主控",
-        "三星电子 · DRAM原厂",
-        "SK海力士 · DRAM原厂",
-        "美光 · DRAM原厂",
-        "长鑫存储 · 国产DRAM"
+        "Samsung RDIMM / MRDIMM",
+        "SK hynix",
+        "Micron",
+        "JEDEC DDR5 规范"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -7704,7 +7793,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "服务器内存模组（RDIMM/MRDIMM）：规格与供应商名单（IT · 内存，S5）"
+      "notes": "服务器内存模组（RDIMM/MRDIMM）：规格与供应商名单（IT · 内存，S5）",
+      "curated": true
     },
     {
       "id": "P.dram.price",
@@ -7725,22 +7815,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "价格调查",
       "instances": [
-        "Rambus / Microchip(Flashtec·Switchtec) / Marvell(Bravera) · 内存接口/主控",
-        "三星电子 · DRAM原厂",
-        "SK海力士 · DRAM原厂",
-        "美光 · DRAM原厂",
-        "长鑫存储 · 国产DRAM"
+        "TrendForce DRAMeXchange 合约价",
+        "DRAM 现货价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "服务器内存模组（RDIMM/MRDIMM）：自己的价格——重切规则的第一条件"
+      "notes": "服务器内存模组（RDIMM/MRDIMM）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.dram.lead_time",
@@ -7759,22 +7847,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "Rambus / Microchip(Flashtec·Switchtec) / Marvell(Bravera) · 内存接口/主控",
-        "三星电子 · DRAM原厂",
-        "SK海力士 · DRAM原厂",
-        "美光 · DRAM原厂",
-        "长鑫存储 · 国产DRAM"
+        "Micron 财报电话会",
+        "SK hynix 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "服务器内存模组（RDIMM/MRDIMM）：自己的交期——重切规则的第三条件"
+      "notes": "服务器内存模组（RDIMM/MRDIMM）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.dram.news",
@@ -7808,7 +7894,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "服务器内存模组（RDIMM/MRDIMM）：tight 状态部件的供应事件"
+      "notes": "服务器内存模组（RDIMM/MRDIMM）：tight 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.cxl-memory.spec",
@@ -7827,10 +7914,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "Rambus / Microchip(Flashtec·Switchtec) / Marvell(Bravera) · 内存接口/主控",
-        "Samsung CMM / Micron CZ120 / 澜起MXC / SMART Modular · CXL内存扩展"
+        "Samsung CMM-D",
+        "Micron CZ120",
+        "Montage MXC",
+        "Astera Labs Leo"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -7839,7 +7928,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "CXL 内存扩展：规格与供应商名单（IT · 内存，S5）"
+      "notes": "CXL 内存扩展：规格与供应商名单（IT · 内存，S5）",
+      "curated": true
     },
     {
       "id": "P.cxl-memory.price",
@@ -7860,19 +7950,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商报价",
       "instances": [
-        "Rambus / Microchip(Flashtec·Switchtec) / Marvell(Bravera) · 内存接口/主控",
-        "Samsung CMM / Micron CZ120 / 澜起MXC / SMART Modular · CXL内存扩展"
+        "厂商报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "CXL 内存扩展：自己的价格——重切规则的第一条件"
+      "notes": "CXL 内存扩展：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.cxl-memory.lead_time",
@@ -7891,19 +7981,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "Rambus / Microchip(Flashtec·Switchtec) / Marvell(Bravera) · 内存接口/主控",
-        "Samsung CMM / Micron CZ120 / 澜起MXC / SMART Modular · CXL内存扩展"
+        "澜起 财报",
+        "Astera Labs 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "CXL 内存扩展：自己的交期——重切规则的第三条件"
+      "notes": "CXL 内存扩展：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.cxl-memory.news",
@@ -7922,10 +8013,9 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "Rambus / Microchip(Flashtec·Switchtec) / Marvell(Bravera) · 内存接口/主控",
-        "Samsung CMM / Micron CZ120 / 澜起MXC / SMART Modular · CXL内存扩展"
+        "CXL 内存 部署"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -7934,7 +8024,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "CXL 内存扩展：emerging 状态部件的供应事件"
+      "notes": "CXL 内存扩展：emerging 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.ssd.spec",
@@ -7953,20 +8044,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "三星电子 · 企业级SSD",
-        "铠侠 · 企业级SSD",
-        "Solidigm（SK海力士旗下） · 企业级SSD",
-        "美光 · 企业级SSD",
-        "闪迪 · NAND与SSD",
-        "长江存储 · 国产NAND/eSSD",
-        "忆联 · 国产企业级SSD",
-        "大普微 · 国产企业级SSD",
-        "江波龙 · 存储模组厂",
-        "佰维存储 · 存储模组厂",
-        "金士顿 · 第三方模组/内存",
-        "慧荣SMI / 群联Phison / 联芸Maxio / 英韧InnoGrit / 得一微 · SSD主控芯片"
+        "Samsung PM1743 / PM9D3",
+        "Solidigm D5-P5336",
+        "Micron 9550",
+        "Kioxia CM8"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -7975,7 +8058,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "企业级 SSD：规格与供应商名单（IT · 存储，S5）"
+      "notes": "企业级 SSD：规格与供应商名单（IT · 存储，S5）",
+      "curated": true
     },
     {
       "id": "P.ssd.price",
@@ -7996,29 +8080,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "价格调查",
       "instances": [
-        "三星电子 · 企业级SSD",
-        "铠侠 · 企业级SSD",
-        "Solidigm（SK海力士旗下） · 企业级SSD",
-        "美光 · 企业级SSD",
-        "闪迪 · NAND与SSD",
-        "长江存储 · 国产NAND/eSSD",
-        "忆联 · 国产企业级SSD",
-        "大普微 · 国产企业级SSD",
-        "江波龙 · 存储模组厂",
-        "佰维存储 · 存储模组厂",
-        "金士顿 · 第三方模组/内存",
-        "慧荣SMI / 群联Phison / 联芸Maxio / 英韧InnoGrit / 得一微 · SSD主控芯片"
+        "TrendForce 企业级 SSD 合约价",
+        "分销商价目"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "企业级 SSD：自己的价格——重切规则的第一条件"
+      "notes": "企业级 SSD：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.ssd.lead_time",
@@ -8037,29 +8112,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "三星电子 · 企业级SSD",
-        "铠侠 · 企业级SSD",
-        "Solidigm（SK海力士旗下） · 企业级SSD",
-        "美光 · 企业级SSD",
-        "闪迪 · NAND与SSD",
-        "长江存储 · 国产NAND/eSSD",
-        "忆联 · 国产企业级SSD",
-        "大普微 · 国产企业级SSD",
-        "江波龙 · 存储模组厂",
-        "佰维存储 · 存储模组厂",
-        "金士顿 · 第三方模组/内存",
-        "慧荣SMI / 群联Phison / 联芸Maxio / 英韧InnoGrit / 得一微 · SSD主控芯片"
+        "Kioxia 财报",
+        "Micron 财报电话会"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "企业级 SSD：自己的交期——重切规则的第三条件"
+      "notes": "企业级 SSD：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.ssd.news",
@@ -8100,7 +8166,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "企业级 SSD：tight 状态部件的供应事件"
+      "notes": "企业级 SSD：tight 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.hdd.spec",
@@ -8119,11 +8186,11 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "希捷 · 近线HDD",
-        "西部数据 · 近线HDD",
-        "东芝电子 · 近线HDD"
+        "Seagate Mozaic",
+        "Western Digital UltraSMR",
+        "Toshiba MG 系列"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -8132,7 +8199,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "近线HDD：规格与供应商名单（IT · 存储，S5）"
+      "notes": "近线HDD：规格与供应商名单（IT · 存储，S5）",
+      "curated": true
     },
     {
       "id": "P.hdd.price",
@@ -8153,20 +8221,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "希捷 · 近线HDD",
-        "西部数据 · 近线HDD",
-        "东芝电子 · 近线HDD"
+        "Seagate 财报（ASP）",
+        "Western Digital 财报"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
-      "calendar": "月",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "近线HDD：自己的价格——重切规则的第一条件"
+      "notes": "近线HDD：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.hdd.lead_time",
@@ -8185,20 +8253,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "希捷 · 近线HDD",
-        "西部数据 · 近线HDD",
-        "东芝电子 · 近线HDD"
+        "Seagate 财报电话会（需求超供）",
+        "Western Digital 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "近线HDD：自己的交期——重切规则的第三条件"
+      "notes": "近线HDD：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.hdd.news",
@@ -8230,7 +8298,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "近线HDD：tight 状态部件的供应事件"
+      "notes": "近线HDD：tight 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.nic.spec",
@@ -8249,12 +8318,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "英伟达 · SuperNIC/DPU",
-        "超威半导体 · AI网卡/DPU",
-        "英特尔 · 标准网卡",
-        "中科驭数 / 云豹智能 / 大禹智芯 · 国产DPU"
+        "NVIDIA ConnectX-7 / 8",
+        "NVIDIA BlueField-3",
+        "Broadcom Thor",
+        "Intel E810",
+        "AMD Pensando"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -8263,7 +8333,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "NIC/DPU：规格与供应商名单（IT · 网络，S5）"
+      "notes": "NIC/DPU：规格与供应商名单（IT · 网络，S5）",
+      "curated": true
     },
     {
       "id": "P.nic.price",
@@ -8284,12 +8355,10 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分销商价目与研报",
       "instances": [
-        "英伟达 · SuperNIC/DPU",
-        "超威半导体 · AI网卡/DPU",
-        "英特尔 · 标准网卡",
-        "中科驭数 / 云豹智能 / 大禹智芯 · 国产DPU"
+        "CDW 价目",
+        "SemiAnalysis 网络 BOM"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
@@ -8298,7 +8367,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "NIC/DPU：自己的价格——重切规则的第一条件"
+      "notes": "NIC/DPU：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.nic.lead_time",
@@ -8317,21 +8387,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "英伟达 · SuperNIC/DPU",
-        "超威半导体 · AI网卡/DPU",
-        "英特尔 · 标准网卡",
-        "中科驭数 / 云豹智能 / 大禹智芯 · 国产DPU"
+        "NVIDIA 财报（网络）",
+        "Broadcom 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "NIC/DPU：自己的交期——重切规则的第三条件"
+      "notes": "NIC/DPU：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.optics.spec",
@@ -8350,16 +8419,15 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "中际旭创 · 800G/1.6T光模块",
-        "新易盛 · 800G/1.6T光模块",
-        "Coherent · 光模块与器件",
-        "光迅科技 · 光模块",
-        "华工正源 · 光模块",
-        "索尔思 / 海信宽带 / 剑桥科技 / 铭普 · 其他光模块厂",
-        "天孚通信 · 无源器件与光引擎",
-        "Lumentum等 · 激光器芯片"
+        "中际旭创",
+        "新易盛",
+        "Coherent",
+        "Lumentum",
+        "Broadcom CPO",
+        "NVIDIA Spectrum-X Photonics",
+        "华工正源"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -8368,7 +8436,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "光模块（CPO 为新兴子条目）：规格与供应商名单（IT · 网络，S5）"
+      "notes": "光模块（CPO 为新兴子条目）：规格与供应商名单（IT · 网络，S5）",
+      "curated": true
     },
     {
       "id": "P.optics.price",
@@ -8391,25 +8460,20 @@
       ],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "市场追踪与财报",
       "instances": [
-        "中际旭创 · 800G/1.6T光模块",
-        "新易盛 · 800G/1.6T光模块",
-        "Coherent · 光模块与器件",
-        "光迅科技 · 光模块",
-        "华工正源 · 光模块",
-        "索尔思 / 海信宽带 / 剑桥科技 / 铭普 · 其他光模块厂",
-        "天孚通信 · 无源器件与光引擎",
-        "Lumentum等 · 激光器芯片"
+        "LightCounting 光模块",
+        "中际旭创 / 新易盛 财报 ASP"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "光模块（CPO 为新兴子条目）：自己的价格——重切规则的第一条件"
+      "notes": "光模块（CPO 为新兴子条目）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.optics.lead_time",
@@ -8428,25 +8492,21 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "中际旭创 · 800G/1.6T光模块",
-        "新易盛 · 800G/1.6T光模块",
-        "Coherent · 光模块与器件",
-        "光迅科技 · 光模块",
-        "华工正源 · 光模块",
-        "索尔思 / 海信宽带 / 剑桥科技 / 铭普 · 其他光模块厂",
-        "天孚通信 · 无源器件与光引擎",
-        "Lumentum等 · 激光器芯片"
+        "Coherent 财报电话会",
+        "Lumentum 财报",
+        "LightCounting 供需"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "光模块（CPO 为新兴子条目）：自己的交期——重切规则的第三条件"
+      "notes": "光模块（CPO 为新兴子条目）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.optics.news",
@@ -8465,16 +8525,11 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "中际旭创 · 800G/1.6T光模块",
-        "新易盛 · 800G/1.6T光模块",
-        "Coherent · 光模块与器件",
-        "光迅科技 · 光模块",
-        "华工正源 · 光模块",
-        "索尔思 / 海信宽带 / 剑桥科技 / 铭普 · 其他光模块厂",
-        "天孚通信 · 无源器件与光引擎",
-        "Lumentum等 · 激光器芯片"
+        "800G 光模块",
+        "1.6T 光模块",
+        "CPO"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -8483,7 +8538,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "光模块（CPO 为新兴子条目）：transition 状态部件的供应事件"
+      "notes": "光模块（CPO 为新兴子条目）：transition 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.switch-asic.spec",
@@ -8502,11 +8558,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "博通 · 数据中心交换芯片",
-        "迈威尔 · 数据中心交换芯片",
-        "盛科通信 · 国产交换芯片"
+        "Broadcom Tomahawk 5 / 6",
+        "Broadcom Jericho",
+        "NVIDIA Spectrum-4",
+        "Marvell Teralynx",
+        "Cisco Silicon One"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -8515,7 +8573,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "交换芯片：规格与供应商名单（IT · 网络，S5）"
+      "notes": "交换芯片：规格与供应商名单（IT · 网络，S5）",
+      "curated": true
     },
     {
       "id": "P.switch-asic.price",
@@ -8536,20 +8595,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "研报",
       "instances": [
-        "博通 · 数据中心交换芯片",
-        "迈威尔 · 数据中心交换芯片",
-        "盛科通信 · 国产交换芯片"
+        "研报交换芯片 ASP"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "交换芯片：自己的价格——重切规则的第一条件"
+      "notes": "交换芯片：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.switch-asic.lead_time",
@@ -8568,20 +8626,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "博通 · 数据中心交换芯片",
-        "迈威尔 · 数据中心交换芯片",
-        "盛科通信 · 国产交换芯片"
+        "Broadcom 财报电话会",
+        "Marvell 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "交换芯片：自己的交期——重切规则的第三条件"
+      "notes": "交换芯片：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.switch-asic.news",
@@ -8613,7 +8671,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "交换芯片：tight 状态部件的供应事件"
+      "notes": "交换芯片：tight 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.retimer.spec",
@@ -8632,11 +8691,12 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "博通 · PCIe/CXL互联",
-        "澜起科技 · PCIe/CXL互联",
-        "阿斯特拉实验室 · PCIe/CXL互联"
+        "Astera Labs Aries",
+        "Broadcom Vantage",
+        "澜起 PCIe Retimer",
+        "Marvell"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -8645,7 +8705,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "重定时器 / AEC 芯片：规格与供应商名单（IT · 网络，S5）"
+      "notes": "重定时器 / AEC 芯片：规格与供应商名单（IT · 网络，S5）",
+      "curated": true
     },
     {
       "id": "P.retimer.price",
@@ -8666,20 +8727,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "博通 · PCIe/CXL互联",
-        "澜起科技 · PCIe/CXL互联",
-        "阿斯特拉实验室 · PCIe/CXL互联"
+        "Astera Labs 财报（ASP 与毛利）"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
-      "calendar": "月",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "重定时器 / AEC 芯片：自己的价格——重切规则的第一条件"
+      "notes": "重定时器 / AEC 芯片：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.retimer.lead_time",
@@ -8698,20 +8758,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "博通 · PCIe/CXL互联",
-        "澜起科技 · PCIe/CXL互联",
-        "阿斯特拉实验室 · PCIe/CXL互联"
+        "Astera Labs 财报电话会"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "重定时器 / AEC 芯片：自己的交期——重切规则的第三条件"
+      "notes": "重定时器 / AEC 芯片：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.retimer.news",
@@ -8730,11 +8789,10 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "博通 · PCIe/CXL互联",
-        "澜起科技 · PCIe/CXL互联",
-        "阿斯特拉实验室 · PCIe/CXL互联"
+        "Retimer 数据中心",
+        "Astera Labs"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -8743,7 +8801,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "重定时器 / AEC 芯片：tight 状态部件的供应事件"
+      "notes": "重定时器 / AEC 芯片：tight 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.pcie-switch.spec",
@@ -8762,11 +8821,11 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "博通 · PCIe/CXL互联",
-        "澜起科技 · PCIe/CXL互联",
-        "阿斯特拉实验室 · PCIe/CXL互联"
+        "Broadcom PEX",
+        "Microchip Switchtec",
+        "Astera Labs Scorpio"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -8775,7 +8834,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "PCIe/CXL 交换芯片：规格与供应商名单（IT · 网络，S5）"
+      "notes": "PCIe/CXL 交换芯片：规格与供应商名单（IT · 网络，S5）",
+      "curated": true
     },
     {
       "id": "P.pcie-switch.price",
@@ -8796,11 +8856,10 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分销商价目",
       "instances": [
-        "博通 · PCIe/CXL互联",
-        "澜起科技 · PCIe/CXL互联",
-        "阿斯特拉实验室 · PCIe/CXL互联"
+        "Mouser",
+        "Digi-Key"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
@@ -8809,7 +8868,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "PCIe/CXL 交换芯片：自己的价格——重切规则的第一条件"
+      "notes": "PCIe/CXL 交换芯片：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.pcie-switch.lead_time",
@@ -8828,20 +8888,19 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "分销商交期",
       "instances": [
-        "博通 · PCIe/CXL互联",
-        "澜起科技 · PCIe/CXL互联",
-        "阿斯特拉实验室 · PCIe/CXL互联"
+        "Mouser / Digi-Key 交期"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
-      "host": "aws",
-      "calendar": "季度",
+      "mechanism": "js_page",
+      "team": "fetchquotes",
+      "host": "macmini",
+      "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "PCIe/CXL 交换芯片：自己的交期——重切规则的第三条件"
+      "notes": "PCIe/CXL 交换芯片：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.connector.spec",
@@ -8860,9 +8919,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页与规范",
       "instances": [
-        "安费诺Amphenol / 立讯精密Luxshare / Molex / TE Connectivity"
+        "Amphenol",
+        "TE Connectivity",
+        "Molex",
+        "Samtec",
+        "OSFP / QSFP-DD MSA"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -8871,7 +8934,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高速连接器：规格与供应商名单（IT · 网络，S5）"
+      "notes": "高速连接器：规格与供应商名单（IT · 网络，S5）",
+      "curated": true
     },
     {
       "id": "P.connector.price",
@@ -8892,18 +8956,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "安费诺Amphenol / 立讯精密Luxshare / Molex / TE Connectivity"
+        "Amphenol 财报",
+        "TE Connectivity 财报"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
-      "calendar": "月",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高速连接器：自己的价格——重切规则的第一条件"
+      "notes": "高速连接器：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.connector.lead_time",
@@ -8922,18 +8988,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "安费诺Amphenol / 立讯精密Luxshare / Molex / TE Connectivity"
+        "Amphenol 财报电话会",
+        "TE 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高速连接器：自己的交期——重切规则的第三条件"
+      "notes": "高速连接器：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.connector.news",
@@ -8963,7 +9031,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "高速连接器：tight 状态部件的供应事件"
+      "notes": "高速连接器：tight 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.coldplate.spec",
@@ -8982,9 +9051,14 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "ZutaCore / Accelsius · 两相直触冷板"
+        "CoolIT",
+        "Boyd",
+        "双鸿 Auras",
+        "奇鋐 AVC",
+        "健策 Jentech",
+        "Delta"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -8993,7 +9067,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "冷板：规格与供应商名单（冷却，S5）"
+      "notes": "冷板：规格与供应商名单（冷却，S5）",
+      "curated": true
     },
     {
       "id": "P.coldplate.price",
@@ -9016,18 +9091,20 @@
       ],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "研报 BOM 与厂商月营收",
       "instances": [
-        "ZutaCore / Accelsius · 两相直触冷板"
+        "SemiAnalysis 液冷 BOM",
+        "奇鋐 / 双鸿 月营收"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "冷板：自己的价格——重切规则的第一条件"
+      "notes": "冷板：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.coldplate.lead_time",
@@ -9046,18 +9123,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "ZutaCore / Accelsius · 两相直触冷板"
+        "奇鋐 法说会",
+        "双鸿 法说会"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "冷板：自己的交期——重切规则的第三条件"
+      "notes": "冷板：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.coldplate.news",
@@ -9076,9 +9155,9 @@
       "indicators": [],
       "data_class": "material",
       "disclosure_type": "供应商、合同、产能与技术切换事件",
-      "publisher_category": "行业媒体、公司新闻稿",
+      "publisher_category": "行业媒体、公司新闻稿、监管公告",
       "instances": [
-        "ZutaCore / Accelsius · 两相直触冷板"
+        "冷板 液冷 供应"
       ],
       "mechanism": "rss",
       "team": "inews",
@@ -9087,7 +9166,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 3,
-      "notes": "冷板：transition 状态部件的供应事件"
+      "notes": "冷板：transition 状态部件的供应事件",
+      "curated": true
     },
     {
       "id": "P.psu.spec",
@@ -9106,9 +9186,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "台达 / 光宝LiteOn / 群光电能 / Advanced Energy / 麦格米特 / 欧陆通 · PSU/电源架"
+        "Delta",
+        "LiteOn",
+        "Advanced Energy Artesyn",
+        "Chicony",
+        "长城电源"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -9117,7 +9201,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "服务器电源模块（PSU）：规格与供应商名单（电力，S5）"
+      "notes": "服务器电源模块（PSU）：规格与供应商名单（电力，S5）",
+      "curated": true
     },
     {
       "id": "P.psu.price",
@@ -9138,18 +9223,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "研报与价格调查",
       "instances": [
-        "台达 / 光宝LiteOn / 群光电能 / Advanced Energy / 麦格米特 / 欧陆通 · PSU/电源架"
+        "TrendForce 服务器电源",
+        "研报电源 BOM"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "服务器电源模块（PSU）：自己的价格——重切规则的第一条件"
+      "notes": "服务器电源模块（PSU）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.psu.lead_time",
@@ -9168,18 +9255,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商月营收",
       "instances": [
-        "台达 / 光宝LiteOn / 群光电能 / Advanced Energy / 麦格米特 / 欧陆通 · PSU/电源架"
+        "台达 月营收",
+        "光宝 月营收"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
-      "calendar": "季度",
+      "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "服务器电源模块（PSU）：自己的交期——重切规则的第三条件"
+      "notes": "服务器电源模块（PSU）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.vrm.spec",
@@ -9198,9 +9287,14 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "Infineon / MPS / Renesas / ADI / TI · 服务器供电芯片"
+        "Infineon",
+        "MPS",
+        "Renesas",
+        "ADI",
+        "TI",
+        "Vicor 48V"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -9209,7 +9303,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "板级供电（VRM/Power Stage）：规格与供应商名单（电力，S5）"
+      "notes": "板级供电（VRM/Power Stage）：规格与供应商名单（电力，S5）",
+      "curated": true
     },
     {
       "id": "P.vrm.price",
@@ -9230,9 +9325,10 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分销商价目与财报",
       "instances": [
-        "Infineon / MPS / Renesas / ADI / TI · 服务器供电芯片"
+        "Mouser",
+        "MPS 财报"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
@@ -9241,7 +9337,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "板级供电（VRM/Power Stage）：自己的价格——重切规则的第一条件"
+      "notes": "板级供电（VRM/Power Stage）：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.vrm.lead_time",
@@ -9260,18 +9357,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "Infineon / MPS / Renesas / ADI / TI · 服务器供电芯片"
+        "Infineon 财报电话会",
+        "MPS 财报"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "板级供电（VRM/Power Stage）：自己的交期——重切规则的第三条件"
+      "notes": "板级供电（VRM/Power Stage）：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.vrm.news",
@@ -9301,7 +9400,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "板级供电（VRM/Power Stage）：tight 状态部件的供应事件"
+      "notes": "板级供电（VRM/Power Stage）：tight 状态部件的供应事件",
+      "curated": false
     },
     {
       "id": "P.server-fan.spec",
@@ -9320,9 +9420,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "台达 / Nidec / ebm-papst / 奇鋐AVC / 双鸿Auras · 风扇/散热模组/VC"
+        "Nidec",
+        "ebm-papst",
+        "奇鋐 AVC",
+        "Delta",
+        "Sunon"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -9331,7 +9435,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "服务器风扇：规格与供应商名单（冷却，S5）"
+      "notes": "服务器风扇：规格与供应商名单（冷却，S5）",
+      "curated": true
     },
     {
       "id": "P.server-fan.price",
@@ -9352,9 +9457,10 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "分销商价目",
       "instances": [
-        "台达 / Nidec / ebm-papst / 奇鋐AVC / 双鸿Auras · 风扇/散热模组/VC"
+        "Mouser",
+        "Digi-Key"
       ],
       "mechanism": "js_page",
       "team": "fetchquotes",
@@ -9363,7 +9469,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "服务器风扇：自己的价格——重切规则的第一条件"
+      "notes": "服务器风扇：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.server-fan.lead_time",
@@ -9382,18 +9489,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "台达 / Nidec / ebm-papst / 奇鋐AVC / 双鸿Auras · 风扇/散热模组/VC"
+        "Nidec 财报",
+        "奇鋐 月营收"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "服务器风扇：自己的交期——重切规则的第三条件"
+      "notes": "服务器风扇：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.heatsink-vc.spec",
@@ -9412,9 +9521,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "台达 / Nidec / ebm-papst / 奇鋐AVC / 双鸿Auras · 风扇/散热模组/VC"
+        "双鸿 Auras",
+        "奇鋐 AVC",
+        "健策 Jentech",
+        "Cooler Master",
+        "Boyd"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -9423,7 +9536,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "均热板与散热器：规格与供应商名单（冷却，S5）"
+      "notes": "均热板与散热器：规格与供应商名单（冷却，S5）",
+      "curated": true
     },
     {
       "id": "P.heatsink-vc.price",
@@ -9444,18 +9558,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "厂商月营收",
       "instances": [
-        "台达 / Nidec / ebm-papst / 奇鋐AVC / 双鸿Auras · 风扇/散热模组/VC"
+        "双鸿 月营收",
+        "奇鋐 月营收"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
-      "host": "macmini",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
+      "host": "aws",
       "calendar": "月",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "均热板与散热器：自己的价格——重切规则的第一条件"
+      "notes": "均热板与散热器：自己的价格——重切规则的第一条件",
+      "curated": true
     },
     {
       "id": "P.heatsink-vc.lead_time",
@@ -9474,18 +9590,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "交期、订单簿与产能",
-      "publisher_category": "研报、财报电话会、行业协会",
+      "publisher_category": "厂商财报与电话会",
       "instances": [
-        "台达 / Nidec / ebm-papst / 奇鋐AVC / 双鸿Auras · 风扇/散热模组/VC"
+        "双鸿 法说会",
+        "奇鋐 法说会"
       ],
-      "mechanism": "pdf_free",
-      "team": "fetchreports",
+      "mechanism": "edgar",
+      "team": "fetchfilings",
       "host": "aws",
       "calendar": "季度",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "均热板与散热器：自己的交期——重切规则的第三条件"
+      "notes": "均热板与散热器：自己的交期——重切规则的第三条件",
+      "curated": true
     },
     {
       "id": "P.dcim.spec",
@@ -9504,23 +9622,23 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "施耐德 · DCIM平台",
-        "维谛 · DCIM平台",
-        "Sunbird dcTrack / Nlyte · DCIM平台（海外）",
-        "华为NetEco / 共济科技 / 迈世 / 大榕树 · 国产DCIM/动环",
-        "Vertiv Avocent / Legrand Raritan · KVM/串口/带外",
-        "国自机器人 / 优必选等 · 巡检机器人"
+        "Schneider EcoStruxure IT",
+        "Vertiv Environet",
+        "Nlyte",
+        "Sunbird dcTrack",
+        "华为 NetEco"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
       "host": "aws",
-      "calendar": "每代际发布",
+      "calendar": "每版本",
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "DCIM / BMS / EPMS（监控、运维、电力监控软件）：规格与供应商名单（控制与软件，software）"
+      "notes": "DCIM / BMS / EPMS（监控、运维、电力监控软件）：规格与供应商名单（控制与软件，software）",
+      "curated": true
     },
     {
       "id": "P.dcim.price",
@@ -9536,7 +9654,6 @@
       "model_inputs": [
         "bandwidth_per_mw",
         "cost_per_fte",
-        "fte_per_mw",
         "insurance_pct",
         "labor_index",
         "other_opex_per_mw",
@@ -9548,23 +9665,20 @@
       "indicators": [],
       "data_class": "observation",
       "disclosure_type": "挂牌价、报价与成交价",
-      "publisher_category": "厂商价目、分销商、研报 BOM",
+      "publisher_category": "市场指南与厂商报价",
       "instances": [
-        "施耐德 · DCIM平台",
-        "维谛 · DCIM平台",
-        "Sunbird dcTrack / Nlyte · DCIM平台（海外）",
-        "华为NetEco / 共济科技 / 迈世 / 大榕树 · 国产DCIM/动环",
-        "Vertiv Avocent / Legrand Raritan · KVM/串口/带外",
-        "国自机器人 / 优必选等 · 巡检机器人"
+        "Gartner DCIM 市场指南",
+        "厂商订阅报价"
       ],
-      "mechanism": "js_page",
-      "team": "fetchquotes",
+      "mechanism": "pdf_registered",
+      "team": "fetchreports",
       "host": "macmini",
-      "calendar": "月",
+      "calendar": "年",
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "DCIM / BMS / EPMS（监控、运维、电力监控软件）：订阅价与许可价（软件条目进目标表，用户 2026-09-28 决定）"
+      "notes": "DCIM / BMS / EPMS（监控、运维、电力监控软件）：订阅价与许可价（软件条目进目标表，用户 2026-09-28 决定）",
+      "curated": true
     },
     {
       "id": "P.modular-dc.spec",
@@ -9581,12 +9695,13 @@
       "indicators": [],
       "data_class": "reference",
       "disclosure_type": "产品规格、数据手册与参考设计",
-      "publisher_category": "厂商、ODM",
+      "publisher_category": "厂商产品页",
       "instances": [
-        "施耐德电气 · 大功率UPS/微模块",
-        "科华数能 · UPS/微模块",
-        "科士达 · UPS/微模块",
-        "华为FusionModule / 维谛SmartAisle / 施耐德EcoStruxure Pod / 科华WiseMDC · 微模块/机柜"
+        "Schneider EcoStruxure Modular（APC）",
+        "Vertiv SmartMod",
+        "华为 FusionModule",
+        "科华",
+        "科士达"
       ],
       "mechanism": "vendor_page",
       "team": "fetchspec",
@@ -9595,7 +9710,8 @@
       "next_due": "2026-12-27",
       "status": "needed",
       "sensitivity_rank": 4,
-      "notes": "预制化/微模块交付（设施基型）：规格与供应商名单（设施，archetype）"
+      "notes": "预制化/微模块交付（设施基型）：规格与供应商名单（设施，archetype）",
+      "curated": true
     },
     {
       "id": "S.land.price",
@@ -9630,7 +9746,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "土地（地价、租金、区划）：time-to-power 已取代地价成为第一选址因子；社区反弹上升"
+      "notes": "土地（地价、租金、区划）：time-to-power 已取代地价成为第一选址因子；社区反弹上升",
+      "curated": false
     },
     {
       "id": "S.land.holders",
@@ -9643,9 +9760,7 @@
       "factor_id": "cost.depreciation.capex.land",
       "part_id": null,
       "site_right_id": "land",
-      "model_inputs": [
-        "land_per_mw"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -9662,7 +9777,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "土地（地价、租金、区划）：time-to-power 已取代地价成为第一选址因子；社区反弹上升"
+      "notes": "土地（地价、租金、区划）：time-to-power 已取代地价成为第一选址因子；社区反弹上升",
+      "curated": false
     },
     {
       "id": "S.water-rights.holders",
@@ -9692,7 +9808,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "水权与取水许可：WUE 与流域水压力决定冷却路线；取水量与许可期限是主体类与时间类事实"
+      "notes": "水权与取水许可：WUE 与流域水压力决定冷却路线；取水量与许可期限是主体类与时间类事实",
+      "curated": false
     },
     {
       "id": "S.water-rights.timeline",
@@ -9724,7 +9841,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "水权与取水许可：WUE 与流域水压力决定冷却路线；取水量与许可期限是主体类与时间类事实"
+      "notes": "水权与取水许可：WUE 与流域水压力决定冷却路线；取水量与许可期限是主体类与时间类事实",
+      "curated": false
     },
     {
       "id": "S.grid.timeline",
@@ -9761,7 +9879,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "电力配额与并网（排队年限、并网协议）：并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）"
+      "notes": "电力配额与并网（排队年限、并网协议）：并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）",
+      "curated": false
     },
     {
       "id": "S.grid.holders",
@@ -9793,7 +9912,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "电力配额与并网（排队年限、并网协议）：并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）"
+      "notes": "电力配额与并网（排队年限、并网协议）：并网排队与输电升级——2026 年新项目的第一约束；ERCOT 排队超 225GW（含大量重复申请）",
+      "curated": false
     },
     {
       "id": "S.gas-supply.holders",
@@ -9823,7 +9943,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "天然气管道接入（容量、供气合同）：自备电源的真实约束常在管线容量而非机组本身；管线公司待补档案"
+      "notes": "天然气管道接入（容量、供气合同）：自备电源的真实约束常在管线容量而非机组本身；管线公司待补档案",
+      "curated": false
     },
     {
       "id": "S.gas-supply.timeline",
@@ -9853,7 +9974,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "天然气管道接入（容量、供气合同）：自备电源的真实约束常在管线容量而非机组本身；管线公司待补档案"
+      "notes": "天然气管道接入（容量、供气合同）：自备电源的真实约束常在管线容量而非机组本身；管线公司待补档案",
+      "curated": false
     },
     {
       "id": "S.network-access.holders",
@@ -9881,7 +10003,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "网络接入（暗光纤、运营商、IXP）：选址三要素「电、水、网」的网；跨园区训练互联的先决条件。运营商（Zayo/Lumen 类）待补档案"
+      "notes": "网络接入（暗光纤、运营商、IXP）：选址三要素「电、水、网」的网；跨园区训练互联的先决条件。运营商（Zayo/Lumen 类）待补档案",
+      "curated": false
     },
     {
       "id": "S.network-access.price",
@@ -9909,7 +10032,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "网络接入（暗光纤、运营商、IXP）：选址三要素「电、水、网」的网；跨园区训练互联的先决条件。运营商（Zayo/Lumen 类）待补档案"
+      "notes": "网络接入（暗光纤、运营商、IXP）：选址三要素「电、水、网」的网；跨园区训练互联的先决条件。运营商（Zayo/Lumen 类）待补档案",
+      "curated": false
     },
     {
       "id": "S.permits.timeline",
@@ -9939,7 +10063,8 @@
       "next_due": "2026-10-28",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "许可（区划、环评、排放、建设）：审批时长与暂停令；来自 2026-09-06 评审覆盖清单的「外部接口与非物理配套」"
+      "notes": "许可（区划、环评、排放、建设）：审批时长与暂停令；来自 2026-09-06 评审覆盖清单的「外部接口与非物理配套」",
+      "curated": false
     },
     {
       "id": "S.permits.holders",
@@ -9952,9 +10077,7 @@
       "factor_id": "cost.depreciation.capex.land",
       "part_id": null,
       "site_right_id": "permits",
-      "model_inputs": [
-        "land_per_mw"
-      ],
+      "model_inputs": [],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -9971,7 +10094,8 @@
       "next_due": "2026-10-05",
       "status": "needed",
       "sensitivity_rank": 2,
-      "notes": "许可（区划、环评、排放、建设）：审批时长与暂停令；来自 2026-09-06 评审覆盖清单的「外部接口与非物理配套」"
+      "notes": "许可（区划、环评、排放、建设）：审批时长与暂停令；来自 2026-09-06 评审覆盖清单的「外部接口与非物理配套」",
+      "curated": false
     }
   ]
 }

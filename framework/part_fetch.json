@@ -1,0 +1,2431 @@
+{
+  "version": "1.0",
+  "updated": "2026-09-28",
+  "note": "部件级目标的人工登记：每个部件的规格、价格、交期（非成熟部件再加新闻事件）各写一条\"出版方类别 × 实例 × 日历 × 机制 × 队\"。目标清单生成器（manage.py targets）用它覆盖模板值；没有登记的部件沿用模板。登记的是公开、可命名的出版方与实例，不是已抓取的证据：登记不改变 status，status 仍只看已有序列、已录值指标与模型证据。公司只是实例，随时可换。",
+  "parts": {
+    "hv-switchyard": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Hitachi Energy GIS 产品页",
+          "Siemens Energy 8DA/8DQ",
+          "ABB 高压开关"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "公用事业费率案与项目招标",
+        "instances": [
+          "FERC / 州公用事业委员会费率案",
+          "园区变电站招标公告"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会与行业报告",
+        "instances": [
+          "Hitachi Energy 财报电话会",
+          "Siemens Energy 财报",
+          "Wood Mackenzie 电网设备交期"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "开关站/GIS 订单",
+          "电网设备交期"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "transformer": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Hitachi Energy 大型电力变压器",
+          "Siemens Energy 变压器",
+          "Hyosung 重工",
+          "GE Vernova 变压器"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "政府统计与公用事业采购",
+        "instances": [
+          "BLS PPI 电力变压器（PCU335311）",
+          "公用事业变压器采购案"
+        ],
+        "calendar": "月",
+        "mechanism": "api",
+        "team": "fetchstat"
+      },
+      "lead_time": {
+        "publisher_category": "研报与财报电话会",
+        "instances": [
+          "Wood Mackenzie 变压器交期报告",
+          "NIAC / DOE 变压器供应链报告",
+          "Hitachi Energy 财报电话会"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "变压器交期",
+          "变压器产能扩建"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "mv-switchgear": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "ABB UniGear",
+          "Schneider SM6 / PIX",
+          "Eaton 中压开关",
+          "Siemens NXAIR"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "政府统计",
+        "instances": [
+          "BLS PPI 开关设备（PCU335313）"
+        ],
+        "calendar": "月",
+        "mechanism": "api",
+        "team": "fetchstat"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Schneider Electric 财报电话会",
+          "ABB 财报",
+          "Eaton 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "中压开关柜交期"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "gas-turbine": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "GE Vernova LM2500XPRESS / 7HA",
+          "Siemens Energy SGT-800",
+          "Mitsubishi Power M501"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "项目公告与研报",
+        "instances": [
+          "自备电源项目公告（$/kW）",
+          "Lazard LCOE",
+          "研报燃机造价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "GE Vernova 财报电话会（订单簿、槽位预订）",
+          "Siemens Energy 财报",
+          "Mitsubishi Heavy 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "燃机订单",
+          "燃机槽位",
+          "数据中心自备电源"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "gas-engine": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Wärtsilä 31SG / 50SG",
+          "Caterpillar G3520",
+          "Cummins QSK95",
+          "INNIO Jenbacher"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "项目公告",
+        "instances": [
+          "自备电源项目公告（$/kW）"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Wärtsilä 财报电话会",
+          "Caterpillar 财报",
+          "Cummins 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "往复式机组 数据中心"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "fuel-cell": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Bloom Energy Series 10 产品页"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Bloom Energy 财报（$/kW 与毛利）"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Bloom Energy 财报电话会（交付周期）"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "Bloom Energy 数据中心",
+          "燃料电池 桥接电源"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "smr": {
+      "spec": {
+        "publisher_category": "设计文件与监管卷宗",
+        "instances": [
+          "NuScale VOYGR",
+          "X-energy Xe-100",
+          "Oklo Aurora",
+          "Kairos Hermes",
+          "NRC 许可卷宗"
+        ],
+        "calendar": "每里程碑",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "合同公告与研报",
+        "instances": [
+          "Google–Kairos 合同",
+          "Amazon–X-energy 合同",
+          "Meta 核电 RFP",
+          "DOE 小堆成本估算"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "监管里程碑",
+        "instances": [
+          "NRC 许可时间表",
+          "CNSC 里程碑"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "SMR 数据中心",
+          "小型模块化反应堆 合同"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "backup-power": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Caterpillar C175 / 3516",
+          "Cummins QSK",
+          "Rolls-Royce mtu Series 4000",
+          "Kohler KD"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "招标与分销报价",
+        "instances": [
+          "柴发招标公告",
+          "分销商报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Caterpillar 财报电话会（发电机组订单）",
+          "Cummins 财报",
+          "Rolls-Royce 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "柴油发电机组 交期",
+          "柴发 数据中心 订单"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "bess": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Tesla Megapack",
+          "Fluence Gridstack",
+          "BYD Cube",
+          "CATL EnerC"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "研报与价格调查",
+        "instances": [
+          "BNEF 储能系统价格调查",
+          "TrendForce 储能电芯价格"
+        ],
+        "calendar": "月",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Tesla 财报（储能部署）",
+          "Fluence 财报电话会"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "储能 数据中心",
+          "BESS 订单"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "fuel-storage": {
+      "spec": {
+        "publisher_category": "厂商产品页与规范",
+        "instances": [
+          "Containment Solutions 储罐",
+          "Highland Tank",
+          "NFPA 110 / 30 规范"
+        ],
+        "calendar": "每版本",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "招标",
+        "instances": [
+          "储罐与加注系统招标"
+        ],
+        "calendar": "季度",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "总包报价",
+        "instances": [
+          "机电总包报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      }
+    },
+    "dry-cooler": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "EVAPCO",
+          "Baltimore Aircoil",
+          "SPX Cooling",
+          "Munters",
+          "Modine Airedale"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "造价指南与分包报价",
+        "instances": [
+          "Turner & Townsend 数据中心造价",
+          "机电分包报价"
+        ],
+        "calendar": "年",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Modine 财报电话会",
+          "SPX Technologies 财报",
+          "Munters 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "water-treatment": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Ecolab Nalco Water",
+          "Veolia Water Technologies",
+          "Xylem"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "服务合同",
+        "instances": [
+          "水处理服务合同公告"
+        ],
+        "calendar": "年",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "分包报价",
+        "instances": [
+          "机电分包报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      }
+    },
+    "shell": {
+      "spec": {
+        "publisher_category": "设计与总包公开资料",
+        "instances": [
+          "Turner Construction",
+          "DPR",
+          "Holder",
+          "Jacobs",
+          "Uptime Tier 标准"
+        ],
+        "calendar": "每版本",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "造价指数",
+        "instances": [
+          "Turner & Townsend Data Centre Cost Index",
+          "Cushman & Wakefield 造价报告",
+          "JLL 造价"
+        ],
+        "calendar": "年",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "建设周期跟踪",
+        "instances": [
+          "Epoch AI 建设周期跟踪",
+          "Uptime Institute 调查",
+          "公司公告交付时间"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      }
+    },
+    "fire": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Xtralis VESDA",
+          "Kidde Fenwal",
+          "Siemens Cerberus",
+          "3M Novec 1230 替代品"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分包报价",
+        "instances": [
+          "消防分包报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "分包报价",
+        "instances": [
+          "消防分包交期"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      }
+    },
+    "security": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Axis",
+          "Genetec",
+          "LenelS2",
+          "HID",
+          "海康威视 / 大华"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分包报价",
+        "instances": [
+          "安防分包报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "分包报价",
+        "instances": [
+          "安防分包交期"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      }
+    },
+    "ups": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Vertiv Liebert EXL / Trinergy",
+          "Eaton 9395 / Power Xpert",
+          "Schneider Galaxy VX / VL",
+          "ABB MegaFlex",
+          "华为数字能源"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "政府统计与财报",
+        "instances": [
+          "BLS PPI 电源设备",
+          "Vertiv 财报（定价评论）"
+        ],
+        "calendar": "月",
+        "mechanism": "api",
+        "team": "fetchstat"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Vertiv 财报电话会（订单簿与交期）",
+          "Eaton 财报",
+          "Schneider Electric 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "UPS 数据中心 订单",
+          "Vertiv 订单簿"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "ups-battery": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Vertiv HPL 锂电柜",
+          "Schneider Galaxy Li-Ion",
+          "Samsung SDI / LG 电芯",
+          "EVE / 亿纬 电芯"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "电芯价格调查",
+        "instances": [
+          "TrendForce 磷酸铁锂电芯价格",
+          "InfoLink 电芯价格"
+        ],
+        "calendar": "月",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Vertiv 财报",
+          "电芯厂财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "UPS 锂电 数据中心"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "lv-switchgear": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "ABB MNS",
+          "Schneider Prisma / Okken",
+          "Eaton Power Xpert",
+          "Siemens SIVACON",
+          "中恒电气"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "政府统计",
+        "instances": [
+          "BLS PPI 开关设备（PCU335313）"
+        ],
+        "calendar": "月",
+        "mechanism": "api",
+        "team": "fetchstat"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Schneider Electric 财报电话会",
+          "ABB 财报",
+          "Eaton 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "低压开关柜 交期",
+          "配电设备 数据中心"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "busway": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Eaton Pow-R-Way",
+          "Schneider Canalis",
+          "Siemens Sentron",
+          "Starline（Legrand）",
+          "E+I Engineering"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分包报价",
+        "instances": [
+          "电气分包报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Legrand 财报",
+          "Eaton 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "母线槽 数据中心"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "pdu": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Vertiv Geist",
+          "Schneider APC",
+          "Eaton",
+          "Raritan / Legrand",
+          "Starline"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分销商价目",
+        "instances": [
+          "CDW 价目",
+          "Insight 价目"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "分销商库存",
+        "instances": [
+          "CDW 库存状态"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      }
+    },
+    "chiller": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Trane",
+          "Carrier",
+          "Johnson Controls York",
+          "Daikin",
+          "Vertiv Liebert AFC"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "政府统计与造价指南",
+        "instances": [
+          "BLS PPI 商用制冷设备",
+          "Turner & Townsend 造价"
+        ],
+        "calendar": "月",
+        "mechanism": "api",
+        "team": "fetchstat"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Trane Technologies 财报电话会（数据中心订单簿）",
+          "Carrier 财报",
+          "Johnson Controls 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "冷水机组 数据中心 订单"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "chilled-water-loop": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Grundfos",
+          "Armstrong Fluid Technology",
+          "Xylem Bell & Gossett",
+          "Victaulic"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "机电分包报价",
+        "instances": [
+          "机电分包报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "机电分包报价",
+        "instances": [
+          "机电分包交期"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      }
+    },
+    "room-cooling": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Vertiv Liebert CRV / DSE",
+          "Stulz",
+          "Schneider Uniflair",
+          "Munters",
+          "Airedale"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商报价与分包",
+        "instances": [
+          "厂商报价",
+          "机电分包报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Vertiv 财报电话会",
+          "Stulz 公告"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "cdu": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Vertiv CoolChip CDU",
+          "CoolIT Systems",
+          "Motivair（Schneider）",
+          "Boyd",
+          "nVent",
+          "Delta"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "研报 BOM",
+        "instances": [
+          "Dell'Oro 液冷报告",
+          "SemiAnalysis 液冷 BOM",
+          "Omdia 液冷"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Vertiv 财报电话会",
+          "nVent 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "CDU 订单",
+          "液冷 数据中心"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "immersion": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "GRC",
+          "Submer",
+          "LiquidStack",
+          "Asperitas"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商报价",
+        "instances": [
+          "厂商报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商公告",
+        "instances": [
+          "厂商交付公告"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "浸没式液冷 部署"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "cabling": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Corning",
+          "CommScope",
+          "Panduit",
+          "Belden",
+          "AFL"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分销商价目",
+        "instances": [
+          "Wesco / Anixter",
+          "Graybar"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Corning 财报电话会（光纤订单）",
+          "CommScope 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "leak-detection": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "nVent RLE",
+          "TTK",
+          "Siemens"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分包报价",
+        "instances": [
+          "机电分包报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "分包报价",
+        "instances": [
+          "机电分包交期"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      }
+    },
+    "rack-frame": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Vertiv",
+          "Schneider NetShelter",
+          "Rittal",
+          "Eaton",
+          "Legrand Minkels"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分销商价目",
+        "instances": [
+          "CDW 价目"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "分销商库存",
+        "instances": [
+          "CDW 库存状态"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      }
+    },
+    "rack-system": {
+      "spec": {
+        "publisher_category": "参考架构与厂商产品页",
+        "instances": [
+          "NVIDIA GB200 / GB300 NVL72 参考架构",
+          "Foxconn / Ingrasys 整柜",
+          "Quanta QCT",
+          "Wiwynn",
+          "Dell IR7000",
+          "Supermicro"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "研报与财报",
+        "instances": [
+          "Morgan Stanley 整柜价格估算",
+          "SemiAnalysis 整柜 BOM",
+          "Dell 财报（AI 订单簿）"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会与出货跟踪",
+        "instances": [
+          "Dell 财报电话会",
+          "Supermicro 财报",
+          "Foxconn / Wistron 月营收",
+          "TrendForce AI 服务器出货"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "NVL72 出货",
+          "AI 整机柜 订单"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "server": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Dell PowerEdge XE9680",
+          "HPE Cray XD",
+          "Supermicro GPU 服务器",
+          "Lenovo ThinkSystem SR780a",
+          "浪潮 NF5688",
+          "华为 Atlas"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "招标与研报 BOM",
+        "instances": [
+          "中国运营商 AI 服务器集采公告",
+          "SemiAnalysis 服务器 BOM",
+          "IDC 服务器追踪"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会与出货跟踪",
+        "instances": [
+          "Dell 财报电话会",
+          "Supermicro 财报",
+          "TrendForce AI 服务器出货"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "AI 服务器 订单",
+          "AI 服务器 出货"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "general-server": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Dell PowerEdge R760",
+          "HPE ProLiant DL380",
+          "Lenovo SR650",
+          "浪潮 NF5280",
+          "xFusion",
+          "华为 TaiShan"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "市场追踪与招标",
+        "instances": [
+          "IDC 服务器 ASP",
+          "Gartner 服务器",
+          "中国运营商通用服务器集采公告"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "出货跟踪",
+        "instances": [
+          "IDC 服务器出货",
+          "厂商财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      }
+    },
+    "network-switch": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Arista 7800R4 / 7060X6",
+          "NVIDIA Spectrum-X / Quantum-X800",
+          "Cisco Nexus 9000",
+          "Juniper QFX",
+          "Celestica",
+          "华为 CloudEngine"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "市场追踪",
+        "instances": [
+          "Dell'Oro 以太网交换机",
+          "650 Group",
+          "Arista 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Arista 财报电话会（供应约束）",
+          "Cisco 财报",
+          "Celestica 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "AI 交换机 订单",
+          "Spectrum-X",
+          "以太网 scale-out"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "storage-array": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Pure Storage FlashBlade",
+          "NetApp AFF",
+          "Dell PowerScale",
+          "VAST Data",
+          "WEKA",
+          "DDN"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "市场追踪与财报",
+        "instances": [
+          "IDC 存储追踪",
+          "Pure Storage 财报",
+          "NetApp 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Pure Storage 财报电话会",
+          "NetApp 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "manifold": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "CoolIT 歧管",
+          "Vertiv 歧管",
+          "nVent",
+          "Parker"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "研报 BOM",
+        "instances": [
+          "SemiAnalysis 液冷 BOM"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Vertiv 财报",
+          "nVent 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "quick-disconnect": {
+      "spec": {
+        "publisher_category": "厂商产品页与规范",
+        "instances": [
+          "Stäubli",
+          "CPC（Dover）",
+          "Parker",
+          "Danfoss Hansen",
+          "OCP 快接头规范"
+        ],
+        "calendar": "每版本",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分销商价目",
+        "instances": [
+          "分销商价目"
+        ],
+        "calendar": "季度",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Dover 财报电话会（CPC）",
+          "Stäubli 公告",
+          "OCP 认证进度"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "快接头 认证",
+          "液冷 快接头"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "power-shelf": {
+      "spec": {
+        "publisher_category": "厂商产品页与规范",
+        "instances": [
+          "Delta 电源架",
+          "LiteOn",
+          "Flex",
+          "Advanced Energy",
+          "Vertiv",
+          "OCP ORv3 规范"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "研报 BOM",
+        "instances": [
+          "SemiAnalysis 电源 BOM",
+          "TrendForce 服务器电源"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商月营收与财报",
+        "instances": [
+          "台达 月营收",
+          "光宝 月营收",
+          "Delta 财报电话会"
+        ],
+        "calendar": "月",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "800V HVDC",
+          "电源架 数据中心"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "bbu": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Delta BBU",
+          "LiteOn BBU",
+          "Advanced Energy",
+          "Simplo",
+          "Dynapack"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "电芯价格调查",
+        "instances": [
+          "TrendForce 电芯价格"
+        ],
+        "calendar": "月",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商月营收",
+        "instances": [
+          "台达 月营收",
+          "新普 月营收"
+        ],
+        "calendar": "月",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "BBU 机柜 电池"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "copper-interconnect": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Amphenol",
+          "TE Connectivity",
+          "Molex",
+          "Credo AEC",
+          "立讯精密"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Credo 财报（AEC ASP）",
+          "Amphenol 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Credo 财报电话会",
+          "Amphenol 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "coolant": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Dow 乙二醇",
+          "Chemours Opteon",
+          "Shell 浸没液",
+          "Castrol",
+          "PG25 供应商"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "化工报价",
+        "instances": [
+          "化工品报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商公告",
+        "instances": [
+          "厂商供货公告"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      }
+    },
+    "sidecar-hx": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Vertiv 液-气换热器",
+          "nVent",
+          "Schneider Motivair",
+          "Rittal"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "研报 BOM",
+        "instances": [
+          "SemiAnalysis 液冷 BOM"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Vertiv 财报",
+          "nVent 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "gpu": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "NVIDIA H100 / B200 / B300 / GB300 产品页",
+          "AMD Instinct MI300 / MI350",
+          "华为昇腾 910"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "现货与二手市场、研报",
+        "instances": [
+          "GPU 现货价格追踪（eBay / 经销商）",
+          "SemiAnalysis",
+          "研报单卡价格"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会与产能报道",
+        "instances": [
+          "NVIDIA 财报电话会（供应约束）",
+          "TrendForce CoWoS 产能",
+          "TSMC 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "GPU 供应",
+          "CoWoS 产能",
+          "GPU 出口管制"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "ai-asic": {
+      "spec": {
+        "publisher_category": "厂商文档与财报",
+        "instances": [
+          "Google TPU（Ironwood）文档",
+          "AWS Trainium2 / 3",
+          "Microsoft Maia",
+          "Meta MTIA",
+          "Broadcom 财报"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "研报",
+        "instances": [
+          "Morgan Stanley ASIC 成本估算",
+          "SemiAnalysis ASIC 分析"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Broadcom 财报电话会",
+          "Marvell 财报",
+          "Alchip / GUC 月营收"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "自研 ASIC",
+          "TPU 出货",
+          "Trainium"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "cpu": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Intel Xeon 6",
+          "AMD EPYC Turin",
+          "NVIDIA Grace",
+          "Ampere"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商价目",
+        "instances": [
+          "Intel ARK 推荐客户价",
+          "AMD 1ku 价"
+        ],
+        "calendar": "季度",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Intel 财报电话会",
+          "AMD 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "fpga": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "AMD Versal / Alveo",
+          "Altera Agilex"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分销商价目",
+        "instances": [
+          "Mouser",
+          "Digi-Key"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "分销商交期",
+        "instances": [
+          "Mouser / Digi-Key 交期"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      }
+    },
+    "bmc": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "ASPEED AST2600 / AST2700",
+          "Nuvoton"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商月营收与财报",
+        "instances": [
+          "信骅 月营收",
+          "ASPEED 财报"
+        ],
+        "calendar": "月",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "信骅 法说会"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "hbm": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "SK hynix HBM3E / HBM4",
+          "Samsung HBM",
+          "Micron HBM3E"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "价格调查与研报",
+        "instances": [
+          "TrendForce HBM 合约价",
+          "研报 HBM ASP"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "SK hynix 财报电话会（售罄期限）",
+          "Micron 财报",
+          "Samsung 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "HBM 售罄",
+          "HBM4 量产"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "dram": {
+      "spec": {
+        "publisher_category": "厂商产品页与标准",
+        "instances": [
+          "Samsung RDIMM / MRDIMM",
+          "SK hynix",
+          "Micron",
+          "JEDEC DDR5 规范"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "价格调查",
+        "instances": [
+          "TrendForce DRAMeXchange 合约价",
+          "DRAM 现货价"
+        ],
+        "calendar": "月",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Micron 财报电话会",
+          "SK hynix 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "cxl-memory": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Samsung CMM-D",
+          "Micron CZ120",
+          "Montage MXC",
+          "Astera Labs Leo"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商报价",
+        "instances": [
+          "厂商报价"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "澜起 财报",
+          "Astera Labs 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "CXL 内存 部署"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "ssd": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Samsung PM1743 / PM9D3",
+          "Solidigm D5-P5336",
+          "Micron 9550",
+          "Kioxia CM8"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "价格调查",
+        "instances": [
+          "TrendForce 企业级 SSD 合约价",
+          "分销商价目"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Kioxia 财报",
+          "Micron 财报电话会"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "hdd": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Seagate Mozaic",
+          "Western Digital UltraSMR",
+          "Toshiba MG 系列"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Seagate 财报（ASP）",
+          "Western Digital 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Seagate 财报电话会（需求超供）",
+          "Western Digital 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "nic": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "NVIDIA ConnectX-7 / 8",
+          "NVIDIA BlueField-3",
+          "Broadcom Thor",
+          "Intel E810",
+          "AMD Pensando"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分销商价目与研报",
+        "instances": [
+          "CDW 价目",
+          "SemiAnalysis 网络 BOM"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "NVIDIA 财报（网络）",
+          "Broadcom 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "optics": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "中际旭创",
+          "新易盛",
+          "Coherent",
+          "Lumentum",
+          "Broadcom CPO",
+          "NVIDIA Spectrum-X Photonics",
+          "华工正源"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "市场追踪与财报",
+        "instances": [
+          "LightCounting 光模块",
+          "中际旭创 / 新易盛 财报 ASP"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Coherent 财报电话会",
+          "Lumentum 财报",
+          "LightCounting 供需"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "800G 光模块",
+          "1.6T 光模块",
+          "CPO"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "switch-asic": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Broadcom Tomahawk 5 / 6",
+          "Broadcom Jericho",
+          "NVIDIA Spectrum-4",
+          "Marvell Teralynx",
+          "Cisco Silicon One"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "研报",
+        "instances": [
+          "研报交换芯片 ASP"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Broadcom 财报电话会",
+          "Marvell 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "retimer": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Astera Labs Aries",
+          "Broadcom Vantage",
+          "澜起 PCIe Retimer",
+          "Marvell"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Astera Labs 财报（ASP 与毛利）"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Astera Labs 财报电话会"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "Retimer 数据中心",
+          "Astera Labs"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "pcie-switch": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Broadcom PEX",
+          "Microchip Switchtec",
+          "Astera Labs Scorpio"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分销商价目",
+        "instances": [
+          "Mouser",
+          "Digi-Key"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "分销商交期",
+        "instances": [
+          "Mouser / Digi-Key 交期"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      }
+    },
+    "connector": {
+      "spec": {
+        "publisher_category": "厂商产品页与规范",
+        "instances": [
+          "Amphenol",
+          "TE Connectivity",
+          "Molex",
+          "Samtec",
+          "OSFP / QSFP-DD MSA"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Amphenol 财报",
+          "TE Connectivity 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Amphenol 财报电话会",
+          "TE 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "coldplate": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "CoolIT",
+          "Boyd",
+          "双鸿 Auras",
+          "奇鋐 AVC",
+          "健策 Jentech",
+          "Delta"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "研报 BOM 与厂商月营收",
+        "instances": [
+          "SemiAnalysis 液冷 BOM",
+          "奇鋐 / 双鸿 月营收"
+        ],
+        "calendar": "月",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "奇鋐 法说会",
+          "双鸿 法说会"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "news": {
+        "publisher_category": "行业媒体、公司新闻稿、监管公告",
+        "instances": [
+          "冷板 液冷 供应"
+        ],
+        "calendar": "持续",
+        "mechanism": "rss",
+        "team": "inews"
+      }
+    },
+    "psu": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Delta",
+          "LiteOn",
+          "Advanced Energy Artesyn",
+          "Chicony",
+          "长城电源"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "研报与价格调查",
+        "instances": [
+          "TrendForce 服务器电源",
+          "研报电源 BOM"
+        ],
+        "calendar": "季度",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      },
+      "lead_time": {
+        "publisher_category": "厂商月营收",
+        "instances": [
+          "台达 月营收",
+          "光宝 月营收"
+        ],
+        "calendar": "月",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "vrm": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Infineon",
+          "MPS",
+          "Renesas",
+          "ADI",
+          "TI",
+          "Vicor 48V"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分销商价目与财报",
+        "instances": [
+          "Mouser",
+          "MPS 财报"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Infineon 财报电话会",
+          "MPS 财报"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "server-fan": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Nidec",
+          "ebm-papst",
+          "奇鋐 AVC",
+          "Delta",
+          "Sunon"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "分销商价目",
+        "instances": [
+          "Mouser",
+          "Digi-Key"
+        ],
+        "calendar": "月",
+        "mechanism": "js_page",
+        "team": "fetchquotes"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "Nidec 财报",
+          "奇鋐 月营收"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "heatsink-vc": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "双鸿 Auras",
+          "奇鋐 AVC",
+          "健策 Jentech",
+          "Cooler Master",
+          "Boyd"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "厂商月营收",
+        "instances": [
+          "双鸿 月营收",
+          "奇鋐 月营收"
+        ],
+        "calendar": "月",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      },
+      "lead_time": {
+        "publisher_category": "厂商财报与电话会",
+        "instances": [
+          "双鸿 法说会",
+          "奇鋐 法说会"
+        ],
+        "calendar": "季度",
+        "mechanism": "edgar",
+        "team": "fetchfilings"
+      }
+    },
+    "dcim": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Schneider EcoStruxure IT",
+          "Vertiv Environet",
+          "Nlyte",
+          "Sunbird dcTrack",
+          "华为 NetEco"
+        ],
+        "calendar": "每版本",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      },
+      "price": {
+        "publisher_category": "市场指南与厂商报价",
+        "instances": [
+          "Gartner DCIM 市场指南",
+          "厂商订阅报价"
+        ],
+        "calendar": "年",
+        "mechanism": "pdf_registered",
+        "team": "fetchreports"
+      }
+    },
+    "modular-dc": {
+      "spec": {
+        "publisher_category": "厂商产品页",
+        "instances": [
+          "Schneider EcoStruxure Modular（APC）",
+          "Vertiv SmartMod",
+          "华为 FusionModule",
+          "科华",
+          "科士达"
+        ],
+        "calendar": "每代际发布",
+        "mechanism": "vendor_page",
+        "team": "fetchspec"
+      }
+    }
+  }
+}

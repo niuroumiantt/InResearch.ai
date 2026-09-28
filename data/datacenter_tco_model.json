@@ -901,273 +901,320 @@
   "evidence": {
     "it_mw": {
       "status": "input",
-      "note": "项目规模，由用户给定"
+      "note": "项目规模，由用户给定",
+      "variable_class": 1
     },
     "redundancy": {
       "status": "assumed",
       "note": "冗余系数 N 0.85 / N+1 1.0 / 2N 1.35（电气）为作者假设",
       "fetch_kind": "report",
-      "fetch_what": "Uptime Tier 造价差异、总包商分级报价"
+      "fetch_what": "Uptime Tier 造价差异、总包商分级报价",
+      "variable_class": 1
     },
     "construction_years": {
       "status": "sourced",
       "note": "Epoch AI 跟踪的 GW 级园区自开工至 1 GW 历时 12–35 个月（build-time-to-1gw-months-*）；Uptime 称 Tier III 周期 ≥12 个月",
       "fetch_kind": "report",
-      "fetch_what": "C&W/T&T 建设周期统计、公司公告交付时间"
+      "fetch_what": "C&W/T&T 建设周期统计、公司公告交付时间",
+      "variable_class": 4
     },
     "horizon_years": {
       "status": "sourced",
       "note": "DLR 机械设备折旧 7–15 年、建筑 5–39 年；Equinix 核心系统 3–40 年（useful-life-*）；15 年取机电上限，建筑寿命更长",
       "fetch_kind": "report",
-      "fetch_what": "REIT 折旧年限、租约期限分布"
+      "fetch_what": "REIT 折旧年限、租约期限分布",
+      "variable_class": 4
     },
     "ramp_year1": {
       "status": "sourced",
       "note": "GDS 超大规模客户入驻期 6–24 个月、承诺率 93% 对利用率 75–79%；VNET 2025 年入驻/交付 0.67；DLR 签约到起租平均 9 个月（cn-idc-*、colo-lease-commencement-lag-dlr）",
       "fetch_kind": "data",
-      "fetch_what": "运营商披露的上架率爬坡（万国、世纪互联、DLR 已签未起租）"
+      "fetch_what": "运营商披露的上架率爬坡（万国、世纪互联、DLR 已签未起租）",
+      "variable_class": 2
     },
     "ramp_year2": {
       "status": "sourced",
       "note": "同 ramp_year1",
       "fetch_kind": "data",
-      "fetch_what": "同上"
+      "fetch_what": "同上",
+      "variable_class": 2
     },
     "site": {
       "status": "input",
-      "note": "站点预设"
+      "note": "站点预设",
+      "variable_class": 1
     },
     "power_price": {
       "status": "sourced",
       "note": "EIA 2026-07 各州工业电价、Eurostat 2025H2、宁夏 0.36 元（价格库序列）",
       "fetch_kind": "data",
-      "fetch_what": "按站点更新工业电价与数据中心专项费率"
+      "fetch_what": "按站点更新工业电价与数据中心专项费率",
+      "variable_class": 3
     },
     "demand_rate": {
       "status": "sourced",
       "note": "弗州 Dominion GS-4 2026 高峰发电+输电+配电需量费合计约 14.5 $/kW·月；得州 Oncor 输电电压线路侧约 3.8（能量与容量另计）；其他站点仍为作者假设",
       "fetch_kind": "data",
-      "fetch_what": "公用事业费率表（大负荷条款）"
+      "fetch_what": "公用事业费率表（大负荷条款）",
+      "variable_class": 3
     },
     "power_escalation": {
       "status": "sourced",
       "note": "EIA 861 工业电价 2019→2024 年均涨幅：全美 3.6%、弗州 5.6%、得州 2.3%（industrial-power-price-us-*）；按站点给出",
       "fetch_kind": "data",
-      "fetch_what": "EIA 年度电价历史、监管机构费率案"
+      "fetch_what": "EIA 年度电价历史、监管机构费率案",
+      "variable_class": 4
     },
     "land_per_mw": {
       "status": "sourced",
       "note": "劳登县 2025 年 14 宗数据中心用地成交均价 380 万美元/英亩、中位 410 万（land-price-per-acre-loudoun-dc-*）；C&W 2026 美国一线市场带电土地 58.4 万美元/MW；每英亩 MW 数为作者假设",
       "fetch_kind": "data",
-      "fetch_what": "园区地价交易与每 MW 用地"
+      "fetch_what": "园区地价交易与每 MW 用地",
+      "variable_class": 3
     },
     "labor_index": {
       "status": "sourced",
       "note": "BLS 2025-05 数据中心相关工种年薪中位 6.3–9.9 万美元（wage-us-*）；中国运维工程师月薪中位 1.4 万元（wage-cn-ops-engineer-median-monthly）；其他站点仍为作者假设",
       "fetch_kind": "data",
-      "fetch_what": "BLS 工资、各国数据中心运维薪酬调查"
+      "fetch_what": "BLS 工资、各国数据中心运维薪酬调查",
+      "variable_class": 3
     },
     "property_tax_rate": {
       "status": "sourced",
       "note": "劳登县 2026 不动产税率 0.805%（loudoun-real-property-tax-rate）；另有计算机设备动产税 4.15%/年（loudoun-computer-equipment-tax-rate）尚未进入模型；其他站点仍为作者假设",
       "fetch_kind": "data",
-      "fetch_what": "州/县财产税率与数据中心减免"
+      "fetch_what": "州/县财产税率与数据中心减免",
+      "variable_class": 5
     },
     "water_price": {
       "status": "assumed",
       "note": "作者假设",
       "fetch_kind": "data",
-      "fetch_what": "当地工业水价"
+      "fetch_what": "当地工业水价",
+      "variable_class": 3
     },
     "cooling": {
       "status": "input",
-      "note": "设计预设"
+      "note": "设计预设",
+      "variable_class": 1
     },
     "pue": {
       "status": "sourced",
       "note": "按冷却方式取披露值：Uptime 2025 调查 1.54/新建 1.48、头部托管 1.37–1.38、中国运营商 1.19–1.24、超大规模 1.08–1.17、液冷 AI 设计 1.18（pue-*）",
       "fetch_kind": "data",
-      "fetch_what": "运营商披露年度 PUE；厂商设计 PUE"
+      "fetch_what": "运营商披露年度 PUE；厂商设计 PUE",
+      "variable_class": 2
     },
     "wue": {
       "status": "sourced",
       "note": "按冷却方式取披露值：蒸发水冷 1.4–1.8、混合 0.34–0.91、闭环液冷 0.018–0（wue-*）",
       "fetch_kind": "data",
-      "fetch_what": "运营商披露 WUE"
+      "fetch_what": "运营商披露 WUE",
+      "variable_class": 2
     },
     "it_class": {
       "status": "input",
-      "note": "设备预设"
+      "note": "设备预设",
+      "variable_class": 1
     },
     "it_capex_per_kw": {
       "status": "sourced",
       "note": "GB300：研报 IT 230 亿美元/GW；其他为作者估算",
       "fetch_kind": "product",
-      "fetch_what": "厂商/ODM 报价、研报 BOM"
+      "fetch_what": "厂商/ODM 报价、研报 BOM",
+      "variable_class": 3
     },
     "load_factor": {
       "status": "sourced",
       "note": "8×H100 节点实测平均功率 ≤ TDP 的 76%，模型预测约 72%（gpu-node-avg-power-share-of-tdp-h100）；GPU 占服务器功率 66%",
       "fetch_kind": "report",
-      "fetch_what": "集群平均功率对铭牌功率比值的实测"
+      "fetch_what": "集群平均功率对铭牌功率比值的实测",
+      "variable_class": 2
     },
     "it_refresh_years": {
       "status": "sourced",
       "note": "超大规模厂商 5–6 年折旧（10-K）",
       "fetch_kind": "report",
-      "fetch_what": "10-K 折旧年限变更"
+      "fetch_what": "10-K 折旧年限变更",
+      "variable_class": 4
     },
     "refresh_cost_factor": {
       "status": "assumed",
       "note": "按同等 IT 功率重置：H100 约 2.6 万美元/kW，GB300 约 2.3–3.7 万美元/kW（gpu-unit-price-*、benchmark-gb300-nvl72-rack-price），每 kW 造价代际持平略升，取 1.0；二手残值未计",
       "fetch_kind": "product",
-      "fetch_what": "代际价格曲线"
+      "fetch_what": "代际价格曲线",
+      "variable_class": 3
     },
     "gpus_per_mw": {
       "status": "sourced",
       "note": "厂商机柜功率折算（经济模型 density_rule）",
       "fetch_kind": "product",
-      "fetch_what": "厂商机柜规格"
+      "fetch_what": "厂商机柜规格",
+      "variable_class": 1
     },
     "gpu_utilization": {
       "status": "sourced",
       "note": "Epoch 1 GW TCO 取 71%（ai-dc-utilization-assumption-epoch）；CoreWeave 在运/合同电力 40%；LLM 专用集群在用即近满载",
       "fetch_kind": "report",
-      "fetch_what": "集群实际利用率研究"
+      "fetch_what": "集群实际利用率研究",
+      "variable_class": 2
     },
     "facility_mode": {
       "status": "input",
-      "note": "商业选择"
+      "note": "商业选择",
+      "variable_class": 5
     },
     "capex_building": {
       "status": "sourced",
       "note": "T&T 2025 液冷数据中心造价构成：壳体 9%（construction-cost-share-core-shell-liquid-cooled）；按约 1,250 万美元/MW 硬成本折算",
       "fetch_kind": "report",
-      "fetch_what": "造价指南分项（土建）"
+      "fetch_what": "造价指南分项（土建）",
+      "variable_class": 3
     },
     "capex_electrical": {
       "status": "sourced",
       "note": "T&T 2025 造价构成：电气 48%（液冷）/54%（风冷）；C&W 2026 电力基础设施占绿地总成本 21%；欧美主要市场每瓦造价 9.5–15.2 美元（construction-cost-per-watt-*）",
       "fetch_kind": "report",
-      "fetch_what": "造价指南分项（电气）、设备报价"
+      "fetch_what": "造价指南分项（电气）、设备报价",
+      "variable_class": 3
     },
     "capex_mechanical": {
       "status": "sourced",
       "note": "T&T 2025 造价构成：机械 33%（液冷）/22%（风冷），液冷较风冷高 7–10%（construction-cost-premium-liquid-cooled-vs-air-us）",
       "fetch_kind": "report",
-      "fetch_what": "造价指南分项（机械）"
+      "fetch_what": "造价指南分项（机械）",
+      "variable_class": 3
     },
     "capex_fitout": {
       "status": "sourced",
       "note": "T&T 2025 造价构成\"其他\"10%；JLL 称 AI 租户技术装配最高 2,500 万美元/MW 由租户承担（ai-tenant-fit-out-cost-per-mw-max），本项只含机房基础装配",
       "fetch_kind": "product",
-      "fetch_what": "机柜、布线、DCIM 报价"
+      "fetch_what": "机柜、布线、DCIM 报价",
+      "variable_class": 3
     },
     "soft_cost_pct": {
       "status": "assumed",
       "note": "一手分项未公开；T&T 每瓦造价已含总包利润与暂列金，不含专业费；行业通讯称设计与许可占 8–12%",
       "fetch_kind": "report",
-      "fetch_what": "项目可研与决算"
+      "fetch_what": "项目可研与决算",
+      "variable_class": 3
     },
     "contingency_pct": {
       "status": "assumed",
       "note": "一手分项未公开；行业通讯称典型 5–8%，设备延误情形 12–20%",
       "fetch_kind": "report",
-      "fetch_what": "项目可研"
+      "fetch_what": "项目可研",
+      "variable_class": 3
     },
     "shell_rent_per_mw": {
       "status": "sourced",
       "note": "已披露带电壳合同期均值（价格库）",
       "fetch_kind": "news",
-      "fetch_what": "8-K 租约公告"
+      "fetch_what": "8-K 租约公告",
+      "variable_class": 3
     },
     "colo_rate": {
       "status": "sourced",
       "note": "CBRE 报价（价格库）",
       "fetch_kind": "report",
-      "fetch_what": "CBRE/JLL 半年报"
+      "fetch_what": "CBRE/JLL 半年报",
+      "variable_class": 3
     },
     "fte_per_mw": {
       "status": "sourced",
       "note": "Epoch 1 GW AI 园区人工 4,000 万美元/年约 0.3 FTE/MW；DLR 全公司 1.48 人/MW；VNET 批发 1.65 人/MW（dc-operator-*、dc-labor-cost-per-mw-year-epoch）；0.6 介于超大规模与批发之间",
       "fetch_kind": "report",
-      "fetch_what": "运营商披露人员/MW"
+      "fetch_what": "运营商披露人员/MW",
+      "variable_class": 2
     },
     "cost_per_fte": {
       "status": "sourced",
       "note": "BLS 2025-05 中位年薪：电工 6.3 万、网络支持 7.6 万、系统管理员 9.9 万美元，加约 30% 福利后 8–13 万（wage-us-*）",
       "fetch_kind": "data",
-      "fetch_what": "薪酬调查"
+      "fetch_what": "薪酬调查",
+      "variable_class": 3
     },
     "maint_pct_facility": {
       "status": "sourced",
       "note": "Epoch 1 GW TCO 维护 1.2 亿美元/年，约设施造价 1.05%/年（dc-maintenance-share-of-facility-capex-epoch）；取 1.5% 含备件与保养合同",
       "fetch_kind": "report",
-      "fetch_what": "维护合同占造价比例"
+      "fetch_what": "维护合同占造价比例",
+      "variable_class": 2
     },
     "maint_pct_it": {
       "status": "sourced",
       "note": "仅硬件维保口径；NVIDIA AI Enterprise 订阅 4,500 美元/GPU·年另计约 IT 造价 8%（nvidia-ai-enterprise-subscription-per-gpu-year）",
       "fetch_kind": "product",
-      "fetch_what": "厂商支持合同报价"
+      "fetch_what": "厂商支持合同报价",
+      "variable_class": 2
     },
     "software_per_mw": {
       "status": "assumed",
       "note": "DCIM 报价未取得；若含 NVIDIA AI Enterprise 订阅，每 MW 约 185 万美元/年（410 GPU × 4,500 美元）",
       "fetch_kind": "product",
-      "fetch_what": "DCIM/软件报价"
+      "fetch_what": "DCIM/软件报价",
+      "variable_class": 3
     },
     "insurance_pct": {
       "status": "assumed",
       "note": "仅有经纪商未核实区间 0.08–0.25% 保额/年（财产险）；0.4% 视为含营业中断与责任险",
       "fetch_kind": "data",
-      "fetch_what": "保险费率"
+      "fetch_what": "保险费率",
+      "variable_class": 3
     },
     "bandwidth_per_mw": {
       "status": "assumed",
       "note": "作者假设",
       "fetch_kind": "data",
-      "fetch_what": "带宽合同价格"
+      "fetch_what": "带宽合同价格",
+      "variable_class": 3
     },
     "other_opex_per_mw": {
       "status": "assumed",
       "note": "作者假设",
       "fetch_kind": "report",
-      "fetch_what": "运营商成本分解"
+      "fetch_what": "运营商成本分解",
+      "variable_class": 3
     },
     "opex_escalation": {
       "status": "sourced",
       "note": "BLS 2026-06 私营部门就业成本指数 +3.3%、2026-08 CPI +3.4%（us-eci-*、us-cpi-*）",
       "fetch_kind": "data",
-      "fetch_what": "CPI/工资指数"
+      "fetch_what": "CPI/工资指数",
+      "variable_class": 4
     },
     "decommission_pct": {
       "status": "assumed",
       "note": "作者假设",
       "fetch_kind": "report",
-      "fetch_what": "退役案例"
+      "fetch_what": "退役案例",
+      "variable_class": 4
     },
     "wacc": {
       "status": "sourced",
       "note": "投资级 REIT 新发债 4.4–4.7%（Equinix）、GPU 抵押 DDTL 固定约 5.9%（CoreWeave）、数据中心 ABS 高级档 5.0–5.3%、BBB 档 6.7%、非投资级 GPU 贷 SOFR+5.5%；8% 为投资级开发商含权益的混合口径，新兴云应取 10–12%",
       "fetch_kind": "data",
-      "fetch_what": "项目债利率、REIT 资本成本"
+      "fetch_what": "项目债利率、REIT 资本成本",
+      "variable_class": 5
     },
     "business_model": {
       "status": "input",
-      "note": "对标口径"
+      "note": "对标口径",
+      "variable_class": 5
     },
     "price_gpu_hour": {
       "status": "sourced",
       "note": "研报基准 8.5；市场指数见价格库",
       "fetch_kind": "data",
-      "fetch_what": "租金指数与厂商挂牌价"
+      "fetch_what": "租金指数与厂商挂牌价",
+      "variable_class": 3
     },
     "price_colo_kw_month": {
       "status": "sourced",
       "note": "CBRE 北弗吉尼亚报价（价格库）",
       "fetch_kind": "report",
-      "fetch_what": "CBRE/JLL"
+      "fetch_what": "CBRE/JLL",
+      "variable_class": 3
     }
   },
   "evidence_legend": {
@@ -1175,5 +1222,6 @@
     "sourced": "已有来源（价格库或研报）",
     "assumed": "作者假设，待数据替换",
     "needed": "尚无任何依据"
-  }
+  },
+  "evidence_note": "evidence 每个输入登记 status（input 用户给定 / assumed 作者假设 / sourced 已有来源）、fetch_kind、note，以及 2026-09-28 起的 variable_class：该输入属于五类变量（1 构成 2 运行 3 价格 4 时间 5 主体）中的哪一类。目标清单生成器按此把部件级与权利级目标行连到它们能喂的输入，不再靠键名猜。"
 }

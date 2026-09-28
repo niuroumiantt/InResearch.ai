@@ -237,7 +237,7 @@ function changes(d) {
     cells = d.root.cells; factorPred = f => f.parent === null;
     rows = T.filter(t => t.origin === "factor");
     byId("account").innerHTML = `<div class="account">${d.root.account.rows.map(r => `<div class="acct"><div class="l">${esc(r.label)}</div><div class="v">${r.key === "roic" ? pct(r.value) : fmt(r.value, "")}</div><div class="u">${esc(r.unit)} · ${esc(d.root.account.scenario)}</div><div class="n">${esc(r.note)}</div></div>`).join("")}</div>
-      <div class="links">${d.root.account.links.map(([l, h]) => `<a href="${h}">${esc(l)} ↗</a>`).join("")}<span class="empty">三级由经济模型基准情景计算；回报是账的输出，不是一列。</span></div>`;
+      <div class="links">${d.root.account.links.map(([l, h]) => `<a href="${h}">${esc(l)} ↗</a>`).join("")}<span class="empty">三级由经济模型基准情景计算；回报是账的输出，不是一列。账本先对齐三个模型共用的假设，再各看各的。</span></div>`;
     byId("q1").textContent = "五类变量在根节点：构成是规模与代际，运行是效率与利用率，价格是资本开支与年成本，时间是寿命与周期，主体是持有与融资方式。";
     byId("h2").innerHTML = `它由什么组成<small>树 · 八个生态 × 五类变量，第九行是站点权利</small>`;
     children = matrix(d);
