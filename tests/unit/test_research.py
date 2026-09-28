@@ -341,9 +341,16 @@ class MutationTests(unittest.TestCase):
 
     def test_export_uses_real_module_files(self):
         from inresearch.delivery import export as export
+        # 2026-09-28：默认导出四问快照（Markdown + JSON）；--legacy 才是兼容模块结论的全文
         with patch.object(export, 'OUT_DIR', self.root / 'export'), patch('sys.argv', ['export.py']):
             self.assertEqual(0, export.main())
-        result = next((self.root / 'export').glob('*.md')).read_text()
+        snapshot = next((self.root / 'export').glob('*_datacenter_snapshot.md')).read_text()
+        for heading in ('## 一、它值多少', '## 二、它由什么组成', '## 三、它怎么影响账', '## 四、数据从哪来、缺什么'):
+            self.assertIn(heading, snapshot)
+        self.assertTrue(next((self.root / 'export').glob('*_datacenter_snapshot.json')).exists())
+        with patch.object(export, 'OUT_DIR', self.root / 'legacy'), patch('sys.argv', ['export.py', '--legacy']):
+            self.assertEqual(0, export.main())
+        result = next((self.root / 'legacy').glob('*.md')).read_text()
         self.assertIn('## M01 ', result)
         self.assertIn('## M15 ', result)
 
