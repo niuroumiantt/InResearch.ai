@@ -70,6 +70,16 @@
   .team { border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 6px 10px; font-size: 12px; }
   .team b { display: block; }
   .changes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; margin-top: 12px; }
+  /* 派工面板（自首页迁入）：工单 = 声明 − 现状，不手写 */
+  #grid { margin-top: 12px; }
+  .board { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 12px 14px; overflow: hidden; }
+  .board .bh { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+  .board .bh h3 { font-size: 13px; } .board .go { font-size: 12px; }
+  .board .big { display: flex; gap: 26px; flex-wrap: wrap; margin-bottom: 8px; }
+  .board .big b { font-size: 20px; } .board .big span { font-size: 11px; color: var(--muted); }
+  .board .line { font-size: 11px; color: var(--muted); padding: 2px 0; }
+  .chip-sm { display: inline-block; border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 0 6px; font-size: 11px; margin-right: 4px; }
+  details > summary { cursor: pointer; color: var(--muted); font-size: 12.5px; margin: 10px 0 6px; }
   .dc-news { margin-top: 12px; }
   .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: var(--ui-radius); padding: 14px; margin-top: 16px; }
   @media (max-width: 900px) { .five { grid-template-columns: repeat(2, minmax(0, 1fr)); } .topbar { height: auto; flex-wrap: wrap; padding: 4px 10px; } .topbar .sp { display: none; } }
@@ -98,9 +108,11 @@
   <section class="panel" id="p1"><h2>它值多少<small>事实 · 五类变量的现值与时点</small></h2><div class="q" id="q1"></div><div id="account"></div><div class="five" id="five"></div></section>
   <section class="panel" id="p2"><h2 id="h2">它由什么组成<small>树 · 子节点</small></h2><div class="q" id="q2"></div><div id="children"></div></section>
   <section class="panel" id="p3"><h2>它怎么影响账<small>规则 · 因子树</small></h2><div class="q" id="q3"></div><div id="factors"></div></section>
-  <section class="panel" id="p4"><h2>数据从哪来，缺什么<small>采集 · 目标清单与六队</small></h2><div class="q" id="q4"></div><div id="targets"></div>
+  <section class="panel" id="p4"><h2>数据从哪来，缺什么<small>采集 · 目标清单与六队</small></h2><div class="q" id="q4"></div>
+    <div id="grid"></div>
     <div class="changes" id="changes"></div>
     <section class="dc-news" data-datacenter-news aria-label="数据中心新闻" id="news"></section>
+    <div id="targets"></div>
   </section>
   <div id="error"></div>
 </main>
@@ -183,6 +195,28 @@ function targetPanel(rows, teams) {
   return `<div class="teams">${cards}</div>${table}`;
 }
 
+/* 派工面板：事实层与工单（自首页迁入）。机制看不见就等于不存在。 */
+async function deliveryBoard() {
+  const [facts, mets, taskBoard, blind] = await Promise.all([
+    get("data/facts.json").catch(() => null), get("framework/metrics.json").catch(() => null),
+    get("api/tasks").catch(() => null), get("reports/blindspot.json").catch(() => null)]);
+  const orders = taskBoard?.orders || [];
+  const p1 = orders.filter(o => o.pri === "P1").length;
+  const kinds = Object.entries(orders.reduce((a, o) => (a[o.kind] = (a[o.kind] || 0) + 1, a), {})).sort((x, y) => y[1] - x[1]).slice(0, 4);
+  const alarms = blind ? (blind.modules || []).filter(m => m.alarm) : [];
+  const nf = facts ? facts.records.length : null, nm = mets ? mets.metrics.length : null;
+  const filled = facts ? new Set(facts.records.map(f => f.metric_id)).size : null;
+  return `<div class="board"><div class="bh"><h3>派工 · 事实层与工单</h3><a class="go" href="team.html">团队看板 →</a></div>
+    <div class="big">
+      <div><b>${taskBoard ? orders.length : "—"}</b> <span>张工单 ｜ P1 <b style="font-size:13px;color:${p1 ? "var(--yellow)" : "var(--green)"}">${p1}</b></span></div>
+      <div><b>${nf ?? "—"}</b> <span>条事实${nm != null ? `（${filled}/${nm} 个指标已有数）` : ""}</span></div>
+      <div><b style="color:${alarms.length ? "var(--yellow)" : "var(--green)"}">${alarms.length}</b> <span>模块盲区报警</span></div>
+    </div>
+    <div class="line">缺口：${kinds.map(([k, v]) => `${esc(k)} ${v}`).join(" ｜ ") || "—"}</div>
+    <div class="line">盲区：${alarms.map(m => `<a class="chip-sm" href="doc.html?f=reports/blindspot.md">${esc(m.mid)} ${esc(m.ratio)}×</a>`).join(" ") || "无"}</div>
+    <div class="line">工单 = 声明 − 现状，不手写；采集需求在目标清单，研究缺口在工单，两者都从这里派出。</div></div>`;
+}
+
 function changes(d) {
   const pts = d.changes.series_points.map(p => `<div class="kv"><span>${esc(p.series_id)}</span><b>${fmt(p.value, p.unit)}<small>${esc(p.as_of)}</small></b></div>`).join("");
   const due = d.changes.due_targets.slice(0, 12).map(t => `<div class="kv"><span>${esc(t.id)}</span><b>${esc(t.team)}<small>${esc(t.next_due)}</small></b></div>`).join("");
@@ -208,8 +242,9 @@ function changes(d) {
     byId("h2").innerHTML = `它由什么组成<small>树 · 八个生态 × 五类变量，第九行是站点权利</small>`;
     children = matrix(d);
     byId("q3").textContent = "因子树从公式往下推：每个因子汇总它的部件与权利，再喂经济模型的输入。";
-    byId("q4").textContent = `目标清单 ${T.length} 行：sourced ${d.root.targets.sourced}、assumed ${d.root.targets.assumed}、needed ${d.root.targets.needed}。这里只列因子级目标；部件级目标在各生态与部件节点。`;
+    byId("q4").textContent = `目标清单 ${T.length} 行：sourced ${d.root.targets.sourced}、assumed ${d.root.targets.assumed}、needed ${d.root.targets.needed}。采集需求、研究工单、价格库新点与新闻事件都从这里出发；因子级目标折叠在下，部件级目标在各生态与部件节点。`;
     byId("changes").innerHTML = changes(d);
+    deliveryBoard().then(html => { byId("grid").innerHTML = html; }).catch(() => {});
   } else if (eco) {
     crumbs.push([NODE, eco.name]);
     title = `<em>${esc(eco.name)}</em> 生态`; kind = `第一层节点 · ${eco.parts.length} 个条目 · 研究入口 ${esc(eco.graph_name || "")}`;
@@ -263,7 +298,7 @@ function changes(d) {
   byId("five").innerHTML = fiveColumns(cells, d.columns);
   byId("children").innerHTML = children;
   byId("factors").innerHTML = factorList(d.factors, factorPred, NODE === "root" ? d.formulas : null);
-  byId("targets").innerHTML = targetPanel(rows, TEAMS);
+  byId("targets").innerHTML = NODE === "root" ? `<details><summary>因子级目标 ${rows.length} 行（按队汇总与明细）</summary>${targetPanel(rows, TEAMS)}</details>` : targetPanel(rows, TEAMS);
   byId("news").style.display = NODE === "root" ? "" : "none";
   document.title = (NODE === "root" ? "一座 AI 数据中心" : byId("head").querySelector("h1").textContent) + " — inresearch.ai";
   if (COL) byId("col-" + COL)?.scrollIntoView({ block: "nearest" });

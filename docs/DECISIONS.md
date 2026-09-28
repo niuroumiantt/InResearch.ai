@@ -14,9 +14,13 @@ Spark 手动发布被网站拒收（HTTP 400 `reader graph_version does not matc
 
 13 份占位报告在 #259 后重读，新版本经 is_placeholder 全量扫描无占位；用户采用全部启用。48c8、ea7d 缺页补齐并读完；ce50 剩 5 页是 0/1 数字装饰，每次读出的"数字"都不同，用户采用：补读提示要求略去纯装饰图案（一致性规则不放宽）。用户采用把 M4 读完的报告发布到网站候选区；因主站每次整体替换投影、Spark 每五分钟发布，改为 Spark 发布时叠加 M4 导出的外部快照，Spark 自己完整读过的文档优先。
 
+## 2026-09-28：首页退役——新闻与派工面板迁入根节点
+
+用户决定。`web/pages/index.html` 删除；路由表把 `/` 与 `/index.html` 指向 `node.html`，站内所有指向首页的链接不必改。原首页两个仍在用的面板迁入根节点第四问：新闻时间线（共享的 datacenter-news 组件，`/api/news`）与派工面板（事实层与工单，`api/tasks`、`data/facts.json`、`reports/blindspot.json`）；因子级目标表在根节点折叠。KPI 拼盘、世界地图、项目漏斗、区域结构、开发商管线、模型 API 价格、大额合同、历史走势与研究工作台速览八块看板退役，其中有登记来源的数字已在节点页的五列或研究报告里，没有登记来源的不再另起面板。界面清单里 `index.html` 保留为节点页的一个地址；浏览器套件 `datacenter_news`、`research_delivery`、`ui_skin` 原样通过。
+
 ## 2026-09-28：dashboard 采用"一棵树、五列、四问"，节点页与快照上线
 
-用户采纳 [dashboard 提案](reviews/2026-09-28/dashboard/PROPOSAL.md) 并批复四问：三级账放在五列之上，回报是账的输出不是一列；站点权利是矩阵第九行；生态的时间列取部件交期最大值（关键路径）；经济模型、成本、TCO 三个计算器本轮不动，从根节点价格列链入。落地：`framework/dashboard_rules.json` 登记每级节点每列的取值来源（model_input / model_output / series / indicator / 对子节点的 count、max、sum_share）；`python3 manage.py dashboard --refresh` 生成 `data/dashboard.json`；`knowledge.economics` 按经济模型基准情景复算三级账，单元测试以预设登记的校验值（收入 22.9 亿、NOPAT 12.1 亿、ROIC 31%）为锚；`web/pages/node.html` 一个模板覆盖根、生态、部件、权利四种节点，首页矩阵 9 行 × 5 列。今天矩阵 45 格里 26 格有值，其余为缺——这是采集任务书，不是页面缺陷。`index.html` 保留新闻与派工面板，加一条入口指向节点页；其退役等这两个面板迁入节点页"最近变化"后再做。05 界面规范登记节点页；浏览器套件加 `dashboard`。**未决**：三个计算器合并为根节点价格列的一个展开；矩阵灰格反推采集优先级回写目标表。
+用户采纳 [dashboard 提案](reviews/2026-09-28/dashboard/PROPOSAL.md) 并批复四问：三级账放在五列之上，回报是账的输出不是一列；站点权利是矩阵第九行；生态的时间列取部件交期最大值（关键路径）；经济模型、成本、TCO 三个计算器本轮不动，从根节点价格列链入。落地：`framework/dashboard_rules.json` 登记每级节点每列的取值来源（model_input / model_output / series / indicator / 对子节点的 count、max、sum_share）；`python3 manage.py dashboard --refresh` 生成 `data/dashboard.json`；`knowledge.economics` 按经济模型基准情景复算三级账，单元测试以预设登记的校验值（收入 22.9 亿、NOPAT 12.1 亿、ROIC 31%）为锚；`web/pages/node.html` 一个模板覆盖根、生态、部件、权利四种节点，首页矩阵 9 行 × 5 列。今天矩阵 45 格里 26 格有值，其余为缺——这是采集任务书，不是页面缺陷。`index.html` 先保留新闻与派工面板并加入口指向节点页；同日稍后退役（见上一条）。05 界面规范登记节点页；浏览器套件加 `dashboard`。**未决**：三个计算器合并为根节点价格列的一个展开；矩阵灰格反推采集优先级回写目标表。
 
 ## 2026-09-28：目标清单改为生成——因子抓取条目 + 部件 × 数据类别 + 权利 × 变量类
 
