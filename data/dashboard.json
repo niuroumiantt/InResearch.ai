@@ -7,8 +7,8 @@
   "rules": "1.0",
   "bom": "2.1",
   "targets": "2.0.0",
-  "factors": "1.1.0",
-  "model_as_of": "2026-09-27"
+  "factors": "1.2.0",
+  "model_as_of": "2026-09-28"
  },
  "columns": {
   "1": "构成",
@@ -25,15 +25,15 @@
   "id": "root",
   "name": "一座 AI 数据中心",
   "account": {
-   "scenario": "超大规模自建出租 GB300",
-   "model": "data/datacenter_economics_model.json",
+   "scenario": "基准 · AI 自建 · 北弗吉尼亚",
+   "model": "data/datacenter_model.json",
    "rows": [
     {
      "key": "cost_per_mw",
      "label": "成本",
      "unit": "$M/MW·年",
      "note": "电费 + 其他运营 + 设施费 + 折旧 + 所得税",
-     "value": 10.87
+     "value": 11.049
     },
     {
      "key": "revenue_per_mw",
@@ -47,12 +47,12 @@
      "label": "回报",
      "unit": "ROIC",
      "note": "NOPAT ÷ 投入资本",
-     "value": 0.309
+     "value": 0.303
     }
    ],
    "links": [
     [
-     "账本：三个计算器的一个展开",
+     "账本：统一模型的四个视图",
      "ledger.html"
     ]
    ]
@@ -64,7 +64,7 @@
       "label": "IT 容量",
       "value": 100,
       "unit": "MW",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
        "key": "it_mw"
@@ -74,7 +74,7 @@
       "label": "GPU 数",
       "value": 41025.6,
       "unit": "颗",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_output",
        "key": "gpus"
@@ -84,17 +84,17 @@
       "label": "芯片代际",
       "value": "gb300",
       "unit": null,
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
-       "key": "generation"
+       "key": "it_class"
       }
      }
     ],
     "status": "sourced",
     "coverage": {
-     "sourced": 5,
-     "assumed": 1,
+     "sourced": 6,
+     "assumed": 0,
      "needed": 1
     }
    },
@@ -102,9 +102,9 @@
     "items": [
      {
       "label": "PUE",
-      "value": 1.25,
+      "value": 1.18,
       "unit": null,
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
        "key": "pue"
@@ -114,20 +114,20 @@
       "label": "IT 负载率",
       "value": 70.0,
       "unit": "%",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
-       "key": "power_load"
+       "key": "load_factor"
       }
      },
      {
       "label": "付费利用率",
       "value": 75.0,
       "unit": "%",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
-       "key": "utilization"
+       "key": "gpu_utilization"
       }
      }
     ],
@@ -142,9 +142,9 @@
     "items": [
      {
       "label": "每 MW 资本开支",
-      "value": 39.0,
+      "value": 39.2,
       "unit": "$M/MW",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_output",
        "key": "capex_per_mw"
@@ -152,9 +152,9 @@
      },
      {
       "label": "每 MW 年成本",
-      "value": 10.87,
+      "value": 11.049,
       "unit": "$M/MW·年",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_output",
        "key": "cost_per_mw"
@@ -164,10 +164,10 @@
       "label": "GPU 小时租金",
       "value": 8.5,
       "unit": "$/GPU·h",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
-       "key": "gpu_price"
+       "key": "price_gpu_hour"
       }
      }
     ],
@@ -184,20 +184,20 @@
       "label": "IT 寿命",
       "value": 5,
       "unit": "年",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
-       "key": "it_life"
+       "key": "it_refresh_years"
       }
      },
      {
       "label": "非 IT 寿命",
       "value": 15,
       "unit": "年",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
-       "key": "shell_life"
+       "key": "horizon_years"
       }
      },
      {
@@ -224,7 +224,7 @@
       "label": "设施获得方式",
       "value": "own",
       "unit": null,
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
        "key": "facility_mode"
@@ -234,7 +234,7 @@
       "label": "壳层杠杆 LTC",
       "value": 85.0,
       "unit": "%",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
        "key": "shell_ltc"
@@ -244,7 +244,7 @@
       "label": "WACC",
       "value": 8.0,
       "unit": "%",
-      "as_of": "2026-09-27",
+      "as_of": "2026-09-28",
       "source": {
        "type": "model_input",
        "key": "wacc"
@@ -254,15 +254,15 @@
     "status": "sourced",
     "coverage": {
      "sourced": 3,
-     "assumed": 1,
-     "needed": 5
+     "assumed": 0,
+     "needed": 6
     }
    }
   },
   "targets": {
-   "sourced": 34,
-   "assumed": 7,
-   "needed": 246
+   "sourced": 36,
+   "assumed": 4,
+   "needed": 247
   }
  },
  "systems": {
@@ -1122,16 +1122,16 @@
        "label": "每 MW 造价",
        "value": 11.73,
        "unit": "$M/MW",
-       "as_of": "2026-09-27",
+       "as_of": "2026-09-28",
        "source": {
         "type": "sum_share",
-        "key": "it_capex_per_mw × accelerator_share"
+        "key": "it_capex_per_kw × accelerator_share"
        }
       }
      ],
      "coverage": {
-      "sourced": 0,
-      "assumed": 1,
+      "sourced": 1,
+      "assumed": 0,
       "needed": 7
      },
      "status": "sourced"
@@ -1831,7 +1831,7 @@
        "label": "每 MW 造价（子系统之和）",
        "value": 11.73,
        "unit": "$M/MW",
-       "as_of": "2026-09-27",
+       "as_of": "2026-09-28",
        "source": {
         "type": "sum",
         "key": "children"
@@ -1839,8 +1839,8 @@
       }
      ],
      "coverage": {
-      "sourced": 0,
-      "assumed": 1,
+      "sourced": 1,
+      "assumed": 0,
       "needed": 22
      },
      "status": "sourced"
@@ -6170,8 +6170,8 @@
       }
      ],
      "coverage": {
-      "sourced": 0,
-      "assumed": 1,
+      "sourced": 1,
+      "assumed": 0,
       "needed": 0
      },
      "status": "sourced"
@@ -8823,7 +8823,7 @@
    "formula": "gpus × 8760 × utilization × price",
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": []
+   "model_inputs": []
   },
   {
    "id": "revenue.gpus",
@@ -8834,7 +8834,10 @@
    "formula": "it_mw × density",
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": []
+   "model_inputs": [
+    "it_mw",
+    "gpus_per_mw"
+   ]
   },
   {
    "id": "revenue.gpus.density",
@@ -8850,7 +8853,7 @@
     "power-shelf"
    ],
    "site_rights": [],
-   "tco_inputs": [
+   "model_inputs": [
     "gpus_per_mw",
     "it_class"
    ]
@@ -8864,8 +8867,12 @@
    "formula": null,
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": [
-    "gpu_utilization"
+   "model_inputs": [
+    "gpu_utilization",
+    "monetized_share",
+    "tenancy",
+    "util_year1",
+    "util_year2"
    ]
   },
   {
@@ -8877,8 +8884,12 @@
    "formula": null,
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": [
-    "price_gpu_hour"
+   "model_inputs": [
+    "price_gpu_hour",
+    "price_change",
+    "rent_price",
+    "price_path",
+    "business_model"
    ]
   },
   {
@@ -8890,7 +8901,10 @@
    "formula": "token = 收费 GPU 小时 × 3600 × 吞吐；收入 = token ÷ 1e6 × 单价",
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": [
+   "model_inputs": [
+    "compute_source",
+    "tokens_per_gpu_sec",
+    "price_per_m_tokens",
     "price_gpu_hour"
    ]
   },
@@ -8903,7 +8917,7 @@
    "formula": "energy + other_opex + facility + depreciation + tax",
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": []
+   "model_inputs": []
   },
   {
    "id": "cost.energy",
@@ -8914,7 +8928,11 @@
    "formula": "it_mw × power_load × pue × 8760 × power_price",
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": []
+   "model_inputs": [
+    "load_factor",
+    "pue",
+    "power_price"
+   ]
   },
   {
    "id": "cost.energy.load",
@@ -8930,7 +8948,7 @@
     "ai-asic"
    ],
    "site_rights": [],
-   "tco_inputs": [
+   "model_inputs": [
     "load_factor"
    ]
   },
@@ -8950,9 +8968,10 @@
     "coolant"
    ],
    "site_rights": [],
-   "tco_inputs": [
+   "model_inputs": [
     "pue",
-    "wue"
+    "wue",
+    "cooling"
    ]
   },
   {
@@ -8971,10 +8990,11 @@
    "site_rights": [
     "grid"
    ],
-   "tco_inputs": [
+   "model_inputs": [
+    "power_price",
     "demand_rate",
     "power_escalation",
-    "power_price"
+    "site"
    ]
   },
   {
@@ -8994,7 +9014,8 @@
    "site_rights": [
     "water-rights"
    ],
-   "tco_inputs": [
+   "model_inputs": [
+    "other_opex_per_mw",
     "bandwidth_per_mw",
     "cost_per_fte",
     "fte_per_mw",
@@ -9003,7 +9024,6 @@
     "maint_pct_facility",
     "maint_pct_it",
     "opex_escalation",
-    "other_opex_per_mw",
     "software_per_mw",
     "water_price"
    ]
@@ -9017,7 +9037,11 @@
    "formula": "own: 0 | lease: shell_rent_per_mw × it_mw | colo: colo_rate × kW × 12",
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": []
+   "model_inputs": [
+    "facility_mode",
+    "bot_term_years",
+    "bot_service_rate"
+   ]
   },
   {
    "id": "cost.facility.shell_rent",
@@ -9028,10 +9052,16 @@
    "formula": null,
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": [
+   "model_inputs": [
+    "shell_rent_per_mw",
+    "lease_term",
+    "escalator",
+    "noi_margin",
+    "renewal_options",
+    "renewal_years",
+    "renewal_probability",
     "ramp_year1",
-    "ramp_year2",
-    "shell_rent_per_mw"
+    "ramp_year2"
    ]
   },
   {
@@ -9043,7 +9073,7 @@
    "formula": null,
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": [
+   "model_inputs": [
     "colo_rate",
     "price_colo_kw_month"
    ]
@@ -9057,10 +9087,10 @@
    "formula": "capex ÷ life（IT 与非 IT 分线）",
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": [
-    "decommission_pct",
+   "model_inputs": [
+    "it_refresh_years",
     "horizon_years",
-    "it_refresh_years"
+    "decommission_pct"
    ]
   },
   {
@@ -9072,7 +9102,9 @@
    "formula": "accelerators + other_it + shell + btm + land",
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": []
+   "model_inputs": [
+    "capex_basis"
+   ]
   },
   {
    "id": "cost.depreciation.capex.accelerators",
@@ -9088,7 +9120,10 @@
     "fpga"
    ],
    "site_rights": [],
-   "tco_inputs": [
+   "model_inputs": [
+    "it_capex_per_kw",
+    "accelerator_share",
+    "chip_gross_margin",
     "refresh_cost_factor"
    ]
   },
@@ -9130,8 +9165,9 @@
     "heatsink-vc"
    ],
    "site_rights": [],
-   "tco_inputs": [
-    "it_capex_per_kw"
+   "model_inputs": [
+    "it_capex_per_kw",
+    "accelerator_share"
    ]
   },
   {
@@ -9156,7 +9192,9 @@
    "site_rights": [
     "grid"
    ],
-   "tco_inputs": [
+   "model_inputs": [
+    "shell_capex_per_mw",
+    "horizon_years",
     "capex_building",
     "capex_electrical",
     "capex_fitout",
@@ -9165,7 +9203,11 @@
     "contingency_pct",
     "it_capex_per_kw",
     "redundancy",
-    "soft_cost_pct"
+    "soft_cost_pct",
+    "gate",
+    "gate_wait_years",
+    "permit_months",
+    "energy_quota_mw"
    ]
   },
   {
@@ -9186,7 +9228,8 @@
    "site_rights": [
     "gas-supply"
    ],
-   "tco_inputs": [
+   "model_inputs": [
+    "btm_capex_per_mw",
     "capex_electrical"
    ]
   },
@@ -9202,7 +9245,7 @@
     "land",
     "permits"
    ],
-   "tco_inputs": [
+   "model_inputs": [
     "land_per_mw"
    ]
   },
@@ -9215,7 +9258,8 @@
    "formula": "tax × 应税利润（NOPAT 口径；壳层为 NOI − 折旧 − 利息）",
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": [
+   "model_inputs": [
+    "tax",
     "it_refresh_years",
     "property_tax_rate"
    ]
@@ -9229,8 +9273,16 @@
    "formula": "资本成本率、债务比例、利率决定盈亏平衡价、杠杆 IRR 与 DSCR",
    "bom_parts": [],
    "site_rights": [],
-   "tco_inputs": [
-    "wacc"
+   "model_inputs": [
+    "wacc",
+    "shell_ltc",
+    "debt_rate",
+    "compute_ltc",
+    "compute_debt_rate",
+    "residual_share",
+    "tenant_credit",
+    "target_roic",
+    "roic_basis"
    ]
   }
  ],
@@ -9340,7 +9392,7 @@
     "id": "F.cost.depreciation.capex.accelerators.news",
     "team": "inews",
     "next_due": "2026-10-05",
-    "status": "assumed",
+    "status": "needed",
     "variable_class": 5
    },
    {
@@ -9603,6 +9655,6 @@
     "variable_class": 5
    }
   ],
-  "due_total": 182
+  "due_total": 181
  }
 }

@@ -1,4 +1,4 @@
-"""The dashboard is generated from registered rules; its account reproduces the economics model's check values."""
+"""The dashboard is generated from registered rules; its account reads the unified model's baseline preset."""
 import json
 import unittest
 from pathlib import Path
@@ -19,7 +19,7 @@ class DashboardTests(unittest.TestCase):
         cls.rules = load('framework/dashboard_rules.json')
         cls.series = {r['series_id'] for r in load('data/prices.json')['records']}
         cls.indicators = {i['id'] for i in load('framework/indicators.json')['indicators']}
-        cls.model = load('data/datacenter_economics_model.json')
+        cls.model = load('data/datacenter_model.json')
         cls.bom = load('framework/bom.json')
 
     def test_snapshot_is_generated_from_its_inputs(self):
@@ -27,13 +27,12 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(dashboard.render(built), (ROOT / dashboard.SNAPSHOT).read_text(encoding='utf-8'),
                          'data/dashboard.json is stale; run python3 manage.py dashboard --refresh')
 
-    def test_account_matches_registered_check_values(self):
-        # presets note: 收入 22.9 亿、NOPAT 12.1 亿、ROIC 31% for the 100 MW GB300 baseline
-        out = economics.compute(self.model['assumptions'])
-        self.assertAlmostEqual(out['revenue'] / 1e8, 22.9, delta=0.05)
-        self.assertAlmostEqual(out['nopat'] / 1e8, 12.1, delta=0.1)  # 登记值按亿取整
-        self.assertAlmostEqual(out['roic'], 0.31, delta=0.005)
+    def test_account_matches_the_baseline_preset(self):
+        out = economics.compute(economics.with_preset(self.model, 'baseline'), self.model)
         rows = {r['key']: r['value'] for r in self.doc['root']['account']['rows']}
+        self.assertAlmostEqual(rows['roic'], out['roic'], places=3)
+        self.assertAlmostEqual(rows['revenue_per_mw'], out['revenue_per_mw'], places=3)
+        self.assertEqual(self.doc['root']['account']['scenario'], self.model['presets']['baseline']['label'])
         self.assertEqual(set(rows), {'cost_per_mw', 'revenue_per_mw', 'roic'}, '三级：成本、收入、回报；回报不是一列')
 
     def test_rules_reference_existing_sources(self):
@@ -43,7 +42,7 @@ class DashboardTests(unittest.TestCase):
                 if spec['source'] == 'model_input':
                     self.assertIn(spec['key'], self.model['assumptions'], spec)
                 elif spec['source'] == 'model_output':
-                    self.assertIn(spec['key'], economics.compute(self.model['assumptions']), spec)
+                    self.assertIn(spec['key'], economics.compute(self.model['assumptions'], self.model), spec)
                 elif spec['source'] == 'indicator':
                     self.assertIn(spec['key'], self.indicators, spec)
         for sys_id, spec in self.rules['ecosystem']['2']['by_ecosystem'].items():

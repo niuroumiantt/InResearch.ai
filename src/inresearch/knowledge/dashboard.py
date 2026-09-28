@@ -42,7 +42,7 @@ def build(root=ROOT, as_of=None):
     companies = {r['company_id']: (r.get('name_cn') or r.get('name') or r['company_id']) for r in load(root, 'data/companies.json')['records']}
     prices = load(root, 'data/prices.json')['records']
     indicators = {i['id']: i for i in load(root, 'framework/indicators.json')['indicators']}
-    model = load(root, 'data/datacenter_economics_model.json')
+    model = load(root, 'data/datacenter_model.json')
     graph = load(root, 'framework/research_graph.json')
     eco_names = {o['id'].split(':', 1)[1]: o['name'] for o in graph['objects'] if o['id'].startswith('ecosystem:')}
     as_of = as_of or max(bom.get('updated', ''), targets_doc.get('updated', ''), rules.get('updated', ''))
@@ -69,11 +69,9 @@ def build(root=ROOT, as_of=None):
                 'source': {'type': 'indicator', 'key': iid}}
 
     # ---- root: the account and its five columns
-    a = model['assumptions']
-    out = economics.compute(a)
-    presets = model.get('presets') or {}
-    first = next(iter(presets.values()), {}) if isinstance(presets, dict) else (presets[0] if presets else {})
-    account = {'scenario': first.get('label', '基准情景'), 'model': rules['root']['account']['model'],
+    a = economics.with_preset(model, 'baseline')
+    out = economics.compute(a, model)
+    account = {'scenario': model['presets']['baseline']['label'], 'model': rules['root']['account']['model'],
                'rows': [{**row, 'value': round(out[row['key']], 3)} for row in rules['root']['account']['rows']],
                'links': rules['root']['account']['links']}
     root_cells = {}
@@ -201,6 +199,8 @@ def build(root=ROOT, as_of=None):
         items = []
         if spec:
             basis = a.get(spec['basis'])
+            if basis is not None:
+                basis = basis * spec.get('scale', 1)   # e.g. IT capex is registered in $/kW, the column reads $M/MW
             share = None
             if 'share_series' in spec and latest.get(spec['share_series']):
                 share = latest[spec['share_series']]['value'] / 100
@@ -301,7 +301,7 @@ def build(root=ROOT, as_of=None):
 
     # factor index for panel 3
     factors = [{'id': f['id'], 'label': f['label'], 'side': f['side'], 'parent': f['parent'], 'unit': f.get('unit'), 'formula': f.get('formula'),
-                'bom_parts': f.get('bom_parts', []), 'site_rights': f.get('site_rights', []), 'tco_inputs': f.get('tco_inputs', [])}
+                'bom_parts': f.get('bom_parts', []), 'site_rights': f.get('site_rights', []), 'model_inputs': f.get('model_inputs', [])}
                for f in factors_doc['factors']]
     totals = {'sourced': 0, 'assumed': 0, 'needed': 0}
     for t in targets_doc['targets']:

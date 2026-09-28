@@ -1,31 +1,31 @@
 {
   "version": "1.0",
   "updated": "2026-09-28",
-  "note": "Dashboard 的取值规则（四段的第三段「规则」）。dashboard 只有一棵树（数据中心 → 八生态 + 站点权利 → 部件 / 权利）、五列（五类变量）、四问（值多少、由什么组成、怎么影响账、数据从哪来）。本文件登记每一级节点每一列的取值来源与聚合方式；快照由 python3 manage.py dashboard --refresh 生成到 data/dashboard.json，页面只读快照不做聚合。来源只有四种：model_input / model_output（经济模型基准情景，knowledge.economics 与页面 JS 同一公式）、series（价格库最新点）、indicator（指标现值）、以及对子节点的聚合（count / max / sum_share）。没有来源的格显示「缺」，不显示估计值。用户 2026-09-28 批复：三级放在五列之上，回报是账的输出不是一列；站点权利是矩阵第九行；生态的时间列取部件交期最大值（关键路径）；三个计算器本轮不动，从根节点价格列链入。",
+  "note": "Dashboard 的取值规则（四段的第三段「规则」）。dashboard 只有一棵树（数据中心 → 八生态 + 站点权利 → 部件 / 权利）、五列（五类变量）、四问（值多少、由什么组成、怎么影响账、数据从哪来）。本文件登记每一级节点每一列的取值来源与聚合方式；快照由 python3 manage.py dashboard --refresh 生成到 data/dashboard.json，页面只读快照不做聚合。来源只有四种：model_input / model_output（统一模型基准预设，knowledge.economics 与页面 JS 同一公式）、series（价格库最新点）、indicator（指标现值）、以及对子节点的聚合（count / max / sum_share）。没有来源的格显示「缺」，不显示估计值。用户 2026-09-28 批复：三级放在五列之上，回报是账的输出不是一列；站点权利是矩阵第九行；生态的时间列取部件交期最大值（关键路径）；三个计算器 2026-09-28 合成一个统一模型（data/datacenter_model.json），账本页从根节点价格列链入。",
   "columns": {"1": "构成", "2": "运行", "3": "价格", "4": "时间", "5": "主体"},
   "root": {
     "account": {
-      "model": "data/datacenter_economics_model.json",
+      "model": "data/datacenter_model.json",
       "scenario": "assumptions",
       "rows": [
         {"key": "cost_per_mw", "label": "成本", "unit": "$M/MW·年", "note": "电费 + 其他运营 + 设施费 + 折旧 + 所得税"},
         {"key": "revenue_per_mw", "label": "收入", "unit": "$M/MW·年", "note": "GPU 数 × 8,760 × 付费利用率 × 单价"},
         {"key": "roic", "label": "回报", "unit": "ROIC", "note": "NOPAT ÷ 投入资本"}
       ],
-      "links": [["账本：三个计算器的一个展开", "ledger.html"]]
+      "links": [["账本：统一模型的四个视图", "ledger.html"]]
     },
     "cells": {
       "1": [{"label": "IT 容量", "source": "model_input", "key": "it_mw", "unit": "MW"},
             {"label": "GPU 数", "source": "model_output", "key": "gpus", "unit": "颗"},
-            {"label": "芯片代际", "source": "model_input", "key": "generation"}],
+            {"label": "芯片代际", "source": "model_input", "key": "it_class"}],
       "2": [{"label": "PUE", "source": "model_input", "key": "pue"},
-            {"label": "IT 负载率", "source": "model_input", "key": "power_load", "unit": "%"},
-            {"label": "付费利用率", "source": "model_input", "key": "utilization", "unit": "%"}],
+            {"label": "IT 负载率", "source": "model_input", "key": "load_factor", "unit": "%"},
+            {"label": "付费利用率", "source": "model_input", "key": "gpu_utilization", "unit": "%"}],
       "3": [{"label": "每 MW 资本开支", "source": "model_output", "key": "capex_per_mw", "unit": "$M/MW"},
             {"label": "每 MW 年成本", "source": "model_output", "key": "cost_per_mw", "unit": "$M/MW·年"},
-            {"label": "GPU 小时租金", "source": "model_input", "key": "gpu_price", "unit": "$/GPU·h"}],
-      "4": [{"label": "IT 寿命", "source": "model_input", "key": "it_life", "unit": "年"},
-            {"label": "非 IT 寿命", "source": "model_input", "key": "shell_life", "unit": "年"},
+            {"label": "GPU 小时租金", "source": "model_input", "key": "price_gpu_hour", "unit": "$/GPU·h"}],
+      "4": [{"label": "IT 寿命", "source": "model_input", "key": "it_refresh_years", "unit": "年"},
+            {"label": "非 IT 寿命", "source": "model_input", "key": "horizon_years", "unit": "年"},
             {"label": "建设周期", "source": "indicator", "key": "construction_duration_months", "unit": "月"}],
       "5": [{"label": "设施获得方式", "source": "model_input", "key": "facility_mode"},
             {"label": "壳层杠杆 LTC", "source": "model_input", "key": "shell_ltc", "unit": "%"},
@@ -42,7 +42,7 @@
           "by_ecosystem": {"power": {"basis": "shell_capex_per_mw", "share_series": "construction-cost-share-electrical-liquid-cooled"},
                            "thermal": {"basis": "shell_capex_per_mw", "share_series": "construction-cost-share-mechanical-liquid-cooled"},
                            "facility": {"basis": "shell_capex_per_mw", "share_series": "construction-cost-share-core-shell-liquid-cooled"},
-                           "compute": {"basis": "it_capex_per_mw", "share_input": "accelerator_share"}}},
+                           "compute": {"basis": "it_capex_per_kw", "scale": 0.001, "share_input": "accelerator_share"}}},
     "4": {"method": "max_of_parts", "column": "4", "label": "关键路径交期", "unit": "月"},
     "5": {"method": "suppliers", "label": "供应商数", "unit": "家", "note": "同时统计单一来源部件数"}
   },

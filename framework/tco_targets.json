@@ -4,7 +4,7 @@
   "title": "五类变量目标清单",
   "note": "六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的 TCO 模型输入键）各成一行；每个物理部件按\"自己的价格、供应商名单、交期\"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机。status 只在已有序列、已录值指标或模型证据支持时为 sourced；公司只是实例，随时可换。",
   "generated_from": {
-    "tco_factors": "1.1.0",
+    "tco_factors": "1.2.0",
     "bom": "2.1",
     "site_rights": "1.0",
     "rule": "因子抓取条目 + 部件 × 数据类别 + 站点权利 × 变量类"
@@ -142,7 +142,11 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "gpu_utilization"
+        "gpu_utilization",
+        "monetized_share",
+        "tenancy",
+        "util_year1",
+        "util_year2"
       ],
       "series": [],
       "planned_series": [],
@@ -179,7 +183,9 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "gpu_utilization"
+        "gpu_utilization",
+        "util_year1",
+        "util_year2"
       ],
       "series": [
         "ai-dc-utilization-assumption-epoch",
@@ -225,7 +231,8 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "price_gpu_hour"
+        "price_gpu_hour",
+        "price_change"
       ],
       "series": [
         "gpu-hourly-h100-neocloud-index",
@@ -271,7 +278,10 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "price_gpu_hour"
+        "price_gpu_hour",
+        "tokens_per_gpu_sec",
+        "price_per_m_tokens",
+        "rent_price"
       ],
       "series": [
         "token-price-openai-flagship-output",
@@ -515,9 +525,10 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
+        "power_price",
         "demand_rate",
         "power_escalation",
-        "power_price"
+        "site"
       ],
       "series": [],
       "planned_series": [],
@@ -1095,7 +1106,15 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "shell_rent_per_mw"
+        "shell_rent_per_mw",
+        "lease_term",
+        "escalator",
+        "noi_margin",
+        "renewal_options",
+        "renewal_years",
+        "renewal_probability",
+        "bot_term_years",
+        "bot_service_rate"
       ],
       "series": [],
       "planned_series": [],
@@ -1178,9 +1197,9 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "decommission_pct",
+        "it_refresh_years",
         "horizon_years",
-        "it_refresh_years"
+        "decommission_pct"
       ],
       "series": [],
       "planned_series": [],
@@ -1295,6 +1314,9 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
+        "it_capex_per_kw",
+        "accelerator_share",
+        "chip_gross_margin",
         "refresh_cost_factor"
       ],
       "series": [],
@@ -1313,7 +1335,7 @@
       "host": "aws",
       "calendar": "每代际",
       "next_due": "2026-12-27",
-      "status": "assumed",
+      "status": "sourced",
       "sensitivity_rank": 3,
       "notes": "GPU/ASIC 与 HBM 的代际规格、单卡功率、整柜价格",
       "curated": false,
@@ -1332,6 +1354,9 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
+        "it_capex_per_kw",
+        "accelerator_share",
+        "chip_gross_margin",
         "refresh_cost_factor"
       ],
       "series": [],
@@ -1349,7 +1374,7 @@
       "host": "aws",
       "calendar": "持续",
       "next_due": "2026-10-05",
-      "status": "assumed",
+      "status": "needed",
       "sensitivity_rank": 3,
       "notes": "芯片价格变动、供给与交期",
       "curated": false,
@@ -1485,6 +1510,8 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
+        "shell_capex_per_mw",
+        "horizon_years",
         "capex_building",
         "capex_electrical",
         "capex_fitout",
@@ -1493,7 +1520,11 @@
         "contingency_pct",
         "it_capex_per_kw",
         "redundancy",
-        "soft_cost_pct"
+        "soft_cost_pct",
+        "gate",
+        "gate_wait_years",
+        "permit_months",
+        "energy_quota_mw"
       ],
       "series": [],
       "planned_series": [],
@@ -1664,7 +1695,9 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "permit_months",
+        "energy_quota_mw"
       ],
       "series": [
         "build-time-to-1gw-months-openai-stargate-abilene",
@@ -1744,7 +1777,9 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years"
       ],
       "series": [],
       "planned_series": [],
@@ -1895,7 +1930,8 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "property_tax_rate"
+        "property_tax_rate",
+        "tax"
       ],
       "series": [
         "loudoun-real-property-tax-rate",
@@ -1936,7 +1972,15 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "wacc"
+        "wacc",
+        "shell_ltc",
+        "debt_rate",
+        "compute_ltc",
+        "compute_debt_rate",
+        "residual_share",
+        "tenant_credit",
+        "target_roic",
+        "roic_basis"
       ],
       "series": [],
       "planned_series": [],
@@ -1973,7 +2017,11 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "wacc"
+        "wacc",
+        "shell_ltc",
+        "debt_rate",
+        "compute_ltc",
+        "compute_debt_rate"
       ],
       "series": [
         "dlr-total-debt-wavg-interest-rate",
@@ -2090,7 +2138,9 @@
       "part_id": null,
       "site_right_id": null,
       "model_inputs": [
-        "wacc"
+        "wacc",
+        "residual_share",
+        "target_roic"
       ],
       "series": [
         "reit-development-yield-dlr"
@@ -2128,6 +2178,7 @@
       "part_id": "shell",
       "site_right_id": null,
       "model_inputs": [
+        "energy_quota_mw",
         "redundancy"
       ],
       "series": [],
@@ -2173,6 +2224,7 @@
         "capex_mechanical",
         "contingency_pct",
         "it_capex_per_kw",
+        "shell_capex_per_mw",
         "soft_cost_pct"
       ],
       "series": [],
@@ -2212,7 +2264,11 @@
       "part_id": "shell",
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months"
       ],
       "series": [],
       "planned_series": [],
@@ -2687,6 +2743,7 @@
       "part_id": "hv-switchyard",
       "site_right_id": null,
       "model_inputs": [
+        "energy_quota_mw",
         "redundancy"
       ],
       "series": [],
@@ -2730,6 +2787,7 @@
         "capex_mechanical",
         "contingency_pct",
         "it_capex_per_kw",
+        "shell_capex_per_mw",
         "soft_cost_pct"
       ],
       "series": [],
@@ -2766,7 +2824,11 @@
       "part_id": "hv-switchyard",
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months"
       ],
       "series": [],
       "planned_series": [],
@@ -2837,6 +2899,7 @@
       "part_id": "transformer",
       "site_right_id": null,
       "model_inputs": [
+        "energy_quota_mw",
         "redundancy"
       ],
       "series": [],
@@ -2881,6 +2944,7 @@
         "capex_mechanical",
         "contingency_pct",
         "it_capex_per_kw",
+        "shell_capex_per_mw",
         "soft_cost_pct"
       ],
       "series": [],
@@ -2917,7 +2981,11 @@
       "part_id": "transformer",
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months"
       ],
       "series": [
         "transformer-lead-time"
@@ -2992,6 +3060,7 @@
       "part_id": "mv-switchgear",
       "site_right_id": null,
       "model_inputs": [
+        "energy_quota_mw",
         "redundancy"
       ],
       "series": [],
@@ -3036,6 +3105,7 @@
         "capex_mechanical",
         "contingency_pct",
         "it_capex_per_kw",
+        "shell_capex_per_mw",
         "soft_cost_pct"
       ],
       "series": [],
@@ -3071,7 +3141,11 @@
       "part_id": "mv-switchgear",
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months"
       ],
       "series": [],
       "planned_series": [],
@@ -3141,7 +3215,9 @@
       "factor_id": "cost.energy.price",
       "part_id": "gas-turbine",
       "site_right_id": null,
-      "model_inputs": [],
+      "model_inputs": [
+        "site"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -3178,6 +3254,7 @@
       "part_id": "gas-turbine",
       "site_right_id": null,
       "model_inputs": [
+        "btm_capex_per_mw",
         "capex_electrical",
         "demand_rate",
         "power_price"
@@ -3295,7 +3372,9 @@
       "factor_id": "cost.energy.price",
       "part_id": "gas-engine",
       "site_right_id": null,
-      "model_inputs": [],
+      "model_inputs": [
+        "site"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -3333,6 +3412,7 @@
       "part_id": "gas-engine",
       "site_right_id": null,
       "model_inputs": [
+        "btm_capex_per_mw",
         "capex_electrical",
         "demand_rate",
         "power_price"
@@ -3442,7 +3522,9 @@
       "factor_id": "cost.energy.price",
       "part_id": "fuel-cell",
       "site_right_id": null,
-      "model_inputs": [],
+      "model_inputs": [
+        "site"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -3477,6 +3559,7 @@
       "part_id": "fuel-cell",
       "site_right_id": null,
       "model_inputs": [
+        "btm_capex_per_mw",
         "capex_electrical",
         "demand_rate",
         "power_price"
@@ -3622,6 +3705,7 @@
       "part_id": "smr",
       "site_right_id": null,
       "model_inputs": [
+        "btm_capex_per_mw",
         "capex_electrical"
       ],
       "series": [],
@@ -3728,6 +3812,7 @@
       "part_id": "backup-power",
       "site_right_id": null,
       "model_inputs": [
+        "energy_quota_mw",
         "redundancy"
       ],
       "series": [],
@@ -3772,6 +3857,7 @@
         "capex_mechanical",
         "contingency_pct",
         "it_capex_per_kw",
+        "shell_capex_per_mw",
         "soft_cost_pct"
       ],
       "series": [],
@@ -3808,7 +3894,11 @@
       "part_id": "backup-power",
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months"
       ],
       "series": [],
       "planned_series": [],
@@ -3916,6 +4006,7 @@
       "part_id": "fuel-storage",
       "site_right_id": null,
       "model_inputs": [
+        "btm_capex_per_mw",
         "capex_electrical"
       ],
       "series": [],
@@ -3984,7 +4075,9 @@
       "factor_id": "cost.energy.price",
       "part_id": "bess",
       "site_right_id": null,
-      "model_inputs": [],
+      "model_inputs": [
+        "site"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -4022,6 +4115,7 @@
       "part_id": "bess",
       "site_right_id": null,
       "model_inputs": [
+        "btm_capex_per_mw",
         "capex_electrical",
         "demand_rate",
         "power_price"
@@ -4132,6 +4226,7 @@
       "part_id": "ups",
       "site_right_id": null,
       "model_inputs": [
+        "energy_quota_mw",
         "redundancy"
       ],
       "series": [],
@@ -4177,6 +4272,7 @@
         "capex_mechanical",
         "contingency_pct",
         "it_capex_per_kw",
+        "shell_capex_per_mw",
         "soft_cost_pct"
       ],
       "series": [],
@@ -4213,7 +4309,11 @@
       "part_id": "ups",
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months"
       ],
       "series": [],
       "planned_series": [],
@@ -4250,6 +4350,7 @@
       "part_id": "ups-battery",
       "site_right_id": null,
       "model_inputs": [
+        "energy_quota_mw",
         "redundancy"
       ],
       "series": [],
@@ -4294,6 +4395,7 @@
         "capex_mechanical",
         "contingency_pct",
         "it_capex_per_kw",
+        "shell_capex_per_mw",
         "soft_cost_pct"
       ],
       "series": [],
@@ -4330,7 +4432,11 @@
       "part_id": "ups-battery",
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months"
       ],
       "series": [],
       "planned_series": [],
@@ -4399,6 +4505,7 @@
       "part_id": "lv-switchgear",
       "site_right_id": null,
       "model_inputs": [
+        "energy_quota_mw",
         "redundancy"
       ],
       "series": [],
@@ -4444,6 +4551,7 @@
         "capex_mechanical",
         "contingency_pct",
         "it_capex_per_kw",
+        "shell_capex_per_mw",
         "soft_cost_pct"
       ],
       "series": [],
@@ -4479,7 +4587,11 @@
       "part_id": "lv-switchgear",
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months"
       ],
       "series": [],
       "planned_series": [],
@@ -4550,6 +4662,7 @@
       "part_id": "busway",
       "site_right_id": null,
       "model_inputs": [
+        "energy_quota_mw",
         "redundancy"
       ],
       "series": [],
@@ -4595,6 +4708,7 @@
         "capex_mechanical",
         "contingency_pct",
         "it_capex_per_kw",
+        "shell_capex_per_mw",
         "soft_cost_pct"
       ],
       "series": [],
@@ -4630,7 +4744,11 @@
       "part_id": "busway",
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months"
       ],
       "series": [],
       "planned_series": [],
@@ -4699,6 +4817,7 @@
       "part_id": "pdu",
       "site_right_id": null,
       "model_inputs": [
+        "energy_quota_mw",
         "redundancy"
       ],
       "series": [],
@@ -4744,6 +4863,7 @@
         "capex_mechanical",
         "contingency_pct",
         "it_capex_per_kw",
+        "shell_capex_per_mw",
         "soft_cost_pct"
       ],
       "series": [],
@@ -4780,7 +4900,11 @@
       "part_id": "pdu",
       "site_right_id": null,
       "model_inputs": [
-        "construction_years"
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months"
       ],
       "series": [],
       "planned_series": [],
@@ -5125,6 +5249,7 @@
       "part_id": "psu",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -5233,6 +5358,7 @@
       "part_id": "vrm",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -5335,7 +5461,9 @@
       "factor_id": "cost.energy.pue",
       "part_id": "dry-cooler",
       "site_right_id": null,
-      "model_inputs": [],
+      "model_inputs": [
+        "cooling"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -5552,7 +5680,9 @@
       "factor_id": "cost.energy.pue",
       "part_id": "chiller",
       "site_right_id": null,
-      "model_inputs": [],
+      "model_inputs": [
+        "cooling"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -5658,7 +5788,9 @@
       "factor_id": "cost.energy.pue",
       "part_id": "chilled-water-loop",
       "site_right_id": null,
-      "model_inputs": [],
+      "model_inputs": [
+        "cooling"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -5760,7 +5892,9 @@
       "factor_id": "cost.energy.pue",
       "part_id": "cdu",
       "site_right_id": null,
-      "model_inputs": [],
+      "model_inputs": [
+        "cooling"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -5903,7 +6037,9 @@
       "factor_id": "cost.energy.pue",
       "part_id": "coolant",
       "site_right_id": null,
-      "model_inputs": [],
+      "model_inputs": [
+        "cooling"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -6006,7 +6142,9 @@
       "factor_id": "cost.energy.pue",
       "part_id": "room-cooling",
       "site_right_id": null,
-      "model_inputs": [],
+      "model_inputs": [
+        "cooling"
+      ],
       "series": [],
       "planned_series": [],
       "indicators": [],
@@ -6148,6 +6286,7 @@
       "part_id": "immersion",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -6285,6 +6424,7 @@
       "part_id": "sidecar-hx",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -6426,6 +6566,7 @@
       "part_id": "manifold",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -6565,6 +6706,7 @@
       "part_id": "quick-disconnect",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -6851,6 +6993,7 @@
       "part_id": "coldplate",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -6993,6 +7136,7 @@
       "part_id": "heatsink-vc",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -7100,6 +7244,7 @@
       "part_id": "server-fan",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -7213,6 +7358,7 @@
       "part_id": "rack-system",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -7362,6 +7508,7 @@
       "part_id": "server",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -7512,6 +7659,7 @@
       "part_id": "general-server",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -7626,6 +7774,9 @@
       "part_id": "gpu",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
+        "chip_gross_margin",
+        "it_capex_per_kw",
         "refresh_cost_factor"
       ],
       "series": [
@@ -7650,7 +7801,7 @@
       "host": "macmini",
       "calendar": "月",
       "next_due": "2026-10-28",
-      "status": "assumed",
+      "status": "sourced",
       "sensitivity_rank": 2,
       "notes": "GPU 加速器：自己的价格——重切规则的第一条件",
       "curated": true,
@@ -7782,6 +7933,9 @@
       "part_id": "ai-asic",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
+        "chip_gross_margin",
+        "it_capex_per_kw",
         "refresh_cost_factor"
       ],
       "series": [],
@@ -7926,6 +8080,7 @@
       "part_id": "cpu",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -8030,6 +8185,9 @@
       "part_id": "fpga",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
+        "chip_gross_margin",
+        "it_capex_per_kw",
         "refresh_cost_factor"
       ],
       "series": [],
@@ -8133,6 +8291,7 @@
       "part_id": "bmc",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -8237,6 +8396,9 @@
       "part_id": "hbm",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
+        "chip_gross_margin",
+        "it_capex_per_kw",
         "refresh_cost_factor"
       ],
       "series": [],
@@ -8380,6 +8542,7 @@
       "part_id": "dram",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -8523,6 +8686,7 @@
       "part_id": "cxl-memory",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -8663,6 +8827,7 @@
       "part_id": "storage-array",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -8770,6 +8935,7 @@
       "part_id": "ssd",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -8919,6 +9085,7 @@
       "part_id": "hdd",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -9062,6 +9229,7 @@
       "part_id": "network-switch",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -9208,6 +9376,7 @@
       "part_id": "switch-asic",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -9351,6 +9520,7 @@
       "part_id": "optics",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -9496,6 +9666,7 @@
       "part_id": "copper-interconnect",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -9637,6 +9808,7 @@
       "part_id": "cabling",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -9744,6 +9916,7 @@
       "part_id": "connector",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -9884,6 +10057,7 @@
       "part_id": "nic",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -9990,6 +10164,7 @@
       "part_id": "retimer",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -10127,6 +10302,7 @@
       "part_id": "pcie-switch",
       "site_right_id": null,
       "model_inputs": [
+        "accelerator_share",
         "it_capex_per_kw"
       ],
       "series": [],
@@ -10416,6 +10592,10 @@
       "site_right_id": "grid",
       "model_inputs": [
         "construction_years",
+        "gate",
+        "gate_wait_years",
+        "horizon_years",
+        "permit_months",
         "power_escalation"
       ],
       "series": [],

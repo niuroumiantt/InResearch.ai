@@ -1,8 +1,8 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "updated": "2026-09-28",
   "title": "数据中心 TCO 因子树",
-  "note": "经济模型的骨架：收入侧与成本侧的最小可变因子。每个因子指向它汇总的爆炸图部件（framework/bom.json，2026-09-28 起为 2.0）与站点权利（framework/site_rights.json，site_rights 字段）、读取的价格库序列（data/prices.json）、对应的研究问题（framework/research_questions.json）、进入经济模型的输入键（data/datacenter_economics_model.json）以及定向抓取目标。因子树只定义结构与归属，不保存数值；数值在价格库与模型假设里。fetch.kind 取 product / news / data / report。 v1.1.0（2026-09-28）：fetch 条目升级为完整抓取目标（slug、变量类、数据类别、机制、队、序列、TCO 模型输入键 tco_inputs、实例、到期、敏感度），原手写的 43 条目标清单行迁入对应因子；目标清单 framework/tco_targets.json 改为由 manage.py targets 生成。",
+  "note": "经济模型的骨架：收入侧与成本侧的最小可变因子。每个因子指向它汇总的爆炸图部件（framework/bom.json，2026-09-28 起为 2.0）与站点权利（framework/site_rights.json，site_rights 字段）、读取的价格库序列（data/prices.json）、对应的研究问题（framework/research_questions.json）、进入统一经济模型的输入键（data/datacenter_model.json，字段 model_inputs）以及定向抓取目标。因子树只定义结构与归属，不保存数值；数值在价格库与模型假设里。fetch.kind 取 product / news / data / report。 v1.1.0（2026-09-28）：fetch 条目升级为完整抓取目标（slug、变量类、数据类别、机制、队、序列、TCO 模型输入键 tco_inputs、实例、到期、敏感度），原手写的 43 条目标清单行迁入对应因子；目标清单 framework/tco_targets.json 改为由 manage.py targets 生成。 v1.2.0（2026-09-28）：三个模型合成一个，model_inputs 与 tco_inputs 合并为 model_inputs（统一模型的键：generation→it_class、utilization→gpu_utilization、gpu_price→price_gpu_hour、power_load→load_factor、it_life→it_refresh_years、shell_life→horizon_years、it_capex_per_mw→it_capex_per_kw），fetch 条目同名；v3 新增的 14 个输入挂到对应因子。",
   "formulas": {
     "revenue": "收入 = GPU 数 × 8,760 × 付费利用率 × 单价；GPU 数 = IT 容量 × 每 MW 密度；密度 = 1,000 kW × 加速器机柜占 IT 功率份额 ÷ (机柜功率 ÷ 每柜 GPU 数)",
     "cost": "年度成本 = 电费 + 其他运营 + 设施费 + 折旧 + 税；电费 = IT 容量 × 负载率 × PUE × 8,760 × 电价；折旧 = 资本开支 ÷ 寿命（IT 与非 IT 分线）；设施费按自建 / 租壳 / 托管三选一"
@@ -14,7 +14,8 @@
       "side": "revenue",
       "parent": null,
       "unit": "$/年",
-      "formula": "gpus × 8760 × utilization × price"
+      "formula": "gpus × 8760 × utilization × price",
+      "model_inputs": []
     },
     {
       "id": "revenue.gpus",
@@ -47,7 +48,7 @@
       ],
       "model_inputs": [
         "gpus_per_mw",
-        "generation"
+        "it_class"
       ],
       "fetch": [
         {
@@ -62,10 +63,6 @@
           "data_class": "reference",
           "mechanism": "vendor_page",
           "team": "fetchspec",
-          "tco_inputs": [
-            "gpus_per_mw",
-            "it_class"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -76,12 +73,12 @@
           ],
           "next_due": "2026-10-15",
           "sensitivity_rank": 3,
-          "notes": "整柜功率与每柜 GPU 封装数进密度规则"
+          "notes": "整柜功率与每柜 GPU 封装数进密度规则",
+          "model_inputs": [
+            "gpus_per_mw",
+            "it_class"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "gpus_per_mw",
-        "it_class"
       ]
     },
     {
@@ -94,8 +91,11 @@
         "M13-Q01"
       ],
       "model_inputs": [
-        "utilization",
-        "monetized_share"
+        "gpu_utilization",
+        "monetized_share",
+        "tenancy",
+        "util_year1",
+        "util_year2"
       ],
       "fetch": [
         {
@@ -120,9 +120,6 @@
           "data_class": "observation",
           "mechanism": "edgar",
           "team": "fetchfilings",
-          "tco_inputs": [
-            "gpu_utilization"
-          ],
           "series": [
             "ai-dc-utilization-assumption-epoch",
             "neocloud-active-to-contracted-power-coreweave",
@@ -141,11 +138,13 @@
           ],
           "next_due": "2026-11-15",
           "sensitivity_rank": 5,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "gpu_utilization",
+            "util_year1",
+            "util_year2"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "gpu_utilization"
       ]
     },
     {
@@ -169,9 +168,11 @@
         "M13-Q12"
       ],
       "model_inputs": [
-        "gpu_price",
+        "price_gpu_hour",
         "price_change",
-        "rent_price"
+        "rent_price",
+        "price_path",
+        "business_model"
       ],
       "fetch": [
         {
@@ -186,9 +187,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchquotes",
-          "tco_inputs": [
-            "price_gpu_hour"
-          ],
           "series": [
             "gpu-hourly-h100-neocloud-index",
             "gpu-hourly-h100-hyperscaler-index",
@@ -207,11 +205,12 @@
           ],
           "next_due": "2026-10-05",
           "sensitivity_rank": null,
-          "notes": "报价不等于成交；序列取中位并写明配置"
+          "notes": "报价不等于成交；序列取中位并写明配置",
+          "model_inputs": [
+            "price_gpu_hour",
+            "price_change"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "price_gpu_hour"
       ]
     },
     {
@@ -227,7 +226,8 @@
       "model_inputs": [
         "compute_source",
         "tokens_per_gpu_sec",
-        "price_per_m_tokens"
+        "price_per_m_tokens",
+        "price_gpu_hour"
       ],
       "fetch": [
         {
@@ -242,9 +242,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchquotes",
-          "tco_inputs": [
-            "price_gpu_hour"
-          ],
           "series": [
             "token-price-openai-flagship-output",
             "token-price-anthropic-flagship-output",
@@ -258,11 +255,14 @@
           ],
           "next_due": "2026-10-05",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "price_gpu_hour",
+            "tokens_per_gpu_sec",
+            "price_per_m_tokens",
+            "rent_price"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "price_gpu_hour"
       ]
     },
     {
@@ -271,7 +271,8 @@
       "side": "cost",
       "parent": null,
       "unit": "$/年",
-      "formula": "energy + other_opex + facility + depreciation + tax"
+      "formula": "energy + other_opex + facility + depreciation + tax",
+      "model_inputs": []
     },
     {
       "id": "cost.energy",
@@ -281,7 +282,7 @@
       "unit": "$/年",
       "formula": "it_mw × power_load × pue × 8760 × power_price",
       "model_inputs": [
-        "power_load",
+        "load_factor",
         "pue",
         "power_price"
       ]
@@ -302,7 +303,7 @@
         "M13-Q01"
       ],
       "model_inputs": [
-        "power_load"
+        "load_factor"
       ],
       "fetch": [
         {
@@ -317,9 +318,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchreports",
-          "tco_inputs": [
-            "load_factor"
-          ],
           "series": [
             "gpu-node-avg-power-share-of-tdp-h100",
             "gpu-share-of-server-power-acme",
@@ -333,11 +331,11 @@
           ],
           "next_due": "2027-03-31",
           "sensitivity_rank": 6,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "load_factor"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "load_factor"
       ]
     },
     {
@@ -359,7 +357,9 @@
         "M08-Q02"
       ],
       "model_inputs": [
-        "pue"
+        "pue",
+        "wue",
+        "cooling"
       ],
       "fetch": [
         {
@@ -374,9 +374,6 @@
           "data_class": "reference",
           "mechanism": "vendor_page",
           "team": "fetchspec",
-          "tco_inputs": [
-            "pue"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -387,7 +384,10 @@
           ],
           "next_due": "2026-12-31",
           "sensitivity_rank": 2,
-          "notes": "设计 PUE 分解的参照；不替代运营商披露"
+          "notes": "设计 PUE 分解的参照；不替代运营商披露",
+          "model_inputs": [
+            "pue"
+          ]
         },
         {
           "kind": "product",
@@ -401,10 +401,6 @@
           "data_class": "reference",
           "mechanism": "vendor_page",
           "team": "fetchspec",
-          "tco_inputs": [
-            "pue",
-            "wue"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -413,7 +409,11 @@
           ],
           "next_due": "2026-10-31",
           "sensitivity_rank": null,
-          "notes": "psu、coolant 挂进因子树后填充"
+          "notes": "psu、coolant 挂进因子树后填充",
+          "model_inputs": [
+            "pue",
+            "wue"
+          ]
         },
         {
           "kind": "data",
@@ -427,10 +427,6 @@
           "data_class": "observation",
           "mechanism": "pdf_free",
           "team": "fetchfilings",
-          "tco_inputs": [
-            "pue",
-            "wue"
-          ],
           "series": [
             "pue-google-fleet-annual",
             "pue-microsoft-fleet-fy25",
@@ -452,7 +448,11 @@
           ],
           "next_due": "2027-06-30",
           "sensitivity_rank": 2,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "pue",
+            "wue"
+          ]
         },
         {
           "kind": "report",
@@ -466,9 +466,6 @@
           "data_class": "observation",
           "mechanism": "pdf_registered",
           "team": "fetchreports",
-          "tco_inputs": [
-            "pue"
-          ],
           "series": [
             "pue-uptime-survey-weighted-avg"
           ],
@@ -478,12 +475,11 @@
           ],
           "next_due": "2027-09-30",
           "sensitivity_rank": 2,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "pue"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "pue",
-        "wue"
       ]
     },
     {
@@ -514,7 +510,10 @@
         "M04-Q02"
       ],
       "model_inputs": [
-        "power_price"
+        "power_price",
+        "demand_rate",
+        "power_escalation",
+        "site"
       ],
       "fetch": [
         {
@@ -538,10 +537,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchstat",
-          "tco_inputs": [
-            "power_price",
-            "power_escalation"
-          ],
           "series": [
             "industrial-power-price-us-va",
             "industrial-power-price-us-tx",
@@ -558,7 +553,11 @@
           ],
           "next_due": "2026-10-25",
           "sensitivity_rank": 1,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "power_price",
+            "power_escalation"
+          ]
         },
         {
           "kind": "data",
@@ -572,9 +571,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchstat",
-          "tco_inputs": [
-            "power_price"
-          ],
           "series": [
             "industrial-power-price-ie-band-ic",
             "industrial-power-price-eu-band-ic",
@@ -590,7 +586,10 @@
           ],
           "next_due": "2026-11-30",
           "sensitivity_rank": 1,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "power_price"
+          ]
         },
         {
           "kind": "data",
@@ -604,9 +603,6 @@
           "data_class": "observation",
           "mechanism": "table",
           "team": "fetchstat",
-          "tco_inputs": [
-            "power_price"
-          ],
           "series": [
             "cn-dc-power-price-zhongwei",
             "cn-dc-power-price-ulanqab",
@@ -622,7 +618,10 @@
           ],
           "next_due": "2026-10-31",
           "sensitivity_rank": 1,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "power_price"
+          ]
         },
         {
           "kind": "data",
@@ -636,9 +635,6 @@
           "data_class": "observation",
           "mechanism": "pdf_free",
           "team": "fetchstat",
-          "tco_inputs": [
-            "demand_rate"
-          ],
           "series": [
             "dominion-gs4-generation-demand-charge-onpeak-primary",
             "dominion-gs4-transmission-demand-charge-onpeak-primary",
@@ -657,7 +653,10 @@
           ],
           "next_due": "2027-01-01",
           "sensitivity_rank": 1,
-          "notes": "近期任务：电价拆能量与线路两部分"
+          "notes": "近期任务：电价拆能量与线路两部分",
+          "model_inputs": [
+            "demand_rate"
+          ]
         },
         {
           "kind": "data",
@@ -671,9 +670,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchstat",
-          "tco_inputs": [
-            "power_price"
-          ],
           "series": [
             "pjm-capacity-price-bra-rto",
             "ercot-realtime-all-in-power-cost"
@@ -685,16 +681,14 @@
           ],
           "next_due": "2026-10-31",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "power_price"
+          ]
         }
       ],
       "site_rights": [
         "grid"
-      ],
-      "tco_inputs": [
-        "demand_rate",
-        "power_escalation",
-        "power_price"
       ]
     },
     {
@@ -714,7 +708,17 @@
         "M10-Q02"
       ],
       "model_inputs": [
-        "other_opex_per_mw"
+        "other_opex_per_mw",
+        "bandwidth_per_mw",
+        "cost_per_fte",
+        "fte_per_mw",
+        "insurance_pct",
+        "labor_index",
+        "maint_pct_facility",
+        "maint_pct_it",
+        "opex_escalation",
+        "software_per_mw",
+        "water_price"
       ],
       "fetch": [
         {
@@ -729,9 +733,6 @@
           "data_class": "observation",
           "mechanism": "edgar",
           "team": "fetchfilings",
-          "tco_inputs": [
-            "fte_per_mw"
-          ],
           "series": [
             "dc-operator-fte-per-mw-dlr",
             "dc-operator-ops-fte-per-mw-vnet",
@@ -747,7 +748,10 @@
           ],
           "next_due": "2027-03-15",
           "sensitivity_rank": 9,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "fte_per_mw"
+          ]
         },
         {
           "kind": "report",
@@ -761,10 +765,6 @@
           "data_class": "observation",
           "mechanism": "pdf_free",
           "team": "fetchreports",
-          "tco_inputs": [
-            "maint_pct_facility",
-            "maint_pct_it"
-          ],
           "series": [
             "dc-maintenance-share-of-facility-capex-epoch",
             "dc-maintenance-cost-per-mw-year-epoch",
@@ -777,7 +777,11 @@
           ],
           "next_due": "2027-06-30",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "maint_pct_facility",
+            "maint_pct_it"
+          ]
         },
         {
           "kind": "data",
@@ -791,12 +795,6 @@
           "data_class": "observation",
           "mechanism": "edgar",
           "team": "fetchfilings",
-          "tco_inputs": [
-            "other_opex_per_mw",
-            "insurance_pct",
-            "bandwidth_per_mw",
-            "software_per_mw"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -806,7 +804,13 @@
           ],
           "next_due": "2027-03-15",
           "sensitivity_rank": null,
-          "notes": "四项作者假设；保险与带宽由 fetchreports、fetchquotes 辅助"
+          "notes": "四项作者假设；保险与带宽由 fetchreports、fetchquotes 辅助",
+          "model_inputs": [
+            "other_opex_per_mw",
+            "insurance_pct",
+            "bandwidth_per_mw",
+            "software_per_mw"
+          ]
         },
         {
           "kind": "data",
@@ -820,10 +824,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchstat",
-          "tco_inputs": [
-            "cost_per_fte",
-            "labor_index"
-          ],
           "series": [
             "wage-us-electrician-median",
             "wage-us-network-support-specialist-median",
@@ -838,7 +838,11 @@
           ],
           "next_due": "2027-04-15",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "cost_per_fte",
+            "labor_index"
+          ]
         },
         {
           "kind": "data",
@@ -852,9 +856,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchstat",
-          "tco_inputs": [
-            "opex_escalation"
-          ],
           "series": [
             "us-eci-private-compensation-yoy",
             "us-cpi-u-all-items-yoy"
@@ -866,7 +867,10 @@
           ],
           "next_due": "2026-10-15",
           "sensitivity_rank": 10,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "opex_escalation"
+          ]
         },
         {
           "kind": "data",
@@ -880,9 +884,6 @@
           "data_class": "observation",
           "mechanism": "pdf_free",
           "team": "fetchstat",
-          "tco_inputs": [
-            "water_price"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -891,24 +892,14 @@
           ],
           "next_due": "2026-12-31",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "water_price"
+          ]
         }
       ],
       "site_rights": [
         "water-rights"
-      ],
-      "tco_inputs": [
-        "bandwidth_per_mw",
-        "cost_per_fte",
-        "fte_per_mw",
-        "insurance_pct",
-        "labor_index",
-        "maint_pct_facility",
-        "maint_pct_it",
-        "opex_escalation",
-        "other_opex_per_mw",
-        "software_per_mw",
-        "water_price"
       ]
     },
     {
@@ -919,7 +910,9 @@
       "unit": "$/年",
       "formula": "own: 0 | lease: shell_rent_per_mw × it_mw | colo: colo_rate × kW × 12",
       "model_inputs": [
-        "facility_mode"
+        "facility_mode",
+        "bot_term_years",
+        "bot_service_rate"
       ]
     },
     {
@@ -941,7 +934,9 @@
         "noi_margin",
         "renewal_options",
         "renewal_years",
-        "renewal_probability"
+        "renewal_probability",
+        "ramp_year1",
+        "ramp_year2"
       ],
       "fetch": [
         {
@@ -956,10 +951,6 @@
           "data_class": "observation",
           "mechanism": "edgar",
           "team": "fetchfilings",
-          "tco_inputs": [
-            "ramp_year1",
-            "ramp_year2"
-          ],
           "series": [
             "cn-idc-move-in-period-hyperscale-gds",
             "cn-idc-wholesale-movein-to-delivery-ratio-vnet",
@@ -973,7 +964,11 @@
           ],
           "next_due": "2026-11-15",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "ramp_year1",
+            "ramp_year2"
+          ]
         },
         {
           "kind": "data",
@@ -987,9 +982,6 @@
           "data_class": "observation",
           "mechanism": "edgar",
           "team": "fetchfilings",
-          "tco_inputs": [
-            "shell_rent_per_mw"
-          ],
           "series": [
             "shell-lease-rent-per-it-mw-year",
             "colo-rent-new-lease-dlr",
@@ -1004,7 +996,10 @@
           ],
           "next_due": "2026-11-15",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "shell_rent_per_mw"
+          ]
         },
         {
           "kind": "news",
@@ -1018,9 +1013,6 @@
           "data_class": "material",
           "mechanism": "rss",
           "team": "inews",
-          "tco_inputs": [
-            "shell_rent_per_mw"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -1029,13 +1021,19 @@
           ],
           "next_due": "2026-10-31",
           "sensitivity_rank": null,
-          "notes": "期限、递增、期权、担保、take-or-pay"
+          "notes": "期限、递增、期权、担保、take-or-pay",
+          "model_inputs": [
+            "shell_rent_per_mw",
+            "lease_term",
+            "escalator",
+            "noi_margin",
+            "renewal_options",
+            "renewal_years",
+            "renewal_probability",
+            "bot_term_years",
+            "bot_service_rate"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "ramp_year1",
-        "ramp_year2",
-        "shell_rent_per_mw"
       ]
     },
     {
@@ -1058,7 +1056,8 @@
         "M14-Q11"
       ],
       "model_inputs": [
-        "colo_rate"
+        "colo_rate",
+        "price_colo_kw_month"
       ],
       "fetch": [
         {
@@ -1073,10 +1072,6 @@
           "data_class": "observation",
           "mechanism": "pdf_registered",
           "team": "fetchreports",
-          "tco_inputs": [
-            "colo_rate",
-            "price_colo_kw_month"
-          ],
           "series": [
             "colo-asking-rent-nova-250-500kw",
             "colo-asking-rent-nova-10mw-plus",
@@ -1095,12 +1090,12 @@
           ],
           "next_due": "2027-02-28",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "colo_rate",
+            "price_colo_kw_month"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "colo_rate",
-        "price_colo_kw_month"
       ]
     },
     {
@@ -1115,8 +1110,9 @@
         "M11-Q14"
       ],
       "model_inputs": [
-        "it_life",
-        "shell_life"
+        "it_refresh_years",
+        "horizon_years",
+        "decommission_pct"
       ],
       "fetch": [
         {
@@ -1139,10 +1135,6 @@
           "data_class": "observation",
           "mechanism": "edgar",
           "team": "fetchfilings",
-          "tco_inputs": [
-            "it_refresh_years",
-            "horizon_years"
-          ],
           "series": [
             "useful-life-machinery-equipment-dlr-max",
             "useful-life-buildings-improvements-dlr-max",
@@ -1158,7 +1150,11 @@
           ],
           "next_due": "2027-03-15",
           "sensitivity_rank": 7,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "it_refresh_years",
+            "horizon_years"
+          ]
         },
         {
           "kind": "data",
@@ -1172,9 +1168,6 @@
           "data_class": "observation",
           "mechanism": "edgar",
           "team": "fetchfilings",
-          "tco_inputs": [
-            "decommission_pct"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -1183,13 +1176,11 @@
           ],
           "next_due": "2027-03-15",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "decommission_pct"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "decommission_pct",
-        "horizon_years",
-        "it_refresh_years"
       ]
     },
     {
@@ -1204,6 +1195,9 @@
         "benchmark-ms-capex-per-gw-gb200",
         "benchmark-ms-capex-per-gw-vera-rubin",
         "benchmark-ms-capex-per-gw-rubin-ultra"
+      ],
+      "model_inputs": [
+        "capex_basis"
       ]
     },
     {
@@ -1227,9 +1221,10 @@
         "M06-Q02"
       ],
       "model_inputs": [
-        "it_capex_per_mw",
+        "it_capex_per_kw",
         "accelerator_share",
-        "chip_gross_margin"
+        "chip_gross_margin",
+        "refresh_cost_factor"
       ],
       "fetch": [
         {
@@ -1263,9 +1258,6 @@
           "data_class": "observation",
           "mechanism": "js_page",
           "team": "fetchquotes",
-          "tco_inputs": [
-            "refresh_cost_factor"
-          ],
           "series": [
             "gpu-unit-price-h100-used",
             "gpu-unit-price-h100-new",
@@ -1281,11 +1273,11 @@
           ],
           "next_due": "2026-10-07",
           "sensitivity_rank": null,
-          "notes": "代际价格曲线与残值"
+          "notes": "代际价格曲线与残值",
+          "model_inputs": [
+            "refresh_cost_factor"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "refresh_cost_factor"
       ]
     },
     {
@@ -1328,7 +1320,7 @@
         "M07-Q01"
       ],
       "model_inputs": [
-        "it_capex_per_mw",
+        "it_capex_per_kw",
         "accelerator_share"
       ],
       "fetch": [
@@ -1344,9 +1336,6 @@
           "data_class": "reference",
           "mechanism": "vendor_page",
           "team": "fetchspec",
-          "tco_inputs": [
-            "it_capex_per_kw"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -1356,7 +1345,10 @@
           ],
           "next_due": "2026-10-15",
           "sensitivity_rank": null,
-          "notes": "每 MW 工程量表：CDU、歧管、电源架、母线、交换机、每 GPU 光模块配比、PSU、冷却液量"
+          "notes": "每 MW 工程量表：CDU、歧管、电源架、母线、交换机、每 GPU 光模块配比、PSU、冷却液量",
+          "model_inputs": [
+            "it_capex_per_kw"
+          ]
         },
         {
           "kind": "data",
@@ -1370,9 +1362,6 @@
           "data_class": "observation",
           "mechanism": "js_page",
           "team": "fetchquotes",
-          "tco_inputs": [
-            "it_capex_per_kw"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -1382,11 +1371,11 @@
           ],
           "next_due": "2026-10-07",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "it_capex_per_kw"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "it_capex_per_kw"
       ]
     },
     {
@@ -1420,7 +1409,20 @@
       ],
       "model_inputs": [
         "shell_capex_per_mw",
-        "shell_life"
+        "horizon_years",
+        "capex_building",
+        "capex_electrical",
+        "capex_fitout",
+        "capex_mechanical",
+        "construction_years",
+        "contingency_pct",
+        "it_capex_per_kw",
+        "redundancy",
+        "soft_cost_pct",
+        "gate",
+        "gate_wait_years",
+        "permit_months",
+        "energy_quota_mw"
       ],
       "fetch": [
         {
@@ -1444,9 +1446,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchstat",
-          "tco_inputs": [
-            "capex_electrical"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -1455,7 +1454,10 @@
           ],
           "next_due": "2026-10-15",
           "sensitivity_rank": 4,
-          "notes": "电气造价涨幅与交期驱动"
+          "notes": "电气造价涨幅与交期驱动",
+          "model_inputs": [
+            "capex_electrical"
+          ]
         },
         {
           "kind": "report",
@@ -1469,15 +1471,6 @@
           "data_class": "observation",
           "mechanism": "pdf_registered",
           "team": "fetchreports",
-          "tco_inputs": [
-            "capex_building",
-            "capex_electrical",
-            "capex_mechanical",
-            "capex_fitout",
-            "redundancy",
-            "soft_cost_pct",
-            "contingency_pct"
-          ],
           "series": [
             "construction-cost-per-watt-silicon-valley",
             "construction-cost-per-watt-dublin",
@@ -1499,7 +1492,16 @@
           ],
           "next_due": "2026-11-30",
           "sensitivity_rank": 4,
-          "notes": "Tier 溢价、软成本与不可预见费仍是作者假设"
+          "notes": "Tier 溢价、软成本与不可预见费仍是作者假设",
+          "model_inputs": [
+            "capex_building",
+            "capex_electrical",
+            "capex_mechanical",
+            "capex_fitout",
+            "redundancy",
+            "soft_cost_pct",
+            "contingency_pct"
+          ]
         },
         {
           "kind": "data",
@@ -1513,10 +1515,6 @@
           "data_class": "observation",
           "mechanism": "edgar",
           "team": "fetchfilings",
-          "tco_inputs": [
-            "it_capex_per_kw",
-            "capex_electrical"
-          ],
           "series": [
             "construction-cost-shell-per-it-mw-cipher-barber-lake",
             "construction-cost-shell-per-it-mw-riot-rockdale-191mw",
@@ -1532,7 +1530,11 @@
           ],
           "next_due": "2026-11-15",
           "sensitivity_rank": 3,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "it_capex_per_kw",
+            "capex_electrical"
+          ]
         },
         {
           "kind": "report",
@@ -1546,9 +1548,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchreports",
-          "tco_inputs": [
-            "construction_years"
-          ],
           "series": [
             "build-time-to-1gw-months-openai-stargate-abilene",
             "build-time-to-1gw-months-microsoft-fayetteville",
@@ -1562,7 +1561,12 @@
           ],
           "next_due": "2026-12-31",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "construction_years",
+            "permit_months",
+            "energy_quota_mw"
+          ]
         },
         {
           "kind": "report",
@@ -1576,10 +1580,6 @@
           "data_class": "observation",
           "mechanism": "pdf_free",
           "team": "fetchreports",
-          "tco_inputs": [
-            "construction_years",
-            "capex_electrical"
-          ],
           "series": [
             "transformer-lead-time"
           ],
@@ -1590,7 +1590,11 @@
           ],
           "next_due": "2026-12-31",
           "sensitivity_rank": null,
-          "notes": "近期任务：交期与紧缺驱动建设期与电气造价涨幅"
+          "notes": "近期任务：交期与紧缺驱动建设期与电气造价涨幅",
+          "model_inputs": [
+            "construction_years",
+            "capex_electrical"
+          ]
         },
         {
           "kind": "data",
@@ -1604,9 +1608,6 @@
           "data_class": "observation",
           "mechanism": "pdf_free",
           "team": "fetchstat",
-          "tco_inputs": [
-            "construction_years"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -1616,22 +1617,16 @@
           ],
           "next_due": "2027-04-30",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "construction_years",
+            "gate",
+            "gate_wait_years"
+          ]
         }
       ],
       "site_rights": [
         "grid"
-      ],
-      "tco_inputs": [
-        "capex_building",
-        "capex_electrical",
-        "capex_fitout",
-        "capex_mechanical",
-        "construction_years",
-        "contingency_pct",
-        "it_capex_per_kw",
-        "redundancy",
-        "soft_cost_pct"
       ]
     },
     {
@@ -1653,7 +1648,8 @@
         "M04-Q03"
       ],
       "model_inputs": [
-        "btm_capex_per_mw"
+        "btm_capex_per_mw",
+        "capex_electrical"
       ],
       "fetch": [
         {
@@ -1668,9 +1664,6 @@
           "data_class": "material",
           "mechanism": "rss",
           "team": "inews",
-          "tco_inputs": [
-            "capex_electrical"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -1681,14 +1674,14 @@
           ],
           "next_due": "2026-10-31",
           "sensitivity_rank": null,
-          "notes": "表后电力 MW、造价、COD"
+          "notes": "表后电力 MW、造价、COD",
+          "model_inputs": [
+            "capex_electrical"
+          ]
         }
       ],
       "site_rights": [
         "gas-supply"
-      ],
-      "tco_inputs": [
-        "capex_electrical"
       ]
     },
     {
@@ -1717,9 +1710,6 @@
           "data_class": "observation",
           "mechanism": "js_page",
           "team": "fetchstat",
-          "tco_inputs": [
-            "land_per_mw"
-          ],
           "series": [
             "land-price-per-acre-loudoun-dc-mean",
             "land-price-per-acre-loudoun-dc-median",
@@ -1733,15 +1723,15 @@
           ],
           "next_due": "2027-03-31",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "land_per_mw"
+          ]
         }
       ],
       "site_rights": [
         "land",
         "permits"
-      ],
-      "tco_inputs": [
-        "land_per_mw"
       ]
     },
     {
@@ -1752,7 +1742,9 @@
       "unit": "%",
       "formula": "tax × 应税利润（NOPAT 口径；壳层为 NOI − 折旧 − 利息）",
       "model_inputs": [
-        "tax"
+        "tax",
+        "it_refresh_years",
+        "property_tax_rate"
       ],
       "fetch": [
         {
@@ -1767,9 +1759,6 @@
           "data_class": "reference",
           "mechanism": "pdf_free",
           "team": "fetchstat",
-          "tco_inputs": [
-            "it_refresh_years"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -1777,7 +1766,10 @@
           ],
           "next_due": "2027-01-31",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "it_refresh_years"
+          ]
         },
         {
           "kind": "data",
@@ -1791,9 +1783,6 @@
           "data_class": "observation",
           "mechanism": "pdf_free",
           "team": "fetchstat",
-          "tco_inputs": [
-            "property_tax_rate"
-          ],
           "series": [
             "loudoun-real-property-tax-rate",
             "loudoun-computer-equipment-tax-rate",
@@ -1807,12 +1796,12 @@
           ],
           "next_due": "2027-04-30",
           "sensitivity_rank": null,
-          "notes": "动产税与用电税已抓到，待进入模型规则段"
+          "notes": "动产税与用电税已抓到，待进入模型规则段",
+          "model_inputs": [
+            "property_tax_rate",
+            "tax"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "it_refresh_years",
-        "property_tax_rate"
       ]
     },
     {
@@ -1831,7 +1820,10 @@
         "debt_rate",
         "compute_ltc",
         "compute_debt_rate",
-        "residual_share"
+        "residual_share",
+        "tenant_credit",
+        "target_roic",
+        "roic_basis"
       ],
       "fetch": [
         {
@@ -1856,9 +1848,6 @@
           "data_class": "observation",
           "mechanism": "edgar",
           "team": "fetchfilings",
-          "tco_inputs": [
-            "wacc"
-          ],
           "series": [
             "dlr-total-debt-wavg-interest-rate",
             "equinix-senior-notes-wavg-coupon",
@@ -1876,7 +1865,14 @@
           ],
           "next_due": "2026-11-15",
           "sensitivity_rank": 8,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "wacc",
+            "shell_ltc",
+            "debt_rate",
+            "compute_ltc",
+            "compute_debt_rate"
+          ]
         },
         {
           "kind": "data",
@@ -1890,9 +1886,6 @@
           "data_class": "observation",
           "mechanism": "api",
           "team": "fetchstat",
-          "tco_inputs": [
-            "wacc"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -1901,7 +1894,10 @@
           ],
           "next_due": "2026-10-05",
           "sensitivity_rank": 8,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "wacc"
+          ]
         },
         {
           "kind": "report",
@@ -1915,9 +1911,6 @@
           "data_class": "material",
           "mechanism": "pdf_registered",
           "team": "fetchreports",
-          "tco_inputs": [
-            "wacc"
-          ],
           "series": [],
           "planned_series": [],
           "instances": [
@@ -1926,7 +1919,10 @@
           ],
           "next_due": "2026-12-31",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "wacc"
+          ]
         },
         {
           "kind": "report",
@@ -1940,9 +1936,6 @@
           "data_class": "observation",
           "mechanism": "pdf_registered",
           "team": "fetchreports",
-          "tco_inputs": [
-            "wacc"
-          ],
           "series": [
             "reit-development-yield-dlr"
           ],
@@ -1953,11 +1946,13 @@
           ],
           "next_due": "2027-02-28",
           "sensitivity_rank": null,
-          "notes": ""
+          "notes": "",
+          "model_inputs": [
+            "wacc",
+            "residual_share",
+            "target_roic"
+          ]
         }
-      ],
-      "tco_inputs": [
-        "wacc"
       ]
     }
   ]
