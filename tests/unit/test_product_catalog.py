@@ -45,6 +45,7 @@ class ProductCatalogTests(unittest.TestCase):
         old = copy.deepcopy(data)
         data['generated_at'] = '2026-09-28T12:00:00+00:00'
         data['products'][0]['source_sha256'] = data['sources'][0]['sha256'] = 'b'*64
+        data['products'][0]['official_pages'][0]['sha256'] = 'b'*64
         catalog.receive(self.root, data)
         with self.assertRaisesRegex(ValueError, 'older'):
             catalog.receive(self.root, old)
@@ -53,14 +54,26 @@ class ProductCatalogTests(unittest.TestCase):
         self.assertEqual(catalog.snapshot(self.root)['products'][0]['source_sha256'], 'b'*64)
 
     def test_missing_evidence_and_unsafe_attachment_rejected_without_writes(self):
-        for mutation in ('source', 'attachment', 'span', 'localized_source'):
+        for mutation in ('source', 'attachment', 'unlinked_cdn', 'span', 'localized_source'):
             data = bundle()
             if mutation == 'source': data['sources'] = []
             if mutation == 'attachment': data['products'][0]['attachments'] = [{'url': 'javascript:alert(1)'}]
+            if mutation == 'unlinked_cdn': data['products'][0]['attachments'] = [{'url': 'https://dam-cdn.nvd.orangelogic.com/AssetLink/a.pdf'}]
             if mutation == 'span': data['products'][0]['tables'][0]['rows'][0][0]['colspan'] = 0
             if mutation == 'localized_source': data['products'][0]['official_pages'] = [{'url': 'javascript:alert(1)', 'sha256': 'b'*64}]
             with self.assertRaises(ValueError): catalog.receive(self.root, data)
         self.assertFalse(catalog.database(self.root).exists())
+
+    def test_nvidia_resource_viewer_proves_exact_dam_attachment_host(self):
+        data = bundle()
+        product = data['products'][0]
+        resource_url = 'https://resources.nvidia.com/en-us-accelerated-networking-resource-library/bluefield-4-dpu-datasheet'
+        product['attachments'] = [{'url': 'https://dam-cdn.nvd.orangelogic.com/AssetLink/bluefield.pdf',
+                                   'source_url': resource_url, 'source_sha256': 'c'*64}]
+        product['official_pages'].append({'url': resource_url, 'sha256': 'c'*64})
+        data['sources'].append({'sha256': 'c'*64, 'source_url': resource_url})
+        catalog.receive(self.root, data)
+        self.assertEqual(catalog.snapshot(self.root)['products'][0]['attachments'], product['attachments'])
 
     def test_child_product_keeps_parent_resource_links_and_csv_alignment(self):
         data = bundle()
