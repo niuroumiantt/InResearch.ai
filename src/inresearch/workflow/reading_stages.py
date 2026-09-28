@@ -3,7 +3,7 @@ from __future__ import annotations
 import re, shutil, subprocess, tempfile
 from pathlib import Path
 from inresearch.materials.reader_contracts import Blocked, Deferred, UnsafePath, IntegrityError, ModelOutputError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, MODULES, OCR_GAP_REASONS, max_gap_pages
-from inresearch.materials.artifacts import numeric_tokens, now_iso, encoded, digest_bytes, digest_file, safe_path, atomic_bytes, atomic_json, read_json, signature, split_text, require_text
+from inresearch.materials.artifacts import numeric_tokens, now_iso, encoded, digest_bytes, digest_file, safe_path, atomic_bytes, atomic_json, read_json, signature, split_text, require_text, require_content
 
 from inresearch.materials.reading_artifacts import ReadingArtifacts
 
@@ -163,7 +163,9 @@ class ReadingStages(ReadingArtifacts):
                 return {"text": "", "text_second_pass": "", "method": "m4_vision_ocr_gap", "gap": True,
                         "gap_reason": result["gap_reason"], "ocr_model": result.get("ocr_model"), "blank": False,
                         "verification": "page_not_read_after_rescue"}
-            if result.get("method") != "m4_vision_ocr_double_pass":
+            # A gap page re-read by the stronger gap_ocr model (adapters.gap_ocr) is held
+            # to the same double-read rules as the Ollama pages.
+            if result.get("method") not in {"m4_vision_ocr_double_pass", "m4_claude_vision_ocr_double_pass"}:
                 raise IntegrityError()
             if not isinstance(result.get("text"), str) or not isinstance(result.get("text_second_pass"), str):
                 raise IntegrityError()
@@ -337,7 +339,7 @@ class ReadingStages(ReadingArtifacts):
             ))
         if result.get("chunk_sha256") != chunk["sha256"]:
             raise ModelOutputError()
-        require_text(result.get("summary"), 1200)
+        require_content(result.get("summary"), 1200)
         claims = result.get("claims")
         if not isinstance(claims, list) or len(claims) > 30:
             raise ModelOutputError()
@@ -407,12 +409,12 @@ class ReadingStages(ReadingArtifacts):
                 if result is None:
                     result = self.model.generate("synthesize", {"doc_id": doc["doc_id"], "sections": members,
                                                                "level": level, "scope": "all supplied sections, candidate synthesis"})
-                    require_text(result.get("summary"), 1500)
+                    require_content(result.get("summary"), 1500)
                     points = result.get("key_points")
                     if not isinstance(points, list) or len(points) > 20:
                         raise ModelOutputError()
                     for point in points:
-                        require_text(point, 300)
+                        require_content(point, 300)
                     result = self._persist(doc, name, marker, {**result, "member_hash": marker, "section_count": len(members)})
                 next_items.append({"section": "level:%d/group:%d" % (level, n), "summary": result["summary"]})
             if len(groups) == 1:
