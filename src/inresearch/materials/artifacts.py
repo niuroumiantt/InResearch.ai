@@ -4,7 +4,7 @@ from contextlib import contextmanager
 import json, os, re, hashlib
 from pathlib import Path
 from datetime import datetime, timezone
-from inresearch.materials.reader_contracts import UnsafePath, ModelOutputError, PARTIAL_SUFFIXES
+from inresearch.materials.reader_contracts import UnsafePath, ModelOutputError, ModelPlaceholderError, PARTIAL_SUFFIXES
 
 def now_iso():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
@@ -103,6 +103,29 @@ def split_text(text, max_chars=6000, max_bytes=12000):
 def require_text(value, max_chars=2000, empty=False):
     if not isinstance(value, str) or len(value) > max_chars or (not empty and not value.strip()):
         raise ModelOutputError()
+    return value
+
+
+# Stand-in text Sonnet wrote into well-formed answers on 2026-09-27 (11 syntheses,
+# 6 chunk summaries): "测试", "测试摘要，用于诊断key_points参数解析问题。", "测试要点一".
+# Whole answers that are only such a label, or that open with 测试摘要/测试要点, are
+# rejected; real text about tests ("该测试将柴油发电机…") is not.
+_PLACEHOLDER_WHOLE = re.compile(
+    r"(测试|示例|样例|占位)(摘要|要点|内容|文本|数据|结论)?(内容)?[一二三四五六七八九十0-9]*"
+    r"|(test|sample|dummy|placeholder)( ?(summary|point|text|content))?( ?[0-9]+)?|lorem ipsum.*", re.I)
+_PLACEHOLDER_OPENING = re.compile(r"(测试|示例|占位)(摘要|要点)|(test|placeholder) (summary|key ?point)", re.I)
+
+
+def is_placeholder(text):
+    core = re.sub(r"[\s。．.，,！!？?：:；;、\"'“”‘’（）()\[\]【】]+", " ", text).strip()
+    return bool(_PLACEHOLDER_WHOLE.fullmatch(core) or _PLACEHOLDER_OPENING.match(core))
+
+
+def require_content(value, max_chars=2000):
+    """require_text for model prose that must say something about the source."""
+    require_text(value, max_chars)
+    if is_placeholder(value):
+        raise ModelPlaceholderError()
     return value
 
 

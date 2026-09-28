@@ -35,9 +35,9 @@ PAGE_ERRORS = ("model_failure", "model_output_invalid", "model_output_incomplete
 
 
 class PageNotRead(Exception):
-    def __init__(self, code):
+    def __init__(self, code, reads=()):
         super().__init__(code)
-        self.code = code
+        self.code, self.reads = code, list(reads)
 
 
 def read_once(client, image):
@@ -48,25 +48,46 @@ def read_once(client, image):
     return value
 
 
-def double_read(client, image):
-    """Two independent reads that must agree, as for every other OCR page."""
+def pair_problem(first, second):
+    """Why two reads cannot stand together, or None; the rules of every OCR page."""
+    if first["unreadable"] or second["unreadable"]:
+        return "ocr_page_unreadable"
+    if first["blank"] != second["blank"]:
+        return "ocr_blank_disagreement"
+    if numeric_tokens(first["text"]) != numeric_tokens(second["text"]):
+        return "ocr_numbers_disagree"
+    if not first["blank"] and not first["text"].strip():
+        return "ocr_empty_nonblank_page"
+    if first["blank"] and (first["text"].strip() or second["text"].strip()):
+        return "ocr_blank_has_text"
+    return None
+
+
+def agreed_reads(client, image):
+    """Two independent reads that agree, taking a third read only when the first two do not.
+
+    Any two of the three agreeing is still two independent agreeing reads. With no
+    agreeing pair the page stays a gap and every read is kept for inspection."""
+    reads = []
     try:
-        first, second = read_once(client, image), read_once(client, image)
+        for _ in range(3):
+            reads.append(read_once(client, image))
+            for i in range(len(reads) - 1):
+                if pair_problem(reads[i], reads[-1]) is None:
+                    return reads[i], reads[-1], len(reads)
     except models.InferenceError as exc:
         if exc.code in PAGE_ERRORS:
-            raise PageNotRead(exc.code) from None
+            raise PageNotRead(exc.code, reads) from None
         raise
-    if first["unreadable"] or second["unreadable"]:
-        raise PageNotRead("ocr_page_unreadable")
-    if first["blank"] != second["blank"]:
-        raise PageNotRead("ocr_blank_disagreement")
-    if numeric_tokens(first["text"]) != numeric_tokens(second["text"]):
-        raise PageNotRead("ocr_numbers_disagree")
-    if not first["blank"] and not first["text"].strip():
-        raise PageNotRead("ocr_empty_nonblank_page")
-    if first["blank"] and (first["text"].strip() or second["text"].strip()):
-        raise PageNotRead("ocr_blank_has_text")
-    return first, second
+    raise PageNotRead(pair_problem(reads[0], reads[1]), reads)
+
+
+def attempts_record(reads):
+    """What each read said, with the numbers only some reads saw."""
+    numbers = [numeric_tokens(r["text"]) for r in reads]
+    common = set.intersection(*numbers) if numbers else set()
+    return [{"text": r["text"], "blank": r["blank"], "unreadable": r["unreadable"],
+             "numbers_not_in_every_read": sorted(n - common)} for r, n in zip(reads, numbers)]
 
 
 def document(data, doc_id):
@@ -135,9 +156,13 @@ def fill(data, doc_id, client, dry_run=False):
         for index, path, gap in gaps:
             image = render(source, index, directory)
             try:
-                first, second = double_read(client, image)
+                first, second, reads = agreed_reads(client, image)
             except PageNotRead as exc:
-                still.append({"page": index, "reason": exc.code})
+                still.append({"page": index, "reason": exc.code, "reads": len(exc.reads)})
+                if exc.reads:
+                    atomic_json(safe_path(data, "offload/m4/gap-history/%s/%06d.attempts.json" % (doc_id, index)),
+                                {"doc_id": doc_id, "page_index": index, "reason": exc.code,
+                                 "reads": attempts_record(exc.reads)})
                 continue
             history = safe_path(data, "offload/m4/gap-history/%s/%06d.json" % (doc_id, index))
             atomic_json(history, gap)
@@ -145,6 +170,7 @@ def fill(data, doc_id, client, dry_run=False):
                                "text": first["text"], "text_second_pass": second["text"], "method": METHOD,
                                "ocr_model": first["_model"], "blank": first["blank"], "unreadable": False,
                                "replaces_gap_reason": gap.get("gap_reason"),
+                               "reads": reads,
                                "verification": "candidate_ocr_agreement_not_accuracy_certification"})
             # The extraction cache still holds the gap; drop only that page so a
             # retry extracts it from the filled result. Other pages stay cached.
