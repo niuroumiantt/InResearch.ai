@@ -175,6 +175,7 @@ def main():
         bom = json.loads(bom_path.read_text(encoding="utf-8"))
         layer_ids = {ly["id"] for ly in bom.get("layers", [])}
         kinds = set(bom.get("kinds") or {"part": ""})
+        chain_slots = {}
         bom_part_ids = {p["id"] for p in bom.get("parts", [])}
         if len(bom_part_ids) != len(bom.get("parts", [])):
             err("bom.json: 部件 id 重复")
@@ -187,8 +188,21 @@ def main():
                     err(f"bom[{p['id']}]: layer 非法: {p.get('layer')}")
             elif p.get("layer") is not None:
                 err(f"bom[{p['id']}]: {kind} 条目不占尺度，layer 须为 null")
-            if bom.get("systems") and p.get("system") not in bom["systems"]:
+            systems = bom.get("systems") or {}
+            if systems and p.get("system") not in systems:
                 err(f"bom[{p['id']}]: system 非法: {p.get('system')}")
+            elif systems and isinstance(systems.get(p.get("system")), dict):
+                sysd = systems[p["system"]]
+                if any(isinstance(s, dict) and s.get("parent") == p["system"] for s in systems.values()):
+                    err(f"bom[{p['id']}]: system 须是叶子系统，不能是父级: {p['system']}")
+                if p.get("chain") not in sysd.get("chains", []):
+                    err(f"bom[{p['id']}]: chain 不属于系统 {p['system']}: {p.get('chain')}")
+                if not isinstance(p.get("chain_order"), int) or p["chain_order"] < 1:
+                    err(f"bom[{p['id']}]: chain_order 须是正整数")
+                key = (p["system"], p.get("chain"), p.get("chain_order"))
+                if key in chain_slots:
+                    err(f"bom[{p['id']}]: 链路序号与 {chain_slots[key]} 重复: {key}")
+                chain_slots[key] = p["id"]
             for c in p.get("companies", []):
                 if c not in comp_by_id:
                     err(f"bom[{p['id']}]: 引用了不存在的 company_id: {c}")

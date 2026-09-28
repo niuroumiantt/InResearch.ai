@@ -56,7 +56,7 @@ const {chromium} = require('playwright');
       await page.emulateMedia({reducedMotion:'reduce'});
       if (url.includes('bom3d')) {
         await page.evaluate(() => { globalThis.__originalMaterials = __sceneForTest.pickables.map(m => m.material); globalThis.__materialState = __originalMaterials.map(m => JSON.stringify((Array.isArray(m)?m:[m]).map(v=>[v.opacity,v.transparent,v.emissive?.getHex(),v.emissiveIntensity]))); });
-        await page.locator('#dchip-power').click(); await page.locator('#dchip-cooling').click();
+        await page.locator('#dchip-power').click(); await page.locator('#dchip-thermal').click();
         assert.equal(await page.locator('#explode').inputValue(), '45');
         assert.ok(await page.evaluate(() => __originalMaterials.every((m,i)=>JSON.stringify((Array.isArray(m)?m:[m]).map(v=>[v.opacity,v.transparent,v.emissive?.getHex(),v.emissiveIntensity]))===__materialState[i])));
         assert.ok(await page.evaluate(() => __sceneForTest.pickables.some((m,i) => m.material !== __originalMaterials[i])));

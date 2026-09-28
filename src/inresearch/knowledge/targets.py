@@ -144,6 +144,7 @@ def build(root=ROOT, as_of=None):
             'calendar': kw['calendar'], 'next_due': due(kw.get('next_due'), kw['data_class']),
             'status': status_for(kw['data_class'], kw['series'], kw.get('indicators', []), kw['model_inputs'], kw['origin']),
             'sensitivity_rank': kw['sensitivity_rank'], 'notes': kw.get('notes', ''), 'curated': kw.get('curated', False),
+            'chain': kw.get('chain'), 'chain_order': kw.get('chain_order'),
         }
         return out
 
@@ -163,8 +164,20 @@ def build(root=ROOT, as_of=None):
                 instances=list(entry.get('instances') or entry['sources']), mechanism=d['mechanism'], team=d['team'],
                 calendar=entry.get('calendar') or entry['cadence'], next_due=entry.get('next_due'),
                 sensitivity_rank=entry.get('sensitivity_rank', 3), notes=entry.get('notes', entry['what'])))
-    # 2. part targets: data classes a part has by construction
-    for p in bom['parts']:
+    # 2. part targets: data classes a part has by construction; rows walk each system's chain from upstream
+    systems = bom.get('systems', {})
+    def sys_rank(p):
+        s = systems.get(p['system'], {})
+        if not isinstance(s, dict):
+            return (99, 0)
+        parent = systems.get(s.get('parent') or '', {})
+        return ((parent.get('order', 0) if s.get('parent') else s.get('order', 0)), s.get('order', 0) if s.get('parent') else 0)
+    chain_pos = {}
+    for sid, s in systems.items():
+        if isinstance(s, dict):
+            for i, c in enumerate(s.get('chains', [])):
+                chain_pos[(sid, c)] = i
+    for p in sorted(bom['parts'], key=lambda p: (*sys_rank(p), chain_pos.get((p['system'], p.get('chain')), 99), p.get('chain_order', 99))):
         lines = [f"{companies.get(r['company_id'], r['company_id'])} · {r['product_line']}"
                  for r in products if p['id'] in (r.get('bom_parts') or [])]
         names = [companies.get(c, c) for c in p['companies']]
@@ -182,7 +195,8 @@ def build(root=ROOT, as_of=None):
                 spec.update({k: reg[k] for k in ('publisher_category', 'calendar', 'mechanism', 'team') if k in reg})
             series = [s for s in p.get('series', []) if (s in lead_series) == (kind == 'lead_time')] if kind in ('price', 'lead_time') else []
             inds = [i for i in p.get('indicators', []) if ('lead_time' in i or 'backlog' in i) == (kind == 'lead_time')] if kind in ('price', 'lead_time') else []
-            notes = {'spec': f"{p['name']}：规格与供应商名单（{bom['systems'][p['system']]}，{p['layer'] or p['kind']}）",
+            sysname = bom['systems'][p['system']]['name'] if isinstance(bom['systems'][p['system']], dict) else bom['systems'][p['system']]
+            notes = {'spec': f"{p['name']}：规格与供应商名单（{sysname} · {p.get('chain', '')}，{p['layer'] or p['kind']}）",
                      'price': f"{p['name']}：自己的价格——重切规则的第一条件", 'lead_time': f"{p['name']}：自己的交期——重切规则的第三条件",
                      'news': f"{p['name']}：{p['status']} 状态部件的供应事件"}[kind]
             if p['kind'] == 'software' and kind == 'price':
@@ -194,7 +208,7 @@ def build(root=ROOT, as_of=None):
                 disclosure_type=spec['disclosure_type'], publisher_category=spec['publisher_category'],
                 instances=(list(reg['instances']) if reg and reg.get('instances') else instances),
                 mechanism=spec['mechanism'], team=spec['team'], calendar=spec['calendar'], sensitivity_rank=rank, notes=notes,
-                curated=bool(reg)))
+                curated=bool(reg), chain=p.get('chain'), chain_order=p.get('chain_order')))
     # 3. site-right targets: one per registered variable class
     for r in rights:
         fids = right_factors.get(r['id'], [])

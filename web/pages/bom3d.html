@@ -41,6 +41,8 @@
   #domainParts .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
   #domainParts .lay { margin-left: auto; font-size: 10px; color: var(--muted); }
   #domainParts .covb { font-size: 9.5px; padding: 1px 5px; border-radius: var(--ui-radius); color: var(--ui-on-accent); font-weight: 700; flex: none; }
+  #domainParts .chainh { font-size: 10.5px; color: var(--muted); margin: 6px 0 2px; padding-left: 7px; border-left: 2px solid var(--accent); }
+  #domainParts .pitem.walk { background: rgba(96,165,250,.18); color: var(--accent); }
   #domainParts .nm { font-size: 9.5px; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--ui-radius); padding: 0 4px; flex: none; }
   #covLegend { display: none; gap: 8px; margin-top: 6px; font-size: 10.5px; color: var(--muted); align-items: center; }
   #covLegend i { display: inline-block; width: 9px; height: 9px; border-radius: var(--ui-radius); margin-right: 3px; vertical-align: -1px; }
@@ -872,15 +874,28 @@ function covToggle() {
 }
 document.getElementById("covChip").onclick = covToggle;
 
-const DOMAINS = [
-  { key: "power",   icon: "⚡", name: "电力",   mods: ["M04", "M09"], t: 45,  cam: [72, 28, 14], tgt: [30, 3, 3] },
-  { key: "cooling", icon: "❄️", name: "散热",   mods: ["M08"],        t: 45,  cam: [-70, 26, 10], tgt: [-28, 3, 0] },
-  { key: "compute", icon: "🧠", name: "算力",   mods: ["M06"],        t: 100, cam: [13, 11, 40], tgt: [0, 5, 20] },
-  { key: "network", icon: "🔗", name: "网络",   mods: ["M07"],        t: 100, cam: [15, 17, 38], tgt: [0, 10, 20] },
-  { key: "campus",  icon: "🏗️", name: "园区楼宇", mods: ["M05", "M10"], t: 32, cam: [58, 44, 64], tgt: [0, 4, 0] },
-  { key: "dcim",    icon: "🖥️", name: "软件",   mods: ["M13"],        t: 55,  cam: [-42, 20, 26], tgt: [-22, 7, 4] },
-];
-DOMAINS.forEach(d => d.parts = [...BOM.parts, ...RIGHTS].filter(p => d.mods.includes(p.module)));
+/* 领域视角 = 八个叶子系统，从 bom.json 的 systems 生成，不再手写；镜头与爆炸程度按系统登记，链路顺序来自部件的 chain / chain_order。 */
+const CAMERA = {
+  power:   { icon: "⚡", t: 45,  cam: [72, 28, 14],  tgt: [30, 3, 3] },
+  thermal: { icon: "❄️", t: 45,  cam: [-70, 26, 10], tgt: [-28, 3, 0] },
+  compute: { icon: "🧠", t: 100, cam: [13, 11, 40],  tgt: [0, 5, 20] },
+  memory:  { icon: "🧩", t: 100, cam: [13, 11, 40],  tgt: [0, 5, 20] },
+  storage: { icon: "💾", t: 100, cam: [13, 11, 40],  tgt: [0, 5, 20] },
+  network: { icon: "🔗", t: 100, cam: [15, 17, 38],  tgt: [0, 10, 20] },
+  facility:{ icon: "🏗️", t: 32,  cam: [58, 44, 64],  tgt: [0, 4, 0] },
+  control: { icon: "🖥️", t: 55,  cam: [-42, 20, 26], tgt: [-22, 7, 4] },
+};
+const SYSTEMS = BOM.systems || {};
+const leafSystems = Object.entries(SYSTEMS).filter(([id]) => !Object.values(SYSTEMS).some(x => x.parent === id))
+  .sort((a, b) => ((a[1].parent ? SYSTEMS[a[1].parent].order : a[1].order) - (b[1].parent ? SYSTEMS[b[1].parent].order : b[1].order)) || ((a[1].parent ? a[1].order : 0) - (b[1].parent ? b[1].order : 0)));
+const chainKey = p => { const chains = SYSTEMS[p.system]?.chains || []; return [chains.indexOf(p.chain), p.chain_order || 0]; };
+const DOMAINS = leafSystems.map(([key, sdef]) => ({
+  key, name: sdef.name.replace("IT · ", ""), chains: sdef.chains, ...(CAMERA[key] || { icon: "•", t: 60, cam: [46, 30, 52], tgt: [0, 6, 0] }),
+  parts: BOM.parts.filter(p => p.system === key).sort((a, b) => { const x = chainKey(a), y = chainKey(b); return x[0] - y[0] || x[1] - y[1]; }),
+}));
+// 站点权利在园区场景里跟设施视角走
+DOMAINS.find(d => d.key === "facility")?.parts.push(...RIGHTS);
+const DOMAIN_ALIAS = { cooling: "thermal", campus: "facility", dcim: "control" };  // 旧的 ?d= 深链
 
 const cameraMotion = createSceneMotion();
 function flyTo(cam, tgt, duration = 1100) {
@@ -914,6 +929,7 @@ function setDim(mesh, dim) {
 }
 function clearDomain() {
   sliderMotion.cancel();
+  clearTimeout(walkTimer);
   activeDomain = null;
   pickables.forEach(m => setDim(m, false));
   decor.forEach(m => m.material && setDim(m, false));
@@ -931,7 +947,9 @@ function enterDomain(d) {
   decor.forEach(m => m.material && setDim(m, true));
   animateSlider(d.t);
   flyTo(d.cam, d.tgt);
-  document.getElementById("domainParts").innerHTML = d.parts.map(p =>
+  const grouped = []; let last = null;
+  for (const p of d.parts) { if (p.chain !== last) { grouped.push(`<div class="chainh">${esc(p.chain || (p.kind === "site_right" ? "站点权利" : ""))}</div>`); last = p.chain; } grouped.push(p); }
+  document.getElementById("domainParts").innerHTML = grouped.map(p => typeof p === "string" ? p :
     `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${COVC[covScore(p)]}" title="数据覆盖 ${covScore(p)}/4（公司/产品/序列/指标）">${covScore(p)}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.layer || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
   document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
     const p = PART[el.dataset.part];
@@ -942,14 +960,33 @@ function enterDomain(d) {
       flyTo([wp.x + 9, wp.y + 6, wp.z + 9], [wp.x, wp.y, wp.z], 900);
     }
   });
+  if (d.chains.length > 1) walkChain(d);
 }
+/* 镜头按链路走：进入一个系统后，沿能量流依次飞到有造型的部件（电网 → 变电 → 发电与储能 → UPS → 配电 → 板级供电），
+   这条路线就是该系统的研究提纲。用户操作或切换视角即停止。 */
+let walkTimer = null;
+function walkChain(d) {
+  clearTimeout(walkTimer);
+  const stops = d.parts.filter(p => PARTMESH[p.id]?.length);
+  let i = 0;
+  const step = () => {
+    if (activeDomain !== d.key || i >= stops.length) return;
+    const p = stops[i++];
+    document.querySelectorAll("#domainParts .pitem").forEach(el => el.classList.toggle("walk", el.dataset.part === p.id));
+    const wp = new THREE.Vector3(); PARTMESH[p.id][0].getWorldPosition(wp);
+    flyTo([wp.x + 12, wp.y + 8, wp.z + 12], [wp.x, wp.y, wp.z], 900);
+    walkTimer = setTimeout(step, 1500);
+  };
+  walkTimer = setTimeout(step, 1300);
+}
+canvas.addEventListener("pointerdown", () => clearTimeout(walkTimer));
 const domrow = document.getElementById("domrow");
 domrow.innerHTML = DOMAINS.map(d => `<div class="dchip" id="dchip-${d.key}">${d.icon} ${d.name}</div>`).join("");
 DOMAINS.forEach(d => document.getElementById(`dchip-${d.key}`).onclick = () => enterDomain(d));
 addEventListener("keydown", e => {
   if (e.target.tagName === "INPUT") return;
-  const i = "123456".indexOf(e.key);
-  if (i >= 0) enterDomain(DOMAINS[i]);
+  const i = "12345678".indexOf(e.key);
+  if (i >= 0 && DOMAINS[i]) enterDomain(DOMAINS[i]);
   if (e.key === "0" || e.key === "Escape") { clearDomain(); flyTo([46, 30, 52], [0, 6, 0]); }
 });
 
@@ -1007,7 +1044,8 @@ window.addEventListener("pagehide", event => {if (!event.persisted) disposePage(
 
 // ?d=<domain> / ?p=<part> 深链：其他页面可直接链进领域视角或部件档案（放最后：依赖上面全部初始化完成）
 { const q = new URLSearchParams(location.search);
-  const d = DOMAINS.find(x => x.key === q.get("d"));
+  const dkey = DOMAIN_ALIAS[q.get("d")] || q.get("d");
+  const d = DOMAINS.find(x => x.key === dkey);
   if (d) { controls.autoRotate = false; enterDomain(d); }
   const nodePart = (q.get("node") || "").replace(/^part:/, "");
   const p = PART[q.get("p") || nodePart];

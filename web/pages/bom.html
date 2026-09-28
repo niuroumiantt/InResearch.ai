@@ -25,6 +25,11 @@
   .sub { color: var(--muted); font-size: 12.5px; margin: 2px 0 10px; }
   .legend { font-size: 11.5px; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; flex-wrap: wrap; gap: 2px; }
   .legend i { display: inline-block; width: 10px; height: 10px; border-radius: var(--ui-radius); vertical-align: -1px; margin: 0 4px 0 12px; }
+  .modes { margin-left: 14px; display: inline-flex; gap: 4px; }
+  .mode { font: inherit; font-size: 11.5px; padding: 2px 10px; border: 1px solid var(--line); border-radius: var(--ui-radius); background: var(--card); color: var(--muted); cursor: pointer; }
+  .mode.on { color: var(--accent); border-color: var(--accent); font-weight: 600; }
+  .sysh { margin: 14px 0 6px; display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sysh b { font-size: 15px; } .sysh .en { color: var(--muted); font-size: 11.5px; }
   .legend .go3d { margin-left: auto; font-size: 12px; border: 1px solid var(--accent); border-radius: var(--ui-radius); padding: 2px 12px; }
 
   /* ── 爆炸堆叠：每层一行 = [等轴测平台] [引线] [编号标注] ── */
@@ -99,9 +104,10 @@
 <div class="wrap">
   <div class="stage">
     <h1>一张图拆解 <em>AI 数据中心</em></h1>
-    <div class="sub">按五个尺度从部件炸到园区——每个部件都挂着它的研究模块、供应商、价格序列与监测指标。点击任意部件或词条查看档案。</div>
+    <div class="sub">一个骨架：五个系统（IT 再分四个），系统内按能量流链路排；尺度是第二排法。——每个部件都挂着它的研究模块、供应商、价格序列与监测指标。点击任意部件或词条查看档案。</div>
     <div class="legend">供应状态：<i style="background:var(--red)"></i>紧缺 <i style="background:var(--yellow)"></i>技术切换中
       <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴
+      <span class="modes"><button type="button" class="mode on" data-mode="system">按系统</button><button type="button" class="mode" data-mode="scale">按尺度</button></span>
       <a class="go3d" href="bom3d.html">🧊 进入 3D 立体拆解 →</a></div>
     <div id="stack">加载中…</div>
   </div>
@@ -192,25 +198,51 @@ function isoSlab(layer, parts, idx) {
   inds.indicators.forEach(i => INDS[i.id] = i);
   reg.modules.forEach(m => MODNAME[m.id] = m.name);
 
-  // 尺度从上到下 = S5 → S1（部件在最上，园区在最下），编号 1-5 = 拆解次序
-  const order = bom.layers.map(l => l.id).reverse();
-  document.getElementById("stack").innerHTML = '<div class="axis"></div>' + order.map((lid, i) => {
-    const layer = bom.layers.find(l => l.id === lid);
-    const parts = bom.parts.filter(p => isPart(p) && p.layer === lid);
-    return `<div class="lrow" style="margin-left:${i * 1.5}%">
+  // 两种排法：按系统（第一层五个系统，IT 展开四个，系统内按链路）是骨架；按尺度（S5 → S1）是第二排法
+  const chips = parts => parts.map(p => `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</span>`).join("");
+  const row = (layer, parts, i, indent) => `<div class="lrow" style="margin-left:${indent}%">
       <div class="slab">${isoSlab(layer, parts, i)}</div>
       <div class="lead"></div>
       <div class="callout">
-        <div class="ch"><span class="num">${i + 1}</span><b>${layer.name}</b><span class="en">${layer.en}</span></div>
-        <div class="cd">${esc(layer.desc)}</div>
-        <div class="plist">${parts.map(p =>
-          `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</span>`).join("")}</div>
+        <div class="ch"><span class="num">${layer.num}</span><b>${esc(layer.name)}</b><span class="en">${esc(layer.en || "")}</span></div>
+        <div class="cd">${esc(layer.desc || "")}</div>
+        <div class="plist">${chips(parts)}</div>
       </div>
     </div>`;
-  }).join("") + otherEntries(bom, rights.rights || []);
-
-  document.querySelectorAll("[data-part]").forEach(el =>
-    el.addEventListener("click", () => show(el.dataset.part)));
+  function byScale() {
+    const order = bom.layers.map(l => l.id).reverse();
+    return order.map((lid, i) => {
+      const layer = bom.layers.find(l => l.id === lid);
+      return row({ ...layer, num: i + 1 }, bom.parts.filter(p => isPart(p) && p.layer === lid), i, i * 1.5);
+    }).join("");
+  }
+  function bySystem() {
+    const S = bom.systems;
+    const top = Object.entries(S).filter(([, s]) => !s.parent).sort((a, b) => a[1].order - b[1].order);
+    let i = 0, html = "";
+    for (const [sid, s] of top) {
+      const leaves = Object.entries(S).filter(([, x]) => x.parent === sid).sort((a, b) => a[1].order - b[1].order);
+      const groups = leaves.length ? leaves : [[sid, s]];
+      html += `<div class="sysh"><b>${esc(s.name)}</b><span class="en">${leaves.length ? "IT 展开为 " + leaves.map(([, x]) => esc(x.name.replace("IT · ", ""))).join(" · ") : s.chains.join(" → ")}</span></div>`;
+      for (const [lid, l] of groups) {
+        for (const chain of l.chains) {
+          const parts = bom.parts.filter(p => isPart(p) && p.system === lid && p.chain === chain).sort((a, b) => a.chain_order - b.chain_order);
+          if (!parts.length) continue;
+          html += row({ id: lid + ":" + chain, name: chain, en: l.name, desc: `${l.name} · 链路第 ${l.chains.indexOf(chain) + 1} 段 · ${parts.length} 件，按能量流顺序`, num: ++i }, parts, i - 1, (leaves.length ? 3 : 0) + (l.chains.indexOf(chain)) * 1.2);
+        }
+      }
+    }
+    return html;
+  }
+  const stack = document.getElementById("stack");
+  function render(mode) {
+    stack.innerHTML = '<div class="axis"></div>' + (mode === "scale" ? byScale() : bySystem()) + otherEntries(bom, rights.rights || []);
+    document.querySelectorAll("[data-mode]").forEach(b => b.classList.toggle("on", b.dataset.mode === mode));
+    document.querySelectorAll("[data-part]").forEach(el => el.addEventListener("click", () => show(el.dataset.part)));
+    history.replaceState(null, "", location.pathname + (mode === "scale" ? "?view=scale" : "") + location.hash);
+  }
+  document.querySelectorAll("[data-mode]").forEach(b => b.addEventListener("click", () => render(b.dataset.mode)));
+  render(new URLSearchParams(location.search).get("view") === "scale" ? "scale" : "system");
 
   const first = resolveId(location.hash.slice(1));
   if (first && bom.parts.find(p => p.id === first)) show(first);
@@ -250,7 +282,7 @@ function show(pid) {
   history.replaceState(null, "", "#" + pid);
 
   let h = `<h2>${esc(p.name)}</h2>
-    <div class="meta">${p.layer ? p.layer + " " + (BOM.layers.find(l => l.id === p.layer)?.name || "") : (BOM.kinds?.[p.kind] || p.kind)} ·
+    <div class="meta">${BOM.systems?.[p.system]?.name || p.system}${p.chain ? " · " + esc(p.chain) + " 第 " + p.chain_order + " 位" : ""} · ${p.layer ? p.layer + " " + (BOM.layers.find(l => l.id === p.layer)?.name || "") : (BOM.kinds?.[p.kind] || p.kind)} ·
       <span class="badge" style="background:${SC[p.status]}">${SN[p.status]}</span></div>
     <div style="font-size:13px">${esc(p.desc)}</div>`;
 

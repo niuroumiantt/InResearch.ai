@@ -50,6 +50,35 @@ class BomStructureTests(unittest.TestCase):
         self.assertEqual(self.parts['dcim']['kind'], 'software')
         self.assertEqual(self.parts['modular-dc']['kind'], 'archetype')
 
+    def test_one_skeleton_systems_and_chains(self):
+        # 一个骨架：五个系统，IT 再分四个；系统内按能量流链路排；部件只挂叶子系统
+        systems = self.bom['systems']
+        top = [sid for sid, s in systems.items() if not s.get('parent')]
+        self.assertEqual([systems[s]['name'] for s in sorted(top, key=lambda s: systems[s]['order'])], ['设施', '电力', '冷却', 'IT', '控制与软件'])
+        self.assertEqual(sorted(sid for sid, s in systems.items() if s.get('parent') == 'it'), ['compute', 'memory', 'network', 'storage'])
+        self.assertEqual(systems['power']['chains'], ['电网接入', '变电', '发电与储能', 'UPS', '配电', '机柜与板级供电'])
+        self.assertEqual(systems['thermal']['chains'], ['排热', '冷水与 CDU', '机房与机柜', '芯片级'])
+        slots = set()
+        for p in self.bom['parts']:
+            self.assertNotEqual(p['system'], 'it', p['id'])
+            self.assertIn(p['chain'], systems[p['system']]['chains'], p['id'])
+            key = (p['system'], p['chain'], p['chain_order'])
+            self.assertNotIn(key, slots, p['id']); slots.add(key)
+        # 边界件按能量流位置（用户 2026-09-28）
+        self.assertEqual(self.parts['bess']['chain'], '发电与储能')
+        for pid in ('power-shelf', 'psu', 'vrm', 'bbu'):
+            self.assertEqual(self.parts[pid]['chain'], '机柜与板级供电', pid)
+        self.assertEqual(self.parts['coldplate']['chain'], '芯片级')
+        for pid in ('manifold', 'quick-disconnect'):
+            self.assertEqual(self.parts[pid]['chain'], '机房与机柜', pid)
+        self.assertEqual(self.parts['fuel-storage']['chain'], '发电与储能')
+
+    def test_graph_domains_follow_chain_order(self):
+        for d in self.graph['hardware_domains']:
+            chains = self.bom['systems'][d['id']]['chains']
+            keys = [(chains.index(self.parts[o[5:]]['chain']), self.parts[o[5:]]['chain_order']) for o in d['object_ids'] if o[5:] in self.parts]
+            self.assertEqual(keys, sorted(keys), d['id'])
+
     def test_aliases_resolve(self):
         for old, target in self.bom['aliases'].items():
             self.assertNotIn(old, self.parts, old)

@@ -60,6 +60,10 @@
   #matrix td.cell.hl a { background: var(--bg); }
   #matrix .v { font-weight: 600; } #matrix .u { color: var(--muted); font-size: 11px; margin-left: 3px; }
   #matrix .c { display: block; font-size: 10.5px; color: var(--muted); }
+  #matrix tr.row-child { display: none; } #matrix.it-open tr.row-child { display: table-row; }
+  #matrix tr.row-child th { padding-left: 22px; font-weight: 400; } .child-mark { color: var(--muted); }
+  .it-toggle { font: inherit; background: none; border: 1px solid var(--line); border-radius: var(--ui-radius); color: var(--accent); cursor: pointer; padding: 0 5px; }
+  tr.chain-row th { background: var(--bg); color: var(--text); font-weight: 600; font-size: 12px; border-left: 3px solid var(--accent); }
   .dot { display: inline-block; width: 9px; height: 9px; border-radius: var(--ui-radius); margin-right: 3px; vertical-align: -1px; }
   .st-sourced { background: var(--green); } .st-assumed { background: var(--yellow); } .st-needed { background: var(--gray); }
   .sup-tight { background: var(--red); } .sup-transition { background: var(--yellow); } .sup-mature { background: var(--green); } .sup-emerging { background: var(--purple); }
@@ -157,21 +161,36 @@ function fiveColumns(cells, columns) {
 
 function matrix(d) {
   const cols = Object.entries(d.columns);
-  const rows = [...d.ecosystems, d.site];
-  return `<div class="tscroll"><table id="matrix"><thead><tr><th>生态 × 五类变量</th>${cols.map(([n, name]) => `<th class="${COL === n ? "hl" : ""}">${n} ${esc(name)}</th>`).join("")}</tr></thead><tbody>${rows.map(r => {
+  // 一个骨架：第一层五个系统（IT 作为父级可展开成四个子系统），第九行站点权利
+  const parents = d.parent_systems || [];
+  const rows = [];
+  const leaves = d.ecosystems;
+  const topOrder = Object.entries(d.systems || {}).filter(([, x]) => !x.parent).sort((a, b) => a[1].order - b[1].order).map(([id]) => id);
+  for (const sid of topOrder) {
+    const parent = parents.find(x => x.id === sid);
+    if (parent) { rows.push({ ...parent, kind: "parent" }); leaves.filter(e => e.parent === sid).forEach(e => rows.push({ ...e, kind: "child" })); }
+    else { const e = leaves.find(x => x.id === sid); if (e) rows.push({ ...e, kind: "top" }); }
+  }
+  rows.push({ ...d.site, kind: "top" });
+  const open = new URLSearchParams(location.search).get("it") === "1";
+  return `<div class="tscroll"><table id="matrix" class="${open ? "it-open" : ""}"><thead><tr><th>系统 × 五类变量</th>${cols.map(([n, name]) => `<th class="${COL === n ? "hl" : ""}">${n} ${esc(name)}</th>`).join("")}</tr></thead><tbody>${rows.map(r => {
     const id = r.id === "site" ? "site" : "ecosystem:" + r.id;
-    return `<tr><th><a href="${nodeHref(id)}">${esc(r.name)}</a></th>${cols.map(([n]) => {
+    const label = r.kind === "parent" ? `<button type="button" class="it-toggle" aria-expanded="${open}" title="展开 / 收起 IT 的四个子系统">${open ? "▾" : "▸"}</button> <a href="${nodeHref(id)}">${esc(r.name)}</a>` : r.kind === "child" ? `<span class="child-mark">└</span> <a href="${nodeHref(id)}">${esc(r.name.replace("IT · ", ""))}</a>` : `<a href="${nodeHref(id)}">${esc(r.name)}</a>`;
+    return `<tr class="row-${r.kind}"><th>${label}</th>${cols.map(([n]) => {
       const c = r.cells[n]; const i = c.items[0];
       return `<td class="cell ${c.status} ${COL === n ? "hl" : ""}"><a href="${nodeHref(id, n)}" title="${esc(i ? i.label : "缺")} · 目标 ${c.coverage.sourced}/${c.coverage.assumed}/${c.coverage.needed}">${i ? `<span class="v">${fmt(i.value, i.unit)}</span>` : '<span class="v">缺</span>'}<span class="c">${esc(i ? i.label : "无来源")}</span></a></td>`;
     }).join("")}</tr>`;
   }).join("")}</tbody></table></div>
-  <div class="cov" style="margin-top:8px">左侧色条：<i class="st-sourced"></i>已有数据 <i class="st-assumed"></i>模型假设或部分目标已有 <i class="st-needed"></i>缺。每格点开进入生态节点并停在那一列；灰格就是采集任务书。</div>`;
+  <div class="cov" style="margin-top:8px">左侧色条：<i class="st-sourced"></i>已有数据 <i class="st-assumed"></i>模型假设或部分目标已有 <i class="st-needed"></i>缺。每格点开进入系统节点并停在那一列；IT 一行可展开四个子系统；灰格就是采集任务书。</div>`;
 }
 
 function partsTable(parts, snapshot) {
-  return `<div class="tscroll"><table><thead><tr><th>部件</th><th>尺度</th><th>供应</th><th>构成</th><th>运行</th><th>价格</th><th>时间</th><th>主体</th></tr></thead><tbody>${parts.map(p => {
+  let last = null;
+  return `<div class="tscroll"><table><thead><tr><th>部件（按链路，能量流顺序）</th><th>尺度</th><th>供应</th><th>构成</th><th>运行</th><th>价格</th><th>时间</th><th>主体</th></tr></thead><tbody>${parts.map(p => {
     const cells = snapshot.parts[p.id]?.cells || {};
-    return `<tr><td><a href="${nodeHref("part:" + p.id)}">${esc(p.name)}</a></td><td>${esc(p.layer || p.kind)}</td><td><span class="dot sup-${p.supply_status}"></span>${SUP[p.supply_status] || ""}</td>${["1", "2", "3", "4", "5"].map(n => {
+    const head = p.chain && p.chain !== last ? `<tr class="chain-row"><th colspan="8">${esc(p.chain)}</th></tr>` : "";
+    last = p.chain;
+    return `${head}<tr><td><a href="${nodeHref("part:" + p.id)}">${esc(p.name)}</a></td><td>${esc(p.layer || p.kind)}</td><td><span class="dot sup-${p.supply_status}"></span>${SUP[p.supply_status] || ""}</td>${["1", "2", "3", "4", "5"].map(n => {
       const c = cells[n]; const i = c?.items?.[0];
       return `<td><span class="dot st-${c?.status || "needed"}"></span>${i ? fmt(i.value, i.unit) : '<span class="empty">缺</span>'}</td>`;
     }).join("")}</tr>`;
@@ -229,6 +248,7 @@ function changes(d) {
   const crumbs = [["root", "数据中心"]];
   let title, kind, cells, children, factorPred, rows, sup = "", desc = "";
   const [type, key] = NODE.includes(":") ? NODE.split(/:(.*)/s) : [NODE, ""];
+  const parentSys = type === "ecosystem" ? (d.parent_systems || []).find(e => e.id === key) : null;
   const eco = type === "ecosystem" ? d.ecosystems.find(e => e.id === key) : null;
   const part = type === "part" ? d.parts[key] : null;
   const right = type === "site" && key ? d.rights[key] : null;
@@ -245,20 +265,33 @@ function changes(d) {
     byId("q4").textContent = `目标清单 ${T.length} 行：sourced ${d.root.targets.sourced}、assumed ${d.root.targets.assumed}、needed ${d.root.targets.needed}。采集需求、研究工单、价格库新点与新闻事件都从这里出发；因子级目标折叠在下，部件级目标在各生态与部件节点。`;
     byId("changes").innerHTML = changes(d);
     deliveryBoard().then(html => { byId("grid").innerHTML = html; }).catch(() => {});
+  } else if (parentSys) {
+    crumbs.push([NODE, parentSys.name]);
+    title = `<em>${esc(parentSys.name)}</em> 系统`; kind = `第一层节点 · 展开为 ${parentSys.children.length} 个子系统`;
+    cells = parentSys.cells; const kidIds = new Set(parentSys.children);
+    const kidParts = new Set(d.ecosystems.filter(e => kidIds.has(e.id)).flatMap(e => e.parts.map(p => p.id)));
+    factorPred = f => (f.bom_parts || []).some(p => kidParts.has(p));
+    rows = T.filter(t => t.part_id && kidParts.has(t.part_id));
+    byId("q1").textContent = "IT 是五个系统之一，再分计算、内存、存储、网络；本行是四个子系统的汇总。";
+    byId("h2").innerHTML = `它由什么组成<small>树 · 四个子系统</small>`;
+    children = `<div class="tscroll"><table><thead><tr><th>子系统</th><th>构成</th><th>运行</th><th>价格</th><th>时间</th><th>主体</th></tr></thead><tbody>${d.ecosystems.filter(e => kidIds.has(e.id)).map(e => `<tr><td><a href="${nodeHref("ecosystem:" + e.id)}">${esc(e.name.replace("IT · ", ""))}</a></td>${["1", "2", "3", "4", "5"].map(n => { const c = e.cells[n]; const i = c.items[0]; return `<td><span class="dot st-${c.status}"></span>${i ? fmt(i.value, i.unit) : '<span class="empty">缺</span>'}</td>`; }).join("")}</tr>`).join("")}</tbody></table></div>`;
+    byId("q3").textContent = "挂到 IT 任一部件的因子。";
+    byId("q4").textContent = "四个子系统全部部件的目标行，按队汇总。";
   } else if (eco) {
+    if (eco.parent) crumbs.push(["ecosystem:" + eco.parent, d.systems?.[eco.parent]?.name || eco.parent]);
     crumbs.push([NODE, eco.name]);
-    title = `<em>${esc(eco.name)}</em> 生态`; kind = `第一层节点 · ${eco.parts.length} 个条目 · 研究入口 ${esc(eco.graph_name || "")}`;
+    title = `<em>${esc(eco.name)}</em> 系统`; kind = `${eco.parent ? "IT 的子系统" : "第一层节点"} · ${eco.parts.length} 个条目 · 链路：${(eco.chains || []).join(" → ") || "—"} · 研究入口 ${esc(eco.graph_name || "")}`;
     cells = eco.cells; const ids = new Set(eco.parts.map(p => p.id));
     factorPred = f => (f.bom_parts || []).some(p => ids.has(p));
     rows = T.filter(t => t.part_id && ids.has(t.part_id));
     byId("q1").textContent = "生态的五列由部件聚合：部件数、系统效率、每 MW 造价（因子树分线 × 份额）、关键路径交期（部件交期取最大）、供应商数与单一来源部件。";
-    byId("h2").innerHTML = `它由什么组成<small>树 · 部件，每行五个状态点</small>`;
+    byId("h2").innerHTML = `它由什么组成<small>树 · 部件按链路分段，每行五个状态点</small>`;
     children = partsTable(eco.parts, d);
     byId("q3").textContent = "挂到这个生态任一部件的因子。";
     byId("q4").textContent = "这个生态全部部件的目标行，按队汇总。";
   } else if (part) {
     crumbs.push(["ecosystem:" + part.system, d.ecosystems.find(e => e.id === part.system)?.name || part.system], [NODE, part.name]);
-    title = `<em>${esc(part.name)}</em>`; kind = `${part.kind === "part" ? "部件 · 尺度 " + part.layer : part.kind === "software" ? "软件条目" : "设施基型"} · 模块 ${esc(part.module)}`;
+    title = `<em>${esc(part.name)}</em>`; kind = `${d.systems?.[part.system]?.name || part.system}${part.chain ? " · 链路「" + esc(part.chain) + "」第 " + part.chain_order + " 位" : ""} · ${part.kind === "part" ? "尺度 " + part.layer : part.kind === "software" ? "软件条目" : "设施基型"} · 模块 ${esc(part.module)}`;
     sup = `<span class="badge sup-${part.supply_status}">${SUP[part.supply_status] || part.supply_status}</span>`; desc = part.desc;
     cells = part.cells; factorPred = f => (f.bom_parts || []).includes(part.id);
     rows = T.filter(t => t.part_id === part.id);
@@ -301,6 +334,10 @@ function changes(d) {
   byId("targets").innerHTML = NODE === "root" ? `<details><summary>因子级目标 ${rows.length} 行（按队汇总与明细）</summary>${targetPanel(rows, TEAMS)}</details>` : targetPanel(rows, TEAMS);
   byId("news").style.display = NODE === "root" ? "" : "none";
   document.title = (NODE === "root" ? "一座 AI 数据中心" : byId("head").querySelector("h1").textContent) + " — inresearch.ai";
+  document.querySelector(".it-toggle")?.addEventListener("click", () => {
+    const u = new URL(location.href); if (u.searchParams.get("it") === "1") u.searchParams.delete("it"); else u.searchParams.set("it", "1");
+    history.replaceState(null, "", u); byId("children").innerHTML = matrix(d); byId("children").querySelector(".it-toggle")?.addEventListener("click", () => location.reload());
+  });
   if (COL) byId("col-" + COL)?.scrollIntoView({ block: "nearest" });
 })().catch(e => { byId("error").innerHTML = `<div class="err">加载失败：${esc(e.message)}</div>`; byId("head").innerHTML = "<h1>节点</h1>"; });
 </script>

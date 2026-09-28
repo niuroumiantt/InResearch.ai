@@ -1,5 +1,5 @@
 {
-  "version": "2.2.0",
+  "version": "2.2.1",
   "updated": "2026-09-28",
   "views": [
     {
@@ -2523,23 +2523,23 @@
         {
           "title": "研究入口",
           "object_ids": [
-            "part:cpu",
-            "part:gpu",
-            "part:gpu-device",
-            "part:ai-asic",
-            "part:fpga",
-            "part:server",
-            "arch:x86",
-            "arch:arm",
-            "arch:risc-v",
-            "arch:other-cpu",
-            "arch:nvidia-gpu",
-            "arch:amd-gpu",
-            "arch:other-gpu",
-            "tech:gpu-memory",
             "part:rack-system",
+            "part:server",
             "part:general-server",
-            "part:bmc"
+            "part:gpu",
+            "part:ai-asic",
+            "part:cpu",
+            "part:fpga",
+            "part:bmc",
+            "arch:amd-gpu",
+            "arch:arm",
+            "arch:nvidia-gpu",
+            "arch:other-cpu",
+            "arch:other-gpu",
+            "arch:risc-v",
+            "arch:x86",
+            "part:gpu-device",
+            "tech:gpu-memory"
           ]
         }
       ]
@@ -2565,9 +2565,9 @@
           "object_ids": [
             "part:hbm",
             "part:dram",
-            "part:lpddr",
+            "part:cxl-memory",
             "part:gddr",
-            "part:cxl-memory"
+            "part:lpddr"
           ]
         }
       ]
@@ -2591,16 +2591,16 @@
         {
           "title": "研究入口",
           "object_ids": [
-            "part:nic",
-            "part:optics",
-            "part:switch-asic",
-            "part:connector",
             "part:network-switch",
+            "part:switch-asic",
+            "part:optics",
             "part:copper-interconnect",
             "part:cabling",
-            "part:network-access",
+            "part:connector",
+            "part:nic",
             "part:retimer",
-            "part:pcie-switch"
+            "part:pcie-switch",
+            "part:network-access"
           ]
         }
       ]
@@ -2624,14 +2624,6 @@
         {
           "title": "研究入口",
           "object_ids": [
-            "part:grid",
-            "part:backup-power",
-            "part:bess",
-            "part:ups",
-            "part:power-shelf",
-            "part:psu",
-            "part:vrm",
-            "part:fuel-supply",
             "part:hv-switchyard",
             "part:transformer",
             "part:mv-switchgear",
@@ -2639,12 +2631,20 @@
             "part:gas-engine",
             "part:fuel-cell",
             "part:smr",
+            "part:backup-power",
             "part:fuel-storage",
+            "part:bess",
+            "part:ups",
             "part:ups-battery",
             "part:lv-switchgear",
             "part:busway",
             "part:pdu",
-            "part:bbu"
+            "part:power-shelf",
+            "part:bbu",
+            "part:psu",
+            "part:vrm",
+            "part:fuel-supply",
+            "part:grid"
           ]
         }
       ]
@@ -2668,22 +2668,22 @@
         {
           "title": "研究入口",
           "object_ids": [
-            "part:water",
-            "part:room-cooling",
-            "part:cdu",
-            "part:manifold",
-            "part:coldplate",
-            "part:coolant",
-            "part:immersion",
-            "part:leak-detection",
-            "part:sidecar-hx",
             "part:dry-cooler",
             "part:water-treatment",
             "part:chiller",
             "part:chilled-water-loop",
+            "part:cdu",
+            "part:coolant",
+            "part:room-cooling",
+            "part:immersion",
+            "part:sidecar-hx",
+            "part:manifold",
             "part:quick-disconnect",
+            "part:leak-detection",
+            "part:coldplate",
+            "part:heatsink-vc",
             "part:server-fan",
-            "part:heatsink-vc"
+            "part:water"
           ]
         }
       ]
@@ -2707,12 +2707,12 @@
         {
           "title": "研究入口",
           "object_ids": [
-            "part:land",
             "part:shell",
-            "part:fire",
             "part:rack-frame",
             "part:modular-dc",
-            "part:security"
+            "part:fire",
+            "part:security",
+            "part:land"
           ]
         }
       ]
@@ -6270,18 +6270,18 @@
       "name": "存储生态",
       "node_id": "ecosystem:storage",
       "object_ids": [
-        "part:ssd-drive",
-        "part:nand",
-        "part:ssd-controller",
-        "part:hdd",
         "part:storage-array",
+        "part:hdd",
+        "part:nand",
+        "part:ssd-board",
+        "part:ssd-controller",
+        "part:ssd-drive",
         "software:ssd-firmware",
         "software:storage",
-        "tech:storage-access",
-        "tech:storage-protocol",
         "tech:nand-cell",
         "tech:nand-process",
-        "part:ssd-board"
+        "tech:storage-access",
+        "tech:storage-protocol"
       ]
     },
     {
@@ -6289,27 +6289,27 @@
       "name": "计算与加速",
       "node_id": "ecosystem:compute",
       "object_ids": [
-        "part:cpu",
-        "part:gpu",
-        "part:gpu-device",
-        "part:ai-asic",
-        "part:fpga",
+        "part:rack-system",
         "part:server",
-        "arch:x86",
-        "arch:arm",
-        "arch:risc-v",
-        "arch:other-cpu",
-        "arch:nvidia-gpu",
+        "part:general-server",
+        "part:gpu",
+        "part:ai-asic",
+        "part:cpu",
+        "part:fpga",
+        "part:bmc",
         "arch:amd-gpu",
-        "arch:other-gpu",
-        "tech:gpu-memory",
-        "arch:hopper",
+        "arch:arm",
         "arch:blackwell",
         "arch:cdna",
+        "arch:hopper",
+        "arch:nvidia-gpu",
+        "arch:other-cpu",
+        "arch:other-gpu",
         "arch:rdna",
-        "part:rack-system",
-        "part:general-server",
-        "part:bmc"
+        "arch:risc-v",
+        "arch:x86",
+        "part:gpu-device",
+        "tech:gpu-memory"
       ]
     },
     {
@@ -6319,9 +6319,9 @@
       "object_ids": [
         "part:hbm",
         "part:dram",
-        "part:lpddr",
+        "part:cxl-memory",
         "part:gddr",
-        "part:cxl-memory"
+        "part:lpddr"
       ]
     },
     {
@@ -6329,16 +6329,16 @@
       "name": "网络与互联",
       "node_id": "ecosystem:network",
       "object_ids": [
-        "part:nic",
-        "part:optics",
-        "part:switch-asic",
-        "part:connector",
         "part:network-switch",
+        "part:switch-asic",
+        "part:optics",
         "part:copper-interconnect",
         "part:cabling",
-        "part:network-access",
+        "part:connector",
+        "part:nic",
         "part:retimer",
-        "part:pcie-switch"
+        "part:pcie-switch",
+        "part:network-access"
       ]
     },
     {
@@ -6346,14 +6346,6 @@
       "name": "电力与供配电",
       "node_id": "ecosystem:power",
       "object_ids": [
-        "part:grid",
-        "part:backup-power",
-        "part:bess",
-        "part:ups",
-        "part:power-shelf",
-        "part:psu",
-        "part:vrm",
-        "part:fuel-supply",
         "part:hv-switchyard",
         "part:transformer",
         "part:mv-switchgear",
@@ -6361,12 +6353,20 @@
         "part:gas-engine",
         "part:fuel-cell",
         "part:smr",
+        "part:backup-power",
         "part:fuel-storage",
+        "part:bess",
+        "part:ups",
         "part:ups-battery",
         "part:lv-switchgear",
         "part:busway",
         "part:pdu",
-        "part:bbu"
+        "part:power-shelf",
+        "part:bbu",
+        "part:psu",
+        "part:vrm",
+        "part:fuel-supply",
+        "part:grid"
       ]
     },
     {
@@ -6374,22 +6374,22 @@
       "name": "冷却与热管理",
       "node_id": "ecosystem:thermal",
       "object_ids": [
-        "part:water",
-        "part:room-cooling",
-        "part:cdu",
-        "part:manifold",
-        "part:coldplate",
-        "part:coolant",
-        "part:immersion",
-        "part:leak-detection",
-        "part:sidecar-hx",
         "part:dry-cooler",
         "part:water-treatment",
         "part:chiller",
         "part:chilled-water-loop",
+        "part:cdu",
+        "part:coolant",
+        "part:room-cooling",
+        "part:immersion",
+        "part:sidecar-hx",
+        "part:manifold",
         "part:quick-disconnect",
+        "part:leak-detection",
+        "part:coldplate",
+        "part:heatsink-vc",
         "part:server-fan",
-        "part:heatsink-vc"
+        "part:water"
       ]
     },
     {
@@ -6397,12 +6397,12 @@
       "name": "设施与机柜",
       "node_id": "ecosystem:facility",
       "object_ids": [
-        "part:land",
         "part:shell",
-        "part:fire",
         "part:rack-frame",
         "part:modular-dc",
-        "part:security"
+        "part:fire",
+        "part:security",
+        "part:land"
       ]
     },
     {
