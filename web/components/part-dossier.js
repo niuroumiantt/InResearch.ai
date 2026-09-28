@@ -35,6 +35,7 @@ return function showDossier(p) {
   el.append(dossierNode("div", p.desc || "说明待补充"));
   const links = dossierNode("div", undefined, "sec");
   links.append(dossierNode("h3", "参考研究与结构"));
+  links.append(dossierLink("节点页：五列与目标", "node.html?id=" + encodeURIComponent("part:" + p.id)));
   links.append(dossierLink("研究模块 " + p.module + " " + (MODNAME[p.module] || ""), "report.html#ch-" + encodeURIComponent(p.module)));
   links.append(dossierLink("模块原文", "doc.html?f=" + encodeURIComponent("research/" + p.module + ".md")));
   if (view === "campus" && ["S4", "S5"].includes(p.layer))

@@ -255,6 +255,7 @@ function show(pid) {
     <div style="font-size:13px">${esc(p.desc)}</div>`;
 
   h += `<div class="sec"><h3>研究归属</h3>
+    <a class="chip" href="node.html?id=part:${p.id}">节点页：五列与目标</a>
     <a class="chip" href="report.html#ch-${p.module}">📖 ${p.module} ${MODNAME[p.module] || ""} — 研究结论</a>
     <a class="chip" href="doc.html?f=research/${p.module}.md">原文</a></div>`;
 

@@ -1,0 +1,296 @@
+"""Generate the dashboard snapshot (data/dashboard.json): one tree, five columns, four questions.
+
+Tree: datacenter root → eight ecosystems + site rights → parts / rights. Every node carries the five
+variable classes (构成 运行 价格 时间 主体) as cells whose sources are registered in
+framework/dashboard_rules.json. The page (web/pages/node.html) reads this snapshot and the target
+list; it aggregates nothing itself. ``--refresh`` rewrites the snapshot, ``--check`` (default) fails
+when it differs from what the inputs produce.
+"""
+import argparse
+import datetime as dt
+import json
+from pathlib import Path
+
+from inresearch.knowledge import economics
+
+ROOT = Path(__file__).resolve().parents[3]
+SNAPSHOT = 'data/dashboard.json'
+RULES = 'framework/dashboard_rules.json'
+RIGHTS_ROW = {'id': 'site', 'name': '站点权利'}
+
+
+def load(root, rel):
+    return json.loads((Path(root) / rel).read_text(encoding='utf-8'))
+
+
+def _fmt_input(key, value, unit):
+    if unit == '%' and isinstance(value, (int, float)):
+        return round(value * 100, 1)
+    if isinstance(value, float):
+        return round(value, 3)
+    return value
+
+
+def build(root=ROOT, as_of=None):
+    root = Path(root)
+    rules = load(root, RULES)
+    bom = load(root, 'framework/bom.json')
+    rights = load(root, 'framework/site_rights.json')['rights']
+    factors_doc = load(root, 'framework/tco_factors.json')
+    targets_doc = load(root, 'framework/tco_targets.json')
+    products = load(root, 'data/products.json')['records']
+    companies = {r['company_id']: (r.get('name_cn') or r.get('name') or r['company_id']) for r in load(root, 'data/companies.json')['records']}
+    prices = load(root, 'data/prices.json')['records']
+    indicators = {i['id']: i for i in load(root, 'framework/indicators.json')['indicators']}
+    model = load(root, 'data/datacenter_economics_model.json')
+    graph = load(root, 'framework/research_graph.json')
+    eco_names = {o['id'].split(':', 1)[1]: o['name'] for o in graph['objects'] if o['id'].startswith('ecosystem:')}
+    as_of = as_of or max(bom.get('updated', ''), targets_doc.get('updated', ''), rules.get('updated', ''))
+    base_day = dt.date.fromisoformat(as_of)
+
+    latest = {}
+    for r in sorted(prices, key=lambda r: r.get('as_of') or ''):
+        latest[r['series_id']] = r
+    series_cat = {sid: r.get('category') for sid, r in latest.items()}
+
+    def series_cell(sid, label=None):
+        r = latest.get(sid)
+        if not r or r.get('value') is None:
+            return None
+        note = (r.get('note') or '').split('；')[0].split(';')[0].strip()
+        return {'label': label or (note[:28] if note else sid), 'value': r['value'], 'unit': r.get('unit'), 'as_of': r.get('as_of'),
+                'source': {'type': 'series', 'key': sid}}
+
+    def indicator_cell(iid, label=None):
+        i = indicators.get(iid)
+        if not i or i.get('value') is None:
+            return None
+        return {'label': label or i.get('name'), 'value': i['value'], 'unit': i.get('unit'), 'as_of': i.get('as_of'),
+                'source': {'type': 'indicator', 'key': iid}}
+
+    # ---- root: the account and its five columns
+    a = model['assumptions']
+    out = economics.compute(a)
+    presets = model.get('presets') or {}
+    first = next(iter(presets.values()), {}) if isinstance(presets, dict) else (presets[0] if presets else {})
+    account = {'scenario': first.get('label', '基准情景'), 'model': rules['root']['account']['model'],
+               'rows': [{**row, 'value': round(out[row['key']], 3)} for row in rules['root']['account']['rows']],
+               'links': rules['root']['account']['links']}
+    root_cells = {}
+    for col, specs in rules['root']['cells'].items():
+        items = []
+        for spec in specs:
+            if spec['source'] == 'model_input':
+                value = a.get(spec['key'])
+                items.append({'label': spec['label'], 'value': _fmt_input(spec['key'], value, spec.get('unit')), 'unit': spec.get('unit'),
+                              'as_of': model.get('as_of'), 'source': {'type': 'model_input', 'key': spec['key']}})
+            elif spec['source'] == 'model_output':
+                items.append({'label': spec['label'], 'value': round(out[spec['key']], 3), 'unit': spec.get('unit'),
+                              'as_of': model.get('as_of'), 'source': {'type': 'model_output', 'key': spec['key']}})
+            elif spec['source'] == 'indicator':
+                cell = indicator_cell(spec['key'], spec['label'])
+                items.append(cell or {'label': spec['label'], 'value': None, 'unit': spec.get('unit'), 'as_of': None,
+                                      'source': {'type': 'indicator', 'key': spec['key']}})
+        root_cells[col] = {'items': items, 'status': 'sourced' if any(i['value'] is not None for i in items) else 'needed'}
+
+    # ---- targets coverage per (owner node, column)
+    coverage = {}
+    for t in targets_doc['targets']:
+        keys = []
+        if t['part_id']:
+            keys.append('part:' + t['part_id'])
+        if t['site_right_id']:
+            keys.append('site:' + t['site_right_id'])
+        if t['origin'] == 'factor':
+            keys.append('root')
+        for k in keys:
+            coverage.setdefault((k, str(t['variable_class'])), {'sourced': 0, 'assumed': 0, 'needed': 0})[t['status']] += 1
+
+    def cov_sum(keys, col):
+        total = {'sourced': 0, 'assumed': 0, 'needed': 0}
+        for k in keys:
+            for s, n in coverage.get((k, col), {}).items():
+                total[s] += n
+        return total
+
+    def status_of(value_present, cov):
+        if value_present:
+            return 'sourced'
+        return 'assumed' if cov['sourced'] or cov['assumed'] else 'needed'
+
+    # ---- parts
+    prod_lines = {}
+    for r in products:
+        for pid in r.get('bom_parts') or []:
+            prod_lines.setdefault(pid, []).append(f"{companies.get(r['company_id'], r['company_id'])} · {r['product_line']}")
+    pr = rules['part']
+    parts = {}
+    for p in bom['parts']:
+        cells = {}
+        lines = prod_lines.get(p['id'], [])
+        cells['1'] = {'items': [{'label': pr['1']['label'], 'value': len(lines), 'unit': pr['1']['unit'], 'as_of': bom.get('updated'),
+                                 'source': {'type': 'bom', 'key': p['id']}},
+                                {'label': '尺度', 'value': p['layer'] or p['kind'], 'unit': None, 'as_of': bom.get('updated'), 'source': {'type': 'bom', 'key': 'layer'}}],
+                      'instances': lines[:12]}
+        run_items = [c for c in (indicator_cell(i) for i in p['indicators'] if any(m in i for m in pr['2']['match'])) if c]
+        cells['2'] = {'items': run_items}
+        price_items = [c for c in (series_cell(s) for s in p['series'] if series_cat.get(s) not in pr['3']['exclude_categories']) if c]
+        price_items += [c for c in (indicator_cell(i) for i in p['indicators'] if any(m in i for m in pr['3']['indicator_match'])) if c]
+        cells['3'] = {'items': price_items}
+        lead_items = [c for c in (series_cell(s) for s in p['series'] if series_cat.get(s) in pr['4']['categories']) if c]
+        lead_items += [c for c in (indicator_cell(i) for i in p['indicators'] if any(m in i for m in pr['4']['indicator_match'])) if c]
+        cells['4'] = {'items': lead_items}
+        cells['5'] = {'items': [{'label': pr['5']['label'], 'value': len(p['companies']), 'unit': pr['5']['unit'], 'as_of': bom.get('updated'),
+                                 'source': {'type': 'bom', 'key': 'companies'}}],
+                      'instances': [companies.get(c, c) for c in p['companies']][:12]}
+        for col in cells:
+            cov = cov_sum(['part:' + p['id']], col)
+            cells[col]['coverage'] = cov
+            cells[col]['status'] = status_of(any(i['value'] is not None for i in cells[col]['items']), cov)
+        parts[p['id']] = {'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'system': p['system'],
+                          'module': p['module'], 'supply_status': p['status'], 'desc': p['desc'], 'cells': cells}
+
+    # ---- site rights
+    sr = rules['site_right']
+    rights_out = {}
+    for r in rights:
+        cells = {}
+        for col in ('3', '4', '5'):
+            if col == '3':
+                items = [c for c in (series_cell(s) for s in r.get('series', [])) if c]
+            elif col == '4':
+                items = [c for c in (indicator_cell(i) for i in r.get('indicators', []) if any(m in i for m in sr['4']['match'])) if c]
+            else:
+                items = [{'label': sr['5']['label'], 'value': len(r.get('companies', [])), 'unit': sr['5']['unit'], 'as_of': as_of,
+                          'source': {'type': 'site_rights', 'key': 'companies'}}]
+            cov = cov_sum(['site:' + r['id']], col)
+            cells[col] = {'items': items, 'coverage': cov, 'status': status_of(any(i['value'] is not None for i in items), cov),
+                          'instances': [companies.get(c, c) for c in r.get('companies', [])] if col == '5' else []}
+        rights_out[r['id']] = {'id': r['id'], 'name': r['name'], 'scale': r['scale'], 'module': r['module'], 'variable_classes': r['variable_classes'],
+                               'supply_status': r['status'], 'desc': r['desc'], 'cells': cells}
+
+    # ---- ecosystems (aggregate over their parts)
+    er = rules['ecosystem']
+    ecosystems = []
+    for sys_id, sys_name in bom['systems'].items():
+        members = [p for p in bom['parts'] if p['system'] == sys_id]
+        physical = [p for p in members if p['kind'] == 'part']
+        keys = ['part:' + p['id'] for p in members]
+        cells = {}
+        cells['1'] = {'items': [{'label': er['1']['label'], 'value': len(physical), 'unit': er['1']['unit'], 'as_of': bom.get('updated'),
+                                 'source': {'type': 'count', 'key': 'parts'}}]}
+        spec = er['2']['by_ecosystem'].get(sys_id)
+        cells['2'] = {'items': [c for c in [series_cell(spec['series'], spec['label']) if spec else None] if c]}
+        spec = er['3']['by_ecosystem'].get(sys_id)
+        items = []
+        if spec:
+            basis = a.get(spec['basis'])
+            share = None
+            if 'share_series' in spec and latest.get(spec['share_series']):
+                share = latest[spec['share_series']]['value'] / 100
+                src = {'type': 'sum_share', 'key': f"{spec['basis']} × {spec['share_series']}"}
+                when = latest[spec['share_series']].get('as_of')
+            elif 'share_input' in spec:
+                share = a.get(spec['share_input'])
+                src = {'type': 'sum_share', 'key': f"{spec['basis']} × {spec['share_input']}"}
+                when = model.get('as_of')
+            if basis is not None and share is not None:
+                items.append({'label': er['3']['label'], 'value': round(basis * share, 2), 'unit': er['3']['unit'], 'as_of': when, 'source': src})
+        cells['3'] = {'items': items}
+        lead = [(i['value'], i, p['id']) for p in members for i in parts[p['id']]['cells']['4']['items'] if isinstance(i['value'], (int, float))]
+        if lead:
+            v, i, pid = max(lead, key=lambda x: x[0])
+            cells['4'] = {'items': [{'label': er['4']['label'] + '（' + parts[pid]['name'] + '）', 'value': v, 'unit': i['unit'], 'as_of': i['as_of'],
+                                     'source': {'type': 'max', 'key': i['source']['key']}}]}
+        else:
+            cells['4'] = {'items': []}
+        suppliers = {c for p in members for c in p['companies']}
+        single = [p['name'] for p in physical if len(p['companies']) <= 1]
+        cells['5'] = {'items': [{'label': er['5']['label'], 'value': len(suppliers), 'unit': er['5']['unit'], 'as_of': bom.get('updated'),
+                                 'source': {'type': 'count', 'key': 'companies'}},
+                                {'label': '单一来源部件', 'value': len(single), 'unit': '个', 'as_of': bom.get('updated'),
+                                 'source': {'type': 'count', 'key': 'single_source'}}],
+                      'instances': single[:12]}
+        for col in cells:
+            cov = cov_sum(keys, col)
+            cells[col]['coverage'] = cov
+            cells[col]['status'] = status_of(any(i['value'] is not None for i in cells[col]['items']), cov)
+        ecosystems.append({'id': sys_id, 'name': sys_name, 'graph_name': eco_names.get(sys_id), 'node_id': 'ecosystem:' + sys_id,
+                           'cells': cells, 'parts': [{'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'supply_status': p['status']} for p in members]})
+    # ninth row: site rights
+    keys = ['site:' + r['id'] for r in rights]
+    site_cells = {}
+    for col in ('1', '2', '3', '4', '5'):
+        items = []
+        if col == '1':
+            items = [{'label': '权利条目', 'value': len(rights), 'unit': '条', 'as_of': as_of, 'source': {'type': 'count', 'key': 'rights'}}]
+        elif col in ('3', '4'):
+            items = [i for r in rights for i in rights_out[r['id']]['cells'][col]['items']]
+            if col == '4' and items:
+                top = max((i for i in items if isinstance(i['value'], (int, float))), key=lambda i: i['value'], default=None)
+                items = [top] if top else []
+        elif col == '5':
+            holders = {c for r in rights for c in r.get('companies', [])}
+            items = [{'label': '登记持有方', 'value': len(holders), 'unit': '家', 'as_of': as_of, 'source': {'type': 'count', 'key': 'companies'}}]
+        cov = cov_sum(keys, col)
+        site_cells[col] = {'items': items, 'coverage': cov, 'status': status_of(any(i['value'] is not None for i in items), cov)}
+    site_row = {**RIGHTS_ROW, 'node_id': 'site', 'cells': site_cells,
+                'rights': [{'id': r['id'], 'name': r['name'], 'supply_status': r['status'], 'variable_classes': r['variable_classes']} for r in rights]}
+
+    for col in root_cells:
+        root_cells[col]['coverage'] = cov_sum(['root'], col)
+
+    # ---- changes: newest series points and targets due soon
+    n_points = rules['changes']['series_points']
+    # forecast points (as_of in the future) are not 'what changed'
+    newest = sorted((r for r in latest.values() if (r.get('as_of') or '') <= as_of), key=lambda r: r.get('as_of') or '', reverse=True)[:n_points]
+    due_limit = (base_day + dt.timedelta(days=rules['changes']['due_within_days'])).isoformat()
+    due = sorted((t for t in targets_doc['targets'] if t['next_due'] <= due_limit and t['status'] != 'sourced'), key=lambda t: (t['next_due'], t['id']))
+    changes = {'series_points': [{'series_id': r['series_id'], 'value': r.get('value'), 'unit': r.get('unit'), 'as_of': r.get('as_of'), 'module': r.get('module')} for r in newest],
+               'due_targets': [{'id': t['id'], 'team': t['team'], 'next_due': t['next_due'], 'status': t['status'], 'variable_class': t['variable_class']} for t in due[:40]],
+               'due_total': len(due)}
+
+    # factor index for panel 3
+    factors = [{'id': f['id'], 'label': f['label'], 'side': f['side'], 'parent': f['parent'], 'unit': f.get('unit'), 'formula': f.get('formula'),
+                'bom_parts': f.get('bom_parts', []), 'site_rights': f.get('site_rights', []), 'tco_inputs': f.get('tco_inputs', [])}
+               for f in factors_doc['factors']]
+    totals = {'sourced': 0, 'assumed': 0, 'needed': 0}
+    for t in targets_doc['targets']:
+        totals[t['status']] += 1
+    return {
+        'version': '1.0', 'updated': as_of, 'title': '数据中心 dashboard 快照',
+        'note': '由 python3 manage.py dashboard --refresh 生成，规则见 framework/dashboard_rules.json；页面 node.html 只读本文件与目标清单，不做聚合。',
+        'generated_from': {'rules': rules['version'], 'bom': bom.get('version'), 'targets': targets_doc.get('version'), 'factors': factors_doc.get('version'),
+                           'model_as_of': model.get('as_of')},
+        'columns': rules['columns'], 'formulas': factors_doc.get('formulas', {}),
+        'root': {'id': 'root', 'name': '一座 AI 数据中心', 'account': account, 'cells': root_cells, 'targets': totals},
+        'ecosystems': ecosystems, 'site': site_row, 'parts': parts, 'rights': rights_out, 'factors': factors, 'changes': changes,
+    }
+
+
+def render(doc):
+    return json.dumps(doc, ensure_ascii=False, indent=1) + '\n'
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    ap.add_argument('--refresh', action='store_true', help='rewrite ' + SNAPSHOT)
+    ap.add_argument('--check', action='store_true', help='fail when ' + SNAPSHOT + ' differs from its inputs (default)')
+    ap.add_argument('--as-of')
+    args = ap.parse_args(argv)
+    doc = build(ROOT, args.as_of)
+    text = render(doc)
+    path = ROOT / SNAPSHOT
+    if args.refresh:
+        path.write_text(text, encoding='utf-8')
+    elif not path.exists() or path.read_text(encoding='utf-8') != text:
+        print(f'ERROR: {SNAPSHOT}: stale or missing; run manage.py dashboard --refresh')
+        return 1
+    acct = {r['label']: r['value'] for r in doc['root']['account']['rows']}
+    print(f"Dashboard {doc['version']} @ {doc['updated']}: {len(doc['ecosystems'])} ecosystems + site, {len(doc['parts'])} parts, "
+          f"{len(doc['rights'])} rights; account {acct}")
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
