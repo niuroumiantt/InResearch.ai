@@ -275,6 +275,10 @@ READER_PUBLISH_VERIFY=1 python3 manage.py publish
 它绕开缓存、重读并重新校验每一篇。**别把它放进五分钟的定时器** —— 那正是原来跑不完的那件事；
 按天或按周单独跑。
 
+## 其他机器读完的文档（外部快照叠加）
+
+主站接收端每次用收到的快照整体替换候选投影，Spark 每五分钟发布一次，所以在 M4 上读完、直接用 `publish --snapshot` 发出的结果会在下一次 Spark 发布时消失（2026-09-28 起改为叠加）。做法：M4 用 `reader export --dest <文件>.json --doc-id <id> ...` 导出只含完整阅读的候选快照，复制到 Spark 的 `~/.local/state/inresearch.ai/external-snapshots/`（可用 `READER_EXTERNAL_SNAPSHOT_DIR` 改），文件为普通文件、不超过 64 MiB。Spark 每次发布都校验这些快照（完整覆盖、只有候选、每条证据与陈述都属于快照内文档），并叠加其中 Spark 尚未完整读过的文档；Spark 自己已完整读过的文档始终以 Spark 为准。叠加的文档带 `projection_source: external:<文件名>`，结果计数写在快照 `reader.external_overlay`。不写台账；要撤下，删除对应文件，下一次发布即生效。任一文件校验失败，整次发布失败，不会带着坏文件发出。
+
 ## 已部署发布器与后续源码更新
 
 2026-09-06 已在真实 Spark 启用 reader、`Linger=yes`、`qwen3-vl:8b` OCR 和五分钟发布器。主站实际收到候选快照；验收版本与边界见 `docs/reviews/2026-09-06/IMPLEMENTATION.md`。生产目录等待用户投料，测试文档不入生产库。
