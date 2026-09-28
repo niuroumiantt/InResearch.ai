@@ -7,6 +7,7 @@ from pathlib import Path
 import stat
 import sys
 import subprocess as subprocess
+import urllib.error
 import urllib.request
 from urllib.parse import urlsplit
 
@@ -65,14 +66,24 @@ def main(argv=None):
             payload['reader']['acquisition'] = acquisition.summary(reader.data)
             # Readings finished on another worker (M4) survive Spark's next publish.
             external = Path(os.environ.get('READER_EXTERNAL_SNAPSHOT_DIR', state / 'external-snapshots'))
-            payload['reader']['external_overlay'] = snapshot_overlay.overlay(payload, snapshot_overlay.load_directory(external))
+            registry = reader.snapshot()
+            allowed = {'object_ids': {r['id'] for r in registry['objects'] if isinstance(r, dict) and 'id' in r},
+                       'question_ids': {r['id'] for r in registry['questions'] if isinstance(r, dict) and 'id' in r}}
+            payload['reader']['external_overlay'] = snapshot_overlay.overlay(
+                payload, snapshot_overlay.load_directory(external), allowed)
         body = encoded(payload).encode('utf-8')
         if len(body) > 64 * 1024 * 1024:
             raise ValueError('snapshot exceeds receiver limit; incremental export is required')
         request = urllib.request.Request(destination, data=body, method='POST', headers={
             'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token})
-        with urllib.request.build_opener(NoRedirect).open(request, timeout=120) as response:
-            result = json.loads(response.read(4096))
+        try:
+            with urllib.request.build_opener(NoRedirect).open(request, timeout=120) as response:
+                result = json.loads(response.read(4096))
+        except urllib.error.HTTPError as error:
+            # The receiver's own short reason (e.g. a graph_version mismatch) is the
+            # only way to tell why a publish was refused; it carries no source text.
+            raise ValueError('receiver rejected snapshot: HTTP %d %s'
+                             % (error.code, error.read(2000).decode('utf-8', 'replace'))) from None
         if result.get('ok') is not True:
             raise ValueError('receiver did not acknowledge snapshot')
         status = {'published': now_iso(), 'status': 'ok', 'bytes': len(body),
@@ -91,5 +102,8 @@ if __name__ == '__main__':
         raise SystemExit(main())
     except Exception as exc:
         # No request headers, source text or model responses in journals.
-        print(json.dumps({'status': 'failed', 'error': type(exc).__name__}), file=sys.stderr)
+        failure = {'status': 'failed', 'error': type(exc).__name__}
+        if isinstance(exc, ValueError):
+            failure['detail'] = str(exc)[:600]   # our own messages and the receiver's reason only
+        print(json.dumps(failure, ensure_ascii=False), file=sys.stderr)
         raise SystemExit(1)

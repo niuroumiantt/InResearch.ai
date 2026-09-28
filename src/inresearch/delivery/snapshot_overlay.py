@@ -60,9 +60,33 @@ def load_directory(directory):
     return [(name, payload) for _, name, payload in sorted(snapshots)]
 
 
-def overlay(payload, snapshots):
-    """Merge external documents into ``payload`` in place and say what happened."""
+def current_ids(rows, allowed):
+    """Keep only object/question IDs the deployed registry still has.
+
+    An external snapshot was mapped against the registry of the machine that
+    exported it; after a registry change (2.1.2 -> 2.2.0 re-cut the parts) its
+    old IDs would make the receiver reject the whole publish. Dropped IDs are
+    counted, never guessed at."""
+    dropped = 0
+    out = []
+    for row in rows:
+        row = dict(row)
+        for key, ids in allowed.items():
+            if isinstance(row.get(key), list):
+                kept = [v for v in row[key] if v in ids]
+                dropped += len(row[key]) - len(kept)
+                row[key] = kept
+        out.append(row)
+    return out, dropped
+
+
+def overlay(payload, snapshots, allowed=None):
+    """Merge external documents into ``payload`` in place and say what happened.
+
+    ``allowed`` maps object_ids/question_ids to the IDs of the registry being
+    published; external rows are filtered to it."""
     knowledge = payload['knowledge']
+    unmapped = 0
     own_complete = {doc['doc_id'] for doc in knowledge['documents']
                     if doc.get('coverage', {}).get('complete') is True}
     added, kept_own = {}, set()
@@ -76,9 +100,15 @@ def overlay(payload, snapshots):
             knowledge['documents'] = [d for d in knowledge['documents'] if d.get('doc_id') != doc_id]
             for kind in KINDS:
                 knowledge[kind] = [r for r in knowledge.get(kind, []) if r.get('document_id') != doc_id]
-            knowledge['documents'].append({**entry, 'projection_source': 'external:' + name})
+            rows = {kind: [r for r in external.get(kind, []) if r['document_id'] == doc_id] for kind in KINDS}
+            rows['documents'] = [{**entry, 'projection_source': 'external:' + name}]
+            if allowed is not None:
+                for kind in rows:
+                    rows[kind], dropped = current_ids(rows[kind], allowed)
+                    unmapped += dropped
+            knowledge['documents'].extend(rows['documents'])
             for kind in KINDS:
-                knowledge.setdefault(kind, []).extend(r for r in external.get(kind, []) if r['document_id'] == doc_id)
+                knowledge.setdefault(kind, []).extend(rows[kind])
             added[doc_id] = name
-    return {'added': len(added), 'kept_spark_reading': len(kept_own),
+    return {'added': len(added), 'kept_spark_reading': len(kept_own), 'dropped_unknown_ids': unmapped,
             'files': sorted({name for name, _ in snapshots})}
