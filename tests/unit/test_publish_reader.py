@@ -58,8 +58,27 @@ class PublisherTests(unittest.TestCase):
         self.assertEqual([d['projection_source'] for d in snapshot['knowledge']['documents'] if d['doc_id'] == 'doc-m4'],
                          ['external:m4.json'])
         self.assertIn(statement, snapshot['knowledge']['statements'])
-        self.assertEqual(snapshot['reader']['external_overlay'], {'added': 1, 'kept_spark_reading': 0, 'files': ['m4.json']})
-        self.assertEqual(self.publish()['reader']['external_overlay'], {'added': 0, 'kept_spark_reading': 0, 'files': []})
+        self.assertEqual(snapshot['reader']['external_overlay'], {'added': 1, 'kept_spark_reading': 0, 'dropped_unknown_ids': 0, 'files': ['m4.json']})
+        self.assertEqual(self.publish()['reader']['external_overlay'], {'added': 0, 'kept_spark_reading': 0, 'dropped_unknown_ids': 0, 'files': []})
+
+    def test_a_refused_publish_reports_the_receivers_reason(self):
+        import urllib.error
+        refusal = urllib.error.HTTPError('https://receiver.example.test/api/reader-snapshot', 400, 'Bad Request', {},
+                                         io.BytesIO('{"ok": false, "error": "reader graph_version does not match deployed framework"}'.encode()))
+        with tempfile.TemporaryDirectory() as temp:
+            state = Path(temp)
+            token = state / 'reader-sync.token'
+            token.write_text('test-credential-' * 4)
+            token.chmod(0o600)
+            env = {'READER_DATA_ROOT': str(state / 'data'), 'READER_STATE_ROOT': str(state),
+                   'READER_BACKEND': 'ollama', 'READER_URL': 'http://127.0.0.1:11434', 'READER_MODEL': 'm',
+                   'READER_PUBLISH_URL': 'https://receiver.example.test/api/reader-snapshot'}
+            with patch.dict(os.environ, env), patch.object(publish_reader.subprocess, 'run') as run, \
+                    patch.object(publish_reader.urllib.request, 'build_opener') as opener:
+                run.return_value.returncode = 0
+                opener.return_value.open.side_effect = refusal
+                with self.assertRaisesRegex(ValueError, 'HTTP 400 .*graph_version does not match'):
+                    publish_reader.main([])
 
     def test_stopped_worker_is_not_reported_as_healthy_idle(self):
         snapshot = self.publish(worker_code=3)
