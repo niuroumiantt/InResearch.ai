@@ -6,11 +6,11 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1016。
+在册文件：1015。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 52 |
+| 静态资源 | 51 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
@@ -401,7 +401,6 @@
 | `research/M13.md` | Finding | 6 |
 | `research/M14.md` | Finding | 11 |
 | `research/M15.md` | Finding | 12 |
-| `web/assets/levels.json` | levels | 5 |
 | `web/assets/models/manifest.json` | models | 1 |
 | `web/assets/world.geo.json` | features | 180 |
 
@@ -1339,7 +1338,6 @@
 | `web/assets/hdri/lab.exr` | 静态资源 |
 | `web/assets/hdri/studio.exr` | 静态资源 |
 | `web/assets/hdri/warehouse.exr` | 静态资源 |
-| `web/assets/levels.json` | 静态资源 |
 | `web/assets/materials.js` | 运行代码 |
 | [web/assets/models/README.md](../web/assets/models/README.md) | 配套说明 |
 | `web/assets/models/manifest.json` | 静态资源 |

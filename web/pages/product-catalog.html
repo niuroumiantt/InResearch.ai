@@ -18,7 +18,7 @@ html[data-ui-skin] #groups button[aria-pressed=true],html[data-ui-skin] #familie
 </style><link rel="stylesheet" href="/assets/site-skin.css"></head>
 <body><inresearch-shell data-section="bom"></inresearch-shell><main>
 <nav><a href="/supply.html#inbox">收件箱</a> / <a href="/supply.html#pilot">NVIDIA 规格批次</a> / 产品规格库</nav>
-<h1>NVIDIA 产品规格库</h1><p class="intro">按官方产品目录寻找规格。保留每个产品自己的参数、配置列和来源，支持筛选、核查与导出。页面直接读取数据库中的表格数据；HTML、PDF 和 Office 文件只是可追溯的官方载体，不是最终展示层。</p>
+<h1>规格库 · NVIDIA 产品</h1><nav class="views" id="catalog-views" aria-label="规格库视图"><button type="button" data-view="catalog" aria-pressed="true">规格库</button><button type="button" data-view="registry" aria-pressed="false" hidden>登记覆盖（管理员）</button></nav><p class="intro">按官方产品目录寻找规格。保留每个产品自己的参数、配置列和来源，支持筛选、核查与导出。页面直接读取数据库中的表格数据；HTML、PDF 和 Office 文件只是可追溯的官方载体，不是最终展示层。</p>
 <p id="status" role="status" aria-live="polite">正在读取产品清单…</p>
 <p id="alignment" class="catalog-note"></p>
 <nav id="groups" aria-label="产品大类"></nav>
@@ -30,5 +30,20 @@ html[data-ui-skin] #groups button[aria-pressed=true],html[data-ui-skin] #familie
 <div class="controls"><a id="export-products" href="/api/product-catalog/nvidia?export=products">导出产品清单 CSV</a><a id="export-map" href="/api/product-catalog/nvidia?export=map">导出公司产品地图 CSV</a><a id="export-specs" href="/api/product-catalog/nvidia?export=specs">导出官方参数 CSV</a><span id="matches"></span></div>
 <h2 id="breadcrumb">先选大类，再选系列</h2>
 <div class="layout"><aside><div id="products" class="products" aria-label="产品清单"></div><div class="pager"><button id="previous" disabled>上一页</button><button id="next" disabled>下一页</button></div></aside><section id="detail" aria-label="产品规格"><p>选择产品查看官方规格。</p></section></div>
+<section id="registry-panel" hidden aria-label="登记覆盖"><p class="catalog-note">产品资料登记覆盖：每条产品线登记了哪些资料类型、哪些还缺（并入规格库的一个标签，2026-09-28）。</p><iframe id="registry-frame" title="产品资料登记覆盖" style="width:100%;min-height:70vh;border:1px solid var(--ui-line)"></iframe></section>
 <section id="comparison" hidden><h2>并排核查</h2><p class="muted">按各自官方参数展示，注意配置、精度、稀疏性和测试条件。尚未自动判定跨产品可比性。</p><div id="comparison-items" class="compare-grid"></div></section>
-</main><script src="/assets/product-catalog.js" defer></script></body></html>
+</main><script>
+(() => {
+  const buttons = [...document.querySelectorAll("#catalog-views button")];
+  const panels = ["status","alignment","groups","auxiliary","families","breadcrumb","comparison"];
+  function show(view) {
+    buttons.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.view === view)));
+    document.querySelectorAll("main > :not(h1):not(#catalog-views):not(#registry-panel):not(script)").forEach(el => { el.hidden = view === "registry"; });
+    document.getElementById("registry-panel").hidden = view !== "registry";
+    if (view === "registry") { const f = document.getElementById("registry-frame"); if (!f.src) f.src = "/admin/product/index.html?embedded=1"; }
+    if (location.hash !== "#" + view) history.replaceState(null, "", "#" + view);
+  }
+  buttons.forEach(b => b.onclick = () => show(b.dataset.view));
+  fetch("/api/whoami").then(r => r.ok ? r.json() : null).then(u => { if (u?.role === "admin") { buttons[1].hidden = false; if (location.hash === "#registry") show("registry"); } }).catch(() => {});
+})();
+</script><script src="/assets/product-catalog.js" defer></script></body></html>

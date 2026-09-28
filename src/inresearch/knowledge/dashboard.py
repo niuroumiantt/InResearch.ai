@@ -172,7 +172,7 @@ def build(root=ROOT, as_of=None):
         cells['4'] = {'items': lead_items}
         cells['5'] = {'items': [{'label': pr['5']['label'], 'value': len(p['companies']), 'unit': pr['5']['unit'], 'as_of': bom.get('updated'),
                                  'source': {'type': 'bom', 'key': 'companies'}, 'kind': 'count'}],
-                      'instances': [companies.get(c, c) for c in p['companies']][:12]}
+                      'instances': [companies.get(c, c) for c in p['companies']][:12], 'instance_ids': list(p['companies'])[:12]}
         for col in cells:
             cov = cov_sum(['part:' + p['id']], col)
             cells[col]['coverage'] = cov
@@ -196,7 +196,8 @@ def build(root=ROOT, as_of=None):
                           'source': {'type': 'site_rights', 'key': 'companies'}, 'kind': 'count'}]
             cov = cov_sum(['site:' + r['id']], col)
             cells[col] = {'items': items, 'coverage': cov, 'status': status_of(items, cov),
-                          'instances': [companies.get(c, c) for c in r.get('companies', [])] if col == '5' else []}
+                          'instances': [companies.get(c, c) for c in r.get('companies', [])] if col == '5' else [],
+                          'instance_ids': list(r.get('companies', [])) if col == '5' else []}
         rights_out[r['id']] = {'id': r['id'], 'name': r['name'], 'scale': r['scale'], 'module': r['module'], 'variable_classes': r['variable_classes'],
                                'supply_status': r['status'], 'desc': r['desc'], 'cells': cells}
 
