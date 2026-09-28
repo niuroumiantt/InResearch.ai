@@ -66,4 +66,6 @@ Reader JSON 快照可用重复的 `--doc-id` 显式限定交付范围。限定�
 
 `python3 manage.py models --probe` 通过所选配置发送一条无研究材料的真实 JSON 请求，核对结构和实际模型；配置校验或交互式 CLI 登录成功不能代替这项检查。CLI 参数依据本机 `claude --help` 及 [官方非交互文档](https://code.claude.com/docs/en/headless)。
 
-缺页补读（2026-09-28 起，用户采用）：`python3 -m inresearch.adapters.gap_ocr --data-root <数据根> --doc-id <id>` 只处理该文档 `offload/m4/results` 下的 `m4_vision_ocr_gap` 页。先核对原件哈希，逐页渲染后由 `gap_ocr` 角色读两次，按与其他 OCR 页相同的规则（不可读、空白不一致、数字不一致、非空页无字、空白页有字）判定；通过的页写为 `m4_claude_vision_ocr_double_pass`，原缺页记录移到 `offload/m4/gap-history`，并删除该页的抽取缓存，下一次 `reader retry` 重新抽取。未通过的页保持缺页。工具不写台账、原件或其他页。起因：48c8、ce50、ea7d 共 11 页 qwen 救援后仍失败，超过缺页上限而阻断。
+缺页补读（2026-09-28 起，用户采用）：`python3 -m inresearch.adapters.gap_ocr --data-root <数据根> --doc-id <id>` 只处理该文档 `offload/m4/results` 下的 `m4_vision_ocr_gap` 页。先核对原件哈希，逐页渲染后由 `gap_ocr` 角色读两次，按与其他 OCR 页相同的规则（不可读、空白不一致、数字不一致、非空页无字、空白页有字）判定；通过的页写为 `m4_claude_vision_ocr_double_pass`，原缺页记录移到 `offload/m4/gap-history`，并删除该页的抽取缓存，下一次 `reader retry` 重新抽取。前两次读不一致时再读第三次，三次中任意两次满足全部规则即采用（仍是两次独立读一致，页内记 `reads`）；都不成对时，每次读的原文与只在部分读中出现的数字写入 `gap-history/<doc>/NNNNNN.attempts.json` 供人工查看，页仍为缺页（2026-09-28 起：48c8 第 20、27 页两次数字不一致）。未通过的页保持缺页。工具不写台账、原件或其他页。起因：48c8、ce50、ea7d 共 11 页 qwen 救援后仍失败，超过缺页上限而阻断。
+
+占位输出拒收（2026-09-28 起）：M4 深读 30 份中，Sonnet 在 11 份综合与 6 个块摘要里写了“测试摘要”“测试要点一”一类占位文字（6484 的是“测试摘要，用于诊断key_points参数解析问题。”，紧随一次 key_points 缺失的结构化输出失败），结构合法，未被拦下；Opus 读的 b3ff 无此问题，主张与引文均无占位。reader 现对块摘要、综合摘要与要点拒收占位文字（`model_output_placeholder`），按普通模型输出错误退避重试。已完成的受影响报告不原地修改，经 `reader reread` 重读、审阅后切换。

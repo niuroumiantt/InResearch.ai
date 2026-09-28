@@ -114,7 +114,10 @@ class FillTests(unittest.TestCase):
         with mock.patch.object(gap_ocr, "render", side_effect=self.render):
             result = gap_ocr.fill(self.data, "doc-a", client)
         self.assertEqual(result["filled_pages"], [2])
-        self.assertEqual(result["still_gaps"], [{"page": 3, "reason": "ocr_numbers_disagree"}])
+        self.assertEqual(result["still_gaps"], [{"page": 3, "reason": "ocr_numbers_disagree", "reads": 3}])
+        attempts = read_json(self.data / "offload/m4/gap-history/doc-a/000003.attempts.json")
+        self.assertEqual([r["numbers_not_in_every_read"] for r in attempts["reads"]],
+                         [["303"], ["304"], ["305"]])
         self.assertEqual(sorted(set(client.calls)), [2, 3])            # page 1 was never a gap
         page = read_json(self.pages / "000002.json")
         self.assertEqual((page["method"], page["text"], page["replaces_gap_reason"]),
@@ -124,6 +127,19 @@ class FillTests(unittest.TestCase):
         self.assertTrue((self.data / "extracted/doc-a/pages/000001.json").exists())
         self.assertTrue((self.data / "extracted/doc-a/pages/000003.json").exists())
         self.assertEqual(read_json(self.pages / "000003.json")["method"], "m4_vision_ocr_gap")
+
+    def test_a_third_read_that_agrees_with_one_of_the_first_two_fills_the_page(self):
+        answers = iter(["第2页 200 W", "第2页 290 W", "第2页 200 W", "第3页 300 W", "第3页 300 W"])
+
+        def generate(system, user, image_path=None, json_schema=None):
+            return {"text": next(answers), "blank": False, "unreadable": False, "_model": {"actual": "claude-test"}}
+        with mock.patch.object(gap_ocr, "render", side_effect=self.render):
+            result = gap_ocr.fill(self.data, "doc-a", SimpleNamespace(generate=generate))
+        self.assertEqual(result["filled_pages"], [2, 3])
+        page2, page3 = read_json(self.pages / "000002.json"), read_json(self.pages / "000003.json")
+        self.assertEqual((page2["text"], page2["text_second_pass"], page2["reads"]), ("第2页 200 W", "第2页 200 W", 3))
+        self.assertEqual(page3["reads"], 2)
+        self.assertFalse((self.data / "offload/m4/gap-history/doc-a/000002.attempts.json").exists())
 
     def test_a_rerun_after_an_interrupted_fill_drops_the_stale_cache(self):
         with mock.patch.object(gap_ocr, "render", side_effect=self.render), \

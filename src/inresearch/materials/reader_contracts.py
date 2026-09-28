@@ -83,6 +83,10 @@ class ModelError(ReaderError):
 class ModelOutputError(ModelError):
     code = "model_output_invalid"
 
+class ModelPlaceholderError(ModelOutputError):
+    """A well-formed answer whose text is a stand-in ("测试摘要", "测试要点一")."""
+    code = "model_output_placeholder"
+
 # Claude CLI exits that say nothing about the document (overload, a dropped
 # connection, a stalled process). They take the normal retry-with-backoff path
 # instead of blocking the whole document; authentication and a missing CLI stay
