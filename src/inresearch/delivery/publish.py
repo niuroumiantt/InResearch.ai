@@ -3,6 +3,7 @@
 import json
 import os
 import argparse
+import gzip
 from pathlib import Path
 import stat
 import sys
@@ -15,6 +16,7 @@ from inresearch.workflow.reader import Reader
 from inresearch.adapters.reader_model import ModelClient
 from inresearch.materials.artifacts import encoded, atomic_json, now_iso
 from inresearch.delivery import snapshot_overlay
+from inresearch.workflow import commands
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -71,11 +73,15 @@ def main(argv=None):
                        'question_ids': {r['id'] for r in registry['questions'] if isinstance(r, dict) and 'id' in r}}
             payload['reader']['external_overlay'] = snapshot_overlay.overlay(
                 payload, snapshot_overlay.load_directory(external), allowed)
-        body = encoded(payload).encode('utf-8')
-        if len(body) > 64 * 1024 * 1024:
+        document = encoded(payload).encode('utf-8')
+        if len(document) > commands.SNAPSHOT_MAX_BYTES:
             raise ValueError('snapshot exceeds receiver limit; incremental export is required')
+        # At 65.7 MB of JSON (2026-09-28) the plain body was 98 % of the 64 MiB wire limit.
+        body = gzip.compress(document, compresslevel=6, mtime=0)
+        if len(body) > commands.SNAPSHOT_WIRE_MAX_BYTES:
+            raise ValueError('compressed snapshot exceeds receiver limit; incremental export is required')
         request = urllib.request.Request(destination, data=body, method='POST', headers={
-            'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token})
+            'Content-Type': 'application/json', 'Content-Encoding': 'gzip', 'Authorization': 'Bearer ' + token})
         try:
             with urllib.request.build_opener(NoRedirect).open(request, timeout=120) as response:
                 result = json.loads(response.read(4096))
@@ -86,7 +92,7 @@ def main(argv=None):
                              % (error.code, error.read(2000).decode('utf-8', 'replace'))) from None
         if result.get('ok') is not True:
             raise ValueError('receiver did not acknowledge snapshot')
-        status = {'published': now_iso(), 'status': 'ok', 'bytes': len(body),
+        status = {'published': now_iso(), 'status': 'ok', 'bytes': len(document), 'sent_bytes': len(body),
                   'documents': len(payload['knowledge']['documents']), 'received_at': result.get('received_at'),
                   'source': 'external_candidate_snapshot' if args.snapshot else 'spark_reader_catalog'}
         atomic_json(state / ('publish-relay-status.json' if args.snapshot else 'publish-status.json'), status)

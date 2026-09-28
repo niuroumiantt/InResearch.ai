@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-28：发布恢复，快照改 gzip 传输
+
+Spark 与 M4 更新到 6c37fd5（图谱 2.2.0）后，手动发布成功（13 秒），M4 的 33 份经外部快照叠加进入网站候选区（added 33，dropped_unknown_ids 0）；网站候选区此前停在 09-09。Spark 上的发布单元仍指向已删除的 `pipeline/publish_reader.py`，按仓库版本替换后恢复定时发布。未压缩快照 65.7 MB，占 64 MiB 网络上限 98%，改为 gzip 传输，解压上限 192 MiB，接收端兼容未压缩格式。
+
 ## 2026-09-28：发布 400 的原因与防护
 
 Spark 手动发布被网站拒收（HTTP 400 `reader graph_version does not match deployed framework`）：网站随 main 更新到研究图谱 2.2.0（#270 部件重切），Spark 停在 #268（2.1.2）。Spark 自动发布自 09-18 起因 180 秒超时停用，网站候选区停在 09-09。处理：Spark 与 M4 更新到同一 main、M4 按 2.2.0 重新导出快照；代码上外部快照按发布时注册表过滤已不存在的 ID 并计数，发布失败时日志带回接收端原因。

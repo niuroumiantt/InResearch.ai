@@ -408,6 +408,31 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
         self.assertEqual('open', next(q['status'] for q in view['questions']['records']
                                      if q['id'] == 'M01-Q01'))
 
+    def raw_post(self, body, encoding):
+        headers = {'Content-Type': 'application/json', 'Authorization': 'Bearer ' + self.token,
+                   'Content-Encoding': encoding}
+        connection = http.client.HTTPConnection(*self.server.server_address, timeout=10)
+        try:
+            connection.request('POST', '/api/reader-snapshot', body=body, headers=headers)
+            response = connection.getresponse()
+            return response.status, json.loads(response.read())
+        finally:
+            connection.close()
+
+    def test_gzip_snapshot_is_received_and_bombs_or_bad_encodings_are_refused(self):
+        import gzip
+        from unittest import mock
+        from inresearch.workflow import commands as snapshot_commands
+        code, reply = self.raw_post(gzip.compress(json.dumps(self.payload()).encode()), 'gzip')
+        self.assertEqual((200, 1), (code, reply['documents']), reply)
+        before = self.snapshot_path.read_bytes()
+        with mock.patch.object(snapshot_commands, 'SNAPSHOT_MAX_BYTES', 1024):
+            code, reply = self.raw_post(gzip.compress(b' ' * 4096 + json.dumps(self.payload(seconds=1)).encode()), 'gzip')
+        self.assertEqual(413, code, reply)
+        self.assertEqual(400, self.raw_post(b'not gzip at all', 'gzip')[0])
+        self.assertEqual(400, self.raw_post(json.dumps(self.payload(seconds=2)).encode(), 'br')[0])
+        self.assertEqual(before, self.snapshot_path.read_bytes())
+
     def test_old_or_replayed_http_snapshot_is_409_and_cannot_erase_new_data(self):
         payload = self.payload(seconds=10)
         self.assertEqual(200, self.post(payload)[0])

@@ -435,9 +435,13 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(401, {"ok": False, "error": "invalid reader credential"})
         try:
             size = int(self.headers.get('Content-Length', 0))
-            if size <= 0 or size > 64 * 1024 * 1024:
+            if size <= 0 or size > commands.SNAPSHOT_WIRE_MAX_BYTES:
                 return self._json(413, {"ok": False, "error": "snapshot must be 1 byte to 64 MiB"})
-            payload = json.loads(self.rfile.read(size))
+            try:
+                body = commands.inflate_snapshot(self.rfile.read(size), self.headers.get('Content-Encoding'))
+            except commands.SnapshotTooLarge as e:
+                return self._json(413, {"ok": False, "error": str(e)})
+            payload = json.loads(body)
             reply = commands.receive_snapshot(ROOT, payload)
         except CommitUncertain as error:
             return self._json(503, {'ok': False, 'error': str(error),
