@@ -26,6 +26,7 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    await page.goto(base+'/'+file+query); await page.locator('#ui-skinbar').waitFor();
    await page.locator('.ui-navigation a[aria-current=page]').waitFor();
    assert.equal(await page.locator('.ui-navigation a[aria-current=page]').count(),1,file+' active section');
+   if(file==='index.html'){await page.locator('.ui-navigation a',{hasText:'管理'}).waitFor();assert.deepEqual(await page.locator('.ui-navigation a').allTextContents(),['数据中心','账本','爆炸图','采集','成果','管理'],'six directory entries (local mode is admin)');}
    assert.equal(await page.locator('[data-ui-choice]').count(),0,file+' has no skin switch');
    if(file==='company.html') await page.locator('.head h1').waitFor();
    if(file==='report.html') {await page.locator('.finding').first().waitFor();assert.equal(await page.locator('.finding').count(),150);}

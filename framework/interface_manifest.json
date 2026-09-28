@@ -1,5 +1,5 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "static_pages": [
     "index.html",
     "node.html",
@@ -21,6 +21,50 @@
     "product-catalog.html",
     "supply-demo.html"
   ],
+  "sections": {
+    "datacenter": [
+      "index.html",
+      "node.html",
+      "doc.html",
+      "research.html"
+    ],
+    "ledger": [
+      "ledger.html"
+    ],
+    "bom": [
+      "bom.html",
+      "bom3d.html",
+      "rack3d.html",
+      "product-catalog.html",
+      "admin/product/index.html",
+      "company.html",
+      "compare.html"
+    ],
+    "acquisition": [
+      "supply.html",
+      "materials.html",
+      "nvidia-pilot.html",
+      "team.html",
+      "supply-demo.html"
+    ],
+    "results": [
+      "report.html"
+    ],
+    "admin": [
+      "ops.html"
+    ]
+  },
+  "public_pages": [
+    "index.html",
+    "node.html",
+    "ledger.html",
+    "bom.html",
+    "bom3d.html",
+    "rack3d.html",
+    "product-catalog.html",
+    "report.html"
+  ],
+  "sections_note": "一级导航六项（05「目录」）；每个应用页用 <inresearch-shell data-section> 声明归属。public_pages 是公开只读（reader）不登录可看的页，白名单实现在 src/inresearch/interfaces/public.py。",
   "dynamic_pages": {
     "src/inresearch/interfaces/pages.py": [
       "LOGIN_PAGE",

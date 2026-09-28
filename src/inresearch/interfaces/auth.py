@@ -190,6 +190,7 @@ def set_password(username: str, new_password: str, *, current_password: str | No
 
 
 ROLES = ("admin", "member", "intern")
+# 第四种角色 reader 是公开只读：不登录即是，不建账号；能看什么由 interfaces/public.py 的白名单决定。
 
 # 实习生白名单（默认拒绝）。为什么不是黑名单：打分表的 summary 里就有招标控制价
 # 数字——敏感的不只是标了 sensitive 的事实记录，账本本身就是。逐条拉黑必漏，

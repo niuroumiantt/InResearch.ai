@@ -14,6 +14,7 @@ from inresearch.interfaces import pages
 import os
 import json
 from inresearch.interfaces import auth as auth
+from inresearch.interfaces import public
 from inresearch.materials import inbox as material_intake
 from inresearch.materials import model_assets
 import hmac
@@ -146,6 +147,10 @@ class Handler(SimpleHTTPRequestHandler):
         user = auth.session_user(self.headers.get("Cookie"))
         if user:
             return user
+        # 公开只读（reader）：目录三项、账本与它们读的数据，只对 GET/HEAD 匿名放行（白名单见 public.py）；
+        # 写接口永远不放行，模型文件按角色过滤后再给（见 do_GET）。
+        if self.command in ("GET", "HEAD") and public.allowed(self._norm_path()):
+            return ""
         if self.path == "/login" or self.path == "/api/login":
             return ""
         if self.path.startswith("/api/"):
@@ -182,8 +187,13 @@ class Handler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def _intern_allowed(self, path):
-        return any(path == a or (a.endswith("/") and path.startswith(a))
-                   for a in auth.INTERN_GET_ALLOW)
+        # 实习生白名单 + 公开只读的内容：reader 不登录能看的，登录的实习生当然能看（账本给的是同一份公开视图）。
+        return public.allowed(path) or any(path == a or (a.endswith("/") and path.startswith(a))
+                                           for a in auth.INTERN_GET_ALLOW)
+
+    def _role(self, user):
+        """本地模式（不要求登录）视同 admin；要求登录而未登录的是公开只读 reader。"""
+        return auth.user_role(user) if user else ("reader" if AUTH_ON else "admin")
 
     def do_HEAD(self):
         # SimpleHTTPRequestHandler 自带 HEAD 支持——不过闸的话可以用 HEAD 探文件存在与大小
@@ -247,10 +257,17 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._redirect("/")
             return self._html(200, pages.PASSWD_PAGE)
         if self.path == "/api/whoami":
-            return self._json(200, {"ok": True, "user": user or "(本地模式)",
-                                    "role": auth.user_role(user) if user else "admin"})
+            role = self._role(user)
+            return self._json(200, {"ok": True, "user": user or (None if role == "reader" else "(本地模式)"), "role": role})
+        if self._norm_path() == "/data/datacenter_model.json" and self._role(user) in ("reader", "intern"):
+            # 账本的公开视图：基准预设与校准锚，地区与情景预设登录后才有。过滤在服务端，页面照着渲染。
+            try:
+                spec = json.loads(Path(self.translate_path(self.path)).read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                return self._json(404, {"ok": False, "error": "not found"})
+            return self._json(200, public.public_model(spec))
         if self.path == "/api/users":
-            if user and auth.user_role(user) != "admin":
+            if self._role(user) != "admin":
                 return self._json(403, {"ok": False, "error": "用户管理仅限 admin"})
             users = auth.load_users()
             return self._json(200, {"ok": True, "users": [

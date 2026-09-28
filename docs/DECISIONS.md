@@ -2,6 +2,16 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-28：目录与路由、公开只读角色 reader（第 2 步）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §2 与 §9 第 2 步落地。一级导航改为四问的全局视图六项：**数据中心**（`/`，节点页）、**账本**（`ledger.html`）、**爆炸图**（`bom.html`）、**采集**（`supply.html`）、**成果**（`report.html`）、**管理**（`ops.html`）；旧的工作流式六项（总览 / 研究 / 资料 / 任务 / 成果 / 管理）退役。`site-shell.js` 按角色出现：admin 六项、member 五项、intern 只见采集入口（第 5 步并入采集页前落在团队看板）、reader 四项（数据中心、账本、爆炸图、成果）加"登录"。每个应用页用 `data-section` 声明归属的目录项，`interface_manifest.json`（1.3.0）新增 `sections` 与 `public_pages`，单元测试对账页面声明、清单、导航脚本与路由目标是否存在。
+
+**公开只读 reader。** 不登录即是，不建账号（`ROLES` 仍是 admin / member / intern）。白名单在 `src/inresearch/interfaces/public.py`（默认拒绝）：目录三项与账本及其子页（3D、芯片级镜头、规格库入口）、它们读的登记与生成物（dashboard、目标表、因子树、模型、价格库、公司、骨架、站点权利、指标、模块）、只读接口（whoami、report、news、model-assets、product-catalog）、外观与资产。采集页、团队看板、资料收件箱、主体页、事实层、来源登记（`part_fetch.json`）、任务板、供应台账、用户管理与一切写接口不公开：页面回登录页，接口 401。账本给 reader 的是服务端过滤后的公开视图：只留基准预设与三个校准锚引用的预设，地区表只留它们用到的地区，其余键（输入、证据、口径、公式）原样；`/api/whoami` 对匿名返回 `role: reader`。登录的实习生也能看 reader 能看的内容，账本同样是公开视图；实习生原有白名单与首页跳转不变（第 5 步再改）。
+
+**路由与页面。** `routes.json` 删去三条指向已删模型文件的路由与海报、框架海报、烘焙三条路由（页面文件留到第 8 步退役），显式登记 `/data/datacenter_model.json`；单元测试从此要求每条路由的目标文件存在。页内返回链改"← 数据中心"，`doc.html` 默认打开 03 对象与协作，禁止页文案写明实习生与公开只读能看什么。README「页面与目录」与 05 目录表同步（reader 账本"基准预设与校准锚"）。`compare.html` 仍在应用页清单：三个场景套件在用，随第 6 步 3D 收口处理。
+
+**实施状态。** 目录、角色与路由落地；节点页首屏的四个读法入口、采集页读目标表、`/api/targets?mine=1` 与实习生门禁分别在第 4、5 步。
+
 ## 2026-09-28：目标行状态四态与 Git 内登记载体（第 1 步）
 
 [提案](reviews/2026-09-28/site/PROPOSAL.md) §5 与 §9 第 1 步落地。目标表 `framework/tco_targets.json`（2.0.0）的 `status` 由三态改四态：`sourced`（已有序列、已录值指标或模型证据）、`assumed`（因子行的模型输入仍为作者假设）、`delivered`（队已交付到 Git 内载体但尚未成为序列）、`needed`（缺）。`delivered` 只认三种 Git 内载体：`data/product_docs_plan.csv` 里 status ≠ todo 且带 doc_id / source_url 的规格登记；`data/event_cards.json` 里带 `origin_pointer` 的事件卡（新闻行、持有方行；文件可选，尚未建立时视为空）；`data/prices.json` 里带 `target_id` 的价格记录（价格库 schema 新增可选的 `target_id`、`variable_class`、`node`）。只在运行库有的不计。生成行另写 `sourced_by`（registry / delivery）与 `team_state`（按 `supply_contract.json` 的 `connection`）；四个待建队名下的行 `next_due` 为空，页面显示"待建队"，不排到期，也不进"30 天内到期"的清单。当前 287 行：已有 36、假设 4、已交付 0、缺 247；待建队名下 168 行。
