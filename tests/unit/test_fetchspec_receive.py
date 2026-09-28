@@ -100,6 +100,34 @@ class FetchspecReceiveTests(unittest.TestCase):
             receive(self.repo, self.package, self.data)
         self.assertFalse((self.data / 'originals').exists())
 
+    def test_contract_20_binds_files_to_registered_generated_targets_and_parts(self):
+        target_id = 'P.compute_accelerator.spec'
+        (self.repo / 'framework').mkdir()
+        (self.repo / 'framework/tco_targets.json').write_text(json.dumps({'targets': [{
+            'id': target_id, 'team': 'fetchspec', 'part_id': 'compute_accelerator'
+        }]}))
+        manifest = json.loads((self.package / 'manifest.json').read_text())
+        manifest.update(contract_version='2.0', target_ids=[target_id])
+        manifest['items'][0]['source']['language'] = 'en'
+        manifest['items'][0]['target_ids'] = [target_id]
+        (self.package / 'manifest.json').write_text(json.dumps(manifest))
+        result = receive(self.repo, self.package, self.data)
+        self.assertEqual(result['research_context']['target_ids'], [target_id])
+        self.assertEqual(result['research_context']['part_ids'], ['compute_accelerator'])
+        self.assertEqual(result['items'][0]['target_ids'], [target_id])
+
+    def test_contract_20_rejects_unknown_target_before_archiving(self):
+        (self.repo / 'framework').mkdir()
+        (self.repo / 'framework/tco_targets.json').write_text(json.dumps({'targets': []}))
+        manifest = json.loads((self.package / 'manifest.json').read_text())
+        manifest.update(contract_version='2.0', target_ids=['P.unknown.spec'])
+        manifest['items'][0]['source']['language'] = 'en'
+        manifest['items'][0]['target_ids'] = ['P.unknown.spec']
+        (self.package / 'manifest.json').write_text(json.dumps(manifest))
+        with self.assertRaisesRegex(PackageError, 'generated_target_not_found'):
+            receive(self.repo, self.package, self.data)
+        self.assertFalse((self.data / 'originals').exists())
+
     def test_restricted_attachment_is_rejected_before_archiving(self):
         self.item['access_scope']['state'] = 'restricted'
         manifest = json.loads((self.package / 'manifest.json').read_text())

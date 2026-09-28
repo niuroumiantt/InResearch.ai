@@ -863,3 +863,6 @@ ADEME–Arcep 第 2/3 卷全文 librairie.ademe.fr 仍 403，手上只有综述�
 在 `server_cpu_utilization` 的 basis 维注释里写了这条（记「行业调研」并在 notes 标 `[未核]`）。
 本轮读表侧录的「传统数据中心服务器利用率 5%～15%」（重庆农商行案例，上下界两条）正属前一类，
 署名与 basis 都对，不必改。
+## 2026-09-28：NVIDIA 规格库按需加载，并接入新版生成目标
+
+用户要求 Fetchspec 配合 inresearch.ai 新版节点树继续执行。产品库首屏不再传输全部产品的原生规格表：只取目录身份、导航与规格表数量，点选产品后按稳定 product_id 读取一项详情并缓存；返回历史页面若恢复在未完成状态则重新取索引，请求超时显式可重试。CSV 继续由服务端完整数据库生成，来源、SHA、原表行列和候选身份不变。供应中心从 `tco_targets.json` 只读投影全部 Fetchspec 生成目标及 sourced/assumed/needed 计数；契约登记目标/部件/变量/执行字段，NVIDIA 页面显示与主线点名实例的 target/part 数量。Fetchspec v2.0 包可在批次和逐文件携带 `target_ids`，接收端按当前目标表验证其属于 Fetchspec 并解析 `part_ids`，无效绑定在任何归档前拒绝。目标是需求、规格是候选参照、正式事实须另行审核采用，三者不得互相冒充。

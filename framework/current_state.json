@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.28.38",
+  "version": "2026.09.28.39",
   "effective_at": "2026-09-28",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -471,8 +471,8 @@
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "新闻使用 Reader 的有界投影；供应执行、资料接收与 NVIDIA 产品库按用户确定的职责保存状态。2026-09-27 NVIDIA 采用产品优先：M5 本地发现/阅读，结构化候选发布 AWS，Spark 本轮不参与；页面按官方分类证据映射为五大浏览组。产品地图将明确型号关联父系列/平台，保留来源与参数版本。增量先对账官方英文与中文 XML sitemap，仅筛已审阅的产品路径，条件请求避免重复下载；产品路径新增入队、lastmod 变化重查。NVIDIA 中文站 www.nvidia.cn 使用根路径并纳入，路径匹配的中英页归并身份但各留快照。官方跳转仅放行核实过的 NVIDIA developer/networking 文档子域及具体页面，并分别遵守 robots.txt。产品 sitemap URL 抓取进度独立于广泛辅助页面队列计量。官方 sitemap 不完整不判缺失；即使完整，URL 未出现也只待复核不自动下架。网站 XML sitemap 是更新索引，不是产品总表；网站另生成公司产品 sitemap，线上分开导出产品清单、产品地图与原生规格 CSV。Networking Docs 的 ConnectX、BlueField、Spectrum 硬件型号归入网络产品族，DOCA 等软件仍优先归入软件。产品/来源/规格处理状态分别计量；公开页面明确清点未完与未知项；404 旧页、主机策略阻止与可重试失败分开显示，不能混成抓取失败。具体命名产品的规格覆盖率与全部目录实体的有表数量分开计量；官网未发布型号规格或型号专属规格来源不可用时记厂商缺口，不冒充抓取失败也不猜测补值。；2026-09-28 用户采用六队三仓库：inresearch 本身不爬取，内置 SEC/GPU 采集器退役并移交 fetchdata（fetchfilings、fetchquotes）；供应契约 providers 改为六队并登记来源归属；新建五层目标清单 framework/tco_targets.json 作为唯一任务来源；inews 拆采集线与编辑线，给 inresearch 的采集默认不翻译、挑选在先翻译在后，事件 feed 附加字段在 news_sync 校验透传。",
-      "implementation_revision": "2026.09.28.36"
+      "reason": "新闻使用 Reader 的有界投影；供应执行、资料接收与 NVIDIA 产品库按用户确定的职责保存状态。2026-09-27 NVIDIA 采用产品优先：M5 本地发现/阅读，结构化候选发布 AWS，Spark 本轮不参与；页面按官方分类证据映射为五大浏览组。产品地图将明确型号关联父系列/平台，保留来源与参数版本。增量先对账官方英文与中文 XML sitemap，仅筛已审阅的产品路径，条件请求避免重复下载；产品路径新增入队、lastmod 变化重查。NVIDIA 中文站 www.nvidia.cn 使用根路径并纳入，路径匹配的中英页归并身份但各留快照。官方跳转仅放行核实过的 NVIDIA developer/networking 文档子域及具体页面，并分别遵守 robots.txt。产品 sitemap URL 抓取进度独立于广泛辅助页面队列计量。官方 sitemap 不完整不判缺失；即使完整，URL 未出现也只待复核不自动下架。网站 XML sitemap 是更新索引，不是产品总表；网站另生成公司产品 sitemap，线上分开导出产品清单、产品地图与原生规格 CSV。Networking Docs 的 ConnectX、BlueField、Spectrum 硬件型号归入网络产品族，DOCA 等软件仍优先归入软件。产品/来源/规格处理状态分别计量；公开页面明确清点未完与未知项；404 旧页、主机策略阻止与可重试失败分开显示，不能混成抓取失败。具体命名产品的规格覆盖率与全部目录实体的有表数量分开计量；官网未发布型号规格或型号专属规格来源不可用时记厂商缺口，不冒充抓取失败也不猜测补值。；2026-09-28 用户采用六队三仓库：inresearch 本身不爬取，内置 SEC/GPU 采集器退役并移交 fetchdata（fetchfilings、fetchquotes）；供应契约 providers 改为六队并登记来源归属；新建五层目标清单 framework/tco_targets.json 作为唯一任务来源；inews 拆采集线与编辑线，给 inresearch 的采集默认不翻译、挑选在先翻译在后，事件 feed 附加字段在 news_sync 校验透传。；2026-09-28 配合节点树改版：产品目录首屏改为轻量索引、单产品规格按需读取并在浏览器返回时恢复未完成请求；供应中心从生成目标清单只读投影 Fetchspec 目标，NVIDIA 目录显示相关 target/part 数量，目标、候选规格与正式研究采用继续分离。",
+      "implementation_revision": "2026.09.28.39"
     },
     {
       "id": "product-ecosystems-20260906",

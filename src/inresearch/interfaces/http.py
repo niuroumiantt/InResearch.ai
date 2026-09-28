@@ -258,9 +258,9 @@ class Handler(SimpleHTTPRequestHandler):
                 for n, u in sorted(users.items())]})
         if urlsplit(self.path).path == '/api/product-catalog/nvidia':
             query = parse_qs(urlsplit(self.path).query)
-            value = product_catalog.snapshot(ROOT)
             export = query.get('export', [''])[0]
             if export:
+                value = product_catalog.snapshot(ROOT)
                 try:
                     body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1', query.get('group', [''])[0], query.get('family', [''])[0], query.get('scope', ['all'])[0]).encode('utf-8')
                 except ValueError as exc:
@@ -271,7 +271,21 @@ class Handler(SimpleHTTPRequestHandler):
                 self.send_header('Content-Length', str(len(body)))
                 self.end_headers()
                 return self.wfile.write(body)
-            return self._json(200, value)
+            product_id = query.get('product_id', [''])[0]
+            if product_id:
+                try:
+                    value = product_catalog.product_snapshot(ROOT, product_id)
+                except ValueError as exc:
+                    return self._json(400, {'error': str(exc)})
+                if value['product'] is None:
+                    return self._json(404, {'error': 'product not found'})
+                return self._json(200, value)
+            view = query.get('view', ['full'])[0]
+            if view == 'index':
+                return self._json(200, product_catalog.index_snapshot(ROOT))
+            if view == 'full':
+                return self._json(200, product_catalog.snapshot(ROOT))
+            return self._json(400, {'error': 'unknown catalog view'})
         if urlsplit(self.path).path == '/api/pilot-progress/nvidia':
             try:
                 return self._json(200, pilot_progress.public_snapshot(ROOT))
