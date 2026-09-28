@@ -12,7 +12,7 @@ The list is not written by hand. It is the cross product of three registered thi
 
 ``--refresh`` rewrites the file, ``--check`` fails when the file differs from what the
 inputs produce. Status never becomes ``sourced`` unless a price series, a valued indicator
-or the TCO model's evidence already backs the row.
+or the model's evidence already backs the row.
 """
 import argparse
 import datetime as dt
@@ -86,13 +86,13 @@ def build(root=ROOT, as_of=None):
     series_ids = {r['series_id'] for r in prices}
     lead_series = {r['series_id'] for r in prices if r.get('category') == 'lead-time'}
     indicators = {i['id']: i for i in load(root, 'framework/indicators.json')['indicators']}
-    tco = load(root, 'data/datacenter_tco_model.json')
-    evidence = tco.get('evidence', {})
-    # every TCO input carries its variable class (data/datacenter_tco_model.json evidence.variable_class)
+    model = load(root, 'data/datacenter_model.json')
+    evidence = model.get('evidence', {})
+    # every model input carries its variable class (data/datacenter_model.json evidence.variable_class)
     input_class = {k: v.get('variable_class') for k, v in evidence.items()}
-    missing = [k for k in tco['inputs'] if input_class.get(k) not in (1, 2, 3, 4, 5)]
+    missing = [k for k in model['inputs'] if input_class.get(k) not in (1, 2, 3, 4, 5)]
     if missing:
-        raise ValueError('TCO inputs without a variable_class: ' + ', '.join(missing))
+        raise ValueError('model inputs without a variable_class: ' + ', '.join(missing))
     contract = load(root, 'framework/supply_contract.json')
     providers = {p['id']: p for p in contract['providers']}
     hosts = {k: v['host'] for k, v in contract['execution_policy'].items() if isinstance(v, dict) and 'host' in v}
@@ -156,7 +156,7 @@ def build(root=ROOT, as_of=None):
             slug = entry.get('slug') or entry['kind']
             targets.append(row(
                 id=f"F.{f['id']}.{slug}", variable_class=d['variable_class'], origin='factor', factor_ids=[f['id']],
-                model_inputs=list(entry.get('tco_inputs') or f.get('tco_inputs') or []),
+                model_inputs=list(entry.get('model_inputs') or f.get('model_inputs') or []),
                 series=list(entry.get('series') or []), planned_series=list(entry.get('planned_series') or []),
                 indicators=list(entry.get('indicators') or []), data_class=d['data_class'],
                 disclosure_type=entry.get('disclosure_type') or entry['what'],
@@ -183,7 +183,7 @@ def build(root=ROOT, as_of=None):
         names = [companies.get(c, c) for c in p['companies']]
         instances = (lines or names or [p['name']])[:12]
         fids = part_factors.get(p['id'], [])
-        pool = sorted({k for fid in fids for k in factors[fid].get('tco_inputs', [])})
+        pool = sorted({k for fid in fids for k in factors[fid].get('model_inputs', [])})
         rank = PART_STATUS_RANK.get(p['status'], 4)
         kinds = ['spec', 'price', 'lead_time'] if p['kind'] == 'part' else ['spec', 'price'] if p['kind'] == 'software' else ['spec']
         if p['kind'] == 'part' and p['status'] != 'mature':
@@ -212,7 +212,7 @@ def build(root=ROOT, as_of=None):
     # 3. site-right targets: one per registered variable class
     for r in rights:
         fids = right_factors.get(r['id'], [])
-        pool = sorted({k for fid in fids for k in factors[fid].get('tco_inputs', [])})
+        pool = sorted({k for fid in fids for k in factors[fid].get('model_inputs', [])})
         for vc in r['variable_classes']:
             spec = RIGHT_ROWS[vc]
             inputs = [k for k in pool if input_class.get(k) == vc]
@@ -229,8 +229,8 @@ def build(root=ROOT, as_of=None):
             if sid not in series_ids:
                 raise ValueError(f"{t['id']}: unknown series {sid}")
         for k in t['model_inputs']:
-            if k not in tco['inputs']:
-                raise ValueError(f"{t['id']}: unknown TCO input {k}")
+            if k not in model['inputs']:
+                raise ValueError(f"{t['id']}: unknown model input {k}")
     counts = {'factor': 0, 'part': 0, 'software': 0, 'archetype': 0, 'site_right': 0}
     for t in targets:
         counts[t['origin']] += 1

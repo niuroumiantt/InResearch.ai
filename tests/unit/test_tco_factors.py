@@ -1,4 +1,4 @@
-"""The TCO factor tree must only reference objects that exist: BOM parts, price series, questions, model inputs."""
+"""The factor tree must only reference objects that exist: BOM parts, price series, questions, unified-model inputs."""
 import json
 import unittest
 from pathlib import Path
@@ -18,8 +18,7 @@ class TcoFactorTreeTests(unittest.TestCase):
         cls.bom = {p['id'] for p in load('framework/bom.json')['parts']}
         cls.series = {r['series_id'] for r in load('data/prices.json')['records']}
         cls.questions = {q['id'] for q in load('framework/research_questions.json')['records']}
-        cls.model_inputs = set(load('data/datacenter_economics_model.json')['inputs'])
-        cls.tco_inputs = set(load('data/datacenter_tco_model.json')['inputs'])
+        cls.model_inputs = set(load('data/datacenter_model.json')['inputs'])
 
     def test_ids_unique_and_parents_resolve(self):
         ids = [f['id'] for f in self.tree['factors']]
@@ -40,8 +39,6 @@ class TcoFactorTreeTests(unittest.TestCase):
                 self.assertIn(qid, self.questions, f"{f['id']} → question {qid}")
             for key in f.get('model_inputs', []):
                 self.assertIn(key, self.model_inputs, f"{f['id']} → input {key}")
-            for key in f.get('tco_inputs', []):
-                self.assertIn(key, self.tco_inputs, f"{f['id']} → tco input {key}")
             slugs = [fetch.get('slug') or fetch['kind'] for fetch in f.get('fetch', [])]
             self.assertEqual(len(slugs), len(set(slugs)), f"{f['id']} fetch slugs must be unique per factor")
             for fetch in f.get('fetch', []):
@@ -52,8 +49,8 @@ class TcoFactorTreeTests(unittest.TestCase):
                     self.assertIn(fetch['variable_class'], (1, 2, 3, 4, 5), f['id'])
                     self.assertIn(fetch['data_class'], ('reference', 'observation', 'material'), f['id'])
                     self.assertTrue(fetch.get('mechanism') and fetch.get('instances'), f['id'])
-                for key in fetch.get('tco_inputs', []):
-                    self.assertIn(key, self.tco_inputs, f"{f['id']} → tco input {key}")
+                for key in fetch.get('model_inputs', []):
+                    self.assertIn(key, self.model_inputs, f"{f['id']}/{fetch.get('slug')} → input {key}")
                 for sid in fetch.get('series', []):
                     self.assertIn(sid, self.series, f"{f['id']}/{fetch.get('slug')} → series {sid}")
 

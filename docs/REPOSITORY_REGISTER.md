@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1017。
+在册文件：1008。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 272 |
-| 运行代码 | 221 |
+| 运行代码 | 213 |
 | 现行规范 | 13 |
 | 项目配置 | 94 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 29 |
+| 在册数据/索引 | 27 |
 | 配套说明 | 58 |
-| 测试 | 95 |
+| 测试 | 96 |
 
 ## 在册记录集合
 
@@ -39,13 +39,10 @@
 | `data/dashboard.json` | ecosystems | 8 |
 | `data/dashboard.json` | parent_systems | 1 |
 | `data/dashboard.json` | factors | 24 |
-| `data/datacenter_cost_model.json` | groups | 5 |
-| `data/datacenter_cost_model.json` | benchmark_series | 14 |
-| `data/datacenter_economics_model.json` | groups | 5 |
-| `data/datacenter_economics_model.json` | benchmark_series | 15 |
-| `data/datacenter_tco_model.json` | groups | 7 |
-| `data/datacenter_tco_model.json` | benchmark_series | 25 |
-| `data/datacenter_tco_model.json` | sensitivity_drivers | 10 |
+| `data/datacenter_model.json` | groups | 5 |
+| `data/datacenter_model.json` | anchors | 2 |
+| `data/datacenter_model.json` | sensitivity_drivers | 12 |
+| `data/datacenter_model.json` | benchmark_series | 43 |
 | `data/facts.json` | records | 7849 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 512 |
@@ -336,7 +333,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 22 |
+| `framework/interface_manifest.json` | static_pages | 19 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
@@ -425,9 +422,7 @@
 | `data/companies.json` | 在册数据/索引 |
 | `data/contracts.json` | 在册数据/索引 |
 | `data/dashboard.json` | 在册数据/索引 |
-| `data/datacenter_cost_model.json` | 在册数据/索引 |
-| `data/datacenter_economics_model.json` | 在册数据/索引 |
-| `data/datacenter_tco_model.json` | 在册数据/索引 |
+| `data/datacenter_model.json` | 在册数据/索引 |
 | `data/facts.json` | 在册数据/索引 |
 | `data/metric_gaps.jsonl` | 在册数据/索引 |
 | `data/policies.json` | 在册数据/索引 |
@@ -1278,6 +1273,7 @@
 | `tests/unit/test_m4_triage_report.py` | 测试 |
 | `tests/unit/test_m4_triage_versions.py` | 测试 |
 | `tests/unit/test_material_intake.py` | 测试 |
+| `tests/unit/test_model.py` | 测试 |
 | `tests/unit/test_model_assets.py` | 测试 |
 | `tests/unit/test_model_roles.py` | 测试 |
 | `tests/unit/test_model_runtime.py` | 测试 |
@@ -1374,10 +1370,8 @@
 | `web/assets/world.geo.json` | 静态资源 |
 | `web/components/auth-form.js` | 运行代码 |
 | `web/components/auth.css` | 运行代码 |
-| `web/components/datacenter-cost.js` | 运行代码 |
-| `web/components/datacenter-economics.js` | 运行代码 |
+| `web/components/datacenter-model.js` | 运行代码 |
 | `web/components/datacenter-news.js` | 运行代码 |
-| `web/components/datacenter-tco.js` | 运行代码 |
 | `web/components/markdown-inline.js` | 运行代码 |
 | `web/components/model-assets.js` | 运行代码 |
 | `web/components/object-network.js` | 运行代码 |
@@ -1403,9 +1397,7 @@
 | `web/pages/bom3d.html` | 运行代码 |
 | `web/pages/company.html` | 运行代码 |
 | `web/pages/compare.html` | 运行代码 |
-| `web/pages/cost.html` | 运行代码 |
 | `web/pages/doc.html` | 运行代码 |
-| `web/pages/economics.html` | 运行代码 |
 | `web/pages/framework_poster.html` | 运行代码 |
 | `web/pages/ledger.html` | 运行代码 |
 | `web/pages/materials.html` | 运行代码 |
@@ -1419,12 +1411,8 @@
 | `web/pages/research.html` | 运行代码 |
 | `web/pages/supply-demo.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |
-| `web/pages/tco.html` | 运行代码 |
 | `web/pages/team.html` | 运行代码 |
 | `web/routes.json` | 项目配置 |
-| `web/themes/datacenter-cost.css` | 运行代码 |
-| `web/themes/datacenter-economics.css` | 运行代码 |
-| `web/themes/datacenter-tco.css` | 运行代码 |
 | `web/themes/preference.js` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
 | `web/themes/supply.css` | 运行代码 |
