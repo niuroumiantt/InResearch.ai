@@ -128,12 +128,20 @@ class ProductCatalogTests(unittest.TestCase):
             ('NVIDIA DGX Spark', '/products/workstations/dgx-spark/', 'professional'),
             ('NVIDIA IGX Thor', '/edge-computing/products/igx/', 'embedded'),
             ('NVIDIA DOCA', '/networking/products/software/doca/', 'software'),
+            ('NVIDIA ConnectX-5 MCX545A-ECAN', 'https://networking-docs.nvidia.com/connectx5en/specifications', 'datacenter'),
+            ('NVIDIA BlueField-3 DPU', 'https://networking-docs.nvidia.com/bluefield3/specifications', 'datacenter'),
+            ('NVIDIA Spectrum-4 SN5600', 'https://networking-docs.nvidia.com/spectrum4/specifications', 'datacenter'),
             ('NVIDIA RTX PRO Server', '/data-center/products/rtx-pro-server/', 'datacenter'),
         ]:
             product.update(name=name, source_url='https://www.nvidia.com/en-us'+path)
             self.assertEqual(navigation.classify(product)['group'], group)
         product.update(name='Specifications', source_url='https://www.nvidia.com/en-us/geforce/graphics-cards/gtx-780/specifications/')
         self.assertEqual(navigation.classify(product)['role'], 'auxiliary')
+        product.update(name='NVIDIA ConnectX-5 MCX545A-ECAN', source_url='https://networking-docs.nvidia.com/connectx5en/specifications')
+        self.assertEqual(navigation.classify(product)['family'], 'networking')
+        self.assertEqual(navigation.classify(product)['role'], 'catalog')
+        product.update(name='NVIDIA DOCA', source_url='https://networking-docs.nvidia.com/doca/latest/')
+        self.assertEqual(navigation.classify(product)['group'], 'software')
         self.assertEqual(len(navigation.GROUPS), 5)
 
     def test_auxiliary_unknown_and_components_keep_explicit_navigation_roles(self):

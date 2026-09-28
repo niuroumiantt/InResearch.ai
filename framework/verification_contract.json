@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.28.29",
-  "reviewed_at": "2026-09-27",
+  "version": "2026.09.28.30",
+  "reviewed_at": "2026-09-28",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
     ".github/workflows/validate.yml": "1424142306d608e4834d92f6ac17c7ee4275e70daed27b1fe87bbe2e0ef3b0ff",
@@ -26,7 +26,7 @@
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
     "framework/08_model_execution.md": "2db37782ac5586cf797f9bbf4668db096e82197161ef11159e16286ad589fa80",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "72080916c2e4710f04c4bca0848e11cacb7fc7c6e374f2f7fdf62c4fff9e64f4",
+    "framework/CURRENT.md": "25f564af42c9ba8e4fe95efdb44464e79d94955610e56339b620cde9e2ef9181",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "957110086c4f4affad40a8ddf0f7029693137c3221319f1ec16ecc1453df7b8a",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -105,7 +105,7 @@
     "web/components/supply.js": "77fc1f9669f723d0e30ee5157355852016f07e6de0ceaaaf7fd42e22e014b86b",
     "web/pages/nvidia-pilot.html": "54a77a5898f9dff1bd84fd75f3737cc052be7eb2901f2d2d7fd125877c834279",
     "web/pages/supply.html": "8d239586466f575fb52c194fc933326689f55e07e4c07d67fb9ffa89cfa5f32c",
-    "tests/unit/test_product_catalog.py": "b34c0bf0713e1d6fa4c5c880e5398e3bc5af90d4d467bd3a7c13fd764fe0e5ce",
+    "tests/unit/test_product_catalog.py": "60456dd09d066164dd7421cc6c18a9e8ac92fe42dc2df5e7a7cec9424ee782fa",
     "tests/product_catalog.cjs": "99f168cace55c05fc9acabc286a42f23298c45388a443ff755ce15984357e369",
     "tests/unit/test_dropped_claims.py": "99983da6847024aca4592bcf7d89fbfe38522d45d9c645919c17d686bcb8e08e",
     "tests/unit/test_gap_ocr.py": "045505374a1fe65a8a35e2d1be23d632793bf0b50a25e4a07e8fcad68964c57f",
@@ -349,7 +349,7 @@
       "policy": "acquisition-20260906",
       "scope": "project",
       "source": "framework/06_acquisition.md",
-      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。；五个展示大类与系列导航、原厂分类保留、辅助入口隔离、型号优先/15项分页、跨类搜索与同范围CSV；产品地图父子身份与来源校验、官方非文件资源入口；日常更新先对账官方英文/中文 XML sitemap，只筛已审阅产品路径，条件请求复用未变化快照，新 URL 入队、lastmod 变化重查；中文站 www.nvidia.cn 根路径纳入，中英同路径身份归并但来源快照分别保留；sitemap 不完整或缺失不自动下架；产品地图 CSV 与参数 CSV 分开。",
+      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。；五个展示大类与系列导航、原厂分类保留、辅助入口隔离、型号优先/15项分页、跨类搜索与同范围CSV；产品地图父子身份与来源校验、官方非文件资源入口；日常更新先对账官方英文/中文 XML sitemap，只筛已审阅产品路径，条件请求复用未变化快照，新 URL 入队、lastmod 变化重查；中文站 www.nvidia.cn 根路径纳入，中英同路径身份归并但来源快照分别保留；sitemap 不完整或缺失不自动下架；产品地图 CSV 与参数 CSV 分开。；官方 Networking Docs 的 ConnectX / BlueField / Spectrum 型号进入网络目录，DOCA 仍按软件归类",
       "tests": [
         "tests/unit/test_acquisition.py::AcquisitionTests.test_archive_preserves_revisions_and_is_idempotent",
         "tests/unit/test_acquisition.py::AcquisitionTests.test_failure_is_recorded_and_not_success",
@@ -392,10 +392,10 @@
         "tests/unit/test_product_catalog.py::ProductCatalogTests.test_csv_preserves_variants_notes_and_prevents_formula_execution",
         "tests/product_catalog.cjs",
         "tests/unit/test_product_catalog.py::ProductCatalogTests.test_http_authentication_and_receiver_validation",
-        "tests/unit/test_product_catalog.py::ProductCatalogTests.test_navigation_uses_product_identity_not_polluted_parent_categories",
         "tests/unit/test_product_catalog.py::ProductCatalogTests.test_auxiliary_unknown_and_components_keep_explicit_navigation_roles",
         "tests/unit/test_product_catalog.py::ProductCatalogTests.test_navigation_snapshot_and_csv_filters_share_the_same_projection",
-        "tests/unit/test_product_catalog.py::ProductCatalogTests.test_product_sitemap_metadata_and_map_csv_are_preserved"
+        "tests/unit/test_product_catalog.py::ProductCatalogTests.test_product_sitemap_metadata_and_map_csv_are_preserved",
+        "tests/unit/test_product_catalog.py::ProductCatalogTests.test_navigation_uses_product_identity_not_polluted_parent_categories"
       ],
       "not_verified": [
         "全文翻译、撤回增量、全局限速与 GPU 调度仍未完整实现。",
