@@ -2,6 +2,18 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-28：管理瘦身与清零（第 8 步）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §6 与 §9 第 8 步落地，八步至此走完；AUDIT.md 三根梁（旧图谱轴、模块维护单元、首页/看板习惯）清零。
+
+- **管理页收缩。** `ops.html` 只留用户与权限、采集与运行控制台（去掉兼容简报、工单队列、盲区体检三个按钮）、录价（加可选 `target_id`，`node` 与 `variable_class` 由服务端派生）、生成物新鲜度（dashboard、目标表、图谱、问题表、模型、骨架的版本与时点）、工具入口；项目漏斗、监测表、研究模块卡、项目库与重复的新闻时间线退役。
+- **退役页删除。** `supply-demo.html`、`poster.html`、`framework_poster.html`、`bake.html` 删除并从路由、界面清单与治理登记移除；`compare.html` 移到界面清单的 `excluded_pages`（本地工具，保留路由供场景套件）。界面清单 1.4.0。
+- **文档清零。** README 首段、唯一逻辑一段与常用路径，AGENTS 一句，`docs/PROJECT_PANORAMA.md` 按唯一逻辑重写，格洛可专题反哺规则 2.0（新数据只以带 node 与变量类的登记进表，序列 ID 不用模块前缀），两份 fetchdata 交接文档改行 ID 与历史横幅，本地阅读与本地安装指南改词，四份研究档案 README 加"已并入 ledger.html"横幅，`reports/HOW_TO_OUTPUT.md` 改写为三种导出、模板 README 加历史横幅，M05 / M15 模块定义去"仪表盘"，源码与页面里的旧注释与标题改词。
+- **治理登记 17 条退役断言**（五视角研究、研究工作台、分层对象目录、总览 → 研究 → 资料 → 任务、五层目标清单、监测仪表盘、三色仪表盘、盲区仪表盘、团队看板 →、产品资料采集看板、九个研究角度、主生态、八个产品生态、"工单 = 声明 − 现状"等）。治理扫描规则同时收紧两处：说"退役"的句子允许出现旧词（判据句与退役转向页），断言旧规则的句子不允许；`docs/DECISIONS.md` 只扫描 2026-09-28 起的条目（历史条目不是当前指令）；带日期原样保留的指导快照 `docs/guides/model-governance-2026-09-27.html` 登记为 `retired_scan_snapshots` 免扫（旧词只在快照里出现）。`object-network.js` 去掉已无数据源的“研究角度”筛选项。
+- **架构图重画。** `docs/reviews/2026-09-28/architecture/ARCHITECTURE.svg` 与 README 按唯一逻辑重画：目录六项、一棵树与五类变量、三级账与四问、四段与回路、退役词汇。
+
+**未做、待定。** `rack3d.html` 场景物理并入 `bom3d.html`（第 6 步留）；`research-graph.js` 与 `object-network.js` 的旧工作台代码随 3D 档案面板保留；`compare.html` 与 `admin/product/index.html` 保留为本地工具与登记覆盖页。
+
 ## 2026-09-28：成果页改写——四章即四问，成果从登记表生成（第 7 步）
 
 [提案](reviews/2026-09-28/site/PROPOSAL.md) §4 成果一行与 §9 第 7 步落地。`delivery/report.py` 新增 `build_snapshot_report`：成果 = 树的可发布快照，全部由权威文件生成（dashboard 快照、目标表、因子树、统一模型、骨架、权利，以及图谱与问题表的版本），不另写第二份事实。封面是可信边界：模型输入按证据状态计数、目标行四态与待建队行数、各登记表版本、基准情景、格级诚实规则。四章即四问：一、它值多少（三级账与每级输入的证据、五列根节点现值、校准锚）；二、它由什么组成（五系统 + IT 四子系统 + 站点权利的五列状态、六段建设阶段）；三、它怎么影响账（公式与因子树）；四、数据从哪来、缺什么（四态、六队卡、到期、载体）。末章是专题目录：15 个兼容模块的 150 条研究结论只作目录，全文保留在 `report.html?legacy=1`（`/api/report?legacy=1`）。三种导出：Markdown 与 JSON（`manage.py export` 默认导出快照，`--legacy` 导出旧结论与可选 docx）、打印 / PDF。反哺规则改写进 06：专题取得的新数据只以带 `node` 与 `variable_class` 的记录进登记表，序列 ID 不再用模块前缀，文章不作执行指令。`research_delivery`、`ui_skin` 两个套件与 `test_report_model` 改为快照断言。
@@ -131,7 +143,7 @@ Spark 手动发布被网站拒收（HTTP 400 `reader graph_version does not matc
 
 用户采用采集侧的结论：六个采集分队按来源机制划分（fetchspec、inews.today、fetchstat、fetchfilings、fetchreports、fetchquotes），建队顺序 fetchstat → fetchfilings → fetchreports → fetchquotes；仓库先按三个起步，即保留 `inews.today` 与 `fetchspec`，新建一个 `fetchdata` 承载四个分队目录，不够再拆。inresearch.ai 本身不爬取：`adapters.acquisition` 删除 `sec`、`gpu` 采集函数与 CLI 子命令，退役前实现由 Git 历史保留并作为 fetchfilings、fetchquotes 的种子迁入 fetchdata；采集台账中历史 `sec`/`gpu` 行只读保留，运维页对应按钮移除。`supply_contract.json` 升 1.4：providers 改为六队加本地上传，登记三仓库、九类能力到六队的映射、来源归属规则（一个来源只属一个队、一台主执行机、一个日历；inews 只给事件卡与原件指针，不抓原件）。06 采集规范新增"六队、三仓库与来源归属"与"inews 两条线"两节，五页指导文件登记为已采用的设计快照。基准版本升 2026.09.28.30。`fetchdata` 仓库尚未创建，四个分队在契约中保持 `proposed`，启动说明见 `docs/handoff/fetchdata-bootstrap.md`。
 
-## 2026-09-28：五类变量目标清单成为六队唯一任务来源（原题"五层目标清单"，同日改称五类变量）
+## 2026-09-28：五类变量目标清单成为六队唯一任务来源（原题"五层目标清单"已退役，同日改称五类变量）
 
 新建 `framework/tco_targets.json`（43 行目标），每行登记层、因子、模型输入、已有与计划序列、数据类别（参照 / 观测 / 材料）、披露类型、出版方类别、当前实例、抓取机制、主责队、主执行机、日历、下次到期、状态与敏感度序号。单元测试校验：引用的因子、输入、序列、分队、执行机都存在；注册下载与浏览器页面必须落在 macmini；inews 只产材料类事件卡；TCO 模型全部非用户输入都有目标；目标状态不比模型 evidence 乐观。清单经 `/data/tco_targets.json` 暴露，供供应中心与到期表后续读取。近期任务里的"tco.html 缺口表加最新时点 / 下次更新"改为读本清单的 `next_due`。
 

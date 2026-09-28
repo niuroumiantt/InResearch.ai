@@ -172,9 +172,22 @@ def retired_errors(manifest, state, root=ROOT):
         path = row['path']
         if Path(path).suffix not in {'.md', '.py', '.sh', '.html', '.js'}:
             continue
-        text = (root / path).read_text(encoding='utf-8')
+        if path in state.get('retired_scan_snapshots', []):
+            continue  # 带日期的历史快照按决议原样保留，不是当前指令；旧词只在快照里出现
+        lines = (root / path).read_text(encoding='utf-8').splitlines()
+        if path == 'docs/DECISIONS.md' and state.get('decisions_retired_scan_since'):
+            # 决策记录的历史条目不是当前指令（CLAUDE.md）：只扫描现行日期之后的条目
+            kept = []
+            for line in lines:
+                dated = re.match(r'^## (\d{4}-\d{2}-\d{2})', line)
+                if dated and dated.group(1) < state['decisions_retired_scan_since']:
+                    break
+                kept.append(line)
+            lines = kept
+        # 说"退役"的句子允许出现旧词（判据句、退役转向页）；断言旧规则的句子不允许
+        current = [line for line in lines if '退役' not in line]
         for pattern in state['known_retired_patterns']:
-            if re.search(pattern, text):
+            if any(re.search(pattern, line) for line in current):
                 errors.append(f'{path}: retired assertion {pattern}')
     return errors
 

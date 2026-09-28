@@ -49,13 +49,8 @@ const base=process.env.UI_BASE_URL;
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
    }
   }
-  await page.goto(base+'/supply-demo.html');
-  await page.getByRole('button',{name:'交付与验收',exact:true}).click();
-  await page.getByRole('button',{name:'验收合格 2 份',exact:true}).click();
-  assert.match(await page.locator('#sd-message').innerText(),/需求保持部分交付/);
-  await page.getByRole('button',{name:'研究需求与分配',exact:true}).click();
-  await page.getByRole('button',{name:'分配示例任务',exact:true}).click();
-  assert.match(await page.locator('#sd-message').innerText(),/接通后才可执行/);
+  // 演示页 supply-demo.html 已退役（2026-09-28）
+  const demo=await page.request.get(base+'/supply-demo.html',{maxRedirects:0});assert.notEqual(demo.status(),200,'demo page retired');
   await page.setViewportSize({width:390,height:950});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   assert.deepEqual(errors,[]);

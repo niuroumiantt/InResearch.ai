@@ -852,7 +852,7 @@ document.getElementById("play").onclick = () => animateSlider(+slider.value > 90
 const PARTMESH = {};
 pickables.forEach(m => { (PARTMESH[m.userData.part] ||= []).push(m); if (ALIAS[m.userData.part] && ALIAS[m.userData.part] !== m.userData.part) (PARTMESH[ALIAS[m.userData.part]] ||= []).push(m); });
 
-/* ─────────── 数据覆盖热图（2026-08-26 用户批复）：爆炸图同时是盲区仪表盘 ───────────
+/* ─────────── 数据覆盖热图（2026-08-26 用户批复）：爆炸图同时显示每个部件的数据覆盖 ───────────
    开启时按 covScore 换成纯色材质（每网格独立克隆，不动原材质、不与 hover/dim 共享状态），
    关闭即换回。装饰件不在 pickables 里，保持原样作对比。 */
 let covOn = false;

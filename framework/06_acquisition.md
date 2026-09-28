@@ -32,7 +32,7 @@ Spark 不执行采集任务；它接收已交付的永久原件、运行提取�
 
 ### 第一阶段实现与持久边界
 
-`/supply.html` 是真实资料供应中心；`/supply-demo.html` 仅演示，样例不写服务器。资料收件箱链接进入供应中心，两页复用站点登录、导航和外观。供应中心的 `#overview` 展示目的、待补目录、供应入口、计划任务、真实交付和接收原件数；`#coverage` 展示先广后深批次；`#resources` 展示 AWS、macmini、Spark 分工；交付标签读取真实 Fetchspec 回执及现有 Reader 目录状态。回执里的“已接收”“Reader 候选就绪”“证据审核”“C3 采用”分别计量，彼此不能冒充。
+`/supply.html` 是采集页（目标表、研究问题任务、收件箱、规格批次与供应台账）；演示页已退役。资料收件箱链接进入供应中心，两页复用站点登录、导航和外观。供应中心的 `#overview` 展示目的、待补目录、供应入口、计划任务、真实交付和接收原件数；`#coverage` 展示先广后深批次；`#resources` 展示 AWS、macmini、Spark 分工；交付标签读取真实 Fetchspec 回执及现有 Reader 目录状态。回执里的“已接收”“Reader 候选就绪”“证据审核”“C3 采用”分别计量，彼此不能冒充。
 
 `workflow.supply` 是人工需求与任务计划唯一写入用例；生成目标由因子树、部件表和权利表产生，不在供应中心手写。`GET /api/supply` 为成员只读视图，并投影全部 `team=fetchspec` 的生成目标及 sourced/assumed/needed 计数；`POST /api/supply` 仅管理员经同源自定义请求头可创建补充需求、追加供应方任务。每项人工任务保存 execution_mode 与 execution_host，机器组合由能力目录强制校验。Fetchspec 接收 CLI `fetchspec-receive` 从文件系统接收已传输的 package，并将回执写入同一私有 supply-center 状态根；同一个任务 ID 必须存在且分配给 fetchspec。回执表只记传输验收，不代替原任务计划或生成目标。
 

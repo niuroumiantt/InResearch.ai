@@ -232,7 +232,7 @@ async function main(){
   const p0=prods.filter(p=>p.priority==="P0");
   app.innerHTML=`
   <div class="head">
-    <h1>产品资料采集看板 <em>admin/product</em></h1>
+    <h1>产品资料登记覆盖 <em>admin/product</em></h1>
     <div class="kpis">
       <span><b>${prods.length}</b>条产品线</span>
       <span>P0 <b>${p0.length}</b>· 有登记 <b>${p0.filter(p=>p._state!=="none").length}</b>· 核心类型登记 <b>${p0.filter(p=>p._state==="core").length}</b></span>

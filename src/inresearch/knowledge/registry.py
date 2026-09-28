@@ -206,7 +206,7 @@ def completed_questions(knowledge):
 
 def question_tasks(questions, knowledge):
     closed = completed_questions(knowledge)
-    # 兼容模块码只是任务的分组键（团队看板、深读分包），问题本身挂骨架节点
+    # 兼容模块码只是任务的分组键（研究问题任务、深读分包），问题本身挂骨架节点
     return [dict(id='Q-' + q['id'], wid='Q-' + q['id'], mid=q.get('legacy_module') or q.get('module_id'),
                  module_id=q.get('legacy_module') or q.get('module_id'), node=q.get('node'), variable_class=q.get('variable_class'), pri='P2', kind='研究问题开放',
                  gap=q['text'], title=q['text'], action=q['acceptance'],

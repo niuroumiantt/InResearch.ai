@@ -1,5 +1,6 @@
 # 数据中心全成本研究档案
 
+> 历史材料 · 2026-09-28 起 `cost.html` 已并入 `ledger.html`（统一经济模型 `data/datacenter_model.json`，唯一参考实现 `knowledge/economics.py`）；本目录记录当时的研究，不作当前执行指令。
 > RESEARCH ARTIFACT · 2026-09-14 · 不是当前行业报价或投资建议。
 
 本目录保存“数据中心成本重新估值”专题的研究正文、来源核验、材料审阅、可复算模型与 Excel 工作簿。它从 `inews.today` 的公众号交付目录迁入 `inresearch.ai`，因为成本模型属于持续研究能力；公众号 HTML、X 发布包和二维码等渠道交付物仍留在原发布项目。

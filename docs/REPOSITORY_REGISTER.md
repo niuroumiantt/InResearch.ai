@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1015。
+在册文件：1011。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,7 +16,7 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 276 |
-| 运行代码 | 216 |
+| 运行代码 | 212 |
 | 现行规范 | 12 |
 | 项目配置 | 94 |
 | 兼容研究记录 | 16 |
@@ -328,15 +328,16 @@
 | `framework/current_state.json` | policies | 26 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
-| `framework/current_state.json` | known_retired_patterns | 11 |
+| `framework/current_state.json` | known_retired_patterns | 28 |
 | `framework/current_state.json` | operational_guides | 9 |
+| `framework/current_state.json` | retired_scan_snapshots | 1 |
 | `framework/dashboard_rules.json` | honesty | 5 |
 | `framework/data_contract.json` | source_grades | 5 |
 | `framework/data_contract.json` | project_statuses | 9 |
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 15 |
+| `framework/interface_manifest.json` | static_pages | 13 |
 | `framework/interface_manifest.json` | public_pages | 8 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
@@ -1403,21 +1404,17 @@
 | `web/pages/auth/layout.html` | 运行代码 |
 | `web/pages/auth/login.html` | 运行代码 |
 | `web/pages/auth/password.html` | 运行代码 |
-| `web/pages/bake.html` | 运行代码 |
 | `web/pages/bom.html` | 运行代码 |
 | `web/pages/bom3d.html` | 运行代码 |
 | `web/pages/company.html` | 运行代码 |
 | `web/pages/compare.html` | 运行代码 |
 | `web/pages/doc.html` | 运行代码 |
-| `web/pages/framework_poster.html` | 运行代码 |
 | `web/pages/ledger.html` | 运行代码 |
 | `web/pages/node.html` | 运行代码 |
 | `web/pages/ops.html` | 运行代码 |
-| `web/pages/poster.html` | 运行代码 |
 | `web/pages/product-catalog.html` | 运行代码 |
 | `web/pages/rack3d.html` | 运行代码 |
 | `web/pages/report.html` | 运行代码 |
-| `web/pages/supply-demo.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |
 | `web/routes.json` | 项目配置 |
 | `web/themes/preference.js` | 运行代码 |

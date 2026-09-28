@@ -33,7 +33,7 @@ from datetime import date
 
 ROOT = project_root()
 OUT = workspace_path("reports/blindspot.md", ROOT)
-OUT_JSON = workspace_path("reports/blindspot.json", ROOT)   # 供仪表盘等机器消费方
+OUT_JSON = workspace_path("reports/blindspot.json", ROOT)   # 机器消费方（页面已不再读）
 
 SUSPECT_RATIO = 3.0   # 强信号疑似/已命中 超过此倍数即报警
 MIN_SUSPECT = 30      # 强信号疑似数低于此值不报警（避免小样本噪声）

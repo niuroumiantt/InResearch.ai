@@ -3,10 +3,6 @@ export function objectNetwork(graph, centerId, mode = 'all') {
   const objects = new Map((graph.objects || []).filter(o=>!o.navigation_hidden).map(o => [o.id, o]));
   const center = objects.get(centerId);
   if (!center) return {center:null,nodes:[],edges:[]};
-  if (mode === 'topics') {
-    const nodes = (graph.research_topics || []).map(t => ({id:centerId+'@'+t.id,name:t.name,kind:'research_topic',topic_id:t.id}));
-    return {center,nodes,edges:nodes.map(n => ({id:'topic:'+n.id,source:centerId,target:n.id,label:'研究角度',category:'topic',status:'outline',evidence_ids:[]}))};
-  }
   const edges=[];
   if (mode !== 'registered') for (const o of objects.values()) for (const [i, section] of (o.research_sections || []).entries()) {
     for (const target of section.object_ids || []) if (o.id === centerId || target === centerId) {
@@ -31,7 +27,7 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
   let mode='all',page=0,zoom=1;
   const tools=document.createElement('div');tools.className='rg-node-actions';
   const select=document.createElement('select');select.setAttribute('aria-label','图谱关系筛选');
-  for(const [value,text] of [['all','对象关系与研究外延'],['explore','研究外延'],['registered','已登记关系'],['topics','九个研究角度']]){const o=document.createElement('option');o.value=value;o.textContent=text;select.append(o);}
+  for(const [value,text] of [['all','对象关系与研究外延'],['explore','研究外延'],['registered','已登记关系']]){const o=document.createElement('option');o.value=value;o.textContent=text;select.append(o);}
   const back=button('后退一步',onBack);back.disabled=!canBack;
   tools.append(back,select,button('缩小',()=>resize(.8)),button('放大',()=>resize(1.25)),button('适应画布',()=>{zoom=1;applyZoom();}));
   const status=document.createElement('p');status.className='rg-caption';status.setAttribute('aria-live','polite');
@@ -138,7 +134,7 @@ export function mountObjectNetwork(host,{graph,centerId,onNavigate,onTopic,onBac
     visibleNodes.forEach(n=>addNode(n));addNode(center,true);canvas.replaceChildren(svg);applyZoom();
     pager.replaceChildren();if(pages>1){const prev=button('上一页',()=>{page--;draw();});prev.disabled=page===0;const next=button('下一页',()=>{page++;draw();});next.disabled=page===pages-1;pager.append(prev,next);}
     edgeList.replaceChildren();for(const e of visibleEdges){const li=document.createElement('li');const names=new Map([[centerId,center],...nodes.map(n=>[n.id,n])]);li.textContent=`${names.get(e.source)?.name||e.source} → ${names.get(e.target)?.name||e.target}：${e.category==='registered'?labelRelation(e.label):e.label}；${e.category==='registered'?'已登记 / '+e.status:'研究导览，非装配事实'}；证据 ID：${e.evidence_ids.length?e.evidence_ids.join('、'):'未登记'}；关系 ID：${e.id}`;edgeList.append(li);}
-    if(!nodes.length){const empty=document.createElement('p');empty.className='rg-caption';empty.textContent='尚无相邻对象记录。可切换到“九个研究角度”；无连线不代表无关系。';pager.append(empty);}
+    if(!nodes.length){const empty=document.createElement('p');empty.className='rg-caption';empty.textContent='尚无相邻对象记录；无连线不代表无关系。';pager.append(empty);}
   }
   select.addEventListener('change',()=>{mode=select.value;page=0;draw();});draw();
   return ()=>{events.abort();clearTimeout(closeTimer);popup.remove();};

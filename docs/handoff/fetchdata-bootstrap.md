@@ -1,6 +1,6 @@
 # fetchdata 仓库启动说明（2026-09-28）
 
-供创建 `niuroumiantt/fetchdata` 的会话直接接手。本文只写边界与骨架，不写实现细节；正式规则在 [06 采集规范](../../framework/06_acquisition.md)，任务来源在 [五层目标清单](../../framework/tco_targets.json)。
+供创建 `niuroumiantt/fetchdata` 的会话直接接手。本文只写边界与骨架，不写实现细节；正式规则在 [06 采集规范](../../framework/06_acquisition.md)，任务来源在 [五类变量目标清单](../../framework/tco_targets.json)。
 
 ## 为什么一个仓库承载四队
 
@@ -32,7 +32,7 @@ inresearch 于 2026-09-28 删除 `src/inresearch/adapters/acquisition.py` 中的
 
 ## 第一批任务
 
-按目标清单 `team` 列筛选：fetchstat 先做 `L3.power_price.state_industrial`、`L3.demand_charge.tariff`、`L3.wages.bls`、`L3.escalation.eci_cpi`、`L5.tax.rates`；fetchfilings 先做 `L4.useful_life.notes`、`L5.debt.terms`、`L2.pue_wue.operator_disclosure`；fetchreports 先做 `L3.capex.cost_index`、`L2.pue.survey`；fetchquotes 先做 `L3.gpu_hour.index`、`L3.gpu.used_and_rack`。
+按目标清单 `team` 列筛选（行 ID 自 2026-09-28 起为 `F.<因子>.<slug>` / `P.<部件>.<类别>` / `S.<权利>.<类别>`，例如 `F.cost.energy.price.power_price.state_industrial`）：fetchstat 先做电价、需量费、工资、涨幅与税率的因子行；fetchfilings 先做 `L4.useful_life.notes`、`L5.debt.terms`、`L2.pue_wue.operator_disclosure`；fetchreports 先做 `L3.capex.cost_index`、`L2.pue.survey`；fetchquotes 先做 `L3.gpu_hour.index`、`L3.gpu.used_and_rack`。
 
 ## 验收
 
