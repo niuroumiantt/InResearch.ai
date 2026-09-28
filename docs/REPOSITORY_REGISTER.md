@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1004。
+在册文件：1006。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,8 +15,8 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 268 |
-| 运行代码 | 217 |
+| 历史快照 | 269 |
+| 运行代码 | 218 |
 | 现行规范 | 13 |
 | 项目配置 | 92 |
 | 兼容研究记录 | 16 |
@@ -348,7 +348,7 @@
 | `framework/supply_contract.json` | providers | 7 |
 | `framework/tco_factors.json` | factors | 24 |
 | `framework/tco_targets.json` | principles | 4 |
-| `framework/tco_targets.json` | targets | 43 |
+| `framework/tco_targets.json` | targets | 287 |
 | `framework/verification_contract.json` | policies | 13 |
 | `outputs/geluoke-research/2026-09-26/checks/validation.json` | images | 5 |
 | `outputs/geluoke-research/2026-09-26/sources.json` | published_source_numbering | 48 |
@@ -924,6 +924,7 @@
 | [docs/reviews/2026-09-21/supply-center/DELIVERY.md](reviews/2026-09-21/supply-center/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md](reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-28/bom-recut/PROPOSAL.md](reviews/2026-09-28/bom-recut/PROPOSAL.md) | 历史快照 |
+| [docs/reviews/2026-09-28/dashboard/PROPOSAL.md](reviews/2026-09-28/dashboard/PROPOSAL.md) | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -1153,6 +1154,7 @@
 | `src/inresearch/knowledge/policy.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
+| `src/inresearch/knowledge/targets.py` | 运行代码 |
 | `src/inresearch/knowledge/validate.py` | 运行代码 |
 | `src/inresearch/knowledge/verify.py` | 运行代码 |
 | `src/inresearch/materials/__init__.py` | 运行代码 |
