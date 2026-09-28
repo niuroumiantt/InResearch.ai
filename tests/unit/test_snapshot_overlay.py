@@ -28,13 +28,26 @@ class OverlayTests(unittest.TestCase):
         m4 = snapshot(doc("doc-a", claims=5), doc("doc-b", claims=3), doc("doc-c", claims=2))
         result = overlay.overlay(spark, [("m4.json", overlay.validate_external(m4))])
         k = spark["knowledge"]
-        self.assertEqual(result, {"added": 2, "kept_spark_reading": 1, "files": ["m4.json"]})
+        self.assertEqual(result, {"added": 2, "kept_spark_reading": 1, "dropped_unknown_ids": 0, "files": ["m4.json"]})
         self.assertEqual(sorted(d["doc_id"] for d in k["documents"]), ["doc-a", "doc-b", "doc-c"])
         by_doc = lambda d: [s for s in k["statements"] if s["document_id"] == d]
         self.assertEqual((len(by_doc("doc-a")), len(by_doc("doc-b")), len(by_doc("doc-c"))), (1, 3, 2))
         sources = {d["doc_id"]: d.get("projection_source") for d in k["documents"]}
         self.assertEqual(sources, {"doc-a": None, "doc-b": "external:m4.json", "doc-c": "external:m4.json"})
         self.assertEqual(len([e for e in k["evidence"] if e["document_id"] == "doc-b"]), 1)
+
+    def test_ids_the_deployed_registry_no_longer_has_are_dropped_and_counted(self):
+        m4 = snapshot(doc("doc-c"))
+        m4["knowledge"]["documents"][0]["object_ids"] = ["obj-kept", "obj-gone"]
+        m4["knowledge"]["statements"][0].update(object_ids=["obj-gone"], question_ids=["q-kept"])
+        spark = snapshot()
+        allowed = {"object_ids": {"obj-kept"}, "question_ids": {"q-kept"}}
+        result = overlay.overlay(spark, [("m4.json", m4)], allowed)
+        k = spark["knowledge"]
+        self.assertEqual(result["dropped_unknown_ids"], 2)
+        self.assertEqual(k["documents"][0]["object_ids"], ["obj-kept"])
+        self.assertEqual((k["statements"][0]["object_ids"], k["statements"][0]["question_ids"]), ([], ["q-kept"]))
+        self.assertEqual(m4["knowledge"]["documents"][0]["object_ids"], ["obj-kept", "obj-gone"])   # input untouched
 
     def test_incomplete_or_non_candidate_or_orphan_rows_are_refused(self):
         with self.assertRaisesRegex(ValueError, "complete reading coverage"):
