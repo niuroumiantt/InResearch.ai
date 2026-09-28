@@ -6,12 +6,12 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1003。
+在册文件：1004。
 
 | 身份 | 文件数 |
 |---|---|
 | 静态资源 | 52 |
-| 候选与外部输入 | 145 |
+| 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
@@ -545,6 +545,7 @@
 | `docs/inbox/facts_candidates/m15_scenario_20260817.json` | 候选与外部输入 |
 | `docs/inbox/framework_proposals/2026-09-06-attachments.json` | 候选与外部输入 |
 | [docs/inbox/framework_proposals/2026-09-21-feeder-repos.md](inbox/framework_proposals/2026-09-21-feeder-repos.md) | 候选与外部输入 |
+| [docs/inbox/framework_proposals/2026-09-23-product-research-and-site-evolution.md](inbox/framework_proposals/2026-09-23-product-research-and-site-evolution.md) | 候选与外部输入 |
 | [docs/inbox/framework_proposals/README.md](inbox/framework_proposals/README.md) | 候选与外部输入 |
 | `docs/inbox/framework_proposals/framework_proposal_L1-L4_20260831.html` | 候选与外部输入 |
 | [docs/inbox/inresearch-alignment/ALIGNMENT.md](inbox/inresearch-alignment/ALIGNMENT.md) | 候选与外部输入 |
