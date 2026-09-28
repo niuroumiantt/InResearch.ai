@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-28：收件箱、规格批次、团队看板并入采集页（第 5 步 b）
+
+第 5 步后半。`materials.html`（资料收件箱）、`nvidia-pilot.html`（NVIDIA 规格批次）、`team.html`（团队看板）三页删除，内容并入 `supply.html` 的三个标签：**收件箱**（原表单与最近提交，`materials.js` 元素 ID 加 `mi-` 前缀）、**规格批次**（`pilot.js`，读 `/api/pilot-progress/nvidia`，契约不变）、**研究问题任务**（`tasks-board.js`，读 `/api/tasks`，任务按骨架节点分组，模块盲区统计退役；派工仍走 `/api/assign` 的 `workorder_id` 兼容路径）。旧地址 302 到对应标签；实习生只见目标表与研究问题任务两个标签（供应台账、收件箱与规格批次的接口对实习生 403，页面如实说）。禁止页、规格库页与一级导航的旧链接改指采集页。采集页标签自此按四段倒序排：目标表 → 研究问题任务 → 收件箱 → 规格批次 → 供应台账（作战总览、广度与深度、资源与执行、供应方与任务、研究需求、交付与验收）。06 收件箱一句同步；`nvidia_pilot`、`research_delivery`、`supply` 三个浏览器套件改为采集页断言。
+
 ## 2026-09-28：采集页第一屏是目标表，派工按目标行 ID（第 5 步 a）
 
 [提案](reviews/2026-09-28/site/PROPOSAL.md) §4 采集页一行与 §9 第 5 步的前半落地。`supply.html` 新增默认标签「目标表」（`web/components/targets.js`）：六队卡（存在状态、承担行数、最近交付、下一到期）、五系统 × 五类的"缺 / 行"热图、可按队 / 类 / 系统 / 状态 / 负责人筛选的目标行表，每行链回节点页停在该列；节点页每列多一个"→ 采集"链接按节点与列预筛（`?node=&col=`）。派工与交付登记从此按目标行 ID：`/api/targets`（`workflow/dispatch.py`）在服务端按角色过滤——实习生只见分配给自己的行，公开只读没有这个接口；`assign` 用例接受 `target_id`（`workorder_id` 只作兼容工单）；新增 `register_delivery(target_id, evidence_path)`（`/api/deliver`）把交付指针记到 `data/assignments.json`，指针只是运行库登记，进入 `delivered` 仍看 Git 内载体，页面标"运行库有 / Git 无"。实习生的首页改为采集页目标表，可 GET 采集页与 `/api/targets`、POST 派工与交付；供应台账（`/api/supply`）仍只对内部成员开放，页面如实说。06、09 同步。

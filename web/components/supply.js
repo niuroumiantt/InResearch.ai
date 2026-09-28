@@ -2,8 +2,10 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const escape = value => String(value ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
-  const allowedTabs = new Set(['targets','overview','coverage','resources','providers','demands','deliveries']);
-  let data, tab = 'targets', selected = 'fetchspec', admin = false, generation = 0, pending, saving = false;
+  const allowedTabs = new Set(['targets','tasks','inbox','pilot','overview','coverage','resources','providers','demands','deliveries']);
+  const panelTabs = new Set(['targets','tasks','inbox','pilot']);
+  const internTabs = new Set(['targets','tasks']);
+  let data, tab = 'targets', selected = 'fetchspec', admin = false, role = 'member', generation = 0, pending, saving = false;
   const kinds = {existing_repo:'已有 repo · 接收已上线',existing_feed:'已有新闻接口 · 任务未接入',existing_channel:'已有上传渠道 · 待统一接入',proposed:'能力已登记 · repo 待规划'};
   const execution = task => task.execution_mode === 'continuous' ? '持续采集 · AWS' : task.execution_mode === 'assisted' ? '人工辅助 · macmini' : '旧计划 · 尚未指定执行机';
   const providerOptions = () => data.catalog.providers.map(p => `<option value="${escape(p.id)}">${escape(p.name)} · ${escape(p.capability)}</option>`).join('');
@@ -12,10 +14,14 @@
   const taskCounts = () => ({planned:data.tasks.filter(t=>t.status==='planned').length, aws:data.tasks.filter(t=>t.execution_host==='aws').length, macmini:data.tasks.filter(t=>t.execution_host==='macmini').length});
   function render() {
     document.querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tab === tab)));
-    // 目标表是第一屏，不依赖供应台账（实习生只有目标表）
-    const targetsTab = tab === 'targets';
-    $('targets-panel').hidden = !targetsTab; document.querySelector('.layout').hidden = targetsTab; $('counts').hidden = targetsTab;
-    if (targetsTab && window.InresearchTargets) window.InresearchTargets.mount($('targets-panel'));
+    // 目标表是第一屏，不依赖供应台账；收件箱、规格批次、研究问题任务是并入的三页；实习生只有目标表与任务
+    document.querySelectorAll('[data-tab]').forEach(b => { b.hidden = role === 'intern' && !internTabs.has(b.dataset.tab); });
+    const panel = panelTabs.has(tab);
+    document.querySelectorAll('[data-panel]').forEach(p => { p.hidden = p.dataset.panel !== tab; });
+    document.querySelector('.layout').hidden = panel; $('counts').hidden = panel;
+    if (tab === 'targets' && window.InresearchTargets) window.InresearchTargets.mount($('targets-panel'));
+    if (tab === 'tasks' && window.InresearchTasks) window.InresearchTasks.mount(role);
+    if (tab === 'pilot' && window.InresearchPilot) window.InresearchPilot.mount();
     if (!data) return;
     const receivedItems=data.deliveries.reduce((n,d)=>n+(d.received_items||0),0);
     $('counts').textContent = `${data.catalog.providers.length} 个供应入口 · Fetchspec ${data.generated_targets.total} 个生成目标 · ${data.demands.length} 项人工资料需求 · ${data.tasks.length} 项计划任务 · ${data.deliveries.length} 个交付回执 · ${receivedItems} 件原件已接收`;
@@ -76,7 +82,8 @@
       if (!whoRes.ok) throw Error('无法读取供应台账，请确认登录后重试。');
       const user=await whoRes.json();
       if(seq!==generation)return;
-      admin=user.role==='admin';
+      admin=user.role==='admin';role=user.role||'member';
+      if (role==='intern' && !internTabs.has(tab)) tab='targets';
       if (!supplyRes.ok) { data=null; render(); $('status').textContent = supplyRes.status===403 ? '供应台账只对内部成员开放；分配给你的目标行在上方目标表。' : '无法读取供应台账，请确认登录后重试。'; return; }
       const next=await supplyRes.json();
       if(seq!==generation)return;

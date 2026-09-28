@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1017。
+在册文件：1016。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,7 +16,7 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 276 |
-| 运行代码 | 217 |
+| 运行代码 | 216 |
 | 现行规范 | 12 |
 | 项目配置 | 94 |
 | 兼容研究记录 | 16 |
@@ -336,7 +336,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 18 |
+| `framework/interface_manifest.json` | static_pages | 15 |
 | `framework/interface_manifest.json` | public_pages | 8 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
@@ -1387,6 +1387,7 @@
 | `web/components/object-network.js` | 运行代码 |
 | `web/components/part-dossier.js` | 运行代码 |
 | `web/components/part-inspector.js` | 运行代码 |
+| `web/components/pilot.js` | 运行代码 |
 | `web/components/product-catalog.js` | 运行代码 |
 | `web/components/research-graph.js` | 运行代码 |
 | `web/components/scene-data.js` | 运行代码 |
@@ -1398,6 +1399,7 @@
 | `web/components/site-shell.js` | 运行代码 |
 | `web/components/supply.js` | 运行代码 |
 | `web/components/targets.js` | 运行代码 |
+| `web/components/tasks-board.js` | 运行代码 |
 | `web/pages/admin/product/index.html` | 运行代码 |
 | `web/pages/auth/forbidden.html` | 运行代码 |
 | `web/pages/auth/layout.html` | 运行代码 |
@@ -1411,9 +1413,7 @@
 | `web/pages/doc.html` | 运行代码 |
 | `web/pages/framework_poster.html` | 运行代码 |
 | `web/pages/ledger.html` | 运行代码 |
-| `web/pages/materials.html` | 运行代码 |
 | `web/pages/node.html` | 运行代码 |
-| `web/pages/nvidia-pilot.html` | 运行代码 |
 | `web/pages/ops.html` | 运行代码 |
 | `web/pages/poster.html` | 运行代码 |
 | `web/pages/product-catalog.html` | 运行代码 |
@@ -1421,7 +1421,6 @@
 | `web/pages/report.html` | 运行代码 |
 | `web/pages/supply-demo.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |
-| `web/pages/team.html` | 运行代码 |
 | `web/routes.json` | 项目配置 |
 | `web/themes/preference.js` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |

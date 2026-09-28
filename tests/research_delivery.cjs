@@ -22,8 +22,9 @@ const base = process.env.UI_BASE_URL;
     // 2026-09-28：派工面板读目标表（目标行数），不再显示工单数
     const targets = await (await page.request.get(base+'/data/tco_targets.json')).json();
     assert.match(await page.locator('#grid').innerText(), new RegExp(String(targets.targets.length)+' 行目标'));
-    await page.goto(base+'/team.html'); await page.locator('#tb tr').nth(1).waitFor();
-    assert.match(await page.locator('#sub').innerText(),new RegExp(String(tasks.orders.length)));
+    // 2026-09-28：团队看板并入采集页的「研究问题任务」标签
+    await page.goto(base+'/supply.html#tasks'); await page.locator('#tk-table tr').nth(1).waitFor();
+    assert.match(await page.locator('#tk-sub').innerText(),new RegExp(String(tasks.orders.length)));
     assert.deepEqual(errors,[]);
     console.log('PASS report content, source model, current task parity and team rendering');
   } finally { await browser.close(); }

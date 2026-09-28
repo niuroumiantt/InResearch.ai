@@ -242,6 +242,9 @@ class Handler(SimpleHTTPRequestHandler):
         user = self._gate()
         if user is None:
             return
+        merged = {'/team.html': '#tasks', '/materials.html': '#inbox', '/nvidia-pilot.html': '#pilot'}
+        if self._norm_path() in merged:  # 三页并入采集页（2026-09-28）
+            return self._redirect('/supply.html' + merged[self._norm_path()])
         if user and auth.user_role(user) == "intern":
             path = self._norm_path()
             if path in ("/", "/index.html"):

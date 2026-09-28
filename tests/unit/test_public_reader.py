@@ -94,7 +94,8 @@ class PublicReaderHTTPTests(unittest.TestCase):
 
     def test_intern_gets_public_content_and_the_public_ledger(self):
         with patch.object(auth, 'session_user', return_value='i'), patch.object(auth, 'user_role', return_value='intern'):
-            self.assertEqual(self.request('GET', '/team.html')[0], 200)
+            status, headers, _ = self.request('GET', '/team.html')
+            self.assertEqual((status, headers.get('Location')), (302, '/supply.html#tasks'), 'the team board merged into the acquisition page')
             self.assertEqual(self.request('GET', '/ledger.html')[0], 200, 'what the public can read, a logged-in intern can read')
             model = json.loads(self.request('GET', '/data/datacenter_model.json')[2])
             self.assertEqual(model['public_view'], 'reader')

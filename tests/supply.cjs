@@ -17,6 +17,11 @@ const base=process.env.UI_BASE_URL;
   await page.getByRole('button',{name:'派工',exact:true}).first().click();await page.locator('#target-dialog[open]').waitFor();
   await page.locator('#td-cancel').click();
   await page.goto(base+'/supply.html');await page.locator('#targets-panel table.targets tbody tr').first().waitFor();
+  await page.getByRole('button',{name:'研究问题任务',exact:true}).click();await page.locator('#tk-table tr').nth(1).waitFor();
+  assert.match(page.url(),/#tasks$/);assert.ok((await page.locator('#tk-nodes .team-card').count())>0,'tasks grouped by skeleton node');
+  await page.getByRole('button',{name:'收件箱',exact:true}).click();await page.locator('#mi-form').waitFor();assert.match(page.url(),/#inbox$/);
+  await page.getByRole('button',{name:'规格批次',exact:true}).click();await page.locator('#pilot-status').waitFor();assert.match(page.url(),/#pilot$/);
+  for(const [legacy,hash] of [['/team.html','#tasks'],['/materials.html','#inbox']]){const r=await page.request.get(base+legacy,{maxRedirects:0});assert.equal(r.status(),302,legacy);assert.ok(r.headers()['location'].endsWith('supply.html'+hash),legacy);}
   await page.getByRole('button',{name:'作战总览',exact:true}).click();
   await page.getByRole('heading',{name:'目的与当前进展',exact:true}).waitFor();
   assert.match(page.url(),/#overview$/);
