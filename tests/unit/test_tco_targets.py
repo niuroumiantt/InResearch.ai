@@ -23,7 +23,7 @@ class TcoTargetListTests(unittest.TestCase):
         cls.rights = {r['id']: r for r in load('framework/site_rights.json')['rights']}
         cls.series = {r['series_id'] for r in load('data/prices.json')['records']}
         cls.indicators = {i['id'] for i in load('framework/indicators.json')['indicators']}
-        model = load('data/datacenter_tco_model.json')
+        model = load('data/datacenter_model.json')
         cls.inputs = set(model['inputs'])
         cls.evidence = model['evidence']
         contract = load('framework/supply_contract.json')

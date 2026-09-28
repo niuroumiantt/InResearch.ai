@@ -102,7 +102,7 @@
   <span class="sp"></span>
   <a class="tab" href="bom.html">爆炸图</a>
   <a class="tab" href="bom3d.html">园区 3D</a>
-  <a class="tab" href="economics.html">经济模型</a>
+  <a class="tab" href="ledger.html">账本</a>
   <a class="tab" href="supply.html">供应中心</a>
   <a class="tab" href="doc.html?f=docs/reviews/2026-09-28/dashboard/PROPOSAL.md">为什么这样排 ↗</a>
 </div>
@@ -201,7 +201,7 @@ function factorList(factors, pred, formulas) {
   const rows = factors.filter(pred);
   const f = formulas ? `<div class="factor"><b>收入</b> <code>${esc(formulas.revenue)}</code></div><div class="factor"><b>成本</b> <code>${esc(formulas.cost)}</code></div>` : "";
   if (!rows.length && !f) return '<div class="empty">没有因子挂到这个节点——它不进账，只进研究。</div>';
-  return f + rows.map(x => `<div class="factor"><b>${esc(x.label)}</b> <span class="chip">${esc(x.side)}</span> <span class="chip">${esc(x.id)}</span>${x.unit ? ` <span class="chip">${esc(x.unit)}</span>` : ""}${x.formula ? `<br><code>${esc(x.formula)}</code>` : ""}${x.tco_inputs?.length ? `<br><span class="empty">模型输入：${x.tco_inputs.map(esc).join("、")}</span>` : ""}${x.bom_parts?.length ? `<br><span class="empty">汇总部件 ${x.bom_parts.length} 个${x.site_rights?.length ? "，权利 " + x.site_rights.length + " 条" : ""}</span>` : ""}</div>`).join("");
+  return f + rows.map(x => `<div class="factor"><b>${esc(x.label)}</b> <span class="chip">${esc(x.side)}</span> <span class="chip">${esc(x.id)}</span>${x.unit ? ` <span class="chip">${esc(x.unit)}</span>` : ""}${x.formula ? `<br><code>${esc(x.formula)}</code>` : ""}${x.model_inputs?.length ? `<br><span class="empty">模型输入：${x.model_inputs.map(esc).join("、")}</span>` : ""}${x.bom_parts?.length ? `<br><span class="empty">汇总部件 ${x.bom_parts.length} 个${x.site_rights?.length ? "，权利 " + x.site_rights.length + " 条" : ""}</span>` : ""}</div>`).join("");
 }
 
 function targetPanel(rows, teams) {

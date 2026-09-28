@@ -5,43 +5,90 @@
 <script src="/assets/site-skin.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="一座数据中心的账本：一个模型、一份输入表、三种问法、四本账输出">
 <title>账本 — inresearch.ai</title>
 <style>
-  /* 账本：根节点"价格"列的一个展开。三个计算器是同一列的三个视图，先对齐它们共用的假设，再各看各的。 */
+  /* 账本：根节点"价格"列的一个展开。统一经济模型 v3：上半部分输入与情景（五类分组），下半部分四个结果视图。 */
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 var(--ui-font); padding-bottom: 40px; }
-  a { color: var(--accent); text-decoration: none; }
-  .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
-    display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
+  body { background: var(--ui-bg, var(--bg)); color: var(--ui-ink, var(--text)); font: 13.5px/1.6 var(--ui-font); padding-bottom: 40px; }
+  a { color: var(--ui-accent); text-decoration: none; }
+  .topbar { position: sticky; top: 0; background: var(--ui-surface, var(--card)); border-bottom: 1px solid var(--ui-line); display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
   .topbar b { font-size: 15px; margin-right: 14px; }
-  .tab { padding: 12px 14px; color: var(--muted); border-bottom: 2px solid transparent; }
+  .tab { padding: 12px 14px; color: var(--ui-muted); border-bottom: 2px solid transparent; }
   .topbar .sp { flex: 1; }
   .wrap { max-width: 1360px; margin: 18px auto 0; padding: 0 16px; }
   .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 14px; }
-  .head h1 { font-size: 24px; } .head h1 em { font-style: normal; color: var(--accent); }
-  .head .kind { color: var(--muted); font-size: 12px; }
-  .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px 16px; margin-bottom: 14px; }
-  .panel h2 { font-size: 15px; margin-bottom: 4px; } .panel h2 small { color: var(--muted); font-weight: 400; font-size: 11.5px; margin-left: 8px; }
-  .q { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+  .head h1 { font-size: 24px; } .head h1 em { font-style: normal; color: var(--ui-accent); }
+  .head .kind { color: var(--ui-muted); font-size: 12px; }
+  .panel { min-width: 0; background: var(--ui-surface, var(--card)); border: 1px solid var(--ui-line); border-radius: var(--ui-radius); padding: 14px 16px; margin-bottom: 14px; }
+  .panel h2 { font-size: 15px; margin-bottom: 4px; } .panel h2 small { color: var(--ui-muted); font-weight: 400; font-size: 11.5px; margin-left: 8px; }
+  .q, .muted, .note { color: var(--ui-muted); font-size: 12px; margin-bottom: 8px; }
   .tscroll { overflow-x: auto; max-width: 100%; }
   table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
-  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
-  th { color: var(--muted); font-weight: 500; font-size: 11.5px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--ui-line); vertical-align: top; }
+  th { color: var(--ui-muted); font-weight: 500; font-size: 11.5px; }
   td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  td.same { color: var(--muted); } td.diff { color: var(--red); font-weight: 600; }
+  table.bi td i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+  table.bi tr.total td { font-weight: 600; border-top: 2px solid var(--ui-line); }
+  table.bi tr.current td { background: var(--ui-selected, var(--ui-hover)); }
+  table.bi tbody th { color: var(--ui-ink); font-weight: 600; white-space: nowrap; }
+  table.grid td { text-align: center; font-variant-numeric: tabular-nums; position: relative; }
+  table.grid td.ok { background: var(--ui-green-bg, color-mix(in srgb, var(--ui-green) 18%, transparent)); }
+  table.grid td.mid { background: color-mix(in srgb, var(--ui-yellow) 22%, transparent); }
+  table.grid td.bad { background: var(--ui-red-bg, color-mix(in srgb, var(--ui-red) 16%, transparent)); }
+  table.grid td.edge { outline: 2px solid var(--ui-ink); outline-offset: -2px; }
+  table.grid td.anchor small { display: block; font-size: 10px; color: var(--ui-accent); font-weight: 600; }
   .flag { display: inline-block; padding: 0 6px; border-radius: var(--ui-radius); font-size: 11px; color: #fff; }
-  .flag.ok { background: var(--green); } .flag.no { background: var(--red); } .flag.na { background: var(--gray); }
-  .views { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
-  .views button { background: none; border: none; border-bottom: 2px solid transparent; padding: 8px 12px; font: inherit; color: var(--muted); cursor: pointer; }
-  .views button.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
-  .views button:focus-visible { outline: 2px solid var(--ui-focus, var(--accent)); }
+  .flag.ok { background: var(--ui-green); } .flag.no { background: var(--ui-red); } .flag.na { background: var(--ui-muted); }
+  #presets { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 8px; }
+  #presets .preset-group { color: var(--ui-muted); font-size: 11.5px; margin-left: 8px; }
+  #presets button, .actions button { background: var(--ui-control, var(--ui-surface)); border: 1px solid var(--ui-line); border-radius: var(--ui-control-radius, var(--ui-radius)); padding: 4px 10px; font: inherit; font-size: 12.5px; color: var(--ui-ink); cursor: pointer; }
+  #presets button.active { background: var(--ui-accent); color: var(--ui-on-accent, #fff); border-color: var(--ui-accent); }
+  #region-card { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 12.5px; padding: 8px 10px; border: 1px dashed var(--ui-line); border-radius: var(--ui-radius); margin: 8px 0; }
+  #region-card .gap-count { color: var(--ui-red); }
+  .cols > *, .two > * { min-width: 0; }
+  .cols { display: grid; grid-template-columns: minmax(300px, 420px) 1fr; gap: 14px; align-items: start; }
+  .input-group { border: 1px solid var(--ui-line); border-radius: var(--ui-radius); margin-bottom: 8px; }
+  .input-group summary { cursor: pointer; padding: 8px 10px; display: flex; gap: 8px; align-items: baseline; }
+  .input-group summary small { color: var(--ui-muted); font-size: 11.5px; }
+  .input-row { display: grid; grid-template-columns: 1fr 150px; gap: 6px; padding: 4px 10px; align-items: center; border-top: 1px solid var(--ui-line); }
+  .input-row > * { min-width: 0; }
+  .input-row label { font-size: 12.5px; display: flex; flex-wrap: wrap; gap: 4px 6px; align-items: center; }
+  .input-row label small { color: var(--ui-muted); font-size: 11px; flex-basis: 100%; }
+  .input-row .badge { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+  .badge.input { background: var(--ui-ink); } .badge.sourced { background: var(--ui-green); } .badge.assumed { background: var(--ui-yellow); } .badge.needed { background: var(--ui-red); }
+  .badge-text { padding: 0 6px; border-radius: var(--ui-radius); font-size: 11px; color: #fff; }
+  .badge-text.input { background: var(--ui-ink); } .badge-text.sourced { background: var(--ui-green); } .badge-text.assumed { background: var(--ui-yellow); color: var(--ui-ink); } .badge-text.needed { background: var(--ui-red); }
+  .input-row em.gap { font-style: normal; color: #fff; background: var(--ui-red); border-radius: var(--ui-radius); padding: 0 5px; font-size: 10.5px; }
+  .input-box { display: flex; gap: 4px; align-items: center; }
+  .input-box input, .input-box select, #grid-util { width: 100%; min-width: 0; max-width: 100%; font: inherit; font-size: 12.5px; padding: 3px 6px; border: 1px solid var(--ui-line); border-radius: var(--ui-input-radius, 4px); background: var(--ui-control, var(--ui-surface)); color: var(--ui-ink); }
+  .input-box span { color: var(--ui-muted); font-size: 11px; white-space: nowrap; }
+  .actions { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+  .views { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--ui-line); margin-bottom: 10px; }
+  .views button { background: none; border: none; border-bottom: 2px solid transparent; padding: 8px 12px; font: inherit; color: var(--ui-muted); cursor: pointer; }
+  .views button.on { color: var(--ui-accent); border-bottom-color: var(--ui-accent); font-weight: 600; }
+  .views button:focus-visible { outline: 2px solid var(--ui-focus, var(--ui-accent)); }
   .view { display: none; } .view.on { display: block; }
-  .view p { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
-  iframe { width: 100%; height: 1400px; border: 1px solid var(--line); border-radius: var(--ui-radius); background: var(--card); }
-  .err { color: var(--red); border: 1px solid var(--red); border-radius: var(--ui-radius); padding: 14px; margin-top: 16px; }
-  @media (max-width: 900px) { .topbar { height: auto; flex-wrap: wrap; padding: 4px 10px; } .topbar .sp { display: none; } iframe { height: 1100px; } }
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 8px; margin: 8px 0 12px; }
+  .tile { border: 1px solid var(--ui-line); border-radius: var(--ui-radius); padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
+  .tile small { color: var(--ui-muted); font-size: 11px; } .tile strong { font-size: 20px; overflow-wrap: anywhere; } .tile .sub { color: var(--ui-muted); font-size: 11px; }
+  .chart { width: 100%; height: auto; display: block; }
+  .chart-label { font-size: 10px; fill: var(--ui-muted); } .chart-inbar { font-size: 10px; fill: #fff; } .chart-value { font-size: 10px; fill: var(--ui-ink); }
+  .legend { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px 14px; margin: 6px 0 10px; font-size: 12px; }
+  .legend-row { display: flex; gap: 6px; align-items: center; } .legend-row i { width: 10px; height: 10px; border-radius: 2px; } .legend-row strong { margin-left: auto; }
+  .bar-row { display: grid; grid-template-columns: 170px 1fr 120px; gap: 8px; align-items: center; padding: 2px 0; font-size: 12px; }
+  .bar-track { background: var(--ui-line); height: 12px; border-radius: 3px; overflow: hidden; } .bar-fill { height: 100%; }
+  .bench-verdict { font-size: 13px; margin-top: 6px; } .bench-verdict.better { color: var(--ui-green); } .bench-verdict.worse { color: var(--ui-red); }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  h3 { font-size: 13.5px; margin: 12px 0 4px; }
+  .benchmark-group { color: var(--ui-muted); font-size: 12px; margin-top: 8px; }
+  .benchmark-row { display: flex; justify-content: space-between; gap: 10px; padding: 3px 0; border-bottom: 1px solid var(--ui-line); font-size: 12px; }
+  .benchmark-row small { display: block; color: var(--ui-muted); font-size: 11px; }
+  .err { color: var(--ui-red); border: 1px solid var(--ui-red); border-radius: var(--ui-radius); padding: 14px; margin-top: 16px; }
+  @media (max-width: 900px) { .topbar { height: auto; flex-wrap: wrap; padding: 4px 10px; } .topbar .sp { display: none; } .cols, .two { grid-template-columns: 1fr; } .bar-row { grid-template-columns: 110px 1fr 90px; } }
 </style>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+<script defer src="/assets/datacenter-model.js"></script>
 </head>
 <body>
 <inresearch-shell data-section="overview"></inresearch-shell>
@@ -49,84 +96,98 @@
   <b>账本</b>
   <a class="tab" href="node.html?col=3">← 根节点 · 价格列</a>
   <span class="sp"></span>
+  <span class="tab" id="model-date"></span>
   <a class="tab" href="doc.html?f=framework/05_interface_system.md">口径 ↗</a>
 </div>
-<main class="wrap">
-  <header class="head"><h1>一座数据中心的 <em>账本</em></h1><span class="kind">根节点"价格"列的展开 · 三个计算器是同一列的三个视图 · 三级账以经济模型为准</span></header>
+<main class="wrap" id="model-app" aria-busy="true">
+  <header class="head"><h1>一座数据中心的 <em>账本</em></h1><span class="kind">根节点"价格"列的展开 · 一个模型 · 一份输入表 · 三种问法（正算、反算、情景网格）· 四本账输出</span></header>
 
-  <section class="panel" id="bridge">
-    <h2>共用假设对齐<small>三个模型各自的基准情景，同一件事是否用同一个数</small></h2>
-    <div class="q">红色是三个模型不一致的假设。不一致不等于错：口径不同（例如"有效设备时间"不是"付费利用率"）会注明；口径相同而数不同，就是要统一的地方。</div>
-    <div class="tscroll"><table id="bridge-table"><thead><tr><th>假设</th><th class="num">经济模型（三级账）</th><th class="num">TCO 模型</th><th class="num">成本计算</th><th>判定</th><th>说明</th></tr></thead><tbody></tbody></table></div>
+  <section class="panel" id="calibration">
+    <h2>校准锚<small>同一份输入表复现三家的数字；它们是校准，不是基准</small></h2>
+    <div class="q">摩根士丹利回答"满配一年挣多少"，高盛回答"要 15% 回报需要多少收入"，我们 09-14 的基准回答"每有效设备小时全成本"。三个预设各自复现登记值，说明一个引擎能回答三种问法。</div>
+    <div class="tscroll"><div id="calibration-table"></div></div>
   </section>
 
-  <section class="panel" id="views-panel">
-    <h2>三个视图<small>各自的输入面板与结果，交互只在浏览器里，不改写研究权威</small></h2>
-    <div class="views" role="tablist" id="views">
-      <button type="button" role="tab" data-view="economics" class="on">主体账本（四本账 · 三级）</button>
-      <button type="button" role="tab" data-view="tco">全生命周期成本（TCO）</button>
-      <button type="button" role="tab" data-view="cost">全成本计算（有效设备小时）</button>
-    </div>
-    <div class="view on" id="view-economics"><p>芯片厂商、壳层出租方、算力运营方、模型方四本账共用一套假设；根节点的成本、收入、回报三个数由它的基准情景计算。</p><iframe title="经济模型" data-src="economics.html" loading="lazy"></iframe></div>
-    <div class="view" id="view-tco"><p>七组输入按决策顺序排列，逐年现金流折现为 TCO 现值，平准化为每 MW·年、每 kW·月、每 IT kWh、每 GPU 小时。</p><iframe title="TCO 模型" data-src="tco.html" loading="lazy"></iframe></div>
-    <div class="view" id="view-cost"><p>把资源、设施、设备、任务与资本回收五个边界对齐，从 MW 走到年化成本再到有效设备小时的单位成本。</p><iframe title="成本计算" data-src="cost.html" loading="lazy"></iframe></div>
+  <section class="panel" id="scenario">
+    <h2>预设与地区<small>基准只有一个；校准、地区与主体预设都是同一份输入表上的改动</small></h2>
+    <div id="presets"></div>
+    <div class="note" id="preset-note"></div>
+    <div id="region-card"></div>
+    <div class="note" id="project-line"></div>
   </section>
-  <div id="error"></div>
+
+  <div class="cols">
+    <section class="panel" id="inputs-panel">
+      <h2>输入<small>五类变量 · 圆点为证据状态（黑 用户给定 · 绿 已有来源 · 黄 作者假设 · 红 待获取）· 「缺」为当前地区尚无登记来源</small></h2>
+      <div class="actions"><button type="button" id="reset-model">恢复基准</button><button type="button" id="copy-results">复制假设与结果</button></div>
+      <form id="model-inputs" onsubmit="return false"></form>
+    </section>
+
+    <section class="panel" id="views-panel">
+      <h2>四个视图<small>同一次计算的四种读法；交互只在浏览器里，不改写研究权威</small></h2>
+      <div class="views" role="tablist" id="views">
+        <button type="button" role="tab" data-view="lifecycle" class="on">成本结构与平准化</button>
+        <button type="button" role="tab" data-view="ledgers">四本账</button>
+        <button type="button" role="tab" data-view="unit">每有效设备小时全成本</button>
+        <button type="button" role="tab" data-view="inverse">反算与情景网格</button>
+      </div>
+
+      <div class="view on" id="view-lifecycle">
+        <p class="q">等待期与建设期后逐年现金流，折现为 TCO 现值，平准化为年成本，再按每 MW·年、每 kW·月、每 IT kWh、每付费 GPU 小时给出。</p>
+        <div class="kpis"><div class="tile" id="kpi-lev"></div><div class="tile" id="kpi-mw"></div><div class="tile" id="kpi-kw"></div><div class="tile" id="kpi-kwh"></div><div class="tile" id="kpi-gpu"></div><div class="tile" id="kpi-capex"></div></div>
+        <h3>成本结构</h3><div id="structure"></div><div class="legend" id="structure-legend"></div>
+        <h3>逐年现金流</h3><div id="timeline"></div><div class="note" id="timeline-note"></div>
+        <h3>成本表</h3><div class="tscroll" id="cost-table"></div>
+        <div class="two">
+          <div><h3>资本开支 $M/MW</h3><div id="capex-bars"></div><div class="note" id="capex-note"></div></div>
+          <div><h3>对标</h3><div id="benchmark-compare"></div><h3>回报敏感性</h3><div id="tornado"></div><div class="note" id="tornado-note"></div></div>
+        </div>
+        <h3>情景对照</h3><div class="tscroll" id="scenario-table"></div>
+      </div>
+
+      <div class="view" id="view-ledgers">
+        <p class="q">同一个项目，四本账：芯片厂商、壳层出租方、算力运营方、模型方。稳态一年，直线折旧，税后 NOPAT；回报分母按口径切换。</p>
+        <div class="kpis"><div class="tile" id="kpi-chip"></div><div class="tile" id="kpi-shell"></div><div class="tile" id="kpi-compute"></div><div class="tile" id="kpi-model"></div></div>
+        <h3>算力方利润瀑布</h3><div id="waterfall"></div><div class="note" id="waterfall-note"></div>
+        <h3>资本开支去向</h3><div id="capex-stack"></div>
+        <h3>四本账</h3><div class="tscroll" id="ledger-table"></div>
+        <h3>利润分配（每年）</h3><div id="split"></div>
+      </div>
+
+      <div class="view" id="view-unit">
+        <p class="q">把资源、设施、设备、任务与资本回收对齐：资本按资本成本率年化，加稳态运营，除以有效设备小时。</p>
+        <div class="kpis"><div class="tile"><small>年化全成本</small><strong id="cost-total"></strong></div><div class="tile"><small>每有效设备小时</small><strong id="cost-per-hour"></strong></div><div class="tile"><small>资本开支</small><strong id="metric-capex"></strong></div><div class="tile"><small>年用电</small><strong id="metric-energy"></strong></div><div class="tile"><small>年用水</small><strong id="metric-water"></strong></div><div class="tile"><small>有效设备小时</small><strong id="metric-hours"></strong></div></div>
+        <div class="note" id="cost-line"></div>
+        <div class="tscroll" id="unit-table"></div>
+        <h3>收益参照</h3>
+        <div class="kpis"><div class="tile"><small>年收入</small><strong id="return-revenue"></strong></div><div class="tile"><small>每小时盈余</small><strong id="return-surplus"></strong></div><div class="tile"><small>覆盖率</small><strong id="return-coverage"></strong></div></div>
+        <div class="note" id="return-note"></div>
+      </div>
+
+      <div class="view" id="view-inverse">
+        <p class="q">高盛的问法：给定目标回报，反推需要的收入、单价、利用率或造价上限；再把造价/GW × 单价 × 利用率铺成网格，标出两家的锚点。</p>
+        <div class="note" id="inv-line"></div>
+        <div class="kpis"><div class="tile" id="inv-revenue"></div><div class="tile" id="inv-price"></div><div class="tile" id="inv-util"></div><div class="tile" id="inv-capex"></div></div>
+        <div class="note" id="inv-gap"></div>
+        <h3>情景网格 <label style="font-weight:400;font-size:12px">稳态利用率 <select id="grid-util" style="width:auto"></select></label></h3>
+        <div class="tscroll" id="grid-table"></div><div class="note" id="grid-note"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="two">
+    <section class="panel" id="gaps">
+      <h2>数据缺口<small>作者假设、待获取与当前地区标缺的输入</small></h2>
+      <div class="q" id="gap-summary"></div>
+      <div class="tscroll" id="gap-list"></div>
+    </section>
+    <section class="panel" id="benchmarks">
+      <h2>价格库对照<small id="benchmark-updated"></small></h2>
+      <div id="benchmark-list"></div>
+    </section>
+  </div>
+  <p class="note" id="model-note"></p>
+  <div id="model-error" class="err" hidden></div>
 </main>
-
-<script>
-async function get(p) {
-  const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
-  if (!r.ok) throw new Error(p + " → " + r.status);
-  return r.json();
-}
-const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-/* 共用假设桥：同一件事在三个模型里的键。null = 该模型没有这个假设；note 说明口径差异。 */
-const BRIDGE = [
-  { label: "IT 容量 MW", econ: "it_mw", tco: "it_mw", cost: "it_mw" },
-  { label: "PUE", econ: "pue", tco: "pue", cost: "pue" },
-  { label: "IT 负载率", econ: "power_load", tco: "load_factor", cost: "power_load", pct: true },
-  { label: "电量单价 $/kWh", econ: "power_price", tco: "power_price", cost: "energy_price" },
-  { label: "需量费率 $/kW·月", econ: null, tco: "demand_rate", cost: "demand_rate" },
-  { label: "付费利用率", econ: "utilization", tco: "gpu_utilization", cost: "productive", pct: true, note: "成本计算的「有效设备时间」是设备有效工作时间份额，不是售出小时份额；口径不同" },
-  { label: "GPU 小时租金 $/h", econ: "gpu_price", tco: "price_gpu_hour", cost: null },
-  { label: "每 MW GPU 数", econ: "gpus_per_mw", tco: "gpus_per_mw", cost: null },
-  { label: "IT 寿命 年", econ: "it_life", tco: "it_refresh_years", cost: "it_life" },
-  { label: "非 IT 寿命 / 运营期 年", econ: "shell_life", tco: "horizon_years", cost: "facility_life", note: "经济模型与成本计算是折旧年限，TCO 是运营期" },
-  { label: "折现率", econ: "wacc", tco: "wacc", cost: "rate", pct: true },
-  { label: "水价 $/m³", econ: null, tco: "water_price", cost: "water_price" },
-  { label: "土地 $M/MW", econ: "land_per_mw", tco: "land_per_mw", cost: { key: "land", perMw: true }, note: "成本计算登记的是总额，按 IT 容量折成每 MW" },
-];
-function pick(a, k) {
-  if (k == null) return null;
-  if (typeof k === "object") { const v = a[k.key]; return v == null ? null : k.perMw ? v / (a.it_mw || 1) / 1e6 : v; }
-  return a[k] ?? null;
-}
-const fmt = (v, pct) => v == null ? "—" : pct ? (v * 100).toFixed(1) + "%" : (Number.isInteger(v) ? v.toLocaleString() : Number(v).toLocaleString(undefined, { maximumFractionDigits: 3 }));
-(async () => {
-  const [econ, tco, cost] = await Promise.all([get("data/datacenter_economics_model.json"), get("data/datacenter_tco_model.json"), get("data/datacenter_cost_model.json")]);
-  const A = { econ: econ.assumptions, tco: tco.assumptions, cost: cost.assumptions };
-  let diffs = 0;
-  document.querySelector("#bridge-table tbody").innerHTML = BRIDGE.map(b => {
-    const vals = { econ: pick(A.econ, b.econ), tco: pick(A.tco, b.tco), cost: pick(A.cost, b.cost) };
-    const present = Object.values(vals).filter(v => v != null);
-    const same = present.length < 2 ? null : present.every(v => Math.abs(v - present[0]) <= Math.abs(present[0]) * 0.005 + 1e-9);
-    if (same === false && !b.note) diffs++;
-    const flag = same == null ? '<span class="flag na">单模型</span>' : same ? '<span class="flag ok">一致</span>' : b.note ? '<span class="flag na">口径不同</span>' : '<span class="flag no">不一致</span>';
-    return `<tr><td>${esc(b.label)}</td>${["econ", "tco", "cost"].map(m => `<td class="num ${same === false && !b.note ? "diff" : "same"}">${fmt(vals[m], b.pct)}</td>`).join("")}<td>${flag}</td><td>${esc(b.note || "")}</td></tr>`;
-  }).join("");
-  document.querySelector("#bridge .q").textContent += ` 今天口径相同而数不同的假设：${diffs} 条。`;
-  const buttons = [...document.querySelectorAll("#views button")];
-  function show(name) {
-    buttons.forEach(b => { const on = b.dataset.view === name; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
-    document.querySelectorAll(".view").forEach(v => v.classList.toggle("on", v.id === "view-" + name));
-    const frame = document.querySelector("#view-" + name + " iframe");
-    if (frame && !frame.src) frame.src = frame.dataset.src;  // 只加载正在看的视图
-    history.replaceState(null, "", "#" + name);
-  }
-  buttons.forEach(b => b.addEventListener("click", () => show(b.dataset.view)));
-  show(["economics", "tco", "cost"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "economics");
-})().catch(e => { document.getElementById("error").innerHTML = `<div class="err">加载失败：${esc(e.message)}</div>`; });
-</script>
 </body>
 </html>
