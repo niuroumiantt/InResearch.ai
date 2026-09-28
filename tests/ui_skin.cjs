@@ -22,7 +22,7 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
  page.on('pageerror',e=>errors.push(e.message));
  const measure = () => page.evaluate(()=>({theme:document.documentElement.dataset.uiTheme,width:document.documentElement.scrollWidth,viewport:innerWidth,bg:getComputedStyle(document.body).backgroundColor,bar:document.querySelectorAll('#ui-skinbar').length,font:getComputedStyle(document.body).fontFamily}));
  for (const file of manifest.static_pages) {
-   const query = file==='research.html'?'?node=part:gpu&view=P&tab=tasks':file==='doc.html'?'?f=framework/05_interface_system.md':'';
+   const query = file==='doc.html'?'?f=framework/05_interface_system.md':'';
    await page.goto(base+'/'+file+query); await page.locator('#ui-skinbar').waitFor();
    await page.locator('.ui-navigation a[aria-current=page]').waitFor();
    assert.equal(await page.locator('.ui-navigation a[aria-current=page]').count(),1,file+' active section');
@@ -30,7 +30,6 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    assert.equal(await page.locator('[data-ui-choice]').count(),0,file+' has no skin switch');
    if(file==='company.html') await page.locator('.head h1').waitFor();
    if(file==='report.html') {await page.locator('.finding').first().waitFor();assert.equal(await page.locator('.finding').count(),150);}
-   if(file==='research.html') await page.locator('.rg-node h2').waitFor();
    if(file==='ops.html'){await page.locator('#modules .mod').first().waitFor();assert.equal(await page.locator('#modules .mod').count(),15);assert.equal(await page.locator('#error').textContent(),'');assert.ok(await page.locator('#projects tr').count()>100);}
    const settledUrl=page.url();
    // Shared fonts: the bundled Inter + Noto Sans SC stack applies to the body of every application page.
@@ -81,19 +80,10 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    if(file==='research.html') {assert.ok((await measure()).width<=361);if(dir)await page.screenshot({path:path.join(dir,'research-mobile.png')});}
    await page.setViewportSize({width:1440,height:1000});console.log('PASS',file,'light/dark, fonts, controls + phone head bar');
  }
- await page.goto(base+'/research.html?node=part:gpu&view=P&tab=tasks');
- await page.locator('.rg-node h2').waitFor();
- assert.equal(await page.locator('.rg-case-step').count(),3);
- await page.getByRole('button',{name:'查看陈述与回答',exact:true}).click();
- assert.equal(new URL(page.url()).searchParams.get('node'),'part:gpu');
- assert.equal(new URL(page.url()).searchParams.get('view'),'P');
- assert.equal(new URL(page.url()).searchParams.get('tab'),'statements');
- await page.getByRole('button',{name:'继续处理任务',exact:true}).click();
- assert.equal(new URL(page.url()).searchParams.get('tab'),'tasks');
- const before=await page.locator('.rg-node').textContent();const url=page.url();
- await page.locator('#ui-appearance').selectOption('light');
- assert.equal(await page.locator('.rg-node').textContent(),before);assert.equal(page.url(),url);
- await page.reload();assert.equal((await measure()).theme,'light');
+ // 研究页已退役（2026-09-28）：节点页承接；刷新保留外观偏好
+ await page.goto(base+'/node.html?id=part:gpu');await page.locator('#five .col').first().waitFor();
+ await page.locator('#ui-appearance').selectOption('light');const url=page.url();
+ await page.reload();assert.equal((await measure()).theme,'light');assert.equal(page.url(),url);
  const second=await context.newPage();await second.goto(base+'/index.html');
  await second.locator('#ui-appearance').selectOption('dark');await page.waitForFunction(()=>document.documentElement.dataset.uiTheme==='dark');
  await page.locator('#ui-appearance').selectOption('system');assert.equal((await measure()).theme,'dark');await page.emulateMedia({colorScheme:'light'});await page.waitForFunction(()=>document.documentElement.dataset.uiTheme==='light');

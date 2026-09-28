@@ -128,7 +128,7 @@ def task_card() -> str:
     rq = json.loads((REPO / 'framework/research_questions.json').read_text())['records']
     by_mod = {}
     for q in rq:
-        by_mod.setdefault(q.get('module_id'), []).append(q['id'] + ' ' + q['text'])
+        by_mod.setdefault(q.get('legacy_module', q.get('module_id')), []).append(q['id'] + ' ' + q['text'])
     lines = []
     for mid, name in mods:
         lines.append(f'{mid} {name}')

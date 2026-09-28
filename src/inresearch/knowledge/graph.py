@@ -115,15 +115,22 @@ def build(root=ROOT):
 
     objects.append({'id': 'root', 'name': '一座 AI 数据中心', 'kind': 'root', 'parent': None, 'representation': 'conceptual',
                     'description': '树的根：五个系统与站点权利是第一层分叉；三级账挂在这里。'})
+    aliases_of = {}
+    for old, target in bom.get('aliases', {}).items():
+        aliases_of.setdefault(target if target.startswith('site:') else 'part:' + target, []).append('part:' + old)
+    for old, target in LEGACY_NODES.items():
+        if old != target:
+            aliases_of.setdefault(target, []).append(old)
     top = sorted((s for s in systems if not systems[s].get('parent')), key=lambda s: systems[s]['order'])
     kids = lambda s: sorted((k for k in systems if systems[k].get('parent') == s), key=lambda k: systems[k]['order'])
     for sid in top:
         objects.append({'id': 'system:' + sid, 'name': systems[sid]['name'], 'kind': 'system', 'parent': 'root', 'order': systems[sid]['order'],
-                        'chains': systems[sid].get('chains', []), 'children': ['system:' + k for k in kids(sid)], 'representation': 'conceptual'})
+                        'chains': systems[sid].get('chains', []), 'children': ['system:' + k for k in kids(sid)],
+                        'aliases': sorted(aliases_of.get('system:' + sid, [])), 'representation': 'conceptual'})
         rel('part_of', 'system:' + sid, 'root')
         for k in kids(sid):
             objects.append({'id': 'system:' + k, 'name': systems[k]['name'], 'kind': 'system', 'parent': 'system:' + sid, 'order': systems[k]['order'],
-                            'chains': systems[k].get('chains', []), 'children': [], 'representation': 'conceptual'})
+                            'chains': systems[k].get('chains', []), 'children': [], 'aliases': sorted(aliases_of.get('system:' + k, [])), 'representation': 'conceptual'})
             rel('part_of', 'system:' + k, 'system:' + sid)
     for sid, s in systems.items():
         for i, chain in enumerate(s.get('chains', []), 1):
@@ -131,11 +138,6 @@ def build(root=ROOT):
             objects.append({'id': cid, 'name': chain, 'kind': 'chain', 'parent': 'system:' + sid, 'order': i, 'system': sid, 'representation': 'conceptual'})
             rel('part_of', cid, 'system:' + sid)
     chain_id = {(sid, c): f'chain:{sid}/{i}' for sid, s in systems.items() for i, c in enumerate(s.get('chains', []), 1)}
-    aliases_of = {}
-    for old, target in bom.get('aliases', {}).items():
-        aliases_of.setdefault(target if target.startswith('site:') else 'part:' + target, []).append('part:' + old)
-    for old, target in LEGACY_NODES.items():
-        aliases_of.setdefault(target, []).append(old)
     def part_key(p):  # 顺序 = 系统顺序 × 链路顺序 × chain_order（子系统排在父系统的序号下）
         s = systems[p['system']]
         top_order = systems[s['parent']]['order'] if s.get('parent') else s['order']

@@ -7,8 +7,8 @@ const {createInterface} = require('node:readline');
 const root = resolve(__dirname, '..');
 const directory = mkdtempSync(join(tmpdir(), 'inresearch-browser-'));
 const suites = process.argv.slice(2);
-const defaults = ['supply', 'nvidia_pilot', 'product_catalog', 'ui_skin', 'datacenter_cost', 'datacenter_economics', 'datacenter_tco', 'datacenter_news', 'hardware_ecosystems', 'object_network',
-  'product_node_hover', 'url_rendering', 'research_delivery', 'auth_appearance', 'research_summary', 'part_dossier', 'dashboard', 'scene_bootstrap', 'scene_framing', 'scene_resources', 'model_assets'];
+const defaults = ['supply', 'nvidia_pilot', 'product_catalog', 'ui_skin', 'datacenter_cost', 'datacenter_economics', 'datacenter_tco', 'datacenter_news',
+  'url_rendering', 'research_delivery', 'auth_appearance', 'research_summary', 'part_dossier', 'dashboard', 'scene_bootstrap', 'scene_framing', 'scene_resources', 'model_assets'];
 const environment = {...process.env, INRESEARCH_INTAKE_ROOT: directory};
 const server = spawn(process.env.PYTHON || 'python3', ['-u', '-c',
   "import sys; sys.path.insert(0,'src'); from inresearch.interfaces import http as serve; s=serve.ThreadingHTTPServer(('127.0.0.1',0),serve.Handler); print(s.server_port,flush=True); s.serve_forever()"],

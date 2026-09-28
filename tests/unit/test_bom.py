@@ -73,27 +73,15 @@ class BomStructureTests(unittest.TestCase):
             self.assertEqual(self.parts[pid]['chain'], '机房与机柜', pid)
         self.assertEqual(self.parts['fuel-storage']['chain'], '发电与储能')
 
-    def test_graph_domains_follow_chain_order(self):
-        for d in self.graph['hardware_domains']:
-            chains = self.bom['systems'][d['id']]['chains']
-            keys = [(chains.index(self.parts[o[5:]]['chain']), self.parts[o[5:]]['chain_order']) for o in d['object_ids'] if o[5:] in self.parts]
-            self.assertEqual(keys, sorted(keys), d['id'])
-
-    def test_build_stages(self):
-        # 03「骨架的三个补充」第 1 条：建设阶段是部件的第二个属性，六段有序；站点权利同
-        stages = [s['id'] for s in self.bom['stages']]
-        self.assertEqual(stages, ['rights', 'grid', 'shell', 'mep', 'it', 'commissioning'])
-        self.assertEqual([s['name'] for s in self.bom['stages']], ['权利与审批', '并网与外线', '土建与壳', '机电', 'IT 进场', '调试与上架'])
-        for p in self.bom['parts']:
-            self.assertIn(p['stage'], stages, p['id'])
-            if p['system'] in ('compute', 'memory', 'storage', 'network'):
-                self.assertEqual(p['stage'], 'it', p['id'])
-        for pid in ('hv-switchyard', 'transformer', 'mv-switchgear'):
-            self.assertEqual(self.parts[pid]['stage'], 'grid', pid)
-        self.assertEqual(self.parts['shell']['stage'], 'shell')
-        self.assertEqual(self.parts['dcim']['stage'], 'commissioning')
-        for r in self.rights.values():
-            self.assertEqual(r['stage'], 'grid' if r['id'] == 'grid' else 'rights', r['id'])
+    def test_graph_parts_follow_chain_order(self):
+        # 图谱 3.0 由骨架生成：部件对象按系统顺序 × 链路顺序 × chain_order 排
+        systems = self.bom['systems']
+        def key(o):
+            s = systems[o['system']]
+            top = systems[s['parent']]['order'] if s.get('parent') else s['order']
+            return (top, s['order'] if s.get('parent') else 0, s['chains'].index(o['chain']), o['chain_order'])
+        keys = [key(o) for o in self.graph['objects'] if o['kind'] == 'part']
+        self.assertEqual(keys, sorted(keys))
 
     def test_aliases_resolve(self):
         for old, target in self.bom['aliases'].items():
@@ -114,21 +102,20 @@ class BomStructureTests(unittest.TestCase):
             for c in r['companies']:
                 self.assertIn(c, self.companies, r['id'])
 
-    def test_graph_has_a_node_per_part_and_hidden_nodes_redirect(self):
+    def test_graph_is_the_skeleton_and_old_ids_are_aliases(self):
+        # 每个部件、权利、系统一个对象；被重切的旧 ID 是目标对象的别名，不再是隐藏节点
         for pid in self.parts:
-            node = self.objects.get('part:' + pid)
-            self.assertIsNotNone(node, pid)
-            if node.get('navigation_hidden'):  # 例如 ssd 早已转向 ssd-drive：隐藏节点必须有去处
-                self.assertIn(node.get('redirect_to'), self.objects, pid)
+            self.assertEqual(self.objects['part:' + pid]['kind'], 'part', pid)
+        for rid in self.rights:
+            self.assertEqual(self.objects['site:' + rid]['kind'], 'site_right', rid)
+        for sid in self.bom['systems']:
+            self.assertEqual(self.objects['system:' + sid]['kind'], 'system', sid)
         for old, target in self.bom['aliases'].items():
-            node = self.objects.get('part:' + old)
-            if target.startswith('site:'):
-                self.assertIsNotNone(node, old)  # 权利保留研究节点，3D 场景仍按旧 ID 打开
-            else:
-                self.assertTrue(node and node.get('navigation_hidden') and node.get('redirect_to') == 'part:' + target, old)
-        for domain in self.graph['hardware_domains']:
-            for oid in domain['object_ids']:
-                self.assertFalse(self.objects[oid].get('navigation_hidden'), oid)
+            node = self.objects[target if target.startswith('site:') else 'part:' + target]
+            self.assertIn('part:' + old, node['aliases'], old)
+            self.assertNotIn('part:' + old, self.objects, old)
+        for key in ('hardware_domains', 'navigation', 'views', 'research_topics'):
+            self.assertNotIn(key, self.graph, key)
 
     def test_factor_tree_and_products_reference_current_ids(self):
         factors = load('framework/tco_factors.json')['factors']

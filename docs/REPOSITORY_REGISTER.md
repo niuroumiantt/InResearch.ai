@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1018。
+在册文件：1014。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 276 |
-| 运行代码 | 216 |
+| 运行代码 | 215 |
 | 现行规范 | 12 |
 | 项目配置 | 94 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 27 |
 | 配套说明 | 59 |
-| 测试 | 99 |
+| 测试 | 96 |
 
 ## 在册记录集合
 
@@ -336,17 +336,14 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 19 |
+| `framework/interface_manifest.json` | static_pages | 18 |
 | `framework/interface_manifest.json` | public_pages | 8 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
-| `framework/research_graph.json` | views | 5 |
-| `framework/research_graph.json` | objects | 145 |
-| `framework/research_graph.json` | relations | 206 |
-| `framework/research_graph.json` | hardware_domains | 8 |
-| `framework/research_graph.json` | catalog_topic_mappings | 35 |
-| `framework/research_graph.json` | research_topics | 9 |
+| `framework/research_graph.json` | legacy_root_prefixes | 4 |
+| `framework/research_graph.json` | objects | 344 |
+| `framework/research_graph.json` | relations | 372 |
 | `framework/research_questions.json` | records | 458 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
@@ -1230,13 +1227,10 @@
 | `tests/datacenter_economics.cjs` | 测试 |
 | `tests/datacenter_news.cjs` | 测试 |
 | `tests/datacenter_tco.cjs` | 测试 |
-| `tests/hardware_ecosystems.cjs` | 测试 |
 | `tests/model_assets.cjs` | 测试 |
 | `tests/nvidia_pilot.cjs` | 测试 |
-| `tests/object_network.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_catalog.cjs` | 测试 |
-| `tests/product_node_hover.cjs` | 测试 |
 | `tests/research_delivery.cjs` | 测试 |
 | `tests/research_summary.cjs` | 测试 |
 | `tests/run_browser.cjs` | 测试 |
@@ -1422,7 +1416,6 @@
 | `web/pages/product-catalog.html` | 运行代码 |
 | `web/pages/rack3d.html` | 运行代码 |
 | `web/pages/report.html` | 运行代码 |
-| `web/pages/research.html` | 运行代码 |
 | `web/pages/supply-demo.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |
 | `web/pages/team.html` | 运行代码 |

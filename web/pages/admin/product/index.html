@@ -106,8 +106,8 @@
 <div class="topbar">
   <a class="tab" href="/bom.html">爆炸图 2D</a>
   <a class="tab" href="/bom3d.html">爆炸图 3D</a>
-  <a class="tab" href="/research.html?node=activity%3AV2&view=V&tab=products">研究工作台</a>
-  <a class="tab" href="/research.html?node=ecosystem%3Astorage&amp;view=R&amp;tab=overview">产品生态</a>
+  <a class="tab" href="/node.html">数据中心</a>
+  <a class="tab" href="/node.html?id=system%3Astorage">存储系统</a>
   <a class="tab on" href="/admin/product/">产品采集</a>
   <span class="sp"></span>
   <a class="tab" href="/doc.html?f=docs/inbox/inresearch-alignment/ALIGNMENT.md">对齐方案 ↗</a>
@@ -286,7 +286,7 @@ async function main(){
         <span>${p.product_line} · ${p.category} · BOM: ${p.bom_parts.join(", ")} · ${p.priority} · ${p.hq}</span>
         ${website?`<a href="${escapeHTML(website)}" target="_blank" rel="noopener noreferrer">${escapeHTML(p.website)}</a>`:`<span>${escapeHTML(p.website||'官网未登记')}</span>`}
         ${c.ir_url?`<a href="${c.ir_url}" target="_blank">IR ↗</a>`:""}</div>
-      <div class="sect">研究对象：${p.bom_parts.map(id=>`<a href="/research.html?node=${encodeURIComponent('part:'+id)}&view=P&tab=products">${escapeHTML(id)}</a>`).join(' · ')}</div>
+      <div class="sect">研究对象：${p.bom_parts.map(id=>`<a href="/node.html?id=${encodeURIComponent('part:'+id)}">${escapeHTML(id)}</a>`).join(' · ')}</div>
       ${profile}
       <div class="sect"><div class="sh">型号标签登记 — 角标为按标签关联的历史资料数，具体型号身份与内容仍待核实</div>
         <div class="models">${p._cover.map(c2=>`<span class="${c2.ok?"m-ok":"m-no"}" data-t="${c2.t}">${c2.t}<b>${c2.exact.length+c2.rel.length}</b></span>`).join("")}</div></div>

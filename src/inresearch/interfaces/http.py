@@ -24,6 +24,7 @@ from inresearch.workflow import pilot_progress
 from inresearch.workflow import product_catalog
 from inresearch.adapters import acquisition
 from inresearch.knowledge import registry as research
+from inresearch.knowledge import graph as graph_mod
 from inresearch.delivery import report as report_model
 import posixpath
 import subprocess as subprocess
@@ -32,7 +33,7 @@ import threading
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urlsplit
+from urllib.parse import parse_qs, unquote, urlencode, urlsplit
 
 ROOT = project_root()
 PY = sys.executable
@@ -348,9 +349,18 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, research.build_news(ROOT))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '新闻暂不可用，请稍后重试'})
+        if self._norm_path() == '/research.html':
+            # 研究页退役（2026-09-28）：问题、候选证据、陈述与一跳关系并入节点页第一问；旧 ID 折算到骨架节点
+            wanted = parse_qs(urlsplit(self.path).query).get('node', [''])[0]
+            try:
+                node = graph_mod.node_for(wanted, json.loads((ROOT / 'framework/bom.json').read_text(encoding='utf-8'))) if wanted else None
+            except (OSError, ValueError):
+                node = None
+            return self._redirect('/node.html' + ('?' + urlencode({'id': node}) if node and node != 'root' else ''))
         if urlsplit(self.path).path == '/api/research-summary':
             try:
-                return self._json(200, research.build_research_summary(ROOT))
+                node = parse_qs(urlsplit(self.path).query).get('node', [''])[0]
+                return self._json(200, research.summary_for_node(research.build_research_summary(ROOT), node))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '研究摘要暂不可用，请稍后重试'})
         if urlsplit(self.path).path == "/api/research":

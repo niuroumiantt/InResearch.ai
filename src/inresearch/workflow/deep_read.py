@@ -61,7 +61,7 @@ class DeepRead:
     def load_questions(self):
         grouped = {}
         for row in json.loads(self.questions_path.read_text(encoding='utf-8'))['records']:
-            grouped.setdefault(row.get('module_id'), []).append(row)
+            grouped.setdefault(row.get('legacy_module', row.get('module_id')), []).append(row)
         return grouped
 
     def load_facts(self):

@@ -38,6 +38,8 @@
   .stage h3 { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
   .stage h3 .num { background: var(--accent); color: #fff; border-radius: var(--ui-radius); font-size: 10px; padding: 0 5px; }
   .stage a.kv { text-decoration: none; color: inherit; }
+  .ev-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 10px; margin-top: 12px; }
+  .ev-grid .kv span { white-space: normal; }
   .acct { border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 10px 12px; }
   .acct .l { color: var(--muted); font-size: 12px; } .acct .v { font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; }
   .acct .u, .acct .n { color: var(--muted); font-size: 11px; }
@@ -120,7 +122,7 @@
 
 <main class="wrap">
   <header class="head" id="head"><h1>加载中…</h1></header>
-  <section class="panel" id="p1"><h2>它值多少<small>事实 · 五类变量的现值与时点</small></h2><div class="q" id="q1"></div><div id="account"></div><div class="five" id="five"></div></section>
+  <section class="panel" id="p1"><h2>它值多少<small>事实 · 五类变量的现值与时点</small></h2><div class="q" id="q1"></div><div id="account"></div><div class="five" id="five"></div><div id="evidence"></div></section>
   <section class="panel" id="p2"><h2 id="h2">它由什么组成<small>树 · 子节点</small></h2><div class="q" id="q2"></div><div id="children"></div></section>
   <section class="panel" id="p3"><h2>它怎么影响账<small>规则 · 因子树</small></h2><div class="q" id="q3"></div><div id="factors"></div></section>
   <section class="panel" id="p4"><h2>数据从哪来，缺什么<small>采集 · 目标清单与六队</small></h2><div class="q" id="q4"></div>
@@ -134,13 +136,14 @@
 
 <script>
 async function get(p) {
-  const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
+  const r = await fetch(p + (p.includes("?") ? "&" : "?") + "t=" + Date.now(), { cache: "no-store" });
   if (!r.ok) throw new Error(p + " → " + r.status);
   return r.json();
 }
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
 const STATUS = { sourced: "已有数据", assumed: "模型假设", delivered: "已交付未成序列", registered: "登记数", needed: "缺" };
 const SUP = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
+const REL = { part_of: "属于", supplies: "供应", holds: "持有（登记）" };
 const q = new URLSearchParams(location.search);
 const NODE = q.get("id") || "root";
 const COL = q.get("col") || "";
@@ -244,6 +247,23 @@ function deliveryBoard(T, d) {
     <div class="line">待建队名下 ${notConnected} 行不排到期。采集需求只来自目标表，各队不自定抓什么；灰格与虚线格就是任务书，点格进入节点停在那一列。</div></div>`;
 }
 
+/* 第一问的研究面板：这个节点的问题、候选证据 / 陈述 / 回答、一跳关系（/api/research-summary?node=，图谱 3.0 按骨架过滤；公开只读看不到，页面如实说） */
+async function evidencePanel(node) {
+  let s;
+  try { s = await get("api/research-summary?" + new URLSearchParams({ node })); }
+  catch (e) { return `<div class="empty">研究问题与候选证据登录后可见（${esc(e.message)}）。</div>`; }
+  const names = Object.fromEntries((s.graph?.objects || []).map(o => [o.id, o.name]));
+  let qs = s.questions || [];
+  if (node === "root") qs = qs.filter(q => q.node === "root");
+  const ev = s.knowledge?.evidence || [], st = s.knowledge?.statements || [], an = s.knowledge?.answers || [];
+  const rels = (s.graph?.relations || []).filter(r => node !== "root" || r.source === "root" || r.target === "root").map(r => { const other = r.source === node ? r.target : r.source; return `<span class="chip"><a href="${nodeHref(other)}">${esc(names[other] || other)}</a> · ${esc(REL[r.type] || r.type)}${r.source === node ? " →" : " ←"}</span>`; });
+  const qrows = qs.slice(0, 40).map(q => `<div class="kv"><span>${esc(q.id)} · ${esc(q.text)}</span><b><span class="chip" title="变量类">${q.variable_class}</span> ${q.status === "answered" ? "已答" : "开放"}</b></div>`).join("");
+  const cand = [...ev.map(e => `<div class="kv"><span>${esc(e.quote || e.locator || e.id)}</span><b>证据</b></div>`), ...st.map(x => `<div class="kv"><span>${esc(x.text || x.id)}</span><b>陈述</b></div>`), ...an.map(x => `<div class="kv"><span>${esc(x.text || x.id)}</span><b>回答</b></div>`)].slice(0, 30).join("");
+  return `<div class="ev-grid"><div class="col"><h3>研究问题 <span class="empty">${qs.length}${node === "root" ? " · 未挂到具体节点的" : ""}</span></h3>${qrows || '<div class="empty">没有问题挂到这个节点</div>'}${qs.length > 40 ? `<div class="empty">另有 ${qs.length - 40} 条</div>` : ""}</div>
+    <div class="col"><h3>候选证据 / 陈述 / 回答 <span class="empty">${ev.length} / ${st.length} / ${an.length}</span></h3>${cand || '<div class="empty">候选为空——读取结果只在 Spark 快照接入后出现，本页不填估值</div>'}</div>
+    <div class="col"><h3>一跳关系 <span class="empty">${rels.length}</span></h3><div class="inst">${rels.slice(0, 40).join("") || '<span class="empty">无</span>'}</div></div></div>`;
+}
+
 /* 它怎么建：时间列按六段建设阶段展开，从站点权利起 */
 function buildTimeline(d) {
   const items = [...d.site.rights.map(r => ({ id: "site:" + r.id, name: r.name, stage: r.stage, cell: d.rights[r.id].cells["4"] })),
@@ -316,7 +336,7 @@ function changes(d) {
     rows = T.filter(t => t.part_id === part.id);
     byId("q1").textContent = "部件的五列就是重切规则的条件：自己的规格、运行指标、价格、交期、供应商名单。";
     byId("h2").innerHTML = `它由什么组成 / 属于什么<small>树 · 装配与研究入口</small>`;
-    children = `<div class="links"><a href="${nodeHref("system:" + part.system)}">← 回到系统</a><a href="bom.html#${encodeURIComponent(part.id)}">爆炸图档案</a>${part.kind === "part" ? `<a href="bom3d.html?${new URLSearchParams({ p: part.id, node: "part:" + part.id })}">3D 定位</a>` : ""}${["S4", "S5"].includes(part.layer) ? `<a href="rack3d.html?x=100&node=${encodeURIComponent("part:" + part.id)}">机柜拆解</a>` : ""}<a href="research.html?node=${encodeURIComponent("part:" + part.id)}&view=P&tab=overview">研究问题与证据（旧研究页，待并入节点页）</a></div><div class="empty" style="margin-top:6px">装配关系与空间位置在研究图谱与 3D 场景里登记；本页不复制第二份。</div>`;
+    children = `<div class="links"><a href="${nodeHref("system:" + part.system)}">← 回到系统</a><a href="bom.html#${encodeURIComponent(part.id)}">爆炸图档案</a>${part.kind === "part" ? `<a href="bom3d.html?${new URLSearchParams({ p: part.id, node: "part:" + part.id })}">3D 定位</a>` : ""}${["S4", "S5"].includes(part.layer) ? `<a href="rack3d.html?x=100&node=${encodeURIComponent("part:" + part.id)}">机柜拆解</a>` : ""}<a href="#evidence">研究问题与证据</a></div><div class="empty" style="margin-top:6px">装配关系与空间位置在研究图谱与 3D 场景里登记；本页不复制第二份。</div>`;
     byId("q3").textContent = "这个部件汇到哪些因子，因子的公式与它喂的模型输入。";
     byId("q4").textContent = "这个部件的目标行：规格、价格、交期各一行，非成熟部件另有新闻事件行。";
   } else if (type === "site") {
@@ -352,6 +372,7 @@ function changes(d) {
   byId("factors").innerHTML = factorList(d.factors, factorPred, NODE === "root" ? d.formulas : null);
   byId("targets").innerHTML = NODE === "root" ? `<details><summary>因子级目标 ${rows.length} 行（按队汇总与明细）</summary>${targetPanel(rows, TEAMS)}</details>` : targetPanel(rows, TEAMS);
   byId("news").style.display = NODE === "root" ? "" : "none";
+  evidencePanel(NODE).then(html => { byId("evidence").innerHTML = html; }).catch(e => { byId("evidence").innerHTML = `<div class="empty">研究面板加载失败：${esc(e.message)}</div>`; });
   document.title = (NODE === "root" ? "一座 AI 数据中心" : byId("head").querySelector("h1").textContent) + " — inresearch.ai";
   document.querySelector(".it-toggle")?.addEventListener("click", () => {
     const u = new URL(location.href); if (u.searchParams.get("it") === "1") u.searchParams.delete("it"); else u.searchParams.set("it", "1");

@@ -2,6 +2,17 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-28：研究图谱 3.0 与节点页吸收证据、研究页退役（第 3 步 b + 第 4 步）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §7 与 §9 第 3、4 步落地。
+
+- **图谱 3.0 由骨架生成，不手写。** 新模块 `knowledge/graph.py`（`manage.py graph --refresh / --check`）从 `bom.json`、`site_rights.json`、`companies.json` 生成 `research_graph.json` 3.0.0：对象只有六种——根 1、系统 9（五个顶层 + IT 四个子系统）、链路 17、部件 63、站点权利 6、主体 248，共 344；关系三种——`part_of`（部件 → 链路 → 系统 → 根，权利 → 根）、`supplies`（主体供应部件）、`holds`（主体持有权利，登记数）。五视角、导航树、八生态目录、九主题、`scope:M01–M15`、`arch / tech / workload / demand / activity / space`、`system:safety` 与被重切的旧部件 ID 全部退役；每个对象登记 `aliases`（旧 ID 的去处），图谱另带 `legacy_nodes` 与根前缀表。`navigation.py` 改为骨架校验入口（对象集合 = 骨架节点集合，顺序 = 系统 × 链路 × chain_order，包含关系单亲无环，关系类型只有三种）。
+- **问题表 3.0.0：ID 不变。** 458 条问题每条加 `node`（最具体的骨架引用：部件 > 权利 > 系统 > 根；部件 231、根 163、系统 39、权利 25）与 `variable_class`（按文本关键词派生：构成 244、运行 38、价格 148、时间 15、主体 13，可在 `QUESTION_CLASS_OVERRIDES` 逐条改）；`object_ids` 只允许骨架 ID，旧 ID 留在 `legacy_object_ids`；`module_id` 改 `legacy_module`，`views`、`topic_id` 删除。任务板、深读分包、M4 分流的模块分组改读 `legacy_module`，任务字典仍带 `mid / module_id` 兼容键并新增 `node / variable_class`。
+- **接收端。** 版本落后的 Spark / M4 快照照收：旧对象 ID 先按对象别名与根前缀折算到骨架节点（`registry_lag.folded_ids`），折算不了的才过滤（`dropped_ids`）；产品目录桥的导航闭包只走骨架包含关系，`catalog_node_ids` 为部件所在链路（`skeleton_parent`），生态与"活动 V2"入口不再存在。`reader_export` 的投影指纹含注册表版本，Spark 与 M4 拉到同一提交后全量重投影一次（接受的成本）。
+- **节点页吸收证据；研究页退役。** 节点页第一问新增研究面板：这个节点及骨架下级的研究问题（挂节点与变量类）、候选证据 / 陈述 / 回答、一跳关系，来自 `/api/research-summary?node=`（服务端按骨架过滤，摘要投影补 `text / status / node / variable_class / legacy_module` 与对象的 `parent / system / chain / stage / aliases`）；公开只读看不到，页面如实说。`research.html` 与三个只测它的浏览器套件（hardware_ecosystems、object_network、product_node_hover）删除，`/research.html?node=` 按旧 ID 折算后 302 到节点页；3D 档案与规格库登记页的旧链接改指节点页。`research-graph.js`、`object-network.js`、`research.css` 暂留给 3D 档案面板，随第 6 步收口。
+- **规范与文档。** 03 别名一句、05 节点页第一问与接口一句、06 消费者一句、SPARK_OPERATIONS 示例版本、M4 交接的版本一致要求改为折算规则。`AUDIT.md` 里"三根梁"的第一根（研究图谱旧轴）自此清零。
+- **给 Spark / M4 的信号。** 拉本提交（图谱与问题表 3.0.0），M4 重导出一次；问题 ID 不变，旧对象 ID 由接收端折算，不需要改读取脚本。
+
 ## 2026-09-28：骨架补齐——建设阶段、运行行、时间因子、登记表两列（第 3 步 a）
 
 [提案](reviews/2026-09-28/site/PROPOSAL.md) §3 与 §9 第 3 步的骨架部分落地；图谱 3.0 与问题表改造放到第 3 步 b，与第 4 步节点页吸收证据同批，避免研究页在两步之间失效。

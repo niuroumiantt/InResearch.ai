@@ -19,7 +19,9 @@ const base = process.env.UI_BASE_URL;
     assert.deepEqual(tasks.orders.map(o=>o.wid).sort(),snapshot.tasks.map(o=>o.wid).sort());
     await page.goto(base+'/index.html');
     await page.locator('#grid .board').first().waitFor();
-    assert.match(await page.locator('#grid').innerText(), new RegExp(String(tasks.orders.length)));
+    // 2026-09-28：派工面板读目标表（目标行数），不再显示工单数
+    const targets = await (await page.request.get(base+'/data/tco_targets.json')).json();
+    assert.match(await page.locator('#grid').innerText(), new RegExp(String(targets.targets.length)+' 行目标'));
     await page.goto(base+'/team.html'); await page.locator('#tb tr').nth(1).waitFor();
     assert.match(await page.locator('#sub').innerText(),new RegExp(String(tasks.orders.length)));
     assert.deepEqual(errors,[]);

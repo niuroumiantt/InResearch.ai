@@ -1,91 +1,77 @@
-
-from inresearch.paths import project_root
+"""骨架校验（图谱 3.0）：对象集合 = 骨架节点集合，新增或删除对象不能悄悄发生，包含关系单亲无环，顺序固定，旧 ID 折算。"""
 import copy
 import json
 import unittest
+from pathlib import Path
 
+from inresearch.knowledge import graph as graph_mod
+from inresearch.knowledge import registry as research
 from inresearch.knowledge.navigation import validate_navigation
 
+ROOT = Path(__file__).resolve().parents[2]
 
-class ResearchNavigationTests(unittest.TestCase):
+
+def load(rel):
+    return json.loads((ROOT / rel).read_text(encoding='utf-8'))
+
+
+class SkeletonNavigationTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.graph = json.loads((project_root() /
-                                'framework/research_graph.json').read_text())
+        cls.graph = load('framework/research_graph.json')
+        cls.questions = load('framework/research_questions.json')
+        cls.bom = load('framework/bom.json')
 
-    def test_repository_places_every_declared_object_and_keeps_demand_out_of_p(self):
-        self.assertIn('navigation', self.graph)
+    def test_repository_graph_is_the_skeleton(self):
         self.assertEqual(validate_navigation(self.graph), [])
-        self.assertEqual(len(self.graph['navigation']['P']), 5)
-        def ids(groups):
-            return [oid for g in groups for oid in g['object_ids'] + ids(g['children'])]
-        physical = ids(self.graph['navigation']['P'])
-        self.assertEqual(set(physical), {o["id"] for o in self.graph["objects"] if "P" in o.get("views", []) and not o.get("navigation_hidden")})
-        self.assertTrue(all(x.startswith(('part:', 'space:')) for x in physical))
-        self.assertEqual(len(ids(self.graph['navigation']['R'])), len([o for o in self.graph['objects'] if not o.get('navigation_hidden')]))
+        self.assertEqual({o['kind'] for o in self.graph['objects']}, set(graph_mod.KINDS))
+        self.assertEqual({o['id'] for o in self.graph['objects'] if o['kind'] == 'part'}, {'part:' + p['id'] for p in self.bom['parts']})
 
     def test_new_or_deleted_object_cannot_silently_disappear(self):
         g = copy.deepcopy(self.graph)
-        g['objects'].append({'id': 'part:new', 'views': ['P']})
-        self.assertTrue(any('unplaced' in x for x in validate_navigation(g)))
+        g['objects'].append({'id': 'part:new', 'name': 'x', 'kind': 'part', 'parent': 'system:power', 'system': 'power', 'representation': 'conceptual'})
+        self.assertTrue(any('part objects must equal' in e for e in validate_navigation(g)))
         g = copy.deepcopy(self.graph)
         g['objects'] = [o for o in g['objects'] if o['id'] != 'part:dram']
-        self.assertTrue(any('unknown object part:dram' in x for x in validate_navigation(g)))
-
-    def test_duplicate_location_or_cross_view_entry_rejected(self):
+        self.assertTrue(any('part objects must equal' in e for e in validate_navigation(g)))
         g = copy.deepcopy(self.graph)
-        g['navigation']['P'][0]['object_ids'].append('part:dram')
-        self.assertTrue(any('duplicate browse' in x for x in validate_navigation(g)))
-        g['navigation']['P'][0]['object_ids'].append('workload:storage')
-        self.assertTrue(any('outside declared view workload:storage' in x for x in validate_navigation(g)))
+        g['objects'] = [o for o in g['objects'] if o['id'] != 'system:memory']
+        self.assertTrue(any('system objects must equal' in e for e in validate_navigation(g)))
 
-    def test_malformed_structure_and_duplicate_group_ids_fail(self):
+    def test_parent_must_be_a_skeleton_node_and_containment_is_single_and_acyclic(self):
         g = copy.deepcopy(self.graph)
-        g['navigation']['P'][0]['children'] = 'not a group list'
-        self.assertTrue(any('groups must be a list' in x for x in validate_navigation(g)))
+        next(o for o in g['objects'] if o['id'] == 'part:gpu')['parent'] = 'part:nowhere'
+        self.assertTrue(any('parent must be a skeleton node' in e for e in validate_navigation(g)))
         g = copy.deepcopy(self.graph)
-        g['navigation']['P'][1]['id'] = g['navigation']['P'][0]['id']
-        self.assertTrue(any('duplicate group ID' in x for x in validate_navigation(g)))
-
-    def test_system_navigation_cannot_invent_a_membership(self):
+        g['relations'].append({'id': 'x', 'type': 'part_of', 'source': 'part:gpu', 'target': 'part:cpu', 'representation': 'conceptual'})
+        self.assertTrue(any('multiple parents' in e for e in validate_navigation(g)))
         g = copy.deepcopy(self.graph)
-        power = next(row for row in g['navigation']['F'] if row.get('system_id') == 'system:power')
-        power['children'][0]['object_ids'].append('part:cpu')
-        self.assertTrue(any('system members must match' in x for x in validate_navigation(g)))
+        g['relations'].append({'id': 'y', 'type': 'part_of', 'source': 'system:power', 'target': 'part:transformer', 'representation': 'conceptual'})
+        self.assertTrue(any('cycle' in e for e in validate_navigation(g)))
 
+    def test_order_follows_system_chain_and_chain_order(self):
+        g = copy.deepcopy(self.graph)
+        parts = [i for i, o in enumerate(g['objects']) if o['kind'] == 'part']
+        g['objects'][parts[0]], g['objects'][parts[-1]] = g['objects'][parts[-1]], g['objects'][parts[0]]
+        self.assertTrue(any('ordered by system order' in e for e in validate_navigation(g)))
 
+    def test_unknown_relation_type_and_dangling_ends_are_rejected(self):
+        g = copy.deepcopy(self.graph)
+        g['relations'].append({'id': 'z', 'type': 'research_scope', 'source': 'part:gpu', 'target': 'scope:M06', 'representation': 'conceptual'})
+        errors = validate_navigation(g)
+        self.assertTrue(any('unknown relation type' in e for e in errors))
+        self.assertTrue(any('dangling relation' in e for e in errors))
 
-class HardwareEcosystemTests(unittest.TestCase):
-    def setUp(self):
-        self.graph = json.loads((project_root() / 'framework/research_graph.json').read_text())
+    def test_old_graphs_without_kinds_are_history_not_navigation(self):
+        self.assertEqual(validate_navigation({'version': '2.2.1', 'objects': [], 'relations': []}), [])
 
-    def test_every_hardware_has_one_primary_ecosystem(self):
-        self.assertEqual(validate_navigation(self.graph), [])
-        self.graph['hardware_domains'][0]['object_ids'].append('part:cpu')
-        self.assertTrue(any('duplicate primary' in e for e in validate_navigation(self.graph)))
-
-    def test_deleted_drilldown_target_is_rejected(self):
-        node = next(o for o in self.graph['objects'] if o['id'] == 'part:cpu')
-        node['research_sections'][0]['object_ids'].append('arch:missing')
-        self.assertTrue(any('unknown target' in e for e in validate_navigation(self.graph)))
-
-    def test_memory_topics_are_not_universal_gpu_assembly_claims(self):
-        edges = [r for r in self.graph['relations'] if r['source'] in ('part:lpddr', 'part:gddr')]
-        self.assertFalse(any(r['type'] == 'part_of' and r['target'] == 'part:gpu-device' for r in edges))
-        ids = {o['id'] for o in self.graph['objects']}
-        self.assertTrue({'part:ssd','part:ssd-drive','part:nand','part:ssd-controller'} <= ids)
-
-
-class RetiredObjectTests(unittest.TestCase):
-    def test_legacy_ssd_is_hidden_and_redirects_to_live_identity(self):
-        graph = json.loads((project_root() / 'framework/research_graph.json').read_text())
-        old = next(o for o in graph['objects'] if o['id'] == 'part:ssd')
-        self.assertTrue(old['navigation_hidden'])
-        self.assertEqual(old['redirect_to'], 'part:ssd-drive')
-        graph['navigation']['P'][0]['object_ids'].append('part:ssd')
-        self.assertTrue(any('hidden object' in e for e in validate_navigation(graph)))
-        old['redirect_to'] = 'part:ssd'
-        self.assertTrue(any('direct redirect' in e for e in validate_navigation(graph)))
+    def test_questions_hang_on_skeleton_nodes(self):
+        objects = {o['id'] for o in self.graph['objects']}
+        for q in self.questions['records']:
+            self.assertIn(q['node'], objects, q['id'])
+            self.assertTrue(set(q['object_ids']) <= objects, q['id'])
+            self.assertIn(q['variable_class'], (1, 2, 3, 4, 5), q['id'])
+        self.assertEqual([], research.validate(self.graph, self.questions, load('data/research_knowledge.json')))
 
 
 if __name__ == '__main__':

@@ -10,7 +10,7 @@
 
 站点权利与配额（土地、水权、电力配额与并网、天然气管道接入、网络接入、许可）不可采购，登记在 `framework/site_rights.json`，每条写明落在哪几类变量；因子树用 `site_rights` 字段引用。合同（PPA、租约、算力合同、融资）不进这两张表，按主体类事实处理。
 
-部件 ID 是稳定锚点：存续的部件保留旧 ID 只改名；拆出的新部件用新 ID 并记 `split_from`；被拆分或移出的旧 ID 写进 `aliases` 指向去处，`research_graph.json` 的对应节点转为隐藏并 `redirect_to`，网页、3D 场景与产品目录经别名解析，不因重切失效。`data/products.json` 的 `bom_parts` 按产品线名重映射到新 ID。校验：`validate --strict` 检查 kind、尺度、系统、公司、别名去处与权利表；`tests/unit/test_bom.py` 固定上述决定。
+部件 ID 是稳定锚点：存续的部件保留旧 ID 只改名；拆出的新部件用新 ID 并记 `split_from`；被拆分或移出的旧 ID 写进 `aliases` 指向去处；图谱 3.0 由骨架生成，旧 ID 作为目标对象的 `aliases`（不再有隐藏节点与 `redirect_to`），接收端把旧快照里的旧 ID 折算到骨架节点，网页、3D 场景与产品目录经别名解析，不因重切失效。`data/products.json` 的 `bom_parts` 按产品线名重映射到新 ID。校验：`validate --strict` 检查 kind、尺度、系统、公司、别名去处与权利表；`tests/unit/test_bom.py` 固定上述决定。
 
 ## 一个骨架：第一层按系统，系统内按链路，尺度是属性（2026-09-28）
 
