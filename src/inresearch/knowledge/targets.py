@@ -22,6 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 TARGETS = 'framework/tco_targets.json'
 FACTORS = 'framework/tco_factors.json'
+PART_FETCH = 'framework/part_fetch.json'  # 人工登记的部件级来源与日历
 
 VARIABLE_CLASSES = {'1': '构成', '2': '运行', '3': '价格', '4': '时间', '5': '主体'}
 DATA_CLASSES = {'reference': '参照数据，按版本改', 'observation': '观测数据，按时点追加（series_id + as_of）',
@@ -41,14 +42,6 @@ KIND_DEFAULTS = {
     'news': dict(variable_class=5, data_class='material', mechanism='rss', team='inews'),
 }
 DUE_DAYS = {'reference': 90, 'observation': 30, 'material': 7}
-# which of a factor's TCO inputs a generated part / right row can feed, by variable class
-CLASS_INPUTS = {
-    1: lambda k: k in {'gpus_per_mw', 'it_class', 'pue', 'wue', 'load_factor', 'redundancy', 'cooling'},
-    2: lambda k: k in {'pue', 'wue', 'load_factor', 'gpu_utilization', 'fte_per_mw', 'maint_pct_facility', 'maint_pct_it'},
-    3: lambda k: k != 'gpus_per_mw' and (k.startswith(('capex_', 'price_')) or k.endswith(('_price', '_rate', '_per_kw', '_per_mw', '_pct')) or k in {'refresh_cost_factor', 'cost_per_fte', 'labor_index'}),
-    4: lambda k: k in {'construction_years', 'it_refresh_years', 'horizon_years', 'ramp_year1', 'ramp_year2', 'power_escalation', 'opex_escalation'},
-    5: lambda k: k in {'wacc', 'property_tax_rate', 'shell_rent_per_mw', 'colo_rate', 'land_per_mw'},
-}
 PART_STATUS_RANK = {'tight': 2, 'transition': 3, 'emerging': 3, 'mature': 4}
 PART_ROWS = {  # data class a physical part has by construction → routing
     'spec': dict(variable_class=1, data_class='reference', mechanism='vendor_page', team='fetchspec',
@@ -83,6 +76,7 @@ def build(root=ROOT, as_of=None):
     factors_doc = load(root, FACTORS)
     bom = load(root, 'framework/bom.json')
     rights = load(root, 'framework/site_rights.json')['rights']
+    part_fetch = load(root, PART_FETCH)['parts'] if (root / PART_FETCH).exists() else {}
     products = load(root, 'data/products.json')['records']
     companies = {}
     for r in load(root, 'data/companies.json')['records']:
@@ -94,6 +88,11 @@ def build(root=ROOT, as_of=None):
     indicators = {i['id']: i for i in load(root, 'framework/indicators.json')['indicators']}
     tco = load(root, 'data/datacenter_tco_model.json')
     evidence = tco.get('evidence', {})
+    # every TCO input carries its variable class (data/datacenter_tco_model.json evidence.variable_class)
+    input_class = {k: v.get('variable_class') for k, v in evidence.items()}
+    missing = [k for k in tco['inputs'] if input_class.get(k) not in (1, 2, 3, 4, 5)]
+    if missing:
+        raise ValueError('TCO inputs without a variable_class: ' + ', '.join(missing))
     contract = load(root, 'framework/supply_contract.json')
     providers = {p['id']: p for p in contract['providers']}
     hosts = {k: v['host'] for k, v in contract['execution_policy'].items() if isinstance(v, dict) and 'host' in v}
@@ -144,7 +143,8 @@ def build(root=ROOT, as_of=None):
             'instances': kw['instances'], 'mechanism': mechanism, 'team': kw['team'], 'host': host_for(mechanism),
             'calendar': kw['calendar'], 'next_due': due(kw.get('next_due'), kw['data_class']),
             'status': status_for(kw['data_class'], kw['series'], kw.get('indicators', []), kw['model_inputs'], kw['origin']),
-            'sensitivity_rank': kw['sensitivity_rank'], 'notes': kw.get('notes', ''),
+            'sensitivity_rank': kw['sensitivity_rank'], 'notes': kw.get('notes', ''), 'curated': kw.get('curated', False),
+            'chain': kw.get('chain'), 'chain_order': kw.get('chain_order'),
         }
         return out
 
@@ -164,8 +164,20 @@ def build(root=ROOT, as_of=None):
                 instances=list(entry.get('instances') or entry['sources']), mechanism=d['mechanism'], team=d['team'],
                 calendar=entry.get('calendar') or entry['cadence'], next_due=entry.get('next_due'),
                 sensitivity_rank=entry.get('sensitivity_rank', 3), notes=entry.get('notes', entry['what'])))
-    # 2. part targets: data classes a part has by construction
-    for p in bom['parts']:
+    # 2. part targets: data classes a part has by construction; rows walk each system's chain from upstream
+    systems = bom.get('systems', {})
+    def sys_rank(p):
+        s = systems.get(p['system'], {})
+        if not isinstance(s, dict):
+            return (99, 0)
+        parent = systems.get(s.get('parent') or '', {})
+        return ((parent.get('order', 0) if s.get('parent') else s.get('order', 0)), s.get('order', 0) if s.get('parent') else 0)
+    chain_pos = {}
+    for sid, s in systems.items():
+        if isinstance(s, dict):
+            for i, c in enumerate(s.get('chains', [])):
+                chain_pos[(sid, c)] = i
+    for p in sorted(bom['parts'], key=lambda p: (*sys_rank(p), chain_pos.get((p['system'], p.get('chain')), 99), p.get('chain_order', 99))):
         lines = [f"{companies.get(r['company_id'], r['company_id'])} · {r['product_line']}"
                  for r in products if p['id'] in (r.get('bom_parts') or [])]
         names = [companies.get(c, c) for c in p['companies']]
@@ -177,27 +189,33 @@ def build(root=ROOT, as_of=None):
         if p['kind'] == 'part' and p['status'] != 'mature':
             kinds.append('news')
         for kind in kinds:
-            spec = PART_ROWS[kind]
+            spec = {**PART_ROWS[kind]}
+            reg = part_fetch.get(p['id'], {}).get(kind)
+            if reg:  # 人工登记覆盖模板：出版方类别、实例、日历、机制、队
+                spec.update({k: reg[k] for k in ('publisher_category', 'calendar', 'mechanism', 'team') if k in reg})
             series = [s for s in p.get('series', []) if (s in lead_series) == (kind == 'lead_time')] if kind in ('price', 'lead_time') else []
             inds = [i for i in p.get('indicators', []) if ('lead_time' in i or 'backlog' in i) == (kind == 'lead_time')] if kind in ('price', 'lead_time') else []
-            notes = {'spec': f"{p['name']}：规格与供应商名单（{bom['systems'][p['system']]}，{p['layer'] or p['kind']}）",
+            sysname = bom['systems'][p['system']]['name'] if isinstance(bom['systems'][p['system']], dict) else bom['systems'][p['system']]
+            notes = {'spec': f"{p['name']}：规格与供应商名单（{sysname} · {p.get('chain', '')}，{p['layer'] or p['kind']}）",
                      'price': f"{p['name']}：自己的价格——重切规则的第一条件", 'lead_time': f"{p['name']}：自己的交期——重切规则的第三条件",
                      'news': f"{p['name']}：{p['status']} 状态部件的供应事件"}[kind]
             if p['kind'] == 'software' and kind == 'price':
                 notes = f"{p['name']}：订阅价与许可价（软件条目进目标表，用户 2026-09-28 决定）"
-            inputs = [k for k in pool if CLASS_INPUTS[spec['variable_class']](k)]
+            inputs = [k for k in pool if input_class.get(k) == spec['variable_class']]
             targets.append(row(
                 id=f"P.{p['id']}.{kind}", variable_class=spec['variable_class'], origin=p['kind'], factor_ids=fids,
                 part_id=p['id'], model_inputs=inputs, series=series, indicators=inds, data_class=spec['data_class'],
-                disclosure_type=spec['disclosure_type'], publisher_category=spec['publisher_category'], instances=instances,
-                mechanism=spec['mechanism'], team=spec['team'], calendar=spec['calendar'], sensitivity_rank=rank, notes=notes))
+                disclosure_type=spec['disclosure_type'], publisher_category=spec['publisher_category'],
+                instances=(list(reg['instances']) if reg and reg.get('instances') else instances),
+                mechanism=spec['mechanism'], team=spec['team'], calendar=spec['calendar'], sensitivity_rank=rank, notes=notes,
+                curated=bool(reg), chain=p.get('chain'), chain_order=p.get('chain_order')))
     # 3. site-right targets: one per registered variable class
     for r in rights:
         fids = right_factors.get(r['id'], [])
         pool = sorted({k for fid in fids for k in factors[fid].get('tco_inputs', [])})
         for vc in r['variable_classes']:
             spec = RIGHT_ROWS[vc]
-            inputs = [k for k in pool if CLASS_INPUTS[vc](k)]
+            inputs = [k for k in pool if input_class.get(k) == vc]
             instances = [companies.get(c, c) for c in r.get('companies', [])] or [r['name']]
             targets.append(row(
                 id=f"S.{r['id']}.{spec['slug']}", variable_class=vc, origin='site_right', factor_ids=fids,
@@ -223,6 +241,7 @@ def build(root=ROOT, as_of=None):
                  '因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的 TCO 模型输入键）各成一行；'
                  '每个物理部件按"自己的价格、供应商名单、交期"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；'
                  '软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。'
+                 '部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。'
                  '每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、'
                  '已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机。'
                  'status 只在已有序列、已录值指标或模型证据支持时为 sourced；公司只是实例，随时可换。'),

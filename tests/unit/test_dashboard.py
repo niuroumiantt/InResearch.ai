@@ -58,7 +58,13 @@ class DashboardTests(unittest.TestCase):
                 self.assertIn(spec['share_input'], self.model['assumptions'])
 
     def test_tree_and_matrix_shape(self):
-        self.assertEqual([e['id'] for e in self.doc['ecosystems']], list(self.bom['systems']))
+        leaf = [s for s, d in self.bom['systems'].items() if not any(x.get('parent') == s for x in self.bom['systems'].values())]
+        self.assertEqual(sorted(e['id'] for e in self.doc['ecosystems']), sorted(leaf))
+        self.assertEqual([e['id'] for e in self.doc['ecosystems']][:3], ['facility', 'power', 'thermal'], '五个系统的骨架顺序')
+        self.assertEqual([p['id'] for p in self.doc['parent_systems']], ['it'])
+        self.assertEqual(self.doc['parent_systems'][0]['children'], ['compute', 'memory', 'storage', 'network'])
+        power = next(e for e in self.doc['ecosystems'] if e['id'] == 'power')
+        self.assertEqual([p['chain'] for p in power['parts']][:3], ['电网接入', '变电', '变电'], '电力生态的部件按链路从电网走到板级')
         self.assertEqual(self.doc['site']['id'], 'site')
         for row in self.doc['ecosystems'] + [self.doc['site']]:
             self.assertEqual(set(row['cells']), {'1', '2', '3', '4', '5'}, row['id'])

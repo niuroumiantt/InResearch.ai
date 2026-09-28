@@ -175,6 +175,7 @@ def main():
         bom = json.loads(bom_path.read_text(encoding="utf-8"))
         layer_ids = {ly["id"] for ly in bom.get("layers", [])}
         kinds = set(bom.get("kinds") or {"part": ""})
+        chain_slots = {}
         bom_part_ids = {p["id"] for p in bom.get("parts", [])}
         if len(bom_part_ids) != len(bom.get("parts", [])):
             err("bom.json: 部件 id 重复")
@@ -187,8 +188,21 @@ def main():
                     err(f"bom[{p['id']}]: layer 非法: {p.get('layer')}")
             elif p.get("layer") is not None:
                 err(f"bom[{p['id']}]: {kind} 条目不占尺度，layer 须为 null")
-            if bom.get("systems") and p.get("system") not in bom["systems"]:
+            systems = bom.get("systems") or {}
+            if systems and p.get("system") not in systems:
                 err(f"bom[{p['id']}]: system 非法: {p.get('system')}")
+            elif systems and isinstance(systems.get(p.get("system")), dict):
+                sysd = systems[p["system"]]
+                if any(isinstance(s, dict) and s.get("parent") == p["system"] for s in systems.values()):
+                    err(f"bom[{p['id']}]: system 须是叶子系统，不能是父级: {p['system']}")
+                if p.get("chain") not in sysd.get("chains", []):
+                    err(f"bom[{p['id']}]: chain 不属于系统 {p['system']}: {p.get('chain')}")
+                if not isinstance(p.get("chain_order"), int) or p["chain_order"] < 1:
+                    err(f"bom[{p['id']}]: chain_order 须是正整数")
+                key = (p["system"], p.get("chain"), p.get("chain_order"))
+                if key in chain_slots:
+                    err(f"bom[{p['id']}]: 链路序号与 {chain_slots[key]} 重复: {key}")
+                chain_slots[key] = p["id"]
             for c in p.get("companies", []):
                 if c not in comp_by_id:
                     err(f"bom[{p['id']}]: 引用了不存在的 company_id: {c}")
@@ -205,6 +219,21 @@ def main():
                 if r.get("from_bom_part") and (bom.get("aliases") or {}).get(r["from_bom_part"]) != "site:" + r["id"]:
                     err(f"site_rights[{r['id']}]: from_bom_part {r['from_bom_part']} 未在 bom.aliases 指回本条")
 
+    # 部件级来源登记（2026-09-28）：只允许登记现行部件，队须在供应合同里
+    fetch_path = ROOT / "framework" / "part_fetch.json"
+    if fetch_path.exists() and bom_part_ids:
+        contract_path = ROOT / "framework" / "supply_contract.json"
+        providers = {p["id"] for p in json.loads(contract_path.read_text(encoding="utf-8")).get("providers", [])} if contract_path.exists() else set()
+        for pid, kinds in json.loads(fetch_path.read_text(encoding="utf-8")).get("parts", {}).items():
+            if pid not in bom_part_ids:
+                err(f"part_fetch[{pid}]: 不是现行部件")
+            for kind, reg in kinds.items():
+                if kind not in ("spec", "price", "lead_time", "news"):
+                    err(f"part_fetch[{pid}]: 未知数据类别 {kind}")
+                if providers and reg.get("team") not in providers:
+                    err(f"part_fetch[{pid}/{kind}]: 队不在供应合同里: {reg.get('team')}")
+                if not reg.get("instances") or not reg.get("calendar") or not reg.get("publisher_category"):
+                    err(f"part_fetch[{pid}/{kind}]: 须写出版方类别、实例与日历")
     prod_status = {"mature", "tight", "transition", "emerging"}
     products = load("products") if (DATA / "products.json").exists() else []
     prod_keys = set()

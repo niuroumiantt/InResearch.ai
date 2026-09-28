@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+<script src="/assets/theme-state.js"></script>
+<script src="/assets/site-skin.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>账本 — inresearch.ai</title>
+<style>
+  /* 账本：根节点"价格"列的一个展开。三个计算器是同一列的三个视图，先对齐它们共用的假设，再各看各的。 */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 var(--ui-font); padding-bottom: 40px; }
+  a { color: var(--accent); text-decoration: none; }
+  .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
+  .topbar b { font-size: 15px; margin-right: 14px; }
+  .tab { padding: 12px 14px; color: var(--muted); border-bottom: 2px solid transparent; }
+  .topbar .sp { flex: 1; }
+  .wrap { max-width: 1360px; margin: 18px auto 0; padding: 0 16px; }
+  .head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 8px 16px; margin-bottom: 14px; }
+  .head h1 { font-size: 24px; } .head h1 em { font-style: normal; color: var(--accent); }
+  .head .kind { color: var(--muted); font-size: 12px; }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 14px 16px; margin-bottom: 14px; }
+  .panel h2 { font-size: 15px; margin-bottom: 4px; } .panel h2 small { color: var(--muted); font-weight: 400; font-size: 11.5px; margin-left: 8px; }
+  .q { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
+  .tscroll { overflow-x: auto; max-width: 100%; }
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 500; font-size: 11.5px; }
+  td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.same { color: var(--muted); } td.diff { color: var(--red); font-weight: 600; }
+  .flag { display: inline-block; padding: 0 6px; border-radius: var(--ui-radius); font-size: 11px; color: #fff; }
+  .flag.ok { background: var(--green); } .flag.no { background: var(--red); } .flag.na { background: var(--gray); }
+  .views { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 1px solid var(--line); margin-bottom: 10px; }
+  .views button { background: none; border: none; border-bottom: 2px solid transparent; padding: 8px 12px; font: inherit; color: var(--muted); cursor: pointer; }
+  .views button.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .views button:focus-visible { outline: 2px solid var(--ui-focus, var(--accent)); }
+  .view { display: none; } .view.on { display: block; }
+  .view p { color: var(--muted); font-size: 12px; margin-bottom: 8px; }
+  iframe { width: 100%; height: 1400px; border: 1px solid var(--line); border-radius: var(--ui-radius); background: var(--card); }
+  .err { color: var(--red); border: 1px solid var(--red); border-radius: var(--ui-radius); padding: 14px; margin-top: 16px; }
+  @media (max-width: 900px) { .topbar { height: auto; flex-wrap: wrap; padding: 4px 10px; } .topbar .sp { display: none; } iframe { height: 1100px; } }
+</style>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+</head>
+<body>
+<inresearch-shell data-section="overview"></inresearch-shell>
+<div class="topbar">
+  <b>账本</b>
+  <a class="tab" href="node.html?col=3">← 根节点 · 价格列</a>
+  <span class="sp"></span>
+  <a class="tab" href="doc.html?f=framework/05_interface_system.md">口径 ↗</a>
+</div>
+<main class="wrap">
+  <header class="head"><h1>一座数据中心的 <em>账本</em></h1><span class="kind">根节点"价格"列的展开 · 三个计算器是同一列的三个视图 · 三级账以经济模型为准</span></header>
+
+  <section class="panel" id="bridge">
+    <h2>共用假设对齐<small>三个模型各自的基准情景，同一件事是否用同一个数</small></h2>
+    <div class="q">红色是三个模型不一致的假设。不一致不等于错：口径不同（例如"有效设备时间"不是"付费利用率"）会注明；口径相同而数不同，就是要统一的地方。</div>
+    <div class="tscroll"><table id="bridge-table"><thead><tr><th>假设</th><th class="num">经济模型（三级账）</th><th class="num">TCO 模型</th><th class="num">成本计算</th><th>判定</th><th>说明</th></tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section class="panel" id="views-panel">
+    <h2>三个视图<small>各自的输入面板与结果，交互只在浏览器里，不改写研究权威</small></h2>
+    <div class="views" role="tablist" id="views">
+      <button type="button" role="tab" data-view="economics" class="on">主体账本（四本账 · 三级）</button>
+      <button type="button" role="tab" data-view="tco">全生命周期成本（TCO）</button>
+      <button type="button" role="tab" data-view="cost">全成本计算（有效设备小时）</button>
+    </div>
+    <div class="view on" id="view-economics"><p>芯片厂商、壳层出租方、算力运营方、模型方四本账共用一套假设；根节点的成本、收入、回报三个数由它的基准情景计算。</p><iframe title="经济模型" data-src="economics.html" loading="lazy"></iframe></div>
+    <div class="view" id="view-tco"><p>七组输入按决策顺序排列，逐年现金流折现为 TCO 现值，平准化为每 MW·年、每 kW·月、每 IT kWh、每 GPU 小时。</p><iframe title="TCO 模型" data-src="tco.html" loading="lazy"></iframe></div>
+    <div class="view" id="view-cost"><p>把资源、设施、设备、任务与资本回收五个边界对齐，从 MW 走到年化成本再到有效设备小时的单位成本。</p><iframe title="成本计算" data-src="cost.html" loading="lazy"></iframe></div>
+  </section>
+  <div id="error"></div>
+</main>
+
+<script>
+async function get(p) {
+  const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error(p + " → " + r.status);
+  return r.json();
+}
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+/* 共用假设桥：同一件事在三个模型里的键。null = 该模型没有这个假设；note 说明口径差异。 */
+const BRIDGE = [
+  { label: "IT 容量 MW", econ: "it_mw", tco: "it_mw", cost: "it_mw" },
+  { label: "PUE", econ: "pue", tco: "pue", cost: "pue" },
+  { label: "IT 负载率", econ: "power_load", tco: "load_factor", cost: "power_load", pct: true },
+  { label: "电量单价 $/kWh", econ: "power_price", tco: "power_price", cost: "energy_price" },
+  { label: "需量费率 $/kW·月", econ: null, tco: "demand_rate", cost: "demand_rate" },
+  { label: "付费利用率", econ: "utilization", tco: "gpu_utilization", cost: "productive", pct: true, note: "成本计算的「有效设备时间」是设备有效工作时间份额，不是售出小时份额；口径不同" },
+  { label: "GPU 小时租金 $/h", econ: "gpu_price", tco: "price_gpu_hour", cost: null },
+  { label: "每 MW GPU 数", econ: "gpus_per_mw", tco: "gpus_per_mw", cost: null },
+  { label: "IT 寿命 年", econ: "it_life", tco: "it_refresh_years", cost: "it_life" },
+  { label: "非 IT 寿命 / 运营期 年", econ: "shell_life", tco: "horizon_years", cost: "facility_life", note: "经济模型与成本计算是折旧年限，TCO 是运营期" },
+  { label: "折现率", econ: "wacc", tco: "wacc", cost: "rate", pct: true },
+  { label: "水价 $/m³", econ: null, tco: "water_price", cost: "water_price" },
+  { label: "土地 $M/MW", econ: "land_per_mw", tco: "land_per_mw", cost: { key: "land", perMw: true }, note: "成本计算登记的是总额，按 IT 容量折成每 MW" },
+];
+function pick(a, k) {
+  if (k == null) return null;
+  if (typeof k === "object") { const v = a[k.key]; return v == null ? null : k.perMw ? v / (a.it_mw || 1) / 1e6 : v; }
+  return a[k] ?? null;
+}
+const fmt = (v, pct) => v == null ? "—" : pct ? (v * 100).toFixed(1) + "%" : (Number.isInteger(v) ? v.toLocaleString() : Number(v).toLocaleString(undefined, { maximumFractionDigits: 3 }));
+(async () => {
+  const [econ, tco, cost] = await Promise.all([get("data/datacenter_economics_model.json"), get("data/datacenter_tco_model.json"), get("data/datacenter_cost_model.json")]);
+  const A = { econ: econ.assumptions, tco: tco.assumptions, cost: cost.assumptions };
+  let diffs = 0;
+  document.querySelector("#bridge-table tbody").innerHTML = BRIDGE.map(b => {
+    const vals = { econ: pick(A.econ, b.econ), tco: pick(A.tco, b.tco), cost: pick(A.cost, b.cost) };
+    const present = Object.values(vals).filter(v => v != null);
+    const same = present.length < 2 ? null : present.every(v => Math.abs(v - present[0]) <= Math.abs(present[0]) * 0.005 + 1e-9);
+    if (same === false && !b.note) diffs++;
+    const flag = same == null ? '<span class="flag na">单模型</span>' : same ? '<span class="flag ok">一致</span>' : b.note ? '<span class="flag na">口径不同</span>' : '<span class="flag no">不一致</span>';
+    return `<tr><td>${esc(b.label)}</td>${["econ", "tco", "cost"].map(m => `<td class="num ${same === false && !b.note ? "diff" : "same"}">${fmt(vals[m], b.pct)}</td>`).join("")}<td>${flag}</td><td>${esc(b.note || "")}</td></tr>`;
+  }).join("");
+  document.querySelector("#bridge .q").textContent += ` 今天口径相同而数不同的假设：${diffs} 条。`;
+  const buttons = [...document.querySelectorAll("#views button")];
+  function show(name) {
+    buttons.forEach(b => { const on = b.dataset.view === name; b.classList.toggle("on", on); b.setAttribute("aria-selected", on); });
+    document.querySelectorAll(".view").forEach(v => v.classList.toggle("on", v.id === "view-" + name));
+    const frame = document.querySelector("#view-" + name + " iframe");
+    if (frame && !frame.src) frame.src = frame.dataset.src;  // 只加载正在看的视图
+    history.replaceState(null, "", "#" + name);
+  }
+  buttons.forEach(b => b.addEventListener("click", () => show(b.dataset.view)));
+  show(["economics", "tco", "cost"].includes(location.hash.slice(1)) ? location.hash.slice(1) : "economics");
+})().catch(e => { document.getElementById("error").innerHTML = `<div class="err">加载失败：${esc(e.message)}</div>`; });
+</script>
+</body>
+</html>

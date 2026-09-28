@@ -65,6 +65,13 @@ class TcoTargetListTests(unittest.TestCase):
             self.assertEqual(classes, set(r['variable_classes']), rid)
         self.assertEqual(self.doc['counts']['total'], len(self.targets))
 
+    def test_part_rows_carry_curated_sources(self):
+        # 第 4 步的人工部分：每个物理部件的规格、价格、交期三行都有登记的出版方、实例与日历（framework/part_fetch.json）
+        for t in self.targets:
+            if t['origin'] == 'part' and t['id'].rsplit('.', 1)[1] in ('spec', 'price', 'lead_time'):
+                self.assertTrue(t['curated'], f"{t['id']} still uses template sources")
+                self.assertTrue(t['instances'] and t['publisher_category'] and t['calendar'], t['id'])
+
     def test_references_exist(self):
         for t in self.targets:
             self.assertTrue(t['factor_ids'] or t['origin'] != 'factor', t['id'])

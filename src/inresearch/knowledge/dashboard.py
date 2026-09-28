@@ -148,6 +148,7 @@ def build(root=ROOT, as_of=None):
             cells[col]['coverage'] = cov
             cells[col]['status'] = status_of(any(i['value'] is not None for i in cells[col]['items']), cov)
         parts[p['id']] = {'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'system': p['system'],
+                          'chain': p.get('chain'), 'chain_order': p.get('chain_order'),
                           'module': p['module'], 'supply_status': p['status'], 'desc': p['desc'], 'cells': cells}
 
     # ---- site rights
@@ -172,8 +173,23 @@ def build(root=ROOT, as_of=None):
     # ---- ecosystems (aggregate over their parts)
     er = rules['ecosystem']
     ecosystems = []
-    for sys_id, sys_name in bom['systems'].items():
-        members = [p for p in bom['parts'] if p['system'] == sys_id]
+    systems = bom['systems']
+    def sysname(sid):
+        s = systems[sid]; return s['name'] if isinstance(s, dict) else s
+    leaf_ids = [sid for sid, s in systems.items() if not any(isinstance(x, dict) and x.get('parent') == sid for x in systems.values())]
+    def sys_key(sid):
+        s = systems[sid]
+        if not isinstance(s, dict):
+            return (99, 0)
+        return (systems[s['parent']]['order'], s['order']) if s.get('parent') else (s['order'], 0)
+    def chain_key(p):
+        s = systems.get(p['system'], {})
+        chains = s.get('chains', []) if isinstance(s, dict) else []
+        return (chains.index(p['chain']) if p.get('chain') in chains else 99, p.get('chain_order', 99))
+    for sys_id in sorted(leaf_ids, key=sys_key):
+        sys_name = sysname(sys_id)
+        sdef = systems[sys_id] if isinstance(systems[sys_id], dict) else {}
+        members = sorted([p for p in bom['parts'] if p['system'] == sys_id], key=chain_key)
         physical = [p for p in members if p['kind'] == 'part']
         keys = ['part:' + p['id'] for p in members]
         cells = {}
@@ -216,7 +232,40 @@ def build(root=ROOT, as_of=None):
             cells[col]['coverage'] = cov
             cells[col]['status'] = status_of(any(i['value'] is not None for i in cells[col]['items']), cov)
         ecosystems.append({'id': sys_id, 'name': sys_name, 'graph_name': eco_names.get(sys_id), 'node_id': 'ecosystem:' + sys_id,
-                           'cells': cells, 'parts': [{'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'supply_status': p['status']} for p in members]})
+                           'parent': sdef.get('parent'), 'chains': sdef.get('chains', []),
+                           'cells': cells, 'parts': [{'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'supply_status': p['status'],
+                                                      'chain': p.get('chain'), 'chain_order': p.get('chain_order')} for p in members]})
+    # parent systems (IT): one aggregate row over their children, so the matrix can show five systems and expand IT into four
+    parents = []
+    for pid, pdef in systems.items():
+        if not isinstance(pdef, dict) or pid in leaf_ids:
+            continue
+        kids = [e for e in ecosystems if e['parent'] == pid]
+        cells = {}
+        for col in ('1', '2', '3', '4', '5'):
+            items = []
+            if col == '1':
+                items = [{'label': '部件数', 'value': sum(i['value'] for e in kids for i in e['cells']['1']['items'] if i['label'] == '部件数'), 'unit': '个', 'as_of': bom.get('updated'), 'source': {'type': 'count', 'key': 'parts'}}]
+            elif col == '3':
+                vals = [i for e in kids for i in e['cells']['3']['items'] if isinstance(i['value'], (int, float))]
+                if vals:
+                    items = [{'label': '每 MW 造价（子系统之和）', 'value': round(sum(i['value'] for i in vals), 2), 'unit': vals[0]['unit'], 'as_of': max(i['as_of'] or '' for i in vals), 'source': {'type': 'sum', 'key': 'children'}}]
+            elif col == '4':
+                vals = [i for e in kids for i in e['cells']['4']['items'] if isinstance(i['value'], (int, float))]
+                if vals:
+                    top = max(vals, key=lambda i: i['value']); items = [{**top, 'source': {'type': 'max', 'key': 'children'}}]
+            elif col == '5':
+                sup = {c for e in kids for p in bom['parts'] if p['system'] == e['id'] for c in p['companies']}
+                items = [{'label': '供应商数', 'value': len(sup), 'unit': '家', 'as_of': bom.get('updated'), 'source': {'type': 'count', 'key': 'companies'}}]
+            else:
+                items = [i for e in kids for i in e['cells']['2']['items']][:1]
+            cov = {'sourced': 0, 'assumed': 0, 'needed': 0}
+            for e in kids:
+                for s, n in e['cells'][col]['coverage'].items():
+                    cov[s] += n
+            cells[col] = {'items': items, 'coverage': cov, 'status': status_of(any(i['value'] is not None for i in items), cov)}
+        parents.append({'id': pid, 'name': pdef['name'], 'node_id': 'ecosystem:' + pid, 'parent': None, 'order': pdef['order'], 'chains': [],
+                        'children': [e['id'] for e in kids], 'cells': cells})
     # ninth row: site rights
     keys = ['site:' + r['id'] for r in rights]
     site_cells = {}
@@ -264,7 +313,8 @@ def build(root=ROOT, as_of=None):
                            'model_as_of': model.get('as_of')},
         'columns': rules['columns'], 'formulas': factors_doc.get('formulas', {}),
         'root': {'id': 'root', 'name': '一座 AI 数据中心', 'account': account, 'cells': root_cells, 'targets': totals},
-        'ecosystems': ecosystems, 'site': site_row, 'parts': parts, 'rights': rights_out, 'factors': factors, 'changes': changes,
+        'systems': {sid: (s if isinstance(s, dict) else {'name': s}) for sid, s in systems.items()},
+        'ecosystems': ecosystems, 'parent_systems': sorted(parents, key=lambda x: x['order']), 'site': site_row, 'parts': parts, 'rights': rights_out, 'factors': factors, 'changes': changes,
     }
 
 

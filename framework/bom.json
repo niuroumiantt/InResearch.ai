@@ -1,21 +1,92 @@
 {
-  "version": "2.0",
+  "version": "2.1",
   "updated": "2026-09-28",
-  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md；重切依据见 docs/reviews/2026-09-28/bom-recut/PROPOSAL.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v2.0（2026-09-28 用户批复）：按「拆到有自己的价格、供应商名单、交期为止；普通紧固件合并，关键稀缺件不合并」重切，46 → 61 个物理部件；kind 区分 part / software / archetype；权利与配额移入 framework/site_rights.json；layers 改为五个尺度 S1–S5（装在哪），layer 键为兼容名，与经济模型的五类变量无关；被拆分或移出的旧 ID 在 aliases 里指向去处，网页与 3D 经别名解析。 v1.2（2026-08-26）：补 5 节点，新增 upstream 字段。v1.1（2026-08-18）：对齐产品研究目录，新增 14 节点。",
+  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md；重切依据见 docs/reviews/2026-09-28/bom-recut/PROPOSAL.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v2.0（2026-09-28 用户批复）：按「拆到有自己的价格、供应商名单、交期为止；普通紧固件合并，关键稀缺件不合并」重切，46 → 61 个物理部件；kind 区分 part / software / archetype；权利与配额移入 framework/site_rights.json；layers 改为五个尺度 S1–S5（装在哪），layer 键为兼容名，与经济模型的五类变量无关；被拆分或移出的旧 ID 在 aliases 里指向去处，网页与 3D 经别名解析。 v1.2（2026-08-26）：补 5 节点，新增 upstream 字段。v1.1（2026-08-18）：对齐产品研究目录，新增 14 节点。 v2.1（2026-09-28 用户采用）：一个骨架——数据中心 → 五个系统（设施、电力、冷却、IT、控制与软件），IT 再分计算、内存、存储、网络，系统内按能量流链路排（chain、chain_order）；尺度降为部件属性、第二排法。systems 登记父子关系与链路顺序，部件 system 只取叶子系统。边界件归属按能量流位置：储能归发电与储能，电源架、PSU、VRM 归机柜与板级供电，冷板归芯片级，歧管与快接头归机房与机柜，燃料储运跟发电。",
   "kinds": {
     "part": "可采购的物件，占一个尺度",
     "software": "软件条目：有订阅价与供应商，进目标表，不进 3D",
     "archetype": "设施基型 / 交付形态：配置模板，不是零件"
   },
   "systems": {
-    "facility": "设施",
-    "power": "电力",
-    "thermal": "冷却",
-    "compute": "IT · 计算",
-    "memory": "IT · 内存",
-    "storage": "IT · 存储",
-    "network": "IT · 网络",
-    "control": "控制与软件"
+    "facility": {
+      "name": "设施",
+      "parent": null,
+      "order": 1,
+      "chains": [
+        "土地与建筑",
+        "消防安防"
+      ]
+    },
+    "power": {
+      "name": "电力",
+      "parent": null,
+      "order": 2,
+      "chains": [
+        "电网接入",
+        "变电",
+        "发电与储能",
+        "UPS",
+        "配电",
+        "机柜与板级供电"
+      ]
+    },
+    "thermal": {
+      "name": "冷却",
+      "parent": null,
+      "order": 3,
+      "chains": [
+        "排热",
+        "冷水与 CDU",
+        "机房与机柜",
+        "芯片级"
+      ]
+    },
+    "it": {
+      "name": "IT",
+      "parent": null,
+      "order": 4,
+      "chains": []
+    },
+    "compute": {
+      "name": "IT · 计算",
+      "parent": "it",
+      "order": 1,
+      "chains": [
+        "计算"
+      ]
+    },
+    "memory": {
+      "name": "IT · 内存",
+      "parent": "it",
+      "order": 2,
+      "chains": [
+        "内存"
+      ]
+    },
+    "storage": {
+      "name": "IT · 存储",
+      "parent": "it",
+      "order": 3,
+      "chains": [
+        "存储"
+      ]
+    },
+    "network": {
+      "name": "IT · 网络",
+      "parent": "it",
+      "order": 4,
+      "chains": [
+        "网络"
+      ]
+    },
+    "control": {
+      "name": "控制与软件",
+      "parent": null,
+      "order": 5,
+      "chains": [
+        "DCIM/BMS 与固件"
+      ]
+    }
   },
   "layers": [
     {
@@ -68,6 +139,8 @@
       "kind": "part",
       "layer": "S1",
       "system": "power",
+      "chain": "电网接入",
+      "chain_order": 1,
       "name": "高压开关站/GIS",
       "module": "M09",
       "companies": [
@@ -86,6 +159,8 @@
       "kind": "part",
       "layer": "S1",
       "system": "power",
+      "chain": "变电",
+      "chain_order": 1,
       "name": "大型电力变压器",
       "module": "M09",
       "companies": [
@@ -111,6 +186,8 @@
       "kind": "part",
       "layer": "S1",
       "system": "power",
+      "chain": "变电",
+      "chain_order": 2,
       "name": "中压开关柜",
       "module": "M09",
       "companies": [
@@ -130,6 +207,8 @@
       "kind": "part",
       "layer": "S1",
       "system": "power",
+      "chain": "发电与储能",
+      "chain_order": 1,
       "name": "燃气轮机",
       "module": "M04",
       "companies": [
@@ -152,6 +231,8 @@
       "kind": "part",
       "layer": "S1",
       "system": "power",
+      "chain": "发电与储能",
+      "chain_order": 2,
       "name": "燃气往复式机组",
       "module": "M04",
       "companies": [
@@ -168,6 +249,8 @@
       "kind": "part",
       "layer": "S1",
       "system": "power",
+      "chain": "发电与储能",
+      "chain_order": 3,
       "name": "燃料电池",
       "module": "M04",
       "companies": [
@@ -184,6 +267,8 @@
       "kind": "part",
       "layer": "S1",
       "system": "power",
+      "chain": "发电与储能",
+      "chain_order": 4,
       "name": "小型模块化反应堆",
       "module": "M04",
       "companies": [],
@@ -211,7 +296,9 @@
       "status": "tight",
       "desc": "从静态保险变成动态电力系统组件；排放许可是隐性约束",
       "kind": "part",
-      "system": "power"
+      "system": "power",
+      "chain": "发电与储能",
+      "chain_order": 5
     },
     {
       "id": "bess",
@@ -227,13 +314,17 @@
       "status": "emerging",
       "desc": "跨越发电机启动间隙、抑制 AI 负载功率阶跃——角色从可选变必需",
       "kind": "part",
-      "system": "power"
+      "system": "power",
+      "chain": "发电与储能",
+      "chain_order": 7
     },
     {
       "id": "fuel-storage",
       "kind": "part",
       "layer": "S1",
       "system": "power",
+      "chain": "发电与储能",
+      "chain_order": 6,
       "name": "柴油储运（储罐、日用箱、加注）",
       "module": "M04",
       "companies": [],
@@ -248,6 +339,8 @@
       "kind": "part",
       "layer": "S1",
       "system": "thermal",
+      "chain": "排热",
+      "chain_order": 1,
       "name": "干冷器/冷却塔/蒸发冷",
       "module": "M08",
       "companies": [
@@ -265,6 +358,8 @@
       "kind": "part",
       "layer": "S1",
       "system": "thermal",
+      "chain": "排热",
+      "chain_order": 2,
       "name": "水处理与供水（泵站、过滤、软化）",
       "module": "M08",
       "companies": [
@@ -290,7 +385,9 @@
       "status": "tight",
       "desc": "预制化/模块化压缩周期；电气技工短缺是执行瓶颈",
       "kind": "part",
-      "system": "facility"
+      "system": "facility",
+      "chain": "土地与建筑",
+      "chain_order": 1
     },
     {
       "id": "fire",
@@ -305,13 +402,17 @@
       "status": "mature",
       "desc": "锂电池储能与液冷带来新消防规范议题",
       "kind": "part",
-      "system": "facility"
+      "system": "facility",
+      "chain": "消防安防",
+      "chain_order": 1
     },
     {
       "id": "security",
       "kind": "part",
       "layer": "S2",
       "system": "facility",
+      "chain": "消防安防",
+      "chain_order": 2,
       "name": "安防（门禁、视频、周界）",
       "module": "M10",
       "companies": [
@@ -343,13 +444,17 @@
       "status": "mature",
       "desc": "AI 负载秒级波动重塑 UPS/BBU/超级电容组合",
       "kind": "part",
-      "system": "power"
+      "system": "power",
+      "chain": "UPS",
+      "chain_order": 1
     },
     {
       "id": "ups-battery",
       "kind": "part",
       "layer": "S3",
       "system": "power",
+      "chain": "UPS",
+      "chain_order": 2,
       "name": "UPS 电池（锂电/铅酸）",
       "module": "M09",
       "companies": [
@@ -366,6 +471,8 @@
       "kind": "part",
       "layer": "S3",
       "system": "power",
+      "chain": "配电",
+      "chain_order": 1,
       "name": "低压开关柜",
       "module": "M09",
       "companies": [
@@ -386,6 +493,8 @@
       "kind": "part",
       "layer": "S3",
       "system": "power",
+      "chain": "配电",
+      "chain_order": 2,
       "name": "母线槽",
       "module": "M09",
       "companies": [
@@ -404,6 +513,8 @@
       "kind": "part",
       "layer": "S3",
       "system": "power",
+      "chain": "配电",
+      "chain_order": 3,
       "name": "机房配电柜/PDU/RPP（含机柜配电条）",
       "module": "M09",
       "companies": [
@@ -422,6 +533,8 @@
       "kind": "part",
       "layer": "S3",
       "system": "thermal",
+      "chain": "冷水与 CDU",
+      "chain_order": 1,
       "name": "冷水机组",
       "module": "M08",
       "companies": [
@@ -440,6 +553,8 @@
       "kind": "part",
       "layer": "S3",
       "system": "thermal",
+      "chain": "冷水与 CDU",
+      "chain_order": 2,
       "name": "冷冻水泵、管路与阀门",
       "module": "M08",
       "companies": [],
@@ -465,7 +580,9 @@
       "status": "mature",
       "desc": "液冷时代空气系统不消失——冷板留下 10-30% 余热仍走空气",
       "kind": "part",
-      "system": "thermal"
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 1
     },
     {
       "id": "cdu",
@@ -494,7 +611,9 @@
       "status": "transition",
       "desc": "MW 级 CDU 已量产（2-10MW+ 平台），TCS/FWS 双环路的可用性边界",
       "kind": "part",
-      "system": "thermal"
+      "system": "thermal",
+      "chain": "冷水与 CDU",
+      "chain_order": 3
     },
     {
       "id": "immersion",
@@ -510,7 +629,9 @@
       "status": "emerging",
       "desc": "浸没式液冷的设备条目（槽体与系统）；技术路线是它的属性，不是零件",
       "kind": "part",
-      "system": "thermal"
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 2
     },
     {
       "id": "cabling",
@@ -527,7 +648,9 @@
       "status": "mature",
       "desc": "结构化布线与光纤——机房的神经末梢",
       "kind": "part",
-      "system": "network"
+      "system": "network",
+      "chain": "网络",
+      "chain_order": 5
     },
     {
       "id": "leak-detection",
@@ -542,7 +665,9 @@
       "status": "tight",
       "desc": "漏液检测——液冷进机房后的新增安全层",
       "kind": "part",
-      "system": "thermal"
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 6
     },
     {
       "id": "rack-frame",
@@ -565,13 +690,17 @@
       "status": "transition",
       "desc": "5-10kW → 130kW（GB200 NVL72）→ 600kW-1MW 路线图，机柜正变成'整机产品'",
       "kind": "part",
-      "system": "facility"
+      "system": "facility",
+      "chain": "土地与建筑",
+      "chain_order": 2
     },
     {
       "id": "rack-system",
       "kind": "part",
       "layer": "S4",
       "system": "compute",
+      "chain": "计算",
+      "chain_order": 1,
       "name": "整机柜系统（NVL72 类，按柜计价）",
       "module": "M06",
       "companies": [
@@ -623,13 +752,17 @@
       "status": "tight",
       "desc": "ODM 直供模式主导 AI 服务器；集成交付能力即壁垒",
       "kind": "part",
-      "system": "compute"
+      "system": "compute",
+      "chain": "计算",
+      "chain_order": 2
     },
     {
       "id": "general-server",
       "kind": "part",
       "layer": "S4",
       "system": "compute",
+      "chain": "计算",
+      "chain_order": 3,
       "name": "通用服务器（CPU 节点）",
       "module": "M06",
       "companies": [
@@ -678,7 +811,9 @@
       "status": "transition",
       "desc": "InfiniBand vs 以太网(UEC)之争；scale-up 域扩大改写拓扑",
       "kind": "part",
-      "system": "network"
+      "system": "network",
+      "chain": "网络",
+      "chain_order": 1
     },
     {
       "id": "storage-array",
@@ -713,7 +848,9 @@
       "status": "mature",
       "desc": "存储系统与阵列——AI 数据管道的容量层与并行文件系统",
       "kind": "part",
-      "system": "storage"
+      "system": "storage",
+      "chain": "存储",
+      "chain_order": 1
     },
     {
       "id": "manifold",
@@ -729,13 +866,17 @@
       "status": "tight",
       "desc": "快接头/软管/水质是液冷可用性的隐形风险点",
       "kind": "part",
-      "system": "thermal"
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 4
     },
     {
       "id": "quick-disconnect",
       "kind": "part",
       "layer": "S4",
       "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 5,
       "name": "快接头",
       "module": "M08",
       "companies": [
@@ -761,13 +902,17 @@
       "status": "transition",
       "desc": "800V HVDC + 机柜级储能重构供电末端；台达系核心地盘",
       "kind": "part",
-      "system": "power"
+      "system": "power",
+      "chain": "机柜与板级供电",
+      "chain_order": 1
     },
     {
       "id": "bbu",
       "kind": "part",
       "layer": "S4",
       "system": "power",
+      "chain": "机柜与板级供电",
+      "chain_order": 2,
       "name": "机柜电池备份单元",
       "module": "M09",
       "companies": [
@@ -794,7 +939,9 @@
       "status": "tight",
       "desc": "DAC/AEC/背板铜互联——机柜内短距连接对光的替代",
       "kind": "part",
-      "system": "network"
+      "system": "network",
+      "chain": "网络",
+      "chain_order": 4
     },
     {
       "id": "coolant",
@@ -809,7 +956,9 @@
       "status": "mature",
       "desc": "冷却液与工质——液冷环路的化学约束",
       "kind": "part",
-      "system": "thermal"
+      "system": "thermal",
+      "chain": "冷水与 CDU",
+      "chain_order": 4
     },
     {
       "id": "sidecar-hx",
@@ -827,7 +976,9 @@
       "status": "transition",
       "desc": "机柜级液-气热交换（sidecar/RDHx）——NVL72 时代介于 CDU 与机柜之间的新层级，此前两头都不算它",
       "kind": "part",
-      "system": "thermal"
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 3
     },
     {
       "id": "gpu",
@@ -865,13 +1016,17 @@
       ],
       "desc": "GPU 收入 2025 ~$191.8B、2028 峰值 ~$247.6B（Yole）；ASIC 2030 ~$84.6B——供应商集中度即行业风险",
       "kind": "part",
-      "system": "compute"
+      "system": "compute",
+      "chain": "计算",
+      "chain_order": 4
     },
     {
       "id": "ai-asic",
       "kind": "part",
       "layer": "S5",
       "system": "compute",
+      "chain": "计算",
+      "chain_order": 5,
       "name": "定制 AI ASIC",
       "module": "M06",
       "companies": [
@@ -910,7 +1065,9 @@
       "status": "mature",
       "desc": "Grace/自研 Arm 侵蚀 x86；头节点与推理仍是 CPU 战场",
       "kind": "part",
-      "system": "compute"
+      "system": "compute",
+      "chain": "计算",
+      "chain_order": 6
     },
     {
       "id": "fpga",
@@ -925,13 +1082,17 @@
       "status": "mature",
       "desc": "FPGA 与异构加速卡——推理与网络卸载的第二战场",
       "kind": "part",
-      "system": "compute"
+      "system": "compute",
+      "chain": "计算",
+      "chain_order": 7
     },
     {
       "id": "bmc",
       "kind": "part",
       "layer": "S5",
       "system": "compute",
+      "chain": "计算",
+      "chain_order": 8,
       "name": "基板管理控制器",
       "module": "M06",
       "companies": [
@@ -961,7 +1122,9 @@
       "status": "tight",
       "desc": "HBM4(2026)→HBM8(2038) 路线图（KAIST）；容量与带宽是 AI 算力的第一瓶颈",
       "kind": "part",
-      "system": "memory"
+      "system": "memory",
+      "chain": "内存",
+      "chain_order": 1
     },
     {
       "id": "dram",
@@ -979,13 +1142,17 @@
       "status": "tight",
       "desc": "从现有hbm节点拆分：服务器内存与HBM供需周期不同步，价格序列应分开",
       "kind": "part",
-      "system": "memory"
+      "system": "memory",
+      "chain": "内存",
+      "chain_order": 2
     },
     {
       "id": "cxl-memory",
       "kind": "part",
       "layer": "S5",
       "system": "memory",
+      "chain": "内存",
+      "chain_order": 3,
       "name": "CXL 内存扩展",
       "module": "M06",
       "companies": [
@@ -1022,7 +1189,9 @@
       "status": "tight",
       "desc": "整盘产品研究入口；控制器、NAND、固件与电路板通过研究图谱分别展开。厂商列表为历史目录线索，不代表整盘供应能力已核实。",
       "kind": "part",
-      "system": "storage"
+      "system": "storage",
+      "chain": "存储",
+      "chain_order": 2
     },
     {
       "id": "hdd",
@@ -1039,7 +1208,9 @@
       "status": "tight",
       "desc": "从现有storage节点拆分；建议拆分后删除storage节点",
       "kind": "part",
-      "system": "storage"
+      "system": "storage",
+      "chain": "存储",
+      "chain_order": 3
     },
     {
       "id": "nic",
@@ -1058,7 +1229,9 @@
       "status": "mature",
       "desc": "每 GPU 配套一张 400/800G 网卡——数量与 GPU 同步放大",
       "kind": "part",
-      "system": "network"
+      "system": "network",
+      "chain": "网络",
+      "chain_order": 7
     },
     {
       "id": "optics",
@@ -1084,7 +1257,9 @@
       "status": "transition",
       "desc": "800G→1.6T 迭代 + CPO 2024-2035 渗透曲线（Yole）——密度与功耗逼出共封装",
       "kind": "part",
-      "system": "network"
+      "system": "network",
+      "chain": "网络",
+      "chain_order": 3
     },
     {
       "id": "switch-asic",
@@ -1101,13 +1276,17 @@
       "status": "tight",
       "desc": "从network-switch中拆出芯片层（Broadcom/Marvell/盛科）",
       "kind": "part",
-      "system": "network"
+      "system": "network",
+      "chain": "网络",
+      "chain_order": 2
     },
     {
       "id": "retimer",
       "kind": "part",
       "layer": "S5",
       "system": "network",
+      "chain": "网络",
+      "chain_order": 8,
       "name": "重定时器 / AEC 芯片",
       "module": "M07",
       "companies": [
@@ -1127,6 +1306,8 @@
       "kind": "part",
       "layer": "S5",
       "system": "network",
+      "chain": "网络",
+      "chain_order": 9,
       "name": "PCIe/CXL 交换芯片",
       "module": "M07",
       "companies": [
@@ -1152,7 +1333,9 @@
       "status": "tight",
       "desc": "背板/面板/电源高速连接器——铜互联线缆之外独立的一门生意，随速率代际量价齐升",
       "kind": "part",
-      "system": "network"
+      "system": "network",
+      "chain": "网络",
+      "chain_order": 6
     },
     {
       "id": "coldplate",
@@ -1173,7 +1356,9 @@
       "status": "transition",
       "desc": "入液热捕获率 70-90%；GPU/OEM 认证是专业厂商的护城河",
       "kind": "part",
-      "system": "thermal"
+      "system": "thermal",
+      "chain": "芯片级",
+      "chain_order": 1
     },
     {
       "id": "psu",
@@ -1189,7 +1374,9 @@
       "status": "mature",
       "desc": "钛金效率与功率密度竞赛；PDU+PSU 市场独立成研究对象",
       "kind": "part",
-      "system": "power"
+      "system": "power",
+      "chain": "机柜与板级供电",
+      "chain_order": 3
     },
     {
       "id": "vrm",
@@ -1205,13 +1392,17 @@
       "status": "tight",
       "desc": "GPU 千瓦时代的板级供电——垂直供电（VPD）与电源级密度是 psu 之外独立的瓶颈件",
       "kind": "part",
-      "system": "power"
+      "system": "power",
+      "chain": "机柜与板级供电",
+      "chain_order": 4
     },
     {
       "id": "server-fan",
       "kind": "part",
       "layer": "S5",
       "system": "thermal",
+      "chain": "芯片级",
+      "chain_order": 3,
       "name": "服务器风扇",
       "module": "M08",
       "companies": [
@@ -1228,6 +1419,8 @@
       "kind": "part",
       "layer": "S5",
       "system": "thermal",
+      "chain": "芯片级",
+      "chain_order": 2,
       "name": "均热板与散热器",
       "module": "M08",
       "companies": [
@@ -1259,7 +1452,9 @@
       "status": "mature",
       "desc": "软件条目：有订阅价与供应商，进目标表，不进 3D（用户 2026-09-28 决定）",
       "kind": "software",
-      "system": "control"
+      "system": "control",
+      "chain": "DCIM/BMS 与固件",
+      "chain_order": 1
     },
     {
       "id": "modular-dc",
@@ -1277,7 +1472,9 @@
       "status": "mature",
       "desc": "交付形态，不是零件：同一批部件的另一种包装方式；保留为配置模板",
       "kind": "archetype",
-      "system": "facility"
+      "system": "facility",
+      "chain": "土地与建筑",
+      "chain_order": 3
     }
   ]
 }
