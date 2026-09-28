@@ -35,6 +35,17 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(self.doc['root']['account']['scenario'], self.model['presets']['baseline']['label'])
         self.assertEqual(set(rows), {'cost_per_mw', 'revenue_per_mw', 'roic'}, '三级：成本、收入、回报；回报不是一列')
 
+    def test_root_readings_and_account_evidence(self):
+        readings = self.doc['root']['account']['readings']
+        self.assertEqual([r['id'] for r in readings], ['build', 'compose', 'operate', 'earn'])
+        for r in readings:
+            self.assertTrue(r['href'] and r['label'] and r['hint'], r['id'])
+        for row in self.doc['root']['account']['rows']:
+            ev = row['evidence']
+            self.assertEqual(set(ev), {'sourced', 'assumed', 'input', 'inputs'}, row['key'])
+            self.assertGreater(ev['inputs'], 0, row['key'])
+            self.assertLessEqual(ev['sourced'] + ev['assumed'] + ev['input'], ev['inputs'], row['key'])
+
     def test_rules_reference_existing_sources(self):
         for col, specs in self.rules['root']['cells'].items():
             self.assertIn(col, self.rules['columns'])

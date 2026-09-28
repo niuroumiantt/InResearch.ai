@@ -30,6 +30,14 @@
   .panel h2 small { color: var(--muted); font-weight: 400; font-size: 11.5px; margin-left: 8px; }
   .panel .q { color: var(--muted); font-size: 12px; margin-bottom: 10px; }
   .account { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 12px; }
+  .readings { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin: 0 0 12px; }
+  .reading { display: block; border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 8px 12px; text-decoration: none; color: var(--text); }
+  .reading b { display: block; color: var(--accent); } .reading small { color: var(--muted); font-size: 11.5px; }
+  .timeline { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; margin-bottom: 12px; }
+  .stage { border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 8px 10px; min-width: 0; }
+  .stage h3 { font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .stage h3 .num { background: var(--accent); color: #fff; border-radius: var(--ui-radius); font-size: 10px; padding: 0 5px; }
+  .stage a.kv { text-decoration: none; color: inherit; }
   .acct { border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 10px 12px; }
   .acct .l { color: var(--muted); font-size: 12px; } .acct .v { font-size: 24px; font-weight: 600; font-variant-numeric: tabular-nums; }
   .acct .u, .acct .n { color: var(--muted); font-size: 11px; }
@@ -106,7 +114,7 @@
   <a class="tab" href="bom.html">爆炸图</a>
   <a class="tab" href="bom3d.html">园区 3D</a>
   <a class="tab" href="ledger.html">账本</a>
-  <a class="tab" href="supply.html">供应中心</a>
+  <a class="tab" href="supply.html">采集</a>
   <a class="tab" href="doc.html?f=docs/reviews/2026-09-28/dashboard/PROPOSAL.md">为什么这样排 ↗</a>
 </div>
 
@@ -176,7 +184,9 @@ function matrix(d) {
   }
   rows.push({ ...d.site, kind: "top" });
   const open = new URLSearchParams(location.search).get("it") === "1";
-  return `<div class="tscroll"><table id="matrix" class="${open ? "it-open" : ""}"><thead><tr><th>系统 × 五类变量</th>${cols.map(([n, name]) => `<th class="${COL === n ? "hl" : ""}">${n} ${esc(name)}</th>`).join("")}</tr></thead><tbody>${rows.map(r => {
+  // 列覆盖率：这一列下所有目标行的四态之和（IT 父行不重复计入其子行）
+  const colCov = n => rows.filter(r => r.kind !== "parent").reduce((a, r) => { const c = r.cells[n].coverage || {}; for (const k of ["sourced", "assumed", "delivered", "needed"]) a[k] += c[k] || 0; return a; }, { sourced: 0, assumed: 0, delivered: 0, needed: 0 });
+  return `<div class="tscroll"><table id="matrix" class="${open ? "it-open" : ""}"><thead><tr><th>系统 × 五类变量</th>${cols.map(([n, name]) => { const c = colCov(n); return `<th class="${COL === n ? "hl" : ""}">${n} ${esc(name)}<span class="c">目标 已有 ${c.sourced + c.delivered} · 缺 ${c.needed}</span></th>`; }).join("")}</tr></thead><tbody>${rows.map(r => {
     const id = r.id === "site" ? "site" : "system:" + r.id;
     const label = r.kind === "parent" ? `<button type="button" class="it-toggle" aria-expanded="${open}" title="展开 / 收起 IT 的四个子系统">${open ? "▾" : "▸"}</button> <a href="${nodeHref(id)}">${esc(r.name)}</a>` : r.kind === "child" ? `<span class="child-mark">└</span> <a href="${nodeHref(id)}">${esc(r.name.replace("IT · ", ""))}</a>` : `<a href="${nodeHref(id)}">${esc(r.name)}</a>`;
     return `<tr class="row-${r.kind}"><th>${label}</th>${cols.map(([n]) => {
@@ -212,36 +222,41 @@ function targetPanel(rows, teams) {
   const byTeam = {};
   rows.forEach(t => { const b = byTeam[t.team] ||= { sourced: 0, assumed: 0, delivered: 0, needed: 0, state: t.team_state }; b[t.status]++; });
   const cards = Object.entries(byTeam).map(([team, b]) => `<div class="team"><b>${esc(teams[team]?.name || team)}</b>${b.state === "not_connected" ? '<span class="chip">待建队</span>' : ""}<i class="dot st-sourced"></i>${b.sourced} <i class="dot st-assumed"></i>${b.assumed} <i class="dot st-delivered"></i>${b.delivered} <i class="dot st-needed"></i>${b.needed}</div>`).join("");
-  const table = `<div class="tscroll"><table><thead><tr><th>目标</th><th>类</th><th>数据类别</th><th>披露类型 × 出版方</th><th>队 / 主机</th><th>状态</th><th>到期</th></tr></thead><tbody>${rows.map(t =>
-    `<tr><td><code>${esc(t.id)}</code></td><td>${t.variable_class}</td><td>${esc(t.data_class)}</td><td>${esc(t.disclosure_type)} × ${esc(t.publisher_category)}</td><td>${esc(t.team)} / ${esc(t.host)}</td><td><span class="dot st-${t.status}"></span>${STATUS[t.status]}${t.sourced_by === "registry" ? '<small class="empty"> 人工登记</small>' : t.sourced_by === "delivery" ? '<small class="empty"> 队交付</small>' : ""}</td><td>${t.next_due ? esc(t.next_due) : '<span class="empty">待建队</span>'}</td></tr>`).join("")}</tbody></table></div>`;
+  const nodeOf = t => t.part_id ? "part:" + t.part_id : t.site_right_id ? "site:" + t.site_right_id : "root";
+  const table = `<div class="tscroll"><table><thead><tr><th>目标</th><th>格</th><th>数据类别</th><th>披露类型 × 出版方</th><th>队 / 主机</th><th>状态</th><th>到期</th></tr></thead><tbody>${rows.map(t =>
+    `<tr><td><code>${esc(t.id)}</code></td><td><a href="${nodeHref(nodeOf(t), String(t.variable_class))}" title="进入节点，停在这一列">${esc(nodeOf(t) === "root" ? "根" : nodeOf(t))} · ${t.variable_class}</a></td><td>${esc(t.data_class)}</td><td>${esc(t.disclosure_type)} × ${esc(t.publisher_category)}</td><td>${esc(t.team)} / ${esc(t.host)}</td><td><span class="dot st-${t.status}"></span>${STATUS[t.status]}${t.sourced_by === "registry" ? '<small class="empty"> 人工登记</small>' : t.sourced_by === "delivery" ? '<small class="empty"> 队交付</small>' : ""}</td><td>${t.next_due ? esc(t.next_due) : '<span class="empty">待建队</span>'}</td></tr>`).join("")}</tbody></table></div>`;
   return `<div class="teams">${cards}</div>${table}`;
 }
 
-/* 派工面板：事实层与工单（自首页迁入）。机制看不见就等于不存在。 */
-async function deliveryBoard() {
-  const [facts, mets, taskBoard, blind] = await Promise.all([
-    get("data/facts.json").catch(() => null), get("framework/metrics.json").catch(() => null),
-    get("api/tasks").catch(() => null), get("reports/blindspot.json").catch(() => null)]);
-  const orders = taskBoard?.orders || [];
-  const p1 = orders.filter(o => o.pri === "P1").length;
-  const kinds = Object.entries(orders.reduce((a, o) => (a[o.kind] = (a[o.kind] || 0) + 1, a), {})).sort((x, y) => y[1] - x[1]).slice(0, 4);
-  const alarms = blind ? (blind.modules || []).filter(m => m.alarm) : [];
-  const nf = facts ? facts.records.length : null, nm = mets ? mets.metrics.length : null;
-  const filled = facts ? new Set(facts.records.map(f => f.metric_id)).size : null;
-  return `<div class="board"><div class="bh"><h3>派工 · 事实层与工单</h3><a class="go" href="team.html">团队看板 →</a></div>
+/* 派工面板：目标表就是任务书（2026-09-28 起不再读工单与盲区报警）。机制看不见就等于不存在。 */
+function deliveryBoard(T, d) {
+  const by = k => T.reduce((a, t) => (a[t[k]] = (a[t[k]] || 0) + 1, a), {});
+  const st = by("status"), teams = by("team");
+  const notConnected = T.filter(t => t.team_state === "not_connected").length;
+  const delivered = st.delivered || 0, due = d.changes.due_total;
+  return `<div class="board"><div class="bh"><h3>派工 · 目标表就是任务书</h3><a class="go" href="supply.html">采集 →</a></div>
     <div class="big">
-      <div><b>${taskBoard ? orders.length : "—"}</b> <span>张工单 ｜ P1 <b style="font-size:13px;color:${p1 ? "var(--yellow)" : "var(--green)"}">${p1}</b></span></div>
-      <div><b>${nf ?? "—"}</b> <span>条事实${nm != null ? `（${filled}/${nm} 个指标已有数）` : ""}</span></div>
-      <div><b style="color:${alarms.length ? "var(--yellow)" : "var(--green)"}">${alarms.length}</b> <span>模块盲区报警</span></div>
+      <div><b>${T.length}</b> <span>行目标 ｜ 缺 <b style="font-size:13px;color:${st.needed ? "var(--yellow)" : "var(--green)"}">${st.needed || 0}</b></span></div>
+      <div><b>${(st.sourced || 0) + delivered}</b> <span>行已有或已交付${delivered ? `（已交付未成序列 ${delivered}）` : ""}</span></div>
+      <div><b style="color:${due ? "var(--yellow)" : "var(--green)"}">${due}</b> <span>行 30 天内到期</span></div>
     </div>
-    <div class="line">缺口：${kinds.map(([k, v]) => `${esc(k)} ${v}`).join(" ｜ ") || "—"}</div>
-    <div class="line">盲区：${alarms.map(m => `<a class="chip-sm" href="doc.html?f=reports/blindspot.md">${esc(m.mid)} ${esc(m.ratio)}×</a>`).join(" ") || "无"}</div>
-    <div class="line">工单 = 声明 − 现状，不手写；采集需求在目标清单，研究缺口在工单，两者都从这里派出。</div></div>`;
+    <div class="line">按队：${Object.entries(teams).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${esc(k)} ${v}`).join(" ｜ ")}</div>
+    <div class="line">待建队名下 ${notConnected} 行不排到期。采集需求只来自目标表，各队不自定抓什么；灰格与虚线格就是任务书，点格进入节点停在那一列。</div></div>`;
+}
+
+/* 它怎么建：时间列按六段建设阶段展开，从站点权利起 */
+function buildTimeline(d) {
+  const items = [...d.site.rights.map(r => ({ id: "site:" + r.id, name: r.name, stage: r.stage, cell: d.rights[r.id].cells["4"] })),
+    ...Object.values(d.parts).map(p => ({ id: "part:" + p.id, name: p.name, stage: p.stage, cell: p.cells["4"] }))];
+  return `<div class="timeline" id="timeline">${(d.stages || []).map(s => {
+    const rows = items.filter(i => i.stage === s.id);
+    return `<div class="stage"><h3><span class="num">${s.order}</span>${esc(s.name)}</h3><div class="empty">${esc(s.desc)}</div>${rows.map(i => { const c = i.cell || {}; const v = c.items?.[0]; return `<a class="kv" href="${nodeHref(i.id, "4")}"><span>${esc(i.name)}</span><b><span class="dot st-${c.status || "needed"}"></span>${v ? fmt(v.value, v.unit) : "缺"}</b></a>`; }).join("") || '<div class="empty">此阶段没有部件或权利登记</div>'}</div>`;
+  }).join("")}</div>`;
 }
 
 function changes(d) {
   const pts = d.changes.series_points.map(p => `<div class="kv"><span>${esc(p.series_id)}</span><b>${fmt(p.value, p.unit)}<small>${esc(p.as_of)}</small></b></div>`).join("");
-  const due = d.changes.due_targets.slice(0, 12).map(t => `<div class="kv"><span>${esc(t.id)}</span><b>${esc(t.team)}<small>${esc(t.next_due)}</small></b></div>`).join("");
+  const due = d.changes.due_targets.slice(0, 12).map(t => `<div class="kv"><span><a href="${nodeHref(t.id.startsWith("P.") ? "part:" + t.id.split(".")[1] : t.id.startsWith("S.") ? "site:" + t.id.split(".")[1] : "root", String(t.variable_class))}">${esc(t.id)}</a></span><b>${esc(t.team)}<small>${esc(t.next_due)}</small></b></div>`).join("");
   return `<div class="col"><h3>价格库最新点</h3>${pts || '<div class="empty">无</div>'}</div><div class="col"><h3>30 天内到期且仍缺的目标 <span class="empty">共 ${d.changes.due_total}</span></h3>${due || '<div class="empty">无</div>'}</div>`;
 }
 
@@ -259,15 +274,16 @@ function changes(d) {
     title = `一座 <em>AI 数据中心</em>`; kind = "根节点 · 三级账在上，五列在下，五个系统与站点权利是第一层分叉";
     cells = d.root.cells; factorPred = f => f.parent === null;
     rows = T.filter(t => t.origin === "factor");
-    byId("account").innerHTML = `<div class="account">${d.root.account.rows.map(r => `<div class="acct"><div class="l">${esc(r.label)}</div><div class="v">${r.key === "roic" ? pct(r.value) : fmt(r.value, "")}</div><div class="u">${esc(r.unit)} · ${esc(d.root.account.scenario)}</div><div class="n">${esc(r.note)}</div></div>`).join("")}</div>
-      <div class="links">${d.root.account.links.map(([l, h]) => `<a href="${h}">${esc(l)} ↗</a>`).join("")}<span class="empty">三级由经济模型基准情景计算；回报是账的输出，不是一列。账本是统一模型的四个视图。</span></div>`;
+    byId("account").innerHTML = `<div class="account">${d.root.account.rows.map(r => `<div class="acct"><div class="l">${esc(r.label)}</div><div class="v">${r.key === "roic" ? pct(r.value) : fmt(r.value, "")}</div><div class="u">${esc(r.unit)} · ${esc(d.root.account.scenario)}</div><div class="n">${esc(r.note)}</div>${r.evidence ? `<div class="n evidence" title="这一级账的模型输入按证据状态计数">输入 ${r.evidence.inputs}：<i class="dot st-sourced"></i>已有 ${r.evidence.sourced} <i class="dot st-assumed"></i>假设 ${r.evidence.assumed} · 用户给定 ${r.evidence.input}</div>` : ""}</div>`).join("")}</div>
+      <div class="readings" id="readings">${(d.root.account.readings || []).map(r => `<a class="reading" href="${esc(r.href)}"><b>${esc(r.label)}</b><small>${esc(r.hint)}</small></a>`).join("")}</div>
+      <div class="links">${d.root.account.links.map(([l, h]) => `<a href="${h}">${esc(l)} ↗</a>`).join("")}<span class="empty">三级由经济模型基准情景计算；回报是账的输出，不是一列。账本是统一模型的四个视图。四个读法是五列的横向展开，不是新轴。</span></div>`;
     byId("q1").textContent = "五类变量在根节点：构成是规模与代际，运行是效率与利用率，价格是资本开支与年成本，时间是寿命与周期，主体是持有与融资方式。";
-    byId("h2").innerHTML = `它由什么组成<small>树 · 五个系统（IT 展开四个）× 五类变量 · 站点权利并列</small>`;
-    children = matrix(d);
+    byId("h2").innerHTML = COL === "4" ? `它怎么建<small>时间列 · 六段建设阶段，从站点权利起；下方矩阵停在时间列</small>` : `它由什么组成<small>树 · 五个系统（IT 展开四个）× 五类变量 · 站点权利并列</small>`;
+    children = (COL === "4" ? buildTimeline(d) : "") + matrix(d);
     byId("q3").textContent = "因子树从公式往下推：每个因子汇总它的部件与权利，再喂经济模型的输入。";
     byId("q4").textContent = `目标清单 ${T.length} 行：已有 ${d.root.targets.sourced}、假设 ${d.root.targets.assumed}、已交付未成序列 ${d.root.targets.delivered || 0}、缺 ${d.root.targets.needed}；其中 ${d.root.targets.not_connected || 0} 行归待建队，不排到期。采集需求、研究工单、价格库新点与新闻事件都从这里出发；因子级目标折叠在下，部件级目标在各系统与部件节点。`;
     byId("changes").innerHTML = changes(d);
-    deliveryBoard().then(html => { byId("grid").innerHTML = html; }).catch(() => {});
+    byId("grid").innerHTML = deliveryBoard(T, d);
   } else if (parentSys) {
     crumbs.push([NODE, parentSys.name]);
     title = `<em>${esc(parentSys.name)}</em> 系统`; kind = `第一层节点 · 展开为 ${parentSys.children.length} 个子系统`;

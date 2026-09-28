@@ -70,9 +70,26 @@ def build(root=ROOT, as_of=None):
     # ---- root: the account and its five columns
     a = economics.with_preset(model, 'baseline')
     out = economics.compute(a, model)
+    # 三级账角标：每级账的模型输入按证据状态计数（成本侧 / 收入侧 / 回报取全部，按因子树的 side）
+    side_inputs = {}
+    for f in factors_doc['factors']:
+        pool = side_inputs.setdefault(f['side'], set())
+        pool.update(f.get('model_inputs', []))
+        for e in f.get('fetch', []):
+            pool.update(e.get('model_inputs') or [])
+    ACCOUNT_SIDES = {'cost_per_mw': ('cost',), 'revenue_per_mw': ('revenue',), 'roic': ('cost', 'revenue', 'capital', 'time')}
+    def evidence_of(keys):
+        counts = {'sourced': 0, 'assumed': 0, 'input': 0}
+        for k in keys:
+            s = model.get('evidence', {}).get(k, {}).get('status')
+            if s in counts:
+                counts[s] += 1
+        return {**counts, 'inputs': len(keys)}
     account = {'scenario': model['presets']['baseline']['label'], 'model': rules['root']['account']['model'],
-               'rows': [{**row, 'value': round(out[row['key']], 3)} for row in rules['root']['account']['rows']],
-               'links': rules['root']['account']['links']}
+               'rows': [{**row, 'value': round(out[row['key']], 3),
+                         'evidence': evidence_of(sorted(set().union(*(side_inputs.get(s, set()) for s in ACCOUNT_SIDES.get(row['key'], ())))))}
+                        for row in rules['root']['account']['rows']],
+               'links': rules['root']['account']['links'], 'readings': rules['root'].get('readings', [])}
     root_cells = {}
     for col, specs in rules['root']['cells'].items():
         items = []

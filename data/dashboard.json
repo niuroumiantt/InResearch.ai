@@ -72,21 +72,39 @@
      "label": "成本",
      "unit": "$M/MW·年",
      "note": "电费 + 其他运营 + 设施费 + 折旧 + 所得税",
-     "value": 11.049
+     "value": 11.049,
+     "evidence": {
+      "sourced": 40,
+      "assumed": 13,
+      "input": 4,
+      "inputs": 58
+     }
     },
     {
      "key": "revenue_per_mw",
      "label": "收入",
      "unit": "$M/MW·年",
      "note": "GPU 数 × 8,760 × 付费利用率 × 单价",
-     "value": 22.911
+     "value": 22.911,
+     "evidence": {
+      "sourced": 8,
+      "assumed": 2,
+      "input": 6,
+      "inputs": 16
+     }
     },
     {
      "key": "roic",
      "label": "回报",
      "unit": "ROIC",
      "note": "NOPAT ÷ 投入资本",
-     "value": 0.303
+     "value": 0.303,
+     "evidence": {
+      "sourced": 54,
+      "assumed": 16,
+      "input": 12,
+      "inputs": 83
+     }
     }
    ],
    "links": [
@@ -94,6 +112,32 @@
      "账本：统一模型的四个视图",
      "ledger.html"
     ]
+   ],
+   "readings": [
+    {
+     "id": "build",
+     "label": "它怎么建",
+     "href": "node.html?col=4",
+     "hint": "时间列：六段建设阶段，从站点权利起；建设输入在账本"
+    },
+    {
+     "id": "compose",
+     "label": "它由什么组成",
+     "href": "bom.html",
+     "hint": "爆炸图；矩阵在构成列 node.html?col=1"
+    },
+    {
+     "id": "operate",
+     "label": "它怎么运转",
+     "href": "node.html?col=2",
+     "hint": "运行列；运营支出在账本的四本账里"
+    },
+    {
+     "id": "earn",
+     "label": "它挣不挣钱",
+     "href": "ledger.html#ledgers",
+     "hint": "四本账：IRR、DSCR、杠杆现金回报；可信边界单列融资假设"
+    }
    ]
   },
   "cells": {
