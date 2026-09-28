@@ -2,6 +2,12 @@
 
 > CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-28：五层改称五类变量；骨架重梳与部件重切进入提案
+
+用户确认：经济模型的"五层"没有层级、先后、时间或递推关系，是描述同一对象的五类变量（构成、运行、价格、时间、主体），改称**五类变量**；`bom.json` 的 L1–L5（园区、建筑、机房、机柜、部件）是"装在哪"的五个尺度，不再称"层"，以消除同名冲突。改名落在 06 采集规范、CURRENT、03 对象与协作、`tco_targets.json` 的标题与说明；指导快照 `model-governance-2026-09-27` 不改，`layer`、`layer_tags` 等 JSON 键作为兼容名保留，随 feed 合同升版更名。
+
+用户同时采纳骨架方向：根是数据中心，第一层按系统（生态）分，主题是每个部件上的九列而不是树的一层，因子从公式往下推，目标表由"因子输入 × 部件 × 数据类别"生成而非手写。第 2 步——按"拆到有自己的价格、供应商名单、交期为止；普通紧固件合并，关键稀缺件不合并"重切 46 个部件——形成提案 [docs/reviews/2026-09-28/bom-recut/PROPOSAL.md](reviews/2026-09-28/bom-recut/PROPOSAL.md)（46 → 58 部件 + 1 软件条目 + 6 站点权利 + 1 设施基型），**未决**：待用户逐条审定第 7 节的八个问题后，再改 `bom.json`、`research_graph.json`、`tco_factors.json` 并重新生成目标表。
+
 ## 2026-09-28：六队三仓库采用，inresearch 本身不爬取，SEC/GPU 采集器退役
 
 用户采用采集侧的结论：六个采集分队按来源机制划分（fetchspec、inews.today、fetchstat、fetchfilings、fetchreports、fetchquotes），建队顺序 fetchstat → fetchfilings → fetchreports → fetchquotes；仓库先按三个起步，即保留 `inews.today` 与 `fetchspec`，新建一个 `fetchdata` 承载四个分队目录，不够再拆。inresearch.ai 本身不爬取：`adapters.acquisition` 删除 `sec`、`gpu` 采集函数与 CLI 子命令，退役前实现由 Git 历史保留并作为 fetchfilings、fetchquotes 的种子迁入 fetchdata；采集台账中历史 `sec`/`gpu` 行只读保留，运维页对应按钮移除。`supply_contract.json` 升 1.4：providers 改为六队加本地上传，登记三仓库、九类能力到六队的映射、来源归属规则（一个来源只属一个队、一台主执行机、一个日历；inews 只给事件卡与原件指针，不抓原件）。06 采集规范新增"六队、三仓库与来源归属"与"inews 两条线"两节，五页指导文件登记为已采用的设计快照。基准版本升 2026.09.28.30。`fetchdata` 仓库尚未创建，四个分队在契约中保持 `proposed`，启动说明见 `docs/handoff/fetchdata-bootstrap.md`。

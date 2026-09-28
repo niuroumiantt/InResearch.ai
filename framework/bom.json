@@ -1,35 +1,35 @@
 {
-  "version": "1.2",
-  "updated": "2026-08-26",
-  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v1.1（2026-08-18）：对齐产品研究目录（docs/inbox/inresearch-alignment/），新增14部件节点、删 storage（拆为 ssd/hdd/storage-array）、hbm 公司勘误、按 data/products.json 回填 companies。 v1.2（2026-08-26 用户批复）：补 5 节点（network-access/fuel-supply/sidecar-hx/vrm/connector）；新增可选字段 upstream（部件档案的上游供应链，替代为上游设独立节点——先进封装/基板按此挂在 gpu 下）；非物理维度（价格/资本/政策）一律走部件档案承载，不进 3D。",
+  "version": "1.3",
+  "updated": "2026-09-28",
+  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md。layers 是部件「装在哪」的五个尺度（L1–L5），不是经济模型的五类变量（构成、运行、价格、时间、主体）。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v1.1（2026-08-18）：对齐产品研究目录（docs/inbox/inresearch-alignment/），新增14部件节点、删 storage（拆为 ssd/hdd/storage-array）、hbm 公司勘误、按 data/products.json 回填 companies。 v1.2（2026-08-26 用户批复）：补 5 节点（network-access/fuel-supply/sidecar-hx/vrm/connector）；新增可选字段 upstream（部件档案的上游供应链，替代为上游设独立节点——先进封装/基板按此挂在 gpu 下）；非物理维度（价格/资本/政策）一律走部件档案承载，不进 3D。 v1.3（2026-09-28 用户批复改名）：五个尺度的名称去掉「层」字，与五类变量区分；部件重切提案见 docs/reviews/2026-09-28/bom-recut/PROPOSAL.md，未采用前部件不变。",
   "layers": [
     {
       "id": "L1",
-      "name": "园区层",
+      "name": "园区",
       "en": "Campus",
       "desc": "电从哪来、水从哪来、地在哪里——项目能否存在的先决条件"
     },
     {
       "id": "L2",
-      "name": "建筑层",
+      "name": "建筑",
       "en": "Building",
       "desc": "把设备罩起来的壳与安全体系"
     },
     {
       "id": "L3",
-      "name": "机房层",
+      "name": "机房",
       "en": "Data Hall",
       "desc": "白空间：配电、散热、监控的战场"
     },
     {
       "id": "L4",
-      "name": "机柜层",
+      "name": "机柜",
       "en": "Rack",
       "desc": "算力的物理单元，功率密度革命的现场"
     },
     {
       "id": "L5",
-      "name": "部件层",
+      "name": "部件",
       "en": "Component",
       "desc": "芯片到冷板——供应链博弈的最深处"
     }
