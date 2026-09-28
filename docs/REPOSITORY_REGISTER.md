@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1006。
+在册文件：1016。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 269 |
-| 运行代码 | 218 |
+| 历史快照 | 271 |
+| 运行代码 | 221 |
 | 现行规范 | 13 |
-| 项目配置 | 92 |
+| 项目配置 | 94 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 28 |
+| 在册数据/索引 | 29 |
 | 配套说明 | 58 |
-| 测试 | 93 |
+| 测试 | 95 |
 
 ## 在册记录集合
 
@@ -36,6 +36,9 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
+| `data/dashboard.json` | ecosystems | 8 |
+| `data/dashboard.json` | parent_systems | 1 |
+| `data/dashboard.json` | factors | 24 |
 | `data/datacenter_cost_model.json` | groups | 5 |
 | `data/datacenter_cost_model.json` | benchmark_series | 14 |
 | `data/datacenter_economics_model.json` | groups | 5 |
@@ -333,7 +336,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 20 |
+| `framework/interface_manifest.json` | static_pages | 22 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
@@ -421,6 +424,7 @@
 | `data/brief.json` | 在册数据/索引 |
 | `data/companies.json` | 在册数据/索引 |
 | `data/contracts.json` | 在册数据/索引 |
+| `data/dashboard.json` | 在册数据/索引 |
 | `data/datacenter_cost_model.json` | 在册数据/索引 |
 | `data/datacenter_economics_model.json` | 在册数据/索引 |
 | `data/datacenter_tco_model.json` | 在册数据/索引 |
@@ -923,6 +927,8 @@
 | `docs/reviews/2026-09-15/task-authority/scope.json` | 历史快照 |
 | [docs/reviews/2026-09-21/supply-center/DELIVERY.md](reviews/2026-09-21/supply-center/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md](reviews/2026-09-27/nvidia-m5-aws/DELIVERY.md) | 历史快照 |
+| `docs/reviews/2026-09-28/architecture/ARCHITECTURE.svg` | 历史快照 |
+| [docs/reviews/2026-09-28/architecture/README.md](reviews/2026-09-28/architecture/README.md) | 历史快照 |
 | [docs/reviews/2026-09-28/bom-recut/PROPOSAL.md](reviews/2026-09-28/bom-recut/PROPOSAL.md) | 历史快照 |
 | [docs/reviews/2026-09-28/dashboard/PROPOSAL.md](reviews/2026-09-28/dashboard/PROPOSAL.md) | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
@@ -943,6 +949,7 @@
 | [framework/CURRENT.md](../framework/CURRENT.md) | 现行规范 |
 | `framework/bom.json` | 项目配置 |
 | `framework/current_state.json` | 项目配置 |
+| `framework/dashboard_rules.json` | 项目配置 |
 | `framework/data_contract.json` | 项目配置 |
 | `framework/indicators.json` | 项目配置 |
 | `framework/interface_manifest.json` | 项目配置 |
@@ -963,6 +970,7 @@
 | [framework/modules/M13_有效算力与软件.md](../framework/modules/M13_有效算力与软件.md) | 配套说明 |
 | [framework/modules/M14_中国板块.md](../framework/modules/M14_中国板块.md) | 配套说明 |
 | [framework/modules/M15_情景与监测.md](../framework/modules/M15_情景与监测.md) | 配套说明 |
+| `framework/part_fetch.json` | 项目配置 |
 | `framework/repository_manifest.json` | 生成物 |
 | `framework/research_graph.json` | 项目配置 |
 | `framework/research_questions.json` | 项目配置 |
@@ -1146,6 +1154,8 @@
 | `src/inresearch/knowledge/__init__.py` | 运行代码 |
 | `src/inresearch/knowledge/company_ids.py` | 运行代码 |
 | `src/inresearch/knowledge/coverage.py` | 运行代码 |
+| `src/inresearch/knowledge/dashboard.py` | 运行代码 |
+| `src/inresearch/knowledge/economics.py` | 运行代码 |
 | `src/inresearch/knowledge/fact_contract.py` | 运行代码 |
 | `src/inresearch/knowledge/facts.py` | 运行代码 |
 | `src/inresearch/knowledge/indicators.py` | 运行代码 |
@@ -1208,6 +1218,7 @@
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
 | `tests/auth_appearance.cjs` | 测试 |
 | `tests/container_storage.py` | 测试 |
+| `tests/dashboard.cjs` | 测试 |
 | `tests/datacenter_cost.cjs` | 测试 |
 | `tests/datacenter_economics.cjs` | 测试 |
 | `tests/datacenter_news.cjs` | 测试 |
@@ -1237,6 +1248,7 @@
 | `tests/unit/test_claim_floor.py` | 测试 |
 | `tests/unit/test_commands.py` | 测试 |
 | `tests/unit/test_continuous_reader.py` | 测试 |
+| `tests/unit/test_dashboard.py` | 测试 |
 | `tests/unit/test_datacenter_news.py` | 测试 |
 | `tests/unit/test_declared_admin.py` | 测试 |
 | `tests/unit/test_deep_read.py` | 测试 |
@@ -1394,8 +1406,9 @@
 | `web/pages/doc.html` | 运行代码 |
 | `web/pages/economics.html` | 运行代码 |
 | `web/pages/framework_poster.html` | 运行代码 |
-| `web/pages/index.html` | 运行代码 |
+| `web/pages/ledger.html` | 运行代码 |
 | `web/pages/materials.html` | 运行代码 |
+| `web/pages/node.html` | 运行代码 |
 | `web/pages/nvidia-pilot.html` | 运行代码 |
 | `web/pages/ops.html` | 运行代码 |
 | `web/pages/poster.html` | 运行代码 |
