@@ -15,6 +15,36 @@ from inresearch.storage.files import json_transaction, locked, write_json
 
 ASSIGN_STATUSES = {'已派', '进行中', '已交付', '已合并', '已放弃'}
 
+# Reader snapshots travel gzip-compressed (JSON shrinks roughly tenfold). The wire
+# limit stays 64 MiB; the inflated document may be larger, up to SNAPSHOT_MAX_BYTES,
+# which also bounds a decompression bomb. Uncompressed bodies are still accepted.
+SNAPSHOT_WIRE_MAX_BYTES = 64 * 1024 * 1024
+SNAPSHOT_MAX_BYTES = 192 * 1024 * 1024
+
+
+class SnapshotTooLarge(ValueError):
+    pass
+
+
+def inflate_snapshot(raw, encoding):
+    """Request body -> JSON bytes, refusing anything past SNAPSHOT_MAX_BYTES."""
+    import zlib
+    encoding = (encoding or 'identity').strip().lower()
+    if encoding == 'identity':
+        return raw
+    if encoding != 'gzip':
+        raise ValueError('unsupported Content-Encoding: ' + encoding[:40])
+    inflater = zlib.decompressobj(16 + zlib.MAX_WBITS)
+    try:
+        out = inflater.decompress(raw, SNAPSHOT_MAX_BYTES + 1)
+    except zlib.error:
+        raise ValueError('snapshot body is not valid gzip') from None
+    if len(out) > SNAPSHOT_MAX_BYTES or inflater.unconsumed_tail:
+        raise SnapshotTooLarge('inflated snapshot exceeds %d MiB' % (SNAPSHOT_MAX_BYTES // 1024 // 1024))
+    if not inflater.eof:
+        raise ValueError('snapshot body is not valid gzip')
+    return out
+
 
 class Rejected(ValueError):
     def __init__(self, message, status=400):

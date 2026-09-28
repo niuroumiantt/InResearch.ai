@@ -2,6 +2,7 @@
 from inresearch.paths import project_root
 import contextlib
 import io
+import gzip
 import json
 import os
 from pathlib import Path
@@ -40,7 +41,8 @@ class PublisherTests(unittest.TestCase):
                 request = opener.return_value.open.call_args.args[0]
                 self.assertEqual('Bearer ' + token.read_text(), request.get_header('Authorization'))
                 self.assertEqual('ok', json.loads((state / 'publish-status.json').read_text())['status'])
-                return json.loads(request.data)
+                self.assertEqual("gzip", request.get_header("Content-encoding"))
+                return json.loads(gzip.decompress(request.data))
 
     def test_published_model_configuration_matches_worker_environment(self):
         snapshot = self.publish()
@@ -111,7 +113,7 @@ class PublisherTests(unittest.TestCase):
                 model.assert_not_called()
                 request = opener.return_value.open.call_args.args[0]
                 self.assertEqual('Bearer ' + token.read_text(), request.get_header('Authorization'))
-                self.assertEqual(payload, json.loads(request.data))
+                self.assertEqual(payload, json.loads(gzip.decompress(request.data)))
                 result = json.loads((state / 'publish-relay-status.json').read_text())
                 self.assertEqual('external_candidate_snapshot', result['source'])
 

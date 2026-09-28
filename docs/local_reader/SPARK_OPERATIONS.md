@@ -279,6 +279,10 @@ READER_PUBLISH_VERIFY=1 python3 manage.py publish
 
 主站接收端每次用收到的快照整体替换候选投影，Spark 每五分钟发布一次，所以在 M4 上读完、直接用 `publish --snapshot` 发出的结果会在下一次 Spark 发布时消失（2026-09-28 起改为叠加）。做法：M4 用 `reader export --dest <文件>.json --doc-id <id> ...` 导出只含完整阅读的候选快照，复制到 Spark 的 `~/.local/state/inresearch.ai/external-snapshots/`（可用 `READER_EXTERNAL_SNAPSHOT_DIR` 改），文件为普通文件、不超过 64 MiB。Spark 每次发布都校验这些快照（完整覆盖、只有候选、每条证据与陈述都属于快照内文档），并叠加其中 Spark 尚未完整读过的文档；Spark 自己已完整读过的文档始终以 Spark 为准。叠加的文档带 `projection_source: external:<文件名>`，结果计数写在快照 `reader.external_overlay`。不写台账；要撤下，删除对应文件，下一次发布即生效。任一文件校验失败，整次发布失败，不会带着坏文件发出。外部快照里的对象/问题 ID 按 Spark 当前注册表过滤，已不存在的 ID 被去掉并计入 `external_overlay.dropped_unknown_ids`（2026-09-28 起：#270 把研究图谱升到 2.2.0 后，按 2.1.2 导出的快照会因旧 ID 被整批拒收）。Spark、M4 与网站的研究图谱版本必须一致：网站随 main 自动更新，Spark 与 M4 要手动更新到同一提交，否则接收端以 `reader graph_version does not match deployed framework` 拒收。发布失败时，journal 的 `detail` 字段带有接收端给出的拒收原因。
 
+## 快照压缩（2026-09-28 起）
+
+发布器用 gzip 压缩快照（`Content-Encoding: gzip`），网络上限仍是 64 MiB，解压后的快照上限 192 MiB（同时防压缩炸弹）；接收端仍接受未压缩的旧格式，所以网站先随 main 更新、Spark 后更新也不会失败。起因：09-28 恢复发布时未压缩快照 65.7 MB，已占 64 MiB 上限的 98%。`publish-status.json` 的 `bytes` 是解压后大小，`sent_bytes` 是实际发送的压缩大小。Spark 上安装的 `inresearch-reader-publish.service` 须与仓库 `deploy/spark-reader/` 一致（09-28 发现旧单元仍指向已删除的 `pipeline/publish_reader.py`）。
+
 ## 已部署发布器与后续源码更新
 
 2026-09-06 已在真实 Spark 启用 reader、`Linger=yes`、`qwen3-vl:8b` OCR 和五分钟发布器。主站实际收到候选快照；验收版本与边界见 `docs/reviews/2026-09-06/IMPLEMENTATION.md`。生产目录等待用户投料，测试文档不入生产库。
