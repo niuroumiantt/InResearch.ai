@@ -71,7 +71,12 @@ def validate(payload):
         raise ValueError('coverage remains incomplete until audited')
     source_keys = set()
     for source in sources:
-        if not re.fullmatch('[0-9a-f]{64}', source['sha256']) or not official(source['source_url']):
+        source_url = source.get('source_url', '')
+        parsed_source = urlsplit(source_url)
+        dam_receipt = (parsed_source.scheme == 'https' and not parsed_source.username and not parsed_source.password
+            and parsed_source.port in (None, 443) and parsed_source.hostname == 'dam-cdn.nvd.orangelogic.com'
+            and source.get('kind') == 'official_pdf_attachment')
+        if not re.fullmatch('[0-9a-f]{64}', source.get('sha256', '')) or not (official(source_url) or dam_receipt):
             raise ValueError('invalid source identity')
         source_keys.add((source['sha256'], source['source_url']))
     ids = set()
@@ -87,6 +92,11 @@ def validate(payload):
         for attachment in product.get('attachments', []):
             if not official_attachment(attachment['url'], attachment, source_keys):
                 raise ValueError('attachment must be an official HTTPS source')
+            if attachment.get('sha256'):
+                if (attachment['sha256'], attachment['url']) not in source_keys:
+                    raise ValueError('attachment snapshot receipt is missing')
+                if attachment.get('source_url') and (attachment.get('source_sha256'), attachment['source_url']) not in source_keys:
+                    raise ValueError('attachment source page receipt is missing')
         for resource in product.get('official_resources', []):
             if not official(resource['url']):
                 raise ValueError('product resource must be an official HTTPS source')
@@ -106,6 +116,9 @@ def validate(payload):
                         raise ValueError('invalid cell')
                     if any(type(cell[k]) is not int or not 1 <= cell[k] <= 100 for k in ('rowspan', 'colspan')):
                         raise ValueError('invalid cell span')
+            for ref in table.get('source_refs', []):
+                if (ref.get('sha256'), ref.get('url')) not in source_keys:
+                    raise ValueError('table source reference is missing its receipt')
     for product in products:
         if product.get('parent_id') and product['parent_id'] not in ids:
             raise ValueError('product parent is missing from this catalog')
@@ -120,6 +133,11 @@ def verify_snapshots(payload, archive_root):
             raise ValueError('source snapshot outside archive or missing')
         if hashlib.sha256(path.read_bytes()).hexdigest() != source['sha256']:
             raise ValueError('source snapshot hash mismatch')
+
+
+def source_refs_for_table(table):
+    """Return only evidence already admitted by the catalog receipt validator."""
+    return table.get('source_refs', [])
 
 
 def publish(payload, token_file):
@@ -219,13 +237,14 @@ def csv_export(value, mode='products', query='', kind='', with_specs=False, grou
             sitemap = p.get('website_sitemap', {})
             row([p['id'], p['name'], p.get('parent_id', ''), p['category'], p['kind'], p['availability'], p['extraction_status'], len(p['tables']), p.get('map_change_status', ''), sitemap.get('matched', False), ' | '.join(sitemap.get('roles', [])), ' | '.join(sitemap.get('lastmod_claims', [])), ' | '.join(a['url'] for a in p.get('official_resources', [])), p['source_url'], p['source_sha256'], p['observed_at'], nav['group'], nav['family'], nav['role']])
     elif mode == 'specs':
-        row(['product_id', 'name', 'official_section', 'table', 'row', 'official_parameter', 'official_values', 'official_column_headers', 'official_cells_json', 'official_notes', 'source_url', 'source_sha256'])
+        row(['product_id', 'name', 'official_section', 'table', 'row', 'official_parameter', 'official_values', 'official_column_headers', 'official_cells_json', 'official_notes', 'source_url', 'source_sha256', 'table_evidence_urls', 'table_evidence_sha256'])
         for p in products:
             for table in p['tables']:
                 for n, cells in enumerate(table['rows'], 1):
                     first = table['rows'][0]
                     headers = ' | '.join(c['text'] for c in first[1:]) if not first[0]['text'] or all(c['header'] for c in first) else ''
-                    row([p['id'], p['name'], table['section'], table['index'], n, cells[0]['text'], ' | '.join(c['text'] for c in cells[1:]), headers, json.dumps(cells, ensure_ascii=False), table.get('notes', ''), p['source_url'], p['source_sha256']])
+                    refs = source_refs_for_table(table)
+                    row([p['id'], p['name'], table['section'], table['index'], n, cells[0]['text'], ' | '.join(c['text'] for c in cells[1:]), headers, json.dumps(cells, ensure_ascii=False), table.get('notes', ''), p['source_url'], p['source_sha256'], ' | '.join(ref['url'] for ref in refs), ' | '.join(ref['sha256'] for ref in refs)])
     else:
         raise ValueError('unknown export')
     return '\ufeff' + stream.getvalue()
