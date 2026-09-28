@@ -98,10 +98,11 @@ class PublicReaderHTTPTests(unittest.TestCase):
             self.assertEqual(self.request('GET', '/ledger.html')[0], 200, 'what the public can read, a logged-in intern can read')
             model = json.loads(self.request('GET', '/data/datacenter_model.json')[2])
             self.assertEqual(model['public_view'], 'reader')
-            self.assertEqual(self.request('GET', '/supply.html')[0], 403)
+            self.assertEqual(self.request('GET', '/supply.html')[0], 200, 'the acquisition page is the intern entry (own target rows)')
             self.assertEqual(self.request('GET', '/data/facts.json')[0], 403)
+            self.assertEqual(self.request('GET', '/api/supply')[0], 403, 'the supply ledger stays members-only')
             status, headers, _ = self.request('GET', '/')
-            self.assertEqual((status, headers.get('Location')), (302, '/team.html'))
+            self.assertEqual((status, headers.get('Location')), (302, '/supply.html#targets'))
 
 
 if __name__ == '__main__':

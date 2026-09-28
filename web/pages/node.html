@@ -159,9 +159,10 @@ function fmt(v, unit) {
 }
 const pct = v => v == null ? "缺" : (v * 100).toFixed(1) + "%";
 function nodeHref(id, col) { return "node.html?" + new URLSearchParams(col ? { id, col } : { id }); }
-function covLine(c) {
+function covLine(c, col) {
   if (!c) return "";
-  return `<div class="cov">目标：<i class="st-sourced"></i>${c.sourced} <i class="st-assumed"></i>${c.assumed} <i class="st-delivered"></i>${c.delivered || 0} <i class="st-needed"></i>${c.needed}</div>`;
+  const to = "supply.html?" + new URLSearchParams(NODE === "root" ? { col } : { node: NODE, col }) + "#targets";
+  return `<div class="cov">目标：<i class="st-sourced"></i>${c.sourced} <i class="st-assumed"></i>${c.assumed} <i class="st-delivered"></i>${c.delivered || 0} <i class="st-needed"></i>${c.needed} <a href="${to}" title="进采集页，按这个节点、这一列预筛">→ 采集</a></div>`;
 }
 
 function fiveColumns(cells, columns) {
@@ -169,7 +170,7 @@ function fiveColumns(cells, columns) {
     const c = cells[n] || { items: [] };
     const rows = c.items.map(i => `<div class="kv" title="${esc((i.source?.type || "") + " " + (i.source?.key || ""))}"><span>${esc(i.label)}</span><b>${fmt(i.value, i.unit)}${i.as_of ? `<small>${esc(String(i.as_of).slice(0, 7))}</small>` : ""}</b></div>`).join("");
     const inst = (c.instances || []).length ? `<div class="inst">${c.instances.map(x => `<span class="chip">${esc(x)}</span>`).join("")}</div>` : "";
-    return `<div class="col ${COL === n ? "hl" : ""}" id="col-${n}"><h3><span class="num">${n}</span>${esc(name)} <span class="dot st-${c.status || "needed"}" title="${STATUS[c.status] || ""}"></span></h3>${rows || '<div class="empty">缺——没有登记来源，不显示估计值</div>'}${inst}${covLine(c.coverage)}</div>`;
+    return `<div class="col ${COL === n ? "hl" : ""}" id="col-${n}"><h3><span class="num">${n}</span>${esc(name)} <span class="dot st-${c.status || "needed"}" title="${STATUS[c.status] || ""}"></span></h3>${rows || '<div class="empty">缺——没有登记来源，不显示估计值</div>'}${inst}${covLine(c.coverage, n)}</div>`;
   }).join("");
 }
 

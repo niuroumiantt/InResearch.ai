@@ -410,13 +410,16 @@
         "framework/dashboard_rules.json",
         "data/dashboard.json",
         "src/inresearch/interfaces/public.py",
-        "tests/unit/test_public_reader.py"
+        "tests/unit/test_public_reader.py",
+        "src/inresearch/workflow/dispatch.py",
+        "web/components/targets.js",
+        "tests/unit/test_target_dispatch.py"
       ],
       "supersedes": [
         "interface-legacy"
       ],
       "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-14 统一实际画布、几何适配和用户镜头所有权，退出固定缩放/距离，补齐雾化反例；完整视觉与 GPU 验收仍有限。；2026-09-14 两场景共用 HDR/PMREM 与 CanvasTexture 所有者，面板失败保留真实程序化纹理，迟到/替换/退出释放资源；bake、compare 与场景几何仍分别待审。；2026-09-14 数据中心成本研究新增独立交互页，网页与 Excel 基准对齐，明确全项目/设施账户、假设边界、重算和窄屏验收。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-09-22 收敛为一套视觉加明暗（去掉 Attio/folk 切换与顶栏切换器，令牌改由本仓库拥有，不再内嵌 infra CRM 块）；全站改用 infra 字体包 Inter + Noto Sans SC，页面与 3D 画布不再自带系统字体栈；共享外观统一表单控件；旧偏好中的 skin 字段忽略。；2026-09-28 目录改为四问的全局视图（数据中心 / 账本 / 爆炸图 / 采集 / 成果 / 管理），节点页矩阵五系统 + IT 四子系统 + 站点权利，公开只读角色 reader，三个已删模型的参考实现从实现清单移除。",
-      "implementation_revision": "2026.09.28.3"
+      "implementation_revision": "2026.09.28.4"
     },
     {
       "id": "acquisition-legacy",

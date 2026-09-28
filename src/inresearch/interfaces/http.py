@@ -20,6 +20,7 @@ from inresearch.materials import model_assets
 import hmac
 from inresearch.workflow import commands as commands
 from inresearch.workflow import supply
+from inresearch.workflow import dispatch
 from inresearch.workflow import pilot_progress
 from inresearch.workflow import product_catalog
 from inresearch.adapters import acquisition
@@ -244,7 +245,7 @@ class Handler(SimpleHTTPRequestHandler):
         if user and auth.user_role(user) == "intern":
             path = self._norm_path()
             if path in ("/", "/index.html"):
-                return self._redirect("/team.html")     # 实习生的首页就是工单板
+                return self._redirect("/supply.html#targets")     # 实习生的首页就是采集页的目标表（自己的行）
             if not self._intern_allowed(path):
                 return self._html(403, pages.FORBIDDEN_PAGE)
         if self.path == "/login":
@@ -267,6 +268,13 @@ class Handler(SimpleHTTPRequestHandler):
             except (OSError, ValueError):
                 return self._json(404, {"ok": False, "error": "not found"})
             return self._json(200, public.public_model(spec))
+        if urlsplit(self.path).path == '/api/targets':
+            # 目标表 + 派工状态，服务端按角色过滤：实习生只见分配给自己的行；公开只读没有这个接口（闸门已 401）
+            params = {k: v[0] for k, v in parse_qs(urlsplit(self.path).query).items()}
+            try:
+                return self._json(200, dispatch.targets_view(ROOT, user or None, self._role(user), params))
+            except (OSError, ValueError, KeyError, TypeError):
+                return self._json(503, {'ok': False, 'error': '目标表暂不可读取'})
         if self.path == "/api/users":
             if self._role(user) != "admin":
                 return self._json(403, {"ok": False, "error": "用户管理仅限 admin"})
@@ -462,6 +470,13 @@ class Handler(SimpleHTTPRequestHandler):
             return self.api_passwd(payload, user)
         if self.path == "/api/assign":
             return self.api_assign(payload, by=user)
+        if self.path == "/api/deliver":
+            try:
+                return self._json(200, dispatch.register_delivery(ROOT, payload, by=user, role=role))
+            except CommitUncertain as error:
+                return self._json(503, {'ok': False, 'error': str(error), 'commit_state': 'visible_durability_unconfirmed'})
+            except dispatch.Rejected as exc:
+                return self._json(exc.status, {'ok': False, 'error': str(exc)})
         return self._json(404, {"ok": False, "error": "未知接口"})
 
     def api_reader_snapshot(self):

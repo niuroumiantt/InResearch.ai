@@ -6,6 +6,18 @@ const base=process.env.UI_BASE_URL;
  try{
   const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/supply.html');
+  await page.locator('#targets-panel table.targets tbody tr').first().waitFor();
+  assert.match(page.url(),/#targets$/,'the target table is the first screen');
+  assert.equal(await page.locator('#team-cards .team-card').count(),6,'six teams');
+  assert.equal(await page.locator('table.heat tbody tr').count(),7,'five systems, site rights and the root by five classes');
+  await page.goto(base+'/supply.html?node=part:transformer&col=4#targets');
+  await page.locator('#targets-panel table.targets tbody tr').first().waitFor();
+  assert.equal(await page.locator('table.targets tbody tr').count(),1,'node + column prefilter from the node page');
+  assert.match(await page.locator('table.targets tbody').innerText(),/P\.transformer\.lead_time/);
+  await page.getByRole('button',{name:'派工',exact:true}).first().click();await page.locator('#target-dialog[open]').waitFor();
+  await page.locator('#td-cancel').click();
+  await page.goto(base+'/supply.html');await page.locator('#targets-panel table.targets tbody tr').first().waitFor();
+  await page.getByRole('button',{name:'作战总览',exact:true}).click();
   await page.getByRole('heading',{name:'目的与当前进展',exact:true}).waitFor();
   assert.match(page.url(),/#overview$/);
   assert.match(await page.locator('#counts').innerText(),/7 个供应入口/);

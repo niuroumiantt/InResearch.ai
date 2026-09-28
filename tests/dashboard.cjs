@@ -43,6 +43,7 @@ const {chromium}=require('playwright');const assert=require('assert');
  assert.match(await page.locator('#head .kind').first().textContent(),/变电/,'part page names its chain');
  assert.ok((await page.locator('#col-4 .kv').count())>0,'transformer lead time is a sourced time cell');
  assert.ok((await page.locator('#targets table tbody tr').count())>=4,'spec, operation, price and lead-time targets');
+ assert.equal(await page.locator('#five a[href^="supply.html?"]').count(),5,'every column links to the acquisition page prefiltered by node and column');
  await page.locator('#evidence .ev-grid').waitFor();
  assert.equal(await page.locator('#evidence .col').count(),3,'questions, candidate evidence and one-hop relations on the part node');
  assert.ok((await page.locator('#evidence .chip a').count())>0,'suppliers and the chain are one hop away');

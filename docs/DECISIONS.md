@@ -2,6 +2,12 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-28：采集页第一屏是目标表，派工按目标行 ID（第 5 步 a）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §4 采集页一行与 §9 第 5 步的前半落地。`supply.html` 新增默认标签「目标表」（`web/components/targets.js`）：六队卡（存在状态、承担行数、最近交付、下一到期）、五系统 × 五类的"缺 / 行"热图、可按队 / 类 / 系统 / 状态 / 负责人筛选的目标行表，每行链回节点页停在该列；节点页每列多一个"→ 采集"链接按节点与列预筛（`?node=&col=`）。派工与交付登记从此按目标行 ID：`/api/targets`（`workflow/dispatch.py`）在服务端按角色过滤——实习生只见分配给自己的行，公开只读没有这个接口；`assign` 用例接受 `target_id`（`workorder_id` 只作兼容工单）；新增 `register_delivery(target_id, evidence_path)`（`/api/deliver`）把交付指针记到 `data/assignments.json`，指针只是运行库登记，进入 `delivered` 仍看 Git 内载体，页面标"运行库有 / Git 无"。实习生的首页改为采集页目标表，可 GET 采集页与 `/api/targets`、POST 派工与交付；供应台账（`/api/supply`）仍只对内部成员开放，页面如实说。06、09 同步。
+
+**实施状态。** 资料收件箱、NVIDIA 规格批次与团队看板三页并入采集页（第 5 步 b）下一提交；并入前团队看板仍放行给实习生。
+
 ## 2026-09-28：研究图谱 3.0 与节点页吸收证据、研究页退役（第 3 步 b + 第 4 步）
 
 [提案](reviews/2026-09-28/site/PROPOSAL.md) §7 与 §9 第 3、4 步落地。

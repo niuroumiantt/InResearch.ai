@@ -94,23 +94,32 @@ def add_price(root, record):
 
 
 def assign(root, rec, by='', role='admin'):
+    """派工：2026-09-28 起按目标行 ID（target_id，目标表是唯一任务书）；workorder_id 只作兼容工单。"""
+    tid = str(rec.get('target_id') or '').strip()
     wid = str(rec.get('workorder_id') or '').strip()
     status = str(rec.get('status') or '').strip()
-    if not wid:
-        raise Rejected('缺 workorder_id')
+    if not wid and not tid:
+        raise Rejected('缺 target_id（目标行）或 workorder_id（兼容工单）')
     if status and status not in ASSIGN_STATUSES:
         raise Rejected('状态非法（合法：%s）' % '、'.join(sorted(ASSIGN_STATUSES)))
     with json_transaction(workspace_path('data/assignments.json', root)) as doc:
-        if wid not in {o['wid'] for o in research.current_tasks(root)}:
-            raise Rejected(wid + ' 已不在当前任务集合中，请刷新任务列表')
-        row = next((r for r in doc['records'] if r['workorder_id'] == wid), None)
+        doc.setdefault('records', [])
+        if tid:
+            from inresearch.workflow import dispatch
+            if tid not in dispatch.target_ids(root):
+                raise Rejected(tid + ' 不在当前目标表里，请刷新', 404)
+            row = next((r for r in doc['records'] if r.get('target_id') == tid), None)
+        else:
+            if wid not in {o['wid'] for o in research.current_tasks(root)}:
+                raise Rejected(wid + ' 已不在当前任务集合中，请刷新任务列表')
+            row = next((r for r in doc['records'] if r.get('workorder_id') == wid), None)
         if role == 'intern':
             if not by or not row or row.get('assignee') != by or rec.get('assignee', by) != by:
                 raise Rejected('只能更新分配给自己的工单', 403)
             if status not in ('进行中', '已交付'):
                 raise Rejected('实习生可提交交付，采用与合并由内部审核', 403)
         if row is None:
-            row = {'workorder_id': wid}
+            row = {'target_id': tid} if tid else {'workorder_id': wid}
             doc['records'].append(row)
         for key in ('assignee', 'status', 'due', 'note'):
             if rec.get(key) is not None:
@@ -123,7 +132,7 @@ def assign(root, rec, by='', role='admin'):
         if row['status'] == '已放弃' and not row.get('note'):
             raise Rejected('标为已放弃必须写 note 说明原因')
         doc['updated'] = row['updated']
-    return {'ok': True, 'msg': "%s → %s（%s）" % (wid, row.get('assignee') or '未指定', row['status'])}
+    return {'ok': True, 'msg': "%s → %s（%s）" % (tid or wid, row.get('assignee') or '未指定', row['status'])}
 
 
 def receive_snapshot(root, payload, destination=None):

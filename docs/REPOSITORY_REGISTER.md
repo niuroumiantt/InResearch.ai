@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1014。
+在册文件：1017。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 276 |
-| 运行代码 | 215 |
+| 运行代码 | 217 |
 | 现行规范 | 12 |
 | 项目配置 | 94 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 27 |
 | 配套说明 | 59 |
-| 测试 | 96 |
+| 测试 | 97 |
 
 ## 在册记录集合
 
@@ -1202,6 +1202,7 @@
 | `src/inresearch/workflow/attribution.py` | 运行代码 |
 | `src/inresearch/workflow/commands.py` | 运行代码 |
 | `src/inresearch/workflow/deep_read.py` | 运行代码 |
+| `src/inresearch/workflow/dispatch.py` | 运行代码 |
 | `src/inresearch/workflow/l1_batch.py` | 运行代码 |
 | `src/inresearch/workflow/model_assets.py` | 运行代码 |
 | `src/inresearch/workflow/pilot_progress.py` | 运行代码 |
@@ -1310,6 +1311,7 @@
 | `tests/unit/test_storage_layout.py` | 测试 |
 | `tests/unit/test_suite_integrity.py` | 测试 |
 | `tests/unit/test_supply.py` | 测试 |
+| `tests/unit/test_target_dispatch.py` | 测试 |
 | `tests/unit/test_tco_factors.py` | 测试 |
 | `tests/unit/test_tco_targets.py` | 测试 |
 | `tests/unit/test_text_similarity.py` | 测试 |
@@ -1395,6 +1397,7 @@
 | `web/components/series-summary.js` | 运行代码 |
 | `web/components/site-shell.js` | 运行代码 |
 | `web/components/supply.js` | 运行代码 |
+| `web/components/targets.js` | 运行代码 |
 | `web/pages/admin/product/index.html` | 运行代码 |
 | `web/pages/auth/forbidden.html` | 运行代码 |
 | `web/pages/auth/layout.html` | 运行代码 |
