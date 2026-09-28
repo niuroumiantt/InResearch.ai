@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.28.30",
+  "version": "2026.09.28.31",
   "reviewed_at": "2026-09-28",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -26,7 +26,7 @@
     "framework/07_product_ecosystems.md": "71833f65fff1810befd22213410c7a5217d0830ef5e1f4c82b1bddd0f3c31ce5",
     "framework/08_model_execution.md": "2db37782ac5586cf797f9bbf4668db096e82197161ef11159e16286ad589fa80",
     "framework/09_software_contracts.md": "90d7d709f5e817d95f7444657d58528a95b1391cc4f9b887c70cfe1108550f8e",
-    "framework/CURRENT.md": "abe61b2cdd3577d7c7f9bd12dfa5f0879c8e1e55c86d63dcc3b7b46a14ceedd0",
+    "framework/CURRENT.md": "39e89cc435a4b9ce8b4827296a872f89976e4da5f1ff218a2e23aa5ae2c018a6",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "957110086c4f4affad40a8ddf0f7029693137c3221319f1ec16ecc1453df7b8a",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -92,7 +92,7 @@
     "tests/unit/test_optional_mapping_ids.py": "347a64b97f734ca4654b21083ed0a21f7a0e95a34fcc1bf1a86a3c53af9afdc5",
     "tests/unit/test_pilot_progress.py": "e3d47746edfac17ebf6c76960f5dd53a05bc057eb411150e130f82c1c3128f41",
     "tests/unit/test_placeholder_output.py": "6656aa43e96a61e87e13005a6092868f1646d3bc4ed1581582348e42dda93de0",
-    "tests/unit/test_product_catalog.py": "0e5761bfcb7d1c4b442647656c487955264c03d7685d0b5d69b87b8df278b3a1",
+    "tests/unit/test_product_catalog.py": "60456dd09d066164dd7421cc6c18a9e8ac92fe42dc2df5e7a7cec9424ee782fa",
     "tests/unit/test_product_library.py": "2fb430bcfaca1d664d4fabeebf0d1a9dc88ff5da2212e662313e697d9676d41d",
     "tests/unit/test_publish_reader.py": "13d781d6bb35801eb8a7b4592008e2a87f9a3b48a2c685e442c860bcddde220c",
     "tests/unit/test_reader_depth.py": "3e9a0ace8150391afd8f9d50cc3cfeb99f6da189657279e157d458917f2e2d13",
@@ -352,7 +352,7 @@
       "policy": "acquisition-20260906",
       "scope": "project",
       "source": "framework/06_acquisition.md",
-      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。；五个展示大类与系列导航、原厂分类保留、辅助入口隔离、型号优先/15项分页、跨类搜索与同范围CSV；产品地图父子身份与来源校验、官方非文件资源入口；日常更新先对账官方英文/中文 XML sitemap，只筛已审阅产品路径，条件请求复用未变化快照，新 URL 入队、lastmod 变化重查；中文站 www.nvidia.cn 根路径纳入，中英同路径身份归并但来源快照分别保留；sitemap 不完整或缺失不自动下架；产品地图 CSV 与参数 CSV 分开。；2026-09-28 六队三仓库：目标清单只引用存在的因子、输入、序列、分队与执行机并覆盖全部非用户输入，辅助机制必须落在 macmini，inews 只产材料类事件卡；inresearch 不爬取（sec/gpu 采集器与 CLI 已删除，历史台账行只读保留）；feed v2 附加字段校验形状、保留为线索、不授予采用；供应任务只能分配给六队。",
+      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。；五个展示大类与系列导航、原厂分类保留、辅助入口隔离、型号优先/15项分页、跨类搜索与同范围CSV；产品地图父子身份与来源校验、官方非文件资源入口；日常更新先对账官方英文/中文 XML sitemap，只筛已审阅产品路径，条件请求复用未变化快照，新 URL 入队、lastmod 变化重查；中文站 www.nvidia.cn 根路径纳入，中英同路径身份归并但来源快照分别保留；sitemap 不完整或缺失不自动下架；产品地图 CSV 与参数 CSV 分开。；2026-09-28 六队三仓库：目标清单只引用存在的因子、输入、序列、分队与执行机并覆盖全部非用户输入，辅助机制必须落在 macmini，inews 只产材料类事件卡；inresearch 不爬取（sec/gpu 采集器与 CLI 已删除，历史台账行只读保留）；feed v2 附加字段校验形状、保留为线索、不授予采用；供应任务只能分配给六队。；官方 Networking Docs 的 ConnectX / BlueField / Spectrum 硬件型号进入网络目录，DOCA 仍按软件归类",
       "tests": [
         "tests/unit/test_acquisition.py::AcquisitionTests.test_archive_preserves_revisions_and_is_idempotent",
         "tests/unit/test_acquisition.py::AcquisitionTests.test_failure_is_recorded_and_not_success",

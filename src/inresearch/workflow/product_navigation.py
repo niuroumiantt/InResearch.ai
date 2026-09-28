@@ -2,7 +2,7 @@
 import re
 from urllib.parse import urlsplit
 
-VERSION = '2026-09-27.1'
+VERSION = '2026-09-28.1'
 SOURCE = 'https://www.nvidia.com/en-us/products/'
 GROUPS = [
     {'id': 'datacenter', 'label': '数据中心与网络', 'official_sections': ['Data Center', 'Networking', 'Graphics Cards, GPUs, and CPUs']},
@@ -33,7 +33,7 @@ RULES = [
     ('consumer', 'geforce-legacy', 'GeForce 历代与总览', r'/geforce/(?:graphics-cards|20-series)/'),
     ('consumer', 'shield', 'SHIELD', r'/shield/'),
     ('consumer', 'gsync', 'G-SYNC', r'g-sync'),
-    ('datacenter', 'networking', '网络 / DPU / 互连', r'/networking/|nvlink|nvqlink'),
+    ('datacenter', 'networking', '网络 / DPU / 互连', r'/networking/|networking-docs\.nvidia\.com|nvlink|nvqlink|connectx|bluefield|spectrum|supernic|infiniband|ethernet switching|\bsn\d{4}\b'),
     ('datacenter', 'dgx', 'DGX 系统', r'\bdgx\b'),
     ('datacenter', 'platforms', 'HGX / MGX / 系统平台', r'\b(?:hgx|mgx|ovx|dsx|stx)\b|rtx.pro.server|certified.systems|ai-storage'),
     ('datacenter', 'accelerators', 'GPU / CPU / 超级芯片', r'/data-center/'),
@@ -47,6 +47,7 @@ AUXILIARY = re.compile(
     r'/data-center/(?:products/)?$|/networking/(?:products/)?$|'
     r'/(?:buy-desktop|buy-gpu|features|performance|product-images|videos|reviews|specifications|compare)(?:/|$)|'
     r'/(?:tensor-cores|ai-cloud-validation)/', re.I)
+PRODUCT_DOCUMENT_HOSTS = {'networking-docs.nvidia.com'}
 
 
 def classify(product):
@@ -55,7 +56,9 @@ def classify(product):
     text = product['name'].lower() + ' ' + path
     matched = next((r for r in RULES if re.search(r[3], text)), None)
     # Holoscan is itself a product under /technologies/, unlike architecture pages.
-    auxiliary = bool(AUXILIARY.search(path)) and 'holoscan-sensor-bridge' not in path
+    host = (urlsplit(product.get('product_url') or product['source_url']).hostname or '').lower()
+    auxiliary = (bool(AUXILIARY.search(path)) and 'holoscan-sensor-bridge' not in path
+                 and host not in PRODUCT_DOCUMENT_HOSTS)
     role = 'auxiliary' if auxiliary else ('catalog' if matched else 'unclassified')
     return {'version': VERSION, 'group': matched[0] if matched else '',
             'family': matched[1] if matched else '', 'family_label': matched[2] if matched else '待归类',
