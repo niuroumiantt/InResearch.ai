@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1004。
+在册文件：1005。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,7 +16,7 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 268 |
-| 运行代码 | 217 |
+| 运行代码 | 218 |
 | 现行规范 | 13 |
 | 项目配置 | 92 |
 | 兼容研究记录 | 16 |
@@ -348,7 +348,7 @@
 | `framework/supply_contract.json` | providers | 7 |
 | `framework/tco_factors.json` | factors | 24 |
 | `framework/tco_targets.json` | principles | 4 |
-| `framework/tco_targets.json` | targets | 43 |
+| `framework/tco_targets.json` | targets | 287 |
 | `framework/verification_contract.json` | policies | 13 |
 | `outputs/geluoke-research/2026-09-26/checks/validation.json` | images | 5 |
 | `outputs/geluoke-research/2026-09-26/sources.json` | published_source_numbering | 48 |
@@ -1153,6 +1153,7 @@
 | `src/inresearch/knowledge/policy.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
+| `src/inresearch/knowledge/targets.py` | 运行代码 |
 | `src/inresearch/knowledge/validate.py` | 运行代码 |
 | `src/inresearch/knowledge/verify.py` | 运行代码 |
 | `src/inresearch/materials/__init__.py` | 运行代码 |
