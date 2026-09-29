@@ -2,6 +2,12 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-29：阅读快照导出端也按别名折算旧对象 ID
+
+八步合并后核对各机器的更新顺序时发现：图谱 3.0 的旧 ID 折算表只在接收端（`registry.candidate_snapshot`，且只对版本落后的快照生效）。Spark / M4 / M5 拉了新 main 再导出，`reader_export` 会把 2.2.1 的 77 个旧对象 ID（49 个别名、28 个根前缀）当作未知丢进 mapping-proposals，比留在旧版还差。现改为三处共用一张折算表 `registry.object_resolver`：导出端（`delivery/reader_export`）、Spark 的外部快照叠加（`delivery/snapshot_overlay`）与接收端；`Reader.snapshot()` 随对象表带出 `legacy_root_prefixes`；投影缓存指纹加 `projection` 版本。折算不了的仍进提案，不猜。
+
+各机器顺序：AWS 已随 main 自动上站，能无损接收旧版快照；Spark 与 M4 等本条合入后再更新源码，更新后第一次发布会重算全部投影（缓存按图谱版本失效），手动跑一次 `manage.py publish` 而不是等五分钟定时器；M5 的临时 NVIDIA 导出同样等本条。运行手册 `SPARK_OPERATIONS.md` 在评审文件之列，改动随下一批评审文件一起进。
+
 ## 2026-09-28：管理瘦身与清零（第 8 步）
 
 [提案](reviews/2026-09-28/site/PROPOSAL.md) §6 与 §9 第 8 步落地，八步至此走完；AUDIT.md 三根梁（旧图谱轴、模块维护单元、首页/看板习惯）清零。

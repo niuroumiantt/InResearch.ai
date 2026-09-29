@@ -60,31 +60,38 @@ def load_directory(directory):
     return [(name, payload) for _, name, payload in sorted(snapshots)]
 
 
-def current_ids(rows, allowed):
+def current_ids(rows, allowed, resolve=None):
     """Keep only object/question IDs the deployed registry still has.
 
     An external snapshot was mapped against the registry of the machine that
     exported it; after a registry change (2.1.2 -> 2.2.0 re-cut the parts) its
-    old IDs would make the receiver reject the whole publish. Dropped IDs are
-    counted, never guessed at."""
+    old IDs would make the receiver reject the whole publish. Legacy object IDs
+    fold through the registry's aliases when ``resolve`` is given (graph 3.0);
+    what still does not resolve is dropped and counted, never guessed at."""
     dropped = 0
     out = []
     for row in rows:
         row = dict(row)
         for key, ids in allowed.items():
             if isinstance(row.get(key), list):
-                kept = [v for v in row[key] if v in ids]
-                dropped += len(row[key]) - len(kept)
+                kept = []
+                for value in row[key]:
+                    target = value if value in ids else (resolve(value) if resolve and key == 'object_ids' else None)
+                    if target is None:
+                        dropped += 1
+                    elif target not in kept:
+                        kept.append(target)
                 row[key] = kept
         out.append(row)
     return out, dropped
 
 
-def overlay(payload, snapshots, allowed=None):
+def overlay(payload, snapshots, allowed=None, resolve=None):
     """Merge external documents into ``payload`` in place and say what happened.
 
     ``allowed`` maps object_ids/question_ids to the IDs of the registry being
-    published; external rows are filtered to it."""
+    published; external rows are filtered to it, legacy object IDs folding
+    through ``resolve`` first."""
     knowledge = payload['knowledge']
     unmapped = 0
     own_complete = {doc['doc_id'] for doc in knowledge['documents']
@@ -104,7 +111,7 @@ def overlay(payload, snapshots, allowed=None):
             rows['documents'] = [{**entry, 'projection_source': 'external:' + name}]
             if allowed is not None:
                 for kind in rows:
-                    rows[kind], dropped = current_ids(rows[kind], allowed)
+                    rows[kind], dropped = current_ids(rows[kind], allowed, resolve)
                     unmapped += dropped
             knowledge['documents'].extend(rows['documents'])
             for kind in KINDS:

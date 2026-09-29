@@ -146,7 +146,7 @@ class Reader:
             self.conn.execute("UPDATE reading_runs SET state=?,error_code=? WHERE revision_id=?", (row["state"], row["error_code"], row["revision_id"]))
 
     def snapshot(self):
-        out = {"graph_version": None, "questions_version": None, "objects": [], "questions": []}
+        out = {"graph_version": None, "questions_version": None, "objects": [], "questions": [], "legacy_root_prefixes": []}
         for fn, records, target, version in (("research_graph.json", "objects", "objects", "graph_version"),
                                              ("research_questions.json", "records", "questions", "questions_version")):
             p = self.repo / "framework" / fn
@@ -156,6 +156,8 @@ class Reader:
                     continue
                 out[target] = [r for r in value[records] if not (target == "objects" and r.get("navigation_hidden"))]
                 out[version] = value.get("version")
+                if target == "objects":
+                    out["legacy_root_prefixes"] = [p for p in (value.get("legacy_root_prefixes") or []) if isinstance(p, str)]
             except (OSError, ValueError, AttributeError):
                 continue
         out["snapshot_hash"] = digest_bytes(encoded(out).encode())
