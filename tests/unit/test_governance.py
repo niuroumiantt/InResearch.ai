@@ -62,6 +62,25 @@ class GovernanceTests(unittest.TestCase):
         self.assertEqual(rows['framework/live.md']['sha256'], hashlib.sha256(b'current rule').hexdigest())
         self.assertEqual(after, g.build_manifest(self.state, self.root))
 
+    def test_retired_rule_skips_sentences_that_say_retired_and_decision_history(self):
+        (self.root / 'AGENTS.md').write_text('x\n', encoding='utf-8')
+        (self.root / 'framework/live.md').write_text('current replacement')
+        state = {**self.state, 'entrypoints': ['docs/DECISIONS.md'], 'decisions_retired_scan_since': '2026-09-28'}
+        (self.root / 'docs').mkdir(exist_ok=True)
+        (self.root / 'docs/DECISIONS.md').write_text('# log\n\n## 2026-09-28：now\n\n以下词汇退役：forbidden assertion\n\n## 2026-09-27：before\n\nforbidden assertion 仍在用\n', encoding='utf-8')
+        self.assertEqual(g.retired_errors(g.build_manifest(state, self.root), state, self.root), [])
+        (self.root / 'docs/DECISIONS.md').write_text('# log\n\n## 2026-09-28：now\n\nforbidden assertion 仍在用\n', encoding='utf-8')
+        self.assertEqual(g.retired_errors(g.build_manifest(state, self.root), state, self.root), ['docs/DECISIONS.md: retired assertion forbidden assertion'])
+
+    def test_retired_rule_skips_dated_snapshots_kept_verbatim(self):
+        (self.root / 'docs/guides').mkdir(parents=True, exist_ok=True)
+        (self.root / 'docs/guides/old-2026-09-27.html').write_text('<p>forbidden assertion</p>\n', encoding='utf-8')
+        state = {**self.state, 'entrypoints': ['docs/guides/old-2026-09-27.html']}
+        (self.root / 'framework/live.md').write_text('current replacement')
+        self.assertEqual(g.retired_errors(g.build_manifest(state, self.root), state, self.root), ['docs/guides/old-2026-09-27.html: retired assertion forbidden assertion'])
+        state['retired_scan_snapshots'] = ['docs/guides/old-2026-09-27.html']
+        self.assertEqual(g.retired_errors(g.build_manifest(state, self.root), state, self.root), [])
+
     def test_retired_rule_blocks_current_but_preserves_history(self):
         errors = g.retired_errors(g.build_manifest(self.state, self.root), self.state, self.root)
         self.assertEqual(len(errors), 1)

@@ -6,6 +6,23 @@ const base=process.env.UI_BASE_URL;
  try{
   const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/supply.html');
+  await page.locator('#targets-panel table.targets tbody tr').first().waitFor();
+  assert.match(page.url(),/#targets$/,'the target table is the first screen');
+  assert.equal(await page.locator('#team-cards .team-card').count(),6,'six teams');
+  assert.equal(await page.locator('table.heat tbody tr').count(),7,'five systems, site rights and the root by five classes');
+  await page.goto(base+'/supply.html?node=part:transformer&col=4#targets');
+  await page.locator('#targets-panel table.targets tbody tr').first().waitFor();
+  assert.equal(await page.locator('table.targets tbody tr').count(),1,'node + column prefilter from the node page');
+  assert.match(await page.locator('table.targets tbody').innerText(),/P\.transformer\.lead_time/);
+  await page.getByRole('button',{name:'派工',exact:true}).first().click();await page.locator('#target-dialog[open]').waitFor();
+  await page.locator('#td-cancel').click();
+  await page.goto(base+'/supply.html');await page.locator('#targets-panel table.targets tbody tr').first().waitFor();
+  await page.getByRole('button',{name:'研究问题任务',exact:true}).click();await page.locator('#tk-table tr').nth(1).waitFor();
+  assert.match(page.url(),/#tasks$/);assert.ok((await page.locator('#tk-nodes .team-card').count())>0,'tasks grouped by skeleton node');
+  await page.getByRole('button',{name:'收件箱',exact:true}).click();await page.locator('#mi-form').waitFor();assert.match(page.url(),/#inbox$/);
+  await page.getByRole('button',{name:'规格批次',exact:true}).click();await page.locator('#pilot-status').waitFor();assert.match(page.url(),/#pilot$/);
+  for(const [legacy,hash] of [['/team.html','#tasks'],['/materials.html','#inbox']]){const r=await page.request.get(base+legacy,{maxRedirects:0});assert.equal(r.status(),302,legacy);assert.ok(r.headers()['location'].endsWith('supply.html'+hash),legacy);}
+  await page.getByRole('button',{name:'作战总览',exact:true}).click();
   await page.getByRole('heading',{name:'目的与当前进展',exact:true}).waitFor();
   assert.match(page.url(),/#overview$/);
   assert.match(await page.locator('#counts').innerText(),/7 个供应入口/);
@@ -32,13 +49,8 @@ const base=process.env.UI_BASE_URL;
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
    }
   }
-  await page.goto(base+'/supply-demo.html');
-  await page.getByRole('button',{name:'交付与验收',exact:true}).click();
-  await page.getByRole('button',{name:'验收合格 2 份',exact:true}).click();
-  assert.match(await page.locator('#sd-message').innerText(),/需求保持部分交付/);
-  await page.getByRole('button',{name:'研究需求与分配',exact:true}).click();
-  await page.getByRole('button',{name:'分配示例任务',exact:true}).click();
-  assert.match(await page.locator('#sd-message').innerText(),/接通后才可执行/);
+  // 演示页 supply-demo.html 已退役（2026-09-28）
+  const demo=await page.request.get(base+'/supply-demo.html',{maxRedirects:0});assert.notEqual(demo.status(),200,'demo page retired');
   await page.setViewportSize({width:390,height:950});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   assert.deepEqual(errors,[]);

@@ -15,16 +15,15 @@
     {
       "id": "architecture-20260906",
       "topic": "architecture",
-      "status": "current",
+      "status": "superseded",
       "scope": "project",
       "effective_at": "2026-09-13",
-      "source": "framework/00_overview.md",
+      "source": "docs/archive/2026-09-28/framework__00_overview.md",
       "implementations": [
         "framework/research_graph.json",
         "framework/research_questions.json",
         "web/components/research-graph.js",
         "framework/modules/M15_情景与监测.md",
-        "web/pages/framework_poster.html",
         "README.md",
         "src/inresearch/README.md",
         "src/inresearch/knowledge/registry.py",
@@ -37,7 +36,47 @@
       "supersedes": [
         "architecture-legacy"
       ],
-      "reason": "保持五视角架构；明确研究定义、原文、采用、任务交付、推理与操作界面的第一层边界，替代 README 中模块唯一主体与上游无接口的旧说明。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
+      "reason": "保持五视角架构；明确研究定义、原文、采用、任务交付、推理与操作界面的第一层边界，替代 README 中模块唯一主体与上游无接口的旧说明。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。",
+      "superseded_by": "architecture-20260928"
+    },
+    {
+      "id": "architecture-20260928",
+      "topic": "architecture",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-28",
+      "source": "framework/00_overview.md",
+      "implementations": [
+        "framework/bom.json",
+        "framework/site_rights.json",
+        "framework/research_graph.json",
+        "framework/research_questions.json",
+        "framework/dashboard_rules.json",
+        "framework/tco_factors.json",
+        "data/datacenter_model.json",
+        "src/inresearch/knowledge/economics.py",
+        "src/inresearch/knowledge/dashboard.py",
+        "src/inresearch/knowledge/targets.py",
+        "src/inresearch/knowledge/registry.py",
+        "web/pages/node.html",
+        "web/pages/ledger.html",
+        "README.md",
+        "src/inresearch/README.md",
+        "src/inresearch/delivery/report.py",
+        "src/inresearch/adapters/models.py",
+        "src/inresearch/adapters/reader_model.py",
+        "src/inresearch/materials/records.py",
+        "src/inresearch/storage/moves.py",
+        "src/inresearch/knowledge/nodes.py",
+        "tests/unit/test_nodes.py",
+        "src/inresearch/knowledge/graph.py",
+        "tests/unit/test_graph.py"
+      ],
+      "supersedes": [
+        "architecture-20260906"
+      ],
+      "reason": "2026-09-28 用户采用唯一逻辑：一棵树（五个系统、IT 四子系统、系统内链路、61 部件、六条站点权利）、三级账（唯一统一经济模型）、四问四段、五类变量、六队、一个模板；五视角 P/F/V/D/R、15 模块作维护单元、按尺度分组的浏览目录退役。依据 docs/reviews/2026-09-28/alignment/AUDIT.md 与 docs/reviews/2026-09-28/site/PROPOSAL.md；实施按提案第 9 节八步推进，本条登记于第 0 步。",
+      "implementation_revision": "2026.09.28.2"
     },
     {
       "id": "data-legacy",
@@ -136,13 +175,18 @@
         "docs/local_setup/ADD_3D_MODEL.md",
         "web/pages/compare.html",
         "tests/unit/test_model_assets.py",
-        "src/inresearch/workflow/model_assets.py"
+        "src/inresearch/workflow/model_assets.py",
+        "framework/bom.json",
+        "framework/site_rights.json",
+        "web/pages/bom.html",
+        "src/inresearch/knowledge/validate.py",
+        "tests/unit/test_bom.py"
       ],
       "supersedes": [
         "products-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。",
-      "implementation_revision": "2026.09.14.2"
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-28 一个骨架：第一层按系统、系统内按链路、尺度是属性；骨架的三个补充（建设阶段、部件级运行行、登记表两列）登记为现行。",
+      "implementation_revision": "2026.09.28.1"
     },
     {
       "id": "reading-legacy",
@@ -305,8 +349,6 @@
         "tests/auth_appearance.cjs",
         ".github/workflows/validate.yml",
         "web/pages/company.html",
-        "web/pages/materials.html",
-        "web/pages/nvidia-pilot.html",
         "web/pages/report.html",
         "web/components/markdown-inline.js",
         "tests/url_rendering.cjs",
@@ -343,18 +385,14 @@
         "tests/unit/test_model.py",
         "tests/datacenter_cost.cjs",
         "tests/datacenter_economics.cjs",
-        "docs/research/datacenter-economics/model.py",
         "framework/tco_factors.json",
         "tests/datacenter_tco.cjs",
-        "docs/research/datacenter-tco/model.py",
         "tests/unit/test_tco_factors.py",
-        "docs/research/2026-09-27/datacenter-profit/profit-model.py",
         "docs/research/2026-09-27/datacenter-profit/price_records.py",
         "docs/geluoke/专题反哺规则.md",
         "framework/supply_contract.json",
         "src/inresearch/workflow/supply.py",
         "web/pages/supply.html",
-        "web/pages/supply-demo.html",
         "web/components/supply.js",
         "web/themes/supply.css",
         "tests/unit/test_supply.py",
@@ -364,13 +402,23 @@
         "web/assets/fonts/LICENSE-Inter.txt",
         "web/assets/fonts/LICENSE-NotoSansSC.txt",
         "web/assets/fonts/noto-sans-sc-1.woff2",
-        "web/assets/fonts/inter-variable.woff2"
+        "web/assets/fonts/inter-variable.woff2",
+        "framework/dashboard_rules.json",
+        "data/dashboard.json",
+        "src/inresearch/interfaces/public.py",
+        "tests/unit/test_public_reader.py",
+        "src/inresearch/workflow/dispatch.py",
+        "web/components/targets.js",
+        "tests/unit/test_target_dispatch.py",
+        "web/components/pilot.js",
+        "web/components/tasks-board.js",
+        "web/assets/materials.js"
       ],
       "supersedes": [
         "interface-legacy"
       ],
-      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-14 统一实际画布、几何适配和用户镜头所有权，退出固定缩放/距离，补齐雾化反例；完整视觉与 GPU 验收仍有限。；2026-09-14 两场景共用 HDR/PMREM 与 CanvasTexture 所有者，面板失败保留真实程序化纹理，迟到/替换/退出释放资源；bake、compare 与场景几何仍分别待审。；2026-09-14 数据中心成本研究新增独立交互页，网页与 Excel 基准对齐，明确全项目/设施账户、假设边界、重算和窄屏验收。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-09-22 收敛为一套视觉加明暗（去掉 Attio/folk 切换与顶栏切换器，令牌改由本仓库拥有，不再内嵌 infra CRM 块）；全站改用 infra 字体包 Inter + Noto Sans SC，页面与 3D 画布不再自带系统字体栈；共享外观统一表单控件；旧偏好中的 skin 字段忽略。",
-      "implementation_revision": "2026.09.27.1"
+      "reason": "2026-09-13：3D 档案改用同权威关联字段投影，仍共用完整工作台的节点关联算法；研究面板就绪、失败重试和挂载/请求替换成为明确验收。既有输入/材质所有权保持，renderer/资产生命周期仍未全面收敛。；2026-09-14 两场景必需定义改用统一加载/结构检查/取消/重试，恢复显式控件状态，不扩大为可选资产就绪。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-14 统一实际画布、几何适配和用户镜头所有权，退出固定缩放/距离，补齐雾化反例；完整视觉与 GPU 验收仍有限。；2026-09-14 两场景共用 HDR/PMREM 与 CanvasTexture 所有者，面板失败保留真实程序化纹理，迟到/替换/退出释放资源；bake、compare 与场景几何仍分别待审。；2026-09-14 数据中心成本研究新增独立交互页，网页与 Excel 基准对齐，明确全项目/设施账户、假设边界、重算和窄屏验收。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-09-22 收敛为一套视觉加明暗（去掉 Attio/folk 切换与顶栏切换器，令牌改由本仓库拥有，不再内嵌 infra CRM 块）；全站改用 infra 字体包 Inter + Noto Sans SC，页面与 3D 画布不再自带系统字体栈；共享外观统一表单控件；旧偏好中的 skin 字段忽略。；2026-09-28 目录改为四问的全局视图（数据中心 / 账本 / 爆炸图 / 采集 / 成果 / 管理），节点页矩阵五系统 + IT 四子系统 + 站点权利，公开只读角色 reader，三个已删模型的参考实现从实现清单移除。",
+      "implementation_revision": "2026.09.28.5"
     },
     {
       "id": "acquisition-legacy",
@@ -396,7 +444,6 @@
         "deploy/spark-reader/inresearch-news.timer",
         "docs/local_reader/ACQUISITION_OPERATIONS.md",
         "web/pages/node.html",
-        "web/pages/materials.html",
         "web/pages/ops.html",
         "src/inresearch/adapters/acquisition.py",
         "src/inresearch/delivery/backup.py",
@@ -427,13 +474,11 @@
         "src/inresearch/workflow/supply.py",
         "src/inresearch/workflow/pilot_progress.py",
         "web/pages/supply.html",
-        "web/pages/supply-demo.html",
         "web/components/supply.js",
         "web/themes/supply.css",
         "tests/unit/test_supply.py",
         "tests/supply.cjs",
         "tests/unit/test_pilot_progress.py",
-        "web/pages/nvidia-pilot.html",
         "web/routes.json",
         "src/inresearch/materials/fetchspec_receive.py",
         "src/inresearch/adapters/html_document.py",
@@ -464,16 +509,16 @@
       "supersedes": [
         "acquisition-legacy"
       ],
-      "reason": "新闻使用 Reader 的有界投影；供应执行、资料接收与 NVIDIA 产品库按用户确定的职责保存状态。2026-09-27 NVIDIA 采用产品优先：M5 本地发现/阅读，结构化候选发布 AWS，Spark 本轮不参与；页面按官方分类证据映射为五大浏览组。产品地图将明确型号关联父系列/平台，保留来源与参数版本。增量先对账官方英文与中文 XML sitemap，仅筛已审阅的产品路径，条件请求避免重复下载；产品路径新增入队、lastmod 变化重查。NVIDIA 中文站 www.nvidia.cn 使用根路径并纳入，路径匹配的中英页归并身份但各留快照。官方跳转仅放行核实过的 NVIDIA developer/networking 文档子域及具体页面，并分别遵守 robots.txt。产品 sitemap URL 抓取进度独立于广泛辅助页面队列计量。官方 sitemap 不完整不判缺失；即使完整，URL 未出现也只待复核不自动下架。网站 XML sitemap 是更新索引，不是产品总表；网站另生成公司产品 sitemap，线上分开导出产品清单、产品地图与原生规格 CSV。Networking Docs 的 ConnectX、BlueField、Spectrum 硬件型号归入网络产品族，DOCA 等软件仍优先归入软件。产品/来源/规格处理状态分别计量；公开页面明确清点未完与未知项；404 旧页、主机策略阻止与可重试失败分开显示，不能混成抓取失败。具体命名产品的规格覆盖率与全部目录实体的有表数量分开计量；官网未发布型号规格或型号专属规格来源不可用时记厂商缺口，不冒充抓取失败也不猜测补值。；2026-09-28 用户采用六队三仓库：inresearch 本身不爬取，内置 SEC/GPU 采集器退役并移交 fetchdata（fetchfilings、fetchquotes）；供应契约 providers 改为六队并登记来源归属；新建五层目标清单 framework/tco_targets.json 作为唯一任务来源；inews 拆采集线与编辑线，给 inresearch 的采集默认不翻译、挑选在先翻译在后，事件 feed 附加字段在 news_sync 校验透传。；2026-09-28 配合节点树改版：产品目录首屏改为轻量索引、单产品规格按需读取并在浏览器返回时恢复未完成请求；供应中心从生成目标清单只读投影 Fetchspec 目标，NVIDIA 目录显示相关 target/part 数量，目标、候选规格与正式研究采用继续分离。",
+      "reason": "新闻使用 Reader 的有界投影；供应执行、资料接收与 NVIDIA 产品库按用户确定的职责保存状态。2026-09-27 NVIDIA 采用产品优先：M5 本地发现/阅读，结构化候选发布 AWS，Spark 本轮不参与；页面按官方分类证据映射为五大浏览组。产品地图将明确型号关联父系列/平台，保留来源与参数版本。增量先对账官方英文与中文 XML sitemap，仅筛已审阅的产品路径，条件请求避免重复下载；产品路径新增入队、lastmod 变化重查。NVIDIA 中文站 www.nvidia.cn 使用根路径并纳入，路径匹配的中英页归并身份但各留快照。官方跳转仅放行核实过的 NVIDIA developer/networking 文档子域及具体页面，并分别遵守 robots.txt。产品 sitemap URL 抓取进度独立于广泛辅助页面队列计量。官方 sitemap 不完整不判缺失；即使完整，URL 未出现也只待复核不自动下架。网站 XML sitemap 是更新索引，不是产品总表；网站另生成公司产品 sitemap，线上分开导出产品清单、产品地图与原生规格 CSV。Networking Docs 的 ConnectX、BlueField、Spectrum 硬件型号归入网络产品族，DOCA 等软件仍优先归入软件。产品/来源/规格处理状态分别计量；公开页面明确清点未完与未知项；404 旧页、主机策略阻止与可重试失败分开显示，不能混成抓取失败。具体命名产品的规格覆盖率与全部目录实体的有表数量分开计量；官网未发布型号规格或型号专属规格来源不可用时记厂商缺口，不冒充抓取失败也不猜测补值。；2026-09-28 用户采用六队三仓库：inresearch 本身不爬取，内置 SEC/GPU 采集器退役并移交 fetchdata（fetchfilings、fetchquotes）；供应契约 providers 改为六队并登记来源归属；新建五类变量目标清单 framework/tco_targets.json 作为唯一任务来源；inews 拆采集线与编辑线，给 inresearch 的采集默认不翻译、挑选在先翻译在后，事件 feed 附加字段在 news_sync 校验透传。；2026-09-28 配合节点树改版：产品目录首屏改为轻量索引、单产品规格按需读取并在浏览器返回时恢复未完成请求；供应中心从生成目标清单只读投影 Fetchspec 目标，NVIDIA 目录显示相关 target/part 数量，目标、候选规格与正式研究采用继续分离。；2026-09-28 目标行状态四态与 Git 内登记载体采用。",
       "implementation_revision": "2026.09.28.40"
     },
     {
       "id": "product-ecosystems-20260906",
       "topic": "product-ecosystems",
-      "status": "current",
+      "status": "superseded",
       "scope": "project",
       "effective_at": "2026-09-06",
-      "source": "framework/07_product_ecosystems.md",
+      "source": "docs/archive/2026-09-28/framework__07_product_ecosystems.md",
       "implementations": [
         "framework/research_graph.json",
         "framework/research_questions.json",
@@ -488,7 +533,35 @@
         "src/inresearch/workflow/reader.py"
       ],
       "supersedes": [],
-      "reason": "产品悬停展示显式关联厂商、点击进入独立页面；HDD 清除迁移文案；保留图谱导航与旧 ID 后台兼容。"
+      "reason": "产品悬停展示显式关联厂商、点击进入独立页面；HDD 清除迁移文案；保留图谱导航与旧 ID 后台兼容。",
+      "superseded_by": "product-ecosystems-20260928"
+    },
+    {
+      "id": "product-ecosystems-20260928",
+      "topic": "product-ecosystems",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-09-28",
+      "source": "framework/03_bom_and_collaboration.md",
+      "implementations": [
+        "framework/bom.json",
+        "data/products.json",
+        "web/pages/bom.html",
+        "web/pages/bom3d.html",
+        "web/pages/rack3d.html",
+        "web/pages/product-catalog.html",
+        "web/pages/admin/product/index.html",
+        "web/components/part-dossier.js",
+        "web/components/object-network.js",
+        "web/components/research-graph.js",
+        "src/inresearch/knowledge/navigation.py",
+        "src/inresearch/knowledge/registry.py",
+        "src/inresearch/workflow/reader.py"
+      ],
+      "supersedes": [
+        "product-ecosystems-20260906"
+      ],
+      "reason": "八生态入口、主生态与九主题退役：产品目录按骨架部件进入（部件 → 厂商产品线 → 型号），生态不再是任何视图的第一层；本主题的现行正文并入 03「一个骨架」与「骨架的三个补充」。旧实现文件在页面改写完成前保留于实现清单，随迁移各步移除。"
     },
     {
       "id": "reading-20260912",
@@ -622,7 +695,7 @@
       "source": "framework/09_software_contracts.md",
       "effective_at": "2026-09-21",
       "supersedes": [],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、首页和团队页的唯一投影；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。",
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、节点页根与团队页的唯一投影（团队页待并入采集页）；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -686,7 +759,6 @@
         "framework/supply_contract.json",
         "src/inresearch/workflow/supply.py",
         "web/pages/supply.html",
-        "web/pages/supply-demo.html",
         "web/components/supply.js",
         "web/themes/supply.css",
         "tests/unit/test_supply.py",
@@ -722,7 +794,24 @@
     "算力除以\\s*2",
     "带宽除以\\s*2",
     "精读／据实生成</b>可直接引用",
-    "pull --rebase --autostash"
+    "pull --rebase --autostash",
+    "五视角是同一知识底座",
+    "五视角研究",
+    "研究工作台需要",
+    "分层对象目录",
+    "总览 → 研究 → 资料 → 任务",
+    "总览→研究→资料",
+    "五层目标清单",
+    "监测仪表盘（",
+    "三色仪表盘",
+    "盲区仪表盘",
+    "团队看板 →",
+    "产品资料采集看板",
+    "九个研究角度",
+    "每个产品有一个主生态",
+    "八个产品生态",
+    "工单 = 声明 − 现状",
+    "工单 = 模块声明 − 仓库现状"
   ],
   "operational_guides": [
     "AGENTS.md",
@@ -734,5 +823,9 @@
     "docs/local_reader/M4_PREFLIGHT.md",
     "docs/local_setup/README.md",
     "docs/local_setup/ADD_3D_MODEL.md"
+  ],
+  "decisions_retired_scan_since": "2026-09-28",
+  "retired_scan_snapshots": [
+    "docs/guides/model-governance-2026-09-27.html"
   ]
 }

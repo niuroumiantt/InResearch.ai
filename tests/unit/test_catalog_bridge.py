@@ -16,17 +16,21 @@ class CatalogBridgeTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory(prefix='inresearch-catalog-test-')
         self.root = Path(self.temp.name)
+        # 图谱 3.0 的骨架片段：部件 → 链路 → 系统 → 根；主体只经 supplies 相连，不进导航闭包
         self.graph = {
-            'objects': [{'id': key} for key in ('part:cpu', 'part:gpu', 'part:dram', 'part:hbm', 'part:server',
-                'part:rack-frame', 'system:compute', 'space:hall', 'activity:V2', 'workload:training', 'demand:tokens', 'scope:M06')],
+            'version': '3.0.0',
+            'objects': [{'id': 'root', 'kind': 'root', 'parent': None}, {'id': 'system:it', 'kind': 'system', 'parent': 'root'},
+                        {'id': 'system:compute', 'kind': 'system', 'parent': 'system:it'}, {'id': 'chain:compute/1', 'kind': 'chain', 'parent': 'system:compute'},
+                        {'id': 'part:gpu', 'kind': 'part', 'parent': 'chain:compute/1'}, {'id': 'part:cpu', 'kind': 'part', 'parent': 'chain:compute/1'},
+                        {'id': 'part:server', 'kind': 'part', 'parent': 'chain:compute/1'}, {'id': 'part:dram', 'kind': 'part', 'parent': 'system:memory'},
+                        {'id': 'part:hbm', 'kind': 'part', 'parent': 'system:memory'}, {'id': 'part:rack-frame', 'kind': 'part', 'parent': 'system:facility'},
+                        {'id': 'actor:vendor', 'kind': 'actor', 'parent': None}],
             'relations': [
-                {'type': 'part_of', 'source': 'part:gpu', 'target': 'part:server'},
-                {'type': 'part_of', 'source': 'part:server', 'target': 'part:rack-frame'},
-                {'type': 'located_in', 'source': 'part:rack-frame', 'target': 'space:hall'},
-                {'type': 'member_of_system', 'source': 'part:gpu', 'target': 'system:compute'},
-                {'type': 'requires', 'source': 'system:compute', 'target': 'workload:training'},
-                {'type': 'demand_transmission', 'source': 'part:gpu', 'target': 'demand:tokens'},
-                {'type': 'research_scope', 'source': 'part:gpu', 'target': 'scope:M06'},
+                {'type': 'part_of', 'source': 'part:gpu', 'target': 'chain:compute/1'},
+                {'type': 'part_of', 'source': 'chain:compute/1', 'target': 'system:compute'},
+                {'type': 'part_of', 'source': 'system:compute', 'target': 'system:it'},
+                {'type': 'part_of', 'source': 'system:it', 'target': 'root'},
+                {'type': 'supplies', 'source': 'actor:vendor', 'target': 'part:gpu'},
             ]}
         self.write('data/companies.json', {'records': [{'company_id': 'vendor', 'name': 'Vendor', 'name_cn': '厂商', 'is_group': True}]})
 
@@ -93,13 +97,13 @@ class CatalogBridgeTests(unittest.TestCase):
         self.assertEqual(module_only['related_object_ids'], [])
         self.assertEqual(module_only['mapping_status'], 'needs_review')
 
-    def test_navigation_closure_excludes_workloads_demand_and_module_scope(self):
+    def test_skeleton_closure_is_the_only_navigation(self):
         result = self.build([self.product()])['products'][0]
         self.assertEqual(result['object_ids'], ['part:gpu'])
-        self.assertEqual(result['related_object_ids'], ['part:gpu', 'part:rack-frame', 'part:server', 'space:hall', 'system:compute'])
-        self.assertEqual(result['catalog_node_ids'], ['activity:V2'])
-        self.assertEqual(result['catalog_node_basis'], 'catalog_navigation_only')
-        self.assertFalse(any(oid.startswith(('workload:', 'demand:', 'scope:')) for oid in result['related_object_ids']))
+        self.assertEqual(result['related_object_ids'], ['chain:compute/1', 'part:gpu', 'root', 'system:compute', 'system:it'])
+        self.assertEqual(result['catalog_node_ids'], ['chain:compute/1'])
+        self.assertEqual(result['catalog_node_basis'], 'skeleton_parent')
+        self.assertFalse(any(oid.startswith('actor:') for oid in result['related_object_ids']), 'suppliers are relations, not navigation context')
         self.assertNotIn('representation', result)  # no actual physical installation asserted
 
     def test_planned_even_if_label_downloaded_is_not_indexed_or_read(self):

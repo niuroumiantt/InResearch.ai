@@ -1,11 +1,12 @@
 {
-  "version": "1.2.0",
+  "version": "1.3.0",
   "updated": "2026-09-28",
-  "title": "数据中心 TCO 因子树",
+  "title": "数据中心经济模型因子树",
   "note": "经济模型的骨架：收入侧与成本侧的最小可变因子。每个因子指向它汇总的爆炸图部件（framework/bom.json，2026-09-28 起为 2.0）与站点权利（framework/site_rights.json，site_rights 字段）、读取的价格库序列（data/prices.json）、对应的研究问题（framework/research_questions.json）、进入统一经济模型的输入键（data/datacenter_model.json，字段 model_inputs）以及定向抓取目标。因子树只定义结构与归属，不保存数值；数值在价格库与模型假设里。fetch.kind 取 product / news / data / report。 v1.1.0（2026-09-28）：fetch 条目升级为完整抓取目标（slug、变量类、数据类别、机制、队、序列、TCO 模型输入键 tco_inputs、实例、到期、敏感度），原手写的 43 条目标清单行迁入对应因子；目标清单 framework/tco_targets.json 改为由 manage.py targets 生成。 v1.2.0（2026-09-28）：三个模型合成一个，model_inputs 与 tco_inputs 合并为 model_inputs（统一模型的键：generation→it_class、utilization→gpu_utilization、gpu_price→price_gpu_hour、power_load→load_factor、it_life→it_refresh_years、shell_life→horizon_years、it_capex_per_mw→it_capex_per_kw），fetch 条目同名；v3 新增的 14 个输入挂到对应因子。",
   "formulas": {
     "revenue": "收入 = GPU 数 × 8,760 × 付费利用率 × 单价；GPU 数 = IT 容量 × 每 MW 密度；密度 = 1,000 kW × 加速器机柜占 IT 功率份额 ÷ (机柜功率 ÷ 每柜 GPU 数)",
-    "cost": "年度成本 = 电费 + 其他运营 + 设施费 + 折旧 + 税；电费 = IT 容量 × 负载率 × PUE × 8,760 × 电价；折旧 = 资本开支 ÷ 寿命（IT 与非 IT 分线）；设施费按自建 / 租壳 / 托管三选一"
+    "cost": "年度成本 = 电费 + 其他运营 + 设施费 + 折旧 + 税；电费 = IT 容量 × 负载率 × PUE × 8,760 × 电价；折旧 = 资本开支 ÷ 寿命（IT 与非 IT 分线）；设施费按自建 / 租壳 / 托管三选一",
+    "time": "首度收入时点 = 权利与审批 + 并网排队（gate_wait_years）+ 审批（permit_months）+ 建设期（construction_years）；建设阶段：权利与审批 → 并网与外线 → 土建与壳 → 机电 → IT 进场 → 调试与上架（bom.json stages）"
   },
   "factors": [
     {
@@ -1951,6 +1952,130 @@
             "wacc",
             "residual_share",
             "target_roic"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "time",
+      "label": "时间侧（建设时间线）",
+      "side": "time",
+      "parent": null,
+      "unit": "年",
+      "formula": "gate_wait_years + permit_months/12 + construction_years → 首度收入时点；horizon、refresh、escalation 在各自因子",
+      "model_inputs": []
+    },
+    {
+      "id": "time.build",
+      "label": "建设时间线（工期、排队、审批）",
+      "side": "time",
+      "parent": "time",
+      "unit": "年",
+      "formula": "权利与审批 → 并网与外线 → 土建与壳 → 机电 → IT 进场 → 调试与上架；每段的时长决定首度收入时点与爬坡起点",
+      "site_rights": [
+        "grid",
+        "permits"
+      ],
+      "model_inputs": [
+        "construction_years",
+        "gate",
+        "gate_wait_years",
+        "permit_months"
+      ],
+      "fetch": [
+        {
+          "kind": "report",
+          "slug": "duration",
+          "what": "建设期：开工到投运（GW 级园区到 1 GW 历时、Tier III 典型工期）",
+          "sources": [
+            "Epoch AI",
+            "Uptime Institute",
+            "公司里程碑公告与卫星影像"
+          ],
+          "cadence": "季度",
+          "variable_class": 4,
+          "data_class": "observation",
+          "mechanism": "pdf_free",
+          "team": "fetchreports",
+          "series": [
+            "build-time-to-1gw-months-openai-stargate-abilene",
+            "build-time-to-1gw-months-xai-colossus-2",
+            "build-time-to-1gw-months-anthropic-amazon-new-carlisle",
+            "build-time-to-1gw-months-microsoft-fayetteville",
+            "construction-lead-time-tier3-months"
+          ],
+          "planned_series": [],
+          "indicators": [
+            "construction_duration_months"
+          ],
+          "instances": [
+            "Epoch AI 前沿数据中心跟踪",
+            "Uptime Institute 建设周期调查",
+            "公司项目里程碑公告"
+          ],
+          "sensitivity_rank": 2,
+          "notes": "建设期进 construction_years；分阶段工期（土建 / 机电 / IT 进场）随部件级交期行汇总",
+          "model_inputs": [
+            "construction_years"
+          ]
+        },
+        {
+          "kind": "data",
+          "slug": "queue",
+          "what": "并网排队年限与大负荷接入流程（哪个门槛先卡：电力还是芯片）",
+          "sources": [
+            "LBNL Queued Up",
+            "PJM / ERCOT / MISO 队列报告",
+            "州公用事业委员会大负荷流程"
+          ],
+          "cadence": "半年",
+          "variable_class": 4,
+          "data_class": "observation",
+          "mechanism": "api",
+          "team": "fetchstat",
+          "series": [],
+          "planned_series": [],
+          "indicators": [
+            "interconnection_queue_years"
+          ],
+          "instances": [
+            "LBNL Queued Up 年报",
+            "PJM 队列与 ELCC 更新",
+            "ERCOT 大负荷接入报表"
+          ],
+          "sensitivity_rank": 2,
+          "notes": "排队年限进 gate_wait_years；门槛类型进 gate（美国电力、中国芯片）",
+          "model_inputs": [
+            "gate",
+            "gate_wait_years"
+          ]
+        },
+        {
+          "kind": "report",
+          "slug": "permit",
+          "what": "审批期：区划、环评、建设许可的时长，能否与施工重叠",
+          "sources": [
+            "SemiAnalysis",
+            "地方规划委员会与环评公告",
+            "行业律所与咨询报告"
+          ],
+          "cadence": "季度",
+          "variable_class": 4,
+          "data_class": "observation",
+          "mechanism": "pdf_free",
+          "team": "fetchreports",
+          "series": [],
+          "planned_series": [],
+          "indicators": [],
+          "instances": [
+            "SemiAnalysis 2026-09-25 中美建设对比",
+            "弗州 Loudoun 规划委员会议程",
+            "得州与内蒙古审批时限公告"
+          ],
+          "sensitivity_rank": 3,
+          "notes": "审批期进 permit_months；中国 3–6 个月可与施工重叠，美国 12–13 个月不能",
+          "model_inputs": [
+            "permit_months"
           ]
         }
       ]

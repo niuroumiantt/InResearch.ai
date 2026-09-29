@@ -78,8 +78,8 @@ function button(text, fn, cls = "rg-button") {
   const el = element("button", cls, text); el.type = "button"; el.addEventListener("click", fn); return el;
 }
 export function researchHref(id, view = "P", tab = "network") {
-  const q = new URLSearchParams({ node: id, view, tab });
-  return "research.html?" + q.toString();
+  // 研究页已退役（2026-09-28）：问题与证据在节点页第一问；旧参数 view / tab 不再有意义
+  return "node.html?" + new URLSearchParams(id === "root" ? {} : { id }).toString();
 }
 export function safeURL(value) {
   if (typeof value !== "string" || !value.trim()) return null;

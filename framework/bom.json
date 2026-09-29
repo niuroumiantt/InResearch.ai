@@ -1,7 +1,7 @@
 {
-  "version": "2.1",
+  "version": "2.2",
   "updated": "2026-09-28",
-  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md；重切依据见 docs/reviews/2026-09-28/bom-recut/PROPOSAL.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v2.0（2026-09-28 用户批复）：按「拆到有自己的价格、供应商名单、交期为止；普通紧固件合并，关键稀缺件不合并」重切，46 → 61 个物理部件；kind 区分 part / software / archetype；权利与配额移入 framework/site_rights.json；layers 改为五个尺度 S1–S5（装在哪），layer 键为兼容名，与经济模型的五类变量无关；被拆分或移出的旧 ID 在 aliases 里指向去处，网页与 3D 经别名解析。 v1.2（2026-08-26）：补 5 节点，新增 upstream 字段。v1.1（2026-08-18）：对齐产品研究目录，新增 14 节点。 v2.1（2026-09-28 用户采用）：一个骨架——数据中心 → 五个系统（设施、电力、冷却、IT、控制与软件），IT 再分计算、内存、存储、网络，系统内按能量流链路排（chain、chain_order）；尺度降为部件属性、第二排法。systems 登记父子关系与链路顺序，部件 system 只取叶子系统。边界件归属按能量流位置：储能归发电与储能，电源架、PSU、VRM 归机柜与板级供电，冷板归芯片级，歧管与快接头归机房与机柜，燃料储运跟发电。",
+  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md；重切依据见 docs/reviews/2026-09-28/bom-recut/PROPOSAL.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v2.0（2026-09-28 用户批复）：按「拆到有自己的价格、供应商名单、交期为止；普通紧固件合并，关键稀缺件不合并」重切，46 → 61 个物理部件；kind 区分 part / software / archetype；权利与配额移入 framework/site_rights.json；layers 改为五个尺度 S1–S5（装在哪），layer 键为兼容名，与经济模型的五类变量无关；被拆分或移出的旧 ID 在 aliases 里指向去处，网页与 3D 经别名解析。 v1.2（2026-08-26）：补 5 节点，新增 upstream 字段。v1.1（2026-08-18）：对齐产品研究目录，新增 14 节点。 v2.1（2026-09-28 用户采用）：一个骨架——数据中心 → 五个系统（设施、电力、冷却、IT、控制与软件），IT 再分计算、内存、存储、网络，系统内按能量流链路排（chain、chain_order）；尺度降为部件属性、第二排法。systems 登记父子关系与链路顺序，部件 system 只取叶子系统。边界件归属按能量流位置：储能归发电与储能，电源架、PSU、VRM 归机柜与板级供电，冷板归芯片级，歧管与快接头归机房与机柜，燃料储运跟发电。 v2.2（2026-09-28，03「骨架的三个补充」第 1 条）：部件加建设阶段 stage（权利与审批 → 并网与外线 → 土建与壳 → 机电 → IT 进场 → 调试与上架，登记在 stages），是链路之外的第二排法，回答\"先建什么\"；站点权利同。",
   "kinds": {
     "part": "可采购的物件，占一个尺度",
     "software": "软件条目：有订阅价与供应商，进目标表，不进 3D",
@@ -141,6 +141,7 @@
       "system": "power",
       "chain": "电网接入",
       "chain_order": 1,
+      "stage": "grid",
       "name": "高压开关站/GIS",
       "module": "M09",
       "companies": [
@@ -161,6 +162,7 @@
       "system": "power",
       "chain": "变电",
       "chain_order": 1,
+      "stage": "grid",
       "name": "大型电力变压器",
       "module": "M09",
       "companies": [
@@ -188,6 +190,7 @@
       "system": "power",
       "chain": "变电",
       "chain_order": 2,
+      "stage": "grid",
       "name": "中压开关柜",
       "module": "M09",
       "companies": [
@@ -209,6 +212,7 @@
       "system": "power",
       "chain": "发电与储能",
       "chain_order": 1,
+      "stage": "mep",
       "name": "燃气轮机",
       "module": "M04",
       "companies": [
@@ -233,6 +237,7 @@
       "system": "power",
       "chain": "发电与储能",
       "chain_order": 2,
+      "stage": "mep",
       "name": "燃气往复式机组",
       "module": "M04",
       "companies": [
@@ -251,6 +256,7 @@
       "system": "power",
       "chain": "发电与储能",
       "chain_order": 3,
+      "stage": "mep",
       "name": "燃料电池",
       "module": "M04",
       "companies": [
@@ -269,6 +275,7 @@
       "system": "power",
       "chain": "发电与储能",
       "chain_order": 4,
+      "stage": "mep",
       "name": "小型模块化反应堆",
       "module": "M04",
       "companies": [],
@@ -298,7 +305,8 @@
       "kind": "part",
       "system": "power",
       "chain": "发电与储能",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "mep"
     },
     {
       "id": "bess",
@@ -316,7 +324,8 @@
       "kind": "part",
       "system": "power",
       "chain": "发电与储能",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "mep"
     },
     {
       "id": "fuel-storage",
@@ -325,6 +334,7 @@
       "system": "power",
       "chain": "发电与储能",
       "chain_order": 6,
+      "stage": "mep",
       "name": "柴油储运（储罐、日用箱、加注）",
       "module": "M04",
       "companies": [],
@@ -341,6 +351,7 @@
       "system": "thermal",
       "chain": "排热",
       "chain_order": 1,
+      "stage": "mep",
       "name": "干冷器/冷却塔/蒸发冷",
       "module": "M08",
       "companies": [
@@ -360,6 +371,7 @@
       "system": "thermal",
       "chain": "排热",
       "chain_order": 2,
+      "stage": "mep",
       "name": "水处理与供水（泵站、过滤、软化）",
       "module": "M08",
       "companies": [
@@ -387,7 +399,8 @@
       "kind": "part",
       "system": "facility",
       "chain": "土地与建筑",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "shell"
     },
     {
       "id": "fire",
@@ -404,7 +417,8 @@
       "kind": "part",
       "system": "facility",
       "chain": "消防安防",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "security",
@@ -413,6 +427,7 @@
       "system": "facility",
       "chain": "消防安防",
       "chain_order": 2,
+      "stage": "mep",
       "name": "安防（门禁、视频、周界）",
       "module": "M10",
       "companies": [
@@ -446,7 +461,8 @@
       "kind": "part",
       "system": "power",
       "chain": "UPS",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "ups-battery",
@@ -455,6 +471,7 @@
       "system": "power",
       "chain": "UPS",
       "chain_order": 2,
+      "stage": "mep",
       "name": "UPS 电池（锂电/铅酸）",
       "module": "M09",
       "companies": [
@@ -473,6 +490,7 @@
       "system": "power",
       "chain": "配电",
       "chain_order": 1,
+      "stage": "mep",
       "name": "低压开关柜",
       "module": "M09",
       "companies": [
@@ -495,6 +513,7 @@
       "system": "power",
       "chain": "配电",
       "chain_order": 2,
+      "stage": "mep",
       "name": "母线槽",
       "module": "M09",
       "companies": [
@@ -515,6 +534,7 @@
       "system": "power",
       "chain": "配电",
       "chain_order": 3,
+      "stage": "mep",
       "name": "机房配电柜/PDU/RPP（含机柜配电条）",
       "module": "M09",
       "companies": [
@@ -535,6 +555,7 @@
       "system": "thermal",
       "chain": "冷水与 CDU",
       "chain_order": 1,
+      "stage": "mep",
       "name": "冷水机组",
       "module": "M08",
       "companies": [
@@ -555,6 +576,7 @@
       "system": "thermal",
       "chain": "冷水与 CDU",
       "chain_order": 2,
+      "stage": "mep",
       "name": "冷冻水泵、管路与阀门",
       "module": "M08",
       "companies": [],
@@ -582,7 +604,8 @@
       "kind": "part",
       "system": "thermal",
       "chain": "机房与机柜",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "mep"
     },
     {
       "id": "cdu",
@@ -613,7 +636,8 @@
       "kind": "part",
       "system": "thermal",
       "chain": "冷水与 CDU",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "immersion",
@@ -631,7 +655,8 @@
       "kind": "part",
       "system": "thermal",
       "chain": "机房与机柜",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "mep"
     },
     {
       "id": "cabling",
@@ -650,7 +675,8 @@
       "kind": "part",
       "system": "network",
       "chain": "网络",
-      "chain_order": 5
+      "chain_order": 5,
+      "stage": "it"
     },
     {
       "id": "leak-detection",
@@ -667,7 +693,8 @@
       "kind": "part",
       "system": "thermal",
       "chain": "机房与机柜",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "mep"
     },
     {
       "id": "rack-frame",
@@ -692,7 +719,8 @@
       "kind": "part",
       "system": "facility",
       "chain": "土地与建筑",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "rack-system",
@@ -701,6 +729,7 @@
       "system": "compute",
       "chain": "计算",
       "chain_order": 1,
+      "stage": "it",
       "name": "整机柜系统（NVL72 类，按柜计价）",
       "module": "M06",
       "companies": [
@@ -754,7 +783,8 @@
       "kind": "part",
       "system": "compute",
       "chain": "计算",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "general-server",
@@ -763,6 +793,7 @@
       "system": "compute",
       "chain": "计算",
       "chain_order": 3,
+      "stage": "it",
       "name": "通用服务器（CPU 节点）",
       "module": "M06",
       "companies": [
@@ -813,7 +844,8 @@
       "kind": "part",
       "system": "network",
       "chain": "网络",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "storage-array",
@@ -850,7 +882,8 @@
       "kind": "part",
       "system": "storage",
       "chain": "存储",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "manifold",
@@ -868,7 +901,8 @@
       "kind": "part",
       "system": "thermal",
       "chain": "机房与机柜",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "quick-disconnect",
@@ -877,6 +911,7 @@
       "system": "thermal",
       "chain": "机房与机柜",
       "chain_order": 5,
+      "stage": "mep",
       "name": "快接头",
       "module": "M08",
       "companies": [
@@ -904,7 +939,8 @@
       "kind": "part",
       "system": "power",
       "chain": "机柜与板级供电",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "bbu",
@@ -913,6 +949,7 @@
       "system": "power",
       "chain": "机柜与板级供电",
       "chain_order": 2,
+      "stage": "it",
       "name": "机柜电池备份单元",
       "module": "M09",
       "companies": [
@@ -941,7 +978,8 @@
       "kind": "part",
       "system": "network",
       "chain": "网络",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "coolant",
@@ -958,7 +996,8 @@
       "kind": "part",
       "system": "thermal",
       "chain": "冷水与 CDU",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "mep"
     },
     {
       "id": "sidecar-hx",
@@ -978,7 +1017,8 @@
       "kind": "part",
       "system": "thermal",
       "chain": "机房与机柜",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "mep"
     },
     {
       "id": "gpu",
@@ -1018,7 +1058,8 @@
       "kind": "part",
       "system": "compute",
       "chain": "计算",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "ai-asic",
@@ -1027,6 +1068,7 @@
       "system": "compute",
       "chain": "计算",
       "chain_order": 5,
+      "stage": "it",
       "name": "定制 AI ASIC",
       "module": "M06",
       "companies": [
@@ -1067,7 +1109,8 @@
       "kind": "part",
       "system": "compute",
       "chain": "计算",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "it"
     },
     {
       "id": "fpga",
@@ -1084,7 +1127,8 @@
       "kind": "part",
       "system": "compute",
       "chain": "计算",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "it"
     },
     {
       "id": "bmc",
@@ -1093,6 +1137,7 @@
       "system": "compute",
       "chain": "计算",
       "chain_order": 8,
+      "stage": "it",
       "name": "基板管理控制器",
       "module": "M06",
       "companies": [
@@ -1124,7 +1169,8 @@
       "kind": "part",
       "system": "memory",
       "chain": "内存",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "dram",
@@ -1144,7 +1190,8 @@
       "kind": "part",
       "system": "memory",
       "chain": "内存",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "cxl-memory",
@@ -1153,6 +1200,7 @@
       "system": "memory",
       "chain": "内存",
       "chain_order": 3,
+      "stage": "it",
       "name": "CXL 内存扩展",
       "module": "M06",
       "companies": [
@@ -1191,7 +1239,8 @@
       "kind": "part",
       "system": "storage",
       "chain": "存储",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "hdd",
@@ -1210,7 +1259,8 @@
       "kind": "part",
       "system": "storage",
       "chain": "存储",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "nic",
@@ -1231,7 +1281,8 @@
       "kind": "part",
       "system": "network",
       "chain": "网络",
-      "chain_order": 7
+      "chain_order": 7,
+      "stage": "it"
     },
     {
       "id": "optics",
@@ -1259,7 +1310,8 @@
       "kind": "part",
       "system": "network",
       "chain": "网络",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "switch-asic",
@@ -1278,7 +1330,8 @@
       "kind": "part",
       "system": "network",
       "chain": "网络",
-      "chain_order": 2
+      "chain_order": 2,
+      "stage": "it"
     },
     {
       "id": "retimer",
@@ -1287,6 +1340,7 @@
       "system": "network",
       "chain": "网络",
       "chain_order": 8,
+      "stage": "it",
       "name": "重定时器 / AEC 芯片",
       "module": "M07",
       "companies": [
@@ -1308,6 +1362,7 @@
       "system": "network",
       "chain": "网络",
       "chain_order": 9,
+      "stage": "it",
       "name": "PCIe/CXL 交换芯片",
       "module": "M07",
       "companies": [
@@ -1335,7 +1390,8 @@
       "kind": "part",
       "system": "network",
       "chain": "网络",
-      "chain_order": 6
+      "chain_order": 6,
+      "stage": "it"
     },
     {
       "id": "coldplate",
@@ -1358,7 +1414,8 @@
       "kind": "part",
       "system": "thermal",
       "chain": "芯片级",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "it"
     },
     {
       "id": "psu",
@@ -1376,7 +1433,8 @@
       "kind": "part",
       "system": "power",
       "chain": "机柜与板级供电",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "it"
     },
     {
       "id": "vrm",
@@ -1394,7 +1452,8 @@
       "kind": "part",
       "system": "power",
       "chain": "机柜与板级供电",
-      "chain_order": 4
+      "chain_order": 4,
+      "stage": "it"
     },
     {
       "id": "server-fan",
@@ -1403,6 +1462,7 @@
       "system": "thermal",
       "chain": "芯片级",
       "chain_order": 3,
+      "stage": "it",
       "name": "服务器风扇",
       "module": "M08",
       "companies": [
@@ -1421,6 +1481,7 @@
       "system": "thermal",
       "chain": "芯片级",
       "chain_order": 2,
+      "stage": "it",
       "name": "均热板与散热器",
       "module": "M08",
       "companies": [
@@ -1454,7 +1515,8 @@
       "kind": "software",
       "system": "control",
       "chain": "DCIM/BMS 与固件",
-      "chain_order": 1
+      "chain_order": 1,
+      "stage": "commissioning"
     },
     {
       "id": "modular-dc",
@@ -1474,7 +1536,46 @@
       "kind": "archetype",
       "system": "facility",
       "chain": "土地与建筑",
-      "chain_order": 3
+      "chain_order": 3,
+      "stage": "shell"
+    }
+  ],
+  "stages": [
+    {
+      "id": "rights",
+      "name": "权利与审批",
+      "order": 1,
+      "desc": "土地、许可、水权、供气、网络接入——项目能否存在"
+    },
+    {
+      "id": "grid",
+      "name": "并网与外线",
+      "order": 2,
+      "desc": "并网排队、外线与园区变电——time-to-power 的长杆"
+    },
+    {
+      "id": "shell",
+      "name": "土建与壳",
+      "order": 3,
+      "desc": "场坪、基础、建筑与机房装修，或预制化交付"
+    },
+    {
+      "id": "mep",
+      "name": "机电",
+      "order": 4,
+      "desc": "发电与储能、UPS、配电、冷却、消防安防的安装"
+    },
+    {
+      "id": "it",
+      "name": "IT 进场",
+      "order": 5,
+      "desc": "机柜、服务器、内存、存储、网络，随机的板级供电与芯片级散热"
+    },
+    {
+      "id": "commissioning",
+      "name": "调试与上架",
+      "order": 6,
+      "desc": "监控与软件、验收、爬坡与上架"
     }
   ]
 }

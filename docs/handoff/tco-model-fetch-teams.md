@@ -1,10 +1,11 @@
 # TCO 模型与采集分队交接（2026-09-27，2026-09-28 更新）
+> 交接历史（2026-09-27）。2026-09-28 起："五层"改称五类变量；`tco.html` 已并入 `ledger.html`（统一模型 `data/datacenter_model.json`）；目标清单为 `framework/tco_targets.json` 2.1.0（351 行，四态），采集页 `supply.html#targets` 是到期表。本文其余内容不作当前执行指令。
 
 供新会话直接接手。本文只记结论与待办，推导过程见 `docs/DECISIONS.md` 当日条目与 `docs/guides/model-governance-2026-09-27.pdf`。
 
 ## 一句话现状
 
-数据中心经济模型的骨架已定为"三级、四段、五层、六队"，指导文件已上线 main（`docs/guides/model-governance-2026-09-27.{html,pdf}`），仍是草案，未写入 `framework/CURRENT.md`。TCO 页面 `tco.html` 已上线并完成第一轮定向抓取（145 条记录入价格库，31/47 个输入改为已有来源，基准 $852/kW·月、$4.01/GPU·h）。
+数据中心经济模型的骨架已定为"三级、四段、五类变量（当时称五层）、六队"，指导文件已上线 main（`docs/guides/model-governance-2026-09-27.{html,pdf}`），仍是草案，未写入 `framework/CURRENT.md`。TCO 页面 `tco.html` 已上线并完成第一轮定向抓取（145 条记录入价格库，31/47 个输入改为已有来源，基准 $852/kW·月、$4.01/GPU·h）。
 
 ## 骨架（已定）
 
@@ -15,7 +16,7 @@
 
 ## 六队共同规则（已定）
 
-1. 需求只来自"五层目标清单"（因子树 `framework/tco_factors.json` 的扩展，待建）：每层要哪些序列、来自哪类披露、发布日历、目标输入、执行机。
+1. 需求只来自"目标清单"（因子树 `framework/tco_factors.json` 的扩展，待建）：每层要哪些序列、来自哪类披露、发布日历、目标输入、执行机。
 2. 交付只走供应中心一个入口（fetchspec 包格式：manifest、SHA256SUMS、原件），数字进观测数据，规格进参照数据。
 3. 任务写"披露类型 × 出版方类别 × 日历"，公司只是实例。
 4. 执行机：AWS 持续（API、EDGAR、RSS、固定表格），macmini 辅助（登录、注册下载、JS 页面），Spark 只做提取。
@@ -30,7 +31,7 @@
 
 ## 近期任务（已排序，未开始）
 
-1. 五层目标清单（扩展因子树：披露类型、当前实例、发布日历、目标序列、目标输入、执行机）。
+1. 目标清单（扩展因子树：披露类型、当前实例、发布日历、目标序列、目标输入、执行机）。
 2. 每 MW 工程量表骨架；四个造价类目写明部件清单；psu、coolant 挂进因子树。
 3. `tco.html` 缺口表加"最新时点 / 下次更新"两列，变成到期表。
 4. 建 fetchstat。
@@ -41,7 +42,7 @@
 ## 2026-09-28 已定与已做
 
 - 已定：六队三仓库（inews.today、fetchspec 保持，新建 fetchdata 承载四队）；inresearch 本身不爬取，sec/gpu 采集器已删除；建队顺序 fetchstat → fetchfilings → fetchreports → fetchquotes；inews 拆采集线与编辑线，给 inresearch 的采集默认不翻译，挑选在先翻译在后。
-- 已做：`framework/tco_targets.json` 五层目标清单（43 行）与测试；`supply_contract.json` 1.4 六队与来源归属；06 采集规范两节新增；news_sync 透传 feed v2 附加字段；DECISIONS 三条；`docs/handoff/fetchdata-bootstrap.md`。
+- 已做：`framework/tco_targets.json` 目标清单（43 行）与测试；`supply_contract.json` 1.4 六队与来源归属；06 采集规范两节新增；news_sync 透传 feed v2 附加字段；DECISIONS 三条；`docs/handoff/fetchdata-bootstrap.md`。
 - 待做：创建 fetchdata 仓库并按 bootstrap 迁入 sec/gpu 种子；tco.html 缺口表读 `next_due`；选题配额与排序规则（单独讨论）。
 
 ## 讨论记录（已在 2026-09-28 收口）

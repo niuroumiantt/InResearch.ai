@@ -2,12 +2,50 @@
  "version": "1.0",
  "updated": "2026-09-28",
  "title": "数据中心 dashboard 快照",
+ "stages": [
+  {
+   "id": "rights",
+   "name": "权利与审批",
+   "order": 1,
+   "desc": "土地、许可、水权、供气、网络接入——项目能否存在"
+  },
+  {
+   "id": "grid",
+   "name": "并网与外线",
+   "order": 2,
+   "desc": "并网排队、外线与园区变电——time-to-power 的长杆"
+  },
+  {
+   "id": "shell",
+   "name": "土建与壳",
+   "order": 3,
+   "desc": "场坪、基础、建筑与机房装修，或预制化交付"
+  },
+  {
+   "id": "mep",
+   "name": "机电",
+   "order": 4,
+   "desc": "发电与储能、UPS、配电、冷却、消防安防的安装"
+  },
+  {
+   "id": "it",
+   "name": "IT 进场",
+   "order": 5,
+   "desc": "机柜、服务器、内存、存储、网络，随机的板级供电与芯片级散热"
+  },
+  {
+   "id": "commissioning",
+   "name": "调试与上架",
+   "order": 6,
+   "desc": "监控与软件、验收、爬坡与上架"
+  }
+ ],
  "note": "由 python3 manage.py dashboard --refresh 生成，规则见 framework/dashboard_rules.json；页面 node.html 只读本文件与目标清单，不做聚合。",
  "generated_from": {
   "rules": "1.0",
-  "bom": "2.1",
-  "targets": "2.0.0",
-  "factors": "1.2.0",
+  "bom": "2.2",
+  "targets": "2.1.0",
+  "factors": "1.3.0",
   "model_as_of": "2026-09-28"
  },
  "columns": {
@@ -19,7 +57,8 @@
  },
  "formulas": {
   "revenue": "收入 = GPU 数 × 8,760 × 付费利用率 × 单价；GPU 数 = IT 容量 × 每 MW 密度；密度 = 1,000 kW × 加速器机柜占 IT 功率份额 ÷ (机柜功率 ÷ 每柜 GPU 数)",
-  "cost": "年度成本 = 电费 + 其他运营 + 设施费 + 折旧 + 税；电费 = IT 容量 × 负载率 × PUE × 8,760 × 电价；折旧 = 资本开支 ÷ 寿命（IT 与非 IT 分线）；设施费按自建 / 租壳 / 托管三选一"
+  "cost": "年度成本 = 电费 + 其他运营 + 设施费 + 折旧 + 税；电费 = IT 容量 × 负载率 × PUE × 8,760 × 电价；折旧 = 资本开支 ÷ 寿命（IT 与非 IT 分线）；设施费按自建 / 租壳 / 托管三选一",
+  "time": "首度收入时点 = 权利与审批 + 并网排队（gate_wait_years）+ 审批（permit_months）+ 建设期（construction_years）；建设阶段：权利与审批 → 并网与外线 → 土建与壳 → 机电 → IT 进场 → 调试与上架（bom.json stages）"
  },
  "root": {
   "id": "root",
@@ -33,21 +72,39 @@
      "label": "成本",
      "unit": "$M/MW·年",
      "note": "电费 + 其他运营 + 设施费 + 折旧 + 所得税",
-     "value": 11.049
+     "value": 11.049,
+     "evidence": {
+      "sourced": 40,
+      "assumed": 13,
+      "input": 4,
+      "inputs": 58
+     }
     },
     {
      "key": "revenue_per_mw",
      "label": "收入",
      "unit": "$M/MW·年",
      "note": "GPU 数 × 8,760 × 付费利用率 × 单价",
-     "value": 22.911
+     "value": 22.911,
+     "evidence": {
+      "sourced": 8,
+      "assumed": 2,
+      "input": 6,
+      "inputs": 16
+     }
     },
     {
      "key": "roic",
      "label": "回报",
      "unit": "ROIC",
      "note": "NOPAT ÷ 投入资本",
-     "value": 0.303
+     "value": 0.303,
+     "evidence": {
+      "sourced": 54,
+      "assumed": 16,
+      "input": 12,
+      "inputs": 83
+     }
     }
    ],
    "links": [
@@ -55,6 +112,32 @@
      "账本：统一模型的四个视图",
      "ledger.html"
     ]
+   ],
+   "readings": [
+    {
+     "id": "build",
+     "label": "它怎么建",
+     "href": "node.html?col=4",
+     "hint": "时间列：六段建设阶段，从站点权利起；建设输入在账本"
+    },
+    {
+     "id": "compose",
+     "label": "它由什么组成",
+     "href": "bom.html",
+     "hint": "爆炸图；矩阵在构成列 node.html?col=1"
+    },
+    {
+     "id": "operate",
+     "label": "它怎么运转",
+     "href": "node.html?col=2",
+     "hint": "运行列；运营支出在账本的四本账里"
+    },
+    {
+     "id": "earn",
+     "label": "它挣不挣钱",
+     "href": "ledger.html#ledgers",
+     "hint": "四本账：IRR、DSCR、杠杆现金回报；可信边界单列融资假设"
+    }
    ]
   },
   "cells": {
@@ -95,6 +178,7 @@
     "coverage": {
      "sourced": 6,
      "assumed": 0,
+     "delivered": 0,
      "needed": 1
     }
    },
@@ -135,6 +219,7 @@
     "coverage": {
      "sourced": 7,
      "assumed": 1,
+     "delivered": 0,
      "needed": 2
     }
    },
@@ -175,6 +260,7 @@
     "coverage": {
      "sourced": 14,
      "assumed": 2,
+     "delivered": 0,
      "needed": 2
     }
    },
@@ -213,9 +299,10 @@
     ],
     "status": "sourced",
     "coverage": {
-     "sourced": 4,
+     "sourced": 5,
      "assumed": 1,
-     "needed": 1
+     "delivered": 0,
+     "needed": 3
     }
    },
    "5": {
@@ -255,14 +342,17 @@
     "coverage": {
      "sourced": 3,
      "assumed": 0,
+     "delivered": 0,
      "needed": 6
     }
    }
   },
   "targets": {
-   "sourced": 36,
+   "sourced": 37,
    "assumed": 4,
-   "needed": 247
+   "delivered": 0,
+   "needed": 310,
+   "not_connected": 171
   }
  },
  "systems": {
@@ -346,12 +436,11 @@
    ]
   }
  },
- "ecosystems": [
+ "system_nodes": [
   {
    "id": "facility",
    "name": "设施",
-   "graph_name": "设施与机柜",
-   "node_id": "ecosystem:facility",
+   "node_id": "system:facility",
    "parent": null,
    "chains": [
     "土地与建筑",
@@ -368,22 +457,25 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 5
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 4
      },
      "status": "needed"
     },
@@ -403,6 +495,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 4
      },
      "status": "sourced"
@@ -412,6 +505,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 4
      },
      "status": "needed"
@@ -426,7 +520,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -436,7 +531,8 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -447,9 +543,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 2
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -460,7 +557,8 @@
      "layer": "S2",
      "supply_status": "tight",
      "chain": "土地与建筑",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "shell"
     },
     {
      "id": "rack-frame",
@@ -469,7 +567,8 @@
      "layer": "S4",
      "supply_status": "transition",
      "chain": "土地与建筑",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "modular-dc",
@@ -478,7 +577,8 @@
      "layer": null,
      "supply_status": "mature",
      "chain": "土地与建筑",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "shell"
     },
     {
      "id": "fire",
@@ -487,7 +587,8 @@
      "layer": "S2",
      "supply_status": "mature",
      "chain": "消防安防",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "security",
@@ -496,15 +597,15 @@
      "layer": "S2",
      "supply_status": "mature",
      "chain": "消防安防",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     }
    ]
   },
   {
    "id": "power",
    "name": "电力",
-   "graph_name": "电力与供配电",
-   "node_id": "ecosystem:power",
+   "node_id": "system:power",
    "parent": null,
    "chains": [
     "电网接入",
@@ -525,15 +626,17 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 19
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [
@@ -551,7 +654,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 19
      },
      "status": "sourced"
     },
@@ -571,6 +675,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 19
      },
      "status": "sourced"
@@ -591,6 +696,7 @@
      "coverage": {
       "sourced": 1,
       "assumed": 0,
+      "delivered": 0,
       "needed": 18
      },
      "status": "sourced"
@@ -605,7 +711,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -615,7 +722,8 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -628,9 +736,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 15
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -641,7 +750,8 @@
      "layer": "S1",
      "supply_status": "tight",
      "chain": "电网接入",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "grid"
     },
     {
      "id": "transformer",
@@ -650,7 +760,8 @@
      "layer": "S1",
      "supply_status": "tight",
      "chain": "变电",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "grid"
     },
     {
      "id": "mv-switchgear",
@@ -659,7 +770,8 @@
      "layer": "S1",
      "supply_status": "tight",
      "chain": "变电",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "grid"
     },
     {
      "id": "gas-turbine",
@@ -668,7 +780,8 @@
      "layer": "S1",
      "supply_status": "tight",
      "chain": "发电与储能",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "gas-engine",
@@ -677,7 +790,8 @@
      "layer": "S1",
      "supply_status": "transition",
      "chain": "发电与储能",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "fuel-cell",
@@ -686,7 +800,8 @@
      "layer": "S1",
      "supply_status": "transition",
      "chain": "发电与储能",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "mep"
     },
     {
      "id": "smr",
@@ -695,7 +810,8 @@
      "layer": "S1",
      "supply_status": "emerging",
      "chain": "发电与储能",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "mep"
     },
     {
      "id": "backup-power",
@@ -704,7 +820,8 @@
      "layer": "S1",
      "supply_status": "tight",
      "chain": "发电与储能",
-     "chain_order": 5
+     "chain_order": 5,
+     "stage": "mep"
     },
     {
      "id": "fuel-storage",
@@ -713,7 +830,8 @@
      "layer": "S1",
      "supply_status": "mature",
      "chain": "发电与储能",
-     "chain_order": 6
+     "chain_order": 6,
+     "stage": "mep"
     },
     {
      "id": "bess",
@@ -722,7 +840,8 @@
      "layer": "S1",
      "supply_status": "emerging",
      "chain": "发电与储能",
-     "chain_order": 7
+     "chain_order": 7,
+     "stage": "mep"
     },
     {
      "id": "ups",
@@ -731,7 +850,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "UPS",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "ups-battery",
@@ -740,7 +860,8 @@
      "layer": "S3",
      "supply_status": "transition",
      "chain": "UPS",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "lv-switchgear",
@@ -749,7 +870,8 @@
      "layer": "S3",
      "supply_status": "tight",
      "chain": "配电",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "busway",
@@ -758,7 +880,8 @@
      "layer": "S3",
      "supply_status": "tight",
      "chain": "配电",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "pdu",
@@ -767,7 +890,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "配电",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "mep"
     },
     {
      "id": "power-shelf",
@@ -776,7 +900,8 @@
      "layer": "S4",
      "supply_status": "transition",
      "chain": "机柜与板级供电",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "bbu",
@@ -785,7 +910,8 @@
      "layer": "S4",
      "supply_status": "transition",
      "chain": "机柜与板级供电",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "psu",
@@ -794,7 +920,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "机柜与板级供电",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     },
     {
      "id": "vrm",
@@ -803,15 +930,15 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "机柜与板级供电",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "it"
     }
    ]
   },
   {
    "id": "thermal",
    "name": "冷却",
-   "graph_name": "冷却与热管理",
-   "node_id": "ecosystem:thermal",
+   "node_id": "system:thermal",
    "parent": null,
    "chains": [
     "排热",
@@ -830,15 +957,17 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 15
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [
@@ -856,7 +985,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 15
      },
      "status": "sourced"
     },
@@ -876,6 +1006,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 15
      },
      "status": "sourced"
@@ -885,6 +1016,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 15
      },
      "status": "needed"
@@ -899,7 +1031,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -909,7 +1042,8 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -923,9 +1057,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 7
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -936,7 +1071,8 @@
      "layer": "S1",
      "supply_status": "mature",
      "chain": "排热",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "water-treatment",
@@ -945,7 +1081,8 @@
      "layer": "S1",
      "supply_status": "mature",
      "chain": "排热",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "chiller",
@@ -954,7 +1091,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "冷水与 CDU",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "chilled-water-loop",
@@ -963,7 +1101,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "冷水与 CDU",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "cdu",
@@ -972,7 +1111,8 @@
      "layer": "S3",
      "supply_status": "transition",
      "chain": "冷水与 CDU",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "mep"
     },
     {
      "id": "coolant",
@@ -981,7 +1121,8 @@
      "layer": "S4",
      "supply_status": "mature",
      "chain": "冷水与 CDU",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "mep"
     },
     {
      "id": "room-cooling",
@@ -990,7 +1131,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "机房与机柜",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "mep"
     },
     {
      "id": "immersion",
@@ -999,7 +1141,8 @@
      "layer": "S3",
      "supply_status": "emerging",
      "chain": "机房与机柜",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "mep"
     },
     {
      "id": "sidecar-hx",
@@ -1008,7 +1151,8 @@
      "layer": "S4",
      "supply_status": "transition",
      "chain": "机房与机柜",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "mep"
     },
     {
      "id": "manifold",
@@ -1017,7 +1161,8 @@
      "layer": "S4",
      "supply_status": "tight",
      "chain": "机房与机柜",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "mep"
     },
     {
      "id": "quick-disconnect",
@@ -1026,7 +1171,8 @@
      "layer": "S4",
      "supply_status": "tight",
      "chain": "机房与机柜",
-     "chain_order": 5
+     "chain_order": 5,
+     "stage": "mep"
     },
     {
      "id": "leak-detection",
@@ -1035,7 +1181,8 @@
      "layer": "S3",
      "supply_status": "tight",
      "chain": "机房与机柜",
-     "chain_order": 6
+     "chain_order": 6,
+     "stage": "mep"
     },
     {
      "id": "coldplate",
@@ -1044,7 +1191,8 @@
      "layer": "S5",
      "supply_status": "transition",
      "chain": "芯片级",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "heatsink-vc",
@@ -1053,7 +1201,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "芯片级",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "server-fan",
@@ -1062,15 +1211,15 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "芯片级",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     }
    ]
   },
   {
    "id": "compute",
    "name": "IT · 计算",
-   "graph_name": "计算与加速",
-   "node_id": "ecosystem:compute",
+   "node_id": "system:compute",
    "parent": "it",
    "chains": [
     "计算"
@@ -1086,15 +1235,17 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 8
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [
@@ -1112,7 +1263,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 8
      },
      "status": "sourced"
     },
@@ -1132,6 +1284,7 @@
      "coverage": {
       "sourced": 1,
       "assumed": 0,
+      "delivered": 0,
       "needed": 7
      },
      "status": "sourced"
@@ -1141,6 +1294,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 8
      },
      "status": "needed"
@@ -1155,7 +1309,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -1165,7 +1320,8 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -1175,9 +1331,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 4
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1188,7 +1345,8 @@
      "layer": "S4",
      "supply_status": "tight",
      "chain": "计算",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "server",
@@ -1197,7 +1355,8 @@
      "layer": "S4",
      "supply_status": "tight",
      "chain": "计算",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "general-server",
@@ -1206,7 +1365,8 @@
      "layer": "S4",
      "supply_status": "mature",
      "chain": "计算",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     },
     {
      "id": "gpu",
@@ -1215,7 +1375,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "计算",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "it"
     },
     {
      "id": "ai-asic",
@@ -1224,7 +1385,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "计算",
-     "chain_order": 5
+     "chain_order": 5,
+     "stage": "it"
     },
     {
      "id": "cpu",
@@ -1233,7 +1395,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "计算",
-     "chain_order": 6
+     "chain_order": 6,
+     "stage": "it"
     },
     {
      "id": "fpga",
@@ -1242,7 +1405,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "计算",
-     "chain_order": 7
+     "chain_order": 7,
+     "stage": "it"
     },
     {
      "id": "bmc",
@@ -1251,15 +1415,15 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "计算",
-     "chain_order": 8
+     "chain_order": 8,
+     "stage": "it"
     }
    ]
   },
   {
    "id": "memory",
    "name": "IT · 内存",
-   "graph_name": "内存生态",
-   "node_id": "ecosystem:memory",
+   "node_id": "system:memory",
    "parent": "it",
    "chains": [
     "内存"
@@ -1275,22 +1439,25 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 3
      },
      "status": "needed"
     },
@@ -1299,6 +1466,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
      "status": "needed"
@@ -1308,6 +1476,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
      "status": "needed"
@@ -1322,7 +1491,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -1332,16 +1502,18 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1352,7 +1524,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "内存",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "dram",
@@ -1361,7 +1534,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "内存",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "cxl-memory",
@@ -1370,15 +1544,15 @@
      "layer": "S5",
      "supply_status": "emerging",
      "chain": "内存",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     }
    ]
   },
   {
    "id": "storage",
    "name": "IT · 存储",
-   "graph_name": "存储生态",
-   "node_id": "ecosystem:storage",
+   "node_id": "system:storage",
    "parent": "it",
    "chains": [
     "存储"
@@ -1394,22 +1568,25 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 3
      },
      "status": "needed"
     },
@@ -1418,6 +1595,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
      "status": "needed"
@@ -1427,6 +1605,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 3
      },
      "status": "needed"
@@ -1441,7 +1620,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -1451,16 +1631,18 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 2
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1471,7 +1653,8 @@
      "layer": "S4",
      "supply_status": "mature",
      "chain": "存储",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "ssd",
@@ -1480,7 +1663,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "存储",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "hdd",
@@ -1489,15 +1673,15 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "存储",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     }
    ]
   },
   {
    "id": "network",
    "name": "IT · 网络",
-   "graph_name": "网络与互联",
-   "node_id": "ecosystem:network",
+   "node_id": "system:network",
    "parent": "it",
    "chains": [
     "网络"
@@ -1513,22 +1697,25 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 9
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 9
      },
      "status": "needed"
     },
@@ -1537,6 +1724,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 9
      },
      "status": "needed"
@@ -1546,6 +1734,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 9
      },
      "status": "needed"
@@ -1560,7 +1749,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -1570,7 +1760,8 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -1579,9 +1770,10 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 6
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1592,7 +1784,8 @@
      "layer": "S4",
      "supply_status": "transition",
      "chain": "网络",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "it"
     },
     {
      "id": "switch-asic",
@@ -1601,7 +1794,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "网络",
-     "chain_order": 2
+     "chain_order": 2,
+     "stage": "it"
     },
     {
      "id": "optics",
@@ -1610,7 +1804,8 @@
      "layer": "S5",
      "supply_status": "transition",
      "chain": "网络",
-     "chain_order": 3
+     "chain_order": 3,
+     "stage": "it"
     },
     {
      "id": "copper-interconnect",
@@ -1619,7 +1814,8 @@
      "layer": "S4",
      "supply_status": "tight",
      "chain": "网络",
-     "chain_order": 4
+     "chain_order": 4,
+     "stage": "it"
     },
     {
      "id": "cabling",
@@ -1628,7 +1824,8 @@
      "layer": "S3",
      "supply_status": "mature",
      "chain": "网络",
-     "chain_order": 5
+     "chain_order": 5,
+     "stage": "it"
     },
     {
      "id": "connector",
@@ -1637,7 +1834,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "网络",
-     "chain_order": 6
+     "chain_order": 6,
+     "stage": "it"
     },
     {
      "id": "nic",
@@ -1646,7 +1844,8 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "网络",
-     "chain_order": 7
+     "chain_order": 7,
+     "stage": "it"
     },
     {
      "id": "retimer",
@@ -1655,7 +1854,8 @@
      "layer": "S5",
      "supply_status": "tight",
      "chain": "网络",
-     "chain_order": 8
+     "chain_order": 8,
+     "stage": "it"
     },
     {
      "id": "pcie-switch",
@@ -1664,15 +1864,15 @@
      "layer": "S5",
      "supply_status": "mature",
      "chain": "网络",
-     "chain_order": 9
+     "chain_order": 9,
+     "stage": "it"
     }
    ]
   },
   {
    "id": "control",
    "name": "控制与软件",
-   "graph_name": "控制与运维",
-   "node_id": "ecosystem:control",
+   "node_id": "system:control",
    "parent": null,
    "chains": [
     "DCIM/BMS 与固件"
@@ -1688,21 +1888,24 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "needed"
     },
     "2": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -1712,6 +1915,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -1721,6 +1925,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -1735,7 +1940,8 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "单一来源部件",
@@ -1745,16 +1951,18 @@
        "source": {
         "type": "count",
         "key": "single_source"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    },
    "parts": [
@@ -1765,7 +1973,8 @@
      "layer": null,
      "supply_status": "mature",
      "chain": "DCIM/BMS 与固件",
-     "chain_order": 1
+     "chain_order": 1,
+     "stage": "commissioning"
     }
    ]
   }
@@ -1774,7 +1983,7 @@
   {
    "id": "it",
    "name": "IT",
-   "node_id": "ecosystem:it",
+   "node_id": "system:it",
    "parent": null,
    "order": 4,
    "chains": [],
@@ -1795,15 +2004,17 @@
        "source": {
         "type": "count",
         "key": "parts"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 23
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [
@@ -1821,7 +2032,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 23
      },
      "status": "sourced"
     },
@@ -1841,6 +2053,7 @@
      "coverage": {
       "sourced": 1,
       "assumed": 0,
+      "delivered": 0,
       "needed": 22
      },
      "status": "sourced"
@@ -1850,6 +2063,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 23
      },
      "status": "needed"
@@ -1864,15 +2078,17 @@
        "source": {
         "type": "count",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 15
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   }
@@ -1892,21 +2108,24 @@
       "source": {
        "type": "count",
        "key": "rights"
-      }
+      },
+      "kind": "count"
      }
     ],
     "coverage": {
      "sourced": 0,
      "assumed": 0,
+     "delivered": 0,
      "needed": 0
     },
-    "status": "sourced"
+    "status": "registered"
    },
    "2": {
     "items": [],
     "coverage": {
      "sourced": 0,
      "assumed": 0,
+     "delivered": 0,
      "needed": 0
     },
     "status": "needed"
@@ -1916,6 +2135,7 @@
     "coverage": {
      "sourced": 0,
      "assumed": 0,
+     "delivered": 0,
      "needed": 2
     },
     "status": "needed"
@@ -1925,6 +2145,7 @@
     "coverage": {
      "sourced": 0,
      "assumed": 0,
+     "delivered": 0,
      "needed": 4
     },
     "status": "needed"
@@ -1939,15 +2160,17 @@
       "source": {
        "type": "count",
        "key": "companies"
-      }
+      },
+      "kind": "count"
      }
     ],
     "coverage": {
      "sourced": 0,
      "assumed": 0,
+     "delivered": 0,
      "needed": 6
     },
-    "status": "sourced"
+    "status": "registered"
    }
   },
   "rights": [
@@ -1958,7 +2181,8 @@
     "variable_classes": [
      3,
      5
-    ]
+    ],
+    "stage": "rights"
    },
    {
     "id": "water-rights",
@@ -1967,7 +2191,8 @@
     "variable_classes": [
      5,
      4
-    ]
+    ],
+    "stage": "rights"
    },
    {
     "id": "grid",
@@ -1976,7 +2201,8 @@
     "variable_classes": [
      4,
      5
-    ]
+    ],
+    "stage": "grid"
    },
    {
     "id": "gas-supply",
@@ -1985,7 +2211,8 @@
     "variable_classes": [
      5,
      4
-    ]
+    ],
+    "stage": "rights"
    },
    {
     "id": "network-access",
@@ -1994,7 +2221,8 @@
     "variable_classes": [
      5,
      3
-    ]
+    ],
+    "stage": "rights"
    },
    {
     "id": "permits",
@@ -2003,7 +2231,8 @@
     "variable_classes": [
      4,
      5
-    ]
+    ],
+    "stage": "rights"
    }
   ]
  },
@@ -2016,6 +2245,7 @@
    "system": "power",
    "chain": "电网接入",
    "chain_order": 1,
+   "stage": "grid",
    "module": "M09",
    "supply_status": "tight",
    "desc": "园区侧高压开关与 GIS，与电网交接的第一件可采购设备；厂商示例沿用变电站档案，待补",
@@ -2030,7 +2260,8 @@
        "source": {
         "type": "bom",
         "key": "hv-switchyard"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2047,6 +2278,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2056,7 +2288,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2065,6 +2298,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2074,6 +2308,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2088,7 +2323,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2096,12 +2332,18 @@
       "西门子能源",
       "ABB"
      ],
+     "instance_ids": [
+      "hitachi-energy",
+      "siemens-energy",
+      "abb"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2113,6 +2355,7 @@
    "system": "power",
    "chain": "变电",
    "chain_order": 1,
+   "stage": "grid",
    "module": "M09",
    "supply_status": "tight",
    "desc": "大型变压器交期最高 4 年，全行业最诚实的供需温度计；单独采购、单独交期，故单列",
@@ -2127,7 +2370,8 @@
        "source": {
         "type": "bom",
         "key": "transformer"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2147,6 +2391,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2156,7 +2401,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2165,6 +2411,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2195,6 +2442,7 @@
      "coverage": {
       "sourced": 1,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "sourced"
@@ -2209,7 +2457,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2220,12 +2469,21 @@
       "（多家）",
       "（多家）"
      ],
+     "instance_ids": [
+      "hitachi-energy",
+      "siemens-energy",
+      "hyosung",
+      "ge-vernova",
+      "cn-dry-transformer-group",
+      "hitachi-energy-siemens-energy-hyosung-ge-vernova"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2237,6 +2495,7 @@
    "system": "power",
    "chain": "变电",
    "chain_order": 2,
+   "stage": "grid",
    "module": "M09",
    "supply_status": "tight",
    "desc": "变电站内的中压开关设备；供应商与交期独立于变压器",
@@ -2251,7 +2510,8 @@
        "source": {
         "type": "bom",
         "key": "mv-switchgear"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2270,6 +2530,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2279,7 +2540,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2288,6 +2550,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2297,6 +2560,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2311,7 +2575,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2320,12 +2585,19 @@
       "伊顿",
       "西门子"
      ],
+     "instance_ids": [
+      "abb",
+      "schneider-electric",
+      "eaton",
+      "siemens"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2337,6 +2609,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "tight",
    "desc": "燃机订单簿 ≥125GW vs 年产能 ~20GW；交期 3–5 年",
@@ -2351,7 +2624,8 @@
        "source": {
         "type": "bom",
         "key": "gas-turbine"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2370,6 +2644,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2379,7 +2654,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2388,6 +2664,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2397,6 +2674,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2411,7 +2689,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2420,12 +2699,19 @@
       "三菱重工电力",
       "（多家）"
      ],
+     "instance_ids": [
+      "ge-vernova",
+      "siemens-energy",
+      "mitsubishi-power",
+      "ge-vernova-siemens-energy-mitsubishi-power"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2437,6 +2723,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "transition",
    "desc": "与燃气轮机不同的一批厂商与交期（1–2 年）；待补 caterpillar / cummins / innio 档案",
@@ -2451,7 +2738,8 @@
        "source": {
         "type": "bom",
         "key": "gas-engine"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2468,6 +2756,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2477,7 +2766,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2486,6 +2776,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2495,6 +2786,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2509,18 +2801,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "瓦锡兰"
      ],
+     "instance_ids": [
+      "wartsila"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2532,6 +2829,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 3,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "transition",
    "desc": "月级交付的桥接电源",
@@ -2546,7 +2844,8 @@
        "source": {
         "type": "bom",
         "key": "fuel-cell"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2565,6 +2864,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2574,7 +2874,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2583,6 +2884,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2592,6 +2894,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2606,18 +2909,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "Bloom Energy"
      ],
+     "instance_ids": [
+      "bloom-energy"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2629,6 +2937,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 4,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "emerging",
    "desc": "新兴条目（用户 2026-09-28 决定登记）：尚无可采购机组、价格与交期，只跟踪合同与许可事件",
@@ -2643,7 +2952,8 @@
        "source": {
         "type": "bom",
         "key": "smr"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2660,6 +2970,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2669,7 +2980,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2678,6 +2990,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2687,6 +3000,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2701,16 +3015,19 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
+     "instance_ids": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "needed"
     }
    }
   },
@@ -2722,6 +3039,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 5,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "tight",
    "desc": "从静态保险变成动态电力系统组件；排放许可是隐性约束",
@@ -2736,7 +3054,8 @@
        "source": {
         "type": "bom",
         "key": "backup-power"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2758,6 +3077,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2767,7 +3087,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2776,6 +3097,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2785,6 +3107,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2799,7 +3122,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -2809,12 +3133,20 @@
       "（多家）",
       "（多家）"
      ],
+     "instance_ids": [
+      "caterpillar",
+      "cummins",
+      "rolls-royce",
+      "rolls-royce-mtu-kohler",
+      "cn-genset-group"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2826,6 +3158,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 7,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "emerging",
    "desc": "跨越发电机启动间隙、抑制 AI 负载功率阶跃——角色从可选变必需",
@@ -2840,7 +3173,8 @@
        "source": {
         "type": "bom",
         "key": "bess"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2860,6 +3194,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2869,7 +3204,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2878,6 +3214,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2887,6 +3224,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2901,19 +3239,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）",
       "（多家）"
      ],
+     "instance_ids": [
+      "smartli-vertiv",
+      "tesla-energy-catl-fluence"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -2925,6 +3269,7 @@
    "system": "power",
    "chain": "发电与储能",
    "chain_order": 6,
+   "stage": "mep",
    "module": "M04",
    "supply_status": "mature",
    "desc": "备用电源的燃料物流设备；管道天然气接入是站点权利，不在此",
@@ -2939,7 +3284,8 @@
        "source": {
         "type": "bom",
         "key": "fuel-storage"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -2956,6 +3302,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -2965,7 +3312,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -2974,6 +3322,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2983,6 +3332,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -2997,16 +3347,19 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
+     "instance_ids": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "needed"
     }
    }
   },
@@ -3018,6 +3371,7 @@
    "system": "thermal",
    "chain": "排热",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "室外排热设备，与冷水机组不是同一批厂商；待补 evapco / bac 档案",
@@ -3032,7 +3386,8 @@
        "source": {
         "type": "bom",
         "key": "dry-cooler"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3051,6 +3406,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3060,7 +3416,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3069,6 +3426,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3078,6 +3436,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3092,19 +3451,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "蒙特",
       "摩丁制造"
      ],
+     "instance_ids": [
+      "munters",
+      "modine-airedale"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3116,6 +3481,7 @@
    "system": "thermal",
    "chain": "排热",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "取水许可是站点权利，设备在此",
@@ -3130,7 +3496,8 @@
        "source": {
         "type": "bom",
         "key": "water-treatment"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3149,6 +3516,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3158,7 +3526,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3167,6 +3536,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3176,6 +3546,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3190,19 +3561,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "艺康",
       "（两家）"
      ],
+     "instance_ids": [
+      "ecolab",
+      "ecolab-veolia"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3214,6 +3591,7 @@
    "system": "facility",
    "chain": "土地与建筑",
    "chain_order": 1,
+   "stage": "shell",
    "module": "M10",
    "supply_status": "tight",
    "desc": "预制化/模块化压缩周期；电气技工短缺是执行瓶颈",
@@ -3228,7 +3606,8 @@
        "source": {
         "type": "bom",
         "key": "shell"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3245,6 +3624,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3254,7 +3634,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3263,6 +3644,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3272,6 +3654,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3286,16 +3669,19 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
+     "instance_ids": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "needed"
     }
    }
   },
@@ -3307,6 +3693,7 @@
    "system": "facility",
    "chain": "消防安防",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M10",
    "supply_status": "mature",
    "desc": "锂电池储能与液冷带来新消防规范议题",
@@ -3321,7 +3708,8 @@
        "source": {
         "type": "bom",
         "key": "fire"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3340,6 +3728,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3349,7 +3738,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3358,6 +3748,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3367,6 +3758,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3381,18 +3773,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）"
      ],
+     "instance_ids": [
+      "vesda"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3404,6 +3801,7 @@
    "system": "facility",
    "chain": "消防安防",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M10",
    "supply_status": "mature",
    "desc": "与消防不是同一批厂商",
@@ -3418,7 +3816,8 @@
        "source": {
         "type": "bom",
         "key": "security"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3437,6 +3836,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3446,7 +3846,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3455,6 +3856,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3464,6 +3866,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3478,18 +3881,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）"
      ],
+     "instance_ids": [
+      "cn-security-group"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3501,6 +3909,7 @@
    "system": "power",
    "chain": "UPS",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "mature",
    "desc": "AI 负载秒级波动重塑 UPS/BBU/超级电容组合",
@@ -3515,7 +3924,8 @@
        "source": {
         "type": "bom",
         "key": "ups"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3540,6 +3950,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3549,7 +3960,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3558,6 +3970,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3567,6 +3980,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3581,7 +3995,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3594,12 +4009,23 @@
       "华为数字能源",
       "易事特"
      ],
+     "instance_ids": [
+      "schneider-electric",
+      "eaton",
+      "vertiv",
+      "abb",
+      "delta-electronics",
+      "siemens",
+      "huawei-digital-power",
+      "east"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3611,6 +4037,7 @@
    "system": "power",
    "chain": "UPS",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "transition",
    "desc": "价格随电芯独立波动；待补电芯厂档案",
@@ -3625,7 +4052,8 @@
        "source": {
         "type": "bom",
         "key": "ups-battery"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3644,6 +4072,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3653,7 +4082,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3662,6 +4092,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3671,6 +4102,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3685,18 +4117,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）"
      ],
+     "instance_ids": [
+      "smartli-vertiv"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3708,6 +4145,7 @@
    "system": "power",
    "chain": "配电",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "tight",
    "desc": "认证柜型与工厂槽位是交付约束，交期 40–60 周",
@@ -3722,7 +4160,8 @@
        "source": {
         "type": "bom",
         "key": "lv-switchgear"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3742,6 +4181,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3751,7 +4191,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3760,6 +4201,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3769,6 +4211,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3783,7 +4226,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3793,12 +4237,20 @@
       "西门子",
       "中恒电气"
      ],
+     "instance_ids": [
+      "abb",
+      "schneider-electric",
+      "eaton",
+      "siemens",
+      "zhongheng-electric"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3810,6 +4262,7 @@
    "system": "power",
    "chain": "配电",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "tight",
    "desc": "与开关柜不同的产品线与交期；待补专业母线厂档案",
@@ -3824,7 +4277,8 @@
        "source": {
         "type": "bom",
         "key": "busway"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3841,6 +4295,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3850,7 +4305,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3859,6 +4315,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3868,6 +4325,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3882,7 +4340,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3890,12 +4349,18 @@
       "施耐德电气",
       "西门子"
      ],
+     "instance_ids": [
+      "eaton",
+      "schneider-electric",
+      "siemens"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -3907,6 +4372,7 @@
    "system": "power",
    "chain": "配电",
    "chain_order": 3,
+   "stage": "mep",
    "module": "M09",
    "supply_status": "mature",
    "desc": "用户 2026-09-28 决定机柜配电条不再单拆",
@@ -3921,7 +4387,8 @@
        "source": {
         "type": "bom",
         "key": "pdu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -3938,6 +4405,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -3947,7 +4415,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -3956,6 +4425,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3965,6 +4435,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -3979,7 +4450,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -3987,12 +4459,18 @@
       "伊顿",
       "施耐德电气"
      ],
+     "instance_ids": [
+      "vertiv",
+      "eaton",
+      "schneider-electric"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4004,6 +4482,7 @@
    "system": "thermal",
    "chain": "冷水与 CDU",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "按冷吨计价；干冷/蒸发/冷机组合由气候与水价值决定",
@@ -4018,7 +4497,8 @@
        "source": {
         "type": "bom",
         "key": "chiller"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4037,6 +4517,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4046,7 +4527,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4055,6 +4537,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4064,6 +4547,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4078,7 +4562,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4086,12 +4571,18 @@
       "特灵科技",
       "（多家）"
      ],
+     "instance_ids": [
+      "johnson-controls",
+      "trane",
+      "johnson-controls-trane-carrier-modine"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4103,6 +4594,7 @@
    "system": "thermal",
    "chain": "冷水与 CDU",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "机电分包的一门独立生意；待补泵阀管路厂档案",
@@ -4117,7 +4609,8 @@
        "source": {
         "type": "bom",
         "key": "chilled-water-loop"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4134,6 +4627,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4143,7 +4637,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4152,6 +4647,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4161,6 +4657,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4175,16 +4672,19 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [],
+     "instance_ids": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "needed"
     }
    }
   },
@@ -4196,6 +4696,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 1,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "液冷时代空气系统不消失——冷板留下 10-30% 余热仍走空气",
@@ -4210,7 +4711,8 @@
        "source": {
         "type": "bom",
         "key": "room-cooling"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4230,6 +4732,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4239,7 +4742,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4248,6 +4752,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4257,6 +4762,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4271,7 +4777,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4281,12 +4788,20 @@
       "摩丁制造",
       "世图兹"
      ],
+     "instance_ids": [
+      "vertiv",
+      "munters",
+      "johnson-controls",
+      "modine-airedale",
+      "stulz"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4298,6 +4813,7 @@
    "system": "thermal",
    "chain": "冷水与 CDU",
    "chain_order": 3,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "transition",
    "desc": "MW 级 CDU 已量产（2-10MW+ 平台），TCS/FWS 双环路的可用性边界",
@@ -4312,7 +4828,8 @@
        "source": {
         "type": "bom",
         "key": "cdu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4339,6 +4856,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4348,7 +4866,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4357,6 +4876,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4366,6 +4886,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4380,7 +4901,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4397,12 +4919,27 @@
       "申菱环境",
       "高澜股份"
      ],
+     "instance_ids": [
+      "coolit-systems",
+      "vertiv",
+      "schneider-electric",
+      "munters",
+      "johnson-controls",
+      "modine-airedale",
+      "motivair-by-schneider",
+      "boyd",
+      "nvent",
+      "envicool",
+      "shenling",
+      "goaland"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4414,6 +4951,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 2,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "emerging",
    "desc": "浸没式液冷的设备条目（槽体与系统）；技术路线是它的属性，不是零件",
@@ -4428,7 +4966,8 @@
        "source": {
         "type": "bom",
         "key": "immersion"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4448,6 +4987,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4457,7 +4997,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4466,6 +5007,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4475,6 +5017,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4489,19 +5032,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）",
       "曙光数创"
      ],
+     "instance_ids": [
+      "liquidstack-submer-grc",
+      "sugon-dcu"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4513,6 +5062,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 5,
+   "stage": "it",
    "module": "M07",
    "supply_status": "mature",
    "desc": "结构化布线与光纤——机房的神经末梢",
@@ -4527,7 +5077,8 @@
        "source": {
         "type": "bom",
         "key": "cabling"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4548,6 +5099,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4557,7 +5109,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4566,6 +5119,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4575,6 +5129,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4589,7 +5144,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4597,12 +5153,18 @@
       "康普",
       "（多家）"
      ],
+     "instance_ids": [
+      "corning",
+      "commscope",
+      "yofc"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4614,6 +5176,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 6,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "tight",
    "desc": "漏液检测——液冷进机房后的新增安全层",
@@ -4628,7 +5191,8 @@
        "source": {
         "type": "bom",
         "key": "leak-detection"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4647,6 +5211,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4656,7 +5221,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4665,6 +5231,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4674,6 +5241,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4688,18 +5256,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）"
      ],
+     "instance_ids": [
+      "ttk-rle-nvent"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4711,6 +5284,7 @@
    "system": "facility",
    "chain": "土地与建筑",
    "chain_order": 2,
+   "stage": "it",
    "module": "M06",
    "supply_status": "transition",
    "desc": "5-10kW → 130kW（GB200 NVL72）→ 600kW-1MW 路线图，机柜正变成'整机产品'",
@@ -4725,7 +5299,8 @@
        "source": {
         "type": "bom",
         "key": "rack-frame"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4748,6 +5323,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4757,7 +5333,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4766,6 +5343,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4775,6 +5353,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4789,7 +5368,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4801,12 +5381,22 @@
       "泛达",
       "（多家）"
      ],
+     "instance_ids": [
+      "celestica",
+      "delta-electronics",
+      "open-compute-project",
+      "rittal",
+      "legrand",
+      "panduit",
+      "cn-rack-group"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4818,6 +5408,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 1,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "含 scale-up 交换托盘与背板；整柜功率与每柜 GPU 数正来自它",
@@ -4832,7 +5423,8 @@
        "source": {
         "type": "bom",
         "key": "rack-system"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4853,6 +5445,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4862,7 +5455,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4871,6 +5465,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4880,6 +5475,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4894,7 +5490,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -4905,12 +5502,21 @@
       "戴尔",
       "超微"
      ],
+     "instance_ids": [
+      "nvidia",
+      "foxconn-industrial-internet",
+      "quanta-qct",
+      "wiwynn",
+      "dell-technologies",
+      "supermicro"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -4922,6 +5528,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 2,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "ODM 直供模式主导 AI 服务器；集成交付能力即壁垒",
@@ -4936,7 +5543,8 @@
        "source": {
         "type": "bom",
         "key": "server"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -4966,6 +5574,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -4975,7 +5584,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -4984,6 +5594,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -4993,6 +5604,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5007,7 +5619,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5024,12 +5637,27 @@
       "中科曙光",
       "华为"
      ],
+     "instance_ids": [
+      "celestica",
+      "huawei",
+      "dell-technologies",
+      "hpe",
+      "lenovo",
+      "supermicro",
+      "inspur",
+      "h3c",
+      "xfusion",
+      "nettrix",
+      "sugon",
+      "huawei-atlas"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5041,6 +5669,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 3,
+   "stage": "it",
    "module": "M06",
    "supply_status": "mature",
    "desc": "用户 2026-09-28 决定与加速器服务器分两行",
@@ -5055,7 +5684,8 @@
        "source": {
         "type": "bom",
         "key": "general-server"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5085,6 +5715,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5094,7 +5725,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5103,6 +5735,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5112,6 +5745,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5126,7 +5760,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5143,12 +5778,27 @@
       "（多家）",
       "超微"
      ],
+     "instance_ids": [
+      "dell-technologies",
+      "hpe",
+      "lenovo",
+      "inspur",
+      "h3c",
+      "xfusion",
+      "sugon",
+      "zte",
+      "fiberhome",
+      "huawei",
+      "cn-kunpeng-feiteng-server-group",
+      "supermicro"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5160,6 +5810,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 1,
+   "stage": "it",
    "module": "M07",
    "supply_status": "transition",
    "desc": "InfiniBand vs 以太网(UEC)之争；scale-up 域扩大改写拓扑",
@@ -5174,7 +5825,8 @@
        "source": {
         "type": "bom",
         "key": "network-switch"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5201,6 +5853,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5210,7 +5863,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5219,6 +5873,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5228,6 +5883,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5242,7 +5898,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5259,12 +5916,27 @@
       "中兴通讯",
       "（多家）"
      ],
+     "instance_ids": [
+      "broadcom",
+      "celestica",
+      "nvidia",
+      "nvidia-networking",
+      "arista-networks",
+      "cisco",
+      "juniper",
+      "huawei-cloudengine",
+      "h3c",
+      "ruijie",
+      "zte",
+      "celestica-edgecore-ufispace"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5276,6 +5948,7 @@
    "system": "storage",
    "chain": "存储",
    "chain_order": 1,
+   "stage": "it",
    "module": "M06",
    "supply_status": "mature",
    "desc": "存储系统与阵列——AI 数据管道的容量层与并行文件系统",
@@ -5290,7 +5963,8 @@
        "source": {
         "type": "bom",
         "key": "storage-array"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5320,6 +5994,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5329,7 +6004,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5338,6 +6014,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5347,6 +6024,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5361,7 +6039,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -5378,12 +6057,27 @@
       "宏杉科技",
       "星辰天合"
      ],
+     "instance_ids": [
+      "huawei-oceanstor",
+      "dell",
+      "netapp",
+      "pure-storage",
+      "hpe",
+      "ibm",
+      "hitachi-vantara",
+      "ieit-storage",
+      "h3c-unistor",
+      "sugon-parastor",
+      "macrosan",
+      "xsky"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5395,6 +6089,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 4,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "tight",
    "desc": "快接头/软管/水质是液冷可用性的隐形风险点",
@@ -5409,7 +6104,8 @@
        "source": {
         "type": "bom",
         "key": "manifold"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5428,6 +6124,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5437,7 +6134,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5446,6 +6144,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5455,6 +6154,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5469,19 +6169,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "CoolIT",
       "维谛技术"
      ],
+     "instance_ids": [
+      "coolit-systems",
+      "vertiv"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5493,6 +6199,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 5,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "tight",
    "desc": "供应商集中、认证周期长的隐形风险点",
@@ -5507,7 +6214,8 @@
        "source": {
         "type": "bom",
         "key": "quick-disconnect"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5526,6 +6234,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5535,7 +6244,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5544,6 +6254,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5553,6 +6264,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5567,18 +6279,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）"
      ],
+     "instance_ids": [
+      "staubli-cpc-parker-danfoss"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5590,6 +6307,7 @@
    "system": "power",
    "chain": "机柜与板级供电",
    "chain_order": 1,
+   "stage": "it",
    "module": "M09",
    "supply_status": "transition",
    "desc": "800V HVDC + 机柜级储能重构供电末端；台达系核心地盘",
@@ -5604,7 +6322,8 @@
        "source": {
         "type": "bom",
         "key": "power-shelf"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5623,6 +6342,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5632,7 +6352,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5641,6 +6362,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5650,6 +6372,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5664,19 +6387,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "台达电子",
       "（多家）"
      ],
+     "instance_ids": [
+      "delta-electronics",
+      "liteon-advanced-energy"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5688,6 +6417,7 @@
    "system": "power",
    "chain": "机柜与板级供电",
    "chain_order": 2,
+   "stage": "it",
    "module": "M09",
    "supply_status": "transition",
    "desc": "电芯价格独立；待补电芯厂档案",
@@ -5702,7 +6432,8 @@
        "source": {
         "type": "bom",
         "key": "bbu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5721,6 +6452,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5730,7 +6462,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5739,6 +6472,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5748,6 +6482,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5762,19 +6497,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "台达电子",
       "（多家）"
      ],
+     "instance_ids": [
+      "delta-electronics",
+      "liteon-advanced-energy"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5786,6 +6527,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 4,
+   "stage": "it",
    "module": "M07",
    "supply_status": "tight",
    "desc": "DAC/AEC/背板铜互联——机柜内短距连接对光的替代",
@@ -5800,7 +6542,8 @@
        "source": {
         "type": "bom",
         "key": "copper-interconnect"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5820,6 +6563,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5829,7 +6573,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5838,6 +6583,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5847,6 +6593,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5861,19 +6608,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "Credo",
       "（多家）"
      ],
+     "instance_ids": [
+      "credo",
+      "amphenol-luxshare-molex-te-connectivity"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5885,6 +6638,7 @@
    "system": "thermal",
    "chain": "冷水与 CDU",
    "chain_order": 4,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "mature",
    "desc": "冷却液与工质——液冷环路的化学约束",
@@ -5899,7 +6653,8 @@
        "source": {
         "type": "bom",
         "key": "coolant"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -5918,6 +6673,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -5927,7 +6683,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -5936,6 +6693,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5945,6 +6703,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -5959,18 +6718,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）"
      ],
+     "instance_ids": [
+      "chemours"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -5982,6 +6746,7 @@
    "system": "thermal",
    "chain": "机房与机柜",
    "chain_order": 3,
+   "stage": "mep",
    "module": "M08",
    "supply_status": "transition",
    "desc": "机柜级液-气热交换（sidecar/RDHx）——NVL72 时代介于 CDU 与机柜之间的新层级，此前两头都不算它",
@@ -5996,7 +6761,8 @@
        "source": {
         "type": "bom",
         "key": "sidecar-hx"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6013,6 +6779,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6022,7 +6789,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6031,6 +6799,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6040,6 +6809,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6054,7 +6824,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6063,12 +6834,19 @@
       "CoolIT",
       "Boyd"
      ],
+     "instance_ids": [
+      "nvent",
+      "motivair",
+      "coolit-systems",
+      "boyd"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6080,6 +6858,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 4,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "GPU 收入 2025 ~$191.8B、2028 峰值 ~$247.6B（Yole）；ASIC 2030 ~$84.6B——供应商集中度即行业风险",
@@ -6094,7 +6873,8 @@
        "source": {
         "type": "bom",
         "key": "gpu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6123,6 +6903,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6132,7 +6913,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6172,6 +6954,7 @@
      "coverage": {
       "sourced": 1,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "sourced"
@@ -6181,6 +6964,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6195,7 +6979,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6212,12 +6997,27 @@
       "天数智芯",
       "燧原科技"
      ],
+     "instance_ids": [
+      "nvidia",
+      "amd",
+      "amd-instinct",
+      "intel-gaudi",
+      "huawei-ascend",
+      "cambricon",
+      "hygon-dcu",
+      "biren",
+      "moore-threads",
+      "metax",
+      "iluvatar-corex",
+      "enflame"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6229,6 +7029,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 5,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "自研/代工的一批厂商，与商用 GPU 不同的定价方式",
@@ -6243,7 +7044,8 @@
        "source": {
         "type": "bom",
         "key": "ai-asic"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6263,6 +7065,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6272,7 +7075,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6281,6 +7085,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6290,6 +7095,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6304,7 +7110,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6315,12 +7122,21 @@
       "（自研）",
       "（多家）"
      ],
+     "instance_ids": [
+      "broadcom",
+      "alphabet-google",
+      "amazon",
+      "openai",
+      "google-tpu-aws-trainium-ms-maia-meta-mtia",
+      "cerebras-groq-sambanova-tenstorrent"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6332,6 +7148,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 6,
+   "stage": "it",
    "module": "M06",
    "supply_status": "mature",
    "desc": "Grace/自研 Arm 侵蚀 x86；头节点与推理仍是 CPU 战场",
@@ -6346,7 +7163,8 @@
        "source": {
         "type": "bom",
         "key": "cpu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6374,6 +7192,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6383,7 +7202,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6392,6 +7212,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6401,6 +7222,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6415,7 +7237,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6430,12 +7253,25 @@
       "龙芯中科",
       "兆芯"
      ],
+     "instance_ids": [
+      "amd",
+      "nvidia",
+      "intel",
+      "ampere-computing",
+      "arm",
+      "huawei-kunpeng",
+      "hygon",
+      "phytium",
+      "loongson",
+      "zhaoxin"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6447,6 +7283,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 7,
+   "stage": "it",
    "module": "M06",
    "supply_status": "mature",
    "desc": "FPGA 与异构加速卡——推理与网络卸载的第二战场",
@@ -6461,7 +7298,8 @@
        "source": {
         "type": "bom",
         "key": "fpga"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6480,6 +7318,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6489,7 +7328,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6498,6 +7338,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6507,6 +7348,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6521,18 +7363,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（两家）"
      ],
+     "instance_ids": [
+      "amd-xilinx-alveo-altera-agilex"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6544,6 +7391,7 @@
    "system": "compute",
    "chain": "计算",
    "chain_order": 8,
+   "stage": "it",
    "module": "M06",
    "supply_status": "mature",
    "desc": "近乎单一来源（ASPEED）；用户 2026-09-28 未否决单列，按规则单列",
@@ -6558,7 +7406,8 @@
        "source": {
         "type": "bom",
         "key": "bmc"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6577,6 +7426,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6586,7 +7436,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6595,6 +7446,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6604,6 +7456,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6618,18 +7471,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "信骅科技"
      ],
+     "instance_ids": [
+      "aspeed"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6641,6 +7499,7 @@
    "system": "memory",
    "chain": "内存",
    "chain_order": 1,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "HBM4(2026)→HBM8(2038) 路线图（KAIST）；容量与带宽是 AI 算力的第一瓶颈",
@@ -6655,7 +7514,8 @@
        "source": {
         "type": "bom",
         "key": "hbm"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6677,6 +7537,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6686,7 +7547,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6695,6 +7557,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6704,6 +7567,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6718,7 +7582,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6727,12 +7592,19 @@
       "美光",
       "长鑫存储"
      ],
+     "instance_ids": [
+      "samsung",
+      "sk-hynix",
+      "micron",
+      "cxmt"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6744,6 +7616,7 @@
    "system": "memory",
    "chain": "内存",
    "chain_order": 2,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "从现有hbm节点拆分：服务器内存与HBM供需周期不同步，价格序列应分开",
@@ -6758,7 +7631,8 @@
        "source": {
         "type": "bom",
         "key": "dram"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6781,6 +7655,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6790,7 +7665,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6799,6 +7675,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6808,6 +7685,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6822,7 +7700,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -6831,12 +7710,19 @@
       "美光",
       "长鑫存储"
      ],
+     "instance_ids": [
+      "samsung",
+      "sk-hynix",
+      "micron",
+      "cxmt"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6848,6 +7734,7 @@
    "system": "memory",
    "chain": "内存",
    "chain_order": 3,
+   "stage": "it",
    "module": "M06",
    "supply_status": "emerging",
    "desc": "控制器厂是另一批；用户 2026-09-28 决定单列",
@@ -6862,7 +7749,8 @@
        "source": {
         "type": "bom",
         "key": "cxl-memory"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6882,6 +7770,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -6891,7 +7780,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -6900,6 +7790,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6909,6 +7800,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -6923,19 +7815,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）",
       "澜起科技"
      ],
+     "instance_ids": [
+      "samsung-cmm-micron-cz120-mxc-smart-modular",
+      "montage"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -6947,6 +7845,7 @@
    "system": "storage",
    "chain": "存储",
    "chain_order": 2,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "整盘产品研究入口；控制器、NAND、固件与电路板通过研究图谱分别展开。厂商列表为历史目录线索，不代表整盘供应能力已核实。",
@@ -6961,7 +7860,8 @@
        "source": {
         "type": "bom",
         "key": "ssd"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -6991,6 +7891,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7000,7 +7901,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7009,6 +7911,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7018,6 +7921,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7032,7 +7936,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7049,12 +7954,27 @@
       "金士顿",
       "（多家）"
      ],
+     "instance_ids": [
+      "samsung",
+      "kioxia",
+      "solidigm",
+      "micron",
+      "sandisk",
+      "ymtc",
+      "unionmemory",
+      "dapustor",
+      "longsys",
+      "biwin",
+      "kingston",
+      "smi-phison-maxio-innogrit"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7066,6 +7986,7 @@
    "system": "storage",
    "chain": "存储",
    "chain_order": 3,
+   "stage": "it",
    "module": "M06",
    "supply_status": "tight",
    "desc": "从现有storage节点拆分；建议拆分后删除storage节点",
@@ -7080,7 +8001,8 @@
        "source": {
         "type": "bom",
         "key": "hdd"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7101,6 +8023,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7110,7 +8033,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7119,6 +8043,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7128,6 +8053,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7142,7 +8068,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7150,12 +8077,18 @@
       "西部数据",
       "东芝电子"
      ],
+     "instance_ids": [
+      "seagate",
+      "western-digital",
+      "toshiba-electronic-devices"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7167,6 +8100,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 7,
+   "stage": "it",
    "module": "M07",
    "supply_status": "mature",
    "desc": "每 GPU 配套一张 400/800G 网卡——数量与 GPU 同步放大",
@@ -7181,7 +8115,8 @@
        "source": {
         "type": "bom",
         "key": "nic"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7203,6 +8138,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7212,7 +8148,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7221,6 +8158,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7230,6 +8168,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7244,7 +8183,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7254,12 +8194,20 @@
       "英特尔",
       "（多家）"
      ],
+     "instance_ids": [
+      "nvidia",
+      "broadcom",
+      "amd-pensando",
+      "intel-ethernet",
+      "cn-dpu-group"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7271,6 +8219,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 3,
+   "stage": "it",
    "module": "M07",
    "supply_status": "transition",
    "desc": "800G→1.6T 迭代 + CPO 2024-2035 渗透曲线（Yole）——密度与功耗逼出共封装",
@@ -7285,7 +8234,8 @@
        "source": {
         "type": "bom",
         "key": "optics"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7311,6 +8261,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7320,7 +8271,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7329,6 +8281,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7338,6 +8291,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7352,7 +8306,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7367,12 +8322,25 @@
       "天孚通信",
       "Lumentum等"
      ],
+     "instance_ids": [
+      "broadcom",
+      "celestica",
+      "innolight",
+      "eoptolink",
+      "coherent",
+      "accelink",
+      "hg-genuine",
+      "cn-optics-group",
+      "tfc-optics",
+      "lumentum"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7384,6 +8352,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 2,
+   "stage": "it",
    "module": "M07",
    "supply_status": "tight",
    "desc": "从network-switch中拆出芯片层（Broadcom/Marvell/盛科）",
@@ -7398,7 +8367,8 @@
        "source": {
         "type": "bom",
         "key": "switch-asic"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7419,6 +8389,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7428,7 +8399,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7437,6 +8409,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7446,6 +8419,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7460,7 +8434,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7468,12 +8443,18 @@
       "迈威尔",
       "盛科通信"
      ],
+     "instance_ids": [
+      "broadcom",
+      "marvell",
+      "centec"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7485,6 +8466,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 8,
+   "stage": "it",
    "module": "M07",
    "supply_status": "tight",
    "desc": "供应商集中；随速率代际量价齐升",
@@ -7499,7 +8481,8 @@
        "source": {
         "type": "bom",
         "key": "retimer"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7520,6 +8503,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7529,7 +8513,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7538,6 +8523,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7547,6 +8533,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7561,7 +8548,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7570,12 +8558,19 @@
       "博通",
       "（多家）"
      ],
+     "instance_ids": [
+      "astera-labs",
+      "montage",
+      "broadcom",
+      "rambus-microchip-marvell"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7587,6 +8582,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 9,
+   "stage": "it",
    "module": "M07",
    "supply_status": "mature",
    "desc": "服务器内互联的交换层",
@@ -7601,7 +8597,8 @@
        "source": {
         "type": "bom",
         "key": "pcie-switch"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7622,6 +8619,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7631,7 +8629,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7640,6 +8639,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7649,6 +8649,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7663,19 +8664,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "博通",
       "（多家）"
      ],
+     "instance_ids": [
+      "broadcom",
+      "rambus-microchip-marvell"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7687,6 +8694,7 @@
    "system": "network",
    "chain": "网络",
    "chain_order": 6,
+   "stage": "it",
    "module": "M07",
    "supply_status": "tight",
    "desc": "背板/面板/电源高速连接器——铜互联线缆之外独立的一门生意，随速率代际量价齐升",
@@ -7701,7 +8709,8 @@
        "source": {
         "type": "bom",
         "key": "connector"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7718,6 +8727,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7727,7 +8737,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7736,6 +8747,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7745,6 +8757,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7759,18 +8772,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）"
      ],
+     "instance_ids": [
+      "amphenol-luxshare-molex-te-connectivity"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7782,6 +8800,7 @@
    "system": "thermal",
    "chain": "芯片级",
    "chain_order": 1,
+   "stage": "it",
    "module": "M08",
    "supply_status": "transition",
    "desc": "入液热捕获率 70-90%；GPU/OEM 认证是专业厂商的护城河",
@@ -7796,7 +8815,8 @@
        "source": {
         "type": "bom",
         "key": "coldplate"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7815,6 +8835,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7824,7 +8845,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7833,6 +8855,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7842,6 +8865,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7856,7 +8880,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -7866,12 +8891,20 @@
       "Accelsius",
       "（两家）"
      ],
+     "instance_ids": [
+      "coolit-systems",
+      "motivair",
+      "zutacore",
+      "accelsius",
+      "zutacore-accelsius"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7883,6 +8916,7 @@
    "system": "power",
    "chain": "机柜与板级供电",
    "chain_order": 3,
+   "stage": "it",
    "module": "M09",
    "supply_status": "mature",
    "desc": "钛金效率与功率密度竞赛；PDU+PSU 市场独立成研究对象",
@@ -7897,7 +8931,8 @@
        "source": {
         "type": "bom",
         "key": "psu"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -7916,6 +8951,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -7925,7 +8961,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -7934,6 +8971,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7943,6 +8981,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -7957,19 +8996,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "台达电子",
       "（多家）"
      ],
+     "instance_ids": [
+      "delta-electronics",
+      "liteon-advanced-energy"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -7981,6 +9026,7 @@
    "system": "power",
    "chain": "机柜与板级供电",
    "chain_order": 4,
+   "stage": "it",
    "module": "M09",
    "supply_status": "tight",
    "desc": "GPU 千瓦时代的板级供电——垂直供电（VPD）与电源级密度是 psu 之外独立的瓶颈件",
@@ -7995,7 +9041,8 @@
        "source": {
         "type": "bom",
         "key": "vrm"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -8014,6 +9061,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -8023,7 +9071,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8032,6 +9081,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8041,6 +9091,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8055,19 +9106,25 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）",
       "台达电子"
      ],
+     "instance_ids": [
+      "infineon-mps-renesas-adi-ti",
+      "delta-electronics"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -8079,6 +9136,7 @@
    "system": "thermal",
    "chain": "芯片级",
    "chain_order": 3,
+   "stage": "it",
    "module": "M08",
    "supply_status": "mature",
    "desc": "与均热板/散热器不是同一批厂商",
@@ -8093,7 +9151,8 @@
        "source": {
         "type": "bom",
         "key": "server-fan"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -8112,6 +9171,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -8121,7 +9181,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8130,6 +9191,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8139,6 +9201,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8153,18 +9216,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）"
      ],
+     "instance_ids": [
+      "nidec-ebm-papst-avc-auras"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -8176,6 +9244,7 @@
    "system": "thermal",
    "chain": "芯片级",
    "chain_order": 2,
+   "stage": "it",
    "module": "M08",
    "supply_status": "mature",
    "desc": "风冷末端与混合散热的常青件",
@@ -8190,7 +9259,8 @@
        "source": {
         "type": "bom",
         "key": "heatsink-vc"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -8209,6 +9279,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -8218,7 +9289,8 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
-      "needed": 0
+      "delivered": 0,
+      "needed": 1
      },
      "status": "needed"
     },
@@ -8227,6 +9299,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8236,6 +9309,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8250,18 +9324,23 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
       "（多家）"
      ],
+     "instance_ids": [
+      "nidec-ebm-papst-avc-auras"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -8273,6 +9352,7 @@
    "system": "control",
    "chain": "DCIM/BMS 与固件",
    "chain_order": 1,
+   "stage": "commissioning",
    "module": "M13",
    "supply_status": "mature",
    "desc": "软件条目：有订阅价与供应商，进目标表，不进 3D（用户 2026-09-28 决定）",
@@ -8287,7 +9367,8 @@
        "source": {
         "type": "bom",
         "key": "dcim"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -8311,6 +9392,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -8320,6 +9402,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8329,6 +9412,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed"
@@ -8338,6 +9422,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8352,7 +9437,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -8365,12 +9451,23 @@
       "（两家）",
       "（多家）"
      ],
+     "instance_ids": [
+      "schneider-electric",
+      "vertiv",
+      "schneider-ecostruxure-it",
+      "vertiv-environet",
+      "sunbird-dctrack-nlyte",
+      "neteco",
+      "vertiv-avocent-legrand-raritan",
+      "cn-inspection-robot-group"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   },
@@ -8382,6 +9479,7 @@
    "system": "facility",
    "chain": "土地与建筑",
    "chain_order": 3,
+   "stage": "shell",
    "module": "M09",
    "supply_status": "mature",
    "desc": "交付形态，不是零件：同一批部件的另一种包装方式；保留为配置模板",
@@ -8396,7 +9494,8 @@
        "source": {
         "type": "bom",
         "key": "modular-dc"
-       }
+       },
+       "kind": "count"
       },
       {
        "label": "尺度",
@@ -8418,6 +9517,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "sourced"
@@ -8427,6 +9527,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8436,6 +9537,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8445,6 +9547,7 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed"
@@ -8459,7 +9562,8 @@
        "source": {
         "type": "bom",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "instances": [
@@ -8468,12 +9572,19 @@
       "科士达",
       "（交叉引用）"
      ],
+     "instance_ids": [
+      "schneider-electric-apc",
+      "kehua",
+      "kstar",
+      "fusionmodule-smartaisle-ecostruxure-pod-wisemdc"
+     ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "registered"
     }
    }
   }
@@ -8496,20 +9607,24 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "4": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "5": {
      "items": [
@@ -8521,16 +9636,19 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
-     "instances": []
+     "status": "needed",
+     "instances": [],
+     "instance_ids": []
     }
    }
   },
@@ -8551,20 +9669,24 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "4": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "5": {
      "items": [
@@ -8576,16 +9698,19 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
-     "instances": []
+     "status": "needed",
+     "instances": [],
+     "instance_ids": []
     }
    }
   },
@@ -8606,20 +9731,24 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "4": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "5": {
      "items": [
@@ -8631,18 +9760,24 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
+     "status": "registered",
      "instances": [
       "美国电力",
       "星座能源"
+     ],
+     "instance_ids": [
+      "aep",
+      "constellation-energy"
      ]
     }
    }
@@ -8664,20 +9799,24 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "4": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "5": {
      "items": [
@@ -8689,16 +9828,19 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
-     "instances": []
+     "status": "needed",
+     "instances": [],
+     "instance_ids": []
     }
    }
   },
@@ -8719,20 +9861,24 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "4": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "5": {
      "items": [
@@ -8744,16 +9890,19 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
-     "instances": []
+     "status": "needed",
+     "instances": [],
+     "instance_ids": []
     }
    }
   },
@@ -8774,20 +9923,24 @@
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 0
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "4": {
      "items": [],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
      "status": "needed",
-     "instances": []
+     "instances": [],
+     "instance_ids": []
     },
     "5": {
      "items": [
@@ -8799,16 +9952,19 @@
        "source": {
         "type": "site_rights",
         "key": "companies"
-       }
+       },
+       "kind": "count"
       }
      ],
      "coverage": {
       "sourced": 0,
       "assumed": 0,
+      "delivered": 0,
       "needed": 1
      },
-     "status": "sourced",
-     "instances": []
+     "status": "needed",
+     "instances": [],
+     "instance_ids": []
     }
    }
   }
@@ -9284,6 +10440,36 @@
     "target_roic",
     "roic_basis"
    ]
+  },
+  {
+   "id": "time",
+   "label": "时间侧（建设时间线）",
+   "side": "time",
+   "parent": null,
+   "unit": "年",
+   "formula": "gate_wait_years + permit_months/12 + construction_years → 首度收入时点；horizon、refresh、escalation 在各自因子",
+   "bom_parts": [],
+   "site_rights": [],
+   "model_inputs": []
+  },
+  {
+   "id": "time.build",
+   "label": "建设时间线（工期、排队、审批）",
+   "side": "time",
+   "parent": "time",
+   "unit": "年",
+   "formula": "权利与审批 → 并网与外线 → 土建与壳 → 机电 → IT 进场 → 调试与上架；每段的时长决定首度收入时点与爬坡起点",
+   "bom_parts": [],
+   "site_rights": [
+    "grid",
+    "permits"
+   ],
+   "model_inputs": [
+    "construction_years",
+    "gate",
+    "gate_wait_years",
+    "permit_months"
+   ]
   }
  ],
  "changes": {
@@ -9374,13 +10560,6 @@
    }
   ],
   "due_targets": [
-   {
-    "id": "F.capital.base_rates",
-    "team": "fetchstat",
-    "next_due": "2026-10-05",
-    "status": "needed",
-    "variable_class": 5
-   },
    {
     "id": "F.capital.news",
     "team": "inews",
@@ -9653,8 +10832,15 @@
     "next_due": "2026-10-05",
     "status": "needed",
     "variable_class": 5
+   },
+   {
+    "id": "P.transformer.news",
+    "team": "inews",
+    "next_due": "2026-10-05",
+    "status": "needed",
+    "variable_class": 5
    }
   ],
-  "due_total": 181
+  "due_total": 48
  }
 }

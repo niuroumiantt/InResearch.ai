@@ -137,14 +137,11 @@ def validate(graph, questions, knowledge):
     objects = index(graph.get('objects', []), 'objects')
     qs = index(questions.get('records', []), 'questions')
     relations = index(graph.get('relations', []), 'relations')
-    kinds = {v['id'] for v in graph['views']}
     for node in objects.values():
         if node.get('representation') not in ('conceptual', 'reference', 'actual'):
             errors.append(f"{node['id']}: representation required")
         if node.get('representation') == 'actual' and not node.get('evidence_ids'):
             errors.append(f"{node['id']}: actual asset requires evidence")
-        if not set(node.get('views', [])) <= kinds:
-            errors.append(f"{node['id']}: unknown view")
     parents = {}
     for rel in relations.values():
         if rel.get('source') not in objects or rel.get('target') not in objects:
@@ -209,8 +206,9 @@ def completed_questions(knowledge):
 
 def question_tasks(questions, knowledge):
     closed = completed_questions(knowledge)
-    return [dict(id='Q-' + q['id'], wid='Q-' + q['id'], mid=q['module_id'],
-                 module_id=q['module_id'], pri='P2', kind='研究问题开放',
+    # 兼容模块码只是任务的分组键（研究问题任务、深读分包），问题本身挂骨架节点
+    return [dict(id='Q-' + q['id'], wid='Q-' + q['id'], mid=q.get('legacy_module') or q.get('module_id'),
+                 module_id=q.get('legacy_module') or q.get('module_id'), node=q.get('node'), variable_class=q.get('variable_class'), pri='P2', kind='研究问题开放',
                  gap=q['text'], title=q['text'], action=q['acceptance'],
                  brief=q['text'] + '\n验收：' + q['acceptance'],
                  object_ids=q['object_ids'], question_ids=[q['id']],
@@ -277,7 +275,18 @@ def candidate_snapshot(payload, graph, questions):
                'model', 'read_status', 'mapping_status', 'content_sha256', 'reading_revision_id', 'report_sha256'}
     known = {'object_ids': {o['id'] for o in graph.get('objects', []) if isinstance(o, dict) and 'id' in o},
              'question_ids': {q['id'] for q in questions.get('records', []) if isinstance(q, dict) and 'id' in q}}
-    dropped_ids = dropped_answers = 0
+    # 图谱 3.0：旧对象 ID 先按对象登记的别名与根前缀折算到骨架节点（不猜），折算不了的才丢
+    fold = {alias: o['id'] for o in graph.get('objects', []) if isinstance(o, dict) for alias in (o.get('aliases') or [])}
+    root_prefixes = tuple(graph.get('legacy_root_prefixes') or ())
+    def resolve(value):
+        if value in known['object_ids']:
+            return value
+        if value in fold:
+            return fold[value]
+        if root_prefixes and isinstance(value, str) and value.startswith(root_prefixes) and 'root' in known['object_ids']:
+            return 'root'
+        return None
+    dropped_ids = dropped_answers = folded_ids = 0
     for name in COLLECTIONS:
         rows = knowledge.get(name, [])
         if not isinstance(rows, list):
@@ -290,8 +299,19 @@ def candidate_snapshot(payload, graph, questions):
             if lagging:
                 for field, ids in known.items():
                     if isinstance(normalized.get(field), list):
-                        kept = [v for v in normalized[field] if v in ids]
-                        dropped_ids += len(normalized[field]) - len(kept)
+                        if field == 'object_ids':
+                            kept = []
+                            for v in normalized[field]:
+                                target = resolve(v)
+                                if target is None:
+                                    dropped_ids += 1
+                                    continue
+                                folded_ids += target != v
+                                if target not in kept:
+                                    kept.append(target)
+                        else:
+                            kept = [v for v in normalized[field] if v in ids]
+                            dropped_ids += len(normalized[field]) - len(kept)
                         normalized[field] = kept
                 if name == 'answers' and normalized.get('question_id') not in known['question_ids']:
                     dropped_answers += 1
@@ -310,7 +330,7 @@ def candidate_snapshot(payload, graph, questions):
     if lagging:
         reader['registry_lag'] = {'snapshot_graph_version': payload['graph_version'],
                                   'snapshot_questions_version': payload['questions_version'],
-                                  'dropped_ids': dropped_ids, 'dropped_answers': dropped_answers}
+                                  'dropped_ids': dropped_ids, 'dropped_answers': dropped_answers, 'folded_ids': folded_ids}
     return dict(graph_version=graph['version'], questions_version=questions['version'], generated=generated,
                 received_at=datetime.now(timezone.utc).isoformat(), knowledge=result, reader=reader)
 
@@ -362,7 +382,7 @@ def build_catalog(root, graph):
     objects = {row['id']: row for row in graph.get('objects', [])}
     parents = {}
     for relation in graph.get('relations', []):
-        # Do not walk requires/demand_transmission or attach by module membership.
+        # 骨架的包含关系：部件 → 链路 → 系统 → 根（旧图的 located_in / member_of_system 仍可走）。
         if relation.get('type') in ('part_of', 'located_in', 'member_of_system'):
             parents.setdefault(relation['source'], set()).add(relation['target'])
 
@@ -374,13 +394,7 @@ def build_catalog(root, graph):
     def mapping(row):
         parts = sorted(set(strings(row.get('bom_parts')) + strings(row.get('bom_part'))))
         mapped = sorted({'part:' + part for part in parts if 'part:' + part in objects})
-        for extra in graph.get('catalog_topic_mappings', []):
-            if (row.get('company_id'), row.get('product_line')) == (extra['company_id'], extra['product_line']):
-                if 'part:ssd-controller' in extra['object_ids'] and 'part:ssd-drive' not in extra['object_ids']:
-                    mapped = [oid for oid in mapped if oid != 'part:ssd']
-                mapped = sorted(set(mapped) | set(extra['object_ids']))
         unresolved = sorted(part for part in parts if 'part:' + part not in objects)
-        mapped = sorted({objects[oid].get('redirect_to', oid) for oid in mapped})
         related, pending = set(mapped), list(mapped)
         while pending:
             for target in parents.get(pending.pop(), set()):
@@ -389,9 +403,6 @@ def build_catalog(root, graph):
                 if target not in related and node and not target.startswith(('workload:', 'demand:', 'activity:')):
                     related.add(target)
                     pending.append(target)
-        for domain in graph.get('hardware_domains', []):
-            if set(mapped) & set(domain['object_ids']):
-                related.add(domain['node_id'])
         return dict(object_ids=mapped, related_object_ids=sorted(related), unmapped_bom_parts=unresolved,
                     mapping_basis='explicit_bom' if mapped else 'unmapped',
                     mapping_status='needs_review' if unresolved or not mapped else 'registered_bom')
@@ -431,8 +442,8 @@ def build_catalog(root, graph):
         pid = catalog_id('product-line', company, line)
         entry = dict(copy.deepcopy(row), id=pid, kind='product_line', identity_kind='product_line',
                      company_catalog_id='company:' + company, **mapping(row),
-                     catalog_node_ids=['activity:V2'] if 'activity:V2' in objects else [],
-                     catalog_node_basis='catalog_navigation_only', source_url=web_url(row.get('website')),
+                     catalog_node_ids=sorted({objects[oid].get('parent') for oid in mapping(row)['object_ids'] if objects.get(oid, {}).get('parent')}),
+                     catalog_node_basis='skeleton_parent', source_url=web_url(row.get('website')),
                      source_path=product_path, source_record=copy.deepcopy(row),
                      verification_status='registry_only', document_ids=[], plan_ids=[], models=[],
                      admin_url='/admin/product/?' + urlencode({'company': company, 'line': line}))
@@ -592,15 +603,42 @@ def build_research_summary(root=ROOT):
         return [{key: row[key] for key in keys if key in row} for row in rows]
     return dict(schema_version=1,
                 graph=dict(objects=project(state['graph']['objects'],
-                    ('id', 'name', 'kind', 'views', 'navigation_hidden', 'redirect_to')),
+                    ('id', 'name', 'kind', 'parent', 'system', 'chain', 'stage', 'aliases')),
                     relations=project(state['graph']['relations'],
-                    ('id', 'source', 'target', 'type', 'views', 'view_ids', 'view', 'evidence_id', 'evidence_ids'))),
-                questions=project(state['questions']['records'], refs),
+                    ('id', 'source', 'target', 'type', 'evidence_id', 'evidence_ids'))),
+                questions=project(state['questions']['records'], refs + ('text', 'status', 'node', 'variable_class', 'legacy_module')),
                 knowledge={key: project(state['knowledge'][key], refs)
                            for key in ('evidence', 'statements', 'answers')},
                 tasks=project(state['tasks'], refs),
                 reader={key: state['reader'][key] for key in ('status', 'stale', 'received_at')
                         if key in state['reader']})
+
+
+def summary_for_node(summary, node):
+    """节点页的第一问面板：这个节点（含骨架下级）的问题、候选证据、陈述、回答、任务与一跳关系。root 取全部。"""
+    if not node or node == 'root':
+        return summary
+    objects = {o['id']: o for o in summary['graph']['objects']}
+    if node not in objects:
+        return dict(summary, graph=dict(objects=[], relations=[]), questions=[], tasks=[],
+                    knowledge={k: [] for k in summary['knowledge']}, node=node, unknown=True)
+    scope = {node}
+    changed = True
+    while changed:  # 骨架下级：parent 链指向 scope 内任一节点
+        changed = False
+        for o in summary['graph']['objects']:
+            if o['id'] not in scope and o.get('parent') in scope:
+                scope.add(o['id']); changed = True
+    questions = [q for q in summary['questions'] if q.get('node') in scope or set(q.get('object_ids') or []) & scope]
+    qids = {q['id'] for q in questions}
+    def touches(row):
+        return bool(set(row.get('object_ids') or []) & scope or set(row.get('question_ids') or []) & qids or row.get('question_id') in qids)
+    knowledge = {k: [r for r in rows if touches(r)] for k, rows in summary['knowledge'].items()}
+    relations = [r for r in summary['graph']['relations'] if r.get('source') == node or r.get('target') == node]
+    neighbours = {node} | {r['source'] for r in relations} | {r['target'] for r in relations}
+    return dict(summary, node=node, scope=sorted(scope),
+                graph=dict(objects=[o for o in summary['graph']['objects'] if o['id'] in neighbours], relations=relations),
+                questions=questions, tasks=[t for t in summary['tasks'] if touches(t)], knowledge=knowledge)
 
 
 def build_snapshot(root=ROOT):
@@ -627,7 +665,7 @@ def main():
     mods = read_json(ROOT / 'framework/modules.json')['modules']
     for m in mods:
         expected = [q if isinstance(q, str) else q.get('q', q.get('text')) for q in m['questions']]
-        actual = [q['text'] for q in questions['records'] if q.get('origin') == 'legacy-module' and q['module_id'] == m['id']]
+        actual = [q['text'] for q in questions['records'] if q.get('origin') == 'legacy-module' and (q.get('legacy_module') or q.get('module_id')) == m['id']]
         if expected != actual:
             errors.append(f"{m['id']}: legacy questions diverged")
     if errors:

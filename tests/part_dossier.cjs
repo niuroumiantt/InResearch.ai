@@ -27,7 +27,7 @@ const {chromium} = require('playwright');
       console.log('Scene contract: research ready '+url);
       const canvas = dossier.locator('canvas'); await canvas.waitFor();
       assert.equal(await canvas.count(), 1);
-      assert.ok(await dossier.getByRole('link', {name:'模块原文'}).isVisible());
+      assert.ok(await dossier.getByRole('link', {name:'采集：这个部件的目标行'}).isVisible());
       assert.ok(await dossier.getByRole('heading', {name:'类别数据与指标 · 按原记录时点'}).isVisible());
       const box = await canvas.boundingBox();
       await page.mouse.move(box.x+40, box.y+40); await page.mouse.down();

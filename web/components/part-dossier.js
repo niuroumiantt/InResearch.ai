@@ -14,7 +14,7 @@ function dossierLink(text, href) {
   if (valid) a.href = valid;
   return a;
 }
-export function createPartDossier({el, view, BOM, moduleNames: MODNAME, companies: CN,
+export function createPartDossier({el, view, BOM, companies: CN,
   prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector}) {
 return function showDossier(p) {
   el.replaceChildren();
@@ -37,8 +37,8 @@ return function showDossier(p) {
   const links = dossierNode("div", undefined, "sec");
   links.append(dossierNode("h3", "参考研究与结构"));
   links.append(dossierLink("节点页：五列与目标", "node.html?id=" + encodeURIComponent("part:" + p.id)));
-  links.append(dossierLink("研究模块 " + p.module + " " + (MODNAME[p.module] || ""), "report.html#ch-" + encodeURIComponent(p.module)));
-  links.append(dossierLink("模块原文", "doc.html?f=" + encodeURIComponent("research/" + p.module + ".md")));
+  links.append(dossierLink("采集：这个部件的目标行", "supply.html?" + new URLSearchParams({ node: "part:" + p.id }) + "#targets"));
+  if (view !== "bom") links.append(dossierLink("爆炸图档案", "bom.html#" + encodeURIComponent(p.id)));
   if (view === "campus" && ["S4", "S5"].includes(p.layer))
     links.append(dossierLink("继续拆解机柜 →", "rack3d.html?x=100&node=" + encodeURIComponent("part:" + p.id) + "#" + encodeURIComponent(p.id)));
   if (view === "rack")

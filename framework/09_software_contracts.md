@@ -21,6 +21,8 @@ add-price、assign、receive-snapshot 三个统一 JSON 用例；缺省为 proje
 命令名之后的目录选项由子接口解析，例如 `inventory --root ...`、`reader --data-root ...`；
 不猜测统一改写为其他目录参数。源码根、网站运行根、原件/catalog 根继续分别拥有权威。
 
+派工用例（2026-09-28）：`assign` 接受 `target_id`（目标表的行，唯一任务书）或 `workorder_id`（兼容工单）；新增 `register_delivery(target_id, evidence_path)`（HTTP `/api/deliver`）登记交付指针。两者只写 `data/assignments.json`，不改目标表；实习生只能改分配给自己的行。目标行投影 `/api/targets` 由 `workflow/dispatch.py` 按角色在服务端过滤（`mine=1`、`team`、`node`、`col`、`status`）。
+
 入口借用 sys.argv 调用旧子接口时，成功、导入失败、执行异常均恢复原参数对象；后续顺序调用
 不继承前一次委派的参数。此适配不支持多个线程同时使用进程级 argv；并发任务使用独立进程。
 子命令退出码、JSON 形状、模型配置及事务/重放/版本规则不在此层重复实现。

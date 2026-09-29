@@ -5,8 +5,11 @@
 <script src="/assets/site-skin.js"></script>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>产品资料采集看板 — inresearch.ai</title>
+<title>产品资料登记覆盖 — inresearch.ai</title>
+<script>if (new URLSearchParams(location.search).get("embedded") === "1") document.documentElement.dataset.embedded = "1";</script>
 <style>
+  html[data-embedded="1"] #ui-skinbar, html[data-embedded="1"] .topbar { display: none !important; }
+  html[data-embedded="1"] body { padding-top: 0 !important; }
   /* 视觉规范统一由 assets/site-skin.css 提供。 */
 
 
@@ -102,13 +105,14 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
-<inresearch-shell data-section="research"></inresearch-shell>
+<inresearch-shell data-section="bom"></inresearch-shell>
 <div class="topbar">
   <a class="tab" href="/bom.html">爆炸图 2D</a>
   <a class="tab" href="/bom3d.html">爆炸图 3D</a>
-  <a class="tab" href="/research.html?node=activity%3AV2&view=V&tab=products">研究工作台</a>
-  <a class="tab" href="/research.html?node=ecosystem%3Astorage&amp;view=R&amp;tab=overview">产品生态</a>
-  <a class="tab on" href="/admin/product/">产品采集</a>
+  <a class="tab" href="/node.html">数据中心</a>
+  <a class="tab" href="/node.html?id=system%3Astorage">存储系统</a>
+  <a class="tab on" href="/admin/product/">登记覆盖</a>
+  <a class="tab" href="/product-catalog.html">规格库</a>
   <span class="sp"></span>
   <a class="tab" href="/doc.html?f=docs/inbox/inresearch-alignment/ALIGNMENT.md">对齐方案 ↗</a>
 </div>
@@ -228,7 +232,7 @@ async function main(){
   const p0=prods.filter(p=>p.priority==="P0");
   app.innerHTML=`
   <div class="head">
-    <h1>产品资料采集看板 <em>admin/product</em></h1>
+    <h1>产品资料登记覆盖 <em>admin/product</em></h1>
     <div class="kpis">
       <span><b>${prods.length}</b>条产品线</span>
       <span>P0 <b>${p0.length}</b>· 有登记 <b>${p0.filter(p=>p._state!=="none").length}</b>· 核心类型登记 <b>${p0.filter(p=>p._state==="core").length}</b></span>
@@ -286,7 +290,7 @@ async function main(){
         <span>${p.product_line} · ${p.category} · BOM: ${p.bom_parts.join(", ")} · ${p.priority} · ${p.hq}</span>
         ${website?`<a href="${escapeHTML(website)}" target="_blank" rel="noopener noreferrer">${escapeHTML(p.website)}</a>`:`<span>${escapeHTML(p.website||'官网未登记')}</span>`}
         ${c.ir_url?`<a href="${c.ir_url}" target="_blank">IR ↗</a>`:""}</div>
-      <div class="sect">研究对象：${p.bom_parts.map(id=>`<a href="/research.html?node=${encodeURIComponent('part:'+id)}&view=P&tab=products">${escapeHTML(id)}</a>`).join(' · ')}</div>
+      <div class="sect">研究对象：${p.bom_parts.map(id=>`<a href="/node.html?id=${encodeURIComponent('part:'+id)}">${escapeHTML(id)}</a>`).join(' · ')}</div>
       ${profile}
       <div class="sect"><div class="sh">型号标签登记 — 角标为按标签关联的历史资料数，具体型号身份与内容仍待核实</div>
         <div class="models">${p._cover.map(c2=>`<span class="${c2.ok?"m-ok":"m-no"}" data-t="${c2.t}">${c2.t}<b>${c2.exact.length+c2.rel.length}</b></span>`).join("")}</div></div>

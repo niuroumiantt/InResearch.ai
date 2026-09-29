@@ -27,7 +27,7 @@ class TcoFactorTreeTests(unittest.TestCase):
             if f['parent'] is not None:
                 self.assertIn(f['parent'], self.factors, f['id'])
                 self.assertTrue(f['id'].startswith(f['parent'] + '.'), f['id'])
-            self.assertIn(f['side'], ('revenue', 'cost', 'capital'))
+            self.assertIn(f['side'], ('revenue', 'cost', 'capital', 'time'))  # 2026-09-28：时间侧（建设时间线）
 
     def test_references_exist(self):
         for f in self.tree['factors']:

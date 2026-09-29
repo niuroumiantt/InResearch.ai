@@ -1,6 +1,6 @@
 # inresearch.ai
 
-数据中心行业研究工作台。围绕稳定对象提出问题，用可定位原文形成证据和陈述，再经审核形成回答与交付。目标是解释原理、比较方案、核对数据与诊断约束；材料量、模型评分和漂亮报告本身不代表研究完成。
+一座 AI 数据中心，可以被追问到底：它怎么建、由什么组成、怎么运转、挣不挣钱，每个数从哪来、缺什么。围绕骨架节点提出问题，用可定位原文形成证据和陈述，再经审核形成回答与交付。目标是解释原理、比较方案、核对数据与诊断约束；材料量、模型评分和漂亮报告本身不代表研究完成。
 
 当前规则从 [framework/CURRENT.md](framework/CURRENT.md) 进入；实现与本地验收见 [2026-09-13 架构交付](docs/reviews/2026-09-13/architecture/DELIVERY.md)。记录中的源码测试与生产发布分开计量。
 
@@ -15,7 +15,7 @@
 | 推理适配 | 根据角色配置调用模型，核对能力、预算和实际身份 | `src/inresearch/adapters/models.py`、`deploy/models.json` |
 | 操作界面 | 网页、CLI 接入相同用例；主题与导航共用基础 | `src/inresearch/interfaces/http.py`、`web/components`、`web/themes` |
 
-P/F/V/D/R 五视角是同一知识底座的观察方式，不是五套数据。M01–M15 保留维护分工和兼容 Finding；`research/Mxx.md` 继续参与报告，但不再作为唯一知识中心。兼容 Finding 不自动取得对象证据的 C3 资格。
+唯一逻辑（见 [00 研究框架总览](framework/00_overview.md)）：一棵树（骨架）、三级账、四问四段、五类变量、六队、一个模板。M01–M15 只是兼容属性 `legacy_module`；`research/Mxx.md` 的结论只作成果页的专题目录，不再是知识中心。兼容 Finding 不自动取得骨架节点证据的 C3 资格。
 
 ## 模型和客户端
 
@@ -30,17 +30,17 @@ python3 manage.py serve
 
 站点默认在本机 `127.0.0.1:8000`。推理认证与代理由 CLI 和运行环境提供，项目不保存 OAuth 凭据或本机代理地址。网页容器不因此获得本机 Claude 登录态。
 
-## 页面与产品流程
+## 页面与目录
 
-总览 → 研究 → 资料 → 任务 → 成果，共享一级导航。管理员另有管理入口。研究围绕“已知什么、此前发生了什么、现在做哪一步”；2D/3D、产品和厂商是同一对象的入口。Attio / folk 是全站可切换的两套视觉规则，明暗独立设置，桌面和手机都按 [05 界面规范](framework/05_interface_system.md) 验收。
+一级导航是四问的全局视图，六项：数据中心（`/`，节点页）、账本（`ledger.html`）、爆炸图（`bom.html`）、采集（`supply.html`）、成果（`report.html`）、管理（`ops.html`，仅 admin）。角色四种：admin 六项，member 五项，intern 只见采集入口（自己的目标行），公开只读的 reader 不登录即可看数据中心、爆炸图、成果与账本的基准预设，字段在服务端按角色过滤（白名单见 `src/inresearch/interfaces/public.py`）。节点页是四问的局部视图；2D/3D、规格库和主体是同一骨架节点的入口。明暗独立设置，桌面和手机都按 [05 界面规范](framework/05_interface_system.md) 验收。
 
-网页与命令行报告共用有效内容集合；历史版本保留入口，生成日期不冒充核验日期。团队页与派工读取当前任务集合，旧模块工单只作兼容任务，不决定新问题是否可以派工。
+网页与命令行报告共用有效内容集合；历史版本保留入口，生成日期不冒充核验日期。采集与派工只从目标表出发，旧模块工单只作兼容任务。
 
 ## 常用路径
 
 | 路径 | 用途 |
 |---|---|
-| `framework/00_overview.md` | 研究架构、五视角、扩展边界 |
+| `framework/00_overview.md` | 唯一逻辑：一棵树、三级账、四问四段、五类变量、六队、一个模板 |
 | `framework/01_data_standards.md` | 数据口径与核验纪律 |
 | `framework/02_knowledge_format.md` | 文档、证据、陈述、采用与兼容 Finding |
 | `framework/current_state.json` | 唯一现行规则、替代关系与影响路径 |

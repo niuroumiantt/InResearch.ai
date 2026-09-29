@@ -23,7 +23,7 @@ const {chromium} = require('playwright');
      assert.ok(await status.getByRole('button',{name:'重试',exact:true}).isVisible());
      const box=await status.boundingBox();assert.ok(box.x>=0 && box.x+box.width<=width);
      assert.equal(await status.getAttribute('aria-busy'),'false');
-     assert.equal(await page.getByRole('link',{name:'研究',exact:true}).first().isVisible(),true);
+     assert.equal(await page.getByRole('link',{name:'爆炸图',exact:true}).first().isVisible(),true);
     }
    }
    await page.setViewportSize({width:1280,height:900});

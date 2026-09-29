@@ -1,5 +1,6 @@
 # 数据中心盈利研究档案（造一座数据中心有多挣钱）
 
+> 历史材料 · 2026-09-28 起 `cost.html` 已并入 `ledger.html`（统一经济模型 `data/datacenter_model.json`，唯一参考实现 `knowledge/economics.py`）；本目录记录当时的研究，不作当前执行指令。
 > RESEARCH ARTIFACT · 2026-09-27 · 不是当前行业报价或投资建议。
 
 本目录保存《造一座数据中心有多挣钱——账本上31%，壳层16%–20%，中国11%》专题反哺到 inresearch.ai 的研究实体：正文、来源清单、与 `cost.html` 的对账脚本，以及本次反哺台账。公众号 HTML、首图、正文图和制作脚本留在 `outputs/geluoke-research/2026-09-27-datacenter-profit/`，不重复复制。

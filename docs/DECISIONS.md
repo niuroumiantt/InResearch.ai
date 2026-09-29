@@ -1,6 +1,89 @@
 # 当前决策摘要与变更记录
 
-> CURRENT · 2026-09-06。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
+> CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
+
+## 2026-09-28：管理瘦身与清零（第 8 步）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §6 与 §9 第 8 步落地，八步至此走完；AUDIT.md 三根梁（旧图谱轴、模块维护单元、首页/看板习惯）清零。
+
+- **管理页收缩。** `ops.html` 只留用户与权限、采集与运行控制台（去掉兼容简报、工单队列、盲区体检三个按钮）、录价（加可选 `target_id`，`node` 与 `variable_class` 由服务端派生）、生成物新鲜度（dashboard、目标表、图谱、问题表、模型、骨架的版本与时点）、工具入口；项目漏斗、监测表、研究模块卡、项目库与重复的新闻时间线退役。
+- **退役页删除。** `supply-demo.html`、`poster.html`、`framework_poster.html`、`bake.html` 删除并从路由、界面清单与治理登记移除；`compare.html` 移到界面清单的 `excluded_pages`（本地工具，保留路由供场景套件）。界面清单 1.4.0。
+- **文档清零。** README 首段、唯一逻辑一段与常用路径，AGENTS 一句，`docs/PROJECT_PANORAMA.md` 按唯一逻辑重写，格洛可专题反哺规则 2.0（新数据只以带 node 与变量类的登记进表，序列 ID 不用模块前缀），两份 fetchdata 交接文档改行 ID 与历史横幅，本地阅读与本地安装指南改词，四份研究档案 README 加"已并入 ledger.html"横幅，`reports/HOW_TO_OUTPUT.md` 改写为三种导出、模板 README 加历史横幅，M05 / M15 模块定义去"仪表盘"，源码与页面里的旧注释与标题改词。
+- **治理登记 17 条退役断言**（五视角研究、研究工作台、分层对象目录、总览 → 研究 → 资料 → 任务、五层目标清单、监测仪表盘、三色仪表盘、盲区仪表盘、团队看板 →、产品资料采集看板、九个研究角度、主生态、八个产品生态、"工单 = 声明 − 现状"等）。治理扫描规则同时收紧两处：说"退役"的句子允许出现旧词（判据句与退役转向页），断言旧规则的句子不允许；`docs/DECISIONS.md` 只扫描 2026-09-28 起的条目（历史条目不是当前指令）；带日期原样保留的指导快照 `docs/guides/model-governance-2026-09-27.html` 登记为 `retired_scan_snapshots` 免扫（旧词只在快照里出现）。`object-network.js` 去掉已无数据源的“研究角度”筛选项。
+- **架构图重画。** `docs/reviews/2026-09-28/architecture/ARCHITECTURE.svg` 与 README 按唯一逻辑重画：目录六项、一棵树与五类变量、三级账与四问、四段与回路、退役词汇。
+
+**未做、待定。** `rack3d.html` 场景物理并入 `bom3d.html`（第 6 步留）；`research-graph.js` 与 `object-network.js` 的旧工作台代码随 3D 档案面板保留；`compare.html` 与 `admin/product/index.html` 保留为本地工具与登记覆盖页。
+
+## 2026-09-28：成果页改写——四章即四问，成果从登记表生成（第 7 步）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §4 成果一行与 §9 第 7 步落地。`delivery/report.py` 新增 `build_snapshot_report`：成果 = 树的可发布快照，全部由权威文件生成（dashboard 快照、目标表、因子树、统一模型、骨架、权利，以及图谱与问题表的版本），不另写第二份事实。封面是可信边界：模型输入按证据状态计数、目标行四态与待建队行数、各登记表版本、基准情景、格级诚实规则。四章即四问：一、它值多少（三级账与每级输入的证据、五列根节点现值、校准锚）；二、它由什么组成（五系统 + IT 四子系统 + 站点权利的五列状态、六段建设阶段）；三、它怎么影响账（公式与因子树）；四、数据从哪来、缺什么（四态、六队卡、到期、载体）。末章是专题目录：15 个兼容模块的 150 条研究结论只作目录，全文保留在 `report.html?legacy=1`（`/api/report?legacy=1`）。三种导出：Markdown 与 JSON（`manage.py export` 默认导出快照，`--legacy` 导出旧结论与可选 docx）、打印 / PDF。反哺规则改写进 06：专题取得的新数据只以带 `node` 与 `variable_class` 的记录进登记表，序列 ID 不再用模块前缀，文章不作执行指令。`research_delivery`、`ui_skin` 两个套件与 `test_report_model` 改为快照断言。
+
+## 2026-09-28：爆炸图与主体收口（第 6 步 a）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §4 与 §9 第 6 步的可低风险落地部分。
+
+- **部件档案归一。** 爆炸图 2D（`bom.html`）右栏改用与 3D 相同的 `part-dossier.js`（脚本改为模块）；档案链接改为节点页五列、采集页目标行、爆炸图档案，去掉"研究模块 / 模块原文"（旧模块只是兼容属性）；`bom.html` 不再读 `modules.json`。
+- **主体页。** `company.html` 改写为第五类变量的页面：一家公司供应哪些部件（按系统与链路，链到节点页第五列）、持有哪条站点权利、有哪些产品线（含派生的系统与链路），园区与合同作附表；去掉 KPI 格、世界地图、15 个研究文档的提及扫描、简报新闻与 SEC 档案表。节点页第五列的供应商芯片改为主体页链接（快照多带 `instance_ids`）。
+- **规格库吸收登记覆盖。** `product-catalog.html` 加视图切换：规格库 / 登记覆盖（管理员可见，以嵌入方式承载 `admin/product/index.html?embedded=1`，登记页在嵌入态隐藏顶栏）；登记页保留自己的路由与清单登记，第 8 步再决定是否撤出目录。
+- **3D 钻取按骨架。** `bom3d.html`、`rack3d.html` 的钻取链改由 `bom.json` 的系统与链路生成（全景 → 设施 / 电力 / 冷却 → IT 计算链路（机柜拆解）→ 芯片级；控制与软件不进 3D），尺度钻取链 `web/assets/levels.json` 退役删除；爆炸阶段文案按链路命名（设施 · 土地与建筑 / 电力与冷却链路 / IT 进场 / 计算与网络链路 / 芯片级；机柜侧同理）。
+- **未做、待定。** `rack3d.html` 的场景没有物理并入 `bom3d.html`（两个各约 1000 行的 three.js 场景，合并风险大），只在钻取链上作为"IT · 计算链路"的芯片级阶段承接；`research-graph.js` 里的旧工作台代码仍留给 3D 档案面板。是否做场景合并请另行决定。
+
+## 2026-09-28：收件箱、规格批次、团队看板并入采集页（第 5 步 b）
+
+第 5 步后半。`materials.html`（资料收件箱）、`nvidia-pilot.html`（NVIDIA 规格批次）、`team.html`（团队看板）三页删除，内容并入 `supply.html` 的三个标签：**收件箱**（原表单与最近提交，`materials.js` 元素 ID 加 `mi-` 前缀）、**规格批次**（`pilot.js`，读 `/api/pilot-progress/nvidia`，契约不变）、**研究问题任务**（`tasks-board.js`，读 `/api/tasks`，任务按骨架节点分组，模块盲区统计退役；派工仍走 `/api/assign` 的 `workorder_id` 兼容路径）。旧地址 302 到对应标签；实习生只见目标表与研究问题任务两个标签（供应台账、收件箱与规格批次的接口对实习生 403，页面如实说）。禁止页、规格库页与一级导航的旧链接改指采集页。采集页标签自此按四段倒序排：目标表 → 研究问题任务 → 收件箱 → 规格批次 → 供应台账（作战总览、广度与深度、资源与执行、供应方与任务、研究需求、交付与验收）。06 收件箱一句同步；`nvidia_pilot`、`research_delivery`、`supply` 三个浏览器套件改为采集页断言。
+
+## 2026-09-28：采集页第一屏是目标表，派工按目标行 ID（第 5 步 a）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §4 采集页一行与 §9 第 5 步的前半落地。`supply.html` 新增默认标签「目标表」（`web/components/targets.js`）：六队卡（存在状态、承担行数、最近交付、下一到期）、五系统 × 五类的"缺 / 行"热图、可按队 / 类 / 系统 / 状态 / 负责人筛选的目标行表，每行链回节点页停在该列；节点页每列多一个"→ 采集"链接按节点与列预筛（`?node=&col=`）。派工与交付登记从此按目标行 ID：`/api/targets`（`workflow/dispatch.py`）在服务端按角色过滤——实习生只见分配给自己的行，公开只读没有这个接口；`assign` 用例接受 `target_id`（`workorder_id` 只作兼容工单）；新增 `register_delivery(target_id, evidence_path)`（`/api/deliver`）把交付指针记到 `data/assignments.json`，指针只是运行库登记，进入 `delivered` 仍看 Git 内载体，页面标"运行库有 / Git 无"。实习生的首页改为采集页目标表，可 GET 采集页与 `/api/targets`、POST 派工与交付；供应台账（`/api/supply`）仍只对内部成员开放，页面如实说。06、09 同步。
+
+**实施状态。** 资料收件箱、NVIDIA 规格批次与团队看板三页并入采集页（第 5 步 b）下一提交；并入前团队看板仍放行给实习生。
+
+## 2026-09-28：研究图谱 3.0 与节点页吸收证据、研究页退役（第 3 步 b + 第 4 步）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §7 与 §9 第 3、4 步落地。
+
+- **图谱 3.0 由骨架生成，不手写。** 新模块 `knowledge/graph.py`（`manage.py graph --refresh / --check`）从 `bom.json`、`site_rights.json`、`companies.json` 生成 `research_graph.json` 3.0.0：对象只有六种——根 1、系统 9（五个顶层 + IT 四个子系统）、链路 17、部件 63、站点权利 6、主体 248，共 344；关系三种——`part_of`（部件 → 链路 → 系统 → 根，权利 → 根）、`supplies`（主体供应部件）、`holds`（主体持有权利，登记数）。五视角、导航树、八生态目录、九主题、`scope:M01–M15`、`arch / tech / workload / demand / activity / space`、`system:safety` 与被重切的旧部件 ID 全部退役；每个对象登记 `aliases`（旧 ID 的去处），图谱另带 `legacy_nodes` 与根前缀表。`navigation.py` 改为骨架校验入口（对象集合 = 骨架节点集合，顺序 = 系统 × 链路 × chain_order，包含关系单亲无环，关系类型只有三种）。
+- **问题表 3.0.0：ID 不变。** 458 条问题每条加 `node`（最具体的骨架引用：部件 > 权利 > 系统 > 根；部件 231、根 163、系统 39、权利 25）与 `variable_class`（按文本关键词派生：构成 244、运行 38、价格 148、时间 15、主体 13，可在 `QUESTION_CLASS_OVERRIDES` 逐条改）；`object_ids` 只允许骨架 ID，旧 ID 留在 `legacy_object_ids`；`module_id` 改 `legacy_module`，`views`、`topic_id` 删除。任务板、深读分包、M4 分流的模块分组改读 `legacy_module`，任务字典仍带 `mid / module_id` 兼容键并新增 `node / variable_class`。
+- **接收端。** 版本落后的 Spark / M4 快照照收：旧对象 ID 先按对象别名与根前缀折算到骨架节点（`registry_lag.folded_ids`），折算不了的才过滤（`dropped_ids`）；产品目录桥的导航闭包只走骨架包含关系，`catalog_node_ids` 为部件所在链路（`skeleton_parent`），生态与"活动 V2"入口不再存在。`reader_export` 的投影指纹含注册表版本，Spark 与 M4 拉到同一提交后全量重投影一次（接受的成本）。
+- **节点页吸收证据；研究页退役。** 节点页第一问新增研究面板：这个节点及骨架下级的研究问题（挂节点与变量类）、候选证据 / 陈述 / 回答、一跳关系，来自 `/api/research-summary?node=`（服务端按骨架过滤，摘要投影补 `text / status / node / variable_class / legacy_module` 与对象的 `parent / system / chain / stage / aliases`）；公开只读看不到，页面如实说。`research.html` 与三个只测它的浏览器套件（hardware_ecosystems、object_network、product_node_hover）删除，`/research.html?node=` 按旧 ID 折算后 302 到节点页；3D 档案与规格库登记页的旧链接改指节点页。`research-graph.js`、`object-network.js`、`research.css` 暂留给 3D 档案面板，随第 6 步收口。
+- **规范与文档。** 03 别名一句、05 节点页第一问与接口一句、06 消费者一句、SPARK_OPERATIONS 示例版本、M4 交接的版本一致要求改为折算规则。`AUDIT.md` 里"三根梁"的第一根（研究图谱旧轴）自此清零。
+- **给 Spark / M4 的信号。** 拉本提交（图谱与问题表 3.0.0），M4 重导出一次；问题 ID 不变，旧对象 ID 由接收端折算，不需要改读取脚本。
+
+## 2026-09-28：骨架补齐——建设阶段、运行行、时间因子、登记表两列（第 3 步 a）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §3 与 §9 第 3 步的骨架部分落地；图谱 3.0 与问题表改造放到第 3 步 b，与第 4 步节点页吸收证据同批，避免研究页在两步之间失效。
+
+- **建设阶段。** `bom.json` 2.2 登记 `stages` 六段（rights 权利与审批 → grid 并网与外线 → shell 土建与壳 → mep 机电 → it IT 进场 → commissioning 调试与上架），每个部件与每条站点权利加 `stage`：园区变电三件属并网与外线；发电储能、UPS、配电、冷却、消防安防属机电；机柜、服务器、内存、存储、网络与随机的板级供电、芯片级散热属 IT 进场；DCIM 属调试与上架；并网配额属并网与外线，其余权利属权利与审批。分布：并网 3、土建 2、机电 26、IT 31、调试 1，权利 6 另计。dashboard 快照与目标行都带 `stage`。
+- **时间因子。** `tco_factors.json` 1.3.0 加 `time` / `time.build`：工期、排队、审批三条抓取登记，挂 grid、permits 两条权利，喂 `construction_years`、`gate`、`gate_wait_years`、`permit_months`；目标表新增 `F.time.build.duration / queue / permit` 三行。
+- **运行行。** 部件数据类别加 `operation`（变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率），61 个物理部件各一行；`part_fetch.json` 登记 20 个部件的运行出版方（GPU、ASIC、CPU、服务器、整机柜、HBM、DRAM、SSD、HDD、交换机、光模块、NIC、UPS、变压器、燃气轮机、BESS、冷机、CDU、冷板、干冷器），其余沿用模板。目标表 2.1.0：351 行（因子 53、部件 283、软件 2、基型 1、权利 12）。
+- **登记表两列。** 新模块 `knowledge/nodes.py` 派生并回填 `node` 与 `variable_class`：价格库 512（序列归部件 / 权利 / 根；关键词、类别、单位三级判类）、指标表 44（逐条登记在 `INDICATOR_CLASS`，新指标不登记过不了校验）、指标定义 312（与指标同名者同源，其余按名称与单位判类、挂根）、事实库 7849（随其指标）、产品库 175（第一个 bom_part 派生 `node`、`nodes`、`system`、`chain`，内存单列 6 条）、公司库 248（`actor:<id>`，主体）。`manage.py nodes --refresh / --check`，`validate --strict` 核对存储值与派生值一致；录价接口自动带列。四份 schema 同步；01 加"登记表通用"一行；06 补运行行、时间因子与阶段一句。
+- **实施状态。** 知识库（问题、证据、陈述）的节点随图谱 3.0 的问题表挂，放在第 3 步 b；136 个根级序列与 27 个根级指标是首轮派生结果，规则改进只需改 `nodes.py` 并回填一次。
+
+## 2026-09-28：目录与路由、公开只读角色 reader（第 2 步）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §2 与 §9 第 2 步落地。一级导航改为四问的全局视图六项：**数据中心**（`/`，节点页）、**账本**（`ledger.html`）、**爆炸图**（`bom.html`）、**采集**（`supply.html`）、**成果**（`report.html`）、**管理**（`ops.html`）；旧的工作流式六项（总览 / 研究 / 资料 / 任务 / 成果 / 管理）退役。`site-shell.js` 按角色出现：admin 六项、member 五项、intern 只见采集入口（第 5 步并入采集页前落在团队看板）、reader 四项（数据中心、账本、爆炸图、成果）加"登录"。每个应用页用 `data-section` 声明归属的目录项，`interface_manifest.json`（1.3.0）新增 `sections` 与 `public_pages`，单元测试对账页面声明、清单、导航脚本与路由目标是否存在。
+
+**公开只读 reader。** 不登录即是，不建账号（`ROLES` 仍是 admin / member / intern）。白名单在 `src/inresearch/interfaces/public.py`（默认拒绝）：目录三项与账本及其子页（3D、芯片级镜头、规格库入口）、它们读的登记与生成物（dashboard、目标表、因子树、模型、价格库、公司、骨架、站点权利、指标、模块）、只读接口（whoami、report、news、model-assets、product-catalog）、外观与资产。采集页、团队看板、资料收件箱、主体页、事实层、来源登记（`part_fetch.json`）、任务板、供应台账、用户管理与一切写接口不公开：页面回登录页，接口 401。账本给 reader 的是服务端过滤后的公开视图：只留基准预设与三个校准锚引用的预设，地区表只留它们用到的地区，其余键（输入、证据、口径、公式）原样；`/api/whoami` 对匿名返回 `role: reader`。登录的实习生也能看 reader 能看的内容，账本同样是公开视图；实习生原有白名单与首页跳转不变（第 5 步再改）。
+
+**路由与页面。** `routes.json` 删去三条指向已删模型文件的路由与海报、框架海报、烘焙三条路由（页面文件留到第 8 步退役），显式登记 `/data/datacenter_model.json`；单元测试从此要求每条路由的目标文件存在。页内返回链改"← 数据中心"，`doc.html` 默认打开 03 对象与协作，禁止页文案写明实习生与公开只读能看什么。README「页面与目录」与 05 目录表同步（reader 账本"基准预设与校准锚"）。`compare.html` 仍在应用页清单：三个场景套件在用，随第 6 步 3D 收口处理。
+
+**实施状态。** 目录、角色与路由落地；节点页首屏的四个读法入口、采集页读目标表、`/api/targets?mine=1` 与实习生门禁分别在第 4、5 步。
+
+## 2026-09-28：目标行状态四态与 Git 内登记载体（第 1 步）
+
+[提案](reviews/2026-09-28/site/PROPOSAL.md) §5 与 §9 第 1 步落地。目标表 `framework/tco_targets.json`（2.0.0）的 `status` 由三态改四态：`sourced`（已有序列、已录值指标或模型证据）、`assumed`（因子行的模型输入仍为作者假设）、`delivered`（队已交付到 Git 内载体但尚未成为序列）、`needed`（缺）。`delivered` 只认三种 Git 内载体：`data/product_docs_plan.csv` 里 status ≠ todo 且带 doc_id / source_url 的规格登记；`data/event_cards.json` 里带 `origin_pointer` 的事件卡（新闻行、持有方行；文件可选，尚未建立时视为空）；`data/prices.json` 里带 `target_id` 的价格记录（价格库 schema 新增可选的 `target_id`、`variable_class`、`node`）。只在运行库有的不计。生成行另写 `sourced_by`（registry / delivery）与 `team_state`（按 `supply_contract.json` 的 `connection`）；四个待建队名下的行 `next_due` 为空，页面显示"待建队"，不排到期，也不进"30 天内到期"的清单。当前 287 行：已有 36、假设 4、已交付 0、缺 247；待建队名下 168 行。
+
+dashboard 格的状态在四态外多一个 `registered`：格里只有我们自己登记的计数（部件数、产品线数、供应商数、持有方数）时用它，绝不标 `sourced`；`sourced` 只在格里有非计数值时成立。规则文件 `dashboard_rules.json` 新增 `cell_status` 图例；`node.html` 的色条、队卡片（待建队标记）、目标表（状态旁注"人工登记 / 队交付"、到期列的"待建队"）与根节点第四问文案同步。单元测试锁定：状态集合、到期日只对已接入队、`sourced_by` 与状态的对应、`delivered` 必须有 Git 内载体、计数格只能是 `registered`；浏览器测试锁定图例、登记格与"待建队"的渲染。
+
+**实施状态。** 第 1 步只改目标表生成器、dashboard 生成器、规则图例、节点页与测试；事件卡文件、价格记录的 `target_id` 由后续采集接入时写入，本步不造数据。第 2 步（目录与路由、reader 角色）接着做。
+
+## 2026-09-28：唯一逻辑落地——目录、公开只读、状态四态、旧模块降为兼容、骨架补三样（第 0 步：规范先行）
+
+用户对 [目录与页面框架 v3 提案](reviews/2026-09-28/site/PROPOSAL.md) 第 10 节的批复：目录按建议定为 **数据中心 / 账本 / 爆炸图 / 采集 / 成果 / 管理**；开设公开只读角色 reader；目标行状态四态化并要求 Git 内登记载体；15 模块 Finding、十大判断与模块工单降为兼容记录，派工只走目标表；骨架补三样（部件的建设阶段属性与时间因子、部件级运行行、登记表加 `node` 与 `variable_class`）。同时用户已让 Spark 停机听指挥，图谱 3.0 的契约由本仓库定义后交 Spark 与 M4 一次重同步。实施按提案第 9 节八步推进；每步末尾治理刷新、评审摘要复审、本文一条。
+
+**第 0 步（本条）规范先行。** `framework/00_overview.md` 重写为 v3（唯一逻辑一页：一棵树、三级账、四问四段、五类变量、六队、一个模板，以及退役词汇判据），旧文归档 `docs/archive/2026-09-28/framework__00_overview.md`，治理登记 `architecture-20260928` 替代 `architecture-20260906`；`07_product_ecosystems.md` 归档并改为退役转向页，`product-ecosystems-20260928`（源并入 03）替代 `product-ecosystems-20260906`。03 删去"八个生态之一""P/F/V/D/R 共享对象身份""按尺度深入""按 07 九主题""15 模块是维护单元""工单绑定 question_id"等旧段，新增「骨架的三个补充」；05 新增「目录：四问的全局视图」节（六项目录、四个读法入口、四种角色），节点页一节改为五系统 + IT 四子系统 + 站点权利（折叠 6 行、展开 10 行、`system:` ID）并写入格级诚实规则五条，对象关系图改按骨架身份；06 的"八个产品生态 + P/F/V/D/R + T01–T09"改为"骨架节点 + 五类变量"，新增「目标行状态四态与 Git 内登记载体」节，首页措辞改根节点；01 的四轴改为骨架节点 + 五类变量；CURRENT 目录表新增骨架、统一模型与 dashboard 两行并去掉 07。`dashboard_rules.json` 的级别键 `ecosystem`→`system`、`by_ecosystem`→`by_system`，注释改五加四，加 `honesty` 五条；`dashboard.py` 与 `node.html` 的节点 ID `ecosystem:`→`system:`、快照键 `ecosystems`→`system_nodes`，去掉从旧图谱取的 `graph_name`（旧生态名不再出现在快照与页面）；因子树标题与目标表注释去掉"TCO"。`known_retired_patterns` 暂不加新模式：治理扫描覆盖全部现行文件，加了会在清零前全站报错，留到第 8 步清零后再加。
+
+**实施状态。** 本步只改规范、登记与词汇；目录（site-shell）、reader 角色、状态四态的代码、图谱 3.0、页面合并与退役分别在第 2、2、1、3、4–8 步落地，落地前旧页面与旧接口照常可用。`verification_contract.json` 需评审者补两条新政策行并更新被改规范的摘要。
 
 ## 2026-09-28：接收端容忍图谱版本落后
 
@@ -32,7 +115,7 @@ Spark 手动发布被网站拒收（HTTP 400 `reader graph_version does not matc
 
 ## 2026-09-28：三步收口——模型输入登记变量类、部件级目标补来源与日历、账本
 
-用户要求把五步计划的三个缺口做完。(1) `data/datacenter_tco_model.json` 的 47 个输入在 evidence 里各登记 `variable_class`（构成 6、运行 9、价格 22、时间 6、主体 4）；目标清单生成器按登记把部件级与权利级目标行连到它们能喂的输入，生成器里靠键名判断的规则删除。(2) 新文件 `framework/part_fetch.json` 为 61 个物理部件的规格、价格、交期（非成熟部件再加新闻）各登记一条"出版方类别 × 实例 × 日历 × 机制 × 队"，软件与基型也登记；生成器用它覆盖模板值并标 `curated`，校验检查部件 ID、队与必填项，单元测试要求每个物理部件的三行都已登记；登记的是可命名的公开出版方（厂商产品页、财报电话会、TrendForce、LightCounting、Dell'Oro、BLS PPI、Wood Mackenzie 等），不是已抓取的证据，status 不因登记而变。(3) 新页面 `web/pages/ledger.html`（账本）成为根节点价格列的唯一展开：桥表逐条对齐三个模型基准情景共用的假设（今天 PUE、电价、IT 负载率等存在口径相同而数不同的项，页面标红），三个视图承载三个计算器，只加载正在看的视图；三个计算器页面本身不动。架构图 `docs/reviews/2026-09-28/architecture/ARCHITECTURE.svg` 画出名词轴（一棵树）、描述轴（五类变量）、数据轴（四段）与六队，以及每个文件在图上的位置。**未决**：三个模型的不一致假设由用户逐条裁定后统一；三者合成一套计算。
+用户要求把五步计划的三个缺口做完。(1) `data/datacenter_tco_model.json` 的 47 个输入在 evidence 里各登记 `variable_class`（构成 6、运行 9、价格 22、时间 6、主体 4）；目标清单生成器按登记把部件级与权利级目标行连到它们能喂的输入，生成器里靠键名判断的规则删除。(2) 新文件 `framework/part_fetch.json` 为 61 个物理部件的规格、价格、交期（非成熟部件再加新闻）各登记一条"出版方类别 × 实例 × 日历 × 机制 × 队"，软件与基型也登记；生成器用它覆盖模板值并标 `curated`，校验检查部件 ID、队与必填项，单元测试要求每个物理部件的三行都已登记；登记的是可命名的公开出版方（厂商产品页、财报电话会、TrendForce、LightCounting、Dell'Oro、BLS PPI、Wood Mackenzie 等），不是已抓取的证据，status 不因登记而变。(3) 新页面 `web/pages/ledger.html`（账本）成为根节点价格列的唯一展开：桥表逐条对齐三个模型基准情景共用的假设（今天 PUE、电价、IT 负载率等存在口径相同而数不同的项，页面标红），三个视图承载三个计算器，只加载正在看的视图；三个计算器页面本身不动。架构图 `docs/reviews/2026-09-28/architecture/ARCHITECTURE.svg` 画出名词轴（一棵树）、描述轴（五类变量）、数据轴（四段）与六队，以及每个文件在图上的位置。**未决**：三个模型的不一致假设由用户逐条裁定后统一；三者合成一套计算。 **替代注（2026-09-28 晚）**：本条的"三个视图承载三个计算器、三个计算器页面本身不动"已被同日「统一经济模型 v3」条替代：只有一个模型与一个账本页。
 
 ## 2026-09-28：首页退役——新闻与派工面板迁入根节点
 
@@ -40,7 +123,7 @@ Spark 手动发布被网站拒收（HTTP 400 `reader graph_version does not matc
 
 ## 2026-09-28：dashboard 采用"一棵树、五列、四问"，节点页与快照上线
 
-用户采纳 [dashboard 提案](reviews/2026-09-28/dashboard/PROPOSAL.md) 并批复四问：三级账放在五列之上，回报是账的输出不是一列；站点权利是矩阵第九行；生态的时间列取部件交期最大值（关键路径）；经济模型、成本、TCO 三个计算器本轮不动，从根节点价格列链入。落地：`framework/dashboard_rules.json` 登记每级节点每列的取值来源（model_input / model_output / series / indicator / 对子节点的 count、max、sum_share）；`python3 manage.py dashboard --refresh` 生成 `data/dashboard.json`；`knowledge.economics` 按经济模型基准情景复算三级账，单元测试以预设登记的校验值（收入 22.9 亿、NOPAT 12.1 亿、ROIC 31%）为锚；`web/pages/node.html` 一个模板覆盖根、生态、部件、权利四种节点，首页矩阵 9 行 × 5 列。今天矩阵 45 格里 26 格有值，其余为缺——这是采集任务书，不是页面缺陷。`index.html` 先保留新闻与派工面板并加入口指向节点页；同日稍后退役（见上一条）。05 界面规范登记节点页；浏览器套件加 `dashboard`。**未决**：三个计算器合并为根节点价格列的一个展开；矩阵灰格反推采集优先级回写目标表。
+用户采纳 [dashboard 提案](reviews/2026-09-28/dashboard/PROPOSAL.md) 并批复四问：三级账放在五列之上，回报是账的输出不是一列；站点权利是矩阵第九行；生态的时间列取部件交期最大值（关键路径）；经济模型、成本、TCO 三个计算器本轮不动，从根节点价格列链入。落地：`framework/dashboard_rules.json` 登记每级节点每列的取值来源（model_input / model_output / series / indicator / 对子节点的 count、max、sum_share）；`python3 manage.py dashboard --refresh` 生成 `data/dashboard.json`；`knowledge.economics` 按经济模型基准情景复算三级账，单元测试以预设登记的校验值（收入 22.9 亿、NOPAT 12.1 亿、ROIC 31%）为锚；`web/pages/node.html` 一个模板覆盖根、生态、部件、权利四种节点，首页矩阵 9 行 × 5 列。今天矩阵 45 格里 26 格有值，其余为缺——这是采集任务书，不是页面缺陷。`index.html` 先保留新闻与派工面板并加入口指向节点页；同日稍后退役（见上一条）。05 界面规范登记节点页；浏览器套件加 `dashboard`。**未决**：三个计算器合并为根节点价格列的一个展开；矩阵灰格反推采集优先级回写目标表。 **替代注（2026-09-28 晚）**：本条的"站点权利是矩阵第九行""生态"表述已被同日「一个骨架」条与「唯一逻辑落地」条替代：矩阵是五系统 + IT 四子系统 + 站点权利，折叠 6 行、展开 10 行，节点 ID 用 `system:`。
 
 ## 2026-09-28：目标清单改为生成——因子抓取条目 + 部件 × 数据类别 + 权利 × 变量类
 
@@ -54,13 +137,13 @@ Spark 手动发布被网站拒收（HTTP 400 `reader graph_version does not matc
 
 用户确认：经济模型的"五层"没有层级、先后、时间或递推关系，是描述同一对象的五类变量（构成、运行、价格、时间、主体），改称**五类变量**；`bom.json` 的 L1–L5（园区、建筑、机房、机柜、部件）是"装在哪"的五个尺度，不再称"层"，以消除同名冲突。改名落在 06 采集规范、CURRENT、03 对象与协作、`tco_targets.json` 的标题与说明；指导快照 `model-governance-2026-09-27` 不改，`layer`、`layer_tags` 等 JSON 键作为兼容名保留，随 feed 合同升版更名。
 
-用户同时采纳骨架方向：根是数据中心，第一层按系统（生态）分，主题是每个部件上的九列而不是树的一层，因子从公式往下推，目标表由"因子输入 × 部件 × 数据类别"生成而非手写。第 2 步——按"拆到有自己的价格、供应商名单、交期为止；普通紧固件合并，关键稀缺件不合并"重切 46 个部件——形成提案 [docs/reviews/2026-09-28/bom-recut/PROPOSAL.md](reviews/2026-09-28/bom-recut/PROPOSAL.md)（46 → 58 部件 + 1 软件条目 + 6 站点权利 + 1 设施基型），八个问题已于同日批复并执行；目标表同日改为生成（见上两条）。
+用户同时采纳骨架方向：根是数据中心，第一层按系统（生态）分，主题是每个部件上的九列而不是树的一层，因子从公式往下推，目标表由"因子输入 × 部件 × 数据类别"生成而非手写。第 2 步——按"拆到有自己的价格、供应商名单、交期为止；普通紧固件合并，关键稀缺件不合并"重切 46 个部件——形成提案 [docs/reviews/2026-09-28/bom-recut/PROPOSAL.md](reviews/2026-09-28/bom-recut/PROPOSAL.md)（46 → 58 部件 + 1 软件条目 + 6 站点权利 + 1 设施基型），八个问题已于同日批复并执行；目标表同日改为生成（见上两条）。 **替代注（2026-09-28 晚）**："第一层按系统（生态）分，主题是每个部件上的九列"已被「一个骨架」条替代：第一层是五个系统，九主题退役，部件上的列是五类变量。
 
 ## 2026-09-28：六队三仓库采用，inresearch 本身不爬取，SEC/GPU 采集器退役
 
 用户采用采集侧的结论：六个采集分队按来源机制划分（fetchspec、inews.today、fetchstat、fetchfilings、fetchreports、fetchquotes），建队顺序 fetchstat → fetchfilings → fetchreports → fetchquotes；仓库先按三个起步，即保留 `inews.today` 与 `fetchspec`，新建一个 `fetchdata` 承载四个分队目录，不够再拆。inresearch.ai 本身不爬取：`adapters.acquisition` 删除 `sec`、`gpu` 采集函数与 CLI 子命令，退役前实现由 Git 历史保留并作为 fetchfilings、fetchquotes 的种子迁入 fetchdata；采集台账中历史 `sec`/`gpu` 行只读保留，运维页对应按钮移除。`supply_contract.json` 升 1.4：providers 改为六队加本地上传，登记三仓库、九类能力到六队的映射、来源归属规则（一个来源只属一个队、一台主执行机、一个日历；inews 只给事件卡与原件指针，不抓原件）。06 采集规范新增"六队、三仓库与来源归属"与"inews 两条线"两节，五页指导文件登记为已采用的设计快照。基准版本升 2026.09.28.30。`fetchdata` 仓库尚未创建，四个分队在契约中保持 `proposed`，启动说明见 `docs/handoff/fetchdata-bootstrap.md`。
 
-## 2026-09-28：五层目标清单成为六队唯一任务来源
+## 2026-09-28：五类变量目标清单成为六队唯一任务来源（原题"五层目标清单"已退役，同日改称五类变量）
 
 新建 `framework/tco_targets.json`（43 行目标），每行登记层、因子、模型输入、已有与计划序列、数据类别（参照 / 观测 / 材料）、披露类型、出版方类别、当前实例、抓取机制、主责队、主执行机、日历、下次到期、状态与敏感度序号。单元测试校验：引用的因子、输入、序列、分队、执行机都存在；注册下载与浏览器页面必须落在 macmini；inews 只产材料类事件卡；TCO 模型全部非用户输入都有目标；目标状态不比模型 evidence 乐观。清单经 `/data/tco_targets.json` 暴露，供供应中心与到期表后续读取。近期任务里的"tco.html 缺口表加最新时点 / 下次更新"改为读本清单的 `next_due`。
 

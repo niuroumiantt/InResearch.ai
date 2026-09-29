@@ -84,8 +84,7 @@
     <a href="doc.html?f=framework/00_overview.md">框架总览</a> ·
     <a href="doc.html?f=framework/01_data_standards.md">口径手册</a> ·
     <a href="doc.html?f=framework/02_knowledge_format.md">知识格式</a> ·
-    <a href="doc.html?f=reports/verify_queue.md">核验队列</a> ·
-    <a href="doc.html?f=reports/daily_brief.md">今日简报</a></div>
+    <a href="doc.html?f=reports/verify_queue.md">核验队列</a></div>
 
   <section id="usersSec" style="display:none">
   <h2>用户与权限 <span style="font-weight:400;font-size:12px;color:var(--muted)">仅 admin 可见 · 无注册，只能在这里加人</span></h2>
@@ -109,7 +108,7 @@
   </div>
   <div id="usersMsg" style="font-size:12.5px;margin-top:8px;min-height:1.2em"></div>
   <div style="font-size:11.5px;color:var(--muted);margin-top:4px">
-    角色说明：intern 只能访问工单板并认领工单；member 可看全部数据、录价格、派工；admin 另可跑管线任务与管理用户。
+    角色说明：reader 不登录即可看数据中心、账本基准、爆炸图、成果；intern 只见采集页的目标表与研究问题任务，认领分配给自己的行；member 可看全部数据、录价格、派工；admin 另可跑管线任务与管理用户。
     改名后旧名的登录立即失效，须用新名重登；最后一个 admin 不可降级或删除。</div>
   </section>
 
@@ -118,9 +117,11 @@
   <div class="tasks" id="tasks"></div>
   <pre class="console" id="console">后台就绪。点击任务运行，输出显示在这里；每个任务显示上次运行时间。</pre>
 
-  <h2>手动录入 — 价格 / 事件（渠道信息与季报数据的固定入口）</h2>
+  <h2>录价 — 按目标行与变量类（渠道信息与季报数据的固定入口）</h2>
+  <p class="meta">node 与 variable_class 由服务端从骨架派生，不用填；填了目标行 ID 就算队交付到 Git 内载体（目标行进入 delivered）。</p>
   <form class="pform" id="pform" onsubmit="return false">
     <div><label>序列 series_id *</label><input name="series_id" list="serieslist" placeholder="如 price-per-mw-operational" required><datalist id="serieslist"></datalist></div>
+    <div><label>目标行 target_id（可选）</label><input name="target_id" list="targetlist" placeholder="如 P.transformer.price"><datalist id="targetlist"></datalist></div>
     <div><label>类目 *</label><select name="category">
       <option value="asset-deal">asset-deal 资产成交</option><option value="market">market 市场指标</option>
       <option value="rent">rent 租金</option><option value="gpu-rental">gpu-rental 算力租价</option>
@@ -143,35 +144,13 @@
     <div class="pmsg full" id="pmsg"></div>
   </form>
 
-  <div class="stats" id="stats" style="margin-top:24px"></div>
+  <h2>生成物新鲜度</h2>
+  <p class="meta">规则表进评审，生成物由命令重建并被 <code>--check</code> 与单元测试守住；这里只看各生成物的版本与时点。</p>
+  <div class="tablewrap"><table id="freshness"></table></div>
+  <div class="stats" id="stats" style="margin-top:16px"></div>
 
-  <section class="dc-news" data-datacenter-news aria-label="数据中心新闻"></section>
-  <div id="briefSection" style="display:none">
-    <h2>历史简报 <span id="briefDate" style="font-weight:400;color:var(--muted);font-size:13px"></span></h2>
-    <div class="brief-grid">
-      <div class="brief-col">
-        <h3>🏛️ SEC 文件（近7天）</h3>
-        <div id="secFilings"></div>
-      </div>
-      <div class="brief-col">
-        <h3>✅ 核验队列 <span class="bmeta" id="verifyMeta"></span></h3>
-        <div id="verifyItems"></div>
-      </div>
-    </div>
-  </div>
-
-  <h2>项目漏斗（九级，按 IT 容量 MW 聚合，仅 L8+ 计入"现有规模"）</h2>
-  <div class="funnel" id="funnel"></div>
-  <div class="note">口径：capacity_it_mw（含 by_status 拆分）；集群级/未填容量的记录不计入。规则见 framework/01_data_standards.md</div>
-
-  <h2>监测仪表盘（L4 · 红黄绿）</h2>
-  <div class="tablewrap"><table id="indicators"></table></div>
-
-  <h2>研究模块（L2 · 15 模块）</h2>
-  <div class="modules" id="modules"></div>
-
-  <h2>项目库（L0）</h2>
-  <div class="tablewrap"><table id="projects"></table></div>
+  <h2>工具入口</h2>
+  <p class="meta"><a href="doc.html?f=framework/CURRENT.md">现行基准</a> · <a href="doc.html?f=docs/REPOSITORY_REGISTER.md">在册清单</a> · <a href="doc.html?f=docs/DECISIONS.md">决策记录</a> · <a href="supply.html#targets">目标表与派工</a> · <a href="product-catalog.html#registry">产品资料登记覆盖</a> · <a href="report.html">成果快照</a> · <a href="doc.html?f=reports/verify_queue.md">核验队列</a></p>
 
   <div class="note" style="margin-top:24px">
     数据文件位于 <code>data/</code>，框架文件位于 <code>framework/</code>。校验：<code>python3 manage.py validate --strict</code>
@@ -248,134 +227,47 @@ function removeU(name){
 initWho();
 </script>
 <script>
-const DIM_NAMES = { physical: "物理", capital: "资本", economics: "经济学", cross: "横切", synthesis: "综合" };
-
 async function loadJSON(path) {
   const r = await fetch(path + "?t=" + Date.now(), { cache: "no-store" });
   if (!r.ok) throw new Error(path + " → HTTP " + r.status);
   return r.json();
 }
-
-function indicatorStatus(ind) {
-  if (ind.value === null || ind.value === undefined) return ["n", "待录入"];
-  const { direction, yellow, red, value } = ind;
-  if (direction === "info" || yellow === null) return ["g", "跟踪中"];
-  const worse = direction === "above" ? (v, t) => v >= t : (v, t) => v <= t;
-  if (red !== null && worse(value, red)) return ["r", "红"];
-  if (worse(value, yellow)) return ["y", "黄"];
-  return ["g", "绿"];
-}
-
-function projectCapacity(p) {
-  const by = {};
-  if (p.capacity_it_mw_by_status) Object.assign(by, p.capacity_it_mw_by_status);
-  else if (p.capacity_it_mw) by[p.status] = p.capacity_it_mw;
-  return by;
-}
-
+/* 生成物新鲜度：各登记表与生成物的版本、时点与条数（不做聚合，不填估值） */
 (async () => {
   try {
-    const [mods, inds, projects, companies, prices, contracts] = await Promise.all([
-      loadJSON("framework/modules.json"), loadJSON("framework/indicators.json"),
-      loadJSON("data/projects.json"), loadJSON("data/companies.json"),
-      loadJSON("data/prices.json"), loadJSON("data/contracts.json"),
-    ]);
-    document.getElementById("updated").textContent = "框架 v" + mods.version + " · " + mods.updated;
-
-    // 今日信号（brief.json 由 src/inresearch/adapters/historical_brief.py 生成；没有则隐藏该区块）
-    try {
-      const brief = await loadJSON("data/brief.json");
-      document.getElementById("briefSection").style.display = "";
-      document.getElementById("briefDate").textContent = brief.date + "（" + (brief.generated || "").slice(11, 16) + " 生成）";
-      document.getElementById("secFilings").innerHTML = brief.sec.slice(0, 8).map(f =>
-        `<div class="sig"><span class="ent">${f.name}</span> <span class="cnt">${f.form} · ${f.date}</span>` +
-        `<a href="${f.url}" target="_blank">查看文件</a></div>`).join("") || '<div class="note">近 7 天无新文件</div>';
-      document.getElementById("verifyMeta").textContent = `P1 ${brief.verify.p1} 条 · P2 ${brief.verify.p2} 条`;
-      document.getElementById("verifyItems").innerHTML = brief.verify.items.slice(0, 8).map(q =>
-        `<div class="sig"><span class="ent">${q.table} / ${q.id}</span><div class="cnt">${q.reason}</div></div>`).join("")
-        || '<div class="note">P1 清零 🎉</div>';
-    } catch (e) { /* brief.json 缺失时隐藏区块 */ }
-
-    // 统计行
-    let totalFindings = 0;
-    try {
-      const rs = (await loadJSON("data/brief.json")).research || {};
-      totalFindings = Object.values(rs).reduce((a, s) => a + (s.findings || 0), 0);
-    } catch (e) {}
-    const stats = [
-      [totalFindings, "研究结论"], [projects.records.length, "项目"],
-      [companies.records.length, "公司"], [prices.records.length, "价格点"],
-      [contracts.records.length, "合同"], [mods.modules.length, "模块"],
-      [inds.indicators.length, "监测指标"],
+    const [dash, targets, graph, questions, model, prices, companies, products, bom] = await Promise.all([
+      loadJSON("data/dashboard.json"), loadJSON("framework/tco_targets.json"), loadJSON("framework/research_graph.json"),
+      loadJSON("framework/research_questions.json"), loadJSON("data/datacenter_model.json"), loadJSON("data/prices.json"),
+      loadJSON("data/companies.json"), loadJSON("data/products.json"), loadJSON("framework/bom.json")]);
+    document.getElementById("updated").textContent = `图谱 ${graph.version} · 目标表 ${targets.version} · 骨架 ${bom.version}`;
+    const rows = [
+      ["dashboard 快照", "data/dashboard.json", dash.version, dash.updated, `${dash.system_nodes.length} 系统 · ${Object.keys(dash.parts).length} 部件`, "python3 manage.py dashboard --refresh"],
+      ["目标表", "framework/tco_targets.json", targets.version, targets.updated, `${targets.counts.total} 行（缺 ${targets.counts.by_status.needed}）`, "python3 manage.py targets --refresh"],
+      ["研究图谱", "framework/research_graph.json", graph.version, graph.updated, `${graph.objects.length} 对象 · ${graph.relations.length} 关系`, "python3 manage.py graph --refresh"],
+      ["问题表", "framework/research_questions.json", questions.version, questions.updated, `${questions.records.length} 条`, "python3 manage.py graph --refresh"],
+      ["统一经济模型", "data/datacenter_model.json", model.schema_version, model.as_of, `${Object.keys(model.inputs).length} 输入 · ${Object.keys(model.presets).length} 预设`, "评审后手改"],
+      ["骨架", "framework/bom.json", bom.version, bom.updated, `${bom.parts.length} 条目 · ${bom.stages.length} 段`, "评审后手改"],
     ];
-    document.getElementById("stats").innerHTML = stats.map(
-      ([n, l]) => `<div class="stat"><div class="num">${n}</div><div class="lbl">${l}</div></div>`).join("");
-
-    // 漏斗
-    const funnel = Object.fromEntries(Array.from({length: 9}, (_, i) => ["L" + (i + 1), 0]));
-    projects.records.forEach(p => {
-      const by = projectCapacity(p);
-      for (const [lv, mw] of Object.entries(by)) if (funnel[lv] !== undefined) funnel[lv] += mw;
-    });
-    document.getElementById("funnel").innerHTML = Object.entries(funnel).map(
-      ([lv, mw]) => `<div class="fseg"><div class="lv">${lv}</div><div class="mw">${mw ? mw.toLocaleString() : "–"}</div></div>`).join("");
-
-    // 指标表
-    const it = ['<tr><th></th><th>指标</th><th>模块</th><th>当前值</th><th>时点</th><th>阈值(黄/红)</th><th>频率</th></tr>'];
-    inds.indicators.forEach(ind => {
-      const [cls, txt] = indicatorStatus(ind);
-      it.push(`<tr><td><span class="dot ${cls}"></span>${txt}</td><td>${ind.name}</td><td>${ind.module}</td>` +
-        `<td>${ind.value ?? "—"} ${ind.value != null ? ind.unit : ""}</td><td>${ind.as_of ?? "—"}</td>` +
-        `<td>${ind.yellow ?? "—"} / ${ind.red ?? "—"}</td><td>${ind.freq}</td></tr>`);
-    });
-    document.getElementById("indicators").innerHTML = it.join("");
-
-    // 模块卡片（研究文档状态来自 brief.research，historical-brief 生成）
-    let rstats = {};
-    try { rstats = (await loadJSON("data/brief.json")).research || {}; } catch (e) {}
-    const dimOf = {};
-    for (const [dim, ids] of Object.entries(mods.dimensions || {})) ids.forEach(id => dimOf[id] = dim);
-    document.getElementById("modules").innerHTML = mods.modules.map(m => {
-      const rs = rstats[m.id];
-      const researchPath = m.research || `research/${m.id}.md`;
-      const link = researchPath
-        ? `<a class="doclink" href="doc.html?f=${researchPath}">📄 ${rs ? rs.findings + " 条结论" : "研究文档"}${rs && rs.needs_review ? " ⚠️" + rs.needs_review : ""}</a>`
-        : `<span class="doclink muted">待迁入</span>`;
-      return `<div class="mod"><span class="id">${m.id}</span><span class="dim-tag">${DIM_NAMES[dimOf[m.id]] || ""}</span>` + link +
-        `<div class="nm">${m.name}</div><div class="meta">${(m.beats || []).length} 个信源跑口 · ${(m.questions || []).length} 个模块问题` +
-        `</div></div>`;
-    }).join("");
-
-    // 项目表
-    const STATUS_COLOR = lv => +lv.slice(1) >= 8 ? "var(--green)" : +lv.slice(1) >= 6 ? "var(--yellow)" : "var(--gray)";
-    const pt = ['<tr><th>项目</th><th>地点</th><th>状态</th><th>IT容量(MW)</th><th>类型</th><th>核验日期</th></tr>'];
-    projects.records.forEach(p => {
-      const by = projectCapacity(p);
-      const capStr = Object.entries(by).map(([l, m]) => `${l}:${m}`).join(" ") || "—";
-      pt.push(`<tr><td>${p.name}${p.disputed ? " ⚠️" : ""}</td><td>${p.location}</td>` +
-        `<td><span class="badge" style="background:${STATUS_COLOR(p.status)}">${p.status}</span></td>` +
-        `<td>${capStr}</td><td>${p.type}</td><td>${p.verified_date}</td></tr>`);
-    });
-    document.getElementById("projects").innerHTML = pt.join("");
+    document.getElementById("freshness").innerHTML = '<tr><th>生成物 / 登记</th><th>文件</th><th>版本</th><th>时点</th><th>规模</th><th>重建</th></tr>' +
+      rows.map(r => `<tr><td>${r[0]}</td><td><code>${r[1]}</code></td><td>${r[2] ?? "—"}</td><td>${r[3] ?? "—"}</td><td>${r[4]}</td><td><code>${r[5]}</code></td></tr>`).join("");
+    const stats = [[prices.records.length, "价格点"], [companies.records.length, "主体"], [products.records.length, "产品线"], [bom.parts.length, "部件条目"], [targets.counts.total, "目标行"]];
+    document.getElementById("stats").innerHTML = stats.map(([n, l]) => `<div class="stat"><div class="num">${n}</div><div class="lbl">${l}</div></div>`).join("");
   } catch (e) {
-    document.getElementById("error").innerHTML = `<div class="err">加载失败：${e.message}<br>请刷新页面；若仍失败，请保留错误信息。此页需要应用服务提供数据与管理 API。</div>`;
+    document.getElementById("error").innerHTML = `<div class="err">加载失败：${e.message}<br>请刷新页面；若仍失败，请保留错误信息。此页需要应用服务提供数据与管理接口。</div>`;
   }
 })();
 </script>
 <script>
 // ── 管理后台：采集控制台 + 手动录入 ──
 const TASKS = [
-  ["collect", "兼容简报", "仅汇总历史缓存，不触发采集"],
   ["news", "inews 采集状态", "Spark 新闻线索台账；不是全文"],
   ["indicators", "指标回填", "库内数据→指标值"],
   ["verify", "核验队列", "生成待核清单"],
   ["queue", "精读队列", "已打分−已消化，该读什么"],
   ["reader", "Spark 阅读状态", "读取已配置的 Spark 阅读服务快照与队列状态"],
   ["validate", "数据校验", "口径规则把关"],
-  ["export", "导出报告", "全量 md+docx"],
+  ["export", "导出成果快照", "四问快照 md + json"],
   ["map", "Top10 地图", "html+pdf（PDF 仅本机，服务器缺渲染依赖）"],
-  ["workorder", "工单队列", "声明−现状，每模块下一步"],
-  ["blindspot", "盲区体检", "库里有但分类器看不见的材料"],
   ["intake", "投递机检", "成员投递三档分流（A 人批/B 抽查/C 自动）"],
   ["facts", "事实层校验", "口径可比性判定"],
 ];
@@ -413,11 +305,14 @@ async function runTask(id) {
     const prices = await (await fetch("data/prices.json?t=" + Date.now())).json();
     document.getElementById("serieslist").innerHTML =
       [...new Set(prices.records.map(r => r.series_id))].map(s => `<option value="${s}">`).join("");
+    const targets = await (await fetch("framework/tco_targets.json?t=" + Date.now())).json();
+    document.getElementById("targetlist").innerHTML = targets.targets.filter(t => t.data_class === "observation").map(t => `<option value="${t.id}">${t.disclosure_type}</option>`).join("");
   } catch (e) {}
 })();
 document.getElementById("psubmit").onclick = async () => {
   const f = document.getElementById("pform");
   const rec = Object.fromEntries(new FormData(f).entries());
+  if (!rec.target_id) delete rec.target_id;
   const msg = document.getElementById("pmsg");
   msg.textContent = "提交中…"; msg.style.color = "var(--muted)";
   try {

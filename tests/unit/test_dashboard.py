@@ -35,6 +35,17 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(self.doc['root']['account']['scenario'], self.model['presets']['baseline']['label'])
         self.assertEqual(set(rows), {'cost_per_mw', 'revenue_per_mw', 'roic'}, '三级：成本、收入、回报；回报不是一列')
 
+    def test_root_readings_and_account_evidence(self):
+        readings = self.doc['root']['account']['readings']
+        self.assertEqual([r['id'] for r in readings], ['build', 'compose', 'operate', 'earn'])
+        for r in readings:
+            self.assertTrue(r['href'] and r['label'] and r['hint'], r['id'])
+        for row in self.doc['root']['account']['rows']:
+            ev = row['evidence']
+            self.assertEqual(set(ev), {'sourced', 'assumed', 'input', 'inputs'}, row['key'])
+            self.assertGreater(ev['inputs'], 0, row['key'])
+            self.assertLessEqual(ev['sourced'] + ev['assumed'] + ev['input'], ev['inputs'], row['key'])
+
     def test_rules_reference_existing_sources(self):
         for col, specs in self.rules['root']['cells'].items():
             self.assertIn(col, self.rules['columns'])
@@ -45,10 +56,10 @@ class DashboardTests(unittest.TestCase):
                     self.assertIn(spec['key'], economics.compute(self.model['assumptions'], self.model), spec)
                 elif spec['source'] == 'indicator':
                     self.assertIn(spec['key'], self.indicators, spec)
-        for sys_id, spec in self.rules['ecosystem']['2']['by_ecosystem'].items():
+        for sys_id, spec in self.rules['system']['2']['by_system'].items():
             self.assertIn(sys_id, self.bom['systems'])
             self.assertIn(spec['series'], self.series, sys_id)
-        for sys_id, spec in self.rules['ecosystem']['3']['by_ecosystem'].items():
+        for sys_id, spec in self.rules['system']['3']['by_system'].items():
             self.assertIn(sys_id, self.bom['systems'])
             self.assertIn(spec['basis'], self.model['assumptions'])
             if 'share_series' in spec:
@@ -58,23 +69,34 @@ class DashboardTests(unittest.TestCase):
 
     def test_tree_and_matrix_shape(self):
         leaf = [s for s, d in self.bom['systems'].items() if not any(x.get('parent') == s for x in self.bom['systems'].values())]
-        self.assertEqual(sorted(e['id'] for e in self.doc['ecosystems']), sorted(leaf))
-        self.assertEqual([e['id'] for e in self.doc['ecosystems']][:3], ['facility', 'power', 'thermal'], '五个系统的骨架顺序')
+        self.assertEqual(sorted(e['id'] for e in self.doc['system_nodes']), sorted(leaf))
+        self.assertEqual([e['id'] for e in self.doc['system_nodes']][:3], ['facility', 'power', 'thermal'], '五个系统的骨架顺序')
         self.assertEqual([p['id'] for p in self.doc['parent_systems']], ['it'])
         self.assertEqual(self.doc['parent_systems'][0]['children'], ['compute', 'memory', 'storage', 'network'])
-        power = next(e for e in self.doc['ecosystems'] if e['id'] == 'power')
-        self.assertEqual([p['chain'] for p in power['parts']][:3], ['电网接入', '变电', '变电'], '电力生态的部件按链路从电网走到板级')
+        power = next(e for e in self.doc['system_nodes'] if e['id'] == 'power')
+        self.assertEqual([p['chain'] for p in power['parts']][:3], ['电网接入', '变电', '变电'], '电力系统的部件按链路从电网走到板级')
         self.assertEqual(self.doc['site']['id'], 'site')
-        for row in self.doc['ecosystems'] + [self.doc['site']]:
+        for row in self.doc['system_nodes'] + [self.doc['site']]:
             self.assertEqual(set(row['cells']), {'1', '2', '3', '4', '5'}, row['id'])
             for c in row['cells'].values():
-                self.assertIn(c['status'], ('sourced', 'assumed', 'needed'))
-                self.assertEqual(c['status'] == 'sourced', any(i['value'] is not None for i in c['items']), row['id'])
+                self.assertIn(c['status'], ('sourced', 'assumed', 'delivered', 'registered', 'needed'))
+                self.assertEqual(c['status'] == 'sourced', any(i['value'] is not None and i.get('kind') != 'count' for i in c['items']),
+                                 f"{row['id']}: sourced only for non-count values")
+                self.assertEqual(set(c['coverage']), {'sourced', 'assumed', 'delivered', 'needed'}, row['id'])
+        # honesty: the part count we registered ourselves is 'registered', never 'sourced'
+        self.assertEqual(self.doc['system_nodes'][0]['cells']['1']['status'], 'registered')
+        self.assertEqual(set(self.doc['root']['targets']), {'sourced', 'assumed', 'delivered', 'needed', 'not_connected'})
+        self.assertEqual(set(self.rules['cell_status']), {'sourced', 'assumed', 'delivered', 'registered', 'needed'})
         self.assertEqual(set(self.doc['parts']), {p['id'] for p in self.bom['parts']})
+        self.assertEqual([s['id'] for s in self.doc['stages']], [s['id'] for s in self.bom['stages']], '建设阶段随骨架进快照')
+        for p in self.doc['parts'].values():
+            self.assertIn(p['stage'], {s['id'] for s in self.bom['stages']}, p['id'])
+        for r in self.doc['site']['rights']:
+            self.assertIn(r['stage'], {s['id'] for s in self.bom['stages']}, r['id'])
         self.assertEqual(set(self.doc['rights']), {r['id'] for r in load('framework/site_rights.json')['rights']})
 
     def test_critical_path_is_max_part_lead_time(self):
-        power = next(e for e in self.doc['ecosystems'] if e['id'] == 'power')
+        power = next(e for e in self.doc['system_nodes'] if e['id'] == 'power')
         lead = [i['value'] for p in power['parts'] for i in self.doc['parts'][p['id']]['cells']['4']['items'] if isinstance(i['value'], (int, float))]
         self.assertTrue(lead)
         self.assertEqual(power['cells']['4']['items'][0]['value'], max(lead))

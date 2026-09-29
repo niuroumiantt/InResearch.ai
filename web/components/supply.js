@@ -2,8 +2,10 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const escape = value => String(value ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
-  const allowedTabs = new Set(['overview','coverage','resources','providers','demands','deliveries']);
-  let data, tab = 'overview', selected = 'fetchspec', admin = false, generation = 0, pending, saving = false;
+  const allowedTabs = new Set(['targets','tasks','inbox','pilot','overview','coverage','resources','providers','demands','deliveries']);
+  const panelTabs = new Set(['targets','tasks','inbox','pilot']);
+  const internTabs = new Set(['targets','tasks']);
+  let data, tab = 'targets', selected = 'fetchspec', admin = false, role = 'member', generation = 0, pending, saving = false;
   const kinds = {existing_repo:'已有 repo · 接收已上线',existing_feed:'已有新闻接口 · 任务未接入',existing_channel:'已有上传渠道 · 待统一接入',proposed:'能力已登记 · repo 待规划'};
   const execution = task => task.execution_mode === 'continuous' ? '持续采集 · AWS' : task.execution_mode === 'assisted' ? '人工辅助 · macmini' : '旧计划 · 尚未指定执行机';
   const providerOptions = () => data.catalog.providers.map(p => `<option value="${escape(p.id)}">${escape(p.name)} · ${escape(p.capability)}</option>`).join('');
@@ -11,8 +13,16 @@
   const plan = () => data.catalog.operating_plan;
   const taskCounts = () => ({planned:data.tasks.filter(t=>t.status==='planned').length, aws:data.tasks.filter(t=>t.execution_host==='aws').length, macmini:data.tasks.filter(t=>t.execution_host==='macmini').length});
   function render() {
-    if (!data) return;
     document.querySelectorAll('[data-tab]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.tab === tab)));
+    // 目标表是第一屏，不依赖供应台账；收件箱、规格批次、研究问题任务是并入的三页；实习生只有目标表与任务
+    document.querySelectorAll('[data-tab]').forEach(b => { b.hidden = role === 'intern' && !internTabs.has(b.dataset.tab); });
+    const panel = panelTabs.has(tab);
+    document.querySelectorAll('[data-panel]').forEach(p => { p.hidden = p.dataset.panel !== tab; });
+    document.querySelector('.layout').hidden = panel; $('counts').hidden = panel;
+    if (tab === 'targets' && window.InresearchTargets) window.InresearchTargets.mount($('targets-panel'));
+    if (tab === 'tasks' && window.InresearchTasks) window.InresearchTasks.mount(role);
+    if (tab === 'pilot' && window.InresearchPilot) window.InresearchPilot.mount();
+    if (!data) return;
     const receivedItems=data.deliveries.reduce((n,d)=>n+(d.received_items||0),0);
     $('counts').textContent = `${data.catalog.providers.length} 个供应入口 · Fetchspec ${data.generated_targets.total} 个生成目标 · ${data.demands.length} 项人工资料需求 · ${data.tasks.length} 项计划任务 · ${data.deliveries.length} 个交付回执 · ${receivedItems} 件原件已接收`;
     $('create-panel').hidden = !admin || tab !== 'demands';
@@ -68,11 +78,16 @@
   async function load() {
     const seq=++generation;
     try {
-      const responses = await Promise.all([fetch('/api/supply'),fetch('/api/whoami')]);
-      if (responses.some(r=>!r.ok)) throw Error('无法读取供应台账，请确认登录后重试。');
-      const [next,user]=await Promise.all(responses.map(r=>r.json()));
+      const [supplyRes,whoRes] = await Promise.all([fetch('/api/supply'),fetch('/api/whoami')]);
+      if (!whoRes.ok) throw Error('无法读取供应台账，请确认登录后重试。');
+      const user=await whoRes.json();
       if(seq!==generation)return;
-      data=next;admin=user.role==='admin';
+      admin=user.role==='admin';role=user.role||'member';
+      if (role==='intern' && !internTabs.has(tab)) tab='targets';
+      if (!supplyRes.ok) { data=null; render(); $('status').textContent = supplyRes.status===403 ? '供应台账只对内部成员开放；分配给你的目标行在上方目标表。' : '无法读取供应台账，请确认登录后重试。'; return; }
+      const next=await supplyRes.json();
+      if(seq!==generation)return;
+      data=next;
       const question=$('question').value,provider=$('provider').value,mode=$('execution-mode').value;
       $('question').innerHTML='<option value="">请选择研究问题</option>'+data.questions.map(q=>`<option value="${escape(q.id)}">${escape(q.id+' · '+q.text)}</option>`).join('');
       $('question').value=question;
@@ -104,7 +119,8 @@
     else if (!$('execution-mode').value) $('execution-mode').value='continuous';
   };
   $('create-form').onsubmit=e=>{e.preventDefault();const mode=$('execution-mode').value;const provider=$('provider').value;save({action:'create',question_id:$('question').value,title:$('title').value,scope:$('scope').value,acceptance:$('acceptance').value,provider_id:provider,execution_mode:mode,execution_host:mode?data.catalog.execution_policy[mode].host:''});};
-  tab=allowedTabs.has(location.hash.slice(1))?location.hash.slice(1):'overview';
-  if(!location.hash) history.replaceState(null,'','#overview');
+  tab=allowedTabs.has(location.hash.slice(1))?location.hash.slice(1):'targets';
+  if(!location.hash) history.replaceState(null,'','#targets');
+  render();
   load();
 })();

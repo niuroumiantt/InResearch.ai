@@ -1,10 +1,10 @@
 # 口径与核验规则手册 v2
 
-> CURRENT · 2026-09-06 生效。归属与替代记录见 [当前基准](CURRENT.md)。本手册适用于五视角研究；机器枚举与保鲜阈值由 `framework/data_contract.json` 统一声明。旧手册已归档，不再作为并行规则。
+> CURRENT · 2026-09-06 生效。归属与替代记录见 [当前基准](CURRENT.md)。本手册适用于骨架研究（一棵树、五类变量、四问）；机器枚举与保鲜阈值由 `framework/data_contract.json` 统一声明。旧手册已归档，不再作为并行规则。
 
 ## 1. 对象、记录与研究状态
 
-P/F/V/D/R 是物理、系统、产业、需求、研究的观察视角；M01–M15 是兼容分工；项目 L1–L9 是建设成熟度；BOM 园区到部件是浏览尺度。四者不能混作一个层级编号。
+骨架节点（系统 → 链路 → 部件，站点权利，主体）回答"哪个对象"，五类变量回答"哪一类数"；项目 L1–L9 是建设成熟度；尺度 S1–S5 是部件属性；M01–M15 只是兼容属性。四者不能混作一个层级编号。
 
 对象类型、厂商产品线、具体型号、现场资产、公司和业务角色分开。一个对象有稳定 ID，可关联多个视角与问题。文档以内容哈希确定版本身份，名称、目录、评分和发布时间不能代替身份；改名不重造事实或重复计算资产。
 
@@ -83,6 +83,7 @@ reader 和接收 API 只产生 candidate；正式回答需已采用证据、完�
 | 数字事实 | 稳定 ID、metric、value/unit、caliber、as_of、来源；`inresearch.knowledge.facts` |
 | 原件与证据 | doc ID、内容哈希、版本、页/节/表/单元格、引文、对象/问题 ID；`inresearch.knowledge.registry` |
 | 结论与采用 | 陈述类型、支持/反证、状态、审核人/时间/分流档；`inresearch.knowledge.registry` 与兼容 Finding 格式 |
+| 登记表通用（2026-09-28） | 价格库、指标表、指标定义、事实库、产品库、公司库每条记录带 `node`（root / system:x / part:x / site:x / actor:x）与 `variable_class`（1–5）；由 `inresearch.knowledge.nodes` 从骨架派生并回填（`manage.py nodes --refresh`），校验器核对存储值与派生值一致，不手写；旧模块码 `module` 只作兼容属性 |
 
 保鲜阈值的唯一机器定义是 `data_contract.json`：L6–L9 项目 90 天，L1–L5 项目 180 天；项目超阈告警，超过两倍阈值阻断数据校验。价格按序列频率判断：annual 455、quarterly 150、monthly 45、spot 30、default 365 天；显式 frequency 优先，兼容序列名规则见同一声明。一次性 benchmark 与历史序列点保留原时点，不逐点当作当前报价催更新。
 

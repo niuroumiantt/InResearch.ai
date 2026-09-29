@@ -182,8 +182,9 @@ class ModelAssetTests(unittest.TestCase):
                 self.assertEqual(400,get('/api/model-assets?page=other')[0])
                 self.assertEqual(400,get('/api/model-assets?page=rack3d&page=bom3d')[0])
                 self.manifest.write_text('{broken');self.assertEqual(503,get('/api/model-assets')[0])
-                user.return_value=None;self.assertEqual(401,get('/api/model-assets')[0])
-                user.return_value='intern';role.return_value='intern';self.assertEqual(403,get('/api/model-assets')[0])
+                # 公开只读（2026-09-28）：3D 页是公开页，匿名 reader 与实习生拿到的登记答案与成员相同；不公开的接口仍分别 401 / 403。
+                user.return_value=None;self.assertEqual(503,get('/api/model-assets')[0]);self.assertEqual(401,get('/api/supply')[0])
+                user.return_value='intern';role.return_value='intern';self.assertEqual(503,get('/api/model-assets')[0]);self.assertEqual(403,get('/api/supply')[0])
             finally:server.shutdown();server.server_close();thread.join()
 
 

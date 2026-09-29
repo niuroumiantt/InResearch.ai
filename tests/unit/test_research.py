@@ -66,9 +66,11 @@ class ResearchTests(unittest.TestCase):
         self.assertTrue(all(q['id'].startswith('OBJ-coldplate-') for q in coldplate))
 
     def test_containment_cycle_and_multiple_parent_rejected(self):
-        self.graph['relations'].append({'id': 'bad', 'type': 'part_of', 'source': 'part:rack-frame',
-            'target': 'part:server', 'configuration_id': 'template:dc-v2'})
-        self.assertTrue(any('cycle' in e for e in research.validate(self.graph, self.questions, self.knowledge)))
+        # 图谱 3.0：链路的父是系统；再给链路挂一个部件父，既是多亲又成环（部件 → 链路 → 部件）
+        self.graph['relations'].append({'id': 'bad', 'type': 'part_of', 'source': 'chain:power/2', 'target': 'part:transformer'})
+        errors = research.validate(self.graph, self.questions, self.knowledge)
+        self.assertTrue(any('cycle' in e for e in errors), errors[:5])
+        self.assertTrue(any('multiple parents' in e for e in errors), errors[:5])
 
     def test_model_cannot_adopt_or_close_question(self):
         snapshot = research.candidate_snapshot(self.candidate(), self.graph, self.questions)
@@ -130,7 +132,17 @@ class ResearchTests(unittest.TestCase):
         self.assertEqual([a['id'] for a in snapshot['knowledge']['answers']], ['answer:test'])
         self.assertEqual(snapshot['reader']['registry_lag'],
                          {'snapshot_graph_version': 'old', 'snapshot_questions_version': self.questions['version'],
-                          'dropped_ids': 1, 'dropped_answers': 1})
+                          'dropped_ids': 1, 'dropped_answers': 1, 'folded_ids': 0})
+
+    def test_older_snapshot_legacy_ids_fold_to_skeleton_nodes(self):
+        # 2.x 的对象家族（scope、ecosystem、旧部件 ID）按对象别名折算到骨架节点，不猜、不丢
+        payload = self.candidate()
+        payload['graph_version'] = '2.2.1'
+        payload['knowledge']['evidence'][0]['object_ids'] = ['scope:M06', 'part:ssd-drive', 'part:substation', 'part:gpu', 'ecosystem:storage']
+        snapshot = research.candidate_snapshot(payload, self.graph, self.questions)
+        self.assertEqual(snapshot['knowledge']['evidence'][0]['object_ids'], ['root', 'part:ssd', 'part:transformer', 'part:gpu', 'system:storage'])
+        self.assertEqual(snapshot['reader']['registry_lag']['folded_ids'], 4)
+        self.assertEqual(snapshot['reader']['registry_lag']['dropped_ids'], 0)
 
     def test_current_registry_snapshot_keeps_strict_ids_and_carries_no_lag(self):
         payload = self.candidate()
@@ -329,9 +341,16 @@ class MutationTests(unittest.TestCase):
 
     def test_export_uses_real_module_files(self):
         from inresearch.delivery import export as export
+        # 2026-09-28：默认导出四问快照（Markdown + JSON）；--legacy 才是兼容模块结论的全文
         with patch.object(export, 'OUT_DIR', self.root / 'export'), patch('sys.argv', ['export.py']):
             self.assertEqual(0, export.main())
-        result = next((self.root / 'export').glob('*.md')).read_text()
+        snapshot = next((self.root / 'export').glob('*_datacenter_snapshot.md')).read_text()
+        for heading in ('## 一、它值多少', '## 二、它由什么组成', '## 三、它怎么影响账', '## 四、数据从哪来、缺什么'):
+            self.assertIn(heading, snapshot)
+        self.assertTrue(next((self.root / 'export').glob('*_datacenter_snapshot.json')).exists())
+        with patch.object(export, 'OUT_DIR', self.root / 'legacy'), patch('sys.argv', ['export.py', '--legacy']):
+            self.assertEqual(0, export.main())
+        result = next((self.root / 'legacy').glob('*.md')).read_text()
         self.assertIn('## M01 ', result)
         self.assertIn('## M15 ', result)
 

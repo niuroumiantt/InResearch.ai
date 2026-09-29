@@ -1,6 +1,6 @@
 # Spark 采集操作
 
-现行规范：[06 采集与翻译](../../framework/06_acquisition.md)。运行数据不进 Git；新闻事件投影每小时同步；全文翻译不自动调度。inresearch 本身不爬取：内置 SEC 与 GPU 采集器已于 2026-09-28 退役，改由 fetchdata 仓库的 fetchfilings 与 fetchquotes 分队按 [五层目标清单](../../framework/tco_targets.json) 采集并经供应中心交付；历史 `sec`/`gpu` 台账行保留只读。
+现行规范：[06 采集与翻译](../../framework/06_acquisition.md)。运行数据不进 Git；新闻事件投影每小时同步；全文翻译不自动调度。inresearch 本身不爬取：内置 SEC 与 GPU 采集器已于 2026-09-28 退役，改由 fetchdata 仓库的 fetchfilings 与 fetchquotes 分队按 [五类变量目标清单](../../framework/tco_targets.json) 采集并经供应中心交付；历史 `sec`/`gpu` 台账行保留只读。
 
 在 Spark 的 `~/code/inresearch.ai` 执行：
 
@@ -23,7 +23,7 @@ SEC 与 GPU 报价的采集凭据（如 `VAST_API_KEY`、`SEC_USER_AGENT`）不�
 
 部署 `deploy/spark-reader/inresearch-news.service` 和 `.timer` 至 `~/.config/systemd/user/`，执行 `systemctl --user daemon-reload` 与 `systemctl --user enable --now inresearch-news.timer`。上线前先执行服务一次，确认上游接口可用、台账成功、备份可恢复，再启用定时。Spark 现有 reader-publish 每五分钟发布至网站。
 
-`python3 manage.py news-sync` 可手动重试。失败记录在 acquisition runs，旧窗口保持；不触碰用户仍在传输的 raw-materials 隐藏目录。首页的同步时间代表完整窗口抓取时间，不能用网页刷新时间冒充。
+`python3 manage.py news-sync` 可手动重试。失败记录在 acquisition runs，旧窗口保持；不触碰用户仍在传输的 raw-materials 隐藏目录。根节点页的同步时间代表完整窗口抓取时间，不能用网页刷新时间冒充。
 
 ## 2026-09-07：经验证的上游选定范围
 

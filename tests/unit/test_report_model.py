@@ -2,7 +2,12 @@ import tempfile
 import unittest
 from pathlib import Path
 
+import json
+from pathlib import Path
+
 from inresearch.delivery import report as report_model
+
+ROOT = Path(__file__).resolve().parents[2]
 from inresearch.knowledge import registry as research
 
 
@@ -19,6 +24,22 @@ class ReportModelTests(unittest.TestCase):
                 self.assertIn(finding['id'], markdown)
         for source in report['sources']:
             self.assertIn(source, markdown)
+
+    def test_snapshot_report_is_four_questions_over_the_registries(self):
+        report = report_model.build_snapshot_report()
+        self.assertEqual([c['id'] for c in report['chapters']], ['q1', 'q2', 'q3', 'q4'])
+        self.assertEqual(report['acceptance'], 'generated_from_registries')
+        dash = json.loads((ROOT / 'data/dashboard.json').read_text(encoding='utf-8'))
+        self.assertEqual(report['boundary']['targets']['total'], sum(v for k, v in dash['root']['targets'].items() if k != 'not_connected'))
+        self.assertEqual(report['boundary']['targets']['not_connected'], dash['root']['targets']['not_connected'])
+        self.assertEqual([a['label'] for a in report['chapters'][0]['account']], ['成本', '收入', '回报'])
+        self.assertEqual(len(report['chapters'][1]['stages']), 6)
+        self.assertEqual(report['topics']['finding_count'], 150, 'the compilation survives as the topic appendix')
+        self.assertEqual(report['data_revision'], report_model.build_snapshot_report()['data_revision'])
+        json.dumps(report, ensure_ascii=False)
+        markdown = '\n'.join(report_model.markdown_snapshot(report, '2026-09-28'))
+        for heading in ('## 一、它值多少', '## 二、它由什么组成', '## 三、它怎么影响账', '## 四、数据从哪来、缺什么', '## 附录：专题目录'):
+            self.assertIn(heading, markdown)
 
     def test_superseded_body_never_enters_current_report_but_link_survives(self):
         with tempfile.TemporaryDirectory() as directory:

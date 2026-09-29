@@ -94,17 +94,18 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
-<inresearch-shell data-section="research"></inresearch-shell>
+<inresearch-shell data-section="bom"></inresearch-shell>
 <div class="topbar">
   <a class="tab on" href="bom.html">爆炸图 2D</a>
   <a class="tab" href="bom3d.html">爆炸图 3D</a>
   <a class="tab" href="rack3d.html">机柜拆解台</a>
+  <a class="tab" href="product-catalog.html">规格库</a>
   <span class="sp"></span>
 </div>
 <div class="wrap">
   <div class="stage">
     <h1>一张图拆解 <em>AI 数据中心</em></h1>
-    <div class="sub">一个骨架：五个系统（IT 再分四个），系统内按能量流链路排；尺度是第二排法。——每个部件都挂着它的研究模块、供应商、价格序列与监测指标。点击任意部件或词条查看档案。</div>
+    <div class="sub">一个骨架：五个系统（IT 再分四个），系统内按能量流链路排；尺度是第二排法。——每个部件都挂着它的供应商、价格序列、监测指标与目标行。点击任意部件或词条查看档案。</div>
     <div class="legend">供应状态：<i style="background:var(--red)"></i>紧缺 <i style="background:var(--yellow)"></i>技术切换中
       <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴
       <span class="modes"><button type="button" class="mode on" data-mode="system">按系统</button><button type="button" class="mode" data-mode="scale">按尺度</button></span>
@@ -117,7 +118,8 @@
   </div></aside>
 </div>
 
-<script>
+<script type="module">
+import { createPartDossier } from "./assets/part-dossier.js";
 async function get(p) {
   const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
   if (!r.ok) throw new Error(p + " → " + r.status);
@@ -126,7 +128,7 @@ async function get(p) {
 const SC = { tight: "var(--red)", transition: "var(--yellow)", mature: "var(--green)", emerging: "var(--purple)" };
 const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
-let BOM, CN = {}, PRICES = [], INDS = {}, MODNAME = {};
+let BOM, CN = {}, PRICES = [], INDS = {}, showDossier = null;
 
 /* ── 等轴测投影：plan(x,y) + 高 z → 屏幕 ── */
 const CX = Math.cos(Math.PI / 6), SY = 0.5;
@@ -187,16 +189,18 @@ function isoSlab(layer, parts, idx) {
 }
 
 (async () => {
-  const [bom, companies, prices, inds, reg, rights] = await Promise.all([
+  const [bom, companies, prices, inds, rights] = await Promise.all([
     get("framework/bom.json"), get("data/companies.json"), get("data/prices.json"),
-    get("framework/indicators.json"), get("framework/modules.json"),
+    get("framework/indicators.json"),
     get("framework/site_rights.json").catch(() => ({ rights: [] }))]);
   BOM = bom; PRICES = prices.records;
   const isPart = p => (p.kind || "part") === "part";
   document.getElementById("partCount").textContent = bom.parts.filter(isPart).length;
   companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
   inds.indicators.forEach(i => INDS[i.id] = i);
-  reg.modules.forEach(m => MODNAME[m.id] = m.name);
+  // 右栏是同一份部件档案（part-dossier.js，与 3D 共用）；2D 没有部件预览
+  showDossier = createPartDossier({ el: document.getElementById("dossier"), view: "bom", BOM: bom, companies: CN, prices: PRICES, indicators: INDS,
+    statusNames: SN, statusColors: Object.fromEntries(Object.entries(SC).map(([k, v]) => [k, v])), inspector: { hide() {}, show() { return false; } } });
 
   // 两种排法：按系统（第一层五个系统，IT 展开四个，系统内按链路）是骨架；按尺度（S5 → S1）是第二排法
   const chips = parts => parts.map(p => `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</span>`).join("");
@@ -276,38 +280,11 @@ function latestSeries(sid) {
 function show(pid) {
   pid = resolveId(pid);
   const p = BOM.parts.find(x => x.id === pid);
-  if (!p) return;
+  if (!p || !showDossier) return;
   document.querySelectorAll(".pbox.sel, .pchip.sel").forEach(el => el.classList.remove("sel"));
   document.querySelectorAll(`[data-part="${pid}"]`).forEach(el => el.classList.add("sel"));
   history.replaceState(null, "", "#" + pid);
-
-  let h = `<h2>${esc(p.name)}</h2>
-    <div class="meta">${BOM.systems?.[p.system]?.name || p.system}${p.chain ? " · " + esc(p.chain) + " 第 " + p.chain_order + " 位" : ""} · ${p.layer ? p.layer + " " + (BOM.layers.find(l => l.id === p.layer)?.name || "") : (BOM.kinds?.[p.kind] || p.kind)} ·
-      <span class="badge" style="background:${SC[p.status]}">${SN[p.status]}</span></div>
-    <div style="font-size:13px">${esc(p.desc)}</div>`;
-
-  h += `<div class="sec"><h3>研究归属</h3>
-    <a class="chip" href="node.html?id=part:${p.id}">节点页：五列与目标</a>
-    <a class="chip" href="report.html#ch-${p.module}">📖 ${p.module} ${MODNAME[p.module] || ""} — 研究结论</a>
-    <a class="chip" href="doc.html?f=research/${p.module}.md">原文</a></div>`;
-
-  if (p.companies?.length)
-    h += `<div class="sec"><h3>关联公司（点击进档案）</h3>${p.companies.map(c =>
-      `<a class="chip" href="company.html?c=${c}">${CN[c] || c}</a>`).join("")}</div>`;
-
-  const rows = [];
-  (p.series || []).forEach(sid => {
-    const r = latestSeries(sid);
-    if (r) rows.push(`<div class="kv"><span>${sid}</span><b>${r.value.toLocaleString()} ${r.unit} <small style="color:var(--muted)">${r.as_of.slice(2)}</small></b></div>`);
-  });
-  (p.indicators || []).forEach(iid => {
-    const i = INDS[iid];
-    if (i) rows.push(`<div class="kv"><span>${i.name}</span><b>${i.value != null ? i.value.toLocaleString() + " " + i.unit : '<span class="empty">待录入</span>'}</b></div>`);
-  });
-  h += `<div class="sec"><h3>数据与指标</h3>${rows.join("") || '<div class="empty">该部件的量化序列待建——这就是下一个数据采集点</div>'}</div>`;
-  h += `<div class="sec"><h3>资料</h3><a class="chip" href="doc.html?f=docs/LIBRARY_SCORES.csv">研报库打分表</a>
-        <a class="chip" href="doc.html?f=docs/LIBRARY_REPORT.md">全库通读报告</a></div>`;
-  document.getElementById("dossier").innerHTML = h;
+  showDossier(p);
 }
 </script>
 </body>

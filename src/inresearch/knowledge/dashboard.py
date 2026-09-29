@@ -1,6 +1,6 @@
 """Generate the dashboard snapshot (data/dashboard.json): one tree, five columns, four questions.
 
-Tree: datacenter root → eight ecosystems + site rights → parts / rights. Every node carries the five
+Tree: datacenter root → five systems (IT expands into four) → chains → parts; site rights alongside. Every node carries the five
 variable classes (构成 运行 价格 时间 主体) as cells whose sources are registered in
 framework/dashboard_rules.json. The page (web/pages/node.html) reads this snapshot and the target
 list; it aggregates nothing itself. ``--refresh`` rewrites the snapshot, ``--check`` (default) fails
@@ -44,7 +44,6 @@ def build(root=ROOT, as_of=None):
     indicators = {i['id']: i for i in load(root, 'framework/indicators.json')['indicators']}
     model = load(root, 'data/datacenter_model.json')
     graph = load(root, 'framework/research_graph.json')
-    eco_names = {o['id'].split(':', 1)[1]: o['name'] for o in graph['objects'] if o['id'].startswith('ecosystem:')}
     as_of = as_of or max(bom.get('updated', ''), targets_doc.get('updated', ''), rules.get('updated', ''))
     base_day = dt.date.fromisoformat(as_of)
 
@@ -71,9 +70,26 @@ def build(root=ROOT, as_of=None):
     # ---- root: the account and its five columns
     a = economics.with_preset(model, 'baseline')
     out = economics.compute(a, model)
+    # 三级账角标：每级账的模型输入按证据状态计数（成本侧 / 收入侧 / 回报取全部，按因子树的 side）
+    side_inputs = {}
+    for f in factors_doc['factors']:
+        pool = side_inputs.setdefault(f['side'], set())
+        pool.update(f.get('model_inputs', []))
+        for e in f.get('fetch', []):
+            pool.update(e.get('model_inputs') or [])
+    ACCOUNT_SIDES = {'cost_per_mw': ('cost',), 'revenue_per_mw': ('revenue',), 'roic': ('cost', 'revenue', 'capital', 'time')}
+    def evidence_of(keys):
+        counts = {'sourced': 0, 'assumed': 0, 'input': 0}
+        for k in keys:
+            s = model.get('evidence', {}).get(k, {}).get('status')
+            if s in counts:
+                counts[s] += 1
+        return {**counts, 'inputs': len(keys)}
     account = {'scenario': model['presets']['baseline']['label'], 'model': rules['root']['account']['model'],
-               'rows': [{**row, 'value': round(out[row['key']], 3)} for row in rules['root']['account']['rows']],
-               'links': rules['root']['account']['links']}
+               'rows': [{**row, 'value': round(out[row['key']], 3),
+                         'evidence': evidence_of(sorted(set().union(*(side_inputs.get(s, set()) for s in ACCOUNT_SIDES.get(row['key'], ())))))}
+                        for row in rules['root']['account']['rows']],
+               'links': rules['root']['account']['links'], 'readings': rules['root'].get('readings', [])}
     root_cells = {}
     for col, specs in rules['root']['cells'].items():
         items = []
@@ -89,7 +105,18 @@ def build(root=ROOT, as_of=None):
                 cell = indicator_cell(spec['key'], spec['label'])
                 items.append(cell or {'label': spec['label'], 'value': None, 'unit': spec.get('unit'), 'as_of': None,
                                       'source': {'type': 'indicator', 'key': spec['key']}})
-        root_cells[col] = {'items': items, 'status': 'sourced' if any(i['value'] is not None for i in items) else 'needed'}
+        # a root cell is only as good as the evidence behind its model inputs
+        ev = model.get('evidence', {})
+        statuses = set()
+        for i in items:
+            if i['value'] is None:
+                continue
+            if i['source']['type'] == 'model_input':
+                statuses.add(ev.get(i['source']['key'], {}).get('status', 'assumed'))
+            else:
+                statuses.add('sourced')
+        root_cells[col] = {'items': items, 'status': ('sourced' if 'sourced' in statuses else 'assumed' if 'assumed' in statuses
+                                                      else 'registered' if 'input' in statuses else 'needed')}
 
     # ---- targets coverage per (owner node, column)
     coverage = {}
@@ -102,19 +129,24 @@ def build(root=ROOT, as_of=None):
         if t['origin'] == 'factor':
             keys.append('root')
         for k in keys:
-            coverage.setdefault((k, str(t['variable_class'])), {'sourced': 0, 'assumed': 0, 'needed': 0})[t['status']] += 1
+            coverage.setdefault((k, str(t['variable_class'])), {'sourced': 0, 'assumed': 0, 'delivered': 0, 'needed': 0})[t['status']] += 1
 
     def cov_sum(keys, col):
-        total = {'sourced': 0, 'assumed': 0, 'needed': 0}
+        total = {'sourced': 0, 'assumed': 0, 'delivered': 0, 'needed': 0}
         for k in keys:
             for s, n in coverage.get((k, col), {}).items():
                 total[s] += n
         return total
 
-    def status_of(value_present, cov):
-        if value_present:
+    def status_of(items, cov):
+        """Honesty rule: counts registered by us (parts, product lines, suppliers) are 'registered', never 'sourced'."""
+        if any(i['value'] is not None and i.get('kind') != 'count' for i in items):
             return 'sourced'
-        return 'assumed' if cov['sourced'] or cov['assumed'] else 'needed'
+        if cov['sourced'] or cov['assumed']:
+            return 'assumed'
+        if cov['delivered']:
+            return 'delivered'
+        return 'registered' if any(i.get('kind') == 'count' and i['value'] for i in items) else 'needed'
 
     # ---- parts
     prod_lines = {}
@@ -127,7 +159,7 @@ def build(root=ROOT, as_of=None):
         cells = {}
         lines = prod_lines.get(p['id'], [])
         cells['1'] = {'items': [{'label': pr['1']['label'], 'value': len(lines), 'unit': pr['1']['unit'], 'as_of': bom.get('updated'),
-                                 'source': {'type': 'bom', 'key': p['id']}},
+                                 'source': {'type': 'bom', 'key': p['id']}, 'kind': 'count'},
                                 {'label': '尺度', 'value': p['layer'] or p['kind'], 'unit': None, 'as_of': bom.get('updated'), 'source': {'type': 'bom', 'key': 'layer'}}],
                       'instances': lines[:12]}
         run_items = [c for c in (indicator_cell(i) for i in p['indicators'] if any(m in i for m in pr['2']['match'])) if c]
@@ -139,15 +171,15 @@ def build(root=ROOT, as_of=None):
         lead_items += [c for c in (indicator_cell(i) for i in p['indicators'] if any(m in i for m in pr['4']['indicator_match'])) if c]
         cells['4'] = {'items': lead_items}
         cells['5'] = {'items': [{'label': pr['5']['label'], 'value': len(p['companies']), 'unit': pr['5']['unit'], 'as_of': bom.get('updated'),
-                                 'source': {'type': 'bom', 'key': 'companies'}}],
-                      'instances': [companies.get(c, c) for c in p['companies']][:12]}
+                                 'source': {'type': 'bom', 'key': 'companies'}, 'kind': 'count'}],
+                      'instances': [companies.get(c, c) for c in p['companies']][:12], 'instance_ids': list(p['companies'])[:12]}
         for col in cells:
             cov = cov_sum(['part:' + p['id']], col)
             cells[col]['coverage'] = cov
-            cells[col]['status'] = status_of(any(i['value'] is not None for i in cells[col]['items']), cov)
+            cells[col]['status'] = status_of(cells[col]['items'], cov)
         parts[p['id']] = {'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'system': p['system'],
                           'chain': p.get('chain'), 'chain_order': p.get('chain_order'),
-                          'module': p['module'], 'supply_status': p['status'], 'desc': p['desc'], 'cells': cells}
+                          'stage': p.get('stage'), 'module': p['module'], 'supply_status': p['status'], 'desc': p['desc'], 'cells': cells}
 
     # ---- site rights
     sr = rules['site_right']
@@ -161,16 +193,17 @@ def build(root=ROOT, as_of=None):
                 items = [c for c in (indicator_cell(i) for i in r.get('indicators', []) if any(m in i for m in sr['4']['match'])) if c]
             else:
                 items = [{'label': sr['5']['label'], 'value': len(r.get('companies', [])), 'unit': sr['5']['unit'], 'as_of': as_of,
-                          'source': {'type': 'site_rights', 'key': 'companies'}}]
+                          'source': {'type': 'site_rights', 'key': 'companies'}, 'kind': 'count'}]
             cov = cov_sum(['site:' + r['id']], col)
-            cells[col] = {'items': items, 'coverage': cov, 'status': status_of(any(i['value'] is not None for i in items), cov),
-                          'instances': [companies.get(c, c) for c in r.get('companies', [])] if col == '5' else []}
+            cells[col] = {'items': items, 'coverage': cov, 'status': status_of(items, cov),
+                          'instances': [companies.get(c, c) for c in r.get('companies', [])] if col == '5' else [],
+                          'instance_ids': list(r.get('companies', [])) if col == '5' else []}
         rights_out[r['id']] = {'id': r['id'], 'name': r['name'], 'scale': r['scale'], 'module': r['module'], 'variable_classes': r['variable_classes'],
                                'supply_status': r['status'], 'desc': r['desc'], 'cells': cells}
 
-    # ---- ecosystems (aggregate over their parts)
-    er = rules['ecosystem']
-    ecosystems = []
+    # ---- systems (aggregate over their parts)
+    er = rules['system']
+    system_nodes = []
     systems = bom['systems']
     def sysname(sid):
         s = systems[sid]; return s['name'] if isinstance(s, dict) else s
@@ -192,10 +225,10 @@ def build(root=ROOT, as_of=None):
         keys = ['part:' + p['id'] for p in members]
         cells = {}
         cells['1'] = {'items': [{'label': er['1']['label'], 'value': len(physical), 'unit': er['1']['unit'], 'as_of': bom.get('updated'),
-                                 'source': {'type': 'count', 'key': 'parts'}}]}
-        spec = er['2']['by_ecosystem'].get(sys_id)
+                                 'source': {'type': 'count', 'key': 'parts'}, 'kind': 'count'}]}
+        spec = er['2']['by_system'].get(sys_id)
         cells['2'] = {'items': [c for c in [series_cell(spec['series'], spec['label']) if spec else None] if c]}
-        spec = er['3']['by_ecosystem'].get(sys_id)
+        spec = er['3']['by_system'].get(sys_id)
         items = []
         if spec:
             basis = a.get(spec['basis'])
@@ -223,29 +256,29 @@ def build(root=ROOT, as_of=None):
         suppliers = {c for p in members for c in p['companies']}
         single = [p['name'] for p in physical if len(p['companies']) <= 1]
         cells['5'] = {'items': [{'label': er['5']['label'], 'value': len(suppliers), 'unit': er['5']['unit'], 'as_of': bom.get('updated'),
-                                 'source': {'type': 'count', 'key': 'companies'}},
+                                 'source': {'type': 'count', 'key': 'companies'}, 'kind': 'count'},
                                 {'label': '单一来源部件', 'value': len(single), 'unit': '个', 'as_of': bom.get('updated'),
-                                 'source': {'type': 'count', 'key': 'single_source'}}],
+                                 'source': {'type': 'count', 'key': 'single_source'}, 'kind': 'count'}],
                       'instances': single[:12]}
         for col in cells:
             cov = cov_sum(keys, col)
             cells[col]['coverage'] = cov
-            cells[col]['status'] = status_of(any(i['value'] is not None for i in cells[col]['items']), cov)
-        ecosystems.append({'id': sys_id, 'name': sys_name, 'graph_name': eco_names.get(sys_id), 'node_id': 'ecosystem:' + sys_id,
+            cells[col]['status'] = status_of(cells[col]['items'], cov)
+        system_nodes.append({'id': sys_id, 'name': sys_name, 'node_id': 'system:' + sys_id,
                            'parent': sdef.get('parent'), 'chains': sdef.get('chains', []),
                            'cells': cells, 'parts': [{'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'supply_status': p['status'],
-                                                      'chain': p.get('chain'), 'chain_order': p.get('chain_order')} for p in members]})
+                                                      'chain': p.get('chain'), 'chain_order': p.get('chain_order'), 'stage': p.get('stage')} for p in members]})
     # parent systems (IT): one aggregate row over their children, so the matrix can show five systems and expand IT into four
     parents = []
     for pid, pdef in systems.items():
         if not isinstance(pdef, dict) or pid in leaf_ids:
             continue
-        kids = [e for e in ecosystems if e['parent'] == pid]
+        kids = [e for e in system_nodes if e['parent'] == pid]
         cells = {}
         for col in ('1', '2', '3', '4', '5'):
             items = []
             if col == '1':
-                items = [{'label': '部件数', 'value': sum(i['value'] for e in kids for i in e['cells']['1']['items'] if i['label'] == '部件数'), 'unit': '个', 'as_of': bom.get('updated'), 'source': {'type': 'count', 'key': 'parts'}}]
+                items = [{'label': '部件数', 'value': sum(i['value'] for e in kids for i in e['cells']['1']['items'] if i['label'] == '部件数'), 'unit': '个', 'as_of': bom.get('updated'), 'source': {'type': 'count', 'key': 'parts'}, 'kind': 'count'}]
             elif col == '3':
                 vals = [i for e in kids for i in e['cells']['3']['items'] if isinstance(i['value'], (int, float))]
                 if vals:
@@ -256,23 +289,23 @@ def build(root=ROOT, as_of=None):
                     top = max(vals, key=lambda i: i['value']); items = [{**top, 'source': {'type': 'max', 'key': 'children'}}]
             elif col == '5':
                 sup = {c for e in kids for p in bom['parts'] if p['system'] == e['id'] for c in p['companies']}
-                items = [{'label': '供应商数', 'value': len(sup), 'unit': '家', 'as_of': bom.get('updated'), 'source': {'type': 'count', 'key': 'companies'}}]
+                items = [{'label': '供应商数', 'value': len(sup), 'unit': '家', 'as_of': bom.get('updated'), 'source': {'type': 'count', 'key': 'companies'}, 'kind': 'count'}]
             else:
                 items = [i for e in kids for i in e['cells']['2']['items']][:1]
-            cov = {'sourced': 0, 'assumed': 0, 'needed': 0}
+            cov = {'sourced': 0, 'assumed': 0, 'delivered': 0, 'needed': 0}
             for e in kids:
                 for s, n in e['cells'][col]['coverage'].items():
                     cov[s] += n
-            cells[col] = {'items': items, 'coverage': cov, 'status': status_of(any(i['value'] is not None for i in items), cov)}
-        parents.append({'id': pid, 'name': pdef['name'], 'node_id': 'ecosystem:' + pid, 'parent': None, 'order': pdef['order'], 'chains': [],
+            cells[col] = {'items': items, 'coverage': cov, 'status': status_of(items, cov)}
+        parents.append({'id': pid, 'name': pdef['name'], 'node_id': 'system:' + pid, 'parent': None, 'order': pdef['order'], 'chains': [],
                         'children': [e['id'] for e in kids], 'cells': cells})
-    # ninth row: site rights
+    # site rights row, alongside the systems
     keys = ['site:' + r['id'] for r in rights]
     site_cells = {}
     for col in ('1', '2', '3', '4', '5'):
         items = []
         if col == '1':
-            items = [{'label': '权利条目', 'value': len(rights), 'unit': '条', 'as_of': as_of, 'source': {'type': 'count', 'key': 'rights'}}]
+            items = [{'label': '权利条目', 'value': len(rights), 'unit': '条', 'as_of': as_of, 'source': {'type': 'count', 'key': 'rights'}, 'kind': 'count'}]
         elif col in ('3', '4'):
             items = [i for r in rights for i in rights_out[r['id']]['cells'][col]['items']]
             if col == '4' and items:
@@ -280,11 +313,11 @@ def build(root=ROOT, as_of=None):
                 items = [top] if top else []
         elif col == '5':
             holders = {c for r in rights for c in r.get('companies', [])}
-            items = [{'label': '登记持有方', 'value': len(holders), 'unit': '家', 'as_of': as_of, 'source': {'type': 'count', 'key': 'companies'}}]
+            items = [{'label': '登记持有方', 'value': len(holders), 'unit': '家', 'as_of': as_of, 'source': {'type': 'count', 'key': 'companies'}, 'kind': 'count'}]
         cov = cov_sum(keys, col)
-        site_cells[col] = {'items': items, 'coverage': cov, 'status': status_of(any(i['value'] is not None for i in items), cov)}
+        site_cells[col] = {'items': items, 'coverage': cov, 'status': status_of(items, cov)}
     site_row = {**RIGHTS_ROW, 'node_id': 'site', 'cells': site_cells,
-                'rights': [{'id': r['id'], 'name': r['name'], 'supply_status': r['status'], 'variable_classes': r['variable_classes']} for r in rights]}
+                'rights': [{'id': r['id'], 'name': r['name'], 'supply_status': r['status'], 'variable_classes': r['variable_classes'], 'stage': r.get('stage')} for r in rights]}
 
     for col in root_cells:
         root_cells[col]['coverage'] = cov_sum(['root'], col)
@@ -294,7 +327,8 @@ def build(root=ROOT, as_of=None):
     # forecast points (as_of in the future) are not 'what changed'
     newest = sorted((r for r in latest.values() if (r.get('as_of') or '') <= as_of), key=lambda r: r.get('as_of') or '', reverse=True)[:n_points]
     due_limit = (base_day + dt.timedelta(days=rules['changes']['due_within_days'])).isoformat()
-    due = sorted((t for t in targets_doc['targets'] if t['next_due'] <= due_limit and t['status'] != 'sourced'), key=lambda t: (t['next_due'], t['id']))
+    due = sorted((t for t in targets_doc['targets'] if t.get('next_due') and t['next_due'] <= due_limit and t['status'] not in ('sourced', 'delivered')),
+                 key=lambda t: (t['next_due'], t['id']))
     changes = {'series_points': [{'series_id': r['series_id'], 'value': r.get('value'), 'unit': r.get('unit'), 'as_of': r.get('as_of'), 'module': r.get('module')} for r in newest],
                'due_targets': [{'id': t['id'], 'team': t['team'], 'next_due': t['next_due'], 'status': t['status'], 'variable_class': t['variable_class']} for t in due[:40]],
                'due_total': len(due)}
@@ -303,18 +337,20 @@ def build(root=ROOT, as_of=None):
     factors = [{'id': f['id'], 'label': f['label'], 'side': f['side'], 'parent': f['parent'], 'unit': f.get('unit'), 'formula': f.get('formula'),
                 'bom_parts': f.get('bom_parts', []), 'site_rights': f.get('site_rights', []), 'model_inputs': f.get('model_inputs', [])}
                for f in factors_doc['factors']]
-    totals = {'sourced': 0, 'assumed': 0, 'needed': 0}
+    totals = {'sourced': 0, 'assumed': 0, 'delivered': 0, 'needed': 0}
     for t in targets_doc['targets']:
         totals[t['status']] += 1
+    totals['not_connected'] = sum(1 for t in targets_doc['targets'] if t.get('team_state') == 'not_connected')
     return {
         'version': '1.0', 'updated': as_of, 'title': '数据中心 dashboard 快照',
+        'stages': bom.get('stages', []),
         'note': '由 python3 manage.py dashboard --refresh 生成，规则见 framework/dashboard_rules.json；页面 node.html 只读本文件与目标清单，不做聚合。',
         'generated_from': {'rules': rules['version'], 'bom': bom.get('version'), 'targets': targets_doc.get('version'), 'factors': factors_doc.get('version'),
                            'model_as_of': model.get('as_of')},
         'columns': rules['columns'], 'formulas': factors_doc.get('formulas', {}),
         'root': {'id': 'root', 'name': '一座 AI 数据中心', 'account': account, 'cells': root_cells, 'targets': totals},
         'systems': {sid: (s if isinstance(s, dict) else {'name': s}) for sid, s in systems.items()},
-        'ecosystems': ecosystems, 'parent_systems': sorted(parents, key=lambda x: x['order']), 'site': site_row, 'parts': parts, 'rights': rights_out, 'factors': factors, 'changes': changes,
+        'system_nodes': system_nodes, 'parent_systems': sorted(parents, key=lambda x: x['order']), 'site': site_row, 'parts': parts, 'rights': rights_out, 'factors': factors, 'changes': changes,
     }
 
 
@@ -337,7 +373,7 @@ def main(argv=None):
         print(f'ERROR: {SNAPSHOT}: stale or missing; run manage.py dashboard --refresh')
         return 1
     acct = {r['label']: r['value'] for r in doc['root']['account']['rows']}
-    print(f"Dashboard {doc['version']} @ {doc['updated']}: {len(doc['ecosystems'])} ecosystems + site, {len(doc['parts'])} parts, "
+    print(f"Dashboard {doc['version']} @ {doc['updated']}: {len(doc['system_nodes'])} systems + site, {len(doc['parts'])} parts, "
           f"{len(doc['rights'])} rights; account {acct}")
     return 0
 

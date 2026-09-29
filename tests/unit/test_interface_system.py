@@ -3,6 +3,7 @@
 from inresearch.paths import project_root
 import http.client
 import json
+import re
 import threading
 import unittest
 from unittest.mock import patch
@@ -57,21 +58,44 @@ class InterfaceContractTests(unittest.TestCase):
         css=(fonts/'fonts.css').read_text()
         self.assertIn('--font-sans:',css);self.assertIn('"Noto Sans SC"',css)
 
-    def test_only_skin_resources_are_public(self):
+    def test_pages_declare_a_directory_section(self):
+        from inresearch.interfaces import public
+        manifest = json.loads((ROOT/'framework/interface_manifest.json').read_text())
+        listed = {page: section for section, pages in manifest['sections'].items() for page in pages}
+        self.assertEqual(set(listed), set(manifest['static_pages']), 'every application page belongs to exactly one directory entry')
+        self.assertEqual(list(manifest['sections']), ['datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'])
+        for name in manifest['static_pages']:
+            html = (ROOT/manifest['page_sources'][name]).read_text()
+            declared = re.search(r'<inresearch-shell data-section="([a-z]+)"', html).group(1)
+            self.assertEqual(declared, listed[name], name)
+        self.assertEqual({'/' + p for p in manifest['public_pages']} | {'/'}, set(public.READER_PAGES) | {'/index.html'})
+        for entry in ('datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'):
+            self.assertIn(f"['{entry}'", (ROOT/'web/components/site-shell.js').read_text(), entry)
+        routes = json.loads((ROOT/'web/routes.json').read_text())
+        for url, rel in routes.items():
+            self.assertTrue((ROOT/rel).exists(), f'{url} -> {rel} is a dead route')
+        self.assertEqual(routes['/data/datacenter_model.json'], 'data/datacenter_model.json')
+
+    def test_public_read_only_boundary(self):
         with patch.object(serve,'AUTH_ON',True), patch.object(auth,'session_user',return_value=None):
             server=serve.ThreadingHTTPServer(('127.0.0.1',0),serve.Handler)
             thread=threading.Thread(target=server.serve_forever,kwargs={'poll_interval':.01},daemon=True)
             thread.start()
             try:
+                # 公开只读（reader，2026-09-28）：目录三项、账本与它们的数据不登录可 GET；采集、管理、事实层、任务板与一切写接口不公开。
                 cases={'/assets/site-skin.css':200,'/assets/site-skin.js?v=1':200,
                        '/assets/fonts/fonts.css':200,'/assets/fonts/noto-sans-sc-1.woff2':200,'/assets/fonts/LICENSE-NotoSansSC.txt':200,
-                       '/assets/fonts/manifest.json':200,'/assets/fonts/../research.css':302,'/assets/InterVariable.woff2':302,'/assets/other.woff2':302,
-                       '/login':200,'/assets/research.css':302,'/framework/research_graph.json':302,
+                       '/assets/fonts/manifest.json':200,'/assets/fonts/../research.css':200,'/assets/InterVariable.woff2':404,'/assets/other.woff2':404,
+                       '/login':200,'/assets/research.css':200,'/framework/research_graph.json':302,
                        '/api/research':401,'/data/users.json':404,'/assets/.hub_secret':404,
-                       '/assets/site-skin.css/../../data/research_runtime.json':404}
+                       '/assets/site-skin.css/../../data/research_runtime.json':404,
+                       '/':200,'/index.html':200,'/node.html':200,'/ledger.html':200,'/bom.html':200,'/bom3d.html':200,'/report.html':200,
+                       '/data/dashboard.json':200,'/data/tco_targets.json':200,'/data/datacenter_model.json':200,'/api/whoami':200,
+                       '/supply.html':302,'/team.html':302,'/ops.html':302,'/materials.html':302,'/company.html':302,'/doc.html':302,'/research.html':302,
+                       '/data/facts.json':302,'/framework/part_fetch.json':302,'/api/tasks':401,'/api/supply':401,'/api/users':401}
                 for method in ['GET','HEAD']:
                     for path,expected in cases.items():
-                        if method=='HEAD' and path=='/login':continue
+                        if method=='HEAD' and path in ('/login','/api/whoami'):continue  # dynamic pages answer GET only
                         con=http.client.HTTPConnection(*server.server_address,timeout=3)
                         try:
                             con.request(method,path);response=con.getresponse();response.read()

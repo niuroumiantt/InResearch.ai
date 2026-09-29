@@ -1,26 +1,58 @@
 {
-  "version": "1.2.0",
+  "version": "1.4.0",
   "static_pages": [
     "index.html",
     "node.html",
     "ledger.html",
-    "research.html",
     "admin/product/index.html",
     "doc.html",
     "bom3d.html",
     "rack3d.html",
     "bom.html",
     "company.html",
-    "compare.html",
     "ops.html",
-    "team.html",
     "report.html",
-    "materials.html",
     "supply.html",
-    "nvidia-pilot.html",
-    "product-catalog.html",
-    "supply-demo.html"
+    "product-catalog.html"
   ],
+  "sections": {
+    "datacenter": [
+      "index.html",
+      "node.html",
+      "doc.html"
+    ],
+    "ledger": [
+      "ledger.html"
+    ],
+    "bom": [
+      "bom.html",
+      "bom3d.html",
+      "rack3d.html",
+      "product-catalog.html",
+      "admin/product/index.html",
+      "company.html"
+    ],
+    "acquisition": [
+      "supply.html"
+    ],
+    "results": [
+      "report.html"
+    ],
+    "admin": [
+      "ops.html"
+    ]
+  },
+  "public_pages": [
+    "index.html",
+    "node.html",
+    "ledger.html",
+    "bom.html",
+    "bom3d.html",
+    "rack3d.html",
+    "product-catalog.html",
+    "report.html"
+  ],
+  "sections_note": "一级导航六项（05「目录」）；每个应用页用 <inresearch-shell data-section> 声明归属。public_pages 是公开只读（reader）不登录可看的页，白名单实现在 src/inresearch/interfaces/public.py。",
   "dynamic_pages": {
     "src/inresearch/interfaces/pages.py": [
       "LOGIN_PAGE",
@@ -29,9 +61,7 @@
     ]
   },
   "excluded_pages": {
-    "web/pages/poster.html": "固定版式的打印交付物",
-    "web/pages/framework_poster.html": "固定版式的框架海报",
-    "web/pages/bake.html": "开发用模型烘焙工具",
+    "web/pages/compare.html": "模型选型对比台 · 本地工具（保留路由供场景测试，不入目录）",
     "docs/inbox/framework_proposals/framework_proposal_L1-L4_20260831.html": "未采用的外部提案原件",
     "outputs/geluoke-research/2026-09-26/2026-09-26-daily-wechat.html": "格洛可数据中心日报交付物（公众号复制用HTML／首图渲染模板），非站点页面，不接入站点外观与字体包",
     "outputs/geluoke-research/2026-09-26/work/cover.html": "格洛可数据中心日报交付物（公众号复制用HTML／首图渲染模板），非站点页面，不接入站点外观与字体包",
@@ -45,22 +75,16 @@
   },
   "page_sources": {
     "index.html": "web/pages/node.html",
-    "research.html": "web/pages/research.html",
     "admin/product/index.html": "web/pages/admin/product/index.html",
     "doc.html": "web/pages/doc.html",
     "bom3d.html": "web/pages/bom3d.html",
     "rack3d.html": "web/pages/rack3d.html",
     "bom.html": "web/pages/bom.html",
     "company.html": "web/pages/company.html",
-    "compare.html": "web/pages/compare.html",
     "ops.html": "web/pages/ops.html",
-    "team.html": "web/pages/team.html",
     "report.html": "web/pages/report.html",
-    "materials.html": "web/pages/materials.html",
     "supply.html": "web/pages/supply.html",
-    "nvidia-pilot.html": "web/pages/nvidia-pilot.html",
     "product-catalog.html": "web/pages/product-catalog.html",
-    "supply-demo.html": "web/pages/supply-demo.html",
     "node.html": "web/pages/node.html",
     "ledger.html": "web/pages/ledger.html"
   },

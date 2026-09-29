@@ -19,7 +19,7 @@
 - 缺页补读（gap_ocr，#258/#259/#268）：48c8、ce50 全部补上；ea7d 剩第 7 页（三次读出的数字只差逗号和坐标轴刻度），coverage.gap_pages=[7]。
 - 外部快照 `m4-sonnet-20260928.json`（32 份）和 `m4-opus-20260928.json`（b3ff）放在 Spark 的 `~/.local/state/inresearch.ai/external-snapshots/`，权限 600。Spark 每 5 分钟发布一次（`inresearch-reader-publish.timer`，unit 已换成仓库版 `manage.py publish`），叠加结果 added 33、dropped_unknown_ids 0。
 - 发布压缩上传（#273）：约 65.7 MB 压缩成约 5.5 MB 发送，解压后上限 192 MiB。
-- 研究图谱三方要一致：M4 导出、Spark 发布、网站接收端都是 research_graph 2.2.0。版本不一致时接收端返回 400「reader graph_version does not match deployed framework」，这时要先把 Spark 和 M4 更新到网站的 main，再重新导出快照。
+- 研究图谱以网站 main 为准（2026-09-28 起 3.0.0，由骨架生成；问题 ID 不变）。版本落后的快照不再被拒收：接收端把旧对象 ID 按对象别名折算到骨架节点、折算不了的过滤掉，并在 `reader.registry_lag` 标出版本与折算 / 丢弃计数；Spark 与 M4 拉到同一提交后重新导出一次即可清零。
 - Spark 代码在 b3471f6（READER_RELEASE 同），认领下限 10。
 
 ## 待用户决定

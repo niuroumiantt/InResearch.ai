@@ -14,6 +14,9 @@
     "assumptions": {"type": ["string", "null"], "description": "grade=estimate 时必填：推导链条"},
     "grade": {"type": "string", "enum": ["regulatory", "company", "research", "media", "estimate"]},
     "source_url": {"type": "string"},
-    "note": {"type": "string"}
+    "note": {"type": "string"},
+    "target_id": {"type": "string", "description": "可选：这条记录交付的目标行 ID（framework/tco_targets.json），是 delivered 判定的 Git 内载体"},
+    "variable_class": {"type": "integer", "enum": [1, 2, 3, 4, 5], "description": "可选：五类变量（1 构成 2 运行 3 价格 4 时间 5 主体）"},
+    "node": {"type": "string", "description": "可选：骨架节点 ID（root / system:<id> / part:<id> / site:<id>）"}
   }
 }

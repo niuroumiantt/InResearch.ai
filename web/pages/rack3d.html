@@ -52,7 +52,7 @@
   .spark-wrap { margin-top: 6px; }
   .spark-wrap .sname { font-size: 10.5px; color: var(--muted); display: flex; justify-content: space-between; }
   .spark-wrap .sname b { color: var(--text); }
-  /* 下钻链条：数据中心 › 机柜 › GPU 服务器 ›…（配置见 assets/levels.json）*/
+  /* 钻取链：按骨架（bom.json 的系统与链路）生成 */
   .drill { position: fixed; top: calc(var(--ui-bar-height) + 56px); left: 50%; transform: translateX(-50%); z-index: 25;
     display: flex; align-items: center; gap: 2px; background: var(--ui-surface);
     border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 4px 6px;
@@ -84,9 +84,9 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
 <body>
-<inresearch-shell data-section="research"></inresearch-shell>
+<inresearch-shell data-section="bom"></inresearch-shell>
 <div class="topbar">
-  <a class="tab" href="/research.html?node=ecosystem%3Astorage&amp;view=R&amp;tab=overview">产品生态</a>
+  <a class="tab" href="/node.html?id=system%3Astorage">存储系统</a>
   <a class="tab" href="bom.html">爆炸图 2D</a>
   <a class="tab" href="bom3d.html">爆炸图 3D</a>
   <a class="tab on" href="rack3d.html">机柜拆解台</a>
@@ -636,12 +636,12 @@ for (let n = 0; n < 3; n++) {
 /* ─────────── 阶段与滑杆 ─────────── */
 const STAGES = [
   [0.00, "整柜：一台 AI 机柜（ORV3 形态示意）"],
-  [0.04, "① 拆外板与穿孔门——露出内部单元"],
-  [0.20, "② 电源架/母排、③ 液冷歧管、④ 交换机分离"],
-  [0.36, "⑤ 八个计算托盘阶梯抽出"],
-  [0.52, "⑥ 明星托盘上拆解台"],
-  [0.66, "⑦ 开盖：风扇墙/PSU/主板/GPU 基板分层"],
-  [0.82, "⑧ 冷板抬升——GPU 与 HBM 露出"],
+  [0.04, "① 机柜与结构：拆外板与穿孔门——露出内部单元"],
+  [0.20, "② 机柜与板级供电、机房与机柜冷却、网络：电源架 / 液冷歧管 / 交换机分离"],
+  [0.36, "③ 计算链路：八个计算托盘阶梯抽出"],
+  [0.52, "④ 明星托盘上拆解台"],
+  [0.66, "⑤ 芯片级：风扇墙 / PSU / 主板 / GPU 基板分层"],
+  [0.82, "⑥ 芯片级：冷板抬升——GPU 与 HBM 露出"],
 ];
 bindResearchMeshNodes(pickables);
 const stageEl = document.getElementById("stage");
@@ -733,18 +733,24 @@ const clock = new THREE.Clock();
 
 
 
-/* ── 下钻链条：一份配置驱动，加设备只需改 assets/levels.json ── */
-fetch("assets/levels.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).then(cfg => {
-  if (!cfg?.levels) return;
-  const here = location.pathname.split("/").pop() || "index.html";
-  const bar = document.createElement("div");
-  bar.className = "drill";
-  cfg.levels.forEach((L, i) => {
+/* ── 钻取链按骨架生成（bom.json systems / chains）；尺度钻取链 levels.json 已退役（2026-09-28） ── */
+fetch("framework/bom.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).then(bom => {
+  if (!bom?.systems) return;
+  const here = location.pathname.split("/").pop() || "index.html", q = new URLSearchParams(location.search);
+  const top = Object.entries(bom.systems).filter(([, s]) => !s.parent).sort((a, b) => a[1].order - b[1].order);
+  const entries = [{ id: "root", name: "🏢 数据中心全景", page: "bom3d.html", current: here === "bom3d.html" && !q.get("d") }];
+  for (const [sid, s] of top) {
+    if (sid === "it") entries.push({ id: sid, name: "🗄️ IT · 计算链路（机柜拆解）", page: "rack3d.html", current: here === "rack3d.html" && (q.get("x") || "0") < "70" },
+                                   { id: "chip", name: "🧠 芯片级（服务器拆到底）", page: "rack3d.html?x=70", current: here === "rack3d.html" && (q.get("x") || "0") >= "70" });
+    else if (sid === "control") entries.push({ id: sid, name: "🖥️ " + s.name, page: "", current: false, desc: "软件条目，不进 3D" });
+    else entries.push({ id: sid, name: s.name, page: "bom3d.html?d=" + sid, current: here === "bom3d.html" && q.get("d") === sid, desc: (s.chains || []).join(" → ") });
+  }
+  const bar = document.createElement("div"); bar.className = "drill";
+  entries.forEach((L, i) => {
     if (i) bar.appendChild(dossierNode("span", "›", "sep"));
-    const cur = String(L.page || "").split("?")[0] === here && L.id !== "server";
-    const active = L.status !== "planned" && L.page && safeURL(L.page);
-    const node = dossierNode(active ? "a" : "span", (L.icon || "") + " " + L.name, active ? (cur ? "on" : "") : "soon");
-    node.title = L.name + " · " + (L.desc || "") + (L.status === "planned" ? "（规划中）" : "");
+    const active = L.page && safeURL(L.page);
+    const node = dossierNode(active ? "a" : "span", L.name, active ? (L.current ? "on" : "") : "soon");
+    node.title = L.name + (L.desc ? " · " + L.desc : "");
     if (active) node.href = safeURL(L.page);
     bar.appendChild(node);
   });

@@ -6,24 +6,24 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1010。
+在册文件：1011。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 52 |
+| 静态资源 | 51 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 274 |
-| 运行代码 | 213 |
-| 现行规范 | 13 |
+| 历史快照 | 276 |
+| 运行代码 | 212 |
+| 现行规范 | 12 |
 | 项目配置 | 94 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 27 |
-| 配套说明 | 58 |
-| 测试 | 96 |
+| 配套说明 | 59 |
+| 测试 | 97 |
 
 ## 在册记录集合
 
@@ -36,9 +36,10 @@
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 248 |
 | `data/contracts.json` | records | 2 |
-| `data/dashboard.json` | ecosystems | 8 |
+| `data/dashboard.json` | stages | 6 |
+| `data/dashboard.json` | system_nodes | 8 |
 | `data/dashboard.json` | parent_systems | 1 |
-| `data/dashboard.json` | factors | 24 |
+| `data/dashboard.json` | factors | 26 |
 | `data/datacenter_model.json` | groups | 5 |
 | `data/datacenter_model.json` | anchors | 2 |
 | `data/datacenter_model.json` | sensitivity_drivers | 12 |
@@ -53,12 +54,12 @@
 | `data/research_knowledge.json` | evidence | 0 |
 | `data/research_knowledge.json` | statements | 0 |
 | `data/research_knowledge.json` | answers | 0 |
-| `data/schema/company.schema.json` | required | 4 |
+| `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
 | `data/schema/fact.schema.json` | required | 9 |
 | `data/schema/policy.schema.json` | required | 7 |
 | `data/schema/price.schema.json` | required | 6 |
-| `data/schema/products.schema.json` | required | 7 |
+| `data/schema/products.schema.json` | required | 9 |
 | `data/schema/project.schema.json` | required | 7 |
 | `data/schema/source.schema.json` | required | 5 |
 | `data/schema/submission.schema.json` | required | 4 |
@@ -323,32 +324,33 @@
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
 | `framework/bom.json` | layers | 5 |
 | `framework/bom.json` | parts | 63 |
-| `framework/current_state.json` | policies | 24 |
+| `framework/bom.json` | stages | 6 |
+| `framework/current_state.json` | policies | 26 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
-| `framework/current_state.json` | known_retired_patterns | 11 |
+| `framework/current_state.json` | known_retired_patterns | 28 |
 | `framework/current_state.json` | operational_guides | 9 |
+| `framework/current_state.json` | retired_scan_snapshots | 1 |
+| `framework/dashboard_rules.json` | honesty | 5 |
 | `framework/data_contract.json` | source_grades | 5 |
 | `framework/data_contract.json` | project_statuses | 9 |
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 19 |
+| `framework/interface_manifest.json` | static_pages | 13 |
+| `framework/interface_manifest.json` | public_pages | 8 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
-| `framework/research_graph.json` | views | 5 |
-| `framework/research_graph.json` | objects | 145 |
-| `framework/research_graph.json` | relations | 206 |
-| `framework/research_graph.json` | hardware_domains | 8 |
-| `framework/research_graph.json` | catalog_topic_mappings | 35 |
-| `framework/research_graph.json` | research_topics | 9 |
+| `framework/research_graph.json` | legacy_root_prefixes | 4 |
+| `framework/research_graph.json` | objects | 344 |
+| `framework/research_graph.json` | relations | 372 |
 | `framework/research_questions.json` | records | 458 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
-| `framework/tco_factors.json` | factors | 24 |
+| `framework/tco_factors.json` | factors | 26 |
 | `framework/tco_targets.json` | principles | 4 |
-| `framework/tco_targets.json` | targets | 287 |
+| `framework/tco_targets.json` | targets | 351 |
 | `framework/verification_contract.json` | policies | 13 |
 | `outputs/geluoke-research/2026-09-26/checks/validation.json` | images | 5 |
 | `outputs/geluoke-research/2026-09-26/sources.json` | published_source_numbering | 48 |
@@ -400,7 +402,6 @@
 | `research/M13.md` | Finding | 6 |
 | `research/M14.md` | Finding | 11 |
 | `research/M15.md` | Finding | 12 |
-| `web/assets/levels.json` | levels | 5 |
 | `web/assets/models/manifest.json` | models | 1 |
 | `web/assets/world.geo.json` | features | 180 |
 
@@ -483,6 +484,8 @@
 | [docs/archive/2026-09-14/deploy__README.md](archive/2026-09-14/deploy__README.md) | 历史快照 |
 | [docs/archive/2026-09-14/deploy__docker-compose.yml.md](archive/2026-09-14/deploy__docker-compose.yml.md) | 历史快照 |
 | [docs/archive/2026-09-14/docs__LIBRARY_INDEX.md](archive/2026-09-14/docs__LIBRARY_INDEX.md) | 历史快照 |
+| [docs/archive/2026-09-28/framework__00_overview.md](archive/2026-09-28/framework__00_overview.md) | 历史快照 |
+| [docs/archive/2026-09-28/framework__07_product_ecosystems.md](archive/2026-09-28/framework__07_product_ecosystems.md) | 历史快照 |
 | [docs/geluoke/专题写作规则.md](geluoke/专题写作规则.md) | 配套说明 |
 | [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
 | `docs/guides/model-governance-2026-09-27.html` | 运行代码 |
@@ -941,7 +944,7 @@
 | [framework/05_interface_system.md](../framework/05_interface_system.md) | 现行规范 |
 | [framework/05_source_map.md](../framework/05_source_map.md) | 配套说明 |
 | [framework/06_acquisition.md](../framework/06_acquisition.md) | 现行规范 |
-| [framework/07_product_ecosystems.md](../framework/07_product_ecosystems.md) | 现行规范 |
+| [framework/07_product_ecosystems.md](../framework/07_product_ecosystems.md) | 配套说明 |
 | [framework/08_model_execution.md](../framework/08_model_execution.md) | 现行规范 |
 | [framework/09_software_contracts.md](../framework/09_software_contracts.md) | 现行规范 |
 | [framework/CURRENT.md](../framework/CURRENT.md) | 现行规范 |
@@ -1145,6 +1148,7 @@
 | `src/inresearch/interfaces/governance.py` | 运行代码 |
 | `src/inresearch/interfaces/http.py` | 运行代码 |
 | `src/inresearch/interfaces/pages.py` | 运行代码 |
+| `src/inresearch/interfaces/public.py` | 运行代码 |
 | `src/inresearch/interfaces/reader.py` | 运行代码 |
 | `src/inresearch/interfaces/static.py` | 运行代码 |
 | `src/inresearch/interfaces/users.py` | 运行代码 |
@@ -1156,9 +1160,11 @@
 | `src/inresearch/knowledge/economics.py` | 运行代码 |
 | `src/inresearch/knowledge/fact_contract.py` | 运行代码 |
 | `src/inresearch/knowledge/facts.py` | 运行代码 |
+| `src/inresearch/knowledge/graph.py` | 运行代码 |
 | `src/inresearch/knowledge/indicators.py` | 运行代码 |
 | `src/inresearch/knowledge/navigation.py` | 运行代码 |
 | `src/inresearch/knowledge/news_policy.py` | 运行代码 |
+| `src/inresearch/knowledge/nodes.py` | 运行代码 |
 | `src/inresearch/knowledge/policy.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
@@ -1196,6 +1202,7 @@
 | `src/inresearch/workflow/attribution.py` | 运行代码 |
 | `src/inresearch/workflow/commands.py` | 运行代码 |
 | `src/inresearch/workflow/deep_read.py` | 运行代码 |
+| `src/inresearch/workflow/dispatch.py` | 运行代码 |
 | `src/inresearch/workflow/l1_batch.py` | 运行代码 |
 | `src/inresearch/workflow/model_assets.py` | 运行代码 |
 | `src/inresearch/workflow/pilot_progress.py` | 运行代码 |
@@ -1221,13 +1228,10 @@
 | `tests/datacenter_economics.cjs` | 测试 |
 | `tests/datacenter_news.cjs` | 测试 |
 | `tests/datacenter_tco.cjs` | 测试 |
-| `tests/hardware_ecosystems.cjs` | 测试 |
 | `tests/model_assets.cjs` | 测试 |
 | `tests/nvidia_pilot.cjs` | 测试 |
-| `tests/object_network.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_catalog.cjs` | 测试 |
-| `tests/product_node_hover.cjs` | 测试 |
 | `tests/research_delivery.cjs` | 测试 |
 | `tests/research_summary.cjs` | 测试 |
 | `tests/run_browser.cjs` | 测试 |
@@ -1258,6 +1262,7 @@
 | `tests/unit/test_file_moves.py` | 测试 |
 | `tests/unit/test_gap_ocr.py` | 测试 |
 | `tests/unit/test_governance.py` | 测试 |
+| `tests/unit/test_graph.py` | 测试 |
 | `tests/unit/test_html_document.py` | 测试 |
 | `tests/unit/test_http_workflow.py` | 测试 |
 | `tests/unit/test_intake.py` | 测试 |
@@ -1280,6 +1285,7 @@
 | `tests/unit/test_model_roles.py` | 测试 |
 | `tests/unit/test_model_runtime.py` | 测试 |
 | `tests/unit/test_news_projection.py` | 测试 |
+| `tests/unit/test_nodes.py` | 测试 |
 | `tests/unit/test_ocr_repeat_penalty.py` | 测试 |
 | `tests/unit/test_ocr_worker_named.py` | 测试 |
 | `tests/unit/test_ocr_worker_resume.py` | 测试 |
@@ -1289,6 +1295,7 @@
 | `tests/unit/test_placeholder_output.py` | 测试 |
 | `tests/unit/test_product_catalog.py` | 测试 |
 | `tests/unit/test_product_library.py` | 测试 |
+| `tests/unit/test_public_reader.py` | 测试 |
 | `tests/unit/test_publish_reader.py` | 测试 |
 | `tests/unit/test_reader_depth.py` | 测试 |
 | `tests/unit/test_reader_progress.py` | 测试 |
@@ -1304,6 +1311,7 @@
 | `tests/unit/test_storage_layout.py` | 测试 |
 | `tests/unit/test_suite_integrity.py` | 测试 |
 | `tests/unit/test_supply.py` | 测试 |
+| `tests/unit/test_target_dispatch.py` | 测试 |
 | `tests/unit/test_tco_factors.py` | 测试 |
 | `tests/unit/test_tco_targets.py` | 测试 |
 | `tests/unit/test_text_similarity.py` | 测试 |
@@ -1331,7 +1339,6 @@
 | `web/assets/hdri/lab.exr` | 静态资源 |
 | `web/assets/hdri/studio.exr` | 静态资源 |
 | `web/assets/hdri/warehouse.exr` | 静态资源 |
-| `web/assets/levels.json` | 静态资源 |
 | `web/assets/materials.js` | 运行代码 |
 | [web/assets/models/README.md](../web/assets/models/README.md) | 配套说明 |
 | `web/assets/models/manifest.json` | 静态资源 |
@@ -1379,6 +1386,7 @@
 | `web/components/object-network.js` | 运行代码 |
 | `web/components/part-dossier.js` | 运行代码 |
 | `web/components/part-inspector.js` | 运行代码 |
+| `web/components/pilot.js` | 运行代码 |
 | `web/components/product-catalog.js` | 运行代码 |
 | `web/components/research-graph.js` | 运行代码 |
 | `web/components/scene-data.js` | 运行代码 |
@@ -1389,31 +1397,25 @@
 | `web/components/series-summary.js` | 运行代码 |
 | `web/components/site-shell.js` | 运行代码 |
 | `web/components/supply.js` | 运行代码 |
+| `web/components/targets.js` | 运行代码 |
+| `web/components/tasks-board.js` | 运行代码 |
 | `web/pages/admin/product/index.html` | 运行代码 |
 | `web/pages/auth/forbidden.html` | 运行代码 |
 | `web/pages/auth/layout.html` | 运行代码 |
 | `web/pages/auth/login.html` | 运行代码 |
 | `web/pages/auth/password.html` | 运行代码 |
-| `web/pages/bake.html` | 运行代码 |
 | `web/pages/bom.html` | 运行代码 |
 | `web/pages/bom3d.html` | 运行代码 |
 | `web/pages/company.html` | 运行代码 |
 | `web/pages/compare.html` | 运行代码 |
 | `web/pages/doc.html` | 运行代码 |
-| `web/pages/framework_poster.html` | 运行代码 |
 | `web/pages/ledger.html` | 运行代码 |
-| `web/pages/materials.html` | 运行代码 |
 | `web/pages/node.html` | 运行代码 |
-| `web/pages/nvidia-pilot.html` | 运行代码 |
 | `web/pages/ops.html` | 运行代码 |
-| `web/pages/poster.html` | 运行代码 |
 | `web/pages/product-catalog.html` | 运行代码 |
 | `web/pages/rack3d.html` | 运行代码 |
 | `web/pages/report.html` | 运行代码 |
-| `web/pages/research.html` | 运行代码 |
-| `web/pages/supply-demo.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |
-| `web/pages/team.html` | 运行代码 |
 | `web/routes.json` | 项目配置 |
 | `web/themes/preference.js` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |

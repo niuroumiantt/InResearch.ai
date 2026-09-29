@@ -198,7 +198,9 @@
     "as_of_inferred": {
       "type": "boolean",
       "description": "as_of 不是原文给的，是我们从旁证推断的（例如联通建设标准未写编制年份，由 6.15% 五年期基准利率与所引 GB 50174-2008 推断为 2013）。为真时 notes 必须写清推断依据。**与 derived 分开**：derived 说的是值算出来的，这一维说的是时点推断出来的；借 derived 表达时点推断会让照抄的数被当成计算值，还会被「派生值不单独对外」误剔。"
-    }
+    },
+    "node": {"type": "string", "description": "骨架节点，随指标定义（framework/metrics.json）派生，由 knowledge.nodes 回填"},
+    "variable_class": {"type": "integer", "enum": [1, 2, 3, 4, 5], "description": "五类变量，随指标定义派生"}
   },
   "$comment": ""
 }

@@ -14,15 +14,18 @@ from inresearch.interfaces import pages
 import os
 import json
 from inresearch.interfaces import auth as auth
+from inresearch.interfaces import public
 from inresearch.materials import inbox as material_intake
 from inresearch.materials import model_assets
 import hmac
 from inresearch.workflow import commands as commands
 from inresearch.workflow import supply
+from inresearch.workflow import dispatch
 from inresearch.workflow import pilot_progress
 from inresearch.workflow import product_catalog
 from inresearch.adapters import acquisition
 from inresearch.knowledge import registry as research
+from inresearch.knowledge import graph as graph_mod
 from inresearch.delivery import report as report_model
 import posixpath
 import subprocess as subprocess
@@ -31,7 +34,7 @@ import threading
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as ThreadingHTTPServer
 from pathlib import Path
-from urllib.parse import parse_qs, unquote, urlsplit
+from urllib.parse import parse_qs, unquote, urlencode, urlsplit
 
 ROOT = project_root()
 PY = sys.executable
@@ -146,6 +149,10 @@ class Handler(SimpleHTTPRequestHandler):
         user = auth.session_user(self.headers.get("Cookie"))
         if user:
             return user
+        # 公开只读（reader）：目录三项、账本与它们读的数据，只对 GET/HEAD 匿名放行（白名单见 public.py）；
+        # 写接口永远不放行，模型文件按角色过滤后再给（见 do_GET）。
+        if self.command in ("GET", "HEAD") and public.allowed(self._norm_path()):
+            return ""
         if self.path == "/login" or self.path == "/api/login":
             return ""
         if self.path.startswith("/api/"):
@@ -182,8 +189,13 @@ class Handler(SimpleHTTPRequestHandler):
         self.wfile.write(body)
 
     def _intern_allowed(self, path):
-        return any(path == a or (a.endswith("/") and path.startswith(a))
-                   for a in auth.INTERN_GET_ALLOW)
+        # 实习生白名单 + 公开只读的内容：reader 不登录能看的，登录的实习生当然能看（账本给的是同一份公开视图）。
+        return public.allowed(path) or any(path == a or (a.endswith("/") and path.startswith(a))
+                                           for a in auth.INTERN_GET_ALLOW)
+
+    def _role(self, user):
+        """本地模式（不要求登录）视同 admin；要求登录而未登录的是公开只读 reader。"""
+        return auth.user_role(user) if user else ("reader" if AUTH_ON else "admin")
 
     def do_HEAD(self):
         # SimpleHTTPRequestHandler 自带 HEAD 支持——不过闸的话可以用 HEAD 探文件存在与大小
@@ -230,10 +242,13 @@ class Handler(SimpleHTTPRequestHandler):
         user = self._gate()
         if user is None:
             return
+        merged = {'/team.html': '#tasks', '/materials.html': '#inbox', '/nvidia-pilot.html': '#pilot'}
+        if self._norm_path() in merged:  # 三页并入采集页（2026-09-28）
+            return self._redirect('/supply.html' + merged[self._norm_path()])
         if user and auth.user_role(user) == "intern":
             path = self._norm_path()
             if path in ("/", "/index.html"):
-                return self._redirect("/team.html")     # 实习生的首页就是工单板
+                return self._redirect("/supply.html#targets")     # 实习生的首页就是采集页的目标表（自己的行）
             if not self._intern_allowed(path):
                 return self._html(403, pages.FORBIDDEN_PAGE)
         if self.path == "/login":
@@ -247,10 +262,24 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._redirect("/")
             return self._html(200, pages.PASSWD_PAGE)
         if self.path == "/api/whoami":
-            return self._json(200, {"ok": True, "user": user or "(本地模式)",
-                                    "role": auth.user_role(user) if user else "admin"})
+            role = self._role(user)
+            return self._json(200, {"ok": True, "user": user or (None if role == "reader" else "(本地模式)"), "role": role})
+        if self._norm_path() == "/data/datacenter_model.json" and self._role(user) in ("reader", "intern"):
+            # 账本的公开视图：基准预设与校准锚，地区与情景预设登录后才有。过滤在服务端，页面照着渲染。
+            try:
+                spec = json.loads(Path(self.translate_path(self.path)).read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                return self._json(404, {"ok": False, "error": "not found"})
+            return self._json(200, public.public_model(spec))
+        if urlsplit(self.path).path == '/api/targets':
+            # 目标表 + 派工状态，服务端按角色过滤：实习生只见分配给自己的行；公开只读没有这个接口（闸门已 401）
+            params = {k: v[0] for k, v in parse_qs(urlsplit(self.path).query).items()}
+            try:
+                return self._json(200, dispatch.targets_view(ROOT, user or None, self._role(user), params))
+            except (OSError, ValueError, KeyError, TypeError):
+                return self._json(503, {'ok': False, 'error': '目标表暂不可读取'})
         if self.path == "/api/users":
-            if user and auth.user_role(user) != "admin":
+            if self._role(user) != "admin":
                 return self._json(403, {"ok": False, "error": "用户管理仅限 admin"})
             users = auth.load_users()
             return self._json(200, {"ok": True, "users": [
@@ -331,9 +360,18 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, research.build_news(ROOT))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '新闻暂不可用，请稍后重试'})
+        if self._norm_path() == '/research.html':
+            # 研究页退役（2026-09-28）：问题、候选证据、陈述与一跳关系并入节点页第一问；旧 ID 折算到骨架节点
+            wanted = parse_qs(urlsplit(self.path).query).get('node', [''])[0]
+            try:
+                node = graph_mod.node_for(wanted, json.loads((ROOT / 'framework/bom.json').read_text(encoding='utf-8'))) if wanted else None
+            except (OSError, ValueError):
+                node = None
+            return self._redirect('/node.html' + ('?' + urlencode({'id': node}) if node and node != 'root' else ''))
         if urlsplit(self.path).path == '/api/research-summary':
             try:
-                return self._json(200, research.build_research_summary(ROOT))
+                node = parse_qs(urlsplit(self.path).query).get('node', [''])[0]
+                return self._json(200, research.summary_for_node(research.build_research_summary(ROOT), node))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '研究摘要暂不可用，请稍后重试'})
         if urlsplit(self.path).path == "/api/research":
@@ -343,7 +381,8 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(503, {"ok": False, "error": "研究索引暂不可用", "detail": str(e)[:300]})
         if urlsplit(self.path).path == '/api/report':
             try:
-                return self._json(200, report_model.build_report(ROOT))
+                legacy = parse_qs(urlsplit(self.path).query).get('legacy', [''])[0] == '1'
+                return self._json(200, report_model.build_report(ROOT) if legacy else report_model.build_snapshot_report(ROOT))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '报告暂不可用，请稍后重试'})
         if urlsplit(self.path).path == '/api/tasks':
@@ -435,6 +474,13 @@ class Handler(SimpleHTTPRequestHandler):
             return self.api_passwd(payload, user)
         if self.path == "/api/assign":
             return self.api_assign(payload, by=user)
+        if self.path == "/api/deliver":
+            try:
+                return self._json(200, dispatch.register_delivery(ROOT, payload, by=user, role=role))
+            except CommitUncertain as error:
+                return self._json(503, {'ok': False, 'error': str(error), 'commit_state': 'visible_durability_unconfirmed'})
+            except dispatch.Rejected as exc:
+                return self._json(exc.status, {'ok': False, 'error': str(exc)})
         return self._json(404, {"ok": False, "error": "未知接口"})
 
     def api_reader_snapshot(self):
