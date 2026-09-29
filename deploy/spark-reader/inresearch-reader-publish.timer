@@ -3,7 +3,8 @@ Description=Refresh the research website from the Spark ledger every five minute
 
 [Timer]
 OnBootSec=90
-OnUnitActiveSec=5min
+# 2026-09-29：OnUnitInactiveSec 在服务结束（成功或失败）5 分钟后重排；此前的 OnUnitActiveSec 在一次失败后不再触发。
+OnUnitInactiveSec=5min
 AccuracySec=15
 Unit=inresearch-reader-publish.service
 

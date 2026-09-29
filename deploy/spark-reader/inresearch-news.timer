@@ -2,8 +2,10 @@
 Description=Datacenter news refresh every 15 minutes (inews feed has ETag and cursor; hourly left the AWS front page up to 65 minutes behind)
 
 [Timer]
-OnBootSec=5m
-OnUnitActiveSec=15min
+# 2026-09-29：改为按墙钟触发。此前用 OnUnitActiveSec，它只在服务成功进入 active 后才重新计时——
+# 2026-09-18 上游一次 502 让服务失败，timer 从此再不触发（NEXT 为空），新闻 11 天没同步。
+# OnCalendar 与失败无关；Persistent 补上停机期间错过的一次。
+OnCalendar=*:00/15
 RandomizedDelaySec=60
 Persistent=true
 
