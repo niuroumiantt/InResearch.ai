@@ -173,7 +173,11 @@ def main():
                     err(f"site_rights[{r['id']}]: 引用了不存在的 company_id: {c}")
     if bom_path.exists():
         bom = json.loads(bom_path.read_text(encoding="utf-8"))
-        layer_ids = {ly["id"] for ly in bom.get("layers", [])}
+        layer_ids = {ly["id"] for ly in bom.get("scales", [])}
+        # 2026-09-29 键名去歧义：骨架文件不再有 layer / layers / module 键（尺度叫 scale，旧模块叫 legacy_module）
+        for forbidden in ("layers",):
+            if forbidden in bom:
+                err(f"bom.json: 键 {forbidden} 已改名 scales，不得再出现")
         kinds = set(bom.get("kinds") or {"part": ""})
         stage_ids = {s["id"] for s in bom.get("stages", [])}
         chain_slots = {}
@@ -181,16 +185,19 @@ def main():
         if len(bom_part_ids) != len(bom.get("parts", [])):
             err("bom.json: 部件 id 重复")
         for p in bom.get("parts", []):
+            for forbidden in ("layer", "module"):
+                if forbidden in p:
+                    err(f"bom[{p['id']}]: 键 {forbidden} 已改名（layer → scale，module → legacy_module），不得再出现")
             kind = p.get("kind", "part")
             if kind not in kinds:
                 err(f"bom[{p['id']}]: kind 非法: {kind}")
             if stage_ids and p.get("stage") not in stage_ids:
                 err(f"bom[{p['id']}]: stage 非法: {p.get('stage')}")
             if kind == "part":
-                if p.get("layer") not in layer_ids:
-                    err(f"bom[{p['id']}]: layer 非法: {p.get('layer')}")
-            elif p.get("layer") is not None:
-                err(f"bom[{p['id']}]: {kind} 条目不占尺度，layer 须为 null")
+                if p.get("scale") not in layer_ids:
+                    err(f"bom[{p['id']}]: scale 非法: {p.get('scale')}")
+            elif p.get("scale") is not None:
+                err(f"bom[{p['id']}]: {kind} 条目不占尺度，scale 须为 null")
             systems = bom.get("systems") or {}
             if systems and p.get("system") not in systems:
                 err(f"bom[{p['id']}]: system 非法: {p.get('system')}")

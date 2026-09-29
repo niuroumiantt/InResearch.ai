@@ -64,6 +64,14 @@ class InterfaceContractTests(unittest.TestCase):
         listed = {page: section for section, pages in manifest['sections'].items() for page in pages}
         self.assertEqual(set(listed), set(manifest['static_pages']), 'every application page belongs to exactly one directory entry')
         self.assertEqual(list(manifest['sections']), ['datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'])
+        # 目录六项 ↔ 四问：每项登记它是哪几问的全局视图；管理不对应任何一问，其余每一问至少被一项覆盖
+        questions = manifest['section_questions']
+        self.assertEqual(list(questions), list(manifest['sections']))
+        for section, qs in questions.items():
+            self.assertEqual(qs, sorted(set(qs)), section)
+            self.assertTrue(set(qs) <= {1, 2, 3, 4}, section)
+        self.assertEqual(questions['admin'], [])
+        self.assertEqual({q for s, qs in questions.items() if s != 'admin' for q in qs}, {1, 2, 3, 4})
         for name in manifest['static_pages']:
             html = (ROOT/manifest['page_sources'][name]).read_text()
             declared = re.search(r'<inresearch-shell data-section="([a-z]+)"', html).group(1)

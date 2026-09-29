@@ -207,7 +207,7 @@ function partsTable(parts, snapshot) {
     const cells = snapshot.parts[p.id]?.cells || {};
     const head = p.chain && p.chain !== last ? `<tr class="chain-row"><th colspan="8">${esc(p.chain)}</th></tr>` : "";
     last = p.chain;
-    return `${head}<tr><td><a href="${nodeHref("part:" + p.id)}">${esc(p.name)}</a></td><td>${esc(p.layer || p.kind)}</td><td><span class="dot sup-${p.supply_status}"></span>${SUP[p.supply_status] || ""}</td>${["1", "2", "3", "4", "5"].map(n => {
+    return `${head}<tr><td><a href="${nodeHref("part:" + p.id)}">${esc(p.name)}</a></td><td>${esc(p.scale || p.kind)}</td><td><span class="dot sup-${p.supply_status}"></span>${SUP[p.supply_status] || ""}</td>${["1", "2", "3", "4", "5"].map(n => {
       const c = cells[n]; const i = c?.items?.[0];
       return `<td><span class="dot st-${c?.status || "needed"}"></span>${i ? fmt(i.value, i.unit) : '<span class="empty">缺</span>'}</td>`;
     }).join("")}</tr>`;
@@ -331,19 +331,19 @@ function changes(d) {
     byId("q4").textContent = "这个系统全部部件的目标行，按队汇总。";
   } else if (part) {
     crumbs.push(["system:" + part.system, d.system_nodes.find(e => e.id === part.system)?.name || part.system], [NODE, part.name]);
-    title = `<em>${esc(part.name)}</em>`; kind = `${d.systems?.[part.system]?.name || part.system}${part.chain ? " · 链路「" + esc(part.chain) + "」第 " + part.chain_order + " 位" : ""} · ${part.kind === "part" ? "尺度 " + part.layer : part.kind === "software" ? "软件条目" : "设施基型"} · 模块 ${esc(part.module)}`;
+    title = `<em>${esc(part.name)}</em>`; kind = `${d.systems?.[part.system]?.name || part.system}${part.chain ? " · 链路「" + esc(part.chain) + "」第 " + part.chain_order + " 位" : ""} · ${part.kind === "part" ? "尺度 " + part.scale : part.kind === "software" ? "软件条目" : "设施基型"} · 兼容模块 ${esc(part.legacy_module || "—")}`;
     sup = `<span class="badge sup-${part.supply_status}">${SUP[part.supply_status] || part.supply_status}</span>`; desc = part.desc;
     cells = part.cells; factorPred = f => (f.bom_parts || []).includes(part.id);
     rows = T.filter(t => t.part_id === part.id);
     byId("q1").textContent = "部件的五列就是重切规则的条件：自己的规格、运行指标、价格、交期、供应商名单。";
     byId("h2").innerHTML = `它由什么组成 / 属于什么<small>树 · 装配与研究入口</small>`;
-    children = `<div class="links"><a href="${nodeHref("system:" + part.system)}">← 回到系统</a><a href="bom.html#${encodeURIComponent(part.id)}">爆炸图档案</a>${part.kind === "part" ? `<a href="bom3d.html?${new URLSearchParams({ p: part.id, node: "part:" + part.id })}">3D 定位</a>` : ""}${["S4", "S5"].includes(part.layer) ? `<a href="rack3d.html?x=100&node=${encodeURIComponent("part:" + part.id)}">机柜拆解</a>` : ""}<a href="#evidence">研究问题与证据</a></div><div class="empty" style="margin-top:6px">装配关系与空间位置在研究图谱与 3D 场景里登记；本页不复制第二份。</div>`;
+    children = `<div class="links"><a href="${nodeHref("system:" + part.system)}">← 回到系统</a><a href="bom.html#${encodeURIComponent(part.id)}">爆炸图档案</a>${part.kind === "part" ? `<a href="bom3d.html?${new URLSearchParams({ p: part.id, node: "part:" + part.id })}">3D 定位</a>` : ""}${["S4", "S5"].includes(part.scale) ? `<a href="rack3d.html?x=100&node=${encodeURIComponent("part:" + part.id)}">机柜拆解</a>` : ""}<a href="#evidence">研究问题与证据</a></div><div class="empty" style="margin-top:6px">装配关系与空间位置在研究图谱与 3D 场景里登记；本页不复制第二份。</div>`;
     byId("q3").textContent = "这个部件汇到哪些因子，因子的公式与它喂的模型输入。";
     byId("q4").textContent = "这个部件的目标行：规格、价格、交期各一行，非成熟部件另有新闻事件行。";
   } else if (type === "site") {
     if (right) {
       crumbs.push(["site", "站点权利"], [NODE, right.name]);
-      title = `<em>${esc(right.name)}</em>`; kind = `站点权利 · 尺度 ${esc(right.scale)} · 模块 ${esc(right.module)}`;
+      title = `<em>${esc(right.name)}</em>`; kind = `站点权利 · 尺度 ${esc(right.scale)} · 兼容模块 ${esc(right.legacy_module || "—")}`;
       sup = `<span class="badge sup-${right.supply_status}">${SUP[right.supply_status] || right.supply_status}</span>`; desc = right.desc;
       cells = right.cells; factorPred = f => (f.site_rights || []).includes(right.id);
       rows = T.filter(t => t.site_right_id === right.id);

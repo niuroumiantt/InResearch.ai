@@ -28,6 +28,7 @@ class TcoTargetListTests(unittest.TestCase):
         cls.evidence = model['evidence']
         contract = load('framework/supply_contract.json')
         cls.providers = {p['id'] for p in contract['providers']}
+        cls.provider_rows = {p['id']: p for p in contract['providers']}
         cls.hosts = {p['host'] for p in contract['execution_policy'].values() if isinstance(p, dict) and 'host' in p}
 
     def test_file_is_generated_from_its_inputs(self):
@@ -40,7 +41,7 @@ class TcoTargetListTests(unittest.TestCase):
         self.assertEqual(len(ids), len(set(ids)))
         for t in self.targets:
             self.assertIn(t['variable_class'], (1, 2, 3, 4, 5), t['id'])
-            self.assertEqual(t['layer'], t['variable_class'], t['id'])  # layer is the compatibility name
+            self.assertNotIn('layer', t, f"{t['id']}: layer key retired 2026-09-29; scale is bom's, variable_class is ours")
             self.assertIn(t['origin'], ('factor', 'part', 'software', 'archetype', 'site_right'), t['id'])
             self.assertTrue(t['id'].startswith({'factor': 'F.', 'site_right': 'S.'}.get(t['origin'], 'P.')), t['id'])
             self.assertIn(t['data_class'], self.doc['data_classes'], t['id'])
@@ -105,6 +106,23 @@ class TcoTargetListTests(unittest.TestCase):
                 self.assertEqual(t['data_class'], 'material', t['id'])
             if t['mechanism'] in ('pdf_registered', 'js_page'):
                 self.assertEqual(t['host'], 'macmini', f"{t['id']} assisted mechanism must run on macmini")
+            else:  # 2026-09-29：主执行机按供应方登记（fetchspec 在 macmini），不再一律 aws
+                self.assertEqual(t['host'], self.provider_rows[t['team']].get('host_default', 'aws'), f"{t['id']} host follows the provider's host_default")
+
+    def test_every_fed_input_has_exactly_one_primary_row(self):
+        # 2026-09-29：55/77 个被喂的输入由多行喂；账本只回链主行，因子行优先
+        primary = {}
+        for t in self.targets:
+            self.assertTrue(set(t['feeds_primary']) <= set(t['model_inputs']), t['id'])
+            for k in t['feeds_primary']:
+                self.assertNotIn(k, primary, f"{k} has two primary rows: {primary.get(k)} and {t['id']}")
+                primary[k] = t['id']
+        covered = {k for t in self.targets for k in t['model_inputs']}
+        self.assertEqual(set(primary), covered)
+        factor_rows = {t['id'] for t in self.targets if t['origin'] == 'factor'}
+        for k, tid in primary.items():
+            if any(k in t['model_inputs'] for t in self.targets if t['origin'] == 'factor'):
+                self.assertIn(tid, factor_rows, f"{k}: a factor row exists, so the primary must be a factor row")
 
     def test_every_non_user_input_has_a_target(self):
         covered = {k for t in self.targets for k in t['model_inputs']}

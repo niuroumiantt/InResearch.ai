@@ -214,10 +214,10 @@ function isoSlab(layer, parts, idx) {
       </div>
     </div>`;
   function byScale() {
-    const order = bom.layers.map(l => l.id).reverse();
+    const order = bom.scales.map(l => l.id).reverse();
     return order.map((lid, i) => {
-      const layer = bom.layers.find(l => l.id === lid);
-      return row({ ...layer, num: i + 1 }, bom.parts.filter(p => isPart(p) && p.layer === lid), i, i * 1.5);
+      const layer = bom.scales.find(l => l.id === lid);
+      return row({ ...layer, num: i + 1 }, bom.parts.filter(p => isPart(p) && p.scale === lid), i, i * 1.5);
     }).join("");
   }
   function bySystem() {

@@ -1,5 +1,5 @@
 {
-  "version": "1.5",
+  "version": "1.6",
   "effective_at": "2026-09-28",
   "phase": "planning_live",
   "operating_plan": {
@@ -87,7 +87,8 @@
     "storage_and_analysis": {
       "host": "spark",
       "meaning": "接收永久原件、提取与模型分析；不承担采集任务执行"
-    }
+    },
+    "_host_default_note": "provider 可登记 host_default 覆盖 continuous 的缺省主机；assisted 机制（pdf_registered、js_page）始终 macmini。目标表 host 列由 knowledge/targets.py 据此生成，tests/unit/test_tco_targets.py 锁一致性。"
   },
   "temporary_execution": {
     "nvidia_nas_unavailable": {
@@ -115,7 +116,9 @@
         1
       ],
       "acceptance": "型号、配置、软件版本、原文及参数条件",
-      "connection": "receiver_live_generated_targets_exposed"
+      "connection": "receiver_live_generated_targets_exposed",
+      "host_default": "macmini",
+      "host_note": "2026-09-29 对齐实际：fetchspec 的公司级抓取在 Mac mini 常驻（fetchspec docs/MACHINES.md、docs/SUPERMICRO.md），NVIDIA 批次在 M5；不是 AWS 持续任务。目标表非 assisted 机制的行按此列主执行机。"
     },
     {
       "id": "inews",

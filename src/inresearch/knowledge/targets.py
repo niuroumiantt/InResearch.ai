@@ -138,8 +138,14 @@ def build(root=ROOT, as_of=None):
         for rid in f.get('site_rights', []):
             right_factors.setdefault(rid, []).append(f['id'])
 
-    def host_for(mechanism):
-        return hosts['assisted'] if mechanism in ASSISTED else hosts['continuous']
+    def host_for(mechanism, team):
+        # assisted 机制永远在 macmini；其余按供应方登记的 host_default（fetchspec 2026-09-29 对齐为 macmini），缺省 continuous
+        if mechanism in ASSISTED:
+            return hosts['assisted']
+        default = providers.get(team, {}).get('host_default', hosts['continuous'])
+        if default not in hosts.values():
+            raise ValueError(f'{team}: host_default {default} is not a registered execution host')
+        return default
 
     def team_meta(team):
         p = providers[team]
@@ -177,13 +183,13 @@ def build(root=ROOT, as_of=None):
         status = status_for(kw['data_class'], kw['series'], kw.get('indicators', []), kw['model_inputs'], kw['origin'],
                             target_id=kw['id'], kind=kw.get('kind'), part_id=kw.get('part_id'), right_id=kw.get('site_right_id'))
         out = {
-            'id': kw['id'], 'variable_class': kw['variable_class'], 'layer': kw['variable_class'],
+            'id': kw['id'], 'variable_class': kw['variable_class'],
             'origin': kw['origin'], 'factor_ids': kw['factor_ids'], 'factor_id': kw['factor_ids'][0] if kw['factor_ids'] else None,
             'part_id': kw.get('part_id'), 'site_right_id': kw.get('site_right_id'),
             'model_inputs': kw['model_inputs'], 'series': kw['series'], 'planned_series': kw.get('planned_series', []),
             'indicators': kw.get('indicators', []), 'data_class': kw['data_class'],
             'disclosure_type': kw['disclosure_type'], 'publisher_category': kw['publisher_category'],
-            'instances': kw['instances'], 'mechanism': mechanism, 'team': kw['team'], 'host': host_for(mechanism),
+            'instances': kw['instances'], 'mechanism': mechanism, 'team': kw['team'], 'host': host_for(mechanism, kw['team']),
             'calendar': kw['calendar'], 'team_state': 'connected' if connected else 'not_connected',
             'next_due': due(kw.get('next_due'), kw['data_class']) if connected else None,
             'status': status, 'sourced_by': {'sourced': 'registry', 'delivered': 'delivery'}.get(status),
@@ -244,7 +250,7 @@ def build(root=ROOT, as_of=None):
                 series = [s for s in p.get('series', []) if (s in lead_series) == (kind == 'lead_time') and s not in eff_series] if kind in ('price', 'lead_time') else []
                 inds = [i for i in p.get('indicators', []) if ('lead_time' in i or 'backlog' in i) == (kind == 'lead_time') and not any(m in i for m in OPERATION_MATCH)] if kind in ('price', 'lead_time') else []
             sysname = bom['systems'][p['system']]['name'] if isinstance(bom['systems'][p['system']], dict) else bom['systems'][p['system']]
-            notes = {'spec': f"{p['name']}：规格与供应商名单（{sysname} · {p.get('chain', '')}，{p['layer'] or p['kind']}）",
+            notes = {'spec': f"{p['name']}：规格与供应商名单（{sysname} · {p.get('chain', '')}，{p['scale'] or p['kind']}）",
                      'operation': f"{p['name']}：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（{bom['stages'][[s['id'] for s in bom['stages']].index(p['stage'])]['name'] if p.get('stage') else ''} 阶段）",
                      'price': f"{p['name']}：自己的价格——重切规则的第一条件", 'lead_time': f"{p['name']}：自己的交期——重切规则的第三条件",
                      'news': f"{p['name']}：{p['status']} 状态部件的供应事件"}[kind]
@@ -280,6 +286,14 @@ def build(root=ROOT, as_of=None):
         for k in t['model_inputs']:
             if k not in model['inputs']:
                 raise ValueError(f"{t['id']}: unknown model input {k}")
+    # 主行（2026-09-29）：一个模型输入可以由多行喂（因子行 + 部件行），但账本的可信边界只回链一行——
+    # 因子树登记的抓取条目是主行（列表里因子行在前，先到先得）；没有因子行的输入由第一条部件 / 权利行承担。
+    primary = {}
+    for t in targets:
+        for k in t['model_inputs']:
+            primary.setdefault(k, t['id'])
+    for t in targets:
+        t['feeds_primary'] = [k for k in t['model_inputs'] if primary[k] == t['id']]
     counts = {'factor': 0, 'part': 0, 'software': 0, 'archetype': 0, 'site_right': 0}
     by_status = {s: 0 for s in STATUSES}
     for t in targets:
@@ -293,8 +307,8 @@ def build(root=ROOT, as_of=None):
                  '每个物理部件按"自己的价格、供应商名单、交期"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；'
                  '软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。2026-09-28 骨架补齐：每个物理部件再加一行运行（operation，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率）；因子树的 time.build 生成工期、排队与审批行；部件级与权利级行带建设阶段 stage。'
                  '部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。'
-                 '每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、'
-                 '已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机。'
+                 '每一行写明变量类（构成、运行、价格、时间、主体；2026-09-29 起不再带 layer 兼容键，尺度与变量类彻底分开）、汇到哪些因子、喂模型的哪些输入、'
+                 '已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机；feeds_primary 列出这一行作为主行的模型输入（一个输入只有一条主行，因子行优先），账本可信边界只回链主行。'
                  'status 只在已有序列、已录值指标或模型证据支持时为 sourced；2026-09-28 起加第四态 delivered：队已交付到 Git 内载体'
                  '（资料计划的 doc_id / source_url、带 origin_pointer 的事件卡、带 target_id 的价格记录）但尚未成为序列；只在运行库有的不算。'
                  'sourced_by 写明 sourced 来自人工登记的序列（registry）还是队交付（delivery）；team_state 写明主责队是否已接入，'
@@ -306,7 +320,7 @@ def build(root=ROOT, as_of=None):
         'statuses': STATUSES,
         'carriers': {'spec': DOCS_PLAN + '（status ≠ todo 且有 doc_id 或 source_url）', 'news / holders': EVENT_CARDS + '（带 origin_pointer 的事件卡）',
                      'observation': 'data/prices.json（带 target_id 的记录）'},
-        'principles': PRINCIPLES, 'layers': VARIABLE_CLASSES, 'variable_classes': VARIABLE_CLASSES,
+        'principles': PRINCIPLES, 'variable_classes': VARIABLE_CLASSES,
         'data_classes': DATA_CLASSES, 'mechanisms': MECHANISMS,
         'teams': {t: team_meta(t) for t in teams}, 'targets': targets,
     }

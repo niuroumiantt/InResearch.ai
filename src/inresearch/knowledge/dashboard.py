@@ -160,7 +160,7 @@ def build(root=ROOT, as_of=None):
         lines = prod_lines.get(p['id'], [])
         cells['1'] = {'items': [{'label': pr['1']['label'], 'value': len(lines), 'unit': pr['1']['unit'], 'as_of': bom.get('updated'),
                                  'source': {'type': 'bom', 'key': p['id']}, 'kind': 'count'},
-                                {'label': '尺度', 'value': p['layer'] or p['kind'], 'unit': None, 'as_of': bom.get('updated'), 'source': {'type': 'bom', 'key': 'layer'}}],
+                                {'label': '尺度', 'value': p['scale'] or p['kind'], 'unit': None, 'as_of': bom.get('updated'), 'source': {'type': 'bom', 'key': 'scale'}}],
                       'instances': lines[:12]}
         run_items = [c for c in (indicator_cell(i) for i in p['indicators'] if any(m in i for m in pr['2']['match'])) if c]
         cells['2'] = {'items': run_items}
@@ -177,9 +177,9 @@ def build(root=ROOT, as_of=None):
             cov = cov_sum(['part:' + p['id']], col)
             cells[col]['coverage'] = cov
             cells[col]['status'] = status_of(cells[col]['items'], cov)
-        parts[p['id']] = {'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'system': p['system'],
+        parts[p['id']] = {'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'scale': p['scale'], 'system': p['system'],
                           'chain': p.get('chain'), 'chain_order': p.get('chain_order'),
-                          'stage': p.get('stage'), 'module': p['module'], 'supply_status': p['status'], 'desc': p['desc'], 'cells': cells}
+                          'stage': p.get('stage'), 'legacy_module': p.get('legacy_module'), 'supply_status': p['status'], 'desc': p['desc'], 'cells': cells}
 
     # ---- site rights
     sr = rules['site_right']
@@ -198,7 +198,7 @@ def build(root=ROOT, as_of=None):
             cells[col] = {'items': items, 'coverage': cov, 'status': status_of(items, cov),
                           'instances': [companies.get(c, c) for c in r.get('companies', [])] if col == '5' else [],
                           'instance_ids': list(r.get('companies', [])) if col == '5' else []}
-        rights_out[r['id']] = {'id': r['id'], 'name': r['name'], 'scale': r['scale'], 'module': r['module'], 'variable_classes': r['variable_classes'],
+        rights_out[r['id']] = {'id': r['id'], 'name': r['name'], 'scale': r['scale'], 'legacy_module': r.get('legacy_module'), 'variable_classes': r['variable_classes'],
                                'supply_status': r['status'], 'desc': r['desc'], 'cells': cells}
 
     # ---- systems (aggregate over their parts)
@@ -266,7 +266,7 @@ def build(root=ROOT, as_of=None):
             cells[col]['status'] = status_of(cells[col]['items'], cov)
         system_nodes.append({'id': sys_id, 'name': sys_name, 'node_id': 'system:' + sys_id,
                            'parent': sdef.get('parent'), 'chains': sdef.get('chains', []),
-                           'cells': cells, 'parts': [{'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'layer': p['layer'], 'supply_status': p['status'],
+                           'cells': cells, 'parts': [{'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'scale': p['scale'], 'supply_status': p['status'],
                                                       'chain': p.get('chain'), 'chain_order': p.get('chain_order'), 'stage': p.get('stage')} for p in members]})
     # parent systems (IT): one aggregate row over their children, so the matrix can show five systems and expand IT into four
     parents = []

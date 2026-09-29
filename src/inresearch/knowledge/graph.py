@@ -147,7 +147,7 @@ def build(root=ROOT):
         cid = chain_id.get((p['system'], p.get('chain')))
         objects.append({'id': oid, 'name': p['name'], 'kind': 'part', 'parent': cid or 'system:' + p['system'], 'part_kind': p['kind'],
                         'system': p['system'], 'chain': p.get('chain'), 'chain_order': p.get('chain_order'), 'stage': p.get('stage'),
-                        'layer': p.get('layer'), 'status': p['status'], 'legacy_module': p.get('module'),
+                        'scale': p.get('scale'), 'status': p['status'], 'legacy_module': p.get('legacy_module'),
                         'aliases': sorted(aliases_of.get(oid, [])), 'representation': 'conceptual', 'description': p.get('desc', '')})
         rel('part_of', oid, cid or 'system:' + p['system'])
         for c in p.get('companies', []):
@@ -155,7 +155,7 @@ def build(root=ROOT):
     for r in rights:
         oid = 'site:' + r['id']
         objects.append({'id': oid, 'name': r['name'], 'kind': 'site_right', 'parent': 'root', 'scale': r.get('scale'), 'stage': r.get('stage'),
-                        'variable_classes': r.get('variable_classes', []), 'status': r.get('status'), 'legacy_module': r.get('module'),
+                        'variable_classes': r.get('variable_classes', []), 'status': r.get('status'), 'legacy_module': r.get('legacy_module'),
                         'aliases': sorted(aliases_of.get(oid, [])), 'representation': 'conceptual', 'description': r.get('desc', '')})
         rel('part_of', oid, 'root')
         for c in r.get('companies', []):
