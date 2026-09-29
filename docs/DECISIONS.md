@@ -2,6 +2,12 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-29：五台机器切到 c4ddd7a；M4 预筛定时任务卸载；三项系统检查的交接
+
+八步与 #286 合并后逐台核对：AWS 随 main 自动上站（容器健康、storage check 通过、公开只读与登录门正确）；Spark 经 m5 的 Git bundle 快进到 c4ddd7a，`READER_RELEASE` 记录，reader 与五分钟发布器改为随开机启用，第一次发布手动跑（35,917 份文档，解压 65.6 MB / 传输 5.5 MB），随后定时发布 3 秒完成；M5、M4、Mac mini 同步到同一提交，mini 的本地站点重启。M4 的 `com.inresearch.m4-preflight` launchd 任务实机核对发现指向已退役的 `pipeline/m4_preflight.py`，自 9 月 13 日起每半小时失败一次且原件目录已不在 M4，已卸载（plist 移到 `retired/`），`M4_PREFLIGHT.md` 改记为已卸载。
+
+用户要求把本轮对话压缩为交接页并在新会话系统检查三件事（infra 现状与网络配置；inresearch.ai 骨架 3-4-5-6 的清晰性与改进点、各仓库是否朝"提供素材"设置；inews.today 的设计、爬取进度与展现端优化）：交接页 `docs/handoff/review-2026-09-29.md`。
+
 ## 2026-09-29：阅读快照导出端也按别名折算旧对象 ID
 
 八步合并后核对各机器的更新顺序时发现：图谱 3.0 的旧 ID 折算表只在接收端（`registry.candidate_snapshot`，且只对版本落后的快照生效）。Spark / M4 / M5 拉了新 main 再导出，`reader_export` 会把 2.2.1 的 77 个旧对象 ID（49 个别名、28 个根前缀）当作未知丢进 mapping-proposals，比留在旧版还差。现改为三处共用一张折算表 `registry.object_resolver`：导出端（`delivery/reader_export`）、Spark 的外部快照叠加（`delivery/snapshot_overlay`）与接收端；`Reader.snapshot()` 随对象表带出 `legacy_root_prefixes`；投影缓存指纹加 `projection` 版本。折算不了的仍进提案，不猜。
