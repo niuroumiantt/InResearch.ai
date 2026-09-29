@@ -286,6 +286,14 @@ def build(root=ROOT, as_of=None):
         for k in t['model_inputs']:
             if k not in model['inputs']:
                 raise ValueError(f"{t['id']}: unknown model input {k}")
+    # 主行（2026-09-29）：一个模型输入可以由多行喂（因子行 + 部件行），但账本的可信边界只回链一行——
+    # 因子树登记的抓取条目是主行（列表里因子行在前，先到先得）；没有因子行的输入由第一条部件 / 权利行承担。
+    primary = {}
+    for t in targets:
+        for k in t['model_inputs']:
+            primary.setdefault(k, t['id'])
+    for t in targets:
+        t['feeds_primary'] = [k for k in t['model_inputs'] if primary[k] == t['id']]
     counts = {'factor': 0, 'part': 0, 'software': 0, 'archetype': 0, 'site_right': 0}
     by_status = {s: 0 for s in STATUSES}
     for t in targets:
@@ -300,7 +308,7 @@ def build(root=ROOT, as_of=None):
                  '软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。2026-09-28 骨架补齐：每个物理部件再加一行运行（operation，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率）；因子树的 time.build 生成工期、排队与审批行；部件级与权利级行带建设阶段 stage。'
                  '部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。'
                  '每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、'
-                 '已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机。'
+                 '已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机；feeds_primary 列出这一行作为主行的模型输入（一个输入只有一条主行，因子行优先），账本可信边界只回链主行。'
                  'status 只在已有序列、已录值指标或模型证据支持时为 sourced；2026-09-28 起加第四态 delivered：队已交付到 Git 内载体'
                  '（资料计划的 doc_id / source_url、带 origin_pointer 的事件卡、带 target_id 的价格记录）但尚未成为序列；只在运行库有的不算。'
                  'sourced_by 写明 sourced 来自人工登记的序列（registry）还是队交付（delivery）；team_state 写明主责队是否已接入，'

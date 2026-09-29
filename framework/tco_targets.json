@@ -2,7 +2,7 @@
   "version": "2.1.0",
   "updated": "2026-09-28",
   "title": "五类变量目标清单",
-  "note": "六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；每个物理部件按\"自己的价格、供应商名单、交期\"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。2026-09-28 骨架补齐：每个物理部件再加一行运行（operation，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率）；因子树的 time.build 生成工期、排队与审批行；部件级与权利级行带建设阶段 stage。部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机。status 只在已有序列、已录值指标或模型证据支持时为 sourced；2026-09-28 起加第四态 delivered：队已交付到 Git 内载体（资料计划的 doc_id / source_url、带 origin_pointer 的事件卡、带 target_id 的价格记录）但尚未成为序列；只在运行库有的不算。sourced_by 写明 sourced 来自人工登记的序列（registry）还是队交付（delivery）；team_state 写明主责队是否已接入，未接入的队不排到期（next_due 为空，页面显示\"待建队\"）。公司只是实例，随时可换。",
+  "note": "六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；每个物理部件按\"自己的价格、供应商名单、交期\"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。2026-09-28 骨架补齐：每个物理部件再加一行运行（operation，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率）；因子树的 time.build 生成工期、排队与审批行；部件级与权利级行带建设阶段 stage。部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机；feeds_primary 列出这一行作为主行的模型输入（一个输入只有一条主行，因子行优先），账本可信边界只回链主行。status 只在已有序列、已录值指标或模型证据支持时为 sourced；2026-09-28 起加第四态 delivered：队已交付到 Git 内载体（资料计划的 doc_id / source_url、带 origin_pointer 的事件卡、带 target_id 的价格记录）但尚未成为序列；只在运行库有的不算。sourced_by 写明 sourced 来自人工登记的序列（registry）还是队交付（delivery）；team_state 写明主责队是否已接入，未接入的队不排到期（next_due 为空，页面显示\"待建队\"）。公司只是实例，随时可换。",
   "generated_from": {
     "tco_factors": "1.3.0",
     "bom": "2.2",
@@ -148,7 +148,11 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "gpus_per_mw",
+        "it_class"
+      ]
     },
     {
       "id": "F.revenue.utilization.report",
@@ -192,7 +196,14 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "gpu_utilization",
+        "monetized_share",
+        "tenancy",
+        "util_year1",
+        "util_year2"
+      ]
     },
     {
       "id": "F.revenue.utilization.utilization.disclosure",
@@ -243,7 +254,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.revenue.price.gpu_hour.index",
@@ -293,7 +305,11 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "price_gpu_hour",
+        "price_change"
+      ]
     },
     {
       "id": "F.revenue.tokens.token.price_throughput",
@@ -340,7 +356,12 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "tokens_per_gpu_sec",
+        "price_per_m_tokens",
+        "rent_price"
+      ]
     },
     {
       "id": "F.cost.energy.load.load_factor.measured",
@@ -384,7 +405,10 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "load_factor"
+      ]
     },
     {
       "id": "F.cost.energy.pue.equipment.efficiency",
@@ -425,7 +449,10 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "pue"
+      ]
     },
     {
       "id": "F.cost.energy.pue.parts.psu_coolant",
@@ -465,7 +492,10 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "wue"
+      ]
     },
     {
       "id": "F.cost.energy.pue.pue_wue.operator_disclosure",
@@ -518,7 +548,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.energy.pue.pue.survey",
@@ -558,7 +589,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.energy.price.news",
@@ -600,7 +632,13 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "power_price",
+        "demand_rate",
+        "power_escalation",
+        "site"
+      ]
     },
     {
       "id": "F.cost.energy.price.power_price.state_industrial",
@@ -648,7 +686,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.energy.price.power_price.eu_asia",
@@ -694,7 +733,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.energy.price.power_price.cn",
@@ -740,7 +780,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.energy.price.demand_charge.tariff",
@@ -789,7 +830,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.energy.price.capacity_market",
@@ -831,7 +873,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.other_opex.staffing.per_mw",
@@ -877,7 +920,10 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "fte_per_mw"
+      ]
     },
     {
       "id": "F.cost.other_opex.maintenance.share",
@@ -921,7 +967,11 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "maint_pct_facility",
+        "maint_pct_it"
+      ]
     },
     {
       "id": "F.cost.other_opex.other_opex.breakdown",
@@ -964,7 +1014,13 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "other_opex_per_mw",
+        "insurance_pct",
+        "bandwidth_per_mw",
+        "software_per_mw"
+      ]
     },
     {
       "id": "F.cost.other_opex.wages.bls",
@@ -1010,7 +1066,11 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "cost_per_fte",
+        "labor_index"
+      ]
     },
     {
       "id": "F.cost.other_opex.escalation.eci_cpi",
@@ -1052,7 +1112,10 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "opex_escalation"
+      ]
     },
     {
       "id": "F.cost.other_opex.water.rates",
@@ -1091,7 +1154,10 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "water_price"
+      ]
     },
     {
       "id": "F.cost.facility.shell_rent.ramp.movein",
@@ -1136,7 +1202,11 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "ramp_year1",
+        "ramp_year2"
+      ]
     },
     {
       "id": "F.cost.facility.shell_rent.rent.shell_lease",
@@ -1181,7 +1251,10 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "shell_rent_per_mw"
+      ]
     },
     {
       "id": "F.cost.facility.shell_rent.lease.terms",
@@ -1228,7 +1301,17 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "lease_term",
+        "escalator",
+        "noi_margin",
+        "renewal_options",
+        "renewal_years",
+        "renewal_probability",
+        "bot_term_years",
+        "bot_service_rate"
+      ]
     },
     {
       "id": "F.cost.facility.colo_rate.rent.colo_market",
@@ -1278,7 +1361,11 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "colo_rate",
+        "price_colo_kw_month"
+      ]
     },
     {
       "id": "F.cost.depreciation.report",
@@ -1318,7 +1405,12 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "it_refresh_years",
+        "horizon_years",
+        "decommission_pct"
+      ]
     },
     {
       "id": "F.cost.depreciation.useful_life.notes",
@@ -1365,7 +1457,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.decommission.aro",
@@ -1404,7 +1497,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.accelerators.product",
@@ -1447,7 +1541,13 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "it_capex_per_kw",
+        "accelerator_share",
+        "chip_gross_margin",
+        "refresh_cost_factor"
+      ]
     },
     {
       "id": "F.cost.depreciation.capex.accelerators.news",
@@ -1489,7 +1589,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.accelerators.gpu.used_and_rack",
@@ -1535,7 +1636,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.other_it.boq.reference_design",
@@ -1575,7 +1677,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.other_it.components.quotes",
@@ -1615,7 +1718,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.shell.product",
@@ -1668,7 +1772,22 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "shell_capex_per_mw",
+        "capex_building",
+        "capex_electrical",
+        "capex_fitout",
+        "capex_mechanical",
+        "construction_years",
+        "contingency_pct",
+        "redundancy",
+        "soft_cost_pct",
+        "gate",
+        "gate_wait_years",
+        "permit_months",
+        "energy_quota_mw"
+      ]
     },
     {
       "id": "F.cost.depreciation.capex.shell.capex.ppi_escalation",
@@ -1707,7 +1826,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.shell.capex.cost_index",
@@ -1765,7 +1885,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.shell.capex.developer_disclosure",
@@ -1812,7 +1933,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.shell.construction.duration",
@@ -1858,7 +1980,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.shell.lead_time.equipment",
@@ -1900,7 +2023,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.shell.interconnection.queue",
@@ -1942,7 +2066,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.btm.btm.generation",
@@ -1983,7 +2108,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.depreciation.capex.land.land.transactions",
@@ -2027,7 +2153,10 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "land_per_mw"
+      ]
     },
     {
       "id": "F.cost.tax.tax_depreciation.macrs",
@@ -2065,7 +2194,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.cost.tax.tax.rates",
@@ -2110,7 +2240,11 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "property_tax_rate",
+        "tax"
+      ]
     },
     {
       "id": "F.capital.news",
@@ -2158,7 +2292,18 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": [
+        "wacc",
+        "shell_ltc",
+        "debt_rate",
+        "compute_ltc",
+        "compute_debt_rate",
+        "residual_share",
+        "tenant_credit",
+        "target_roic",
+        "roic_basis"
+      ]
     },
     {
       "id": "F.capital.debt.terms",
@@ -2210,7 +2355,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.capital.base_rates",
@@ -2249,7 +2395,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.capital.rating.presale",
@@ -2288,7 +2435,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.capital.exit.cap_rate",
@@ -2331,7 +2479,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.time.build.duration",
@@ -2379,7 +2528,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.time.build.queue",
@@ -2422,7 +2572,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "F.time.build.permit",
@@ -2462,7 +2613,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": null
+      "stage": null,
+      "feeds_primary": []
     },
     {
       "id": "P.shell.spec",
@@ -2505,7 +2657,8 @@
       "curated": true,
       "chain": "土地与建筑",
       "chain_order": 1,
-      "stage": "shell"
+      "stage": "shell",
+      "feeds_primary": []
     },
     {
       "id": "P.shell.operation",
@@ -2541,7 +2694,8 @@
       "curated": false,
       "chain": "土地与建筑",
       "chain_order": 1,
-      "stage": "shell"
+      "stage": "shell",
+      "feeds_primary": []
     },
     {
       "id": "P.shell.price",
@@ -2590,7 +2744,8 @@
       "curated": true,
       "chain": "土地与建筑",
       "chain_order": 1,
-      "stage": "shell"
+      "stage": "shell",
+      "feeds_primary": []
     },
     {
       "id": "P.shell.lead_time",
@@ -2634,7 +2789,8 @@
       "curated": true,
       "chain": "土地与建筑",
       "chain_order": 1,
-      "stage": "shell"
+      "stage": "shell",
+      "feeds_primary": []
     },
     {
       "id": "P.shell.news",
@@ -2670,7 +2826,8 @@
       "curated": false,
       "chain": "土地与建筑",
       "chain_order": 1,
-      "stage": "shell"
+      "stage": "shell",
+      "feeds_primary": []
     },
     {
       "id": "P.rack-frame.spec",
@@ -2713,7 +2870,8 @@
       "curated": true,
       "chain": "土地与建筑",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.rack-frame.operation",
@@ -2755,7 +2913,8 @@
       "curated": false,
       "chain": "土地与建筑",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.rack-frame.price",
@@ -2791,7 +2950,8 @@
       "curated": true,
       "chain": "土地与建筑",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.rack-frame.lead_time",
@@ -2827,7 +2987,8 @@
       "curated": true,
       "chain": "土地与建筑",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.rack-frame.news",
@@ -2867,7 +3028,8 @@
       "curated": false,
       "chain": "土地与建筑",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.modular-dc.spec",
@@ -2905,7 +3067,8 @@
       "curated": true,
       "chain": "土地与建筑",
       "chain_order": 3,
-      "stage": "shell"
+      "stage": "shell",
+      "feeds_primary": []
     },
     {
       "id": "P.fire.spec",
@@ -2944,7 +3107,8 @@
       "curated": true,
       "chain": "消防安防",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fire.operation",
@@ -2984,7 +3148,8 @@
       "curated": false,
       "chain": "消防安防",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fire.price",
@@ -3028,7 +3193,8 @@
       "curated": true,
       "chain": "消防安防",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fire.lead_time",
@@ -3066,7 +3232,8 @@
       "curated": true,
       "chain": "消防安防",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.security.spec",
@@ -3106,7 +3273,8 @@
       "curated": true,
       "chain": "消防安防",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.security.operation",
@@ -3146,7 +3314,8 @@
       "curated": false,
       "chain": "消防安防",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.security.price",
@@ -3190,7 +3359,8 @@
       "curated": true,
       "chain": "消防安防",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.security.lead_time",
@@ -3228,7 +3398,8 @@
       "curated": true,
       "chain": "消防安防",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.hv-switchyard.spec",
@@ -3269,7 +3440,8 @@
       "curated": true,
       "chain": "电网接入",
       "chain_order": 1,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.hv-switchyard.operation",
@@ -3307,7 +3479,8 @@
       "curated": false,
       "chain": "电网接入",
       "chain_order": 1,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.hv-switchyard.price",
@@ -3353,7 +3526,8 @@
       "curated": true,
       "chain": "电网接入",
       "chain_order": 1,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.hv-switchyard.lead_time",
@@ -3397,7 +3571,8 @@
       "curated": true,
       "chain": "电网接入",
       "chain_order": 1,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.hv-switchyard.news",
@@ -3434,7 +3609,8 @@
       "curated": true,
       "chain": "电网接入",
       "chain_order": 1,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.transformer.spec",
@@ -3476,7 +3652,8 @@
       "curated": true,
       "chain": "变电",
       "chain_order": 1,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.transformer.operation",
@@ -3513,7 +3690,8 @@
       "curated": true,
       "chain": "变电",
       "chain_order": 1,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.transformer.price",
@@ -3559,7 +3737,8 @@
       "curated": true,
       "chain": "变电",
       "chain_order": 1,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.transformer.lead_time",
@@ -3607,7 +3786,8 @@
       "curated": true,
       "chain": "变电",
       "chain_order": 1,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.transformer.news",
@@ -3644,7 +3824,8 @@
       "curated": true,
       "chain": "变电",
       "chain_order": 1,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.mv-switchgear.spec",
@@ -3686,7 +3867,8 @@
       "curated": true,
       "chain": "变电",
       "chain_order": 2,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.mv-switchgear.operation",
@@ -3722,7 +3904,8 @@
       "curated": false,
       "chain": "变电",
       "chain_order": 2,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.mv-switchgear.price",
@@ -3767,7 +3950,8 @@
       "curated": true,
       "chain": "变电",
       "chain_order": 2,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.mv-switchgear.lead_time",
@@ -3811,7 +3995,8 @@
       "curated": true,
       "chain": "变电",
       "chain_order": 2,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.mv-switchgear.news",
@@ -3847,7 +4032,8 @@
       "curated": true,
       "chain": "变电",
       "chain_order": 2,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "P.gas-turbine.spec",
@@ -3888,7 +4074,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.gas-turbine.operation",
@@ -3926,7 +4113,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.gas-turbine.price",
@@ -3972,7 +4160,10 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": [
+        "btm_capex_per_mw"
+      ]
     },
     {
       "id": "P.gas-turbine.lead_time",
@@ -4015,7 +4206,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.gas-turbine.news",
@@ -4054,7 +4246,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.gas-engine.spec",
@@ -4096,7 +4289,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.gas-engine.operation",
@@ -4133,7 +4327,8 @@
       "curated": false,
       "chain": "发电与储能",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.gas-engine.price",
@@ -4175,7 +4370,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.gas-engine.lead_time",
@@ -4216,7 +4412,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.gas-engine.news",
@@ -4253,7 +4450,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fuel-cell.spec",
@@ -4292,7 +4490,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fuel-cell.operation",
@@ -4329,7 +4528,8 @@
       "curated": false,
       "chain": "发电与储能",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fuel-cell.price",
@@ -4371,7 +4571,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fuel-cell.lead_time",
@@ -4410,7 +4611,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fuel-cell.news",
@@ -4448,7 +4650,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.smr.spec",
@@ -4488,7 +4691,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.smr.operation",
@@ -4524,7 +4728,8 @@
       "curated": false,
       "chain": "发电与储能",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.smr.price",
@@ -4566,7 +4771,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.smr.lead_time",
@@ -4603,7 +4809,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.smr.news",
@@ -4640,7 +4847,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.backup-power.spec",
@@ -4682,7 +4890,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 5,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.backup-power.operation",
@@ -4721,7 +4930,8 @@
       "curated": false,
       "chain": "发电与储能",
       "chain_order": 5,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.backup-power.price",
@@ -4767,7 +4977,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 5,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.backup-power.lead_time",
@@ -4813,7 +5024,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 5,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.backup-power.news",
@@ -4850,7 +5062,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 5,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fuel-storage.spec",
@@ -4888,7 +5101,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 6,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fuel-storage.operation",
@@ -4924,7 +5138,8 @@
       "curated": false,
       "chain": "发电与储能",
       "chain_order": 6,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fuel-storage.price",
@@ -4963,7 +5178,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 6,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.fuel-storage.lead_time",
@@ -4999,7 +5215,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 6,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.bess.spec",
@@ -5041,7 +5258,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 7,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.bess.operation",
@@ -5079,7 +5297,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 7,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.bess.price",
@@ -5122,7 +5341,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 7,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.bess.lead_time",
@@ -5162,7 +5382,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 7,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.bess.news",
@@ -5200,7 +5421,8 @@
       "curated": true,
       "chain": "发电与储能",
       "chain_order": 7,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.ups.spec",
@@ -5243,7 +5465,8 @@
       "curated": true,
       "chain": "UPS",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.ups.operation",
@@ -5280,7 +5503,8 @@
       "curated": true,
       "chain": "UPS",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.ups.price",
@@ -5326,7 +5550,8 @@
       "curated": true,
       "chain": "UPS",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.ups.lead_time",
@@ -5370,7 +5595,8 @@
       "curated": true,
       "chain": "UPS",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.ups-battery.spec",
@@ -5412,7 +5638,8 @@
       "curated": true,
       "chain": "UPS",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.ups-battery.operation",
@@ -5448,7 +5675,8 @@
       "curated": false,
       "chain": "UPS",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.ups-battery.price",
@@ -5494,7 +5722,8 @@
       "curated": true,
       "chain": "UPS",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.ups-battery.lead_time",
@@ -5537,7 +5766,8 @@
       "curated": true,
       "chain": "UPS",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.ups-battery.news",
@@ -5573,7 +5803,8 @@
       "curated": true,
       "chain": "UPS",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.lv-switchgear.spec",
@@ -5616,7 +5847,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.lv-switchgear.operation",
@@ -5653,7 +5885,8 @@
       "curated": false,
       "chain": "配电",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.lv-switchgear.price",
@@ -5698,7 +5931,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.lv-switchgear.lead_time",
@@ -5742,7 +5976,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.lv-switchgear.news",
@@ -5779,7 +6014,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.busway.spec",
@@ -5822,7 +6058,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.busway.operation",
@@ -5860,7 +6097,8 @@
       "curated": false,
       "chain": "配电",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.busway.price",
@@ -5905,7 +6143,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.busway.lead_time",
@@ -5948,7 +6187,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.busway.news",
@@ -5984,7 +6224,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.pdu.spec",
@@ -6027,7 +6268,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.pdu.operation",
@@ -6065,7 +6307,8 @@
       "curated": false,
       "chain": "配电",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.pdu.price",
@@ -6111,7 +6354,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.pdu.lead_time",
@@ -6153,7 +6397,8 @@
       "curated": true,
       "chain": "配电",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.power-shelf.spec",
@@ -6197,7 +6442,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.power-shelf.operation",
@@ -6233,7 +6479,8 @@
       "curated": false,
       "chain": "机柜与板级供电",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.power-shelf.price",
@@ -6270,7 +6517,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.power-shelf.lead_time",
@@ -6308,7 +6556,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.power-shelf.news",
@@ -6345,7 +6594,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.bbu.spec",
@@ -6383,7 +6633,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.bbu.operation",
@@ -6417,7 +6668,8 @@
       "curated": false,
       "chain": "机柜与板级供电",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.bbu.price",
@@ -6451,7 +6703,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.bbu.lead_time",
@@ -6486,7 +6739,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.bbu.news",
@@ -6520,7 +6774,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.psu.spec",
@@ -6560,7 +6815,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.psu.operation",
@@ -6596,7 +6852,8 @@
       "curated": false,
       "chain": "机柜与板级供电",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.psu.price",
@@ -6636,7 +6893,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.psu.lead_time",
@@ -6673,7 +6931,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.vrm.spec",
@@ -6714,7 +6973,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.vrm.operation",
@@ -6750,7 +7010,8 @@
       "curated": false,
       "chain": "机柜与板级供电",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.vrm.price",
@@ -6790,7 +7051,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.vrm.lead_time",
@@ -6827,7 +7089,8 @@
       "curated": true,
       "chain": "机柜与板级供电",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.vrm.news",
@@ -6863,7 +7126,8 @@
       "curated": false,
       "chain": "机柜与板级供电",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.dry-cooler.spec",
@@ -6905,7 +7169,10 @@
       "curated": true,
       "chain": "排热",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": [
+        "cooling"
+      ]
     },
     {
       "id": "P.dry-cooler.operation",
@@ -6945,7 +7212,8 @@
       "curated": true,
       "chain": "排热",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.dry-cooler.price",
@@ -6982,7 +7250,8 @@
       "curated": true,
       "chain": "排热",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.dry-cooler.lead_time",
@@ -7020,7 +7289,8 @@
       "curated": true,
       "chain": "排热",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.water-treatment.spec",
@@ -7058,7 +7328,8 @@
       "curated": true,
       "chain": "排热",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.water-treatment.operation",
@@ -7098,7 +7369,8 @@
       "curated": false,
       "chain": "排热",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.water-treatment.price",
@@ -7142,7 +7414,8 @@
       "curated": true,
       "chain": "排热",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.water-treatment.lead_time",
@@ -7180,7 +7453,8 @@
       "curated": true,
       "chain": "排热",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.chiller.spec",
@@ -7222,7 +7496,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.chiller.operation",
@@ -7262,7 +7537,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.chiller.price",
@@ -7299,7 +7575,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.chiller.lead_time",
@@ -7337,7 +7614,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.chilled-water-loop.spec",
@@ -7378,7 +7656,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.chilled-water-loop.operation",
@@ -7417,7 +7696,8 @@
       "curated": false,
       "chain": "冷水与 CDU",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.chilled-water-loop.price",
@@ -7453,7 +7733,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.chilled-water-loop.lead_time",
@@ -7489,7 +7770,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.cdu.spec",
@@ -7532,7 +7814,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.cdu.operation",
@@ -7573,7 +7856,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.cdu.price",
@@ -7611,7 +7895,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.cdu.lead_time",
@@ -7650,7 +7935,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.cdu.news",
@@ -7687,7 +7973,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.coolant.spec",
@@ -7729,7 +8016,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.coolant.operation",
@@ -7768,7 +8056,8 @@
       "curated": false,
       "chain": "冷水与 CDU",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.coolant.price",
@@ -7804,7 +8093,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.coolant.lead_time",
@@ -7840,7 +8130,8 @@
       "curated": true,
       "chain": "冷水与 CDU",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.room-cooling.spec",
@@ -7882,7 +8173,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.room-cooling.operation",
@@ -7922,7 +8214,8 @@
       "curated": false,
       "chain": "机房与机柜",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.room-cooling.price",
@@ -7959,7 +8252,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.room-cooling.lead_time",
@@ -7996,7 +8290,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 1,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.immersion.spec",
@@ -8035,7 +8330,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.immersion.operation",
@@ -8072,7 +8368,8 @@
       "curated": false,
       "chain": "机房与机柜",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.immersion.price",
@@ -8111,7 +8408,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.immersion.lead_time",
@@ -8147,7 +8445,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.immersion.news",
@@ -8183,7 +8482,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 2,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.sidecar-hx.spec",
@@ -8222,7 +8522,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.sidecar-hx.operation",
@@ -8261,7 +8562,8 @@
       "curated": false,
       "chain": "机房与机柜",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.sidecar-hx.price",
@@ -8300,7 +8602,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.sidecar-hx.lead_time",
@@ -8337,7 +8640,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.sidecar-hx.news",
@@ -8376,7 +8680,8 @@
       "curated": false,
       "chain": "机房与机柜",
       "chain_order": 3,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.manifold.spec",
@@ -8415,7 +8720,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.manifold.operation",
@@ -8451,7 +8757,8 @@
       "curated": false,
       "chain": "机房与机柜",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.manifold.price",
@@ -8490,7 +8797,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.manifold.lead_time",
@@ -8527,7 +8835,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.manifold.news",
@@ -8563,7 +8872,8 @@
       "curated": false,
       "chain": "机房与机柜",
       "chain_order": 4,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.quick-disconnect.spec",
@@ -8603,7 +8913,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 5,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.quick-disconnect.operation",
@@ -8639,7 +8950,8 @@
       "curated": false,
       "chain": "机房与机柜",
       "chain_order": 5,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.quick-disconnect.price",
@@ -8678,7 +8990,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 5,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.quick-disconnect.lead_time",
@@ -8716,7 +9029,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 5,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.quick-disconnect.news",
@@ -8753,7 +9067,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 5,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.leak-detection.spec",
@@ -8791,7 +9106,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 6,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.leak-detection.operation",
@@ -8831,7 +9147,8 @@
       "curated": false,
       "chain": "机房与机柜",
       "chain_order": 6,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.leak-detection.price",
@@ -8875,7 +9192,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 6,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.leak-detection.lead_time",
@@ -8913,7 +9231,8 @@
       "curated": true,
       "chain": "机房与机柜",
       "chain_order": 6,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.leak-detection.news",
@@ -8949,7 +9268,8 @@
       "curated": false,
       "chain": "机房与机柜",
       "chain_order": 6,
-      "stage": "mep"
+      "stage": "mep",
+      "feeds_primary": []
     },
     {
       "id": "P.coldplate.spec",
@@ -8990,7 +9310,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.coldplate.operation",
@@ -9030,7 +9351,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.coldplate.price",
@@ -9070,7 +9392,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.coldplate.lead_time",
@@ -9107,7 +9430,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.coldplate.news",
@@ -9143,7 +9467,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.heatsink-vc.spec",
@@ -9183,7 +9508,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.heatsink-vc.operation",
@@ -9219,7 +9545,8 @@
       "curated": false,
       "chain": "芯片级",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.heatsink-vc.price",
@@ -9259,7 +9586,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.heatsink-vc.lead_time",
@@ -9296,7 +9624,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.server-fan.spec",
@@ -9336,7 +9665,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.server-fan.operation",
@@ -9372,7 +9702,8 @@
       "curated": false,
       "chain": "芯片级",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.server-fan.price",
@@ -9412,7 +9743,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.server-fan.lead_time",
@@ -9449,7 +9781,8 @@
       "curated": true,
       "chain": "芯片级",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.rack-system.spec",
@@ -9494,7 +9827,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.rack-system.operation",
@@ -9532,7 +9866,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.rack-system.price",
@@ -9574,7 +9909,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.rack-system.lead_time",
@@ -9614,7 +9950,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.rack-system.news",
@@ -9652,7 +9989,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.server.spec",
@@ -9694,7 +10032,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.server.operation",
@@ -9735,7 +10074,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.server.price",
@@ -9777,7 +10117,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.server.lead_time",
@@ -9818,7 +10159,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.server.news",
@@ -9856,7 +10198,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.general-server.spec",
@@ -9898,7 +10241,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.general-server.operation",
@@ -9948,7 +10292,8 @@
       "curated": false,
       "chain": "计算",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.general-server.price",
@@ -9990,7 +10335,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.general-server.lead_time",
@@ -10028,7 +10374,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.gpu.spec",
@@ -10071,7 +10418,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.gpu.operation",
@@ -10113,7 +10461,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.gpu.price",
@@ -10164,7 +10513,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.gpu.lead_time",
@@ -10204,7 +10554,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.gpu.news",
@@ -10244,7 +10595,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.ai-asic.spec",
@@ -10285,7 +10637,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 5,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.ai-asic.operation",
@@ -10325,7 +10678,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 5,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.ai-asic.price",
@@ -10368,7 +10722,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 5,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.ai-asic.lead_time",
@@ -10407,7 +10762,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 5,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.ai-asic.news",
@@ -10446,7 +10802,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 5,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cpu.spec",
@@ -10485,7 +10842,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 6,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cpu.operation",
@@ -10523,7 +10881,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 6,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cpu.price",
@@ -10563,7 +10922,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 6,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cpu.lead_time",
@@ -10600,7 +10960,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 6,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.fpga.spec",
@@ -10637,7 +10998,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 7,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.fpga.operation",
@@ -10673,7 +11035,8 @@
       "curated": false,
       "chain": "计算",
       "chain_order": 7,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.fpga.price",
@@ -10715,7 +11078,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 7,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.fpga.lead_time",
@@ -10751,7 +11115,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 7,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.bmc.spec",
@@ -10788,7 +11153,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 8,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.bmc.operation",
@@ -10824,7 +11190,8 @@
       "curated": false,
       "chain": "计算",
       "chain_order": 8,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.bmc.price",
@@ -10864,7 +11231,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 8,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.bmc.lead_time",
@@ -10900,7 +11268,8 @@
       "curated": true,
       "chain": "计算",
       "chain_order": 8,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.hbm.spec",
@@ -10938,7 +11307,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.hbm.operation",
@@ -10975,7 +11345,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.hbm.price",
@@ -11019,7 +11390,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.hbm.lead_time",
@@ -11057,7 +11429,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.hbm.news",
@@ -11094,7 +11467,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.dram.spec",
@@ -11133,7 +11507,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.dram.operation",
@@ -11171,7 +11546,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.dram.price",
@@ -11211,7 +11587,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.dram.lead_time",
@@ -11248,7 +11625,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.dram.news",
@@ -11288,7 +11666,8 @@
       "curated": false,
       "chain": "内存",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cxl-memory.spec",
@@ -11327,7 +11706,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cxl-memory.operation",
@@ -11364,7 +11744,8 @@
       "curated": false,
       "chain": "内存",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cxl-memory.price",
@@ -11403,7 +11784,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cxl-memory.lead_time",
@@ -11440,7 +11822,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cxl-memory.news",
@@ -11476,7 +11859,8 @@
       "curated": true,
       "chain": "内存",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.storage-array.spec",
@@ -11517,7 +11901,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.storage-array.operation",
@@ -11564,7 +11949,8 @@
       "curated": false,
       "chain": "存储",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.storage-array.price",
@@ -11605,7 +11991,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.storage-array.lead_time",
@@ -11642,7 +12029,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.ssd.spec",
@@ -11681,7 +12069,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.ssd.operation",
@@ -11718,7 +12107,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.ssd.price",
@@ -11758,7 +12148,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.ssd.lead_time",
@@ -11795,7 +12186,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.ssd.news",
@@ -11842,7 +12234,8 @@
       "curated": false,
       "chain": "存储",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.hdd.spec",
@@ -11880,7 +12273,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.hdd.operation",
@@ -11917,7 +12311,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.hdd.price",
@@ -11957,7 +12352,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.hdd.lead_time",
@@ -11994,7 +12390,8 @@
       "curated": true,
       "chain": "存储",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.hdd.news",
@@ -12032,7 +12429,8 @@
       "curated": false,
       "chain": "存储",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.network-switch.spec",
@@ -12073,7 +12471,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.network-switch.operation",
@@ -12110,7 +12509,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.network-switch.price",
@@ -12153,7 +12553,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.network-switch.lead_time",
@@ -12191,7 +12592,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.network-switch.news",
@@ -12229,7 +12631,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 1,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.switch-asic.spec",
@@ -12269,7 +12672,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.switch-asic.operation",
@@ -12307,7 +12711,8 @@
       "curated": false,
       "chain": "网络",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.switch-asic.price",
@@ -12346,7 +12751,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.switch-asic.lead_time",
@@ -12383,7 +12789,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.switch-asic.news",
@@ -12421,7 +12828,8 @@
       "curated": false,
       "chain": "网络",
       "chain_order": 2,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.optics.spec",
@@ -12463,7 +12871,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.optics.operation",
@@ -12501,7 +12910,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.optics.price",
@@ -12543,7 +12953,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.optics.lead_time",
@@ -12581,7 +12992,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.optics.news",
@@ -12619,7 +13031,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 3,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.copper-interconnect.spec",
@@ -12659,7 +13072,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.copper-interconnect.operation",
@@ -12696,7 +13110,8 @@
       "curated": false,
       "chain": "网络",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.copper-interconnect.price",
@@ -12736,7 +13151,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.copper-interconnect.lead_time",
@@ -12773,7 +13189,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.copper-interconnect.news",
@@ -12810,7 +13227,8 @@
       "curated": false,
       "chain": "网络",
       "chain_order": 4,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cabling.spec",
@@ -12850,7 +13268,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 5,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cabling.operation",
@@ -12888,7 +13307,8 @@
       "curated": false,
       "chain": "网络",
       "chain_order": 5,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cabling.price",
@@ -12928,7 +13348,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 5,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.cabling.lead_time",
@@ -12965,7 +13386,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 5,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.connector.spec",
@@ -13005,7 +13427,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 6,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.connector.operation",
@@ -13041,7 +13464,8 @@
       "curated": false,
       "chain": "网络",
       "chain_order": 6,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.connector.price",
@@ -13081,7 +13505,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 6,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.connector.lead_time",
@@ -13118,7 +13543,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 6,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.connector.news",
@@ -13154,7 +13580,8 @@
       "curated": false,
       "chain": "网络",
       "chain_order": 6,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.nic.spec",
@@ -13194,7 +13621,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 7,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.nic.operation",
@@ -13231,7 +13659,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 7,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.nic.price",
@@ -13271,7 +13700,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 7,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.nic.lead_time",
@@ -13308,7 +13738,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 7,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.retimer.spec",
@@ -13347,7 +13778,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 8,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.retimer.operation",
@@ -13385,7 +13817,8 @@
       "curated": false,
       "chain": "网络",
       "chain_order": 8,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.retimer.price",
@@ -13424,7 +13857,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 8,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.retimer.lead_time",
@@ -13460,7 +13894,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 8,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.retimer.news",
@@ -13497,7 +13932,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 8,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.pcie-switch.spec",
@@ -13535,7 +13971,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 9,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.pcie-switch.operation",
@@ -13573,7 +14010,8 @@
       "curated": false,
       "chain": "网络",
       "chain_order": 9,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.pcie-switch.price",
@@ -13613,7 +14051,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 9,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.pcie-switch.lead_time",
@@ -13649,7 +14088,8 @@
       "curated": true,
       "chain": "网络",
       "chain_order": 9,
-      "stage": "it"
+      "stage": "it",
+      "feeds_primary": []
     },
     {
       "id": "P.dcim.spec",
@@ -13689,7 +14129,8 @@
       "curated": true,
       "chain": "DCIM/BMS 与固件",
       "chain_order": 1,
-      "stage": "commissioning"
+      "stage": "commissioning",
+      "feeds_primary": []
     },
     {
       "id": "P.dcim.price",
@@ -13734,7 +14175,8 @@
       "curated": true,
       "chain": "DCIM/BMS 与固件",
       "chain_order": 1,
-      "stage": "commissioning"
+      "stage": "commissioning",
+      "feeds_primary": []
     },
     {
       "id": "S.land.price",
@@ -13775,7 +14217,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "rights"
+      "stage": "rights",
+      "feeds_primary": []
     },
     {
       "id": "S.land.holders",
@@ -13811,7 +14254,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "rights"
+      "stage": "rights",
+      "feeds_primary": []
     },
     {
       "id": "S.water-rights.holders",
@@ -13847,7 +14291,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "rights"
+      "stage": "rights",
+      "feeds_primary": []
     },
     {
       "id": "S.water-rights.timeline",
@@ -13885,7 +14330,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "rights"
+      "stage": "rights",
+      "feeds_primary": []
     },
     {
       "id": "S.grid.timeline",
@@ -13933,7 +14379,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "S.grid.holders",
@@ -13972,7 +14419,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "grid"
+      "stage": "grid",
+      "feeds_primary": []
     },
     {
       "id": "S.gas-supply.holders",
@@ -14008,7 +14456,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "rights"
+      "stage": "rights",
+      "feeds_primary": []
     },
     {
       "id": "S.gas-supply.timeline",
@@ -14044,7 +14493,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "rights"
+      "stage": "rights",
+      "feeds_primary": []
     },
     {
       "id": "S.network-access.holders",
@@ -14078,7 +14528,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "rights"
+      "stage": "rights",
+      "feeds_primary": []
     },
     {
       "id": "S.network-access.price",
@@ -14112,7 +14563,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "rights"
+      "stage": "rights",
+      "feeds_primary": []
     },
     {
       "id": "S.permits.timeline",
@@ -14154,7 +14606,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "rights"
+      "stage": "rights",
+      "feeds_primary": []
     },
     {
       "id": "S.permits.holders",
@@ -14191,7 +14644,8 @@
       "curated": false,
       "chain": null,
       "chain_order": null,
-      "stage": "rights"
+      "stage": "rights",
+      "feeds_primary": []
     }
   ]
 }

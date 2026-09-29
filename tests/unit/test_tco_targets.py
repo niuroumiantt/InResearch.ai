@@ -109,6 +109,21 @@ class TcoTargetListTests(unittest.TestCase):
             else:  # 2026-09-29：主执行机按供应方登记（fetchspec 在 macmini），不再一律 aws
                 self.assertEqual(t['host'], self.provider_rows[t['team']].get('host_default', 'aws'), f"{t['id']} host follows the provider's host_default")
 
+    def test_every_fed_input_has_exactly_one_primary_row(self):
+        # 2026-09-29：55/77 个被喂的输入由多行喂；账本只回链主行，因子行优先
+        primary = {}
+        for t in self.targets:
+            self.assertTrue(set(t['feeds_primary']) <= set(t['model_inputs']), t['id'])
+            for k in t['feeds_primary']:
+                self.assertNotIn(k, primary, f"{k} has two primary rows: {primary.get(k)} and {t['id']}")
+                primary[k] = t['id']
+        covered = {k for t in self.targets for k in t['model_inputs']}
+        self.assertEqual(set(primary), covered)
+        factor_rows = {t['id'] for t in self.targets if t['origin'] == 'factor'}
+        for k, tid in primary.items():
+            if any(k in t['model_inputs'] for t in self.targets if t['origin'] == 'factor'):
+                self.assertIn(tid, factor_rows, f"{k}: a factor row exists, so the primary must be a factor row")
+
     def test_every_non_user_input_has_a_target(self):
         covered = {k for t in self.targets for k in t['model_inputs']}
         expected = {k for k, v in self.evidence.items() if v.get('status') != 'input'}
