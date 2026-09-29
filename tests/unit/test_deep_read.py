@@ -15,7 +15,7 @@ from inresearch.materials import reading_policy as POLICY, text_similarity as SI
 from inresearch.delivery import reading_packet as PACKET
 from inresearch.storage import jsonl as JSONL
 from inresearch.materials.records import result_revision
-import inresearch.adapters.office_grid as office_grid
+import inresearch.materials.office_grid as office_grid
 from deep_read_fixtures import (make_app, METRICS, SHA, fact, other, problems, problems_for,
     L1_ROW, PROVENANCE_DEBT, DANGLING_SOURCE_IDS, KNOWN_DIM_NAMES, FILLED_THIS_BATCH)
 L2 = make_app()

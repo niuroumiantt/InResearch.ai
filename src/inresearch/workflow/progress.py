@@ -20,7 +20,7 @@ import argparse, collections, json, sys, time
 from pathlib import Path
 
 from inresearch.materials import triage as L1
-from inresearch.workflow import terminal_batch as PK
+from inresearch.workflow import batch_reporting
 from inresearch.materials import paths as m4_paths
 from inresearch.materials import records as m4_records
 from inresearch.storage.moves import replay
@@ -73,7 +73,7 @@ def collect():
                 stamps.append(time.mktime(time.strptime(at, '%Y-%m-%dT%H:%M:%SZ')))
             except ValueError:
                 pass
-    rate = PK.working_rate(stamps)
+    rate = batch_reporting.working_rate(stamps)
     hours = (remaining / rate / 60) if rate else None
 
     scores = collections.Counter(r['score'] for r in judged if r.get('score') is not None)

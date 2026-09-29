@@ -1,8 +1,8 @@
 """Binary PowerPoint text atoms."""
 from __future__ import annotations
 import struct
-from inresearch.adapters.office_container import OleFile
-from inresearch.adapters.office_grid import MAX_CHARS, no_text_layer
+from inresearch.materials.office_container import OleFile
+from inresearch.materials.office_grid import MAX_CHARS, no_text_layer
 
 
 TEXT_CHARS_ATOM = 0x0FA0      # UTF-16LE

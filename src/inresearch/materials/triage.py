@@ -24,7 +24,7 @@ from inresearch.materials import paths as m4_paths
 from inresearch.materials import records as m4_records
 from inresearch.storage.moves import replay
 from inresearch.storage.jsonl import read_rows as read_rows
-from inresearch.adapters import office as m4_office_text
+from inresearch.materials import office_text as m4_office_text
 
 SOURCE = m4_paths.source()
 LIBRARY = m4_paths.library()

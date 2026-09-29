@@ -2,7 +2,7 @@
 from __future__ import annotations
 import re, subprocess
 from pathlib import Path
-from inresearch.adapters import office as m4_office_text
+from inresearch.materials import office_text as m4_office_text
 
 
 CHUNK_CHARS = 15000

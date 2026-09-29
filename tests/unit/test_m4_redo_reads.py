@@ -21,8 +21,8 @@ import types
 import unittest
 import zipfile
 
-from inresearch.adapters import office as OFFICE
-import inresearch.adapters.office_container as office_container
+from inresearch.materials import office_text as OFFICE
+import inresearch.materials.office_container as office_container
 from inresearch.materials import triage as L1
 from inresearch.workflow import terminal_batch as PK
 

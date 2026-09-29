@@ -1,8 +1,8 @@
 """BIFF worksheet records to an addressable text grid."""
 from __future__ import annotations
 import struct
-from inresearch.adapters.office_container import OleFile
-from inresearch.adapters.office_grid import MAX_CHARS, no_text_layer, is_date_format, number_text, grid_text
+from inresearch.materials.office_container import OleFile
+from inresearch.materials.office_grid import MAX_CHARS, no_text_layer, is_date_format, number_text, grid_text
 
 
 SST = 0x00FC

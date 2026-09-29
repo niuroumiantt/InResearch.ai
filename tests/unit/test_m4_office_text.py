@@ -13,12 +13,12 @@ import unittest
 import zipfile
 from pathlib import Path
 
-from inresearch.adapters import office as O
-import inresearch.adapters.office_biff as office_biff
-import inresearch.adapters.office_container as office_container
-import inresearch.adapters.office_grid as office_grid
-import inresearch.adapters.office_ppt as office_ppt
-import inresearch.adapters.office_ooxml as office_ooxml
+from inresearch.materials import office_text as O
+import inresearch.materials.office_biff as office_biff
+import inresearch.materials.office_container as office_container
+import inresearch.materials.office_grid as office_grid
+import inresearch.materials.office_ppt as office_ppt
+import inresearch.materials.office_ooxml as office_ooxml
 
 FREE = 0xFFFFFFFF
 ENDOFCHAIN = 0xFFFFFFFE

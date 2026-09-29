@@ -28,7 +28,9 @@ one current reading result and revision conflict handling.
 - `materials.office_text`: parse Office containers into bounded text and
   extraction metadata.  It owns no queue, model, verdict, or write policy.
 - `workflow.batch_selection`: select/retry material candidates and normalize
-  preview text.  It performs no writes.
+  preview text.  It performs no writes.  It is not yet migrated: existing
+  extraction/model tests replace the command module's selector, so an explicit
+  injectable selection dependency must be introduced before this move.
 - `workflow.batch_recording`: parse terminal verdict input and commit a result
   with its expected revision.  The records ledger remains the sole writer.
 - `workflow.batch_reporting`: calculate activity rate and report duplicate
@@ -64,6 +66,16 @@ generated governance manifests.  Old implementation deletion target:
 No compatibility re-export is allowed after every listed consumer migrates.
 The command filename `workflow/terminal_batch.py` remains because it is the
 registered CLI command, but it must not retain business implementations.
+
+## Progress record
+
+Implemented and verified in this batch so far: Office parsing moved into
+`materials`; every former adapter import migrated; the six obsolete adapter
+files were removed; read-only batch activity reporting moved to
+`batch_reporting`, and `workflow.progress` now consumes it.  The initial
+selection migration was intentionally removed after it bypassed the existing
+test injection seam and made concurrent-extraction tests meaningless.  This
+is unfinished work, not a retained compatibility implementation.
 
 ## Required verification
 

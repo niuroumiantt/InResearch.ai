@@ -2,7 +2,7 @@
 from __future__ import annotations
 import re, zipfile
 from pathlib import Path
-from inresearch.adapters.office_grid import MAX_CHARS, COL_REF, col_index, is_date_format, number_text, grid_text, MERGE_MARK
+from inresearch.materials.office_grid import MAX_CHARS, COL_REF, col_index, is_date_format, number_text, grid_text, MERGE_MARK
 
 
 XML_ENTITIES = (('&lt;', '<'), ('&gt;', '>'), ('&quot;', '"'),

@@ -21,11 +21,11 @@ Everything here is defensive: a malformed file returns whatever text was
 recovered before the parse went wrong, never an exception.
 """
 from __future__ import annotations
-from inresearch.adapters.office_container import OLE_MAGIC, OleFile
-from inresearch.adapters.office_grid import MAX_CHARS, no_text_layer
-from inresearch.adapters.office_biff import xls_text
-from inresearch.adapters.office_ppt import ppt_text
-from inresearch.adapters.office_ooxml import ooxml_text
+from inresearch.materials.office_container import OLE_MAGIC, OleFile
+from inresearch.materials.office_grid import MAX_CHARS, no_text_layer
+from inresearch.materials.office_biff import xls_text
+from inresearch.materials.office_ppt import ppt_text
+from inresearch.materials.office_ooxml import ooxml_text
 
 from pathlib import Path
 

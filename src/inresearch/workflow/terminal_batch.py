@@ -17,7 +17,7 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 from inresearch.materials import triage as L1
-from inresearch.adapters import office as m4_office_text
+from inresearch.materials import office_text as m4_office_text
 
 BATCH_DIR = L1.DATA / 'batches'
 PREVIEW_CHARS = 400
