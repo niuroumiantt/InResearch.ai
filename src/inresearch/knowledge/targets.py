@@ -138,8 +138,14 @@ def build(root=ROOT, as_of=None):
         for rid in f.get('site_rights', []):
             right_factors.setdefault(rid, []).append(f['id'])
 
-    def host_for(mechanism):
-        return hosts['assisted'] if mechanism in ASSISTED else hosts['continuous']
+    def host_for(mechanism, team):
+        # assisted 机制永远在 macmini；其余按供应方登记的 host_default（fetchspec 2026-09-29 对齐为 macmini），缺省 continuous
+        if mechanism in ASSISTED:
+            return hosts['assisted']
+        default = providers.get(team, {}).get('host_default', hosts['continuous'])
+        if default not in hosts.values():
+            raise ValueError(f'{team}: host_default {default} is not a registered execution host')
+        return default
 
     def team_meta(team):
         p = providers[team]
@@ -183,7 +189,7 @@ def build(root=ROOT, as_of=None):
             'model_inputs': kw['model_inputs'], 'series': kw['series'], 'planned_series': kw.get('planned_series', []),
             'indicators': kw.get('indicators', []), 'data_class': kw['data_class'],
             'disclosure_type': kw['disclosure_type'], 'publisher_category': kw['publisher_category'],
-            'instances': kw['instances'], 'mechanism': mechanism, 'team': kw['team'], 'host': host_for(mechanism),
+            'instances': kw['instances'], 'mechanism': mechanism, 'team': kw['team'], 'host': host_for(mechanism, kw['team']),
             'calendar': kw['calendar'], 'team_state': 'connected' if connected else 'not_connected',
             'next_due': due(kw.get('next_due'), kw['data_class']) if connected else None,
             'status': status, 'sourced_by': {'sourced': 'registry', 'delivered': 'delivery'}.get(status),

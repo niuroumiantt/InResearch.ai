@@ -28,6 +28,7 @@ class TcoTargetListTests(unittest.TestCase):
         cls.evidence = model['evidence']
         contract = load('framework/supply_contract.json')
         cls.providers = {p['id'] for p in contract['providers']}
+        cls.provider_rows = {p['id']: p for p in contract['providers']}
         cls.hosts = {p['host'] for p in contract['execution_policy'].values() if isinstance(p, dict) and 'host' in p}
 
     def test_file_is_generated_from_its_inputs(self):
@@ -105,6 +106,8 @@ class TcoTargetListTests(unittest.TestCase):
                 self.assertEqual(t['data_class'], 'material', t['id'])
             if t['mechanism'] in ('pdf_registered', 'js_page'):
                 self.assertEqual(t['host'], 'macmini', f"{t['id']} assisted mechanism must run on macmini")
+            else:  # 2026-09-29：主执行机按供应方登记（fetchspec 在 macmini），不再一律 aws
+                self.assertEqual(t['host'], self.provider_rows[t['team']].get('host_default', 'aws'), f"{t['id']} host follows the provider's host_default")
 
     def test_every_non_user_input_has_a_target(self):
         covered = {k for t in self.targets for k in t['model_inputs']}
