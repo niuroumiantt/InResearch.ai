@@ -98,6 +98,24 @@ class NewsProjectionTest(unittest.TestCase):
         plain = json.loads(self.fetch([self.page([self.row()])]).payload_json)['articles'][0]
         self.assertIsNone(plain['event_type'])
 
+    def test_feed_v2_object_ids_are_filtered_to_the_current_skeleton(self):
+        # 2026-09-29：object_ids 是事件挂到骨架的字段；形状错拒收整页，不在现行骨架里的 ID 逐个过滤，不拒收
+        row = self.row()
+        row['object_ids'] = ['part:gpu', 'actor:nvidia', 'site:grid', 'part:not-a-part', 'actor:nobody']
+        projection = self.fetch([self.page([row])])
+        article = json.loads(projection.payload_json)['articles'][0]
+        self.assertEqual(article['object_ids'], ['part:gpu', 'actor:nvidia', 'site:grid'])
+        self.assertEqual(acquisition.import_news(self.collector, projection), 1)
+        metadata = json.loads(self.collector.db.execute('SELECT metadata FROM items').fetchone()[0])
+        self.assertEqual(metadata['object_ids'], ['part:gpu', 'actor:nvidia', 'site:grid'])
+        self.assertEqual(metadata['match_status'], 'candidate', 'an object id is a lead, not adopted evidence')
+        for value in ('part:gpu', ['part:gpu', 'part:gpu'], [1], ['root'], ['part:../x'], ['part:' + 'a' * 70], [f'part:p{i}' for i in range(33)]):
+            bad = self.row(); bad['object_ids'] = value
+            with self.assertRaises(ValueError, msg=repr(value)[:40]):
+                self.fetch([self.page([bad])])
+        plain = json.loads(self.fetch([self.page([self.row()])]).payload_json)['articles'][0]
+        self.assertIsNone(plain['object_ids'])
+
     def test_forged_json_and_roundtrip_do_not_grant_authority(self):
         payload = json.loads(self.fetch([self.page()]).payload_json)
         payload['verified'] = True
