@@ -27,7 +27,7 @@ COMMANDS = {
     'backup': 'inresearch.delivery.backup', 'library': 'inresearch.materials.library',
     'asset-check': 'inresearch.adapters.asset_check', 'asset-compare': 'inresearch.adapters.asset_compare', 'asset-download': 'inresearch.adapters.asset_download',
     'registry': 'inresearch.knowledge.registry', 'facts': 'inresearch.knowledge.facts', 'validate': 'inresearch.knowledge.validate', 'verify': 'inresearch.knowledge.verify',
-    'governance': 'inresearch.interfaces.governance', 'targets': 'inresearch.knowledge.targets', 'nodes': 'inresearch.knowledge.nodes', 'graph': 'inresearch.knowledge.graph', 'dashboard': 'inresearch.knowledge.dashboard', 'indicators': 'inresearch.knowledge.indicators', 'company-ids': 'inresearch.knowledge.company_ids',
+    'governance': 'inresearch.interfaces.governance', 'targets': 'inresearch.knowledge.targets', 'deliveries': 'inresearch.knowledge.deliveries', 'nodes': 'inresearch.knowledge.nodes', 'graph': 'inresearch.knowledge.graph', 'dashboard': 'inresearch.knowledge.dashboard', 'indicators': 'inresearch.knowledge.indicators', 'company-ids': 'inresearch.knowledge.company_ids',
     'coverage': 'inresearch.knowledge.coverage', 'reading-queue': 'inresearch.workflow.reading_queue', 'workorders': 'inresearch.workflow.workorders',
     'submissions': 'inresearch.workflow.submissions', 'export': 'inresearch.delivery.export', 'map': 'inresearch.delivery.map',
     'fetchspec-receive': 'inresearch.materials.fetchspec_receive',
