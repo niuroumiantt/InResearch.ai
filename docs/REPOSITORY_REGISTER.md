@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1022。
+在册文件：1028。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,14 +15,14 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 279 |
+| 历史快照 | 284 |
 | 运行代码 | 213 |
 | 现行规范 | 12 |
 | 项目配置 | 95 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 62 |
+| 配套说明 | 63 |
 | 测试 | 99 |
 
 ## 在册记录集合
@@ -494,6 +494,7 @@
 | `docs/guides/model-governance-2026-09-27.html` | 运行代码 |
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
+| [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
 | [docs/handoff/inews-2026-09-29.md](handoff/inews-2026-09-29.md) | 配套说明 |
 | [docs/handoff/infra-2026-09-29.md](handoff/infra-2026-09-29.md) | 配套说明 |
 | [docs/handoff/m4-deepread.md](handoff/m4-deepread.md) | 配套说明 |
@@ -941,6 +942,11 @@
 | [docs/reviews/2026-09-29/inews/README.md](reviews/2026-09-29/inews/README.md) | 历史快照 |
 | [docs/reviews/2026-09-29/infra/README.md](reviews/2026-09-29/infra/README.md) | 历史快照 |
 | [docs/reviews/2026-09-29/skeleton/README.md](reviews/2026-09-29/skeleton/README.md) | 历史快照 |
+| [docs/reviews/2026-09-29/verify/README.md](reviews/2026-09-29/verify/README.md) | 历史快照 |
+| `docs/reviews/2026-09-29/verify/aws.sh` | 历史快照 |
+| `docs/reviews/2026-09-29/verify/local.sh` | 历史快照 |
+| `docs/reviews/2026-09-29/verify/macmini.sh` | 历史快照 |
+| `docs/reviews/2026-09-29/verify/spark.sh` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
