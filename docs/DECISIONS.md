@@ -2,7 +2,6 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
-<<<<<<< HEAD
 ## 2026-09-29：新闻同步单页读超时 40 秒放到 120 秒
 
 Spark 上 `inresearch-news.service` 2026-09-29 11:10 因读超时失败；从 Spark 实测 `/api/feeds/datacenter?hours=168&limit=100` 首页 2.6–7.2 秒且波动大，深分页更慢。`news_sync` 单页读超时从 40 秒放到 120 秒（环境变量 `INRESEARCH_NEWS_READ_TIMEOUT` 可调），整次同步仍受 systemd 30 分钟上限约束。深分页查询本身的快慢交 inews.today 侧（批次 D 子会话）。
@@ -23,8 +22,6 @@ Spark 实机核对新闻同步时发现 `inresearch-news.timer` 的 NEXT 为空�
 
 未做：`SPARK_OPERATIONS.md`（评审文件）里 Spark 重装 units 的一句随下一批评审文件；`ACQUISITION_OPERATIONS.md` 的"每小时"同上。
 
-=======
->>>>>>> origin/main
 ## 2026-09-29：三项检查的机检与代码批次（A）——九项落地
 
 用户采用 `docs/reviews/2026-09-29/` 三份报告后要求逐步执行；本条是第一批（本仓库、不改规范正文），每项一个提交：
