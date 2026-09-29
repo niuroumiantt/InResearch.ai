@@ -261,6 +261,10 @@ class Handler(SimpleHTTPRequestHandler):
             if not user:                   # 本地模式没有身份，改密无从谈起
                 return self._redirect("/")
             return self._html(200, pages.PASSWD_PAGE)
+        if self._norm_path() == "/healthz":
+            # 健康探针（2026-09-29）：只证明进程在、能路由、能序列化；不 stat 日志、不读运行文件、不看登录态。
+            # 容器编排、Dockerfile 与 infra hosts/apps.json 都探这里，不再探登录页或首页。
+            return self._json(200, {"ok": True, "service": "inresearch", "auth_required": bool(AUTH_ON)})
         if self.path == "/api/whoami":
             role = self._role(user)
             return self._json(200, {"ok": True, "user": user or (None if role == "reader" else "(本地模式)"), "role": role})

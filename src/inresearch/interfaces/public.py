@@ -19,12 +19,14 @@ READER_API = ('/api/whoami', '/api/report', '/api/news', '/api/model-assets', '/
 # 外观、组件脚本、字体、模型资产与渲染图：公开页面离不开，且都是代码或登记过的资产。
 READER_PREFIXES = ('/assets/', '/favicon')
 READER_AUTH = ('/login', '/logout')
+# 探针与爬虫协议：不 stat 任何运行文件，不带任何数据。/healthz 是 compose、Dockerfile 与 apps.json 三处探针的唯一目标。
+READER_PROBE = ('/healthz', '/robots.txt')
 
 
 def allowed(path):
     """path 已解码归一（见 http.Handler._norm_path）。只判断 GET/HEAD 可否匿名放行。"""
     path = urlsplit(path).path
-    return (path in READER_PAGES or path in READER_DATA or path in READER_API or path in READER_AUTH
+    return (path in READER_PAGES or path in READER_DATA or path in READER_API or path in READER_AUTH or path in READER_PROBE
             or any(path.startswith(p) for p in READER_PREFIXES))
 
 

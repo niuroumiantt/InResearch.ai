@@ -16,7 +16,7 @@ class PublicViewTests(unittest.TestCase):
     def test_allowed_is_a_whitelist(self):
         for path in ('/', '/index.html', '/node.html', '/ledger.html', '/bom.html', '/bom3d.html', '/rack3d.html', '/product-catalog.html',
                      '/report.html', '/data/dashboard.json', '/data/tco_targets.json', '/data/datacenter_model.json', '/api/whoami',
-                     '/api/report', '/assets/datacenter-model.js', '/assets/models/x.glb', '/login'):
+                     '/api/report', '/assets/datacenter-model.js', '/assets/models/x.glb', '/login', '/healthz', '/robots.txt'):
             self.assertTrue(public.allowed(path), path)
         for path in ('/supply.html', '/team.html', '/materials.html', '/nvidia-pilot.html', '/ops.html', '/company.html', '/doc.html',
                      '/research.html', '/admin/product/index.html', '/data/facts.json', '/data/users.json', '/framework/part_fetch.json',
@@ -65,6 +65,12 @@ class PublicReaderHTTPTests(unittest.TestCase):
         with patch.object(auth, 'session_user', return_value=None):
             status, _, body = self.request('GET', '/api/whoami')
             self.assertEqual((status, json.loads(body)), (200, {'ok': True, 'user': None, 'role': 'reader'}))
+            status, headers, body = self.request('GET', '/healthz')  # 真探针：不看登录态、不 stat 运行文件
+            self.assertEqual((status, json.loads(body)), (200, {'ok': True, 'service': 'inresearch', 'auth_required': True}))
+            status, headers, body = self.request('GET', '/robots.txt')
+            self.assertEqual(status, 200)
+            self.assertIn(b'Disallow: /api/', body)
+            self.assertIn(b'Allow: /report.html', body)
             for path in ('/', '/node.html', '/ledger.html', '/bom.html', '/report.html', '/data/dashboard.json', '/data/tco_targets.json'):
                 self.assertEqual(self.request('GET', path)[0], 200, path)
                 self.assertEqual(self.request('HEAD', path)[0], 200, path)
