@@ -41,7 +41,7 @@ class TcoTargetListTests(unittest.TestCase):
         self.assertEqual(len(ids), len(set(ids)))
         for t in self.targets:
             self.assertIn(t['variable_class'], (1, 2, 3, 4, 5), t['id'])
-            self.assertEqual(t['layer'], t['variable_class'], t['id'])  # layer is the compatibility name
+            self.assertNotIn('layer', t, f"{t['id']}: layer key retired 2026-09-29; scale is bom's, variable_class is ours")
             self.assertIn(t['origin'], ('factor', 'part', 'software', 'archetype', 'site_right'), t['id'])
             self.assertTrue(t['id'].startswith({'factor': 'F.', 'site_right': 'S.'}.get(t['origin'], 'P.')), t['id'])
             self.assertIn(t['data_class'], self.doc['data_classes'], t['id'])

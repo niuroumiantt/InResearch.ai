@@ -23,7 +23,7 @@ return function showDossier(p) {
   close.addEventListener("click", () => { el.style.display = "none"; inspector.hide(); });
   el.append(close, dossierNode("h2", p.name));
   const sys = BOM.systems?.[p.system]; const sysName = sys ? (sys.name || sys) : (p.system || "");
-  const meta = dossierNode("div", [sysName, p.chain ? p.chain + " 第 " + p.chain_order + " 位" : "", p.layer ? [p.layer, BOM.layers.find(l => l.id === p.layer)?.name || ""].join(" ") : (BOM.kinds?.[p.kind] || p.kind || "")].filter(Boolean).join(" · "), "meta");
+  const meta = dossierNode("div", [sysName, p.chain ? p.chain + " 第 " + p.chain_order + " 位" : "", p.scale ? [p.scale, BOM.scales.find(l => l.id === p.scale)?.name || ""].join(" ") : (BOM.kinds?.[p.kind] || p.kind || "")].filter(Boolean).join(" · "), "meta");
   const badge = dossierNode("span", "产业状态：" + (SN[p.status] || "未知"), "badge");
   badge.style.background = SBADGE[p.status] || "#64748b";
   meta.append(" · ", badge); el.append(meta);
@@ -39,7 +39,7 @@ return function showDossier(p) {
   links.append(dossierLink("节点页：五列与目标", "node.html?id=" + encodeURIComponent("part:" + p.id)));
   links.append(dossierLink("采集：这个部件的目标行", "supply.html?" + new URLSearchParams({ node: "part:" + p.id }) + "#targets"));
   if (view !== "bom") links.append(dossierLink("爆炸图档案", "bom.html#" + encodeURIComponent(p.id)));
-  if (view === "campus" && ["S4", "S5"].includes(p.layer))
+  if (view === "campus" && ["S4", "S5"].includes(p.scale))
     links.append(dossierLink("继续拆解机柜 →", "rack3d.html?x=100&node=" + encodeURIComponent("part:" + p.id) + "#" + encodeURIComponent(p.id)));
   if (view === "rack")
     links.append(dossierLink("返回园区定位", "bom3d.html?" + new URLSearchParams({ p: p.id, node: "part:" + p.id })));

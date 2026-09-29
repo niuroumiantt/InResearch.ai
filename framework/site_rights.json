@@ -1,7 +1,7 @@
 {
   "version": "1.0+stage",
   "updated": "2026-09-28",
-  "note": "站点权利与配额（不是可采购的物件，故不在 bom.json 的部件表）：土地、水权、电力配额与并网、天然气接入、网络接入、许可。有价格、有主体、有时间（排队与许可年限），进主体类与时间类事实，进目标表。variable_classes 用五类变量编号（1 构成 2 运行 3 价格 4 时间 5 主体）。合同（PPA、租约、算力合同、融资）不在此表，按主体类事实处理。 2026-09-28：每条权利加建设阶段 stage（并网配额属\"并网与外线\"，其余属\"权利与审批\"），登记在 bom.json 的 stages。",
+  "note": "站点权利与配额（不是可采购的物件，故不在 bom.json 的部件表）：土地、水权、电力配额与并网、天然气接入、网络接入、许可。有价格、有主体、有时间（排队与许可年限），进主体类与时间类事实，进目标表。variable_classes 用五类变量编号（1 构成 2 运行 3 价格 4 时间 5 主体）。合同（PPA、租约、算力合同、融资）不在此表，按主体类事实处理。 2026-09-28：每条权利加建设阶段 stage（并网配额属\"并网与外线\"，其余属\"权利与审批\"），登记在 bom.json 的 stages。 2026-09-29：module 改 legacy_module。",
   "rights": [
     {
       "id": "land",
@@ -9,7 +9,7 @@
       "from_bom_part": "land",
       "scale": "S1",
       "stage": "rights",
-      "module": "M05",
+      "legacy_module": "M05",
       "variable_classes": [
         3,
         5
@@ -29,7 +29,7 @@
       "from_bom_part": "water",
       "scale": "S1",
       "stage": "rights",
-      "module": "M08",
+      "legacy_module": "M08",
       "variable_classes": [
         5,
         4
@@ -46,7 +46,7 @@
       "from_bom_part": "grid",
       "scale": "S1",
       "stage": "grid",
-      "module": "M04",
+      "legacy_module": "M04",
       "variable_classes": [
         4,
         5
@@ -68,7 +68,7 @@
       "from_bom_part": "fuel-supply",
       "scale": "S1",
       "stage": "rights",
-      "module": "M04",
+      "legacy_module": "M04",
       "variable_classes": [
         5,
         4
@@ -85,7 +85,7 @@
       "from_bom_part": "network-access",
       "scale": "S1",
       "stage": "rights",
-      "module": "M07",
+      "legacy_module": "M07",
       "variable_classes": [
         5,
         3
@@ -102,7 +102,7 @@
       "from_bom_part": null,
       "scale": "S1",
       "stage": "rights",
-      "module": "M10",
+      "legacy_module": "M10",
       "variable_classes": [
         4,
         5

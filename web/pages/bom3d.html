@@ -165,7 +165,7 @@ const MODNAME = {}; reg.modules.forEach(m => MODNAME[m.id] = m.name);
 const PART = {}; BOM.parts.forEach(p => PART[p.id] = p);
 /* 站点权利（土地、水权、并网、燃气接入、网络接入）不是部件，但园区场景里有它们的位置：
    按重切前的旧部件 ID 挂进 PART，档案与研究节点沿用 part:<旧 ID>。 */
-const RIGHTS = (siteRights.rights || []).map(r => ({ ...r, id: r.from_bom_part || r.id, layer: r.scale, kind: "site_right" }));
+const RIGHTS = (siteRights.rights || []).map(r => ({ ...r, id: r.from_bom_part || r.id, scale: r.scale, kind: "site_right" }));
 RIGHTS.forEach(r => { PART[r.id] ||= r; });
 /* 被拆分的旧部件 ID（bom.aliases：substation → transformer 等）解析到去处，场景造型不必随重切改名 */
 const ALIAS = {};
@@ -951,7 +951,7 @@ function enterDomain(d) {
   const grouped = []; let last = null;
   for (const p of d.parts) { if (p.chain !== last) { grouped.push(`<div class="chainh">${esc(p.chain || (p.kind === "site_right" ? "站点权利" : ""))}</div>`); last = p.chain; } grouped.push(p); }
   document.getElementById("domainParts").innerHTML = grouped.map(p => typeof p === "string" ? p :
-    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${COVC[covScore(p)]}" title="数据覆盖 ${covScore(p)}/4（公司/产品/序列/指标）">${covScore(p)}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.layer || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${COVC[covScore(p)]}" title="数据覆盖 ${covScore(p)}/4（公司/产品/序列/指标）">${covScore(p)}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
   document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
     const p = PART[el.dataset.part];
     showDossier(p);

@@ -1,7 +1,7 @@
 {
   "version": "2.2",
   "updated": "2026-09-28",
-  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md；重切依据见 docs/reviews/2026-09-28/bom-recut/PROPOSAL.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v2.0（2026-09-28 用户批复）：按「拆到有自己的价格、供应商名单、交期为止；普通紧固件合并，关键稀缺件不合并」重切，46 → 61 个物理部件；kind 区分 part / software / archetype；权利与配额移入 framework/site_rights.json；layers 改为五个尺度 S1–S5（装在哪），layer 键为兼容名，与经济模型的五类变量无关；被拆分或移出的旧 ID 在 aliases 里指向去处，网页与 3D 经别名解析。 v1.2（2026-08-26）：补 5 节点，新增 upstream 字段。v1.1（2026-08-18）：对齐产品研究目录，新增 14 节点。 v2.1（2026-09-28 用户采用）：一个骨架——数据中心 → 五个系统（设施、电力、冷却、IT、控制与软件），IT 再分计算、内存、存储、网络，系统内按能量流链路排（chain、chain_order）；尺度降为部件属性、第二排法。systems 登记父子关系与链路顺序，部件 system 只取叶子系统。边界件归属按能量流位置：储能归发电与储能，电源架、PSU、VRM 归机柜与板级供电，冷板归芯片级，歧管与快接头归机房与机柜，燃料储运跟发电。 v2.2（2026-09-28，03「骨架的三个补充」第 1 条）：部件加建设阶段 stage（权利与审批 → 并网与外线 → 土建与壳 → 机电 → IT 进场 → 调试与上架，登记在 stages），是链路之外的第二排法，回答\"先建什么\"；站点权利同。",
+  "note": "数据中心爆炸图 BOM（物理部件轴）。每个部件挂接：研究模块 / 关联公司 / 价格序列 / 状态。设计见 framework/03_bom_and_collaboration.md；重切依据见 docs/reviews/2026-09-28/bom-recut/PROPOSAL.md。status: mature 成熟 | tight 紧缺 | transition 技术切换中 | emerging 新兴。 v2.0（2026-09-28 用户批复）：按「拆到有自己的价格、供应商名单、交期为止；普通紧固件合并，关键稀缺件不合并」重切，46 → 61 个物理部件；kind 区分 part / software / archetype；权利与配额移入 framework/site_rights.json；layers 改为五个尺度 S1–S5（装在哪），layer 键为兼容名，与经济模型的五类变量无关；被拆分或移出的旧 ID 在 aliases 里指向去处，网页与 3D 经别名解析。 v1.2（2026-08-26）：补 5 节点，新增 upstream 字段。v1.1（2026-08-18）：对齐产品研究目录，新增 14 节点。 v2.1（2026-09-28 用户采用）：一个骨架——数据中心 → 五个系统（设施、电力、冷却、IT、控制与软件），IT 再分计算、内存、存储、网络，系统内按能量流链路排（chain、chain_order）；尺度降为部件属性、第二排法。systems 登记父子关系与链路顺序，部件 system 只取叶子系统。边界件归属按能量流位置：储能归发电与储能，电源架、PSU、VRM 归机柜与板级供电，冷板归芯片级，歧管与快接头归机房与机柜，燃料储运跟发电。 v2.2（2026-09-28，03「骨架的三个补充」第 1 条）：部件加建设阶段 stage（权利与审批 → 并网与外线 → 土建与壳 → 机电 → IT 进场 → 调试与上架，登记在 stages），是链路之外的第二排法，回答\"先建什么\"；站点权利同。 2026-09-29：键名去歧义——部件的 layer 改 scale、顶层 layers 改 scales（尺度，装在哪），与目标表 / feed 的变量类彻底分开；module 改 legacy_module（旧模块只是兼容属性）。",
   "kinds": {
     "part": "可采购的物件，占一个尺度",
     "software": "软件条目：有订阅价与供应商，进目标表，不进 3D",
@@ -88,7 +88,7 @@
       ]
     }
   },
-  "layers": [
+  "scales": [
     {
       "id": "S1",
       "name": "园区",
@@ -137,13 +137,13 @@
     {
       "id": "hv-switchyard",
       "kind": "part",
-      "layer": "S1",
+      "scale": "S1",
       "system": "power",
       "chain": "电网接入",
       "chain_order": 1,
       "stage": "grid",
       "name": "高压开关站/GIS",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "hitachi-energy",
         "siemens-energy",
@@ -158,13 +158,13 @@
     {
       "id": "transformer",
       "kind": "part",
-      "layer": "S1",
+      "scale": "S1",
       "system": "power",
       "chain": "变电",
       "chain_order": 1,
       "stage": "grid",
       "name": "大型电力变压器",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "hitachi-energy",
         "siemens-energy",
@@ -186,13 +186,13 @@
     {
       "id": "mv-switchgear",
       "kind": "part",
-      "layer": "S1",
+      "scale": "S1",
       "system": "power",
       "chain": "变电",
       "chain_order": 2,
       "stage": "grid",
       "name": "中压开关柜",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "abb",
         "schneider-electric",
@@ -208,13 +208,13 @@
     {
       "id": "gas-turbine",
       "kind": "part",
-      "layer": "S1",
+      "scale": "S1",
       "system": "power",
       "chain": "发电与储能",
       "chain_order": 1,
       "stage": "mep",
       "name": "燃气轮机",
-      "module": "M04",
+      "legacy_module": "M04",
       "companies": [
         "ge-vernova",
         "siemens-energy",
@@ -233,13 +233,13 @@
     {
       "id": "gas-engine",
       "kind": "part",
-      "layer": "S1",
+      "scale": "S1",
       "system": "power",
       "chain": "发电与储能",
       "chain_order": 2,
       "stage": "mep",
       "name": "燃气往复式机组",
-      "module": "M04",
+      "legacy_module": "M04",
       "companies": [
         "wartsila"
       ],
@@ -252,13 +252,13 @@
     {
       "id": "fuel-cell",
       "kind": "part",
-      "layer": "S1",
+      "scale": "S1",
       "system": "power",
       "chain": "发电与储能",
       "chain_order": 3,
       "stage": "mep",
       "name": "燃料电池",
-      "module": "M04",
+      "legacy_module": "M04",
       "companies": [
         "bloom-energy"
       ],
@@ -271,13 +271,13 @@
     {
       "id": "smr",
       "kind": "part",
-      "layer": "S1",
+      "scale": "S1",
       "system": "power",
       "chain": "发电与储能",
       "chain_order": 4,
       "stage": "mep",
       "name": "小型模块化反应堆",
-      "module": "M04",
+      "legacy_module": "M04",
       "companies": [],
       "series": [],
       "indicators": [],
@@ -286,9 +286,9 @@
     },
     {
       "id": "backup-power",
-      "layer": "S1",
+      "scale": "S1",
       "name": "柴油发电机组",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "caterpillar",
         "cummins",
@@ -310,9 +310,9 @@
     },
     {
       "id": "bess",
-      "layer": "S1",
+      "scale": "S1",
       "name": "储能系统（BESS）",
-      "module": "M04",
+      "legacy_module": "M04",
       "companies": [
         "smartli-vertiv",
         "tesla-energy-catl-fluence"
@@ -330,13 +330,13 @@
     {
       "id": "fuel-storage",
       "kind": "part",
-      "layer": "S1",
+      "scale": "S1",
       "system": "power",
       "chain": "发电与储能",
       "chain_order": 6,
       "stage": "mep",
       "name": "柴油储运（储罐、日用箱、加注）",
-      "module": "M04",
+      "legacy_module": "M04",
       "companies": [],
       "series": [],
       "indicators": [],
@@ -347,13 +347,13 @@
     {
       "id": "dry-cooler",
       "kind": "part",
-      "layer": "S1",
+      "scale": "S1",
       "system": "thermal",
       "chain": "排热",
       "chain_order": 1,
       "stage": "mep",
       "name": "干冷器/冷却塔/蒸发冷",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "munters",
         "modine-airedale"
@@ -367,13 +367,13 @@
     {
       "id": "water-treatment",
       "kind": "part",
-      "layer": "S1",
+      "scale": "S1",
       "system": "thermal",
       "chain": "排热",
       "chain_order": 2,
       "stage": "mep",
       "name": "水处理与供水（泵站、过滤、软化）",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "ecolab",
         "ecolab-veolia"
@@ -386,9 +386,9 @@
     },
     {
       "id": "shell",
-      "layer": "S2",
+      "scale": "S2",
       "name": "建筑与土建（含场坪、基础、外墙屋面、机房装修）",
-      "module": "M10",
+      "legacy_module": "M10",
       "companies": [],
       "series": [],
       "indicators": [
@@ -404,9 +404,9 @@
     },
     {
       "id": "fire",
-      "layer": "S2",
+      "scale": "S2",
       "name": "消防（探测、气体灭火、喷淋）",
-      "module": "M10",
+      "legacy_module": "M10",
       "companies": [
         "vesda"
       ],
@@ -423,13 +423,13 @@
     {
       "id": "security",
       "kind": "part",
-      "layer": "S2",
+      "scale": "S2",
       "system": "facility",
       "chain": "消防安防",
       "chain_order": 2,
       "stage": "mep",
       "name": "安防（门禁、视频、周界）",
-      "module": "M10",
+      "legacy_module": "M10",
       "companies": [
         "cn-security-group"
       ],
@@ -441,9 +441,9 @@
     },
     {
       "id": "ups",
-      "layer": "S3",
+      "scale": "S3",
       "name": "UPS 系统（整流、逆变、静态开关）",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "schneider-electric",
         "eaton",
@@ -467,13 +467,13 @@
     {
       "id": "ups-battery",
       "kind": "part",
-      "layer": "S3",
+      "scale": "S3",
       "system": "power",
       "chain": "UPS",
       "chain_order": 2,
       "stage": "mep",
       "name": "UPS 电池（锂电/铅酸）",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "smartli-vertiv"
       ],
@@ -486,13 +486,13 @@
     {
       "id": "lv-switchgear",
       "kind": "part",
-      "layer": "S3",
+      "scale": "S3",
       "system": "power",
       "chain": "配电",
       "chain_order": 1,
       "stage": "mep",
       "name": "低压开关柜",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "abb",
         "schneider-electric",
@@ -509,13 +509,13 @@
     {
       "id": "busway",
       "kind": "part",
-      "layer": "S3",
+      "scale": "S3",
       "system": "power",
       "chain": "配电",
       "chain_order": 2,
       "stage": "mep",
       "name": "母线槽",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "eaton",
         "schneider-electric",
@@ -530,13 +530,13 @@
     {
       "id": "pdu",
       "kind": "part",
-      "layer": "S3",
+      "scale": "S3",
       "system": "power",
       "chain": "配电",
       "chain_order": 3,
       "stage": "mep",
       "name": "机房配电柜/PDU/RPP（含机柜配电条）",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "vertiv",
         "eaton",
@@ -551,13 +551,13 @@
     {
       "id": "chiller",
       "kind": "part",
-      "layer": "S3",
+      "scale": "S3",
       "system": "thermal",
       "chain": "冷水与 CDU",
       "chain_order": 1,
       "stage": "mep",
       "name": "冷水机组",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "johnson-controls",
         "trane",
@@ -572,13 +572,13 @@
     {
       "id": "chilled-water-loop",
       "kind": "part",
-      "layer": "S3",
+      "scale": "S3",
       "system": "thermal",
       "chain": "冷水与 CDU",
       "chain_order": 2,
       "stage": "mep",
       "name": "冷冻水泵、管路与阀门",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [],
       "series": [],
       "indicators": [],
@@ -587,9 +587,9 @@
     },
     {
       "id": "room-cooling",
-      "layer": "S3",
+      "scale": "S3",
       "name": "机房空气冷却（CRAH/CRAC/风墙）",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "vertiv",
         "munters",
@@ -609,9 +609,9 @@
     },
     {
       "id": "cdu",
-      "layer": "S3",
+      "scale": "S3",
       "name": "CDU 与液冷分配",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "coolit-systems",
         "vertiv",
@@ -641,9 +641,9 @@
     },
     {
       "id": "immersion",
-      "layer": "S3",
+      "scale": "S3",
       "name": "浸没式液冷槽/系统",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "liquidstack-submer-grc",
         "sugon-dcu"
@@ -660,9 +660,9 @@
     },
     {
       "id": "cabling",
-      "layer": "S3",
+      "scale": "S3",
       "name": "结构化布线与光纤",
-      "module": "M07",
+      "legacy_module": "M07",
       "companies": [
         "corning",
         "commscope",
@@ -680,9 +680,9 @@
     },
     {
       "id": "leak-detection",
-      "layer": "S3",
+      "scale": "S3",
       "name": "漏液检测",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "ttk-rle-nvent"
       ],
@@ -698,9 +698,9 @@
     },
     {
       "id": "rack-frame",
-      "layer": "S4",
+      "scale": "S4",
       "name": "机柜与结构",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "celestica",
         "delta-electronics",
@@ -725,13 +725,13 @@
     {
       "id": "rack-system",
       "kind": "part",
-      "layer": "S4",
+      "scale": "S4",
       "system": "compute",
       "chain": "计算",
       "chain_order": 1,
       "stage": "it",
       "name": "整机柜系统（NVL72 类，按柜计价）",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "nvidia",
         "foxconn-industrial-internet",
@@ -748,9 +748,9 @@
     },
     {
       "id": "server",
-      "layer": "S4",
+      "scale": "S4",
       "name": "加速器服务器（AI 服务器整机）",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "celestica",
         "huawei",
@@ -789,13 +789,13 @@
     {
       "id": "general-server",
       "kind": "part",
-      "layer": "S4",
+      "scale": "S4",
       "system": "compute",
       "chain": "计算",
       "chain_order": 3,
       "stage": "it",
       "name": "通用服务器（CPU 节点）",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "dell-technologies",
         "hpe",
@@ -818,9 +818,9 @@
     },
     {
       "id": "network-switch",
-      "layer": "S4",
+      "scale": "S4",
       "name": "交换机（scale-out 以太网/IB）",
-      "module": "M07",
+      "legacy_module": "M07",
       "companies": [
         "broadcom",
         "celestica",
@@ -849,9 +849,9 @@
     },
     {
       "id": "storage-array",
-      "layer": "S4",
+      "scale": "S4",
       "name": "存储系统",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "huawei-oceanstor",
         "dell",
@@ -887,9 +887,9 @@
     },
     {
       "id": "manifold",
-      "layer": "S4",
+      "scale": "S4",
       "name": "机柜歧管与管路",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "coolit-systems",
         "vertiv"
@@ -907,13 +907,13 @@
     {
       "id": "quick-disconnect",
       "kind": "part",
-      "layer": "S4",
+      "scale": "S4",
       "system": "thermal",
       "chain": "机房与机柜",
       "chain_order": 5,
       "stage": "mep",
       "name": "快接头",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "staubli-cpc-parker-danfoss"
       ],
@@ -925,9 +925,9 @@
     },
     {
       "id": "power-shelf",
-      "layer": "S4",
+      "scale": "S4",
       "name": "机柜电源架（AC-DC / HVDC 整流）",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "delta-electronics",
         "liteon-advanced-energy"
@@ -945,13 +945,13 @@
     {
       "id": "bbu",
       "kind": "part",
-      "layer": "S4",
+      "scale": "S4",
       "system": "power",
       "chain": "机柜与板级供电",
       "chain_order": 2,
       "stage": "it",
       "name": "机柜电池备份单元",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "delta-electronics",
         "liteon-advanced-energy"
@@ -964,9 +964,9 @@
     },
     {
       "id": "copper-interconnect",
-      "layer": "S4",
+      "scale": "S4",
       "name": "高速铜缆（DAC/AEC）",
-      "module": "M07",
+      "legacy_module": "M07",
       "companies": [
         "credo",
         "amphenol-luxshare-molex-te-connectivity"
@@ -983,9 +983,9 @@
     },
     {
       "id": "coolant",
-      "layer": "S4",
+      "scale": "S4",
       "name": "冷却液/工质",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "chemours"
       ],
@@ -1001,9 +1001,9 @@
     },
     {
       "id": "sidecar-hx",
-      "layer": "S4",
+      "scale": "S4",
       "name": "机柜级液-气换热器（RDHx/Sidecar）",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "nvent",
         "motivair",
@@ -1022,9 +1022,9 @@
     },
     {
       "id": "gpu",
-      "layer": "S5",
+      "scale": "S5",
       "name": "GPU 加速器",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "nvidia",
         "amd",
@@ -1064,13 +1064,13 @@
     {
       "id": "ai-asic",
       "kind": "part",
-      "layer": "S5",
+      "scale": "S5",
       "system": "compute",
       "chain": "计算",
       "chain_order": 5,
       "stage": "it",
       "name": "定制 AI ASIC",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "broadcom",
         "alphabet-google",
@@ -1087,9 +1087,9 @@
     },
     {
       "id": "cpu",
-      "layer": "S5",
+      "scale": "S5",
       "name": "CPU",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "amd",
         "nvidia",
@@ -1114,9 +1114,9 @@
     },
     {
       "id": "fpga",
-      "layer": "S5",
+      "scale": "S5",
       "name": "FPGA/异构加速",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "amd-xilinx-alveo-altera-agilex"
       ],
@@ -1133,13 +1133,13 @@
     {
       "id": "bmc",
       "kind": "part",
-      "layer": "S5",
+      "scale": "S5",
       "system": "compute",
       "chain": "计算",
       "chain_order": 8,
       "stage": "it",
       "name": "基板管理控制器",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "aspeed"
       ],
@@ -1151,9 +1151,9 @@
     },
     {
       "id": "hbm",
-      "layer": "S5",
+      "scale": "S5",
       "name": "HBM",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "samsung",
         "sk-hynix",
@@ -1174,9 +1174,9 @@
     },
     {
       "id": "dram",
-      "layer": "S5",
+      "scale": "S5",
       "name": "服务器内存模组（RDIMM/MRDIMM）",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "samsung",
         "sk-hynix",
@@ -1196,13 +1196,13 @@
     {
       "id": "cxl-memory",
       "kind": "part",
-      "layer": "S5",
+      "scale": "S5",
       "system": "memory",
       "chain": "内存",
       "chain_order": 3,
       "stage": "it",
       "name": "CXL 内存扩展",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "samsung-cmm-micron-cz120-mxc-smart-modular",
         "montage"
@@ -1215,9 +1215,9 @@
     },
     {
       "id": "ssd",
-      "layer": "S5",
+      "scale": "S5",
       "name": "企业级 SSD",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "samsung",
         "kioxia",
@@ -1244,9 +1244,9 @@
     },
     {
       "id": "hdd",
-      "layer": "S5",
+      "scale": "S5",
       "name": "近线HDD",
-      "module": "M06",
+      "legacy_module": "M06",
       "companies": [
         "seagate",
         "western-digital",
@@ -1264,9 +1264,9 @@
     },
     {
       "id": "nic",
-      "layer": "S5",
+      "scale": "S5",
       "name": "NIC/DPU",
-      "module": "M07",
+      "legacy_module": "M07",
       "companies": [
         "nvidia",
         "broadcom",
@@ -1286,9 +1286,9 @@
     },
     {
       "id": "optics",
-      "layer": "S5",
+      "scale": "S5",
       "name": "光模块（CPO 为新兴子条目）",
-      "module": "M07",
+      "legacy_module": "M07",
       "companies": [
         "broadcom",
         "celestica",
@@ -1315,9 +1315,9 @@
     },
     {
       "id": "switch-asic",
-      "layer": "S5",
+      "scale": "S5",
       "name": "交换芯片",
-      "module": "M07",
+      "legacy_module": "M07",
       "companies": [
         "broadcom",
         "marvell",
@@ -1336,13 +1336,13 @@
     {
       "id": "retimer",
       "kind": "part",
-      "layer": "S5",
+      "scale": "S5",
       "system": "network",
       "chain": "网络",
       "chain_order": 8,
       "stage": "it",
       "name": "重定时器 / AEC 芯片",
-      "module": "M07",
+      "legacy_module": "M07",
       "companies": [
         "astera-labs",
         "montage",
@@ -1358,13 +1358,13 @@
     {
       "id": "pcie-switch",
       "kind": "part",
-      "layer": "S5",
+      "scale": "S5",
       "system": "network",
       "chain": "网络",
       "chain_order": 9,
       "stage": "it",
       "name": "PCIe/CXL 交换芯片",
-      "module": "M07",
+      "legacy_module": "M07",
       "companies": [
         "broadcom",
         "rambus-microchip-marvell"
@@ -1377,9 +1377,9 @@
     },
     {
       "id": "connector",
-      "layer": "S5",
+      "scale": "S5",
       "name": "高速连接器",
-      "module": "M07",
+      "legacy_module": "M07",
       "companies": [
         "amphenol-luxshare-molex-te-connectivity"
       ],
@@ -1395,9 +1395,9 @@
     },
     {
       "id": "coldplate",
-      "layer": "S5",
+      "scale": "S5",
       "name": "冷板",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "coolit-systems",
         "motivair",
@@ -1419,9 +1419,9 @@
     },
     {
       "id": "psu",
-      "layer": "S5",
+      "scale": "S5",
       "name": "服务器电源模块（PSU）",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "delta-electronics",
         "liteon-advanced-energy"
@@ -1438,9 +1438,9 @@
     },
     {
       "id": "vrm",
-      "layer": "S5",
+      "scale": "S5",
       "name": "板级供电（VRM/Power Stage）",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "infineon-mps-renesas-adi-ti",
         "delta-electronics"
@@ -1458,13 +1458,13 @@
     {
       "id": "server-fan",
       "kind": "part",
-      "layer": "S5",
+      "scale": "S5",
       "system": "thermal",
       "chain": "芯片级",
       "chain_order": 3,
       "stage": "it",
       "name": "服务器风扇",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "nidec-ebm-papst-avc-auras"
       ],
@@ -1477,13 +1477,13 @@
     {
       "id": "heatsink-vc",
       "kind": "part",
-      "layer": "S5",
+      "scale": "S5",
       "system": "thermal",
       "chain": "芯片级",
       "chain_order": 2,
       "stage": "it",
       "name": "均热板与散热器",
-      "module": "M08",
+      "legacy_module": "M08",
       "companies": [
         "nidec-ebm-papst-avc-auras"
       ],
@@ -1495,9 +1495,9 @@
     },
     {
       "id": "dcim",
-      "layer": null,
+      "scale": null,
       "name": "DCIM / BMS / EPMS（监控、运维、电力监控软件）",
-      "module": "M13",
+      "legacy_module": "M13",
       "companies": [
         "schneider-electric",
         "vertiv",
@@ -1520,9 +1520,9 @@
     },
     {
       "id": "modular-dc",
-      "layer": null,
+      "scale": null,
       "name": "预制化/微模块交付（设施基型）",
-      "module": "M09",
+      "legacy_module": "M09",
       "companies": [
         "schneider-electric-apc",
         "kehua",

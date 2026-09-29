@@ -21,19 +21,19 @@ class BomStructureTests(unittest.TestCase):
         cls.objects = {o['id']: o for o in cls.graph['objects']}
 
     def test_scales_are_s1_to_s5(self):
-        self.assertEqual([s['id'] for s in self.bom['layers']], ['S1', 'S2', 'S3', 'S4', 'S5'])
-        self.assertEqual([s['name'] for s in self.bom['layers']], ['园区', '建筑', '机房', '机柜', '部件'])
+        self.assertEqual([s['id'] for s in self.bom['scales']], ['S1', 'S2', 'S3', 'S4', 'S5'])
+        self.assertEqual([s['name'] for s in self.bom['scales']], ['园区', '建筑', '机房', '机柜', '部件'])
 
     def test_kind_and_scale(self):
-        scales = {s['id'] for s in self.bom['layers']}
+        scales = {s['id'] for s in self.bom['scales']}
         for p in self.bom['parts']:
             self.assertIn(p['kind'], self.bom['kinds'], p['id'])
             self.assertIn(p['system'], self.bom['systems'], p['id'])
             self.assertIn(p['status'], ('mature', 'tight', 'transition', 'emerging'), p['id'])
             if p['kind'] == 'part':
-                self.assertIn(p['layer'], scales, p['id'])
+                self.assertIn(p['scale'], scales, p['id'])
             else:
-                self.assertIsNone(p['layer'], p['id'])
+                self.assertIsNone(p['scale'], p['id'])
             for c in p['companies']:
                 self.assertIn(c, self.companies, f"{p['id']} → {c}")
         kinds = {k: sum(1 for p in self.bom['parts'] if p['kind'] == k) for k in self.bom['kinds']}
@@ -132,7 +132,7 @@ class BomStructureTests(unittest.TestCase):
         for rec in load('data/products.json')['records']:
             for pid in rec.get('bom_parts') or []:
                 self.assertIn(pid, self.parts, rec['product_line'])
-            self.assertIn(rec.get('bom_layer'), {s['id'] for s in self.bom['layers']}, rec['product_line'])
+            self.assertIn(rec.get('bom_layer'), {s['id'] for s in self.bom['scales']}, rec['product_line'])
 
 
 if __name__ == '__main__':

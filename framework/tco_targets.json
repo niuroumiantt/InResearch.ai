@@ -2,7 +2,7 @@
   "version": "2.1.0",
   "updated": "2026-09-28",
   "title": "五类变量目标清单",
-  "note": "六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；每个物理部件按\"自己的价格、供应商名单、交期\"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。2026-09-28 骨架补齐：每个物理部件再加一行运行（operation，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率）；因子树的 time.build 生成工期、排队与审批行；部件级与权利级行带建设阶段 stage。部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。每一行写明变量类（构成、运行、价格、时间、主体；layer 键为兼容名）、汇到哪些因子、喂模型的哪些输入、已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机；feeds_primary 列出这一行作为主行的模型输入（一个输入只有一条主行，因子行优先），账本可信边界只回链主行。status 只在已有序列、已录值指标或模型证据支持时为 sourced；2026-09-28 起加第四态 delivered：队已交付到 Git 内载体（资料计划的 doc_id / source_url、带 origin_pointer 的事件卡、带 target_id 的价格记录）但尚未成为序列；只在运行库有的不算。sourced_by 写明 sourced 来自人工登记的序列（registry）还是队交付（delivery）；team_state 写明主责队是否已接入，未接入的队不排到期（next_due 为空，页面显示\"待建队\"）。公司只是实例，随时可换。",
+  "note": "六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；每个物理部件按\"自己的价格、供应商名单、交期\"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。2026-09-28 骨架补齐：每个物理部件再加一行运行（operation，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率）；因子树的 time.build 生成工期、排队与审批行；部件级与权利级行带建设阶段 stage。部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。每一行写明变量类（构成、运行、价格、时间、主体；2026-09-29 起不再带 layer 兼容键，尺度与变量类彻底分开）、汇到哪些因子、喂模型的哪些输入、已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机；feeds_primary 列出这一行作为主行的模型输入（一个输入只有一条主行，因子行优先），账本可信边界只回链主行。status 只在已有序列、已录值指标或模型证据支持时为 sourced；2026-09-28 起加第四态 delivered：队已交付到 Git 内载体（资料计划的 doc_id / source_url、带 origin_pointer 的事件卡、带 target_id 的价格记录）但尚未成为序列；只在运行库有的不算。sourced_by 写明 sourced 来自人工登记的序列（registry）还是队交付（delivery）；team_state 写明主责队是否已接入，未接入的队不排到期（next_due 为空，页面显示\"待建队\"）。公司只是实例，随时可换。",
   "generated_from": {
     "tco_factors": "1.3.0",
     "bom": "2.2",
@@ -40,13 +40,6 @@
     "交付只走供应中心一个入口，按 fetchspec 包格式",
     "给 inresearch 的采集默认不翻译；挑选在先，翻译在后"
   ],
-  "layers": {
-    "1": "构成",
-    "2": "运行",
-    "3": "价格",
-    "4": "时间",
-    "5": "主体"
-  },
   "variable_classes": {
     "1": "构成",
     "2": "运行",
@@ -111,7 +104,6 @@
     {
       "id": "F.revenue.gpus.density.density.rack_spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "factor",
       "factor_ids": [
         "revenue.gpus.density"
@@ -157,7 +149,6 @@
     {
       "id": "F.revenue.utilization.report",
       "variable_class": 2,
-      "layer": 2,
       "origin": "factor",
       "factor_ids": [
         "revenue.utilization"
@@ -208,7 +199,6 @@
     {
       "id": "F.revenue.utilization.utilization.disclosure",
       "variable_class": 2,
-      "layer": 2,
       "origin": "factor",
       "factor_ids": [
         "revenue.utilization"
@@ -260,7 +250,6 @@
     {
       "id": "F.revenue.price.gpu_hour.index",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "revenue.price"
@@ -314,7 +303,6 @@
     {
       "id": "F.revenue.tokens.token.price_throughput",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "revenue.tokens"
@@ -366,7 +354,6 @@
     {
       "id": "F.cost.energy.load.load_factor.measured",
       "variable_class": 2,
-      "layer": 2,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.load"
@@ -413,7 +400,6 @@
     {
       "id": "F.cost.energy.pue.equipment.efficiency",
       "variable_class": 1,
-      "layer": 1,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.pue"
@@ -457,7 +443,6 @@
     {
       "id": "F.cost.energy.pue.parts.psu_coolant",
       "variable_class": 1,
-      "layer": 1,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.pue"
@@ -500,7 +485,6 @@
     {
       "id": "F.cost.energy.pue.pue_wue.operator_disclosure",
       "variable_class": 2,
-      "layer": 2,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.pue"
@@ -554,7 +538,6 @@
     {
       "id": "F.cost.energy.pue.pue.survey",
       "variable_class": 2,
-      "layer": 2,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.pue"
@@ -595,7 +578,6 @@
     {
       "id": "F.cost.energy.price.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.price"
@@ -643,7 +625,6 @@
     {
       "id": "F.cost.energy.price.power_price.state_industrial",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.price"
@@ -692,7 +673,6 @@
     {
       "id": "F.cost.energy.price.power_price.eu_asia",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.price"
@@ -739,7 +719,6 @@
     {
       "id": "F.cost.energy.price.power_price.cn",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.price"
@@ -786,7 +765,6 @@
     {
       "id": "F.cost.energy.price.demand_charge.tariff",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.price"
@@ -836,7 +814,6 @@
     {
       "id": "F.cost.energy.price.capacity_market",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.energy.price"
@@ -879,7 +856,6 @@
     {
       "id": "F.cost.other_opex.staffing.per_mw",
       "variable_class": 2,
-      "layer": 2,
       "origin": "factor",
       "factor_ids": [
         "cost.other_opex"
@@ -928,7 +904,6 @@
     {
       "id": "F.cost.other_opex.maintenance.share",
       "variable_class": 2,
-      "layer": 2,
       "origin": "factor",
       "factor_ids": [
         "cost.other_opex"
@@ -976,7 +951,6 @@
     {
       "id": "F.cost.other_opex.other_opex.breakdown",
       "variable_class": 2,
-      "layer": 2,
       "origin": "factor",
       "factor_ids": [
         "cost.other_opex"
@@ -1025,7 +999,6 @@
     {
       "id": "F.cost.other_opex.wages.bls",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.other_opex"
@@ -1075,7 +1048,6 @@
     {
       "id": "F.cost.other_opex.escalation.eci_cpi",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.other_opex"
@@ -1120,7 +1092,6 @@
     {
       "id": "F.cost.other_opex.water.rates",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.other_opex"
@@ -1162,7 +1133,6 @@
     {
       "id": "F.cost.facility.shell_rent.ramp.movein",
       "variable_class": 2,
-      "layer": 2,
       "origin": "factor",
       "factor_ids": [
         "cost.facility.shell_rent"
@@ -1211,7 +1181,6 @@
     {
       "id": "F.cost.facility.shell_rent.rent.shell_lease",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.facility.shell_rent"
@@ -1259,7 +1228,6 @@
     {
       "id": "F.cost.facility.shell_rent.lease.terms",
       "variable_class": 5,
-      "layer": 5,
       "origin": "factor",
       "factor_ids": [
         "cost.facility.shell_rent"
@@ -1316,7 +1284,6 @@
     {
       "id": "F.cost.facility.colo_rate.rent.colo_market",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.facility.colo_rate"
@@ -1370,7 +1337,6 @@
     {
       "id": "F.cost.depreciation.report",
       "variable_class": 2,
-      "layer": 2,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation"
@@ -1415,7 +1381,6 @@
     {
       "id": "F.cost.depreciation.useful_life.notes",
       "variable_class": 4,
-      "layer": 4,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation"
@@ -1463,7 +1428,6 @@
     {
       "id": "F.cost.depreciation.decommission.aro",
       "variable_class": 4,
-      "layer": 4,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation"
@@ -1503,7 +1467,6 @@
     {
       "id": "F.cost.depreciation.capex.accelerators.product",
       "variable_class": 1,
-      "layer": 1,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -1552,7 +1515,6 @@
     {
       "id": "F.cost.depreciation.capex.accelerators.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -1595,7 +1557,6 @@
     {
       "id": "F.cost.depreciation.capex.accelerators.gpu.used_and_rack",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -1642,7 +1603,6 @@
     {
       "id": "F.cost.depreciation.capex.other_it.boq.reference_design",
       "variable_class": 1,
-      "layer": 1,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -1683,7 +1643,6 @@
     {
       "id": "F.cost.depreciation.capex.other_it.components.quotes",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -1724,7 +1683,6 @@
     {
       "id": "F.cost.depreciation.capex.shell.product",
       "variable_class": 1,
-      "layer": 1,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -1792,7 +1750,6 @@
     {
       "id": "F.cost.depreciation.capex.shell.capex.ppi_escalation",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -1832,7 +1789,6 @@
     {
       "id": "F.cost.depreciation.capex.shell.capex.cost_index",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -1891,7 +1847,6 @@
     {
       "id": "F.cost.depreciation.capex.shell.capex.developer_disclosure",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -1939,7 +1894,6 @@
     {
       "id": "F.cost.depreciation.capex.shell.construction.duration",
       "variable_class": 4,
-      "layer": 4,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -1986,7 +1940,6 @@
     {
       "id": "F.cost.depreciation.capex.shell.lead_time.equipment",
       "variable_class": 4,
-      "layer": 4,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -2029,7 +1982,6 @@
     {
       "id": "F.cost.depreciation.capex.shell.interconnection.queue",
       "variable_class": 4,
-      "layer": 4,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -2072,7 +2024,6 @@
     {
       "id": "F.cost.depreciation.capex.btm.btm.generation",
       "variable_class": 1,
-      "layer": 1,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -2114,7 +2065,6 @@
     {
       "id": "F.cost.depreciation.capex.land.land.transactions",
       "variable_class": 3,
-      "layer": 3,
       "origin": "factor",
       "factor_ids": [
         "cost.depreciation.capex.land"
@@ -2161,7 +2111,6 @@
     {
       "id": "F.cost.tax.tax_depreciation.macrs",
       "variable_class": 4,
-      "layer": 4,
       "origin": "factor",
       "factor_ids": [
         "cost.tax"
@@ -2200,7 +2149,6 @@
     {
       "id": "F.cost.tax.tax.rates",
       "variable_class": 5,
-      "layer": 5,
       "origin": "factor",
       "factor_ids": [
         "cost.tax"
@@ -2249,7 +2197,6 @@
     {
       "id": "F.capital.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "factor",
       "factor_ids": [
         "capital"
@@ -2308,7 +2255,6 @@
     {
       "id": "F.capital.debt.terms",
       "variable_class": 5,
-      "layer": 5,
       "origin": "factor",
       "factor_ids": [
         "capital"
@@ -2361,7 +2307,6 @@
     {
       "id": "F.capital.base_rates",
       "variable_class": 5,
-      "layer": 5,
       "origin": "factor",
       "factor_ids": [
         "capital"
@@ -2401,7 +2346,6 @@
     {
       "id": "F.capital.rating.presale",
       "variable_class": 5,
-      "layer": 5,
       "origin": "factor",
       "factor_ids": [
         "capital"
@@ -2441,7 +2385,6 @@
     {
       "id": "F.capital.exit.cap_rate",
       "variable_class": 5,
-      "layer": 5,
       "origin": "factor",
       "factor_ids": [
         "capital"
@@ -2485,7 +2428,6 @@
     {
       "id": "F.time.build.duration",
       "variable_class": 4,
-      "layer": 4,
       "origin": "factor",
       "factor_ids": [
         "time.build"
@@ -2534,7 +2476,6 @@
     {
       "id": "F.time.build.queue",
       "variable_class": 4,
-      "layer": 4,
       "origin": "factor",
       "factor_ids": [
         "time.build"
@@ -2578,7 +2519,6 @@
     {
       "id": "F.time.build.permit",
       "variable_class": 4,
-      "layer": 4,
       "origin": "factor",
       "factor_ids": [
         "time.build"
@@ -2619,7 +2559,6 @@
     {
       "id": "P.shell.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -2663,7 +2602,6 @@
     {
       "id": "P.shell.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -2700,7 +2638,6 @@
     {
       "id": "P.shell.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -2750,7 +2687,6 @@
     {
       "id": "P.shell.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -2795,7 +2731,6 @@
     {
       "id": "P.shell.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -2832,7 +2767,6 @@
     {
       "id": "P.rack-frame.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density"
@@ -2876,7 +2810,6 @@
     {
       "id": "P.rack-frame.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density"
@@ -2919,7 +2852,6 @@
     {
       "id": "P.rack-frame.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density"
@@ -2956,7 +2888,6 @@
     {
       "id": "P.rack-frame.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density"
@@ -2993,7 +2924,6 @@
     {
       "id": "P.rack-frame.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density"
@@ -3034,7 +2964,6 @@
     {
       "id": "P.modular-dc.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "archetype",
       "factor_ids": [],
       "factor_id": null,
@@ -3073,7 +3002,6 @@
     {
       "id": "P.fire.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -3113,7 +3041,6 @@
     {
       "id": "P.fire.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -3154,7 +3081,6 @@
     {
       "id": "P.fire.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -3199,7 +3125,6 @@
     {
       "id": "P.fire.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -3238,7 +3163,6 @@
     {
       "id": "P.security.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -3279,7 +3203,6 @@
     {
       "id": "P.security.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -3320,7 +3243,6 @@
     {
       "id": "P.security.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -3365,7 +3287,6 @@
     {
       "id": "P.security.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -3404,7 +3325,6 @@
     {
       "id": "P.hv-switchyard.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3446,7 +3366,6 @@
     {
       "id": "P.hv-switchyard.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3485,7 +3404,6 @@
     {
       "id": "P.hv-switchyard.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3532,7 +3450,6 @@
     {
       "id": "P.hv-switchyard.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3577,7 +3494,6 @@
     {
       "id": "P.hv-switchyard.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3615,7 +3531,6 @@
     {
       "id": "P.transformer.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3658,7 +3573,6 @@
     {
       "id": "P.transformer.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3696,7 +3610,6 @@
     {
       "id": "P.transformer.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3743,7 +3656,6 @@
     {
       "id": "P.transformer.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3792,7 +3704,6 @@
     {
       "id": "P.transformer.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3830,7 +3741,6 @@
     {
       "id": "P.mv-switchgear.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3873,7 +3783,6 @@
     {
       "id": "P.mv-switchgear.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3910,7 +3819,6 @@
     {
       "id": "P.mv-switchgear.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -3956,7 +3864,6 @@
     {
       "id": "P.mv-switchgear.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -4001,7 +3908,6 @@
     {
       "id": "P.mv-switchgear.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -4038,7 +3944,6 @@
     {
       "id": "P.gas-turbine.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4080,7 +3985,6 @@
     {
       "id": "P.gas-turbine.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4119,7 +4023,6 @@
     {
       "id": "P.gas-turbine.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4168,7 +4071,6 @@
     {
       "id": "P.gas-turbine.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4212,7 +4114,6 @@
     {
       "id": "P.gas-turbine.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4252,7 +4153,6 @@
     {
       "id": "P.gas-engine.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4295,7 +4195,6 @@
     {
       "id": "P.gas-engine.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4333,7 +4232,6 @@
     {
       "id": "P.gas-engine.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4376,7 +4274,6 @@
     {
       "id": "P.gas-engine.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4418,7 +4315,6 @@
     {
       "id": "P.gas-engine.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4456,7 +4352,6 @@
     {
       "id": "P.fuel-cell.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4496,7 +4391,6 @@
     {
       "id": "P.fuel-cell.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4534,7 +4428,6 @@
     {
       "id": "P.fuel-cell.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4577,7 +4470,6 @@
     {
       "id": "P.fuel-cell.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4617,7 +4509,6 @@
     {
       "id": "P.fuel-cell.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -4656,7 +4547,6 @@
     {
       "id": "P.smr.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -4697,7 +4587,6 @@
     {
       "id": "P.smr.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -4734,7 +4623,6 @@
     {
       "id": "P.smr.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -4777,7 +4665,6 @@
     {
       "id": "P.smr.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -4815,7 +4702,6 @@
     {
       "id": "P.smr.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -4853,7 +4739,6 @@
     {
       "id": "P.backup-power.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -4896,7 +4781,6 @@
     {
       "id": "P.backup-power.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -4936,7 +4820,6 @@
     {
       "id": "P.backup-power.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -4983,7 +4866,6 @@
     {
       "id": "P.backup-power.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5030,7 +4912,6 @@
     {
       "id": "P.backup-power.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5068,7 +4949,6 @@
     {
       "id": "P.fuel-storage.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -5107,7 +4987,6 @@
     {
       "id": "P.fuel-storage.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -5144,7 +5023,6 @@
     {
       "id": "P.fuel-storage.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -5184,7 +5062,6 @@
     {
       "id": "P.fuel-storage.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -5221,7 +5098,6 @@
     {
       "id": "P.bess.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -5264,7 +5140,6 @@
     {
       "id": "P.bess.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -5303,7 +5178,6 @@
     {
       "id": "P.bess.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -5347,7 +5221,6 @@
     {
       "id": "P.bess.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -5388,7 +5261,6 @@
     {
       "id": "P.bess.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.energy.price",
@@ -5427,7 +5299,6 @@
     {
       "id": "P.ups.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5471,7 +5342,6 @@
     {
       "id": "P.ups.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5509,7 +5379,6 @@
     {
       "id": "P.ups.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5556,7 +5425,6 @@
     {
       "id": "P.ups.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5601,7 +5469,6 @@
     {
       "id": "P.ups-battery.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5644,7 +5511,6 @@
     {
       "id": "P.ups-battery.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5681,7 +5547,6 @@
     {
       "id": "P.ups-battery.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5728,7 +5593,6 @@
     {
       "id": "P.ups-battery.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5772,7 +5636,6 @@
     {
       "id": "P.ups-battery.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5809,7 +5672,6 @@
     {
       "id": "P.lv-switchgear.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5853,7 +5715,6 @@
     {
       "id": "P.lv-switchgear.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5891,7 +5752,6 @@
     {
       "id": "P.lv-switchgear.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5937,7 +5797,6 @@
     {
       "id": "P.lv-switchgear.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -5982,7 +5841,6 @@
     {
       "id": "P.lv-switchgear.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -6020,7 +5878,6 @@
     {
       "id": "P.busway.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -6064,7 +5921,6 @@
     {
       "id": "P.busway.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -6103,7 +5959,6 @@
     {
       "id": "P.busway.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -6149,7 +6004,6 @@
     {
       "id": "P.busway.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -6193,7 +6047,6 @@
     {
       "id": "P.busway.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -6230,7 +6083,6 @@
     {
       "id": "P.pdu.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -6274,7 +6126,6 @@
     {
       "id": "P.pdu.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -6313,7 +6164,6 @@
     {
       "id": "P.pdu.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -6360,7 +6210,6 @@
     {
       "id": "P.pdu.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.shell"
@@ -6403,7 +6252,6 @@
     {
       "id": "P.power-shelf.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density"
@@ -6448,7 +6296,6 @@
     {
       "id": "P.power-shelf.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density"
@@ -6485,7 +6332,6 @@
     {
       "id": "P.power-shelf.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density"
@@ -6523,7 +6369,6 @@
     {
       "id": "P.power-shelf.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density"
@@ -6562,7 +6407,6 @@
     {
       "id": "P.power-shelf.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density"
@@ -6600,7 +6444,6 @@
     {
       "id": "P.bbu.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [],
       "factor_id": null,
@@ -6639,7 +6482,6 @@
     {
       "id": "P.bbu.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [],
       "factor_id": null,
@@ -6674,7 +6516,6 @@
     {
       "id": "P.bbu.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [],
       "factor_id": null,
@@ -6709,7 +6550,6 @@
     {
       "id": "P.bbu.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [],
       "factor_id": null,
@@ -6745,7 +6585,6 @@
     {
       "id": "P.bbu.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [],
       "factor_id": null,
@@ -6780,7 +6619,6 @@
     {
       "id": "P.psu.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -6821,7 +6659,6 @@
     {
       "id": "P.psu.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -6858,7 +6695,6 @@
     {
       "id": "P.psu.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -6899,7 +6735,6 @@
     {
       "id": "P.psu.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -6937,7 +6772,6 @@
     {
       "id": "P.vrm.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -6979,7 +6813,6 @@
     {
       "id": "P.vrm.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -7016,7 +6849,6 @@
     {
       "id": "P.vrm.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -7057,7 +6889,6 @@
     {
       "id": "P.vrm.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -7095,7 +6926,6 @@
     {
       "id": "P.vrm.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -7132,7 +6962,6 @@
     {
       "id": "P.dry-cooler.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7177,7 +7006,6 @@
     {
       "id": "P.dry-cooler.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7218,7 +7046,6 @@
     {
       "id": "P.dry-cooler.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7256,7 +7083,6 @@
     {
       "id": "P.dry-cooler.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7295,7 +7121,6 @@
     {
       "id": "P.water-treatment.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -7334,7 +7159,6 @@
     {
       "id": "P.water-treatment.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -7375,7 +7199,6 @@
     {
       "id": "P.water-treatment.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -7420,7 +7243,6 @@
     {
       "id": "P.water-treatment.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -7459,7 +7281,6 @@
     {
       "id": "P.chiller.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7502,7 +7323,6 @@
     {
       "id": "P.chiller.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7543,7 +7363,6 @@
     {
       "id": "P.chiller.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7581,7 +7400,6 @@
     {
       "id": "P.chiller.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7620,7 +7438,6 @@
     {
       "id": "P.chilled-water-loop.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7662,7 +7479,6 @@
     {
       "id": "P.chilled-water-loop.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7702,7 +7518,6 @@
     {
       "id": "P.chilled-water-loop.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7739,7 +7554,6 @@
     {
       "id": "P.chilled-water-loop.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7776,7 +7590,6 @@
     {
       "id": "P.cdu.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7820,7 +7633,6 @@
     {
       "id": "P.cdu.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7862,7 +7674,6 @@
     {
       "id": "P.cdu.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7901,7 +7712,6 @@
     {
       "id": "P.cdu.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7941,7 +7751,6 @@
     {
       "id": "P.cdu.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -7979,7 +7788,6 @@
     {
       "id": "P.coolant.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -8022,7 +7830,6 @@
     {
       "id": "P.coolant.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -8062,7 +7869,6 @@
     {
       "id": "P.coolant.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -8099,7 +7905,6 @@
     {
       "id": "P.coolant.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -8136,7 +7941,6 @@
     {
       "id": "P.room-cooling.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -8179,7 +7983,6 @@
     {
       "id": "P.room-cooling.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -8220,7 +8023,6 @@
     {
       "id": "P.room-cooling.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -8258,7 +8060,6 @@
     {
       "id": "P.room-cooling.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.pue"
@@ -8296,7 +8097,6 @@
     {
       "id": "P.immersion.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8336,7 +8136,6 @@
     {
       "id": "P.immersion.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8374,7 +8173,6 @@
     {
       "id": "P.immersion.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8414,7 +8212,6 @@
     {
       "id": "P.immersion.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8451,7 +8248,6 @@
     {
       "id": "P.immersion.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8488,7 +8284,6 @@
     {
       "id": "P.sidecar-hx.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8528,7 +8323,6 @@
     {
       "id": "P.sidecar-hx.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8568,7 +8362,6 @@
     {
       "id": "P.sidecar-hx.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8608,7 +8401,6 @@
     {
       "id": "P.sidecar-hx.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8646,7 +8438,6 @@
     {
       "id": "P.sidecar-hx.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8686,7 +8477,6 @@
     {
       "id": "P.manifold.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8726,7 +8516,6 @@
     {
       "id": "P.manifold.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8763,7 +8552,6 @@
     {
       "id": "P.manifold.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8803,7 +8591,6 @@
     {
       "id": "P.manifold.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8841,7 +8628,6 @@
     {
       "id": "P.manifold.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8878,7 +8664,6 @@
     {
       "id": "P.quick-disconnect.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8919,7 +8704,6 @@
     {
       "id": "P.quick-disconnect.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8956,7 +8740,6 @@
     {
       "id": "P.quick-disconnect.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -8996,7 +8779,6 @@
     {
       "id": "P.quick-disconnect.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9035,7 +8817,6 @@
     {
       "id": "P.quick-disconnect.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9073,7 +8854,6 @@
     {
       "id": "P.leak-detection.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -9112,7 +8892,6 @@
     {
       "id": "P.leak-detection.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -9153,7 +8932,6 @@
     {
       "id": "P.leak-detection.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -9198,7 +8976,6 @@
     {
       "id": "P.leak-detection.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -9237,7 +9014,6 @@
     {
       "id": "P.leak-detection.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.other_opex"
@@ -9274,7 +9050,6 @@
     {
       "id": "P.coldplate.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9316,7 +9091,6 @@
     {
       "id": "P.coldplate.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9357,7 +9131,6 @@
     {
       "id": "P.coldplate.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9398,7 +9171,6 @@
     {
       "id": "P.coldplate.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9436,7 +9208,6 @@
     {
       "id": "P.coldplate.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9473,7 +9244,6 @@
     {
       "id": "P.heatsink-vc.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9514,7 +9284,6 @@
     {
       "id": "P.heatsink-vc.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9551,7 +9320,6 @@
     {
       "id": "P.heatsink-vc.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9592,7 +9360,6 @@
     {
       "id": "P.heatsink-vc.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9630,7 +9397,6 @@
     {
       "id": "P.server-fan.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9671,7 +9437,6 @@
     {
       "id": "P.server-fan.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9708,7 +9473,6 @@
     {
       "id": "P.server-fan.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9749,7 +9513,6 @@
     {
       "id": "P.server-fan.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -9787,7 +9550,6 @@
     {
       "id": "P.rack-system.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density",
@@ -9833,7 +9595,6 @@
     {
       "id": "P.rack-system.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density",
@@ -9872,7 +9633,6 @@
     {
       "id": "P.rack-system.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density",
@@ -9915,7 +9675,6 @@
     {
       "id": "P.rack-system.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density",
@@ -9956,7 +9715,6 @@
     {
       "id": "P.rack-system.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density",
@@ -9995,7 +9753,6 @@
     {
       "id": "P.server.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10038,7 +9795,6 @@
     {
       "id": "P.server.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10080,7 +9836,6 @@
     {
       "id": "P.server.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10123,7 +9878,6 @@
     {
       "id": "P.server.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10165,7 +9919,6 @@
     {
       "id": "P.server.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10204,7 +9957,6 @@
     {
       "id": "P.general-server.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10247,7 +9999,6 @@
     {
       "id": "P.general-server.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10298,7 +10049,6 @@
     {
       "id": "P.general-server.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10341,7 +10091,6 @@
     {
       "id": "P.general-server.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10380,7 +10129,6 @@
     {
       "id": "P.gpu.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density",
@@ -10424,7 +10172,6 @@
     {
       "id": "P.gpu.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density",
@@ -10467,7 +10214,6 @@
     {
       "id": "P.gpu.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density",
@@ -10519,7 +10265,6 @@
     {
       "id": "P.gpu.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density",
@@ -10560,7 +10305,6 @@
     {
       "id": "P.gpu.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "revenue.gpus.density",
@@ -10601,7 +10345,6 @@
     {
       "id": "P.ai-asic.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10643,7 +10386,6 @@
     {
       "id": "P.ai-asic.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10684,7 +10426,6 @@
     {
       "id": "P.ai-asic.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10728,7 +10469,6 @@
     {
       "id": "P.ai-asic.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10768,7 +10508,6 @@
     {
       "id": "P.ai-asic.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.energy.load",
@@ -10808,7 +10547,6 @@
     {
       "id": "P.cpu.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -10848,7 +10586,6 @@
     {
       "id": "P.cpu.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -10887,7 +10624,6 @@
     {
       "id": "P.cpu.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -10928,7 +10664,6 @@
     {
       "id": "P.cpu.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -10966,7 +10701,6 @@
     {
       "id": "P.fpga.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -11004,7 +10738,6 @@
     {
       "id": "P.fpga.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -11041,7 +10774,6 @@
     {
       "id": "P.fpga.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -11084,7 +10816,6 @@
     {
       "id": "P.fpga.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -11121,7 +10852,6 @@
     {
       "id": "P.bmc.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11159,7 +10889,6 @@
     {
       "id": "P.bmc.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11196,7 +10925,6 @@
     {
       "id": "P.bmc.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11237,7 +10965,6 @@
     {
       "id": "P.bmc.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11274,7 +11001,6 @@
     {
       "id": "P.hbm.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -11313,7 +11039,6 @@
     {
       "id": "P.hbm.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -11351,7 +11076,6 @@
     {
       "id": "P.hbm.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -11396,7 +11120,6 @@
     {
       "id": "P.hbm.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -11435,7 +11158,6 @@
     {
       "id": "P.hbm.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.accelerators"
@@ -11473,7 +11195,6 @@
     {
       "id": "P.dram.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11513,7 +11234,6 @@
     {
       "id": "P.dram.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11552,7 +11272,6 @@
     {
       "id": "P.dram.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11593,7 +11312,6 @@
     {
       "id": "P.dram.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11631,7 +11349,6 @@
     {
       "id": "P.dram.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11672,7 +11389,6 @@
     {
       "id": "P.cxl-memory.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11712,7 +11428,6 @@
     {
       "id": "P.cxl-memory.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11750,7 +11465,6 @@
     {
       "id": "P.cxl-memory.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11790,7 +11504,6 @@
     {
       "id": "P.cxl-memory.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11828,7 +11541,6 @@
     {
       "id": "P.cxl-memory.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11865,7 +11577,6 @@
     {
       "id": "P.storage-array.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11907,7 +11618,6 @@
     {
       "id": "P.storage-array.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11955,7 +11665,6 @@
     {
       "id": "P.storage-array.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -11997,7 +11706,6 @@
     {
       "id": "P.storage-array.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12035,7 +11743,6 @@
     {
       "id": "P.ssd.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12075,7 +11782,6 @@
     {
       "id": "P.ssd.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12113,7 +11819,6 @@
     {
       "id": "P.ssd.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12154,7 +11859,6 @@
     {
       "id": "P.ssd.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12192,7 +11896,6 @@
     {
       "id": "P.ssd.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12240,7 +11943,6 @@
     {
       "id": "P.hdd.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12279,7 +11981,6 @@
     {
       "id": "P.hdd.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12317,7 +12018,6 @@
     {
       "id": "P.hdd.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12358,7 +12058,6 @@
     {
       "id": "P.hdd.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12396,7 +12095,6 @@
     {
       "id": "P.hdd.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12435,7 +12133,6 @@
     {
       "id": "P.network-switch.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12477,7 +12174,6 @@
     {
       "id": "P.network-switch.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12515,7 +12211,6 @@
     {
       "id": "P.network-switch.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12559,7 +12254,6 @@
     {
       "id": "P.network-switch.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12598,7 +12292,6 @@
     {
       "id": "P.network-switch.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12637,7 +12330,6 @@
     {
       "id": "P.switch-asic.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12678,7 +12370,6 @@
     {
       "id": "P.switch-asic.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12717,7 +12408,6 @@
     {
       "id": "P.switch-asic.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12757,7 +12447,6 @@
     {
       "id": "P.switch-asic.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12795,7 +12484,6 @@
     {
       "id": "P.switch-asic.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12834,7 +12522,6 @@
     {
       "id": "P.optics.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12877,7 +12564,6 @@
     {
       "id": "P.optics.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12916,7 +12602,6 @@
     {
       "id": "P.optics.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12959,7 +12644,6 @@
     {
       "id": "P.optics.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -12998,7 +12682,6 @@
     {
       "id": "P.optics.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13037,7 +12720,6 @@
     {
       "id": "P.copper-interconnect.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13078,7 +12760,6 @@
     {
       "id": "P.copper-interconnect.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13116,7 +12797,6 @@
     {
       "id": "P.copper-interconnect.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13157,7 +12837,6 @@
     {
       "id": "P.copper-interconnect.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13195,7 +12874,6 @@
     {
       "id": "P.copper-interconnect.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13233,7 +12911,6 @@
     {
       "id": "P.cabling.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13274,7 +12951,6 @@
     {
       "id": "P.cabling.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13313,7 +12989,6 @@
     {
       "id": "P.cabling.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13354,7 +13029,6 @@
     {
       "id": "P.cabling.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13392,7 +13066,6 @@
     {
       "id": "P.connector.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13433,7 +13106,6 @@
     {
       "id": "P.connector.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13470,7 +13142,6 @@
     {
       "id": "P.connector.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13511,7 +13182,6 @@
     {
       "id": "P.connector.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13549,7 +13219,6 @@
     {
       "id": "P.connector.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13586,7 +13255,6 @@
     {
       "id": "P.nic.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13627,7 +13295,6 @@
     {
       "id": "P.nic.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13665,7 +13332,6 @@
     {
       "id": "P.nic.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13706,7 +13372,6 @@
     {
       "id": "P.nic.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13744,7 +13409,6 @@
     {
       "id": "P.retimer.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13784,7 +13448,6 @@
     {
       "id": "P.retimer.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13823,7 +13486,6 @@
     {
       "id": "P.retimer.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13863,7 +13525,6 @@
     {
       "id": "P.retimer.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13900,7 +13561,6 @@
     {
       "id": "P.retimer.news",
       "variable_class": 5,
-      "layer": 5,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13938,7 +13598,6 @@
     {
       "id": "P.pcie-switch.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -13977,7 +13636,6 @@
     {
       "id": "P.pcie-switch.operation",
       "variable_class": 2,
-      "layer": 2,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -14016,7 +13674,6 @@
     {
       "id": "P.pcie-switch.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -14057,7 +13714,6 @@
     {
       "id": "P.pcie-switch.lead_time",
       "variable_class": 4,
-      "layer": 4,
       "origin": "part",
       "factor_ids": [
         "cost.depreciation.capex.other_it"
@@ -14094,7 +13750,6 @@
     {
       "id": "P.dcim.spec",
       "variable_class": 1,
-      "layer": 1,
       "origin": "software",
       "factor_ids": [
         "cost.other_opex"
@@ -14135,7 +13790,6 @@
     {
       "id": "P.dcim.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "software",
       "factor_ids": [
         "cost.other_opex"
@@ -14181,7 +13835,6 @@
     {
       "id": "S.land.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "site_right",
       "factor_ids": [
         "cost.depreciation.capex.land"
@@ -14223,7 +13876,6 @@
     {
       "id": "S.land.holders",
       "variable_class": 5,
-      "layer": 5,
       "origin": "site_right",
       "factor_ids": [
         "cost.depreciation.capex.land"
@@ -14260,7 +13912,6 @@
     {
       "id": "S.water-rights.holders",
       "variable_class": 5,
-      "layer": 5,
       "origin": "site_right",
       "factor_ids": [
         "cost.other_opex"
@@ -14297,7 +13948,6 @@
     {
       "id": "S.water-rights.timeline",
       "variable_class": 4,
-      "layer": 4,
       "origin": "site_right",
       "factor_ids": [
         "cost.other_opex"
@@ -14336,7 +13986,6 @@
     {
       "id": "S.grid.timeline",
       "variable_class": 4,
-      "layer": 4,
       "origin": "site_right",
       "factor_ids": [
         "cost.energy.price",
@@ -14385,7 +14034,6 @@
     {
       "id": "S.grid.holders",
       "variable_class": 5,
-      "layer": 5,
       "origin": "site_right",
       "factor_ids": [
         "cost.energy.price",
@@ -14425,7 +14073,6 @@
     {
       "id": "S.gas-supply.holders",
       "variable_class": 5,
-      "layer": 5,
       "origin": "site_right",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -14462,7 +14109,6 @@
     {
       "id": "S.gas-supply.timeline",
       "variable_class": 4,
-      "layer": 4,
       "origin": "site_right",
       "factor_ids": [
         "cost.depreciation.capex.btm"
@@ -14499,7 +14145,6 @@
     {
       "id": "S.network-access.holders",
       "variable_class": 5,
-      "layer": 5,
       "origin": "site_right",
       "factor_ids": [],
       "factor_id": null,
@@ -14534,7 +14179,6 @@
     {
       "id": "S.network-access.price",
       "variable_class": 3,
-      "layer": 3,
       "origin": "site_right",
       "factor_ids": [],
       "factor_id": null,
@@ -14569,7 +14213,6 @@
     {
       "id": "S.permits.timeline",
       "variable_class": 4,
-      "layer": 4,
       "origin": "site_right",
       "factor_ids": [
         "cost.depreciation.capex.land",
@@ -14612,7 +14255,6 @@
     {
       "id": "S.permits.holders",
       "variable_class": 5,
-      "layer": 5,
       "origin": "site_right",
       "factor_ids": [
         "cost.depreciation.capex.land",
