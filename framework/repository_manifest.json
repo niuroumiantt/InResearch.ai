@@ -129,8 +129,8 @@
     {
       "path": "data/dashboard.json",
       "role": "source_record",
-      "bytes": 210821,
-      "sha256": "75d8407176a06af4b289e0934bded02ede1653b8676729866359f5230df674e3",
+      "bytes": 211304,
+      "sha256": "709122bd0b6e247cde7553b9a36651c57d5c17cba76c15be11e6ea024706f8b4",
       "collections": [
         {
           "name": "stages",
@@ -171,6 +171,18 @@
         {
           "name": "benchmark_series",
           "count": 43
+        }
+      ]
+    },
+    {
+      "path": "data/event_cards.json",
+      "role": "source_record",
+      "bytes": 367,
+      "sha256": "354192400f84c58111b8f8e39d3cf476c9a0a623a21b583edc4ca398f6b3c2fe",
+      "collections": [
+        {
+          "name": "records",
+          "count": 0
         }
       ]
     },
@@ -459,8 +471,8 @@
     {
       "path": "deploy/spark-reader/inresearch-news.timer",
       "role": "project_config",
-      "bytes": 163,
-      "sha256": "cfc67dddcf2d079d20ccd875bf83a8767c3556e594b570cd5449d1136b4138ee",
+      "bytes": 265,
+      "sha256": "f07636609191d0504d918ee7d3af5b84e51a017afe576152f8e1c751c2c71044",
       "collections": []
     },
     {
@@ -542,8 +554,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 158458,
-      "sha256": "84da048d51c5cd609ea15fc5e25e6ca085897bdc3eaad479ff6cece2569b393c",
+      "bytes": 161629,
+      "sha256": "1a756011ce375a1f52bc45fe940dc0e146606fc9ac8c25e15ee4ae7dbf8a07bb",
       "collections": []
     },
     {
@@ -6740,11 +6752,11 @@
     {
       "path": "framework/bom.json",
       "role": "project_config",
-      "bytes": 41550,
-      "sha256": "0a2b00654891894e46f6ec470e437dbc932e9352438300610b57bee5cef2ca98",
+      "bytes": 42212,
+      "sha256": "651e893e516a09c03d5871c319bc1e915916635d3857d1d6789f63e88b698573",
       "collections": [
         {
-          "name": "layers",
+          "name": "scales",
           "count": 5
         },
         {
@@ -6760,8 +6772,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 44755,
-      "sha256": "c4c9b28e6f0e1430cb2d982cb974981e7ac3afc8b2655df4149e08123ae42927",
+      "bytes": 47027,
+      "sha256": "c76edbfb519a8fc879ea9d072d84e3f2c8989a9730a7467bcd6307e1ab79de09",
       "collections": [
         {
           "name": "policies",
@@ -6786,6 +6798,10 @@
         {
           "name": "retired_scan_snapshots",
           "count": 1
+        },
+        {
+          "name": "compat_retirements",
+          "count": 7
         }
       ]
     },
@@ -6840,8 +6856,8 @@
     {
       "path": "framework/interface_manifest.json",
       "role": "project_config",
-      "bytes": 4376,
-      "sha256": "7096f525bfc246133d70b14d3c49bdf2b1684b62d84763266cf850091239e861",
+      "bytes": 5001,
+      "sha256": "e85c773f6640a39412aaad8a20c7bf93362db9125d7680fe078465f8beabf373",
       "collections": [
         {
           "name": "static_pages",
@@ -7001,7 +7017,7 @@
       "path": "framework/research_graph.json",
       "role": "project_config",
       "bytes": 183887,
-      "sha256": "99b28d299dafb9233c1fee70458adcf154e0c58398187ce681876ed1f56a154f",
+      "sha256": "cba55df2e2231e8bea5445f5b5289ae58130fe30359ebfba5e6995c71e034400",
       "collections": [
         {
           "name": "legacy_root_prefixes",
@@ -7032,8 +7048,8 @@
     {
       "path": "framework/site_rights.json",
       "role": "project_config",
-      "bytes": 3676,
-      "sha256": "7615941fe4ae69530a1b2514dfc82f6bffb4115a1adc04e6de1d2e0a6905e8d5",
+      "bytes": 3759,
+      "sha256": "8b080542a65a18f43f56967e0201d028869c657a105c5dd5a629cd5872034d53",
       "collections": [
         {
           "name": "rights",
@@ -7051,8 +7067,8 @@
     {
       "path": "framework/supply_contract.json",
       "role": "project_config",
-      "bytes": 13401,
-      "sha256": "730002c3e9c1b231b1fa88388bc829d2726127f6cb950e18adff6dd092b28781",
+      "bytes": 13956,
+      "sha256": "75361a6744ec186d0ab997575f545e4fa9671530fc2ae7655e25d0524aec6c9b",
       "collections": [
         {
           "name": "providers",
@@ -7075,8 +7091,8 @@
     {
       "path": "framework/tco_targets.json",
       "role": "project_config",
-      "bytes": 423756,
-      "sha256": "13636d0823f01b8165637f54af2e4affc5bb7f3d85bfab8616fd5db9afffc92c",
+      "bytes": 429578,
+      "sha256": "9bcb56d8fe639020cc1b59c5115e54a76d3b6610d5fdc2322d98d06d1d037cd9",
       "collections": [
         {
           "name": "principles",
@@ -8482,8 +8498,8 @@
     {
       "path": "src/inresearch/interfaces/cli.py",
       "role": "implementation",
-      "bytes": 5021,
-      "sha256": "3cddd1b1a972c61fb3a2cd483dcb48c2c55ec277fc29a3da156e99d46c563c78",
+      "bytes": 5070,
+      "sha256": "30aba1a3bf3bbc7fb896f7a13bd21ef1a5857369861e58c4d78fe75d5c4633fe",
       "collections": []
     },
     {
@@ -8496,15 +8512,15 @@
     {
       "path": "src/inresearch/interfaces/governance.py",
       "role": "implementation",
-      "bytes": 11766,
-      "sha256": "65485005e195167724c6881264baf4c324d65f732516678865948bf093b2c98b",
+      "bytes": 12958,
+      "sha256": "910c7b7ef39e149d82572f1db4335038f94411f03aef98e70cc52184e4584e1c",
       "collections": []
     },
     {
       "path": "src/inresearch/interfaces/http.py",
       "role": "implementation",
-      "bytes": 36903,
-      "sha256": "a269c27ccffb372cb710aae83db9400f06f5c04420da0cfcf10acb3396146792",
+      "bytes": 37316,
+      "sha256": "ff1759a517b05928aa1fdd082fab61bf8e700f8e869925c4896e2e2ed28b92d3",
       "collections": []
     },
     {
@@ -8517,8 +8533,8 @@
     {
       "path": "src/inresearch/interfaces/public.py",
       "role": "implementation",
-      "bytes": 2935,
-      "sha256": "70b5ff377e2eb36fab28fafdbcf65977641017f8add957cc512380f716d92f03",
+      "bytes": 3158,
+      "sha256": "6ea87d05606769eabfae3a410a9dac3c1433c6f34bb314c3baddb60e26f66325",
       "collections": []
     },
     {
@@ -8573,8 +8589,15 @@
     {
       "path": "src/inresearch/knowledge/dashboard.py",
       "role": "implementation",
-      "bytes": 23294,
-      "sha256": "48f39a43f237653cfddbe595d066629e00ce1037a572e66a16692e7924321e18",
+      "bytes": 23330,
+      "sha256": "97a70b5ddb375a8dd096e2babce5aea88203b20d7cd3bc89e06e3a0633784d17",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/knowledge/deliveries.py",
+      "role": "implementation",
+      "bytes": 6668,
+      "sha256": "62a0508cdb0f9a89c76c02dbf3b58e0ad3b52f39585c86ba17fc21e9bf7601d9",
       "collections": []
     },
     {
@@ -8601,8 +8624,8 @@
     {
       "path": "src/inresearch/knowledge/graph.py",
       "role": "implementation",
-      "bytes": 17510,
-      "sha256": "faec86f607911837056df29a6e2c6945fba9674d7f91763dbcf0c9b9488e169d",
+      "bytes": 17524,
+      "sha256": "769ed5a7ce74fff083bb9979cce9fcdfdadb29c50e4c1e3a36b584bcb3f151eb",
       "collections": []
     },
     {
@@ -8657,15 +8680,15 @@
     {
       "path": "src/inresearch/knowledge/targets.py",
       "role": "implementation",
-      "bytes": 24383,
-      "sha256": "0cd35f6dc750d619a640d1ec586e95ff406e019aef121d0e3ea05a6fcee579db",
+      "bytes": 25452,
+      "sha256": "1604e43ffa25a49a5a7f960f095b0fbcc554e2b2faf38985a0e81cedb2a2111f",
       "collections": []
     },
     {
       "path": "src/inresearch/knowledge/validate.py",
       "role": "implementation",
-      "bytes": 19293,
-      "sha256": "c409499a516386d75548cc259f3edf753245e6cddf7b0e861c73abc051212262",
+      "bytes": 19809,
+      "sha256": "f2d62fc1f5edb5998d0f406d541f130792c847c0894f08c2f0c5545b525893d0",
       "collections": []
     },
     {
@@ -9190,7 +9213,7 @@
       "path": "tests/unit/test_bom.py",
       "role": "test",
       "bytes": 7776,
-      "sha256": "e4ad8f7dd2cc6fc9086c10913dfd14466848e553fac3e2d53216c3ca6eac408f",
+      "sha256": "bd512dddb3c867f9ee5370b5be8e63e0506134b10db98ed8b109235140d634ed",
       "collections": []
     },
     {
@@ -9264,6 +9287,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_deliveries.py",
+      "role": "test",
+      "bytes": 3909,
+      "sha256": "a5abc59786b7098a5bf788c7453bee3d803c42cea0711a2b419507f0a46a2ee0",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_display_regressions.py",
       "role": "test",
       "bytes": 12426,
@@ -9315,8 +9345,8 @@
     {
       "path": "tests/unit/test_governance.py",
       "role": "test",
-      "bytes": 6307,
-      "sha256": "6f0d9e7df776fda90435b9639f9f4b9107322374df7ad8f67212292ef440a3fc",
+      "bytes": 7338,
+      "sha256": "6b1a4bf78e19cb999cb9a51854977e813b15230606a6252c87d98089155cc3a7",
       "collections": []
     },
     {
@@ -9350,8 +9380,8 @@
     {
       "path": "tests/unit/test_interface_system.py",
       "role": "test",
-      "bytes": 7332,
-      "sha256": "44bbfd7cf5ec9edf7efb348bf25a0ae9e8adfd62843941787fda023e3af47a3b",
+      "bytes": 7919,
+      "sha256": "5949819ff8cca17972066ae21490a10ffd271faac66184c644f6d6c6e48d422f",
       "collections": []
     },
     {
@@ -9553,8 +9583,8 @@
     {
       "path": "tests/unit/test_public_reader.py",
       "role": "test",
-      "bytes": 7129,
-      "sha256": "5433fb609f1304e7bd75941d200e03fa46ecd2e6f30b646f7e9e5b16df34e7bf",
+      "bytes": 7626,
+      "sha256": "15756ca03af99ee3cf5f7b9c7b9d0acc161845edb605274c36a3d93ab2610d13",
       "collections": []
     },
     {
@@ -9679,8 +9709,8 @@
     {
       "path": "tests/unit/test_tco_targets.py",
       "role": "test",
-      "bytes": 10680,
-      "sha256": "8895d8cc7e75c5933d95905d5188b172f2075edbc012b005867bf2e812f14c8e",
+      "bytes": 11976,
+      "sha256": "59768fee67a2b6cc36e52f40eb15f38e5614eb59943aaffdc5a4c0c794bec24d",
       "collections": []
     },
     {
@@ -10187,7 +10217,7 @@
       "path": "web/components/part-dossier.js",
       "role": "implementation",
       "bytes": 4865,
-      "sha256": "c5d20c91ac0a1e8f4bf64a899a6ce9b457b6240e47b4ffc4ae3edea286943943",
+      "sha256": "4c90dde70460dc709230f36911a3da685c780892fa1a7baf47bdd34abc7d7516",
       "collections": []
     },
     {
@@ -10327,14 +10357,14 @@
       "path": "web/pages/bom.html",
       "role": "implementation",
       "bytes": 18420,
-      "sha256": "8751daf02ad487b4e354ddb74480cda64e16149ba1ca5e804dfd8be35b5e483c",
+      "sha256": "34058958314d22d3d92131c34d3a229630112d037e69e674dfff4901f006413b",
       "collections": []
     },
     {
       "path": "web/pages/bom3d.html",
       "role": "implementation",
       "bytes": 60070,
-      "sha256": "902d9467a33a42d2f7e29dd7852cdb2b683b4555de8008a8168df5932be73302",
+      "sha256": "bd200f748091bcb4884a78d43009e1153e25d34c752a856dbc5c652313b69035",
       "collections": []
     },
     {
@@ -10368,8 +10398,8 @@
     {
       "path": "web/pages/node.html",
       "role": "implementation",
-      "bytes": 38883,
-      "sha256": "8480d1c124996d08245a8f1a5009e0257b06ae43e33f5e2d6d75b743c048ffb6",
+      "bytes": 38927,
+      "sha256": "82859f0761872876592831abe18e735871354bf201f09189747cdcec64f741ee",
       "collections": []
     },
     {
@@ -10408,10 +10438,17 @@
       "collections": []
     },
     {
+      "path": "web/robots.txt",
+      "role": "project_config",
+      "bytes": 522,
+      "sha256": "abc3940525c6222c20c8fb7a69e6b62e78ed46ff383256fd86bd706e4e949179",
+      "collections": []
+    },
+    {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 7323,
-      "sha256": "35f27d66b35e7bcb1bb0d060b35c14abdf4049ca531c68e9a9c259cb89e666ae",
+      "bytes": 7358,
+      "sha256": "d908ca3a6ed22e291778e6045b7bfb1d7e2569f0b14e2c3fee58f6bba78fe9d1",
       "collections": []
     },
     {
@@ -10443,13 +10480,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 279,
-    "implementation": 212,
+    "implementation": 213,
     "normative": 12,
-    "project_config": 94,
+    "project_config": 95,
     "research_record": 16,
     "retired_entrypoint": 3,
-    "source_record": 27,
+    "source_record": 28,
     "supporting_document": 60,
-    "test": 98
+    "test": 99
   }
 }

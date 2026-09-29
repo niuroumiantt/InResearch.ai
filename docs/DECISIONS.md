@@ -2,6 +2,21 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-29：三项检查的机检与代码批次（A）——九项落地
+
+用户采用 `docs/reviews/2026-09-29/` 三份报告后要求逐步执行；本条是第一批（本仓库、不改规范正文），每项一个提交：
+
+- **真 `/healthz`**（`interfaces/http.py`、`public.py`）：只返回 `{ok, service, auth_required}`，不 stat 运行文件、不看登录态，进公开白名单；compose 探的 `/healthz` 此前不存在（302 到登录页后 200）。`web/robots.txt` 只放行 reader 页，禁 `/api`、`/data`、采集页、管理页与登录页。infra 三处探针统一到它见 infra 配套 PR。
+- **骨架键名去歧义**：`bom.json` 的 `layer/layers` 改 `scale/scales`（尺度），`module` 改 `legacy_module`（`site_rights.json` 同）；目标表去掉 `layer` 兼容键；`validate --strict` 拒绝骨架文件再出现 `layer / layers / module` 键。dashboard、graph、targets 生成物仅键名变化；`node / bom / bom3d / part-dossier` 同步。inews feed 的 `layer_tags` 是外部键名，06 已注明为兼容名，不在本批。
+- **目标行主行 `feeds_primary`**：每个被喂的模型输入恰有一条主行（因子行优先，先到先得）；账本可信边界只回链主行。单测锁唯一性、覆盖与"有因子行则主行必是因子行"。
+- **主执行机按供应方登记**：`supply_contract.json` 1.6 给 provider 加 `host_default`，fetchspec 登记为 macmini（对齐其 `docs/MACHINES.md`），目标表 130 行 host 从 aws 改为 macmini；assisted 机制仍固定 macmini；单测锁一致性。
+- **目录六项 ↔ 四问**：`interface_manifest.json` 1.5.0 加 `section_questions`（数据中心与成果覆盖四问，账本 = ①③，爆炸图 = ②，采集 = ④，管理无）；单测锁形状与覆盖。05「目录」表加一列随规范批次。
+- **兼容层退役日历**：`current_state.json` 加 `compat_retirements`（workorders.py 与其投影、research-graph.js / object-network.js / research.css、compare.html、bom 的 legacy_module 属性），`governance --check` 在 `retire_after` 过后报错逼一次决定；日期是报告建议值。
+- **Spark 新闻同步 1 小时改 15 分钟**（`deploy/spark-reader/inresearch-news.timer`）：首屏新闻绕 Spark 一圈的最坏延迟从约 65 分钟降到约 20 分钟；Spark 上须重装 units。06 的"每小时"随规范批次改。
+- **交付回执进 Git 载体的唯一通道**：新增 `manage.py deliveries import --assignments <运行库导出>`，把 `register_delivery` 写的交付指针变成 `data/event_cards.json` 事件卡（`target_id` + `origin_pointer`，公网 URL 或仓库内相对路径）并重跑目标表；`deliveries check` 校验形状；载体文件以空表进 Git。此前 delivered 没有任何可达路径。规范正文（06、09）随规范批次改。
+
+未做、留给后续批次：规范正文（03/05/06/09/CURRENT）与 `verification_contract.json` 复审（批次 B）；infra 与 inews.today 仓库的配套改动（批次 C、D）；页面上账本可信边界改为只链主行、首屏新闻"只显示精选"文案（页面工作，未列入本批）。
+
 ## 2026-09-29：三项系统检查报告（未采用，待用户决定）
 
 按交接页 `docs/handoff/review-2026-09-29.md` 第三节做了三项只读检查，报告在 `docs/reviews/2026-09-29/`：`infra/README.md`、`skeleton/README.md`、`inews/README.md`，每份是"现状 → 问题 → 建议"表；外部仓库（infra、inews.today、fetchspec）只引用路径与结论，需要实机核对的项给出注明机器的命令，不猜实机状态。本条只登记位置与结论摘要，所有建议都是候选，不改现行规则、不改代码、不改 `verification_contract.json`。

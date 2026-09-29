@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1016。
+在册文件：1020。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 279 |
-| 运行代码 | 212 |
+| 运行代码 | 213 |
 | 现行规范 | 12 |
-| 项目配置 | 94 |
+| 项目配置 | 95 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 27 |
+| 在册数据/索引 | 28 |
 | 配套说明 | 60 |
-| 测试 | 98 |
+| 测试 | 99 |
 
 ## 在册记录集合
 
@@ -44,6 +44,7 @@
 | `data/datacenter_model.json` | anchors | 2 |
 | `data/datacenter_model.json` | sensitivity_drivers | 12 |
 | `data/datacenter_model.json` | benchmark_series | 43 |
+| `data/event_cards.json` | records | 0 |
 | `data/facts.json` | records | 7849 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 512 |
@@ -322,7 +323,7 @@
 | `docs/reviews/2026-09-15/l1-pipeline/file-plan.csv` | rows | 18 |
 | `docs/reviews/2026-09-15/task-authority/file-plan.csv` | rows | 796 |
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
-| `framework/bom.json` | layers | 5 |
+| `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
 | `framework/current_state.json` | policies | 26 |
@@ -331,6 +332,7 @@
 | `framework/current_state.json` | known_retired_patterns | 28 |
 | `framework/current_state.json` | operational_guides | 9 |
 | `framework/current_state.json` | retired_scan_snapshots | 1 |
+| `framework/current_state.json` | compat_retirements | 7 |
 | `framework/dashboard_rules.json` | honesty | 5 |
 | `framework/data_contract.json` | source_grades | 5 |
 | `framework/data_contract.json` | project_statuses | 9 |
@@ -424,6 +426,7 @@
 | `data/contracts.json` | 在册数据/索引 |
 | `data/dashboard.json` | 在册数据/索引 |
 | `data/datacenter_model.json` | 在册数据/索引 |
+| `data/event_cards.json` | 在册数据/索引 |
 | `data/facts.json` | 在册数据/索引 |
 | `data/metric_gaps.jsonl` | 在册数据/索引 |
 | `data/policies.json` | 在册数据/索引 |
@@ -1161,6 +1164,7 @@
 | `src/inresearch/knowledge/company_ids.py` | 运行代码 |
 | `src/inresearch/knowledge/coverage.py` | 运行代码 |
 | `src/inresearch/knowledge/dashboard.py` | 运行代码 |
+| `src/inresearch/knowledge/deliveries.py` | 运行代码 |
 | `src/inresearch/knowledge/economics.py` | 运行代码 |
 | `src/inresearch/knowledge/fact_contract.py` | 运行代码 |
 | `src/inresearch/knowledge/facts.py` | 运行代码 |
@@ -1259,6 +1263,7 @@
 | `tests/unit/test_declared_admin.py` | 测试 |
 | `tests/unit/test_deep_read.py` | 测试 |
 | `tests/unit/test_deep_read_transactions.py` | 测试 |
+| `tests/unit/test_deliveries.py` | 测试 |
 | `tests/unit/test_display_regressions.py` | 测试 |
 | `tests/unit/test_dropped_claims.py` | 测试 |
 | `tests/unit/test_export_fold.py` | 测试 |
@@ -1421,6 +1426,7 @@
 | `web/pages/rack3d.html` | 运行代码 |
 | `web/pages/report.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |
+| `web/robots.txt` | 项目配置 |
 | `web/routes.json` | 项目配置 |
 | `web/themes/preference.js` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |
