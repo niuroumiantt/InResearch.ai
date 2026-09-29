@@ -1,6 +1,7 @@
 """Headline eligibility and entity matching; no collection or database writes."""
 import json
 import re
+from pathlib import Path
 
 INEWS_DATACENTER_URL = 'https://inews.today/api/feeds/datacenter'
 # Additive feed v2 fields (schema_version stays 1). inews tags events; inresearch never
@@ -8,7 +9,20 @@ INEWS_DATACENTER_URL = 'https://inews.today/api/feeds/datacenter'
 EVENT_TYPES = ('financing', 'lease_contract', 'project_milestone', 'tariff_power_policy', 'lead_time_supply',
                'onsite_power_grid', 'tax_regulation', 'operations_incident', 'transaction_valuation', 'product_price_change')
 RESEARCH_ANGLES = ('technology', 'supply', 'market', 'capital', 'deployment', 'policy', 'safety', 'society', 'other')
-FEED_V2_FIELDS = ('event_type', 'research_angle', 'layer_tags', 'origin_pointer', 'editorial_pick')
+FEED_V2_FIELDS = ('event_type', 'research_angle', 'layer_tags', 'origin_pointer', 'editorial_pick', 'object_ids')
+# object_ids（2026-09-29，06「inews 两条线」）：事件涉及的骨架节点——part:<部件> / site:<权利> / actor:<公司>。
+# 形状错拒收整页；ID 不在现行骨架与公司库里的逐个过滤（与接收端 registry_lag 的折算同一态度），不拒收。
+OBJECT_ID = re.compile(r'^(part|site|actor):[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$')
+
+
+def skeleton_ids(root):
+    """现行可挂的对象 ID：bom 部件、站点权利、公司库。"""
+    root = Path(root)
+    bom = json.loads((root / 'framework/bom.json').read_text(encoding='utf-8'))
+    rights = json.loads((root / 'framework/site_rights.json').read_text(encoding='utf-8'))
+    companies = json.loads((root / 'data/companies.json').read_text(encoding='utf-8'))['records']
+    return ({'part:' + p['id'] for p in bom['parts']} | {'site:' + r['id'] for r in rights['rights']}
+            | {'actor:' + c['company_id'] for c in companies})
 
 def trusted_news_selection(metadata):
     selection = metadata.get('upstream_selection')
