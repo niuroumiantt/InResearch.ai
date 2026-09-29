@@ -2,6 +2,14 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-29：三项系统检查报告（未采用，待用户决定）
+
+按交接页 `docs/handoff/review-2026-09-29.md` 第三节做了三项只读检查，报告在 `docs/reviews/2026-09-29/`：`infra/README.md`、`skeleton/README.md`、`inews/README.md`，每份是"现状 → 问题 → 建议"表；外部仓库（infra、inews.today、fetchspec）只引用路径与结论，需要实机核对的项给出注明机器的命令，不猜实机状态。本条只登记位置与结论摘要，所有建议都是候选，不改现行规则、不改代码、不改 `verification_contract.json`。
+
+- **infra**：发布链单一（`inresearch-only-deploy` 每 2 分钟随 main，失败回退上一镜像），只读源码根与 `/runtime` 三个卷的边界在 compose 里真落实，暴露面只剩 Caddy 80/443。三个洞：`/srv/inresearch.ai/data` 不在任何应用级备份源里（只可能靠 Lightsail 快照，是否开启未核实）；发布失败只写状态文件没有告警；回滚不能指定提交。次一级：compose 探的 `/healthz` 不存在（302 到登录页后 200，三处探针定义不一致）；两份编排同项目同服务名；reader token 与 PAT 无轮换流程；带标签镜像不被 prune。
+- **骨架与素材**：3-4-5-6 的登记与生成链一致，六队与 `team` 列一一对应；具体问题十三条，最重的一条是四态里的 delivered 今天不可能非零——三种 Git 载体中 `product_docs_plan.csv` 与 `prices.json` 同时是运行状态（线上写入永不回 Git），`event_cards.json` 没有任何写入者，inews feed 没有骨架挂点字段；其次是 `layer` 一键三义、`module` 未改 `legacy_module`、主体既是对象类型又是变量类、fetchspec 执行机登记为 aws 而实际在 macmini / M5、问题表变量类偏斜。改进清单十三项按影响 / 成本排序，标了哪些能进 `--check` 或单测、哪些是规范改动、哪些只是页面；建议 rack3d 不做物理合并。
+- **inews.today**：采集线 / 编辑线是逻辑分离（翻译与价值精化仍在采集循环里跑）；feed v2 五个附加字段被 `news_sync` 完整校验透传，缺的是 `object_ids` 挂点与簇级信息；来源 119 + 74 + 10 + 19、限速与车道规则清楚，实测量要在 AWS 跑（命令已给）；首屏新闻从同机 inews 绕 Spark 一圈最坏延迟约 65 分钟。回到第④问：50 行 inews 目标 0 行 delivered，没有通道能让它非零。
+
 ## 2026-09-29：五台机器切到 c4ddd7a；M4 预筛定时任务卸载；三项系统检查的交接
 
 八步与 #286 合并后逐台核对：AWS 随 main 自动上站（容器健康、storage check 通过、公开只读与登录门正确）；Spark 经 m5 的 Git bundle 快进到 c4ddd7a，`READER_RELEASE` 记录，reader 与五分钟发布器改为随开机启用，第一次发布手动跑（35,917 份文档，解压 65.6 MB / 传输 5.5 MB），随后定时发布 3 秒完成；M5、M4、Mac mini 同步到同一提交，mini 的本地站点重启。M4 的 `com.inresearch.m4-preflight` launchd 任务实机核对发现指向已退役的 `pipeline/m4_preflight.py`，自 9 月 13 日起每半小时失败一次且原件目录已不在 M4，已卸载（plist 移到 `retired/`），`M4_PREFLIGHT.md` 改记为已卸载。
