@@ -4,6 +4,11 @@ import json, os, re, shutil, sqlite3
 from pathlib import Path
 from inresearch.materials.reader_contracts import UnsafePath, IntegrityError
 from inresearch.materials.artifacts import now_iso, digest_bytes, digest_file, encoded, private_dir, safe_path, atomic_bytes, atomic_json, read_json, signature, is_partial
+from inresearch.knowledge.registry import object_resolver
+
+# Bumped when the projection of one document changes for the same registry and
+# report (the cache key otherwise only sees the registry versions).
+PROJECTION_VERSION = 2
 
 def read_report(data, doc):
     if not doc['report_rel']:
@@ -68,16 +73,27 @@ def fingerprint(doc, sources, registry_key):
     """
     stable = {k: (v if isinstance(v, (str, int, float, bool)) or v is None else repr(v))
               for k, v in doc.items()}
-    return digest_bytes(encoded({"registry": registry_key, "doc": stable,
+    return digest_bytes(encoded({"registry": registry_key, "projection": PROJECTION_VERSION, "doc": stable,
                                  "sources": sources}).encode("utf-8"))
 
 
-def project_document(doc, sources, report, allowed):
+def fold_ids(values, allowed_ids, resolve=None):
+    """Recorded IDs onto the installed registry: current IDs stay, legacy object IDs
+    fold through the registry's own aliases (graph 3.0, never guessed), the rest
+    are unknown and go to the mapping proposals. Sorted, so the projection is stable."""
+    kept, unknown = set(), set()
+    for value in values:
+        target = value if value in allowed_ids else (resolve(value) if resolve else None)
+        (unknown if target is None else kept).add(value if target is None else target)
+    return sorted(kept), sorted(unknown)
+
+
+def project_document(doc, sources, report, allowed, resolve=None):
     """Everything one document contributes to a snapshot, from its inputs alone."""
+    resolvers = {key: (resolve if key == "object_ids" else None) for key in allowed}
     mapped, missing = {}, {}
     for key in allowed:
-        mapped[key] = sorted(set(report.get(key, [])) & allowed[key])
-        missing[key] = sorted(set(report.get(key, [])) - allowed[key])
+        mapped[key], missing[key] = fold_ids(report.get(key, []), allowed[key], resolvers[key])
     needs_review = any(missing.values()) or not any(mapped.values())
     entry = {"id": doc["doc_id"], "doc_id": doc["doc_id"], "content_sha256": doc["sha256"],
              "title": report.get("classification", {}).get("title") or doc["original_name"],
@@ -89,7 +105,7 @@ def project_document(doc, sources, report, allowed):
              "model": report.get("model"), "status": "candidate", "acceptance": "candidate", **mapped}
     evidence_out = []
     for evidence in report.get("evidence", []):
-        ids = {key: sorted(set(evidence.get(key, [])) & allowed[key]) for key in allowed}
+        ids = {key: fold_ids(evidence.get(key, []), allowed[key], resolvers[key])[0] for key in allowed}
         page = evidence.get('page_index')
         # Reader artifact v1 uses PDF page numbers (1..N). The knowledge
         # contract uses array indices (0..N-1). Convert only at this boundary;
@@ -100,7 +116,7 @@ def project_document(doc, sources, report, allowed):
                              "status": "candidate", "acceptance": "candidate"})
     statements = []
     for n, claim in enumerate(report.get("claims", [])):
-        ids = {key: sorted(set(claim.get(key, [])) & allowed[key]) for key in allowed}
+        ids = {key: fold_ids(claim.get(key, []), allowed[key], resolvers[key])[0] for key in allowed}
         statements.append({**claim, "id": claim.get("id") or doc["doc_id"] + ":statement:" + str(n),
                            "document_id": doc["doc_id"], **ids,
                            "status": "candidate", "acceptance": "candidate"})
@@ -137,6 +153,7 @@ def export_snapshot(conn, data, registry, status, cache_root=None, verify=None, 
     allowed = {"object_ids": {r["id"] for r in registry["objects"] if isinstance(r, dict) and "id" in r},
                "question_ids": {r["id"] for r in registry["questions"] if isinstance(r, dict) and "id" in r}}
     registry_key = [registry["graph_version"], registry["questions_version"]]
+    resolve = object_resolver(registry["objects"], registry.get("legacy_root_prefixes"))
     if verify is None:
         verify = os.environ.get("READER_PUBLISH_VERIFY") == "1"
     if doc_ids is not None:
@@ -170,7 +187,7 @@ def export_snapshot(conn, data, registry, status, cache_root=None, verify=None, 
                 if hit is not None:
                     piece = json.loads(hit[0])
             if piece is None:
-                piece = project_document(doc, sources, read_report(data, doc), allowed)
+                piece = project_document(doc, sources, read_report(data, doc), allowed, resolve)
                 if cache is not None:
                     cache.execute("INSERT OR REPLACE INTO projection VALUES(?,?,?)",
                                   (doc["doc_id"], key, encoded(piece)))

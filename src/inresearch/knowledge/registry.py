@@ -248,6 +248,27 @@ def task_board(root=ROOT, questions=None, knowledge=None):
     }
 
 
+def object_resolver(objects, root_prefixes=()):
+    """图谱 3.0：把旧对象 ID 折算到骨架节点——先看对象登记的别名，再看根前缀；折算不了的返回 None（不猜）。
+
+    接收端（candidate_snapshot）、阅读快照导出端（delivery/reader_export）和 Spark 的外部快照叠加
+    （delivery/snapshot_overlay）共用同一张折算表，所以 Spark / M4 / M5 更新源码后导出的快照与
+    旧版快照落到同样的节点。"""
+    known = {o['id'] for o in objects if isinstance(o, dict) and 'id' in o}
+    fold = {alias: o['id'] for o in objects if isinstance(o, dict) for alias in (o.get('aliases') or [])}
+    prefixes = tuple(root_prefixes or ())
+
+    def resolve(value):
+        if value in known:
+            return value
+        if value in fold:
+            return fold[value]
+        if prefixes and isinstance(value, str) and value.startswith(prefixes) and 'root' in known:
+            return 'root'
+        return None
+    return resolve
+
+
 def candidate_snapshot(payload, graph, questions):
     """Normalize untrusted reader JSON; this API cannot promote a claim.
 
@@ -276,16 +297,7 @@ def candidate_snapshot(payload, graph, questions):
     known = {'object_ids': {o['id'] for o in graph.get('objects', []) if isinstance(o, dict) and 'id' in o},
              'question_ids': {q['id'] for q in questions.get('records', []) if isinstance(q, dict) and 'id' in q}}
     # 图谱 3.0：旧对象 ID 先按对象登记的别名与根前缀折算到骨架节点（不猜），折算不了的才丢
-    fold = {alias: o['id'] for o in graph.get('objects', []) if isinstance(o, dict) for alias in (o.get('aliases') or [])}
-    root_prefixes = tuple(graph.get('legacy_root_prefixes') or ())
-    def resolve(value):
-        if value in known['object_ids']:
-            return value
-        if value in fold:
-            return fold[value]
-        if root_prefixes and isinstance(value, str) and value.startswith(root_prefixes) and 'root' in known['object_ids']:
-            return 'root'
-        return None
+    resolve = object_resolver(graph.get('objects', []), graph.get('legacy_root_prefixes'))
     dropped_ids = dropped_answers = folded_ids = 0
     for name in COLLECTIONS:
         rows = knowledge.get(name, [])

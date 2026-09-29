@@ -16,6 +16,7 @@ from inresearch.workflow.reader import Reader
 from inresearch.adapters.reader_model import ModelClient
 from inresearch.materials.artifacts import encoded, atomic_json, now_iso
 from inresearch.delivery import snapshot_overlay
+from inresearch.knowledge.registry import object_resolver
 from inresearch.workflow import commands
 
 
@@ -72,7 +73,8 @@ def main(argv=None):
             allowed = {'object_ids': {r['id'] for r in registry['objects'] if isinstance(r, dict) and 'id' in r},
                        'question_ids': {r['id'] for r in registry['questions'] if isinstance(r, dict) and 'id' in r}}
             payload['reader']['external_overlay'] = snapshot_overlay.overlay(
-                payload, snapshot_overlay.load_directory(external), allowed)
+                payload, snapshot_overlay.load_directory(external), allowed,
+                object_resolver(registry['objects'], registry.get('legacy_root_prefixes')))
         document = encoded(payload).encode('utf-8')
         if len(document) > commands.SNAPSHOT_MAX_BYTES:
             raise ValueError('snapshot exceeds receiver limit; incremental export is required')
