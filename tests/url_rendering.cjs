@@ -37,14 +37,14 @@ const base = process.env.UI_BASE_URL;
     assert.equal(await page.locator('#content b').textContent(), 'Strong & clear');
     assert.equal(await page.evaluate(() => Boolean(window.__urlExecuted)), false);
 
-    const report = await (await page.request.get(base+'/api/report')).json();
+    const report = await (await page.request.get(base+'/api/report?legacy=1')).json();  // 2026-09-28 第 7 步起 /api/report 默认是快照，专题全文（chapters/findings）在 legacy=1
     const finding = report.chapters[0].findings[0];
     finding.title = payload;
     finding.body = ['- **结论**：[unsafe](javascript:window.__urlExecuted=true)',
       '  - [quoted](https://example.test/"onpointerenter="window.__urlExecuted=true)',
       '  - `https://example.test/code`'];
     await page.route('**/api/report?*', route => route.fulfill({json:report}));
-    await page.goto(base+'/report.html');
+    await page.goto(base+'/report.html?legacy=1');
     await page.locator('.finding').first().waitFor();
     assert.match(await page.locator('.finding h3').first().textContent(), /<img src=x/);
     assert.equal(await page.locator('#docroot img, #docroot [onpointerenter], #docroot a[href^="javascript:"], #docroot code a').count(), 0);
