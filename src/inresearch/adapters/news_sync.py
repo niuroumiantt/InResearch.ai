@@ -14,6 +14,9 @@ from inresearch.paths import project_root
 
 URL=INEWS_DATACENTER_URL
 WEEK_MS=7*86400000
+# 单页读超时（2026-09-29 由 40 秒放到 120 秒）：Spark 实测 7 天窗口首页 2.6–7.2 秒且波动大，深分页更慢，40 秒偶发撞上。
+# 整次同步仍受 systemd TimeoutStartSec=1800 约束；深分页本身的快慢是 inews 侧的事。
+READ_TIMEOUT=int(os.environ.get('INRESEARCH_NEWS_READ_TIMEOUT','120'))
 
 
 def article_id(value):
@@ -97,7 +100,7 @@ def projection():
         params={'hours':168,'limit':100}
         if cursor: params['cursor']=cursor
         request_url=URL+'?'+urlencode(params)
-        with build_opener(NoRedirect).open(Request(request_url, headers={'User-Agent':'inresearch.ai-news-sync/1.0','Accept':'application/json'}),timeout=40) as response:
+        with build_opener(NoRedirect).open(Request(request_url, headers={'User-Agent':'inresearch.ai-news-sync/1.0','Accept':'application/json'}),timeout=READ_TIMEOUT) as response:
             if response.status!=200 or response.geturl()!=request_url:raise ValueError('unverified_news_origin')
             body=response.read(4*1024*1024+1)
         if len(body)>4*1024*1024: raise ValueError('news_response_too_large')

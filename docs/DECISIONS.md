@@ -3,6 +3,10 @@
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
 <<<<<<< HEAD
+## 2026-09-29：新闻同步单页读超时 40 秒放到 120 秒
+
+Spark 上 `inresearch-news.service` 2026-09-29 11:10 因读超时失败；从 Spark 实测 `/api/feeds/datacenter?hours=168&limit=100` 首页 2.6–7.2 秒且波动大，深分页更慢。`news_sync` 单页读超时从 40 秒放到 120 秒（环境变量 `INRESEARCH_NEWS_READ_TIMEOUT` 可调），整次同步仍受 systemd 30 分钟上限约束。深分页查询本身的快慢交 inews.today 侧（批次 D 子会话）。
+
 ## 2026-09-29：Spark 三个定时器改为失败后也重排
 
 Spark 实机核对新闻同步时发现 `inresearch-news.timer` 的 NEXT 为空、LAST 停在 2026-09-18 19:57：那次上游 inews 返回 502，服务失败；timer 用的 `OnUnitActiveSec` 只在服务成功进入 active 后才重新计时，一次失败就再不触发，新闻 11 天没同步而没有任何告警（首屏只显示"更新延迟"）。发布器与材料接收的 timer 是同一写法，同样的风险。改法：新闻 timer 改 `OnCalendar=*:00/15`（与失败无关，`Persistent` 补停机错过的一次）；发布器与材料接收改 `OnUnitInactiveSec`（服务结束后重排，成功失败都算）。Spark 上须重装三个 timer 并 `daemon-reload`。`deploy/spark-reader/install.sh` 只装 reader，三个 timer 的安装仍按 `ACQUISITION_OPERATIONS.md` / `SPARK_OPERATIONS.md` 手工 `install`；两份手册是评审文件，改动随下一批评审文件进。
