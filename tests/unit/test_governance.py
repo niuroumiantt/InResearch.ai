@@ -88,6 +88,19 @@ class GovernanceTests(unittest.TestCase):
         (self.root / 'framework/live.md').write_text('current replacement')
         self.assertEqual(g.retired_errors(g.build_manifest(self.state, self.root), self.state, self.root), [])
 
+    def test_compat_retirements_need_a_live_path_and_an_unexpired_date(self):
+        from datetime import date
+        (self.root / 'web').mkdir()
+        (self.root / 'web/old.js').write_text('legacy')
+        state = {**self.state, 'compat_retirements': [
+            {'path': 'web/old.js', 'kept_for': '3D 档案面板', 'retire_when': '面板改用 part-dossier 后', 'retire_after': '2026-10-31'}]}
+        self.assertEqual(g.compat_errors(state, self.root, date(2026, 9, 29)), [])
+        self.assertEqual(len(g.compat_errors(state, self.root, date(2026, 11, 1))), 1, 'past retire_after must fail closed')
+        gone = {**state, 'compat_retirements': [{**state['compat_retirements'][0], 'path': 'web/removed.js'}]}
+        self.assertIn('path is gone', g.compat_errors(gone, self.root, date(2026, 9, 29))[0])
+        bad = {**state, 'compat_retirements': [{**state['compat_retirements'][0], 'retire_after': 'soon', 'retire_when': ''}]}
+        self.assertEqual(len(g.compat_errors(bad, self.root, date(2026, 9, 29))), 2)
+
     def test_price_frequency_explicit_override_and_legacy_defaults(self):
         cases = [('gpu-hourly-x', None, 'quarterly', 150), ('gpu-hourly-x', 'spot', 'spot', 30),
                  ('construction-cost-annual', None, 'annual', 455), ('x-lead-time', None, 'quarterly', 150),

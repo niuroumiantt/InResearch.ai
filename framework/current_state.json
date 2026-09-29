@@ -827,5 +827,51 @@
   "decisions_retired_scan_since": "2026-09-28",
   "retired_scan_snapshots": [
     "docs/guides/model-governance-2026-09-27.html"
+  ],
+  "compat_retirements_note": "兼容层退役日历（2026-09-29）：每个仍在仓库里的兼容实现登记为什么留着、什么条件下退役、最迟哪天复审。governance --check 在 retire_after 过后报错，逼一次决定（退役，或写 DECISIONS 延期并改日期）；路径已不存在也报错，提醒删掉登记。日期是 2026-09-29 检查报告的建议值。",
+  "compat_retirements": [
+    {
+      "path": "src/inresearch/workflow/workorders.py",
+      "kept_for": "M4 深读分包与任务板仍按 legacy_module 分组读取工单投影（reports/workorders.json）",
+      "retire_when": "分包与任务板改读目标行 ID 后删除模块与 CLI 命令 workorders，并从 storage_contract 去掉 reports/workorders.*",
+      "retire_after": "2026-10-31"
+    },
+    {
+      "path": "reports/workorders.json",
+      "kept_for": "同上：工单投影的 Git 种子",
+      "retire_when": "随 workorders.py 一起退役",
+      "retire_after": "2026-10-31"
+    },
+    {
+      "path": "web/components/research-graph.js",
+      "kept_for": "3D 档案面板（bom3d / rack3d）仍用旧工作台代码取关系图",
+      "retire_when": "档案面板改用 part-dossier.js + /api/research-summary 后删除，research.css 同批",
+      "retire_after": "2026-10-31"
+    },
+    {
+      "path": "web/components/object-network.js",
+      "kept_for": "同上",
+      "retire_when": "同上",
+      "retire_after": "2026-10-31"
+    },
+    {
+      "path": "web/assets/research.css",
+      "kept_for": "同上",
+      "retire_when": "同上",
+      "retire_after": "2026-10-31"
+    },
+    {
+      "path": "web/pages/compare.html",
+      "kept_for": "模型选型对比台，本地工具，interface_manifest 已列 excluded_pages",
+      "retire_when": "场景套件不再依赖其路由时删除",
+      "retire_after": "2026-12-31"
+    },
+    {
+      "path": "framework/bom.json",
+      "attribute": "legacy_module",
+      "kept_for": "旧模块 M01–M15 作为部件与权利的兼容属性，供分包与成果末章专题目录分组",
+      "retire_when": "问题表、分包、成果专题目录全部改按 node 分组后，从 bom.json / site_rights.json / dashboard 去掉该属性",
+      "retire_after": "2026-12-31"
+    }
   ]
 }

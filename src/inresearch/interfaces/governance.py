@@ -90,6 +90,28 @@ def policy_errors(state, root=ROOT):
     return errors
 
 
+def compat_errors(state, root=ROOT, today=None):
+    """兼容层退役日历（2026-09-29）：路径必须还在（不在就删登记），retire_after 必须是日期，过期即报错逼一次决定。"""
+    errors = []
+    today = today or date.today()
+    for row in state.get('compat_retirements', []):
+        path = row.get('path', '')
+        label = path + (('#' + row['attribute']) if row.get('attribute') else '')
+        if not path or Path(path).is_absolute() or '..' in Path(path).parts or not (root / path).is_file():
+            errors.append(f'compat {label}: path is gone; remove the retirement entry')
+        for key in ('kept_for', 'retire_when'):
+            if not row.get(key):
+                errors.append(f'compat {label}: {key} required')
+        try:
+            due = date.fromisoformat(row.get('retire_after', ''))
+        except (ValueError, TypeError):
+            errors.append(f'compat {label}: retire_after must be a date')
+            continue
+        if today > due:
+            errors.append(f'compat {label}: retire_after {due} has passed; retire it or extend the date with a DECISIONS entry')
+    return errors
+
+
 def paths(root=ROOT):
     return sorted(set(p.decode('utf-8') for p in subprocess.check_output(
         ['git', '-C', str(root), 'ls-files', '-z', '--cached', '--others', '--exclude-standard']).split(b'\0') if p))
@@ -222,6 +244,7 @@ def main():
                 (ROOT / name).write_text('')
     state = json.loads((ROOT / STATE).read_text())
     errors = policy_errors(state)
+    errors += compat_errors(state)
     errors += verification_errors(state, ROOT)
     manifest = build_manifest(state)
     errors += retired_errors(manifest, state)
