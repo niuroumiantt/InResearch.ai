@@ -1,9 +1,9 @@
 [Unit]
-Description=Hourly datacenter news refresh
+Description=Datacenter news refresh every 15 minutes (inews feed has ETag and cursor; hourly left the AWS front page up to 65 minutes behind)
 
 [Timer]
 OnBootSec=5m
-OnUnitActiveSec=1h
+OnUnitActiveSec=15min
 RandomizedDelaySec=60
 Persistent=true
 
