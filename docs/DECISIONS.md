@@ -2,6 +2,18 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-09-29：三项检查的规范批次（B）——把 A 批次落地的东西写进规范正文
+
+批次 A（#291）只改代码与登记，本条把对应规则写进唯一规范源，`verification_contract.json` 里这五个文件的摘要需要用户复审后重登记（哈希脚本在 PR 正文）：
+
+- **03「三条判据」新增**：对象类型 actor ≠ 变量类 5（变量类 5 的记录挂在部件 / 权利 / 根上并引用一个 actor，只有公司库自身允许 `node = actor:*`）；建设阶段 `stage` 是排序键不是变量类；只有需要被追问到底的东西才成为对象（项目、合同、序列、地区不是对象）。同段登记键名：尺度叫 `scale`，旧模块叫 `legacy_module`，骨架文件不再有 `layer`。
+- **05「目录」**：表加"对应哪几问"一列（与 `interface_manifest.section_questions` 对账）；写明"一个模板"只指节点页，其余页是某一列 / 某一问的展开页。
+- **06**：回执进 Git 载体只有一条通道 `manage.py deliveries import`；feed v2 采用 `object_ids`（骨架节点 ID，`news_sync` 校验、缺字段照常消费）；目标表不再带 `layer` 键；Spark 新闻同步每 15 分钟。
+- **09**：`knowledge/deliveries.py` 用例边界（只在作者 checkout、HTTP 不暴露、幂等）；`/healthz` 探针契约。
+- **CURRENT**：采集行加回执通道；记录与运行边界加一句指向三条判据、目录对应与退役日历。
+
+未做：`SPARK_OPERATIONS.md`（评审文件）里 Spark 重装 units 的一句随下一批评审文件；`ACQUISITION_OPERATIONS.md` 的"每小时"同上。
+
 ## 2026-09-29：三项检查的机检与代码批次（A）——九项落地
 
 用户采用 `docs/reviews/2026-09-29/` 三份报告后要求逐步执行；本条是第一批（本仓库、不改规范正文），每项一个提交：

@@ -23,6 +23,10 @@ add-price、assign、receive-snapshot 三个统一 JSON 用例；缺省为 proje
 
 派工用例（2026-09-28）：`assign` 接受 `target_id`（目标表的行，唯一任务书）或 `workorder_id`（兼容工单）；新增 `register_delivery(target_id, evidence_path)`（HTTP `/api/deliver`）登记交付指针。两者只写 `data/assignments.json`，不改目标表；实习生只能改分配给自己的行。目标行投影 `/api/targets` 由 `workflow/dispatch.py` 按角色在服务端过滤（`mine=1`、`team`、`node`、`col`、`status`）。
 
+回执进 Git 载体（2026-09-29）：`knowledge/deliveries.py` 是运行库交付指针进入 Git 载体的唯一用例——`import_assignments(root, assignments_path)` 读运行库导出的 `data/assignments.json`，把带 `delivery` 的记录写成 `data/event_cards.json` 事件卡（目标行须存在、指针须是公网 URL 或仓库内相对路径、同一指针幂等），随后由 `knowledge/targets.py` 重建目标表；`check(root)` 校验卡片。只在作者 checkout 由 CLI `deliveries import / check` 调用，HTTP 不暴露；网站与 Spark 不回写 Git。
+
+健康探针（2026-09-29）：`GET /healthz` 在公开白名单内，只返回 `{ok, service, auth_required}`，不 stat 运行文件、不读登录态；容器编排、镜像与 infra 应用登记表三处探针统一探它，不探首页或登录页。
+
 入口借用 sys.argv 调用旧子接口时，成功、导入失败、执行异常均恢复原参数对象；后续顺序调用
 不继承前一次委派的参数。此适配不支持多个线程同时使用进程级 argv；并发任务使用独立进程。
 子命令退出码、JSON 形状、模型配置及事务/重放/版本规则不在此层重复实现。

@@ -108,7 +108,7 @@ flowchart LR
 
 采集按来源机制分成六队，不按层分：fetchspec（厂商规格）、inews.today（新闻事件）、fetchstat（公共统计、费率表、税率与法规原文）、fetchfilings（证券与公司披露、可持续报告、财报电话会）、fetchreports（研报、指数、白皮书、论文与标准）、fetchquotes（报价与市场观察）。建队顺序 fetchstat → fetchfilings → fetchreports → fetchquotes。六队的角度、素材、日历与执行机登记在 [五类变量目标清单](tco_targets.json)；能力标签与分队的对应关系登记在 `supply_contract.json` 的 `teams.capability_map`。数据中心经济模型的"三级、四段、五类变量、六队"骨架以 `docs/guides/model-governance-2026-09-27.{html,pdf}` 为已采用的设计快照（快照中称"五层"），可执行规则以本文件与目标清单为准。
 
-**2026-09-28 更名**：经济模型的五个变量类别改称**五类变量**（构成、运行、价格、时间、主体），不再称"五层"。五类互相正交，没有先后、层级或递推，一条数据只属一类；指导快照与历史记录中的"五层"按此阅读。`tco_targets.json` 与 inews 事件 feed 里的 `layer`、`layer_tags` 键是兼容名，含义是变量类别，随 feed 合同下次升版更名。`bom.json` 的 S1–S5（园区、建筑、机房、机柜、部件；2026-09-28 前写作 L1–L5）是部件"装在哪"的五个**尺度**，与变量类别无关。
+**2026-09-28 更名**：经济模型的五个变量类别改称**五类变量**（构成、运行、价格、时间、主体），不再称"五层"。五类互相正交，没有先后、层级或递推，一条数据只属一类；指导快照与历史记录中的"五层"按此阅读。2026-09-29 起 `tco_targets.json` 不再带 `layer` 键；inews 事件 feed 里的 `layer_tags` 仍是兼容名，含义是变量类别，随 feed 合同下次升版更名。`bom.json` 的 S1–S5（园区、建筑、机房、机柜、部件；2026-09-28 前写作 L1–L5）是部件"装在哪"的五个**尺度**，与变量类别无关。
 
 仓库只有三个：`inews.today`、`fetchspec` 保持；新建 `fetchdata` 一个仓库承载 fetchstat、fetchfilings、fetchreports、fetchquotes 四个分队目录，共用内核（条件请求、限速、SHA、包构建、运行台账、交付上传）、一张来源登记表与一个交付入口。存在不同协议、依赖或失败隔离需求时再拆，见 `docs/handoff/fetchdata-bootstrap.md`。`fetchdata` 建成前 `supply_contract.json` 中四个分队保持 `proposed`，不宣称已接通。
 
@@ -116,7 +116,7 @@ flowchart LR
 
 ### 目标行状态四态与 Git 内登记载体（2026-09-28 采用）
 
-目标行 `status` 从三态（sourced / assumed / needed）改为四态，加 `delivered`：某队已交付但尚未进入价格序列或指标的行。判定源必须在 Git 内可复现：规格行以产品资料库登记为准（`data/product_docs_plan.csv` 的 doc_id / source_url，或产品库索引入库）；新闻行与持有方行只认带 `origin_pointer` 的事件卡快照（`site_rights.companies` 只标"登记数"）；价格行以带 `target_id` 与 `variable_class` 的价格记录为准。只在运行库有的，页面标"运行库有 / Git 无"，不计 delivered。四个待建队名下由 2026-09-27 人工定向抓取得到的行改标 `local` 队，在来源登记（`part_fetch.json`、`tco_factors.json`）里改，不改生成物。到期日历只对已接入的队显示；未建队的行显示"待建队"，不显示到期。生成行另写 `sourced_by`（registry = 人工登记的序列或指标；delivery = 队交付的载体）与 `team_state`（connected / not_connected，按 `supply_contract.json` 的 `connection`）；dashboard 格的状态在四态之外多一个 `registered`：只有我们自己登记的计数（部件数、产品线数、供应商数、持有方数）时用它，不算已采集。骨架补齐（03「骨架的三个补充」）后：每个物理部件多一行运行目标（`operation`，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率；`part_fetch.json` 可登记出版方，未登记的沿用模板）；因子树的 `time.build` 生成工期、排队与审批三行；部件级与权利级目标行带建设阶段 `stage`（采集页默认排序）。派工按目标行 ID：采集页第一屏是目标表（六队卡、五系统 × 五类热图、目标行表），`/api/targets` 在服务端按角色过滤——实习生只见分配给自己的行；`assign` 用例带 `target_id`，`register_delivery(target_id, evidence_path)` 把交付指针记到 `data/assignments.json`；指针只是运行库登记，进入 `delivered` 仍看 Git 内载体，页面标"运行库有 / Git 无"。节点页每列有"→ 采集"链接按节点与列预筛，采集页每行链回节点页停在该列。
+目标行 `status` 从三态（sourced / assumed / needed）改为四态，加 `delivered`：某队已交付但尚未进入价格序列或指标的行。判定源必须在 Git 内可复现：规格行以产品资料库登记为准（`data/product_docs_plan.csv` 的 doc_id / source_url，或产品库索引入库）；新闻行与持有方行只认带 `origin_pointer` 的事件卡快照（`site_rights.companies` 只标"登记数"）；价格行以带 `target_id` 与 `variable_class` 的价格记录为准。只在运行库有的，页面标"运行库有 / Git 无"，不计 delivered。**回执进 Git 载体只有一条通道（2026-09-29）**：作者在 checkout 里跑 `python3 manage.py deliveries import --assignments <运行库导出的 data/assignments.json>`，把 `register_delivery` 写的交付指针逐条变成 `data/event_cards.json` 的事件卡（`target_id` + `origin_pointer`，公网 URL 或仓库内相对路径），重跑目标表，走 PR；`deliveries check` 校验卡片。不自动、不在网站上跑、幂等；进入 delivered 后仍不是序列，正式采用另走研究流程。三种载体里，`product_docs_plan.csv` 与 `prices.json` 同时是运行状态（storage_contract），线上写入不回 Git，同样只经作者 checkout 提交。四个待建队名下由 2026-09-27 人工定向抓取得到的行改标 `local` 队，在来源登记（`part_fetch.json`、`tco_factors.json`）里改，不改生成物。到期日历只对已接入的队显示；未建队的行显示"待建队"，不显示到期。生成行另写 `sourced_by`（registry = 人工登记的序列或指标；delivery = 队交付的载体）与 `team_state`（connected / not_connected，按 `supply_contract.json` 的 `connection`）；dashboard 格的状态在四态之外多一个 `registered`：只有我们自己登记的计数（部件数、产品线数、供应商数、持有方数）时用它，不算已采集。骨架补齐（03「骨架的三个补充」）后：每个物理部件多一行运行目标（`operation`，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率；`part_fetch.json` 可登记出版方，未登记的沿用模板）；因子树的 `time.build` 生成工期、排队与审批三行；部件级与权利级目标行带建设阶段 `stage`（采集页默认排序）。派工按目标行 ID：采集页第一屏是目标表（六队卡、五系统 × 五类热图、目标行表），`/api/targets` 在服务端按角色过滤——实习生只见分配给自己的行；`assign` 用例带 `target_id`，`register_delivery(target_id, evidence_path)` 把交付指针记到 `data/assignments.json`；指针只是运行库登记，进入 `delivered` 仍看 Git 内载体，页面标"运行库有 / Git 无"。节点页每列有"→ 采集"链接按节点与列预筛，采集页每行链回节点页停在该列。
 
 inresearch 内置的 SEC 与 GPU 采集器于 2026-09-28 退役：`adapters.acquisition` 不再提供 `sec`、`gpu` 子命令，其实现由 Git 历史保留并作为 fetchfilings、fetchquotes 的种子迁入 `fetchdata`；采集台账中历史 `sec`、`gpu` 行只读保留，网页运维台账不再提供对应按钮。下文"SEC"与"GPU"两小节记录的口径要求（清单、原文与结构化事实分开；报价是低价样本不是成交价）继续对迁出后的分队有效。
 
@@ -127,7 +127,7 @@ inews.today 同时是采集队与媒体产品，拆成两条线，共享一个�
 - **采集线**求广：发现 → 闸门 → 打标（事件类型、研究角度、变量类标签）→ 事件 feed。给 inresearch 的采集**默认不翻译**；inews 只给事件卡与原件指针，不抓原件，原件由拥有该来源的分队按目标清单抓取。
 - **编辑线**求精：从打标池按配额选簇 → 取正文 → 全文翻译 → 发布。**挑选在先，翻译在后**：翻译只花在被挑出来的对象上，先翻再挑一律不做；簇头标题翻译只在机器初选之后、按批量进行，与编辑选题后的全文翻译分开计预算。选题单位是簇不是文章；批准（approved）是精选、日报与全文翻译的唯一发布闸。如何挑的配额与排序规则另行讨论后登记。
 
-事件 feed（`/api/feeds/datacenter`）在 schema_version 1 上**只增不改**，附加字段 `event_type`（融资发债、租约合同、项目里程碑、费率电力政策、交期供应链、自备电源并网、税收法规、运行事故、交易估值、产品价格变动）、`research_angle`、`layer_tags`（1–5，变量类的兼容键名）、`origin_pointer`（通稿或监管原文链接，没有则空）、`editorial_pick`。研究端在 `news_sync` 校验形状、随事件卡保存，标签只是线索，不构成证据；缺字段的旧 feed 照常消费。
+事件 feed（`/api/feeds/datacenter`）在 schema_version 1 上**只增不改**，附加字段 `event_type`（融资发债、租约合同、项目里程碑、费率电力政策、交期供应链、自备电源并网、税收法规、运行事故、交易估值、产品价格变动）、`research_angle`、`layer_tags`（1–5，变量类的兼容键名）、`origin_pointer`（通稿或监管原文链接，没有则空）、`editorial_pick`，以及 2026-09-29 采用的 `object_ids`（该事件涉及的骨架节点 ID：`part:<部件>`、`site:<权利>`、`actor:<公司>`，按 `bom.json` 别名与公司词典打，没有则空数组）。研究端在 `news_sync` 校验形状（`object_ids` 只允许现行骨架与公司 ID，缺字段照常消费）、随事件卡保存，标签只是线索，不构成证据；有 `object_ids` 与 `origin_pointer` 的事件才可经 `deliveries import` 进入目标行的 delivered。
 
 ## 产品与机器边界
 
@@ -236,7 +236,7 @@ CLI 与操作见 [Spark 采集手册](../docs/local_reader/ACQUISITION_OPERATION
 与新鲜度超时分别表达，不能把尚未连接标成正在同步。字段或条目形状损坏时新闻接口明确
 返回失败，保留原快照供修复；它不能改写候选知识或取得正式研究采用权。
 
-Spark `inresearch-news.timer` 每小时拉取七天窗口，每页100条、最多100页。失败保留旧展示并标注同步异常；两小时未更新标注延迟；达到总页数上限按截断失败记录并保留上一份完整窗口。重新取得完整窗口后，撤回和不再符合上游规则的新闻退出当前展示，永久台账不删除。以原始发布时间排序，存在聚类ID时聚合同一事件。首页与后台新闻以轻线条时间轴展示，按北京时间（Asia/Shanghai）分日期、按原始发布时间倒序排列；每条显示 HH:mm、中文标题和来源网站；同日相邻新闻之间在标题区域加浅色细横线，保留左侧时间轴。缺失时间明确标注待补充，不以抓取时间代替发布时间。原题、分类与翻译配方保留在台账，不在列表展开。无中文标题时等待上游整理，不以外文标题替代中文展示。研究模型深读和全文翻译仍属于后续可靠投递闭环。
+Spark `inresearch-news.timer` 每 15 分钟（2026-09-29 前每小时）拉取七天窗口，每页100条、最多100页。失败保留旧展示并标注同步异常；两小时未更新标注延迟；达到总页数上限按截断失败记录并保留上一份完整窗口。重新取得完整窗口后，撤回和不再符合上游规则的新闻退出当前展示，永久台账不删除。以原始发布时间排序，存在聚类ID时聚合同一事件。首页与后台新闻以轻线条时间轴展示，按北京时间（Asia/Shanghai）分日期、按原始发布时间倒序排列；每条显示 HH:mm、中文标题和来源网站；同日相邻新闻之间在标题区域加浅色细横线，保留左侧时间轴。缺失时间明确标注待补充，不以抓取时间代替发布时间。原题、分类与翻译配方保留在台账，不在列表展开。无中文标题时等待上游整理，不以外文标题替代中文展示。研究模型深读和全文翻译仍属于后续可靠投递闭环。
 
 来源与范围由 inews 维护：除大模型原范围，增加数据中心土地、电网、建设、能源、供配电、液冷、服务器与部件、网络互连、算力运营等双语检索；不能将通用公司新闻全部认作数据中心新闻。新闻接口及上游词库发布状态单独验收。
 
