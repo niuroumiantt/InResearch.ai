@@ -460,6 +460,25 @@ class ReaderTests(unittest.TestCase):
                 self.reader.stages._ocr_page(doc, self.reader.data / doc["original_rel"], 1)
         self.assertEqual(exc.exception.code, "ocr_numbers_disagree")
 
+    def test_ocr_disagreement_uses_same_page_native_pdf_text_when_it_resolves_every_token(self):
+        self.model.ocr_model = "Apple Vision VNRecognizeTextRequest"
+        self.model.ocr = mock.Mock(side_effect=[
+            {"text": "Peak 300 W; chart axis 0X", "blank": False, "unreadable": False,
+             "_model": {"actual": "Vision"}},
+            {"text": "Peak 300 W; chart axis X", "blank": False, "unreadable": False,
+             "_model": {"actual": "Vision"}},
+        ])
+        doc = self.register("mixed.pdf", "%PDF-test")
+        with mock.patch.object(cr.shutil, "which", return_value="/fake/tool"), \
+             mock.patch.object(self.reader.stages, "_command", return_value=""):
+            page = self.reader.stages._ocr_page(
+                doc, self.reader.data / doc["original_rel"], 1,
+                native_text="Native PDF: Peak 300 W; chart baseline 0X")
+        self.assertEqual(page["text"], "Native PDF: Peak 300 W; chart baseline 0X")
+        self.assertEqual(page["numeric_disagreements"], ["0"])
+        self.assertEqual(page["method"], "vision_ocr_double_pass_pdf_text")
+        self.assertEqual(page["verification"], "ocr_disagreement_resolved_by_same_page_pdf_text_layer")
+
     def test_bad_quotes_and_unknown_ids_are_rejected(self):
         self.register()
         self.run_reader(max_jobs=2)

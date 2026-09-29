@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.11",
+  "version": "2026.09.27.13",
   "reviewed_at": "2026-09-27",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -491,7 +491,7 @@
       "policy": "model-execution-20260912",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；macOS 未配置视觉模型时可用 Apple Vision 作为本机 OCR 回退，识别修订与系统版本进入页级来源记录；关闭/开启语言修正双读；若差异数字全能由同页 PDF 原生文本层佐证，则使用原生文本并保留 OCR 两遍记录，否则阻断；无识别文本按不可读而非空白；该一致性检查不是识别准确性证明，关键数字仍须对照原图。其余既有规则：Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
@@ -526,14 +526,19 @@
         "tests/unit/test_optional_mapping_ids.py::SchemaTests.test_mapping_ids_are_never_required",
         "tests/unit/test_optional_mapping_ids.py::SchemaTests.test_content_fields_stay_required",
         "tests/unit/test_optional_mapping_ids.py::ReaderTests.test_replies_without_id_arrays_complete_as_unmapped",
-        "tests/unit/test_optional_mapping_ids.py::PromptTests.test_read_prompt_states_the_summary_limit_and_the_required_fields"
+        "tests/unit/test_optional_mapping_ids.py::PromptTests.test_read_prompt_states_the_summary_limit_and_the_required_fields",
+        "tests/unit/test_macos_vision_ocr.py::MacOSVisionOCRTests.test_binary_is_compiled_once_then_two_distinct_passes_are_recorded",
+        "tests/unit/test_macos_vision_ocr.py::MacOSVisionOCRTests.test_unreadable_page_is_not_silently_called_blank",
+        "tests/unit/test_macos_vision_ocr.py::MacOSVisionOCRTests.test_claude_reader_uses_local_vision_only_when_no_ocr_role_is_configured",
+        "tests/unit/test_continuous_reader.py::ReaderTests.test_ocr_disagreement_uses_same_page_native_pdf_text_when_it_resolves_every_token"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。",
         "2026-09-26 按环节选模型未做同型号质量对比；claude-sonnet-5 / claude-opus-5-5 未在 M4 上用 `models --probe` 实测身份核对；L2 终端会话使用的模型由操作者选择，只能靠 record 的 --model 如实记录，程序不强制。",
         "2026-09-27 repeat_penalty 1.1 / repeat_last_n 256 在两页循环页（df93 p23、0d50 p3）上两遍成功且一致，与已核 1.05 结果的三页比数字无丢失（仅页脚页码差一处）；样本仅 5 页，整批成功率与更强惩罚对表格重复数值的影响待重跑后统计。OCR 双读不能发现一致误读（旋转小字、生僻字）。；Claude JSON Schema 与反馈纠正由 M5 当前 sonnet CLI 做了探针和两块 NVIDIA 真实阅读；全集阅读仍未完成，Spark/第二模型与结构化模式兼容性未验。",
         "Ollama 受约束解码只用伪造 HTTP 测试；未在 Spark 的 qwen3.8:27b 上核对 schema 支持程度（maxLength 等关键字可能被忽略）、速度影响，以及 30 份 model_output_invalid 重试后的实际通过率。",
-        "CLI 临时错误重试只用伪造错误测试；未区分订阅用量上限（重试 3 次后仍失败）与瞬时过载，未在 M4 真机核对 4 份阻塞文档重试后的结果。"
+        "CLI 临时错误重试只用伪造错误测试；未区分订阅用量上限（重试 3 次后仍失败）与瞬时过载，未在 M4 真机核对 4 份阻塞文档重试后的结果。",
+        "macOS Vision OCR 在 M5 的一页 NVIDIA A2 图像上实测文字与数字可识别；PDF 原生文本层消歧逻辑只用隔离单测和一页 A2 实材复核，准确率、密集表格/中文覆盖及端到端 Reader 结果仍须真实批次复核。双读数值一致不等于准确。"
       ]
     },
     {

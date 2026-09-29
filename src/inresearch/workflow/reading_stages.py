@@ -83,7 +83,7 @@ class ReadingStages(ReadingArtifacts):
                     page = read_json(page_file)
                     if page.get("source_sha256") != doc["sha256"]:
                         raise IntegrityError()
-                    if page.get("method") == "vision_ocr_double_pass":
+                    if str(page.get("method", "")).startswith("vision_ocr_double_pass"):
                         ocr_pages += 1
                 else:
                     text = self._command(["pdftotext", "-f", str(i), "-l", str(i), "-layout", "-enc", "UTF-8", str(source), "-"], timeout=90).replace("\f", "")
@@ -92,10 +92,11 @@ class ReadingStages(ReadingArtifacts):
                     if not text.strip() or "\ufffd" in text or i in image_pages:
                         if self._offload_path(doc, i).exists():
                             # M4 already did the vision work: no deferral, no local OCR budget.
-                            page.update(self._ocr_page(doc, source, i))
+                            page.update(self._ocr_page(doc, source, i, native_text=text))
                             atomic_json(page_file, page)
                             texts.append(page["text"])
-                            page_meta.append({k: v for k, v in page.items() if k not in {"text", "text_second_pass"}})
+                            page_meta.append({k: v for k, v in page.items()
+                                              if k not in {"text", "text_second_pass", "vision_text_first_pass"}})
                             continue
                         if getattr(self.model, "ocr_model", "") and doc["priority"] != OCR_DEFERRED_PRIORITY:
                             # First OCR need of this document: step aside so text-layer
@@ -104,10 +105,11 @@ class ReadingStages(ReadingArtifacts):
                         ocr_pages += 1
                         if ocr_pages > self.ocr_max_pages:
                             raise Blocked("ocr_page_budget_exceeded")
-                        page.update(self._ocr_page(doc, source, i))
+                        page.update(self._ocr_page(doc, source, i, native_text=text))
                     atomic_json(page_file, page)
                 texts.append(page["text"])
-                page_meta.append({k: v for k, v in page.items() if k not in {"text", "text_second_pass"}})
+                page_meta.append({k: v for k, v in page.items()
+                                  if k not in {"text", "text_second_pass", "vision_text_first_pass"}})
         else:
             raise Blocked("unsupported_format_" + (suffix.lstrip(".") or "unknown"))
         if signature(source) != before:
@@ -145,7 +147,7 @@ class ReadingStages(ReadingArtifacts):
     def _offload_path(self, doc, i):
         return safe_path(self.data, "offload/m4/results/%s/pages/%06d.json" % (doc["doc_id"], i))
 
-    def _ocr_page(self, doc, source, i):
+    def _ocr_page(self, doc, source, i, native_text=""):
         # M4 may offload a *blocked* OCR task, but it never writes this catalog.
         # A result is accepted only when it is tied to the immutable source hash;
         # otherwise the normal local OCR path remains authoritative.
@@ -192,7 +194,11 @@ class ReadingStages(ReadingArtifacts):
             self._command(["pdftoppm", "-f", str(i), "-l", str(i), "-singlefile", "-scale-to", "1800", "-png", str(source), str(base)], 90)
             image = base.with_suffix(".png")
             try:
-                first, second = self.model.ocr(image), self.model.ocr(image)
+                ocr_pass = getattr(self.model, "ocr_pass", None)
+                if ocr_pass is None:
+                    first, second = self.model.ocr(image), self.model.ocr(image)
+                else:
+                    first, second = ocr_pass(image, 0), ocr_pass(image, 1)
             except ModelOutputError:
                 # Unparseable vision output is a property of the page, not a transient
                 # failure: block once instead of re-rendering and re-reading three times.
@@ -202,7 +208,16 @@ class ReadingStages(ReadingArtifacts):
                 raise Blocked("ocr_page_unreadable")
         if first["blank"] != second["blank"]:
             raise Blocked("ocr_blank_disagreement")
-        if numeric_tokens(first["text"]) != numeric_tokens(second["text"]):
+        number_difference = numeric_tokens(first["text"]) ^ numeric_tokens(second["text"])
+        if number_difference:
+            native_numbers = numeric_tokens(native_text)
+            if native_text.strip() and number_difference <= native_numbers:
+                return {"text": native_text, "text_second_pass": second["text"],
+                        "vision_text_first_pass": first["text"],
+                        "method": "vision_ocr_double_pass_pdf_text",
+                        "ocr_model": first.get("_model"), "blank": False,
+                        "numeric_disagreements": sorted(number_difference),
+                        "verification": "ocr_disagreement_resolved_by_same_page_pdf_text_layer"}
             raise Blocked("ocr_numbers_disagree")
         if not first["text"].strip() and not first["blank"]:
             raise Blocked("ocr_empty_nonblank_page")

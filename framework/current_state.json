@@ -1,5 +1,5 @@
 {
-  "version": "2026.09.27.11",
+  "version": "2026.09.27.13",
   "effective_at": "2026-09-27",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -565,6 +565,9 @@
       "source": "framework/08_model_execution.md",
       "implementations": [
         "src/inresearch/adapters/models.py",
+        "src/inresearch/adapters/macos_vision_ocr.py",
+        "src/inresearch/adapters/macos_vision_ocr.swift",
+        "src/inresearch/adapters/reader_model.py",
         "deploy/models.json",
         "deploy/spark-reader/reader.env.example",
         "src/inresearch/delivery/publish.py",
@@ -584,11 +587,12 @@
         "tests/unit/test_ocr_repeat_penalty.py",
         "tests/unit/test_ollama_schema.py",
         "tests/unit/test_transient_model_errors.py",
-        "tests/unit/test_optional_mapping_ids.py"
+        "tests/unit/test_optional_mapping_ids.py",
+        "tests/unit/test_macos_vision_ocr.py"
       ],
       "supersedes": [],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。；2026-09-26 Ollama 档案可选 repeat_penalty（仅 spark_ocr 设 1.05，记入档案身份但不进 reading_identity），ocr-worker 单页 model_failure 重试一次。；2026-09-27 档案新增 repeat_last_n（仅 Ollama），spark_ocr 改为 repeat_penalty 1.1 / repeat_last_n 256；OCR 双读不能发现一致误读，关键数字回原件核对。；2026-09-27 M5 Claude CLI 实测曾返回 Markdown 围栏，Reader 现按阅读阶段提交 JSON Schema，并仅对引文不匹配执行一次纠正请求；原文匹配、模型身份和候选边界继续强制校验。；2026-09-27 Ollama 文本任务以 reader schema 作 format（受约束解码），修复 ASCII 引号导致缺字段的 model_output_invalid。；2026-09-27 spark_ocr 输出上限 8192、上下文 16384。；2026-09-27 Claude CLI 的 model_cli_failed / model_cli_timeout 改走普通重试，认证、未安装、身份不符仍阻塞。；2026-09-27 reader schema 的 object_ids/question_ids 改为非必填，避免 Claude CLI 因省略空数组而内部重试失败。",
-      "implementation_revision": "2026.09.27.1"
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 用户采用按环节选模型：research_default 改为 Claude Sonnet 5，新增 core_review（Claude Opus 5.5）与 spark_ocr 档案；本地模型承担大批粗筛、OCR 与长尾候选，不做对比即切换。；2026-09-26 Ollama 档案可选 repeat_penalty（仅 spark_ocr 设 1.05，记入档案身份但不进 reading_identity），ocr-worker 单页 model_failure 重试一次。；2026-09-27 档案新增 repeat_last_n（仅 Ollama），spark_ocr 改为 repeat_penalty 1.1 / repeat_last_n 256；OCR 双读不能发现一致误读，关键数字回原件核对。；2026-09-27 M5 Claude CLI 实测曾返回 Markdown 围栏，Reader 现按阅读阶段提交 JSON Schema，并仅对引文不匹配执行一次纠正请求；原文匹配、模型身份和候选边界继续强制校验。；2026-09-27 Ollama 文本任务以 reader schema 作 format（受约束解码），修复 ASCII 引号导致缺字段的 model_output_invalid。；2026-09-27 spark_ocr 输出上限 8192、上下文 16384。；2026-09-27 Claude CLI 的 model_cli_failed / model_cli_timeout 改走普通重试，认证、未安装、身份不符仍阻塞。；2026-09-27 reader schema 的 object_ids/question_ids 改为非必填，避免 Claude CLI 因省略空数组而内部重试失败。；2026-09-27 临时 M5 NVIDIA 试点缺少可用视觉模型且 Ollama 模型下载数小时；未配置模型时 macOS 本机使用 Apple Vision 双读 OCR，同页原生 PDF 文本层可独立解析双读差异时使用该文本层，否则仍阻断；无识别文本按不可读处理，关键数据回原图核验。",
+      "implementation_revision": "2026.09.27.3"
     },
     {
       "id": "software-contracts-20260913",

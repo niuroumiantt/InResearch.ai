@@ -16,7 +16,7 @@ Claude Code、Codex CLI 等是操作客户端，分别记录 `executor` 与实�
 
 Claude CLI 在临时目录中以非交互模式运行，材料从标准输入传入；禁用工具、MCP、浏览器、项目指令与会话持久化。Reader 按 triage/read/synthesize 阶段传入 JSON Schema，由 CLI 以结构化结果返回；只有结果确实携带 `structured_output` 时，CLI 的 `stop_reason=tool_use` 才作为结构化输出完成接受。其余停止原因仍失败，模型身份照常核验。其他支持的后端使用各自 JSON 模式，由项目再次解析与校验。阅读引文还要逐字绑定原文；引用校验失败最多触发一次带明确反馈的重新生成，第二次仍失败则阻断，不降低证据门槛。认证与代理由 CLI 及运行环境负责，项目不复制 OAuth 凭据、不写死本机代理。`command` 可配置可执行文件的绝对路径；模型身份来自 CLI 的实际回答事件，并记录 `executor=claude-code`。用量统计可能包含 CLI 的辅助模型，不冒充阅读模型。这一推理适配器与终端操作客户端共享业务契约，但职责不同。
 
-`text_json` 和 `vision_json` 是适配器接受的能力声明，须经目标模型的小样本验收后配置；声明本身不证明质量。OCR 必须显式配置 `ocr` 角色，当前视觉适配支持 Ollama。没有视觉能力的文本模型不能冒充读过图片。
+`text_json` 和 `vision_json` 是适配器接受的能力声明，须经目标模型的小样本验收后配置；声明本身不证明质量。OCR 优先使用显式配置的 `ocr` 角色（当前模型视觉适配支持 Ollama）。若该角色未配置，macOS 可退回系统 Vision OCR：同页分别以关闭/开启语言修正运行两遍，对比数字 token；若差异中的全部 token 都能在同页 PDF 原生文本层找到，以原生文本作为正文并保留两遍 OCR 记录；否则阻断。识别不到文本按不可读阻塞，不能标成空白。页记录保留 Apple Vision、识别修订和 macOS 版本。双读一致只表示候选 OCR 一致，不证明识别正确，关键数字仍须回原图核对。非 macOS 且未配置 OCR 角色时继续阻塞；Claude 文本模型不冒充视觉模型。
 
 reader 各环节 schema 中 `object_ids`、`question_ids` 不是必填字段（2026-09-27 起）：它们本可为空数组，reader 把缺失当空数组；设为必填时，Sonnet 偶尔省略空的 `object_ids`，Claude CLI 按 `--json-schema` 内部重试 5 次后以 `is_error` 退出，整份文档被阻塞。正文字段（摘要、claims、引文等）仍为必填。M4 另两次 CLI 失败是 Sonnet 把 read 摘要写成整份文档概述（3678 字，上限 1200）并漏掉 `claims`；read 提示因此写明摘要只写本块、1200 字以内（约 3–6 句），且顶层必须返回 `chunk_sha256`、`summary`、`claims`（无内容时为 []）。
 
@@ -39,7 +39,7 @@ Reader JSON 快照可用重复的 `--doc-id` 显式限定交付范围。限定�
 | L0 文件名分档 | 不用模型 | 规则判定 |
 | L1 大批粗筛（Spark） | 本地 qwen3 系列 | 只作排序与粗分；本地模型分数偏宽、有锚定，不单独决定提升 |
 | L1 打分与复核（M4，`research_default`） | Claude Sonnet 5 | 含 5–7 分边界与 ≥7 分待提升的复核 |
-| OCR | 本地 `spark_ocr`（qwen3-vl:8b） | 只对优先级高的扫描件；不为无关扫描件做 OCR |
+| OCR | 显式 `ocr` 角色优先；macOS 无角色时可退回 Apple Vision | 本机双读并核对数字 token；不一致阻断，关键数字对照原图 |
 | L2 全文深读与事实抽取（终端） | Claude Sonnet 5 | Claude Code 会话以 Sonnet 5 执行 pack/record，`--model` 如实记录 |
 | L2 核心材料与 C3 前审阅（`core_review`） | Claude Opus 5.5 | 9 分白皮书、复杂表格、数据相互矛盾或采用前审阅 |
 | 长尾全文候选（Spark reader） | 本地 qwen3.8:27b | 只作候选阅读，不直接采用 |
