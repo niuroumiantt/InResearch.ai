@@ -46,6 +46,38 @@ class DeliveriesTests(unittest.TestCase):
         self.assertEqual((len(again['imported']), again['skipped'][0]['reason'], again['cards']), (0, 'already imported', 2))
         self.assertEqual(deliveries.check(self.tmp), [])
 
+    def observation(self, **change):
+        o = {'product_id': 'micron-x', 'parameter_name': 'hbm.stack_capacity', 'value': '36GB', 'unit': 'GB',
+             'condition': '12-high HBM3E', 'source_url': 'https://www.micron.com/x', 'source_sha256': 'a' * 64,
+             'observed_at': '2026-10-01T00:00:00+00:00'}
+        o.update(change)
+        return o
+
+    def test_fetchspec_values_ride_on_the_card_and_fill_cards_imported_before(self):
+        rec = {'target_id': self.news['id'], 'delivery': {'evidence_path': 'https://www.micron.com/x', 'at': '2026-10-01'}}
+        first = deliveries.import_assignments(self.tmp, self.runtime([rec]), today='2026-10-01')
+        self.assertNotIn('parameters', first['imported'][0])                 # an import from before values travelled
+        values = [self.observation(), self.observation(parameter_name='hbm.data_rate', value='9.2GTPS', unit='GT/s')]
+        again = deliveries.import_assignments(self.tmp, self.runtime([{**rec, 'fetchspec': {'observations': values}}]), today='2026-10-02')
+        self.assertEqual((len(again['imported']), len(again['updated']), again['cards']), (0, 1, 1))
+        card = json.loads((self.tmp / 'data/event_cards.json').read_text())['records'][0]
+        self.assertEqual([(p['parameter_name'], p['value'], p['unit']) for p in card['parameters']],
+                         [('hbm.stack_capacity', '36GB', 'GB'), ('hbm.data_rate', '9.2GTPS', 'GT/s')])
+        self.assertEqual(deliveries.import_assignments(self.tmp, self.runtime([{**rec, 'fetchspec': {'observations': values}}]))['updated'], [])
+        self.assertEqual(deliveries.check(self.tmp), [])
+
+    def test_malformed_values_reject_the_record_instead_of_storing_part_of_it(self):
+        for bad in ([self.observation(source_url='javascript:alert(1)')], [self.observation(source_sha256='x')],
+                    [self.observation(extra='1')], [self.observation(value='')], 'not a list',
+                    [self.observation()] * (deliveries.MAX_PARAMETERS + 1)):
+            rec = {'target_id': self.news['id'], 'delivery': {'evidence_path': 'https://www.micron.com/x'}, 'fetchspec': {'observations': bad}}
+            result = deliveries.import_assignments(self.tmp, self.runtime([rec]))
+            self.assertEqual(result['skipped'][0]['reason'], 'malformed fetchspec observations', bad)
+        self.assertFalse(json.loads((self.tmp / 'data/event_cards.json').read_text())['records'])
+        (self.tmp / 'data/event_cards.json').write_text(json.dumps({'version': '1.0', 'records': [
+            {'target_id': self.news['id'], 'origin_pointer': 'https://www.micron.com/x', 'parameters': [{'value': '1'}]}]}))
+        self.assertEqual(deliveries.check(self.tmp), [f"event card {self.news['id']}: parameters malformed"])
+
     def test_check_flags_unknown_targets_bad_pointers_and_duplicates(self):
         (self.tmp / 'data/event_cards.json').write_text(json.dumps({'version': '1.0', 'records': [
             {'target_id': 'F.nope.x', 'origin_pointer': 'https://example.com/a'},

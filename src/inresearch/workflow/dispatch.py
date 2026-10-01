@@ -9,6 +9,7 @@ import json
 from datetime import date
 from pathlib import Path
 
+from inresearch.knowledge import deliveries
 from inresearch.storage.files import json_transaction
 from inresearch.storage.layout import workspace_path
 
@@ -51,6 +52,11 @@ def targets_view(root, user, role, params=None):
     root = Path(root)
     doc = target_doc(root)
     by_target = {r['target_id']: r for r in assignments(root)['records'] if r.get('target_id')}
+    cards = {}
+    for c in deliveries.load_cards(root).get('records', []):
+        if c.get('target_id') and c.get('origin_pointer'):
+            cards.setdefault(c['target_id'], []).append({k: c.get(k) for k in ('origin_pointer', 'pointer_kind', 'delivered_at',
+                                                                               'delivered_by', 'parameters') if c.get(k)})
     mine = params.get('mine') == '1' or role == 'intern'
     systems = {}
     bom_path = root / 'framework/bom.json'
@@ -65,6 +71,7 @@ def targets_view(root, user, role, params=None):
         row = dict(t)
         row['node'] = node_of(t)
         row['assignment'] = by_target.get(t['id'])
+        row['cards'] = cards.get(t['id'], [])          # Git 内交付载体：原件指针与随交付带来的已审阅参数原文
         if mine and not (row['assignment'] and row['assignment'].get('assignee') == user):
             continue
         if params.get('team') and t['team'] != params['team']:

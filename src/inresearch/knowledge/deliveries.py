@@ -13,6 +13,7 @@
 """
 import argparse
 import json
+import re
 from datetime import date
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -43,15 +44,42 @@ def pointer_kind(value):
     return None
 
 
+PARAMETER_FIELDS = ('product_id', 'parameter_name', 'value', 'unit', 'condition', 'source_url', 'source_sha256', 'observed_at')
+MAX_PARAMETERS = 80
+SHA256 = re.compile(r'[0-9a-f]{64}')
+
+
+def parameters(rec):
+    """Fetchspec 回执里该目标行已审阅的参数观测（原文值、单位、条件、来源 URL 与 SHA）。形状不对整条不收，返回 None。"""
+    raw = (rec.get('fetchspec') or {}).get('observations')
+    if raw is None:
+        return []
+    if not isinstance(raw, list) or len(raw) > MAX_PARAMETERS:
+        return None
+    out = []
+    for o in raw:
+        if not isinstance(o, dict) or set(o) != set(PARAMETER_FIELDS) or not all(isinstance(o[k], str) for k in PARAMETER_FIELDS):
+            return None
+        if not o['parameter_name'] or not o['value'] or any(len(o[k]) > 500 for k in PARAMETER_FIELDS):
+            return None
+        if pointer_kind(o['source_url']) != 'url' or not SHA256.fullmatch(o['source_sha256']):
+            return None
+        out.append({k: o[k] for k in PARAMETER_FIELDS})
+    return out
+
+
 def import_assignments(root, assignments_path, by=None, today=None):
-    """把运行库派工文件里的交付指针写成事件卡。返回 {imported, skipped, cards}。不重跑目标表。"""
+    """把运行库派工文件里的交付指针写成事件卡。返回 {imported, updated, skipped, cards}。不重跑目标表。
+
+    Fetchspec 记录带 ``fetchspec.observations`` 时，卡上同时存 ``parameters``（厂商原文值，不换算）；
+    已导入过的同一指针再导入只补上或更新参数，不新增卡。"""
     root = Path(root)
     today = today or date.today().isoformat()
     runtime = json.loads(Path(assignments_path).read_text(encoding='utf-8'))
     targets = {t['id']: t for t in json.loads((root / TARGETS).read_text(encoding='utf-8'))['targets']}
     doc = load_cards(root)
-    seen = {(c.get('target_id'), c.get('origin_pointer')) for c in doc['records']}
-    imported, skipped = [], []
+    seen = {(c.get('target_id'), c.get('origin_pointer')): c for c in doc['records']}
+    imported, skipped, updated = [], [], []
     for rec in runtime.get('records', []):
         delivery = rec.get('delivery') or {}
         tid, pointer = rec.get('target_id'), delivery.get('evidence_path')
@@ -62,23 +90,34 @@ def import_assignments(root, assignments_path, by=None, today=None):
         if kind is None:
             skipped.append({'target_id': tid, 'reason': 'no usable evidence_path'})
             continue
+        values = parameters(rec)
+        if values is None:
+            skipped.append({'target_id': tid, 'reason': 'malformed fetchspec observations'})
+            continue
         if (tid, pointer) in seen:
-            skipped.append({'target_id': tid, 'reason': 'already imported'})
+            card = seen[(tid, pointer)]
+            if values and card.get('parameters') != values:
+                card['parameters'] = values      # same pointer, reviewed values now carried along
+                updated.append(card)
+            else:
+                skipped.append({'target_id': tid, 'reason': 'already imported'})
             continue
         t = targets[tid]
         card = {'target_id': tid, 'part_id': t.get('part_id'), 'site_right_id': t.get('site_right_id'), 'team': t.get('team'),
                 'origin_pointer': pointer, 'pointer_kind': kind, 'delivered_at': delivery.get('at'),
                 'delivered_by': delivery.get('by') or rec.get('assignee'), 'note': (delivery.get('note') or '')[:500],
                 'imported_at': today, 'imported_by': by or None, 'source': 'assignments.register_delivery'}
+        if values:
+            card['parameters'] = values
         doc['records'].append(card)
-        seen.add((tid, pointer))
+        seen[(tid, pointer)] = card
         imported.append(card)
     doc['version'] = doc.get('version', '1.0')
     doc['updated'] = today
     doc.setdefault('note', '事件卡：目标行的 Git 内交付载体之一（06）。每条 = 目标行 ID + 原件指针（公网 URL 或仓库内相对路径）。'
                            '只由 manage.py deliveries import 从运行库回执生成，不手写；进入 delivered 后仍不是序列，正式采用另走研究流程。')
     (root / EVENT_CARDS).write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    return {'imported': imported, 'skipped': skipped, 'cards': len(doc['records'])}
+    return {'imported': imported, 'updated': updated, 'skipped': skipped, 'cards': len(doc['records'])}
 
 
 def check(root):
@@ -92,6 +131,8 @@ def check(root):
             errors.append(f"event card for unknown target {c.get('target_id')}")
         if pointer_kind(c.get('origin_pointer')) is None:
             errors.append(f"event card {c.get('target_id')}: origin_pointer unusable")
+        if 'parameters' in c and parameters({'fetchspec': {'observations': c['parameters']}}) is None:
+            errors.append(f"event card {c.get('target_id')}: parameters malformed")
         if key in seen:
             errors.append(f"duplicate event card {key}")
         seen.add(key)
@@ -114,7 +155,8 @@ def main(argv=None):
         print(f"event cards: {len(load_cards(ROOT)['records'])}; {'ok' if not errors else str(len(errors)) + ' error(s)'}")
         return 1 if errors else 0
     result = import_assignments(ROOT, args.assignments, by=args.by)
-    print(json.dumps({'imported': len(result['imported']), 'skipped': result['skipped'], 'cards': result['cards']}, ensure_ascii=False))
+    print(json.dumps({'imported': len(result['imported']), 'updated': len(result['updated']), 'skipped': result['skipped'],
+                      'cards': result['cards']}, ensure_ascii=False))
     if not args.no_refresh:
         from inresearch.knowledge import targets as targets_mod
         doc = targets_mod.build(ROOT)

@@ -40,11 +40,22 @@
     };
     return `<table class="heat"><thead><tr><th>缺 / 行</th>${Object.entries(CLASSES).map(([n, name]) => `<th>${n} ${name}</th>`).join('')}</tr></thead><tbody>${TOP.map(([id, name]) => `<tr><th>${name}</th>${Object.keys(CLASSES).map(col => cell(id, col)).join('')}</tr>`).join('')}</tbody></table>`;
   }
+  function cardsCell(cards) {
+    // Git 内事件卡：原件指针 + 随交付带来的已审阅参数（厂商原文，不换算；单位与条件照映射记录）
+    return cards.map(c => {
+      const host = (() => { try { return new URL(c.origin_pointer).hostname.replace(/^www\./, ''); } catch (e) { return c.origin_pointer; } })();
+      const link = c.pointer_kind === 'url' ? `<a href="${esc(c.origin_pointer)}" rel="noopener" target="_blank">${esc(host)}</a>` : `<code>${esc(c.origin_pointer)}</code>`;
+      const params = c.parameters || [];
+      const list = params.length ? `<details><summary>${params.length} 个参数</summary><ul class="params">${params.map(p =>
+        `<li title="${esc(p.condition || '')}"><code>${esc(p.parameter_name)}</code> ${esc(p.value)}${p.unit ? ` <small>[${esc(p.unit)}]</small>` : ''}${p.condition ? `<small>${esc(p.condition)}</small>` : ''}</li>`).join('')}</ul></details>` : '';
+      return `${link}<small>${esc(c.delivered_at || '')} · 事件卡</small>${list}`;
+    }).join('');
+  }
   function table(rows) {
     const canWrite = state.data.role !== 'reader';
     return `<div class="tscroll"><table class="targets"><thead><tr><th>目标行</th><th>节点 · 列</th><th>队 / 主机</th><th>状态</th><th>到期</th><th>负责人 / 派工</th><th>交付</th>${canWrite ? '<th></th>' : ''}</tr></thead><tbody>${rows.map(r => {
       const a = r.assignment || {};
-      return `<tr data-id="${esc(r.id)}"><td><code>${esc(r.id)}</code><small>${esc(r.disclosure_type)} × ${esc(r.publisher_category)}</small></td><td><a href="${nodeHref(r)}">${esc(r.node === 'root' ? '根' : r.node)}</a> · ${r.variable_class} ${CLASSES[r.variable_class]}</td><td>${esc(r.team)} / ${esc(r.host)}${r.team_state === 'not_connected' ? '<small>待建队</small>' : ''}</td><td><span class="st st-${esc(r.status)}">${STATUS[r.status] || esc(r.status)}</span>${r.sourced_by ? `<small>${r.sourced_by === 'registry' ? '人工登记' : '队交付'}</small>` : ''}</td><td>${due(r)}</td><td>${a.assignee ? `${esc(a.assignee)}<small>${esc(a.status || '')}${a.due ? ' · ' + esc(a.due) : ''}</small>` : '<span class="muted">未派</span>'}</td><td>${a.delivery ? `<a href="${esc(a.delivery.evidence_path)}">${esc(a.delivery.evidence_path)}</a><small>${esc(a.delivery.at)} · 运行库有${r.status === 'delivered' ? '' : ' / Git 无'}</small>` : '<span class="muted">—</span>'}</td>${canWrite ? `<td><button type="button" data-assign="${esc(r.id)}">派工</button> <button type="button" data-deliver="${esc(r.id)}">登记交付</button></td>` : ''}</tr>`;
+      return `<tr data-id="${esc(r.id)}"><td><code>${esc(r.id)}</code><small>${esc(r.disclosure_type)} × ${esc(r.publisher_category)}</small></td><td><a href="${nodeHref(r)}">${esc(r.node === 'root' ? '根' : r.node)}</a> · ${r.variable_class} ${CLASSES[r.variable_class]}</td><td>${esc(r.team)} / ${esc(r.host)}${r.team_state === 'not_connected' ? '<small>待建队</small>' : ''}</td><td><span class="st st-${esc(r.status)}">${STATUS[r.status] || esc(r.status)}</span>${r.sourced_by ? `<small>${r.sourced_by === 'registry' ? '人工登记' : '队交付'}</small>` : ''}</td><td>${due(r)}</td><td>${a.assignee ? `${esc(a.assignee)}<small>${esc(a.status || '')}${a.due ? ' · ' + esc(a.due) : ''}</small>` : '<span class="muted">未派</span>'}</td><td>${(r.cards || []).length ? cardsCell(r.cards) : a.delivery ? `<a href="${esc(a.delivery.evidence_path)}">${esc(a.delivery.evidence_path)}</a><small>${esc(a.delivery.at)} · 运行库有${r.status === 'delivered' ? '' : ' / Git 无'}</small>` : '<span class="muted">—</span>'}</td>${canWrite ? `<td><button type="button" data-assign="${esc(r.id)}">派工</button> <button type="button" data-deliver="${esc(r.id)}">登记交付</button></td>` : ''}</tr>`;
     }).join('')}</tbody></table></div>`;
   }
   function filtered() {

@@ -3,6 +3,10 @@
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
 
+## 2026-10-01：Fetchspec 交付带参数原文上站
+
+Micron 首批生产交付上站后，目标表只显示「已交付」，看不到交付了什么：事件卡只存原件指针，参数值留在 Spark 接收台账和交付包里，「交付」列又只读运行库的派工指针。现在 Fetchspec 的 assignments 每条目标行带上该行已审阅的参数观测（`fetchspec.observations`：字段、厂商原文值、单位、条件、来源 URL 与 SHA-256），`deliveries import` 校验后存为事件卡的 `parameters`（形状不对整条不收，不存半截；同一指针再导入只补上或更新参数，不新增卡）；`/api/targets` 每行带 `cards`，目标表「交付」列显示来源站点链接与可展开的参数列表。值是厂商原文，不换算、不当序列；正式采用仍走研究流程。
+
 ## 2026-10-01：公开 /api/targets/backflow（fetchspec 回流，#301）；接收端收下参数观测；规格卡只交付自己那一行
 
 **回流。** 新增公开只读 `GET /api/targets/backflow?team=<队>`（默认 fetchspec，已加入 `READER_API`）：某一队在 `framework/tco_targets.json` 里的每一行都列出，`status` 照抄目标表（Git），另给 `received_items`（接收台账里该行的不同原件数）、`companies`、`last_received_at`、`parameter_observations`，以及 `targets_sha256`。计数在 Spark 上由 `adapters/fetchspec_projection.py` 从 `acquisition/catalog.sqlite` 汇总，随 `acquisition.summary` 的 `fetchspec_feed` 发布；网站只读发布的快照，形状不对的行丢弃、不拒整页。inews 走同一接口，计数复用 `/api/news` 的 `by_target`；其余队尚无交付，计数为 0。未登记的队、多余参数返回 400，读不到返回 503。

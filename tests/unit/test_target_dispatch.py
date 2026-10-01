@@ -56,6 +56,14 @@ class DispatchTests(unittest.TestCase):
         row = next(t for t in dispatch.target_doc(self.root)['targets'] if t['id'] == self.first)
         self.assertNotEqual(row['status'], 'delivered')
 
+    def test_targets_view_carries_event_cards_and_their_values(self):
+        card = {'target_id': self.first, 'origin_pointer': 'https://www.micron.com/x', 'pointer_kind': 'url', 'delivered_at': '2026-10-01',
+                'note': 'internal ids', 'parameters': [{'parameter_name': 'hbm.stack_capacity', 'value': '36GB'}]}
+        write_json(self.root / 'data/event_cards.json', {'version': '1.0', 'records': [card]})
+        rows = {r['id']: r for r in dispatch.targets_view(self.root, 'boss', 'admin')['targets']}
+        self.assertEqual(rows[self.first]['cards'], [{k: card[k] for k in ('origin_pointer', 'pointer_kind', 'delivered_at', 'parameters')}])
+        self.assertTrue(all(r['cards'] == [] for i, r in rows.items() if i != self.first))
+
     def test_targets_view_filters_by_role_and_node(self):
         commands.assign(self.root, {'target_id': 'P.transformer.price', 'assignee': 'ann'}, by='boss', role='admin')
         everything = dispatch.targets_view(self.root, 'boss', 'admin')
