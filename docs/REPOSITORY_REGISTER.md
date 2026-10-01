@@ -44,7 +44,7 @@
 | `data/datacenter_model.json` | anchors | 2 |
 | `data/datacenter_model.json` | sensitivity_drivers | 12 |
 | `data/datacenter_model.json` | benchmark_series | 43 |
-| `data/event_cards.json` | records | 3 |
+| `data/event_cards.json` | records | 34 |
 | `data/facts.json` | records | 7849 |
 | `data/policies.json` | records | 2 |
 | `data/prices.json` | records | 512 |
