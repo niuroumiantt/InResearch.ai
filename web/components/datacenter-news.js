@@ -11,6 +11,33 @@ if (host) {
   const timeFormat=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
   const timestamp=item=>typeof item.published_at==='number'&&Number.isFinite(item.published_at)&&!Number.isNaN(new Date(item.published_at).getTime())?item.published_at:0;
   let currentRequest;
+  // 研究员可给线索点「有用 / 没用」(2026-10-01):只是线索评价,不是 C3 采用;按目标行的计数经公开 /api/news 回流给 inews。
+  let canMark=false, marks={};
+  const canonical=u=>{try{const x=new URL(u);if(!['http:','https:'].includes(x.protocol))return null;return 'https://'+x.hostname.toLowerCase().replace(/^www\./,'')+(x.pathname.replace(/\/+$/,'')||'/')+x.search;}catch{return null;}};
+  const whoami=fetch('/api/whoami',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(async u=>{
+    canMark=['member','admin'].includes(u?.role);
+    if(canMark){const r=await fetch('/api/news/marks',{cache:'no-store'});if(r.ok)marks=(await r.json()).marks||{};}
+  }).catch(()=>{});
+  function markButtons(url){
+    const box=document.createElement('span');box.className='dc-news-mark';
+    const key=canonical(url);
+    for(const [value,label] of [['useful','有用'],['not_useful','没用']]){
+      const b=document.createElement('button');b.type='button';b.textContent=label;b.setAttribute('aria-pressed',String(marks[key]===value));
+      b.onclick=async()=>{
+        const next=marks[key]===value?'clear':value;
+        b.disabled=true;
+        try{
+          const r=await fetch('/api/news/mark',{method:'POST',headers:{'Content-Type':'application/json','X-Requested-With':'news-mark'},body:JSON.stringify({url,mark:next})});
+          const d=await r.json().catch(()=>({}));
+          if(!r.ok)throw new Error(d.error||('HTTP '+r.status));
+          if(d.mark)marks[d.url]=d.mark;else delete marks[d.url];
+          for(const x of box.children)x.setAttribute('aria-pressed',String(marks[key]===(x.dataset.value)));
+        }catch(e){b.title=e.message;}finally{b.disabled=false;}
+      };
+      b.dataset.value=value;box.append(b);
+    }
+    return box;
+  }
   async function refresh() {
     currentRequest?.abort();
     const request = new AbortController(); currentRequest = request;
@@ -19,6 +46,7 @@ if (host) {
       const r = await fetch('/api/news', {cache:'no-store', signal:request.signal});
       if (!r.ok) throw new Error('HTTP '+r.status);
       const data = await r.json();
+      await whoami;   // 新闻请求先发出,渲染前再等登录态(要不要画「有用 / 没用」)
       if (request !== currentRequest) return;
       const feed = data.feed;
       if (!feed || ['awaiting_sync','not_initialized'].includes(feed.status)) {
@@ -44,7 +72,7 @@ if (host) {
         const content=document.createElement('div');content.className='dc-news-content';
         const link = document.createElement('a');link.href=url.href;link.target='_blank';link.rel='noopener noreferrer';link.textContent=item.title_zh;
         const note = document.createElement('small');note.textContent=item.domain || url.hostname.replace(/^www\./,'');
-        content.append(link,note);article.append(time,content);
+        content.append(link,note);if(canMark)content.append(markButtons(url.href));article.append(time,content);
         rows.push(article);
       }
       if (!rows.length) {const empty=document.createElement('p');empty.textContent='暂无已整理的中文新闻。';rows.push(empty);}

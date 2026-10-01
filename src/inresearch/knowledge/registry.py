@@ -618,9 +618,18 @@ def build_backflow(root=ROOT, team='fetchspec'):
                 reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
 
 
+def news_leads(root=ROOT):
+    """当前窗口里的新闻线索原样(带 target_ids、origin_pointer),只给打标记时找目标行用,不公开。"""
+    *_, runtime = _snapshot_inputs(root)
+    acquisition = _reader_state(runtime).get('acquisition')
+    feed = acquisition.get('news_feed') if isinstance(acquisition, dict) else None
+    items = feed.get('items') if isinstance(feed, dict) else None
+    return [i for i in items if isinstance(i, dict)] if isinstance(items, list) else []
+
+
 def build_news(root=ROOT):
     """News consumes the same validated snapshot without constructing catalog/tasks."""
-    *_, runtime = _snapshot_inputs(root)
+    *_, knowledge, runtime = _snapshot_inputs(root)
     reader = _reader_state(runtime)
     acquisition = reader.get('acquisition')
     if acquisition is not None and not isinstance(acquisition, dict):
@@ -640,10 +649,19 @@ def build_news(root=ROOT):
         counts = feed.get('by_target')
         by_target = ({k: v for k, v in counts.items() if isinstance(k, str) and TARGET_ID.fullmatch(k) and type(v) is int and v >= 0}
                      if isinstance(counts, dict) and len(counts) <= 5000 else None)
+        # 回流的两个「用上」信号（2026-10-01 用户定口径）：研究员点「有用」的线索（快）与顺着线索已经 C3 采用了原件的（慢），
+        # 都只是按目标行的计数；标记本身留在私有运行目录。读不到标记就不给这两项，不拒整页。
+        try:
+            from inresearch.workflow import news_marks
+            used = {'useful_by_target': news_marks.useful_by_target(root),
+                    'adopted_by_target': news_marks.adopted_by_target(root, items, knowledge, review_valid)}
+            used = {k: v for k, v in used.items() if v}   # 没有就不出现,与 by_target 缺省同一习惯
+        except (ValueError, TypeError, KeyError, OSError):
+            used = {}
         feed = dict(status=feed.get('status'), exported_at=feed.get('exported_at'),
                     items=[{key: item[key] for key in ('title_zh', 'url', 'domain', 'published_at') if key in item}
                            for item in sorted(items, key=timestamp, reverse=True)[:80]],
-                    **({'by_target': by_target} if by_target is not None else {}))
+                    **({'by_target': by_target} if by_target is not None else {}), **used)
     return dict(schema_version=1, feed=feed,
                 reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
 
