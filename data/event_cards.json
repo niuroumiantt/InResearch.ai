@@ -15,7 +15,49 @@
       "note": "fetchspec fetchspec-micron-f7468d67241a19ba70e59789 manifest 0b3746c7047b4b86 receipt 2267be694d8f3298 env production; products micron-52d542752ea687682b78; sha256 246316340d9ed44a,87aab796aa801766",
       "imported_at": "2026-10-01",
       "imported_by": "m5",
-      "source": "assignments.register_delivery"
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "micron-52d542752ea687682b78",
+          "parameter_name": "dram.data_rate",
+          "value": "6400MTPS",
+          "unit": "MT/s",
+          "condition": "MTC40F2046S1RC64BH1 DDR5 RDIMM",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/dram-modules/rdimm/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtc40f2046s1rc64bh1",
+          "source_sha256": "246316340d9ed44a68c63bb4fcbea89fc1bd3b31b213d59e447b0e20207839dd",
+          "observed_at": "2026-10-01T07:45:53.294252+00:00"
+        },
+        {
+          "product_id": "micron-52d542752ea687682b78",
+          "parameter_name": "dram.io_voltage",
+          "value": "1.1 VOLTS",
+          "unit": "V",
+          "condition": "MTC40F2046S1RC64BH1 DDR5 RDIMM",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/dram-modules/rdimm/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtc40f2046s1rc64bh1",
+          "source_sha256": "246316340d9ed44a68c63bb4fcbea89fc1bd3b31b213d59e447b0e20207839dd",
+          "observed_at": "2026-10-01T07:45:53.294252+00:00"
+        },
+        {
+          "product_id": "micron-52d542752ea687682b78",
+          "parameter_name": "dram.module_capacity",
+          "value": "64GB",
+          "unit": "GB",
+          "condition": "MTC40F2046S1RC64BH1 DDR5 RDIMM",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/dram-modules/rdimm/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtc40f2046s1rc64bh1",
+          "source_sha256": "246316340d9ed44a68c63bb4fcbea89fc1bd3b31b213d59e447b0e20207839dd",
+          "observed_at": "2026-10-01T07:45:53.294252+00:00"
+        },
+        {
+          "product_id": "micron-52d542752ea687682b78",
+          "parameter_name": "dram.module_type",
+          "value": "RDIMM",
+          "unit": "",
+          "condition": "MTC40F2046S1RC64BH1",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/dram-modules/rdimm/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtc40f2046s1rc64bh1",
+          "source_sha256": "246316340d9ed44a68c63bb4fcbea89fc1bd3b31b213d59e447b0e20207839dd",
+          "observed_at": "2026-10-01T07:45:53.294252+00:00"
+        }
+      ]
     },
     {
       "target_id": "P.hbm.spec",
@@ -29,7 +71,39 @@
       "note": "fetchspec fetchspec-micron-f7468d67241a19ba70e59789 manifest 0b3746c7047b4b86 receipt 2267be694d8f3298 env production; products micron-3216e9c5c1fa318ac27c; sha256 b5e284379e3c6277,c9e053abd5e61ec8",
       "imported_at": "2026-10-01",
       "imported_by": "m5",
-      "source": "assignments.register_delivery"
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "micron-3216e9c5c1fa318ac27c",
+          "parameter_name": "hbm.data_rate",
+          "value": "9.2GTPS",
+          "unit": "GT/s",
+          "condition": "per pin, MT65B18G16120A00QH-92:A",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/hbm/hbm3e/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mt65b18g16120a00qh-92-a",
+          "source_sha256": "b5e284379e3c6277a6563a5eed548a260b724304354a6f733c8304f36adfa757",
+          "observed_at": "2026-10-01T07:45:46.797353+00:00"
+        },
+        {
+          "product_id": "micron-3216e9c5c1fa318ac27c",
+          "parameter_name": "hbm.io_voltage",
+          "value": "1.1 VOLTS",
+          "unit": "V",
+          "condition": "I/O supply, MT65B18G16120A00QH-92:A",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/hbm/hbm3e/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mt65b18g16120a00qh-92-a",
+          "source_sha256": "b5e284379e3c6277a6563a5eed548a260b724304354a6f733c8304f36adfa757",
+          "observed_at": "2026-10-01T07:45:46.797353+00:00"
+        },
+        {
+          "product_id": "micron-3216e9c5c1fa318ac27c",
+          "parameter_name": "hbm.stack_capacity",
+          "value": "36GB",
+          "unit": "GB",
+          "condition": "MT65B18G16120A00QH-92:A, 12-high HBM3E stack, Micron part component",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/hbm/hbm3e/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mt65b18g16120a00qh-92-a",
+          "source_sha256": "b5e284379e3c6277a6563a5eed548a260b724304354a6f733c8304f36adfa757",
+          "observed_at": "2026-10-01T07:45:46.797353+00:00"
+        }
+      ]
     },
     {
       "target_id": "P.ssd.spec",
@@ -43,7 +117,39 @@
       "note": "fetchspec fetchspec-micron-f7468d67241a19ba70e59789 manifest 0b3746c7047b4b86 receipt 2267be694d8f3298 env production; products micron-818edd7db301e08af9ad; sha256 0dcf161461746e6d,369db2887246d1cf",
       "imported_at": "2026-10-01",
       "imported_by": "m5",
-      "source": "assignments.register_delivery"
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "micron-818edd7db301e08af9ad",
+          "parameter_name": "ssd.capacity",
+          "value": "15360GB",
+          "unit": "GB",
+          "condition": "MTFDLBQ15T3THA-1BK1JABYY, 9550 PRO",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/storage/ssd/data-center-ssd/9550-ssd/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtfdlbq15t3tha-1bk1jabyy",
+          "source_sha256": "0dcf161461746e6d25e4643268b7f147de06f22e4d6ab7b6988c11ed8b3cc1b4",
+          "observed_at": "2026-10-01T07:46:09.914325+00:00"
+        },
+        {
+          "product_id": "micron-818edd7db301e08af9ad",
+          "parameter_name": "ssd.form_factor",
+          "value": "E3.S",
+          "unit": "",
+          "condition": "MTFDLBQ15T3THA-1BK1JABYY",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/storage/ssd/data-center-ssd/9550-ssd/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtfdlbq15t3tha-1bk1jabyy",
+          "source_sha256": "0dcf161461746e6d25e4643268b7f147de06f22e4d6ab7b6988c11ed8b3cc1b4",
+          "observed_at": "2026-10-01T07:46:09.914325+00:00"
+        },
+        {
+          "product_id": "micron-818edd7db301e08af9ad",
+          "parameter_name": "ssd.interface_bandwidth",
+          "value": "12 GB/s",
+          "unit": "GB/s",
+          "condition": "MTFDLBQ15T3THA-1BK1JABYY, as listed by Micron",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/storage/ssd/data-center-ssd/9550-ssd/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtfdlbq15t3tha-1bk1jabyy",
+          "source_sha256": "0dcf161461746e6d25e4643268b7f147de06f22e4d6ab7b6988c11ed8b3cc1b4",
+          "observed_at": "2026-10-01T07:46:09.914325+00:00"
+        }
+      ]
     }
   ]
 }
