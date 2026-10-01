@@ -1,6 +1,6 @@
 {
-  "version": "2026.09.28.41",
-  "reviewed_at": "2026-09-28",
+  "version": "2026.10.01.1",
+  "reviewed_at": "2026-10-01",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
     ".github/workflows/validate.yml": "1424142306d608e4834d92f6ac17c7ee4275e70daed27b1fe87bbe2e0ef3b0ff",
@@ -26,7 +26,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "f76598712783629ce573f0d89da2cc81181b7b766d9a942e299ea0868134b2e0",
     "framework/09_software_contracts.md": "94eeb69fe498f0318e84d4cb476468eed1e01c541160e81c4be58a12dd119dff",
-    "framework/CURRENT.md": "6c8fe9b99834e723b2d8f10767cfc328e8e2879d73f745a9d4d8d9d60e4b1db7",
+    "framework/CURRENT.md": "4dfaa5d72cabcdc23d3c7709abb6cf3fd79148e55f6f838904f770abde3648fb",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "c6917aabc8c7b6010921c7cd88d45060c0ad951f67bd92c11ef3d03108d48b0e",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -111,7 +111,8 @@
     "web/pages/supply.html": "64d5de9a9cb55f7e301210cab969ee04106f418ce5b3a01de5ddd73c54849e44",
     "tests/unit/test_snapshot_overlay.py": "3c1e1f242bf69aa2014687b66798ab3ffb905b6767984c7828466549d0238418",
     "tests/unit/test_graph.py": "e18107356053e452e36b48556ad1cc0a9eb9dbef26e1e81bfb8ab0751f8eac19",
-    "tests/unit/test_nodes.py": "6792bacdc4881c99b1c989b223c1f581bf6476adebcf83bf1bbee99362db0fbe"
+    "tests/unit/test_nodes.py": "6792bacdc4881c99b1c989b223c1f581bf6476adebcf83bf1bbee99362db0fbe",
+    "docs/geluoke/专题写作规则.md": "77d9d865af31e710aef5c40bad8877f29a18028db1228d2331f02363d0496f2b"
   },
   "policies": [
     {
@@ -673,6 +674,20 @@
         "CLI 恢复进程参数只保证顺序调用，不支持线程同时委派；各子命令历史目录策略仍分别保留，不代表全命令数据权威已收敛。",
         "资源代次覆盖两张交互场景；bake/compare 的环境生命周期、场景几何/材质全面释放、上下文丢失恢复和真实设备 GPU 内存/帧率仍未验。",
         "Fetchspec 接收与 Reader handoff 已有代码验收；Spark 部署、真实 NVIDIA 包、服务/备份实测、采集任务调度、历史材料回填和正式研究证据采用仍未完成。"
+      ]
+    },
+    {
+      "policy": "geluoke-longform-20261001",
+      "scope": "editorial-delivery",
+      "source": "docs/geluoke/专题写作规则.md",
+      "checked_requirement": "写作规范只有一个现行入口；来源存在，同范围不并行生效，在册修改可被检出。v2.2已按用户修订人工复核；以下自动测试只检查登记，不证明文章质量。",
+      "tests": [
+        "tests/unit/test_governance.py::GovernanceTests.test_replacement_valid_then_parallel_current_rejected",
+        "tests/unit/test_governance.py::GovernanceTests.test_inventory_detects_added_and_modified_records_excludes_ignored"
+      ],
+      "not_verified": [
+        "事实准确性、来源完整性、篇幅、图中文字与手机视觉须逐篇验收；仓库治理测试不覆盖这些编辑要求。",
+        "上一稿本机390px和1000px渲染及浏览器复制已检查；公众号编辑器实粘未做，研究反哺仍是候选。本机成品不视为跨机器已同步。"
       ]
     }
   ]
