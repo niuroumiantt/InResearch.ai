@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1033。
+在册文件：1041。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,11 +18,11 @@
 | 历史快照 | 284 |
 | 运行代码 | 214 |
 | 现行规范 | 13 |
-| 项目配置 | 95 |
+| 项目配置 | 97 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 63 |
+| 配套说明 | 69 |
 | 测试 | 102 |
 
 ## 在册记录集合
@@ -174,6 +174,9 @@
 | `docs/research/2026-09-14/datacenter-cost/model-results.json` | apac | 7 |
 | `docs/research/2026-09-14/datacenter-cost/model-results.json` | epoch | 10 |
 | `docs/research/2026-09-27/datacenter-profit/profit-model-results.json` | report_price_paths | 5 |
+| `docs/research/2026-10-01/ai-walle/cards.json` | cards | 10 |
+| `docs/research/2026-10-01/ai-walle/sources.json` | groups | 8 |
+| `docs/research/2026-10-01/ai-walle/sources.json` | background_sources | 1 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
@@ -493,6 +496,7 @@
 | [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
 | `docs/guides/model-governance-2026-09-27.html` | 运行代码 |
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
+| [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
@@ -684,6 +688,13 @@
 | `docs/research/2026-09-27/datacenter-profit/profit-model-results.json` | 项目配置 |
 | `docs/research/2026-09-27/datacenter-profit/profit-model.py` | 运行代码 |
 | [docs/research/2026-09-27/datacenter-profit/sources.md](research/2026-09-27/datacenter-profit/sources.md) | 配套说明 |
+| [docs/research/2026-10-01/ai-walle/README.md](research/2026-10-01/ai-walle/README.md) | 配套说明 |
+| [docs/research/2026-10-01/ai-walle/article-review.md](research/2026-10-01/ai-walle/article-review.md) | 配套说明 |
+| [docs/research/2026-10-01/ai-walle/article.md](research/2026-10-01/ai-walle/article.md) | 配套说明 |
+| `docs/research/2026-10-01/ai-walle/cards.json` | 项目配置 |
+| [docs/research/2026-10-01/ai-walle/feedback.md](research/2026-10-01/ai-walle/feedback.md) | 配套说明 |
+| [docs/research/2026-10-01/ai-walle/review.md](research/2026-10-01/ai-walle/review.md) | 配套说明 |
+| `docs/research/2026-10-01/ai-walle/sources.json` | 项目配置 |
 | [docs/research/datacenter-economics/README.md](research/datacenter-economics/README.md) | 配套说明 |
 | `docs/research/datacenter-economics/model.py` | 运行代码 |
 | `docs/research/datacenter-economics/results.json` | 项目配置 |
