@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1028。
+在册文件：1029。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,7 +16,7 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 284 |
-| 运行代码 | 213 |
+| 运行代码 | 214 |
 | 现行规范 | 12 |
 | 项目配置 | 95 |
 | 兼容研究记录 | 16 |
@@ -1417,6 +1417,7 @@
 | `web/components/supply.js` | 运行代码 |
 | `web/components/targets.js` | 运行代码 |
 | `web/components/tasks-board.js` | 运行代码 |
+| `web/pages/admin/fetchspec/reporg.html` | 运行代码 |
 | `web/pages/admin/product/index.html` | 运行代码 |
 | `web/pages/auth/forbidden.html` | 运行代码 |
 | `web/pages/auth/layout.html` | 运行代码 |
