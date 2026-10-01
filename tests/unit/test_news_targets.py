@@ -4,7 +4,7 @@ import unittest
 
 from inresearch.adapters import acquisition
 from inresearch.adapters.news_projection import feed
-from test_news_projection import NewsProjectionTest
+import test_news_projection as fixtures
 
 REAL = 'F.revenue.gpus.density.density.rack_spec'
 
@@ -12,7 +12,7 @@ REAL = 'F.revenue.gpus.density.density.rack_spec'
 class NewsTargetIdsTest(unittest.TestCase):
     def setUp(self):
         # 复用 test_news_projection 的夹具（临时数据根、假上游、页面构造），不重跑它的用例。
-        self.base = NewsProjectionTest('test_feed_v2_object_ids_are_filtered_to_the_current_skeleton')
+        self.base = fixtures.NewsProjectionTest('test_feed_v2_object_ids_are_filtered_to_the_current_skeleton')
         self.base.setUp()
         self.addCleanup(self.base.doCleanups)
 

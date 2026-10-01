@@ -165,7 +165,7 @@ def export_news(db_path,days=7,limit=2000):
                 'articles':[dict(row) for row in rows[:limit]]}
     finally:con.close()
 
-def import_news(c,payload,question=None):
+def import_news(c,payload,question=None,merge=None):
     verified = isinstance(payload, VerifiedNewsProjection)
     if verified:
         if payload.proof is not _DIRECT_FEED_PROOF:
@@ -199,9 +199,20 @@ def import_news(c,payload,question=None):
         if verified:request['upstream_selection']=meta['upstream_selection']
         c.archive(ident,encoded(allowed),'.json',request);count+=1
     # Commit the current bounded visibility window only after the whole import succeeds.
+    # members 记每个 guid 的文章号与发布时间：增量同步（merge）据此撤下 tombstone、剔除出 7 天窗的。
     from inresearch.storage.files import write_json as atomic_json
+    members={r['guid']:{'id':str(r.get('id')),'published_at':r.get('published_at')} for r in payload['articles']}
+    if merge is not None:
+        path=c.home/'news-window.json'
+        previous=json.loads(path.read_text()).get('members') if path.exists() else None
+        if not isinstance(previous,dict):raise ValueError('news_window_without_members')
+        withdrawn={str(i) for i in merge.get('withdrawn',())}
+        cutoff=merge['now']-7*86400000
+        previous.update(members)
+        members={g:m for g,m in previous.items() if m.get('id') not in withdrawn
+                 and isinstance(m.get('published_at'),(int,float)) and m['published_at']>=cutoff}
     atomic_json(c.home/'news-window.json', {'exported_at':payload.get('exported_at'),
-        'truncated':payload.get('truncated',False), 'guids':[r['guid'] for r in payload['articles']]})
+        'truncated':payload.get('truncated',False), 'guids':list(members), 'members':members})
     return count
 
 def summary(root):
