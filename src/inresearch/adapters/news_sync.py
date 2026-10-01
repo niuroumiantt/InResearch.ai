@@ -9,7 +9,7 @@ from datetime import datetime
 from urllib.parse import urlencode, urlsplit
 from urllib.request import Request, build_opener
 from inresearch.adapters.acquisition import Collector, NoRedirect, data_root, now, import_news, INEWS_DATACENTER_URL, VerifiedNewsProjection, _DIRECT_FEED_PROOF, encoded
-from inresearch.knowledge.news_policy import EVENT_TYPES, RESEARCH_ANGLES, FEED_V2_FIELDS, OBJECT_ID, skeleton_ids
+from inresearch.knowledge.news_policy import EVENT_TYPES, RESEARCH_ANGLES, FEED_V2_FIELDS, OBJECT_ID, TARGET_ID, skeleton_ids, target_ids
 from inresearch.paths import project_root
 
 URL=INEWS_DATACENTER_URL
@@ -34,7 +34,7 @@ def public_url(value):
         return False
 
 
-def validate_page(page, expected_window, known_ids=None):
+def validate_page(page, expected_window, known_ids=None, known_targets=None):
     if not isinstance(page,dict) or type(page.get('schema_version')) is not int or page['schema_version']!=1 or not isinstance(page.get('items'),list) or len(page['items'])>100:
         raise ValueError('invalid_news_feed')
     window=page.get('window')
@@ -66,11 +66,11 @@ def validate_page(page, expected_window, known_ids=None):
         if (not isinstance(topics,list) or not 1<=len(topics)<=32
                 or any(not isinstance(t,str) or not re.fullmatch(r'[a-z][a-z0-9_-]{0,63}',t) for t in topics)):
             raise ValueError('invalid_news_topics')
-        validate_v2_fields(item, known_ids)
+        validate_v2_fields(item, known_ids, known_targets)
     return window
 
 
-def validate_v2_fields(item, known_ids=None):
+def validate_v2_fields(item, known_ids=None, known_targets=None):
     """Optional additive fields; absent or null is fine, a wrong shape rejects the page.
     object_ids: shape errors reject; IDs outside the current skeleton are dropped one by one (known_ids given), never adopted."""
     event_type=item.get('event_type')
@@ -92,10 +92,17 @@ def validate_v2_fields(item, known_ids=None):
             raise ValueError('invalid_news_object_ids')
         if known_ids is not None:
             item['object_ids']=[i for i in ids if i in known_ids]
+    targets=item.get('target_ids')
+    if targets is not None:
+        if (not isinstance(targets,list) or len(targets)>32 or any(not isinstance(t,str) or not TARGET_ID.fullmatch(t) for t in targets)
+                or len(set(targets))!=len(targets)):
+            raise ValueError('invalid_news_target_ids')
+        if known_targets is not None:
+            item['target_ids']=[t for t in targets if t in known_targets]
 
 def projection():
     articles=[]; seen=set(); cursors=set(); cursor=None; window=None; guids={}
-    known_ids=skeleton_ids(project_root())
+    known_ids=skeleton_ids(project_root()); known_targets=target_ids(project_root())
     for _ in range(100):
         params={'hours':168,'limit':100}
         if cursor: params['cursor']=cursor
@@ -105,7 +112,7 @@ def projection():
             body=response.read(4*1024*1024+1)
         if len(body)>4*1024*1024: raise ValueError('news_response_too_large')
         page=json.loads(body)
-        window=validate_page(page,window,known_ids)
+        window=validate_page(page,window,known_ids,known_targets)
         for item in page['items']:
             ident=str(item['id'])
             guid=item.get('guid') or 'inews:'+ident

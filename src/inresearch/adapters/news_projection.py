@@ -46,6 +46,11 @@ def feed(root, limit=80):
                 'category':category, 'cluster_id':meta.get('cluster_id'),
                 'topics':meta.get('topics', []) if trusted else [],
                 **({k: meta.get(k) for k in FEED_V2_FIELDS} if trusted else {})})
+        # 按目标行计数（整个窗口，不受 limit 截断）：哪行有新闻线索、哪行缺料，回给 inews 调词。
+        by_target = {}
+        for item in selected:
+            for t in item.get('target_ids') or []: by_target[t] = by_target.get(t, 0) + 1
+        result['by_target'] = dict(sorted(by_target.items(), key=lambda kv: (-kv[1], kv[0])))
         seen = set()
         for item in sorted(selected,key=lambda r:r['published_at'],reverse=True):
             key = item['cluster_id'] or item['url']
