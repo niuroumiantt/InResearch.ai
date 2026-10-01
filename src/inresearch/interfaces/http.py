@@ -359,6 +359,17 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, model_assets.snapshot(ROOT, page[0]))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '模型登记暂不可用，请重试'})
+        if urlsplit(self.path).path == '/api/targets/backflow':
+            query = parse_qs(urlsplit(self.path).query)
+            team = query.get('team', ['fetchspec'])
+            if set(query) - {'team'} or len(team) != 1:
+                return self._json(400, {'ok': False, 'error': '只接受一个 team 参数'})
+            try:
+                return self._json(200, research.build_backflow(ROOT, team[0]))
+            except KeyError:
+                return self._json(400, {'ok': False, 'error': '未登记的采集队'})
+            except (ValueError, TypeError, OSError):
+                return self._json(503, {'ok': False, 'error': '回流暂不可用，请稍后重试'})
         if urlsplit(self.path).path == '/api/news':
             try:
                 return self._json(200, research.build_news(ROOT))

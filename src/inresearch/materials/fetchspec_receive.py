@@ -201,6 +201,27 @@ def _categories(source: dict) -> list[str]:
     return ["uncategorized" if value in {".", ".."} else value for value in result]
 
 
+# fetchspec 契约 parameter_observation_fields（supply_contract.json 生成目标契约 2.0）。
+OBSERVATION_FIELDS = ("company_id", "product_id", "target_id", "part_id", "parameter_name", "value",
+                      "unit", "condition", "source_url", "source_sha256", "observed_at")
+
+
+def _parameter_observations(item: dict, target_ids: list) -> list:
+    """包内人审参数观测（值为厂商原文）。只收字段齐全、目标行属于本项、来源是本项字节的；其余丢弃，不拒包。"""
+    kept = []
+    for evidence in item.get("product_evidence") or []:
+        if not isinstance(evidence, dict):
+            continue
+        for row in evidence.get("parameter_observations") or []:
+            if (isinstance(row, dict) and all(isinstance(row.get(k), str) for k in OBSERVATION_FIELDS if k != "part_id")
+                    and row.get("target_id") in target_ids and row.get("source_sha256") == item.get("sha256")
+                    and len(row["value"]) <= 2000 and len(row["parameter_name"]) <= 200):
+                kept.append({k: row.get(k) for k in OBSERVATION_FIELDS})
+            if len(kept) >= 500:
+                return kept
+    return kept
+
+
 def _archive_acquisition(package: Path, manifest: dict, data_root: Path, context: dict):
     """Use the shared candidate acquisition catalog and content-addressed blob store."""
     from inresearch.adapters.acquisition import Collector
@@ -216,6 +237,7 @@ def _archive_acquisition(package: Path, manifest: dict, data_root: Path, context
                 "format": fmt, "bytes": item["bytes"], "completeness": item["completeness"],
                 "access_scope": item["access_scope"], "version_relation": item["version_relation"],
                 "research_context": context, "target_ids": item.get("target_ids", []),
+                "parameter_observations": _parameter_observations(item, item.get("target_ids", [])),
                 "acceptance": "candidate"}
             title = item.get("title") or item["source"].get("original_filename") or item["source_item_id"]
             question = context["question_ids"][0] if context["question_ids"] else None

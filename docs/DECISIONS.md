@@ -3,6 +3,16 @@
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
 
+## 2026-10-01：公开 /api/targets/backflow（fetchspec 回流，#301）；接收端收下参数观测；规格卡只交付自己那一行
+
+**回流。** 新增公开只读 `GET /api/targets/backflow?team=<队>`（默认 fetchspec，已加入 `READER_API`）：某一队在 `framework/tco_targets.json` 里的每一行都列出，`status` 照抄目标表（Git），另给 `received_items`（接收台账里该行的不同原件数）、`companies`、`last_received_at`、`parameter_observations`，以及 `targets_sha256`。计数在 Spark 上由 `adapters/fetchspec_projection.py` 从 `acquisition/catalog.sqlite` 汇总，随 `acquisition.summary` 的 `fetchspec_feed` 发布；网站只读发布的快照，形状不对的行丢弃、不拒整页。inews 走同一接口，计数复用 `/api/news` 的 `by_target`；其余队尚无交付，计数为 0。未登记的队、多余参数返回 400，读不到返回 503。
+
+**参数观测。** `fetchspec-receive` 把 v2.0 包 `items[].product_evidence[].parameter_observations` 存进候选项元数据：只收契约字段齐全、`value` 为原文字符串、目标行属于本项、`source_sha256` 等于本项字节的观测，其余丢弃不拒包，每项至多 500 条。仍是候选，不是采用。
+
+**交付范围。** 合入 fetchspec `docs/upstream/inresearch-delivered-scope.patch`：带 `target_id` 的事件卡只把那一行判为 delivered，不再连带同部件的新闻行；供应页 `generated_targets` 增加 `delivered` 计数。`web/pages/admin/fetchspec/reporg.html` 按 fetchspec 新版覆盖。
+
+用例：`tests/unit/test_fetchspec_backflow.py`、`tests/unit/test_tco_targets.py`、`tests/unit/test_supply.py`。改动的受审文件需站长审阅后签入 `verification_contract.json`。
+
 ## 2026-10-01：格洛可长文规则2.2与新文章交接
 
 用户要求压缩法律团队专题的制作对话并更新长文规则。直接修订唯一源`docs/geluoke/专题写作规则.md`：增加5000—7000字精简专题档；多图需求参考6—8张正文图并另配模板式全文总览；保留法院认定、原告主张、企业承诺、统计项目额与实际损失的边界；完整HTML与轻量版窄屏左右各8px、白底，公众号复制容器不叠加边距。总览图要求逐字核验并如实记录实际分辨率，浏览器复制不冒充公众号实粘。旧专题参数只作示例，不自动移入新稿。

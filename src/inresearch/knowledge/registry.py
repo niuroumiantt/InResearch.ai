@@ -569,6 +569,55 @@ def _reader_state(runtime):
     return reader
 
 
+def _fetchspec_counts(value):
+    """Spark 发布的 fetchspec 回流计数，逐行校验；形状不对的行丢掉，整项不对返回 None。"""
+    if not isinstance(value, dict) or len(value) > 5000:
+        return None
+    kept = {}
+    for target, row in value.items():
+        if not (isinstance(target, str) and TARGET_ID.fullmatch(target) and isinstance(row, dict)):
+            continue
+        items, observations = row.get('received_items'), row.get('parameter_observations', 0)
+        companies, last = row.get('companies', []), row.get('last_received_at')
+        if (type(items) is not int or items < 0 or type(observations) is not int or observations < 0
+                or not isinstance(companies, list) or len(companies) > 40
+                or any(not isinstance(c, str) or not c or len(c) > 80 for c in companies)
+                or not (last is None or (isinstance(last, str) and len(last) <= 40))):
+            continue
+        kept[target] = {'received_items': items, 'companies': sorted(set(companies)), 'last_received_at': last,
+                        'parameter_observations': observations}
+    return kept
+
+
+def build_backflow(root=ROOT, team='fetchspec'):
+    """回流（2026-10-01，fetchspec 申请 #301）：某一队的每条目标行到了哪一步。
+
+    status 照抄目标表（Git），计数来自 Spark 发布的快照：fetchspec 用接收台账（原件数、厂商、参数观测数），
+    inews 用 /api/news 同一份线索计数。其余队尚无交付，计数为 0。只有目标行 ID、状态与计数，公开只读。
+    未登记的队抛 KeyError（接口返回 400）。"""
+    raw = (root / 'framework/tco_targets.json').read_bytes()
+    document = json.loads(raw)
+    if team not in (document.get('teams') or {}):
+        raise KeyError('unknown_team')
+    rows = [t for t in document['targets'] if t.get('team') == team]
+    *_, runtime = _snapshot_inputs(root)
+    reader = _reader_state(runtime)
+    acquisition = reader.get('acquisition') if isinstance(reader.get('acquisition'), dict) else {}
+    received = {}
+    if team == 'fetchspec':
+        received = _fetchspec_counts((acquisition.get('fetchspec_feed') or {}).get('by_target')) or {}
+    elif team == 'inews':
+        counts = (acquisition.get('news_feed') or {}).get('by_target')
+        if isinstance(counts, dict):
+            received = {k: {'received_items': v, 'companies': [], 'last_received_at': None, 'parameter_observations': 0}
+                        for k, v in counts.items() if isinstance(k, str) and TARGET_ID.fullmatch(k) and type(v) is int and v >= 0}
+    empty = {'received_items': 0, 'companies': [], 'last_received_at': None, 'parameter_observations': 0}
+    by_target = {row['id']: {'status': row.get('status'), **received.get(row['id'], empty)} for row in rows}
+    return dict(schema_version=1, team=team, generated_at=datetime.now(timezone.utc).isoformat(),
+                targets_sha256=hashlib.sha256(raw).hexdigest(), by_target=by_target,
+                reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
+
+
 def build_news(root=ROOT):
     """News consumes the same validated snapshot without constructing catalog/tasks."""
     *_, runtime = _snapshot_inputs(root)

@@ -119,6 +119,11 @@ def build(root=ROOT, as_of=None):
         for c in load(root, EVENT_CARDS).get('records', []):
             if not c.get('origin_pointer'):
                 continue
+            if c.get('target_id'):
+                # a card bound to one target row delivers exactly that row; its part/right
+                # only widen legacy target-less cards (a spec card must not mark the part's news row)
+                card_targets.add(c['target_id'])
+                continue
             if c.get('part_id'):
                 card_parts.add(c['part_id'])
             if c.get('site_right_id'):

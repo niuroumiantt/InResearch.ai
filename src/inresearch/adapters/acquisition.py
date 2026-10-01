@@ -226,7 +226,8 @@ def summary(root):
             sources[source]={'items':con.execute('SELECT count(*) FROM items WHERE source=?',(source,)).fetchone()[0],
                 'last_run':dict(row) if row else None}
         from inresearch.adapters.news_projection import feed
-        return {'status':'candidate_acquisition','sources':sources,'news_feed':feed(root),'retired_sources':list(RETIRED_SOURCES),'note':'新闻事件卡与 Fetchspec 交付的候选台账；inresearch 不爬取，SEC/GPU 采集已于 2026-09-28 移交 fetchdata（fetchfilings、fetchquotes）；自动采用未开启。'}
+        from inresearch.adapters import fetchspec_projection
+        return {'status':'candidate_acquisition','sources':sources,'news_feed':feed(root),'fetchspec_feed':fetchspec_projection.feed(root),'retired_sources':list(RETIRED_SOURCES),'note':'新闻事件卡与 Fetchspec 交付的候选台账；inresearch 不爬取，SEC/GPU 采集已于 2026-09-28 移交 fetchdata（fetchfilings、fetchquotes）；自动采用未开启。'}
     finally:con.close()
 
 def product_documents(root, *, company_id=None, category=None, question_id=None,

@@ -41,7 +41,7 @@ class SupplyTests(unittest.TestCase):
         self.assertEqual(targets['total'], len(targets['records']))
         self.assertTrue(targets['records'])
         self.assertTrue(all(row['team'] == 'fetchspec' for row in targets['records']))
-        self.assertEqual(targets['total'], targets['sourced'] + targets['assumed'] + targets['needed'])
+        self.assertEqual(targets['total'], targets['sourced'] + targets['assumed'] + targets['delivered'] + targets['needed'])
         self.assertFalse((Path(self.tmp.name)/'data').exists())
         req = self.request()
         supply.mutate(self.root, req, 'admin')

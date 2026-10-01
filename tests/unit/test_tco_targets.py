@@ -172,8 +172,9 @@ class TcoTargetListTests(unittest.TestCase):
             plan_parts = {r['part_id'] for r in csv.DictReader(fh) if r.get('status', 'todo') != 'todo' and (r.get('doc_id') or r.get('source_url'))}
         cards_path = ROOT / targets_mod.EVENT_CARDS
         cards = json.loads(cards_path.read_text(encoding='utf-8')).get('records', []) if cards_path.exists() else []
-        card_parts = {c.get('part_id') for c in cards if c.get('origin_pointer')}
-        card_rights = {c.get('site_right_id') for c in cards if c.get('origin_pointer')}
+        # a card bound to a target row holds only that row; part/right widen target-less cards only
+        card_parts = {c.get('part_id') for c in cards if c.get('origin_pointer') and not c.get('target_id')}
+        card_rights = {c.get('site_right_id') for c in cards if c.get('origin_pointer') and not c.get('target_id')}
         card_targets = {c.get('target_id') for c in cards if c.get('origin_pointer')}
         price_targets = {r.get('target_id') for r in load('data/prices.json')['records'] if r.get('target_id')}
         for t in self.targets:
@@ -186,6 +187,26 @@ class TcoTargetListTests(unittest.TestCase):
                     or (kind == 'holders' and t['site_right_id'] in card_rights))
             self.assertTrue(held, f"{t['id']} is delivered without a Git carrier")
 
+
+    def test_target_bound_card_delivers_only_its_own_row(self):
+        """A Fetchspec spec card for P.server.spec must not mark the inews row P.server.news delivered."""
+        import shutil
+        import tempfile
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            for rel in ('framework', 'data'):
+                shutil.copytree(ROOT / rel, root / rel)
+            cards = {'version': '1.0', 'records': [
+                {'target_id': 'P.server.spec', 'part_id': 'server', 'site_right_id': None, 'team': 'fetchspec',
+                 'origin_pointer': 'https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr', 'pointer_kind': 'url'},
+                {'target_id': None, 'part_id': 'gpu', 'site_right_id': None, 'team': 'inews',
+                 'origin_pointer': 'https://example.com/press/gpu', 'pointer_kind': 'url'}]}
+            (root / targets_mod.EVENT_CARDS).write_text(json.dumps(cards), encoding='utf-8')
+            status = {t['id']: t['status'] for t in targets_mod.build(root)['targets']}
+        self.assertEqual(status['P.server.spec'], 'delivered')
+        self.assertEqual(status['P.server.news'], 'needed')
+        self.assertEqual(status['P.server.operation'], 'needed')
+        self.assertEqual(status['P.gpu.news'], 'delivered')  # legacy target-less part card keeps its meaning
 
 if __name__ == '__main__':
     unittest.main()

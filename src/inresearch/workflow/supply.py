@@ -53,6 +53,7 @@ def snapshot(root):
                 'total': len(fetchspec_targets),
                 'sourced': sum(row['status'] == 'sourced' for row in fetchspec_targets),
                 'assumed': sum(row['status'] == 'assumed' for row in fetchspec_targets),
+                'delivered': sum(row['status'] == 'delivered' for row in fetchspec_targets),
                 'needed': sum(row['status'] == 'needed' for row in fetchspec_targets),
                 'records': fetchspec_targets,
             },
