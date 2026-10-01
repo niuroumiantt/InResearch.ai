@@ -1,6 +1,49 @@
 {
   "version": "1.0",
-  "updated": "2026-09-29",
+  "updated": "2026-10-01",
   "note": "事件卡：目标行的 Git 内交付载体之一（06）。每条 = 目标行 ID + 原件指针（公网 URL 或仓库内相对路径）。只由 manage.py deliveries import 从运行库回执生成，不手写；进入 delivered 后仍不是序列，正式采用另走研究流程。",
-  "records": []
+  "records": [
+    {
+      "target_id": "P.dram.spec",
+      "part_id": "dram",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.micron.com/products/memory/dram-modules/rdimm/part-catalog/part-detail/mtc40f2046s1rc64bh1",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-micron-f7468d67241a19ba70e59789 manifest 0b3746c7047b4b86 receipt 2267be694d8f3298 env production; products micron-52d542752ea687682b78; sha256 246316340d9ed44a,87aab796aa801766",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery"
+    },
+    {
+      "target_id": "P.hbm.spec",
+      "part_id": "hbm",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.micron.com/products/memory/hbm/hbm3e/part-catalog/part-detail/mt65b18g16120a00qh-92-a",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-micron-f7468d67241a19ba70e59789 manifest 0b3746c7047b4b86 receipt 2267be694d8f3298 env production; products micron-3216e9c5c1fa318ac27c; sha256 b5e284379e3c6277,c9e053abd5e61ec8",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery"
+    },
+    {
+      "target_id": "P.ssd.spec",
+      "part_id": "ssd",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.micron.com/products/storage/ssd/data-center-ssd/9550-ssd/part-catalog/part-detail/mtfdlbq15t3tha-1bk1jabyy",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-micron-f7468d67241a19ba70e59789 manifest 0b3746c7047b4b86 receipt 2267be694d8f3298 env production; products micron-818edd7db301e08af9ad; sha256 0dcf161461746e6d,369db2887246d1cf",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery"
+    }
+  ]
 }
