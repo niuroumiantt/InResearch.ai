@@ -297,6 +297,11 @@ class ProductCatalogCompanyTests(unittest.TestCase):
                 http.AUTH_ON = False
                 status, raw, _ = request('GET', '/api/product-catalog/acme?view=index')
                 self.assertEqual((status, json.loads(raw)['error']), (404, 'unknown catalog company'))
+                status, raw, _ = request('GET', '/api/product-catalog/micron?view=summary')
+                summary = json.loads(raw)
+                self.assertEqual((status, summary['view'], 'products' in summary), (200, 'summary', False))
+                self.assertEqual(summary['summary']['entities'], 5)
+                self.assertTrue(summary['research_alignment']['targets'])
                 status, raw, _ = request('GET', '/api/product-catalog/micron?view=index')
                 index = json.loads(raw)
                 self.assertEqual(status, 200)

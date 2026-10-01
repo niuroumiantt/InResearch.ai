@@ -47,6 +47,15 @@
     box-shadow: 0 4px 16px rgba(0,0,0,.15); padding: 10px 12px; font-size: 12px; max-width: 280px;
     pointer-events: none; z-index: 50; display: none; line-height: 1.7; }
   .err { color: var(--red); padding: 20px; }
+  .cat-groups { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin-top: 8px; }
+  .cat-group { border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 9px 11px; }
+  .cat-group h3 { font-size: 13px; margin-bottom: 4px; }
+  .cat-group .n { color: var(--muted); font-size: 11px; }
+  .fam { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; padding: 2px 0; border-top: 1px dashed var(--line); }
+  .fam span:last-child { color: var(--muted); white-space: nowrap; }
+  .cover { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 12.5px; margin: 4px 0 6px; }
+  .cover b { font-size: 15px; }
+  .st-delivered { color: var(--accent); font-weight: 600; } .st-needed { color: var(--muted); } .st-sourced { color: var(--green); font-weight: 600; }
 </style>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
@@ -61,7 +70,7 @@
 
 <script>
 async function get(p) {
-  const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
+  const r = await fetch(p + (p.includes("?") ? "&" : "?") + "t=" + Date.now(), { cache: "no-store" });
   if (!r.ok) throw new Error(p + " → HTTP " + r.status);
   return r.json();
 }
@@ -110,6 +119,48 @@ function productHtml(p) {
     ${rows ? `<div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>参数</th><th>原文值 [单位] · 条件</th></tr>${rows}</table></div>` : '<div class="note">这次交付只登记了原件指针，没有随附参数。</div>'}</div>`;
 }
 
+/* 产品目录：/api/product-catalog/<公司>?view=summary（与规格库同一份数据）；没建目录的公司返回 404，这里如实说明。 */
+const STATUS_LABEL = { delivered: "已交付", needed: "缺", sourced: "已有", assumed: "假设" };
+function catalogHtml(cat, c) {
+  const head = `<div class="bh"><h2>产品目录（官网爬取）</h2>${cat && cat.available ? `<a class="go" href="product-catalog.html?c=${encodeURIComponent(c.company_id)}">打开 ${esc(c.name)} 产品规格库 →</a>` : ""}</div>`;
+  if (!cat || !cat.available) return head + `<div class="note">还没有为 ${esc(c.name)} 建立产品目录。目录按 NVIDIA 打样标准做：先从原厂官网建全量产品清单，再逐个产品取官方规格，原生参数原样入库。</div>`;
+  const s = cat.summary || {}, cov = s.specification_coverage || {}, named = cov.current_named_products || cov.named_products || {};
+  const listing = s.by_listing || {}, status = s.by_official_status || {};
+  const all = (s.by_group || []).filter(g => g.id && !/obsolete/i.test(g.id));
+  const groups = all.filter(g => g.entities > 1 || g.with_tables), single = all.filter(g => !(g.entities > 1 || g.with_tables));
+  const obsoleteGroup = (s.by_group || []).find(g => /obsolete/i.test(g.id || ""));
+  return head + `<div class="cover">
+      <span><b>${esc(named.with_tables ?? "—")}</b> / ${esc(named.total ?? "—")} ${cov.current_named_products ? "在售" : ""}具体型号有官方规格</span>
+      <span><b>${esc(cov.all_entities?.with_tables ?? "—")}</b> / ${esc(cov.all_entities?.total ?? s.entities ?? "—")} 全部目录实体有规格表</span>
+      ${cov.obsolete_listed ? `<span><b>${esc(cov.obsolete_listed)}</b> 个停产型号只登记不抓规格</span>` : ""}
+      ${listing.directory ? `<span><b>${esc(listing.directory)}</b> 个分类 / 系列页</span>` : ""}
+      <span class="note" style="margin:0">生成于 ${esc((cat.generated_at || "").slice(0, 10))}</span></div>
+    <div class="cat-groups">${groups.map(g => `<div class="cat-group"><h3>${esc(g.label || g.id)}</h3><div class="n">${esc(g.entities)} 条 · ${esc(g.with_tables)} 有规格表</div>
+      ${(g.families || []).filter(f => f.id).sort((a, b) => b.entities - a.entities).slice(0, 8).map(f => `<div class="fam"><span>${esc(f.label || f.id)}</span><span>${esc(f.with_tables)} / ${esc(f.entities)}</span></div>`).join("")}
+      ${(g.families || []).filter(f => f.id).length > 8 ? `<div class="n">另有 ${(g.families || []).filter(f => f.id).length - 8} 个系列</div>` : ""}</div>`).join("")}</div>
+    ${Object.keys(status).length ? `<div class="note">官网状态（厂商原文，不等于已核实在售）：${Object.entries(status).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${esc(k === "unspecified" ? "未标注" : k)} ${esc(v)}`).join(" · ")}</div>` : ""}
+    ${single.length ? `<div class="note">其他官网分类页（只有页面、没有型号）：${single.map(g => esc(g.label || g.id)).join(" · ")}</div>` : ""}
+    ${obsoleteGroup ? `<div class="note">${esc(obsoleteGroup.label)}：${esc(obsoleteGroup.entities)} 条，只登记身份。</div>` : ""}
+    <div class="note">分类就是 ${esc(c.name)} 官网自己的产品分类，本站不重新归类；规格是官方表格原文，未映射通用字段，是候选资料，正式采用另走研究流程。
+      <a href="api/product-catalog/${encodeURIComponent(c.company_id)}?export=products">产品清单 CSV</a> · <a href="api/product-catalog/${encodeURIComponent(c.company_id)}?export=specs">原始参数 CSV</a></div>`;
+}
+/* 需求：目标表里实例点名这家公司的 Fetchspec 行（有目录时用接口算好的对照，否则在本页按名称匹配）。 */
+function demandRows(targets, c, cat, registered) {
+  const names = [c.name.split("/")[0].trim(), c.company_id].map(s => s.toLowerCase()).filter(s => s.length >= 3);
+  const byId = Object.fromEntries(targets.map(t => [t.id, t]));
+  const ids = cat && cat.research_alignment ? cat.research_alignment.target_ids
+    : targets.filter(t => t.team === "fetchspec" && (t.instances || []).some(i => names.some(n => String(i).toLowerCase().includes(n)))).map(t => t.id);
+  return ids.filter(id => byId[id]).map(id => ({ row: byId[id], products: registered.filter(p => p.targets.includes(id)) }));
+}
+function demandRow(d) {
+  const r = d.row, products = d.products.map(p => {
+    let label = p.url; try { label = decodeURIComponent(new URL(p.url).pathname.split("/").filter(Boolean).pop()); } catch (e) {}
+    const n = p.parameters.filter(v => v.target_id === r.id).length;
+    return `<a href="#registered">${esc(label)}</a>${n ? ` <span class="note">${n} 个参数</span>` : ""}`; }).join("<br>");
+  return `<tr><td><a href="supply.html?q=${encodeURIComponent(r.id)}#targets"><code>${esc(r.id)}</code></a><div class="note" style="margin:0">${esc(r.notes || "")}</div></td>
+    <td class="st-${esc(r.status)}">${esc(STATUS_LABEL[r.status] || r.status)}</td><td>${products || '<span class="note">—</span>'}</td></tr>`;
+}
+
 /* 主体页（第五类变量）：一家公司供应哪些部件、持有哪条权利、有哪些产品线；园区与合同作附表。从节点页第五列进入。 */
 (async () => {
 try {
@@ -118,6 +169,9 @@ try {
     get("data/companies.json"), get("framework/bom.json"), get("framework/site_rights.json").catch(() => ({ rights: [] })),
     get("data/products.json").catch(() => ({ records: [] })), get("data/projects.json").catch(() => ({ records: [] })), get("data/contracts.json").catch(() => ({ records: [] })),
     get("data/event_cards.json").catch(() => ({ records: [] }))]);
+  const [catalog, targetsDoc] = await Promise.all([
+    get("api/product-catalog/" + encodeURIComponent(cid) + "?view=summary").catch(() => null),
+    get("framework/tco_targets.json").catch(() => ({ targets: [] }))]);
   const c = companies.records.find(x => x.company_id === cid);
   if (!c) throw new Error("公司不存在: " + cid);
   document.title = c.name + " — 主体 — inresearch.ai";
@@ -137,6 +191,7 @@ try {
   const mine = projectsDoc.records.filter(p => (p.developer || []).includes(cid) || (p.tenant || []).includes(cid));
   const myContracts = contracts.records.filter(x => (x.parties || []).includes(cid));
   const registered = registeredProducts(cardsDoc.records || [], cid);
+  const demand = demandRows(targetsDoc.targets || [], c, catalog, registered);
 
   const supplyHtml = Object.keys(bySystem).length ? Object.entries(bySystem).map(([sid, parts]) => `<div class="sec"><h3>${esc(sysName(sid))}</h3>${parts.sort((a, b) => (a.chain_order || 0) - (b.chain_order || 0)).map(p =>
       `<a class="chip" href="node.html?id=part:${encodeURIComponent(p.id)}&col=5" title="${esc(p.chain || "")} 第 ${p.chain_order || "?"} 位 · ${SUP[p.status] || p.status}">${esc(p.name)}</a>`).join("")}</div>`).join("")
@@ -162,8 +217,13 @@ try {
       ${c.ticker ? `<span class="chip">${esc(c.ticker)}</span>` : ""}
       ${c.ir_url ? `<a class="chip" href="${esc(c.ir_url)}" target="_blank" rel="noopener">IR ↗</a>` : ""}
       ${c.cik ? `<a class="chip" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${encodeURIComponent(c.cik)}" target="_blank" rel="noopener">EDGAR ↗</a>` : ""}</div>
-    <div class="profile">${esc(c.profile || "")}</div>
+    <div class="profile">${esc(c.profile || "")}${c.website ? ` <a href="${esc(c.website)}" target="_blank" rel="noopener">官网 ↗</a>` : ""}</div>
     <div class="grid">
+      <div class="board b12" id="catalog">${catalogHtml(catalog, c)}</div>
+      <div class="board b12" id="demand"><div class="bh"><h2>需求与交付对照（${demand.length} 条目标行）</h2><a class="go" href="supply.html#targets">目标表 →</a></div>
+        ${demand.length ? `<div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>目标行</th><th>状态</th><th>已交付的产品</th></tr>${demand.map(demandRow).join("")}</table></div>`
+          : '<div class="note">目标表里没有点名这家公司的行。</div>'}
+        <div class="note">inresearch.ai 的采集需求只来自目标表：这里列出实例点名这家公司的行，及 Fetchspec 已交付到每行的产品与参数原文。</div></div>
       <div class="board b6"><div class="bh"><h2>供应的部件（${supplied.length}）</h2><a class="go" href="bom.html">爆炸图 →</a></div>${supplyHtml}
         <div class="note">来自骨架登记（bom.json 的 companies）：类别关联，不代表现场供应商；点部件进节点页第五列。</div></div>
       <div class="board b6"><div class="bh"><h2>持有的站点权利（${held.length}）</h2><a class="go" href="node.html?id=site">六条权利 →</a></div>${rightsHtml}

@@ -321,6 +321,8 @@ class Handler(SimpleHTTPRequestHandler):
             view = query.get('view', ['full'])[0]
             if view == 'index':
                 return self._json(200, product_catalog.index_snapshot(ROOT, company))
+            if view == 'summary':  # the company page: coverage, vendor groups and demand alignment, no product list
+                return self._json(200, product_catalog.summary_snapshot(ROOT, company))
             if view == 'full':
                 return self._json(200, product_catalog.snapshot(ROOT, company))
             return self._json(400, {'error': 'unknown catalog view'})

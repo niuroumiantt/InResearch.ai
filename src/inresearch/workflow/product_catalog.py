@@ -397,6 +397,14 @@ def index_snapshot(root, company='nvidia'):
     return value
 
 
+def summary_snapshot(root, company='nvidia'):
+    """The index without its product list: what a company page shows about the catalog."""
+    value = index_snapshot(root, company)
+    value.pop('products', None)
+    value['view'] = 'summary'
+    return value
+
+
 def product_snapshot(root, product_id, company='nvidia'):
     """Return one evidence-backed product detail from the current run."""
     if not re.fullmatch(product_id_pattern(company), product_id):
