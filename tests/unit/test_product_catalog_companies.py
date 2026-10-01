@@ -214,7 +214,10 @@ class ProductCatalogCompanyTests(unittest.TestCase):
         self.assertEqual(summary['by_listing'], {'active': 2, 'directory': 2, 'obsolete': 1})
         self.assertEqual(summary['by_official_status'],
                          {'Obsolete (listed)': 1, 'Production': 1, 'Sampling': 1, 'unspecified': 2})
+        # the obsolete part is listed, not collected: the current-parts denominator leaves it out
         self.assertEqual(summary['specification_coverage'], {'named_products': {'with_tables': 2, 'total': 3},
+                                                             'current_named_products': {'with_tables': 2, 'total': 2},
+                                                             'obsolete_listed': 1,
                                                              'all_entities': {'with_tables': 2, 'total': 5}})
         memory = next(g for g in summary['by_group'] if g['id'] == 'memory')
         self.assertEqual((memory['label'], memory['entities'], memory['with_tables']), ('Memory', 4, 1))

@@ -336,6 +336,7 @@ def summary(products, groups=()):
             bucket['entities'] += 1
             bucket['with_tables'] += tables(p)
     named = [p for p in products if p['kind'] == 'named_product']
+    current = [p for p in named if p.get('listing', 'active') == 'active']
     return {
         'basis': 'delivered_catalog_entities_not_vendor_total',
         'entities': len(products),
@@ -346,6 +347,10 @@ def summary(products, groups=()):
                      for g in sorted(by_group.values(), key=lambda g: (not g['id'], g['label'].casefold()))],
         'specification_coverage': {
             'named_products': {'with_tables': sum(map(tables, named)), 'total': len(named)},
+            # Parts the vendor lists as obsolete are catalogued but not collected; the standard's first
+            # denominator is the current named products (when the catalog marks listings at all).
+            **({'current_named_products': {'with_tables': sum(map(tables, current)), 'total': len(current)},
+                'obsolete_listed': len(named) - len(current)} if any('listing' in p for p in named) else {}),
             'all_entities': {'with_tables': sum(map(tables, products)), 'total': len(products)},
         },
     }
