@@ -14,15 +14,20 @@ html[data-ui-skin] #groups button{padding:.9rem;min-height:82px}#groups small{di
 html[data-ui-skin] #groups button[aria-pressed=true],html[data-ui-skin] #families button[aria-pressed=true],html[data-ui-skin] .product[aria-pressed=true]{border-color:var(--ui-accent);background:var(--ui-surface2,var(--ui-surface));box-shadow:inset 3px 0 var(--ui-accent)}
 #families{display:flex;flex-wrap:wrap;gap:.4rem;margin:1rem 0}html[data-ui-skin] #families button{padding:.55rem .8rem}#families[hidden]{display:none}
 #breadcrumb{font-size:1.1rem;margin:1.5rem 0 1rem}.products{max-height:65vh}html[data-ui-skin] .product{padding:.65rem .8rem;border-width:0 0 1px;width:100%}.product small{font-size:.8rem}.pager{display:flex;gap:.5rem;margin:.7rem 0}.catalog-note{font-size:.85rem;line-height:1.6;opacity:.75}.metrics{margin:.7rem 0}.metric strong{font-size:1.4rem}.controls{margin:1rem 0}#detail{border-left:1px solid var(--ui-line);padding-left:1.2rem}
-@media(max-width:700px){html[data-ui-skin] #groups{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups button{min-height:72px}.products{max-height:240px}#detail{border-left:0;border-top:1px solid var(--ui-line);padding:1rem 0 0}.controls input[type=search]{min-width:0;width:100%}#families{gap:.35rem}}
+/* Vendor-path companies: the group count is whatever the vendor publishes. */
+html[data-ui-skin] #groups.vendor{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+#company-switch{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0 1rem}#company-switch a{padding:.35rem .8rem;border:1px solid var(--ui-line);text-decoration:none;color:inherit}#company-switch a[aria-current=page]{border-color:var(--ui-accent);box-shadow:inset 0 -2px var(--ui-accent)}
+#coverage-line{font-size:.92rem;margin:.3rem 0}#coverage-line:empty{display:none}
+@media(max-width:700px){html[data-ui-skin] #groups{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups.vendor{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups button{min-height:72px}.products{max-height:240px}#detail{border-left:0;border-top:1px solid var(--ui-line);padding:1rem 0 0}.controls input[type=search]{min-width:0;width:100%}#families{gap:.35rem}}
 </style><link rel="stylesheet" href="/assets/site-skin.css"></head>
 <body><inresearch-shell data-section="bom"></inresearch-shell><main>
-<nav><a href="/supply.html#inbox">收件箱</a> / <a href="/supply.html#pilot">NVIDIA 规格批次</a> / 产品规格库</nav>
-<h1>规格库 · NVIDIA 产品</h1><nav class="views" id="catalog-views" aria-label="规格库视图"><button type="button" data-view="catalog" aria-pressed="true">规格库</button><button type="button" data-view="registry" aria-pressed="false" hidden>登记覆盖（管理员）</button></nav><p class="intro">按官方产品目录寻找规格。保留每个产品自己的参数、配置列和来源，支持筛选、核查与导出。页面直接读取数据库中的表格数据；HTML、PDF 和 Office 文件只是可追溯的官方载体，不是最终展示层。</p>
+<nav><a href="/supply.html#inbox">收件箱</a> / <a id="batch-link" href="/supply.html#pilot">NVIDIA 规格批次</a> / 产品规格库</nav>
+<h1 id="catalog-title">规格库 · NVIDIA 产品</h1><nav id="company-switch" aria-label="公司"><a href="?c=nvidia" data-company="nvidia" aria-current="page">NVIDIA</a><a href="?c=micron" data-company="micron">Micron</a></nav><nav class="views" id="catalog-views" aria-label="规格库视图"><button type="button" data-view="catalog" aria-pressed="true">规格库</button><button type="button" data-view="registry" aria-pressed="false" hidden>登记覆盖（管理员）</button></nav><p class="intro">按官方产品目录寻找规格。保留每个产品自己的参数、配置列和来源，支持筛选、核查与导出。页面直接读取数据库中的表格数据；HTML、PDF 和 Office 文件只是可追溯的官方载体，不是最终展示层。</p>
 <p id="status" role="status" aria-live="polite">正在读取产品清单…</p>
+<p id="coverage-line"></p>
 <p id="alignment" class="catalog-note"></p>
 <nav id="groups" aria-label="产品大类"></nav>
-<p class="catalog-note">五个入口是本站浏览分组，依据 <a href="https://www.nvidia.com/en-us/products/" target="_blank" rel="noopener">NVIDIA 官方产品目录</a>的十个栏目整理，并非原厂原样分类。官方原始分类保留在每项详情中。公司产品地图由产品/系列关系组成；官方 XML sitemap 只用于页面更新候选和来源交叉核对，不会把全站 URL 当成产品。</p>
+<p id="groups-note" class="catalog-note">五个入口是本站浏览分组，依据 <a href="https://www.nvidia.com/en-us/products/" target="_blank" rel="noopener">NVIDIA 官方产品目录</a>的十个栏目整理，并非原厂原样分类。官方原始分类保留在每项详情中。公司产品地图由产品/系列关系组成；官方 XML sitemap 只用于页面更新候选和来源交叉核对，不会把全站 URL 当成产品。</p>
 <button id="auxiliary" aria-pressed="false">辅助资料 / 待归类</button>
 <nav id="families" aria-label="产品系列"></nav>
 <details><summary>采集统计与待补齐范围</summary><div id="metrics" class="metrics"></div><ul id="limitations"></ul><p>“具体型号规格覆盖”只以具体命名产品为分母；“有规格表的全部条目”还包括系列和平台，两者不能混用。官网明确未发布型号规格或旧规格来源已不可用，记作厂商规格缺口而不是抓取失败。官网列出不代表已经确认在售；配置尚未逐一拆成 SKU，参数尚未进入正式研究采用。宣传、培训和未知分类入口留在辅助资料中，未删除原始记录。</p></details>
