@@ -43,10 +43,10 @@ if (host) {
     const request = new AbortController(); currentRequest = request;
     const timeout = setTimeout(()=>request.abort(), 20000);
     try {
-      await whoami;
       const r = await fetch('/api/news', {cache:'no-store', signal:request.signal});
       if (!r.ok) throw new Error('HTTP '+r.status);
       const data = await r.json();
+      await whoami;   // 新闻请求先发出,渲染前再等登录态(要不要画「有用 / 没用」)
       if (request !== currentRequest) return;
       const feed = data.feed;
       if (!feed || ['awaiting_sync','not_initialized'].includes(feed.status)) {
