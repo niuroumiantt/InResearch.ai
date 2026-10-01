@@ -169,6 +169,36 @@ class FetchspecReceiveTests(unittest.TestCase):
         self.assertEqual(result['items'][0]['reader_handoff'], 'extractor_required')
         self.assertFalse((self.data / 'raw-materials').exists())
 
+    def use_body(self, body, fmt, content_type):
+        (self.package / self.relative).unlink()
+        self.sha = hashlib.sha256(body).hexdigest()
+        path = f'files/{self.sha[:2]}/{self.sha}.{fmt}'
+        (self.package / Path(path).parent).mkdir(parents=True, exist_ok=True)
+        (self.package / path).write_bytes(body)
+        self.item.update({'sha256': self.sha, 'bytes': len(body), 'format': fmt, 'content_type': content_type, 'path': path})
+        manifest = json.loads((self.package / 'manifest.json').read_text())
+        manifest['items'] = [self.item]
+        (self.package / 'manifest.json').write_text(json.dumps(manifest))
+        (self.package / 'SHA256SUMS').write_text(f'{self.sha}  {path}\n')
+
+    def test_official_json_component_is_archived_by_content(self):
+        self.use_body(json.dumps({'part-title': 'MT65B18G16120A00QH-92:A',
+                                  'details': [{'id': 'density', 'name': 'Component Density', 'value': '36GB'}]}).encode(),
+                      'json', 'application/json')
+        result = receive(self.repo, self.package, self.data)
+        self.assertEqual(result['items'][0]['sha256'], self.sha)
+        self.assertEqual(result['items'][0]['reader_handoff'], 'extractor_required')
+        self.assertEqual(product_documents(self.data, format='json')['total'], 1)
+
+    def test_json_that_is_not_an_object_is_rejected_before_archiving(self):
+        for body in (b'[1, 2]', b'{"a": ', b'<html></html>'):
+            with self.subTest(body=body):
+                self.setUp()
+                self.use_body(body, 'json', 'application/json')
+                with self.assertRaisesRegex(PackageError, 'format'):
+                    receive(self.repo, self.package, self.data)
+                self.assertFalse((self.data / 'originals').exists())
+
     def test_delivery_identity_collision_does_not_overwrite_receipt(self):
         receive(self.repo, self.package, self.data)
         manifest = json.loads((self.package / 'manifest.json').read_text())

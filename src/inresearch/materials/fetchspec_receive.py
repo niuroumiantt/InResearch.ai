@@ -28,7 +28,7 @@ SUPPORTED = {".pdf", ".html", ".htm", ".txt", ".md", ".csv", ".tsv",
              ".docx", ".pptx", ".xlsx", ".xls", ".ppt", ".et", ".wps", ".dps"}
 FORMATS = {"pdf", "doc", "docm", "docx", "dot", "dotm", "dotx", "xls", "xlsb", "xlsm", "xlsx",
            "xlt", "xltm", "xltx", "ppt", "pptm", "pptx", "pps", "ppsm", "ppsx", "pot", "potm", "potx",
-           "csv", "rtf", "odt", "ods", "odp", "html"}
+           "csv", "rtf", "odt", "ods", "odp", "html", "json"}
 
 
 class PackageError(ValueError):
@@ -79,6 +79,13 @@ def _validate_format(path: Path, fmt: str):
             valid = False
     elif fmt == "html":
         valid = b"<" in head and b"\x00" not in head
+    elif fmt == "json":
+        # 厂商页面自己引用的官方数据组件（如 Micron 型号规格接口）：必须是 UTF-8 JSON 对象，不执行任何内容。
+        try:
+            valid = path.stat().st_size <= 16 * 1024 * 1024 and isinstance(
+                json.loads(path.read_bytes().decode("utf-8")), dict)
+        except (OSError, UnicodeError, ValueError):
+            valid = False
     elif fmt == "csv":
         try:
             head.decode("utf-8-sig")
