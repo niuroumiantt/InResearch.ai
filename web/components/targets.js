@@ -8,7 +8,7 @@
   const TOP = [['facility', '设施'], ['power', '电力'], ['thermal', '冷却'], ['it', 'IT'], ['control', '控制与软件'], ['site', '站点权利'], ['root', '因子（根）']];
   const state = {filters: {team: '', col: '', status: '', system: '', q: '', mine: ''}, data: null, bom: null, host: null, dialog: null};
   const params = new URLSearchParams(location.search);
-  for (const k of ['team', 'col', 'status', 'mine', 'node']) if (params.get(k)) state.filters[k] = params.get(k);
+  for (const k of ['team', 'col', 'status', 'mine', 'node', 'q']) if (params.get(k)) state.filters[k] = params.get(k);
 
   function topSystem(row) {
     if (row.site_right_id) return 'site';

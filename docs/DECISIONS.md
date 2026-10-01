@@ -3,6 +3,10 @@
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
 
+## 2026-10-01：公司页「已登记产品」
+
+用户要在网站上按公司看 Fetchspec 交付了什么。公司页新增「已登记产品」：读 Git 内事件卡（`data/event_cards.json`），按卡上参数的产品 ID（「公司-20 位哈希」）或备注里的 products 归到公司，同一来源页面交付到多条目标行时合成一个产品；每个产品给官网原页链接、交付的目标行（跳目标表并带 `?q=` 筛选）与参数原文值、单位、条件。Fetchspec 的 `asteralabs`、`delta` 在公司表叫 `astera-labs`、`delta-electronics`，页面内对照。公司页本就登录可见，事件卡不进公开白名单。目标表 `supply.html` 同时读取 URL 的 `q`。
+
 ## 2026-10-01：Fetchspec 交付带参数原文上站
 
 Micron 首批生产交付上站后，目标表只显示「已交付」，看不到交付了什么：事件卡只存原件指针，参数值留在 Spark 接收台账和交付包里，「交付」列又只读运行库的派工指针。现在 Fetchspec 的 assignments 每条目标行带上该行已审阅的参数观测（`fetchspec.observations`：字段、厂商原文值、单位、条件、来源 URL 与 SHA-256），`deliveries import` 校验后存为事件卡的 `parameters`（形状不对整条不收，不存半截；同一指针再导入只补上或更新参数，不新增卡）；`/api/targets` 每行带 `cards`，目标表「交付」列显示来源站点链接与可展开的参数列表。值是厂商原文，不换算、不当序列；正式采用仍走研究流程。

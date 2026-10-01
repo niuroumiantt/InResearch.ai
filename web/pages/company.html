@@ -77,13 +77,47 @@ function capBuckets(p) {
 const SC = l => +l.slice(1) >= 8 ? "var(--green)" : +l.slice(1) >= 6 ? "var(--yellow)" : "var(--gray)";
 const SUP = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
 
+/* 已登记产品：Git 内事件卡（data/event_cards.json）里属于这家公司的交付。Fetchspec 的产品 ID 是「公司-20位哈希」，
+   两家的公司 ID 与公司表不同名，在此对照。一张卡是一条目标行；同一来源页面交付到多行时合成一个产品。 */
+const FETCHSPEC_COMPANY = { asteralabs: "astera-labs", delta: "delta-electronics" };
+function cardCompanies(card) {
+  const ids = (card.parameters || []).map(p => p.product_id);
+  const m = /products ([^;]+)/.exec(card.note || "");
+  if (m) ids.push(...m[1].split(","));
+  return new Set(ids.map(id => String(id).trim().replace(/-[0-9a-f]{20}$/, "")).map(co => FETCHSPEC_COMPANY[co] || co));
+}
+function registeredProducts(cards, cid) {
+  const byPage = new Map();
+  for (const c of cards) {
+    if (c.team !== "fetchspec" || !cardCompanies(c).has(cid)) continue;
+    const p = byPage.get(c.origin_pointer) || { url: c.origin_pointer, kind: c.pointer_kind, at: c.delivered_at, targets: [], parameters: [] };
+    p.targets.push(c.target_id);
+    for (const v of c.parameters || []) p.parameters.push({ ...v, target_id: c.target_id });
+    if ((c.delivered_at || "") > (p.at || "")) p.at = c.delivered_at;
+    byPage.set(c.origin_pointer, p);
+  }
+  return [...byPage.values()].sort((a, b) => a.targets[0].localeCompare(b.targets[0]));
+}
+function productHtml(p) {
+  let host = p.url, label = p.url;
+  try { const u = new URL(p.url); host = u.hostname.replace(/^www\./, ""); label = decodeURIComponent(u.pathname.split("/").filter(Boolean).pop() || host); } catch (e) {}
+  const link = p.kind === "url" ? `<a href="${esc(p.url)}" target="_blank" rel="noopener">${esc(label)} ↗</a>` : `<code>${esc(p.url)}</code>`;
+  const many = p.targets.length > 1;   // name the row only when one page delivers to several
+  const rows = p.parameters.map(v => `<tr><td><code>${esc(v.parameter_name)}</code>${many ? `<div style="font-size:10.5px;color:var(--gray)">${esc(v.target_id)}</div>` : ""}</td>
+      <td>${esc(v.value)}${v.unit ? ` <span style="color:var(--muted)">[${esc(v.unit)}]</span>` : ""}${v.condition ? `<div style="font-size:11px;color:var(--muted)">${esc(v.condition)}</div>` : ""}</td></tr>`).join("");
+  return `<div class="sec registered-product" style="margin-bottom:14px"><h3>${link} <span style="font-size:11px;color:var(--muted)">${esc(host)} · ${esc(p.at || "")}</span></h3>
+    <div>${p.targets.map(t => `<a class="chip" href="supply.html?q=${encodeURIComponent(t)}#targets">${esc(t)}</a>`).join("")}</div>
+    ${rows ? `<div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>参数</th><th>原文值 [单位] · 条件</th></tr>${rows}</table></div>` : '<div class="note">这次交付只登记了原件指针，没有随附参数。</div>'}</div>`;
+}
+
 /* 主体页（第五类变量）：一家公司供应哪些部件、持有哪条权利、有哪些产品线；园区与合同作附表。从节点页第五列进入。 */
 (async () => {
 try {
   const cid = new URLSearchParams(location.search).get("c") || "microsoft";
-  const [companies, bom, rights, products, projectsDoc, contracts] = await Promise.all([
+  const [companies, bom, rights, products, projectsDoc, contracts, cardsDoc] = await Promise.all([
     get("data/companies.json"), get("framework/bom.json"), get("framework/site_rights.json").catch(() => ({ rights: [] })),
-    get("data/products.json").catch(() => ({ records: [] })), get("data/projects.json").catch(() => ({ records: [] })), get("data/contracts.json").catch(() => ({ records: [] }))]);
+    get("data/products.json").catch(() => ({ records: [] })), get("data/projects.json").catch(() => ({ records: [] })), get("data/contracts.json").catch(() => ({ records: [] })),
+    get("data/event_cards.json").catch(() => ({ records: [] }))]);
   const c = companies.records.find(x => x.company_id === cid);
   if (!c) throw new Error("公司不存在: " + cid);
   document.title = c.name + " — 主体 — inresearch.ai";
@@ -102,6 +136,7 @@ try {
   const lines = (products.records || []).filter(r => r.company_id === cid);
   const mine = projectsDoc.records.filter(p => (p.developer || []).includes(cid) || (p.tenant || []).includes(cid));
   const myContracts = contracts.records.filter(x => (x.parties || []).includes(cid));
+  const registered = registeredProducts(cardsDoc.records || [], cid);
 
   const supplyHtml = Object.keys(bySystem).length ? Object.entries(bySystem).map(([sid, parts]) => `<div class="sec"><h3>${esc(sysName(sid))}</h3>${parts.sort((a, b) => (a.chain_order || 0) - (b.chain_order || 0)).map(p =>
       `<a class="chip" href="node.html?id=part:${encodeURIComponent(p.id)}&col=5" title="${esc(p.chain || "")} 第 ${p.chain_order || "?"} 位 · ${SUP[p.status] || p.status}">${esc(p.name)}</a>`).join("")}</div>`).join("")
@@ -134,6 +169,9 @@ try {
       <div class="board b6"><div class="bh"><h2>持有的站点权利（${held.length}）</h2><a class="go" href="node.html?id=site">六条权利 →</a></div>${rightsHtml}
         <div class="note">登记数：只说明登记过持有关系，事件卡与合同是证据。</div>
         <div class="bh" style="margin-top:14px"><h2>产品线（${lines.length}）</h2><a class="go" href="product-catalog.html">规格库 →</a></div>${linesHtml}</div>
+      <div class="board b12" id="registered"><div class="bh"><h2>已登记产品（Fetchspec 交付 · ${registered.length}）</h2><a class="go" href="supply.html#targets">目标表 →</a></div>
+        ${registered.length ? registered.map(productHtml).join("") : '<div class="note">还没有这家公司的 Fetchspec 交付。</div>'}
+        <div class="note">厂商官网原文值（不换算），随交付登记到目标行；单位与条件照审阅过的映射。是候选资料，不是序列，正式采用另走研究流程。</div></div>
       <div class="board b12"><div class="bh"><h2>关联园区（附表 · ${mine.length}）</h2></div>
         <div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>园区</th><th>状态</th><th>合计容量</th><th>关系</th><th>核验</th><th>来源</th></tr>${projRows || "<tr><td colspan=6>暂无关联园区</td></tr>"}</table></div>
         <div class="note">容量口径：IT 负载 MW；未披露 ≠ 不存在。</div></div>
