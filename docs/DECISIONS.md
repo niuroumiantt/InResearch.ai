@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-10-01：新闻线索按目标行归档（收下 inews 的 target_ids）
+
+inews 早已按目标行（`framework/tco_targets.json` 的 id）补查询并给每张事件卡打 `target_ids`，但 `news_sync` 只收 `object_ids`，目标行标签在接收端被丢掉，新闻线索没法按目标行看、也没法回答「哪行有料、哪行缺料」。现收为第七个 feed v2 字段：形状错拒收整页，不在现行目标表里的逐个过滤（与 `object_ids` 同一态度），仍是线索不是采用的证据（`match_status` 不变）。`news_projection.feed` 多给 `by_target`：当前窗口内每条目标行的线索数，供回流给 inews 调词与调车道。用例在 `tests/unit/test_news_targets.py`。拉取方式不变（Spark `inresearch-news` 每 15 分钟拉 7 天窗口）；改增量（`/api/feeds/datacenter/changes?since=`）牵涉 `news-window.json` 的「当前可见窗口」语义，另议。
+
 ## 2026-10-01：fetchspec 仓库架构页上线 `/admin/fetchspec/reporg.html`
 
 每个仓库一页「仓库架构」（reporg），命名与地址统一：有自己域名的放 `/admin/reporg.html`（如 inews.today），采集队仓库放 `inresearch.ai/admin/<仓库>/reporg.html`。约定原文在 niuroumiantt/inews.today 的 `docs/reporg.md`。fetchspec 的页由该仓库 `scripts/reporg.py` 从子命令、厂商档案、规则与本仓库 `framework/tco_targets.json` 中 team == fetchspec 的行生成，原样复制到 `web/pages/admin/fetchspec/reporg.html`；`web/routes.json` 加一条路由，`interface_manifest.json` 的 `excluded_pages` 登记为自包含、不接入站点外观的独立页（审阅指纹已由站长签入 `verification_contract.json`）。更新方式：fetchspec 重生成后复制覆盖本文件。其余四个采集队（fetchstat / fetchfilings / fetchreports / fetchquotes）待各自仓库就位后照此接入。

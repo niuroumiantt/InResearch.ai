@@ -9,10 +9,14 @@ INEWS_DATACENTER_URL = 'https://inews.today/api/feeds/datacenter'
 EVENT_TYPES = ('financing', 'lease_contract', 'project_milestone', 'tariff_power_policy', 'lead_time_supply',
                'onsite_power_grid', 'tax_regulation', 'operations_incident', 'transaction_valuation', 'product_price_change')
 RESEARCH_ANGLES = ('technology', 'supply', 'market', 'capital', 'deployment', 'policy', 'safety', 'society', 'other')
-FEED_V2_FIELDS = ('event_type', 'research_angle', 'layer_tags', 'origin_pointer', 'editorial_pick', 'object_ids')
+FEED_V2_FIELDS = ('event_type', 'research_angle', 'layer_tags', 'origin_pointer', 'editorial_pick', 'object_ids', 'target_ids')
 # object_ids（2026-09-29，06「inews 两条线」）：事件涉及的骨架节点——part:<部件> / site:<权利> / actor:<公司>。
 # 形状错拒收整页；ID 不在现行骨架与公司库里的逐个过滤（与接收端 registry_lag 的折算同一态度），不拒收。
 OBJECT_ID = re.compile(r'^(part|site|actor):[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$')
+# target_ids（2026-10-01）：事件命中的目标行（framework/tco_targets.json 的 id，F./P./S. 开头）。
+# inews 按目标行补查询、打标；这里收下来，新闻线索才能按目标行归档、看出哪行有料哪行缺料。
+# 形状错拒收整页；不在现行目标表里的逐个过滤，与 object_ids 同一态度。
+TARGET_ID = re.compile(r'^[FPS]\.[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$')
 
 
 def skeleton_ids(root):
@@ -23,6 +27,11 @@ def skeleton_ids(root):
     companies = json.loads((root / 'data/companies.json').read_text(encoding='utf-8'))['records']
     return ({'part:' + p['id'] for p in bom['parts']} | {'site:' + r['id'] for r in rights['rights']}
             | {'actor:' + c['company_id'] for c in companies})
+
+def target_ids(root):
+    """现行目标行 ID（framework/tco_targets.json）。"""
+    rows = json.loads((Path(root) / 'framework/tco_targets.json').read_text(encoding='utf-8'))['targets']
+    return {r['id'] for r in rows}
 
 def trusted_news_selection(metadata):
     selection = metadata.get('upstream_selection')

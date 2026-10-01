@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1029。
+在册文件：1030。
 
 | 身份 | 文件数 |
 |---|---|
@@ -23,7 +23,7 @@
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
 | 配套说明 | 63 |
-| 测试 | 99 |
+| 测试 | 100 |
 
 ## 在册记录集合
 
@@ -1303,6 +1303,7 @@
 | `tests/unit/test_model_roles.py` | 测试 |
 | `tests/unit/test_model_runtime.py` | 测试 |
 | `tests/unit/test_news_projection.py` | 测试 |
+| `tests/unit/test_news_targets.py` | 测试 |
 | `tests/unit/test_nodes.py` | 测试 |
 | `tests/unit/test_ocr_repeat_penalty.py` | 测试 |
 | `tests/unit/test_ocr_worker_named.py` | 测试 |
