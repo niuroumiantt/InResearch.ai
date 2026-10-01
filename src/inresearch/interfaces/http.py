@@ -20,6 +20,7 @@ from inresearch.materials import model_assets
 import hmac
 from inresearch.workflow import commands as commands
 from inresearch.workflow import supply
+from inresearch.workflow import news_marks
 from inresearch.workflow import dispatch
 from inresearch.workflow import pilot_progress
 from inresearch.workflow import product_catalog
@@ -359,6 +360,14 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, model_assets.snapshot(ROOT, page[0]))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '模型登记暂不可用，请重试'})
+        if urlsplit(self.path).path == '/api/news/marks':
+            # 研究员自己的「有用 / 没用」标记(2026-10-01);只给内部成员,公开的只有 /api/news 里的按目标行计数。
+            if self._role(user) not in ('member', 'admin'):
+                return self._json(403, {'ok': False, 'error': '需要内部成员登录'})
+            try:
+                return self._json(200, {'ok': True, 'marks': news_marks.mark_map(ROOT)})
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'ok': False, 'error': '标记暂不可用，请重试'})
         if urlsplit(self.path).path == '/api/news':
             try:
                 return self._json(200, research.build_news(ROOT))
@@ -462,6 +471,18 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(400, {"ok": False, "error": str(exc)})
             except OSError:
                 return self._json(503, {"ok": False, "error": "供应台账暂不可写，请重试"})
+        if self.path == "/api/news/mark":
+            # 线索评价，不是 C3 采用：内部成员(member/admin)可点；自定义请求头挡跨站表单。
+            if role not in ("member", "admin") or self.headers.get("X-Requested-With") != "news-mark":
+                return self._json(403, {"ok": False, "error": "需要内部成员登录"})
+            try:
+                return self._json(200, news_marks.mark(ROOT, payload, user or "local", research.news_leads(ROOT)))
+            except CommitUncertain:
+                return self._json(503, {"ok": False, "error": "提交结果需核对，请刷新"})
+            except ValueError as exc:
+                return self._json(400, {"ok": False, "error": str(exc)[:200]})
+            except OSError:
+                return self._json(503, {"ok": False, "error": "标记暂不可写，请重试"})
         if self.path == "/api/run":
             if role != "admin":
                 return self._json(403, {"ok": False, "error": "跑管线任务仅限 admin"})
