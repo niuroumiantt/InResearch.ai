@@ -2016,6 +2016,564 @@
           "observed_at": "2026-10-01T10:37:31.567767+00:00"
         }
       ]
+    },
+    {
+      "target_id": "P.cpu.spec",
+      "part_id": "cpu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-nvidia-7da9ed2d169a730c377cf384 manifest 26c9c50b72682c2b receipt 939a7b00959478aa env production; products nvidia-8ffd0b76b6046dbf863d; sha256 c2953f81fa3fdf28",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "nvidia-8ffd0b76b6046dbf863d",
+          "parameter_name": "cpu.core_count",
+          "value": "144 Arm Neoverse V2 Cores with 4x 128b SVE2",
+          "unit": "",
+          "condition": "NVIDIA Grace CPU Superchip (2x Grace CPU) column",
+          "source_url": "https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/",
+          "source_sha256": "c2953f81fa3fdf2886aea0cd83f3a599dda0c225f4b55aea455f200a3350fd4e",
+          "observed_at": "2026-10-01T11:01:46.343891+00:00"
+        },
+        {
+          "product_id": "nvidia-8ffd0b76b6046dbf863d",
+          "parameter_name": "cpu.interconnect_bandwidth",
+          "value": "Up to 900 GB/s",
+          "unit": "GB/s",
+          "condition": "Grace CPU Superchip, NVLink-C2C between the two Grace dies",
+          "source_url": "https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/",
+          "source_sha256": "c2953f81fa3fdf2886aea0cd83f3a599dda0c225f4b55aea455f200a3350fd4e",
+          "observed_at": "2026-10-01T11:01:46.343891+00:00"
+        },
+        {
+          "product_id": "nvidia-8ffd0b76b6046dbf863d",
+          "parameter_name": "cpu.memory_bandwidth",
+          "value": "Up to 768 GB/s for 960GB Up to 1024 GB/s for 240GB, 480GB",
+          "unit": "GB/s",
+          "condition": "Grace CPU Superchip; up to 768 GB/s with 960GB, up to 1024 GB/s with 240GB/480GB",
+          "source_url": "https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/",
+          "source_sha256": "c2953f81fa3fdf2886aea0cd83f3a599dda0c225f4b55aea455f200a3350fd4e",
+          "observed_at": "2026-10-01T11:01:46.343891+00:00"
+        },
+        {
+          "product_id": "nvidia-8ffd0b76b6046dbf863d",
+          "parameter_name": "cpu.memory_capacity",
+          "value": "240GB, 480GB and 960GB options available",
+          "unit": "GB",
+          "condition": "Grace CPU Superchip, LPDDR5X on-module options 240/480/960GB",
+          "source_url": "https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/",
+          "source_sha256": "c2953f81fa3fdf2886aea0cd83f3a599dda0c225f4b55aea455f200a3350fd4e",
+          "observed_at": "2026-10-01T11:01:46.343891+00:00"
+        },
+        {
+          "product_id": "nvidia-8ffd0b76b6046dbf863d",
+          "parameter_name": "cpu.pcie_links",
+          "value": "Up to 8x PCIe Gen 5x16 with option to bifurcate",
+          "unit": "",
+          "condition": "Grace CPU Superchip, up to 8x PCIe Gen5 x16, bifurcatable",
+          "source_url": "https://www.nvidia.com/en-us/data-center/grace-cpu-superchip/",
+          "source_sha256": "c2953f81fa3fdf2886aea0cd83f3a599dda0c225f4b55aea455f200a3350fd4e",
+          "observed_at": "2026-10-01T11:01:46.343891+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.gpu.operation",
+      "part_id": "gpu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-nvidia-7da9ed2d169a730c377cf384 manifest 26c9c50b72682c2b receipt 939a7b00959478aa env production; products nvidia-4ba154ab5ea81a7f23a1,nvidia-80d998af3e9a46dc6bee; sha256 0fd757b914bd2a38,13a30d78485da6d3",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "nvidia-4ba154ab5ea81a7f23a1",
+          "parameter_name": "gpu.power_consumption",
+          "value": "Up to 700W (configurable)",
+          "unit": "W",
+          "condition": "H200 SXM max TDP, up to 700W, configurable",
+          "source_url": "https://www.nvidia.com/en-us/data-center/h200/",
+          "source_sha256": "13a30d78485da6d3f8bed048e67366764c3413fa87517525fe6f01b160e99d87",
+          "observed_at": "2026-10-01T11:01:30.116884+00:00"
+        },
+        {
+          "product_id": "nvidia-80d998af3e9a46dc6bee",
+          "parameter_name": "gpu.fp4_throughput",
+          "value": "FP4 Tensor Core: 144 PFLOPS | 72 PFLOPS* FP8 Tensor Core: 72 PFLOPS**",
+          "unit": "PFLOPS",
+          "condition": "DGX B200 system (8 GPUs): FP4 Tensor Core 144 sparse | 72 dense (footnote *), FP8 Tensor Core 72 sparse (footnote **, dense is half)",
+          "source_url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+          "source_sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+          "observed_at": "2026-10-01T11:01:42.881144+00:00"
+        },
+        {
+          "product_id": "nvidia-80d998af3e9a46dc6bee",
+          "parameter_name": "gpu.gpu_count",
+          "value": "8x NVIDIA Blackwell GPUs",
+          "unit": "",
+          "condition": "DGX B200 system GPU count, for normalising the system power figure per GPU",
+          "source_url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+          "source_sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+          "observed_at": "2026-10-01T11:01:42.881144+00:00"
+        },
+        {
+          "product_id": "nvidia-80d998af3e9a46dc6bee",
+          "parameter_name": "gpu.interconnect_bandwidth",
+          "value": "14.4 TB/s aggregate bandwidth",
+          "unit": "TB/s",
+          "condition": "DGX B200 system aggregate NVLink bandwidth (8 GPUs)",
+          "source_url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+          "source_sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+          "observed_at": "2026-10-01T11:01:42.881144+00:00"
+        },
+        {
+          "product_id": "nvidia-80d998af3e9a46dc6bee",
+          "parameter_name": "gpu.memory_capacity",
+          "value": "1,440 GB total, 64 TB/s HBM3e bandwidth",
+          "unit": "GB",
+          "condition": "DGX B200 total across 8 GPUs; same cell gives 64 TB/s aggregate HBM3e bandwidth",
+          "source_url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+          "source_sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+          "observed_at": "2026-10-01T11:01:42.881144+00:00"
+        },
+        {
+          "product_id": "nvidia-80d998af3e9a46dc6bee",
+          "parameter_name": "gpu.operating_temperature",
+          "value": "10-35°C (50-90°F)",
+          "unit": "°C",
+          "condition": "DGX B200 system operating temperature range",
+          "source_url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+          "source_sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+          "observed_at": "2026-10-01T11:01:42.881144+00:00"
+        },
+        {
+          "product_id": "nvidia-80d998af3e9a46dc6bee",
+          "parameter_name": "gpu.power_consumption",
+          "value": "~14.3 kW max",
+          "unit": "kW",
+          "condition": "DGX B200 whole system (8x B200 GPUs, 2x Xeon 8570), max system power; system-level, not per GPU",
+          "source_url": "https://www.nvidia.com/en-us/data-center/dgx-b200/",
+          "source_sha256": "0fd757b914bd2a381dd0c528e1befae9ede9d722938c4194d46123755a4f3223",
+          "observed_at": "2026-10-01T11:01:42.881144+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.gpu.spec",
+      "part_id": "gpu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.nvidia.com/en-us/data-center/h200/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-nvidia-7da9ed2d169a730c377cf384 manifest 26c9c50b72682c2b receipt 939a7b00959478aa env production; products nvidia-4ba154ab5ea81a7f23a1,nvidia-798f5473c5a8cd768d94; sha256 13a30d78485da6d3,44c1bce8e2b3f168",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "nvidia-4ba154ab5ea81a7f23a1",
+          "parameter_name": "gpu.bf16_throughput",
+          "value": "1,979 TFLOPS",
+          "unit": "TFLOPS",
+          "condition": "H200 SXM, BFLOAT16 Tensor Core, with sparsity (footnote 2); preliminary spec (footnote 1)",
+          "source_url": "https://www.nvidia.com/en-us/data-center/h200/",
+          "source_sha256": "13a30d78485da6d3f8bed048e67366764c3413fa87517525fe6f01b160e99d87",
+          "observed_at": "2026-10-01T11:01:30.116884+00:00"
+        },
+        {
+          "product_id": "nvidia-4ba154ab5ea81a7f23a1",
+          "parameter_name": "gpu.form_factor",
+          "value": "SXM",
+          "unit": "",
+          "condition": "H200 SXM column",
+          "source_url": "https://www.nvidia.com/en-us/data-center/h200/",
+          "source_sha256": "13a30d78485da6d3f8bed048e67366764c3413fa87517525fe6f01b160e99d87",
+          "observed_at": "2026-10-01T11:01:30.116884+00:00"
+        },
+        {
+          "product_id": "nvidia-4ba154ab5ea81a7f23a1",
+          "parameter_name": "gpu.fp8_throughput",
+          "value": "3,958 TFLOPS",
+          "unit": "TFLOPS",
+          "condition": "H200 SXM, FP8 Tensor Core, with sparsity (footnote 2); preliminary spec (footnote 1)",
+          "source_url": "https://www.nvidia.com/en-us/data-center/h200/",
+          "source_sha256": "13a30d78485da6d3f8bed048e67366764c3413fa87517525fe6f01b160e99d87",
+          "observed_at": "2026-10-01T11:01:30.116884+00:00"
+        },
+        {
+          "product_id": "nvidia-4ba154ab5ea81a7f23a1",
+          "parameter_name": "gpu.interconnect_bandwidth",
+          "value": "NVIDIA NVLink™: 900GB/s PCIe Gen5: 128GB/s",
+          "unit": "GB/s",
+          "condition": "H200 SXM; cell lists NVLink 900GB/s and PCIe Gen5 128GB/s",
+          "source_url": "https://www.nvidia.com/en-us/data-center/h200/",
+          "source_sha256": "13a30d78485da6d3f8bed048e67366764c3413fa87517525fe6f01b160e99d87",
+          "observed_at": "2026-10-01T11:01:30.116884+00:00"
+        },
+        {
+          "product_id": "nvidia-4ba154ab5ea81a7f23a1",
+          "parameter_name": "gpu.memory_bandwidth",
+          "value": "4.8TB/s",
+          "unit": "TB/s",
+          "condition": "H200 SXM, per GPU",
+          "source_url": "https://www.nvidia.com/en-us/data-center/h200/",
+          "source_sha256": "13a30d78485da6d3f8bed048e67366764c3413fa87517525fe6f01b160e99d87",
+          "observed_at": "2026-10-01T11:01:30.116884+00:00"
+        },
+        {
+          "product_id": "nvidia-4ba154ab5ea81a7f23a1",
+          "parameter_name": "gpu.memory_capacity",
+          "value": "141GB",
+          "unit": "GB",
+          "condition": "H200 SXM (SXM column; H200 NVL also 141GB), HBM3e per GPU",
+          "source_url": "https://www.nvidia.com/en-us/data-center/h200/",
+          "source_sha256": "13a30d78485da6d3f8bed048e67366764c3413fa87517525fe6f01b160e99d87",
+          "observed_at": "2026-10-01T11:01:30.116884+00:00"
+        },
+        {
+          "product_id": "nvidia-798f5473c5a8cd768d94",
+          "parameter_name": "gpu.form_factor",
+          "value": "8x NVIDIA Blackwell Ultra SXM",
+          "unit": "",
+          "condition": "HGX B300 board (representative model on HGX page; Rubin columns not used): 8x Blackwell Ultra SXM",
+          "source_url": "https://www.nvidia.com/en-us/data-center/hgx/",
+          "source_sha256": "44c1bce8e2b3f168da3144ea5811d1848230f940b12fbdf8a79e47bc2c4a749c",
+          "observed_at": "2026-10-01T11:01:33.368774+00:00"
+        },
+        {
+          "product_id": "nvidia-798f5473c5a8cd768d94",
+          "parameter_name": "gpu.fp4_throughput",
+          "value": "144 PFLOPS | 108 PFLOPS",
+          "unit": "PFLOPS",
+          "condition": "HGX B300 8-GPU board, FP4 Tensor Core, sparse | dense (page footnote 1)",
+          "source_url": "https://www.nvidia.com/en-us/data-center/hgx/",
+          "source_sha256": "44c1bce8e2b3f168da3144ea5811d1848230f940b12fbdf8a79e47bc2c4a749c",
+          "observed_at": "2026-10-01T11:01:33.368774+00:00"
+        },
+        {
+          "product_id": "nvidia-798f5473c5a8cd768d94",
+          "parameter_name": "gpu.fp8_throughput",
+          "value": "72 PFLOPS",
+          "unit": "PFLOPS",
+          "condition": "HGX B300 8-GPU board, FP8/FP6 Tensor Core, with sparsity; dense is half (page footnote 2)",
+          "source_url": "https://www.nvidia.com/en-us/data-center/hgx/",
+          "source_sha256": "44c1bce8e2b3f168da3144ea5811d1848230f940b12fbdf8a79e47bc2c4a749c",
+          "observed_at": "2026-10-01T11:01:33.368774+00:00"
+        },
+        {
+          "product_id": "nvidia-798f5473c5a8cd768d94",
+          "parameter_name": "gpu.interconnect_bandwidth",
+          "value": "1.8 TB/s",
+          "unit": "TB/s",
+          "condition": "HGX B300, NVLink 5 GPU-to-GPU bandwidth per GPU",
+          "source_url": "https://www.nvidia.com/en-us/data-center/hgx/",
+          "source_sha256": "44c1bce8e2b3f168da3144ea5811d1848230f940b12fbdf8a79e47bc2c4a749c",
+          "observed_at": "2026-10-01T11:01:33.368774+00:00"
+        },
+        {
+          "product_id": "nvidia-798f5473c5a8cd768d94",
+          "parameter_name": "gpu.memory_capacity",
+          "value": "2.1 TB",
+          "unit": "TB",
+          "condition": "HGX B300 8-GPU board total GPU memory (all 8 GPUs combined)",
+          "source_url": "https://www.nvidia.com/en-us/data-center/hgx/",
+          "source_sha256": "44c1bce8e2b3f168da3144ea5811d1848230f940b12fbdf8a79e47bc2c4a749c",
+          "observed_at": "2026-10-01T11:01:33.368774+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.network-switch.operation",
+      "part_id": "network-switch",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-nvidia-7da9ed2d169a730c377cf384 manifest 26c9c50b72682c2b receipt 939a7b00959478aa env production; products nvidia-c31b03a84fdd833872c5; sha256 57855ccb122c6556",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "nvidia-c31b03a84fdd833872c5",
+          "parameter_name": "network_switch.input_voltage",
+          "value": "1x/2x, High Line, Rated VAC 220V-240V VAC Minimum 200 VAC Maximum 264 AC current rating 16A 210-300 VDC, 14A (Chinese model only) 50/60Hz",
+          "unit": "V",
+          "condition": "SN5600 AC input, rated 220-240 Vac (200-264 Vac), 16A; 210-300 VDC Chinese model only",
+          "source_url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+          "source_sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+          "observed_at": "2026-10-01T11:01:58.077710+00:00"
+        },
+        {
+          "product_id": "nvidia-c31b03a84fdd833872c5",
+          "parameter_name": "network_switch.operating_temperature",
+          "value": "Operational: 0° to 35°C Non-Operational: -40° to 70°C",
+          "unit": "°C",
+          "condition": "SN5600 operational 0-35°C",
+          "source_url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+          "source_sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+          "observed_at": "2026-10-01T11:01:58.077710+00:00"
+        },
+        {
+          "product_id": "nvidia-c31b03a84fdd833872c5",
+          "parameter_name": "network_switch.power_consumption",
+          "value": "Typical power with passive cables (ATIS): 940W",
+          "unit": "W",
+          "condition": "SN5600 typical power with passive cables (ATIS)",
+          "source_url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+          "source_sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+          "observed_at": "2026-10-01T11:01:58.077710+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.network-switch.spec",
+      "part_id": "network-switch",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-nvidia-7da9ed2d169a730c377cf384 manifest 26c9c50b72682c2b receipt 939a7b00959478aa env production; products nvidia-c31b03a84fdd833872c5; sha256 57855ccb122c6556",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "nvidia-c31b03a84fdd833872c5",
+          "parameter_name": "network_switch.bandwidth",
+          "value": "51.2 Tbps",
+          "unit": "Tbps",
+          "condition": "SN5600 aggregate switching throughput",
+          "source_url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+          "source_sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+          "observed_at": "2026-10-01T11:01:58.077710+00:00"
+        },
+        {
+          "product_id": "nvidia-c31b03a84fdd833872c5",
+          "parameter_name": "network_switch.dimensions",
+          "value": "3.46” (H) × 17.2’’ (W) × 28.3’’/29.3” (D) with fan levers 88mm (H) × 438mm (W) × 720mm (D) / 745mm with fan levers",
+          "unit": "mm",
+          "condition": "SN5600 2U chassis; cell gives inches then 88mm (H) x 438mm (W) x 720mm (D), 745mm with fan levers",
+          "source_url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+          "source_sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+          "observed_at": "2026-10-01T11:01:58.077710+00:00"
+        },
+        {
+          "product_id": "nvidia-c31b03a84fdd833872c5",
+          "parameter_name": "network_switch.port_count",
+          "value": "Ports #1-64: OSFP Port #65: SFP28",
+          "unit": "",
+          "condition": "SN5600: 64 OSFP ports plus 1 SFP28 port",
+          "source_url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+          "source_sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+          "observed_at": "2026-10-01T11:01:58.077710+00:00"
+        },
+        {
+          "product_id": "nvidia-c31b03a84fdd833872c5",
+          "parameter_name": "network_switch.port_speed",
+          "value": "Ports #1-64: 10/25/50/100/200/400/800G Port #65: 1G/10G/25G",
+          "unit": "Gb/s",
+          "condition": "SN5600 (representative SN5000 model): ports 1-64 up to 800G, port 65 up to 25G",
+          "source_url": "https://networking-docs.nvidia.com/sn5000hw/specifications",
+          "source_sha256": "57855ccb122c65566b8d0145df01f018c76cf0ff628d17c8ac354f70778c65e5",
+          "observed_at": "2026-10-01T11:01:58.077710+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.nic.spec",
+      "part_id": "nic",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://networking-docs.nvidia.com/connectx8hw/specifications",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-nvidia-7da9ed2d169a730c377cf384 manifest 26c9c50b72682c2b receipt 939a7b00959478aa env production; products nvidia-5de81141224defa3e55d; sha256 36a14f1135951829",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "nvidia-5de81141224defa3e55d",
+          "parameter_name": "nic.data_rate",
+          "value": "XDR/NDR/HDR/HDR100/EDR/SDR",
+          "unit": "",
+          "condition": "ConnectX-8 C8180, InfiniBand mode (default) rate names; XDR is 4 lanes x 200Gb/s per the Protocol Support row",
+          "source_url": "https://networking-docs.nvidia.com/connectx8hw/specifications",
+          "source_sha256": "36a14f113595182935543d7e45502a8570dfc63d90f9c2641e4b2f7ceff8536a",
+          "observed_at": "2026-10-01T11:01:55.820932+00:00"
+        },
+        {
+          "product_id": "nvidia-5de81141224defa3e55d",
+          "parameter_name": "nic.form_factor",
+          "value": "SuperNIC Dimensions: PCIe Half Height, Half Length 2.69 in. x 6.58 in. (68.50mm x 168.40mm)",
+          "unit": "",
+          "condition": "ConnectX-8 C8180, PCIe HHHL card",
+          "source_url": "https://networking-docs.nvidia.com/connectx8hw/specifications",
+          "source_sha256": "36a14f113595182935543d7e45502a8570dfc63d90f9c2641e4b2f7ceff8536a",
+          "observed_at": "2026-10-01T11:01:55.820932+00:00"
+        },
+        {
+          "product_id": "nvidia-5de81141224defa3e55d",
+          "parameter_name": "nic.host_interface",
+          "value": "Gen6 SERDES @ 64GT/s, x16 lanes (Gen 5 compatible)",
+          "unit": "",
+          "condition": "ConnectX-8 C8180 host interface PCIe Gen6 x16 at 64GT/s",
+          "source_url": "https://networking-docs.nvidia.com/connectx8hw/specifications",
+          "source_sha256": "36a14f113595182935543d7e45502a8570dfc63d90f9c2641e4b2f7ceff8536a",
+          "observed_at": "2026-10-01T11:01:55.820932+00:00"
+        },
+        {
+          "product_id": "nvidia-5de81141224defa3e55d",
+          "parameter_name": "nic.port_count",
+          "value": "Networking Port: Single cage OSFP InfiniBand and Ethernet",
+          "unit": "",
+          "condition": "ConnectX-8 C8180: single-cage OSFP; row carries its label and value in one cell",
+          "source_url": "https://networking-docs.nvidia.com/connectx8hw/specifications",
+          "source_sha256": "36a14f113595182935543d7e45502a8570dfc63d90f9c2641e4b2f7ceff8536a",
+          "observed_at": "2026-10-01T11:01:55.820932+00:00"
+        },
+        {
+          "product_id": "nvidia-5de81141224defa3e55d",
+          "parameter_name": "nic.port_speed",
+          "value": "400/200/100 Gb/s Ethernet",
+          "unit": "Gb/s",
+          "condition": "ConnectX-8 C8180 (900-9X81E-00EX-ST0/-DT0), Ethernet mode",
+          "source_url": "https://networking-docs.nvidia.com/connectx8hw/specifications",
+          "source_sha256": "36a14f113595182935543d7e45502a8570dfc63d90f9c2641e4b2f7ceff8536a",
+          "observed_at": "2026-10-01T11:01:55.820932+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.optics.spec",
+      "part_id": "optics",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://networking-docs.nvidia.com/mms4x00nmt800g/specifications",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-nvidia-7da9ed2d169a730c377cf384 manifest 26c9c50b72682c2b receipt 939a7b00959478aa env production; products nvidia-925400a40f3e388eaad0; sha256 fd26fcff90215af9",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "nvidia-925400a40f3e388eaad0",
+          "parameter_name": "optics.input_voltage",
+          "value": "3.3",
+          "unit": "V",
+          "condition": "MMS4X00-NM-T, power supply voltage VCC, typical",
+          "source_url": "https://networking-docs.nvidia.com/mms4x00nmt800g/specifications",
+          "source_sha256": "fd26fcff90215af9170c990bb54d44a9ff6cbe725f22250ab62ccb37119a0843",
+          "observed_at": "2026-10-01T11:02:01.387032+00:00"
+        },
+        {
+          "product_id": "nvidia-925400a40f3e388eaad0",
+          "parameter_name": "optics.operating_temperature",
+          "value": "70",
+          "unit": "°C",
+          "condition": "MMS4X00-NM-T, operating case temperature maximum (min 0 °C); from Absolute Maximum table",
+          "source_url": "https://networking-docs.nvidia.com/mms4x00nmt800g/specifications",
+          "source_sha256": "fd26fcff90215af9170c990bb54d44a9ff6cbe725f22250ab62ccb37119a0843",
+          "observed_at": "2026-10-01T11:02:01.387032+00:00"
+        },
+        {
+          "product_id": "nvidia-925400a40f3e388eaad0",
+          "parameter_name": "optics.power_consumption",
+          "value": "17",
+          "unit": "W",
+          "condition": "MMS4X00-NM-T 800G twin-port OSFP 2x400G SMF 500m, maximum power dissipation (Max column; Typ 16 W)",
+          "source_url": "https://networking-docs.nvidia.com/mms4x00nmt800g/specifications",
+          "source_sha256": "fd26fcff90215af9170c990bb54d44a9ff6cbe725f22250ab62ccb37119a0843",
+          "observed_at": "2026-10-01T11:02:01.387032+00:00"
+        },
+        {
+          "product_id": "nvidia-925400a40f3e388eaad0",
+          "parameter_name": "optics.signaling_rate",
+          "value": "53.125",
+          "unit": "GBd",
+          "condition": "MMS4X00-NM-T, signaling rate per lane, typical (PAM4)",
+          "source_url": "https://networking-docs.nvidia.com/mms4x00nmt800g/specifications",
+          "source_sha256": "fd26fcff90215af9170c990bb54d44a9ff6cbe725f22250ab62ccb37119a0843",
+          "observed_at": "2026-10-01T11:02:01.387032+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.rack-system.spec",
+      "part_id": "rack-system",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-nvidia-7da9ed2d169a730c377cf384 manifest 26c9c50b72682c2b receipt 939a7b00959478aa env production; products nvidia-2581a6bf65496ab0a579; sha256 83a7bb71ac473689",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "nvidia-2581a6bf65496ab0a579",
+          "parameter_name": "rack_system.fp8_throughput",
+          "value": "720 PFLOPS",
+          "unit": "PFLOPS",
+          "condition": "GB300 NVL72 rack, FP8/FP6 Tensor Core, with sparsity (page footnote 1: all Tensor Core specs with sparsity unless noted)",
+          "source_url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+          "source_sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+          "observed_at": "2026-10-01T11:08:51.520504+00:00"
+        },
+        {
+          "product_id": "nvidia-2581a6bf65496ab0a579",
+          "parameter_name": "rack_system.gpu_count",
+          "value": "72 NVIDIA Blackwell Ultra GPUs, 36 NVIDIA Grace CPUs",
+          "unit": "",
+          "condition": "GB300 NVL72 rack: 72 Blackwell Ultra GPUs plus 36 Grace CPUs (same cell)",
+          "source_url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+          "source_sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+          "observed_at": "2026-10-01T11:08:51.520504+00:00"
+        },
+        {
+          "product_id": "nvidia-2581a6bf65496ab0a579",
+          "parameter_name": "rack_system.interconnect_bandwidth",
+          "value": "130 TB/s",
+          "unit": "TB/s",
+          "condition": "GB300 NVL72 rack aggregate NVLink bandwidth",
+          "source_url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+          "source_sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+          "observed_at": "2026-10-01T11:08:51.520504+00:00"
+        },
+        {
+          "product_id": "nvidia-2581a6bf65496ab0a579",
+          "parameter_name": "rack_system.memory_capacity",
+          "value": "20 TB | Up to 576 TB/s",
+          "unit": "TB",
+          "condition": "GB300 NVL72 rack total GPU memory 20 TB; same cell also gives GPU memory bandwidth up to 576 TB/s",
+          "source_url": "https://www.nvidia.com/en-us/data-center/gb300-nvl72/",
+          "source_sha256": "83a7bb71ac47368970d82dde1ec7859b4506b58620f4389dd34cf5adda93d206",
+          "observed_at": "2026-10-01T11:08:51.520504+00:00"
+        }
+      ]
     }
   ]
 }
