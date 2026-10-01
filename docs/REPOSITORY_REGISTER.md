@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1035。
+在册文件：1037。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 284 |
-| 运行代码 | 215 |
+| 运行代码 | 216 |
 | 现行规范 | 13 |
 | 项目配置 | 95 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
 | 配套说明 | 63 |
-| 测试 | 103 |
+| 测试 | 104 |
 
 ## 在册记录集合
 
@@ -1129,6 +1129,7 @@
 | `src/inresearch/adapters/asset_check.py` | 运行代码 |
 | `src/inresearch/adapters/asset_compare.py` | 运行代码 |
 | `src/inresearch/adapters/asset_download.py` | 运行代码 |
+| `src/inresearch/adapters/fetchspec_projection.py` | 运行代码 |
 | `src/inresearch/adapters/gap_ocr.py` | 运行代码 |
 | `src/inresearch/adapters/historical_brief.py` | 运行代码 |
 | `src/inresearch/adapters/html_document.py` | 运行代码 |
@@ -1278,6 +1279,7 @@
 | `tests/unit/test_dropped_claims.py` | 测试 |
 | `tests/unit/test_export_fold.py` | 测试 |
 | `tests/unit/test_fact_contract.py` | 测试 |
+| `tests/unit/test_fetchspec_backflow.py` | 测试 |
 | `tests/unit/test_fetchspec_receive.py` | 测试 |
 | `tests/unit/test_file_moves.py` | 测试 |
 | `tests/unit/test_gap_ocr.py` | 测试 |
