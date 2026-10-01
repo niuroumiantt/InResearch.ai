@@ -447,6 +447,111 @@ def product_snapshot(root, product_id, company='nvidia'):
         db.close()
 
 
+# Series comparison column order: the parameters a reader compares first, then the rest in the
+# vendor's own order, packaging and status bookkeeping last.  Ordering only; labels stay verbatim.
+SERIES_FIRST = ('capacity', 'density', 'speed', 'mt/s', 'data rate', 'interface', 'form factor',
+                'module version', 'technology', 'component config', 'bus width', 'width', 'voltage',
+                'operating temp', 'package', 'pin count')
+SERIES_LAST = ('qty', 'package type', 'part status code')
+DECODED_LABELS = {'capacity': 'Capacity (decoded from part number)',
+                  'form_factor': 'Form factor (decoded from part number)'}
+
+
+def _column_rank(label, position):
+    text = label.casefold()
+    if any(key in text for key in SERIES_LAST):
+        return (2, 0, position)
+    first = next((i for i, key in enumerate(SERIES_FIRST) if key in text), None)
+    return (0, first, position) if first is not None else (1, 0, position)
+
+
+def _natural(name):
+    return [(0, int(s), '') if s.isdigit() else (1, 0, s) for s in re.split(r'(\d+)', name)]
+
+
+def series_snapshot(root, series_id, company='nvidia'):
+    """One vendor series (the directory page its parts hang from) as a comparison.
+
+    Two-column ``label | value`` part tables are pivoted into one row per part; a
+    parameter with the same value on every part is listed once as common.  Any other
+    table (e.g. a family product brief that every part shares) is kept whole and shown
+    once with the parts it applies to.  Labels and values stay verbatim.
+    """
+    if not re.fullmatch(product_id_pattern(company), series_id):
+        raise ValueError('invalid series ID')
+    path = database(root, company)
+    if not path.is_file():
+        return {'available': False, 'company_id': company, 'series': None}
+    db = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+    db.row_factory = sqlite3.Row
+    try:
+        run = db.execute('SELECT * FROM runs ORDER BY generated DESC LIMIT 1').fetchone()
+        if run is None:
+            return {'available': False, 'company_id': company, 'series': None}
+        products = [json.loads(row['payload']) for row in
+                    db.execute('SELECT payload FROM products WHERE run_id=?', (run['id'],))]
+    finally:
+        db.close()
+    value = {'available': True, 'company_id': company, 'generated_at': run['generated'],
+             'acceptance': 'source_extracted_not_research_adopted', 'series': None}
+    series = next((p for p in products if p['id'] == series_id), None)
+    if series is None:
+        return value
+    parts = sorted((p for p in products if p.get('parent_id') == series_id and p['kind'] == 'named_product'),
+                   key=lambda p: _natural(p['name']))
+    order, rows, shared = {}, [], {}
+    for part in parts:
+        values = {}
+        for key, label in DECODED_LABELS.items():
+            if (part.get('brief_decoded') or {}).get(key):
+                values[label] = str(part['brief_decoded'][key])
+        for table in part.get('tables', []):
+            # a family product brief is one series-level table every part shares, never a per-part row
+            if (table.get('rows') and part['extraction_status'] != 'family_brief_table_extracted'
+                    and all(len(r) == 2 for r in table['rows'])):
+                for label_cell, value_cell in table['rows']:
+                    label, text = label_cell['text'].strip(), value_cell['text'].strip()
+                    if label and label in values and text not in values[label].split('; '):
+                        values[label] += '; ' + text
+                    elif label:
+                        values.setdefault(label, text)
+            elif table.get('rows'):
+                table = {k: v for k, v in table.items() if k != 'text'}
+                key = hashlib.sha256(json.dumps(table['rows'], sort_keys=True).encode()).hexdigest()
+                shared.setdefault(key, {'table': table, 'part_ids': []})['part_ids'].append(part['id'])
+        for label in values:
+            order.setdefault(label, len(order))
+        rows.append({'id': part['id'], 'name': part['name'], 'part_number': part.get('part_number', ''),
+                     'official_status': part.get('official_status', ''), 'listing': part.get('listing', ''),
+                     'extraction_status': part['extraction_status'], 'source_url': part['source_url'],
+                     'values': values})
+    labels = sorted(order, key=lambda label: _column_rank(label, order[label]))
+    with_values = [r for r in rows if r['values']]
+    common = [{'label': label, 'value': with_values[0]['values'][label]} for label in labels
+              if len(with_values) > 1 and all(r['values'].get(label) == with_values[0]['values'].get(label)
+                                              for r in with_values)]
+    common_labels = {c['label'] for c in common}
+    shared_ids = {i for s in shared.values() for i in s['part_ids']}
+    def count(values):
+        result = {}
+        for item in values:
+            result[item] = result.get(item, 0) + 1
+        return dict(sorted(result.items()))
+    value['series'] = {
+        'id': series['id'], 'name': series['name'], 'category': series['category'],
+        'taxonomy': series.get('taxonomy', []), 'source_url': series['source_url'],
+        'source_sha256': series['source_sha256'], 'observed_at': series['observed_at'],
+        'navigation': classify(series, company),
+        'parts': rows, 'columns': [label for label in labels if label not in common_labels], 'common': common,
+        'shared_tables': [{**s['table'], 'part_ids': s['part_ids']} for s in shared.values()],
+        'counts': {'parts': len(rows),
+                   'with_specifications': sum(bool(r['values']) or r['id'] in shared_ids for r in rows),
+                   'by_official_status': count(r['official_status'] or 'unspecified' for r in rows),
+                   'by_listing': count(r['listing'] or 'unspecified' for r in rows)},
+    }
+    return value
+
+
 def csv_export(value, mode='products', query='', kind='', with_specs=False, group='', family='', scope='all', company=None):
     company = company or value.get('company_id') or 'nvidia'
     classifier = lambda p: classify(p, company)

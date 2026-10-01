@@ -121,6 +121,13 @@ function productHtml(p) {
 
 /* 产品目录：/api/product-catalog/<公司>?view=summary（与规格库同一份数据）；没建目录的公司返回 404，这里如实说明。 */
 const STATUS_LABEL = { delivered: "已交付", needed: "缺", sourced: "已有", assumed: "假设" };
+/* 厂商分类名的中文对照（与 product-catalog.js 同一份），原文始终并列显示。 */
+const VENDOR_ZH = { micron: {
+  memory: "内存", storage: "存储", "multichip-packages": "多芯片封装",
+  "dram-components": "DRAM 颗粒", "dram-modules": "DRAM 内存条", "lpddr-components": "LPDDR 颗粒", "lpddr-modules": "LPDDR 模组",
+  hbm: "高带宽内存 HBM", "graphics-memory": "显存 GDDR", ssd: "固态硬盘 SSD", "nand-flash": "NAND 闪存", "nor-flash": "NOR 闪存",
+  "managed-nand": "嵌入式存储", "memory-cards": "存储卡", "emmc-based-mcp": "e.MMC 多芯片封装", "nand-based-mcp": "NAND 多芯片封装", "ufs-based-mcp": "UFS 多芯片封装" } };
+const vendorLabel = (cid, id, label) => (VENDOR_ZH[cid] || {})[id] ? `${VENDOR_ZH[cid][id]} · ${label}` : label;
 function catalogHtml(cat, c) {
   const head = `<div class="bh"><h2>产品目录（官网爬取）</h2>${cat && cat.available ? `<a class="go" href="product-catalog.html?c=${encodeURIComponent(c.company_id)}">打开 ${esc(c.name)} 产品规格库 →</a>` : ""}</div>`;
   if (!cat || !cat.available) return head + `<div class="note">还没有为 ${esc(c.name)} 建立产品目录。目录按 NVIDIA 打样标准做：先从原厂官网建全量产品清单，再逐个产品取官方规格，原生参数原样入库。</div>`;
@@ -135,8 +142,8 @@ function catalogHtml(cat, c) {
       ${cov.obsolete_listed ? `<span><b>${esc(cov.obsolete_listed)}</b> 个停产型号只登记不抓规格</span>` : ""}
       ${listing.directory ? `<span><b>${esc(listing.directory)}</b> 个分类 / 系列页</span>` : ""}
       <span class="note" style="margin:0">生成于 ${esc((cat.generated_at || "").slice(0, 10))}</span></div>
-    <div class="cat-groups">${groups.map(g => `<div class="cat-group"><h3>${esc(g.label || g.id)}</h3><div class="n">${esc(g.entities)} 条 · ${esc(g.with_tables)} 有规格表</div>
-      ${(g.families || []).filter(f => f.id).sort((a, b) => b.entities - a.entities).slice(0, 8).map(f => `<div class="fam"><span>${esc(f.label || f.id)}</span><span>${esc(f.with_tables)} / ${esc(f.entities)}</span></div>`).join("")}
+    <div class="cat-groups">${groups.map(g => `<div class="cat-group"><h3>${esc(vendorLabel(c.company_id, g.id, g.label || g.id))}</h3><div class="n">${esc(g.entities)} 条 · ${esc(g.with_tables)} 有规格表</div>
+      ${(g.families || []).filter(f => f.id).sort((a, b) => b.entities - a.entities).slice(0, 8).map(f => `<div class="fam"><a href="product-catalog.html?${new URLSearchParams({ c: c.company_id, group: g.id, family: f.id })}">${esc(vendorLabel(c.company_id, f.id, f.label || f.id))}</a><span>${esc(f.with_tables)} / ${esc(f.entities)}</span></div>`).join("")}
       ${(g.families || []).filter(f => f.id).length > 8 ? `<div class="n">另有 ${(g.families || []).filter(f => f.id).length - 8} 个系列</div>` : ""}</div>`).join("")}</div>
     ${Object.keys(status).length ? `<div class="note">官网状态（厂商原文，不等于已核实在售）：${Object.entries(status).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${esc(k === "unspecified" ? "未标注" : k)} ${esc(v)}`).join(" · ")}</div>` : ""}
     ${single.length ? `<div class="note">其他官网分类页（只有页面、没有型号）：${single.map(g => esc(g.label || g.id)).join(" · ")}</div>` : ""}

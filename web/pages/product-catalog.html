@@ -20,6 +20,13 @@ html[data-ui-skin] #groups button[aria-pressed=true],html[data-ui-skin] #familie
 html[data-ui-skin] #groups.vendor{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
 #company-switch{display:flex;flex-wrap:wrap;gap:.4rem;margin:.4rem 0 1rem}#company-switch a{padding:.35rem .8rem;border:1px solid var(--ui-line);text-decoration:none;color:inherit}#company-switch a[aria-current=page]{border-color:var(--ui-accent);box-shadow:inset 0 -2px var(--ui-accent)}
 #coverage-line{font-size:.92rem;margin:.3rem 0}#coverage-line:empty{display:none}
+/* Vendor series: one comparison table per official series page. */
+#detail .series-table td,#detail .series-table th,#detail .series-common td,#detail .series-common th{min-width:0;white-space:nowrap;padding:.45rem .6rem}
+#detail .series-table thead th{position:sticky;top:0;z-index:1}#detail .series-table tbody th{position:sticky;left:0;background:var(--ui-surface,var(--surface2))}
+#detail .series-table .table-wrap,#detail .table-wrap:has(.series-table){max-height:70vh}
+html[data-ui-skin] #detail .part-link,html[data-ui-skin] #back-series{all:unset;cursor:pointer;color:var(--ui-accent);text-decoration:underline;font-family:ui-monospace,monospace;font-size:.85rem}
+html[data-ui-skin] #back-series{font-family:inherit;font-size:.9rem;display:inline-block;margin-bottom:.8rem}
+.series-parts{columns:2;font-size:.9rem;line-height:1.8}@media(max-width:700px){.series-parts{columns:1}}
 @media(max-width:700px){html[data-ui-skin] #groups{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups.vendor{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups button{min-height:72px}.products{max-height:240px}#detail{border-left:0;border-top:1px solid var(--ui-line);padding:1rem 0 0}.controls input[type=search]{min-width:0;width:100%}#families{gap:.35rem}}
 </style><link rel="stylesheet" href="/assets/site-skin.css"></head>
 <body><inresearch-shell data-section="bom"></inresearch-shell><main>

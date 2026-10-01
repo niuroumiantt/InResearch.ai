@@ -234,6 +234,48 @@ class ProductCatalogCompanyTests(unittest.TestCase):
         self.assertEqual(len(nvidia['navigation']['groups']), 5)
         self.assertEqual(nvidia['summary']['specification_coverage']['named_products'], {'with_tables': 1, 'total': 1})
 
+    def test_micron_series_comparison(self):
+        data = micron_bundle()
+        rdimm_series, rdimm, old = data['products'][1], data['products'][2], data['products'][4]
+        rdimm['parent_id'] = old['parent_id'] = rdimm_series['id']
+        twin = copy.deepcopy(rdimm)
+        twin.update(id='micron-' + '6' * 20, name='DDR5 RDIMM 32GB', part_number='MTC10F1084S1RC48BA1')
+        twin['tables'][0]['rows'] = [[cell('Density'), cell('32GB')], [cell('Speed'), cell('4800 MT/s')]]
+        brief = {'index': 1, 'section': 'Key specifications (product brief)', 'rows': [
+            [cell('SSD capacity'), cell('30.72TB | 61.44TB')], [cell('Interface'), cell('PCIe Gen5 1x4')]]}
+        ssd_series = copy.deepcopy(data['products'][0])
+        ssd_series.update(id='micron-' + '7' * 20, name='6600 ION', category='Storage / Data Center SSDs / 6600 ION',
+                          taxonomy=[STORAGE, SSD, {'slug': '6600-ion', 'name': '6600 ION'}])
+        ion = [copy.deepcopy(data['products'][3]) for _ in range(2)]
+        for n, (part, capacity) in enumerate(zip(ion, ('30.72TB', '61.44TB'))):
+            part.update(id='micron-' + str(8 + n) * 20, name=f'MTFDLAL{n}QHF', parent_id=ssd_series['id'],
+                        extraction_status='family_brief_table_extracted', tables=[copy.deepcopy(brief)],
+                        brief_decoded={'capacity': capacity, 'form_factor': 'U.2 (15mm)', 'basis': 'brief'})
+        data['products'] += [twin, ssd_series, *ion]
+        catalog.receive(self.root, data, 'micron')
+
+        series = catalog.series_snapshot(self.root, rdimm_series['id'], 'micron')['series']
+        self.assertEqual([p['name'] for p in series['parts']], ['DDR4 RDIMM 32GB', 'DDR5 RDIMM 32GB', 'DDR5 RDIMM 64GB'])
+        self.assertEqual(series['common'], [{'label': 'Speed', 'value': '4800 MT/s'}])
+        self.assertEqual(series['columns'], ['Density'])
+        self.assertEqual([p['values'].get('Density') for p in series['parts']], [None, '32GB', '64GB'])
+        self.assertEqual(series['counts']['parts'], 3)
+        self.assertEqual(series['counts']['with_specifications'], 2)
+        self.assertEqual(series['counts']['by_listing'], {'active': 2, 'obsolete': 1})
+        self.assertEqual(series['navigation']['family'], 'dram-modules')
+
+        # a family product brief every part shares is shown once, never pivoted into per-part values
+        series = catalog.series_snapshot(self.root, ssd_series['id'], 'micron')['series']
+        self.assertEqual(len(series['shared_tables']), 1)
+        self.assertEqual(len(series['shared_tables'][0]['part_ids']), 2)
+        self.assertEqual(series['columns'], ['Capacity (decoded from part number)'])
+        self.assertEqual(series['common'], [{'label': 'Form factor (decoded from part number)', 'value': 'U.2 (15mm)'}])
+        self.assertEqual(series['counts']['with_specifications'], 2)
+
+        self.assertIsNone(catalog.series_snapshot(self.root, 'micron-' + 'f' * 20, 'micron')['series'])
+        with self.assertRaisesRegex(ValueError, 'invalid'):
+            catalog.series_snapshot(self.root, 'nvidia-' + 'a' * 20, 'micron')
+
     def test_micron_product_snapshot_and_csv(self):
         catalog.receive(self.root, micron_bundle(), 'micron')
         detail = catalog.product_snapshot(self.root, 'micron-' + '3' * 20, 'micron')
@@ -301,6 +343,10 @@ class ProductCatalogCompanyTests(unittest.TestCase):
                 summary = json.loads(raw)
                 self.assertEqual((status, summary['view'], 'products' in summary), (200, 'summary', False))
                 self.assertEqual(summary['summary']['entities'], 5)
+                status, raw, _ = request('GET', '/api/product-catalog/micron?series_id=micron-' + '2' * 20)
+                self.assertEqual((status, json.loads(raw)['series']['name']), (200, 'DRAM Modules'))
+                self.assertEqual(request('GET', '/api/product-catalog/micron?series_id=micron-' + 'f' * 20)[0], 404)
+                self.assertEqual(request('GET', '/api/product-catalog/micron?series_id=../x')[0], 400)
                 self.assertTrue(summary['research_alignment']['targets'])
                 status, raw, _ = request('GET', '/api/product-catalog/micron?view=index')
                 index = json.loads(raw)

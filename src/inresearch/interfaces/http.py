@@ -318,6 +318,15 @@ class Handler(SimpleHTTPRequestHandler):
                 if value['product'] is None:
                     return self._json(404, {'error': 'product not found'})
                 return self._json(200, value)
+            series_id = query.get('series_id', [''])[0]
+            if series_id:  # one vendor series: its parts pivoted into a comparison table
+                try:
+                    value = product_catalog.series_snapshot(ROOT, series_id, company)
+                except ValueError as exc:
+                    return self._json(400, {'error': str(exc)})
+                if value['available'] and value['series'] is None:
+                    return self._json(404, {'error': 'series not found'})
+                return self._json(200, value)
             view = query.get('view', ['full'])[0]
             if view == 'index':
                 return self._json(200, product_catalog.index_snapshot(ROOT, company))
