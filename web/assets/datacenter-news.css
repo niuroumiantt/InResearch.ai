@@ -10,3 +10,8 @@
 .dc-news article a{display:block;color:var(--text);font-size:14px;line-height:1.65;overflow-wrap:anywhere}.dc-news article small{display:block;margin-top:4px}.dc-news a:hover{text-decoration:underline}.dc-news-list:focus-visible{outline:2px solid var(--text);outline-offset:3px}
 
 .dc-news article+article .dc-news-content::after{content:"";position:absolute;top:0;left:16px;right:0;height:1px;background:var(--line);opacity:.25;pointer-events:none}
+
+/* 研究员的线索评价按钮(2026-10-01):只在内部成员登录后出现 */
+.dc-news-mark{display:inline-flex;gap:4px;margin-left:8px;vertical-align:middle}
+.dc-news-mark button{font:inherit;font-size:11px;line-height:1.4;padding:1px 6px;border:1px solid var(--line,#ccc);border-radius:4px;background:none;color:inherit;cursor:pointer;opacity:.7}
+.dc-news-mark button[aria-pressed="true"]{opacity:1;background:var(--accent-soft,#e8f0ff);border-color:var(--accent,#2f6fde)}
