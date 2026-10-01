@@ -2,6 +2,10 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-10-01：fetchspec 仓库架构页上线 `/admin/fetchspec/reporg.html`
+
+每个仓库一页「仓库架构」（reporg），命名与地址统一：有自己域名的放 `/admin/reporg.html`（如 inews.today），采集队仓库放 `inresearch.ai/admin/<仓库>/reporg.html`。约定原文在 niuroumiantt/inews.today 的 `docs/reporg.md`。fetchspec 的页由该仓库 `scripts/reporg.py` 从子命令、厂商档案、规则与本仓库 `framework/tco_targets.json` 中 team == fetchspec 的行生成，原样复制到 `web/pages/admin/fetchspec/reporg.html`；`web/routes.json` 加一条路由，`interface_manifest.json` 的 `excluded_pages` 登记为自包含、不接入站点外观的独立页（审阅指纹已由站长签入 `verification_contract.json`）。更新方式：fetchspec 重生成后复制覆盖本文件。其余四个采集队（fetchstat / fetchfilings / fetchreports / fetchquotes）待各自仓库就位后照此接入。
+
 ## 2026-09-29：新闻同步单页读超时 40 秒放到 120 秒
 
 Spark 上 `inresearch-news.service` 2026-09-29 11:10 因读超时失败；从 Spark 实测 `/api/feeds/datacenter?hours=168&limit=100` 首页 2.6–7.2 秒且波动大，深分页更慢。`news_sync` 单页读超时从 40 秒放到 120 秒（环境变量 `INRESEARCH_NEWS_READ_TIMEOUT` 可调），整次同步仍受 systemd 30 分钟上限约束。深分页查询本身的快慢交 inews.today 侧（批次 D 子会话）。
