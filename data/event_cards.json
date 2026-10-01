@@ -15,7 +15,49 @@
       "note": "fetchspec fetchspec-micron-f7468d67241a19ba70e59789 manifest 0b3746c7047b4b86 receipt 2267be694d8f3298 env production; products micron-52d542752ea687682b78; sha256 246316340d9ed44a,87aab796aa801766",
       "imported_at": "2026-10-01",
       "imported_by": "m5",
-      "source": "assignments.register_delivery"
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "micron-52d542752ea687682b78",
+          "parameter_name": "dram.data_rate",
+          "value": "6400MTPS",
+          "unit": "MT/s",
+          "condition": "MTC40F2046S1RC64BH1 DDR5 RDIMM",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/dram-modules/rdimm/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtc40f2046s1rc64bh1",
+          "source_sha256": "246316340d9ed44a68c63bb4fcbea89fc1bd3b31b213d59e447b0e20207839dd",
+          "observed_at": "2026-10-01T07:45:53.294252+00:00"
+        },
+        {
+          "product_id": "micron-52d542752ea687682b78",
+          "parameter_name": "dram.io_voltage",
+          "value": "1.1 VOLTS",
+          "unit": "V",
+          "condition": "MTC40F2046S1RC64BH1 DDR5 RDIMM",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/dram-modules/rdimm/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtc40f2046s1rc64bh1",
+          "source_sha256": "246316340d9ed44a68c63bb4fcbea89fc1bd3b31b213d59e447b0e20207839dd",
+          "observed_at": "2026-10-01T07:45:53.294252+00:00"
+        },
+        {
+          "product_id": "micron-52d542752ea687682b78",
+          "parameter_name": "dram.module_capacity",
+          "value": "64GB",
+          "unit": "GB",
+          "condition": "MTC40F2046S1RC64BH1 DDR5 RDIMM",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/dram-modules/rdimm/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtc40f2046s1rc64bh1",
+          "source_sha256": "246316340d9ed44a68c63bb4fcbea89fc1bd3b31b213d59e447b0e20207839dd",
+          "observed_at": "2026-10-01T07:45:53.294252+00:00"
+        },
+        {
+          "product_id": "micron-52d542752ea687682b78",
+          "parameter_name": "dram.module_type",
+          "value": "RDIMM",
+          "unit": "",
+          "condition": "MTC40F2046S1RC64BH1",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/dram-modules/rdimm/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtc40f2046s1rc64bh1",
+          "source_sha256": "246316340d9ed44a68c63bb4fcbea89fc1bd3b31b213d59e447b0e20207839dd",
+          "observed_at": "2026-10-01T07:45:53.294252+00:00"
+        }
+      ]
     },
     {
       "target_id": "P.hbm.spec",
@@ -29,7 +71,39 @@
       "note": "fetchspec fetchspec-micron-f7468d67241a19ba70e59789 manifest 0b3746c7047b4b86 receipt 2267be694d8f3298 env production; products micron-3216e9c5c1fa318ac27c; sha256 b5e284379e3c6277,c9e053abd5e61ec8",
       "imported_at": "2026-10-01",
       "imported_by": "m5",
-      "source": "assignments.register_delivery"
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "micron-3216e9c5c1fa318ac27c",
+          "parameter_name": "hbm.data_rate",
+          "value": "9.2GTPS",
+          "unit": "GT/s",
+          "condition": "per pin, MT65B18G16120A00QH-92:A",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/hbm/hbm3e/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mt65b18g16120a00qh-92-a",
+          "source_sha256": "b5e284379e3c6277a6563a5eed548a260b724304354a6f733c8304f36adfa757",
+          "observed_at": "2026-10-01T07:45:46.797353+00:00"
+        },
+        {
+          "product_id": "micron-3216e9c5c1fa318ac27c",
+          "parameter_name": "hbm.io_voltage",
+          "value": "1.1 VOLTS",
+          "unit": "V",
+          "condition": "I/O supply, MT65B18G16120A00QH-92:A",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/hbm/hbm3e/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mt65b18g16120a00qh-92-a",
+          "source_sha256": "b5e284379e3c6277a6563a5eed548a260b724304354a6f733c8304f36adfa757",
+          "observed_at": "2026-10-01T07:45:46.797353+00:00"
+        },
+        {
+          "product_id": "micron-3216e9c5c1fa318ac27c",
+          "parameter_name": "hbm.stack_capacity",
+          "value": "36GB",
+          "unit": "GB",
+          "condition": "MT65B18G16120A00QH-92:A, 12-high HBM3E stack, Micron part component",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/memory/hbm/hbm3e/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mt65b18g16120a00qh-92-a",
+          "source_sha256": "b5e284379e3c6277a6563a5eed548a260b724304354a6f733c8304f36adfa757",
+          "observed_at": "2026-10-01T07:45:46.797353+00:00"
+        }
+      ]
     },
     {
       "target_id": "P.ssd.spec",
@@ -43,7 +117,1905 @@
       "note": "fetchspec fetchspec-micron-f7468d67241a19ba70e59789 manifest 0b3746c7047b4b86 receipt 2267be694d8f3298 env production; products micron-818edd7db301e08af9ad; sha256 0dcf161461746e6d,369db2887246d1cf",
       "imported_at": "2026-10-01",
       "imported_by": "m5",
-      "source": "assignments.register_delivery"
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "micron-818edd7db301e08af9ad",
+          "parameter_name": "ssd.capacity",
+          "value": "15360GB",
+          "unit": "GB",
+          "condition": "MTFDLBQ15T3THA-1BK1JABYY, 9550 PRO",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/storage/ssd/data-center-ssd/9550-ssd/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtfdlbq15t3tha-1bk1jabyy",
+          "source_sha256": "0dcf161461746e6d25e4643268b7f147de06f22e4d6ab7b6988c11ed8b3cc1b4",
+          "observed_at": "2026-10-01T07:46:09.914325+00:00"
+        },
+        {
+          "product_id": "micron-818edd7db301e08af9ad",
+          "parameter_name": "ssd.form_factor",
+          "value": "E3.S",
+          "unit": "",
+          "condition": "MTFDLBQ15T3THA-1BK1JABYY",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/storage/ssd/data-center-ssd/9550-ssd/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtfdlbq15t3tha-1bk1jabyy",
+          "source_sha256": "0dcf161461746e6d25e4643268b7f147de06f22e4d6ab7b6988c11ed8b3cc1b4",
+          "observed_at": "2026-10-01T07:46:09.914325+00:00"
+        },
+        {
+          "product_id": "micron-818edd7db301e08af9ad",
+          "parameter_name": "ssd.interface_bandwidth",
+          "value": "12 GB/s",
+          "unit": "GB/s",
+          "condition": "MTFDLBQ15T3THA-1BK1JABYY, as listed by Micron",
+          "source_url": "https://www.micron.com/content/micron/us/en/products/storage/ssd/data-center-ssd/9550-ssd/part-catalog/part-detail/_jcr_content.products.json/getproductinfo/-/-/-/en_US/-/mtfdlbq15t3tha-1bk1jabyy",
+          "source_sha256": "0dcf161461746e6d25e4643268b7f147de06f22e4d6ab7b6988c11ed8b3cc1b4",
+          "observed_at": "2026-10-01T07:46:09.914325+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.bbu.operation",
+      "part_id": "bbu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/7-min-eol-runtime-10-module/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-2c8f4e685d0d29ab9e7f; sha256 d169cca27af20f44",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-2c8f4e685d0d29ab9e7f",
+          "parameter_name": "bbu.energy_capacity",
+          "value": "20.4 kWh - 34.6 kWh",
+          "unit": "kWh",
+          "condition": "EnergyCore Li7 cabinet; vendor labels this row Output Voltage Range; value is energy",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/7-min-eol-runtime-10-module/",
+          "source_sha256": "d169cca27af20f448c747f48f46c2caf17e4941b9b2fc0b96a4d964798ba47ec",
+          "observed_at": "2026-10-01T10:33:11.277758+00:00"
+        },
+        {
+          "product_id": "vertiv-2c8f4e685d0d29ab9e7f",
+          "parameter_name": "bbu.operating_temperature",
+          "value": "18°C to 28°C",
+          "unit": "°C",
+          "condition": "EnergyCore Li7 cabinet, operating ambient",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/7-min-eol-runtime-10-module/",
+          "source_sha256": "d169cca27af20f448c747f48f46c2caf17e4941b9b2fc0b96a4d964798ba47ec",
+          "observed_at": "2026-10-01T10:33:11.277758+00:00"
+        },
+        {
+          "product_id": "vertiv-2c8f4e685d0d29ab9e7f",
+          "parameter_name": "bbu.power_rating",
+          "value": "108 kW - 183.6 kW",
+          "unit": "kW",
+          "condition": "EnergyCore Li7 lithium-ion battery cabinet, range across cabinet configurations",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/7-min-eol-runtime-10-module/",
+          "source_sha256": "d169cca27af20f448c747f48f46c2caf17e4941b9b2fc0b96a4d964798ba47ec",
+          "observed_at": "2026-10-01T10:33:11.277758+00:00"
+        },
+        {
+          "product_id": "vertiv-2c8f4e685d0d29ab9e7f",
+          "parameter_name": "bbu.weight",
+          "value": "443-582 kg",
+          "unit": "kg",
+          "condition": "EnergyCore Li7 cabinet, range across configurations (lbs duplicate in row 5)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/7-min-eol-runtime-10-module/",
+          "source_sha256": "d169cca27af20f448c747f48f46c2caf17e4941b9b2fc0b96a4d964798ba47ec",
+          "observed_at": "2026-10-01T10:33:11.277758+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.cdu.operation",
+      "part_id": "cdu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu-600/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-5cbbb59857497fa0e6ff; sha256 4e2ac7d74159790a",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-5cbbb59857497fa0e6ff",
+          "parameter_name": "cdu.cooling_capacity",
+          "value": "600 kW at 7.2⁰F (4⁰C) approach temperature difference",
+          "unit": "kW",
+          "condition": "CoolChip CDU 600 liquid-to-liquid, net sensible nominal at 4°C approach temperature difference; vendor label says kBtuh[kW] but value is given in kW only; vendor writes a superscript zero instead of a degree sign",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu-600/",
+          "source_sha256": "4e2ac7d74159790a91e8c5c1c4c2dbb58a81c423fa66438c866cb4172c5bd083",
+          "observed_at": "2026-10-01T10:31:04.666002+00:00"
+        },
+        {
+          "product_id": "vertiv-5cbbb59857497fa0e6ff",
+          "parameter_name": "cdu.depth",
+          "value": "1200 mm",
+          "unit": "mm",
+          "condition": "CoolChip CDU 600 (inch duplicate in row 12)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu-600/",
+          "source_sha256": "4e2ac7d74159790a91e8c5c1c4c2dbb58a81c423fa66438c866cb4172c5bd083",
+          "observed_at": "2026-10-01T10:31:04.666002+00:00"
+        },
+        {
+          "product_id": "vertiv-5cbbb59857497fa0e6ff",
+          "parameter_name": "cdu.height",
+          "value": "2000 mm",
+          "unit": "mm",
+          "condition": "CoolChip CDU 600 (inch duplicate in row 8)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu-600/",
+          "source_sha256": "4e2ac7d74159790a91e8c5c1c4c2dbb58a81c423fa66438c866cb4172c5bd083",
+          "observed_at": "2026-10-01T10:31:04.666002+00:00"
+        },
+        {
+          "product_id": "vertiv-5cbbb59857497fa0e6ff",
+          "parameter_name": "cdu.width",
+          "value": "600 mm",
+          "unit": "mm",
+          "condition": "CoolChip CDU 600 (inch duplicate in row 10)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu-600/",
+          "source_sha256": "4e2ac7d74159790a91e8c5c1c4c2dbb58a81c423fa66438c866cb4172c5bd083",
+          "observed_at": "2026-10-01T10:31:04.666002+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.cdu.spec",
+      "part_id": "cdu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-47ed68bedcb4b7a990d1; sha256 94e2b83143fd927b",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-47ed68bedcb4b7a990d1",
+          "parameter_name": "cdu.cooling_capacity",
+          "value": "2300 kW at 7.2°F (4⁰C) ATD",
+          "unit": "kW",
+          "condition": "CoolChip CDU 2300 (largest of family table), at 7.2°F (4°C) approach temperature difference; vendor writes a superscript zero instead of a degree sign",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu/",
+          "source_sha256": "94e2b83143fd927b28e2c8b553ed6ca13db18f19b87687f3ff5f6b267f29514f",
+          "observed_at": "2026-10-01T10:30:45.486756+00:00"
+        },
+        {
+          "product_id": "vertiv-47ed68bedcb4b7a990d1",
+          "parameter_name": "cdu.depth",
+          "value": "48 in",
+          "unit": "in",
+          "condition": "CoolChip CDU 2300",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu/",
+          "source_sha256": "94e2b83143fd927b28e2c8b553ed6ca13db18f19b87687f3ff5f6b267f29514f",
+          "observed_at": "2026-10-01T10:30:45.486756+00:00"
+        },
+        {
+          "product_id": "vertiv-47ed68bedcb4b7a990d1",
+          "parameter_name": "cdu.form_factor",
+          "value": "In-Row",
+          "unit": "",
+          "condition": "CoolChip CDU 2300, placement",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu/",
+          "source_sha256": "94e2b83143fd927b28e2c8b553ed6ca13db18f19b87687f3ff5f6b267f29514f",
+          "observed_at": "2026-10-01T10:30:45.486756+00:00"
+        },
+        {
+          "product_id": "vertiv-47ed68bedcb4b7a990d1",
+          "parameter_name": "cdu.heat_exchange_type",
+          "value": "Liquid-to-Liquid",
+          "unit": "",
+          "condition": "CoolChip CDU 2300",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu/",
+          "source_sha256": "94e2b83143fd927b28e2c8b553ed6ca13db18f19b87687f3ff5f6b267f29514f",
+          "observed_at": "2026-10-01T10:30:45.486756+00:00"
+        },
+        {
+          "product_id": "vertiv-47ed68bedcb4b7a990d1",
+          "parameter_name": "cdu.height",
+          "value": "94.5 in",
+          "unit": "in",
+          "condition": "CoolChip CDU 2300",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu/",
+          "source_sha256": "94e2b83143fd927b28e2c8b553ed6ca13db18f19b87687f3ff5f6b267f29514f",
+          "observed_at": "2026-10-01T10:30:45.486756+00:00"
+        },
+        {
+          "product_id": "vertiv-47ed68bedcb4b7a990d1",
+          "parameter_name": "cdu.width",
+          "value": "48 in",
+          "unit": "in",
+          "condition": "CoolChip CDU 2300",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-coolchip-cdu/",
+          "source_sha256": "94e2b83143fd927b28e2c8b553ed6ca13db18f19b87687f3ff5f6b267f29514f",
+          "observed_at": "2026-10-01T10:30:45.486756+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.chiller.spec",
+      "part_id": "chiller",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/thermal-management/free-cooling-chillers/ff3175/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-79985e4665f8b9fc7ed2; sha256 4fb99c61c1db89be",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-79985e4665f8b9fc7ed2",
+          "parameter_name": "chiller.chiller_type",
+          "value": "Direct Free Cooling - Full Inverter Screw",
+          "unit": "",
+          "condition": "FF3175 version",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/free-cooling-chillers/ff3175/",
+          "source_sha256": "4fb99c61c1db89bed45a225944e7ff7c71f8d427b15fc7f410c5ca1ab0ab07d8",
+          "observed_at": "2026-10-01T10:32:14.673350+00:00"
+        },
+        {
+          "product_id": "vertiv-79985e4665f8b9fc7ed2",
+          "parameter_name": "chiller.cooling_capacity",
+          "value": "565 tons | 1987 kW",
+          "unit": "kW",
+          "condition": "FF3175 total nominal capacity; cell gives 565 tons | 1987 kW; vendor label says kBtuh [kW] but value is in tons and kW",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/free-cooling-chillers/ff3175/",
+          "source_sha256": "4fb99c61c1db89bed45a225944e7ff7c71f8d427b15fc7f410c5ca1ab0ab07d8",
+          "observed_at": "2026-10-01T10:32:14.673350+00:00"
+        },
+        {
+          "product_id": "vertiv-79985e4665f8b9fc7ed2",
+          "parameter_name": "chiller.depth",
+          "value": "13386 mm",
+          "unit": "mm",
+          "condition": "FF3175 unit length as printed (inch duplicate 527 in in row 7)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/free-cooling-chillers/ff3175/",
+          "source_sha256": "4fb99c61c1db89bed45a225944e7ff7c71f8d427b15fc7f410c5ca1ab0ab07d8",
+          "observed_at": "2026-10-01T10:32:14.673350+00:00"
+        },
+        {
+          "product_id": "vertiv-79985e4665f8b9fc7ed2",
+          "parameter_name": "chiller.height",
+          "value": "2896 mm",
+          "unit": "mm",
+          "condition": "FF3175 (inch duplicate in row 3)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/free-cooling-chillers/ff3175/",
+          "source_sha256": "4fb99c61c1db89bed45a225944e7ff7c71f8d427b15fc7f410c5ca1ab0ab07d8",
+          "observed_at": "2026-10-01T10:32:14.673350+00:00"
+        },
+        {
+          "product_id": "vertiv-79985e4665f8b9fc7ed2",
+          "parameter_name": "chiller.width",
+          "value": "2362 mm",
+          "unit": "mm",
+          "condition": "FF3175 (inch duplicate in row 5)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/free-cooling-chillers/ff3175/",
+          "source_sha256": "4fb99c61c1db89bed45a225944e7ff7c71f8d427b15fc7f410c5ca1ab0ab07d8",
+          "observed_at": "2026-10-01T10:32:14.673350+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.modular-dc.spec",
+      "part_id": "modular-dc",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/integrated-solutions/smartmod-max/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-f215655d97d0c27624ab; sha256 f487ac0ade4fc4c3",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-f215655d97d0c27624ab",
+          "parameter_name": "modular_dc.height",
+          "value": "3330mm (enclosure)",
+          "unit": "mm",
+          "condition": "SmartMod Max enclosure (inch duplicate in row 15); no depth listed on page",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/integrated-solutions/smartmod-max/",
+          "source_sha256": "f487ac0ade4fc4c31e36f2f20ba0ac45530b035480bf41e8d124c7237face0f5",
+          "observed_at": "2026-10-01T10:32:51.148100+00:00"
+        },
+        {
+          "product_id": "vertiv-f215655d97d0c27624ab",
+          "parameter_name": "modular_dc.input_voltage",
+          "value": "480 VAC, 60 Hz",
+          "unit": "V",
+          "condition": "SmartMod Max, utility input 480 VAC 60 Hz",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/integrated-solutions/smartmod-max/",
+          "source_sha256": "f487ac0ade4fc4c31e36f2f20ba0ac45530b035480bf41e8d124c7237face0f5",
+          "observed_at": "2026-10-01T10:32:51.148100+00:00"
+        },
+        {
+          "product_id": "vertiv-f215655d97d0c27624ab",
+          "parameter_name": "modular_dc.operating_temperature",
+          "value": "-30°C to +50°C",
+          "unit": "°C",
+          "condition": "SmartMod Max enclosure, operating ambient",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/integrated-solutions/smartmod-max/",
+          "source_sha256": "f487ac0ade4fc4c31e36f2f20ba0ac45530b035480bf41e8d124c7237face0f5",
+          "observed_at": "2026-10-01T10:32:51.148100+00:00"
+        },
+        {
+          "product_id": "vertiv-f215655d97d0c27624ab",
+          "parameter_name": "modular_dc.power_rating",
+          "value": "100, 150, 200 kW",
+          "unit": "kW",
+          "condition": "SmartMod Max modular data center, UPS/IT rating options 100, 150 or 200 kW",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/integrated-solutions/smartmod-max/",
+          "source_sha256": "f487ac0ade4fc4c31e36f2f20ba0ac45530b035480bf41e8d124c7237face0f5",
+          "observed_at": "2026-10-01T10:32:51.148100+00:00"
+        },
+        {
+          "product_id": "vertiv-f215655d97d0c27624ab",
+          "parameter_name": "modular_dc.rack_count",
+          "value": "SmartMod Max DX: Up to 26; SmartMod Max CW: Up to 24",
+          "unit": "",
+          "condition": "SmartMod Max, IT racks per variant (DX up to 26, CW up to 24)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/integrated-solutions/smartmod-max/",
+          "source_sha256": "f487ac0ade4fc4c31e36f2f20ba0ac45530b035480bf41e8d124c7237face0f5",
+          "observed_at": "2026-10-01T10:32:51.148100+00:00"
+        },
+        {
+          "product_id": "vertiv-f215655d97d0c27624ab",
+          "parameter_name": "modular_dc.width",
+          "value": "5810mm (enclosure)",
+          "unit": "mm",
+          "condition": "SmartMod Max enclosure (inch duplicate in row 17)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/integrated-solutions/smartmod-max/",
+          "source_sha256": "f487ac0ade4fc4c31e36f2f20ba0ac45530b035480bf41e8d124c7237face0f5",
+          "observed_at": "2026-10-01T10:32:51.148100+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.pdu.operation",
+      "part_id": "pdu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-latam/products-catalog/critical-power/power-distribution/vertiv-monitored-rack-pdu/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-dd3a2cce0af89fb09f94; sha256 830cd862e0a8f9eb",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-dd3a2cce0af89fb09f94",
+          "parameter_name": "pdu.input_voltage",
+          "value": "200-240V DELTA",
+          "unit": "V",
+          "condition": "PowerIT Monitored rPDU VP4N60AE, three-phase DELTA input",
+          "source_url": "https://www.vertiv.com/en-latam/products-catalog/critical-power/power-distribution/vertiv-monitored-rack-pdu/",
+          "source_sha256": "830cd862e0a8f9eb74a659316f26eac92ff6e18adab33273bd1effe0bd23e7f2",
+          "observed_at": "2026-10-01T10:30:08.287627+00:00"
+        },
+        {
+          "product_id": "vertiv-dd3a2cce0af89fb09f94",
+          "parameter_name": "pdu.outlet_configuration",
+          "value": "Combination C13/C19 (30)",
+          "unit": "",
+          "condition": "PowerIT Monitored rPDU VP4N60AE, outlet types and count",
+          "source_url": "https://www.vertiv.com/en-latam/products-catalog/critical-power/power-distribution/vertiv-monitored-rack-pdu/",
+          "source_sha256": "830cd862e0a8f9eb74a659316f26eac92ff6e18adab33273bd1effe0bd23e7f2",
+          "observed_at": "2026-10-01T10:30:08.287627+00:00"
+        },
+        {
+          "product_id": "vertiv-dd3a2cce0af89fb09f94",
+          "parameter_name": "pdu.rated_current",
+          "value": "60A",
+          "unit": "A",
+          "condition": "PowerIT Monitored rPDU VP4N60AE, 200-240V DELTA three-phase, vertical (largest: 60A)",
+          "source_url": "https://www.vertiv.com/en-latam/products-catalog/critical-power/power-distribution/vertiv-monitored-rack-pdu/",
+          "source_sha256": "830cd862e0a8f9eb74a659316f26eac92ff6e18adab33273bd1effe0bd23e7f2",
+          "observed_at": "2026-10-01T10:30:08.287627+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.pdu.spec",
+      "part_id": "pdu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/critical-power/power-distribution/vertiv-geist-switched-rack-pdu/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-71e3368af8abd2ca8364; sha256 5f48dd8eef7cddc4",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-71e3368af8abd2ca8364",
+          "parameter_name": "pdu.depth",
+          "value": "2.6in",
+          "unit": "in",
+          "condition": "PowerIT Switched rPDU VP7N30AQ",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/power-distribution/vertiv-geist-switched-rack-pdu/",
+          "source_sha256": "5f48dd8eef7cddc499bf80b578efcef4b231f6ac7d989bb395faeaf15bae4ebb",
+          "observed_at": "2026-10-01T10:29:50.230628+00:00"
+        },
+        {
+          "product_id": "vertiv-71e3368af8abd2ca8364",
+          "parameter_name": "pdu.height",
+          "value": "72in",
+          "unit": "in",
+          "condition": "PowerIT Switched rPDU VP7N30AQ, vertical 0U strip length",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/power-distribution/vertiv-geist-switched-rack-pdu/",
+          "source_sha256": "5f48dd8eef7cddc499bf80b578efcef4b231f6ac7d989bb395faeaf15bae4ebb",
+          "observed_at": "2026-10-01T10:29:50.230628+00:00"
+        },
+        {
+          "product_id": "vertiv-71e3368af8abd2ca8364",
+          "parameter_name": "pdu.input_voltage",
+          "value": "100-120V/200-240V WYE",
+          "unit": "V",
+          "condition": "PowerIT Switched rPDU VP7N30AQ, three-phase WYE input",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/power-distribution/vertiv-geist-switched-rack-pdu/",
+          "source_sha256": "5f48dd8eef7cddc499bf80b578efcef4b231f6ac7d989bb395faeaf15bae4ebb",
+          "observed_at": "2026-10-01T10:29:50.230628+00:00"
+        },
+        {
+          "product_id": "vertiv-71e3368af8abd2ca8364",
+          "parameter_name": "pdu.outlet_configuration",
+          "value": "Combination C13/C19 (36)",
+          "unit": "",
+          "condition": "PowerIT Switched rPDU VP7N30AQ, outlet types and count",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/power-distribution/vertiv-geist-switched-rack-pdu/",
+          "source_sha256": "5f48dd8eef7cddc499bf80b578efcef4b231f6ac7d989bb395faeaf15bae4ebb",
+          "observed_at": "2026-10-01T10:29:50.230628+00:00"
+        },
+        {
+          "product_id": "vertiv-71e3368af8abd2ca8364",
+          "parameter_name": "pdu.rated_current",
+          "value": "30A",
+          "unit": "A",
+          "condition": "PowerIT Switched rPDU VP7N30AQ, 100-120/200-240V WYE three-phase, vertical (largest: 30A WYE, 36 outlets)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/power-distribution/vertiv-geist-switched-rack-pdu/",
+          "source_sha256": "5f48dd8eef7cddc499bf80b578efcef4b231f6ac7d989bb395faeaf15bae4ebb",
+          "observed_at": "2026-10-01T10:29:50.230628+00:00"
+        },
+        {
+          "product_id": "vertiv-71e3368af8abd2ca8364",
+          "parameter_name": "pdu.width",
+          "value": "2in",
+          "unit": "in",
+          "condition": "PowerIT Switched rPDU VP7N30AQ",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/power-distribution/vertiv-geist-switched-rack-pdu/",
+          "source_sha256": "5f48dd8eef7cddc499bf80b578efcef4b231f6ac7d989bb395faeaf15bae4ebb",
+          "observed_at": "2026-10-01T10:29:50.230628+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.power-shelf.spec",
+      "part_id": "power-shelf",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/critical-power/dc-power-systems/Vertiv-PowerDirect-3000-33kW-50-VDC-Power-Systems/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-c580d330ec302cd02a00; sha256 1fa643ddb1441f28",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-c580d330ec302cd02a00",
+          "parameter_name": "power_shelf.input_voltage",
+          "value": "3P+N+PE (311 to 457VAC) / 3P+PE (180 to 260VAC) / L+N (176 to 305VAC)",
+          "unit": "V",
+          "condition": "PowerDirect 3000, AC input options 3P+N+PE / 3P+PE / L+N (duplicate in row 6)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/dc-power-systems/Vertiv-PowerDirect-3000-33kW-50-VDC-Power-Systems/",
+          "source_sha256": "1fa643ddb1441f2832cc04978c7f231995adcc72130fa7e7de34d70e6504a038",
+          "observed_at": "2026-10-01T10:30:26.579660+00:00"
+        },
+        {
+          "product_id": "vertiv-c580d330ec302cd02a00",
+          "parameter_name": "power_shelf.output_voltage",
+          "value": "50 VDC at no load",
+          "unit": "V",
+          "condition": "PowerDirect 3000, nominal DC output at no load (duplicate in row 5)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/dc-power-systems/Vertiv-PowerDirect-3000-33kW-50-VDC-Power-Systems/",
+          "source_sha256": "1fa643ddb1441f2832cc04978c7f231995adcc72130fa7e7de34d70e6504a038",
+          "observed_at": "2026-10-01T10:30:26.579660+00:00"
+        },
+        {
+          "product_id": "vertiv-c580d330ec302cd02a00",
+          "parameter_name": "power_shelf.power_rating",
+          "value": "33kW",
+          "unit": "kW",
+          "condition": "PowerDirect 3000 33kW 50 VDC power shelf for NVIDIA GB200/GB300",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/dc-power-systems/Vertiv-PowerDirect-3000-33kW-50-VDC-Power-Systems/",
+          "source_sha256": "1fa643ddb1441f2832cc04978c7f231995adcc72130fa7e7de34d70e6504a038",
+          "observed_at": "2026-10-01T10:30:26.579660+00:00"
+        },
+        {
+          "product_id": "vertiv-c580d330ec302cd02a00",
+          "parameter_name": "power_shelf.rated_current",
+          "value": "Current, Shelf: 700A Current, Power Supply Unit: 112 amps at 49.0 VDC (5500 watts maximum)",
+          "unit": "A",
+          "condition": "PowerDirect 3000; shelf 700A, cell also lists per-PSU 112 A at 49.0 VDC (5500 W max)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/dc-power-systems/Vertiv-PowerDirect-3000-33kW-50-VDC-Power-Systems/",
+          "source_sha256": "1fa643ddb1441f2832cc04978c7f231995adcc72130fa7e7de34d70e6504a038",
+          "observed_at": "2026-10-01T10:30:26.579660+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.rack-frame.spec",
+      "part_id": "rack-frame",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/racks-and-containment/vertiv-rack/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-dcc9017e1659e8abc309; sha256 a69f0ac6d40aef12",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-dcc9017e1659e8abc309",
+          "parameter_name": "rack_frame.depth",
+          "value": "47.8 in",
+          "unit": "in",
+          "condition": "Vertiv Rack VR3357, 48U",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/racks-and-containment/vertiv-rack/",
+          "source_sha256": "a69f0ac6d40aef128de863123651354359904ecb72672bf3398a35aba9ee8f65",
+          "observed_at": "2026-10-01T10:32:32.714192+00:00"
+        },
+        {
+          "product_id": "vertiv-dcc9017e1659e8abc309",
+          "parameter_name": "rack_frame.height",
+          "value": "89.2 in",
+          "unit": "in",
+          "condition": "Vertiv Rack VR3357, 48U",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/racks-and-containment/vertiv-rack/",
+          "source_sha256": "a69f0ac6d40aef128de863123651354359904ecb72672bf3398a35aba9ee8f65",
+          "observed_at": "2026-10-01T10:32:32.714192+00:00"
+        },
+        {
+          "product_id": "vertiv-dcc9017e1659e8abc309",
+          "parameter_name": "rack_frame.rack_units",
+          "value": "48U",
+          "unit": "U",
+          "condition": "Vertiv Rack VR3357 networking rack (largest model with complete data incl. weight)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/racks-and-containment/vertiv-rack/",
+          "source_sha256": "a69f0ac6d40aef128de863123651354359904ecb72672bf3398a35aba9ee8f65",
+          "observed_at": "2026-10-01T10:32:32.714192+00:00"
+        },
+        {
+          "product_id": "vertiv-dcc9017e1659e8abc309",
+          "parameter_name": "rack_frame.weight",
+          "value": "397 lbs",
+          "unit": "lb",
+          "condition": "Vertiv Rack VR3357, 48U, rack weight as listed",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/racks-and-containment/vertiv-rack/",
+          "source_sha256": "a69f0ac6d40aef128de863123651354359904ecb72672bf3398a35aba9ee8f65",
+          "observed_at": "2026-10-01T10:32:32.714192+00:00"
+        },
+        {
+          "product_id": "vertiv-dcc9017e1659e8abc309",
+          "parameter_name": "rack_frame.width",
+          "value": "31.5 in",
+          "unit": "in",
+          "condition": "Vertiv Rack VR3357, 48U",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/facilities-enclosures-and-racks/racks-and-containment/vertiv-rack/",
+          "source_sha256": "a69f0ac6d40aef128de863123651354359904ecb72672bf3398a35aba9ee8f65",
+          "observed_at": "2026-10-01T10:32:32.714192+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.room-cooling.spec",
+      "part_id": "room-cooling",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/thermal-management/room-cooling/liebert-dse-free-cooling-system-50-165kw/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-ff5aaade19c3a8d2586d; sha256 9b984d56820ee8d7",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-ff5aaade19c3a8d2586d",
+          "parameter_name": "room_cooling.airflow",
+          "value": "36,500",
+          "unit": "CFM",
+          "condition": "Liebert DSE DA265, nominal airflow",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/room-cooling/liebert-dse-free-cooling-system-50-165kw/",
+          "source_sha256": "9b984d56820ee8d71808fc8dd4348786cb5d7fdff64cc530835404b860c126dd",
+          "observed_at": "2026-10-01T10:31:51.768211+00:00"
+        },
+        {
+          "product_id": "vertiv-ff5aaade19c3a8d2586d",
+          "parameter_name": "room_cooling.cooling_capacity",
+          "value": "905 [265]",
+          "unit": "kBtuh [kW]",
+          "condition": "Liebert DSE DA265 (largest), total nominal; 905 kBtuh with 265 kW in brackets",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/room-cooling/liebert-dse-free-cooling-system-50-165kw/",
+          "source_sha256": "9b984d56820ee8d71808fc8dd4348786cb5d7fdff64cc530835404b860c126dd",
+          "observed_at": "2026-10-01T10:31:51.768211+00:00"
+        },
+        {
+          "product_id": "vertiv-ff5aaade19c3a8d2586d",
+          "parameter_name": "room_cooling.depth",
+          "value": "83 1/2 in",
+          "unit": "in",
+          "condition": "Liebert DSE DA265",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/room-cooling/liebert-dse-free-cooling-system-50-165kw/",
+          "source_sha256": "9b984d56820ee8d71808fc8dd4348786cb5d7fdff64cc530835404b860c126dd",
+          "observed_at": "2026-10-01T10:31:51.768211+00:00"
+        },
+        {
+          "product_id": "vertiv-ff5aaade19c3a8d2586d",
+          "parameter_name": "room_cooling.sensible_capacity",
+          "value": "905 [265]",
+          "unit": "kBtuh [kW]",
+          "condition": "Liebert DSE DA265, net sensible; 905 kBtuh with 265 kW in brackets",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/room-cooling/liebert-dse-free-cooling-system-50-165kw/",
+          "source_sha256": "9b984d56820ee8d71808fc8dd4348786cb5d7fdff64cc530835404b860c126dd",
+          "observed_at": "2026-10-01T10:31:51.768211+00:00"
+        },
+        {
+          "product_id": "vertiv-ff5aaade19c3a8d2586d",
+          "parameter_name": "room_cooling.weight",
+          "value": "6455 lb",
+          "unit": "lb",
+          "condition": "Liebert DSE DA265",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/room-cooling/liebert-dse-free-cooling-system-50-165kw/",
+          "source_sha256": "9b984d56820ee8d71808fc8dd4348786cb5d7fdff64cc530835404b860c126dd",
+          "observed_at": "2026-10-01T10:31:51.768211+00:00"
+        },
+        {
+          "product_id": "vertiv-ff5aaade19c3a8d2586d",
+          "parameter_name": "room_cooling.width",
+          "value": "120 1/8 in",
+          "unit": "in",
+          "condition": "Liebert DSE DA265",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/room-cooling/liebert-dse-free-cooling-system-50-165kw/",
+          "source_sha256": "9b984d56820ee8d71808fc8dd4348786cb5d7fdff64cc530835404b860c126dd",
+          "observed_at": "2026-10-01T10:31:51.768211+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.sidecar-hx.spec",
+      "part_id": "sidecar-hx",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-liebert-xdu070-coolant-distribution-unit/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-6afa3950d17d77b9e397; sha256 026c5e15278d1736",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-6afa3950d17d77b9e397",
+          "parameter_name": "sidecar_hx.airflow",
+          "value": "10,100 m3/h (5,945 CFM)",
+          "unit": "m3/h",
+          "condition": "CoolChip CDU 70, nominal data center air side; cell also gives 5,945 CFM in parentheses",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-liebert-xdu070-coolant-distribution-unit/",
+          "source_sha256": "026c5e15278d1736cb3407893acd92900b36a27e2670abcd80e7dcdbaab015eb",
+          "observed_at": "2026-10-01T10:31:34.444091+00:00"
+        },
+        {
+          "product_id": "vertiv-6afa3950d17d77b9e397",
+          "parameter_name": "sidecar_hx.cooling_capacity",
+          "value": "70.0 kW at 11°C approach temperature difference",
+          "unit": "kW",
+          "condition": "CoolChip CDU 70 liquid-to-air in-row unit, net sensible nominal at 11°C approach temperature difference",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-liebert-xdu070-coolant-distribution-unit/",
+          "source_sha256": "026c5e15278d1736cb3407893acd92900b36a27e2670abcd80e7dcdbaab015eb",
+          "observed_at": "2026-10-01T10:31:34.444091+00:00"
+        },
+        {
+          "product_id": "vertiv-6afa3950d17d77b9e397",
+          "parameter_name": "sidecar_hx.depth",
+          "value": "1200 mm",
+          "unit": "mm",
+          "condition": "CoolChip CDU 70 (inch duplicate in row 13)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-liebert-xdu070-coolant-distribution-unit/",
+          "source_sha256": "026c5e15278d1736cb3407893acd92900b36a27e2670abcd80e7dcdbaab015eb",
+          "observed_at": "2026-10-01T10:31:34.444091+00:00"
+        },
+        {
+          "product_id": "vertiv-6afa3950d17d77b9e397",
+          "parameter_name": "sidecar_hx.height",
+          "value": "2300mm",
+          "unit": "mm",
+          "condition": "CoolChip CDU 70 (inch duplicate in row 9)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-liebert-xdu070-coolant-distribution-unit/",
+          "source_sha256": "026c5e15278d1736cb3407893acd92900b36a27e2670abcd80e7dcdbaab015eb",
+          "observed_at": "2026-10-01T10:31:34.444091+00:00"
+        },
+        {
+          "product_id": "vertiv-6afa3950d17d77b9e397",
+          "parameter_name": "sidecar_hx.width",
+          "value": "600 mm",
+          "unit": "mm",
+          "condition": "CoolChip CDU 70 (inch duplicate in row 11)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/thermal-management/high-density-solutions/vertiv-liebert-xdu070-coolant-distribution-unit/",
+          "source_sha256": "026c5e15278d1736cb3407893acd92900b36a27e2670abcd80e7dcdbaab015eb",
+          "observed_at": "2026-10-01T10:31:34.444091+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.ups-battery.spec",
+      "part_id": "ups-battery",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/vertiv-energycore-10-module/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-e7cf0b123bd890634572; sha256 49ed71965af2835d",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-e7cf0b123bd890634572",
+          "parameter_name": "ups_battery.depth",
+          "value": "750 mm",
+          "unit": "mm",
+          "condition": "EnergyCore Li5 cabinet (inch duplicate in row 11)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/vertiv-energycore-10-module/",
+          "source_sha256": "49ed71965af2835df09d04a45a593876ec4dbf4d12201337afc61004c6be3dd5",
+          "observed_at": "2026-10-01T10:29:31.661263+00:00"
+        },
+        {
+          "product_id": "vertiv-e7cf0b123bd890634572",
+          "parameter_name": "ups_battery.energy_capacity",
+          "value": "17.3 kWh - 31.1 kWh",
+          "unit": "kWh",
+          "condition": "EnergyCore Li5 cabinet; vendor labels this row Output Voltage Range; value is energy",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/vertiv-energycore-10-module/",
+          "source_sha256": "49ed71965af2835df09d04a45a593876ec4dbf4d12201337afc61004c6be3dd5",
+          "observed_at": "2026-10-01T10:29:31.661263+00:00"
+        },
+        {
+          "product_id": "vertiv-e7cf0b123bd890634572",
+          "parameter_name": "ups_battery.height",
+          "value": "2000 mm",
+          "unit": "mm",
+          "condition": "EnergyCore Li5 cabinet (inch duplicate in row 7)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/vertiv-energycore-10-module/",
+          "source_sha256": "49ed71965af2835df09d04a45a593876ec4dbf4d12201337afc61004c6be3dd5",
+          "observed_at": "2026-10-01T10:29:31.661263+00:00"
+        },
+        {
+          "product_id": "vertiv-e7cf0b123bd890634572",
+          "parameter_name": "ups_battery.power_rating",
+          "value": "146 kW - 263 kW",
+          "unit": "kW",
+          "condition": "EnergyCore Li5 lithium-ion battery cabinet, range across cabinet configurations",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/vertiv-energycore-10-module/",
+          "source_sha256": "49ed71965af2835df09d04a45a593876ec4dbf4d12201337afc61004c6be3dd5",
+          "observed_at": "2026-10-01T10:29:31.661263+00:00"
+        },
+        {
+          "product_id": "vertiv-e7cf0b123bd890634572",
+          "parameter_name": "ups_battery.weight",
+          "value": "400-590 kg",
+          "unit": "kg",
+          "condition": "EnergyCore Li5 cabinet, range across configurations (lbs duplicate in row 5)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/vertiv-energycore-10-module/",
+          "source_sha256": "49ed71965af2835df09d04a45a593876ec4dbf4d12201337afc61004c6be3dd5",
+          "observed_at": "2026-10-01T10:29:31.661263+00:00"
+        },
+        {
+          "product_id": "vertiv-e7cf0b123bd890634572",
+          "parameter_name": "ups_battery.width",
+          "value": "600 mm",
+          "unit": "mm",
+          "condition": "EnergyCore Li5 cabinet (inch duplicate in row 9)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/vertiv-energycore-10-module/",
+          "source_sha256": "49ed71965af2835df09d04a45a593876ec4dbf4d12201337afc61004c6be3dd5",
+          "observed_at": "2026-10-01T10:29:31.661263+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.ups.operation",
+      "part_id": "ups",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-exl-s1/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-fa3a1de6512468bf5f73; sha256 e4576c4a030c7324",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-fa3a1de6512468bf5f73",
+          "parameter_name": "ups.efficiency",
+          "value": "Up to 97% double conversion",
+          "unit": "%",
+          "condition": "Liebert EXL S1 1000-1200kW frame, up to, double conversion mode",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-exl-s1/",
+          "source_sha256": "e4576c4a030c7324799b589e4275f1167d37dd82c9e73cd217feb65d880341c1",
+          "observed_at": "2026-10-01T10:29:11.245251+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.ups.spec",
+      "part_id": "ups",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-exl-s1/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-vertiv-21ef414629eb2db768adce34 manifest eee5776565933ffd receipt 7994248f5a5234f3 env production; products vertiv-fa3a1de6512468bf5f73; sha256 e4576c4a030c7324",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "vertiv-fa3a1de6512468bf5f73",
+          "parameter_name": "ups.depth",
+          "value": "36.0 in",
+          "unit": "in",
+          "condition": "Liebert EXL S1 1000-1200kW frame",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-exl-s1/",
+          "source_sha256": "e4576c4a030c7324799b589e4275f1167d37dd82c9e73cd217feb65d880341c1",
+          "observed_at": "2026-10-01T10:29:11.245251+00:00"
+        },
+        {
+          "product_id": "vertiv-fa3a1de6512468bf5f73",
+          "parameter_name": "ups.input_voltage",
+          "value": "480 volts",
+          "unit": "V",
+          "condition": "Liebert EXL S1 1000-1200kW frame",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-exl-s1/",
+          "source_sha256": "e4576c4a030c7324799b589e4275f1167d37dd82c9e73cd217feb65d880341c1",
+          "observed_at": "2026-10-01T10:29:11.245251+00:00"
+        },
+        {
+          "product_id": "vertiv-fa3a1de6512468bf5f73",
+          "parameter_name": "ups.output_voltage",
+          "value": "480 volts",
+          "unit": "V",
+          "condition": "Liebert EXL S1 1000-1200kW frame",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-exl-s1/",
+          "source_sha256": "e4576c4a030c7324799b589e4275f1167d37dd82c9e73cd217feb65d880341c1",
+          "observed_at": "2026-10-01T10:29:11.245251+00:00"
+        },
+        {
+          "product_id": "vertiv-fa3a1de6512468bf5f73",
+          "parameter_name": "ups.power_rating",
+          "value": "1000, 1100, 1200 kVA/kW",
+          "unit": "kW",
+          "condition": "Liebert EXL S1 1000-1200kW frame, ratings 1000/1100/1200; vendor writes kVA/kW (kVA equals kW, unity power factor)",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-exl-s1/",
+          "source_sha256": "e4576c4a030c7324799b589e4275f1167d37dd82c9e73cd217feb65d880341c1",
+          "observed_at": "2026-10-01T10:29:11.245251+00:00"
+        },
+        {
+          "product_id": "vertiv-fa3a1de6512468bf5f73",
+          "parameter_name": "ups.weight",
+          "value": "4667 lbs",
+          "unit": "lb",
+          "condition": "Liebert EXL S1 1000-1200kW frame",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-exl-s1/",
+          "source_sha256": "e4576c4a030c7324799b589e4275f1167d37dd82c9e73cd217feb65d880341c1",
+          "observed_at": "2026-10-01T10:29:11.245251+00:00"
+        },
+        {
+          "product_id": "vertiv-fa3a1de6512468bf5f73",
+          "parameter_name": "ups.width",
+          "value": "104.5 in",
+          "unit": "in",
+          "condition": "Liebert EXL S1 1000-1200kW frame",
+          "source_url": "https://www.vertiv.com/en-us/products-catalog/critical-power/uninterruptible-power-supplies-ups/liebert-exl-s1/",
+          "source_sha256": "e4576c4a030c7324799b589e4275f1167d37dd82c9e73cd217feb65d880341c1",
+          "observed_at": "2026-10-01T10:29:11.245251+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.rack-system.spec",
+      "part_id": "rack-system",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.supermicro.com/en/products/rack/srs-gb300-nvl72",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-supermicro-af9e4bff53ce4de3b1b16dd0 manifest 69e6a6069b1b16e2 receipt ded08937c119e8ed env production; products supermicro-41bf0ae92e96aa514248; sha256 d91ba6657c756f61",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "supermicro-41bf0ae92e96aa514248",
+          "parameter_name": "rack_system.cooling_capacity",
+          "value": "1x in-rack Supermicro 250kW capacity CDU with redundant PSU and dual hot-swap pumps",
+          "unit": "kW",
+          "condition": "SRS-GB300-NVL72 in-rack CDU capacity",
+          "source_url": "https://www.supermicro.com/en/products/rack/srs-gb300-nvl72",
+          "source_sha256": "d91ba6657c756f61c8d7355b0618088d7083d2291cf9a89df5896f310539c274",
+          "observed_at": "2026-10-01T10:34:08.869595+00:00"
+        },
+        {
+          "product_id": "supermicro-41bf0ae92e96aa514248",
+          "parameter_name": "rack_system.dimensions",
+          "value": "W 600 x D 1068 x H 2236",
+          "unit": "mm",
+          "condition": "SRS-GB300-NVL72 rack enclosure W x D x H; unit not printed on page, values read as mm",
+          "source_url": "https://www.supermicro.com/en/products/rack/srs-gb300-nvl72",
+          "source_sha256": "d91ba6657c756f61c8d7355b0618088d7083d2291cf9a89df5896f310539c274",
+          "observed_at": "2026-10-01T10:34:08.869595+00:00"
+        },
+        {
+          "product_id": "supermicro-41bf0ae92e96aa514248",
+          "parameter_name": "rack_system.form_factor",
+          "value": "48U, 19”-width",
+          "unit": "",
+          "condition": "SRS-GB300-NVL72 48U, 19-inch rack enclosure",
+          "source_url": "https://www.supermicro.com/en/products/rack/srs-gb300-nvl72",
+          "source_sha256": "d91ba6657c756f61c8d7355b0618088d7083d2291cf9a89df5896f310539c274",
+          "observed_at": "2026-10-01T10:34:08.869595+00:00"
+        },
+        {
+          "product_id": "supermicro-41bf0ae92e96aa514248",
+          "parameter_name": "rack_system.gpu_count",
+          "value": "72 NVIDIA B300 GPUs via NVIDIA GB300 Grace Blackwell Ultra Superchips",
+          "unit": "",
+          "condition": "SRS-GB300-NVL72: 72 B300 GPUs via GB300 superchips",
+          "source_url": "https://www.supermicro.com/en/products/rack/srs-gb300-nvl72",
+          "source_sha256": "d91ba6657c756f61c8d7355b0618088d7083d2291cf9a89df5896f310539c274",
+          "observed_at": "2026-10-01T10:34:08.869595+00:00"
+        },
+        {
+          "product_id": "supermicro-41bf0ae92e96aa514248",
+          "parameter_name": "rack_system.power_rating",
+          "value": "8x 1U 33kW (6x 5.5kW PSUs), total power 132kW",
+          "unit": "kW",
+          "condition": "SRS-GB300-NVL72 power shelves: 8x 1U 33kW (6x 5.5kW PSUs), vendor states total power 132kW although 8x33kW is 264kW (likely N+N redundancy, not stated)",
+          "source_url": "https://www.supermicro.com/en/products/rack/srs-gb300-nvl72",
+          "source_sha256": "d91ba6657c756f61c8d7355b0618088d7083d2291cf9a89df5896f310539c274",
+          "observed_at": "2026-10-01T10:34:08.869595+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.server.operation",
+      "part_id": "server",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-supermicro-af9e4bff53ce4de3b1b16dd0 manifest 69e6a6069b1b16e2 receipt ded08937c119e8ed env production; products supermicro-c02984328cb770136e5f; sha256 2160e28174eacc34",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "supermicro-c02984328cb770136e5f",
+          "parameter_name": "server.cpu_tdp",
+          "value": "Supports up to 350W TDP CPUs (Air Cooled)",
+          "unit": "W",
+          "condition": "SYS-821GE-TNHR max supported CPU TDP per socket, air cooled",
+          "source_url": "https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr",
+          "source_sha256": "2160e28174eacc3428198798da88305e24d22d129dec98a8a0b4822bbb686fe5",
+          "observed_at": "2026-09-29T02:35:39.382149+00:00"
+        },
+        {
+          "product_id": "supermicro-c02984328cb770136e5f",
+          "parameter_name": "server.operating_temperature",
+          "value": "Operating Temperature: 10°C to 35°C (50°F to 95°F) Non-operating Temperature: -40°C to 60°C (-40°F to 140°F) Operating Relative Humidity: 8% to 90% (non-condensing) Non-operating Relative Humidity: 5% to 95% (non-condensing)",
+          "unit": "°C",
+          "condition": "SYS-821GE-TNHR operating 10-35°C; cell also gives non-operating and humidity",
+          "source_url": "https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr",
+          "source_sha256": "2160e28174eacc3428198798da88305e24d22d129dec98a8a0b4822bbb686fe5",
+          "observed_at": "2026-09-29T02:35:39.382149+00:00"
+        },
+        {
+          "product_id": "supermicro-c02984328cb770136e5f",
+          "parameter_name": "server.power_supply_rating",
+          "value": "2880W: 200-207Vac / 50-60Hz 3000W: 3000W: 207-240Vac / 50-60Hz 3000W: 0240Vdc / 50-60Hz (for CQC only)",
+          "unit": "W",
+          "condition": "SYS-821GE-TNHR per PSU: 2880W at 200-207Vac, 3000W at 207-240Vac; section heading says 6x 3000W redundant (4+2) Titanium (96%)",
+          "source_url": "https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr",
+          "source_sha256": "2160e28174eacc3428198798da88305e24d22d129dec98a8a0b4822bbb686fe5",
+          "observed_at": "2026-09-29T02:35:39.382149+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.server.spec",
+      "part_id": "server",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-supermicro-af9e4bff53ce4de3b1b16dd0 manifest 69e6a6069b1b16e2 receipt ded08937c119e8ed env production; products supermicro-c02984328cb770136e5f; sha256 2160e28174eacc34",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "supermicro-c02984328cb770136e5f",
+          "parameter_name": "server.form_factor",
+          "value": "8U Rackmount",
+          "unit": "",
+          "condition": "SYS-821GE-TNHR chassis CSE-GP801TS",
+          "source_url": "https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr",
+          "source_sha256": "2160e28174eacc3428198798da88305e24d22d129dec98a8a0b4822bbb686fe5",
+          "observed_at": "2026-09-29T02:35:39.382149+00:00"
+        },
+        {
+          "product_id": "supermicro-c02984328cb770136e5f",
+          "parameter_name": "server.gpu_count",
+          "value": "8 onboard GPUs",
+          "unit": "",
+          "condition": "SYS-821GE-TNHR max GPU count",
+          "source_url": "https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr",
+          "source_sha256": "2160e28174eacc3428198798da88305e24d22d129dec98a8a0b4822bbb686fe5",
+          "observed_at": "2026-09-29T02:35:39.382149+00:00"
+        },
+        {
+          "product_id": "supermicro-c02984328cb770136e5f",
+          "parameter_name": "server.supported_cpu",
+          "value": "Dual Socket E (LGA-4677) 5th Gen Intel® Xeon® / 4th Gen Intel® Xeon® Scalable processors",
+          "unit": "",
+          "condition": "SYS-821GE-TNHR, dual socket",
+          "source_url": "https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr",
+          "source_sha256": "2160e28174eacc3428198798da88305e24d22d129dec98a8a0b4822bbb686fe5",
+          "observed_at": "2026-09-29T02:35:39.382149+00:00"
+        },
+        {
+          "product_id": "supermicro-c02984328cb770136e5f",
+          "parameter_name": "server.supported_gpu",
+          "value": "NVIDIA SXM: HGX H100 8-GPU (80GB), HGX H200 8-GPU (141GB) View GPU Options",
+          "unit": "",
+          "condition": "SYS-821GE-TNHR supported GPU boards (HGX H100 / H200 8-GPU)",
+          "source_url": "https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr",
+          "source_sha256": "2160e28174eacc3428198798da88305e24d22d129dec98a8a0b4822bbb686fe5",
+          "observed_at": "2026-09-29T02:35:39.382149+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.pcie-switch.spec",
+      "part_id": "pcie-switch",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.asteralabs.com/products/scorpio-smart-fabric-switch/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-asteralabs-e13ececae13b6caa632522d4 manifest 182424b45a47ee2e receipt 60e3a4c86ad1289c env production; products asteralabs-b2c9074f9fce513f8c4d; sha256 1b0b1264e002ed74",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "asteralabs-b2c9074f9fce513f8c4d",
+          "parameter_name": "pcie_switch.lanes",
+          "value": "320",
+          "unit": "",
+          "condition": "Scorpio P-Series PF63201L",
+          "source_url": "https://www.asteralabs.com/products/scorpio-smart-fabric-switch/",
+          "source_sha256": "1b0b1264e002ed741a580b625e99254a37cc5fbf6629d49386636eacd85e4097",
+          "observed_at": "2026-10-01T10:34:24.928361+00:00"
+        },
+        {
+          "product_id": "asteralabs-b2c9074f9fce513f8c4d",
+          "parameter_name": "pcie_switch.package_size",
+          "value": "62.5×62.5",
+          "unit": "mm",
+          "condition": "Scorpio P-Series PF63201L package size",
+          "source_url": "https://www.asteralabs.com/products/scorpio-smart-fabric-switch/",
+          "source_sha256": "1b0b1264e002ed741a580b625e99254a37cc5fbf6629d49386636eacd85e4097",
+          "observed_at": "2026-10-01T10:34:24.928361+00:00"
+        },
+        {
+          "product_id": "asteralabs-b2c9074f9fce513f8c4d",
+          "parameter_name": "pcie_switch.pcie_generation",
+          "value": "PCIe 6",
+          "unit": "",
+          "condition": "Scorpio P-Series PF63201L (largest listed P-Series part)",
+          "source_url": "https://www.asteralabs.com/products/scorpio-smart-fabric-switch/",
+          "source_sha256": "1b0b1264e002ed741a580b625e99254a37cc5fbf6629d49386636eacd85e4097",
+          "observed_at": "2026-10-01T10:34:24.928361+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.retimer.spec",
+      "part_id": "retimer",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.asteralabs.com/product-details/pt6162lx/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-asteralabs-e13ececae13b6caa632522d4 manifest 182424b45a47ee2e receipt 60e3a4c86ad1289c env production; products asteralabs-ba6866c9579fa9f9cdeb; sha256 59b0b5dbb9c46fd7",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "asteralabs-ba6866c9579fa9f9cdeb",
+          "parameter_name": "retimer.form_factor",
+          "value": "354-pin FC-CSP",
+          "unit": "",
+          "condition": "Aries PT6162LX package",
+          "source_url": "https://www.asteralabs.com/product-details/pt6162lx/",
+          "source_sha256": "59b0b5dbb9c46fd713400b5ef3c76d2696ea45cd71a367f3d439b9ffcb29855a",
+          "observed_at": "2026-10-01T10:34:19.922424+00:00"
+        },
+        {
+          "product_id": "asteralabs-ba6866c9579fa9f9cdeb",
+          "parameter_name": "retimer.generation",
+          "value": "3 rd",
+          "unit": "",
+          "condition": "Aries PT6162LX, Astera retimer generation; product revision Pre-Production",
+          "source_url": "https://www.asteralabs.com/product-details/pt6162lx/",
+          "source_sha256": "59b0b5dbb9c46fd713400b5ef3c76d2696ea45cd71a367f3d439b9ffcb29855a",
+          "observed_at": "2026-10-01T10:34:19.922424+00:00"
+        },
+        {
+          "product_id": "asteralabs-ba6866c9579fa9f9cdeb",
+          "parameter_name": "retimer.lanes",
+          "value": "x 16",
+          "unit": "",
+          "condition": "Aries PT6162LX lane width",
+          "source_url": "https://www.asteralabs.com/product-details/pt6162lx/",
+          "source_sha256": "59b0b5dbb9c46fd713400b5ef3c76d2696ea45cd71a367f3d439b9ffcb29855a",
+          "observed_at": "2026-10-01T10:34:19.922424+00:00"
+        },
+        {
+          "product_id": "asteralabs-ba6866c9579fa9f9cdeb",
+          "parameter_name": "retimer.pcie_generation",
+          "value": "PCIe 6.x / CXL 3.x",
+          "unit": "",
+          "condition": "Aries PT6162LX, max supported PCIe / CXL generation",
+          "source_url": "https://www.asteralabs.com/product-details/pt6162lx/",
+          "source_sha256": "59b0b5dbb9c46fd713400b5ef3c76d2696ea45cd71a367f3d439b9ffcb29855a",
+          "observed_at": "2026-10-01T10:34:19.922424+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.busway.spec",
+      "part_id": "busway",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.siemens.com/en-us/products/sivacon/8ps-li-system/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-siemens-44572a6516e077f557c7e99d manifest 0be14a50215ab511 receipt 3fae67761756ce25 env production; products siemens-85efa9f942524c7d47ba; sha256 835f4e363dfc649e,edfb4d17698cc333",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "siemens-85efa9f942524c7d47ba",
+          "parameter_name": "busway.rated_current",
+          "value": "800 A to 6,300 A",
+          "unit": "A",
+          "condition": "SIVACON 8PS LI system (brochure p.30), rated current InA range across the LI ratings",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:12a1aee3-0f28-4742-867f-4be5bb590591/Energy-and-data-successfully-put-on-track.pdf",
+          "source_sha256": "edfb4d17698cc3331e9eb8ed5a69832ab2e32d96c27eb8fb70d07c6f09c58de5",
+          "observed_at": "2026-10-01T10:36:46.062045+00:00"
+        },
+        {
+          "product_id": "siemens-85efa9f942524c7d47ba",
+          "parameter_name": "busway.rated_voltage",
+          "value": "1,000 V AC",
+          "unit": "V",
+          "condition": "SIVACON 8PS LI system, rated operational voltage Ue (rated insulation voltage Ui is also 1,000 V AC)",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:12a1aee3-0f28-4742-867f-4be5bb590591/Energy-and-data-successfully-put-on-track.pdf",
+          "source_sha256": "edfb4d17698cc3331e9eb8ed5a69832ab2e32d96c27eb8fb70d07c6f09c58de5",
+          "observed_at": "2026-10-01T10:36:46.062045+00:00"
+        },
+        {
+          "product_id": "siemens-85efa9f942524c7d47ba",
+          "parameter_name": "busway.short_time_withstand_current",
+          "value": "Up to 150 kA",
+          "unit": "kA",
+          "condition": "SIVACON 8PS LI system, rated short-time withstand current Icw (1 s), maximum over the LI ratings",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:12a1aee3-0f28-4742-867f-4be5bb590591/Energy-and-data-successfully-put-on-track.pdf",
+          "source_sha256": "edfb4d17698cc3331e9eb8ed5a69832ab2e32d96c27eb8fb70d07c6f09c58de5",
+          "observed_at": "2026-10-01T10:36:46.062045+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.lv-switchgear.spec",
+      "part_id": "lv-switchgear",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.siemens.com/en-us/products/sivacon/s8/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-siemens-44572a6516e077f557c7e99d manifest 0be14a50215ab511 receipt 3fae67761756ce25 env production; products siemens-4acab582c08ab7cd71ba; sha256 6c2863ba5c5979dc,c0d6e2a2152655e6",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "siemens-4acab582c08ab7cd71ba",
+          "parameter_name": "lv_switchgear.depth",
+          "value": "single front 500, 600, 800; double front 1,000, 1,200 mm",
+          "unit": "mm",
+          "condition": "SIVACON S8plus cubicle depth options, single-front and double-front arrangements",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+          "source_sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+          "observed_at": "2026-10-01T10:36:05.416188+00:00"
+        },
+        {
+          "product_id": "siemens-4acab582c08ab7cd71ba",
+          "parameter_name": "lv_switchgear.height",
+          "value": "2,000, 2,200 mm",
+          "unit": "mm",
+          "condition": "SIVACON S8plus cubicle height without base, two options; optional base adds 100 or 200 mm",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+          "source_sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+          "observed_at": "2026-10-01T10:36:05.416188+00:00"
+        },
+        {
+          "product_id": "siemens-4acab582c08ab7cd71ba",
+          "parameter_name": "lv_switchgear.rated_current",
+          "value": "up to 7,010 A",
+          "unit": "A",
+          "condition": "SIVACON S8plus, main busbars horizontal, rated current (maximum)",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+          "source_sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+          "observed_at": "2026-10-01T10:36:05.416188+00:00"
+        },
+        {
+          "product_id": "siemens-4acab582c08ab7cd71ba",
+          "parameter_name": "lv_switchgear.rated_voltage",
+          "value": "up to 690 V / up to 800 V for circuit-breaker design (FCB1)",
+          "unit": "V",
+          "condition": "SIVACON S8plus catalog p.41, rated operational voltage Ue of the main circuit at 50 Hz; the qualifier continues on the next printed line: and in-line design, fixed-mounted",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+          "source_sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+          "observed_at": "2026-10-01T10:36:05.416188+00:00"
+        },
+        {
+          "product_id": "siemens-4acab582c08ab7cd71ba",
+          "parameter_name": "lv_switchgear.short_time_withstand_current",
+          "value": "up to 150 kA, 1s",
+          "unit": "kA",
+          "condition": "SIVACON S8plus, main busbars horizontal, rated short-time withstand current Icw (1 s); rated peak withstand current Ipk is up to 330 kA",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+          "source_sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+          "observed_at": "2026-10-01T10:36:05.416188+00:00"
+        },
+        {
+          "product_id": "siemens-4acab582c08ab7cd71ba",
+          "parameter_name": "lv_switchgear.width",
+          "value": "200, 350, 400, 600, 800, 850, 1,000, 1,200, 1,400 mm",
+          "unit": "mm",
+          "condition": "SIVACON S8plus cubicle width options",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+          "source_sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+          "observed_at": "2026-10-01T10:36:05.416188+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.mv-switchgear.spec",
+      "part_id": "mv-switchgear",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.siemens.com/en-us/products/energy-systems/nxair/",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-siemens-44572a6516e077f557c7e99d manifest 0be14a50215ab511 receipt 3fae67761756ce25 env production; products siemens-1425439f6a312fd5d78f; sha256 cbaf6cf16987f1be,dc1947e0f6e8ccde",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "siemens-1425439f6a312fd5d78f",
+          "parameter_name": "mv_switchgear.height",
+          "value": "2500 mm",
+          "unit": "mm",
+          "condition": "NXAIR panel height H4 with optional arc absorber, 40 kA column; catalog applies H4 for 12 kV > 25 kA or generally for 17.5 kV (standard panel H1 is 2300 mm)",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:14493ba2-f30a-4bf4-a8fe-c5e38c2c8f83/HA-25-73-EN.pdf",
+          "source_sha256": "cbaf6cf16987f1befa2286ae70168bed439ee53aed27db2a42bdb5e6d2749845",
+          "observed_at": "2026-10-01T10:34:48.485560+00:00"
+        },
+        {
+          "product_id": "siemens-1425439f6a312fd5d78f",
+          "parameter_name": "mv_switchgear.rated_current",
+          "value": "4000",
+          "unit": "A",
+          "condition": "NXAIR, max. rated continuous current of the busbar (feeder with circuit-breaker also max. 4000 A)",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:14493ba2-f30a-4bf4-a8fe-c5e38c2c8f83/HA-25-73-EN.pdf",
+          "source_sha256": "cbaf6cf16987f1befa2286ae70168bed439ee53aed27db2a42bdb5e6d2749845",
+          "observed_at": "2026-10-01T10:34:48.485560+00:00"
+        },
+        {
+          "product_id": "siemens-1425439f6a312fd5d78f",
+          "parameter_name": "mv_switchgear.rated_voltage",
+          "value": "17.5",
+          "unit": "kV",
+          "condition": "NXAIR up to 17.5 kV / 40 kA (catalog HA 25.73 p.33 Electrical data), 17.5 kV column of the 7.2 / 12 / 17.5 kV rated voltages",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:14493ba2-f30a-4bf4-a8fe-c5e38c2c8f83/HA-25-73-EN.pdf",
+          "source_sha256": "cbaf6cf16987f1befa2286ae70168bed439ee53aed27db2a42bdb5e6d2749845",
+          "observed_at": "2026-10-01T10:34:48.485560+00:00"
+        },
+        {
+          "product_id": "siemens-1425439f6a312fd5d78f",
+          "parameter_name": "mv_switchgear.short_circuit_breaking_current",
+          "value": "40",
+          "unit": "kA",
+          "condition": "NXAIR up to 40 kA, max. rated short-circuit breaking current, one value spanning the 7.2 / 12 / 17.5 kV columns",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:14493ba2-f30a-4bf4-a8fe-c5e38c2c8f83/HA-25-73-EN.pdf",
+          "source_sha256": "cbaf6cf16987f1befa2286ae70168bed439ee53aed27db2a42bdb5e6d2749845",
+          "observed_at": "2026-10-01T10:34:48.485560+00:00"
+        },
+        {
+          "product_id": "siemens-1425439f6a312fd5d78f",
+          "parameter_name": "mv_switchgear.width",
+          "value": "1000 mm",
+          "unit": "mm",
+          "condition": "NXAIR circuit-breaker panel 4000 A, 40 kA short-time withstand column (p.41 Dimensions; the row label Width W, Circuit-breaker panel, disconnecting panel is printed on the 630 A line above)",
+          "source_url": "https://assets.new.siemens.com/siemens/assets/api/uuid:14493ba2-f30a-4bf4-a8fe-c5e38c2c8f83/HA-25-73-EN.pdf",
+          "source_sha256": "cbaf6cf16987f1befa2286ae70168bed439ee53aed27db2a42bdb5e6d2749845",
+          "observed_at": "2026-10-01T10:34:48.485560+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.gas-turbine.operation",
+      "part_id": "gas-turbine",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-siemens-energy-91c1a24205da3d66c420241e manifest d693861847d52eea receipt 9a604f9b865897c1 env production; products siemens-energy-7190e8ed0bc9d2391419; sha256 989f4741ebd5ab85",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "siemens-energy-7190e8ed0bc9d2391419",
+          "parameter_name": "gas_turbine.efficiency",
+          "value": "41.1%",
+          "unit": "%",
+          "condition": "SGT-800 62 MW rating, simple cycle, gross efficiency",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+          "source_sha256": "989f4741ebd5ab8575dbea895a11bbb516e9818a25ea12328b1f9bcd65dd370e",
+          "observed_at": "2026-10-01T10:37:00.214145+00:00"
+        },
+        {
+          "product_id": "siemens-energy-7190e8ed0bc9d2391419",
+          "parameter_name": "gas_turbine.exhaust_mass_flow",
+          "value": "135.5 kg/s (298.7 lb/s)",
+          "unit": "kg/s",
+          "condition": "SGT-800 62 MW rating, simple cycle, exhaust mass flow; lb/s in parentheses",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+          "source_sha256": "989f4741ebd5ab8575dbea895a11bbb516e9818a25ea12328b1f9bcd65dd370e",
+          "observed_at": "2026-10-01T10:37:00.214145+00:00"
+        },
+        {
+          "product_id": "siemens-energy-7190e8ed0bc9d2391419",
+          "parameter_name": "gas_turbine.exhaust_temperature",
+          "value": "596 °C (1,104 °F)",
+          "unit": "°C",
+          "condition": "SGT-800 62 MW rating, simple cycle, exhaust temperature; °F in parentheses",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+          "source_sha256": "989f4741ebd5ab8575dbea895a11bbb516e9818a25ea12328b1f9bcd65dd370e",
+          "observed_at": "2026-10-01T10:37:00.214145+00:00"
+        },
+        {
+          "product_id": "siemens-energy-7190e8ed0bc9d2391419",
+          "parameter_name": "gas_turbine.heat_rate",
+          "value": "8,759 kJ/kWh (8,302 Btu/kWh)",
+          "unit": "kJ/kWh",
+          "condition": "SGT-800 62 MW rating, simple cycle, gross heat rate; Btu/kWh in parentheses",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+          "source_sha256": "989f4741ebd5ab8575dbea895a11bbb516e9818a25ea12328b1f9bcd65dd370e",
+          "observed_at": "2026-10-01T10:37:00.214145+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.gas-turbine.spec",
+      "part_id": "gas-turbine",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-siemens-energy-91c1a24205da3d66c420241e manifest d693861847d52eea receipt 9a604f9b865897c1 env production; products siemens-energy-7190e8ed0bc9d2391419; sha256 989f4741ebd5ab85",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "siemens-energy-7190e8ed0bc9d2391419",
+          "parameter_name": "gas_turbine.height",
+          "value": "6.6 m (22 ft)",
+          "unit": "m",
+          "condition": "SGT-800 standard package 62 MW rating, package height; ft in parentheses",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+          "source_sha256": "989f4741ebd5ab8575dbea895a11bbb516e9818a25ea12328b1f9bcd65dd370e",
+          "observed_at": "2026-10-01T10:37:00.214145+00:00"
+        },
+        {
+          "product_id": "siemens-energy-7190e8ed0bc9d2391419",
+          "parameter_name": "gas_turbine.length",
+          "value": "25.4 m (83 ft)",
+          "unit": "m",
+          "condition": "SGT-800 standard package 62 MW rating, package length; ft in parentheses",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+          "source_sha256": "989f4741ebd5ab8575dbea895a11bbb516e9818a25ea12328b1f9bcd65dd370e",
+          "observed_at": "2026-10-01T10:37:00.214145+00:00"
+        },
+        {
+          "product_id": "siemens-energy-7190e8ed0bc9d2391419",
+          "parameter_name": "gas_turbine.power_rating",
+          "value": "62.5 MW(e)",
+          "unit": "MW",
+          "condition": "SGT-800 62 MW rating, simple cycle, gross power output (printed as MW(e))",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+          "source_sha256": "989f4741ebd5ab8575dbea895a11bbb516e9818a25ea12328b1f9bcd65dd370e",
+          "observed_at": "2026-10-01T10:37:00.214145+00:00"
+        },
+        {
+          "product_id": "siemens-energy-7190e8ed0bc9d2391419",
+          "parameter_name": "gas_turbine.weight",
+          "value": "300,000 kg (661,400 lb)",
+          "unit": "kg",
+          "condition": "SGT-800 standard package 62 MW rating, approx. weight; lb in parentheses",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+          "source_sha256": "989f4741ebd5ab8575dbea895a11bbb516e9818a25ea12328b1f9bcd65dd370e",
+          "observed_at": "2026-10-01T10:37:00.214145+00:00"
+        },
+        {
+          "product_id": "siemens-energy-7190e8ed0bc9d2391419",
+          "parameter_name": "gas_turbine.width",
+          "value": "7.2 m (24 ft)",
+          "unit": "m",
+          "condition": "SGT-800 standard package 62 MW rating, package width; ft in parentheses",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/sgt-800.html",
+          "source_sha256": "989f4741ebd5ab8575dbea895a11bbb516e9818a25ea12328b1f9bcd65dd370e",
+          "observed_at": "2026-10-01T10:37:00.214145+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.transformer.spec",
+      "part_id": "transformer",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.siemens-energy.com/global/en/home/products-services/product/power-transformers.html",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-siemens-energy-91c1a24205da3d66c420241e manifest d693861847d52eea receipt 9a604f9b865897c1 env production; products siemens-energy-21ec946ffd83187c3ddb; sha256 5e3f65cde9a2d9bc",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "siemens-energy-21ec946ffd83187c3ddb",
+          "parameter_name": "transformer.cooling_type",
+          "value": "ONAN, ONAF. ODAF, ODWF",
+          "unit": "",
+          "condition": "Siemens Energy Large Power Transformer, cooling methods offered; vendor punctuation ONAF. kept as printed",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/power-transformers.html",
+          "source_sha256": "5e3f65cde9a2d9bc32c296a6174936fb860f7940744e19937df390d1a4069fb6",
+          "observed_at": "2026-10-01T10:37:04.619532+00:00"
+        },
+        {
+          "product_id": "siemens-energy-21ec946ffd83187c3ddb",
+          "parameter_name": "transformer.power_rating",
+          "value": "Up to 1,300 MVA",
+          "unit": "MVA",
+          "condition": "Siemens Energy Large Power Transformer column (largest of the three types on the page), upper bound of the power rating",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/power-transformers.html",
+          "source_sha256": "5e3f65cde9a2d9bc32c296a6174936fb860f7940744e19937df390d1a4069fb6",
+          "observed_at": "2026-10-01T10:37:04.619532+00:00"
+        },
+        {
+          "product_id": "siemens-energy-21ec946ffd83187c3ddb",
+          "parameter_name": "transformer.rated_voltage",
+          "value": "Up to 1,100 kV",
+          "unit": "kV",
+          "condition": "Siemens Energy Large Power Transformer, upper bound of the vendor Voltage range row",
+          "source_url": "https://www.siemens-energy.com/global/en/home/products-services/product/power-transformers.html",
+          "source_sha256": "5e3f65cde9a2d9bc32c296a6174936fb860f7940744e19937df390d1a4069fb6",
+          "observed_at": "2026-10-01T10:37:04.619532+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.bbu.spec",
+      "part_id": "bbu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-delta-05892e1acc0ac36aa96b1fd3 manifest 76a8eb612c363d73 receipt af5db6bb514b6ac3 env production; products delta-93cd6183054061e397dd; sha256 b58804eeda65c2ae",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "delta-93cd6183054061e397dd",
+          "parameter_name": "bbu.charge_power",
+          "value": "1650 W",
+          "unit": "W",
+          "condition": "33 kW BBU Shelf, charge power (6 x 5.5 kW modules)",
+          "source_url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+          "source_sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+          "observed_at": "2026-10-01T10:37:37.278110+00:00"
+        },
+        {
+          "product_id": "delta-93cd6183054061e397dd",
+          "parameter_name": "bbu.dimensions",
+          "value": "537 x 93.6 x 787.5 mm",
+          "unit": "mm",
+          "condition": "33 kW BBU Shelf, W x H x D",
+          "source_url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+          "source_sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+          "observed_at": "2026-10-01T10:37:37.278110+00:00"
+        },
+        {
+          "product_id": "delta-93cd6183054061e397dd",
+          "parameter_name": "bbu.input_voltage",
+          "value": "47.5–53.0 VDC",
+          "unit": "V",
+          "condition": "33 kW BBU Shelf, DC input",
+          "source_url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+          "source_sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+          "observed_at": "2026-10-01T10:37:37.278110+00:00"
+        },
+        {
+          "product_id": "delta-93cd6183054061e397dd",
+          "parameter_name": "bbu.operating_temperature",
+          "value": "0 to 40°C",
+          "unit": "°C",
+          "condition": "33 kW BBU Shelf; vendor label misspelt Operation Temputrue",
+          "source_url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+          "source_sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+          "observed_at": "2026-10-01T10:37:37.278110+00:00"
+        },
+        {
+          "product_id": "delta-93cd6183054061e397dd",
+          "parameter_name": "bbu.output_voltage",
+          "value": "50 VDC",
+          "unit": "V",
+          "condition": "33 kW BBU Shelf, DC output",
+          "source_url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+          "source_sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+          "observed_at": "2026-10-01T10:37:37.278110+00:00"
+        },
+        {
+          "product_id": "delta-93cd6183054061e397dd",
+          "parameter_name": "bbu.power_rating",
+          "value": "33 kW, 90s after 6 years",
+          "unit": "kW",
+          "condition": "33 kW BBU Shelf, discharge power held for 90 s after 6 years (value row under the Discharge Power label; 24 kW for 240 s on the next row)",
+          "source_url": "https://www.deltaww.com/en-US/products/dc-power-systems/battery-backup-system-33kw",
+          "source_sha256": "b58804eeda65c2ae8d74818c4108e1a1f680184c61224253542ead7a21f04664",
+          "observed_at": "2026-10-01T10:37:37.278110+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.cdu.spec",
+      "part_id": "cdu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-delta-05892e1acc0ac36aa96b1fd3 manifest 76a8eb612c363d73 receipt af5db6bb514b6ac3 env production; products delta-1449b48afe7010443216; sha256 45829c0a5d18fb11",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "delta-1449b48afe7010443216",
+          "parameter_name": "cdu.cooling_capacity",
+          "value": "1500 kW @6°C approach, 1500 LPM secondary flow rate, 1300 LPM primary flow rate, 1.0 LPM/kW",
+          "unit": "kW",
+          "condition": "GoCool-1500 liquid-to-liquid CDU, nominal rating at 6°C approach (first of four rating rows; 1016 kW at 4°C approach is the lowest)",
+          "source_url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+          "source_sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+          "observed_at": "2026-10-01T10:37:42.991583+00:00"
+        },
+        {
+          "product_id": "delta-1449b48afe7010443216",
+          "parameter_name": "cdu.dimensions",
+          "value": "1200 x 1200 x 2300 mm (47.2'' x 47.2'' x 90.6'')",
+          "unit": "mm",
+          "condition": "GoCool-1500, W x D x H; inches in parentheses",
+          "source_url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+          "source_sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+          "observed_at": "2026-10-01T10:37:42.991583+00:00"
+        },
+        {
+          "product_id": "delta-1449b48afe7010443216",
+          "parameter_name": "cdu.input_voltage",
+          "value": "380/400/415/480 Vac, 3P3W+PE",
+          "unit": "V",
+          "condition": "GoCool-1500 nominal power supply voltage, 3P3W+PE, AC",
+          "source_url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+          "source_sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+          "observed_at": "2026-10-01T10:37:42.991583+00:00"
+        },
+        {
+          "product_id": "delta-1449b48afe7010443216",
+          "parameter_name": "cdu.primary_flow_rate",
+          "value": "1300 LPM, 17°C primary inlet temperature",
+          "unit": "LPM",
+          "condition": "GoCool-1500 primary side (water) nominal coolant flow rate, 17°C primary inlet",
+          "source_url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+          "source_sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+          "observed_at": "2026-10-01T10:37:42.991583+00:00"
+        },
+        {
+          "product_id": "delta-1449b48afe7010443216",
+          "parameter_name": "cdu.secondary_flow_rate",
+          "value": "1524 LPM",
+          "unit": "LPM",
+          "condition": "GoCool-1500 secondary side (25% PG) nominal flow; matches the 1016 kW at 4°C approach rating row and the 4°C approach temperature row, not the 1500 kW headline (1500 LPM)",
+          "source_url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+          "source_sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+          "observed_at": "2026-10-01T10:37:42.991583+00:00"
+        },
+        {
+          "product_id": "delta-1449b48afe7010443216",
+          "parameter_name": "cdu.weight",
+          "value": "1900 kg (4188.8 lb); Without coolant: 1600 kg (3527.4 lb)",
+          "unit": "kg",
+          "condition": "GoCool-1500 net weight with coolant (row label With coolant); the same cell gives 1600 kg without coolant",
+          "source_url": "https://www.deltaww.com/en-US/products/data-center-cooling/liquid-to-liquid-coolant-distribution-unit-1500kw",
+          "source_sha256": "45829c0a5d18fb1116ea99d69522bc4db03111487e1b3104f3f1c91f74714048",
+          "observed_at": "2026-10-01T10:37:42.991583+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.power-shelf.operation",
+      "part_id": "power-shelf",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-delta-05892e1acc0ac36aa96b1fd3 manifest 76a8eb612c363d73 receipt af5db6bb514b6ac3 env production; products delta-251a4ee59f42dfd79ee2; sha256 156f7ed8d6615f4b,7b17c093fe299fd8",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "delta-251a4ee59f42dfd79ee2",
+          "parameter_name": "power_shelf.cooling_method",
+          "value": "Cooling by PSU fans",
+          "unit": "",
+          "condition": "ORV3 18 / 33 kW shelf; merged cell (colspan 3) covering PSU and shelf columns; the shelf source publishes no efficiency or loss figure (see P.psu.operation for PSU efficiency)",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+          "source_sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+          "observed_at": "2026-10-01T10:37:22.039335+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.power-shelf.spec",
+      "part_id": "power-shelf",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-delta-05892e1acc0ac36aa96b1fd3 manifest 76a8eb612c363d73 receipt af5db6bb514b6ac3 env production; products delta-251a4ee59f42dfd79ee2; sha256 156f7ed8d6615f4b,7b17c093fe299fd8",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "delta-251a4ee59f42dfd79ee2",
+          "parameter_name": "power_shelf.dimensions",
+          "value": "1.89 x 21 x 28.3 inch (48 x 533 x 720 mm)",
+          "unit": "in",
+          "condition": "ORV3 18 / 33 kW shelf column, H x W x D; mm in parentheses",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+          "source_sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+          "observed_at": "2026-10-01T10:37:22.039335+00:00"
+        },
+        {
+          "product_id": "delta-251a4ee59f42dfd79ee2",
+          "parameter_name": "power_shelf.input_voltage",
+          "value": "AC input: 200 - 277 V L-N 346 - 480 V L-L (3W+N+PE) 50 / 60 Hz",
+          "unit": "V",
+          "condition": "ORV3 18 / 33 kW shelf column, AC input 200-277 V L-N / 346-480 V L-L, 3W+N+PE, 50/60 Hz",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+          "source_sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+          "observed_at": "2026-10-01T10:37:22.039335+00:00"
+        },
+        {
+          "product_id": "delta-251a4ee59f42dfd79ee2",
+          "parameter_name": "power_shelf.output_current",
+          "value": "360 / 660 A (max.)",
+          "unit": "A",
+          "condition": "ORV3 18 / 33 kW shelf column, max. output current for the 18 kW / 33 kW variants",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+          "source_sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+          "observed_at": "2026-10-01T10:37:22.039335+00:00"
+        },
+        {
+          "product_id": "delta-251a4ee59f42dfd79ee2",
+          "parameter_name": "power_shelf.output_voltage",
+          "value": "48 / 50 VDC",
+          "unit": "V",
+          "condition": "ORV3 18 / 33 kW shelf; one merged cell (colspan 3) covering both the PSU and the shelf columns; DC",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+          "source_sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+          "observed_at": "2026-10-01T10:37:22.039335+00:00"
+        },
+        {
+          "product_id": "delta-251a4ee59f42dfd79ee2",
+          "parameter_name": "power_shelf.power_rating",
+          "value": "18 / 33 kW (max.)",
+          "unit": "kW",
+          "condition": "ORV3 18 / 33 kW shelf column, max. output power; the 33 kW configuration is the product title, the cell lists both variants",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+          "source_sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+          "observed_at": "2026-10-01T10:37:22.039335+00:00"
+        },
+        {
+          "product_id": "delta-251a4ee59f42dfd79ee2",
+          "parameter_name": "power_shelf.weight",
+          "value": "26.5 lbs (12 kg) without PSUs / 66.16 Ibs (30kg) fully populated",
+          "unit": "lb",
+          "condition": "ORV3 18 / 33 kW shelf column, 12 kg without PSUs / 30 kg fully populated; vendor misprints the second lbs as Ibs",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vTsfY91JdZG5q8uFZpoDKyJ1yFPUIc_VmYQtDsD_6jPpQ-tlwGSOkeYvlsvH_P_J1NdcV_hJXkJI4Kc/pub?embedded=true",
+          "source_sha256": "156f7ed8d6615f4bea5f10d6e9c4d2f5a0015b1d801e874f7b5de989354674f9",
+          "observed_at": "2026-10-01T10:37:22.039335+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.psu.operation",
+      "part_id": "psu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-delta-05892e1acc0ac36aa96b1fd3 manifest 76a8eb612c363d73 receipt af5db6bb514b6ac3 env production; products delta-5902ab234fbdce7b3c92; sha256 49ae84e1d9874b73,679374026575d720",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "delta-5902ab234fbdce7b3c92",
+          "parameter_name": "psu.efficiency",
+          "value": ">97.5 @100% Load",
+          "unit": "%",
+          "condition": "ORV3 5.5 kW PSU at 100% load; vendor omits the % sign on the value",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+          "source_sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+          "observed_at": "2026-10-01T10:37:31.567767+00:00"
+        }
+      ]
+    },
+    {
+      "target_id": "P.psu.spec",
+      "part_id": "psu",
+      "site_right_id": null,
+      "team": "fetchspec",
+      "origin_pointer": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+      "pointer_kind": "url",
+      "delivered_at": "2026-10-01",
+      "delivered_by": "fetchspec",
+      "note": "fetchspec fetchspec-delta-05892e1acc0ac36aa96b1fd3 manifest 76a8eb612c363d73 receipt af5db6bb514b6ac3 env production; products delta-5902ab234fbdce7b3c92; sha256 49ae84e1d9874b73,679374026575d720",
+      "imported_at": "2026-10-01",
+      "imported_by": "m5",
+      "source": "assignments.register_delivery",
+      "parameters": [
+        {
+          "product_id": "delta-5902ab234fbdce7b3c92",
+          "parameter_name": "psu.dimensions",
+          "value": "1.57 x 2.9 x 25.2 inch (40.0 x 73.5 x 640 mm)",
+          "unit": "in",
+          "condition": "ORV3 5.5 kW PSU, H x W x D; mm in parentheses (the 33 kW system page lists the PSU depth as 520 mm, this page 640 mm)",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+          "source_sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+          "observed_at": "2026-10-01T10:37:31.567767+00:00"
+        },
+        {
+          "product_id": "delta-5902ab234fbdce7b3c92",
+          "parameter_name": "psu.input_voltage",
+          "value": "180 VAC - 305 VAC 50 / 60 Hz",
+          "unit": "V",
+          "condition": "ORV3 5.5 kW PSU, AC input range, 50/60 Hz",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+          "source_sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+          "observed_at": "2026-10-01T10:37:31.567767+00:00"
+        },
+        {
+          "product_id": "delta-5902ab234fbdce7b3c92",
+          "parameter_name": "psu.output_voltage",
+          "value": "48 / 50 VDC",
+          "unit": "V",
+          "condition": "ORV3 5.5 kW PSU, DC output",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+          "source_sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+          "observed_at": "2026-10-01T10:37:31.567767+00:00"
+        },
+        {
+          "product_id": "delta-5902ab234fbdce7b3c92",
+          "parameter_name": "psu.power_rating",
+          "value": "5,500 W",
+          "unit": "W",
+          "condition": "ORV3 5.5 kW PSU, max. output power",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+          "source_sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+          "observed_at": "2026-10-01T10:37:31.567767+00:00"
+        },
+        {
+          "product_id": "delta-5902ab234fbdce7b3c92",
+          "parameter_name": "psu.weight",
+          "value": "9.92 lbs (4.5 kg)",
+          "unit": "lb",
+          "condition": "ORV3 5.5 kW PSU; kg in parentheses",
+          "source_url": "https://docs.google.com/document/d/e/2PACX-1vSD-nuSOMEf0ndyrWnwAApeNrqMi0K0R9s6nMAPjfOvZHeA75IuVFT48M68glNWA-u7OaeXV-HDIB-5/pub?embedded=true",
+          "source_sha256": "679374026575d720fcdd4f1610a4eb2106fda5314d909e623635e09a0f947fd0",
+          "observed_at": "2026-10-01T10:37:31.567767+00:00"
+        }
+      ]
     }
   ]
 }
