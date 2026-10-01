@@ -83,8 +83,10 @@ class DashboardTests(unittest.TestCase):
                 self.assertEqual(c['status'] == 'sourced', any(i['value'] is not None and i.get('kind') != 'count' for i in c['items']),
                                  f"{row['id']}: sourced only for non-count values")
                 self.assertEqual(set(c['coverage']), {'sourced', 'assumed', 'delivered', 'needed'}, row['id'])
-        # honesty: the part count we registered ourselves is 'registered', never 'sourced'
-        self.assertEqual(self.doc['system_nodes'][0]['cells']['1']['status'], 'registered')
+        # honesty: the part count we registered ourselves is 'registered', never 'sourced'; a team delivery
+        # into the same cell lifts it to 'delivered' (the count still does not make it 'sourced')
+        cell = self.doc['system_nodes'][0]['cells']['1']
+        self.assertEqual(cell['status'], 'delivered' if cell['coverage']['delivered'] else 'registered')
         self.assertEqual(set(self.doc['root']['targets']), {'sourced', 'assumed', 'delivered', 'needed', 'not_connected'})
         self.assertEqual(set(self.rules['cell_status']), {'sourced', 'assumed', 'delivered', 'registered', 'needed'})
         self.assertEqual(set(self.doc['parts']), {p['id'] for p in self.bom['parts']})
