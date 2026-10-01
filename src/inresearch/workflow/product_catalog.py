@@ -351,6 +351,8 @@ def summary(products, groups=()):
         'by_kind': count(p['kind'] for p in products),
         'by_listing': count(p.get('listing') or 'unspecified' for p in products),
         'by_official_status': count(p.get('official_status') or 'unspecified' for p in products),
+        # how each entity's specification was obtained (part component, family product brief, gap, …)
+        'by_extraction_status': count(p.get('extraction_status') or 'unspecified' for p in products),
         'by_group': [{**g, 'families': sorted(g['families'].values(), key=lambda f: f['id'])}
                      for g in sorted(by_group.values(), key=lambda g: (not g['id'], g['label'].casefold()))],
         'specification_coverage': {

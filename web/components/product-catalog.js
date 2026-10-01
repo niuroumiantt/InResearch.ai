@@ -36,6 +36,18 @@
       label: '官网规格来源不可用',
       detail: '官网型号专属规格页已删除或不可用；产品与来源记录已保留，不以相邻型号或非官方参数补值。'
     },
+    vendor_specification_gap: {
+      label: '官网零件页未提供规格',
+      detail: '已核对的官网零件页没有型号规格组件，也没有可抓取的系列规格资料；产品与来源记录已保留，不以相邻型号补值。'
+    },
+    part_page_unavailable: {
+      label: '官网零件页已下线',
+      detail: '官网 sitemap 仍列出该零件，但页面返回 404 / 410；保留身份，不推断停产。'
+    },
+    not_collected_obsolete: {
+      label: '停产型号（只登记）',
+      detail: '官网把该零件列在停产目录下：按标准只登记身份，不抓规格。'
+    },
     official_specification_not_published_on_observed_page: {
       label: '官网未发布型号规格',
       detail: '已核对的官网产品页未发布型号专属规格表或附件；产品与来源记录已保留，不以相邻型号或非官方参数补值。'
@@ -160,7 +172,7 @@
       const cov=data.summary?.specification_coverage;
       // The standard's first denominator: current named products (obsolete parts are listed, not collected).
       const covNamed=cov?.current_named_products||cov?.named_products;
-      $('#coverage-line').textContent=cov?`规格覆盖（两个分母分开）：${cov.current_named_products?'在售':''}具体型号有官方规格表 ${covNamed.with_tables} / ${covNamed.total} · 全部目录实体有规格表 ${cov.all_entities.with_tables} / ${cov.all_entities.total}${cov.obsolete_listed?` · 另有停产型号 ${cov.obsolete_listed} 个只登记不抓规格`:''}`:'';
+      $('#coverage-line').textContent=cov?`规格覆盖（两个分母分开）：${cov.current_named_products?'在售':''}具体型号有官方规格表 ${covNamed.with_tables} / ${covNamed.total} · 全部目录实体有规格表 ${cov.all_entities.with_tables} / ${cov.all_entities.total}${(data.summary?.by_extraction_status||{}).family_brief_table_extracted?`（其中 ${data.summary.by_extraction_status.family_brief_table_extracted} 个是系列产品简介的规格总表，非逐型号）`:''}${cov.obsolete_listed?` · 另有停产型号 ${cov.obsolete_listed} 个只登记不抓规格`:''}`:'';
       if(vendorPath)$('#groups-note').innerHTML=`下列分组就是 <a href="${esc(data.navigation?.official_source||data.company?.products_url||'')}" target="_blank" rel="noopener">${esc(companyLabel)} 官方产品目录</a>自己的产品分类（官方产品路径原样，大类 › 系列），本站不重新归类。目录 / 分类页单列，不计作具体型号；官网列为停产的型号保留并标注官网原文状态。`;
       $('#alignment').innerHTML=`已与新版主线对齐：当前 ${esc(companyLabel)} 资料可服务 <strong>${esc(alignment.target_ids.length)}</strong> 条 Fetchspec 生成目标、<strong>${esc(alignment.part_ids.length)}</strong> 个部件；这里只显示候选规格，不自动写成正式研究事实。 <a href="/node.html?node=root">查看数据中心节点树</a> · <a href="/supply.html#providers">查看 Fetchspec 目标</a>`;
       const sum=data.summary||{};

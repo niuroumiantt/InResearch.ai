@@ -130,7 +130,7 @@ function catalogHtml(cat, c) {
   const groups = all.filter(g => g.entities > 1 || g.with_tables), single = all.filter(g => !(g.entities > 1 || g.with_tables));
   const obsoleteGroup = (s.by_group || []).find(g => /obsolete/i.test(g.id || ""));
   return head + `<div class="cover">
-      <span><b>${esc(named.with_tables ?? "—")}</b> / ${esc(named.total ?? "—")} ${cov.current_named_products ? "在售" : ""}具体型号有官方规格</span>
+      <span><b>${esc(named.with_tables ?? "—")}</b> / ${esc(named.total ?? "—")} ${cov.current_named_products ? "在售" : ""}具体型号有官方规格${(s.by_extraction_status || {}).family_brief_table_extracted ? `（其中 ${esc(s.by_extraction_status.family_brief_table_extracted)} 个是系列产品简介的规格总表，非逐型号）` : ""}</span>
       <span><b>${esc(cov.all_entities?.with_tables ?? "—")}</b> / ${esc(cov.all_entities?.total ?? s.entities ?? "—")} 全部目录实体有规格表</span>
       ${cov.obsolete_listed ? `<span><b>${esc(cov.obsolete_listed)}</b> 个停产型号只登记不抓规格</span>` : ""}
       ${listing.directory ? `<span><b>${esc(listing.directory)}</b> 个分类 / 系列页</span>` : ""}
