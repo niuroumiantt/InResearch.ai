@@ -99,8 +99,12 @@
   }
   function navigation() {
     const items=catalog.products.filter(p=>p.navigation.role==='catalog');
-    if(!catalog.navigation.groups.some(g=>g.id===group))group=catalog.navigation.groups[0]?.id||'';
-    $('#groups').innerHTML=catalog.navigation.groups.map(g=>`<button data-group="${esc(g.id)}" aria-pressed="${scope==='catalog'&&group===g.id&&!$('#query').value}"><strong>${esc(g.label)}</strong><small>${items.filter(p=>p.navigation.group===g.id).length} 个产品 / 系列条目</small></button>`).join('');
+    // Vendor taxonomy: largest groups first, groups with no products (pure category pages) left to the
+    // directory list, the vendor's obsolete catalogue last. NVIDIA keeps its curated order.
+    const size=g=>items.filter(p=>p.navigation.group===g.id).length;
+    const groups=vendorPath?catalog.navigation.groups.filter(g=>size(g)>0).sort((a,b)=>(/obsolete/i.test(a.id)-/obsolete/i.test(b.id))||size(b)-size(a)):catalog.navigation.groups;
+    if(!groups.some(g=>g.id===group))group=groups[0]?.id||'';
+    $('#groups').innerHTML=groups.map(g=>`<button data-group="${esc(g.id)}" aria-pressed="${scope==='catalog'&&group===g.id&&!$('#query').value}"><strong>${esc(g.label)}</strong><small>${items.filter(p=>p.navigation.group===g.id).length} 个产品 / 系列条目</small></button>`).join('');
     $('#auxiliary').textContent=`${vendorPath?'目录与分类页 / 待归类':'辅助资料 / 待归类'}（${catalog.products.length-items.length}）`;
     $('#auxiliary').setAttribute('aria-pressed',String(scope==='auxiliary'));
     $('#groups').querySelectorAll('button').forEach(b=>b.onclick=()=>{group=b.dataset.group;family='';scope='catalog';page=0;$('#query').value='';filter();});
@@ -148,7 +152,8 @@
       const pm=c.product_map||{};
       const delta=Object.entries(pm.changes||{}).map(([k,v])=>`${k} ${v}`).join(' / ');
       const sm=c.website_sitemap||{};
-      const named=data.products.filter(p=>p.kind==='named_product');
+      // vendor catalogs list obsolete parts without collecting them: the denominator is the current parts
+      const named=data.products.filter(p=>p.kind==='named_product'&&p.listing!=='obsolete');
       const namedWithSpecs=named.filter(p=>tableCount(p));
       const explicitGaps=named.filter(p=>specificationGaps[p.extraction_status]);
       $('#status').textContent=`更新于 ${data.generated_at} · 具体型号规格 ${namedWithSpecs.length} / ${named.length} · 产品地图 ${pm.entries||data.products.length} 项${delta?` · 本次 ${delta}`:''}${vendorPath&&sm.candidate_urls==null?'':` · 官方 sitemap 候选 ${sm.candidate_urls??'尚未同步'}`} · 尚未确认全公司产品总数`;

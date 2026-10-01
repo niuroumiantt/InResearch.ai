@@ -279,6 +279,14 @@ def company_block(company):
             'navigation': config['navigation']}
 
 
+def with_list_fields(product):
+    """Deliveries may leave empty optional lists out to stay small; readers always get the lists."""
+    for key in ('attachments', 'official_resources', 'official_pages'):
+        product.setdefault(key, [])
+    product.setdefault('categories', [product['category']] if product.get('category') else [])
+    return product
+
+
 def snapshot(root, company='nvidia'):
     path = database(root, company)
     if not path.is_file():
@@ -291,7 +299,7 @@ def snapshot(root, company='nvidia'):
             return {'available': False, 'company_id': company, 'company': company_block(company), 'products': [], 'coverage': {}}
         products = []
         for row in db.execute('SELECT payload,run_id FROM products WHERE run_id=? ORDER BY id', (run['id'],)):
-            p = json.loads(row['payload'])
+            p = with_list_fields(json.loads(row['payload']))
             p['seen_in_latest_run'] = row['run_id'] == run['id']
             p['navigation'] = classify(p, company)
             # Tables are data, never injected source HTML. Source text stays private.
@@ -420,7 +428,7 @@ def product_snapshot(root, product_id, company='nvidia'):
             return {'available': False, 'company_id': company, 'product': None}
         row = db.execute('SELECT payload FROM products WHERE run_id=? AND id=?',
                          (run['id'], product_id)).fetchone()
-        product = json.loads(row['payload']) if row else None
+        product = with_list_fields(json.loads(row['payload'])) if row else None
         if product:
             product['seen_in_latest_run'] = True
             product['navigation'] = classify(product, company)
