@@ -290,25 +290,29 @@ class Handler(SimpleHTTPRequestHandler):
             return self._json(200, {"ok": True, "users": [
                 {"name": n, "role": u.get("role", "member"), "created": u.get("created", "?")}
                 for n, u in sorted(users.items())]})
-        if urlsplit(self.path).path == '/api/product-catalog/nvidia':
+        if urlsplit(self.path).path.startswith('/api/product-catalog/'):
+            # 规格库按公司分库（2026-10-01）：/api/product-catalog/<company>，公司须在 COMPANIES 登记。
+            company = urlsplit(self.path).path.removeprefix('/api/product-catalog/')
+            if company not in product_catalog.COMPANIES:
+                return self._json(404, {'ok': False, 'error': 'unknown catalog company'})
             query = parse_qs(urlsplit(self.path).query)
             export = query.get('export', [''])[0]
             if export:
-                value = product_catalog.snapshot(ROOT)
+                value = product_catalog.snapshot(ROOT, company)
                 try:
-                    body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1', query.get('group', [''])[0], query.get('family', [''])[0], query.get('scope', ['all'])[0]).encode('utf-8')
+                    body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1', query.get('group', [''])[0], query.get('family', [''])[0], query.get('scope', ['all'])[0], company=company).encode('utf-8')
                 except ValueError as exc:
                     return self._json(400, {'error': str(exc)})
                 self.send_response(200)
                 self.send_header('Content-Type', 'text/csv; charset=utf-8')
-                self.send_header('Content-Disposition', 'attachment; filename="nvidia-' + export + '.csv"')
+                self.send_header('Content-Disposition', 'attachment; filename="' + company + '-' + export + '.csv"')
                 self.send_header('Content-Length', str(len(body)))
                 self.end_headers()
                 return self.wfile.write(body)
             product_id = query.get('product_id', [''])[0]
             if product_id:
                 try:
-                    value = product_catalog.product_snapshot(ROOT, product_id)
+                    value = product_catalog.product_snapshot(ROOT, product_id, company)
                 except ValueError as exc:
                     return self._json(400, {'error': str(exc)})
                 if value['product'] is None:
@@ -316,9 +320,9 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, value)
             view = query.get('view', ['full'])[0]
             if view == 'index':
-                return self._json(200, product_catalog.index_snapshot(ROOT))
+                return self._json(200, product_catalog.index_snapshot(ROOT, company))
             if view == 'full':
-                return self._json(200, product_catalog.snapshot(ROOT))
+                return self._json(200, product_catalog.snapshot(ROOT, company))
             return self._json(400, {'error': 'unknown catalog view'})
         if urlsplit(self.path).path == '/api/pilot-progress/nvidia':
             try:
@@ -429,8 +433,12 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, {'ok': True})
             except (ValueError, KeyError, OSError):
                 return self._json(400, {'ok': False})
-        if self.path == '/api/product-catalog/nvidia':
-            return self.api_nvidia_pilot_progress(receiver=product_catalog.receive)
+        if self.path.startswith('/api/product-catalog/'):
+            company = self.path.removeprefix('/api/product-catalog/')
+            if company not in product_catalog.COMPANIES:
+                return self._json(404, {'ok': False, 'error': 'unknown catalog company'})
+            return self.api_nvidia_pilot_progress(
+                receiver=lambda root, payload: product_catalog.receive(root, payload, company))
         if self.path == '/api/pilot-progress/nvidia':
             return self.api_nvidia_pilot_progress()
         if self.path == '/api/materials':

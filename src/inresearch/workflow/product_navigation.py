@@ -1,4 +1,9 @@
-"""Versioned browsing projection; never rewrites vendor category evidence."""
+"""Versioned browsing projection; never rewrites vendor category evidence.
+
+NVIDIA uses a reviewed display mapping (``classify``).  Other companies are
+browsed by the vendor's own product path as delivered (``classify_taxonomy``);
+that path is evidence, so it is projected as-is and never re-labelled here.
+"""
 import re
 from urllib.parse import urlsplit
 
@@ -66,7 +71,41 @@ def classify(product):
             'status': 'display_mapping_not_vendor_taxonomy', 'official_source': SOURCE}
 
 
-def matches(product, group='', family='', scope='all'):
-    nav = classify(product)
+TAXONOMY_VERSION = '2026-10-01.1'
+
+
+def taxonomy_path(product):
+    """The vendor's own product path, keeping only well-formed {slug, name} steps."""
+    path = product.get('taxonomy') or []
+    return [step for step in path if isinstance(step, dict) and step.get('slug')] if isinstance(path, list) else []
+
+
+def classify_taxonomy(product, official_source=''):
+    """Navigation from the vendor's own product path (same shape as ``classify``)."""
+    path = taxonomy_path(product)
+    if not path:
+        return {'version': TAXONOMY_VERSION, 'group': '', 'family': '', 'family_label': '待归类',
+                'role': 'unclassified', 'basis': 'vendor_product_path', 'status': 'vendor_taxonomy',
+                'official_source': official_source}
+    family = path[1] if len(path) > 1 else None
+    return {'version': TAXONOMY_VERSION, 'group': str(path[0]['slug']),
+            'family': str(family['slug']) if family else '',
+            'family_label': str((family or path[0]).get('name') or (family or path[0])['slug']),
+            'role': 'auxiliary' if product.get('listing') == 'directory' else 'catalog',
+            'basis': 'vendor_product_path', 'status': 'vendor_taxonomy', 'official_source': official_source}
+
+
+def taxonomy_groups(products):
+    """Top-level groups present in the delivered data (id=slug, label=vendor name)."""
+    groups = {}
+    for product in products:
+        path = taxonomy_path(product)
+        if path:
+            groups.setdefault(str(path[0]['slug']), str(path[0].get('name') or path[0]['slug']))
+    return [{'id': slug, 'label': label} for slug, label in sorted(groups.items(), key=lambda item: item[1].casefold())]
+
+
+def matches(product, group='', family='', scope='all', classifier=None):
+    nav = (classifier or classify)(product)
     return ((not group or nav['group'] == group) and (not family or nav['family'] == family)
             and (scope == 'all' or (nav['role'] == 'catalog' if scope == 'catalog' else nav['role'] != 'catalog')))
