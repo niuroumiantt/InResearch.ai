@@ -3,6 +3,14 @@
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
 
+## 2026-10-01：产品规格库按公司分库（NVIDIA 之外接入 Micron）
+
+规格库原来只有 NVIDIA。06 采集规范里「产品清单 → 官方规格 → 数据库 → 轻量展示」的打样标准改为逐公司适用，同一条管线：`product_catalog.COMPANIES` 登记公司（现有 `nvidia`、`micron`），每家一个库 `data/raw/product-catalog/<公司>.sqlite3`；交付仍是 schema 1，`company_id` 须是登记公司、产品 ID 须是「公司-20 位哈希」，来源、附件、资料入口与多语言页只认该公司官网主机（Micron 为 `micron.com` 及子域；NVIDIA 的 DAM 附件例外只属于 NVIDIA）。接收端按路径里的公司收货，别家的包、别家前缀的 ID 一律拒收；`coverage.complete` 仍须为 false，其余校验不变。NVIDIA 的库、数据与五个展示分组不变。
+
+**导航。** NVIDIA 继续用已审阅的展示映射。其他公司按原厂自己的产品路径浏览：产品可带 `taxonomy`（`[{slug,name}]`，原厂产品路径原样）、`official_status`（原厂状态原文，如 Production / Sampling / Obsolete (listed)）、`listing`（active / obsolete / directory）、`part_number`，原样存、原样给；大类取路径第一级、系列取第二级，目录/分类页（`listing=directory`）单列为辅助，不计作具体型号。分组由数据里出现的路径生成，来源标为原厂目录（Micron：https://www.micron.com/products），不是本站归类。
+
+**接口与页面。** `GET/POST /api/product-catalog/<公司>`（未登记公司 404），GET 对每家登记公司公开只读，POST 仍用原交付凭证。索引多给 `summary`（按类型、列出状态、原厂状态、大类/系列的实体数与有规格表数，以及规范要求的两个分母：具体型号有规格表/具体型号总数、全部实体有规格表/全部实体），`research_alignment` 按公司名匹配 Fetchspec 目标行并列出每行 id、部件与状态。页面 `product-catalog.html?c=<公司>` 加公司切换与覆盖率行；CLI `manage.py product-catalog --company`。计数只是本次交付的实体，不是厂商产品总数；官网状态是原文，不等于确认在售。用例：`tests/unit/test_product_catalog_companies.py`。06 规范正文仍写 NVIDIA 库路径，改写需站长审阅。
+
 ## 2026-10-01：公司页「已登记产品」
 
 用户要在网站上按公司看 Fetchspec 交付了什么。公司页新增「已登记产品」：读 Git 内事件卡（`data/event_cards.json`），按卡上参数的产品 ID（「公司-20 位哈希」）或备注里的 products 归到公司，同一来源页面交付到多条目标行时合成一个产品；每个产品给官网原页链接、交付的目标行（跳目标表并带 `?q=` 筛选）与参数原文值、单位、条件。Fetchspec 的 `asteralabs`、`delta` 在公司表叫 `astera-labs`、`delta-electronics`，页面内对照。公司页本就登录可见，事件卡不进公开白名单。目标表 `supply.html` 同时读取 URL 的 `q`。
