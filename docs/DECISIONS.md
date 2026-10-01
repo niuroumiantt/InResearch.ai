@@ -2,6 +2,14 @@
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
+## 2026-10-01：新闻同步改增量为主；公开 /api/news 带按目标行的回流计数
+
+**增量。** `news_sync` 原来每 15 分钟整窗重拉 7 天（深分页慢，9-29 撞过读超时）。现在首轮与每 6 小时整窗一次，其余各轮拉 `/api/feeds/datacenter/changes?since=<上轮 next_since>`：可读的卡照全量同样校验并入库，tombstone（`withdrawn`）把对应文章撤出现行窗口，发布时间出 7 天窗的跳过。`news-window.json` 多记 `members`（guid → 文章号与发布时间），增量据此合并、撤下、按 7 天剔除；`guids` 仍是现行窗口，读端不变。状态在 `acquisition/news-sync-state.json`（`next_since`、`full_at`）。增量不成（上游拒收、窗口文件没有 members、网络中断）就本轮整窗兜底，不卡在坏状态上；`since` 超过 23 小时也直接整窗。timer 不变。
+
+**回流。** 公开 `/api/news` 的 `feed` 多给 `by_target`：当前窗口每条目标行的新闻线索数（只是计数，目标行 ID 本在公开的目标表里）；形状不对的条目丢弃，整项不对就不给，不拒整页。inews 读这一项调词与调车道。采纳数（研究侧审过、用上了几张）待「审阅与更新」定下后再加。
+
+用例：`tests/unit/test_news_incremental.py`、`tests/unit/test_news_feedback.py`；同时修正 `test_news_targets.py` 按名字导入夹具类导致其用例被重复执行。
+
 ## 2026-10-01：新闻线索按目标行归档（收下 inews 的 target_ids）
 
 inews 早已按目标行（`framework/tco_targets.json` 的 id）补查询并给每张事件卡打 `target_ids`，但 `news_sync` 只收 `object_ids`，目标行标签在接收端被丢掉，新闻线索没法按目标行看、也没法回答「哪行有料、哪行缺料」。现收为第七个 feed v2 字段：形状错拒收整页，不在现行目标表里的逐个过滤（与 `object_ids` 同一态度），仍是线索不是采用的证据（`match_status` 不变）。`news_projection.feed` 多给 `by_target`：当前窗口内每条目标行的线索数，供回流给 inews 调词与调车道。用例在 `tests/unit/test_news_targets.py`。拉取方式不变（Spark `inresearch-news` 每 15 分钟拉 7 天窗口）；改增量（`/api/feeds/datacenter/changes?since=`）牵涉 `news-window.json` 的「当前可见窗口」语义，另议。

@@ -7,6 +7,7 @@ No original documents or runtime credentials are served by this module.
 
 from inresearch.paths import project_root
 from inresearch.storage.layout import workspace_path
+from inresearch.knowledge.news_policy import TARGET_ID
 import argparse
 import copy
 import csv
@@ -585,9 +586,15 @@ def build_news(root=ROOT):
         def timestamp(item):
             value = item.get('published_at')
             return value if type(value) in (int, float) and abs(value) <= 8640000000000000 else 0
+        # 回流（2026-10-01）：每条目标行在当前窗口里收到几张新闻线索。只是计数，目标行 ID 本来就在公开的
+        # framework/tco_targets.json 里；inews 读这一项（公开 /api/news）调词与调车道。形状不对就不给，不拒整页。
+        counts = feed.get('by_target')
+        by_target = ({k: v for k, v in counts.items() if isinstance(k, str) and TARGET_ID.fullmatch(k) and type(v) is int and v >= 0}
+                     if isinstance(counts, dict) and len(counts) <= 5000 else None)
         feed = dict(status=feed.get('status'), exported_at=feed.get('exported_at'),
                     items=[{key: item[key] for key in ('title_zh', 'url', 'domain', 'published_at') if key in item}
-                           for item in sorted(items, key=timestamp, reverse=True)[:80]])
+                           for item in sorted(items, key=timestamp, reverse=True)[:80]],
+                    **({'by_target': by_target} if by_target is not None else {}))
     return dict(schema_version=1, feed=feed,
                 reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
 
