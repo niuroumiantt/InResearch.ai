@@ -3,6 +3,10 @@
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
 
+## 2026-10-02：计算芯片按具体产品分类，补跨厂商浏览与官方证据
+
+补充现行 03/05/06：CPU、GPU、其他计算加速器与原厂 navigation 并存，中国厂商筛选按公司表总部国家；芯片、板卡、整机、系列与 IP 分开。沿用全部公司 ID，鲲鹏、昇腾、海光 DCU 显式保留产品线与母公司。新增官方来源接收范围和可校验 compute 证据字段，DCU 未知架构留空。Fetchspec 按已审阅型号页抓取，并从海光官方静态组件保留逐型号 CPU 原值。候选及访问阻断不伪称产品覆盖；真实覆盖与未完成项见 `docs/handoff/compute-catalog-20261002.md`。本次不操作 Spark，也不以本地接收冒充线上发布。
+
 ## 2026-10-02：扩展 Intel、AMD、Supermicro、SK hynix 规格目录
 
 用户确认 superior / amazing 指 Supermicro / AMD，要求计算、存储和网络厂商上架。沿用 Fetchspec 采集、网站分公司接收的链路；新增四家接收范围和六家公司动态切换，公司页跳转携带 company_id。原厂分类缺失时保留待归类，目录未交付明确等待，不填示例规格。Intel/AMD/SK hynix 新增有界原生 HTML 适配器与候选种子，Supermicro 复用现有适配器并保留原厂面包屑。规范 06 正文同步为逐公司路径，替代此前仅 NVIDIA 的路径表述。
