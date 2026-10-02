@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.02.3",
+  "version": "2026.10.02.4",
   "effective_at": "2026-10-02",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -161,7 +161,7 @@
       "topic": "products",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-15",
+      "effective_at": "2026-10-02",
       "source": "framework/03_bom_and_collaboration.md",
       "implementations": [
         "src/inresearch/knowledge/registry.py",
@@ -181,13 +181,16 @@
         "framework/site_rights.json",
         "web/pages/bom.html",
         "src/inresearch/knowledge/validate.py",
-        "tests/unit/test_bom.py"
+        "tests/unit/test_bom.py",
+        "data/companies.json",
+        "src/inresearch/workflow/compute_catalog.py",
+        "tests/unit/test_compute_catalog.py"
       ],
       "supersedes": [
         "products-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-28 一个骨架：第一层按系统、系统内按链路、尺度是属性；骨架的三个补充（建设阶段、部件级运行行、登记表两列）登记为现行。",
-      "implementation_revision": "2026.09.28.1"
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-28 一个骨架：第一层按系统、系统内按链路、尺度是属性；骨架的三个补充（建设阶段、部件级运行行、登记表两列）登记为现行。；2026-10-02 计算芯片补充：按具体产品 CPU/GPU/其他加速器与形态独立投影，原厂 navigation 保留，复用公司ID与母公司关系，中国厂商筛选，来源/架构证据校验，候选与真实交付分开。",
+      "implementation_revision": "2026.10.02.4"
     },
     {
       "id": "reading-legacy",
@@ -927,13 +930,18 @@
         "web/components/industry.js",
         "web/themes/industry.css",
         "tests/unit/test_industry.py",
-        "tests/industry.cjs"
+        "tests/industry.cjs",
+        "web/pages/compute-catalog.html",
+        "web/components/compute-catalog.js",
+        "tests/compute_catalog.cjs",
+        "web/components/product-catalog.js",
+        "web/pages/product-catalog.html"
       ],
       "supersedes": [
         "interface-20260906"
       ],
-      "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-02 二次修订：用户明确首页去项目表格、全球估算与地图样本分开、低置信度新闻自动进入机会池并关联园区动态，保留人工纠正。",
-      "implementation_revision": "2026.10.02.1"
+      "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-02 二次修订：用户明确首页去项目表格、全球估算与地图样本分开、低置信度新闻自动进入机会池并关联园区动态，保留人工纠正。；2026-10-02 计算芯片补充：按具体产品 CPU/GPU/其他加速器与形态独立投影，原厂 navigation 保留，复用公司ID与母公司关系，中国厂商筛选，来源/架构证据校验，候选与真实交付分开。",
+      "implementation_revision": "2026.10.02.4"
     },
     {
       "id": "acquisition-20261002",
@@ -1019,13 +1027,18 @@
         "tests/unit/test_industry.py",
         "tests/industry.cjs",
         "web/pages/company.html",
-        "tests/unit/test_product_catalog_companies.py"
+        "tests/unit/test_product_catalog_companies.py",
+        "src/inresearch/workflow/compute_catalog.py",
+        "tests/unit/test_compute_catalog.py",
+        "tests/compute_catalog.cjs",
+        "src/inresearch/interfaces/public.py",
+        "docs/handoff/compute-catalog-20261002.md"
       ],
       "supersedes": [
         "acquisition-20260906"
       ],
-      "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-02 二次修订：用户明确首页去项目表格、全球估算与地图样本分开、低置信度新闻自动进入机会池并关联园区动态，保留人工纠正。；2026-10-02 用户授权四家规格目录扩展：Intel、AMD、Supermicro、SK hynix，统一注册、分库和官方来源校验，未交付不表示已有产品。",
-      "implementation_revision": "2026.10.02.3"
+      "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-02 二次修订：用户明确首页去项目表格、全球估算与地图样本分开、低置信度新闻自动进入机会池并关联园区动态，保留人工纠正。；2026-10-02 用户授权四家规格目录扩展：Intel、AMD、Supermicro、SK hynix，统一注册、分库和官方来源校验，未交付不表示已有产品。；2026-10-02 计算芯片补充：按具体产品 CPU/GPU/其他加速器与形态独立投影，原厂 navigation 保留，复用公司ID与母公司关系，中国厂商筛选，来源/架构证据校验，候选与真实交付分开。",
+      "implementation_revision": "2026.10.02.4"
     }
   ],
   "entrypoints": [

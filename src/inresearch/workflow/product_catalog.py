@@ -21,7 +21,7 @@ from urllib.request import Request, build_opener
 from inresearch.paths import project_root
 from inresearch.storage.layout import workspace_path
 from inresearch.delivery.publish_pilot_progress import NoRedirect
-from inresearch.workflow import product_navigation
+from inresearch.workflow import product_navigation, compute_catalog
 
 # Registered companies.  ``domains`` are the official first-party hosts (the
 # domain itself and its subdomains, HTTPS on 443 only).  ``attachment_hosts``
@@ -46,6 +46,20 @@ COMPANIES = {
     'sk-hynix': {'label': 'SK hynix', 'match': 'sk hynix', 'domains': ('skhynix.com',),
                  'attachment_hosts': (), 'navigation': 'vendor_taxonomy',
                  'products_url': 'https://product.skhynix.com/'},
+    'ampere-computing': {'label': 'Ampere Computing', 'match': 'ampere', 'domains': ('amperecomputing.com',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://amperecomputing.com/products/processors'},
+    'huawei-kunpeng': {'label': '鲲鹏', 'match': '鲲鹏', 'domains': ('hikunpeng.com', 'huawei.com'), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.hikunpeng.com/zh/compute/kunpeng920'},
+    'hygon': {'label': '海光 CPU', 'match': 'hygon', 'domains': ('hygon.cn',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.hygon.cn/'},
+    'hygon-dcu': {'label': '海光 DCU', 'match': 'hygon-dcu', 'domains': ('hygon.cn',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.hygon.cn/'},
+    'phytium': {'label': '飞腾', 'match': 'phytium', 'domains': ('phytium.com.cn',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.phytium.com.cn/'},
+    'loongson': {'label': '龙芯', 'match': 'loongson', 'domains': ('loongson.cn',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.loongson.cn/product/channel'},
+    'zhaoxin': {'label': '兆芯', 'match': 'zhaoxin', 'domains': ('zhaoxin.com',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.zhaoxin.com/'},
+    'biren': {'label': '壁仞', 'match': 'biren', 'domains': ('birentech.com',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.birentech.com/'},
+    'moore-threads': {'label': '摩尔线程', 'match': 'moore-threads', 'domains': ('mthreads.com',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.mthreads.com/'},
+    'metax': {'label': '沐曦', 'match': 'metax', 'domains': ('metax-tech.com',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.metax-tech.com/product.html'},
+    'iluvatar-corex': {'label': '天数智芯', 'match': 'iluvatar-corex', 'domains': ('iluvatar.com',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.iluvatar.com/'},
+    'huawei-ascend': {'label': '昇腾', 'match': '昇腾', 'domains': ('hiascend.com', 'huawei.com'), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.hiascend.com/hardware'},
+    'cambricon': {'label': '寒武纪', 'match': 'cambricon', 'domains': ('cambricon.com',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://cambricon.com/'},
+    'enflame': {'label': '燧原', 'match': 'enflame', 'domains': ('enflame-tech.com',), 'attachment_hosts': (), 'navigation': 'vendor_taxonomy', 'products_url': 'https://www.enflame-tech.com/'},
 }
 LISTINGS = {'active', 'obsolete', 'directory'}
 
@@ -181,6 +195,8 @@ def validate(payload, company=None):
         if product['kind'] not in {'named_product', 'software_service', 'family_or_directory'} or product['availability'] != 'not_verified':
             raise ValueError('invalid product classification')
         validate_vendor_fields(product)
+        if "compute" in product:
+            compute_catalog.validate(product["compute"], source_keys)
         for attachment in product.get('attachments', []):
             if not official_attachment(attachment['url'], attachment, source_keys, company):
                 raise ValueError('attachment must be an official HTTPS source')
@@ -287,8 +303,12 @@ def receive(root, payload, company='nvidia'):
 
 def company_block(company):
     config = company_config(company)
+    records_path = project_root() / 'data/companies.json'
+    records = json.loads(records_path.read_text())['records'] if records_path.is_file() else []
+    actor = next((r for r in records if r['company_id'] == company), {})
     return {'id': company, 'label': config['label'], 'products_url': config['products_url'],
-            'navigation': config['navigation']}
+            'navigation': config['navigation'], 'country': 'CN' if actor.get('hq_country') in {'CN', '中国'} else actor.get('hq_country', ''),
+            'parent_company_id': actor.get('parent_company_id'), 'entity_type': actor.get('entity_type', 'company')}
 
 
 def with_list_fields(product):
@@ -314,6 +334,7 @@ def snapshot(root, company='nvidia'):
             p = with_list_fields(json.loads(row['payload']))
             p['seen_in_latest_run'] = row['run_id'] == run['id']
             p['navigation'] = classify(p, company)
+            p['compute'] = compute_catalog.project(p, company)
             # Tables are data, never injected source HTML. Source text stays private.
             for table in p['tables']:
                 table.pop('text', None)
@@ -416,6 +437,7 @@ def index_snapshot(root, company='nvidia'):
         'map_change_status': p.get('map_change_status', ''),
         'table_count': len(p['tables']),
         'navigation': p['navigation'],
+        'compute': p['compute'],
         **{key: p[key] for key in VENDOR_FIELDS if key in p},
     } for p in value['products']]
     value['research_alignment'] = research_alignment(root, company)
@@ -449,6 +471,7 @@ def product_snapshot(root, product_id, company='nvidia'):
         if product:
             product['seen_in_latest_run'] = True
             product['navigation'] = classify(product, company)
+            product['compute'] = compute_catalog.project(product, company)
             for table in product['tables']:
                 table.pop('text', None)
         return {
