@@ -117,7 +117,7 @@
     "tests/industry.cjs": "a6720868c28c1a8cff9271078624d8a52c7652b39de8d43cda8be867db134256",
     "tests/unit/test_product_catalog_companies.py": "8f5d6fec939a191f9f6ac00fb6012dd7b5cf0a8f82e3ceeda3c6a183168b3fe1",
     "tests/compute_catalog.cjs": "a0a4fb7adbefdbb97b03e0041f633e19a34acb5027bf3e1cfa9c95989b908a4b",
-    "tests/unit/test_compute_catalog.py": "b7e658b9b864da3dcc802c909ed5e824fb1c64a773570a777d9fffa996dc7e5c",
+    "tests/unit/test_compute_catalog.py": "292d3905e1f63dacfefa9bd9bd519b88463f8c6b949e301057ca9c69cfa69355",
     "web/pages/admin/fetchspec/reporg.html": "d0e8dab2a2d08bc3509e959fce0ef461c53f0426f38fa044d26d8597591b2274"
   },
   "policies": [
@@ -402,7 +402,7 @@
       "policy": "acquisition-20261002",
       "scope": "project",
       "source": "framework/06_acquisition.md",
-      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。；五个展示大类与系列导航、原厂分类保留、辅助入口隔离、型号优先/15项分页、跨类搜索与同范围CSV；产品地图父子身份与来源校验、官方非文件资源入口；日常更新先对账官方英文/中文 XML sitemap，只筛已审阅产品路径，条件请求复用未变化快照，新 URL 入队、lastmod 变化重查；中文站 www.nvidia.cn 根路径纳入，中英同路径身份归并但来源快照分别保留；sitemap 不完整或缺失不自动下架；产品地图 CSV 与参数 CSV 分开；404 旧页、主机策略阻止与可重试访问失败分别计量；具体命名产品规格覆盖与全部目录实体有表数量使用不同分母，已核对的官网未发布/来源不可用状态显示为厂商规格缺口而非抓取失败。；2026-09-28 六队三仓库：目标清单只引用存在的因子、输入、序列、分队与执行机并覆盖全部非用户输入，辅助机制必须落在 macmini，inews 只产材料类事件卡；inresearch 不爬取（sec/gpu 采集器与 CLI 已删除，历史台账行只读保留）；feed v2 附加字段校验形状、保留为线索、不授予采用；供应任务只能分配给六队。；官方 Networking Docs 的 ConnectX / BlueField / Spectrum 硬件型号进入网络目录，DOCA 仍按软件归类；2026-10-02 复审：独立行业入口，IT 分期优先且组合不累加，主体/阶段明细可对账，公开字段白名单，真实状态不由新闻标题推定，新闻过期保留长期线索；界面共享字体与明暗，地图与精选新闻联动。；二次复审：首页无项目表格，全球规模保留报告年份/估算性质/来源并与样本分开，低置信度项目标题自动入池，全名+actor 唯一园区跨事件关联，暂停/撤回/旧消息与人工状态优先验证。；逐公司目录：四家新增接收范围，来源/前缀/数据库隔离、重复导入、六家动态导航、未交付无空库；AMD 词边界与 SK hynix 写法归一。；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。",
+      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。；五个展示大类与系列导航、原厂分类保留、辅助入口隔离、型号优先/15项分页、跨类搜索与同范围CSV；产品地图父子身份与来源校验、官方非文件资源入口；日常更新先对账官方英文/中文 XML sitemap，只筛已审阅产品路径，条件请求复用未变化快照，新 URL 入队、lastmod 变化重查；中文站 www.nvidia.cn 根路径纳入，中英同路径身份归并但来源快照分别保留；sitemap 不完整或缺失不自动下架；产品地图 CSV 与参数 CSV 分开；404 旧页、主机策略阻止与可重试访问失败分别计量；具体命名产品规格覆盖与全部目录实体有表数量使用不同分母，已核对的官网未发布/来源不可用状态显示为厂商规格缺口而非抓取失败。；2026-09-28 六队三仓库：目标清单只引用存在的因子、输入、序列、分队与执行机并覆盖全部非用户输入，辅助机制必须落在 macmini，inews 只产材料类事件卡；inresearch 不爬取（sec/gpu 采集器与 CLI 已删除，历史台账行只读保留）；feed v2 附加字段校验形状、保留为线索、不授予采用；供应任务只能分配给六队。；官方 Networking Docs 的 ConnectX / BlueField / Spectrum 硬件型号进入网络目录，DOCA 仍按软件归类；2026-10-02 复审：独立行业入口，IT 分期优先且组合不累加，主体/阶段明细可对账，公开字段白名单，真实状态不由新闻标题推定，新闻过期保留长期线索；界面共享字体与明暗，地图与精选新闻联动。；二次复审：首页无项目表格，全球规模保留报告年份/估算性质/来源并与样本分开，低置信度项目标题自动入池，全名+actor 唯一园区跨事件关联，暂停/撤回/旧消息与人工状态优先验证。；逐公司目录：四家新增接收范围，来源/前缀/数据库隔离、重复导入、六家动态导航、未交付无空库；AMD 词边界与 SK hynix 写法归一。；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。；Ampere与昇腾按现行目标实例写法关联需求，不新增目标或交付状态。",
       "tests": [
         "tests/unit/test_acquisition.py::AcquisitionTests.test_archive_preserves_revisions_and_is_idempotent",
         "tests/unit/test_acquisition.py::AcquisitionTests.test_failure_is_recorded_and_not_success",
@@ -474,7 +474,8 @@
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_reviewed_architecture_requires_receipt_and_quote",
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_registry_reuses_company_ids_and_preserves_parent_lines",
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_compute_roundtrip_preserves_navigation_and_rejects_missing_proof",
-        "tests/compute_catalog.cjs"
+        "tests/compute_catalog.cjs",
+        "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_demand_alignment_recognizes_publisher_spellings"
       ],
       "not_verified": [
         "fetchdata 仓库尚未创建，fetchstat/fetchfilings/fetchreports/fetchquotes 未接通；来源登记表与 sec/gpu 种子迁移待该仓库建立后验收；inews 事件 feed 附加字段依赖 inews.today 侧部署，未部署前消费端按缺字段处理；全文翻译、撤回增量与全局限速仍未完整实现。",

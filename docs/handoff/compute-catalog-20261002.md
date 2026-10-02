@@ -49,7 +49,9 @@ AmpereOne 按官方SKU表得到7个子型号及1个系列，保留 Usage Power �
 - 阶段完成后可以 `/clear` 或开新会话，从本页接续；原件只在m5本机，Git提交不会同步这些数据库和字节。
 
 ## 本轮验证
-- Fetchspec：223项单元测试通过，3项既有可选集成测试跳过；新型号门禁、原文参数、Ampere行/飞腾列拆分、Hygon只解码不执行均有回归。reporg已重生成并通过check。
-- InResearch：目录23项、计算分类4项、公开读取5项、界面4项、治理9项测试通过；严格数据校验0 warnings，registry引用有效，governance refresh/check通过。
+- Fetchspec：223项测试全部通过（含3项与干净origin/main d24b60a接收端的集成；开发分支因上游必须等于origin/main的门禁拒绝，未绕过）；新型号门禁、原文参数、Ampere行/飞腾列拆分、Hygon只解码不执行均有回归。reporg已重生成并通过check。
+- InResearch：目录23项、计算分类5项、公开读取5项、界面4项、治理9项测试通过；严格数据校验0 warnings，registry引用有效，governance refresh/check通过。
 - 浏览器：compute_catalog、product_catalog两套通过；另用实际接收库检查桌面/390px手机、中国GPU过滤和详情跳转，未见脚本错误或横向页面溢出。浏览器夹具与原件运行库隔离。
 - 来源审计清单在Fetchspec `docs/records/2026-10-02-compute-coverage.json`（含型号、SHA、URL、观察时间；不含原件字节）。
+
+集成基线另有只读工作树 `~/.worktrees/inresearch.ai/compute-receiver-baseline-20261002`；本次开发分支的新接收代码另用真实58个新增实体及597个既有NVIDIA实体进行来源SHA校验和接收验收。

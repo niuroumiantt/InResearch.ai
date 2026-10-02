@@ -62,3 +62,8 @@ class ComputeCatalogTests(unittest.TestCase):
             self.assertEqual(view['compute']['form'],'board')
             self.assertEqual(view['navigation'],catalog.classify(p))
             self.assertEqual(catalog.product_snapshot(root,p['id'])['product']['compute']['architecture'],'')
+
+    def test_demand_alignment_recognizes_publisher_spellings(self):
+        root=Path(__file__).resolve().parents[2]
+        self.assertIn('P.cpu.spec',catalog.research_alignment(root,'ampere-computing')['target_ids'])
+        self.assertIn('P.gpu.spec',catalog.research_alignment(root,'huawei-ascend')['target_ids'])
