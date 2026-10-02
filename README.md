@@ -32,7 +32,7 @@ python3 manage.py serve
 
 ## 页面与目录
 
-一级导航是四问的全局视图，六项：数据中心（`/`，节点页）、账本（`ledger.html`）、爆炸图（`bom.html`）、采集（`supply.html`）、成果（`report.html`）、管理（`ops.html`，仅 admin）。角色四种：admin 六项，member 五项，intern 只见采集入口（自己的目标行），公开只读的 reader 不登录即可看数据中心、爆炸图、成果与账本的基准预设，字段在服务端按角色过滤（白名单见 `src/inresearch/interfaces/public.py`）。节点页是四问的局部视图；2D/3D、规格库和主体是同一骨架节点的入口。明暗独立设置，桌面和手机都按 [05 界面规范](framework/05_interface_system.md) 验收。
+一级导航七项：行业总览（`/`，市场规模、地图、主体与项目）、数据中心研究（`node.html`）、账本（`ledger.html`）、爆炸图（`bom.html`）、采集（`supply.html`）、成果（`report.html`）、管理（`ops.html`，仅 admin）。角色四种：admin 七项，member 六项，intern 只见采集入口（自己的目标行），公开只读的 reader 不登录即可看行业总览、数据中心研究、爆炸图、成果与账本的基准预设，字段在服务端按角色过滤（白名单见 `src/inresearch/interfaces/public.py`）。节点页是四问的局部视图；2D/3D、规格库和主体是同一骨架节点的入口。明暗独立设置，桌面和手机都按 [05 界面规范](framework/05_interface_system.md) 验收。
 
 网页与命令行报告共用有效内容集合；历史版本保留入口，生成日期不冒充核验日期。采集与派工只从目标表出发，旧模块工单只作兼容任务。
 
@@ -71,3 +71,5 @@ node tests/run_browser.cjs
 inews.today 是独立产品、独立仓库，提供明确约定的数据中心新闻投影；inresearch 消费验证后的投影，负责专业资料、产品规格及研究证据。旧“本库不知道 inews”与直接读取对方目录的方案均已被 [06 采集规范](framework/06_acquisition.md) 替代，不复制上游业务。
 
 网站沿用 infra 的正式发布流程；原件和 reader 服务须在实际运行机器单独验收。部署入口与健康检查见 `infra/inresearch-host/README.md`。Spark 恢复前不推断其版本、完成量或模型可用性。
+
+行业总览的容量为已追踪园区合计，非全球普查。市场规模、主体布局、项目分期与精选新闻可分别下钻；建设中与筹备机会分列，新闻线索持久保留且不自动计入容量。

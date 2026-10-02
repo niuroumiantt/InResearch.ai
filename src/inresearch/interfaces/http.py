@@ -394,6 +394,18 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, {'ok': True, 'marks': news_marks.mark_map(ROOT)})
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '标记暂不可用，请重试'})
+        if urlsplit(self.path).path == '/api/industry':
+            from inresearch.knowledge.industry import snapshot
+            try:
+                query = parse_qs(urlsplit(self.path).query)
+                if any(len(v) != 1 for v in query.values()): raise ValueError('duplicate filter')
+                return self._json(200, snapshot(ROOT, {k: v[0] for k, v in query.items()}))
+            except LookupError as error:
+                return self._json(404, {'error': str(error)})
+            except ValueError as error:
+                return self._json(400, {'error': str(error)})
+            except (OSError, TypeError, KeyError):
+                return self._json(503, {'error': '行业数据暂不可用'})
         if urlsplit(self.path).path == '/api/news':
             try:
                 return self._json(200, research.build_news(ROOT))

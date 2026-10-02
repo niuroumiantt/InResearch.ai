@@ -11,6 +11,7 @@ from inresearch.storage.files import CommitUncertain
 ROOT = project_root()
 JSON_COMMANDS = ('add-price', 'assign', 'receive-snapshot')
 COMMANDS = {
+    'pipeline': 'inresearch.workflow.project_pipeline',
     'product-catalog': 'inresearch.workflow.product_catalog',
     'storage': 'inresearch.storage.layout',
     'models': 'inresearch.adapters.models',

@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0",
+  "version": "1.6.0",
   "static_pages": [
     "index.html",
     "node.html",
@@ -13,11 +13,21 @@
     "ops.html",
     "report.html",
     "supply.html",
-    "product-catalog.html"
+    "product-catalog.html",
+    "industry.html",
+    "projects.html",
+    "project.html",
+    "market.html"
   ],
   "sections": {
-    "datacenter": [
+    "industry": [
       "index.html",
+      "industry.html",
+      "projects.html",
+      "project.html",
+      "market.html"
+    ],
+    "datacenter": [
       "node.html",
       "doc.html"
     ],
@@ -43,6 +53,7 @@
     ]
   },
   "section_questions": {
+    "industry": [],
     "datacenter": [
       1,
       2,
@@ -67,7 +78,7 @@
     ],
     "admin": []
   },
-  "section_questions_note": "目录六项各对应四问的哪几问（05「目录」）：数据中心与成果是全局视图覆盖四问；账本 = ①值多少 + ③怎么影响账；爆炸图 = ②由什么组成；采集 = ④数据从哪来；管理不对应任何一问（网站自身运营）。机检：tests/unit/test_interface_system.py。",
+  "section_questions_note": "行业总览回答市场规模、地理布局与项目进展；研究目录继续对应四问，行业总览与管理不强行映射四问。",
   "public_pages": [
     "index.html",
     "node.html",
@@ -76,9 +87,13 @@
     "bom3d.html",
     "rack3d.html",
     "product-catalog.html",
-    "report.html"
+    "report.html",
+    "industry.html",
+    "projects.html",
+    "project.html",
+    "market.html"
   ],
-  "sections_note": "一级导航六项（05「目录」）；每个应用页用 <inresearch-shell data-section> 声明归属。public_pages 是公开只读（reader）不登录可看的页，白名单实现在 src/inresearch/interfaces/public.py。",
+  "sections_note": "七项导航；行业总览及其市场、布局、项目页公开只读，原研究页面仍保留。",
   "dynamic_pages": {
     "src/inresearch/interfaces/pages.py": [
       "LOGIN_PAGE",
@@ -101,7 +116,7 @@
     "web/pages/admin/fetchspec/reporg.html": "fetchspec 仓库架构页，由 niuroumiantt/fetchspec 的 scripts/reporg.py 生成后原样发布（自包含，非站点应用页，不接入站点外观）；改动在 fetchspec 仓库重生成后复制过来"
   },
   "page_sources": {
-    "index.html": "web/pages/node.html",
+    "index.html": "web/pages/index.html",
     "admin/product/index.html": "web/pages/admin/product/index.html",
     "doc.html": "web/pages/doc.html",
     "bom3d.html": "web/pages/bom3d.html",
@@ -113,7 +128,11 @@
     "supply.html": "web/pages/supply.html",
     "product-catalog.html": "web/pages/product-catalog.html",
     "node.html": "web/pages/node.html",
-    "ledger.html": "web/pages/ledger.html"
+    "ledger.html": "web/pages/ledger.html",
+    "industry.html": "web/pages/index.html",
+    "projects.html": "web/pages/index.html",
+    "project.html": "web/pages/index.html",
+    "market.html": "web/pages/index.html"
   },
   "template_fragments": [
     "web/pages/auth/layout.html",

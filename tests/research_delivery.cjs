@@ -24,7 +24,7 @@ const base = process.env.UI_BASE_URL;
     const tasks = await (await page.request.get(base+'/api/tasks')).json();
     const snapshot = await (await page.request.get(base+'/api/research')).json();
     assert.deepEqual(tasks.orders.map(o=>o.wid).sort(),snapshot.tasks.map(o=>o.wid).sort());
-    await page.goto(base+'/index.html');
+    await page.goto(base+'/node.html');
     await page.locator('#grid .board').first().waitFor();
     // 2026-09-28：派工面板读目标表（目标行数），不再显示工单数
     const targets = await (await page.request.get(base+'/data/tco_targets.json')).json();

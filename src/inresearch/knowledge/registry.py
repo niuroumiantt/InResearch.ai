@@ -659,10 +659,21 @@ def build_news(root=ROOT):
         except (ValueError, TypeError, KeyError, OSError):
             used = {}
         feed = dict(status=feed.get('status'), exported_at=feed.get('exported_at'),
-                    items=[{key: item[key] for key in ('title_zh', 'url', 'domain', 'published_at') if key in item}
+                    items=[{key: item[key] for key in ('title_zh', 'url', 'domain', 'published_at', 'editorial_pick', 'event_type', 'object_ids') if key in item}
                            for item in sorted(items, key=timestamp, reverse=True)[:80]],
                     **({'by_target': by_target} if by_target is not None else {}), **used)
-    return dict(schema_version=1, feed=feed,
+    from inresearch.knowledge.industry import public_url
+    pipeline = acquisition.get('project_pipeline') if isinstance(acquisition, dict) else None
+    leads = []
+    if isinstance(pipeline, dict) and isinstance(pipeline.get('records'), list):
+        for row in pipeline['records'][:500]:
+            if not isinstance(row, dict): continue
+            events = [{k: e.get(k) for k in ('title_zh', 'title', 'url', 'published_at', 'event_type', 'reported_stage', 'reported_capacity')}
+                      for e in row.get('events', []) if isinstance(e, dict) and public_url(e.get('url'))]
+            if events:
+                leads.append({k: row.get(k) for k in ('id', 'title', 'state', 'first_seen', 'last_seen', 'company_ids', 'site_id', 'review_note', 'reported_stage', 'reported_capacity', 'match_method')} | {'events': events})
+    return dict(schema_version=1, feed=feed, pipeline={'records': leads, 'available': pipeline is not None,
+                'truncated': bool(pipeline.get('truncated')) if isinstance(pipeline, dict) else False},
                 reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
 
 

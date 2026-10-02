@@ -18,17 +18,17 @@
     el.innerHTML = icons[name];
     return el;
   }
-  // 一级导航是四问的全局视图（05「目录」）：六项按角色出现；页面用 data-section 说自己属于哪一项。
+  // 一级导航为行业总览与研究目录（05「目录」）：七项按角色出现；页面用 data-section 说自己属于哪一项。
   // reader 是公开只读，不登录即是；实习生只见采集入口（目标表与研究问题任务）。
   const LINKS = [
-    ['datacenter', '数据中心', '/'], ['ledger', '账本', '/ledger.html'], ['bom', '爆炸图', '/bom.html'],
+    ['industry', '行业总览', '/'], ['datacenter', '数据中心研究', '/node.html'], ['ledger', '账本', '/ledger.html'], ['bom', '爆炸图', '/bom.html'],
     ['acquisition', '采集', '/supply.html'], ['results', '成果', '/report.html'], ['admin', '管理', '/ops.html']
   ];
   const VISIBLE = {
-    admin: ['datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'],
-    member: ['datacenter', 'ledger', 'bom', 'acquisition', 'results'],
+    admin: ['industry', 'datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'],
+    member: ['industry', 'datacenter', 'ledger', 'bom', 'acquisition', 'results'],
     intern: ['acquisition'],
-    reader: ['datacenter', 'ledger', 'bom', 'results']
+    reader: ['industry', 'datacenter', 'ledger', 'bom', 'results']
   };
   function navigation(section) {
     const nav = document.createElement('nav');

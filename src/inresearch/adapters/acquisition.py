@@ -211,6 +211,9 @@ def import_news(c,payload,question=None,merge=None):
         previous.update(members)
         members={g:m for g,m in previous.items() if m.get('id') not in withdrawn
                  and isinstance(m.get('published_at'),(int,float)) and m['published_at']>=cutoff}
+    if verified:
+        from inresearch.workflow.project_pipeline import receive
+        receive(c.home, payload['articles'], payload.get('exported_at'), (merge or {}).get('withdrawn', ()))
     atomic_json(c.home/'news-window.json', {'exported_at':payload.get('exported_at'),
         'truncated':payload.get('truncated',False), 'guids':list(members), 'members':members})
     return count
@@ -227,7 +230,8 @@ def summary(root):
                 'last_run':dict(row) if row else None}
         from inresearch.adapters.news_projection import feed
         from inresearch.adapters import fetchspec_projection
-        return {'status':'candidate_acquisition','sources':sources,'news_feed':feed(root),'fetchspec_feed':fetchspec_projection.feed(root),'retired_sources':list(RETIRED_SOURCES),'note':'新闻事件卡与 Fetchspec 交付的候选台账；inresearch 不爬取，SEC/GPU 采集已于 2026-09-28 移交 fetchdata（fetchfilings、fetchquotes）；自动采用未开启。'}
+        from inresearch.workflow.project_pipeline import projection as project_pipeline
+        return {'status':'candidate_acquisition','sources':sources,'news_feed':feed(root),'project_pipeline':project_pipeline(Path(root)/'acquisition'),'fetchspec_feed':fetchspec_projection.feed(root),'retired_sources':list(RETIRED_SOURCES),'note':'新闻事件卡与 Fetchspec 交付的候选台账；inresearch 不爬取，SEC/GPU 采集已于 2026-09-28 移交 fetchdata（fetchfilings、fetchquotes）；自动采用未开启。'}
     finally:con.close()
 
 def product_documents(root, *, company_id=None, category=None, question_id=None,

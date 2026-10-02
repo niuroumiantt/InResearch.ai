@@ -11,6 +11,8 @@ if (host) {
   const timeFormat=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
   const timestamp=item=>typeof item.published_at==='number'&&Number.isFinite(item.published_at)&&!Number.isNaN(new Date(item.published_at).getTime())?item.published_at:0;
   let currentRequest;
+  let industryFilter=window.industryFilter || {};
+  window.addEventListener('inresearch:industry-filter', e=>{const changed=['company','region','site','scope','role','relation'].some(k=>(industryFilter[k]||'')!==(e.detail[k]||''));industryFilter=e.detail;if(changed||e.detail.force)refresh();});
   // 研究员可给线索点「有用 / 没用」(2026-10-01):只是线索评价,不是 C3 采用;按目标行的计数经公开 /api/news 回流给 inews。
   let canMark=false, marks={};
   const canonical=u=>{try{const x=new URL(u);if(!['http:','https:'].includes(x.protocol))return null;return 'https://'+x.hostname.toLowerCase().replace(/^www\./,'')+(x.pathname.replace(/\/+$/,'')||'/')+x.search;}catch{return null;}};
@@ -48,6 +50,7 @@ if (host) {
       const data = await r.json();
       await whoami;   // 新闻请求先发出,渲染前再等登录态(要不要画「有用 / 没用」)
       if (request !== currentRequest) return;
+      window.dispatchEvent(new CustomEvent('inresearch:news-data',{detail:data}));
       const feed = data.feed;
       if (!feed || ['awaiting_sync','not_initialized'].includes(feed.status)) {
         meta.hidden=false;
@@ -62,6 +65,12 @@ if (host) {
       meta.textContent=feed.status === 'running' ? '正在更新' : feed.status !== 'success' ? '更新暂时失败' : stale ? '更新延迟' : '';
       const rows = [];let lastDay='';
       for (const item of feed.items || []) {
+        if(host.dataset.newsSelection==='selected' && item.editorial_pick!==true)continue;
+        if(industryFilter.company && !(item.object_ids||[]).includes('actor:'+industryFilter.company))continue;
+        if(industryFilter.region || industryFilter.site || industryFilter.scope || industryFilter.role || industryFilter.relation){
+          const matched=(data.pipeline?.records||[]).some(p=>p.site_id && (industryFilter.site?p.site_id===industryFilter.site:industryFilter.siteIds?.includes(p.site_id)) && (p.events||[]).some(e=>e.url===item.url));
+          if(!matched)continue;
+        }
         if (typeof item.title_zh !== 'string' || !item.title_zh.trim()) continue;
         let url; try {url=new URL(item.url);} catch {continue;}
         if (!['http:','https:'].includes(url.protocol) || url.username || url.password) continue;
@@ -75,7 +84,7 @@ if (host) {
         content.append(link,note);if(canMark)content.append(markButtons(url.href));article.append(time,content);
         rows.push(article);
       }
-      if (!rows.length) {const empty=document.createElement('p');empty.textContent='暂无已整理的中文新闻。';rows.push(empty);}
+      if (!rows.length) {const empty=document.createElement('p');empty.textContent=host.dataset.newsSelection==='selected'?'当前范围暂无编辑精选新闻，可切换全部线索。':'当前范围暂无已整理的中文新闻。';rows.push(empty);}
       list.replaceChildren(...rows);
     } catch {
       if (request !== currentRequest) return;

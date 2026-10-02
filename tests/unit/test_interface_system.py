@@ -18,7 +18,7 @@ class InterfaceContractTests(unittest.TestCase):
         manifest = json.loads((ROOT/'framework/interface_manifest.json').read_text())
         # Only tracked project HTML, excluding development/runtime artifacts.
         import subprocess
-        files = set(subprocess.check_output(['git','ls-files','*.html'],cwd=ROOT,text=True).splitlines())
+        files = set(subprocess.check_output(['git','ls-files','--cached','--others','--exclude-standard','*.html'],cwd=ROOT,text=True).splitlines())
         self.assertEqual(files,set(manifest['page_sources'].values()) | set(manifest['excluded_pages']) | set(manifest['template_fragments']))
         for name in manifest['static_pages']:
             html=(ROOT/manifest['page_sources'][name]).read_text()
@@ -63,8 +63,8 @@ class InterfaceContractTests(unittest.TestCase):
         manifest = json.loads((ROOT/'framework/interface_manifest.json').read_text())
         listed = {page: section for section, pages in manifest['sections'].items() for page in pages}
         self.assertEqual(set(listed), set(manifest['static_pages']), 'every application page belongs to exactly one directory entry')
-        self.assertEqual(list(manifest['sections']), ['datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'])
-        # 目录六项 ↔ 四问：每项登记它是哪几问的全局视图；管理不对应任何一问，其余每一问至少被一项覆盖
+        self.assertEqual(list(manifest['sections']), ['industry', 'datacenter', 'ledger', 'bom', 'acquisition', 'results', 'admin'])
+        # 研究目录 ↔ 四问：行业总览与管理不对应任何一问，其余每一问至少被一项覆盖
         questions = manifest['section_questions']
         self.assertEqual(list(questions), list(manifest['sections']))
         for section, qs in questions.items():

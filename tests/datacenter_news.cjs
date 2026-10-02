@@ -4,7 +4,7 @@ const {chromium}=require('playwright');
  const page=await browser.newPage({viewport:{width:1280,height:900}});const errors=[];let fullRequests=0;page.on('pageerror',e=>errors.push(e.message));
  await page.route('**/api/news',r=>r.fulfill({json:{reader:{status:'idle',stale:false},feed:{status:'success',exported_at:new Date().toISOString(),items:[{title:'Datacenter opens',title_zh:'数据中心开业',publisher:'Example',published_at:Date.parse('2026-09-06T02:30:00Z'),url:'https://example.com/news',category:'数据中心'},{title:'unsafe',url:'javascript:alert(1)'},...Array.from({length:15},(_,i)=>({title:'Data center '+i,title_zh:'数据中心 '+i,url:'https://example.com/'+i,published_at:Date.parse(i===0?'2026-09-05T16:10:00Z':'2026-09-05T15:50:00Z')}))]}}}));
  await page.route('**/api/research',r=>{fullRequests++;return r.fulfill({status:500,body:'unexpected full snapshot'});});
- for(const file of ['index.html']){  // 2026-09-28：管理页不再重复新闻时间线
+ for(const file of ['node.html']){  // 2026-09-28：管理页不再重复新闻时间线
  await page.goto((process.env.UI_BASE_URL||'http://127.0.0.1:8882')+'/'+file);
  await page.getByRole('link',{name:'数据中心开业',exact:true}).waitFor();
  assert.equal(await page.locator('.dc-news a').count(),16);
@@ -35,7 +35,7 @@ const {chromium}=require('playwright');
    return {schema_version:1,reader:{status:'idle',stale:false},
      feed:{status:'success',exported_at:new Date().toISOString(),items:[{title_zh:title,url:'https://example.test/'+title}]},...extra};
  }
- await race.goto((process.env.UI_BASE_URL||'http://127.0.0.1:8882')+'/index.html');
+ await race.goto((process.env.UI_BASE_URL||'http://127.0.0.1:8882')+'/node.html');
  await race.waitForFunction(()=>window.newsRequests.length===1);
  await race.evaluate(()=>window.refreshNews());
  await race.evaluate(value=>window.deliverNews(1,value),news('new'));
