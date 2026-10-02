@@ -5,9 +5,9 @@
 - 复用 `data/companies.json.records` 全部既有 ID。鲲鹏/昇腾→华为，海光 DCU→海光；不建同名新公司。中国筛选指总部国家，不表示制造地。
 - Gaudi、昇腾、寒武纪、燧原为其他计算加速器；ARM IP/网络不混入成品 CPU/GPU；DCU 逐型号核验，不推定 GCN/CDNA/RDNA。
 - InResearch 基线 d24b60a；Fetchspec 基线 8c71669。bce9102 在本机对象、reflog、已有 worktree 列表未找到，远端短 SHA fetch 也未解析。现有 docs/upstream 补丁已检查并保留，没有假设该提交已推送或已合入。
-- 两个主工作区未修改；代码在各自 `~/.worktrees/<仓库>/compute-catalog-20261002`。Spark 未操作；本轮没有网站部署或生产交付回执。
+- InResearch #305 已合并为 `4a1218d11c83e122fc69476eb8625982a04e966c`，Fetchspec #73 已合并为 `a7f0f57e1e744a5da8bd66288592bf84aeb04f3d`。2026-10-02 21:18（上海）网站新版健康，12 份真实目录交付成功；Spark 未操作。发布修正与回执交接工作树为 `~/.worktrees/inresearch.ai/compute-catalog-release-20261002`。
 
-## 真实覆盖（本机原件 SHA 与本地接收已核验）
+## 线上实际覆盖（生产回执、数据库与公开接口对账）
 
 | 公司/产品线 ID | 目录实体 | 具体命名型号 | 有原文规格表/字段的实体 |
 |---|---:|---:|---:|
@@ -22,10 +22,11 @@
 | loongson | 3 | 2 | 3 |
 | metax | 3 | 3 | 3 |
 | moore-threads | 3 | 3 | 1 |
-| nvidia | 597 | 239 | 297 |
+| nvidia（保留既有线上批次） | 595 | 237 | 294 |
+| micron（保留既有线上批次） | 4940 | 4824 | 1354 |
 | phytium | 6 | 3 | 6 |
 
-除 NVIDIA 外，本次新增 58 个实体，53 个为具体命名型号，55 个实体有原文规格表或字段。NVIDIA 是保留既有本地 ProductStore 的 597 个活跃实体（239 个具体型号），不是本轮新抓取，也不是 597 款芯片。有规格的系列与有规格型号不能混合为型号覆盖率；这些计数不是厂商全量产品数或在售证明。
+本次新增 58 个实体，53 个为具体命名型号，55 个实体有原文规格表或字段。NVIDIA 本地旧导出是 597 项，但线上已有较新的 595 项（生成于 08:33 UTC），此次不回退、不重发。旧本地多出的两项是 Spectrum-4 SN5000 交换系统与 MMS4X00-NM-T 光模块，旧导出与原件原样保留；Micron 原批次 4,940 项不动。有规格的系列与有规格型号不能混合为型号覆盖率；这些计数不是厂商全量产品数或在售证明。
 
 中国 GPU 已核验 9 个板卡/模组：天垓100 BI-V100、天垓150、智铠100 MR-V100；MTT S80/S4000/S5000；曦云C500/C500X/C550。其中 7 个有原文规格字段，MTT S4000/S5000 数值表仍待提取。壁仞166M/166L/166C 另有3个真实板卡/模组及功耗原文，但当前型号页不足以证明芯片架构，分类留待核验，不混入上述9个 GPU。
 
@@ -38,7 +39,7 @@ AmpereOne 按官方SKU表得到7个子型号及1个系列，保留 Usage Power �
 - 海光DCU：当前官网没有取得Z100/K100的型号架构证据；model_reviews记录逐项缺口，参数和架构不补值。
 - 壁仞：当前166系列AI板卡已收；BR100/BR104旧产品官方原件与166系列具体芯片架构尚缺。
 - 更多Intel/AMD/中国厂商型号、动态切换规格与PDF附件尚未穷尽。昇腾URL的tag切换在静态HTML里仍返回默认型号，没有把这些URL误当不同产品。
-- 未上线：新的代码和运行数据仅本地验收。网站发布需要合并代码、通过既有受限目录接收端逐公司交付，并核对线上回执；不触碰Spark。
+- AMD、兆芯、燧原、海光 DCU 线上仍为 0；Supermicro、SK hynix 亦无已交付目录，本次不填示例。CPU/GPU/加速器的全厂商穷尽、动态规格与附件提取仍未完成。
 
 ## 数据与重跑入口
 - 实际原件/来源观察/目录导出：`~/.local/share/fetchspec/compute-catalog-20261002/`；不可当临时缓存删除。
@@ -55,3 +56,11 @@ AmpereOne 按官方SKU表得到7个子型号及1个系列，保留 Usage Power �
 - 来源审计清单在Fetchspec `docs/records/2026-10-02-compute-coverage.json`（含型号、SHA、URL、观察时间；不含原件字节）。
 
 集成基线另有只读工作树 `~/.worktrees/inresearch.ai/compute-receiver-baseline-20261002`；本次开发分支的新接收代码另用真实58个新增实体及597个既有NVIDIA实体进行来源SHA校验和接收验收。
+
+## 2026-10-02 生产发布验收与续接
+- 使用既有 `nvidia-pilot.token`，经 `product_catalog.publish` 的固定 HTTPS 接收端逐公司交付；先验证 schema 与全部原件 SHA。12 份 `ok=true` 回执的 `run_id` 与本地规范化包 SHA 一致；公开 full API 的 58 个产品身份、原表、compute 原文证据逐字段相等。回执时间为 13:17:55–13:18:12 UTC。
+- 本机完整回执、发布前后 API 快照、生产数据库只读核验、浏览器报告/截图/CSV：`~/.local/share/inresearch.ai/compute-catalog-release-20261002/`；不含凭据，不删除这些运行记录。`receipts/<公司>.json` 含原包 SHA 与生产 run_id；`production-db-audit.jsonl` 含逐公司当前批次与数量；`payload-verification.json` 记录公开原表对账。
+- NVIDIA 批次 `fdf9817ef66957b2d2b87863aad754661ae20a2257434ec87915624d29e52f5e` 与 Micron 批次 `9805ea26eda47d97886dcaf7628f80da872d7b0dba279a8d58fe6decfd1347cd`、接收时间均未变化。Micron 的 4,940 项含 116 个系列/目录及 3,461 个停产登记，不代表 4,940 款在售产品。
+- PR/main CI 的 validate、browser core/model_assets、storage-container 均成功；Fetchspec 未配置 GitHub CI，合并后以当前 InResearch 主线重跑 223 测试（含 3 项接收集成）成功，reporg check 通过。InResearch 严格校验 0 warnings、registry、governance 与目录相关 47 测试通过。
+- 真实浏览器额外发现并修正：CPU option 开始标签误写成结束标签，导致 CPU 选项丢失；整轮共用 20 秒与字体传输竞争造成其他公司批量超时。修正 CPU 标签、逐请求 30 秒与数据请求高优先级，并补 CPU 选项、首批慢响应及单厂超时隔离回归。修正随本次发布收口 PR；线上最终 SHA 以部署镜像与该 PR 合并提交复核。
+- 入口：`https://inresearch.ai/compute-catalog.html`，原厂目录 `https://inresearch.ai/product-catalog.html`。后续只补明确缺口，不重做 Spark，不把目录交付当研究采用或 target delivered。
