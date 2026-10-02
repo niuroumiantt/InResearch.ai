@@ -20,6 +20,7 @@ const assert=require('node:assert/strict');
   const download=page.waitForEvent('download');await page.locator('#compute-export').click();assert.equal((await download).suggestedFilename(),'compute-catalog.csv');
   await page.locator('#compute-category').selectOption('accelerator');assert.match(await page.locator('#compute-products').innerText(),/母公司：huawei/);
   await page.setViewportSize({width:390,height:844});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  assert.ok(await page.locator('.table-wrap').evaluate(el=>el.scrollWidth>el.clientWidth),'mobile table scrolls instead of squeezing names into single characters');
   await page.unroute('**/api/product-catalog/*');await page.route('**/api/product-catalog/*',r=>r.fulfill({status:503,body:'unavailable'}));
   await page.locator('#compute-retry').click();await page.waitForFunction(()=>document.getElementById('compute-status').textContent.includes('读取失败'));
   assert.doesNotMatch(await page.locator('#compute-products').innerText(),/Atlas 350|C500/);

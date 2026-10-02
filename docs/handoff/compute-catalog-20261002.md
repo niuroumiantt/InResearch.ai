@@ -62,5 +62,5 @@ AmpereOne 按官方SKU表得到7个子型号及1个系列，保留 Usage Power �
 - 本机完整回执、发布前后 API 快照、生产数据库只读核验、浏览器报告/截图/CSV：`~/.local/share/inresearch.ai/compute-catalog-release-20261002/`；不含凭据，不删除这些运行记录。`receipts/<公司>.json` 含原包 SHA 与生产 run_id；`production-db-audit.jsonl` 含逐公司当前批次与数量；`payload-verification.json` 记录公开原表对账。
 - NVIDIA 批次 `fdf9817ef66957b2d2b87863aad754661ae20a2257434ec87915624d29e52f5e` 与 Micron 批次 `9805ea26eda47d97886dcaf7628f80da872d7b0dba279a8d58fe6decfd1347cd`、接收时间均未变化。Micron 的 4,940 项含 116 个系列/目录及 3,461 个停产登记，不代表 4,940 款在售产品。
 - PR/main CI 的 validate、browser core/model_assets、storage-container 均成功；Fetchspec 未配置 GitHub CI，合并后以当前 InResearch 主线重跑 223 测试（含 3 项接收集成）成功，reporg check 通过。InResearch 严格校验 0 warnings、registry、governance 与目录相关 47 测试通过。
-- 真实浏览器额外发现并修正：CPU option 开始标签误写成结束标签，导致 CPU 选项丢失；整轮共用 20 秒与字体传输竞争造成其他公司批量超时。修正 CPU 标签、逐请求 30 秒与数据请求高优先级，并补 CPU 选项、首批慢响应及单厂超时隔离回归。修正随本次发布收口 PR；线上最终 SHA 以部署镜像与该 PR 合并提交复核。
+- 真实浏览器额外发现并修正：CPU option 开始标签误写成结束标签，导致 CPU 选项丢失；整轮共用 20 秒与字体传输竞争造成其他公司批量超时。修正 CPU 标签、逐请求 30 秒与数据请求高优先级，并补 CPU 选项、首批慢响应及单厂超时隔离回归。窄屏表格设置最小宽度以在容器内横向滚动，避免产品名与表头挤成逐字竖排。修正随本次发布收口 PR；线上最终 SHA 以部署镜像与该 PR 合并提交复核。
 - 入口：`https://inresearch.ai/compute-catalog.html`，原厂目录 `https://inresearch.ai/product-catalog.html`。后续只补明确缺口，不重做 Spark，不把目录交付当研究采用或 target delivered。
