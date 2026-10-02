@@ -4,10 +4,10 @@
   const kinds = {named_product:'具体型号页 · 待身份复核',family_or_directory:'系列 / 平台 / 目录',software_service:'软件 / 服务'};
   // One page per registered company: ?c=<company> (default nvidia) reads /api/product-catalog/<company>.
   // NVIDIA keeps its reviewed five display groups; other companies are browsed by the vendor's own product path.
-  const companies = {nvidia:'NVIDIA', micron:'Micron'};
+  // The receiver registry also supplies the company switch; no separate browser allowlist.
   const requested = (new URLSearchParams(location.search).get('c') || 'nvidia').toLowerCase();
   const company = /^[a-z0-9-]{1,40}$/.test(requested) ? requested : 'nvidia';
-  const companyLabel = companies[company] || company;
+  let companyLabel = company;
   const vendorPath = company !== 'nvidia';
   const api = '/api/product-catalog/' + company;
   const searchText = p => p.name+' '+p.category+(p.part_number?' '+p.part_number:'');
@@ -30,7 +30,7 @@
     $('#catalog-title').textContent=`${companyLabel} 产品规格库`;
     $('#batch-link').textContent='Fetchspec 交付';$('#batch-link').href='/supply.html#providers';
     $('#groups').classList.add('vendor');
-    $('#query').placeholder='型号、料号或官方分类，如 RDIMM';
+    $('#query').placeholder='型号、料号或官方分类';
   }
   let catalog = {products:[]}, selected = '', selectedSeries = new URLSearchParams(location.search).get('series') || '', generation = 0, detailGeneration = 0, loadController;
   let byId = new Map();
@@ -208,7 +208,7 @@
     const activeGroup=q||scope!=='catalog'?'':group, activeFamily=q||scope!=='catalog'?'':family;
     const products=catalog.products.filter(p=>(scope==='catalog'?p.navigation.role==='catalog':p.navigation.role!=='catalog')&&(!activeGroup||p.navigation.group===activeGroup)&&(!activeFamily||p.navigation.family===activeFamily)&&(!kind||p.kind===kind)&&(!$('#with-specs').checked||tableCount(p))&&searchText(p).toLowerCase().includes(q)).sort((a,b)=>Number(b.kind==='named_product')-Number(a.kind==='named_product')||Number(!!tableCount(b))-Number(!!tableCount(a))||a.name.localeCompare(b.name,'en',{numeric:true}));
     const familyLabel=catalog.products.find(p=>p.navigation.group===group&&p.navigation.family===family)?.navigation.family_label||'';
-    $('#breadcrumb').textContent=scope!=='catalog'?`${vendorPath?'目录与分类页 / 待归类':'辅助资料 / 待归类'}（不计作具体产品）`:q?'跨大类搜索结果':`${zh('groups',group,catalog.navigation.groups.find(g=>g.id===group)?.label||'')} › ${zh('families',family,familyLabel)}`;
+    $('#breadcrumb').textContent=scope!=='catalog'?(vendorPath?'目录与分类页 / 待归类（数量按条目类型计）':'辅助资料 / 待归类（不计作具体产品）'):q?'跨大类搜索结果':`${zh('groups',group,catalog.navigation.groups.find(g=>g.id===group)?.label||'')} › ${zh('families',family,familyLabel)}`;
     for(const mode of ['products','map','specs'])$('#export-'+mode).href=api+'?'+new URLSearchParams({export:mode,q,kind,with_specs:$('#with-specs').checked?'1':'',group:activeGroup,family:activeFamily,scope});
     // Vendor catalogs list part numbers: browse them by series (the official page the parts hang from),
     // except in search, a kind filter, or the vendor's obsolete catalogue (listed parts only).
@@ -233,6 +233,12 @@
       if(response.status===404)throw Error(`未登记的公司：${company}。`);
       if(!response.ok)throw Error('产品数据库暂时不可用，请刷新重试。');
       const data=await response.json();if(current!==generation)return;
+      companyLabel=data.company?.label||company;
+      document.title=`${companyLabel} 产品规格库 · inresearch.ai`;
+      $('#catalog-title').textContent=`${companyLabel} 产品规格库`;
+      if(data.registered_companies)$('#company-switch').innerHTML=data.registered_companies.map(c=>`<a href="?c=${encodeURIComponent(c.id)}" data-company="${esc(c.id)}" ${c.id===company?'aria-current="page"':''}>${esc(c.label)}</a>`).join('');
+      if(vendorPath)$('#groups-note').textContent='按已交付的官方产品路径浏览；未交付目录与待补规格分别展示。';
+      if(vendorPath&&data.products.length&&!data.products.some(p=>p.navigation.role==='catalog'))scope='auxiliary';
       catalog=data;byId=new Map(data.products.map(p=>[p.id,p]));
       detailsById.clear();seriesById.clear();compared.clear();selected='';detailGeneration++;
       // ?series=<id> opens that series (links from the company page)

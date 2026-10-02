@@ -130,7 +130,8 @@ const VENDOR_ZH = { micron: {
 const vendorLabel = (cid, id, label) => (VENDOR_ZH[cid] || {})[id] ? `${VENDOR_ZH[cid][id]} · ${label}` : label;
 function catalogHtml(cat, c) {
   const head = `<div class="bh"><h2>产品目录（官网爬取）</h2>${cat && cat.available ? `<a class="go" href="product-catalog.html?c=${encodeURIComponent(c.company_id)}">打开 ${esc(c.name)} 产品规格库 →</a>` : ""}</div>`;
-  if (!cat || !cat.available) return head + `<div class="note">还没有为 ${esc(c.name)} 建立产品目录。目录按 NVIDIA 打样标准做：先从原厂官网建全量产品清单，再逐个产品取官方规格，原生参数原样入库。</div>`;
+  if (cat && !cat.available) return head + `<div class="note">${esc(c.name)} 规格库接收入口已接通，等待 Fetchspec 首次交付。<a href="product-catalog.html?c=${encodeURIComponent(c.company_id)}">查看目录状态 →</a></div>`;
+  if (!cat) return head + `<div class="note">还没有为 ${esc(c.name)} 建立产品目录。目录按 NVIDIA 打样标准做：先从原厂官网建全量产品清单，再逐个产品取官方规格，原生参数原样入库。</div>`;
   const s = cat.summary || {}, cov = s.specification_coverage || {}, named = cov.current_named_products || cov.named_products || {};
   const listing = s.by_listing || {}, status = s.by_official_status || {};
   const all = (s.by_group || []).filter(g => g.id && !/obsolete/i.test(g.id));
@@ -205,7 +206,7 @@ try {
     : '<div class="note">骨架里没有登记这家公司供应的部件（登记数，不代表现场供应商）。</div>';
   const rightsHtml = held.length ? held.map(r => `<a class="chip" href="node.html?id=site:${encodeURIComponent(r.id)}&col=5">${esc(r.name)}</a>`).join("") : '<div class="note">没有登记持有的站点权利。</div>';
   const linesHtml = lines.length ? `<div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>产品线</th><th>部件</th><th>系统 · 链路</th><th>状态</th><th>资料</th></tr>${lines.map(l =>
-      `<tr><td>${esc(l.product_line)}<div style="font-size:10.5px;color:var(--gray)">${esc(l.representative_models || "")}</div></td><td>${(l.bom_parts || []).map(pid => `<a href="node.html?id=part:${encodeURIComponent(pid)}">${esc(pid)}</a>`).join("、")}</td><td>${esc(l.system ? sysName(l.system) : "")}${l.chain ? " · " + esc(l.chain) : ""}</td><td>${esc(SUP[l.status] || l.status || "")}</td><td>${l.library_path ? `<a href="product-catalog.html">规格库</a>` : ""}</td></tr>`).join("")}</table></div>`
+      `<tr><td>${esc(l.product_line)}<div style="font-size:10.5px;color:var(--gray)">${esc(l.representative_models || "")}</div></td><td>${(l.bom_parts || []).map(pid => `<a href="node.html?id=part:${encodeURIComponent(pid)}">${esc(pid)}</a>`).join("、")}</td><td>${esc(l.system ? sysName(l.system) : "")}${l.chain ? " · " + esc(l.chain) : ""}</td><td>${esc(SUP[l.status] || l.status || "")}</td><td>${l.library_path ? `<a href="product-catalog.html?c=${encodeURIComponent(c.company_id)}">规格库</a>` : ""}</td></tr>`).join("")}</table></div>`
     : '<div class="note">产品库没有这家公司的产品线。</div>';
   const projRows = mine.sort((a, b) => { const ca = capBuckets(a), cb = capBuckets(b); return (cb[0] + cb[1] + cb[2]) - (ca[0] + ca[1] + ca[2]); }).map(p => {
     const [o, b, l] = capBuckets(p), tot = o + b + l;
@@ -235,7 +236,7 @@ try {
         <div class="note">来自骨架登记（bom.json 的 companies）：类别关联，不代表现场供应商；点部件进节点页第五列。</div></div>
       <div class="board b6"><div class="bh"><h2>持有的站点权利（${held.length}）</h2><a class="go" href="node.html?id=site">六条权利 →</a></div>${rightsHtml}
         <div class="note">登记数：只说明登记过持有关系，事件卡与合同是证据。</div>
-        <div class="bh" style="margin-top:14px"><h2>产品线（${lines.length}）</h2><a class="go" href="product-catalog.html">规格库 →</a></div>${linesHtml}</div>
+        <div class="bh" style="margin-top:14px"><h2>产品线（${lines.length}）</h2><a class="go" href="product-catalog.html?c=${encodeURIComponent(c.company_id)}">规格库 →</a></div>${linesHtml}</div>
       <div class="board b12" id="registered"><div class="bh"><h2>已登记产品（Fetchspec 交付 · ${registered.length}）</h2><a class="go" href="supply.html#targets">目标表 →</a></div>
         ${registered.length ? registered.map(productHtml).join("") : '<div class="note">还没有这家公司的 Fetchspec 交付。</div>'}
         <div class="note">厂商官网原文值（不换算），随交付登记到目标行；单位与条件照审阅过的映射。是候选资料，不是序列，正式采用另走研究流程。</div></div>

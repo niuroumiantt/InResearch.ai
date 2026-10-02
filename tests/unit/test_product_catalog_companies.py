@@ -109,6 +109,53 @@ class ProductCatalogCompanyTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'unknown'):
             catalog.database(self.root, '../nvidia')
 
+    def test_new_vendor_receivers_keep_hosts_ids_databases_and_navigation_separate(self):
+        targets(self.root)
+        vendors = {'intel': 'https://www.intel.com/content/www/us/en/products/sku/240777/specifications.html',
+                   'amd': 'https://www.amd.com/en/products/accelerators/instinct/mi350/mi350x.html',
+                   'supermicro': 'https://www.supermicro.com/en/products/system/gpu/8u/sys-821ge-tnhr',
+                   'sk-hynix': 'https://product.skhynix.com/products/dram/hbm.go'}
+        for company, url in vendors.items():
+            with self.subTest(company=company):
+                payload = nvidia_bundle()
+                payload['company_id'] = company
+                payload['sources'][0]['source_url'] = url
+                product = payload['products'][0]
+                product.update(id=company+'-'+'a'*20, source_url=url,
+                               taxonomy=[{'slug':'vendor-group', 'name':'Vendor original group'}])
+                catalog.validate(payload, company)
+                self.assertEqual(catalog.receive(self.root, payload, company)['products'], 1)
+                self.assertTrue(catalog.receive(self.root, payload, company)['replayed'])
+                value = catalog.index_snapshot(self.root, company)
+                self.assertEqual(value['products'][0]['navigation']['group'], 'vendor-group')
+                self.assertEqual({c['id'] for c in value['registered_companies']}, set(catalog.COMPANIES))
+                self.assertTrue(public.allowed('/api/product-catalog/'+company))
+                for other in vendors:
+                    if other != company:
+                        with self.assertRaises(ValueError): catalog.validate(payload, other)
+                broken = copy.deepcopy(payload)
+                broken['products'][0]['id'] = 'nvidia-'+'a'*20
+                with self.assertRaises(ValueError): catalog.validate(broken, company)
+                self.assertFalse(catalog.official(url.replace('https://', 'https://attacker@'), company))
+                self.assertFalse(catalog.official('https://www.micron.com/products', company))
+        self.assertFalse(catalog.database(self.root, 'nvidia').exists())
+        self.assertFalse(catalog.database(self.root, 'micron').exists())
+
+    def test_registry_does_not_create_empty_catalog_and_company_match_has_boundaries(self):
+        targets(self.root)
+        path = self.root/'framework/tco_targets.json'
+        value = json.loads(path.read_text())
+        value['targets'] += [{'id':'P.bad.spec','team':'fetchspec','instances':['RAMDisk']},
+                             {'id':'P.amd.spec','team':'fetchspec','instances':['AMD EPYC']},
+                             {'id':'P.sk.spec','team':'fetchspec','instances':['SK-hynix HBM']}]
+        path.write_text(json.dumps(value))
+        for company in ('intel','amd','supermicro','sk-hynix'):
+            summary = catalog.summary_snapshot(self.root, company)
+            self.assertFalse(summary['available'])
+            self.assertFalse(catalog.database(self.root, company).exists())
+        self.assertEqual(catalog.research_alignment(self.root,'amd')['target_ids'], ['P.amd.spec'])
+        self.assertIn('P.sk.spec', catalog.research_alignment(self.root,'sk-hynix')['target_ids'])
+
     def test_micron_validate_receive_and_vendor_fields_pass_through(self):
         data = micron_bundle()
         catalog.validate(data)

@@ -3,6 +3,12 @@
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
 
+## 2026-10-02：扩展 Intel、AMD、Supermicro、SK hynix 规格目录
+
+用户确认 superior / amazing 指 Supermicro / AMD，要求计算、存储和网络厂商上架。沿用 Fetchspec 采集、网站分公司接收的链路；新增四家接收范围和六家公司动态切换，公司页跳转携带 company_id。原厂分类缺失时保留待归类，目录未交付明确等待，不填示例规格。Intel/AMD/SK hynix 新增有界原生 HTML 适配器与候选种子，Supermicro 复用现有适配器并保留原厂面包屑。规范 06 正文同步为逐公司路径，替代此前仅 NVIDIA 的路径表述。
+
+本轮云环境访问官方站点被代理 CONNECT 403 阻止；网络域名已加入环境配置草稿，尚需在环境设置应用。测试夹具覆盖采集→导出→真实接收器的四家公司分库与来源校验，不计作真实产品上架。生产数据交付仍须真实快照与成功回执；Spark 不作为采集机。
+
 ## 2026-10-02：行业总览独立首页与长期项目线索
 
 用户采用「市场有多大、主要玩家在哪里、已投运与建设/筹备规模、未来变化、inews 精选」的首页方案并要求执行。替代 2026-09-28「首页退役」在入口上的决定：根地址指向新行业总览，研究节点保留在 node.html；不恢复旧无来源数字拼盘。地图、统计和同条件明细共用行业聚合，Microsoft/Meta 可进入全球布局及项目分期/来源。全球 IT 投资序列与已追踪项目容量分别计量，未知、组合记录、公司关系份额及预测边界显式说明。七项导航与公开页面白名单同步。
@@ -23,7 +29,7 @@
 
 **导航。** NVIDIA 继续用已审阅的展示映射。其他公司按原厂自己的产品路径浏览：产品可带 `taxonomy`（`[{slug,name}]`，原厂产品路径原样）、`official_status`（原厂状态原文，如 Production / Sampling / Obsolete (listed)）、`listing`（active / obsolete / directory）、`part_number`，原样存、原样给；大类取路径第一级、系列取第二级，目录/分类页（`listing=directory`）单列为辅助，不计作具体型号。分组由数据里出现的路径生成，来源标为原厂目录（Micron：https://www.micron.com/products），不是本站归类。
 
-**接口与页面。** `GET/POST /api/product-catalog/<公司>`（未登记公司 404），GET 对每家登记公司公开只读，POST 仍用原交付凭证。索引多给 `summary`（按类型、列出状态、原厂状态、大类/系列的实体数与有规格表数，以及规范要求的两个分母：具体型号有规格表/具体型号总数、全部实体有规格表/全部实体），`research_alignment` 按公司名匹配 Fetchspec 目标行并列出每行 id、部件与状态。页面 `product-catalog.html?c=<公司>` 加公司切换与覆盖率行；CLI `manage.py product-catalog --company`。计数只是本次交付的实体，不是厂商产品总数；官网状态是原文，不等于确认在售。用例：`tests/unit/test_product_catalog_companies.py`。06 规范正文仍写 NVIDIA 库路径，改写需站长审阅。
+**接口与页面。** `GET/POST /api/product-catalog/<公司>`（未登记公司 404），GET 对每家登记公司公开只读，POST 仍用原交付凭证。索引多给 `summary`（按类型、列出状态、原厂状态、大类/系列的实体数与有规格表数，以及规范要求的两个分母：具体型号有规格表/具体型号总数、全部实体有规格表/全部实体），`research_alignment` 按公司名匹配 Fetchspec 目标行并列出每行 id、部件与状态。页面 `product-catalog.html?c=<公司>` 加公司切换与覆盖率行；CLI `manage.py product-catalog --company`。计数只是本次交付的实体，不是厂商产品总数；官网状态是原文，不等于确认在售。用例：`tests/unit/test_product_catalog_companies.py`。06 正文的逐公司路径已在 2026-10-02 本次授权扩展中同步。
 
 ## 2026-10-01：公司页「已登记产品」
 

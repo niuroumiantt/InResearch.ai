@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.02.2",
+  "version": "2026.10.02.3",
   "effective_at": "2026-10-02",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -1017,13 +1017,15 @@
         "web/components/industry.js",
         "web/themes/industry.css",
         "tests/unit/test_industry.py",
-        "tests/industry.cjs"
+        "tests/industry.cjs",
+        "web/pages/company.html",
+        "tests/unit/test_product_catalog_companies.py"
       ],
       "supersedes": [
         "acquisition-20260906"
       ],
-      "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-02 二次修订：用户明确首页去项目表格、全球估算与地图样本分开、低置信度新闻自动进入机会池并关联园区动态，保留人工纠正。",
-      "implementation_revision": "2026.10.02.1"
+      "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-02 二次修订：用户明确首页去项目表格、全球估算与地图样本分开、低置信度新闻自动进入机会池并关联园区动态，保留人工纠正。；2026-10-02 用户授权四家规格目录扩展：Intel、AMD、Supermicro、SK hynix，统一注册、分库和官方来源校验，未交付不表示已有产品。",
+      "implementation_revision": "2026.10.02.3"
     }
   ],
   "entrypoints": [

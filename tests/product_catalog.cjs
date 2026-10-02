@@ -106,6 +106,16 @@ const {chromium}=require('playwright');
   assert.match(await page.locator('#products').innerText(),/MT53B256M32D1/);
   await page.goto(process.env.UI_BASE_URL+'/product-catalog.html?c=micron&series='+series.id);
   await page.locator('#detail .series-table').waitFor();
+  // Real empty receiver endpoints distinguish registered companies from delivered products.
+  for(const [cid,label] of [['intel','Intel'],['amd','AMD'],['supermicro','Supermicro'],['sk-hynix','SK hynix']]){
+    await page.goto(process.env.UI_BASE_URL+'/product-catalog.html?c='+cid);
+    await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('等待 Fetchspec 首次交付'));
+    assert.equal(await page.locator('#catalog-title').innerText(),label+' 产品规格库');
+    assert.equal(await page.locator('#company-switch a').count(),6);
+    assert.equal(await page.locator('#company-switch [aria-current="page"]').getAttribute('data-company'),cid);
+    assert.equal(await page.locator('.product').count(),0);
+    assert.ok(!/NVIDIA/.test(await page.locator('#groups-note').innerText()));
+  }
   assert.deepEqual(errors,[]);
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});

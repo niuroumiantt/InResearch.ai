@@ -34,6 +34,18 @@ COMPANIES = {
     'micron': {'label': 'Micron', 'match': 'micron', 'domains': ('micron.com',),
                'attachment_hosts': (),
                'navigation': 'vendor_taxonomy', 'products_url': 'https://www.micron.com/products'},
+    'intel': {'label': 'Intel', 'match': 'intel', 'domains': ('intel.com',),
+              'attachment_hosts': (), 'navigation': 'vendor_taxonomy',
+              'products_url': 'https://www.intel.com/content/www/us/en/products.html'},
+    'amd': {'label': 'AMD', 'match': 'amd', 'domains': ('amd.com',),
+            'attachment_hosts': (), 'navigation': 'vendor_taxonomy',
+            'products_url': 'https://www.amd.com/en/products.html'},
+    'supermicro': {'label': 'Supermicro', 'match': 'supermicro', 'domains': ('supermicro.com',),
+                   'attachment_hosts': (), 'navigation': 'vendor_taxonomy',
+                   'products_url': 'https://www.supermicro.com/en/products'},
+    'sk-hynix': {'label': 'SK hynix', 'match': 'sk hynix', 'domains': ('skhynix.com',),
+                 'attachment_hosts': (), 'navigation': 'vendor_taxonomy',
+                 'products_url': 'https://product.skhynix.com/'},
 }
 LISTINGS = {'active', 'obsolete', 'directory'}
 
@@ -368,9 +380,11 @@ def summary(products, groups=()):
 
 def research_alignment(root, company='nvidia'):
     term = company_config(company)['match'].casefold()
+    # Match word boundaries after separators, so AMD does not match RAMDisk.
+    pattern = re.compile(r'(?<![a-z0-9])' + re.escape(term).replace(r'\ ', r'[\s_-]+') + r'(?![a-z0-9])')
     target_document = json.loads((root / 'framework/tco_targets.json').read_text())
     related = [row for row in target_document['targets'] if row.get('team') == 'fetchspec'
-               and any(term in str(instance).casefold() for instance in row.get('instances', []))]
+               and any(pattern.search(str(instance).casefold()) for instance in row.get('instances', []))]
     return {
         'target_ids': [row['id'] for row in related],
         'part_ids': sorted({row['part_id'] for row in related if row.get('part_id')}),
@@ -388,6 +402,7 @@ def index_snapshot(root, company='nvidia'):
     """
     value = snapshot(root, company)
     value['view'] = 'index'
+    value['registered_companies'] = [company_block(c) for c in COMPANIES]
     value['summary'] = summary(value['products'], value.get('navigation', {}).get('groups', ()))
     value['products'] = [{
         'id': p['id'],
