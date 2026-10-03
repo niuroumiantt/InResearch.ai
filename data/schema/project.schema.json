@@ -5,6 +5,8 @@
   "required": ["site_id", "name", "region", "country", "status", "verified_date", "sources"],
   "properties": {
     "site_id": {"type": "string", "description": "物理地点主键：国家-地区-地名小写连字符，如 us-tx-abilene"},
+    "duplicate_of": {"type": "string", "description": "已审阅同一物理项目的主记录 site_id；目标不得再指向别名，原始证据保留但聚合不累计"},
+    "deduplication_note": {"type": "string", "description": "去重审核日期、来源与选择依据；不改变原核验日期"},
     "name": {"type": "string", "description": "当前项目名（改名不改主键，旧名进 aliases）"},
     "aliases": {"type": "array", "items": {"type": "string"}},
     "region": {"type": "string", "description": "区域带，如 north-america / europe / china / apac / mena"},

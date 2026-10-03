@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.03.2",
+  "version": "2026.10.03.3",
   "effective_at": "2026-10-03",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -107,12 +107,17 @@
         "data/schema/submission.schema.json",
         "docs/inbox/submissions/README.md",
         "tests/unit/test_intake.py",
-        "tests/unit/test_research.py"
+        "tests/unit/test_research.py",
+        "src/inresearch/knowledge/industry.py",
+        "data/projects.json",
+        "data/schema/project.schema.json",
+        "tests/unit/test_industry.py"
       ],
       "supersedes": [
         "data-legacy"
       ],
-      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。"
+      "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-10-03 用户已授权发布：替代首页地图/玩家直接跳页为可固定浮窗与仅高亮；核对全球95GW与样本年份/定义/去重/覆盖，Frontier同址记录显式归一，保留原证据和冲突，不构造全球差额。",
+      "implementation_revision": "2026.10.03.3"
     },
     {
       "id": "knowledge-legacy",
@@ -936,13 +941,15 @@
         "tests/compute_catalog.cjs",
         "web/components/product-catalog.js",
         "web/pages/product-catalog.html",
-        "web/components/datacenter-news.js"
+        "web/components/datacenter-news.js",
+        "data/projects.json",
+        "data/schema/project.schema.json"
       ],
       "supersedes": [
         "interface-20260906"
       ],
-      "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-02 二次修订：用户明确首页去项目表格、全球估算与地图样本分开、低置信度新闻自动进入机会池并关联园区动态，保留人工纠正。；2026-10-02 计算芯片补充：按具体产品 CPU/GPU/其他加速器与形态独立投影，原厂 navigation 保留，复用公司ID与母公司关系，中国厂商筛选，来源/架构证据校验，候选与真实交付分开。；2026-10-02 上线验收修正跨厂商目录共用超时：逐请求30秒、数据请求高优先级，单厂失败隔离，重试仍取消旧轮。；第二批：独立模组、证据支持的芯片关系、增量保留生产目录，服务器和内存存储不混入计算芯片。；2026-10-03 首页排版替代：大数字直连完整地图，导航标题紧凑；筛选、主体与样本下移，两类首页机会区块删除但数据与其他页面保留。新闻计数限真实快照当前可展示条目，缺失显示 —；首页地图点/主体直达详情，三档桌面与手机浏览器验收。本轮不部署。",
-      "implementation_revision": "2026.10.03.2"
+      "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。；2026-10-02 二次修订：用户明确首页去项目表格、全球估算与地图样本分开、低置信度新闻自动进入机会池并关联园区动态，保留人工纠正。；2026-10-02 计算芯片补充：按具体产品 CPU/GPU/其他加速器与形态独立投影，原厂 navigation 保留，复用公司ID与母公司关系，中国厂商筛选，来源/架构证据校验，候选与真实交付分开。；2026-10-02 上线验收修正跨厂商目录共用超时：逐请求30秒、数据请求高优先级，单厂失败隔离，重试仍取消旧轮。；第二批：独立模组、证据支持的芯片关系、增量保留生产目录，服务器和内存存储不混入计算芯片。；2026-10-03 首页排版替代：大数字直连完整地图，导航标题紧凑；筛选、主体与样本下移，两类首页机会区块删除但数据与其他页面保留。新闻计数限真实快照当前可展示条目，缺失显示 —；首页地图点/主体直达详情，三档桌面与手机浏览器验收。本轮不部署。；2026-10-03 用户已授权发布：替代首页地图/玩家直接跳页为可固定浮窗与仅高亮；核对全球95GW与样本年份/定义/去重/覆盖，Frontier同址记录显式归一，保留原证据和冲突，不构造全球差额。",
+      "implementation_revision": "2026.10.03.3"
     },
     {
       "id": "acquisition-20261002",

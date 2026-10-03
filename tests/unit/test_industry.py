@@ -40,6 +40,32 @@ class IndustryTests(unittest.TestCase):
                 self.assertTrue(all(company in p['developer']+p['tenant'] for p in drill['rows']))
             self.assertEqual(len({p['site_id'] for p in view['rows']}), len(view['rows']))
 
+    def test_reviewed_duplicate_preserves_evidence_without_double_counting(self):
+        view = industry.snapshot(ROOT)
+        self.assertEqual(view['totals']['planning'], 21164)
+        self.assertEqual(view['totals']['sites'], 117)
+        self.assertNotIn('us-tx-shackelford-frontier', [p['site_id'] for p in view['rows']])
+        main = industry.snapshot(ROOT, {'site': 'us-tx-shackelford'})['detail']
+        old = industry.snapshot(ROOT, {'site': 'us-tx-shackelford-frontier'})['detail']
+        self.assertEqual(old['duplicate_of'], main['site_id'])
+        self.assertEqual(old['total_mw'], 1400)
+        self.assertEqual(main['capacity']['planning'], 1400)
+        self.assertIn('oracle', main['tenant'])
+        self.assertTrue(main['duplicate_records'])
+        oracle = industry.snapshot(ROOT, {'c': 'oracle'})
+        self.assertIn(main['site_id'], [p['site_id'] for p in oracle['rows']])
+
+    def test_capacity_audit_is_global_and_discloses_unknown_scope(self):
+        audit = industry.snapshot(ROOT)['capacity_audit']
+        self.assertEqual(audit, industry.snapshot(ROOT, {'c': 'meta'})['capacity_audit'])
+        self.assertEqual((audit['known'], audit['unknown'], audit['unlocated']), (39, 78, 14))
+        self.assertEqual((audit['duplicates_excluded'], audit['portfolios_excluded']), (1, 2))
+        self.assertEqual((audit['oldest_verified'], audit['latest_verified']), ('2026-07-23', '2026-08-15'))
+        self.assertIn('不能用 95 GW', audit['comparability'])
+        self.assertIn('推导余额', audit['unresolved'])
+        self.assertIn('集群', audit['coverage'])
+        self.assertNotIn('gap_gw', audit)
+
     def test_invalid_filters_and_unknown_objects_fail_explicitly(self):
         for args in ({'stage': 'fake'}, {'scope': 'all-ai'}, {'region': 'unknown'}, {'private': 'yes'}):
             with self.assertRaises(ValueError): industry.snapshot(ROOT, args)

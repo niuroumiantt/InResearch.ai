@@ -37,7 +37,7 @@ def bucket(level):
 
 def project(row):
     result = {k: row.get(k) for k in ('site_id', 'name', 'country', 'region', 'location', 'developer', 'tenant',
-              'status', 'verified_date', 'type', 'disputed', 'notes', 'power_status', 'utility', 'capacity_facility_mw')}
+              'status', 'verified_date', 'duplicate_of', 'deduplication_note', 'type', 'disputed', 'notes', 'power_status', 'utility', 'capacity_facility_mw')}
     result['developer'] = row.get('developer') or []
     result['tenant'] = row.get('tenant') or []
     result['portfolio'] = 'portfolio' in row['site_id']
@@ -66,7 +66,7 @@ def project(row):
 
 
 def totals(rows):
-    sites = [p for p in rows if not p['portfolio']]
+    sites = [p for p in rows if not p['portfolio'] and not p.get('duplicate_of')]
     return {**{s: round(sum(p['capacity'][s] for p in sites), 6) for s in STAGES},
             'sites': len(sites), 'unknown': sum(not p['capacity_known'] for p in sites),
             'unlocated': sum(p['coordinates'] is None for p in sites),
@@ -99,6 +99,20 @@ def benchmarks(root):
             for ident in ids for r in records if r.get('fact_id') == ident]
 
 
+def capacity_audit(rows, records):
+    """Global comparison uses the full registry, independently of UI filters."""
+    count = totals(rows)
+    dates = sorted(p['verified_date'] for p in rows if not p['portfolio'] and p.get('verified_date'))
+    return {**count, 'known': count['sites'] - count['unknown'],
+            'duplicates_excluded': sum(bool(p.get('duplicate_of')) for p in records),
+            'oldest_verified': dates[0] if dates else None, 'latest_verified': dates[-1] if dates else None,
+            'comparability': '两个集合不是同年、同定义、同覆盖范围。不能用 95 GW 减样本容量推算未追踪容量，也不能据此计算覆盖率；不编造差额。',
+            'definition': '95 GW 原文称 IT 工作量，登记为全部负载的 IT 负载，非 AI 专属、设施总功率或当下已投运普查。报告底层统计边界与去重方法尚未取得。样本按登记 IT MW 与分期汇总：L8–9 投运、L6–7 建设、L1–5 筹备；不叠加总值、设施 MW 或新闻容量。',
+            'deduplication': '按已审阅物理身份归一；Frontier 两个 ID 引用同一官方 1.4 GW 公告，保留原记录，合计只取主记录分期。多主体关系不重加全球容量，公司卡不能相加。仅同坐标或同城市不自动合并。',
+            'coverage': '样本偏向已登记大型园区与云厂商，含跨园区集群，不能称全球唯一物理园区普查；未知容量不是零，未定位记录仍可计入样本。',
+            'unresolved': '既有 IT 字段未全部重新核实铭牌/实际负载定义或当前运营状态，95 GW 仍待交叉验证。阿布扎比既有 4 GW 是 5 GW 园区减单列 1 GW 子项目的推导余额，并非独立披露或已投运容量；仍需核实 IT/设施定义与分期。集群边界及全部潜在重叠未完成逐址核验。'}
+
+
 def snapshot(root, params=None):
     root = Path(root); params = params or {}
     if set(params) - {'c', 'region', 'stage', 'relation', 'scope', 'role', 'site'}: raise ValueError('unknown filter')
@@ -108,7 +122,18 @@ def snapshot(root, params=None):
     companies = [{k: c.get(k) for k in ('company_id', 'name', 'name_cn', 'roles')} for c in json.loads((root/'data/companies.json').read_text())['records']]
     by_id = {c['company_id']: c for c in companies}
     if params.get('c') and params['c'] not in by_id: raise LookupError('company not found')
-    all_rows = [project(p) for p in json.loads((root/'data/projects.json').read_text())['records']]
+    raw_rows = json.loads((root/'data/projects.json').read_text())['records']
+    all_records = [project(p) for p in raw_rows]
+    all_rows = [p for p in all_records if not p.get('duplicate_of')]
+    # Identity joins retain relationships and evidence, never add duplicate capacity or overwrite stages.
+    for p in all_rows:
+        aliases = [a for a in all_records if a.get('duplicate_of') == p['site_id']]
+        for key in ('developer', 'tenant'):
+            p[key] = list(dict.fromkeys(p[key] + [i for a in aliases for i in a[key]]))
+        p['duplicate_records'] = [{'site_id': a['site_id'], 'note': a['deduplication_note']} for a in aliases]
+        for a in aliases:
+            for source in a['sources']:
+                if source not in p['sources']: p['sources'].append(source)
     if params.get('region') and params['region'] not in {p['region'] for p in all_rows}: raise ValueError('invalid region')
     def matches(p):
         relations = [params['relation']] if params.get('relation') else ['developer', 'tenant']
@@ -121,7 +146,7 @@ def snapshot(root, params=None):
     stage = params.get('stage')
     rows = [p for p in cohort if not stage or (not p['capacity_known'] if stage == 'unknown'
             else p['capacity'][stage] > 0 or not p['capacity_known'] and bucket(p['status']) == stage)]
-    detail = next((p for p in all_rows if p['site_id'] == params.get('site')), None)
+    detail = next((p for p in all_records if p['site_id'] == params.get('site')), None)
     if params.get('site') and detail is None: raise LookupError('project not found')
     leaders = []
     for c in companies:
@@ -136,5 +161,6 @@ def snapshot(root, params=None):
             'totals': totals(cohort), 'rows': rows, 'detail': detail, 'companies': companies,
             'leaders': leaders, 'regions': [{'id': r, 'name': REGIONS.get(r, r)} for r in sorted({p['region'] for p in all_rows})],
             'regional': regional, 'market': market(root), 'benchmarks': benchmarks(root),
+            'capacity_audit': capacity_audit(all_rows, all_records),
             'stages': STAGES, 'company': by_id.get(params.get('c')),
             'basis': '仅汇总已披露 IT 负载 MW；公司视图为相关园区容量，并非持有或租用份额。组合记录不参加容量合计。'}
