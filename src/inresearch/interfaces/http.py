@@ -11,6 +11,7 @@ from inresearch.storage.layout import initialize_runtime, workspace_path
 from inresearch.storage.files import CommitUncertain
 from inresearch.interfaces.static import source_path
 from inresearch.interfaces import pages
+from inresearch.interfaces import repository_pages
 import os
 import json
 from inresearch.interfaces import auth as auth
@@ -87,6 +88,13 @@ class Handler(SimpleHTTPRequestHandler):
     def log_message(self, *a):
         pass
 
+    def end_headers(self):
+        if repository_pages.protected(self._norm_path()):
+            self.send_header('Cache-Control', 'private, no-store')
+            self.send_header('Vary', 'Cookie')
+            self.send_header('X-Frame-Options', 'SAMEORIGIN')
+        super().end_headers()
+
     def handle(self):
         try:
             super().handle()
@@ -137,6 +145,17 @@ class Handler(SimpleHTTPRequestHandler):
         if any(p.startswith('.') for p in low.split('/') if p) or low.endswith('/users.json') or low == '/data/research_runtime.json':
             self._json(404, {"ok": False, "error": "not found"})
             return None
+        # Infrastructure diagrams contain private host/network information.
+        # These pages require a real admin session even in local development.
+        if repository_pages.protected(self._norm_path()):
+            user = auth.session_user(self.headers.get('Cookie'))
+            if not user:
+                self._redirect('/login')
+                return None
+            if auth.user_role(user) != 'admin':
+                self._html(403, pages.FORBIDDEN_PAGE)
+                return None
+            return user
         if not AUTH_ON:
             return ""
         # 密钥与用户表即使登录后也永远不可经 HTTP 取到（纵深防御）。
@@ -203,6 +222,8 @@ class Handler(SimpleHTTPRequestHandler):
         user = self._gate()
         if user is None:
             return
+        if self._norm_path() in repository_pages.ALIASES:
+            return self._redirect(repository_pages.ALIASES[self._norm_path()])
         # 实习生白名单对 HEAD 同样生效——不然可用 HEAD 探封锁文件的存在与大小
         if user and auth.user_role(user) == "intern" \
                 and not self._intern_allowed(self._norm_path()):
@@ -243,6 +264,8 @@ class Handler(SimpleHTTPRequestHandler):
         user = self._gate()
         if user is None:
             return
+        if self._norm_path() in repository_pages.ALIASES:
+            return self._redirect(repository_pages.ALIASES[self._norm_path()])
         merged = {'/team.html': '#tasks', '/materials.html': '#inbox', '/nvidia-pilot.html': '#pilot'}
         if self._norm_path() in merged:  # 三页并入采集页（2026-09-28）
             return self._redirect('/supply.html' + merged[self._norm_path()])
