@@ -12,7 +12,7 @@ const {mkdirSync}=require('node:fs');
    {title_zh:'未精选的线索',url:'https://example.com/other',published_at:Date.now(),editorial_pick:false},
    {title_zh:'危险链接',url:'javascript:alert(1)',editorial_pick:true}
   ]},pipeline:{available:true,records:[{id:'lead-one',title:'微软项目长期线索',state:'lead',company_ids:['microsoft'],site_id:'us-va-boydton',reported_stage:'reported',match_method:'name_and_actor',first_seen:'2026-09-01',events:[{title_zh:'原始报道',url:'https://example.com/ms'}]}]}}}));
-  await page.goto(base+'/');await page.locator('#company-chips button[data-company="microsoft"]').waitFor();
+  await page.goto(base+'/');await page.locator('#company-chips [data-company="microsoft"]').waitFor();
   await page.getByRole('heading',{name:'全球数据中心',exact:true}).waitFor();
   assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),'rgb(250, 249, 246)');
   await page.getByRole('link',{name:'微软项目精选',exact:true}).waitFor();
@@ -26,17 +26,24 @@ const {mkdirSync}=require('node:fs');
   assert.ok((await page.locator('#market-band').innerText()).includes('约 95'));
   assert.ok((await page.locator('#market-band').innerText()).includes('2025 估算'));
   await page.locator('#world-map .news-ring').first().waitFor();
-  await page.locator('#pipeline-summary').getByRole('link',{name:'全部动态 →'}).click();
+  assert.equal(await page.locator('#pipeline-summary, #trends-section').count(),0);
+  assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选精选 2 条');
+  await page.getByRole('link',{name:'查看全部项目新闻线索 →'}).click();
   await page.locator('#pipeline-rows summary').first().waitFor();
   assert.equal(await page.locator('#project-list').isVisible(),false);
-  await page.goto(base+'/');await page.locator('#company-chips button[data-company="microsoft"]').waitFor();
+  await page.goto(base+'/');await page.locator('#company-chips [data-company="microsoft"]').waitFor();
   const before=await page.locator('#stats').innerText();
-  await page.locator('#company-chips button[data-company="microsoft"]').click();
+  await page.locator('#company-chips [data-company="microsoft"]').click();
   await page.waitForFunction(()=>document.querySelector('#map-title').textContent.includes('微软'));
   await page.getByRole('link',{name:'微软项目精选',exact:true}).waitFor();
   await page.waitForFunction(()=>!document.querySelector('.dc-news').textContent.includes('Meta 扩建精选'));
   assert.notEqual(await page.locator('#stats').innerText(),before);
   assert.equal(new URL(page.url()).searchParams.get('c'),'microsoft');
+  assert.equal(new URL(page.url()).pathname,'/industry.html');
+  await page.locator('#company-chips button[data-company="meta"]').click();
+  await page.waitForFunction(()=>document.querySelector('#map-title').textContent.includes('Meta'));
+  await page.goBack();
+  await page.waitForFunction(()=>document.querySelector('#map-title').textContent.includes('微软'));
   const api=await (await page.request.get(base+'/api/industry?c=microsoft&stage=construction')).json();
   await page.locator('#stats a').nth(1).click();
   await page.waitForFunction(()=>document.querySelector('#list-title')?.textContent.startsWith('建设中'));
@@ -54,19 +61,93 @@ const {mkdirSync}=require('node:fs');
   assert.ok((await page.locator('#market-detail').textContent()).includes('内部原件未在本站公开'));
   await page.goto(base+'/');await page.locator('#world-map .site-point').first().waitFor();
   await page.locator('#world-map .site-point').first().focus();await page.keyboard.press('Enter');
-  await page.getByRole('link',{name:'查看项目与来源 →'}).waitFor();
+  await page.getByRole('heading',{name:'来源与核验'}).waitFor();
+  assert.equal(new URL(page.url()).pathname,'/project.html');
+  await page.goto(base+'/');await page.locator('#world-map .site-point').first().waitFor();
   await page.locator('#news-selection').selectOption('all');await page.getByRole('link',{name:'未精选的线索',exact:true}).waitFor();
+  assert.equal(await page.locator('[data-news-count]').innerText(),'本次快照 · 当前筛选线索 3 条');
   await page.locator('#news-selection').selectOption('selected');
-  if(process.env.UI_QA_DIR){mkdirSync(process.env.UI_QA_DIR,{recursive:true});await page.screenshot({path:process.env.UI_QA_DIR+'/industry-desktop.png',fullPage:true});}
+  await page.waitForFunction(()=>document.querySelector('[data-news-count]').textContent.includes('精选 2 条'));
   for(const mode of ['dark','light']){
    await page.locator('#ui-appearance').selectOption(mode);
    assert.equal(await page.evaluate(()=>getComputedStyle(document.body).backgroundColor),mode==='dark'?'rgb(27, 28, 25)':'rgb(250, 249, 246)');
    for(const width of [390,768,1440]){await page.setViewportSize({width,height:900});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),mode+' '+width);}
   }
   await page.setViewportSize({width:390,height:844});
-  if(process.env.UI_QA_DIR)await page.screenshot({path:process.env.UI_QA_DIR+'/industry-mobile.png',fullPage:true});
+
+  // Rendering counts describe only safe, displayed rows in the current API snapshot.
+  for(const payload of [{reader:{status:'not_connected'},feed:null},
+    {feed:{status:'success',exported_at:new Date().toISOString(),items:[]}}]){
+   await page.unroute('**/api/news');
+   await page.route('**/api/news',r=>r.fulfill({json:payload}));
+   await page.goto(base+'/');await page.locator('#world-map .site-point').first().waitFor();
+   await page.waitForFunction(()=>document.querySelector('.dc-news-meta').textContent || document.querySelector('.dc-news-list').textContent);
+   assert.ok((await page.locator('[data-news-count]').innerText()).includes('—'));
+  }
+  await page.unroute('**/api/news');
+  await page.route('**/api/news',r=>r.fulfill({status:503,body:'unavailable'}));
+  await page.goto(base+'/');await page.getByText('新闻暂时无法同步，请稍后重试。',{exact:true}).waitFor();
+  assert.ok((await page.locator('[data-news-count]').innerText()).includes('—'));
+  await page.unroute('**/api/news'); // screenshots below use real local endpoints only
+  if(process.env.UI_QA_DIR)mkdirSync(process.env.UI_QA_DIR,{recursive:true});
+  const measurements=[];
+  for(const [width,height] of [[1366,768],[1440,900],[1920,1080],[390,844],[320,740]]){
+   await page.setViewportSize({width,height});await page.goto(base+'/');
+   await page.locator('#world-map .site-point').first().waitFor();
+   await page.evaluate(()=>document.fonts.ready);
+   const layout=await page.evaluate(()=>{
+    const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return {top:r.top,bottom:r.bottom,left:r.left,right:r.right,width:r.width,height:r.height};};
+    const map=rect('#world-map'),matrix=document.querySelector('#world-map').getScreenCTM();
+    const screen=(x,y)=>{const p=new DOMPoint(x,y).matrixTransform(matrix);return {x:p.x,y:p.y};};
+    return {map,world:[screen(0,0),screen(1000,490)],market:rect('#market-band'),atlas:rect('.atlas-panel'),news:rect('.news-panel'),
+     controls:['#filters','#stats','#basis','#coverage','#map-summary','#company-chips','#news-selection'].map(rect),
+     overflow:document.documentElement.scrollWidth-innerWidth,scroll:scrollY,viewBox:document.querySelector('#world-map').getAttribute('viewBox'),
+     numberSize:parseFloat(getComputedStyle(document.querySelector('.macro-card strong')).fontSize),
+     metaSize:parseFloat(getComputedStyle(document.querySelector('.macro-card small')).fontSize)};
+   });
+   measurements.push({width,height,...layout});
+   assert.equal(layout.scroll,0);assert.ok(layout.overflow<=1,`overflow at ${width}`);
+   assert.equal(layout.viewBox,'0 0 1000 490');
+   assert.ok(Math.abs(layout.map.width/layout.map.height-1000/490)<.01,'full aspect ratio');
+   assert.ok(layout.world[0].y>=layout.map.top-1 && layout.world[1].y<=layout.map.bottom+1,'no SVG clipping');
+   assert.ok(layout.controls.every(r=>r.top>=layout.map.bottom),'all filters and sample labels below map');
+   assert.ok(layout.metaSize>=13);
+   if(width>1000){
+    assert.ok(layout.market.top>0 && layout.market.bottom<layout.map.top);
+    assert.ok(layout.map.bottom<=height && layout.map.top>=0,`entire map visible at ${width}×${height}`);
+    assert.ok(layout.map.width>=850 && layout.numberSize>=40,'retain large readable graphics');
+    assert.ok(layout.news.left>=layout.map.right && layout.news.top<layout.map.top,'news on the right');
+   }else{
+    assert.ok(layout.news.top>=layout.atlas.bottom,'mobile news follows map');
+   }
+   if(process.env.UI_QA_DIR)await page.screenshot({path:process.env.UI_QA_DIR+`/homepage-${width}x${height}.png`,fullPage:width<1000});
+  }
+  if(process.env.UI_QA_DIR)require('node:fs').writeFileSync(process.env.UI_QA_DIR+'/layout.json',JSON.stringify(measurements,null,2));
+  await page.setViewportSize({width:1366,height:768});await page.goto(base+'/index.html');
+  await page.locator('#world-map .site-point').first().waitFor();
+  await page.locator('#zoom-in').click();assert.notEqual(await page.locator('#world-map').getAttribute('viewBox'),'0 0 1000 490');
+  await page.locator('#zoom-reset').click();assert.equal(await page.locator('#world-map').getAttribute('viewBox'),'0 0 1000 490');
+  const mapBox=await page.locator('#world-map').boundingBox();
+  await page.mouse.move(mapBox.x+mapBox.width*.4,mapBox.y+mapBox.height*.8);await page.mouse.down();await page.mouse.move(mapBox.x+mapBox.width*.4+60,mapBox.y+mapBox.height*.8+20);await page.mouse.up();
+  assert.notEqual(await page.locator('#world-map').getAttribute('viewBox'),'0 0 1000 490');await page.locator('#zoom-reset').click();
+  const region=await page.locator('#filters select[name=region] option').nth(1).getAttribute('value');
+  await page.locator('#filters select[name=region]').selectOption(region);
+  await page.waitForFunction(region=>window.industryFilter?.region===region,region);
+  const filtered=await (await page.request.get(base+'/api/industry?region='+region)).json();
+  assert.ok((await page.locator('#basis').innerText()).includes(`地图样本 ${filtered.totals.sites} 个园区`));
+  for(const [key,value] of [['scope','ai'],['role','operator'],['relation','tenant'],['c','microsoft']]){
+   await page.locator(`#filters select[name=${key}]`).selectOption(value);
+   await page.waitForFunction(([key,value])=>document.querySelector('#filters').elements[key].value===value && !document.querySelector('#load-status').textContent,[key,value]);
+   const query=new URL(page.url()).search;
+   const result=await (await page.request.get(base+'/api/industry'+query)).json();
+   assert.ok((await page.locator('#basis').innerText()).includes(`地图样本 ${result.totals.sites} 个园区`),key+' matches API');
+   await page.locator(`#filters select[name=${key}]`).selectOption('');
+   await page.waitForFunction(key=>document.querySelector('#filters').elements[key].value==='' && !document.querySelector('#load-status').textContent,key);
+  }
+  await page.locator('#market-band a').first().click();await page.locator('#capacity').waitFor();
+  await page.goBack();await page.waitForFunction(region=>window.industryFilter?.region===region,region);
   await page.goto(base+'/project.html?site=missing');await page.getByText('未找到对应的项目或主体。',{exact:false}).waitFor();
   assert.deepEqual(errors,[]);
-  console.log('PASS industry: company/map/news filters, capacity drilldown, project sources, market forecast, keyboard, mobile and dark mode');
+  console.log('PASS industry: viewport matrix, real-endpoint screenshots, scoped news counts, company/map/news filters, drilldowns, sources, history, zoom/pan, keyboard, mobile and dark mode');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exit(1)});

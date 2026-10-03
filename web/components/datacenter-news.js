@@ -10,6 +10,8 @@ if (host) {
   const dateFormat=new Intl.DateTimeFormat('sv-SE',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'});
   const timeFormat=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',hour:'2-digit',minute:'2-digit',hourCycle:'h23'});
   const timestamp=item=>typeof item.published_at==='number'&&Number.isFinite(item.published_at)&&!Number.isNaN(new Date(item.published_at).getTime())?item.published_at:0;
+  const count=host.parentElement.querySelector('[data-news-count]');
+  function showCount(value=null){if(count)count.textContent=`本次快照 · 当前筛选${host.dataset.newsSelection==='selected'?'精选':'线索'} ${value || '—'} 条`; }
   let currentRequest;
   let industryFilter=window.industryFilter || {};
   window.addEventListener('inresearch:industry-filter', e=>{const changed=['company','region','site','scope','role','relation'].some(k=>(industryFilter[k]||'')!==(e.detail[k]||''));industryFilter=e.detail;if(changed||e.detail.force)refresh();});
@@ -42,6 +44,7 @@ if (host) {
   }
   async function refresh() {
     currentRequest?.abort();
+    showCount();
     const request = new AbortController(); currentRequest = request;
     const timeout = setTimeout(()=>request.abort(), 20000);
     try {
@@ -86,6 +89,7 @@ if (host) {
       }
       if (!rows.length) {const empty=document.createElement('p');empty.textContent=host.dataset.newsSelection==='selected'?'当前范围暂无编辑精选新闻，可切换全部线索。':'当前范围暂无已整理的中文新闻。';rows.push(empty);}
       list.replaceChildren(...rows);
+      showCount(list.querySelectorAll('article').length);
     } catch {
       if (request !== currentRequest) return;
       meta.hidden=false;meta.textContent='新闻暂时无法同步，请稍后重试。';
