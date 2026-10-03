@@ -38,6 +38,13 @@ const assert=require('node:assert/strict');
   await page.clock.runFor(2000);
   for(const r of pending.splice(0)){const c=new URL(r.request().url()).pathname.split('/').pop();await r.fulfill({json:{available:c!=='hygon-dcu',products:samples[c]||[]}});}
   await page.waitForFunction(()=>document.getElementById('compute-status').textContent.includes('已读取 3'));
+  // Observe completed JSON reads before advancing the synthetic clock. Route
+  // fulfillment alone does not mean the browser has consumed the body on CI.
+  await page.evaluate(()=>{
+    const original=window.fetch;window.catalogReads=[];
+    window.fetch=async(...args)=>{const response=await original(...args),read=response.json.bind(response);
+      response.json=async()=>{const value=await read();window.catalogReads.push(String(args[0]));return value;};return response;};
+  });
   // A single stalled vendor times out without cancelling a completed vendor.
   await page.locator('#compute-retry').click();
   while(pending.length<1)await new Promise(r=>setTimeout(r,10));
@@ -45,6 +52,7 @@ const assert=require('node:assert/strict');
   while(pending.length<3)await new Promise(r=>setTimeout(r,10));
   const success=pending.splice(pending.findIndex(r=>r.request().url().includes('/metax?')),1)[0];
   await success.fulfill({json:{available:true,products:samples.metax}});
+  await page.waitForFunction(()=>window.catalogReads.some(url=>url.includes('/metax?')));
   await page.clock.runFor(30001);
   await page.waitForFunction(()=>document.getElementById('compute-status').textContent.includes('已读取 2'));
   assert.match(await page.locator('#gaps').innerText(),/昇腾：读取失败/);
