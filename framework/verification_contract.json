@@ -1,6 +1,6 @@
 {
-  "version": "2026.10.02.5",
-  "reviewed_at": "2026-10-02",
+  "version": "2026.10.03.1",
+  "reviewed_at": "2026-10-03",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
     ".github/workflows/validate.yml": "1424142306d608e4834d92f6ac17c7ee4275e70daed27b1fe87bbe2e0ef3b0ff",
@@ -19,14 +19,14 @@
     "framework/00_overview.md": "801f2e4182d6ac59b3e278bb2da9b8dfafe9167021f2432d415b0d3717aed5ec",
     "framework/01_data_standards.md": "95cc134e3580a83166ad19016343f3efbfb558cb3d86b19bc58d6ac6c7bf2020",
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
-    "framework/03_bom_and_collaboration.md": "a3f596401f638234273394a39cd8340f726721e40c80e1a5c8be054e725f2eef",
+    "framework/03_bom_and_collaboration.md": "6b092daab4ca9f2e465aa352c732e67464bc76eb6a91bf1c93204645dbb8ef11",
     "framework/04_reading_scoring_standard.md": "bb95204d45f852f8bf51b17ecd30c33137077ac9973e0d2820a99ac8932c4511",
-    "framework/05_interface_system.md": "49b4f5984f4ee6c59d98b22c9708ae8b6e138281a2aec516f00402b9700c5696",
-    "framework/06_acquisition.md": "cf6eac8dc894d16a54b0bfdd1d9f63c631d411261ef414e4344079092c99ec7f",
+    "framework/05_interface_system.md": "2116be5e12837e0fda27eaced267274ffceb7fa0d3ebbf0550cb4cf1af86b33b",
+    "framework/06_acquisition.md": "47cbcf97cf7b7bd46fbe1e8dfe7ed75b4e075f3d18da6afb39cdd48a20630654",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "f76598712783629ce573f0d89da2cc81181b7b766d9a942e299ea0868134b2e0",
     "framework/09_software_contracts.md": "94eeb69fe498f0318e84d4cb476468eed1e01c541160e81c4be58a12dd119dff",
-    "framework/CURRENT.md": "331dc8dee1920b137ada64d963234e0540c8bb08694a63d54a6b134442997acf",
+    "framework/CURRENT.md": "2ae44a2fa3494277d2776a07faed73d4fcce44c0ca548a695727724f18063cb0",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "d56f034a3cb40a659efd00712682e44fef744454710827048975a5b817041e64",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -116,8 +116,8 @@
     "tests/unit/test_industry.py": "547f267f4bf476e8d4b51d13033b80d73a48b9ebdb3bb2ecc8b398a34300d494",
     "tests/industry.cjs": "a6720868c28c1a8cff9271078624d8a52c7652b39de8d43cda8be867db134256",
     "tests/unit/test_product_catalog_companies.py": "8f5d6fec939a191f9f6ac00fb6012dd7b5cf0a8f82e3ceeda3c6a183168b3fe1",
-    "tests/compute_catalog.cjs": "e2e7ffa84944dce00bb7b58e40c72ca349dd1ef5c820c978f1e5a614b1d988df",
-    "tests/unit/test_compute_catalog.py": "292d3905e1f63dacfefa9bd9bd519b88463f8c6b949e301057ca9c69cfa69355",
+    "tests/compute_catalog.cjs": "a09f49f986063fef1bc0e86bed0d6a779912ce8f99912ee72ef1d4e8adf0dbe8",
+    "tests/unit/test_compute_catalog.py": "5935a18249a7dc07a4f992342f363644d859743e2cbaa061dfaaff0e52ebe8d4",
     "web/pages/admin/fetchspec/reporg.html": "d0e8dab2a2d08bc3509e959fce0ef461c53f0426f38fa044d26d8597591b2274"
   },
   "policies": [
@@ -246,7 +246,7 @@
       "policy": "products-20260906",
       "scope": "project",
       "source": "framework/03_bom_and_collaboration.md",
-      "checked_requirement": "产品显式映射、稳定身份、研究问题任务单一权威与模块缺口投影分离；视觉资产内容身份、候选/采用/拒绝、版本冲突、HTTP 及静态发布共同登记；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。",
+      "checked_requirement": "产品显式映射、稳定身份、研究问题任务单一权威与模块缺口投影分离；视觉资产内容身份、候选/采用/拒绝、版本冲突、HTTP 及静态发布共同登记；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。; Batch 2: separate module filtering and CSV; evidence-backed links from boards/modules to delivered chips; reject missing/non-chip targets; preserve production baseline and server/memory/storage categories.",
       "tests": [
         "tests/unit/test_catalog_bridge.py::CatalogBridgeTests.test_explicit_multiple_bom_parts_and_no_module_inference",
         "tests/unit/test_research.py::MutationTests.test_new_question_is_assignable_without_regenerating_legacy_projection",
@@ -259,11 +259,13 @@
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_reviewed_architecture_requires_receipt_and_quote",
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_registry_reuses_company_ids_and_preserves_parent_lines",
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_compute_roundtrip_preserves_navigation_and_rejects_missing_proof",
-        "tests/compute_catalog.cjs"
+        "tests/compute_catalog.cjs",
+        "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_chip_relationship_requires_delivered_chip_quote_and_receipt"
       ],
       "not_verified": [
         "真实资产几何与来源许可逐件核对、厂商具体型号规格语义验证未全部完成。",
-        "计算芯片全厂商全型号穷尽、所有形态与架构逐条复核、AMD/兆芯/燧原访问缺口和海光 DCU 逐型号官方证据未完成；目录发布结果见 docs/handoff/compute-catalog-20261002.md，不能据此推定全量覆盖。"
+        "计算芯片全厂商全型号穷尽、所有形态与架构逐条复核、AMD/兆芯/燧原访问缺口和海光 DCU 逐型号官方证据未完成；目录发布结果见 docs/handoff/compute-catalog-20261002.md，不能据此推定全量覆盖。",
+        "Batch 2 remaining evidence and production receipt audit: docs/handoff/compute-catalog-batch2-20261002.md; CI does not establish catalog completeness."
       ]
     },
     {
@@ -349,7 +351,7 @@
       "policy": "interface-20261002",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "17 页明暗/宽度、字体包已加载与正文字体栈、表单控件去原生、手机顶栏两行、认证外观、旧偏好 skin 字段忽略、状态保持与安全链接；字体包目录登录前公开而其余资源不公开；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、收益参照占位与情景预设（GB300 出租、H100 合约）的租金盈余/覆盖率、基准卡按价格库序列最新时点渲染（更新时间戳与首行时点）；经济模型四本账校准（研报 GB300 出租 ROIC、模型 API 自有 ROIC、带电壳 19%、中国托管 11%）、六个预设、资本开支/瀑布/利润分配/龙卷风/热力图/情景表渲染、输入重算与代际切换、价格库基准、窄屏边界；TCO 模型基准 KPI（每 kW·月）、站点切换后的对基准变化、设为基准后归零、租壳与托管口径、按每 MW 折算的对比与绝对金额切换、数据缺口表、图表渲染与窄屏边界、恢复与窄屏边界；供应方向按对象/问题关联；NVIDIA 打样页以 candidate-only 状态呈现 M5→AWS 进度，明确 Spark 不参与且不混淆正式采用。；2026-10-02 复审：独立行业入口，IT 分期优先且组合不累加，主体/阶段明细可对账，公开字段白名单，真实状态不由新闻标题推定，新闻过期保留长期线索；界面共享字体与明暗，地图与精选新闻联动。；二次复审：首页无项目表格，全球规模保留报告年份/估算性质/来源并与样本分开，低置信度项目标题自动入池，全名+actor 唯一园区跨事件关联，暂停/撤回/旧消息与人工状态优先验证。；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。；2026-10-02 发布验收复审：首批慢读取不耗尽后续厂商预算；单厂请求超时隔离、已成功厂商保留，重试取消旧轮。CPU 下拉选项可实际选择。",
+      "checked_requirement": "17 页明暗/宽度、字体包已加载与正文字体栈、表单控件去原生、手机顶栏两行、认证外观、旧偏好 skin 字段忽略、状态保持与安全链接；字体包目录登录前公开而其余资源不公开；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、收益参照占位与情景预设（GB300 出租、H100 合约）的租金盈余/覆盖率、基准卡按价格库序列最新时点渲染（更新时间戳与首行时点）；经济模型四本账校准（研报 GB300 出租 ROIC、模型 API 自有 ROIC、带电壳 19%、中国托管 11%）、六个预设、资本开支/瀑布/利润分配/龙卷风/热力图/情景表渲染、输入重算与代际切换、价格库基准、窄屏边界；TCO 模型基准 KPI（每 kW·月）、站点切换后的对基准变化、设为基准后归零、租壳与托管口径、按每 MW 折算的对比与绝对金额切换、数据缺口表、图表渲染与窄屏边界、恢复与窄屏边界；供应方向按对象/问题关联；NVIDIA 打样页以 candidate-only 状态呈现 M5→AWS 进度，明确 Spark 不参与且不混淆正式采用。；2026-10-02 复审：独立行业入口，IT 分期优先且组合不累加，主体/阶段明细可对账，公开字段白名单，真实状态不由新闻标题推定，新闻过期保留长期线索；界面共享字体与明暗，地图与精选新闻联动。；二次复审：首页无项目表格，全球规模保留报告年份/估算性质/来源并与样本分开，低置信度项目标题自动入池，全名+actor 唯一园区跨事件关联，暂停/撤回/旧消息与人工状态优先验证。；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。；2026-10-02 发布验收复审：首批慢读取不耗尽后续厂商预算；单厂请求超时隔离、已成功厂商保留，重试取消旧轮。CPU 下拉选项可实际选择。; Batch 2: separate module filtering and CSV; evidence-backed links from boards/modules to delivered chips; reject missing/non-chip targets; preserve production baseline and server/memory/storage categories.; Timeout test waits for the successful JSON body before advancing its synthetic clock, so CI scheduling cannot turn a fulfilled route into an unconsumed timed-out body.",
       "tests": [
         "tests/ui_skin.cjs",
         "tests/auth_appearance.cjs",
@@ -387,7 +389,8 @@
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_reviewed_architecture_requires_receipt_and_quote",
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_registry_reuses_company_ids_and_preserves_parent_lines",
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_compute_roundtrip_preserves_navigation_and_rejects_missing_proof",
-        "tests/compute_catalog.cjs"
+        "tests/compute_catalog.cjs",
+        "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_chip_relationship_requires_delivered_chip_quote_and_receipt"
       ],
       "not_verified": [
         "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。字体包切片覆盖率来自仓库文本频率，真实用户输入的生僻字仍会触发后续片下载。",
@@ -395,14 +398,15 @@
         "交互计算器验证公式一致性与页面状态，不证明研究假设代表任何具体项目报价，也不证明不同硬件、模型和任务具有可直接比较的有效设备小时。",
         "Fetchspec 接收与 Reader handoff 已有代码验收；Spark 部署、真实 NVIDIA 包、服务/备份实测、采集任务调度、历史材料回填和正式研究证据采用仍未完成。",
         "全球当前投运与在建普查、新闻全文语义解析、未命名园区消歧、生产 reader 升级与历史回填未覆盖；标题阶段与容量均为报道观察，非采用事实。",
-        "计算芯片全厂商全型号穷尽、所有形态与架构逐条复核、AMD/兆芯/燧原访问缺口和海光 DCU 逐型号官方证据未完成；目录发布结果见 docs/handoff/compute-catalog-20261002.md，不能据此推定全量覆盖。"
+        "计算芯片全厂商全型号穷尽、所有形态与架构逐条复核、AMD/兆芯/燧原访问缺口和海光 DCU 逐型号官方证据未完成；目录发布结果见 docs/handoff/compute-catalog-20261002.md，不能据此推定全量覆盖。",
+        "Batch 2 remaining evidence and production receipt audit: docs/handoff/compute-catalog-batch2-20261002.md; CI does not establish catalog completeness."
       ]
     },
     {
       "policy": "acquisition-20261002",
       "scope": "project",
       "source": "framework/06_acquisition.md",
-      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。；五个展示大类与系列导航、原厂分类保留、辅助入口隔离、型号优先/15项分页、跨类搜索与同范围CSV；产品地图父子身份与来源校验、官方非文件资源入口；日常更新先对账官方英文/中文 XML sitemap，只筛已审阅产品路径，条件请求复用未变化快照，新 URL 入队、lastmod 变化重查；中文站 www.nvidia.cn 根路径纳入，中英同路径身份归并但来源快照分别保留；sitemap 不完整或缺失不自动下架；产品地图 CSV 与参数 CSV 分开；404 旧页、主机策略阻止与可重试访问失败分别计量；具体命名产品规格覆盖与全部目录实体有表数量使用不同分母，已核对的官网未发布/来源不可用状态显示为厂商规格缺口而非抓取失败。；2026-09-28 六队三仓库：目标清单只引用存在的因子、输入、序列、分队与执行机并覆盖全部非用户输入，辅助机制必须落在 macmini，inews 只产材料类事件卡；inresearch 不爬取（sec/gpu 采集器与 CLI 已删除，历史台账行只读保留）；feed v2 附加字段校验形状、保留为线索、不授予采用；供应任务只能分配给六队。；官方 Networking Docs 的 ConnectX / BlueField / Spectrum 硬件型号进入网络目录，DOCA 仍按软件归类；2026-10-02 复审：独立行业入口，IT 分期优先且组合不累加，主体/阶段明细可对账，公开字段白名单，真实状态不由新闻标题推定，新闻过期保留长期线索；界面共享字体与明暗，地图与精选新闻联动。；二次复审：首页无项目表格，全球规模保留报告年份/估算性质/来源并与样本分开，低置信度项目标题自动入池，全名+actor 唯一园区跨事件关联，暂停/撤回/旧消息与人工状态优先验证。；逐公司目录：四家新增接收范围，来源/前缀/数据库隔离、重复导入、六家动态导航、未交付无空库；AMD 词边界与 SK hynix 写法归一。；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。；Ampere与昇腾按现行目标实例写法关联需求，不新增目标或交付状态。",
+      "checked_requirement": "原件修订与幂等、题目关联、失败不报成功、价格口径; event signals propose review without rewriting formal research; bounded news view shares input validation and freshness, no full snapshot polling, late-response rejection and explicit retry/disconnected states；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；每项任务强制 continuous/AWS 或 assisted/macmini，Spark 不作为采集执行机；Fetchspec package 校验、按 SHA 归档/去重、目标存储根完整性确认后幂等、缺失投影可恢复、分类路径防逃逸、来源与研究关联、支持格式按 SHA 显式 Reader handoff、默认不扩大队列、版本复核与候选不等于采用；NVIDIA 2026-09-27 本轮例外为 M5 本地抓取/阅读，M5 用私有受限凭证经 HTTPS 直传 AWS，拒绝跳转并要求接收端成功回执；服务端凭证在 INRESEARCH_RUNTIME_ROOT 挂载数据根解析；Spark 完全不参与；线上只读展示计量，未完成不伪装为候选，正式研究仍需审核。；产品目录独立数据库保留来源与历史，幂等和陈旧交付拒绝；原厂规格列/脚注、CSV 公式转义、界面筛选/配置/错误恢复/窄屏。；五个展示大类与系列导航、原厂分类保留、辅助入口隔离、型号优先/15项分页、跨类搜索与同范围CSV；产品地图父子身份与来源校验、官方非文件资源入口；日常更新先对账官方英文/中文 XML sitemap，只筛已审阅产品路径，条件请求复用未变化快照，新 URL 入队、lastmod 变化重查；中文站 www.nvidia.cn 根路径纳入，中英同路径身份归并但来源快照分别保留；sitemap 不完整或缺失不自动下架；产品地图 CSV 与参数 CSV 分开；404 旧页、主机策略阻止与可重试访问失败分别计量；具体命名产品规格覆盖与全部目录实体有表数量使用不同分母，已核对的官网未发布/来源不可用状态显示为厂商规格缺口而非抓取失败。；2026-09-28 六队三仓库：目标清单只引用存在的因子、输入、序列、分队与执行机并覆盖全部非用户输入，辅助机制必须落在 macmini，inews 只产材料类事件卡；inresearch 不爬取（sec/gpu 采集器与 CLI 已删除，历史台账行只读保留）；feed v2 附加字段校验形状、保留为线索、不授予采用；供应任务只能分配给六队。；官方 Networking Docs 的 ConnectX / BlueField / Spectrum 硬件型号进入网络目录，DOCA 仍按软件归类；2026-10-02 复审：独立行业入口，IT 分期优先且组合不累加，主体/阶段明细可对账，公开字段白名单，真实状态不由新闻标题推定，新闻过期保留长期线索；界面共享字体与明暗，地图与精选新闻联动。；二次复审：首页无项目表格，全球规模保留报告年份/估算性质/来源并与样本分开，低置信度项目标题自动入池，全名+actor 唯一园区跨事件关联，暂停/撤回/旧消息与人工状态优先验证。；逐公司目录：四家新增接收范围，来源/前缀/数据库隔离、重复导入、六家动态导航、未交付无空库；AMD 词边界与 SK hynix 写法归一。；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。；Ampere与昇腾按现行目标实例写法关联需求，不新增目标或交付状态。; Batch 2: separate module filtering and CSV; evidence-backed links from boards/modules to delivered chips; reject missing/non-chip targets; preserve production baseline and server/memory/storage categories.",
       "tests": [
         "tests/unit/test_acquisition.py::AcquisitionTests.test_archive_preserves_revisions_and_is_idempotent",
         "tests/unit/test_acquisition.py::AcquisitionTests.test_failure_is_recorded_and_not_success",
@@ -475,7 +479,8 @@
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_registry_reuses_company_ids_and_preserves_parent_lines",
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_compute_roundtrip_preserves_navigation_and_rejects_missing_proof",
         "tests/compute_catalog.cjs",
-        "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_demand_alignment_recognizes_publisher_spellings"
+        "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_demand_alignment_recognizes_publisher_spellings",
+        "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_chip_relationship_requires_delivered_chip_quote_and_receipt"
       ],
       "not_verified": [
         "fetchdata 仓库尚未创建，fetchstat/fetchfilings/fetchreports/fetchquotes 未接通；来源登记表与 sec/gpu 种子迁移待该仓库建立后验收；inews 事件 feed 附加字段依赖 inews.today 侧部署，未部署前消费端按缺字段处理；全文翻译、撤回增量与全局限速仍未完整实现。",
@@ -487,14 +492,15 @@
         "生成目标里点名 NVIDIA 只证明该公司是拟采实例，不证明 595 个目录实体已逐一映射到部件和 target；结构化参数回带 target_id/part_id 仍须 Fetchspec 上游实现和真实交付验收。",
         "全球当前投运与在建普查、新闻全文语义解析、未命名园区消歧、生产 reader 升级与历史回填未覆盖；标题阶段与容量均为报道观察，非采用事实。",
         "AMD、Supermicro、SK hynix 真实目录仍未交付；早期云环境代理 CONNECT 403 与全量发现缺口仍在。Intel 本次两项真实目录已取得生产回执，不能推及其他型号。",
-        "计算芯片全厂商全型号穷尽、所有形态与架构逐条复核、AMD/兆芯/燧原访问缺口和海光 DCU 逐型号官方证据未完成；目录发布结果见 docs/handoff/compute-catalog-20261002.md，不能据此推定全量覆盖。"
+        "计算芯片全厂商全型号穷尽、所有形态与架构逐条复核、AMD/兆芯/燧原访问缺口和海光 DCU 逐型号官方证据未完成；目录发布结果见 docs/handoff/compute-catalog-20261002.md，不能据此推定全量覆盖。",
+        "Batch 2 remaining evidence and production receipt audit: docs/handoff/compute-catalog-batch2-20261002.md; CI does not establish catalog completeness."
       ]
     },
     {
       "policy": "product-ecosystems-20260928",
       "scope": "project",
       "source": "framework/03_bom_and_collaboration.md",
-      "checked_requirement": "产品目录按骨架部件进入，产品线由第一个 bom_part 派生系统与链路；生态不再是任何视图的第一层；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。",
+      "checked_requirement": "产品目录按骨架部件进入，产品线由第一个 bom_part 派生系统与链路；生态不再是任何视图的第一层；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。; Batch 2: separate module filtering and CSV; evidence-backed links from boards/modules to delivered chips; reject missing/non-chip targets; preserve production baseline and server/memory/storage categories.",
       "tests": [
         "tests/unit/test_nodes.py::NodeColumnTests.test_products_derive_system_and_chain_from_their_first_part",
         "tests/unit/test_catalog_bridge.py::CatalogBridgeTests.test_skeleton_closure_is_the_only_navigation",
@@ -503,11 +509,13 @@
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_reviewed_architecture_requires_receipt_and_quote",
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_registry_reuses_company_ids_and_preserves_parent_lines",
         "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_compute_roundtrip_preserves_navigation_and_rejects_missing_proof",
-        "tests/compute_catalog.cjs"
+        "tests/compute_catalog.cjs",
+        "tests/unit/test_compute_catalog.py::ComputeCatalogTests.test_chip_relationship_requires_delivered_chip_quote_and_receipt"
       ],
       "not_verified": [
         "专题综述、型号核验与真实 logo 仍待补充；结构导航不等于研究内容完成。",
-        "计算芯片全厂商全型号穷尽、所有形态与架构逐条复核、AMD/兆芯/燧原访问缺口和海光 DCU 逐型号官方证据未完成；目录发布结果见 docs/handoff/compute-catalog-20261002.md，不能据此推定全量覆盖。"
+        "计算芯片全厂商全型号穷尽、所有形态与架构逐条复核、AMD/兆芯/燧原访问缺口和海光 DCU 逐型号官方证据未完成；目录发布结果见 docs/handoff/compute-catalog-20261002.md，不能据此推定全量覆盖。",
+        "Batch 2 remaining evidence and production receipt audit: docs/handoff/compute-catalog-batch2-20261002.md; CI does not establish catalog completeness."
       ]
     },
     {

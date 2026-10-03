@@ -288,6 +288,8 @@ acquisition.summary → reader 发布 → /api/news 输出限定公开字段，�
 
 本轮按用户明确范围由 Fetchspec 在 M5 补官方目录和规格：Intel、AMD、NVIDIA、Ampere，以及鲲鹏、海光、飞腾、龙芯、兆芯；中国 GPU 重点包括壁仞、摩尔线程、沐曦、天数智芯；另含昇腾、寒武纪、燧原。不重复操作已经验收的 Spark 升级、新闻同步或发布。
 
-接收沿用 schema 1、公司官方域名/ID 前缀/独立数据库、来源 SHA/URL/获取时间校验。新增可选 `compute`（category、form、architecture、source_refs、evidence_quote、architecture_quote）：分类来源必须有快照回执，非空架构必须带型号原文依据。未知不补值，计算分类不替代 `navigation`；旧目录的保守名称投影不生成架构事实。具体产品、系列原表、子型号参数列分别保留，不把芯片参数套到板卡或整机。
+接收沿用 schema 1、公司官方域名/ID 前缀/独立数据库、来源 SHA/URL/获取时间校验。新增可选 `compute`（category、form（含独立 module）、architecture、source_refs、evidence_quote、architecture_quote、chip_links）：分类来源必须有快照回执，非空架构必须带型号原文依据。未知不补值，计算分类不替代 `navigation`；旧目录的保守名称投影不生成架构事实。具体产品、系列原表、子型号参数列分别保留，不把芯片参数套到板卡或整机。
 
 官方页面引用的静态数据组件可由 Fetchspec 解码 JSON 字面量，禁止执行远端代码；保存页面→脚本→组件的完整来源链、原字节和时间。海光当前组件中的 CPU 型号不证明 DCU 架构。候选入口、空壳页面、robots 拒绝和测试夹具不能上架为真实型号；配置中的候选单独记录，成功采集须匹配经审阅的产品正文。目录交付不写正式事实、不翻目标状态、不授予 C3；本地接收与网站发布分别验收，缺少生产回执不得称上线。
+
+2026-10-03 目录补齐契约：`compute.chip_links` 每项含 `product_id`、非空 `evidence_quote`、`source_refs`；只允许板卡/模组指向本批已交付芯片，拒绝缺失、自指、重复目标与缺证据。来源引用仍须通过公司官方域名和 SHA 回执校验，发布前原文字节验收由 Fetchspec 完成。公司接收为当前批次视图，补充包须与已核对生产基线合并、保留既有ID/原表/来源，不用局部新清单遮掉旧型号。无规格表的芯片身份不计有规格型号。

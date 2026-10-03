@@ -6,11 +6,12 @@ const assert=require('node:assert/strict');
   const page=await browser.newPage({viewport:{width:1280,height:900}});
   const companies=[{id:'nvidia',label:'NVIDIA',country:'US'},{id:'metax',label:'沐曦',country:'CN'},{id:'huawei-ascend',label:'昇腾',country:'CN',parent_company_id:'huawei'},{id:'hygon-dcu',label:'海光 DCU',country:'CN'}];
   const product=(name,category,form,id)=>({id,name,kind:form==='series'?'family_or_directory':'named_product',category:'原厂分类',taxonomy:[{slug:'vendor',name:'原厂系列'}],compute:{category,form,architecture:''},table_count:1,observed_at:'2026-10-02T00:00:00Z'});
-  const samples={nvidia:[product('H200','gpu','unknown','nvidia-test')],metax:[product('C500','gpu','board','metax-test')],'huawei-ascend':[product('Atlas 350','accelerator','board','ascend-test')]};
+  const samples={nvidia:[product('H200','gpu','module','nvidia-test')],metax:[product('C500','gpu','board','metax-test')],'huawei-ascend':[product('Atlas 350','accelerator','board','ascend-test')]};
   await page.route('**/api/product-catalog/*',r=>{const c=new URL(r.request().url()).pathname.split('/').pop();return r.fulfill({json:{registered_companies:companies,available:c!=='hygon-dcu',products:samples[c]||[]}});});
   await page.goto(process.env.UI_BASE_URL+'/compute-catalog.html');
   await page.waitForFunction(()=>document.getElementById('compute-status').textContent.includes('已读取 3'));
   assert.equal(await page.locator('#compute-products tr').count(),3);
+  await page.locator('#compute-form').selectOption('module');assert.match(await page.locator('#compute-products').innerText(),/H200/);assert.doesNotMatch(await page.locator('#compute-products').innerText(),/C500|Atlas/);await page.locator('#compute-form').selectOption('');
   await page.locator('#compute-category').selectOption('cpu');assert.match(await page.locator('#compute-counts').innerText(),/条目 0：/);
   await page.locator('#compute-category').selectOption('');
   assert.match(await page.locator('#gaps').innerText(),/海光 DCU：尚未收到目录/);
@@ -37,6 +38,13 @@ const assert=require('node:assert/strict');
   await page.clock.runFor(2000);
   for(const r of pending.splice(0)){const c=new URL(r.request().url()).pathname.split('/').pop();await r.fulfill({json:{available:c!=='hygon-dcu',products:samples[c]||[]}});}
   await page.waitForFunction(()=>document.getElementById('compute-status').textContent.includes('已读取 3'));
+  // Observe completed JSON reads before advancing the synthetic clock. Route
+  // fulfillment alone does not mean the browser has consumed the body on CI.
+  await page.evaluate(()=>{
+    const original=window.fetch;window.catalogReads=[];
+    window.fetch=async(...args)=>{const response=await original(...args),read=response.json.bind(response);
+      response.json=async()=>{const value=await read();window.catalogReads.push(String(args[0]));return value;};return response;};
+  });
   // A single stalled vendor times out without cancelling a completed vendor.
   await page.locator('#compute-retry').click();
   while(pending.length<1)await new Promise(r=>setTimeout(r,10));
@@ -44,6 +52,7 @@ const assert=require('node:assert/strict');
   while(pending.length<3)await new Promise(r=>setTimeout(r,10));
   const success=pending.splice(pending.findIndex(r=>r.request().url().includes('/metax?')),1)[0];
   await success.fulfill({json:{available:true,products:samples.metax}});
+  await page.waitForFunction(()=>window.catalogReads.some(url=>url.includes('/metax?')));
   await page.clock.runFor(30001);
   await page.waitForFunction(()=>document.getElementById('compute-status').textContent.includes('已读取 2'));
   assert.match(await page.locator('#gaps').innerText(),/昇腾：读取失败/);

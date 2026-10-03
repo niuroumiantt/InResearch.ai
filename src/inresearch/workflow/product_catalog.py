@@ -230,6 +230,7 @@ def validate(payload, company=None):
     for product in products:
         if product.get('parent_id') and product['parent_id'] not in ids:
             raise ValueError('product parent is missing from this catalog')
+    compute_catalog.validate_chip_links(products, source_keys)
     return payload
 
 
