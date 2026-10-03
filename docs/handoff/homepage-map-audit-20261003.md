@@ -12,7 +12,14 @@
 - 全球与样本年份、定义、覆盖及去重方法不齐，页面禁止相减和计算覆盖率，没有新增全球差额。
 
 ## 验收与发布
-本地完成：全量1659单测通过（39.195s）；industry、datacenter_news、ui_skin浏览器套件通过；三档桌面与390/320手机完整viewBox/无横溢，浮窗固定/取消/关闭/Escape/新闻重绘与玩家仅高亮均通过。另实际鼠标点选、深色与手机浮窗截图已查看；玩家矩形样式已修正。严格数据校验0 warnings、registry 344对象/458问题、governance检查通过（1059文件）。CI、发布版本与线上验收完成后补记。截图/运行回执在 `~/.local/state/inresearch.ai/homepage-map-audit-20261003/`，不进Git。现行规范01/05与验收映射已逐项复审，不把清单刷新当审阅。
+本地完成：全量1659单测通过（39.195s）；industry、datacenter_news、ui_skin浏览器套件通过；三档桌面与390/320手机完整viewBox/无横溢，浮窗固定/取消/关闭/Escape/新闻重绘与玩家仅高亮均通过。另实际鼠标点选、深色与手机浮窗截图已查看；玩家矩形样式已修正。严格数据校验0 warnings、registry 344对象/458问题、governance检查通过（1059文件）。CI四项全通过（run 37091829358，核心浏览器6m41s），无审查线程。PR #311于2026-10-03 03:09:25 UTC合并为 `f0188c404f54ed7ae075335d021291a015e2ef0c`。截图/运行回执在 `~/.local/state/inresearch.ai/homepage-map-audit-20261003/`，不进Git。现行规范01/05与验收映射已逐项复审，不把清单刷新当审阅。
 
 ## 下一步与边界
-完成最终测试、CI和发布后核对网站实际版本及Spark服务；不升级与本功能无关的Spark reader。无待用户决定项。真实触屏硬件、其他浏览器引擎和全球容量穷尽核验不在已有测试证明范围。
+已通过AWS现有 `inresearch-only-deploy.service` 发布；未升级或重启Spark reader。无待用户决定项。真实触屏硬件、其他浏览器引擎和全球容量穷尽核验不在已有测试证明范围。
+
+## 生产回执（2026-10-03 03:09—03:13 UTC）
+- 功能版本 `f0188c4`，发布状态HEALTHY、Result=success/ExecMainStatus=0。applied与实际容器镜像同为 `sha256:17b1865b04d06890efe8692de134d9c19a8c4c16b37c53667cf14a64d8909e6a`，启动03:09:57.291 UTC，容器healthy；公网healthz成功。公开industry.js SHA `b129acdc2e4262e3f3f8b3a6159d1faef7dbfafba1850b877b841590c8ffac5e`，CSS SHA `7cd73d690fcb86ee977001aeaa680d932fff8df9d9a0c5f7c013d96db40575f9`，与已验源码一致。
+- 匿名公网五视口通过：三档桌面地图bottom=722.125/758.391/797.578px，首屏完整；390/320手机纵排、无横溢。真实新闻截图已查看，未拦截API填入测试新闻。微软标签/Meta卡片高亮点集合与API逐项一致，URL、统计、新闻计数不变；挪威园区鼠标点击/固定/缩放/其他点不替换/独立详情链接通过；项目统计下钻和市场口径页通过，页面错误0。
+- 公网API确认117条记录、39条有容量、78条未知，筹备21164MW；主体身份operator筛选28条、租户117条、微软19条；真实新闻HTTP200/success，当前80条快照中31条可展示中文精选，标题/链接逐一对账。Google真实空筛选与仅验收浏览器内模拟连接失败分别正确；该快照数量不是上游全量。
+- Spark仅只读：实际源码 `d24b60a13`；reader active/running，publish/news timer active/waiting，两个最近oneshot均success/0。未把网站功能版写成Spark版。
+- `deployment-receipt.txt`、`public-release.json`、`pr-checks.json`、`spark-readonly.txt`、`live-verification.json`与`live-*.png`均在上述本机state目录。当前文档回执提交只记录已验功能版；后续文档容器版本以发布服务回执为准。交接完成，可 `/clear` 或新会话按此文件继续。
