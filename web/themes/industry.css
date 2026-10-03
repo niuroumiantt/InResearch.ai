@@ -64,3 +64,9 @@ html[data-ui-skin] .industry .badge{color:var(--ui-body);background:var(--ui-sof
 }
 
 .industry-home .dc-news :is(.dc-news-meta,.dc-news-timezone,.dc-news-time,.dc-news-day,small){font-size:13px}
+
+/* Map selection is an overlay: opening or pinning never changes first-screen geometry. */
+.map-popup{position:absolute;z-index:3;width:min(340px,calc(100% - 16px));max-height:calc(100% - 16px);overflow:auto;overscroll-behavior:contain;touch-action:pan-y;background:var(--ui-surface);color:var(--ui-ink);border:1px solid var(--ui-ink);padding:12px;font-size:13px;line-height:1.6;overflow-wrap:anywhere}
+.map-popup p{margin:6px 0}.popup-actions{display:flex;justify-content:space-between;gap:12px;margin-bottom:8px}.popup-actions button{padding:4px 9px}.popup-actions button[aria-pressed=true]{background:var(--ui-accent);color:var(--ui-on-accent)}
+.site-point.dimmed{opacity:.18}.site-point.highlighted,.site-point.selected{opacity:1;stroke:var(--ui-ink);stroke-width:3}.site-point.selected{stroke:var(--ui-accent);stroke-width:4}.site-point:hover,.site-point:focus{opacity:1}
+.industry button.leader{text-align:left;font-family:inherit;padding:18px;border-radius:0;white-space:normal}.leader[aria-pressed=true]{border-color:var(--ui-accent);box-shadow:inset 0 0 0 1px var(--ui-accent)}

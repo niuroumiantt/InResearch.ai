@@ -103,6 +103,10 @@ def main():
     # 项目库规则
     for r in projects:
         sid = r.get("site_id", "?")
+        if r.get('duplicate_of'):
+            canonical = proj_by_id.get(r['duplicate_of'])
+            if not canonical or canonical is r or canonical.get('duplicate_of') or not r.get('deduplication_note'):
+                err(f"projects[{sid}]: duplicate_of 须引用非重复主记录并附审核依据")
         if r.get("status") not in STATUS_LEVELS:
             err(f"projects[{sid}]: status 非法（须 L1-L9）: {r.get('status')}")
         cap, cap_by = r.get("capacity_it_mw"), r.get("capacity_it_mw_by_status")
