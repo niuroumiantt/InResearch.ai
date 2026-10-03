@@ -5,6 +5,8 @@ const $=id=>document.getElementById(id), esc=v=>String(v??'').replace(/[&<>"']/g
 const safe=v=>{try{const u=new URL(v);return ['http:','https:'].includes(u.protocol)&&!u.username&&!u.password?u.href:'';}catch{return '';}};
 const num=v=>Number(v).toLocaleString('en-US',{maximumFractionDigits:2}), gw=v=>num(v/1000), money=v=>v>=1000?'$'+num(v/1000)+'T':'$'+num(v)+'B';
 const path=location.pathname, isProject=path==='/project.html', isMarket=path==='/market.html', isList=path==='/projects.html', isCompany=path==='/industry.html';
+const isHome=['/','/index.html'].includes(path);
+if(isHome){document.body.classList.add('industry-home');$('pipeline-summary').remove();$('trends-section').remove();}
 let params=new URLSearchParams(location.search), data=null, geo=null, news=null, request=null, view=[0,0,1000,490];
 const keys=['c','region','stage','relation','scope','role','site'];
 function url(page, changes={}) {const q=new URLSearchParams(params);for(const [k,v] of Object.entries(changes))v?q.set(k,v):q.delete(k);return page+(q.size?'?'+q:'');}
@@ -35,9 +37,9 @@ function renderStats(){
  $('basis').textContent=`地图样本 ${data.totals.sites} 个园区，非全球总量 · 建设 + 筹备 ${gw(data.totals.construction+data.totals.planning)} GW · 点击数字查看明细与来源。`;
 }
 function renderMarket(){
- const m=data.market, actual=m.series.filter(r=>!r.forecast).at(-1), future=m.series.find(r=>r.year==='2030'), current=m.series.find(r=>r.year===data.generated_at.slice(0,4));
+ const m=data.market, actual=m.series.filter(r=>!r.forecast).at(-1);
  const benchmarks=data.benchmarks||[];
- $('market-band').innerHTML=benchmarks.map(r=>`<a class="macro-card" href="/market.html#capacity"><span>全球 IT 负载 · ${esc(r.as_of.slice(0,4))}${r.caliber.basis==='预测'?' 预测':' 估算'} ↗</span><strong>约 ${num(r.value)}<small>GW</small></strong><small>汇丰 · 2026 年 3 月报告</small></a>`).join('')+(actual?`<a class="macro-card" href="/market.html"><span>全球 IT 投资 · ${actual.year} ↗</span><strong>${money(actual.value)}</strong><small>Dell’Oro · 年度资本开支</small></a>`:'')+`<div class="macro-note">全球规模采用机构口径<br>地图展示本站追踪园区<br><a href="/market.html#capacity">来源与统计范围 →</a></div>`;
+ $('market-band').innerHTML=benchmarks.map(r=>`<a class="macro-card" href="/market.html#capacity"><span>全球 IT 负载 · ${esc(r.as_of.slice(0,4))}${r.caliber.basis==='预测'?' 预测':' 估算'} ↗</span><strong>约 ${num(r.value)}<small>GW</small></strong><small>汇丰 · 2026 年 3 月报告</small></a>`).join('')+(actual?`<a class="macro-card" href="/market.html"><span>全球 IT 年度资本开支 · ${actual.year} ↗</span><strong>${money(actual.value)}</strong><small>Dell’Oro · 2026/07 报告 · 历史值</small></a>`:'')+`<div class="macro-note">全球规模采用机构口径<br>地图展示本站追踪园区<br><a href="/market.html#capacity">来源与统计范围 →</a></div>`;
 
  if(!isMarket)return;
  const rows=m.series.filter(r=>r.year>='2020'),max=Math.max(...rows.map(r=>r.value),1);
@@ -66,7 +68,7 @@ function renderMap(){
  $('layout-link').href=url('/projects.html',{site:''});
  $('map-title').textContent=data.company?`${name(data.company.company_id)} · 全球布局`:'全球项目布局';
  for(const el of $('world-map').querySelectorAll('[data-id]')){
-  const activate=()=>{const p=data.rows.find(p=>p.site_id===el.dataset.id);const linked=leads.filter(r=>r.site_id===p.site_id);$('map-selection').innerHTML=`<strong>${esc(p.name)}</strong> · ${esc(p.location)}<br>${p.capacity_known?`投运 ${num(p.capacity.operating)} / 建设 ${num(p.capacity.construction)} / 筹备 ${num(p.capacity.planning)} MW`:'IT 容量未披露'} · <a href="${esc(siteURL(p))}">查看项目与来源 →</a><br>开发：${p.developer.map(name).map(esc).join('、')||'未登记'} · 使用：${p.tenant.map(name).map(esc).join('、')||'未登记'}${linked.length?`<br>新闻动态 ${linked.length} 组 · ${esc(linked[0].title)} · <a href="${esc(siteURL(p))}#pipeline-section">查看进展 →</a>`:''}`;};
+  const activate=()=>{const p=data.rows.find(p=>p.site_id===el.dataset.id);if(isHome){location.href=siteURL(p);return;}const linked=leads.filter(r=>r.site_id===p.site_id);$('map-selection').innerHTML=`<strong>${esc(p.name)}</strong> · ${esc(p.location)}<br>${p.capacity_known?`投运 ${num(p.capacity.operating)} / 建设 ${num(p.capacity.construction)} / 筹备 ${num(p.capacity.planning)} MW`:'IT 容量未披露'} · <a href="${esc(siteURL(p))}">查看项目与来源 →</a><br>开发：${p.developer.map(name).map(esc).join('、')||'未登记'} · 使用：${p.tenant.map(name).map(esc).join('、')||'未登记'}${linked.length?`<br>新闻动态 ${linked.length} 组 · ${esc(linked[0].title)} · <a href="${esc(siteURL(p))}#pipeline-section">查看进展 →</a>`:''}`;};
   el.onclick=activate;el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();activate();}};
  }
 }
@@ -77,7 +79,7 @@ svg.addEventListener('pointermove',e=>{if(!drag)return;const k=view[2]/svg.getBo
 svg.addEventListener('pointerup',()=>drag=null);svg.addEventListener('pointercancel',()=>drag=null);
 function renderCompanies(){
  const ids=[...new Set(['microsoft','meta','amazon','alphabet-google','oracle',...data.leaders.map(c=>c.company_id)])].filter(id=>data.companies.some(c=>c.company_id===id)).slice(0,10);
- $('company-chips').innerHTML=`<button type="button" data-company="" aria-pressed="${!params.get('c')}">全部</button>`+ids.map(id=>`<button type="button" data-company="${esc(id)}" aria-pressed="${params.get('c')===id}">${esc(name(id))}</button>`).join('');
+ $('company-chips').innerHTML=isHome?`<a href="${esc(url('/industry.html',{c:'',site:'',stage:''}))}">全部主体 ↗</a>`+ids.map(id=>`<a data-company="${esc(id)}" href="${esc(url('/industry.html',{c:id,site:'',stage:''}))}">${esc(name(id))} ↗</a>`).join(''):`<button type="button" data-company="" aria-pressed="${!params.get('c')}">全部</button>`+ids.map(id=>`<button type="button" data-company="${esc(id)}" aria-pressed="${params.get('c')===id}">${esc(name(id))}</button>`).join('');
  $('company-chips').querySelectorAll('button').forEach(b=>b.onclick=()=>select({c:b.dataset.company,site:''}));
  const featured=['microsoft','meta','amazon','alphabet-google'];
  const leaders=[...data.leaders].sort((a,b)=>{const ai=featured.indexOf(a.company_id),bi=featured.indexOf(b.company_id);return (ai<0?99:ai)-(bi<0?99:bi);});
@@ -96,11 +98,12 @@ function renderDetail(){
  $('detail').innerHTML=`<p><a href="${esc(url('/projects.html',{site:''}))}">← 返回同条件项目列表</a></p><div class="detail-grid"><div><div class="detail-card"><h2>项目与分期</h2><dl><dt>开发建设</dt><dd>${p.developer.map(companyLink).join('、')||'未登记'}</dd><dt>使用 / 租用</dt><dd>${p.tenant.map(companyLink).join('、')||'未登记'}</dd><dt>IT 容量</dt><dd>${p.capacity_known?num(p.total_mw)+' MW（各阶段合计）':'未披露'}</dd><dt>设施总功率</dt><dd>${p.capacity_facility_mw?num(p.capacity_facility_mw)+' MW（不与 IT 容量相加）':'未披露'}</dd><dt>电力进展</dt><dd>${esc(p.power_status||'未登记')}</dd><dt>位置</dt><dd>${p.coordinates?esc(p.coordinates.join(', '))+'（登记坐标）':'仅有地区信息，未落精确坐标'}</dd></dl>${p.phases.map(x=>`<p><span class="badge">${esc(x.label)}</span>${num(x.mw)} MW</p>`).join('')}<p class="basis">${esc(p.notes||'')}</p>${p.disputed?'<p>此项目有来源争议，请对照下列原始依据。</p>':''}${p.portfolio?'<p>组合型记录，仅供参考，不计入园区合计。</p>':''}</div></div><div><div class="detail-card"><h2>进展时间线</h2><ol class="timeline">${p.history.map(h=>`<li><time>${esc(h.date)}</time>${sourceLink(h.source_url,h.status+' · 查看当时来源')}</li>`).join('')||'<li>尚无已登记的历史事件。</li>'}</ol></div><div class="detail-card"><h2>来源与核验</h2>${p.sources.map(s=>`<p>${sourceLink(s.url,s.note||new URL(s.url).hostname)}<br><span class="basis">${esc(s.grade)} · ${esc(s.date||'日期未登记')}</span></p>`).join('')||'<p>暂无可公开的来源链接。</p>'}</div></div></div>`;
 }
 function renderTrends(){
+ if(isHome)return;
  const rows=[...data.regional].sort((a,b)=>(b.totals.planning+b.totals.construction)-(a.totals.planning+a.totals.construction)),max=Math.max(...rows.map(r=>r.totals.planning+r.totals.construction),1);
  $('trends').innerHTML=rows.slice(0,5).map(r=>`<a class="region-chart" href="${esc(url('/projects.html',{region:r.id,stage:''}))}"><span>${esc(r.name)}</span><strong>${gw(r.totals.planning+r.totals.construction)} <small>GW</small></strong><div class="bar-track"><div class="bar-fill" style="width:${(r.totals.planning+r.totals.construction)/max*100}%"></div></div></a>`).join('')+'<p class="basis">地图样本 · 建设中 + 筹备</p>';
 }
 function renderPipeline(){
- if(!data)return;
+ if(!data||isHome)return;
  if(!news){$('pipeline-summary').innerHTML='<a href="/projects.html?view=pipeline">建设机会 · 等待新闻同步 →</a>';return;}
  const stages={reported:'消息称',announced:'已官宣',construction:'报道已开工',operating:'报道已投运',reviewing:'重新评审',paused:'暂停',cancelled:'取消'};
  const labels={lead:'新闻线索',reviewing:'重新评审',paused:'暂停',cancelled:'取消',linked:'已关联项目'},filter=selection();
@@ -114,11 +117,11 @@ function renderPipeline(){
 }
 function render(){
  filters();renderStats();renderMarket();renderCompanies();renderTable();renderTrends();renderMap();renderDetail();renderPipeline();
- if(!isProject){$('page-title').textContent=isMarket?'数据中心市场规模':data.company?name(data.company.company_id)+' · 全球布局':isList?'全球项目与建设机会':'全球数据中心';$('page-description').textContent=data.company?'追踪相关园区、建设进度和新闻变化。园区容量不代表公司的持有或租用份额。':'看见算力基础设施的规模、全球布局与下一轮建设机会。';}
+ if(!isProject){$('page-title').textContent=isMarket?'数据中心市场规模':data.company?name(data.company.company_id)+' · 全球布局':isList?'全球项目与建设机会':'全球数据中心';$('page-description').textContent=data.company?'追踪相关园区、建设进度和新闻变化。园区容量不代表公司的持有或租用份额。':'全球规模与园区布局，追踪算力基础设施的变化。';}
  $('coverage').textContent=`${data.totals.sites} 个已追踪园区 · 非全球普查\n核验日期 ${data.coverage.oldest_verified||'—'} — ${data.coverage.latest_verified||'—'}`;
  const hidden=isProject||isMarket;
- for(const id of ['filters','stats','basis','atlas-layout','project-list','leaders-section','trends-section'])$(id).hidden=hidden;
- $('detail').hidden=!isProject;$('market-detail').hidden=!isMarket;$('market-band').hidden=isProject;$('pipeline-section').hidden=!(isList||isProject);$('project-list').hidden=!isList||params.get('view')==='pipeline';$('pipeline-summary').hidden=hidden||isList;
+ for(const id of ['atlas-tools','atlas-layout','project-list','leaders-section','trends-section'])if($(id))$(id).hidden=hidden;
+ $('detail').hidden=!isProject;$('market-detail').hidden=!isMarket;$('market-band').hidden=isProject;$('pipeline-section').hidden=!(isList||isProject);$('project-list').hidden=!isList||params.get('view')==='pipeline';if($('pipeline-summary'))$('pipeline-summary').hidden=hidden||isList;
  if(isList){$('atlas-layout').hidden=true;$('leaders-section').hidden=true;$('trends-section').hidden=true;$('market-band').hidden=true;}
  document.title=$('page-title').textContent+' · inresearch.ai';
  window.industryFilter=selection();window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:selection()}));

@@ -8,9 +8,23 @@
 <body><inresearch-shell data-section="industry"></inresearch-shell>
 <main class="industry">
  <nav class="local-nav" aria-label="行业浏览"><a href="/">行业总览</a><a href="/projects.html">项目与布局</a><a href="/market.html">市场规模</a><a href="/node.html">数据中心研究 ↗</a></nav>
- <header class="hero"><div><p class="eyebrow">GLOBAL DATA CENTER ATLAS</p><h1 id="page-title">全球数据中心</h1><p id="page-description">看见算力基础设施的规模、全球布局与下一轮建设机会。</p></div><p class="coverage" id="coverage">正在读取项目数据…</p></header>
+ <header class="hero"><div><p class="eyebrow">GLOBAL DATA CENTER ATLAS</p><h1 id="page-title">全球数据中心</h1><p id="page-description">全球规模与园区布局，追踪算力基础设施的变化。</p></div></header>
  <div id="load-status" role="status" aria-live="polite"></div>
  <section class="market-band" id="market-band" aria-label="市场规模"></section>
+ <section class="atlas-layout" id="atlas-layout">
+  <div class="atlas-panel">
+   <div class="panel-heading"><div><h2 id="map-title">全球项目布局</h2></div><a id="layout-link" href="/projects.html">查看布局明细 →</a></div>
+   <div class="map-frame"><svg id="world-map" viewBox="0 0 1000 490" role="group" aria-label="全球数据中心项目地图"></svg>
+    <div class="map-controls"><button type="button" id="zoom-in" aria-label="放大地图">＋</button><button type="button" id="zoom-out" aria-label="缩小地图">−</button><button type="button" id="zoom-reset">复位</button></div>
+   </div>
+   <div class="map-legend"><span><i class="operating"></i>已投运</span><span><i class="construction"></i>建设中</span><span><i class="planning"></i>筹备</span><span>虚线圈：有新闻动态</span><span>圆面积 ∝ IT 容量</span><span>◇ 容量未披露</span><span>重叠点可放大或查明细</span></div>
+   <div id="map-selection" class="map-selection" aria-live="polite">点击园区查看分期、主体与来源；支持拖动和缩放。</div>
+
+  </div>
+  <aside class="news-panel"><div class="news-source">来自 inews.today</div><p class="news-count" data-news-count aria-live="polite">本次快照 · 当前筛选精选 — 条</p><div class="dc-news" data-datacenter-news data-news-selection="selected"></div></aside>
+ </section>
+ <section id="atlas-tools" class="atlas-tools" aria-label="地图筛选与样本">
+ <p id="map-summary" class="basis"></p>
  <form id="filters" class="filters" aria-label="项目筛选">
   <label>区域<select name="region" aria-label="区域"><option value="">全球</option></select></label>
   <label>范围<select name="scope" aria-label="范围"><option value="">全部数据中心</option><option value="ai">已标注 AI / Neocloud</option></select></label>
@@ -21,17 +35,9 @@
  </form>
  <div class="stats" id="stats" aria-label="已追踪项目容量"></div>
  <p class="basis" id="basis"></p>
- <section class="atlas-layout" id="atlas-layout">
-  <div class="atlas-panel">
-   <div class="panel-heading"><div><h2 id="map-title">全球项目布局</h2><p id="map-summary"></p></div><a id="layout-link" href="/projects.html">查看布局明细 →</a></div>
-   <div class="map-frame"><svg id="world-map" viewBox="0 0 1000 490" role="group" aria-label="全球数据中心项目地图"></svg>
-    <div class="map-controls"><button type="button" id="zoom-in" aria-label="放大地图">＋</button><button type="button" id="zoom-out" aria-label="缩小地图">−</button><button type="button" id="zoom-reset">复位</button></div>
-   </div>
-   <div class="map-legend"><span><i class="operating"></i>已投运</span><span><i class="construction"></i>建设中</span><span><i class="planning"></i>筹备</span><span>虚线圈：有新闻动态</span><span>圆面积 ∝ IT 容量</span><span>◇ 容量未披露</span><span>重叠点可放大或查明细</span></div>
-   <div id="map-selection" class="map-selection" aria-live="polite">选择地图上的园区，查看分期容量与参与主体。支持拖动和缩放。</div>
    <div class="company-picker"><p class="eyebrow">按主体查看布局</p><div id="company-chips" class="company-chips"></div></div>
-  </div>
-  <aside class="news-panel"><div class="news-source">来自 inews.today</div><label class="news-choice">显示<select id="news-selection"><option value="selected">编辑精选</option><option value="all">全部数据中心线索</option></select></label><div class="dc-news" data-datacenter-news data-news-selection="selected"></div></aside>
+ <p class="coverage" id="coverage">正在读取项目数据…</p>
+ <div class="atlas-options"><label class="news-choice">显示<select id="news-selection"><option value="selected">编辑精选</option><option value="all">全部数据中心线索</option></select></label><a href="/projects.html?view=pipeline">查看全部项目新闻线索 →</a></div>
  </section>
  <section id="pipeline-summary" class="pipeline-summary" aria-label="新闻建设机会"></section>
  <section id="detail" hidden></section>
