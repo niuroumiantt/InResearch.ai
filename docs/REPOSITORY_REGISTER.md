@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.03.3。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.03.4。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1059。
+在册文件：1073。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 288 |
-| 运行代码 | 224 |
+| 运行代码 | 233 |
 | 现行规范 | 13 |
-| 项目配置 | 96 |
+| 项目配置 | 97 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 67 |
-| 测试 | 109 |
+| 配套说明 | 69 |
+| 测试 | 111 |
 
 ## 在册记录集合
 
@@ -332,7 +332,7 @@
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
-| `framework/current_state.json` | operational_guides | 9 |
+| `framework/current_state.json` | operational_guides | 10 |
 | `framework/current_state.json` | retired_scan_snapshots | 1 |
 | `framework/current_state.json` | compat_retirements | 7 |
 | `framework/dashboard_rules.json` | honesty | 5 |
@@ -341,7 +341,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 18 |
+| `framework/interface_manifest.json` | static_pages | 23 |
 | `framework/interface_manifest.json` | public_pages | 13 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
 | `framework/metrics.json` | metrics | 312 |
@@ -510,6 +510,7 @@
 | [docs/handoff/infra-2026-09-29.md](handoff/infra-2026-09-29.md) | 配套说明 |
 | [docs/handoff/m4-deepread.md](handoff/m4-deepread.md) | 配套说明 |
 | [docs/handoff/nvidia-product-catalog.md](handoff/nvidia-product-catalog.md) | 配套说明 |
+| [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
@@ -675,6 +676,7 @@
 | [docs/local_setup/ADD_3D_MODEL.md](local_setup/ADD_3D_MODEL.md) | 配套说明 |
 | [docs/local_setup/PRODUCT_LIBRARY.md](local_setup/PRODUCT_LIBRARY.md) | 配套说明 |
 | [docs/local_setup/README.md](local_setup/README.md) | 配套说明 |
+| [docs/local_setup/REPOSITORY_PAGES.md](local_setup/REPOSITORY_PAGES.md) | 配套说明 |
 | `docs/local_setup/progress.sh` | 运行代码 |
 | `docs/local_setup/setup.sh` | 已退役入口 |
 | `docs/local_setup/sync.sh` | 运行代码 |
@@ -1132,6 +1134,7 @@
 | `scripts/cards_ocr.py` | 运行代码 |
 | `scripts/cards_verify.py` | 运行代码 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
+| `scripts/sync_repo_pages.py` | 运行代码 |
 | [src/inresearch/README.md](../src/inresearch/README.md) | 配套说明 |
 | `src/inresearch/__init__.py` | 运行代码 |
 | `src/inresearch/__main__.py` | 运行代码 |
@@ -1178,6 +1181,7 @@
 | `src/inresearch/interfaces/pages.py` | 运行代码 |
 | `src/inresearch/interfaces/public.py` | 运行代码 |
 | `src/inresearch/interfaces/reader.py` | 运行代码 |
+| `src/inresearch/interfaces/repository_pages.py` | 运行代码 |
 | `src/inresearch/interfaces/static.py` | 运行代码 |
 | `src/inresearch/interfaces/users.py` | 运行代码 |
 | `src/inresearch/interfaces/verification.py` | 运行代码 |
@@ -1267,6 +1271,7 @@
 | `tests/nvidia_pilot.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_catalog.cjs` | 测试 |
+| `tests/repository_pages.cjs` | 测试 |
 | `tests/research_delivery.cjs` | 测试 |
 | `tests/research_summary.cjs` | 测试 |
 | `tests/run_browser.cjs` | 测试 |
@@ -1349,6 +1354,7 @@
 | `tests/unit/test_reading_revisions.py` | 测试 |
 | `tests/unit/test_record_validates.py` | 测试 |
 | `tests/unit/test_report_model.py` | 测试 |
+| `tests/unit/test_repository_pages.py` | 测试 |
 | `tests/unit/test_research.py` | 测试 |
 | `tests/unit/test_research_navigation.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
@@ -1447,7 +1453,15 @@
 | `web/components/targets.js` | 运行代码 |
 | `web/components/tasks-board.js` | 运行代码 |
 | `web/pages/admin/fetchspec/reporg.html` | 运行代码 |
+| `web/pages/admin/fetchspecrepo.html` | 运行代码 |
+| `web/pages/admin/inewsrepo.html` | 运行代码 |
+| `web/pages/admin/infrarepo.html` | 运行代码 |
+| `web/pages/admin/inresearchrepo.html` | 运行代码 |
 | `web/pages/admin/product/index.html` | 运行代码 |
+| `web/pages/admin/repo-content/fetchspec.html` | 运行代码 |
+| `web/pages/admin/repo-content/infra.html` | 运行代码 |
+| `web/pages/admin/repo-content/manifest.json` | 项目配置 |
+| `web/pages/admin/repos.html` | 运行代码 |
 | `web/pages/auth/forbidden.html` | 运行代码 |
 | `web/pages/auth/layout.html` | 运行代码 |
 | `web/pages/auth/login.html` | 运行代码 |

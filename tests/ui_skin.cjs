@@ -13,11 +13,18 @@ const manifest = require('../framework/interface_manifest.json');
 const dir = process.env.UI_QA_DIR;
 const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
 (async () => {
- const browser = await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined, headless:true, args:['--enable-unsafe-swiftshader']});
+ const browser = await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL || undefined, headless:true, args:['--enable-unsafe-swiftshader'],
+   ...(process.env.UI_BROWSER_EXECUTABLE ? {executablePath:process.env.UI_BROWSER_EXECUTABLE} : {})});
  try {
  // CI has software WebGL. Keep CSS dimensions and real scenes, with fewer raster pixels.
  const context = await browser.newContext({viewport:{width:1440,height:1000},colorScheme:'dark',
    reducedMotion:'reduce',deviceScaleFactor:process.env.CI ? 0.5 : 1});
+ // The shared runner owns a temporary real admin account; protected pages keep their server gate.
+ if(process.env.UI_ADMIN_COOKIE) {
+   const separator=process.env.UI_ADMIN_COOKIE.indexOf('=');
+   await context.addCookies([{name:process.env.UI_ADMIN_COOKIE.slice(0,separator),
+     value:process.env.UI_ADMIN_COOKIE.slice(separator+1),url:base,httpOnly:true,sameSite:'Lax'}]);
+ }
  const page = await context.newPage(); const errors=[];
  page.on('pageerror',e=>errors.push(e.message));
  const measure = () => page.evaluate(()=>({theme:document.documentElement.dataset.uiTheme,width:document.documentElement.scrollWidth,viewport:innerWidth,bg:getComputedStyle(document.body).backgroundColor,bar:document.querySelectorAll('#ui-skinbar').length,font:getComputedStyle(document.body).fontFamily}));

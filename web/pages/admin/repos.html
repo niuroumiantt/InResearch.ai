@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+<title>为研究站协作的仓库 · 仓库架构 · inresearch.ai</title>
+<style>
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.65 var(--ui-font)}
+.repo-wrap{max-width:1200px;margin:auto;padding:24px 20px 64px;min-width:0}
+.repo-wrap h1{font-size:28px;margin:8px 0}.repo-wrap h2{font-size:20px;margin:30px 0 12px}
+.repo-wrap a{color:var(--accent)}.repo-note{color:var(--muted);overflow-wrap:anywhere}
+.repo-nav{display:flex;flex-wrap:wrap;gap:10px 22px}.repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.repo-card,.repo-flow li{padding:18px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
+.repo-card h2{margin:0 0 8px}.repo-scroll{overflow-x:auto}.repo-wrap table{border-collapse:collapse;width:100%;font-size:13px}
+.repo-ecosystem{max-width:760px;margin:28px auto;text-align:center}.repo-upstream{display:grid;grid-template-columns:1fr 1fr;gap:18px}.repo-ecosystem .repo-card{margin-bottom:12px}
+.repo-wrap th,.repo-wrap td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+.repo-flow{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:0}.repo-flow li{flex:1;min-width:150px}
+.repo-flow li:not(:last-child)::after{content:' →';color:var(--accent)}
+.repo-frame{width:100%;height:76vh;min-height:480px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
+.repo-provenance{margin:18px 0;font-size:12px}.repo-provenance code{overflow-wrap:anywhere}
+@media(max-width:600px){.repo-wrap{padding:18px 12px 40px}.repo-wrap h1{font-size:23px}.repo-flow{display:block}.repo-flow li{margin:8px 0}.repo-frame{height:80vh}}
+</style></head><body><inresearch-shell data-section="admin"></inresearch-shell>
+<main class="repo-wrap"><nav class="repo-nav" aria-label="仓库架构">
+<a href="/admin/repos.html">仓库总览</a><a href="/admin/inresearchrepo.html">InResearch.ai</a><a href="/admin/inewsrepo.html">inews.today</a><a href="/admin/fetchspecrepo.html">Fetchspec</a><a href="/admin/infrarepo.html">infra</a></nav><h1>为研究站协作的仓库</h1><p>集中查看各仓库的职责、流程、交付接口与未完成事项。仅研究站管理员可见。</p><div class="repo-ecosystem" aria-label="仓库协作关系"><div class="repo-upstream"><div><div class="repo-card">inews.today · 新闻发现与编辑</div><p>↓ 事件卡与原件指针</p></div><div><div class="repo-card">Fetchspec · 官方产品资料</div><p>↓ 原表与规格参数</p></div></div><div class="repo-card"><strong>InResearch.ai · 接收、审阅、采用与研究成果</strong></div><p>↑ 主机、网络与发布支持</p><div class="repo-card">infra · 基础设施</div></div><p class="repo-note">infra 为各仓库提供主机、网络和发布支持。架构由各仓库维护，研究站发布有来源校验的快照。</p><div class="repo-grid"><article class="repo-card"><h2><a href="/admin/inresearchrepo.html">InResearch.ai</a></h2><p>研究框架、证据采用、经济模型与成果展示</p><p class="repo-note">同步日期：2026-10-03</p></article><article class="repo-card"><h2><a href="/admin/inewsrepo.html">inews.today</a></h2><p>新闻发现、编辑、事件卡供给与研究反馈</p><p class="repo-note">同步日期：2026-10-03</p></article><article class="repo-card"><h2><a href="/admin/fetchspecrepo.html">Fetchspec</a></h2><p>官方规格采集、参数整理与可核验交付</p><p class="repo-note">同步日期：2026-10-03</p></article><article class="repo-card"><h2><a href="/admin/infrarepo.html">infra</a></h2><p>主机、网络、部署与运行职责</p><p class="repo-note">同步日期：2026-10-03</p></article></div></main></body></html>

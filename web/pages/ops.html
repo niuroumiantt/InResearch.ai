@@ -84,7 +84,8 @@
     <a href="doc.html?f=framework/00_overview.md">框架总览</a> ·
     <a href="doc.html?f=framework/01_data_standards.md">口径手册</a> ·
     <a href="doc.html?f=framework/02_knowledge_format.md">知识格式</a> ·
-    <a href="doc.html?f=reports/verify_queue.md">核验队列</a></div>
+    <a href="doc.html?f=reports/verify_queue.md">核验队列</a> ·
+    <a href="/admin/repos.html">仓库架构</a></div>
 
   <section id="usersSec" style="display:none">
   <h2>用户与权限 <span style="font-weight:400;font-size:12px;color:var(--muted)">仅 admin 可见 · 无注册，只能在这里加人</span></h2>
@@ -94,9 +95,9 @@
     <button onclick="copyPw()" style="margin-left:8px;font-size:12px;padding:2px 10px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text);cursor:pointer">复制</button>
     <span id="pwCopied" style="color:var(--green);font-size:12px"></span>
   </div>
-  <table id="usersTable"><thead><tr>
+  <div class="tablewrap"><table id="usersTable"><thead><tr>
     <th>用户名</th><th>角色</th><th>创建于</th><th style="text-align:right">操作</th>
-  </tr></thead><tbody></tbody></table>
+  </tr></thead><tbody></tbody></table></div>
   <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center">
     <input id="nuName" placeholder="新用户名（小写字母/数字）" style="flex:1;min-width:160px;padding:8px 11px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
     <select id="nuRole" style="padding:8px;border-radius: var(--ui-radius);border:1px solid var(--line);background:var(--card);color:var(--text)">
