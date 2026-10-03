@@ -2,8 +2,8 @@
 import re
 
 CATEGORIES = {'cpu': 'CPU', 'gpu': 'GPU', 'accelerator': '其他计算加速器', 'unknown': '待核验', 'excluded': '非计算芯片'}
-FORMS = {'chip': '芯片', 'board': '板卡 / 模组', 'system': '整机 / 平台', 'series': '系列 / 目录', 'ip': 'IP', 'unknown': '形态待核验'}
-VERSION = '2026-10-02.1'
+FORMS = {'chip': '芯片', 'board': '板卡', 'module': '模组', 'system': '整机 / 平台', 'series': '系列 / 目录', 'ip': 'IP', 'unknown': '形态待核验'}
+VERSION = '2026-10-02.2'
 
 
 def project(product, company):
@@ -56,3 +56,29 @@ def validate(value, source_keys):
     for field in ('evidence_quote', 'architecture_quote'):
         if field in value and (not isinstance(value[field], str) or len(value[field]) > 4000):
             raise ValueError('invalid compute evidence quote')
+
+
+def validate_chip_links(products, source_keys):
+    """A board/module can name only a delivered chip with explicit source evidence."""
+    by_id = {p['id']: p for p in products}
+    for product in products:
+        value = product.get('compute', {})
+        links = value.get('chip_links', [])
+        if not isinstance(links, list) or len(links) > 32:
+            raise ValueError('invalid chip links')
+        if links and value.get('form') not in {'board', 'module'}:
+            raise ValueError('chip links require board or module')
+        seen = set()
+        for link in links:
+            if not isinstance(link, dict):
+                raise ValueError('invalid chip link')
+            target = by_id.get(link.get('product_id'))
+            if not target or target['id'] == product['id'] or target['id'] in seen or target.get('compute', {}).get('form') != 'chip':
+                raise ValueError('chip link target must be a unique delivered chip')
+            seen.add(target['id'])
+            quote = link.get('evidence_quote')
+            refs = link.get('source_refs')
+            if not isinstance(quote, str) or not quote.strip() or len(quote) > 4000:
+                raise ValueError('chip link requires official quote')
+            if not isinstance(refs, list) or not refs or any(not isinstance(ref, dict) or (ref.get('sha256'), ref.get('url')) not in source_keys for ref in refs):
+                raise ValueError('chip link requires snapshot evidence')

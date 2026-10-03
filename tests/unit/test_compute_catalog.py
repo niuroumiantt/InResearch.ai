@@ -63,6 +63,23 @@ class ComputeCatalogTests(unittest.TestCase):
             self.assertEqual(view['navigation'],catalog.classify(p))
             self.assertEqual(catalog.product_snapshot(root,p['id'])['product']['compute']['architecture'],'')
 
+    def test_chip_relationship_requires_delivered_chip_quote_and_receipt(self):
+        from test_product_catalog import bundle
+        payload=bundle();board=payload['products'][0]
+        ref={'url':board['source_url'],'sha256':board['source_sha256']}
+        board['compute']={'category':'gpu','form':'module','architecture':'','source_refs':[ref]}
+        chip=copy.deepcopy(board);chip['id']='nvidia-'+'b'*20;chip['name']='Explicit chip';chip['compute']['form']='chip'
+        payload['products'].append(chip)
+        board['compute']['chip_links']=[{'product_id':chip['id'],'evidence_quote':'The module uses Explicit chip','source_refs':[ref]}]
+        catalog.validate(payload)
+        for field,value in [('product_id','nvidia-missing'),('evidence_quote',''),('source_refs',[])]:
+            bad=copy.deepcopy(payload);bad['products'][0]['compute']['chip_links'][0][field]=value
+            with self.assertRaises(ValueError):catalog.validate(bad)
+        bad=copy.deepcopy(payload);bad['products'][1]['compute']['form']='board'
+        with self.assertRaisesRegex(ValueError,'target'):catalog.validate(bad)
+        bad=copy.deepcopy(payload);bad['products'][0]['compute']['form']='system'
+        with self.assertRaisesRegex(ValueError,'board or module'):catalog.validate(bad)
+
     def test_demand_alignment_recognizes_publisher_spellings(self):
         root=Path(__file__).resolve().parents[2]
         self.assertIn('P.cpu.spec',catalog.research_alignment(root,'ampere-computing')['target_ids'])
