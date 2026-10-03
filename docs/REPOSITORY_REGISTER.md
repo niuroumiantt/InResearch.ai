@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1056。
+在册文件：1057。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,7 +18,7 @@
 | 历史快照 | 288 |
 | 运行代码 | 224 |
 | 现行规范 | 13 |
-| 项目配置 | 95 |
+| 项目配置 | 96 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
@@ -67,6 +67,8 @@
 | `data/sources.json` | records | 74 |
 | `docs/CN_PROJECT_ARCHIVES.csv` | rows | 40 |
 | `docs/LIBRARY_SCORES.csv` | rows | 13664 |
+| `docs/handoff/compute-catalog-batch2-production-20261003.json` | companies | 7 |
+| `docs/handoff/compute-catalog-batch2-production-20261003.json` | unpublished | 2 |
 | `docs/inbox/facts_candidates/m01_market_20260817.json` | records | 4 |
 | `docs/inbox/facts_candidates/m02_supply_20260817.json` | records | 5 |
 | `docs/inbox/facts_candidates/m03_demand_20260817.json` | records | 5 |
@@ -499,6 +501,7 @@
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
 | [docs/handoff/compute-catalog-20261002.md](handoff/compute-catalog-20261002.md) | 配套说明 |
 | [docs/handoff/compute-catalog-batch2-20261002.md](handoff/compute-catalog-batch2-20261002.md) | 配套说明 |
+| `docs/handoff/compute-catalog-batch2-production-20261003.json` | 项目配置 |
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
 | [docs/handoff/inews-2026-09-29.md](handoff/inews-2026-09-29.md) | 配套说明 |
