@@ -1,5 +1,7 @@
 # 首页首屏排版交接（2026-10-03，m5）
 
+> 发布验收已完成：PR #309 合并与网站实际功能版本 `084d65597cc7a908a2c19121fb1710f9879b716f`。以下首轮「不部署」仅记录当时范围，已被文末后续授权与实际发布替代。
+
 ## 目标与已定范围
 
 三个指定桌面视口首屏同时看到全球规模大数字和完整世界地图；手机地图、新闻纵排。仅修改代码、本地验收和提交 PR，本轮不合并、不部署。
@@ -42,3 +44,24 @@ Chromium / Playwright 1.62.1，100% 页面缩放，等待字体加载后取实�
 ## 后续发布授权（2026-10-03）
 
 用户已明确授权继续 PR #309 的检查、修复、合并与现有网站发布，并要求线上验收新闻、布局及下钻；取代上文首轮不部署的任务边界。无关 Spark 服务不动。原四项 GitHub CI 成功、无审查线程；整合 #308 新生产记录解决 DECISIONS 与生成清单冲突，保留双方记录后重新治理校验及 CI。发布仅调用 AWS 现有 `inresearch-only-deploy.service`，不绕过发布锁、健康检查或持久数据边界。线上验收回执保存在 m5 `~/.local/state/inresearch.ai/homepage-release-20261003/`，发布版本以成功回执与实际容器一致为准。
+
+## 线上发布与验收回执（2026-10-03 01:15–01:18 UTC）
+
+- PR #309 首次 CI 通过后，整合 #308 解决两处记录/清单冲突；最终头提交 `3f4632cb633fbb76007c06bdf7bdb3881c7bdc57` 的 validate、browser(core)、browser(model_assets)、storage-container 全部通过，无审查线程/待解决意见。CI run `37085071288`。
+- 01:14:58 UTC squash 合并为 `084d65597cc7a908a2c19121fb1710f9879b716f`。通过 AWS 已安装的 `inresearch-only-deploy.service` 正式发布，未旁路锁或直接替换容器，未修改持久数据。
+- 发布状态 `HEALTHY: 084d65597cc7a908a2c19121fb1710f9879b716f`；applied 镜像与实际容器一致：`sha256:c3f3a46cae46b2811e6d77ff41e3a15a2c6e99a0006b14319eea75aa2bccd82f`。容器 01:15:32.695 UTC 启动、health=healthy、发布服务退出码 0；公网 `/healthz` 成功。公网 industry.js SHA256 与代码一致：`5c43363337084a5d00d7e76fb7d306d059efa51ef2a6e29eaecea1a7531de8d3`。
+- 实际地址：https://inresearch.ai/ 。匿名浏览器检查五个视口通过，地图下边缘与上表一致，横溢均 0。三档桌面大数字与完整世界地图同屏，390/320 手机新闻在地图面板下方。真实截图不拦截 API、不填入测试新闻。
+- 五项筛选与当前 `/api/industry` 对账：APAC 15、AI 11、operator 29、tenant 118、Microsoft 19 个样本园区；Microsoft→Meta 切换、Meta 建设中→Gallatin 项目来源、地图→Abilene 详情、市场卡→market.html#capacity 均成功，页面错误为 0。这些数仅是验收时本站样本。
+
+### 生产新闻：成功、空结果与失败分开
+
+- `/api/news` HTTP 200，feed.status=success；快照 80 条，其中 33 条有中文标题且 editorial_pick=true。默认精选 33 条的标题、链接逐条等于 API 合法可展示集合，标注「本次快照 · 当前筛选精选 33 条」。全部线索仍显示 33 条，因为其余 47 条无可展示中文标题；不是 inews 全量，也不是 80 条全部已翻译。
+- 验收快照 exported_at=2026-10-03T01:01:36.609948+00:00，received_at=2026-10-03T01:11:31.975395+00:00，stale=false。同期 upstream `https://inews.today/api/feeds/datacenter?limit=100` 成功；与网站快照重合的 59 条精选标记全部一致。上游分页窗口与网站最近 80 条范围不同，不拿两者总数直接对比。
+- 真空结果：按 alphabet-google 筛选，接口仍 200/success，但当前集合无匹配中文新闻；显示「—」及「当前范围暂无已整理的中文新闻」。另外仅在验收浏览器内模拟请求失败，页面显示「新闻暂时无法同步，请稍后重试。」及「—」，不会显示暂无新闻。模拟不修改服务、不用于实际截图。
+- reader 汇总 status=degraded 来自已有阅读/OCR 失败码（model_output_invalid、model_output_truncated、ocr_gap_pages_exceed_limit、parked_derived_artifact、scanned_page_requires_ocr），不是新闻连接失败；新闻同步 status=success/error_code=null。Spark 仅只读检查：源码 d24b60a，reader 服务 active/running，发布与新闻 timer active，最近 oneshot 退出码 0；快照 release 标签仍为 780b314，未将该旧标签冒充 Spark 实际代码。未更新、重启或改动 Spark 服务。
+
+### 证据位置与范围
+
+m5：`~/.local/state/inresearch.ai/homepage-release-20261003/` 保存 `deployment-receipt.txt`、`pr-checks.json`、`live-verification.json`、公共新闻快照、浏览器验收脚本与 `live-<宽>x<高>.png`。桌面为真实首屏，手机为整页；截图已人工查看。运行产物不进 Git。本文作为发布后的文档回执提交，不改变功能源码；后续仅文档发布的实际容器 SHA 仍以部署回执为准。
+
+没有发布阻塞。真实手机触屏硬件、其他浏览器引擎未验；Spark 历史阅读失败和 release 标签偏差是本轮未改动的既有状态。原主工作区保持原分支，未覆盖其内容。
