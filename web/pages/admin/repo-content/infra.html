@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>infra 组织图 2026-09-29</title>
 <style>
-/* 布局：单栏文档，两张宽图各自横向滚动；表格按机器分组。 */
+/* 布局：单栏文档；图 1 为 HTML 卡片自动换列，图 2 宽图横向滚动；表格按机器分组。 */
 :root{
   --bg:#f6f4ef; --fg:#1f2a2e; --muted:#5c6b70; --line:#cfd6d3; --panel:#ffffff;
   --ov:#2b6f8f; --cn:#b0452b; --home:#3f7a4a; --mob:#7a5fa8; --root:#3a4a52;
@@ -31,7 +31,25 @@ p{max-width:72ch}
 .lead{color:var(--muted);margin:0 0 18px}
 figure{margin:12px 0 6px;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:12px;overflow-x:auto}
 figure svg{display:block;width:100%;height:auto;min-width:1100px;color:var(--fg);font-family:var(--font)}
-figure.tree svg{min-width:1500px}
+/* 图 1 是 HTML 卡片而不是 SVG：按屏宽自动换列，不需要横向拖动，文字可选可搜。 */
+figure.tree{overflow:visible}
+.tree .node{border:1px solid var(--line);border-radius:5px;background:var(--panel);padding:8px 10px;font-size:12.5px;line-height:1.5;min-width:0;overflow-wrap:anywhere}
+.tree .node b{display:block;font-size:13px;margin-bottom:2px}
+.tree .node span{display:block;color:var(--muted)}
+.tree .node span.cont{padding-left:1em}
+.tree .node.root{max-width:560px;margin:0 auto 16px;background:var(--root-bg);border:1.5px solid var(--root)}
+.tree .node.root b{font-size:14px}
+.tree .machines{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;align-items:start}
+.tree .machine{display:flex;flex-direction:column;gap:8px;min-width:0}
+.tree .machine .node:not(.head){margin-left:12px;position:relative}
+.tree .machine .node:not(.head)::before{content:"";position:absolute;left:-8px;top:-9px;bottom:50%;border-left:1px solid var(--line);border-bottom:1px solid var(--line);width:6px}
+.tree .node.head{border-width:1.8px}
+.tree .node.head b{font-size:14px}
+.tree .zone{font-size:11px;font-weight:600;letter-spacing:.04em;margin-bottom:2px}
+.tree .ov .head{background:var(--ov-bg);border-color:var(--ov)} .tree .ov .zone{color:var(--ov)}
+.tree .cn .head{background:var(--cn-bg);border-color:var(--cn)} .tree .cn .zone{color:var(--cn)}
+.tree .home .head{background:var(--home-bg);border-color:var(--home)} .tree .home .zone{color:var(--home)}
+.tree .mob .head{background:var(--mob-bg);border-color:var(--mob)} .tree .mob .zone{color:var(--mob)}
 figcaption{font-size:12.5px;color:var(--muted);margin-top:8px;max-width:none}
 svg text{fill:currentColor}
 svg .muted{fill:var(--muted)}
@@ -74,8 +92,10 @@ li{margin:3px 0}
   body{font-size:12px}
   .wrap{max-width:none;padding:0}
   figure{overflow:visible;border:0;padding:0;break-inside:avoid}
-  figure svg,figure.tree svg{min-width:0;width:100%}
+  figure svg{min-width:0;width:100%}
   figure.tree{break-after:page}
+  .tree .machines{grid-template-columns:repeat(3,1fr)}
+  .tree .node{break-inside:avoid}
   .tblwrap{overflow:visible;border:0}
   table{min-width:0;font-size:11px}
   tr,.gap{break-inside:avoid}
@@ -89,240 +109,50 @@ li{margin:3px 0}
 <p class="lead">按「谁管什么」画：GitHub 是唯一真源，infra 仓库定义机器怎么跑；生产机只拉不推。六台机器按地理位置分区，每台机器下面列出它的入口、服务、数据路径、发布器和定时任务。事实来自 2026-09-26/27 六机采集与 09-29 两次合并；容器 IP 与镜像 SHA 会随发布变化，这是带日期的快照。</p>
 
 <h2>图 1 · 组织树：GitHub → 六台机器 → 服务与职责</h2>
-<figure class="tree"><svg viewBox="0 0 1674 1052" role="img" aria-label="infra 组织树：GitHub 为唯一真源，下分六台机器，每台机器下列出入口、服务、数据路径、发布器与定时任务" xmlns="http://www.w3.org/2000/svg"><rect x="577.0" y="16" width="520" height="74" rx="6" class="box root"/>
-<text x="591.0" y="40" class="" font-size="14" font-weight="700">GitHub · niuroumiantt/*  ——  唯一真源(12 个仓库)</text>
-<text x="591.0" y="60" class="" font-size="11.5">infra 只管「机器怎么跑」: compose / Caddyfile / 发布器 / 手册 · 产品代码各自仓库</text>
-<text x="591.0" y="75" class="" font-size="11.5">生产机从不 git push; 全部是 timer 拉 main 或下载 Release 再校验</text>
-<line x1="837.0" y1="90" x2="837.0" y2="113.0" class="edge"/>
-<line x1="147.0" y1="113.0" x2="147.0" y2="136" class="edge"/>
-<rect x="16" y="136" width="262" height="109" rx="5" class="box head ov"/>
-<text x="24" y="157" class="" font-size="13.5" font-weight="700">aws · Lightsail 美东</text>
-<text x="24" y="174" class="muted" font-size="11.5">ip-172-26-11-47 · Ubuntu 24.04 x86_64</text>
-<text x="24" y="189" class="muted" font-size="11.5">2 vCPU / 7.6 GiB / 154 GB(用 27%)</text>
-<text x="24" y="204" class="muted" font-size="11.5">公网 32.193.21.111</text>
-<text x="24" y="219" class="muted" font-size="11.5">tailnet 100.103.118.69 · tag:prod-server</text>
-<text x="24" y="234" class="muted" font-size="11.5">海外网站 + 研究中心</text>
-<line x1="28" y1="300.5" x2="36" y2="300.5" class="edge"/>
-<rect x="36" y="255" width="242" height="91" rx="4" class="box grp"/>
-<text x="44" y="274" class="" font-size="12" font-weight="700">Caddy 80/443 唯一入口</text>
-<text x="44" y="289" class="muted" font-size="10.8">6 个公网域名 · ACME 自动证书</text>
-<text x="44" y="304" class="muted" font-size="10.8">09-29 起 HSTS / nosniff</text>
-<text x="44" y="319" class="muted" font-size="10.8">:8090 回环 → tailscale serve 出运维仪表盘</text>
-<text x="44" y="334" class="muted" font-size="10.8">compose 项目 inresearch-host</text>
-<line x1="28" y1="409.0" x2="36" y2="409.0" class="edge"/>
-<rect x="36" y="356" width="242" height="106" rx="4" class="box grp"/>
-<text x="44" y="375" class="" font-size="12" font-weight="700">inresearch.ai → inresearch:8000</text>
-<text x="44" y="390" class="muted" font-size="10.8">镜像 inresearch-app:&lt;sha&gt; · 只读根</text>
-<text x="44" y="405" class="muted" font-size="10.8">数据 /srv/inresearch.ai/{data,reports,logs}</text>
-<text x="44" y="420" class="muted" font-size="10.8">发布器 inresearch-only-deploy 每 2 分钟</text>
-<text x="44" y="435" class="muted" font-size="10.8">健康 /healthz 只认 200(09-29 起)</text>
-<text x="44" y="450" class="muted" font-size="10.8">mem_limit 1g(提议值, 下次重建生效)</text>
-<line x1="28" y1="510.0" x2="36" y2="510.0" class="edge"/>
-<rect x="36" y="472" width="242" height="76" rx="4" class="box grp"/>
-<text x="44" y="491" class="" font-size="12" font-weight="700">inews.today → inews:8789</text>
-<text x="44" y="506" class="muted" font-size="10.8">数据 /srv/inews-data · 只读挂 /srv/rawarticle</text>
-<text x="44" y="521" class="muted" font-size="10.8">发布器 infra-app-deploy@inews 每 2 分钟</text>
-<text x="44" y="536" class="muted" font-size="10.8">mem_limit 1.5g(提议值)</text>
-<line x1="28" y1="588.5" x2="36" y2="588.5" class="edge"/>
-<rect x="36" y="558" width="242" height="61" rx="4" class="box grp"/>
-<text x="44" y="577" class="" font-size="12" font-weight="700">glocalstorage.com → glocal:8080</text>
-<text x="44" y="592" class="muted" font-size="10.8">英文官网容器 · 无持久卷</text>
-<text x="44" y="607" class="muted" font-size="10.8">发布器 infra-app-deploy@glocal</text>
-<line x1="28" y1="659.5" x2="36" y2="659.5" class="edge"/>
-<rect x="36" y="629" width="242" height="61" rx="4" class="box grp"/>
-<text x="44" y="648" class="" font-size="12" font-weight="700">api.semifly.ai → openapi:8800</text>
-<text x="44" y="663" class="muted" font-size="10.8">SQLite /srv/openapi-data · 换版前快照</text>
-<text x="44" y="678" class="muted" font-size="10.8">发布器 infra-app-deploy@openapi</text>
-<line x1="28" y1="738.0" x2="36" y2="738.0" class="edge"/>
-<rect x="36" y="700" width="242" height="76" rx="4" class="box grp"/>
-<text x="44" y="719" class="" font-size="12" font-weight="700">semifly.ai / marketplace.semifly.ai</text>
-<text x="44" y="734" class="muted" font-size="10.8">静态 /srv/static-release/*/current</text>
-<text x="44" y="749" class="muted" font-size="10.8">infra-static-deploy@semifly|marketplace</text>
-<text x="44" y="764" class="muted" font-size="10.8">原子 current 链接, 失败留上一版</text>
-<line x1="28" y1="854.0" x2="36" y2="854.0" class="edge"/>
-<rect x="36" y="786" width="242" height="136" rx="4" class="box grp"/>
-<text x="44" y="805" class="" font-size="12" font-weight="700">运维定时器(systemd)</text>
-<text x="44" y="820" class="muted" font-size="10.8">ops-backup 每天 03:30 · SQLite 在线备份</text>
-<text x="44" y="835" class="muted" font-size="10.8"> + /srv/inresearch.ai/data tar 归档(09-29)</text>
-<text x="44" y="850" class="muted" font-size="10.8">ops-restore-drill 周一 04:15 隔离恢复演练</text>
-<text x="44" y="865" class="muted" font-size="10.8">旧名单元仍在线(09-21 改名未落地):</text>
-<text x="44" y="880" class="muted" font-size="10.8"> inresearch-ops-collect 5min · -spark-watch 5min</text>
-<text x="44" y="895" class="muted" font-size="10.8"> -docker-prune · -release-retire</text>
-<text x="44" y="910" class="muted" font-size="10.8">deploy-alert: 连续 3 轮失败开 infra issue</text>
-<line x1="28" y1="970.0" x2="36" y2="970.0" class="edge"/>
-<rect x="36" y="932" width="242" height="76" rx="4" class="box grp"/>
-<text x="44" y="951" class="" font-size="12" font-weight="700">凭据(root 600, 不进 Git)</text>
-<text x="44" y="966" class="muted" font-size="10.8">git-credentials: 源码只读 PAT(6 仓 Contents)</text>
-<text x="44" y="981" class="muted" font-size="10.8">issue-credentials: issue 写 PAT(infra)</text>
-<text x="44" y="996" class="muted" font-size="10.8">两把分开, 09-29 拆分, 各自有到期日</text>
-<line x1="28" y1="245" x2="28" y2="970.0" class="edge"/>
-<line x1="423.0" y1="113.0" x2="423.0" y2="136" class="edge"/>
-<rect x="292" y="136" width="262" height="109" rx="5" class="box head cn"/>
-<text x="300" y="157" class="" font-size="13.5" font-weight="700">aliyun · 阿里云青岛</text>
-<text x="300" y="174" class="muted" font-size="11.5">mainland-qingdao · Ubuntu 26.04 x86_64</text>
-<text x="300" y="189" class="muted" font-size="11.5">ecs.e-c1m4.large 2C / 8G / 39 GB(用 59%)</text>
-<text x="300" y="204" class="muted" font-size="11.5">公网 47.104.143.95 · 已备案</text>
-<text x="300" y="219" class="muted" font-size="11.5">tailnet 100.83.13.53 · tag:aimail</text>
-<text x="300" y="234" class="muted" font-size="11.5">中文官网 + 身份中心 + OA + 邮件 + 线索</text>
-<line x1="304" y1="293.0" x2="312" y2="293.0" class="edge"/>
-<rect x="312" y="255" width="242" height="76" rx="4" class="box grp"/>
-<text x="320" y="274" class="" font-size="12" font-weight="700">Caddy 80/443 唯一入口</text>
-<text x="320" y="289" class="muted" font-size="10.8">镜像走 docker.m.daocloud.io</text>
-<text x="320" y="304" class="muted" font-size="10.8">Caddyfile.public · admin API 关闭</text>
-<text x="320" y="319" class="muted" font-size="10.8">改配置必须重启容器才生效</text>
-<line x1="304" y1="386.5" x2="312" y2="386.5" class="edge"/>
-<rect x="312" y="341" width="242" height="91" rx="4" class="box grp"/>
-<text x="320" y="360" class="" font-size="12" font-weight="700">login.glocalstorage.cn → Authentik</text>
-<text x="320" y="375" class="muted" font-size="10.8">identity-server / worker / postgres 三容器</text>
-<text x="320" y="390" class="muted" font-size="10.8">数据 /srv/login-data · 模板 /srv/login-config</text>
-<text x="320" y="405" class="muted" font-size="10.8">OIDC 发行方, 三个业务入口共用</text>
-<text x="320" y="420" class="muted" font-size="10.8">员工自助注册关闭: 缺专用 SMTP</text>
-<line x1="304" y1="502.5" x2="312" y2="502.5" class="edge"/>
-<rect x="312" y="442" width="242" height="121" rx="4" class="box grp"/>
-<text x="320" y="461" class="" font-size="12" font-weight="700">oa.glocalstorage.cn → oa:8000</text>
-<text x="320" y="476" class="muted" font-size="10.8">oa-cn-oa-1 只读根 + oa-cn-oa-db-1 Postgres</text>
-<text x="320" y="491" class="muted" font-size="10.8">数据 /srv/oa-cn/data/{app,postgres}</text>
-<text x="320" y="506" class="muted" font-size="10.8">oa-oidc(oauth2-proxy, 128 MiB 上限)</text>
-<text x="320" y="521" class="muted" font-size="10.8">本地密码登录 API 已停用(410)</text>
-<text x="320" y="536" class="muted" font-size="10.8">发布器 oa-cn-deploy 每 2 分钟 · 安全闸门</text>
-<text x="320" y="551" class="muted" font-size="10.8">oa-cn-caddy-1 仅 127.0.0.1:18080 健康检查</text>
-<line x1="304" y1="633.5" x2="312" y2="633.5" class="edge"/>
-<rect x="312" y="573" width="242" height="121" rx="4" class="box grp"/>
-<text x="320" y="592" class="" font-size="12" font-weight="700">mail.glocalstorage.cn → aimail:8900</text>
-<text x="320" y="607" class="muted" font-size="10.8">release f46f4be · 数据 /srv/aimail-data</text>
-<text x="320" y="622" class="muted" font-size="10.8">mail-oidc 代理 · 真实邮箱仍在网易</text>
-<text x="320" y="637" class="muted" font-size="10.8">sales@ 只收不发 · 外发自动化关闭</text>
-<text x="320" y="652" class="muted" font-size="10.8">发布器 aimail-deploy 每 15 分钟(GitHub Release)</text>
-<text x="320" y="667" class="muted" font-size="10.8">模型: 经 tailnet 调 Spark LiteLLM :4000</text>
-<text x="320" y="682" class="muted" font-size="10.8"> 专用 key 只放行 fast · 20 RPM · 并发 1</text>
-<line x1="304" y1="749.5" x2="312" y2="749.5" class="edge"/>
-<rect x="312" y="704" width="242" height="91" rx="4" class="box grp"/>
-<text x="320" y="723" class="" font-size="12" font-weight="700">leads.glocalstorage.cn → leadsgen:8910</text>
-<text x="320" y="738" class="muted" font-size="10.8">leadsgen:0.4.3-7360bbd · 512 MiB 上限</text>
-<text x="320" y="753" class="muted" font-size="10.8">数据 /srv/leadsgen-data · leads-oidc 代理</text>
-<text x="320" y="768" class="muted" font-size="10.8">角色: larry 管理员 / isaac 销售</text>
-<text x="320" y="783" class="muted" font-size="10.8">发布: infra 显式发布, 无定时器</text>
-<line x1="304" y1="843.0" x2="312" y2="843.0" class="edge"/>
-<rect x="312" y="805" width="242" height="76" rx="4" class="box grp"/>
-<text x="320" y="824" class="" font-size="12" font-weight="700">glocalstorage.cn(静态)</text>
-<text x="320" y="839" class="muted" font-size="10.8">根目录 /srv/sites/glocalstorage-cn</text>
-<text x="320" y="854" class="muted" font-size="10.8">CI 出中文包, 现网仍人工显式发布</text>
-<text x="320" y="869" class="muted" font-size="10.8">semifly.cn: 无 DNS, 未上线</text>
-<line x1="304" y1="245" x2="304" y2="843.0" class="edge"/>
-<line x1="699.0" y1="113.0" x2="699.0" y2="136" class="edge"/>
-<rect x="568" y="136" width="262" height="109" rx="5" class="box head home"/>
-<text x="576" y="157" class="" font-size="13.5" font-weight="700">dgx · DGX Spark GB10</text>
-<text x="576" y="174" class="muted" font-size="11.5">aarch64 · Ubuntu 24.04 · 20 核</text>
-<text x="576" y="189" class="muted" font-size="11.5">121.7 GiB 统一内存 · 3.7 TB(用 15%)</text>
-<text x="576" y="204" class="muted" font-size="11.5">LAN 192.168.50.2 · tailnet 100.100.1.2</text>
-<text x="576" y="219" class="muted" font-size="11.5">家里 · 境内 · 不能装 VPN</text>
-<text x="576" y="234" class="muted" font-size="11.5">全公司常驻模型 + 资料大盘</text>
-<line x1="580" y1="308.0" x2="588" y2="308.0" class="edge"/>
-<rect x="588" y="255" width="242" height="106" rx="4" class="box grp"/>
-<text x="596" y="274" class="" font-size="12" font-weight="700">Ollama :11434(已装 6 个)</text>
-<text x="596" y="289" class="muted" font-size="10.8">brain qwen3.8:27b 16.5G(合同/翻译)</text>
-<text x="596" y="304" class="muted" font-size="10.8">fast qwen3:30b-a3b 17.3G(摘要/问答)</text>
-<text x="596" y="319" class="muted" font-size="10.8">vision qwen3-vl:8b 5.7G · embed 0.6b</text>
-<text x="596" y="334" class="muted" font-size="10.8">qwen3:8b · qwen3.8:27b-translate</text>
-<text x="596" y="349" class="muted" font-size="10.8">coder/heavy 规划中, 未安装</text>
-<line x1="580" y1="416.5" x2="588" y2="416.5" class="edge"/>
-<rect x="588" y="371" width="242" height="91" rx="4" class="box grp"/>
-<text x="596" y="390" class="" font-size="12" font-weight="700">LiteLLM 网关 :4000</text>
-<text x="596" y="405" class="muted" font-size="10.8">dgx-litellm + dgx-litellm-db(pg :5433)</text>
-<text x="596" y="420" class="muted" font-size="10.8">tailscale serve → dgx.tail52686f.ts.net:4000</text>
-<text x="596" y="435" class="muted" font-size="10.8">每人一把 key · 限流 · 计量</text>
-<text x="596" y="450" class="muted" font-size="10.8">配置 dgx-spark/gateway/ (sparse checkout)</text>
-<line x1="580" y1="502.5" x2="588" y2="502.5" class="edge"/>
-<rect x="588" y="472" width="242" height="61" rx="4" class="box grp"/>
-<text x="596" y="491" class="" font-size="12" font-weight="700">Open WebUI</text>
-<text x="596" y="506" class="muted" font-size="10.8">https://dgx.tail52686f.ts.net(443)</text>
-<text x="596" y="521" class="muted" font-size="10.8">tailnet 成员可登录选模型</text>
-<line x1="580" y1="581.0" x2="588" y2="581.0" class="edge"/>
-<rect x="588" y="543" width="242" height="76" rx="4" class="box grp"/>
-<text x="596" y="562" class="" font-size="12" font-weight="700">资料归档(全网唯一大盘)</text>
-<text x="596" y="577" class="muted" font-size="10.8">inresearch 语料 ~267 G + 派生 ~200 G</text>
-<text x="596" y="592" class="muted" font-size="10.8">inews 付费正文存档(macmini 每日推)</text>
-<text x="596" y="607" class="muted" font-size="10.8">研究 A/B 层目标落点</text>
-<line x1="580" y1="245" x2="580" y2="581.0" class="edge"/>
-<line x1="975.0" y1="113.0" x2="975.0" y2="136" class="edge"/>
-<rect x="844" y="136" width="262" height="94" rx="5" class="box head home"/>
-<text x="852" y="157" class="" font-size="13.5" font-weight="700">macmini · Apple M4</text>
-<text x="852" y="174" class="muted" font-size="11.5">10 核 / 16 GiB(硬约束) / 228 GB(用 78%)</text>
-<text x="852" y="189" class="muted" font-size="11.5">LAN 192.168.50.3 · tailnet 100.100.1.3</text>
-<text x="852" y="204" class="muted" font-size="11.5">无 Docker · 有浏览器登录态</text>
-<text x="852" y="219" class="muted" font-size="11.5">7×24 采集机</text>
-<line x1="856" y1="285.5" x2="864" y2="285.5" class="edge"/>
-<rect x="864" y="240" width="242" height="91" rx="4" class="box grp"/>
-<text x="872" y="259" class="" font-size="12" font-weight="700">inews 付费源采集(launchd)</text>
-<text x="872" y="274" class="muted" font-size="10.8">20 个 collector(WSJ/Bloomberg/Reuters…)</text>
-<text x="872" y="289" class="muted" font-size="10.8">tools/hourly.sh 每小时</text>
-<text x="872" y="304" class="muted" font-size="10.8">正本目录 ~/code/inews.today/out</text>
-<text x="872" y="319" class="muted" font-size="10.8">rsync → aws /srv/rawarticle(只读挂给 inews)</text>
-<line x1="856" y1="379.0" x2="864" y2="379.0" class="edge"/>
-<rect x="864" y="341" width="242" height="76" rx="4" class="box grp"/>
-<text x="872" y="360" class="" font-size="12" font-weight="700">存档与回填</text>
-<text x="872" y="375" class="muted" font-size="10.8">today.inews.archive 每天 04:17</text>
-<text x="872" y="390" class="muted" font-size="10.8"> → Spark(archive_to_spark, 只增不删)</text>
-<text x="872" y="405" class="muted" font-size="10.8">translation-backfill · ai-backfill-2026</text>
-<line x1="856" y1="457.5" x2="864" y2="457.5" class="edge"/>
-<rect x="864" y="427" width="242" height="61" rx="4" class="box grp"/>
-<text x="872" y="446" class="" font-size="12" font-weight="700">OA CI runner</text>
-<text x="872" y="461" class="muted" font-size="10.8">GitHub Actions runner mac-mini-translate</text>
-<text x="872" y="476" class="muted" font-size="10.8">niuroumiantt/oa 的翻译任务</text>
-<line x1="856" y1="528.5" x2="864" y2="528.5" class="edge"/>
-<rect x="864" y="498" width="242" height="61" rx="4" class="box grp"/>
-<text x="872" y="517" class="" font-size="12" font-weight="700">常驻仓库</text>
-<text x="872" y="532" class="muted" font-size="10.8">inews.today · inresearch.ai · infra · fetchspec</text>
-<text x="872" y="547" class="muted" font-size="10.8">inews.today 在分支 claude/… 有 3 个改动</text>
-<line x1="856" y1="230" x2="856" y2="528.5" class="edge"/>
-<line x1="1251.0" y1="113.0" x2="1251.0" y2="136" class="edge"/>
-<rect x="1120" y="136" width="262" height="79" rx="5" class="box head home"/>
-<text x="1128" y="157" class="" font-size="13.5" font-weight="700">m4 · MacBook M4 Max</text>
-<text x="1128" y="174" class="muted" font-size="11.5">16 核 / 64 GiB / 926 GB(用 75%)</text>
-<text x="1128" y="189" class="muted" font-size="11.5">LAN 192.168.50.4(Wi-Fi) · tailnet 100.100.1.4</text>
-<text x="1128" y="204" class="muted" font-size="11.5">家用开发机, 与 dgx 同网</text>
-<line x1="1132" y1="248.0" x2="1140" y2="248.0" class="edge"/>
-<rect x="1140" y="225" width="242" height="46" rx="4" class="box grp"/>
-<text x="1148" y="244" class="" font-size="12" font-weight="700">本地模型(Ollama)</text>
-<text x="1148" y="259" class="muted" font-size="10.8">qwen3-vl:8b · qwen3:8b</text>
-<line x1="1132" y1="319.0" x2="1140" y2="319.0" class="edge"/>
-<rect x="1140" y="281" width="242" height="76" rx="4" class="box grp"/>
-<text x="1148" y="300" class="" font-size="12" font-weight="700">研究流水线</text>
-<text x="1148" y="315" class="muted" font-size="10.8">m4-preflight launchd(inresearch.ai)</text>
-<text x="1148" y="330" class="muted" font-size="10.8">m4-offload-worker 已卸载</text>
-<text x="1148" y="345" class="muted" font-size="10.8">研究 C 层(事实库)保持在 m4</text>
-<line x1="1132" y1="397.5" x2="1140" y2="397.5" class="edge"/>
-<rect x="1140" y="367" width="242" height="61" rx="4" class="box grp"/>
-<text x="1148" y="386" class="" font-size="12" font-weight="700">常驻仓库 9 个</text>
-<text x="1148" y="401" class="muted" font-size="10.8">infra oa inresearch.ai inews.today …</text>
-<text x="1148" y="416" class="muted" font-size="10.8">残留: jidian.ai / yidian.ai 克隆</text>
-<line x1="1132" y1="215" x2="1132" y2="397.5" class="edge"/>
-<line x1="1527.0" y1="113.0" x2="1527.0" y2="136" class="edge"/>
-<rect x="1396" y="136" width="262" height="79" rx="5" class="box head mob"/>
-<text x="1404" y="157" class="" font-size="13.5" font-weight="700">m5 · MacBook M5 Max</text>
-<text x="1404" y="174" class="muted" font-size="11.5">18 核 / 128 GiB / 1.86 TB(用 12%)</text>
-<text x="1404" y="189" class="muted" font-size="11.5">LAN 192.168.50.5 · tailnet 100.100.1.5</text>
-<text x="1404" y="204" class="muted" font-size="11.5">随身主力开发 · 断网时自带模型</text>
-<line x1="1408" y1="248.0" x2="1416" y2="248.0" class="edge"/>
-<rect x="1416" y="225" width="242" height="46" rx="4" class="box grp"/>
-<text x="1424" y="244" class="" font-size="12" font-weight="700">本地模型(Ollama)</text>
-<text x="1424" y="259" class="muted" font-size="10.8">qwen3.8:27b-mxfp8 29.5G</text>
-<line x1="1408" y1="311.5" x2="1416" y2="311.5" class="edge"/>
-<rect x="1416" y="281" width="242" height="61" rx="4" class="box grp"/>
-<text x="1424" y="300" class="" font-size="12" font-weight="700">launchd</text>
-<text x="1424" y="315" class="muted" font-size="10.8">oa sales-preview / sales-gateway(预览)</text>
-<text x="1424" y="330" class="muted" font-size="10.8">today.inews.collector.tunnel(ssh 隧道)</text>
-<line x1="1408" y1="382.5" x2="1416" y2="382.5" class="edge"/>
-<rect x="1416" y="352" width="242" height="61" rx="4" class="box grp"/>
-<text x="1424" y="371" class="" font-size="12" font-weight="700">常驻仓库 11 个(全部)</text>
-<text x="1424" y="386" class="muted" font-size="10.8">aimail identity leadsgen openapi …</text>
-<text x="1424" y="401" class="muted" font-size="10.8">inews.today 10 / inresearch.ai 12 处未提交</text>
-<line x1="1408" y1="215" x2="1408" y2="382.5" class="edge"/>
-<line x1="147.0" y1="113.0" x2="1527.0" y2="113.0" class="edge"/>
-<line x1="16" y1="1024" x2="278" y2="1024" class="edge ov" stroke-width="2"/><text x="147.0" y="1042" text-anchor="middle" font-size="12" font-weight="700" class="ov-t">海外公网入口 · 全球用户</text>
-<line x1="292" y1="1024" x2="554" y2="1024" class="edge cn" stroke-width="2"/><text x="423.0" y="1042" text-anchor="middle" font-size="12" font-weight="700" class="cn-t">大陆公网入口 · 员工与国内用户</text>
-<line x1="568" y1="1024" x2="1382" y2="1024" class="edge home" stroke-width="2"/><text x="975.0" y="1042" text-anchor="middle" font-size="12" font-weight="700" class="home-t">家里局域网 192.168.50.0/24 · NAT · 零端口转发 · 机器间只走 Tailscale</text>
-<line x1="1396" y1="1024" x2="1658" y2="1024" class="edge mob" stroke-width="2"/><text x="1527.0" y="1042" text-anchor="middle" font-size="12" font-weight="700" class="mob-t">随身 · 异地</text></svg>
+<figure class="tree" aria-label="infra 组织树：GitHub 为唯一真源，下分六台机器，每台机器下列出入口、服务、数据路径、发布器与定时任务">
+<div class="node root"><b>GitHub · niuroumiantt/*  ——  唯一真源(12 个仓库)</b><span>infra 只管「机器怎么跑」: compose / Caddyfile / 发布器 / 手册 · 产品代码各自仓库</span><span>生产机从不 git push; 全部是 timer 拉 main 或下载 Release 再校验</span></div>
+<div class="machines">
+<section class="machine ov"><div class="node head"><span class="zone">海外公网入口 · 全球用户</span><b>aws · Lightsail 美东</b><span>ip-172-26-11-47 · Ubuntu 24.04 x86_64</span><span>2 vCPU / 7.6 GiB / 154 GB(用 27%)</span><span>公网 32.193.21.111</span><span>tailnet 100.103.118.69 · tag:prod-server</span><span>海外网站 + 研究中心</span></div>
+<div class="node"><b>Caddy 80/443 唯一入口</b><span>6 个公网域名 · ACME 自动证书</span><span>09-29 起 HSTS / nosniff</span><span>:8090 回环 → tailscale serve 出运维仪表盘</span><span>compose 项目 inresearch-host</span></div>
+<div class="node"><b>inresearch.ai → inresearch:8000</b><span>镜像 inresearch-app:&lt;sha&gt; · 只读根</span><span>数据 /srv/inresearch.ai/{data,reports,logs}</span><span>发布器 inresearch-only-deploy 每 2 分钟</span><span>健康 /healthz 只认 200(09-29 起)</span><span>mem_limit 1g(提议值, 下次重建生效)</span></div>
+<div class="node"><b>inews.today → inews:8789</b><span>数据 /srv/inews-data · 只读挂 /srv/rawarticle</span><span>发布器 infra-app-deploy@inews 每 2 分钟</span><span>mem_limit 1.5g(提议值)</span></div>
+<div class="node"><b>glocalstorage.com → glocal:8080</b><span>英文官网容器 · 无持久卷</span><span>发布器 infra-app-deploy@glocal</span></div>
+<div class="node"><b>api.semifly.ai → openapi:8800</b><span>SQLite /srv/openapi-data · 换版前快照</span><span>发布器 infra-app-deploy@openapi</span></div>
+<div class="node"><b>semifly.ai / marketplace.semifly.ai</b><span>静态 /srv/static-release/*/current</span><span>infra-static-deploy@semifly|marketplace</span><span>原子 current 链接, 失败留上一版</span></div>
+<div class="node"><b>运维定时器(systemd)</b><span>ops-backup 每天 03:30 · SQLite 在线备份</span><span class="cont">+ /srv/inresearch.ai/data tar 归档(09-29)</span><span>ops-restore-drill 周一 04:15 隔离恢复演练</span><span>旧名单元仍在线(09-21 改名未落地):</span><span class="cont">inresearch-ops-collect 5min · -spark-watch 5min</span><span class="cont">-docker-prune · -release-retire</span><span>deploy-alert: 连续 3 轮失败开 infra issue</span></div>
+<div class="node"><b>凭据(root 600, 不进 Git)</b><span>git-credentials: 源码只读 PAT(6 仓 Contents)</span><span>issue-credentials: issue 写 PAT(infra)</span><span>两把分开, 09-29 拆分, 各自有到期日</span></div>
+</section>
+<section class="machine cn"><div class="node head"><span class="zone">大陆公网入口 · 员工与国内用户</span><b>aliyun · 阿里云青岛</b><span>mainland-qingdao · Ubuntu 26.04 x86_64</span><span>ecs.e-c1m4.large 2C / 8G / 39 GB(用 59%)</span><span>公网 47.104.143.95 · 已备案</span><span>tailnet 100.83.13.53 · tag:aimail</span><span>中文官网 + 身份中心 + OA + 邮件 + 线索</span></div>
+<div class="node"><b>Caddy 80/443 唯一入口</b><span>镜像走 docker.m.daocloud.io</span><span>Caddyfile.public · admin API 关闭</span><span>改配置必须重启容器才生效</span></div>
+<div class="node"><b>login.glocalstorage.cn → Authentik</b><span>identity-server / worker / postgres 三容器</span><span>数据 /srv/login-data · 模板 /srv/login-config</span><span>OIDC 发行方, 三个业务入口共用</span><span>员工自助注册关闭: 缺专用 SMTP</span></div>
+<div class="node"><b>oa.glocalstorage.cn → oa:8000</b><span>oa-cn-oa-1 只读根 + oa-cn-oa-db-1 Postgres</span><span>数据 /srv/oa-cn/data/{app,postgres}</span><span>oa-oidc(oauth2-proxy, 128 MiB 上限)</span><span>本地密码登录 API 已停用(410)</span><span>发布器 oa-cn-deploy 每 2 分钟 · 安全闸门</span><span>oa-cn-caddy-1 仅 127.0.0.1:18080 健康检查</span></div>
+<div class="node"><b>mail.glocalstorage.cn → aimail:8900</b><span>release f46f4be · 数据 /srv/aimail-data</span><span>mail-oidc 代理 · 真实邮箱仍在网易</span><span>sales@ 只收不发 · 外发自动化关闭</span><span>发布器 aimail-deploy 每 15 分钟(GitHub Release)</span><span>模型: 经 tailnet 调 Spark LiteLLM :4000</span><span class="cont">专用 key 只放行 fast · 20 RPM · 并发 1</span></div>
+<div class="node"><b>leads.glocalstorage.cn → leadsgen:8910</b><span>leadsgen:0.4.3-7360bbd · 512 MiB 上限</span><span>数据 /srv/leadsgen-data · leads-oidc 代理</span><span>角色: larry 管理员 / isaac 销售</span><span>发布: infra 显式发布, 无定时器</span></div>
+<div class="node"><b>glocalstorage.cn(静态)</b><span>根目录 /srv/sites/glocalstorage-cn</span><span>CI 出中文包, 现网仍人工显式发布</span><span>semifly.cn: 无 DNS, 未上线</span></div>
+</section>
+<section class="machine home"><div class="node head"><span class="zone">家里局域网 · NAT · 零端口转发 · 只走 Tailscale</span><b>dgx · DGX Spark GB10</b><span>aarch64 · Ubuntu 24.04 · 20 核</span><span>121.7 GiB 统一内存 · 3.7 TB(用 15%)</span><span>LAN 192.168.50.2 · tailnet 100.100.1.2</span><span>家里 · 境内 · 不能装 VPN</span><span>全公司常驻模型 + 资料大盘</span></div>
+<div class="node"><b>Ollama :11434(已装 6 个)</b><span>brain qwen3.8:27b 16.5G(合同/翻译)</span><span>fast qwen3:30b-a3b 17.3G(摘要/问答)</span><span>vision qwen3-vl:8b 5.7G · embed 0.6b</span><span>qwen3:8b · qwen3.8:27b-translate</span><span>coder/heavy 规划中, 未安装</span></div>
+<div class="node"><b>LiteLLM 网关 :4000</b><span>dgx-litellm + dgx-litellm-db(pg :5433)</span><span>tailscale serve → dgx.tail52686f.ts.net:4000</span><span>每人一把 key · 限流 · 计量</span><span>配置 dgx-spark/gateway/ (sparse checkout)</span></div>
+<div class="node"><b>Open WebUI</b><span>https://dgx.tail52686f.ts.net(443)</span><span>tailnet 成员可登录选模型</span></div>
+<div class="node"><b>资料归档(全网唯一大盘)</b><span>inresearch 语料 ~267 G + 派生 ~200 G</span><span>inews 付费正文存档(macmini 每日推)</span><span>研究 A/B 层目标落点</span></div>
+</section>
+<section class="machine home"><div class="node head"><span class="zone">家里局域网 · NAT · 零端口转发 · 只走 Tailscale</span><b>macmini · Apple M4</b><span>10 核 / 16 GiB(硬约束) / 228 GB(用 78%)</span><span>LAN 192.168.50.3 · tailnet 100.100.1.3</span><span>无 Docker · 有浏览器登录态</span><span>7×24 采集机</span></div>
+<div class="node"><b>inews 付费源采集(launchd)</b><span>20 个 collector(WSJ/Bloomberg/Reuters…)</span><span>tools/hourly.sh 每小时</span><span>正本目录 ~/code/inews.today/out</span><span>rsync → aws /srv/rawarticle(只读挂给 inews)</span></div>
+<div class="node"><b>存档与回填</b><span>today.inews.archive 每天 04:17</span><span class="cont">→ Spark(archive_to_spark, 只增不删)</span><span>translation-backfill · ai-backfill-2026</span></div>
+<div class="node"><b>OA CI runner</b><span>GitHub Actions runner mac-mini-translate</span><span>niuroumiantt/oa 的翻译任务</span></div>
+<div class="node"><b>常驻仓库</b><span>inews.today · inresearch.ai · infra · fetchspec</span><span>inews.today 在分支 claude/… 有 3 个改动</span></div>
+</section>
+<section class="machine home"><div class="node head"><span class="zone">家里局域网 · NAT · 零端口转发 · 只走 Tailscale</span><b>m4 · MacBook M4 Max</b><span>16 核 / 64 GiB / 926 GB(用 75%)</span><span>LAN 192.168.50.4(Wi-Fi) · tailnet 100.100.1.4</span><span>家用开发机, 与 dgx 同网</span></div>
+<div class="node"><b>本地模型(Ollama)</b><span>qwen3-vl:8b · qwen3:8b</span></div>
+<div class="node"><b>研究流水线</b><span>m4-preflight launchd(inresearch.ai)</span><span>m4-offload-worker 已卸载</span><span>研究 C 层(事实库)保持在 m4</span></div>
+<div class="node"><b>常驻仓库 9 个</b><span>infra oa inresearch.ai inews.today …</span><span>残留: jidian.ai / yidian.ai 克隆</span></div>
+</section>
+<section class="machine mob"><div class="node head"><span class="zone">随身 · 异地</span><b>m5 · MacBook M5 Max</b><span>18 核 / 128 GiB / 1.86 TB(用 12%)</span><span>LAN 192.168.50.5 · tailnet 100.100.1.5</span><span>随身主力开发 · 断网时自带模型</span></div>
+<div class="node"><b>本地模型(Ollama)</b><span>qwen3.8:27b-mxfp8 29.5G</span></div>
+<div class="node"><b>launchd</b><span>oa sales-preview / sales-gateway(预览)</span><span>today.inews.collector.tunnel(ssh 隧道)</span></div>
+<div class="node"><b>常驻仓库 11 个(全部)</b><span>aimail identity leadsgen openapi …</span><span>inews.today 10 / inresearch.ai 12 处未提交</span></div>
+</section>
+</div>
 <figcaption>每列一台机器。列头是硬件、地址与角色；下面的方块是这台机器上跑的入口、应用、数据路径、发布器与定时器。海外/大陆两台云主机是公网入口，家里三台与随身 m5 只经 Tailscale 互通，不开端口转发。</figcaption></figure>
 <div class="legend"><span class="ov">海外云主机 aws</span><span class="cn">大陆云主机 aliyun</span><span class="home">家里局域网：dgx / macmini / m4</span><span class="mob">随身：m5</span></div>
 
