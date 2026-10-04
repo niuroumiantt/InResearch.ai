@@ -28,6 +28,11 @@ DESCRIPTIONS = {'inresearch': '研究框架、证据采用、经济模型与成�
                 'infra': '主机、网络、部署与运行职责'}
 
 
+# 内嵌架构图随内容撑高：页面只有一条滚动条，不在 76vh 的小窗里再滚一层。
+# 同源页面才能读到高度；脚本失败时保留 CSS 的固定高度作退路。
+FIT_FRAME = ("<script>(function(f){function fit(){try{var b=f.contentDocument.body,s=getComputedStyle(b);f.style.height=Math.ceil(b.getBoundingClientRect().height+parseFloat(s.marginTop)+parseFloat(s.marginBottom))+2+'px'}catch(e){}}f.addEventListener('load',function(){fit();try{new ResizeObserver(fit).observe(f.contentDocument.body)}catch(e){}});fit()})(document.currentScript.previousElementSibling)</script>")
+
+
 def table(headers, rows):
     return '<div class="repo-scroll"><table><thead><tr>' + ''.join(
         f'<th>{escape(str(v))}</th>' for v in headers) + '</tr></thead><tbody>' + ''.join(
@@ -111,7 +116,8 @@ def build(workspace, synced_at):
     for key in ('infra', 'fetchspec'):
         outputs[key + 'repo.html'] = shell(NAMES[key], '<p>' + DESCRIPTIONS[key] + '</p>' +
             source_note(metadata[key]) + f'<p><a href="/admin/repo-content/{key}.html">展开完整架构图</a></p>' +
-            f'<iframe class="repo-frame" title="{NAMES[key]} 完整架构图" src="/admin/repo-content/{key}.html"></iframe>')
+            f'<iframe class="repo-frame" title="{NAMES[key]} 完整架构图" src="/admin/repo-content/{key}.html"></iframe>' +
+            FIT_FRAME)
     body = ('<p>负责新闻发现与编辑，为研究站交付带来源、对象和目标行的事件卡。</p>' +
             source_note(metadata['inews']) +
             '<p class="repo-note">本页复用新闻仓库的架构声明；不读取生产数据库，实时计数未同步。</p>' +

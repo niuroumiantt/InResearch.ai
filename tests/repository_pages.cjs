@@ -57,6 +57,9 @@ const ready = new Promise((resolve, reject)=>{
      const frame=page.frameLocator('iframe');
      await frame.locator('svg').first().waitFor();
      assert.ok(await frame.locator('svg').count()>0);
+     // 内嵌图随内容撑高：只有页面一条滚动条，iframe 里不再出现第二条。
+     await page.waitForFunction(()=>{const f=document.querySelector('iframe.repo-frame'), d=f.contentDocument;
+       return d && d.readyState==='complete' && d.documentElement.scrollHeight<=f.clientHeight+2;}, null, {timeout:5000});
    }
   }
   await page.goto(base+'/admin/fetchspec/reporg.html');
@@ -65,7 +68,7 @@ const ready = new Promise((resolve, reject)=>{
   await page.goto(base+'/admin/repo-content/infra.html');
   assert.equal(new URL(page.url()).pathname,'/login');
   assert.deepEqual(errors,[]);
-  console.log('PASS repository pages: real login/logout, 5 pages, 20 desktop/mobile theme views, embedded SVGs and old-link redirect');
+  console.log('PASS repository pages: real login/logout, 5 pages, 20 desktop/mobile theme views, embedded SVGs without nested scrolling and old-link redirect');
  } finally {
   if(browser) await browser.close();
   lines.close();fixture.stdin.end();
