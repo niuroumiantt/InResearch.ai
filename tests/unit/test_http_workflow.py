@@ -60,6 +60,9 @@ class HTTPWorkflow(unittest.TestCase):
             self.assertEqual(page[0], 200)
             for alias in ('/admin/product', '/admin/product/'):
                 self.assertEqual(self.request(alias, cookie=cookie)[2], page[2])
+            status, _, body = self.request('/api/admin/product-coverage', cookie=cookie)
+            self.assertEqual(status, 200)
+            self.assertEqual(json.loads(body)['totals']['lines'], 175)
         rec = dict(series_id='flow', as_of='2026-09-13', value=7, unit='USD',
                    grade='company', category='gpu', module='M06', source_url='https://example.test')
         self.assertEqual(self.request('/api/add-price', rec)[0], 401)
@@ -69,6 +72,8 @@ class HTTPWorkflow(unittest.TestCase):
         self.assertEqual(len(json.loads((self.root/'data/prices.json').read_text())['records']), 1)
         _, headers, _ = self.request('/api/login', {'username':'intern', 'password':self.password})
         self.assertEqual(self.request('/api/add-price', rec, headers['Set-Cookie'].split(';')[0])[0], 403)
+        self.assertEqual(self.request('/api/admin/product-coverage', cookie=headers['Set-Cookie'].split(';')[0])[0], 403)
+        self.assertEqual(self.request('/api/admin/product-coverage')[0], 401)
         for secret in ('/data/users.json', '/data/%2ehub_secret', '/src/inresearch/interfaces/auth.py'):
             self.assertEqual(self.request(secret, cookie=cookie)[0], 404)
         new_password = 'Another-temporary-test-738'

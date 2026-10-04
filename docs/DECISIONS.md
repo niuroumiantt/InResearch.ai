@@ -3,6 +3,15 @@
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
 
+## 2026-10-04：登记覆盖页改为按规格库计算
+
+用户决定保留 `admin/product/`，作为从产品线进入的管理员入口，页面从简；内容以本站规格库与公司首页为准。
+175 条产品线的代表型号拆成标签，按规格库（Fetchspec 交付）条目名称整词匹配，由
+`/api/admin/product-coverage`（`src/inresearch/workflow/product_coverage.py`）计算；公司名进 `company.html`，
+找到的型号进规格库对应条目，未找到的进该公司规格库搜索。事业部产品线（如 nvidia-networking）
+按母公司规格库计算。替代 2026-08 本地资料下载登记口径（`product_library_index.json` 与 446 个缺口标签），
+页面不再读取下载登记与本地路径。「找到」只表示规格库收录同名条目，不代表研究采用。
+
 ## 2026-10-03：仓库架构统一入口
 
 用户要求各服务仓库的架构图统一托管于研究站，infra 图也需登录查看。采用 `/admin/repos.html`
