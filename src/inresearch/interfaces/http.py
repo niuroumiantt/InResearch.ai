@@ -25,11 +25,13 @@ from inresearch.workflow import news_marks
 from inresearch.workflow import dispatch
 from inresearch.workflow import pilot_progress
 from inresearch.workflow import product_catalog
+from inresearch.workflow import product_coverage
 from inresearch.adapters import acquisition
 from inresearch.knowledge import registry as research
 from inresearch.knowledge import graph as graph_mod
 from inresearch.delivery import report as report_model
 import posixpath
+import sqlite3
 import subprocess as subprocess
 import sys
 import threading
@@ -306,6 +308,14 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, dispatch.targets_view(ROOT, user or None, self._role(user), params))
             except (OSError, ValueError, KeyError, TypeError):
                 return self._json(503, {'ok': False, 'error': '目标表暂不可读取'})
+        if urlsplit(self.path).path == '/api/admin/product-coverage':
+            # 登记覆盖页：产品线型号标签按规格库（Fetchspec 交付）名称匹配；仅管理员。
+            if self._role(user) != "admin":
+                return self._json(403, {"ok": False, "error": "登记覆盖仅限 admin"})
+            try:
+                return self._json(200, product_coverage.coverage(ROOT))
+            except (OSError, ValueError, KeyError, sqlite3.Error):
+                return self._json(503, {"ok": False, "error": "登记覆盖暂不可读取"})
         if self.path == "/api/users":
             if self._role(user) != "admin":
                 return self._json(403, {"ok": False, "error": "用户管理仅限 admin"})

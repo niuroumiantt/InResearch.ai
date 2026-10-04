@@ -134,7 +134,7 @@ class ProductLibrarySearchTests(unittest.TestCase):
         script = r"""
 const fs=require("node:fs"),vm=require("node:vm"),assert=require("node:assert/strict");
 const root=process.argv[1],html=fs.readFileSync(root+"/web/pages/admin/product/index.html","utf8");
-const start=html.indexOf("const searchNorm ="),end=html.indexOf("function modelTokens(",start);
+const start=html.indexOf("const searchNorm ="),end=html.indexOf("// end of tested search helpers",start);
 assert.ok(start>=0 && end>start);
 const ctx={};
 vm.runInNewContext(html.slice(start,end)+";globalThis.matches=productMatchesQuery;",ctx);
