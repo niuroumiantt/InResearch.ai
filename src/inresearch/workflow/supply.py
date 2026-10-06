@@ -56,6 +56,7 @@ def snapshot(root):
     demand_queue.sort(key=lambda t: (-t['candidate_documents'], not bool(t['feeds_primary']), t['id']))
     return {'catalog': catalog(root), 'revision': state['revision'],
             'daily_events': (reader.get('acquisition') or {}).get('daily_events') or {'records':[],'total':0},
+            'daily_delivery': (reader.get('acquisition') or {}).get('daily_delivery') or {'records':[],'total':0,'news_total':0},
             'research_matching': matched, 'demand_queue': demand_queue,
             'matching_reader': {k: reader.get(k) for k in ('received_at','stale','status')},
             'demands': state['demands'], 'tasks': state['tasks'],

@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.06.2。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.06.3。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1104。
+在册文件：1110。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 297 |
-| 运行代码 | 240 |
+| 历史快照 | 300 |
+| 运行代码 | 241 |
 | 现行规范 | 13 |
 | 项目配置 | 99 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 78 |
-| 测试 | 115 |
+| 配套说明 | 79 |
+| 测试 | 116 |
 
 ## 在册记录集合
 
@@ -333,7 +333,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 33 |
+| `framework/current_state.json` | policies | 36 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -499,6 +499,9 @@
 | [docs/archive/2026-10-02/framework__00_overview.md](archive/2026-10-02/framework__00_overview.md) | 历史快照 |
 | [docs/archive/2026-10-02/framework__05_interface_system.md](archive/2026-10-02/framework__05_interface_system.md) | 历史快照 |
 | [docs/archive/2026-10-02/framework__06_acquisition.md](archive/2026-10-02/framework__06_acquisition.md) | 历史快照 |
+| [docs/archive/2026-10-06/before_dispatch__framework__04_reading_scoring_standard.md](archive/2026-10-06/before_dispatch__framework__04_reading_scoring_standard.md) | 历史快照 |
+| [docs/archive/2026-10-06/before_dispatch__framework__05_interface_system.md](archive/2026-10-06/before_dispatch__framework__05_interface_system.md) | 历史快照 |
+| [docs/archive/2026-10-06/before_dispatch__framework__06_acquisition.md](archive/2026-10-06/before_dispatch__framework__06_acquisition.md) | 历史快照 |
 | [docs/archive/2026-10-06/framework__04_reading_scoring_standard.md](archive/2026-10-06/framework__04_reading_scoring_standard.md) | 历史快照 |
 | [docs/archive/2026-10-06/framework__06_acquisition.md](archive/2026-10-06/framework__06_acquisition.md) | 历史快照 |
 | [docs/archive/2026-10-06/framework__06_acquisition_before_daily_delivery.md](archive/2026-10-06/framework__06_acquisition_before_daily_delivery.md) | 历史快照 |
@@ -517,6 +520,7 @@
 | [docs/handoff/compute-catalog-batch2-20261002.md](handoff/compute-catalog-batch2-20261002.md) | 配套说明 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | 项目配置 |
 | [docs/handoff/daily-evidence-loop-20261006.md](handoff/daily-evidence-loop-20261006.md) | 配套说明 |
+| [docs/handoff/event-delivery-20261006.md](handoff/event-delivery-20261006.md) | 配套说明 |
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
 | [docs/handoff/homepage-first-screen.md](handoff/homepage-first-screen.md) | 配套说明 |
@@ -1266,6 +1270,7 @@
 | `src/inresearch/workflow/attribution.py` | 运行代码 |
 | `src/inresearch/workflow/commands.py` | 运行代码 |
 | `src/inresearch/workflow/compute_catalog.py` | 运行代码 |
+| `src/inresearch/workflow/daily_dispatch.py` | 运行代码 |
 | `src/inresearch/workflow/deep_read.py` | 运行代码 |
 | `src/inresearch/workflow/dispatch.py` | 运行代码 |
 | `src/inresearch/workflow/l1_batch.py` | 运行代码 |
@@ -1324,6 +1329,7 @@
 | `tests/unit/test_compute_catalog.py` | 测试 |
 | `tests/unit/test_continuous_reader.py` | 测试 |
 | `tests/unit/test_daily_bundle.py` | 测试 |
+| `tests/unit/test_daily_dispatch.py` | 测试 |
 | `tests/unit/test_dashboard.py` | 测试 |
 | `tests/unit/test_datacenter_news.py` | 测试 |
 | `tests/unit/test_declared_admin.py` | 测试 |

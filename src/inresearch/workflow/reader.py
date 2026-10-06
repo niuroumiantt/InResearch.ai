@@ -442,17 +442,35 @@ class Reader:
                 self.conn.execute("UPDATE jobs SET state='blocked',error_code='intake_recovery_requires_review' WHERE doc_id=? AND stage='receipt' AND chunk=?", (row["doc_id"], row["source_id"]))
 
     def claim(self):
+        # Independent news service share. This is an ordering hint, never a
+        # coverage shortcut, recipe rewrite, importance/C3 score or extra worker.
+        from inresearch.workflow.daily_dispatch import fast_reading_shas
+        try: fast = fast_reading_shas(self.data)
+        except (OSError, ValueError, KeyError, TypeError): fast = []
         with self.transaction():
             n = int(self.conn.execute("SELECT value FROM meta WHERE key='dispatch_count'").fetchone()[0])
             # Every fourth dispatch serves the oldest eligible job, independently of new priorities.
             order = "j.created,j.doc_id,j.chunk,j.job_id" if n % 4 == 0 else "d.priority DESC,j.created,j.doc_id,j.chunk,j.job_id"
             # The oldest-first turn also respects the floor: held documents wait, they do not starve the rest.
-            row = self.conn.execute("SELECT j.* FROM jobs j JOIN reading_runs d ON d.revision_id=j.revision_id WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed') AND d.priority>=? ORDER BY " + order + " LIMIT 1", (self.clock(), self.claim_min_priority)).fetchone()
+            base = "SELECT j.* FROM jobs j JOIN reading_runs d ON d.revision_id=j.revision_id JOIN documents original ON original.doc_id=d.doc_id WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed') AND d.priority>=?"
+            params = (self.clock(), self.claim_min_priority)
+            row = None
+            lane = 'oldest' if n % 4 == 0 else 'priority'
+            if n % 4 == 1:
+                row = self.conn.execute(base + " AND j.stage IN ('synthesize','organize','receipt') ORDER BY CASE j.stage WHEN 'receipt' THEN 0 WHEN 'organize' THEN 1 ELSE 2 END,d.priority DESC,j.created,j.job_id LIMIT 1", params).fetchone()
+                if row: lane = 'finish'
+            if row is None and n % 4 in (1, 2) and fast:
+                placeholders = ','.join('?' for _ in fast)
+                row = self.conn.execute(base + " AND original.suffix IN ('.html','.htm') AND original.sha256 IN (" + placeholders + ") ORDER BY CASE WHEN d.chunks_total>0 THEN MAX(0,d.chunks_total-d.chunks_read) ELSE 100000 END,j.created,j.doc_id,j.chunk,j.job_id LIMIT 1", (*params, *fast)).fetchone()
+                if row: lane = 'news'
+            if row is None:
+                row = self.conn.execute(base + " ORDER BY " + order + " LIMIT 1", params).fetchone()
             if not row:
                 return None
             self.conn.execute("UPDATE jobs SET state='running',attempts=attempts+1,started=?,error_code=NULL WHERE job_id=?", (self.clock(), row["job_id"]))
             self.conn.execute("UPDATE reading_runs SET state='running',phase=?,updated=? WHERE revision_id=?", (row["stage"], self.clock(), row["revision_id"]))
             self.conn.execute("UPDATE meta SET value=? WHERE key='dispatch_count'", (str(n + 1),))
+            self.conn.execute("INSERT OR REPLACE INTO meta(key,value) VALUES('last_dispatch',?)", (json.dumps({'lane':lane,'job_id':row['job_id'],'doc_id':row['doc_id'],'at':now_iso()}),))
             return dict(self.conn.execute("SELECT * FROM jobs WHERE job_id=?", (row["job_id"],)).fetchone())
 
     def _finish(self, job, result):
