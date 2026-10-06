@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1075。
+在册文件：1090。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,14 +15,14 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 288 |
+| 历史快照 | 294 |
 | 运行代码 | 234 |
 | 现行规范 | 13 |
-| 项目配置 | 97 |
+| 项目配置 | 99 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 69 |
+| 配套说明 | 76 |
 | 测试 | 112 |
 
 ## 在册记录集合
@@ -67,6 +67,8 @@
 | `data/sources.json` | records | 74 |
 | `docs/CN_PROJECT_ARCHIVES.csv` | rows | 40 |
 | `docs/LIBRARY_SCORES.csv` | rows | 13664 |
+| `docs/archive/2026-10-06/worktree-snapshots/patches.json` | git_diff_options | 3 |
+| `docs/archive/2026-10-06/worktree-snapshots/patches.json` | patches | 3 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | companies | 7 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | unpublished | 2 |
 | `docs/inbox/facts_candidates/m01_market_20260817.json` | records | 4 |
@@ -176,6 +178,9 @@
 | `docs/research/2026-09-14/datacenter-cost/model-results.json` | apac | 7 |
 | `docs/research/2026-09-14/datacenter-cost/model-results.json` | epoch | 10 |
 | `docs/research/2026-09-27/datacenter-profit/profit-model-results.json` | report_price_paths | 5 |
+| `docs/research/2026-10-01/ai-walle/cards.json` | cards | 10 |
+| `docs/research/2026-10-01/ai-walle/sources.json` | groups | 8 |
+| `docs/research/2026-10-01/ai-walle/sources.json` | background_sources | 1 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
@@ -494,10 +499,16 @@
 | [docs/archive/2026-10-02/framework__00_overview.md](archive/2026-10-02/framework__00_overview.md) | 历史快照 |
 | [docs/archive/2026-10-02/framework__05_interface_system.md](archive/2026-10-02/framework__05_interface_system.md) | 历史快照 |
 | [docs/archive/2026-10-02/framework__06_acquisition.md](archive/2026-10-02/framework__06_acquisition.md) | 历史快照 |
+| [docs/archive/2026-10-06/worktree-snapshots/README.md](archive/2026-10-06/worktree-snapshots/README.md) | 历史快照 |
+| `docs/archive/2026-10-06/worktree-snapshots/macos-vision-ocr-428ea8b.patch` | 历史快照 |
+| `docs/archive/2026-10-06/worktree-snapshots/patches.json` | 历史快照 |
+| `docs/archive/2026-10-06/worktree-snapshots/terminal-boundaries-plan-7e35305.patch` | 历史快照 |
+| `docs/archive/2026-10-06/worktree-snapshots/terminal-office-wip-d9477a7.patch` | 历史快照 |
 | [docs/geluoke/专题写作规则.md](geluoke/专题写作规则.md) | 现行规范 |
 | [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
 | `docs/guides/model-governance-2026-09-27.html` | 运行代码 |
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
+| [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
 | [docs/handoff/compute-catalog-20261002.md](handoff/compute-catalog-20261002.md) | 配套说明 |
 | [docs/handoff/compute-catalog-batch2-20261002.md](handoff/compute-catalog-batch2-20261002.md) | 配套说明 |
@@ -513,6 +524,7 @@
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
+| [docs/handoff/worktree-integration-20261006.md](handoff/worktree-integration-20261006.md) | 配套说明 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
 | [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
 | [docs/inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md](inbox/digest_drafts/7B_人工智能算力高质量发展评估体系_浪潮信息中国信通院.md) | 候选与外部输入 |
@@ -696,12 +708,20 @@
 | `docs/research/2026-09-27/datacenter-profit/profit-model-results.json` | 项目配置 |
 | `docs/research/2026-09-27/datacenter-profit/profit-model.py` | 运行代码 |
 | [docs/research/2026-09-27/datacenter-profit/sources.md](research/2026-09-27/datacenter-profit/sources.md) | 配套说明 |
+| [docs/research/2026-10-01/ai-walle/README.md](research/2026-10-01/ai-walle/README.md) | 配套说明 |
+| [docs/research/2026-10-01/ai-walle/article-review.md](research/2026-10-01/ai-walle/article-review.md) | 配套说明 |
+| [docs/research/2026-10-01/ai-walle/article.md](research/2026-10-01/ai-walle/article.md) | 配套说明 |
+| `docs/research/2026-10-01/ai-walle/cards.json` | 项目配置 |
+| [docs/research/2026-10-01/ai-walle/feedback.md](research/2026-10-01/ai-walle/feedback.md) | 配套说明 |
+| [docs/research/2026-10-01/ai-walle/review.md](research/2026-10-01/ai-walle/review.md) | 配套说明 |
+| `docs/research/2026-10-01/ai-walle/sources.json` | 项目配置 |
 | [docs/research/datacenter-economics/README.md](research/datacenter-economics/README.md) | 配套说明 |
 | `docs/research/datacenter-economics/model.py` | 运行代码 |
 | `docs/research/datacenter-economics/results.json` | 项目配置 |
 | [docs/research/datacenter-tco/README.md](research/datacenter-tco/README.md) | 配套说明 |
 | `docs/research/datacenter-tco/model.py` | 运行代码 |
 | `docs/research/datacenter-tco/results.json` | 项目配置 |
+| [docs/reviews/2026-09-06/2026-09-06_NODE_RESEARCH_OVERVIEW_PROPOSAL.md](reviews/2026-09-06/2026-09-06_NODE_RESEARCH_OVERVIEW_PROPOSAL.md) | 历史快照 |
 | [docs/reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md](reviews/2026-09-06/CURRENT_BASELINE_ALIGNMENT.md) | 历史快照 |
 | [docs/reviews/2026-09-06/IMPLEMENTATION.md](reviews/2026-09-06/IMPLEMENTATION.md) | 历史快照 |
 | [docs/reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md](reviews/2026-09-06/RESEARCH_ARCHITECTURE_V2.md) | 已采用设计依据 |

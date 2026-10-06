@@ -1,0 +1,374 @@
+diff --git a/docs/reviews/2026-09-14/terminal-boundaries/PLAN.md b/docs/reviews/2026-09-14/terminal-boundaries/PLAN.md
+index e6c8f51b227e011dbc59e74a05acf4c439e10bcf..ea3fc572ddf75b0d1ca7b7065ff3383221b5954f 100644
+--- a/docs/reviews/2026-09-14/terminal-boundaries/PLAN.md
++++ b/docs/reviews/2026-09-14/terminal-boundaries/PLAN.md
+@@ -28,7 +28,9 @@ one current reading result and revision conflict handling.
+ - `materials.office_text`: parse Office containers into bounded text and
+   extraction metadata.  It owns no queue, model, verdict, or write policy.
+ - `workflow.batch_selection`: select/retry material candidates and normalize
+-  preview text.  It performs no writes.
++  preview text.  It performs no writes.  It is not yet migrated: existing
++  extraction/model tests replace the command module's selector, so an explicit
++  injectable selection dependency must be introduced before this move.
+ - `workflow.batch_recording`: parse terminal verdict input and commit a result
+   with its expected revision.  The records ledger remains the sole writer.
+ - `workflow.batch_reporting`: calculate activity rate and report duplicate
+@@ -65,6 +67,16 @@ No compatibility re-export is allowed after every listed consumer migrates.
+ The command filename `workflow/terminal_batch.py` remains because it is the
+ registered CLI command, but it must not retain business implementations.
+ 
++## Progress record
++
++Implemented and verified in this batch so far: Office parsing moved into
++`materials`; every former adapter import migrated; the six obsolete adapter
++files were removed; read-only batch activity reporting moved to
++`batch_reporting`, and `workflow.progress` now consumes it.  The initial
++selection migration was intentionally removed after it bypassed the existing
++test injection seam and made concurrent-extraction tests meaningless.  This
++is unfinished work, not a retained compatibility implementation.
++
+ ## Required verification
+ 
+ Run Office format and malformed-container tests; terminal pack/record tests;
+diff --git a/docs/reviews/2026-09-14/terminal-boundaries/scope.json b/docs/reviews/2026-09-14/terminal-boundaries/scope.json
+index 1c551ca8ae1434f07b31d9e3149e02e9ee2833df..2bbc7c5281913b41414a634395ef2a04c9138d4a 100644
+--- a/docs/reviews/2026-09-14/terminal-boundaries/scope.json
++++ b/docs/reviews/2026-09-14/terminal-boundaries/scope.json
+@@ -7,7 +7,6 @@
+     "src/inresearch/materials/office_biff.py",
+     "src/inresearch/materials/office_ooxml.py",
+     "src/inresearch/materials/office_ppt.py",
+-    "src/inresearch/workflow/batch_selection.py",
+     "src/inresearch/workflow/batch_recording.py",
+     "src/inresearch/workflow/batch_reporting.py",
+     "src/inresearch/workflow/terminal_batch.py",
+diff --git a/src/inresearch/delivery/reading_packet.py b/src/inresearch/delivery/reading_packet.py
+index 7c25270026aca99e27539dda8fc78a5eef25453e..54a95a39520e5c7ae7657eb2a6431f5e42f0173a 100644
+--- a/src/inresearch/delivery/reading_packet.py
++++ b/src/inresearch/delivery/reading_packet.py
+@@ -2,7 +2,7 @@
+ from __future__ import annotations
+ import re, subprocess
+ from pathlib import Path
+-from inresearch.adapters import office as m4_office_text
++from inresearch.materials import office_text as m4_office_text
+ 
+ 
+ CHUNK_CHARS = 15000
+diff --git a/src/inresearch/adapters/office_biff.py b/src/inresearch/materials/office_biff.py
+similarity index 98%
+rename from src/inresearch/adapters/office_biff.py
+rename to src/inresearch/materials/office_biff.py
+index e596abd8aeabeb4634674325255dd0f044fccd46..18e68922db851d2fd94f3dd29ee088342a35385f 100644
+--- a/src/inresearch/adapters/office_biff.py
++++ b/src/inresearch/materials/office_biff.py
+@@ -1,8 +1,8 @@
+ """BIFF worksheet records to an addressable text grid."""
+ from __future__ import annotations
+ import struct
+-from inresearch.adapters.office_container import OleFile
+-from inresearch.adapters.office_grid import MAX_CHARS, no_text_layer, is_date_format, number_text, grid_text
++from inresearch.materials.office_container import OleFile
++from inresearch.materials.office_grid import MAX_CHARS, no_text_layer, is_date_format, number_text, grid_text
+ 
+ 
+ SST = 0x00FC
+diff --git a/src/inresearch/adapters/office_container.py b/src/inresearch/materials/office_container.py
+similarity index 100%
+rename from src/inresearch/adapters/office_container.py
+rename to src/inresearch/materials/office_container.py
+diff --git a/src/inresearch/adapters/office_grid.py b/src/inresearch/materials/office_grid.py
+similarity index 100%
+rename from src/inresearch/adapters/office_grid.py
+rename to src/inresearch/materials/office_grid.py
+diff --git a/src/inresearch/adapters/office_ooxml.py b/src/inresearch/materials/office_ooxml.py
+similarity index 98%
+rename from src/inresearch/adapters/office_ooxml.py
+rename to src/inresearch/materials/office_ooxml.py
+index f82a3ad1f15a1a554b0e60344bd7cba2a82b6ad1..928bc82b893514f6a3efa68c383f5b721c0279ef 100644
+--- a/src/inresearch/adapters/office_ooxml.py
++++ b/src/inresearch/materials/office_ooxml.py
+@@ -2,7 +2,7 @@
+ from __future__ import annotations
+ import re, zipfile
+ from pathlib import Path
+-from inresearch.adapters.office_grid import MAX_CHARS, COL_REF, col_index, is_date_format, number_text, grid_text, MERGE_MARK
++from inresearch.materials.office_grid import MAX_CHARS, COL_REF, col_index, is_date_format, number_text, grid_text, MERGE_MARK
+ 
+ 
+ XML_ENTITIES = (('&lt;', '<'), ('&gt;', '>'), ('&quot;', '"'),
+diff --git a/src/inresearch/adapters/office_ppt.py b/src/inresearch/materials/office_ppt.py
+similarity index 93%
+rename from src/inresearch/adapters/office_ppt.py
+rename to src/inresearch/materials/office_ppt.py
+index fa1b980640206245f8e453fe58ef628db33b31e9..8620921b0f754cf9827911c4bab7a85402e43140 100644
+--- a/src/inresearch/adapters/office_ppt.py
++++ b/src/inresearch/materials/office_ppt.py
+@@ -1,8 +1,8 @@
+ """Binary PowerPoint text atoms."""
+ from __future__ import annotations
+ import struct
+-from inresearch.adapters.office_container import OleFile
+-from inresearch.adapters.office_grid import MAX_CHARS, no_text_layer
++from inresearch.materials.office_container import OleFile
++from inresearch.materials.office_grid import MAX_CHARS, no_text_layer
+ 
+ 
+ TEXT_CHARS_ATOM = 0x0FA0      # UTF-16LE
+diff --git a/src/inresearch/adapters/office.py b/src/inresearch/materials/office_text.py
+similarity index 89%
+rename from src/inresearch/adapters/office.py
+rename to src/inresearch/materials/office_text.py
+index 1b57dabd70c77441cd979878c185559d630c3754..f89b3c36759bcf6dd3e2b98b5844fddf042a94f1 100644
+--- a/src/inresearch/adapters/office.py
++++ b/src/inresearch/materials/office_text.py
+@@ -21,11 +21,11 @@ Everything here is defensive: a malformed file returns whatever text was
+ recovered before the parse went wrong, never an exception.
+ """
+ from __future__ import annotations
+-from inresearch.adapters.office_container import OLE_MAGIC, OleFile
+-from inresearch.adapters.office_grid import MAX_CHARS, no_text_layer
+-from inresearch.adapters.office_biff import xls_text
+-from inresearch.adapters.office_ppt import ppt_text
+-from inresearch.adapters.office_ooxml import ooxml_text
++from inresearch.materials.office_container import OLE_MAGIC, OleFile
++from inresearch.materials.office_grid import MAX_CHARS, no_text_layer
++from inresearch.materials.office_biff import xls_text
++from inresearch.materials.office_ppt import ppt_text
++from inresearch.materials.office_ooxml import ooxml_text
+ 
+ from pathlib import Path
+ 
+diff --git a/src/inresearch/materials/triage.py b/src/inresearch/materials/triage.py
+index be791c8e1d51c675293d83260cc3fdecd2a84d4d..723be4e064c1095982e5f1412bea2cb02dc63699 100644
+--- a/src/inresearch/materials/triage.py
++++ b/src/inresearch/materials/triage.py
+@@ -24,7 +24,7 @@ from inresearch.materials import paths as m4_paths
+ from inresearch.materials import records as m4_records
+ from inresearch.storage.moves import replay
+ from inresearch.storage.jsonl import read_rows as read_rows
+-from inresearch.adapters import office as m4_office_text
++from inresearch.materials import office_text as m4_office_text
+ 
+ SOURCE = m4_paths.source()
+ LIBRARY = m4_paths.library()
+diff --git a/src/inresearch/workflow/batch_reporting.py b/src/inresearch/workflow/batch_reporting.py
+new file mode 100644
+index 0000000000000000000000000000000000000000..c746662e4737e994c41b56a587d53408155cbb4d
+--- /dev/null
++++ b/src/inresearch/workflow/batch_reporting.py
+@@ -0,0 +1,97 @@
++"""Read-only reporting for terminal material batches.
++
++This module deliberately owns no batch files and performs no ledger writes.
++"""
++from __future__ import annotations
++
++import calendar
++import collections
++import json
++import re
++import time as clock
++from pathlib import Path
++
++IDLE_GAP_SECONDS = 300.0
++SIM_THRESHOLD = 0.45
++GRAM = 3
++COMMON_GRAM_SHARE = 0.10
++COMMON_GRAM_FLOOR = 200
++DATE_PREFIX = re.compile(r'^\s*(?:20\d{6}|20\d{2}[-_.]?\d{2}[-_.]?\d{2})[-_\s]*')
++PAGE_TAIL = re.compile(r'[\(（]\s*\d+\s*页\s*[\)）]|[\(（]\s*(?:重复版|副本|copy|\d+)\s*[\)）]', re.I)
++PUNCT = re.compile(r'[\s·・:：,，。.、\-_()（）\[\]【】/\\|"“”\'‘’&]+')
++
++
++def working_rate(stamps, idle_gap=IDLE_GAP_SECONDS):
++    stamps = sorted(s for s in stamps if s is not None)
++    if len(stamps) < 2:
++        return None
++    active = 0.0
++    counted = 0
++    for before, after in zip(stamps, stamps[1:]):
++        gap = after - before
++        if 0 <= gap <= idle_gap:
++            active += gap
++            counted += 1
++    return counted / (active / 60) if active else None
++
++
++def digest_stamps(paths):
++    out = []
++    for path in paths:
++        if not path.exists():
++            continue
++        for line in path.read_text(encoding='utf-8').splitlines():
++            try:
++                at = json.loads(line).get('at')
++                if at:
++                    out.append(calendar.timegm(clock.strptime(at, '%Y-%m-%dT%H:%M:%SZ')))
++            except ValueError:
++                continue
++    return out
++
++
++def name_key(rel):
++    stem = Path(str(rel or '')).stem
++    return PUNCT.sub('', PAGE_TAIL.sub('', DATE_PREFIX.sub('', stem))).lower()
++
++
++def trigrams(text):
++    return {text[i:i + GRAM] for i in range(len(text) - GRAM + 1)} if len(text) > GRAM else ({text} if text else set())
++
++
++def similarity(left, right):
++    return len(left & right) / len(left | right) if left and right else 0.0
++
++
++def version_groups(rows, min_score=0, threshold=SIM_THRESHOLD):
++    """Group likely reissues without modifying their source records."""
++    items = [row for row in rows if (row.get('score') or 0) >= min_score]
++    grams = [trigrams(name_key(row.get('rel'))) for row in items]
++    index = collections.defaultdict(list)
++    for position, terms in enumerate(grams):
++        for term in terms:
++            index[term].append(position)
++    cap = max(COMMON_GRAM_FLOOR, int(len(items) * COMMON_GRAM_SHARE))
++    index = {term: members for term, members in index.items() if len(members) <= cap}
++    parent = list(range(len(items)))
++    def find(i):
++        while parent[i] != i:
++            parent[i] = parent[parent[i]]; i = parent[i]
++        return i
++    def union(i, j):
++        left, right = find(i), find(j)
++        if left != right:
++            parent[right] = left
++    for position, terms in enumerate(grams):
++        shared = collections.Counter(other for term in terms for other in index.get(term, ()) if other > position)
++        for other, count in shared.items():
++            if count >= max(1, int(len(terms) * threshold * .5)) and similarity(terms, grams[other]) >= threshold:
++                union(position, other)
++    groups = collections.defaultdict(list)
++    for position in range(len(items)):
++        groups[find(position)].append(position)
++    def rank(position):
++        row = items[position]
++        return (str(row.get('rel', '')).startswith('要删/'), -((row.get('meta') or {}).get('pages') or 0), -(row.get('size') or 0), row.get('rel') or '')
++    return sorted(({'keep': items[sorted(members, key=rank)[0]], 'extra': [items[m] for m in sorted(members, key=rank)[1:]]}
++                   for members in groups.values() if len(members) > 1), key=lambda group: -len(group['extra']))
+diff --git a/src/inresearch/workflow/progress.py b/src/inresearch/workflow/progress.py
+index d8047eecd42f9d89457e1681f1be85758d53cf26..25af5ee9809d6f4ca7006b6fe3ea90bad991867a 100644
+--- a/src/inresearch/workflow/progress.py
++++ b/src/inresearch/workflow/progress.py
+@@ -20,7 +20,7 @@ import argparse, collections, json, sys, time
+ from pathlib import Path
+ 
+ from inresearch.materials import triage as L1
+-from inresearch.workflow import terminal_batch as PK
++from inresearch.workflow import batch_reporting
+ from inresearch.materials import paths as m4_paths
+ from inresearch.materials import records as m4_records
+ from inresearch.storage.moves import replay
+@@ -73,7 +73,7 @@ def collect():
+                 stamps.append(time.mktime(time.strptime(at, '%Y-%m-%dT%H:%M:%SZ')))
+             except ValueError:
+                 pass
+-    rate = PK.working_rate(stamps)
++    rate = batch_reporting.working_rate(stamps)
+     hours = (remaining / rate / 60) if rate else None
+ 
+     scores = collections.Counter(r['score'] for r in judged if r.get('score') is not None)
+diff --git a/src/inresearch/workflow/terminal_batch.py b/src/inresearch/workflow/terminal_batch.py
+index 894e7482bf74e2c4484fec09780ace6fda3a7192..c817604c055e7d6461d7361dcb80b61b82b1c8da 100644
+--- a/src/inresearch/workflow/terminal_batch.py
++++ b/src/inresearch/workflow/terminal_batch.py
+@@ -17,7 +17,7 @@ from concurrent.futures import ThreadPoolExecutor
+ from pathlib import Path
+ 
+ from inresearch.materials import triage as L1
+-from inresearch.adapters import office as m4_office_text
++from inresearch.materials import office_text as m4_office_text
+ 
+ BATCH_DIR = L1.DATA / 'batches'
+ PREVIEW_CHARS = 400
+diff --git a/tests/unit/test_deep_read.py b/tests/unit/test_deep_read.py
+index 02f0d97c6aafc01993a43b75761fe82130a1928a..767ee04fc76c69c165d7b5b7eda5004750db2399 100644
+--- a/tests/unit/test_deep_read.py
++++ b/tests/unit/test_deep_read.py
+@@ -15,7 +15,7 @@ from inresearch.materials import reading_policy as POLICY, text_similarity as SI
+ from inresearch.delivery import reading_packet as PACKET
+ from inresearch.storage import jsonl as JSONL
+ from inresearch.materials.records import result_revision
+-import inresearch.adapters.office_grid as office_grid
++import inresearch.materials.office_grid as office_grid
+ from deep_read_fixtures import (make_app, METRICS, SHA, fact, other, problems, problems_for,
+     L1_ROW, PROVENANCE_DEBT, DANGLING_SOURCE_IDS, KNOWN_DIM_NAMES, FILLED_THIS_BATCH)
+ L2 = make_app()
+diff --git a/tests/unit/test_fact_contract.py b/tests/unit/test_fact_contract.py
+index e1e0cb89d93210e6269147e9dd0cbfaea4edcfcb..93b77cbd1a7f5cd57d211900e33498d2fd5e8e8a 100644
+--- a/tests/unit/test_fact_contract.py
++++ b/tests/unit/test_fact_contract.py
+@@ -17,7 +17,7 @@ from inresearch.materials import reading_policy as POLICY, text_similarity as SI
+ from inresearch.delivery import reading_packet as PACKET
+ from inresearch.storage import jsonl as JSONL
+ from inresearch.materials.records import result_revision
+-import inresearch.adapters.office_grid as office_grid
++import inresearch.materials.office_grid as office_grid
+ from deep_read_fixtures import (make_app, METRICS, SHA, fact, other, problems, problems_for,
+     L1_ROW, PROVENANCE_DEBT, DANGLING_SOURCE_IDS, KNOWN_DIM_NAMES, FILLED_THIS_BATCH)
+ L2 = make_app()
+diff --git a/tests/unit/test_m4_office_text.py b/tests/unit/test_m4_office_text.py
+index b4ac4a4270e89de20a8bedea4ec0dae0c3652dda..5df76e67347e9dd40c31b282843415a3484e11a6 100644
+--- a/tests/unit/test_m4_office_text.py
++++ b/tests/unit/test_m4_office_text.py
+@@ -13,12 +13,12 @@ import unittest
+ import zipfile
+ from pathlib import Path
+ 
+-from inresearch.adapters import office as O
+-import inresearch.adapters.office_biff as office_biff
+-import inresearch.adapters.office_container as office_container
+-import inresearch.adapters.office_grid as office_grid
+-import inresearch.adapters.office_ppt as office_ppt
+-import inresearch.adapters.office_ooxml as office_ooxml
++from inresearch.materials import office_text as O
++import inresearch.materials.office_biff as office_biff
++import inresearch.materials.office_container as office_container
++import inresearch.materials.office_grid as office_grid
++import inresearch.materials.office_ppt as office_ppt
++import inresearch.materials.office_ooxml as office_ooxml
+ 
+ FREE = 0xFFFFFFFF
+ ENDOFCHAIN = 0xFFFFFFFE
+diff --git a/tests/unit/test_m4_redo_reads.py b/tests/unit/test_m4_redo_reads.py
+index 14afba1edd41db1e3df9caae9db78840e568b63b..e5a1f3b69d27bdbb7d59e90ced4a9030f6a61936 100644
+--- a/tests/unit/test_m4_redo_reads.py
++++ b/tests/unit/test_m4_redo_reads.py
+@@ -21,8 +21,8 @@ import types
+ import unittest
+ import zipfile
+ 
+-from inresearch.adapters import office as OFFICE
+-import inresearch.adapters.office_container as office_container
++from inresearch.materials import office_text as OFFICE
++import inresearch.materials.office_container as office_container
+ from inresearch.materials import triage as L1
+ from inresearch.workflow import terminal_batch as PK
+ 
+diff --git a/tests/unit/test_text_similarity.py b/tests/unit/test_text_similarity.py
+index 27d12fd03f686931f035d6f90d19254276a75b35..c208df1a79ada9050b0eb6674381ab91e590bc9c 100644
+--- a/tests/unit/test_text_similarity.py
++++ b/tests/unit/test_text_similarity.py
+@@ -14,7 +14,7 @@ from inresearch.materials import reading_policy as POLICY, text_similarity as SI
+ from inresearch.delivery import reading_packet as PACKET
+ from inresearch.storage import jsonl as JSONL
+ from inresearch.materials.records import result_revision
+-import inresearch.adapters.office_grid as office_grid
++import inresearch.materials.office_grid as office_grid
+ from deep_read_fixtures import (make_app, METRICS, SHA, fact, other, problems, problems_for,
+     L1_ROW, PROVENANCE_DEBT, DANGLING_SOURCE_IDS, KNOWN_DIM_NAMES, FILLED_THIS_BATCH)
+ L2 = make_app()
+@@ -192,4 +192,3 @@ class NearTwinTests(unittest.TestCase):
+         self.assertEqual(SIM.sketch_overlap([], []), 0.0)
+         self.assertEqual(SIM.sketch_overlap(['aa'], []), 0.0)
+ 
+-
