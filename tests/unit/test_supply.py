@@ -15,6 +15,28 @@ from inresearch.interfaces import http, auth
 
 
 class SupplyTests(unittest.TestCase):
+    def test_reading_deliveries_keep_received_complete_scope_and_hide_paths(self):
+        reader={'documents':[{'doc_id':'a','content_sha256':'a','title':'done','read_status':'complete','stored_path':'private/original.pdf','coverage':{'gap_pages':[2]}},
+                             {'doc_id':'b','content_sha256':'b','read_status':'running'},
+                             {'doc_id':'old','content_sha256':'old','read_status':'complete'}],
+                'statements':[{'document_id':'a','text':'candidate finding'},{'document_id':'old','text':'out of scope'}],
+                'evidence':[{'document_id':'a','quote':'literal source','page_index':0,'private_path':'secret'}]}
+        out=supply.reading_deliveries(reader,{'records':[{'sha256':'a'},{'sha256':'b'}]})
+        self.assertEqual(len(out),1)
+        self.assertEqual(out[0]['claims'],['candidate finding'])
+        self.assertEqual(out[0]['quotes'],[{'quote':'literal source','page_index':0}])
+        self.assertEqual(out[0]['coverage']['gap_pages'],[2])
+        self.assertEqual(out[0]['acceptance'],'candidate_only')
+        self.assertNotIn('private',json.dumps(out))
+
+    def test_snapshot_reads_deliveries_from_received_knowledge_not_status(self):
+        runtime={'reader':{'acquisition':{'material_matches':{'records':[{'sha256':'a'}]}}},
+                 'knowledge':{'documents':[{'id':'a','content_sha256':'a','title':'delivered','read_status':'complete'}],
+                              'statements':[{'document_id':'a','text':'actual delivered finding'}]}}
+        with patch('inresearch.knowledge.registry._snapshot_inputs',return_value=[runtime]):
+            out=supply.snapshot(self.root)
+        self.assertEqual(out['reading_deliveries'][0]['claims'],['actual delivered finding'])
+
     def setUp(self):
         self.root = project_root()
         self.tmp = tempfile.TemporaryDirectory()
