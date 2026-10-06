@@ -113,6 +113,20 @@
       "capabilities": [
         "vision_json"
       ]
+    },
+    "codex_ocr_rescue": {
+      "backend": "codex_cli",
+      "url": "",
+      "model": "gpt-6.1-sol",
+      "command": "codex",
+      "reasoning_effort": "high",
+      "context": 32768,
+      "max_output_tokens": 8192,
+      "timeout": 600,
+      "max_parallel": 2,
+      "capabilities": [
+        "vision_json"
+      ]
     }
   }
 }
