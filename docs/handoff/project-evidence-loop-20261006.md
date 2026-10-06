@@ -11,3 +11,5 @@ Spark原件引用核对：acquisition/catalog.sqlite 24204记录、Reader36045�
 运行数据与提案：M5 ~/.local/share/inresearch.ai/project-evidence-loop/2026-10-06/；Spark ~/.local/share/inresearch.ai/project-review-runtime/20261006（独立组件，不更换正在阅读的85f5eb9f模型进程），material-reviews/project-review核验队列/包/回执。读模型与发布器继续工作。新接收后自动prepare，旧队列需要显式prepare；模型判断/正式apply/源码发布不能仅凭定时器或任务生成宣称执行。
 
 源码与本地通过不等于生产交付；需合并后AWS健康回执、项目页/正式汇总/新闻落点及Spark文件SHA验证。具体验收JSON留私有目录，不把原件/数据库/令牌加入Git。
+
+用户追加主体身份/区域去重问题：现有项目 country/region/location 与 developer/tenant 和公司 profile 分别投影。项目页显式展示公司业务、国家/大区域/地点；使用方空值标待核验。公司经营托管不等于已证明该园区资产所有权、运营协议或承租人。省州/市/地址尚未全部结构化；不得宣称已完成逐址去重，仍按01口径的site_id/分期/duplicate_of具名核验。此为既有字段呈现补充，不增加骨架对象或自动判定租约。
