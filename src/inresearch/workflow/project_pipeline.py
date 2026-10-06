@@ -105,9 +105,13 @@ def projection(home):
                     reported_stage=latest.get('reported_stage') or 'reported', reported_capacity=latest.get('reported_capacity'),
                     match_method='reviewed' if row.get('reviews') else 'name_and_actor' if item['site_id'] else None)
         records.append(item)
-    records.sort(key=lambda r: (r['events'][-1].get('published_at') or 0, r.get('last_seen') or ''), reverse=True)
+    from inresearch.workflow.daily_dispatch import pipeline_records
+    daily = pipeline_records(Path(home).parent)
+    records.extend(daily)
+    records.sort(key=lambda r: (r.get('report_date') or datetime.fromtimestamp((r['events'][-1].get('published_at') or 0)/1000, timezone.utc).date().isoformat(), r.get('last_seen') or ''), reverse=True)
     events = [e for r in records for e in r['events']]
     progress = {'leads': len(records), 'events': len(events),
+                'daily_news': len(daily),
                 'linked': sum(bool(r['site_id']) for r in records),
                 'identity_candidates': sum(any(e.get('site_candidates') for e in r['events']) and not r['site_id'] for r in records),
                 'capacity_observations': sum(len(e.get('capacity_observations') or []) for e in events),

@@ -28,6 +28,27 @@ const base=process.env.UI_BASE_URL;
   await page.locator('#daily-state').selectOption('awaiting_identity');
   assert.match(await page.locator('#daily-shown').innerText(),/显示/);
   await page.locator('#daily-state').selectOption('all');
+  await page.getByRole('heading',{name:'事件分流与交付',exact:true}).waitFor();
+  const original=await (await page.request.get(base+'/api/supply')).json();
+  const ready='daily-event-fixture-ready',missing='daily-event-fixture-missing';
+  const event=(id,title)=>({id,title,body:'日报正文只在登录匹配页显示',reported_stage:'unknown',place_quote:'芬兰',actors:[],country_mentions:[],site_candidates:[],capacity_observations:[],sources:[],document_refs:[],identity_review:'pending',capacity_review:'pending',workflow_stage:'awaiting_identity'});
+  await page.route('**/api/supply',route=>route.fulfill({json:{...original,
+   daily_events:{records:[event(missing,'需要补来源的园区'),event(ready,'已交付园区 <img src=x onerror=alert(1)>')],total:2},
+   daily_delivery:{news_total:1,task_counts:{source:1,identity:2},records:[
+    {event_id:ready,delivery_lane:'news',last_processed_at:'2026-10-06T08:00:00Z',tasks:[{owner:'Spark 发布器',next_action:'动态已交付，容量等待研究核验'}]},
+    {event_id:missing,delivery_lane:'source',tasks:[{owner:'inews / M5 补源',next_action:'查 sources.json'}]}]}}}));
+  await page.locator('#refresh').click();await page.locator('#delivery-lane').waitFor();
+  await page.locator('#delivery-lane').selectOption('news');
+  assert.match(await page.locator('#daily-shown').innerText(),/显示 1 \/ 1/);
+  assert.match(await page.locator('#daily-events').innerText(),/已交付园区/);
+  assert.equal(await page.locator('#daily-events img').count(),0,'external title remains plain text');
+  await page.locator('#daily-events details').first().evaluate(e=>e.open=true);
+  assert.match(await page.locator('#daily-events').innerText(),/Spark 发布器/);
+  assert.ok((await page.locator('#daily-events a[href*="view=pipeline"]').count())>0);
+  await page.locator('#delivery-lane').selectOption('source');
+  assert.match(await page.locator('#daily-events').innerText(),/需要补来源/);
+  assert.doesNotMatch(await page.locator('#daily-events').innerText(),/已交付园区/);
+  await page.unroute('**/api/supply');await page.locator('#refresh').click();
   await page.locator('#match-search').fill('transformer');
   assert.match(await page.locator('#match-demands').innerText(),/P\.transformer/);
   await page.locator('#daily-search').fill('Huntingwood');

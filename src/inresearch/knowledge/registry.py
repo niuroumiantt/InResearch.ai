@@ -676,9 +676,9 @@ def build_news(root=ROOT):
                 event['capacity_observations'] = [{k:c[k] for k in ('quoted_value','mw','basis','locator','quote','acceptance') if k in c}
                                                   for c in event.get('capacity_observations') or [] if isinstance(c,dict)]
             if events:
-                leads.append({k: row.get(k) for k in ('id', 'title', 'state', 'first_seen', 'last_seen', 'company_ids', 'site_id', 'review_note', 'reported_stage', 'reported_capacity', 'match_method')} | {'events': events})
+                leads.append({k: row.get(k) for k in ('id', 'title', 'state', 'first_seen', 'last_seen', 'company_ids', 'site_id', 'review_note', 'reported_stage', 'reported_capacity', 'match_method', 'origin', 'report_date')} | {'events': events})
     raw_progress = pipeline.get('progress', {}) if isinstance(pipeline, dict) else {}
-    progress = {k:raw_progress[k] for k in ('leads','events','linked','identity_candidates','capacity_observations')
+    progress = {k:raw_progress[k] for k in ('leads','events','linked','identity_candidates','capacity_observations','daily_news')
                 if type(raw_progress.get(k)) is int and raw_progress[k]>=0}
     progress['constraints'] = {k:v for k,v in (raw_progress.get('constraints') or {}).items()
                                if k in ('water','power','permits','land','finance') and type(v) is int and v>=0}
