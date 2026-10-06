@@ -8,7 +8,7 @@ const path=location.pathname, isProject=path==='/project.html', isMarket=path===
 const isHome=['/','/index.html'].includes(path);
 if(isHome){document.body.classList.add('industry-home');$('pipeline-summary').remove();$('trends-section').remove();}
 let params=new URLSearchParams(location.search), data=null, geo=null, news=null, request=null, view=[0,0,1000,490];
-let highlightedCompany='', selectedSite='', pinned=false;
+let highlightedCompany='', selectedSite='', pinned=false, newsFailed=false;
 const keys=['c','region','stage','relation','scope','role','site'];
 function url(page, changes={}) {const q=new URLSearchParams(params);for(const [k,v] of Object.entries(changes))v?q.set(k,v):q.delete(k);return page+(q.size?'?'+q:'');}
 function name(id){const c=data?.companies.find(c=>c.company_id===id);return c?.name_cn||c?.name||id;}
@@ -31,7 +31,8 @@ $('filters').addEventListener('submit',e=>e.preventDefault());
 $('filters').addEventListener('change',e=>select({[e.target.name]:e.target.value,site:''}));
 $('stage-filter').onchange=e=>select({stage:e.target.value});
 $('lead-state').onchange=renderPipeline;
-window.addEventListener('inresearch:news-data',e=>{news=e.detail;renderPipeline();renderMap();});
+window.addEventListener('inresearch:news-data',e=>{news=e.detail;newsFailed=false;renderPipeline();renderMap();});
+window.addEventListener('inresearch:news-state',e=>{newsFailed=e.detail.status==='failed';renderPipeline();});
 $('news-selection').onchange=e=>{document.querySelector('[data-datacenter-news]').dataset.newsSelection=e.target.value;window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:{...selection(),force:true}}));};
 function filters(){
  for(const key of ['region','c']){
@@ -153,7 +154,12 @@ function renderTrends(){
 }
 function renderPipeline(){
  if(!data||isHome)return;
- if(!news){$('pipeline-summary').innerHTML='<a href="/projects.html?view=pipeline">建设机会 · 等待新闻同步 →</a>';return;}
+ if(!news){
+  $('pipeline-summary').innerHTML='<a href="/projects.html?view=pipeline">建设机会 · 等待新闻同步 →</a>';
+  $('pipeline-rows').innerHTML=newsFailed?'<p class="empty">项目新闻暂时无法同步，已登记项目仍可查看。</p><button type="button" id="retry-pipeline-news">重试新闻同步</button>':'<p>正在读取项目线索…</p>';
+  const retry=$('retry-pipeline-news');if(retry)retry.onclick=()=>window.dispatchEvent(new CustomEvent('inresearch:industry-filter',{detail:{...selection(),force:true}}));
+  return;
+ }
  const stages={reported:'消息称',announced:'已官宣',construction:'报道已开工',operating:'报道已投运',reviewing:'重新评审',paused:'暂停',cancelled:'取消'};
  const labels={lead:'新闻线索',reviewing:'重新评审',paused:'暂停',cancelled:'取消',linked:'已关联项目'},filter=selection();
  let rows=news.pipeline?.records||[];

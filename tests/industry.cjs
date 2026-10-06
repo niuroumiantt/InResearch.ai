@@ -120,6 +120,17 @@ const {mkdirSync}=require('node:fs');
   await page.route('**/api/news',r=>r.fulfill({status:503,body:'unavailable'}));
   await page.goto(base+'/');await page.getByText('新闻暂时无法同步，请稍后重试。',{exact:true}).waitFor();
   assert.ok((await page.locator('[data-news-count]').innerText()).includes('—'));
+  await page.goto(base+'/project.html?site=fi-salo-atnorth-fin05');
+  await page.getByRole('button',{name:'重试新闻同步',exact:true}).waitFor();
+  assert.ok((await page.locator('#detail').innerText()).includes('160 MW'));
+  await page.unroute('**/api/news');
+  await page.route('**/api/news',r=>r.fulfill({json:{pipeline:{available:true,records:[{
+    id:'recovered-fin05',title:'FIN05 restored news',state:'linked',site_id:'fi-salo-atnorth-fin05',company_ids:['atnorth'],events:[]
+  }]}}}));
+  await page.getByRole('button',{name:'重试新闻同步',exact:true}).click();
+  await page.getByText('FIN05 restored news',{exact:false}).waitFor();
+  assert.equal(await page.getByRole('button',{name:'重试新闻同步',exact:true}).count(),0);
+  assert.ok((await page.locator('#detail').innerText()).includes('160 MW'));
   await page.unroute('**/api/news'); // screenshots below use real local endpoints only
   if(process.env.UI_QA_DIR)mkdirSync(process.env.UI_QA_DIR,{recursive:true});
   const measurements=[];

@@ -47,13 +47,15 @@ if (host) {
     showCount();
     const request = new AbortController(); currentRequest = request;
     const timeout = setTimeout(()=>request.abort(), 20000);
+    window.dispatchEvent(new CustomEvent('inresearch:news-state',{detail:{status:'loading'}}));
     try {
       const r = await fetch('/api/news', {cache:'no-store', signal:request.signal});
       if (!r.ok) throw new Error('HTTP '+r.status);
       const data = await r.json();
-      await whoami;   // 新闻请求先发出,渲染前再等登录态(要不要画「有用 / 没用」)
       if (request !== currentRequest) return;
       window.dispatchEvent(new CustomEvent('inresearch:news-data',{detail:data}));
+      await whoami;   // 新闻请求先发出,渲染前再等登录态(要不要画「有用 / 没用」)
+      if (request !== currentRequest) return;
       const feed = data.feed;
       if (!feed || ['awaiting_sync','not_initialized'].includes(feed.status)) {
         meta.hidden=false;
@@ -99,6 +101,7 @@ if (host) {
       showCount(list.querySelectorAll('article').length);
     } catch {
       if (request !== currentRequest) return;
+      window.dispatchEvent(new CustomEvent('inresearch:news-state',{detail:{status:'failed'}}));
       meta.hidden=false;meta.textContent='新闻暂时无法同步，请稍后重试。';
     } finally {clearTimeout(timeout);}
   }
