@@ -47,7 +47,7 @@ CONTEXT = models.load_profile(path=models.DEFAULT_CONFIG).context
 class Reader:
     def __init__(self, data_root=None, state_root=None, repo_root=None, model=None,
                  stable_seconds=60, chunk_chars=6000, clock=time.time, temperature=None,
-                 full_read_min_priority=1, claim_min_priority=0):
+                 full_read_min_priority=1, claim_min_priority=0, document_scope=None):
         self.data = Path(data_root or Path.home() / ".local/share/inresearch.ai").expanduser().resolve()
         self.state = Path(state_root or Path.home() / ".local/state/inresearch.ai").expanduser().resolve()
         self.repo = Path(repo_root or project_root()).expanduser().resolve()
@@ -70,6 +70,9 @@ class Reader:
         if stable_seconds < 0 or not 1 <= chunk_chars <= 6000:
             raise ValueError("invalid scan stability or chunk size")
         self.catalog = None
+        from inresearch.workflow.reader_scope import DocumentScope
+        scope_path = document_scope or os.environ.get('READER_DOCUMENT_SCOPE')
+        self.document_scope = DocumentScope(scope_path,self.data) if scope_path else None
         self.stages = ReadingStages(self.data, self.model, self.ocr_max_pages, self.large_format_points)
 
     @property
@@ -193,6 +196,9 @@ class Reader:
             if digest_file(source) != sha or signature(source) != before:
                 raise IntegrityError()
             doc_id = "doc-" + sha
+            if self.document_scope and doc_id not in self.document_scope.ids():
+                self.conn.execute('INSERT OR REPLACE INTO meta VALUES (?,?)',('scope_skip:'+rel,encoded({'signature':sig,'sha256':sha})))
+                return None
             existing = self.conn.execute("SELECT * FROM documents WHERE sha256=?", (sha,)).fetchone()
             orig_rel = existing["original_rel"] if existing else "originals/%s/%s/%s" % (sha[:2], sha, clean_name(source.name, 180))
             target = safe_path(self.data, orig_rel)
@@ -239,6 +245,7 @@ class Reader:
     def scan(self, max_register=32):
         raw = safe_path(self.data, "raw-materials")
         counts = {"seen": 0, "registered": 0, "duplicates": 0, "waiting": 0, "errors": 0}
+        allowed = set(self.document_scope.ids()) if self.document_scope else None
         for base, dirs, files in os.walk(str(raw), followlinks=False):
             dirs[:] = [d for d in sorted(dirs) if not is_partial(d) and not (Path(base) / d).is_symlink()]
             for name in sorted(files):
@@ -250,6 +257,12 @@ class Reader:
                 try:
                     safe_path(raw, rel)
                     sig = signature(p)
+                    if allowed is not None:
+                        skip = self.conn.execute('SELECT value FROM meta WHERE key=?',('scope_skip:'+rel,)).fetchone()
+                        skip = json.loads(skip[0]) if skip else {}
+                        if skip.get('signature')==sig and 'doc-'+skip.get('sha256','') not in allowed:
+                            counts['out_of_scope'] = counts.get('out_of_scope',0)+1
+                            continue
                     seen = self.conn.execute("SELECT * FROM observations WHERE source_key=?", (rel,)).fetchone()
                     if not seen or seen["signature"] != sig:
                         self.conn.execute("INSERT INTO observations(source_key,signature,stable_since) VALUES(?,?,?) ON CONFLICT(source_key) DO UPDATE SET signature=excluded.signature,stable_since=excluded.stable_since,registered_signature=NULL", (rel, sig, self.clock()))
@@ -266,6 +279,9 @@ class Reader:
                         counts["waiting"] += 1
                         continue
                     added = self._register(p, rel, sig)
+                    if added is None:
+                        counts['out_of_scope'] = counts.get('out_of_scope',0)+1
+                        continue
                     counts["registered" if added else "duplicates"] += 1
                 except (OSError, ReaderError):
                     counts["errors"] += 1
@@ -359,7 +375,8 @@ class Reader:
         return {"doc_id": doc_id, "view_rolled_back": True, "source_preserved": safe_path(self.data, doc["original_rel"]).exists()}
 
     def _queue_receipts(self, doc):
-        doc = dict(self.conn.execute('SELECT * FROM execution_readings WHERE doc_id=? AND base_revision_id IS NULL',(doc['doc_id'],)).fetchone())
+        root = self.conn.execute('SELECT value FROM meta WHERE key=?',('execution_root:'+doc['doc_id'],)).fetchone()
+        doc = self.doc(doc['doc_id'],root[0]) if root else dict(self.conn.execute('SELECT * FROM execution_readings WHERE doc_id=? AND base_revision_id IS NULL',(doc['doc_id'],)).fetchone())
         for row in self.conn.execute("SELECT id FROM sources WHERE doc_id=?", (doc["doc_id"],)).fetchall():
             self._enqueue(doc, "receipt", row["id"])
 
@@ -448,12 +465,18 @@ class Reader:
         try: fast = fast_reading_shas(self.data)
         except (OSError, ValueError, KeyError, TypeError): fast = []
         with self.transaction():
+            wait = self.conn.execute("SELECT value FROM meta WHERE key='model_wait_until'").fetchone()
+            if wait and float(wait[0]) > self.clock():
+                return None
             n = int(self.conn.execute("SELECT value FROM meta WHERE key='dispatch_count'").fetchone()[0])
             # Every fourth dispatch serves the oldest eligible job, independently of new priorities.
             order = "j.created,j.doc_id,j.chunk,j.job_id" if n % 4 == 0 else "d.priority DESC,j.created,j.doc_id,j.chunk,j.job_id"
             # The oldest-first turn also respects the floor: held documents wait, they do not starve the rest.
-            base = "SELECT j.* FROM jobs j JOIN reading_runs d ON d.revision_id=j.revision_id JOIN documents original ON original.doc_id=d.doc_id WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed') AND d.priority>=?"
+            base = "SELECT j.* FROM jobs j JOIN reading_runs d ON d.revision_id=j.revision_id JOIN documents original ON original.doc_id=d.doc_id WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed','superseded','rejected') AND d.priority>=?"
             params = (self.clock(), self.claim_min_priority)
+            if self.document_scope:
+                base += " AND original.doc_id IN (SELECT value FROM json_each(?))"
+                params += (encoded(self.document_scope.ids()),)
             row = None
             lane = 'oldest' if n % 4 == 0 else 'priority'
             if n % 4 == 1:
@@ -505,7 +528,7 @@ class Reader:
                 seal = result['_seal']
                 self.conn.execute("UPDATE reading_runs SET report_rel=?,report_sha256=?,manifest_sha256=? WHERE revision_id=?",
                                   (seal['report_rel'],seal['report_sha256'],seal['manifest_sha256'],doc['revision_id']))
-                if doc['base_revision_id'] is None:
+                if doc['base_revision_id'] is None or (doc['current_revision_id'] is None and json.loads(doc['request_json']).get('kind')=='restart_unfinished'):
                     self.conn.execute('UPDATE documents SET current_revision_id=? WHERE doc_id=? AND current_revision_id IS NULL',(doc['revision_id'],doc['doc_id']))
                     self.conn.execute("UPDATE reading_runs SET activated=?,review_json=? WHERE revision_id=?",(self.clock(),encoded({'kind':'initial_candidate_not_C3'}),doc['revision_id']))
                     self._enqueue(doc, "organize")
@@ -545,12 +568,17 @@ class Reader:
             error = exc
         code = error.code if isinstance(error, ReaderError) else type(error).__name__
         if isinstance(error, Deferred):
+            remote_wait = code in {'model_quota_wait','model_relay_unavailable'}
+            delay = (900 if code=='model_quota_wait' else 60) if remote_wait else self.ocr_defer_seconds
             with self.transaction():
                 cur = self.conn.execute("UPDATE jobs SET state='pending',attempts=attempts-1,available=?,error_code=? WHERE job_id=? AND state='running' AND attempts=?",
-                                        (self.clock() + self.ocr_defer_seconds, code, job["job_id"], job["attempts"]))
+                                        (self.clock() + delay, code, job["job_id"], job["attempts"]))
                 if cur.rowcount != 1:
                     raise IntegrityError()
-                self.conn.execute("UPDATE reading_runs SET state='queued',priority=?,error_code=?,updated=? WHERE revision_id=?", (OCR_DEFERRED_PRIORITY, code, self.clock(), doc["revision_id"]))
+                self.conn.execute("UPDATE reading_runs SET state='queued',priority=?,error_code=?,updated=? WHERE revision_id=?", (doc['priority'] if remote_wait else OCR_DEFERRED_PRIORITY, code, self.clock(), doc["revision_id"]))
+                if remote_wait:
+                    self.conn.execute("INSERT OR REPLACE INTO meta VALUES ('model_wait_until',?)",(str(self.clock()+delay),))
+                    self.conn.execute("INSERT OR REPLACE INTO meta VALUES ('model_wait_reason',?)",(code,))
             self.write_status()
             return "deferred"
         blocked = isinstance(error, (Blocked, UnsafePath, IntegrityError))
@@ -677,7 +705,22 @@ class Reader:
         active = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE state='running'").fetchone()[0]
         last_scan = self.conn.execute("SELECT value FROM meta WHERE key='last_scan'").fetchone()
         scan = json.loads(last_scan[0]) if last_scan else {}
+        scope = None
+        if self.document_scope:
+            ids = self.document_scope.ids()
+            rows = [dict(r) for r in self.conn.execute('SELECT * FROM current_readings WHERE doc_id IN(SELECT value FROM json_each(?))',(encoded(ids),))]
+            scope = {'documents':len(ids),'registered':len(rows),
+                     'counts':{s:sum(r['state']==s for r in rows) for s in sorted({r['state'] for r in rows})},
+                     'types':{s:sum(r['suffix']==s for r in rows) for s in sorted({r['suffix'] for r in rows})},
+                     'chunks_total':sum(r['chunks_total'] for r in rows),'chunks_read':sum(r['chunks_read'] for r in rows),
+                     'awaiting_extraction':sum(r['chunks_total']==0 for r in rows),
+                     'executor':self.model.identity,'acceptance':'candidate_only'}
+            wait = self.conn.execute("SELECT value FROM meta WHERE key='model_wait_until'").fetchone()
+            reason = self.conn.execute("SELECT value FROM meta WHERE key='model_wait_reason'").fetchone()
+            if wait and float(wait[0])>self.clock():
+                scope['waiting']={'reason':reason[0] if reason else 'model_wait','until':datetime.fromtimestamp(float(wait[0]),timezone.utc).isoformat()}
         return {"schema_version": 1, "generated": now_iso(), "status": "degraded" if failures or scan.get("errors") else ("running" if active else "idle"),
+                "execution_scope":scope,
                 "counts": counts, "documents_total": sum(counts.values()),
                 "reading_revisions": {r[0]:r[1] for r in self.conn.execute("SELECT state,COUNT(*) FROM reading_runs WHERE base_revision_id IS NOT NULL GROUP BY state")},
                 "sources_total": self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0],

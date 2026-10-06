@@ -1,6 +1,6 @@
 # 模型执行与客户端边界
 
-> CURRENT · 2026-10-06。用户采用：暂用 Claude CLI 推理，Spark 恢复后通过配置接入，型号可替换；终端可接入同一项目；一份材料默认一套当前有效阅读结果。
+> CURRENT · 2026-09-13。用户采用：暂用 Claude CLI 推理，Spark 恢复后通过配置接入，型号可替换；终端可接入同一项目；一份材料默认一套当前有效阅读结果。
 
 ## 1. 推理与操作分别接入
 
@@ -12,11 +12,11 @@ Claude Code、Codex CLI 等是操作客户端，分别记录 `executor` 与实�
 
 版本化默认配置唯一入口为 `deploy/models.json`；本机可用 `INRESEARCH_MODEL_CONFIG` 指向同结构 JSON。配置通过角色引用模型档案；`research_default` 指向 `claude_sonnet`（Claude Sonnet 5），`core_review` 指向 `claude_opus`（Claude Opus 5.5），均使用本机已登录的 Claude CLI；`spark`（qwen3.8:27b）与 `spark_ocr`（qwen3-vl:8b）档案供 Spark 本机配置引用。分工按下文“按环节选模型”。型号、后端、地址、请求路由、上下文、输出预算、超时和并发上限均属于配置。密钥仅记录环境变量名称，值不入库。
 
-`src/inresearch/adapters/models.py` 是公共推理接口。任务提示词、评分与证据语义校验由各业务调用者拥有。当前支持 Claude CLI、Codex CLI、Ollama 与兼容 chat-completions 的 gateway；Claude/HTTP 响应核对实际模型并覆盖模型自填的来源字段。Codex CLI 的身份边界见下文。请求路由名与实际模型名分开。接口失败不静默切换供应商或模型。
+`src/inresearch/adapters/models.py` 是公共推理接口。任务提示词、评分与证据语义校验由各业务调用者拥有。当前支持 Claude CLI、Ollama 与兼容 chat-completions 的 gateway；每次响应核对实际模型并覆盖模型自填的来源字段。请求路由名与实际模型名分开。接口失败不静默切换供应商或模型。
 
 Claude CLI 在临时目录中以非交互模式运行，材料从标准输入传入；禁用工具、MCP、浏览器、项目指令与会话持久化。Reader 按 triage/read/synthesize 阶段传入 JSON Schema，由 CLI 以结构化结果返回；只有结果确实携带 `structured_output` 时，CLI 的 `stop_reason=tool_use` 才作为结构化输出完成接受。其余停止原因仍失败，模型身份照常核验。其他支持的后端使用各自 JSON 模式，由项目再次解析与校验。阅读引文还要逐字绑定原文；引用校验失败最多触发一次带明确反馈的重新生成；第二次仍不符的主张被剔除并留档，其余已核对的主张照常保存，不降低证据门槛（2026-09-27 起：此前整块阻断；b6b6、dd2d 首页侧栏文字抽取时混入正文，模型引用跨侧栏的句子，一条引文不符使整份文档失败）。认证与代理由 CLI 及运行环境负责，项目不复制 OAuth 凭据、不写死本机代理。`command` 可配置可执行文件的绝对路径；模型身份来自 CLI 的实际回答事件，并记录 `executor=claude-code`。用量统计可能包含 CLI 的辅助模型，不冒充阅读模型。这一推理适配器与终端操作客户端共享业务契约，但职责不同。
 
-`text_json` 和 `vision_json` 是适配器接受的能力声明，须经目标模型的小样本验收后配置；声明本身不证明质量。OCR 必须显式配置 `ocr` 角色，视觉适配支持 Ollama、Claude CLI 与 Codex CLI。没有视觉能力的文本模型不能冒充读过图片。Claude CLI 看图时，页面图片以一条 stream-json 用户消息（图片块加提示文字）经标准输入传入，工具仍全部禁用，图片哈希记入 `_model.image_sha256`。
+`text_json` 和 `vision_json` 是适配器接受的能力声明，须经目标模型的小样本验收后配置；声明本身不证明质量。OCR 必须显式配置 `ocr` 角色，视觉适配支持 Ollama 与 Claude CLI。没有视觉能力的文本模型不能冒充读过图片。Claude CLI 看图时，页面图片以一条 stream-json 用户消息（图片块加提示文字）经标准输入传入，工具仍全部禁用，图片哈希记入 `_model.image_sha256`。
 
 reader 各环节 schema 中 `object_ids`、`question_ids` 不是必填字段（2026-09-27 起）：它们本可为空数组，reader 把缺失当空数组；设为必填时，Sonnet 偶尔省略空的 `object_ids`，Claude CLI 按 `--json-schema` 内部重试 5 次后以 `is_error` 退出，整份文档被阻塞。正文字段（摘要、claims、引文等）仍为必填。M4 另两次 CLI 失败是 Sonnet 把 read 摘要写成整份文档概述（3678 字，上限 1200）并漏掉 `claims`；read 提示因此写明摘要只写本块、1200 字以内（约 3–6 句），且顶层必须返回 `chunk_sha256`、`summary`、`claims`（无内容时为 []）。
 
@@ -34,17 +34,7 @@ Reader JSON 快照可用重复的 `--doc-id` 显式限定交付范围。限定�
 
 一个进程中的共享客户端冻结配置，重启后读取修改。`max_parallel` 限制该客户端同时请求数；它不等于跨进程或跨项目的 Spark 全局调度。reader 旧 `READER_*` 环境和 CLI 参数在入口转换，优先级为 CLI > 旧环境 > 选定配置；新部署优先使用统一 JSON，迁移时核对旧覆盖项。
 
-### Codex CLI 临时批次（2026-10-06 用户采用）
-
-用户要求暂时通过 Codex CLI 打通本批全部材料与后续日报。Spark 继续独占原件、SQLite 队列、候选数据库与网站发布；M5 用已有 Codex CLI 登录提供仅绑定 loopback 的鉴权推理服务，SSH 反向转发到 Spark loopback。认证值只在机器私有配置中，既有发布令牌仍只在 Spark；不复制 OAuth 或数据库至 M5。
-
-角色档案 `codex_reader` 请求 gpt-6.1-sol / medium（两个推理槽），`codex_review` 请求同模型 / high；`codex_ocr` 显式配置视觉能力。版本化默认 Claude 角色不变；本批机器 JSON 选择 Codex 角色。恢复 Spark 或更换模型均替换机器角色配置；unfinished 的冻结任务按 04 新建执行版本，已完成结果保留。不能静默混用模型。
-
-本适配器用 `codex exec --model --json --output-schema --ephemeral`，隔离工作目录，禁用 shell、应用、浏览器与其他操作工具、规则加载和联网检索；原文以标准输入传入。任何实际工具活动拒绝；CLI 的非终止配置诊断不冒充工具调用。JSON Schema 对所有对象补 required 和 additionalProperties=false；本业务可选 ID 列表以空数组表达，原文引句仍须逐字校验。视觉页通过图片参数输入并记录图片 SHA。
-
-Codex CLI 0.160.0 JSONL 不返回实际 provider 模型，因此 `_model.actual=null`，记录明确请求、executor=codex-cli、reasoning_effort 与 identity_source=explicit_cli_request_not_provider_reported。不伪造实际模型已核实；这一限制不放宽其他后端的实际身份核验。本角色读取只产候选，不自动 C3。
-
-### 按环节选模型（2026-09-26 用户采用，未被本批覆盖的环节）
+### 按环节选模型（2026-09-26 用户采用）
 
 量大、判断简单的环节用本地模型，量小、要引用数字和证据的环节用 Claude，最强型号只留给决定质量的少数材料。不做同型号对比即切换；质量靠下述分工与 04 的覆盖、引文和数字检查保证。
 
@@ -66,7 +56,7 @@ Codex CLI 0.160.0 JSONL 不返回实际 provider 模型，因此 `_model.actual=
 
 同一内容身份只维护一套当前有效阅读结果，由 reader catalog 的当前指针选择。reader current 与 deep-read current 共用 workflow.reading_results，不构建推理客户端；L2 事实处理回执不能成为第二套全文结果。尝试日志、局部检查点和被引用的历史依据可保留；失败重试不增加前台的阅读份数。
 
-更换默认模型只影响新建任务，已完成材料不自动重读或改变结果。已创建任务使用冻结的推理身份、提示配方和上下文；不得中途混用新模型。现有 reader 在新配置与旧任务不符时阻塞，恢复原配置后可继续；自动选择旧配置仍未实现，已完成材料通过显式 reread 新建独立版本。未完成首次阅读可按 04 的 restart-unfinished 显式迁移；旧尝试保持，执行入口不是完成结果指针。
+更换默认模型只影响新建任务，已完成材料不自动重读或改变结果。已创建任务使用冻结的推理身份、提示配方和上下文；不得中途混用新模型。现有 reader 在新配置与旧任务不符时阻塞，恢复原配置后可继续；自动选择旧配置仍未实现，已完成材料通过显式 reread 新建独立版本。
 
 显式重读先产出待替换版本，经 04 §8 的覆盖与产物机检及审阅确认后，用旧版本基线和报告 SHA 原子更新当前指针；失败时旧结果继续有效。旧证据/回答/报告引用具体版本，不随当前指针变化。模型更大或结果更新不自动授予 C3 采用资格。单结果是使用规则，不能成为删除原文与已引用依据的理由。
 

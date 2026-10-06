@@ -33,11 +33,15 @@ const base=process.env.UI_BASE_URL;
   const ready='daily-event-fixture-ready',missing='daily-event-fixture-missing';
   const event=(id,title)=>({id,title,body:'日报正文只在登录匹配页显示',reported_stage:'unknown',place_quote:'芬兰',actors:[],country_mentions:[],site_candidates:[],capacity_observations:[],sources:[],document_refs:[],identity_review:'pending',capacity_review:'pending',workflow_stage:'awaiting_identity'});
   await page.route('**/api/supply',route=>route.fulfill({json:{...original,
+   matching_reader:{execution_scope:{documents:133,registered:131,counts:{complete:2,running:2},types:{'.pdf':69,'.html':62},chunks_read:18,chunks_total:156,awaiting_extraction:126,executor:{backend:'codex_cli',model:'gpt-6.1-sol <img src=x>',reasoning_effort:'medium'}}},
    daily_events:{records:[event(missing,'需要补来源的园区'),event(ready,'已交付园区 <img src=x onerror=alert(1)>')],total:2},
    daily_delivery:{news_total:1,task_counts:{source:1,identity:2},records:[
     {event_id:ready,delivery_lane:'news',last_processed_at:'2026-10-06T08:00:00Z',tasks:[{owner:'Spark 发布器',next_action:'动态已交付，容量等待研究核验'}]},
     {event_id:missing,delivery_lane:'source',tasks:[{owner:'inews / M5 补源',next_action:'查 sources.json'}]}]}}}));
   await page.locator('#refresh').click();await page.locator('#delivery-lane').waitFor();
+  await page.getByRole('heading',{name:'本批全文阅读',exact:true}).waitFor();
+  assert.match(await page.locator('[aria-label="本批全文阅读"]').innerText(),/131 \/ 133/);
+  assert.equal(await page.locator('[aria-label="本批全文阅读"] img').count(),0,'executor text is escaped');
   await page.locator('#delivery-lane').selectOption('news');
   assert.match(await page.locator('#daily-shown').innerText(),/显示 1 \/ 1/);
   assert.match(await page.locator('#daily-events').innerText(),/已交付园区/);

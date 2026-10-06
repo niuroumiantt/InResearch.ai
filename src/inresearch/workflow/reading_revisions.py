@@ -62,6 +62,32 @@ class ReadingRevisions:
             run = self.create(doc,request_id,expected_current,reason,request)
             return {'revision_id':run['revision_id'],'state':'queued','replayed':False}
 
+    def restart_unfinished(self, doc_id, expected_revision, request_id, reason):
+        """Explicit model migration before the first full result. Retain every attempt."""
+        require_text(request_id,200); require_text(reason,4000); require_text(expected_revision,200)
+        request = dict(kind='restart_unfinished',expected_revision=expected_revision,reason=reason,
+                       model=self.stages.model.identity,chunk_chars=self.chunk_chars,version=RECIPE_VERSION)
+        with self.catalog.transaction():
+            prior = self.conn.execute('SELECT * FROM reading_runs WHERE doc_id=? AND request_id=?',(doc_id,request_id)).fetchone()
+            if prior:
+                if prior['request_json'] != encoded(request):
+                    raise Blocked('reading_request_key_conflict')
+                return {'revision_id':prior['revision_id'],'state':prior['state'],'replayed':True}
+            doc = self.catalog.reading(doc_id)
+            if doc['revision_id'] != expected_revision:
+                raise Blocked('reading_baseline_conflict')
+            if doc['current_revision_id'] or doc['report_rel'] or doc['manifest_sha256']:
+                raise Blocked('restart_requires_unfinished_first_reading')
+            if doc['state'] not in ('queued','blocked','failed','summarized') or self.conn.execute(
+                    "SELECT 1 FROM jobs WHERE doc_id=? AND state='running'",(doc_id,)).fetchone():
+                raise Blocked('cannot_restart_running_reading')
+            self.conn.execute("UPDATE jobs SET state='cancelled',finished=? WHERE revision_id=? AND state IN ('pending','blocked','failed')",(self.clock(),expected_revision))
+            self.conn.execute("UPDATE reading_runs SET state='superseded',updated=? WHERE revision_id=?",(self.clock(),expected_revision))
+            run = self.create(doc,request_id,expected_revision,reason,request)
+            self.conn.execute('UPDATE reading_runs SET priority=MAX(priority,?) WHERE revision_id=?',(doc['priority'],run['revision_id']))
+            self.conn.execute('INSERT OR REPLACE INTO meta VALUES (?,?)',('execution_root:'+doc_id,run['revision_id']))
+            return {'revision_id':run['revision_id'],'previous_revision_id':expected_revision,'state':'queued','replayed':False}
+
     def inspect(self, revision_id):
         with self.catalog.read_snapshot():
             row = self.conn.execute('SELECT * FROM execution_readings WHERE revision_id=?',(revision_id,)).fetchone()

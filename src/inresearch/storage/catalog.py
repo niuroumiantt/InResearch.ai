@@ -66,14 +66,14 @@ CREATE TABLE IF NOT EXISTS meta (key TEXT PRIMARY KEY,value TEXT NOT NULL);
 """
 READINGS = """SELECT d.sha256,d.original_name,d.original_rel,d.suffix,d.size_bytes,
  d.library_rel,d.current_revision_id,r.* FROM reading_runs r JOIN documents d USING(doc_id)"""
-VIEWS = """
-CREATE VIEW IF NOT EXISTS execution_readings AS """ + READINGS + ";\n" + """
-CREATE VIEW IF NOT EXISTS current_readings AS """ + READINGS + """
+CURRENT_VIEW = "CREATE VIEW IF NOT EXISTS current_readings AS " + READINGS + """
  WHERE r.revision_id=COALESCE(d.current_revision_id,
+ (SELECT value FROM meta WHERE key='execution_root:'||d.doc_id),
  (SELECT initial.revision_id FROM reading_runs initial
   WHERE initial.doc_id=d.doc_id AND initial.base_revision_id IS NULL
   ORDER BY initial.created,initial.revision_id LIMIT 1));
 """
+VIEWS = "CREATE VIEW IF NOT EXISTS execution_readings AS " + READINGS + ";\n" + CURRENT_VIEW
 SCHEMA = DOCUMENTS + RUNS + JOBS + AUXILIARY + VIEWS
 
 
@@ -96,6 +96,11 @@ class Catalog:
             raise ValueError('read-only catalog cannot initialize or migrate')
         version = self.conn.execute('PRAGMA user_version').fetchone()[0]
         if version == 2:
+            view = self.conn.execute("SELECT sql FROM sqlite_master WHERE name='current_readings'").fetchone()
+            if view and 'execution_root:' not in view[0]:
+                with self.transaction():
+                    self.conn.execute('DROP VIEW current_readings')
+                    statements(self.conn, CURRENT_VIEW)
             return
         if version > 2:
             raise ValueError('catalog schema is newer than this reader')

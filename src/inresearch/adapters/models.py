@@ -53,14 +53,18 @@ class ModelProfile:
     # A loop whose repeated block is longer than the window escapes the
     # penalty, e.g. a two-line slogan repeated until num_predict runs out.
     repeat_last_n: object = None
+    reasoning_effort: str = ""
 
     def __post_init__(self):
-        if self.backend not in {"ollama", "gateway", "claude_cli"}:
+        if self.backend not in {"ollama", "gateway", "claude_cli", "codex_cli"}:
             raise ValueError("unknown model backend")
         url = urllib.parse.urlsplit(self.url)
         if self.backend == "claude_cli":
             if self.url or self.request_model or self.api_key_env:
                 raise ValueError("Claude CLI uses its own login, without HTTP route settings")
+        elif self.backend == "codex_cli" and not self.url:
+            if self.request_model or self.api_key_env:
+                raise ValueError("local Codex CLI uses its own authentication")
         elif (url.scheme not in {"http", "https"} or not url.hostname or url.username
                 or url.password or url.query or url.fragment):
             raise ValueError("model URL must be an HTTP base URL without credentials or query")
@@ -81,7 +85,7 @@ class ModelProfile:
                 or not set(self.capabilities) <= {"text_json", "vision_json"}
                 or not self.capabilities):
             raise ValueError("invalid model capabilities")
-        if "vision_json" in self.capabilities and self.backend not in {"ollama", "claude_cli"}:
+        if "vision_json" in self.capabilities and self.backend not in {"ollama", "claude_cli", "codex_cli"}:
             raise ValueError("vision_json requires the Ollama or Claude CLI adapter")
         if self.repeat_penalty is not None:
             if (self.backend != "ollama" or isinstance(self.repeat_penalty, bool)
@@ -95,6 +99,9 @@ class ModelProfile:
                 raise ValueError("repeat_last_n must be an integer in [1, context] on the Ollama backend")
         object.__setattr__(self, "capabilities", tuple(self.capabilities))
         object.__setattr__(self, "url", self.url.rstrip("/"))
+        if self.reasoning_effort and (self.backend != "codex_cli" or self.reasoning_effort not in
+                {"low", "medium", "high", "xhigh", "max", "ultra"}):
+            raise ValueError("reasoning_effort requires an explicit Codex CLI effort")
 
     @property
     def identity(self):
@@ -109,6 +116,8 @@ class ModelProfile:
             identity["repeat_penalty"] = self.repeat_penalty
         if self.repeat_last_n is not None:
             identity["repeat_last_n"] = self.repeat_last_n
+        if self.reasoning_effort:
+            identity["reasoning_effort"] = self.reasoning_effort
         return identity
 
 
@@ -177,6 +186,9 @@ class JsonModelClient:
             raise InferenceError("input_exceeds_context_budget")
         if p.backend == "claude_cli":
             return self._generate_cli(system, user, json_schema=json_schema, image_path=image_path)
+        if p.backend == "codex_cli":
+            from inresearch.adapters.codex_inference import generate
+            return generate(self, system, user, json_schema=json_schema, image_path=image_path)
         messages = [{"role": "system", "content": system}, {"role": "user", "content": user}]
         if image_path is not None:
             messages[-1]["images"] = [base64.b64encode(Path(image_path).read_bytes()).decode("ascii")]
@@ -363,10 +375,13 @@ def reader_profile(**overrides):
 
 def reading_identity(value):
     """Normalize v1 recipes so default-config upgrades do not invalidate work."""
-    return {"backend": value["backend"], "model": value["model"], "context": value["context"],
+    result = {"backend": value["backend"], "model": value["model"], "context": value["context"],
             "max_output_tokens": value.get("max_output_tokens", 4096),
             "request_model": value.get("request_model", "brain" if value["backend"] == "gateway" else value["model"]),
             "revision": value.get("revision", "")}
+    if value.get("reasoning_effort"):
+        result["reasoning_effort"] = value["reasoning_effort"]
+    return result
 
 
 def main():

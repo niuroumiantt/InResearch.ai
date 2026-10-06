@@ -12,7 +12,7 @@ def main(argv=None):
     ap.add_argument("--data-root", default=os.environ.get("READER_DATA_ROOT"))
     ap.add_argument("--state-root", default=os.environ.get("READER_STATE_ROOT"))
     ap.add_argument("--repo-root", default=os.environ.get("READER_REPO_ROOT"))
-    ap.add_argument("--backend", choices=["ollama", "gateway", "claude_cli"], default=None)
+    ap.add_argument("--backend", choices=["ollama", "gateway", "claude_cli", "codex_cli"], default=None)
     ap.add_argument("--url", default=None)
     ap.add_argument("--model", default=None)
     ap.add_argument("--ocr-model", default=None)
@@ -40,6 +40,9 @@ def main(argv=None):
     reread = sub.add_parser('reread', help='create a separately reviewed reading candidate')
     for name in ('doc-id','expected-current','request-id','reason'):
         reread.add_argument('--' + name, required=True)
+    restart = sub.add_parser('restart-unfinished',help='retain unfinished attempts and explicitly freeze a new execution model')
+    for name in ('doc-id','expected-revision','request-id','reason'):
+        restart.add_argument('--'+name,required=True)
     revisions = sub.add_parser('revisions')
     revisions.add_argument('--doc-id', required=True)
     inspect = sub.add_parser('inspect-revision')
@@ -96,7 +99,7 @@ def main(argv=None):
         ap.error(str(exc))
     # Only the long-running worker reads machine sensors; one-off commands never wait on them.
     temperature = None
-    if args.command == "run":
+    if args.command == "run" and not (model.backend=='codex_cli' and model.url):
         from inresearch.adapters.thermal import read_celsius as temperature
     reader = Reader(args.data_root, args.state_root, args.repo_root, model, args.stable_seconds,
                     temperature=temperature, full_read_min_priority=FULL_READ_MIN_PRIORITY,
@@ -130,6 +133,10 @@ def main(argv=None):
             reader.write_status()
         elif args.command == 'reread':
             result = reader.revisions.request(args.doc_id,args.expected_current,args.request_id,args.reason)
+        elif args.command == 'restart-unfinished':
+            with reader.worker_session():
+                result = reader.revisions.restart_unfinished(args.doc_id,args.expected_revision,args.request_id,args.reason)
+            reader.write_status()
         elif args.command == 'revisions':
             result = reader.revisions.list(args.doc_id)
         elif args.command == 'inspect-revision':
