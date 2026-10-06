@@ -7,9 +7,10 @@ from inresearch.delivery.reader_export import read_report
 
 
 class ReadingRevisions:
-    def __init__(self, catalog, stages, snapshot, chunk_chars, clock):
+    def __init__(self, catalog, stages, snapshot, chunk_chars, clock, objective=None):
         self.catalog, self.stages, self.snapshot = catalog, stages, snapshot
         self.chunk_chars, self.clock = chunk_chars, clock
+        self.objective = objective
 
     @property
     def conn(self):
@@ -18,6 +19,9 @@ class ReadingRevisions:
     def create(self, doc, request_id='initial', base=None, reason='initial full reading', request=None):
         """Caller holds the write transaction. Uncommitted files are never current."""
         context = self.snapshot()
+        if self.objective:
+            context.update(self.objective(doc['sha256']))
+            context['snapshot_hash'] = digest_bytes(encoded({k:v for k,v in context.items() if k!='snapshot_hash'}).encode())
         model = self.stages.model.identity
         recipe = digest_bytes(encoded({'version': RECIPE_VERSION, 'model': model,
                                       'chunk_chars': self.chunk_chars, 'snapshot': context['snapshot_hash']}).encode())[:24]
@@ -27,6 +31,8 @@ class ReadingRevisions:
                    recipe=recipe,artifact_rel='artifacts/%s/revisions/%s' % (doc['doc_id'],revision),
                    extracted_rel='extracted/%s/revisions/%s' % (doc['doc_id'],revision),
                    created=self.clock(),updated=self.clock())
+        if 'demand_priority' in context:
+            run['priority'] = context['demand_priority']
         execution = {**doc, **run}
         atomic_json(self.stages.artifact_path(execution,'context.json'),context)
         atomic_json(self.stages.artifact_path(execution,'recipe.json'),

@@ -28,3 +28,15 @@ SEC 与 GPU 报价的采集凭据（如 `VAST_API_KEY`、`SEC_USER_AGENT`）不�
 ## 2026-09-07：经验证的上游选定范围
 
 小时同步只连接固定的 iNews 数据中心 HTTPS 接口，并验证原始响应地址、schema、文章 URL/ID/时间、非空 topics、固定七天窗口和游标。完整成功后保留上游主题与稳定 GUID；研究端不再重复更窄的标题匹配。文件导入无论自报什么 verified/来源标记，都不能获得这一接收权限，继续沿用保守本地筛选。截断/异常不覆盖最后一次完整窗口。该变更不扩大现有接口为全部软件生态，不改变新闻为候选标题的身份，也不启动或停止规格、SEC、GPU 或 reader 任务。
+
+## 用户材料与历史新闻匹配（2026-10-06）
+
+在部署同版源码的 Spark 执行 `python3 manage.py research-match --input <已完整落地的原件或目录> --data-root ~/.local/share/inresearch.ai`；原件进入既有 acquisition 永久库，命中项进入既有 raw-materials 接收口，原来源目录不改动。命令的 processed/matched 是页内索引，不是已读/已采用。检查失败回执后再重试，不用批次大小冒充成果。
+
+升级后执行 `python3 manage.py pipeline --data-root ~/.local/share/inresearch.ai --reindex`，回放固定来源新闻档案并保留撤回；不会抓新全文。按原件核对候选身份后，可用既有 `pipeline --id <线索> --state linked --site <现行site_id> --note <公开复核依据>` 登记关联；这不采纳容量数值。
+
+接收、回放之后正常运行 Reader 与 publish 服务；核对 `/api/news` 的完整 progress、项目页候选、内部 `/supply.html#matching` 及实际发布回执。内部报告的标题/页码引文不由匿名接口公开。网站与 Spark 源码/服务版本、实际数量和未覆盖项记录在当次交接；不能只改 Git 后称链路已上线。
+
+新建 Reader 阅读版本会冻结本材料匹配的现行目标、五类变量、六队与模型输入；needed/assumed/delivered 匹配的初始优先级为 7，有主模型输入为 8。此分数只是工作顺序；不是来源等级。原件 SHA 路径保留，候选分类可由 library/candidates-by-node/<节点>/variable-N/ 回查，新全文结果在 library/by-node/，旧模块链接及已创建配方保留。已有 SHA 的旧阅读不会因本轮提示或模型变化自动重读；若研究缺口需要重读，按 04 的显式阅读版本流程执行。
+
+采集备份新增两本 JSON 账的逐账锁定副本，保留新闻/日报版本及人工身份复核；与在线 SQLite、blob SHA 验证一并保存。不同库并非单一时间点；Reader 完整产物备份仍单独执行。

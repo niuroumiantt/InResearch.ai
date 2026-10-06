@@ -1,6 +1,6 @@
 # Spark 持续 reader 运行手册
 
-> CURRENT · 2026-09-19（首版 2026-09-13）。规则归属与替代关系见 framework/CURRENT.md。
+> CURRENT · 2026-10-06（首版 2026-09-13）。规则归属与替代关系见 framework/CURRENT.md。
 
 本手册对应 `src/inresearch/workflow/reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际模型验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
 
@@ -11,7 +11,7 @@
 | 路径 | 用途与保留规则 |
 |---|---|
 | `~/code/inresearch.ai` | 源码与只读研究注册表；运行原文、数据库与凭据不进 Git |
-| `~/.local/share/inresearch.ai/incoming/<YYYYMMDD-来源>/` | **大批未筛语料的落地区**；reader 不扫描，可随时删。传输中用 `.<批次>.partial`，完整后原子改名；分拣后只把要入永久台账的**提升**到 `raw-materials/`（见下文「大批未筛语料」） |
+| `~/.local/share/inresearch.ai/incoming/<YYYYMMDD-来源>/` | **大批未筛语料的落地区**；reader 不扫描；用户交付原件与唯一资料保留，清理须另核对归档与异机备份。传输中用 `.<批次>.partial`，完整后原子改名；分拣后只把要入永久台账的**提升**到 `raw-materials/`（见下文「大批未筛语料」） |
 | `~/.local/share/inresearch.ai/raw-materials/` | **reader 的入库口，不是投料区**：这里的一切都会被 `scan()` 写进永久台账（`originals/` + `catalog`，设计上不清理）。只放已确认要入库的文件。建议上传临时 `.partial` 文件，完整传输后在同目录原子改名 |
 | `~/.local/share/inresearch.ai/originals/<sha前2位>/<sha>/<原名安全副本>` | 只读原件副本，完整 SHA256 定义内容身份；原始文件名另存台账 |
 | `~/.local/share/inresearch.ai/catalog/catalog.sqlite` | 永久文档、每次投递、版本、任务与操作台账；不可当作缓存清理 |
@@ -23,6 +23,14 @@
 | `~/.local/state/inresearch.ai/status.json` | 可重建健康快照；日志在用户 journal；锁位于 catalog，避免更换 state 路径绕过唯一队列持有者 |
 | `~/.config/inresearch.ai/reader.env` | 本机私有配置，0600；凭据不可打印或提交 |
 
+
+## 当前骨架驱动的接收与检索（2026-10-06）
+
+本轮更新的是用途与入口，SHA 原件、catalog、extracted 与 artifacts 不迁移。用户报告/日报先在 incoming 完成逐文件校验，再按 [采集操作指南](ACQUISITION_OPERATIONS.md) 运行 research-match；原件全部进入 acquisition/blobs，供给/页码索引在 acquisition/catalog.sqlite，日报逐事件版本和复核在 acquisition/daily-events.json。未命中也保留原件，只有命中需求/角度/日报事件的材料进入 Reader；不按文件夹数量推断已读。
+
+现行目标表是唯一需求来源，新阅读冻结命中目标、五类变量、六队、模型输入与目标表 SHA，以三级账和四问的缺口决定优先级及阅读上下文（见 04）。接收候选多节点链接在 library/candidates-by-node/<节点>/variable-N/；新完整报告主链接在 library/by-node/<节点>/，原件仍由 SHA 标识。旧模块视图只保留旧链接，既有配方/报告/停放不会因骨架更新被覆写或全库重读。网页从供应中心的“新闻与报告匹配”进入，按主体、地区、项目、节点及变量需求定位。
+
+本轮 user-supplied 原件及 M5 来源目录不执行删除。下文大批通用语料的历史分拣/清理流程不能授予本轮原件清理权；原件归档、索引、逐篇深读和 C3 采用分别计量。未来深读仍需检查未被词检命中的关系与新角度，骨架变化先讨论。
 
 ## 从 Mac 批量上传（执行机器必须是 Mac）
 

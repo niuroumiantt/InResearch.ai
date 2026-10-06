@@ -116,7 +116,9 @@ class Reader:
         except BaseException:
             self.catalog.close()
             raise
-        self.revisions = ReadingRevisions(self.catalog, self.stages, self.snapshot, self.chunk_chars, self.clock)
+        from inresearch.workflow.research_match import reading_objective
+        self.revisions = ReadingRevisions(self.catalog, self.stages, self.snapshot, self.chunk_chars, self.clock,
+                                         objective=lambda sha: reading_objective(self.data, self.repo, sha))
         return self
 
 
@@ -207,6 +209,21 @@ class Reader:
                 if not existing:
                     identity = dict(self.conn.execute('SELECT * FROM documents WHERE doc_id=?',(doc_id,)).fetchone())
                     self.revisions.create(identity)
+                else:
+                    prior_run = self.doc(doc_id)
+                    if prior_run['state']=='queued' and prior_run['phase'] in ('extract','triage'):
+                        objective = self.revisions.objective(sha)
+                        floor = objective.get('demand_priority',5)
+                        if floor>=7 and floor>prior_run['priority']:
+                            self.conn.execute('UPDATE reading_runs SET priority=? WHERE revision_id=?',(floor,prior_run['revision_id']))
+                            key='research-demand-priority:'+prior_run['revision_id']
+                            audit=self.conn.execute('SELECT value FROM meta WHERE key=?',(key,)).fetchone()
+                            history=json.loads(audit['value']) if audit else []
+                            history.append({'at':now_iso(),'previous':prior_run['priority'],'priority':floor,
+                                            'targets_sha256':objective['targets_sha256'],
+                                            'target_ids':[t['id'] for t in objective['research_demands']],
+                                            'reason':'new supplied material matches current demand; frozen reading recipe retained'})
+                            self.conn.execute('INSERT OR REPLACE INTO meta VALUES (?,?)',(key,encoded(history)))
                 prior = self.conn.execute("SELECT * FROM sources WHERE source_key=? ORDER BY version_seq DESC LIMIT 1", (rel,)).fetchone()
                 if not prior or prior["signature"] != sig:
                     self.conn.execute("INSERT INTO sources(source_key,doc_id,version_seq,previous_doc_id,signature,received) VALUES(?,?,?,?,?,?)",
@@ -259,7 +276,8 @@ class Reader:
     def _link_target(self, doc):
         report = read_json(self.stages.artifact_path(doc, "report.json"))
         cls = report["classification"]
-        module = cls["module_id"] if cls["module_id"] in MODULES else "_unmapped"
+        node = cls.get('node')
+        module = ('by-node/'+clean_name(node.replace(':','-'),100)) if node else (cls["module_id"] if cls["module_id"] in MODULES else "_unmapped")
         name = "_".join(clean_name(cls.get(k), n) for k, n in (("year", 8), ("org", 25), ("title", 55)))
         name = clean_name(name, 180)
         name += "__" + doc["sha256"][:16] + doc["suffix"]

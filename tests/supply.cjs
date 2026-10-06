@@ -22,6 +22,16 @@ const base=process.env.UI_BASE_URL;
   await page.getByRole('button',{name:'收件箱',exact:true}).click();await page.locator('#mi-form').waitFor();assert.match(page.url(),/#inbox$/);
   await page.getByRole('button',{name:'规格批次',exact:true}).click();await page.locator('#pilot-status').waitFor();assert.match(page.url(),/#pilot$/);
   for(const [legacy,hash] of [['/team.html','#tasks'],['/materials.html','#inbox']]){const r=await page.request.get(base+legacy,{maxRedirects:0});assert.equal(r.status(),302,legacy);assert.ok(r.headers()['location'].endsWith('supply.html'+hash),legacy);}
+  await page.getByRole('button',{name:'新闻与报告匹配',exact:true}).click();
+  await page.getByRole('heading',{name:'需求先于材料',exact:true}).waitFor();
+  await page.getByRole('heading',{name:'日报 → 逐事件数据库',exact:true}).waitFor();
+  await page.locator('#match-search').fill('transformer');
+  assert.match(await page.locator('#match-demands').innerText(),/P\.transformer/);
+  await page.locator('#daily-search').fill('Huntingwood');
+  assert.match(page.url(),/#matching$/);
+  await page.setViewportSize({width:390,height:950});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),'matching view fits narrow screen');
+  await page.setViewportSize({width:1280,height:950});
   await page.getByRole('button',{name:'作战总览',exact:true}).click();
   await page.getByRole('heading',{name:'目的与当前进展',exact:true}).waitFor();
   assert.match(page.url(),/#overview$/);

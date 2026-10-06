@@ -66,6 +66,13 @@ if (host) {
       const stale = !Number.isFinite(age) || age > 2*3600000 || data.reader?.stale;
       meta.hidden=feed.status === 'success' && !stale;
       meta.textContent=feed.status === 'running' ? '正在更新' : feed.status !== 'success' ? '更新暂时失败' : stale ? '更新延迟' : '';
+      const progress=data.pipeline?.progress;
+      if(progress && Number.isInteger(progress.leads)){
+        meta.hidden=false;
+        const link=document.createElement('a');link.href='/projects.html?view=pipeline';
+        link.textContent=`历史 ${progress.leads} 条线索 · ${progress.linked} 已关联 · ${progress.identity_candidates} 园区候选 · 查看核验进展`;
+        if(meta.textContent)meta.append(document.createTextNode(' · '));meta.append(link);
+      }
       const rows = [];let lastDay='';
       for (const item of feed.items || []) {
         if(host.dataset.newsSelection==='selected' && item.editorial_pick!==true)continue;

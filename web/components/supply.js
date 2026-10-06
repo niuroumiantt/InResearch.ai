@@ -2,7 +2,7 @@
   'use strict';
   const $ = id => document.getElementById(id);
   const escape = value => String(value ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
-  const allowedTabs = new Set(['targets','tasks','inbox','pilot','overview','coverage','resources','providers','demands','deliveries']);
+  const allowedTabs = new Set(['targets','matching','tasks','inbox','pilot','overview','coverage','resources','providers','demands','deliveries']);
   const panelTabs = new Set(['targets','tasks','inbox','pilot']);
   const internTabs = new Set(['targets','tasks']);
   let data, tab = 'targets', selected = 'fetchspec', admin = false, role = 'member', generation = 0, pending, saving = false;
@@ -26,7 +26,9 @@
     const receivedItems=data.deliveries.reduce((n,d)=>n+(d.received_items||0),0);
     $('counts').textContent = `${data.catalog.providers.length} 个供应入口 · Fetchspec ${data.generated_targets.total} 个生成目标 · ${data.demands.length} 项人工资料需求 · ${data.tasks.length} 项计划任务 · ${data.deliveries.length} 个交付回执 · ${receivedItems} 件原件已接收`;
     $('create-panel').hidden = !admin || tab !== 'demands';
-    if (tab === 'overview') {
+    if (tab === 'matching') {
+      renderMatching();
+    } else if (tab === 'overview') {
       const p=plan(), c=taskCounts();
       $('list').innerHTML=`<h2>目的与当前进展</h2><p>${escape(p.purpose)}</p><div class="plan-grid"><div class="plan-card"><strong>${data.generated_targets.total} 条</strong><small>Fetchspec 生成目标</small></div><div class="plan-card"><strong>${data.generated_targets.needed} 条</strong><small>仍缺规格目标</small></div><div class="plan-card"><strong>${data.catalog.providers.length} 个</strong><small>已登记资料供应入口</small></div><div class="plan-card"><strong>${data.demands.length} 项</strong><small>人工补充需求</small></div><div class="plan-card"><strong>${data.deliveries.length} 个</strong><small>真实交付回执</small></div><div class="plan-card"><strong>${receivedItems} 件</strong><small>已校验并接收原件</small></div></div><p class="muted">${escape(p.baseline.meaning)}</p>`;
       $('detail').innerHTML=`<h2>本页如何使用</h2><ol><li><b>广度与深度</b>：确认先补哪一类产品和何时进入深抓。</li><li><b>资源与执行</b>：确认 AWS、macmini、Spark 的固定职责。</li><li><b>供应方与任务</b>：查看各供应入口承担的计划任务。</li><li><b>研究需求</b>：由研究问题创建可验收的资料任务。</li><li><b>交付与验收</b>：查看原件接收、审核和研究采用状态。</li></ol><p class="${data.deliveries.length?'status-ready':'status-waiting'}">${data.deliveries.length?'已接通 Fetchspec 交付回执；阅读、证据审核和研究采用仍分别计量。':'等待第一份 Fetchspec 交付包；不把历史文件或新闻数量计入本流程。'}</p>`;
@@ -95,6 +97,17 @@
       $('execution-mode').value=mode;
       render();$('status').textContent='';
     } catch(error) {if(seq===generation)$('status').textContent=error.message+' 已显示内容可能过期。';}
+  }
+  function renderMatching() {
+    const m=data.research_matching, queue=data.demand_queue||[];
+    $('list').innerHTML=`<h2>需求先于材料</h2><p>从三级账、四问、五类变量生成的现行目标，按六队归属等待材料。候选命中不改变目标状态。</p><p>${m.total||0} 份原件已建检索索引 · ${m.matched_documents||0} 份有目标候选 · ${data.matching_reader?.stale?'快照延迟':'快照时间 '+escape(data.matching_reader?.received_at||'尚未连接')}</p><p><a href="/projects.html?view=pipeline">查看新闻 → 园区、容量与水电审批进展</a></p><label>搜索目标或材料<input id="match-search" type="search" placeholder="GPU、并网、目标 ID 或报告名"></label><div id="match-demands"></div>`;
+    const renderQueue=()=>{const q=($('match-search').value||'').toLowerCase();const rows=queue.filter(t=>JSON.stringify(t).toLowerCase().includes(q));$('match-demands').innerHTML=rows.map(t=>`<div class="task"><a href="/supply.html?node=${encodeURIComponent(t.part_id?'part:'+t.part_id:t.site_right_id?'site:'+t.site_right_id:'root')}&col=${t.variable_class}#targets"><code>${escape(t.id)}</code></a><br>${escape(t.disclosure_type)}<br><small>变量类 ${t.variable_class} · ${escape(t.team)} · ${t.candidate_documents} 份候选 · ${escape(t.dispatch_state==='reading_candidate'?'已有材料，待深读核验':t.dispatch_state==='awaiting_team'?'主责队尚未接入':'待材料')} · 模型输入 ${escape((t.model_inputs||[]).join('、')||'无')}</small></div>`).join('')||'<p>当前筛选没有需求。</p>';};
+    $('match-search').value=new URLSearchParams(location.search).get('match')||'';$('match-search').oninput=()=>{renderQueue();const q=$('match-search').value.toLowerCase();document.querySelectorAll('[data-matched-report]').forEach((e,i)=>{e.hidden=!JSON.stringify(m.records[i]).toLowerCase().includes(q);});};renderQueue();
+    const events=data.daily_events||{records:[],total:0};
+    const daily=`<h2>日报 → 逐事件数据库</h2><p>${events.document_versions||0} 个日报版本 · ${events.total} 个去重事件 · ${events.capacity_observations||0} 个容量观察 · ${events.missing_source_links||0} 个事件待补原始链接。原件与变更版本保留，尚未核验的事件不参加已投运/在建 GW。</p><label>按主体、国家、地点或项目查事件<input type="search" id="daily-search" placeholder="微软、澳大利亚、Huntingwood、项目名"></label><div id="daily-events"></div>`;
+    $('detail').innerHTML=`<h2>报告匹配与新角度</h2><p>下面是页内主题候选。提取全文不等于逐篇深读，命中不证明引文支持参数，更不等于 C3 采用。骨架建议等待讨论。</p>${m.truncated?'<p>当前显示最近 500 份原件；计数覆盖全部索引。</p>':''}${daily}${(m.records||[]).map(d=>`<details class="task" data-matched-report><summary>${escape(d.title)} · ${d.pages} 页 · ${d.matches_total||d.matches.length} 个目标候选 · Reader ${escape(d.reading?.state||'待登记')}</summary><p><code>${escape(d.sha256)}</code></p>${d.matches.map(x=>`<details><summary>${escape(x.target_id)} · 第 ${x.page} 页 · ${escape(x.team)}</summary><p>${escape(x.quote)}</p><p>${escape(x.next_action)}</p></details>`).join('')}${d.matches_total>d.matches.length?'<p>本快照显示前 32 个匹配；完整记录保留在 Spark。</p>':''}${(d.project_observations||[]).map(x=>`<details><summary>项目 / 水电审批观察 · 第 ${x.page} 页</summary><p>${escape(x.quote)}</p><p>候选园区 ${escape((x.site_candidates||[]).map(c=>c.site_id).join('、')||'待核验')} · 容量 ${(x.capacity_observations||[]).map(c=>escape(c.quoted_value)+' / '+escape(c.basis)).join('、')||'未披露'}</p></details>`).join('')}${d.proposals.map(x=>`<details><summary>待讨论角度 · ${escape(x.id)} · 第 ${x.page} 页</summary><p>现有归属 ${escape(x.node)} · 变量类 ${x.variable_class}</p><p>${escape(x.quote)}</p><p>${escape(x.gap)}</p><p>${escape(x.proposal)}</p></details>`).join('')}</details>`).join('')||'<p>尚未收到匹配索引。可通过收件箱提交原件，批量材料使用 research-match 接收。</p>'}`;
+    const renderEvents=()=>{const q=($('daily-search').value||'').toLowerCase();const rows=events.records.filter(e=>JSON.stringify(e).toLowerCase().includes(q));$('daily-events').innerHTML=rows.map(e=>`<details class="task"><summary>${escape(e.title)} · ${escape(e.reported_stage)} · ${escape(e.place_quote)}</summary><p>${escape(e.body)}</p><p>主体 ${escape(e.actors.map(a=>a.name).join('、')||'待核验')} · 国家 ${escape(e.country_mentions.map(c=>c.code).join('、')||'未披露')}</p><p>园区匹配 ${escape(e.site_candidates.map(c=>c.site_id).join('、')||'待新项目登记/核验')}</p>${e.capacity_observations.map(c=>`<p>${escape(c.quoted_value)} · ${escape(c.basis)} · ${escape(c.quote)}</p>`).join('')}<p>来源 ${e.sources.map(r=>escape(r.label)).join('；')||'待补'}</p>${e.sources.flatMap(r=>r.urls||[]).filter(u=>/^https?:/.test(u)).map(u=>`<p><a href="${escape(u)}" target="_blank" rel="noopener noreferrer">原始来源</a></p>`).join('')}<p>原件版本 ${e.document_refs.map(r=>escape(r.report_date)+' / '+escape(r.filename)+' / 第'+r.section+'节 / '+escape(r.sha256)).join('<br>')}</p><p>身份与容量核验 ${escape(e.identity_review)} / ${escape(e.capacity_review)}；未采用。</p></details>`).join('')||'<p>当前范围暂无事件。</p>';};
+    $('daily-search').oninput=renderEvents;renderEvents();
   }
   async function save(fields) {
     if(saving)return;

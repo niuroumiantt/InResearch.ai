@@ -261,11 +261,30 @@ class ReadingStages(ReadingArtifacts):
             boost = 12 + min(related, 20) if related >= 4 else 0
             ranked_questions.append((score + boost, {"id": row["id"], "name": name,
                                       "match": "related_object" if boost else ("lexical" if score else "needs_review")}))
+        demands = snapshot.get('research_demands', [])
+        focus_nodes = {r['node'] for r in demands}
+        if focus_nodes:
+            ranked_objects = [(score+30 if row['id'] in focus_nodes else score,row) for score,row in ranked_objects]
+            ranked_questions = [(score+30 if any(q.get('node') in focus_nodes and q['id']==row['id'] for q in snapshot['questions']) else score,row) for score,row in ranked_questions]
         result = {"objects": [], "questions": []}
-        for key, rows, budget in (("objects", ranked_objects, 2200), ("questions", ranked_questions, 2500)):
+        current = snapshot.get('reading_contract')=='skeleton-demand-v1'
+        budgets = (1400, 1500) if current else (2200, 2500)
+        for key, rows, budget in (("objects", ranked_objects, budgets[0]), ("questions", ranked_questions, budgets[1])):
             for _, row in sorted(rows, key=lambda pair: (-pair[0], pair[1]["id"])):
                 if len(encoded(result[key] + [row]).encode()) <= budget:
                     result[key].append(row)
+        if current:
+            result['reading_contract'] = snapshot['reading_contract']
+            result['research_demands'] = []
+            for row in demands:
+                if len(encoded(result['research_demands']+[row]).encode())<=1500:
+                    result['research_demands'].append(row)
+            by_id = {q['id']:q for q in snapshot['questions']}
+            for row in result['questions']:
+                for key in ('node','variable_class'):
+                    if key in by_id[row['id']]: row[key] = by_id[row['id']][key]
+            while len(encoded(result).encode())>4800 and result['questions']:
+                result['questions'].pop()
         if len(encoded(result).encode()) > 4800:
             raise IntegrityError()
         return result
@@ -298,8 +317,9 @@ class ReadingStages(ReadingArtifacts):
         cls = result.get("classification")
         if not isinstance(cls, dict):
             raise ModelOutputError()
-        for field in ("title", "org", "year", "module_id"):
+        for field in ("title", "org", "year"):
             require_text(cls.get(field), 300, empty=field in {"org", "year"})
+        cls.setdefault('module_id','unknown')
         if cls["module_id"] not in MODULES | {"unknown"}:
             raise ModelOutputError()
         if cls["year"] and not re.fullmatch(r"\d{4}|unknown|未知", cls["year"]):
@@ -309,6 +329,12 @@ class ReadingStages(ReadingArtifacts):
             raise ModelOutputError()
         require_text(result.get("rationale"), 2000)
         result.update(self._ids(result, context))
+        if context.get('reading_contract'):
+            node = cls.get('node')
+            if node is not None and node not in {r['id'] for r in context['objects']}:
+                raise ModelOutputError()
+            cls['node'] = node or (result['object_ids'][0] if result['object_ids'] else None)
+            result['research_demands'] = context['research_demands']
         result["sampling_pages"] = [p["page_index"] for p in preview]
         return self._persist(doc, "triage.json", "triage", result)
 
@@ -407,8 +433,11 @@ class ReadingStages(ReadingArtifacts):
                 name = "synthesis/l%03d-g%06d.json" % (level, n)
                 result = self._cached(doc, name, marker)
                 if result is None:
-                    result = self.model.generate("synthesize", {"doc_id": doc["doc_id"], "sections": members,
-                                                               "level": level, "scope": "all supplied sections, candidate synthesis"})
+                    payload = {"doc_id": doc["doc_id"], "sections": members,
+                               "level": level, "scope": "all supplied sections, candidate synthesis"}
+                    if read_json(self.artifact_path(doc,'context.json')).get('reading_contract'):
+                        payload['allowed_ids'] = self._context(doc,doc['original_name'])
+                    result = self.model.generate("synthesize", payload)
                     require_content(result.get("summary"), 1500)
                     points = result.get("key_points")
                     if not isinstance(points, list) or len(points) > 20:
@@ -451,6 +480,9 @@ class ReadingStages(ReadingArtifacts):
                   "evidence": [e for c in chunks for e in c["evidence"]], "claims": [c for x in chunks for c in x["claims"]],
                   "quality": "model_read_candidate_requires_adoption_review",
                   "warning": "Coverage is processing coverage, not proof that every interpretation or number is correct."}
+        if context.get('reading_contract'):
+            report.update(reading_contract=context['reading_contract'], research_demands=context['research_demands'],
+                          targets_sha256=context['targets_sha256'])
         if gap_pages:
             report["warning"] += " Pages %s could not be read by OCR and are not covered by this report." % ", ".join(map(str, gap_pages))
         if dropped:
