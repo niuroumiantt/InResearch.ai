@@ -91,6 +91,22 @@ const {mkdirSync}=require('node:fs');
   }
   await page.setViewportSize({width:390,height:844});
 
+  // A curated project link must survive an older publisher's association counter.
+  await page.unroute('**/api/news');
+  await page.route('**/api/news',r=>r.fulfill({json:{pipeline:{available:true,progress:{leads:100,events:100,linked:0,constraints:{}},records:[{
+   id:'daily-adopted',title:'已核验的日报项目',origin:'daily_html',report_date:'2026-10-06',state:'linked',
+   site_id:'fi-salo-atnorth-fin05',company_ids:['atnorth'],reported_stage:'announced',
+   events:[{title:'原文供电口径',url:'https://www.atnorth.com/',reported_capacity:'75 MW'}]
+  }]}}}));
+  await page.goto(base+'/projects.html?view=pipeline');
+  const linked=page.locator('.pipeline-item').filter({hasText:'已核验的日报项目'});
+  await linked.locator('summary').click();
+  assert.ok((await linked.locator('summary').innerText()).includes('已关联项目'));
+  assert.ok((await linked.innerText()).includes('采用口径见项目明细'));
+  assert.ok(!(await linked.innerText()).includes('未计入'));
+  assert.equal(await linked.locator('a[href*="fi-salo-atnorth-fin05"]').count(),1);
+  assert.ok((await page.locator('#pipeline-rows').innerText()).includes('当前筛选 1 条关联项目'));
+
   // Rendering counts describe only safe, displayed rows in the current API snapshot.
   for(const payload of [{reader:{status:'not_connected'},feed:null},
     {feed:{status:'success',exported_at:new Date().toISOString(),items:[]}}]){
