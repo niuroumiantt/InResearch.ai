@@ -125,7 +125,7 @@ def snapshot(root, params=None):
     for k, allowed in {'stage': {'', *STAGES, 'unknown'}, 'relation': {'', 'developer', 'tenant'},
                        'scope': {'', 'ai'}, 'role': {'', *ROLE_GROUPS}}.items():
         if params.get(k, '') not in allowed: raise ValueError('invalid '+k)
-    companies = [{k: c.get(k) for k in ('company_id', 'name', 'name_cn', 'roles')} for c in json.loads((root/'data/companies.json').read_text())['records']]
+    companies = [{k: c.get(k) for k in ('company_id', 'name', 'name_cn', 'roles', 'profile')} for c in json.loads((root/'data/companies.json').read_text())['records']]
     by_id = {c['company_id']: c for c in companies}
     if params.get('c') and params['c'] not in by_id: raise LookupError('company not found')
     raw_rows = json.loads((root/'data/projects.json').read_text())['records']
