@@ -69,7 +69,7 @@ class DailyBundleTests(unittest.TestCase):
     def test_source_citation_formats_and_untrusted_urls(self):
         with tempfile.TemporaryDirectory() as tmp:
             p=Path(tmp)/'sources.json'
-            for data in ([{'id':1,'url':'https://example.org/one'}],{'[1]':{'primary':'https://example.org/one'}},{'sources':[{'id':1,'urls':['https://example.org/one']}] }):
+            for data in ([{'id':1,'url':'https://example.org/one'}],{'[1]':{'primary':'https://example.org/one'}},{'sources':[{'id':1,'urls':['https://example.org/one']}] },{'selected_sources':[{'id':1,'url':'https://example.org/one'}]}):
                 p.write_text(json.dumps(data));self.assertEqual(daily_sources.load(p)['1']['urls'],['https://example.org/one'])
             p.write_text(json.dumps([{'publisher':'no explicit id','url':'https://example.org/one'}]))
             with self.assertRaisesRegex(ValueError,'unsupported'):daily_sources.load(p)

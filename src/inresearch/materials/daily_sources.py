@@ -12,8 +12,11 @@ def load(path):
         raise ValueError('invalid_daily_sources_file')
     raw = path.read_bytes()
     value = json.loads(raw)
-    if isinstance(value, dict) and 'sources' in value:
-        value = value['sources']
+    if isinstance(value, dict):
+        for name in ('sources', 'selected_sources'):
+            if name in value:
+                value = value[name]
+                break
     rows = list(value.items()) if isinstance(value, dict) else list(enumerate(value)) if isinstance(value, list) else []
     if not rows or len(rows) > 500:
         raise ValueError('unsupported_daily_sources')
