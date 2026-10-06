@@ -33,6 +33,7 @@ COMMANDS = {
     'governance': 'inresearch.interfaces.governance', 'targets': 'inresearch.knowledge.targets', 'deliveries': 'inresearch.knowledge.deliveries', 'nodes': 'inresearch.knowledge.nodes', 'graph': 'inresearch.knowledge.graph', 'dashboard': 'inresearch.knowledge.dashboard', 'indicators': 'inresearch.knowledge.indicators', 'company-ids': 'inresearch.knowledge.company_ids',
     'coverage': 'inresearch.knowledge.coverage', 'reading-queue': 'inresearch.workflow.reading_queue', 'workorders': 'inresearch.workflow.workorders',
     'submissions': 'inresearch.workflow.submissions', 'export': 'inresearch.delivery.export', 'map': 'inresearch.delivery.map',
+    'daily-receive': 'inresearch.materials.daily_bundle',
     'fetchspec-receive': 'inresearch.materials.fetchspec_receive',
     'publish-pilot-progress': 'inresearch.delivery.publish_pilot_progress',
 }

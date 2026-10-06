@@ -30,7 +30,7 @@ class Sections(_Document):
         super().handle_endtag(tag)
 
 
-def parse(path, root, original_name=None):
+def parse(path, root, original_name=None, source_path=None):
     path=Path(path); raw=path.read_bytes(); sha=hashlib.sha256(raw).hexdigest()
     parser=Sections();parser.feed(raw.decode('utf-8-sig'))
     all_text=''.join(parser.parts)
@@ -99,11 +99,14 @@ def parse(path, root, original_name=None):
                        'document_refs':[{'sha256':sha,'filename':name,'report_date':report_date,'section':index+1}],
                        'reported_dates':re.findall(r'\d{1,2}月\d{1,2}日[^。\n]{0,60}',text),
                        'identity_review':'pending','capacity_review':'pending','acceptance':'candidate',**identity})
+    if source_path is not None:
+        from inresearch.materials.daily_sources import load, attach
+        attach(events, load(source_path))
     return events
 
 
-def receive(path, data, root, original_name=None):
-    events=parse(path,root,original_name)
+def receive(path, data, root, original_name=None, source_path=None):
+    events=parse(path,root,original_name,source_path)
     if not events:return []
     target=Path(data)/'acquisition/daily-events.json'
     with locked(target):
@@ -143,11 +146,24 @@ def projection(data):
     active={i for p in doc.get('parses',{}).values() for i in p['event_ids']} if doc.get('parses') else set(doc['records'])
     records=[r for i,r in doc['records'].items() if i in active]
     records.sort(key=lambda r:max((d.get('report_date') or '' for d in r['document_refs']),default=''),reverse=True)
+    workflow = {'awaiting_source':0, 'awaiting_identity':0, 'awaiting_caliber':0, 'awaiting_research_review':0}
+    from inresearch.paths import project_root
+    sites = {s['site_id']:s for s in json.loads((project_root()/'data/projects.json').read_text())['records']}
+    projected=[]
+    for record in records:
+        if not any(s['urls'] for s in record['sources']): stage='awaiting_source'
+        elif not record.get('matched_site_id'): stage='awaiting_identity'
+        elif record['reported_stage']=='unknown' or any(c['basis']=='unknown' for c in record['capacity_observations']) or record.get('structured_evidence_status')=='awaiting_quote_verification': stage='awaiting_caliber'
+        else: stage='awaiting_research_review'
+        workflow[stage]+=1
+        site=sites.get(record.get('matched_site_id'), {})
+        projected.append({**{k:v for k,v in record.items() if k not in ('interpretation_history','editorial_history','demand_history')}, 'body':record['body'][:1600],
+                          'workflow_stage':stage, 'registered_project':{k:site.get(k) for k in ('site_id','name','status','capacity_it_mw','capacity_it_mw_by_status','verified_date')} if site else None})
     return {'total':len(records),'historical_parse_records':len(doc['records']),'document_versions':len({d['sha256'] for r in records for d in r['document_refs']}),
             'capacity_observations':sum(len(r['capacity_observations']) for r in records),
             'identity_candidates':sum(bool(r['site_candidates']) for r in records),
             'missing_source_links':sum(not any(s['urls'] for s in r['sources']) for r in records),
-            'records':[{**{k:v for k,v in r.items() if k!='interpretation_history'},'body':r['body'][:1600]} for r in records[:1000]],'truncated':len(records)>1000,
+            'workflow':workflow, 'records':projected[:1000],'truncated':len(records)>1000,
             'status':'candidate_event_ledger',
             'scope':'逐事件正文登记；同文幂等、来源版本保留；非全球已投运或在建 GW 合计。'}
 
