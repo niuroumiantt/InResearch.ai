@@ -8,7 +8,7 @@ from types import SimpleNamespace
 from unittest import mock
 from inresearch.adapters import codex_inference, models
 from inresearch.workflow.reading_stages import ReadingStages
-from inresearch.materials.reader_contracts import Blocked, Deferred
+from inresearch.materials.reader_contracts import Blocked, Deferred, IntegrityError
 
 
 class FailureTests(unittest.TestCase):
@@ -32,6 +32,15 @@ class FailureTests(unittest.TestCase):
             with self.assertRaises(models.InferenceError) as caught:
                 models.JsonModelClient(profile).generate('system','private data')
         self.assertEqual(caught.exception.code,'model_relay_unavailable')
+
+    def test_scope_discloses_unread_pages_from_verified_current_reports(self):
+        from inresearch.workflow.reader_scope import gap_counts
+        with tempfile.TemporaryDirectory() as folder:
+            data=Path(folder);path=data/'report.json'
+            path.write_text(json.dumps({'coverage':{'gap_pages':[2,4]}}))
+            row={'state':'complete','report_rel':'report.json','report_sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
+            self.assertEqual(gap_counts(data,[row],{}),{'complete_with_gaps':1,'unread_gap_pages':2})
+            with self.assertRaises(IntegrityError):gap_counts(data,[{**row,'report_sha256':'bad'}],{})
 
 
 class RescueTests(unittest.TestCase):

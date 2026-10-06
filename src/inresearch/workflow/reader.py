@@ -70,6 +70,7 @@ class Reader:
         if stable_seconds < 0 or not 1 <= chunk_chars <= 6000:
             raise ValueError("invalid scan stability or chunk size")
         self.catalog = None
+        self._gap_count_cache = {}
         from inresearch.workflow.reader_scope import DocumentScope
         scope_path = document_scope or os.environ.get('READER_DOCUMENT_SCOPE')
         self.document_scope = DocumentScope(scope_path,self.data) if scope_path else None
@@ -716,6 +717,8 @@ class Reader:
                      'chunks_total':sum(r['chunks_total'] for r in rows),'chunks_read':sum(r['chunks_read'] for r in rows),
                      'awaiting_extraction':sum(r['chunks_total']==0 for r in rows),
                      'executor':self.model.identity,'acceptance':'candidate_only'}
+            from inresearch.workflow.reader_scope import gap_counts
+            scope.update(gap_counts(self.data,rows,self._gap_count_cache))
             wait = self.conn.execute("SELECT value FROM meta WHERE key='model_wait_until'").fetchone()
             reason = self.conn.execute("SELECT value FROM meta WHERE key='model_wait_reason'").fetchone()
             if wait and float(wait[0])>self.clock():
