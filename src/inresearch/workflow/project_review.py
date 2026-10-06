@@ -136,10 +136,9 @@ def apply(root, data, proposal):
         if ''.join(quote.split()) not in ''.join(source.split()):
             raise ValueError('quote_not_in_archived_original')
         if assertion.get('value') is not None:
-            import re
+            from inresearch.materials.daily_research import power_quantities
             units = {'MW': 1, 'GW': 1000}
-            pairs = [(float(n.replace(',', '')) * units[u.upper()]) for n,u in
-                     re.findall(r'(\d[\d,]*(?:\.\d+)?)\s*(MW|GW)\b', quote, re.I)]
+            pairs = [n * units[u] for n, u in power_quantities(quote)]
             if not number(assertion['value']) or assertion.get('unit') not in units or assertion['value']*units[assertion['unit']] not in pairs:
                 raise ValueError('quantity_not_in_original_quote')
         checked.append(assertion)

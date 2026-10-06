@@ -122,6 +122,9 @@ const {mkdirSync}=require('node:fs');
   assert.ok((await page.locator('[data-news-count]').innerText()).includes('—'));
   await page.goto(base+'/project.html?site=fi-salo-atnorth-fin05');
   await page.getByRole('button',{name:'重试新闻同步',exact:true}).waitFor();
+  assert.equal(await page.locator('#project-dossier tbody tr').count(),12,'all project angles are visible, including unknown roles');
+  assert.match(await page.locator('#project-dossier').innerText(),/辖区政府不自动视为地主/);
+  assert.match(await page.locator('#project-dossier').innerText(),/IT、设施功率、接电额度、发电 MW/);
   assert.ok((await page.locator('#detail').innerText()).includes('160 MW'));
   await page.unroute('**/api/news');
   await page.route('**/api/news',r=>r.fulfill({json:{pipeline:{available:true,records:[{

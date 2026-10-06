@@ -53,6 +53,14 @@ const {chromium}=require('playwright');const assert=require('assert');
  await page.goto(base+'/company.html?c=hitachi-energy');await page.locator('#root .head h1').waitFor();
  assert.ok((await page.locator('#root a[href^="node.html?id=part:"]').count())>0,'the actor page lists the parts it supplies');
  assert.equal(await page.locator('.kpi').count(),0,'no KPI grid, map or module blocks on the actor page');
+ await page.goto(base+'/company.html?c=constellation-energy');await page.locator('#ecosystem').waitFor();
+ assert.equal(await page.locator('#ecosystem article').count(),2,'new generation and existing supply are separate agreements');
+ assert.match(await page.locator('#ecosystem').innerText(),/890 MW.*新增计划/);
+ assert.match(await page.locator('#ecosystem').innerText(),/2700 MW.*既有电源协议/);
+ assert.equal(await page.locator('#ecosystem [aria-label="地域对照"] tr').count(),4,'three states without inferred state allocations');
+ assert.match(await page.locator('#ecosystem').innerText(),/不增加数据中心 IT GW/);
+ assert.ok(await page.locator('#ecosystem a[href*="company.html?c=alphabet-google"]').count());
+ for(const width of [390,1280]){await page.setViewportSize({width,height:950});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
  await page.goto(base+'/node.html?id=site:grid');await page.locator('#five .col').first().waitFor();
  assert.match(await page.locator('#head h1').textContent(),/并网/);
  await page.goto(base+'/ledger.html');await page.locator('#calibration-table tbody tr').first().waitFor();

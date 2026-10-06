@@ -594,6 +594,7 @@ def build_backflow(root=ROOT, team='fetchspec'):
 
     status 照抄目标表（Git），计数来自 Spark 发布的快照：fetchspec 用接收台账（原件数、厂商、参数观测数），
     inews 用 /api/news 同一份线索计数。其余队尚无交付，计数为 0。只有目标行 ID、状态与计数，公开只读。
+    公开目标说明一并返回，供采集前读取；不包含原件、内部引句或本机路径。
     未登记的队抛 KeyError（接口返回 400）。"""
     raw = (root / 'framework/tco_targets.json').read_bytes()
     document = json.loads(raw)
@@ -613,8 +614,11 @@ def build_backflow(root=ROOT, team='fetchspec'):
                         for k, v in counts.items() if isinstance(k, str) and TARGET_ID.fullmatch(k) and type(v) is int and v >= 0}
     empty = {'received_items': 0, 'companies': [], 'last_received_at': None, 'parameter_observations': 0}
     by_target = {row['id']: {'status': row.get('status'), **received.get(row['id'], empty)} for row in rows}
+    fields = ('id', 'team', 'part_id', 'site_right_id', 'factor_id', 'variable_class',
+              'stage', 'status', 'disclosure_type', 'publisher_category', 'mechanism', 'calendar', 'notes', 'model_inputs')
+    requirements = [{key: row.get(key) for key in fields} for row in rows]
     return dict(schema_version=1, team=team, generated_at=datetime.now(timezone.utc).isoformat(),
-                targets_sha256=hashlib.sha256(raw).hexdigest(), by_target=by_target,
+                targets_sha256=hashlib.sha256(raw).hexdigest(), records=requirements, by_target=by_target,
                 reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
 
 

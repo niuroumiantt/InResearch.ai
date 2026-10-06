@@ -8,6 +8,12 @@ from inresearch.paths import project_root
 
 
 class DailyBundleTests(unittest.TestCase):
+    def test_literal_power_spellings_do_not_accept_energy_or_negative_values(self):
+        from inresearch.materials.daily_research import power_quantities
+        self.assertEqual(power_quantities('8.5 megawatts to 11 megawatts; 275 megawatts (MW); 1.2 gigawatt; 60兆瓦'),
+                         [(8.5, 'MW'), (11.0, 'MW'), (275.0, 'MW'), (1.2, 'GW'), (60.0, 'MW')])
+        self.assertEqual(power_quantities('11 MWh, 2 GWh, 12 megawatt-hours, 9 megawatt hours, -11 MW, 20 MW/year'), [])
+
     def bundle(self, folder, research=False):
         html='<title>格洛可日报 2026-10-06</title><h2>01 芬兰园区</h2><p>芬兰 · 园区工程</p><p>IT负荷60MW，园区供电75MW，计划建设。[1]</p><h2>来源</h2><p>[1] 公司公告</p>'
         files={'2026-10-06-daily-wechat.html':('html',html), 'sources.json':('sources',json.dumps([{'id':1,'name':'公司公告','url':'https://example.org/campus'}]))}

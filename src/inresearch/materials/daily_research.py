@@ -9,6 +9,14 @@ STAGES={'unknown','planning','applied','approved','contracted','financed','const
 BASES={'unknown','it','facility','grid','generation','lease'}
 
 
+def power_quantities(text):
+    """Literal power units only; English spellings share the MW/GW contract."""
+    pattern = r'(?<![\w.\-])(\d[\d,]*(?:\.\d+)?)\s*(megawatts?|gigawatts?|MW|GW|兆瓦|吉瓦)(?![A-Za-z/\-])(?!\s+hours?\b)'
+    units = {'兆瓦':'MW', '吉瓦':'GW'}
+    return [(float(n.replace(',', '')), units.get(u, 'GW' if u.lower().startswith('giga') else 'MW' if u.lower().startswith('mega') else u.upper()))
+            for n, u in re.findall(pattern, text, re.I)]
+
+
 def load(path, html_sha256, available):
     path=Path(path)
     if path.stat().st_size>5*1024*1024:raise ValueError('daily_research_too_large')
@@ -79,7 +87,7 @@ def attach(events, value, metadata_sha256, available, folder):
             exact=''.join(observation['quote'].split()) in ''.join(text.split())
             numeric=True
             if 'value' in observation:
-                quantities=[(float(n.replace(',','')),{'兆瓦':'MW','吉瓦':'GW'}.get(u,u.upper())) for n,u in re.findall(r'(?<![\d.])(\d[\d,]*(?:\.\d+)?)\s*(MW|GW|兆瓦|吉瓦)(?![A-Za-z/])',observation['quote'],re.I)]
+                quantities=power_quantities(observation['quote'])
                 numeric=(observation['value'],observation['unit']) in quantities
             checks.append({'quote':observation['quote'],'locator':locator,'exact_quote':exact,'quantity_present':numeric,
                            'source_sha256':checked_sha})

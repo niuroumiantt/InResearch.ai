@@ -1,7 +1,336 @@
 {
   "_note": "合同库（L0）。种子数据示范：金额与容量为媒体报道口径，待核验。circular_flag 标记循环交易。",
   "records": [
-    {"contract_id": "openai-oracle-2025", "type": "compute", "parties": ["openai", "oracle"], "site_ids": ["us-tx-abilene"], "value_usd_b": 300, "capacity_it_mw": null, "term_years": 5, "start_date": "2027-01-01", "announced_date": "2025-09-10", "circular_flag": false, "summary": "媒体报道的五年期大额算力合同；金额与起始时间为报道口径，Oracle RPO 变化可部分交叉验证", "grade": "media", "source_url": "https://www.wsj.com/", "verified_date": "2026-08-14"},
-    {"contract_id": "nvidia-openai-2025", "type": "financing", "parties": ["nvidia", "openai"], "site_ids": [], "value_usd_b": 100, "capacity_it_mw": null, "term_years": null, "start_date": null, "announced_date": "2025-09-22", "circular_flag": true, "summary": "NVIDIA 宣布对 OpenAI 的分阶段投资意向（与 10GW 系统部署挂钩）——典型循环交易样本：意向金额，按里程碑分批，不得计为已发生投资", "grade": "company", "source_url": "https://nvidianews.nvidia.com/", "verified_date": "2026-08-14"}
+    {
+      "contract_id": "openai-oracle-2025",
+      "type": "compute",
+      "parties": [
+        "openai",
+        "oracle"
+      ],
+      "site_ids": [
+        "us-tx-abilene"
+      ],
+      "value_usd_b": 300,
+      "capacity_it_mw": null,
+      "term_years": 5,
+      "start_date": "2027-01-01",
+      "announced_date": "2025-09-10",
+      "circular_flag": false,
+      "summary": "媒体报道的五年期大额算力合同；金额与起始时间为报道口径，Oracle RPO 变化可部分交叉验证",
+      "grade": "media",
+      "source_url": "https://www.wsj.com/",
+      "verified_date": "2026-08-14"
+    },
+    {
+      "contract_id": "nvidia-openai-2025",
+      "type": "financing",
+      "parties": [
+        "nvidia",
+        "openai"
+      ],
+      "site_ids": [],
+      "value_usd_b": 100,
+      "capacity_it_mw": null,
+      "term_years": null,
+      "start_date": null,
+      "announced_date": "2025-09-22",
+      "circular_flag": true,
+      "summary": "NVIDIA 宣布对 OpenAI 的分阶段投资意向（与 10GW 系统部署挂钩）——典型循环交易样本：意向金额，按里程碑分批，不得计为已发生投资",
+      "grade": "company",
+      "source_url": "https://nvidianews.nvidia.com/",
+      "verified_date": "2026-08-14"
+    },
+    {
+      "contract_id": "constellation-google-uprates-20261006",
+      "type": "ppa",
+      "parties": [
+        "constellation-energy",
+        "alphabet-google"
+      ],
+      "site_ids": [],
+      "value_usd_b": null,
+      "capacity_it_mw": null,
+      "term_years": 20,
+      "start_date": null,
+      "announced_date": "2026-10-06",
+      "circular_flag": false,
+      "summary": "Google以20年PPA支持Constellation既有核电增容：三州六处站点、11台机组，合计新增890MW发电计划，首批预计2028年、全部预计2032年底前完成。",
+      "grade": "company",
+      "source_url": "https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html",
+      "verified_date": "2026-10-07",
+      "node": "site:grid",
+      "variable_class": 5,
+      "geographies": [
+        {
+          "country": "US",
+          "province": "Illinois",
+          "city": null,
+          "plant_name": null,
+          "land_area": null,
+          "land_grantee": null,
+          "relation": "generation_location",
+          "allocation_mw": null
+        },
+        {
+          "country": "US",
+          "province": "Pennsylvania",
+          "city": null,
+          "plant_name": null,
+          "land_area": null,
+          "land_grantee": null,
+          "relation": "generation_location",
+          "allocation_mw": null
+        },
+        {
+          "country": "US",
+          "province": "New Jersey",
+          "city": null,
+          "plant_name": null,
+          "land_area": null,
+          "land_grantee": null,
+          "relation": "generation_location",
+          "allocation_mw": null
+        }
+      ],
+      "capacity_observations": [
+        {
+          "value": 890,
+          "unit": "MW",
+          "basis": "generation",
+          "nature": "forecast",
+          "scope": "三州核电增容组合，六站11机组",
+          "it_capacity_adopted": false
+        }
+      ],
+      "relationships": [
+        {
+          "actor_id": "constellation-energy",
+          "role": "核电运营方／增容投资方／供电方"
+        },
+        {
+          "actor_id": "alphabet-google",
+          "role": "购电方／支持增容的长期收入来源"
+        }
+      ],
+      "object_ids": [
+        "actor:constellation-energy",
+        "actor:alphabet-google",
+        "system:power",
+        "chain:power/3",
+        "site:grid"
+      ],
+      "target_ids": [
+        "S.grid.holders",
+        "S.grid.timeline",
+        "F.cost.energy.price.news",
+        "F.cost.energy.load.load_factor.measured"
+      ],
+      "sources": [
+        {
+          "url": "https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html",
+          "grade": "company",
+          "date": "2026-10-06"
+        },
+        {
+          "url": "https://blog.google/company-news/why-were-backing-americas-existing-nuclear-plants/",
+          "grade": "company",
+          "date": "2026-10-06"
+        }
+      ],
+      "gaps": [
+        "六座电厂及11台机组名称、逐州增容分配未披露",
+        "购电单价、完整合同及监管批准未取得",
+        "未证明任何数据中心地块、受电园区、土地批复或实际IT通电"
+      ],
+      "adoption": {
+        "event_id": "daily-event-ca8af532ef9fd80e4701f2f785e43d65dcba3e59bf47adfbbd56eb17ea442611",
+        "source_version": "1675ad3ba6533964037f3f57292a92fbefcf0f300ffef872cc313f70d4812ad6",
+        "bundle_id": "8465feb2efc5105d530c4d65ce5e999e964c892482d559897b2ecfc28b082c1b",
+        "review": {
+          "by": "Codex 当前会话（M5）",
+          "at": "2026-10-07T07:08:37.989957+08:00",
+          "score": 8,
+          "tier": "A",
+          "authority": "delegated_reviewer",
+          "delegation": "用户2026-10-07明确要求今天日报优先贯通，并将Constellation供电关系与州级地理映射用于现有系统生态。新增官方公司公告所述协议记录，不改写既有结论。",
+          "decision": "adopted",
+          "rationale": "逐段核对Constellation和Google官方原文及已接收的字节身份。增容、现有电源供给、IT容量三种范围分开；三州共享组合不分摊，未披露电厂名/购电价格/地块审批保持未知。两公告来自协议双方，不代表监管批准或独立第三方验证。"
+        },
+        "fields": [
+          "交易主体与角色",
+          "供电协议期限",
+          "电源侧容量性质",
+          "州级地域与组合边界",
+          "来源与待补项"
+        ],
+        "scope": "Google以20年PPA支持Constellation既有核电增容：三州六处站点、11台机组，合计新增890MW发电计划，首批预计2028年、全部预计2032年底前完成。 不计入数据中心IT GW。",
+        "assertions": [
+          {
+            "source_url": "https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html",
+            "source_sha256": "4aed8f58fd8bb46239ac26ebf9b68702cceef3fce1f4e22bf47f992afef3675d",
+            "quote": "890 megawatts (MW) of new, reliable nuclear capacity",
+            "basis": "generation",
+            "value": 890,
+            "unit": "MW"
+          },
+          {
+            "source_url": "https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html",
+            "source_sha256": "4aed8f58fd8bb46239ac26ebf9b68702cceef3fce1f4e22bf47f992afef3675d",
+            "quote": "2,700 MW, 15-year agreement",
+            "basis": "generation",
+            "value": 2700,
+            "unit": "MW"
+          },
+          {
+            "source_url": "https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html",
+            "source_sha256": "4aed8f58fd8bb46239ac26ebf9b68702cceef3fce1f4e22bf47f992afef3675d",
+            "quote": "20-year power purchase agreement",
+            "basis": "term",
+            "value": null,
+            "unit": null
+          },
+          {
+            "source_url": "https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html",
+            "source_sha256": "4aed8f58fd8bb46239ac26ebf9b68702cceef3fce1f4e22bf47f992afef3675d",
+            "quote": "Illinois, Pennsylvania, and New Jersey",
+            "basis": "geography",
+            "value": null,
+            "unit": null
+          },
+          {
+            "source_url": "https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html",
+            "source_sha256": "4aed8f58fd8bb46239ac26ebf9b68702cceef3fce1f4e22bf47f992afef3675d",
+            "quote": "by 2028",
+            "basis": "time",
+            "value": null,
+            "unit": null
+          },
+          {
+            "source_url": "https://blog.google/company-news/why-were-backing-americas-existing-nuclear-plants/",
+            "source_sha256": "bdfd92c9969a4bf15e40254d5d27c32f110ba396405a603ed69acf55ce19d89a",
+            "quote": "Before the end of 2032",
+            "basis": "time",
+            "value": null,
+            "unit": null
+          }
+        ],
+        "review_id": "1675ad3ba6533964-57313ffd8f1fbd71"
+      }
+    },
+    {
+      "contract_id": "constellation-google-existing-supply-20261006",
+      "type": "ppa",
+      "parties": [
+        "constellation-energy",
+        "alphabet-google"
+      ],
+      "site_ids": [],
+      "value_usd_b": null,
+      "capacity_it_mw": null,
+      "term_years": 15,
+      "start_date": null,
+      "announced_date": "2026-10-06",
+      "circular_flag": false,
+      "summary": "另签15年、2700MW现有PJM电源供给协议；维持既有电源收入确定性，与890MW新增发电计划分别记录，不视为2700MW新增供给。",
+      "grade": "company",
+      "source_url": "https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html",
+      "verified_date": "2026-10-07",
+      "node": "site:grid",
+      "variable_class": 5,
+      "geographies": [
+        {
+          "country": "US",
+          "province": null,
+          "region": "PJM",
+          "relation": "generation_supply",
+          "allocation_mw": null
+        }
+      ],
+      "capacity_observations": [
+        {
+          "value": 2700,
+          "unit": "MW",
+          "basis": "generation",
+          "nature": "announced",
+          "scope": "既有PJM电源供给组合，非新增",
+          "it_capacity_adopted": false
+        }
+      ],
+      "relationships": [
+        {
+          "actor_id": "constellation-energy",
+          "role": "既有核电运营方／供电方"
+        },
+        {
+          "actor_id": "alphabet-google",
+          "role": "既有电源购电方"
+        }
+      ],
+      "object_ids": [
+        "actor:constellation-energy",
+        "actor:alphabet-google",
+        "system:power",
+        "chain:power/3",
+        "site:grid"
+      ],
+      "target_ids": [
+        "S.grid.holders",
+        "S.grid.timeline",
+        "F.cost.energy.price.news",
+        "F.cost.energy.load.load_factor.measured"
+      ],
+      "sources": [
+        {
+          "url": "https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html",
+          "grade": "company",
+          "date": "2026-10-06"
+        },
+        {
+          "url": "https://blog.google/company-news/why-were-backing-americas-existing-nuclear-plants/",
+          "grade": "company",
+          "date": "2026-10-06"
+        }
+      ],
+      "gaps": [
+        "2700MW逐电厂、客户交付与起止时间未披露",
+        "购电单价、完整合同及监管批准未取得",
+        "未证明任何数据中心地块、受电园区、土地批复或实际IT通电"
+      ],
+      "adoption": {
+        "event_id": "daily-event-ca8af532ef9fd80e4701f2f785e43d65dcba3e59bf47adfbbd56eb17ea442611",
+        "source_version": "1675ad3ba6533964037f3f57292a92fbefcf0f300ffef872cc313f70d4812ad6",
+        "bundle_id": "8465feb2efc5105d530c4d65ce5e999e964c892482d559897b2ecfc28b082c1b",
+        "review": {
+          "by": "Codex 当前会话（M5）",
+          "at": "2026-10-07T07:08:37.989957+08:00",
+          "score": 8,
+          "tier": "A",
+          "authority": "delegated_reviewer",
+          "delegation": "用户2026-10-07明确要求今天日报优先贯通，并将Constellation供电关系与州级地理映射用于现有系统生态。新增官方公司公告所述协议记录，不改写既有结论。",
+          "decision": "adopted",
+          "rationale": "逐段核对Constellation和Google官方原文及已接收的字节身份。增容、现有电源供给、IT容量三种范围分开；三州共享组合不分摊，未披露电厂名/购电价格/地块审批保持未知。两公告来自协议双方，不代表监管批准或独立第三方验证。"
+        },
+        "fields": [
+          "交易主体与角色",
+          "供电协议期限",
+          "电源侧容量性质",
+          "州级地域与组合边界",
+          "来源与待补项"
+        ],
+        "scope": "另签15年、2700MW现有PJM电源供给协议；维持既有电源收入确定性，与890MW新增发电计划分别记录，不视为2700MW新增供给。 不计入数据中心IT GW。",
+        "assertions": [
+          {
+            "source_url": "https://www.constellationenergy.com/news/2026/10/google-and-constellation-announce-landmark-agreement-to-bring-890-mw-of-new-nuclear-capacity-to-pjm-grid.html",
+            "source_sha256": "4aed8f58fd8bb46239ac26ebf9b68702cceef3fce1f4e22bf47f992afef3675d",
+            "quote": "2,700 MW, 15-year agreement",
+            "basis": "generation",
+            "value": 2700,
+            "unit": "MW"
+          }
+        ],
+        "review_id": "1675ad3ba6533964-2b91ed47da99e753"
+      }
+    }
   ]
 }

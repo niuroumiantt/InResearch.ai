@@ -58,6 +58,12 @@ class BackflowEndpointTest(unittest.TestCase):
         code, body = self.base.request('GET', '/api/targets/backflow?team=inews')
         self.assertEqual(code, 200)
         self.assertEqual(body['by_target'][news[0]]['received_items'], 4)
+        requirements = {r['id']: r for r in body['records']}
+        self.assertEqual(set(requirements), set(news))
+        self.assertIn('地主', requirements['S.land.holders']['notes'])
+        self.assertIn('输配电', requirements['S.grid.holders']['notes'])
+        self.assertEqual(requirements['S.grid.holders']['site_right_id'], 'grid')
+        self.assertNotIn('local_file', requirements['S.grid.holders'])
 
     def test_backflow_is_on_the_public_reader_allowlist(self):
         from inresearch.interfaces import public
