@@ -25,6 +25,7 @@ const base=process.env.UI_BASE_URL;
   await page.getByRole('button',{name:'新闻与报告匹配',exact:true}).click();
   await page.getByRole('heading',{name:'材料处理进展',exact:true}).waitFor();
   assert.equal(await page.locator('#matching-demands').evaluate(e=>e.open),false);
+  assert.equal(await page.locator('.pipeline').isVisible(),false);
   await page.locator('#matching-demands > summary').click();
   await page.locator('#matching-events > summary').click();
   await page.getByRole('heading',{name:'需求先于材料',exact:true}).waitFor();
