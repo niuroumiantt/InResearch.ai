@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.06.4",
+  "version": "2026.10.06.5",
   "effective_at": "2026-10-06",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -1602,13 +1602,14 @@
         "tests/unit/test_gap_ocr.py",
         "src/inresearch/adapters/codex_inference.py",
         "src/inresearch/workflow/reader_scope.py",
-        "tests/unit/test_codex_batch_reader.py"
+        "tests/unit/test_codex_batch_reader.py",
+        "tests/unit/test_codex_failure_ocr_rescue.py"
       ],
       "supersedes": [
         "model-execution-20260912"
       ],
-      "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。",
-      "implementation_revision": "2026.10.06.4"
+      "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；用户授权修复：CLI 失败分类/脱敏诊断、显式高分辨率视觉补读及逐 OCR 页检查点让槽，保留核验标准与失败证据。",
+      "implementation_revision": "2026.10.06.5"
     },
     {
       "id": "reading-codex-batch-20261006",
@@ -1646,13 +1647,14 @@
         "tests/unit/test_daily_dispatch.py",
         "src/inresearch/adapters/codex_inference.py",
         "src/inresearch/workflow/reader_scope.py",
-        "tests/unit/test_codex_batch_reader.py"
+        "tests/unit/test_codex_batch_reader.py",
+        "tests/unit/test_codex_failure_ocr_rescue.py"
       ],
       "supersedes": [
         "reading-dispatch-20261006"
       ],
-      "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。",
-      "implementation_revision": "2026.10.06.4"
+      "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；用户授权修复：CLI 失败分类/脱敏诊断、显式高分辨率视觉补读及逐 OCR 页检查点让槽，保留核验标准与失败证据。",
+      "implementation_revision": "2026.10.06.5"
     },
     {
       "id": "interface-reader-batch-20261006",
@@ -1764,13 +1766,14 @@
         "tests/unit/test_daily_dispatch.py",
         "src/inresearch/adapters/codex_inference.py",
         "src/inresearch/workflow/reader_scope.py",
-        "tests/unit/test_codex_batch_reader.py"
+        "tests/unit/test_codex_batch_reader.py",
+        "tests/unit/test_codex_failure_ocr_rescue.py"
       ],
       "supersedes": [
         "interface-dispatch-20261006"
       ],
-      "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。",
-      "implementation_revision": "2026.10.06.4"
+      "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；阅读恢复时同时披露候选中的未读页，防止缺页计成已核验。",
+      "implementation_revision": "2026.10.06.5"
     }
   ],
   "entrypoints": [

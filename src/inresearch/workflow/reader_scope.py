@@ -2,6 +2,22 @@
 import json
 import re
 from pathlib import Path
+from inresearch.materials.artifacts import digest_file, read_json, safe_path
+from inresearch.materials.reader_contracts import IntegrityError
+
+
+def gap_counts(data, rows, cache):
+    """Only sealed current reports contribute; a gap never means a read page."""
+    counts=[]
+    for row in rows:
+        if row['state']!='complete' or not row.get('report_rel'): continue
+        sha=row.get('report_sha256')
+        if sha not in cache:
+            path=safe_path(data,row['report_rel'])
+            if digest_file(path)!=sha:raise IntegrityError()
+            report=read_json(path);cache[sha]=len(report['coverage'].get('gap_pages',[]))
+        counts.append(cache[sha])
+    return {'complete_with_gaps':sum(n>0 for n in counts),'unread_gap_pages':sum(counts)}
 
 
 class DocumentScope:

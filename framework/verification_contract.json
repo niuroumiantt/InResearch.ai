@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.06.4",
+  "version": "2026.10.06.5",
   "reviewed_at": "2026-10-06",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -14,7 +14,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "71aa4df86b6d1fd1011801e64fce93d8eaadab48b6f3bc02b06126aab722a492",
+    "docs/local_reader/SPARK_OPERATIONS.md": "cabf151ce5981651f88f2f0ac6b4e3f5d858fb496991813d2c16cf52c3ec00a4",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "972bf5d0b9e7a682acdceef34bb59a58e8b5148e1e0cf479e19a6e09170e6daf",
     "docs/local_setup/REPOSITORY_PAGES.md": "fb87e53841c6c1eb3b37235c66072c4d97f803ba0435681148d7e83ef68f9720",
@@ -22,20 +22,20 @@
     "framework/01_data_standards.md": "765d6f91df5468f507e488000bec59ddc00823e4c74b2334a3a14e543ce54c70",
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "6b092daab4ca9f2e465aa352c732e67464bc76eb6a91bf1c93204645dbb8ef11",
-    "framework/04_reading_scoring_standard.md": "931b906df02419a88d5c3697b215860d084af84afbb16b959da22ac36e6f8179",
-    "framework/05_interface_system.md": "afd06b8cb63226beadd5ecb718f35f178fc6efabadc8bd437c9c3de14c39dedb",
+    "framework/04_reading_scoring_standard.md": "9ce8d5d1abedc5c9a6ecd72606d04c0b8444d6f45f2bb14faa0652f5a91d8d78",
+    "framework/05_interface_system.md": "435f410af42365c18a550341e2b0bb8d07c9d7e982aaa7692cc040ebb6d39b20",
     "framework/06_acquisition.md": "648a9a78e5954f06131dfe6250da8168f5d8d72ac82c59cf2540728510babd22",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
-    "framework/08_model_execution.md": "cbe8ea84929d3c00f507f7f03b9658a3fe9845b47c63ddbacb432cb0d43ae68c",
+    "framework/08_model_execution.md": "b1d0488476137b26d770572645017b53961579c29adc41fbb4962dd2d30021ec",
     "framework/09_software_contracts.md": "94eeb69fe498f0318e84d4cb476468eed1e01c541160e81c4be58a12dd119dff",
-    "framework/CURRENT.md": "f9a7f31ebfcf7139ecadd3425dfe1df7916349c13a2f43c2aed803e45da07b01",
+    "framework/CURRENT.md": "8e08f64d1304cfce8a77c9ae058f1671a408dd932d959df8c90ef644dbe2e7c7",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "3c69eefa8e51102e4980e8ac7539f92faa6ef545668c4b0dc4b23d0cb472fbdc",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "75361a6744ec186d0ab997575f545e4fa9671530fc2ae7655e25d0524aec6c9b",
     "framework/tco_targets.json": "9791d0fba37aea994490d00e17807fff2fd8202a08b6412db1b684a4f18ecb3b",
     "src/inresearch/adapters/acquisition.py": "48bc65df62d05d88433eda9543fa344be49d9cacbb42fad94ccf5ea3f6022e05",
-    "src/inresearch/adapters/reader_model.py": "c8625ae63baf88a127a567ecceee982e75e74cef1cbf53a9ca41078fdd794904",
+    "src/inresearch/adapters/reader_model.py": "69c90d2c439ed99c21561128c5e7ad11c987496cbce80a3be9665e4718c8da00",
     "src/inresearch/delivery/backup.py": "c567713fc5585ab79581cb316d12fc1947931ff73a19cfbc79da5a6de48ba71e",
     "src/inresearch/knowledge/news_observations.py": "763fac77a0eb2cc6223d1670c7cba61dc8e5a3f52e5bac37cc87e9c3666ea643",
     "src/inresearch/knowledge/registry.py": "74ef0651bd4f25fb23346cca023e4c713d724060928015533fc5c41f06dc6606",
@@ -45,9 +45,9 @@
     "src/inresearch/materials/daily_sources.py": "f719e0d4592abfcb3b914d278bef4c246538ba61ec407e4ac0d31b1cca56a216",
     "src/inresearch/workflow/daily_dispatch.py": "2cef9f6c22385768529f786a58575f0058b94081c10ab2b3a304c5062b4296b6",
     "src/inresearch/workflow/project_pipeline.py": "a36aa6aa0a43f462abc0c7e0747ca29dcb42c21b3b47ff8ed2c609127e69ba8a",
-    "src/inresearch/workflow/reader.py": "2638fea5dd63d7fb65552c3ffc7f1574a402fdfb6a7c7d74291530cd421bc2db",
+    "src/inresearch/workflow/reader.py": "e0ad6af7b3a1c6205cc652941ad12e36e53baa2736de8418854badd32260c386",
     "src/inresearch/workflow/reading_revisions.py": "2a182c227456000fd039e4aefb5a24a6f6acee1f6eef0c4d337c8e0270f61c67",
-    "src/inresearch/workflow/reading_stages.py": "110c43faebe1c0d53b7977f35b91ca6adf225a08385cbbd7738ea6c8f0c577e4",
+    "src/inresearch/workflow/reading_stages.py": "d3b59b9848211fb21fa7125ac9b7eb0933f5818eed289b3a6e7164051fedbf4d",
     "src/inresearch/workflow/research_match.py": "2aaec0152c140b3c7b3dae2d6342ac641851e70ca6b56126b68dbb8d3bcacfb5",
     "src/inresearch/workflow/supply.py": "691f86719292cf653a86137a03ea754e5c28c1ae35215436c39f7580b6ac2ce0",
     "tests/auth_appearance.cjs": "12fe45ce1017034aebce9d5f330ef4a63b510fb3fdb887331c338a965bd60c51",
@@ -138,15 +138,16 @@
     "tests/unit/test_transient_model_errors.py": "98960eb65d7c5a86f94c47108d98d8ef09a4ceba8b6dd59867e70a4065ca161a",
     "tests/unit/test_verification_contract.py": "2c1c2611dd2fb1973acf336e4b297f37ad7b06f4d5147574d99f3324fcc69232",
     "tests/url_rendering.cjs": "f473ded059784e71764c3bc645e34a60f179afd429bc51efdfc58f630dfd4ade",
-    "web/components/supply.js": "bbfe599a3cf264c2ab45a070381e1f1ec5f91a2d11c030ab3af57944cdfe23a2",
+    "web/components/supply.js": "227a758bb5b5e6be46c22df859e90d47884b1cecda3ce89bab8f45682580d170",
     "web/pages/admin/fetchspec/reporg.html": "e089a2fd6305d7512050f084b0a5925cffe4b927b61be5638131c532e9f5514b",
     "web/pages/admin/repo-content/fetchspec.html": "3cd5d3df47bcd862043eef34a076e001249977367dad1c72ea7dc0e21fe97ae4",
     "web/pages/supply.html": "8ed8ea033601ee02fd410daa3e52341293778b445b09d829e71b012577976ca9",
     "src/inresearch/adapters/models.py": "6093a8d7ba39b553b3cac08237444793f913b048ed9197dbd8321e8f22639fdb",
-    "src/inresearch/adapters/codex_inference.py": "54e2e86bedaf6445a737ec51d7195e88ba991bfcbbf1af3362f8b43ac40fb125",
+    "src/inresearch/adapters/codex_inference.py": "90a778975b38c76331a2bba1151d7f6b2d344871b4fe979dc2233196a1f5638c",
     "src/inresearch/storage/catalog.py": "8e6c7dfe1b6b183826a1565ad9ec2a186069b5947ba4224ef3b0f77b9feccc1f",
-    "src/inresearch/workflow/reader_scope.py": "7c9dc325b51c8bd1f3fcbebd7091e1eb4a6a8ff0de42d02c4e9d48ab7fa043b5",
-    "tests/unit/test_codex_batch_reader.py": "ca00af4a719b95f5b41bfb7944f7a9e189202e3c5e3c990b277603aeafc9a1e0"
+    "src/inresearch/workflow/reader_scope.py": "44cd84717e3736e694e3ff1ba0a98c06b217eb0a7afcc68a59b75f1523f436b1",
+    "tests/unit/test_codex_batch_reader.py": "5b009a6a381a384894c6a3ea57f0167fbd1e36ad44edea273fd2f8d39b63ad81",
+    "tests/unit/test_codex_failure_ocr_rescue.py": "21d121faa5265b3504723d13ed39f8083f69fc7ec2bee5570fde9ae1558d2539"
   },
   "policies": [
     {
@@ -383,7 +384,7 @@
       "policy": "interface-reader-batch-20261006",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "17 页明暗/宽度、字体包已加载与正文字体栈、表单控件去原生、手机顶栏两行、认证外观、旧偏好 skin 字段忽略、状态保持与安全链接；字体包目录登录前公开而其余资源不公开；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、收益参照占位与情景预设（GB300 出租、H100 合约）的租金盈余/覆盖率、基准卡按价格库序列最新时点渲染（更新时间戳与首行时点）；经济模型四本账校准（研报 GB300 出租 ROIC、模型 API 自有 ROIC、带电壳 19%、中国托管 11%）、六个预设、资本开支/瀑布/利润分配/龙卷风/热力图/情景表渲染、输入重算与代际切换、价格库基准、窄屏边界；TCO 模型基准 KPI（每 kW·月）、站点切换后的对基准变化、设为基准后归零、租壳与托管口径、按每 MW 折算的对比与绝对金额切换、数据缺口表、图表渲染与窄屏边界、恢复与窄屏边界；供应方向按对象/问题关联；NVIDIA 打样页以 candidate-only 状态呈现 M5→AWS 进度，明确 Spark 不参与且不混淆正式采用。；2026-10-02 复审：独立行业入口，IT 分期优先且组合不累加，主体/阶段明细可对账，公开字段白名单，真实状态不由新闻标题推定，新闻过期保留长期线索；界面共享字体与明暗，地图与精选新闻联动。；二次复审：首页无项目表格，全球规模保留报告年份/估算性质/来源并与样本分开，低置信度项目标题自动入池，全名+actor 唯一园区跨事件关联，暂停/撤回/旧消息与人工状态优先验证。；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。；2026-10-02 发布验收复审：首批慢读取不耗尽后续厂商预算；单厂请求超时隔离、已成功厂商保留，重试取消旧轮。CPU 下拉选项可实际选择。; Batch 2: separate module filtering and CSV; evidence-backed links from boards/modules to delivered chips; reject missing/non-chip targets; preserve production baseline and server/memory/storage categories.; Timeout test waits for the successful JSON body before advancing its synthetic clock, so CI scheduling cannot turn a fulfilled route into an unconsumed timed-out body.；2026-10-03 首页排版复审：三个指定桌面视口大数字与全世界 viewBox 首屏同见，保持比例与字号；筛选/主体/样本在地图下方；手机 390/320 无横溢且新闻接在地图后；首页两类机会区块和表格不渲染，其他页线索/主体切换保留；新闻计数按 API 当前安全可展示条目，空缺与失败为 —；地图/主体/规模与同条件样本下钻、返回、拖动缩放实测。截图使用真实本地接口，夹具只作交互测试。；2026-10-03 复审：园区可固定浮窗和独立详情；首页标签/卡片仅高亮，不改统计/新闻/URL；五视口边界保持。Frontier同址证据归一保留原记录，全球/样本年份、定义、未知及覆盖不可比，不计算差额。；仓库统一页、原图和来源清单仅真实 admin 可访问；GET/HEAD、归一化变体、本地免登录与旧地址边界；来源校验和实时计数未同步标识。；新闻进展仅增加计数链接，内部供应页显示逐事件数据库、需求匹配、页码与讨论角度，不新增骨架轴或公开内部报告。; Internal daily workflow filter and event deep link distinguish candidate source/identity/caliber/research review, with bounded visible batches.；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。",
+      "checked_requirement": "17 页明暗/宽度、字体包已加载与正文字体栈、表单控件去原生、手机顶栏两行、认证外观、旧偏好 skin 字段忽略、状态保持与安全链接；字体包目录登录前公开而其余资源不公开；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、收益参照占位与情景预设（GB300 出租、H100 合约）的租金盈余/覆盖率、基准卡按价格库序列最新时点渲染（更新时间戳与首行时点）；经济模型四本账校准（研报 GB300 出租 ROIC、模型 API 自有 ROIC、带电壳 19%、中国托管 11%）、六个预设、资本开支/瀑布/利润分配/龙卷风/热力图/情景表渲染、输入重算与代际切换、价格库基准、窄屏边界；TCO 模型基准 KPI（每 kW·月）、站点切换后的对基准变化、设为基准后归零、租壳与托管口径、按每 MW 折算的对比与绝对金额切换、数据缺口表、图表渲染与窄屏边界、恢复与窄屏边界；供应方向按对象/问题关联；NVIDIA 打样页以 candidate-only 状态呈现 M5→AWS 进度，明确 Spark 不参与且不混淆正式采用。；2026-10-02 复审：独立行业入口，IT 分期优先且组合不累加，主体/阶段明细可对账，公开字段白名单，真实状态不由新闻标题推定，新闻过期保留长期线索；界面共享字体与明暗，地图与精选新闻联动。；二次复审：首页无项目表格，全球规模保留报告年份/估算性质/来源并与样本分开，低置信度项目标题自动入池，全名+actor 唯一园区跨事件关联，暂停/撤回/旧消息与人工状态优先验证。；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。；2026-10-02 发布验收复审：首批慢读取不耗尽后续厂商预算；单厂请求超时隔离、已成功厂商保留，重试取消旧轮。CPU 下拉选项可实际选择。; Batch 2: separate module filtering and CSV; evidence-backed links from boards/modules to delivered chips; reject missing/non-chip targets; preserve production baseline and server/memory/storage categories.; Timeout test waits for the successful JSON body before advancing its synthetic clock, so CI scheduling cannot turn a fulfilled route into an unconsumed timed-out body.；2026-10-03 首页排版复审：三个指定桌面视口大数字与全世界 viewBox 首屏同见，保持比例与字号；筛选/主体/样本在地图下方；手机 390/320 无横溢且新闻接在地图后；首页两类机会区块和表格不渲染，其他页线索/主体切换保留；新闻计数按 API 当前安全可展示条目，空缺与失败为 —；地图/主体/规模与同条件样本下钻、返回、拖动缩放实测。截图使用真实本地接口，夹具只作交互测试。；2026-10-03 复审：园区可固定浮窗和独立详情；首页标签/卡片仅高亮，不改统计/新闻/URL；五视口边界保持。Frontier同址证据归一保留原记录，全球/样本年份、定义、未知及覆盖不可比，不计算差额。；仓库统一页、原图和来源清单仅真实 admin 可访问；GET/HEAD、归一化变体、本地免登录与旧地址边界；来源校验和实时计数未同步标识。；新闻进展仅增加计数链接，内部供应页显示逐事件数据库、需求匹配、页码与讨论角度，不新增骨架轴或公开内部报告。; Internal daily workflow filter and event deep link distinguish candidate source/identity/caliber/research review, with bounded visible batches.；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；阅读恢复显示完成候选中的显式未读页，不把缺页当作已核验。",
       "tests": [
         "tests/ui_skin.cjs",
         "tests/auth_appearance.cjs",
@@ -433,7 +434,8 @@
         "tests/unit/test_daily_dispatch.py::DailyDispatchTests.test_unbound_source_missing_receipt_and_wrong_html_do_not_publish",
         "tests/unit/test_daily_dispatch.py::DailyDispatchTests.test_news_dispatch_receives_slots_without_changing_depth_or_oldest_share",
         "tests/unit/test_daily_dispatch.py::DailyDispatchTests.test_finish_stage_has_reserved_slot_and_news_cannot_bypass_floor",
-        "tests/unit/test_daily_dispatch.py::DailyDispatchTests.test_broken_daily_ledger_does_not_block_unrelated_reader_jobs"
+        "tests/unit/test_daily_dispatch.py::DailyDispatchTests.test_broken_daily_ledger_does_not_block_unrelated_reader_jobs",
+        "tests/unit/test_codex_failure_ocr_rescue.py::FailureTests.test_scope_discloses_unread_pages_from_verified_current_reports"
       ],
       "not_verified": [
         "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。字体包切片覆盖率来自仓库文本频率，真实用户输入的生僻字仍会触发后续片下载。",
@@ -702,7 +704,7 @@
       "policy": "reading-codex-batch-20261006",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
@@ -751,7 +753,15 @@
         "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_scope_applies_to_every_lane_and_fails_closed",
         "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_quota_wait_preserves_priority_and_attempt_budget",
         "tests/unit/test_codex_batch_reader.py::CodexTransportTests.test_identity_does_not_claim_provider_model_and_effort_is_frozen",
-        "tests/unit/test_research_match.py::ResearchMatchTests.test_matching_tracks_the_new_execution_then_first_complete_result"
+        "tests/unit/test_research_match.py::ResearchMatchTests.test_matching_tracks_the_new_execution_then_first_complete_result",
+        "tests/unit/test_codex_failure_ocr_rescue.py::FailureTests.test_failure_diagnostics_classify_waits_without_raw_secrets",
+        "tests/unit/test_codex_failure_ocr_rescue.py::FailureTests.test_stderr_tail_is_seen_after_long_startup_warnings",
+        "tests/unit/test_codex_failure_ocr_rescue.py::RescueTests.test_rescue_keeps_failed_reads_and_accepts_only_an_agreeing_pair",
+        "tests/unit/test_codex_failure_ocr_rescue.py::RescueTests.test_unreadable_or_disagreeing_rescue_still_blocks",
+        "tests/unit/test_codex_failure_ocr_rescue.py::RescueTests.test_codex_extraction_yields_after_one_new_vision_page",
+        "tests/unit/test_codex_failure_ocr_rescue.py::RescueTests.test_opted_in_gap_is_empty_and_preserves_failed_evidence",
+        "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_ocr_checkpoint_preserves_attempts_and_does_not_pause_other_work",
+        "tests/unit/test_codex_failure_ocr_rescue.py::FailureTests.test_scope_discloses_unread_pages_from_verified_current_reports"
       ],
       "not_verified": [
         "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality.",
@@ -759,7 +769,8 @@
         "2026-09-27 M5 NVIDIA 五份临时副本实测：A100、Ada GPU Artistry、ConnectX-7 完整，A40 有一个块在有界重试后仍 model_output_invalid，Ada 架构白皮书在 31 页 PDF 提取阶段 model_output_truncated；因此整批 degraded。限定导出本地隔离测试、3 文档/274 evidence/194 statements 图谱预检、M5→Spark SHA256 与 HTTPS 接收回执均通过；网站查询及人工语义审核未做，候选不得视为采用。",
         "旧 35,917 个内容身份的现行需求重匹配/重读未全库执行；新材料的词检命中与语义正确性、完整图表和真实模型吞吐仍须研究核验；不自动解除历史停放。",
         "本轮隔离测试不证明真实来源语义、全球项目消歧、研究采用或历史缺口已补全；真实 Spark 调度、网站回执与线上展示另记部署验收。",
-        "Codex 整批吞吐量、持续模型额度、M5 睡眠/网络可靠性、Spark 正式部署和本批全部全文结果尚需运行验收；CLI 不报告 provider 实际型号；候选阅读不证明正式 GW 已更新。"
+        "Codex 整批吞吐量、持续模型额度、M5 睡眠/网络可靠性、Spark 正式部署和本批全部全文结果尚需运行验收；CLI 不报告 provider 实际型号；候选阅读不证明正式 GW 已更新。",
+        "历史30份CLI失败没有原始错误诊断，原因无法逆推；真实PDF补读吞吐与所有阻塞页恢复不能由单元测试证明，须运行回执。"
       ]
     },
     {
@@ -822,7 +833,7 @@
       "policy": "model-codex-batch-20261006",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims；read 的 schema 与提示中 claims 排在摘要之前，提示要求先写 claims、摘要只简述本块；CLI 超出输出上限时同一调用以 --effort low 重试一次并记录 effort，再次超限报 model_cli_output_limit（按临时错误重试），其他错误与正常调用不带 --effort；Claude CLI 看图：图片以 stream-json 图片块经标准输入传入、工具仍禁用、图片哈希记入 _model，纯文本调用不变；gap_ocr 只读显式缺页，原件哈希不符不调用模型，双读一致才写入并移走缺页记录、只删该页抽取缓存，未通过仍为缺页；reader 接受补读页；中断后重跑会清掉已补页残留的缺页缓存，试运行不写任何文件；gap_ocr 前两次不一致时读第三次，任意两次一致即采用并记 reads，仍不成对则留存各次原文与差异数字；补读提示要求略去 0/1 数字流等纯装饰图案；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims；read 的 schema 与提示中 claims 排在摘要之前，提示要求先写 claims、摘要只简述本块；CLI 超出输出上限时同一调用以 --effort low 重试一次并记录 effort，再次超限报 model_cli_output_limit（按临时错误重试），其他错误与正常调用不带 --effort；Claude CLI 看图：图片以 stream-json 图片块经标准输入传入、工具仍禁用、图片哈希记入 _model，纯文本调用不变；gap_ocr 只读显式缺页，原件哈希不符不调用模型，双读一致才写入并移走缺页记录、只删该页抽取缓存，未通过仍为缺页；reader 接受补读页；中断后重跑会清掉已补页残留的缺页缓存，试运行不写任何文件；gap_ocr 前两次不一致时读第三次，任意两次一致即采用并记 reads，仍不成对则留存各次原文与差异数字；补读提示要求略去 0/1 数字流等纯装饰图案；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
@@ -876,7 +887,15 @@
         "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_repeated_unfinished_switch_and_stale_baseline",
         "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_scope_applies_to_every_lane_and_fails_closed",
         "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_quota_wait_preserves_priority_and_attempt_budget",
-        "tests/unit/test_codex_batch_reader.py::CodexTransportTests.test_identity_does_not_claim_provider_model_and_effort_is_frozen"
+        "tests/unit/test_codex_batch_reader.py::CodexTransportTests.test_identity_does_not_claim_provider_model_and_effort_is_frozen",
+        "tests/unit/test_codex_failure_ocr_rescue.py::FailureTests.test_failure_diagnostics_classify_waits_without_raw_secrets",
+        "tests/unit/test_codex_failure_ocr_rescue.py::FailureTests.test_stderr_tail_is_seen_after_long_startup_warnings",
+        "tests/unit/test_codex_failure_ocr_rescue.py::RescueTests.test_rescue_keeps_failed_reads_and_accepts_only_an_agreeing_pair",
+        "tests/unit/test_codex_failure_ocr_rescue.py::RescueTests.test_unreadable_or_disagreeing_rescue_still_blocks",
+        "tests/unit/test_codex_failure_ocr_rescue.py::RescueTests.test_codex_extraction_yields_after_one_new_vision_page",
+        "tests/unit/test_codex_failure_ocr_rescue.py::RescueTests.test_opted_in_gap_is_empty_and_preserves_failed_evidence",
+        "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_ocr_checkpoint_preserves_attempts_and_does_not_pause_other_work",
+        "tests/unit/test_codex_failure_ocr_rescue.py::FailureTests.test_scope_discloses_unread_pages_from_verified_current_reports"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。",
@@ -885,7 +904,8 @@
         "Ollama 受约束解码只用伪造 HTTP 测试；未在 Spark 的 qwen3.8:27b 上核对 schema 支持程度（maxLength 等关键字可能被忽略）、速度影响，以及 30 份 model_output_invalid 重试后的实际通过率。",
         "CLI 临时错误重试只用伪造错误测试；未区分订阅用量上限（重试 3 次后仍失败）与瞬时过载，未在 M4 真机核对 4 份阻塞文档重试后的结果。",
         "--effort low 重试只用伪造 CLI 测试；未在 M4 真机确认该参数被当前 Claude Code 版本接受，也未评估低思考对该块抽取质量的影响。",
-        "Codex 整批吞吐量、持续模型额度、M5 睡眠/网络可靠性、Spark 正式部署和本批全部全文结果尚需运行验收；CLI 不报告 provider 实际型号；候选阅读不证明正式 GW 已更新。"
+        "Codex 整批吞吐量、持续模型额度、M5 睡眠/网络可靠性、Spark 正式部署和本批全部全文结果尚需运行验收；CLI 不报告 provider 实际型号；候选阅读不证明正式 GW 已更新。",
+        "历史30份CLI失败没有原始错误诊断，原因无法逆推；真实PDF补读吞吐与所有阻塞页恢复不能由单元测试证明，须运行回执。"
       ]
     },
     {

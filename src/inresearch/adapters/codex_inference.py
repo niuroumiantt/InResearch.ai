@@ -10,6 +10,7 @@ import hmac
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
 import os
+import re
 from pathlib import Path
 import subprocess
 import tempfile
@@ -20,6 +21,29 @@ import urllib.request
 from inresearch.adapters.models import InferenceError, MAX_RESPONSE, json_object, load_profile, JsonModelClient
 
 MAX_REQUEST = 24 * 1024 * 1024
+
+
+def cli_failure(returncode, events, stderr, elapsed):
+    """Classify transport waits without persisting prompts, tokens or raw errors."""
+    terminal = [e for e in events if e.get('type') in ('error', 'turn.failed')]
+    detail = (stderr + ' ' + json.dumps(terminal, ensure_ascii=False)).lower()
+    status = re.search(r'(?:status(?: code)?[: ]+|http[/\d. ]+)([45]\d\d)\b', detail)
+    status = int(status.group(1)) if status else None
+    if any(s in detail for s in ('usage_limit', 'rate_limit', 'usage limit', 'rate limit', 'quota')) or status == 429:
+        code, kind = 'model_quota_wait', 'quota'
+    elif any(s in detail for s in ('not logged', 'authentication', 'unauthorized')) or status in (401, 403):
+        code, kind = 'model_cli_authentication_failed', 'authentication'
+    elif status in (408, 500, 502, 503, 504) or any(s in detail for s in (
+            'stream disconnected', 'error sending request', 'connection reset',
+            'connection closed', 'service unavailable', 'server_error', 'unexpected eof')):
+        code, kind = 'model_relay_unavailable', 'transport'
+    else:
+        code, kind = 'model_cli_failed', 'unclassified'
+    exc = InferenceError(code)
+    exc.diagnostics = {'cli_returncode': returncode, 'failure_kind': kind,
+                       'elapsed_seconds': round(elapsed, 3), 'http_status': status,
+                       'diagnostic_sha256': hashlib.sha256(detail.encode()).hexdigest()}
+    return exc
 
 
 def strict_schema(schema):
@@ -133,14 +157,15 @@ def generate(client, system, user, *, json_schema=None, image_path=None):
                 proc=subprocess.run(command,input=user,text=True,cwd=directory,
                     stdout=output,stderr=errors,timeout=p.timeout,check=False)
                 output.seek(0);raw=output.read(MAX_RESPONSE+1)
-                errors.seek(0);error_text=errors.read(8192).decode(errors='replace').lower()
+                # Startup warnings can fill the beginning; terminal errors are
+                # frequently at the end. Inspect both bounds, never log either.
+                errors.seek(0);head=errors.read(4096)
+                errors.seek(0,2);size=errors.tell();errors.seek(max(0,size-8192))
+                error_text=(head+b'\n'+errors.read(8192)).decode(errors='replace')
             if len(raw)>MAX_RESPONSE: raise InferenceError('model_output_invalid')
             events=[json_object(line.decode()) for line in raw.splitlines() if line.strip()]
-            detail=(error_text+' '+json.dumps([e for e in events if e.get('type') in ('error','turn.failed')])).lower()
             if proc.returncode or any(e.get('type')=='turn.failed' for e in events):
-                code='model_quota_wait' if any(s in detail for s in ('usage_limit','rate_limit','usage limit','rate limit','quota')) else \
-                     'model_cli_authentication_failed' if any(s in detail for s in ('not logged','authentication','unauthorized')) else 'model_cli_failed'
-                raise InferenceError(code)
+                raise cli_failure(proc.returncode,events,error_text,time.monotonic()-start)
             if not events or events[-1].get('type')!='turn.completed': raise InferenceError('model_output_incomplete')
             # CLI feature diagnostics are error items even when the inference
             # turn succeeds. They are not tool activity; turn.failed still fails.
@@ -167,9 +192,10 @@ def main():
     args=parser.parse_args();key=os.environ.get(args.token_env)
     if not key or len(key)<32 or not 1<=args.parallel<=4: parser.error('private token and bounded concurrency required')
     clients={}
-    for role in ('research_default','core_review','ocr'):
+    for role in ('research_default','core_review','ocr','gap_ocr'):
         try: p=load_profile(role,args.config)
         except InferenceError: continue
+        if role=='gap_ocr' and p.backend!='codex_cli': continue
         if p.backend!='codex_cli' or p.url: parser.error('relay profiles must use local Codex CLI')
         clients[json.dumps(p.identity,sort_keys=True)]=JsonModelClient(p)
     slots=threading.BoundedSemaphore(args.parallel)
@@ -184,6 +210,7 @@ def main():
             self.connection.settimeout(30)
             if not hmac.compare_digest(self.headers.get('Authorization',''),'Bearer '+key): return self.respond(401,{'error':'unauthorized'})
             if self.path!='/v1/inference': return self.respond(404,{'error':'not_found'})
+            value={}
             try:
                 size=int(self.headers.get('Content-Length','0'))
                 if not 0<size<=MAX_REQUEST: return self.respond(413,{'error':'request_too_large'})
@@ -206,7 +233,10 @@ def main():
                         'usage':result['_model'].get('usage',{})}),flush=True)
                 finally: slots.release()
             except InferenceError as exc:
-                self.respond(503,{'error':exc.code});print(json.dumps({'at':time.time(),'state':'failed','error':exc.code}),flush=True)
+                self.respond(503,{'error':exc.code})
+                print(json.dumps({'at':time.time(),'state':'failed','error':exc.code,
+                    'input_sha256':hashlib.sha256(str(value.get('user','')).encode()).hexdigest(),
+                    'diagnostics':getattr(exc,'diagnostics',{})}),flush=True)
             except (ValueError,TypeError,UnicodeError): self.respond(400,{'error':'invalid_request'})
     server=ThreadingHTTPServer(('127.0.0.1',args.port),Handler)
     print(json.dumps({'state':'ready','bind':'loopback','profiles':len(clients),'parallel':args.parallel}),flush=True)

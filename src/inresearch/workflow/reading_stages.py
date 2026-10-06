@@ -1,6 +1,6 @@
 """Read/validate candidate artifacts; no queue or catalog writes."""
 from __future__ import annotations
-import re, shutil, subprocess, tempfile
+import re, shutil, subprocess, tempfile, time
 from pathlib import Path
 from inresearch.materials.reader_contracts import Blocked, Deferred, UnsafePath, IntegrityError, ModelOutputError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, MODULES, OCR_GAP_REASONS, max_gap_pages
 from inresearch.materials.artifacts import numeric_tokens, now_iso, encoded, digest_bytes, digest_file, safe_path, atomic_bytes, atomic_json, read_json, signature, split_text, require_text, require_content
@@ -77,6 +77,7 @@ class ReadingStages(ReadingArtifacts):
                     if int(cols[3]) >= 400 and int(cols[4]) >= 400:
                         image_pages.add(int(cols[0]))
             ocr_pages = 0
+            new_ocr_pages = 0
             for i in range(1, int(m.group(1)) + 1):
                 page_file = safe_path(self.data, "%s/pages/%06d.json" % (doc["extracted_rel"], i))
                 if page_file.exists():
@@ -97,6 +98,11 @@ class ReadingStages(ReadingArtifacts):
                             texts.append(page["text"])
                             page_meta.append({k: v for k, v in page.items() if k not in {"text", "text_second_pass"}})
                             continue
+                        if new_ocr_pages and getattr(self.model,'backend','') == 'codex_cli':
+                            # Release a bounded inference slot after one new
+                            # vision page. Persisted pages resume unchanged;
+                            # eligible text and finishing jobs can now run.
+                            raise Deferred('ocr_checkpoint_yield')
                         if getattr(self.model, "ocr_model", "") and doc["priority"] != OCR_DEFERRED_PRIORITY:
                             # First OCR need of this document: step aside so text-layer
                             # documents are read first. Text pages extracted so far stay cached.
@@ -105,6 +111,7 @@ class ReadingStages(ReadingArtifacts):
                         if ocr_pages > self.ocr_max_pages:
                             raise Blocked("ocr_page_budget_exceeded")
                         page.update(self._ocr_page(doc, source, i))
+                        new_ocr_pages += 1
                     atomic_json(page_file, page)
                 texts.append(page["text"])
                 page_meta.append({k: v for k, v in page.items() if k not in {"text", "text_second_pass"}})
@@ -199,19 +206,48 @@ class ReadingStages(ReadingArtifacts):
                 # Unparseable vision output is a property of the page, not a transient
                 # failure: block once instead of re-rendering and re-reading three times.
                 raise Blocked("ocr_output_invalid")
-        for out in (first, second):
-            if not isinstance(out.get("text"), str) or not isinstance(out.get("blank"), bool) or out.get("unreadable") is not False:
-                raise Blocked("ocr_page_unreadable")
-        if first["blank"] != second["blank"]:
-            raise Blocked("ocr_blank_disagreement")
-        if numeric_tokens(first["text"]) != numeric_tokens(second["text"]):
-            raise Blocked("ocr_numbers_disagree")
-        if not first["text"].strip() and not first["blank"]:
-            raise Blocked("ocr_empty_nonblank_page")
-        if first["blank"] and (first["text"].strip() or second["text"].strip()):
-            raise Blocked("ocr_blank_has_text")
+            from inresearch.adapters.gap_ocr import pair_problem
+            def problem(a, b):
+                if any(not isinstance(x.get('text'),str) or type(x.get('blank')) is not bool or type(x.get('unreadable')) is not bool for x in (a,b)):
+                    return 'ocr_page_unreadable'
+                return pair_problem(a,b)
+            issue = problem(first,second)
+            reads, scale = [first,second], 1800
+            if issue and getattr(self.model,'vision_rescue',None):
+                # Preserve the failed evidence before doing bounded, higher-
+                # resolution reads. Never turn disagreement into accepted text.
+                history = self.artifact_path(doc,'ocr-attempts/%06d-%d.json' % (i,time.time_ns()))
+                record = {'doc_id':doc['doc_id'],'content_sha256':doc['sha256'],
+                          'reading_revision_id':doc['revision_id'],'page_index':i,
+                          'initial_reason':issue,'normal_reads':reads,'rescue_reads':[]}
+                atomic_json(history,record)
+                self._command(['pdftoppm','-f',str(i),'-l',str(i),'-singlefile','-scale-to','3200','-png',str(source),str(base)],90)
+                rescue_reads, pair = [], None
+                for _ in range(3):
+                    try:
+                        rescue_reads.append(self.model.ocr(image,rescue=True))
+                    finally:
+                        record['rescue_reads']=rescue_reads
+                        atomic_json(history,record)
+                    for prior in rescue_reads[:-1]:
+                        if problem(prior,rescue_reads[-1]) is None:
+                            pair = (prior,rescue_reads[-1]);break
+                    if pair:break
+                if pair:
+                    first,second=pair;issue=None;scale=3200
+                    record['outcome']='agreed';atomic_json(history,record)
+                else:
+                    record['outcome']='blocked';atomic_json(history,record)
+                    if getattr(self.model,'allow_ocr_gaps',False) and issue in OCR_GAP_REASONS:
+                        record['outcome']='explicit_gap';atomic_json(history,record)
+                        return {'text':'','text_second_pass':'','method':'vision_ocr_gap','gap':True,
+                                'gap_reason':issue,'ocr_model':rescue_reads[-1].get('_model'),
+                                'blank':False,'verification':'page_not_read_after_rescue',
+                                'attempts_rel':history.relative_to(self.data.resolve()).as_posix()}
+            if issue:raise Blocked(issue)
         return {"text": first["text"], "text_second_pass": second["text"], "method": "vision_ocr_double_pass",
                 "ocr_model": first.get("_model"), "blank": first["blank"],
+                "render_scale":scale,
                 "verification": "candidate_ocr_agreement_not_accuracy_certification"}
 
     def _context(self, doc, text):

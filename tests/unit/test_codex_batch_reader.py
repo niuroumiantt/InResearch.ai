@@ -66,6 +66,16 @@ class BatchReaderTests(ReaderTests):
         self.assertIsNone(self.reader.claim())
         self.clock.advance(901);self.assertIsNotNone(self.reader.claim())
 
+    def test_ocr_checkpoint_preserves_attempts_and_does_not_pause_other_work(self):
+        self.put();self.reader.scan();job=self.reader.claim()
+        before=self.reader.doc(job['doc_id'])['priority']
+        with mock.patch.object(self.reader.stages,'_extract',side_effect=Deferred('ocr_checkpoint_yield')):
+            self.assertEqual(self.reader.process(job),'deferred')
+        self.assertEqual(self.reader.doc(job['doc_id'])['priority'],before)
+        self.assertEqual(self.reader.conn.execute('select attempts from jobs where job_id=?',(job['job_id'],)).fetchone()[0],0)
+        self.assertIsNone(self.reader.conn.execute("select value from meta where key='model_wait_until'").fetchone())
+        self.clock.advance(2);self.assertIsNotNone(self.reader.claim())
+
 
 class CodexTransportTests(unittest.TestCase):
     def test_strict_schema_validates_empty_ids_and_rejects_extra_or_wrong_values(self):

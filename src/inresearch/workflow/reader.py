@@ -70,6 +70,7 @@ class Reader:
         if stable_seconds < 0 or not 1 <= chunk_chars <= 6000:
             raise ValueError("invalid scan stability or chunk size")
         self.catalog = None
+        self._gap_count_cache = {}
         from inresearch.workflow.reader_scope import DocumentScope
         scope_path = document_scope or os.environ.get('READER_DOCUMENT_SCOPE')
         self.document_scope = DocumentScope(scope_path,self.data) if scope_path else None
@@ -569,13 +570,14 @@ class Reader:
         code = error.code if isinstance(error, ReaderError) else type(error).__name__
         if isinstance(error, Deferred):
             remote_wait = code in {'model_quota_wait','model_relay_unavailable'}
-            delay = (900 if code=='model_quota_wait' else 60) if remote_wait else self.ocr_defer_seconds
+            checkpoint = code == 'ocr_checkpoint_yield'
+            delay = 1 if checkpoint else (900 if code=='model_quota_wait' else 60) if remote_wait else self.ocr_defer_seconds
             with self.transaction():
                 cur = self.conn.execute("UPDATE jobs SET state='pending',attempts=attempts-1,available=?,error_code=? WHERE job_id=? AND state='running' AND attempts=?",
                                         (self.clock() + delay, code, job["job_id"], job["attempts"]))
                 if cur.rowcount != 1:
                     raise IntegrityError()
-                self.conn.execute("UPDATE reading_runs SET state='queued',priority=?,error_code=?,updated=? WHERE revision_id=?", (doc['priority'] if remote_wait else OCR_DEFERRED_PRIORITY, code, self.clock(), doc["revision_id"]))
+                self.conn.execute("UPDATE reading_runs SET state='queued',priority=?,error_code=?,updated=? WHERE revision_id=?", (doc['priority'] if remote_wait or checkpoint else OCR_DEFERRED_PRIORITY, code, self.clock(), doc["revision_id"]))
                 if remote_wait:
                     self.conn.execute("INSERT OR REPLACE INTO meta VALUES ('model_wait_until',?)",(str(self.clock()+delay),))
                     self.conn.execute("INSERT OR REPLACE INTO meta VALUES ('model_wait_reason',?)",(code,))
@@ -715,6 +717,8 @@ class Reader:
                      'chunks_total':sum(r['chunks_total'] for r in rows),'chunks_read':sum(r['chunks_read'] for r in rows),
                      'awaiting_extraction':sum(r['chunks_total']==0 for r in rows),
                      'executor':self.model.identity,'acceptance':'candidate_only'}
+            from inresearch.workflow.reader_scope import gap_counts
+            scope.update(gap_counts(self.data,rows,self._gap_count_cache))
             wait = self.conn.execute("SELECT value FROM meta WHERE key='model_wait_until'").fetchone()
             reason = self.conn.execute("SELECT value FROM meta WHERE key='model_wait_reason'").fetchone()
             if wait and float(wait[0])>self.clock():
