@@ -4,6 +4,16 @@
 
 本手册对应 `src/inresearch/workflow/reader.py`，不是旧 reader 脚本的启动说明。实现为 Python 标准库、SQLite 与单一队列持有进程（该进程内可开多个工作线程，见「并发与吞吐」）；部署、实际模型验收及同步状态由当次部署记录说明。代码通过隔离故障测试不等于 Spark 已完成部署。
 
+## Codex 批次运行与模型切回（2026-10-06）
+
+本批仍在 Spark 单一 reader 服务中运行。机器模型 JSON 的 research_default/core_review/ocr 指向 Codex 角色，Spark 档案 url 为 SSH 回送的 http://127.0.0.1:37261，api_key_env 仅存私有令牌的变量名；M5 档案相同推理身份、空 url、command 指向已登录 CLI。M5 的 loopback relay 与 SSH 转发由用户 launchd 常驻，Spark worker 为两线程。本地推理不需要公开服务端口或 OAuth 复制。
+
+启动前：停止 reader；备份 SQLite 与私有配置；建立含全部点名 SHA 的 READER_DOCUMENT_SCOPE（schema_version=1、doc_ids、include_daily_deliveries=true）；为未匹配的点名原件建立接收副本并扫描；通过 `reader restart-unfinished --doc-id ... --expected-revision ... --request-id ... --reason ...` 对未完成旧配方逐份迁移，保留历史。设置 scoped floor=0/full_read_min_priority=1，接通实测后启动；报告/来源/容量采用分别交付，不能等整批才发布。
+
+回切：停止 worker，备份，恢复私有 Ollama 角色/地址和温度保护；未完成 Codex 配方按同一显式入口冻结新模型，完成候选保留。保留本批 scope 或另行明确扩展；去掉 scope 代表恢复旧资料库调度，不能在错误回退时自动去掉。其他可替换模型仍须真实 text/vision 探针，能力声明不等于验收。额度等待 15 分钟、转发中断等待 60 秒，任务预算和优先级不受罚。
+
+网页 matching 的本批全文阅读板与逐份报告给实际计数；只有完整报告才计完成。PDF 页总数来自原件盘点，已提取块随进度增长；用实际整篇/块吞吐量估算剩余时间，不用单事件小样本承诺整批时限。原件和数据库保留在 Spark，M5 仅推理服务和运行日志；数据没有回迁。
+
 ## 数据落点与交付契约
 
 以 Spark 实际登录用户的家目录为基准：

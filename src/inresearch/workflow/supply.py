@@ -58,7 +58,7 @@ def snapshot(root):
             'daily_events': (reader.get('acquisition') or {}).get('daily_events') or {'records':[],'total':0},
             'daily_delivery': (reader.get('acquisition') or {}).get('daily_delivery') or {'records':[],'total':0,'news_total':0},
             'research_matching': matched, 'demand_queue': demand_queue,
-            'matching_reader': {k: reader.get(k) for k in ('received_at','stale','status')},
+            'matching_reader': {k: reader.get(k) for k in ('received_at','stale','status','execution_scope')},
             'demands': state['demands'], 'tasks': state['tasks'],
             'questions': [{'id': q['id'], 'text': q['text'], 'object_ids': q.get('object_ids', [])} for q in questions],
             'generated_targets': {

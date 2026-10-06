@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.06.3。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.06.4。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1110。
+在册文件：1117。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 300 |
-| 运行代码 | 241 |
+| 历史快照 | 303 |
+| 运行代码 | 243 |
 | 现行规范 | 13 |
 | 项目配置 | 99 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 79 |
-| 测试 | 116 |
+| 配套说明 | 80 |
+| 测试 | 117 |
 
 ## 在册记录集合
 
@@ -333,7 +333,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 36 |
+| `framework/current_state.json` | policies | 39 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -502,6 +502,9 @@
 | [docs/archive/2026-10-06/before_dispatch__framework__04_reading_scoring_standard.md](archive/2026-10-06/before_dispatch__framework__04_reading_scoring_standard.md) | 历史快照 |
 | [docs/archive/2026-10-06/before_dispatch__framework__05_interface_system.md](archive/2026-10-06/before_dispatch__framework__05_interface_system.md) | 历史快照 |
 | [docs/archive/2026-10-06/before_dispatch__framework__06_acquisition.md](archive/2026-10-06/before_dispatch__framework__06_acquisition.md) | 历史快照 |
+| [docs/archive/2026-10-06/codex-reader/04_reading_scoring_standard.md](archive/2026-10-06/codex-reader/04_reading_scoring_standard.md) | 历史快照 |
+| [docs/archive/2026-10-06/codex-reader/05_interface_system.md](archive/2026-10-06/codex-reader/05_interface_system.md) | 历史快照 |
+| [docs/archive/2026-10-06/codex-reader/08_model_execution.md](archive/2026-10-06/codex-reader/08_model_execution.md) | 历史快照 |
 | [docs/archive/2026-10-06/framework__04_reading_scoring_standard.md](archive/2026-10-06/framework__04_reading_scoring_standard.md) | 历史快照 |
 | [docs/archive/2026-10-06/framework__06_acquisition.md](archive/2026-10-06/framework__06_acquisition.md) | 历史快照 |
 | [docs/archive/2026-10-06/framework__06_acquisition_before_daily_delivery.md](archive/2026-10-06/framework__06_acquisition_before_daily_delivery.md) | 历史快照 |
@@ -516,6 +519,7 @@
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
 | [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
+| [docs/handoff/codex-batch-reader-20261006.md](handoff/codex-batch-reader-20261006.md) | 配套说明 |
 | [docs/handoff/compute-catalog-20261002.md](handoff/compute-catalog-20261002.md) | 配套说明 |
 | [docs/handoff/compute-catalog-batch2-20261002.md](handoff/compute-catalog-batch2-20261002.md) | 配套说明 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | 项目配置 |
@@ -1172,6 +1176,7 @@
 | `src/inresearch/adapters/asset_check.py` | 运行代码 |
 | `src/inresearch/adapters/asset_compare.py` | 运行代码 |
 | `src/inresearch/adapters/asset_download.py` | 运行代码 |
+| `src/inresearch/adapters/codex_inference.py` | 运行代码 |
 | `src/inresearch/adapters/fetchspec_projection.py` | 运行代码 |
 | `src/inresearch/adapters/gap_ocr.py` | 运行代码 |
 | `src/inresearch/adapters/historical_brief.py` | 运行代码 |
@@ -1283,6 +1288,7 @@
 | `src/inresearch/workflow/progress.py` | 运行代码 |
 | `src/inresearch/workflow/project_pipeline.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
+| `src/inresearch/workflow/reader_scope.py` | 运行代码 |
 | `src/inresearch/workflow/reading_gaps.py` | 运行代码 |
 | `src/inresearch/workflow/reading_queue.py` | 运行代码 |
 | `src/inresearch/workflow/reading_results.py` | 运行代码 |
@@ -1325,6 +1331,7 @@
 | `tests/unit/test_catalog_bridge.py` | 测试 |
 | `tests/unit/test_catalog_migration.py` | 测试 |
 | `tests/unit/test_claim_floor.py` | 测试 |
+| `tests/unit/test_codex_batch_reader.py` | 测试 |
 | `tests/unit/test_commands.py` | 测试 |
 | `tests/unit/test_compute_catalog.py` | 测试 |
 | `tests/unit/test_continuous_reader.py` | 测试 |
