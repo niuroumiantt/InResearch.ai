@@ -23,6 +23,10 @@ const base=process.env.UI_BASE_URL;
   await page.getByRole('button',{name:'规格批次',exact:true}).click();await page.locator('#pilot-status').waitFor();assert.match(page.url(),/#pilot$/);
   for(const [legacy,hash] of [['/team.html','#tasks'],['/materials.html','#inbox']]){const r=await page.request.get(base+legacy,{maxRedirects:0});assert.equal(r.status(),302,legacy);assert.ok(r.headers()['location'].endsWith('supply.html'+hash),legacy);}
   await page.getByRole('button',{name:'新闻与报告匹配',exact:true}).click();
+  await page.getByRole('heading',{name:'材料处理进展',exact:true}).waitFor();
+  assert.equal(await page.locator('#matching-demands').evaluate(e=>e.open),false);
+  await page.locator('#matching-demands > summary').click();
+  await page.locator('#matching-events > summary').click();
   await page.getByRole('heading',{name:'需求先于材料',exact:true}).waitFor();
   await page.getByRole('heading',{name:'日报 → 逐事件数据库',exact:true}).waitFor();
   await page.locator('#daily-state').selectOption('awaiting_identity');
@@ -33,12 +37,25 @@ const base=process.env.UI_BASE_URL;
   const ready='daily-event-fixture-ready',missing='daily-event-fixture-missing';
   const event=(id,title)=>({id,title,body:'日报正文只在登录匹配页显示',reported_stage:'unknown',place_quote:'芬兰',actors:[],country_mentions:[],site_candidates:[],capacity_observations:[],sources:[],document_refs:[],identity_review:'pending',capacity_review:'pending',workflow_stage:'awaiting_identity'});
   await page.route('**/api/supply',route=>route.fulfill({json:{...original,
-   matching_reader:{execution_scope:{documents:133,registered:131,counts:{complete:2,running:2},types:{'.pdf':69,'.html':62},chunks_read:18,chunks_total:156,awaiting_extraction:126,executor:{backend:'codex_cli',model:'gpt-6.1-sol <img src=x>',reasoning_effort:'medium'}}},
+   matching_reader:{received_at:'2026-10-06T08:00:00Z',execution_scope:{documents:133,registered:131,counts:{complete:2,running:2,queued:127,blocked:2},types:{'.pdf':69,'.html':62},chunks_read:18,chunks_total:156,awaiting_extraction:126,executor:{backend:'codex_cli',model:'gpt-6.1-sol <img src=x>',reasoning_effort:'medium'}}},
+   reading_deliveries:[{title:'已完成日报 <img src=x>',claims:['已提取的合同信息'],quotes:[{quote:'Original source text',page_index:0}],coverage:{gap_pages:[2]}}],
    daily_events:{records:[event(missing,'需要补来源的园区'),event(ready,'已交付园区 <img src=x onerror=alert(1)>')],total:2},
    daily_delivery:{news_total:1,task_counts:{source:1,identity:2},records:[
     {event_id:ready,delivery_lane:'news',last_processed_at:'2026-10-06T08:00:00Z',tasks:[{owner:'Spark 发布器',next_action:'动态已交付，容量等待研究核验'}]},
     {event_id:missing,delivery_lane:'source',tasks:[{owner:'inews / M5 补源',next_action:'查 sources.json'}]}]}}}));
-  await page.locator('#refresh').click();await page.locator('#delivery-lane').waitFor();
+  await page.locator('#refresh').click();await page.waitForFunction(()=>document.querySelector('.progress-overview')?.textContent.includes('127'));await page.locator('#delivery-lane').waitFor({state:'attached'});
+  await page.getByRole('heading',{name:'已交付什么',exact:true}).waitFor();
+  assert.match(await page.locator('.progress-overview').innerText(),/127/);
+  assert.match(await page.locator('.progress-overview').innerText(),/16:00/);
+  assert.equal(await page.locator('.progress-overview img,.progress-results img').count(),0);
+  await page.locator('.progress-results summary').first().click();
+  assert.match(await page.locator('.progress-results').innerText(),/已提取的合同信息/);
+  assert.match(await page.locator('.progress-results').innerText(),/原件第 1 页/);
+  assert.match(await page.locator('.progress-results').innerText(),/未读页：2/);
+  for(const width of [390,1280]){await page.setViewportSize({width,height:950});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
+  if(process.env.UI_QA_DIR){await page.evaluate(()=>scrollTo(0,0));await page.screenshot({path:process.env.UI_QA_DIR+'/supply-progress.png',fullPage:true});}
+  await page.locator('#matching-demands > summary').click();
+  await page.locator('#matching-events > summary').click();
   await page.getByRole('heading',{name:'本批全文阅读',exact:true}).waitFor();
   assert.match(await page.locator('[aria-label="本批全文阅读"]').innerText(),/131 \/ 133/);
   assert.equal(await page.locator('[aria-label="本批全文阅读"] img').count(),0,'executor text is escaped');
@@ -52,7 +69,9 @@ const base=process.env.UI_BASE_URL;
   await page.locator('#delivery-lane').selectOption('source');
   assert.match(await page.locator('#daily-events').innerText(),/需要补来源/);
   assert.doesNotMatch(await page.locator('#daily-events').innerText(),/已交付园区/);
-  await page.unroute('**/api/supply');await page.locator('#refresh').click();
+  await page.unroute('**/api/supply');await page.locator('#refresh').click();await page.waitForFunction(()=>!document.querySelector('.progress-results')?.textContent.includes('已完成日报'));
+  await page.locator('#matching-demands > summary').click();
+  await page.locator('#matching-events > summary').click();
   await page.locator('#match-search').fill('transformer');
   assert.match(await page.locator('#match-demands').innerText(),/P\.transformer/);
   await page.locator('#daily-search').fill('Huntingwood');

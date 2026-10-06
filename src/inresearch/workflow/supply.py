@@ -58,6 +58,7 @@ def snapshot(root):
             'daily_events': (reader.get('acquisition') or {}).get('daily_events') or {'records':[],'total':0},
             'daily_delivery': (reader.get('acquisition') or {}).get('daily_delivery') or {'records':[],'total':0,'news_total':0},
             'research_matching': matched, 'demand_queue': demand_queue,
+            'reading_deliveries': reading_deliveries(reader, matched),
             'matching_reader': {k: reader.get(k) for k in ('received_at','stale','status','execution_scope')},
             'demands': state['demands'], 'tasks': state['tasks'],
             'questions': [{'id': q['id'], 'text': q['text'], 'object_ids': q.get('object_ids', [])} for q in questions],
@@ -73,6 +74,23 @@ def snapshot(root):
             },
             'deliveries': deliveries,
             'delivery_connection': 'connected' if receipts['deliveries'] else 'awaiting_first_delivery'}
+
+
+def reading_deliveries(reader, matched):
+    """Received reading results only; retain candidate scope and omit raw paths."""
+    wanted = {r.get('sha256') for r in matched.get('records', [])}
+    outputs = []
+    for doc in reader.get('documents', []):
+        if doc.get('content_sha256') not in wanted or doc.get('read_status') != 'complete':
+            continue
+        ident = doc.get('doc_id') or doc.get('id')
+        claims = [r.get('text', '') for r in reader.get('statements', []) if r.get('document_id') == ident]
+        quotes = [{k: r.get(k) for k in ('quote', 'page_index')}
+                  for r in reader.get('evidence', []) if r.get('document_id') == ident]
+        outputs.append({'title': doc.get('title'), 'sha256': doc['content_sha256'],
+                        'claims': claims[:6], 'quotes': quotes[:3],
+                        'coverage': doc.get('coverage') or {}, 'acceptance': 'candidate_only'})
+    return outputs
 
 
 def _attach_reader_status(deliveries):
