@@ -110,7 +110,7 @@ def match_pages(texts, root):
     return matches, proposals
 
 
-def ingest(path, data, root, title=None):
+def ingest(path, data, root, title=None, daily_sources=None):
     path = Path(path)
     if path.is_symlink() or not path.is_file() or path.stat().st_size > 256*1024*1024: raise ValueError('invalid_material')
     sha = hash_file(path)
@@ -120,7 +120,7 @@ def ingest(path, data, root, title=None):
     daily = []
     if path.suffix.lower() in ('.html','.htm'):
         from inresearch.materials.daily_events import parse as parse_daily, receive as receive_daily
-        daily = parse_daily(path, root, title)
+        daily = parse_daily(path, root, title, daily_sources)
     sites = json.loads((Path(root)/'data/projects.json').read_text())['records']
     companies = json.loads((Path(root)/'data/companies.json').read_text())['records']
     project_observations = []
@@ -146,7 +146,7 @@ def ingest(path, data, root, title=None):
         # Original bytes and source receipt are permanent, separate from the index.
         archived_sha = c.archive_file(ident, path, path.suffix.lower(), {'method': 'user_supplied', 'sha256': sha})
         if archived_sha != sha: raise ValueError('material_changed_during_archive')
-        if daily: receive_daily(path, data, root, title)
+        if daily: receive_daily(path, data, root, title, daily_sources)
         import os
         for match in matches:
             node = re.sub(r'[^A-Za-z0-9_.-]', '-', match['node'])

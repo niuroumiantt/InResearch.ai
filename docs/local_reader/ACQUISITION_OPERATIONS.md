@@ -40,3 +40,9 @@ SEC 与 GPU 报价的采集凭据（如 `VAST_API_KEY`、`SEC_USER_AGENT`）不�
 新建 Reader 阅读版本会冻结本材料匹配的现行目标、五类变量、六队与模型输入；needed/assumed/delivered 匹配的初始优先级为 7，有主模型输入为 8。此分数只是工作顺序；不是来源等级。原件 SHA 路径保留，候选分类可由 library/candidates-by-node/<节点>/variable-N/ 回查，新全文结果在 library/by-node/，旧模块链接及已创建配方保留。已有 SHA 的旧阅读不会因本轮提示或模型变化自动重读；若研究缺口需要重读，按 04 的显式阅读版本流程执行。
 
 采集备份新增两本 JSON 账的逐账锁定副本，保留新闻/日报版本及人工身份复核；与在线 SQLite、blob SHA 验证一并保存。不同库并非单一时间点；Reader 完整产物备份仍单独执行。
+
+## 日报与来源成组接收（2026-10-06）
+
+上游发送器产生 research-delivery.json 清单，复制正文/来源/研究字段/派生 HTML/实际证据后投递至 incoming/inews-daily/<清单SHA>/，全部哈希验证后才开放。也可在 Spark 手动执行 `python3 manage.py daily-receive --input <完整清单目录>`，默认使用既有数据根。回执 indexed_candidate 是候选完成，不是正式采用；按 bundle_id、原件/来源/目标表 SHA 追溯，旧来源目录和版本不改动。
+
+补历史链接只用实际对应版本的来源台账与 HTML 配对，不按日期猜关联。派生研究 HTML 只归档，不重复进 Reader。接收后沿用 Reader/publish 调度，核对网页事件、来源与快照时间。残留 .partial 只意味着输入未开放，不能把文件存在当成入库完成。
