@@ -121,6 +121,7 @@ const base=process.env.UI_BASE_URL;
   await page.route('**/api/supply',route=>route.fulfill({json:{...original,
     daily_events:{records:[periodEvent(ready,'两个园区 <img src=x>','2026-10-07'),periodEvent(missing,'旧日报事件','2026-10-06')],total:2},
     project_updates:['fi-one','fi-two'].map(site_id=>({site_id,name:site_id,event_id:ready,verified_date:'2026-10-07',fields:['园区身份'],scope:'容量未披露'})),
+    ecosystem_updates:[{contract_id:'power-one',event_id:ready,name:'已采用供电协议',parties:['constellation-energy'],scope:'发电计划，不计IT'}],
     daily_delivery:{records:[],news_total:0,task_counts:{}}}}));
   await page.goto(base+'/supply.html?day=2026-10-07#matching');
   const edition=page.locator('[aria-label="本期日报交付"]');
@@ -128,6 +129,7 @@ const base=process.env.UI_BASE_URL;
   assert.match(await edition.innerText(),/1 条事件已用于 2 个正式园区记录/);
   assert.equal(await edition.locator('a[href*="project.html"]').count(),2);
   assert.equal(await edition.locator('img').count(),0);
+  assert.equal(await edition.locator('a[href*="company.html"]').count(),1);
   await page.locator('#matching-events > summary').click();
   assert.match(await page.locator('#daily-shown').innerText(),/显示 1 \/ 1/);
   assert.doesNotMatch(await page.locator('#daily-events').innerText(),/旧日报事件/);
