@@ -92,6 +92,15 @@ class NewsObservationTests(unittest.TestCase):
             self.assertNotIn('Washington',event['body'])
             self.assertEqual(event['site_candidates'],[])
 
+    def test_story_date_and_temporary_path_cannot_replace_report_date(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            p=Path(tmp)/'index-source.html'
+            p.write_text('<title>日报</title><h2>园区进展</h2><p>在2025-04-03签署了合同。</p>')
+            row=daily_events.parse(p,project_root(),'2026-10-05-daily.html')[0]
+            self.assertEqual(row['document_refs'][0]['report_date'],'2026-10-05')
+            self.assertEqual(row['document_refs'][0]['filename'],'2026-10-05-daily.html')
+            self.assertIsNone(daily_events.parse(p,project_root())[0]['document_refs'][0]['report_date'])
+
     def test_city_actor_ambiguity_is_candidate_not_adopted_identity(self):
         sites=[{'site_id':'a','name':'Alpha Campus','location':'Texas, Abilene','developer':['microsoft'],'tenant':[]}]
         companies=[{'company_id':'microsoft','name':'Microsoft','name_cn':'微软'}]

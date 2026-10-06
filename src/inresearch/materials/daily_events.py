@@ -30,13 +30,18 @@ class Sections(_Document):
         super().handle_endtag(tag)
 
 
-def parse(path, root):
+def parse(path, root, original_name=None):
     path=Path(path); raw=path.read_bytes(); sha=hashlib.sha256(raw).hexdigest()
     parser=Sections();parser.feed(raw.decode('utf-8-sig'))
     all_text=''.join(parser.parts)
     if not re.search(r'日报|DAILY', ''.join(parser.title)+all_text[:1500], re.I): return []
-    date_match=re.search(r'20\d{2}-\d{2}-\d{2}', ''.join(parser.title)+all_text[:1500]) or re.search(r'20\d{2}-\d{2}-\d{2}',path.name)
+    name=original_name or path.name
+    date_match=re.search(r'20\d{2}-\d{2}-\d{2}',name)
+    if not date_match:date_match=re.search(r'20\d{2}-\d{2}-\d{2}', ''.join(parser.title))
     report_date=date_match.group() if date_match else None
+    if not report_date:
+        date_match=re.search(r'(20\d{2})[年./](\d{1,2})[月./](\d{1,2})', ''.join(parser.title))
+        if date_match:report_date='%s-%02d-%02d'%(date_match[1],int(date_match[2]),int(date_match[3]))
     companies=json.loads((Path(root)/'data/companies.json').read_text())['records']
     sites=json.loads((Path(root)/'data/projects.json').read_text())['records']
     if sum(h.get('level')=='h3' for h in parser.headings)>=2:
@@ -91,14 +96,14 @@ def parse(path, root):
                        'country_mentions':country,'actors':actors,'reported_stage':stage,
                        'capacity_observations':observe.power(text,'section:'+str(index+1)),
                        'constraints':observe.constraints(text),'sources':citations,
-                       'document_refs':[{'sha256':sha,'filename':path.name,'report_date':report_date,'section':index+1}],
+                       'document_refs':[{'sha256':sha,'filename':name,'report_date':report_date,'section':index+1}],
                        'reported_dates':re.findall(r'\d{1,2}月\d{1,2}日[^。\n]{0,60}',text),
                        'identity_review':'pending','capacity_review':'pending','acceptance':'candidate',**identity})
     return events
 
 
-def receive(path, data, root):
-    events=parse(path,root)
+def receive(path, data, root, original_name=None):
+    events=parse(path,root,original_name)
     if not events:return []
     target=Path(data)/'acquisition/daily-events.json'
     with locked(target):
