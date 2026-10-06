@@ -12,6 +12,17 @@ from inresearch.workflow.reader import Reader
 
 
 class DailyDispatchTests(unittest.TestCase):
+    def test_received_daily_event_outside_recent_500_remains_publicly_reachable(self):
+        from inresearch.knowledge import registry
+        pipeline={'records':[{'id':'recent-'+str(i),'title':'recent','events':[{'url':'https://example.org/'+str(i)}]} for i in range(500)]}
+        daily={'id':'daily-event-old','title':'Old daily title','accepted_at':'2026-10-01','report_date':'2026-10-01',
+               'reported_stage':'planning','constraints':[],'target_ids':[], 'urls':['https://example.org/old'],
+               'private_editorial_body':'never expose','document_sha256':['private']}
+        with patch.object(registry,'_snapshot_inputs',return_value=[{}, {}, {}, {}, {}]),patch.object(registry,'_reader_state',return_value={'acquisition':{'project_pipeline':pipeline,'daily_delivery':{'news':[daily]}}}):
+            out=registry.build_news(project_root())['pipeline']
+        self.assertEqual(len(out['records']),501)
+        self.assertEqual(out['records'][-1]['id'],'daily-daily-event-old')
+        self.assertNotIn('private',json.dumps(out))
     def delivered(self, base):
         folder=base/'bundle'; folder.mkdir()
         bundles.DailyBundleTests().bundle(folder, True)

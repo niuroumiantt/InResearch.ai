@@ -564,7 +564,7 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
             code, news = self.request('GET', '/api/news')
         self.assertEqual(code, 200)
         self.assertEqual(set(news), {'schema_version', 'feed', 'reader', 'pipeline'})
-        self.assertEqual(news['pipeline'], {'records': [], 'available': False, 'truncated': False,
+        self.assertEqual(news['pipeline'], {'records': [], 'available': False, 'truncated': False, 'daily_visible': 0,
                          'total':None,'progress':{'constraints':{},'adoption_note':'新闻观察不证明正式容量采用。'}})
         self.assertEqual(len(news['feed']['items']), 80)
         self.assertEqual([item['title_zh'] for item in news['feed']['items']], [str(i) for i in range(99, 19, -1)])

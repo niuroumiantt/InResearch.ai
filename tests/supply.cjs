@@ -39,6 +39,7 @@ const base=process.env.UI_BASE_URL;
   const event=(id,title)=>({id,title,body:'日报正文只在登录匹配页显示',reported_stage:'unknown',place_quote:'芬兰',actors:[],country_mentions:[],site_candidates:[],capacity_observations:[],sources:[],document_refs:[],identity_review:'pending',capacity_review:'pending',workflow_stage:'awaiting_identity'});
   await page.route('**/api/supply',route=>route.fulfill({json:{...original,
    matching_reader:{received_at:'2026-10-06T08:00:00Z',execution_scope:{documents:133,registered:131,counts:{complete:2,running:2,queued:127,blocked:2},types:{'.pdf':69,'.html':62},chunks_read:18,chunks_total:156,awaiting_extraction:126,executor:{backend:'codex_cli',model:'gpt-6.1-sol <img src=x>',reasoning_effort:'medium'}}},
+   project_updates:[{site_id:'fi-reviewed',name:'正式采用园区',verified_date:'2026-10-06',fields:['规划IT容量'],scope:'一期包含在园区总量内，供电不计入IT'}],
    reading_deliveries:[{title:'已完成日报 <img src=x>',claims:['已提取的合同信息'],quotes:[{quote:'Original source text',page_index:0}],coverage:{gap_pages:[2]}}],
    daily_events:{records:[event(missing,'需要补来源的园区'),event(ready,'已交付园区 <img src=x onerror=alert(1)>')],total:2},
    daily_delivery:{news_total:1,task_counts:{source:1,identity:2},records:[
@@ -46,6 +47,10 @@ const base=process.env.UI_BASE_URL;
     {event_id:missing,delivery_lane:'source',tasks:[{owner:'inews / M5 补源',next_action:'查 sources.json'}]}]}}}));
   await page.locator('#refresh').click();await page.waitForFunction(()=>document.querySelector('.progress-overview')?.textContent.includes('127'));await page.locator('#delivery-lane').waitFor({state:'attached'});
   await page.getByRole('heading',{name:'已交付什么',exact:true}).waitFor();
+  assert.match(await page.locator('.progress-columns').innerText(),/正式项目已更新 · 1 个/);
+  assert.match(await page.locator('.progress-columns').innerText(),/最近 6 条/);
+  assert.equal(await page.getByRole('link',{name:'正式采用园区',exact:true}).getAttribute('href'),'/project.html?site=fi-reviewed');
+  assert.equal(await page.getByRole('link',{name:/已交付园区/}).first().getAttribute('href'),'/supply.html?event='+ready+'#matching');
   assert.match(await page.locator('.progress-overview').innerText(),/127/);
   assert.match(await page.locator('.progress-overview').innerText(),/16:00/);
   assert.equal(await page.locator('.progress-overview img,.progress-results img').count(),0);

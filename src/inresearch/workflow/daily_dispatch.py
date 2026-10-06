@@ -127,6 +127,11 @@ def projection(data, events=None):
 
 def pipeline_records(data):
     """Public allowlist: titles/dates/URLs only; no editorial body or PDF content."""
+    return public_pipeline_records(news_records(data))
+
+
+def public_pipeline_records(rows):
+    """Same allowlist for a validated received daily projection."""
     return [{'id': 'daily-'+r['id'], 'state': 'lead', 'site_id': None, 'company_ids': [],
              'first_seen': r['accepted_at'], 'last_seen': r['accepted_at'], 'title': r['title'],
              'reported_stage': r['reported_stage'] if r['reported_stage'] in ('operating','construction','paused','cancelled') else 'reported',
@@ -136,4 +141,4 @@ def pipeline_records(data):
                          'matched_site_id': None, 'site_candidates': [], 'capacity_observations': [],
                          'constraints': r['constraints'], 'target_ids': r['target_ids']} for u in r['urls'][:5]],
              'report_date': r['report_date'], 'review_note': '日报来源对应已登记；项目身份与容量仍待核验，未计入正式 GW。'}
-            for r in news_records(data)]
+            for r in rows[:500] if public_url((r.get('urls') or [None])[0])]

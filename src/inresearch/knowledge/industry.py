@@ -38,6 +38,12 @@ def bucket(level):
 def project(row):
     result = {k: row.get(k) for k in ('site_id', 'name', 'country', 'region', 'location', 'developer', 'tenant',
               'status', 'verified_date', 'duplicate_of', 'deduplication_note', 'type', 'disputed', 'notes', 'power_status', 'utility', 'capacity_facility_mw')}
+    # Public project receipt: reviewed scope and quoted claims, never private paths.
+    if row.get('adoption'):
+        a = row['adoption']
+        result['adoption'] = {k:a.get(k) for k in ('event_id','fields','scope','target_ids')}
+        result['adoption']['assertions'] = [{k:x.get(k) for k in ('quote','url','basis','phase','value','unit','scope')}
+                                           for x in a.get('assertions', [])]
     result['developer'] = row.get('developer') or []
     result['tenant'] = row.get('tenant') or []
     result['portfolio'] = 'portfolio' in row['site_id']

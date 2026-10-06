@@ -45,6 +45,7 @@ def snapshot(root):
     deliveries = list(receipts['deliveries'].values())
     _attach_reader_status(deliveries)
     from inresearch.knowledge import registry
+    from inresearch.workflow.project_review import deliveries as project_deliveries
     runtime = registry._snapshot_inputs(root)[-1]
     reader = registry._reader_state(runtime)
     matched = (reader.get('acquisition') or {}).get('material_matches') or {'records': [], 'total': 0, 'status': 'not_connected'}
@@ -60,6 +61,7 @@ def snapshot(root):
             'daily_delivery': (reader.get('acquisition') or {}).get('daily_delivery') or {'records':[],'total':0,'news_total':0},
             'research_matching': matched, 'demand_queue': demand_queue,
             'reading_deliveries': reading_deliveries(runtime.get('knowledge') or {}, matched),
+            'project_updates': project_deliveries(root),
             'matching_reader': {k: reader.get(k) for k in ('received_at','stale','status','execution_scope')},
             'demands': state['demands'], 'tasks': state['tasks'],
             'questions': [{'id': q['id'], 'text': q['text'], 'object_ids': q.get('object_ids', [])} for q in questions],
