@@ -13,6 +13,28 @@ from inresearch.adapters.reader_model import _schema
 
 
 class ReaderDemandTests(unittest.TestCase):
+    def test_new_delivery_can_prioritize_existing_unstarted_reading_without_replacing_recipe(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            base=Path(tmp);data=base/'data';paper=base/'report.txt'
+            text='GPU server TCO price $100. GPU utilization efficiency goodput.\n'*25
+            raw=data/'raw-materials/earlier.txt';raw.parent.mkdir(parents=True);raw.write_text(text)
+            paper.write_text(text)
+            r=reader.Reader(data,base/'state',project_root(),fixtures.Model(),0,200,fixtures.Clock()).initialize()
+            try:
+                with r.worker_session():r.scan()
+                doc=dict(r.conn.execute('SELECT * FROM current_readings').fetchone())
+                frozen=r.stages.artifact_path(doc,'context.json').read_bytes()
+                research_match.ingest(paper,data,project_root())
+                with r.worker_session():r.scan()
+                after=r.doc(doc['doc_id'])
+                self.assertGreaterEqual(after['priority'],7)
+                self.assertEqual((after['revision_id'],after['recipe']),(doc['revision_id'],doc['recipe']))
+                self.assertEqual(r.stages.artifact_path(doc,'context.json').read_bytes(),frozen)
+                audit=json.loads(r.conn.execute('SELECT value FROM meta WHERE key=?',('research-demand-priority:'+doc['revision_id'],)).fetchone()[0])
+                self.assertEqual(len(audit),1);self.assertTrue(audit[0]['target_ids'])
+                self.assertEqual(r.conn.execute('SELECT COUNT(*) FROM reading_runs').fetchone()[0],1)
+            finally:r.close()
+
     def test_matched_gap_prioritizes_full_reading_and_freezes_current_ownership(self):
         with tempfile.TemporaryDirectory() as tmp:
             base=Path(tmp); data=base/'data'; paper=base/'report.txt'

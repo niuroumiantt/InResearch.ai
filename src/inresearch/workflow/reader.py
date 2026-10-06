@@ -209,6 +209,21 @@ class Reader:
                 if not existing:
                     identity = dict(self.conn.execute('SELECT * FROM documents WHERE doc_id=?',(doc_id,)).fetchone())
                     self.revisions.create(identity)
+                else:
+                    prior_run = self.doc(doc_id)
+                    if prior_run['state']=='queued' and prior_run['phase'] in ('extract','triage'):
+                        objective = self.revisions.objective(sha)
+                        floor = objective.get('demand_priority',5)
+                        if floor>=7 and floor>prior_run['priority']:
+                            self.conn.execute('UPDATE reading_runs SET priority=? WHERE revision_id=?',(floor,prior_run['revision_id']))
+                            key='research-demand-priority:'+prior_run['revision_id']
+                            audit=self.conn.execute('SELECT value FROM meta WHERE key=?',(key,)).fetchone()
+                            history=json.loads(audit['value']) if audit else []
+                            history.append({'at':now_iso(),'previous':prior_run['priority'],'priority':floor,
+                                            'targets_sha256':objective['targets_sha256'],
+                                            'target_ids':[t['id'] for t in objective['research_demands']],
+                                            'reason':'new supplied material matches current demand; frozen reading recipe retained'})
+                            self.conn.execute('INSERT OR REPLACE INTO meta VALUES (?,?)',(key,encoded(history)))
                 prior = self.conn.execute("SELECT * FROM sources WHERE source_key=? ORDER BY version_seq DESC LIMIT 1", (rel,)).fetchone()
                 if not prior or prior["signature"] != sig:
                     self.conn.execute("INSERT INTO sources(source_key,doc_id,version_seq,previous_doc_id,signature,received) VALUES(?,?,?,?,?,?)",

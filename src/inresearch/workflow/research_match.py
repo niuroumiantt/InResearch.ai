@@ -212,7 +212,7 @@ def reading_objective(data, root, sha):
     if catalog.is_file():
         db = sqlite3.connect(catalog.resolve().as_uri()+'?mode=ro', uri=True)
         try:
-            for (metadata,) in db.execute("SELECT metadata FROM items WHERE kind='supplied_research' AND source_key=?", (sha,)):
+            for (metadata,) in db.execute("SELECT metadata FROM items WHERE source='fetchreports' AND kind='supplied_research' AND source_key=?", (sha,)):
                 matched.update(m['target_id'] for m in json.loads(metadata).get('matches', []))
         finally: db.close()
     selected = []
