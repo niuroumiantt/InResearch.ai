@@ -11,6 +11,25 @@ from inresearch.delivery.backup import backup
 
 
 class ResearchMatchTests(unittest.TestCase):
+    def test_matching_tracks_the_new_execution_then_first_complete_result(self):
+        from inresearch.workflow.reader import Reader
+        from test_continuous_reader import Model
+        with tempfile.TemporaryDirectory() as tmp:
+            path=Path(tmp)/'report.html';path.write_text('<p>GPU TCO cost $100. Server power efficiency.</p>')
+            data=Path(tmp)/'data';item=research_match.ingest(path,data,project_root())
+            model=Model();r=Reader(data,Path(tmp)/'state',project_root(),model=model,stable_seconds=0).initialize()
+            try:
+                r.scan();old=r.doc('doc-'+item['sha256'])
+                model.identity={**model.identity,'model':'new-reader-model'}
+                new=r.revisions.restart_unfinished(old['doc_id'],old['revision_id'],'migration','new executor')
+                row=research_match.projection(data)['records'][0]['reading']
+                self.assertEqual(row['state'],'queued');self.assertEqual(row['revision_id'],new['revision_id'])
+                r.run(once=True)
+                row=research_match.projection(data)['records'][0]['reading']
+                self.assertEqual(row['state'],'complete');self.assertTrue(row['report_sha256'])
+                self.assertEqual(row['revision_id'],new['revision_id'])
+            finally:r.close()
+
     def test_topic_matches_keep_locator_and_never_change_authority(self):
         root=project_root()
         before={p: (root/p).read_bytes() for p in ('framework/tco_targets.json','data/research_knowledge.json','data/projects.json','framework/bom.json')}
