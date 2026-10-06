@@ -116,7 +116,9 @@ class Reader:
         except BaseException:
             self.catalog.close()
             raise
-        self.revisions = ReadingRevisions(self.catalog, self.stages, self.snapshot, self.chunk_chars, self.clock)
+        from inresearch.workflow.research_match import reading_objective
+        self.revisions = ReadingRevisions(self.catalog, self.stages, self.snapshot, self.chunk_chars, self.clock,
+                                         objective=lambda sha: reading_objective(self.data, self.repo, sha))
         return self
 
 
@@ -259,7 +261,8 @@ class Reader:
     def _link_target(self, doc):
         report = read_json(self.stages.artifact_path(doc, "report.json"))
         cls = report["classification"]
-        module = cls["module_id"] if cls["module_id"] in MODULES else "_unmapped"
+        node = cls.get('node')
+        module = ('by-node/'+clean_name(node.replace(':','-'),100)) if node else (cls["module_id"] if cls["module_id"] in MODULES else "_unmapped")
         name = "_".join(clean_name(cls.get(k), n) for k, n in (("year", 8), ("org", 25), ("title", 55)))
         name = clean_name(name, 180)
         name += "__" + doc["sha256"][:16] + doc["suffix"]

@@ -12,6 +12,8 @@ ROOT = project_root()
 JSON_COMMANDS = ('add-price', 'assign', 'receive-snapshot')
 COMMANDS = {
     'pipeline': 'inresearch.workflow.project_pipeline',
+    'research-match': 'inresearch.workflow.research_match',
+    'daily-events': 'inresearch.materials.daily_events',
     'product-catalog': 'inresearch.workflow.product_catalog',
     'storage': 'inresearch.storage.layout',
     'models': 'inresearch.adapters.models',

@@ -668,11 +668,23 @@ def build_news(root=ROOT):
     if isinstance(pipeline, dict) and isinstance(pipeline.get('records'), list):
         for row in pipeline['records'][:500]:
             if not isinstance(row, dict): continue
-            events = [{k: e.get(k) for k in ('title_zh', 'title', 'url', 'published_at', 'event_type', 'reported_stage', 'reported_capacity')}
+            events = [{k: e.get(k) for k in ('title_zh', 'title', 'url', 'published_at', 'event_type', 'reported_stage', 'reported_capacity', 'site_candidates', 'capacity_observations', 'constraints', 'target_ids')}
                       for e in row.get('events', []) if isinstance(e, dict) and public_url(e.get('url'))]
+            for event in events:
+                event['site_candidates'] = [{k:c[k] for k in ('site_id','method','anchor') if k in c}
+                                            for c in event.get('site_candidates') or [] if isinstance(c,dict)]
+                event['capacity_observations'] = [{k:c[k] for k in ('quoted_value','mw','basis','locator','quote','acceptance') if k in c}
+                                                  for c in event.get('capacity_observations') or [] if isinstance(c,dict)]
             if events:
                 leads.append({k: row.get(k) for k in ('id', 'title', 'state', 'first_seen', 'last_seen', 'company_ids', 'site_id', 'review_note', 'reported_stage', 'reported_capacity', 'match_method')} | {'events': events})
+    raw_progress = pipeline.get('progress', {}) if isinstance(pipeline, dict) else {}
+    progress = {k:raw_progress[k] for k in ('leads','events','linked','identity_candidates','capacity_observations')
+                if type(raw_progress.get(k)) is int and raw_progress[k]>=0}
+    progress['constraints'] = {k:v for k,v in (raw_progress.get('constraints') or {}).items()
+                               if k in ('water','power','permits','land','finance') and type(v) is int and v>=0}
+    progress['adoption_note'] = '新闻观察不证明正式容量采用。'
     return dict(schema_version=1, feed=feed, pipeline={'records': leads, 'available': pipeline is not None,
+                'total': pipeline.get('total') if isinstance(pipeline,dict) else None, 'progress': progress,
                 'truncated': bool(pipeline.get('truncated')) if isinstance(pipeline, dict) else False},
                 reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
 

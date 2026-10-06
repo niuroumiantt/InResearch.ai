@@ -152,6 +152,21 @@ function renderPipeline(){
  $('pipeline-summary').innerHTML=`<div><p class="eyebrow">LIVE PIPELINE</p><h2>新闻里的建设机会</h2><p class="basis">${news.reader?.stale?'快照延迟':'随新闻同步更新'} · ${news.pipeline?.available?(news.pipeline.truncated?'最近 500 组新闻事件':'新闻事件组，非唯一园区'):'等待阅读服务快照'}</p></div><div class="pipeline-stages">${groups.map(stage=>`<a href="${esc(url('/projects.html',{view:'pipeline',lead_stage:stage,site:''}))}"><strong>${news.pipeline?.available?rows.filter(r=>(r.reported_stage||'reported')===stage).length:'—'}</strong><span>${stages[stage]} ↗</span></a>`).join('')}</div><a href="${esc(url('/projects.html',{view:'pipeline',site:''}))}">全部动态 →</a>`;
  if(params.get('lead_stage'))rows=rows.filter(r=>(r.reported_stage||'reported')===params.get('lead_stage'));
  $('pipeline-rows').innerHTML=rows.map(r=>`<details class="pipeline-item" ${params.get('lead')===r.id?'open':''}><summary><span class="badge">${esc(['paused','cancelled','reviewing'].includes(r.state)?labels[r.state]:stages[r.reported_stage]||labels[r.state]||'消息称')}</span>${esc(r.title)}</summary><p>首次发现 ${esc(r.first_seen||'未登记')} · 最近同步 ${esc(r.last_seen||'未登记')}</p><p>${(r.company_ids||[]).map(companyLink).join('、')||'主体待关联'}${r.site_id?` · <a href="${esc(url('/project.html',{site:r.site_id}))}">查看关联项目</a>`:' · 项目与地点待核实'}</p><p>${r.match_method==='name_and_actor'?'按园区全名与主体自动关联 · 待核实':''}</p>${r.events.map(e=>`<p><span class="badge">${esc(stages[e.reported_stage]||'消息称')}</span>${sourceLink(e.url,e.title_zh||e.title||'查看原始报道')}${e.reported_capacity?`<br>报道容量 ${esc(e.reported_capacity)} · 原文口径，未计入 IT GW`:''}</p>`).join('')}${r.review_note?`<p>${esc(r.review_note)}</p>`:''}</details>`).join('')||`<p class="empty">${news.pipeline?.available?'当前筛选下暂无项目线索。地区筛选仅显示已关联园区的线索。':'尚未收到长期项目线索快照；已登记园区仍可正常浏览。'}</p>`;
+ const progress=news.pipeline?.progress;
+ if(progress && Number.isInteger(progress.leads)){
+   const panel=document.createElement('div');panel.className='basis';panel.textContent=`完整档案：${progress.leads} 条线索 / ${progress.events} 个事件 · ${progress.linked} 已关联 · ${progress.identity_candidates} 有园区候选 · ${progress.capacity_observations} 个容量观察。水 ${progress.constraints?.water||0} / 电 ${progress.constraints?.power||0} / 审批 ${progress.constraints?.permits||0} 个约束事件。核验与采用单独登记；新闻 MW 不参加容量合计。`;
+   $('pipeline-rows').prepend(panel);
+ }
+ for(const [index,row] of rows.entries()){
+   const element=$('pipeline-rows').querySelectorAll('.pipeline-item')[index];if(!element)continue;
+   for(const event of row.events||[]){
+     const candidates=event.site_candidates||[];
+     if(candidates.length){const line=document.createElement('p');line.textContent='园区匹配候选（待核验）：';
+       for(const candidate of candidates){const a=document.createElement('a');a.href=url('/project.html',{site:candidate.site_id});a.textContent=candidate.site_id+' · '+candidate.anchor;line.append(a,document.createTextNode('；'));}element.append(line);}
+     if(event.constraints?.length){const line=document.createElement('p');line.textContent='约束观察：'+event.constraints.map(x=>({power:'电力',water:'水',permits:'审批',land:'土地',finance:'融资'}[x]||x)).join(' / ');element.append(line);}
+     for(const observed of event.capacity_observations||[]){const line=document.createElement('p');line.textContent=`${observed.quoted_value} · ${observed.basis==='it'?'提及 IT，仍待原件核验':observed.basis==='facility_or_grid'?'设施 / 电网 / 发电口径':'功率口径待核验'} · ${observed.locator}；不计入 GW`;element.append(line);}
+   }
+ }
  if(news.pipeline?.truncated)$('pipeline-rows').innerHTML+='<p class="basis">当前快照展示最近 500 条线索，非完整历史。</p>';
 }
 function render(){

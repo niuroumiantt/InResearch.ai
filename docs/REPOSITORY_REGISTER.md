@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.03.4。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.06.1。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1090。
+在册文件：1098。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 294 |
-| 运行代码 | 234 |
+| 历史快照 | 296 |
+| 运行代码 | 237 |
 | 现行规范 | 13 |
 | 项目配置 | 99 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 76 |
-| 测试 | 112 |
+| 配套说明 | 77 |
+| 测试 | 114 |
 
 ## 在册记录集合
 
@@ -333,7 +333,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 30 |
+| `framework/current_state.json` | policies | 32 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -499,6 +499,8 @@
 | [docs/archive/2026-10-02/framework__00_overview.md](archive/2026-10-02/framework__00_overview.md) | 历史快照 |
 | [docs/archive/2026-10-02/framework__05_interface_system.md](archive/2026-10-02/framework__05_interface_system.md) | 历史快照 |
 | [docs/archive/2026-10-02/framework__06_acquisition.md](archive/2026-10-02/framework__06_acquisition.md) | 历史快照 |
+| [docs/archive/2026-10-06/framework__04_reading_scoring_standard.md](archive/2026-10-06/framework__04_reading_scoring_standard.md) | 历史快照 |
+| [docs/archive/2026-10-06/framework__06_acquisition.md](archive/2026-10-06/framework__06_acquisition.md) | 历史快照 |
 | [docs/archive/2026-10-06/worktree-snapshots/README.md](archive/2026-10-06/worktree-snapshots/README.md) | 历史快照 |
 | `docs/archive/2026-10-06/worktree-snapshots/macos-vision-ocr-428ea8b.patch` | 历史快照 |
 | `docs/archive/2026-10-06/worktree-snapshots/patches.json` | 历史快照 |
@@ -520,6 +522,7 @@
 | [docs/handoff/inews-2026-09-29.md](handoff/inews-2026-09-29.md) | 配套说明 |
 | [docs/handoff/infra-2026-09-29.md](handoff/infra-2026-09-29.md) | 配套说明 |
 | [docs/handoff/m4-deepread.md](handoff/m4-deepread.md) | 配套说明 |
+| [docs/handoff/news-research-matching-20261006.md](handoff/news-research-matching-20261006.md) | 配套说明 |
 | [docs/handoff/nvidia-product-catalog.md](handoff/nvidia-product-catalog.md) | 配套说明 |
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
@@ -1217,6 +1220,7 @@
 | `src/inresearch/knowledge/indicators.py` | 运行代码 |
 | `src/inresearch/knowledge/industry.py` | 运行代码 |
 | `src/inresearch/knowledge/navigation.py` | 运行代码 |
+| `src/inresearch/knowledge/news_observations.py` | 运行代码 |
 | `src/inresearch/knowledge/news_policy.py` | 运行代码 |
 | `src/inresearch/knowledge/nodes.py` | 运行代码 |
 | `src/inresearch/knowledge/policy.py` | 运行代码 |
@@ -1227,6 +1231,7 @@
 | `src/inresearch/knowledge/verify.py` | 运行代码 |
 | `src/inresearch/materials/__init__.py` | 运行代码 |
 | `src/inresearch/materials/artifacts.py` | 运行代码 |
+| `src/inresearch/materials/daily_events.py` | 运行代码 |
 | `src/inresearch/materials/fetchspec_receive.py` | 运行代码 |
 | `src/inresearch/materials/inbox.py` | 运行代码 |
 | `src/inresearch/materials/inventory.py` | 运行代码 |
@@ -1273,6 +1278,7 @@
 | `src/inresearch/workflow/reading_results.py` | 运行代码 |
 | `src/inresearch/workflow/reading_revisions.py` | 运行代码 |
 | `src/inresearch/workflow/reading_stages.py` | 运行代码 |
+| `src/inresearch/workflow/research_match.py` | 运行代码 |
 | `src/inresearch/workflow/score.py` | 运行代码 |
 | `src/inresearch/workflow/submissions.py` | 运行代码 |
 | `src/inresearch/workflow/supply.py` | 运行代码 |
@@ -1369,6 +1375,7 @@
 | `tests/unit/test_product_library.py` | 测试 |
 | `tests/unit/test_public_reader.py` | 测试 |
 | `tests/unit/test_publish_reader.py` | 测试 |
+| `tests/unit/test_reader_demands.py` | 测试 |
 | `tests/unit/test_reader_depth.py` | 测试 |
 | `tests/unit/test_reader_progress.py` | 测试 |
 | `tests/unit/test_reader_thermal.py` | 测试 |
@@ -1378,6 +1385,7 @@
 | `tests/unit/test_report_model.py` | 测试 |
 | `tests/unit/test_repository_pages.py` | 测试 |
 | `tests/unit/test_research.py` | 测试 |
+| `tests/unit/test_research_match.py` | 测试 |
 | `tests/unit/test_research_navigation.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |

@@ -24,7 +24,7 @@ from urllib.request import Request, build_opener, HTTPRedirectHandler
 from urllib.error import HTTPError
 
 ROOT = project_root()
-SOURCES = ('inews', 'sec', 'gpu', 'fetchspec')
+SOURCES = ('inews', 'sec', 'gpu', 'fetchspec', 'fetchreports')
 ACTIVE_SOURCES = ('inews', 'fetchspec')
 # Retired 2026-09-28: collection moved out of inresearch; rows remain for history only.
 RETIRED_SOURCES = ('sec', 'gpu')
@@ -231,7 +231,9 @@ def summary(root):
         from inresearch.adapters.news_projection import feed
         from inresearch.adapters import fetchspec_projection
         from inresearch.workflow.project_pipeline import projection as project_pipeline
-        return {'status':'candidate_acquisition','sources':sources,'news_feed':feed(root),'project_pipeline':project_pipeline(Path(root)/'acquisition'),'fetchspec_feed':fetchspec_projection.feed(root),'retired_sources':list(RETIRED_SOURCES),'note':'新闻事件卡与 Fetchspec 交付的候选台账；inresearch 不爬取，SEC/GPU 采集已于 2026-09-28 移交 fetchdata（fetchfilings、fetchquotes）；自动采用未开启。'}
+        from inresearch.workflow.research_match import projection as material_matches
+        from inresearch.materials.daily_events import projection as daily_events
+        return {'status':'candidate_acquisition','sources':sources,'news_feed':feed(root),'project_pipeline':project_pipeline(Path(root)/'acquisition'),'material_matches':material_matches(root),'daily_events':daily_events(root),'fetchspec_feed':fetchspec_projection.feed(root),'retired_sources':list(RETIRED_SOURCES),'note':'新闻事件卡与供给原件的候选台账；inresearch 不爬取，自动采用未开启。'}
     finally:con.close()
 
 def product_documents(root, *, company_id=None, category=None, question_id=None,

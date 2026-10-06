@@ -7,6 +7,7 @@ import shutil
 import sqlite3
 from pathlib import Path
 from inresearch.adapters.acquisition import data_root
+from inresearch.storage.files import locked
 
 def backup(root,dest):
     root=Path(root);dest=Path(dest);dest.mkdir(parents=True,exist_ok=False)
@@ -23,6 +24,13 @@ def backup(root,dest):
         if not src.is_relative_to((root/'acquisition/blobs').resolve()):raise ValueError('unsafe_archive_path')
         dst=dest/relative;dst.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(src,dst)
         if hashlib.sha256(dst.read_bytes()).hexdigest()!=digest:raise ValueError('backup_blob_integrity')
+    for name in ('project-pipeline.json','daily-events.json'):
+        src=root/'acquisition'/name
+        if not src.exists():continue
+        with locked(src):
+            if src.is_symlink():raise ValueError('unsafe_ledger_path')
+            content=src.read_bytes();json.loads(content)
+            dst=dest/'acquisition'/name;dst.parent.mkdir(parents=True,exist_ok=True);dst.write_bytes(content)
     files={str(p.relative_to(dest)):hashlib.sha256(p.read_bytes()).hexdigest() for p in dest.rglob('*') if p.is_file() and p!=marker}
     (dest/'manifest.json').write_text(json.dumps({'files':files},indent=2)+'\n');marker.unlink()
     return len(files)

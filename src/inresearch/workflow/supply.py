@@ -44,7 +44,20 @@ def snapshot(root):
         raise ValueError('供应回执台账损坏，请修复；不会重建或覆盖')
     deliveries = list(receipts['deliveries'].values())
     _attach_reader_status(deliveries)
+    from inresearch.knowledge import registry
+    reader = registry._reader_state(registry._snapshot_inputs(root)[-1])
+    matched = (reader.get('acquisition') or {}).get('material_matches') or {'records': [], 'total': 0, 'status': 'not_connected'}
+    needed = [t for t in target_document['targets'] if t['status'] in ('needed', 'assumed', 'delivered')]
+    candidates = matched.get('by_target') or {}
+    demand_queue = [{k: t.get(k) for k in ('id','team','host','team_state','status','variable_class','part_id','site_right_id','model_inputs','feeds_primary','disclosure_type')}
+                    | {'candidate_documents': candidates.get(t['id'], 0),
+                       'dispatch_state': 'reading_candidate' if candidates.get(t['id']) else 'awaiting_material' if t['team_state']=='connected' else 'awaiting_team'}
+                    for t in needed]
+    demand_queue.sort(key=lambda t: (-t['candidate_documents'], not bool(t['feeds_primary']), t['id']))
     return {'catalog': catalog(root), 'revision': state['revision'],
+            'daily_events': (reader.get('acquisition') or {}).get('daily_events') or {'records':[],'total':0},
+            'research_matching': matched, 'demand_queue': demand_queue,
+            'matching_reader': {k: reader.get(k) for k in ('received_at','stale','status')},
             'demands': state['demands'], 'tasks': state['tasks'],
             'questions': [{'id': q['id'], 'text': q['text'], 'object_ids': q.get('object_ids', [])} for q in questions],
             'generated_targets': {

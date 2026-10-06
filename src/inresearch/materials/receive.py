@@ -57,6 +57,20 @@ def main():
         if digest.hexdigest() != item['sha256']:
             raise ValueError('archive checksum mismatch')
         atomic(folder / 'receipt.json', item)
+        # An index is retryable and separate from archive/Reader delivery.
+        name = Path(item['name']).name
+        if Path(name).suffix.lower() in ('.pdf', '.html', '.htm', '.txt', '.md'):
+            from inresearch.workflow.research_match import ingest
+            from inresearch.paths import project_root
+            import subprocess
+            indexed = folder / ('index-source' + Path(name).suffix.lower())
+            if not indexed.exists():
+                os.link(target, indexed)
+            try:
+                result = ingest(indexed, data, project_root(), title=name)
+                atomic(folder/'matching.json', {'status':'matched_candidate','sha256':result['sha256']})
+            except (OSError, ValueError, subprocess.SubprocessError) as exc:
+                atomic(folder/'matching.json', {'status':'blocked','error':type(exc).__name__})
         # A durable marker prevents re-delivery after reader moved the input.
         if not (folder / 'delivered.json').exists():
             raw = data / 'raw-materials'
