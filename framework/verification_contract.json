@@ -49,7 +49,7 @@
     "src/inresearch/workflow/reading_revisions.py": "2a182c227456000fd039e4aefb5a24a6f6acee1f6eef0c4d337c8e0270f61c67",
     "src/inresearch/workflow/reading_stages.py": "d3b59b9848211fb21fa7125ac9b7eb0933f5818eed289b3a6e7164051fedbf4d",
     "src/inresearch/workflow/research_match.py": "2aaec0152c140b3c7b3dae2d6342ac641851e70ca6b56126b68dbb8d3bcacfb5",
-    "src/inresearch/workflow/supply.py": "b678e8694b9680291ec5c59173204f528fa53cf91a29dc8e10c56506fecac963",
+    "src/inresearch/workflow/supply.py": "1c723600085570a6fc1adfd186a6ffd4c5b27968ffb6bacfb81aebd4b3661fde",
     "tests/auth_appearance.cjs": "12fe45ce1017034aebce9d5f330ef4a63b510fb3fdb887331c338a965bd60c51",
     "tests/compute_catalog.cjs": "a09f49f986063fef1bc0e86bed0d6a779912ce8f99912ee72ef1d4e8adf0dbe8",
     "tests/container_storage.py": "a8574a75275460d2a50c0eab7f524857eccd8a32cf2f9e8bb01009ec12dd5ba0",
@@ -132,7 +132,7 @@
     "tests/unit/test_research_navigation.py": "3eb2ee5b1321212b34d5ba61296079e01d5098b6597ab34cbeddb14f00525e20",
     "tests/unit/test_snapshot_overlay.py": "3c1e1f242bf69aa2014687b66798ab3ffb905b6767984c7828466549d0238418",
     "tests/unit/test_storage_layout.py": "6a1e204df0028c1fe3cd3c824022d0f7caa173083545a7933b8eec9b286fbd8c",
-    "tests/unit/test_supply.py": "01223460df3f09cc4b10bd6cc80c92d98cf4642c1987d2741c3205b2a1bcad4e",
+    "tests/unit/test_supply.py": "770bea1ef830a962184adaddfdc17b5f9e2230fe2897b5d76c27aa2ef36f6a6a",
     "tests/unit/test_tco_targets.py": "d0b5e44b4a4017a7ed76fb3d2873c39741a7364e36e77eb5a7ddb388e8504bbb",
     "tests/unit/test_text_similarity.py": "428e0d72f97461a57a4bf4ec1c459abdeea8e3847638787a893881bfba621dcd",
     "tests/unit/test_transient_model_errors.py": "98960eb65d7c5a86f94c47108d98d8ef09a4ceba8b6dd59867e70a4065ca161a",
@@ -436,7 +436,8 @@
         "tests/unit/test_daily_dispatch.py::DailyDispatchTests.test_finish_stage_has_reserved_slot_and_news_cannot_bypass_floor",
         "tests/unit/test_daily_dispatch.py::DailyDispatchTests.test_broken_daily_ledger_does_not_block_unrelated_reader_jobs",
         "tests/unit/test_codex_failure_ocr_rescue.py::FailureTests.test_scope_discloses_unread_pages_from_verified_current_reports",
-        "tests/unit/test_supply.py::SupplyTests.test_reading_deliveries_keep_received_complete_scope_and_hide_paths"
+        "tests/unit/test_supply.py::SupplyTests.test_reading_deliveries_keep_received_complete_scope_and_hide_paths",
+        "tests/unit/test_supply.py::SupplyTests.test_snapshot_reads_deliveries_from_received_knowledge_not_status"
       ],
       "not_verified": [
         "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。字体包切片覆盖率来自仓库文本频率，真实用户输入的生僻字仍会触发后续片下载。",

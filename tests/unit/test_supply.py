@@ -29,6 +29,14 @@ class SupplyTests(unittest.TestCase):
         self.assertEqual(out[0]['acceptance'],'candidate_only')
         self.assertNotIn('private',json.dumps(out))
 
+    def test_snapshot_reads_deliveries_from_received_knowledge_not_status(self):
+        runtime={'reader':{'acquisition':{'material_matches':{'records':[{'sha256':'a'}]}}},
+                 'knowledge':{'documents':[{'id':'a','content_sha256':'a','title':'delivered','read_status':'complete'}],
+                              'statements':[{'document_id':'a','text':'actual delivered finding'}]}}
+        with patch('inresearch.knowledge.registry._snapshot_inputs',return_value=[runtime]):
+            out=supply.snapshot(self.root)
+        self.assertEqual(out['reading_deliveries'][0]['claims'],['actual delivered finding'])
+
     def setUp(self):
         self.root = project_root()
         self.tmp = tempfile.TemporaryDirectory()
