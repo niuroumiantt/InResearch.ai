@@ -48,7 +48,7 @@
     "src/inresearch/workflow/reader.py": "2638fea5dd63d7fb65552c3ffc7f1574a402fdfb6a7c7d74291530cd421bc2db",
     "src/inresearch/workflow/reading_revisions.py": "2a182c227456000fd039e4aefb5a24a6f6acee1f6eef0c4d337c8e0270f61c67",
     "src/inresearch/workflow/reading_stages.py": "110c43faebe1c0d53b7977f35b91ca6adf225a08385cbbd7738ea6c8f0c577e4",
-    "src/inresearch/workflow/research_match.py": "b9ac4853170b5b7e1a4f143536dfc19897bb4d04d5d058f60217c5dde90e500d",
+    "src/inresearch/workflow/research_match.py": "2aaec0152c140b3c7b3dae2d6342ac641851e70ca6b56126b68dbb8d3bcacfb5",
     "src/inresearch/workflow/supply.py": "691f86719292cf653a86137a03ea754e5c28c1ae35215436c39f7580b6ac2ce0",
     "tests/auth_appearance.cjs": "12fe45ce1017034aebce9d5f330ef4a63b510fb3fdb887331c338a965bd60c51",
     "tests/compute_catalog.cjs": "a09f49f986063fef1bc0e86bed0d6a779912ce8f99912ee72ef1d4e8adf0dbe8",
@@ -128,7 +128,7 @@
     "tests/unit/test_report_model.py": "d4e81a2f27fb5a98cf4dff2292257cba53e7c451cefef7a3c13ee796d23ff426",
     "tests/unit/test_repository_pages.py": "0216d5b6f92eb87279ba3f45484c70ae1ac4b0afd26e272dc2174d4c99215433",
     "tests/unit/test_research.py": "863766d8a72c6b0a7dd4bf6ec9bc5c577c12b9300e069e88f442ad8d9d0c9580",
-    "tests/unit/test_research_match.py": "373f3306c687f81168e9a102608950fb5ba5bc7757690391881750b01d614e39",
+    "tests/unit/test_research_match.py": "75e9549847ebc312d996087a817bb9d4f38c95fe9f5596772b8853f1fd78f137",
     "tests/unit/test_research_navigation.py": "3eb2ee5b1321212b34d5ba61296079e01d5098b6597ab34cbeddb14f00525e20",
     "tests/unit/test_snapshot_overlay.py": "3c1e1f242bf69aa2014687b66798ab3ffb905b6767984c7828466549d0238418",
     "tests/unit/test_storage_layout.py": "6a1e204df0028c1fe3cd3c824022d0f7caa173083545a7933b8eec9b286fbd8c",
@@ -702,7 +702,7 @@
       "policy": "reading-codex-batch-20261006",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
@@ -750,7 +750,8 @@
         "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_repeated_unfinished_switch_and_stale_baseline",
         "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_scope_applies_to_every_lane_and_fails_closed",
         "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_quota_wait_preserves_priority_and_attempt_budget",
-        "tests/unit/test_codex_batch_reader.py::CodexTransportTests.test_identity_does_not_claim_provider_model_and_effort_is_frozen"
+        "tests/unit/test_codex_batch_reader.py::CodexTransportTests.test_identity_does_not_claim_provider_model_and_effort_is_frozen",
+        "tests/unit/test_research_match.py::ResearchMatchTests.test_matching_tracks_the_new_execution_then_first_complete_result"
       ],
       "not_verified": [
         "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality.",

@@ -187,8 +187,9 @@ def projection(data):
     if catalog.is_file():
         db = sqlite3.connect(catalog.resolve().as_uri()+'?mode=ro',uri=True)
         try:
-            for row in db.execute('SELECT d.sha256,r.state,r.phase,r.chunks_total,r.chunks_read FROM documents d LEFT JOIN reading_runs r ON r.doc_id=d.doc_id AND r.base_revision_id IS NULL'):
-                readings[row[0]]={'state':row[1] or 'registered','phase':row[2],'chunks_total':row[3],'chunks_read':row[4]}
+            for row in db.execute('SELECT sha256,state,phase,chunks_total,chunks_read,revision_id,report_sha256 FROM current_readings'):
+                readings[row[0]]={'state':row[1] or 'registered','phase':row[2],'chunks_total':row[3],'chunks_read':row[4],
+                                  'revision_id':row[5],'report_sha256':row[6]}
         except sqlite3.OperationalError: pass
         finally: db.close()
     exported = []
