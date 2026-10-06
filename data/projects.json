@@ -4435,6 +4435,141 @@
       "capacity_facility_mw": null,
       "status_history": [],
       "disputed": false
+    },
+    {
+      "site_id": "fi-salo-atnorth-fin05",
+      "name": "atNorth FIN05 · Salo",
+      "aliases": [
+        "FIN05"
+      ],
+      "region": "europe",
+      "country": "FI",
+      "location": "Salo, Finland",
+      "developer": [
+        "atnorth"
+      ],
+      "tenant": [],
+      "status": "L5",
+      "status_history": [
+        {
+          "status": "L2",
+          "date": "2026-10-05",
+          "source_url": "https://www.atnorth.com/news/atnorth-to-develop-new-data-center-in-salo-finland/"
+        },
+        {
+          "status": "L5",
+          "date": "2026-10-05",
+          "source_url": "https://www.atnorth.com/news/atnorth-to-develop-new-data-center-in-salo-finland/"
+        }
+      ],
+      "capacity_it_mw": null,
+      "capacity_it_mw_by_status": {
+        "L2": 160
+      },
+      "capacity_facility_mw": null,
+      "power_status": "公司称一期75MW电力已落实；园区规划供电路径上限230MW。一期计划2028年第三季度可用电；没有已通电或投运证据。",
+      "utility": "Fingrid",
+      "type": "colo-wholesale",
+      "notes": "正式登记为公司披露的筹备项目：全园区IT规划上限160MW，其中一期60MW，二者有包含关系，不相加。75/230MW为供电口径，不计入IT合计。L5仅指一期电力确定，不表示整个园区电力全部落实。投资金额及客户额外投资仍为公司估算，不纳入已发生投资或成本模型。PPA签署、开工与投运待补。城市位置已知但未披露精确地址，暂不放置精确地图点。",
+      "disputed": false,
+      "verified_date": "2026-10-06",
+      "sources": [
+        {
+          "url": "https://www.atnorth.com/news/atnorth-to-develop-new-data-center-in-salo-finland/",
+          "grade": "company",
+          "date": "2026-10-05",
+          "note": "atNorth官方公告：FIN05项目身份及一期/园区供电范围"
+        },
+        {
+          "url": "https://www.atnorth.com/nordic-data-centers/finland-data-centers/salo-fin05/",
+          "grade": "company",
+          "date": "2026-10-06",
+          "note": "atNorth官方项目页：IT容量及Q3 2028供电计划；无发布日，日期为核验日"
+        }
+      ],
+      "adoption": {
+        "event_id": "daily-event-7081b3f380330884e7fe99a144bdacd84f58a7e94223ed01596f7f59cdc7c507",
+        "review_id": "d6d154e5a89a8d76-df5f3f080978cb94",
+        "source_version": "d6d154e5a89a8d760977cf0d597a97f0976cf13ad84112b36b26164dc37a0b4c",
+        "review": {
+          "by": "Codex 当前会话（M5）",
+          "at": "2026-10-06T14:31:51.560494+00:00",
+          "score": 9,
+          "tier": "A",
+          "authority": "delegated_reviewer",
+          "delegation": "Owner-authorized new-project verification and publication, 2026-10-06; no replacement of existing conclusions.",
+          "decision": "adopted",
+          "rationale": "逐项复核Spark已归档公司公告和项目页，并直接回查两个官方页面。两页同属atNorth，属于同一断言者，未冒充独立来源。FIN05在芬兰Salo；60MW为一期IT，160MW为含一期的园区上限，75/230MW为供电口径，全部未来计划。只纳入规划机会，不证明当前投运。未使用图像估计坐标或由PUE反推。现有项目库没有FIN05/Salo园区，未替代旧事实。"
+        },
+        "target_ids": [
+          "S.grid.timeline",
+          "S.grid.holders",
+          "F.time.build.queue"
+        ],
+        "assertions": [
+          {
+            "source_sha256": "c85112b98d1168f447f5bbd2437bb619bf83cad017d135f25c1821433cacf563",
+            "locator": "research/atnorth.txt",
+            "quote": "planned at 75 MW, is secured",
+            "value": 75,
+            "unit": "MW",
+            "basis": "grid",
+            "phase": "一期",
+            "scope": "power",
+            "url": "https://www.atnorth.com/news/atnorth-to-develop-new-data-center-in-salo-finland/"
+          },
+          {
+            "source_sha256": "c85112b98d1168f447f5bbd2437bb619bf83cad017d135f25c1821433cacf563",
+            "locator": "research/atnorth.txt",
+            "quote": "up to 230 MW for the wider development",
+            "value": 230,
+            "unit": "MW",
+            "basis": "grid",
+            "phase": "园区规划",
+            "scope": "power",
+            "url": "https://www.atnorth.com/news/atnorth-to-develop-new-data-center-in-salo-finland/"
+          },
+          {
+            "source_sha256": "73b263f126f7346281c50e610a5eed2d35516c45f456c4743f983c7adf9bd4f1",
+            "locator": "research/atnorth-site.txt",
+            "quote": "The first phase will provide 60 MW of IT capacity",
+            "value": 60,
+            "unit": "MW",
+            "basis": "it",
+            "phase": "一期",
+            "scope": "subset",
+            "url": "https://www.atnorth.com/nordic-data-centers/finland-data-centers/salo-fin05/"
+          },
+          {
+            "source_sha256": "73b263f126f7346281c50e610a5eed2d35516c45f456c4743f983c7adf9bd4f1",
+            "locator": "research/atnorth-site.txt",
+            "quote": "up to 160 MW of IT capacity",
+            "value": 160,
+            "unit": "MW",
+            "basis": "it",
+            "phase": "园区规划",
+            "scope": "aggregate",
+            "url": "https://www.atnorth.com/nordic-data-centers/finland-data-centers/salo-fin05/"
+          }
+        ],
+        "document_refs": [
+          {
+            "sha256": "64b4f5d78a9d208c2f9d25ae5d70d7ad80590e1458617d4470fb322b5cfc37e3",
+            "filename": "2026-10-06-daily-wechat.html",
+            "report_date": "2026-10-06",
+            "section": 1
+          }
+        ],
+        "fields": [
+          "项目身份",
+          "阶段",
+          "一期及园区IT规划容量",
+          "供电口径",
+          "计划供电时间",
+          "来源与日报定位"
+        ],
+        "scope": "全园区最多160MW IT规划容量（含一期60MW）；供电75/230MW单列，2028Q3为一期计划，不计入已投运或在建GW。"
+      }
     }
   ]
 }

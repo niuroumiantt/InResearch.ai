@@ -103,6 +103,12 @@ def receive(folder, data, root):
                 'reading':'existing_reader_queue','formal_capacity_updates':0,
                 'scope':'来源链接和需求匹配已登记；园区身份、逐数字口径及 C3 采用分别核验。'}
         write_json(receipt,result)
+    # Research work can start event-by-event; receiving a bundle never adopts.
+    from inresearch.workflow.project_review import prepare
+    try:
+        result['project_review_queue'] = prepare(data, root)['counts']
+    except (OSError, ValueError, KeyError):
+        result['project_review_queue'] = {'status':'needs_retry'}
     return {**result,'receipt':str(receipt)}
 
 

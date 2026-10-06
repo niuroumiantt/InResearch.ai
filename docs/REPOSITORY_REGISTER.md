@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.06.6。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.06.7。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1120。
+在册文件：1126。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 303 |
-| 运行代码 | 243 |
+| 运行代码 | 245 |
 | 现行规范 | 13 |
-| 项目配置 | 99 |
+| 项目配置 | 100 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 82 |
-| 测试 | 118 |
+| 配套说明 | 83 |
+| 测试 | 120 |
 
 ## 在册记录集合
 
@@ -34,7 +34,7 @@
 | `data/assignments.json` | records | 0 |
 | `data/brief.json` | sec | 16 |
 | `data/brief.json` | review_marked | 23 |
-| `data/companies.json` | records | 248 |
+| `data/companies.json` | records | 249 |
 | `data/contracts.json` | records | 2 |
 | `data/dashboard.json` | stages | 6 |
 | `data/dashboard.json` | system_nodes | 8 |
@@ -50,7 +50,7 @@
 | `data/prices.json` | records | 512 |
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
-| `data/projects.json` | records | 120 |
+| `data/projects.json` | records | 121 |
 | `data/research_knowledge.json` | documents | 0 |
 | `data/research_knowledge.json` | evidence | 0 |
 | `data/research_knowledge.json` | statements | 0 |
@@ -349,6 +349,7 @@
 | `framework/interface_manifest.json` | static_pages | 23 |
 | `framework/interface_manifest.json` | public_pages | 13 |
 | `framework/interface_manifest.json` | template_fragments | 4 |
+| `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | legacy_root_prefixes | 4 |
@@ -535,6 +536,7 @@
 | [docs/handoff/material-progress-overview-20261006.md](handoff/material-progress-overview-20261006.md) | 配套说明 |
 | [docs/handoff/news-research-matching-20261006.md](handoff/news-research-matching-20261006.md) | 配套说明 |
 | [docs/handoff/nvidia-product-catalog.md](handoff/nvidia-product-catalog.md) | 配套说明 |
+| [docs/handoff/project-evidence-loop-20261006.md](handoff/project-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/reader-failure-ocr-repair-20261006.md](handoff/reader-failure-ocr-repair-20261006.md) | 配套说明 |
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
@@ -1018,6 +1020,7 @@
 | `framework/data_contract.json` | 项目配置 |
 | `framework/indicators.json` | 项目配置 |
 | `framework/interface_manifest.json` | 项目配置 |
+| `framework/material_retention.json` | 项目配置 |
 | `framework/metrics.json` | 项目配置 |
 | `framework/modules.json` | 项目配置 |
 | [framework/modules/M01_市场规模与增长.md](../framework/modules/M01_市场规模与增长.md) | 配套说明 |
@@ -1263,6 +1266,7 @@
 | `src/inresearch/materials/reading_policy.py` | 运行代码 |
 | `src/inresearch/materials/receive.py` | 运行代码 |
 | `src/inresearch/materials/records.py` | 运行代码 |
+| `src/inresearch/materials/retention.py` | 运行代码 |
 | `src/inresearch/materials/text_similarity.py` | 运行代码 |
 | `src/inresearch/materials/triage.py` | 运行代码 |
 | `src/inresearch/paths.py` | 运行代码 |
@@ -1289,6 +1293,7 @@
 | `src/inresearch/workflow/product_navigation.py` | 运行代码 |
 | `src/inresearch/workflow/progress.py` | 运行代码 |
 | `src/inresearch/workflow/project_pipeline.py` | 运行代码 |
+| `src/inresearch/workflow/project_review.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
 | `src/inresearch/workflow/reader_scope.py` | 运行代码 |
 | `src/inresearch/workflow/reading_gaps.py` | 运行代码 |
@@ -1374,6 +1379,7 @@
 | `tests/unit/test_m4_triage_report.py` | 测试 |
 | `tests/unit/test_m4_triage_versions.py` | 测试 |
 | `tests/unit/test_material_intake.py` | 测试 |
+| `tests/unit/test_material_retention.py` | 测试 |
 | `tests/unit/test_model.py` | 测试 |
 | `tests/unit/test_model_assets.py` | 测试 |
 | `tests/unit/test_model_roles.py` | 测试 |
@@ -1395,6 +1401,7 @@
 | `tests/unit/test_product_catalog_companies.py` | 测试 |
 | `tests/unit/test_product_coverage.py` | 测试 |
 | `tests/unit/test_product_library.py` | 测试 |
+| `tests/unit/test_project_review.py` | 测试 |
 | `tests/unit/test_public_reader.py` | 测试 |
 | `tests/unit/test_publish_reader.py` | 测试 |
 | `tests/unit/test_reader_demands.py` | 测试 |

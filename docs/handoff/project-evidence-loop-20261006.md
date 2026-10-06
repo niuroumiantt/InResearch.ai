@@ -1,0 +1,13 @@
+# 逐事件核验、正式项目交付与原件保留
+
+用户授权接通候选→核验→正式项目→网页；全部原件先在Spark保留。新用例project-review按已接收事件冻结版本、生成独立核验包；apply要求具名C3、原文归档SHA/引句/数值/口径/当前需求及身份，保留旧结论和历史。一般授权不覆盖已有非空结论、来源冲突或分发限制放宽。接收器只更新队列，不执行语义审核或采用；就绪不声称正在运行。补证、身份、长报告与正式采用分别计量。
+
+本轮首个实际采用：atNorth FIN05 / Salo（新项目fi-salo-atnorth-fin05）。直接复核公司公告和项目页及Spark已归档来源，具名A委托审核记录保存在项目内。160MW为全园区IT规划上限，含一期60MW；75/230MW供电单列、Q3 2028一期计划，不计运营/在建。规划合计增加160MW；运营5918.2MW、在建1711.8MW未变。未披露精确地址，不伪造地图坐标；可在项目明细、atNorth主体和规划统计查看。来源两页同属公司，不冒充独立断言者；投资估算未给模型赋值或关闭问题。
+
+材料页增正式项目/采用字段/项目直达，最近6条与全部事件入口明确，来源齐全不再叫正式上线。公开新闻视图保留最近500快讯加已接收日报，避免日报深链接被截断；发布后须实际验收泰国事件和FIN05落点。
+
+Spark原件引用核对：acquisition/catalog.sqlite 24204记录、Reader36045记录，对应原件缺失0；两库一致SQLite备份已落material-reviews/retention并记录SHA。这是全库已有引用，不是本批数量，不代表NAS全集或独立灾难备份。material_retention规定原件、侧车、来源字节、旧版本、提取/OCR缺口、阅读/审核/采用记录长期保留，无自动TTL/删除。派生材料也先留，清理须另审阅。inews新闻/专栏材料快照保存到Spark external-sources/inews，排除users/session/codes等账号表；传输完成和校验以实际回执为准。
+
+运行数据与提案：M5 ~/.local/share/inresearch.ai/project-evidence-loop/2026-10-06/；Spark ~/.local/share/inresearch.ai/project-review-runtime/20261006（独立组件，不更换正在阅读的85f5eb9f模型进程），material-reviews/project-review核验队列/包/回执。读模型与发布器继续工作。新接收后自动prepare，旧队列需要显式prepare；模型判断/正式apply/源码发布不能仅凭定时器或任务生成宣称执行。
+
+源码与本地通过不等于生产交付；需合并后AWS健康回执、项目页/正式汇总/新闻落点及Spark文件SHA验证。具体验收JSON留私有目录，不把原件/数据库/令牌加入Git。

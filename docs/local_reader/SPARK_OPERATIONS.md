@@ -342,3 +342,12 @@ python3 manage.py deep-read --reader-data-root /同一数据根 pack --sha 完�
 共用 READER_DATA_ROOT 也可省略参数；缺省数据根是 ~/.local/share/inresearch.ai。current 是只读查询，不启动模型、不创建目录、不迁移旧 catalog；返回 catalog_missing / not_registered / no_current_result / legacy_unverified / available。available 表示原件、覆盖和封印机检通过，仍是候选；异常或损坏须处理后重试，不静默改读其他数据根。
 
 L2 的记录和 skip 是事实处理回执，不产生全文版本。pack 如有当前完整结果，会复用页块和原报告，固定 reading_result 的版本与 SHA；`--again` 仅重开任务包。完整重读和审阅替换仍走上文 reader 版本流程。网站发布只同步源码，不会自动连接或升级另一台机器的 catalog；不要把旧 L2 回执转换成虚构的覆盖证明。
+
+
+## 事件核验交付与保存（2026-10-06）
+
+原件/来源/旧版本/阅读与采用记录按06和material_retention永久保留，当前不自动过期。新日报接收更新独立项目核验包；prepare不是执行模型，apply须具名C3审核。代码/采用结果合并和网站部署分别验收。核验组件可用已验证独立发布目录，不重启正在阅读的模型或迁移原件；执行目录与实际SHA须记录，不能只改release标签。
+
+`python3 manage.py project-review prepare --data-root ~/.local/share/inresearch.ai` 生成逐事件缺口与就绪包；`project-review apply --data-root ... --input 已核验提案.json` 在受控源码工作区写正式项目，需后续严格校验、registry、相关测试及Git发布。提案/源原文/运行回执永久归入Spark材料记录，原件不能进Git。
+
+`python3 manage.py material-retention --data-root ~/.local/share/inresearch.ai --snapshot` 核对catalog引用并保存一致SQLite备份；原件缺失单独报告，不删文件也不以缺失为0代表全NAS已盘点。同盘快照不等于独立灾难备份，既有备份流程保留。
