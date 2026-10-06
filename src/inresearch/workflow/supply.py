@@ -56,12 +56,22 @@ def snapshot(root):
                        'dispatch_state': 'reading_candidate' if candidates.get(t['id']) else 'awaiting_material' if t['team_state']=='connected' else 'awaiting_team'}
                     for t in needed]
     demand_queue.sort(key=lambda t: (-t['candidate_documents'], not bool(t['feeds_primary']), t['id']))
+    project_updates = project_deliveries(root)
+    ecosystem_updates = [dict(contract_id=r['contract_id'], event_id=r['adoption']['event_id'],
+                              name=r['summary'], parties=r['parties'], node=r.get('node'),
+                              scope=r['adoption']['scope'])
+                         for r in json.loads((root/'data/contracts.json').read_text())['records']
+                         if r.get('adoption', {}).get('review', {}).get('decision') == 'adopted']
+    daily_events = (reader.get('acquisition') or {}).get('daily_events') or {'records': [], 'total': 0}
+    daily_events = dict(daily_events, records=[dict(e, adoption_updates=[p for p in project_updates if p['event_id'] == e['id']])
+                                             for e in daily_events.get('records', [])])
     return {'catalog': catalog(root), 'revision': state['revision'],
-            'daily_events': (reader.get('acquisition') or {}).get('daily_events') or {'records':[],'total':0},
+            'daily_events': daily_events,
             'daily_delivery': (reader.get('acquisition') or {}).get('daily_delivery') or {'records':[],'total':0,'news_total':0},
             'research_matching': matched, 'demand_queue': demand_queue,
             'reading_deliveries': reading_deliveries(runtime.get('knowledge') or {}, matched),
-            'project_updates': project_deliveries(root),
+            'project_updates': project_updates,
+            'ecosystem_updates': ecosystem_updates,
             'matching_reader': {k: reader.get(k) for k in ('received_at','stale','status','execution_scope')},
             'demands': state['demands'], 'tasks': state['tasks'],
             'questions': [{'id': q['id'], 'text': q['text'], 'object_ids': q.get('object_ids', [])} for q in questions],

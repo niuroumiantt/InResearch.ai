@@ -4,7 +4,7 @@ const base=process.env.UI_BASE_URL;
 (async()=>{
  const browser=await chromium.launch({channel:process.env.UI_BROWSER_CHANNEL||undefined,headless:true});
  try{
-  const page=await browser.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+  const page=await browser.newPage();const errors=[];page.on('pageerror',e=>{errors.push(e.message);console.error(e.stack);});
   await page.goto(base+'/supply.html');
   await page.locator('#targets-panel table.targets tbody tr').first().waitFor();
   assert.match(page.url(),/#targets$/,'the target table is the first screen');
@@ -116,6 +116,25 @@ const base=process.env.UI_BASE_URL;
   const demo=await page.request.get(base+'/supply-demo.html',{maxRedirects:0});assert.notEqual(demo.status(),200,'demo page retired');
   await page.setViewportSize({width:390,height:950});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  await page.unroute('**/api/supply');
+  const periodEvent=(id,title,day)=>({...event(id,title),document_refs:[{report_date:day}],sources:[{urls:['https://example.org/original']}],structured_evidence_status:'quotes_verified',editorial_event:{gaps:['容量未披露']}});
+  await page.route('**/api/supply',route=>route.fulfill({json:{...original,
+    daily_events:{records:[periodEvent(ready,'两个园区 <img src=x>','2026-10-07'),periodEvent(missing,'旧日报事件','2026-10-06')],total:2},
+    project_updates:['fi-one','fi-two'].map(site_id=>({site_id,name:site_id,event_id:ready,verified_date:'2026-10-07',fields:['园区身份'],scope:'容量未披露'})),
+    daily_delivery:{records:[],news_total:0,task_counts:{}}}}));
+  await page.goto(base+'/supply.html?day=2026-10-07#matching');
+  const edition=page.locator('[aria-label="本期日报交付"]');
+  await edition.waitFor();
+  assert.match(await edition.innerText(),/1 条事件已用于 2 个正式园区记录/);
+  assert.equal(await edition.locator('a[href*="project.html"]').count(),2);
+  assert.equal(await edition.locator('img').count(),0);
+  await page.locator('#matching-events > summary').click();
+  assert.match(await page.locator('#daily-shown').innerText(),/显示 1 \/ 1/);
+  assert.doesNotMatch(await page.locator('#daily-events').innerText(),/旧日报事件/);
+  await page.locator('#daily-edition-date').selectOption('2026-10-06');
+  assert.match(page.url(),/day=2026-10-06/);
+  assert.match(await edition.innerText(),/旧日报事件/);
+  assert.match(await edition.innerText(),/0 条事件已用于 0 个正式园区记录/);
   assert.deepEqual(errors,[]);
   if(process.env.UI_QA_DIR){await page.goto(base+'/supply.html');await page.getByRole('button',{name:/fetchspec/}).waitFor();await page.setViewportSize({width:1280,height:1000});await page.screenshot({path:process.env.UI_QA_DIR+'/supply.png',fullPage:true});}
  }finally{await browser.close();}

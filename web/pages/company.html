@@ -169,7 +169,31 @@ function demandRow(d) {
     <td class="st-${esc(r.status)}">${esc(STATUS_LABEL[r.status] || r.status)}</td><td>${products || '<span class="note">—</span>'}</td></tr>`;
 }
 
-/* 主体页（第五类变量）：一家公司供应哪些部件、持有哪条权利、有哪些产品线；园区与合同作附表。从节点页第五列进入。 */
+/* 主体档案从节点页第五列进入；对象类型 actor 与第五类变量分开。 */
+function ecosystemHtml(records, projects, cname) {
+  const adopted = records.filter(r => r.adoption?.review?.decision === 'adopted' && (r.capacity_observations || []).some(x => x.basis === 'generation'));
+  if (!adopted.length) return '';
+  const actor = id => `<a href="company.html?c=${encodeURIComponent(id)}">${esc(cname[id] || id)}</a>`;
+  const safeLink = (value, label) => {
+    try { const u = new URL(value); if (['http:', 'https:'].includes(u.protocol) && !u.username && !u.password) return `<a href="${esc(u.href)}" target="_blank" rel="noopener">${esc(label)}</a>`; } catch {}
+    return esc(label);
+  };
+  const provinces = [...new Set(adopted.flatMap(r => (r.geographies || []).map(g => g.province)).filter(Boolean))];
+  const shortState = { Illinois: 'IL', Pennsylvania: 'PA', 'New Jersey': 'NJ' };
+  const inState = (p, state) => p.country === 'US' && (p.province === state || new RegExp(`^(?:${state}|${shortState[state] || state})(?:[, ·]|$)`, 'i').test(p.location || ''));
+  const geography = provinces.length ? `<h3>地域对照 · 已披露省州</h3><div class="ui-table-scroll" tabindex="0" role="region" aria-label="地域对照"><table><tr><th>省州</th><th>电源信息</th><th>本站登记的数据中心</th><th>土地与接电关系</th></tr>${provinces.map(state => {
+    const sites = projects.filter(p => inState(p, state) && !p.duplicate_of && !p.site_id.includes('portfolio'));
+    return `<tr><td>${esc(state)}</td><td>所在电源组合已登记；本州具体电厂、机组及 MW 分配待核实</td><td>${sites.map(p => `<a href="project.html?site=${encodeURIComponent(p.site_id)}">${esc(p.name)}</a>`).join('<br>') || '尚未按明确州名匹配到登记项目；待查'}</td><td>地主、供地交易、审批机关、受电园区及电网接入均待核实</td></tr>`;
+  }).join('')}</table></div><p class="note">这里只对照已有登记的明确州名，覆盖并不完整；同州不证明供电关系。组合容量不向各州分摊，也不据此推断数据中心土地批复。</p>` : '';
+  return `<section class="board b12" id="ecosystem"><div class="bh"><h2>生态关系与已采用信息</h2><a class="go" href="supply.html#matching">查看日报交付 →</a></div>
+    <p>电源 → 电网与接入 → 园区 → 使用方，按实际关系逐项连接。供电、土地和审批的主体分别登记；未确认的连接保留待查。</p>
+    ${adopted.map(r => `<article class="sec"><h3>${esc(r.summary)}</h3><p>${(r.relationships || []).map(x => actor(x.actor_id) + '：' + esc(x.role)).join('；')}</p>
+      <p>${(r.capacity_observations || []).map(x => `${esc(x.value)} ${esc(x.unit)} · ${esc(x.basis === 'generation' ? '发电口径' : x.basis)} · ${esc(x.nature === 'forecast' ? '新增计划' : '既有电源协议')} · ${esc(x.scope)}`).join('<br>')} · 协议 ${esc(r.term_years)} 年</p>
+      <p>${(r.object_ids || []).filter(x => !x.startsWith('actor:')).map(id => `<a class="chip" href="node.html?id=${encodeURIComponent(id)}">${esc(({ 'system:power': '电力系统', 'chain:power/3': '发电与储能', 'site:grid': '电力配额与并网' })[id] || id)}</a>`).join('')}</p>
+      <p class="note">待补：${esc((r.gaps || []).join('；'))}</p><p>${(r.sources || []).map((s, i) => safeLink(s.url, (new URL(s.url).hostname.replace(/^www\./, '')) + ' 原始来源 ↗')).join(' · ')} · 核验 ${esc(r.verified_date)} · <a href="supply.html?event=${encodeURIComponent(r.adoption.event_id)}#matching">对应日报证据 →</a></p>
+    </article>`).join('')}
+    <p class="note">采用范围是双方公告所述协议与角色；完整合同和监管批准仍待取得。新增发电计划与既有电源供给分别登记，均不增加数据中心 IT GW。</p>${geography}</section>`;
+}
 (async () => {
 try {
   const cid = new URLSearchParams(location.search).get("c") || "microsoft";
@@ -210,7 +234,7 @@ try {
     : '<div class="note">产品库没有这家公司的产品线。</div>';
   const projRows = mine.sort((a, b) => { const ca = capBuckets(a), cb = capBuckets(b); return (cb[0] + cb[1] + cb[2]) - (ca[0] + ca[1] + ca[2]); }).map(p => {
     const [o, b, l] = capBuckets(p), tot = o + b + l;
-    return `<tr><td>${esc(p.name)}<div style="font-size:10.5px;color:var(--gray)">${esc(p.location || "")}</div></td>
+    return `<tr><td><a href="project.html?site=${encodeURIComponent(p.site_id)}">${esc(p.name)}</a><div style="font-size:10.5px;color:var(--gray)">${esc(p.location || "")}</div></td>
       <td><span class="badge" style="background:${SC(p.status)}">${esc(p.status)}</span></td>
       <td>${tot ? fmtMW(tot) : "<span style='color:var(--gray)'>未披露</span>"}</td>
       <td>${(p.developer || []).includes(cid) ? "自建/开发" : "租户"}</td>
@@ -220,13 +244,14 @@ try {
 
   document.getElementById("root").innerHTML = `
     <div class="head"><h1>${esc(c.name)}</h1><span style="color:var(--muted)">${esc(c.name_cn || "")}</span>
-      <span class="chip">主体 · 第五类变量</span>
+      <span class="chip">主体档案</span>
       ${(c.roles || []).map(r => `<span class="chip">${esc(r)}</span>`).join("")}
       ${c.ticker ? `<span class="chip">${esc(c.ticker)}</span>` : ""}
       ${c.ir_url ? `<a class="chip" href="${esc(c.ir_url)}" target="_blank" rel="noopener">IR ↗</a>` : ""}
       ${c.cik ? `<a class="chip" href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=${encodeURIComponent(c.cik)}" target="_blank" rel="noopener">EDGAR ↗</a>` : ""}</div>
     <div class="profile">${esc(c.profile || "")}${c.website ? ` <a href="${esc(c.website)}" target="_blank" rel="noopener">官网 ↗</a>` : ""}</div>
     <div class="grid">
+      ${ecosystemHtml(myContracts, projectsDoc.records, cname)}
       <div class="board b12" id="catalog">${catalogHtml(catalog, c)}</div>
       <div class="board b12" id="demand"><div class="bh"><h2>需求与交付对照（${demand.length} 条目标行）</h2><a class="go" href="supply.html#targets">目标表 →</a></div>
         ${demand.length ? `<div class="ui-table-scroll" tabindex="0" role="region" aria-label="Table"><table><tr><th>目标行</th><th>状态</th><th>已交付的产品</th></tr>${demand.map(demandRow).join("")}</table></div>`
