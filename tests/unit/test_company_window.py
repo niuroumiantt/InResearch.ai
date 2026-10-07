@@ -184,6 +184,6 @@ class CompanyWindowTests(unittest.TestCase):
                                   ('/api/news?company=missing',404),('/api/news?company=supermicro&limit=21',400),
                                   ('/api/news?company=supermicro&company=nvidia',400)]:
                     connection=http.client.HTTPConnection('127.0.0.1',server.server_port);connection.request('GET',url);response=connection.getresponse();response.read();self.assertEqual(response.status,code,url);connection.close()
-                for query,marker in [('?c=supermicro',b'id="company-products"'),('?c=supermicro&view=products',b'id="products"'),('?c=supermicro&product_id=abc',b'id="products"')]:
+                for query,marker in [('?c=supermicro',b'id="company-products"'),('?c=supermicro&view=products',b'id="company-browser"'),('?c=supermicro&product_id=abc',b'id="company-browser"'),('?c=supermicro&view=categories',b'id="company-browser"'),('?c=supermicro&view=research',b'id="products"')]:
                     connection=http.client.HTTPConnection('127.0.0.1',server.server_port);connection.request('GET','/product-catalog.html'+query);response=connection.getresponse();body=response.read();self.assertIn(marker,body);connection.close()
             finally:server.shutdown();server.server_close();thread.join()

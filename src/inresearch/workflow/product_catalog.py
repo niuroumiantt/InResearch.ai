@@ -509,6 +509,10 @@ def product_snapshot(root, product_id, company='nvidia'):
             product['seen_in_latest_run'] = True
             product['navigation'] = classify(product, company)
             product['compute'] = compute_catalog.project(product, company)
+            if company == 'supermicro':
+                from .catalog_browse import category_path, parameters
+                product['browse_path'] = category_path(product)
+                product['parameters'] = parameters(product)
             for table in product['tables']:
                 table.pop('text', None)
         return {
@@ -627,7 +631,7 @@ def series_snapshot(root, series_id, company='nvidia'):
     return value
 
 
-def csv_export(value, mode='products', query='', kind='', with_specs=False, group='', family='', scope='all', company=None, line=''):
+def csv_export(value, mode='products', query='', kind='', with_specs=False, group='', family='', scope='all', company=None, line='', category=''):
     company = company or value.get('company_id') or 'nvidia'
     if line and line not in {r['id'] for r in product_navigation.COMPANY_LINES.get(company, [])} | {'unmapped'}:
         raise ValueError('unknown company business line')
@@ -637,11 +641,19 @@ def csv_export(value, mode='products', query='', kind='', with_specs=False, grou
     vendor = company_config(company)['navigation'] == 'vendor_taxonomy'
     def searchable(p):
         return p['name'] + ' ' + p['category'] + (' ' + p['part_number'] if vendor and p.get('part_number') else '')
+    if category and company != 'supermicro':
+        raise ValueError('browsing category is not registered for this company')
+    from .catalog_browse import category_path
+    def search_matches(p):
+        if query.casefold() in searchable(p).casefold(): return True
+        return company == 'supermicro' and any(query.casefold() in c.get('text','').casefold()
+            for t in p['tables'] for row in t['rows'] for c in row)
     products = [p for p in value['products'] if (not kind or p['kind'] == kind)
                 and (not with_specs or p['tables'])
                 and (not line or (product_navigation.company_line(p, company) or 'unmapped') == line)
+                and (not category or any(s['id']==category for s in category_path(p)))
                 and product_navigation.matches(p, group, family, scope, classifier)
-                and query.casefold() in searchable(p).casefold()]
+                and search_matches(p)]
     def vendor_columns(p):
         path = product_navigation.taxonomy_path(p)
         return [' > '.join(str(step.get('name') or step['slug']) for step in path),

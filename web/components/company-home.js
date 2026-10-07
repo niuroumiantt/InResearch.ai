@@ -4,7 +4,7 @@ const $=id=>document.getElementById(id), params=new URLSearchParams(location.sea
 const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const safe=v=>{try{const u=new URL(v);return ['https:','http:'].includes(u.protocol)&&!u.username&&!u.password?u.href:'';}catch{return '';}};
 const external=(url,label)=>safe(url)?`<a href="${esc(safe(url))}" target="_blank" rel="noopener">${esc(label)} ↗</a>`:esc(label);
-const product=(extra={})=>'/product-catalog.html?'+new URLSearchParams({c:cid,view:'products',...extra});
+const product=(extra={})=>'/product-catalog.html?'+new URLSearchParams({c:cid,view:cid==='supermicro'?'categories':'products',...extra});
 async function json(url){const r=await fetch(url,{signal:AbortSignal.timeout(12000)});if(!r.ok)throw new Error(String(r.status));return r.json();}
 function setLink(id,url){$(id).href=url;}
 const icons=[
@@ -23,7 +23,7 @@ $('company-links').innerHTML=[external(c.website&&(/^https?:/.test(c.website)?c.
 const facts=[['成立',c.founded_year?c.founded_year+' 年':'未登记'],['总部',c.hq_address||c.hq_country||'未登记'],['员工',c.employees||'未登记'],['首席执行官',c.ceo||'未登记']];
 $('company-facts').innerHTML=facts.map(([k,v])=>`<div><dt>${k}</dt><dd>${esc(v)}${k==='员工'&&c.employees_as_of?`<small>截至 ${esc(c.employees_as_of)}</small>`:''}</dd></div>`).join('');
 $('profile-source').innerHTML=c.profile_source?`公司资料：${external(c.profile_source,'官方披露')} · 披露期 ${esc(c.profile_as_of||'未登记')}`:'公司基本资料以已登记信息为准；空缺项待核对官方披露。';
-for(const id of ['catalog-link','all-products'])setLink(id,product({scope:'all'}));setLink('research-link',product()+'#research-details');
+for(const id of ['catalog-link','all-products'])setLink(id,product({scope:'all'}));setLink('research-link',product({view:cid==='supermicro'?'research':'products'})+'#research-details');
 const catalog=data.catalog, sum=catalog.summary;
 $('catalog-summary').innerHTML=sum?[
  ['已收录型号',sum.named_products],['有规格的型号',sum.named_with_tables],['规格原表',sum.specification_tables]
@@ -32,7 +32,7 @@ $('catalog-status').textContent=sum?`来自已接收产品数据库 · ${sum.ent
 $('product-lines').innerHTML=data.product_lines.map((v,i)=>{
  const filter=v.filter||(v.id?{line:v.id,scope:'all'}:{q:v.query||v.name});
  const count=typeof v.entities==='number'?(v.entities?`${v.entities} 个条目${typeof v.named_with_tables==='number'?` · ${v.named_with_tables} 个型号有规格`:''}`:'尚未收录此类资料'):'等待资料关联';
- const examples=(v.examples||[]).map(p=>`<a class="product-example" href="${esc(product({product_id:p.id}))}">${esc(p.name)} <span>${p.table_count?'规格 ↗':'资料 ↗'}</span></a>`).join('');
+const examples=(v.examples||[]).map(p=>`<a class="product-example" href="${esc(product({view:'products',product_id:p.id}))}">${esc(p.name)} <span>${p.table_count?'规格 ↗':'资料 ↗'}</span></a>`).join('');
  return `<article class="product-line-card"><a class="product-line-entry" href="${esc(product(filter))}"><svg fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 28 28" aria-hidden="true">${icons[i%icons.length]}</svg><strong>${esc(v.name)}</strong><small>${esc(v.description)}</small><p class="line-count">${esc(count)}</p><b>↗</b></a>${examples?`<div class="product-examples">${examples}</div>`:''}</article>`;
 }).join('')||'<p class="window-empty">产品资料尚未收录；可进入产品目录查看交付状态。</p>';
 const reviewed=data.product_lines.some(v=>v.basis==='reviewed_business_categories');$('product-basis').textContent=reviewed?'业务分类来自公司披露，已收录资料按官方产品路径关联；数量不代表厂商全部产品或在售情况。':'分类与数量来自已接收产品数据库；只统计已收录资料。';

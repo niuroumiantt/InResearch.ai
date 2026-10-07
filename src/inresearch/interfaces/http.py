@@ -85,10 +85,12 @@ class Handler(SimpleHTTPRequestHandler):
         normalized = posixpath.normpath(unquote(urlsplit(path).path).replace('\\', '/'))
         if normalized == '/product-catalog.html':
             query = parse_qs(urlsplit(path).query)
-            detail = query.get('view') in (['products'], ['materials']) or any(k in query for k in
-                ('q', 'group', 'family', 'product_id', 'series', 'kind', 'with_specs', 'line', 'scope'))
+            detail = query.get('view') in (['products'], ['categories'], ['materials'], ['research']) or any(k in query for k in
+                ('q', 'group', 'family', 'category', 'product_id', 'series', 'kind', 'with_specs', 'line', 'scope'))
             if not detail:
                 return str(ROOT / 'web/pages/company-home.html')
+            if query.get('c') == ['supermicro'] and query.get('view') not in (['materials'], ['research']):
+                return str(ROOT / 'web/pages/company-products.html')
         return str(source_path(normalized, ROOT))
 
     def list_directory(self, path):
@@ -345,6 +347,17 @@ class Handler(SimpleHTTPRequestHandler):
             if company not in product_catalog.COMPANIES:
                 return self._json(404, {'ok': False, 'error': 'unknown catalog company'})
             query = parse_qs(urlsplit(self.path).query)
+            if query.get('view') == ['browse']:
+                from inresearch.workflow.catalog_browse import query as browse_query
+                try:
+                    return self._json(200, browse_query(ROOT, company,
+                        category=query.get('category',[''])[0], line=query.get('line',[''])[0],
+                        q=query.get('q',[''])[0], kind=query.get('kind',[''])[0],
+                        with_specs=query.get('with_specs',[''])[0]=='1', offset=query.get('offset',['0'])[0]))
+                except ValueError as exc:
+                    return self._json(400, {'error':str(exc)})
+                except sqlite3.Error:
+                    return self._json(503, {'error':'product browsing temporarily unavailable'})
             if query.get('view') == ['materials']:
                 from inresearch.workflow.catalog_materials import query as material_query
                 try:
@@ -355,7 +368,7 @@ class Handler(SimpleHTTPRequestHandler):
             if export:
                 value = product_catalog.snapshot(ROOT, company)
                 try:
-                    body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1', query.get('group', [''])[0], query.get('family', [''])[0], query.get('scope', ['all'])[0], company=company, line=query.get('line', [''])[0]).encode('utf-8')
+                    body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1', query.get('group', [''])[0], query.get('family', [''])[0], query.get('scope', ['all'])[0], company=company, line=query.get('line', [''])[0], category=query.get('category',[''])[0]).encode('utf-8')
                 except ValueError as exc:
                     return self._json(400, {'error': str(exc)})
                 self.send_response(200)
