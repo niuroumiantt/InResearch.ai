@@ -14,7 +14,7 @@
 
 ## 采集与接收范围
 
-Fetchspec Macmini 旧全公司原件归档、ProductStore 结构化目录、研究原件接收与 AWS 网站规格目录是不同环节。源码和历史生产验收记录不能证明所有已抓 PDF/HTML 已进入产品目录。本轮已请求当前 Macmini `status.json` 与网站 summary 输出，对账前不宣称所有历史资料已接通。Macmini 原件路径和兼容操作见 Fetchspec `docs/adapters/supermicro.md`；不拿五款示例覆盖更大或更新的现有批次。
+Fetchspec Macmini 旧全公司原件归档、ProductStore 结构化目录、研究原件接收与 AWS 网站规格目录是不同环节。源码和历史生产验收记录不能证明所有已抓 PDF/HTML 已进入产品目录。用户已提供 Macmini 2026-09-23T17:55:12Z 的检查点：4,916 个独立 PDF 内容、39,854,196,368 字节、1,735 个网页快照；旧队列 pending 16,048、error 57，run 为 paused_request_budget，reading_completed/spark_transferred 均 false。这些是9月23日检查点，不能推成10月7日实时任务状态。用户同时提供网站实时 summary：2026-10-03T00:37:25Z 生成、00:51:20Z 接收、5个具体型号且5个有原表、原厂 groups 为空，coverage 明示只覆盖五个型号。两侧单位不同，不能相减成漏收型号数，也不能宣称4,916份PDF已经入库或读完。已请求对当前只读台账的产品页与PDF链接样例，以确定离线重解析和资料关联范围。Macmini 原件路径和兼容操作见 Fetchspec `docs/adapters/supermicro.md`；不拿五款示例覆盖更大或更新的现有批次。
 
 本轮真实运行数据、部署回执、CI 版本与截图保存在 Git 外的 `/workspace/artifacts/company-catalog-map/`。浏览器集成用真实接收器、隔离 SQLite 与 HTTP；生产型号/官方路径身份搭配明确 `TEST_VALUE` 单元格，不是生产规格值。该测试不联网请求行情/新闻，不证明采集覆盖或当前生产新闻。
 

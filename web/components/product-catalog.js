@@ -303,9 +303,11 @@
       catalog=data;byId=new Map(data.products.map(p=>[p.id,p]));
       window.dispatchEvent(new CustomEvent('company:catalog',{detail:data}));
       const linkedProduct=byId.get(new URLSearchParams(location.search).get('product_id'));
-      if(linkedProduct&&!new URLSearchParams(location.search).has('q')){
+      const exactLink=new URLSearchParams(location.search);
+      if(linkedProduct&&!['q','line','group','family','scope','kind','with_specs','series'].some(k=>exactLink.has(k))){
         // A stable product deep link must also find an unclassified item when
         // this company has other, classified products in the same received run.
+        // A selected model saved alongside filters must keep those filters on refresh.
         scope='all';line='';group='';family='';$('#query').value=linkedProduct.name;
       }
       detailsById.clear();seriesById.clear();compared.clear();comparisonGeneration++;$('#comparison').hidden=true;selected=linkedProduct?.id||'';detailGeneration++;
