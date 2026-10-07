@@ -259,11 +259,38 @@ async function evidencePanel(node) {
   const ev = s.knowledge?.evidence || [], st = s.knowledge?.statements || [], an = s.knowledge?.answers || [];
   const rels = (s.graph?.relations || []).filter(r => node !== "root" || r.source === "root" || r.target === "root").map(r => { const other = r.source === node ? r.target : r.source; return `<span class="chip"><a href="${nodeHref(other)}">${esc(names[other] || other)}</a> · ${esc(REL[r.type] || r.type)}${r.source === node ? " →" : " ←"}</span>`; });
   const qrows = qs.slice(0, 40).map(q => `<div class="kv"><span>${esc(q.id)} · ${esc(q.text)}</span><b><span class="chip" title="变量类">${q.variable_class}</span> ${q.status === "answered" ? "已答" : "开放"}</b></div>`).join("");
-  const cand = [...ev.map(e => `<div class="kv"><span>${esc(e.quote || e.locator || e.id)}</span><b>证据</b></div>`), ...st.map(x => `<div class="kv"><span>${esc(x.text || x.id)}</span><b>陈述</b></div>`), ...an.map(x => `<div class="kv"><span>${esc(x.text || x.id)}</span><b>回答</b></div>`)].slice(0, 30).join("");
+  const records = [...st.map(x => [x, '陈述']), ...an.map(x => [x, '回答']), ...ev.map(x => [x, '证据'])];
+  const labels = { adopted: '正式采用', candidate: '候选', withdrawn: '已撤回', rejected: '未采用', superseded: '已替代' };
+  const cand = records.slice(0, 30).map(([x, kind]) => `<div class="kv"><span>${esc(x.text || x.locator || x.id)}</span><b>${kind} · ${esc(labels[x.status] || x.status || '未审阅')}</b></div>`).join('');
+  const adopted = [...st, ...an].filter(x => x.status === 'adopted').map(x => x.id);
+  const formal = adopted.length ? `<details class="adopted-research" data-record-ids="${esc(JSON.stringify(adopted))}"><summary>正式采用 ${adopted.length} 条 · 查看范围及原文证据</summary><div class="adopted-body"></div></details>` : '';
   return `<div class="ev-grid"><div class="col"><h3>研究问题 <span class="empty">${qs.length}${node === "root" ? " · 未挂到具体节点的" : ""}</span></h3>${qrows || '<div class="empty">没有问题挂到这个节点</div>'}${qs.length > 40 ? `<div class="empty">另有 ${qs.length - 40} 条</div>` : ""}</div>
-    <div class="col"><h3>候选证据 / 陈述 / 回答 <span class="empty">${ev.length} / ${st.length} / ${an.length}</span></h3>${cand || '<div class="empty">候选为空——读取结果只在 Spark 快照接入后出现，本页不填估值</div>'}</div>
+    <div class="col"><h3>证据 / 陈述 / 回答 <span class="empty">${ev.length} / ${st.length} / ${an.length}</span></h3>${formal}${cand || '<div class="empty">暂无研究记录——读取结果只在 Spark 快照接入后出现，本页不填估值</div>'}${records.length > 30 ? `<div class="empty">另有 ${records.length - 30} 条；采用详情包含本节点全部正式陈述与回答。</div>` : ''}</div>
     <div class="col"><h3>一跳关系 <span class="empty">${rels.length}</span></h3><div class="inst">${rels.slice(0, 40).join("") || '<span class="empty">无</span>'}</div></div></div>`;
 }
+
+// Keep the first paint on the association summary; source text is fetched on demand.
+document.addEventListener('toggle', async event => {
+  const detail = event.target;
+  if (!detail.matches?.('.adopted-research') || !detail.open || detail.dataset.state === 'ready' || detail.dataset.state === 'loading') return;
+  const body = detail.querySelector('.adopted-body');
+  detail.dataset.state = 'loading'; body.textContent = '正在读取正式采用记录…';
+  try {
+    const full = await get('api/research');
+    const wanted = new Set(JSON.parse(detail.dataset.recordIds));
+    const rows = [...(full.knowledge?.statements || []), ...(full.knowledge?.answers || [])].filter(x => wanted.has(x.id) && x.status === 'adopted');
+    const evidence = new Map((full.knowledge?.evidence || []).map(e => [e.id, e]));
+    if (rows.length !== wanted.size) throw new Error('采用状态已变化，请刷新节点');
+    if (!detail.isConnected) return;
+    body.innerHTML = rows.map(x => `<article data-adopted-id="${esc(x.id)}"><h4>${esc(x.text || x.id)}</h4><p>正式采用 · 来源 ${esc(x.published_date || '未登记')} · 审核 ${esc(x.review?.at || '未登记')}</p><p>${esc(x.scope || '')}</p><p>${esc(x.limitations || '')}</p>${(x.evidence_ids || []).map(id => { const e = evidence.get(id); return e ? `<blockquote>${esc(e.quote)}<small>${Number.isInteger(e.page_index) ? `原件第 ${e.page_index + 1} 页` : esc(e.locator)}</small></blockquote>` : '<p>关联证据未载入，请刷新后核对。</p>'; }).join('')}</article>`).join('');
+    detail.dataset.state = 'ready';
+  } catch (error) {
+    if (!detail.isConnected) return;
+    detail.dataset.state = 'error'; body.textContent = `采用详情暂不可用（${error.message}）。`;
+    const retry = document.createElement('button'); retry.textContent = '重试';
+    retry.onclick = () => { detail.dataset.state = ''; detail.dispatchEvent(new Event('toggle')); }; body.append(retry);
+  }
+}, true);
 
 /* 它怎么建：时间列按六段建设阶段展开，从站点权利起 */
 function buildTimeline(d) {

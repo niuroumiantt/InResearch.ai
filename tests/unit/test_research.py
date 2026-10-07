@@ -641,6 +641,8 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
         self.assertEqual([q['id'] for q in full['questions']['records']], [q['id'] for q in summary['questions']])
         for key in ('evidence', 'statements', 'answers'):
             self.assertEqual([row['id'] for row in full['knowledge'][key]], [row['id'] for row in summary['knowledge'][key]])
+            self.assertEqual([row.get('status') for row in full['knowledge'][key]], [row.get('status') for row in summary['knowledge'][key]])
+            self.assertTrue(all('text' not in row and 'quote' not in row for row in summary['knowledge'][key]))
         self.assertEqual([row['wid'] for row in full['tasks']], [row['wid'] for row in summary['tasks']])
         self.assertEqual([row['id'] for row in full['graph']['objects']], [row['id'] for row in summary['graph']['objects']])
         self.assertEqual(self.snapshot_path.read_bytes(), before)
