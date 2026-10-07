@@ -43,7 +43,7 @@ class IndustryTests(unittest.TestCase):
     def test_reviewed_duplicate_preserves_evidence_without_double_counting(self):
         view = industry.snapshot(ROOT)
         self.assertEqual(view['totals']['planning'], 21324)
-        self.assertEqual(view['totals']['sites'], 122)
+        self.assertEqual(view['totals']['sites'], 123)
         self.assertNotIn('us-tx-shackelford-frontier', [p['site_id'] for p in view['rows']])
         main = industry.snapshot(ROOT, {'site': 'us-tx-shackelford'})['detail']
         old = industry.snapshot(ROOT, {'site': 'us-tx-shackelford-frontier'})['detail']
@@ -58,7 +58,7 @@ class IndustryTests(unittest.TestCase):
     def test_capacity_audit_is_global_and_discloses_unknown_scope(self):
         audit = industry.snapshot(ROOT)['capacity_audit']
         self.assertEqual(audit, industry.snapshot(ROOT, {'c': 'meta'})['capacity_audit'])
-        self.assertEqual((audit['known'], audit['unknown'], audit['unlocated']), (40, 82, 19))
+        self.assertEqual((audit['known'], audit['unknown'], audit['unlocated']), (40, 83, 20))
         self.assertEqual((audit['duplicates_excluded'], audit['portfolios_excluded']), (1, 2))
         self.assertEqual((audit['oldest_verified'], audit['latest_verified']), ('2026-07-23', '2026-10-07'))
         self.assertIn('不能用 95 GW', audit['comparability'])
