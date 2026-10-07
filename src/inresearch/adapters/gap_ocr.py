@@ -215,7 +215,7 @@ def fill(data, doc_id, client, dry_run=False):
     return {"doc_id": doc_id, "filled_pages": filled, "still_gaps": still}
 
 
-def enlarge_embedded_png(image, directory, scale=2400):
+def enlarge_embedded_png(image, directory, scale=2400, rotation=0):
     """Render the original RGB/grayscale PNG pixels larger, without inventing detail.
 
     Poppler already supplies PNG/deflate bytes. A temporary PDF wrapper lets
@@ -238,10 +238,15 @@ def enlarge_embedded_png(image, directory, scale=2400):
     width, height = header[:2]
     colors, space = (3, "DeviceRGB") if header[3] == 2 else (1, "DeviceGray")
     stream = b"".join(payload)
-    draw = ("q %d 0 0 %d 0 0 cm /Im Do Q" % (width, height)).encode()
+    matrices = {0:(width,0,0,height,0,0), 90:(0,width,-height,0,height,0),
+                180:(-width,0,0,-height,width,height), 270:(0,-width,height,0,0,width)}
+    if rotation not in matrices:
+        raise RuntimeError("rescue_region_rotation_invalid")
+    draw = ("q %d %d %d %d %d %d cm /Im Do Q" % matrices[rotation]).encode()
+    view_width, view_height = (height,width) if rotation in (90,270) else (width,height)
     objects = [b"<< /Type /Catalog /Pages 2 0 R >>",
                b"<< /Type /Pages /Kids [3 0 R] /Count 1 >>",
-               ("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 %d %d] /Resources << /XObject << /Im 4 0 R >> >> /Contents 5 0 R >>" % (width,height)).encode(),
+               ("<< /Type /Page /Parent 2 0 R /MediaBox [0 0 %d %d] /Resources << /XObject << /Im 4 0 R >> >> /Contents 5 0 R >>" % (view_width,view_height)).encode(),
                ("<< /Type /XObject /Subtype /Image /Width %d /Height %d /ColorSpace /%s /BitsPerComponent 8 /Filter /FlateDecode /DecodeParms << /Predictor 15 /Colors %d /Columns %d /BitsPerComponent 8 >> /Length %d >>\nstream\n" % (width,height,space,colors,width,len(stream))).encode()+stream+b"\nendstream",
                ("<< /Length %d >>\nstream\n" % len(draw)).encode()+draw+b"\nendstream"]
     pdf, offsets = b"%PDF-1.4\n", [0]
@@ -283,7 +288,10 @@ def verify_regions(source, index, result):
             if scale is not None:
                 if type(scale) is not int or not 1800 <= scale <= 6400:
                     raise RuntimeError("rescue_region_scale_invalid")
-                input_hash = digest_file(enlarge_embedded_png(base.parent / ("image-%03d.png" % num), td, scale))
+                rotation = region.get("rotation", 0)
+                if type(rotation) is not int or rotation not in (0,90,180,270):
+                    raise RuntimeError("rescue_region_rotation_invalid")
+                input_hash = digest_file(enlarge_embedded_png(base.parent / ("image-%03d.png" % num), td, scale, rotation))
                 if input_hash != region.get("input_image_sha256"):
                     raise RuntimeError("rescue_region_input_image_mismatch")
             reads, pair = region.get("reads"), region.get("agreed_pair")

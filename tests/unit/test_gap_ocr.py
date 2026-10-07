@@ -278,12 +278,14 @@ class EmbeddedImageRenderTests(unittest.TestCase):
                 def render(args,**kw):
                     pdf=Path(args[-2]).read_bytes()
                     self.assertIn(payload,pdf)
+                    self.assertIn(b'/MediaBox [0 0 20 10]',pdf)
+                    self.assertIn(b'q 0 10 -20 0 20 0 cm',pdf)
                     self.assertIn(('/ColorSpace /'+space).encode(),pdf)
                     self.assertIn(('/Colors %d'%colors).encode(),pdf)
                     Path(args[-1]+'.png').write_bytes(b'rendered pixels')
                     return SimpleNamespace(returncode=0)
                 with mock.patch.object(gap_ocr.subprocess,'run',side_effect=render):
-                    enlarged=gap_ocr.enlarge_embedded_png(source,td,2400)
+                    enlarged=gap_ocr.enlarge_embedded_png(source,td,2400,90)
                 self.assertEqual(enlarged.read_bytes(),b'rendered pixels')
                 self.assertEqual(digest_file(source),original)
 
