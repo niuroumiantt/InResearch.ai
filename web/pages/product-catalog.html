@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>NVIDIA 产品规格库 · inresearch.ai</title>
+<title>公司与产品 · inresearch.ai</title>
 <script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script><script type="module" src="/assets/site-shell.js"></script>
 <link rel="stylesheet" href="/assets/fonts/fonts.css">
 <style>
@@ -28,31 +28,39 @@ html[data-ui-skin] #detail .part-link,html[data-ui-skin] #back-series{all:unset;
 html[data-ui-skin] #back-series{font-family:inherit;font-size:.9rem;display:inline-block;margin-bottom:.8rem}
 .series-parts{columns:2;font-size:.9rem;line-height:1.8}@media(max-width:700px){.series-parts{columns:1}}
 @media(max-width:700px){html[data-ui-skin] #groups{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups.vendor{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups button{min-height:72px}.products{max-height:240px}#detail{border-left:0;border-top:1px solid var(--ui-line);padding:1rem 0 0}.controls input[type=search]{min-width:0;width:100%}#families{gap:.35rem}}
-</style><link rel="stylesheet" href="/assets/site-skin.css"></head>
+</style><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/company.css"></head>
 <body><inresearch-shell data-section="bom"></inresearch-shell><main>
-<nav><a href="/supply.html#inbox">收件箱</a> / <a id="batch-link" href="/supply.html#pilot">NVIDIA 规格批次</a> / 产品规格库</nav>
-<p><a href="/compute-catalog.html">计算芯片：CPU / GPU / 其他计算加速器 · 中国厂商筛选</a></p><h1 id="catalog-title">规格库 · NVIDIA 产品</h1><nav id="company-switch" aria-label="公司"><a href="?c=nvidia" data-company="nvidia" aria-current="page">NVIDIA</a><a href="?c=micron" data-company="micron">Micron</a></nav><nav class="views" id="catalog-views" aria-label="规格库视图"><button type="button" data-view="catalog" aria-pressed="true">规格库</button><button type="button" data-view="registry" aria-pressed="false" hidden>登记覆盖（管理员）</button></nav><p class="intro">按官方产品目录寻找规格。保留每个产品自己的参数、配置列和来源，支持筛选、核查与导出。页面直接读取数据库中的表格数据；HTML、PDF 和 Office 文件只是可追溯的官方载体，不是最终展示层。</p>
+<header class="company-header"><div><p class="eyebrow">公司 / 产品 / 官方规格</p><h1 id="catalog-title">公司与产品</h1><p id="company-profile" class="intro">正在读取公司档案…</p><div id="company-meta"></div></div><div id="company-mark" aria-hidden="true"></div></header>
+<details class="company-picker"><summary>切换公司</summary><label for="actor-switch">全部主体 </label><select id="actor-switch" aria-label="全部主体"></select><p class="catalog-note">已接通规格目录的公司</p><nav id="company-switch" aria-label="公司"><a href="?c=nvidia" data-company="nvidia">NVIDIA</a><a href="?c=micron" data-company="micron">Micron</a></nav></details>
+<nav class="company-nav" aria-label="页内导航"><a href="#overview">总览</a><a href="#catalog">产品与规格</a><a href="#comparison">参数对比</a><a href="#relationships">部件关系</a><a href="/compute-catalog.html">跨厂商计算目录 ↗</a></nav>
+<section id="overview" aria-label="产品总览"><div class="overview-grid"><article class="coverage-panel"><p class="eyebrow">具体型号 · 官方规格覆盖</p><div id="coverage-figure" class="coverage-figure">—</div><div id="coverage-bar" class="coverage-bar" role="img" aria-label="规格覆盖尚未读取"></div><p id="coverage-caption">正在读取已交付目录…</p></article><article class="distribution-panel"><div class="section-head"><h2>产品分布</h2><span>已交付目录实体</span></div><div id="distribution-chart"></div></article></div><p class="basis">统计只覆盖已交付资料，系列、模组、板卡与型号分别计量；不代表厂商全量或已确认在售。</p></section>
+<section id="catalog"><div class="section-head"><h2>产品与规格</h2><span>选型号，看原表；勾选最多四项比较</span></div>
+<nav class="views" id="catalog-views" aria-label="规格库视图"><button type="button" data-view="catalog" aria-pressed="true">产品目录</button><button type="button" data-view="registry" aria-pressed="false" hidden>登记覆盖（管理员）</button></nav>
+<a id="batch-link" href="/supply.html#providers" hidden>Fetchspec 交付</a>
 <p id="status" role="status" aria-live="polite">正在读取产品清单…</p>
-<p id="coverage-line"></p>
-<p id="alignment" class="catalog-note"></p>
-<nav id="groups" aria-label="产品大类"></nav>
-<p id="groups-note" class="catalog-note">五个入口是本站浏览分组，依据 <a href="https://www.nvidia.com/en-us/products/" target="_blank" rel="noopener">NVIDIA 官方产品目录</a>的十个栏目整理，并非原厂原样分类。官方原始分类保留在每项详情中。公司产品地图由产品/系列关系组成；官方 XML sitemap 只用于页面更新候选和来源交叉核对，不会把全站 URL 当成产品。</p>
-<button id="auxiliary" aria-pressed="false">辅助资料 / 待归类</button>
-<nav id="families" aria-label="产品系列"></nav>
-<details><summary>采集统计与待补齐范围</summary><div id="metrics" class="metrics"></div><ul id="limitations"></ul><p>“具体型号规格覆盖”只以具体命名产品为分母；“有规格表的全部条目”还包括系列和平台，两者不能混用。官网明确未发布型号规格或旧规格来源已不可用，记作厂商规格缺口而不是抓取失败。官网列出不代表已经确认在售；配置尚未逐一拆成 SKU，参数尚未进入正式研究采用。宣传、培训和未知分类入口留在辅助资料中，未删除原始记录。</p></details>
+
+
 <div class="controls"><label for="query">搜索</label><input id="query" type="search" placeholder="型号或官方分类，如 H200、Networking"><label for="kind">类型</label><select id="kind"><option value="">全部目录实体</option><option value="named_product">具体型号页</option><option value="family_or_directory">系列 / 平台 / 目录</option><option value="software_service">软件 / 服务</option></select><label><input id="with-specs" type="checkbox">已有规格表</label><button id="retry">刷新</button></div>
 <div class="controls"><a id="export-products" href="/api/product-catalog/nvidia?export=products">导出产品清单 CSV</a><a id="export-map" href="/api/product-catalog/nvidia?export=map">导出公司产品地图 CSV</a><a id="export-specs" href="/api/product-catalog/nvidia?export=specs">导出官方参数 CSV</a><span id="matches"></span></div>
+<nav id="groups" aria-label="产品大类"></nav>
+
+<button id="auxiliary" aria-pressed="false">辅助资料 / 待归类</button>
+<nav id="families" aria-label="产品系列"></nav>
+
 <h2 id="breadcrumb">先选大类，再选系列</h2>
-<div class="layout"><aside><div id="products" class="products" aria-label="产品清单"></div><div class="pager"><button id="previous" disabled>上一页</button><button id="next" disabled>下一页</button></div></aside><section id="detail" aria-label="产品规格"><p>选择产品查看官方规格。</p></section></div>
+<div class="table-wrap model-table-wrap"><table id="model-table"><thead><tr><th>对比</th><th>型号 / 系列</th><th>官方分类</th><th>形态</th><th>规格</th></tr></thead><tbody id="model-rows"></tbody></table></div>
+<details class="catalog-explanation"><summary>分类说明与研究关联</summary><p id="alignment" class="catalog-note"></p><p id="groups-note" class="catalog-note">五个入口是本站浏览分组，依据 <a href="https://www.nvidia.com/en-us/products/" target="_blank" rel="noopener">NVIDIA 官方产品目录</a>的十个栏目整理，并非原厂原样分类。官方原始分类保留在每项详情中。公司产品地图由产品/系列关系组成；官方 XML sitemap 只用于页面更新候选和来源交叉核对，不会把全站 URL 当成产品。</p></details><details id="collection-statistics"><summary>采集统计与待补齐范围</summary><p id="coverage-line"></p><div id="metrics" class="metrics"></div><ul id="limitations"></ul><p>“具体型号规格覆盖”只以具体命名产品为分母；“有规格表的全部条目”还包括系列和平台，两者不能混用。官网明确未发布型号规格或旧规格来源已不可用，记作厂商规格缺口而不是抓取失败。官网列出不代表已经确认在售；配置尚未逐一拆成 SKU，参数尚未进入正式研究采用。宣传、培训和未知分类入口留在辅助资料中，未删除原始记录。</p></details><div class="layout"><aside><div id="products" class="products" aria-label="产品清单"></div><div class="pager"><button id="previous" disabled>上一页</button><button id="next" disabled>下一页</button></div></aside><section id="detail" aria-label="产品规格"><p>选择产品查看官方规格。</p></section></div>
+</section><section id="relationships" aria-label="公司与部件关系"><div class="section-head"><h2>在数据中心中的位置</h2><span>骨架登记关系</span></div><div id="relationship-diagram">正在读取部件关系…</div></section>
+<details id="research-details" hidden><summary>研究目标、已采用关系与项目附表</summary><div id="root"></div></details>
 <section id="registry-panel" hidden aria-label="登记覆盖"><p class="catalog-note">产品资料登记覆盖：每条产品线登记了哪些资料类型、哪些还缺（并入规格库的一个标签，2026-09-28）。</p><iframe id="registry-frame" title="产品资料登记覆盖" style="width:100%;min-height:70vh;border:1px solid var(--ui-line)"></iframe></section>
-<section id="comparison" hidden><h2>并排核查</h2><p class="muted">按各自官方参数展示，注意配置、精度、稀疏性和测试条件。尚未自动判定跨产品可比性。</p><div id="comparison-items" class="compare-grid"></div></section>
+<section id="comparison" hidden><h2>参数对比</h2><div id="comparison-matrix"></div><button id="clear-comparison" type="button">清空对比</button><p class="muted">按各自官方参数展示，注意配置、精度、稀疏性和测试条件。尚未自动判定跨产品可比性。</p><div id="comparison-items" class="compare-grid"></div></section>
 </main><script>
 (() => {
   const buttons = [...document.querySelectorAll("#catalog-views button")];
   const panels = ["status","alignment","groups","auxiliary","families","breadcrumb","comparison"];
   function show(view) {
     buttons.forEach(b => b.setAttribute("aria-pressed", String(b.dataset.view === view)));
-    document.querySelectorAll("main > :not(h1):not(#catalog-views):not(#registry-panel):not(script)").forEach(el => { el.hidden = view === "registry"; });
+    document.querySelectorAll("#catalog > :not(.section-head):not(#catalog-views)").forEach(el => { el.hidden = view === "registry"; });
     document.getElementById("registry-panel").hidden = view !== "registry";
     if (view === "registry") { const f = document.getElementById("registry-frame"); if (!f.src) f.src = "/admin/product/index.html?embedded=1"; }
     if (location.hash !== "#" + view) history.replaceState(null, "", "#" + view);
@@ -60,4 +68,4 @@ html[data-ui-skin] #back-series{font-family:inherit;font-size:.9rem;display:inli
   buttons.forEach(b => b.onclick = () => show(b.dataset.view));
   fetch("/api/whoami").then(r => r.ok ? r.json() : null).then(u => { if (u?.role === "admin") { buttons[1].hidden = false; if (location.hash === "#registry") show("registry"); } }).catch(() => {});
 })();
-</script><script src="/assets/product-catalog.js" defer></script></body></html>
+</script><script src="/assets/company-overview.js" defer></script><script src="/assets/company-context.js" defer></script><script src="/assets/product-catalog.js" defer></script></body></html>

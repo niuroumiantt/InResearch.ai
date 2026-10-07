@@ -50,7 +50,7 @@ return function showDossier(p) {
   }
   if (p.companies?.length) {
     const companies = dossierNode("div", undefined, "sec"); companies.append(dossierNode("h3", "类别关联公司 · 不代表现场供应商"));
-    p.companies.forEach(c => companies.append(dossierLink(CN[c] || c, "company.html?c=" + encodeURIComponent(c)))); el.append(companies);
+    p.companies.forEach(c => companies.append(dossierLink(CN[c] || c, "product-catalog.html?c=" + encodeURIComponent(c)))); el.append(companies);
   }
   const metrics = dossierNode("div", undefined, "sec"); metrics.append(dossierNode("h3", "类别数据与指标 · 按原记录时点"));
   let n = 0;

@@ -169,7 +169,7 @@ function fiveColumns(cells, columns) {
   return Object.entries(columns).map(([n, name]) => {
     const c = cells[n] || { items: [] };
     const rows = c.items.map(i => `<div class="kv" title="${esc((i.source?.type || "") + " " + (i.source?.key || ""))}"><span>${esc(i.label)}</span><b>${fmt(i.value, i.unit)}${i.as_of ? `<small>${esc(String(i.as_of).slice(0, 7))}</small>` : ""}</b></div>`).join("");
-    const inst = (c.instances || []).length ? `<div class="inst">${c.instances.map((x, i) => c.instance_ids?.[i] ? `<a class="chip" href="company.html?c=${encodeURIComponent(c.instance_ids[i])}" title="主体页">${esc(x)}</a>` : `<span class="chip">${esc(x)}</span>`).join("")}</div>` : "";
+    const inst = (c.instances || []).length ? `<div class="inst">${c.instances.map((x, i) => c.instance_ids?.[i] ? `<a class="chip" href="product-catalog.html?c=${encodeURIComponent(c.instance_ids[i])}" title="主体页">${esc(x)}</a>` : `<span class="chip">${esc(x)}</span>`).join("")}</div>` : "";
     return `<div class="col ${COL === n ? "hl" : ""}" id="col-${n}"><h3><span class="num">${n}</span>${esc(name)} <span class="dot st-${c.status || "needed"}" title="${STATUS[c.status] || ""}"></span></h3>${rows || '<div class="empty">缺——没有登记来源，不显示估计值</div>'}${inst}${covLine(c.coverage, n)}</div>`;
   }).join("");
 }

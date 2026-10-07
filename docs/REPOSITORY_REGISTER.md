@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.1。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.2。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1127。
+在册文件：1132。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 303 |
-| 运行代码 | 245 |
+| 运行代码 | 248 |
 | 现行规范 | 13 |
 | 项目配置 | 100 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 84 |
-| 测试 | 120 |
+| 配套说明 | 85 |
+| 测试 | 121 |
 
 ## 在册记录集合
 
@@ -521,6 +521,7 @@
 | [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
 | [docs/handoff/codex-batch-reader-20261006.md](handoff/codex-batch-reader-20261006.md) | 配套说明 |
+| [docs/handoff/company-page-20261007.md](handoff/company-page-20261007.md) | 配套说明 |
 | [docs/handoff/compute-catalog-20261002.md](handoff/compute-catalog-20261002.md) | 配套说明 |
 | [docs/handoff/compute-catalog-batch2-20261002.md](handoff/compute-catalog-batch2-20261002.md) | 配套说明 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | 项目配置 |
@@ -1310,6 +1311,7 @@
 | `src/inresearch/workflow/triage.py` | 运行代码 |
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
 | `tests/auth_appearance.cjs` | 测试 |
+| `tests/company_page.cjs` | 测试 |
 | `tests/compute_catalog.cjs` | 测试 |
 | `tests/container_storage.py` | 测试 |
 | `tests/dashboard.cjs` | 测试 |
@@ -1490,6 +1492,8 @@
 | `web/assets/world.geo.json` | 静态资源 |
 | `web/components/auth-form.js` | 运行代码 |
 | `web/components/auth.css` | 运行代码 |
+| `web/components/company-context.js` | 运行代码 |
+| `web/components/company-overview.js` | 运行代码 |
 | `web/components/compute-catalog.js` | 运行代码 |
 | `web/components/datacenter-model.js` | 运行代码 |
 | `web/components/datacenter-news.js` | 运行代码 |
@@ -1542,6 +1546,7 @@
 | `web/pages/supply.html` | 运行代码 |
 | `web/robots.txt` | 项目配置 |
 | `web/routes.json` | 项目配置 |
+| `web/themes/company.css` | 运行代码 |
 | `web/themes/industry.css` | 运行代码 |
 | `web/themes/preference.js` | 运行代码 |
 | `web/themes/site-skin.css` | 运行代码 |

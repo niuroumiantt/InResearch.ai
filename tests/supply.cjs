@@ -129,7 +129,7 @@ const base=process.env.UI_BASE_URL;
   assert.match(await edition.innerText(),/1 条事件已用于 2 个正式园区记录/);
   assert.equal(await edition.locator('a[href*="project.html"]').count(),2);
   assert.equal(await edition.locator('img').count(),0);
-  assert.equal(await edition.locator('a[href*="company.html"]').count(),1);
+  assert.equal(await edition.locator('a[href*="product-catalog.html"]').count(),1);
   await page.locator('#matching-events > summary').click();
   assert.match(await page.locator('#daily-shown').innerText(),/显示 1 \/ 1/);
   assert.doesNotMatch(await page.locator('#daily-events').innerText(),/旧日报事件/);

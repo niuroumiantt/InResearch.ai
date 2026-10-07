@@ -158,7 +158,7 @@ async function main(){
       const el=document.createElement("section"); el.className="seg";
       el.innerHTML=`<h2>${escapeHTML(s)}<span>${rows.length} 条 · 有规格库 ${withCatalog.length} 条</span></h2>`+rows.map(p=>{
         const name=escapeHTML(p.company_cn||p.company_en||p.company_id);
-        const who=companies.has(p.company_id)?`<a href="/company.html?c=${encodeURIComponent(p.company_id)}">${name}</a>`:name;
+        const who=companies.has(p.company_id)?`<a href="/product-catalog.html?c=${encodeURIComponent(p.company_id)}">${name}</a>`:name;
         const go=p.catalog.available
           ?`<a href="${escapeHTML(catalogLink(p.catalog.company,{}))}">规格库 →</a><br><span>${p.covered} / ${p.tags.length} 型号找到</span>`
           :`<span>${p.catalog.registered?"规格库待首次交付":"暂无规格库"}</span>`;
