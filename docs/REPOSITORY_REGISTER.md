@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1159。
+在册文件：1160。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 93 |
+| 配套说明 | 94 |
 | 测试 | 127 |
 
 ## 在册记录集合
@@ -547,6 +547,7 @@
 | [docs/handoff/material-progress-overview-20261006.md](handoff/material-progress-overview-20261006.md) | 配套说明 |
 | [docs/handoff/news-research-matching-20261006.md](handoff/news-research-matching-20261006.md) | 配套说明 |
 | [docs/handoff/nvidia-product-catalog.md](handoff/nvidia-product-catalog.md) | 配套说明 |
+| [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
 | [docs/handoff/project-evidence-loop-20261006.md](handoff/project-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/reader-failure-ocr-repair-20261006.md](handoff/reader-failure-ocr-repair-20261006.md) | 配套说明 |
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
