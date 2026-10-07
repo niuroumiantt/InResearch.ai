@@ -40,8 +40,8 @@ const base=process.env.UI_BASE_URL;
   await page.route('**/api/supply',route=>route.fulfill({json:{...original,
    matching_reader:{received_at:'2026-10-06T08:00:00Z',execution_scope:{documents:133,registered:131,counts:{complete:2,running:2,queued:127,blocked:2},types:{'.pdf':69,'.html':62},chunks_read:18,chunks_total:156,awaiting_extraction:126,native_text_only_complete:1,skipped_image_pages:3,text_layer_empty_pages:1,executor:{pdf_mode:'native_text_only',backend:'codex_cli',model:'gpt-6.1-sol <img src=x>',reasoning_effort:'medium'}}},
    project_updates:[{site_id:'fi-reviewed',name:'正式采用园区',verified_date:'2026-10-06',fields:['规划IT容量'],scope:'一期包含在园区总量内，供电不计入IT'}],
-   reading_deliveries:[{title:'已完成日报 <img src=x>',claims:['已提取的合同信息'],quotes:[{quote:'Original source text',page_index:17}],coverage:{gap_pages:[2]}},
-    {title:'正文候选报告',claims:['75MW power 与 60MW IT 分开记录'],quotes:[{quote:'60MW IT; 75MW power',page_index:1}],coverage:{scope:'pdf_native_text_only',visual_review_performed:false,text_layer_empty_pages:[3],skipped_image_pages:[1,3]}}],
+   reading_deliveries:[{title:'已完成日报 <img src=x>',claims:['已提取的合同信息'],quotes:[{quote:'Original source text',page_index:16}],coverage:{gap_pages:[2]}},
+    {title:'正文候选报告',claims:['75MW power 与 60MW IT 分开记录'],quotes:[{quote:'60MW IT; 75MW power',page_index:0}],coverage:{scope:'pdf_native_text_only',visual_review_performed:false,text_layer_empty_pages:[3],skipped_image_pages:[1,3]}}],
    daily_events:{records:[event(missing,'需要补来源的园区'),event(ready,'已交付园区 <img src=x onerror=alert(1)>')],total:2},
    daily_delivery:{news_total:1,task_counts:{source:1,identity:2},records:[
     {event_id:ready,delivery_lane:'news',last_processed_at:'2026-10-06T08:00:00Z',tasks:[{owner:'Spark 发布器',next_action:'动态已交付，容量等待研究核验'}]},
@@ -60,6 +60,8 @@ const base=process.env.UI_BASE_URL;
   assert.match(await page.locator('.progress-results').innerText(),/原件第 17 页/);
   assert.match(await page.locator('.progress-results').innerText(),/未读页：2/);
   await page.locator('.progress-results summary').nth(1).click();
+  assert.match(await page.locator('.progress-results').innerText(),/原件第 1 页/);
+  assert.doesNotMatch(await page.locator('.progress-results').innerText(),/原件第 0 页/);
   assert.match(await page.locator('.progress-results').innerText(),/正文阅读 · 图片未读/);
   assert.match(await page.locator('.progress-results').innerText(),/第 3 页没有文字层/);
   assert.match(await page.locator('.progress-overview').innerText(),/默认读正文、跳过图片 OCR/);

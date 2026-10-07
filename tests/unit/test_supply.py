@@ -20,14 +20,30 @@ class SupplyTests(unittest.TestCase):
                              {'doc_id':'b','content_sha256':'b','read_status':'running'},
                              {'doc_id':'old','content_sha256':'old','read_status':'complete'}],
                 'statements':[{'document_id':'a','text':'candidate finding'},{'document_id':'old','text':'out of scope'}],
-                'evidence':[{'document_id':'a','quote':'literal source','page_index':17,'private_path':'secret'}]}
+                'evidence':[{'document_id':'a','quote':'literal source','page_index':16,'private_path':'secret'}]}
         out=supply.reading_deliveries(reader,{'records':[{'sha256':'a'},{'sha256':'b'}]})
         self.assertEqual(len(out),1)
         self.assertEqual(out[0]['claims'],['candidate finding'])
-        self.assertEqual(out[0]['quotes'],[{'quote':'literal source','page_index':17}])
+        self.assertEqual(out[0]['quotes'],[{'quote':'literal source','page_index':16}])
         self.assertEqual(out[0]['coverage']['gap_pages'],[2])
         self.assertEqual(out[0]['acceptance'],'candidate_only')
         self.assertNotIn('private',json.dumps(out))
+
+    def test_reader_report_pages_cross_export_and_supply_without_mutating_report(self):
+        from inresearch.delivery.reader_export import project_document
+        doc = {'doc_id':'a', 'sha256':'a', 'original_name':'paper.pdf',
+               'original_rel':'originals/paper.pdf', 'library_rel':None,
+               'chunks_total':1, 'chunks_read':1, 'state':'complete',
+               'revision_id':'rev-a', 'report_rel':'report.json', 'report_sha256':'b'}
+        report = {'coverage':{'complete':True, 'pages_total':17},
+                  'evidence':[{'quote':'first page', 'page_index':1},
+                              {'quote':'last page', 'page_index':17}]}
+        exported = project_document(doc, [], report, {})
+        received = {'documents':[exported['entry']], 'evidence':exported['evidence']}
+        out = supply.reading_deliveries(received, {'records':[{'sha256':'a'}]})
+        self.assertEqual(out[0]['quotes'], [{'quote':'first page', 'page_index':0},
+                                          {'quote':'last page', 'page_index':16}])
+        self.assertEqual([e['page_index'] for e in report['evidence']], [1, 17])
 
     def test_snapshot_reads_deliveries_from_received_knowledge_not_status(self):
         runtime={'reader':{'acquisition':{'material_matches':{'records':[{'sha256':'a'}]}}},
