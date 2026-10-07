@@ -230,6 +230,10 @@ class Handler(SimpleHTTPRequestHandler):
         if user and auth.user_role(user) == "intern" \
                 and not self._intern_allowed(self._norm_path()):
             return self._html(403, pages.FORBIDDEN_PAGE)
+        if self._norm_path() == '/company.html':
+            query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+            query.setdefault('c', ['microsoft'])
+            return self._redirect('/product-catalog.html?' + urlencode(query, doseq=True))
         return super().do_HEAD()
 
     def intake_worker(self):
@@ -277,6 +281,10 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._redirect("/supply.html#targets")     # 实习生的首页就是采集页的目标表（自己的行）
             if not self._intern_allowed(path):
                 return self._html(403, pages.FORBIDDEN_PAGE)
+        if self._norm_path() == '/company.html':
+            query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+            query.setdefault('c', ['microsoft'])
+            return self._redirect('/product-catalog.html?' + urlencode(query, doseq=True))
         if self.path == "/login":
             if user:                       # 已登录还访问登录页 → 回首页
                 return self._redirect("/")

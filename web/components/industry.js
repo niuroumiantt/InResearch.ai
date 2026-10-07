@@ -25,8 +25,8 @@ function projectGeography(p){
 }
 function projectDossier(p){
  const pending='待查；未登记不表示不存在';
- const actors=(p.developer||[]).map(id=>`<a href="/company.html?c=${encodeURIComponent(id)}">${esc(name(id))}</a>`).join('、');
- const users=(p.tenant||[]).map(id=>`<a href="/company.html?c=${encodeURIComponent(id)}">${esc(name(id))}</a>`).join('、');
+ const actors=(p.developer||[]).map(id=>`<a href="/product-catalog.html?c=${encodeURIComponent(id)}">${esc(name(id))}</a>`).join('、');
+ const users=(p.tenant||[]).map(id=>`<a href="/product-catalog.html?c=${encodeURIComponent(id)}">${esc(name(id))}</a>`).join('、');
  const rows=[
   ['物理地点与边界',projectGeography(p),'地块编号、红线、占地面积、建筑及各分期边界待核实；同城不自动合并'],
   ['土地与产权','待查','地主、卖方／出租方、受让方／承租方分别核验；辖区政府不自动视为地主'],

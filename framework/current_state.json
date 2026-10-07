@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.07.1",
+  "version": "2026.10.07.2",
   "effective_at": "2026-10-07",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -1778,13 +1778,17 @@
         "tests/unit/test_codex_failure_ocr_rescue.py",
         "src/inresearch/workflow/project_review.py",
         "src/inresearch/materials/retention.py",
-        "framework/material_retention.json"
+        "framework/material_retention.json",
+        "web/components/company-overview.js",
+        "web/components/company-context.js",
+        "web/themes/company.css",
+        "tests/company_page.cjs"
       ],
       "supersedes": [
         "interface-dispatch-20261006"
       ],
-      "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；阅读恢复时同时披露候选中的未读页，防止缺页计成已核验。；用户要求简单看懂交付与进展：首屏改为已交付/正在处理/缺口，技术记录折叠，以既有快照候选显示内容。；2026-10-07按日报日期展示实际事件、机检、正式采用事件/园区数及落点与缺口；全批阅读单独计量。；主体供电协议与州级有限对照，园区十二角度已有/待查，不据地域推断产权或供电关系。",
-      "implementation_revision": "2026.10.06.5",
+      "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；阅读恢复时同时披露候选中的未读页，防止缺页计成已核验。；用户要求简单看懂交付与进展：首屏改为已交付/正在处理/缺口，技术记录折叠，以既有快照候选显示内容。；2026-10-07按日报日期展示实际事件、机检、正式采用事件/园区数及落点与缺口；全批阅读单独计量。；主体供电协议与州级有限对照，园区十二角度已有/待查，不据地域推断产权或供电关系。；2026-10-07用户明确要求单链接和图表重点，统一公司档案/产品规格入口，旧门禁保留，按目录原数据绘图和页内对比。",
+      "implementation_revision": "2026.10.07.2",
       "change_reason": "2026-10-06 user-authorized event review → curated project → published receipt; Spark indefinite preservation; received/queued never imply formal adoption."
     }
   ],
