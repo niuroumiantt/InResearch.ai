@@ -354,7 +354,7 @@
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | legacy_root_prefixes | 4 |
-| `framework/research_graph.json` | objects | 347 |
+| `framework/research_graph.json` | objects | 352 |
 | `framework/research_graph.json` | relations | 372 |
 | `framework/research_questions.json` | records | 458 |
 | `framework/site_rights.json` | rights | 6 |
