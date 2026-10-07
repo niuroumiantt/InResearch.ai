@@ -540,6 +540,14 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, research.summary_for_node(research.build_research_summary(ROOT), node))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '研究摘要暂不可用，请稍后重试'})
+        if urlsplit(self.path).path == '/api/research-adopted':
+            try:
+                nodes = parse_qs(urlsplit(self.path).query).get('node', ['root'])
+                if len(nodes) != 1:
+                    return self._json(400, {'error': 'one node required'})
+                return self._json(200, research.adopted_for_node(ROOT, nodes[0]))
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'ok': False, 'error': '采用详情暂不可用，请稍后重试'})
         if urlsplit(self.path).path == "/api/research":
             try:
                 return self._json(200, research.build_snapshot(ROOT))

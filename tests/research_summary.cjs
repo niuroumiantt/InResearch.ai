@@ -12,7 +12,8 @@ try:
     research.atomic_json(case.curated_path, adopted_knowledge())
     code, full = case.request('GET', '/api/research'); assert code == 200
     code, summary = case.request('GET', '/api/research-summary'); assert code == 200
-    print(json.dumps({'full':full, 'summary':summary}))
+    code, adopted = case.request('GET', '/api/research-adopted'); assert code == 200
+    print(json.dumps({'full':full, 'summary':summary, 'adopted':adopted}))
 finally:
     case.doCleanups()
 `], {cwd:process.cwd(), env:{...process.env, PYTHONPATH:[join(process.cwd(),'src'),join(process.cwd(),'tests/unit')].join(':')}, maxBuffer:16*1024*1024}));
@@ -81,15 +82,15 @@ finally:
   assert.ok(result.objects>100);assert.ok(result.objectsWithEvidence>0);
   // The actual node page distinguishes formal records without eagerly reading sources.
   const mixed = structuredClone(fixture);
-  mixed.full.knowledge.statements[0].text = '<img src=x onerror=alert(1)> bounded author claim';
-  mixed.full.knowledge.statements[0].scope = 'historical author explanation';
-  mixed.full.knowledge.statements.push({id:'statement:candidate',text:'Still a candidate',status:'candidate'});
+  mixed.adopted.knowledge.statements[0].text = '<img src=x onerror=alert(1)> bounded author claim';
+  mixed.adopted.knowledge.statements[0].scope = 'historical author explanation';
+  mixed.adopted.knowledge.statements.push({id:'statement:candidate',text:'Still a candidate',status:'candidate'});
   mixed.summary.knowledge.statements.push({id:'statement:candidate',status:'candidate'});
   let fullRequests = 0;
   await page.route('**/api/research-summary?*', route => route.fulfill({json:mixed.summary}));
-  await page.route(url => url.pathname === '/api/research', route => {
+  await page.route(url => url.pathname === '/api/research-adopted', route => {
     fullRequests++;
-    return fullRequests === 1 ? route.fulfill({status:503,json:{error:'temporary'}}) : route.fulfill({json:mixed.full});
+    return fullRequests === 1 ? route.fulfill({status:503,json:{error:'temporary'}}) : route.fulfill({json:mixed.adopted});
   });
   await page.goto(process.env.UI_BASE_URL+'/node.html');
   const detail = page.locator('.adopted-research'); await detail.waitFor();

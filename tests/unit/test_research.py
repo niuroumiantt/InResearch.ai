@@ -610,8 +610,10 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
 
     def test_summary_obeys_research_auth_boundary_before_building_state(self):
         with patch.object(serve, 'AUTH_ON', True), \
-                patch.object(research, 'build_research_summary', side_effect=AssertionError('unauthorized read')):
+                patch.object(research, 'build_research_summary', side_effect=AssertionError('unauthorized read')), \
+                patch.object(research, 'adopted_for_node', side_effect=AssertionError('unauthorized adoption read')):
             self.assertEqual(self.request('GET', '/api/research-summary')[0], 401)
+            self.assertEqual(self.request('GET', '/api/research-adopted')[0], 401)
             with patch.object(serve.auth, 'session_user', return_value='intern'), \
                     patch.object(serve.auth, 'user_role', return_value='intern'):
                 connection = http.client.HTTPConnection(*self.server.server_address, timeout=4)
@@ -620,8 +622,35 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
                     response = connection.getresponse()
                     self.assertEqual(response.status, 403)
                     response.read()  # The existing role gate returns its forbidden HTML page.
+                    connection.request('GET', '/api/research-adopted')
+                    response = connection.getresponse()
+                    self.assertEqual(response.status, 403)
+                    response.read()
                 finally:
                     connection.close()
+
+    def test_adopted_node_details_use_curated_support_closure_without_runtime_or_catalog(self):
+        curated = adopted_knowledge()
+        curated.update(version='2.0.0', note='Non-collection metadata')
+        curated['statements'][0]['object_ids'] = ['part:gpu']
+        curated['documents'][0]['stored_path'] = '/private/PRIVATE_MARKER.pdf'
+        research.atomic_json(self.curated_path, curated)
+        with patch.object(research, '_snapshot_inputs', side_effect=AssertionError('unneeded runtime')), \
+                patch.object(research, 'build_catalog', side_effect=AssertionError('unneeded catalog')):
+            code, detail = self.request('GET', '/api/research-adopted?node=part:gpu')
+        self.assertEqual(code, 200)
+        self.assertEqual([s['id'] for s in detail['knowledge']['statements']], ['statement:reviewed'])
+        self.assertEqual(detail['knowledge']['answers'], [])
+        self.assertEqual(detail['knowledge']['evidence'][0]['quote'], 'Original fixture quotation')
+        self.assertEqual(len(detail['knowledge']['documents']), 1)
+        self.assertNotIn('PRIVATE_MARKER', json.dumps(detail))
+        self.assertNotIn('catalog', detail)
+        self.assertLess(len(json.dumps(detail)), 10000)
+        self.assertTrue(self.request('GET', '/api/research-adopted?node=missing')[1]['unknown'])
+        self.assertEqual(self.request('GET', '/api/research-adopted?node=root&node=part:gpu')[0], 400)
+        curated['evidence'][0]['status'] = 'withdrawn'
+        research.atomic_json(self.curated_path, curated)
+        self.assertEqual(self.request('GET', '/api/research-adopted?node=part:gpu')[1]['knowledge']['statements'], [])
 
     def test_research_summary_shares_state_but_omits_content_catalog_and_reader_payload(self):
         payload = self.payload()
