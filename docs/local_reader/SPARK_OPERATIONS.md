@@ -219,6 +219,8 @@ inspect 返回报告、覆盖、模型与产物摘要；ready 不等于内容正
 ## 并发与吞吐
 
 - **队列所有权不变**：仍然只有一个进程持有 catalog 锁，中断任务回收与对账仍只发生一次；第二个进程照旧报 `another_worker_owns_queue`。多线程只发生在这一个进程内部。
+- **PDF 正文合批（2026-10-07）**。新配方默认 `READER_READ_BATCH_CHUNKS=4`、`READER_READ_BATCH_CHARS=6000`：同版本相邻可执行块一次调用，结果和页码仍逐块保存并机检；失败回退单块，等待不消耗尝试。两个参数只作用于新配方，`CHUNKS=1` 禁用。升级前按 SHA/当前 revision 清点未读材料，备份 catalog 与旧配置，只对 `chunks_read=0` 且没有正文成功/运行任务的未完成材料执行 `restart-unfinished`；已读和正在读的报告保持原版本。不要直接 SQL 改配方或用全库重读实现提速。日志同时记录 `read_batch` 的块列表/耗时/回退与逐块 jobs；批量调用数不是材料完成数。
+- **Codex 并发验收**。Reader workers、Spark 文本档案 `max_parallel`、M5 文本档案与 relay `--parallel` 同步到经样本验收的上限（relay 最大 4）；型号/effort 不变。停止 Reader 并等在途调用结束后才重启 relay；配置与一致 DB 备份私有保存。观察调用成功/失败/耗时、每块引文机检、整篇封存与网站回执；失败明显增加时恢复旧并发配置，已读原文结果保留。
 - `READER_WORKERS`（默认 `1`，上限 16）设定该进程内的工作线程数。每个线程持有自己的 SQLite 连接，领取任务用 `BEGIN IMMEDIATE`，同一任务不会被领两次；`--workers N` 可在命令行覆盖。扫描与入库仍留在持锁线程，保持单写入者。
 - 共享推理客户端的 `max_parallel`（默认 2）另行限制同时请求数；它不是跨进程全局限流。
 - **改大线程数之前先放开 Ollama 服务端**。Ollama 默认串行处理请求，客户端并发只会堆在服务端队列里。需在 Ollama 服务上设 `OLLAMA_NUM_PARALLEL` 不小于 `READER_WORKERS`，并确认「并发请求数 × `num_ctx`」的 KV 缓存仍放得进显存，否则会触发换出，反而更慢。27B、32k 上下文下先从 2 起步，用 `ollama ps` 与 `status.json` 的处理速率核对后再加。

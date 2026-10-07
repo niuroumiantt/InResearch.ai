@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.07.8",
+  "version": "2026.10.07.9",
   "reviewed_at": "2026-10-07",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -14,7 +14,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "6cc2d282cf5ef71a46afb1ca28c435c994dfc7a7b9305724ae97e71a1058da8c",
+    "docs/local_reader/SPARK_OPERATIONS.md": "6250896776db739e3bcb0a1c2a32901bd54ca32202ae1caf7c9b114766beba40",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "972bf5d0b9e7a682acdceef34bb59a58e8b5148e1e0cf479e19a6e09170e6daf",
     "docs/local_setup/REPOSITORY_PAGES.md": "fb87e53841c6c1eb3b37235c66072c4d97f803ba0435681148d7e83ef68f9720",
@@ -22,20 +22,20 @@
     "framework/01_data_standards.md": "765d6f91df5468f507e488000bec59ddc00823e4c74b2334a3a14e543ce54c70",
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "07e5b461da6c0da081c2ab7a8b7af1089048d93edf98ca5a74878907d530a655",
-    "framework/04_reading_scoring_standard.md": "c97e6fa94496f60b5bbce42b9c64c719ae6a232246af815d222752e3bcc86e6f",
+    "framework/04_reading_scoring_standard.md": "09e9936d1b58dd360cb22b033fc9852a02d9a4e951131cb582d9cec5d4b52bab",
     "framework/05_interface_system.md": "5a6f91a3a84d3f7a882d7ee32bb61537e21afb78cb67ec70c06ab34eb6fcef7d",
     "framework/06_acquisition.md": "e8efbc78a3d9e9f1a175e1958ad72da19af6f5922fc0f0646f3836cad0a3e7e6",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
-    "framework/08_model_execution.md": "4ac9e224ea6e870d37dcef3c54f151e8f6ba54f69db9044523652f5c573f741f",
+    "framework/08_model_execution.md": "5411f4e0c8441d3f42bd3e597e1863d01f5e77e9335a3e3044f1f230bf79f4bc",
     "framework/09_software_contracts.md": "94eeb69fe498f0318e84d4cb476468eed1e01c541160e81c4be58a12dd119dff",
-    "framework/CURRENT.md": "f4041ac05ada7e1cc60e125255bcc5987772cae083c08f1f53f60c606a63275b",
+    "framework/CURRENT.md": "3f964e5a41464dae7c247b7daa9a3d671715482b2a23d07894bc412beff1c85d",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "b60a248d617babdbe4419c5ace65d0be0ac107e21b1ca8e658a0ae847f092583",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "75361a6744ec186d0ab997575f545e4fa9671530fc2ae7655e25d0524aec6c9b",
     "framework/tco_targets.json": "6f32daf5040f28e55296be589b7054343551976632c747ef277e87d220676a70",
     "src/inresearch/adapters/acquisition.py": "48bc65df62d05d88433eda9543fa344be49d9cacbb42fad94ccf5ea3f6022e05",
-    "src/inresearch/adapters/reader_model.py": "69c90d2c439ed99c21561128c5e7ad11c987496cbce80a3be9665e4718c8da00",
+    "src/inresearch/adapters/reader_model.py": "7082aa0f3bcc1ac953466b0c90e82dca013b08064cdd1db85a57b4f0686d9a24",
     "src/inresearch/delivery/backup.py": "c567713fc5585ab79581cb316d12fc1947931ff73a19cfbc79da5a6de48ba71e",
     "src/inresearch/knowledge/news_observations.py": "763fac77a0eb2cc6223d1670c7cba61dc8e5a3f52e5bac37cc87e9c3666ea643",
     "src/inresearch/knowledge/registry.py": "cf4dbbffae3edd82011be33e62545adf4a9e0c64a138b0bb39fb2f1f0914c03c",
@@ -45,9 +45,9 @@
     "src/inresearch/materials/daily_sources.py": "f719e0d4592abfcb3b914d278bef4c246538ba61ec407e4ac0d31b1cca56a216",
     "src/inresearch/workflow/daily_dispatch.py": "06dd49baea056cc9976aacf8a32c34cdf0800ad38eedde2be4e60ebe49a82627",
     "src/inresearch/workflow/project_pipeline.py": "a36aa6aa0a43f462abc0c7e0747ca29dcb42c21b3b47ff8ed2c609127e69ba8a",
-    "src/inresearch/workflow/reader.py": "7fa85e8bec051f80d40c602ca6d6373d77a929540bfcd1406cbe4c67f2658454",
-    "src/inresearch/workflow/reading_revisions.py": "16417acae297848930e8cc5cfc1382847c08e3b7947d1bd53b71a90c12c89155",
-    "src/inresearch/workflow/reading_stages.py": "235583d3b7b2af2d85720bcab466e4bd26507d4146a67fdd5de1e297adc08077",
+    "src/inresearch/workflow/reader.py": "5b79e719b98549a065a660f58fbdb9d8ba2a9b393253a7aeaf0fdc6cbf3b6d2d",
+    "src/inresearch/workflow/reading_revisions.py": "01bf72e50b8b106d18647ae93f2fa0683293ff91e3f5fd2a3b5e299ecfb9b42e",
+    "src/inresearch/workflow/reading_stages.py": "6fd90faf81d762d0e7f583f70612a9db97424d4175be1b0e7d3af59e276e279c",
     "src/inresearch/workflow/research_match.py": "2aaec0152c140b3c7b3dae2d6342ac641851e70ca6b56126b68dbb8d3bcacfb5",
     "src/inresearch/workflow/supply.py": "ce5a9bd963dd72d48ed6f535f81c27cd2fa07b868ab26cd060df7618dfce9cda",
     "tests/auth_appearance.cjs": "12fe45ce1017034aebce9d5f330ef4a63b510fb3fdb887331c338a965bd60c51",
@@ -173,12 +173,13 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "bd78fa6235fa0238b830fef958d6642c62182b80313849989b5d467f3f66abca",
+    "framework/current_state.json": "ae3a6a350d1cf0df0da16051feace2cf889d6d92df63207348a22fa3d451cbaf",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "06ce73f5395bab6795d60262f0fda1273fffd0a01829a22145da463b525e0f82",
     "tests/unit/test_operations.py": "77b1e9ce2d5dd9ec11da320e8372c691c286fab9445678274373dccda8366569",
     "tests/ops_dashboard.cjs": "21561c85a837f22dfdaee88a1932ed4febbf5e223b6ea3a1b21a2e1ad3fe5c09",
+    "tests/unit/test_read_batch.py": "f751479f9249afb26322d5cf6b5bcbeca617e688a794a23bf9e3456b6d1980f5",
     "web/pages/node.html": "3f2e33663d7df9042073842c1675846e12d25d731168af4b904151d6fc70eb5b"
   },
   "policies": [
@@ -341,7 +342,7 @@
       "policy": "operations-20260906",
       "scope": "project",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
-      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过；认领下限以下的文档任务不被认领、不计尝试且留在队列，下限 0 全部认领，非法下限拒绝，状态报告暂停份数；进度页只对阻塞/失败文档显示错误码并显示认领范围；外部快照叠加：Spark 发布时加入外部快照中 Spark 未完整读过的文档及其证据与陈述，Spark 完整阅读优先，较新快照覆盖较旧的，不完整/非候选/孤立行/符号链接拒绝，无目录时不变；外部快照的对象/问题 ID 按发布时注册表过滤并计数，输入不被改写；接收端拒收时错误带回其原因；快照以 gzip 发送并记录发送/解压大小，接收端解压有上限（超限 413）、坏压缩与未知编码 400 且不改已有快照，未压缩仍接受；图谱/问题版本落后的快照按现行注册表过滤对象/问题 ID、丢弃指向已退役问题的回答，照常接收并记 registry_lag；版本一致时仍严格拒绝未知 ID，缺版本字段拒绝；已存档快照在网站升版后照常显示并标落后；2026-10-07 显式缓存缺页也被发现；受控接收核对原件/页号/当前revision/独立双读与完整内嵌图片覆盖，归档旧证据，仅替换缺页缓存后通知；重复接收恢复通知，不改catalog或成功页，数字/空白/可读门槛保持。；默认正文零OCR及显式未完成新版本保留旧尝试/原件，图像模式仅兼容；派生导出不增加原件身份。；发布时只读生成当前执行版本诊断，旧失败不抬高当前阻塞，文档与分块分开，样本上限与总数并存，普通心跳不增加诊断扫描。",
+      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过；认领下限以下的文档任务不被认领、不计尝试且留在队列，下限 0 全部认领，非法下限拒绝，状态报告暂停份数；进度页只对阻塞/失败文档显示错误码并显示认领范围；外部快照叠加：Spark 发布时加入外部快照中 Spark 未完整读过的文档及其证据与陈述，Spark 完整阅读优先，较新快照覆盖较旧的，不完整/非候选/孤立行/符号链接拒绝，无目录时不变；外部快照的对象/问题 ID 按发布时注册表过滤并计数，输入不被改写；接收端拒收时错误带回其原因；快照以 gzip 发送并记录发送/解压大小，接收端解压有上限（超限 413）、坏压缩与未知编码 400 且不改已有快照，未压缩仍接受；图谱/问题版本落后的快照按现行注册表过滤对象/问题 ID、丢弃指向已退役问题的回答，照常接收并记 registry_lag；版本一致时仍严格拒绝未知 ID，缺版本字段拒绝；已存档快照在网站升版后照常显示并标落后；2026-10-07 显式缓存缺页也被发现；受控接收核对原件/页号/当前revision/独立双读与完整内嵌图片覆盖，归档旧证据，仅替换缺页缓存后通知；重复接收恢复通知，不改catalog或成功页，数字/空白/可读门槛保持。；默认正文零OCR及显式未完成新版本保留旧尝试/原件，图像模式仅兼容；派生导出不增加原件身份。；发布时只读生成当前执行版本诊断，旧失败不抬高当前阻塞，文档与分块分开，样本上限与总数并存，普通心跳不增加诊断扫描。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_backup_restores_catalog_and_views_under_new_root",
         "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle",
@@ -402,7 +403,17 @@
         "tests/unit/test_operations.py::ObservabilityTests.test_pending_has_stage_age_identity_and_does_not_write",
         "tests/unit/test_operations.py::ObservabilityTests.test_historical_failed_revision_does_not_inflate_current_bottlenecks",
         "tests/unit/test_operations.py::ObservabilityTests.test_current_document_counts_and_job_counts_have_different_units",
-        "tests/unit/test_operations.py::ObservabilityTests.test_queue_sample_is_bounded_and_total_is_preserved"
+        "tests/unit/test_operations.py::ObservabilityTests.test_queue_sample_is_bounded_and_total_is_preserved",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_batch_reduces_calls_but_every_page_and_quote_remain_sealed",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_parallel_claims_are_disjoint_and_crash_reuses_checked_artifacts",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_partial_member_failure_keeps_other_pages_and_only_failed_page_retries",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_malformed_members_and_timeout_fall_back_without_false_completion",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_cross_chunk_quote_is_rejected_and_other_checked_members_survive",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_quota_wait_returns_all_leases_without_consuming_attempts",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_legacy_recipe_stays_single_and_explicit_new_policy_preserves_history",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_character_limit_and_unavailable_neighbor_are_respected",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_oversized_short_page_group_does_not_exceed_frozen_budget",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_schema_keeps_required_hash_and_individual_quotes"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。",
@@ -413,7 +424,8 @@
         "缺页只用伪造的 M4 结果与 PDF 工具测试；未在 Spark 真机用 7 份失败文档验证，也未核对网站候选接收对 gap_pages 的展示。",
         "认领下限只用临时 catalog 测试；未在 Spark 真机核对 1.17 万份队列上的认领查询耗时。GPU 限功率在 GB10 上是否可用、效果如何未验。",
         "双读一致不证明全部语义准确；跨机器实际补页、全文候选和网站投影另验，以私有回执为准。",
-        "诊断为发布时执行快照，不证明所有服务在线、具体异常源码行或全历史日志已采集。策略暂存与材料缺口的处置需要原件核对。"
+        "诊断为发布时执行快照，不证明所有服务在线、具体异常源码行或全历史日志已采集。策略暂存与材料缺口的处置需要原件核对。",
+        "Batch performance and semantic quality are sample-specific; machine rollout, concurrency and completed reports require private live receipts. Unit fixtures and matching quotes do not prove exhaustive semantic extraction or linear throughput across models."
       ]
     },
     {
@@ -824,7 +836,7 @@
       "policy": "reading-native-text-20261007",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07复审：以后默认正文配方，零OCR；混排页文字保留，空文字层不冒充空白，纯图片阻塞等待用户；正文完成与视觉排除机检/网页明确；冻结新revision不覆盖旧尝试或已完成报告；TXT只为派生提取，页数/SHA/尾段核验。；默认配置和新报告范围计数经测试；历史被替代错误不继续计为当前阻塞；网页同时呈现旧视觉缺页和新正文图片未读说明、空文字层页，并保持移动端宽度与转义。",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07复审：以后默认正文配方，零OCR；混排页文字保留，空文字层不冒充空白，纯图片阻塞等待用户；正文完成与视觉排除机检/网页明确；冻结新revision不覆盖旧尝试或已完成报告；TXT只为派生提取，页数/SHA/尾段核验。；默认配置和新报告范围计数经测试；历史被替代错误不继续计为当前阻塞；网页同时呈现旧视觉缺页和新正文图片未读说明、空文字层页，并保持移动端宽度与转义。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
@@ -889,7 +901,17 @@
         "tests/unit/test_pdf_native_text.py::PdfExportTests.test_page_mismatch_fails_instead_of_silently_dropping_tail",
         "tests/unit/test_pdf_native_text.py::PdfExportTests.test_export_keeps_dollar_unicode_names_and_hashes_without_altering_original",
         "tests/unit/test_pdf_native_text.py::PdfNativeTextTests.test_new_reader_defaults_to_text_only_without_changing_frozen_legacy_recipe",
-        "tests/unit/test_pdf_native_text.py::PdfNativeTextTests.test_batch_progress_separates_body_completion_from_unread_images"
+        "tests/unit/test_pdf_native_text.py::PdfNativeTextTests.test_batch_progress_separates_body_completion_from_unread_images",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_batch_reduces_calls_but_every_page_and_quote_remain_sealed",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_parallel_claims_are_disjoint_and_crash_reuses_checked_artifacts",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_partial_member_failure_keeps_other_pages_and_only_failed_page_retries",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_malformed_members_and_timeout_fall_back_without_false_completion",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_cross_chunk_quote_is_rejected_and_other_checked_members_survive",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_quota_wait_returns_all_leases_without_consuming_attempts",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_legacy_recipe_stays_single_and_explicit_new_policy_preserves_history",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_character_limit_and_unavailable_neighbor_are_respected",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_oversized_short_page_group_does_not_exceed_frozen_budget",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_schema_keeps_required_hash_and_individual_quotes"
       ],
       "not_verified": [
         "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality.",
@@ -899,7 +921,8 @@
         "本轮隔离测试不证明真实来源语义、全球项目消歧、研究采用或历史缺口已补全；真实 Spark 调度、网站回执与线上展示另记部署验收。",
         "Codex 整批吞吐量、持续模型额度、M5 睡眠/网络可靠性、Spark 正式部署和本批全部全文结果尚需运行验收；CLI 不报告 provider 实际型号；候选阅读不证明正式 GW 已更新。",
         "历史30份CLI失败没有原始错误诊断，原因无法逆推；真实PDF补读吞吐与所有阻塞页恢复不能由单元测试证明，须运行回执。",
-        "默认正文阅读不覆盖图片或矢量图，正文没有描述的图表信息未核验；零OCR提取不证明模型解释正确、整批阅读已完成或正式研究已采用。实际Spark重排和网页交付须另验。"
+        "默认正文阅读不覆盖图片或矢量图，正文没有描述的图表信息未核验；零OCR提取不证明模型解释正确、整批阅读已完成或正式研究已采用。实际Spark重排和网页交付须另验。",
+        "Batch performance and semantic quality are sample-specific; machine rollout, concurrency and completed reports require private live receipts. Unit fixtures and matching quotes do not prove exhaustive semantic extraction or linear throughput across models."
       ]
     },
     {
@@ -962,7 +985,7 @@
       "policy": "model-codex-batch-20261006",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims；read 的 schema 与提示中 claims 排在摘要之前，提示要求先写 claims、摘要只简述本块；CLI 超出输出上限时同一调用以 --effort low 重试一次并记录 effort，再次超限报 model_cli_output_limit（按临时错误重试），其他错误与正常调用不带 --effort；Claude CLI 看图：图片以 stream-json 图片块经标准输入传入、工具仍禁用、图片哈希记入 _model，纯文本调用不变；gap_ocr 只读显式缺页，原件哈希不符不调用模型，双读一致才写入并移走缺页记录、只删该页抽取缓存，未通过仍为缺页；reader 接受补读页；中断后重跑会清掉已补页残留的缺页缓存，试运行不写任何文件；gap_ocr 前两次不一致时读第三次，任意两次一致即采用并记 reads，仍不成对则留存各次原文与差异数字；补读提示要求略去 0/1 数字流等纯装饰图案；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07 显式缓存缺页也被发现；受控接收核对原件/页号/当前revision/独立双读与完整内嵌图片覆盖，归档旧证据，仅替换缺页缓存后通知；重复接收恢复通知，不改catalog或成功页，数字/空白/可读门槛保持。；RGB/灰度原图放大仅复制原始压缩像素，接收端复现输入哈希，不支持的PNG拒绝。",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims；read 的 schema 与提示中 claims 排在摘要之前，提示要求先写 claims、摘要只简述本块；CLI 超出输出上限时同一调用以 --effort low 重试一次并记录 effort，再次超限报 model_cli_output_limit（按临时错误重试），其他错误与正常调用不带 --effort；Claude CLI 看图：图片以 stream-json 图片块经标准输入传入、工具仍禁用、图片哈希记入 _model，纯文本调用不变；gap_ocr 只读显式缺页，原件哈希不符不调用模型，双读一致才写入并移走缺页记录、只删该页抽取缓存，未通过仍为缺页；reader 接受补读页；中断后重跑会清掉已补页残留的缺页缓存，试运行不写任何文件；gap_ocr 前两次不一致时读第三次，任意两次一致即采用并记 reads，仍不成对则留存各次原文与差异数字；补读提示要求略去 0/1 数字流等纯装饰图案；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07 显式缓存缺页也被发现；受控接收核对原件/页号/当前revision/独立双读与完整内嵌图片覆盖，归档旧证据，仅替换缺页缓存后通知；重复接收恢复通知，不改catalog或成功页，数字/空白/可读门槛保持。；RGB/灰度原图放大仅复制原始压缩像素，接收端复现输入哈希，不支持的PNG拒绝。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
@@ -1033,7 +1056,17 @@
         "tests/unit/test_gap_ocr.py::ReceiveTests.test_sealed_extraction_refused",
         "tests/unit/test_gap_ocr.py::RegionVerificationTests.test_regions_require_all_source_images_two_distinct_reads_and_exact_assembly",
         "tests/unit/test_gap_ocr.py::EmbeddedImageRenderTests.test_wrapper_preserves_original_pixels_and_handles_rgb_and_gray",
-        "tests/unit/test_gap_ocr.py::EmbeddedImageRenderTests.test_unsupported_png_does_not_silently_drop_pixels"
+        "tests/unit/test_gap_ocr.py::EmbeddedImageRenderTests.test_unsupported_png_does_not_silently_drop_pixels",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_batch_reduces_calls_but_every_page_and_quote_remain_sealed",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_parallel_claims_are_disjoint_and_crash_reuses_checked_artifacts",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_partial_member_failure_keeps_other_pages_and_only_failed_page_retries",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_malformed_members_and_timeout_fall_back_without_false_completion",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_cross_chunk_quote_is_rejected_and_other_checked_members_survive",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_quota_wait_returns_all_leases_without_consuming_attempts",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_legacy_recipe_stays_single_and_explicit_new_policy_preserves_history",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_character_limit_and_unavailable_neighbor_are_respected",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_oversized_short_page_group_does_not_exceed_frozen_budget",
+        "tests/unit/test_read_batch.py::ReadBatchTests.test_schema_keeps_required_hash_and_individual_quotes"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。",
@@ -1044,7 +1077,8 @@
         "--effort low 重试只用伪造 CLI 测试；未在 M4 真机确认该参数被当前 Claude Code 版本接受，也未评估低思考对该块抽取质量的影响。",
         "Codex 整批吞吐量、持续模型额度、M5 睡眠/网络可靠性、Spark 正式部署和本批全部全文结果尚需运行验收；CLI 不报告 provider 实际型号；候选阅读不证明正式 GW 已更新。",
         "历史30份CLI失败没有原始错误诊断，原因无法逆推；真实PDF补读吞吐与所有阻塞页恢复不能由单元测试证明，须运行回执。",
-        "双读一致不证明全部语义准确；跨机器实际补页、全文候选和网站投影另验，以私有回执为准。"
+        "双读一致不证明全部语义准确；跨机器实际补页、全文候选和网站投影另验，以私有回执为准。",
+        "Batch performance and semantic quality are sample-specific; machine rollout, concurrency and completed reports require private live receipts. Unit fixtures and matching quotes do not prove exhaustive semantic extraction or linear throughput across models."
       ]
     },
     {

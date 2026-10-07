@@ -47,7 +47,8 @@ CONTEXT = models.load_profile(path=models.DEFAULT_CONFIG).context
 class Reader:
     def __init__(self, data_root=None, state_root=None, repo_root=None, model=None,
                  stable_seconds=60, chunk_chars=6000, clock=time.time, temperature=None,
-                 full_read_min_priority=1, claim_min_priority=0, document_scope=None, pdf_mode=None):
+                 full_read_min_priority=1, claim_min_priority=0, document_scope=None, pdf_mode=None,
+                 read_batch_chunks=None, read_batch_chars=None):
         self.data = Path(data_root or Path.home() / ".local/share/inresearch.ai").expanduser().resolve()
         self.state = Path(state_root or Path.home() / ".local/state/inresearch.ai").expanduser().resolve()
         self.repo = Path(repo_root or project_root()).expanduser().resolve()
@@ -75,7 +76,9 @@ class Reader:
         scope_path = document_scope or os.environ.get('READER_DOCUMENT_SCOPE')
         self.document_scope = DocumentScope(scope_path,self.data) if scope_path else None
         self.stages = ReadingStages(self.data, self.model, self.ocr_max_pages, self.large_format_points,
-                                    pdf_mode=pdf_mode or os.environ.get('READER_PDF_MODE', 'native_text_only'))
+                                    pdf_mode=pdf_mode or os.environ.get('READER_PDF_MODE', 'native_text_only'),
+                                    read_batch_chunks=int(os.environ.get('READER_READ_BATCH_CHUNKS', '4')) if read_batch_chunks is None else read_batch_chunks,
+                                    read_batch_chars=int(os.environ.get('READER_READ_BATCH_CHARS', '6000')) if read_batch_chars is None else read_batch_chars)
 
     @property
     def conn(self):
@@ -496,7 +499,40 @@ class Reader:
             self.conn.execute("UPDATE reading_runs SET state='running',phase=?,updated=? WHERE revision_id=?", (row["stage"], self.clock(), row["revision_id"]))
             self.conn.execute("UPDATE meta SET value=? WHERE key='dispatch_count'", (str(n + 1),))
             self.conn.execute("INSERT OR REPLACE INTO meta(key,value) VALUES('last_dispatch',?)", (json.dumps({'lane':lane,'job_id':row['job_id'],'doc_id':row['doc_id'],'at':now_iso()}),))
-            return dict(self.conn.execute("SELECT * FROM jobs WHERE job_id=?", (row["job_id"],)).fetchone())
+            job = dict(self.conn.execute("SELECT * FROM jobs WHERE job_id=?", (row["job_id"],)).fetchone())
+            if job['stage'] == 'read':
+                companions = self._claim_read_companions(job)
+                if companions:
+                    job['batch_jobs'] = companions
+            return job
+
+    def _claim_read_companions(self, job):
+        """Caller holds BEGIN IMMEDIATE; only adjacent, available jobs of this revision."""
+        doc = self.doc(job['doc_id'], job['revision_id'])
+        recipe = read_json(self.stages.artifact_path(doc, 'recipe.json'))
+        policy = recipe.get('read_batch')
+        if not policy:
+            return []  # Existing frozen single-page recipes remain unchanged.
+        if (recipe.get('recipe') != doc['recipe'] or policy.get('version') != 'read-batch-v1'
+                or type(policy.get('max_chunks')) is not int or not 2 <= policy['max_chunks'] <= 4
+                or type(policy.get('max_characters')) is not int or not 1 <= policy['max_characters'] <= 6000):
+            raise IntegrityError()
+        extraction = read_json(self.stages.artifact_path(doc, 'extraction.json'))
+        size = extraction['chunks'][job['chunk']]['characters']
+        rows = self.conn.execute("SELECT * FROM jobs WHERE revision_id=? AND stage='read' AND state='pending' AND available<=? AND chunk>? ORDER BY chunk LIMIT ?",
+                                 (job['revision_id'], self.clock(), job['chunk'], policy['max_chunks'] - 1)).fetchall()
+        companions = []
+        for row in rows:
+            if row['chunk'] != job['chunk'] + len(companions) + 1:
+                break
+            chars = extraction['chunks'][row['chunk']]['characters']
+            if size + chars > policy['max_characters']:
+                break
+            size += chars
+            self.conn.execute("UPDATE jobs SET state='running',attempts=attempts+1,started=?,error_code=NULL WHERE job_id=? AND state='pending'",
+                              (self.clock(), row['job_id']))
+            companions.append(dict(self.conn.execute('SELECT * FROM jobs WHERE job_id=?', (row['job_id'],)).fetchone()))
+        return companions
 
     def _finish(self, job, result):
         doc = self.doc(job["doc_id"], job["revision_id"])
@@ -545,6 +581,8 @@ class Reader:
             self._refresh_failures(doc["doc_id"])
 
     def process(self, job):
+        if job.get('batch_jobs'):
+            return self._process_read_batch(job)
         doc = self.doc(job["doc_id"], job["revision_id"])
         # No silent backend/model change during a document's frozen execution recipe.
         try:
@@ -568,6 +606,36 @@ class Reader:
             return "succeeded"
         except (ReaderError, OSError, ValueError, KeyError, IndexError, TypeError, subprocess.SubprocessError) as exc:
             error = exc
+        return self._fail(job, error)
+
+    def _process_read_batch(self, job):
+        jobs = [job, *job['batch_jobs']]
+        doc = self.doc(job['doc_id'], job['revision_id'])
+        try:
+            if any(j['stage'] != 'read' or j['revision_id'] != doc['revision_id'] or j['doc_id'] != doc['doc_id'] for j in jobs):
+                raise IntegrityError()
+            recipe = read_json(self.stages.artifact_path(doc, 'recipe.json'))
+            if models.reading_identity(recipe['model']) != models.reading_identity(self.model.identity) or recipe['version'] != RECIPE_VERSION:
+                raise Blocked('execution_model_changed_requires_new_recipe')
+            results = self.stages._read_batch(doc, [j['chunk'] for j in jobs])
+        except (ReaderError, OSError, ValueError, KeyError, IndexError, TypeError, subprocess.SubprocessError) as exc:
+            results = {j['chunk']: exc for j in jobs}
+        outcomes = []
+        for member in jobs:
+            result = results[member['chunk']]
+            if isinstance(result, BaseException):
+                outcomes.append(self._fail(member, result))
+                continue
+            try:
+                self._finish(member, result)
+                outcomes.append('succeeded')
+            except (ReaderError, OSError, ValueError, KeyError, IndexError, TypeError, subprocess.SubprocessError) as exc:
+                outcomes.append(self._fail(member, exc))
+        self.write_status()
+        return 'succeeded' if all(o == 'succeeded' for o in outcomes) else 'batch_partial'
+
+    def _fail(self, job, error):
+        doc = self.doc(job['doc_id'], job['revision_id'])
         code = error.code if isinstance(error, ReaderError) else type(error).__name__
         if isinstance(error, Deferred):
             remote_wait = code in {'model_quota_wait','model_relay_unavailable'}
@@ -818,9 +886,10 @@ class Reader:
                     self.write_status()
                     outcome = self.process(job)
                     print(encoded({"at": now_iso(), "doc_id": job["doc_id"], "stage": job["stage"],
-                                   "chunk": job["chunk"], "outcome": outcome}), flush=True)
+                                   "chunk": job["chunk"], "outcome": outcome,
+                                   **({'batch_chunks': [job['chunk'], *[j['chunk'] for j in job['batch_jobs']]]} if job.get('batch_jobs') else {})}), flush=True)
                     with guard:
-                        counter["processed"] += 1
+                        counter["processed"] += 1 + len(job.get('batch_jobs', []))
                         if exhausted():
                             stop.set()
             except BaseException as exc:  # noqa: BLE001 - reported to the owning thread
