@@ -331,6 +331,658 @@
         ],
         "review_id": "1675ad3ba6533964-2b91ed47da99e753"
       }
+    },
+    {
+      "contract_id": "black-hills-google-cheyenne-20260930",
+      "type": "power-service",
+      "parties": [
+        "black-hills",
+        "alphabet-google"
+      ],
+      "site_ids": [],
+      "value_usd_b": null,
+      "capacity_it_mw": null,
+      "term_years": null,
+      "start_date": "2026-09-30",
+      "announced_date": "2026-10-06",
+      "circular_flag": false,
+      "summary": "Black Hills公告称，与Google的LPCSA及GFA于2026-09-30生效、条款至2048：最高590MW电网服务和约2.1GW第三方微电网资源分列，含备用的总资源组合约2.7GW。计划2027年底开始服务、2030达峰；$1.8bn为2027–2029年新燃气投资计划，不含额外输电。",
+      "grade": "company",
+      "source_url": "https://markets.businessinsider.com/news/stocks/black-hills-corp-executes-definitive-agreements-to-serve-google-s-planned-data-center-in-cheyenne-wyoming-1036602771",
+      "verified_date": "2026-10-07",
+      "node": "site:grid",
+      "variable_class": 5,
+      "geographies": [
+        {
+          "country": "US",
+          "province": "Wyoming",
+          "city": "Cheyenne",
+          "relation": "disclosed_scope",
+          "allocation_mw": null
+        }
+      ],
+      "capacity_observations": [
+        {
+          "value": 590,
+          "unit": "MW",
+          "basis": "grid",
+          "nature": "announced",
+          "scope": "电网连接能源服务上限，非IT容量"
+        },
+        {
+          "value": 564,
+          "unit": "MW",
+          "basis": "generation",
+          "nature": "forecast",
+          "scope": "新燃气铭牌计划；已包含在590MW服务，不相加"
+        },
+        {
+          "value": 2100,
+          "unit": "MW",
+          "basis": "generation",
+          "nature": "announced",
+          "scope": "约2.1GW第三方签约资源组合，非IT容量"
+        },
+        {
+          "value": 2700,
+          "unit": "MW",
+          "basis": "generation",
+          "nature": "forecast",
+          "scope": "约2.7GW总资源组合，含备用；与分项不相加"
+        }
+      ],
+      "relationships": [
+        {
+          "actor_id": "black-hills",
+          "role": "电网服务签约方、新燃气投资/所有者及私人微电网管理方（公司公告）"
+        },
+        {
+          "actor_id": "alphabet-google",
+          "role": "计划数据中心服务客户与费用承担方（公司公告；完整合同待补）"
+        }
+      ],
+      "object_ids": [
+        "site:grid",
+        "actor:black-hills",
+        "actor:alphabet-google"
+      ],
+      "target_ids": [
+        "F.cost.energy.price.news",
+        "F.cost.depreciation.capex.btm.btm.generation",
+        "P.gas-turbine.news"
+      ],
+      "sources": [
+        {
+          "url": "https://markets.businessinsider.com/news/stocks/black-hills-corp-executes-definitive-agreements-to-serve-google-s-planned-data-center-in-cheyenne-wyoming-1036602771",
+          "grade": "company",
+          "date": "2026-10-06"
+        }
+      ],
+      "gaps": [
+        "签约生效2026-09-30，条款至2048；590MW电网服务、564MW新燃气铭牌、约2.1GW第三方资源及含备用2.7GW分别记录",
+        "既有Project Jade的1.8GW供电记法及客户身份须所有者单独决定，当前不覆盖或按同城猜并",
+        "合同全文、地块身份、追加输电投资及监管原始许可待补；2027/2030是公司计划"
+      ],
+      "adoption": {
+        "event_id": "daily-event-fc81e0abd2762c0d48395ba42692a15ca63bc8472fda1b37677d54b093419fe0",
+        "source_version": "49b4b2b3ce8bd48c548504c58020517d068473e36646c30d0bddc0f4a0f1d20d",
+        "review": {
+          "by": "Codex 当前会话（M5）",
+          "at": "2026-10-07T12:23:05.041538+08:00",
+          "score": 8,
+          "tier": "A",
+          "authority": "delegated_reviewer",
+          "delegation": "用户2026-10-07在本会话要求继续逐事件核验、采用已核验字段及分批发布。仅新增明确的公告所述主体协议/投资关系，未替换既有项目或放宽资料分发。",
+          "decision": "adopted",
+          "rationale": "逐段读取已归档来源并按事件、原件SHA、原句和现行目标核对；已生效合同、潜在供电、备忘录和累计投资承诺分别限定范围。主体/地域/IT口径未知保留，现有项目结论不覆盖。公司自身宣称仅证明公告所述交易，不授予独立执行/审批确认。"
+        },
+        "target_ids": [
+          "F.cost.energy.price.news",
+          "F.cost.depreciation.capex.btm.btm.generation",
+          "P.gas-turbine.news"
+        ],
+        "fields": [
+          "公告所述协议/投资性质",
+          "主体角色",
+          "地域与范围",
+          "条件与时间",
+          "原件身份与引句",
+          "容量原文观察（不采用为IT容量）"
+        ],
+        "scope": "Black Hills公告称，与Google的LPCSA及GFA于2026-09-30生效、条款至2048：最高590MW电网服务和约2.1GW第三方微电网资源分列，含备用的总资源组合约2.7GW。计划2027年底开始服务、2030达峰；$1.8bn为2027–2029年新燃气投资计划，不含额外输电。 未关联未核验园区，不计入IT GW。",
+        "assertions": [
+          {
+            "url": "https://markets.businessinsider.com/news/stocks/black-hills-corp-executes-definitive-agreements-to-serve-google-s-planned-data-center-in-cheyenne-wyoming-1036602771",
+            "source_sha256": "f3d6d907a3f8ac68b406e36241610e209902ff69f23db1f58b346868c666ecfe",
+            "locator": "research/blackhills-mirror.txt",
+            "quote": "The negotiated agreements include a Large Power Contract Services Agreement (LPCSA) and a Generation Facilities Agreement (GFA).",
+            "basis": "agreement_scope",
+            "scope": "Black Hills公告称，与Google的LPCSA及GFA于2026-09-30生效、条款至2048：最高590MW电网服务和约2.1GW第三方微电网资源分列，含备用的总资源组合约2.7GW。计划2027年底开始服务、2030达峰；$1.8bn为2027–2029年新燃气投资计划，不含额外输电。"
+          },
+          {
+            "url": "https://markets.businessinsider.com/news/stocks/black-hills-corp-executes-definitive-agreements-to-serve-google-s-planned-data-center-in-cheyenne-wyoming-1036602771",
+            "source_sha256": "f3d6d907a3f8ac68b406e36241610e209902ff69f23db1f58b346868c666ecfe",
+            "locator": "research/blackhills-mirror.txt",
+            "quote": "To provide 590 MW of grid-connected service, Black Hills will construct and own through a non-regulated affiliate 564 MW (nameplate capacity) of new natural gas generation located at the company's existing Cheyenne Prairie Generating Station (CPGS) location.",
+            "basis": "agreement_scope",
+            "scope": "Black Hills公告称，与Google的LPCSA及GFA于2026-09-30生效、条款至2048：最高590MW电网服务和约2.1GW第三方微电网资源分列，含备用的总资源组合约2.7GW。计划2027年底开始服务、2030达峰；$1.8bn为2027–2029年新燃气投资计划，不含额外输电。"
+          },
+          {
+            "url": "https://markets.businessinsider.com/news/stocks/black-hills-corp-executes-definitive-agreements-to-serve-google-s-planned-data-center-in-cheyenne-wyoming-1036602771",
+            "source_sha256": "f3d6d907a3f8ac68b406e36241610e209902ff69f23db1f58b346868c666ecfe",
+            "locator": "research/blackhills-mirror.txt",
+            "quote": "Google bears all costs associated with serving the planned data center throughout the life of the project.",
+            "basis": "agreement_scope",
+            "scope": "Black Hills公告称，与Google的LPCSA及GFA于2026-09-30生效、条款至2048：最高590MW电网服务和约2.1GW第三方微电网资源分列，含备用的总资源组合约2.7GW。计划2027年底开始服务、2030达峰；$1.8bn为2027–2029年新燃气投资计划，不含额外输电。"
+          },
+          {
+            "url": "https://markets.businessinsider.com/news/stocks/black-hills-corp-executes-definitive-agreements-to-serve-google-s-planned-data-center-in-cheyenne-wyoming-1036602771",
+            "source_sha256": "f3d6d907a3f8ac68b406e36241610e209902ff69f23db1f58b346868c666ecfe",
+            "locator": "research/blackhills-mirror.txt",
+            "quote": "To provide 590 MW of grid-connected service, Black Hills will construct and own through a non-regulated affiliate 564 MW (nameplate capacity) of new natural gas generation located at the company's existing Cheyenne Prairie Generating Station (CPGS) location. The remaining 26 MW will be supplied through a combination of market energy purchases and retail utility service provided under the company’s applicable industrial tariff.",
+            "value": 590,
+            "unit": "MW",
+            "basis": "grid",
+            "scope": "电网连接能源服务上限",
+            "nature": "announced"
+          },
+          {
+            "url": "https://markets.businessinsider.com/news/stocks/black-hills-corp-executes-definitive-agreements-to-serve-google-s-planned-data-center-in-cheyenne-wyoming-1036602771",
+            "source_sha256": "f3d6d907a3f8ac68b406e36241610e209902ff69f23db1f58b346868c666ecfe",
+            "locator": "research/blackhills-mirror.txt",
+            "quote": "To provide 590 MW of grid-connected service, Black Hills will construct and own through a non-regulated affiliate 564 MW (nameplate capacity) of new natural gas generation located at the company's existing Cheyenne Prairie Generating Station (CPGS) location. The remaining 26 MW will be supplied through a combination of market energy purchases and retail utility service provided under the company’s applicable industrial tariff.",
+            "value": 564,
+            "unit": "MW",
+            "basis": "generation",
+            "scope": "公司新燃气机组铭牌容量",
+            "nature": "forecast"
+          },
+          {
+            "url": "https://markets.businessinsider.com/news/stocks/black-hills-corp-executes-definitive-agreements-to-serve-google-s-planned-data-center-in-cheyenne-wyoming-1036602771",
+            "source_sha256": "f3d6d907a3f8ac68b406e36241610e209902ff69f23db1f58b346868c666ecfe",
+            "locator": "research/blackhills-mirror.txt",
+            "quote": "To provide 590 MW of grid-connected service, Black Hills will construct and own through a non-regulated affiliate 564 MW (nameplate capacity) of new natural gas generation located at the company's existing Cheyenne Prairie Generating Station (CPGS) location. The remaining 26 MW will be supplied through a combination of market energy purchases and retail utility service provided under the company’s applicable industrial tariff.",
+            "value": 26,
+            "unit": "MW",
+            "basis": "grid",
+            "scope": "市场采购及零售供电补充",
+            "nature": "forecast"
+          },
+          {
+            "url": "https://markets.businessinsider.com/news/stocks/black-hills-corp-executes-definitive-agreements-to-serve-google-s-planned-data-center-in-cheyenne-wyoming-1036602771",
+            "source_sha256": "f3d6d907a3f8ac68b406e36241610e209902ff69f23db1f58b346868c666ecfe",
+            "locator": "research/blackhills-mirror.txt",
+            "quote": "The project, exclusive of additional transmission system expansion investments, is anticipated to be served by a total resource mix of 2.7 GW, including reserve margins, and is planned to begin taking energy service in late 2027 and ramp to the project’s peak load in 2030. Black Hills will provide up to 590 MW of grid-connected energy service through company-owned generation and market energy. In addition, Black Hills will manage the output of approximately 2.1 GW of Wyoming-based, third-party contracted resources through a privately managed microgrid under the company’s Large Power Contract Service (LPCS) tariff.",
+            "value": 2.1,
+            "unit": "GW",
+            "basis": "generation",
+            "scope": "第三方资源私人微电网管理组合",
+            "nature": "announced"
+          },
+          {
+            "url": "https://markets.businessinsider.com/news/stocks/black-hills-corp-executes-definitive-agreements-to-serve-google-s-planned-data-center-in-cheyenne-wyoming-1036602771",
+            "source_sha256": "f3d6d907a3f8ac68b406e36241610e209902ff69f23db1f58b346868c666ecfe",
+            "locator": "research/blackhills-mirror.txt",
+            "quote": "The project, exclusive of additional transmission system expansion investments, is anticipated to be served by a total resource mix of 2.7 GW, including reserve margins, and is planned to begin taking energy service in late 2027 and ramp to the project’s peak load in 2030. Black Hills will provide up to 590 MW of grid-connected energy service through company-owned generation and market energy. In addition, Black Hills will manage the output of approximately 2.1 GW of Wyoming-based, third-party contracted resources through a privately managed microgrid under the company’s Large Power Contract Service (LPCS) tariff.",
+            "value": 2.7,
+            "unit": "GW",
+            "basis": "generation",
+            "scope": "包括备用裕度的资源组合",
+            "nature": "forecast"
+          }
+        ],
+        "document_refs": [
+          {
+            "sha256": "ec75ae70182a71c6cad9dc79247966518ca4fa85e05d586fd77d4ce6a25d0ea4",
+            "filename": "2026-10-07-daily-wechat.html",
+            "report_date": "2026-10-07",
+            "section": 2
+          }
+        ],
+        "review_id": "49b4b2b3ce8bd48c-0d5e1cab5e019ad1"
+      }
+    },
+    {
+      "contract_id": "applied-digital-finland-potential-power-20261006",
+      "type": "power-access",
+      "parties": [
+        "applied-digital"
+      ],
+      "site_ids": [],
+      "value_usd_b": null,
+      "capacity_it_mw": null,
+      "term_years": null,
+      "start_date": null,
+      "announced_date": "2026-10-06",
+      "circular_flag": false,
+      "summary": "Applied Digital公告称取得芬兰最高1GW潜在电力开发机会，初始电力预计2028年可用；投入取决于客户需求、商业里程碑及监管/开发条件。供电相对方、地点与IT容量未披露。",
+      "grade": "company",
+      "source_url": "https://ir.applieddigital.com/news-events/press-releases/detail/162/applied-digital-secures-up-to-1-gw-of-potential-power",
+      "verified_date": "2026-10-07",
+      "node": "site:grid",
+      "variable_class": 5,
+      "geographies": [
+        {
+          "country": "FI",
+          "province": null,
+          "city": null,
+          "relation": "disclosed_scope",
+          "allocation_mw": null
+        }
+      ],
+      "capacity_observations": [
+        {
+          "value": 1000,
+          "unit": "MW",
+          "basis": "grid",
+          "nature": "announced",
+          "scope": "最高1GW潜在取得上限；首批/实际送电/IT均未知"
+        }
+      ],
+      "relationships": [
+        {
+          "actor_id": "applied-digital",
+          "role": "潜在电力取得协议披露方及拟开发/运营方；未披露供电相对方"
+        }
+      ],
+      "object_ids": [
+        "site:grid",
+        "actor:applied-digital"
+      ],
+      "target_ids": [
+        "S.grid.holders",
+        "S.land.holders"
+      ],
+      "sources": [
+        {
+          "url": "https://ir.applieddigital.com/news-events/press-releases/detail/162/applied-digital-secures-up-to-1-gw-of-potential-power",
+          "grade": "company",
+          "date": "2026-10-06"
+        }
+      ],
+      "gaps": [
+        "最高1GW是潜在可取得供电上限；2028为初始电力预计年份，非确定送电或IT通电",
+        "供电/合同相对方、城市、地块、首期、客户及完整合同未披露；不与atNorth FIN05合并"
+      ],
+      "adoption": {
+        "event_id": "daily-event-d88c8d3cfdede2bc5c68ba46c7ff2474df3f4df15b463a44768ab817e747863e",
+        "source_version": "b83d1958411460ebe52e7921e6c7ab9f3975f614219a9ed32c5c6ac20edc83c7",
+        "review": {
+          "by": "Codex 当前会话（M5）",
+          "at": "2026-10-07T12:23:05.041538+08:00",
+          "score": 8,
+          "tier": "A",
+          "authority": "delegated_reviewer",
+          "delegation": "用户2026-10-07在本会话要求继续逐事件核验、采用已核验字段及分批发布。仅新增明确的公告所述主体协议/投资关系，未替换既有项目或放宽资料分发。",
+          "decision": "adopted",
+          "rationale": "逐段读取已归档来源并按事件、原件SHA、原句和现行目标核对；已生效合同、潜在供电、备忘录和累计投资承诺分别限定范围。主体/地域/IT口径未知保留，现有项目结论不覆盖。公司自身宣称仅证明公告所述交易，不授予独立执行/审批确认。"
+        },
+        "target_ids": [
+          "S.grid.holders",
+          "S.land.holders"
+        ],
+        "fields": [
+          "公告所述协议/投资性质",
+          "主体角色",
+          "地域与范围",
+          "条件与时间",
+          "原件身份与引句",
+          "容量原文观察（不采用为IT容量）"
+        ],
+        "scope": "Applied Digital公告称取得芬兰最高1GW潜在电力开发机会，初始电力预计2028年可用；投入取决于客户需求、商业里程碑及监管/开发条件。供电相对方、地点与IT容量未披露。 未关联未核验园区，不计入IT GW。",
+        "assertions": [
+          {
+            "url": "https://ir.applieddigital.com/news-events/press-releases/detail/162/applied-digital-secures-up-to-1-gw-of-potential-power",
+            "source_sha256": "082146bd4bd79f2e33fa6cac09286cd51a6704d69621c54d43dc8d6ef68cc313",
+            "locator": "research/apld.txt",
+            "quote": "entered into an agreement providing access to up to 1 gigawatt (GW) of potential power capacity in Finland",
+            "basis": "agreement_scope",
+            "scope": "Applied Digital公告称取得芬兰最高1GW潜在电力开发机会，初始电力预计2028年可用；投入取决于客户需求、商业里程碑及监管/开发条件。供电相对方、地点与IT容量未披露。"
+          },
+          {
+            "url": "https://ir.applieddigital.com/news-events/press-releases/detail/162/applied-digital-secures-up-to-1-gw-of-potential-power",
+            "source_sha256": "082146bd4bd79f2e33fa6cac09286cd51a6704d69621c54d43dc8d6ef68cc313",
+            "locator": "research/apld.txt",
+            "quote": "Initial power availability is anticipated beginning in 2028.",
+            "basis": "agreement_scope",
+            "scope": "Applied Digital公告称取得芬兰最高1GW潜在电力开发机会，初始电力预计2028年可用；投入取决于客户需求、商业里程碑及监管/开发条件。供电相对方、地点与IT容量未披露。"
+          },
+          {
+            "url": "https://ir.applieddigital.com/news-events/press-releases/detail/162/applied-digital-secures-up-to-1-gw-of-potential-power",
+            "source_sha256": "082146bd4bd79f2e33fa6cac09286cd51a6704d69621c54d43dc8d6ef68cc313",
+            "locator": "research/apld.txt",
+            "quote": "future investment and development decisions tied to customer demand, commercial milestones and the achievement of necessary regulatory and development requirements.",
+            "basis": "agreement_scope",
+            "scope": "Applied Digital公告称取得芬兰最高1GW潜在电力开发机会，初始电力预计2028年可用；投入取决于客户需求、商业里程碑及监管/开发条件。供电相对方、地点与IT容量未披露。"
+          },
+          {
+            "url": "https://ir.applieddigital.com/news-events/press-releases/detail/162/applied-digital-secures-up-to-1-gw-of-potential-power",
+            "source_sha256": "082146bd4bd79f2e33fa6cac09286cd51a6704d69621c54d43dc8d6ef68cc313",
+            "locator": "research/apld.txt",
+            "quote": "With this agreement, the Company plans to build a large-scale AI Factory campus capable of scaling to as much as 1 GW. Initial power availability is anticipated beginning in 2028. Applied Digital has begun marketing the site and is currently engaged in discussions with leading global hyperscale customers.",
+            "value": 1,
+            "unit": "GW",
+            "basis": "grid",
+            "scope": "潜在可取得供电能力上限，非首期IT容量",
+            "nature": "announced"
+          }
+        ],
+        "document_refs": [
+          {
+            "sha256": "ec75ae70182a71c6cad9dc79247966518ca4fa85e05d586fd77d4ce6a25d0ea4",
+            "filename": "2026-10-07-daily-wechat.html",
+            "report_date": "2026-10-07",
+            "section": 3
+          }
+        ],
+        "review_id": "b83d1958411460eb-623f80ff4f2d1e3c"
+      }
+    },
+    {
+      "contract_id": "trentar-maharashtra-mou-20261006",
+      "type": "mou",
+      "parties": [
+        "trentar"
+      ],
+      "site_ids": [],
+      "value_usd_b": null,
+      "capacity_it_mw": null,
+      "term_years": null,
+      "start_date": null,
+      "announced_date": "2026-10-06",
+      "circular_flag": false,
+      "summary": "Trentar公司发布称与Maharashtra政府签署500MW项目MoU及拟投资₹30000 crore（公告约$3.3bn）；政府协调适用许可、登记与支持。500MW口径未知、至少51%可再生电力为目标；未证明土地锁定、批准、投入或通电。",
+      "grade": "company",
+      "source_url": "https://www.entrepreneursnewsroom.com/news/trentar-signs-30000-crore-33-bn-mou-with-maharashtra-for-500-mw-green-integrated-data-center-park",
+      "verified_date": "2026-10-07",
+      "node": "site:permits",
+      "variable_class": 5,
+      "geographies": [
+        {
+          "country": "IN",
+          "province": "Maharashtra",
+          "city": null,
+          "relation": "disclosed_scope",
+          "allocation_mw": null
+        }
+      ],
+      "capacity_observations": [
+        {
+          "value": 500,
+          "unit": "MW",
+          "basis": "unknown",
+          "nature": "announced",
+          "scope": "MoU全项目规划；IT/设施/供电口径未明确"
+        }
+      ],
+      "relationships": [
+        {
+          "actor_id": "trentar",
+          "role": "MoU披露方、拟投资/开发方"
+        }
+      ],
+      "object_ids": [
+        "site:permits",
+        "actor:trentar"
+      ],
+      "target_ids": [
+        "F.capital.news",
+        "S.permits.holders",
+        "S.water-rights.holders"
+      ],
+      "sources": [
+        {
+          "url": "https://www.entrepreneursnewsroom.com/news/trentar-signs-30000-crore-33-bn-mou-with-maharashtra-for-500-mw-green-integrated-data-center-park",
+          "grade": "company",
+          "date": "2026-10-06"
+        }
+      ],
+      "gaps": [
+        "备忘录与政府协调审批/支持角色采用，尚不等于土地锁定或最终许可",
+        "30000 crore/$3.3bn为拟投资，500MW口径未知；至少51%可再生能源为设计目标，不作现状",
+        "地块、供电方、取水/排污批准、IT口径和完整MoU/LOI原件待补"
+      ],
+      "adoption": {
+        "event_id": "daily-event-3594d855c0fee978fca6654021df44803786875c44432f87bbbeddba53ff4c66",
+        "source_version": "1e8ca5f5465b36ccd927fe5b1d87a086d6817e49ac5c3f529de480af29d692b3",
+        "review": {
+          "by": "Codex 当前会话（M5）",
+          "at": "2026-10-07T12:23:05.041538+08:00",
+          "score": 8,
+          "tier": "A",
+          "authority": "delegated_reviewer",
+          "delegation": "用户2026-10-07在本会话要求继续逐事件核验、采用已核验字段及分批发布。仅新增明确的公告所述主体协议/投资关系，未替换既有项目或放宽资料分发。",
+          "decision": "adopted",
+          "rationale": "逐段读取已归档来源并按事件、原件SHA、原句和现行目标核对；已生效合同、潜在供电、备忘录和累计投资承诺分别限定范围。主体/地域/IT口径未知保留，现有项目结论不覆盖。公司自身宣称仅证明公告所述交易，不授予独立执行/审批确认。"
+        },
+        "target_ids": [
+          "F.capital.news",
+          "S.permits.holders",
+          "S.water-rights.holders"
+        ],
+        "fields": [
+          "公告所述协议/投资性质",
+          "主体角色",
+          "地域与范围",
+          "条件与时间",
+          "原件身份与引句",
+          "容量原文观察（不采用为IT容量）"
+        ],
+        "scope": "Trentar公司发布称与Maharashtra政府签署500MW项目MoU及拟投资₹30000 crore（公告约$3.3bn）；政府协调适用许可、登记与支持。500MW口径未知、至少51%可再生电力为目标；未证明土地锁定、批准、投入或通电。 未关联未核验园区，不计入IT GW。",
+        "assertions": [
+          {
+            "url": "https://www.entrepreneursnewsroom.com/news/trentar-signs-30000-crore-33-bn-mou-with-maharashtra-for-500-mw-green-integrated-data-center-park",
+            "source_sha256": "7e3a3fd5153fc2a5cc9aef69f85156c2184c476e96332945d28be5b63553a087",
+            "locator": "research/trentar-pr.txt",
+            "quote": "has signed a memorandum of understanding (MoU) with the Government of Maharashtra",
+            "basis": "agreement_scope",
+            "scope": "Trentar公司发布称与Maharashtra政府签署500MW项目MoU及拟投资₹30000 crore（公告约$3.3bn）；政府协调适用许可、登记与支持。500MW口径未知、至少51%可再生电力为目标；未证明土地锁定、批准、投入或通电。"
+          },
+          {
+            "url": "https://www.entrepreneursnewsroom.com/news/trentar-signs-30000-crore-33-bn-mou-with-maharashtra-for-500-mw-green-integrated-data-center-park",
+            "source_sha256": "7e3a3fd5153fc2a5cc9aef69f85156c2184c476e96332945d28be5b63553a087",
+            "locator": "research/trentar-pr.txt",
+            "quote": "Under the MoU, the state government will facilitate coordination on applicable permissions, registrations, approvals, clearances and incentives in accordance with prevailing policies and regulations.",
+            "basis": "agreement_scope",
+            "scope": "Trentar公司发布称与Maharashtra政府签署500MW项目MoU及拟投资₹30000 crore（公告约$3.3bn）；政府协调适用许可、登记与支持。500MW口径未知、至少51%可再生电力为目标；未证明土地锁定、批准、投入或通电。"
+          },
+          {
+            "url": "https://www.entrepreneursnewsroom.com/news/trentar-signs-30000-crore-33-bn-mou-with-maharashtra-for-500-mw-green-integrated-data-center-park",
+            "source_sha256": "7e3a3fd5153fc2a5cc9aef69f85156c2184c476e96332945d28be5b63553a087",
+            "locator": "research/trentar-pr.txt",
+            "quote": "The project is being designed with a target of sourcing at least 51% of its energy from renewable sources.",
+            "basis": "agreement_scope",
+            "scope": "Trentar公司发布称与Maharashtra政府签署500MW项目MoU及拟投资₹30000 crore（公告约$3.3bn）；政府协调适用许可、登记与支持。500MW口径未知、至少51%可再生电力为目标；未证明土地锁定、批准、投入或通电。"
+          },
+          {
+            "url": "https://www.entrepreneursnewsroom.com/news/trentar-signs-30000-crore-33-bn-mou-with-maharashtra-for-500-mw-green-integrated-data-center-park",
+            "source_sha256": "7e3a3fd5153fc2a5cc9aef69f85156c2184c476e96332945d28be5b63553a087",
+            "locator": "research/trentar-pr.txt",
+            "quote": "Home-News-Trentar Signs ₹30,000 Crore ($3.3 bn) MoU with Maharashtra for 500 MW Green Integrated Data Center Park",
+            "value": 500,
+            "unit": "MW",
+            "basis": "unknown",
+            "scope": "全项目规划，IT/设施口径未明确",
+            "nature": "announced"
+          }
+        ],
+        "document_refs": [
+          {
+            "sha256": "ec75ae70182a71c6cad9dc79247966518ca4fa85e05d586fd77d4ce6a25d0ea4",
+            "filename": "2026-10-07-daily-wechat.html",
+            "report_date": "2026-10-07",
+            "section": 5
+          }
+        ],
+        "review_id": "1e8ca5f5465b36cc-7047af9d40c345c3"
+      }
+    },
+    {
+      "contract_id": "sabey-ares-cumulative-commitment-20261005",
+      "type": "financing",
+      "parties": [
+        "sabey-data-center-properties",
+        "ares-management",
+        "national-real-estate-advisors"
+      ],
+      "site_ids": [],
+      "value_usd_b": null,
+      "capacity_it_mw": null,
+      "term_years": null,
+      "start_date": null,
+      "announced_date": "2026-10-05",
+      "circular_flag": false,
+      "summary": "Sabey与National公告称Ares Secondaries funds追加少数股权投资，累计承诺超过$500m；本次追加额、实缴和股权比例未披露。275MW及预计2033年737MW属平台组合观察，不作为单园区或增量IT容量。",
+      "grade": "company",
+      "source_url": "https://rss.globenewswire.com/news-release/2026/10/05/3374557/0/en/sabey-data-center-properties-secures-additional-investment-from-ares-to-support-continued-growth.html",
+      "verified_date": "2026-10-07",
+      "node": "root",
+      "variable_class": 5,
+      "geographies": [
+        {
+          "country": "US",
+          "province": null,
+          "city": null,
+          "relation": "disclosed_scope",
+          "allocation_mw": null
+        }
+      ],
+      "capacity_observations": [
+        {
+          "value": 275,
+          "unit": "MW",
+          "basis": "unknown",
+          "nature": "announced",
+          "scope": "平台园区组合；IT/设施口径未明，不进入项目汇总"
+        },
+        {
+          "value": 737,
+          "unit": "MW",
+          "basis": "unknown",
+          "nature": "forecast",
+          "scope": "2033年平台扩展管线，存量/增量边界待补，不相加"
+        }
+      ],
+      "relationships": [
+        {
+          "actor_id": "sabey-data-center-properties",
+          "role": "接受平台少数股权投资的数据中心所有/开发/运营平台"
+        },
+        {
+          "actor_id": "ares-management",
+          "role": "投资管理平台；公告投资方具体为旗下Ares Secondaries funds"
+        },
+        {
+          "actor_id": "national-real-estate-advisors",
+          "role": "Sabey联合平台合作方及机构客户投资管理人"
+        }
+      ],
+      "object_ids": [
+        "root",
+        "actor:sabey-data-center-properties",
+        "actor:ares-management",
+        "actor:national-real-estate-advisors"
+      ],
+      "target_ids": [
+        "F.capital.news",
+        "F.cost.facility.shell_rent.lease.terms"
+      ],
+      "sources": [
+        {
+          "url": "https://rss.globenewswire.com/news-release/2026/10/05/3374557/0/en/sabey-data-center-properties-secures-additional-investment-from-ares-to-support-continued-growth.html",
+          "grade": "company",
+          "date": "2026-10-05"
+        }
+      ],
+      "gaps": [
+        "超过$500m为Ares Secondaries funds累计承诺，追加金额/实缴/股权比例未披露，不写500m新增现金",
+        "275MW与预计2033年737MW为平台组合观察，IT/设施口径、分园区及存量/增量界限不全；不计项目GW",
+        "完整投资协议、平台实体与基金逐一身份、资金用途分配及园区明细待补"
+      ],
+      "adoption": {
+        "event_id": "daily-event-f94c3323f8d2bc9d5136b04726e5723722313a2be8b3b0353a87c2fb27162af3",
+        "source_version": "e00eacc828da7bfa86b2040a0f4e2784355df51b9190e27a46cebd781b9967f8",
+        "review": {
+          "by": "Codex 当前会话（M5）",
+          "at": "2026-10-07T12:23:05.041538+08:00",
+          "score": 8,
+          "tier": "A",
+          "authority": "delegated_reviewer",
+          "delegation": "用户2026-10-07在本会话要求继续逐事件核验、采用已核验字段及分批发布。仅新增明确的公告所述主体协议/投资关系，未替换既有项目或放宽资料分发。",
+          "decision": "adopted",
+          "rationale": "逐段读取已归档来源并按事件、原件SHA、原句和现行目标核对；已生效合同、潜在供电、备忘录和累计投资承诺分别限定范围。主体/地域/IT口径未知保留，现有项目结论不覆盖。公司自身宣称仅证明公告所述交易，不授予独立执行/审批确认。"
+        },
+        "target_ids": [
+          "F.capital.news",
+          "F.cost.facility.shell_rent.lease.terms"
+        ],
+        "fields": [
+          "公告所述协议/投资性质",
+          "主体角色",
+          "地域与范围",
+          "条件与时间",
+          "原件身份与引句",
+          "容量原文观察（不采用为IT容量）"
+        ],
+        "scope": "Sabey与National公告称Ares Secondaries funds追加少数股权投资，累计承诺超过$500m；本次追加额、实缴和股权比例未披露。275MW及预计2033年737MW属平台组合观察，不作为单园区或增量IT容量。 未关联未核验园区，不计入IT GW。",
+        "assertions": [
+          {
+            "url": "https://rss.globenewswire.com/news-release/2026/10/05/3374557/0/en/sabey-data-center-properties-secures-additional-investment-from-ares-to-support-continued-growth.html",
+            "source_sha256": "6b6173d92291aa35bba27f81b2002a5951eb8303f58b88be3d559a6ebc802d3e",
+            "locator": "research/sabey-primary.txt",
+            "quote": "bringing its total investment to more than $500 million.",
+            "basis": "agreement_scope",
+            "scope": "Sabey与National公告称Ares Secondaries funds追加少数股权投资，累计承诺超过$500m；本次追加额、实缴和股权比例未披露。275MW及预计2033年737MW属平台组合观察，不作为单园区或增量IT容量。"
+          },
+          {
+            "url": "https://rss.globenewswire.com/news-release/2026/10/05/3374557/0/en/sabey-data-center-properties-secures-additional-investment-from-ares-to-support-continued-growth.html",
+            "source_sha256": "6b6173d92291aa35bba27f81b2002a5951eb8303f58b88be3d559a6ebc802d3e",
+            "locator": "research/sabey-primary.txt",
+            "quote": "SDCP is a fully integrated data center platform that owns and operates hyperscale and enterprise data center campuses located in top-tier United States data center markets totaling 275 megawatts (MW), with an expansion pipeline expected to reach approximately 737 MW by 2033.",
+            "basis": "agreement_scope",
+            "scope": "Sabey与National公告称Ares Secondaries funds追加少数股权投资，累计承诺超过$500m；本次追加额、实缴和股权比例未披露。275MW及预计2033年737MW属平台组合观察，不作为单园区或增量IT容量。"
+          },
+          {
+            "url": "https://rss.globenewswire.com/news-release/2026/10/05/3374557/0/en/sabey-data-center-properties-secures-additional-investment-from-ares-to-support-continued-growth.html",
+            "source_sha256": "6b6173d92291aa35bba27f81b2002a5951eb8303f58b88be3d559a6ebc802d3e",
+            "locator": "research/sabey-primary.txt",
+            "quote": "The company is a joint venture between Sabey Corporation and National Real Estate Advisors, LLC, acting as the investment manager on behalf of its institutional clients.",
+            "basis": "agreement_scope",
+            "scope": "Sabey与National公告称Ares Secondaries funds追加少数股权投资，累计承诺超过$500m；本次追加额、实缴和股权比例未披露。275MW及预计2033年737MW属平台组合观察，不作为单园区或增量IT容量。"
+          },
+          {
+            "url": "https://rss.globenewswire.com/news-release/2026/10/05/3374557/0/en/sabey-data-center-properties-secures-additional-investment-from-ares-to-support-continued-growth.html",
+            "source_sha256": "6b6173d92291aa35bba27f81b2002a5951eb8303f58b88be3d559a6ebc802d3e",
+            "locator": "research/sabey-primary.txt",
+            "quote": "SDCP is a fully integrated data center platform that owns and operates hyperscale and enterprise data center campuses located in top-tier United States data center markets totaling 275 megawatts (MW), with an expansion pipeline expected to reach approximately 737 MW by 2033.",
+            "value": 275,
+            "unit": "MW",
+            "basis": "unknown",
+            "scope": "平台拥有运营园区组合；原文未明确IT口径",
+            "nature": "announced"
+          },
+          {
+            "url": "https://rss.globenewswire.com/news-release/2026/10/05/3374557/0/en/sabey-data-center-properties-secures-additional-investment-from-ares-to-support-continued-growth.html",
+            "source_sha256": "6b6173d92291aa35bba27f81b2002a5951eb8303f58b88be3d559a6ebc802d3e",
+            "locator": "research/sabey-primary.txt",
+            "quote": "SDCP is a fully integrated data center platform that owns and operates hyperscale and enterprise data center campuses located in top-tier United States data center markets totaling 275 megawatts (MW), with an expansion pipeline expected to reach approximately 737 MW by 2033.",
+            "value": 737,
+            "unit": "MW",
+            "basis": "unknown",
+            "scope": "扩建管线到2033年预计规模，范围未逐站披露",
+            "nature": "forecast"
+          }
+        ],
+        "document_refs": [
+          {
+            "sha256": "ec75ae70182a71c6cad9dc79247966518ca4fa85e05d586fd77d4ce6a25d0ea4",
+            "filename": "2026-10-07-daily-wechat.html",
+            "report_date": "2026-10-07",
+            "section": 7
+          }
+        ],
+        "review_id": "e00eacc828da7bfa-15ffc7767c603562"
+      }
     }
   ]
 }
