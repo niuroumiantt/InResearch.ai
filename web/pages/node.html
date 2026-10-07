@@ -276,7 +276,7 @@ document.addEventListener('toggle', async event => {
   const body = detail.querySelector('.adopted-body');
   detail.dataset.state = 'loading'; body.textContent = '正在读取正式采用记录…';
   try {
-    const full = await get('api/research');
+    const full = await get('api/research-adopted?' + new URLSearchParams({node:NODE}));
     const wanted = new Set(JSON.parse(detail.dataset.recordIds));
     const rows = [...(full.knowledge?.statements || []), ...(full.knowledge?.answers || [])].filter(x => wanted.has(x.id) && x.status === 'adopted');
     const evidence = new Map((full.knowledge?.evidence || []).map(e => [e.id, e]));

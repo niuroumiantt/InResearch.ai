@@ -777,6 +777,45 @@ def summary_for_node(summary, node):
                 questions=questions, tasks=[t for t in summary['tasks'] if touches(t)], knowledge=knowledge)
 
 
+def adopted_for_node(root=ROOT, node='root'):
+    """Curated, supported records and their source closure; no runtime or catalog."""
+    graph = read_json(root / 'framework/research_graph.json')
+    questions = read_json(root / 'framework/research_questions.json')['records']
+    curated = read_json(root / 'data/research_knowledge.json')
+    closed = completed_questions(curated)
+    for question in questions:
+        question['status'] = 'answered' if question['id'] in closed else 'open'
+    scoped = summary_for_node(dict(graph=graph, questions=questions, tasks=[], knowledge=curated), node)
+    statements = {s['id']: s for s in scoped['knowledge']['statements']
+                  if supported_adoption(s, curated)}
+    answers = [a for a in scoped['knowledge']['answers'] if supported_adoption(a, curated)]
+    all_statements = {s['id']: s for s in curated['statements']}
+    pending = list(statements.values()) + answers
+    for row in pending:
+        for sid in row.get('statement_ids', []):
+            if sid not in statements and supported_adoption(all_statements.get(sid, {}), curated):
+                statements[sid] = all_statements[sid]; pending.append(statements[sid])
+    evidence_ids = {eid for row in pending for eid in row.get('evidence_ids', [])}
+    evidence = [e for e in curated['evidence'] if e['id'] in evidence_ids]
+    document_ids = {e['document_id'] for e in evidence}
+    def project(rows, keys):
+        return [{k: row[k] for k in keys if k in row} for row in rows]
+    record_keys = ('id', 'kind', 'text', 'status', 'scope', 'limitations', 'published_date',
+                   'question_ids', 'object_ids', 'evidence_ids', 'statement_ids', 'reading_revision_id')
+    def reviewed(rows):
+        out = project(rows, record_keys)
+        for result, row in zip(out, rows):
+            result['review'] = {k: row['review'][k] for k in ('by', 'at', 'tier', 'authority',
+                                'decision', 'score', 'operator_review_by', 'operator_review_at') if k in row['review']}
+        return out
+    return dict(schema_version=1, node=node, unknown=scoped.get('unknown', False),
+                questions=project(scoped['questions'], ('id', 'status')),
+                knowledge=dict(statements=reviewed(list(statements.values())), answers=reviewed(answers),
+                    evidence=project(evidence, ('id', 'document_id', 'quote', 'page_index', 'locator', 'status')),
+                    documents=project([d for d in curated['documents'] if d['id'] in document_ids],
+                        ('id', 'title', 'content_sha256', 'reading_revision_id', 'coverage'))))
+
+
 def build_snapshot(root=ROOT):
     state = _research_state(root)
     # Legacy metadata is explicitly not proof of reading or source availability.
