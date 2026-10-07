@@ -69,7 +69,18 @@ def query(root, company, q='', offset=0, limit=50):
             d = json.loads(row[0])
             d['name'] = unquote(urlsplit(d['urls'][0]).path.rsplit('/',1)[-1]) or d['id'][:12]
             records.append(d)
-        names = dict(db.execute("SELECT id,json_extract(payload,'$.name') FROM products WHERE run_id=(SELECT id FROM runs ORDER BY generated DESC LIMIT 1)"))
+        from .catalog_ownership import conflict
+        names, excluded_ids = {}, set()
+        for pid,name,url,product_url,owner in db.execute("""SELECT id,json_extract(payload,'$.name'),
+                json_extract(payload,'$.source_url'),json_extract(payload,'$.product_url'),
+                json_extract(payload,'$.company_id') FROM products
+                WHERE run_id=(SELECT id FROM runs ORDER BY generated DESC LIMIT 1)"""):
+            if not conflict({'source_url':url,'product_url':product_url,'company_id':owner}, company):
+                names[pid] = name
+            else:
+                excluded_ids.add(pid)
+        for d in records:
+            d['links'] = [l for l in d['links'] if l['product_id'] not in excluded_ids]
         matched = [d for d in records if not q or q.casefold() in json.dumps(d,ensure_ascii=False).casefold()
                    or any(q.casefold() in names.get(l['product_id'],'').casefold() for l in d['links'])]
         page = []

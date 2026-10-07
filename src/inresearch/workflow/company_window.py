@@ -35,6 +35,7 @@ def catalog_groups(root, cid):
             return {'available': False, 'registered': True, 'groups': []}
         rows = con.execute("""SELECT json_extract(payload,'$.id') AS id,
             json_extract(payload,'$.name') AS name,
+            json_extract(payload,'$.company_id') AS company_id,
             json_extract(payload,'$.kind') AS kind,
             json_extract(payload,'$.source_url') AS source_url,
             json_extract(payload,'$.product_url') AS product_url,
@@ -59,6 +60,8 @@ def catalog_groups(root, cid):
                 bucket['examples'].append({'id': item['id'], 'name': item['name'],
                                           'table_count': item['table_count']})
         for row in rows:
+            if product_catalog.catalog_ownership.conflict(dict(row), cid):
+                continue
             item = dict(row)
             item['taxonomy'] = json.loads(item['taxonomy']) if item['taxonomy'] else []
             summary['entities'] += 1

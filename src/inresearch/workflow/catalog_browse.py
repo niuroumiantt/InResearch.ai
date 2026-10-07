@@ -212,13 +212,15 @@ def query(root, company='supermicro', category='', line='', q='', kind='', with_
                AND length(trim(json_extract(r.value,'$[1].text'))) BETWEEN 1 AND 2000 GROUP BY lower(label) HAVING count(*)=1 LIMIT 32))"""
         rows = db.execute("""SELECT id,json_extract(payload,'$.name'),json_extract(payload,'$.source_url'),
             json_extract(payload,'$.product_url'),json_extract(payload,'$.kind'),json_array_length(payload,'$.tables'),
-            json_extract(payload,'$.category'),json_extract(payload,'$.part_number'),"""+hints_sql+"""
+            json_extract(payload,'$.category'),json_extract(payload,'$.part_number'),json_extract(payload,'$.company_id'),"""+hints_sql+"""
             FROM products AS p WHERE run_id=? ORDER BY id""",(*HINT_KEYS,run[0]))
         items, nodes = [], {}
-        for pid,name,url,product_url,entity_kind,count,original_category,part_number,hints in rows:
+        for pid,name,url,product_url,entity_kind,count,original_category,part_number,owner,hints in rows:
             item = {'id': pid, 'name': name, 'source_url': url, 'product_url': product_url,
                     'kind': entity_kind, 'table_count': count or 0, 'category': original_category or '', 'part_number': part_number or '',
                     'browse_hints':json.loads(hints)}
+            if product_catalog.catalog_ownership.conflict({**item, 'company_id':owner}, company):
+                continue
             chain = category_path(item)
             item['browse_path'] = chain
             item['company_line'] = chain[0]['id']

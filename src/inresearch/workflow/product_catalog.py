@@ -15,6 +15,7 @@ from pathlib import Path
 import re
 import sqlite3
 import stat
+from . import catalog_ownership
 from urllib.parse import urlsplit
 from urllib.request import Request, build_opener
 
@@ -189,6 +190,8 @@ def validate(payload, company=None):
         source_keys.add((source['sha256'], source['source_url']))
     ids = set()
     for product in products:
+        if issue := catalog_ownership.conflict(product, company):
+            raise ValueError('product ownership conflict: ' + issue['reason'])
         key = product['id']
         if not re.fullmatch(id_pattern, key) or key in ids or not product['name']:
             raise ValueError('invalid or repeated product ID')
@@ -359,9 +362,12 @@ def snapshot(root, company='nvidia'):
         run = db.execute('SELECT * FROM runs ORDER BY generated DESC LIMIT 1').fetchone()
         if run is None:
             return {'available': False, 'company_id': company, 'company': company_block(company), 'products': [], 'coverage': {}}
-        products = []
+        products, excluded = [], []
         for row in db.execute('SELECT payload,run_id FROM products WHERE run_id=? ORDER BY id', (run['id'],)):
             p = with_list_fields(json.loads(row['payload']))
+            if issue := catalog_ownership.conflict(p, company):
+                excluded.append({**issue, 'product_id': p['id'], 'name': p['name']})
+                continue
             p['seen_in_latest_run'] = row['run_id'] == run['id']
             p['navigation'] = classify(p, company)
             p['compute'] = compute_catalog.project(p, company)
@@ -369,10 +375,15 @@ def snapshot(root, company='nvidia'):
             for table in p['tables']:
                 table.pop('text', None)
             products.append(p)
+        excluded_ids = {p['product_id'] for p in excluded}
+        for p in products:
+            if p.get('parent_id') in excluded_ids:
+                p['parent_id'] = None
         return {'available': True, 'company_id': company, 'company': company_block(company),
                 'generated_at': run['generated'],
                 'received_at': run['received'], 'acceptance': 'source_extracted_not_research_adopted',
                 'coverage': json.loads(run['coverage']), 'products': products,
+                'ownership_review': {'policy_version': catalog_ownership.VERSION, 'excluded_entities': len(excluded)},
                 'navigation': navigation_block(products, company)}
     finally:
         db.close()
@@ -505,6 +516,8 @@ def product_snapshot(root, product_id, company='nvidia'):
         row = db.execute('SELECT payload FROM products WHERE run_id=? AND id=?',
                          (run['id'], product_id)).fetchone()
         product = with_list_fields(json.loads(row['payload'])) if row else None
+        if product and catalog_ownership.conflict(product, company):
+            product = None
         if product:
             product['seen_in_latest_run'] = True
             product['navigation'] = classify(product, company)
@@ -569,6 +582,7 @@ def series_snapshot(root, series_id, company='nvidia'):
             return {'available': False, 'company_id': company, 'series': None}
         products = [json.loads(row['payload']) for row in
                     db.execute('SELECT payload FROM products WHERE run_id=?', (run['id'],))]
+        products = [p for p in products if not catalog_ownership.conflict(p, company)]
     finally:
         db.close()
     value = {'available': True, 'company_id': company, 'generated_at': run['generated'],
