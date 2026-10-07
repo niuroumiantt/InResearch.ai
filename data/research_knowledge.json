@@ -1,8 +1,3134 @@
 {
   "version": "2.0.0",
-  "documents": [],
-  "evidence": [],
-  "statements": [],
+  "documents": [
+    {
+      "acceptance": "candidate",
+      "content_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "coverage": {
+        "characters_read": 69767,
+        "characters_total": 69767,
+        "chunks_read": 30,
+        "chunks_total": 30,
+        "complete": true,
+        "gap_pages": [
+          29
+        ],
+        "pages_read": 31,
+        "pages_total": 31
+      },
+      "doc_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "library_path": "library/by-node/part-gpu/2025_SemiAnalysis_Another Giant Leap_ The Rubin CPX Specialized Accelerat__c30e5c58d0b04df7.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:amd",
+        "actor:amphenol-luxshare-molex-te-connectivity",
+        "actor:anthropic",
+        "actor:arista-networks",
+        "actor:astera-labs",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "actor:huawei-ascend",
+        "actor:meta",
+        "actor:nvidia-networking",
+        "actor:openai",
+        "actor:samsung-cmm-micron-cz120-mxc-smart-modular",
+        "part:ai-asic",
+        "part:connector",
+        "part:cpu",
+        "part:dram",
+        "part:gpu",
+        "part:hbm",
+        "part:network-switch",
+        "part:nic",
+        "part:pcie-switch",
+        "part:rack-system",
+        "part:server",
+        "root",
+        "system:compute",
+        "system:memory",
+        "system:power"
+      ],
+      "question_ids": [
+        "NODE-demand-D3-conversion",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile",
+        "OBJ-connector-interfaces",
+        "OBJ-connector-supply",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-definition",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-hbm-alternatives",
+        "OBJ-hbm-definition",
+        "OBJ-hbm-interfaces",
+        "OBJ-hbm-performance",
+        "OBJ-hbm-supply",
+        "OBJ-nic-alternatives",
+        "OBJ-nic-interfaces",
+        "Q-SCOPE-arch-amd-gpu",
+        "Q-SCOPE-arch-blackwell",
+        "Q-SCOPE-arch-hopper",
+        "Q-SCOPE-arch-nvidia-gpu",
+        "Q-SCOPE-arch-other-gpu",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+      "sources": [
+        {
+          "previous_doc_id": null,
+          "received": 1791256215.0928278,
+          "source_key": "research-match-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294/Another Giant Leap_ The Rubin CPX Specialized Accelerator & Rack – SemiAnalysis.pdf",
+          "version_seq": 1
+        }
+      ],
+      "status": "candidate",
+      "stored_path": "originals/c3/c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294/Another Giant Leap_ The Rubin CPX Specialized Accelerator & Rack – SemiAnalysis.pdf",
+      "title": "Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack"
+    }
+  ],
+  "evidence": [
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c8cc23a23f49ab7f18b94939cdaf96e214b25b08585db59a4993d5cf6e21aeb6",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-gpu-definition",
+        "Q-SCOPE-arch-nvidia-gpu"
+      ],
+      "quote": "Nvidia announced the Rubin CPX, a solution that is specifically designed to be optimized for the prefill phase",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:57:28.439623+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:1/chunk:0正文及选中连续引句直接支持specifically designed to be optimized for the prefill phase。后续关于单裸片计算侧重和game changer的评价不改变该定位句含义；采用文本未引入这些额外评价。该句是正文陈述，并非仅来自标题或目录；无需补齐后续被截断的历史比较即可支持此局部主张。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-arch-nvidia-gpu"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "24892245d0fe3bb0cc2dd5f087c639b0123f1655fdbb606ceaff114359efd597",
+          "elapsed_seconds": 80.16,
+          "usage": {
+            "input_tokens": 26732,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2283,
+            "reasoning_output_tokens": 859
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c8cc23a23f49ab7f18b94939cdaf96e214b25b08585db59a4993d5cf6e21aeb6",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-gpu-definition",
+        "Q-SCOPE-arch-nvidia-gpu"
+      ],
+      "quote": "with the single-die Rubin CPX heavily emphasizing compute FLOPS over memory bandwidth.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:58:32.530199+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:1的引句直接支持单裸片及计算相对带宽的设计侧重；连续上下文明确prefill优化对象。来源日期为2025-09-10，属于作者对发布产品的描述，非独立实测。封存报告支持主题与处理覆盖，但不作为独立佐证。未扩展采用page:2的规格数字。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-definition",
+          "Q-Q-SCOPE-arch-nvidia-gpu"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "deb8f3623f40c12b14b4dd86e93b2cc28839dcfa51d5c4e2ac2c0db4080fab8a",
+          "elapsed_seconds": 144.251,
+          "usage": {
+            "input_tokens": 27529,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3924,
+            "reasoning_output_tokens": 1872
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b50d1d37ecd918d55446dd808b8b320e148aecdb9c22532c6e203e82c96ca02e",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:15:claim:3:ev:0",
+      "locator": "page:16/chunk:15",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "page_index": 15,
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "quote": "Serving an LLM request involves two phases: the prefill phase and decode\nphase. In the prefill phase, the LLM generates the first token from the user\nprompt. This phase affects the time-to-first token (TTFT), and it is usually\ncompute-bounded, under-utilizing the memory bandwidth.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:23.191391+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。p.16引句完整支持原候选；p.17的连续文字提供短输入条件下的例外，已纳入采用表述。与peer chunk:1:claim:5及chunk:4:claim:2存在瓶颈主题重叠，但本条的阶段定义和TTFT指标具有独立内容。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "287a48fe6735ccf7200f48405de806c4fd5555e27b81e06b92af4054b2999941",
+          "elapsed_seconds": 139.597,
+          "usage": {
+            "input_tokens": 28129,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4218,
+            "reasoning_output_tokens": 1334
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b50d1d37ecd918d55446dd808b8b320e148aecdb9c22532c6e203e82c96ca02e",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:15:claim:4:ev:0",
+      "locator": "page:16/chunk:15",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "page_index": 15,
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "quote": "the decode phase generates a new token while loading the previous tokens\nfrom the KV cache. This phase affects time-per-output-token (TPOT), and it is\nalways memory-bounded, under-utilizing the compute.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:23.191391+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。p.16连续引句充分支持作者原话及TPOT关联。采用文字明确记录其绝对化用词，不将该用词变成审核模型认可的普遍规律。与本批prefill定义、计算需求缩放及图表介绍均非同一主张。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "287a48fe6735ccf7200f48405de806c4fd5555e27b81e06b92af4054b2999941",
+          "elapsed_seconds": 139.597,
+          "usage": {
+            "input_tokens": 28129,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4218,
+            "reasoning_output_tokens": 1334
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "17e9470752d52baef2ebe06de500fff3650e4306decc50bddf3a40a9121c81b1",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:16:claim:4:ev:0",
+      "locator": "page:17/chunk:16",
+      "object_ids": [
+        "part:gpu",
+        "system:compute"
+      ],
+      "page_index": 16,
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "quote": "The FLOPS required to prefill a single token scales linearly with respect to input sequence length. FLOPS requirements for decode also scales with respect to users on the system (i.e. batch size) and sequence lengths.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:23.191391+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。p.17连续引句完整支持两个缩放陈述；前句的说明性图表语境限制其证据性质。将原文“FLOPS required”表述为所需浮点运算量，避免混同每秒峰值算力。peer chunk:16:claim:5、claim:6讨论由需求增长形成的瓶颈转换，属于相关但不同主张。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "287a48fe6735ccf7200f48405de806c4fd5555e27b81e06b92af4054b2999941",
+          "elapsed_seconds": 139.597,
+          "usage": {
+            "input_tokens": 28129,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4218,
+            "reasoning_output_tokens": 1334
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "17e9470752d52baef2ebe06de500fff3650e4306decc50bddf3a40a9121c81b1",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:16:claim:5:ev:0",
+      "locator": "page:17/chunk:16",
+      "object_ids": [
+        "part:gpu",
+        "system:compute"
+      ],
+      "page_index": 16,
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "quote": "A short input sequence length may not fully saturate the FLOPS available on an inference system, in which case the system’s output will be limited by the speed at which parameters can be loaded into chip memory – which is a function of memory bandwidth.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:38.904774+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:17/chunk:16引句直接支持may及in which case两层限定。连续文字页将本段定位为illustrative example，故采用文本保留示例背景。证据来自原页，不依赖候选摘要循环证明；不是实测结果或产品预测。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "9b12d56a4faaf0400b206711d55c9cb04fdff3f70d8b6dd385a6068b6e9a14bd",
+          "elapsed_seconds": 155.31,
+          "usage": {
+            "input_tokens": 28724,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4577,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "17e9470752d52baef2ebe06de500fff3650e4306decc50bddf3a40a9121c81b1",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:16:claim:6:ev:0",
+      "locator": "page:17/chunk:16",
+      "object_ids": [
+        "part:gpu",
+        "system:compute"
+      ],
+      "page_index": 16,
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "quote": "As input sequence length increases, however, eventually the workload will grow to use all available FLOPS on the inference system, and the workload will be constrained by the total system FLOPS.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:38.904774+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:17/chunk:16引句支持序列增长、使用all available FLOPS及总FLOPS约束；此前的illustrative example和随后示意性100%描述限制其证据性质。采用文本保留作者的强措辞，未把示例升格为实测规律。与短序列瓶颈条目互补，不属重复。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "9b12d56a4faaf0400b206711d55c9cb04fdff3f70d8b6dd385a6068b6e9a14bd",
+          "elapsed_seconds": 155.31,
+          "usage": {
+            "input_tokens": 28724,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4577,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a38af5cc18e0983aec6e13095efec5685d4ab32e26775952c31866e3d0171fc0",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:1:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "root",
+        "system:memory"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "Thus we can see that when a node is conducting a very prefill heavy workload – with long sequence lengths or large batch sizes, the memory bandwidth goes unutilized.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:38.904774+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:18/chunk:17直接给出very prefill heavy、long sequence lengths或large batch sizes；第17页连续文字说明带宽利用率下降。因此采用“未充分利用”的缩窄表述，不把unutilized扩张为零使用。这是作者解释，非测量记录；原页链条不依赖候选互证。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "9b12d56a4faaf0400b206711d55c9cb04fdff3f70d8b6dd385a6068b6e9a14bd",
+          "elapsed_seconds": 155.31,
+          "usage": {
+            "input_tokens": 28724,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4577,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a38af5cc18e0983aec6e13095efec5685d4ab32e26775952c31866e3d0171fc0",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:2:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "root",
+        "system:memory"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "NODE-workload-inference-economics"
+      ],
+      "quote": "As mentioned in the previous section, with the % of Chip BOM dedicated to memory increasing continually over the past few years, this ends up being a very expensive underutilization of resources!",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:38.904774+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:18/chunk:17直接支持BOM占比上升这一作者前提和very expensive underutilization评价；this由同页上一段确定为重prefill的带宽资源利用不足。归属和局部因果链清楚，但回指前节的趋势依据没有独立验证，故不采用为历史观测值或成本测算。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-economics"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "9b12d56a4faaf0400b206711d55c9cb04fdff3f70d8b6dd385a6068b6e9a14bd",
+          "elapsed_seconds": 155.31,
+          "usage": {
+            "input_tokens": 28724,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4577,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a38af5cc18e0983aec6e13095efec5685d4ab32e26775952c31866e3d0171fc0",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:3:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "Inefficiency also comes from the fact that the workload characteristics of the prefill and the decode phases are so inherently different that prefill and decode requests always interfere with each other’s performance when they are processed concurrently.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:38.904774+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:18/chunk:17引句直接支持阶段差异、并发干扰及always；同页后文支持优化有取舍。第17页确立同系统讨论背景。此项是作者机制判断，非独立实测；与peer的阶段定义、优先级等待及分离路由方案分别属于不同主张。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "9b12d56a4faaf0400b206711d55c9cb04fdff3f70d8b6dd385a6068b6e9a14bd",
+          "elapsed_seconds": 155.31,
+          "usage": {
+            "input_tokens": 28724,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4577,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a38af5cc18e0983aec6e13095efec5685d4ab32e26775952c31866e3d0171fc0",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:4:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "Another approach is to separate the prefill and decode phases completely, but if you prioritize the decode phase, then your prefill will need to wait – resulting in a long time to first token.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:55:42.584020+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:18/chunk:17的连续引句完整包含分开阶段、优先decode、prefill等待及TTFT变长的因果链。后文另起小节提出路由至不同计算单元，故不能把前述等待无条件套用于后一种部署。来源为2025年的作者解释，而非实测报告或产品规格。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "eecd7384213a43089ce2e2209fe6ac0649126e7d75599cacea76d6f0071d60c2",
+          "elapsed_seconds": 139.39,
+          "usage": {
+            "input_tokens": 28490,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4550,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a38af5cc18e0983aec6e13095efec5685d4ab32e26775952c31866e3d0171fc0",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:5:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "root",
+        "system:memory"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "Conversely, if you prioritize prefill, your decode phase will be forced to wait and your inter-token latency will be slow as memory bandwidth then goes underutilized.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:55:42.584020+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:18/chunk:17的Conversely句直接支持三个结果；其条件由紧邻前句的阶段分开及优先处理语境补足。将原文as改为并列陈述，避免中文额外强化带宽不足与时延之间未经量化验证的单向因果关系。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": true,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "eecd7384213a43089ce2e2209fe6ac0649126e7d75599cacea76d6f0071d60c2",
+          "elapsed_seconds": 139.39,
+          "usage": {
+            "input_tokens": 28490,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4550,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a38af5cc18e0983aec6e13095efec5685d4ab32e26775952c31866e3d0171fc0",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:6:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "root",
+        "system:compute"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "The first order solution is to implement disaggregated serving to first tackle the interference by routing prefill and decode requests to separate compute units, making it simpler to reason about performance.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:55:42.584020+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。第18页小节标题明确为Same Hardware；引句完整支持separate compute units、先处理interference及便于分析性能。第18至19页连续上下文限定总体收益，故采用表述保留“初步”而不扩大成最佳或唯一方案。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "eecd7384213a43089ce2e2209fe6ac0649126e7d75599cacea76d6f0071d60c2",
+          "elapsed_seconds": 139.39,
+          "usage": {
+            "input_tokens": 28490,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4550,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "adoption:20261007:context:e16f1e39d1247f57c7e0",
+      "locator": "page:18/section:An Initial Step",
+      "object_ids": [
+        "root",
+        "system:compute"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "An Initial Step: Disaggregated Prefill\nand Decode with the Same Hardware",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:55:42.584020+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。第18页小节标题明确为Same Hardware；引句完整支持separate compute units、先处理interference及便于分析性能。第18至19页连续上下文限定总体收益，故采用表述保留“初步”而不扩大成最佳或唯一方案。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "eecd7384213a43089ce2e2209fe6ac0649126e7d75599cacea76d6f0071d60c2",
+          "elapsed_seconds": 139.39,
+          "usage": {
+            "input_tokens": 28490,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4550,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a38af5cc18e0983aec6e13095efec5685d4ab32e26775952c31866e3d0171fc0",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:7:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "This has the benefit of being able to better manage service level agreements (SLAs) that tend to focus on a certain level of token/s/user.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:55:42.584020+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:18/chunk:17的引句直接支持better manage及tend to focus on token/s/user；前一句补足This所指的分离路由方案。第19页续句限制解耦收益，不能只抽取benefit作无条件性能结论。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": true,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "eecd7384213a43089ce2e2209fe6ac0649126e7d75599cacea76d6f0071d60c2",
+          "elapsed_seconds": 139.39,
+          "usage": {
+            "input_tokens": 28490,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4550,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "cd74ed25bf1e03e21a9167da75cdc957c9297b181e2c8ba3203f5c0ff696d3e3",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:18:claim:4:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [
+        "part:gpu",
+        "part:hbm",
+        "root",
+        "system:memory"
+      ],
+      "page_index": 18,
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "OBJ-hbm-alternatives",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "quote": "In contrast, the Rubin CPX actually utilizes a higher percent of its memory bandwidth at fairly short input lengths before dropping even further for input lengths that we would consider typical.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:57:28.439623+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。page:19/chunk:18的连续文字明确将比较限定为illustrative example和solely for prefill，并在CPX句前指定R200比较对象。选中引句直接支持较短输入时较高利用比例及作者认定典型输入时进一步下降；中文不得补入具体数值或普遍性能优势。证据依据为提供的原页正文，不依赖封存摘要循环证明。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-OBJ-hbm-alternatives"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "24892245d0fe3bb0cc2dd5f087c639b0123f1655fdbb606ceaff114359efd597",
+          "elapsed_seconds": 80.16,
+          "usage": {
+            "input_tokens": 26732,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2283,
+            "reasoning_output_tokens": 859
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "21ab0c4536d843e47f96d229073e73da533bbb58c51c1870bd5aa9e02a2342ab",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:3:claim:12:ev:0",
+      "locator": "page:4/chunk:3",
+      "object_ids": [
+        "part:gpu",
+        "part:hbm"
+      ],
+      "page_index": 3,
+      "question_ids": [
+        "OBJ-hbm-performance",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "quote": "The memory wall has been the most important constraint for AI. Larger memory capacities have been necessary to load larger models into accelerators, while memory bandwidth has been the main gating factor for inference and training token throughput.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:59:30.368019+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。第4页引句完整支持三项作者陈述；“has been”及章节标题要求保留回顾性时态。连续原页的H100至GB300例子提供作者论述背景，不构成瓶颈排序的实测证明。第2页prefill说明限制了泛化范围；本次没有采用外部摘要作为新增证据。",
+        "workorder_ids": [
+          "Q-OBJ-hbm-performance",
+          "Q-Q-SCOPE-tech-gpu-memory"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "e6104bba3bcfbc81c6d8f2261eb73df9b727874239cc60ebf1dd344a2325e29e",
+          "elapsed_seconds": 121.926,
+          "usage": {
+            "input_tokens": 26296,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3321,
+            "reasoning_output_tokens": 2030
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "42016b3308104d0650af31a62533e29344c9487b3c556facd533dbc864329b77",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:4:claim:1:ev:0",
+      "locator": "page:5/chunk:4",
+      "object_ids": [
+        "part:hbm"
+      ],
+      "page_index": 4,
+      "question_ids": [
+        "OBJ-hbm-performance",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "quote": "HBM is extremely valuable for both training and inference, but when we break down inference to its constituent parts of prefill and decode steps, HBM only has high value for the decode step.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T11:01:28.107990+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。已核对提供的第5页连续文字与引句：原文确为“HBM only has high value for the decode step”，紧接计算密集prefill及HBM利用不足的解释。采用文本通过相邻正文缩窄适用范围，不把“only”改为“主要”，也不将作者判断升级为独立验证事实。封存报告摘要不是额外独立来源。",
+        "workorder_ids": [
+          "Q-OBJ-hbm-performance",
+          "Q-Q-SCOPE-tech-gpu-memory"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "959f0a614598934e3e0e9c18d3a26f1a0256b3b91fa6749d12313c2bea454fa7",
+          "elapsed_seconds": 175.575,
+          "usage": {
+            "input_tokens": 26711,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4952,
+            "reasoning_output_tokens": 2943
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "42016b3308104d0650af31a62533e29344c9487b3c556facd533dbc864329b77",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:4:claim:2:ev:0",
+      "locator": "page:5/chunk:4",
+      "object_ids": [
+        "part:hbm"
+      ],
+      "page_index": 4,
+      "question_ids": [
+        "OBJ-hbm-performance",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "quote": "During prefill, which is compute intensive, the generation of KVCache is much less bandwidth intensive due to the parallel nature of prefill, therefore the HBM is underutilized during this step.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T11:01:28.107990+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。已核对提供的第5页连续文字与引句：原文确为“HBM only has high value for the decode step”，紧接计算密集prefill及HBM利用不足的解释。采用文本通过相邻正文缩窄适用范围，不把“only”改为“主要”，也不将作者判断升级为独立验证事实。封存报告摘要不是额外独立来源。",
+        "workorder_ids": [
+          "Q-OBJ-hbm-performance",
+          "Q-Q-SCOPE-tech-gpu-memory"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "959f0a614598934e3e0e9c18d3a26f1a0256b3b91fa6749d12313c2bea454fa7",
+          "elapsed_seconds": 175.575,
+          "usage": {
+            "input_tokens": 26711,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4952,
+            "reasoning_output_tokens": 2943
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "42016b3308104d0650af31a62533e29344c9487b3c556facd533dbc864329b77",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:4:claim:3:ev:0",
+      "locator": "page:5/chunk:4",
+      "object_ids": [
+        "part:hbm",
+        "system:memory"
+      ],
+      "page_index": 4,
+      "question_ids": [
+        "OBJ-hbm-alternatives",
+        "OBJ-hbm-performance"
+      ],
+      "quote": "HBM carries such an expensive premium relative to other forms of DRAM because of its additional bandwidth, and when this B/W is underutilized, this HBM is “wasted”.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T11:01:28.107990+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原文连续引句与PDF文字层仅忽略空白相符；关联陈述逐条语义核验通过。第5页引句完整包含相对其他DRAM的高溢价、额外带宽归因和带宽利用不足时“wasted”的评价。相邻正文将其用于解释CPX开发动因，支持将其识别为作者成本解释；不据相邻GDDR7预测规格或成本数字扩大本条证据范围。",
+        "workorder_ids": [
+          "Q-OBJ-hbm-alternatives"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "959f0a614598934e3e0e9c18d3a26f1a0256b3b91fa6749d12313c2bea454fa7",
+          "elapsed_seconds": 175.575,
+          "usage": {
+            "input_tokens": 26711,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4952,
+            "reasoning_output_tokens": 2943
+          }
+        }
+      },
+      "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    }
+  ],
+  "statements": [
+    {
+      "id": "adoption:20261007:d02dde62d71fc5296e13",
+      "kind": "author_claim",
+      "text": "在2025-09-10发布的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者称NVIDIA宣布的Rubin CPX专门针对推理的prefill阶段进行优化；此处记录作者在该报告时点对产品设计定位的描述。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "question_ids": [
+        "Q-SCOPE-arch-nvidia-gpu"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:0:claim:1:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:57:28.439623+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。正文明确给出Rubin CPX的prefill优化定位，可作为NVIDIA GPU产品适用场景的局部研究证据。该项没有提供GPU/AI ASIC总体定义、组成或排除边界，因此不保留OBJ-gpu-definition标签。与单裸片计算侧重、低带宽高计算定位等peer存在关联，但主张不同；本项为该产品定位的优先canonical项。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-arch-nvidia-gpu"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "24892245d0fe3bb0cc2dd5f087c639b0123f1655fdbb606ceaff114359efd597",
+          "elapsed_seconds": 80.16,
+          "usage": {
+            "input_tokens": 26732,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2283,
+            "reasoning_output_tokens": 859
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:0:claim:1"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "保留author_claim身份及2025年来源时点。设计定位不能证明实际交付、量产规格、优化效果或2026年当前状态，也不意味着CPX只能执行prefill，或prefill必须使用CPX。该项不足以完成NVIDIA GPU架构分类或GPU/AI ASIC定义问题。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "已比对所提供正式记录与历史上下文：existing_formal_knowledge为空；M06-F1将Rubin置于发布、导入及路线图阶段，本项只记录2025年作者描述的设计定位，与其不冲突。历史Rubin/VR200算力、容量及TDP记录不属于CPX定位的同口径断言。所提供2025-09-09官方发布核查摘要与上下文处理定位相容，但不证明实际2026年交付。DistServe与TaiChi摘要针对专用硬件普遍必要性的警示，不反驳本项产品定位。",
+      "gap_dependency_check": "本项依赖第1页完整的产品定位分句，不依赖缺页29、HBM6或图片。未宣称完整视觉阅读，也未将封存报告的处理覆盖率视为语义核验结论。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "在2025-09-10发布的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者称NVIDIA宣布的Rubin CPX专门针对推理的prefill阶段进行优化；此处记录作者在该报告时点对产品设计定位的描述。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:ad21fec92c7d3f7b46b8",
+      "kind": "author_claim",
+      "text": "在2025-09-10发布的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者称，针对推理prefill阶段优化的单裸片Rubin CPX，其设计更强调计算FLOPS，相较之下对内存带宽的强调较少。此条保留为author_claim。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "question_ids": [
+        "OBJ-gpu-definition",
+        "Q-SCOPE-arch-nvidia-gpu"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:0:claim:2:ev:0",
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:0:claim:1:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:58:32.530199+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。连续原文明确将单裸片Rubin CPX定位于prefill优化，并说明其设计更强调计算FLOPS。该产品组成与设计取舍实质关联当前GPU定义及NVIDIA架构问题；无已识别的A条件。与前列peer的prefill定位相关，但设计取舍并非同一主张。B写入仍须调用方完成确定性10%独立复核。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-definition",
+          "Q-Q-SCOPE-arch-nvidia-gpu"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "deb8f3623f40c12b14b4dd86e93b2cc28839dcfa51d5c4e2ac2c0db4080fab8a",
+          "elapsed_seconds": 144.251,
+          "usage": {
+            "input_tokens": 27529,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3924,
+            "reasoning_output_tokens": 1872
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:0:claim:2"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "仅记录2025年报告中的产品设计定位，不证明实测性能、量产规格、实际交付或2026年状态。删除原候选“本段没有给出量化规格”的附带判断，避免读者误以为相邻正文没有规格数字。本条不能完整回答定义、组成、分类与产品关系问题。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "existing_formal_knowledge的正式陈述为空；同时比对已提供历史记录。历史Rubin VR200及Rubin Ultra算力、容量记录对应其他产品，不能与CPX混同。M06-F1将Rubin视为发布/导入与路线图阶段，本条历史设计定位与之相容。M06-F6、M13-F6的带宽瓶颈判断不直接否定CPX的设计侧重，本条不改写这些既有结论。",
+      "gap_dependency_check": "本条依据已提供的第1页连续文字，不依赖缺页29、HBM6材料或图表视觉核验。处理覆盖完整不等于图表全部核验。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。 附上本批已模型审阅且逐句核验的上下文引句，补齐定位/条件/代词。",
+        "model_proposed_text": "在2025-09-10发布的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者称，针对推理prefill阶段优化的单裸片Rubin CPX，其设计更强调计算FLOPS，相较之下对内存带宽的强调较少。此条保留为author_claim。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:573324305cd204832e9c",
+      "kind": "author_claim",
+      "text": "SemiAnalysis 作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》p.16中，将LLM请求服务分为 prefill 与 decode，并把 prefill 描述为根据用户提示生成首个token、影响首token时间（TTFT）的阶段，通常受计算能力限制且未充分利用内存带宽。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:15:claim:3:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:23.191391+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原分7保持。引句支持阶段划分、TTFT及“通常”计算受限的作者解释；p.17进一步给出短输入可能受内存带宽限制的条件，使本条可作为性能指标与瓶颈工况的局部证据。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "287a48fe6735ccf7200f48405de806c4fd5555e27b81e06b92af4054b2999941",
+          "elapsed_seconds": 139.597,
+          "usage": {
+            "input_tokens": 28129,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4218,
+            "reasoning_output_tokens": 1334
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:15:claim:3"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "同报告p.17说明短输入可能受参数加载速度及内存带宽限制；保留author_claim；“通常”不覆盖全部模型、批大小和输入长度。未提供具体型号的测量方法或实测利用率，不能作为GPU整体利用率、出租率或投资模型数值输入，也不代表2026年当前状态。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录为空。M13-F6对典型AI算术强度及B200算力利用率的概括、M06-F6对内存瓶颈的概括，未提供与本条prefill工况相同的条件，不能判为同工况直接冲突，也不能由本条验证或改写。M06-F1的Rubin部署边界不受本条机制解释影响。",
+      "gap_dependency_check": "采用内容由已提供的p.16—17文字支持，不依赖缺页29、HBM6或未读图表；具体测量方法、阈值及更多工况仍缺失。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。 p.17的补充条件移至限制，正文只采用p.16直接支持内容。",
+        "model_proposed_text": "SemiAnalysis 作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》p.16中，将LLM请求服务分为 prefill 与 decode，并把 prefill 描述为根据用户提示生成首个token、影响首token时间（TTFT）的阶段，通常受计算能力限制且未充分利用内存带宽。p.17同时说明，短输入序列可能未充分使用系统算力，此时输出可能受参数加载速度及内存带宽限制。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:60d94a69e08ffc55bcae",
+      "kind": "author_claim",
+      "text": "SemiAnalysis 作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》p.16中，将decode描述为生成新token并从KV cache加载此前token的阶段，影响每个输出token耗时（TPOT）；作者使用“always”称该阶段始终受内存限制、未充分利用计算资源。这是该报告的作者解释，其普遍适用性仍需其他工况核验。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:15:claim:4:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:23.191391+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原分7保持。引句直接支持作者对decode、TPOT及“always memory-bounded”的描述。可采用为该报告的作者解释，须完整保留“always”的归属和未经跨工况验证的限制；现有材料未给出明确的同工况反例。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "287a48fe6735ccf7200f48405de806c4fd5555e27b81e06b92af4054b2999941",
+          "elapsed_seconds": 139.597,
+          "usage": {
+            "input_tokens": 28129,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4218,
+            "reasoning_output_tokens": 1334
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:15:claim:4"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "原文未为“always”给出模型、批大小、序列长度或实现条件的完整范围，不能作为所有decode工况的事实。KV cache描述沿用作者简化措辞，不构成缓存内容的技术规范。未提供实测利用率，不支持商业利用率或数值模型输入。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录为空。M13-F6和M06-F6的内存瓶颈概括方向相近，但不是独立验证本条“always”的证据。p.17说明decode计算需求随批大小和序列长度变化，提示必须检验适用范围，但所给文字未明确展示decode转为计算受限的同工况反例。不改写任何既有结论。",
+      "gap_dependency_check": "记录该作者解释不依赖缺页29或HBM6；验证“始终”的普遍性仍需其他工况证据，未借模型常识补足。未核验图表数值。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "SemiAnalysis 作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》p.16中，将decode描述为生成新token并从KV cache加载此前token的阶段，影响每个输出token耗时（TPOT）；作者使用“always”称该阶段始终受内存限制、未充分利用计算资源。这是该报告的作者解释，其普遍适用性仍需其他工况核验。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:69eacad61be26b26f84b",
+      "kind": "author_claim",
+      "text": "SemiAnalysis 作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》p.17的说明性性能讨论中称，prefill单个token所需的浮点运算量随输入序列长度线性增长；decode所需的浮点运算量也随系统用户数（作者在此对应为批大小）及序列长度变化。该表述记录作者的计算需求解释。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:gpu",
+        "system:compute"
+      ],
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:16:claim:4:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:23.191391+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原分7保持。引句支持作者关于单token prefill计算需求随输入长度线性增长，以及decode计算需求随批大小和序列长度变化的解释。“线性”只明确用于prefill，候选未将其扩大到decode。与性能工况问题具有实质关联。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "287a48fe6735ccf7200f48405de806c4fd5555e27b81e06b92af4054b2999941",
+          "elapsed_seconds": 139.597,
+          "usage": {
+            "input_tokens": 28129,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4218,
+            "reasoning_output_tokens": 1334
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:16:claim:4"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "原文未给出模型架构、公式系数、具体硬件或测量方法；不能推广为所有模型的统一公式。计算需求不等同于硬件峰值FLOPS、实际吞吐或商业利用率，decode也未被明确宣称具有同样的线性关系。不采用图中的32k或100%作为实证阈值。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录为空。data/facts.json中的Rubin、Rubin Ultra及其他产品峰值算力规格属于不同口径，不能与本条工作负载运算需求直接比较。M13-F6的算术强度推导及M06-F6的瓶颈概括未提供同模型、同长度、同批大小条件，未发现可确立的直接冲突，也不以本条验证这些结论。",
+      "gap_dependency_check": "采用内容直接由p.17文字支持，不依赖缺页29、HBM6或图像数值。公式、适用模型和实测条件仍缺失，工单保持开放。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "SemiAnalysis 作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》p.17的说明性性能讨论中称，prefill单个token所需的浮点运算量随输入序列长度线性增长；decode所需的浮点运算量也随系统用户数（作者在此对应为批大小）及序列长度变化。该表述记录作者的计算需求解释。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:912b4ba0e9af6516cce4",
+      "kind": "author_claim",
+      "text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者在说明同一系统执行prefill与decode的资源利用权衡时提出：短输入序列可能无法充分利用推理系统的可用FLOPS；在这种情况下，系统输出受参数加载到芯片内存的速度限制，而该速度取决于内存带宽。此项保留为author_claim。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:gpu",
+        "system:compute"
+      ],
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:16:claim:5:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:38.904774+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原7分。原文完整支持短序列下可能出现的条件性带宽瓶颈；须补回说明性示例的上下文和作者归属。该机制实质关联GPU性能的适用工况，与其他peer的阶段概述不构成相同主张，无须升级A。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "9b12d56a4faaf0400b206711d55c9cb04fdff3f70d8b6dd385a6068b6e9a14bd",
+          "elapsed_seconds": 155.31,
+          "usage": {
+            "input_tokens": 28724,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4577,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:16:claim:5"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "这是作者的条件性机制解释，未给出具体型号、短序列阈值或实测方法；不能作为普遍性能事实、2026年当前状态或商业利用率输入。工单保持开放",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录的statements和answers为空。历史M13-F6讨论B200在特定算术强度假设下的带宽瓶颈，方向相容，但不能独立验证本条；历史峰值算力、内存规格及M06代际结论没有直接冲突。本条不改写这些记录。",
+      "gap_dependency_check": "局部含义可由已提供的第17页连续文字确定，不依赖缺页29或HBM6；未据此核验图像、图表数值或完整视觉内容。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者在说明同一系统执行prefill与decode的资源利用权衡时提出：短输入序列可能无法充分利用推理系统的可用FLOPS；在这种情况下，系统输出受参数加载到芯片内存的速度限制，而该速度取决于内存带宽。此项保留为author_claim。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:16102b257677e6a43de4",
+      "kind": "author_claim",
+      "text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者在同一系统执行prefill与decode的说明性示例中称：随着输入序列长度增加，工作负载最终会使用“全部可用FLOPS”，此时系统总FLOPS成为约束。此项保留为author_claim，仅记录该示例中的作者解释。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:gpu",
+        "system:compute"
+      ],
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:16:claim:6:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:38.904774+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原7分。原文支持作者在说明性示例中对计算瓶颈转换的解释，不能直接采用为所有推理系统随序列增长必然达到满算力的规律。明确示例范围并保留“全部”措辞后，可作为性能工况问题的部分证据。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "9b12d56a4faaf0400b206711d55c9cb04fdff3f70d8b6dd385a6068b6e9a14bd",
+          "elapsed_seconds": 155.31,
+          "usage": {
+            "input_tokens": 28724,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4577,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:16:claim:6"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "“全部可用FLOPS”未获独立实测验证，需在其他模型、硬件、批大小及调度工况下核验；本页的32k和100%属于示例描述，不能外推为通用阈值或投资模型输入。缺少测试方法和反证，工单保持开放",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录为空。历史M13-F6将B200在其算术强度假设下描述为带宽受限；本条示例没有指定B200或相同算术强度，因此不能认定同工况直接冲突，也不能据本条修正M13-F6。M06-F6的内存瓶颈概括同样不能用来证明本示例。历史峰值规格不等于可实现利用率。",
+      "gap_dependency_check": "不依赖缺页29或HBM6。文字足以支持有边界的作者解释，图表具体条件和数值仍未独立核验，未宣称完整视觉阅读。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者在同一系统执行prefill与decode的说明性示例中称：随着输入序列长度增加，工作负载最终会使用“全部可用FLOPS”，此时系统总FLOPS成为约束。此项保留为author_claim，仅记录该示例中的作者解释。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:e13eba7f22f2e4fb5034",
+      "kind": "author_claim",
+      "text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者承接前页的说明性资源利用示例，称节点在长序列或大批量形成的重prefill负载下，内存带宽未得到充分利用。此项保留为author_claim，不表示内存带宽使用量为零。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "root",
+        "system:memory"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-profile"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:1:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:38.904774+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原7分。第18页是第17页说明性资源权衡的推论；中文应避免将goes unutilized解释为完全没有内存访问。长序列或大批量这一具体条件，对推理负载需求工单有实质增量，区别于peer中泛述prefill通常未充分利用带宽的条目。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "9b12d56a4faaf0400b206711d55c9cb04fdff3f70d8b6dd385a6068b6e9a14bd",
+          "elapsed_seconds": 155.31,
+          "usage": {
+            "input_tokens": 28724,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4577,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:1"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "原文没有给出利用率百分比、具体型号、序列或批量阈值及实测方法；不能推断GPU整体利用率、出租率或所有prefill工况。工单所需实测样本与反证仍缺，保持开放",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录为空。历史M13-F6讨论B200在给定算术强度范围下的算力低利用率，指标与本条内存带宽利用不同，未提供相同长序列或大批量prefill工况，不能直接判作冲突或验证。历史M06规格和代际判断没有直接冲突。",
+      "gap_dependency_check": "所需第17—18页文字上下文均已提供，不依赖缺页29或HBM6。没有核验图像中的利用率曲线，也不据此宣称图表全部核验。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者承接前页的说明性资源利用示例，称节点在长序列或大批量形成的重prefill负载下，内存带宽未得到充分利用。此项保留为author_claim，不表示内存带宽使用量为零。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:6fc883c774d75f12e011",
+      "kind": "author_claim",
+      "text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者以其所称过去几年芯片BOM中内存占比持续上升为前提，将前述长序列或大批量重prefill情境下的内存资源利用不足评价为昂贵的浪费。本段未提供占比、价格或成本数值；此项保留为author_claim。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "root",
+        "system:memory"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-economics"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:2:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:38.904774+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原7分。可采用作者以BOM内存占比上升为前提解释重prefill资源浪费成本的定性论证，不能采用为已独立验证的行业成本趋势。它直接讨论推理资源利用与成本，实质关联经济性工单；与peer的HBM溢价论证相关，但其BOM占比前提不同，不是同一主张。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-economics"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "9b12d56a4faaf0400b206711d55c9cb04fdff3f70d8b6dd385a6068b6e9a14bd",
+          "elapsed_seconds": 155.31,
+          "usage": {
+            "input_tokens": 28724,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4577,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:2"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "原段回指前一节；其BOM趋势的具体芯片范围、估算口径和数据依据未在本次原页材料中核定。本次只采用明确的作者论证，不验证该前提为行业事实，也不能计算单位产出成本或更新价格模型。工单保持开放",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录为空。提供的历史facts没有可比的内存BOM占比或单位推理成本记录；products中的供需状态不验证成本趋势。M13-F6的性能利用率推导也不构成成本证据。未发现直接冲突，不调整既有模型或结论。",
+      "gap_dependency_check": "此项作者论证不依赖缺页29或HBM6；BOM趋势的实证验证仍需回查所指前节及数据依据。未借封存摘要替代原始成本证据，未宣称完整图表核验。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者以其所称过去几年芯片BOM中内存占比持续上升为前提，将前述长序列或大批量重prefill情境下的内存资源利用不足评价为昂贵的浪费。本段未提供占比、价格或成本数值；此项保留为author_claim。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:90492f3ef4b1ba2136fe",
+      "kind": "author_claim",
+      "text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者在讨论同一系统并发处理prefill与decode时，认为两阶段负载特征差异使请求“总会”相互干扰性能。此项保留为author_claim，“总会”是作者在该讨论中的判断，需在其他工况下核验。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:3:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:53:38.904774+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原7分。原候选省去了always的强度，采用时须保留为作者的“总会”判断并限定所讨论的同系统并发情境。该干扰机制同时关联阶段资源特征与调度配置；不能由此推出专用硬件或完全解耦的普遍必要性。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "9b12d56a4faaf0400b206711d55c9cb04fdff3f70d8b6dd385a6068b6e9a14bd",
+          "elapsed_seconds": 155.31,
+          "usage": {
+            "input_tokens": 28724,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4577,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:3"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "没有干扰幅度、具体模型、硬件、并发策略或SLO实测；不能外推为所有共存方案必然恶化，或完全解耦必然更优。所给外部论文摘要只作反证筛查线索，不作为新增采用证据。两项工单均保持开放",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录为空，提供的历史Finding没有同工况并发干扰结论。DistServe摘要涉及P/D干扰，但不验证always；TaiChi摘要表明聚合与解耦优势依赖TTFT/TPOT SLO，并未直接证明存在零干扰工况，因此不足以判定本条存在直接反证。若进一步证据反驳“总会”，须转A复审，不能仅靠作者归属消解冲突。",
+      "gap_dependency_check": "本条局部判断由已提供第17—18页文字支持，不依赖缺页29或HBM6。第18页末尾关于完全解耦适用条件的跨页截断，阻止进一步采用解耦收益结论，但不阻止本条有边界的干扰判断；未宣称完整视觉核验。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。 移除当前直接引句以外的附加优化陈述。",
+        "model_proposed_text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者在讨论同一系统并发处理prefill与decode时，认为两阶段负载特征差异使请求“总会”相互干扰性能；同段还指出，平衡两阶段的优化存在取舍。此项保留为author_claim，“总会”是作者在该讨论中的判断，需在其他工况下核验。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:509264b82b61930c2fd5",
+      "kind": "author_claim",
+      "text": "作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中解释：在将prefill与decode阶段分开、按阶段优先级处理的方案中，若优先处理decode，prefill便需要等待，导致首token时间变长。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:4:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:55:42.584020+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。原文直接支持优先处理decode导致prefill等待及TTFT变长的条件性解释。中文需明确这是阶段优先调度情境，避免将其读成所有独立资源池解耦部署的必然结果。与当前推理调度及负载时延问题实质相关；和并发干扰、请求路由等peer主张不同。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "eecd7384213a43089ce2e2209fe6ac0649126e7d75599cacea76d6f0071d60c2",
+          "elapsed_seconds": 139.39,
+          "usage": {
+            "input_tokens": 28490,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4550,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:4"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "这是作者对所述调度方案的机制解释，没有实测延迟、资源分配或负载参数，不能推广为所有解耦服务的效果，也不能代表2026年当前运行状态。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录2.0的相关表为空。历史M13-F6讨论B200算力利用率与带宽瓶颈，M06-F6讨论宏观内存约束，均未提出相同优先调度条件下的相反TTFT结论；本条不验证或改写这些Finding。所提供DistServe摘要核查涉及阶段干扰和TTFT/TPOT，但不作为本条新增正式证据。",
+      "gap_dependency_check": "所需条件及解释均在已提供第18页文字层，不依赖缺页29或HBM6材料；未核验图片，也不声称完成全部视觉核验。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中解释：在将prefill与decode阶段分开、按阶段优先级处理的方案中，若优先处理decode，prefill便需要等待，导致首token时间变长。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:042869ed3af9f4c5388b",
+      "kind": "author_claim",
+      "text": "作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中解释：在该段所讨论的阶段优先调度方案中，若优先处理prefill，decode会被迫等待，token间时延变慢；作者同时指出，此时内存带宽利用不足。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "root",
+        "system:memory"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:5:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:55:42.584020+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。原文支持优先prefill时decode等待、token间时延变慢及内存带宽利用不足的作者解释。补回与前句相同的阶段优先调度条件后，可作为调度与资源需求问题的部分证据；它与反向优先级的claim:4不是重复。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": true,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "eecd7384213a43089ce2e2209fe6ac0649126e7d75599cacea76d6f0071d60c2",
+          "elapsed_seconds": 139.39,
+          "usage": {
+            "input_tokens": 28490,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4550,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:5"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "没有给出带宽利用比例、token间时延数值或具体调度实现；不得推导GPU整体利用率、商业出租率或投资模型输入。所述结果不自动适用于独立资源池并行服务。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录2.0相关表为空。历史M13-F6的B200算力利用率论断与本条等待期间的带宽利用解释不是同一指标或同一工况，未发现直接矛盾；本条不据此改写其广义瓶颈结论。M06中的容量、规格与路线图记录亦不构成该调度解释的反证。",
+      "gap_dependency_check": "解释及必要前文均在已提供第18页文字层，不依赖缺页29、HBM6或图表数值。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中解释：在该段所讨论的阶段优先调度方案中，若优先处理prefill，decode会被迫等待，token间时延变慢；作者同时指出，此时内存带宽利用不足。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:a89125313cdf477eca95",
+      "kind": "author_claim",
+      "text": "作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，将同类硬件上的prefill/decode分离服务列为初步方案：把两阶段请求路由至不同计算单元，先处理性能干扰，使性能更容易分析。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "root",
+        "system:compute"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-placement"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:6:ev:0",
+        "adoption:20261007:context:e16f1e39d1247f57c7e0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:55:42.584020+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。这是有明确操作内容的配置建议，直接关联推理调度与系统配置工单。正文与小节标题共同支持同类硬件上的分离服务方案，不要求专用CPX硬件，也未声称消除全部性能问题。与peer中的专用硬件必要性判断及并发干扰描述不是相同主张。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "eecd7384213a43089ce2e2209fe6ac0649126e7d75599cacea76d6f0071d60c2",
+          "elapsed_seconds": 139.39,
+          "usage": {
+            "input_tokens": 28490,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4550,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:6"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "这是作者提出的初步方案，不是性能保证。跨页正文明确提示，完全解耦的良好效果取决于特定输入/输出序列长度比和较长decode，其他情境收益有限；也未解决资源配置不匹配。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录2.0相关表为空。历史M06-F1的Rubin路线图状态与本条通用路由建议无冲突，本条不宣称CPX已交付。peer中的“只有专用硬件才能真正解耦”属于另一待审判断，不能据其否定本页明确列出的同类硬件初步方案。所提供DistServe摘要核查与不要求新专用芯片的方案方向相容，但不作为已采用的外部来源。",
+      "gap_dependency_check": "第18至19页已提供连续文字，足以核验该方案及紧邻限制；不依赖缺页29、HBM6或示意图。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。 保留原页同硬件标题作为定位上下文。",
+        "model_proposed_text": "作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，将同类硬件上的prefill/decode分离服务列为初步方案：把两阶段请求路由至不同计算单元，先处理性能干扰，使性能更容易分析。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:b0f74378bdc654875a3d",
+      "kind": "author_claim",
+      "text": "作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中认为，将prefill与decode请求路由到不同计算单元，有助于管理通常关注一定每用户token/s水平的SLA；本段没有给出具体SLA阈值。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:7:ev:0",
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:6:ev:0",
+        "adoption:20261007:context:e16f1e39d1247f57c7e0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:55:42.584020+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。This的指代可由紧邻路由方案确定；token/s/user提供了具体服务性能口径，因此不是单纯泛泛评价。它补充解耦服务的管理目的及推理吞吐需求，与claim:6的配置动作不同，但只构成两个开放问题的部分解释。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": true,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "eecd7384213a43089ce2e2209fe6ac0649126e7d75599cacea76d6f0071d60c2",
+          "elapsed_seconds": 139.39,
+          "usage": {
+            "input_tokens": 28490,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4550,
+            "reasoning_output_tokens": 1552
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:17:claim:7"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "“通常关注”是作者概括，不证明行业全部SLA均采用这一口径，也不证明任何部署已达标。跨页上下文提示解耦总体收益受输入/输出序列长度比及decode长度限制；缺少阈值、分位数、实测和可靠性数据。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式研究记录2.0相关表为空；所提供历史事实和M06、M13 Finding没有相同SLA管理效果的相反记录。TaiChi摘要核查提示方案优势依赖TTFT/TPOT SLO，与保留条件相容，不能据此把本条扩展为普遍优势或达标证据。",
+      "gap_dependency_check": "指代及跨页限制均可由已提供第18至19页文字核验，不依赖缺页29、HBM6或图片读取。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。 附上本批已模型审阅且逐句核验的上下文引句，补齐定位/条件/代词。 保留原页同硬件标题作为定位上下文。",
+        "model_proposed_text": "作者在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中认为，将prefill与decode请求路由到不同计算单元，有助于管理通常关注一定每用户token/s水平的SLA；本段没有给出具体SLA阈值。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:21c1c152b957bff44fb7",
+      "kind": "author_claim",
+      "text": "在2025-09-10发布的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者在说明性比较中称：Rubin CPX在较短输入长度下利用更高比例的自身内存带宽；到作者认为典型的输入长度时，CPX的带宽利用比例进一步下降。该段未给出百分比或输入长度阈值。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:gpu",
+        "part:hbm",
+        "root",
+        "system:memory"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "OBJ-hbm-alternatives"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:18:claim:4:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:57:28.439623+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。该项给出特定示意比较中的定性趋势，超出单纯图表介绍；限定为作者对纯prefill场景的解释后，可作为输入长度与资源配置关系、HBM替代方案适用条件的部分证据。与peer中的一般带宽利用不足主张有关，但具体比较对象和长度条件不同，不构成重复。未发现需要上调A的同口径冲突。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-OBJ-hbm-alternatives"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "24892245d0fe3bb0cc2dd5f087c639b0123f1655fdbb606ceaff114359efd597",
+          "elapsed_seconds": 80.16,
+          "usage": {
+            "input_tokens": 26732,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 2283,
+            "reasoning_output_tokens": 859
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:18:claim:4"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "本页比较语境为R200与CPX纯prefill示例，并非实测对照；保留author_claim身份。这是说明性比较中的作者解释，并非实测性能或量产规格。各自带宽的利用比例不等于绝对带宽、吞吐量、GPU整体利用率或商业出租率。正文未提供完整模型、批大小和计算假设，其他工况仍需核验。不能据此生成成本或投资模型输入，也不能代表2026年状态。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "已比对所提供正式记录与历史上下文：existing_formal_knowledge为空；M13-F6讨论B200算术强度与算力利用率，M06-F6含一般内存瓶颈判断，本项讨论R200/CPX纯prefill示例的内存带宽利用比例，产品、指标及工况不同，未构成直接矛盾，也不能据此改写这些既有结论。所提供论文摘要反证涉及解耦的适用性，不直接反驳本项限定比较；官方历史发布核查也未独立验证该性能趋势。",
+      "gap_dependency_check": "本项定性作者主张由第19页正文充分支持，不依赖缺页29或HBM6。未据此核验示意图的坐标、数值或全部图表；若要采用定量曲线或跨工况结论，需另补图表及假设。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。 比较对象与完整示例语境移至限制，直接采用原句中的CPX相对利用趋势。",
+        "model_proposed_text": "在2025-09-10发布的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者在纯prefill的说明性比较中称：相较R200，Rubin CPX在较短输入长度下利用更高比例的自身内存带宽；到作者认为典型的输入长度时，CPX的带宽利用比例进一步下降。该段未给出百分比或输入长度阈值。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:9376154a3181a054abdd",
+      "kind": "author_claim",
+      "text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》“Memory: The Story So Far”节中，作者回顾此前的发展，将内存墙称为AI“最重要的约束”，认为更大的内存容量用于将更大的模型载入加速器，并将内存带宽概括为推理与训练token吞吐量的主要限制因素。该历史性概括保留为author_claim。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:gpu",
+        "part:hbm"
+      ],
+      "question_ids": [
+        "OBJ-hbm-performance",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:3:claim:12:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T10:59:30.368019+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。引文充分支持作者在“Memory: The Story So Far”中的历史性概括，可作为容量与模型载入、带宽与吞吐量关系的作者解释，实质关联两项开放问题。仅采用有来源时点的作者观点，不形成AI整体瓶颈排序的新研究结论。同文对prefill偏计算的说明必须同时保留，防止把“主要”扩大为所有工况。B写入仍须调用方完成确定性10%独立复核。",
+        "workorder_ids": [
+          "Q-OBJ-hbm-performance",
+          "Q-Q-SCOPE-tech-gpu-memory"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "e6104bba3bcfbc81c6d8f2261eb73df9b727874239cc60ebf1dd344a2325e29e",
+          "elapsed_seconds": 121.926,
+          "usage": {
+            "input_tokens": 26296,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 3321,
+            "reasoning_output_tokens": 2030
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:3:claim:12"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "同文另称prefill通常偏计算密集；历史概括不能视为所有训练/推理工况的普遍事实。“最重要”是作者的历史性评价，未提供跨工况排序方法或独立测试。本段没有明确模型、批大小、序列长度、精度和测量方法，其他工况仍需核验；不能据此确认HBM可靠性、失效机制、性能数值、商业利用率或2026年当前状态。若进一步提出通用瓶颈排序或改写既有结论，须另行进入A复审。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "所提供正式研究记录为空。M06-F6已有内存带宽/容量是第一瓶颈的表述，但其状态为needs-review，不能作为本项的独立验证。M13-F6针对B200算术强度推导利用率，其产品、计算口径及待核条件不同，本项不验证或更新该推导。M06-F11区分容量与带宽目标，未与本项历史性概括直接冲突。同文计算密集prefill构成适用边界，阻止把该概括升格为通用结论。",
+      "gap_dependency_check": "该作者解释由已提供第4页文字及第2页条件说明支持，不依赖缺页29或HBM6。没有宣称完成图表核验或完整视觉阅读。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。 其他页的反泛化条件移至限制。",
+        "model_proposed_text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》“Memory: The Story So Far”节中，作者回顾此前的发展，将内存墙称为AI“最重要的约束”，认为更大的内存容量用于将更大的模型载入加速器，并将内存带宽概括为推理与训练token吞吐量的主要限制因素。该历史性概括保留为author_claim；同文另称prefill通常偏计算密集，因此不能将其解释为所有训练、推理工况均受内存带宽限制。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:48708d2cc7e83d13bbf3",
+      "kind": "author_claim",
+      "text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者在将prefill描述为计算密集、KVCache生成带宽需求较低的讨论中，称HBM对训练和推理均很有价值，并将推理两阶段中的“高价值”仅归于decode步骤。此处保留为author_claim，限于该段作者解释。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:hbm"
+      ],
+      "question_ids": [
+        "OBJ-hbm-performance",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:4:claim:1:ev:0",
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:4:claim:2:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T11:01:28.107990+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。第5页连续正文足以支持限定于作者所讨论的计算密集型prefill的解释。候选中的“主要”弱化了原文“only”，采用文本保留这一排他措辞及其上下文边界。与两项当前问题的阶段适用场景和性能边界实质相关；该价值判断与peer中的资源瓶颈解释有关，但并非同一主张。",
+        "workorder_ids": [
+          "Q-OBJ-hbm-performance",
+          "Q-Q-SCOPE-tech-gpu-memory"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "959f0a614598934e3e0e9c18d3a26f1a0256b3b91fa6749d12313c2bea454fa7",
+          "elapsed_seconds": 175.575,
+          "usage": {
+            "input_tokens": 26711,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4952,
+            "reasoning_output_tokens": 2943
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:4:claim:1"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "“仅”是作者的判断，不能推广为所有模型、输入长度和批量下的结论。全批peer另有短输入可能受内存带宽限制的表述，其他工况仍须核验；本段也未分别测量HBM容量、带宽及其他价值。不构成性能实测、量产规格、2026年状态或模型数值输入。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式知识表为空。已比对提供的M06-F6、M06-F11和M13-F6：分别涉及广义内存瓶颈、长序列KVCache容量和典型算术强度推导，未在相同计算密集型prefill工况下直接反驳本条限定解释；本条不修订这些记录。历史HBM容量规格也不与本条构成数值冲突。同报告短输入peer限制了排他表述的推广范围，已明确保留。所给论文摘要反查讨论PD配置与SLO，并非本条HBM价值判断的直接反证。",
+      "gap_dependency_check": "该局部解释由第5页连续文字支持，不依赖缺失图片页29或HBM6材料；不据此宣称全部图表已核验。其他章节的工况差异仍须另行核验。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。 附上本批已模型审阅且逐句核验的上下文引句，补齐定位/条件/代词。",
+        "model_proposed_text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者在将prefill描述为计算密集、KVCache生成带宽需求较低的讨论中，称HBM对训练和推理均很有价值，并将推理两阶段中的“高价值”仅归于decode步骤。此处保留为author_claim，限于该段作者解释。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:5c8c886f24f649bf3462",
+      "kind": "author_claim",
+      "text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者解释：对于该段所讨论的计算密集型prefill，其并行性使KVCache生成的带宽需求较低，因此这一阶段的HBM利用不足。此处保留为author_claim，描述内存资源的阶段性利用，不是整台GPU利用率的测量。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:hbm"
+      ],
+      "question_ids": [
+        "OBJ-hbm-performance",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:4:claim:2:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T11:01:28.107990+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。原文直接支持计算密集型prefill中，并行性、KVCache生成带宽需求与HBM利用不足之间的作者解释，可作为当前性能边界及内存适用场景问题的部分证据。与chunk:15:claim:3等共享阶段瓶颈结论，但本条另含KVCache生成及并行性的具体因果解释，不作同义重复处理。",
+        "workorder_ids": [
+          "Q-OBJ-hbm-performance",
+          "Q-Q-SCOPE-tech-gpu-memory"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "959f0a614598934e3e0e9c18d3a26f1a0256b3b91fa6749d12313c2bea454fa7",
+          "elapsed_seconds": 175.575,
+          "usage": {
+            "input_tokens": 26711,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4952,
+            "reasoning_output_tokens": 2943
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:4:claim:2"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "未给出模型、输入长度、批量、HBM型号、测试方法或利用率数值；不能覆盖短输入等其他工况，也不能推导忙闲比、出租率或商业变现比例。属于2025年的作者机制解释，不证明2026年实际性能。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式知识表为空。M13-F6的B200算力利用率推导和M06-F6的广义内存瓶颈没有明确对应本条计算密集prefill工况，因此不存在已确认的同口径直接冲突；不能用本条验证或改写其利用率结论。M06-F11的KVCache容量判断与带宽利用不足可以并存。全批短输入peer提示工况边界，已避免将本条推广到全部prefill。",
+      "gap_dependency_check": "证据定位为page:5/chunk:4，机制解释不依赖页29图片或HBM6。所给局部连续正文足够支持采用边界，但不足以验证所有模型及工况。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者解释：对于该段所讨论的计算密集型prefill，其并行性使KVCache生成的带宽需求较低，因此这一阶段的HBM利用不足。此处保留为author_claim，描述内存资源的阶段性利用，不是整台GPU利用率的测量。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "id": "adoption:20261007:3b0ba2133a2a50fa636d",
+      "kind": "author_claim",
+      "text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者将HBM相对其他DRAM的高溢价归因于额外带宽，并认为当这部分带宽利用不足时，昂贵的HBM被“浪费”。此处保留为author_claim，是该段关于带宽溢价的定性成本解释。",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "published_date": "2025-09-10",
+      "object_ids": [
+        "part:hbm",
+        "system:memory"
+      ],
+      "question_ids": [
+        "OBJ-hbm-alternatives"
+      ],
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:4:claim:3:ev:0"
+      ],
+      "status": "adopted",
+      "acceptance": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "Codex core_review / CLI请求gpt-6.1-sol（m5）",
+        "at": "2026-10-07T11:01:28.107990+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原评分7。原文直接支持作者关于HBM相对其他DRAM的带宽溢价及低利用时价值浪费的定性解释，与当前替代方案问题中的成本和取舍实质相关。不是性能测量，故不保留OBJ-hbm-performance标签。与chunk:1:claim:5及chunk:17:claim:2有共同成本主题，但本条包含相对其他DRAM的溢价归因这一独立内容。",
+        "workorder_ids": [
+          "Q-OBJ-hbm-alternatives"
+        ],
+        "operator_review_by": "Codex 当前会话（m5，逐原文复核）",
+        "operator_review_at": "2026-10-07T11:02:29.692983+00:00",
+        "batch_id": "20261007-first-batch",
+        "sampling": {
+          "cohort": 19,
+          "rate": 0.1,
+          "sample_size": 2,
+          "selected": false,
+          "method": "SHA256(fixed_batch_id|source_candidate_id), first ceil(10%)",
+          "result": "passed"
+        },
+        "model_provenance": {
+          "backend": "codex_cli",
+          "model": "gpt-6.1-sol",
+          "context": 65536,
+          "max_output_tokens": 8192,
+          "request_model": "gpt-6.1-sol",
+          "revision": "",
+          "reasoning_effort": "high",
+          "requested": "gpt-6.1-sol",
+          "actual": null,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "prompt_sha256": "8d8d64512646e10bce3541b8bdbf5324c635364350bf0c552bd26dc3a4dd9dba",
+          "input_sha256": "959f0a614598934e3e0e9c18d3a26f1a0256b3b91fa6749d12313c2bea454fa7",
+          "elapsed_seconds": 175.575,
+          "usage": {
+            "input_tokens": 26711,
+            "cached_input_tokens": 0,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 4952,
+            "reasoning_output_tokens": 2943
+          }
+        }
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:4:claim:3"
+      ],
+      "scope": "该作者在2025-09-10报告中的有条件技术解释；非2026年现状或跨工况性能事实",
+      "limitations": "“浪费”是作者评价，并非实测经济损失。未给出同口径采购价格、溢价比例、具体DRAM型号或完整性能成本比较，也未证明带宽是溢价的唯一原因或容量价值可以忽略。不得用作报价、成本模型数值输入或2026年市场状态。",
+      "unknown_reason": "当前模型/批大小/序列长度/硬件/SLO的独立实测及量产状态未由此项认证。",
+      "conflict_check": "正式知识表为空。已比对M06-F11：其强调长序列KVCache容量，本条仅保留带宽溢价未充分发挥价值的作者解释，不否定容量价值，因而无直接冲突。所给历史事实未含同口径HBM与其他DRAM价格记录；products中的tight状态也不能验证或反驳本条溢价归因。本条不修改既有成本、规格或Finding。",
+      "gap_dependency_check": "本条由第5页连续正文独立定位，不使用页29图片或HBM6材料。无需依靠未核验图表即可记录这项定性作者解释；完整替代方案比较仍有证据缺口。",
+      "partial_support_only": true,
+      "publication_refinement": {
+        "by": "Codex 当前会话（m5，逐原文复核）",
+        "at": "2026-10-07T11:02:29.692983+00:00",
+        "reason": "完成主会话原文语义复核，清除已完成的待抽样措辞；实质边界保留。",
+        "model_proposed_text": "在2025-09-10的《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》中，作者将HBM相对其他DRAM的高溢价归因于额外带宽，并认为当这部分带宽利用不足时，昂贵的HBM被“浪费”。此处保留为author_claim，是该段关于带宽溢价的定性成本解释。"
+      },
+      "audit_receipt": {
+        "id": "c3-b-first-batch-20261007",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    }
+  ],
   "answers": [],
   "note": "采用后的研究记录；Spark 输出只进入运行候选快照，不自动写入此表。旧来源登记未验证阅读覆盖率，不视为深读完成。"
 }

@@ -79,6 +79,34 @@ finally:
    return {objects:a.objects.length,objectsWithEvidence:withEvidence};
   },fixture);
   assert.ok(result.objects>100);assert.ok(result.objectsWithEvidence>0);
+  // The actual node page distinguishes formal records without eagerly reading sources.
+  const mixed = structuredClone(fixture);
+  mixed.full.knowledge.statements[0].text = '<img src=x onerror=alert(1)> bounded author claim';
+  mixed.full.knowledge.statements[0].scope = 'historical author explanation';
+  mixed.full.knowledge.statements.push({id:'statement:candidate',text:'Still a candidate',status:'candidate'});
+  mixed.summary.knowledge.statements.push({id:'statement:candidate',status:'candidate'});
+  let fullRequests = 0;
+  await page.route('**/api/research-summary?*', route => route.fulfill({json:mixed.summary}));
+  await page.route(url => url.pathname === '/api/research', route => {
+    fullRequests++;
+    return fullRequests === 1 ? route.fulfill({status:503,json:{error:'temporary'}}) : route.fulfill({json:mixed.full});
+  });
+  await page.goto(process.env.UI_BASE_URL+'/node.html');
+  const detail = page.locator('.adopted-research'); await detail.waitFor();
+  assert.equal(fullRequests,0,'first paint fetched the full research source payload');
+  assert.match(await page.locator('#evidence').innerText(),/正式采用/);
+  assert.match(await page.locator('#evidence').innerText(),/候选/);
+  await detail.locator('summary').click(); await detail.locator('button').waitFor();
+  assert.equal(await detail.locator('[data-adopted-id]').count(),0,'failed request pretended adopted records loaded');
+  await detail.getByRole('button',{name:'重试'}).click();
+  await page.locator('[data-adopted-id="statement:reviewed"]').waitFor();
+  assert.equal(await detail.locator('[data-adopted-id="statement:candidate"]').count(),0);
+  assert.match(await detail.innerText(),/historical author explanation/);
+  assert.match(await detail.innerText(),/Original fixture quotation/);
+  assert.match(await detail.innerText(),/原件第 1 页/);
+  assert.equal(await detail.locator('img').count(),0,'source text became active HTML');
+  await page.setViewportSize({width:390,height:950});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   console.log('PASS HTTP full/summary association parity for '+result.objects+' objects; nonzero evidence, redirects, stale success/failure, cache ownership, retry and full-view retention');
  } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

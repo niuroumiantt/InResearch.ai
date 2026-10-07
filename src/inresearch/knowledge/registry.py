@@ -743,7 +743,7 @@ def build_research_summary(root=ROOT):
                     relations=project(state['graph']['relations'],
                     ('id', 'source', 'target', 'type', 'evidence_id', 'evidence_ids'))),
                 questions=project(state['questions']['records'], refs + ('text', 'status', 'node', 'variable_class', 'legacy_module')),
-                knowledge={key: project(state['knowledge'][key], refs)
+                knowledge={key: project(state['knowledge'][key], refs + ('status',))
                            for key in ('evidence', 'statements', 'answers')},
                 tasks=project(state['tasks'], refs),
                 reader={key: state['reader'][key] for key in ('status', 'stale', 'received_at')
