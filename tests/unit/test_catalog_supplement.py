@@ -40,6 +40,7 @@ class CatalogSupplementTests(unittest.TestCase):
 
     def test_historical_supplement_preserves_current_products_and_indexes_unassigned_documents(self):
         base,data=historical_fixture()
+        data['products'][1]['name']='SYS-6039P-TXRT+'
         catalog.receive(self.root,base,'supermicro')
         receipt=catalog.receive(self.root,data,'supermicro')
         self.assertEqual((receipt['added_products'],receipt['preserved_products'],receipt['current_products']),(1,5,6))
@@ -50,6 +51,7 @@ class CatalogSupplementTests(unittest.TestCase):
             self.assertEqual(json.loads(db.execute('SELECT payload FROM products WHERE id=?',(current['id'],)).fetchone()[0]),base['products'][0])
             self.assertEqual(db.execute('SELECT count(*) FROM versions').fetchone()[0],7)
         self.assertEqual(catalog_materials.query(self.root,'supermicro','Test Report')['matched'],1)
+        self.assertEqual(catalog_materials.query(self.root,'supermicro','SYS-6039P-TXRT+')['matched'],1)
         self.assertEqual(catalog_materials.query(self.root,'supermicro','unassigned')['matched'],1)
         self.assertEqual(catalog_materials.query(self.root,'supermicro')['unassigned'],1)
         self.assertTrue(catalog.receive(self.root,data,'supermicro')['replayed'])

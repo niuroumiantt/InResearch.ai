@@ -69,8 +69,9 @@ def query(root, company, q='', offset=0, limit=50):
             d = json.loads(row[0])
             d['name'] = unquote(urlsplit(d['urls'][0]).path.rsplit('/',1)[-1]) or d['id'][:12]
             records.append(d)
-        matched = [d for d in records if not q or q.casefold() in json.dumps(d,ensure_ascii=False).casefold()]
         names = dict(db.execute("SELECT id,json_extract(payload,'$.name') FROM products WHERE run_id=(SELECT id FROM runs ORDER BY generated DESC LIMIT 1)"))
+        matched = [d for d in records if not q or q.casefold() in json.dumps(d,ensure_ascii=False).casefold()
+                   or any(q.casefold() in names.get(l['product_id'],'').casefold() for l in d['links'])]
         page = []
         for d in matched[offset:offset+limit]:
             links = list({l['product_id']:l for l in d['links']}.values())
