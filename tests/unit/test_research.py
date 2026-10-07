@@ -631,6 +631,7 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
 
     def test_adopted_node_details_use_curated_support_closure_without_runtime_or_catalog(self):
         curated = adopted_knowledge()
+        curated.update(version='2.0.0', note='Non-collection metadata')
         curated['statements'][0]['object_ids'] = ['part:gpu']
         curated['documents'][0]['stored_path'] = '/private/PRIVATE_MARKER.pdf'
         research.atomic_json(self.curated_path, curated)

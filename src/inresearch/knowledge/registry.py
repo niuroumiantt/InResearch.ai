@@ -785,7 +785,8 @@ def adopted_for_node(root=ROOT, node='root'):
     closed = completed_questions(curated)
     for question in questions:
         question['status'] = 'answered' if question['id'] in closed else 'open'
-    scoped = summary_for_node(dict(graph=graph, questions=questions, tasks=[], knowledge=curated), node)
+    scoped = summary_for_node(dict(graph=graph, questions=questions, tasks=[],
+                                   knowledge={key: curated[key] for key in COLLECTIONS}), node)
     statements = {s['id']: s for s in scoped['knowledge']['statements']
                   if supported_adoption(s, curated)}
     answers = [a for a in scoped['knowledge']['answers'] if supported_adoption(a, curated)]
