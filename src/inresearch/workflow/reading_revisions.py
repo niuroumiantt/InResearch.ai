@@ -25,8 +25,9 @@ class ReadingRevisions:
         model = self.stages.model.identity
         # Preserve legacy recipe identities; scope changes get a new frozen recipe.
         pdf_policy = {'pdf_mode': self.stages.pdf_mode} if self.stages.pdf_mode != 'full_visual' else {}
+        batch_policy = self.stages.batch_policy(doc)
         recipe = digest_bytes(encoded({'version': RECIPE_VERSION, 'model': model,
-                                      'chunk_chars': self.chunk_chars, 'snapshot': context['snapshot_hash'], **pdf_policy}).encode())[:24]
+                                      'chunk_chars': self.chunk_chars, 'snapshot': context['snapshot_hash'], **pdf_policy, **batch_policy}).encode())[:24]
         revision = 'rev-' + uuid.uuid4().hex
         run = dict(revision_id=revision,doc_id=doc['doc_id'],base_revision_id=base,
                    request_id=request_id,request_json=encoded(request or {}),reason=reason,
@@ -38,7 +39,7 @@ class ReadingRevisions:
         execution = {**doc, **run}
         atomic_json(self.stages.artifact_path(execution,'context.json'),context)
         atomic_json(self.stages.artifact_path(execution,'recipe.json'),
-                    dict(recipe=recipe,version=RECIPE_VERSION,model=model,chunk_chars=self.chunk_chars, **pdf_policy))
+                    dict(recipe=recipe,version=RECIPE_VERSION,model=model,chunk_chars=self.chunk_chars, **pdf_policy, **batch_policy))
         self.catalog.insert_run(run)
         self.catalog.enqueue(run,'extract',self.clock())
         return run
@@ -49,6 +50,7 @@ class ReadingRevisions:
                        chunk_chars=self.chunk_chars,version=RECIPE_VERSION)
         if self.stages.pdf_mode != 'full_visual':
             request['pdf_mode'] = self.stages.pdf_mode
+        request.update(self.stages.batch_policy(self.catalog.reading(doc_id)))
         with self.catalog.transaction():
             prior = self.conn.execute('SELECT * FROM reading_runs WHERE doc_id=? AND request_id=?',(doc_id,request_id)).fetchone()
             if prior:
@@ -73,6 +75,7 @@ class ReadingRevisions:
                        model=self.stages.model.identity,chunk_chars=self.chunk_chars,version=RECIPE_VERSION)
         if self.stages.pdf_mode != 'full_visual':
             request['pdf_mode'] = self.stages.pdf_mode
+        request.update(self.stages.batch_policy(self.catalog.reading(doc_id)))
         with self.catalog.transaction():
             prior = self.conn.execute('SELECT * FROM reading_runs WHERE doc_id=? AND request_id=?',(doc_id,request_id)).fetchone()
             if prior:

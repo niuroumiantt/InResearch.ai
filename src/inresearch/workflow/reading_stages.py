@@ -2,19 +2,31 @@
 from __future__ import annotations
 import re, shutil, subprocess, tempfile, time
 from pathlib import Path
-from inresearch.materials.reader_contracts import Blocked, Deferred, UnsafePath, IntegrityError, ModelOutputError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, MODULES, OCR_GAP_REASONS, max_gap_pages
+from inresearch.materials.reader_contracts import Blocked, Deferred, UnsafePath, IntegrityError, ModelOutputError, TransientModelError, ReaderError, RECIPE_VERSION, OCR_DEFERRED_PRIORITY, MODULES, OCR_GAP_REASONS, max_gap_pages
 from inresearch.materials.artifacts import numeric_tokens, now_iso, encoded, digest_bytes, digest_file, safe_path, atomic_bytes, atomic_json, read_json, signature, split_text, require_text, require_content
 
 from inresearch.materials.reading_artifacts import ReadingArtifacts
 
 class ReadingStages(ReadingArtifacts):
-    def __init__(self, data, model, ocr_max_pages, large_format_points, pdf_mode='full_visual'):
+    def __init__(self, data, model, ocr_max_pages, large_format_points, pdf_mode='full_visual',
+                 read_batch_chunks=1, read_batch_chars=6000):
         super().__init__(data)
         if pdf_mode not in ('full_visual', 'native_text_only'):
             raise ValueError('invalid PDF reading mode')
         self.pdf_mode = pdf_mode
+        if type(read_batch_chunks) is not int or not 1 <= read_batch_chunks <= 4:
+            raise ValueError('read_batch_chunks must be an integer 1..4')
+        if type(read_batch_chars) is not int or not 1 <= read_batch_chars <= 6000:
+            raise ValueError('read_batch_chars must be an integer 1..6000')
+        self.read_batch_chunks, self.read_batch_chars = read_batch_chunks, read_batch_chars
         self.model = model
         self.ocr_max_pages, self.large_format_points = ocr_max_pages, large_format_points
+
+    def batch_policy(self, doc):
+        if doc['suffix'] != '.pdf' or self.pdf_mode != 'native_text_only' or self.read_batch_chunks == 1:
+            return {}
+        return {'read_batch': {'version': 'read-batch-v1', 'max_chunks': self.read_batch_chunks,
+                               'max_characters': self.read_batch_chars}}
 
 
 
@@ -406,6 +418,11 @@ class ReadingStages(ReadingArtifacts):
         cached = self._cached(doc, relative, marker)
         if cached:
             return cached
+        payload = self._read_payload(doc, index)
+        result = self.model.generate("read", payload)
+        return self._save_read_result(doc, index, payload, result)
+
+    def _read_payload(self, doc, index):
         extraction = read_json(self.artifact_path(doc, "extraction.json"))
         chunk = extraction["chunks"][index]
         text = self._chunk_text(chunk)
@@ -414,7 +431,80 @@ class ReadingStages(ReadingArtifacts):
                    "chunk_sha256": chunk["sha256"], "text": text, "allowed_ids": context}
         if extraction.get('scope') == 'pdf_native_text_only':
             payload['reading_scope'] = 'Native PDF text only. Image and vector contents are excluded; use only supplied text as evidence.'
-        result = self.model.generate("read", payload)
+        return payload
+
+    def _read_batch(self, doc, indices):
+        """One inference, independent source-bound artifacts and per-member failures."""
+        policy = read_json(self.artifact_path(doc, 'recipe.json')).get('read_batch', {})
+        if policy.get('version') != 'read-batch-v1' or not 2 <= len(indices) <= policy.get('max_chunks', 0):
+            raise IntegrityError()
+        if indices != list(range(indices[0], indices[0] + len(indices))):
+            raise IntegrityError()
+        payloads = [self._read_payload(doc, index) for index in indices]
+        if sum(len(p['text']) for p in payloads) > policy['max_characters']:
+            raise IntegrityError()
+        results, fresh = {}, []
+        for index, payload in zip(indices, payloads):
+            cached = self._cached(doc, 'chunks/%06d.json' % index, 'read:%d' % index)
+            if cached is not None:
+                results[index] = cached
+            else:
+                fresh.append(payload)
+        # A recovered attempt may already have persisted all but one member.
+        if len(fresh) < 2:
+            return self._read_members(doc, fresh, results)
+        started = time.monotonic()
+        try:
+            response = self.model.generate('read_batch', {'doc_id': doc['doc_id'], 'chunks': fresh})
+            members = response.get('chunks')
+            if (not isinstance(members, list) or len(members) != len(fresh)
+                    or any(not isinstance(m, dict) or type(m.get('chunk_index')) is not int for m in members)
+                    or sorted(m['chunk_index'] for m in members) != sorted(p['chunk_index'] for p in fresh)):
+                raise ModelOutputError()
+            by_index = {m['chunk_index']: m for m in members}
+            # Wrong hashes cannot be assigned to another chunk, even with equal text.
+            if any(by_index[p['chunk_index']].get('chunk_sha256') != p['chunk_sha256'] for p in fresh):
+                raise ModelOutputError()
+        except (ModelOutputError, TransientModelError) as exc:
+            # Failed envelopes fall back to the unchanged single-chunk contract.
+            print(encoded({'at': now_iso(), 'stage': 'read_batch', 'doc_id': doc['doc_id'],
+                           'chunks': indices, 'outcome': 'fallback_single', 'error_code': exc.code,
+                           'seconds': round(time.monotonic() - started, 3)}), flush=True)
+            return self._read_members(doc, fresh, results)
+        for payload in fresh:
+            index = payload['chunk_index']
+            value = {**by_index[index], '_model': response.get('_model', {}),
+                     'batch_execution': {'version': 'read-batch-v1', 'chunks': [p['chunk_index'] for p in fresh]}}
+            try:
+                results[index] = self._save_read_result(doc, index, payload, value)
+            except ModelOutputError:
+                # A malformed member cannot erase other checked pages.
+                results.update(self._read_members(doc, [payload], {}))
+            except ReaderError as exc:
+                results[index] = exc
+        print(encoded({'at': now_iso(), 'stage': 'read_batch', 'doc_id': doc['doc_id'], 'chunks': indices,
+                       'outcome': 'checked', 'seconds': round(time.monotonic() - started, 3)}), flush=True)
+        return results
+
+    def _read_members(self, doc, payloads, results):
+        for n, payload in enumerate(payloads):
+            index = payload['chunk_index']
+            try:
+                results[index] = self._read_chunk(doc, index)
+            except Deferred as exc:
+                # A global provider wait must not issue more calls for this batch.
+                for pending in payloads[n:]:
+                    results[pending['chunk_index']] = exc
+                break
+            except ReaderError as exc:
+                results[index] = exc
+        return results
+
+    def _save_read_result(self, doc, index, payload, result):
+        relative, marker = 'chunks/%06d.json' % index, 'read:%d' % index
+        text, context = payload['text'], payload['allowed_ids']
+        extraction = read_json(self.artifact_path(doc, 'extraction.json'))
+        chunk = extraction['chunks'][index]
         normalized = re.sub(r"\s+", "", text)
         claims = result.get("claims")
         has_unverifiable_quote = (isinstance(claims, list) and any(
