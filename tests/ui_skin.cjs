@@ -37,7 +37,7 @@ const BG = {light:'rgb(250, 249, 246)', dark:'rgb(27, 28, 25)'};
    assert.equal(await page.locator('[data-ui-choice]').count(),0,file+' has no skin switch');
    if(file==='company.html') {await page.locator('#catalog-title').waitFor();assert.match(page.url(),/product-catalog.html/);}
    if(file==='report.html') {await page.locator('#cover').waitFor();assert.equal(await page.locator('section.chapter').count(),4);}
-   if(file==='ops.html'){await page.locator('#freshness tr').nth(1).waitFor();assert.ok(await page.locator('#freshness tr').count()>=6,'generated-artifact freshness table');assert.equal(await page.locator('#error').textContent(),'');assert.ok(await page.locator('#tasks .task-btn').count()>0);assert.equal(await page.locator('#modules, #projects, #funnel, #indicators').count(),0,'funnel, monitoring, modules and project blocks retired');}
+   if(file==='ops.html'){await page.locator('#tasks .task-btn').first().waitFor();await page.locator('#freshness tr').nth(1).waitFor({state:'attached'});assert.ok(await page.locator('#freshness tr').count()>=6,'generated-artifact freshness table');assert.equal(await page.locator('#error').textContent(),'');assert.ok(await page.locator('#tasks .task-btn').count()>0);assert.equal(await page.locator('#modules, #projects, #funnel, #indicators').count(),0,'funnel, monitoring, modules and project blocks retired');}
    const settledUrl=page.url();
    // Shared fonts: the bundled Inter + Noto Sans SC stack applies to the body of every application page.
    const fonts=await page.evaluate(async()=>{await document.fonts.ready;return [...document.fonts].filter(f=>f.status==='loaded').map(f=>f.family)});

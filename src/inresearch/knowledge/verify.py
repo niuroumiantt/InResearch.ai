@@ -41,11 +41,11 @@ def days_since(datestr):
         return None
 
 
-def load(name):
-    return json.loads((workspace_path(f"data/{name}.json", ROOT)).read_text(encoding="utf-8"))["records"]
+def load(name, root=ROOT):
+    return json.loads((workspace_path(f"data/{name}.json", root)).read_text(encoding="utf-8"))["records"]
 
 
-def build_queue(show_all=False):
+def build_queue(show_all=False, root=ROOT):
     """返回按优先级排序的核验队列：[{p, table, id, reason, urls, action}]"""
     queue = []
 
@@ -54,7 +54,7 @@ def build_queue(show_all=False):
                       "urls": [u for u in urls if u], "action": action})
 
     # 项目库
-    for r in load("projects"):
+    for r in load("projects", root):
         rid = r["site_id"]
         urls = [s.get("url") for s in r.get("sources", [])]
         limit = FRESH["project_late"] if r.get("status") in {"L6", "L7", "L8", "L9"} else FRESH["project_early"]
@@ -73,7 +73,7 @@ def build_queue(show_all=False):
 
     # 价格库：保鲜度按"序列"判断——历史点是冻结存档，只看每条序列的最新点是否该续
     latest = {}
-    for r in load("prices"):
+    for r in load("prices", root):
         s = r["series_id"]
         if s not in latest or str(r.get("as_of")) > str(latest[s].get("as_of")):
             latest[s] = r
@@ -90,7 +90,7 @@ def build_queue(show_all=False):
 
     # 知识层：研究文档的 Finding 状态
     import re
-    for rp in sorted((ROOT / "research").glob("M*.md")) if (ROOT / "research").exists() else []:
+    for rp in sorted((root / "research").glob("M*.md")) if (root / "research").exists() else []:
         text = rp.read_text(encoding="utf-8")
         for m in re.finditer(r"^##\s+(M\d+-F\d+)\s+(.*?)\s*(\{[^}]*\})?\s*\n-\s+\*\*状态\*\*：(\S+?)\s*｜\s*\*\*修订\*\*：(\S+)", text, re.M):
             fid, ftitle, status, revised = m.group(1), m.group(2)[:30], m.group(4), m.group(5)
@@ -103,13 +103,13 @@ def build_queue(show_all=False):
                 add(3, "research", fid, f"临近复核期（{d}/365 天）", [], f"顺手复核（{rp.name}）")
 
     # 合同库 / 政策库
-    for r in load("contracts"):
+    for r in load("contracts", root):
         d = days_since(r.get("verified_date"))
         if r.get("grade") in LOW_GRADES:
             add(2, "contracts", r["contract_id"], f"{r['grade']} 级来源", [r.get("source_url")], "用财报 RPO/监管文件交叉验证金额与期限")
         if d is not None and d > FRESH["default"]:
             add(1, "contracts", r["contract_id"], f"核验超期 {d} 天", [r.get("source_url")], "确认合同执行状态")
-    for r in load("policies"):
+    for r in load("policies", root):
         d = days_since(r.get("verified_date"))
         if d is not None and d > FRESH["default"]:
             add(1, "policies", r["policy_id"], f"核验超期 {d} 天", [r.get("source_url")], "确认政策现行版本")

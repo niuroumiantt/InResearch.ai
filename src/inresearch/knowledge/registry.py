@@ -339,7 +339,8 @@ def candidate_snapshot(payload, graph, questions):
     # It is a derived health snapshot, never an instruction or source of authority.
     reader = {k: v for k, v in reader.items() if k in (
         'generated', 'counts', 'stage_counts', 'oldest_pending', 'recent_failures',
-        'backend', 'model', 'roots', 'status', 'release', 'acquisition', 'reading_revisions', 'registry_lag', 'execution_scope')}
+        'backend', 'model', 'roots', 'status', 'release', 'acquisition', 'reading_revisions', 'registry_lag',
+        'operations', 'thermal', 'claim_floor', 'free_bytes', 'oldest_pending_seconds', 'last_scan', 'execution_scope')}
     if lagging:
         reader['registry_lag'] = {'snapshot_graph_version': payload['graph_version'],
                                   'snapshot_questions_version': payload['questions_version'],

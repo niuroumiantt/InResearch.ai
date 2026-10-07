@@ -360,3 +360,11 @@ L2 的记录和 skip 是事实处理回执，不产生全文版本。pack 如有
 `python3 manage.py project-review prepare --data-root ~/.local/share/inresearch.ai` 生成逐事件缺口与就绪包；`project-review apply --data-root ... --input 已核验提案.json` 在受控源码工作区写正式项目，需后续严格校验、registry、相关测试及Git发布。提案/源原文/运行回执永久归入Spark材料记录，原件不能进Git。
 
 `python3 manage.py material-retention --data-root ~/.local/share/inresearch.ai --snapshot` 核对catalog引用并保存一致SQLite备份；原件缺失单独报告，不删文件也不以缺失为0代表全NAS已盘点。同盘快照不等于独立灾难备份，既有备份流程保留。
+
+## 管理后台运行诊断（2026-10-07）
+
+网站 `/ops.html` 自动显示 Spark 发布快照中的当前阶段、最早排队/运行/阻塞任务（每类最多 100 个）、错误组分布、近 1h / 24h 已结束任务以及调度信息。完整阅读文档与分块成功不能互换。诊断只在 `Reader.export_snapshot` 生成时查询 catalog，普通 worker 心跳不执行这组汇总；发布通常每五分钟一次，前端每 30 秒读取不改变上游频率。网站与 Spark 发布端都需更新版本；旧发布端未提供字段时网站显示未知，不伪造零队列。
+
+当前执行 revision 包括在途替代版本，已被替代的旧失败不计当前瓶颈；当前完整结果另计。错误不是最近 20 个失败样本的外推，汇总覆盖当前执行任务。原件格式/图纸工作流缺口、OCR 质量问题、按策略暂存与执行错误分开，重排仍按前述 `error_code` 和文档范围处理，dashboard 没有全队重试按钮。任务定位给出身份、阶段模块与明确 UTC 的 `journalctl --user -u inresearch-reader.service` 检索入口，不猜异常行号。
+
+管理页手动操作的完整日志和不可变运行记录保存于网站运行 `logs/ops/`，最新任务记录为 `logs/task_<task>.json`；只经管理员诊断接口下载，不作为公开静态文件。旧日志不补造成功状态。显示最近 50 次手动记录，不代表 Spark 常驻工作历史；完整服务历史继续核对 Spark journal / 原有运行台账。日志没有自动删除策略，按现有运行数据备份管理。资料、模型调用失败和研究采用仍沿现行边界处理。
