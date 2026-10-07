@@ -70,28 +70,31 @@ function demandRow(d) {
 
 /* 主体档案从节点页第五列进入；对象类型 actor 与第五类变量分开。 */
 function ecosystemHtml(records, projects, cname) {
-  const adopted = records.filter(r => r.adoption?.review?.decision === 'adopted' && (r.capacity_observations || []).some(x => x.basis === 'generation'));
+  const adopted = records.filter(r => r.adoption?.review?.decision === 'adopted');
+  const power = adopted.filter(r => (r.capacity_observations || []).some(x => x.basis === 'generation'));
+  const basisLabels = { generation: '发电口径', grid: '供电口径', unknown: '口径待核实' };
+  const natureLabels = { forecast: '计划或预测', announced: '公告披露' };
   if (!adopted.length) return '';
   const actor = id => `<a href="product-catalog.html?c=${encodeURIComponent(id)}">${esc(cname[id] || id)}</a>`;
   const safeLink = (value, label) => {
     try { const u = new URL(value); if (['http:', 'https:'].includes(u.protocol) && !u.username && !u.password) return `<a href="${esc(u.href)}" target="_blank" rel="noopener">${esc(label)}</a>`; } catch {}
     return esc(label);
   };
-  const provinces = [...new Set(adopted.flatMap(r => (r.geographies || []).map(g => g.province)).filter(Boolean))];
+  const provinces = [...new Set(power.flatMap(r => (r.geographies || []).map(g => g.province)).filter(Boolean))];
   const shortState = { Illinois: 'IL', Pennsylvania: 'PA', 'New Jersey': 'NJ' };
   const inState = (p, state) => p.country === 'US' && (p.province === state || new RegExp(`^(?:${state}|${shortState[state] || state})(?:[, ·]|$)`, 'i').test(p.location || ''));
   const geography = provinces.length ? `<h3>地域对照 · 已披露省州</h3><div class="ui-table-scroll" tabindex="0" role="region" aria-label="地域对照"><table><tr><th>省州</th><th>电源信息</th><th>本站登记的数据中心</th><th>土地与接电关系</th></tr>${provinces.map(state => {
     const sites = projects.filter(p => inState(p, state) && !p.duplicate_of && !p.site_id.includes('portfolio'));
-    return `<tr><td>${esc(state)}</td><td>所在电源组合已登记；本州具体电厂、机组及 MW 分配待核实</td><td>${sites.map(p => `<a href="project.html?site=${encodeURIComponent(p.site_id)}">${esc(p.name)}</a>`).join('<br>') || '尚未按明确州名匹配到登记项目；待查'}</td><td>地主、供地交易、审批机关、受电园区及电网接入均待核实</td></tr>`;
+    return `<tr><td>${esc(state)}</td><td>已披露电源范围见各条协议；逐电源与园区对应关系及未披露分配继续核验</td><td>${sites.map(p => `<a href="project.html?site=${encodeURIComponent(p.site_id)}">${esc(p.name)}</a>`).join('<br>') || '尚未按明确州名匹配到登记项目；待查'}</td><td>地主、供地交易、审批机关、受电园区及电网接入均待核实</td></tr>`;
   }).join('')}</table></div><p class="note">这里只对照已有登记的明确州名，覆盖并不完整；同州不证明供电关系。组合容量不向各州分摊，也不据此推断数据中心土地批复。</p>` : '';
   return `<section class="board b12" id="ecosystem"><div class="bh"><h2>生态关系与已采用信息</h2><a class="go" href="supply.html#matching">查看日报交付 →</a></div>
-    <p>电源 → 电网与接入 → 园区 → 使用方，按实际关系逐项连接。供电、土地和审批的主体分别登记；未确认的连接保留待查。</p>
+    <p>协议、投资和合作按公告所述范围登记。供电、土地、审批、投资与使用方角色分别核验；未确认的连接保留待查。</p>
     ${adopted.map(r => `<article class="sec"><h3>${esc(r.summary)}</h3><p>${(r.relationships || []).map(x => actor(x.actor_id) + '：' + esc(x.role)).join('；')}</p>
-      <p>${(r.capacity_observations || []).map(x => `${esc(x.value)} ${esc(x.unit)} · ${esc(x.basis === 'generation' ? '发电口径' : x.basis)} · ${esc(x.nature === 'forecast' ? '新增计划' : '既有电源协议')} · ${esc(x.scope)}`).join('<br>')} · 协议 ${esc(r.term_years)} 年</p>
+      <p>${(r.capacity_observations || []).map(x => `${esc(x.value)} ${esc(x.unit)} · ${esc(basisLabels[x.basis] || x.basis)} · ${esc(natureLabels[x.nature] || x.nature)} · ${esc(x.scope)}`).join('<br>')}${r.term_years != null ? ' · 协议 ' + esc(r.term_years) + ' 年' : ''}</p>
       <p>${(r.object_ids || []).filter(x => !x.startsWith('actor:')).map(id => `<a class="chip" href="node.html?id=${encodeURIComponent(id)}">${esc(({ 'system:power': '电力系统', 'chain:power/3': '发电与储能', 'site:grid': '电力配额与并网' })[id] || id)}</a>`).join('')}</p>
       <p class="note">待补：${esc((r.gaps || []).join('；'))}</p><p>${(r.sources || []).map((s, i) => safeLink(s.url, (new URL(s.url).hostname.replace(/^www\./, '')) + ' 原始来源 ↗')).join(' · ')} · 核验 ${esc(r.verified_date)} · <a href="supply.html?event=${encodeURIComponent(r.adoption.event_id)}#matching">对应日报证据 →</a></p>
     </article>`).join('')}
-    <p class="note">采用范围是双方公告所述协议与角色；完整合同和监管批准仍待取得。新增发电计划与既有电源供给分别登记，均不增加数据中心 IT GW。</p>${geography}</section>`;
+    <p class="note">采用范围见每条协议与审核说明；实际交付、资金实缴、完整合同和监管批准分别核验。潜在供电、发电计划、备忘录与投资承诺不自动增加数据中心 IT GW。</p>${geography}</section>`;
 }
 let loaded = false;
 document.querySelector("#research-details").addEventListener("toggle", async event => {

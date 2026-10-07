@@ -55,10 +55,10 @@ const {chromium}=require('playwright');const assert=require('assert');
  assert.equal(await page.locator('.kpi').count(),0,'no KPI grid, map or module blocks on the actor page');
  await page.goto(base+'/product-catalog.html?view=products&c=constellation-energy#ecosystem');await page.locator('#ecosystem').waitFor();
  assert.equal(await page.locator('#ecosystem article').count(),2,'new generation and existing supply are separate agreements');
- assert.match(await page.locator('#ecosystem').innerText(),/890 MW.*新增计划/);
- assert.match(await page.locator('#ecosystem').innerText(),/2700 MW.*既有电源协议/);
+ assert.match(await page.locator('#ecosystem').innerText(),/890 MW.*发电口径.*计划或预测/);
+ assert.match(await page.locator('#ecosystem').innerText(),/2700 MW.*发电口径.*公告披露.*既有PJM电源供给组合，非新增/);
  assert.equal(await page.locator('#ecosystem [aria-label="地域对照"] tr').count(),4,'three states without inferred state allocations');
- assert.match(await page.locator('#ecosystem').innerText(),/不增加数据中心 IT GW/);
+ assert.match(await page.locator('#ecosystem').innerText(),/不自动增加数据中心 IT GW/);
  assert.ok(await page.locator('#ecosystem a[href*="product-catalog.html?c=alphabet-google"]').count());
  for(const width of [390,1280]){await page.setViewportSize({width,height:950});assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));}
  await page.goto(base+'/node.html?id=site:grid');await page.locator('#five .col').first().waitFor();
