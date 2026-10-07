@@ -11,7 +11,7 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { background: var(--bg); color: var(--text); font: 14px/1.6 var(--ui-font); padding: 24px 16px 60px; }
-  .wrap { max-width: 1100px; margin: 0 auto; }
+  .wrap { max-width: 1280px; margin: 0 auto; }
   h1 { font-size: 22px; margin-bottom: 4px; }
   .sub { color: var(--muted); margin-bottom: 24px; font-size: 13px; }
   h2 { font-size: 16px; margin: 28px 0 12px; }
@@ -73,20 +73,26 @@
   .tablewrap { overflow-x: auto; }
 </style>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
-<link rel="stylesheet" href="assets/datacenter-news.css">
-<script type="module" src="assets/datacenter-news.js"></script>
+<link rel="stylesheet" href="/assets/ops-dashboard.css">
+<script defer src="/assets/ops-dashboard.js"></script>
 </head>
 <body style="--ui-page-inset:24px">
 <inresearch-shell data-section="admin"></inresearch-shell>
 <div class="wrap">
-  <h1>管理后台 <span id="whoami" style="float:right;font-size:12px;font-weight:400;color:var(--muted)"></span></h1>
-  <div class="sub">数据中心研究数据枢纽 · 框架与规则按已采用决策维护 · <span id="updated"></span> ·
-    <a href="doc.html?f=framework/00_overview.md">框架总览</a> ·
-    <a href="doc.html?f=framework/01_data_standards.md">口径手册</a> ·
-    <a href="doc.html?f=framework/02_knowledge_format.md">知识格式</a> ·
-    <a href="doc.html?f=reports/verify_queue.md">核验队列</a> ·
-    <a href="/admin/repos.html">仓库架构</a></div>
-
+  <header class="ops-header"><div><h1>管理后台</h1><p>系统是否正常 · 工作进展 · 阻塞与待办</p></div><div class="ops-toolbar"><span id="whoami" class="ops-meta"></span><button id="ops-refresh" type="button">刷新状态</button></div></header>
+  <p id="ops-updated" class="ops-meta">正在读取管理数据…</p><p id="ops-error" role="alert"></p>
+  <div id="ops-banner" class="ops-banner" role="status"><strong>正在检查系统状态</strong><p>健康与进度自动读取，无需先点击操作按钮。</p></div>
+  <div id="ops-kpis" class="ops-kpis"></div>
+  <div class="ops-grid">
+    <section class="ops-section"><h2>需要你注意</h2><div id="ops-attention" class="ops-panel">正在读取阻塞和待办…</div></section>
+    <section class="ops-section"><h2>服务与数据新鲜度</h2><div id="ops-health" class="ops-panel">正在读取 Spark 发布快照…</div></section>
+  </div>
+  <section class="ops-section" id="ops-stages"><h2>工作进展</h2><div id="ops-batch"></div><p id="stage-note" class="ops-note">文档与分块任务分开计量。</p><div class="tablewrap" tabindex="0" aria-label="阶段进展表"><table class="ops-stage"><thead><tr><th>处理阶段</th><th>成功 / 全部任务</th><th>排队</th><th>执行中</th><th>阻塞 / 失败</th><th>近 1h / 24h 成功</th></tr></thead><tbody id="stage-body"><tr><td colspan="6">正在读取阶段统计…</td></tr></tbody></table></div></section>
+  <section class="ops-section" id="ops-queues"><h2>任务在哪里，卡在哪里</h2><div id="queue-tabs" class="ops-tabs" role="tablist" aria-label="任务状态"></div><div class="ops-filter"><label>阶段 <select id="queue-stage"><option value="">全部阶段</option><option value="extract">正文提取</option><option value="triage">评分分流</option><option value="read">分块精读</option><option value="synthesize">综合报告</option><option value="organize">资料归档</option><option value="receipt">交付回执</option></select></label><label>阻塞原因 <select id="queue-error"><option value="">全部原因</option></select></label><input id="queue-search" aria-label="筛选任务" placeholder="搜索文件名、错误码、文档或版本 ID"></div><p id="queue-note" class="ops-note"></p><div class="tablewrap" tabindex="0" aria-label="任务定位表"><table class="ops-queue"><thead><tr><th>文件 / 任务定位</th><th>阶段</th><th>状态 / 原因</th><th>等待 / 持续时长</th><th>优先级</th><th>下一步</th></tr></thead><tbody id="queue-body"><tr><td colspan="6">正在读取任务明细…</td></tr></tbody></table></div></section>
+  <section class="ops-section" id="ops-quality"><h2>研究交付与数据待办</h2><div class="ops-grid"><div class="ops-panel" id="target-progress"></div><div class="ops-panel" id="quality-detail"></div></div></section>
+  <section class="ops-section" id="ops-actions"><h2>可执行的操作</h2><p class="ops-note">状态和进度自动更新。以下按钮只执行说明中的动作；生成待办不会自动完成待办。</p><div id="tasks" class="ops-task-groups"></div><div id="run-results" aria-live="polite"></div></section>
+  <section class="ops-section" id="ops-history"><h2>执行记录与完整日志</h2><p class="ops-note" id="history-note"></p><div class="tablewrap" tabindex="0"><table><thead><tr><th>手动任务</th><th>结果</th><th>开始 · 北京时间</th><th>耗时</th><th>退出码</th><th>日志</th></tr></thead><tbody id="history-body"><tr><td colspan="6">正在读取执行记录…</td></tr></tbody></table></div></section>
+  <details class="ops-drawer"><summary>账户与权限管理</summary>
   <section id="usersSec" style="display:none">
   <h2>用户与权限 <span style="font-weight:400;font-size:12px;color:var(--muted)">仅 admin 可见 · 无注册，只能在这里加人</span></h2>
   <div id="pwReveal" style="display:none;background:var(--card);border:1px solid var(--yellow);border-radius: var(--ui-radius);padding:12px 14px;margin-bottom:10px;font-size:13px">
@@ -113,11 +119,8 @@
     改名后旧名的登录立即失效，须用新名重登；最后一个 admin 不可降级或删除。</div>
   </section>
 
-  <h2>采集与运行控制台</h2>
-  <p class="meta">采集在 Spark 执行，三个来源按钮查询同步状态。<a href="doc.html?f=framework/06_acquisition.md">采集、翻译与阶段计划 →</a></p>
-  <div class="tasks" id="tasks"></div>
-  <pre class="console" id="console">后台就绪。点击任务运行，输出显示在这里；每个任务显示上次运行时间。</pre>
-
+  </details>
+  <details class="ops-drawer"><summary>手动录入渠道价格与季报数据</summary>
   <h2>录价 — 按目标行与变量类（渠道信息与季报数据的固定入口）</h2>
   <p class="meta">node 与 variable_class 由服务端从骨架派生，不用填；填了目标行 ID 就算队交付到 Git 内载体（目标行进入 delivered）。</p>
   <form class="pform" id="pform" onsubmit="return false">
@@ -145,11 +148,14 @@
     <div class="pmsg full" id="pmsg"></div>
   </form>
 
-  <h2>生成物新鲜度</h2>
+  </details>
+  <details class="ops-drawer"><summary>研究生成物的版本与时点</summary>
+  <h2>生成物新鲜度</h2><p id="updated" class="ops-note"></p>
   <p class="meta">规则表进评审，生成物由命令重建并被 <code>--check</code> 与单元测试守住；这里只看各生成物的版本与时点。</p>
   <div class="tablewrap"><table id="freshness"></table></div>
   <div class="stats" id="stats" style="margin-top:16px"></div>
 
+  </details>
   <h2>工具入口</h2>
   <p class="meta"><a href="doc.html?f=framework/CURRENT.md">现行基准</a> · <a href="doc.html?f=docs/REPOSITORY_REGISTER.md">在册清单</a> · <a href="doc.html?f=docs/DECISIONS.md">决策记录</a> · <a href="supply.html#targets">目标表与派工</a> · <a href="product-catalog.html#registry">产品资料登记覆盖</a> · <a href="report.html">成果快照</a> · <a href="doc.html?f=reports/verify_queue.md">核验队列</a></p>
 
@@ -259,47 +265,7 @@ async function loadJSON(path) {
 })();
 </script>
 <script>
-// ── 管理后台：采集控制台 + 手动录入 ──
-const TASKS = [
-  ["news", "inews 采集状态", "Spark 新闻线索台账；不是全文"],
-  ["indicators", "指标回填", "库内数据→指标值"],
-  ["verify", "核验队列", "生成待核清单"],
-  ["queue", "精读队列", "已打分−已消化，该读什么"],
-  ["reader", "Spark 阅读状态", "读取已配置的 Spark 阅读服务快照与队列状态"],
-  ["validate", "数据校验", "口径规则把关"],
-  ["export", "导出成果快照", "四问快照 md + json"],
-  ["map", "Top10 地图", "html+pdf（PDF 仅本机，服务器缺渲染依赖）"],
-  ["intake", "投递机检", "成员投递三档分流（A 人批/B 抽查/C 自动）"],
-  ["facts", "事实层校验", "口径可比性判定"],
-];
-const consoleEl = document.getElementById("console");
-function clog(s) { consoleEl.textContent += "\n" + s; consoleEl.scrollTop = consoleEl.scrollHeight; }
-
-async function refreshStatus() {
-  try {
-    const st = await (await fetch("/api/status")).json();
-    TASKS.forEach(([id]) => {
-      const el = document.getElementById("t-" + id);
-      if (el) el.querySelector(".last").textContent = st[id]?.running ? "运行中…" : (st[id]?.last ? "上次 " + st[id].last.slice(5, 16).replace("T", " ") : "未运行过");
-    });
-  } catch (e) {}
-}
-document.getElementById("tasks").innerHTML = TASKS.map(([id, name, desc]) =>
-  `<button class="task-btn" id="t-${id}" onclick="runTask('${id}')"><b>▶ ${name}</b><span>${desc}</span><br><span class="last"></span></button>`).join("");
-refreshStatus();
-
-async function runTask(id) {
-  const btn = document.getElementById("t-" + id);
-  btn.classList.add("busy");
-  clog(`\n$ ${id} 启动…`);
-  try {
-    const r = await (await fetch("/api/run", { method: "POST", body: JSON.stringify({ task: id }) })).json();
-    clog((r.ok ? "✔ " : "✘ ") + (r.name || id) + "\n" + (r.output || r.error || ""));
-  } catch (e) { clog("✘ 请求失败: " + e.message + "（确认由 src/inresearch/interfaces/http.py 提供服务）"); }
-  btn.classList.remove("busy");
-  refreshStatus();
-}
-
+// 手动录入保留既有校验与写入接口。
 // 录入表单：序列名自动补全 + 提交
 (async () => {
   try {

@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.07.7",
+  "version": "2026.10.07.8",
   "reviewed_at": "2026-10-07",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -14,7 +14,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "2c6e80a1fd3280d6be1e87f9dfe772631488bd1559f269d06309a53968a9c84b",
+    "docs/local_reader/SPARK_OPERATIONS.md": "6cc2d282cf5ef71a46afb1ca28c435c994dfc7a7b9305724ae97e71a1058da8c",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "972bf5d0b9e7a682acdceef34bb59a58e8b5148e1e0cf479e19a6e09170e6daf",
     "docs/local_setup/REPOSITORY_PAGES.md": "fb87e53841c6c1eb3b37235c66072c4d97f803ba0435681148d7e83ef68f9720",
@@ -23,12 +23,12 @@
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "07e5b461da6c0da081c2ab7a8b7af1089048d93edf98ca5a74878907d530a655",
     "framework/04_reading_scoring_standard.md": "c97e6fa94496f60b5bbce42b9c64c719ae6a232246af815d222752e3bcc86e6f",
-    "framework/05_interface_system.md": "1badf37573a9b8157e3950ba15c1b96d9afdbb13f20ed9a64a92bd3b66433bd7",
+    "framework/05_interface_system.md": "5a6f91a3a84d3f7a882d7ee32bb61537e21afb78cb67ec70c06ab34eb6fcef7d",
     "framework/06_acquisition.md": "e8efbc78a3d9e9f1a175e1958ad72da19af6f5922fc0f0646f3836cad0a3e7e6",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "4ac9e224ea6e870d37dcef3c54f151e8f6ba54f69db9044523652f5c573f741f",
     "framework/09_software_contracts.md": "94eeb69fe498f0318e84d4cb476468eed1e01c541160e81c4be58a12dd119dff",
-    "framework/CURRENT.md": "7438ecd5feabe8ceacd02d612c0e37f29e439b2bd746ef64e72520909612e5f8",
+    "framework/CURRENT.md": "f4041ac05ada7e1cc60e125255bcc5987772cae083c08f1f53f60c606a63275b",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "b60a248d617babdbe4419c5ace65d0be0ac107e21b1ca8e658a0ae847f092583",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -38,14 +38,14 @@
     "src/inresearch/adapters/reader_model.py": "69c90d2c439ed99c21561128c5e7ad11c987496cbce80a3be9665e4718c8da00",
     "src/inresearch/delivery/backup.py": "c567713fc5585ab79581cb316d12fc1947931ff73a19cfbc79da5a6de48ba71e",
     "src/inresearch/knowledge/news_observations.py": "763fac77a0eb2cc6223d1670c7cba61dc8e5a3f52e5bac37cc87e9c3666ea643",
-    "src/inresearch/knowledge/registry.py": "46e482dcfed970aeb970680391aa607b873012c49de675c265559bf39b9647f4",
+    "src/inresearch/knowledge/registry.py": "b088060b9b4b2b371b4942bb7998b3df96c68ae839fed12baf92ed300b4b99a1",
     "src/inresearch/materials/daily_bundle.py": "f0e616d95517a2a9dda877c355f35733e230fc8e68cf641c7dff02b1c629a68d",
     "src/inresearch/materials/daily_events.py": "b5706491c64f33103d9965f29909bd58910ef8ca3d1ed299a4a0c842259b9239",
     "src/inresearch/materials/daily_research.py": "641f8c6e51472a1d93e72ba472f4f55e6040901168a72a2c723cb323ed39b820",
     "src/inresearch/materials/daily_sources.py": "f719e0d4592abfcb3b914d278bef4c246538ba61ec407e4ac0d31b1cca56a216",
     "src/inresearch/workflow/daily_dispatch.py": "06dd49baea056cc9976aacf8a32c34cdf0800ad38eedde2be4e60ebe49a82627",
     "src/inresearch/workflow/project_pipeline.py": "a36aa6aa0a43f462abc0c7e0747ca29dcb42c21b3b47ff8ed2c609127e69ba8a",
-    "src/inresearch/workflow/reader.py": "461556b2c6077cdca1821a83ba3679ec3e01324b4e02b51046091ca849f3d0d8",
+    "src/inresearch/workflow/reader.py": "7fa85e8bec051f80d40c602ca6d6373d77a929540bfcd1406cbe4c67f2658454",
     "src/inresearch/workflow/reading_revisions.py": "16417acae297848930e8cc5cfc1382847c08e3b7947d1bd53b71a90c12c89155",
     "src/inresearch/workflow/reading_stages.py": "235583d3b7b2af2d85720bcab466e4bd26507d4146a67fdd5de1e297adc08077",
     "src/inresearch/workflow/research_match.py": "2aaec0152c140b3c7b3dae2d6342ac641851e70ca6b56126b68dbb8d3bcacfb5",
@@ -65,12 +65,12 @@
     "tests/repository_pages.cjs": "dda212673442d85e2ee6c2feb9553afc55ddc55c08c2b1a2d78cd1dce52d9d7a",
     "tests/research_delivery.cjs": "81548cb9d821495c3f209341490fa036e832c9be94f97da35a83825a1381c1f4",
     "tests/research_summary.cjs": "d8bb777aec3b9fd7a6958bcb2028a4e578ba5cc0dae9f8b755424e1ef179b17c",
-    "tests/run_browser.cjs": "3154b51132651012e558320aefd056c9c3cbd84e380bb0251cad32e5654ef64f",
+    "tests/run_browser.cjs": "7091b038c5c3e6b107b7c350a9479ddbd8935bfbe095b2c8d8981256175089be",
     "tests/scene_bootstrap.cjs": "956168c5b1ba68472393d4a455a274ee8daeedaeab18141f0b3b906208e060f0",
     "tests/scene_framing.cjs": "a5d6c37a9f7aa43ab194ac0175a785a71d2af9b318211e7e139c7349046cb1c0",
     "tests/scene_resources.cjs": "f514a7b25dc47f1d5f4befe96d840f6361ade7df3b78d828b8948e7a9679d3e2",
     "tests/supply.cjs": "13fd9242c5d13c387a38b724646f0b86385c8c1e71fd6afccd0e196b38eb7d63",
-    "tests/ui_skin.cjs": "5b78c67e149a16a8419ff2b8002c7b3049cfe6e2094c6416a99f9e5eb17d2474",
+    "tests/ui_skin.cjs": "3bc8db481b10975526dfcce8726d3c065a6596ae21456ac79010960096e7bffb",
     "tests/unit/deep_read_fixtures.py": "8f625d276b9224ba46c1d990dbecf669f8a458cd9c446fc525a3669520410af8",
     "tests/unit/test_acquisition.py": "9759d573e19ed4714c58c790785ab2043beebc05c20d4b04b26531751c6a01dd",
     "tests/unit/test_apply_triage.py": "dad79b6f60099206f6f5d32eb1cd3ebf8c9a46af9e0ea055a33ca3ece2bd51f1",
@@ -173,9 +173,12 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "9254f30ae52c7999500a770a3ef42b79923b7679a59a378d4a1c6f837c4df748",
+    "framework/current_state.json": "bd78fa6235fa0238b830fef958d6642c62182b80313849989b5d467f3f66abca",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
-    "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071"
+    "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
+    "src/inresearch/workflow/operations.py": "06ce73f5395bab6795d60262f0fda1273fffd0a01829a22145da463b525e0f82",
+    "tests/unit/test_operations.py": "77b1e9ce2d5dd9ec11da320e8372c691c286fab9445678274373dccda8366569",
+    "tests/ops_dashboard.cjs": "21561c85a837f22dfdaee88a1932ed4febbf5e223b6ea3a1b21a2e1ad3fe5c09"
   },
   "policies": [
     {
@@ -337,7 +340,7 @@
       "policy": "operations-20260906",
       "scope": "project",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
-      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过；认领下限以下的文档任务不被认领、不计尝试且留在队列，下限 0 全部认领，非法下限拒绝，状态报告暂停份数；进度页只对阻塞/失败文档显示错误码并显示认领范围；外部快照叠加：Spark 发布时加入外部快照中 Spark 未完整读过的文档及其证据与陈述，Spark 完整阅读优先，较新快照覆盖较旧的，不完整/非候选/孤立行/符号链接拒绝，无目录时不变；外部快照的对象/问题 ID 按发布时注册表过滤并计数，输入不被改写；接收端拒收时错误带回其原因；快照以 gzip 发送并记录发送/解压大小，接收端解压有上限（超限 413）、坏压缩与未知编码 400 且不改已有快照，未压缩仍接受；图谱/问题版本落后的快照按现行注册表过滤对象/问题 ID、丢弃指向已退役问题的回答，照常接收并记 registry_lag；版本一致时仍严格拒绝未知 ID，缺版本字段拒绝；已存档快照在网站升版后照常显示并标落后；2026-10-07 显式缓存缺页也被发现；受控接收核对原件/页号/当前revision/独立双读与完整内嵌图片覆盖，归档旧证据，仅替换缺页缓存后通知；重复接收恢复通知，不改catalog或成功页，数字/空白/可读门槛保持。；默认正文零OCR及显式未完成新版本保留旧尝试/原件，图像模式仅兼容；派生导出不增加原件身份。",
+      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过；认领下限以下的文档任务不被认领、不计尝试且留在队列，下限 0 全部认领，非法下限拒绝，状态报告暂停份数；进度页只对阻塞/失败文档显示错误码并显示认领范围；外部快照叠加：Spark 发布时加入外部快照中 Spark 未完整读过的文档及其证据与陈述，Spark 完整阅读优先，较新快照覆盖较旧的，不完整/非候选/孤立行/符号链接拒绝，无目录时不变；外部快照的对象/问题 ID 按发布时注册表过滤并计数，输入不被改写；接收端拒收时错误带回其原因；快照以 gzip 发送并记录发送/解压大小，接收端解压有上限（超限 413）、坏压缩与未知编码 400 且不改已有快照，未压缩仍接受；图谱/问题版本落后的快照按现行注册表过滤对象/问题 ID、丢弃指向已退役问题的回答，照常接收并记 registry_lag；版本一致时仍严格拒绝未知 ID，缺版本字段拒绝；已存档快照在网站升版后照常显示并标落后；2026-10-07 显式缓存缺页也被发现；受控接收核对原件/页号/当前revision/独立双读与完整内嵌图片覆盖，归档旧证据，仅替换缺页缓存后通知；重复接收恢复通知，不改catalog或成功页，数字/空白/可读门槛保持。；默认正文零OCR及显式未完成新版本保留旧尝试/原件，图像模式仅兼容；派生导出不增加原件身份。；发布时只读生成当前执行版本诊断，旧失败不抬高当前阻塞，文档与分块分开，样本上限与总数并存，普通心跳不增加诊断扫描。",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_backup_restores_catalog_and_views_under_new_root",
         "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle",
@@ -394,7 +397,11 @@
         "tests/unit/test_gap_ocr.py::ReceiveTests.test_empty_second_nonblank_read_rejected_even_without_numbers",
         "tests/unit/test_gap_ocr.py::ReceiveTests.test_sealed_extraction_refused",
         "tests/unit/test_gap_ocr.py::RegionVerificationTests.test_regions_require_all_source_images_two_distinct_reads_and_exact_assembly",
-        "tests/unit/test_pdf_native_text.py::PdfNativeTextTests.test_new_text_recipe_retains_ocr_attempt_and_original_under_same_document_identity"
+        "tests/unit/test_pdf_native_text.py::PdfNativeTextTests.test_new_text_recipe_retains_ocr_attempt_and_original_under_same_document_identity",
+        "tests/unit/test_operations.py::ObservabilityTests.test_pending_has_stage_age_identity_and_does_not_write",
+        "tests/unit/test_operations.py::ObservabilityTests.test_historical_failed_revision_does_not_inflate_current_bottlenecks",
+        "tests/unit/test_operations.py::ObservabilityTests.test_current_document_counts_and_job_counts_have_different_units",
+        "tests/unit/test_operations.py::ObservabilityTests.test_queue_sample_is_bounded_and_total_is_preserved"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。",
@@ -404,7 +411,8 @@
         "进度页只用临时 catalog 与伪造的日志/服务/温度测试；未在 Spark 真机核对 journalctl --user 权限、大库上的查询耗时，Mac 循环脚本未实跑。",
         "缺页只用伪造的 M4 结果与 PDF 工具测试；未在 Spark 真机用 7 份失败文档验证，也未核对网站候选接收对 gap_pages 的展示。",
         "认领下限只用临时 catalog 测试；未在 Spark 真机核对 1.17 万份队列上的认领查询耗时。GPU 限功率在 GB10 上是否可用、效果如何未验。",
-        "双读一致不证明全部语义准确；跨机器实际补页、全文候选和网站投影另验，以私有回执为准。"
+        "双读一致不证明全部语义准确；跨机器实际补页、全文候选和网站投影另验，以私有回执为准。",
+        "诊断为发布时执行快照，不证明所有服务在线、具体异常源码行或全历史日志已采集。策略暂存与材料缺口的处置需要原件核对。"
       ]
     },
     {
@@ -426,7 +434,7 @@
       "policy": "interface-reader-batch-20261006",
       "scope": "project",
       "source": "framework/05_interface_system.md",
-      "checked_requirement": "17 页明暗/宽度、字体包已加载与正文字体栈、表单控件去原生、手机顶栏两行、认证外观、旧偏好 skin 字段忽略、状态保持与安全链接；字体包目录登录前公开而其余资源不公开；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、收益参照占位与情景预设（GB300 出租、H100 合约）的租金盈余/覆盖率、基准卡按价格库序列最新时点渲染（更新时间戳与首行时点）；经济模型四本账校准（研报 GB300 出租 ROIC、模型 API 自有 ROIC、带电壳 19%、中国托管 11%）、六个预设、资本开支/瀑布/利润分配/龙卷风/热力图/情景表渲染、输入重算与代际切换、价格库基准、窄屏边界；TCO 模型基准 KPI（每 kW·月）、站点切换后的对基准变化、设为基准后归零、租壳与托管口径、按每 MW 折算的对比与绝对金额切换、数据缺口表、图表渲染与窄屏边界、恢复与窄屏边界；供应方向按对象/问题关联；NVIDIA 打样页以 candidate-only 状态呈现 M5→AWS 进度，明确 Spark 不参与且不混淆正式采用。；2026-10-02 复审：独立行业入口，IT 分期优先且组合不累加，主体/阶段明细可对账，公开字段白名单，真实状态不由新闻标题推定，新闻过期保留长期线索；界面共享字体与明暗，地图与精选新闻联动。；二次复审：首页无项目表格，全球规模保留报告年份/估算性质/来源并与样本分开，低置信度项目标题自动入池，全名+actor 唯一园区跨事件关联，暂停/撤回/旧消息与人工状态优先验证。；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。；2026-10-02 发布验收复审：首批慢读取不耗尽后续厂商预算；单厂请求超时隔离、已成功厂商保留，重试取消旧轮。CPU 下拉选项可实际选择。; Batch 2: separate module filtering and CSV; evidence-backed links from boards/modules to delivered chips; reject missing/non-chip targets; preserve production baseline and server/memory/storage categories.; Timeout test waits for the successful JSON body before advancing its synthetic clock, so CI scheduling cannot turn a fulfilled route into an unconsumed timed-out body.；2026-10-03 首页排版复审：三个指定桌面视口大数字与全世界 viewBox 首屏同见，保持比例与字号；筛选/主体/样本在地图下方；手机 390/320 无横溢且新闻接在地图后；首页两类机会区块和表格不渲染，其他页线索/主体切换保留；新闻计数按 API 当前安全可展示条目，空缺与失败为 —；地图/主体/规模与同条件样本下钻、返回、拖动缩放实测。截图使用真实本地接口，夹具只作交互测试。；2026-10-03 复审：园区可固定浮窗和独立详情；首页标签/卡片仅高亮，不改统计/新闻/URL；五视口边界保持。Frontier同址证据归一保留原记录，全球/样本年份、定义、未知及覆盖不可比，不计算差额。；仓库统一页、原图和来源清单仅真实 admin 可访问；GET/HEAD、归一化变体、本地免登录与旧地址边界；来源校验和实时计数未同步标识。；新闻进展仅增加计数链接，内部供应页显示逐事件数据库、需求匹配、页码与讨论角度，不新增骨架轴或公开内部报告。; Internal daily workflow filter and event deep link distinguish candidate source/identity/caliber/research review, with bounded visible batches.；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；阅读恢复显示完成候选中的显式未读页，不把缺页当作已核验。；首屏交付/当前材料/缺口分区，技术记录默认折叠；接收时间北京时间、未接通未知；已完成且索引范围内的候选内容查询，页码与缺页披露、转义、手机无横溢。; review project receipt, applied fields, direct project/received-event links, explicit recent six preview and all-event filter; old 500-news cutoff cannot hide received daily items.；2026-10-07日期交付复审：同一事件两个园区保留双落点，事件与园区数独立，日切换/深链只过滤指定日报且转义外部文本；全批阅读单独呈现。；正式主体供电协议的角色/范围/来源、三州有限对照、组合不分摊；园区十二角度和待查展示；actor不标成变量类5。；2026-10-07公司页复审：公司/目录单入口、原权限门禁后GET/HEAD查询保留跳转、公开身份与骨架图、具体型号覆盖分母排除系列、原文参数矩阵拒绝合并配置和同名多行、四项对比、独立失败恢复与刷新选中/过滤保持，320/390窄屏、匿名不读取内部附表。；企业窗口四区块及产品子视图、原深链/权限、首页不加载原表/报告/私有附表、SQL仅导航字段；inews actor先筛后截断；行情身份与时间验证、过期缓存和有限后台队列；财报官方索引/类型切换、安全链接、320/390明暗。；慢行情来源的有限轮询耗尽后提示刷新，不无限显示正在更新。；当前接收库→首页数量/有限型号入口→业务分类→原表/官方来源→同筛选CSV，taxonomy空仍保留资料；型号名称不推类，旧批次不计当前、系列不计型号，全部资料与原厂全部系列入口。；业务分类刷新保持完整筛选，选中型号不将分类缩为单项搜索。；历史增补保留当前型号、缺项保留和重放；HTML原件验证后入库；文档计数与分页索引分开，未关联可查，测试报告不推整机规格。；公司子分类先于型号且无自动详情请求；路径根类与明确原表字段分层，未知/模糊保留；只读DB与列表/详情/CSV一致、规格正文搜索、分页及空类/失败重试；九项关键参数首屏、15px双列展开完整原表、320/390明暗；比较清空和新搜索拒绝迟到结果。；2026-10-07 阅读引句复审更正：Reader 报告保留 1 起始原件页号，reader_export 唯一边界转为 0 起始知识索引，供应投影原样保留，网页加 1 显示；导出到供应投影及浏览器共同覆盖第 1/17 页，缺页仍独立展示。；2026-10-07归属复审：第三方支持表不得按发布方计作自有产品；新接收拒绝、旧投影首页/分类/索引/搜索/CSV/详情/系列及资料型号链接一致排除，旧数据库与原件保留；整机配件品牌不触发删除，其他公司待核验标题只读报告。",
+      "checked_requirement": "17 页明暗/宽度、字体包已加载与正文字体栈、表单控件去原生、手机顶栏两行、认证外观、旧偏好 skin 字段忽略、状态保持与安全链接；字体包目录登录前公开而其余资源不公开；主画布手势边界、共享原材质保留、领域恢复、动画取代/迟到拒写/手动接管；研究摘要与完整视图全对象关联一致、页面研究就绪、挂载/缓存替换及失败重试；必需定义 HTTP/集合失败与超时可恢复，整批取消、旧批迟到、重复重试和控制状态恢复；GLB 已采用筛选、SHA/解析/贴图失败可重试、整批替换保留旧状态、迟到回收及独占资源释放；比较身份/空集合/纯文本；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；两场景 HDR/面板失败回退、代次替换及页面资源幂等释放；成本模型基准对账、输入重算、收益参照占位与情景预设（GB300 出租、H100 合约）的租金盈余/覆盖率、基准卡按价格库序列最新时点渲染（更新时间戳与首行时点）；经济模型四本账校准（研报 GB300 出租 ROIC、模型 API 自有 ROIC、带电壳 19%、中国托管 11%）、六个预设、资本开支/瀑布/利润分配/龙卷风/热力图/情景表渲染、输入重算与代际切换、价格库基准、窄屏边界；TCO 模型基准 KPI（每 kW·月）、站点切换后的对基准变化、设为基准后归零、租壳与托管口径、按每 MW 折算的对比与绝对金额切换、数据缺口表、图表渲染与窄屏边界、恢复与窄屏边界；供应方向按对象/问题关联；NVIDIA 打样页以 candidate-only 状态呈现 M5→AWS 进度，明确 Spark 不参与且不混淆正式采用。；2026-10-02 复审：独立行业入口，IT 分期优先且组合不累加，主体/阶段明细可对账，公开字段白名单，真实状态不由新闻标题推定，新闻过期保留长期线索；界面共享字体与明暗，地图与精选新闻联动。；二次复审：首页无项目表格，全球规模保留报告年份/估算性质/来源并与样本分开，低置信度项目标题自动入池，全名+actor 唯一园区跨事件关联，暂停/撤回/旧消息与人工状态优先验证。；2026-10-02 计算芯片复审：具体产品 CPU/GPU/其他加速器与芯片/板卡/整机/系列独立计数，原厂 navigation 不改；公司ID复用与产品线母公司、中国筛选；架构字段须原文与来源快照，DCU 不猜架构；本地接收不等于生产发布。；2026-10-02 发布验收复审：首批慢读取不耗尽后续厂商预算；单厂请求超时隔离、已成功厂商保留，重试取消旧轮。CPU 下拉选项可实际选择。; Batch 2: separate module filtering and CSV; evidence-backed links from boards/modules to delivered chips; reject missing/non-chip targets; preserve production baseline and server/memory/storage categories.; Timeout test waits for the successful JSON body before advancing its synthetic clock, so CI scheduling cannot turn a fulfilled route into an unconsumed timed-out body.；2026-10-03 首页排版复审：三个指定桌面视口大数字与全世界 viewBox 首屏同见，保持比例与字号；筛选/主体/样本在地图下方；手机 390/320 无横溢且新闻接在地图后；首页两类机会区块和表格不渲染，其他页线索/主体切换保留；新闻计数按 API 当前安全可展示条目，空缺与失败为 —；地图/主体/规模与同条件样本下钻、返回、拖动缩放实测。截图使用真实本地接口，夹具只作交互测试。；2026-10-03 复审：园区可固定浮窗和独立详情；首页标签/卡片仅高亮，不改统计/新闻/URL；五视口边界保持。Frontier同址证据归一保留原记录，全球/样本年份、定义、未知及覆盖不可比，不计算差额。；仓库统一页、原图和来源清单仅真实 admin 可访问；GET/HEAD、归一化变体、本地免登录与旧地址边界；来源校验和实时计数未同步标识。；新闻进展仅增加计数链接，内部供应页显示逐事件数据库、需求匹配、页码与讨论角度，不新增骨架轴或公开内部报告。; Internal daily workflow filter and event deep link distinguish candidate source/identity/caliber/research review, with bounded visible batches.；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；阅读恢复显示完成候选中的显式未读页，不把缺页当作已核验。；首屏交付/当前材料/缺口分区，技术记录默认折叠；接收时间北京时间、未接通未知；已完成且索引范围内的候选内容查询，页码与缺页披露、转义、手机无横溢。; review project receipt, applied fields, direct project/received-event links, explicit recent six preview and all-event filter; old 500-news cutoff cannot hide received daily items.；2026-10-07日期交付复审：同一事件两个园区保留双落点，事件与园区数独立，日切换/深链只过滤指定日报且转义外部文本；全批阅读单独呈现。；正式主体供电协议的角色/范围/来源、三州有限对照、组合不分摊；园区十二角度和待查展示；actor不标成变量类5。；2026-10-07公司页复审：公司/目录单入口、原权限门禁后GET/HEAD查询保留跳转、公开身份与骨架图、具体型号覆盖分母排除系列、原文参数矩阵拒绝合并配置和同名多行、四项对比、独立失败恢复与刷新选中/过滤保持，320/390窄屏、匿名不读取内部附表。；企业窗口四区块及产品子视图、原深链/权限、首页不加载原表/报告/私有附表、SQL仅导航字段；inews actor先筛后截断；行情身份与时间验证、过期缓存和有限后台队列；财报官方索引/类型切换、安全链接、320/390明暗。；慢行情来源的有限轮询耗尽后提示刷新，不无限显示正在更新。；当前接收库→首页数量/有限型号入口→业务分类→原表/官方来源→同筛选CSV，taxonomy空仍保留资料；型号名称不推类，旧批次不计当前、系列不计型号，全部资料与原厂全部系列入口。；业务分类刷新保持完整筛选，选中型号不将分类缩为单项搜索。；历史增补保留当前型号、缺项保留和重放；HTML原件验证后入库；文档计数与分页索引分开，未关联可查，测试报告不推整机规格。；公司子分类先于型号且无自动详情请求；路径根类与明确原表字段分层，未知/模糊保留；只读DB与列表/详情/CSV一致、规格正文搜索、分页及空类/失败重试；九项关键参数首屏、15px双列展开完整原表、320/390明暗；比较清空和新搜索拒绝迟到结果。；2026-10-07 阅读引句复审更正：Reader 报告保留 1 起始原件页号，reader_export 唯一边界转为 0 起始知识索引，供应投影原样保留，网页加 1 显示；导出到供应投影及浏览器共同覆盖第 1/17 页，缺页仍独立展示。；2026-10-07归属复审：第三方支持表不得按发布方计作自有产品；新接收拒绝、旧投影首页/分类/索引/搜索/CSV/详情/系列及资料型号链接一致排除，旧数据库与原件保留；整机配件品牌不触发删除，其他公司待核验标题只读报告。；管理后台自动读取不执行任务、任务/文档及当前/历史分母分开、未知/过期/刷新失败边界、阻塞分类与身份定位、完整手动日志/权限和响应式展示。",
       "tests": [
         "tests/ui_skin.cjs",
         "tests/auth_appearance.cjs",
@@ -508,7 +516,11 @@
         "tests/product_catalog.cjs",
         "tests/unit/test_catalog_ownership.py::CatalogOwnershipTests.test_old_misattribution_is_removed_from_every_product_view_but_evidence_survives",
         "tests/unit/test_catalog_ownership.py::CatalogOwnershipTests.test_new_support_page_delivery_fails_before_creating_catalog",
-        "tests/unit/test_catalog_ownership.py::CatalogOwnershipTests.test_other_company_audit_and_component_mentions_do_not_change_products"
+        "tests/unit/test_catalog_ownership.py::CatalogOwnershipTests.test_other_company_audit_and_component_mentions_do_not_change_products",
+        "tests/unit/test_operations.py::OperationsHTTPTests.test_private_diagnostics_require_admin_and_paths_cannot_be_selected",
+        "tests/unit/test_operations.py::OperationsHTTPTests.test_full_log_survives_preview_truncation_and_result_is_recorded",
+        "tests/unit/test_operations.py::OperationsHTTPTests.test_stale_generated_snapshot_is_not_masked_by_recent_reception",
+        "tests/ops_dashboard.cjs"
       ],
       "not_verified": [
         "截图矩阵不证明逐像素设计质量、屏幕阅读器体验或真实 3D 帧率；未修改页面的全站设计仍需持续人工体验验收。字体包切片覆盖率来自仓库文本频率，真实用户输入的生僻字仍会触发后续片下载。",
@@ -527,7 +539,8 @@
         "资料映射集成使用生产型号/路径身份与明确的规格测试单元格，不证明Macmini历史原件已全部解析或交付，也不证明当前线上全部目录覆盖；真实当前批次与发布回执另核。",
         "Private mini corpus parsing totals and AWS supplement receipt require actual execution; link index does not prove PDF parameter extraction, availability or research adoption.",
         "历史增补已据用户真实回执确认1,147条目/1,063型号/10,101原表；本次子分类生产分布、真实全量性能和新导航上线待新status/applied/API验收。原厂taxonomy与全量在售身份尚未补齐，不由浏览分类代替。",
-        "本次仅核对Fetchspec保存的16家公司169条历史目录记录及已核对支持路径；未取得所有公司的实时接收库、mini全量原件、AWS排除数量或部署回执。标题规则无命中不证明产品制造商已全部核验。"
+        "本次仅核对Fetchspec保存的16家公司169条历史目录记录及已核对支持路径；未取得所有公司的实时接收库、mini全量原件、AWS排除数量或部署回执。标题规则无命中不证明产品制造商已全部核验。",
+        "队列仅最早100任务样本，手动历史仅最近50次；无全量在线分页和全服务journal采集。代码入口不是确认的异常行，资料处置与服务依赖须实机核对。"
       ]
     },
     {

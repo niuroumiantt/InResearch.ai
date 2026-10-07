@@ -19,6 +19,7 @@ from inresearch.interfaces import public
 from inresearch.materials import inbox as material_intake
 from inresearch.materials import model_assets
 import hmac
+from inresearch.workflow import operations
 from inresearch.workflow import commands as commands
 from inresearch.workflow import supply
 from inresearch.workflow import news_marks
@@ -37,6 +38,7 @@ import sqlite3
 import subprocess as subprocess
 import sys
 import threading
+import time
 from datetime import datetime
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as ThreadingHTTPServer
 from pathlib import Path
@@ -51,8 +53,8 @@ TASKS = {
     "indicators": ("指标回填", ["manage.py", "indicators"], 30),
     "verify":     ("生成核验队列", ["manage.py", "verify"], 30),
     "validate":   ("数据校验", ["manage.py", "validate"], 30),
-    "export":     ("导出全量报告（md+docx）", ["manage.py", "export", "--docx"], 120),
-    "map":        ("Top10 地图（html+pdf）", ["manage.py", "map"], 90),
+    "export":     ("导出成果快照（Markdown + JSON）", ["manage.py", "export"], 120),
+    "map":        ("Top10 地图（HTML；PDF 取决于渲染环境）", ["manage.py", "map"], 90),
     "reader":     ("Spark 常驻阅读状态", ["manage.py", "reader-status"], 30),
     "queue":      ("生成精读队列", ["manage.py", "reading-queue"], 30),
     "workorder":  ("生成工单队列", ["manage.py", "workorders"], 60),
@@ -427,13 +429,32 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(400, {'ok':False,'error':'invalid_product_document_filter'})
         if self.path == "/api/materials":
             return self._json(200, {"items": material_intake.records()[:200]})
+        if urlsplit(self.path).path in ('/api/ops', '/api/ops/log'):
+            if self._role(user) != 'admin':
+                return self._json(403, {'ok': False, 'error': '仅管理员可查看运行诊断与日志'})
+            if urlsplit(self.path).path == '/api/ops':
+                with LOCK:
+                    running = set(RUNNING)
+                return self._json(200, operations.snapshot(ROOT, TASKS, running))
+            query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+            if set(query) != {'id'} or len(query['id']) != 1:
+                return self._json(400, {'ok': False, 'error': 'invalid log query'})
+            try:
+                output = operations.log_content(ROOT, query['id'][0]).encode('utf-8')
+            except ValueError:
+                return self._json(400, {'ok': False, 'error': 'invalid run identity'})
+            except OSError:
+                return self._json(404, {'ok': False, 'error': 'run log not found'})
+            self.send_response(200)
+            self.send_header('Content-Type', 'text/plain; charset=utf-8')
+            self.send_header('Content-Disposition', 'attachment; filename="run-' + query['id'][0] + '.log"')
+            self.send_header('Content-Length', str(len(output)))
+            self.end_headers()
+            return self.wfile.write(output)
         if self.path == "/api/status":
-            st = {}
-            for t in TASKS:
-                f = workspace_path("logs", ROOT) / f"task_{t}.log"
-                st[t] = {"last": datetime.fromtimestamp(f.stat().st_mtime).isoformat(timespec="minutes")
-                         if f.exists() else None, "running": t in RUNNING}
-            return self._json(200, st)
+            with LOCK:
+                running = set(RUNNING)
+            return self._json(200, operations.task_state(ROOT, TASKS, running))
         if urlsplit(self.path).path == '/api/model-assets':
             query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
             page = query.get('page', [None])
@@ -753,16 +774,31 @@ class Handler(SimpleHTTPRequestHandler):
             if task in RUNNING:
                 return self._json(409, {"ok": False, "error": "该任务正在运行中"})
             RUNNING.add(task)
+        started, clock = time.time(), time.monotonic()
+        name, args, timeout = TASKS[task]
         try:
-            name, args, timeout = TASKS[task]
             r = subprocess.run([PY] + args, cwd=ROOT, capture_output=True, text=True, timeout=timeout)
-            out = ((r.stdout or "") + (r.stderr or "")).strip()[-4000:]
-            log_run(task, out)
-            return self._json(200, {"ok": r.returncode == 0, "task": task, "name": name, "output": out})
-        except subprocess.TimeoutExpired:
-            return self._json(200, {"ok": False, "error": "任务超时"})
+            out = ((r.stdout or "") + (r.stderr or "")).strip()
+            record = operations.record_task(ROOT, task, name, out, started=started,
+                returncode=r.returncode, duration=time.monotonic() - clock)
+            # Preserve the beginning (where summaries live) and the end; full log is downloadable.
+            preview = out if len(out) <= 12000 else out[:9000] + "\n… 中段已折叠，请下载完整日志 …\n" + out[-3000:]
+            return self._json(200, {"ok": r.returncode == 0, "task": task, "name": name,
+                "output": preview, "truncated": len(out) > 12000, "run": record,
+                "log_url": '/api/ops/log?id=' + record['id']})
+        except (subprocess.TimeoutExpired, OSError) as exc:
+            out = '任务超时' if isinstance(exc, subprocess.TimeoutExpired) else '任务无法启动：' + type(exc).__name__
+            for part in (getattr(exc, 'stdout', None), getattr(exc, 'stderr', None)):
+                if part:
+                    out += '\n' + (part.decode('utf-8', 'replace') if isinstance(part, bytes) else part)
+            record = operations.record_task(ROOT, task, name, out, started=started,
+                outcome='timeout' if isinstance(exc, subprocess.TimeoutExpired) else 'failed',
+                duration=time.monotonic() - clock)
+            return self._json(200, {"ok": False, "error": out[:12000], "run": record,
+                "log_url": '/api/ops/log?id=' + record['id']})
         finally:
-            RUNNING.discard(task)
+            with LOCK:
+                RUNNING.discard(task)
 
     def api_add_price(self, rec):
         try:

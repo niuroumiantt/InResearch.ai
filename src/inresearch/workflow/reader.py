@@ -100,7 +100,7 @@ class Reader:
         # so it stays out of the catalog and out of any backup contract.
         # verify=True re-reads and re-verifies every report's digest.
         with self.catalog.read_snapshot():
-            return reader_delivery.export_snapshot(self.conn, self.data, self.snapshot(), self.status(),
+            return reader_delivery.export_snapshot(self.conn, self.data, self.snapshot(), self.status(observability=True),
                                                    cache_root=self.state, verify=verify, doc_ids=doc_ids)
 
     def backup(self, dest):
@@ -700,7 +700,8 @@ class Reader:
                 self.conn.execute("UPDATE intake_operations SET state='prepared',error_code=NULL WHERE doc_id=? AND state='needs_review'",(row['doc_id'],))
         return {"retried": cur.rowcount}
 
-    def status(self):
+    def status(self, observability=False):
+        from inresearch.workflow.operations import reader_observability
         counts = {row[0]: row[1] for row in self.conn.execute("SELECT state,COUNT(*) FROM current_readings GROUP BY state")}
         stages = [{"stage": r[0], "state": r[1], "count": r[2]} for r in self.conn.execute("SELECT stage,state,COUNT(*) FROM jobs GROUP BY stage,state ORDER BY stage,state")]
         failures = [dict(r) for r in self.conn.execute("SELECT doc_id,revision_id,original_name,phase,error_code FROM execution_readings WHERE error_code IS NOT NULL AND state NOT IN ('rejected','superseded') ORDER BY updated DESC LIMIT 20")]
@@ -729,7 +730,7 @@ class Reader:
                 "counts": counts, "documents_total": sum(counts.values()),
                 "reading_revisions": {r[0]:r[1] for r in self.conn.execute("SELECT state,COUNT(*) FROM reading_runs WHERE base_revision_id IS NOT NULL GROUP BY state")},
                 "sources_total": self.conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0],
-                "stage_counts": stages, "oldest_pending_seconds": max(0, self.clock() - pending) if pending is not None else None,
+                "operations": reader_observability(self.conn, self.clock()) if observability else None, "stage_counts": stages, "oldest_pending_seconds": max(0, self.clock() - pending) if pending is not None else None,
                 "oldest_pending": datetime.fromtimestamp(pending, timezone.utc).isoformat() if pending is not None else None,
                 "recent_failures": failures, "backend": self.model.identity,
                 "last_scan": scan, "thermal": dict(self.thermal),

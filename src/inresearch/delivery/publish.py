@@ -61,6 +61,8 @@ def main(argv=None):
             reader.conn.execute('COMMIT')
             worker = subprocess.run(['systemctl', '--user', 'is-active', 'inresearch-reader.service'],
                                     capture_output=True, text=True, timeout=10)
+            if isinstance(payload['reader'].get('operations'), dict):
+                payload['reader']['operations']['worker_service'] = 'active' if worker.returncode == 0 else 'inactive'
             if worker.returncode:
                 payload['reader']['status'] = 'degraded'
                 payload['reader'].setdefault('recent_failures', []).append({'error_code': 'worker_service_inactive'})
