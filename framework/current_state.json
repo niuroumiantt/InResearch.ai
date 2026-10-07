@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.07.8",
+  "version": "2026.10.07.9",
   "effective_at": "2026-10-07",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -1636,8 +1636,8 @@
       "supersedes": [
         "model-execution-20260912"
       ],
-      "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；用户授权修复：CLI 失败分类/脱敏诊断、显式高分辨率视觉补读及逐 OCR 页检查点让槽，保留核验标准与失败证据。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。",
-      "implementation_revision": "2026.10.07.1"
+      "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；用户授权修复：CLI 失败分类/脱敏诊断、显式高分辨率视觉补读及逐 OCR 页检查点让槽，保留核验标准与失败证据。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。; bounded read_batch uses the frozen reader role and per-chunk provenance; concurrency benchmark coordinates client and relay without changing models.",
+      "implementation_revision": "2026.10.07.9"
     },
     {
       "id": "reading-codex-batch-20261006",
@@ -1886,13 +1886,14 @@
         "src/inresearch/interfaces/cli.py",
         "web/components/supply.js",
         "web/components/pilot.js",
-        "deploy/spark-reader/reader.env.example"
+        "deploy/spark-reader/reader.env.example",
+        "tests/unit/test_read_batch.py"
       ],
       "supersedes": [
         "reading-codex-batch-20261006"
       ],
-      "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。",
-      "implementation_revision": "2026.10.07.5"
+      "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.",
+      "implementation_revision": "2026.10.07.9"
     }
   ],
   "entrypoints": [
