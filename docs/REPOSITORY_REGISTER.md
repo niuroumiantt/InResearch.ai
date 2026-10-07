@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1132。
+在册文件：1133。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 28 |
-| 配套说明 | 85 |
+| 配套说明 | 86 |
 | 测试 | 121 |
 
 ## 在册记录集合
@@ -530,6 +530,7 @@
 | [docs/handoff/event-delivery-20261006.md](handoff/event-delivery-20261006.md) | 配套说明 |
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
+| [docs/handoff/historical-source-recovery-20261007.md](handoff/historical-source-recovery-20261007.md) | 配套说明 |
 | [docs/handoff/homepage-first-screen.md](handoff/homepage-first-screen.md) | 配套说明 |
 | [docs/handoff/homepage-map-audit-20261003.md](handoff/homepage-map-audit-20261003.md) | 配套说明 |
 | [docs/handoff/inews-2026-09-29.md](handoff/inews-2026-09-29.md) | 配套说明 |
