@@ -108,6 +108,7 @@ def connect(root, company='nvidia'):
       CREATE TABLE IF NOT EXISTS products(id TEXT PRIMARY KEY, run_id TEXT NOT NULL, payload TEXT NOT NULL);
       CREATE TABLE IF NOT EXISTS versions(product_id TEXT, sha TEXT, payload TEXT NOT NULL, PRIMARY KEY(product_id,sha));
       CREATE TABLE IF NOT EXISTS specs(product_id TEXT, sha TEXT, table_no INTEGER, row_no INTEGER, parameter TEXT, cells TEXT, PRIMARY KEY(product_id,sha,table_no,row_no));
+      CREATE TABLE IF NOT EXISTS materials(id TEXT PRIMARY KEY, payload TEXT NOT NULL);
     ''')
     return db
 
@@ -168,6 +169,8 @@ def validate(payload, company=None):
     if company is not None and payload['company_id'] != company:
         raise ValueError(company_config(company)['label'] + ' catalog schema 1 required')
     company = payload['company_id']
+    if payload.get('catalog_mode', 'snapshot') not in {'snapshot', 'historical_supplement'}:
+        raise ValueError('unknown catalog mode')
     id_pattern = product_id_pattern(company)
     stamp = datetime.fromisoformat(payload['generated_at'])
     if stamp.tzinfo is None or stamp.utcoffset().total_seconds() != 0:
@@ -231,6 +234,8 @@ def validate(payload, company=None):
         if product.get('parent_id') and product['parent_id'] not in ids:
             raise ValueError('product parent is missing from this catalog')
     compute_catalog.validate_chip_links(products, source_keys)
+    from .catalog_materials import validate_materials
+    validate_materials(payload.get('material_index', []), company, source_keys)
     return payload
 
 
@@ -278,26 +283,50 @@ def receive(root, payload, company='nvidia'):
         with db:
             db.execute('BEGIN IMMEDIATE')
             latest = db.execute('SELECT generated,id FROM runs ORDER BY generated DESC LIMIT 1').fetchone()
-            if latest and latest['id'] == run_id:
+            if (latest and latest['id'] == run_id) or (payload.get('catalog_mode') == 'historical_supplement' and db.execute('SELECT 1 FROM runs WHERE id=?',(run_id,)).fetchone()):
                 return {'ok': True, 'replayed': True, 'products': len(payload['products']), 'run_id': run_id}
             if latest and datetime.fromisoformat(payload['generated_at']) <= datetime.fromisoformat(latest['generated']):
                 raise ValueError('older catalog cannot replace current observations')
             coverage = {**payload['coverage'], 'product_map': payload.get('product_map', {})}
+            supplement = payload.get('catalog_mode') == 'historical_supplement'
+            retained = {}
+            if supplement and latest:
+                retained = {r['id']:json.loads(r['payload']) for r in db.execute('SELECT id,payload FROM products WHERE run_id=?', (latest['id'],))}
+                previous = json.loads(db.execute('SELECT coverage FROM runs WHERE id=?', (latest['id'],)).fetchone()[0])
+                coverage['limitations'] = list(dict.fromkeys(previous.get('limitations', []) + coverage.get('limitations', [])))
+                coverage['product_map'] = previous.get('product_map', {})
+                coverage['complete'] = False
+                coverage['historical_supplement'] = {'previous_run':latest['id'], 'preserved_current_products':len(retained)}
+            from .catalog_materials import check_material_products
+            check_material_products(payload.get('material_index', []), set(retained) | {p['id'] for p in payload['products']})
+            if supplement:
+                if len(set(retained) | {p['id'] for p in payload['products']}) > 10000:
+                    raise ValueError('supplemented catalog size limit exceeded')
             db.execute('INSERT INTO runs VALUES(?,?,?,?)', (run_id, payload['generated_at'], datetime.now(timezone.utc).isoformat(), json.dumps(coverage, ensure_ascii=False)))
+            if retained:
+                db.execute('UPDATE products SET run_id=? WHERE run_id=?', (run_id, latest['id']))
             for source in payload['sources']:
                 # Source evidence remains private; webpage API only projects tables.
                 db.execute('INSERT OR IGNORE INTO sources VALUES(?,?)', (source['sha256'], json.dumps(source, ensure_ascii=False)))
                 db.execute('INSERT OR IGNORE INTO source_observations VALUES(?,?,?)', (source['source_url'], source['sha256'], json.dumps(source, ensure_ascii=False)))
             for product in payload['products']:
                 raw = json.dumps(product, ensure_ascii=False)
-                db.execute('INSERT OR REPLACE INTO products VALUES(?,?,?)', (product['id'], run_id, raw))
+                if product['id'] not in retained:
+                    db.execute('INSERT OR REPLACE INTO products VALUES(?,?,?)', (product['id'], run_id, raw))
                 db.execute('INSERT OR IGNORE INTO versions VALUES(?,?,?)', (product['id'], product['source_sha256'], raw))
                 for table in product['tables']:
                     for n, row in enumerate(table['rows']):
                         if len(row) < 2 or not row[0]['text']:
                             continue
                         db.execute('INSERT OR IGNORE INTO specs VALUES(?,?,?,?,?,?)', (product['id'], product['source_sha256'], table['index'], n + 1, row[0]['text'], json.dumps(row[1:], ensure_ascii=False)))
-        return {'ok': True, 'products': len(payload['products']), 'run_id': run_id}
+            from .catalog_materials import store_materials
+            store_materials(db, payload.get('material_index', []))
+        result = {'ok': True, 'products': len(payload['products']), 'run_id': run_id}
+        if supplement:
+            result.update(catalog_mode='historical_supplement', added_products=sum(p['id'] not in retained for p in payload['products']),
+                          preserved_products=len(retained), current_products=db.execute('SELECT count(*) FROM products WHERE run_id=?',(run_id,)).fetchone()[0],
+                          indexed_materials=db.execute('SELECT count(*) FROM materials').fetchone()[0])
+        return result
     finally:
         db.close()
 
@@ -648,7 +677,7 @@ def csv_export(value, mode='products', query='', kind='', with_specs=False, grou
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument('action', choices=['import', 'publish', 'status', 'export'])
+    ap.add_argument('action', choices=['import', 'import-bundle', 'publish', 'status', 'export'])
     ap.add_argument('--company', choices=sorted(COMPANIES), default='nvidia')
     ap.add_argument('--input', type=Path)
     ap.add_argument('--out', type=Path)
@@ -657,7 +686,18 @@ def main(argv=None):
     ap.add_argument('--token-file', default='~/.local/state/inresearch.ai/nvidia-pilot.token')
     args = ap.parse_args(argv)
     root = project_root()
-    if args.action in {'import', 'publish'}:
+    if args.action == 'import-bundle':
+        from .catalog_bundle import import_bundle
+        import sys
+        if not args.input:
+            ap.error('--input required (use - for stdin)')
+        if str(args.input) == '-':
+            receipt = import_bundle(root, sys.stdin.buffer, args.company)
+        else:
+            with args.input.open('rb') as stream:
+                receipt = import_bundle(root, stream, args.company)
+        print(json.dumps(receipt,ensure_ascii=False,indent=2))
+    elif args.action in {'import', 'publish'}:
         if not args.input or not args.archive_root:
             ap.error('--input and --archive-root required')
         payload = validate(json.loads(args.input.read_text()), args.company)

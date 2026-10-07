@@ -38,6 +38,7 @@ $('product-lines').innerHTML=data.product_lines.map((v,i)=>{
 const reviewed=data.product_lines.some(v=>v.basis==='reviewed_business_categories');$('product-basis').textContent=reviewed?'业务分类来自公司披露，已收录资料按官方产品路径关联；数量不代表厂商全部产品或在售情况。':'分类与数量来自已接收产品数据库；只统计已收录资料。';
 const groups=catalog.groups||[];
 $('catalog-categories').innerHTML=groups.length?'<span>原厂分类</span>'+groups.map(g=>`<a href="${esc(product({group:g.id}))}">${esc(g.label)} <small>${esc(g.entities)} 个条目</small></a>`).join(''):'';
+if(catalog.material_count)$('catalog-categories').innerHTML+=`<a id="company-materials-link" href="${esc(product({view:'materials'}))}">手册与附件索引 · ${esc(catalog.material_count)} 份 →</a>`;
 if(sum?.without_vendor_taxonomy)$('catalog-categories').innerHTML+=`<span>${esc(sum.without_vendor_taxonomy)} 个条目尚无原厂分类；已收录资料仍可查看。</span>`;
 if(catalog.business_lines?.length&&sum?.unmapped_entities)$('catalog-categories').innerHTML+=`<a href="${esc(product({line:'unmapped',scope:'all'}))}">业务分类待关联 ${esc(sum.unmapped_entities)} 个条目 →</a>`;
 const rows=(data.financials||[]).filter(r=>safe(r.url));reports(rows,'annual');document.querySelectorAll('[data-reports]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-reports]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));reports(rows,b.dataset.reports);});

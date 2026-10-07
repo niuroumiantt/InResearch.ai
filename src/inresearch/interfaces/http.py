@@ -85,7 +85,7 @@ class Handler(SimpleHTTPRequestHandler):
         normalized = posixpath.normpath(unquote(urlsplit(path).path).replace('\\', '/'))
         if normalized == '/product-catalog.html':
             query = parse_qs(urlsplit(path).query)
-            detail = query.get('view') == ['products'] or any(k in query for k in
+            detail = query.get('view') in (['products'], ['materials']) or any(k in query for k in
                 ('q', 'group', 'family', 'product_id', 'series', 'kind', 'with_specs', 'line', 'scope'))
             if not detail:
                 return str(ROOT / 'web/pages/company-home.html')
@@ -345,6 +345,12 @@ class Handler(SimpleHTTPRequestHandler):
             if company not in product_catalog.COMPANIES:
                 return self._json(404, {'ok': False, 'error': 'unknown catalog company'})
             query = parse_qs(urlsplit(self.path).query)
+            if query.get('view') == ['materials']:
+                from inresearch.workflow.catalog_materials import query as material_query
+                try:
+                    return self._json(200, material_query(ROOT,company,query.get('q',[''])[0],query.get('offset',['0'])[0]))
+                except (ValueError, sqlite3.Error):
+                    return self._json(400, {'error':'invalid material query'})
             export = query.get('export', [''])[0]
             if export:
                 value = product_catalog.snapshot(ROOT, company)
