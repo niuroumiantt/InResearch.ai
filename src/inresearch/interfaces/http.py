@@ -25,6 +25,8 @@ from inresearch.workflow import news_marks
 from inresearch.workflow import dispatch
 from inresearch.workflow import pilot_progress
 from inresearch.workflow import product_catalog
+from inresearch.workflow import company_window
+from inresearch.adapters import company_quotes
 from inresearch.workflow import product_coverage
 from inresearch.adapters import acquisition
 from inresearch.knowledge import registry as research
@@ -81,6 +83,12 @@ class Handler(SimpleHTTPRequestHandler):
 
     def translate_path(self, path):
         normalized = posixpath.normpath(unquote(urlsplit(path).path).replace('\\', '/'))
+        if normalized == '/product-catalog.html':
+            query = parse_qs(urlsplit(path).query)
+            detail = query.get('view') == ['products'] or any(k in query for k in
+                ('q', 'group', 'family', 'product_id', 'series', 'kind', 'with_specs'))
+            if not detail:
+                return str(ROOT / 'web/pages/company-home.html')
         return str(source_path(normalized, ROOT))
 
     def list_directory(self, path):
@@ -447,9 +455,35 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(400, {'error': str(error)})
             except (OSError, TypeError, KeyError):
                 return self._json(503, {'error': '行业数据暂不可用'})
-        if urlsplit(self.path).path == '/api/news':
+        if urlsplit(self.path).path in ('/api/company-window', '/api/company-quote'):
+            query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+            if set(query) != {'c'} or len(query['c']) != 1:
+                return self._json(400, {'error': 'invalid company filter'})
             try:
-                return self._json(200, research.build_news(ROOT))
+                cid = query['c'][0]
+                profile = company_window.company(ROOT, cid)
+                value = (company_quotes.snapshot(ROOT, profile) if urlsplit(self.path).path == '/api/company-quote'
+                         else company_window.snapshot(ROOT, cid))
+                return self._json(200, value)
+            except KeyError:
+                return self._json(404, {'error': 'unknown company'})
+            except (OSError, ValueError, TypeError, sqlite3.Error):
+                return self._json(503, {'error': 'company data unavailable'})
+        if urlsplit(self.path).path == '/api/news':
+            query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
+            if set(query) - {'company', 'limit'} or any(len(v) != 1 for v in query.values()):
+                return self._json(400, {'error': 'invalid news filter'})
+            cid = query.get('company', [None])[0]
+            try:
+                limit = int(query.get('limit', ['6' if cid else '80'])[0])
+                if not 1 <= limit <= (20 if cid else 80): raise ValueError('invalid limit')
+                if cid is not None: company_window.company(ROOT, cid)
+            except KeyError:
+                return self._json(404, {'error': 'unknown company'})
+            except (ValueError, TypeError):
+                return self._json(400, {'error': 'invalid news filter'})
+            try:
+                return self._json(200, research.build_news(ROOT, company_id=cid, limit=limit))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '新闻暂不可用，请稍后重试'})
         if self._norm_path() == '/research.html':

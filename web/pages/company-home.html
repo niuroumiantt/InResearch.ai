@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>企业窗口 · inresearch.ai</title>
+<script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script><script type="module" src="/assets/site-shell.js"></script>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/company-home.css">
+</head><body><inresearch-shell data-section="bom"></inresearch-shell>
+<main class="company-window">
+<div class="window-top"><a href="/bom.html">企业窗口</a><label>切换公司 <select id="actor-switch" aria-label="切换公司"><option>正在读取…</option></select></label></div>
+<header class="window-hero"><div><p class="window-eyebrow" id="company-listing">公司概览</p><h1 id="catalog-title">企业窗口</h1><p id="company-profile">正在读取公司资料…</p><div id="company-links"></div></div>
+<aside class="quote-panel" aria-label="股票行情"><div class="quote-values"><div><span>最新交易价</span><strong id="quote-price">—</strong><small id="quote-change"></small></div><div><span>市值</span><strong id="quote-cap">—</strong><small id="quote-currency"></small></div></div><p id="quote-time" role="status">正在读取行情…</p></aside></header>
+<dl id="company-facts" class="company-facts"></dl>
+<p id="profile-source" class="window-basis"></p>
+<nav class="window-nav" aria-label="企业窗口导航"><a href="#company-products">产品线</a><a href="#company-news">新闻快讯</a><a href="#company-financials">财务披露</a><a id="catalog-link" href="?view=products">浏览产品目录 ↗</a></nav>
+<section id="company-products" class="window-section"><div class="window-section-head"><div><p class="window-eyebrow">01 / 产品与业务</p><h2>产品线与分类</h2></div><a id="all-products" href="?view=products">全部已收录产品 →</a></div><div id="product-lines" class="product-line-grid"></div><p id="product-basis" class="window-basis"></p><div id="catalog-categories" class="catalog-categories"></div></section>
+<div class="window-bottom">
+<section id="company-news" class="window-section"><div class="window-section-head"><div><p class="window-eyebrow">02 / 最新动态</p><h2>公司新闻快讯</h2></div><a href="https://inews.today" target="_blank" rel="noopener">inews.today ↗</a></div><p id="news-status" class="window-basis" role="status">正在读取公司新闻…</p><ol id="company-news-list" class="company-news-list"></ol><button id="news-retry" type="button" hidden>重试新闻</button></section>
+<section id="company-financials" class="window-section"><div class="window-section-head"><div><p class="window-eyebrow">03 / 财务披露</p><h2>年报与季报</h2></div><a id="investor-relations" href="#" hidden>投资者关系 ↗</a></div><div class="report-tabs" role="group" aria-label="财报类型"><button type="button" data-reports="annual" aria-pressed="true">年报</button><button type="button" data-reports="quarterly" aria-pressed="false">季报</button></div><div id="financial-reports"></div><p id="financial-basis" class="window-basis">只加载报告索引，点击后打开官方原文。</p></section>
+</div><footer class="window-footer"><span>公司 / 产品 / 动态 / 披露</span><a id="research-link" href="?view=products#research-details">研究与规格资料 →</a></footer>
+</main><script src="/assets/company-home.js" defer></script></body></html>

@@ -17,7 +17,7 @@ READER_DATA = ('/data/dashboard.json', '/data/dashboard_rules.json', '/data/tco_
                '/framework/bom.json', '/framework/site_rights.json', '/framework/indicators.json', '/framework/modules.json',
                '/framework/tco_factors.json', '/framework/tco_targets.json')
 # 只读接口。写接口、任务板、供应台账、用户管理不在内。规格库每家登记公司一条（GET 只读；POST 接收端仍要机器凭证）。
-READER_API = ('/api/industry', '/api/whoami', '/api/report', '/api/news', '/api/targets/backflow', '/api/model-assets',
+READER_API = ('/api/industry', '/api/whoami', '/api/report', '/api/news', '/api/company-window', '/api/company-quote', '/api/targets/backflow', '/api/model-assets',
               *('/api/product-catalog/' + company for company in COMPANIES))
 # 外观、组件脚本、字体、模型资产与渲染图：公开页面离不开，且都是代码或登记过的资产。
 READER_PREFIXES = ('/assets/', '/favicon')
