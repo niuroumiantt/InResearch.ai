@@ -37,7 +37,8 @@
   const seriesById = new Map();
   // ?group=&family= open a vendor family directly (links from the company page)
   const linkedPath = new URLSearchParams(location.search);
-  let group = linkedPath.get('group') || (vendorPath ? '' : 'datacenter'), family = linkedPath.get('family') || '', scope = linkedPath.get('scope') || 'catalog', page = 0;
+  let line = linkedPath.get('line') || '';
+  let group = linkedPath.get('group') || (vendorPath ? '' : 'datacenter'), family = linkedPath.get('family') || '', scope = linkedPath.get('scope') || (line?'all':'catalog'), page = 0;
   $('#kind').value=linkedPath.get('kind')||'';$('#with-specs').checked=linkedPath.get('with_specs')==='1';
   const pageSize = 15;
   const compared = new Set();
@@ -160,16 +161,20 @@
     const size=g=>items.filter(p=>p.navigation.group===g.id).length;
     const groups=vendorPath?catalog.navigation.groups.filter(g=>size(g)>0).sort((a,b)=>(/obsolete/i.test(a.id)-/obsolete/i.test(b.id))||size(b)-size(a)):catalog.navigation.groups;
     if(!groups.some(g=>g.id===group))group=groups[0]?.id||'';
-    $('#groups').innerHTML=groups.map(g=>`<button data-group="${esc(g.id)}" aria-pressed="${scope==='catalog'&&group===g.id&&!$('#query').value}"><strong>${esc(zh('groups',g.id,g.label))}</strong><small>${items.filter(p=>p.navigation.group===g.id).length} ${vendorPath?'个目录条目':'个产品 / 系列条目'}</small></button>`).join('');
+    $('#all-catalog').setAttribute('aria-pressed',String(scope==='all'&&!line));
+    $('#business-lines').hidden=!(catalog.company_lines||[]).length;
+    $('#business-lines').innerHTML=(catalog.company_lines||[]).map(v=>`<button data-line="${esc(v.id)}" aria-pressed="${line===v.id}">${esc(v.name)} <small>${esc(v.entities)}</small></button>`).join('');
+    $('#business-lines').querySelectorAll('button').forEach(b=>b.onclick=()=>{line=b.dataset.line;group='';family='';scope='all';page=0;selected='';selectedSeries='';$('#query').value='';remember({product_id:'',series:''});filter();});
+    $('#groups').innerHTML=groups.map(g=>`<button data-group="${esc(g.id)}" aria-pressed="${!line&&scope==='catalog'&&group===g.id&&!$('#query').value}"><strong>${esc(zh('groups',g.id,g.label))}</strong><small>${items.filter(p=>p.navigation.group===g.id).length} ${vendorPath?'个目录条目':'个产品 / 系列条目'}</small></button>`).join('');
     $('#auxiliary').textContent=`${vendorPath?'目录与分类页 / 待归类':'辅助资料 / 待归类'}（${catalog.products.length-items.length}）`;
     $('#auxiliary').setAttribute('aria-pressed',String(scope==='auxiliary'));
-    $('#groups').querySelectorAll('button').forEach(b=>b.onclick=()=>{group=b.dataset.group;family='';scope='catalog';page=0;$('#query').value='';filter();});
+    $('#groups').querySelectorAll('button').forEach(b=>b.onclick=()=>{line='';group=b.dataset.group;family='';scope='catalog';page=0;$('#query').value='';filter();});
     const families=new Map();
     items.filter(p=>p.navigation.group===group).forEach(p=>families.set(p.navigation.family,p.navigation.family_label));
     const familySize=id=>items.filter(p=>p.navigation.group===group&&p.navigation.family===id).length;
     const choices=[...families].sort((a,b)=>vendorPath?familySize(b[0])-familySize(a[0]):a[1].localeCompare(b[1],'zh-CN'));
-    if(!family||!families.has(family))family=choices.some(([id])=>id==='accelerators')?'accelerators':choices[0]?.[0]||'';
-    $('#families').innerHTML=choices.map(([id,label])=>`<button data-family="${esc(id)}" aria-pressed="${family===id}">${esc(zh('families',id,label))} <small>${familySize(id)}</small></button>`).join('');
+    if(!family||!families.has(family))family=vendorPath?'':choices.some(([id])=>id==='accelerators')?'accelerators':choices[0]?.[0]||'';
+    $('#families').innerHTML=(vendorPath&&choices.length?`<button data-family="" aria-pressed="${!family}">全部系列</button>`:'')+choices.map(([id,label])=>`<button data-family="${esc(id)}" aria-pressed="${family===id}">${esc(zh('families',id,label))} <small>${familySize(id)}</small></button>`).join('');
     $('#families').hidden=scope!=='catalog'||!!$('#query').value;
     $('#families').querySelectorAll('button').forEach(b=>b.onclick=()=>{family=b.dataset.family;page=0;filter();});
   }
@@ -257,14 +262,14 @@
     navigation();
     const q=$('#query').value.trim().toLowerCase(), kind=$('#kind').value;
     const activeGroup=q||scope!=='catalog'?'':group, activeFamily=q||scope!=='catalog'?'':family;
-    const products=catalog.products.filter(p=>(scope==='catalog'?p.navigation.role==='catalog':p.navigation.role!=='catalog')&&(!activeGroup||p.navigation.group===activeGroup)&&(!activeFamily||p.navigation.family===activeFamily)&&(!kind||p.kind===kind)&&(!$('#with-specs').checked||tableCount(p))&&searchText(p).toLowerCase().includes(q)).sort((a,b)=>Number(b.kind==='named_product')-Number(a.kind==='named_product')||Number(!!tableCount(b))-Number(!!tableCount(a))||a.name.localeCompare(b.name,'en',{numeric:true}));
+    const products=catalog.products.filter(p=>(!line||(p.company_line||'unmapped')===line)&&(scope==='all'||(scope==='catalog'?p.navigation.role==='catalog':p.navigation.role!=='catalog'))&&(!activeGroup||p.navigation.group===activeGroup)&&(!activeFamily||p.navigation.family===activeFamily)&&(!kind||p.kind===kind)&&(!$('#with-specs').checked||tableCount(p))&&searchText(p).toLowerCase().includes(q)).sort((a,b)=>Number(b.kind==='named_product')-Number(a.kind==='named_product')||Number(!!tableCount(b))-Number(!!tableCount(a))||a.name.localeCompare(b.name,'en',{numeric:true}));
     const familyLabel=catalog.products.find(p=>p.navigation.group===group&&p.navigation.family===family)?.navigation.family_label||'';
-    $('#breadcrumb').textContent=scope!=='catalog'?(vendorPath?'目录与分类页 / 待归类（数量按条目类型计）':'辅助资料 / 待归类（不计作具体产品）'):q?'跨大类搜索结果':`${zh('groups',group,catalog.navigation.groups.find(g=>g.id===group)?.label||'')} › ${zh('families',family,familyLabel)}`;
-    for(const mode of ['products','map','specs'])$('#export-'+mode).href=api+'?'+new URLSearchParams({export:mode,q,kind,with_specs:$('#with-specs').checked?'1':'',group:activeGroup,family:activeFamily,scope});
+    $('#breadcrumb').textContent=line?(catalog.company_lines?.find(v=>v.id===line)?.name||'未知业务分类')+' · 已收录资料':scope==='all'?'全部已收录产品与资料':scope!=='catalog'?(vendorPath?'目录与分类页 / 待归类（数量按条目类型计）':'辅助资料 / 待归类（不计作具体产品）'):q?'跨大类搜索结果':`${zh('groups',group,catalog.navigation.groups.find(g=>g.id===group)?.label||'')} › ${zh('families',family,familyLabel)}`;
+    for(const mode of ['products','map','specs'])$('#export-'+mode).href=api+'?'+new URLSearchParams({export:mode,q,kind,with_specs:$('#with-specs').checked?'1':'',group:activeGroup,family:activeFamily,scope,line});
     // Vendor catalogs list part numbers: browse them by series (the official page the parts hang from),
     // except in search, a kind filter, or the vendor's obsolete catalogue (listed parts only).
     modelRows(products);
-    remember({q,kind,group:activeGroup,family:activeFamily,scope,with_specs:$('#with-specs').checked?'1':''});
+    remember({q,kind,group:activeGroup,family:activeFamily,scope,line,with_specs:$('#with-specs').checked?'1':''});
     if(vendorPath&&scope==='catalog'&&!q&&!kind&&group!=='obsolete')return seriesList(products);
     page=Math.min(page,Math.max(0,Math.ceil(products.length/pageSize)-1));
     modelRows(products);
@@ -294,11 +299,17 @@
       $('#catalog-title').textContent=`${companyLabel} 产品规格库`;
       if(data.registered_companies)$('#company-switch').innerHTML=data.registered_companies.map(c=>`<a href="?c=${encodeURIComponent(c.id)}" data-company="${esc(c.id)}" ${c.id===company?'aria-current="page"':''}>${esc(c.label)}</a>`).join('');
       if(vendorPath)$('#groups-note').textContent='按已交付的官方产品路径浏览；未交付目录与待补规格分别展示。';
-      if(vendorPath&&data.products.length&&!data.products.some(p=>p.navigation.role==='catalog'))scope='auxiliary';
+      if(vendorPath&&scope!=='all'&&!line&&data.products.length&&!data.products.some(p=>p.navigation.role==='catalog'))scope='auxiliary';
       catalog=data;byId=new Map(data.products.map(p=>[p.id,p]));
       window.dispatchEvent(new CustomEvent('company:catalog',{detail:data}));
       const linkedProduct=byId.get(new URLSearchParams(location.search).get('product_id'));
-      if(linkedProduct&&!new URLSearchParams(location.search).has('q'))$('#query').value=linkedProduct.name;
+      const exactLink=new URLSearchParams(location.search);
+      if(linkedProduct&&!['q','line','group','family','scope','kind','with_specs','series'].some(k=>exactLink.has(k))){
+        // A stable product deep link must also find an unclassified item when
+        // this company has other, classified products in the same received run.
+        // A selected model saved alongside filters must keep those filters on refresh.
+        scope='all';line='';group='';family='';$('#query').value=linkedProduct.name;
+      }
       detailsById.clear();seriesById.clear();compared.clear();comparisonGeneration++;$('#comparison').hidden=true;selected=linkedProduct?.id||'';detailGeneration++;
       // ?series=<id> opens that series (links from the company page)
       const linked=byId.get(selectedSeries);
@@ -331,7 +342,8 @@
     finally {clearTimeout(timeout);}
   }
   $('#query').oninput=()=>{page=0;filter();};$('#kind').onchange=()=>{page=0;filter();};$('#with-specs').onchange=()=>{page=0;filter();};$('#retry').onclick=load;
-  $('#auxiliary').onclick=()=>{scope=scope==='auxiliary'?'catalog':'auxiliary';page=0;$('#query').value='';filter();};
+  $('#all-catalog').onclick=()=>{line='';scope='all';group='';family='';page=0;$('#query').value='';filter();};
+  $('#auxiliary').onclick=()=>{line='';scope=scope==='auxiliary'?'catalog':'auxiliary';page=0;$('#query').value='';filter();};
   $('#previous').onclick=()=>{page--;filter();};$('#next').onclick=()=>{page++;filter();};
   window.addEventListener('pageshow',event=>{
     if(event.persisted&&(!catalog.navigation||$('#status').textContent.includes('正在读取')))load();

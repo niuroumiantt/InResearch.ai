@@ -45,6 +45,8 @@ html[data-ui-skin] #back-series{font-family:inherit;font-size:.9rem;display:inli
 
 <div class="controls"><label for="query">搜索</label><input id="query" type="search" placeholder="型号或官方分类，如 H200、Networking"><label for="kind">类型</label><select id="kind"><option value="">全部目录实体</option><option value="named_product">具体型号页</option><option value="family_or_directory">系列 / 平台 / 目录</option><option value="software_service">软件 / 服务</option></select><label><input id="with-specs" type="checkbox">已有规格表</label><button id="retry">刷新</button></div>
 <div class="controls"><a id="export-products" href="/api/product-catalog/nvidia?export=products">导出产品清单 CSV</a><a id="export-map" href="/api/product-catalog/nvidia?export=map">导出公司产品地图 CSV</a><a id="export-specs" href="/api/product-catalog/nvidia?export=specs">导出官方参数 CSV</a><span id="matches"></span></div>
+<button id="all-catalog" aria-pressed="false">全部已收录资料</button>
+<nav id="business-lines" aria-label="公司业务分类" hidden></nav>
 <nav id="groups" aria-label="产品大类"></nav>
 
 <button id="auxiliary" aria-pressed="false">辅助资料 / 待归类</button>

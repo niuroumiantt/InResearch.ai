@@ -438,9 +438,16 @@ def index_snapshot(root, company='nvidia'):
         'map_change_status': p.get('map_change_status', ''),
         'table_count': len(p['tables']),
         'navigation': p['navigation'],
+        'company_line': product_navigation.company_line(p, company),
         'compute': p['compute'],
         **{key: p[key] for key in VENDOR_FIELDS if key in p},
     } for p in value['products']]
+    value['company_lines'] = [{**line, 'entities': sum(
+        p['company_line'] == line['id'] for p in value['products'])}
+        for line in product_navigation.COMPANY_LINES.get(company, [])]
+    if value['company_lines']:
+        value['company_lines'].append({'id': 'unmapped', 'name': '业务分类待关联',
+            'entities': sum(not p['company_line'] for p in value['products'])})
     value['research_alignment'] = research_alignment(root, company)
     return value
 
@@ -591,8 +598,10 @@ def series_snapshot(root, series_id, company='nvidia'):
     return value
 
 
-def csv_export(value, mode='products', query='', kind='', with_specs=False, group='', family='', scope='all', company=None):
+def csv_export(value, mode='products', query='', kind='', with_specs=False, group='', family='', scope='all', company=None, line=''):
     company = company or value.get('company_id') or 'nvidia'
+    if line and line not in {r['id'] for r in product_navigation.COMPANY_LINES.get(company, [])} | {'unmapped'}:
+        raise ValueError('unknown company business line')
     classifier = lambda p: classify(p, company)
     # Vendor-path companies carry the vendor's own path and part status; NVIDIA
     # columns stay exactly as reviewed.
@@ -601,6 +610,7 @@ def csv_export(value, mode='products', query='', kind='', with_specs=False, grou
         return p['name'] + ' ' + p['category'] + (' ' + p['part_number'] if vendor and p.get('part_number') else '')
     products = [p for p in value['products'] if (not kind or p['kind'] == kind)
                 and (not with_specs or p['tables'])
+                and (not line or (product_navigation.company_line(p, company) or 'unmapped') == line)
                 and product_navigation.matches(p, group, family, scope, classifier)
                 and query.casefold() in searchable(p).casefold()]
     def vendor_columns(p):

@@ -7,6 +7,59 @@ that path is evidence, so it is projected as-is and never re-labelled here.
 import re
 from urllib.parse import urlsplit
 
+# A separate display association, not a replacement for delivered vendor taxonomy.
+# Names and URL query text are deliberately not used as classification evidence.
+COMPANY_LINES = {'supermicro': [
+    {'id': 'gpu-systems', 'name': 'AI / GPU 服务器'},
+    {'id': 'servers', 'name': '服务器与整柜'},
+    {'id': 'storage', 'name': '存储系统'},
+    {'id': 'edge', 'name': '边缘计算'},
+    {'id': 'network', 'name': '网络设备'},
+    {'id': 'software', 'name': '软件与服务'},
+]}
+
+
+def company_line(product, company):
+    """Associate captured official Supermicro product paths with business lines.
+
+    This also works on existing deliveries without taxonomy. Unknown paths stay
+    unmapped; neither model names nor specification values imply membership.
+    """
+    if company != 'supermicro':
+        return ''
+    try:
+        url = urlsplit(product.get('product_url') or product.get('source_url') or '')
+        if url.port not in (None, 443):
+            return ''
+    except ValueError:
+        return ''
+    host = url.hostname or ''
+    if (url.scheme != 'https' or url.username or url.password
+            or not (host == 'supermicro.com' or host.endswith('.supermicro.com'))):
+        return ''
+    path = url.path.casefold().strip('/').split('/')
+    if path[0] in {'en', 'zh_cn', 'zh_tw', 'ja', 'de', 'es', 'fr'}:
+        path = path[1:]
+    if not path or path[0] != 'products':
+        return ''
+    tail = path[1:]
+    if not tail:
+        return ''
+    top = tail[0]
+    family = tail[1] if len(tail) > 1 else ''
+    if top == 'system':
+        if family == 'gpu':
+            return 'gpu-systems'
+        if family == 'iot':
+            return 'edge'
+        if family in {'storage', 'superstorage'}:
+            return 'storage'
+        if family in {'mp', 'hyper', 'clouddc', 'twin', 'ultra', 'big-twin', 'bigtwin', 'fat-twin', 'fattwin', 'microcloud', 'blade', 'superblade', 'grandtwin'}:
+            return 'servers'
+    return {'superstorage': 'storage', 'storage': 'storage',
+            'embedded': 'edge', 'iot': 'edge', 'networking': 'network',
+            'software': 'software', 'rack': 'servers'}.get(top, '')
+
 VERSION = '2026-09-28.1'
 SOURCE = 'https://www.nvidia.com/en-us/products/'
 GROUPS = [
