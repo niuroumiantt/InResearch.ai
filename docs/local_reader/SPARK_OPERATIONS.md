@@ -241,6 +241,14 @@ inspect 返回报告、覆盖、模型与产物摘要；ready 不等于内容正
 systemctl --user restart inresearch-reader.service
 ```
 
+## 默认正文流程（2026-10-07 用户采用）
+
+`reader` 默认 `READER_PDF_MODE=native_text_only`，以后 PDF 只提取文字层，不对混排图片做 OCR。HTML/Office 沿用结构化文字路径。纯图片 PDF 标为 `image_only_requires_user_text` 等待用户提供可读版本，原 PDF 长期保留。报告覆盖为正文范围，网页标“正文阅读 · 图片未读”，不宣称图表全读。以下 M4/Spark OCR 规则只适用于明确选用的 `full_visual` 兼容配方，不是默认正文流程的前置条件。
+
+批量导出可用 `python3 manage.py pdf-text /path/to/SemiAnalysis --output ~/.local/share/inresearch.ai/pdf-text/semianalysis-20261007`，也可直接运行 `src/inresearch/adapters/pdf_text.py`。仅需 Poppler 和 Python 标准库，保留每页、原件 SHA、TXT SHA、空文字层页与图片排除清单；输出为派生物，不重新登记为新原件、不将提取数量当阅读完成。
+
+切换现有未完成批次前先停 Reader，保存一致 catalog 备份、旧服务/私有配置与精确范围清单。核对来源 SHA、未完成且无运行任务，仅对范围内 PDF 用 `reader --pdf-mode native_text_only restart-unfinished` 创建新 revision；事务保留旧尝试/缓存并换执行入口。旧冻结配方不跟着默认值变化，完成结果不被替换。私有 `reader.env` 设置正文模式与真实安装 SHA 后启动 Reader。验收须包括零 OCR 的实际提取、逐块推理、封印报告、网站接收回执和“图片未读”展示；未完成的模型阅读不能提前算交付。
+
 ## 格式与质量边界
 
 - `.txt/.md/.csv/.tsv` 支持 UTF-8/UTF-8 BOM；其他编码或二进制内容明确阻塞。

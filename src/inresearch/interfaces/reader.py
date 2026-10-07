@@ -16,6 +16,8 @@ def main(argv=None):
     ap.add_argument("--url", default=None)
     ap.add_argument("--model", default=None)
     ap.add_argument("--ocr-model", default=None)
+    ap.add_argument('--pdf-mode', choices=['full_visual', 'native_text_only'],
+                    default=os.environ.get('READER_PDF_MODE', 'native_text_only'))
     ap.add_argument("--timeout", type=int, default=None)
     ap.add_argument("--context", type=int)
     ap.add_argument("--max-output-tokens", type=int)
@@ -103,7 +105,7 @@ def main(argv=None):
         from inresearch.adapters.thermal import read_celsius as temperature
     reader = Reader(args.data_root, args.state_root, args.repo_root, model, args.stable_seconds,
                     temperature=temperature, full_read_min_priority=FULL_READ_MIN_PRIORITY,
-                    claim_min_priority=CLAIM_MIN_PRIORITY)
+                    claim_min_priority=CLAIM_MIN_PRIORITY, pdf_mode=args.pdf_mode)
     try:
         reader.initialize()
         if args.command == "run":

@@ -14,7 +14,7 @@
       status.textContent = `最近更新：${d.generated || '未知'} · 接收于 ${d.received_at || '未知'} · 来源：M5 Claude Code CLI · 状态：候选（未采用）`;
       document.getElementById('pilot-metrics').innerHTML = [['本轮阅读总数', d.documents_total ?? '—'], ['完整候选', c.complete ?? 0], ['阻塞', c.blocked ?? 0], ['失败', c.failed ?? 0]]
         .map(([k, v]) => `<div class="plan-card"><strong>${esc(v)}</strong><small>${esc(k)}</small></div>`).join('');
-      document.getElementById('pilot-documents').innerHTML = (d.documents || []).map(x => `<article class="task"><strong>${esc(x.title || x.id)}</strong><br><small>阅读覆盖：${esc(x.coverage?.pages_read ?? '?')} / ${esc(x.coverage?.pages_total ?? '?')} 页 · 完整：${x.coverage?.complete ? '是' : '否'}</small>${x.source_url ? `<br><a href="${esc(x.source_url)}" target="_blank" rel="noopener">官方来源</a>` : ''}</article>`).join('') || '<p class="muted">当前无可展示候选</p>';
+      document.getElementById('pilot-documents').innerHTML = (d.documents || []).map(x => `<article class="task"><strong>${esc(x.title || x.id)}</strong><br><small>阅读覆盖：${esc(x.coverage?.pages_read ?? '?')} / ${esc(x.coverage?.pages_total ?? '?')} 页 · 范围：${x.coverage?.scope === 'pdf_native_text_only' ? '正文阅读 · 图片未读' : (x.coverage?.complete ? '全文处理完成' : '尚未完成')}</small>${x.source_url ? `<br><a href="${esc(x.source_url)}" target="_blank" rel="noopener">官方来源</a>` : ''}</article>`).join('') || '<p class="muted">当前无可展示候选</p>';
     } catch (e) { status.textContent = e.message; }
   }
   window.InresearchPilot = {

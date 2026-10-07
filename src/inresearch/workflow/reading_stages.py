@@ -8,8 +8,11 @@ from inresearch.materials.artifacts import numeric_tokens, now_iso, encoded, dig
 from inresearch.materials.reading_artifacts import ReadingArtifacts
 
 class ReadingStages(ReadingArtifacts):
-    def __init__(self, data, model, ocr_max_pages, large_format_points):
+    def __init__(self, data, model, ocr_max_pages, large_format_points, pdf_mode='full_visual'):
         super().__init__(data)
+        if pdf_mode not in ('full_visual', 'native_text_only'):
+            raise ValueError('invalid PDF reading mode')
+        self.pdf_mode = pdf_mode
         self.model = model
         self.ocr_max_pages, self.large_format_points = ocr_max_pages, large_format_points
 
@@ -34,7 +37,7 @@ class ReadingStages(ReadingArtifacts):
         if digest_file(source) != doc["sha256"]:
             raise IntegrityError()
         suffix = doc["suffix"]
-        texts, page_meta = [], []
+        texts, page_meta, scope_meta = [], [], {}
         if suffix in {".txt", ".md", ".csv", ".tsv"}:
             try:
                 text = source.read_text(encoding="utf-8-sig")
@@ -62,6 +65,26 @@ class ReadingStages(ReadingArtifacts):
                 raise Blocked("office_extraction_failed")
             texts = [text]
             page_meta = [{"page_index": 1, "method": "office_structural_text_v1", **meta}]
+        elif suffix == '.pdf' and self.artifact_path(doc, 'recipe.json').exists() and read_json(self.artifact_path(doc, 'recipe.json')).get('pdf_mode') == 'native_text_only':
+            if not all(shutil.which(name) for name in ('pdftotext', 'pdfinfo', 'pdfimages')):
+                raise Blocked('pdf_tools_missing')
+            from inresearch.adapters.pdf_text import extract_pdf
+            try:
+                texts, meta = extract_pdf(source, run=self._command)
+            except (ValueError, UnicodeError) as exc:
+                raise Blocked('pdf_native_text_extraction_invalid') from exc
+            scope_meta = {'scope': meta['scope'], 'visual_review_performed': False,
+                          'skipped_image_pages': meta['image_pages'],
+                          'text_layer_empty_pages': meta['text_layer_empty_pages'],
+                          'replacement_character_pages': meta['replacement_character_pages'],
+                          'nul_character_pages': meta['nul_character_pages'], 'ocr_calls': 0}
+            for i, text in enumerate(texts, 1):
+                page = {'page_index': i, 'text': text, 'method': 'pdftotext_native_only',
+                        'source_sha256': doc['sha256'], 'visual_skipped': True,
+                        'has_raster_image': i in meta['image_pages'],
+                        'text_layer_empty': not text.strip()}
+                atomic_json(safe_path(self.data, '%s/pages/%06d.json' % (doc['extracted_rel'], i)), page)
+                page_meta.append({k: v for k, v in page.items() if k != 'text'})
         elif suffix == ".pdf":
             if not all(shutil.which(name) for name in ("pdftotext", "pdfinfo", "pdfimages")):
                 raise Blocked("pdf_tools_missing")
@@ -123,7 +146,7 @@ class ReadingStages(ReadingArtifacts):
         if len(gaps) > max_gap_pages(len(texts)):
             raise Blocked("ocr_gap_pages_exceed_limit")
         if not any(t.strip() for t in texts):
-            raise Blocked("no_substantive_text")
+            raise Blocked('image_only_requires_user_text' if scope_meta else 'no_substantive_text')
         chunks = []
         for i, text in enumerate(texts, 1):
             recipe = read_json(self.artifact_path(doc, "recipe.json"))
@@ -134,7 +157,7 @@ class ReadingStages(ReadingArtifacts):
                 chunks.append({"index": index, "page_index": i, "text_rel": rel, "sha256": digest_bytes(part.encode()), "characters": len(part)})
         result = {"pages": page_meta, "pages_total": len(texts), "chunks": chunks,
                   "characters_total": sum(map(len, texts)), "chunks_total": len(chunks),
-                  "extraction_version": RECIPE_VERSION}
+                  "extraction_version": RECIPE_VERSION, **scope_meta}
         return self._persist(doc, "extraction.json", "extract", result)
 
     @staticmethod
@@ -389,6 +412,8 @@ class ReadingStages(ReadingArtifacts):
         context = self._context(doc, text)
         payload = {"doc_id": doc["doc_id"], "page_index": chunk["page_index"], "chunk_index": index,
                    "chunk_sha256": chunk["sha256"], "text": text, "allowed_ids": context}
+        if extraction.get('scope') == 'pdf_native_text_only':
+            payload['reading_scope'] = 'Native PDF text only. Image and vector contents are excluded; use only supplied text as evidence.'
         result = self.model.generate("read", payload)
         normalized = re.sub(r"\s+", "", text)
         claims = result.get("claims")
@@ -496,13 +521,15 @@ class ReadingStages(ReadingArtifacts):
         object_ids = sorted(set(v for c in chunks + [triage] for v in c["object_ids"]))
         question_ids = sorted(set(v for c in chunks + [triage] for v in c["question_ids"]))
         # Blank and gap pages are processed without text; gaps are named in the report.
-        pages_read = len({c["page_index"] for c in chunks} | {p["page_index"] for p in extraction["pages"] if p.get("blank") or p.get("gap")})
+        pages_read = len({c["page_index"] for c in chunks} | {p["page_index"] for p in extraction["pages"] if p.get("blank") or p.get("gap") or p.get('text_layer_empty')})
         coverage = {"pages_total": extraction["pages_total"], "pages_read": pages_read,
                     "chunks_total": len(extraction["chunks"]), "chunks_read": len(chunks),
                     "characters_total": extraction["characters_total"], "characters_read": sum(c["characters"] for c in chunks)}
         gap_pages = sorted(p["page_index"] for p in extraction["pages"] if p.get("gap"))
         if gap_pages:
             coverage["gap_pages"] = gap_pages
+        from inresearch.materials.reading_artifacts import native_coverage
+        coverage.update(native_coverage(extraction))
         dropped = sum(len(c.get("dropped_claims", [])) for c in chunks)
         if dropped:
             coverage["dropped_claims"] = dropped
@@ -525,6 +552,8 @@ class ReadingStages(ReadingArtifacts):
                           targets_sha256=context['targets_sha256'])
         if gap_pages:
             report["warning"] += " Pages %s could not be read by OCR and are not covered by this report." % ", ".join(map(str, gap_pages))
+        if coverage.get('scope') == 'pdf_native_text_only':
+            report['warning'] += ' Native PDF text only; all image and vector content was skipped. No-text pages are not certified blank. This is not a full visual reading.'
         if dropped:
             report["warning"] += (" %d claims were dropped because their quotes still did not match the source after one correction;"
                                   " they are listed per chunk as dropped_claims and are not evidence." % dropped)

@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.1。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.5。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1161。
+在册文件：1164。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 303 |
-| 运行代码 | 260 |
+| 历史快照 | 304 |
+| 运行代码 | 261 |
 | 现行规范 | 13 |
 | 项目配置 | 100 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 95 |
-| 测试 | 127 |
+| 测试 | 128 |
 
 ## 在册记录集合
 
@@ -334,7 +334,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 39 |
+| `framework/current_state.json` | policies | 40 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -516,6 +516,7 @@
 | `docs/archive/2026-10-06/worktree-snapshots/patches.json` | 历史快照 |
 | `docs/archive/2026-10-06/worktree-snapshots/terminal-boundaries-plan-7e35305.patch` | 历史快照 |
 | `docs/archive/2026-10-06/worktree-snapshots/terminal-office-wip-d9477a7.patch` | 历史快照 |
+| [docs/archive/2026-10-07/framework__04_before_native_text.md](archive/2026-10-07/framework__04_before_native_text.md) | 历史快照 |
 | [docs/geluoke/专题写作规则.md](geluoke/专题写作规则.md) | 现行规范 |
 | [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
 | `docs/guides/model-governance-2026-09-27.html` | 运行代码 |
@@ -1211,6 +1212,7 @@
 | `src/inresearch/adapters/office_grid.py` | 运行代码 |
 | `src/inresearch/adapters/office_ooxml.py` | 运行代码 |
 | `src/inresearch/adapters/office_ppt.py` | 运行代码 |
+| `src/inresearch/adapters/pdf_text.py` | 运行代码 |
 | `src/inresearch/adapters/reader_model.py` | 运行代码 |
 | `src/inresearch/adapters/thermal.py` | 运行代码 |
 | `src/inresearch/delivery/__init__.py` | 运行代码 |
@@ -1421,6 +1423,7 @@
 | `tests/unit/test_ocr_worker_resume.py` | 测试 |
 | `tests/unit/test_ollama_schema.py` | 测试 |
 | `tests/unit/test_optional_mapping_ids.py` | 测试 |
+| `tests/unit/test_pdf_native_text.py` | 测试 |
 | `tests/unit/test_pilot_progress.py` | 测试 |
 | `tests/unit/test_placeholder_output.py` | 测试 |
 | `tests/unit/test_product_catalog.py` | 测试 |

@@ -6,6 +6,18 @@ from inresearch.materials.artifacts import safe_path, digest_file, digest_bytes,
 from inresearch.materials.reader_contracts import UnsafePath, IntegrityError
 
 
+def native_coverage(extraction):
+    if extraction.get('scope') != 'pdf_native_text_only':
+        return {}
+    return {'scope': 'pdf_native_text_only', 'visual_review_performed': False,
+            'full_document_complete': False, 'ocr_calls': 0,
+            'skipped_image_pages': extraction['skipped_image_pages'],
+            'text_layer_empty_pages': extraction['text_layer_empty_pages'],
+            'native_text_pages_read': extraction['pages_total'] - len(extraction['text_layer_empty_pages']),
+            'replacement_character_pages': extraction.get('replacement_character_pages', []),
+            'nul_character_pages': extraction.get('nul_character_pages', [])}
+
+
 class ReadingArtifacts:
     def __init__(self, data):
         self.data = Path(data)
@@ -53,7 +65,22 @@ class ReadingArtifacts:
                 raise IntegrityError()
             chunks.append(chunk)
         coverage = report['coverage']
-        pages = {c['page_index'] for c in chunks} | {p['page_index'] for p in extraction['pages'] if p.get('blank') or p.get('gap')}
+        native = recipe.get('pdf_mode') == 'native_text_only' and doc['suffix'] == '.pdf'
+        if native != (extraction.get('scope') == 'pdf_native_text_only'):
+            raise IntegrityError()
+        if native:
+            expected = native_coverage(extraction)
+            if any(coverage.get(k) != v for k, v in expected.items()):
+                raise IntegrityError()
+            if (extraction.get('visual_review_performed') is not False or extraction.get('ocr_calls') != 0
+                    or any(p.get('method') != 'pdftotext_native_only' or p.get('visual_skipped') is not True
+                           or p.get('blank') or p.get('gap') for p in extraction['pages'])
+                    or extraction['skipped_image_pages'] != [p['page_index'] for p in extraction['pages'] if p.get('has_raster_image')]
+                    or extraction['text_layer_empty_pages'] != [p['page_index'] for p in extraction['pages'] if p.get('text_layer_empty')]):
+                raise IntegrityError()
+        elif coverage.get('scope') == 'pdf_native_text_only':
+            raise IntegrityError()
+        pages = {c['page_index'] for c in chunks} | {p['page_index'] for p in extraction['pages'] if p.get('blank') or p.get('gap') or (native and p.get('text_layer_empty'))}
         gaps = sorted(p['page_index'] for p in extraction['pages'] if p.get('gap'))
         if report['coverage'].get('gap_pages', []) != gaps:
             raise IntegrityError()

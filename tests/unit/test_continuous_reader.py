@@ -76,7 +76,7 @@ class ReaderTests(unittest.TestCase):
 
     def make_reader(self, stable=0, chunks=200, model=None, state=None):
         return cr.Reader(self.base / "data", state or self.base / "state", self.base / "repo",
-                         model or self.model, stable, chunks, self.clock).initialize()
+                         model or self.model, stable, chunks, self.clock, pdf_mode='full_visual').initialize()
 
     def put(self, name="paper.txt", text="服务器功率为 300 W。\n这是完整正文与注释。\n"):
         p = self.reader.data / "raw-materials" / name

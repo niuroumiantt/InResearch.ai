@@ -47,7 +47,7 @@ CONTEXT = models.load_profile(path=models.DEFAULT_CONFIG).context
 class Reader:
     def __init__(self, data_root=None, state_root=None, repo_root=None, model=None,
                  stable_seconds=60, chunk_chars=6000, clock=time.time, temperature=None,
-                 full_read_min_priority=1, claim_min_priority=0, document_scope=None):
+                 full_read_min_priority=1, claim_min_priority=0, document_scope=None, pdf_mode=None):
         self.data = Path(data_root or Path.home() / ".local/share/inresearch.ai").expanduser().resolve()
         self.state = Path(state_root or Path.home() / ".local/state/inresearch.ai").expanduser().resolve()
         self.repo = Path(repo_root or project_root()).expanduser().resolve()
@@ -74,7 +74,8 @@ class Reader:
         from inresearch.workflow.reader_scope import DocumentScope
         scope_path = document_scope or os.environ.get('READER_DOCUMENT_SCOPE')
         self.document_scope = DocumentScope(scope_path,self.data) if scope_path else None
-        self.stages = ReadingStages(self.data, self.model, self.ocr_max_pages, self.large_format_points)
+        self.stages = ReadingStages(self.data, self.model, self.ocr_max_pages, self.large_format_points,
+                                    pdf_mode=pdf_mode or os.environ.get('READER_PDF_MODE', 'native_text_only'))
 
     @property
     def conn(self):
@@ -702,7 +703,7 @@ class Reader:
     def status(self):
         counts = {row[0]: row[1] for row in self.conn.execute("SELECT state,COUNT(*) FROM current_readings GROUP BY state")}
         stages = [{"stage": r[0], "state": r[1], "count": r[2]} for r in self.conn.execute("SELECT stage,state,COUNT(*) FROM jobs GROUP BY stage,state ORDER BY stage,state")]
-        failures = [dict(r) for r in self.conn.execute("SELECT doc_id,revision_id,original_name,phase,error_code FROM execution_readings WHERE error_code IS NOT NULL AND state!='rejected' ORDER BY updated DESC LIMIT 20")]
+        failures = [dict(r) for r in self.conn.execute("SELECT doc_id,revision_id,original_name,phase,error_code FROM execution_readings WHERE error_code IS NOT NULL AND state NOT IN ('rejected','superseded') ORDER BY updated DESC LIMIT 20")]
         pending = self.conn.execute("SELECT MIN(created) FROM jobs WHERE state='pending'").fetchone()[0]
         active = self.conn.execute("SELECT COUNT(*) FROM jobs WHERE state='running'").fetchone()[0]
         last_scan = self.conn.execute("SELECT value FROM meta WHERE key='last_scan'").fetchone()
@@ -716,7 +717,7 @@ class Reader:
                      'types':{s:sum(r['suffix']==s for r in rows) for s in sorted({r['suffix'] for r in rows})},
                      'chunks_total':sum(r['chunks_total'] for r in rows),'chunks_read':sum(r['chunks_read'] for r in rows),
                      'awaiting_extraction':sum(r['chunks_total']==0 for r in rows),
-                     'executor':self.model.identity,'acceptance':'candidate_only'}
+                     'executor':{**self.model.identity, 'pdf_mode': self.stages.pdf_mode},'acceptance':'candidate_only'}
             from inresearch.workflow.reader_scope import gap_counts
             scope.update(gap_counts(self.data,rows,self._gap_count_cache))
             wait = self.conn.execute("SELECT value FROM meta WHERE key='model_wait_until'").fetchone()

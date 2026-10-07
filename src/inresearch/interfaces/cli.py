@@ -23,6 +23,7 @@ COMMANDS = {
     'mapping': 'inresearch.materials.mapping', 'preflight': 'inresearch.materials.preflight',
     'attribution': 'inresearch.workflow.attribution', 'progress': 'inresearch.workflow.progress',
     'receive': 'inresearch.materials.receive', 'publish': 'inresearch.delivery.publish', 'ocr-worker': 'inresearch.adapters.ocr_worker',
+    'pdf-text': 'inresearch.adapters.pdf_text',
     'acquisition': 'inresearch.adapters.acquisition', 'news-sync': 'inresearch.adapters.news_sync',
     'historical-brief': 'inresearch.adapters.historical_brief',
     'acquisition-status': 'inresearch.delivery.acquisition_status', 'reader-status': 'inresearch.delivery.reader_status',
