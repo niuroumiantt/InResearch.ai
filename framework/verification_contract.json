@@ -93,7 +93,7 @@
     "tests/unit/test_governance.py": "6b1a4bf78e19cb999cb9a51854977e813b15230606a6252c87d98089155cc3a7",
     "tests/unit/test_graph.py": "e18107356053e452e36b48556ad1cc0a9eb9dbef26e1e81bfb8ab0751f8eac19",
     "tests/unit/test_html_document.py": "346d25fc828cbae2abccccd51b687a102693dc9b35911d641ba4fd534ae23535",
-    "tests/unit/test_industry.py": "3ee7fb45e0c52eb5eb498dabfc9253e2acc5f64da0e0931ab304f4f9f2f7e221",
+    "tests/unit/test_industry.py": "13582db62f74a786aed358289e6ee8e4c71b8f8d8ccf84b9260445116d87a1c1",
     "tests/unit/test_intake.py": "752b45e1bec8938738ea28b827dcdcc9031bce772cc9030d7ded1d7be9176c10",
     "tests/unit/test_interface_system.py": "831ea53c0b44a45ad50c809d6a5bafdc777e6ac82c5bf267bbdd32fc87604882",
     "tests/unit/test_m4_ocr_gaps.py": "70114c9521a37ea5ac2b75f471e4c267bbc820b2504da2f90c8b14436d01cfb4",
@@ -203,7 +203,7 @@
       "policy": "data-20260906",
       "scope": "project",
       "source": "framework/01_data_standards.md",
-      "checked_requirement": "C3 支持链资格、定位、数值口径、非数字候选、来源冲突并列与分发受限的对外阻断；2026-10-03 复审：园区可固定浮窗和独立详情；首页标签/卡片仅高亮，不改统计/新闻/URL；五视口边界保持。Frontier同址证据归一保留原记录，全球/样本年份、定义、未知及覆盖不可比，不计算差额。",
+      "checked_requirement": "C3 支持链资格、定位、数值口径、非数字候选、来源冲突并列与分发受限的对外阻断；2026-10-03 复审：园区可固定浮窗和独立详情；首页标签/卡片仅高亮，不改统计/新闻/URL；五视口边界保持。Frontier同址证据归一保留原记录，全球/样本年份、定义、未知及覆盖不可比，不计算差额。；2026-10-07中天新增复审：独立项目入库增加已登记地点及未知容量/坐标计数，IT总量及Frontier去重不变；行业审计期望值随126项项目更新。",
       "tests": [
         "tests/unit/test_research.py::ResearchTests.test_invalid_C3_review_never_closes_question",
         "tests/unit/test_research.py::ResearchTests.test_C_archive_cannot_close_and_valid_B_reopens_then_closes",
@@ -282,7 +282,8 @@
         "分发受限与个人信息的三处边界判定（公开会议胶片不挡、自相矛盾的客户限制按紧的算、逐订阅户水印件挡 confidential 不挡 pii）由人判断，测试不覆盖；RESTRICTIONS 的说明只记下判据，每份仍须逐一决定。",
         "bound 不同（lower/upper vs point）的两条即便口径全同也不落进同一个 claim_identity，争议分诊自动看不见——全库当前 2 组，均已由人手工互指；没有为此加检测。",
         "别名表只判「是不是一家」，该用哪种写法仍需人定（原件官方写法优先）；写法一致未分裂的不改名，所以表里有某家不代表库内写法已按偏好统一。",
-        "95GW底层统计方法、报告独立交叉验证、全部项目额定/实际IT定义与逐址重叠未穷尽；阿布扎比4GW仅既有推导余额；真实手机触屏与其他浏览器引擎未验。发布与服务以交接回执为准。"
+        "95GW底层统计方法、报告独立交叉验证、全部项目额定/实际IT定义与逐址重叠未穷尽；阿布扎比4GW仅既有推导余额；真实手机触屏与其他浏览器引擎未验。发布与服务以交接回执为准。",
+        "中天南通项目仅核验公司披露开工及半年报项目段，未知地块、IT/设施MW、运营方/客户；投运计划未证实现状。新增来源/审核回执与完整报告深读分别计量。"
       ]
     },
     {

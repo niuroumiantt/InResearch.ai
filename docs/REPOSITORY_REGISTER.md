@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1151。
+在册文件：1152。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 90 |
+| 配套说明 | 91 |
 | 测试 | 126 |
 
 ## 在册记录集合
@@ -34,7 +34,7 @@
 | `data/assignments.json` | records | 0 |
 | `data/brief.json` | sec | 16 |
 | `data/brief.json` | review_marked | 23 |
-| `data/companies.json` | records | 256 |
+| `data/companies.json` | records | 257 |
 | `data/company_disclosures.json` | records | 1 |
 | `data/contracts.json` | records | 8 |
 | `data/dashboard.json` | stages | 6 |
@@ -51,7 +51,7 @@
 | `data/prices.json` | records | 512 |
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
-| `data/projects.json` | records | 125 |
+| `data/projects.json` | records | 126 |
 | `data/research_knowledge.json` | documents | 0 |
 | `data/research_knowledge.json` | evidence | 0 |
 | `data/research_knowledge.json` | statements | 0 |
@@ -354,7 +354,7 @@
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | legacy_root_prefixes | 4 |
-| `framework/research_graph.json` | objects | 352 |
+| `framework/research_graph.json` | objects | 353 |
 | `framework/research_graph.json` | relations | 372 |
 | `framework/research_questions.json` | records | 458 |
 | `framework/site_rights.json` | rights | 6 |
@@ -533,6 +533,7 @@
 | [docs/handoff/daily-oct7-adoption.md](handoff/daily-oct7-adoption.md) | 配套说明 |
 | [docs/handoff/event-delivery-20261006.md](handoff/event-delivery-20261006.md) | 配套说明 |
 | [docs/handoff/event-verification-20261007.md](handoff/event-verification-20261007.md) | 配套说明 |
+| [docs/handoff/evidence-gaps-20261007.md](handoff/evidence-gaps-20261007.md) | 配套说明 |
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
 | [docs/handoff/historical-source-recovery-20261007.md](handoff/historical-source-recovery-20261007.md) | 配套说明 |
