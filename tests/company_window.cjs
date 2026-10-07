@@ -14,7 +14,7 @@ try{
  page.on('request',r=>{if(/\/api\/product-catalog\/|\/data\/(products|contracts|projects|event_cards)\.json|\.pdf(?:\?|$)/.test(r.url()))forbidden.push(r.url());});
  await page.route('**/api/whoami',r=>r.fulfill({json:{role:'reader'}}));
  await page.route('**/api/company-window?*',r=>profileMode==='missing'?r.fulfill({status:404,body:'{}'}):r.fulfill({json:data}));
- await page.route('**/api/company-quote?*',r=>r.fulfill({json:quoteMode==='cached'||quoteMode==='stale'?{status:quoteMode,price:123.45,market_cap:12e9,change_percent:1.25,provider:'界面验证数据',as_of:'示例时间（非实际行情）',source_url:'https://example.test/quote'}:{status:quoteMode}}));
+ await page.route('**/api/company-quote?*',r=>r.fulfill({json:quoteMode==='cached'||quoteMode==='stale'?{status:quoteMode,price:123.45,market_cap:12e9,change_percent:1.25,provider:'界面验证数据',as_of:'示例时间（非实际行情）',source_url:'https://example.test/quote'}:{status:quoteMode,refreshing:quoteMode==='pending'}}));
  await page.route('**/api/news?*',r=>{
   const u=new URL(r.request().url());assert.equal(u.searchParams.get('company'),'supermicro');assert.equal(u.searchParams.get('limit'),'6');
   return newsMode==='error'?r.fulfill({status:503,body:'{}'}):r.fulfill({json:{reader:{stale:newsMode==='stale'},feed:newsMode==='disconnected'?null:{status:'success',items:newsMode==='empty'?[]:[
@@ -58,6 +58,8 @@ try{
   quoteMode=mode;await page.reload();await page.waitForFunction(()=>!document.querySelector('#quote-time').textContent.includes('正在读取'));
   assert.match(await page.locator('#quote-time').innerText(),{unregistered:/代码未登记/,unsupported:/暂未接通/,unavailable:/暂不可用/,stale:/已过期/}[mode]);
  }
+ quoteMode='pending';await page.reload();await page.waitForFunction(()=>document.querySelector('#quote-time').textContent.includes('更新较慢'),{},{timeout:18000});
+ assert.equal(await page.locator('#quote-price').innerText(),'—','slow provider never leaves a false quote');
  profileMode='missing';await page.goto(process.env.UI_BASE_URL+'/product-catalog.html?c=%3Cscript%3Ex%3C%2Fscript%3E');
  await page.waitForFunction(()=>document.querySelector('#company-profile').textContent.includes('公司不存在'));
  assert.equal(await page.locator('#company-profile script').count(),0);

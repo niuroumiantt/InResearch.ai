@@ -37,6 +37,7 @@ $('quote-change').textContent=typeof q.change_percent==='number'?(q.change_perce
 $('quote-change').className=q.change_percent>=0?'positive':'negative';
 const available=typeof q.price==='number';$('quote-time').innerHTML=available?`${external(q.source_url,q.provider||'行情来源')} · ${esc(q.as_of)}<br>${q.status==='stale'?'缓存已过期，等待更新。':'按提供方时间展示；不保证实时行情。'}`:({unregistered:'上市代码未登记，暂不提供行情。',unsupported:'该交易所行情暂未接通。',pending:'正在更新行情…',unavailable:'行情暂不可用，等待来源更新。'}[q.status]||'行情暂不可用。');
 if(q.refreshing&&attempt<4)setTimeout(()=>quote(attempt+1),3000);
+else if(q.refreshing&&!available)$('quote-time').textContent='行情更新较慢，请稍后刷新页面。';
 }catch{$('quote-time').textContent='行情读取失败，请稍后刷新。';}}
 function date(v){if(typeof v==='number'){const d=new Date(v<1e11?v*1000:v);return Number.isNaN(d.getTime())?'时间未登记':d.toLocaleDateString('zh-CN',{timeZone:'Asia/Shanghai'});}return '时间未登记';}
 async function news(){$('news-retry').hidden=true;try{const n=await json('/api/news?'+new URLSearchParams({company:cid,limit:'6'})),items=(n.feed?.items||[]).filter(v=>safe(v.url));$('company-news-list').innerHTML=items.map(v=>`<li><a href="${esc(safe(v.url))}" target="_blank" rel="noopener">${esc(v.title_zh||v.title||'查看新闻原文')}</a><small>${esc(v.domain||'新闻来源')} · ${esc(date(v.published_at))}${!v.title_zh?' · 原文标题':''}</small></li>`).join('');
