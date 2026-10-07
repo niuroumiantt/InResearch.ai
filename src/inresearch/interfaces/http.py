@@ -86,7 +86,7 @@ class Handler(SimpleHTTPRequestHandler):
         if normalized == '/product-catalog.html':
             query = parse_qs(urlsplit(path).query)
             detail = query.get('view') == ['products'] or any(k in query for k in
-                ('q', 'group', 'family', 'product_id', 'series', 'kind', 'with_specs'))
+                ('q', 'group', 'family', 'product_id', 'series', 'kind', 'with_specs', 'line', 'scope'))
             if not detail:
                 return str(ROOT / 'web/pages/company-home.html')
         return str(source_path(normalized, ROOT))
@@ -349,7 +349,7 @@ class Handler(SimpleHTTPRequestHandler):
             if export:
                 value = product_catalog.snapshot(ROOT, company)
                 try:
-                    body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1', query.get('group', [''])[0], query.get('family', [''])[0], query.get('scope', ['all'])[0], company=company).encode('utf-8')
+                    body = product_catalog.csv_export(value, export, query.get('q', [''])[0], query.get('kind', [''])[0], query.get('with_specs', [''])[0] == '1', query.get('group', [''])[0], query.get('family', [''])[0], query.get('scope', ['all'])[0], company=company, line=query.get('line', [''])[0]).encode('utf-8')
                 except ValueError as exc:
                     return self._json(400, {'error': str(exc)})
                 self.send_response(200)

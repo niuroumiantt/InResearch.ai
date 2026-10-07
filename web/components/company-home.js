@@ -23,10 +23,23 @@ $('company-links').innerHTML=[external(c.website&&(/^https?:/.test(c.website)?c.
 const facts=[['成立',c.founded_year?c.founded_year+' 年':'未登记'],['总部',c.hq_address||c.hq_country||'未登记'],['员工',c.employees||'未登记'],['首席执行官',c.ceo||'未登记']];
 $('company-facts').innerHTML=facts.map(([k,v])=>`<div><dt>${k}</dt><dd>${esc(v)}${k==='员工'&&c.employees_as_of?`<small>截至 ${esc(c.employees_as_of)}</small>`:''}</dd></div>`).join('');
 $('profile-source').innerHTML=c.profile_source?`公司资料：${external(c.profile_source,'官方披露')} · 披露期 ${esc(c.profile_as_of||'未登记')}`:'公司基本资料以已登记信息为准；空缺项待核对官方披露。';
-for(const id of ['catalog-link','all-products'])setLink(id,product());setLink('research-link',product()+'#research-details');
-$('product-lines').innerHTML=data.product_lines.map((v,i)=>`<a class="product-line-card" href="${esc(product({q:v.query||v.name}))}"><svg fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 28 28" aria-hidden="true">${icons[i%icons.length]}</svg><strong>${esc(v.name)}</strong><small>${esc(v.description)}</small><b>↗</b></a>`).join('')||'<p class="window-empty">产品线尚未登记；可进入产品目录查看交付状态。</p>';
-const reviewed=data.product_lines.some(v=>v.basis==='reviewed_business_categories');$('product-basis').innerHTML=reviewed?'按公司披露整理业务分类；分类下的检索结果仅包含已收录产品。':'按已登记产品线呈现；目录尚未交付时不表示公司没有产品。';
-const groups=data.catalog.groups||[];$('catalog-categories').innerHTML=groups.length?'<span>已收录的原厂分类</span>'+groups.map(g=>`<a href="${esc(product({group:g.id}))}">${esc(g.label)} <small>${esc(g.entities)} 个目录实体</small></a>`).join(''):(data.catalog.status==='error'?'<span>原厂目录分类读取失败；公司资料仍可查看。</span>':'<span>原厂目录分类尚未交付</span>');
+for(const id of ['catalog-link','all-products'])setLink(id,product({scope:'all'}));setLink('research-link',product()+'#research-details');
+const catalog=data.catalog, sum=catalog.summary;
+$('catalog-summary').innerHTML=sum?[
+ ['已收录型号',sum.named_products],['有规格的型号',sum.named_with_tables],['规格原表',sum.specification_tables]
+].map(([label,n])=>`<div><strong>${esc(n)}</strong><span>${label}</span></div>`).join(''):'';
+$('catalog-status').textContent=sum?`来自已接收产品数据库 · ${sum.entities} 个目录实体 · 更新 ${String(catalog.generated_at||'').slice(0,10)}`:catalog.status==='error'?'产品资料读取失败，请稍后刷新。':catalog.registered?'等待产品资料交付。':'此公司尚未接通产品资料库。';
+$('product-lines').innerHTML=data.product_lines.map((v,i)=>{
+ const filter=v.filter||(v.id?{line:v.id,scope:'all'}:{q:v.query||v.name});
+ const count=typeof v.entities==='number'?(v.entities?`${v.entities} 个条目${typeof v.named_with_tables==='number'?` · ${v.named_with_tables} 个型号有规格`:''}`:'尚未收录此类资料'):'等待资料关联';
+ const examples=(v.examples||[]).map(p=>`<a class="product-example" href="${esc(product({product_id:p.id}))}">${esc(p.name)} <span>${p.table_count?'规格 ↗':'资料 ↗'}</span></a>`).join('');
+ return `<article class="product-line-card"><a class="product-line-entry" href="${esc(product(filter))}"><svg fill="none" stroke="currentColor" stroke-width="1.4" viewBox="0 0 28 28" aria-hidden="true">${icons[i%icons.length]}</svg><strong>${esc(v.name)}</strong><small>${esc(v.description)}</small><p class="line-count">${esc(count)}</p><b>↗</b></a>${examples?`<div class="product-examples">${examples}</div>`:''}</article>`;
+}).join('')||'<p class="window-empty">产品资料尚未收录；可进入产品目录查看交付状态。</p>';
+const reviewed=data.product_lines.some(v=>v.basis==='reviewed_business_categories');$('product-basis').textContent=reviewed?'业务分类来自公司披露，已收录资料按官方产品路径关联；数量不代表厂商全部产品或在售情况。':'分类与数量来自已接收产品数据库；只统计已收录资料。';
+const groups=catalog.groups||[];
+$('catalog-categories').innerHTML=groups.length?'<span>原厂分类</span>'+groups.map(g=>`<a href="${esc(product({group:g.id}))}">${esc(g.label)} <small>${esc(g.entities)} 个条目</small></a>`).join(''):'';
+if(sum?.without_vendor_taxonomy)$('catalog-categories').innerHTML+=`<span>${esc(sum.without_vendor_taxonomy)} 个条目尚无原厂分类；已收录资料仍可查看。</span>`;
+if(catalog.business_lines?.length&&sum?.unmapped_entities)$('catalog-categories').innerHTML+=`<a href="${esc(product({line:'unmapped',scope:'all'}))}">业务分类待关联 ${esc(sum.unmapped_entities)} 个条目 →</a>`;
 const rows=(data.financials||[]).filter(r=>safe(r.url));reports(rows,'annual');document.querySelectorAll('[data-reports]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-reports]').forEach(v=>v.setAttribute('aria-pressed',String(v===b)));reports(rows,b.dataset.reports);});
 if(safe(c.ir_url)){setLink('investor-relations',safe(c.ir_url));$('investor-relations').hidden=false;}
 $('financial-basis').textContent=rows.length?'已核对的官方报告索引 · '+data.checked_at+'。只加载链接，点击后打开原文。':'报告索引尚待接通。首页不加载报告正文。';

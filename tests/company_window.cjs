@@ -37,7 +37,7 @@ try{
  assert.match(await page.locator('#company-news-list').innerText(),/原文标题/);
  assert.equal(await page.locator('#company-news-list img').count(),0);
  assert.equal(await page.locator('#company-news-list a[href^="javascript:"]').count(),0);
- assert.match(await page.locator('.product-line-card').first().getAttribute('href'),/view=products/);
+ assert.match(await page.locator('.product-line-entry').first().getAttribute('href'),/view=products/);
  assert.equal(forbidden.length,0,'homepage never loads specs, report bodies or internal annexes');
  const directory=process.env.UI_QA_DIR;if(directory)fs.mkdirSync(directory,{recursive:true});
  for(const theme of ['light','dark']){

@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.07.3",
+  "version": "2026.10.07.4",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -117,8 +117,8 @@
     {
       "path": "data/company_disclosures.json",
       "role": "source_record",
-      "bytes": 5114,
-      "sha256": "717323648c6bc1629de3fdd9dd315494e19fe23bc3c1244a31f122c1c03b40ef",
+      "bytes": 5105,
+      "sha256": "dd1d078447512a683277c542eff79ccef67c1bd324e2102349297cd0934dc6cc",
       "collections": [
         {
           "name": "records",
@@ -566,8 +566,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 192992,
-      "sha256": "9e91a07a4eb4d39304b53ba004f3197c6d4a1969a4d1ed64c0fa79a45b694f2b",
+      "bytes": 193811,
+      "sha256": "889f8e5219945019ce26c1ab14f271660421219ea1aa7737dd54af3608a22ee7",
       "collections": []
     },
     {
@@ -962,6 +962,13 @@
       "role": "supporting_document",
       "bytes": 3028,
       "sha256": "726f3c40b2dcbddc8be615a83c783e08f0ed63d9635fdfb9c200b5782a8fbe42",
+      "collections": []
+    },
+    {
+      "path": "docs/handoff/company-catalog-map-20261007.md",
+      "role": "supporting_document",
+      "bytes": 3751,
+      "sha256": "cceb69a188f478c7f9fa4dde43ecee885600a1848320b1c579b940528267dead",
       "collections": []
     },
     {
@@ -7132,8 +7139,8 @@
     {
       "path": "framework/05_interface_system.md",
       "role": "normative",
-      "bytes": 44346,
-      "sha256": "2ec7c15010f5df37f44e0a85b39921defad4f484b6f24abcee6e10d3a8b89af9",
+      "bytes": 45502,
+      "sha256": "2eafebbbdb46378a8bb8ca674785808ae70771a21c65c9efdc23167b40e2a2ed",
       "collections": []
     },
     {
@@ -7174,8 +7181,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 10918,
-      "sha256": "2a88d417cc4c92e1a30c77b522a53b45936037ddb67d40ff9c6675e8e187316e",
+      "bytes": 11257,
+      "sha256": "ef0a8e076e4188019764569fed8b4bccdcd509c5c57cf79130f3bea4bc66e641",
       "collections": []
     },
     {
@@ -7201,8 +7208,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 97342,
-      "sha256": "af1e3cb143abad8441aacf0bf55976a0b8dd9d310dcc48c1ea43e0269c125d12",
+      "bytes": 97649,
+      "sha256": "8ebfed12c24c85fa216db435198b8a3a470b4fa6bedac28542e539abf11bd72b",
       "collections": [
         {
           "name": "policies",
@@ -7548,8 +7555,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 133882,
-      "sha256": "1be8b8d43e27726aff6f933ce8b5bc6604b9ccb6d14711d68b0d0356045a298b",
+      "bytes": 134935,
+      "sha256": "df69876c37a9d22fd927a64fea2154920c1f5af3f2ad461ae2256b5770363614",
       "collections": [
         {
           "name": "policies",
@@ -8988,8 +8995,8 @@
     {
       "path": "src/inresearch/interfaces/http.py",
       "role": "implementation",
-      "bytes": 46166,
-      "sha256": "3388373cb39b60f877b7fe002e282dc2cec08ebdbfbf9b9d638f11c56b9e64b7",
+      "bytes": 46216,
+      "sha256": "bd506261f0bdbb02595970a3227949138ea21b862a3c3c7d30ef8a1a250e51a1",
       "collections": []
     },
     {
@@ -9436,8 +9443,8 @@
     {
       "path": "src/inresearch/workflow/company_window.py",
       "role": "implementation",
-      "bytes": 4164,
-      "sha256": "7781bf1c6527f88d1554833d0bbea003350188710704b3ed984ddb6a89d0acc7",
+      "bytes": 7442,
+      "sha256": "994054604167b6cc20f78bd8e56be25e2fc085e513200cfd15f76b9c912b245a",
       "collections": []
     },
     {
@@ -9499,8 +9506,8 @@
     {
       "path": "src/inresearch/workflow/product_catalog.py",
       "role": "implementation",
-      "bytes": 39115,
-      "sha256": "05fdad1b991ed55a6b04119c60f8790e888accce1bb063f5d48df04b4389544a",
+      "bytes": 39863,
+      "sha256": "d2347ccc467e20cda08d5fc6d8a30b02ba2dc06fbcb1e23f7550d421b26c99cc",
       "collections": []
     },
     {
@@ -9513,8 +9520,8 @@
     {
       "path": "src/inresearch/workflow/product_navigation.py",
       "role": "implementation",
-      "bytes": 7242,
-      "sha256": "b2c0acebc51dfab02fc8e0484f1c1a27e49502e757b7e5572e855d9389e57e0c",
+      "bytes": 9403,
+      "sha256": "b6adb6e0802f534361079d3e19b278c5d4c6be027ac5c5185aa73ebfae142738",
       "collections": []
     },
     {
@@ -9644,6 +9651,13 @@
       "collections": []
     },
     {
+      "path": "tests/company_catalog_map.cjs",
+      "role": "test",
+      "bytes": 6134,
+      "sha256": "be93166989d1551c06e1220f492c4c1de93d146ed180efd052c2223447f43315",
+      "collections": []
+    },
+    {
       "path": "tests/company_page.cjs",
       "role": "test",
       "bytes": 7228,
@@ -9653,8 +9667,8 @@
     {
       "path": "tests/company_window.cjs",
       "role": "test",
-      "bytes": 6299,
-      "sha256": "0f60f36fb69929206997712ef0fedc82c72502f81e56b6194f7ec666c0e59279",
+      "bytes": 6300,
+      "sha256": "e7130f062b979a60d450022ed9adba73aa2a111818a835e5ff7c500d4f381195",
       "collections": []
     },
     {
@@ -9765,8 +9779,8 @@
     {
       "path": "tests/run_browser.cjs",
       "role": "test",
-      "bytes": 3426,
-      "sha256": "e629986f3fa52daa8ac33841e0290e8ecf6985f9f3c4e6066e8035366f481166",
+      "bytes": 3449,
+      "sha256": "44786a896b861e28f773f0e3298e093e03fbd106e3c0c7475c694efd2c227a44",
       "collections": []
     },
     {
@@ -9884,8 +9898,8 @@
     {
       "path": "tests/unit/test_company_window.py",
       "role": "test",
-      "bytes": 7592,
-      "sha256": "a2a44b91c385177dcdbc6cb35edf898560d0baa65ec39e3513422f4e7ebeadd8",
+      "bytes": 13352,
+      "sha256": "8c199e48ed6e7c85b13c63d05b52981896cc249afdd1f500fdbeb125dfaf0df1",
       "collections": []
     },
     {
@@ -10944,8 +10958,8 @@
     {
       "path": "web/components/company-home.js",
       "role": "implementation",
-      "bytes": 8392,
-      "sha256": "663b10c83cf1fe9c8da8c4fe0e1e5642d3399e97262203202a92ca7747df43fb",
+      "bytes": 9953,
+      "sha256": "6dddc1bff7f908a7293f644c06ca04d5b2de711a61fe6829c8367427e8b2f54c",
       "collections": []
     },
     {
@@ -11028,8 +11042,8 @@
     {
       "path": "web/components/product-catalog.js",
       "role": "implementation",
-      "bytes": 36263,
-      "sha256": "ac5759647173c913f0593c92058c368eb1ee7cff1ef7218180d35616333785b3",
+      "bytes": 37623,
+      "sha256": "9efab082165d1ac2bc8bf193eb1efeecf8cf97796e3ec34f87407941aaa2c05b",
       "collections": []
     },
     {
@@ -11224,8 +11238,8 @@
     {
       "path": "web/pages/company-home.html",
       "role": "implementation",
-      "bytes": 3609,
-      "sha256": "b9a639fa5418818e205cdd90b6e1d7c4460763789ac4fd7bcaee16641774c187",
+      "bytes": 3762,
+      "sha256": "c2f035fea1244cf2609734aa1d80c4af62a33ca5142adb19c0cb7deed7439e17",
       "collections": []
     },
     {
@@ -11287,8 +11301,8 @@
     {
       "path": "web/pages/product-catalog.html",
       "role": "implementation",
-      "bytes": 13746,
-      "sha256": "9e5706d4eaee4243d6c027501d551a238850c6aa270ad55d7b63c017a587b802",
+      "bytes": 13894,
+      "sha256": "d6d39aab6dcf70f9c5f882344f34b3514d7823b587a865e12bf06f6f247e3e00",
       "collections": []
     },
     {
@@ -11329,8 +11343,8 @@
     {
       "path": "web/themes/company-home.css",
       "role": "implementation",
-      "bytes": 6088,
-      "sha256": "d3d15ffecdd1b9f85dd9625c596286ed32f2fea3b47f150358f89d4d0038297b",
+      "bytes": 7218,
+      "sha256": "cb57659ca7216c046c5230069f4dc9b1baea591ac0e13c6461a0cabcc63962bb",
       "collections": []
     },
     {
@@ -11382,7 +11396,7 @@
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
-    "supporting_document": 87,
-    "test": 123
+    "supporting_document": 88,
+    "test": 124
   }
 }
