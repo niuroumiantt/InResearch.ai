@@ -16,12 +16,12 @@
 
 ## 证据、检查与发布入口
 
-- 正式源码：`data/research_knowledge.json`；规则未变，verification_contract现行要求及未覆盖项沿用。治理清单随数据与交接刷新。
+- 正式源码：`data/research_knowledge.json`；研究规则未变；节点页增加准确状态标签和按需采用详情，摘要仍不含正文/引句。verification_contract已复审展示要求、实际测试与未覆盖项。治理清单随数据与交接刷新。
 - 私有数据：M5 `~/.local/share/inresearch.ai/reading-adoption/2026-10-07-first-batch/`；脚本/日志在 `~/.local/state/inresearch.ai/reading-adoption-first-batch-20261007/`。
 - Spark永久复审包：`/home/spark/.local/share/inresearch.ai/material-reviews/reading-adoption/2026-10-07-first-batch/review-20261007T110330Z/review-package.tar.gz`，53文件、375765字节，SHA256 `066d9f7d46ec57d652019468301ca4e16c599465848fcfa29cada44648a702c7`，已核对传输摘要。同目录manifest逐文件登记；原件、旧OCR证据与候选版本保留。
 - `formal-write-receipt.json`、`operator-audit.json`、`batch-dispositions.json`保存完整采用ID、抽样与逐项去向；`owner-decisions.md/json`保存8张A卡及原文依据，保持私有，不把受限原文决策包另设公开下载页。
-- 已完成本地governance check、严格数据校验、registry及35项research/report_model测试。PR四项CI和实际部署须以发布回执核验；不把这份交接当上线证明。
-- 线上入口：[GPU陈述](https://inresearch.ai/bom3d.html?node=part%3Agpu&tab=statements)、[HBM陈述](https://inresearch.ai/bom3d.html?node=part%3Ahbm&tab=statements)。`website-ui-proof.json`、`deployment-proof.json`和Spark delivery归档回执保存实际API逐记录/支持链及页面验收，原件页码从0起始转换展示。
+- 已完成本地governance check、严格数据校验、registry及35项research/report_model测试。研究摘要/节点页浏览器回归覆盖状态、按需请求、失败重试、转义与窄屏。PR四项CI和实际部署须以发布回执核验；不把这份交接当上线证明。
+- 线上入口：[GPU陈述](https://inresearch.ai/node.html?id=part%3Agpu)、[HBM陈述](https://inresearch.ai/node.html?id=part%3Ahbm)。`website-ui-proof.json`、`deployment-proof.json`和Spark delivery归档回执保存实际API逐记录/支持链及页面验收，原件页码从0起始转换展示。
 
 ## 待所有者决定
 
