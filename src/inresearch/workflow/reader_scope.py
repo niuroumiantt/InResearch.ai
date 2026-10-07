@@ -15,9 +15,20 @@ def gap_counts(data, rows, cache):
         if sha not in cache:
             path=safe_path(data,row['report_rel'])
             if digest_file(path)!=sha:raise IntegrityError()
-            report=read_json(path);cache[sha]=len(report['coverage'].get('gap_pages',[]))
+            report=read_json(path)
+            coverage = report['coverage']
+            cache[sha] = {'gaps': len(coverage.get('gap_pages', [])),
+                          'native': coverage.get('scope') == 'pdf_native_text_only',
+                          'images': len(coverage.get('skipped_image_pages', [])),
+                          'empty': len(coverage.get('text_layer_empty_pages', []))}
         counts.append(cache[sha])
-    return {'complete_with_gaps':sum(n>0 for n in counts),'unread_gap_pages':sum(counts)}
+    result = {'complete_with_gaps': sum(n['gaps'] > 0 for n in counts),
+              'unread_gap_pages': sum(n['gaps'] for n in counts)}
+    if any(n['native'] for n in counts):
+        result.update(native_text_only_complete=sum(n['native'] for n in counts),
+                      skipped_image_pages=sum(n['images'] for n in counts),
+                      text_layer_empty_pages=sum(n['empty'] for n in counts))
+    return result
 
 
 class DocumentScope:
