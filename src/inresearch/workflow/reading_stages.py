@@ -172,7 +172,7 @@ class ReadingStages(ReadingArtifacts):
                         "verification": "page_not_read_after_rescue"}
             # A gap page re-read by the stronger gap_ocr model (adapters.gap_ocr) is held
             # to the same double-read rules as the Ollama pages.
-            if result.get("method") not in {"m4_vision_ocr_double_pass", "m4_claude_vision_ocr_double_pass"}:
+            if result.get("method") not in {"m4_vision_ocr_double_pass", "m4_claude_vision_ocr_double_pass", "offload_vision_ocr_double_pass"}:
                 raise IntegrityError()
             if not isinstance(result.get("text"), str) or not isinstance(result.get("text_second_pass"), str):
                 raise IntegrityError()
@@ -182,11 +182,15 @@ class ReadingStages(ReadingArtifacts):
                 raise Blocked("m4_offload_page_unreadable")
             if result["blank"] and (result["text"].strip() or result["text_second_pass"].strip()):
                 raise Blocked("ocr_blank_has_text")
-            if not result["blank"] and not result["text"].strip():
+            if not result["blank"] and (not result["text"].strip() or not result["text_second_pass"].strip()):
                 raise Blocked("ocr_empty_nonblank_page")
             if numeric_tokens(result["text"]) != numeric_tokens(result["text_second_pass"]):
                 raise Blocked("m4_offload_numbers_disagree")
-            return {key: result[key] for key in ("text", "text_second_pass", "method", "ocr_model", "blank", "verification")}
+            page = {key: result[key] for key in ("text", "text_second_pass", "method", "ocr_model", "blank", "verification")}
+            for key in ("ocr_models", "attempts_rel", "recovery_evidence", "source_image_scope"):
+                if key in result:
+                    page[key] = result[key]
+            return page
         if not getattr(self.model, "ocr_model", ""):
             raise Blocked("scanned_page_requires_ocr")
         if not shutil.which("pdftoppm"):
