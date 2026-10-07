@@ -38,7 +38,7 @@ def company_line(product, company):
             or not (host == 'supermicro.com' or host.endswith('.supermicro.com'))):
         return ''
     path = url.path.casefold().strip('/').split('/')
-    if path[0] in {'en', 'zh_cn', 'zh_tw', 'ja', 'de', 'es', 'fr'}:
+    if path[0] in {'en', 'zh_cn', 'zh_tw', 'zh-cn', 'zh-tw', 'ja', 'de', 'es', 'fr'}:
         path = path[1:]
     if not path or path[0] != 'products':
         return ''
@@ -48,6 +48,8 @@ def company_line(product, company):
     top = tail[0]
     family = tail[1] if len(tail) > 1 else ''
     if top == 'system':
+        if re.fullmatch(r'\d+u', family):
+            return 'storage' if path[-1].startswith('ssg-') else 'servers'
         if family == 'gpu':
             return 'gpu-systems'
         if family == 'iot':
@@ -56,7 +58,7 @@ def company_line(product, company):
             return 'storage'
         if family in {'mp', 'hyper', 'clouddc', 'twin', 'ultra', 'big-twin', 'bigtwin', 'fat-twin', 'fattwin', 'microcloud', 'blade', 'superblade', 'grandtwin'}:
             return 'servers'
-    return {'superstorage': 'storage', 'storage': 'storage',
+    return {'chassis': 'servers', 'superstorage': 'storage', 'storage': 'storage',
             'embedded': 'edge', 'iot': 'edge', 'networking': 'network',
             'software': 'software', 'rack': 'servers'}.get(top, '')
 

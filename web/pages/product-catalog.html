@@ -28,6 +28,7 @@ html[data-ui-skin] #detail .part-link,html[data-ui-skin] #back-series{all:unset;
 html[data-ui-skin] #back-series{font-family:inherit;font-size:.9rem;display:inline-block;margin-bottom:.8rem}
 .series-parts{columns:2;font-size:.9rem;line-height:1.8}@media(max-width:700px){.series-parts{columns:1}}
 @media(max-width:700px){html[data-ui-skin] #groups{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups.vendor{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups button{min-height:72px}.products{max-height:240px}#detail{border-left:0;border-top:1px solid var(--ui-line);padding:1rem 0 0}.controls input[type=search]{min-width:0;width:100%}#families{gap:.35rem}}
+#material-list{padding:0;list-style:none}#material-list li{padding:1rem 0;border-bottom:1px solid var(--ui-line);overflow-wrap:anywhere}#material-list small{opacity:.7}
 </style><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/company.css"></head>
 <body>
 <inresearch-shell data-section="bom"></inresearch-shell><main>
@@ -73,4 +74,4 @@ html[data-ui-skin] #back-series{font-family:inherit;font-size:.9rem;display:inli
   buttons.forEach(b => b.onclick = () => show(b.dataset.view));
   fetch("/api/whoami").then(r => r.ok ? r.json() : null).then(u => { if (u?.role === "admin") { buttons[1].hidden = false; if (location.hash === "#registry") show("registry"); } }).catch(() => {});
 })();
-</script><script src="/assets/company-overview.js" defer></script><script src="/assets/company-context.js" defer></script><script src="/assets/product-catalog.js" defer></script></body></html>
+</script><script src="/assets/company-overview.js" defer></script><script src="/assets/company-context.js" defer></script><script src="/assets/product-catalog.js" defer></script><script src="/assets/catalog-materials.js" defer></script></body></html>

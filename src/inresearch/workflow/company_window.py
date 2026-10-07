@@ -88,6 +88,7 @@ def catalog_groups(root, cid):
                 'run_id': run['id'], 'summary': summary,
                 'mapping_basis': 'official_product_path_display_association' if lines else 'delivered_vendor_taxonomy',
                 'business_lines': list(lines.values()),
+                'material_count': con.execute('SELECT count(*) FROM materials').fetchone()[0] if con.execute("SELECT 1 FROM sqlite_master WHERE name='materials'").fetchone() else 0,
                 'groups': sorted(groups.values(), key=lambda g: (-g['entities'], g['id']))[:12]}
     finally:
         con.close()

@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.4。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.5。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1146。
+在册文件：1152。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 303 |
-| 运行代码 | 253 |
+| 运行代码 | 256 |
 | 现行规范 | 13 |
 | 项目配置 | 100 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 90 |
-| 测试 | 124 |
+| 配套说明 | 91 |
+| 测试 | 126 |
 
 ## 在册记录集合
 
@@ -549,6 +549,7 @@
 | [docs/handoff/reader-failure-ocr-repair-20261006.md](handoff/reader-failure-ocr-repair-20261006.md) | 配套说明 |
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
+| [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
 | [docs/handoff/worktree-integration-20261006.md](handoff/worktree-integration-20261006.md) | 配套说明 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
@@ -1289,6 +1290,8 @@
 | `src/inresearch/workflow/__init__.py` | 运行代码 |
 | `src/inresearch/workflow/apply_triage.py` | 运行代码 |
 | `src/inresearch/workflow/attribution.py` | 运行代码 |
+| `src/inresearch/workflow/catalog_bundle.py` | 运行代码 |
+| `src/inresearch/workflow/catalog_materials.py` | 运行代码 |
 | `src/inresearch/workflow/commands.py` | 运行代码 |
 | `src/inresearch/workflow/company_window.py` | 运行代码 |
 | `src/inresearch/workflow/compute_catalog.py` | 运行代码 |
@@ -1320,6 +1323,7 @@
 | `src/inresearch/workflow/triage.py` | 运行代码 |
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
 | `tests/auth_appearance.cjs` | 测试 |
+| `tests/catalog_materials.cjs` | 测试 |
 | `tests/company_catalog_map.cjs` | 测试 |
 | `tests/company_page.cjs` | 测试 |
 | `tests/company_window.cjs` | 测试 |
@@ -1351,6 +1355,7 @@
 | `tests/unit/test_bom.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
 | `tests/unit/test_catalog_migration.py` | 测试 |
+| `tests/unit/test_catalog_supplement.py` | 测试 |
 | `tests/unit/test_claim_floor.py` | 测试 |
 | `tests/unit/test_codex_batch_reader.py` | 测试 |
 | `tests/unit/test_codex_failure_ocr_rescue.py` | 测试 |
@@ -1504,6 +1509,7 @@
 | `web/assets/world.geo.json` | 静态资源 |
 | `web/components/auth-form.js` | 运行代码 |
 | `web/components/auth.css` | 运行代码 |
+| `web/components/catalog-materials.js` | 运行代码 |
 | `web/components/company-context.js` | 运行代码 |
 | `web/components/company-home.js` | 运行代码 |
 | `web/components/company-overview.js` | 运行代码 |
