@@ -4967,6 +4967,110 @@
         ],
         "scope": "公司2026-10-06公告称，子公司US Digital Mining Mississippi LLC把Columbus场地合同用电需求由8.5MW提高至11MW；9月30日签约、10月1日生效。场地现为运行中的矿业数据中心，按峰时减载、非峰时用电运行。L8仅描述既有设施运行，新增2.5MW设备通电及HPC/AI用途未核验。11MW为电力合同上限，不是IT容量；不得与8.5MW旧合同相加，也不与Oklahoma Calumet场地混计。TVA/CLW费率原件和逐期设备数据待补。"
       }
+    },
+    {
+      "site_id": "cn-js-nantong-ztt-optical-electrical",
+      "name": "中天科技南通光电协同智算中心",
+      "aliases": [
+        "ZTT Nantong optical-electrical intelligent computing center"
+      ],
+      "country": "CN",
+      "region": "apac",
+      "location": "江苏省南通市；具体地块未披露",
+      "developer": [
+        "zhongtian-technology"
+      ],
+      "tenant": [],
+      "status": "L6",
+      "verified_date": "2026-10-07",
+      "capacity_it_mw": null,
+      "capacity_it_mw_by_status": null,
+      "capacity_facility_mw": null,
+      "coordinates": null,
+      "type": "aidc-cn",
+      "notes": "中天科技官方2026-06-28公告披露6月26日破土动工，2026半年报第16页确认启动南通光电协同智算中心建设。仅登记这一具名项目，L6依据公司披露开工，未确认后续阶段。计划2026年底完成土建、2027年中首期投运；均为公告计划。具体地块、许可、运营方、客户、IT/设施容量及数值PUE未披露。公司办公地址不作项目地址；不与阿里巴巴江苏智算中心、南通区域3万P目标或制造业应用混计。",
+      "disputed": false,
+      "sources": [
+        {
+          "url": "https://m.ztt.cn/news/show-53961.html",
+          "grade": "company",
+          "date": "2026-06-28",
+          "note": "官方原文已保存，阅读全文；仅采用开工及计划范围"
+        },
+        {
+          "url": "https://static.cninfo.com.cn/finalpage/2026-08-28/1225518230.PDF",
+          "grade": "company",
+          "date": "2026-08-28",
+          "note": "公司半年报原PDF；本次限定封面/声明及第16页，非全报告深读"
+        }
+      ],
+      "status_history": [
+        {
+          "status": "L6",
+          "date": "2026-06-26",
+          "source_url": "https://m.ztt.cn/news/show-53961.html"
+        }
+      ],
+      "power_status": "未披露电力容量与接电批准；光储联动为设计方案",
+      "adoption": {
+        "event_id": "daily-event-1087108ada184a3cdc2692f1fb43d4c909a5795a41761216b5318cffb914a006",
+        "review_id": "cab80c6934e7852a-5ae4b25d6a5a51ad",
+        "source_version": "cab80c6934e7852a2bbd6b18a1cd98e9c13fcf1ffdeb4a497b9f616b9db357f5",
+        "review": {
+          "by": "Codex 当前会话（M5）",
+          "at": "2026-10-07T13:20:12.822124+08:00",
+          "decision": "adopted",
+          "score": 8,
+          "tier": "A",
+          "authority": "delegated_reviewer",
+          "delegation": "用户2026-10-06授权逐事件核验、正式项目写入及网页验收；2026-10-07继续剩余南通/ABB与历史证据补齐。仅新增明确项目，不改既有结论、不放宽披露限制。",
+          "rationale": "已读取官方原文完整正文与DOM，并核对真实HTTP200同文原HTML；原半年报封面/声明/项目段、PDF第16页视觉核验一致。公司单一项目身份明确，125项旧项目无南通同名/同址记录；聚合供应商不是独立开发主体。仅采用开工及限定计划，容量/地块/运营方/客户留空。"
+        },
+        "target_ids": [
+          "F.time.build.duration",
+          "F.time.build.permit",
+          "S.land.holders",
+          "S.network-access.holders"
+        ],
+        "assertions": [
+          {
+            "source_sha256": "1a5fda7f4a99643cefe9fda19622bc04b066027f16521c0eae3102e8870346ad",
+            "locator": "research/ztt-groundbreaking-browser.txt",
+            "quote": "6月26日，南通首座“光电协同智算中心”在中天科技正式破土动工，建成后将为 “AI+制造”筑牢自主可控的算力底座。",
+            "basis": "land",
+            "scope": "中天单一项目开工与公司计划，非阿里或区域容量"
+          },
+          {
+            "source_sha256": "1a5fda7f4a99643cefe9fda19622bc04b066027f16521c0eae3102e8870346ad",
+            "locator": "research/ztt-groundbreaking-browser.txt",
+            "quote": "项目计划于2026年底完成基建施工，2027年年中实现首期工程正式投运。",
+            "basis": "land",
+            "scope": "中天单一项目开工与公司计划，非阿里或区域容量"
+          },
+          {
+            "source_sha256": "5eb6089cf94ad3dd510dca467c0e66d718c76e61f7dad2a645a6185e0867ebeb",
+            "locator": "research/ztt-2026-half-year.txt",
+            "quote": "公司启动南通光电协同智算中心建设，融合公司自研光电技术，兼具智能、绿色、安全核心优势，推动智能制造升级。",
+            "basis": "land",
+            "scope": "中天单一项目开工与公司计划，非阿里或区域容量"
+          }
+        ],
+        "document_refs": [
+          {
+            "sha256": "ec75ae70182a71c6cad9dc79247966518ca4fa85e05d586fd77d4ce6a25d0ea4",
+            "filename": "2026-10-07-daily-wechat.html",
+            "report_date": "2026-10-07",
+            "section": 6
+          }
+        ],
+        "fields": [
+          "具名独立项目身份与地区",
+          "公司披露建设发起方",
+          "2026-06-26开工及L6证据",
+          "首期投运计划与未核验限制"
+        ],
+        "scope": "中天科技官方2026-06-28公告披露6月26日破土动工，2026半年报第16页确认启动南通光电协同智算中心建设。仅登记这一具名项目，L6依据公司披露开工，未确认后续阶段。计划2026年底完成土建、2027年中首期投运；均为公告计划。具体地块、许可、运营方、客户、IT/设施容量及数值PUE未披露。公司办公地址不作项目地址；不与阿里巴巴江苏智算中心、南通区域3万P目标或制造业应用混计。"
+      }
     }
   ]
 }
