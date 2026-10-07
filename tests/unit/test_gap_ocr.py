@@ -175,10 +175,6 @@ class FillTests(unittest.TestCase):
         page = stages._ocr_page(doc, None, 2)
         self.assertEqual((page["method"], page["text"]), (gap_ocr.METHOD, "第2页 200 W"))
 
-
-if __name__ == "__main__":
-    unittest.main()
-
 class ReceiveTests(FillTests):
     def rescue(self, index=2):
         return {'doc_id':'doc-a', 'content_sha256':self.sha, 'page_index':index,
@@ -299,3 +295,7 @@ class EmbeddedImageRenderTests(unittest.TestCase):
             source.write_bytes(b'\x89PNG\r\n\x1a\n'+struct.pack('>I',len(data))+b'IHDR'+data+b'crc!')
             with self.assertRaisesRegex(RuntimeError,'rescue_source_png_unsupported'):
                 gap_ocr.enlarge_embedded_png(source,td)
+
+
+if __name__ == "__main__":
+    unittest.main()
