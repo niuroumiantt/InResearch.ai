@@ -99,7 +99,7 @@ class FillTests(unittest.TestCase):
                 "doc_id": "doc-a", "content_sha256": self.sha, "page_index": i,
                 "method": "m4_vision_ocr_gap" if gap else "m4_vision_ocr_double_pass",
                 "gap": gap, "gap_reason": "model_output_truncated", "text": "" if gap else "p1", "text_second_pass": ""})
-            atomic_json(self.data / ("extracted/doc-a/pages/%06d.json" % i), {"page_index": i, "gap": gap})
+            atomic_json(self.data / ("extracted/doc-a/pages/%06d.json" % i), {"page_index": i, "gap": gap, "source_sha256": self.sha})
 
     def tearDown(self):
         self.temp.cleanup()
@@ -178,3 +178,124 @@ class FillTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class ReceiveTests(FillTests):
+    def rescue(self, index=2):
+        return {'doc_id':'doc-a', 'content_sha256':self.sha, 'page_index':index,
+                'method':gap_ocr.RESCUE_METHOD, 'text':'300 W', 'text_second_pass':'300 W',
+                'blank':False, 'unreadable':False, 'ocr_model':{'backend':'codex_cli','actual':None},
+                'ocr_models':[{'image_sha256':'a'*64},{'image_sha256':'a'*64}],
+                'verification':'candidate_ocr_agreement_not_accuracy_certification'}
+
+    def native_gap(self):
+        self.pages.joinpath('000002.json').unlink()
+        atomic_json(self.data / 'extracted/doc-a/pages/000002.json', {
+            'page_index':2, 'source_sha256':self.sha, 'gap':True,
+            'method':'vision_ocr_gap','gap_reason':'ocr_page_unreadable','text':''})
+
+    def test_codex_cache_gap_discovered_without_m4_inbox(self):
+        self.native_gap()
+        self.assertEqual([p for p,_,_ in gap_ocr.gap_pages(self.data,gap_ocr.document(self.data,'doc-a'),False)], [2,3])
+
+    def test_receive_archives_gap_keeps_other_pages_and_does_not_write_catalog(self):
+        self.native_gap();catalog=digest_file(self.data/'catalog/catalog.sqlite')
+        good=digest_file(self.data/'extracted/doc-a/pages/000001.json')
+        receipt=gap_ocr.receive(self.data,'doc-a',self.rescue())
+        cached=read_json(self.data/'extracted/doc-a/pages/000002.json')
+        self.assertEqual(cached['method'],gap_ocr.RESCUE_METHOD)
+        self.assertNotIn('gap',cached)
+        self.assertEqual(digest_file(self.data/'catalog/catalog.sqlite'),catalog)
+        self.assertEqual(digest_file(self.data/'extracted/doc-a/pages/000001.json'),good)
+        history=self.data/receipt['history_rel']
+        self.assertEqual(read_json(history/'cached-gap.json')['method'],'vision_ocr_gap')
+        self.assertEqual(read_json(history/'rescue-result.json'),self.rescue())
+
+    def test_receive_rejects_disagreement_identity_and_successful_page(self):
+        self.native_gap();p=self.data/'extracted/doc-a/pages/000002.json';before=digest_file(p)
+        for key,value,code in [('text_second_pass','310 W','ocr_numbers_disagree'),
+                               ('content_sha256','a'*64,'rescue_page_identity_mismatch'),
+                               ('unreadable',True,'ocr_page_unreadable')]:
+            result=self.rescue();result[key]=value
+            with self.assertRaisesRegex(RuntimeError,code):gap_ocr.receive(self.data,'doc-a',result)
+            self.assertEqual(digest_file(p),before)
+        with self.assertRaisesRegex(RuntimeError,'rescue_target_is_not_gap'):
+            gap_ocr.receive(self.data,'doc-a',self.rescue(1))
+
+    def test_interrupted_receive_can_notify_without_overwriting_success(self):
+        self.native_gap();result=self.rescue()
+        gap_ocr.receive(self.data,'doc-a',result,notify=False)
+        self.assertFalse((self.pages/'000002.json').exists())
+        receipt=gap_ocr.receive(self.data,'doc-a',result)
+        self.assertEqual(receipt['outcome'],'already_received')
+        self.assertEqual(read_json(self.pages/'000002.json'),result)
+
+    def test_empty_second_nonblank_read_rejected_even_without_numbers(self):
+        self.assertEqual(gap_ocr.pair_problem({'text':'hello','blank':False,'unreadable':False},
+                                            {'text':'','blank':False,'unreadable':False}), 'ocr_empty_nonblank_page')
+
+    def test_sealed_extraction_refused(self):
+        self.native_gap();atomic_json(self.data/'extracted/doc-a/extraction.json',{})
+        with self.assertRaisesRegex(RuntimeError,'rescue_extraction_already_sealed'):
+            gap_ocr.receive(self.data,'doc-a',self.rescue())
+
+class RegionVerificationTests(unittest.TestCase):
+    def result(self):
+        meta={'image_sha256':gap_ocr.digest_file(self.image)}
+        reads=[{'text':'300 W','blank':False,'unreadable':False,'_model':meta} for _ in range(2)]
+        text='Native paragraph\n\n[Original embedded image 0; full source image, page viewport may clip it]\n300 W'
+        return {'text':text,'text_second_pass':text,'recovery_evidence':[
+            {'image_number':0,'image_sha256':meta['image_sha256'],'reads':reads,'agreed_pair':[0,1]}]}
+
+    def test_regions_require_all_source_images_two_distinct_reads_and_exact_assembly(self):
+        with tempfile.TemporaryDirectory() as td:
+            self.image=Path(td)/'image.png';self.image.write_bytes(b'original image bytes')
+            def output(args,**kwargs):
+                if args[0]=='pdfimages':return b'header\nheader\n7 0 image 768 400 rgb 3 8 image no 90 0 100 100 1K 1%\n'
+                return b'Native paragraph\f'
+            def extract(args,**kwargs):
+                Path(args[-1]+'-000.png').write_bytes(self.image.read_bytes())
+                return SimpleNamespace(returncode=0)
+            with mock.patch.object(gap_ocr.subprocess,'check_output',side_effect=output), \
+                 mock.patch.object(gap_ocr.subprocess,'run',side_effect=extract):
+                gap_ocr.verify_regions(Path(td)/'source.pdf',7,self.result())
+                for mutation,code in [
+                    (lambda r:r.update(text='summary instead'),'rescue_region_text_mismatch'),
+                    (lambda r:r['recovery_evidence'][0].update(image_number=1),'rescue_region_coverage_mismatch'),
+                    (lambda r:r['recovery_evidence'][0].update(image_sha256='0'*64),'rescue_region_image_mismatch'),
+                    (lambda r:r['recovery_evidence'][0].update(agreed_pair=[0,0]),'rescue_region_pair_invalid'),
+                    (lambda r:r['recovery_evidence'][0]['reads'][1].update(unreadable=True),'ocr_page_unreadable'),
+                    (lambda r:r['recovery_evidence'][0]['reads'][1].update(text='310 W'),'ocr_numbers_disagree')]:
+                    r=self.result();mutation(r)
+                    with self.assertRaisesRegex(RuntimeError,code):gap_ocr.verify_regions(Path(td)/'source.pdf',7,r)
+
+
+class EmbeddedImageRenderTests(unittest.TestCase):
+    def test_wrapper_preserves_original_pixels_and_handles_rgb_and_gray(self):
+        import struct
+        for color, space, colors in [(2, 'DeviceRGB', 3), (0, 'DeviceGray', 1)]:
+            with tempfile.TemporaryDirectory() as td:
+                source=Path(td)/'source.png'
+                def chunk(kind, value):return struct.pack('>I',len(value))+kind+value+b'crc!'
+                payload=b'original compressed pixels'
+                source.write_bytes(b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',10,20,8,color,0,0,0))+chunk(b'IDAT',payload))
+                original=digest_file(source)
+                def render(args,**kw):
+                    pdf=Path(args[-2]).read_bytes()
+                    self.assertIn(payload,pdf)
+                    self.assertIn(('/ColorSpace /'+space).encode(),pdf)
+                    self.assertIn(('/Colors %d'%colors).encode(),pdf)
+                    Path(args[-1]+'.png').write_bytes(b'rendered pixels')
+                    return SimpleNamespace(returncode=0)
+                with mock.patch.object(gap_ocr.subprocess,'run',side_effect=render):
+                    enlarged=gap_ocr.enlarge_embedded_png(source,td,2400)
+                self.assertEqual(enlarged.read_bytes(),b'rendered pixels')
+                self.assertEqual(digest_file(source),original)
+
+    def test_unsupported_png_does_not_silently_drop_pixels(self):
+        import struct
+        with tempfile.TemporaryDirectory() as td:
+            source=Path(td)/'source.png'
+            data=struct.pack('>IIBBBBB',10,20,8,6,0,0,0)
+            source.write_bytes(b'\x89PNG\r\n\x1a\n'+struct.pack('>I',len(data))+b'IHDR'+data+b'crc!')
+            with self.assertRaisesRegex(RuntimeError,'rescue_source_png_unsupported'):
+                gap_ocr.enlarge_embedded_png(source,td)

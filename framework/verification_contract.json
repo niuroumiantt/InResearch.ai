@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.07.6",
+  "version": "2026.10.07.1",
   "reviewed_at": "2026-10-07",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -14,7 +14,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "3abb9d149a02f45667a9181aca946e7f90b5d7b1c70256461e40b62dbd874b60",
+    "docs/local_reader/SPARK_OPERATIONS.md": "ee5381d5eee92111faf5eda31814051141046dc1797edbbd3d97e34b63a69a77",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "972bf5d0b9e7a682acdceef34bb59a58e8b5148e1e0cf479e19a6e09170e6daf",
     "docs/local_setup/REPOSITORY_PAGES.md": "fb87e53841c6c1eb3b37235c66072c4d97f803ba0435681148d7e83ef68f9720",
@@ -26,9 +26,9 @@
     "framework/05_interface_system.md": "06bfe287972400e0ace351b516f7d087b06ffa5537cc172dace40a3f2b20c240",
     "framework/06_acquisition.md": "9ee456bc356e5bc3213ef73903929ca714f21ee2d1c753cce00a9498be66dac6",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
-    "framework/08_model_execution.md": "b1d0488476137b26d770572645017b53961579c29adc41fbb4962dd2d30021ec",
+    "framework/08_model_execution.md": "e50992490b06a7bd860bed8bad4b5f53c6e68d1c3a8ed11f37a64aecbbee3357",
     "framework/09_software_contracts.md": "94eeb69fe498f0318e84d4cb476468eed1e01c541160e81c4be58a12dd119dff",
-    "framework/CURRENT.md": "bdd2f6a0e7849a08381e91901373b6385d26f029fc42bbfab80cea12d96ee7bb",
+    "framework/CURRENT.md": "709093b3680e0498ccd4c6e6ac47ff878735cd3081791baebfdca89ca703c430",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "b60a248d617babdbe4419c5ace65d0be0ac107e21b1ca8e658a0ae847f092583",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -47,7 +47,7 @@
     "src/inresearch/workflow/project_pipeline.py": "a36aa6aa0a43f462abc0c7e0747ca29dcb42c21b3b47ff8ed2c609127e69ba8a",
     "src/inresearch/workflow/reader.py": "e0ad6af7b3a1c6205cc652941ad12e36e53baa2736de8418854badd32260c386",
     "src/inresearch/workflow/reading_revisions.py": "2a182c227456000fd039e4aefb5a24a6f6acee1f6eef0c4d337c8e0270f61c67",
-    "src/inresearch/workflow/reading_stages.py": "d3b59b9848211fb21fa7125ac9b7eb0933f5818eed289b3a6e7164051fedbf4d",
+    "src/inresearch/workflow/reading_stages.py": "f88f9639563dad71a423f879993eea6363bf3a275a301adf30ab4a60fd2e5d48",
     "src/inresearch/workflow/research_match.py": "2aaec0152c140b3c7b3dae2d6342ac641851e70ca6b56126b68dbb8d3bcacfb5",
     "src/inresearch/workflow/supply.py": "ce5a9bd963dd72d48ed6f535f81c27cd2fa07b868ab26cd060df7618dfce9cda",
     "tests/auth_appearance.cjs": "12fe45ce1017034aebce9d5f330ef4a63b510fb3fdb887331c338a965bd60c51",
@@ -89,7 +89,7 @@
     "tests/unit/test_fact_contract.py": "4e739f6e3a3a9cae74057824615db912e38c2acc20f91ae109a2efb0c08f3dd7",
     "tests/unit/test_fetchspec_receive.py": "6086c1ba734bc6d74fcc80867e7574deafb6e537d52dd65daa64ac40b684f152",
     "tests/unit/test_file_moves.py": "1f9ba746f06885b6d48ee2d73b5da8bc4364ca1ad54e85b5d6fe23cdbf1edf9a",
-    "tests/unit/test_gap_ocr.py": "045505374a1fe65a8a35e2d1be23d632793bf0b50a25e4a07e8fcad68964c57f",
+    "tests/unit/test_gap_ocr.py": "a8cdefa9dc65b0ba606c3fd435d677bb29e8446f84f96e53a5fec446f094e43d",
     "tests/unit/test_governance.py": "6b1a4bf78e19cb999cb9a51854977e813b15230606a6252c87d98089155cc3a7",
     "tests/unit/test_graph.py": "e18107356053e452e36b48556ad1cc0a9eb9dbef26e1e81bfb8ab0751f8eac19",
     "tests/unit/test_html_document.py": "346d25fc828cbae2abccccd51b687a102693dc9b35911d641ba4fd534ae23535",
@@ -333,7 +333,7 @@
       "policy": "operations-20260906",
       "scope": "project",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
-      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过；认领下限以下的文档任务不被认领、不计尝试且留在队列，下限 0 全部认领，非法下限拒绝，状态报告暂停份数；进度页只对阻塞/失败文档显示错误码并显示认领范围；外部快照叠加：Spark 发布时加入外部快照中 Spark 未完整读过的文档及其证据与陈述，Spark 完整阅读优先，较新快照覆盖较旧的，不完整/非候选/孤立行/符号链接拒绝，无目录时不变；外部快照的对象/问题 ID 按发布时注册表过滤并计数，输入不被改写；接收端拒收时错误带回其原因；快照以 gzip 发送并记录发送/解压大小，接收端解压有上限（超限 413）、坏压缩与未知编码 400 且不改已有快照，未压缩仍接受；图谱/问题版本落后的快照按现行注册表过滤对象/问题 ID、丢弃指向已退役问题的回答，照常接收并记 registry_lag；版本一致时仍严格拒绝未知 ID，缺版本字段拒绝；已存档快照在网站升版后照常显示并标落后",
+      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过；认领下限以下的文档任务不被认领、不计尝试且留在队列，下限 0 全部认领，非法下限拒绝，状态报告暂停份数；进度页只对阻塞/失败文档显示错误码并显示认领范围；外部快照叠加：Spark 发布时加入外部快照中 Spark 未完整读过的文档及其证据与陈述，Spark 完整阅读优先，较新快照覆盖较旧的，不完整/非候选/孤立行/符号链接拒绝，无目录时不变；外部快照的对象/问题 ID 按发布时注册表过滤并计数，输入不被改写；接收端拒收时错误带回其原因；快照以 gzip 发送并记录发送/解压大小，接收端解压有上限（超限 413）、坏压缩与未知编码 400 且不改已有快照，未压缩仍接受；图谱/问题版本落后的快照按现行注册表过滤对象/问题 ID、丢弃指向已退役问题的回答，照常接收并记 registry_lag；版本一致时仍严格拒绝未知 ID，缺版本字段拒绝；已存档快照在网站升版后照常显示并标落后；2026-10-07 显式缓存缺页也被发现；受控接收核对原件/页号/当前revision/独立双读与完整内嵌图片覆盖，归档旧证据，仅替换缺页缓存后通知；重复接收恢复通知，不改catalog或成功页，数字/空白/可读门槛保持。",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_backup_restores_catalog_and_views_under_new_root",
         "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle",
@@ -382,7 +382,14 @@
         "tests/unit/test_research.py::ResearchTests.test_older_registry_snapshot_is_filtered_and_marked_not_rejected",
         "tests/unit/test_research.py::ResearchTests.test_current_registry_snapshot_keeps_strict_ids_and_carries_no_lag",
         "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_runtime_from_an_older_registry_is_shown_and_marked_lagging",
-        "tests/unit/test_material_retention.py::RetentionTests.test_backup_live_wal_and_missing_original_are_reported_without_deletion"
+        "tests/unit/test_material_retention.py::RetentionTests.test_backup_live_wal_and_missing_original_are_reported_without_deletion",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_codex_cache_gap_discovered_without_m4_inbox",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_receive_archives_gap_keeps_other_pages_and_does_not_write_catalog",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_receive_rejects_disagreement_identity_and_successful_page",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_interrupted_receive_can_notify_without_overwriting_success",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_empty_second_nonblank_read_rejected_even_without_numbers",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_sealed_extraction_refused",
+        "tests/unit/test_gap_ocr.py::RegionVerificationTests.test_regions_require_all_source_images_two_distinct_reads_and_exact_assembly"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。",
@@ -391,7 +398,8 @@
         "M4 结果空白页接收与 reader 自动重新排队只用隔离夹具测试；未在 Spark 真机核对 M4 结果目录 mtime 与任务 finished 时钟的一致性（两者都在 Spark 上生成，scp 写入时间以 Spark 为准）。Spark 本机 OCR 已关闭，READER_OCR_MODEL 恢复前扫描件只能由 M4 处理。",
         "进度页只用临时 catalog 与伪造的日志/服务/温度测试；未在 Spark 真机核对 journalctl --user 权限、大库上的查询耗时，Mac 循环脚本未实跑。",
         "缺页只用伪造的 M4 结果与 PDF 工具测试；未在 Spark 真机用 7 份失败文档验证，也未核对网站候选接收对 gap_pages 的展示。",
-        "认领下限只用临时 catalog 测试；未在 Spark 真机核对 1.17 万份队列上的认领查询耗时。GPU 限功率在 GB10 上是否可用、效果如何未验。"
+        "认领下限只用临时 catalog 测试；未在 Spark 真机核对 1.17 万份队列上的认领查询耗时。GPU 限功率在 GB10 上是否可用、效果如何未验。",
+        "双读一致不证明全部语义准确；跨机器实际补页、全文候选和网站投影另验，以私有回执为准。"
       ]
     },
     {
@@ -917,7 +925,7 @@
       "policy": "model-codex-batch-20261006",
       "scope": "project",
       "source": "framework/08_model_execution.md",
-      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims；read 的 schema 与提示中 claims 排在摘要之前，提示要求先写 claims、摘要只简述本块；CLI 超出输出上限时同一调用以 --effort low 重试一次并记录 effort，再次超限报 model_cli_output_limit（按临时错误重试），其他错误与正常调用不带 --effort；Claude CLI 看图：图片以 stream-json 图片块经标准输入传入、工具仍禁用、图片哈希记入 _model，纯文本调用不变；gap_ocr 只读显式缺页，原件哈希不符不调用模型，双读一致才写入并移走缺页记录、只删该页抽取缓存，未通过仍为缺页；reader 接受补读页；中断后重跑会清掉已补页残留的缺页缓存，试运行不写任何文件；gap_ocr 前两次不一致时读第三次，任意两次一致即采用并记 reads，仍不成对则留存各次原文与差异数字；补读提示要求略去 0/1 数字流等纯装饰图案；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。",
+      "checked_requirement": "配置换模型、模型身份与执行器分离、固定旧任务配方、失败可重试；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；默认配置按环节分配角色：research_default 为 Sonnet 5、core_review 为 Opus 5.5，OCR 默认不配置，Spark 档案有效；Ollama 档案 repeat_penalty 只接受 1.0–2.0 数值、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带；ocr-worker 单页 model_failure 重试一次，连续两次或其他错误不重试；repeat_last_n 只接受 1 至档案上下文的整数、仅 Ollama、只在配置时进入请求与档案身份、不进入 reading_identity，默认配置只有 spark_ocr 携带 1.1 / 256；Claude Reader 阶段用 JSON Schema structured_output，仅结构化结果接受 tool_use stop reason；Ollama 请求在给出任务 schema 时以其为 format、未给时保持 json 模式，reader 三个文本环节都传各自 schema，schema 不进入档案身份；spark_ocr 输出上限 8192、上下文 16384，救援读取只把 repeat_penalty/repeat_last_n 换成 1.3/512 并记入该页 _model；Claude CLI 的 model_cli_failed / model_cli_timeout 映射为可重试的模型失败并保留错误码，文档在退避后完成；认证失败、CLI 未安装、身份无法核实仍阻塞；各环节 schema 不要求 object_ids/question_ids 而正文字段仍必填，reader 对省略 ID 数组的回复照常完成；read 提示写明摘要只写本块且不超过 1200 字、顶层必须返回 claims；read 的 schema 与提示中 claims 排在摘要之前，提示要求先写 claims、摘要只简述本块；CLI 超出输出上限时同一调用以 --effort low 重试一次并记录 effort，再次超限报 model_cli_output_limit（按临时错误重试），其他错误与正常调用不带 --effort；Claude CLI 看图：图片以 stream-json 图片块经标准输入传入、工具仍禁用、图片哈希记入 _model，纯文本调用不变；gap_ocr 只读显式缺页，原件哈希不符不调用模型，双读一致才写入并移走缺页记录、只删该页抽取缓存，未通过仍为缺页；reader 接受补读页；中断后重跑会清掉已补页残留的缺页缓存，试运行不写任何文件；gap_ocr 前两次不一致时读第三次，任意两次一致即采用并记 reads，仍不成对则留存各次原文与差异数字；补读提示要求略去 0/1 数字流等纯装饰图案；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07 显式缓存缺页也被发现；受控接收核对原件/页号/当前revision/独立双读与完整内嵌图片覆盖，归档旧证据，仅替换缺页缓存后通知；重复接收恢复通知，不改catalog或成功页，数字/空白/可读门槛保持。；RGB/灰度原图放大仅复制原始压缩像素，接收端复现输入哈希，不支持的PNG拒绝。",
       "tests": [
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_model_switch_changes_transport_without_changing_task",
         "tests/unit/test_model_runtime.py::ModelRuntimeTests.test_wrong_model_is_rejected_and_model_cannot_forge_provenance",
@@ -979,7 +987,16 @@
         "tests/unit/test_codex_failure_ocr_rescue.py::RescueTests.test_codex_extraction_yields_after_one_new_vision_page",
         "tests/unit/test_codex_failure_ocr_rescue.py::RescueTests.test_opted_in_gap_is_empty_and_preserves_failed_evidence",
         "tests/unit/test_codex_batch_reader.py::BatchReaderTests.test_ocr_checkpoint_preserves_attempts_and_does_not_pause_other_work",
-        "tests/unit/test_codex_failure_ocr_rescue.py::FailureTests.test_scope_discloses_unread_pages_from_verified_current_reports"
+        "tests/unit/test_codex_failure_ocr_rescue.py::FailureTests.test_scope_discloses_unread_pages_from_verified_current_reports",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_codex_cache_gap_discovered_without_m4_inbox",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_receive_archives_gap_keeps_other_pages_and_does_not_write_catalog",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_receive_rejects_disagreement_identity_and_successful_page",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_interrupted_receive_can_notify_without_overwriting_success",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_empty_second_nonblank_read_rejected_even_without_numbers",
+        "tests/unit/test_gap_ocr.py::ReceiveTests.test_sealed_extraction_refused",
+        "tests/unit/test_gap_ocr.py::RegionVerificationTests.test_regions_require_all_source_images_two_distinct_reads_and_exact_assembly",
+        "tests/unit/test_gap_ocr.py::EmbeddedImageRenderTests.test_wrapper_preserves_original_pixels_and_handles_rgb_and_gray",
+        "tests/unit/test_gap_ocr.py::EmbeddedImageRenderTests.test_unsupported_png_does_not_silently_drop_pixels"
       ],
       "not_verified": [
         "Spark/第二实际模型未验证；旧配方自动路由与跨进程/跨项目公平调度未实现；本轮隔离测试不冒充真实推理验收。",
@@ -989,7 +1006,8 @@
         "CLI 临时错误重试只用伪造错误测试；未区分订阅用量上限（重试 3 次后仍失败）与瞬时过载，未在 M4 真机核对 4 份阻塞文档重试后的结果。",
         "--effort low 重试只用伪造 CLI 测试；未在 M4 真机确认该参数被当前 Claude Code 版本接受，也未评估低思考对该块抽取质量的影响。",
         "Codex 整批吞吐量、持续模型额度、M5 睡眠/网络可靠性、Spark 正式部署和本批全部全文结果尚需运行验收；CLI 不报告 provider 实际型号；候选阅读不证明正式 GW 已更新。",
-        "历史30份CLI失败没有原始错误诊断，原因无法逆推；真实PDF补读吞吐与所有阻塞页恢复不能由单元测试证明，须运行回执。"
+        "历史30份CLI失败没有原始错误诊断，原因无法逆推；真实PDF补读吞吐与所有阻塞页恢复不能由单元测试证明，须运行回执。",
+        "双读一致不证明全部语义准确；跨机器实际补页、全文候选和网站投影另验，以私有回执为准。"
       ]
     },
     {
