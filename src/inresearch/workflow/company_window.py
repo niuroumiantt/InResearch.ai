@@ -113,6 +113,11 @@ def snapshot(root, cid):
         if mapped:
             lines = [{**line, **mapped.get(line.get('id'), {}), 'filter': {'line': line.get('id'), 'scope': 'all'}}
                      for line in lines]
+            known = {v.get('id') for v in lines}
+            lines.extend({**v, 'description':'按已捕获官方页面路径整理',
+                          'basis':'captured_official_path_display_categories',
+                          'filter':{'line':v['id'],'scope':'all'}}
+                         for v in mapped.values() if v['id'] not in known and v['entities'])
         else:
             lines = [{**group, 'name': group['label'], 'description': ' / '.join(group['families']),
                       'basis': 'received_vendor_taxonomy', 'filter': {'group': group['id']}}

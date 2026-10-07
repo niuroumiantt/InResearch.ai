@@ -109,6 +109,14 @@ const {chromium}=require('playwright');
   // Real empty receiver endpoints distinguish registered companies from delivered products.
   for(const [cid,label] of [['intel','Intel'],['amd','AMD'],['supermicro','Supermicro'],['sk-hynix','SK hynix']]){
     await page.goto(process.env.UI_BASE_URL+'/product-catalog.html?view=products&c='+cid);
+    if(cid==='supermicro'){
+      await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('等待首次产品资料交付'));
+      assert.equal(await page.locator('#company-browser').count(),1);
+      assert.equal(await page.locator('#browse-rows .model-link').count(),0);
+      assert.ok(await page.locator('#detail').isHidden());
+      assert.ok(!/NVIDIA/.test(await page.locator('#category-title').innerText()));
+      continue;
+    }
     await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('等待 Fetchspec 首次交付'));
     assert.match(await page.locator('#catalog-title').innerText(),new RegExp(label));
     assert.equal(await page.locator('#company-switch a').count(),20);

@@ -1,4 +1,4 @@
-/* Unified company page: catalog accuracy, navigation, private annexes and visual layout.
+/* Explicit research/compatibility view: catalog accuracy, navigation, private annexes and visual layout.
    Fixtures exercise rendering only and are never submitted to a receiver. */
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -22,7 +22,7 @@ const {chromium}=require('playwright');
     if(mode==='empty')return r.fulfill({json:{...fixture,available:false,products:[]}});
     return r.fulfill({json:fixture});
   });
-  await page.goto(process.env.UI_BASE_URL+'/company.html?c=supermicro&q=服务器&product_id=fixture-2');
+  await page.goto(process.env.UI_BASE_URL+'/company.html?c=supermicro&view=research&q=服务器&product_id=fixture-2');
   await page.waitForFunction(()=>document.querySelector('#detail h2')?.textContent==='服务器型号 C');
   assert.match(page.url(),/product-catalog.html/);
   assert.match(await page.locator('.key-parameters').innerText(),/Memory.*验证值 2/s);

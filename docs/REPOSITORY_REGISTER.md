@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.5。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.6。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1153。
+在册文件：1159。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 303 |
-| 运行代码 | 256 |
+| 运行代码 | 260 |
 | 现行规范 | 13 |
 | 项目配置 | 100 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 92 |
-| 测试 | 126 |
+| 配套说明 | 93 |
+| 测试 | 127 |
 
 ## 在册记录集合
 
@@ -349,7 +349,7 @@
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 23 |
 | `framework/interface_manifest.json` | public_pages | 13 |
-| `framework/interface_manifest.json` | template_fragments | 5 |
+| `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
@@ -524,6 +524,7 @@
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
 | [docs/handoff/codex-batch-reader-20261006.md](handoff/codex-batch-reader-20261006.md) | 配套说明 |
 | [docs/handoff/company-catalog-map-20261007.md](handoff/company-catalog-map-20261007.md) | 配套说明 |
+| [docs/handoff/company-category-navigation-20261007.md](handoff/company-category-navigation-20261007.md) | 配套说明 |
 | [docs/handoff/company-page-20261007.md](handoff/company-page-20261007.md) | 配套说明 |
 | [docs/handoff/company-window-20261007.md](handoff/company-window-20261007.md) | 配套说明 |
 | [docs/handoff/compute-catalog-20261002.md](handoff/compute-catalog-20261002.md) | 配套说明 |
@@ -1291,6 +1292,7 @@
 | `src/inresearch/workflow/__init__.py` | 运行代码 |
 | `src/inresearch/workflow/apply_triage.py` | 运行代码 |
 | `src/inresearch/workflow/attribution.py` | 运行代码 |
+| `src/inresearch/workflow/catalog_browse.py` | 运行代码 |
 | `src/inresearch/workflow/catalog_bundle.py` | 运行代码 |
 | `src/inresearch/workflow/catalog_materials.py` | 运行代码 |
 | `src/inresearch/workflow/commands.py` | 运行代码 |
@@ -1355,6 +1357,7 @@
 | `tests/unit/test_auth.py` | 测试 |
 | `tests/unit/test_bom.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
+| `tests/unit/test_catalog_browse.py` | 测试 |
 | `tests/unit/test_catalog_migration.py` | 测试 |
 | `tests/unit/test_catalog_supplement.py` | 测试 |
 | `tests/unit/test_claim_floor.py` | 测试 |
@@ -1511,6 +1514,7 @@
 | `web/components/auth-form.js` | 运行代码 |
 | `web/components/auth.css` | 运行代码 |
 | `web/components/catalog-materials.js` | 运行代码 |
+| `web/components/company-browser.js` | 运行代码 |
 | `web/components/company-context.js` | 运行代码 |
 | `web/components/company-home.js` | 运行代码 |
 | `web/components/company-overview.js` | 运行代码 |
@@ -1553,6 +1557,7 @@
 | `web/pages/bom.html` | 运行代码 |
 | `web/pages/bom3d.html` | 运行代码 |
 | `web/pages/company-home.html` | 运行代码 |
+| `web/pages/company-products.html` | 运行代码 |
 | `web/pages/company.html` | 运行代码 |
 | `web/pages/compare.html` | 运行代码 |
 | `web/pages/compute-catalog.html` | 运行代码 |
@@ -1567,6 +1572,7 @@
 | `web/pages/supply.html` | 运行代码 |
 | `web/robots.txt` | 项目配置 |
 | `web/routes.json` | 项目配置 |
+| `web/themes/company-browser.css` | 运行代码 |
 | `web/themes/company-home.css` | 运行代码 |
 | `web/themes/company.css` | 运行代码 |
 | `web/themes/industry.css` | 运行代码 |

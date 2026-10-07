@@ -16,6 +16,8 @@ COMPANY_LINES = {'supermicro': [
     {'id': 'edge', 'name': '边缘计算'},
     {'id': 'network', 'name': '网络设备'},
     {'id': 'software', 'name': '软件与服务'},
+    {'id': 'boards', 'name': '主板'},
+    {'id': 'components', 'name': '扩展卡与附件'},
 ]}
 
 
@@ -47,6 +49,10 @@ def company_line(product, company):
         return ''
     top = tail[0]
     family = tail[1] if len(tail) > 1 else ''
+    if top in {'superblade', 'microblade'}:
+        return {'powersupply':'components', 'networking':'network', 'storage':'storage'}.get(family,'servers')
+    if top == 'accessories' and family == 'networking':
+        return 'network'
     if top == 'system':
         if re.fullmatch(r'\d+u', family):
             return 'storage' if path[-1].startswith('ssg-') else 'servers'
@@ -60,7 +66,15 @@ def company_line(product, company):
             return 'servers'
     return {'chassis': 'servers', 'superstorage': 'storage', 'storage': 'storage',
             'embedded': 'edge', 'iot': 'edge', 'networking': 'network',
-            'software': 'software', 'rack': 'servers'}.get(top, '')
+            'software': 'software', 'rack': 'servers', 'motherboard': 'boards',
+            'motherboards': 'boards', 'accessories': 'components',
+            'addon': 'components', 'aoc': 'components', 'gpu': 'gpu-systems',
+            'supercluster':'servers', 'superworkstation':'servers', 'single-processor':'servers',
+            'dual-processor':'servers', 'blade':'servers', 'microcloud':'servers',
+            'rackmount-workstations':'servers', 'rackmount':'servers', 'aplus':'servers',
+            'mp':'servers', 'gold-series':'servers', 'nvme':'storage', 'nvme-edsff':'storage',
+            'jbof':'storage', 'general-purpose-storage':'storage', 'edge':'edge', '5g':'edge',
+            'nvidia-jetson':'edge', 'rdhx':'components'}.get(top, '')
 
 VERSION = '2026-09-28.1'
 SOURCE = 'https://www.nvidia.com/en-us/products/'
