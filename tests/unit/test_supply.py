@@ -20,11 +20,11 @@ class SupplyTests(unittest.TestCase):
                              {'doc_id':'b','content_sha256':'b','read_status':'running'},
                              {'doc_id':'old','content_sha256':'old','read_status':'complete'}],
                 'statements':[{'document_id':'a','text':'candidate finding'},{'document_id':'old','text':'out of scope'}],
-                'evidence':[{'document_id':'a','quote':'literal source','page_index':0,'private_path':'secret'}]}
+                'evidence':[{'document_id':'a','quote':'literal source','page_index':17,'private_path':'secret'}]}
         out=supply.reading_deliveries(reader,{'records':[{'sha256':'a'},{'sha256':'b'}]})
         self.assertEqual(len(out),1)
         self.assertEqual(out[0]['claims'],['candidate finding'])
-        self.assertEqual(out[0]['quotes'],[{'quote':'literal source','page_index':0}])
+        self.assertEqual(out[0]['quotes'],[{'quote':'literal source','page_index':17}])
         self.assertEqual(out[0]['coverage']['gap_pages'],[2])
         self.assertEqual(out[0]['acceptance'],'candidate_only')
         self.assertNotIn('private',json.dumps(out))
