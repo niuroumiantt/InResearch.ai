@@ -631,7 +631,7 @@ def news_leads(root=ROOT):
     return [i for i in items if isinstance(i, dict)] if isinstance(items, list) else []
 
 
-def build_news(root=ROOT):
+def build_news(root=ROOT, *, company_id=None, limit=80):
     """News consumes the same validated snapshot without constructing catalog/tasks."""
     *_, knowledge, runtime = _snapshot_inputs(root)
     reader = _reader_state(runtime)
@@ -650,6 +650,12 @@ def build_news(root=ROOT):
             return value if type(value) in (int, float) and abs(value) <= 8640000000000000 else 0
         # 回流（2026-10-01）：每条目标行在当前窗口里收到几张新闻线索。只是计数，目标行 ID 本来就在公开的
         # framework/tco_targets.json 里；inews 读这一项（公开 /api/news）调词与调车道。形状不对就不给，不拒整页。
+        if company_id is not None:
+            items = [item for item in items if 'actor:'+company_id in (item.get('object_ids') or [])]
+            return dict(schema_version=1, feed=dict(status=feed.get('status'), exported_at=feed.get('exported_at'),
+                items=[{key: item[key] for key in ('title_zh', 'title', 'url', 'domain', 'published_at', 'event_type') if key in item}
+                       for item in sorted(items, key=timestamp, reverse=True)[:limit]]),
+                reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
         counts = feed.get('by_target')
         by_target = ({k: v for k, v in counts.items() if isinstance(k, str) and TARGET_ID.fullmatch(k) and type(v) is int and v >= 0}
                      if isinstance(counts, dict) and len(counts) <= 5000 else None)
@@ -664,8 +670,11 @@ def build_news(root=ROOT):
             used = {}
         feed = dict(status=feed.get('status'), exported_at=feed.get('exported_at'),
                     items=[{key: item[key] for key in ('title_zh', 'url', 'domain', 'published_at', 'editorial_pick', 'event_type', 'object_ids') if key in item}
-                           for item in sorted(items, key=timestamp, reverse=True)[:80]],
+                           for item in sorted(items, key=timestamp, reverse=True)[:limit]],
                     **({'by_target': by_target} if by_target is not None else {}), **used)
+    if company_id is not None:
+        return dict(schema_version=1, feed=feed,
+                    reader={key: reader[key] for key in ('status', 'received_at', 'stale') if key in reader})
     from inresearch.knowledge.industry import public_url
     pipeline = acquisition.get('project_pipeline') if isinstance(acquisition, dict) else None
     leads = []

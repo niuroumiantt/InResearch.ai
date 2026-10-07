@@ -23,7 +23,7 @@ const {chromium}=require('playwright');
     indexRequests++;
     return r.fulfill({json:{available:true,view:'index',generated_at:'2026-09-27',coverage,navigation:{groups},products:products.map(p=>({id:p.id,name:p.name,parent_id:p.parent_id,category:p.category,kind:p.kind,availability:p.availability,extraction_status:p.extraction_status,observed_at:p.observed_at,map_change_status:p.map_change_status,table_count:p.tables.length,navigation:p.navigation}))}});
   });
-  await page.goto(process.env.UI_BASE_URL+'/product-catalog.html');
+  await page.goto(process.env.UI_BASE_URL+'/product-catalog.html?view=products');
   await page.getByRole('heading',{name:'NVIDIA H200',exact:true}).waitFor();
   assert.equal(indexRequests,1);assert.equal(detailRequests,1);
   await page.locator('#detail details summary').first().click();
@@ -86,7 +86,7 @@ const {chromium}=require('playwright');
     if(url.searchParams.get('product_id'))return r.fulfill({json:{available:true,product:partDetail}});
     return r.fulfill({json:{available:true,view:'index',generated_at:'2026-10-01',coverage:{},navigation:{groups:[{id:'obsolete',label:'Obsolete part catalogs'},{id:'storage',label:'Storage'}],official_source:'https://www.micron.com/products'},products:[series,...parts,old]}});
   });
-  await page.goto(process.env.UI_BASE_URL+'/product-catalog.html?c=micron');
+  await page.goto(process.env.UI_BASE_URL+'/product-catalog.html?c=micron&view=products');
   await page.getByRole('heading',{name:'7600 NVMe SSD',exact:true}).waitFor();
   assert.match(await page.locator('#groups button').first().innerText(),/存储 · Storage/);
   assert.match(await page.locator('#groups button').last().innerText(),/停产型号/);
@@ -108,7 +108,7 @@ const {chromium}=require('playwright');
   await page.locator('#detail .series-table').waitFor();
   // Real empty receiver endpoints distinguish registered companies from delivered products.
   for(const [cid,label] of [['intel','Intel'],['amd','AMD'],['supermicro','Supermicro'],['sk-hynix','SK hynix']]){
-    await page.goto(process.env.UI_BASE_URL+'/product-catalog.html?c='+cid);
+    await page.goto(process.env.UI_BASE_URL+'/product-catalog.html?view=products&c='+cid);
     await page.waitForFunction(()=>document.querySelector('#status').textContent.includes('等待 Fetchspec 首次交付'));
     assert.match(await page.locator('#catalog-title').innerText(),new RegExp(label));
     assert.equal(await page.locator('#company-switch a').count(),20);

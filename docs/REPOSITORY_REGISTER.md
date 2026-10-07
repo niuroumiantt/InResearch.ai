@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.2。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.3。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1133。
+在册文件：1142。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 303 |
-| 运行代码 | 248 |
+| 运行代码 | 253 |
 | 现行规范 | 13 |
 | 项目配置 | 100 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
-| 在册数据/索引 | 28 |
-| 配套说明 | 86 |
-| 测试 | 121 |
+| 在册数据/索引 | 29 |
+| 配套说明 | 87 |
+| 测试 | 123 |
 
 ## 在册记录集合
 
@@ -35,6 +35,7 @@
 | `data/brief.json` | sec | 16 |
 | `data/brief.json` | review_marked | 23 |
 | `data/companies.json` | records | 251 |
+| `data/company_disclosures.json` | records | 1 |
 | `data/contracts.json` | records | 4 |
 | `data/dashboard.json` | stages | 6 |
 | `data/dashboard.json` | system_nodes | 8 |
@@ -348,7 +349,7 @@
 | `framework/indicators.json` | indicators | 44 |
 | `framework/interface_manifest.json` | static_pages | 23 |
 | `framework/interface_manifest.json` | public_pages | 13 |
-| `framework/interface_manifest.json` | template_fragments | 4 |
+| `framework/interface_manifest.json` | template_fragments | 5 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
@@ -431,6 +432,7 @@
 | `data/assignments.json` | 在册数据/索引 |
 | `data/brief.json` | 在册数据/索引 |
 | `data/companies.json` | 在册数据/索引 |
+| `data/company_disclosures.json` | 在册数据/索引 |
 | `data/contracts.json` | 在册数据/索引 |
 | `data/dashboard.json` | 在册数据/索引 |
 | `data/datacenter_model.json` | 在册数据/索引 |
@@ -522,6 +524,7 @@
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
 | [docs/handoff/codex-batch-reader-20261006.md](handoff/codex-batch-reader-20261006.md) | 配套说明 |
 | [docs/handoff/company-page-20261007.md](handoff/company-page-20261007.md) | 配套说明 |
+| [docs/handoff/company-window-20261007.md](handoff/company-window-20261007.md) | 配套说明 |
 | [docs/handoff/compute-catalog-20261002.md](handoff/compute-catalog-20261002.md) | 配套说明 |
 | [docs/handoff/compute-catalog-batch2-20261002.md](handoff/compute-catalog-batch2-20261002.md) | 配套说明 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | 项目配置 |
@@ -1185,6 +1188,7 @@
 | `src/inresearch/adapters/asset_compare.py` | 运行代码 |
 | `src/inresearch/adapters/asset_download.py` | 运行代码 |
 | `src/inresearch/adapters/codex_inference.py` | 运行代码 |
+| `src/inresearch/adapters/company_quotes.py` | 运行代码 |
 | `src/inresearch/adapters/fetchspec_projection.py` | 运行代码 |
 | `src/inresearch/adapters/gap_ocr.py` | 运行代码 |
 | `src/inresearch/adapters/historical_brief.py` | 运行代码 |
@@ -1283,6 +1287,7 @@
 | `src/inresearch/workflow/apply_triage.py` | 运行代码 |
 | `src/inresearch/workflow/attribution.py` | 运行代码 |
 | `src/inresearch/workflow/commands.py` | 运行代码 |
+| `src/inresearch/workflow/company_window.py` | 运行代码 |
 | `src/inresearch/workflow/compute_catalog.py` | 运行代码 |
 | `src/inresearch/workflow/daily_dispatch.py` | 运行代码 |
 | `src/inresearch/workflow/deep_read.py` | 运行代码 |
@@ -1313,6 +1318,7 @@
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
 | `tests/auth_appearance.cjs` | 测试 |
 | `tests/company_page.cjs` | 测试 |
+| `tests/company_window.cjs` | 测试 |
 | `tests/compute_catalog.cjs` | 测试 |
 | `tests/container_storage.py` | 测试 |
 | `tests/dashboard.cjs` | 测试 |
@@ -1345,6 +1351,7 @@
 | `tests/unit/test_codex_batch_reader.py` | 测试 |
 | `tests/unit/test_codex_failure_ocr_rescue.py` | 测试 |
 | `tests/unit/test_commands.py` | 测试 |
+| `tests/unit/test_company_window.py` | 测试 |
 | `tests/unit/test_compute_catalog.py` | 测试 |
 | `tests/unit/test_continuous_reader.py` | 测试 |
 | `tests/unit/test_daily_bundle.py` | 测试 |
@@ -1494,6 +1501,7 @@
 | `web/components/auth-form.js` | 运行代码 |
 | `web/components/auth.css` | 运行代码 |
 | `web/components/company-context.js` | 运行代码 |
+| `web/components/company-home.js` | 运行代码 |
 | `web/components/company-overview.js` | 运行代码 |
 | `web/components/compute-catalog.js` | 运行代码 |
 | `web/components/datacenter-model.js` | 运行代码 |
@@ -1533,6 +1541,7 @@
 | `web/pages/auth/password.html` | 运行代码 |
 | `web/pages/bom.html` | 运行代码 |
 | `web/pages/bom3d.html` | 运行代码 |
+| `web/pages/company-home.html` | 运行代码 |
 | `web/pages/company.html` | 运行代码 |
 | `web/pages/compare.html` | 运行代码 |
 | `web/pages/compute-catalog.html` | 运行代码 |
@@ -1547,6 +1556,7 @@
 | `web/pages/supply.html` | 运行代码 |
 | `web/robots.txt` | 项目配置 |
 | `web/routes.json` | 项目配置 |
+| `web/themes/company-home.css` | 运行代码 |
 | `web/themes/company.css` | 运行代码 |
 | `web/themes/industry.css` | 运行代码 |
 | `web/themes/preference.js` | 运行代码 |

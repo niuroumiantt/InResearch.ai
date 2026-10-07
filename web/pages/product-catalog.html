@@ -29,7 +29,10 @@ html[data-ui-skin] #back-series{font-family:inherit;font-size:.9rem;display:inli
 .series-parts{columns:2;font-size:.9rem;line-height:1.8}@media(max-width:700px){.series-parts{columns:1}}
 @media(max-width:700px){html[data-ui-skin] #groups{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups.vendor{grid-template-columns:repeat(2,minmax(0,1fr))}html[data-ui-skin] #groups button{min-height:72px}.products{max-height:240px}#detail{border-left:0;border-top:1px solid var(--ui-line);padding:1rem 0 0}.controls input[type=search]{min-width:0;width:100%}#families{gap:.35rem}}
 </style><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/company.css"></head>
-<body><inresearch-shell data-section="bom"></inresearch-shell><main>
+<body>
+<inresearch-shell data-section="bom"></inresearch-shell><main>
+<a id="company-home-link" style="display:block;max-width:1160px;margin:20px auto;padding:0 24px" href="/product-catalog.html">← 公司首页</a>
+<script>document.getElementById("company-home-link").href="/product-catalog.html?"+new URLSearchParams({c:new URLSearchParams(location.search).get("c")||"nvidia"});</script>
 <header class="company-header"><div><p class="eyebrow">公司 / 产品 / 官方规格</p><h1 id="catalog-title">公司与产品</h1><p id="company-profile" class="intro">正在读取公司档案…</p><div id="company-meta"></div></div><div id="company-mark" aria-hidden="true"></div></header>
 <details class="company-picker"><summary>切换公司</summary><label for="actor-switch">全部主体 </label><select id="actor-switch" aria-label="全部主体"></select><p class="catalog-note">已接通规格目录的公司</p><nav id="company-switch" aria-label="公司"><a href="?c=nvidia" data-company="nvidia">NVIDIA</a><a href="?c=micron" data-company="micron">Micron</a></nav></details>
 <nav class="company-nav" aria-label="页内导航"><a href="#overview">总览</a><a href="#catalog">产品与规格</a><a href="#comparison">参数对比</a><a href="#relationships">部件关系</a><a href="/compute-catalog.html">跨厂商计算目录 ↗</a></nav>
