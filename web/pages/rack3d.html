@@ -114,8 +114,8 @@
 import * as THREE from "three";
 import {createScenePicking} from "/assets/scene-picking.js";
 import {createSceneMotion} from "/assets/scene-motion.js";
-import {createPartDossier, dossierNode} from "/assets/part-dossier.js";
-import {createPartInspector} from "/assets/part-inspector.js";
+import {createPartDossier, dossierNode} from "/assets/part-dossier.js?v=20261008.14";
+import {createPartInspector} from "/assets/part-inspector.js?v=20261008.14";
 import { bindResearchMeshNodes, installStageControl, safeURL } from "./assets/research-graph.js";
 import { OrbitControls } from "./assets/vendor/OrbitControls.js";
 import { EffectComposer } from "./assets/vendor/EffectComposer.js";
@@ -124,7 +124,7 @@ import { OutputPass } from "./assets/vendor/OutputPass.js";
 import {mountSceneView} from "/assets/scene-view.js";
 import {mountSceneModels} from "/assets/model-assets.js";
 import {createSceneEnvironment, createTexturePool} from "/assets/scene-resources.js";
-import {configureAtlasRenderer, atlasMaterial, atlasStudio, addAtlasLights, createAtlasDrawing, mountAtlasExport} from "/assets/scene-atlas.js";
+import {configureAtlasRenderer, atlasMaterial, atlasStudio, addAtlasLights, createAtlasDrawing, mountAtlasExport} from "/assets/scene-atlas.js?v=20261008.14";
 
 import {loadSceneData} from "/assets/scene-data.js";
 const [BOM, companies, prices, inds, reg] = await loadSceneData([
