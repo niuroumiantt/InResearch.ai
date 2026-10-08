@@ -5324,6 +5324,268 @@
         },
         "batch_id": "c01e5bb20753e69425f4c4d651fc9afd852d9e101ada1896e4df2c560c1c2bf0"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bc2e3024a6062099482202381c0fb01a594427476165eb5b62ed4e246a7b3c3f",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:27:claim:4:ev:0",
+      "locator": "page:28/chunk:27",
+      "object_ids": [
+        "part:cpu",
+        "part:nic",
+        "part:storage-array"
+      ],
+      "page_index": 27,
+      "question_ids": [
+        "OBJ-nic-definition",
+        "OBJ-nic-interfaces"
+      ],
+      "quote": "The card offloads,\naccelerates, and isolates software-defined networking, storage, security, and management\nfunctions, taking that work off the host CPU so the expensive silicon can get on with its\nactual job.",
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "source_sha256": "c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T05:38:53+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及本次评分均为6。连续原文和相邻页上下文充分支持功能范围与宿主 CPU 分工，实质匹配当前定义和接口工单；该条为一般产品功能描述，无敏感配置、真实冲突或替换条件，可作为B类局部证据采用。",
+        "workorder_ids": [
+          "Q-OBJ-nic-definition",
+          "Q-OBJ-nic-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 116.21,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cd10766899f4fa19ca2900633991faba1575b453df6413b5af03bac3cb2f8b54",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 25631,
+            "output_tokens": 4130,
+            "reasoning_output_tokens": 480
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 24.461,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a134b387547cd28050547f52d5030d5d40543ec77825768c3ebc0fd17cf70763",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 22789,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bc2e3024a6062099482202381c0fb01a594427476165eb5b62ed4e246a7b3c3f",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:27:claim:5:ev:0",
+      "locator": "page:28/chunk:27",
+      "object_ids": [
+        "actor:nvidia-networking",
+        "part:nic",
+        "part:storage-array"
+      ],
+      "page_index": 27,
+      "question_ids": [
+        "OBJ-nic-interfaces"
+      ],
+      "quote": "NVIDIA’s reference architecture basically mandates\nthe use of BlueField-3 for north-south connectivity, storage acceleration, and zero-trust\nsecurity, so any neocloud built to NVIDIA’s blueprint has them by design.",
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "source_sha256": "c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T05:38:53+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及本次评分均为6。连续原文支持有条件、明确归属的参考架构主张，实质贡献于当前接口与上下游依赖工单。该条仅描述一般架构用途，未披露具体环境的安全缺陷，无A类条件，可按B类采用为局部证据。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 116.21,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cd10766899f4fa19ca2900633991faba1575b453df6413b5af03bac3cb2f8b54",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 25631,
+            "output_tokens": 4130,
+            "reasoning_output_tokens": 480
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 24.461,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a134b387547cd28050547f52d5030d5d40543ec77825768c3ebc0fd17cf70763",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 22789,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "073a54416e54405dbed1833bf60e5cd0dc81ed08838c3686d20d3d7af86899e9",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:28:claim:0:ev:0",
+      "locator": "page:29/chunk:28",
+      "object_ids": [
+        "part:cpu",
+        "part:nic"
+      ],
+      "page_index": 28,
+      "question_ids": [
+        "OBJ-nic-definition"
+      ],
+      "quote": "It is an Arm computer that happens to\nshare a package with a ConnectX NIC, with its own CPU cores, its own memory, its own\nLinux install, and its own management port (and BMC).",
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "source_sha256": "c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T05:38:53+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及本次评分均为6。连续引文和前后文明确对象及组成，实质匹配当前定义工单。一般硬件组成描述没有敏感访问细节、真实冲突或替换条件，可作为B类局部证据采用。",
+        "workorder_ids": [
+          "Q-OBJ-nic-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 116.21,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cd10766899f4fa19ca2900633991faba1575b453df6413b5af03bac3cb2f8b54",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 25631,
+            "output_tokens": 4130,
+            "reasoning_output_tokens": 480
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 24.461,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a134b387547cd28050547f52d5030d5d40543ec77825768c3ebc0fd17cf70763",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 22789,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46"
+      }
     }
   ],
   "statements": [
@@ -10124,6 +10386,310 @@
         "batch_id": "c01e5bb20753e69425f4c4d651fc9afd852d9e101ada1896e4df2c560c1c2bf0",
         "source_report_sha256": "118a46da7f88e5058effbd7f23250a397c580c7ff28c8475bc85d00c5378adcf",
         "request_sha256": "b95af752925576f0a3e84034b82cffd95c02b5234adb2176e4b307346a4baf73"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "evidence_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:27:claim:4:ev:0"
+      ],
+      "id": "adoption:review:fe21bffcaf1c62a992d15060",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:cpu",
+        "part:nic",
+        "part:storage-array"
+      ],
+      "question_ids": [
+        "OBJ-nic-definition",
+        "OBJ-nic-interfaces"
+      ],
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "status": "adopted",
+      "text": "据 SemiAnalysis《Most Neoclouds Suck At Security》第28页的描述，BlueField DPU 用于卸载、加速和隔离软件定义网络、存储、安全与管理功能，将这些工作从宿主 CPU 转移到 DPU。此处保留作者对功能分工的定性描述。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T05:38:53+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及本次评分均为6。连续原文和相邻页上下文充分支持功能范围与宿主 CPU 分工，实质匹配当前定义和接口工单；该条为一般产品功能描述，无敏感配置、真实冲突或替换条件，可作为B类局部证据采用。",
+        "workorder_ids": [
+          "Q-OBJ-nic-definition",
+          "Q-OBJ-nic-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 116.21,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cd10766899f4fa19ca2900633991faba1575b453df6413b5af03bac3cb2f8b54",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 25631,
+            "output_tokens": 4130,
+            "reasoning_output_tokens": 480
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 24.461,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a134b387547cd28050547f52d5030d5d40543ec77825768c3ebc0fd17cf70763",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 22789,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46"
+      },
+      "source_candidate_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:27:claim:4"
+      ],
+      "limitations": "来源发表时间未由所供原生文本确立。该段泛指 BlueField DPU，未区分型号、软件版本、运行模式或地域，未提供卸载比例、性能、功耗、价格及接口规格；不能据此认定具体部署已实现这些功能。",
+      "conflict_check": "当前采用记录仅涉及 BlueField 产品沿革，与本条功能分工不冲突，也不构成重复。所供 legacy 两条记录分别为 Vera Rubin 计算托盘的 GPU、CPU 数量，其 BlueField-4 和 ConnectX-9 附注不构成功能分工的反证。未进行外部全面核验，不替换既有结论。",
+      "gap_dependency_check": "为 OBJ-nic-definition 提供功能范围，为 OBJ-nic-interfaces 提供 DPU 与宿主 CPU 的任务分工。组成、排除边界、输入输出、物理接口、版本依赖和互换条件仍缺失，两项问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46",
+        "source_report_sha256": "8d862d441079b8a66432ac7e0e3390fa565c621c229c875ac7d56d11ee151a73",
+        "request_sha256": "815b31c7e2769c40e20ec0c357323b5886319e7114dd29bcf74834caa458d421"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "evidence_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:27:claim:5:ev:0"
+      ],
+      "id": "adoption:review:f5f39e50d121cf66780c7a4c",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:nvidia-networking",
+        "part:nic",
+        "part:storage-array"
+      ],
+      "question_ids": [
+        "OBJ-nic-interfaces"
+      ],
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "status": "adopted",
+      "text": "SemiAnalysis《Most Neoclouds Suck At Security》第28页作者称，NVIDIA 参考架构“基本要求”使用 BlueField-3 承担南北向连接、存储加速和零信任安全，并据此称按该蓝图建设的 neocloud 在设计上会配置 BlueField-3。这是作者对参考架构依赖的描述。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T05:38:53+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及本次评分均为6。连续原文支持有条件、明确归属的参考架构主张，实质贡献于当前接口与上下游依赖工单。该条仅描述一般架构用途，未披露具体环境的安全缺陷，无A类条件，可按B类采用为局部证据。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 116.21,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cd10766899f4fa19ca2900633991faba1575b453df6413b5af03bac3cb2f8b54",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 25631,
+            "output_tokens": 4130,
+            "reasoning_output_tokens": 480
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 24.461,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a134b387547cd28050547f52d5030d5d40543ec77825768c3ebc0fd17cf70763",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 22789,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46"
+      },
+      "source_candidate_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:27:claim:5"
+      ],
+      "limitations": "来源发表时间未由所供原生文本确立。未给出参考架构名称、修订版、正式要求条款、地域或已交付项目清单；“基本要求”是作者措辞，不能提升为已核验的强制规范，也不能推广为所有 neocloud 的实际配置或零信任运行状态。",
+      "conflict_check": "已采用产品沿革记录没有相反架构要求；legacy 托盘数量记录涉及不同产品和口径，不构成冲突或重复。第29页所述默认 host-trusted 模式与此处零信任设计用途属于不同层次，不能据此认定发生真实冲突，也不能用本条消除默认模式的限制。未作外部全面核验。",
+      "gap_dependency_check": "仅为 OBJ-nic-interfaces 提供 BlueField-3 与南北向连接、存储加速和零信任设计的依赖线索。正式架构条款、版本适用性、接口规格、配置条件、互换限制及实际交付仍待补证，问题不关闭。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46",
+        "source_report_sha256": "8d862d441079b8a66432ac7e0e3390fa565c621c229c875ac7d56d11ee151a73",
+        "request_sha256": "815b31c7e2769c40e20ec0c357323b5886319e7114dd29bcf74834caa458d421"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "evidence_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:28:claim:0:ev:0"
+      ],
+      "id": "adoption:review:6e458ab3665a9896a33d2c22",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:cpu",
+        "part:nic"
+      ],
+      "question_ids": [
+        "OBJ-nic-definition"
+      ],
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "status": "adopted",
+      "text": "据 SemiAnalysis《Most Neoclouds Suck At Security》第29页作者的描述，BlueField DPU 是与 ConnectX NIC 共封装的 Arm 计算机，具有自身的 CPU 核心、内存、Linux 安装、管理端口及 BMC。此处保留作者对设备组成的描述。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T05:38:53+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及本次评分均为6。连续引文和前后文明确对象及组成，实质匹配当前定义工单。一般硬件组成描述没有敏感访问细节、真实冲突或替换条件，可作为B类局部证据采用。",
+        "workorder_ids": [
+          "Q-OBJ-nic-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 116.21,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cd10766899f4fa19ca2900633991faba1575b453df6413b5af03bac3cb2f8b54",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 25631,
+            "output_tokens": 4130,
+            "reasoning_output_tokens": 480
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 24.461,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a134b387547cd28050547f52d5030d5d40543ec77825768c3ebc0fd17cf70763",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 22789,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46"
+      },
+      "source_candidate_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:28:claim:0"
+      ],
+      "limitations": "来源发表时间未由所供原生文本确立。该段未明确对应型号、板卡变体、软件版本或地域，也未提供核心数、内存容量、管理端口规格或 BMC 配置细节；不能推广为每一种 BlueField SKU 的已核验组成。",
+      "conflict_check": "已采用的 BlueField 沿革记录与本条互补，没有相反组成结论。legacy 记录中的 Vera CPU 数量指计算托盘组件，不能与 DPU 自身 Arm 核心混同；附注中的 ConnectX-9、BlueField-4 数量也不否定本条设备组成。未发现可识别的 canonical 重复记录，不替换既有结论。",
+      "gap_dependency_check": "为 OBJ-nic-definition 提供 DPU 与普通 NIC 的组成差异及独立计算、管理组件线索。完整型号分类、部件归属、外部组件和排除边界仍未建立，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46",
+        "source_report_sha256": "8d862d441079b8a66432ac7e0e3390fa565c621c229c875ac7d56d11ee151a73",
+        "request_sha256": "815b31c7e2769c40e20ec0c357323b5886319e7114dd29bcf74834caa458d421"
       }
     }
   ],
