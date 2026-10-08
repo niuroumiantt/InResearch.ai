@@ -229,6 +229,107 @@ class ResearchReviewTests(unittest.TestCase):
         self.assertTrue(review.term_match('PJM','PJM电网'))
         self.assertFalse(review.term_match('NODE','node_id'))
 
+    def test_v3_accepts_layout_whitespace_but_keeps_v2_seals_and_meaning_strict(self):
+        packet,row=fixture()
+        packet['items'][0]['candidate']['text']='One expensive weight\n    read is amortized.'
+        matching={'retrieval_version':'semantic-values-v3','items':packet['items'],
+                  'current_question_directory':[{'id':'q1'}]}
+        result={'matches':[{'id':row['id'],'question_ids':['q1'],'rationale':'Mechanism',
+                            'context_terms':['weight read']}]}
+        original=copy.deepcopy(packet)
+        self.assertEqual(review.validate_matches(matching,result),result['matches'])
+        self.assertEqual(packet,original)
+        with self.assertRaisesRegex(ValueError,'literal_bounded_claim'):
+            review.validate_matches({**matching,'retrieval_version':'semantic-values-v2'},result)
+        for term in ['weight-read','权重读取','Other entity']:
+            invalid=copy.deepcopy(result);invalid['matches'][0]['context_terms']=[term]
+            with self.assertRaisesRegex(ValueError,'literal_bounded_claim'):
+                review.validate_matches(matching,invalid)
+
+    def test_v3_isolates_invalid_claim_and_audits_both_accepted_and_rejected_matches(self):
+        packet,row=fixture();packet['unsupported']=[]
+        packet['items'][0]['candidate']['text']='One expensive weight\nread.'
+        bad=copy.deepcopy(packet['items'][0]);bad['candidate'].update(id='candidate:other',text='Unrelated subject')
+        packet['items'].append(bad)
+        matching={'retrieval_version':'semantic-values-v3','items':copy.deepcopy(packet['items']),
+                  'current_question_directory':[{'id':'q1'}]}
+        result={'matches':[{'id':row['id'],'question_ids':['q1'],'rationale':'Mechanism',
+                            'context_terms':['weight read']},
+                           {'id':'candidate:other','question_ids':['q1'],'rationale':'Unbound name',
+                            'context_terms':['PJM']}],
+                '_model':{'input_sha256':hashlib.sha256(encoded(matching).encode()).hexdigest()}}
+        with patch.object(review,'context',return_value=packet['research_context']):
+            review.apply_matches(Path('/unused'),packet,matching,result)
+        self.assertEqual([x['candidate']['id'] for x in packet['items']],[row['id']])
+        self.assertEqual(packet['unsupported'],[{'id':'candidate:other','state':'deferred',
+                                               'reason':'context_terms_must_be_literal_bounded_claim'}])
+        with tempfile.TemporaryDirectory() as td:
+            directory=Path(td);bundle=audit(directory,packet,row)
+            atomic_json(directory/'matching-request.json',{'system':review.MATCH_SYSTEM_V3,'user':encoded(matching)})
+            atomic_json(directory/'matching-response.json',result)
+            self.assertTrue(review.verify_audit(bundle,directory))
+            tampered=copy.deepcopy(packet);tampered['demand_matching']['rejected_matches']=[]
+            atomic_json(directory/'packet.json',tampered)
+            with self.assertRaisesRegex(ValueError,'demand_matching_audit_mismatch'):
+                review.verify_audit({**bundle,'packet':tampered},directory)
+        for invalid in ({'matches':result['matches'][:1]},
+                        {'matches':[{**r,'question_ids':['invented']} for r in result['matches']]}):
+            with self.assertRaisesRegex(ValueError,'invalid_current_demand_matches'):
+                review.partition_matches(matching,invalid)
+
+    def test_matching_retry_preserves_history_and_rejects_real_review_failures(self):
+        with tempfile.TemporaryDirectory() as td:
+            store=review.ReviewStore(td)
+            for bid,error in [('literal','context_terms_must_be_literal_bounded_claim'),
+                              ('sample','independent_sample_not_confirmed'),
+                              ('quote','original_quote_missing_or_gap'),('budget','review_context_over_budget')]:
+                store.db.execute('INSERT INTO batches(id,state,attempts,candidate_ids,error) VALUES(?,?,?,?,?)',
+                                 (bid,'deferred',1,encoded([bid]),error))
+                store.db.execute('INSERT INTO dispositions VALUES(?,?,?,?,?,?,?)',(bid,'doc','rev','deferred',bid,'','now'))
+            store.db.commit();store.retry_matching('literal')
+            self.assertEqual(tuple(store.db.execute("SELECT state,attempts FROM batches WHERE id='literal'").fetchone()),('queued',1))
+            for bid in ['sample','quote','budget','missing']:
+                with self.assertRaisesRegex(ValueError,'only_literal_matching_failures'):
+                    store.retry_matching(bid)
+            store.db.close()
+
+    def test_v3_worker_reviews_good_claim_while_bad_claim_stays_deferred(self):
+        packet,row=fixture();packet['unsupported']=[]
+        packet['items'][0]['candidate']['text']='One expensive weight\nread.'
+        bad=copy.deepcopy(packet['items'][0]);bad['candidate'].update(id='candidate:other',text='Other subject')
+        packet['items'].append(bad)
+        class Client:
+            profile=type('Profile',(),{'context':1000000,'max_output_tokens':8192,'identity':{}})()
+            calls=0
+            def generate(self,system,user):
+                self.calls+=1
+                if system==review.MATCH_SYSTEM_V3:
+                    result={'matches':[{'id':row['id'],'question_ids':['q1'],'rationale':'Mechanism',
+                                        'context_terms':['weight read']},
+                                       {'id':'candidate:other','question_ids':['q1'],'rationale':'Not literal',
+                                        'context_terms':['PJM']}]}
+                elif system==review.SYSTEM:result={'reviews':[row]}
+                elif system==review.SAMPLE_SYSTEM:
+                    result={'checks':[{'id':row['id'],'confirmed':True,'rationale':'Independent evidence support'}]}
+                else:raise AssertionError(system)
+                return {**result,'_model':{'input_sha256':hashlib.sha256(user.encode()).hexdigest()}}
+        with tempfile.TemporaryDirectory() as td:
+            store=review.ReviewStore(td);bid=packet['batch_id'];client=Client()
+            ids=[row['id'],'candidate:other']
+            store.db.execute('INSERT INTO batches(id,state,candidate_ids) VALUES(?,?,?)',(bid,'queued',encoded(ids)))
+            for cid in ids:store.db.execute('INSERT INTO dispositions VALUES(?,?,?,?,?,?,?)',(cid,'doc','rev','queued',bid,'','now'))
+            store.db.commit()
+            with patch.object(store,'packet',return_value=packet), \
+                 patch.object(registry,'current_tasks',return_value=[{'wid':'Q-q1','title':'Current demand','object_ids':['root']}]), \
+                 patch.object(review,'context',return_value=packet['research_context']):
+                store.run_one(Path('/unused'),client)
+            self.assertEqual(client.calls,3)
+            self.assertEqual(dict(store.db.execute('SELECT id,state FROM dispositions')),
+                             {row['id']:'review_ready','candidate:other':'deferred'})
+            directory=store.directory/bid;bundle=json.loads((directory/'bundle.json').read_text())
+            self.assertTrue(review.verify_audit(bundle,directory/bundle['attempt']))
+            store.db.close()
+
     def test_regroup_keeps_all_dispositions_and_never_reuses_attempted_batches(self):
         with tempfile.TemporaryDirectory() as td:
             store=review.ReviewStore(td)

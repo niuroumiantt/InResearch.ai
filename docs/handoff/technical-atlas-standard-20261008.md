@@ -54,3 +54,5 @@ SSD位置修正PR397已上线162cf88a，四项CI通过，AWS HEALTHY/容器healt
 本对话自动续做id=automation-3，每小时；无变化保持安静，原35项全部真实发布后停止。补充批次发布收尾后下一张TA-03机箱盖板与壳体。工作树 `/Users/m5/.codex/worktrees/ops-dashboard/inresearch.ai`，当前分支codex/atlas-facility-continue-20261008。禁止重做已验SSD/配方或把简化3D计完成。
 
 Spark本轮只读观察06f96964，reader active；research-review在20:10后inactive（Result success、退出状态15），没有在本图册任务中启动/重启，网站2D部署独立。其他研究任务可能正在调整它，不擅自改动。
+
+建筑/消防公网系统/尺度×桌面/手机及高清原SVG实际打开复验完成，7条可编辑标注，错误0；公网源码SHA与本地一致。高清原图在当前网络78.612/91.39秒，预览2.612/4.929秒；原件质量未压低。合入独立研究恢复PR399，只更新图册自己的实现与计量，保留其规则/私有worker操作范围。
