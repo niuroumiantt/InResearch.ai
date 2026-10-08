@@ -144,15 +144,28 @@ function renderHistory() {
 async function refresh() {
  if(loading) return;
  loading=true;$('ops-refresh').disabled=true;
+ const controller=new AbortController();
+ const timeout=setTimeout(()=>controller.abort(),20000);
  try {
-  const response=await fetch('/api/ops',{cache:'no-store',signal:AbortSignal.timeout(20000)});
+  const response=await fetch('/api/ops',{cache:'no-store',signal:controller.signal,priority:'high'});
   if(!response.ok) throw Error(response.status===403?'运行诊断仅管理员可见':response.status===401?'登录已失效，请重新登录':'HTTP '+response.status);
   data=await response.json();render();loaded=true;
   $('ops-error').textContent='';
  } catch(e) {
-  $('ops-error').textContent='更新失败：'+e.message+'。'+(loaded?'保留上次画面，当前状态未确认。':'尚未读到管理数据。');
+  const reason=controller.signal.aborted?'读取超时（20 秒）':e.message;
+  $('ops-error').textContent='更新失败：'+reason+'。'+(loaded?'保留上次画面，当前状态未确认。':'尚未读到管理数据。');
+  if(!loaded) {
+   $('ops-updated').textContent='本页检查 '+when(new Date().toISOString())+' · 北京时间（UTC+8）';
+   $('ops-kpis').innerHTML=kpi(null,'完整阅读完成 · 文档','未读到状态')+kpi(null,'当前排队 · 任务','未读到状态')+kpi(null,'执行受阻 · 文档','未读到状态')+kpi(null,'事实证据问题 · 项','未读到状态');
+   for(const id of ['ops-attention','ops-health','target-progress','quality-detail']) $(id).innerHTML=empty('暂未读到管理数据。请点击“刷新状态”重试。');
+   for(const id of ['stage-body','queue-body','history-body']) $(id).innerHTML='<tr><td colspan="6">状态未知。读取失败，请刷新重试。</td></tr>';
+   $('stage-note').textContent='未读到当前阶段统计，不推定任务为零。';
+   $('queue-note').textContent='未读到队列明细，不推定没有排队或阻塞任务。';
+  }
   $('ops-banner').className='ops-banner bad';$('ops-banner').innerHTML='<strong>当前状态未确认</strong><p>数据请求失败，请重试。保留的旧数字不能证明系统仍然正常。</p>';
- } finally { loading=false;$('ops-refresh').disabled=false; }
+ } finally { clearTimeout(timeout);loading=false;$('ops-refresh').disabled=false;
+  // A cold font download must not consume the connection before the first status.
+  const fonts=$('ops-fonts');if(fonts)fonts.media='all'; }
 }
 async function runTask(id) {
  if(busy.has(id)) return;

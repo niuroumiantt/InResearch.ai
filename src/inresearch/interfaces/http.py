@@ -14,6 +14,7 @@ from inresearch.interfaces import pages
 from inresearch.interfaces import repository_pages
 import os
 import json
+import re
 from inresearch.interfaces import auth as auth
 from inresearch.interfaces import public
 from inresearch.materials import inbox as material_intake
@@ -40,9 +41,16 @@ import sys
 import threading
 import time
 from datetime import datetime
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as ThreadingHTTPServer
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as BaseThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlencode, urlsplit
+
+
+class ThreadingHTTPServer(BaseThreadingHTTPServer):
+    # Caddy fans a cold page's HTTP/2 assets out into concurrent HTTP/1 requests.
+    # The stdlib default backlog of five drops this burst before handlers start.
+    request_queue_size = 128
+
 
 ROOT = project_root()
 PY = sys.executable
@@ -116,10 +124,21 @@ class Handler(SimpleHTTPRequestHandler):
             # Navigation may cancel an in-flight response; the request is over.
             self.close_connection = True
 
-    def _json(self, code, obj):
-        body = json.dumps(obj, ensure_ascii=False).encode()
+    def _json(self, code, obj, compressed=False):
+        body = json.dumps(obj, ensure_ascii=False, separators=(',', ':')).encode()
+        gzip_ok = any(part.split(';')[0].strip() == 'gzip' and
+                      not any(re.fullmatch(r'q\s*=\s*0(?:\.0*)?', p.strip()) for p in part.split(';')[1:])
+                      for part in self.headers.get('Accept-Encoding', '').split(','))
+        if compressed and gzip_ok:
+            import gzip
+            body = gzip.compress(body, compresslevel=5, mtime=0)
         self.send_response(code)
         self.send_header("Content-Type", "application/json; charset=utf-8")
+        if compressed:
+            self.send_header('Cache-Control', 'private, no-store')
+            self.send_header('Vary', 'Accept-Encoding')
+            if gzip_ok:
+                self.send_header('Content-Encoding', 'gzip')
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
@@ -435,7 +454,7 @@ class Handler(SimpleHTTPRequestHandler):
             if urlsplit(self.path).path == '/api/ops':
                 with LOCK:
                     running = set(RUNNING)
-                return self._json(200, operations.snapshot(ROOT, TASKS, running))
+                return self._json(200, operations.snapshot(ROOT, TASKS, running), compressed=True)
             query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
             if set(query) != {'id'} or len(query['id']) != 1:
                 return self._json(400, {'ok': False, 'error': 'invalid log query'})

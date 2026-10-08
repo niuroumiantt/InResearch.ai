@@ -1,10 +1,12 @@
 """Management must distinguish unknown, current work, history and successful execution."""
 import contextlib
+import gzip
 import http.client
 import io
 import json
 import os
 import subprocess
+import socket
 import tempfile
 import threading
 import unittest
@@ -86,6 +88,19 @@ class ObservabilityTests(unittest.TestCase):
 
 
 class OperationsHTTPTests(unittest.TestCase):
+    def test_cold_page_connection_burst_fits_pending_listener(self):
+        # Before a handler can be scheduled, a cold page can open many upstream
+        # connections for CSS, JS, fonts and API reads. They must all connect.
+        server = serve.ThreadingHTTPServer(('127.0.0.1', 0), serve.Handler)
+        connections = []
+        try:
+            for _ in range(20):
+                connections.append(socket.create_connection(server.server_address, timeout=.5))
+        finally:
+            for connection in connections:
+                connection.close()
+            server.server_close()
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
@@ -156,3 +171,43 @@ class OperationsHTTPTests(unittest.TestCase):
         self.assertEqual(s['reader']['snapshot_age_seconds'],100)
         self.assertEqual(s['reader']['generated_age_seconds'],1100)
         self.assertTrue(s['reader']['stale'])
+
+    def test_management_reader_excludes_bulk_feeds_before_caching(self):
+        from inresearch.knowledge import registry
+        published = {'received_at': ops.iso(1000), 'reader': {
+            'generated': ops.iso(999), 'status': 'degraded', 'counts': {'complete': 7},
+            'operations': {'schema_version': 1, 'queues': {'pending': {'total': 21, 'items': []}}},
+            'execution_scope': {'documents': 3, 'counts': {'running': 1}},
+            'acquisition': {'status': 'ready', 'sources': {'inews': {'items': 14291}},
+                            'material_matches': {'records': ['large feed' * 100000]},
+                            'daily_events': {'events': ['large feed' * 100000]}}}}
+        with patch.object(registry, '_snapshot_inputs', return_value=(None, None, None, None, published)) as load:
+            first = ops._reader(self.root)
+            first['counts']['complete'] = 99
+            second = ops._reader(self.root)
+        self.assertEqual(load.call_count, 1)
+        self.assertEqual(second['counts']['complete'], 7)
+        self.assertEqual(second['operations']['queues']['pending']['total'], 21)
+        self.assertEqual(second['execution_scope']['documents'], 3)
+        self.assertEqual(second['acquisition'], {'status': 'ready', 'sources': {'inews': {'items': 14291}}})
+        self.assertLess(len(json.dumps(second)), 1000)
+        self.assertIn('material_matches', published['reader']['acquisition'])
+
+    def test_diagnostics_compress_only_when_accepted_and_remain_private(self):
+        expected = {'reader': {'operations': {'examples': ['文档诊断' * 1000]}}}
+        with patch.object(serve, 'AUTH_ON', False), patch.object(ops, 'snapshot', return_value=expected):
+            for encoding, compressed in [('gzip, deflate, br', True), ('gzip;q=0', False), ('identity', False)]:
+                connection = http.client.HTTPConnection(*self.server.server_address, timeout=5)
+                try:
+                    connection.request('GET', '/api/ops', headers={'Accept-Encoding': encoding})
+                    response = connection.getresponse(); body = response.read()
+                    self.assertEqual(response.status, 200)
+                    self.assertEqual(response.getheader('Cache-Control'), 'private, no-store')
+                    self.assertEqual(response.getheader('Vary'), 'Accept-Encoding')
+                    self.assertEqual(response.getheader('Content-Encoding'), 'gzip' if compressed else None)
+                    if compressed:
+                        self.assertLess(len(body), 200)
+                        body = gzip.decompress(body)
+                    self.assertEqual(json.loads(body), expected)
+                finally:
+                    connection.close()
