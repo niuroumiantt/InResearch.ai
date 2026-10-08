@@ -134,8 +134,11 @@ function positionPopup(){
  if(popup.hidden)return;
  const point=[...svg.querySelectorAll('[data-id]')].find(p=>p.dataset.id===selectedSite);if(!point)return;
  const frame=svg.parentElement.getBoundingClientRect(),r=point.getBoundingClientRect();
- popup.style.left=Math.max(8,Math.min(frame.width-popup.offsetWidth-8,r.right-frame.left+12))+'px';
- popup.style.top=Math.max(8,Math.min(frame.height-popup.offsetHeight-8,r.top-frame.top))+'px';
+ const right=r.right-frame.left+12,left=r.left-frame.left-popup.offsetWidth-12;
+ const x=right+popup.offsetWidth<=frame.width-8?right:left>=8?left:Math.max(8,Math.min(frame.width-popup.offsetWidth-8,right));
+ const overlaps=x<r.right-frame.left&&x+popup.offsetWidth>r.left-frame.left;
+ const y=overlaps?(r.bottom-frame.top+12+popup.offsetHeight<=frame.height-8?r.bottom-frame.top+12:r.top-frame.top-popup.offsetHeight-12):r.top-frame.top;
+ popup.style.left=x+'px';popup.style.top=Math.max(8,Math.min(frame.height-popup.offsetHeight-8,y))+'px';
 }
 function renderPopup(){
  if(!selectedSite)return;
