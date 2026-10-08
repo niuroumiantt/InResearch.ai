@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-05",
+  "object_id": "part:hbm",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Generic GPU and HBM silicon-interposer package",
+  "reviewed_at": "2026-10-09",
+  "reviewer": "Codex实际母图/独立标签/网页逐项审阅",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "GPU die and four schematic HBM stacks side by side on a silicon interposer, separated package substrate and solder balls, enlarged HBM cutaway. Not a whole GPU board/module or an exact product.",
+  "master": "web/assets/technical-atlas/hbm-package-v1.png",
+  "labelled": "web/assets/technical-atlas/hbm-package-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R2",
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "passed_to_tool": true
+    },
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "initial_prompt": "docs/design/technical-atlas/TA-05/prompt-v1.txt",
+    "accepted_prompt": "docs/design/technical-atlas/TA-05/prompt-v2.txt",
+    "iterations": 2,
+    "accepted_original_filename": "exec-8d988ef1-b4d4-4776-bf2c-2bbc1db4afe3.png",
+    "raster_modified_after_generation": false,
+    "preview_method": "same-pixel JPEG encoding with macOS sips; original PNG unchanged",
+    "label_method": "independent stdlib SVG layer embedding unchanged master",
+    "rejected_attempts": [
+      {
+        "original": "exec-aa030c82-24e5-4a55-99a5-928ba52b1a31.png",
+        "reason": "External copper pillars instead of internal TSV cutaway and motherboard-like populated substrate/interposer."
+      }
+    ]
+  },
+  "rights": {
+    "origin": "用户授权内置图像工具按实际R2/R3原件生成，原件与拒绝版保留",
+    "license": "项目生成插图，不冒称原厂工程图或CC0"
+  },
+  "technical_sources": [
+    {
+      "file": "framework/bom.json",
+      "supports": "Existing part:hbm in IT memory; no new physical-object axis."
+    },
+    {
+      "url": "https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm",
+      "observed_at": "2026-10-09",
+      "supports": "CoWoS-S silicon interposer accommodates logic and HBM; R/RDL and L variants differ."
+    },
+    {
+      "url": "https://www.micron.com/about/blog/applications/data-center/hbm2e-fastest-memory-modern-data-center",
+      "observed_at": "2026-10-09",
+      "supports": "HBM2E TSV-connected stacked DRAM adjacent to CPU/GPU on interposer."
+    }
+  ],
+  "unknowns": [
+    "Four-stack composition, DRAM layer count, TSV count/thickness and interfaces are schematic and enlarged, not a vendor SKU, memory generation, capacity or performance claim.",
+    "Exact die dimensions, microbump pitch, interposer routing and base layer internal design unknown. Bare die materials illustrative.",
+    "This generic silicon-interposer example does not describe all CoWoS variants. Existing live 3D geometry is unchanged; TA-04 board/module and future whole-server illustrations remain separate."
+  ],
+  "checks": {
+    "counted_main_gpu_dies": 1,
+    "counted_main_hbm_stacks": 4,
+    "counted_inset_stacks": 1,
+    "no_baked_text": true,
+    "independent_labels": 8,
+    "native_pixels_verified": true,
+    "leaders_reviewed": true,
+    "leader_correction": "Move TSV leader above inset and base-layer leader to side of base; interposer endpoint on dark front corner, substrate on exposed green laminate. No label crossing.",
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true,
+    "retained_ssd_gpu_server_and_3d": "technical_atlas and part_dossier local tests passed, including HBM/GPU/server identity and existing WebGL canvas. Exact-head CI and real public checks pending."
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/hbm-package-v1-preview.svg",
+    "bytes": 329107
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/hbm-package-v1.png",
+      "sha256": "263a421aeda7991bba719016b1cc400961019c0008e4bc8bcf6248503ddc1f6e"
+    },
+    {
+      "file": "web/assets/technical-atlas/hbm-package-v1.svg",
+      "sha256": "ec86f0393a947c51eca5a4285e96dd492524242cdf0313a7da2dce4b57edb9ca"
+    },
+    {
+      "file": "web/assets/technical-atlas/hbm-package-v1-preview.jpg",
+      "sha256": "b81cfec0a7e930d5d5f79f9f883b71d8be8ec58b563e8b04dea53c88b6d4c683"
+    },
+    {
+      "file": "web/assets/technical-atlas/hbm-package-v1-preview.svg",
+      "sha256": "b03c8bcb93dddd927b00a3b29e5af4f5bce20bfefda4457b269c4960af85c3a8"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-05/labels-v1.json",
+      "sha256": "85cbc14194c7714e394e83f1ee1f681f8df0b7ace5879b98f3b02018f992d8b6"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-05/prompt-v1.txt",
+      "sha256": "558455897f462d1aad12b2843f47087c88d2ae1a353ce6ad0ee7976a359cfca3"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-05/prompt-v2.txt",
+      "sha256": "df646183f6b82cf8b979f87fe1bb57c667c4b2edb240c13b49440c9acc765382"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-05/preparation.json",
+      "sha256": "af9a0c331557465a55964eacfb7bddf4882c1e8acadc406cc5b713304a7c60c6"
+    }
+  ],
+  "browser_checks": [
+    "tests/technical_atlas.cjs",
+    "tests/part_dossier.cjs"
+  ],
+  "browser_review": {
+    "file": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-05/hbm-local/browser.json",
+    "views": 4,
+    "full_svg_opened": true,
+    "page_errors": 0,
+    "label_count": 8
+  }
+}

@@ -1,0 +1,131 @@
+{
+  "figure_id": "TA-05",
+  "title": "GPU 与 HBM · 封装层次",
+  "description": "通用硅中介层封装示意；四堆栈、DRAM层数、TSV与连接数量仅为图示，不代表具体型号或比例。",
+  "master": "web/assets/technical-atlas/hbm-package-v1.png",
+  "output": "web/assets/technical-atlas/hbm-package-v1.svg",
+  "preview_raster": "web/assets/technical-atlas/hbm-package-v1-preview.jpg",
+  "preview_output": "web/assets/technical-atlas/hbm-package-v1-preview.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "labels": [
+    {
+      "id": "label-gpu",
+      "text": "GPU 逻辑裸片",
+      "x": 1030,
+      "y": 120
+    },
+    {
+      "id": "label-hbm",
+      "text": "HBM 堆栈",
+      "x": 1475,
+      "y": 260,
+      "anchor": "end"
+    },
+    {
+      "id": "label-interposer",
+      "text": "硅中介层",
+      "x": 1480,
+      "y": 780,
+      "anchor": "end"
+    },
+    {
+      "id": "label-substrate",
+      "text": "封装基板",
+      "x": 750,
+      "y": 965
+    },
+    {
+      "id": "label-balls",
+      "text": "底部焊球",
+      "x": 1270,
+      "y": 990
+    },
+    {
+      "id": "label-dram",
+      "text": "DRAM 层（剖开示意）",
+      "x": 65,
+      "y": 510
+    },
+    {
+      "id": "label-tsv",
+      "text": "TSV · 硅内垂直连接",
+      "x": 505,
+      "y": 150
+    },
+    {
+      "id": "label-base",
+      "text": "堆栈底层",
+      "x": 60,
+      "y": 670
+    }
+  ],
+  "leaders": [
+    {
+      "id": "leader-gpu",
+      "target": [
+        910,
+        435
+      ],
+      "path": "M1030 140 L1000 220 L910 435"
+    },
+    {
+      "id": "leader-hbm",
+      "target": [
+        1370,
+        470
+      ],
+      "path": "M1475 280 L1450 330 L1370 470"
+    },
+    {
+      "id": "leader-interposer",
+      "target": [
+        1210,
+        775
+      ],
+      "path": "M1480 745 L1370 735 L1210 775"
+    },
+    {
+      "id": "leader-substrate",
+      "target": [
+        785,
+        777
+      ],
+      "path": "M750 940 L780 875 L785 777"
+    },
+    {
+      "id": "leader-balls",
+      "target": [
+        1230,
+        950
+      ],
+      "path": "M1270 965 L1230 950"
+    },
+    {
+      "id": "leader-dram",
+      "target": [
+        90,
+        290
+      ],
+      "path": "M65 487 L25 465 L25 320 L90 290"
+    },
+    {
+      "id": "leader-tsv",
+      "target": [
+        278,
+        280
+      ],
+      "path": "M505 170 L465 210 L278 280"
+    },
+    {
+      "id": "leader-base",
+      "target": [
+        350,
+        398
+      ],
+      "path": "M60 647 L310 520 L350 398"
+    }
+  ]
+}

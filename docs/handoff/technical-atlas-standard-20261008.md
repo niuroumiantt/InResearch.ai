@@ -82,3 +82,17 @@ TA-04旧图已实看：八个虹彩简化器件在基板上，不能当单裸GPU
 制作分支codex/atlas-gpu-baseboard-20261008，复用ops-dashboard工作树，主工作区不动。前两张母图因GPU模组数量错误被拒，原件/提示词保留；第三张重建为2×4位置，七个已安装+一个抬起模组，独立8标注与四视图/放大下载及3D回归已实际本地通过。官方来源只支持八SXM/NVSwitch类别，具体几何/PCB走线/连接端/散热接触结构仍示意。主计划4/35、设施4/4；修正2D档案传入prices对象的既有GPU加载中断。PR409精确头44567d2a四项CI成功，首次发布e51cc0e65e573940e60a035bbf8b99d0af3e2ff2；实际公网四视图/8标签与嵌入PNG SHA、双下载HEAD、AWS healthy、Spark两服务active。当前收尾分支codex/atlas-gpu-receipt-20261008，先完成发布回执PR再领取TA-05。
 
 下一TA-05备料在 `~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-05/`：preparation.json、prompt-prepared-v1.txt；旧hbm.png已实看，GPU+HBM封装与基板/板级模组区别明确。TSMC CoWoS-S与Micron HBM2E官方页支持硅中介层/相邻逻辑与HBM/垂直TSV类别；不假设所有CoWoS为硅中介层，堆栈数/层数/代际/尺寸未知。尚未生成，需实际传入R2/R3，保持TA-04/TA-03图可达。
+
+## TA-05 本地阶段 · 2026-10-09
+
+TA-04回执PR411已合并dc232148；当前owned工作树分支codex/atlas-hbm-package-20261009，最新研究main已ff且原工作区未动。TA-05内置生成两版，首版外露TSV/板级基板身份被拒，第二版原件8d988ef1采用；8独立标签、四视图本地审阅，旧hbm原件保留。状态accepted表示本地验收，实际发布前仍4/35。先完成本项PR精确头CI/合并/公网，再记published和领取TA-06。
+
+## Current blocker: TA-05 PR419, 2026-10-09
+
+PR419 is draft: https://github.com/niuroumiantt/InResearch.ai/pull/419. At exact head eec57f7c719e8d51709428f51cc27a77f7d8ad59, run37857342639 returned FAILURE for all four checks with zero executed steps. GitHub annotation: "The job was not started because an Actions budget is preventing further use." No test code ran in CI. Do not change account budgets, bypass checks, merge or deploy on this evidence. This handoff commit changes the PR head; recovery must check the new exact head.
+
+Local technical_atlas (12s), part_dossier (26s, including HBM live canvas), 14 related unit checks, governance, strict validate and registry passed. Final eight-label SVG and desktop/mobile system/scale screenshots were reviewed. Built-in accepted original is exec-8d988ef1-b4d4-4776-bf2c-2bbc1db4afe3.png; rejected original and both prompts are preserved. Master unchanged. Main remains 4/35, supplemental 4/4, TA-05 accepted locally but NOT published; TA-06 not claimed.
+
+On continuation inspect PR419 latest exact-head checks and whether the Actions budget has recovered first. After all four checks actually succeed, merge, verify public entry/downloads/native SVG and AWS/Spark, then record published in a separate receipt PR. Do not regenerate TA-05 or notify repeatedly while the same blocker is unchanged.
+
+Local evidence: ~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-05/hbm-local/. Prepared public scripts /tmp/inresearch-hbm-review.cjs, /tmp/inresearch-hbm-full-live.cjs and /tmp/inresearch-hbm-source-live.py have NOT run against public TA-05 yet. TA-04 stays published and reachable. Working tree is the owned ops-dashboard tree, not the primary workspace.

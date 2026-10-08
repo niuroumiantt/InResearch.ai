@@ -1,5 +1,13 @@
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
+  hbm: {
+    id: 'TA-05', title: 'GPU 与 HBM · 封装层次',
+    image: '/assets/technical-atlas/hbm-package-v1.svg', preview: '/assets/technical-atlas/hbm-package-v1-preview.svg',
+    master: '/assets/technical-atlas/hbm-package-v1.png',
+    alt: '暖白 GPU 与 HBM 封装图：逻辑裸片与四个 HBM 堆栈并排在硅中介层上，下面是分离封装基板和焊球，左侧剖开堆栈显示 DRAM 层与硅内 TSV。',
+    note: '通用硅中介层封装示意；四堆栈、DRAM 层数、TSV 和连接数量仅为图示，布局、比例与代际以选定型号资料为准。',
+    labels: ['GPU 逻辑裸片与 HBM：在中介层上并排放置', 'HBM 堆栈：垂直叠放的 DRAM 层', 'TSV：剖口显示硅内垂直连接，数量与粗细经示意放大', '堆栈底层：展示层叠接口关系，不指定代际内部设计', '硅中介层：此图为硅中介层方案示意，不概括所有 CoWoS 方案', '封装基板与底部焊球：展示封装层次，与整块 GPU 基板模组另图区分'],
+  },
   gpu: {
     id: 'TA-04', title: 'GPU 加速基板 · 模组装配',
     image: '/assets/technical-atlas/gpu-board-v1.svg', preview: '/assets/technical-atlas/gpu-board-v1-preview.svg',
