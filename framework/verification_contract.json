@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.15",
+  "version": "2026.10.08.16",
   "reviewed_at": "2026-10-08",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "43ca930111116fd7890c27ee76569b05027e309f614820e11a472ae83fcd8bfd",
-    "framework/CURRENT.md": "376fc5a048ceb6e67bef68a66683dd0369bc3977aa41f17e9515cd10384366a3",
+    "framework/CURRENT.md": "ad088ab3c41a0513dd6c0f9bbf44df0d84b815872eeaeac23cdcc2314717af9c",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "6f7220c1b4403de7fa609d1983f6a96794f65095c6425a04150f42cebe33dc6d",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -65,7 +65,7 @@
     "tests/repository_pages.cjs": "151cf0d04b6544af880278c3d6c1beef044590c85407659edf19d062ab95d5f6",
     "tests/research_delivery.cjs": "81548cb9d821495c3f209341490fa036e832c9be94f97da35a83825a1381c1f4",
     "tests/research_summary.cjs": "605bb97fff92661eb17f5ab11ada56728b8dfc34e29a46d1531c53381f452270",
-    "tests/run_browser.cjs": "9ea5daf1d20eb3b70d476abb712a7733dbfcc8dac933afa7cf2d994f2425cca2",
+    "tests/run_browser.cjs": "e43cc0e3a350fe07cd8f9d6c43be3632a04643abecf797c3f9742f0665efc96f",
     "tests/scene_bootstrap.cjs": "71dce825c781ee8ab88f86ee04224aaf00cb81fc5222be031b71e06373b469f1",
     "tests/scene_framing.cjs": "849921d656aebdea6fe76a46a684579aaa298a798a77b393abec6ed73cf3c185",
     "tests/scene_resources.cjs": "295249452c19192a2bd1f20bc41d6e08e8135e1284a87abf4de294b5dd96ad19",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "9cb135c534cb350086df9dfb0c4ce7b13055153e4945c418f8b37015d466494a",
+    "framework/current_state.json": "b9b9e5053569fb65207440820a0f6cbe4f843c51e9f4ac29de10bba7cd9bd770",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -223,7 +223,7 @@
     "scripts/build_technical_atlas.py": "e97a2673d741af89d67472d46f27914d1ba565d39d8d2b5ebf834ec1e4689b8c",
     "docs/design/technical-atlas/TA-01/labels-v1.json": "bdd50557e2c54ba98cd0d3721c4bbfdb66de374775ed00931c738d40b87031f3",
     "docs/design/technical-atlas/TA-01/acceptance-v1.json": "37ab95caedd07f998563f80703eb801ac436d46cb8fd1b0dc7e8d9650aac7368",
-    "tests/scene_atlas.cjs": "f085549b4a21ace4f3ad4ba21204c9c0d0006715bcbbbef3daa91f2663b5ff0b",
+    "tests/scene_atlas.cjs": "a2f07325f1a88879c02915aedd08f856e709d1ff7dc36c5a4b03a4b8829d0e1a",
     "tests/unit/test_repository_checks.py": "9d51fd33d45cb567fc9a774f157b61d0a1b13c576aec607d14e4a7e71ff447c0",
     "tests/unit/test_repository_projection.py": "3b7033bef0511c8dbc6c754d738e2d9a651cf40edddc7592ee33bc320d8f9348"
   },
@@ -1352,7 +1352,7 @@
       "policy": "visual-atlas-20261008",
       "scope": "project",
       "source": "framework/10_visual_atlas.md",
-      "checked_requirement": "五张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。；导出共用实时文字避让与1x/2x像素比；匿名启动不依赖受保护产品登记、可选未读明确未知并保留原权限。；镜头观测测试兼容脚本版本参数，注入接口须实际匹配当前源码，缺失时立即失败而不跳过视口检查。",
+      "checked_requirement": "五张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。；导出共用实时文字避让与1x/2x像素比；匿名启动不依赖受保护产品登记、可选未读明确未知并保留原权限。；镜头观测测试兼容脚本版本参数，注入接口须实际匹配当前源码，缺失时立即失败而不跳过视口检查。；scene_atlas 保留双密度完整导出/交互断言，调度器将1x/2x分别运行在原单项300秒限额，避免共享期限受软件渲染速度影响。",
       "tests": [
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_adopted_reference_bytes_and_actual_dimensions_match",
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_all_existing_render_and_panel_assets_have_individual_queue_rows",
