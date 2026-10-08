@@ -4,6 +4,7 @@ const illustrations = {
     id: 'TA-01',
     title: 'SSD 结构拆解',
     image: '/assets/technical-atlas/ssd-v1.svg',
+    preview: '/assets/technical-atlas/ssd-v1-preview.svg',
     master: '/assets/technical-atlas/ssd-v1.png',
     note: '通用有壳 SSD 结构示意；芯片数量、布局与接口外形不代表某个厂商型号。',
     labels: [
@@ -33,7 +34,7 @@ export function mountTechnicalAtlas(parent, partId) {
   full.target = '_blank'; full.rel = 'noopener';
   full.setAttribute('aria-label', '放大 SSD 结构拆解图（新窗口）');
   const image = document.createElement('img');
-  image.src = item.image; image.alt = '暖白底 SSD 爆炸图：上盖、导热接触层、电路板和底壳，左侧放大 NAND 与控制器。';
+  image.src = item.preview; image.alt = '暖白底 SSD 爆炸图：上盖、导热接触层、电路板和底壳，左侧放大 NAND 与控制器。';
   image.width = 1536; image.height = 1024; image.loading = 'lazy'; image.decoding = 'async';
   full.append(image); figure.append(full);
   const caption = document.createElement('figcaption'); caption.textContent = item.note;

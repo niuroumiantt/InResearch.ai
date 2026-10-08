@@ -77,5 +77,10 @@ class VisualAtlasTests(unittest.TestCase):
             embedded = svg.find('s:image', ns).get('href').split(',', 1)[1]
             self.assertEqual(base64.b64decode(embedded), master.read_bytes(), 'label export must embed the unchanged master')
             self.assertGreater(len(svg.findall("s:g[@id='editable-labels']/s:text", ns)), 0)
+            if receipt.get('preview'):
+                preview = ROOT / receipt['preview']['file']
+                self.assertLess(preview.stat().st_size, 512 * 1024, 'dossier preview must stay lightweight')
+                self.assertEqual(len(ET.parse(preview).getroot().findall("s:g[@id='editable-labels']/s:text", ns)),
+                                 len(svg.findall("s:g[@id='editable-labels']/s:text", ns)))
             baseline = row['baseline_asset']
             self.assertEqual(hashlib.sha256((ROOT / baseline['file']).read_bytes()).hexdigest(), baseline['sha256'], 'retain old assets')

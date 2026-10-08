@@ -11,6 +11,7 @@ const {chromium} = require('playwright');
       const atlas = page.locator('.technical-atlas[data-figure="TA-01"]');
       await atlas.waitFor(); await atlas.scrollIntoViewIfNeeded();
       await atlas.locator('img').evaluate(image => image.decode());
+      assert.ok((await atlas.locator('img').getAttribute('src')).endsWith('/ssd-v1-preview.svg'));
       assert.match(await atlas.locator('figcaption').textContent(), /通用.*不代表某个厂商型号/);
       assert.equal(await page.locator('.technical-atlas').count(), 1);
       assert.equal(await page.locator('link[data-technical-atlas]').count(), 1);
