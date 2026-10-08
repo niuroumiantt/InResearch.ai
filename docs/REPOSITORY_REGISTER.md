@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.14。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.15。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1246。
+在册文件：1247。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,7 +18,7 @@
 | 历史快照 | 306 |
 | 运行代码 | 291 |
 | 现行规范 | 14 |
-| 项目配置 | 118 |
+| 项目配置 | 119 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
@@ -81,10 +81,13 @@
 | `docs/design/technical-atlas/TA-01/labels-v1.json` | leaders | 7 |
 | `docs/design/technical-atlas/TA-01/publication-20261008.json` | asset_checks | 4 |
 | `docs/design/technical-atlas/TA-02/acceptance-v1.json` | references | 2 |
-| `docs/design/technical-atlas/TA-02/acceptance-v1.json` | implementation_at_review | 6 |
-| `docs/design/technical-atlas/TA-02/acceptance-v1.json` | browser_checks | 6 |
+| `docs/design/technical-atlas/TA-02/acceptance-v1.json` | implementation_at_review | 7 |
+| `docs/design/technical-atlas/TA-02/acceptance-v1.json` | browser_checks | 7 |
 | `docs/design/technical-atlas/TA-02/acceptance-v1.json` | local_visual_evidence | 4 |
 | `docs/design/technical-atlas/TA-02/acceptance-v1.json` | remaining_work | 3 |
+| `docs/design/technical-atlas/TA-02/publication-20261008.json` | public_source_bytes | 6 |
+| `docs/design/technical-atlas/TA-02/publication-20261008.json` | browser_evidence | 2 |
+| `docs/design/technical-atlas/TA-02/publication-20261008.json` | found_during_public_review | 2 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | companies | 7 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | unpublished | 2 |
 | `docs/inbox/facts_candidates/m01_market_20260817.json` | records | 4 |
@@ -548,6 +551,7 @@
 | `docs/design/technical-atlas/TA-01/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-01/publication-20261008.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-02/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-02/publication-20261008.json` | 项目配置 |
 | `docs/design/technical-atlas/references/01-chain.png` | 项目配置 |
 | `docs/design/technical-atlas/references/02-server.png` | 项目配置 |
 | `docs/design/technical-atlas/references/03-ssd.png` | 项目配置 |

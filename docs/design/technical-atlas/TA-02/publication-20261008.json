@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-02",
+  "first_published_revision": "7d36925789b86b1727bd842c9c169465ae180ee3",
+  "pull_request": "https://github.com/niuroumiantt/InResearch.ai/pull/388",
+  "merged_at": "2026-10-08T09:27:32Z",
+  "ci": "four required checks passed for 1cb21e0dc057c4364bba3e6c42c66d28fcdbb81f",
+  "aws": {
+    "applied_revision": "7d36925789b86b1727bd842c9c169465ae180ee3",
+    "image": "sha256:5efcfc79ae7817da4af7b47d40053efc5ca81a2d5c226e7c489c191a94ec2cb7",
+    "status": "HEALTHY",
+    "container": "healthy"
+  },
+  "public_source_bytes": [
+    {
+      "url": "https://inresearch.ai/assets/scene-atlas.js",
+      "status": 200,
+      "bytes": 12378,
+      "sha256": "01e4d2d2a3784bc5b42e1d5229f96ac2d7742963e95b959951919920d8eecf8e",
+      "source_sha256": "01e4d2d2a3784bc5b42e1d5229f96ac2d7742963e95b959951919920d8eecf8e",
+      "seconds": 2.107
+    },
+    {
+      "url": "https://inresearch.ai/assets/part-inspector.js",
+      "status": 200,
+      "bytes": 3979,
+      "sha256": "b3739bb8ae6ae85ae397df3cf09cbc51a1a5cb32ffdd3e0df873025d8632dd77",
+      "source_sha256": "b3739bb8ae6ae85ae397df3cf09cbc51a1a5cb32ffdd3e0df873025d8632dd77",
+      "seconds": 0.849
+    },
+    {
+      "url": "https://inresearch.ai/assets/scene-resources.js",
+      "status": 200,
+      "bytes": 7597,
+      "sha256": "cda675f317814f75ccd9ac5ec6b403a549f9705a50731100f82ee7a7d3ce02cc",
+      "source_sha256": "cda675f317814f75ccd9ac5ec6b403a549f9705a50731100f82ee7a7d3ce02cc",
+      "seconds": 1.121
+    },
+    {
+      "url": "https://inresearch.ai/assets/part-dossier.js",
+      "status": 200,
+      "bytes": 5283,
+      "sha256": "78db60d6949ea55ce4d6c0ab436bdb32a3c7ac3ec53588c6cbcb5f475d56e83d",
+      "source_sha256": "78db60d6949ea55ce4d6c0ab436bdb32a3c7ac3ec53588c6cbcb5f475d56e83d",
+      "seconds": 1.161
+    },
+    {
+      "url": "https://inresearch.ai/bom3d.html",
+      "status": 200,
+      "bytes": 58269,
+      "sha256": "ec47daf2a9ac2e79309c32bdf7d2410f5de4c9618976aa86042a71a26b84c62d",
+      "source_sha256": "ec47daf2a9ac2e79309c32bdf7d2410f5de4c9618976aa86042a71a26b84c62d",
+      "seconds": 1.009
+    },
+    {
+      "url": "https://inresearch.ai/rack3d.html",
+      "status": 200,
+      "bytes": 39026,
+      "sha256": "69717d206383db2ee7edba3ecf217d1c21a15d6c6fc021f37a8d8816426b92b9",
+      "source_sha256": "69717d206383db2ee7edba3ecf217d1c21a15d6c6fc021f37a8d8816426b92b9",
+      "seconds": 2.174
+    }
+  ],
+  "browser_evidence": [
+    {
+      "file": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-02/live/rack3d-light.svg",
+      "sha256": "a982297ab54ba394cf820e182e2c54cca0d3692dc450ca39826bcb82a42689bb",
+      "mode": "light",
+      "paper": [
+        250,
+        249,
+        242,
+        255
+      ],
+      "object_id": "part:ssd",
+      "retained_inspector": true
+    },
+    {
+      "file": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-02/live/rack3d-dark.svg",
+      "sha256": "7aa17aa24cf90cb91c0ef0656349f6b0bfe36ffddc7ba788ccf1f2402ea134e0",
+      "mode": "dark",
+      "paper": [
+        250,
+        249,
+        242,
+        255
+      ],
+      "object_id": "part:ssd",
+      "retained_inspector": true
+    }
+  ],
+  "found_during_public_review": [
+    "初版导出未复用实时文字避让，密集区可读性不足；本次修正复用页面SVG位置/底色，并按像素比保持字级",
+    "园区匿名首屏误将受保护产品登记作为必需输入，302转登录HTML导致startup失败；不扩大数据权限，改为可选诊断输入，未知不计为零"
+  ],
+  "followup_receipt": "本次修正的实际版本/双页导出在修正PR的上线回执核对，不以前一版本或本地截图代替。",
+  "spark_readonly": {
+    "revision": "c2dd1e09c347cbabbffa5472a45aa8eeeef218f8",
+    "reader": "active",
+    "research_review": "active",
+    "service_changes": false
+  }
+}

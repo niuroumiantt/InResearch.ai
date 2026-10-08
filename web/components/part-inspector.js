@@ -1,6 +1,6 @@
 /* A component owns its renderer and cloned materials, never the source geometry. */
 import {createViewport, visibleBounds, fitPerspective} from './scene-view.js';
-import {configureAtlasRenderer, addAtlasLights, createAtlasDrawing} from './scene-atlas.js';
+import {configureAtlasRenderer, addAtlasLights, createAtlasDrawing} from './scene-atlas.js?v=20261008.14';
 export function createPartInspector({THREE, environment, meshesFor, materialFor = mesh => mesh.material}) {
   const iCv = document.createElement("canvas");
   let drawing, viewport, bounds, disposed = false;

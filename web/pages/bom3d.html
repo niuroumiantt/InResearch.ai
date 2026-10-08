@@ -136,8 +136,8 @@
 import * as THREE from "three";
 import {createScenePicking} from "/assets/scene-picking.js";
 import {createSceneMotion} from "/assets/scene-motion.js";
-import {createPartDossier, dossierNode} from "/assets/part-dossier.js";
-import {createPartInspector} from "/assets/part-inspector.js";
+import {createPartDossier, dossierNode} from "/assets/part-dossier.js?v=20261008.14";
+import {createPartInspector} from "/assets/part-inspector.js?v=20261008.14";
 import {escapeHtml as esc} from "/assets/series-summary.js";
 import { bindResearchMeshNodes, installStageControl, safeURL } from "./assets/research-graph.js";
 import { OrbitControls } from "./assets/vendor/OrbitControls.js";
@@ -147,16 +147,15 @@ import { OutputPass } from "./assets/vendor/OutputPass.js";
 import {mountSceneView} from "/assets/scene-view.js";
 import {mountSceneModels} from "/assets/model-assets.js";
 import {createSceneEnvironment, createTexturePool} from "/assets/scene-resources.js";
-import {configureAtlasRenderer, atlasMaterial, atlasStudio, addAtlasLights, createAtlasDrawing, mountAtlasExport} from "/assets/scene-atlas.js";
+import {configureAtlasRenderer, atlasMaterial, atlasStudio, addAtlasLights, createAtlasDrawing, mountAtlasExport} from "/assets/scene-atlas.js?v=20261008.14";
 
-import {loadSceneData} from "/assets/scene-data.js";
-const [BOM, companies, prices, inds, reg, products, siteRights] = await loadSceneData([
+import {loadSceneData,loadOptionalSceneData} from "/assets/scene-data.js?v=20261008.14";
+const [BOM, companies, prices, inds, reg, siteRights] = await loadSceneData([
   {url:"framework/bom.json", collection:"parts"},
   {url:"data/companies.json", collection:"records"},
   {url:"data/prices.json", collection:"records"},
   {url:"framework/indicators.json", collection:"indicators"},
   {url:"framework/modules.json", collection:"modules"},
-  {url:"data/products.json", collection:"records"},
   {url:"framework/site_rights.json", collection:"rights"},
 ], {controls:[document.querySelector(".hud")]});
 const CN = {}; companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
@@ -174,16 +173,16 @@ Object.entries(BOM.aliases || {}).forEach(([old, to]) => {
   if (target && !PART[old]) PART[old] = target;
   if (target) ALIAS[old] = target.id;
 });
-const PRODCOUNT = {}; (products.records || []).forEach(r => (r.bom_parts || []).forEach(bp => PRODCOUNT[bp] = (PRODCOUNT[bp] || 0) + 1));
+let PRODCOUNT = null; // Restricted product registry is optional; absent is unknown, never zero.
 /* 数据覆盖四维：公司/产品/价格序列/已录值指标——覆盖度热图与档案卡共用同一套口径 */
 const COVC = ["#ef4444", "#f59e0b", "#eab308", "#84cc16", "#22c55e"];
 const covDims = p => [
   ["公司", (p.companies || []).length],
-  ["产品", PRODCOUNT[p.id] || 0],
+  ["产品", PRODCOUNT === null ? null : (PRODCOUNT[p.id] || 0)],
   ["序列", (p.series || []).length],
   ["指标", (p.indicators || []).filter(i => INDS[i] && INDS[i].value != null).length],
 ];
-const covScore = p => covDims(p).filter(d => d[1] > 0).length;
+const covScore = p => PRODCOUNT === null ? null : covDims(p).filter(d => d[1] > 0).length;
 const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
 const SBADGE = { tight: "#ef4444", transition: "#f59e0b", mature: "#22c55e", emerging: "#a78bfa" };
 
@@ -799,6 +798,7 @@ pickables.forEach(m => { (PARTMESH[m.userData.part] ||= []).push(m); if (ALIAS[m
    关闭即换回。装饰件不在 pickables 里，保持原样作对比。 */
 let covOn = false;
 function covToggle() {
+  if (PRODCOUNT === null) return;
   covOn = !covOn;
   document.getElementById("covChip").classList.toggle("on", covOn);
   document.getElementById("covLegend").style.display = covOn ? "flex" : "none";
@@ -893,7 +893,7 @@ function enterDomain(d) {
   const grouped = []; let last = null;
   for (const p of d.parts) { if (p.chain !== last) { grouped.push(`<div class="chainh">${esc(p.chain || (p.kind === "site_right" ? "站点权利" : ""))}</div>`); last = p.chain; } grouped.push(p); }
   document.getElementById("domainParts").innerHTML = grouped.map(p => typeof p === "string" ? p :
-    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${COVC[covScore(p)]}" title="数据覆盖 ${covScore(p)}/4（公司/产品/序列/指标）">${covScore(p)}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
   document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
     const p = PART[el.dataset.part];
     showDossier(p);
@@ -986,6 +986,20 @@ const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atla
   diagnostics:()=>covOn ? '索引覆盖：红0/4、橙1/4、黄2/4、浅绿3/4、绿4/4（公司、产品、序列、指标登记维度数；非硬件状态）' : null,
   selected:()=>{const id=document.getElementById('dossier').dataset.partId;
     return id ? {id:'part:'+id,name:PART[id]?.name || id,meshes:PARTMESH[id] || []} : null;}
+});
+const covChip = document.getElementById('covChip');
+covChip.setAttribute('aria-disabled','true');
+covChip.textContent = '索引覆盖 · 产品登记未读，覆盖率未知';
+loadOptionalSceneData({url:'data/products.json',collection:'records'}).then(products=>{
+  if (!products || products.records.some(row=>row.bom_parts!=null && (!Array.isArray(row.bom_parts) || row.bom_parts.some(id=>typeof id!=='string')))) return;
+  PRODCOUNT = {};
+  products.records.forEach(row=>(row.bom_parts || []).forEach(id=>PRODCOUNT[id]=(PRODCOUNT[id] || 0)+1));
+  covChip.setAttribute('aria-disabled','false');covChip.textContent='📊 类别索引热图';
+  document.querySelectorAll('#domainParts .pitem').forEach(el=>{
+    const badge=el.querySelector('.covb'),part=PART[el.dataset.part];if(!badge || !part)return;
+    const score=covScore(part);badge.textContent=score+'/4';badge.style.background=COVC[score];badge.title='数据覆盖 '+score+'/4（公司/产品/序列/指标）';
+  });
+  if(new URLSearchParams(location.search).get('cov')==='1' && !covOn)covToggle();
 });
 let animationFrame = 0;
 let pageDisposed = false;
