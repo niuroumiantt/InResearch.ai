@@ -1,16 +1,16 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.21。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.22。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1273。
+在册文件：1288。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 63 |
+| 静态资源 | 71 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
@@ -18,7 +18,7 @@
 | 历史快照 | 307 |
 | 运行代码 | 292 |
 | 现行规范 | 14 |
-| 项目配置 | 132 |
+| 项目配置 | 139 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
@@ -96,6 +96,9 @@
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | labels | 7 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | leaders | 7 |
+| `docs/design/technical-atlas/TA-36/publication-20261008.json` | public_source_bytes | 2 |
+| `docs/design/technical-atlas/TA-36/publication-20261008.json` | browser_evidence | 5 |
+| `docs/design/technical-atlas/TA-36/publication-20261008.json` | limits | 1 |
 | `docs/design/technical-atlas/TA-37/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-37/acceptance-v1.json` | references | 2 |
 | `docs/design/technical-atlas/TA-37/acceptance-v1.json` | technical_sources | 3 |
@@ -104,6 +107,25 @@
 | `docs/design/technical-atlas/TA-37/labels-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-37/labels-v1.json` | labels | 7 |
 | `docs/design/technical-atlas/TA-37/labels-v1.json` | leaders | 7 |
+| `docs/design/technical-atlas/TA-37/publication-20261008.json` | public_source_bytes | 2 |
+| `docs/design/technical-atlas/TA-37/publication-20261008.json` | browser_evidence | 4 |
+| `docs/design/technical-atlas/TA-37/publication-20261008.json` | limits | 1 |
+| `docs/design/technical-atlas/TA-38/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-38/acceptance-v1.json` | references | 1 |
+| `docs/design/technical-atlas/TA-38/acceptance-v1.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-38/acceptance-v1.json` | unknowns | 2 |
+| `docs/design/technical-atlas/TA-38/acceptance-v1.json` | artifacts | 8 |
+| `docs/design/technical-atlas/TA-38/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-38/labels-v1.json` | labels | 7 |
+| `docs/design/technical-atlas/TA-38/labels-v1.json` | leaders | 7 |
+| `docs/design/technical-atlas/TA-39/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-39/acceptance-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-39/acceptance-v1.json` | technical_sources | 3 |
+| `docs/design/technical-atlas/TA-39/acceptance-v1.json` | unknowns | 2 |
+| `docs/design/technical-atlas/TA-39/acceptance-v1.json` | artifacts | 6 |
+| `docs/design/technical-atlas/TA-39/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-39/labels-v1.json` | labels | 7 |
+| `docs/design/technical-atlas/TA-39/labels-v1.json` | leaders | 7 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | companies | 7 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | unpublished | 2 |
 | `docs/inbox/facts_candidates/m01_market_20260817.json` | records | 4 |
@@ -400,6 +422,7 @@
 | `framework/visual_atlas.json` | references | 9 |
 | `framework/visual_atlas_migration.json` | states | 5 |
 | `framework/visual_atlas_migration.json` | items | 39 |
+| `framework/visual_atlas_migration.json` | supplemental_items | 4 |
 | `outputs/geluoke-research/2026-09-26/checks/validation.json` | images | 5 |
 | `outputs/geluoke-research/2026-09-26/sources.json` | published_source_numbering | 48 |
 | `outputs/geluoke-research/2026-09-26/sources.json` | events | 15 |
@@ -572,11 +595,18 @@
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-36/publication-20261008.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-37/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-37/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-37/prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-37/publication-20261008.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-38/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-38/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-38/prompt-retry-v2.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-38/prompt-retry-v3.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-38/prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-39/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-39/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-39/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/references/01-chain.png` | 项目配置 |
 | `docs/design/technical-atlas/references/02-server.png` | 项目配置 |
@@ -1624,6 +1654,14 @@
 | `web/assets/technical-atlas/fire-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/fire-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/fire-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/rack-frame-v1-preview.jpg` | 静态资源 |
+| `web/assets/technical-atlas/rack-frame-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/rack-frame-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/rack-frame-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/security-v1-preview.jpg` | 静态资源 |
+| `web/assets/technical-atlas/security-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/security-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/security-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/shell-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/shell-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/shell-v1.png` | 静态资源 |

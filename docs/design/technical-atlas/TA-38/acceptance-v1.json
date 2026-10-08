@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-38",
+  "object_id": "part:security",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Physical security: perimeter, access and video",
+  "reviewed_at": "2026-10-08",
+  "reviewer": "Codex实际审图与浏览器定位/标注检查；不冒称用户逐项签字",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "Generic physical-security site and room cutaway; not a coverage design",
+  "master": "web/assets/technical-atlas/security-v1.png",
+  "labelled": "web/assets/technical-atlas/security-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "initial_prompt": "docs/design/technical-atlas/TA-38/prompt-v1.txt",
+    "accepted_prompt": "docs/design/technical-atlas/TA-38/prompt-retry-v3.txt",
+    "attempts": [
+      {
+        "prompt": "prompt-v1.txt",
+        "references": [
+          "R3",
+          "R6",
+          "R9",
+          "generated shell"
+        ],
+        "result": "network error sending request; no output"
+      },
+      {
+        "prompt": "prompt-retry-v2.txt",
+        "references": [
+          "R3",
+          "generated shell"
+        ],
+        "result": "network error sending request; no output"
+      },
+      {
+        "prompt": "prompt-retry-v3.txt",
+        "references": [
+          "R3"
+        ],
+        "result": "accepted output"
+      }
+    ],
+    "iterations": 1,
+    "accepted_original_filename": "exec-d30ef80e-4e7f-47ba-b009-0d4544549255.png",
+    "raster_modified_after_generation": false,
+    "preview_method": "same-size JPEG encoding with macOS sips; original PNG unchanged",
+    "label_method": "independent stdlib SVG layer with unchanged original PNG embedded"
+  },
+  "rights": {
+    "origin": "用户授权按其参考制作的新图；原图不覆盖",
+    "license": "项目生成插图，不冒称原厂工程图或CC0"
+  },
+  "technical_sources": [
+    {
+      "file": "framework/bom.json",
+      "supports": "Existing part:security covers access control, video and perimeter; separate from fire"
+    },
+    {
+      "url": "https://www.axis.com/en-au/solutions/data-centers",
+      "title": "Axis data center security",
+      "observed_at": "2026-10-08",
+      "supports": "Illustrative layers: perimeter, premises, buildings, server rooms and racks. Does not validate the depicted device count or coverage."
+    }
+  ],
+  "unknowns": [
+    "Layout, camera count, blind spots, access rules and actual device configurations are unspecified.",
+    "Door and rack arrangement explain physical-security layers only; no coverage, certification or cyber-security claim."
+  ],
+  "checks": {
+    "real_materials_and_cutaway": true,
+    "no_baked_text": true,
+    "independent_labels": 7,
+    "native_pixels_verified": true,
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true,
+    "leaders_reviewed_and_corrected": true,
+    "distinct_fire_and_security": true,
+    "retained_ssd_and_3d": "covered by technical_atlas and part_dossier regression; final combined CI required"
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/security-v1-preview.svg",
+    "bytes": 516608
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/security-v1.png",
+      "sha256": "98bd0b77d9c04ad16e3eeaae5ec7327fbd7f737064b946bb222d9e87b54b68a5"
+    },
+    {
+      "file": "web/assets/technical-atlas/security-v1.svg",
+      "sha256": "835298eaf2ce62d4ac55ddaa30cabf5d30a2e857ba494601a7ec04dc0f0f4218"
+    },
+    {
+      "file": "web/assets/technical-atlas/security-v1-preview.jpg",
+      "sha256": "b54d8e8b5dfc28c160137c1908093fc2a3894ab0ae66198b270a180649f9e96e"
+    },
+    {
+      "file": "web/assets/technical-atlas/security-v1-preview.svg",
+      "sha256": "de0adec859f6f2924d72db9d3c771c09f50ad952f939b4d1591b1f88ea2671c5"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-38/labels-v1.json",
+      "sha256": "68c7cf12edcf363b2599fb3ab49655acf3016904ec6f56a09ea0928329acd226"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-38/prompt-v1.txt",
+      "sha256": "38231e41a1cf3f038969efc57d97ca638701b6e004f0bb68cb4636d3ac38bbd4"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-38/prompt-retry-v2.txt",
+      "sha256": "af3c2e1ed84dad2d5fea735832f4b448e26307b2bada46b7619263fef9d11a43"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-38/prompt-retry-v3.txt",
+      "sha256": "e3a716e03b9a5a002b15721c36fb8ca97c4864fb598e45898f5b65d345882158"
+    }
+  ]
+}

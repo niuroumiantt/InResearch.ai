@@ -937,9 +937,9 @@
       "depends_on": [
         "TA-02"
       ],
-      "status": "accepted",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-36/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "fc0e2cc219c1c5f35f98ff8c0604bfcc832e6b80",
       "object_id": "part:shell",
       "accepted_at": "2026-10-08",
       "baseline_revision": "ab60a098c7cf71a18d59a3f4b4ce0dff014612ea",
@@ -948,7 +948,8 @@
         "web/assets/technical-atlas/shell-v1.svg",
         "web/assets/technical-atlas/shell-v1-preview.jpg",
         "web/assets/technical-atlas/shell-v1-preview.svg"
-      ]
+      ],
+      "publication_record": "docs/design/technical-atlas/TA-36/publication-20261008.json"
     },
     {
       "id": "TA-37",
@@ -970,9 +971,9 @@
       "depends_on": [
         "TA-36"
       ],
-      "status": "accepted",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-37/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "fc0e2cc219c1c5f35f98ff8c0604bfcc832e6b80",
       "object_id": "part:fire",
       "accepted_at": "2026-10-08",
       "baseline_revision": "ab60a098c7cf71a18d59a3f4b4ce0dff014612ea",
@@ -981,7 +982,8 @@
         "web/assets/technical-atlas/fire-v1.svg",
         "web/assets/technical-atlas/fire-v1-preview.jpg",
         "web/assets/technical-atlas/fire-v1-preview.svg"
-      ]
+      ],
+      "publication_record": "docs/design/technical-atlas/TA-37/publication-20261008.json"
     },
     {
       "id": "TA-38",
@@ -1002,10 +1004,18 @@
       "depends_on": [
         "TA-37"
       ],
-      "status": "drafting",
-      "acceptance_record": null,
+      "status": "accepted",
+      "acceptance_record": "docs/design/technical-atlas/TA-38/acceptance-v1.json",
       "published_revision": null,
-      "object_id": "part:security"
+      "object_id": "part:security",
+      "accepted_at": "2026-10-08",
+      "baseline_revision": "16fcc6ec80f1bd1c2316a1e0853d4cbd94a51824",
+      "deliverable_paths": [
+        "web/assets/technical-atlas/security-v1.png",
+        "web/assets/technical-atlas/security-v1.svg",
+        "web/assets/technical-atlas/security-v1-preview.jpg",
+        "web/assets/technical-atlas/security-v1-preview.svg"
+      ]
     },
     {
       "id": "TA-39",
@@ -1027,20 +1037,75 @@
       "depends_on": [
         "TA-38"
       ],
-      "status": "planned",
-      "acceptance_record": null,
+      "status": "accepted",
+      "acceptance_record": "docs/design/technical-atlas/TA-39/acceptance-v1.json",
       "published_revision": null,
-      "object_id": "part:rack-frame"
+      "object_id": "part:rack-frame",
+      "started_at": "2026-10-08",
+      "accepted_at": "2026-10-08",
+      "baseline_revision": "16fcc6ec80f1bd1c2316a1e0853d4cbd94a51824",
+      "deliverable_paths": [
+        "web/assets/technical-atlas/rack-frame-v1.png",
+        "web/assets/technical-atlas/rack-frame-v1.svg",
+        "web/assets/technical-atlas/rack-frame-v1-preview.jpg",
+        "web/assets/technical-atlas/rack-frame-v1-preview.svg"
+      ]
     }
   ],
   "execution_priority": {
-    "reason": "2026-10-08用户要求土地与建筑、消防与安全的2D图；包含现行链路内建筑、机柜结构、消防、安防四对象，单项执行不变",
+    "reason": "先收尾用户授权的四张设施补充图，原35项按用户再次明确的01–35顺序继续；两类进度分别计量",
     "next": [
-      "TA-36",
-      "TA-37",
       "TA-38",
       "TA-39",
       "TA-03"
     ]
-  }
+  },
+  "primary_plan": {
+    "total": 35,
+    "items": [
+      "TA-01",
+      "TA-02",
+      "TA-03",
+      "TA-04",
+      "TA-05",
+      "TA-06",
+      "TA-07",
+      "TA-08",
+      "TA-09",
+      "TA-10",
+      "TA-11",
+      "TA-12",
+      "TA-13",
+      "TA-14",
+      "TA-15",
+      "TA-16",
+      "TA-17",
+      "TA-18",
+      "TA-19",
+      "TA-20",
+      "TA-21",
+      "TA-22",
+      "TA-23",
+      "TA-24",
+      "TA-25",
+      "TA-26",
+      "TA-27",
+      "TA-28",
+      "TA-29",
+      "TA-30",
+      "TA-31",
+      "TA-32",
+      "TA-33",
+      "TA-34",
+      "TA-35"
+    ],
+    "execution_order": "01–35 as reiterated by user on 2026-10-08",
+    "published": 2
+  },
+  "supplemental_items": [
+    "TA-36",
+    "TA-37",
+    "TA-38",
+    "TA-39"
+  ]
 }
