@@ -1,0 +1,69 @@
+{
+  "figure_id": "TA-01",
+  "style_id": "white-technical-atlas-v1",
+  "published_revision": "8071665bd0ddaa2783804ef916fd8f1b3792f03b",
+  "pr": "https://github.com/niuroumiantt/InResearch.ai/pull/382",
+  "scope": "首次高清母图/独立标注及SSD部件档案公开发布；轻量预览为随后优化，以优化PR中的线上回执为准。",
+  "asset_checks": [
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas/ssd-v1.svg",
+      "file": "web/assets/technical-atlas/ssd-v1.svg",
+      "status": 200,
+      "sha256": "790178683d58da8d733ffab24066950c108addef107c29a188bdc1c393d5260a",
+      "bytes": 2974483,
+      "seconds": 82.658
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas.js",
+      "file": "web/components/technical-atlas.js",
+      "status": 200,
+      "sha256": "c74961cba6598e45502ab5a43717e9b521f7307a71f6d2ca8c98b1d9cfcdf078",
+      "bytes": 2970,
+      "seconds": 2.054
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas.css",
+      "file": "web/components/technical-atlas.css",
+      "status": 200,
+      "sha256": "8f7946fd9999937de65b168715903f14b78771845e36c4469c1ea0f6ec48dcc9",
+      "bytes": 920,
+      "seconds": 2.275
+    },
+    {
+      "url": "https://inresearch.ai/assets/part-dossier.js",
+      "file": "web/components/part-dossier.js",
+      "status": 200,
+      "sha256": "62967b753f88f6008b979e8aab430a6b3b857868c212f0ed470ad2f34651f75a",
+      "bytes": 4964,
+      "seconds": 4.226
+    }
+  ],
+  "browser": {
+    "at": "2026-10-08T06:51:57.450Z",
+    "records": [
+      {
+        "url": "https://inresearch.ai/bom.html#ssd",
+        "figure": "TA-01",
+        "caption": "通用有壳 SSD 结构示意；芯片数量、布局与接口外形不代表某个厂商型号。",
+        "natural": [
+          1536,
+          1024
+        ],
+        "errors": []
+      },
+      {
+        "url": "https://inresearch.ai/assets/technical-atlas/ssd-v1.svg",
+        "editable_labels": 9,
+        "embedded_png": true
+      }
+    ]
+  },
+  "original_png_sha256": "e701005802777380feb2c9d4e41392c645bf59a5135055ee88f121d20b1719e7",
+  "service": "inresearch-host-inresearch-1 healthy，独立发布服务success；实际applied从/var/lib/inresearch-ops/inresearch-only/applied核对，不使用已退役整机autopull marker。",
+  "ci": {
+    "validate": "pass",
+    "browser_core": "pass",
+    "browser_model_assets": "pass",
+    "storage_container": "pass"
+  }
+}

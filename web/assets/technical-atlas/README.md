@@ -5,6 +5,7 @@
 ## TA-01 · SSD 结构样板 v1
 
 - `ssd-v1.png`：内置 image_gen 生成的原始无字母图，1536×1024，未裁剪或插值。
+- `ssd-v1-preview.jpg` / `ssd-v1-preview.svg`：同尺寸的JPEG编码和可编辑标注组成轻量预览；不改变构图、不插值。仅档案缩略图使用，高清母图与下载保持原件。
 - `ssd-v1.svg`：在原始PNG字节上叠加独立文字与引线；PNG内嵌，下载后无需相邻文件，可离线查看和编辑文字。
 - 标注源：`docs/design/technical-atlas/TA-01/labels-v1.json`。构建：`python3 scripts/build_technical_atlas.py docs/design/technical-atlas/TA-01/labels-v1.json`。
 - 参考、提示词、技术依据、SHA、未知项与内容/视觉/页面验收：`docs/design/technical-atlas/TA-01/acceptance-v1.json`。

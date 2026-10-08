@@ -14,7 +14,7 @@ NS = 'http://www.w3.org/2000/svg'
 ET.register_namespace('', NS)
 
 
-def build(spec_path):
+def build(spec_path, preview=False):
     spec = json.loads(spec_path.read_text())
     raster = (ROOT / spec['master']).read_bytes()
     if raster[:8] != b'\x89PNG\r\n\x1a\n':
@@ -22,6 +22,12 @@ def build(spec_path):
     width, height = struct.unpack('>II', raster[16:24])
     if [width, height] != spec['pixels']:
         raise ValueError('Declared pixels do not match the master')
+    media_type = 'image/png'
+    if preview:
+        raster = (ROOT / spec['preview_raster']).read_bytes()
+        if raster[:2] != b'\xff\xd8':
+            raise ValueError('Preview must be a JPEG encoding of the same master')
+        media_type = 'image/jpeg'
     svg = ET.Element(f'{{{NS}}}svg', {
         'width': str(width), 'height': str(height), 'viewBox': f'0 0 {width} {height}',
         'role': 'img', 'aria-labelledby': 'title description',
@@ -30,7 +36,7 @@ def build(spec_path):
     ET.SubElement(svg, f'{{{NS}}}desc', {'id': 'description'}).text = spec['description']
     ET.SubElement(svg, f'{{{NS}}}image', {
         'width': str(width), 'height': str(height),
-        'href': 'data:image/png;base64,' + base64.b64encode(raster).decode('ascii'),
+        'href': 'data:' + media_type + ';base64,' + base64.b64encode(raster).decode('ascii'),
     })
     leaders = ET.SubElement(svg, f'{{{NS}}}g', {
         'id': 'editable-leaders', 'fill': 'none', 'stroke': '#09689B',
@@ -53,7 +59,7 @@ def build(spec_path):
             'text-anchor': row.get('anchor', 'start'),
         })
         text.text = row['text']
-    output = ROOT / spec['output']
+    output = ROOT / spec['preview_output' if preview else 'output']
     ET.ElementTree(svg).write(output, encoding='utf-8', xml_declaration=True)
     return output
 
@@ -62,5 +68,6 @@ if __name__ == '__main__':
     import argparse
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('spec', type=Path)
+    parser.add_argument('--preview', action='store_true', help='Embed a lightweight JPEG; master remains unchanged')
     args = parser.parse_args()
-    print(build(args.spec).relative_to(ROOT))
+    print(build(args.spec, preview=args.preview).relative_to(ROOT))

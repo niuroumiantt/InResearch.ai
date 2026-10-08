@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.11",
+  "version": "2026.10.08.12",
   "reviewed_at": "2026-10-08",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -23,12 +23,12 @@
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "07e5b461da6c0da081c2ab7a8b7af1089048d93edf98ca5a74878907d530a655",
     "framework/04_reading_scoring_standard.md": "8ee8b55ffdc528e73aa52c818be1cbd0ff46e7fc26f6712f6bcca8e325f67ec8",
-    "framework/05_interface_system.md": "6e2a2d8a7a5e1e6a4bb15a7a607cec706a5a68635f3ccbdd5740f36bd73a41cd",
+    "framework/05_interface_system.md": "d42c996db582a59b3775f33685c720dabf346878228b466183598d91ae2bbdd5",
     "framework/06_acquisition.md": "e8efbc78a3d9e9f1a175e1958ad72da19af6f5922fc0f0646f3836cad0a3e7e6",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "43ca930111116fd7890c27ee76569b05027e309f614820e11a472ae83fcd8bfd",
-    "framework/CURRENT.md": "e41e3c767c028c3cf9dca3d2c0ab09bb3f4e5416633be133f3ffe4c422823fed",
+    "framework/CURRENT.md": "bbba7fde9cc209b5373755dc0b4b509d937692e95d439c2d3729966ae8751ff1",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "fc4f2714e83665cdcfef214fd29ccb628a32587d8460cc98ea2de4e37ca99a33",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "d3a4a955545d27ab0683f33ec4a7178a5f883d455cf0330fa924c84dfb91f159",
+    "framework/current_state.json": "f434833fb82dade5b184725f52cb02c15b049280c0270e14b90ffe10ad7bf894",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -190,7 +190,7 @@
     "tests/unit/test_research_progress.py": "b9743aa642029369a858973eb5417dd67de4fc618343ef07beedc4930c2878f4",
     "tests/unit/test_research_publication_merge.py": "e41e83060667404033a4cdeec18d0396a54551dee5c9737c396111ee816014e3",
     "src/inresearch/interfaces/http.py": "95cbc016ac1b7fb2239ab2a4033b538c356d30df8f675dbe3ec190ab0d008425",
-    "web/routes.json": "dbd9cb0766fe6c1de52383ae6a1f975933ef54c6d9e237f83a04d8787806b6a9",
+    "web/routes.json": "9f6254cd1900a8510653f18f0cb6bfacddb9fd9c4d4e98b1b1b809fe42f0877f",
     "web/components/site-shell.js": "d1dbb2bea0538cc49084e66124b8841a11f5ffff05c07c77065e4f9b4f175f48",
     "web/components/company-home.js": "4db5baa5fcd45de2084d8a86c411f0822338550bfb29bfdf8ec00864dc2b65ff",
     "web/components/company-overview.js": "561b11ff9f66cd4f12b586efe540b707776b7d86a4f0be2ab52b087fa367d745",
@@ -205,10 +205,10 @@
     "tests/unit/test_material_flow.py": "6d7956fcb057acd12be4c225605a262b1eb7b9da45f7f33d4554ed94444b87fb",
     "framework/10_visual_atlas.md": "b00626d8856e5f5aae63f9c36675e3f6068e6bfbae9a8b247354ce07317e678f",
     "framework/visual_atlas.json": "092243af2cc0e9510d30507a3927e62873c1ac1a6527b7fcb2c80e5cdedb73a1",
-    "framework/visual_atlas_migration.json": "7cad836721a2f044ec4eda9b7fb22b63102c219bcfc3cf78f624f97196053d6f",
-    "docs/design/technical-atlas/MIGRATION_PLAN.md": "d5c781476d7095c966e8b0fbcbc9b08981568307d4c7069fed529bf32feca223",
+    "framework/visual_atlas_migration.json": "bc863992351190edf541e9c3d7b6b44c0107f4b75cdcc8e022921d50ceb0095b",
+    "docs/design/technical-atlas/MIGRATION_PLAN.md": "7528e7b6a7ced02e1ee0263bdd8ff6d0974d2931deeef34511b2218fb37d169f",
     "docs/design/technical-atlas/references/README.md": "36b68785195c8011023e1da9a7983ac7a32a2a2816e6c5004edc2ded35fa0f46",
-    "tests/unit/test_visual_atlas.py": "673cb3621296a6d25d1ddbcb22e9dccc1f93f70792194ed66260a8a395cb6cad",
+    "tests/unit/test_visual_atlas.py": "340506f8409b6033a58d7cba8e24aaa51b5223bf8c41bdb334746d18c3c641f8",
     "docs/design/technical-atlas/references/01-chain.png": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
     "docs/design/technical-atlas/references/02-server.png": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
     "docs/design/technical-atlas/references/03-ssd.png": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
@@ -216,13 +216,13 @@
     "docs/design/technical-atlas/references/05-thermal-cutaway.png": "6bfeea5980c8ad16b040561a6cf69ca6e020b4cb9f0bfd26a97dd1c88c0af1f6",
     "web/assets/renders/README.md": "82dfed1573f13e1641448bc046a5606e27e25db10341ea4f799bc0563eb2c9e8",
     "web/assets/panels/README.md": "793ac5832f0b14f448790fb0be18a457413b108c45dee709d2957cfec42cf785",
-    "tests/technical_atlas.cjs": "e0743279c5edf81b7dd0a838363b779a31df224ea412d734ac84c65201b939a3",
-    "web/components/technical-atlas.js": "c74961cba6598e45502ab5a43717e9b521f7307a71f6d2ca8c98b1d9cfcdf078",
+    "tests/technical_atlas.cjs": "7ad11cff41a41c41c9d7dd83a9b8253245c0c800ee1f38bcf5fbca81cf9545e1",
+    "web/components/technical-atlas.js": "9493851ab232395d46fbc722b0ee82c37e2f6e7fe98ca616538accf8ac3b9f88",
     "web/components/technical-atlas.css": "8f7946fd9999937de65b168715903f14b78771845e36c4469c1ea0f6ec48dcc9",
     "web/components/part-dossier.js": "62967b753f88f6008b979e8aab430a6b3b857868c212f0ed470ad2f34651f75a",
-    "scripts/build_technical_atlas.py": "18f982e0c5c34d838ca454582466a7220925978f089467b9f8213bc385795f05",
-    "docs/design/technical-atlas/TA-01/labels-v1.json": "6d33af12a7cddbc94dd7b49637150b77a8cab2587705e3cac63269b62afac8bd",
-    "docs/design/technical-atlas/TA-01/acceptance-v1.json": "07c63a1e7d9717be2d035604cdb7d22761e95a69b9363e699b1d49eecc7b7764"
+    "scripts/build_technical_atlas.py": "e97a2673d741af89d67472d46f27914d1ba565d39d8d2b5ebf834ec1e4689b8c",
+    "docs/design/technical-atlas/TA-01/labels-v1.json": "bdd50557e2c54ba98cd0d3721c4bbfdb66de374775ed00931c738d40b87031f3",
+    "docs/design/technical-atlas/TA-01/acceptance-v1.json": "37ab95caedd07f998563f80703eb801ac436d46cb8fd1b0dc7e8d9650aac7368"
   },
   "policies": [
     {
@@ -1339,7 +1339,7 @@
       "policy": "visual-atlas-20261008",
       "scope": "project",
       "source": "framework/10_visual_atlas.md",
-      "checked_requirement": "五张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。",
+      "checked_requirement": "五张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。",
       "tests": [
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_adopted_reference_bytes_and_actual_dimensions_match",
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_all_existing_render_and_panel_assets_have_individual_queue_rows",
@@ -1350,7 +1350,7 @@
       ],
       "not_verified": [
         "机器不能证明视觉品质、真实部件身份/接口/结构/尺寸、管线拓扑或版权事实；参考的具体技术关系不得直接采纳。",
-        "TA-01已通过本地内容/视觉/真实页面验收；生产发布另留回执，34项仍待制作。共享3D图册配方尚未实现，未据首张静态图推定迁移完成。精确工程布局/引脚/尺寸未取得型号资料，不提供维修或施工依据。"
+        "TA-01已通过本地内容/视觉/真实页面验收；首次公网发布已留回执，轻量预览优化另附实际回执，34项仍待制作。共享3D图册配方尚未实现，未据首张静态图推定迁移完成。精确工程布局/引脚/尺寸未取得型号资料，不提供维修或施工依据。"
       ]
     }
   ]
