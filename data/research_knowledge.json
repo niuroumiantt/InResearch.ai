@@ -5586,6 +5586,87 @@
         },
         "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "80d4a01ebbc3b4f6bad807d3450a5313e08547ddc32f9be8c464ed9b3b5e39b6",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:30:claim:4:ev:0",
+      "locator": "page:31/chunk:30",
+      "object_ids": [],
+      "page_index": 30,
+      "question_ids": [],
+      "quote": "Whitehat researchers need\nfunctional PoCs to validate vulnerabilities, but capable models restrict this work even when\nusers are authorized. Researchers are therefore often pushed toward open models that\nprovide greater control but don’t match frontier models in reasoning, reliability, or technical\ndepth.",
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "source_sha256": "c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T05:41:49+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，连续原文和周边叙述支持作者归因，且实质匹配当前模型与权重产品经济性工单中的替代技术和采用约束。可作为部分定性证据采用，不足以回答或关闭问题。该条没有具体利用细节、具名事件责任指控、实际冲突或替换要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 102.636,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d8d390b12e5b8d02c49f18995adfbd2840bab168d1ec02b257749c372b5dd989",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 20206,
+            "output_tokens": 3488,
+            "reasoning_output_tokens": 403
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 25.862,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "258bcd29f09a052ab9bce89c5357685b162fc195ae35d20e6a5e3c134bb596d7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 17738,
+              "output_tokens": 429,
+              "reasoning_output_tokens": 163
+            }
+          }
+        },
+        "batch_id": "70d177af306f13d42b67d04561eac78e0b5f259d470e919e1845f8969f28a896"
+      }
     }
   ],
   "statements": [
@@ -10690,6 +10771,103 @@
         "batch_id": "a923dd4f0abbe4914c5eeb2cce6cb3d68bc3b612ccf88ed04b6c9e211f42df46",
         "source_report_sha256": "8d862d441079b8a66432ac7e0e3390fa565c621c229c875ac7d56d11ee151a73",
         "request_sha256": "815b31c7e2769c40e20ec0c357323b5886319e7114dd29bcf74834caa458d421"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "evidence_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:30:claim:4:ev:0"
+      ],
+      "id": "adoption:review:bbba169a4e27bac2fc4036ad",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-economics"
+      ],
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "status": "adopted",
+      "text": "SemiAnalysis《Most Neoclouds Suck At Security》的作者认为，在授权漏洞验证场景中，有能力的模型对功能性 PoC 的限制，往往推动白帽研究者转向控制程度更高的开放模型，同时承受作者所述的推理、可靠性和技术深度差距。这是作者对特定研究场景中模型替代机制的判断，来源发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T05:41:49+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，连续原文和周边叙述支持作者归因，且实质匹配当前模型与权重产品经济性工单中的替代技术和采用约束。可作为部分定性证据采用，不足以回答或关闭问题。该条没有具体利用细节、具名事件责任指控、实际冲突或替换要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 102.636,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d8d390b12e5b8d02c49f18995adfbd2840bab168d1ec02b257749c372b5dd989",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 20206,
+            "output_tokens": 3488,
+            "reasoning_output_tokens": 403
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 25.862,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "258bcd29f09a052ab9bce89c5357685b162fc195ae35d20e6a5e3c134bb596d7",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 17738,
+              "output_tokens": 429,
+              "reasoning_output_tokens": 163
+            }
+          }
+        },
+        "batch_id": "70d177af306f13d42b67d04561eac78e0b5f259d470e919e1845f8969f28a896"
+      },
+      "source_candidate_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:30:claim:4"
+      ],
+      "limitations": "没有采用率、使用量、支付意愿、成本或算力需求数据；不能推广至所有模型或用户。上下文同时说明部分开放模型也限制请求，较宽松模型可能产生误报或无法复现预期行为。仅审阅所供原生文本，未核验图像或独立测试结果。",
+      "conflict_check": "所供当前采用 statements、answers、evidence、documents 及相关 legacy 匹配记录均为空，未发现实际冲突或可识别的规范重复记录。这不代表已完成外部反证检索；开放模型也会限制请求的上下文限制了结论范围。",
+      "gap_dependency_check": "部分支持 NODE-demand-D2-economics 中替代模型如何影响采用选择，不能建立替代规模、净需求变化或经济性数值。进一步结论依赖代表性采用数据、模型能力比较和成本证据；当前工单继续开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "70d177af306f13d42b67d04561eac78e0b5f259d470e919e1845f8969f28a896",
+        "source_report_sha256": "8d862d441079b8a66432ac7e0e3390fa565c621c229c875ac7d56d11ee151a73",
+        "request_sha256": "2b9cdfe3131d988a8b3165d88d07a4bcd68176f01516cf20ce366e3ae039b8b6"
       }
     }
   ],
