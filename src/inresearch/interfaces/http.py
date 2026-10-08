@@ -115,6 +115,10 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_header('Cache-Control', 'private, no-store')
             self.send_header('Vary', 'Cookie')
             self.send_header('X-Frame-Options', 'SAMEORIGIN')
+        elif Path(self._norm_path()).suffix.lower() in ('.html', '.js', '.css'):
+            # Mutable entry pages/components must revalidate after publication.
+            # Keep Last-Modified/304 support; fonts and illustration files stay cacheable.
+            self.send_header('Cache-Control', 'no-cache')
         super().end_headers()
 
     def handle(self):

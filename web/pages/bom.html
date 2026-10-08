@@ -39,6 +39,7 @@
   .lrow { position: relative; display: grid; grid-template-columns: minmax(0, 58%) 26px minmax(0, 1fr);
     align-items: center; margin-bottom: 10px; z-index: 1; }
   .lrow .slab { min-width: 0; }
+  #selected-atlas { scroll-margin-top: 180px; }
   .lrow svg { display: block; width: 100%; height: auto; }
   .lrow .lead { border-top: 2px dotted var(--axis); opacity: .7; position: relative; }
   .lrow .lead::after { content: ""; position: absolute; right: -1px; top: -4px; width: 7px; height: 7px;
@@ -110,16 +111,18 @@
       <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴
       <span class="modes"><button type="button" class="mode on" data-mode="system">按系统</button><button type="button" class="mode" data-mode="scale">按尺度</button></span>
       <a class="go3d" href="bom3d.html">🧊 进入 3D 立体拆解 →</a></div>
+    <div id="selected-atlas" hidden></div>
     <div id="stack">加载中…</div>
   </div>
   <aside><div class="dossier" id="dossier">
     <h2>选择一个部件</h2>
-    <div class="meta">左侧任意方块即是入口——从电网到冷板，<span id="partCount">46</span> 个部件各有档案。</div>
+    <div class="meta">点击左侧部件图或词条查看档案——从电网到冷板，<span id="partCount">46</span> 个部件各有档案。</div>
   </div></aside>
 </div>
 
 <script type="module">
-import { createPartDossier } from "./assets/part-dossier.js";
+import { createPartDossier } from "./assets/part-dossier.js?v=20261008.15";
+import { atlasPreview } from "./assets/technical-atlas.js?v=20261008.15";
 async function get(p) {
   const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
   if (!r.ok) throw new Error(p + " → " + r.status);
@@ -139,6 +142,14 @@ function poly(pts, fill, stroke, extra = "") {
 }
 /* 部件盒：三个可见面 + 状态色顶檐 + 名签 */
 function isoBox(px, py, w, d, h, part) {
+  const preview = atlasPreview(part.id);
+  if (preview) {
+    const center = P(px + w / 2, py + d / 2, 0), lab = P(px + w / 2, py + d, 0);
+    return `<g class="pbox" data-part="${part.id}" data-atlas-part="${part.id}">
+      <image href="${preview}" x="${(center[0]-62).toFixed(1)}" y="${(center[1]-76).toFixed(1)}" width="124" height="83" preserveAspectRatio="xMidYMid meet"/>
+      <text class="pname" x="${lab[0].toFixed(1)}" y="${(lab[1]+16).toFixed(1)}" text-anchor="middle">${esc(part.name)}</text>
+    </g>`;
+  }
   const c = SC[part.status];
   const T = [P(px, py, h), P(px + w, py, h), P(px + w, py + d, h), P(px, py + d, h)];
   const R = [P(px + w, py, h), P(px + w, py + d, h), P(px + w, py + d, 0), P(px + w, py, 0)];
@@ -200,7 +211,8 @@ function isoSlab(layer, parts, idx) {
   inds.indicators.forEach(i => INDS[i.id] = i);
   // 右栏是同一份部件档案（part-dossier.js，与 3D 共用）；2D 没有部件预览
   showDossier = createPartDossier({ el: document.getElementById("dossier"), view: "bom", BOM: bom, companies: CN, prices: PRICES, indicators: INDS,
-    statusNames: SN, statusColors: Object.fromEntries(Object.entries(SC).map(([k, v]) => [k, v])), inspector: { hide() {}, show() { return false; } } });
+    statusNames: SN, statusColors: Object.fromEntries(Object.entries(SC).map(([k, v]) => [k, v])), inspector: { hide() {}, show() { return false; } },
+    atlasHost: document.getElementById('selected-atlas') });
 
   // 两种排法：按系统（第一层五个系统，IT 展开四个，系统内按链路）是骨架；按尺度（S5 → S1）是第二排法
   const chips = parts => parts.map(p => `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</span>`).join("");
@@ -285,6 +297,8 @@ function show(pid) {
   document.querySelectorAll(`[data-part="${pid}"]`).forEach(el => el.classList.add("sel"));
   history.replaceState(null, "", "#" + pid);
   showDossier(p);
+  const atlasHost = document.getElementById('selected-atlas');
+  if (!atlasHost.hidden) requestAnimationFrame(() => atlasHost.scrollIntoView({block:'start'}));
 }
 </script>
 </body>
