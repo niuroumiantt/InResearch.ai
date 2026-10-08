@@ -996,6 +996,118 @@
       "status": "candidate",
       "stored_path": "originals/ec/ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c/2026-09-21-daily-final-wechat.html",
       "title": "格洛可数据中心日报｜2026年9月21日：接入与许可重排项目交付，资本与设备仍待落地"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "coverage": {
+        "characters_read": 58194,
+        "characters_total": 58194,
+        "chunks_read": 35,
+        "chunks_total": 35,
+        "complete": true,
+        "full_document_complete": false,
+        "native_text_pages_read": 35,
+        "nul_character_pages": [],
+        "ocr_calls": 0,
+        "pages_read": 35,
+        "pages_total": 35,
+        "replacement_character_pages": [],
+        "scope": "pdf_native_text_only",
+        "skipped_image_pages": [
+          1,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          12,
+          14,
+          15,
+          16,
+          17,
+          19,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          30,
+          31,
+          32,
+          33,
+          35
+        ],
+        "text_layer_empty_pages": [],
+        "visual_review_performed": false
+      },
+      "doc_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "library_path": "library/by-node/root/2026_SemiAnalysis_Most Neoclouds Suck At Security__c70bc77b44534a16.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:amd",
+        "actor:anthropic",
+        "actor:cerebras-groq-sambanova-tenstorrent",
+        "actor:coreweave",
+        "actor:meta",
+        "actor:nvidia",
+        "actor:nvidia-networking",
+        "actor:openai",
+        "part:bmc",
+        "part:cpu",
+        "part:gpu",
+        "part:network-switch",
+        "part:nic",
+        "part:server",
+        "part:storage-array",
+        "root",
+        "system:control",
+        "system:it",
+        "system:memory"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-chain",
+        "NODE-demand-D1-boundary",
+        "NODE-demand-D1-economics",
+        "NODE-demand-D3-boundary",
+        "NODE-demand-D3-conversion",
+        "NODE-demand-D3-economics",
+        "NODE-demand-D4-boundary",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-nic-alternatives",
+        "OBJ-nic-definition",
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance",
+        "OBJ-nic-supply",
+        "OBJ-server-interfaces"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "report_sha256": "8d862d441079b8a66432ac7e0e3390fa565c621c229c875ac7d56d11ee151a73",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/c7/c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510/Most Neoclouds Suck At Security.pdf",
+      "title": "Most Neoclouds Suck At Security"
     }
   ],
   "evidence": [
@@ -4472,6 +4584,89 @@
           }
         },
         "batch_id": "4291a9c1956afadd08e492b966a8ac4aa5a3122f07dcd17061cadfa8a1729f93"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "386f9116f365b4c6f469bffd71adb726a571398493f6c7e42f9350fe09cbeeca",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:1:claim:5:ev:0",
+      "locator": "page:2/chunk:1",
+      "object_ids": [
+        "system:it"
+      ],
+      "page_index": 1,
+      "question_ids": [],
+      "quote": "Open models such as Kimi K3, GLM-5.2, DeepSeek V4, Qwen 3.8, MiMo V2.5,\n     MiniMax M3, Nemotron, Gemma, and Inkling are all rising in security benchmarks\n     such as Cybench, NYU CTF Bench, AutoAdvExBench, and Cyberseceval 3. This\n     makes it trivial for black hats to develop exploits from a CVE description as they can\n     circumvent model guardrails.",
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "source_sha256": "c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T04:58:03+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "与当前工作单关于应用成本及人工替代机制的问题有实质但有限的关系。原文连续引文和相邻页提供充分语境，可作为署名作者的定性判断采用；仅贡献部分机制证据，不回答或关闭该问题。原重要性为6，无需升级至A的已识别条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 108.212,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "15bf249b9b13ddf08420dbd7c11188eeedf368acd9e20d2f2d0d9a5ae5961f92",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 20633,
+            "output_tokens": 3657,
+            "reasoning_output_tokens": 627
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 34.353,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "50ea2d857a2299d3188051d5bfa7662c976f62a34ddce61b090b818feea7f158",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 18093,
+              "output_tokens": 681,
+              "reasoning_output_tokens": 411
+            }
+          }
+        },
+        "batch_id": "3706a1e29dd619f870b5c8927842588007967131308d9d8188dec646057ec0c8"
       }
     }
   ],
@@ -8663,6 +8858,105 @@
         "batch_id": "4291a9c1956afadd08e492b966a8ac4aa5a3122f07dcd17061cadfa8a1729f93",
         "source_report_sha256": "b13004e989823fb5e8f09e33a02e573c886ecd8776858bc148f3034b7671c8b1",
         "request_sha256": "6229e0d1322090465c7d236a3c63e7ae3aa4b3985ed5d529f147a5cd5b337428"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "evidence_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:1:claim:5:ev:0"
+      ],
+      "id": "adoption:review:f48c77ce67958889c2d195cc",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:it"
+      ],
+      "question_ids": [
+        "NODE-demand-D4-economics"
+      ],
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "status": "adopted",
+      "text": "SemiAnalysis 的 Jordan Nanos、Sam Harshe、Pratt Bhatt、Billy Cao、Jack Carson 和 Dylan Patel 在2026年8月30日文章中称，多种开放模型在 Cybench 等安全基准中的表现上升，并认为攻击者可以绕过模型防护，使从 CVE 描述开发漏洞利用变得容易。该作者判断为网络安全应用可能降低开发门槛提供定性线索，不构成已验证的成本下降或需求增长结论。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T04:58:03+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "与当前工作单关于应用成本及人工替代机制的问题有实质但有限的关系。原文连续引文和相邻页提供充分语境，可作为署名作者的定性判断采用；仅贡献部分机制证据，不回答或关闭该问题。原重要性为6，无需升级至A的已识别条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 108.212,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "15bf249b9b13ddf08420dbd7c11188eeedf368acd9e20d2f2d0d9a5ae5961f92",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 20633,
+            "output_tokens": 3657,
+            "reasoning_output_tokens": 627
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 34.353,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "50ea2d857a2299d3188051d5bfa7662c976f62a34ddce61b090b818feea7f158",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 18093,
+              "output_tokens": 681,
+              "reasoning_output_tokens": 411
+            }
+          }
+        },
+        "batch_id": "3706a1e29dd619f870b5c8927842588007967131308d9d8188dec646057ec0c8"
+      },
+      "source_candidate_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:1:claim:5"
+      ],
+      "limitations": "未提供基准分数、比较期间、开发耗时、人力成本、实际采用率、支付意愿或算力用量；未限定地理范围。原生文本已完整读取，但图像未审核，不能据此认证模型能力或现实攻击效果。",
+      "conflict_check": "当前采用陈述和所供相关旧记录均为空，未发现可核对的既有结论冲突，亦无重复依据。文内开发门槛判断与总体统计尚不显著涉及不同指标，不能视为同一命题的直接矛盾；后者限制前者的外推。本检查不代表穷尽外部记录。",
+      "gap_dependency_check": "若要回答成本如何改变需求，仍需实际工作流程中的耗时、人工替代、费用、采用及使用量证据，并检验能力变化是否转化为经济效果。保持当前问题开放，不更新模型值或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3706a1e29dd619f870b5c8927842588007967131308d9d8188dec646057ec0c8",
+        "source_report_sha256": "8d862d441079b8a66432ac7e0e3390fa565c621c229c875ac7d56d11ee151a73",
+        "request_sha256": "08af59e93a11379db97962bd8bd31dbbc4754e3becef6ec3ba4aab66f942410b"
       }
     }
   ],
