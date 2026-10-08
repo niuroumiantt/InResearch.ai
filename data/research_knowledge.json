@@ -152,6 +152,64 @@
       "status": "candidate",
       "stored_path": "originals/26/26453df36c502971ad686e384ed64cb8023b432ff9361e365bf82bb388fab847/$12B of US ratepayers' money wasted on a modeling mistake and PJM wants to do it again.pdf",
       "title": "Full of Cold Air - PJM's $12B modeling mistake"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "coverage": {
+        "characters_read": 27204,
+        "characters_total": 27204,
+        "chunks_read": 14,
+        "chunks_total": 14,
+        "complete": true,
+        "pages_read": 14,
+        "pages_total": 14
+      },
+      "doc_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "library_path": "library/by-node/part-nic/2025_SemiAnalysis_The New AI Networks _ Ultra Ethernet UEC _ UALink vs Br__995a1d6b456ce676.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:coreweave",
+        "actor:intel-gaudi",
+        "actor:meta",
+        "actor:nvidia",
+        "actor:nvidia-networking",
+        "part:cpu",
+        "part:gpu",
+        "part:network-switch",
+        "part:nic",
+        "part:rack-system",
+        "root",
+        "system:control",
+        "system:it",
+        "system:network"
+      ],
+      "question_ids": [
+        "M07-Q01",
+        "OBJ-gpu-interfaces",
+        "OBJ-network-switch-interfaces",
+        "OBJ-nic-definition",
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/99/995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a/The New AI Networks _ Ultra Ethernet UEC _ UALink vs Broadcom Scale Up Ethernet SUE – SemiAnalysis.pdf",
+      "title": "The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE"
     }
   ],
   "evidence": [
@@ -1595,6 +1653,89 @@
           }
         },
         "batch_id": "17ce9c383142b0657358b09398a6fd8387963f6d8c286d5c5bb663854d61f1f0"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c0d60840f1d00682b34595f80c2b32f372571a3a0d25aa1dfc525783b93b5b72",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:12:claim:2:ev:0",
+      "locator": "page:13/chunk:12",
+      "object_ids": [
+        "system:it"
+      ],
+      "page_index": 12,
+      "question_ids": [],
+      "quote": "But it needs to move fast, the AI and HPC industries are not\npatient. Nvidia is competing with proprietary Spectrum Ethernet. The Consortium which\nis behind UEC will need to deliver, but this is a good spec.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T00:45:31+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性为 6，保留评分。材料直接提供 UEC 面对 NVIDIA Spectrum Ethernet 的竞争定位及联盟落实压力，与当前 M07-Q01 的网络竞争研究有实质但局部的关系。连续引文及相邻正文足以支持归属明确的作者观点，无需负责人升级的已知条件，适合 B 类局部采用。",
+        "workorder_ids": [
+          "Q-M07-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 35.928,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "323663b825b74f5c53d1d50da49902d376fd2c1b9ac1eebce0f0af1669714bd0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3840,
+            "input_tokens": 18473,
+            "output_tokens": 977,
+            "reasoning_output_tokens": 289
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 26.086,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "efe6507f0bdc203191a2c37c3d30498a07f24817ca9345e05cd27c803fae3c3c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 18861,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 227
+            }
+          }
+        },
+        "batch_id": "0f81909ba7c160090cb6823fcb772caf78611dd91d11e40f9ed2a3bff3fb72e4"
       }
     }
   ],
@@ -3369,6 +3510,105 @@
         "batch_id": "17ce9c383142b0657358b09398a6fd8387963f6d8c286d5c5bb663854d61f1f0",
         "source_report_sha256": "1a79964d6a4a497bdfd698d44480c35bf93a69141c4b359eb482f0315219374c",
         "request_sha256": "5317fe56ed08f6b232b492d23a64fab14268a98b0e67752f175b567cfda5bbab"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:12:claim:2:ev:0"
+      ],
+      "id": "adoption:review:bb0c147b4bb97d66fcb25156",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:it"
+      ],
+      "question_ids": [
+        "M07-Q01"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》的作者认为，在 AI 与 HPC 网络竞争语境下，UEC 是值得正面评价的规范，其背后联盟需要尽快兑现交付，以应对 NVIDIA 专有 Spectrum Ethernet 的竞争。这是作者对规范及其落实要求的判断，不代表交付已经实现。所供原文未确立发表时间、具体地域或量化交付期限。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T00:45:31+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性为 6，保留评分。材料直接提供 UEC 面对 NVIDIA Spectrum Ethernet 的竞争定位及联盟落实压力，与当前 M07-Q01 的网络竞争研究有实质但局部的关系。连续引文及相邻正文足以支持归属明确的作者观点，无需负责人升级的已知条件，适合 B 类局部采用。",
+        "workorder_ids": [
+          "Q-M07-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 35.928,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "323663b825b74f5c53d1d50da49902d376fd2c1b9ac1eebce0f0af1669714bd0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3840,
+            "input_tokens": 18473,
+            "output_tokens": 977,
+            "reasoning_output_tokens": 289
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 26.086,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "efe6507f0bdc203191a2c37c3d30498a07f24817ca9345e05cd27c803fae3c3c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 18861,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 227
+            }
+          }
+        },
+        "batch_id": "0f81909ba7c160090cb6823fcb772caf78611dd91d11e40f9ed2a3bff3fb72e4"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:12:claim:2"
+      ],
+      "limitations": "没有 InfiniBand 与以太网的份额数值、时间序列、样本或统计口径，也没有 NVLink 生态开放程度的证据。作者评价未经独立验证；不能作为 GPU 或 NIC 采购交期输入，也不能据此认定 UEC 已实现互操作或市场采用。",
+      "conflict_check": "当前采用陈述与回答为空，未发现需替换的结论。所供历史记录涉及 HDD 市场、TPU 集群架构、计算托盘配置及 AWS 园区容量，与本作者观点无直接冲突；AWS 记录中的 UEC 指电力机构，不能作为 Ultra Ethernet 的旁证。历史检索范围有限，不代表已完成外部反证搜索。",
+      "gap_dependency_check": "仅补充 M07-Q01 中 UEC 竞争定位的定性线索。份额走势仍需有明确日期、范围和统计口径的原始数据，NVLink 开放程度仍需接口、授权及兼容性证据；该局部采用不回答或关闭问题，不改变工作单状态。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0f81909ba7c160090cb6823fcb772caf78611dd91d11e40f9ed2a3bff3fb72e4",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "761bf4a177a2ef97e3e41fc16a50da84a50b9368e9463bb54e9599f5424635a1"
       }
     }
   ],
