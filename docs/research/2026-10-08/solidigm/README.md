@@ -10,7 +10,7 @@ article.md保留全文、图注和原文链接，移除图片路径；sources.js
 
 ## 完整交付
 
-m5持久交付目录：`/Users/m5/.local/share/inews.today/geluoke-research/2026-10-08-solidigm-revision-05/`，同级ZIP为整包；制作目录：`/Users/m5/code/inews.today/outputs/geluoke-research/2026-10-08-solidigm-revision-05/`。
+m5持久交付目录：`/Users/m5/.local/share/inews.today/geluoke-research/2026-10-08-solidigm-revision-06/`，同级ZIP为整包；制作目录：`/Users/m5/code/inews.today/outputs/geluoke-research/2026-10-08-solidigm-revision-06/`。
 
 包含三版HTML、可编辑正文、SVG、PNG/JPEG、原图、原文保存、制作脚本、检查截图及读者匿名截图。原件、图片、HTML和运行产物保留Git外；跨机器同步本目录只能获得文本和证据索引。
 
@@ -31,3 +31,6 @@ Signal 2026年8月21日李忠熙首发及后续韩文报道已核阅；拟投资
 
 
 第五版已按用户指定，将双头像及英文姓名移到标题右侧的首图右上角；八张正文图全部统一为暖白技术图册。1280px无损图与SVG保留，三张工程插画发布副本为1024px JPEG质量88以满足内嵌体积。全篇21图、278链接复制通过，正文段落与第四版完全一致。详见revision-05-review.md与figure-manifest.json；公众号实粘待验证。当前持久交付目录2026-10-08-solidigm-revision-05。
+
+
+第六版阅读标黄：32处关键句使用浅黄色背景，标黄1,224汉字，约占正文6.9%。全文、链接和内嵌图片与第五版完全一致，三个HTML版本同步。1000/390px显示与浏览器富文本往返通过，32处背景/21图/278链接保留。原文及图像不改，公众号编辑器实粘仍待验证。当前交付目录2026-10-08-solidigm-revision-06，规则与验收见reading-highlights.json及revision-06-review.md。

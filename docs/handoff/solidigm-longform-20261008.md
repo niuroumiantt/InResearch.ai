@@ -1,6 +1,6 @@
 # Solidigm长文交接｜2026年10月8日
 
-本阶段已完成正式中文长文和完整图文交付，正文17,819汉字，88份正文来源、123张研究卡；20张配图（含10张人物照片），另有二维码。持久目录为`/Users/m5/.local/share/inews.today/geluoke-research/2026-10-08-solidigm-revision-05/`，同级ZIP。制作目录为inews.today的outputs/geluoke-research/2026-10-08-solidigm-revision-05；脚本在work/tools。
+本阶段已完成正式中文长文和完整图文交付，正文17,819汉字，88份正文来源、123张研究卡；20张配图（含10张人物照片），另有二维码。持久目录为`/Users/m5/.local/share/inews.today/geluoke-research/2026-10-08-solidigm-revision-06/`，同级ZIP。制作目录为inews.today的outputs/geluoke-research/2026-10-08-solidigm-revision-06；脚本在work/tools。
 
 研究文本、原文出处和采用台账见`docs/research/2026-10-08/solidigm/`。独立分支codex/solidigm-longform-20261008，工作树`/Users/m5/.worktrees/inresearch.ai/solidigm-longform-20261008`；未覆盖主工作区，没有生产发布。图文原件不进入Git。
 
@@ -19,3 +19,6 @@
 
 
 第五版完成：双头像移到首图右上角、标题右侧，英文姓名在各自头像下；八张正文图统一暖白技术图册。两张新工程插画、样张来源、完整提示词与模型未提供信息归档。事实文字、正文126段和引证保留，21图/278链接复制通过，1000/390px无横向溢出。完整HTML3,450,703字节、公众号版3,775,420字节。新版原件/压缩包在revision-05目录；旧版不删除。现阶段只待用户视觉审阅及公众号编辑器实粘，未发布。
+
+
+当前第六版：用户要求正文重点标黄，32处浅黄色关键句、共1,224汉字（6.9%），全文/公众号/轻量版同步。整篇文字、图片、链接与第五版完全一致；1000/390px无溢出，复制保留32处背景、21图和278链接。配置reading-highlights.json，构建及验收脚本在work/tools。新版在revision-06目录与同级ZIP，旧版保留；实际公众号实粘仍待验证。
