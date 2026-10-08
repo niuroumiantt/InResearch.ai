@@ -18,9 +18,8 @@
 - 本地预览截图在 `/Users/m5/.local/state/inresearch.ai/design-reviews/company-reader-20261008/`。A10截图使用 2026-10-08 只读取得的生产公开API数据，未导入/改写研究库，不代表改版上线。
 
 ## 下一步
-1. 左侧密度调整完成后整合最新主线，运行检查与CI。
-2. 合并并经 AWS 独立发布服务上线，核对实际版本、读者页面和后台门禁。
-3. 逐页落实非企业页面的前后台边界，再处理客户会员与内部成员权限。
+- 本轮改版已部署并验收，回执见下方；不重复询问上线授权。
+- 后续逐页落实非企业页面的前后台边界，再处理客户会员与内部成员权限；不把本轮授权扩大为全站重做。
 
 ## 待用户决定
 - 本轮上线已授权，无待审批事项。
@@ -31,3 +30,14 @@
 - 检查：`python3 manage.py governance --check`、`python3 manage.py validate --strict`、`PYTHONPATH=src python3 -m unittest discover -s tests/unit -p test_interface_system.py`。
 - 浏览器：`NODE_PATH=/Users/m5/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules node tests/run_browser.cjs product_catalog company_page company_window company_catalog_map catalog_materials ui_skin`。
 - 预览服务仅监听127.0.0.1，临时运行根使用系统临时目录，不是生产服务或新事实权威。
+
+## 发布验收
+
+- 本地新增 dashboard 回归通过；PR #360 的 `7390ac50` 四项云端检查全部通过（run `37717345133`），已于2026-10-08 10:30北京时间合并为 `74d5b66c5b7395276e0c3e268f8cf54ddc07434d`。
+- AWS 经现有 `inresearch-only-deploy.service` 发布；status=`HEALTHY: 74d5b66c…`，applied与实际运行镜像一致：`sha256:c225f709d56f3e6dbb2adc9395c47c984a0896f1a8fd18e83c7f02b52066eea3`，容器healthy。源码目录 `/srv/sources/inresearch.ai`，运行挂载保持。
+- 生产页面、组件与样式共7条实际路由内容SHA全部与审阅实现一致，公网 `/healthz` 正常。NVIDIA目录全部595条 ID 与上线前基线相同。
+- Spark只读核对：源码 `3719daae`，Reader/研究核验服务与发布timer均active；进程声明 `READER_RELEASE=3a0408f11c3dd135fc4ad91fbc664ed8ddec1dfe`，不把源码HEAD或声明值冒充进程已重启。本轮不改Spark服务。
+
+- 真实公网Playwright验收：DGX10行、无small重复标签、首行39.98px；四项比较完整矩阵、320/390无页面横溢、管理员与匿名正文相同，脚本运行错误0。后台真实管理员GET200并private/no-store，匿名GET/HEAD302，现有普通账号GET/HEAD403；未新建或改写用户。
+- 实际截图/摘要/发布回执在 m5 `/Users/m5/.local/state/inresearch.ai/design-reviews/company-reader-20261008/`；生产会话临时文件验收后移除，不存Git。
+- 既有企业模板重复引用不存在的 `/assets/site-shell.js`；实际共享导航通过现行 `/assets/site-skin.js` 加载，功能与内容摘要核对该正式路由。此既有冗余资源清理未纳入本轮，不误称网络资源错误为0。
