@@ -395,3 +395,7 @@ M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用
 ## 2026-10-08：资料基座直接交付
 
 当前封存正文经原有快照接收后，由 `/api/research-materials?node=<骨架ID>` 只读投影到节点页。无需运行 prepare/apply、新增模型调用、改C3分数或批量重排队列；日期未知保持未知，快照版本决定当前资料，旧原件/报告长期保留。C3继续服务正式采用，失败与重要性路由不阻止已有材料进入资料基座。整篇阅读完成、资料可用条数、正式采用与GW分别报告；不是所有历史资料都需要今天的独立认证。
+
+### 2026-10-08：PDF换行导致的匹配失败恢复
+
+新需求匹配v3只折叠连续排版空白，冲突上下文选择仍用v2。原文/引文及旧封印不改；未能逐字匹配的单条候选独立暂缓并保留拒绝审计，其余继续实际C3与独立抽样。部署加载独立研究worker前，停止该服务并对queue.sqlite作SQLite一致备份，保存SHA与候选计数。`research-review retry-matching --batch-id 完整ID`仅接受 `context_terms_must_be_literal_bounded_claim` 的deferred批次，保留旧attempt并优先排队；独立复核失败、引文缺口、预算失败不能使用此入口。先点名小批次真实验证，再恢复独立研究服务；原Reader和relay不重启。核对恢复/仍暂缓/待发布/网站正式采用分别计量。
