@@ -1,6 +1,7 @@
 import hashlib
 import json
 import sqlite3
+import shutil
 import tempfile
 import unittest
 from pathlib import Path
@@ -22,7 +23,13 @@ class RetentionTests(unittest.TestCase):
                 self.assertEqual(result['catalogs']['acquisition/catalog.sqlite']['missing'],1)
                 saved=next((data/'material-reviews/retention').rglob('*.sqlite'))
                 backup=sqlite3.connect(saved)
-                self.assertEqual(backup.execute('SELECT count(*) FROM observations').fetchone()[0],2);backup.close()
+                self.assertEqual(backup.execute('SELECT count(*) FROM observations').fetchone()[0],2)
+                self.assertEqual(backup.execute('PRAGMA journal_mode').fetchone()[0],'delete');backup.close()
+                portable=data/'portable.sqlite';shutil.copyfile(saved,portable)
+                readonly=sqlite3.connect(portable.as_uri()+'?mode=ro',uri=True)
+                try:self.assertEqual(readonly.execute('SELECT count(*) FROM observations').fetchone()[0],2)
+                finally:readonly.close()
+                self.assertEqual(db.execute('PRAGMA journal_mode').fetchone()[0],'wal')
                 self.assertFalse(result['automatic_deletion'])
                 self.assertEqual(hashlib.sha256(original.read_bytes()).hexdigest(),before)
             finally:db.close()

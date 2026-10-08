@@ -36,6 +36,14 @@ def audit(data, root, snapshot=False):
                 backup = sqlite3.connect(target)
                 try: source.backup(backup)
                 finally: backup.close()
+                # Reopen so SQLite reads the copied header rather than keeping
+                # the destination connection's pre-backup journal-mode cache.
+                # Only this new standalone snapshot is changed, not the source.
+                finalize = sqlite3.connect(target)
+                try:
+                    if finalize.execute('PRAGMA journal_mode=DELETE').fetchone()[0]!='delete':
+                        raise ValueError('snapshot_journal_not_standalone')
+                finally: finalize.close()
                 check = sqlite3.connect(target.as_uri()+'?mode=ro', uri=True)
                 try:
                     if check.execute('PRAGMA integrity_check').fetchone()[0] != 'ok':

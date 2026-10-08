@@ -36,6 +36,8 @@ COMMANDS = {
     'submissions': 'inresearch.workflow.submissions', 'export': 'inresearch.delivery.export', 'map': 'inresearch.delivery.map',
     'daily-receive': 'inresearch.materials.daily_bundle',
     'project-review': 'inresearch.workflow.project_review',
+    'research-review': 'inresearch.workflow.research_review',
+    'research-publish': 'inresearch.workflow.research_publish',
     'material-retention': 'inresearch.materials.retention',
     'fetchspec-receive': 'inresearch.materials.fetchspec_receive',
     'publish-pilot-progress': 'inresearch.delivery.publish_pilot_progress',

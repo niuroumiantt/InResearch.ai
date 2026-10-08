@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.07.9。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.1。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1177。
+在册文件：1183。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 304 |
-| 运行代码 | 266 |
+| 运行代码 | 268 |
 | 现行规范 | 13 |
-| 项目配置 | 100 |
+| 项目配置 | 102 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 99 |
-| 测试 | 132 |
+| 配套说明 | 100 |
+| 测试 | 133 |
 
 ## 在册记录集合
 
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 1 |
-| `data/research_knowledge.json` | evidence | 20 |
-| `data/research_knowledge.json` | statements | 19 |
+| `data/research_knowledge.json` | documents | 2 |
+| `data/research_knowledge.json` | evidence | 21 |
+| `data/research_knowledge.json` | statements | 20 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -457,6 +457,7 @@
 | `data/sources.json` | 在册数据/索引 |
 | `deploy/Dockerfile` | 项目配置 |
 | [deploy/README.md](../deploy/README.md) | 配套说明 |
+| `deploy/m5-research/research-publish.plist.example` | 项目配置 |
 | `deploy/models.json` | 项目配置 |
 | `deploy/spark-reader/inresearch-material-intake.service` | 项目配置 |
 | `deploy/spark-reader/inresearch-material-intake.timer` | 项目配置 |
@@ -465,6 +466,7 @@
 | `deploy/spark-reader/inresearch-reader-publish.service` | 项目配置 |
 | `deploy/spark-reader/inresearch-reader-publish.timer` | 项目配置 |
 | `deploy/spark-reader/inresearch-reader.service` | 项目配置 |
+| `deploy/spark-reader/inresearch-research-review.service` | 项目配置 |
 | `deploy/spark-reader/install.sh` | 运行代码 |
 | `deploy/spark-reader/reader.env.example` | 项目配置 |
 | [docs/CN_PROJECT_ARCHIVES.csv](CN_PROJECT_ARCHIVES.csv) | 在册数据/索引 |
@@ -557,6 +559,7 @@
 | [docs/handoff/reader-failure-ocr-repair-20261006.md](handoff/reader-failure-ocr-repair-20261006.md) | 配套说明 |
 | [docs/handoff/reading-adoption-first-batch-20261007.md](handoff/reading-adoption-first-batch-20261007.md) | 配套说明 |
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
+| [docs/handoff/research-verification-20261008.md](handoff/research-verification-20261008.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
@@ -1330,6 +1333,8 @@
 | `src/inresearch/workflow/reading_revisions.py` | 运行代码 |
 | `src/inresearch/workflow/reading_stages.py` | 运行代码 |
 | `src/inresearch/workflow/research_match.py` | 运行代码 |
+| `src/inresearch/workflow/research_publish.py` | 运行代码 |
+| `src/inresearch/workflow/research_review.py` | 运行代码 |
 | `src/inresearch/workflow/score.py` | 运行代码 |
 | `src/inresearch/workflow/submissions.py` | 运行代码 |
 | `src/inresearch/workflow/supply.py` | 运行代码 |
@@ -1456,6 +1461,7 @@
 | `tests/unit/test_research.py` | 测试 |
 | `tests/unit/test_research_match.py` | 测试 |
 | `tests/unit/test_research_navigation.py` | 测试 |
+| `tests/unit/test_research_review.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
 | `tests/unit/test_storage_layout.py` | 测试 |

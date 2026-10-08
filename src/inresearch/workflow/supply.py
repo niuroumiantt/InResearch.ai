@@ -68,6 +68,7 @@ def snapshot(root):
     return {'catalog': catalog(root), 'revision': state['revision'],
             'daily_events': daily_events,
             'daily_delivery': (reader.get('acquisition') or {}).get('daily_delivery') or {'records':[],'total':0,'news_total':0},
+            'research_verification': reader.get('research_verification') or {'state':'not_started','candidates':{}},
             'research_matching': matched, 'demand_queue': demand_queue,
             'reading_deliveries': reading_deliveries(runtime.get('knowledge') or {}, matched),
             'project_updates': project_updates,

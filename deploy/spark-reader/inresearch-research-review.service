@@ -1,0 +1,15 @@
+[Unit]
+Description=Source-bound research candidate review (separate from Reader)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=%h/code/inresearch.ai
+EnvironmentFile=%h/.config/inresearch.ai/research-review.env
+ExecStart=/usr/bin/python3 -m inresearch.workflow.research_review --data %h/.local/share/inresearch.ai --root %h/code/inresearch.ai work --scope %h/.config/inresearch.ai/codex-batch-scope.json --cycle-batches 2 --poll 120
+Restart=on-failure
+RestartSec=60
+UMask=0077
+
+[Install]
+WantedBy=default.target
