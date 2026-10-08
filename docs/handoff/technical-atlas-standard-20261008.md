@@ -69,10 +69,14 @@ Spark本轮只读观察06f96964，reader active；research-review在20:10后inac
 
 补充发布收尾PR402四项CI全通过，2026-10-08T13:28:57Z合并d97b21ef。主计划继续分支codex/atlas-chassis-20261008；TA-03母图通过内置工具生成，原生1536×1024，8条SVG独立标签/271KiB预览；server为原有计算对象，图标题明确机箱子装配。旧chassis原件SHA不变，完整服务器TA-11未完成。正文和网页审图及technical_atlas/part_dossier实际回归已完成；精确头CI/实际公网验收后再登记published和3/35。当前主工作树不切换，仍复用ops-dashboard/inresearch.ai。
 
-## 当前状态 · TA-03 实际发布，下一TA-04
+## 上一阶段 · TA-03 实际发布，下一TA-04
 
 PR404精确头fec2ce60四项CI通过，首次发布 2ab6e7af2371514d81307b2bda637982f3949df2；实际系统/尺度×桌面/手机入口及高清8标签/嵌入原PNG SHA实读，AWS healthy，Spark两服务active（只读，没有重启）。逐项publication-20261008.json保留字节/浏览器/服务观察。主计划3/35、补充4/4，下一TA-04；当前收尾分支codex/atlas-chassis-receipt-20261008。
 
 TA-04旧图已实看：八个虹彩简化器件在基板上，不能当单裸GPU die。备料在 `~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-04/`，含preparation.json和prompt-prepared-v1.txt；NVIDIA官方HGX H100/H200组件页与官方技术博客支持八SXM模组/NVSwitch类别关系，具体PCB布局/孔位/封装内部未知。尚未生成/采纳，续做从TA-04实际制作开始，保留old gpu-board.png的SHA。自动续做仍automation-3每小时，以队列未完成项为准，已授权发布无需重问。
 
 本次公网审图为匿名浏览器，部件研究侧栏显示未载入；只读/api/research-summary实测401，保留原权限，不据pageerror=0声称已登录研究数据已验收。图册实际入口/原件与服务版本分别已验。
+
+## 当前状态 · TA-04 制作与验收
+
+当前独立分支codex/atlas-gpu-baseboard-20261008，复用ops-dashboard工作树，主工作区不动。前两张母图因GPU模组数量错误被拒，原件/提示词保留；第三张重建为2×4位置，七个已安装+一个抬起模组，独立8标注与四视图/放大下载及3D回归已实际本地通过。官方来源只支持八SXM/NVSwitch类别，具体几何/PCB走线/连接端/散热接触结构仍示意。主计划仍3/35、设施4/4；修正2D档案传入prices对象的既有GPU加载中断；精确头CI和真实发布后才能计TA-04，下一TA-05尚未领取。
