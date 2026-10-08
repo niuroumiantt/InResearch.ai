@@ -557,6 +557,89 @@
       "status": "candidate",
       "stored_path": "originals/e3/e330c61503ab0fafcdb104714fbc573e428c44052f8c54e9a22e610ce5ca15f9/2026-09-23-daily.html",
       "title": "格洛可数据中心日报｜2026年9月23日：容量目标，必须穿过交付链"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "39e3d5dfb268d6e30fce1ae5b7faf50fc8bea81e45fa8d826bd42ffdbef3a78a",
+      "coverage": {
+        "characters_read": 59262,
+        "characters_total": 59262,
+        "chunks_read": 31,
+        "chunks_total": 31,
+        "complete": true,
+        "pages_read": 31,
+        "pages_total": 31
+      },
+      "doc_id": "doc-39e3d5dfb268d6e30fce1ae5b7faf50fc8bea81e45fa8d826bd42ffdbef3a78a",
+      "id": "doc-39e3d5dfb268d6e30fce1ae5b7faf50fc8bea81e45fa8d826bd42ffdbef3a78a",
+      "library_path": "library/by-node/root/2025_SemiAnalysis_Scaling Reinforcement Learning_ Environments, Reward Ha__39e3d5dfb268d6e3.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alibaba",
+        "actor:alphabet-google",
+        "actor:anthropic",
+        "actor:bytedance",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "actor:huawei",
+        "actor:huawei-ascend",
+        "actor:nvidia",
+        "actor:openai",
+        "part:cpu",
+        "part:general-server",
+        "part:gpu",
+        "part:optics",
+        "part:rack-system",
+        "root",
+        "system:compute",
+        "system:control",
+        "system:it",
+        "system:memory"
+      ],
+      "question_ids": [
+        "M06-Q01",
+        "M07-Q02",
+        "NODE-activity-V1-chain",
+        "NODE-activity-V2-chain",
+        "NODE-demand-D1-boundary",
+        "NODE-demand-D1-conversion",
+        "NODE-demand-D1-economics",
+        "NODE-demand-D2-boundary",
+        "NODE-demand-D2-conversion",
+        "NODE-demand-D4-boundary",
+        "NODE-demand-D4-conversion",
+        "NODE-demand-D4-economics",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile",
+        "NODE-workload-training-economics",
+        "NODE-workload-training-placement",
+        "NODE-workload-training-profile",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-definition",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "Q-SCOPE-arch-blackwell",
+        "Q-SCOPE-arch-nvidia-gpu",
+        "Q-SCOPE-arch-other-gpu"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-f878a4859afd40f58db836570eb38a71",
+      "report_sha256": "3fe51a36e2c73d889e0e81a23453933d273d349b4c75d360e49fff5048b3ec6b",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/39/39e3d5dfb268d6e30fce1ae5b7faf50fc8bea81e45fa8d826bd42ffdbef3a78a/Scaling Reinforcement Learning_ Environments, Reward Hacking, Agents, Scaling Data – SemiAnalysis.pdf",
+      "title": "Scaling Reinforcement Learning: Environments, Reward Hacking, Agents, Scaling Data"
     }
   ],
   "evidence": [
@@ -2514,6 +2597,87 @@
           }
         },
         "batch_id": "7ba47022158965e91b9bd834b3e6b332c8f8ce4eef3ab9ea00951964173ba8b2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c4fbded4631f5e80dfba711ac8ca3458b3938d9c6cc1e81e3a5dc5460b36883e",
+      "document_id": "doc-39e3d5dfb268d6e30fce1ae5b7faf50fc8bea81e45fa8d826bd42ffdbef3a78a",
+      "id": "rev-f878a4859afd40f58db836570eb38a71:chunk:29:claim:0:ev:0",
+      "locator": "page:30/chunk:29",
+      "object_ids": [],
+      "page_index": 29,
+      "question_ids": [],
+      "quote": "larger models will have more learning capacity and also be more sparse in terms of\ntotal experts vs active experts.",
+      "reading_revision_id": "rev-f878a4859afd40f58db836570eb38a71",
+      "source_sha256": "39e3d5dfb268d6e30fce1ae5b7faf50fc8bea81e45fa8d826bd42ffdbef3a78a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T02:57:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，保留评分5。该预测直接涉及当前开放工单所研究的模型规模、结构与资源需求转换，具有实质性但有限的关系；连续原文引用及跨页上下文足以支持限定范围内的作者预测。无敏感、实质冲突或替换条件，可作为局部定性贡献采用，不回答或关闭整个问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 48.263,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "46ae136684e78df33ac6ad0c1d643aca407913a17681b920f43a16086a35f343",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 16387,
+            "output_tokens": 1097,
+            "reasoning_output_tokens": 344
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 22.79,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "71c0469bc56ec68f989c9e0840ace90d2047fd391752205971753414b0d4361c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 16878,
+              "output_tokens": 464,
+              "reasoning_output_tokens": 213
+            }
+          }
+        },
+        "batch_id": "dc15691a0e2ee015fbe6dd8a0c43ea432a74add3a61b31b60b3c39f0e15f3f17"
       }
     }
   ],
@@ -4903,6 +5067,103 @@
         "batch_id": "7ba47022158965e91b9bd834b3e6b332c8f8ce4eef3ab9ea00951964173ba8b2",
         "source_report_sha256": "f68d2e2c92a30880e6de9f14fe04923ca0361e8b87d3237eb63166cf9ca52414",
         "request_sha256": "826b81889837c9816d2d2161667f5fe4a816373b29df4510b7a25a7de0315f69"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-39e3d5dfb268d6e30fce1ae5b7faf50fc8bea81e45fa8d826bd42ffdbef3a78a",
+      "evidence_ids": [
+        "rev-f878a4859afd40f58db836570eb38a71:chunk:29:claim:0:ev:0"
+      ],
+      "id": "adoption:review:8b74e93629450f72b41df893",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-conversion"
+      ],
+      "reading_revision_id": "rev-f878a4859afd40f58db836570eb38a71",
+      "status": "adopted",
+      "text": "SemiAnalysis（发表时间未由所供原文确立）在讨论其所述OpenAI新预训练模型时预测：随着强化学习持续扩展，这些规模小于Orion/GPT-4.5、但大于主线GPT-4/4.1的模型将具有更强的学习能力，且总专家数相对于活跃专家数的稀疏程度将更高。这是作者对模型规模与结构的展望，可作为模型与权重产品影响资源需求转换的定性线索。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T02:57:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，保留评分5。该预测直接涉及当前开放工单所研究的模型规模、结构与资源需求转换，具有实质性但有限的关系；连续原文引用及跨页上下文足以支持限定范围内的作者预测。无敏感、实质冲突或替换条件，可作为局部定性贡献采用，不回答或关闭整个问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 48.263,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "46ae136684e78df33ac6ad0c1d643aca407913a17681b920f43a16086a35f343",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 16387,
+            "output_tokens": 1097,
+            "reasoning_output_tokens": 344
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 22.79,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "71c0469bc56ec68f989c9e0840ace90d2047fd391752205971753414b0d4361c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 16878,
+              "output_tokens": 464,
+              "reasoning_output_tokens": 213
+            }
+          }
+        },
+        "batch_id": "dc15691a0e2ee015fbe6dd8a0c43ea432a74add3a61b31b60b3c39f0e15f3f17"
+      },
+      "source_candidate_ids": [
+        "rev-f878a4859afd40f58db836570eb38a71:chunk:29:claim:0"
+      ],
+      "limitations": "原文未提供模型规模、总专家数、活跃专家数、资源需求系数或验证数据；未确立发表日期、预测实现时间及地理范围。讨论对象是作者所述OpenAI新预训练模型及后续强化学习，不代表已交付模型或经独立认证的架构事实，也不能据此量化算力、电力、网络、存储或成本需求。",
+      "conflict_check": "所供当前知识库没有已采用陈述，相关legacy筛选结果为空，未发现可确认的冲突或重复；该筛选并非完整外部反证搜索。邻接原文同时指出大模型强化学习成本较高、部分实验室的中等规模模型反馈循环快于大模型，这限制了将更强学习能力解释为更高净效率的推断，但不直接否定本条预测。",
+      "gap_dependency_check": "仅关联允许的问题NODE-demand-D2-conversion：模型规模与专家稀疏结构可能影响需求转换机制。原文没有明确转换路径、系数、时滞或不确定性的测量，也未证明稀疏程度提高后的净资源变化。后续仍需模型开发方资料、结构参数及可比工作负载测量来验证；本条不能更新模型值、关闭工单或覆盖其他节点。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "dc15691a0e2ee015fbe6dd8a0c43ea432a74add3a61b31b60b3c39f0e15f3f17",
+        "source_report_sha256": "3fe51a36e2c73d889e0e81a23453933d273d349b4c75d360e49fff5048b3ec6b",
+        "request_sha256": "5efcb026cc3ee1d9ab484b98289be406914c841a9abe31e0d867a38d7358a55c"
       }
     }
   ],
