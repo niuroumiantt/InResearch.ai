@@ -17,3 +17,6 @@
 
 ## 待用户决定
 无。
+
+## 首次发布修正
+macOS的BSD tar会附带AppleDouble文件，首轮被完整性检查拒绝（未激活错误快照）。系统cron和打包调用均显式设置COPYFILE_DISABLE=1，保留17载体白名单；实际首轮/HTTP回执以私有state记录为准。
