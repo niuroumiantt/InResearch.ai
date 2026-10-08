@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "style_id": "white-technical-atlas-v1",
-  "version": "1.1",
+  "version": "1.2",
   "adopted_at": "2026-10-08",
   "source": "framework/10_visual_atlas.md",
   "references": [
@@ -125,7 +125,8 @@
     "tone_mapping": "none; actual PNG paper verified #FAF9F2",
     "outline": "owned EdgesGeometry,35 degrees, nominal WebGL 1px; no picking/bounds ownership",
     "live_labels": "independent SVG, desktop16px/mobile14px",
-    "export": "current view PNG embedded in editable SVG, actual viewport pixels; not static master or CAD",
-    "scope": "TA-02 shared implementation only; individual geometry/detail migration remains pending"
+    "export": "current view PNG embedded in editable SVG; reuse live label placement and pixel-ratio sizing; actual viewport pixels; not static master or CAD",
+    "scope": "TA-02 shared implementation only; individual geometry/detail migration remains pending",
+    "public_startup": "protected product registry optional for diagnostics; unread is unknown, public geometry stays available"
   }
 }

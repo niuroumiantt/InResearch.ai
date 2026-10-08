@@ -49,3 +49,17 @@ export async function loadSceneData(sources, {controls = [], timeoutMs = 12000} 
     panel.remove(); saved.forEach(([control, inert]) => { control.inert = inert; });
   }
 }
+
+// A restricted diagnostic input must not prevent a public scene from opening.
+export async function loadOptionalSceneData({url, collection}, {timeoutMs=12000}={}) {
+  const controller=new AbortController();let timer;
+  try {
+    const request=fetch(url,{cache:'no-store',signal:controller.signal,priority:'low'}).then(async response=>{
+      if(!response.ok || response.redirected)return null;
+      const data=await response.json();
+      return Array.isArray(data?.[collection]) && data[collection].every(row=>row!==null && typeof row==='object' && !Array.isArray(row)) ? data : null;
+    });
+    return await Promise.race([request,new Promise(resolve=>{timer=setTimeout(()=>resolve(null),timeoutMs);})]);
+  } catch {return null;}
+  finally {clearTimeout(timer);controller.abort();}
+}
