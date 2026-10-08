@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.08.8 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.08.9 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -13,6 +13,7 @@
 | 统一经济模型、账本与 dashboard | [05 界面规范](05_interface_system.md)「统一经济模型与账本」「数据中心节点页」「目录」 | data/datacenter_model.json、knowledge/economics.py、ledger.html、dashboard_rules.json、data/dashboard.json |
 | M4 原件分类整理（独立 scope） | [M4 任务卡](../docs/M4_TRIAGE_TASK.md) | inventory / triage / organize；不扩大 Spark originals 操作权限 |
 | 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
+| 技术插图、爆炸/平面/剖面图的画法与逐张迁移 | [10 白底技术图册](10_visual_atlas.md) | visual_atlas.json（五张参考/配方）、visual_atlas_migration.json（逐项队列）、[迁移计划](../docs/design/technical-atlas/MIGRATION_PLAN.md) |
 | 全站界面、字体与外观 | [05 界面规范](05_interface_system.md) | web/components/site-shell.js、web/themes、web/assets/fonts（infra 字体包）、interface_manifest.json |
 | 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（六队、三仓库、来源归属）、[五类变量目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
 | 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
@@ -36,7 +37,7 @@
 
 查现行主题及引用 → 判定变更类型与范围 → 修改唯一源和适用实现 → 登记 supersedes / 原因 / 影响路径 → 归档旧执行正文 → 审阅并更新规范验收映射 → 更新清单 → 校验与测试 → 已授权的仓库合并和部署 → 核对实际运行版本。
 
-`python3 manage.py governance --check` 检查在册路径/内容摘要、主题单一生效、替代链、规范引用、历史边界及已知失效表述。还检查 [规范验收映射](verification_contract.json) 的已审阅源文件/操作指南/测试内容摘要、14 条政策的适用 scope 和测试入口。修改规范、指南或所映射测试后，必须实际复审对应要求、实现及未覆盖项，再显式更新映射；`--refresh` 只更新文件清单，不能自动批准映射变化。映射列举选定要求并明确剩余缺口，不是所有自然语言条款的穷尽证明。它不能自动证明所有自然语言都没有语义冲突；任何规则变更仍须审阅关联实现和记录。新文件或修改后的在册内容没有刷新清单会使 CI 失败。
+`python3 manage.py governance --check` 检查在册路径/内容摘要、主题单一生效、替代链、规范引用、历史边界及已知失效表述。还检查 [规范验收映射](verification_contract.json) 的已审阅源文件/操作指南/测试内容摘要、15 条政策的适用 scope 和测试入口。修改规范、指南或所映射测试后，必须实际复审对应要求、实现及未覆盖项，再显式更新映射；`--refresh` 只更新文件清单，不能自动批准映射变化。映射列举选定要求并明确剩余缺口，不是所有自然语言条款的穷尽证明。它不能自动证明所有自然语言都没有语义冲突；任何规则变更仍须审阅关联实现和记录。新文件或修改后的在册内容没有刷新清单会使 CI 失败。
 
 ## 记录与运行边界
 
@@ -99,3 +100,5 @@
 2026-10-08：用户采用前台按客户交付、后台/dashboard按内部使用的默认约定；企业专栏先实现通用产品页与 `/admin/company.html` 分工。规格/来源/条件保留，采集/版本/来源SHA移到后台。其余内部页面与会员权限迁移未在本轮完成，见05。
 
 2026-10-08 提速修订：逐条原文检索词/字段值选择与回执哈希引用、旧协议复验、未执行六项合批、十二批背压、M5增量源码传输和预算包可见诊断按04/05/09及Spark操作手册执行；C3和正文覆盖门槛保持。
+
+2026-10-08图册标准：用户采用五张参考图作为后续技术图唯一视觉标准，包括白底细线结构图、带字讲解和逼真场景剖面；参考按原始字节保存，尺寸/SHA登记。先盘点、先一张样板再逐项迁移；现有图仍标待制作，规范登记不代表图已改好。

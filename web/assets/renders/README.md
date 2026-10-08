@@ -1,16 +1,8 @@
 # 部件渲染图（拆解海报素材）
 
-九张透明底高清 PNG（1840×1280），原供海报页拼装 B300 风格拆解海报（海报页与烘焙工具页已于 2026-09-28 退役删除，图片保留为资产）。
+九张透明底 PNG（1840×1280），原供海报页拼装示意拆解海报。海报页与烘焙工具页已于 2026-09-28 退役删除，目前没有页面引用，图片保留为设计资产。画面不是具体B300型号结构证据；`ssd.png`含机箱/抽盘等通用示意，不能据文件名确认单块SSD。
 
 - **来源与版权**：全部由本项目 `bake.html`（内部烘焙工具页）自渲染——three.js 程序化几何 +
   canvas 程序纹理 + assets/hdri/studio.exr（CC0）光照。**自有版权，无第三方素材。**
-- **重烘方法**（改了 3D 场景或换了专业 .glb 模型后）：
-  ```bash
-  python3 -m http.server 8123 &
-  for p in chassis fans coldplate gpu-board hbm mobo nic psu ssd; do
-    chromium --headless=new --window-size=920,640 --force-device-scale-factor=2 \
-      --default-background-color=00000000 --screenshot="assets/renders/$p.png" \
-      "http://localhost:8123/bake.html?part=$p"
-  done
-  ```
+- **当前制作入口**：以前的 `bake.html` 已退役，旧命令不能作为现行重制流程。2026-10-08 用户采用 [白底技术图册规范](../../../framework/10_visual_atlas.md)，本目录九项均在 [逐张计划](../../../docs/design/technical-atlas/MIGRATION_PLAN.md) 登记。重制实际使用对应参考，输出新版本并记录验收；保留这里的旧资产，不恢复退役页面。
 - 单图 100-500KB，总量约 3MB（A3 批复的 ≤10MB/文件量级内）。

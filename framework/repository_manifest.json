@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.8",
+  "version": "2026.10.08.9",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -580,8 +580,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 201972,
-      "sha256": "efd70aa0424d9e3e798d14023d059656703cd41809b5a9042071cd0f6c800ff9",
+      "bytes": 202955,
+      "sha256": "681acc07764800c828d8a95f9a3502f4dac27f283dfb630a38e1a04d738956a5",
       "collections": []
     },
     {
@@ -944,6 +944,55 @@
       "collections": []
     },
     {
+      "path": "docs/design/technical-atlas/MIGRATION_PLAN.md",
+      "role": "supporting_document",
+      "bytes": 9342,
+      "sha256": "7fac23003088ba418a3588d4f583d0a0f79265d9eed5dc3965f8c763bfb88c84",
+      "collections": []
+    },
+    {
+      "path": "docs/design/technical-atlas/references/01-chain.png",
+      "role": "project_config",
+      "bytes": 2942574,
+      "sha256": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
+      "collections": []
+    },
+    {
+      "path": "docs/design/technical-atlas/references/02-server.png",
+      "role": "project_config",
+      "bytes": 2879569,
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "collections": []
+    },
+    {
+      "path": "docs/design/technical-atlas/references/03-ssd.png",
+      "role": "project_config",
+      "bytes": 2388112,
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "collections": []
+    },
+    {
+      "path": "docs/design/technical-atlas/references/04-explainer.png",
+      "role": "project_config",
+      "bytes": 2227724,
+      "sha256": "91dc633ce2eddf01a15b5297a4eb0dc71ccc50cbf6ac4ff75693207b9cd3d36f",
+      "collections": []
+    },
+    {
+      "path": "docs/design/technical-atlas/references/05-thermal-cutaway.png",
+      "role": "project_config",
+      "bytes": 2792063,
+      "sha256": "6bfeea5980c8ad16b040561a6cf69ca6e020b4cb9f0bfd26a97dd1c88c0af1f6",
+      "collections": []
+    },
+    {
+      "path": "docs/design/technical-atlas/references/README.md",
+      "role": "supporting_document",
+      "bytes": 456,
+      "sha256": "36b68785195c8011023e1da9a7983ac7a32a2a2816e6c5004edc2ded35fa0f46",
+      "collections": []
+    },
+    {
       "path": "docs/geluoke/专题写作规则.md",
       "role": "normative",
       "bytes": 19236,
@@ -1279,6 +1328,13 @@
       "role": "supporting_document",
       "bytes": 6016,
       "sha256": "279822a23837a860660eb885e3c3a1813ba1057c06ea9339a4c9804c878989b9",
+      "collections": []
+    },
+    {
+      "path": "docs/handoff/technical-atlas-standard-20261008.md",
+      "role": "supporting_document",
+      "bytes": 2292,
+      "sha256": "f8cb310ec6de4a1564277b6fbfa147c4f59ed5214309f7f02e009d4a2d1af2f5",
       "collections": []
     },
     {
@@ -7272,8 +7328,8 @@
     {
       "path": "framework/05_interface_system.md",
       "role": "normative",
-      "bytes": 55863,
-      "sha256": "9bae08cf7193b705ec9173d9e496c76e2dc0db18e37aa7b8f6b7ea684ddb807e",
+      "bytes": 56258,
+      "sha256": "f7c281f6494693d5cb30fde4a9f0ddd80e45fda4cd2dafafa24a79eedbc0463a",
       "collections": []
     },
     {
@@ -7312,10 +7368,17 @@
       "collections": []
     },
     {
+      "path": "framework/10_visual_atlas.md",
+      "role": "normative",
+      "bytes": 10190,
+      "sha256": "b00626d8856e5f5aae63f9c36675e3f6068e6bfbae9a8b247354ce07317e678f",
+      "collections": []
+    },
+    {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 13533,
-      "sha256": "832de7550fb8acd76e69df69fced054eb6d8296a2a1eb47b88fc5c84893860de",
+      "bytes": 14125,
+      "sha256": "d42d04415f1fa4e11e539d29097f8e9c07b156399a6d867053fdc31d6d3de8c2",
       "collections": []
     },
     {
@@ -7341,12 +7404,12 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 116122,
-      "sha256": "47b3cb280c0d6a578802e58f870aaee0fe4fb92e995e613d2f2d11db20eba375",
+      "bytes": 117339,
+      "sha256": "37a49865fcaef8663886a1d2f664be3229f86009c889c822b7e8968429b7b96f",
       "collections": [
         {
           "name": "policies",
-          "count": 41
+          "count": 42
         },
         {
           "name": "entrypoints",
@@ -7688,12 +7751,40 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 179826,
-      "sha256": "0b86aa309dc488731b4913c8f897c11c0ff4863ccb33ef3433b2c3b4cbf993a0",
+      "bytes": 182912,
+      "sha256": "c96babc3f6d87332f8e37d054379a07b6415a7f5bf38c8c8352428b3acffb48f",
       "collections": [
         {
           "name": "policies",
-          "count": 14
+          "count": 15
+        }
+      ]
+    },
+    {
+      "path": "framework/visual_atlas.json",
+      "role": "project_config",
+      "bytes": 4714,
+      "sha256": "092243af2cc0e9510d30507a3927e62873c1ac1a6527b7fcb2c80e5cdedb73a1",
+      "collections": [
+        {
+          "name": "references",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "path": "framework/visual_atlas_migration.json",
+      "role": "project_config",
+      "bytes": 26807,
+      "sha256": "b13c02d31055db1062c259b629d685567516c98855cddc76c121f3910276dc39",
+      "collections": [
+        {
+          "name": "states",
+          "count": 5
+        },
+        {
+          "name": "items",
+          "count": 35
         }
       ]
     },
@@ -10778,6 +10869,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_visual_atlas.py",
+      "role": "test",
+      "bytes": 3079,
+      "sha256": "25a576ae739cd325e14d8fee94c3147510ffb06daeae971e53948e98cbd2a1e8",
+      "collections": []
+    },
+    {
       "path": "tests/url_rendering.cjs",
       "role": "test",
       "bytes": 3963,
@@ -10988,8 +11086,8 @@
     {
       "path": "web/assets/panels/README.md",
       "role": "supporting_document",
-      "bytes": 1543,
-      "sha256": "5db3848922d4b2580f3b87dd830655b32b7f7acb5b520d7f631776c6be0ccdd7",
+      "bytes": 1876,
+      "sha256": "793ac5832f0b14f448790fb0be18a457413b108c45dee709d2957cfec42cf785",
       "collections": []
     },
     {
@@ -11030,8 +11128,8 @@
     {
       "path": "web/assets/renders/README.md",
       "role": "supporting_document",
-      "bytes": 941,
-      "sha256": "5cd1b174f015612c45f481eef9880c8b1e8bba9276b0ac3e414a154761890683",
+      "bytes": 1087,
+      "sha256": "82dfed1573f13e1641448bc046a5606e27e25db10341ea4f799bc0563eb2c9e8",
       "collections": []
     },
     {
@@ -11727,12 +11825,12 @@
     "generated": 13,
     "historical": 305,
     "implementation": 271,
-    "normative": 13,
-    "project_config": 102,
+    "normative": 14,
+    "project_config": 109,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
-    "supporting_document": 103,
-    "test": 135
+    "supporting_document": 106,
+    "test": 136
   }
 }
