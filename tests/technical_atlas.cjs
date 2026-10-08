@@ -5,7 +5,7 @@ const {join} = require('node:path');
 const {chromium} = require('playwright');
 const accepted = new Set(JSON.parse(readFileSync(join(__dirname,'../framework/visual_atlas_migration.json'),'utf8')).items
   .filter(row => ['accepted','published'].includes(row.status)).map(row => row.id));
-const facilityCases = [['shell','TA-36'], ['fire','TA-37'], ['security','TA-38'], ['rack-frame','TA-39']]
+const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-03','chassis','IT · 计算']]
   .filter(([,figure]) => accepted.has(figure));
 (async () => {
   const browser = await chromium.launch({headless: true, args: ['--enable-unsafe-swiftshader']});
@@ -79,19 +79,24 @@ const facilityCases = [['shell','TA-36'], ['fire','TA-37'], ['security','TA-38']
       }
       if (process.env.REVIEW_SCREENSHOTS) await atlas.screenshot({path: process.env.REVIEW_SCREENSHOTS + '/' + (url.includes('rack3d') ? 'atlas-rack.png' : 'atlas-bom.png')});
     }
-    for (const [part, figure] of facilityCases) {
+    for (const [part, figure, asset, context] of illustrationCases) {
       await page.goto(process.env.UI_BASE_URL + '/bom.html#' + part, {waitUntil:'domcontentloaded'});
       const atlas = page.locator(`#selected-atlas .technical-atlas[data-figure="${figure}"]`);
       await atlas.waitFor(); await atlas.locator('img').scrollIntoViewIfNeeded();
       await atlas.locator('img').evaluate(img => img.decode());
-      assert.ok((await atlas.locator('img').getAttribute('src')).endsWith(`/${part}-v1-preview.svg`));
-      assert.match(await page.locator('.atlas-context').textContent(), /设施 →/);
-      assert.equal(await page.locator('.technical-atlas').count(),1,'a facility selection must not retain the previous object diagram');
+      assert.ok((await atlas.locator('img').getAttribute('src')).endsWith(`/${asset}-v1-preview.svg`));
+      assert.ok((await page.locator('.atlas-context').textContent()).startsWith(context + ' →'));
+      if (figure === 'TA-03') {
+        assert.match(await atlas.locator('h3').textContent(), /服务器机箱/);
+        assert.match(await atlas.locator('figcaption').textContent(), /子装配/);
+        assert.match(await page.locator('.pbox[data-atlas-part="server"] title').textContent(), /服务器机箱/);
+      }
+      assert.equal(await page.locator('.technical-atlas').count(),1,'a selection must not retain the previous object diagram');
       for (const mode of ['scale','system']) {
         await page.locator(`[data-mode="${mode}"]`).click();
         assert.ok(await page.locator('#selected-atlas').evaluate((el,id) => el.previousElementSibling.matches(`.lrow[data-row-parts~="${id}"]`),part));
         assert.equal(await page.locator(`.pbox[data-part="${part}"] path`).count(),0);
-        assert.ok((await page.locator(`.pbox[data-atlas-part="${part}"] image`).getAttribute('href')).endsWith(`/${part}-v1-preview.svg`));
+        assert.ok((await page.locator(`.pbox[data-atlas-part="${part}"] image`).getAttribute('href')).endsWith(`/${asset}-v1-preview.svg`));
         for (const width of [1280,390]) {
           await page.setViewportSize({width,height:900});
           for (const theme of ['light','dark']) {
@@ -113,8 +118,8 @@ const facilityCases = [['shell','TA-36'], ['fire','TA-37'], ['security','TA-38']
       }
     }
     await page.locator('#c-hdd').click();
-    assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'an unfinished object must not inherit a facility diagram');
+    assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'an unfinished object must not inherit another object diagram');
     assert.deepEqual(errors, []);
-    console.log(`Technical atlas: SSD and ${facilityCases.length} accepted facility objects, system/scale context, editable SVG, zoom/downloads, narrow/light/dark and retained 3D passed`);
+    console.log(`Technical atlas: SSD and ${illustrationCases.length} accepted category illustrations, system/scale context, editable SVG, zoom/downloads, narrow/light/dark and retained 3D passed`);
   } finally { await browser.close(); }
 })().catch(error => {console.error(error); process.exitCode = 1;});

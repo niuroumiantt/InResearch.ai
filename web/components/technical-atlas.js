@@ -1,5 +1,13 @@
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
+  server: {
+    id: 'TA-03', title: '服务器机箱 · 盖板与壳体',
+    image: '/assets/technical-atlas/chassis-v1.svg', preview: '/assets/technical-atlas/chassis-v1-preview.svg',
+    master: '/assets/technical-atlas/chassis-v1.png',
+    alt: '暖白服务器机箱子装配爆炸图：分离金属上盖、通风开孔、盖板锁扣、折边空壳、内部横梁和安装支柱。',
+    note: '通用机箱子装配示意；孔位、紧固件与锁扣形式以选定型号资料为准。整机内部部件另图展示。',
+    labels: ['上盖与紧固件：展示盖板和壳体的分离关系', '通风开孔与锁扣：展示盖板局部结构', '后部开孔：示意接口和扩展位置', '折边壳体、底板与横梁：展示机箱支撑结构', '安装支柱：示意板卡安装位置', '机架安装耳与把手：展示机箱前部结构'],
+  },
   'rack-frame': {
     id: 'TA-39', title: '机柜与结构 · 柜架、柜门和侧板',
     image: '/assets/technical-atlas/rack-frame-v1.svg', preview: '/assets/technical-atlas/rack-frame-v1-preview.svg',
@@ -49,6 +57,10 @@ const illustrations = {
     ],
   },
 };
+
+export function atlasPreviewTitle(partId) {
+  return illustrations[partId]?.title || '';
+}
 
 export function atlasPreview(partId) {
   return illustrations[partId]?.preview || null;
