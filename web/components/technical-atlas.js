@@ -1,5 +1,21 @@
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
+  'rack-frame': {
+    id: 'TA-39', title: '机柜与结构 · 柜架、柜门和侧板',
+    image: '/assets/technical-atlas/rack-frame-v1.svg', preview: '/assets/technical-atlas/rack-frame-v1-preview.svg',
+    master: '/assets/technical-atlas/rack-frame-v1.png',
+    alt: '暖白机柜结构爆炸图：空柜架与安装导轨、分离网孔柜门、侧板、顶盖及底部脚轮支脚。',
+    note: '通用机柜类别结构示意；具体尺寸、孔位、承载能力与装配以选定型号资料为准。',
+    labels: ['柜架：立柱与横梁构成支撑结构', '安装导轨：展示设备安装位置', '网孔柜门：展示门板与柜架关系', '侧板和顶盖：对应柜体侧面与顶部', '脚轮：移动支撑示意', '调平支脚：落地支撑示意'],
+  },
+  security: {
+    id: 'TA-38', title: '安防 · 周界、门禁与视频监控',
+    image: '/assets/technical-atlas/security-v1.svg', preview: '/assets/technical-atlas/security-v1-preview.svg',
+    master: '/assets/technical-atlas/security-v1.png',
+    alt: '暖白设施安防剖面：围栏、车辆道闸、摄像机、人员门禁、值守监控室与机房入口。',
+    note: '通用物理安防层次示意；设备数量、位置与覆盖范围以项目方案为准。',
+    labels: ['周界围栏：解释场地边界', '车辆道闸：展示车辆出入口', '视频监控设备：展示室外和室内观察位置', '人员入口门禁：展示身份查验入口', '监控值守位置：展示视频管理场景', '机房入口门禁：展示内部区域的访问控制'],
+  },
   fire: {
     id: 'TA-37', title: '消防 · 探测与灭火设备',
     image: '/assets/technical-atlas/fire-v1.svg', preview: '/assets/technical-atlas/fire-v1-preview.svg',
