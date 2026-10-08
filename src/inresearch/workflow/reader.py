@@ -103,8 +103,17 @@ class Reader:
         # so it stays out of the catalog and out of any backup contract.
         # verify=True re-reads and re-verifies every report's digest.
         with self.catalog.read_snapshot():
-            return reader_delivery.export_snapshot(self.conn, self.data, self.snapshot(), self.status(observability=True),
-                                                   cache_root=self.state, verify=verify, doc_ids=doc_ids)
+            result = reader_delivery.export_snapshot(self.conn, self.data, self.snapshot(), self.status(observability=True),
+                                                     cache_root=self.state, verify=verify, doc_ids=doc_ids)
+            from inresearch.delivery.material_measurements import spark_snapshot
+            measurements = spark_snapshot(self.conn, self.data, self.state)
+            ids = set(doc_ids) if doc_ids is not None else (set(self.document_scope.ids()) if self.document_scope else {d['id'] for d in result['knowledge']['documents']})
+            measurements['candidates'] = {'documents':len(ids),
+                'scope':'export_selection' if doc_ids is not None else ('current_batch' if self.document_scope else 'delivered_documents'),
+                'statements':sum(r.get('document_id') in ids for r in result['knowledge']['statements']),
+                'evidence':sum(r.get('document_id') in ids for r in result['knowledge']['evidence'])}
+            result['reader']['material_measurements'] = measurements
+            return result
 
     def backup(self, dest):
         return reader_delivery.backup(dest, self.conn, self.data, self.state)

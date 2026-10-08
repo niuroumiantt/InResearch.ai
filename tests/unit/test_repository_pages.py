@@ -75,6 +75,22 @@ class RepositoryPageTests(unittest.TestCase):
             self.assertEqual(self.request('GET', path, 'admin')[0], 404)
         self.assertEqual(self.request('GET', '/')[0], 200)
 
+    def test_material_api_requires_real_admin_and_no_store(self):
+        from inresearch.interfaces import material_flow
+        from test_material_flow import measured_fixture
+        paths=('/api/admin/material-flow','/api/admin/%6daterial-flow',
+               '/api/admin/material-flow?refresh=1')
+        with patch.object(http,'AUTH_ON',False):
+            for path in paths:
+                for method in ('GET','HEAD'):
+                    self.assertEqual(self.request(method,path)[0],302)
+                    self.assertEqual(self.request(method,path,'member')[0],403)
+            with patch.object(material_flow,'snapshot',return_value=measured_fixture()):
+                code,headers,body=self.request('GET',paths[0],'admin')
+                self.assertEqual(code,200)
+                self.assertEqual(headers.get('Cache-Control'),'private, no-store')
+                self.assertEqual(json.loads(body)['formal']['statements'],29)
+
     def test_snapshot_provenance_and_navigation_are_complete(self):
         routes = json.loads((ROOT / 'web/routes.json').read_text())
         manifest = json.loads((ROOT / 'web/pages/admin/repo-content/manifest.json').read_text())

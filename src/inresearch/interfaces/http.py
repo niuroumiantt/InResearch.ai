@@ -474,6 +474,12 @@ class Handler(SimpleHTTPRequestHandler):
             with LOCK:
                 running = set(RUNNING)
             return self._json(200, operations.task_state(ROOT, TASKS, running))
+        if urlsplit(self.path).path == '/api/admin/material-flow':
+            from inresearch.interfaces.material_flow import snapshot
+            try:
+                return self._json(200, snapshot(ROOT), compressed=True)
+            except (OSError,ValueError,TypeError,KeyError):
+                return self._json(503, {'ok':False,'error':'资料关系指标暂不可用，请重试'})
         if urlsplit(self.path).path == '/api/model-assets':
             query = parse_qs(urlsplit(self.path).query, keep_blank_values=True)
             page = query.get('page', [None])

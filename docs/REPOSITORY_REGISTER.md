@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.8。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.9。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1192。
+在册文件：1198。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 305 |
-| 运行代码 | 271 |
+| 运行代码 | 275 |
 | 现行规范 | 13 |
 | 项目配置 | 102 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 103 |
-| 测试 | 135 |
+| 配套说明 | 104 |
+| 测试 | 136 |
 
 ## 在册记录集合
 
@@ -550,6 +550,7 @@
 | [docs/handoff/inews-2026-09-29.md](handoff/inews-2026-09-29.md) | 配套说明 |
 | [docs/handoff/infra-2026-09-29.md](handoff/infra-2026-09-29.md) | 配套说明 |
 | [docs/handoff/m4-deepread.md](handoff/m4-deepread.md) | 配套说明 |
+| [docs/handoff/material-lineage-dashboard-20261008.md](handoff/material-lineage-dashboard-20261008.md) | 配套说明 |
 | [docs/handoff/material-progress-overview-20261006.md](handoff/material-progress-overview-20261006.md) | 配套说明 |
 | [docs/handoff/news-research-matching-20261006.md](handoff/news-research-matching-20261006.md) | 配套说明 |
 | [docs/handoff/nvidia-product-catalog.md](handoff/nvidia-product-catalog.md) | 配套说明 |
@@ -1231,6 +1232,7 @@
 | `src/inresearch/delivery/backup.py` | 运行代码 |
 | `src/inresearch/delivery/export.py` | 运行代码 |
 | `src/inresearch/delivery/map.py` | 运行代码 |
+| `src/inresearch/delivery/material_measurements.py` | 运行代码 |
 | `src/inresearch/delivery/publish.py` | 运行代码 |
 | `src/inresearch/delivery/publish_pilot_progress.py` | 运行代码 |
 | `src/inresearch/delivery/reader_export.py` | 运行代码 |
@@ -1245,6 +1247,7 @@
 | `src/inresearch/interfaces/deep_read.py` | 运行代码 |
 | `src/inresearch/interfaces/governance.py` | 运行代码 |
 | `src/inresearch/interfaces/http.py` | 运行代码 |
+| `src/inresearch/interfaces/material_flow.py` | 运行代码 |
 | `src/inresearch/interfaces/pages.py` | 运行代码 |
 | `src/inresearch/interfaces/public.py` | 运行代码 |
 | `src/inresearch/interfaces/reader.py` | 运行代码 |
@@ -1424,6 +1427,7 @@
 | `tests/unit/test_m4_triage_local.py` | 测试 |
 | `tests/unit/test_m4_triage_report.py` | 测试 |
 | `tests/unit/test_m4_triage_versions.py` | 测试 |
+| `tests/unit/test_material_flow.py` | 测试 |
 | `tests/unit/test_material_intake.py` | 测试 |
 | `tests/unit/test_material_retention.py` | 测试 |
 | `tests/unit/test_model.py` | 测试 |
@@ -1501,6 +1505,8 @@
 | `web/assets/hdri/lab.exr` | 静态资源 |
 | `web/assets/hdri/studio.exr` | 静态资源 |
 | `web/assets/hdri/warehouse.exr` | 静态资源 |
+| `web/assets/material-flow.css` | 运行代码 |
+| `web/assets/material-flow.js` | 运行代码 |
 | `web/assets/materials.js` | 运行代码 |
 | [web/assets/models/README.md](../web/assets/models/README.md) | 配套说明 |
 | `web/assets/models/manifest.json` | 静态资源 |
