@@ -112,6 +112,30 @@ class InterfaceContractTests(unittest.TestCase):
             finally:
                 server.shutdown();server.server_close();thread.join(timeout=2)
 
+    def test_company_workspace_requires_admin_for_get_and_head(self):
+        server = serve.ThreadingHTTPServer(('127.0.0.1', 0), serve.Handler)
+        thread = threading.Thread(target=server.serve_forever, kwargs={'poll_interval': .01}, daemon=True)
+        thread.start()
+        try:
+            for enabled in (True, False):
+                for role, expected in ((None, 302), ('member', 403), ('intern', 403), ('admin', 200)):
+                    with patch.object(serve, 'AUTH_ON', enabled), patch.object(auth, 'session_user', return_value=role), patch.object(auth, 'user_role', return_value=role):
+                        for method in ('GET', 'HEAD'):
+                            connection = http.client.HTTPConnection(*server.server_address, timeout=3)
+                            try:
+                                connection.request(method, '/admin/company.html?c=nvidia')
+                                response = connection.getresponse(); body = response.read()
+                                self.assertEqual(response.status, expected, (enabled, role, method))
+                                self.assertEqual(response.getheader('Cache-Control'), 'private, no-store')
+                                if role == 'admin' and method == 'GET':
+                                    self.assertIn('来源与版本记录', body.decode())
+                                if role is None:
+                                    self.assertTrue(response.getheader('Location').startswith('/login'))
+                            finally:
+                                connection.close()
+        finally:
+            server.shutdown(); server.server_close(); thread.join(timeout=2)
+
     def test_company_alias_preserves_query_after_auth_gate(self):
         from urllib.parse import parse_qs, urlsplit
         with patch.object(serve, 'AUTH_ON', False):

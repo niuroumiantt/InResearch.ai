@@ -139,7 +139,7 @@ def semantic_values(value):
 def term_match(term, value):
     # Chinese phrases have no ASCII word boundaries. English identifiers do.
     pattern=re.escape(term)
-    if re.search('[A-Za-z0-9]',term):pattern=r'(?<!\w)'+pattern+r'(?!\w)'
+    if re.search('[A-Za-z0-9]',term):pattern=r'(?<![A-Za-z0-9_])'+pattern+r'(?![A-Za-z0-9_])'
     return bool(re.search(pattern,value,re.I))
 
 

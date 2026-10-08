@@ -2,7 +2,7 @@
   if (new URLSearchParams(location.search).get('view') === 'materials') return;
   const $ = s => document.querySelector(s);
   const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const kinds = {named_product:'具体型号页 · 待身份复核',family_or_directory:'系列 / 平台 / 目录',software_service:'软件 / 服务'};
+  const kinds = {named_product:'具体型号',family_or_directory:'系列 / 平台 / 目录',software_service:'软件 / 服务'};
   // One page per registered company: ?c=<company> (default nvidia) reads /api/product-catalog/<company>.
   // NVIDIA keeps its reviewed five display groups; other companies are browsed by the vendor's own product path.
   // The receiver registry also supplies the company switch; no separate browser allowlist.
@@ -28,8 +28,7 @@
   for(const mode of ['products','map','specs'])$('#export-'+mode).href=api+'?export='+mode;
   if(vendorPath){
     document.title=`${companyLabel} 产品规格库 · inresearch.ai`;
-    $('#catalog-title').textContent=`${companyLabel} 产品规格库`;
-    $('#batch-link').textContent='Fetchspec 交付';$('#batch-link').href='/supply.html#providers';
+    $('#catalog-title').textContent=$('#catalog-title').dataset.companyName||`${companyLabel} · 产品与规格`;
     $('#groups').classList.add('vendor');
     $('#query').placeholder='型号、料号或官方分类';
   }
@@ -76,7 +75,7 @@
   function tableHtml(table) {
     const rich=s=>esc(s).replace(/\^\{([^{}]*)\}/g,'<sup>$1</sup>').replace(/_\{([^{}]*)\}/g,'<sub>$1</sub>');
     const refs=table.source_refs||[];
-    const evidence=refs.length?`<p class="source">表格来源：${refs.map(r=>`<a href="${esc(r.url)}" target="_blank" rel="noopener">查看原始附件</a> · SHA-256：${esc(r.sha256)}`).join('；')}</p>`:'';
+    const evidence=refs.length?`<p class="source">表格来源：${refs.map(r=>`<a href="${esc(r.url)}" target="_blank" rel="noopener">查看原始附件</a>`).join('；')}</p>`:'';
     return `<h3>${rich(table.section || `官方表格 ${table.index}`)}</h3><div class="table-wrap"><table aria-label="${esc(table.section)}"><tbody>${table.rows.map(row=>`<tr>${row.map(c=>{const tag=c.header?'th':'td';return `<${tag} colspan="${Number(c.colspan)||1}" rowspan="${Number(c.rowspan)||1}">${rich(c.text)}</${tag}>`;}).join('')}</tr>`).join('')}</tbody></table></div>${table.notes?`<p class="notes">${rich(table.notes)}</p>`:''}${evidence}`;
   }
   const simpleParameters=p=>{
@@ -97,10 +96,16 @@
     const resources=p.official_resources||[];
     const compute=p.compute;
     const chipLine=(compute?.chip_links||[]).map(l=>`<p>使用芯片：<a href="/product-catalog.html?${new URLSearchParams({c:company,product_id:l.product_id})}">${esc(catalog.products.find(x=>x.id===l.product_id)?.name||l.product_id)}</a> · 官方对应原文：${esc(l.evidence_quote)} ${(l.source_refs||[]).map(r=>`<a href="${esc(r.url)}" target="_blank" rel="noopener">来源</a>`).join(' ')}</p>`).join('');
-    const computeLine=compute?`<p>计算分类：${esc(({cpu:'CPU',gpu:'GPU',accelerator:'其他计算加速器',unknown:'待核验',excluded:'非计算芯片'})[compute.category])} · 形态：${esc(({chip:'芯片',board:'板卡',module:'模组',system:'整机 / 平台',series:'系列 / 目录',ip:'IP',unknown:'待核验'})[compute.form])} · 架构原文：${esc(compute.architecture||'—')}</p>${compute.classification_note?`<p>${esc(compute.classification_note)}</p>`:''}`:'';
-    const sm=p.website_sitemap||{};
+    const formLabel=({chip:'芯片',board:'板卡',module:'模组',system:'整机 / 平台',series:'系列',ip:'IP'})[compute?.form];
+    const computeLine=compute&&(formLabel||compute.architecture)?`<p class="muted">${formLabel?'产品形态：'+esc(formLabel):''}${compute.architecture?' · 架构：'+esc(compute.architecture):''}</p>`:'';
     const localized=(p.official_pages||[]).filter(x=>x.url!==p.source_url);
-    return `<h2>${esc(p.name)}</h2><p>${esc(p.navigation?.family_label)} · ${esc(kinds[p.kind])}${parent?` · 所属平台：${esc(parent.name)}`:''}</p>${vendorLine(p)}${computeLine}${chipLine}${highlights}<details><summary>产品分类与获取记录</summary><p>${esc(p.category)}</p><p class="muted">在售状态：待核对 · 产品地图：${esc(p.map_change_status||'已登记')} · 来源出现在官方语言 sitemap：${sm.matched?'是（'+esc((sm.roles||[]).join('、'))+'）':'否 / 尚未匹配'} · 获取于 ${esc(p.observed_at)}</p></details>${compact?'':`<button id="compare">${compared.has(p.id)?'移出并排核查':'加入并排核查（最多 4 项）'}</button>`}${p.tables.length?p.tables.map(t=>p.tables.length>3?`<details class="raw-specification"><summary>${esc(t.section||'官方表格 '+t.index)}</summary>${tableHtml(t)}</details>`:tableHtml(t)).join(''):`<p class="notice"><strong>${esc(gap(p).label)}</strong><br>${esc(gap(p).detail)}</p>`}<p class="source"><a href="${esc(p.source_url)}" target="_blank" rel="noopener">查看官方来源</a> · 原文快照 SHA-256：${esc(p.source_sha256)}</p>${localized.length?`<details><summary>其他语言官方来源（${localized.length}）</summary><ul>${localized.map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener">查看官方页面</a> · SHA-256：${esc(s.sha256)}</li>`).join('')}</ul></details>`:''}${resources.length?`<details open><summary>官方规格资料入口（${resources.length}，尚未确认文件可直接下载）</summary><ul>${resources.map(a=>`<li><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.label||a.url)}</a> · ${esc(a.access_status||'待核实')}</li>`).join('')}</ul></details>`:''}${p.attachments.length?`<details><summary>关联附件（${p.attachments.length}）</summary><ul>${p.attachments.map(a=>`<li><a href="${esc(a.url)}" target="_blank" rel="noopener">${esc(a.label||a.url.split('/').pop())}</a></li>`).join('')}</ul></details>`:''}`;
+    return `<h2>${esc(p.name)}</h2><p class="muted">${esc(p.navigation?.family_label||'')} · ${esc(kinds[p.kind]||'产品资料')}${parent?` · 所属平台：${esc(parent.name)}`:''}</p>
+      <p class="product-source"><a href="${esc(p.source_url)}" target="_blank" rel="noopener">官方来源 ↗</a>${p.observed_at?' · 资料日期 '+esc(p.observed_at.slice(0,10)):''}</p>
+      ${vendorLine(p)}${computeLine}${chipLine}${highlights}${compact?'':`<div class="product-actions"><button id="compare">${compared.has(p.id)?'移出比较':'加入比较（最多 4 项）'}</button></div>`}
+      ${(p.tables||[]).length?p.tables.map(t=>p.tables.length>3?`<details class="raw-specification"><summary>${esc(t.section||'官方表格 '+t.index)}</summary>${tableHtml(t)}</details>`:tableHtml(t)).join(''):`<p class="notice"><strong>${esc(gap(p).label)}</strong><br>${esc(gap(p).detail)}</p>`}
+      ${localized.length?`<details><summary>其他语言官方来源（${localized.length}）</summary><ul>${localized.map(v=>`<li><a href="${esc(v.url)}" target="_blank" rel="noopener">查看官方页面</a></li>`).join('')}</ul></details>`:''}
+      ${resources.length?`<details><summary>官方规格资料（${resources.length}）</summary><p class="basis">以下链接打开官方资料入口，文件的获取方式以原网站为准。</p><ul>${resources.map(v=>`<li><a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.label||v.url)}</a></li>`).join('')}</ul></details>`:''}
+      ${(p.attachments||[]).length?`<details><summary>相关附件（${p.attachments.length}）</summary><ul>${p.attachments.map(v=>`<li><a href="${esc(v.url)}" target="_blank" rel="noopener">${esc(v.label||v.url.split('/').pop())}</a></li>`).join('')}</ul></details>`:''}`;
   }
   async function fetchDetail(id) {
     if(detailsById.has(id))return detailsById.get(id);
@@ -122,6 +127,7 @@
 
     if(current!==comparisonGeneration)return;
     $('#comparison').hidden=!compared.size;
+    $('#comparison-count').textContent=compared.size?'('+compared.size+')':'';
     // Only simple, unambiguous two-cell rows can join the matrix. Complex tables
     // retain configuration columns, merged cells and notes in the original below.
     const maps=products.map(simpleParameters), keys=[...new Set(maps.flatMap(m=>[...m.keys()]))].slice(0,12);
@@ -129,7 +135,7 @@
     $('#comparison-matrix').innerHTML=`<p class="basis">参数名与数值保留官方原文，不合并不同单位、配置或测试条件。复杂合并表在下方原表核查。</p>${failures.length?`<p class="comparison-failure">${failures.map(id=>esc(byId.get(id)?.name||id)).join('、')} 规格读取失败。<button id="retry-comparison">重试对比</button></p>`:''}${products.length?`<div class="table-wrap"><table><thead><tr><th>官方参数</th>${products.map(p=>`<th>${esc(p.name)}</th>`).join('')}</tr></thead><tbody>${keys.map(k=>`<tr><th scope="row">${esc(k)}</th>${maps.map(m=>`<td>${esc(m.get(k)??'— / 查看原表')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:''}${keys.length?'':'<p>当前表格需要按原始配置列核查，未自动合成参数。</p>'}`;
     $('#retry-comparison')?.addEventListener('click',renderComparison);
     $('#comparison-items').innerHTML=products.map(p=>`<article><details><summary>${esc(p.name)} · 官方完整原表与来源</summary>${details(p,true)}</details></article>`).join('');
-    document.querySelectorAll('#model-rows input').forEach(el=>{el.checked=compared.has(el.dataset.id);});
+    document.querySelectorAll('.product-item input').forEach(el=>{el.checked=compared.has(el.dataset.id);});
   }
   async function select(id) {
     selected=id;
@@ -167,7 +173,7 @@
     $('#business-lines').innerHTML=(catalog.company_lines||[]).map(v=>`<button data-line="${esc(v.id)}" aria-pressed="${line===v.id}">${esc(v.name)} <small>${esc(v.entities)}</small></button>`).join('');
     $('#business-lines').querySelectorAll('button').forEach(b=>b.onclick=()=>{line=b.dataset.line;group='';family='';scope='all';page=0;selected='';selectedSeries='';$('#query').value='';remember({product_id:'',series:''});filter();});
     $('#groups').innerHTML=groups.map(g=>`<button data-group="${esc(g.id)}" aria-pressed="${!line&&scope==='catalog'&&group===g.id&&!$('#query').value}"><strong>${esc(zh('groups',g.id,g.label))}</strong><small>${items.filter(p=>p.navigation.group===g.id).length} ${vendorPath?'个目录条目':'个产品 / 系列条目'}</small></button>`).join('');
-    $('#auxiliary').textContent=`${vendorPath?'目录与分类页 / 待归类':'辅助资料 / 待归类'}（${catalog.products.length-items.length}）`;
+    $('#auxiliary').textContent=`${vendorPath?'目录与分类页':'相关资料'}（${catalog.products.length-items.length}）`;
     $('#auxiliary').setAttribute('aria-pressed',String(scope==='auxiliary'));
     $('#groups').querySelectorAll('button').forEach(b=>b.onclick=()=>{line='';group=b.dataset.group;family='';scope='catalog';page=0;$('#query').value='';filter();});
     const families=new Map();
@@ -203,7 +209,7 @@
     document.querySelectorAll('.product[data-id]').forEach(b=>b.onclick=()=>select(b.dataset.id));
     if(shown.length)selectSeries(shown.some(s=>s.entry.id===selectedSeries)?selectedSeries:shown[0].entry.id);
     else if(orphans.length)select(orphans[0].id);
-    else $('#detail').textContent='没有符合筛选条件的产品。';
+    else {detailGeneration++;selected='';selectedSeries='';$('#detail').textContent='没有符合筛选条件的产品。';}
   }
   async function fetchSeries(id) {
     if(seriesById.has(id))return seriesById.get(id);
@@ -224,7 +230,7 @@
     const compare=s.columns.length?`<h3>料号对比（${c.parts} 个料号 × ${s.columns.length} 项不同参数）</h3><p class="muted">每行一个官方料号，列名是官网零件页的原样参数名；点料号查看单项规格与来源。</p>${decoded}<div class="table-wrap"><table class="series-table"><thead><tr><th scope="col">料号</th><th scope="col">官网状态</th>${s.columns.map(col=>`<th scope="col">${esc(col)}</th>`).join('')}</tr></thead><tbody>${s.parts.map(p=>`<tr><th scope="row"><button class="part-link" data-id="${esc(p.id)}">${esc(p.name)}</button></th><td>${esc(p.official_status||'未标注')}</td>${s.columns.map(col=>`<td>${esc(p.values[col]??'—')}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`:'';
     const shared=s.shared_tables.map(t=>`<h3>系列规格总表</h3><p class="muted">厂商系列资料中的规格表，适用本系列 ${t.part_ids.length} 个料号；不是逐料号测得的数值。</p>${tableHtml(t)}`).join('');
     const listed=!s.columns.length?`<h3>料号（${c.parts}）</h3><ul class="series-parts">${s.parts.map(p=>`<li><button class="part-link" data-id="${esc(p.id)}">${esc(p.name)}</button> · ${esc(p.official_status||'官网未标注状态')}${Object.keys(p.values).length||s.shared_tables.some(t=>t.part_ids.includes(p.id))?'':' · '+esc(gap(p).label)}</li>`).join('')}</ul>`:'';
-    return `<h2>${esc(s.name)}</h2><p class="muted">官方产品路径：${esc(path)} · <a href="${esc(s.source_url)}" target="_blank" rel="noopener">官网系列页</a></p><p>${c.parts} 个料号 · 有官方规格 ${c.with_specifications} / ${c.parts} · 官网状态（原文）：${esc(statuses)}</p>${common}${shared}${compare}${listed}<p class="source">系列页原文快照 SHA-256：${esc(s.source_sha256)} · 获取于 ${esc(s.observed_at)}</p>`;
+    return `<h2>${esc(s.name)}</h2><p class="muted">官方产品路径：${esc(path)} · <a href="${esc(s.source_url)}" target="_blank" rel="noopener">官网系列页</a></p><p>${c.parts} 个料号 · 有官方规格 ${c.with_specifications} / ${c.parts} · 官网状态（原文）：${esc(statuses)}</p>${common}${shared}${compare}${listed}<p class="product-source">资料日期 ${esc((s.observed_at||'').slice(0,10))}</p>`;
   }
   async function selectSeries(id) {
     selectedSeries=id;selected='';
@@ -243,14 +249,15 @@
     $('#detail').innerHTML=seriesHtml(s);
     $('#detail').querySelectorAll('.part-link').forEach(b=>b.onclick=()=>select(b.dataset.id));
   }
-  function modelRows(products) {
-    $('#model-rows').innerHTML=products.slice(page*pageSize,(page+1)*pageSize).map(p=>`<tr><td><input type="checkbox" aria-label="对比 ${esc(p.name)}" data-id="${esc(p.id)}" ${compared.has(p.id)?'checked':''}></td><td><button data-product="${esc(p.id)}">${esc(p.name)}</button><small>${esc(p.kind==='named_product'?'具体型号':'系列 / 目录')}</small></td><td>${esc(p.category||'—')}</td><td>${esc(({chip:'芯片',board:'板卡',module:'模组',system:'整机 / 平台',series:'系列',ip:'IP'})[p.compute?.form]||'未登记')}</td><td>${tableCount(p)?tableCount(p)+' 张官方表':'待补规格'}</td></tr>`).join('')||'<tr><td colspan="5">没有符合筛选条件的产品。</td></tr>';
-    $('#model-rows').querySelectorAll('[data-product]').forEach(b=>b.onclick=()=>{select(b.dataset.product);$('#detail').scrollIntoView({behavior:'smooth',block:'start'});});
-    $('#model-rows').querySelectorAll('input').forEach(el=>el.onchange=()=>{
-      if(el.checked&&compared.size>=4){el.checked=false;$('#status').textContent='最多并排核查 4 项，请先移出一项。';return;}
+  function bindComparison() {
+    document.querySelectorAll('.product-item input').forEach(el=>el.onchange=()=>{
+      if(el.checked&&compared.size>=4){el.checked=false;$('#status').textContent='最多比较 4 项，请先移出一项。';return;}
       if(el.checked)compared.add(el.dataset.id);else compared.delete(el.dataset.id);
       renderComparison();
     });
+  }
+  function productButton(p) {
+    return `<div class="product-item"><input type="checkbox" aria-label="对比 ${esc(p.name)}" data-id="${esc(p.id)}" ${compared.has(p.id)?'checked':''}><button class="product" data-id="${esc(p.id)}" aria-pressed="${p.id===selected}"><strong>${esc(p.name)}</strong></button></div>`;
   }
   $('#clear-comparison').onclick=()=>{compared.clear();renderComparison();};
   function remember(fields) {
@@ -265,22 +272,21 @@
     const activeGroup=q||scope!=='catalog'?'':group, activeFamily=q||scope!=='catalog'?'':family;
     const products=catalog.products.filter(p=>(!line||(p.company_line||'unmapped')===line)&&(scope==='all'||(scope==='catalog'?p.navigation.role==='catalog':p.navigation.role!=='catalog'))&&(!activeGroup||p.navigation.group===activeGroup)&&(!activeFamily||p.navigation.family===activeFamily)&&(!kind||p.kind===kind)&&(!$('#with-specs').checked||tableCount(p))&&searchText(p).toLowerCase().includes(q)).sort((a,b)=>Number(b.kind==='named_product')-Number(a.kind==='named_product')||Number(!!tableCount(b))-Number(!!tableCount(a))||a.name.localeCompare(b.name,'en',{numeric:true}));
     const familyLabel=catalog.products.find(p=>p.navigation.group===group&&p.navigation.family===family)?.navigation.family_label||'';
-    $('#breadcrumb').textContent=line?(catalog.company_lines?.find(v=>v.id===line)?.name||'未知业务分类')+' · 已收录资料':scope==='all'?'全部已收录产品与资料':scope!=='catalog'?(vendorPath?'目录与分类页 / 待归类（数量按条目类型计）':'辅助资料 / 待归类（不计作具体产品）'):q?'跨大类搜索结果':`${zh('groups',group,catalog.navigation.groups.find(g=>g.id===group)?.label||'')} › ${zh('families',family,familyLabel)}`;
+    $('#breadcrumb').textContent=line?(catalog.company_lines?.find(v=>v.id===line)?.name||'未知业务分类')+' · 已收录资料':scope==='all'?'全部已收录产品与资料':scope!=='catalog'?(vendorPath?'目录与分类页 / 相关资料':'相关资料'):q?'跨大类搜索结果':`${zh('groups',group,catalog.navigation.groups.find(g=>g.id===group)?.label||'')} › ${zh('families',family,familyLabel)}`;
     for(const mode of ['products','map','specs'])$('#export-'+mode).href=api+'?'+new URLSearchParams({export:mode,q,kind,with_specs:$('#with-specs').checked?'1':'',group:activeGroup,family:activeFamily,scope,line});
     // Vendor catalogs list part numbers: browse them by series (the official page the parts hang from),
     // except in search, a kind filter, or the vendor's obsolete catalogue (listed parts only).
-    modelRows(products);
     remember({q,kind,group:activeGroup,family:activeFamily,scope,line,with_specs:$('#with-specs').checked?'1':''});
     if(vendorPath&&scope==='catalog'&&!q&&!kind&&group!=='obsolete')return seriesList(products);
     page=Math.min(page,Math.max(0,Math.ceil(products.length/pageSize)-1));
-    modelRows(products);
     const shown=products.slice(page*pageSize,(page+1)*pageSize);
-    $('#products').innerHTML=shown.map(p=>`<button class="product" data-id="${esc(p.id)}" aria-pressed="${p.id===selected}"><strong>${esc(p.name)}</strong><small>${tableCount(p)?`${tableCount(p)} 张规格表`:gap(p).label} · ${p.kind==='named_product'?'具体型号':p.kind==='software_service'?'软件 / 服务':'系列 / 目录'}${vendorPath&&p.official_status?` · ${esc(p.official_status)}`:''}</small></button>`).join('')||'<p>没有符合筛选条件的条目。</p>';
+    $('#products').innerHTML=shown.map(productButton).join('')||'<p>没有符合筛选条件的产品。</p>';
+    bindComparison();
     $('#matches').textContent=`${products.length} 项 · 当前显示 ${products.length?page*pageSize+1:0}–${Math.min(products.length,(page+1)*pageSize)}`;
     $('#previous').disabled=page===0;$('#next').disabled=(page+1)*pageSize>=products.length;
     document.querySelectorAll('.product').forEach(b=>b.onclick=()=>select(b.dataset.id));
     if(shown.length)select(shown.some(p=>p.id===selected)?selected:shown[0].id);
-    if(!products.length)$('#detail').textContent='没有符合筛选条件的产品。';
+    if(!products.length){detailGeneration++;selected='';selectedSeries='';$('#detail').textContent='没有符合筛选条件的产品。';}
   }
   async function load() {
     const current=++generation;
@@ -292,14 +298,14 @@
     try {
       const response=await fetch(api+'?view=index',{cache:'no-store',signal:loadController.signal});
       if(current!==generation)return;
-      if(response.status===404){window.dispatchEvent(new CustomEvent('company:catalog-error',{detail:'unregistered'}));$('#detail').textContent='尚未建立产品目录，已登记的公司关系可在下方查看。';throw Error(`尚未为这家公司建立产品目录。`);}
+      if(response.status===404){window.dispatchEvent(new CustomEvent('company:catalog-error',{detail:'unregistered'}));$('#detail').textContent='暂无可展示的产品资料。';throw Error(`这家公司的产品资料尚未提供。`);}
       if(!response.ok)throw Error('产品数据库暂时不可用，请刷新重试。');
       const data=await response.json();if(current!==generation)return;
       companyLabel=data.company?.label||company;
       document.title=`${companyLabel} · 公司与产品 · inresearch.ai`;
-      $('#catalog-title').textContent=`${companyLabel} 产品规格库`;
+      $('#catalog-title').textContent=$('#catalog-title').dataset.companyName||`${companyLabel} · 产品与规格`;
       if(data.registered_companies)$('#company-switch').innerHTML=data.registered_companies.map(c=>`<a href="?c=${encodeURIComponent(c.id)}" data-company="${esc(c.id)}" ${c.id===company?'aria-current="page"':''}>${esc(c.label)}</a>`).join('');
-      if(vendorPath)$('#groups-note').textContent='按已交付的官方产品路径浏览；未交付目录与待补规格分别展示。';
+      if(vendorPath)$('#groups-note').textContent='按厂商官方产品路径浏览。';
       if(vendorPath&&scope!=='all'&&!line&&data.products.length&&!data.products.some(p=>p.navigation.role==='catalog'))scope='auxiliary';
       catalog=data;byId=new Map(data.products.map(p=>[p.id,p]));
       window.dispatchEvent(new CustomEvent('company:catalog',{detail:data}));
@@ -311,35 +317,19 @@
         // A selected model saved alongside filters must keep those filters on refresh.
         scope='all';line='';group='';family='';$('#query').value=linkedProduct.name;
       }
-      detailsById.clear();seriesById.clear();compared.clear();comparisonGeneration++;$('#comparison').hidden=true;selected=linkedProduct?.id||'';detailGeneration++;
+      detailsById.clear();seriesById.clear();compared.clear();comparisonGeneration++;$('#comparison').hidden=true;$('#comparison-count').textContent='';selected=linkedProduct?.id||'';detailGeneration++;
       // ?series=<id> opens that series (links from the company page)
       const linked=byId.get(selectedSeries);
       if(linked){const part=data.products.find(p=>p.parent_id===linked.id&&p.navigation.role==='catalog');if(part){group=part.navigation.group;family=part.navigation.family;}}
-      if(!data.available){$('#model-rows').innerHTML='<tr><td colspan="5">等待首次目录交付。</td></tr>';$('#detail').textContent='尚无已交付产品规格。';$('#groups').replaceChildren();$('#families').replaceChildren();$('#status').textContent=vendorPath?`等待 Fetchspec 首次交付 ${companyLabel} 产品清单。`:'等待 M5 首次交付产品清单。';$('#coverage-line').textContent='';return;}
-      const c=data.coverage;
-      const alignment=data.research_alignment||{target_ids:[],part_ids:[]};
-      const pm=c.product_map||{};
-      const delta=Object.entries(pm.changes||{}).map(([k,v])=>`${k} ${v}`).join(' / ');
-      const sm=c.website_sitemap||{};
-      // vendor catalogs list obsolete parts without collecting them: the denominator is the current parts
-      const named=data.products.filter(p=>p.kind==='named_product'&&p.listing!=='obsolete');
-      const namedWithSpecs=named.filter(p=>tableCount(p));
-      const explicitGaps=named.filter(p=>specificationGaps[p.extraction_status]);
-      $('#status').textContent=`更新于 ${data.generated_at} · 具体型号规格 ${namedWithSpecs.length} / ${named.length} · 产品地图 ${pm.entries||data.products.length} 项${delta?` · 本次 ${delta}`:''}${vendorPath&&sm.candidate_urls==null?'':` · 官方 sitemap 候选 ${sm.candidate_urls??'尚未同步'}`} · 尚未确认全公司产品总数`;
-      const cov=data.summary?.specification_coverage;
-      // The standard's first denominator: current named products (obsolete parts are listed, not collected).
-      const covNamed=cov?.current_named_products||cov?.named_products;
-      $('#coverage-line').textContent=cov?`规格覆盖（两个分母分开）：${cov.current_named_products?'在售':''}具体型号有官方规格表 ${covNamed.with_tables} / ${covNamed.total} · 全部目录实体有规格表 ${cov.all_entities.with_tables} / ${cov.all_entities.total}${(data.summary?.by_extraction_status||{}).family_brief_table_extracted?`（其中 ${data.summary.by_extraction_status.family_brief_table_extracted} 个是系列产品简介的规格总表，非逐型号）`:''}${cov.obsolete_listed?` · 另有停产型号 ${cov.obsolete_listed} 个只登记不抓规格`:''}`:'';
-      if(vendorPath)$('#groups-note').innerHTML=`分类沿用 <a href="${esc(data.navigation?.official_source||data.company?.products_url||'')}" target="_blank" rel="noopener">${esc(companyLabel)} 官方目录</a>。系列可展开料号与参数；停产登记不计当前型号覆盖，原文参数保留各自配置与条件。`;
-
-      $('#alignment').innerHTML=`已与新版主线对齐：当前 ${esc(companyLabel)} 资料可服务 <strong>${esc(alignment.target_ids.length)}</strong> 条 Fetchspec 生成目标、<strong>${esc(alignment.part_ids.length)}</strong> 个部件；这里只显示候选规格，不自动写成正式研究事实。 <a href="/node.html?node=root">查看数据中心节点树</a> · <a href="/supply.html#providers">查看 Fetchspec 目标</a>`;
-      const sum=data.summary||{};
-      const vendorMetrics=[['目录实体',sum.entities],[cov?.current_named_products?'在售型号规格覆盖':'具体型号规格覆盖',cov?`${covNamed.with_tables} / ${covNamed.total}`:'—'],['有规格表的全部条目',cov?`${cov.all_entities.with_tables} / ${cov.all_entities.total}`:'—'],['官网明确规格缺口',explicitGaps.length],...Object.entries(sum.by_listing||{}).map(([k,v])=>[listingLabels[k]||'未标注列出状态',v]),...Object.entries(sum.by_official_status||{}).map(([k,v])=>['官网状态：'+(k==='unspecified'?'未标注':k),v]),['待访问页面',c.pending_pages??'—'],['访问失败（可重试）',c.failed_pages??'—']];
-      $('#metrics').innerHTML=vendorPath?vendorMetrics.map(([label,n])=>`<div class="metric"><strong>${esc(n)}</strong>${esc(label)}</div>`).join(''):[['产品目录入口',c.directory_entries],['目录实体',pm.entries||data.products.length],['具体型号规格覆盖',`${namedWithSpecs.length} / ${named.length}`],['官网明确规格缺口',explicitGaps.length],['有规格表的全部条目',c.with_spec_tables],['官方 sitemap 候选 URL',sm.candidate_urls??'—'],['已核对产品 URL',`${sm.product_path_observed??0} / ${sm.product_path_candidates??'—'}`],['产品来源命中 sitemap',sm.matched_catalog_sources??'—'],['待访问页面',c.pending_pages],['访问失败（可重试）',c.failed_pages],['官网已删除旧页',c.unavailable_pages??0],['策略阻止跳转',c.policy_blocked_pages??0]].map(([label,n])=>`<div class="metric"><strong>${esc(n)}</strong>${esc(label)}</div>`).join('');
-      $('#limitations').innerHTML=(c.limitations||[]).map(v=>`<li>${esc(v)}</li>`).join('');
+      if(!data.available){
+        $('#products').replaceChildren();$('#detail').textContent='暂无可展示的产品资料。';$('#groups').replaceChildren();$('#families').replaceChildren();$('#status').textContent='这家公司的产品资料尚未提供。';$('#previous').disabled=true;$('#next').disabled=true;return;
+      }
+      $('#status').textContent='';
+      if(vendorPath)$('#groups-note').innerHTML=`分类沿用 <a href="${esc(data.navigation?.official_source||data.company?.products_url||'')}" target="_blank" rel="noopener">${esc(companyLabel)} 官方目录</a>。系列可展开料号与参数，原文参数保留各自配置与条件。`;
+      else $('#groups-note').innerHTML='按本站五个浏览分组查找产品，依据 NVIDIA 官方目录整理；厂商原始分类保留在产品资料中。';
       const initialQuery=new URLSearchParams(location.search).get('q');if(initialQuery!==null)$('#query').value=initialQuery;
       filter();
-    } catch(e) {if(current===generation&&e.message!=='尚未为这家公司建立产品目录。')window.dispatchEvent(new CustomEvent('company:catalog-error',{detail:'failed'}));if(current===generation)$('#status').textContent=e.name==='AbortError'?'产品清单读取超时，请点击刷新重试。':e.message;}
+    } catch(e) {if(current===generation&&e.message!=='这家公司的产品资料尚未提供。')window.dispatchEvent(new CustomEvent('company:catalog-error',{detail:'failed'}));if(current===generation)$('#status').textContent=e.name==='AbortError'?'产品清单读取超时，请点击刷新重试。':e.message;}
     finally {clearTimeout(timeout);}
   }
   $('#query').oninput=()=>{page=0;filter();};$('#kind').onchange=()=>{page=0;filter();};$('#with-specs').onchange=()=>{page=0;filter();};$('#retry').onclick=load;

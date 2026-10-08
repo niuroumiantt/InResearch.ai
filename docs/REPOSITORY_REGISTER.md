@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.5。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.8。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1188。
+在册文件：1192。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,14 +15,14 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 304 |
-| 运行代码 | 269 |
+| 历史快照 | 305 |
+| 运行代码 | 271 |
 | 现行规范 | 13 |
 | 项目配置 | 102 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 102 |
+| 配套说明 | 103 |
 | 测试 | 135 |
 
 ## 在册记录集合
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 4 |
-| `data/research_knowledge.json` | evidence | 23 |
-| `data/research_knowledge.json` | statements | 22 |
+| `data/research_knowledge.json` | documents | 5 |
+| `data/research_knowledge.json` | evidence | 24 |
+| `data/research_knowledge.json` | statements | 23 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -334,7 +334,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 40 |
+| `framework/current_state.json` | policies | 41 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -347,7 +347,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 23 |
+| `framework/interface_manifest.json` | static_pages | 24 |
 | `framework/interface_manifest.json` | public_pages | 13 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
@@ -519,6 +519,7 @@
 | `docs/archive/2026-10-06/worktree-snapshots/terminal-boundaries-plan-7e35305.patch` | 历史快照 |
 | `docs/archive/2026-10-06/worktree-snapshots/terminal-office-wip-d9477a7.patch` | 历史快照 |
 | [docs/archive/2026-10-07/framework__04_before_native_text.md](archive/2026-10-07/framework__04_before_native_text.md) | 历史快照 |
+| [docs/archive/2026-10-08/framework__05_interface_system__before_reader_company.md](archive/2026-10-08/framework__05_interface_system__before_reader_company.md) | 历史快照 |
 | [docs/geluoke/专题写作规则.md](geluoke/专题写作规则.md) | 现行规范 |
 | [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
 | `docs/guides/model-governance-2026-09-27.html` | 运行代码 |
@@ -530,6 +531,7 @@
 | [docs/handoff/company-catalog-map-20261007.md](handoff/company-catalog-map-20261007.md) | 配套说明 |
 | [docs/handoff/company-category-navigation-20261007.md](handoff/company-category-navigation-20261007.md) | 配套说明 |
 | [docs/handoff/company-page-20261007.md](handoff/company-page-20261007.md) | 配套说明 |
+| [docs/handoff/company-reader-design-20261008.md](handoff/company-reader-design-20261008.md) | 配套说明 |
 | [docs/handoff/company-window-20261007.md](handoff/company-window-20261007.md) | 配套说明 |
 | [docs/handoff/compute-catalog-20261002.md](handoff/compute-catalog-20261002.md) | 配套说明 |
 | [docs/handoff/compute-catalog-batch2-20261002.md](handoff/compute-catalog-batch2-20261002.md) | 配套说明 |
@@ -1542,6 +1544,7 @@
 | `web/assets/world.geo.json` | 静态资源 |
 | `web/components/auth-form.js` | 运行代码 |
 | `web/components/auth.css` | 运行代码 |
+| `web/components/catalog-admin.js` | 运行代码 |
 | `web/components/catalog-materials.js` | 运行代码 |
 | `web/components/company-browser.js` | 运行代码 |
 | `web/components/company-context.js` | 运行代码 |
@@ -1569,6 +1572,7 @@
 | `web/components/supply.js` | 运行代码 |
 | `web/components/targets.js` | 运行代码 |
 | `web/components/tasks-board.js` | 运行代码 |
+| `web/pages/admin/company.html` | 运行代码 |
 | `web/pages/admin/fetchspec/reporg.html` | 运行代码 |
 | `web/pages/admin/fetchspecrepo.html` | 运行代码 |
 | `web/pages/admin/inewsrepo.html` | 运行代码 |

@@ -226,6 +226,7 @@ class ResearchReviewTests(unittest.TestCase):
             changed=copy.deepcopy(result);changed['matches'][0]['context_terms']=terms
             with self.assertRaisesRegex(ValueError,'literal_bounded_claim'):review.validate_matches(matching,changed)
         self.assertTrue(review.term_match('电费','居民电费上涨'))
+        self.assertTrue(review.term_match('PJM','PJM电网'))
         self.assertFalse(review.term_match('NODE','node_id'))
 
     def test_regroup_keeps_all_dispositions_and_never_reuses_attempted_batches(self):
@@ -277,7 +278,7 @@ class ResearchReviewTests(unittest.TestCase):
             self.assertNotIn('original_rel',encoded(registry._research_verification(value)))
 
     def test_unmatched_actual_demand_stops_after_matching_without_adoption_call(self):
-        packet,row=fixture()
+        packet,row=fixture();packet['unsupported']=[]
         class Client:
             profile=type('Profile',(),{'context':65536,'max_output_tokens':8192})()
             calls=0
