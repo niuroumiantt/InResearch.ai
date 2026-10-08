@@ -87,12 +87,43 @@ finally:
   mixed.adopted.knowledge.statements.push({id:'statement:candidate',text:'Still a candidate',status:'candidate'});
   mixed.summary.knowledge.statements.push({id:'statement:candidate',status:'candidate'});
   let fullRequests = 0;
+  let materialRequests = 0;
+  const materialRows = Array.from({length:43}, (_, i) => ({id:'material:'+i,
+    text:'<img src=x onerror=alert(1)> historical source '+i,
+    source:{title:'Original 2015 report', url:null}, source_date:'2015-04-01',
+    quotes:[{id:'quote:'+i, quote:'Original source quotation '+i, page_index:0}]}));
+  await page.route(url => url.pathname === '/api/research-materials', route => {
+    materialRequests++;
+    if (materialRequests === 1) return route.fulfill({status:503,json:{error:'temporary'}});
+    const params = new URL(route.request().url()).searchParams;
+    const rows = params.get('q') ? materialRows.slice(0,1) : materialRows;
+    const offset = Number(params.get('offset') || 0), limit = 20;
+    return route.fulfill({json:{state:'connected',total:rows.length,materials:1,offset,limit,
+      next_offset:offset+limit<rows.length?offset+limit:null,records:rows.slice(offset,offset+limit)}});
+  });
   await page.route('**/api/research-summary?*', route => route.fulfill({json:mixed.summary}));
   await page.route(url => url.pathname === '/api/research-adopted', route => {
     fullRequests++;
     return fullRequests === 1 ? route.fulfill({status:503,json:{error:'temporary'}}) : route.fulfill({json:mixed.adopted});
   });
   await page.goto(process.env.UI_BASE_URL+'/node.html');
+  const materials = page.locator('#materials');
+  await materials.getByRole('button',{name:'重试'}).click();
+  await materials.locator('[data-material-id="material:0"]').waitFor();
+  assert.equal(await materials.locator('[data-material-id]').count(),20);
+  assert.equal(await materials.locator('img').count(),0,'material text became active HTML');
+  await materials.locator('details').first().locator('summary').click();
+  assert.match(await materials.innerText(),/Original source quotation 0/);
+  assert.match(await materials.innerText(),/2015-04-01/);
+  await materials.getByRole('button',{name:'下一页'}).click();
+  await materials.locator('[data-material-id="material:20"]').waitFor();
+  assert.equal(await materials.locator('[data-material-id="material:0"]').count(),0);
+  await materials.getByRole('button',{name:'上一页'}).click();
+  await materials.locator('[data-material-id="material:0"]').waitFor();
+  await materials.getByRole('textbox',{name:'搜索资料'}).fill('Historical');
+  await materials.getByRole('button',{name:'搜索',exact:true}).click();
+  await materials.locator('[data-page="next"][disabled]').waitFor();
+  assert.equal(await materials.locator('[data-material-id]').count(),1);
   const detail = page.locator('.adopted-research'); await detail.waitFor();
   assert.equal(fullRequests,0,'first paint fetched the full research source payload');
   assert.match(await page.locator('#evidence').innerText(),/正式采用/);
@@ -107,6 +138,8 @@ finally:
   assert.match(await detail.innerText(),/原件第 1 页/);
   assert.equal(await detail.locator('img').count(),0,'source text became active HTML');
   await page.setViewportSize({width:390,height:950});
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
+  await page.setViewportSize({width:320,height:850});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   console.log('PASS HTTP full/summary association parity for '+result.objects+' objects; nonzero evidence, redirects, stale success/failure, cache ownership, retry and full-view retention');
  } finally {await browser.close();}

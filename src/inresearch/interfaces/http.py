@@ -573,6 +573,22 @@ class Handler(SimpleHTTPRequestHandler):
                 return self._json(200, research.adopted_for_node(ROOT, nodes[0]))
             except (ValueError, TypeError, KeyError, OSError):
                 return self._json(503, {'ok': False, 'error': '采用详情暂不可用，请稍后重试'})
+        if urlsplit(self.path).path == '/api/research-materials':
+            from inresearch.knowledge.material_baseline import for_node
+            query = parse_qs(urlsplit(self.path).query)
+            if any(len(values) != 1 for values in query.values()):
+                return self._json(400, {'error': 'one value per filter required'})
+            try:
+                offset, limit = int(query.get('offset', ['0'])[0]), int(query.get('limit', ['20'])[0])
+                if offset < 0 or offset > 100000000 or not 1 <= limit <= 50 or len(query.get('q', [''])[0]) > 200:
+                    raise ValueError('invalid material filter')
+            except ValueError:
+                return self._json(400, {'error': 'invalid material filter'})
+            try:
+                return self._json(200, for_node(ROOT, query.get('node', ['root'])[0],
+                    offset=offset, limit=limit, query=query.get('q', [''])[0]))
+            except (ValueError, TypeError, KeyError, OSError):
+                return self._json(503, {'error': '资料暂不可用，请稍后重试'})
         if urlsplit(self.path).path == "/api/research":
             try:
                 return self._json(200, research.build_snapshot(ROOT))

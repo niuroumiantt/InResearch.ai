@@ -98,10 +98,17 @@
   .chip-sm { display: inline-block; border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 0 6px; font-size: 11px; margin-right: 4px; }
   details > summary { cursor: pointer; color: var(--muted); font-size: 12.5px; margin: 10px 0 6px; }
   .dc-news { margin-top: 12px; }
+  .material-baseline { margin-top: 18px; border-top: 1px solid var(--line); padding-top: 14px; }
+  .material-baseline form, .material-pages { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+  .material-baseline input { flex: 1; min-width: 120px; }
+  .material-baseline article { padding: 12px 0; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+  .material-baseline article h4 { font-size: 14px; font-weight: 500; line-height: 1.7; }
+  .material-baseline blockquote { margin: 8px 0; padding-left: 12px; border-left: 2px solid var(--line); }
+  .material-baseline .source { font-size: 12px; color: var(--muted); line-height: 1.6; }
   .err { color: var(--red); background: var(--card); border: 1px solid var(--red); border-radius: var(--ui-radius); padding: 14px; margin-top: 16px; }
   @media (max-width: 900px) { .five { grid-template-columns: repeat(2, minmax(0, 1fr)); } .topbar { height: auto; flex-wrap: wrap; padding: 4px 10px; } .topbar .sp { display: none; } }
   .tscroll { overflow-x: auto; max-width: 100%; }
-  @media (max-width: 600px) { .five { grid-template-columns: 1fr; } #matrix .c { display: none; } }
+  @media (max-width: 600px) { .five, .ev-grid, .changes { grid-template-columns: minmax(0, 1fr); } .ev-grid > .col { min-width: 0; overflow-wrap: anywhere; } #matrix .c { display: none; } }
 </style>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 <link rel="stylesheet" href="assets/datacenter-news.css">
@@ -122,7 +129,7 @@
 
 <main class="wrap">
   <header class="head" id="head"><h1>加载中…</h1></header>
-  <section class="panel" id="p1"><h2>它值多少<small>事实 · 五类变量的现值与时点</small></h2><div class="q" id="q1"></div><div id="account"></div><div class="five" id="five"></div><div id="evidence"></div></section>
+  <section class="panel" id="p1"><h2>它值多少<small>事实 · 五类变量的现值与时点</small></h2><div class="q" id="q1"></div><div id="account"></div><div class="five" id="five"></div><section id="materials" class="material-baseline" aria-label="资料基座"></section><div id="evidence"></div></section>
   <section class="panel" id="p2"><h2 id="h2">它由什么组成<small>树 · 子节点</small></h2><div class="q" id="q2"></div><div id="children"></div></section>
   <section class="panel" id="p3"><h2>它怎么影响账<small>规则 · 因子树</small></h2><div class="q" id="q3"></div><div id="factors"></div></section>
   <section class="panel" id="p4"><h2>数据从哪来，缺什么<small>采集 · 目标清单与六队</small></h2><div class="q" id="q4"></div>
@@ -248,7 +255,35 @@ function deliveryBoard(T, d) {
     <div class="line">待建队名下 ${notConnected} 行不排到期。采集需求只来自目标表，各队不自定抓什么；灰格与虚线格就是任务书，点格进入节点停在那一列。</div></div>`;
 }
 
-/* 第一问的研究面板：这个节点的问题、候选证据 / 陈述 / 回答、一跳关系（/api/research-summary?node=，图谱 3.0 按骨架过滤；公开只读看不到，页面如实说） */
+let materialRequest = 0;
+async function loadMaterials(offset = 0, query = '') {
+  const owner = ++materialRequest, container = byId('materials');
+  container.dataset.state = 'loading';
+  container.innerHTML = '<h3>资料基座</h3><p class="empty">读取这个节点的资料…</p>';
+  try {
+    const value = await get('api/research-materials?' + new URLSearchParams({node:NODE, offset, q:query}));
+    if (owner !== materialRequest) return;
+    container.dataset.state = 'ready';
+    const rows = value.records || [];
+    container.innerHTML = `<h3>资料基座 <span class="empty">${value.total} 条 · ${value.materials} 份材料</span></h3>
+      <p class="source">按来源记载积累，保留原文与年代；正式统计另列。</p>
+      <form><input name="q" aria-label="搜索资料" placeholder="搜索内容或报告名称" value="${esc(query)}"><button type="submit">搜索</button></form>
+      ${rows.map(r => `<article data-material-id="${esc(r.id)}"><h4>${esc(r.text)}</h4>
+        <p class="source">${esc(r.source.title)} · ${esc(r.source_date || '年代未登记')}${r.source.url ? ` · <a href="${esc(r.source.url)}" target="_blank" rel="noopener noreferrer">来源</a>` : ''}</p>
+        <details><summary>原文依据</summary>${r.quotes.map(e => `<blockquote>${esc(e.quote)}<p class="source">${Number.isInteger(e.page_index) ? `原件第 ${e.page_index + 1} 页` : esc(e.locator)}</p></blockquote>`).join('')}</details></article>`).join('') || `<p class="empty">${value.state === 'not_connected' ? '资料尚未接收。' : query ? '没有匹配的资料。' : '这个节点暂未收到带原文的阅读结果。'}</p>`}
+      <div class="material-pages"><button data-page="previous" ${offset ? '' : 'disabled'}>上一页</button><span class="source">${value.total ? offset + 1 : 0}–${offset + rows.length} / ${value.total}</span><button data-page="next" ${value.next_offset == null ? 'disabled' : ''}>下一页</button></div>`;
+    container.querySelector('form').onsubmit = event => { event.preventDefault(); loadMaterials(0, new FormData(event.target).get('q').trim()); };
+    container.querySelector('[data-page="previous"]').onclick = () => loadMaterials(Math.max(0, offset - value.limit), query);
+    container.querySelector('[data-page="next"]').onclick = () => loadMaterials(value.next_offset, query);
+  } catch (error) {
+    if (owner !== materialRequest) return;
+    container.dataset.state = 'error';
+    container.innerHTML = `<h3>资料基座</h3><p class="empty">资料读取失败：${esc(error.message)}</p><button>重试</button>`;
+    container.querySelector('button').onclick = () => loadMaterials(offset, query);
+  }
+}
+
+/* 第一问的研究面板：问题、正式证据与一跳关系。 */
 async function evidencePanel(node) {
   let s;
   try { s = await get("api/research-summary?" + new URLSearchParams({ node })); }
@@ -401,6 +436,7 @@ function changes(d) {
   byId("targets").innerHTML = NODE === "root" ? `<details><summary>因子级目标 ${rows.length} 行（按队汇总与明细）</summary>${targetPanel(rows, TEAMS)}</details>` : targetPanel(rows, TEAMS);
   byId("news").style.display = NODE === "root" ? "" : "none";
   evidencePanel(NODE).then(html => { byId("evidence").innerHTML = html; }).catch(e => { byId("evidence").innerHTML = `<div class="empty">研究面板加载失败：${esc(e.message)}</div>`; });
+  loadMaterials();
   document.title = (NODE === "root" ? "一座 AI 数据中心" : byId("head").querySelector("h1").textContent) + " — inresearch.ai";
   document.querySelector(".it-toggle")?.addEventListener("click", () => {
     const u = new URL(location.href); if (u.searchParams.get("it") === "1") u.searchParams.delete("it"); else u.searchParams.set("it", "1");
