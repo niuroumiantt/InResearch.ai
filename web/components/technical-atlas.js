@@ -18,6 +18,10 @@ const illustrations = {
   },
 };
 
+export function atlasPreview(partId) {
+  return illustrations[partId]?.preview || null;
+}
+
 export function mountTechnicalAtlas(parent, partId) {
   const item = illustrations[partId];
   if (!item) return false;

@@ -14,6 +14,31 @@ from inresearch.interfaces import http as serve
 ROOT = project_root()
 
 class InterfaceContractTests(unittest.TestCase):
+    def test_mutable_static_entries_revalidate_without_disabling_conditional_reads(self):
+        with patch.object(serve, 'AUTH_ON', True), patch.object(auth, 'session_user', return_value=None):
+            server = serve.ThreadingHTTPServer(('127.0.0.1', 0), serve.Handler)
+            thread = threading.Thread(target=server.serve_forever, kwargs={'poll_interval': .01}, daemon=True)
+            thread.start()
+            try:
+                for path in ('/bom.html', '/rack3d.html', '/assets/part-dossier.js?v=20261008.15', '/assets/site-skin.css'):
+                    for method in ('GET', 'HEAD'):
+                        connection = http.client.HTTPConnection(*server.server_address, timeout=3)
+                        try:
+                            connection.request(method, path)
+                            response = connection.getresponse(); response.read()
+                            self.assertEqual(response.status, 200, (method, path))
+                            self.assertEqual(response.getheader('Cache-Control'), 'no-cache')
+                            modified = response.getheader('Last-Modified')
+                            self.assertIsNotNone(modified)
+                            connection.request(method, path, headers={'If-Modified-Since': modified})
+                            response = connection.getresponse(); response.read()
+                            self.assertEqual(response.status, 304)
+                            self.assertEqual(response.getheader('Cache-Control'), 'no-cache')
+                        finally:
+                            connection.close()
+            finally:
+                server.shutdown(); server.server_close(); thread.join(timeout=2)
+
     def test_all_html_classified_and_application_hooks(self):
         manifest = json.loads((ROOT/'framework/interface_manifest.json').read_text())
         # Only tracked project HTML, excluding development/runtime artifacts.
