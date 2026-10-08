@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-39",
+  "object_id": "part:rack-frame",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Cabinet frame, mounting rails and enclosure panels",
+  "reviewed_at": "2026-10-08",
+  "reviewer": "Codex实际审图与浏览器定位/标注检查；不冒称用户逐项签字",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "Generic category rack structure, not a manufacturer model or rebuilt interactive 3D geometry",
+  "master": "web/assets/technical-atlas/rack-frame-v1.png",
+  "labelled": "web/assets/technical-atlas/rack-frame-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R2",
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "passed_to_tool": true
+    },
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "initial_prompt": "docs/design/technical-atlas/TA-39/prompt-v1.txt",
+    "iterations": 1,
+    "accepted_original_filename": "exec-d959ac57-16d9-46f5-b5ad-d0cf595e3bb3.png",
+    "raster_modified_after_generation": false,
+    "preview_method": "same-size JPEG encoding with macOS sips; original PNG unchanged",
+    "label_method": "independent stdlib SVG layer with unchanged original PNG embedded"
+  },
+  "rights": {
+    "origin": "用户授权按其参考制作的新图；原图不覆盖",
+    "license": "项目生成插图，不冒称原厂工程图或CC0"
+  },
+  "technical_sources": [
+    {
+      "file": "framework/bom.json",
+      "supports": "Existing part:rack-frame in facility land/building chain; not the IT equipment object"
+    },
+    {
+      "url": "https://www.se.com/ca/en/product-range/61819-apc-netshelter-enclosure-components/",
+      "title": "Schneider Electric: NetShelter enclosure components",
+      "observed_at": "2026-10-08",
+      "supports": "Category components include doors, roofs, side panels and casters; depicted assembly and quantity are illustrative."
+    },
+    {
+      "url": "https://www.se.com/uk/en/download/document/990-3206_EN/",
+      "title": "NetShelter installation and customization",
+      "observed_at": "2026-10-08",
+      "supports": "Mounting rails, enclosure parts and fasteners; no model dimensions or ratings transferred to this generic figure."
+    }
+  ],
+  "unknowns": [
+    "U count, dimensions, load rating, hole pitch and actual fastener/hinge design are unspecified.",
+    "Panel separation is a generic exploded assembly relationship, not installation instructions; original TA-13 interactive rack geometry remains planned."
+  ],
+  "checks": {
+    "real_materials_and_cutaway": true,
+    "coherent_exploded_assembly": true,
+    "distinct_door_panel_and_rails": true,
+    "no_baked_text": true,
+    "independent_labels": 7,
+    "native_pixels_verified": true,
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true,
+    "leaders_reviewed": true,
+    "retained_ssd_and_3d": "covered by technical_atlas and part_dossier regression; final combined CI required"
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/rack-frame-v1-preview.svg",
+    "bytes": 291761
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/rack-frame-v1.png",
+      "sha256": "f65cffa7edfddd903f85f192b5cd9ec0c20a684bc977f70f7a67bec6a36c93fc"
+    },
+    {
+      "file": "web/assets/technical-atlas/rack-frame-v1.svg",
+      "sha256": "e2ccbe9f77a0ff93e9f7742ac45dc7b23347af90c3d2b4ccc19f60655ba6b9c4"
+    },
+    {
+      "file": "web/assets/technical-atlas/rack-frame-v1-preview.jpg",
+      "sha256": "2c913a6fa6c809dabd32de156a5872170cab1aa8efb9346dd6aa752f768dab90"
+    },
+    {
+      "file": "web/assets/technical-atlas/rack-frame-v1-preview.svg",
+      "sha256": "f325b90fbd9875bc3ff5c3be083a02411ff359ab72aeb6fbcc11f14c79bf8cbc"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-39/labels-v1.json",
+      "sha256": "7d23eac2d8e7523fe4f82d83cd24915892e7fd7268c97850417f0e4b4659a172"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-39/prompt-v1.txt",
+      "sha256": "37365727356590290dbfd3f97bd8a11ebaf2ff603593faca5c4751cb532f92b2"
+    }
+  ]
+}
