@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "style_id": "white-technical-atlas-v1",
+  "version": "1.0",
+  "adopted_at": "2026-10-08",
+  "source": "framework/10_visual_atlas.md",
+  "references": [
+    {
+      "id": "R1",
+      "file": "docs/design/technical-atlas/references/01-chain.png",
+      "sha256": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
+      "width": 1536,
+      "height": 1024,
+      "role": "跨尺度关系与园区/设备构图",
+      "provenance": "2026-10-08用户提供，描述为Codex制作；作为视觉标准采用",
+      "original_filename": "exec-7e79f16a-7db3-4d26-bb9a-9ee1ac452a3d.png",
+      "use": "visual_reference_only",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
+    },
+    {
+      "id": "R2",
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "width": 1536,
+      "height": 1024,
+      "role": "服务器剖开、局部放大与安装定位",
+      "provenance": "2026-10-08用户提供，描述为Codex制作；作为视觉标准采用",
+      "original_filename": "exec-12cf02d3-f255-4989-af3a-e802e505c2e0.png",
+      "use": "visual_reference_only",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
+    },
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "width": 1536,
+      "height": 1024,
+      "role": "部件爆炸、装配轴与芯片定位",
+      "provenance": "2026-10-08用户提供，描述为Codex制作；作为视觉标准采用",
+      "original_filename": "exec-69a988ec-2784-438f-8743-c4a8ff7485e7.png",
+      "use": "visual_reference_only",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
+    },
+    {
+      "id": "R4",
+      "file": "docs/design/technical-atlas/references/04-explainer.png",
+      "sha256": "91dc633ce2eddf01a15b5297a4eb0dc71ccc50cbf6ac4ff75693207b9cd3d36f",
+      "width": 1448,
+      "height": 1086,
+      "role": "带标题、编号与文字层的跨尺度技术讲解",
+      "provenance": "2026-10-08用户补充，强调平面/立体解释的逼真效果；作为视觉标准采用",
+      "original_filename": "exec-a7ad21c0-17d4-4807-b4c3-ad34a4934ae1.png",
+      "use": "visual_reference_only",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
+    },
+    {
+      "id": "R5",
+      "file": "docs/design/technical-atlas/references/05-thermal-cutaway.png",
+      "sha256": "6bfeea5980c8ad16b040561a6cf69ca6e020b4cb9f0bfd26a97dd1c88c0af1f6",
+      "width": 1672,
+      "height": 941,
+      "role": "逼真建筑剖面、芯片局部放大与冷却去回路",
+      "provenance": "2026-10-08用户补充，强调平面/立体解释的逼真效果；作为视觉标准采用",
+      "original_filename": "exec-ad1f79ec-dc30-49d2-ac38-dfa39e277b79.png",
+      "use": "visual_reference_only",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
+    }
+  ],
+  "recipe": {
+    "canvas": "#FAF9F2",
+    "outline": "#454641",
+    "leader": "#09689B",
+    "projection": "isometric_or_weak_perspective; plan=orthographic_top",
+    "outline_px_at_1536": [
+      1,
+      1.5
+    ],
+    "detail_px_at_1536": [
+      0.5,
+      0.9
+    ],
+    "leader_px_at_1536": 2,
+    "default_aspect": [
+      3,
+      2
+    ],
+    "minimum_master_pixels": [
+      1536,
+      1024
+    ],
+    "material_colors": [
+      "silver-gray metal",
+      "black/charcoal chips",
+      "muted PCB green",
+      "small copper/gold contacts"
+    ],
+    "lighting": "soft_uniform",
+    "bloom": false,
+    "decorative_reflective_floor": false,
+    "fog": false,
+    "labels": "separate_editable_layer",
+    "reference_pixels_measured": false,
+    "realism": "credible geometry/materials/ports/connections; avoid generic boxes or toy low-poly shapes",
+    "functional_color": {
+      "supply_return": "declared legend and arrow directions; blue/orange only for validated circuit roles",
+      "not_a_fixed_physical_rule": "color does not prove actual temperature, voltage or capacity"
+    }
+  },
+  "acceptance": "逐项人工对照现行规范；机器校验不代替内容与视觉验收",
+  "variants": {
+    "structure": "R1-R3：干净暖白、细线、真实材质、拆解与装配",
+    "explainer": "R4：白底结构叙事、标题/编号/注释独立文字层",
+    "cutaway": "R5：可信场景剖面、局部放大、经核对的方向/去回路；保留暖白页边/说明区",
+    "plan": "正交俯视，继承纸面/轮廓/真实构件与功能线，不强加透视"
+  }
+}

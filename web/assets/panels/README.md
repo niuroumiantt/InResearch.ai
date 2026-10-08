@@ -1,5 +1,7 @@
 # 真实设备面板图（机柜拆解台的贴图来源）
 
+2026-10-08 图册迁移：五张来源贴图仍保留为原件，按 [白底技术图册规范](../../../framework/10_visual_atlas.md) 调整显示材质/光照；需要改画时另建来源关联展示版本，不覆写真实面板。逐项工作在 [迁移计划](../../../docs/design/technical-atlas/MIGRATION_PLAN.md) 登记。
+
 **全部来自 [NetBox devicetype-library](https://github.com/netbox-community/devicetype-library)，
 许可 CC0 1.0（公共领域，可自由商用与改造）。** 该库收录 310 家厂商 5,655 款真实设备的
 规格定义与机架正面图，是 DCIM 生态的公共资产。

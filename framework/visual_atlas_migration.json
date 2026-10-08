@@ -1,0 +1,887 @@
+{
+  "schema_version": 1,
+  "style_id": "white-technical-atlas-v1",
+  "source": "framework/10_visual_atlas.md",
+  "plan": "docs/design/technical-atlas/MIGRATION_PLAN.md",
+  "observed_at": "2026-10-08",
+  "baseline_revision": "453f3625d427b9d989851ed5712737495891a378",
+  "audit_scope": "current main local browser rendering; no production redesign claimed",
+  "audit_directory": "~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/",
+  "execution": "one_item_at_a_time",
+  "states": [
+    "planned",
+    "drafting",
+    "review",
+    "accepted",
+    "published"
+  ],
+  "items": [
+    {
+      "id": "TA-01",
+      "order": 1,
+      "title": "SSD 单件爆炸样板",
+      "phase": "A · 单张样板",
+      "kind": "existing",
+      "source_paths": [
+        "web/assets/renders/ssd.png"
+      ],
+      "entry": "保留资产，当前无页面引用",
+      "reference": [
+        "R3"
+      ],
+      "observed_gap": "现图是存储机箱与抽盘，不能当单块SSD；蓝灰简化造型，无内部装配线",
+      "deliverable": "暖白SSD爆炸图、芯片放大、可编辑标注；先核对通用/具体型号身份",
+      "depends_on": [],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null,
+      "baseline_asset": {
+        "file": "web/assets/renders/ssd.png",
+        "sha256": "45c28bccbb7ecebeb5088fe2546a547126d3f13787f0508ae73e3b4d45a32a24",
+        "width": 1840,
+        "height": 1280
+      }
+    },
+    {
+      "id": "TA-02",
+      "order": 2,
+      "title": "共享图册材质、轮廓、引线与导出配方",
+      "phase": "A · 固定实现",
+      "kind": "shared",
+      "source_paths": [
+        "web/assets/materials.js",
+        "web/components/scene-resources.js",
+        "web/components/scene-view.js"
+      ],
+      "entry": "两3D主页面及部件查看器",
+      "reference": [
+        "R2",
+        "R3"
+      ],
+      "observed_gap": "目前PBR/Bloom/色光/雾化；三场景没有共用图册线描配方",
+      "deliverable": "落实已验样板的配方，导出暖白且保留交互；回归镜头和资源释放",
+      "depends_on": [
+        "TA-01"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-03",
+      "order": 3,
+      "title": "机箱盖板与壳体",
+      "phase": "B · 部件逐张",
+      "kind": "existing",
+      "source_paths": [
+        "web/assets/renders/chassis.png"
+      ],
+      "entry": "保留资产，当前无页面引用",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "蓝色平板与简化机箱，缺少开孔、折边和紧固关系",
+      "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null,
+      "baseline_asset": {
+        "file": "web/assets/renders/chassis.png",
+        "sha256": "b40f337f8753f5ac652d57243345b248289ef37f21cbe4177c09927298cc3dc5",
+        "width": 1840,
+        "height": 1280
+      }
+    },
+    {
+      "id": "TA-04",
+      "order": 4,
+      "title": "加速器/GPU 基板",
+      "phase": "B · 部件逐张",
+      "kind": "existing",
+      "source_paths": [
+        "web/assets/renders/gpu-board.png"
+      ],
+      "entry": "保留资产，当前无页面引用",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "芯片虹彩、器件用方块替代，板上层级简化",
+      "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null,
+      "baseline_asset": {
+        "file": "web/assets/renders/gpu-board.png",
+        "sha256": "18aedf0dec0431e6fa511485af7aa47081d47f9f4c257a3f07a551dc6d9ec098",
+        "width": 1840,
+        "height": 1280
+      }
+    },
+    {
+      "id": "TA-05",
+      "order": 5,
+      "title": "GPU 与 HBM 封装",
+      "phase": "B · 部件逐张",
+      "kind": "existing",
+      "source_paths": [
+        "web/assets/renders/hbm.png"
+      ],
+      "entry": "保留资产，当前无页面引用",
+      "reference": [
+        "R3"
+      ],
+      "observed_gap": "紫色堆叠块和虹彩裸片；需核对封装层关系",
+      "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null,
+      "baseline_asset": {
+        "file": "web/assets/renders/hbm.png",
+        "sha256": "c97da95fdb822b7f56cc5e2234673a35a1d993aae60a8ce3661363be3f6e0d3b",
+        "width": 1840,
+        "height": 1280
+      }
+    },
+    {
+      "id": "TA-06",
+      "order": 6,
+      "title": "主板、CPU 与 DIMM",
+      "phase": "B · 部件逐张",
+      "kind": "existing",
+      "source_paths": [
+        "web/assets/renders/mobo.png"
+      ],
+      "entry": "保留资产，当前无页面引用",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "主板布局简化、器件粗块、缺少端口/插槽细线",
+      "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null,
+      "baseline_asset": {
+        "file": "web/assets/renders/mobo.png",
+        "sha256": "1092160abec3b143353c01584b8d8a619e4856daaa1f0c4ff00ec412cff36628",
+        "width": 1840,
+        "height": 1280
+      }
+    },
+    {
+      "id": "TA-07",
+      "order": 7,
+      "title": "网卡与连接器",
+      "phase": "B · 部件逐张",
+      "kind": "existing",
+      "source_paths": [
+        "web/assets/renders/nic.png"
+      ],
+      "entry": "保留资产，当前无页面引用",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "端口/器件用发光色块，识别细节不足",
+      "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null,
+      "baseline_asset": {
+        "file": "web/assets/renders/nic.png",
+        "sha256": "1a64f596f3ca67366897f307f488704aa3649160626ab07228f6b60bcb872e2c",
+        "width": 1840,
+        "height": 1280
+      }
+    },
+    {
+      "id": "TA-08",
+      "order": 8,
+      "title": "电源模块",
+      "phase": "B · 部件逐张",
+      "kind": "existing",
+      "source_paths": [
+        "web/assets/renders/psu.png"
+      ],
+      "entry": "保留资产，当前无页面引用",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "大方盒与亮绿LED，缺少格栅、端口和抽拉结构",
+      "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null,
+      "baseline_asset": {
+        "file": "web/assets/renders/psu.png",
+        "sha256": "3dd0aadcd440775a4e3ca3d404d4955e7bc46af2adfa251b37d53c104f5ac0d1",
+        "width": 1840,
+        "height": 1280
+      }
+    },
+    {
+      "id": "TA-09",
+      "order": 9,
+      "title": "风扇墙",
+      "phase": "B · 部件逐张",
+      "kind": "existing",
+      "source_paths": [
+        "web/assets/renders/fans.png"
+      ],
+      "entry": "保留资产，当前无页面引用",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "简化扇叶、盒状造型，缺少网罩/安装细节",
+      "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null,
+      "baseline_asset": {
+        "file": "web/assets/renders/fans.png",
+        "sha256": "cc9812e9977f8ebd9a75599150105a34a1f45298d1827a241a33babf3aa3a31a",
+        "width": 1840,
+        "height": 1280
+      }
+    },
+    {
+      "id": "TA-10",
+      "order": 10,
+      "title": "冷板与接头",
+      "phase": "B · 部件逐张",
+      "kind": "existing",
+      "source_paths": [
+        "web/assets/renders/coldplate.png"
+      ],
+      "entry": "保留资产，当前无页面引用",
+      "reference": [
+        "R3"
+      ],
+      "observed_gap": "强金属反射；需核对鳍片/流道是冷板还是散热器",
+      "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null,
+      "baseline_asset": {
+        "file": "web/assets/renders/coldplate.png",
+        "sha256": "4e0925a507406b76de2c7140555523f04499332662333d24347476ef1519c047",
+        "width": 1840,
+        "height": 1280
+      }
+    },
+    {
+      "id": "TA-11",
+      "order": 11,
+      "title": "服务器整机爆炸与局部放大",
+      "phase": "C · 整机",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/rack3d.html"
+      ],
+      "entry": "rack3d.html?x=55",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "现阶段仍以整柜占画面，服务器与标签偏小；蓝光/反光底台明显",
+      "deliverable": "服务器为主对象的剖开/爆炸图与可用交互，部件对应安装位置",
+      "depends_on": [
+        "TA-02",
+        "TA-03",
+        "TA-04",
+        "TA-05",
+        "TA-06"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-12",
+      "order": 12,
+      "title": "服务器正交平面图",
+      "phase": "C · 整机",
+      "kind": "new_view",
+      "source_paths": [
+        "web/pages/rack3d.html"
+      ],
+      "entry": "尚无独立俯视入口",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "现有爆炸场景不能当俯视平面图",
+      "deliverable": "基于同一核对后布局的正交俯视图；未知尺寸明确示意",
+      "depends_on": [
+        "TA-11"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-13",
+      "order": 13,
+      "title": "机柜整柜图",
+      "phase": "D · 机柜",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/rack3d.html"
+      ],
+      "entry": "rack3d.html?x=0",
+      "reference": [
+        "R1",
+        "R2"
+      ],
+      "observed_gap": "深蓝机柜、发光反光地面；前脸/边线低对比",
+      "deliverable": "暖白整柜结构图，局部部件可点选",
+      "depends_on": [
+        "TA-02",
+        "TA-11"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-14",
+      "order": 14,
+      "title": "机柜分层爆炸图",
+      "phase": "D · 机柜",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/rack3d.html"
+      ],
+      "entry": "rack3d.html?x=35",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "离散浮件无稳定引线，对应关系不够清楚",
+      "deliverable": "门/侧板/计算/网络/电源分层，保留装配轴与稳定ID",
+      "depends_on": [
+        "TA-13"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-15",
+      "order": 15,
+      "title": "芯片级独立近景",
+      "phase": "D · 机柜",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/rack3d.html"
+      ],
+      "entry": "rack3d.html?x=90",
+      "reference": [
+        "R3"
+      ],
+      "observed_gap": "芯片层仍缩在整柜底部，细节与标注难读",
+      "deliverable": "主对象近景与封装分层，当前阶段适配、手动镜头不被夺回",
+      "depends_on": [
+        "TA-11",
+        "TA-05"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-16",
+      "order": 16,
+      "title": "2D 爆炸总览 · 按系统",
+      "phase": "E · 总览",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom.html"
+      ],
+      "entry": "bom.html",
+      "reference": [
+        "R1"
+      ],
+      "observed_gap": "16条链路平台上的通用方块，不是具体设备；长页零散",
+      "deliverable": "五系统/IT四子系统与链路保持，部件改可识别图册图形，档案入口保留",
+      "depends_on": [
+        "TA-02",
+        "TA-11"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-17",
+      "order": 17,
+      "title": "2D 爆炸总览 · 按尺度",
+      "phase": "E · 总览",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom.html"
+      ],
+      "entry": "bom.html?view=scale",
+      "reference": [
+        "R1"
+      ],
+      "observed_gap": "同样用方块表示不同设备，比例没有技术含义",
+      "deliverable": "S1–S5作为第二排法；不伪造部件物理比例，复用同批图册资产",
+      "depends_on": [
+        "TA-16"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-18",
+      "order": 18,
+      "title": "园区装配全景",
+      "phase": "F · 园区",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom3d.html"
+      ],
+      "entry": "bom3d.html",
+      "reference": [
+        "R1",
+        "R5"
+      ],
+      "observed_gap": "大面积深灰底板与雾化，设备颜色发白、主体偏小",
+      "deliverable": "建筑及机电淡线，重点链路清晰，暖白图面与相机安全留白",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-19",
+      "order": 19,
+      "title": "园区分层爆炸图",
+      "phase": "F · 园区",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom3d.html"
+      ],
+      "entry": "bom3d.html?x=70",
+      "reference": [
+        "R1",
+        "R5"
+      ],
+      "observed_gap": "默认全景材质/雾化在拆解时仍继承，层间对应需复核",
+      "deliverable": "建筑/机房/机柜/设备层分解，灰虚线定位与小量蓝引线",
+      "depends_on": [
+        "TA-18"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-20",
+      "order": 20,
+      "title": "园区/机房正交平面图",
+      "phase": "F · 园区",
+      "kind": "new_view",
+      "source_paths": [
+        "web/pages/bom3d.html"
+      ],
+      "entry": "尚无独立俯视入口",
+      "reference": [
+        "R1",
+        "R5"
+      ],
+      "observed_gap": "没有独立严格俯视图；现程序化场景不能证明真实施工布局",
+      "deliverable": "同一示意布局的俯视图、设备分区与链路，未知尺寸不补数字",
+      "depends_on": [
+        "TA-18"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-21",
+      "order": 21,
+      "title": "设施与站点权利领域图",
+      "phase": "G · 领域逐图",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom3d.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom3d.html?d=facility",
+      "reference": [
+        "R1",
+        "R2"
+      ],
+      "observed_gap": "沿用旧色光/简化几何；每个领域需单独核对主对象、链路和未建模项",
+      "deliverable": "白底领域图、清晰链路与缺项提示，按当前骨架，不补造未建模对象",
+      "depends_on": [
+        "TA-18"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-22",
+      "order": 22,
+      "title": "电力链路领域图",
+      "phase": "G · 领域逐图",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom3d.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom3d.html?d=power",
+      "reference": [
+        "R4",
+        "R1"
+      ],
+      "observed_gap": "沿用旧色光/简化几何；每个领域需单独核对主对象、链路和未建模项",
+      "deliverable": "白底领域图、清晰链路与缺项提示，按当前骨架，不补造未建模对象",
+      "depends_on": [
+        "TA-18"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-23",
+      "order": 23,
+      "title": "冷却链路领域图",
+      "phase": "G · 领域逐图",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom3d.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom3d.html?d=thermal",
+      "reference": [
+        "R5",
+        "R1"
+      ],
+      "observed_gap": "沿用旧色光/简化几何；每个领域需单独核对主对象、链路和未建模项",
+      "deliverable": "芯片/冷板→CDU→设施水回路→室外散热设备的逼真剖面与局部放大；去回路有图例/箭头，不把替代设备画成全部串联",
+      "depends_on": [
+        "TA-18"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-24",
+      "order": 24,
+      "title": "IT · 计算领域图",
+      "phase": "G · 领域逐图",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom3d.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom3d.html?d=compute",
+      "reference": [
+        "R1",
+        "R2"
+      ],
+      "observed_gap": "沿用旧色光/简化几何；每个领域需单独核对主对象、链路和未建模项",
+      "deliverable": "白底领域图、清晰链路与缺项提示，按当前骨架，不补造未建模对象",
+      "depends_on": [
+        "TA-18"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-25",
+      "order": 25,
+      "title": "IT · 内存领域图",
+      "phase": "G · 领域逐图",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom3d.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom3d.html?d=memory",
+      "reference": [
+        "R1",
+        "R2"
+      ],
+      "observed_gap": "沿用旧色光/简化几何；每个领域需单独核对主对象、链路和未建模项",
+      "deliverable": "白底领域图、清晰链路与缺项提示，按当前骨架，不补造未建模对象",
+      "depends_on": [
+        "TA-18"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-26",
+      "order": 26,
+      "title": "IT · 存储领域图",
+      "phase": "G · 领域逐图",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom3d.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom3d.html?d=storage",
+      "reference": [
+        "R1",
+        "R2"
+      ],
+      "observed_gap": "沿用旧色光/简化几何；每个领域需单独核对主对象、链路和未建模项",
+      "deliverable": "白底领域图、清晰链路与缺项提示，按当前骨架，不补造未建模对象",
+      "depends_on": [
+        "TA-18"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-27",
+      "order": 27,
+      "title": "IT · 网络领域图",
+      "phase": "G · 领域逐图",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom3d.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom3d.html?d=network",
+      "reference": [
+        "R1",
+        "R2"
+      ],
+      "observed_gap": "沿用旧色光/简化几何；每个领域需单独核对主对象、链路和未建模项",
+      "deliverable": "白底领域图、清晰链路与缺项提示，按当前骨架，不补造未建模对象",
+      "depends_on": [
+        "TA-18"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-28",
+      "order": 28,
+      "title": "控制与软件领域图",
+      "phase": "G · 领域逐图",
+      "kind": "existing",
+      "source_paths": [
+        "web/pages/bom3d.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom3d.html?d=control",
+      "reference": [
+        "R1",
+        "R2"
+      ],
+      "observed_gap": "沿用旧色光/简化几何；每个领域需单独核对主对象、链路和未建模项",
+      "deliverable": "白底领域图、清晰链路与缺项提示，按当前骨架，不补造未建模对象",
+      "depends_on": [
+        "TA-18"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-29",
+      "order": 29,
+      "title": "部件档案旋转预览与放大",
+      "phase": "H · 同源复用",
+      "kind": "existing",
+      "source_paths": [
+        "web/components/part-inspector.js",
+        "web/components/part-dossier.js"
+      ],
+      "entry": "bom3d/rack3d 档案内预览",
+      "reference": [
+        "R2",
+        "R3"
+      ],
+      "observed_gap": "小预览继承旧材质；领域/热图状态不能串入原材质",
+      "deliverable": "共用新图册配方、旋转/重开适配与身份定位；按实际可预览部件清单逐项回归",
+      "depends_on": [
+        "TA-02",
+        "TA-11",
+        "TA-13"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-30",
+      "order": 30,
+      "title": "NVMe 服务器正面展示贴图",
+      "phase": "H · 同源复用",
+      "kind": "source_display",
+      "source_paths": [
+        "web/assets/panels/server_nvme.png",
+        "web/assets/panels/README.md"
+      ],
+      "entry": "rack3d 面板 CanvasTexture",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "是真实来源贴图，不直接重画原件；当前显示受彩色材质/光照影响",
+      "deliverable": "保留CC0原件与署名，先调显示配方；需要时另建来源关联的图册展示版本",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-31",
+      "order": 31,
+      "title": "计算服务器正面展示贴图",
+      "phase": "H · 同源复用",
+      "kind": "source_display",
+      "source_paths": [
+        "web/assets/panels/server_gpu.png",
+        "web/assets/panels/README.md"
+      ],
+      "entry": "rack3d 面板 CanvasTexture",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "是真实来源贴图，不直接重画原件；当前显示受彩色材质/光照影响",
+      "deliverable": "保留CC0原件与署名，先调显示配方；需要时另建来源关联的图册展示版本",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-32",
+      "order": 32,
+      "title": "存储服务器正面展示贴图",
+      "phase": "H · 同源复用",
+      "kind": "source_display",
+      "source_paths": [
+        "web/assets/panels/server_storage.png",
+        "web/assets/panels/README.md"
+      ],
+      "entry": "rack3d 面板 CanvasTexture",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "是真实来源贴图，不直接重画原件；当前显示受彩色材质/光照影响",
+      "deliverable": "保留CC0原件与署名，先调显示配方；需要时另建来源关联的图册展示版本",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-33",
+      "order": 33,
+      "title": "TOR 交换机正面展示贴图",
+      "phase": "H · 同源复用",
+      "kind": "source_display",
+      "source_paths": [
+        "web/assets/panels/switch_tor.png",
+        "web/assets/panels/README.md"
+      ],
+      "entry": "rack3d 面板 CanvasTexture",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "是真实来源贴图，不直接重画原件；当前显示受彩色材质/光照影响",
+      "deliverable": "保留CC0原件与署名，先调显示配方；需要时另建来源关联的图册展示版本",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-34",
+      "order": 34,
+      "title": "高速交换机正面展示贴图",
+      "phase": "H · 同源复用",
+      "kind": "source_display",
+      "source_paths": [
+        "web/assets/panels/switch_ib.png",
+        "web/assets/panels/README.md"
+      ],
+      "entry": "rack3d 面板 CanvasTexture",
+      "reference": [
+        "R2"
+      ],
+      "observed_gap": "是真实来源贴图，不直接重画原件；当前显示受彩色材质/光照影响",
+      "deliverable": "保留CC0原件与署名，先调显示配方；需要时另建来源关联的图册展示版本",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    },
+    {
+      "id": "TA-35",
+      "order": 35,
+      "title": "GPU/HBM→互联→机柜→供电冷却的跨尺度讲解图",
+      "phase": "I · 系统讲解",
+      "kind": "new_view",
+      "source_paths": [
+        "framework/bom.json",
+        "web/pages/bom3d.html",
+        "web/pages/rack3d.html"
+      ],
+      "entry": "新增技术讲解图，发布位置随该项验收确定",
+      "reference": [
+        "R4",
+        "R1"
+      ],
+      "observed_gap": "现有分离页面未形成同一图面的跨尺度解释",
+      "deliverable": "真实部件体积/材质与少量清晰编号，已核对的依赖路径；沿用独立文字层，不复制参考文章的主张",
+      "depends_on": [
+        "TA-11",
+        "TA-18",
+        "TA-22",
+        "TA-23"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null
+    }
+  ]
+}
