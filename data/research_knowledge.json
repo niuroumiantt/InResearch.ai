@@ -640,6 +640,74 @@
       "status": "candidate",
       "stored_path": "originals/39/39e3d5dfb268d6e30fce1ae5b7faf50fc8bea81e45fa8d826bd42ffdbef3a78a/Scaling Reinforcement Learning_ Environments, Reward Hacking, Agents, Scaling Data – SemiAnalysis.pdf",
       "title": "Scaling Reinforcement Learning: Environments, Reward Hacking, Agents, Scaling Data"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "ec1dbe7a35e7ed2036eeb1a075bcf1295d11725ebb749dc8382481a0eafb324f",
+      "coverage": {
+        "characters_read": 20036,
+        "characters_total": 20036,
+        "chunks_read": 12,
+        "chunks_total": 12,
+        "complete": true,
+        "pages_read": 12,
+        "pages_total": 12
+      },
+      "doc_id": "doc-ec1dbe7a35e7ed2036eeb1a075bcf1295d11725ebb749dc8382481a0eafb324f",
+      "id": "doc-ec1dbe7a35e7ed2036eeb1a075bcf1295d11725ebb749dc8382481a0eafb324f",
+      "library_path": "library/by-node/root/2026_SemiAnalysis_Everyone Wants To Be A Neocloud__ec1dbe7a35e7ed20.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:amazon",
+        "actor:anthropic",
+        "actor:coreweave",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "actor:meta",
+        "actor:microsoft",
+        "actor:nebius",
+        "actor:openai",
+        "actor:oracle",
+        "actor:xai",
+        "part:cpu",
+        "part:gpu",
+        "root",
+        "system:compute",
+        "system:it",
+        "system:network"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-boundary",
+        "NODE-activity-V1-economics",
+        "NODE-demand-D1-economics",
+        "NODE-demand-D3-boundary",
+        "NODE-demand-D3-conversion",
+        "NODE-demand-D3-economics",
+        "NODE-demand-D4-boundary",
+        "NODE-demand-D4-economics",
+        "NODE-workload-inference-placement",
+        "NODE-workload-training-placement",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-535e5b330fdd43069295591b0d913d14",
+      "report_sha256": "10aa12947f00c5a64229b5273f483b991a6af4de347730e7a03d0570d984ad85",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/ec/ec1dbe7a35e7ed2036eeb1a075bcf1295d11725ebb749dc8382481a0eafb324f/newsletter.semianalysis.com-Everyone Wants To Be A Neocloud.pdf",
+      "title": "Everyone Wants To Be A Neocloud"
     }
   ],
   "evidence": [
@@ -2678,6 +2746,90 @@
           }
         },
         "batch_id": "dc15691a0e2ee015fbe6dd8a0c43ea432a74add3a61b31b60b3c39f0e15f3f17"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b97cc7bb975f5148affae5543d712f7c55fa76285d52712e80c15ad60d718d95",
+      "document_id": "doc-ec1dbe7a35e7ed2036eeb1a075bcf1295d11725ebb749dc8382481a0eafb324f",
+      "id": "rev-535e5b330fdd43069295591b0d913d14:chunk:10:claim:5:ev:0",
+      "locator": "page:11/chunk:10",
+      "object_ids": [
+        "actor:meta",
+        "system:compute"
+      ],
+      "page_index": 10,
+      "question_ids": [],
+      "quote": "The one thing that’d change\nour minds is if they sign a compute deal without any sort of SpaceX-style early cancellation\nclause. If that happens, then MSL is actually cooked.",
+      "reading_revision_id": "rev-535e5b330fdd43069295591b0d913d14",
+      "source_sha256": "ec1dbe7a35e7ed2036eeb1a075bcf1295d11725ebb749dc8382481a0eafb324f",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T02:59:58+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性为7，保留该分值。提前取消权与算力资产变现后的回收能力，实质关联当前 NODE-activity-V3-economics 工单中的合同风险问题；连续原文及相邻页面提供充分语境，可作为明确归属于作者的条件性观点采用。它对 M03-Q01 仅有间接背景价值，不能补充大额合同清单、门槛、金额或交付安排，因此不挂接该问题。未发现需要 A 类升级的条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 39.303,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "adac3022a07703b37de2b4343a10d0fb88e6f02e62fa3a36cc3e3568a12efac8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3840,
+            "input_tokens": 15866,
+            "output_tokens": 1057,
+            "reasoning_output_tokens": 316
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 21.808,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7910954b1a2629b7d0e5d03d2b1a9836a6a49e40dae5f54dd1a2e984b9c92615",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 16291,
+              "output_tokens": 405,
+              "reasoning_output_tokens": 143
+            }
+          }
+        },
+        "batch_id": "e717a36741ae3d6603580cfcaea6c917eabf8e4c93253924f3de81d54890ec85"
       }
     }
   ],
@@ -5164,6 +5316,106 @@
         "batch_id": "dc15691a0e2ee015fbe6dd8a0c43ea432a74add3a61b31b60b3c39f0e15f3f17",
         "source_report_sha256": "3fe51a36e2c73d889e0e81a23453933d273d349b4c75d360e49fff5048b3ec6b",
         "request_sha256": "5efcb026cc3ee1d9ab484b98289be406914c841a9abe31e0d867a38d7358a55c"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-ec1dbe7a35e7ed2036eeb1a075bcf1295d11725ebb749dc8382481a0eafb324f",
+      "evidence_ids": [
+        "rev-535e5b330fdd43069295591b0d913d14:chunk:10:claim:5:ev:0"
+      ],
+      "id": "adoption:review:1c554a451e532781c52c1a92",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:meta",
+        "system:compute"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-535e5b330fdd43069295591b0d913d14",
+      "status": "adopted",
+      "text": "SemiAnalysis《Everyone Wants To Be A Neocloud》（来源时间未确定）作者在讨论 Meta 暂时变现富余算力、同时保留 MSL 前沿研发机会的情境下认为：若 Meta 签署不含任何 SpaceX 式提前取消条款的算力协议，作者将改变其对 MSL 前景的判断，转为强烈看空。这是作者的条件性预测，不表示该类协议已经签署。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T02:59:58+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性为7，保留该分值。提前取消权与算力资产变现后的回收能力，实质关联当前 NODE-activity-V3-economics 工单中的合同风险问题；连续原文及相邻页面提供充分语境，可作为明确归属于作者的条件性观点采用。它对 M03-Q01 仅有间接背景价值，不能补充大额合同清单、门槛、金额或交付安排，因此不挂接该问题。未发现需要 A 类升级的条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 39.303,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "adac3022a07703b37de2b4343a10d0fb88e6f02e62fa3a36cc3e3568a12efac8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3840,
+            "input_tokens": 15866,
+            "output_tokens": 1057,
+            "reasoning_output_tokens": 316
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 21.808,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7910954b1a2629b7d0e5d03d2b1a9836a6a49e40dae5f54dd1a2e984b9c92615",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 16291,
+              "output_tokens": 405,
+              "reasoning_output_tokens": 143
+            }
+          }
+        },
+        "batch_id": "e717a36741ae3d6603580cfcaea6c917eabf8e4c93253924f3de81d54890ec85"
+      },
+      "source_candidate_ids": [
+        "rev-535e5b330fdd43069295591b0d913d14:chunk:10:claim:5"
+      ],
+      "limitations": "材料未提供具体 Meta 合同文本、金额、容量、期限、交付节奏、取消权主体、触发条件或成本，也未确定地域与具体项目阶段。来源时间未知。该观点只能支持合同灵活性与研发算力回收之间的定性风险分析，不能量化合同风险或验证 MSL 前景。",
+      "conflict_check": "所供当前知识中无已采用回答或陈述，相关旧合同、事实和项目记录筛选结果均为空，未发现可识别冲突或规范重复记录。该检查仅限所供记录，不能据此认定不存在外部反证；本次采用不替换既有结论。",
+      "gap_dependency_check": "此证据仅补充 NODE-activity-V3-economics 的定性合同风险维度，不回答或关闭问题。进一步判断须取得具体合同的一手条款、取消机制及算力回收约束，并结合收入、成本和研发需求评估。M03-Q01 所需的大额合同清单、金额、容量、期限与交付节奏仍缺失。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "e717a36741ae3d6603580cfcaea6c917eabf8e4c93253924f3de81d54890ec85",
+        "source_report_sha256": "10aa12947f00c5a64229b5273f483b991a6af4de347730e7a03d0570d984ad85",
+        "request_sha256": "6828d73db0abe23284017107194bc249b527954d5dcc2ebaf0190cb0b0fe0f97"
       }
     }
   ],
