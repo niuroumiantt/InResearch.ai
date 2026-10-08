@@ -9,7 +9,7 @@ from unittest.mock import patch
 
 from inresearch.interfaces import repository_pages, static
 from inresearch.paths import project_root
-from test_repository_pages import RepositoryPageTests
+import test_repository_pages
 
 ROOT=project_root()
 spec=importlib.util.spec_from_file_location('publisher',ROOT/'scripts/publish_repository_pages.py')
@@ -53,7 +53,7 @@ class RepositoryProjectionTests(unittest.TestCase):
                 self.assertEqual(static.source_path('/admin/aimailrepo.html'),ROOT/'web/pages/admin/aimailrepo.html')
 
     def test_published_runtime_status_and_pages_require_real_admin(self):
-        case=RepositoryPageTests()
+        case=test_repository_pages.RepositoryPageTests()
         try:
             case.setUp()
             with tempfile.TemporaryDirectory() as temp:
