@@ -2316,13 +2316,17 @@
         "web/pages/admin/semiflyrepo.html",
         "web/pages/admin/glocalstoragerepo.html",
         "web/pages/admin/openapirepo.html",
-        "web/pages/admin/suanmingrepo.html",
-        "web/pages/admin/agentrepo.html"
+        "web/pages/admin/agentrepo.html",
+        "scripts/repository_pages_daemon.py",
+        "scripts/publish_repository_pages.py",
+        "web/assets/repository-status.js",
+        "src/inresearch/interfaces/static.py",
+        "tests/unit/test_repository_projection.py"
       ],
       "supersedes": [
         "interface-reader-company-20261008"
       ],
-      "reason": "继承原界面与管理员资料图规则；2026-10-08 用户替代四仓库手动同步，十二仓库每日北京时间0:00更新，检测时点/源码工作流/公网入口/六机事实分别标注，未知与失败不变通过；集中页面全部管理员门禁。",
+      "reason": "2026-10-08 用户要求系统自行每日北京时间0:00刷新：十一仓库组织图、HTTP/CI/六机检测与原时点分开；常驻macmini Python/launchd原子发布私有运行投影，不依赖Codex/对话，无每日PR。取代手动四仓库同步及本轮未采用的heartbeat；用户已删suanming/identiry不建入口，本地资料保留。",
       "implementation_revision": "2026.10.08.repo-daily",
       "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data."
     }

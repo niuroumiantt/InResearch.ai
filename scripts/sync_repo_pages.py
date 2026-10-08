@@ -23,7 +23,7 @@ DEST = ROOT / 'web/pages/admin'
 NAMES = {'inresearch': 'InResearch.ai', 'inews': 'inews.today',
          'fetchspec': 'Fetchspec', 'infra': 'infra', 'oa': 'oa', 'aimail': 'aimail',
          'leadsgen': 'leadsgen', 'semifly': 'semifly.ai', 'glocalstorage': 'glocalstorage.com',
-         'openapi': 'openapi', 'suanming': 'suanming', 'agent': 'agent'}
+         'openapi': 'openapi', 'agent': 'agent'}
 DESCRIPTIONS = {'inresearch': '研究框架、证据采用、经济模型与成果展示',
                 'inews': '新闻发现、编辑、事件卡供给与研究反馈',
                 'fetchspec': '官方规格采集、参数整理与可核验交付',
@@ -33,7 +33,6 @@ DESCRIPTIONS = {'inresearch': '研究框架、证据采用、经济模型与成�
                 'semifly': 'Semifly 主站、LLM 频道与 Marketplace',
                 'glocalstorage': '公司官网、产品、解决方案与技术支持',
                 'openapi': '模型接入、临时 API Key、额度与路由',
-                'suanming': '历法、本命结构、今日时序与卦象解释',
                 'agent': '任务工作台、文件分析与跨应用协调'}
 CANONICAL = {key: {'inresearch':'inresearch.ai','inews':'inews.today'}.get(key, name.lower())
              for key,name in NAMES.items()}
@@ -61,6 +60,7 @@ def shell(title, body, assets=""):
     return '''<!doctype html>
 <html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script defer src="/assets/repository-status.js"></script>
 <script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script>
 <link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 <title>''' + escape(title) + ''' · 仓库架构 · inresearch.ai</title>
@@ -215,7 +215,7 @@ def build(workspace, synced_at, checks=None, daily_report=None, source_roots=Non
     registry = json.loads((roots['infra'] / 'scripts/repositories.json').read_text())
     if set(registry) != set(CANONICAL.values()):
         raise ValueError('仓库注册表变化，需要审阅并同步架构入口')
-    checks = checks or {}
+    checks = {key:record for key,record in (checks or {}).items() if key in NAMES}
     raw = subprocess.check_output(['node', '--no-warnings', 'scripts/export-reporg.mjs'],
                                   cwd=roots['inews'], text=True)
     news = json.loads(raw)

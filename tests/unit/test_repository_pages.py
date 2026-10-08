@@ -95,7 +95,7 @@ class RepositoryPageTests(unittest.TestCase):
         routes = json.loads((ROOT / 'web/routes.json').read_text())
         manifest = json.loads((ROOT / 'web/pages/admin/repo-content/manifest.json').read_text())
         self.assertEqual(set(manifest), {'infra', 'inews', 'fetchspec', 'inresearch', 'oa', 'aimail', 'leadsgen',
-                                             'semifly', 'glocalstorage', 'openapi', 'suanming', 'agent'})
+                                             'semifly', 'glocalstorage', 'openapi', 'agent'})
         for name, record in manifest.items():
             self.assertEqual(record['kind'], 'architecture_snapshot')
             self.assertTrue(record['sources'])

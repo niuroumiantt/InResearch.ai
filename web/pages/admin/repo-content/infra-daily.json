@@ -1,37 +1,37 @@
 {
-  "started_at": "2026-10-08 10:00",
+  "started_at": "2026-10-08 10:12",
   "summary": "1 项失败（aliyun）；5 台机器有变化（aws、spark、mini、m4、m5）；1 台没采到事实",
   "reach": [
     {
       "host": "aws",
       "ok": true,
       "how": "ssh BatchMode",
-      "ms": 3463
+      "ms": 2473
     },
     {
       "host": "aliyun",
       "ok": false,
       "how": "ssh BatchMode",
-      "ms": 5446,
+      "ms": 6084,
       "error": "网络通，但本机 ssh 密钥未被对方授权（deploy@47.104.143.95: Permission denied (publickey).）"
     },
     {
       "host": "spark",
       "ok": true,
       "how": "ssh BatchMode",
-      "ms": 347
+      "ms": 373
     },
     {
       "host": "mini",
       "ok": true,
       "how": "ssh BatchMode",
-      "ms": 639
+      "ms": 740
     },
     {
       "host": "m4",
       "ok": true,
       "how": "ssh BatchMode",
-      "ms": 5985
+      "ms": 4371
     },
     {
       "host": "m5",

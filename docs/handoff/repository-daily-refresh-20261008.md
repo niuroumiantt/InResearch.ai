@@ -1,20 +1,19 @@
-# 十二仓库每日组织图交接（2026-10-08，m5）
+# 十一仓库系统每日组织图交接（2026-10-08，m5）
 
 ## 目标与已定规则
-用户已授权每日北京时间0:00刷新组织框架、最新检测和结果并上站。按infra注册表覆盖12仓库，研究站admin集中入口/admin/repos.html；八个新增图以源码模块和原架构文件为依据，不杜撰流水线。四个专用源图保留，infra附加六机实测图。更新、检测与原图观察时间分别标示；未知、失败和业务未验收不混为通过。
+用户已授权每日北京时间0:00更新组织图和真实检测，并明确系统自行运行、不依赖对话/人工在线。用户从GitHub删除suanming与identiry，现行注册表及入口11仓库；本地资料/历史快照不删除，infra身份服务配置仍属infra，不据仓库删除停服务。
 
-## 实现与入口
-- scripts/daily_repository_pages.py：只fetch canonical远程main，将源码归档到系统临时目录，不改变活跃checkout。复用infra daily_check（不带--issue），然后同步与检测。
-- scripts/sync_repo_pages.py：12页+总览+来源/检查清单；--probe为公网HTTP/TLS与已有GitHub工作流，--daily-report为六机报告，--source-roots支持隔离快照。
-- 原始运行报告在~/.local/state/infra/daily/；页面快照过滤仓库私有路径/变化前后原值，仅保留连接、容器、服务、变化数及告警。源码状态不代表业务验收。
-- 每日任务为本对话Codex heartbeat「十二仓库组织图每日零点更新」，Asia/Shanghai 0:00。依赖m5 app/网络可用；正常更新保持安静，变化异常才通知。
+## 系统运行
+- macmini hermes的launchd：ai.inresearch.repository-pages，每日00:00，RunAtLoad及每小时补试；当日完成后跳过重复检查。对话automation-3已PAUSED，不再执行。
+- 独立Python入口：/Users/hermes/.local/share/inresearch.ai/repository-refresh/runner.py；源为scripts/repository_pages_daemon.py，安装参数--install。无需Codex/app/模型；需要macmini开机、常驻用户launchd和网络。
+- 私有日志/锁/状态：/Users/hermes/.local/state/inresearch.ai/repository-refresh/{job.log,status.json,job.lock}。
+- 每次从已合并main归档当前生成器到系统临时目录，daily_repository_pages.py归档11仓库main，infra daily_check只读检测（不带--issue），构建17个完整载体。工作区不reset/switch/stash，临时源码不当本机资料删除。
+- AWS：/srv/inresearch.ai/data/raw/repository-pages/releases/<id>与current原子指针，status.json独立记录最近运行与上次成功。publish_repository_pages.py核对登记文件、来源及本地/远程SHA才激活。失败保留旧current，按小时重试。无每日PR/源码提交/数据库写入，不重启reader或产品服务。
+- /admin/repos.html及十一页和/admin/repo-content/job-status.json全部真实admin门禁，private/no-store；/data/raw不公开。源码镜像更新不覆盖持久投影。网页显示更新/检测/原图观察分别的时间及系统失败/过期提示。
 
-## 每日继续
-从最新origin/main独立工作树恢复同日工作；运行daily_repository_pages及--check，审阅差异。受审文件改变须实际审阅规范映射和未覆盖项，不自动重签。刷新治理、严格数据、registry、相关单元/浏览器验证，通过当前HEAD全部PR CI后合并。核对AWS实际镜像/健康/admin资源与检测时间；源图或服务变动不触发其他产品、Spark reader的部署或重启。
-
-## 本轮检测与验收
-当前公网登记入口全部响应符合预期；suanming当前提交工作流失败；aliyun SSH不可达，机器事实未知。报告如实保存，不因此把整站功能判通过或无故修改其他仓库。
-单元权限和检测回归、13页手机/桌面明暗浏览器已通过；生产发布回执在本对话完成后记录，未取得不写已上线。
+## 验收与剩余条件
+单元：不完整/软链不替换上一版，越界不读，私有运行页及状态GET/HEAD权限；检测失败/无CI不变通过；11页+总览桌面/手机明暗。原图业务声明与实际检测分开，公网入口和已有CI不等于业务验收。
+部署后实际核对launchd已加载、首轮Python完成/云端SHA及持久projection、AWS镜像/健康和管理员资源；首次实机回执保留在本机state。未取得回执前不写已上线。
 
 ## 待用户决定
-无。新仓库注册变动先核对真实来源与权限，缺来源不发布空图。
+无。

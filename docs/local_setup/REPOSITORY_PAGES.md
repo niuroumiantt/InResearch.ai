@@ -21,7 +21,7 @@ python3 scripts/sync_repo_pages.py --workspace /workspace --check
 输出在 `web/pages/admin/`，同步日期和来源完整 SHA-256 在
 `web/pages/admin/repo-content/manifest.json`。流程变化后重跑并审阅差异，随研究站正常代码发布。
 `--check` 使用已保存的同步日期，跨日检查不会仅因日期变化而误报。
-2026-10-08 替代手动同步责任：每日北京时间 0:00 的 Codex heartbeat 在本对话接续完整更新。任务读取最新远程 main，在独立研究站工作树执行 `scripts/daily_repository_pages.py`，从 infra 注册表内的 12 仓库生成组织图；其他主工作区不切换、不 reset、不 stash。实际完成时间在页面与发布回执中显示。
+2026-10-08 替代手动同步责任：常驻macmini的系统launchd每日北京时间0:00运行Python刷新器，独立于Codex和对话。读取11个当前仓库的最新远程main、只读检测并原子发布AWS私有运行投影；不每日提交PR。其他主工作区不切换、不reset、不stash。
 
 服务端在归一化路径后校验真实 admin 会话，GET/HEAD、旧 Fetchspec 地址及原始内嵌页都受保护。
 本地 `HUB_AUTH=0` 也不关闭这些页面的登录要求。无账号时用既有 `manage.py users add` 交互入口创建，
@@ -29,7 +29,7 @@ python3 scripts/sync_repo_pages.py --workspace /workspace --check
 旧 `/admin/fetchspec/reporg.html` 经认证后跳到 `/admin/fetchspecrepo.html`。
 
 Tailscale 运维仪表盘继续提供运行状态；这里不代理其管理操作、不转发研究站 cookie 给其他域名。
-新增仓库先接入真实架构来源，再登记路由、页面清单、同步脚本和权限测试；不提前创建空页面。12 仓库列表与 infra 注册表必须一致，新增仓库未审阅时停止生成。
+新增仓库先接入真实架构来源，再登记路由、页面清单、同步脚本和权限测试；不提前创建空页面。11 仓库列表与 infra 注册表必须一致，新增仓库未审阅时停止生成。
 
 本轮本地权限和浏览器验收记录见 `docs/handoff/repository-pages-20261003.md`。
 生产发布及登录验收需在研究站正常发布流程后单独记录。
@@ -67,5 +67,13 @@ python3 scripts/daily_repository_pages.py --workspace /Users/m5/code --check
 工作流结果只是已存在的该提交运行记录，公网入口只检查 HTTP/TLS；未取得不填绿，CI 失败如实展示。
 infra 整份运行报告留在本机私有 state；页面快照只保存容器/服务、连接状态、变化数量及告警，过滤私有仓库路径和变化前后原值。
 
-定时执行与发布步骤见 `docs/handoff/repository-daily-refresh-20261008.md`。完成校验、PR CI 与合并后，核对 AWS 实际镜像版本和管理员页面资源；不以合并当上线。生成器来源或在册测试变化时实际复审 `verification_contract.json`，禁止不加审阅批量重签摘要。
-Codex heartbeat 依赖当前执行机的 app 与网络可用；错过或失败不改写检测时间。失败/需处理事项才通知，正常每日更新不另发消息。
+定时执行与发布步骤见 `docs/handoff/repository-daily-refresh-20261008.md`。系统日更只拉已合并的源码并写运行投影，验证17个完整载体和内容摘要后原子切换current；旧release和失败回执保留。生成器实现、规范或在册测试变化仍走PR/CI与实际复审，不自动重签摘要。
+对话heartbeat已停用。Python刷新器在macmini后台运行，每天0:00检查，每小时补试尚未成功的一天；本机状态在~/.local/state/inresearch.ai/repository-refresh，AWS投影与状态在/srv/inresearch.ai/data/raw/repository-pages。网页从私有job-status显示实际完成/失败和过期；失败不改写上次成功日期。系统无需人工在线、无需打开Codex。macmini开机及其常驻用户launchd、网络/SSH/GitHub可用性仍是运行条件。
+
+**[macmini]** 通过m5把已合并的Python刷新器放在macmini本地运行目录后安装（实际位置见交接）：
+
+```bash
+ssh mini '/Users/hermes/.local/bin/python3 /Users/hermes/.local/share/inresearch.ai/repository-refresh/runner.py --install'
+```
+
+启动和安装均使用现有hermes用户权限，与该机器现有采集任务一样由launchd管理。云端激活通过既有aws SSH与sudo执行，仅限独立的repository-pages投影目录，不重启研究服务或reader。服务端只允许登记管理员页面读取运行投影，原始/data/raw路径不开放，源码镜像替换不覆盖current投影。

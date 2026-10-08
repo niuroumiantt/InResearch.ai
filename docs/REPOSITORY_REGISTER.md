@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1243。
+在册文件：1246。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 306 |
-| 运行代码 | 289 |
+| 运行代码 | 291 |
 | 现行规范 | 14 |
 | 项目配置 | 118 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 109 |
-| 测试 | 140 |
+| 测试 | 141 |
 
 ## 在册记录集合
 
@@ -362,7 +362,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 32 |
+| `framework/interface_manifest.json` | static_pages | 31 |
 | `framework/interface_manifest.json` | public_pages | 13 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
@@ -1240,7 +1240,9 @@
 | `scripts/cards_verify.py` | 运行代码 |
 | `scripts/daily_repository_pages.py` | 运行代码 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
+| `scripts/publish_repository_pages.py` | 运行代码 |
 | `scripts/repository_checks.py` | 运行代码 |
+| `scripts/repository_pages_daemon.py` | 运行代码 |
 | `scripts/sync_repo_pages.py` | 运行代码 |
 | [src/inresearch/README.md](../src/inresearch/README.md) | 配套说明 |
 | `src/inresearch/__init__.py` | 运行代码 |
@@ -1511,6 +1513,7 @@
 | `tests/unit/test_report_model.py` | 测试 |
 | `tests/unit/test_repository_checks.py` | 测试 |
 | `tests/unit/test_repository_pages.py` | 测试 |
+| `tests/unit/test_repository_projection.py` | 测试 |
 | `tests/unit/test_research.py` | 测试 |
 | `tests/unit/test_research_match.py` | 测试 |
 | `tests/unit/test_research_navigation.py` | 测试 |
@@ -1576,6 +1579,7 @@
 | `web/assets/renders/nic.png` | 静态资源 |
 | `web/assets/renders/psu.png` | 静态资源 |
 | `web/assets/renders/ssd.png` | 静态资源 |
+| `web/assets/repository-status.js` | 运行代码 |
 | `web/assets/research.css` | 运行代码 |
 | [web/assets/technical-atlas/README.md](../web/assets/technical-atlas/README.md) | 配套说明 |
 | `web/assets/technical-atlas/ssd-v1-preview.jpg` | 静态资源 |
@@ -1652,7 +1656,6 @@
 | `web/pages/admin/repo-content/manifest.json` | 项目配置 |
 | `web/pages/admin/repos.html` | 运行代码 |
 | `web/pages/admin/semiflyrepo.html` | 运行代码 |
-| `web/pages/admin/suanmingrepo.html` | 运行代码 |
 | `web/pages/auth/forbidden.html` | 运行代码 |
 | `web/pages/auth/layout.html` | 运行代码 |
 | `web/pages/auth/login.html` | 运行代码 |
