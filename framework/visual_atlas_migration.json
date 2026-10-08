@@ -157,16 +157,26 @@
       "depends_on": [
         "TA-02"
       ],
-      "status": "accepted",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-04/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "e51cc0e65e573940e60a035bbf8b99d0af3e2ff2",
       "baseline_asset": {
         "file": "web/assets/renders/gpu-board.png",
         "sha256": "18aedf0dec0431e6fa511485af7aa47081d47f9f4c257a3f07a551dc6d9ec098",
         "width": 1840,
         "height": 1280
       },
-      "object_id": "part:gpu"
+      "object_id": "part:gpu",
+      "publication_record": "docs/design/technical-atlas/TA-04/publication-20261008.json",
+      "started_at": "2026-10-08",
+      "accepted_at": "2026-10-08",
+      "identity": "通用八GPU模组与基板装配；不是裸GPU die或原厂精确CAD",
+      "deliverable_paths": [
+        "web/assets/technical-atlas/gpu-board-v1.png",
+        "web/assets/technical-atlas/gpu-board-v1.svg",
+        "web/assets/technical-atlas/gpu-board-v1-preview.svg",
+        "docs/design/technical-atlas/TA-04/labels-v1.json"
+      ]
     },
     {
       "id": "TA-05",
@@ -1071,7 +1081,7 @@
   "execution_priority": {
     "reason": "先收尾用户授权的四张设施补充图，原35项按用户再次明确的01–35顺序继续；两类进度分别计量",
     "next": [
-      "TA-04"
+      "TA-05"
     ]
   },
   "primary_plan": {
@@ -1114,7 +1124,7 @@
       "TA-35"
     ],
     "execution_order": "01–35 as reiterated by user on 2026-10-08",
-    "published": 3
+    "published": 4
   },
   "supplemental_items": [
     "TA-36",

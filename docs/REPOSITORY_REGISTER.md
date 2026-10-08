@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.27。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.28。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1310。
+在册文件：1312。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,11 +18,11 @@
 | 历史快照 | 307 |
 | 运行代码 | 292 |
 | 现行规范 | 14 |
-| 项目配置 | 152 |
+| 项目配置 | 153 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 112 |
+| 配套说明 | 113 |
 | 测试 | 142 |
 
 ## 在册记录集合
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 19 |
-| `data/research_knowledge.json` | evidence | 111 |
-| `data/research_knowledge.json` | statements | 109 |
+| `data/research_knowledge.json` | documents | 21 |
+| `data/research_knowledge.json` | evidence | 135 |
+| `data/research_knowledge.json` | statements | 133 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -111,6 +111,11 @@
 | `docs/design/technical-atlas/TA-04/labels-v1.json` | leaders | 8 |
 | `docs/design/technical-atlas/TA-04/preparation-v1.json` | primary_sources | 2 |
 | `docs/design/technical-atlas/TA-04/preparation-v1.json` | actual_source_observations | 2 |
+| `docs/design/technical-atlas/TA-04/publication-20261008.json` | public_source_bytes | 3 |
+| `docs/design/technical-atlas/TA-04/publication-20261008.json` | public_download_head | 2 |
+| `docs/design/technical-atlas/TA-04/publication-20261008.json` | browser_evidence | 5 |
+| `docs/design/technical-atlas/TA-04/publication-20261008.json` | public_probe_history | 1 |
+| `docs/design/technical-atlas/TA-04/publication-20261008.json` | limits | 4 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -632,6 +637,7 @@
 | `docs/design/technical-atlas/TA-04/prompt-correction-v2.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-04/prompt-rebuild-v3.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-04/prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-04/publication-20261008.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -700,6 +706,7 @@
 | [docs/handoff/ops-dashboard-20261007.md](handoff/ops-dashboard-20261007.md) | 配套说明 |
 | [docs/handoff/ops-loading-fix-20261008.md](handoff/ops-loading-fix-20261008.md) | 配套说明 |
 | [docs/handoff/pdf-native-text-20261007.md](handoff/pdf-native-text-20261007.md) | 配套说明 |
+| [docs/handoff/pr-412-conflict-fix-20261009.md](handoff/pr-412-conflict-fix-20261009.md) | 配套说明 |
 | [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
 | [docs/handoff/project-evidence-loop-20261006.md](handoff/project-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/reader-failure-ocr-repair-20261006.md](handoff/reader-failure-ocr-repair-20261006.md) | 配套说明 |
