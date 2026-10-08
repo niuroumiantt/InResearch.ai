@@ -87,7 +87,7 @@ TA-04旧图已实看：八个虹彩简化器件在基板上，不能当单裸GPU
 
 TA-04回执PR411已合并dc232148；当前owned工作树分支codex/atlas-hbm-package-20261009，最新研究main已ff且原工作区未动。TA-05内置生成两版，首版外露TSV/板级基板身份被拒，第二版原件8d988ef1采用；8独立标签、四视图本地审阅，旧hbm原件保留。状态accepted表示本地验收，实际发布前仍4/35。先完成本项PR精确头CI/合并/公网，再记published和领取TA-06。
 
-## Current blocker: TA-05 PR419, 2026-10-09
+## Historical blocker: TA-05 PR419, 2026-10-09 (resolved by user exception below)
 
 PR419 is draft: https://github.com/niuroumiantt/InResearch.ai/pull/419. At exact head eec57f7c719e8d51709428f51cc27a77f7d8ad59, run37857342639 returned FAILURE for all four checks with zero executed steps. GitHub annotation: "The job was not started because an Actions budget is preventing further use." No test code ran in CI. Do not change account budgets, bypass checks, merge or deploy on this evidence. This handoff commit changes the PR head; recovery must check the new exact head.
 
@@ -96,3 +96,9 @@ Local technical_atlas (12s), part_dossier (26s, including HBM live canvas), 14 r
 On continuation inspect PR419 latest exact-head checks and whether the Actions budget has recovered first. After all four checks actually succeed, merge, verify public entry/downloads/native SVG and AWS/Spark, then record published in a separate receipt PR. Do not regenerate TA-05 or notify repeatedly while the same blocker is unchanged.
 
 Local evidence: ~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-05/hbm-local/. Prepared public scripts /tmp/inresearch-hbm-review.cjs, /tmp/inresearch-hbm-full-live.cjs and /tmp/inresearch-hbm-source-live.py have NOT run against public TA-05 yet. TA-04 stays published and reachable. Working tree is the owned ops-dashboard tree, not the primary workspace.
+
+## Current: TA-05 published, next TA-06, 2026-10-09
+
+User explicitly requested ignoring the GitHub Actions budget blocker and closing PR/updating. PR419 was already merged af2f39d8 at 23:13:58Z when inspected; no duplicate close/merge performed. Actual AWS/Spark observed 10cd748f; AWS healthy, reader/research-review active. Public HBM four views and native eight-label SVG (decoded master SHA), source bytes and PNG/SVG download HEAD200 verified, anonymous research401 preserved. Publication receipt contains the failed/not-started CI evidence and explicit user exception, not a fabricated CI pass. Main5/35, supplemental4/4, nextTA-06. Earlier blocker instructions are superseded for this release by the direct user request.
+
+Current owned branch codex/atlas-hbm-receipt-20261009: finish this receipt commit/PR merge under the same user exception; verify final deployment, then continue TA-06. No image regeneration for TA-05. The exception concerns this budget blocker/release; normal local tests, visual review and real public checks remain required. Reference and original files unchanged.

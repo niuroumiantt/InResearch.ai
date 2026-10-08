@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.09.01 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.09.02 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -126,4 +126,6 @@ TA-03实际发布与服务/入口/原件回执见该项publication；当前完�
 
 2026-10-08 TA-04继续逐张制作：通用GPU模组/基板装配，计数错误的前两版保留并拒绝，旧gpu-board原件与服务器子装配可达；PR409精确头四项CI与实际公网四视图/高清原PNG/8标签/服务均核对；主计划4/35、补充4/4，下一TA-05。
 
-2026-10-09：TA-05 GPU与HBM通用封装图按原35项队列制作；四堆栈、层数与TSV为示意，原GPU基板与机箱图可达，实际发布另记。
+2026-10-09：TA-05 GPU与HBM通用封装图按原35项队列制作；四堆栈、层数与TSV为示意，原GPU基板与机箱图可达，已实际发布并核对公网四视图和母图SHA；主计划5/35。
+
+2026-10-09: TA-05 actual publication verified, main 5/35 and supplemental 4/4; next TA-06. PR419 Actions budget prevented execution; explicit user exception permits closing/publishing this release. CI success is not claimed; local and public evidence are recorded separately.
