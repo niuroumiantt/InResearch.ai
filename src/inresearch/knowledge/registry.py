@@ -340,13 +340,49 @@ def candidate_snapshot(payload, graph, questions):
     reader = {k: v for k, v in reader.items() if k in (
         'generated', 'counts', 'stage_counts', 'oldest_pending', 'recent_failures',
         'backend', 'model', 'roots', 'status', 'release', 'acquisition', 'reading_revisions', 'registry_lag',
-        'operations', 'thermal', 'claim_floor', 'free_bytes', 'oldest_pending_seconds', 'last_scan', 'execution_scope')}
+        'operations', 'thermal', 'claim_floor', 'free_bytes', 'oldest_pending_seconds', 'last_scan', 'execution_scope',
+        'research_verification')}
+    if 'research_verification' in reader:
+        reader['research_verification'] = _research_verification(reader['research_verification'])
     if lagging:
         reader['registry_lag'] = {'snapshot_graph_version': payload['graph_version'],
                                   'snapshot_questions_version': payload['questions_version'],
                                   'dropped_ids': dropped_ids, 'dropped_answers': dropped_answers, 'folded_ids': folded_ids}
     return dict(graph_version=graph['version'], questions_version=questions['version'], generated=generated,
                 received_at=datetime.now(timezone.utc).isoformat(), knowledge=result, reader=reader)
+
+
+def _research_verification(value):
+    """Keep only measured queue counts; never transport audit text or authority."""
+    unavailable = {'state': 'unavailable', 'candidates': {}}
+    if not isinstance(value, dict) or value.get('state') not in ('observed', 'not_started', 'unavailable'):
+        return unavailable
+    result = {'state': value['state'], 'candidates': {}}
+    for key in ('generated', 'last_change'):
+        timestamp = value.get(key)
+        if timestamp is not None:
+            try:
+                if len(timestamp) > 40:
+                    return unavailable
+                parse_time(timestamp)
+            except (ValueError, TypeError):
+                return unavailable
+            result[key] = timestamp
+    if value['state'] == 'observed':
+        counts = value.get('candidates')
+        active = value.get('active_batches')
+        if not isinstance(counts, dict) or type(active) is not int or not 0 <= active <= 1000000000:
+            return unavailable
+        allowed = {'queued', 'review_ready', 'needs_owner', 'needs_specialist', 'background', 'duplicate',
+                   'deferred', 'defer', 'already_adopted', 'published', 'needs_demand_match', 'reviewing'}
+        for state, count in counts.items():
+            if state not in allowed:
+                continue
+            if type(count) is not int or not 0 <= count <= 1000000000:
+                return unavailable
+            result['candidates'][state] = count
+        result.update(active_batches=active, unit='candidate statements, not materials or GW')
+    return result
 
 
 def merge_knowledge(curated, candidates):

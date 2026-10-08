@@ -54,17 +54,16 @@ class Publisher:
         # service restart is a substitute for a clean fast-forward.
         dirty=self.ssh(['git','-C',self.spark_root,'status','--porcelain']).stdout
         if dirty.strip():raise ValueError('spark_source_dirty_preserve_and_defer')
-        self.ssh(['git','-C',self.spark_root,'fetch','origin'])
+        self.ssh(['env','GIT_TERMINAL_PROMPT=0','git','-C',self.spark_root,'fetch','origin','main'])
         self.ssh(['git','-C',self.spark_root,'merge','--ff-only','origin/main'])
 
     def tick(self):
-        ready=self.remote('ready')
         journals=sorted(self.state.glob('*/journal.json'))
         for path in journals:
             value=read_json(path)
             if value.get('state') not in ('published','blocked','revalidation'):
                 return self.advance(path.parent,value)
-        for pending in ready:
+        for pending in self.remote('ready'):
             bid=pending['batch_id']
             if not re.fullmatch('[0-9a-f]{64}',bid):raise ValueError('unsafe_batch_id')
             directory=private_dir(self.state/bid)
@@ -93,7 +92,7 @@ class Publisher:
                 bundle=read_json(audit/'bundle.json')
                 if digest_file(audit/'bundle.json')!=proof['bundle_sha256']:raise ValueError('bundle_transport_changed')
                 journal.update(bundle_sha256=proof['bundle_sha256'],attempt=attempt)
-                run(['git','fetch','origin'],self.root)
+                run(['env','GIT_TERMINAL_PROMPT=0','git','fetch','origin','main'],self.root)
                 branch='codex/research-publication-'+bid[:16]+'-'+hashlib.sha256(attempt.encode()).hexdigest()[:6]
                 worktree=Path.home()/'.worktrees/inresearch.ai'/('research-publication-'+bid[:16]+'-'+attempt)
                 if not worktree.exists():

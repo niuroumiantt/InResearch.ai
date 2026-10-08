@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1183。
+在册文件：1184。
 
 | 身份 | 文件数 |
 |---|---|
@@ -23,7 +23,7 @@
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 100 |
-| 测试 | 133 |
+| 测试 | 134 |
 
 ## 在册记录集合
 
@@ -1461,6 +1461,7 @@
 | `tests/unit/test_research.py` | 测试 |
 | `tests/unit/test_research_match.py` | 测试 |
 | `tests/unit/test_research_navigation.py` | 测试 |
+| `tests/unit/test_research_progress.py` | 测试 |
 | `tests/unit/test_research_review.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
