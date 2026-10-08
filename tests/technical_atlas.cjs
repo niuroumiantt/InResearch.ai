@@ -5,7 +5,7 @@ const {join} = require('node:path');
 const {chromium} = require('playwright');
 const accepted = new Set(JSON.parse(readFileSync(join(__dirname,'../framework/visual_atlas_migration.json'),'utf8')).items
   .filter(row => ['accepted','published'].includes(row.status)).map(row => row.id));
-const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-03','chassis','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算']]
+const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-03','chassis','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存']]
   .filter(([,figure]) => accepted.has(figure));
 (async () => {
   const browser = await chromium.launch({headless: true, args: ['--enable-unsafe-swiftshader']});
@@ -97,6 +97,10 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
         assert.match(await atlas.locator('figcaption').textContent(), /多 GPU 模组与基板/);
         assert.match(await page.locator('.pbox[data-atlas-part="gpu"] title').textContent(), /GPU 加速基板/);
         assert.equal(await page.locator('.technical-atlas[data-figure="TA-03"]').count(), 0, 'GPU selection clears the previous server subassembly');
+      }
+      if (figure === 'TA-05') {
+        assert.match(await atlas.locator('figcaption').textContent(), /四堆栈.*仅为图示/);
+        assert.equal(await page.locator('.technical-atlas[data-figure="TA-04"]').count(), 0, 'HBM package clears the previous board assembly');
       }
       assert.equal(await page.locator('.technical-atlas').count(),1,'a selection must not retain the previous object diagram');
       for (const mode of ['scale','system']) {

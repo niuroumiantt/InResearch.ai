@@ -16,7 +16,7 @@ const {chromium} = require('playwright');
       assert.notEqual(instrumented, html);
       await route.fulfill({response, body:instrumented});
     });
-    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu']) {
+    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm']) {
       console.log('Scene contract: loading '+url);
       await page.goto(process.env.UI_BASE_URL + url);
       const dossier = page.locator('#dossier');
@@ -30,6 +30,12 @@ const {chromium} = require('playwright');
         await enclosure.waitFor();
         assert.match(await enclosure.locator('figcaption').textContent(), /子装配/);
         assert.ok((await enclosure.locator('img').getAttribute('src')).endsWith('/chassis-v1-preview.svg'));
+      } else if (url.includes('part:hbm')) {
+        const hbm = dossier.locator('.technical-atlas[data-figure="TA-05"]');
+        await hbm.waitFor();
+        assert.match(await hbm.locator('h3').textContent(), /GPU 与 HBM.*封装层次/);
+        assert.match(await hbm.locator('figcaption').textContent(), /硅中介层.*仅为图示/);
+        assert.equal(await dossier.locator('.technical-atlas[data-figure="TA-04"]').count(), 0);
       } else {
         assert.equal(await dossier.locator('.technical-atlas[data-figure="TA-03"]').count(), 0, 'GPU must not inherit enclosure diagram');
         const gpu = dossier.locator('.technical-atlas[data-figure="TA-04"]');
