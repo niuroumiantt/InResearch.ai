@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.1。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.2。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1184。
+在册文件：1186。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,13 +16,13 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 304 |
-| 运行代码 | 268 |
+| 运行代码 | 269 |
 | 现行规范 | 13 |
 | 项目配置 | 102 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 100 |
+| 配套说明 | 101 |
 | 测试 | 134 |
 
 ## 在册记录集合
@@ -553,6 +553,7 @@
 | [docs/handoff/nvidia-product-catalog.md](handoff/nvidia-product-catalog.md) | 配套说明 |
 | [docs/handoff/ocr-gap-rescue-four-20261007.md](handoff/ocr-gap-rescue-four-20261007.md) | 配套说明 |
 | [docs/handoff/ops-dashboard-20261007.md](handoff/ops-dashboard-20261007.md) | 配套说明 |
+| [docs/handoff/ops-loading-fix-20261008.md](handoff/ops-loading-fix-20261008.md) | 配套说明 |
 | [docs/handoff/pdf-native-text-20261007.md](handoff/pdf-native-text-20261007.md) | 配套说明 |
 | [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
 | [docs/handoff/project-evidence-loop-20261006.md](handoff/project-evidence-loop-20261006.md) | 配套说明 |
@@ -1502,6 +1503,7 @@
 | `web/assets/models/server_v2_console.glb` | 静态资源 |
 | `web/assets/ops-dashboard.css` | 运行代码 |
 | `web/assets/ops-dashboard.js` | 运行代码 |
+| `web/assets/ops-forms.js` | 运行代码 |
 | [web/assets/panels/README.md](../web/assets/panels/README.md) | 配套说明 |
 | `web/assets/panels/server_gpu.png` | 静态资源 |
 | `web/assets/panels/server_nvme.png` | 静态资源 |
