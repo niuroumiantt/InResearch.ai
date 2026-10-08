@@ -1,5 +1,13 @@
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
+  gpu: {
+    id: 'TA-04', title: 'GPU 加速基板 · 模组装配',
+    image: '/assets/technical-atlas/gpu-board-v1.svg', preview: '/assets/technical-atlas/gpu-board-v1-preview.svg',
+    master: '/assets/technical-atlas/gpu-board-v1.png',
+    alt: '暖白多 GPU 基板装配图：已安装模组、分离模组与金属接触盖、对应空插槽、互联芯片、供电元件和板边连接器。',
+    note: '通用多 GPU 模组与基板装配示意；布局、连接端与散热接触结构以选定型号资料为准。',
+    labels: ['GPU 模组：独立电路板承载 GPU 封装与供电元件', '接触盖：展示模组上方金属件的分离关系', '模组插槽：对应被抬起的单个模组', '已安装模组：展示基板上的装配位置', '互联芯片：展示多 GPU 基板上的互联部件类别', '供电元件与板边连接器：展示基板的元件与连接位置'],
+  },
   server: {
     id: 'TA-03', title: '服务器机箱 · 盖板与壳体',
     image: '/assets/technical-atlas/chassis-v1.svg', preview: '/assets/technical-atlas/chassis-v1-preview.svg',

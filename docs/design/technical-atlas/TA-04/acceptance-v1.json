@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-04",
+  "object_id": "part:gpu",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Generic eight-GPU module/baseboard assembly",
+  "reviewed_at": "2026-10-08",
+  "reviewer": "Codex实际母图、独立标签、系统/尺度四视图审阅，不冒称用户逐项签字",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "Generic eight-GPU module/baseboard assembly: seven installed modules, one lifted module and its empty socket. Not a bare GPU die or exact vendor CAD.",
+  "master": "web/assets/technical-atlas/gpu-board-v1.png",
+  "labelled": "web/assets/technical-atlas/gpu-board-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R2",
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "passed_to_tool": true
+    },
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "initial_prompt": "docs/design/technical-atlas/TA-04/prompt-v1.txt",
+    "correction_prompt": "docs/design/technical-atlas/TA-04/prompt-correction-v2.txt",
+    "accepted_prompt": "docs/design/technical-atlas/TA-04/prompt-rebuild-v3.txt",
+    "iterations": 3,
+    "accepted_original_filename": "exec-3dd0319e-fb86-402b-9755-5e57fb325c87.png",
+    "raster_modified_after_generation": false,
+    "preview_method": "same-pixel JPEG encoding with macOS sips; original PNG unchanged",
+    "label_method": "independent stdlib SVG layer with unchanged original PNG embedded",
+    "rejected_attempts": [
+      {
+        "original": "exec-9f55b11d-9cc6-425c-bc25-7ef90abb9f3c.png",
+        "reason": "Eight installed plus one lifted = nine GPU modules."
+      },
+      {
+        "original": "exec-09e965f8-c1c9-4d8f-a6e8-415b8253f4ce.png",
+        "reason": "Five columns; nine installed plus one lifted = ten GPU modules."
+      }
+    ]
+  },
+  "rights": {
+    "origin": "用户授权按认可图册参考生成，原件和拒绝版本保留",
+    "license": "项目生成插图，不冒称原厂工程图或CC0"
+  },
+  "technical_sources": [
+    {
+      "file": "framework/bom.json",
+      "supports": "Existing part:gpu in IT compute; no new BOM axis or adopted product configuration."
+    },
+    {
+      "url": "https://docs.nvidia.com/enterprise-reference-architectures/hgx-ai-factory-h100-h200-b200/latest/components.html",
+      "title": "NVIDIA HGX AI Factory Components",
+      "observed_at": "2026-10-08",
+      "supports": "Eight H100/H200 SXM GPU modules on an HGX baseboard with NVLink/NVSwitch; assembly category only."
+    },
+    {
+      "url": "https://developer.nvidia.com/blog/introducing-nvidia-hgx-h100-an-accelerated-server-platform-for-ai-and-high-performance-computing/",
+      "title": "Introducing NVIDIA HGX H100",
+      "observed_at": "2026-10-08",
+      "supports": "Eight GPUs and four NVSwitch chips as a category reference; generated positions are schematic."
+    }
+  ],
+  "unknowns": [
+    "Vendor model, exact SXM connector contacts/pinout, PCB routing, mounting dimensions and cooling mechanical design are unspecified.",
+    "GPU package is represented externally; HBM and die internals remain separate TA-05.",
+    "No bandwidth, performance or thermal capability is adopted from the generated picture. Existing interactive 3D geometry and whole-server TA-11 remain separate work."
+  ],
+  "checks": {
+    "counted_installed_modules": 7,
+    "counted_lifted_modules": 1,
+    "counted_empty_sockets": 1,
+    "module_total": 8,
+    "no_baked_text": true,
+    "independent_labels": 8,
+    "native_pixels_verified": true,
+    "leaders_reviewed": true,
+    "leader_correction": "Move PCB leader endpoint to the exposed board edge to avoid intersecting GPU-package leader.",
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true,
+    "retained_ssd_and_3d": "technical_atlas (11s) and part_dossier (18s) passed locally. Exact-head CI and actual public verification required for publication.",
+    "existing_2d_failure_fixed": "Pass full prices object to createPartDossier. Previously GPU series caused Cannot read properties of undefined (reading filter) and aborted context rendering."
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/gpu-board-v1-preview.svg",
+    "bytes": 403458
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/gpu-board-v1.png",
+      "sha256": "1b1c3a543f8d9863ebc75fad208dd7a03f74cd9e86e05f65c0f522871273b70e"
+    },
+    {
+      "file": "web/assets/technical-atlas/gpu-board-v1.svg",
+      "sha256": "45ea98dc88e3d8a19b2816466dc2059a2825232689a3426e2ab4a48b97a0565c"
+    },
+    {
+      "file": "web/assets/technical-atlas/gpu-board-v1-preview.jpg",
+      "sha256": "eb1e21dad4843847a22bbd66782f88f1de54fd53374ea7d10c5ccde75052eacf"
+    },
+    {
+      "file": "web/assets/technical-atlas/gpu-board-v1-preview.svg",
+      "sha256": "30055b8e402d1fe6f1525538cfb0342f7ab5a690ec1cc9aff9964ef56f21cf61"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-04/labels-v1.json",
+      "sha256": "a74fa2c9d31cbb542b177d93e7afc35634fd9546808e96bea9757d18f82d156b"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-04/prompt-v1.txt",
+      "sha256": "aad818d71c3dd0f5d17613e232f1e6d52ab12910ec4c03c7f494c107f5433052"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-04/prompt-correction-v2.txt",
+      "sha256": "9008b6168629a2783fcda5f2e09e65fca8a9ebe77aa72ca5488695a1bf46ab1f"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-04/prompt-rebuild-v3.txt",
+      "sha256": "f8b6d1eab75504bb96699c85390882a31236939739feeeaf49e0bc2b8bb605d4"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-04/preparation-v1.json",
+      "sha256": "d84ef02f9d0ebc204ca24d66580f003b81822bc43f57ec3023fa3dc6680fd7a4"
+    }
+  ],
+  "browser_checks": [
+    "tests/technical_atlas.cjs",
+    "tests/part_dossier.cjs"
+  ],
+  "browser_review": {
+    "file": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-04/gpu-local/browser.json",
+    "views": 4,
+    "full_svg_opened": true,
+    "page_errors": 0,
+    "label_count": 8
+  }
+}
