@@ -370,3 +370,21 @@ L2 的记录和 skip 是事实处理回执，不产生全文版本。pack 如有
 当前执行 revision 包括在途替代版本，已被替代的旧失败不计当前瓶颈；当前完整结果另计。错误不是最近 20 个失败样本的外推，汇总覆盖当前执行任务。原件格式/图纸工作流缺口、OCR 质量问题、按策略暂存与执行错误分开，重排仍按前述 `error_code` 和文档范围处理，dashboard 没有全队重试按钮。任务定位给出身份、阶段模块与明确 UTC 的 `journalctl --user -u inresearch-reader.service` 检索入口，不猜异常行号。
 
 管理页手动操作的完整日志和不可变运行记录保存于网站运行 `logs/ops/`，最新任务记录为 `logs/task_<task>.json`；只经管理员诊断接口下载，不作为公开静态文件。旧日志不补造成功状态。显示最近 50 次手动记录，不代表 Spark 常驻工作历史；完整服务历史继续核对 Spark journal / 原有运行台账。日志没有自动删除策略，按现有运行数据备份管理。资料、模型调用失败和研究采用仍沿现行边界处理。
+
+
+## 2026-10-08：持续研究核验与发布
+
+`research-review` 独立于 Reader，数据在 Spark `~/.local/share/inresearch.ai/material-reviews/research-verification/`：queue.sqlite 是审核执行台账，按 batch/attempt 保存原件绑定、需求重匹配、模型请求/响应、抽样及网站回执，全部长期保留。它只读取当前封存 Reader 版本；不重启 Reader、不回迁原件、不恢复图片OCR。先点名报告做真实试跑，再启动独立用户服务。机器私有 `research-review.env` 设置 PYTHONPATH 与 INRESEARCH_MODEL_CONFIG、凭据环境变量；不得写入 Git。仅在未审核任务开始时读取配置角色，换推理服务只调整配置并重启该新 worker。
+
+```sh
+python3 manage.py research-review discover --scope ~/.config/inresearch.ai/codex-batch-scope.json --doc-id doc-完整SHA
+python3 manage.py research-review work --scope ~/.config/inresearch.ai/codex-batch-scope.json --once
+python3 manage.py research-review status
+python3 manage.py research-review ready
+```
+
+安装 `deploy/spark-reader/inresearch-research-review.service` 到用户 systemd，独立 enable/start。每轮最多两批，角色并发更低时取更低值；每批通常三项，超预算继续拆小批、单项不足则待核，不截上下文。两批待发布产生背压。原重要度≥8进待所有者，具体审核新出现A条件同样保留；其他专门数值/项目核验不借作者陈述通道改表。
+
+M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用源码工作树）、state（本机私有状态目录）、spark/aws SSH别名及各自已存在路径。由 `deploy/m5-research/research-publish.plist.example` 安装用户 LaunchAgent，显式替换 Python/源码/配置/日志绝对路径。一次 tick 创建或恢复独立发表工作树/PR，CI四项通过且PR head未变才合并；网页部署后使用容器里已有管理员的临时会话验收真实HTTPS采用接口，不打印会话/密钥，不改账号。研究事实、规范和原件不得通过该凭据临时放宽分发。
+
+先只新增运行服务，既有 Reader/relay 不重启。发布器检查 Spark 源码干净后 fast-forward；dirty 保留并等待。Git/CI/连接/部署错误保存私有 journal，原尝试/分支不 reset 或删除；模型成功与待提交数量不计正式采用。`revalidate` 仅用于未发布、正式上下文已变化的批次；`split-overbudget` 仅拆预算阻塞，保留原审计。网站逐条正文、采用状态、引文和原件支持闭包通过后才有 published。单元测试不是全库语义保证；未匹配需求、A档、缺证据与专门字段仍分别计量。

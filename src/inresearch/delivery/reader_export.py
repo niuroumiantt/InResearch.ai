@@ -204,6 +204,8 @@ def export_snapshot(conn, data, registry, status, cache_root=None, verify=None, 
         raise ValueError("scoped candidate export requires complete coverage for every selected document")
     if doc_ids is None:
         atomic_json(safe_path(data, "candidates/mapping-proposals.json"), {"generated": now_iso(), "acceptance": "candidate", "records": proposals})
+    from inresearch.workflow.research_review import progress as review_progress
+    status['research_verification']=review_progress(data)
     return {"schema_version": 1, "generated": now_iso(), "graph_version": registry["graph_version"],
             "questions_version": registry["questions_version"], "knowledge": knowledge, "reader": status, "acceptance": "candidate"}
 
