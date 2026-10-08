@@ -11861,6 +11861,524 @@
         },
         "batch_id": "8c954e52674be213007e43290627c68a7d5c95c0df5997ea0a011a3037bf6819"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6928d2c7f521c514626d17b2b73e13792f60b104f75e398b351f3652c3f61080",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "id": "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:4:ev:0",
+      "locator": "page:37/chunk:36",
+      "object_ids": [
+        "part:ai-asic",
+        "part:gpu"
+      ],
+      "page_index": 36,
+      "question_ids": [
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-performance"
+      ],
+      "quote": "For Ragged Paged Attention v3, TPU handles it quite di�erently from vLLM GPU.\nvLLM manages KV cache with a technique similar to virtual memory and paging.\nHowever, this technique requires fetching dynamic addresses and performing scatter\noperations, something TPUs don’t support well.",
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "source_sha256": "b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性为7，评分7。该项具体说明分页注意力实现差异及软件操作对硬件迁移的约束，实质贡献于当前替代方案、性能工况和互换限制问题。连续引文及相邻说明足以支持有归属的局部作者主张；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-alternatives",
+          "Q-OBJ-gpu-performance",
+          "Q-OBJ-gpu-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6928d2c7f521c514626d17b2b73e13792f60b104f75e398b351f3652c3f61080",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "id": "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:5:ev:0",
+      "locator": "page:37/chunk:36",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "page_index": 36,
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "quote": "As a result, TPU kernels leverage\n�ne-grained operation pipelining. Speci�cally, TPU’s page attention kernel prefetches\nquery and KV blocks for the next sequence, so the memory loading is overlapped with\ncomputation.",
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "source_sha256": "b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原重要性为7，评分6反映本项提供定性机制而非性能测量。内存加载与计算重叠实质关联当前性能问题的执行条件；连续引文和 Ragged Paged Attention v3 上下文充分，可按B采用为部分证据，无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6928d2c7f521c514626d17b2b73e13792f60b104f75e398b351f3652c3f61080",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "id": "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:6:ev:0",
+      "locator": "page:37/chunk:36",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "page_index": 36,
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "quote": "In the existing vLLM MoE kernel, we sort tokens by expert ID, dispatch tokens to the\ndevices with the corresponding experts, perform group matrix multiplication, and\ncombine tokens from experts back to original devices. However, the kernel performs\npoorly for two reasons: TPUs are slow at performing sorting operations, and the\nkernel is unable to overlap communication with computation.",
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "source_sha256": "b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性和评分均为7。该项明确操作流程及跨硬件实现的性能约束，实质匹配当前性能工况和软件互换限制问题。连续原文足以支持限定范围的作者解释，未识别敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance",
+          "Q-OBJ-gpu-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6928d2c7f521c514626d17b2b73e13792f60b104f75e398b351f3652c3f61080",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "id": "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:7:ev:0",
+      "locator": "page:37/chunk:36",
+      "object_ids": [
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "part:ai-asic"
+      ],
+      "page_index": 36,
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "quote": "All-fused MoE\ndispatches tokens for one expert per device at a time while overlapping MoE dispatch\n& MoE combine communications & avoiding sorting tokens by expert ID.",
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "source_sha256": "b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性和评分均为7。该项直接补充当前性能问题中的执行机制及适用条件，与既有内核的限制形成具体关联。连续引文和前后正文充分，且无A条件，可作为局部作者主张采用。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6928d2c7f521c514626d17b2b73e13792f60b104f75e398b351f3652c3f61080",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "id": "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:8:ev:0",
+      "locator": "page:37/chunk:36",
+      "object_ids": [
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "part:ai-asic"
+      ],
+      "page_index": 36,
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "quote": "With all-\nfused MoE, the Google engineer reported 3 - 4x speedup over existing kernels.",
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "source_sha256": "b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性和评分均为7。该项提供与当前性能问题实质相关的内核相对加速报告；B采用对象限定为明确归属的二手报告，其连续引文及既有内核、all-fused MoE 上下文充分。缺少测试条件阻止形成已验证性能结论，但不妨碍保留这一局部来源主张；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "7a53ed38aa76a2d35b9399620ad3814f6e04702c1c1cda8904c7cc4dfa95fb06",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "id": "rev-93273486a751414cb699d16189410f8f:chunk:37:claim:0:ev:0",
+      "locator": "page:38/chunk:37",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "page_index": 37,
+      "question_ids": [
+        "OBJ-gpu-definition"
+      ],
+      "quote": "Furthermore, another hardware unit in TPUs is the SparseCore (SC) used to accelerate\nembedding lookups and updates. SC comes with a scalar subcore SparseCore\nSequencer (SCS) and multiple vector subcores SparseCore Tiles (SCT).",
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "source_sha256": "b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性和评分均为7。SparseCore 的内部角色及标量、向量组成直接补充当前 GPU/AI ASIC 组成问题和专用 AI 加速器适用场景问题。连续引文及相邻限定充分，无A条件，可按B采用为局部作者主张。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-definition",
+          "Q-Q-SCOPE-part-ai-asic"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      }
     }
   ],
   "statements": [
@@ -23221,6 +23739,611 @@
         "batch_id": "8c954e52674be213007e43290627c68a7d5c95c0df5997ea0a011a3037bf6819",
         "source_report_sha256": "b02cf7bf10fdf8cc9460c5411a9135d5b3c350ef7f5801a64267a35770e4bb86",
         "request_sha256": "f1d829c49cd7bc0a7b8ff38a87cd5f82d5f7f47fb18dbe73d6be44f1169a4cbf"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "evidence_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:4:ev:0"
+      ],
+      "id": "adoption:review:79aba8630cb76b0ff992e33b",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ai-asic",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-interfaces"
+      ],
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "status": "adopted",
+      "text": "SemiAnalysis《TPUv7: Google Takes a Swing at the King》作者在第37页讨论 Ragged Paged Attention v3 时称，TPU 的处理方式与 vLLM GPU 不同：vLLM 采用类似虚拟内存分页的方式管理 KV cache，需要动态地址获取和 scatter 操作，而 TPU 对这些操作支持得不好。此项记录该来源在所述内核场景中的作者判断。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性为7，评分7。该项具体说明分页注意力实现差异及软件操作对硬件迁移的约束，实质贡献于当前替代方案、性能工况和互换限制问题。连续引文及相邻说明足以支持有归属的局部作者主张；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-alternatives",
+          "Q-OBJ-gpu-performance",
+          "Q-OBJ-gpu-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      },
+      "source_candidate_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:4"
+      ],
+      "limitations": "出版时间未建立；未指定地域、部署项目或该内核的具体 TPU/GPU 型号、软件版本和测试工况。前页涉及 TPU v5p/v6e 的框架 beta 支持，但不足以将本段全部内核判断限定到其中某一型号。本项不是所有 TPU 均不能执行 scatter 的断言，也不证明2026年当前支持状态或整体性能优劣。仅核验所供原生文本，未审阅图示。",
+      "conflict_check": "第38页称 SparseCore 能执行 gather/scatter，并说明其可编程性仍在推进；这限制了将第37页判断泛化为全部 TPU 硬件能力的解释，但未形成同内核、同实现条件下的直接冲突。当前采用记录涉及 CPX、推理瓶颈、训练网络及 OCS，不包含相同主张。所供 legacy 匹配记录为空，检查不代表穷尽外部反证；不覆盖既有结论。",
+      "gap_dependency_check": "局部判断由连续正文支持，不依赖未读图片或后续编译器能力预测。接口问题仅获得软件互换约束线索，仍缺接口规范；性能及替代问题仍缺同模型、同版本、同工况的测试和成本比较。三项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213",
+        "source_report_sha256": "bc2535c300e48e0ef58b64d0d41c9cfce3cd594c849227ccc26fd3caecd96600",
+        "request_sha256": "73cc292356432c0a31acd5af5ce07efbedc4e4dae0546eebd841ca62181ebb24"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "evidence_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:5:ev:0"
+      ],
+      "id": "adoption:review:72b103b45f074afc981054fe",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "status": "adopted",
+      "text": "SemiAnalysis《TPUv7: Google Takes a Swing at the King》作者在第37页的分页注意力讨论中称，TPU 内核采用细粒度操作流水线，预取下一序列的 query 和 KV 块，使内存加载与计算重叠。此项保留为该来源对内核执行机制的解释。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原重要性为7，评分6反映本项提供定性机制而非性能测量。内存加载与计算重叠实质关联当前性能问题的执行条件；连续引文和 Ragged Paged Attention v3 上下文充分，可按B采用为部分证据，无A条件。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      },
+      "source_candidate_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:5"
+      ],
+      "limitations": "出版时间、地域及部署项目未建立。该段未明确内核版本、TPU 型号、模型、序列长度、批大小或测试方法，也未量化重叠程度和性能收益。不能据此认定所有 TPU 注意力内核均采用相同实现，或认证2026年当前状态。仅核验原生文本，未审阅图示。",
+      "conflict_check": "现有采用记录关于推理计算和内存瓶颈的说明不排除通过流水线重叠操作，亦不能独立验证该实现。训练功率、AllReduce及 OCS 记录属于不同对象或工况，未发现同一主张的重复或直接冲突。所供 legacy 匹配记录为空；不改写现有瓶颈结论。",
+      "gap_dependency_check": "该机制解释不依赖图片、缺少的视觉信息或后续软件预测。确认实际收益仍需源码或技术说明、硬件与工作负载条件、性能测量和反证；不能据此关闭 OBJ-gpu-performance。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213",
+        "source_report_sha256": "bc2535c300e48e0ef58b64d0d41c9cfce3cd594c849227ccc26fd3caecd96600",
+        "request_sha256": "73cc292356432c0a31acd5af5ce07efbedc4e4dae0546eebd841ca62181ebb24"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "evidence_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:6:ev:0"
+      ],
+      "id": "adoption:review:1403db103cdeeaa4bdf9a49c",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "question_ids": [
+        "OBJ-gpu-performance",
+        "OBJ-gpu-interfaces"
+      ],
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "status": "adopted",
+      "text": "SemiAnalysis《TPUv7: Google Takes a Swing at the King》作者在第37页称，文中所述现有 vLLM MoE 内核先按专家 ID 排序 token，再向对应专家所在设备分发，执行分组矩阵乘法后将 token 合并回原设备；作者将该内核在 TPU 上表现不佳归因于 TPU 排序操作较慢，以及该内核无法重叠通信与计算。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性和评分均为7。该项明确操作流程及跨硬件实现的性能约束，实质匹配当前性能工况和软件互换限制问题。连续原文足以支持限定范围的作者解释，未识别敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance",
+          "Q-OBJ-gpu-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      },
+      "source_candidate_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:6"
+      ],
+      "limitations": "出版时间、地域及具体部署项目未建立。“现有”仅指来源讨论时的实现，不代表2026年版本。未给 TPU 型号、模型、专家配置、并行策略、通信拓扑、软件版本或实测数据；两个原因是作者归因，未量化各自贡献，不能推广为所有 MoE 内核或 TPU 的性能结论。仅核验原生文本。",
+      "conflict_check": "相邻 all-fused MoE 段说明另一实现能够改变排序及通信安排，与本项限定于既有内核的判断相容。SparseCore 可编程性讨论属于另一硬件单元及后续能力预期，不能据此反驳或认证本项。现有采用陈述及所供空的 legacy 匹配结果未提供同版本、同工况反例或重复记录；不修改已有结论。",
+      "gap_dependency_check": "局部流程和作者归因不依赖未读图表或未来 SparseCore 能力。性能问题仍需对照测试与瓶颈分解；接口问题仅获得软件迁移依赖线索，仍缺规范、版本兼容及互换验证。两项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213",
+        "source_report_sha256": "bc2535c300e48e0ef58b64d0d41c9cfce3cd594c849227ccc26fd3caecd96600",
+        "request_sha256": "73cc292356432c0a31acd5af5ce07efbedc4e4dae0546eebd841ca62181ebb24"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "evidence_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:7:ev:0"
+      ],
+      "id": "adoption:review:38c1681bfab777e2f8d2c56a",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "part:ai-asic"
+      ],
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "status": "adopted",
+      "text": "SemiAnalysis《TPUv7: Google Takes a Swing at the King》作者在第37页称，Google 开发者为应对所述既有 MoE 内核的问题设计了 all-fused MoE：每次为每台设备的一个专家分发 token，同时重叠 MoE dispatch 与 MoE combine 通信，并避免按专家 ID 排序 token。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性和评分均为7。该项直接补充当前性能问题中的执行机制及适用条件，与既有内核的限制形成具体关联。连续引文和前后正文充分，且无A条件，可作为局部作者主张采用。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      },
+      "source_candidate_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:7"
+      ],
+      "limitations": "出版时间、地域及部署项目未建立。未给具体硬件、模型、专家布局、代码版本、调度时序或测试条件；本项是来源描述的实现机制，不证明普遍适用性、稳定部署或2026年当前可用状态。所选引文未量化通信重叠程度，也不能单独证明计算与通信的重叠比例。仅核验原生文本，未审阅图示。",
+      "conflict_check": "本项描述替代实现，未否定前段对既有 vLLM MoE 内核的判断。当前采用的推理瓶颈、训练同步及 OCS 陈述没有相同内核主张；所供 legacy 匹配记录为空，未发现可指定的重复记录或同工况冲突。不覆盖现有结论。",
+      "gap_dependency_check": "实现描述由文字直接支持，不依赖后续3—4倍报告、未读图示或 SparseCore 可编程性预测。性能收益及其来源仍需代码、工作负载条件、通信与计算时序和对照测试；OBJ-gpu-performance 保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213",
+        "source_report_sha256": "bc2535c300e48e0ef58b64d0d41c9cfce3cd594c849227ccc26fd3caecd96600",
+        "request_sha256": "73cc292356432c0a31acd5af5ce07efbedc4e4dae0546eebd841ca62181ebb24"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "evidence_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:8:ev:0"
+      ],
+      "id": "adoption:review:ceac1d4ae111366bbf5b4e50",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "part:ai-asic"
+      ],
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "status": "adopted",
+      "text": "SemiAnalysis《TPUv7: Google Takes a Swing at the King》作者在第37页转述，一位 Google 工程师报告 all-fused MoE 相比既有内核获得3—4倍加速。此项仅记录该来源转述的工程师报告，不将其作为经独立复现的性能结果。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性和评分均为7。该项提供与当前性能问题实质相关的内核相对加速报告；B采用对象限定为明确归属的二手报告，其连续引文及既有内核、all-fused MoE 上下文充分。缺少测试条件阻止形成已验证性能结论，但不妨碍保留这一局部来源主张；未识别A条件。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      },
+      "source_candidate_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:36:claim:8"
+      ],
+      "limitations": "出版时间、报告发生时间、工程师身份、地域及部署项目未建立。本段及所供相邻正文未给模型、硬件配置、内核版本、具体基线、测量指标或测试方法；3—4倍不能解释为 TPU 相比 GPU 的整体优势、端到端吞吐提升或成本降幅，也不能认证2026年当前性能。",
+      "conflict_check": "当前采用的 CPX、推理阶段、训练功率及同步陈述均不是该内核的同条件测试结果。第39页关于 vLLM TPU benchmark 软件成熟度的讨论提示框架与实现条件的重要性，但不是本项3—4倍报告的直接反例或佐证。所供 legacy 匹配记录为空，未发现直接冲突或相同规范记录；不更新任何现有性能结论。",
+      "gap_dependency_check": "记录来源转述不依赖未读图片；核实加速倍数则依赖工程师原始报告、准确基线、模型与硬件条件、测量定义和复现结果。不能将本项作为可比较的性能数值输入或关闭 OBJ-gpu-performance。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213",
+        "source_report_sha256": "bc2535c300e48e0ef58b64d0d41c9cfce3cd594c849227ccc26fd3caecd96600",
+        "request_sha256": "73cc292356432c0a31acd5af5ce07efbedc4e4dae0546eebd841ca62181ebb24"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b1048d4bf64d7e14dc59bf584f7f14c77219da9420541e9815760668ed991390",
+      "evidence_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:37:claim:0:ev:0"
+      ],
+      "id": "adoption:review:bb14b820e6e657a46331739d",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:ai-asic"
+      ],
+      "question_ids": [
+        "OBJ-gpu-definition",
+        "Q-SCOPE-part-ai-asic"
+      ],
+      "reading_revision_id": "rev-93273486a751414cb699d16189410f8f",
+      "status": "adopted",
+      "text": "SemiAnalysis《TPUv7: Google Takes a Swing at the King》作者在第38页称，TPU 内部的 SparseCore 用于加速 embedding 查询和更新，由一个标量子核 SparseCore Sequencer（SCS）及多个向量子核 SparseCore Tiles（SCT）组成。此项记录该来源对专用 AI 加速器内部组成及用途的描述。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T15:01:11+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性和评分均为7。SparseCore 的内部角色及标量、向量组成直接补充当前 GPU/AI ASIC 组成问题和专用 AI 加速器适用场景问题。连续引文及相邻限定充分，无A条件，可按B采用为局部作者主张。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-definition",
+          "Q-Q-SCOPE-part-ai-asic"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 167.587,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a3c3d81f41c02effbba3e6736c73fe21044907e20f5576a346cd91fa72e9372",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59625,
+            "output_tokens": 4882,
+            "reasoning_output_tokens": 901
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.284,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8128bbe3f7465e341f604bf9be4993565a9926b8c774bf6f2a170a646b9be147",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 57033,
+              "output_tokens": 425,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213"
+      },
+      "source_candidate_ids": [
+        "rev-93273486a751414cb699d16189410f8f:chunk:37:claim:0"
+      ],
+      "limitations": "出版时间、地域及部署项目未建立。该段未明确适用 TPU 代际、SparseCore 数量、完整规格或各型号覆盖范围。组成描述不等于完整 GPU/AI ASIC 定义，也不证明通用可编程能力或2026年当前软件支持；相邻正文明确将 SparseCore 可编程性描述为推进中的工作。仅核验原生文本，未审阅图示。",
+      "conflict_check": "第37页对分页注意力中动态地址和 scatter 支持不佳的判断涉及特定内核适配；第38页区分 SparseCore 并指出可编程性仍在推进，未形成同单元、同软件实现条件下的直接冲突。当前采用的 CPX 组成定位及 TPU OCS 拓扑陈述主张不同，未形成重复。所供 legacy 匹配记录为空；不替换现有分类或组成结论。",
+      "gap_dependency_check": "局部组成与用途不依赖未读图示，也不依赖 Mosaic MPMD 编译及未来 MoE 实现的预测。两项定义问题仍缺总体边界、排除对象、完整分类和型号覆盖，保持开放；本项不改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d531de47bec595342594937c9f5716d8299e47aa8d09fd11d9a0efb66ad51213",
+        "source_report_sha256": "bc2535c300e48e0ef58b64d0d41c9cfce3cd594c849227ccc26fd3caecd96600",
+        "request_sha256": "73cc292356432c0a31acd5af5ce07efbedc4e4dae0546eebd841ca62181ebb24"
       }
     }
   ],
