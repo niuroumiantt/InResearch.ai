@@ -496,6 +496,67 @@
       "status": "candidate",
       "stored_path": "originals/c8/c8988b9016629328057c1897ae821433e0cf8f5dd7e45edb61aa6627ca91b4d5/AI Training Load Fluctuations at Gigawatt-scale – Risk of Power Grid Blackout_ – SemiAnalysis.pdf",
       "title": "AI Training Load Fluctuations at Gigawatt-scale – Risk of Power Grid Blackout?"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "e330c61503ab0fafcdb104714fbc573e428c44052f8c54e9a22e610ce5ca15f9",
+      "coverage": {
+        "characters_read": 5613,
+        "characters_total": 5613,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-e330c61503ab0fafcdb104714fbc573e428c44052f8c54e9a22e610ce5ca15f9",
+      "id": "doc-e330c61503ab0fafcdb104714fbc573e428c44052f8c54e9a22e610ce5ca15f9",
+      "library_path": "library/by-node/root/2026_GLOCAL RESEARCH · 格洛可研究小组_格洛可数据中心日报｜2026年9月23日：容量目标，必须穿过交付链__e330c61503ab0faf.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:abb",
+        "actor:alibaba",
+        "actor:crusoe",
+        "actor:dataone",
+        "actor:microsoft",
+        "chain:network/1",
+        "chain:power/5",
+        "part:gas-turbine",
+        "root",
+        "site:grid",
+        "site:land",
+        "site:permits",
+        "system:facility",
+        "system:it",
+        "system:power"
+      ],
+      "question_ids": [
+        "M01-Q03",
+        "M01-Q06",
+        "M15-Q04",
+        "OBJ-land-alternatives",
+        "OBJ-land-definition",
+        "OBJ-land-interfaces",
+        "OBJ-land-supply",
+        "OBJ-prime-power-definition"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-170e05ff06af4a36885c491ccf068d6b",
+      "report_sha256": "f68d2e2c92a30880e6de9f14fe04923ca0361e8b87d3237eb63166cf9ca52414",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/e3/e330c61503ab0fafcdb104714fbc573e428c44052f8c54e9a22e610ce5ca15f9/2026-09-23-daily.html",
+      "title": "格洛可数据中心日报｜2026年9月23日：容量目标，必须穿过交付链"
     }
   ],
   "evidence": [
@@ -2363,6 +2424,96 @@
           }
         },
         "batch_id": "31f12851b87697f03625204f2c310643952e78ce953f95a46016f8d284f3e1e6"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "fc158cb497e1a6f08757e540326bab5af4b0802909c52609ed3b0387be2bbb26",
+      "document_id": "doc-e330c61503ab0fafcdb104714fbc573e428c44052f8c54e9a22e610ce5ca15f9",
+      "id": "rev-170e05ff06af4a36885c491ccf068d6b:chunk:1:claim:18:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "root",
+        "site:land",
+        "site:permits"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M01-Q03"
+      ],
+      "quote": "规划、目标、融资、土地交易、空气许可、设备展示与项目数量均不等于已投运容量；文中金额保留原币种，未作汇率折算；文章概括图为信息设计，非具体项目施工图。",
+      "reading_revision_id": "rev-170e05ff06af4a36885c491ccf068d6b",
+      "source_sha256": "e330c61503ab0fafcdb104714fbc573e428c44052f8c54e9a22e610ce5ca15f9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T02:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，维持评分7。连续原文引文与周边项目讨论充分，且对当前容量统计及漏斗工作单具有实质性辅助作用：防止把阶段信号、不同量纲或未来目标计作已投运容量。作为作者观点的部分贡献采用，不回答或关闭问题。未发现敏感、真实冲突、替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M01-Q01",
+          "Q-M01-Q03",
+          "Q-M01-Q07",
+          "Q-M15-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 48.463,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2710dd2ee7b2d75daf4c27c3a89e4e6e8c991892b71ed5690ca9b62d72047dc9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 26690,
+            "output_tokens": 1361,
+            "reasoning_output_tokens": 349
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 24.578,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5d456eb8384c9b31af85519c1bef10d8cc8b92d2aa49b9675023622c761c010a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 27398,
+              "output_tokens": 491,
+              "reasoning_output_tokens": 234
+            }
+          }
+        },
+        "batch_id": "7ba47022158965e91b9bd834b3e6b332c8f8ce4eef3ab9ea00951964173ba8b2"
       }
     }
   ],
@@ -4645,6 +4796,113 @@
         "batch_id": "31f12851b87697f03625204f2c310643952e78ce953f95a46016f8d284f3e1e6",
         "source_report_sha256": "04a09a255b76cde7ad5d434835b81aa0750aac5292684b933197d59ab11ddc59",
         "request_sha256": "40b0506ffdafb0dcb94ce9dbe468d755aed259d26626edf3e97aba00c12536ff"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e330c61503ab0fafcdb104714fbc573e428c44052f8c54e9a22e610ce5ca15f9",
+      "evidence_ids": [
+        "rev-170e05ff06af4a36885c491ccf068d6b:chunk:1:claim:18:ev:0"
+      ],
+      "id": "adoption:review:b64a912c51b6d6cfdadc087d",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "site:land",
+        "site:permits"
+      ],
+      "question_ids": [
+        "M01-Q01",
+        "M01-Q03",
+        "M01-Q07",
+        "M15-Q02"
+      ],
+      "reading_revision_id": "rev-170e05ff06af4a36885c491ccf068d6b",
+      "status": "adopted",
+      "text": "GLOCAL RESEARCH · 格洛可研究小组在《格洛可数据中心日报｜2026年9月23日：容量目标，必须穿过交付链》的备注中，针对本期跨地区事件提出统计口径提醒：“规划、目标、融资、土地交易、空气许可、设备展示与项目数量均不等于已投运容量；文中金额保留原币种，未作汇率折算；文章概括图为信息设计，非具体项目施工图。”本期主观察窗口为北京时间2026年9月22日06:00至9月23日06:00，较早事件另标为更新或背景。这是作者对本期材料的阶段与呈现口径说明，不构成对项目当前投运状态或容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T02:55:38+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，维持评分7。连续原文引文与周边项目讨论充分，且对当前容量统计及漏斗工作单具有实质性辅助作用：防止把阶段信号、不同量纲或未来目标计作已投运容量。作为作者观点的部分贡献采用，不回答或关闭问题。未发现敏感、真实冲突、替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M01-Q01",
+          "Q-M01-Q03",
+          "Q-M01-Q07",
+          "Q-M15-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 48.463,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2710dd2ee7b2d75daf4c27c3a89e4e6e8c991892b71ed5690ca9b62d72047dc9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 26690,
+            "output_tokens": 1361,
+            "reasoning_output_tokens": 349
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 24.578,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5d456eb8384c9b31af85519c1bef10d8cc8b92d2aa49b9675023622c761c010a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 27398,
+              "output_tokens": 491,
+              "reasoning_output_tokens": 234
+            }
+          }
+        },
+        "batch_id": "7ba47022158965e91b9bd834b3e6b332c8f8ce4eef3ab9ea00951964173ba8b2"
+      },
+      "source_candidate_ids": [
+        "rev-170e05ff06af4a36885c491ccf068d6b:chunk:1:claim:18"
+      ],
+      "limitations": "原文明确日报期日为2026年9月23日，未建立精确发布时间。该说明适用于本期中国、印度尼西亚、马来西亚、美国、印度、泰国及全球融资与设备端材料，不提供全球投运IT容量、漏斗各级总量、状态分布或历史转化率，也未定义六级或九级漏斗的逐级验收规则。原币种和概括图说明属于阅读边界，不提供容量测算输入；所引原始公告和监管记录未在本次独立核验。",
+      "conflict_check": "与已采用陈述adoption:review:f366f6d8cec1a493ed43842e的阶段区分方向一致；本候选增加土地交易、空气许可、设备展示、项目数量及呈现口径，不是同一陈述的重复。legacy中的CoreWeave合同电力估计、科智咨询项目数占比及投运算力记录保留了各自断言者、单位和阶段，未见直接冲突。Boydton和San Antonio记录使用空气许可辅助估计设施容量，同时另述既有运营历史；这不等于仅凭空气许可确认投运，故未认定真实冲突。其容量推导和L8状态也不因此获得验证。检查限于所供记录，不替换既有结论。",
+      "gap_dependency_check": "对M01-Q01仅贡献已投运IT容量的纳入边界；对M01-Q03贡献规划、在建与运营不能混算的约束；对M01-Q07和M15-Q02贡献阶段信号须分别取证的判读边界。四项仍需同口径项目容量、明确阶段定义、原始来源定位、适用范围和反证；转化率还需历史队列、时间基准及可复查推导。本候选不提供这些数值，不赋予项目具体漏斗等级，不调整研究骨架或关闭工作单。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7ba47022158965e91b9bd834b3e6b332c8f8ce4eef3ab9ea00951964173ba8b2",
+        "source_report_sha256": "f68d2e2c92a30880e6de9f14fe04923ca0361e8b87d3237eb63166cf9ca52414",
+        "request_sha256": "826b81889837c9816d2d2161667f5fe4a816373b29df4510b7a25a7de0315f69"
       }
     }
   ],
