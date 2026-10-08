@@ -390,3 +390,8 @@ python3 manage.py research-review ready
 M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用源码工作树）、state（本机私有状态目录）、spark/aws SSH别名及各自已存在路径。由 `deploy/m5-research/research-publish.plist.example` 安装用户 LaunchAgent，显式替换 Python/源码/配置/日志绝对路径。一次 tick 创建或恢复独立发表工作树/PR，CI四项通过且PR head未变才合并；网页部署后使用容器里已有管理员的临时会话验收真实HTTPS采用接口，不打印会话/密钥，不改账号。研究事实、规范和原件不得通过该凭据临时放宽分发。
 
 既有 Reader/relay 不重启。发布器在M5获取当前已合并 origin/main，确认 Spark 源码干净且 HEAD 是目标的祖先后生成增量 Git bundle，经既有 SSH 传输，核对 SHA 和 bundle 前置提交，再重查 Spark HEAD/dirty 后 fast-forward；远端源地址不改。源码增量和传输回执保存私有 state/research-source 与 M5 source-releases。dirty、分歧或传输期间变更保留并等待，不能用 reset/stash 绕过。Git/CI/连接/部署错误保存私有 journal，原尝试/分支不 reset 或删除；模型成功与待提交数量不计正式采用。`revalidate` 仅用于未发布、正式上下文已变化的批次；`split-overbudget` 仅拆预算阻塞，保留原审计。网站逐条正文、采用状态、引文和原件支持闭包通过后才有 published。单元测试不是全库语义保证；未匹配需求、A档、缺证据与专门字段仍分别计量。
+
+
+## 2026-10-08：资料基座直接交付
+
+当前封存正文经原有快照接收后，由 `/api/research-materials?node=<骨架ID>` 只读投影到节点页。无需运行 prepare/apply、新增模型调用、改C3分数或批量重排队列；日期未知保持未知，快照版本决定当前资料，旧原件/报告长期保留。C3继续服务正式采用，失败与重要性路由不阻止已有材料进入资料基座。整篇阅读完成、资料可用条数、正式采用与GW分别报告；不是所有历史资料都需要今天的独立认证。
