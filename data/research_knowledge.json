@@ -4668,6 +4668,94 @@
         },
         "batch_id": "3706a1e29dd619f870b5c8927842588007967131308d9d8188dec646057ec0c8"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bc2e3024a6062099482202381c0fb01a594427476165eb5b62ed4e246a7b3c3f",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:27:claim:3:ev:0",
+      "locator": "page:28/chunk:27",
+      "object_ids": [
+        "actor:nvidia-networking",
+        "part:nic"
+      ],
+      "page_index": 27,
+      "question_ids": [
+        "OBJ-nic-definition",
+        "OBJ-nic-supply"
+      ],
+      "quote": "NVIDIA introduced BlueField DPUs following their Mellanox acquisition, and gave the\ncategory a name in October 2020 when they announced the BlueField-2 DPU and the term\ndata processing unit in the same breath. BlueField-3 followed in April 2021 and reached\ngeneral availability in early 2023.",
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "source_sha256": "c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T05:13:51+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "评分6，连续原文及充分上下文支持无敏感条件的产品沿革主张。供应商身份和产品阶段实质贡献于当前供应工单，类别名称部分贡献于定义工单；仅采用为有作者归属的局部证据。",
+        "workorder_ids": [
+          "Q-OBJ-nic-definition",
+          "Q-OBJ-nic-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 101.631,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "06f236db8b952ccfb9f70951e992730c1fcaeedc0c82481c31b16fd35564aa0d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 21218,
+            "output_tokens": 3689,
+            "reasoning_output_tokens": 805
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 27.732,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6174e6269ea076c246dd1c5ed97749ceea48ebfc601ced2ed71e177744708e67",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 18522,
+              "output_tokens": 445,
+              "reasoning_output_tokens": 210
+            }
+          }
+        },
+        "batch_id": "c9abb44c79f935a4ec40efd114b645ef67c5d7976c0c0f1c09e86683fe04e33e"
+      }
     }
   ],
   "statements": [
@@ -8957,6 +9045,108 @@
         "batch_id": "3706a1e29dd619f870b5c8927842588007967131308d9d8188dec646057ec0c8",
         "source_report_sha256": "8d862d441079b8a66432ac7e0e3390fa565c621c229c875ac7d56d11ee151a73",
         "request_sha256": "08af59e93a11379db97962bd8bd31dbbc4754e3becef6ec3ba4aab66f942410b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "evidence_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:27:claim:3:ev:0"
+      ],
+      "id": "adoption:review:d66a413a4828c47747bbaae5",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:nvidia-networking",
+        "part:nic"
+      ],
+      "question_ids": [
+        "OBJ-nic-definition",
+        "OBJ-nic-supply"
+      ],
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "status": "adopted",
+      "text": "据 SemiAnalysis《Most Neoclouds Suck At Security》的叙述，NVIDIA 在收购 Mellanox 后引入 BlueField DPU，并在2020年10月宣布 BlueField-2 时使用 data processing unit 这一类别名称；BlueField-3 于2021年4月跟进，并于2023年初达到一般可用（GA）。此处保留的是作者所述产品沿革。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T05:13:51+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "评分6，连续原文及充分上下文支持无敏感条件的产品沿革主张。供应商身份和产品阶段实质贡献于当前供应工单，类别名称部分贡献于定义工单；仅采用为有作者归属的局部证据。",
+        "workorder_ids": [
+          "Q-OBJ-nic-definition",
+          "Q-OBJ-nic-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 101.631,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "06f236db8b952ccfb9f70951e992730c1fcaeedc0c82481c31b16fd35564aa0d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 21218,
+            "output_tokens": 3689,
+            "reasoning_output_tokens": 805
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 27.732,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6174e6269ea076c246dd1c5ed97749ceea48ebfc601ced2ed71e177744708e67",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 18522,
+              "output_tokens": 445,
+              "reasoning_output_tokens": 210
+            }
+          }
+        },
+        "batch_id": "c9abb44c79f935a4ec40efd114b645ef67c5d7976c0c0f1c09e86683fe04e33e"
+      },
+      "source_candidate_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:27:claim:3"
+      ],
+      "limitations": "来源发表时间未由所供原文确立；所列日期是作者报告的历史产品节点。原文没有明确2021年4月节点的具体发布阶段，不应等同于一般可用或实际交付。未提供地域、产量、交期、价格、制造分工或生命周期成本；也不足以完成 NIC/DPU 组成及排除边界定义。",
+      "conflict_check": "当前采用知识为空；所供相关 legacy 匹配记录为空，未发现冲突、可识别的 canonical 重复记录或需要替换的结论。未进行外部全面核验，采用文本不表示当前独立认证。",
+      "gap_dependency_check": "OBJ-nic-definition 仅获得类别名称及产品对象线索，组成和排除边界仍开放；OBJ-nic-supply 获得供应商与历史产品阶段线索，制造、交期及成本分解仍开放。宣布或跟进节点不能替代一般可用、实际交付或当前供货能力，两项问题均不关闭。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c9abb44c79f935a4ec40efd114b645ef67c5d7976c0c0f1c09e86683fe04e33e",
+        "source_report_sha256": "8d862d441079b8a66432ac7e0e3390fa565c621c229c875ac7d56d11ee151a73",
+        "request_sha256": "b675c74a6f63ed5390993fcba49407f8e4eea1f02204ec2804a3fefeb6e15e3f"
       }
     }
   ],
