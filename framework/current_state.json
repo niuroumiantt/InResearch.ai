@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.9",
+  "version": "2026.10.08.10",
   "effective_at": "2026-10-08",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2090,14 +2090,35 @@
         "src/inresearch/interfaces/material_flow.py",
         "web/assets/material-flow.css",
         "web/assets/material-flow.js",
-        "tests/unit/test_material_flow.py"
+        "tests/unit/test_material_flow.py",
+        "framework/10_visual_atlas.md",
+        "framework/visual_atlas.json",
+        "framework/visual_atlas_migration.json"
       ],
       "supersedes": [
         "interface-reader-batch-20261006"
       ],
-      "reason": "用户采用客户交付前台与内部后台/dashboard的默认场景；企业专栏先实现独立公司后台、管理员读者预览、单一型号浏览与必要来源/配置边界；原研究数据与其他界面规范继续适用。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。",
-      "implementation_revision": "2026.10.08.9",
+      "reason": "用户采用客户交付前台与内部后台/dashboard的默认场景；企业专栏先实现独立公司后台、管理员读者预览、单一型号浏览与必要来源/配置边界；原研究数据与其他界面规范继续适用。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。；2026-10-08技术图制作采用白底技术图册；新图/重制图按10规范，旧3D背景/材质实现按队列迁移，控件明暗/语义与镜头所有权保持。",
+      "implementation_revision": "2026.10.08.10",
       "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data."
+    },
+    {
+      "id": "visual-atlas-20261008",
+      "topic": "technical-illustration",
+      "status": "current",
+      "scope": "project",
+      "effective_at": "2026-10-08",
+      "source": "framework/10_visual_atlas.md",
+      "implementations": [
+        "framework/visual_atlas.json",
+        "framework/visual_atlas_migration.json",
+        "docs/design/technical-atlas/MIGRATION_PLAN.md",
+        "docs/design/technical-atlas/references/README.md",
+        "tests/unit/test_visual_atlas.py"
+      ],
+      "supersedes": [],
+      "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。",
+      "implementation_revision": "2026.10.08.10"
     }
   ],
   "entrypoints": [
