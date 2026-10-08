@@ -950,6 +950,52 @@
       "status": "candidate",
       "stored_path": "originals/eb/eb9d894a0557ba47a2ddbe90c61b58e1c6985ac6138e6643bf32a701f865f90e/How AI Labs Are Solving the Power Crisis_ The Onsite Gas Deep Dive 中英.pdf",
       "title": "How AI Labs Are Solving the Power Crisis: The Onsite Gas Deep Dive"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c",
+      "coverage": {
+        "characters_read": 844,
+        "characters_total": 844,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c",
+      "id": "doc-ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c",
+      "library_path": "library/by-node/site-grid/2026_格洛可研究小组_格洛可数据中心日报｜2026年9月21日：接入与许可重排项目交付，资本与设备仍待落地__ec9d04e30d177b59.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "chain:network/1",
+        "root",
+        "site:grid",
+        "site:land",
+        "site:permits",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "OBJ-grid-interfaces",
+        "OBJ-grid-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-f58ee3bde11e45eaa408ad711375c226",
+      "report_sha256": "b13004e989823fb5e8f09e33a02e573c886ecd8776858bc148f3034b7671c8b1",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/ec/ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c/2026-09-21-daily-final-wechat.html",
+      "title": "格洛可数据中心日报｜2026年9月21日：接入与许可重排项目交付，资本与设备仍待落地"
     }
   ],
   "evidence": [
@@ -4258,6 +4304,174 @@
           }
         },
         "batch_id": "5a31829221aa8f45361d0fab978a385dfd6c0be92d1cdf9059a9f7e1e101d44d"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ea2fd8a7f72bc9ad937873b973ff507839839099dee83cacf61046d9955b6a5e",
+      "document_id": "doc-ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c",
+      "id": "rev-f58ee3bde11e45eaa408ad711375c226:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "chain:network/1",
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "工程与设备： 冷却与网络产品反映AI机房的密度要求，但产品发布还没有进入交付链的最后一环。真正需要披露的是设备选型、机电联调、客户验收和可用日期。",
+      "reading_revision_id": "rev-f58ee3bde11e45eaa408ad711375c226",
+      "source_sha256": "ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T04:30:34+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。连续原文引文和完整页面上下文充分；设备发布与选型、联调、验收及可用时点的区分，对当前硬件交付传导和资源、建设、运营传导工作单有实质性辅助作用。仅按明确归因的作者观点采用为部分贡献，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-chain",
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 57.471,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "94d29170ebf80f50b680ce68ae105341a7f94c2210e79d6f67339933d66de782",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 23955,
+            "output_tokens": 1885,
+            "reasoning_output_tokens": 260
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 36.781,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "384b12b298f9b36bc9ccde3bde31bc074ebbfdc8da06cab04505ecdce8bfbc0e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 24036,
+              "output_tokens": 650,
+              "reasoning_output_tokens": 387
+            }
+          }
+        },
+        "batch_id": "4291a9c1956afadd08e492b966a8ac4aa5a3122f07dcd17061cadfa8a1729f93"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ea2fd8a7f72bc9ad937873b973ff507839839099dee83cacf61046d9955b6a5e",
+      "document_id": "doc-ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c",
+      "id": "rev-f58ee3bde11e45eaa408ad711375c226:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "图2｜不同市场出现不同的约束；比较的是约束类型，不以公告数量替代投运进度。",
+      "reading_revision_id": "rev-f58ee3bde11e45eaa408ad711375c226",
+      "source_sha256": "ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T04:30:34+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分5。该句明确限制公告数量作为投运进度替代指标，与当前NODE-activity-V1-chain关于可验证领先指标的研究需求有实质关系，但贡献仅限比较口径。连续原文和完整上下文充分，可按作者观点作为部分贡献采用；未发现敏感、真实冲突、拟替换或其他A条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 57.471,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "94d29170ebf80f50b680ce68ae105341a7f94c2210e79d6f67339933d66de782",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 23955,
+            "output_tokens": 1885,
+            "reasoning_output_tokens": 260
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 36.781,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "384b12b298f9b36bc9ccde3bde31bc074ebbfdc8da06cab04505ecdce8bfbc0e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 24036,
+              "output_tokens": 650,
+              "reasoning_output_tokens": 387
+            }
+          }
+        },
+        "batch_id": "4291a9c1956afadd08e492b966a8ac4aa5a3122f07dcd17061cadfa8a1729f93"
       }
     }
   ],
@@ -8248,6 +8462,207 @@
         "batch_id": "5a31829221aa8f45361d0fab978a385dfd6c0be92d1cdf9059a9f7e1e101d44d",
         "source_report_sha256": "c922b5be18fdc4c1ebdff839e0d8112344aa1b2f131df7ee3a4b5c3dea7b6ed5",
         "request_sha256": "e66e624e2e30eaea688e8a7ee1b693d7c5eb31b03b6d24b01d27ec3d78e3f8e3"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c",
+      "evidence_ids": [
+        "rev-f58ee3bde11e45eaa408ad711375c226:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:745696da226b39bf5b38ebf1",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:network/1",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "NODE-activity-V2-chain",
+        "NODE-activity-V1-chain"
+      ],
+      "reading_revision_id": "rev-f58ee3bde11e45eaa408ad711375c226",
+      "status": "adopted",
+      "text": "格洛可研究小组在2026年9月21日《数据中心日报》的作者点评中认为，冷却与网络产品反映AI机房的密度要求，但产品发布尚未进入交付链的最后一环；作者提出仍需披露设备选型、机电联调、客户验收和可用日期。这是作者对设备发布与项目交付之间取证环节的定性判断，不构成对任何项目交付状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T04:30:34+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。连续原文引文和完整页面上下文充分；设备发布与选型、联调、验收及可用时点的区分，对当前硬件交付传导和资源、建设、运营传导工作单有实质性辅助作用。仅按明确归因的作者观点采用为部分贡献，不回答或关闭问题。未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-chain",
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 57.471,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "94d29170ebf80f50b680ce68ae105341a7f94c2210e79d6f67339933d66de782",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 23955,
+            "output_tokens": 1885,
+            "reasoning_output_tokens": 260
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 36.781,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "384b12b298f9b36bc9ccde3bde31bc074ebbfdc8da06cab04505ecdce8bfbc0e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 24036,
+              "output_tokens": 650,
+              "reasoning_output_tokens": 387
+            }
+          }
+        },
+        "batch_id": "4291a9c1956afadd08e492b966a8ac4aa5a3122f07dcd17061cadfa8a1729f93"
+      },
+      "source_candidate_ids": [
+        "rev-f58ee3bde11e45eaa408ad711375c226:chunk:0:claim:6"
+      ],
+      "limitations": "原生正文明确日报日期为2026年9月21日，精确发布时间未建立。本段未指定设备型号、厂商、项目、地理适用范围或各环节的实际完成状态，也未提供交期、施工起止日期、通电日期、客户验收记录、密度数值或液冷运营数据。所列环节不能直接解释为所有项目统一适用的交付顺序。",
+      "conflict_check": "已采用的adoption:review:f366f6d8cec1a493ed43842e区分资本、意向、设计与交付阶段，adoption:review:0b22150e5309ef152c1761db提出追踪开发、供电与客户使用时点，均与本项兼容。本项具体提出设备选型、机电联调及客户验收的披露需求，未发现相同内容的既有规范记录。BP Batam供水计划与本项无直接冲突。当前回答为空，所供legacy匹配记录为空；检查限于所供材料，不代表完成外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "NODE-activity-V2-chain仍需具体硬件制造、集成或分销节点的交期、约束传导、需求兑现、反例和领先指标验证；冷却与网络成员材料不自动覆盖整个活动节点。NODE-activity-V1-chain仍需项目层面的资源、施工、联调、验收及使用记录。对M10-Q03仅有待追踪时点的关联，没有从开工到通电的实际周期及趋势，故未纳入本次问题映射。所有工作单保持开放，不更新模型输入或骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4291a9c1956afadd08e492b966a8ac4aa5a3122f07dcd17061cadfa8a1729f93",
+        "source_report_sha256": "b13004e989823fb5e8f09e33a02e573c886ecd8776858bc148f3034b7671c8b1",
+        "request_sha256": "6229e0d1322090465c7d236a3c63e7ae3aa4b3985ed5d529f147a5cd5b337428"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-ec9d04e30d177b59f8db18d186c946c94ad5d02273954f42efb30417652da88c",
+      "evidence_ids": [
+        "rev-f58ee3bde11e45eaa408ad711375c226:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:c3a2f2a9023d3b0b72072f30",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-chain"
+      ],
+      "reading_revision_id": "rev-f58ee3bde11e45eaa408ad711375c226",
+      "status": "adopted",
+      "text": "格洛可研究小组在2026年9月21日《数据中心日报》的图2说明中，将本期跨市场比较限定为约束类型，并提醒不以公告数量替代投运进度。这是作者对比较口径和交付指标使用的限定，不构成对各市场实际约束或项目投运进度的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T04:30:34+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分5。该句明确限制公告数量作为投运进度替代指标，与当前NODE-activity-V1-chain关于可验证领先指标的研究需求有实质关系，但贡献仅限比较口径。连续原文和完整上下文充分，可按作者观点作为部分贡献采用；未发现敏感、真实冲突、拟替换或其他A条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 57.471,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "94d29170ebf80f50b680ce68ae105341a7f94c2210e79d6f67339933d66de782",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 23955,
+            "output_tokens": 1885,
+            "reasoning_output_tokens": 260
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 36.781,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "384b12b298f9b36bc9ccde3bde31bc074ebbfdc8da06cab04505ecdce8bfbc0e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 24036,
+              "output_tokens": 650,
+              "reasoning_output_tokens": 387
+            }
+          }
+        },
+        "batch_id": "4291a9c1956afadd08e492b966a8ac4aa5a3122f07dcd17061cadfa8a1729f93"
+      },
+      "source_candidate_ids": [
+        "rev-f58ee3bde11e45eaa408ad711375c226:chunk:0:claim:7"
+      ],
+      "limitations": "原生正文明确日报日期为2026年9月21日，精确发布时间未建立。引文没有公告数量、投运容量、转化率、观测期、市场样本或领先指标有效性检验。所供原生页面只有图示文字说明，不能补推图中未提供的数据或市场排序，也不能将作者限定扩展为所有公告指标均无预测价值。",
+      "conflict_check": "已采用的adoption:review:f366f6d8cec1a493ed43842e强调事件阶段区分，adoption:review:0b22150e5309ef152c1761db强调不同交付时点，均与本项兼容。两者未明确提出本项跨市场约束比较及公告数量不能替代投运进度的限定，故不判为重复。BP Batam供水计划无直接冲突。当前回答及所供legacy匹配记录为空；检查限于所供材料，不代表外部反证已穷尽，不覆盖既有结论。",
+      "gap_dependency_check": "NODE-activity-V1-chain仍需明确公告事件类型、同口径逐项目投运记录、观测时滞、约束证据、反例及领先指标预测能力检验。本项仅帮助约束指标解释，未验证约束传导或公告到投运的转化关系；问题保持开放，不新增统一阶段规则、汇总容量或模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4291a9c1956afadd08e492b966a8ac4aa5a3122f07dcd17061cadfa8a1729f93",
+        "source_report_sha256": "b13004e989823fb5e8f09e33a02e573c886ecd8776858bc148f3034b7671c8b1",
+        "request_sha256": "6229e0d1322090465c7d236a3c63e7ae3aa4b3985ed5d529f147a5cd5b337428"
       }
     }
   ],
