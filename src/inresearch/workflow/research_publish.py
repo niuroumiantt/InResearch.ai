@@ -33,6 +33,35 @@ def all_checks_pass(checks):
     return required <= {c['name'] for c in checks} and all(c.get('bucket')=='pass' for c in checks)
 
 
+def refresh_publication_base(worktree, expected_commit):
+    """Merge current main into our exclusive, clean publication branch.
+
+    Only derived inventory conflicts are rebuilt automatically. Conflicts in
+    research, rules or source remain intact for review. A changed head must pass
+    every CI check again before it can be merged.
+    """
+    worktree = Path(worktree)
+    if (run(['git','status','--porcelain'],worktree).stdout.strip()
+            or run(['git','rev-parse','HEAD'],worktree).stdout.strip()!=expected_commit):
+        raise ValueError('publication_worktree_changed_requires_review')
+    run(['env','GIT_TERMINAL_PROMPT=0','git','fetch','origin','main'],worktree)
+    if run(['git','merge-base','--is-ancestor','origin/main','HEAD'],worktree,check=False).returncode==0:
+        return expected_commit
+    result=run(['git','merge','--no-commit','--no-ff','origin/main'],worktree,check=False)
+    derived={'framework/repository_manifest.json','docs/REPOSITORY_REGISTER.md'}
+    if result.returncode:
+        conflicts=set(run(['git','diff','--name-only','--diff-filter=U'],worktree).stdout.splitlines())
+        if not conflicts or not conflicts <= derived:
+            raise ValueError('publication_non_inventory_conflict_preserved')
+        for name in conflicts:
+            (worktree/name).write_text(run(['git','show','origin/main:'+name],worktree).stdout)
+    for args in (['governance','--refresh'],['governance','--check'],['validate','--strict'],['registry']):
+        run([sys.executable,'manage.py',*args],worktree)
+    run(['git','add',*sorted(derived)],worktree)
+    run(['git','commit','-m','Refresh verified research publication against current main'],worktree)
+    return run(['git','rev-parse','HEAD'],worktree).stdout.strip()
+
+
 class Publisher:
     def __init__(self, config):
         self.config = config
@@ -141,6 +170,14 @@ class Publisher:
                         self.remote('revalidate','--batch-id',bid)
                         run(['gh','pr','close',str(journal['pr'])],self.root)
                         save('revalidation');return journal
+                    refreshed=refresh_publication_base(journal['worktree'],journal['commit'])
+                    if refreshed!=journal['commit']:
+                        previous=journal['commit']
+                        journal.update(commit=refreshed,checks=[])
+                        journal.setdefault('base_refreshes',[]).append({'from':previous,'to':refreshed,'at':now_iso()})
+                        # Journal the exact new head before pushing: a failed push
+                        # can be retried without accepting somebody else's edit.
+                        save('prepared');return journal
                     run(['gh','pr','merge',str(journal['pr']),'--merge','--match-head-commit',journal['commit']],self.root)
                     save('pr_open');return journal
             if journal['state']=='merged':
