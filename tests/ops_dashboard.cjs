@@ -56,11 +56,32 @@ const fixture={generated:now,reader:{status:'degraded',generated:now,received_at
  try {
   await firstStatus.goto(base+'/ops.html',{waitUntil:'domcontentloaded'});
   await firstStatus.locator('#tasks .task-btn').first().waitFor({state:'attached'});
-  assert.equal(await firstStatus.locator('#ops-fonts').getAttribute('media'),'print');
+  assert.equal(await firstStatus.locator('#ops-fonts').getAttribute('media'),'not all');
   assert.deepEqual(fontRequests,[],'font files start after the first status request finishes');
   releaseStatus();await firstStatus.locator('#ops-kpis .value').first().getByText('114',{exact:true}).waitFor();
-  assert.equal(await firstStatus.locator('#ops-fonts').getAttribute('media'),'all');
+  await firstStatus.waitForFunction(()=>!!document.getElementById('ops-fonts').dataset.fonts);
+  assert.equal(await firstStatus.locator('#ops-fonts').getAttribute('media'),'not all','uncached full font CSS stays inactive');
  } finally {releaseStatus();await firstStatus.close();}
+ // A cached original font is reused as a binary FontFace, without fetching it
+ // from the site. A cold cache falls back to readable system fonts.
+ const cachedPage=await context.newPage();const fontBytes=fs.readFileSync(__dirname+'/../web/assets/fonts/inter-variable.woff2').toString('base64');
+ await cachedPage.addInitScript(bytes=>{
+  const original=window.fetch.bind(window);
+  window.fetch=(url,options)=>{
+   if(options?.cache==='only-if-cached') {
+    const hit=String(url).endsWith('/inter-variable.woff2');
+    return Promise.resolve(new Response(hit?Uint8Array.from(atob(bytes),c=>c.charCodeAt(0)):'',{status:hit?200:504}));
+   }
+   return original(url,options);
+  };
+ },fontBytes);
+ await cachedPage.route('**/api/ops',route=>route.fulfill({json:fixture}));
+ try {
+  await cachedPage.goto(base+'/ops.html');
+  await cachedPage.waitForFunction(()=>document.getElementById('ops-fonts').dataset.fonts==='cached');
+  assert.ok(await cachedPage.evaluate(()=>[...document.fonts].some(face=>face.family==='Inter'&&face.status==='loaded')));
+  assert.equal(await cachedPage.locator('#ops-error').textContent(),'');
+ } finally {await cachedPage.close();}
  // A stylesheet may stall on a slow connection. It must not hold the parser,
  // navigation or status bootstrap behind an inline script / defer dependency.
  const slowPage=await context.newPage();let releaseStyle;
@@ -84,7 +105,8 @@ const fixture={generated:now,reader:{status:'degraded',generated:now,received_at
   await timeoutPage.goto(base+'/ops.html');
   await timeoutPage.locator('#ops-error').getByText(/读取超时（20 秒）/).waitFor();
   assert.equal(await timeoutPage.locator('#ops-refresh').isEnabled(),true,'aborted request releases refresh');
-  assert.equal(await timeoutPage.locator('#ops-fonts').getAttribute('media'),'all','failed status still enables the shared font style');
+  await timeoutPage.waitForFunction(()=>!!document.getElementById('ops-fonts').dataset.fonts);
+  assert.equal(await timeoutPage.locator('#ops-fonts').getAttribute('media'),'not all','failed status keeps uncached fonts off the connection');
   assert.match(await timeoutPage.locator('#stage-body').textContent(),/状态未知/);
   assert.doesNotMatch(await timeoutPage.locator('#ops-error').textContent(),/user aborted/);
   await timeoutPage.unroute('**/api/ops');
