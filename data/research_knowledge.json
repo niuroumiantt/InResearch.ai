@@ -388,6 +388,114 @@
       "status": "candidate",
       "stored_path": "originals/e4/e4689415342bf9cfcc57300a6044298993b3d62f82906124e62f0808c72fd62b/2026-09-16-daily.html",
       "title": "格洛可数据中心日报｜2026年9月16日：客户订单牵引扩建 电力网络决定交付"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "c8988b9016629328057c1897ae821433e0cf8f5dd7e45edb61aa6627ca91b4d5",
+      "coverage": {
+        "characters_read": 43396,
+        "characters_total": 43396,
+        "chunks_read": 32,
+        "chunks_total": 32,
+        "complete": true,
+        "full_document_complete": false,
+        "native_text_pages_read": 32,
+        "nul_character_pages": [],
+        "ocr_calls": 0,
+        "pages_read": 32,
+        "pages_total": 32,
+        "replacement_character_pages": [],
+        "scope": "pdf_native_text_only",
+        "skipped_image_pages": [
+          1,
+          2,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          23,
+          24,
+          26,
+          28,
+          29,
+          30,
+          31
+        ],
+        "text_layer_empty_pages": [],
+        "visual_review_performed": false
+      },
+      "doc_id": "doc-c8988b9016629328057c1897ae821433e0cf8f5dd7e45edb61aa6627ca91b4d5",
+      "id": "doc-c8988b9016629328057c1897ae821433e0cf8f5dd7e45edb61aa6627ca91b4d5",
+      "library_path": "library/by-node/site-grid/2025_SemiAnalysis_AI Training Load Fluctuations at Gigawatt-scale – Risk__c8988b9016629328.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:coreweave",
+        "actor:delta-electronics",
+        "actor:meta",
+        "actor:openai",
+        "actor:xai",
+        "chain:power/4",
+        "part:backup-power",
+        "part:bess",
+        "part:chiller",
+        "part:gas-turbine",
+        "part:gpu",
+        "part:optics",
+        "part:rack-system",
+        "root",
+        "site:grid",
+        "site:permits"
+      ],
+      "question_ids": [
+        "OBJ-backup-power-alternatives",
+        "OBJ-backup-power-interfaces",
+        "OBJ-backup-power-performance",
+        "OBJ-backup-power-supply",
+        "OBJ-bess-alternatives",
+        "OBJ-bess-definition",
+        "OBJ-bess-interfaces",
+        "OBJ-bess-performance",
+        "OBJ-bess-supply",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-grid-alternatives",
+        "OBJ-grid-definition",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-performance",
+        "OBJ-grid-supply",
+        "Q-SCOPE-arch-amd-gpu"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-2b358f33dea74ea2a8e9dfa531c05f4d",
+      "report_sha256": "04a09a255b76cde7ad5d434835b81aa0750aac5292684b933197d59ab11ddc59",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/c8/c8988b9016629328057c1897ae821433e0cf8f5dd7e45edb61aa6627ca91b4d5/AI Training Load Fluctuations at Gigawatt-scale – Risk of Power Grid Blackout_ – SemiAnalysis.pdf",
+      "title": "AI Training Load Fluctuations at Gigawatt-scale – Risk of Power Grid Blackout?"
     }
   ],
   "evidence": [
@@ -2170,6 +2278,91 @@
           }
         },
         "batch_id": "8e78b204a6f28ad30917eaebc6083f13bda53bbb1dfe67940eb581ad32486b40"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "cd186e981dc6218d41005fe1b99c3145291e3a6bfd814f8600327c201b6face4",
+      "document_id": "doc-c8988b9016629328057c1897ae821433e0cf8f5dd7e45edb61aa6627ca91b4d5",
+      "id": "rev-2b358f33dea74ea2a8e9dfa531c05f4d:chunk:30:claim:0:ev:0",
+      "locator": "page:31/chunk:30",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 30,
+      "question_ids": [],
+      "quote": "electricity cost or datacenter rental cost will not fundamentally change the financial\n     equation, from the perspective of the end-user.",
+      "reading_revision_id": "rev-2b358f33dea74ea2a8e9dfa531c05f4d",
+      "source_sha256": "c8988b9016629328057c1897ae821433e0cf8f5dd7e45edb61aa6627ca91b4d5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T02:53:33+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为7。该作者判断实质关联当前成本经济性及需求工单；连续原文引句与前页上下文足以支持限定归因的部分主张。无已识别的敏感、实质冲突或替换条件，符合B类采用要求，但不构成任何问题的完整回答。",
+        "workorder_ids": [
+          "Q-M04-Q11",
+          "Q-NODE-activity-V1-economics",
+          "Q-NODE-demand-D1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 40.392,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "56a1f075b1808e667d064f7c593725704cee2b78e80626bf0442af956e6b5edf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3840,
+            "input_tokens": 19598,
+            "output_tokens": 1172,
+            "reasoning_output_tokens": 274
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 26.74,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "154fae24598476ed40106a1b56e214d1df0ead0b21eeacededaf12a0880f8448",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 20182,
+              "output_tokens": 497,
+              "reasoning_output_tokens": 220
+            }
+          }
+        },
+        "batch_id": "31f12851b87697f03625204f2c310643952e78ce953f95a46016f8d284f3e1e6"
       }
     }
   ],
@@ -4349,6 +4542,109 @@
         "batch_id": "8e78b204a6f28ad30917eaebc6083f13bda53bbb1dfe67940eb581ad32486b40",
         "source_report_sha256": "5d9d962838864b2c340dd3382eefffd13ea17ee96f4b26affcdca3406a8d71d6",
         "request_sha256": "aab48225649dda6ab180bf76ad00bd067024cc86ff5d64b5a70b2315c612fb35"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c8988b9016629328057c1897ae821433e0cf8f5dd7e45edb61aa6627ca91b4d5",
+      "evidence_ids": [
+        "rev-2b358f33dea74ea2a8e9dfa531c05f4d:chunk:30:claim:0:ev:0"
+      ],
+      "id": "adoption:review:46a61d215dfd4099f8bff334",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M04-Q11",
+        "NODE-activity-V1-economics",
+        "NODE-demand-D1-economics"
+      ],
+      "reading_revision_id": "rev-2b358f33dea74ea2a8e9dfa531c05f4d",
+      "status": "adopted",
+      "text": "SemiAnalysis在《AI Training Load Fluctuations at Gigawatt-scale – Risk of Power Grid Blackout?》结尾判断：在其所述强劲AI投资周期、优先争取更快获得GPU的背景下，从GPU云终端用户角度看，额外电费或数据中心租金不会根本改变财务关系。这是该来源的定性经济判断，未经独立验证；所供原文未确立发表日期或该判断的适用地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T02:53:33+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为7。该作者判断实质关联当前成本经济性及需求工单；连续原文引句与前页上下文足以支持限定归因的部分主张。无已识别的敏感、实质冲突或替换条件，符合B类采用要求，但不构成任何问题的完整回答。",
+        "workorder_ids": [
+          "Q-M04-Q11",
+          "Q-NODE-activity-V1-economics",
+          "Q-NODE-demand-D1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 40.392,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "56a1f075b1808e667d064f7c593725704cee2b78e80626bf0442af956e6b5edf",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3840,
+            "input_tokens": 19598,
+            "output_tokens": 1172,
+            "reasoning_output_tokens": 274
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 26.74,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "154fae24598476ed40106a1b56e214d1df0ead0b21eeacededaf12a0880f8448",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 20182,
+              "output_tokens": 497,
+              "reasoning_output_tokens": 220
+            }
+          }
+        },
+        "batch_id": "31f12851b87697f03625204f2c310643952e78ce953f95a46016f8d284f3e1e6"
+      },
+      "source_candidate_ids": [
+        "rev-2b358f33dea74ea2a8e9dfa531c05f4d:chunk:30:claim:0"
+      ],
+      "limitations": "未提供额外成本幅度、财务关系的具体定义、GPU型号、利用率、计费方式、成本分母、合同条件、测算时点或可复算计算。不能量化每GPU小时全成本弹性、比较区域电价，或证明租金差异足以覆盖电价差异。结论依赖作者描述的投资周期及获取GPU的时间优先级，不能外推至所有用户、工作负载或市场阶段。阅读覆盖全部原生文本，但未进行图像审阅，不能声称完成整份PDF的视觉核验。",
+      "conflict_check": "当前已采用陈述涉及马萨诸塞州拟建数据中心的政策成本责任与电费用户保护机制，与本项终端用户经济判断的角色、范围和项目阶段不同，未发现实质冲突或重复。所供旧记录匹配结果为空；该筛选不是穷尽性外部反证搜索，不能据此证明作者判断普遍成立。",
+      "gap_dependency_check": "对M04-Q11仅提供成本敏感性的定性作者观点，仍缺区域电价与租金的同口径数据、每GPU小时成本分母、时点及可复算计算。对NODE-activity-V1-economics仅补充终端用户承担额外费用的经济背景，未完成收入、资本开支、运营成本或合同风险计量。对NODE-demand-D1-economics仅提供作者关于获取GPU速度与支付意愿的线索，未证明实际需求弹性、采用率或替代行为。后续需成本与合同数据、计算及反证；三项问题均保持开放，不覆盖现有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "31f12851b87697f03625204f2c310643952e78ce953f95a46016f8d284f3e1e6",
+        "source_report_sha256": "04a09a255b76cde7ad5d434835b81aa0750aac5292684b933197d59ab11ddc59",
+        "request_sha256": "40b0506ffdafb0dcb94ce9dbe468d755aed259d26626edf3e97aba00c12536ff"
       }
     }
   ],
