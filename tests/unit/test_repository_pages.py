@@ -94,7 +94,8 @@ class RepositoryPageTests(unittest.TestCase):
     def test_snapshot_provenance_and_navigation_are_complete(self):
         routes = json.loads((ROOT / 'web/routes.json').read_text())
         manifest = json.loads((ROOT / 'web/pages/admin/repo-content/manifest.json').read_text())
-        self.assertEqual(set(manifest), {'infra', 'inews', 'fetchspec', 'inresearch'})
+        self.assertEqual(set(manifest), {'infra', 'inews', 'fetchspec', 'inresearch', 'oa', 'aimail', 'leadsgen',
+                                             'semifly', 'glocalstorage', 'openapi', 'agent'})
         for name, record in manifest.items():
             self.assertEqual(record['kind'], 'architecture_snapshot')
             self.assertTrue(record['sources'])
@@ -103,6 +104,8 @@ class RepositoryPageTests(unittest.TestCase):
             html = (ROOT / routes[f'/admin/{name}repo.html']).read_text()
             self.assertIn('/admin/repos.html', html)
             self.assertIn(record['synced_at'], html)
+            self.assertIn('最近检测与结果', html)
+            self.assertIn('每日北京时间 0:00', html)
         news = (ROOT / routes['/admin/inewsrepo.html']).read_text()
         self.assertIn('实时计数未同步', news)
         self.assertIn('https://inews.today/admin/reporg.html', news)
