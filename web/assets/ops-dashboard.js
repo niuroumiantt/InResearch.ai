@@ -28,6 +28,32 @@ const tasks = [
 ];
 let data=null, tab='pending', loading=false, loaded=false;
 const busy = new Set();
+let fontCacheStarted=false;
+function useCachedFonts() {
+ const link=$('ops-fonts');
+ if(!link || fontCacheStarted) return;
+ if(!link.sheet) {
+  link.addEventListener('load',useCachedFonts,{once:true});
+  link.addEventListener('error',()=>{link.dataset.fonts='fallback';},{once:true});
+  return;
+ }
+ fontCacheStarted=true;
+ // The full shared font stylesheet remains inactive. Only existing cached
+ // bytes become FontFaces; cache misses cannot consume the API connection.
+ Promise.all(Array.from(link.sheet.cssRules).filter(r=>r.type===CSSRule.FONT_FACE_RULE).map(async rule=>{
+  try {
+   const source=rule.style.getPropertyValue('src').match(/url\(["']?(\.\/[a-z0-9-]+\.woff2)["']?\)/i);
+   if(!source) return false;
+   const response=await fetch(new URL(source[1],link.href),{cache:'only-if-cached',mode:'same-origin'});
+   if(!response.ok) return false;
+   const face=new FontFace(rule.style.getPropertyValue('font-family').replace(/^["']|["']$/g,''),await response.arrayBuffer(),{
+    weight:rule.style.getPropertyValue('font-weight'),style:rule.style.getPropertyValue('font-style'),
+    unicodeRange:rule.style.getPropertyValue('unicode-range')||'U+0-10FFFF',display:'swap'
+   });
+   await face.load();document.fonts.add(face);return true;
+  } catch(e) {return false;}
+ })).then(results=>{link.dataset.fonts=results.some(Boolean)?'cached':'fallback';});
+}
 function kpi(value,label,detail,cls='') { return `<div class="ops-kpi"><div class="label">${esc(label)}</div><div class="value ${cls}">${n(value)}</div><div class="detail">${esc(detail)}</div></div>`; }
 function healthRow(title,status,detail,cls) { return `<div class="ops-health-row"><div>${esc(title)}<small>${esc(detail)}</small></div><div class="right">${tag(status,cls)}</div></div>`; }
 function latestTask(task) { return data?.tasks?.[task] || {}; }
@@ -164,8 +190,7 @@ async function refresh() {
   }
   $('ops-banner').className='ops-banner bad';$('ops-banner').innerHTML='<strong>当前状态未确认</strong><p>数据请求失败，请重试。保留的旧数字不能证明系统仍然正常。</p>';
  } finally { clearTimeout(timeout);loading=false;$('ops-refresh').disabled=false;
-  // A cold font download must not consume the connection before the first status.
-  const fonts=$('ops-fonts');if(fonts)fonts.media='all'; }
+  useCachedFonts(); }
 }
 async function runTask(id) {
  if(busy.has(id)) return;
