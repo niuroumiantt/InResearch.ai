@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1195。
+在册文件：1196。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 107 |
+| 配套说明 | 108 |
 | 测试 | 133 |
 
 ## 在册记录集合
@@ -182,10 +182,10 @@
 | `docs/research/2026-10-01/ai-walle/cards.json` | cards | 10 |
 | `docs/research/2026-10-01/ai-walle/sources.json` | groups | 8 |
 | `docs/research/2026-10-01/ai-walle/sources.json` | background_sources | 1 |
-| `docs/research/2026-10-08/solidigm/cards.json` | items | 117 |
+| `docs/research/2026-10-08/solidigm/cards.json` | items | 123 |
 | `docs/research/2026-10-08/solidigm/photo-sources.json` | items | 10 |
 | `docs/research/2026-10-08/solidigm/scene-photo-sources.json` | items | 2 |
-| `docs/research/2026-10-08/solidigm/sources.json` | items | 99 |
+| `docs/research/2026-10-08/solidigm/sources.json` | items | 103 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
@@ -766,6 +766,7 @@
 | [docs/research/2026-10-08/solidigm/feedback.md](research/2026-10-08/solidigm/feedback.md) | 配套说明 |
 | `docs/research/2026-10-08/solidigm/photo-sources.json` | 项目配置 |
 | [docs/research/2026-10-08/solidigm/review.md](research/2026-10-08/solidigm/review.md) | 配套说明 |
+| [docs/research/2026-10-08/solidigm/revision-03-review.md](research/2026-10-08/solidigm/revision-03-review.md) | 配套说明 |
 | [docs/research/2026-10-08/solidigm/revision-review.md](research/2026-10-08/solidigm/revision-review.md) | 配套说明 |
 | `docs/research/2026-10-08/solidigm/scene-photo-sources.json` | 项目配置 |
 | `docs/research/2026-10-08/solidigm/sources.json` | 项目配置 |

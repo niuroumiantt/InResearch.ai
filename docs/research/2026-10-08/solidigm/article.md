@@ -1,6 +1,6 @@
 # Solidigm赴美上市背后的技术传承与资本选择
 
-> 2026年10月8日第二版专题研究归档；不是当期报价或投资建议，也不是当前执行指令。
+> 2026年10月8日第三版专题归档；不是当期报价、投资建议或当前执行指令。
 
 2026年10月7日，彭博报道称，SK海力士旗下Solidigm据报已选定高盛与摩根士丹利，推进可能在2027年进行的美国首次公开募股。次日，《首尔经济》转述了这一消息。承销行选择意味着交易筹备可能进入更具体的阶段，但筹资规模、时间表与发行结构仍在讨论中。几乎同时，另一条资本线索也变得清晰：韩国媒体在8月报道，曾任Solidigm联席首席执行官的Kevin Noh离开SK后，在美国成立私募管理公司TechBridge，拟与Stonebridge一方筹组基金投资Solidigm。一位负责整合业务的管理者，又以潜在投资组织者的身份出现在同一家公司的资本故事里。
 
@@ -192,11 +192,11 @@ Intel自己的产品方向逐渐清晰。其QLC产品宣传把大容量存储同
 > 来源：SK hynix，2026年8月18日，Form 6-K，《Semi-Annual Business Report》所附《Condensed Consolidated Interim Financial Statements》，附注1（2），印刷第10—12页，[SEC原始申报](https://www.sec.gov/Archives/edgar/data/2120882/000119312526354777/d147827d6k.htm)、[同份文件可读全文数字转写](https://financialfilings.com/filings/sk-hynix-inc/interim-quarterly-report/2026/56530973/)；Solidigm，2026年4月2日，[《Solidigm Expands Sacramento Development, Fueling Global AI Leadership》](https://news.solidigm.com/en-WW/263946-solidigm-expands-sacramento-development-fueling-global-ai-leadership/)；SK hynix，2026年1月28日，[《SK hynix to Establish U.S. Arm Specialized in AI Solutions》](https://news.skhynix.com/en/sk-hynix-to-establish-ai-solutions-arm-in-us/)。本段为当前布局的综合说明。
 
 
-〔配图：图3｜收购资产在2026年的布局：大连晶圆制造、美国SSD研发与经营、中国销售网络和美国AI战略投资平台承担不同职能。蓝线表示财报控制关系，虚线表示采访披露的FG晶圆供给；CTF为集团另一条产品协同路径。；图片保存在完整交付包〕
+〔配图：图3｜收购资产在2026年的布局：大连晶圆制造、美国SSD研发与经营、中国销售网络和美国AI战略投资平台承担不同职能。蓝线表示财报控制关系，虚线表示采访披露的FG晶圆供给；CTF为集团另一条产品协同路径；美国建厂另标为未确定的未来选项。；图片保存在完整交付包〕
 
-图3｜收购资产在2026年的布局：大连晶圆制造、美国SSD研发与经营、中国销售网络和美国AI战略投资平台承担不同职能。蓝线表示财报控制关系，虚线表示采访披露的FG晶圆供给；CTF为集团另一条产品协同路径。
+图3｜收购资产在2026年的布局：大连晶圆制造、美国SSD研发与经营、中国销售网络和美国AI战略投资平台承担不同职能。蓝线表示财报控制关系，虚线表示采访披露的FG晶圆供给；CTF为集团另一条产品协同路径；美国建厂另标为未确定的未来选项。
 
-> 图源：[原文1](https://www.sec.gov/Archives/edgar/data/2120882/000119312526354777/d147827d6k.htm)；[原文2](https://news.skhynix.com/en/sk-hynix-to-establish-ai-solutions-arm-in-us/)；[原文3](https://news.solidigm.com/en-WW/263946-solidigm-expands-sacramento-development-fueling-global-ai-leadership/)；[原文4](https://www.tomshardware.com/pc-components/ssds/solidigm-vp-talks-pcie-6-0-ssds-next-gen-floating-gate-nand-liquid-cooled-storage-and-more-avi-shetty-vp-of-ai-solutions-and-market-enablement-discusses-the-future-of-enterprise-storage-tech)。
+> 图源：[原文1](https://www.sec.gov/Archives/edgar/data/2120882/000119312526354777/d147827d6k.htm)；[原文2](https://news.skhynix.com/en/sk-hynix-to-establish-ai-solutions-arm-in-us/)；[原文3](https://news.solidigm.com/en-WW/263946-solidigm-expands-sacramento-development-fueling-global-ai-leadership/)；[原文4](https://www.marketscreener.com/news/sk-hynix-s-solidigm-unit-is-weighing-nand-memory-chip-factory-in-us-sources-say-ce785adad98cf221)；[原文5](https://www.tomshardware.com/pc-components/ssds/solidigm-vp-talks-pcie-6-0-ssds-next-gen-floating-gate-nand-liquid-cooled-storage-and-more-avi-shetty-vp-of-ai-solutions-and-market-enablement-discusses-the-future-of-enterprise-storage-tech)。
 
 
 这张布局图首先有清楚的法人基础。半年度财报列明，截至6月末，大连制造公司SK hynix Semiconductor（Dalian）Co., Ltd.由SK hynix Inc.控制，集团权益为100%；美国旧法人SK hynix NAND Product Solutions Corp.也由母公司控制，集团权益为98.16%；新经营公司Solidigm Inc.由旧法人控制，集团权益为96.86%。后两个比例是集团有效权益，图中控制关系与直接持股比例分别处理。制造资产与美国SSD经营业务，处在集团内不同的控制路径。
@@ -295,6 +295,10 @@ AI Company增加的是另一类能力。半年度财报显示，旧法人下已�
 
 > 来源：SK hynix，2026年8月18日，Form 6-K，《Semi-Annual Business Report》所附财务报表，附注1（2）印刷第10—12页，[SEC原始申报](https://www.sec.gov/Archives/edgar/data/2120882/000119312526354777/d147827d6k.htm)、[同份文件可读全文数字转写](https://financialfilings.com/filings/sk-hynix-inc/interim-quarterly-report/2026/56530973/)；Tom’s Hardware，Anton Shilov，2026年6月26日，[Avi Shetty访谈原文](https://www.tomshardware.com/pc-components/ssds/solidigm-vp-talks-pcie-6-0-ssds-next-gen-floating-gate-nand-liquid-cooled-storage-and-more-avi-shetty-vp-of-ai-solutions-and-market-enablement-discusses-the-future-of-enterprise-storage-tech)。本段为供货和关联交易机制分析，未将成本加成认定为现行公开合同事实。
 
+现有布局之外，美国制造正在成为新的评估方向。路透社9月18日援引三名知情人报道，Solidigm考虑在美国建设NAND晶圆厂，纽约州北部是主要候选地区之一；这一项目与海力士同Intel讨论的俄亥俄州制造合作分开。SK海力士与Solidigm在报道中均表示尚未决定具体方案。因此，大连制造与美国研发构成当前业务基础，美国晶圆厂则是潜在扩张选项，不能画成已经具备的产能。
+
+> 来源：Reuters，Hyunjoo Jin、Heekyong Yang、Karen Freifeld，2026年9月18日，[《Solidigm评估美国NAND工厂，纽约州北部为候选》路透社原稿转载](https://www.marketscreener.com/news/sk-hynix-s-solidigm-unit-is-weighing-nand-memory-chip-factory-in-us-sources-say-ce785adad98cf221)。MarketScreener保留路透社署名正文与公司回应；建厂仍为评估阶段。
+
 AI时代使这套布局面对更直接的需求。CoreWeave在2026年8月正式公告与Solidigm签订多年协议，取得企业SSD容量的优先供应，说明存储产品开始更深入地进入AI云平台的供给规划。这份需求是在收购完成之后逐步形成的，当前布局的意义可以从今天的产品和客户关系中直接观察。中国制造提供介质供给，美国及全球工程组织提供控制器、固件与整盘产品，销售网络把产品带到数据中心，AI战略平台则扩大集团与系统伙伴合作的范围。这些能力让SK海力士在HBM支撑的计算环节之外，补足了AI数据中心持久存储的重要一环。收购的价值由此从取得一家NAND业务，延伸到能够围绕新需求组织生产、研发和交付。
 
 > 来源：CoreWeave，2026年8月5日，[《CoreWeave Signs Multi-Year Agreement With Solidigm to Strengthen Its Integrated AI Cloud Platform》](https://investors.coreweave.com/news/news-details/2026/CoreWeave-Signs-Multi-Year-Agreement-With-Solidigm-to-Strengthen-Its-Integrated-AI-Cloud-Platform/default.aspx)；SK hynix，2021年12月30日，[《SK hynix completes the First Phase of Intel NAND and SSD Business Acquisition》](https://news.skhynix.com/en/sk-hynix-completes-the-first-phase-of-intel-nand-and-ssd-business-acquisition/)，移动NAND与企业SSD互补说明。协议金额与型号组合未公开，本段未据此估算收入或产能。
@@ -311,7 +315,7 @@ Kevin Noh，即卢钟元（노종원，英文公告亦写Jongwon Noh），与Sol
 
 图6｜Kevin Noh从并购实务、集团财务与事业管理，到经营Solidigm，再到拟组织外部基金投资的履历。Intel交易签署在他出任CFO之前；两位President是集团内分工，不是双CEO。拟议基金投资与公司IPO筹备分别列示。
 
-> 图源：[原文1](https://www.thebell.co.kr/front/newsview.asp?code=0401&key=202608101118098120103951)；[原文2](https://www.thebell.co.kr/front/newsview.asp?code=0401&key=201712070100011610000699)；[原文3](https://news.skhynix.com/en/sk-hynix-inc-reports-fiscal-year-2020-and-fourth-quarter-results/)；[原文4](https://news.skhynix.co.kr/executive-personnel-and-organizational-reorganization-2022/)；[原文5](https://news.solidigm.com/en-WW/226111-david-m-dixon-and-kevin-noh-appointed-co-ceos-of-solidigm/)；[原文6](https://signal.sedaily.com/article/20081919)；[原文7](https://biz.chosun.com/stock/market_trend/2026/08/26/R6KUSH2MXREAPKS2Q2Y3B7ANHQ/)。
+> 图源：[原文1](https://www.thebell.co.kr/front/newsview.asp?code=0401&key=202608101118098120103951)；[原文2](https://www.thebell.co.kr/front/newsview.asp?code=0401&key=201712070100011610000699)；[原文3](https://news.skhynix.com/en/sk-hynix-inc-reports-fiscal-year-2020-and-fourth-quarter-results/)；[原文4](https://news.skhynix.co.kr/executive-personnel-and-organizational-reorganization-2022/)；[原文5](https://news.solidigm.com/en-WW/226111-david-m-dixon-and-kevin-noh-appointed-co-ceos-of-solidigm/)；[原文6](https://signal.sedaily.com/article/20081919)；[原文7](https://www.mk.co.kr/news/stock/12162986)；[原文8](https://biz.chosun.com/stock/market_trend/2026/08/26/R6KUSH2MXREAPKS2Q2Y3B7ANHQ/)。
 
 
 这条路径最早与海力士本身的易主相交。韩国财经媒体The Bell记者朴完俊在2026年的履历报道中写道，卢钟元2011年仍在SK电讯任职，曾在海力士收购工作组负责实务。SK电讯官方历史则把交易过程分为2011年11月的股权收购签约，以及2012年的收购与海力士更名启动。对原本以移动通信为核心的企业而言，这笔交易意味着进入需要持续研发和巨额设备投入的制造行业。参与交易实务的人面对的，既有股权价格和融资，也有一个更长远的问题：集团能否承接芯片业务的投资周期。卢钟元由此积累的是进入一个产业的交易经验，此时尚未担任海力士CFO。
@@ -414,6 +418,10 @@ CFO任命进一步把两类责任放到同一个岗位上。The Bell记者金惠
 
 > 来源：《朝鲜Biz》，金钟容（김종용），2026年8月26日，[《SK하닉 결단만 나오면... 스톤브릿지, 노종원 전 사장과 솔리다임 공동 투자》](https://biz.chosun.com/stock/market_trend/2026/08/26/R6KUSH2MXREAPKS2Q2Y3B7ANHQ/)；Bloter，柳镐承（유호승），2026年8月31日，[《SK 출신 노종원 펀드, 솔리다임 딜 위해 AI·퀀트 인재 영입》](https://www.bloter.net/news/articleView.html?idxno=672192)。
 
+9月28日，《每日经济》的后续报道把这条线进一步连接起来：记者称卢钟元在SK任内主导了Intel NAND与SSD业务收购，目前又据报通过其在美国设立的私募管理公司组织Solidigm上市前投资，并向中东主权财富基金试探募资。由参与收购到经营，再到组织外部资金进入同一业务，他与Solidigm的关系逐步转向资本市场；具体出资人及投资交割仍待披露。
+
+> 来源：《每日经济》，金正锡（김정석）、禹秀敏（우수민），2026年9月28日17:48发布、19:41更新，[《美상장땐 '몸값 200조' 솔리다임…하닉 주가엔 '글쎄'》](https://www.mk.co.kr/news/stock/12162986)；[用户提供的中文AI翻译页](https://www.mk.co.kr/cn/stock/12162986)。引用记者署名正文；中文页与韩文页为同一报道。该文将共同方写为Stonebridge Capital，与8月《朝鲜Biz》明确的Stonebridge Global名称不同，共同投资法人仍需交易文件核定。
+
 由此再看卢钟元的角色变化，基金计划延续了他处理产业机会与资本结构的经验，同时改变了需要回答问题的对象。在集团内部，他要为收购、整合和业务成长配置资源；成为基金管理人后，他还要为出资人解释买入价格、风险承担和回收路径。海力士10月1日的官方说明仍称，Solidigm资本使用方案尚未决定，需要比较内部现金与外部资本对现有股东的经济影响。这也把故事留在一个具体的交易节点：TechBridge能否完成募资，能否签署并交割股份投资，以及若未来进入上市程序，股东权利和退出安排如何披露。在拟议上市的背景下，外部基金若完成投资，可以为企业股权定价与上市前资本结构增加新的参与者；上市又可能成为基金未来的退出路径。曾经代表产业集团买入、随后承担经营责任的人，如今准备代表外部出资人再作判断，这才是这条人物线在今天的转折。公司IPO的决定与执行，仍属于公司的资本安排，TechBridge能否参与则取决于基金和股份交易的落实。
 
 > 来源：SK海力士，2026年10月1日，[《Clarification Regarding Recent Media Reports on Solidigm》](https://news.skhynix.com/en/fact-11/)。
@@ -488,6 +496,10 @@ QLC能否承担企业工作负载，还要看写入寿命的口径。Solidigm产
 
 > 来源：Bloomberg，2026年10月7日，《SK Hynix’s Solidigm Is Said to Pick Banks for US IPO Next Year》，[彭博原始报道链接，全文访问受限](https://www.bloomberg.com/news/articles/2026-10-07/sk-hynix-s-solidigm-is-said-to-pick-banks-for-us-ipo-next-year)；实际核阅：《首尔经济》，Lee Tae-kyu，2026年10月8日07:23:46，《SK hynix Picks Goldman, Morgan Stanley for Solidigm IPO》，[可读英文转述](https://en.sedaily.com/international/2026/10/08/sk-hynix-picks-goldman-morgan-stanley-for-solidigm-ipo)、[该页面提供的韩文原文链接，访问受限](https://www.sedaily.com/article/20099331)。英文页注明采用AI翻译；该转述与彭博消息同源。
 
+在选定承销行消息之前，路透社9月25日已报道，Solidigm当周与竞逐承销角色的投行举行了方案陈述会议，早期讨论涉及最高1500亿美元企业估值及约150亿美元IPO筹资。两项金额分别是权益估值与可能募集的资金，报道明确称方案尚早、可随市场条件变化。10月报道的约100亿美元潜在筹资，是另一个时点的媒体口径；这些数字不能直接合并，也不足以证明公司已经正式调整发行规模。
+
+> 来源：Reuters，Milana Vinn、Echo Wang，2026年9月25日，[《Solidigm讨论IPO，估值或达1500亿美元》路透社原稿转载](https://www.investing.com/news/stock-market-news/exclusivesk-hynixs-solidigm-weighs-ipo-that-could-value-theunit-at-up-to-150-billion-sources-say-4917883)；Investing.com保留路透社记者署名及公司尚未确定具体方案的回应。
+
 上市议题并非在这一报道出现时才开始。SK海力士于2026年9月4日提交SEC的6-K，回应《韩国经济新闻》此前关于Solidigm筹划上市前融资的报道，说明使用Solidigm品牌的海外子公司在研究增强竞争力的多种措施，截至该文件日期尚未确定事项。监管回应确认讨论存在，但没有确认媒体所提方案已签约。因此，第四章中的基金筹组、上市前融资及当前承销行消息，可以组成资本活动的时间线，却不能彼此替代，证明其中任何一步已完成交割。
 
 > 来源：SK hynix，2026年9月4日，Form 6-K，《Clarification Regarding Rumors or Media Reports》，[SEC申报原文](https://www.sec.gov/Archives/edgar/data/2120882/000119312526382688/d111778d6k.htm)。
@@ -495,6 +507,10 @@ QLC能否承担企业工作负载，还要看写入寿命的口径。Solidigm产
 发行安排尚未确定时，仍可以讨论公司为何考虑外部资金。SK海力士于2026年10月1日的正式说明给出了核心逻辑：集团同时面对HBM、服务器DRAM和企业SSD的投资需求，财务状况较强，不意味着所有项目都应使用内部现金；外部资金与内部资金必须比较对现有股东的经济影响。公司还明确表示，Solidigm的资本方案截至当日没有决定。这份说明把问题放在整个集团的资本配置中，避免了将上市简单解释为公司缺钱。
 
 > 来源：SK hynix，2026年10月1日，《Clarification Regarding Recent Media Reports on Solidigm》，[公司正式说明原文](https://news.skhynix.com/en/fact-11/)。
+
+美国建厂评估也使融资需求有了更具体的产业背景。如果未来确定新增NAND制造基地，投入将覆盖厂房、设备、工艺验证以及量产前的持续开支，资金需求会超出研发园区和产品团队的日常运营。《每日经济》报道提到，市场预期上市前资金可能用于美国生产基地。这一预期把外部资本与未来制造布局连接起来，但正式资金用途仍须融资协议及项目文件确认；目前的大连工厂继续是既有制造能力的组成部分。
+
+> 来源：《每日经济》，金正锡（김정석）、禹秀敏（우수민），2026年9月28日17:48发布、19:41更新，[《美상장땐 '몸값 200조' 솔리다임…하닉 주가엔 '글쎄'》](https://www.mk.co.kr/news/stock/12162986)；[用户提供的中文AI翻译页](https://www.mk.co.kr/cn/stock/12162986)。引用记者署名正文；中文页与韩文页为同一报道。美国建厂评估的更早报道见第三章所列路透社原稿。
 
 这种资本选择可以从业务差异理解。HBM和企业SSD都进入AI基础设施，却由不同产品、制造与客户体系支撑。集团资金投入其中一种业务，就暂时不能以同样方式投入另一种业务。借助外部股权，可能让企业SSD扩张与其他项目同时推进；内部出资，则能保留更多未来收益。前者会引入新股东及其治理要求，后者占用集团现金并增加自身承担的周期风险。是否选择上市，最终要比较项目收益、融资成本与扩张时点，不能只比较集团账上还有多少现金。
 
@@ -703,19 +719,27 @@ Kevin Noh由管理者走向潜在投资组织者，让这一故事增加了资�
 
 77. 韩国金融新闻（한국금융신문），정은경，2023-05-16T08:19:00+09:00，[[프로필] 노종원 솔리다임 신임 각자대표이사](https://www.fntimes.com/html/view.php?ud=202305160815543116645ffc9771_18)。
 
-78. Blocks & Files，Chris Mellor，2022-11-03，[Solidigm CEO’s departure takes staff by surprise](https://www.blocksandfiles.com/flash/2022/11/03/solidigm-ceos-departure-takes-staff-by-surprise/1601106)。
+78. 每日经济（매일경제），金正锡（김정석）、禹秀敏（우수민），2026-09-28，[美상장땐 '몸값 200조' 솔리다임…하닉 주가엔 '글쎄'](https://www.mk.co.kr/news/stock/12162986)。
 
-79. SK hynix Newsroom，SK hynix，2019-10-10，[Interview with SK hynix CEO Seok-hee Lee, “curiosity has shaped me”](https://news.skhynix.com/en/interview-with-sk-hynix-ceo-seok-hee-lee-curiosity-has-shaped-me/)。
+79. 每日经济，KIM Jeongsuk、WOO Sumin，2026-09-28，[《Solidigm美国上市与海力士股东影响》中文AI翻译页（无正常中文标题）](https://www.mk.co.kr/cn/stock/12162986)。
 
-80. Intel Free Press，原文未注明发布日期，[Gordon Moore with Robert Noyce at Intel in 1970](https://www.flickr.com/photos/intelfreepress/8450997579/)。
+80. Reuters（MarketScreener全文转载），Hyunjoo Jin、Heekyong Yang、Karen Freifeld，2026-09-18，[SK Hynix's Solidigm unit is weighing NAND memory chip factory in US, sources say](https://www.marketscreener.com/news/sk-hynix-s-solidigm-unit-is-weighing-nand-memory-chip-factory-in-us-sources-say-ce785adad98cf221)。
 
-81. Intel Corporation，2017-10-03，[Former Intel CEO Paul S. Otellini Dies at Age 66](https://www.intc.com/news-events/press-releases/detail/199/former-intel-ceo-paul-s-otellini-dies-at-age-66)。
+81. Reuters（Investing.com全文转载），Milana Vinn、Echo Wang，2026-09-25，[Exclusive-SK Hynix’s Solidigm weighs IPO that could value the unit at up to $150 billion, sources say](https://www.investing.com/news/stock-market-news/exclusivesk-hynixs-solidigm-weighs-ipo-that-could-value-theunit-at-up-to-150-billion-sources-say-4917883)。
 
-82. Intel，2019-01-31，[Intel Names Robert Swan CEO](https://www.intc.com/news-events/press-releases/detail/96/intel-names-robert-swan-ceo)。
+82. Blocks & Files，Chris Mellor，2022-11-03，[Solidigm CEO’s departure takes staff by surprise](https://www.blocksandfiles.com/flash/2022/11/03/solidigm-ceos-departure-takes-staff-by-surprise/1601106)。
 
-83. 美国商务部工业与安全局，2025-09-02，[Revocation of Validated End-User Authorizations in the People’s Republic of China](https://www.federalregister.gov/documents/2025/09/02/2025-16735/revocation-of-validated-end-user-authorizations-in-the-peoples-republic-of-china)。
+83. SK hynix Newsroom，SK hynix，2019-10-10，[Interview with SK hynix CEO Seok-hee Lee, “curiosity has shaped me”](https://news.skhynix.com/en/interview-with-sk-hynix-ceo-seok-hee-lee-curiosity-has-shaped-me/)。
 
-84. 美国人口普查局，2026-01-05，[NEW BIS LICENSE TYPE C79 — Fab License](https://content.govdelivery.com/accounts/USCENSUS/bulletins/4008e2b)。
+84. Intel Free Press，原文未注明发布日期，[Gordon Moore with Robert Noyce at Intel in 1970](https://www.flickr.com/photos/intelfreepress/8450997579/)。
+
+85. Intel Corporation，2017-10-03，[Former Intel CEO Paul S. Otellini Dies at Age 66](https://www.intc.com/news-events/press-releases/detail/199/former-intel-ceo-paul-s-otellini-dies-at-age-66)。
+
+86. Intel，2019-01-31，[Intel Names Robert Swan CEO](https://www.intc.com/news-events/press-releases/detail/96/intel-names-robert-swan-ceo)。
+
+87. 美国商务部工业与安全局，2025-09-02，[Revocation of Validated End-User Authorizations in the People’s Republic of China](https://www.federalregister.gov/documents/2025/09/02/2025-16735/revocation-of-validated-end-user-authorizations-in-the-peoples-republic-of-china)。
+
+88. 美国人口普查局，2026-01-05，[NEW BIS LICENSE TYPE C79 — Fab License](https://content.govdelivery.com/accounts/USCENSUS/bulletins/4008e2b)。
 
 ## 备注
 
