@@ -8,7 +8,7 @@
  const names={queued:'等待研究核验',reviewing:'正在核验',review_ready:'已核验待发布',published:'已完成发布流程',already_adopted:'已有正式采用',needs_owner:'需负责人判断',needs_specialist:'需专项核验',needs_demand_match:'待匹配现行需求',deferred:'核验阻塞',defer:'待补充证据',background:'背景资料',duplicate:'重复主张'};
  const roles={reader:['Reader catalog','文件身份、来源版本、阅读任务与正文结果指针'],acquisition:['采集库','爬取接收、新闻线索、侧车与交付回执'],review:['研究核验库','候选分流、核验尝试、独立复核与发布状态']};
  let data,selected='archive',loading=false;
- const row=(label,value,total,unit)=>`<div class="material-row"><div>${esc(label)}</div><div class="track" aria-hidden="true"><span style="width:${total>0?Math.min(100,value/total*100):0}%"></span></div><div class="number">${unit?bytes(value,unit):count(value)}</div></div>`;
+ const row=(label,value,total,unit)=>`<div class="material-row"><div>${esc(label)}</div><div class="track" aria-hidden="true"><span style="width:${Number.isSafeInteger(value)&&Number.isSafeInteger(total)&&total>0?Math.min(100,value/total*100):0}%"></span></div><div class="number">${unit?bytes(value,unit):count(value)}</div></div>`;
  const explanation={
  archive:'目录统计的是占用磁盘的文件副本、暂存件、派生件和备份。相同内容出现在多个目录时仍占空间；登记库则以 SHA-256 识别内容。两边覆盖范围不同，容量差不能解释为去重节省量。',
  catalog:'一个 SHA-256 对应一个内容身份。相同字节再次接收可以追加来源记录，复用内容身份；不同字节形成新身份。登记文件包含 PDF、HTML、文本派生、CAD 和视频，登记不代表已经阅读。',

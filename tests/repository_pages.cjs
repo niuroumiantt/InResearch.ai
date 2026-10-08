@@ -89,6 +89,13 @@ const ready = new Promise((resolve, reject)=>{
   await page.waitForFunction(()=>document.querySelector('#material-lineage').innerText.includes('未测量'));
   assert.equal(await page.locator('[data-step=review]').locator('..').locator('.value').innerText(),'— 条');
   await page.unroute('**/api/admin/material-flow');
+  await page.route('**/api/admin/material-flow',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({schema_version:1,measurements:{archive:{state:'observed',allocated_bytes:100,directories:{'raw-materials':20}}},review:{state:'unavailable',candidates:{}},formal:{},website:{}})}));
+  await page.locator('#material-refresh').click();
+  await page.waitForFunction(()=>document.querySelector('[data-step=archive]').parentNode.innerText.includes('0.00 GB'));
+  await page.locator('[data-step=archive]').click();
+  assert.equal(await page.locator('#material-detail .material-row').nth(1).locator('.number').innerText(),'—');
+  assert.equal(await page.locator('#material-detail .material-row').nth(1).locator('.track span').evaluate(e=>e.style.width),'0%');
+  await page.unroute('**/api/admin/material-flow');
   await page.locator('#material-refresh').click();
   await page.locator('#material-lineage .value').filter({hasText:'447.65'}).waitFor();
   await page.goto(base+'/admin/fetchspec/reporg.html');
