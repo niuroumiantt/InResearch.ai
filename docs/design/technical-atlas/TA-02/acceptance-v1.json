@@ -27,11 +27,11 @@
   "implementation_at_review": [
     {
       "file": "web/components/scene-atlas.js",
-      "sha256": "01e4d2d2a3784bc5b42e1d5229f96ac2d7742963e95b959951919920d8eecf8e"
+      "sha256": "89d3a0164016355705e1f0995aebd45d16481b81f01bc429e0159cbcd1da1a5e"
     },
     {
       "file": "web/components/part-inspector.js",
-      "sha256": "b3739bb8ae6ae85ae397df3cf09cbc51a1a5cb32ffdd3e0df873025d8632dd77"
+      "sha256": "df70c0afefd4a26c45d0979d6d5cbda93cc4ac1502f5f375ab051ee9a1f9171c"
     },
     {
       "file": "web/components/scene-resources.js",
@@ -43,21 +43,26 @@
     },
     {
       "file": "web/pages/bom3d.html",
-      "sha256": "ec47daf2a9ac2e79309c32bdf7d2410f5de4c9618976aa86042a71a26b84c62d"
+      "sha256": "84991a337e1df0ef8beae7db31484a3fc8ecad11bfb4aaa3e80e6b0de846011b"
     },
     {
       "file": "web/pages/rack3d.html",
-      "sha256": "69717d206383db2ee7edba3ecf217d1c21a15d6c6fc021f37a8d8816426b92b9"
+      "sha256": "351886f7226ba3f76c068685776a4e1a46a7df82ebab06a7f0f49659d75f6b9c"
+    },
+    {
+      "file": "web/components/scene-data.js",
+      "sha256": "4bba8c25c1710d7e2029eb9663da6d59d3b5c77d5ec702955266e80666fa1b37"
     }
   ],
   "visual_checks": {
     "paper": "暖白，PNG实像素250/249/242/255；明暗模式保持",
     "materials": "共用无色摄影棚/柔光，降低环境反射和自发光；旧贴图保留，原彩色裸片改克制银灰",
     "outline": "深灰约1pxWebGL硬边；无拾取，无包围盒贡献；退役模型/查看器由各自所有者释放",
-    "labels": "实时独立SVG，桌面16px/手机14px；阶段控制仍有效",
+    "labels": "实时独立SVG，桌面16px/手机14px；阶段控制仍有效；导出复用页面避让位置/暖白底，1x/2x像素比保持可读字级。",
     "floor": "机柜反光圆台/光圈移除，轻接触阴影；园区保留地面与道路但淡化为浅灰，无大面积深色网格",
     "export": "当前视角PNG内嵌SVG，独立标题/阶段/部件定位与14px换行图注；手机档案内可导出；诊断开启时带红0/4至绿4/4覆盖图例，声明非硬件状态。",
-    "camera": "旋转/当前阶段/用户手动镜头所有权保留"
+    "camera": "旋转/当前阶段/用户手动镜头所有权保留",
+    "public_startup": "产品登记为可选输入；302登录、不可读/坏结构/超时不阻塞公开骨架和3D；未读取时完整覆盖率未知、不开假零热图。；页面对本轮更新的模块带版本标记，原scene-data公网Last-Modified为2026-09-14且无no-cache，避免新HTML搭配旧模块。"
   },
   "export": {
     "pixels": "actual_current_canvas",
@@ -72,7 +77,8 @@
     "tests/scene_framing.cjs",
     "tests/part_dossier.cjs",
     "tests/technical_atlas.cjs",
-    "tests/model_assets.cjs"
+    "tests/model_assets.cjs",
+    "tests/scene_bootstrap.cjs"
   ],
   "local_visual_evidence": [
     {
@@ -97,5 +103,5 @@
     "静态母图/结构轴线/设备数量/管线拓扑和型号证据逐项审阅，当前导出仅通用示意",
     "实机GPU帧率/内存和上下文丢失恢复未穷尽测量；来源/许可不由渲染品质证明"
   ],
-  "publication": "accepted locally; merge/actual production receipts recorded separately"
+  "publication": "首次发布7d369257，实际资源与机柜下载已实读；导出可读性/园区匿名启动修正后的回执另附本次PR。"
 }

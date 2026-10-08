@@ -127,7 +127,16 @@ export function createAtlasDrawing({THREE, scene, normalize = true}) {
     if (showAfter !== undefined) {sprite.userData.showAfter = showAfter; sprite.visible = false;}
     sprite.raycast = () => {}; scene.add(sprite); labels.add(sprite); return sprite;
   }
-  return {sync,update,label,labels,attachLabels,dispose() {
+  function projectedLabels() {
+    update();
+    if (!overlay) return [];
+    const rect=overlayCanvas.getBoundingClientRect();
+    return [...labelNodes.values()].filter(text=>text.style.display!=='none').map(text=>({
+      text:text.textContent,x:Number(text.getAttribute('x'))/rect.width,y:Number(text.getAttribute('y'))/rect.height,
+      font:Number(text.getAttribute('font-size')),
+    }));
+  }
+  return {sync,update,label,labels,attachLabels,projectedLabels,dispose() {
     if (disposed) return; disposed = true;
     edges.forEach((line,mesh)=>mesh.remove(line)); edges.clear();
     geometries.forEach(geometry=>geometry.dispose()); geometries.clear(); lineMaterial.dispose();
@@ -153,18 +162,16 @@ export function atlasSnapshot({THREE, scene, camera, canvas, render, drawing, ti
   diagnostics = typeof diagnostics === 'function' ? diagnostics() : diagnostics;
   scene.updateMatrixWorld(true); camera.updateMatrixWorld(true);
   const visibleLabels = [...drawing.labels].filter(label=>label.visible);
-  const coordinates = visibleLabels.map(label=>({text:label.userData.atlasLabel.text,
-    point:label.getWorldPosition(new THREE.Vector3()).project(camera)}));
+  const coordinates = drawing.projectedLabels();
   let pixels;
   try {
     visibleLabels.forEach(label=>label.visible=false); render(); pixels = canvas.toDataURL('image/png');
   } finally {visibleLabels.forEach(label=>label.visible=true); render();}
-  const width = canvas.width, height = canvas.height, margin = 48;
-  const footnote = wrappedText(`${caption} · 通用结构示意，非工程图；当前视角，像素 ${width}×${height}${diagnostics ? ' · '+diagnostics : ''}`,width-48);
-  const footer = 66+footnote.length*20;
-  const font = Math.max(16,Math.round(width/96));
-  const texts = coordinates.filter(({point})=>Math.abs(point.x)<=1 && Math.abs(point.y)<=1 && Math.abs(point.z)<=1)
-    .map(({text,point})=>`<text x="${(point.x+1)*width/2}" y="${(1-point.y)*height/2+margin}" text-anchor="middle">${escape(text)}</text>`);
+  const width = canvas.width, height = canvas.height;
+  const density=width/Math.max(1,canvas.getBoundingClientRect().width),margin=48*density,font=16*density;
+  const footnote = wrappedText(`${caption} · 通用结构示意，非工程图；当前视角，像素 ${width}×${height}${diagnostics ? ' · '+diagnostics : ''}`,width-48*density,14*density);
+  const footer = (66+footnote.length*20)*density;
+  const texts = coordinates.map(({text,x,y,font:labelFont})=>`<text x="${x*width}" y="${y*height+margin}" font-size="${labelFont*density}" text-anchor="middle" stroke="${ATLAS.paper}" stroke-width="${6*density}" paint-order="stroke">${escape(text)}</text>`);
   let leader = '';
   if (selected?.meshes?.length) {
     const bounds = visibleBounds(selected.meshes);
@@ -172,12 +179,12 @@ export function atlasSnapshot({THREE, scene, camera, canvas, render, drawing, ti
       const point = bounds.getCenter(new THREE.Vector3()).project(camera);
       if (Math.abs(point.x)<=1 && Math.abs(point.y)<=1 && Math.abs(point.z)<=1) {
         const x=(point.x+1)*width/2,y=(1-point.y)*height/2+margin;
-        leader=`<g data-object-id="${escape(selected.id)}"><path d="M 24 ${height+margin+32} H 100 L ${x} ${y}" fill="none" stroke="${ATLAS.blue}" stroke-width="2"/><circle cx="${x}" cy="${y}" r="4" fill="${ATLAS.blue}"/><text x="112" y="${height+margin+38}">${escape(selected.name)} · ${escape(selected.id)}</text></g>`;
+        leader=`<g data-object-id="${escape(selected.id)}"><path d="M ${24*density} ${height+margin+32*density} H ${100*density} L ${x} ${y}" fill="none" stroke="${ATLAS.blue}" stroke-width="${2*density}"/><circle cx="${x}" cy="${y}" r="${4*density}" fill="${ATLAS.blue}"/><text x="${112*density}" y="${height+margin+38*density}">${escape(selected.name)} · ${escape(selected.id)}</text></g>`;
       }
     }
   }
-  const footTexts=footnote.map((line,index)=>`<text x="24" y="${height+margin+66+index*20}" font-size="14">${escape(line)}</text>`).join('');
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height+margin+footer}" viewBox="0 0 ${width} ${height+margin+footer}"><metadata>${escape(JSON.stringify({style:'white-technical-atlas-v1',recipe:'scene-atlas-v1',title,caption,pixels:[width,height],object_id:selected?.id || null,diagnostics:diagnostics || null,projection:'current interactive perspective',identity:'generic schematic; no model-specific dimensions'}))}</metadata><rect width="100%" height="100%" fill="${ATLAS.paper}"/><image x="0" y="${margin}" width="${width}" height="${height}" href="${pixels}"/><g id="editable-labels" fill="${ATLAS.graphite}" font-family="Inter,Noto Sans SC,sans-serif" font-size="${font}"><text x="24" y="32">${escape(title)}</text>${texts.join('')}${leader}${footTexts}</g></svg>`;
+  const footTexts=footnote.map((line,index)=>`<text x="${24*density}" y="${height+margin+(66+index*20)*density}" font-size="${14*density}">${escape(line)}</text>`).join('');
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height+margin+footer}" viewBox="0 0 ${width} ${height+margin+footer}"><metadata>${escape(JSON.stringify({style:'white-technical-atlas-v1',recipe:'scene-atlas-v1',title,caption,pixels:[width,height],object_id:selected?.id || null,diagnostics:diagnostics || null,projection:'current interactive perspective',identity:'generic schematic; no model-specific dimensions'}))}</metadata><rect width="100%" height="100%" fill="${ATLAS.paper}"/><image x="0" y="${margin}" width="${width}" height="${height}" href="${pixels}"/><g id="editable-labels" fill="${ATLAS.graphite}" font-family="Inter,Noto Sans SC,sans-serif" font-size="${font}"><text x="${24*density}" y="${32*density}" font-size="${22*density}">${escape(title)}</text>${texts.join('')}${leader}${footTexts}</g></svg>`;
 }
 
 export function mountAtlasExport(options) {

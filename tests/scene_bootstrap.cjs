@@ -69,6 +69,16 @@ const {chromium} = require('playwright');
     check(recovered[0].records[0].id==='retry' && control.inert,'retry changed prior control state');
    } finally {globalThis.fetch=originalFetch;control.remove();}
   });
+  // Match the actual anonymous production gate: products redirects to a login HTML page.
+  await page.route('**/data/products.json',route=>route.fulfill({status:302,headers:{location:'/login'},body:''}));
+  await page.goto(process.env.UI_BASE_URL+'/bom3d.html?d=compute&p=server');
+  await page.locator('#dossier .insp canvas').waitFor();
+  assert.equal(await page.locator('.rg-scene-startup').count(),0);
+  await page.waitForFunction(()=>document.querySelector('#covChip')?.getAttribute('aria-disabled')==='true');
+  assert.match(await page.locator('#covChip').textContent(),/覆盖率未知/);
+  assert.ok((await page.locator('#domainParts .covb').allTextContents()).every(text=>text==='—/4'));
+  await page.locator('#covChip').click();assert.equal(await page.locator('#covLegend').isVisible(),false);
+  assert.equal(await page.locator('.hud').evaluate(el=>el.inert),false);
   assert.deepEqual(errors,[]);
   console.log('PASS both scene startup HTTP/shape failures → retry → real research/renderer ready; controls/navigation, 8 appearance/width combinations, timeout, sibling cancellation, double retry, stale batch and prior inert state');
  } finally {await browser.close();}

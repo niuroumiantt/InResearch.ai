@@ -8,9 +8,11 @@ function sameCamera(actual,expected){for(const key of ['position','target'])actu
  try {
   const page=await browser.newPage({viewport:{width:1280,height:900},deviceScaleFactor:process.env.CI?.5:1,reducedMotion:'reduce'});
   const errors=[],results=[];page.on('pageerror',e=>errors.push(e.message));
-  await page.route('**/assets/part-inspector.js',async r=>{
+  await page.route(/\/assets\/part-inspector\.js(?:\?[^#]*)?$/,async r=>{
    const res=await r.fetch(),source=await res.text();
-   await r.fulfill({response:res,body:source.replace('return {canvas: iCv,','return {viewForTest:()=>({camera:iCam,canvas:iCv,objects:[iGroup]}), canvas: iCv,')});
+   const body=source.replace('return {canvas: iCv,','return {viewForTest:()=>({camera:iCam,canvas:iCv,objects:[iGroup]}), canvas: iCv,');
+   assert.notEqual(body,source,'inspector observation fixture must match the current implementation');
+   await r.fulfill({response:res,body});
   });
   await page.route(/\/(bom3d|rack3d)\.html/,async r=>{
    const res=await r.fetch(),source=await res.text();

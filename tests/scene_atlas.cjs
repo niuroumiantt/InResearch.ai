@@ -5,7 +5,8 @@ const {chromium} = require('playwright');
 (async()=>{
   const browser=await chromium.launch({headless:true,args:['--enable-unsafe-swiftshader']});
   try {
-    const page=await browser.newPage({viewport:{width:1280,height:900},reducedMotion:'reduce'});
+    for(const density of [1,2]) {
+    const page=await browser.newPage({viewport:{width:1280,height:900},deviceScaleFactor:density,reducedMotion:'reduce'});
     const errors=[];page.on('pageerror',error=>errors.push(error.message));
     page.on('console',message=>{if(message.type()==='error')console.error('Browser:',message.text());});
     await page.goto(process.env.UI_BASE_URL+'/rack3d.html?x=90&node=part:ssd#ssd');
@@ -47,6 +48,7 @@ const {chromium} = require('playwright');
           return {paper:[...context.getImageData(0,0,1,1).data],
             size:[image.width,image.height],meta:JSON.parse(doc.querySelector('metadata').textContent),
             labels:doc.querySelectorAll('#editable-labels text').length,
+            positionedLabels:[...doc.querySelectorAll('#editable-labels text[stroke]')].map(text=>({font:Number(text.getAttribute('font-size')),paper:text.getAttribute('stroke')})),
             leader:doc.querySelector('[data-object-id]')?.getAttribute('data-object-id'),
             liveLabels:[...document.querySelectorAll('.atlas-scene-labels text')].filter(el=>getComputedStyle(el).display!=='none').map(el=>parseFloat(getComputedStyle(el).fontSize)),
             oldInspector:!!document.querySelector('#dossier .insp canvas')};
@@ -56,6 +58,8 @@ const {chromium} = require('playwright');
         assert.equal(result.meta.object_id,'part:'+part);
         if(result.leader)assert.equal(result.leader,'part:'+part);
         assert.ok(result.labels>=2);assert.ok(result.oldInspector);
+        assert.ok(result.positionedLabels.length>0);
+        assert.ok(result.positionedLabels.every(text=>text.font>=14*density && text.paper==='#FAF9F2'));
         assert.ok(result.liveLabels.every(size=>size>=14));
         assert.ok(result.size[0]>0 && result.size[1]>0);
         assert.equal(await page.locator('#atlas-export').textContent(),'导出图册');
@@ -75,6 +79,8 @@ const {chromium} = require('playwright');
       if(process.env.REVIEW_SCREENSHOTS)await page.screenshot({path:process.env.REVIEW_SCREENSHOTS+'/'+name+'-atlas-recipe.png'});
     }
     assert.deepEqual(errors,[]);
+    await page.close();
+    }
     console.log('PASS neutral atlas: actual PNG paper, editable SVG/current view, both themes/sizes, retained inspector/stages, shared edge ownership/disposal');
   } finally {await browser.close();}
 })().catch(error=>{console.error(error);process.exitCode=1;});

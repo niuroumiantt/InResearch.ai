@@ -67,7 +67,8 @@
         "web/pages/rack3d.html",
         "web/components/part-inspector.js",
         "web/components/scene-resources.js",
-        "web/components/scene-view.js"
+        "web/components/scene-view.js",
+        "web/components/scene-data.js"
       ],
       "entry": "两3D主页面及部件查看器",
       "reference": [
@@ -79,9 +80,9 @@
       "depends_on": [
         "TA-01"
       ],
-      "status": "accepted",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-02/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "7d36925789b86b1727bd842c9c169465ae180ee3",
       "implementation_note": "2026-10-08实读代码：背景/雾/Bloom/灯光及M材质工厂在两个3D页面，预览灯光在part-inspector；web/assets/materials.js是资料上传组件，退出本项。",
       "started_at": "2026-10-08",
       "accepted_at": "2026-10-08",
@@ -91,9 +92,11 @@
         "web/components/scene-resources.js",
         "web/components/model-assets.js",
         "web/pages/bom3d.html",
-        "web/pages/rack3d.html"
+        "web/pages/rack3d.html",
+        "web/components/scene-data.js"
       ],
-      "implementation_scope": "shared_render_and_export_only; not individual geometry migration"
+      "implementation_scope": "shared_render_and_export_only; not individual geometry migration",
+      "publication_record": "docs/design/technical-atlas/TA-02/publication-20261008.json"
     },
     {
       "id": "TA-03",
