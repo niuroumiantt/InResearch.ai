@@ -111,7 +111,7 @@ class Handler(SimpleHTTPRequestHandler):
         pass
 
     def end_headers(self):
-        if repository_pages.protected(self._norm_path()):
+        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() == '/admin/company.html':
             self.send_header('Cache-Control', 'private, no-store')
             self.send_header('Vary', 'Cookie')
             self.send_header('X-Frame-Options', 'SAMEORIGIN')
@@ -180,7 +180,7 @@ class Handler(SimpleHTTPRequestHandler):
             return None
         # Infrastructure diagrams contain private host/network information.
         # These pages require a real admin session even in local development.
-        if repository_pages.protected(self._norm_path()):
+        if repository_pages.protected(self._norm_path()) or self._norm_path().lower() == '/admin/company.html':
             user = auth.session_user(self.headers.get('Cookie'))
             if not user:
                 self._redirect('/login')

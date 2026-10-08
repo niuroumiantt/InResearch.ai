@@ -23,7 +23,7 @@ $('company-links').innerHTML=[external(c.website&&(/^https?:/.test(c.website)?c.
 const facts=[['成立',c.founded_year?c.founded_year+' 年':'未登记'],['总部',c.hq_address||c.hq_country||'未登记'],['员工',c.employees||'未登记'],['首席执行官',c.ceo||'未登记']];
 $('company-facts').innerHTML=facts.map(([k,v])=>`<div><dt>${k}</dt><dd>${esc(v)}${k==='员工'&&c.employees_as_of?`<small>截至 ${esc(c.employees_as_of)}</small>`:''}</dd></div>`).join('');
 $('profile-source').innerHTML=c.profile_source?`公司资料：${external(c.profile_source,'官方披露')} · 披露期 ${esc(c.profile_as_of||'未登记')}`:'公司基本资料以已登记信息为准；空缺项待核对官方披露。';
-for(const id of ['catalog-link','all-products'])setLink(id,product({scope:'all'}));setLink('research-link',product({view:cid==='supermicro'?'research':'products'})+'#research-details');
+for(const id of ['catalog-link','all-products'])setLink(id,product({scope:'all'}));setLink('research-link',product({scope:'all'}));
 const catalog=data.catalog, sum=catalog.summary;
 $('catalog-summary').innerHTML=sum?[
  ['已收录型号',sum.named_products],['有规格的型号',sum.named_with_tables],['规格原表',sum.specification_tables]
