@@ -48,6 +48,19 @@ const fixture={generated:now,reader:{status:'degraded',generated:now,received_at
   }
  }
  assert.deepEqual(errors,[]);
+ // Fonts must not compete for a cold connection before status arrives.
+ const firstStatus=await context.newPage();let releaseStatus;
+ const statusReady=new Promise(resolve=>{releaseStatus=resolve;});const fontRequests=[];
+ firstStatus.on('request',r=>{if(/\.woff2(?:\?|$)/.test(r.url()))fontRequests.push(r.url());});
+ await firstStatus.route('**/api/ops',async route=>{await statusReady;await route.fulfill({json:fixture});});
+ try {
+  await firstStatus.goto(base+'/ops.html',{waitUntil:'domcontentloaded'});
+  await firstStatus.locator('#tasks .task-btn').first().waitFor({state:'attached'});
+  assert.equal(await firstStatus.locator('#ops-fonts').getAttribute('media'),'print');
+  assert.deepEqual(fontRequests,[],'font files start after the first status request finishes');
+  releaseStatus();await firstStatus.locator('#ops-kpis .value').first().getByText('114',{exact:true}).waitFor();
+  assert.equal(await firstStatus.locator('#ops-fonts').getAttribute('media'),'all');
+ } finally {releaseStatus();await firstStatus.close();}
  // A stylesheet may stall on a slow connection. It must not hold the parser,
  // navigation or status bootstrap behind an inline script / defer dependency.
  const slowPage=await context.newPage();let releaseStyle;
@@ -71,6 +84,7 @@ const fixture={generated:now,reader:{status:'degraded',generated:now,received_at
   await timeoutPage.goto(base+'/ops.html');
   await timeoutPage.locator('#ops-error').getByText(/读取超时（20 秒）/).waitFor();
   assert.equal(await timeoutPage.locator('#ops-refresh').isEnabled(),true,'aborted request releases refresh');
+  assert.equal(await timeoutPage.locator('#ops-fonts').getAttribute('media'),'all','failed status still enables the shared font style');
   assert.match(await timeoutPage.locator('#stage-body').textContent(),/状态未知/);
   assert.doesNotMatch(await timeoutPage.locator('#ops-error').textContent(),/user aborted/);
   await timeoutPage.unroute('**/api/ops');
