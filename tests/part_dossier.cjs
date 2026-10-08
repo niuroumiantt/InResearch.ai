@@ -25,6 +25,14 @@ const {chromium} = require('playwright');
       assert.match(await dossier.locator('.rg-3d-panel .rg-chips').textContent(), /个问题.*条证据.*个关联任务/);
       assert.ok(await dossier.locator('.rg-3d-neighbors a').count()>0);
       console.log('Scene contract: research ready '+url);
+      if (url.includes('p=server')) {
+        const enclosure = dossier.locator('.technical-atlas[data-figure="TA-03"]');
+        await enclosure.waitFor();
+        assert.match(await enclosure.locator('figcaption').textContent(), /子装配/);
+        assert.ok((await enclosure.locator('img').getAttribute('src')).endsWith('/chassis-v1-preview.svg'));
+      } else {
+        assert.equal(await dossier.locator('.technical-atlas[data-figure="TA-03"]').count(), 0, 'GPU must not inherit enclosure diagram');
+      }
       const canvas = dossier.locator('canvas'); await canvas.waitFor();
       assert.equal(await canvas.count(), 1);
       assert.ok(await dossier.getByRole('link', {name:'采集：这个部件的目标行'}).isVisible());

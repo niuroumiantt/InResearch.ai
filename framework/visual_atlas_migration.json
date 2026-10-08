@@ -107,24 +107,35 @@
       "source_paths": [
         "web/assets/renders/chassis.png"
       ],
-      "entry": "保留资产，当前无页面引用",
+      "entry": "bom.html#server计算/尺度行的机箱子装配图；bom3d/rack3d服务器档案；完整服务器为TA-11另项",
       "reference": [
-        "R2"
+        "R2",
+        "R3"
       ],
       "observed_gap": "蓝色平板与简化机箱，缺少开孔、折边和紧固关系",
       "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
       "depends_on": [
         "TA-02"
       ],
-      "status": "planned",
-      "acceptance_record": null,
+      "status": "accepted",
+      "acceptance_record": "docs/design/technical-atlas/TA-03/acceptance-v1.json",
       "published_revision": null,
       "baseline_asset": {
         "file": "web/assets/renders/chassis.png",
         "sha256": "b40f337f8753f5ac652d57243345b248289ef37f21cbe4177c09927298cc3dc5",
         "width": 1840,
         "height": 1280
-      }
+      },
+      "started_at": "2026-10-08",
+      "object_id": "part:server",
+      "identity": "通用服务器机箱子装配；不是TA-11整机服务器",
+      "accepted_at": "2026-10-08",
+      "deliverable_paths": [
+        "web/assets/technical-atlas/chassis-v1.png",
+        "web/assets/technical-atlas/chassis-v1.svg",
+        "web/assets/technical-atlas/chassis-v1-preview.svg",
+        "docs/design/technical-atlas/TA-03/labels-v1.json"
+      ]
     },
     {
       "id": "TA-04",
