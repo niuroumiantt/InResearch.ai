@@ -84,6 +84,9 @@ class MaterialMeasurementsTests(unittest.TestCase):
         (state/'material-directory-measurements.json').write_text('[]')
         with patch.object(measurements.subprocess,'run',side_effect=OSError()):
             self.assertEqual(measurements.directory_sizes(data,state)['state'],'unavailable')
+        # An empty/malformed du reply must never interrupt the existing publisher.
+        with patch.object(measurements.subprocess,'run',return_value=subprocess.CompletedProcess([],0,'')):
+            self.assertEqual(measurements.directory_sizes(data)['state'],'unavailable')
 
     def test_receiver_only_preserves_whitelisted_aggregates(self):
         raw=measured_fixture()['measurements'];raw['private_path']='/secret/material.pdf'

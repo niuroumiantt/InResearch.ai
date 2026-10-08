@@ -60,7 +60,7 @@ def directory_sizes(data, cache_root=None, *, now=None):
             try:atomic_json(cache,{**out,'root':str(data.resolve()),'sample_epoch':now})
             except OSError:pass
         return out
-    except (OSError,ValueError,subprocess.SubprocessError):
+    except (OSError,ValueError,KeyError,TypeError,AttributeError,subprocess.SubprocessError):
         # Keep an explicitly stale last measurement; failure never becomes zero.
         if old.get('root')==str(data.resolve()) and old.get('state')=='observed':
             return {**{k:v for k,v in old.items() if k not in ('root','sample_epoch')},

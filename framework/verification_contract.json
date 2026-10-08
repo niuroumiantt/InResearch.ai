@@ -202,7 +202,7 @@
     "web/pages/admin/company.html": "5f59386bbc23c5b782e63981af8085d230afe112dacd9fd867a14a80fd495310",
     "web/themes/company.css": "08c1a5b71a8af459ae57e3f8245279e275ca4dc1546ae6e7ad9395c992116ebd",
     "web/themes/supply.css": "d2b3d5dad342d43550008b106a1fb94592e7d60faa3012591b3af9364c72874e",
-    "tests/unit/test_material_flow.py": "250ecf95462502c1c4caf352e24ea3a48c27cf04b8e2a3957ba70d7d7bba41bb"
+    "tests/unit/test_material_flow.py": "6d7956fcb057acd12be4c225605a262b1eb7b9da45f7f33d4554ed94444b87fb"
   },
   "policies": [
     {
@@ -1201,7 +1201,7 @@
       "policy": "software-contracts-20260913",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界; published/runtime authority, initialization recovery and concurrent writers, immutable source, HTTP/CLI, release rollback；视觉资产独占创建和登记主提交，中断重放、跨进程并发、同名不覆盖与采用决定保留；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；CLI 全局/子接口目录所有权，失败前拒绝、顺序委派参数恢复及真实派工/候选版本重放；场景资源加载超时、并发重试、A→fallback→A 替换、迟到回收与退出释放；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；计划不冒充执行或采用。；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、四项CI完整通过后才可发布。；2026-10-08收尾复审：核验队列计数经HTTP候选接收和供应投影仍保留，仅白名单非负整数/时间/状态、不得取得采用权；坏计量显示unknown而非伪零；发表已有日志先恢复，main-only非交互同步仍保护dirty源码。；并行发布更新基线仅自动重建两个派生登记文件，正式研究/规则/源码冲突保留待审；新head重新等四项CI，dirty与外部改head拒绝。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；资料计量：SQL只读/缺库不创建，索引为数据库内部结构，目录私有低频缓存且超时保留旧采样，聚合白名单去除私有路径/配置，正式支持链与候选核验状态分开。",
+      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界; published/runtime authority, initialization recovery and concurrent writers, immutable source, HTTP/CLI, release rollback；视觉资产独占创建和登记主提交，中断重放、跨进程并发、同名不覆盖与采用决定保留；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；CLI 全局/子接口目录所有权，失败前拒绝、顺序委派参数恢复及真实派工/候选版本重放；场景资源加载超时、并发重试、A→fallback→A 替换、迟到回收与退出释放；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；计划不冒充执行或采用。；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、四项CI完整通过后才可发布。；2026-10-08收尾复审：核验队列计数经HTTP候选接收和供应投影仍保留，仅白名单非负整数/时间/状态、不得取得采用权；坏计量显示unknown而非伪零；发表已有日志先恢复，main-only非交互同步仍保护dirty源码。；并行发布更新基线仅自动重建两个派生登记文件，正式研究/规则/源码冲突保留待审；新head重新等四项CI，dirty与外部改head拒绝。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；资料计量：SQL只读/缺库不创建，索引为数据库内部结构，目录私有低频缓存且超时保留旧采样，聚合白名单去除私有路径/配置，正式支持链与候选核验状态分开。；缺失根目录统计的du返回显式unknown，不阻断既有发布，回归覆盖发布器四种状态。",
       "tests": [
         "tests/unit/test_commands.py::CommandFlows.test_independent_processes_do_not_lose_records",
         "tests/unit/test_commands.py::CommandFlows.test_exception_and_failed_replace_keep_old_bytes",
