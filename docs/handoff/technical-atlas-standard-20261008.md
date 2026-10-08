@@ -56,3 +56,11 @@ SSD位置修正PR397已上线162cf88a，四项CI通过，AWS HEALTHY/容器healt
 Spark本轮只读观察06f96964，reader active；research-review在20:10后inactive（Result success、退出状态15），没有在本图册任务中启动/重启，网站2D部署独立。其他研究任务可能正在调整它，不擅自改动。
 
 建筑/消防公网系统/尺度×桌面/手机及高清原SVG实际打开复验完成，7条可编辑标注，错误0；公网源码SHA与本地一致。高清原图在当前网络78.612/91.39秒，预览2.612/4.929秒；原件质量未压低。合入独立研究恢复PR399，只更新图册自己的实现与计量，保留其规则/私有worker操作范围。
+
+## 补充四图实际发布完毕
+
+建筑/消防PR398 fc0e2cc2；安防/机柜结构PR400 26b2aa2e（源头568d6f37，四项CI全通过）。四对象系统/尺度×桌面/手机及高清原SVG实际打开，逐项publication-20261008.json保存来源字节/PNG SHA、图像与DOM证据。最后观察AWS和Spark均26b2aa2e，AWS healthy、reader/research-review均active；图册任务仅只读Spark，没有替其他研究任务重启服务。
+
+主计划2/35、补充4/4；下一TA-03。机箱旧原图已实际看过，机械折边/开孔/紧固不足；新图应明确服务器机箱子装配，不能当TA-11整服务器完成。M5预备提示词与待确认来源说明在 `~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-03/`；尚未生成/采纳，Dell网页仅目录可读，详细结构先核官方手册。当前工作树仍ops-dashboard/inresearch.ai，分支改为codex/atlas-facility-receipt-20261008。
+
+公网冷加载/高清原件比本地慢，预览SVG每张约285–505KiB；2D总览随新图增加会出现缩略图和字体下载竞争，TA-16/17要处理实际视口按需读取，不能只以小于512KiB宣称网络已快。自动续做automation-3仍每小时，只在实际上线/失败/所需决定通知，35项实际全部完成后停止。

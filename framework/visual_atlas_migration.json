@@ -5,7 +5,7 @@
   "plan": "docs/design/technical-atlas/MIGRATION_PLAN.md",
   "observed_at": "2026-10-08",
   "baseline_revision": "453f3625d427b9d989851ed5712737495891a378",
-  "audit_scope": "current main local browser rendering; no production redesign claimed",
+  "audit_scope": "Initial baseline inventory at baseline_revision; actual per-item acceptance and publication recorded separately, not a whole-site redesign receipt",
   "audit_directory": "~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/",
   "execution": "one_item_at_a_time",
   "states": [
@@ -461,7 +461,7 @@
       "status": "planned",
       "acceptance_record": null,
       "published_revision": null,
-      "partial_entry_supplement": "TA-01已有SSD样板接入总览缩略图和主图区；其他部件仍待重制，不将整项计完成"
+      "partial_entry_supplement": "已验SSD与四张设施2D补充图接入所属行和真实缩略图；其他部件仍待重制，整项不计完成"
     },
     {
       "id": "TA-17",
@@ -484,7 +484,7 @@
       "status": "planned",
       "acceptance_record": null,
       "published_revision": null,
-      "partial_entry_supplement": "TA-01已有SSD样板接入总览缩略图和主图区；其他部件仍待重制，不将整项计完成"
+      "partial_entry_supplement": "已验SSD与四张设施2D补充图接入所属行和真实缩略图；其他部件仍待重制，整项不计完成"
     },
     {
       "id": "TA-18",
@@ -1004,9 +1004,9 @@
       "depends_on": [
         "TA-37"
       ],
-      "status": "accepted",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-38/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "26b2aa2e10d545005036e40ab1c6270bd64e312b",
       "object_id": "part:security",
       "accepted_at": "2026-10-08",
       "baseline_revision": "16fcc6ec80f1bd1c2316a1e0853d4cbd94a51824",
@@ -1015,7 +1015,8 @@
         "web/assets/technical-atlas/security-v1.svg",
         "web/assets/technical-atlas/security-v1-preview.jpg",
         "web/assets/technical-atlas/security-v1-preview.svg"
-      ]
+      ],
+      "publication_record": "docs/design/technical-atlas/TA-38/publication-20261008.json"
     },
     {
       "id": "TA-39",
@@ -1037,9 +1038,9 @@
       "depends_on": [
         "TA-38"
       ],
-      "status": "accepted",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-39/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "26b2aa2e10d545005036e40ab1c6270bd64e312b",
       "object_id": "part:rack-frame",
       "started_at": "2026-10-08",
       "accepted_at": "2026-10-08",
@@ -1049,14 +1050,13 @@
         "web/assets/technical-atlas/rack-frame-v1.svg",
         "web/assets/technical-atlas/rack-frame-v1-preview.jpg",
         "web/assets/technical-atlas/rack-frame-v1-preview.svg"
-      ]
+      ],
+      "publication_record": "docs/design/technical-atlas/TA-39/publication-20261008.json"
     }
   ],
   "execution_priority": {
     "reason": "先收尾用户授权的四张设施补充图，原35项按用户再次明确的01–35顺序继续；两类进度分别计量",
     "next": [
-      "TA-38",
-      "TA-39",
       "TA-03"
     ]
   },
