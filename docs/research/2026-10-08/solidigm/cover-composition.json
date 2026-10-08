@@ -1,0 +1,39 @@
+{
+  "background": "assets/originals/overview-scene.png",
+  "portrait_layer": "assets/originals/cover-two-people-cutout.png",
+  "canvas": {
+    "width": 1024,
+    "height": 1536
+  },
+  "portrait_position": {
+    "x": 260,
+    "y": 222,
+    "width": 510,
+    "height": 340
+  },
+  "portraits": [
+    {
+      "name": "Rob Crooke",
+      "side": "left",
+      "opacity": 0.45,
+      "label": {
+        "x": 390,
+        "y": 488,
+        "font_size": 29
+      }
+    },
+    {
+      "name": "Kevin Noh",
+      "side": "right",
+      "opacity": 0.32,
+      "label": {
+        "x": 650,
+        "y": 488,
+        "font_size": 29
+      }
+    }
+  ],
+  "local_backdrop": "左侧工厂背景较亮，使用羽化深蓝径向底层平衡两个人物可见度",
+  "processing": "image_gen生成透明人物素材；精确SVG页面布局与文字；Playwright输出PNG母版和质量88JPEG",
+  "model": "工具未返回底层版本"
+}
