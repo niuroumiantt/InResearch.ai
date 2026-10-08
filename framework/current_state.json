@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.10",
+  "version": "2026.10.08.11",
   "effective_at": "2026-10-08",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2114,11 +2114,19 @@
         "framework/visual_atlas_migration.json",
         "docs/design/technical-atlas/MIGRATION_PLAN.md",
         "docs/design/technical-atlas/references/README.md",
-        "tests/unit/test_visual_atlas.py"
+        "tests/unit/test_visual_atlas.py",
+        "web/components/technical-atlas.js",
+        "web/components/technical-atlas.css",
+        "web/components/part-dossier.js",
+        "web/assets/technical-atlas/ssd-v1.png",
+        "web/assets/technical-atlas/ssd-v1.svg",
+        "docs/design/technical-atlas/TA-01/acceptance-v1.json",
+        "scripts/build_technical_atlas.py",
+        "tests/technical_atlas.cjs"
       ],
       "supersedes": [],
-      "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。",
-      "implementation_revision": "2026.10.08.10"
+      "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。",
+      "implementation_revision": "2026.10.08.11"
     }
   ],
   "entrypoints": [

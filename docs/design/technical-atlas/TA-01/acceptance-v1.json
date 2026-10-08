@@ -1,0 +1,139 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-01",
+  "object_id": "part:ssd",
+  "style_id": "white-technical-atlas-v1",
+  "title": "SSD 单件爆炸样板",
+  "reviewed_at": "2026-10-08",
+  "reviewer": "Codex：实际观察生成图与浏览器标注图，非用户逐项签字",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "通用2.5英寸有壳SSD类别结构示意；不作为厂商型号拆机、接口针脚或尺寸证据",
+  "master": "web/assets/technical-atlas/ssd-v1.png",
+  "labelled": "web/assets/technical-atlas/ssd-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "reference": {
+    "id": "R3",
+    "file": "docs/design/technical-atlas/references/03-ssd.png",
+    "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+    "passed_to_tool": true,
+    "use": "visual_reference_only"
+  },
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "initial_prompt": "docs/design/technical-atlas/TA-01/prompt-v1.txt",
+    "repair_prompts": [
+      "docs/design/technical-atlas/TA-01/prompt-repair-v2.txt",
+      "docs/design/technical-atlas/TA-01/prompt-repair-v3.txt"
+    ],
+    "iterations": 3,
+    "accepted_original_filename": "exec-e650b507-7706-4581-bfc5-43e319b987b7.png",
+    "raster_modified_after_generation": false,
+    "label_method": "stdlib XML SVG layer, original PNG bytes embedded unchanged",
+    "rebuild_command": "python3 scripts/build_technical_atlas.py docs/design/technical-atlas/TA-01/labels-v1.json"
+  },
+  "rights": {
+    "origin": "本任务使用内置image_gen生成；用户明确授权以其提供参考图为视觉标准。",
+    "license": "项目生成插图；不冒称CC0、原厂照片、原厂授权工程图或第三方技术证据。"
+  },
+  "technical_sources": [
+    {
+      "url": "https://www.micron.com/about/micron-glossary/solid-state-drives",
+      "title": "Micron: What is an SSD?",
+      "observed_at": "2026-10-08",
+      "supports": "NAND用于非易失存储，控制器管理数据读写；不证明本图实际封装、走线与数量。"
+    },
+    {
+      "url": "https://www.micron.com/content/dam/micron/global/public/products/storage/ssds/data-center/7600/7600-nvme-ssd-product-brief.pdf",
+      "title": "Micron 7600 NVMe SSD Product Brief",
+      "observed_at": "2026-10-08",
+      "supports": "数据中心SSD示例集成NAND、DRAM、控制器与固件，并有U.2形态；不复刻7600布局、性能或标识。"
+    },
+    {
+      "url": "https://www.kingston.com/datasheets/dc1500m_en.pdf",
+      "title": "Kingston DC1500M U.2 Enterprise SSD",
+      "observed_at": "2026-10-08",
+      "supports": "企业级有壳2.5英寸U.2/NVMe形态存在；未据此标尺寸、容量或针脚，也未声称画的是该型号。"
+    }
+  ],
+  "unknowns": [
+    "具体厂商/型号与原厂内部布局未核实；芯片/焊球/螺钉数量及板面走线为示意。",
+    "导热层、安装孔与遮挡后结构是类别级绘图，不提供施工/维修/装配尺寸。",
+    "连接端外形为示意，不用于判别接口兼容性或引脚；具体接口以对应产品资料为准。"
+  ],
+  "visual_review": [
+    {
+      "check": "暖白、克制真实材质、细线、轻阴影",
+      "result": "pass",
+      "evidence": "实际观察母图与浏览器SVG，金属/PCB/黑色封装清楚，无蓝紫光晕、反光地台或重雾。"
+    },
+    {
+      "check": "对象身份与局部对应",
+      "result": "pass",
+      "evidence": "单块SSD而非机箱抽盘，NAND长方封装与方形控制器分别放大；非CPU顶盖，不声称容量。"
+    },
+    {
+      "check": "结构与装配",
+      "result": "pass_as_schematic",
+      "evidence": "上盖/PCB/底壳分层，同一方向的虚线对应可见孔位，后侧修正后保持示意关系；隐藏结构与制造精度不由图证明。"
+    },
+    {
+      "check": "引线与可编辑文字",
+      "result": "pass",
+      "evidence": "独立SVG文字/工程蓝引线，底壳与连接端分别定位；无字母图未改字节，可独立下载。"
+    },
+    {
+      "check": "构图与清晰度",
+      "result": "pass",
+      "evidence": "主对象和局部均完整未裁切，实际1536x1024；手机另有14px部件说明与原图放大入口。"
+    }
+  ],
+  "page_entries": [
+    "/bom.html#ssd",
+    "/bom3d.html?p=ssd",
+    "/rack3d.html?x=55&node=part:ssd#ssd"
+  ],
+  "local_validation": {
+    "browser_suites": [
+      "technical_atlas",
+      "part_dossier"
+    ],
+    "result": "passed",
+    "scope": "实际2D/rack部件档案、SVG打开、双下载、390/1280px、light/dark、旧3D交互；非生产发布回执",
+    "visual_screenshot": "~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/ssd-labelled.png"
+  },
+  "baseline_retained": {
+    "file": "web/assets/renders/ssd.png",
+    "sha256": "45c28bccbb7ecebeb5088fe2546a547126d3f13787f0508ae73e3b4d45a32a24",
+    "identity": "旧存储机箱/抽盘示意，非新SSD母图"
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/ssd-v1.png",
+      "sha256": "e701005802777380feb2c9d4e41392c645bf59a5135055ee88f121d20b1719e7"
+    },
+    {
+      "file": "web/assets/technical-atlas/ssd-v1.svg",
+      "sha256": "790178683d58da8d733ffab24066950c108addef107c29a188bdc1c393d5260a"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-01/labels-v1.json",
+      "sha256": "6d33af12a7cddbc94dd7b49637150b77a8cab2587705e3cac63269b62afac8bd"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-01/prompt-v1.txt",
+      "sha256": "9c1f02f4011e05104a4499a3987fc2c60f5283a9342206916897b7217bbdfaf5"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-01/prompt-repair-v2.txt",
+      "sha256": "ef3bd0fd3aba54863507c2557c65b05584f5173998f549a501475a142c68bbe1"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-01/prompt-repair-v3.txt",
+      "sha256": "01536e7e059def05fc0d089a826b8ed2b720633e04e6be7adced150a7ecde34a"
+    }
+  ],
+  "publication": null
+}
