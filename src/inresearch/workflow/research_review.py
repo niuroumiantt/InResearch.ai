@@ -67,6 +67,16 @@ mechanisms, risks or counterevidence; a claim need not answer a whole question.
 Use only IDs from current_question_directory. Never invent a question or infer a
 project capacity. Return {matches:[{id,question_ids,rationale}]} exactly once per
 candidate; no relevant question means an empty list. Preserve source meaning."""
+MATCH_SYSTEM_V2 = MATCH_SYSTEM + """
+Also return context_terms for each match: 1..6 specific entity names, identifiers
+or mechanism phrases copied verbatim from THAT candidate text or its evidence
+quotes, to retrieve possible existing conflicts. Prefer the specific subject of
+the bounded claim over generic words such as AI, model, data or a report author's
+name. Do not use JSON keys, question IDs or entities elsewhere in the report.
+Every nonempty question_ids needs nonempty context_terms; unmatched claims use
+an empty list. These terms select scoped registry context, not exhaustive
+external verification. Missing or insufficient conflict context must be deferred
+by the reviewer, never described as independently certified."""
 
 
 def sha(value):
@@ -95,14 +105,55 @@ def progress(data):
             counts={state:n for state,n in conn.execute('SELECT state,count(*) FROM dispositions GROUP BY state') if state in allowed}
             active=conn.execute("SELECT count(*) FROM batches WHERE state='reviewing'").fetchone()[0]
             updated=conn.execute('SELECT max(updated) FROM batches').fetchone()[0]
+            deferred={code:n for code,n in conn.execute("SELECT error,count(*) FROM batches WHERE state='deferred' GROUP BY error")}
+            budgets=[dict(r) for r in conn.execute("SELECT id,doc_id,attempts,updated,error FROM batches WHERE state='deferred' AND error IN ('review_context_over_budget','demand_context_over_budget','input_exceeds_context_budget') ORDER BY updated LIMIT 50")]
         finally:conn.close()
+        details=[]
+        if budgets:
+            catalog=ro(Path(data)/'catalog/catalog.sqlite')
+            try:
+                for row in budgets:
+                    doc=catalog.execute('SELECT original_name,sha256 FROM documents WHERE doc_id=?',(row['doc_id'],)).fetchone()
+                    if not doc:continue
+                    packet=path.parent/row['id']/('attempt-%04d'%row['attempts'])/'packet.json'
+                    details.append({'batch_id':row['id'],'title':doc['original_name'],'sha256':doc['sha256'],
+                                    'packet_bytes':packet.stat().st_size if packet.exists() else 0,
+                                    'failed_at':row['updated'],'reason':row['error']})
+            finally:catalog.close()
         return {'state':'observed','generated':now_iso(),'last_change':updated,
-                'candidates':counts,'active_batches':active,'unit':'candidate statements, not materials or GW'}
+                'candidates':counts,'active_batches':active,'unit':'candidate statements, not materials or GW',
+                'deferred_batches':deferred,'budget_failures':details}
     except sqlite3.Error:
         return {'state':'unavailable','generated':now_iso(),'candidates':{}}
 
 
-def context(root, questions, source_tokens=()):
+def semantic_values(value):
+    """Research values only: JSON keys such as NODE are never entities."""
+    if isinstance(value, dict):
+        return ' '.join(semantic_values(v) for k,v in value.items()
+                        if k not in ('model_provenance','audit_receipt','adoption','sampling'))
+    if isinstance(value, list):return ' '.join(semantic_values(v) for v in value)
+    return value if isinstance(value,str) else ''
+
+
+def term_match(term, value):
+    # Chinese phrases have no ASCII word boundaries. English identifiers do.
+    pattern=re.escape(term)
+    if re.search('[A-Za-z0-9]',term):pattern=r'(?<!\w)'+pattern+r'(?!\w)'
+    return bool(re.search(pattern,value,re.I))
+
+
+def compact_receipts(value):
+    """Reference repeated execution receipts without dropping research fields."""
+    if isinstance(value, list):return [compact_receipts(v) for v in value]
+    if not isinstance(value, dict):return value
+    return {k:({'sha256':sha(v),'scope':'execution receipt retained in original registry'}
+               if k in ('model_provenance','audit_receipt') or
+                  (k=='model' and isinstance(v,dict) and 'input_sha256' in v)
+               else compact_receipts(v)) for k,v in value.items()}
+
+
+def context(root, questions, source_tokens=(), version='semantic-values-v2'):
     """No silently dropped legacy context. Changed context invalidates promotion."""
     root = Path(root)
     full = read_json(root/'data/research_knowledge.json')
@@ -128,7 +179,8 @@ def context(root, questions, source_tokens=()):
             records = value.get('records',[])
             # A named source entity narrows broad nodes (e.g. PJM vs all grid
             # contracts). Unnamed subjects use the full exact object selection.
-            rows = [r for r in records if (any(re.search(r'\b'+re.escape(t)+r'\b',encoded(r),re.I)
+            rows = [r for r in records if (any(term_match(t,semantic_values(r)) if version=='semantic-values-v2' else
+                                               re.search(r'\b'+re.escape(t)+r'\b',encoded(r),re.I)
                                                for t in source_tokens) if source_tokens else
                                          r.get('node') in objects or set(r.get('object_ids',[]))&objects)]
             # Keep all selected semantic/source fields. Existing operational
@@ -143,8 +195,20 @@ def context(root, questions, source_tokens=()):
             legacy[name] = {'records':projected_rows,'total_records':len(records),
                             'selection':'all supplied entity-token matches, or full exact object matches for unnamed sources; not an exhaustive external countersearch',
                             'source_scope_tokens':list(source_tokens)}
-    return {'knowledge': knowledge, 'current_workorders': relevant,
+            if version=='semantic-values-v2':
+                legacy[name]['registry_records_sha256']=sha(records)
+    result={'knowledge': knowledge, 'current_workorders': relevant,
             'legacy_records': legacy, 'question_ids': sorted(qids),'source_tokens':list(source_tokens)}
+    if version=='semantic-values-v2':
+        result=compact_receipts(result)
+        result['selection_version']=version
+    return result
+
+
+def current_context(root, ctx):
+    # Already sealed v1 reviews keep their exact original selection protocol.
+    return context(root,ctx['question_ids'],ctx.get('source_tokens',[]),
+                   ctx.get('selection_version','serialized-v1'))
 
 
 class ReviewStore:
@@ -241,7 +305,8 @@ class ReviewStore:
     def claim(self, batch_id=None):
         self.db.execute('BEGIN IMMEDIATE')
         row = self.db.execute("SELECT * FROM batches WHERE state='queued' AND available<=? AND (? IS NULL OR id=?) "
-                              "ORDER BY json_array_length(candidate_ids),rowid LIMIT 1", (time.time(),batch_id,batch_id)).fetchone()
+                              "ORDER BY (error LIKE 'explicit semantic-values-v2 retry%') DESC,"
+                              "(json_array_length(candidate_ids)>1) DESC,rowid LIMIT 1", (time.time(),batch_id,batch_id)).fetchone()
         if row:
             self.db.execute("UPDATE batches SET state='reviewing',attempts=attempts+1,updated=? WHERE id=?",
                             (now_iso(),row['id']))
@@ -361,15 +426,25 @@ class ReviewStore:
             client = client or configured_client('core_review')
             matching=match_packet(root,packet)
             match_user=encoded(matching)
-            if len((MATCH_SYSTEM+match_user).encode())>client.profile.context-client.profile.max_output_tokens-1024:
+            match_system=MATCH_SYSTEM_V2
+            if len((match_system+match_user).encode())>client.profile.context-client.profile.max_output_tokens-1024:
                 if len(json.loads(batch['candidate_ids']))>1:
                     self.split(batch);return self.status()
                 raise ValueError('demand_context_over_budget')
-            atomic_json(directory/'matching-request.json',{'system':MATCH_SYSTEM,'user':match_user})
-            result=client.generate(MATCH_SYSTEM,match_user)
+            atomic_json(directory/'matching-request.json',{'system':match_system,'user':match_user})
+            result=client.generate(match_system,match_user)
             atomic_json(directory/'matching-response.json',result)
             apply_matches(root,packet,matching,result)
             atomic_json(directory/'packet.json',packet)
+            if not any(item['allowed_question_ids'] for item in packet['items']):
+                # The actual matching call established no current demand. Do
+                # not load legacy context or spend two more calls to adopt none.
+                excluded=packet['unsupported']+[
+                    {'id':item['candidate']['id'],'state':'needs_demand_match',
+                     'reason':'actual current-demand matching found no substantive workorder'}
+                    for item in packet['items']]
+                self.complete(batch,'reviewed',unsupported=excluded)
+                return self.status()
             user = encoded(packet)
             if len((SYSTEM+user).encode()) > client.profile.context-client.profile.max_output_tokens-1024:
                 if len(json.loads(batch['candidate_ids']))>1:
@@ -413,6 +488,42 @@ class ReviewStore:
                 self.db.commit()
         return self.status()
 
+    def regroup(self, batch_size=6):
+        """Only untouched queued cohorts; old parents and attempts remain."""
+        if not 2<=batch_size<=10:raise ValueError('regroup_size_out_of_bounds')
+        self.db.execute('BEGIN IMMEDIATE')
+        try:
+            rows=[dict(r) for r in self.db.execute("SELECT * FROM batches WHERE state='queued' AND attempts=0 ORDER BY rowid")]
+            groups={}
+            for row in rows:groups.setdefault((row['doc_id'],row['revision_id'],row['report_sha']),[]).append(row)
+            replaced=created=0
+            for (doc,rev,report),parents in groups.items():
+                ids=[cid for p in parents for cid in json.loads(p['candidate_ids'])]
+                if len(parents)<2:continue
+                cohorts=[ids[i:i+batch_size] for i in range(0,len(ids),batch_size)]
+                children=[(sha([rev,report,c]),c) for c in cohorts]
+                # A previously attempted or reviewed identity is never reused.
+                parent_ids={p['id'] for p in parents};child_ids={bid for bid,_ in children}
+                if any(bid not in parent_ids and self.db.execute('SELECT 1 FROM batches WHERE id=?',(bid,)).fetchone() for bid,_ in children):continue
+                for parent in parents:
+                    if parent['id'] in child_ids:continue
+                    self.db.execute("UPDATE batches SET state='regrouped',updated=? WHERE id=?",(now_iso(),parent['id']))
+                for bid,cohort in children:
+                    self.db.execute('INSERT OR IGNORE INTO batches(id,doc_id,revision_id,report_sha,state,candidate_ids,updated,error) VALUES(?,?,?,?,?,?,?,?)',
+                                    (bid,doc,rev,report,'queued',encoded(cohort),now_iso(),''))
+                    for cid in cohort:self.db.execute("UPDATE dispositions SET batch_id=?,reason='untouched cohorts grouped; originals retained',updated=? WHERE id=? AND state='queued'",(bid,now_iso(),cid))
+                replaced+=len(parent_ids-child_ids);created+=len(child_ids-parent_ids)
+            self.db.commit()
+            return {'retained_parent_batches':replaced,'new_batches':created,'candidate_dispositions_preserved':True}
+        except Exception:self.db.rollback();raise
+
+    def retry_context(self, batch_id):
+        row=self.db.execute('SELECT * FROM batches WHERE id=?',(batch_id,)).fetchone()
+        if not row or row['state']!='deferred' or row['error'] not in ('review_context_over_budget','demand_context_over_budget','input_exceeds_context_budget'):
+            raise ValueError('only_context_budget_failures_can_retry')
+        self.complete(dict(row),'queued','explicit semantic-values-v2 retry; old audit retained')
+        self.db.execute('UPDATE batches SET available=0 WHERE id=?',(batch_id,));self.db.commit()
+
     def split(self, batch):
         """Split candidate cohorts, keeping all context and immutable attempts."""
         ids=json.loads(batch['candidate_ids'])
@@ -441,7 +552,7 @@ def match_packet(root, packet):
     directory=[{'id':t['wid'][2:],'text':t['title']} for t in registry.current_tasks(root)
                if t['wid'].startswith('Q-') and (set(t.get('object_ids',[]))=={'root'} or
                                                  set(t.get('object_ids',[]))&objects)]
-    return {'items':packet['items'],'native_pages':packet.get('native_pages',{}),
+    return {'retrieval_version':'semantic-values-v2','items':packet['items'],'native_pages':packet.get('native_pages',{}),
             'report_summary':packet.get('report_summary',''), 'current_question_directory':directory}
 
 
@@ -453,6 +564,16 @@ def validate_matches(matching, result):
             or any(not isinstance(r.get('question_ids'),list) or not set(r['question_ids'])<=qids
                    or not isinstance(r.get('rationale'),str) or not r['rationale'].strip() for r in rows)):
         raise ValueError('invalid_current_demand_matches')
+    if matching.get('retrieval_version')=='semantic-values-v2':
+        items={i['candidate']['id']:i for i in matching['items']}
+        for row in rows:
+            terms=row.get('context_terms');item=items[row['id']]
+            original='\n'.join([item['candidate']['text'],*[e['quote'] for e in item['evidence']]])
+            if (not isinstance(terms,list) or len(terms)>6 or
+                    bool(row['question_ids'])!=bool(terms) or
+                    any(not isinstance(t,str) or not 2<=len(t.strip())<=80 or
+                        t.strip().casefold() not in original.casefold() for t in terms)):
+                raise ValueError('context_terms_must_be_literal_bounded_claim')
     return rows
 
 
@@ -462,7 +583,12 @@ def apply_matches(root, packet, matching, result):
         item['original_allowed_question_ids']=item.get('original_allowed_question_ids',item['allowed_question_ids'])
         item['allowed_question_ids']=rows[item['candidate']['id']]['question_ids']
     qids=sorted({q for r in rows.values() for q in r['question_ids']})
-    packet['research_context']=context(root,qids,packet['research_context'].get('source_tokens',[]))
+    version=packet['research_context'].get('selection_version','serialized-v1')
+    tokens=packet['research_context'].get('source_tokens',[])
+    if matching.get('retrieval_version')=='semantic-values-v2':
+        version='semantic-values-v2'
+        tokens=sorted({t.strip() for row in rows.values() for t in row['context_terms']})
+    packet['research_context']=context(root,qids,tokens,version)
     packet['context_sha256']=sha(packet['research_context'])
     packet['demand_matching']={'matches':list(rows.values()),'model':result.get('_model')}
 
@@ -512,7 +638,8 @@ def verify_audit(bundle, directory):
         matching_request=read_json(directory/'matching-request.json')
         matching_response=read_json(directory/'matching-response.json')
         matching=json.loads(matching_request['user'])
-        if (matching_request['system']!=MATCH_SYSTEM or
+        expected_system=MATCH_SYSTEM_V2 if matching.get('retrieval_version')=='semantic-values-v2' else MATCH_SYSTEM
+        if (matching_request['system']!=expected_system or
                 validate_matches(matching,matching_response)!=packet['demand_matching']['matches'] or
                 matching_response.get('_model')!=packet['demand_matching']['model'] or
                 matching_response['_model'].get('input_sha256')!=hashlib.sha256(matching_request['user'].encode()).hexdigest()):
@@ -558,7 +685,7 @@ def promote(root, bundle, audit_directory):
                for i in expected_ids):
             raise ValueError('adoption_collision_requires_explicit_review')
         return {'state':'already_applied','statement_ids':expected_ids,'batch_id':packet['batch_id'],'published':False}
-    if sha(context(root,qids,source_tokens))!=packet['context_sha256']:
+    if sha(current_context(root,packet['research_context']))!=packet['context_sha256']:
         raise ValueError('research_context_changed_revalidation_required')
     eligible = [r for r in reviews if r['decision']=='adopt_B']
     if not eligible or not bundle.get('model') or not bundle.get('reviewed_at'):
@@ -571,7 +698,7 @@ def promote(root, bundle, audit_directory):
     path = root/'data/research_knowledge.json'
     with locked(path):
         # Recheck after acquiring the formal-write lock.
-        if sha(context(root,qids,source_tokens))!=packet['context_sha256']:
+        if sha(current_context(root,packet['research_context']))!=packet['context_sha256']:
             raise ValueError('research_context_changed_revalidation_required')
         knowledge = read_json(path)
         baseline_questions = registry.completed_questions(knowledge)
@@ -643,10 +770,14 @@ def main():
     w = sub.add_parser('work');w.add_argument('--scope',type=Path,required=True)
     w.add_argument('--once',action='store_true');w.add_argument('--poll',type=int,default=120)
     w.add_argument('--cycle-batches',type=int,default=2)
+    w.add_argument('--max-ready',type=int,default=12)
+    w.add_argument('--batch-size',type=int,default=6)
     sub.add_parser('status');sub.add_parser('ready')
     v = sub.add_parser('verify');v.add_argument('--batch-id',required=True)
     retry = sub.add_parser('revalidate');retry.add_argument('--batch-id',required=True)
     split = sub.add_parser('split-overbudget');split.add_argument('--batch-id',required=True)
+    regroup = sub.add_parser('regroup-queued');regroup.add_argument('--batch-size',type=int,default=6)
+    retry_context = sub.add_parser('retry-context');retry_context.add_argument('--batch-id',required=True)
     mark = sub.add_parser('published');mark.add_argument('--batch-id',required=True)
     mark.add_argument('--proof',type=Path,required=True)
     a = sub.add_parser('promote');a.add_argument('--bundle',type=Path,required=True)
@@ -660,6 +791,8 @@ def main():
         if not 1<=args.batch_size<=10:raise ValueError('batch_size_out_of_bounds')
         print(encoded(store.discover(args.root,args.scope,args.batch_size,args.doc_id)))
     elif args.command=='status':print(encoded(store.status()))
+    elif args.command=='regroup-queued':print(encoded(store.regroup(args.batch_size)))
+    elif args.command=='retry-context':store.retry_context(args.batch_id);print(encoded(store.status()))
     elif args.command=='split-overbudget':
         row=store.db.execute('SELECT * FROM batches WHERE id=?',(args.batch_id,)).fetchone()
         if not row or row['state'] not in ('queued','deferred') or row['error'] not in ('review_context_over_budget','input_exceeds_context_budget'):
@@ -670,7 +803,7 @@ def main():
         if not row or row['state']!='review_ready':raise ValueError('only_unpublished_ready_can_revalidate')
         bundle=read_json(store.directory_for(args.batch_id)/'bundle.json')
         ctx=bundle['packet']['research_context']
-        if sha(context(args.root,ctx['question_ids'],ctx.get('source_tokens',[])))==bundle['packet']['context_sha256']:
+        if sha(current_context(args.root,ctx))==bundle['packet']['context_sha256']:
             raise ValueError('unchanged_context_does_not_require_retry')
         store.complete(dict(row),'queued','formal context changed; prior audit preserved')
         print(encoded(store.status()))
@@ -681,6 +814,7 @@ def main():
         # Current source binding checked anew, separately from model audit.
         row = store.db.execute('SELECT * FROM batches WHERE id=?',(args.batch_id,)).fetchone()
         current = store.packet(args.root,dict(row))
+        current['research_context']=bundle['packet']['research_context']
         if 'demand_matching' in bundle['packet']:
             matching=read_json(directory/bundle['attempt']/'matching-request.json')
             apply_matches(args.root,current,json.loads(matching['user']),read_json(directory/bundle['attempt']/'matching-response.json'))
@@ -708,7 +842,7 @@ def main():
         print(encoded([{'batch_id':r['id'],'path':str(store.directory_for(r['id'])/'bundle.json')}
                        for r in store.db.execute("SELECT * FROM batches WHERE state='review_ready' ORDER BY updated")]))
     else:
-        if args.poll<30 or not 1<=args.cycle_batches<=10:raise ValueError('worker_budget_out_of_bounds')
+        if args.poll<30 or not 1<=args.cycle_batches<=10 or not 1<=args.max_ready<=24 or not 1<=args.batch_size<=10:raise ValueError('worker_budget_out_of_bounds')
         # Crash recovery preserves all old attempts. Never reclaims a live worker:
         # this process holds the permanent service lock for its whole lifetime.
         with locked(store.directory/'worker'):
@@ -716,18 +850,21 @@ def main():
             store.db.execute("UPDATE dispositions SET state='queued',updated=? WHERE state='reviewing'",(now_iso(),))
             store.db.commit()
             while True:
-                store.discover(args.root,args.scope,batch_size=3)
+                store.discover(args.root,args.scope,batch_size=args.batch_size)
                 pending=store.db.execute("SELECT count(*) FROM batches WHERE state='review_ready'").fetchone()[0]
                 client = configured_client('core_review')
                 def execute(_):
                     worker = ReviewStore(args.data)
                     try:return worker.run_one(args.root,client)
                     finally:worker.db.close()
+                capacity=min(args.cycle_batches,max(0,args.max_ready-pending))
                 with concurrent.futures.ThreadPoolExecutor(max_workers=min(args.cycle_batches,client.profile.max_parallel)) as pool:
-                    list(pool.map(execute,range(max(0,args.cycle_batches-pending))))
+                    list(pool.map(execute,range(capacity)))
                 print(encoded(store.status()),flush=True)
                 if args.once:break
-                time.sleep(args.poll)
+                # Continue useful work immediately; only idle/backpressure waits.
+                if not capacity or not store.db.execute("SELECT 1 FROM batches WHERE state='queued' AND available<=?",(time.time(),)).fetchone():
+                    time.sleep(args.poll)
 
 
 if __name__=='__main__':

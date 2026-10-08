@@ -60,11 +60,13 @@ class ResearchProgressTests(unittest.TestCase):
     def test_source_sync_fetches_only_main_and_preserves_dirty_checkout(self):
         with tempfile.TemporaryDirectory() as td:
             publisher = Publisher({'repo': td, 'state': td})
-            with patch.object(publisher, 'ssh') as ssh:
-                ssh.return_value.stdout = ''
+            with patch.object(publisher, 'ssh') as ssh, \
+                 patch('inresearch.workflow.research_publish.run') as local:
+                ssh.side_effect=[type('Result',(),{'stdout':''})(),type('Result',(),{'stdout':'a'*40})()]
+                local.return_value.stdout='a'*40
                 publisher.sync_source()
-                self.assertEqual(ssh.call_args_list[1].args[0],
-                                 ['env', 'GIT_TERMINAL_PROMPT=0', 'git', '-C', publisher.spark_root, 'fetch', 'origin', 'main'])
-                ssh.reset_mock();ssh.return_value.stdout = ' M active.py'
+                self.assertEqual(local.call_args_list[0].args[0],
+                                 ['env', 'GIT_TERMINAL_PROMPT=0', 'git', 'fetch', 'origin', 'main'])
+                ssh.reset_mock();ssh.side_effect=None;ssh.return_value.stdout = ' M active.py'
                 with self.assertRaisesRegex(ValueError, 'dirty_preserve'):publisher.sync_source()
                 self.assertEqual(ssh.call_count, 1)

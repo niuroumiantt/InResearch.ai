@@ -105,9 +105,9 @@
       render();$('status').textContent='';
     } catch(error) {if(seq===generation)$('status').textContent=error.message+' 已显示内容可能过期。';}
   }
+  const time=value=>{const d=new Date(value);return value&&!Number.isNaN(d.valueOf())?d.toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false})+' 北京时间':'尚未接收';};
   function progressOverview(m,scope) {
     const counts=scope?.counts||{}, delivery=data.daily_delivery, received=data.matching_reader;
-    const time=value=>{const d=new Date(value);return value&&!Number.isNaN(d.valueOf())?d.toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false})+' 北京时间':'尚未接收';};
     const number=(value,available)=>available?String(value||0):'—';
     const phase={extract:'提取正文',triage:'确认材料归属',read:'逐段阅读',synthesize:'汇总阅读结果',organize:'保存结果',receipt:'确认交付'};
     const running=(m.records||[]).filter(d=>d.reading?.state==='running');
@@ -124,7 +124,10 @@
     const p=data.research_verification;
     if(!p||p.state!=='observed')return '';
     const c=p.candidates||{},count=k=>Number.isSafeInteger(c[k])&&c[k]>=0?c[k]:0;
-    return `<article class="task research-verification"><h3>阅读之后 · 研究核验</h3><p>按条计量：${count('queued')} 条排队，${Number.isSafeInteger(p.active_batches)?p.active_batches:0} 批正在核验；${count('review_ready')} 条通过核验、等待发布；${count('published')} 条已获网页验收回执。</p><p>${count('needs_owner')} 条待决定，${count('deferred')+count('defer')} 条待补证，${count('needs_specialist')} 条需专门字段核验。图片继续跳过。</p><p>采集于 ${escape(time(p.generated))} · <a href="/node.html?id=root#evidence">查看正式采用的陈述和原文依据 →</a></p></article>`;
+    const failures=p.budget_failures||[],reasons=p.deferred_batches||{};
+    const budget=Object.entries(reasons).filter(([k])=>k.includes('budget')).reduce((s,[,n])=>s+n,0);
+    const details=failures.length?`<details><summary>查看 ${budget} 个过长核验包及材料名称</summary><p>每包包含待核主张、原文和研究上下文，包大小不等于原件大小。原件已经阅读；这里等待研究核验。</p><div class="tscroll"><table class="targets"><thead><tr><th>材料</th><th>核验包 MB</th><th>暂缓时间</th></tr></thead><tbody>${failures.map(f=>`<tr><td>${escape(f.title)}<br><small>批次 ${escape(f.batch_id.slice(0,12))}</small></td><td>${(f.packet_bytes/1e6).toFixed(3)}</td><td>${escape(time(f.failed_at))}</td></tr>`).join('')}</tbody></table></div>${budget>failures.length?'<p>仅显示最早50个包，其余保留在Spark。</p>':''}</details>`:'';
+    return `<article class="task research-verification"><h3>阅读之后 · 研究核验</h3><p>按条计量：${count('queued')} 条排队，${Number.isSafeInteger(p.active_batches)?p.active_batches:0} 批正在核验；${count('review_ready')} 条通过核验、等待发布；${count('published')} 条已获网页验收回执。</p><p>${count('needs_owner')} 条进入负责人核验，${count('deferred')+count('defer')} 条暂缓，${count('needs_specialist')} 条需专门字段核验。图片继续跳过。</p>${details}<p>采集于 ${escape(time(p.generated))} · <a href="/node.html?id=root#evidence">查看正式采用的陈述和原文依据 →</a></p></article>`;
   }
   function dailyEdition() {
     const events=data.daily_events?.records||[];

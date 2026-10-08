@@ -382,6 +382,25 @@ def _research_verification(value):
                 return unavailable
             result['candidates'][state] = count
         result.update(active_batches=active, unit='candidate statements, not materials or GW')
+        if 'deferred_batches' in value:
+            reasons=value['deferred_batches']
+            if not isinstance(reasons,dict) or len(reasons)>100:return unavailable
+            result['deferred_batches']={}
+            for reason,count in reasons.items():
+                if not isinstance(reason,str) or len(reason)>100 or type(count) is not int or not 0<=count<=1000000000:return unavailable
+                result['deferred_batches'][reason]=count
+        if 'budget_failures' in value:
+            rows=value['budget_failures']
+            if not isinstance(rows,list) or len(rows)>50:return unavailable
+            result['budget_failures']=[]
+            for row in rows:
+                if (not isinstance(row,dict) or not all(isinstance(row.get(k),str) for k in ('batch_id','title','sha256','failed_at','reason'))
+                        or not re.fullmatch('[0-9a-f]{64}',row['batch_id']) or not re.fullmatch('[0-9a-f]{64}',row['sha256'])
+                        or len(row['title'])>512 or row['reason'] not in ('review_context_over_budget','demand_context_over_budget','input_exceeds_context_budget')
+                        or type(row.get('packet_bytes')) is not int or not 0<=row['packet_bytes']<=1000000000):return unavailable
+                try:parse_time(row['failed_at'])
+                except (ValueError,TypeError):return unavailable
+                result['budget_failures'].append({k:row[k] for k in ('batch_id','title','sha256','failed_at','reason','packet_bytes')})
     return result
 
 
