@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-37",
+  "object_id": "part:fire",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Fire detection and suppression equipment",
+  "reviewed_at": "2026-10-08",
+  "reviewer": "Codex实际审图与浏览器定位/标注检查；不冒称用户逐项签字",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "Generic equipment and room-section illustration; not a project design",
+  "master": "web/assets/technical-atlas/fire-v1.png",
+  "labelled": "web/assets/technical-atlas/fire-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R5",
+      "file": "docs/design/technical-atlas/references/05-thermal-cutaway.png",
+      "sha256": "6bfeea5980c8ad16b040561a6cf69ca6e020b4cb9f0bfd26a97dd1c88c0af1f6",
+      "passed_to_tool": true
+    },
+    {
+      "id": "R9",
+      "file": "docs/design/technical-atlas/references/09-water-isometric.png",
+      "sha256": "92fcc56d8763be50b3461efad54a4c7a9dd289fac148486d59724137525cb874",
+      "passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "initial_prompt": "docs/design/technical-atlas/TA-37/prompt-v1.txt",
+    "iterations": 1,
+    "accepted_original_filename": "exec-953be109-c47a-47af-825a-7d148783fee9.png",
+    "raster_modified_after_generation": false,
+    "preview_method": "same-size JPEG encoding with macOS sips; original PNG unchanged",
+    "label_method": "independent stdlib SVG layer with unchanged original PNG embedded",
+    "generated_visual_reference": {
+      "file": "web/assets/technical-atlas/shell-v1.png",
+      "sha256": "7fab24c785ea150c85d0151381258e3408c74ea976fc2e87c588ab30c3ed4d51",
+      "passed_to_tool": true
+    }
+  },
+  "rights": {
+    "origin": "用户授权按其参考制作的新图；原图不覆盖",
+    "license": "项目生成插图，不冒称原厂工程图或CC0"
+  },
+  "technical_sources": [
+    {
+      "file": "framework/bom.json",
+      "supports": "Existing part:fire covers detection, gaseous suppression and sprinklers; part:security remains separate"
+    },
+    {
+      "url": "https://blog.siemens.com/2026/03/ai-driven-data-center-fire-protection-and-suppression-technologies-to-strengthen-critical-infrastructure-security/",
+      "title": "Siemens: AI-driven Data Center Fire Protection and Suppression Technologies",
+      "observed_at": "2026-10-08",
+      "supports": "Water control and gaseous suppression use separate equipment. This does not validate the depicted zoning, regulations or actuation sequence."
+    },
+    {
+      "url": "https://www.siemens.com/en-gb/products/fire-detection/aspirating-smoke-detectors/",
+      "title": "Siemens aspirating smoke detectors",
+      "observed_at": "2026-10-08",
+      "supports": "ASD provides early smoke detection; sampling port and installation details are illustrative."
+    }
+  ],
+  "unknowns": [
+    "Pipe sizes, sampling-point forms and spacings, cylinder count, nozzles, agent and sprinkler configuration are generic.",
+    "Separate air sampling, gas and water paths. Actual zones, actuation, occupancy conditions and code applicability require project-specific design."
+  ],
+  "checks": {
+    "real_materials_and_cutaway": true,
+    "no_baked_text": true,
+    "independent_labels": 7,
+    "native_pixels_verified": true,
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true,
+    "retained_ssd_and_3d": "covered by technical_atlas and part_dossier regression; final combined CI required",
+    "distinct_sampling_gas_and_water": true,
+    "leaders_reviewed": true
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/fire-v1-preview.svg",
+    "bytes": 378799
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/fire-v1.png",
+      "sha256": "751e4718bcc75e1d33b26c810010d894c05f39a6c2abe74967a1d48cc1d5264e"
+    },
+    {
+      "file": "web/assets/technical-atlas/fire-v1.svg",
+      "sha256": "e708d772056e525e87b541a216a8a23bff8dae961596055e1acf459abf4e7899"
+    },
+    {
+      "file": "web/assets/technical-atlas/fire-v1-preview.jpg",
+      "sha256": "2cc4aae3a609e9208157add5567e7f1a5c39db84b68aa68af9e4c0c094ca2d23"
+    },
+    {
+      "file": "web/assets/technical-atlas/fire-v1-preview.svg",
+      "sha256": "09f5d71b8ca6e7957890924e51961429cfe10693bf7b0700625d5ca8514c2f43"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-37/labels-v1.json",
+      "sha256": "fac928a2ed693f40e0de4a7956375e534b6c08fc9c6731d4a237cbcc76029973"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-37/prompt-v1.txt",
+      "sha256": "720b92bff510a2f0ccdb618316a1c3ae66cca0177ca6df8949db87d965da85ae"
+    }
+  ]
+}

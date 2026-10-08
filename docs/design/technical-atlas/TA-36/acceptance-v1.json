@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-36",
+  "object_id": "part:shell",
+  "style_id": "white-technical-atlas-v1",
+  "title": "土地与建筑 · 建筑剖面",
+  "reviewed_at": "2026-10-08",
+  "reviewer": "Codex实际审图与浏览器定位/标注检查；不冒称用户逐项签字",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "通用建筑剖面与场地基础示意，非具名项目或施工图",
+  "master": "web/assets/technical-atlas/shell-v1.png",
+  "labelled": "web/assets/technical-atlas/shell-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "passed_to_tool": true
+    },
+    {
+      "id": "R5",
+      "file": "docs/design/technical-atlas/references/05-thermal-cutaway.png",
+      "sha256": "6bfeea5980c8ad16b040561a6cf69ca6e020b4cb9f0bfd26a97dd1c88c0af1f6",
+      "passed_to_tool": true
+    },
+    {
+      "id": "R6",
+      "file": "docs/design/technical-atlas/references/06-campus-cutaway.png",
+      "sha256": "c2766f5a960933a49b4216f19a5bfebe3b94c2773a4a59c87b1a74b8cf3e3b75",
+      "passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "initial_prompt": "docs/design/technical-atlas/TA-36/prompt-v1.txt",
+    "iterations": 1,
+    "accepted_original_filename": "exec-1d85a7f4-e307-4f00-9457-87446b64e99f.png",
+    "raster_modified_after_generation": false,
+    "preview_method": "same-size JPEG encoding with macOS sips; original PNG unchanged",
+    "label_method": "independent stdlib SVG layer with unchanged original PNG embedded"
+  },
+  "rights": {
+    "origin": "用户授权按其参考制作的新图；原图不覆盖",
+    "license": "项目生成插图，不冒称原厂工程图或CC0"
+  },
+  "technical_sources": [
+    {
+      "file": "framework/bom.json",
+      "supports": "现行part:shell及土地与建筑链路的场坪、基础、外墙屋面和机房装修范围"
+    },
+    {
+      "url": "https://www.se.com/ph/en/download/document/SPD_WTOL-7NGRBS_EN/",
+      "title": "Schneider Electric WP163: Benefits and Drawbacks of Prefabricated Modules for Data Centers",
+      "observed_at": "2026-10-08",
+      "supports": "建筑施工与现场设施集成是不同的场地交付环节；不证明本图结构/布局或任何项目尺寸"
+    }
+  ],
+  "unknowns": [
+    "基础型式、梁柱/墙面构造、机柜数量、尺寸、容量与道路间距均为类别示意",
+    "剖面等轴测图不是严格俯视平面、施工设计或工程认证"
+  ],
+  "checks": {
+    "real_materials_and_cutaway": true,
+    "no_baked_text": true,
+    "independent_labels": 7,
+    "leaders_reviewed_and_corrected": true,
+    "native_pixels_verified": true,
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true,
+    "retained_ssd_and_3d": "covered by technical_atlas and part_dossier regression; final combined CI required"
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/shell-v1-preview.svg",
+    "bytes": 464247
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/shell-v1.png",
+      "sha256": "7fab24c785ea150c85d0151381258e3408c74ea976fc2e87c588ab30c3ed4d51"
+    },
+    {
+      "file": "web/assets/technical-atlas/shell-v1.svg",
+      "sha256": "47c099b592857d7a81a25b76e49a0881b83a286688be39c5b58106f7c526947e"
+    },
+    {
+      "file": "web/assets/technical-atlas/shell-v1-preview.jpg",
+      "sha256": "f9abd3b9d7d5a01fa85b0e0eb2ea744e43650cfdd67f1f2605c756c1946739b0"
+    },
+    {
+      "file": "web/assets/technical-atlas/shell-v1-preview.svg",
+      "sha256": "15022ae42af01c392aa4d4c9abb4af1bdf83c3e8661ae8c65af620b91dbe1342"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-36/labels-v1.json",
+      "sha256": "a7a97476e1b30b4666c3b2c7a4946921915004763281b843d99795ad3ea82fb2"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-36/prompt-v1.txt",
+      "sha256": "b8d53e58266c3336d77c53d17ffb2a93f24693886566c4547e8a0e7fd00df3f9"
+    }
+  ]
+}
