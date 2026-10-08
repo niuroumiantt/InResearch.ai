@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.12",
+  "version": "2026.10.08.13",
   "effective_at": "2026-10-08",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2124,11 +2124,19 @@
         "scripts/build_technical_atlas.py",
         "tests/technical_atlas.cjs",
         "web/assets/technical-atlas/ssd-v1-preview.jpg",
-        "web/assets/technical-atlas/ssd-v1-preview.svg"
+        "web/assets/technical-atlas/ssd-v1-preview.svg",
+        "web/components/scene-atlas.js",
+        "web/components/part-inspector.js",
+        "web/components/scene-resources.js",
+        "web/components/model-assets.js",
+        "web/pages/bom3d.html",
+        "web/pages/rack3d.html",
+        "tests/scene_atlas.cjs",
+        "docs/design/technical-atlas/TA-02/acceptance-v1.json"
       ],
       "supersedes": [],
-      "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。",
-      "implementation_revision": "2026.10.08.12"
+      "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。",
+      "implementation_revision": "2026.10.08.13"
     }
   ],
   "entrypoints": [

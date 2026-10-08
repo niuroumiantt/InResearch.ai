@@ -135,7 +135,17 @@ function fixture(name, brokenTexture=false) {
    meshes[0].geometry.addEventListener('dispose',()=>geometry++);meshes[0].material.addEventListener('dispose',()=>material++);
    const map=meshes[0].material.map;check(map,'real embedded texture did not parse');map.addEventListener('dispose',()=>texture++);
    const bitmap=map.source.data,close=bitmap.close.bind(bitmap);bitmap.close=()=>{image++;close()};
+   const THREE=await import('three'), {createAtlasDrawing}=await import('/assets/scene-atlas.js');
+   const atlasScene=new THREE.Scene();atlasScene.add(model.root);
+   const drawing=createAtlasDrawing({THREE,scene:atlasScene});drawing.sync();
+   const outline=meshes[0].children.find(child=>child.userData.atlasOutline);
+   let edgeGeometry=0,edgeMaterial=0;
+   outline.geometry.addEventListener('dispose',()=>edgeGeometry++);
+   outline.material.addEventListener('dispose',()=>edgeMaterial++);
    model.dispose();model.dispose();check(geometry===1 && material===1 && texture===1 && image===1,'owned shared resources must release exactly once');
+   check(edgeGeometry===0 && edgeMaterial===0,'model must not dispose drawing-owned edges');
+   drawing.sync();drawing.dispose();drawing.dispose();
+   check(edgeGeometry===1 && edgeMaterial===1,'drawing must reclaim retired model edges exactly once');
   },entry('a.glb'));
   }
   assert.deepEqual(errors,[]);

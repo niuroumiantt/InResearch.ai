@@ -11,10 +11,10 @@ function disposeObject(root) {
 
 /** Own one scene.environment across load, fallback, retry, replacement and exit. */
 export function createSceneEnvironment({THREE, EXRLoader, renderer, scene, url, fallback,
-                                        timeoutMs = 8000, onState = () => {},
+                                        proceduralOnly = false, timeoutMs = 8000, onState = () => {},
                                         setTimer = setTimeout, clearTimer = clearTimeout,
                                         createPMREM = value => new THREE.PMREMGenerator(value)}) {
-  if (!THREE || !EXRLoader || !renderer || !scene || !url || typeof fallback !== "function") {
+  if (!THREE || !renderer || !scene || (!proceduralOnly && (!EXRLoader || !url)) || typeof fallback !== "function") {
     throw new TypeError("scene environment dependencies are required");
   }
   let generation = 0, current = null, timer = null, disposed = false, pending = null;
@@ -64,6 +64,7 @@ export function createSceneEnvironment({THREE, EXRLoader, renderer, scene, url, 
       if (pending === resolveReady) pending = null;
       return true;
     };
+    if (proceduralOnly) { finish("procedural", fromScene); return ready; }
     timer = setTimer(() => finish("fallback", fromScene), timeoutMs);
     try {
       new EXRLoader().load(url,

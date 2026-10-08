@@ -112,7 +112,7 @@ const {chromium} = require('playwright');
         return {environment:environment.status,environmentCleared:view.sceneEnvironment.current()===null,
                 panels,rendererDisposals,composerDisposals,rendersAtDispose,rendersAfterWait:renders};
       }, name);
-      assert.equal(pageResult.environment,'fallback',name+' must retain procedural environment');
+      assert.equal(pageResult.environment,'procedural',name+' must use the neutral atlas environment');
       assert.equal(pageResult.environmentCleared,true,name+' environment must release on exit');
       assert.equal(pageResult.rendererDisposals,1,name+' renderer must dispose once');
       assert.equal(pageResult.composerDisposals,1,name+' composer must dispose once');

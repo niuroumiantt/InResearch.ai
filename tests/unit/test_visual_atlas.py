@@ -84,3 +84,23 @@ class VisualAtlasTests(unittest.TestCase):
                                  len(svg.findall("s:g[@id='editable-labels']/s:text", ns)))
             baseline = row['baseline_asset']
             self.assertEqual(hashlib.sha256((ROOT / baseline['file']).read_bytes()).hexdigest(), baseline['sha256'], 'retain old assets')
+
+    def test_shared_recipe_receipt_keeps_geometry_and_export_scope_explicit(self):
+        for row in self.queue['items']:
+            if row['kind'] != 'shared' or row['status'] not in ('accepted', 'published'):
+                continue
+            receipt = json.loads((ROOT / row['acceptance_record']).read_text())
+            self.assertEqual(receipt['figure_id'], row['id'])
+            self.assertEqual(receipt['style_id'], self.queue['style_id'])
+            self.assertEqual(receipt['scope'], 'shared_render_and_export_only')
+            self.assertFalse(receipt['individual_geometry_migration_complete'])
+            self.assertFalse(receipt['export']['is_static_master_or_cad'])
+            self.assertEqual(receipt['export']['pixels'], 'actual_current_canvas')
+            by_ref = {ref['id']: ref for ref in self.profile['references']}
+            for ref in receipt['references']:
+                self.assertEqual(ref['sha256'], by_ref[ref['id']]['sha256'])
+            for artifact in receipt['implementation_at_review']:
+                self.assertTrue((ROOT / artifact['file']).is_file())
+                self.assertRegex(artifact['sha256'], r'^[a-f0-9]{64}$')
+            self.assertIn('tests/scene_atlas.cjs', receipt['browser_checks'])
+            self.assertTrue(receipt['remaining_work'])

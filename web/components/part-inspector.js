@@ -1,8 +1,9 @@
 /* A component owns its renderer and cloned materials, never the source geometry. */
 import {createViewport, visibleBounds, fitPerspective} from './scene-view.js';
+import {configureAtlasRenderer, addAtlasLights, createAtlasDrawing} from './scene-atlas.js';
 export function createPartInspector({THREE, environment, meshesFor, materialFor = mesh => mesh.material}) {
   const iCv = document.createElement("canvas");
-  let viewport, bounds, disposed = false;
+  let drawing, viewport, bounds, disposed = false;
   const fit = () => {if (bounds) fitPerspective({camera:iCam, bounds, direction:new THREE.Vector3(0, 0.45, 2.9)});};
   let iRen = null, iScene, iCam, iPivot, iGroup, iSpin = true, iRotX = -0.35, iRotY = 0.7, iVisible = false;
   function initInspector() {
@@ -12,12 +13,12 @@ export function createPartInspector({THREE, environment, meshesFor, materialFor 
     iRen.toneMapping = THREE.ACESFilmicToneMapping;
     iRen.toneMappingExposure = 1.25;
     iScene = new THREE.Scene();
+    configureAtlasRenderer(THREE, iRen, iScene);
+    drawing = createAtlasDrawing({THREE, scene:iScene, normalize:false});
     iScene.environment = environment();
     iCam = new THREE.PerspectiveCamera(36, 1, 0.01, 200);
     viewport = createViewport({canvas:iCv, camera:iCam, resize:(w,h)=>iRen.setSize(w,h,false), onResize:fit});
-    iScene.add(new THREE.HemisphereLight(0x9db4d8, 0x141a26, 0.8));
-    const l1 = new THREE.DirectionalLight(0xfff2e0, 1.9); l1.position.set(3, 5, 4); iScene.add(l1);
-    const l2 = new THREE.DirectionalLight(0x6f9fff, 0.8); l2.position.set(-4, 2, -3); iScene.add(l2);
+    addAtlasLights(THREE,iScene,[3,5,4]);
     iPivot = new THREE.Group(); iScene.add(iPivot);
     iGroup = new THREE.Group(); iPivot.add(iGroup);
     let drag = null;
@@ -57,6 +58,7 @@ export function createPartInspector({THREE, environment, meshesFor, materialFor 
       m.applyMatrix4(src.matrixWorld);
       iGroup.add(m);
     });
+    drawing.sync();
     bounds = visibleBounds([iGroup]);
     if (bounds.isEmpty()) return false;
     const center = bounds.getCenter(new THREE.Vector3());
@@ -72,12 +74,13 @@ export function createPartInspector({THREE, environment, meshesFor, materialFor 
     if (iSpin) iRotY += 0.006;
     iPivot.rotation.set(iRotX, iRotY, 0);
     iScene.environment = environment();
+    drawing.update();
     iRen.render(iScene, iCam);
   }
 
   return {canvas: iCv, show: buildInspector, tick: inspectTick, hide: () => { iVisible = false; }, dispose() {
     if (disposed) return;
-    disposed = true; iVisible = false; viewport?.dispose();
+    disposed = true; iVisible = false; viewport?.dispose(); drawing?.dispose();
     iGroup?.children.forEach(mesh => [].concat(mesh.material || []).forEach(material => material.dispose()));
     iGroup?.clear(); iRen?.dispose(); iRen = null; bounds = null;
   }};
