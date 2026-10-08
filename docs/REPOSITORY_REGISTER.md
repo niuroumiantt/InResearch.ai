@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1185。
+在册文件：1193。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,11 +18,11 @@
 | 历史快照 | 304 |
 | 运行代码 | 269 |
 | 现行规范 | 13 |
-| 项目配置 | 102 |
+| 项目配置 | 105 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 101 |
+| 配套说明 | 106 |
 | 测试 | 133 |
 
 ## 在册记录集合
@@ -182,6 +182,9 @@
 | `docs/research/2026-10-01/ai-walle/cards.json` | cards | 10 |
 | `docs/research/2026-10-01/ai-walle/sources.json` | groups | 8 |
 | `docs/research/2026-10-01/ai-walle/sources.json` | background_sources | 1 |
+| `docs/research/2026-10-08/solidigm/cards.json` | items | 56 |
+| `docs/research/2026-10-08/solidigm/photo-sources.json` | items | 10 |
+| `docs/research/2026-10-08/solidigm/sources.json` | items | 69 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
@@ -562,6 +565,7 @@
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
 | [docs/handoff/research-verification-20261008.md](handoff/research-verification-20261008.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
+| [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
 | [docs/handoff/worktree-integration-20261006.md](handoff/worktree-integration-20261006.md) | 配套说明 |
@@ -755,6 +759,13 @@
 | [docs/research/2026-10-01/ai-walle/feedback.md](research/2026-10-01/ai-walle/feedback.md) | 配套说明 |
 | [docs/research/2026-10-01/ai-walle/review.md](research/2026-10-01/ai-walle/review.md) | 配套说明 |
 | `docs/research/2026-10-01/ai-walle/sources.json` | 项目配置 |
+| [docs/research/2026-10-08/solidigm/README.md](research/2026-10-08/solidigm/README.md) | 配套说明 |
+| [docs/research/2026-10-08/solidigm/article.md](research/2026-10-08/solidigm/article.md) | 配套说明 |
+| `docs/research/2026-10-08/solidigm/cards.json` | 项目配置 |
+| [docs/research/2026-10-08/solidigm/feedback.md](research/2026-10-08/solidigm/feedback.md) | 配套说明 |
+| `docs/research/2026-10-08/solidigm/photo-sources.json` | 项目配置 |
+| [docs/research/2026-10-08/solidigm/review.md](research/2026-10-08/solidigm/review.md) | 配套说明 |
+| `docs/research/2026-10-08/solidigm/sources.json` | 项目配置 |
 | [docs/research/datacenter-economics/README.md](research/datacenter-economics/README.md) | 配套说明 |
 | `docs/research/datacenter-economics/model.py` | 运行代码 |
 | `docs/research/datacenter-economics/results.json` | 项目配置 |
