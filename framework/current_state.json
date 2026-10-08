@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.9",
+  "version": "2026.10.08.10",
   "effective_at": "2026-10-08",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -725,7 +725,7 @@
       "source": "framework/09_software_contracts.md",
       "effective_at": "2026-09-21",
       "supersedes": [],
-      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、节点页根与团队页的唯一投影（团队页待并入采集页）；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-10-08 用户授权持续研究核验及隔离发表，真实CI/网站验收与私有审计分开。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。",
+      "reason": "Published Git research and persistent runtime state have separate authority; explicit initialization, recovery and read-only deployment replace whole-directory shadowing. Historical brief proposes review without changing formal findings; existing research and originals scope remain.；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；可见画布、几何适配与用户镜头所有权收敛；renderer/HDR/纹理仍未全部迁移。；2026-09-14 CLI 全局目录仅用于三个统一 JSON 用例，其他命令显式拒绝；子接口参数保留，委派成功/失败恢复进程参数。；2026-09-14 交互场景资源代次、回退、替换与释放归一；离线 bake、比较台和几何构建不在本批假定完成。；2026-09-15 研究问题任务只由 current_tasks 从当前问题与采用知识生成，task_board 成为 HTTP、节点页根与团队页的唯一投影（团队页待并入采集页）；静态 workorders 只保留模块缺口与统计。；2026-09-21 用户采用资料供应方向：专业供给、统一验收；首版需求与计划持久化，执行与交付接入待完成。；2026-10-08 用户授权持续研究核验及隔离发表，真实CI/网站验收与私有审计分开。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。",
       "implementations": [
         "src/inresearch/workflow/commands.py",
         "src/inresearch/storage/files.py",
@@ -800,9 +800,15 @@
         "tests/unit/test_html_document.py",
         "src/inresearch/workflow/research_review.py",
         "src/inresearch/workflow/research_publish.py",
-        "tests/unit/test_research_review.py"
+        "tests/unit/test_research_review.py",
+        "scripts/sync_repo_pages.py",
+        "src/inresearch/delivery/material_measurements.py",
+        "src/inresearch/interfaces/material_flow.py",
+        "web/assets/material-flow.css",
+        "web/assets/material-flow.js",
+        "tests/unit/test_material_flow.py"
       ],
-      "implementation_revision": "2026.10.08.8"
+      "implementation_revision": "2026.10.08.9"
     },
     {
       "id": "geluoke-longform-20261001",
@@ -2080,6 +2086,11 @@
         "web/components/catalog-admin.js",
         "tests/product_catalog.cjs",
         "tests/dashboard.cjs",
+        "src/inresearch/delivery/material_measurements.py",
+        "src/inresearch/interfaces/material_flow.py",
+        "web/assets/material-flow.css",
+        "web/assets/material-flow.js",
+        "tests/unit/test_material_flow.py",
         "framework/10_visual_atlas.md",
         "framework/visual_atlas.json",
         "framework/visual_atlas_migration.json"
@@ -2087,8 +2098,8 @@
       "supersedes": [
         "interface-reader-batch-20261006"
       ],
-      "reason": "用户采用客户交付前台与内部后台/dashboard的默认场景；企业专栏先实现独立公司后台、管理员读者预览、单一型号浏览与必要来源/配置边界；原研究数据与其他界面规范继续适用。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08技术图制作采用白底技术图册；新图/重制图按10规范，旧3D背景/材质实现按队列迁移，控件明暗/语义与镜头所有权保持。",
-      "implementation_revision": "2026.10.08.9",
+      "reason": "用户采用客户交付前台与内部后台/dashboard的默认场景；企业专栏先实现独立公司后台、管理员读者预览、单一型号浏览与必要来源/配置边界；原研究数据与其他界面规范继续适用。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08用户要求资料关系图：静态仓库架构之外接入只读分层计量，目录/登记/本批/候选/正式采用分母独立；库内索引不重复相加，未知/陈旧/权限与实际部署分别验证。；2026-10-08技术图制作采用白底技术图册；新图/重制图按10规范，旧3D背景/材质实现按队列迁移，控件明暗/语义与镜头所有权保持。",
+      "implementation_revision": "2026.10.08.10",
       "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data."
     },
     {
@@ -2107,7 +2118,7 @@
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。",
-      "implementation_revision": "2026.10.08.9"
+      "implementation_revision": "2026.10.08.10"
     }
   ],
   "entrypoints": [

@@ -7,4 +7,5 @@ ALIASES = {'/admin/fetchspec/reporg.html': '/admin/fetchspecrepo.html'}
 
 def protected(path):
     path = path.lower()
-    return path in PAGES or path in ALIASES or path.startswith('/admin/repo-content/')
+    return (path in PAGES or path in ALIASES or path.startswith('/admin/repo-content/')
+            or path == '/api/admin/material-flow')

@@ -341,9 +341,12 @@ def candidate_snapshot(payload, graph, questions):
         'generated', 'counts', 'stage_counts', 'oldest_pending', 'recent_failures',
         'backend', 'model', 'roots', 'status', 'release', 'acquisition', 'reading_revisions', 'registry_lag',
         'operations', 'thermal', 'claim_floor', 'free_bytes', 'oldest_pending_seconds', 'last_scan', 'execution_scope',
-        'research_verification')}
+        'research_verification', 'material_measurements')}
     if 'research_verification' in reader:
         reader['research_verification'] = _research_verification(reader['research_verification'])
+    if 'material_measurements' in reader:
+        from inresearch.delivery.material_measurements import sanitize
+        reader['material_measurements'] = sanitize(reader['material_measurements'])
     if lagging:
         reader['registry_lag'] = {'snapshot_graph_version': payload['graph_version'],
                                   'snapshot_questions_version': payload['questions_version'],

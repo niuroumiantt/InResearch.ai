@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.9",
+  "version": "2026.10.08.10",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -580,8 +580,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 202955,
-      "sha256": "681acc07764800c828d8a95f9a3502f4dac27f283dfb630a38e1a04d738956a5",
+      "bytes": 203594,
+      "sha256": "55bc45d37c4c0877ea9af0578b9b9324ac3e210f903515005495103cb092308a",
       "collections": []
     },
     {
@@ -1209,6 +1209,13 @@
       "role": "supporting_document",
       "bytes": 4015,
       "sha256": "6db841e0742d208a3a6a7c00a2d520f9935e0a0eed31c1bf928b968a705c6f47",
+      "collections": []
+    },
+    {
+      "path": "docs/handoff/material-lineage-dashboard-20261008.md",
+      "role": "supporting_document",
+      "bytes": 1983,
+      "sha256": "69367d3e4a36917cb033cea2f7fa563ceb2c4c9327b2184c8c98af4b7ebe8f24",
       "collections": []
     },
     {
@@ -3905,8 +3912,8 @@
     {
       "path": "docs/local_setup/REPOSITORY_PAGES.md",
       "role": "supporting_document",
-      "bytes": 2337,
-      "sha256": "fb87e53841c6c1eb3b37235c66072c4d97f803ba0435681148d7e83ef68f9720",
+      "bytes": 3903,
+      "sha256": "27fed0e98f1959c3d308c37c3c517d6847ed058182bfdbc4043df6c87da1a9a3",
       "collections": []
     },
     {
@@ -7328,8 +7335,8 @@
     {
       "path": "framework/05_interface_system.md",
       "role": "normative",
-      "bytes": 56258,
-      "sha256": "f7c281f6494693d5cb30fde4a9f0ddd80e45fda4cd2dafafa24a79eedbc0463a",
+      "bytes": 58439,
+      "sha256": "5ddf411d40956eae04eb8d90538d33bf5dcda25d184a20758fe4868f4c846116",
       "collections": []
     },
     {
@@ -7377,8 +7384,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 14125,
-      "sha256": "d42d04415f1fa4e11e539d29097f8e9c07b156399a6d867053fdc31d6d3de8c2",
+      "bytes": 14126,
+      "sha256": "2aa69cdc58435babfe67091f5def44d1c8be12955b155bb0097d166b472685de",
       "collections": []
     },
     {
@@ -7404,8 +7411,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 117339,
-      "sha256": "37a49865fcaef8663886a1d2f664be3229f86009c889c822b7e8968429b7b96f",
+      "bytes": 118312,
+      "sha256": "3a303a92190a6162a50362a49174c2d432bdb614d71e612c8b51fc1f5e264083",
       "collections": [
         {
           "name": "policies",
@@ -7751,8 +7758,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 182912,
-      "sha256": "c96babc3f6d87332f8e37d054379a07b6415a7f5bf38c8c8352428b3acffb48f",
+      "bytes": 185362,
+      "sha256": "3e1725afca0e5e65bd11acc195edb0748eef104ca4e5ac07db18442e69947eb5",
       "collections": [
         {
           "name": "policies",
@@ -8904,8 +8911,8 @@
     {
       "path": "scripts/sync_repo_pages.py",
       "role": "implementation",
-      "bytes": 12233,
-      "sha256": "f073143c4207c7b76d4886fa877760b2c62c51082a37521e9e3661557bb0b575",
+      "bytes": 14978,
+      "sha256": "d7bcbb2104c207eaf88e4a1046cc906cf93f10586c75541fe76d482fbf8b0361",
       "collections": []
     },
     {
@@ -9133,6 +9140,13 @@
       "collections": []
     },
     {
+      "path": "src/inresearch/delivery/material_measurements.py",
+      "role": "implementation",
+      "bytes": 7652,
+      "sha256": "13087d8ea142b5c72672dd53333b8863af3dfa59fc77ad4855a542fbfd4163ba",
+      "collections": []
+    },
+    {
       "path": "src/inresearch/delivery/publish.py",
       "role": "implementation",
       "bytes": 6783,
@@ -9226,8 +9240,15 @@
     {
       "path": "src/inresearch/interfaces/http.py",
       "role": "implementation",
-      "bytes": 51688,
-      "sha256": "59f1c393242d28d3942189e18dc33d248ea9217921ba3dd81e56b169d0dad0d1",
+      "bytes": 52079,
+      "sha256": "95cbc016ac1b7fb2239ab2a4033b538c356d30df8f675dbe3ec190ab0d008425",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/interfaces/material_flow.py",
+      "role": "implementation",
+      "bytes": 3160,
+      "sha256": "ddd2dad1762a123ce6a055ca8ea771cc31e9cb3cea2eea4cf5d8641dd3895329",
       "collections": []
     },
     {
@@ -9254,8 +9275,8 @@
     {
       "path": "src/inresearch/interfaces/repository_pages.py",
       "role": "implementation",
-      "bytes": 438,
-      "sha256": "dc7b14522329f66523fd00fb03e028a991d302b9c351dd1a7b306f1323d9580a",
+      "bytes": 490,
+      "sha256": "8606d77b5f6db362a7deadfce126aab96f32a48f4a07bbc780e0affdc21b00f6",
       "collections": []
     },
     {
@@ -9401,8 +9422,8 @@
     {
       "path": "src/inresearch/knowledge/registry.py",
       "role": "implementation",
-      "bytes": 53983,
-      "sha256": "348f0b823fde6b0e319800b26ac1b69acf291b10a593f5f20d2ed5fd37d3481f",
+      "bytes": 54205,
+      "sha256": "c4fc9713f280f08924deb8b56046c4da631e1eb308ec049cd91a6cc097577653",
       "collections": []
     },
     {
@@ -9821,8 +9842,8 @@
     {
       "path": "src/inresearch/workflow/reader.py",
       "role": "implementation",
-      "bytes": 59064,
-      "sha256": "5b79e719b98549a065a660f58fbdb9d8ba2a9b393253a7aeaf0fdc6cbf3b6d2d",
+      "bytes": 59904,
+      "sha256": "832cf23be33d7a26ac1cb35ccd9253b43133608dc44848e20c1411023355a659",
       "collections": []
     },
     {
@@ -10059,8 +10080,8 @@
     {
       "path": "tests/repository_pages.cjs",
       "role": "test",
-      "bytes": 4103,
-      "sha256": "dda212673442d85e2ee6c2feb9553afc55ddc55c08c2b1a2d78cd1dce52d9d7a",
+      "bytes": 7256,
+      "sha256": "ca8e77ed347c57a4a9cef24f7b6498b46cc696d1ed8f5869124fbf96e7f66529",
       "collections": []
     },
     {
@@ -10484,6 +10505,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_material_flow.py",
+      "role": "test",
+      "bytes": 9033,
+      "sha256": "6d7956fcb057acd12be4c225605a262b1eb7b9da45f7f33d4554ed94444b87fb",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_material_intake.py",
       "role": "test",
       "bytes": 1306,
@@ -10745,8 +10773,8 @@
     {
       "path": "tests/unit/test_repository_pages.py",
       "role": "test",
-      "bytes": 5208,
-      "sha256": "0216d5b6f92eb87279ba3f45484c70ae1ac4b0afd26e272dc2174d4c99215433",
+      "bytes": 6153,
+      "sha256": "93a924a517b1e6003066821b78d2548a470c27eb7f4ef1acfad5e5e57a6c41cc",
       "collections": []
     },
     {
@@ -11027,6 +11055,20 @@
       "role": "asset",
       "bytes": 160000,
       "sha256": "bb11fe7e9c3037b8db21beab826a7ed7c452a48cb6d361f982ca7311aacba9c1",
+      "collections": []
+    },
+    {
+      "path": "web/assets/material-flow.css",
+      "role": "implementation",
+      "bytes": 3688,
+      "sha256": "2154cd1f38c082ef87909e083e578387a405db96305adaa5a5ebba07a0a76b32",
+      "collections": []
+    },
+    {
+      "path": "web/assets/material-flow.js",
+      "role": "implementation",
+      "bytes": 11621,
+      "sha256": "a01aeef7dddedeb8f61c59115ec6f7786e07ff3e7b9135c854698097e056379a",
       "collections": []
     },
     {
@@ -11574,8 +11616,8 @@
     {
       "path": "web/pages/admin/inresearchrepo.html",
       "role": "implementation",
-      "bytes": 7416,
-      "sha256": "56850be62ad760c05da412de81fc310248a930081ff829aa422ba8da0316bfc1",
+      "bytes": 9982,
+      "sha256": "80c159b6b3348e6df9c9743b4dbdbcf6f473645ab2b59368ab82bfd5c8511053",
       "collections": []
     },
     {
@@ -11602,8 +11644,8 @@
     {
       "path": "web/pages/admin/repo-content/manifest.json",
       "role": "project_config",
-      "bytes": 7062,
-      "sha256": "0db0072f5888db17fd6b63baba467f6488ad8b62947877cc50a6202e0262213d",
+      "bytes": 7617,
+      "sha256": "42a7ec153701c7e6822a31277e9e64b8c813cfad2cf547b7abf9d7a27026c346",
       "collections": []
     },
     {
@@ -11763,8 +11805,8 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 9232,
-      "sha256": "17015bf954fdcf2265d95ca76a4c4649834516ab7eb4a445b88a0ff7c2f21ea9",
+      "bytes": 9356,
+      "sha256": "5d30eeb7eb980d433bef411af57884737e7d0ed64723fd5ca15e0b3f05c3c51b",
       "collections": []
     },
     {
@@ -11824,13 +11866,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 305,
-    "implementation": 271,
+    "implementation": 275,
     "normative": 14,
     "project_config": 109,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
-    "supporting_document": 106,
-    "test": 136
+    "supporting_document": 107,
+    "test": 137
   }
 }

@@ -45,7 +45,7 @@ def flow(labels):
         f'<li>{escape(label)}</li>' for label in labels) + '</ol>'
 
 
-def shell(title, body):
+def shell(title, body, assets=""):
     return '''<!doctype html>
 <html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -67,7 +67,7 @@ body{margin:0;background:var(--bg);color:var(--text);font:14px/1.65 var(--ui-fon
 .repo-frame{width:100%;height:76vh;min-height:480px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
 .repo-provenance{margin:18px 0;font-size:12px}.repo-provenance code{overflow-wrap:anywhere}
 @media(max-width:600px){.repo-wrap{padding:18px 12px 40px}.repo-wrap h1{font-size:23px}.repo-flow{display:block}.repo-flow li{margin:8px 0}.repo-frame{height:80vh}}
-</style></head><body><inresearch-shell data-section="admin"></inresearch-shell>
+</style>''' + assets + '''</head><body><inresearch-shell data-section="admin"></inresearch-shell>
 <main class="repo-wrap"><nav class="repo-nav" aria-label="仓库架构">
 <a href="/admin/repos.html">仓库总览</a>''' + ''.join(
         f'<a href="/admin/{key}repo.html">{escape(name)}</a>' for key, name in NAMES.items()
@@ -88,6 +88,42 @@ def source_note(meta):
                                                for s in meta['sources']]) + '</details>')
 
 
+def inresearch_sources():
+    return [('inresearch', ROOT, p) for p in ('src/inresearch/README.md',
+        'scripts/sync_repo_pages.py','web/assets/material-flow.js','web/assets/material-flow.css')]
+
+
+def material_board():
+    labels=('① Spark 文件目录','② 内容登记','③ 本批正文阅读','④ 研究核验','⑤ AWS 正式展示')
+    steps=('archive','catalog','reading','review','website')
+    return ('<section id="material-board" class="material-board" aria-labelledby="material-title">'
+        '<div class="material-toolbar"><div><h2 id="material-title">资料如何成为研究成果</h2>'
+        '<p class="material-meta">点击每个环节查看细节；箭头表示引用与交付关系，各环节的数量单位不同。</p></div>'
+        '<button type="button" id="material-refresh">刷新指标</button></div>'
+        '<p id="material-measured" class="material-meta">正在读取各层的计量时间；未测量显示 —。</p>'
+        '<p id="material-error" class="material-error" role="status" hidden></p>'
+        '<ol id="material-lineage" class="material-lineage" aria-label="资料、候选与成果的关系">'+
+        ''.join(f'<li class="material-node"><button type="button" data-step="{key}" aria-controls="material-detail">{label}</button><strong class="value">—</strong></li>' for key,label in zip(steps,labels))+
+        '</ol><section id="material-detail" class="material-details" aria-live="polite">'
+        '<p>多个副本 → 同一内容身份；一份材料 → 多条候选 ↔ 多条原文证据；核验采用 → 正式研究版本。</p></section>'
+        '<h2>数据库存在哪里、存什么</h2><p class="material-meta">以下三个库位于 Spark。数据库引用原件身份与阅读产物，不是原件目录的压缩副本。</p>'
+        '<div id="material-stores" class="material-store"></div>'
+        '<section id="material-web-storage" class="material-details"></section></section>')
+
+
+def build_inresearch(meta):
+    readme = (ROOT / 'src/inresearch/README.md').read_text()
+    rows = [[p.strip().replace('`', '') for p in line.strip('|').split('|')]
+            for line in readme.splitlines() if line.startswith('| ')][1:]
+    return shell('InResearch.ai',
+        '<p>研究框架与目标 → 接收原件和事件 → 阅读与审阅 → 证据采用 → 模型与报告。</p>' +
+        source_note(meta) + material_board() + flow(['目标与资料接收', '阅读与证据审阅', '事实与经济模型', '网站与研究成果']) +
+        '<h2>程序职责</h2>' + table(['模块', '责任与主要实现'], rows) +
+        '<h2>运行边界与未完成</h2>' + ''.join(f'<p>{escape(line)}</p>' for line in readme.splitlines()
+            if line and not line.startswith(('#', '|'))),
+        '<link rel="stylesheet" href="/assets/material-flow.css"><script defer src="/assets/material-flow.js"></script>')
+
+
 def build(workspace, synced_at):
     roots = {'inresearch': ROOT, 'inews': workspace / 'inews.today',
              'fetchspec': workspace / 'fetchspec', 'infra': workspace / 'infra'}
@@ -100,7 +136,7 @@ def build(workspace, synced_at):
                         '--output', str(out)], cwd=roots['fetchspec'], check=True, capture_output=True)
         fetch_html = out.read_text()
     files = {
-        'inresearch': [('inresearch', ROOT, 'src/inresearch/README.md')],
+        'inresearch': inresearch_sources(),
         'inews': [('inews', roots['inews'], p) for p in
                   ('scripts/export-reporg.mjs', 'src/lib/pipeline-map.js')],
         'infra': [('infra', roots['infra'], 'docs/infra-org-chart.html')],
@@ -134,15 +170,7 @@ def build(workspace, synced_at):
             '<h2>还没做完的</h2>' + table(['事项', '说明', '状态（源仓库声明）'],
                 [(r['title'], r['detail'], r['status']) for r in news['open_items']]))
     outputs['inewsrepo.html'] = shell('inews.today', body)
-    readme = (ROOT / 'src/inresearch/README.md').read_text()
-    rows = [[p.strip().replace('`', '') for p in line.strip('|').split('|')]
-            for line in readme.splitlines() if line.startswith('| ')][1:]
-    outputs['inresearchrepo.html'] = shell('InResearch.ai',
-        '<p>研究框架与目标 → 接收原件和事件 → 阅读与审阅 → 证据采用 → 模型与报告。</p>' +
-        source_note(metadata['inresearch']) + flow(['目标与资料接收', '阅读与证据审阅', '事实与经济模型', '网站与研究成果']) +
-        '<h2>程序职责</h2>' + table(['模块', '责任与主要实现'], rows) +
-        '<h2>运行边界与未完成</h2>' + ''.join(f'<p>{escape(line)}</p>' for line in readme.splitlines()
-            if line and not line.startswith(('#', '|'))))
+    outputs['inresearchrepo.html'] = build_inresearch(metadata['inresearch'])
     outputs['repos.html'] = shell('为研究站协作的仓库',
         '<p>集中查看各仓库的职责、流程、交付接口与未完成事项。仅研究站管理员可见。</p>' +
         '<div class="repo-ecosystem" aria-label="仓库协作关系"><div class="repo-upstream">'
@@ -161,11 +189,19 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--workspace', type=Path, default=ROOT.parent)
     parser.add_argument('--check', action='store_true')
+    parser.add_argument('--repo', choices=['inresearch'], help='只更新研究站页与其来源登记；不刷新邻接仓库快照')
     args = parser.parse_args()
     manifest = DEST / 'repo-content/manifest.json'
     synced_at = (json.loads(manifest.read_text())['infra']['synced_at']
                  if args.check and manifest.exists() else date.today().isoformat())
-    outputs = build(args.workspace.resolve(), synced_at)
+    if args.repo:
+        metadata=json.loads(manifest.read_text())
+        synced_at=metadata['inresearch']['synced_at'] if args.check else date.today().isoformat()
+        metadata['inresearch']=provenance(inresearch_sources(),synced_at)
+        outputs={'inresearchrepo.html':build_inresearch(metadata['inresearch']),
+                 'repo-content/manifest.json':json.dumps(metadata,ensure_ascii=False,indent=2)+'\n'}
+    else:
+        outputs = build(args.workspace.resolve(), synced_at)
     if args.check:
         stale = [p for p, content in outputs.items() if not (DEST / p).is_file() or (DEST / p).read_text() != content]
         if stale:
