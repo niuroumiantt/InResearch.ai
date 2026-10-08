@@ -676,6 +676,26 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
         self.assertEqual([row['id'] for row in full['graph']['objects']], [row['id'] for row in summary['graph']['objects']])
         self.assertEqual(self.snapshot_path.read_bytes(), before)
 
+    def test_research_verification_counts_survive_http_receipt_and_projection(self):
+        payload = self.payload()
+        progress = {'state': 'observed', 'generated': payload['generated'],
+                    'last_change': payload['generated'], 'active_batches': 2,
+                    'candidates': {'queued': 31, 'published': 1, 'needs_owner': 4},
+                    'private_audit': '/private/originals/PRIVATE_MARKER',
+                    'adopted': True}
+        payload['reader']['research_verification'] = progress
+        before = self.curated_path.read_bytes()
+        self.assertEqual(self.post(payload)[0], 200)
+        expected = {k: progress[k] for k in ('state', 'generated', 'last_change', 'active_batches', 'candidates')}
+        expected['unit'] = 'candidate statements, not materials or GW'
+        saved = research.read_json(self.snapshot_path)
+        self.assertEqual(saved['reader']['research_verification'], expected)
+        code, summary = self.request('GET', '/api/research')
+        self.assertEqual(code, 200)
+        self.assertEqual(summary['reader']['research_verification'], expected)
+        self.assertNotIn('PRIVATE_MARKER', json.dumps(saved))
+        self.assertEqual(self.curated_path.read_bytes(), before)
+
     def test_summary_new_snapshot_replaces_associations_and_failed_retry_keeps_authority(self):
         first = self.payload(seconds=1)
         self.assertEqual(self.post(first)[0], 200)
