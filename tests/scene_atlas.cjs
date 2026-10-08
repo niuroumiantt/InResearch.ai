@@ -5,7 +5,9 @@ const {chromium} = require('playwright');
 (async()=>{
   const browser=await chromium.launch({headless:true,args:['--enable-unsafe-swiftshader']});
   try {
-    for(const density of [1,2]) {
+    const densities=process.argv[2] ? [Number(process.argv[2])] : [1,2];
+    assert.ok(densities.every(value=>value===1 || value===2));
+    for(const density of densities) {
     const page=await browser.newPage({viewport:{width:1280,height:900},deviceScaleFactor:density,reducedMotion:'reduce'});
     const errors=[];page.on('pageerror',error=>errors.push(error.message));
     page.on('console',message=>{if(message.type()==='error')console.error('Browser:',message.text());});

@@ -31,7 +31,9 @@ const ready = new Promise((resolve, reject) => {
     const selected=suites.length ? suites.flatMap(s=>s==='core'?defaults.filter(v=>v!=='model_assets'):[s]) : defaults;
     for (const suite of selected) {
       if (!defaults.includes(suite)) throw Error('Unknown suite: ' + suite);
-      for(const scenario of suite==='model_assets'?['bom3d','rack3d','compare']:[null]) {
+      // Software WebGL at DPR 2 has four times the pixels. Give each density
+      // its own existing per-case deadline while retaining the full matrix.
+      for(const scenario of suite==='model_assets'?['bom3d','rack3d','compare']:suite==='scene_atlas'?['1','2']:[null]) {
       const label=suite+(scenario?':'+scenario:''),started=Date.now();
       console.log('START '+label);
       await new Promise((resolve, reject) => {

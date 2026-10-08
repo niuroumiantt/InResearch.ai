@@ -1,7 +1,7 @@
 # 仓库架构页维护
 
 现行地址与权限以 `framework/05_interface_system.md` 为准。总入口为
-`https://inresearch.ai/admin/repos.html`；四页使用 `inresearchrepo.html`、
+`https://inresearch.ai/admin/repos.html`；原有四页使用 `inresearchrepo.html`、
 `inewsrepo.html`、`fetchspecrepo.html`、`infrarepo.html`。
 
 每个仓库维护自己的事实；研究站保存可审阅的架构快照，研究主页另附只读运行聚合。infra 原 HTML 原样保留，
@@ -17,11 +17,11 @@ python3 scripts/sync_repo_pages.py --workspace /workspace
 python3 scripts/sync_repo_pages.py --workspace /workspace --check
 ```
 
-脚本只读邻接源码，不连生产、不部署；源文件缺失或生成失败直接退出。
+默认同步脚本只读邻接源码；`--probe` 只读探测公网入口及 GitHub 当前提交工作流，`--daily-report` 接入 infra 六机检测。源文件缺失或生成失败直接退出。脚本本身不提交、合并或部署。
 输出在 `web/pages/admin/`，同步日期和来源完整 SHA-256 在
 `web/pages/admin/repo-content/manifest.json`。流程变化后重跑并审阅差异，随研究站正常代码发布。
 `--check` 使用已保存的同步日期，跨日检查不会仅因日期变化而误报。
-源仓库更新不会自动改变研究站已发布快照；在架构相关 PR 中执行同步是当前更新责任。
+2026-10-08 替代手动同步责任：常驻macmini的系统cron每日北京时间0:00运行Python刷新器，独立于Codex和对话。读取11个当前仓库的最新远程main、只读检测并原子发布AWS私有运行投影；不每日提交PR。其他主工作区不切换、不reset、不stash。
 
 服务端在归一化路径后校验真实 admin 会话，GET/HEAD、旧 Fetchspec 地址及原始内嵌页都受保护。
 本地 `HUB_AUTH=0` 也不关闭这些页面的登录要求。无账号时用既有 `manage.py users add` 交互入口创建，
@@ -29,7 +29,7 @@ python3 scripts/sync_repo_pages.py --workspace /workspace --check
 旧 `/admin/fetchspec/reporg.html` 经认证后跳到 `/admin/fetchspecrepo.html`。
 
 Tailscale 运维仪表盘继续提供运行状态；这里不代理其管理操作、不转发研究站 cookie 给其他域名。
-新增仓库先接入真实架构来源，再登记路由、页面清单、同步脚本和权限测试；不提前创建空页面。
+新增仓库先接入真实架构来源，再登记路由、页面清单、同步脚本和权限测试；不提前创建空页面。11 仓库列表与 infra 注册表必须一致，新增仓库未审阅时停止生成。
 
 本轮本地权限和浏览器验收记录见 `docs/handoff/repository-pages-20261003.md`。
 生产发布及登录验收需在研究站正常发布流程后单独记录。
@@ -52,3 +52,28 @@ Tailscale 运维仪表盘继续提供运行状态；这里不代理其管理操�
 目录含副本，登记含派生，二者不可相减推导唯一原件量。候选、证据、当前状态、
 正式采用与项目/合同各自明确单位；不得把已核验待发布算作正式上网。
 本图不证明原件备份完整、全库语义阅读完毕或 IT GW 改变。生产验收见本次交接记录。
+
+## 每日刷新与检测（2026-10-08）
+
+**[m5 / 本对话执行机]** 在本任务的独立研究站工作树执行：
+
+```bash
+python3 scripts/daily_repository_pages.py --workspace /Users/m5/code
+python3 scripts/daily_repository_pages.py --workspace /Users/m5/code --check
+```
+
+脚本只 fetch 远程 main，将所用提交归档到系统临时目录并记录提交与在册目录，不改变邻接仓库分支、工作文件或暂存区。
+复用 infra `daily_check.py` 做六机只读检查，不带 `--issue`，不自动向外发送报告。
+工作流结果只是已存在的该提交运行记录，公网入口只检查 HTTP/TLS；未取得不填绿，CI 失败如实展示。
+infra 整份运行报告留在本机私有 state；页面快照只保存容器/服务、连接状态、变化数量及告警，过滤私有仓库路径和变化前后原值。
+
+定时执行与发布步骤见 `docs/handoff/repository-daily-refresh-20261008.md`。系统日更只拉已合并的源码并写运行投影，验证17个完整载体和内容摘要后原子切换current；旧release和失败回执保留。生成器实现、规范或在册测试变化仍走PR/CI与实际复审，不自动重签摘要。
+对话heartbeat已停用。Python刷新器在macmini后台运行，每天0:00检查，每小时补试尚未成功的一天；本机状态在~/.local/state/inresearch.ai/repository-refresh，AWS投影与状态在/srv/inresearch.ai/data/raw/repository-pages。网页从私有job-status显示实际完成/失败和过期；失败不改写上次成功日期。系统无需人工在线、无需打开Codex。macmini开机、系统cron、网络/SSH/GitHub可用性仍是运行条件。
+
+**[macmini]** 通过m5把已合并的Python刷新器放在macmini本地运行目录后安装（实际位置见交接）：
+
+```bash
+ssh mini '/Users/hermes/.local/bin/python3 /Users/hermes/.local/share/inresearch.ai/repository-refresh/runner.py --install'
+```
+
+启动和安装均使用现有hermes用户权限，与该机器现有采集任务一样由系统cron管理（无需图形界面或用户登录）。云端激活通过既有aws SSH与sudo执行，仅限独立的repository-pages投影目录，不重启研究服务或reader。服务端只允许登记管理员页面读取运行投影，原始/data/raw路径不开放，源码镜像替换不覆盖current投影。

@@ -5,10 +5,14 @@ from pathlib import Path
 from inresearch.paths import project_root
 from inresearch.storage.layout import workspace_path, LayoutError
 from inresearch.materials import model_assets
+from inresearch.interfaces import repository_pages
 
 
 def source_path(url_path, root=None):
     root = Path(root or project_root()).resolve()
+    daily = repository_pages.runtime_source(url_path, root)
+    if daily is not None:
+        return daily
     routes = json.loads((root / 'web/routes.json').read_text())
     relative = routes.get(url_path)
     if url_path.startswith('/assets/models/') and url_path.endswith('.glb'):

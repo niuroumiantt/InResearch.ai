@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script defer src="/assets/repository-status.js"></script>
+<script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+<title>openapi · 仓库架构 · inresearch.ai</title>
+<style>
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.65 var(--ui-font)}
+.repo-wrap{max-width:1200px;margin:auto;padding:24px 20px 64px;min-width:0}
+.repo-wrap h1{font-size:28px;margin:8px 0}.repo-wrap h2{font-size:20px;margin:30px 0 12px}
+.repo-wrap a{color:var(--accent)}.repo-note{color:var(--muted);overflow-wrap:anywhere}
+.repo-nav{display:flex;flex-wrap:wrap;gap:10px 22px}.repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.repo-card,.repo-flow li{padding:18px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
+.repo-card{min-width:0;overflow-wrap:anywhere}.repo-card h2{margin:0 0 8px}.repo-scroll{overflow-x:auto}.repo-wrap table{border-collapse:collapse;width:100%;font-size:13px}
+.repo-ecosystem{max-width:760px;margin:28px auto;text-align:center}.repo-upstream{display:grid;grid-template-columns:1fr 1fr;gap:18px}.repo-ecosystem .repo-card{margin-bottom:12px}
+.repo-wrap th,.repo-wrap td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+.repo-flow{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:0}.repo-flow li{flex:1;min-width:150px}
+.repo-flow li:not(:last-child)::after{content:' →';color:var(--accent)}
+.repo-frame{width:100%;height:76vh;min-height:480px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
+.repo-provenance{margin:18px 0;font-size:12px}.repo-provenance code{overflow-wrap:anywhere}
+@media(max-width:600px){.repo-wrap{padding:18px 12px 40px}.repo-wrap h1{font-size:23px}.repo-flow{display:block}.repo-flow li{margin:8px 0}.repo-frame{height:80vh}}
+</style></head><body><inresearch-shell data-section="admin"></inresearch-shell>
+<main class="repo-wrap"><nav class="repo-nav" aria-label="仓库架构">
+<a href="/admin/repos.html">仓库总览</a><a href="/admin/inresearchrepo.html">InResearch.ai</a><a href="/admin/inewsrepo.html">inews.today</a><a href="/admin/fetchspecrepo.html">Fetchspec</a><a href="/admin/infrarepo.html">infra</a><a href="/admin/oarepo.html">oa</a><a href="/admin/aimailrepo.html">aimail</a><a href="/admin/leadsgenrepo.html">leadsgen</a><a href="/admin/semiflyrepo.html">semifly.ai</a><a href="/admin/glocalstoragerepo.html">glocalstorage.com</a><a href="/admin/openapirepo.html">openapi</a><a href="/admin/agentrepo.html">agent</a></nav><h1>openapi</h1><p>模型接入、临时 API Key、额度与路由</p><p class="repo-note">最近更新：<time datetime="2026-10-08T18:13:14+08:00">2026-10-08 18:13:14</time> · 每日北京时间 0:00 更新。源图观察时间另行保留。</p><section class="repo-check"><h2>最近检测与结果</h2><p>检测时间：2026-10-08 18:13:17（北京时间）</p><p class="repo-note">检测的源码提交：<code>585e50c03227c566f990bea5ead4127bc909de58</code></p><div class="repo-scroll"><table><thead><tr><th>检查范围</th><th>结果</th><th>说明</th></tr></thead><tbody><tr><td>公网入口 HTTP/TLS</td><td>通过</td><td>HTTP 200</td></tr><tr><td>当前源码的 GitHub 工作流</td><td>未检测 / 未取得</td><td>该提交无可读取的工作流结果</td></tr></tbody></table></div><p class="repo-note">入口可达、源码检查与业务验收分别计量；工作流未重跑，不将无记录当通过。</p></section><details class="repo-provenance"><summary>来源文件与内容校验</summary><div class="repo-scroll"><table><thead><tr><th>仓库</th><th>文件</th><th>SHA-256</th></tr></thead><tbody><tr><td>openapi</td><td>README.md</td><td>333719bb574395e3ceb687d153edaa52b61546154a8ee3e82fe534a454f7154b</td></tr><tr><td>openapi</td><td>Dockerfile</td><td>689a603d2fc181b71d223b0e1c5cade09328ee78da96191c1b111896570402f2</td></tr></tbody></table></div></details><h2>组织框架图</h2><div class="repo-card">openapi · 模型接入、临时 API Key、额度与路由</div><p>↓ 按实际源码目录展开</p><div class="repo-grid"><div class="repo-card"><strong>docs</strong><p>规范、设计与交接</p></div><div class="repo-card"><strong>gateway</strong><p>模型网关</p></div><div class="repo-card"><strong>tests</strong><p>测试与验收</p></div></div><h2>源码模块与职责</h2><div class="repo-scroll"><table><thead><tr><th>目录</th><th>职责</th><th>在册文件数</th></tr></thead><tbody><tr><td>docs</td><td>规范、设计与交接</td><td>2</td></tr><tr><td>gateway</td><td>模型网关</td><td>17</td></tr><tr><td>tests</td><td>测试与验收</td><td>3</td></tr></tbody></table></div><p class="repo-note">框架图按当前提交的源码目录与架构文件生成；目录和文件数不代表功能完成率。</p><h2>原仓库架构与状态说明</h2><details><summary>README.md</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere"># openapi
+
+一个&quot;轻&quot;的本地模型接入层。目标：让 OA（或任何 OpenAI 兼容工具）用同一种写法调用本地模型和云端 API，
+换模型只改地址和 Key。
+
+第一个模块是 **gateway**：给一个或多个模型上游发放&quot;限时&quot;或&quot;限量&quot;的临时 API Key。
+上游可以是本地 Ollama、云上 GPU 上的 Ollama，也可以是买来的 DeepSeek、通义等 API。
+
+```
+客户 / 你的 OA / 任何 OpenAI 兼容工具
+        │  Authorization: Bearer sk-local-xxx    model=semifly-27b
+        ▼
+网关 :8800   ← 检查 Key：过期？额度？允许这个模型？ → 按 model 选上游 → 按权重扣点
+        │
+        ├──→ Ollama 127.0.0.1:11434（你的 27b）
+        └──→ https://api.deepseek.com（你的真实 Key 只在网关里）
+```
+
+公网部署见 [DEPLOY.md](DEPLOY.md)。
+
+## 启动
+
+```bash
+git clone https://github.com/niuroumiantt/openapi.git
+cd openapi
+uv venv &amp;&amp; source .venv/bin/activate      # 没装 uv 的话：python3 -m venv .venv &amp;&amp; source .venv/bin/activate
+uv pip install -r requirements.txt        # 或 python -m pip install -r requirements.txt
+GATEWAY_MODEL=qwen3.8:27b-mxfp8 python -m gateway.app
+```
+
+以后每次启动只需要 `source .venv/bin/activate` 和最后一行。
+
+浏览器打开 `http://127.0.0.1:8800`。右上角绿点表示 Ollama 已连接。
+
+| 环境变量 | 默认值 | 说明 |
+|---|---|---|
+| `OLLAMA_URL` | `http://127.0.0.1:11434` | Ollama 地址 |
+| `GATEWAY_MODEL` | 空 | 设了就强制所有请求用这个模型；空则由调用方指定 |
+| `GATEWAY_HOST` / `GATEWAY_PORT` | `127.0.0.1` / `8800` | 网关监听地址。要给局域网其他设备用就改成 `0.0.0.0` |
+| `GATEWAY_DB` | `keys.sqlite3` | Key 数据库文件 |
+| `GATEWAY_CONFIG` | `upstreams.json` | 多上游配置，见 `upstreams.example.json`。文件不存在时退回单个 Ollama 模式 |
+| `GATEWAY_ADMIN_TOKEN` | 空 | 管理口令。空则管理接口只认本机请求；公网部署必须设置 |
+
+## 发 Key
+
+管理页上两组按钮：按时间（5 分钟、30 分钟、2 小时、1 天）和按点数（10 万、100 万、1000 万点）。
+上面可以勾选这把 Key 允许用的模型，不勾选就是全部。
+Key 只显示一次，数据库里只存哈希。额度归零或过期后 Key 自动失效，也可以手动点&quot;作废&quot;。
+
+**点数**：1 点 = 权重为 1 的模型的 1 个 token。`upstreams.json` 里给每个模型设 `weight`，
+本地模型设 1，买来的贵模型按成本设 2、10、30。客户买的是点数，差价就是你的毛利。
+
+也可以用 curl（管理接口只接受本机请求）：
+
+```bash
+curl -X POST http://127.0.0.1:8800/admin/keys -H &#x27;content-type: application/json&#x27; \
+     -d &#x27;{&quot;kind&quot;:&quot;time&quot;,&quot;minutes&quot;:5}&#x27;
+curl -X POST http://127.0.0.1:8800/admin/keys -H &#x27;content-type: application/json&#x27; \
+     -d &#x27;{&quot;kind&quot;:&quot;tokens&quot;,&quot;tokens&quot;:1000000,&quot;models&quot;:[&quot;semifly-27b&quot;]}&#x27;
+```
+
+## Semifly 客户平台（开发中）
+
+`/` 是面向客户的 Semifly 门户；`/v1` 仍是 OpenAI 兼容 API。客户将购买模型专属
+token 包，例如 `deepseek-chat · 5,000,000 tokens · USD 15`，并在门户中查看余额、</pre></details></main></body></html>
