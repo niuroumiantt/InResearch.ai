@@ -86,3 +86,13 @@ TA-04旧图已实看：八个虹彩简化器件在基板上，不能当单裸GPU
 ## TA-05 本地阶段 · 2026-10-09
 
 TA-04回执PR411已合并dc232148；当前owned工作树分支codex/atlas-hbm-package-20261009，最新研究main已ff且原工作区未动。TA-05内置生成两版，首版外露TSV/板级基板身份被拒，第二版原件8d988ef1采用；8独立标签、四视图本地审阅，旧hbm原件保留。状态accepted表示本地验收，实际发布前仍4/35。先完成本项PR精确头CI/合并/公网，再记published和领取TA-06。
+
+## Current blocker: TA-05 PR419, 2026-10-09
+
+PR419 is draft: https://github.com/niuroumiantt/InResearch.ai/pull/419. At exact head eec57f7c719e8d51709428f51cc27a77f7d8ad59, run37857342639 returned FAILURE for all four checks with zero executed steps. GitHub annotation: "The job was not started because an Actions budget is preventing further use." No test code ran in CI. Do not change account budgets, bypass checks, merge or deploy on this evidence. This handoff commit changes the PR head; recovery must check the new exact head.
+
+Local technical_atlas (12s), part_dossier (26s, including HBM live canvas), 14 related unit checks, governance, strict validate and registry passed. Final eight-label SVG and desktop/mobile system/scale screenshots were reviewed. Built-in accepted original is exec-8d988ef1-b4d4-4776-bf2c-2bbc1db4afe3.png; rejected original and both prompts are preserved. Master unchanged. Main remains 4/35, supplemental 4/4, TA-05 accepted locally but NOT published; TA-06 not claimed.
+
+On continuation inspect PR419 latest exact-head checks and whether the Actions budget has recovered first. After all four checks actually succeed, merge, verify public entry/downloads/native SVG and AWS/Spark, then record published in a separate receipt PR. Do not regenerate TA-05 or notify repeatedly while the same blocker is unchanged.
+
+Local evidence: ~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-05/hbm-local/. Prepared public scripts /tmp/inresearch-hbm-review.cjs, /tmp/inresearch-hbm-full-live.cjs and /tmp/inresearch-hbm-source-live.py have NOT run against public TA-05 yet. TA-04 stays published and reachable. Working tree is the owned ops-dashboard tree, not the primary workspace.
