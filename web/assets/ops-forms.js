@@ -68,7 +68,7 @@ initWho();
 const usersDrawer=document.getElementById('users-drawer');
 usersDrawer.addEventListener('toggle',()=>{if(usersDrawer.open && ME?.role==='admin')loadUsers();});
 async function loadJSON(path) {
-  const r = await fetch(path + "?t=" + Date.now(), { cache: "no-store" });
+  const r = await fetch(path + "?t=" + Date.now(), { cache: "no-store", priority: "high" });
   if (!r.ok) throw new Error(path + " → HTTP " + r.status);
   return r.json();
 }

@@ -41,9 +41,16 @@ import sys
 import threading
 import time
 from datetime import datetime
-from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as ThreadingHTTPServer
+from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer as BaseThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, unquote, urlencode, urlsplit
+
+
+class ThreadingHTTPServer(BaseThreadingHTTPServer):
+    # Caddy fans a cold page's HTTP/2 assets out into concurrent HTTP/1 requests.
+    # The stdlib default backlog of five drops this burst before handlers start.
+    request_queue_size = 128
+
 
 ROOT = project_root()
 PY = sys.executable

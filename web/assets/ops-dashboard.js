@@ -147,7 +147,7 @@ async function refresh() {
  const controller=new AbortController();
  const timeout=setTimeout(()=>controller.abort(),20000);
  try {
-  const response=await fetch('/api/ops',{cache:'no-store',signal:controller.signal});
+  const response=await fetch('/api/ops',{cache:'no-store',signal:controller.signal,priority:'high'});
   if(!response.ok) throw Error(response.status===403?'运行诊断仅管理员可见':response.status===401?'登录已失效，请重新登录':'HTTP '+response.status);
   data=await response.json();render();loaded=true;
   $('ops-error').textContent='';
@@ -163,7 +163,9 @@ async function refresh() {
    $('queue-note').textContent='未读到队列明细，不推定没有排队或阻塞任务。';
   }
   $('ops-banner').className='ops-banner bad';$('ops-banner').innerHTML='<strong>当前状态未确认</strong><p>数据请求失败，请重试。保留的旧数字不能证明系统仍然正常。</p>';
- } finally { clearTimeout(timeout);loading=false;$('ops-refresh').disabled=false; }
+ } finally { clearTimeout(timeout);loading=false;$('ops-refresh').disabled=false;
+  // A cold font download must not consume the connection before the first status.
+  const fonts=$('ops-fonts');if(fonts)fonts.media='all'; }
 }
 async function runTask(id) {
  if(busy.has(id)) return;

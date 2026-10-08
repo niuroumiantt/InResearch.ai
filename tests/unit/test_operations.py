@@ -6,6 +6,7 @@ import io
 import json
 import os
 import subprocess
+import socket
 import tempfile
 import threading
 import unittest
@@ -87,6 +88,19 @@ class ObservabilityTests(unittest.TestCase):
 
 
 class OperationsHTTPTests(unittest.TestCase):
+    def test_cold_page_connection_burst_fits_pending_listener(self):
+        # Before a handler can be scheduled, a cold page can open many upstream
+        # connections for CSS, JS, fonts and API reads. They must all connect.
+        server = serve.ThreadingHTTPServer(('127.0.0.1', 0), serve.Handler)
+        connections = []
+        try:
+            for _ in range(20):
+                connections.append(socket.create_connection(server.server_address, timeout=.5))
+        finally:
+            for connection in connections:
+                connection.close()
+            server.server_close()
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
