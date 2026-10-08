@@ -13,3 +13,5 @@
 真实试跑：Spark material-reviews/research-verification已有PJM报告核验队列，实际Codex调用、背景与A分流、两组独立抽样拒绝均留档。拒绝原因是有原文支持但与所选工单关系不足，未正式采用。首批通过及部署回执在M5私有state/research-publish与Spark上述永久目录继续登记，不能用本交接证明运行成功。
 
 后续验收：源码合并；Spark新独立核验服务、M5发表LaunchAgent；首份符合条件的B增量经过CI及真实网站采用/API/支持闭包；matching收到独立核验计数。22来源绑定、A委托、数字/项目专门核验仍各自推进，首通道不是全库语义保证。
+
+首个真实通过：PJM报告rev-5878d30d4bbd4d518ebd0682843f1f1e的chunk1 claim8。原文第2页连续引句，7分B及固定100%抽样（1项集合）独立通过；限定作者判断“容量采购一年期合同、履约准备期和并网缓慢限制新增电源供给”，关联OBJ-grid-supply/interfaces和M04-Q01，尚未关闭工单或修改容量。采用包SHA bcf2ff51c69cba6834676eb8db5d1af672fd5f9cc1adb56e00973d02eb50bae7。首项随实现PR提交，后续使用常驻发表器；合并/网站回执仍另验。

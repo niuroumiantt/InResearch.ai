@@ -99,6 +99,59 @@
       "status": "candidate",
       "stored_path": "originals/c3/c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294/Another Giant Leap_ The Rubin CPX Specialized Accelerator & Rack – SemiAnalysis.pdf",
       "title": "Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "26453df36c502971ad686e384ed64cb8023b432ff9361e365bf82bb388fab847",
+      "coverage": {
+        "characters_read": 78965,
+        "characters_total": 78965,
+        "chunks_read": 33,
+        "chunks_total": 33,
+        "complete": true,
+        "pages_read": 33,
+        "pages_total": 33
+      },
+      "doc_id": "doc-26453df36c502971ad686e384ed64cb8023b432ff9361e365bf82bb388fab847",
+      "id": "doc-26453df36c502971ad686e384ed64cb8023b432ff9361e365bf82bb388fab847",
+      "library_path": "library/by-node/site-grid/2026_SemiAnalysis_Full of Cold Air - PJM's $12B modeling mistake__26453df36c502971.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:gas-turbine",
+        "root",
+        "site:gas-supply",
+        "site:grid",
+        "system:power",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M04-Q01",
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-performance",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-performance",
+        "OBJ-grid-supply",
+        "OBJ-prime-power-interfaces",
+        "OBJ-prime-power-performance",
+        "OBJ-prime-power-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-5878d30d4bbd4d518ebd0682843f1f1e",
+      "report_sha256": "1a79964d6a4a497bdfd698d44480c35bf93a69141c4b359eb482f0315219374c",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/26/26453df36c502971ad686e384ed64cb8023b432ff9361e365bf82bb388fab847/$12B of US ratepayers' money wasted on a modeling mistake and PJM wants to do it again.pdf",
+      "title": "Full of Cold Air - PJM's $12B modeling mistake"
     }
   ],
   "evidence": [
@@ -1456,6 +1509,93 @@
         }
       },
       "verification_scope": "native_original_quotation_and_bounded_author_claim; no full_visual_semantic_certificate"
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ab292fe02cdf7fe0ddfe8589a5b1b8c07514939345612ebd871127fae3a1e81a",
+      "document_id": "doc-26453df36c502971ad686e384ed64cb8023b432ff9361e365bf82bb388fab847",
+      "id": "rev-5878d30d4bbd4d518ebd0682843f1f1e:chunk:1:claim:8:ev:0",
+      "locator": "page:2/chunk:1",
+      "object_ids": [
+        "site:grid"
+      ],
+      "page_index": 1,
+      "question_ids": [
+        "OBJ-grid-supply"
+      ],
+      "quote": "PJM has constrained its own supply of new power by having one-year contracts that start too soon after they are signed, as well as being slow to connect these new plants to the grid.",
+      "reading_revision_id": "rev-5878d30d4bbd4d518ebd0682843f1f1e",
+      "source_sha256": "26453df36c502971ad686e384ed64cb8023b432ff9361e365bf82bb388fab847",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T00:09:20+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。候选与当前OBJ-grid-supply工单存在实质关系：直接讨论容量采购合同安排和发电资源并网对新增供给交付的限制。引文连续完整，前后原文足以识别容量市场及新增电厂语境；可作为明确归属作者的定性主张采用。对OBJ-grid-interfaces仅贡献发电资源与电网连接的依赖线索，对M04-Q01仅贡献并网迟缓的定性线索。没有敏感内容、真实冲突或替换提议，符合B条件。",
+        "workorder_ids": [
+          "Q-OBJ-grid-supply",
+          "Q-OBJ-grid-interfaces",
+          "Q-M04-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 47.344,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "17dd8977619427b12c4a9d0f8f23b34497d85f3d39f3f2ed75f6c3c411ffbdf6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3840,
+            "input_tokens": 25991,
+            "output_tokens": 1374,
+            "reasoning_output_tokens": 429
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 26.429,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "2bd1264aa0810ae6d5b6fec239610f755a8ba0de33c121f647659483e9857f8d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 3840,
+              "input_tokens": 26624,
+              "output_tokens": 509,
+              "reasoning_output_tokens": 235
+            }
+          }
+        },
+        "batch_id": "17ce9c383142b0657358b09398a6fd8387963f6d8c286d5c5bb663854d61f1f0"
+      }
     }
   ],
   "statements": [
@@ -3126,6 +3266,109 @@
         "id": "c3-b-first-batch-20261007",
         "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
         "private_review_package": "Spark material-reviews/reading-adoption/2026-10-07-first-batch/"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-26453df36c502971ad686e384ed64cb8023b432ff9361e365bf82bb388fab847",
+      "evidence_ids": [
+        "rev-5878d30d4bbd4d518ebd0682843f1f1e:chunk:1:claim:8:ev:0"
+      ],
+      "id": "adoption:review:aaf62f56d566e79350500469",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:grid"
+      ],
+      "question_ids": [
+        "OBJ-grid-supply",
+        "OBJ-grid-interfaces",
+        "M04-Q01"
+      ],
+      "reading_revision_id": "rev-5878d30d4bbd4d518ebd0682843f1f1e",
+      "status": "adopted",
+      "text": "SemiAnalysis作者Robert Boswall、Reyk Knuhtsen、Jeremie Eliahou Ontiveros、Oliver Kennon和Dylan Patel在2026年8月16日发表的文章中认为，美国PJM容量市场的一年期合同、签约后过短的履约准备期，以及新电厂接入电网缓慢，限制了PJM新增电源供给。这是作者对新增发电资源采购与并网环节的定性判断。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T00:09:20+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。候选与当前OBJ-grid-supply工单存在实质关系：直接讨论容量采购合同安排和发电资源并网对新增供给交付的限制。引文连续完整，前后原文足以识别容量市场及新增电厂语境；可作为明确归属作者的定性主张采用。对OBJ-grid-interfaces仅贡献发电资源与电网连接的依赖线索，对M04-Q01仅贡献并网迟缓的定性线索。没有敏感内容、真实冲突或替换提议，符合B条件。",
+        "workorder_ids": [
+          "Q-OBJ-grid-supply",
+          "Q-OBJ-grid-interfaces",
+          "Q-M04-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 47.344,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "17dd8977619427b12c4a9d0f8f23b34497d85f3d39f3f2ed75f6c3c411ffbdf6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3840,
+            "input_tokens": 25991,
+            "output_tokens": 1374,
+            "reasoning_output_tokens": 429
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 26.429,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "2bd1264aa0810ae6d5b6fec239610f755a8ba0de33c121f647659483e9857f8d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 3840,
+              "input_tokens": 26624,
+              "output_tokens": 509,
+              "reasoning_output_tokens": 235
+            }
+          }
+        },
+        "batch_id": "17ce9c383142b0657358b09398a6fd8387963f6d8c286d5c5bb663854d61f1f0"
+      },
+      "source_candidate_ids": [
+        "rev-5878d30d4bbd4d518ebd0682843f1f1e:chunk:1:claim:8"
+      ],
+      "limitations": "本段未提供合同原件、具体签约至履约间隔、机组项目案例或并网统计；没有队列规模、平均等待年限、清退率及可复查的因果推导。结论限于作者讨论的PJM新增发电资源，不能推广为所有PJM合同的期限，也不能推定数据中心负荷接入时长或已投运状态。不能据此更新模型参数或关闭相关问题。",
+      "conflict_check": "当前knowledge未提供已采用陈述。所供legacy记录中，2026年10月6日Google与Constellation的长期PPA属于双边购电安排，与本文2026年8月讨论的容量市场合同角色、机制和时间不同，不构成真实冲突或重复。PJM队列申请量记录未证明实际交付速度；LMP、拥堵价差及RAND容量预测也不直接检验本候选的合同与并网因果判断。所供记录中未发现同口径反证，但这不代表完成了外部反证检索；不覆盖或更改任何既有结论。",
+      "gap_dependency_check": "OBJ-grid-supply仍缺具体供应商、项目交付周期和生命周期成本边界；OBJ-grid-interfaces仍缺接口规格、并网条件和可互换限制；M04-Q01仍须取得电网原始队列数据、统计时间窗、等待年限定义及清退口径。NODE-activity-V1-chain仅能获得site:grid成员节点的关联材料，本候选未提供该root节点自身的完整传导链、反例或领先指标，因此不列入本次采用的问题关联。所有相关工单保持开放，骨架及模型值保持不变。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17ce9c383142b0657358b09398a6fd8387963f6d8c286d5c5bb663854d61f1f0",
+        "source_report_sha256": "1a79964d6a4a497bdfd698d44480c35bf93a69141c4b359eb482f0315219374c",
+        "request_sha256": "5317fe56ed08f6b232b492d23a64fab14268a98b0e67752f175b567cfda5bbab"
       }
     }
   ],
