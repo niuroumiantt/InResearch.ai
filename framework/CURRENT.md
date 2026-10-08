@@ -19,7 +19,7 @@
 | 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
 | 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
 | 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
-| 格洛可专题长文 | [专题写作规则 v2.2](../docs/geluoke/专题写作规则.md) | 精简专题、图文交付、手机排版；本机交付路径见长文交接 |
+| 格洛可专题长文 | [专题写作规则 v2.3](../docs/geluoke/专题写作规则.md) | 精简专题、图文交付、手机排版；本机交付路径见长文交接 |
 | 规则替代与在册管理 | 本页 | current_state.json、repository_manifest.json、inresearch.interfaces.governance |
 
 规范源的主题、状态、适用范围、被替代版本及相关实现都登记在 [current_state.json](current_state.json)。[在册清单](../docs/REPOSITORY_REGISTER.md)列出 Git 管理的全部文件、身份、内容摘要和记录集合。外部材料是研究输入，不因出现在仓库内就成为规范。
@@ -108,3 +108,5 @@
 2026-10-08：用户肯定已上线SSD样板，继续TA-02共用3D图册配方，暖白/柔光/细轮廓/独立SVG标注与当前视角导出；后续具体几何仍逐项制作，见10规范与迁移队列。
 
 TA-02首次发布及回执已记录；收尾复审导出文字/像素比与园区匿名启动，可选产品登记未读为未知且不改变权限，见10规范与本次发布回执。
+
+2026-10-08：用户采用行业作者文风与资料基座先用，替代历史资料展示前逐条C3要求；已有来源按02直接挂节点，正式统计/模型/回答按04单独采用。普通专栏去机械结构与重复保险句，见专题写作规则v2.3。

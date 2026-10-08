@@ -145,12 +145,15 @@
         "tests/unit/test_intake.py",
         "src/inresearch/workflow/submissions.py",
         "data/research_knowledge.json",
-        "src/inresearch/knowledge/fact_contract.py"
+        "src/inresearch/knowledge/fact_contract.py",
+        "src/inresearch/knowledge/material_baseline.py",
+        "tests/unit/test_material_baseline.py"
       ],
       "supersedes": [
         "knowledge-legacy"
       ],
-      "reason": "补齐既有 C3 证据与依赖约束、非数字候选入口；网页和导出共用报告模型，失效 Finding 只保留历史入口。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。"
+      "reason": "补齐既有 C3 证据与依赖约束、非数字候选入口；网页和导出共用报告模型，失效 Finding 只保留历史入口。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。",
+      "implementation_revision": "2026.10.08.17"
     },
     {
       "id": "products-legacy",
@@ -813,16 +816,17 @@
     {
       "id": "geluoke-longform-20261001",
       "topic": "geluoke-longform",
-      "status": "current",
+      "status": "superseded",
       "scope": "editorial-delivery",
       "effective_at": "2026-10-01",
-      "source": "docs/geluoke/专题写作规则.md",
+      "source": "docs/archive/2026-10-08/docs__geluoke__专题写作规则-v2.2.md",
       "supersedes": [],
       "reason": "用户要求压缩对话并更新长文规则。v2.2替代原文件v2.1，补充精简专题、模板总览图、事实边界、手机HTML边距和新会话交接。v2.1此前未单列政策，旧正文由Git历史保留；不改变研究数据或线上运行规则。",
       "implementations": [
         "docs/handoff/2026-10-01-geluoke-longform.md"
       ],
-      "implementation_revision": "2.2"
+      "implementation_revision": "2.2",
+      "superseded_by": "geluoke-longform-20261008"
     },
     {
       "id": "architecture-20261002",
@@ -1918,13 +1922,15 @@
         "src/inresearch/workflow/research_publish.py",
         "deploy/spark-reader/inresearch-research-review.service",
         "deploy/m5-research/research-publish.plist.example",
-        "tests/unit/test_research_review.py"
+        "tests/unit/test_research_review.py",
+        "src/inresearch/knowledge/material_baseline.py",
+        "tests/unit/test_material_baseline.py"
       ],
       "supersedes": [
         "reading-codex-batch-20261006"
       ],
-      "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。",
-      "implementation_revision": "2026.10.08.8"
+      "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。",
+      "implementation_revision": "2026.10.08.17"
     },
     {
       "id": "interface-reader-company-20261008",
@@ -2136,11 +2142,14 @@
         "docs/design/technical-atlas/TA-02/acceptance-v1.json",
         "web/components/scene-data.js",
         "tests/scene_bootstrap.cjs",
-        "docs/design/technical-atlas/TA-02/publication-20261008.json"
+        "docs/design/technical-atlas/TA-02/publication-20261008.json",
+        "web/pages/bom.html",
+        "src/inresearch/interfaces/http.py",
+        "tests/unit/test_interface_system.py"
       ],
       "supersedes": [],
-      "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。",
-      "implementation_revision": "2026.10.08.14"
+      "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。",
+      "implementation_revision": "2026.10.08.17"
     },
     {
       "id": "interface-repository-daily-20261008",
@@ -2324,14 +2333,32 @@
         "scripts/publish_repository_pages.py",
         "web/assets/repository-status.js",
         "src/inresearch/interfaces/static.py",
-        "tests/unit/test_repository_projection.py"
+        "tests/unit/test_repository_projection.py",
+        "src/inresearch/knowledge/material_baseline.py",
+        "tests/unit/test_material_baseline.py"
       ],
       "supersedes": [
         "interface-reader-company-20261008"
       ],
-      "reason": "2026-10-08 用户要求系统自行每日北京时间0:00刷新：十一仓库组织图、HTTP/CI/六机检测与原时点分开；常驻macmini Python/系统cron原子发布私有运行投影，不依赖Codex/对话，无每日PR。取代手动四仓库同步及本轮未采用的heartbeat；用户已删suanming/identiry不建入口，本地资料保留。；继承已合并TA-02收尾：公开可选产品登记未知不阻塞、导出文字/DPR及已部署回执；图册实际发布保留。；完整CI继承图册双密度矩阵，分项运行保持全部断言和原限额。；首次跨Mac/Linux发布发现AppleDouble元数据，显式关闭BSD tar附带文件，17载体完整性/内容摘要验证不变。",
-      "implementation_revision": "2026.10.08.repo-daily.transport",
+      "reason": "2026-10-08 用户要求系统自行每日北京时间0:00刷新：十一仓库组织图、HTTP/CI/六机检测与原时点分开；常驻macmini Python/系统cron原子发布私有运行投影，不依赖Codex/对话，无每日PR。取代手动四仓库同步及本轮未采用的heartbeat；用户已删suanming/identiry不建入口，本地资料保留。；继承已合并TA-02收尾：公开可选产品登记未知不阻塞、导出文字/DPR及已部署回执；图册实际发布保留。；完整CI继承图册双密度矩阵，分项运行保持全部断言和原限额。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。",
+      "implementation_revision": "2026.10.08.17",
       "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data."
+    },
+    {
+      "id": "geluoke-longform-20261008",
+      "topic": "geluoke-longform",
+      "scope": "editorial-delivery",
+      "status": "current",
+      "effective_at": "2026-10-08",
+      "source": "docs/geluoke/专题写作规则.md",
+      "supersedes": [
+        "geluoke-longform-20261001"
+      ],
+      "reason": "用户采用行业作者口吻、明确判断、减少机械流程标题与冗余免责声明；普通专栏复用已有材料、统一核稿与定向查证。v2.2保留历史。",
+      "implementations": [
+        "docs/handoff/history-foundation-writing-20261008.md"
+      ],
+      "implementation_revision": "2.3"
     }
   ],
   "entrypoints": [

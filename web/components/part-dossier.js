@@ -1,7 +1,7 @@
 /* One dossier owns its DOM; the scene supplies data and its inspector. */
 import {latest, sparkline} from './series-summary.js';
 import {mountNodeResearch, safeURL} from './research-graph.js';
-import {mountTechnicalAtlas} from './technical-atlas.js';
+import {mountTechnicalAtlas} from './technical-atlas.js?v=20261008.15';
 
 export function dossierNode(tag, text, className) {
   const actual = document.createElement(tag);
@@ -16,9 +16,10 @@ function dossierLink(text, href) {
   return a;
 }
 export function createPartDossier({el, view, BOM, companies: CN,
-  prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector}) {
+  prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector, atlasHost = el}) {
 return function showDossier(p) {
   el.replaceChildren();
+  if (atlasHost !== el) atlasHost.replaceChildren();
   el.dataset.partId = p.id;
   const close = dossierNode("button", "✕", "close");
   close.type = "button"; close.setAttribute("aria-label", "关闭部件档案");
@@ -42,7 +43,8 @@ return function showDossier(p) {
   slot.id = "inspSlot"; slot.style.display = "none";
   slot.append(dossierNode("div", "概念部件预览 · 拖动旋转", "ihint")); el.append(slot);
   el.append(dossierNode("div", p.desc || "说明待补充"));
-  mountTechnicalAtlas(el, p.id);
+  const hasAtlas = mountTechnicalAtlas(atlasHost, p.id);
+  if (atlasHost !== el) atlasHost.hidden = !hasAtlas;
   const links = dossierNode("div", undefined, "sec");
   links.append(dossierNode("h3", "参考研究与结构"));
   links.append(dossierLink("节点页：五列与目标", "node.html?id=" + encodeURIComponent("part:" + p.id)));
