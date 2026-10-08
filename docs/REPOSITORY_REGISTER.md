@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.14。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.16。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1229。
+在册文件：1247。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 305 |
-| 运行代码 | 279 |
+| 历史快照 | 306 |
+| 运行代码 | 291 |
 | 现行规范 | 14 |
-| 项目配置 | 117 |
+| 项目配置 | 119 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 108 |
-| 测试 | 139 |
+| 配套说明 | 109 |
+| 测试 | 141 |
 
 ## 在册记录集合
 
@@ -352,7 +352,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 42 |
+| `framework/current_state.json` | policies | 43 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -365,7 +365,7 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 24 |
+| `framework/interface_manifest.json` | static_pages | 31 |
 | `framework/interface_manifest.json` | public_pages | 13 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
@@ -436,6 +436,7 @@
 | `research/M15.md` | Finding | 12 |
 | `web/assets/models/manifest.json` | models | 1 |
 | `web/assets/world.geo.json` | features | 180 |
+| `web/pages/admin/repo-content/infra-daily.json` | reach | 6 |
 
 ## 全部文件
 
@@ -541,6 +542,7 @@
 | `docs/archive/2026-10-06/worktree-snapshots/terminal-office-wip-d9477a7.patch` | 历史快照 |
 | [docs/archive/2026-10-07/framework__04_before_native_text.md](archive/2026-10-07/framework__04_before_native_text.md) | 历史快照 |
 | [docs/archive/2026-10-08/framework__05_interface_system__before_reader_company.md](archive/2026-10-08/framework__05_interface_system__before_reader_company.md) | 历史快照 |
+| [docs/archive/2026-10-08/framework__05_interface_system__before_repository_daily.md](archive/2026-10-08/framework__05_interface_system__before_repository_daily.md) | 历史快照 |
 | [docs/design/technical-atlas/MIGRATION_PLAN.md](design/technical-atlas/MIGRATION_PLAN.md) | 配套说明 |
 | `docs/design/technical-atlas/TA-01/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-01/labels-v1.json` | 项目配置 |
@@ -598,6 +600,7 @@
 | [docs/handoff/project-evidence-loop-20261006.md](handoff/project-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/reader-failure-ocr-repair-20261006.md](handoff/reader-failure-ocr-repair-20261006.md) | 配套说明 |
 | [docs/handoff/reading-adoption-first-batch-20261007.md](handoff/reading-adoption-first-batch-20261007.md) | 配套说明 |
+| [docs/handoff/repository-daily-refresh-20261008.md](handoff/repository-daily-refresh-20261008.md) | 配套说明 |
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
 | [docs/handoff/research-throughput-20261008.md](handoff/research-throughput-20261008.md) | 配套说明 |
 | [docs/handoff/research-verification-20261008.md](handoff/research-verification-20261008.md) | 配套说明 |
@@ -1239,7 +1242,11 @@
 | `scripts/build_technical_atlas.py` | 运行代码 |
 | `scripts/cards_ocr.py` | 运行代码 |
 | `scripts/cards_verify.py` | 运行代码 |
+| `scripts/daily_repository_pages.py` | 运行代码 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
+| `scripts/publish_repository_pages.py` | 运行代码 |
+| `scripts/repository_checks.py` | 运行代码 |
+| `scripts/repository_pages_daemon.py` | 运行代码 |
 | `scripts/sync_repo_pages.py` | 运行代码 |
 | [src/inresearch/README.md](../src/inresearch/README.md) | 配套说明 |
 | `src/inresearch/__init__.py` | 运行代码 |
@@ -1508,7 +1515,9 @@
 | `tests/unit/test_reading_revisions.py` | 测试 |
 | `tests/unit/test_record_validates.py` | 测试 |
 | `tests/unit/test_report_model.py` | 测试 |
+| `tests/unit/test_repository_checks.py` | 测试 |
 | `tests/unit/test_repository_pages.py` | 测试 |
+| `tests/unit/test_repository_projection.py` | 测试 |
 | `tests/unit/test_research.py` | 测试 |
 | `tests/unit/test_research_match.py` | 测试 |
 | `tests/unit/test_research_navigation.py` | 测试 |
@@ -1574,6 +1583,7 @@
 | `web/assets/renders/nic.png` | 静态资源 |
 | `web/assets/renders/psu.png` | 静态资源 |
 | `web/assets/renders/ssd.png` | 静态资源 |
+| `web/assets/repository-status.js` | 运行代码 |
 | `web/assets/research.css` | 运行代码 |
 | [web/assets/technical-atlas/README.md](../web/assets/technical-atlas/README.md) | 配套说明 |
 | `web/assets/technical-atlas/ssd-v1-preview.jpg` | 静态资源 |
@@ -1630,17 +1640,26 @@
 | `web/components/tasks-board.js` | 运行代码 |
 | `web/components/technical-atlas.css` | 运行代码 |
 | `web/components/technical-atlas.js` | 运行代码 |
+| `web/pages/admin/agentrepo.html` | 运行代码 |
+| `web/pages/admin/aimailrepo.html` | 运行代码 |
 | `web/pages/admin/company.html` | 运行代码 |
 | `web/pages/admin/fetchspec/reporg.html` | 运行代码 |
 | `web/pages/admin/fetchspecrepo.html` | 运行代码 |
+| `web/pages/admin/glocalstoragerepo.html` | 运行代码 |
 | `web/pages/admin/inewsrepo.html` | 运行代码 |
 | `web/pages/admin/infrarepo.html` | 运行代码 |
 | `web/pages/admin/inresearchrepo.html` | 运行代码 |
+| `web/pages/admin/leadsgenrepo.html` | 运行代码 |
+| `web/pages/admin/oarepo.html` | 运行代码 |
+| `web/pages/admin/openapirepo.html` | 运行代码 |
 | `web/pages/admin/product/index.html` | 运行代码 |
+| `web/pages/admin/repo-content/checks.json` | 项目配置 |
 | `web/pages/admin/repo-content/fetchspec.html` | 运行代码 |
+| `web/pages/admin/repo-content/infra-daily.json` | 项目配置 |
 | `web/pages/admin/repo-content/infra.html` | 运行代码 |
 | `web/pages/admin/repo-content/manifest.json` | 项目配置 |
 | `web/pages/admin/repos.html` | 运行代码 |
+| `web/pages/admin/semiflyrepo.html` | 运行代码 |
 | `web/pages/auth/forbidden.html` | 运行代码 |
 | `web/pages/auth/layout.html` | 运行代码 |
 | `web/pages/auth/login.html` | 运行代码 |

@@ -39,11 +39,11 @@ const ready = new Promise((resolve, reject)=>{
   assert.equal(new URL(page.url()).pathname,'/login');
   const login=await context.request.post(base+'/api/login', {data:{username:'admin',password:'Only-test-architecture-8391'}});
   assert.equal(login.status(),200);
-  for(const name of ['repos','inresearchrepo','inewsrepo','fetchspecrepo','infrarepo']) {
+  for(const name of ['repos','inresearchrepo','inewsrepo','fetchspecrepo','infrarepo','oarepo','aimailrepo','leadsgenrepo','semiflyrepo','glocalstoragerepo','openapirepo','agentrepo']) {
    const response=await page.goto(base+'/admin/'+name+'.html');
    assert.equal(response.status(),200,name);
    await page.locator('#ui-skinbar').waitFor();
-   assert.equal(await page.locator('.repo-nav a').count(),5);
+   assert.equal(await page.locator('.repo-nav a').count(),12);
    if(name==='inresearchrepo') {
      await page.locator('#material-lineage .value').filter({hasText:'447.65'}).waitFor();
      assert.equal(await page.locator('[data-step]').count(),5);
@@ -54,6 +54,7 @@ const ready = new Promise((resolve, reject)=>{
      assert.ok((await page.locator('#material-stores').innerText()).includes('209.29 MB'));
      assert.ok((await page.locator('#material-web-storage').innerText()).includes('138.28 MB'));
    }
+   assert.ok((await page.locator('.repo-wrap').innerText()).includes('最近检测与结果'));
    const backgrounds=new Set();
    for(const width of (name==='inresearchrepo'?[1440,390,320]:[1440,390])) for(const mode of ['light','dark']) {
     await page.setViewportSize({width,height:1000});
@@ -104,7 +105,7 @@ const ready = new Promise((resolve, reject)=>{
   await page.goto(base+'/admin/repo-content/infra.html');
   assert.equal(new URL(page.url()).pathname,'/login');
   assert.deepEqual(errors,[]);
-  console.log('PASS repository pages: real login/logout, 5 pages, 22 desktop/mobile theme views; material lineage, bytes/scopes, unknown/failure/retry, embedded SVGs without nested scrolling and old-link redirect');
+  console.log('PASS repository pages: real login/logout, 12 pages, desktop/mobile theme views with latest checks; material lineage, bytes/scopes, unknown/failure/retry, embedded SVGs without nested scrolling and old-link redirect');
  } finally {
   if(browser) await browser.close();
   lines.close();fixture.stdin.end();

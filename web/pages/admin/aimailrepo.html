@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script defer src="/assets/repository-status.js"></script>
+<script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+<title>aimail · 仓库架构 · inresearch.ai</title>
+<style>
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.65 var(--ui-font)}
+.repo-wrap{max-width:1200px;margin:auto;padding:24px 20px 64px;min-width:0}
+.repo-wrap h1{font-size:28px;margin:8px 0}.repo-wrap h2{font-size:20px;margin:30px 0 12px}
+.repo-wrap a{color:var(--accent)}.repo-note{color:var(--muted);overflow-wrap:anywhere}
+.repo-nav{display:flex;flex-wrap:wrap;gap:10px 22px}.repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.repo-card,.repo-flow li{padding:18px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
+.repo-card{min-width:0;overflow-wrap:anywhere}.repo-card h2{margin:0 0 8px}.repo-scroll{overflow-x:auto}.repo-wrap table{border-collapse:collapse;width:100%;font-size:13px}
+.repo-ecosystem{max-width:760px;margin:28px auto;text-align:center}.repo-upstream{display:grid;grid-template-columns:1fr 1fr;gap:18px}.repo-ecosystem .repo-card{margin-bottom:12px}
+.repo-wrap th,.repo-wrap td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+.repo-flow{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:0}.repo-flow li{flex:1;min-width:150px}
+.repo-flow li:not(:last-child)::after{content:' →';color:var(--accent)}
+.repo-frame{width:100%;height:76vh;min-height:480px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
+.repo-provenance{margin:18px 0;font-size:12px}.repo-provenance code{overflow-wrap:anywhere}
+@media(max-width:600px){.repo-wrap{padding:18px 12px 40px}.repo-wrap h1{font-size:23px}.repo-flow{display:block}.repo-flow li{margin:8px 0}.repo-frame{height:80vh}}
+</style></head><body><inresearch-shell data-section="admin"></inresearch-shell>
+<main class="repo-wrap"><nav class="repo-nav" aria-label="仓库架构">
+<a href="/admin/repos.html">仓库总览</a><a href="/admin/inresearchrepo.html">InResearch.ai</a><a href="/admin/inewsrepo.html">inews.today</a><a href="/admin/fetchspecrepo.html">Fetchspec</a><a href="/admin/infrarepo.html">infra</a><a href="/admin/oarepo.html">oa</a><a href="/admin/aimailrepo.html">aimail</a><a href="/admin/leadsgenrepo.html">leadsgen</a><a href="/admin/semiflyrepo.html">semifly.ai</a><a href="/admin/glocalstoragerepo.html">glocalstorage.com</a><a href="/admin/openapirepo.html">openapi</a><a href="/admin/agentrepo.html">agent</a></nav><h1>aimail</h1><p>邮件原文、AI 阅读、个人发件与销售交接</p><p class="repo-note">最近更新：<time datetime="2026-10-08T18:13:14+08:00">2026-10-08 18:13:14</time> · 每日北京时间 0:00 更新。源图观察时间另行保留。</p><section class="repo-check"><h2>最近检测与结果</h2><p>检测时间：2026-10-08 18:13:14（北京时间）</p><p class="repo-note">检测的源码提交：<code>26774d275d5f2971959ac40f4523dc006866c37c</code></p><div class="repo-scroll"><table><thead><tr><th>检查范围</th><th>结果</th><th>说明</th></tr></thead><tbody><tr><td>公网入口 HTTP/TLS</td><td>通过</td><td>HTTP 302 · 登录保护跳转符合预期</td></tr><tr><td>当前源码的 GitHub 工作流</td><td>通过</td><td>该源码提交的 GitHub 工作流；不是本次重跑完整测试</td></tr></tbody></table></div><p class="repo-note">入口可达、源码检查与业务验收分别计量；工作流未重跑，不将无记录当通过。</p><p><a href="https://github.com/niuroumiantt/aimail/actions/runs/37208066693">ci</a> · success</p></section><details class="repo-provenance"><summary>来源文件与内容校验</summary><div class="repo-scroll"><table><thead><tr><th>仓库</th><th>文件</th><th>SHA-256</th></tr></thead><tbody><tr><td>aimail</td><td>README.md</td><td>352944a02d8dd409b1dad2ade7978427f44da74663d87b8950d2c20ce64864d3</td></tr><tr><td>aimail</td><td>STATUS.md</td><td>b49e32c6e8dc7d81d76383a8b77b615823ac429538a7d815f38861f7230506fd</td></tr><tr><td>aimail</td><td>docs/aimail-scope.md</td><td>c4efe7e46ebd4e724168651a592ce469b2f99eb870ecbff8e2d9cb1644593d24</td></tr><tr><td>aimail</td><td>pyproject.toml</td><td>1e8019378efbd23fa75cb006d7ed8989172fea760e34386b4f5e8e00e0b64a1c</td></tr><tr><td>aimail</td><td>Dockerfile</td><td>c0798103721eb840932dbf72ea21fca33e2aa3af1a7fcb6e07d861e04daf6d46</td></tr></tbody></table></div></details><h2>组织框架图</h2><div class="repo-card">aimail · 邮件原文、AI 阅读、个人发件与销售交接</div><p>↓ 按实际源码目录展开</p><div class="repo-grid"><div class="repo-card"><strong>deploy</strong><p>部署配置</p></div><div class="repo-card"><strong>docs</strong><p>规范、设计与交接</p></div><div class="repo-card"><strong>evals</strong><p>模型评测</p></div><div class="repo-card"><strong>examples</strong><p>使用示例</p></div><div class="repo-card"><strong>server</strong><p>服务端与接口</p></div><div class="repo-card"><strong>tools</strong><p>开发与检查工具</p></div><div class="repo-card"><strong>web</strong><p>网页界面</p></div></div><h2>源码模块与职责</h2><div class="repo-scroll"><table><thead><tr><th>目录</th><th>职责</th><th>在册文件数</th></tr></thead><tbody><tr><td>deploy</td><td>部署配置</td><td>1</td></tr><tr><td>docs</td><td>规范、设计与交接</td><td>48</td></tr><tr><td>evals</td><td>模型评测</td><td>18</td></tr><tr><td>examples</td><td>使用示例</td><td>1</td></tr><tr><td>server</td><td>服务端与接口</td><td>101</td></tr><tr><td>tools</td><td>开发与检查工具</td><td>27</td></tr><tr><td>web</td><td>网页界面</td><td>145</td></tr></tbody></table></div><p class="repo-note">框架图按当前提交的源码目录与架构文件生成；目录和文件数不代表功能完成率。</p><h2>原仓库架构与状态说明</h2><details><summary>README.md</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere"># aimail
+
+公司的 AI 邮件沟通与销售交接工作台。leadsgen 交付待联系对象，或客户向 sales@ 来信；
+aimail 阅读、翻译、总结并分配负责人，由获授权的个人邮箱联系客户。
+
+aimail 是公司 OA 办公体系中的邮件应用，独立仓库承载研发；统一身份由
+login.glocalstorage.cn 提供，部署由 infra 管理。产品规则见 [CONSTITUTION.md](CONSTITUTION.md)。
+Leadsgen 承担轻量获客 CRM：发现、客户资料、分配和早期跟进；Aimail 负责邮件与个人发件身份。
+报价、订单和合同尚未接入。跨仓库边界见 [销售工作流合同](https://github.com/niuroumiantt/infra/blob/main/docs/sales-workflow.md)。
+
+新安装的产品名、Python 包入口、GitHub 仓库、运行容器和本机配置/数据目录使用 `aimail`。旧数据库路径在显式迁移前会继续使用；历史 SQLite 文件名 `mail2leads.sqlite3` 保留以免改名时误迁移用户数据。
+不要根据页面标题直接改生产路径。职责以 [范围定义](docs/aimail-scope.md) 为准，
+当前版本、测试、候选部署与剩余验收见 [交付记录](docs/delivery-milestones.md)。
+
+## 现在能跑什么
+
+收信、读数、线索建议与确认、起草与回信,链路已通;每一环的验证状态见下。
+能力状态以 [STATUS.md](STATUS.md) 为准,那里只认机器验证,宁可写「未完成」。
+
+开发信候选功能：`/outreach` 管理外部潜客的人工批准序列。
+导入令牌 `OUTREACH_IMPORT_TOKEN` 不能发信；`OUTREACH_ENABLED` 默认关闭，
+开启后也仅执行已确认的首封和 +7/+14/+28/+60/+90 天固定内容。
+规则、上线门槛与已知限制见 [ADR 0008](docs/adr/0008-approved-outreach-sequences.md)。
+
+客户工作台的会话授权使用来源分配版本防止迟到请求恢复前任权限；接口兼容性、
+升级顺序及跨邮箱回复规则见 [ADR 0009](docs/adr/0009-versioned-thread-access.md)。
+
+```bash
+uv sync                      # Python 3.12,一个 venv
+bash tools/precommit.sh      # 提交前必须整条跑完,跑子集不算;CI 跑的就是它
+cd web &amp;&amp; pnpm dev           # 界面开发服务器
+```
+
+守卫在 `tools/guard_*.py`,每个守着宪法的一条,每个都有攻击测试(`tools/tests/`)。
+
+## 接真邮箱(M2)
+
+```bash
+cp .env.example .env         # 填 IMAP 地址、账号、密码;密码永远不进仓库
+set -a; . ./.env; set +a
+uv run python -m aimail ingest    # 收一次信就退出,看日志里拉了几封
+cd web &amp;&amp; pnpm build &amp;&amp; cd ..
+WEB_DIST=web/dist uv run python -m aimail serve   # http://localhost:8900
+```
+
+`pnpm build` 的生产产物默认连接同一服务的 API；开发服务器默认显示虚构样本，
+需要接本地 API 时用 `VITE_DATA_SOURCE=api pnpm dev`。服务默认只监听 `127.0.0.1`，
+用 Tailscale Serve 或反向代理公开；容器环境已显式监听 `0.0.0.0`。
+
+收信的顺序是刻意的:原文先落库(一个字节不改,数据库触发器拒绝改删),再解析、切引用、归并线程。
+IMAP 连接显式校验证书——`imaplib` 默认不校验。
+
+## 读信(M3)
+
+来信落库后立刻读数:中英摘要、事实点、语种、是不是询盘;模型引用的每个数字由代码回原文核对,
+对不上的界面标红。不是询盘的线程自动归到「无效」。
+
+```bash
+uv run python -m aimail read     # 给还没有读数的来信补读(换模型、改合同后用)
+uv run python evals/summarize_inquiry/run.py evals/summarize_inquiry/dataset.jsonl --no-judge
+```
+
+后端由 `LLM_BACKEND` 决定:`local`(Spark,默认)或 `claude`。同一份合同两条后端,
+两边跑同一套评测集,分数才可比;`fast` 还是 `brain` 由评测集裁决,不由人拍板。
+</pre></details><details><summary>STATUS.md</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere"># 能力状态
+
+状态定义(写死,不改):
+
+- ✅ 有测试证明,测试名写在「测试」列,`tools/guard_status.py` 核对它真的存在
+- ⚠ 能跑但没测试,或测试不完整
+- ⏳ 未完成
+
+没有测试的能力不得标 ✅。
+
+## 能力
+
+| 能力 | 状态 | 测试 |
+| --- | --- | --- |
+| 守卫:令牌之外禁字面色值 | ✅ | test_hex_outside_tokens_is_caught, test_color_function_outside_tokens_is_caught, test_hex_inside_tokens_is_allowed |
+| 守卫:禁 Tailwind 任意值 | ✅ | test_arbitrary_value_is_caught, test_arbitrary_variant_is_caught |
+| 守卫:pages/ 只许布局类 | ✅ | test_pages_visual_class_is_caught, test_pages_layout_and_text_size_are_allowed, test_pages_text_color_is_caught_even_with_variant_prefix |
+| 守卫:适配器之外禁主机名与别的仓库 | ✅ | test_hostname_outside_backends_is_caught, test_tailnet_ip_outside_backends_is_caught, test_other_repo_name_is_caught, test_hostname_inside_backends_is_allowed |
+| 守卫:STATUS 的 ✅ 必须指向真实测试 | ✅ | test_check_without_test_name_is_caught, test_check_naming_missing_test_is_caught, test_check_with_existing_test_passes, test_frontend_test_name_is_found |
+| 守卫:抄来的文件必须登记 | ✅ | test_header_without_listing_is_caught, test_listing_without_file_is_caught, test_listed_and_headed_file_passes |
+| 守卫:派生表必须有署名字段 | ✅ | test_derived_table_missing_attribution_is_caught, test_nullable_attribution_column_is_caught, test_unmarked_table_is_not_a_derived_table |
+| 跳过的测试导致 CI 失败 | ✅ | test_skipped_test_fails_the_run |
+| web 工具链:构建、测试、lint 可跑 | ✅ | shell offers the shared product link back to the inbox |
+| 读数卡:四种状态,署名可见,可疑摘要压在警告下并调暗 | ✅ | shows who produced the reading, puts the warning above a summary with unverified numbers and dims it, renders the failure state instead of an empty summary, labels a newsletter without judging its value, says plainly when there is no reading yet |
+| 主题:亮 / 暗 / 跟随系统,显式选择盖过系统偏好 | ✅ | theme toggle stamps data-theme on the root and clears it for system |
+| 字体:全站统一的自托管 Inter + Noto Sans SC,包与清单一致,主题与包同一字体栈,不从 Google Fonts 取字 | ✅ | font package matches its manifest byte for byte, theme and font package declare the same stack and nothing loads from Google Fonts |
+| 头像:同一个人永远同一色,中日韩名取首字 | ✅ | gives the same person the same tint every time, uses the first character for CJK names |
+| 空状态:淡铺骨架 + 一句话 + 动作 | ✅ | empty state renders its action |
+| 收信:原文落库后不可改不可删(数据库触发器) | ✅ | test_message_update_is_rejected, test_message_delete_is_rejected, test_attachment_is_immutable, test_raw_bytes_are_kept_verbatim |
+| 收信:重复投递只存一次(Message-ID + 原文哈希两道唯一约束) | ✅ | test_same_message_id_is_stored_once, test_same_bytes_are_stored_once_even_without_message_id, test_redelivered_message_is_skipped_not_duplicated |
+| 收信:断点续拉,UIDVALIDITY 变化不重复 | ✅ | test_cursor_advances_per_message_so_a_crash_resumes, test_uidvalidity_change_refetches_without_duplicating, test_second_run_fetches_nothing_new |
+| 收信:解析失败不丢原文 | ✅ | test_unparsable_message_keeps_its_raw_bytes, test_garbage_bytes_do_not_crash_the_parser |
+| 解析:HTML 退化成文本、附件带哈希、编码主题、线程头 | ✅ | test_plain_text_body_and_headers, test_html_only_mail_falls_back_to_text, test_attachments_are_listed_with_hash, test_thread_headers_are_parsed |
+| 切引用:Gmail / Outlook / 中文客户端 / &gt; 行,认不出整封算新增 | ✅ | test_gmail_on_wrote_splits, test_outlook_from_sent_block_splits, test_chinese_reply_marker_splits, test_angle_bracket_lines_split, test_no_quote_keeps_everything_as_new |
+| 归并:靠头、靠主题+对方、不同对方不并、超 60 天不并、我方回信归客户线程 | ✅ | test_reply_with_in_reply_to_joins_thread, test_same_subject_same_sender_joins_thread, test_same_subject_different_sender_is_a_new_thread, test_same_subject_after_window_is_a_new_thread, test_outgoing_reply_joins_customer_thread |
+| IMAP 连接校验证书与主机名 | ✅ | test_ssl_context_verifies_certificate_and_hostname |
+| API:线程列表与详情形状与界面一致,错 ID 404 | ✅ | test_thread_list_has_the_web_shape, test_thread_detail_carries_messages_quoted_and_attachments, test_unknown_thread_is_404, test_folder_filter |
+| 守卫:没有评测集的模型任务不上线 | ✅ | test_task_without_eval_folder_is_caught, test_task_with_run_but_no_sample_dataset_is_caught, test_task_with_complete_eval_folder_passes, test_module_without_task_version_needs_no_evals |
+| 后端:模型不合规时报错、只重试一次、绝不编结果 | ✅ | test_truncated_json_is_rejected_rather_than_guessed, test_bad_output_gets_exactly_one_repair_attempt, test_wrong_types_are_rejected_not_coerced, test_unknown_backend_name_is_rejected_loudly |
+| 后端:发给网关的字节正确(路径、Bearer、模型名、温度 0、字段模板) | ✅ | test_request_lands_on_the_openai_chat_completions_path, test_api_key_is_sent_as_a_bearer_token, test_payload_carries_model_zero_temperature_and_shape, test_fenced_answer_from_a_real_socket_is_parsed |
+| 核对:模型引用的数字回原文核对,千分位不误判 | ✅ | test_number_absent_from_source_is_flagged, test_thousands_separator_is_not_a_hallucination, test_chinese_comma_and_whitespace_normalized |
+| 读数:落库带署名,失败也落库且显形,类型不覆盖销售状态 | ✅ | test_reading_is_stored_with_attribution, test_failed_reading_is_stored_as_failed_not_empty, test_non_inquiry_preserves_thread_folder, test_unverified_numbers_are_recorded_not_hidden |
+| 读数:核对依据与模型输入是同一份文本;只读来信;读数失败不挡收信 | ✅ | test_quoted_history_is_part_of_the_verified_source, test_ingest_reads_incoming_only, test_reader_failure_does_not_block_ingest |
+| API:读数以界面形状暴露 | ✅ | test_api_exposes_reading_in_the_web_shape |
+| 线索:询盘读数后自动提建议、带署名;提取失败也记录、可数 | ✅ | test_inquiry_reading_creates_an_open_suggestion_with_attribution, test_non_inquiry_creates_no_suggestion, test_failed_extraction_is_recorded_not_silent, test_unverified_numbers_in_a_suggestion_are_kept |
+| 线索:只有人能把建议变成事实,后台没有这条路 | ✅ | test_confirm_requires_a_person, test_background_code_has_no_way_to_confirm, test_api_refuses_confirm_without_identity_and_accepts_tailscale_header |
+| 线索:确认 → 线索表 + 线程归待报价;不能确认两次;忽略不产生线索;状态受校验 | ✅ | test_confirm_turns_suggestion_into_a_lead_and_moves_the_thread, test_confirming_twice_is_rejected, test_dismiss_marks_the_suggestion_and_creates_no_lead, test_lead_status_is_validated |
+| API:建议与线索的形状与界面一致 | ✅ | test_api_suggestion_and_lead_shapes_match_the_web |
+| 界面:确认前先写名字;建议里的可疑数字先标出;提取失败有计数 | ✅ | asks for a name before anyone can confirm, does not ask for a name once there is one, shows unverified numbers on a suggestion before confirmation, counts inquiries whose lead extraction failed |
+| 发信:没有令牌发不出;令牌只签给人、绑线程、一次性、十分钟过期 | ✅ | test_token_is_bound_and_single_use, test_expired_token_is_rejected, test_token_is_only_minted_for_a_person, test_send_without_a_token_is_impossible |
+| 发信:回信归客户线程、带 In-Reply-To、落库为我方、线程归已回复;空信拒发 | ✅ | test_sent_message_threads_correctly_and_lands_as_outgoing, test_empty_body_or_no_recipient_is_refused |
+| 发信:收信、读数、起草模块连发信模块都 import 不到 | ✅ | test_background_modules_never_import_send |
+| 起草:以整条线程为依据,带署名落库,失败也落库且显形 | ✅ | test_draft_is_stored_with_attribution, test_failed_draft_is_visible_not_blank, test_draft_source_is_the_whole_thread |
+| API:发信要人、要令牌、要 SMTP;伪造令牌 403;令牌用一次作废;起草要人 | ✅ | test_api_send_flow_requires_person_token_and_transport, test_api_draft_endpoints |
+| 记忆:同一地址或同一公司域算同一位客户,公共邮箱域只认地址;不出本邮箱,不含自己 | ✅ | test_same_address_is_the_same_customer, test_same_company_domain_is_the_same_customer, test_public_mail_domain_is_not_a_company, test_history_excludes_itself_and_other_mailboxes |
+| 记忆:历史段只有原文摘录与我们记的状态,模型输出进不去;历史里的数字算回得到原文;没有历史不占提示词 | ✅ | test_history_is_raw_excerpt_and_our_status_never_a_model_summary, test_numbers_from_history_count_as_verified, test_no_history_adds_nothing_to_the_prompt |
+| 记忆:读数与起草的模型输入都带这位客户的往来;详情 API 带 history,列表不带 | ✅ | test_reader_shows_the_model_this_customers_history, test_draft_source_carries_history, test_thread_detail_carries_history_in_the_web_shape |
+| 界面:线程页从详情接口取信件与历史;老客户显示往来卡,可点回去;第一次来信在页头标出 | ✅ | thread page shows the messages from the detail which the list does not carry, shows past dealings with their outcome and a way back to them, marks a first-time customer in the thread header, says nothing about history until the detail has loaded, shows the history card for a returning customer |
+| 附件:PDF 文字层、xlsx、docx、csv/txt 读成文字;扫描件、图片、坏文件、超大文件都是带原因的失败,不留白 | ✅ | test_pdf_text_layer_is_read, test_scanned_pdf_is_failed_with_a_visible_reason, test_xlsx_rows_become_tab_separated_lines, test_docx_paragraphs_are_read, test_image_unknown_and_broken_files_fail_with_reasons_not_blanks, test_oversized_attachment_is_refused_before_parsing, test_text_files_decode_utf8_then_gb18030 |
+| 附件:读出的文字带署名落库、幂等,原字节不动;读不出不挡收信 | ✅ | test_ingest_stores_attachment_text_with_attribution_and_keeps_the_blob, test_broken_attachment_does_not_block_ingest |
+| 附件:读数与起草的模型输入带附件文字,附件里的数字算回得到原文;API 按邮箱隔离按需取正文 | ✅ | test_reader_sees_attachment_text_and_its_numbers_verify, test_draft_source_carries_attachment_text, test_api_exposes_attachment_state_and_text_only_within_the_mailbox |
+| 界面:附件片标出读没读出来、原因可见;点开看读出的文字;没有取用器时只列名字 | ✅ | marks an attachment that could not be read and says why, opens the text that was read out of an attachment, shows the reason instead of a blank sheet when the text is missing, lists attachments without a way to open them when no handler is given |
+| 下游:/v1 只认机器令牌;只出确认过的事实,建议不出门;形状钉死;机器令牌写不了线索 | ✅ | test_v1_leads_requires_a_machine_token, test_v1_returns_only_confirmed_facts_never_suggestions, test_machine_token_cannot_confirm_or_edit_leads, test_token_parsing_rejects_short_or_nameless_tokens |
+| 下游:游标 (since, after) 同一秒不漏;按状态过滤;按邮箱隔离;CSV 导出 | ✅ | test_v1_since_cursor_status_filter_and_mailbox_isolation, test_csv_export_has_one_row_per_lead_and_survives_commas |
+| 推送:写线索的同一事务里记事件;签名可验;送到即标记不重复;失败退避重试、原因可见、永不丢 | ✅ | test_confirm_and_update_enqueue_events_atomically, test_delivery_is_signed_and_marked_delivered, test_failed_delivery_backs_off_and_stays_visible, test_network_error_is_a_recorded_failure_not_a_crash, test_real_http_delivery_end_to_end |</pre></details><details><summary>docs/aimail-scope.md</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere"># aimail：邮件沟通与销售交接
+
+2026-10-01 跨仓库职责校准。本文件包含目标与历史验证记录，不是新版本上线声明。
+当前合同见 [销售工作流](https://github.com/niuroumiantt/infra/blob/main/docs/sales-workflow.md)。
+
+## 责任
+
+- leadsgen 发现公司与联系人，保留采集来源，把待联系对象交给 aimail。
+- aimail 负责邮件收发、AI 翻译与阅读、回复建议，以及任何阶段的销售交接。
+- sales@glocalstorage.com 只收信；客户沟通从获授权的个人邮箱发出。
+- 同一个员工可以读取多个获授权邮箱；读取权限不授予发件身份。
+- Leadsgen 已承担轻量获客 CRM：客户资料、分配、跟进阶段和下一步。正式企业/联系人/机会模型、报价和合同仍待实施。
+- OA 保留组织、审批、待办和通知；重复收件箱需核对数据与调用后退役。
+
+## 两条入口
+
+1. leadsgen 采集 → aimail 接收资料并回执 → 人员确认 → 个人邮箱联系。
+2. sales 公共收件箱收到询盘 → aimail 分配负责人 → 个人邮箱回复。
+
+导入回执不代表已发送；SMTP 接受不代表客户收到。现有六次开发信序列不能默认
+启用，也不能因为改名而触发发送。实际邮件发送仍需明确的用户动作或既有有效授权。
+
+## 会话交接验收
+
+- 任何阶段均可分配或转交给已登记员工，目标不能由未经验证的自由文本身份产生。
+- 模型按相关邮件生成阶段总结，保留模型标识、原文出处、未确认事项；模型失败
+  明确提示，不伪造成功摘要，不静默丢失长会话内容。
+- 接收人获得本次相关会话、历史邮件与附件的权限，不获得整个来源邮箱权限。
+- 交接记录保留发起人、接收人、时间、说明、待接手/已接手状态。
+- 接手前原负责人继续负责；并发接手或转交不能造成两个有效负责人。
+- 回复原负责人邮箱的新邮件仍关联会话并提醒当前负责人。
+- 未授权员工不能通过邮件、附件、下载、AI 分析或发件接口绕过会话权限。
+- 交接不会自动发送或向外部转发邮件；邮件导出需在受控接口中执行。
+
+## 命名迁移状态
+
+规范名称已统一为 `aimail`：GitHub 仓库、Python 包、OCI 镜像、Compose 服务和生产数据目录均已迁移；用户入口仍为 `mail.glocalstorage.cn`。生产服务运行于 `mainland-aimail-1`，数据目录为 `/srv/aimail-data`。
+
+infra PR #255/#256 已完成旧迁移恢复代码退役和生产兼容清理。阿里云新版安装器和 systemd 写路径边界已部署；复验 SQLite 在线备份后，旧停止容器、`/srv/mail2leads-data` 符号链接及 Aimail 旧网络 alias 均已移除。规范数据目录 `/srv/aimail-data`、SQLite 原文件名和所有备份均保留。名称迁移未触碰 Authentik 的稳定用户 subject、OIDC client 或会话数据。生产证据见 `docs/delivery-milestones.md` 与 infra `docs/production-state.md`。
+
+## 2026-09-25 部署与验收记录（历史快照）
+
+以下版本号和员工配置属于当时记录；后续状态以
+[2026-09-27 交付记录](https://github.com/niuroumiantt/infra/blob/main/docs/handoff/sales-workspace-ui.md) 为准。
+
+交接、潜客分配、相关邮件与附件访问、跨邮箱回复关联、个人未读状态及未决发送保护均已进入已部署 Aimail 版本。代码、自动化测试、部署和人工业务验收是不同状态；真人交接、摘要、附件、接手后续跟进仍需浏览器场景确认。
+
+生产 leadsgen 交接地址与令牌已配置，状态 API 返回 200；只读核对到一条既有 accepted 回执对应一条 Aimail 草稿，发送步骤为 0。没有发送真实客户邮件。
+
+阿里云当前运行固定版本镜像 `aimail:aimail-46b1d63347fc27938865707080658f322977c875`。Spark 模型网关通过 Tailscale 访问，Aimail 专用 LiteLLM key 仅允许 `fast` 路由；合成输入调用通过，越权的 `brain` 路由被拒绝。
+
+Larry 的 OIDC 会话、邮件列表、个人 SMTP 配置及模型通路已经技术验证。生产名单只有 Larry 一个发件账号；个人 IMAP 未启用，公共 `sales@` 不在发件名单中，自动开发信保持关闭。第二位员工尚未完成注册与审批，双人权限、真实邮件往来、sales 收件分配和完整交接仍未业务验收。不得把部署成功写成业务流程验收完成。
+
+## 发件与交接边界
+
+SMTP 不再继承 IMAP 凭据。需要显式设置 SMTP_HOST、SMTP_USER、SMTP_PASSWORD。
+实际 SMTP 发件地址必须匹配 SMTP_USER。sales 公共邮箱在构建邮件和 SMTP
+投递两层拒绝发信。可信登录模式按员工邮箱选择明确登记的个人通道，不信任
+请求正文自报的发件人；有读取共享邮箱权限不等于能以共享邮箱发件。
+
+会话交接候选版新增 /followups 页面与线程级接口：待接手时保留原负责人，
+接手后可再次转交；带版本检查、持久审计与原始 EML（含附件）导出。
+FOLLOWUP_MEMBERS 必须由运维按已验证员工登记，空值不启用接口。
+候选版通过已记录的发信 Message-ID、客户地址和已接手负责人关联跨个人邮箱回复，
+不按相同主题跨邮箱归并。任意阶段的完整业务流程仍需真实员工验收，不可称为已交付。</pre></details></main></body></html>
