@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.25",
+  "version": "2026.10.08.26",
   "reviewed_at": "2026-10-08",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "1da84a8c03278f86ed4a38fcbe1e6c9ca1f87868354b5d952fb1802606a23a96",
-    "framework/CURRENT.md": "dc0e1887821ccfbdf0de4e3231ce5329ec7ab16e1916ec86e48d556c0ae0e014",
+    "framework/CURRENT.md": "667f1b5aff2dd32bac6d886c761df386240a1c6d13afcaf9da48feba249678d4",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "6f7220c1b4403de7fa609d1983f6a96794f65095c6425a04150f42cebe33dc6d",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "969d4a061a3e113ee9840d10a273757ec04e85004a787e8db5ea477cc27e6d61",
+    "framework/current_state.json": "037a0489fc49e01859fdeab384791bb46fc0e679e3f7fbec337d4370d1213084",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -205,8 +205,8 @@
     "tests/unit/test_material_flow.py": "6d7956fcb057acd12be4c225605a262b1eb7b9da45f7f33d4554ed94444b87fb",
     "framework/10_visual_atlas.md": "8c82224ba9c75f21438527ba98e46f1cf7cfb0f356721dd9ed3c1e4e2bf9fff2",
     "framework/visual_atlas.json": "12f5b00c96ba391c155a508306f697e04eb95c61d60a066e3dad8e581c1aeb8d",
-    "framework/visual_atlas_migration.json": "a67e2c094a98677c84ad24b1c3c47930a4eb4edb9baaa98e456a18b6228d09d7",
-    "docs/design/technical-atlas/MIGRATION_PLAN.md": "ad455e22ce6ad1f63eadfbe216a064b751aa7dff01b0252c1c3467a03d60811c",
+    "framework/visual_atlas_migration.json": "fc15c9a0bb89b7d70c3cc34e0b27ec18a89df92701dfc34fbc82459781e4f1f9",
+    "docs/design/technical-atlas/MIGRATION_PLAN.md": "51fc3974df438550454666013f147468c5e3c67b63883d5c52360960bada0636",
     "docs/design/technical-atlas/references/README.md": "541ae32e5f8c56adc0abc2539d0a570bbe99fedd2e11be5a3a4397005b6a5fa2",
     "tests/unit/test_visual_atlas.py": "e8b81d0c6708abea49a4898f18900a87f242a78560d026f9d2b1b50c6851ccc0",
     "docs/design/technical-atlas/references/01-chain.png": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
@@ -1390,10 +1390,11 @@
       ],
       "not_verified": [
         "机器不能证明视觉品质、真实部件身份/接口/结构/尺寸、管线拓扑或版权事实；参考的具体技术关系不得直接采纳。",
-        "TA-02首次生产源码/服务/机柜下载已实读；导出可读性与园区匿名启动修正另附本次PR真实回执。33项个体造型/平面/领域/面板仍待制作，共用配方不等于个体完成；当前导出非静态母图/CAD，精确型号/尺寸/布局与真实GPU性能未穷尽核验。",
+        "TA-02首次生产源码/服务/机柜下载已实读；导出可读性与园区匿名启动修正另附本次PR真实回执。其余个体造型/平面/领域/面板的进展以逐项队列为准，共用配方不等于个体完成；当前导出非静态母图/CAD，精确型号/尺寸/布局与真实GPU性能未穷尽核验。",
         "新设施图的精确梁柱/基础、探测/灭火/监控布置、尺寸/覆盖和现场规范适用不由参考或机检证明；实际公网发布按各项PR回执，不以本地accepted预填published。",
         "补充四图实际入口与原件核对见逐项publication回执；公网冷加载与全量缩略图性能尚未优化，不以本地测试时长推定真实公网时长。",
-        "TA-03是通用空机箱子装配；具体型号机械布局/孔位/锁扣未经原厂工程确认，不当作TA-11完整服务器或3D几何重制。"
+        "TA-03是通用空机箱子装配；具体型号机械布局/孔位/锁扣未经原厂工程确认，不当作TA-11完整服务器或3D几何重制。",
+        "TA-03实际公网四视图/高清8标签和原PNG SHA及服务核对见publication回执；冷网络性能仍未优化。"
       ]
     },
     {
