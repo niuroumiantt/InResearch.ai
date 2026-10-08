@@ -122,7 +122,7 @@
 
 <script type="module">
 import { createPartDossier } from "./assets/part-dossier.js?v=20261008.15";
-import { atlasPreview } from "./assets/technical-atlas.js?v=20261008.15";
+import { atlasPreview, atlasPreviewTitle } from "./assets/technical-atlas.js?v=20261008.15";
 async function get(p) {
   const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
   if (!r.ok) throw new Error(p + " → " + r.status);
@@ -146,6 +146,7 @@ function isoBox(px, py, w, d, h, part) {
   if (preview) {
     const center = P(px + w / 2, py + d / 2, 0), lab = P(px + w / 2, py + d, 0);
     return `<g class="pbox" data-part="${part.id}" data-atlas-part="${part.id}">
+      <title>${esc(atlasPreviewTitle(part.id))}</title>
       <image href="${preview}" x="${(center[0]-62).toFixed(1)}" y="${(center[1]-76).toFixed(1)}" width="124" height="83" preserveAspectRatio="xMidYMid meet"/>
       <text class="pname" x="${lab[0].toFixed(1)}" y="${(lab[1]+16).toFixed(1)}" text-anchor="middle">${esc(part.name)}</text>
     </g>`;

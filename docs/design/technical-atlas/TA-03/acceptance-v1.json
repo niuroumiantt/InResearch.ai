@@ -1,0 +1,117 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-03",
+  "object_id": "part:server",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Generic server enclosure subassembly",
+  "reviewed_at": "2026-10-08",
+  "reviewer": "Codex实际母图/独立标签/网页四视图审阅，不冒称用户逐项签字",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "Generic empty server enclosure subassembly, not a manufacturer-specific model or TA-11 whole-server reconstruction",
+  "master": "web/assets/technical-atlas/chassis-v1.png",
+  "labelled": "web/assets/technical-atlas/chassis-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R2",
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "passed_to_tool": true
+    },
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "initial_prompt": "docs/design/technical-atlas/TA-03/prompt-v1.txt",
+    "iterations": 1,
+    "accepted_original_filename": "exec-5cf7a107-212c-46ab-8996-9beb59a63da5.png",
+    "raster_modified_after_generation": false,
+    "preview_method": "same-pixel JPEG encoding with macOS sips; original PNG unchanged",
+    "label_method": "independent stdlib SVG layer with unchanged original PNG embedded"
+  },
+  "rights": {
+    "origin": "用户授权按认可的图册参考生成；旧原件不覆盖",
+    "license": "项目生成插图，不冒称原厂工程图或CC0"
+  },
+  "technical_sources": [
+    {
+      "file": "framework/bom.json",
+      "supports": "Existing part:server in IT compute; illustration is an enclosure subassembly, not a new BOM part."
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/poweredge-r740/per740_ism_pub/system-cover?guid=guid-1c7566c8-6b87-43a0-bd8d-6ef4080d5716&lang=en-us",
+      "title": "Dell PowerEdge R740 Installation and Service Manual",
+      "observed_at": "2026-10-08",
+      "supports": "Only system-cover removal/installation headings were readable; detail body unavailable. Category identity only, no exact mechanism, dimensions or hole pattern adopted."
+    }
+  ],
+  "unknowns": [
+    "Specific model, U count, metal grade, dimensions, hole pitch and fastener/latch design are unspecified.",
+    "Generated four screw axes are illustrative and not an assembly procedure or manufacturer engineering evidence.",
+    "PCB, GPU, storage, PSU and fans intentionally absent; TA-11 whole server and current interactive 3D geometry remain separate work."
+  ],
+  "checks": {
+    "real_metal_and_folds": true,
+    "coherent_cover_and_empty_enclosure": true,
+    "no_baked_text": true,
+    "independent_labels": 8,
+    "native_pixels_verified": true,
+    "leaders_reviewed": true,
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true,
+    "retained_ssd_and_3d": "technical_atlas (11s) and part_dossier (19s) passed locally; exact-head CI still required before publication"
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/chassis-v1-preview.svg",
+    "bytes": 277333
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/chassis-v1.png",
+      "sha256": "7f923c4611dc005c9750d9676e0d69780e136e25419982330a83111d95b4d170"
+    },
+    {
+      "file": "web/assets/technical-atlas/chassis-v1.svg",
+      "sha256": "cc89e40d62ef631638157b292b244cdac049d3890605f464fa71fdb94e06853d"
+    },
+    {
+      "file": "web/assets/technical-atlas/chassis-v1-preview.jpg",
+      "sha256": "d9bb6d895ca47f150ff9ed3f0d0219e11d716a1c929b6f47dba328d8021a096f"
+    },
+    {
+      "file": "web/assets/technical-atlas/chassis-v1-preview.svg",
+      "sha256": "d8133148ea164c7931190a29b416839a6cdfd3e82c619fd45b313c7296f3df66"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-03/labels-v1.json",
+      "sha256": "76de9ab4c5cb0d3176c5d78e118ddb8c5849ffb8ad9e3909b9b9edaed5845210"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-03/prompt-v1.txt",
+      "sha256": "79f0c1cf7874c30aca1262f27dbde3ba07d33c64cbeecb67ed8086bcc50bae59"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-03/preparation-v1.json",
+      "sha256": "a10c7b04a898f56c58eee437983483baf631eb42dc9bdfc60ceb2766e3abdcf3"
+    }
+  ],
+  "browser_checks": [
+    "tests/technical_atlas.cjs",
+    "tests/part_dossier.cjs"
+  ],
+  "browser_review": {
+    "file": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-03/server-local/browser.json",
+    "views": 4,
+    "full_svg_opened": true,
+    "page_errors": 0,
+    "label_count": 8
+  }
+}

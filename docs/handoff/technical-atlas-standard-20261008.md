@@ -64,3 +64,7 @@ Spark本轮只读观察06f96964，reader active；research-review在20:10后inac
 主计划2/35、补充4/4；下一TA-03。机箱旧原图已实际看过，机械折边/开孔/紧固不足；新图应明确服务器机箱子装配，不能当TA-11整服务器完成。M5预备提示词与待确认来源说明在 `~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-03/`；尚未生成/采纳，Dell网页仅目录可读，详细结构先核官方手册。当前工作树仍ops-dashboard/inresearch.ai，分支改为codex/atlas-facility-receipt-20261008。
 
 公网冷加载/高清原件比本地慢，预览SVG每张约285–505KiB；2D总览随新图增加会出现缩略图和字体下载竞争，TA-16/17要处理实际视口按需读取，不能只以小于512KiB宣称网络已快。自动续做automation-3仍每小时，只在实际上线/失败/所需决定通知，35项实际全部完成后停止。
+
+## 当前状态 · TA-03 已本地验收
+
+补充发布收尾PR402四项CI全通过，2026-10-08T13:28:57Z合并d97b21ef。主计划继续分支codex/atlas-chassis-20261008；TA-03母图通过内置工具生成，原生1536×1024，8条SVG独立标签/271KiB预览；server为原有计算对象，图标题明确机箱子装配。旧chassis原件SHA不变，完整服务器TA-11未完成。正文和网页审图及technical_atlas/part_dossier实际回归已完成；精确头CI/实际公网验收后再登记published和3/35。当前主工作树不切换，仍复用ops-dashboard/inresearch.ai。
