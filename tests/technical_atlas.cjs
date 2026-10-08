@@ -6,6 +6,10 @@ const {chromium} = require('playwright');
   try {
     const page = await browser.newPage({viewport: {width: 1280, height: 900}, reducedMotion: 'reduce'});
     const errors = []; page.on('pageerror', error => errors.push(error.message));
+    await page.goto(process.env.UI_BASE_URL + '/bom.html', {waitUntil: 'domcontentloaded'});
+    await page.locator('.pbox[data-atlas-part="ssd"]').waitFor();
+    assert.ok(await page.locator('#selected-atlas').evaluate(el => el.hidden), 'overview opens without an unrelated part detail');
+    assert.ok(await page.locator('#selected-atlas').evaluate(el => el.previousElementSibling.matches('.lrow[data-row-parts~="ssd"]')));
     for (const url of ['/bom.html#ssd', '/rack3d.html?x=55&node=part:ssd#ssd']) {
       await page.goto(process.env.UI_BASE_URL + url, {waitUntil: 'domcontentloaded'});
       const atlas = page.locator('.technical-atlas[data-figure="TA-01"]');
@@ -20,13 +24,21 @@ const {chromium} = require('playwright');
         assert.equal(await page.locator('#selected-atlas .technical-atlas').count(),1,'SSD illustration belongs in the main drawing area');
         assert.equal(await page.locator('#dossier .technical-atlas').count(),0,'avoid a duplicate sidebar illustration');
         assert.ok((await atlas.boundingBox()).width>500,'desktop SSD figure must be readable outside the sidebar');
+        assert.equal(await page.locator('#selected-atlas').evaluate(el => el.parentElement.id), 'stack');
+        assert.match(await page.locator('.atlas-context').textContent(), /IT · 存储 → 企业级 SSD/);
         for (const mode of ['scale','system']) {
           await page.locator(`[data-mode="${mode}"]`).click();
+          assert.ok(await page.locator('#selected-atlas').evaluate(el => el.previousElementSibling.matches('.lrow[data-row-parts~="ssd"]')),
+            'detail must follow its own system/scale row rather than precede the whole overview');
+          assert.equal(await page.locator('#selected-atlas .technical-atlas').count(),1,'mode change retains the selected SSD detail');
+          assert.equal(await page.locator('#c-ssd.sel').count(),1);
           assert.equal(await page.locator('.pbox[data-part="ssd"] path').count(),0,'adopted SSD must not remain a classification box');
           assert.match(await page.locator('.pbox[data-atlas-part="ssd"] image').getAttribute('href'),/ssd-v1-preview\.svg$/);
         }
         await page.locator('#c-hdd').click();
         assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'other parts must not inherit the SSD figure');
+        await page.locator('[data-mode="scale"]').click();
+        assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'mode change must retain the non-SSD selection');
         await page.locator('.pbox[data-atlas-part="ssd"]').click();
         assert.equal(await page.locator('.technical-atlas').count(),1);
       }
