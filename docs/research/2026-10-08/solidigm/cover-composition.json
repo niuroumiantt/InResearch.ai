@@ -5,35 +5,44 @@
     "width": 1024,
     "height": 1536
   },
-  "portrait_position": {
-    "x": 260,
-    "y": 222,
-    "width": 510,
-    "height": 340
-  },
+  "layout": "标题左侧，双头像置于标题右侧的首图右上角",
   "portraits": [
     {
       "name": "Rob Crooke",
-      "side": "left",
-      "opacity": 0.45,
+      "position": {
+        "x": 700,
+        "y": 25,
+        "width": 120,
+        "height": 154
+      },
+      "viewBox": "185 60 470 620",
+      "opacity": 0.8,
       "label": {
-        "x": 390,
-        "y": 488,
-        "font_size": 29
+        "x": 760,
+        "y": 205,
+        "font_size": 26,
+        "text_anchor": "middle"
       }
     },
     {
       "name": "Kevin Noh",
-      "side": "right",
-      "opacity": 0.32,
+      "position": {
+        "x": 852,
+        "y": 25,
+        "width": 120,
+        "height": 154
+      },
+      "viewBox": "935 55 465 625",
+      "opacity": 0.8,
       "label": {
-        "x": 650,
-        "y": 488,
-        "font_size": 29
+        "x": 912,
+        "y": 205,
+        "font_size": 26,
+        "text_anchor": "middle"
       }
     }
   ],
-  "local_backdrop": "左侧工厂背景较亮，使用羽化深蓝径向底层平衡两个人物可见度",
-  "processing": "image_gen生成透明人物素材；精确SVG页面布局与文字；Playwright输出PNG母版和质量88JPEG",
-  "model": "工具未返回底层版本"
+  "processing": "沿用已生成的透明蓝灰肖像素材；SVG精确定位、中文和英文排版；Playwright输出无损PNG母版与质量88JPEG",
+  "model": "工具未提供明确底层模型版本",
+  "supersedes": "revision-04的场景中部肖像位置，仅本篇视觉范围"
 }

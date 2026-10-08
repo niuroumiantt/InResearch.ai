@@ -17,7 +17,6 @@ Intel的存储历史比它作为处理器公司的公众形象更早。公司官
 
 > 来源： Intel官方历史档案，[《Intel的成立》（Establishing Intel）](https://timeline.intel.com/1968/establishing-intel)、[《Intel 1103 DRAM》](https://timeline.intel.com/1970/the-intel-1103-dram)，事件分别发生于1968年7月18日、1970年10月；网页未注明发布日期。
 
-![Intel联合创始人Gordon Moore（左）与Robert Noyce（右），1970年历史照片。](assets/photo-founders.jpg)
 
 人物照片｜Intel联合创始人Gordon Moore（左）与Robert Noyce（右），1970年历史照片。
 
@@ -34,7 +33,6 @@ Intel的存储历史比它作为处理器公司的公众形象更早。公司官
 这项合作首先面对的是消费电子需求。苹果同日宣布与海力士、Intel、美光、三星及东芝签订长期NAND供货协议，以支持iPod的生产。由这个客户案例可以看到，闪存的商业机会不只来自电脑升级：音乐播放器等设备需要更紧凑、抗振动的存储，也要求供应商稳定交付。对制造商而言，一个能够长期采购的客户，有助于把尚在建设中的产能同具体需求相连，降低只凭市场预测扩厂的不确定性。
 
 
-![图1｜Intel NAND与SSD业务形成及转手的主要节点。宣布投资、开始生产与交易交割分别列示。](assets/figure-01-history.png)
 
 图1｜Intel NAND与SSD业务形成及转手的主要节点。宣布投资、开始生产与交易交割分别列示。
 
@@ -64,9 +62,8 @@ Intel的存储历史比它作为处理器公司的公众形象更早。公司官
 > 来源： Intel，[《Intel DC S3700固态硬盘服务质量技术简报》](https://www.intel.com/content/dam/www/public/us/en/documents/technology-briefs/ssd-dc-s3700-quality-service-tech-brief.pdf)，2013年7月，页4—6、9—11；企业采购影响为本文分析。
 
 
-![图2｜每个NAND单元存储1、2、3、4 bit时，分别需要区分2、4、8、16种逻辑状态。柱长按状态数绘制，不表示实际阈值电压、速度或耐久。](assets/figure-02-nand.png)
 
-图2｜每个NAND单元存储1、2、3、4 bit时，分别需要区分2、4、8、16种逻辑状态。柱长按状态数绘制，不表示实际阈值电压、速度或耐久。
+图2｜每个NAND单元存储1、2、3、4 bit时，分别需要区分2、4、8、16种逻辑状态。柱长按状态数绘制，不表示实际阈值电压、速度或耐久。 工程组件为概念性技术插画。
 
 > 图源：[原文1](https://www.solidigm.com/products/technology/qlc-nand-ready-for-mainstream-use-in-data-center.html)。
 
@@ -106,7 +103,6 @@ Intel已经建立NAND制造和SSD产品能力，为何仍选择出售？理解�
 
 > 来源： Intel，[《Intel将在中国建设300毫米晶圆厂》](https://www.intc.com/news-events/press-releases/detail/1050/intel-to-build-300mm-wafer-fabrication-facility-in-china)，2007年3月26日；[《Intel大连晶圆厂破土动工》](https://www.intel.com/pressroom/archive/releases/2007/20070907corp_b.htm)，2007年9月8日。25亿美元为建设公告所列投资安排。
 
-![Paul Otellini，Intel建设大连工厂时的首席执行官；历史照片。](assets/photo-paul-otellini.jpg)
 
 人物照片｜Paul Otellini，Intel建设大连工厂时的首席执行官；历史照片。
 
@@ -164,7 +160,6 @@ Intel自己的产品方向逐渐清晰。其QLC产品宣传把大容量存储同
 
 > 来源： Intel与SK海力士，[《SK海力士收购Intel NAND存储业务》](https://www.intc.com/filings-reports/all-sec-filings/content/0001193125-20-272580/d76122dex991.htm)，2020年10月20日，Intel资金用途及Bob Swan发言；战略判断的含义为本文分析。
 
-![Bob Swan，2020年Intel出售NAND业务时的首席执行官；历史照片。](assets/photo-bob-swan.jpg)
 
 人物照片｜Bob Swan，2020年Intel出售NAND业务时的首席执行官；历史照片。
 
@@ -190,9 +185,8 @@ Intel自己的产品方向逐渐清晰。其QLC产品宣传把大容量存储同
 > 来源：SK hynix，2026年8月18日，Form 6-K，《Semi-Annual Business Report》所附《Condensed Consolidated Interim Financial Statements》，附注1（2），印刷第10—12页，[SEC原始申报](https://www.sec.gov/Archives/edgar/data/2120882/000119312526354777/d147827d6k.htm)、[同份文件可读全文数字转写](https://financialfilings.com/filings/sk-hynix-inc/interim-quarterly-report/2026/56530973/)；Solidigm，2026年4月2日，[《Solidigm Expands Sacramento Development, Fueling Global AI Leadership》](https://news.solidigm.com/en-WW/263946-solidigm-expands-sacramento-development-fueling-global-ai-leadership/)；SK hynix，2026年1月28日，[《SK hynix to Establish U.S. Arm Specialized in AI Solutions》](https://news.skhynix.com/en/sk-hynix-to-establish-ai-solutions-arm-in-us/)。本段为当前布局的综合说明。
 
 
-![图3｜收购资产在2026年的布局：大连晶圆制造、美国SSD研发与经营、中国销售网络和美国AI战略投资平台承担不同职能。蓝线表示财报控制关系，虚线表示采访披露的FG晶圆供给；CTF为集团另一条产品协同路径；美国建厂另标为未确定的未来选项。](assets/figure-03-acquisition.png)
 
-图3｜收购资产在2026年的布局：大连晶圆制造、美国SSD研发与经营、中国销售网络和美国AI战略投资平台承担不同职能。蓝线表示财报控制关系，虚线表示采访披露的FG晶圆供给；CTF为集团另一条产品协同路径；美国建厂另标为未确定的未来选项。
+图3｜收购资产在2026年的布局：大连晶圆制造、美国SSD研发与经营、中国销售网络和美国AI战略投资平台承担不同职能。蓝线表示财报控制关系，虚线表示采访披露的FG晶圆供给；CTF为集团另一条产品协同路径；美国建厂另标为未确定的未来选项。 工程组件为概念性技术插画。
 
 > 图源：[原文1](https://www.sec.gov/Archives/edgar/data/2120882/000119312526354777/d147827d6k.htm)；[原文2](https://news.skhynix.com/en/sk-hynix-to-establish-ai-solutions-arm-in-us/)；[原文3](https://news.solidigm.com/en-WW/263946-solidigm-expands-sacramento-development-fueling-global-ai-leadership/)；[原文4](https://www.marketscreener.com/news/sk-hynix-s-solidigm-unit-is-weighing-nand-memory-chip-factory-in-us-sources-say-ce785adad98cf221)；[原文5](https://www.tomshardware.com/pc-components/ssds/solidigm-vp-talks-pcie-6-0-ssds-next-gen-floating-gate-nand-liquid-cooled-storage-and-more-avi-shetty-vp-of-ai-solutions-and-market-enablement-discusses-the-future-of-enterprise-storage-tech)。
 
@@ -206,7 +200,6 @@ Intel自己的产品方向逐渐清晰。其QLC产品宣传把大容量存储同
 > 来源：SK hynix，2026年8月18日，Form 6-K，《Semi-Annual Business Report》所附《Condensed Consolidated Interim Financial Statements》，附注1（2）印刷第12页、附注36（2）第70页，[SEC原始申报](https://www.sec.gov/Archives/edgar/data/2120882/000119312526354777/d147827d6k.htm)、[同份文件可读全文数字转写](https://financialfilings.com/filings/sk-hynix-inc/interim-quarterly-report/2026/56530973/)；对销售法人职能范围的判断为本文分析。
 
 
-![图4｜大连制造公司、美国经营公司与大连销售公司分别溯源。销售公司由英国公司控制；财报将英国公司的控制方并列为原美国法人及新Solidigm，相关转移仍在进行。各节点百分比是集团有效权益。](assets/figure-08-dalian.png)
 
 图4｜大连制造公司、美国经营公司与大连销售公司分别溯源。销售公司由英国公司控制；财报将英国公司的控制方并列为原美国法人及新Solidigm，相关转移仍在进行。各节点百分比是集团有效权益。
 
@@ -222,7 +215,6 @@ Intel自己的产品方向逐渐清晰。其QLC产品宣传把大容量存储同
 > 来源：Solidigm Corporate Communications，2026年4月2日08:00 PDT，[《Solidigm Expands Sacramento Development, Fueling Global AI Leadership》](https://news.solidigm.com/en-WW/263946-solidigm-expands-sacramento-development-fueling-global-ai-leadership/)，园区、NAND工具及总部工程师段落；研发与量产的功能区分为本文分析。
 
 
-![Solidigm美国研发园区的NAND实验室，公司2026年4月2日公告配图；研发实验室与大连量产晶圆厂承担不同任务。](assets/scene-solidigm-lab-04.jpg)
 
 实景照片｜Solidigm美国研发园区的NAND实验室，公司2026年4月2日公告配图；研发实验室与大连量产晶圆厂承担不同任务。
 
@@ -238,7 +230,6 @@ AI Company增加的是另一类能力。半年度财报显示，旧法人下已�
 > 来源：SK hynix，2026年1月28日，[《SK hynix to Establish U.S. Arm Specialized in AI Solutions》](https://news.skhynix.com/en/sk-hynix-to-establish-ai-solutions-arm-in-us/)，AI战略、合作、法人重组及capital-call承诺段；SK hynix，2026年8月18日，Form 6-K，《Semi-Annual Business Report》所附合并财务报表，附注1（2）印刷第12页及脚注5、7，[SEC原始申报](https://www.sec.gov/Archives/edgar/data/2120882/000119312526354777/d147827d6k.htm)、[同份文件可读全文数字转写](https://financialfilings.com/filings/sk-hynix-inc/interim-quarterly-report/2026/56530973/)。业务分工的产业含义为本文分析；新设投资法人不等于全部设想中的合作已经投资完成。
 
 
-![图5｜2026年美国法人重组的已披露进展。新Solidigm承接SSD经营，原美国法人下另有SHIFTIX投资子公司；部分相关子公司转移仍在进行。AI Co.的100亿美元是集团资本承诺，不等于SSD上市募资。](assets/figure-05-entities.png)
 
 图5｜2026年美国法人重组的已披露进展。新Solidigm承接SSD经营，原美国法人下另有SHIFTIX投资子公司；部分相关子公司转移仍在进行。AI Co.的100亿美元是集团资本承诺，不等于SSD上市募资。
 
@@ -254,7 +245,6 @@ AI Company增加的是另一类能力。半年度财报显示，旧法人下已�
 > 来源：Intel，2020年10月20日签署的Form 8-K，[《Item 1.01 — Entry into a Material Definitive Agreement》](https://www.sec.gov/Archives/edgar/data/50863/000119312520272580/d76122d8k.htm)，OpCo及制造销售协议段；Intel，2025年3月27日，[《Form 8-K，Item 2.01 — Completion of Acquisition or Disposition of Assets》](https://www.intc.com/filings-reports/all-sec-filings/content/0000050863-25-000060/intc-20250327.htm)；SK hynix，2021年12月30日，[《SK hynix completes the First Phase of Intel NAND and SSD Business Acquisition》](https://news.skhynix.com/en/sk-hynix-completes-the-first-phase-of-intel-nand-and-ssd-business-acquisition/)。
 
 
-![Rob Crooke，Solidigm首任CEO；照片来自2022年离任报道。](assets/photo-rob-crooke.jpg)
 
 人物照片｜Rob Crooke，Solidigm首任CEO；照片来自2022年离任报道。
 
@@ -262,7 +252,6 @@ AI Company增加的是另一类能力。半年度财报显示，旧法人下已�
 
 
 
-![Seok Hee Lee（李锡熙），首阶段交割时的Solidigm执行董事长；照片来自SK海力士2019年公告。](assets/photo-seok-hee-lee.jpg)
 
 人物照片｜Seok Hee Lee（李锡熙），首阶段交割时的Solidigm执行董事长；照片来自SK海力士2019年公告。
 
@@ -309,11 +298,10 @@ Kevin Noh，即卢钟元（노종원，英文公告亦写Jongwon Noh），与Sol
 > 来源：Solidigm，2023年5月15日，[《David M. Dixon and Kevin Noh Appointed Co-CEOs of Solidigm》](https://news.solidigm.com/en-WW/226111-david-m-dixon-and-kevin-noh-appointed-co-ceos-of-solidigm/)。
 
 
-![图6｜Kevin Noh从并购实务、集团财务与事业管理，到经营Solidigm，再到拟组织外部基金投资的履历。Intel交易签署在他出任CFO之前；两位President是集团内分工，不是双CEO。拟议基金投资与公司IPO筹备分别列示。](assets/figure-04-noh.png)
 
 图6｜Kevin Noh从并购实务、集团财务与事业管理，到经营Solidigm，再到拟组织外部基金投资的履历。Intel交易签署在他出任CFO之前；两位President是集团内分工，不是双CEO。拟议基金投资与公司IPO筹备分别列示。
 
-> 图源：[原文1](https://www.thebell.co.kr/front/newsview.asp?code=0401&key=202608101118098120103951)；[原文2](https://www.thebell.co.kr/front/newsview.asp?code=0401&key=201712070100011610000699)；[原文3](https://news.skhynix.com/en/sk-hynix-inc-reports-fiscal-year-2020-and-fourth-quarter-results/)；[原文4](https://news.skhynix.co.kr/executive-personnel-and-organizational-reorganization-2022/)；[原文5](https://news.solidigm.com/en-WW/226111-david-m-dixon-and-kevin-noh-appointed-co-ceos-of-solidigm/)；[原文6](https://signal.sedaily.com/article/20081919)；[原文7](https://www.mk.co.kr/news/stock/12162986)；[原文8](https://biz.chosun.com/stock/market_trend/2026/08/26/R6KUSH2MXREAPKS2Q2Y3B7ANHQ/)。
+> 图源：[原文1](https://www.thebell.co.kr/front/newsview.asp?code=0401&key=202608101118098120103951)；[原文2](https://www.thebell.co.kr/front/newsview.asp?code=0401&key=201712070100011610000699)；[原文3](https://news.skhynix.com/en/sk-hynix-inc-reports-fiscal-year-2020-and-fourth-quarter-results/)；[原文4](https://news.skhynix.co.kr/executive-personnel-and-organizational-reorganization-2022/)；[原文5](https://news.solidigm.com/en-WW/226111-david-m-dixon-and-kevin-noh-appointed-co-ceos-of-solidigm/)；[原文6](https://signal.sedaily.com/article/20081919)；[原文7](https://www.mk.co.kr/news/stock/12162986)；[原文8](https://biz.chosun.com/stock/market_trend/2026/08/26/R6KUSH2MXREAPKS2Q2Y3B7ANHQ/)；[原文9](https://news.skhynix.com/en/sk-hynix-nominates-kwak-and-noh-as-inside-board-directors-candidates/)。
 
 
 这条路径最早与海力士本身的易主相交。韩国财经媒体The Bell记者朴完俊在2026年的履历报道中写道，卢钟元2011年仍在SK电讯任职，曾在海力士收购工作组负责实务。SK电讯官方历史则把交易过程分为2011年11月的股权收购签约，以及2012年的收购与海力士更名启动。对原本以移动通信为核心的企业而言，这笔交易意味着进入需要持续研发和巨额设备投入的制造行业。参与交易实务的人面对的，既有股权价格和融资，也有一个更长远的问题：集团能否承接芯片业务的投资周期。卢钟元由此积累的是进入一个产业的交易经验，此时尚未担任海力士CFO。
@@ -357,7 +345,6 @@ CFO任命进一步把两类责任放到同一个岗位上。The Bell记者金惠
 > 来源：Solidigm，2022年11月2日，[《Woody Young Named President of Solidigm》](https://news.solidigm.com/en-WW/219822-woody-young-named-president-of-solidigm/)；Blocks & Files，Chris Mellor，2022年11月3日，[《Solidigm CEO’s departure takes staff by surprise》](https://www.blocksandfiles.com/flash/2022/11/03/solidigm-ceos-departure-takes-staff-by-surprise/1601106)。
 
 
-![Noh-Jung Kwak（郭鲁正），2022年11月临时接管Solidigm；照片刊于当年2月。](assets/photo-noh-jung-kwak.jpg)
 
 人物照片｜Noh-Jung Kwak（郭鲁正），2022年11月临时接管Solidigm；照片刊于当年2月。
 
@@ -365,7 +352,6 @@ CFO任命进一步把两类责任放到同一个岗位上。The Bell记者金惠
 
 
 
-![Woody Young，2022年获任Solidigm President的董事会成员。](assets/photo-woody-young.jpg)
 
 人物照片｜Woody Young，2022年获任Solidigm President的董事会成员。
 
@@ -377,7 +363,6 @@ CFO任命进一步把两类责任放到同一个岗位上。The Bell记者金惠
 > 来源：Solidigm，2023年5月15日，[《David M. Dixon and Kevin Noh Appointed Co-CEOs of Solidigm》](https://news.solidigm.com/en-WW/226111-david-m-dixon-and-kevin-noh-appointed-co-ceos-of-solidigm/)；韩国金融新闻，郑恩京（정은경），2023年5月16日，[《[프로필] 노종원 솔리다임 신임 각자대표이사》](https://www.fntimes.com/html/view.php?ud=202305160815543116645ffc9771_18)。
 
 
-![Kevin Noh与David M. Dixon，2023年联席CEO任命公告配图。](assets/photo-noh-dixon.jpg)
 
 人物照片｜Kevin Noh与David M. Dixon，2023年联席CEO任命公告配图。
 
@@ -393,7 +378,6 @@ CFO任命进一步把两类责任放到同一个岗位上。The Bell记者金惠
 > 来源：电子新闻，李镐吉（이호길），2025年8月27日，[《노종원 솔리다임 사장, SK아메리카스 임원 선임》](https://www.etnews.com/20250827000416)；The Bell，卢泰民，2025年11月17日，[《[AI 훈풍 부는 솔리다임] 경영진 ‘핀셋’ 배치, SK하이닉스 ‘직할 체제’ 본격화》](https://www.thebell.co.kr/front/newsview.asp?key=202511171656425480106567)；Solidigm，2026年5月27日，[《Solidigm Announces New Co-CEOs Xin Guo and Richard Chin》](https://news.solidigm.com/en-WW/266116-solidigm-announces-new-co-ceos-xin-guo-and-richard-chin/)。
 
 
-![Xin Guo，2026年3月获任联席CEO；照片由Solidigm于5月27日发布。](assets/photo-xin-guo.jpg)
 
 人物照片｜Xin Guo，2026年3月获任联席CEO；照片由Solidigm于5月27日发布。
 
@@ -401,7 +385,6 @@ CFO任命进一步把两类责任放到同一个岗位上。The Bell记者金惠
 
 
 
-![Richard Chin，2026年5月1日出任联席CEO；照片由Solidigm于5月27日发布。](assets/photo-richard-chin.jpg)
 
 人物照片｜Richard Chin，2026年5月1日出任联席CEO；照片由Solidigm于5月27日发布。
 
@@ -450,9 +433,8 @@ AI训练中的持久存储，首先承担数据和模型状态的保存。训练
 数据流经过的路径同样影响效率。NVIDIA工程师Adam Thompson与CJ Newburn在2019年介绍GPUDirect Storage时，已把本地或远程存储与GPU内存之间的直接数据路径作为问题核心，目标是减少经CPU内存中转产生的额外复制。这个例子说明，把数据存得更密只是基础设施的一部分；驱动、网络、文件系统和应用读取方式决定数据能否及时送达。对Solidigm而言，与系统厂商及软件栈合作，才有机会把闪存产品优势转化为客户可以验证的整体收益。
 
 
-![图7｜AI系统的内存与SSD职责。箭头表示可设计的数据分层关系，不代表每个工作负载都沿同一路径；SSD缓存的收益必须结合软件、访问模式和搬运成本验证。](assets/figure-06-ai-stack.png)
 
-图7｜AI系统的内存与SSD职责。箭头表示可设计的数据分层关系，不代表每个工作负载都沿同一路径；SSD缓存的收益必须结合软件、访问模式和搬运成本验证。
+图7｜AI系统的内存与SSD职责。箭头表示可设计的数据分层关系，不代表每个工作负载都沿同一路径；SSD缓存的收益必须结合软件、访问模式和搬运成本验证。 工程组件为概念性技术插画。
 
 > 图源：[原文1](https://developer.nvidia.com/blog/introducing-nvidia-bluefield-4-powered-inference-context-memory-storage-platform-for-the-next-frontier-of-ai)；[原文2](https://investors.coreweave.com/news/news-details/2026/CoreWeave-Signs-Multi-Year-Agreement-With-Solidigm-to-Strengthen-Its-Integrated-AI-Cloud-Platform/default.aspx)。
 
@@ -532,7 +514,6 @@ AI Company的100亿美元资本承诺，与媒体报道的潜在IPO筹资属于�
 
 募集资金流向是另一个必须拆开的问题。如果公司发行新股，资金进入发行主体，用来支持其业务；如果已有股东出售股份，所得款项首先进入售股股东。两种安排也可能同时出现。扩产、补充运营资金、偿债和集团资本再配置，会对应不同的受益主体。即使报道使用“筹资”一词，尚未披露的新股与老股比例，也会影响这笔钱究竟解决谁的资金需求。新股与老股的比例，要由发行文件说明；它决定资金首先进入经营公司还是原有股东，也决定筹资与扩产之间有多直接的联系。
 
-![图8｜内部资金与外部股权融资的经济差别。新股和老股的资金流向是机制示意，不表示Solidigm已公布采用哪一种发行结构。](assets/figure-07-financing.png)
 
 图8｜内部资金与外部股权融资的经济差别。新股和老股的资金流向是机制示意，不表示Solidigm已公布采用哪一种发行结构。
 
@@ -743,10 +724,9 @@ Kevin Noh由管理者走向潜在投资组织者，让这一故事增加了资�
 
 资料时点为2026年10月8日。公司公告、监管文件与媒体拟议方案分别表述；Signal的TechBridge首发原文及后续韩文报道均已核阅。彭博原报道全文受限，最新承销行消息采用《首尔经济》可读转述，英文页标注AI翻译，未将同源转载计作独立佐证。
 
-金额保留原币种；原始合同价、买方调整后付款、卖方净收款，以及出资承诺与潜在IPO筹资分别采用各来源口径。性能和耐久数据保留规格条件，不以厂商测试推算一般系统收益。首图工程场景为AI生成的概念性示意，Rob Crooke与Kevin Noh肖像均由读者提供的照片合成。Crooke照片来自读者留存的Intel工作档案，拍摄日期未独立核实。Noh原图见SK海力士2022年2月[董事候选人公告](https://news.skhynix.com/en/sk-hynix-nominates-kwak-and-noh-as-inside-board-directors-candidates/)，拍摄日期未披露。其他图由本文依据原始资料重绘。
+金额保留原币种；原始合同价、买方调整后付款、卖方净收款，以及出资承诺与潜在IPO筹资分别采用各来源口径。性能和耐久数据保留规格条件，不以厂商测试推算一般系统收益。首图工程场景为AI生成的概念性示意，Rob Crooke与Kevin Noh肖像均由读者提供的照片合成。Crooke照片来自读者留存的Intel工作档案，拍摄日期未独立核实。Noh原图见SK海力士2022年2月[董事候选人公告](https://news.skhynix.com/en/sk-hynix-nominates-kwak-and-noh-as-inside-board-directors-candidates/)，拍摄日期未披露。正文图统一采用浅底技术图册版式，数据和关系依据原始资料重绘；其中工程组件与系统剖面为概念性插画，不是具名工厂或产品实景。
 
 读者提供的两页未署名初步融资材料使用匿名代称，且缺少脚注、日期和公开原址；正文据其提示展开制造与融资机制分析，没有把其中股权比例、估值或成本加成安排当作已确认交易。
 
-![格洛可公众号二维码](assets/qrcode.jpg)
 
 格洛可｜2026年10月8日
