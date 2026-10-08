@@ -708,6 +708,56 @@
       "status": "candidate",
       "stored_path": "originals/ec/ec1dbe7a35e7ed2036eeb1a075bcf1295d11725ebb749dc8382481a0eafb324f/newsletter.semianalysis.com-Everyone Wants To Be A Neocloud.pdf",
       "title": "Everyone Wants To Be A Neocloud"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "c08abfde4796800c7d3a6a92c0a5fe6d4b63181bc4b21cef86623aaeb28ad1ae",
+      "coverage": {
+        "characters_read": 2325,
+        "characters_total": 2325,
+        "chunks_read": 1,
+        "chunks_total": 1,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-c08abfde4796800c7d3a6a92c0a5fe6d4b63181bc4b21cef86623aaeb28ad1ae",
+      "id": "doc-c08abfde4796800c7d3a6a92c0a5fe6d4b63181bc4b21cef86623aaeb28ad1ae",
+      "library_path": "library/by-node/actor-lambda/2026_GLOCAL RESEARCH · 格洛可研究小组_格洛可数据中心日报｜2026年9月28日：成本承诺已写明，交付尺度仍待披露__c08abfde4796800c.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:lambda",
+        "chain:compute/1",
+        "chain:network/1",
+        "root",
+        "system:facility",
+        "system:it",
+        "system:power",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M02-Q02",
+        "M03-Q01",
+        "NODE-demand-D1-boundary",
+        "NODE-demand-D1-conversion"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-e58ab132607f43f9a153f75cf915e780",
+      "report_sha256": "f522786ba5e17be0f4617b7e1ff451727dae9950cfc1624aaf48bee3be8c6957",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/c0/c08abfde4796800c7d3a6a92c0a5fe6d4b63181bc4b21cef86623aaeb28ad1ae/2026-09-28-daily-wechat.html",
+      "title": "格洛可数据中心日报｜2026年9月28日：成本承诺已写明，交付尺度仍待披露"
     }
   ],
   "evidence": [
@@ -2914,6 +2964,91 @@
           }
         },
         "batch_id": "1e827afb3d4b052bc7a5cfd8338af28b69f7deb8a24f7b0221a4f72129090e3e"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e77f5af332e5f287cdf06a8e9275ebde247c88a1d97a9b0c730e2042aa7cdde6",
+      "document_id": "doc-c08abfde4796800c7d3a6a92c0a5fe6d4b63181bc4b21cef86623aaeb28ad1ae",
+      "id": "rev-e58ab132607f43f9a153f75cf915e780:chunk:0:claim:13:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "system:facility"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "作为亚洲背景，BP Batam在9月24日提出由数据中心园区建设海水淡化设施保障供水，并称两处园区未来2至3年计划新增约750升／秒SWRO产水；这是资源方案表态，不能写成已投产水量或正式统一许可规则。",
+      "reading_revision_id": "rev-e58ab132607f43f9a153f75cf915e780",
+      "source_sha256": "c08abfde4796800c7d3a6a92c0a5fe6d4b63181bc4b21cef86623aaeb28ad1ae",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T03:34:37+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分为5。园区拟通过自建海水淡化设施保障供水，与当前水资源约束及资源条件向工程交付传导的工作单有实质关系。连续原文引句及完整原生页面提供充分上下文，可按明确归因的来源计划作为部分贡献采用。未发现敏感、真实冲突、拟替换或其他A条件；不回答或关闭任何问题。",
+        "workorder_ids": [
+          "Q-M08-Q05",
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 81.984,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "b27755e74d46ee402c131a426aac1a0a9757676d2d3175d7175bed20f7ded562",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 28392,
+            "output_tokens": 2335,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 24.488,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "52102087659b93462becc7bce749a34f40644e86b01c5d8a6806dd9f270a5c2f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 28225,
+              "output_tokens": 421,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "5f77a89726b9ec403b8bf223816619240b7cb08962c1a269e50a2a81b3568a8e"
       }
     }
   ],
@@ -5601,6 +5736,108 @@
         "batch_id": "1e827afb3d4b052bc7a5cfd8338af28b69f7deb8a24f7b0221a4f72129090e3e",
         "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
         "request_sha256": "06b00ba2b9246444e72f58b2db65502d19cafb5aae6b299dbeb981fd90fe2e6a"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c08abfde4796800c7d3a6a92c0a5fe6d4b63181bc4b21cef86623aaeb28ad1ae",
+      "evidence_ids": [
+        "rev-e58ab132607f43f9a153f75cf915e780:chunk:0:claim:13:ev:0"
+      ],
+      "id": "adoption:review:90f5bacc8b307c5e74c7b95d",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root",
+        "system:facility"
+      ],
+      "question_ids": [
+        "M08-Q05",
+        "NODE-activity-V1-chain"
+      ],
+      "reading_revision_id": "rev-e58ab132607f43f9a153f75cf915e780",
+      "status": "adopted",
+      "text": "据格洛可研究小组2026年9月28日《数据中心日报》转述，BP Batam在9月24日提出由数据中心园区建设海水淡化设施保障供水，并称两处园区未来2至3年计划新增约750升／秒SWRO产水。日报将其列为亚洲背景的资源方案表态；该数量属于计划，不能视为已投产水量或正式统一许可规则，也未得到本次审核的独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T03:34:37+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分为5。园区拟通过自建海水淡化设施保障供水，与当前水资源约束及资源条件向工程交付传导的工作单有实质关系。连续原文引句及完整原生页面提供充分上下文，可按明确归因的来源计划作为部分贡献采用。未发现敏感、真实冲突、拟替换或其他A条件；不回答或关闭任何问题。",
+        "workorder_ids": [
+          "Q-M08-Q05",
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 65536,
+          "elapsed_seconds": 81.984,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "b27755e74d46ee402c131a426aac1a0a9757676d2d3175d7175bed20f7ded562",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 28392,
+            "output_tokens": 2335,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 65536,
+            "elapsed_seconds": 24.488,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "52102087659b93462becc7bce749a34f40644e86b01c5d8a6806dd9f270a5c2f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 28225,
+              "output_tokens": 421,
+              "reasoning_output_tokens": 158
+            }
+          }
+        },
+        "batch_id": "5f77a89726b9ec403b8bf223816619240b7cb08962c1a269e50a2a81b3568a8e"
+      },
+      "source_candidate_ids": [
+        "rev-e58ab132607f43f9a153f75cf915e780:chunk:0:claim:13"
+      ],
+      "limitations": "所供证据为日报转述，未提供BP Batam一手公告正文。两处园区的名称、具体地点、各自产水量、建设主体、资金安排、工程起止时间及验收情况均未披露。未来2至3年是计划预期，不能替代数据中心施工时长、许可周期或接入排队时间；约750升／秒不能解释为已实现供给或数据中心用水需求。",
+      "conflict_check": "当前已采用陈述涉及马萨诸塞州成本责任、项目阶段区分、开发与使用时点及终端用户经济判断，与本项供水计划未见实质冲突或重复。所供legacy合同和事实匹配为空；Google Mayes County项目位于美国，不能与BP Batam供水计划合并。未识别可指认的既有规范记录；检查仅限所供材料，不代表完成外部反证检索，不覆盖任何既有结论。",
+      "gap_dependency_check": "对M08-Q05仅贡献供水保障方案线索，未证明水资源约束已成为该地区的选址硬约束，不能据此形成区域清单。对NODE-activity-V1-chain仅贡献从资源表态到工程建设及验收的待验证路径，未证明约束传导、交付周期或领先指标有效性。仍需一手公告、园区适用范围、资源约束证据、正式工程计划、建设与验收记录及反证；两项问题保持开放，不更新模型输入或骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "5f77a89726b9ec403b8bf223816619240b7cb08962c1a269e50a2a81b3568a8e",
+        "source_report_sha256": "f522786ba5e17be0f4617b7e1ff451727dae9950cfc1624aaf48bee3be8c6957",
+        "request_sha256": "ad738fefefad69039b13e2f6eb064ff92baf5fa040d995aaf089d99466984f06"
       }
     }
   ],
