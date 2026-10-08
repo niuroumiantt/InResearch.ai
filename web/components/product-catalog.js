@@ -257,7 +257,7 @@
     });
   }
   function productButton(p) {
-    return `<div class="product-item"><input type="checkbox" aria-label="对比 ${esc(p.name)}" data-id="${esc(p.id)}" ${compared.has(p.id)?'checked':''}><button class="product" data-id="${esc(p.id)}" aria-pressed="${p.id===selected}"><strong>${esc(p.name)}</strong><small>${tableCount(p)?'官方规格':esc(gap(p).label)} · ${p.kind==='named_product'?'具体型号':p.kind==='software_service'?'软件 / 服务':'系列 / 平台'}${vendorPath&&p.official_status?' · '+esc(p.official_status):''}</small></button></div>`;
+    return `<div class="product-item"><input type="checkbox" aria-label="对比 ${esc(p.name)}" data-id="${esc(p.id)}" ${compared.has(p.id)?'checked':''}><button class="product" data-id="${esc(p.id)}" aria-pressed="${p.id===selected}"><strong>${esc(p.name)}</strong></button></div>`;
   }
   $('#clear-comparison').onclick=()=>{compared.clear();renderComparison();};
   function remember(fields) {

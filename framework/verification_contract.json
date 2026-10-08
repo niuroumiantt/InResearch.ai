@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.5",
+  "version": "2026.10.08.6",
   "reviewed_at": "2026-10-08",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -23,12 +23,12 @@
     "framework/02_knowledge_format.md": "049e0010977b11fb6161c0fca15fe210c96be74124e70195e23d3028258a82ff",
     "framework/03_bom_and_collaboration.md": "07e5b461da6c0da081c2ab7a8b7af1089048d93edf98ca5a74878907d530a655",
     "framework/04_reading_scoring_standard.md": "6274292135dbbf622cb3a0045dec54d335f041a4288639378d048ffbe3cb370f",
-    "framework/05_interface_system.md": "c8a26cfd7db6d27a36cfa00786434df0d138f4baeff85d68fa50cfb7949e8e65",
+    "framework/05_interface_system.md": "8b2613f752898cdce6a5a59bc98ecd4104b9a8da688fc3b88b8ef2a9a89bae33",
     "framework/06_acquisition.md": "e8efbc78a3d9e9f1a175e1958ad72da19af6f5922fc0f0646f3836cad0a3e7e6",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "2ba2237095c472ba00505a3ec5d70e7793658fa6fc498dfe3db37e838af81149",
-    "framework/CURRENT.md": "b64a06bc29111ee0f0d8c9af94b51e1ad30d4e54a6d5e39f006a39d200b9ac6c",
+    "framework/CURRENT.md": "e706a7c022e7086106093564f9c24753b92ebdf1739af6ab56675b954be1dfcd",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "fc4f2714e83665cdcfef214fd29ccb628a32587d8460cc98ea2de4e37ca99a33",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "eb2c9c45ffa53a692ca02f52efeaa50f18a016707b222d29b3d7086aeefb60f7",
+    "framework/current_state.json": "a3595055a9c845eb15a1849ee25d7df07999151146bb2b8e6af13ff46366234c",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -194,13 +194,13 @@
     "web/components/site-shell.js": "d1dbb2bea0538cc49084e66124b8841a11f5ffff05c07c77065e4f9b4f175f48",
     "web/components/company-home.js": "4db5baa5fcd45de2084d8a86c411f0822338550bfb29bfdf8ec00864dc2b65ff",
     "web/components/company-overview.js": "561b11ff9f66cd4f12b586efe540b707776b7d86a4f0be2ab52b087fa367d745",
-    "web/components/product-catalog.js": "c4622fd158fc277be234aa4695a70cdc27ddd247b558fd870009194eec96081f",
+    "web/components/product-catalog.js": "6e27b7648c11f0a77fc116d71d6a72f07eb1fcbb16697996ab35ea39f439e926",
     "web/components/catalog-admin.js": "e375929fd4e0bab4c5aebaddc8cbde95a6e056494c406c56c69dea86bf1d1e9f",
     "web/pages/company-home.html": "32dea58415aa79bc415a43040864268f82b13d488d3c1f08722bd1089ebde866",
     "web/pages/company-products.html": "774ed7d5fc8a8829b83ac942de46c7e1f1e799ff5938138651871733027f39c4",
     "web/pages/product-catalog.html": "47d3850d772f6ce9834f84e03f8a312faac361e1fc9e55cd7fd89ab0d5a75a32",
     "web/pages/admin/company.html": "5f59386bbc23c5b782e63981af8085d230afe112dacd9fd867a14a80fd495310",
-    "web/themes/company.css": "fb9f7182252f649a1b1a87b8b1a195807d214721c3d9c79667953cb7fb33572c"
+    "web/themes/company.css": "08c1a5b71a8af459ae57e3f8245279e275ca4dc1546ae6e7ad9395c992116ebd"
   },
   "policies": [
     {
@@ -618,7 +618,7 @@
         "队列仅最早100任务样本，手动历史仅最近50次；无全量在线分页和全服务journal采集。代码入口不是确认的异常行，资料处置与服务依赖须实机核对。",
         "本次页面状态/按需详情测试使用隔离夹具，不证明原文语义、实际C3审核或生产上线；真实首批19条采用及AWS/Spark回执另存私有审阅包。",
         "持续核验首通道仅作者陈述/预测；实体词/对象相关上下文非穷尽外部反证检索，缺源与项目身份/数字/模型值等专门通道不由本程序采用。跨机器常驻、实际CLI调用、Git/CI和网站逐项交付须保存真实运行回执，不由夹具证明；可提交不代表正式上线。",
-        "企业专栏本轮是设计预览：未生产部署；其他内部页的/admin迁移、客户会员权限及Supermicro独立原表页技术字段的迁移未完成，不据本地截图声称全站分离或厂商目录穷尽。"
+        "企业专栏本轮生产发布已授权，实际status/applied、静态资源、前台交互与后台门禁验收记录见 docs/handoff/company-reader-design-20261008.md；本地测试不替代部署回执；其他内部页的/admin迁移、客户会员权限及Supermicro独立原表页技术字段的迁移未完成，不据本地截图声称全站分离或厂商目录穷尽。"
       ]
     },
     {
