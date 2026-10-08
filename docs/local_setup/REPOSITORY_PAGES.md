@@ -21,7 +21,7 @@ python3 scripts/sync_repo_pages.py --workspace /workspace --check
 输出在 `web/pages/admin/`，同步日期和来源完整 SHA-256 在
 `web/pages/admin/repo-content/manifest.json`。流程变化后重跑并审阅差异，随研究站正常代码发布。
 `--check` 使用已保存的同步日期，跨日检查不会仅因日期变化而误报。
-2026-10-08 替代手动同步责任：常驻macmini的系统launchd每日北京时间0:00运行Python刷新器，独立于Codex和对话。读取11个当前仓库的最新远程main、只读检测并原子发布AWS私有运行投影；不每日提交PR。其他主工作区不切换、不reset、不stash。
+2026-10-08 替代手动同步责任：常驻macmini的系统cron每日北京时间0:00运行Python刷新器，独立于Codex和对话。读取11个当前仓库的最新远程main、只读检测并原子发布AWS私有运行投影；不每日提交PR。其他主工作区不切换、不reset、不stash。
 
 服务端在归一化路径后校验真实 admin 会话，GET/HEAD、旧 Fetchspec 地址及原始内嵌页都受保护。
 本地 `HUB_AUTH=0` 也不关闭这些页面的登录要求。无账号时用既有 `manage.py users add` 交互入口创建，
@@ -68,7 +68,7 @@ python3 scripts/daily_repository_pages.py --workspace /Users/m5/code --check
 infra 整份运行报告留在本机私有 state；页面快照只保存容器/服务、连接状态、变化数量及告警，过滤私有仓库路径和变化前后原值。
 
 定时执行与发布步骤见 `docs/handoff/repository-daily-refresh-20261008.md`。系统日更只拉已合并的源码并写运行投影，验证17个完整载体和内容摘要后原子切换current；旧release和失败回执保留。生成器实现、规范或在册测试变化仍走PR/CI与实际复审，不自动重签摘要。
-对话heartbeat已停用。Python刷新器在macmini后台运行，每天0:00检查，每小时补试尚未成功的一天；本机状态在~/.local/state/inresearch.ai/repository-refresh，AWS投影与状态在/srv/inresearch.ai/data/raw/repository-pages。网页从私有job-status显示实际完成/失败和过期；失败不改写上次成功日期。系统无需人工在线、无需打开Codex。macmini开机及其常驻用户launchd、网络/SSH/GitHub可用性仍是运行条件。
+对话heartbeat已停用。Python刷新器在macmini后台运行，每天0:00检查，每小时补试尚未成功的一天；本机状态在~/.local/state/inresearch.ai/repository-refresh，AWS投影与状态在/srv/inresearch.ai/data/raw/repository-pages。网页从私有job-status显示实际完成/失败和过期；失败不改写上次成功日期。系统无需人工在线、无需打开Codex。macmini开机、系统cron、网络/SSH/GitHub可用性仍是运行条件。
 
 **[macmini]** 通过m5把已合并的Python刷新器放在macmini本地运行目录后安装（实际位置见交接）：
 
@@ -76,4 +76,4 @@ infra 整份运行报告留在本机私有 state；页面快照只保存容器/�
 ssh mini '/Users/hermes/.local/bin/python3 /Users/hermes/.local/share/inresearch.ai/repository-refresh/runner.py --install'
 ```
 
-启动和安装均使用现有hermes用户权限，与该机器现有采集任务一样由launchd管理。云端激活通过既有aws SSH与sudo执行，仅限独立的repository-pages投影目录，不重启研究服务或reader。服务端只允许登记管理员页面读取运行投影，原始/data/raw路径不开放，源码镜像替换不覆盖current投影。
+启动和安装均使用现有hermes用户权限，与该机器现有采集任务一样由系统cron管理（无需图形界面或用户登录）。云端激活通过既有aws SSH与sudo执行，仅限独立的repository-pages投影目录，不重启研究服务或reader。服务端只允许登记管理员页面读取运行投影，原始/data/raw路径不开放，源码镜像替换不覆盖current投影。

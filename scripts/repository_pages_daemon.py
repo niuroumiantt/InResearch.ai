@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""macmini system job: pull merged source, inspect, generate, publish, independent of chat."""
+"""macmini system cron job: pull merged source, inspect, generate, publish, independent of chat."""
 from datetime import datetime, timezone, timedelta
 import argparse
 import fcntl
@@ -7,7 +7,6 @@ import json
 import os
 from pathlib import Path
 import platform
-import plistlib
 import shlex
 import subprocess
 import sys
@@ -119,16 +118,31 @@ def install():
     if platform.system()!='Darwin' or platform.node().split('.')[0]!='macmini':
         raise SystemExit('Install this always-on job on macmini, not a laptop.')
     STATE.mkdir(parents=True,exist_ok=True)
-    plist=Path.home()/'Library/LaunchAgents'/f'{LABEL}.plist'
-    plist.write_bytes(plistlib.dumps({'Label':LABEL,
-        'ProgramArguments':[sys.executable,str(Path(__file__).resolve())],
-        'StartCalendarInterval':{'Hour':0,'Minute':0},'StartInterval':3600,'RunAtLoad':True,
-        'EnvironmentVariables':{'PATH':'/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin','TZ':'Asia/Shanghai'},
-        'StandardOutPath':str(STATE/'job.log'),'StandardErrorPath':str(STATE/'job.log')}))
-    domain=f'gui/{os.getuid()}'
-    subprocess.run(['launchctl','bootout',domain,str(plist)],capture_output=True)
-    subprocess.run(['launchctl','bootstrap',domain,str(plist)],check=True)
-    print('Installed macmini daily 00:00 Python job with hourly retry/catch-up.')
+    existing=subprocess.run(['crontab','-l'],capture_output=True,text=True)
+    if existing.returncode and not (existing.returncode==1 and 'no crontab' in existing.stderr):
+        raise RuntimeError('Cannot read current crontab; existing schedule was not changed')
+    begin,end='# BEGIN inresearch.repository-pages','# END inresearch.repository-pages'
+    kept=[];inside=False
+    for line in existing.stdout.splitlines():
+        if line==begin:
+            if inside:raise RuntimeError('Malformed existing schedule')
+            inside=True
+        elif line==end:
+            if not inside:raise RuntimeError('Malformed existing schedule')
+            inside=False
+        elif not inside:
+            kept.append(line)
+    if inside:raise RuntimeError('Incomplete existing schedule; left unchanged')
+    runner=shlex.quote(str(Path(__file__).resolve()))
+    python=shlex.quote(sys.executable)
+    log=shlex.quote(str(STATE/'job.log'))
+    entry='0 * * * * /usr/bin/env PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin TZ=Asia/Shanghai '+python+' '+runner+' >> '+log+' 2>&1'
+    command(['crontab','-'],input='\n'.join([*kept,begin,entry,end,'']),text=True)
+    # First run is detached from SSH/chat; subsequent runs belong to system cron.
+    with (STATE/'job.log').open('a') as output:
+        subprocess.Popen([sys.executable,str(Path(__file__).resolve()),'--force'],
+            stdout=output,stderr=subprocess.STDOUT,start_new_session=True)
+    print('Installed system cron: daily 00:00, hourly retry, independent of GUI/login/chat.')
 
 
 if __name__=='__main__':
