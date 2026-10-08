@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.16。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.17。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1247。
+在册文件：1251。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 306 |
-| 运行代码 | 291 |
+| 历史快照 | 307 |
+| 运行代码 | 292 |
 | 现行规范 | 14 |
 | 项目配置 | 119 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 109 |
-| 测试 | 141 |
+| 配套说明 | 110 |
+| 测试 | 142 |
 
 ## 在册记录集合
 
@@ -352,7 +352,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 43 |
+| `framework/current_state.json` | policies | 44 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -541,6 +541,7 @@
 | `docs/archive/2026-10-06/worktree-snapshots/terminal-boundaries-plan-7e35305.patch` | 历史快照 |
 | `docs/archive/2026-10-06/worktree-snapshots/terminal-office-wip-d9477a7.patch` | 历史快照 |
 | [docs/archive/2026-10-07/framework__04_before_native_text.md](archive/2026-10-07/framework__04_before_native_text.md) | 历史快照 |
+| [docs/archive/2026-10-08/docs__geluoke__专题写作规则-v2.2.md](archive/2026-10-08/docs__geluoke__专题写作规则-v2.2.md) | 历史快照 |
 | [docs/archive/2026-10-08/framework__05_interface_system__before_reader_company.md](archive/2026-10-08/framework__05_interface_system__before_reader_company.md) | 历史快照 |
 | [docs/archive/2026-10-08/framework__05_interface_system__before_repository_daily.md](archive/2026-10-08/framework__05_interface_system__before_repository_daily.md) | 历史快照 |
 | [docs/design/technical-atlas/MIGRATION_PLAN.md](design/technical-atlas/MIGRATION_PLAN.md) | 配套说明 |
@@ -583,6 +584,7 @@
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
 | [docs/handoff/historical-source-recovery-20261007.md](handoff/historical-source-recovery-20261007.md) | 配套说明 |
+| [docs/handoff/history-foundation-writing-20261008.md](handoff/history-foundation-writing-20261008.md) | 配套说明 |
 | [docs/handoff/homepage-first-screen.md](handoff/homepage-first-screen.md) | 配套说明 |
 | [docs/handoff/homepage-map-audit-20261003.md](handoff/homepage-map-audit-20261003.md) | 配套说明 |
 | [docs/handoff/inews-2026-09-29.md](handoff/inews-2026-09-29.md) | 配套说明 |
@@ -1314,6 +1316,7 @@
 | `src/inresearch/knowledge/graph.py` | 运行代码 |
 | `src/inresearch/knowledge/indicators.py` | 运行代码 |
 | `src/inresearch/knowledge/industry.py` | 运行代码 |
+| `src/inresearch/knowledge/material_baseline.py` | 运行代码 |
 | `src/inresearch/knowledge/navigation.py` | 运行代码 |
 | `src/inresearch/knowledge/news_observations.py` | 运行代码 |
 | `src/inresearch/knowledge/news_policy.py` | 运行代码 |
@@ -1477,6 +1480,7 @@
 | `tests/unit/test_m4_triage_local.py` | 测试 |
 | `tests/unit/test_m4_triage_report.py` | 测试 |
 | `tests/unit/test_m4_triage_versions.py` | 测试 |
+| `tests/unit/test_material_baseline.py` | 测试 |
 | `tests/unit/test_material_flow.py` | 测试 |
 | `tests/unit/test_material_intake.py` | 测试 |
 | `tests/unit/test_material_retention.py` | 测试 |

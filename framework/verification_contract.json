@@ -1354,20 +1354,6 @@
       ]
     },
     {
-      "policy": "geluoke-longform-20261001",
-      "scope": "editorial-delivery",
-      "source": "docs/geluoke/专题写作规则.md",
-      "checked_requirement": "写作规范只有一个现行入口；来源存在，同范围不并行生效，在册修改可被检出。v2.2已按用户修订人工复核；以下自动测试只检查登记，不证明文章质量。",
-      "tests": [
-        "tests/unit/test_governance.py::GovernanceTests.test_replacement_valid_then_parallel_current_rejected",
-        "tests/unit/test_governance.py::GovernanceTests.test_inventory_detects_added_and_modified_records_excludes_ignored"
-      ],
-      "not_verified": [
-        "事实准确性、来源完整性、篇幅、图中文字与手机视觉须逐篇验收；仓库治理测试不覆盖这些编辑要求。",
-        "上一稿本机390px和1000px渲染及浏览器复制已检查；公众号编辑器实粘未做，研究反哺仍是候选。本机成品不视为跨机器已同步。"
-      ]
-    },
-    {
       "policy": "visual-atlas-20261008",
       "scope": "project",
       "source": "framework/10_visual_atlas.md",
