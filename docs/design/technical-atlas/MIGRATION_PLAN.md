@@ -6,7 +6,7 @@
 
 ## 当前进度
 
-TA-01 SSD 样板已制作并完成内容/视觉/页面与公网发布验收，源码PR382四项CI全部通过，生产SSD档案及9条可编辑标注实际打开，pageerror为0。无字PNG和可编辑标注SVG接入现有SSD部件档案，旧机箱/抽盘图原样保留。验收、来源、提示词和真实尺寸见 [TA-01记录](TA-01/acceptance-v1.json)。首次发布回执见 [TA-01发布记录](TA-01/publication-20261008.json)；公网高清SVG读到82.658秒，随后补同尺寸轻量预览，高清放大/下载保持原件。用户已明确肯定线上SSD样板。TA-02共用配方已在PR388首次发布，源码/服务与机柜双外观导出实读；[发布记录](TA-02/publication-20261008.json)保留结果与检查中发现的问题。导出可读性及园区匿名启动的修正另附本次PR实际回执；TA-03机箱与TA-04 GPU基板已完成实际发布与公网验收；其余31项仍待制作。共用渲染接通不等于各个造型/平面图已重制。 代码位置已复核：两个3D页面中的背景/灯光/Bloom/M材质工厂与共享部件查看器、资源/镜头组件；`web/assets/materials.js`实际为资料上传组件，不属于3D材质迁移。
+TA-01 SSD 样板已制作并完成内容/视觉/页面与公网发布验收，源码PR382四项CI全部通过，生产SSD档案及9条可编辑标注实际打开，pageerror为0。无字PNG和可编辑标注SVG接入现有SSD部件档案，旧机箱/抽盘图原样保留。验收、来源、提示词和真实尺寸见 [TA-01记录](TA-01/acceptance-v1.json)。首次发布回执见 [TA-01发布记录](TA-01/publication-20261008.json)；公网高清SVG读到82.658秒，随后补同尺寸轻量预览，高清放大/下载保持原件。用户已明确肯定线上SSD样板。TA-02共用配方已在PR388首次发布，源码/服务与机柜双外观导出实读；[发布记录](TA-02/publication-20261008.json)保留结果与检查中发现的问题。导出可读性及园区匿名启动的修正另附本次PR实际回执；TA-03机箱与TA-04 GPU基板已完成实际发布与公网验收；其余30项仍待制作。共用渲染接通不等于各个造型/平面图已重制。 代码位置已复核：两个3D页面中的背景/灯光/Bloom/M材质工厂与共享部件查看器、资源/镜头组件；`web/assets/materials.js`实际为资料上传组件，不属于3D材质迁移。
 
 TA-02 [验收记录](TA-02/acceptance-v1.json)明确只验收共用渲染、文字和导出，不提前完成后续造型。桌面/手机和明暗导出的实际PNG暖白像素、可编辑标签、保留查看器/阶段、边几何释放与模型替换已检查。
 
@@ -32,7 +32,7 @@ TA-01入口补全：2D SSD详图在对应存储/尺度行后展开，显示骨�
 | TA-02 | 共享图册材质、轮廓、引线与导出配方 | `两3D主页面及部件查看器` | 落实已验样板的配方，导出暖白且保留交互；回归镜头和资源释放 | R2, R3 | 已发布，收尾修正 |
 | TA-03 | 机箱盖板与壳体 | `web/assets/renders/chassis.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2, R3 | 已发布 · PR404 |
 | TA-04 | 加速器/GPU 基板 | `web/assets/renders/gpu-board.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2, R3 | 已发布 · PR409 |
-| TA-05 | GPU 与 HBM 封装 | `web/assets/renders/hbm.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R3 | 待制作 |
+| TA-05 | GPU 与 HBM 封装 | `web/assets/renders/hbm.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2, R3 | 已发布 · PR419 |
 | TA-06 | 主板、CPU 与 DIMM | `web/assets/renders/mobo.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2 | 待制作 |
 | TA-07 | 网卡与连接器 | `web/assets/renders/nic.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2 | 待制作 |
 | TA-08 | 电源模块 | `web/assets/renders/psu.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2 | 待制作 |
@@ -91,7 +91,7 @@ TA-36/37已完成真实无字母图、7条独立标注与四幅实际本地入�
 
 ## 持续执行（用户重申35项）
 
-主计划已发布4/35：TA-01、TA-02、TA-03、TA-04。设施补充批次TA-36–39已发布4/4，单独计量；下一TA-05 HBM继续，不调整原01–35编号。当前对话已设每小时续做；只有新图实际发布、失败或需用户决定时通知，不发送无变化进度。每张仍逐项制作、审图、页面检查、CI与实际发布验收，不以调度记录冒充完成。
+主计划已发布5/35：TA-01、TA-02、TA-03、TA-04、TA-05。设施补充批次TA-36–39已发布4/4，单独计量；下一TA-05 HBM继续，不调整原01–35编号。当前对话已设每小时续做；只有新图实际发布、失败或需用户决定时通知，不发送无变化进度。每张仍逐项制作、审图、页面检查、CI与实际发布验收，不以调度记录冒充完成。
 
 ## 补充批次发布收尾
 
@@ -112,3 +112,5 @@ TA-04通用八GPU模组基板：前两版因数量错误拒绝并保留，第三
 TA-04发布回执：[publication-20261008.json](TA-04/publication-20261008.json)。实际系统/尺度四视图、高清8标签及嵌入原PNG SHA、源码/预览字节、双下载HEAD与AWS/Spark版本和服务分别核对；初次502保留，后续真实读取通过，冷高清打开135.594秒。TA-05仅备料，尚未生成；不把原3D几何或其余31项提前计量。
 
 TA-05本地验收：GPU/HBM并排于硅中介层，分离基板/焊球与HBM剖开局部；首版TSV外柱和板级身份错误被拒，第二版采用。四堆栈和层数/连接比例示意，8独立标签。实际发布之前主计划保持4/35，补充4/4。
+
+TA-05 publication: [publication-20261009.json](TA-05/publication-20261009.json). Actual public system/scale desktop/mobile views, eight editable labels, embedded master SHA, source bytes and both downloads verified. PR419 already merged; Actions did not run due to budget, user explicitly waived this release blocker. AWS/Spark observed 10cd748f and services healthy/active. Main 5/35, supplemental 4/4; next TA-06 motherboard/CPU/DIMM. Earlier TA-05 local-only notes are historical.

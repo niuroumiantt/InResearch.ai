@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.01。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.02。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1322。
+在册文件：1323。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,7 +18,7 @@
 | 历史快照 | 307 |
 | 运行代码 | 292 |
 | 现行规范 | 14 |
-| 项目配置 | 158 |
+| 项目配置 | 159 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
@@ -127,6 +127,10 @@
 | `docs/design/technical-atlas/TA-05/labels-v1.json` | leaders | 8 |
 | `docs/design/technical-atlas/TA-05/preparation.json` | primary_sources | 2 |
 | `docs/design/technical-atlas/TA-05/preparation.json` | unknowns | 1 |
+| `docs/design/technical-atlas/TA-05/publication-20261009.json` | public_source_bytes | 3 |
+| `docs/design/technical-atlas/TA-05/publication-20261009.json` | public_download_head | 2 |
+| `docs/design/technical-atlas/TA-05/publication-20261009.json` | browser_evidence | 5 |
+| `docs/design/technical-atlas/TA-05/publication-20261009.json` | limits | 5 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -654,6 +658,7 @@
 | `docs/design/technical-atlas/TA-05/preparation.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-05/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-05/prompt-v2.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-05/publication-20261009.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
