@@ -77,6 +77,10 @@ Every nonempty question_ids needs nonempty context_terms; unmatched claims use
 an empty list. These terms select scoped registry context, not exhaustive
 external verification. Missing or insufficient conflict context must be deferred
 by the reviewer, never described as independently certified."""
+MATCH_SYSTEM_V3 = MATCH_SYSTEM_V2 + """
+Each term must be 2..80 characters. PDF line breaks and repeated whitespace may
+be treated as one space; do not paraphrase, translate or replace punctuation.
+Choose terms only from this candidate or its own quoted evidence."""
 
 
 def sha(value):
@@ -85,6 +89,11 @@ def sha(value):
 
 def flat(value):
     return re.sub(r'\s+', '', value)
+
+
+def literal_text(value):
+    """Normalize layout whitespace only; research text and quotes stay intact."""
+    return re.sub(r'\s+', ' ', value).strip()
 
 
 def ro(path):
@@ -305,7 +314,7 @@ class ReviewStore:
     def claim(self, batch_id=None):
         self.db.execute('BEGIN IMMEDIATE')
         row = self.db.execute("SELECT * FROM batches WHERE state='queued' AND available<=? AND (? IS NULL OR id=?) "
-                              "ORDER BY (error LIKE 'explicit semantic-values-v2 retry%') DESC,"
+                              "ORDER BY (error LIKE 'explicit semantic-values-v% retry%') DESC,"
                               "(json_array_length(candidate_ids)>1) DESC,rowid LIMIT 1", (time.time(),batch_id,batch_id)).fetchone()
         if row:
             self.db.execute("UPDATE batches SET state='reviewing',attempts=attempts+1,updated=? WHERE id=?",
@@ -426,7 +435,7 @@ class ReviewStore:
             client = client or configured_client('core_review')
             matching=match_packet(root,packet)
             match_user=encoded(matching)
-            match_system=MATCH_SYSTEM_V2
+            match_system=MATCH_SYSTEM_V3
             if len((match_system+match_user).encode())>client.profile.context-client.profile.max_output_tokens-1024:
                 if len(json.loads(batch['candidate_ids']))>1:
                     self.split(batch);return self.status()
@@ -524,6 +533,14 @@ class ReviewStore:
         self.complete(dict(row),'queued','explicit semantic-values-v2 retry; old audit retained')
         self.db.execute('UPDATE batches SET available=0 WHERE id=?',(batch_id,));self.db.commit()
 
+    def retry_matching(self, batch_id):
+        """Explicit v3 replay of literal-term failures; no failed C3 bypass."""
+        row=self.db.execute('SELECT * FROM batches WHERE id=?',(batch_id,)).fetchone()
+        if not row or row['state']!='deferred' or row['error']!='context_terms_must_be_literal_bounded_claim':
+            raise ValueError('only_literal_matching_failures_can_retry')
+        self.complete(dict(row),'queued','explicit semantic-values-v3 retry; old audit retained')
+        self.db.execute('UPDATE batches SET available=0 WHERE id=?',(batch_id,));self.db.commit()
+
     def split(self, batch):
         """Split candidate cohorts, keeping all context and immutable attempts."""
         ids=json.loads(batch['candidate_ids'])
@@ -552,7 +569,7 @@ def match_packet(root, packet):
     directory=[{'id':t['wid'][2:],'text':t['title']} for t in registry.current_tasks(root)
                if t['wid'].startswith('Q-') and (set(t.get('object_ids',[]))=={'root'} or
                                                  set(t.get('object_ids',[]))&objects)]
-    return {'retrieval_version':'semantic-values-v2','items':packet['items'],'native_pages':packet.get('native_pages',{}),
+    return {'retrieval_version':'semantic-values-v3','items':packet['items'],'native_pages':packet.get('native_pages',{}),
             'report_summary':packet.get('report_summary',''), 'current_question_directory':directory}
 
 
@@ -564,33 +581,58 @@ def validate_matches(matching, result):
             or any(not isinstance(r.get('question_ids'),list) or not set(r['question_ids'])<=qids
                    or not isinstance(r.get('rationale'),str) or not r['rationale'].strip() for r in rows)):
         raise ValueError('invalid_current_demand_matches')
-    if matching.get('retrieval_version')=='semantic-values-v2':
+    if matching.get('retrieval_version') in ('semantic-values-v2','semantic-values-v3'):
         items={i['candidate']['id']:i for i in matching['items']}
         for row in rows:
             terms=row.get('context_terms');item=items[row['id']]
             original='\n'.join([item['candidate']['text'],*[e['quote'] for e in item['evidence']]])
+            normalize=literal_text if matching['retrieval_version']=='semantic-values-v3' else lambda v:v.strip()
             if (not isinstance(terms,list) or len(terms)>6 or
                     bool(row['question_ids'])!=bool(terms) or
                     any(not isinstance(t,str) or not 2<=len(t.strip())<=80 or
-                        t.strip().casefold() not in original.casefold() for t in terms)):
+                        normalize(t).casefold() not in normalize(original).casefold() for t in terms)):
                 raise ValueError('context_terms_must_be_literal_bounded_claim')
     return rows
 
 
+def partition_matches(matching, result):
+    """Validate the full envelope, then isolate unsupported literal terms."""
+    # The legacy envelope validator checks all IDs and current question IDs.
+    # Omitting a row or inventing a question still rejects the entire response.
+    rows=validate_matches({**matching,'retrieval_version':'envelope-only'},result)
+    items={i['candidate']['id']:i for i in matching['items']}
+    accepted=[];rejected=[]
+    for row in rows:
+        try:
+            validate_matches({**matching,'items':[items[row['id']]]},{'matches':[row]})
+        except ValueError as error:
+            if str(error)!='context_terms_must_be_literal_bounded_claim':raise
+            rejected.append({'id':row['id'],'state':'deferred','reason':str(error)})
+        else:accepted.append(row)
+    return accepted,rejected
+
+
 def apply_matches(root, packet, matching, result):
-    rows={r['id']:r for r in validate_matches(matching,result)}
+    isolated=matching.get('retrieval_version')=='semantic-values-v3'
+    accepted,rejected=partition_matches(matching,result) if isolated else (validate_matches(matching,result),[])
+    rows={r['id']:r for r in accepted}
+    if isolated:
+        packet['items']=[item for item in packet['items'] if item['candidate']['id'] in rows]
+        packet.setdefault('unsupported',[]).extend(rejected)
     for item in packet['items']:
         item['original_allowed_question_ids']=item.get('original_allowed_question_ids',item['allowed_question_ids'])
         item['allowed_question_ids']=rows[item['candidate']['id']]['question_ids']
     qids=sorted({q for r in rows.values() for q in r['question_ids']})
     version=packet['research_context'].get('selection_version','serialized-v1')
     tokens=packet['research_context'].get('source_tokens',[])
-    if matching.get('retrieval_version')=='semantic-values-v2':
+    if matching.get('retrieval_version') in ('semantic-values-v2','semantic-values-v3'):
         version='semantic-values-v2'
-        tokens=sorted({t.strip() for row in rows.values() for t in row['context_terms']})
+        normalize=literal_text if isolated else lambda v:v.strip()
+        tokens=sorted({normalize(t) for row in rows.values() for t in row['context_terms']})
     packet['research_context']=context(root,qids,tokens,version)
     packet['context_sha256']=sha(packet['research_context'])
     packet['demand_matching']={'matches':list(rows.values()),'model':result.get('_model')}
+    if isolated:packet['demand_matching']['rejected_matches']=rejected
 
 
 def validate_reviews(packet, response):
@@ -638,9 +680,15 @@ def verify_audit(bundle, directory):
         matching_request=read_json(directory/'matching-request.json')
         matching_response=read_json(directory/'matching-response.json')
         matching=json.loads(matching_request['user'])
-        expected_system=MATCH_SYSTEM_V2 if matching.get('retrieval_version')=='semantic-values-v2' else MATCH_SYSTEM
+        version=matching.get('retrieval_version')
+        expected_system=MATCH_SYSTEM_V3 if version=='semantic-values-v3' else MATCH_SYSTEM_V2 if version=='semantic-values-v2' else MATCH_SYSTEM
+        accepted,rejected=partition_matches(matching,matching_response) if version=='semantic-values-v3' else (validate_matches(matching,matching_response),[])
         if (matching_request['system']!=expected_system or
-                validate_matches(matching,matching_response)!=packet['demand_matching']['matches'] or
+                accepted!=packet['demand_matching']['matches'] or
+                (version=='semantic-values-v3' and (
+                    rejected!=packet['demand_matching'].get('rejected_matches') or
+                    any(r not in packet.get('unsupported',[]) for r in rejected) or
+                    {x['candidate']['id'] for x in packet['items']}!={r['id'] for r in accepted})) or
                 matching_response.get('_model')!=packet['demand_matching']['model'] or
                 matching_response['_model'].get('input_sha256')!=hashlib.sha256(matching_request['user'].encode()).hexdigest()):
             raise ValueError('actual_demand_matching_audit_mismatch')
@@ -778,6 +826,7 @@ def main():
     split = sub.add_parser('split-overbudget');split.add_argument('--batch-id',required=True)
     regroup = sub.add_parser('regroup-queued');regroup.add_argument('--batch-size',type=int,default=6)
     retry_context = sub.add_parser('retry-context');retry_context.add_argument('--batch-id',required=True)
+    retry_matching = sub.add_parser('retry-matching');retry_matching.add_argument('--batch-id',required=True)
     mark = sub.add_parser('published');mark.add_argument('--batch-id',required=True)
     mark.add_argument('--proof',type=Path,required=True)
     a = sub.add_parser('promote');a.add_argument('--bundle',type=Path,required=True)
@@ -793,6 +842,7 @@ def main():
     elif args.command=='status':print(encoded(store.status()))
     elif args.command=='regroup-queued':print(encoded(store.regroup(args.batch_size)))
     elif args.command=='retry-context':store.retry_context(args.batch_id);print(encoded(store.status()))
+    elif args.command=='retry-matching':store.retry_matching(args.batch_id);print(encoded(store.status()))
     elif args.command=='split-overbudget':
         row=store.db.execute('SELECT * FROM batches WHERE id=?',(args.batch_id,)).fetchone()
         if not row or row['state'] not in ('queued','deferred') or row['error'] not in ('review_context_over_budget','input_exceeds_context_budget'):
