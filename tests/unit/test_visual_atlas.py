@@ -3,10 +3,12 @@
 These checks do not claim that an image looks right or has correct engineering.
 """
 import hashlib
+import base64
 import json
 from pathlib import Path
 import struct
 import unittest
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -58,3 +60,22 @@ class VisualAtlasTests(unittest.TestCase):
             if row['status'] == 'published':
                 self.assertTrue(row['published_revision'], row['id'] + ': no publication receipt')
         self.assertLessEqual(len(active), 1, 'the adopted plan works on one item at a time')
+
+    def test_completed_illustrations_bind_master_labels_and_retained_baseline(self):
+        ns = {'s': 'http://www.w3.org/2000/svg'}
+        for row in self.queue['items']:
+            if row['status'] not in ('accepted', 'published') or row['kind'] != 'existing':
+                continue
+            receipt = json.loads((ROOT / row['acceptance_record']).read_text())
+            self.assertEqual(receipt['figure_id'], row['id'])
+            self.assertEqual(receipt['style_id'], self.queue['style_id'])
+            for artifact in receipt['artifacts']:
+                raw = (ROOT / artifact['file']).read_bytes()
+                self.assertEqual(hashlib.sha256(raw).hexdigest(), artifact['sha256'])
+            master = ROOT / receipt['master']
+            svg = ET.parse(ROOT / receipt['labelled']).getroot()
+            embedded = svg.find('s:image', ns).get('href').split(',', 1)[1]
+            self.assertEqual(base64.b64decode(embedded), master.read_bytes(), 'label export must embed the unchanged master')
+            self.assertGreater(len(svg.findall("s:g[@id='editable-labels']/s:text", ns)), 0)
+            baseline = row['baseline_asset']
+            self.assertEqual(hashlib.sha256((ROOT / baseline['file']).read_bytes()).hexdigest(), baseline['sha256'], 'retain old assets')

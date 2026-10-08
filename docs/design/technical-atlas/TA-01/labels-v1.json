@@ -1,0 +1,130 @@
+{
+  "figure_id": "TA-01",
+  "title": "SSD 结构拆解 · 通用示意",
+  "description": "企业级有壳SSD类别示意：NAND闪存与控制器局部放大，上盖、示意导热接触层、电路板和底壳。布局、数量和连接端外形不是具名型号参数。",
+  "master": "web/assets/technical-atlas/ssd-v1.png",
+  "output": "web/assets/technical-atlas/ssd-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "labels": [
+    {
+      "id": "label-nand",
+      "text": "NAND 闪存",
+      "x": 80,
+      "y": 112
+    },
+    {
+      "id": "label-nand-role",
+      "text": "存放数据 · 封装局部放大",
+      "x": 80,
+      "y": 492
+    },
+    {
+      "id": "label-controller",
+      "text": "SSD 控制器",
+      "x": 80,
+      "y": 532
+    },
+    {
+      "id": "label-controller-role",
+      "text": "管理数据读写 · 封装局部放大",
+      "x": 80,
+      "y": 954
+    },
+    {
+      "id": "label-cover",
+      "text": "上盖 / 紧固件",
+      "x": 1440,
+      "y": 80,
+      "anchor": "end"
+    },
+    {
+      "id": "label-thermal",
+      "text": "导热接触层 · 示意",
+      "x": 1490,
+      "y": 438,
+      "anchor": "end"
+    },
+    {
+      "id": "label-pcb",
+      "text": "电路板",
+      "x": 1500,
+      "y": 588,
+      "anchor": "end"
+    },
+    {
+      "id": "label-case",
+      "text": "底壳",
+      "x": 1450,
+      "y": 980,
+      "anchor": "end"
+    },
+    {
+      "id": "label-connector",
+      "text": "连接端 · 外形示意",
+      "x": 1490,
+      "y": 690,
+      "anchor": "end"
+    }
+  ],
+  "leaders": [
+    {
+      "id": "leader-nand",
+      "path": "M 432 250 H 515 Q 560 250 585 285 L 650 390 Q 663 413 690 416 L 770 435",
+      "target": [
+        770,
+        435
+      ]
+    },
+    {
+      "id": "leader-controller",
+      "path": "M 417 650 H 520 Q 560 650 585 620 L 610 598 Q 633 574 674 574 H 920 Q 947 574 977 553 L 1046 545",
+      "target": [
+        1046,
+        545
+      ]
+    },
+    {
+      "id": "leader-cover",
+      "path": "M 1380 92 V 120 Q 1380 142 1358 163 L 1270 240",
+      "target": [
+        1270,
+        240
+      ]
+    },
+    {
+      "id": "leader-thermal",
+      "path": "M 1420 452 H 1360 Q 1330 452 1300 466 L 1100 501",
+      "target": [
+        1100,
+        501
+      ]
+    },
+    {
+      "id": "leader-pcb",
+      "path": "M 1480 600 H 1435 Q 1410 600 1390 585 L 1330 550",
+      "target": [
+        1330,
+        550
+      ]
+    },
+    {
+      "id": "leader-case",
+      "path": "M 1470 965 V 878 Q 1470 850 1435 835 L 1390 820",
+      "target": [
+        1390,
+        820
+      ]
+    },
+    {
+      "id": "leader-connector",
+      "path": "M 1430 705 H 1405 Q 1385 705 1360 693 L 1305 661",
+      "target": [
+        1305,
+        661
+      ]
+    }
+  ]
+}
