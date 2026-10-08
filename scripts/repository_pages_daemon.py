@@ -70,7 +70,10 @@ def refresh():
         expected=validate(bundle)
         remote='/tmp/repository-pages-'+uuid.uuid4().hex
         command(['ssh','-o','BatchMode=yes','aws','mkdir -m 700 '+remote])
-        package=command(['tar','-cf','-','-C',str(bundle),'.'])
+        # BSD tar otherwise adds AppleDouble files; Linux must receive only
+        # the exact artifacts whose content hashes were validated above.
+        package=command(['tar','-cf','-','-C',str(bundle),'.'],
+                        env=dict(os.environ,COPYFILE_DISABLE='1'))
         command(['ssh','-o','BatchMode=yes','aws','tar -xf - -C '+remote],input=package)
         activate=(root/'scripts/publish_repository_pages.py').read_bytes()
         response=command(['ssh','-o','BatchMode=yes','aws',
@@ -136,7 +139,7 @@ def install():
     runner=shlex.quote(str(Path(__file__).resolve()))
     python=shlex.quote(sys.executable)
     log=shlex.quote(str(STATE/'job.log'))
-    entry='0 * * * * /usr/bin/env PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin TZ=Asia/Shanghai '+python+' '+runner+' >> '+log+' 2>&1'
+    entry='0 * * * * /usr/bin/env PATH=/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin TZ=Asia/Shanghai COPYFILE_DISABLE=1 '+python+' '+runner+' >> '+log+' 2>&1'
     command(['crontab','-'],input='\n'.join([*kept,begin,entry,end,'']),text=True)
     # First run is detached from SSH/chat; subsequent runs belong to system cron.
     with (STATE/'job.log').open('a') as output:

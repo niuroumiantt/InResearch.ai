@@ -77,3 +77,5 @@ ssh mini '/Users/hermes/.local/bin/python3 /Users/hermes/.local/share/inresearch
 ```
 
 启动和安装均使用现有hermes用户权限，与该机器现有采集任务一样由系统cron管理（无需图形界面或用户登录）。云端激活通过既有aws SSH与sudo执行，仅限独立的repository-pages投影目录，不重启研究服务或reader。服务端只允许登记管理员页面读取运行投影，原始/data/raw路径不开放，源码镜像替换不覆盖current投影。
+
+macOS→Linux传输使用COPYFILE_DISABLE=1，关闭BSD tar附带的AppleDouble元数据；云端仍只接受完整17个登记载体，不放宽额外文件/摘要验证。
