@@ -20,7 +20,7 @@ class VisualAtlasTests(unittest.TestCase):
 
     def test_adopted_reference_bytes_and_actual_dimensions_match(self):
         references = self.profile['references']
-        self.assertEqual(len({r['id'] for r in references}), 5)
+        self.assertEqual({r['id'] for r in references}, {f'R{i}' for i in range(1, 10)})
         for row in references:
             path = (ROOT / row['file']).resolve()
             self.assertTrue(path.is_relative_to(ROOT))
@@ -64,15 +64,17 @@ class VisualAtlasTests(unittest.TestCase):
     def test_completed_illustrations_bind_master_labels_and_retained_baseline(self):
         ns = {'s': 'http://www.w3.org/2000/svg'}
         for row in self.queue['items']:
-            if row['status'] not in ('accepted', 'published') or row['kind'] != 'existing':
+            if row['status'] not in ('accepted', 'published') or row['kind'] not in ('existing', 'new_illustration'):
                 continue
             receipt = json.loads((ROOT / row['acceptance_record']).read_text())
             self.assertEqual(receipt['figure_id'], row['id'])
+            self.assertEqual(receipt['object_id'], row['object_id'])
             self.assertEqual(receipt['style_id'], self.queue['style_id'])
             for artifact in receipt['artifacts']:
                 raw = (ROOT / artifact['file']).read_bytes()
                 self.assertEqual(hashlib.sha256(raw).hexdigest(), artifact['sha256'])
             master = ROOT / receipt['master']
+            self.assertEqual(struct.unpack('>II', master.read_bytes()[16:24]), tuple(receipt['pixels']))
             svg = ET.parse(ROOT / receipt['labelled']).getroot()
             embedded = svg.find('s:image', ns).get('href').split(',', 1)[1]
             self.assertEqual(base64.b64decode(embedded), master.read_bytes(), 'label export must embed the unchanged master')
@@ -82,8 +84,11 @@ class VisualAtlasTests(unittest.TestCase):
                 self.assertLess(preview.stat().st_size, 512 * 1024, 'dossier preview must stay lightweight')
                 self.assertEqual(len(ET.parse(preview).getroot().findall("s:g[@id='editable-labels']/s:text", ns)),
                                  len(svg.findall("s:g[@id='editable-labels']/s:text", ns)))
-            baseline = row['baseline_asset']
-            self.assertEqual(hashlib.sha256((ROOT / baseline['file']).read_bytes()).hexdigest(), baseline['sha256'], 'retain old assets')
+            if row['kind'] == 'existing':
+                baseline = row['baseline_asset']
+                self.assertEqual(hashlib.sha256((ROOT / baseline['file']).read_bytes()).hexdigest(), baseline['sha256'], 'retain old assets')
+            else:
+                self.assertRegex(row['baseline_revision'], r'^[a-f0-9]{40}$', 'new illustration must retain its source-page baseline')
 
     def test_shared_recipe_receipt_keeps_geometry_and_export_scope_explicit(self):
         for row in self.queue['items']:

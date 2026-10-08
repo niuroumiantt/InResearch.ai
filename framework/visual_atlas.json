@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "style_id": "white-technical-atlas-v1",
-  "version": "1.4",
+  "version": "1.5",
   "adopted_at": "2026-10-08",
   "source": "framework/10_visual_atlas.md",
   "references": [
@@ -69,6 +69,58 @@
       "use": "visual_reference_only",
       "technical_evidence": false,
       "prompt": "未提供，不补造"
+    },
+    {
+      "id": "R6",
+      "file": "docs/design/technical-atlas/references/06-campus-cutaway.png",
+      "sha256": "c2766f5a960933a49b4216f19a5bfebe3b94c2773a4a59c87b1a74b8cf3e3b75",
+      "width": 1672,
+      "height": 941,
+      "role": "园区与建筑剖开、设施层级和设备细节",
+      "provenance": "2026-10-08用户补充，要求土地与建筑、消防与安全的2D图按逼真场景标准更新；原图字节留存",
+      "original_filename": "2026-09-21-feature-hero.png",
+      "use": "visual_reference_only",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
+    },
+    {
+      "id": "R7",
+      "file": "docs/design/technical-atlas/references/07-heat-path.png",
+      "sha256": "352a5c07dc55980b0871a6280f40c8ecdc219724ddca7b1fbf3295d43b032542",
+      "width": 1672,
+      "height": 941,
+      "role": "热量传递路径与终端设备分区",
+      "provenance": "2026-10-08用户补充，要求土地与建筑、消防与安全的2D图按逼真场景标准更新；原图字节留存",
+      "original_filename": "heat-path-blueprint.png",
+      "use": "visual_reference_only",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
+    },
+    {
+      "id": "R8",
+      "file": "docs/design/technical-atlas/references/08-water-reuse.png",
+      "sha256": "b30a309aa50099342b3cb05958a1f4ac7bde08fcfba681b4b1fc7da28c24ae7a",
+      "width": 1672,
+      "height": 941,
+      "role": "水处理设施场景与局部放大",
+      "provenance": "2026-10-08用户补充，要求土地与建筑、消防与安全的2D图按逼真场景标准更新；原图字节留存",
+      "original_filename": "reuse-collage.png",
+      "use": "visual_reference_only",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
+    },
+    {
+      "id": "R9",
+      "file": "docs/design/technical-atlas/references/09-water-isometric.png",
+      "sha256": "92fcc56d8763be50b3461efad54a4c7a9dd289fac148486d59724137525cb874",
+      "width": 1672,
+      "height": 941,
+      "role": "等轴测建筑剖口、室内外设备关系",
+      "provenance": "2026-10-08用户补充，要求土地与建筑、消防与安全的2D图按逼真场景标准更新；原图字节留存",
+      "original_filename": "water-supply-isometric.png",
+      "use": "visual_reference_only",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
     }
   ],
   "recipe": {
@@ -131,6 +183,7 @@
   },
   "visible_entrypoints": {
     "ssd": "2D detail immediately after the SSD-containing system/scale row; BOM-derived storage context and deep-link positioning; real thumbnail in both arrangements; original dossiers/3D inspector retained",
-    "scope": "TA-01 entry supplement; TA-16/17 remain planned"
+    "scope": "TA-01 entry supplement; TA-16/17 remain planned",
+    "facility": "2D shell, rack-frame, fire and security each use their own real preview; full cutaway/exploded drawing at its system/scale row; no generic block for completed illustration"
   }
 }

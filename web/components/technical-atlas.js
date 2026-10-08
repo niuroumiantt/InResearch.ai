@@ -1,5 +1,21 @@
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
+  fire: {
+    id: 'TA-37', title: '消防 · 探测与灭火设备',
+    image: '/assets/technical-atlas/fire-v1.svg', preview: '/assets/technical-atlas/fire-v1-preview.svg',
+    master: '/assets/technical-atlas/fire-v1.png',
+    alt: '机房消防剖面：烟雾采样与探测器、火灾报警控制器、气体灭火瓶组和独立辅助区喷淋。',
+    note: '通用消防设备与分区示意；图示管网分别独立，实际选型、覆盖和联动按项目设计确定。',
+    labels: ['抽气式采样管与探测器：从保护区域采集空气用于烟雾探测', '火灾报警控制器：展示报警管理设备位置', '声光报警装置：用于现场报警提示', '气体灭火瓶组：展示储存与输送设施', '气体输送管与喷嘴：与探测采样及喷淋管路分开', '喷淋管与喷头：辅助区域示意，配置不作为现场设计要求'],
+  },
+  shell: {
+    id: 'TA-36', title: '土地与建筑 · 建筑剖面',
+    image: '/assets/technical-atlas/shell-v1.svg', preview: '/assets/technical-atlas/shell-v1-preview.svg',
+    master: '/assets/technical-atlas/shell-v1.png',
+    alt: '暖白建筑剖面：屋面揭开、承重结构、机房空间、楼板、基础与地基及场坪道路。',
+    note: '通用建筑剖面示意；布局与数量不代表具体项目，尺寸、基础设计和施工要求以项目资料为准。',
+    labels: ['场坪与道路：展示建筑所在场地及通行空间', '基础与地基：剖开显示建筑支撑关系', '承重结构：柱、梁与屋面支撑示意', '屋面与外墙：展示围护及局部揭开关系', '室内地坪与楼板：承载内部空间', '机房空间：机柜布局仅作场景解释'],
+  },
   ssd: {
     id: 'TA-01',
     title: 'SSD 结构拆解',
@@ -36,9 +52,9 @@ export function mountTechnicalAtlas(parent, partId) {
   const figure = document.createElement('figure');
   const full = document.createElement('a'); full.href = item.image;
   full.target = '_blank'; full.rel = 'noopener';
-  full.setAttribute('aria-label', '放大 SSD 结构拆解图（新窗口）');
+  full.setAttribute('aria-label', `放大 ${item.title}图（新窗口）`);
   const image = document.createElement('img');
-  image.src = item.preview; image.alt = '暖白底 SSD 爆炸图：上盖、导热接触层、电路板和底壳，左侧放大 NAND 与控制器。';
+  image.src = item.preview; image.alt = item.alt || '暖白底 SSD 爆炸图：上盖、导热接触层、电路板和底壳，左侧放大 NAND 与控制器。';
   image.width = 1536; image.height = 1024; image.loading = 'lazy'; image.decoding = 'async';
   full.append(image); figure.append(full);
   const caption = document.createElement('figcaption'); caption.textContent = item.note;

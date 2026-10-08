@@ -1,6 +1,12 @@
 /* Check the real dossier entry and a self-contained, editable exported figure. */
 const assert = require('node:assert/strict');
+const {readFileSync} = require('node:fs');
+const {join} = require('node:path');
 const {chromium} = require('playwright');
+const accepted = new Set(JSON.parse(readFileSync(join(__dirname,'../framework/visual_atlas_migration.json'),'utf8')).items
+  .filter(row => ['accepted','published'].includes(row.status)).map(row => row.id));
+const facilityCases = [['shell','TA-36'], ['fire','TA-37'], ['security','TA-38'], ['rack-frame','TA-39']]
+  .filter(([,figure]) => accepted.has(figure));
 (async () => {
   const browser = await chromium.launch({headless: true, args: ['--enable-unsafe-swiftshader']});
   try {
@@ -73,7 +79,42 @@ const {chromium} = require('playwright');
       }
       if (process.env.REVIEW_SCREENSHOTS) await atlas.screenshot({path: process.env.REVIEW_SCREENSHOTS + '/' + (url.includes('rack3d') ? 'atlas-rack.png' : 'atlas-bom.png')});
     }
+    for (const [part, figure] of facilityCases) {
+      await page.goto(process.env.UI_BASE_URL + '/bom.html#' + part, {waitUntil:'domcontentloaded'});
+      const atlas = page.locator(`#selected-atlas .technical-atlas[data-figure="${figure}"]`);
+      await atlas.waitFor(); await atlas.locator('img').scrollIntoViewIfNeeded();
+      await atlas.locator('img').evaluate(img => img.decode());
+      assert.ok((await atlas.locator('img').getAttribute('src')).endsWith(`/${part}-v1-preview.svg`));
+      assert.match(await page.locator('.atlas-context').textContent(), /设施 →/);
+      assert.equal(await page.locator('.technical-atlas').count(),1,'a facility selection must not retain the previous object diagram');
+      for (const mode of ['scale','system']) {
+        await page.locator(`[data-mode="${mode}"]`).click();
+        assert.ok(await page.locator('#selected-atlas').evaluate((el,id) => el.previousElementSibling.matches(`.lrow[data-row-parts~="${id}"]`),part));
+        assert.equal(await page.locator(`.pbox[data-part="${part}"] path`).count(),0);
+        assert.ok((await page.locator(`.pbox[data-atlas-part="${part}"] image`).getAttribute('href')).endsWith(`/${part}-v1-preview.svg`));
+        for (const width of [1280,390]) {
+          await page.setViewportSize({width,height:900});
+          for (const theme of ['light','dark']) {
+            await page.locator('#ui-appearance').selectOption(theme);
+            assert.equal(await atlas.locator('figure > a').evaluate(el => getComputedStyle(el).backgroundColor), 'rgb(250, 249, 242)');
+            assert.ok((await atlas.boundingBox()).width<=width);
+          }
+        }
+      }
+      const popupPending=page.waitForEvent('popup');
+      await atlas.getByRole('link',{name:'放大查看',exact:true}).click();
+      const popup=await popupPending; await popup.waitForLoadState('domcontentloaded');
+      assert.ok(await popup.locator('svg #editable-labels text').count()>=6);
+      assert.match(await popup.locator('svg image').getAttribute('href'), /^data:image\/png;base64,/);
+      await popup.close();
+      for (const name of ['下载标注图','下载无字底图']) {
+        const pending=page.waitForEvent('download'); await atlas.getByRole('link',{name,exact:true}).click();
+        assert.equal(await (await pending).failure(),null);
+      }
+    }
+    await page.locator('#c-hdd').click();
+    assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'an unfinished object must not inherit a facility diagram');
     assert.deepEqual(errors, []);
-    console.log('Technical atlas: real SSD entry, SVG labels, zoom, both downloads, narrow/light/dark and retained 3D canvas passed');
+    console.log(`Technical atlas: SSD and ${facilityCases.length} accepted facility objects, system/scale context, editable SVG, zoom/downloads, narrow/light/dark and retained 3D passed`);
   } finally { await browser.close(); }
 })().catch(error => {console.error(error); process.exitCode = 1;});

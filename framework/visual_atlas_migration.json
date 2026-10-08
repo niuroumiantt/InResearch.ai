@@ -915,6 +915,132 @@
       "status": "planned",
       "acceptance_record": null,
       "published_revision": null
+    },
+    {
+      "id": "TA-36",
+      "order": 36,
+      "title": "2D 土地与建筑 · 建筑剖面",
+      "phase": "用户优先 · 设施2D",
+      "kind": "new_illustration",
+      "source_paths": [
+        "web/pages/bom.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom.html#shell对应系统/尺度行后的详图与真实缩略图",
+      "reference": [
+        "R3",
+        "R5",
+        "R6"
+      ],
+      "observed_gap": "当前2D只显示分类方块，无法说明对象形态、安装位置与作用",
+      "deliverable": "通用类别场景剖面、无字母图、独立SVG标注、轻量预览与页面定位；不冒充严格俯视或施工设计",
+      "depends_on": [
+        "TA-02"
+      ],
+      "status": "accepted",
+      "acceptance_record": "docs/design/technical-atlas/TA-36/acceptance-v1.json",
+      "published_revision": null,
+      "object_id": "part:shell",
+      "accepted_at": "2026-10-08",
+      "baseline_revision": "ab60a098c7cf71a18d59a3f4b4ce0dff014612ea",
+      "deliverable_paths": [
+        "web/assets/technical-atlas/shell-v1.png",
+        "web/assets/technical-atlas/shell-v1.svg",
+        "web/assets/technical-atlas/shell-v1-preview.jpg",
+        "web/assets/technical-atlas/shell-v1-preview.svg"
+      ]
+    },
+    {
+      "id": "TA-37",
+      "order": 37,
+      "title": "2D 消防 · 探测与灭火分区",
+      "phase": "用户优先 · 设施2D",
+      "kind": "new_illustration",
+      "source_paths": [
+        "web/pages/bom.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom.html#fire对应系统/尺度行后的详图与真实缩略图",
+      "reference": [
+        "R5",
+        "R9"
+      ],
+      "observed_gap": "当前2D只显示分类方块，无法说明对象形态、安装位置与作用",
+      "deliverable": "通用类别场景剖面、无字母图、独立SVG标注、轻量预览与页面定位；不冒充严格俯视或施工设计",
+      "depends_on": [
+        "TA-36"
+      ],
+      "status": "accepted",
+      "acceptance_record": "docs/design/technical-atlas/TA-37/acceptance-v1.json",
+      "published_revision": null,
+      "object_id": "part:fire",
+      "accepted_at": "2026-10-08",
+      "baseline_revision": "ab60a098c7cf71a18d59a3f4b4ce0dff014612ea",
+      "deliverable_paths": [
+        "web/assets/technical-atlas/fire-v1.png",
+        "web/assets/technical-atlas/fire-v1.svg",
+        "web/assets/technical-atlas/fire-v1-preview.jpg",
+        "web/assets/technical-atlas/fire-v1-preview.svg"
+      ]
+    },
+    {
+      "id": "TA-38",
+      "order": 38,
+      "title": "2D 安防 · 周界、门禁与视频",
+      "phase": "用户优先 · 设施2D",
+      "kind": "new_illustration",
+      "source_paths": [
+        "web/pages/bom.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom.html#security对应系统/尺度行后的详图与真实缩略图",
+      "reference": [
+        "R3"
+      ],
+      "observed_gap": "当前2D只显示分类方块，无法说明对象形态、安装位置与作用",
+      "deliverable": "通用类别场景剖面、无字母图、独立SVG标注、轻量预览与页面定位；不冒充严格俯视或施工设计",
+      "depends_on": [
+        "TA-37"
+      ],
+      "status": "drafting",
+      "acceptance_record": null,
+      "published_revision": null,
+      "object_id": "part:security"
+    },
+    {
+      "id": "TA-39",
+      "order": 39,
+      "title": "2D 机柜与结构 · 柜架、柜门和侧板",
+      "phase": "用户优先 · 设施2D",
+      "kind": "new_illustration",
+      "source_paths": [
+        "web/pages/bom.html",
+        "framework/bom.json"
+      ],
+      "entry": "bom.html#rack-frame对应系统/尺度行后详图与真实缩略图",
+      "reference": [
+        "R2",
+        "R3"
+      ],
+      "observed_gap": "土地与建筑链路中的机柜与结构仍是分类方块",
+      "deliverable": "通用柜架/门/侧板结构爆炸图、无字母图、SVG标注、轻量预览与实际上下文入口；TA-13原3D造型仍待迁移",
+      "depends_on": [
+        "TA-38"
+      ],
+      "status": "planned",
+      "acceptance_record": null,
+      "published_revision": null,
+      "object_id": "part:rack-frame"
     }
-  ]
+  ],
+  "execution_priority": {
+    "reason": "2026-10-08用户要求土地与建筑、消防与安全的2D图；包含现行链路内建筑、机柜结构、消防、安防四对象，单项执行不变",
+    "next": [
+      "TA-36",
+      "TA-37",
+      "TA-38",
+      "TA-39",
+      "TA-03"
+    ]
+  }
 }
