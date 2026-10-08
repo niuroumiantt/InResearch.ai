@@ -1,0 +1,26 @@
+{
+  "status": "evidence_preparation_only",
+  "not_generated": true,
+  "not_completed": true,
+  "baseline_asset": "web/assets/renders/hbm.png",
+  "baseline_sha256": "c97da95fdb822b7f56cc5e2234673a35a1d993aae60a8ce3661363be3f6e0d3b",
+  "observed": "Old retained rendering is a central rainbow GPU die surrounded by simplified purple stacked slabs on a green board. Distinguish package substrate/interposer/stacked DRAM rather than treating stacks as separate board-level memory modules.",
+  "object_id": "part:hbm",
+  "proposed_scope": "Generic GPU plus HBM advanced package, silicon interposer example only, separate optional HBM stack cutaway; count and dimensions schematic, not a vendor SKU.",
+  "primary_sources": [
+    {
+      "url": "https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm",
+      "observed_at": "2026-10-08",
+      "supports": "CoWoS-S integrates logic and HBM over a silicon interposer; distinguish R/L variants, do not imply all CoWoS interposers are silicon."
+    },
+    {
+      "url": "https://www.micron.com/about/blog/applications/data-center/hbm2e-fastest-memory-modern-data-center",
+      "observed_at": "2026-10-08",
+      "supports": "HBM2E uses TSV to connect stacked DRAM and sits near CPU/GPU on an interposer in the same package."
+    }
+  ],
+  "unknowns": [
+    "Specific GPU/HBM generation, stack count and die count, die geometry, exact interposer routing and microbump pitch, capacity/performance and cooling design unknown."
+  ],
+  "next": "TA-04 source PR409 and receipt PR411 merged. TA-05 drafting started 2026-10-09 Asia/Shanghai."
+}
