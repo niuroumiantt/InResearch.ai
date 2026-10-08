@@ -77,6 +77,8 @@ TA-04旧图已实看：八个虹彩简化器件在基板上，不能当单裸GPU
 
 本次公网审图为匿名浏览器，部件研究侧栏显示未载入；只读/api/research-summary实测401，保留原权限，不据pageerror=0声称已登录研究数据已验收。图册实际入口/原件与服务版本分别已验。
 
-## 当前状态 · TA-04 制作与验收
+## 当前状态 · TA-04 实际发布，下一TA-05
 
-当前独立分支codex/atlas-gpu-baseboard-20261008，复用ops-dashboard工作树，主工作区不动。前两张母图因GPU模组数量错误被拒，原件/提示词保留；第三张重建为2×4位置，七个已安装+一个抬起模组，独立8标注与四视图/放大下载及3D回归已实际本地通过。官方来源只支持八SXM/NVSwitch类别，具体几何/PCB走线/连接端/散热接触结构仍示意。主计划仍3/35、设施4/4；修正2D档案传入prices对象的既有GPU加载中断；精确头CI和真实发布后才能计TA-04，下一TA-05尚未领取。
+制作分支codex/atlas-gpu-baseboard-20261008，复用ops-dashboard工作树，主工作区不动。前两张母图因GPU模组数量错误被拒，原件/提示词保留；第三张重建为2×4位置，七个已安装+一个抬起模组，独立8标注与四视图/放大下载及3D回归已实际本地通过。官方来源只支持八SXM/NVSwitch类别，具体几何/PCB走线/连接端/散热接触结构仍示意。主计划4/35、设施4/4；修正2D档案传入prices对象的既有GPU加载中断。PR409精确头44567d2a四项CI成功，首次发布e51cc0e65e573940e60a035bbf8b99d0af3e2ff2；实际公网四视图/8标签与嵌入PNG SHA、双下载HEAD、AWS healthy、Spark两服务active。当前收尾分支codex/atlas-gpu-receipt-20261008，先完成发布回执PR再领取TA-05。
+
+下一TA-05备料在 `~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-05/`：preparation.json、prompt-prepared-v1.txt；旧hbm.png已实看，GPU+HBM封装与基板/板级模组区别明确。TSMC CoWoS-S与Micron HBM2E官方页支持硅中介层/相邻逻辑与HBM/垂直TSV类别；不假设所有CoWoS为硅中介层，堆栈数/层数/代际/尺寸未知。尚未生成，需实际传入R2/R3，保持TA-04/TA-03图可达。
