@@ -50,7 +50,11 @@
         "docs/design/technical-atlas/TA-01/labels-v1.json"
       ],
       "accepted_at": "2026-10-08",
-      "publication_record": "docs/design/technical-atlas/TA-01/publication-20261008.json"
+      "publication_record": "docs/design/technical-atlas/TA-01/publication-20261008.json",
+      "user_acceptance": {
+        "observed_at": "2026-10-08",
+        "statement": "第一张SSD爆炸样板已完成并上线，这个非常好。请继续按照这个标准继续。"
+      }
     },
     {
       "id": "TA-02",
@@ -75,10 +79,21 @@
       "depends_on": [
         "TA-01"
       ],
-      "status": "planned",
-      "acceptance_record": null,
+      "status": "accepted",
+      "acceptance_record": "docs/design/technical-atlas/TA-02/acceptance-v1.json",
       "published_revision": null,
-      "implementation_note": "2026-10-08实读代码：背景/雾/Bloom/灯光及M材质工厂在两个3D页面，预览灯光在part-inspector；web/assets/materials.js是资料上传组件，退出本项。"
+      "implementation_note": "2026-10-08实读代码：背景/雾/Bloom/灯光及M材质工厂在两个3D页面，预览灯光在part-inspector；web/assets/materials.js是资料上传组件，退出本项。",
+      "started_at": "2026-10-08",
+      "accepted_at": "2026-10-08",
+      "deliverable_paths": [
+        "web/components/scene-atlas.js",
+        "web/components/part-inspector.js",
+        "web/components/scene-resources.js",
+        "web/components/model-assets.js",
+        "web/pages/bom3d.html",
+        "web/pages/rack3d.html"
+      ],
+      "implementation_scope": "shared_render_and_export_only; not individual geometry migration"
     },
     {
       "id": "TA-03",

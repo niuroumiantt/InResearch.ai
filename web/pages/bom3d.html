@@ -123,6 +123,7 @@
   <div id="covLegend"><span><i style="background:#ef4444"></i>0/4</span><span><i style="background:#f59e0b"></i>1</span><span><i style="background:#eab308"></i>2</span><span><i style="background:#84cc16"></i>3</span><span><i style="background:#22c55e"></i>4 类</span></div>
   <div id="domainParts"></div>
   <button id="fit-view" type="button">适配视图</button>
+  <button id="atlas-export" type="button" title="导出当前视角，SVG文字可编辑">导出图册</button>
   <button id="play">▶ 自动拆解</button>
   <a href="rack3d.html"><button style="background:transparent;border:1px solid var(--line);color:var(--text);font-weight:500">🔬 进入机柜拆解台 →</button></a>
 </div></details>
@@ -142,12 +143,11 @@ import { bindResearchMeshNodes, installStageControl, safeURL } from "./assets/re
 import { OrbitControls } from "./assets/vendor/OrbitControls.js";
 import { EffectComposer } from "./assets/vendor/EffectComposer.js";
 import { RenderPass } from "./assets/vendor/RenderPass.js";
-import { UnrealBloomPass } from "./assets/vendor/UnrealBloomPass.js";
 import { OutputPass } from "./assets/vendor/OutputPass.js";
-import { EXRLoader } from "./assets/vendor/EXRLoader.js";
 import {mountSceneView} from "/assets/scene-view.js";
 import {mountSceneModels} from "/assets/model-assets.js";
 import {createSceneEnvironment, createTexturePool} from "/assets/scene-resources.js";
+import {configureAtlasRenderer, atlasMaterial, atlasStudio, addAtlasLights, createAtlasDrawing, mountAtlasExport} from "/assets/scene-atlas.js";
 
 import {loadSceneData} from "/assets/scene-data.js";
 const [BOM, companies, prices, inds, reg, products, siteRights] = await loadSceneData([
@@ -187,7 +187,7 @@ const covScore = p => covDims(p).filter(d => d[1] > 0).length;
 const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
 const SBADGE = { tight: "#ef4444", transition: "#f59e0b", mature: "#22c55e", emerging: "#a78bfa" };
 
-/* ─────────── 渲染器：PBR 管线 ─────────── */
+/* ─────────── 共享技术图册 WebGL ─────────── */
 const canvas = document.getElementById("c");
 const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
 renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
@@ -199,15 +199,11 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 const texturePool = createTexturePool({THREE});
 
 const scene = new THREE.Scene();
-
-scene.fog = new THREE.Fog(0x0b0e14, 110, 260);
-// Appearance changes preserve the current camera, selected object and materials.
-function syncSceneAppearance() {
-  scene.background = new THREE.Color(window.InresearchUI.scenePalette().background);
-  if (scene.fog) scene.fog.color.copy(scene.background);
-}
+configureAtlasRenderer(THREE, renderer, scene);
+const atlasDrawing = createAtlasDrawing({THREE, scene});
+// The technical plate stays warm white while the surrounding controls follow appearance.
+function syncSceneAppearance() { configureAtlasRenderer(THREE, renderer, scene); }
 window.addEventListener('inresearch:appearance', syncSceneAppearance);
-syncSceneAppearance();
 
 let sceneView;
 const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 600);
@@ -221,38 +217,12 @@ canvas.addEventListener("pointerdown", () => controls.autoRotate = false, { once
 
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
-composer.addPass(new UnrealBloomPass(new THREE.Vector2(1, 1), 0.25, 0.6, 0.9));
 composer.addPass(new OutputPass());
 
-/* 环境光照：真 HDR（Poly Haven CC0，assets/hdri/warehouse.exr）；加载失败回退程序化摄影棚 */
-function proceduralEnv() {
-  const env = new THREE.Scene();
-  env.add(new THREE.Mesh(new THREE.BoxGeometry(60, 60, 60),
-    new THREE.MeshBasicMaterial({ side: THREE.BackSide, color: 0x30394a })));
-  const panel = (w, h, x, y, z, c, i, ry = 0, rx = 0) => {
-    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: c }));
-    m.material.color.multiplyScalar(i);
-    m.position.set(x, y, z); m.rotation.set(rx, ry, 0); env.add(m);
-  };
-  panel(24, 14, 0, 28, 0, 0xffffff, 9, 0, Math.PI / 2);          // 顶部大柔光
-  panel(30, 10, -28, 12, 0, 0xbfd6ff, 3, Math.PI / 2);           // 左冷光
-  panel(30, 10, 28, 8, 0, 0xffe0b8, 2, -Math.PI / 2);            // 右暖光
-  panel(40, 8, 0, 10, -28, 0x9db8e8, 2.2, 0);                    // 背部补光
-  return env;
-}
-const sceneEnvironment = createSceneEnvironment({THREE, EXRLoader, renderer, scene,
-  url:"assets/hdri/warehouse.exr", fallback:proceduralEnv});
-
-scene.add(new THREE.HemisphereLight(0x8fa8cc, 0x0e131c, 0.55));
-const dl = new THREE.DirectionalLight(0xfff2e0, 2.2);
-dl.position.set(38, 55, 26);
-dl.castShadow = true;
-dl.shadow.mapSize.set(2048, 2048);
-dl.shadow.camera.left = -70; dl.shadow.camera.right = 70;
-dl.shadow.camera.top = 60; dl.shadow.camera.bottom = -60;
-dl.shadow.camera.far = 160; dl.shadow.bias = -0.0006; dl.shadow.radius = 4;
-scene.add(dl);
-const rim = new THREE.DirectionalLight(0x6f9fff, 0.7); rim.position.set(-40, 26, -34); scene.add(rim);
+/* Neutral atlas studio: stable lighting without the previous colored HDR reflections. */
+const sceneEnvironment = createSceneEnvironment({THREE, renderer, scene, proceduralOnly:true,
+  fallback:()=>atlasStudio(THREE)});
+addAtlasLights(THREE, scene, [38,55,26], {left:-70,right:70,top:60,bottom:-60,far:160});
 
 /* ─────────── 程序化纹理（零二进制：全部 canvas 现画）─────────── */
 const ctex = texturePool.canvas;
@@ -360,7 +330,7 @@ const TEX = {
     g.strokeRect(1, 1, w - 2, h - 2);
   }),
   roof: ctex(256, 192, (g, w, h) => {
-    g.fillStyle = "#79879c"; g.fillRect(0, 0, w, h);
+    g.fillStyle = "#a9aaa3"; g.fillRect(0, 0, w, h);
     g.strokeStyle = "rgba(0,0,0,.18)";
     for (let x = 0; x < w; x += 32) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
     for (let y = 0; y < h; y += 32) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
@@ -400,9 +370,7 @@ const pickables = [];
 const decor = [];
 const animated = [];
 function matsOf(o) { return Array.isArray(o.material) ? o.material : [o.material]; }
-function M(color, opt = {}) {
-  return new THREE.MeshStandardMaterial({ color, roughness: 0.55, metalness: 0.18, envMapIntensity: 0.8, ...opt });
-}
+function M(color, opt = {}) { return atlasMaterial(THREE, color, opt); }
 function tag(obj, partId) {
   obj.traverse(m => {
     if (m.isMesh) {
@@ -467,34 +435,8 @@ function explode(obj, dx, dy, dz, t0 = 0, t1 = 1) {
   animated.push({ obj, home: obj.position.clone(), off: new THREE.Vector3(dx, dy, dz), t0, t1 });
 }
 /* 标注牌：编号圆点 + 文字的 pill，高分屏渲染 */
-function label(text, x, y, z, size = 1, color = "#9fb4d8", num = null) {
-  const S = 2;
-  const cv = document.createElement("canvas"), mx = cv.getContext("2d");
-  mx.font = `600 ${26 * S}px Inter, "Noto Sans SC", sans-serif`;
-  const tw = mx.measureText(text).width;
-  const numW = num ? 40 * S : 0;
-  cv.width = tw + 40 * S + numW; cv.height = 52 * S;
-  const g = cv.getContext("2d");
-  const W = cv.width, H = cv.height, R = 22 * S;
-  g.beginPath(); g.roundRect(2 * S, 4 * S, W - 4 * S, H - 8 * S, R);
-  g.fillStyle = "rgba(13,18,28,.86)"; g.fill();
-  g.lineWidth = 2 * S; g.strokeStyle = color; g.globalAlpha = .65; g.stroke(); g.globalAlpha = 1;
-  if (num) {
-    g.beginPath(); g.arc(22 * S, H / 2, 13 * S, 0, 7);
-    g.fillStyle = color; g.fill();
-    g.fillStyle = "#0b0e14"; g.font = `800 ${19 * S}px -apple-system`;
-    g.textAlign = "center"; g.textBaseline = "middle"; g.fillText(num, 22 * S, H / 2 + S);
-    g.textAlign = "left";
-  }
-  g.font = `600 ${26 * S}px Inter, "Noto Sans SC", sans-serif`;
-  g.fillStyle = "#e8eef8"; g.textBaseline = "middle";
-  g.fillText(text, (num ? 42 : 18) * S, H / 2 + S);
-  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
-  const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: t, transparent: true, depthWrite: false }));
-  sp.scale.set(W / (34 * S) * size, H / (34 * S) * size, 1);
-  sp.position.set(x, y, z);
-  scene.add(sp);
-  return sp;
+function label(text,x,y,z,size=1,color=null,num=null) {
+  return atlasDrawing.label(text,x,y,z,size,34,num);
 }
 
 /* ─────────── 建筑 ─────────── */
@@ -502,10 +444,10 @@ const FW = 36, FD = 24, WH = 9;
 
 // 场地：沥青地 + 主路 + 混凝土设备台
 {
-  const g = new THREE.Mesh(new THREE.PlaneGeometry(150, 100), new THREE.MeshStandardMaterial({ map: TEX.ground, roughness: 0.96, metalness: 0 }));
+  const g = new THREE.Mesh(new THREE.PlaneGeometry(150, 100), new THREE.MeshStandardMaterial({ color:0xf2f1ea, roughness:1, metalness:0 }));
   g.rotation.x = -Math.PI / 2; g.position.y = 0.01; g.receiveShadow = true;
-  g.userData.part = "land"; pickables.push(g); scene.add(g);
-  const road = box(120, 0.06, 5, 0x1b2029, 0, 0.06, FD / 2 + 16, "land", { roughness: 1 });
+  g.userData.atlasSkip = true; g.userData.part = "land"; pickables.push(g); scene.add(g);
+  const road = box(120, 0.06, 5, 0xbebeb4, 0, 0.06, FD / 2 + 16, "land", { roughness: 1 });
   road.castShadow = false;
   const pads = [[FW / 2 + 11.5, -6, 20, 10], [FW / 2 + 11, 8.5, 22, 12], [-FW / 2 - 12, 0, 18, 20], [-8, FD / 2 + 7, 8, 7]];
   pads.forEach(([px, pz, pw, pd]) => {
@@ -518,7 +460,7 @@ const FW = 36, FD = 24, WH = 9;
 {
   const slab = rbox(FW, 0.9, FD, 0x323b4e, 0, 0.55, 0, "shell", { roughness: .8 }, 0.18);
   const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(FW, 0.9, FD)),
-    new THREE.LineBasicMaterial({ color: 0x60a5fa, transparent: true, opacity: 0.18 }));
+    new THREE.LineBasicMaterial({ color: 0x454641, transparent: true, opacity: 0.35 }));
   edge.position.copy(slab.position); scene.add(edge); decor.push(edge);
 }
 
@@ -1025,7 +967,7 @@ dossierEl.addEventListener("pointermove", e => {
 dossierEl.addEventListener("pointerleave", () => { if (tip.textContent.includes("｜")) tip.style.display = "none"; });
 
 // The published adoption registry owns optional model selection.
-const sceneModels = mountSceneModels({scene, page:"bom3d", defaultHeight:4.6});
+const sceneModels = mountSceneModels({scene, page:"bom3d", defaultHeight:4.6, onChange:()=>{atlasDrawing.sync();sceneView?.refresh();}});
 const framingObjects = () => [...pickables.filter(mesh => mesh.userData.part !== "land"), ...sceneModels.objects()];
 sceneView = mountSceneView({canvas, camera, controls, fog:scene.fog,
   objects:framingObjects,
@@ -1034,7 +976,17 @@ sceneView = mountSceneView({canvas, camera, controls, fog:scene.fog,
   resize:(width, height) => {renderer.setSize(width, height, false);composer.setSize(width, height);},
   beforeFit:() => cameraMotion.cancel(),
 });
-sceneModels.ready.then(() => sceneView.refresh());
+sceneModels.ready.then(() => {atlasDrawing.sync(); sceneView.refresh();});
+atlasDrawing.sync();
+atlasDrawing.attachLabels(canvas,camera);
+const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atlasDrawing,
+  render:()=>composer.render(), button:document.getElementById('atlas-export'),
+  filename:'bom3d-technical-atlas.svg', title:'园区结构图册',
+  caption:()=>document.getElementById('stage').textContent,
+  diagnostics:()=>covOn ? '索引覆盖：红0/4、橙1/4、黄2/4、浅绿3/4、绿4/4（公司、产品、序列、指标登记维度数；非硬件状态）' : null,
+  selected:()=>{const id=document.getElementById('dossier').dataset.partId;
+    return id ? {id:'part:'+id,name:PART[id]?.name || id,meshes:PARTMESH[id] || []} : null;}
+});
 let animationFrame = 0;
 let pageDisposed = false;
 function disposePage() {
@@ -1042,11 +994,12 @@ function disposePage() {
   pageDisposed = true;
   cancelAnimationFrame(animationFrame);
   window.removeEventListener('inresearch:appearance', syncSceneAppearance);
+  atlasExport.dispose(); atlasDrawing.dispose();
   sceneView.dispose(); sceneModels.dispose(); inspector.dispose();
   sceneEnvironment.dispose(); texturePool.dispose(); composer.dispose(); renderer.dispose();
 }
 window.addEventListener("pagehide", event => {if (!event.persisted) disposePage();}, {once:true});
-(function loop() { animationFrame = requestAnimationFrame(loop); controls.update(); composer.render(); inspector.tick(); })();
+(function loop() { animationFrame = requestAnimationFrame(loop); controls.update(); atlasDrawing.update(); composer.render(); inspector.tick(); })();
 
 // ?d=<domain> / ?p=<part> 深链：其他页面可直接链进领域视角或部件档案（放最后：依赖上面全部初始化完成）
 { const q = new URLSearchParams(location.search);

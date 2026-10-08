@@ -1,0 +1,101 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-02",
+  "style_id": "white-technical-atlas-v1",
+  "title": "共享图册材质、轮廓、引线与导出配方",
+  "reviewed_at": "2026-10-08",
+  "reviewer": "Codex：实际观察本地园区/整柜/拆解/芯片阶段及共用SVG导出；用户已肯定TA-01，未冒称用户逐项签署TA-02",
+  "decision": "accepted_for_shared_interactive_recipe",
+  "scope": "shared_render_and_export_only",
+  "individual_geometry_migration_complete": false,
+  "references": [
+    {
+      "id": "R2",
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "use": "visual_reference_only"
+    },
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "use": "visual_reference_only"
+    }
+  ],
+  "production_sample": "TA-01；用户明确肯定已上线SSD样板并要求继续",
+  "method": "native Three.js/WebGL plus editable SVG; no new bitmap generation",
+  "implementation_at_review": [
+    {
+      "file": "web/components/scene-atlas.js",
+      "sha256": "01e4d2d2a3784bc5b42e1d5229f96ac2d7742963e95b959951919920d8eecf8e"
+    },
+    {
+      "file": "web/components/part-inspector.js",
+      "sha256": "b3739bb8ae6ae85ae397df3cf09cbc51a1a5cb32ffdd3e0df873025d8632dd77"
+    },
+    {
+      "file": "web/components/scene-resources.js",
+      "sha256": "cda675f317814f75ccd9ac5ec6b403a549f9705a50731100f82ee7a7d3ce02cc"
+    },
+    {
+      "file": "web/components/model-assets.js",
+      "sha256": "6e378c2effb53c3ae9849669d52660b9a072a107d37ba58cc3b6fce46aae71c9"
+    },
+    {
+      "file": "web/pages/bom3d.html",
+      "sha256": "ec47daf2a9ac2e79309c32bdf7d2410f5de4c9618976aa86042a71a26b84c62d"
+    },
+    {
+      "file": "web/pages/rack3d.html",
+      "sha256": "69717d206383db2ee7edba3ecf217d1c21a15d6c6fc021f37a8d8816426b92b9"
+    }
+  ],
+  "visual_checks": {
+    "paper": "暖白，PNG实像素250/249/242/255；明暗模式保持",
+    "materials": "共用无色摄影棚/柔光，降低环境反射和自发光；旧贴图保留，原彩色裸片改克制银灰",
+    "outline": "深灰约1pxWebGL硬边；无拾取，无包围盒贡献；退役模型/查看器由各自所有者释放",
+    "labels": "实时独立SVG，桌面16px/手机14px；阶段控制仍有效",
+    "floor": "机柜反光圆台/光圈移除，轻接触阴影；园区保留地面与道路但淡化为浅灰，无大面积深色网格",
+    "export": "当前视角PNG内嵌SVG，独立标题/阶段/部件定位与14px换行图注；手机档案内可导出；诊断开启时带红0/4至绿4/4覆盖图例，声明非硬件状态。",
+    "camera": "旋转/当前阶段/用户手动镜头所有权保留"
+  },
+  "export": {
+    "pixels": "actual_current_canvas",
+    "is_static_master_or_cad": false,
+    "geometry": "embedded PNG",
+    "labels": "editable SVG",
+    "leader": "#09689B，2px，绑定可见的已选对象ID；无可见点不造线"
+  },
+  "browser_checks": [
+    "tests/scene_atlas.cjs",
+    "tests/scene_resources.cjs",
+    "tests/scene_framing.cjs",
+    "tests/part_dossier.cjs",
+    "tests/technical_atlas.cjs",
+    "tests/model_assets.cjs"
+  ],
+  "local_visual_evidence": [
+    {
+      "file": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-02/final/campus.png",
+      "sha256": "097c1076d262950dd1c54b2ba153f0c2da9d0c23f535fff87a282d060b51fe6c"
+    },
+    {
+      "file": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-02/final/rack.png",
+      "sha256": "546c77dd4bd32d85034905e21249e26b89774cc356d62a278b724f7a4e1e943a"
+    },
+    {
+      "file": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-02/final/server-exploded.png",
+      "sha256": "1f13cde9bbbe03d25d94fef6a729b3a628fddee31c042f382c811fd12167b258"
+    },
+    {
+      "file": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/TA-02/final/chip-exploded.png",
+      "sha256": "d9ba5e015a309f2f70ee848867fdebb6e631992449c80846605bd4317a57c094"
+    }
+  ],
+  "remaining_work": [
+    "33项具体部件/整机/二维/领域/面板/俯视图仍按队列重制；简化几何不冒称SSD样板的细节品质",
+    "静态母图/结构轴线/设备数量/管线拓扑和型号证据逐项审阅，当前导出仅通用示意",
+    "实机GPU帧率/内存和上下文丢失恢复未穷尽测量；来源/许可不由渲染品质证明"
+  ],
+  "publication": "accepted locally; merge/actual production receipts recorded separately"
+}

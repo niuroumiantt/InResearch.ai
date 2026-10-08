@@ -10,6 +10,7 @@ function ownedModel(gltf, entry) {
     for (const scene of gltf.scenes) {
       scene.removeFromParent();
       scene.traverse(object => {
+        if (object.userData.atlasOutline) return; // the drawing recipe owns these borrowed decorations
         if (object.geometry) geometry.add(object.geometry);
         for (const material of [].concat(object.material || [])) materials.add(material);
         if (object.skeleton?.boneTexture) textures.add(object.skeleton.boneTexture);
@@ -114,7 +115,7 @@ function fit(model, defaultHeight) {
   }
 }
 
-export function mountSceneModels({scene, page, defaultHeight, replacement=null}) {
+export function mountSceneModels({scene, page, defaultHeight, replacement=null, onChange=()=>{}}) {
   const originalVisibility = replacement?.visible;
   let currentObjects = [];
   const slot = createModelLoad({host:document.body, label:'可选模型',
@@ -139,6 +140,7 @@ export function mountSceneModels({scene, page, defaultHeight, replacement=null})
     commit:batch => {
       batch.models.forEach(model => scene.add(model.root));
       currentObjects = batch.models.map(model => model.root);
+      queueMicrotask(onChange);
       if (replacement) replacement.visible = originalVisibility && !batch.models.some(model => model.entry.hideRack);
     }});
   slot.element.classList.add('rg-scene-model-status');

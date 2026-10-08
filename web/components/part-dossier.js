@@ -19,10 +19,17 @@ export function createPartDossier({el, view, BOM, companies: CN,
   prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector}) {
 return function showDossier(p) {
   el.replaceChildren();
+  el.dataset.partId = p.id;
   const close = dossierNode("button", "✕", "close");
   close.type = "button"; close.setAttribute("aria-label", "关闭部件档案");
   close.addEventListener("click", () => { el.style.display = "none"; inspector.hide(); });
   el.append(close, dossierNode("h2", p.name));
+  const sceneExport = document.getElementById('atlas-export');
+  if (sceneExport) {
+    const exportButton = dossierNode('button','导出当前图册','chip');
+    exportButton.type = 'button'; exportButton.addEventListener('click',()=>sceneExport.click());
+    el.append(exportButton);
+  }
   const sys = BOM.systems?.[p.system]; const sysName = sys ? (sys.name || sys) : (p.system || "");
   const meta = dossierNode("div", [sysName, p.chain ? p.chain + " 第 " + p.chain_order + " 位" : "", p.scale ? [p.scale, BOM.scales.find(l => l.id === p.scale)?.name || ""].join(" ") : (BOM.kinds?.[p.kind] || p.kind || "")].filter(Boolean).join(" · "), "meta");
   const badge = dossierNode("span", "产业状态：" + (SN[p.status] || "未知"), "badge");

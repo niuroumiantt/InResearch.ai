@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.12。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.08.13。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1225。
+在册文件：1228。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 305 |
-| 运行代码 | 278 |
+| 运行代码 | 279 |
 | 现行规范 | 14 |
-| 项目配置 | 115 |
+| 项目配置 | 116 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 108 |
-| 测试 | 138 |
+| 测试 | 139 |
 
 ## 在册记录集合
 
@@ -80,6 +80,11 @@
 | `docs/design/technical-atlas/TA-01/labels-v1.json` | labels | 9 |
 | `docs/design/technical-atlas/TA-01/labels-v1.json` | leaders | 7 |
 | `docs/design/technical-atlas/TA-01/publication-20261008.json` | asset_checks | 4 |
+| `docs/design/technical-atlas/TA-02/acceptance-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-02/acceptance-v1.json` | implementation_at_review | 6 |
+| `docs/design/technical-atlas/TA-02/acceptance-v1.json` | browser_checks | 6 |
+| `docs/design/technical-atlas/TA-02/acceptance-v1.json` | local_visual_evidence | 4 |
+| `docs/design/technical-atlas/TA-02/acceptance-v1.json` | remaining_work | 3 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | companies | 7 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | unpublished | 2 |
 | `docs/inbox/facts_candidates/m01_market_20260817.json` | records | 4 |
@@ -540,6 +545,7 @@
 | `docs/design/technical-atlas/TA-01/prompt-repair-v3.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-01/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-01/publication-20261008.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-02/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/references/01-chain.png` | 项目配置 |
 | `docs/design/technical-atlas/references/02-server.png` | 项目配置 |
 | `docs/design/technical-atlas/references/03-ssd.png` | 项目配置 |
@@ -1401,6 +1407,7 @@
 | `tests/research_delivery.cjs` | 测试 |
 | `tests/research_summary.cjs` | 测试 |
 | `tests/run_browser.cjs` | 测试 |
+| `tests/scene_atlas.cjs` | 测试 |
 | `tests/scene_bootstrap.cjs` | 测试 |
 | `tests/scene_framing.cjs` | 测试 |
 | `tests/scene_resources.cjs` | 测试 |
@@ -1606,6 +1613,7 @@
 | `web/components/pilot.js` | 运行代码 |
 | `web/components/product-catalog.js` | 运行代码 |
 | `web/components/research-graph.js` | 运行代码 |
+| `web/components/scene-atlas.js` | 运行代码 |
 | `web/components/scene-data.js` | 运行代码 |
 | `web/components/scene-motion.js` | 运行代码 |
 | `web/components/scene-picking.js` | 运行代码 |

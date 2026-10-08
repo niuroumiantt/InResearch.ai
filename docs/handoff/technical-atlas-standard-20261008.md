@@ -10,12 +10,12 @@
 
 ## 进度
 - 已完成：五参考身份/尺寸/SHA、基线main六种浏览器画面及9张部件资产实看、35项清单、规范/机器配方/验收映射。
-- TA-01：通用有壳SSD样板、3次生成/结构修正、独立SVG标注与嵌入原PNG、现有部件档案入口、放大/部件说明/双下载已通过本地检查。验收见 `docs/design/technical-atlas/TA-01/acceptance-v1.json`；已完成PR382与首次公网验收，见publication-20261008.json；轻量预览优化PR另附线上回执。旧渲染原件原样保留，其他34项未制作。
-- 当前旧2D是分类平台/方块；3D有色光/反光地面/雾化；SSD旧图实际是机箱抽盘；独立严格俯视入口尚无。1个GLB明确rejected，不自动采用。
-- 源码合并/CI回执见本PR；规范与计划登记不宣称生产画面已改版。
+- TA-01：通用有壳SSD样板、3次生成/结构修正、独立SVG标注与嵌入原PNG、现有部件档案入口、放大/部件说明/双下载已通过本地检查。验收见 `docs/design/technical-atlas/TA-01/acceptance-v1.json`；已完成PR382与首次公网验收，见publication-20261008.json；轻量预览PR383合并983c90并实读，470464字节，9条可编辑文字；公网预览SVG6.49秒，AWS独立发布HEALTHY。用户明确肯定线上样板并要求继续，已记队列。旧渲染原件保留。
+- TA-02本轮固定共用暖白/无色柔光/轮廓/独立SVG文字与导出配方，实际测试/发布见TA-02验收及PR回执。仅共用基础；其余33项具体模型/插图仍待制作。旧2D仍需重制，独立严格俯视入口尚无。1个GLB明确rejected，不自动采用。
+- 实际发布按逐项回执；源文件存在不冒称生产完成。
 
 ## 下一步
-1. TA-01首次发布回执已完成，轻量预览完成后进入TA-02共享3D图册配方，对照R2/R3与已验SSD样板；静态图不能替代原交互。
+1. 收口TA-02验收与实际发布后，下一项TA-03机箱盖板与壳体；对照R2和已验SSD画法，保留无字原图/独立标注，不把现有低细节3D几何当精细重制完成。
 2. 随后按队列逐张部件→服务器/机柜→2D→园区/领域→档案/面板→跨尺度讲解。
 3. 新会话读此交接与10规范、对应队列项即可；不从历史启动已结案的审批。
 
@@ -27,3 +27,6 @@
 - `docs/design/technical-atlas/MIGRATION_PLAN.md`、`docs/design/technical-atlas/references/`。
 - 本地观察截图：`~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/`，非生产改版回执。
 - `PYTHONPATH=src:tests/unit python3 -m unittest test_visual_atlas -q`；governance refresh/check、validate --strict、registry。
+
+## 审图文件边界
+TA-02初稿审图误复用了基线截图文件名，Git中的参考/旧渲染原件未改变；根目录截图不再作冻结基线原件。TA-02正式本地验收只引用`TA-02/final/`独立截图及SHA，生产另写`TA-02/live/`，后续每项使用独立目录。初始基线源码453f3625仍在Git历史。
