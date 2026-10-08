@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.1",
+  "version": "2026.10.08.2",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -580,8 +580,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 199608,
-      "sha256": "165d2ad3ac5e4ac4ac92f715c87dd77f7f7cbc591dcbd567c04e84f9d04df306",
+      "bytes": 200112,
+      "sha256": "378e562c355c8c6936be02664c8ec1d3254be66f2f91bb9c3da4ce784198dbaa",
       "collections": []
     },
     {
@@ -1181,6 +1181,13 @@
       "role": "supporting_document",
       "bytes": 2085,
       "sha256": "ce523a59e46b88c02ec756078ae6d578a072aeef042c636044fbaa316155398e",
+      "collections": []
+    },
+    {
+      "path": "docs/handoff/ops-loading-fix-20261008.md",
+      "role": "supporting_document",
+      "bytes": 1841,
+      "sha256": "9d91658063d622e85d424ab635a8cd34d208e9a11fa63b7f33b4f2ae31192c5a",
       "collections": []
     },
     {
@@ -7244,8 +7251,8 @@
     {
       "path": "framework/05_interface_system.md",
       "role": "normative",
-      "bytes": 52255,
-      "sha256": "cbab2fa05f6cf834e2eef8a9cfb51b95fbd282bf68f29dc80d740f84583ae6a0",
+      "bytes": 52603,
+      "sha256": "322455baab8ac41531db95eafb6efee74bb2c3d8916dace7859efc52487cb4d8",
       "collections": []
     },
     {
@@ -7286,8 +7293,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 12696,
-      "sha256": "2dfaad487c2ba4cbb97ea1413818bc718988743ebb9d4408b790cfaf4e039e94",
+      "bytes": 12884,
+      "sha256": "9fcd1b298065f1fe0d3417b2153b9ccf536a5addd37342f2c29a899c148a5f39",
       "collections": []
     },
     {
@@ -7313,8 +7320,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 105847,
-      "sha256": "baaab5c6189b93966a8f489e7ba171c97c767214ad8f44928d25380faa13ccb8",
+      "bytes": 106232,
+      "sha256": "21b194841238e92b36377742ed0c55a8abf20a44d0caa57d2d68614962c19d8f",
       "collections": [
         {
           "name": "policies",
@@ -7660,8 +7667,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 164358,
-      "sha256": "10066701ec225482ee9edeea80b0429eb34d7e967a88046785045caa36181f58",
+      "bytes": 164838,
+      "sha256": "43c09d221d8f300c798490c77cb8660bc4c4296da0d727969b3ed6d649d3fef5",
       "collections": [
         {
           "name": "policies",
@@ -9107,8 +9114,8 @@
     {
       "path": "src/inresearch/interfaces/http.py",
       "role": "implementation",
-      "bytes": 50650,
-      "sha256": "2a8f941db2d5392415cf8317c10467e51ac748bfd50977a91d31331eaba1a294",
+      "bytes": 51329,
+      "sha256": "e95558dcda4f71580afb3cbc0304fd71435c532c1721802ec05dd06bc476940e",
       "collections": []
     },
     {
@@ -9646,8 +9653,8 @@
     {
       "path": "src/inresearch/workflow/operations.py",
       "role": "implementation",
-      "bytes": 14944,
-      "sha256": "06ce73f5395bab6795d60262f0fda1273fffd0a01829a22145da463b525e0f82",
+      "bytes": 15575,
+      "sha256": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
       "collections": []
     },
     {
@@ -9919,8 +9926,8 @@
     {
       "path": "tests/ops_dashboard.cjs",
       "role": "test",
-      "bytes": 5913,
-      "sha256": "21561c85a837f22dfdaee88a1932ed4febbf5e223b6ea3a1b21a2e1ad3fe5c09",
+      "bytes": 8282,
+      "sha256": "39f2650c46a3f050b67da3e737bedd7b3088a78b548349f244e8ab6b0ea461dc",
       "collections": []
     },
     {
@@ -9996,8 +10003,8 @@
     {
       "path": "tests/ui_skin.cjs",
       "role": "test",
-      "bytes": 9829,
-      "sha256": "3bc8db481b10975526dfcce8726d3c065a6596ae21456ac79010960096e7bffb",
+      "bytes": 9887,
+      "sha256": "f437ed3137cc9b875dde392749b5dad9bd06af24c10890389f3d8c849d30cd28",
       "collections": []
     },
     {
@@ -10479,8 +10486,8 @@
     {
       "path": "tests/unit/test_operations.py",
       "role": "test",
-      "bytes": 9043,
-      "sha256": "77b1e9ce2d5dd9ec11da320e8372c691c286fab9445678274373dccda8366569",
+      "bytes": 11800,
+      "sha256": "1a47ff49b8824ca24c1480f88b138b76ea0cf9c7c943171f73d191a967951287",
       "collections": []
     },
     {
@@ -10932,8 +10939,15 @@
     {
       "path": "web/assets/ops-dashboard.js",
       "role": "implementation",
-      "bytes": 25090,
-      "sha256": "9b9875abee2334ede4c79c29a2efa1bffc5e38ea2ae31aa3adb0143cb2ade06b",
+      "bytes": 26180,
+      "sha256": "034244c3e5f1be0d8068b55afaade3b734c2e32c7b733950f020e8edeee7bb00",
+      "collections": []
+    },
+    {
+      "path": "web/assets/ops-forms.js",
+      "role": "implementation",
+      "bytes": 8552,
+      "sha256": "23661beb759fdeabb35e2a8bbefc7386489cd5a82e32ba5323051506da2c7194",
       "collections": []
     },
     {
@@ -11560,8 +11574,8 @@
     {
       "path": "web/pages/ops.html",
       "role": "implementation",
-      "bytes": 23989,
-      "sha256": "e77b51c6fd47e5f09a1ce06a57cce1d14cd5de9c943832c79227bf7d91c6e378",
+      "bytes": 16265,
+      "sha256": "e9d3575406b3c78ef4e2a59e3192abb0a448ccb74a8663dad3efc9ea278f4b31",
       "collections": []
     },
     {
@@ -11602,8 +11616,8 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 9057,
-      "sha256": "e01442dbd164c6a2334eba84711baabb1026299134caf8b16efb4d1ee23eb694",
+      "bytes": 9110,
+      "sha256": "b7561a63371c5a3863bbfaecd7ad43b42c573eff44966a378540198028d7756b",
       "collections": []
     },
     {
@@ -11663,13 +11677,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 304,
-    "implementation": 268,
+    "implementation": 269,
     "normative": 13,
     "project_config": 102,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
-    "supporting_document": 100,
+    "supporting_document": 101,
     "test": 133
   }
 }

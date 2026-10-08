@@ -217,7 +217,17 @@ def _reader(root):
     def load():
         # Use the existing validation/identity rules, never trust a copied raw snapshot.
         *_, runtime = registry._snapshot_inputs(root)
-        return registry._reader_state(runtime)
+        reader = registry._reader_state(runtime)
+        # The management screen needs counters and bounded diagnostic samples,
+        # not the multi-megabyte daily events / matching / delivery feed.
+        summary = {key: reader[key] for key in (
+            'status', 'generated', 'received_at', 'counts', 'release', 'registry_lag',
+            'operations', 'thermal', 'claim_floor', 'execution_scope', 'last_scan'
+        ) if key in reader}
+        acquisition = reader.get('acquisition')
+        if isinstance(acquisition, dict):
+            summary['acquisition'] = {key: acquisition[key] for key in ('status', 'sources') if key in acquisition}
+        return summary
     return _cached(('reader', str(root), str(path)), stamp, load)
 
 

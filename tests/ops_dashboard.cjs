@@ -12,11 +12,15 @@ const fixture={generated:now,reader:{status:'degraded',generated:now,received_at
  const context=await browser.newContext({viewport:{width:1440,height:1000}});
  fixture.reader.operations.errors[0].examples=fixture.reader.operations.queues.blocked.items;fixture.reader.operations.queues.blocked.items=[];
  const page=await context.newPage();const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const auxiliary=[];
+ page.on('request',request=>{if(/\/(?:data|framework)\/.*\.json/.test(request.url()))auxiliary.push(request.url());});
  let requests=0,api=fixture,fail=false;
  await page.route('**/api/ops',route=>fail?route.fulfill({status:503,body:'{}'}):route.fulfill({json:api}));
  await page.route('**/api/run',route=>{requests++;return route.fulfill({json:{ok:true,name:'数据校验',output:'校验通过（0 warnings）'}});});
  await page.goto(base+'/ops.html');await page.locator('#ops-kpis .value').first().waitFor();
  assert.equal(requests,0,'loading the dashboard does not trigger work');
+ assert.deepEqual(auxiliary,[],'closed drawers do not compete with the status request');
+ await page.locator('#freshness-drawer > summary').click();
  await page.locator('#freshness tr').nth(1).waitFor({state:'attached'});
  assert.equal(await page.locator('#error').textContent(),'','freshness remains usable inside a collapsed drawer');
  assert.match(await page.locator('#ops-kpis').textContent(),/114/);
@@ -44,6 +48,37 @@ const fixture={generated:now,reader:{status:'degraded',generated:now,received_at
   }
  }
  assert.deepEqual(errors,[]);
- console.log('ops dashboard: auto-load, bounded samples, identity, escaping, task results, missing telemetry, refresh recovery and responsive themes passed');
+ // A stylesheet may stall on a slow connection. It must not hold the parser,
+ // navigation or status bootstrap behind an inline script / defer dependency.
+ const slowPage=await context.newPage();let releaseStyle;
+ const heldStyle=new Promise(resolve=>{releaseStyle=resolve;});
+ await slowPage.route('**/assets/fonts/fonts.css',async route=>{await heldStyle;await route.continue();});
+ await slowPage.route('**/api/ops',route=>route.fulfill({json:fixture}));
+ try {
+  await slowPage.goto(base+'/ops.html',{waitUntil:'domcontentloaded',timeout:10000});
+  await slowPage.locator('#ops-kpis .value').first().waitFor({state:'attached',timeout:10000});
+  assert.match(await slowPage.locator('#ops-kpis').textContent(),/114/);
+  assert.equal(await slowPage.locator('#ui-skinbar').count(),1,'navigation mounts while font CSS is delayed');
+ } finally {releaseStyle();await slowPage.close();}
+ // Exercise an actual aborted fetch, with only the 20-second watchdog accelerated.
+ const timeoutPage=await context.newPage();
+ await timeoutPage.addInitScript(()=>{
+  const schedule=window.setTimeout.bind(window);
+  window.setTimeout=(fn,ms,...args)=>schedule(fn,ms===20000?100:ms,...args);
+ });
+ await timeoutPage.route('**/api/ops',()=>{});
+ try {
+  await timeoutPage.goto(base+'/ops.html');
+  await timeoutPage.locator('#ops-error').getByText(/读取超时（20 秒）/).waitFor();
+  assert.equal(await timeoutPage.locator('#ops-refresh').isEnabled(),true,'aborted request releases refresh');
+  assert.match(await timeoutPage.locator('#stage-body').textContent(),/状态未知/);
+  assert.doesNotMatch(await timeoutPage.locator('#ops-error').textContent(),/user aborted/);
+  await timeoutPage.unroute('**/api/ops');
+  await timeoutPage.route('**/api/ops',route=>route.fulfill({json:fixture}));
+  await timeoutPage.locator('#ops-refresh').click();
+  await timeoutPage.locator('#ops-kpis .value').first().getByText('114',{exact:true}).waitFor();
+  assert.equal(await timeoutPage.locator('#ops-error').textContent(),'');
+ } finally {await timeoutPage.close();}
+ console.log('ops dashboard: auto-load, lazy drawers, delayed font CSS, bounded samples, identity, escaping, task results, missing telemetry, refresh recovery and responsive themes passed');
  } finally {await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;});
