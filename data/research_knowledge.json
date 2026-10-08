@@ -10695,6 +10695,92 @@
         },
         "batch_id": "e80ebb2550ece5ff89959e3945225deae0a38b393fca16e3f763d5a34d7698eb"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "29ab75c35cac2d086365154b3722df8e03bb7de76ee56e5a0c26885e78b9122c",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:20:claim:3:ev:0",
+      "locator": "page:21/chunk:20",
+      "object_ids": [
+        "root",
+        "system:it"
+      ],
+      "page_index": 20,
+      "question_ids": [
+        "NODE-activity-V1-chain"
+      ],
+      "quote": "When we\nfound that they had set no M_Key, the provider told us that the cluster had not completed\nproduction commissioning, and that the omission was the result of the rush to give us the\nmachines.",
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "source_sha256": "c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T13:58:29+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。连续引文和周边正文充分，对当前资源、建设与运营传导工作单具有实质关系：提供一个交付压力可能伴随调试遗漏的历史个案。原因必须保留为提供商解释，仅作为部分贡献采用。该匿名历史叙述未披露实际密钥、可识别客户或现存攻击入口，未识别其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 165.635,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2e768979d0ba3acb4404bc449b4679f0c820cbd6f5e3b73dad417421042442e7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 34103,
+            "output_tokens": 4974,
+            "reasoning_output_tokens": 1552
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.493,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7c2332b975c8ca082682046fd811680ee12ad6e2d4b187c1b6449d725b7d429",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 31225,
+              "output_tokens": 456,
+              "reasoning_output_tokens": 196
+            }
+          }
+        },
+        "batch_id": "a474bd794c6ac4cc7628bd97ccaf79c0177ae5641600ed3272a3b6c291574499"
+      }
     }
   ],
   "statements": [
@@ -20811,6 +20897,106 @@
         "batch_id": "e80ebb2550ece5ff89959e3945225deae0a38b393fca16e3f763d5a34d7698eb",
         "source_report_sha256": "04a09a255b76cde7ad5d434835b81aa0750aac5292684b933197d59ab11ddc59",
         "request_sha256": "dfcafe1e71f26bcd572a70a9b0c96709fb40bf9aa91319c3157d4618018bd812"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c70bc77b44534a161d5f9b4d2dad97c98abe68e5661e2915b05b726271a1c510",
+      "evidence_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:20:claim:3:ev:0"
+      ],
+      "id": "adoption:review:d0ba59b59783444f86c6068e",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "system:it"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-chain"
+      ],
+      "reading_revision_id": "rev-3cca1986327e4e6cbbee4d25cd3d4e92",
+      "status": "adopted",
+      "text": "据SemiAnalysis《Most Neoclouds Suck At Security》的ClusterMAX测试叙述，在第二起匿名提供商案例中，作者发现集群未设置M_Key；提供商向作者解释，集群尚未完成生产调试，遗漏源于急于交付机器。这是作者记录的测试发现和提供商给出的原因说明，不构成对因果关系或当前配置状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-08T13:58:29+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。连续引文和周边正文充分，对当前资源、建设与运营传导工作单具有实质关系：提供一个交付压力可能伴随调试遗漏的历史个案。原因必须保留为提供商解释，仅作为部分贡献采用。该匿名历史叙述未披露实际密钥、可识别客户或现存攻击入口，未识别其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 165.635,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2e768979d0ba3acb4404bc449b4679f0c820cbd6f5e3b73dad417421042442e7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 34103,
+            "output_tokens": 4974,
+            "reasoning_output_tokens": 1552
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.493,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7c2332b975c8ca082682046fd811680ee12ad6e2d4b187c1b6449d725b7d429",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 31225,
+              "output_tokens": 456,
+              "reasoning_output_tokens": 196
+            }
+          }
+        },
+        "batch_id": "a474bd794c6ac4cc7628bd97ccaf79c0177ae5641600ed3272a3b6c291574499"
+      },
+      "source_candidate_ids": [
+        "rev-3cca1986327e4e6cbbee4d25cd3d4e92:chunk:20:claim:3"
+      ],
+      "limitations": "文章出版日期未由所供原生文本建立。相邻披露段将相关测试置于2025年，但未单独明确第二起测试的精确日期。提供商身份、地点、交付合同、调试计划及修复复测记录未提供；不能推导行业发生率、交付周期或电力约束。",
+      "conflict_check": "与已采用的阶段区分、联调验收和开发至使用时点观点兼容，新增的是具体调试遗漏个案，并非既有观点的重复。当前回答为空，所供legacy匹配记录为空；未发现真实冲突，检查不代表外部反证已穷尽，不替换任何结论。",
+      "gap_dependency_check": "只能支持交付压力向运行配置风险传导的一条候选路径，不能证明因果关系或领先指标有效性。仍需项目交付与调试时间线、独立配置复测、对照案例及反例；NODE-activity-V1-chain保持开放，不更新模型或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a474bd794c6ac4cc7628bd97ccaf79c0177ae5641600ed3272a3b6c291574499",
+        "source_report_sha256": "8d862d441079b8a66432ac7e0e3390fa565c621c229c875ac7d56d11ee151a73",
+        "request_sha256": "1d80ffb9e72e49970a5f26ae7500460d25c6de43044fb8e2ee9da474b152be09"
       }
     }
   ],
