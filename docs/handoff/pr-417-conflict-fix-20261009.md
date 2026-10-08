@@ -27,3 +27,6 @@
 - 旧 CI：https://github.com/niuroumiantt/InResearch.ai/actions/runs/37818573655
 - 本机研究测试日志：`/tmp/inresearch-pr-417-research-tests.log`（临时产物）。
 - 发布入口：`src/inresearch/workflow/research_publish.py`；本机 journal 在 `~/.local/state/inresearch.ai/research-publish/`。
+
+## 2026-10-09 发布收口
+用户在预算阻塞已说明后明确授权合并与上线。本地四类检查实测通过，刷新至最新主线后 PR 合并为 ecdf80b2；北京时间07:19:35真实HTTPS采用接口逐条正文/状态/引文/来源支持闭包通过，Spark已写published回执。原预算失败的CI保持真实失败状态。最终两批发布与本地同步见 pr-412-conflict-fix-20261009.md 及两端私有 website-proof。
