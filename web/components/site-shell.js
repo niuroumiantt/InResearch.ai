@@ -30,12 +30,12 @@
     intern: ['acquisition'],
     reader: ['industry', 'datacenter', 'ledger', 'bom', 'results']
   };
-  function navigation(section) {
+  function navigation(section, audience) {
     const nav = document.createElement('nav');
     nav.className = 'ui-navigation'; nav.setAttribute('aria-label', '全站导航');
     function render(role) {
       nav.replaceChildren();
-      const visible = VISIBLE[role] || VISIBLE.member;
+      const visible = audience === 'reader' ? VISIBLE.reader : (VISIBLE[role] || VISIBLE.member);
       for (const [id, label, href] of LINKS) {
         if (!visible.includes(id)) continue;
         const link = document.createElement('a');
@@ -47,8 +47,18 @@
         const login = document.createElement('a'); login.href = '/login'; login.className = 'ui-login'; login.textContent = '登录';
         nav.append(login);
       }
+      if (audience === 'reader' && role === 'admin') {
+        const backstage = document.createElement('a');
+        const current = new URLSearchParams(location.search);
+        const query = new URLSearchParams({c: current.get('c') || 'nvidia'});
+        if (current.get('product_id')) query.set('product_id', current.get('product_id'));
+        if (current.get('series')) query.set('series', current.get('series'));
+        backstage.href = '/admin/company.html?' + query;
+        backstage.className = 'ui-admin-link'; backstage.textContent = '后台';
+        nav.append(backstage);
+      }
     }
-    render('member');
+    render(audience === 'reader' ? 'reader' : 'member');
     fetch('/api/whoami').then(response => response.ok ? response.json() : null)
       .then(user => { if (user?.role) render(user.role); }).catch(() => {});
     return nav;
@@ -59,7 +69,7 @@
     const bar = document.createElement('div'); bar.id = 'ui-skinbar'; bar.setAttribute('role', 'region'); bar.setAttribute('aria-label', '全站外观');
     const brand = document.createElement('a'); brand.href = '/index.html'; brand.className = 'ui-home'; brand.append(icon('home'), document.createTextNode('inresearch.ai'));
     bar.append(brand);
-    if (host.dataset.section !== 'auth') bar.append(navigation(host.dataset.section));
+    if (host.dataset.section !== 'auth') bar.append(navigation(host.dataset.section, host.dataset.audience));
     const controls = document.createElement('div'); controls.className = 'ui-appearance-controls';
     bar.append(controls);
     const label = document.createElement('label'); label.htmlFor = 'ui-appearance'; label.textContent = '外观';

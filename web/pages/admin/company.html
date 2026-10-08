@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base href="/">
+<title>公司工作区 · 后台 · inresearch.ai</title>
+<script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script><script type="module" src="/assets/site-shell.js"></script>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css"><link rel="stylesheet" href="/assets/company.css">
+</head><body><inresearch-shell data-section="admin"></inresearch-shell><main>
+<div class="catalog-top"><a href="/ops.html">← 运行 dashboard</a><a id="reader-preview" href="/product-catalog.html">打开读者页面 ↗</a></div>
+<header class="company-header"><div><p class="eyebrow">INTERNAL / 公司研究工作区</p><h1 id="admin-title">公司后台</h1><p>目录交付、来源身份与研究任务。读者页面使用同一批产品与规格数据。</p></div></header>
+<label for="admin-company">切换公司</label> <select id="admin-company" aria-label="切换公司"></select> <button id="admin-retry" type="button">刷新状态</button>
+<p id="admin-status" role="status" aria-live="polite">正在读取当前目录…</p>
+<section class="admin-section" aria-label="目录采集进展"><h2>当前目录与采集进展</h2><p id="admin-batch" class="admin-source"></p><div id="metrics" class="metrics"></div><p id="admin-change"></p><ul id="limitations"></ul><p class="basis">目录实体、具体型号和官方规格分别计量；数量不代表厂商全量、当前在售或正式研究采用。</p></section>
+<section class="admin-section" aria-label="来源与版本记录"><h2>来源与版本记录</h2><label for="admin-product">型号 / 系列</label> <select id="admin-product" aria-label="选择来源记录"></select><p id="source-status" role="status"></p><div id="admin-source" class="admin-source"></div></section>
+<nav class="company-nav"><a href="/admin/product/">产品线登记覆盖 →</a><a href="/supply.html#providers">交付与采集控制台 →</a><a href="/ops.html">运行版本与服务 →</a></nav>
+<details id="research-details"><summary>研究目标、交付参数与项目附表</summary><div id="root"></div></details>
+</main><script src="/assets/catalog-admin.js" defer></script><script src="/assets/company-context.js" defer></script></body></html>
