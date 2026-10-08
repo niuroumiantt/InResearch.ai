@@ -62,6 +62,14 @@ const {chromium} = require('playwright');
       }
       await page.locator('#dossier .close').click();
       await page.setViewportSize({width:1280,height:900});
+      if(name==='bom3d') {
+        await page.locator('#covChip').click();
+        const pending=page.waitForEvent('download');await page.locator('#atlas-export').click();
+        const raw=fs.readFileSync(await (await pending).path(),'utf8');
+        const meta=await page.evaluate(raw=>JSON.parse(new DOMParser().parseFromString(raw,'image/svg+xml').querySelector('metadata').textContent),raw);
+        assert.match(meta.diagnostics,/红0\/4.*绿4\/4.*非硬件状态/);
+        assert.ok(raw.includes('非硬件状态'));await page.locator('#covChip').click();
+      }
       await page.locator('#explode').evaluate(input=>{input.value='45';input.dispatchEvent(new Event('input',{bubbles:true}));});
       assert.equal(await page.locator('#explode').inputValue(),'45');
       if(process.env.REVIEW_SCREENSHOTS)await page.screenshot({path:process.env.REVIEW_SCREENSHOTS+'/'+name+'-atlas-recipe.png'});

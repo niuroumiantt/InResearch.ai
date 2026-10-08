@@ -203,7 +203,7 @@
     "web/themes/company.css": "08c1a5b71a8af459ae57e3f8245279e275ca4dc1546ae6e7ad9395c992116ebd",
     "web/themes/supply.css": "d2b3d5dad342d43550008b106a1fb94592e7d60faa3012591b3af9364c72874e",
     "tests/unit/test_material_flow.py": "6d7956fcb057acd12be4c225605a262b1eb7b9da45f7f33d4554ed94444b87fb",
-    "framework/10_visual_atlas.md": "5a491a4851fbb6c2416ece2ae5526cd9248ef70e88219dc46cfb8d7059c7a892",
+    "framework/10_visual_atlas.md": "af1344b00aac3993500bd351ead3fd93f840c04f872f4bf73f21e4e771663897",
     "framework/visual_atlas.json": "d3bd455315e1f2bff64737a8023e2614c1c717cf2f4b3afde8945c3d924ad612",
     "framework/visual_atlas_migration.json": "7f0b35b027d977fb300525b6498b1a1a0b4f8a72df02ecc4aa62ae6387d92c74",
     "docs/design/technical-atlas/MIGRATION_PLAN.md": "833f5526f4a4099b2b94d4d8797c57272ace337a7c9774b8292a94c5df4b0a3f",
@@ -223,7 +223,7 @@
     "scripts/build_technical_atlas.py": "e97a2673d741af89d67472d46f27914d1ba565d39d8d2b5ebf834ec1e4689b8c",
     "docs/design/technical-atlas/TA-01/labels-v1.json": "bdd50557e2c54ba98cd0d3721c4bbfdb66de374775ed00931c738d40b87031f3",
     "docs/design/technical-atlas/TA-01/acceptance-v1.json": "37ab95caedd07f998563f80703eb801ac436d46cb8fd1b0dc7e8d9650aac7368",
-    "tests/scene_atlas.cjs": "04e23e9fc29576499446df75ed22c77d38d6b9c4541fb5f78fc62cc086659f74"
+    "tests/scene_atlas.cjs": "581e5cf6186a00afa0c23bd8586e45624dcc73652d7eb2f44f6ef55e1c4b9130"
   },
   "policies": [
     {
@@ -1342,7 +1342,7 @@
       "policy": "visual-atlas-20261008",
       "scope": "project",
       "source": "framework/10_visual_atlas.md",
-      "checked_requirement": "五张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。",
+      "checked_requirement": "五张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。",
       "tests": [
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_adopted_reference_bytes_and_actual_dimensions_match",
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_all_existing_render_and_panel_assets_have_individual_queue_rows",

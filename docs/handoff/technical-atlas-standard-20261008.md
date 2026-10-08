@@ -27,3 +27,6 @@
 - `docs/design/technical-atlas/MIGRATION_PLAN.md`、`docs/design/technical-atlas/references/`。
 - 本地观察截图：`~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/`，非生产改版回执。
 - `PYTHONPATH=src:tests/unit python3 -m unittest test_visual_atlas -q`；governance refresh/check、validate --strict、registry。
+
+## 审图文件边界
+TA-02初稿审图误复用了基线截图文件名，Git中的参考/旧渲染原件未改变；根目录截图不再作冻结基线原件。TA-02正式本地验收只引用`TA-02/final/`独立截图及SHA，生产另写`TA-02/live/`，后续每项使用独立目录。初始基线源码453f3625仍在Git历史。

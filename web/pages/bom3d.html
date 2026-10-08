@@ -983,6 +983,7 @@ const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atla
   render:()=>composer.render(), button:document.getElementById('atlas-export'),
   filename:'bom3d-technical-atlas.svg', title:'园区结构图册',
   caption:()=>document.getElementById('stage').textContent,
+  diagnostics:()=>covOn ? '索引覆盖：红0/4、橙1/4、黄2/4、浅绿3/4、绿4/4（公司、产品、序列、指标登记维度数；非硬件状态）' : null,
   selected:()=>{const id=document.getElementById('dossier').dataset.partId;
     return id ? {id:'part:'+id,name:PART[id]?.name || id,meshes:PARTMESH[id] || []} : null;}
 });

@@ -147,9 +147,10 @@ function wrappedText(text,width,font=14) {
   if(line)lines.push(line);return lines;
 }
 // Snapshot the CURRENT view. Text is editable SVG; geometry stays a raster, not a CAD export.
-export function atlasSnapshot({THREE, scene, camera, canvas, render, drawing, title, caption, selected}) {
+export function atlasSnapshot({THREE, scene, camera, canvas, render, drawing, title, caption, selected, diagnostics}) {
   caption = typeof caption === 'function' ? caption() : caption;
   selected = typeof selected === 'function' ? selected() : selected;
+  diagnostics = typeof diagnostics === 'function' ? diagnostics() : diagnostics;
   scene.updateMatrixWorld(true); camera.updateMatrixWorld(true);
   const visibleLabels = [...drawing.labels].filter(label=>label.visible);
   const coordinates = visibleLabels.map(label=>({text:label.userData.atlasLabel.text,
@@ -159,7 +160,7 @@ export function atlasSnapshot({THREE, scene, camera, canvas, render, drawing, ti
     visibleLabels.forEach(label=>label.visible=false); render(); pixels = canvas.toDataURL('image/png');
   } finally {visibleLabels.forEach(label=>label.visible=true); render();}
   const width = canvas.width, height = canvas.height, margin = 48;
-  const footnote = wrappedText(`${caption} · 通用结构示意，非工程图；当前视角，像素 ${width}×${height}`,width-48);
+  const footnote = wrappedText(`${caption} · 通用结构示意，非工程图；当前视角，像素 ${width}×${height}${diagnostics ? ' · '+diagnostics : ''}`,width-48);
   const footer = 66+footnote.length*20;
   const font = Math.max(16,Math.round(width/96));
   const texts = coordinates.filter(({point})=>Math.abs(point.x)<=1 && Math.abs(point.y)<=1 && Math.abs(point.z)<=1)
@@ -176,7 +177,7 @@ export function atlasSnapshot({THREE, scene, camera, canvas, render, drawing, ti
     }
   }
   const footTexts=footnote.map((line,index)=>`<text x="24" y="${height+margin+66+index*20}" font-size="14">${escape(line)}</text>`).join('');
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height+margin+footer}" viewBox="0 0 ${width} ${height+margin+footer}"><metadata>${escape(JSON.stringify({style:'white-technical-atlas-v1',recipe:'scene-atlas-v1',title,caption,pixels:[width,height],object_id:selected?.id || null,projection:'current interactive perspective',identity:'generic schematic; no model-specific dimensions'}))}</metadata><rect width="100%" height="100%" fill="${ATLAS.paper}"/><image x="0" y="${margin}" width="${width}" height="${height}" href="${pixels}"/><g id="editable-labels" fill="${ATLAS.graphite}" font-family="Inter,Noto Sans SC,sans-serif" font-size="${font}"><text x="24" y="32">${escape(title)}</text>${texts.join('')}${leader}${footTexts}</g></svg>`;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height+margin+footer}" viewBox="0 0 ${width} ${height+margin+footer}"><metadata>${escape(JSON.stringify({style:'white-technical-atlas-v1',recipe:'scene-atlas-v1',title,caption,pixels:[width,height],object_id:selected?.id || null,diagnostics:diagnostics || null,projection:'current interactive perspective',identity:'generic schematic; no model-specific dimensions'}))}</metadata><rect width="100%" height="100%" fill="${ATLAS.paper}"/><image x="0" y="${margin}" width="${width}" height="${height}" href="${pixels}"/><g id="editable-labels" fill="${ATLAS.graphite}" font-family="Inter,Noto Sans SC,sans-serif" font-size="${font}"><text x="24" y="32">${escape(title)}</text>${texts.join('')}${leader}${footTexts}</g></svg>`;
 }
 
 export function mountAtlasExport(options) {
