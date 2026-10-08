@@ -211,7 +211,7 @@ function isoSlab(layer, parts, idx) {
   companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
   inds.indicators.forEach(i => INDS[i.id] = i);
   // 右栏是同一份部件档案（part-dossier.js，与 3D 共用）；2D 没有部件预览
-  showDossier = createPartDossier({ el: document.getElementById("dossier"), view: "bom", BOM: bom, companies: CN, prices: PRICES, indicators: INDS,
+  showDossier = createPartDossier({ el: document.getElementById("dossier"), view: "bom", BOM: bom, companies: CN, prices, indicators: INDS,
     statusNames: SN, statusColors: Object.fromEntries(Object.entries(SC).map(([k, v]) => [k, v])), inspector: { hide() {}, show() { return false; } },
     atlasHost: document.getElementById('selected-atlas') });
 

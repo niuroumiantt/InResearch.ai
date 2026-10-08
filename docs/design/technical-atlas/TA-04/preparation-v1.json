@@ -1,0 +1,30 @@
+{
+  "status": "evidence_preparation_only",
+  "not_generated": true,
+  "not_completed": true,
+  "baseline_asset": "web/assets/renders/gpu-board.png",
+  "baseline_sha256": "18aedf0dec0431e6fa511485af7aa47081d47f9f4c257a3f07a551dc6d9ec098",
+  "observed": "Old asset depicts eight abstract chips on one board; do not rename it a single bare GPU die.",
+  "object_id": "part:gpu",
+  "proposed_scope": "Generic multi-GPU module/baseboard assembly illustration; source class HGX H100/H200. Exact layout and dimensions remain unspecified.",
+  "primary_sources": [
+    "https://docs.nvidia.com/enterprise-reference-architectures/hgx-ai-factory-h100-h200-b200/latest/components.html",
+    "https://developer.nvidia.com/blog/introducing-nvidia-hgx-h100-an-accelerated-server-platform-for-ai-and-high-performance-computing/"
+  ],
+  "source_claim_boundary": "Official architecture supports eight SXM GPUs and NVSwitch baseboard class; no generated hole pattern, PCB routing, pinout, exact package internals or dimensions adopted.",
+  "next": "TA-03 already published; next actual generation is TA-04, after receipt PR406 is closed. Preparation is not a completed illustration.",
+  "previous_published_item": "TA-03",
+  "previous_publication": "2ab6e7af2371514d81307b2bda637982f3949df2",
+  "actual_source_observations": [
+    {
+      "url": "https://docs.nvidia.com/enterprise-reference-architectures/hgx-ai-factory-h100-h200-b200/latest/components.html",
+      "observed_at": "2026-10-08",
+      "supports": "Eight H100/H200 SXM GPUs combined with NVLink/NVSwitch on an HGX baseboard; only assembly category adopted."
+    },
+    {
+      "url": "https://developer.nvidia.com/blog/introducing-nvidia-hgx-h100-an-accelerated-server-platform-for-ai-and-high-performance-computing/",
+      "observed_at": "2026-10-08",
+      "supports": "Official HGX H100 describes eight GPUs and four NVSwitch chips; exact generated board layout and routing remain schematic."
+    }
+  ]
+}

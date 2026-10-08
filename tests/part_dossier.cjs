@@ -32,6 +32,11 @@ const {chromium} = require('playwright');
         assert.ok((await enclosure.locator('img').getAttribute('src')).endsWith('/chassis-v1-preview.svg'));
       } else {
         assert.equal(await dossier.locator('.technical-atlas[data-figure="TA-03"]').count(), 0, 'GPU must not inherit enclosure diagram');
+        const gpu = dossier.locator('.technical-atlas[data-figure="TA-04"]');
+        await gpu.waitFor();
+        assert.match(await gpu.locator('h3').textContent(), /GPU 加速基板.*模组装配/);
+        assert.match(await gpu.locator('figcaption').textContent(), /多 GPU 模组与基板/);
+        assert.ok((await gpu.locator('img').getAttribute('src')).endsWith('/gpu-board-v1-preview.svg'));
       }
       const canvas = dossier.locator('canvas'); await canvas.waitFor();
       assert.equal(await canvas.count(), 1);

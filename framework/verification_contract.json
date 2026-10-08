@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.08.26",
+  "version": "2026.10.08.27",
   "reviewed_at": "2026-10-08",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "1da84a8c03278f86ed4a38fcbe1e6c9ca1f87868354b5d952fb1802606a23a96",
-    "framework/CURRENT.md": "667f1b5aff2dd32bac6d886c761df386240a1c6d13afcaf9da48feba249678d4",
+    "framework/CURRENT.md": "13384874d2e889f42c8777b5dac7f29a0e4dfc451f6b72f7f2521d5ecf32f887",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "6f7220c1b4403de7fa609d1983f6a96794f65095c6425a04150f42cebe33dc6d",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -60,7 +60,7 @@
     "tests/industry.cjs": "8e02059a08894b4563a051ffa4539b51080cba3f04c48fed0575a68b2efbd148",
     "tests/model_assets.cjs": "9b96c1a178838cb93bf9e491f1d9973fb3803529878740ae432b7596dbf3aab2",
     "tests/nvidia_pilot.cjs": "06b9187ff6a3573f9facfee3bfb78c2ee3a7a19a25187fcbdc22c5a99ab0337f",
-    "tests/part_dossier.cjs": "4fe697e18a4ef7055d2a776638c6a9c15baace447a19245bb48db595538cde96",
+    "tests/part_dossier.cjs": "d5a3808ab84fdb95eb82bff56ecf75f10623a50004b1f3a7308f04a0902c0795",
     "tests/product_catalog.cjs": "d043018fbd2f1b8131d38439faf37a953ce305a9570699e03cc87f56e232f522",
     "tests/repository_pages.cjs": "151cf0d04b6544af880278c3d6c1beef044590c85407659edf19d062ab95d5f6",
     "tests/research_delivery.cjs": "81548cb9d821495c3f209341490fa036e832c9be94f97da35a83825a1381c1f4",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "037a0489fc49e01859fdeab384791bb46fc0e679e3f7fbec337d4370d1213084",
+    "framework/current_state.json": "68c5bd6ca896326029fc16741d3e0902d89acc55b839d20ff083195003b9766c",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -190,7 +190,7 @@
     "tests/unit/test_research_progress.py": "b9743aa642029369a858973eb5417dd67de4fc618343ef07beedc4930c2878f4",
     "tests/unit/test_research_publication_merge.py": "e41e83060667404033a4cdeec18d0396a54551dee5c9737c396111ee816014e3",
     "src/inresearch/interfaces/http.py": "4e9ca824c0ad129f89b0ddd0ec3cbc8fb83a3bb3ae76242e77bf4a4219abf65d",
-    "web/routes.json": "404e2d13f0b92b5f9bab456d1663938e1ed214ee9eaa68156ead41b7a45080d7",
+    "web/routes.json": "6f492cee8a6c313a883399ac61776a7ed0a50e946cf562e102f38e4099db631d",
     "web/components/site-shell.js": "d1dbb2bea0538cc49084e66124b8841a11f5ffff05c07c77065e4f9b4f175f48",
     "web/components/company-home.js": "4db5baa5fcd45de2084d8a86c411f0822338550bfb29bfdf8ec00864dc2b65ff",
     "web/components/company-overview.js": "561b11ff9f66cd4f12b586efe540b707776b7d86a4f0be2ab52b087fa367d745",
@@ -205,8 +205,8 @@
     "tests/unit/test_material_flow.py": "6d7956fcb057acd12be4c225605a262b1eb7b9da45f7f33d4554ed94444b87fb",
     "framework/10_visual_atlas.md": "8c82224ba9c75f21438527ba98e46f1cf7cfb0f356721dd9ed3c1e4e2bf9fff2",
     "framework/visual_atlas.json": "12f5b00c96ba391c155a508306f697e04eb95c61d60a066e3dad8e581c1aeb8d",
-    "framework/visual_atlas_migration.json": "fc15c9a0bb89b7d70c3cc34e0b27ec18a89df92701dfc34fbc82459781e4f1f9",
-    "docs/design/technical-atlas/MIGRATION_PLAN.md": "51fc3974df438550454666013f147468c5e3c67b63883d5c52360960bada0636",
+    "framework/visual_atlas_migration.json": "0013de3017ee67ac98a9b6fdf747e3f7753c38ea039f4b2613ca0e60914908c5",
+    "docs/design/technical-atlas/MIGRATION_PLAN.md": "e1aa7c9c8ff1d7273075e99e609657bf1ab335e3764a5f4a2cfc3ad51f78373d",
     "docs/design/technical-atlas/references/README.md": "541ae32e5f8c56adc0abc2539d0a570bbe99fedd2e11be5a3a4397005b6a5fa2",
     "tests/unit/test_visual_atlas.py": "e8b81d0c6708abea49a4898f18900a87f242a78560d026f9d2b1b50c6851ccc0",
     "docs/design/technical-atlas/references/01-chain.png": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
@@ -216,8 +216,8 @@
     "docs/design/technical-atlas/references/05-thermal-cutaway.png": "6bfeea5980c8ad16b040561a6cf69ca6e020b4cb9f0bfd26a97dd1c88c0af1f6",
     "web/assets/renders/README.md": "82dfed1573f13e1641448bc046a5606e27e25db10341ea4f799bc0563eb2c9e8",
     "web/assets/panels/README.md": "793ac5832f0b14f448790fb0be18a457413b108c45dee709d2957cfec42cf785",
-    "tests/technical_atlas.cjs": "24e4564a54bca439776ba990fb750aea82d31942aa3122d3d96f3b2639a0858e",
-    "web/components/technical-atlas.js": "6ec592e0aa732aeee596becad21242def2c75f82785273bd572f9d6a1818c229",
+    "tests/technical_atlas.cjs": "274983f42ad773211cf45b6092c7b531beef9790fa87b79832aaf031ed5792f4",
+    "web/components/technical-atlas.js": "76f3dcea516750c7286617b97f74e5b1a59adfd868e8d7387dd5b4fe52650cfe",
     "web/components/technical-atlas.css": "8f7946fd9999937de65b168715903f14b78771845e36c4469c1ea0f6ec48dcc9",
     "web/components/part-dossier.js": "4ccbdac65ce7f6bd2d3a9163e00f53715e97b4a8b5a5cc9a25d569eb4a2d7ad9",
     "scripts/build_technical_atlas.py": "e97a2673d741af89d67472d46f27914d1ba565d39d8d2b5ebf834ec1e4689b8c",
@@ -232,7 +232,7 @@
     "docs/design/technical-atlas/references/07-heat-path.png": "352a5c07dc55980b0871a6280f40c8ecdc219724ddca7b1fbf3295d43b032542",
     "docs/design/technical-atlas/references/08-water-reuse.png": "b30a309aa50099342b3cb05958a1f4ac7bde08fcfba681b4b1fc7da28c24ae7a",
     "docs/design/technical-atlas/references/09-water-isometric.png": "92fcc56d8763be50b3461efad54a4c7a9dd289fac148486d59724137525cb874",
-    "web/pages/bom.html": "5157887295cf8db2426ac8be123cf7b250ee463243f7eb1268f4c513d8908058",
+    "web/pages/bom.html": "302fffcd55096e8d08365f92cacdeb4d1c993077171c676c4678f5aae250b5d8",
     "docs/design/technical-atlas/TA-03/labels-v1.json": "76de9ab4c5cb0d3176c5d78e118ddb8c5849ffb8ad9e3909b9b9edaed5845210",
     "docs/design/technical-atlas/TA-03/acceptance-v1.json": "bc6b91de66c0bc6ab5edfd849e601ef5219f7d12ac03bd533e76d9e13f7702d7"
   },
@@ -1372,7 +1372,7 @@
       "policy": "visual-atlas-20261008",
       "scope": "project",
       "source": "framework/10_visual_atlas.md",
-      "checked_requirement": "原五张与补充四张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。；导出共用实时文字避让与1x/2x像素比；匿名启动不依赖受保护产品登记、可选未读明确未知并保留原权限。；镜头观测测试兼容脚本版本参数，注入接口须实际匹配当前源码，缺失时立即失败而不跳过视口检查。；scene_atlas 保留双密度完整导出/交互断言，调度器将1x/2x分别运行在原单项300秒限额，避免共享期限受软件渲染速度影响。；用户实际入口补全：2D SSD主图区及系统/尺度缩略图用已验图，不留SSD方块；其他选择清除SSD、无侧栏重复。可变HTML/JS/CSS no-cache及GET/HEAD/304条件验证，私有权限保持。；部件详图在包含该部件的系统/尺度行后，骨架路径可见且不前置于总览；切换排法保留选中与所属行，非SSD选择在切换后仍不显示SSD。；设施2D四对象按用户优先顺序分别登记；已验图的PNG真实尺寸/SHA、原字节SVG与轻量同尺寸预览绑定对象，保留基线。实际浏览器按accepted/published项逐张验系统/尺度所属行、跨对象切换、缩略图替代、宽窄/明暗、独立SVG、放大及双下载，未完成项不假装有图。；35项主计划编号和补充四图分开计量，接受图完整性与逐项真实页面验证不因续做调度而免除。；TA-03子装配明确标题/图注，计算行缩略图身份和3D服务器档案绑定，GPU不继承机箱图，8条独立标注与旧chassis基线保留。",
+      "checked_requirement": "原五张与补充四张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。；导出共用实时文字避让与1x/2x像素比；匿名启动不依赖受保护产品登记、可选未读明确未知并保留原权限。；镜头观测测试兼容脚本版本参数，注入接口须实际匹配当前源码，缺失时立即失败而不跳过视口检查。；scene_atlas 保留双密度完整导出/交互断言，调度器将1x/2x分别运行在原单项300秒限额，避免共享期限受软件渲染速度影响。；用户实际入口补全：2D SSD主图区及系统/尺度缩略图用已验图，不留SSD方块；其他选择清除SSD、无侧栏重复。可变HTML/JS/CSS no-cache及GET/HEAD/304条件验证，私有权限保持。；部件详图在包含该部件的系统/尺度行后，骨架路径可见且不前置于总览；切换排法保留选中与所属行，非SSD选择在切换后仍不显示SSD。；设施2D四对象按用户优先顺序分别登记；已验图的PNG真实尺寸/SHA、原字节SVG与轻量同尺寸预览绑定对象，保留基线。实际浏览器按accepted/published项逐张验系统/尺度所属行、跨对象切换、缩略图替代、宽窄/明暗、独立SVG、放大及双下载，未完成项不假装有图。；35项主计划编号和补充四图分开计量，接受图完整性与逐项真实页面验证不因续做调度而免除。；TA-03子装配明确标题/图注，计算行缩略图身份和3D服务器档案绑定，GPU不继承机箱图，8条独立标注与旧chassis基线保留。；TA-04模组装配与GPU对象绑定、系统/尺度缩略图身份、跨服务器/GPU选择清除、GPU档案插图与既有3D画布保留；8条标签/同像素预览/原件SHA与旧gpu-board基线。；2D档案传入完整prices对象，GPU现有价格曲线与图册上下文能同时完成，不因records数组形状错误中断加载。",
       "tests": [
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_adopted_reference_bytes_and_actual_dimensions_match",
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_all_existing_render_and_panel_assets_have_individual_queue_rows",
@@ -1394,7 +1394,8 @@
         "新设施图的精确梁柱/基础、探测/灭火/监控布置、尺寸/覆盖和现场规范适用不由参考或机检证明；实际公网发布按各项PR回执，不以本地accepted预填published。",
         "补充四图实际入口与原件核对见逐项publication回执；公网冷加载与全量缩略图性能尚未优化，不以本地测试时长推定真实公网时长。",
         "TA-03是通用空机箱子装配；具体型号机械布局/孔位/锁扣未经原厂工程确认，不当作TA-11完整服务器或3D几何重制。",
-        "TA-03实际公网四视图/高清8标签和原PNG SHA及服务核对见publication回执；冷网络性能仍未优化。"
+        "TA-03实际公网四视图/高清8标签和原PNG SHA及服务核对见publication回执；冷网络性能仍未优化。",
+        "TA-04第三版人工逐项数为七个已安装加一个抬起模组；机检不能证明此结构。官方来源支持八SXM GPU/NVSwitch类别，精确走线、连接端与冷却机械结构不作为原厂工程事实。实际上线另按逐项publication回执。"
       ]
     },
     {
