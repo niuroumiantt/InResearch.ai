@@ -16,6 +16,20 @@ const {chromium} = require('playwright');
       assert.equal(await page.locator('.technical-atlas').count(), 1);
       assert.equal(await page.locator('link[data-technical-atlas]').count(), 1);
       if (url.includes('rack3d')) assert.equal(await page.locator('#dossier .insp canvas').count(), 1);
+      else {
+        assert.equal(await page.locator('#selected-atlas .technical-atlas').count(),1,'SSD illustration belongs in the main drawing area');
+        assert.equal(await page.locator('#dossier .technical-atlas').count(),0,'avoid a duplicate sidebar illustration');
+        assert.ok((await atlas.boundingBox()).width>500,'desktop SSD figure must be readable outside the sidebar');
+        for (const mode of ['scale','system']) {
+          await page.locator(`[data-mode="${mode}"]`).click();
+          assert.equal(await page.locator('.pbox[data-part="ssd"] path').count(),0,'adopted SSD must not remain a classification box');
+          assert.match(await page.locator('.pbox[data-atlas-part="ssd"] image').getAttribute('href'),/ssd-v1-preview\.svg$/);
+        }
+        await page.locator('#c-hdd').click();
+        assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'other parts must not inherit the SSD figure');
+        await page.locator('.pbox[data-atlas-part="ssd"]').click();
+        assert.equal(await page.locator('.technical-atlas').count(),1);
+      }
       for (const width of [1280, 390]) {
         await page.setViewportSize({width, height: 900});
         for (const mode of ['light', 'dark']) {

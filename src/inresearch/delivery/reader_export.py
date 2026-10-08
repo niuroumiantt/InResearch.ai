@@ -8,7 +8,7 @@ from inresearch.knowledge.registry import object_resolver
 
 # Bumped when the projection of one document changes for the same registry and
 # report (the cache key otherwise only sees the registry versions).
-PROJECTION_VERSION = 2
+PROJECTION_VERSION = 3
 
 def read_report(data, doc):
     if not doc['report_rel']:
@@ -103,6 +103,8 @@ def project_document(doc, sources, report, allowed, resolve=None):
              "reading_revision_id": doc["revision_id"] if doc["report_rel"] else None,
              "report_sha256": doc["report_sha256"],
              "model": report.get("model"), "status": "candidate", "acceptance": "candidate", **mapped}
+    if report.get('published_date') or report.get('classification', {}).get('published_date'):
+        entry['published_date'] = report.get('published_date') or report['classification']['published_date']
     evidence_out = []
     for evidence in report.get("evidence", []):
         ids = {key: fold_ids(evidence.get(key, []), allowed[key], resolvers[key])[0] for key in allowed}

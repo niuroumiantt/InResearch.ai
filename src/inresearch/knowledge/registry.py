@@ -294,7 +294,8 @@ def candidate_snapshot(payload, graph, questions):
     allowed = {'id', 'doc_id', 'title', 'source_url', 'stored_path', 'coverage',
                'object_ids', 'question_ids', 'document_id', 'page_index', 'locator',
                'quote', 'text', 'kind', 'evidence_ids', 'statement_ids', 'question_id',
-               'model', 'read_status', 'mapping_status', 'content_sha256', 'reading_revision_id', 'report_sha256'}
+               'model', 'read_status', 'mapping_status', 'content_sha256', 'reading_revision_id', 'report_sha256',
+               'published_date', 'as_of'}
     known = {'object_ids': {o['id'] for o in graph.get('objects', []) if isinstance(o, dict) and 'id' in o},
              'question_ids': {q['id'] for q in questions.get('records', []) if isinstance(q, dict) and 'id' in q}}
     # 图谱 3.0：旧对象 ID 先按对象登记的别名与根前缀折算到骨架节点（不猜），折算不了的才丢
