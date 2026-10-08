@@ -33,6 +33,21 @@ def all_checks_pass(checks):
     return required <= {c['name'] for c in checks} and all(c.get('bucket')=='pass' for c in checks)
 
 
+def source_bundle(root, directory, target, base):
+    """Incremental approved-main Git objects; never replace a divergent head."""
+    if not all(re.fullmatch('[0-9a-f]{40}',x) for x in (target,base)):
+        raise ValueError('invalid_source_commit')
+    if run(['git','merge-base','--is-ancestor',base,target],root,check=False).returncode:
+        raise ValueError('spark_source_not_ancestor_preserve_and_defer')
+    if run(['git','rev-parse','origin/main'],root).stdout.strip()!=target:
+        raise ValueError('source_target_is_not_current_main')
+    path=private_dir(Path(directory))/(target+'-'+base[:12]+'.bundle')
+    if not path.exists():run(['git','bundle','create',path,'origin/main','^'+base],root)
+    heads=run(['git','bundle','list-heads',path],root).stdout.splitlines()
+    if target+' refs/remotes/origin/main' not in heads:raise ValueError('source_bundle_head_mismatch')
+    return path
+
+
 def refresh_publication_base(worktree, expected_commit):
     """Merge current main into our exclusive, clean publication branch.
 
@@ -83,8 +98,32 @@ class Publisher:
         # service restart is a substitute for a clean fast-forward.
         dirty=self.ssh(['git','-C',self.spark_root,'status','--porcelain']).stdout
         if dirty.strip():raise ValueError('spark_source_dirty_preserve_and_defer')
-        self.ssh(['env','GIT_TERMINAL_PROMPT=0','git','-C',self.spark_root,'fetch','origin','main'])
-        self.ssh(['git','-C',self.spark_root,'merge','--ff-only','origin/main'])
+        # M5 already has GitHub access. Ship only verified incremental objects
+        # over the existing SSH link, rather than blocking every publication on
+        # Spark's intermittent direct GitHub TLS connection.
+        run(['env','GIT_TERMINAL_PROMPT=0','git','fetch','origin','main'],self.root)
+        target=run(['git','rev-parse','origin/main'],self.root).stdout.strip()
+        base=self.ssh(['git','-C',self.spark_root,'rev-parse','HEAD']).stdout.strip()
+        if base==target:return
+        bundle=source_bundle(self.root,self.state/'source-releases',target,base)
+        remote_dir=self.config.get('spark_state','/home/spark/.local/state/inresearch.ai')+'/research-source'
+        self.ssh(['mkdir','-p','-m','700',remote_dir])
+        remote_path=remote_dir+'/'+bundle.name
+        run(['scp','-q',bundle,self.config.get('spark','spark')+':'+remote_path])
+        remote_sha=self.ssh(['sha256sum',remote_path]).stdout.split()[0]
+        if remote_sha!=digest_file(bundle):raise ValueError('source_bundle_transport_changed')
+        self.ssh(['git','-C',self.spark_root,'bundle','verify',remote_path])
+        if (self.ssh(['git','-C',self.spark_root,'status','--porcelain']).stdout.strip()
+                or self.ssh(['git','-C',self.spark_root,'rev-parse','HEAD']).stdout.strip()!=base):
+            raise ValueError('spark_source_changed_during_transfer')
+        self.ssh(['git','-C',self.spark_root,'fetch',remote_path,
+                  'refs/remotes/origin/main:refs/remotes/origin/main'])
+        self.ssh(['git','-C',self.spark_root,'merge','--ff-only',target])
+        actual=self.ssh(['git','-C',self.spark_root,'rev-parse','HEAD']).stdout.strip()
+        if actual!=target:raise ValueError('spark_source_acceptance_mismatch')
+        atomic_json(self.state/'source-releases'/(bundle.stem+'.json'),
+                    {'target':target,'previous':base,'sha256':remote_sha,'bytes':bundle.stat().st_size,
+                     'transport':'existing SSH, incremental Git bundle','verified_at':now_iso()})
 
     def tick(self):
         journals=sorted(self.state.glob('*/journal.json'))

@@ -40,6 +40,8 @@ const base=process.env.UI_BASE_URL;
   await page.route('**/api/supply',route=>route.fulfill({json:{...original,
    matching_reader:{received_at:'2026-10-06T08:00:00Z',execution_scope:{documents:133,registered:131,counts:{complete:2,running:2,queued:127,blocked:2},types:{'.pdf':69,'.html':62},chunks_read:18,chunks_total:156,awaiting_extraction:126,native_text_only_complete:1,skipped_image_pages:3,text_layer_empty_pages:1,executor:{pdf_mode:'native_text_only',backend:'codex_cli',model:'gpt-6.1-sol <img src=x>',reasoning_effort:'medium'}}},
    project_updates:[{site_id:'fi-reviewed',name:'正式采用园区',verified_date:'2026-10-06',fields:['规划IT容量'],scope:'一期包含在园区总量内，供电不计入IT'}],
+   research_verification:{state:'observed',generated:'2026-10-08T02:00:00Z',active_batches:2,candidates:{queued:14,review_ready:6,published:3},
+    deferred_batches:{review_context_over_budget:13},budget_failures:[{title:'过长报告 <img src=x onerror=alert(1)>.pdf',batch_id:'a'.repeat(64),packet_bytes:11233000,failed_at:'2026-10-08T01:00:00Z'}]},
    reading_deliveries:[{title:'已完成日报 <img src=x>',claims:['已提取的合同信息'],quotes:[{quote:'Original source text',page_index:16}],coverage:{gap_pages:[2]}},
     {title:'正文候选报告',claims:['75MW power 与 60MW IT 分开记录'],quotes:[{quote:'60MW IT; 75MW power',page_index:0}],coverage:{scope:'pdf_native_text_only',visual_review_performed:false,text_layer_empty_pages:[3],skipped_image_pages:[1,3]}}],
    daily_events:{records:[event(missing,'需要补来源的园区'),event(ready,'已交付园区 <img src=x onerror=alert(1)>')],total:2},
@@ -55,6 +57,10 @@ const base=process.env.UI_BASE_URL;
   assert.match(await page.locator('.progress-overview').innerText(),/127/);
   assert.match(await page.locator('.progress-overview').innerText(),/16:00/);
   assert.equal(await page.locator('.progress-overview img,.progress-results img').count(),0);
+  await page.locator('.research-verification summary').click();
+  assert.match(await page.locator('.research-verification').innerText(),/13 个过长核验包/);
+  assert.match(await page.locator('.research-verification').innerText(),/11.233/);
+  assert.equal(await page.locator('.research-verification img').count(),0);
   await page.locator('.progress-results summary').first().click();
   assert.match(await page.locator('.progress-results').innerText(),/已提取的合同信息/);
   assert.match(await page.locator('.progress-results').innerText(),/原件第 17 页/);

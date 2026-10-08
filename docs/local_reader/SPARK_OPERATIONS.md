@@ -383,8 +383,10 @@ python3 manage.py research-review status
 python3 manage.py research-review ready
 ```
 
-安装 `deploy/spark-reader/inresearch-research-review.service` 到用户 systemd，独立 enable/start。每轮最多两批，角色并发更低时取更低值；每批通常三项，超预算继续拆小批、单项不足则待核，不截上下文。两批待发布产生背压。原重要度≥8进待所有者，具体审核新出现A条件同样保留；其他专门数值/项目核验不借作者陈述通道改表。
+安装 `deploy/spark-reader/inresearch-research-review.service` 到用户 systemd，独立 enable/start。每轮最多两批，角色并发更低时取更低值；新批次通常六项，超预算继续拆小批、单项不足则待核，不截上下文。十二批待发布产生背压；有可执行任务立即继续，空闲等待三十秒。原重要度≥8进待所有者，具体审核新出现A条件同样保留；其他专门数值/项目核验不借作者陈述通道改表。
+
+提速选择协议按04：需求匹配调用生成当前候选/引文中的逐字检索词，仅检索字段值；完整保存所选语义记录，重复执行回执用原登记SHA引用，保留旧协议复验。修改队列前停止该独立研究服务并作 SQLite 一致备份；`research-review regroup-queued --batch-size 6` 只合并未执行的 queued，同报告/版本，父批次留存。`research-review retry-context --batch-id 完整ID` 只重试预算失败，保留原尝试；不重试原文缺失或独立抽样未确认。恢复独立研究服务；原 Reader/relay 不重启。
 
 M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用源码工作树）、state（本机私有状态目录）、spark/aws SSH别名及各自已存在路径。由 `deploy/m5-research/research-publish.plist.example` 安装用户 LaunchAgent，显式替换 Python/源码/配置/日志绝对路径。一次 tick 创建或恢复独立发表工作树/PR，CI四项通过且PR head未变才合并；网页部署后使用容器里已有管理员的临时会话验收真实HTTPS采用接口，不打印会话/密钥，不改账号。研究事实、规范和原件不得通过该凭据临时放宽分发。
 
-先只新增运行服务，既有 Reader/relay 不重启。发布器检查 Spark 源码干净后 fast-forward；dirty 保留并等待。Git/CI/连接/部署错误保存私有 journal，原尝试/分支不 reset 或删除；模型成功与待提交数量不计正式采用。`revalidate` 仅用于未发布、正式上下文已变化的批次；`split-overbudget` 仅拆预算阻塞，保留原审计。网站逐条正文、采用状态、引文和原件支持闭包通过后才有 published。单元测试不是全库语义保证；未匹配需求、A档、缺证据与专门字段仍分别计量。
+既有 Reader/relay 不重启。发布器在M5获取当前已合并 origin/main，确认 Spark 源码干净且 HEAD 是目标的祖先后生成增量 Git bundle，经既有 SSH 传输，核对 SHA 和 bundle 前置提交，再重查 Spark HEAD/dirty 后 fast-forward；远端源地址不改。源码增量和传输回执保存私有 state/research-source 与 M5 source-releases。dirty、分歧或传输期间变更保留并等待，不能用 reset/stash 绕过。Git/CI/连接/部署错误保存私有 journal，原尝试/分支不 reset 或删除；模型成功与待提交数量不计正式采用。`revalidate` 仅用于未发布、正式上下文已变化的批次；`split-overbudget` 仅拆预算阻塞，保留原审计。网站逐条正文、采用状态、引文和原件支持闭包通过后才有 published。单元测试不是全库语义保证；未匹配需求、A档、缺证据与专门字段仍分别计量。

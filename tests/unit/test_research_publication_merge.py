@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from inresearch.workflow.research_publish import refresh_publication_base
+from inresearch.workflow.research_publish import refresh_publication_base, source_bundle
 
 
 def git(root, *args):
@@ -81,3 +81,19 @@ if sys.argv[1:]==['governance','--refresh']:
         with self.assertRaisesRegex(ValueError,'worktree_changed'):
             refresh_publication_base(self.publication,self.head)
         self.assertEqual((self.publication/'implementation.py').read_text(),'active user change\n')
+
+    def test_incremental_source_bundle_fast_forwards_offline_checkout(self):
+        base=git(self.publication,'rev-parse','origin/main')
+        git(self.publication,'fetch','origin','main');target=git(self.publication,'rev-parse','origin/main')
+        bundle=source_bundle(self.publication,Path(self.tmp.name)/'releases',target,base)
+        offline=Path(self.tmp.name)/'offline';git(Path(self.tmp.name),'clone',str(self.origin),str(offline))
+        git(offline,'switch','--detach',base)
+        git(offline,'bundle','verify',str(bundle))
+        git(offline,'fetch',str(bundle),'refs/remotes/origin/main:refs/remotes/origin/main')
+        git(offline,'merge','--ff-only',target)
+        self.assertEqual(git(offline,'rev-parse','HEAD'),target)
+        self.assertEqual((offline/'implementation.py').read_text(),'new upstream source\n')
+        with self.assertRaisesRegex(ValueError,'not_ancestor'):
+            source_bundle(self.publication,Path(self.tmp.name)/'releases',target,self.head)
+        with self.assertRaisesRegex(ValueError,'not_current_main'):
+            source_bundle(self.publication,Path(self.tmp.name)/'releases',base,base)
