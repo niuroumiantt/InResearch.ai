@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+<title>oa · 仓库架构 · inresearch.ai</title>
+<style>
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.65 var(--ui-font)}
+.repo-wrap{max-width:1200px;margin:auto;padding:24px 20px 64px;min-width:0}
+.repo-wrap h1{font-size:28px;margin:8px 0}.repo-wrap h2{font-size:20px;margin:30px 0 12px}
+.repo-wrap a{color:var(--accent)}.repo-note{color:var(--muted);overflow-wrap:anywhere}
+.repo-nav{display:flex;flex-wrap:wrap;gap:10px 22px}.repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.repo-card,.repo-flow li{padding:18px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
+.repo-card{min-width:0;overflow-wrap:anywhere}.repo-card h2{margin:0 0 8px}.repo-scroll{overflow-x:auto}.repo-wrap table{border-collapse:collapse;width:100%;font-size:13px}
+.repo-ecosystem{max-width:760px;margin:28px auto;text-align:center}.repo-upstream{display:grid;grid-template-columns:1fr 1fr;gap:18px}.repo-ecosystem .repo-card{margin-bottom:12px}
+.repo-wrap th,.repo-wrap td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+.repo-flow{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:0}.repo-flow li{flex:1;min-width:150px}
+.repo-flow li:not(:last-child)::after{content:' →';color:var(--accent)}
+.repo-frame{width:100%;height:76vh;min-height:480px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
+.repo-provenance{margin:18px 0;font-size:12px}.repo-provenance code{overflow-wrap:anywhere}
+@media(max-width:600px){.repo-wrap{padding:18px 12px 40px}.repo-wrap h1{font-size:23px}.repo-flow{display:block}.repo-flow li{margin:8px 0}.repo-frame{height:80vh}}
+</style></head><body><inresearch-shell data-section="admin"></inresearch-shell>
+<main class="repo-wrap"><nav class="repo-nav" aria-label="仓库架构">
+<a href="/admin/repos.html">仓库总览</a><a href="/admin/inresearchrepo.html">InResearch.ai</a><a href="/admin/inewsrepo.html">inews.today</a><a href="/admin/fetchspecrepo.html">Fetchspec</a><a href="/admin/infrarepo.html">infra</a><a href="/admin/oarepo.html">oa</a><a href="/admin/aimailrepo.html">aimail</a><a href="/admin/leadsgenrepo.html">leadsgen</a><a href="/admin/semiflyrepo.html">semifly.ai</a><a href="/admin/glocalstoragerepo.html">glocalstorage.com</a><a href="/admin/openapirepo.html">openapi</a><a href="/admin/suanmingrepo.html">suanming</a><a href="/admin/agentrepo.html">agent</a></nav><h1>oa</h1><p>办公底座、Keel 内核与业务应用</p><p class="repo-note">最近更新：<time datetime="2026-10-08T18:03:20+08:00">2026-10-08 18:03:20</time> · 每日北京时间 0:00 更新。源图观察时间另行保留。</p><section class="repo-check"><h2>最近检测与结果</h2><p>检测时间：2026-10-08 18:00:54（北京时间）</p><p class="repo-note">检测的源码提交：<code>e487558748efae4e39d734bc7a7f0caf03a0b24a</code></p><div class="repo-scroll"><table><thead><tr><th>检查范围</th><th>结果</th><th>说明</th></tr></thead><tbody><tr><td>公网入口 HTTP/TLS</td><td>通过</td><td>HTTP 302 · 登录保护跳转符合预期</td></tr><tr><td>当前源码的 GitHub 工作流</td><td>通过</td><td>该源码提交的 GitHub 工作流；不是本次重跑完整测试</td></tr></tbody></table></div><p class="repo-note">入口可达、源码检查与业务验收分别计量；工作流未重跑，不将无记录当通过。</p><p><a href="https://github.com/niuroumiantt/oa/actions/runs/36890552108">ci</a> · success</p></section><details class="repo-provenance"><summary>来源文件与内容校验</summary><div class="repo-scroll"><table><thead><tr><th>仓库</th><th>文件</th><th>SHA-256</th></tr></thead><tbody><tr><td>oa</td><td>README.md</td><td>c8509a6fd75da7248003b0a368eba464fdad0e4227351e644c99f32d320c055a</td></tr><tr><td>oa</td><td>STATUS.md</td><td>93065cc7ca6987eb3e19e58513fe79554cfecaedccccde2be6e0247052ea5ce4</td></tr><tr><td>oa</td><td>pyproject.toml</td><td>d0c8566a096e3dee8608de383bd4825f82bd195542845e036b25dce6b7bf8bf7</td></tr><tr><td>oa</td><td>Dockerfile</td><td>7bbde668683c80a9836a78d8d45b5396cc483bc38cf88f62f422c5dfc02f95da</td></tr></tbody></table></div></details><h2>组织框架图</h2><div class="repo-card">oa · 办公底座、Keel 内核与业务应用</div><p>↓ 按实际源码目录展开</p><div class="repo-grid"><div class="repo-card"><strong>apps</strong><p>业务应用</p></div><div class="repo-card"><strong>docs</strong><p>规范、设计与交接</p></div><div class="repo-card"><strong>keel</strong><p>公共内核</p></div><div class="repo-card"><strong>services</strong><p>服务</p></div><div class="repo-card"><strong>tests</strong><p>测试与验收</p></div><div class="repo-card"><strong>tools</strong><p>开发与检查工具</p></div></div><h2>源码模块与职责</h2><div class="repo-scroll"><table><thead><tr><th>目录</th><th>职责</th><th>在册文件数</th></tr></thead><tbody><tr><td>apps</td><td>业务应用</td><td>39</td></tr><tr><td>docs</td><td>规范、设计与交接</td><td>87</td></tr><tr><td>keel</td><td>公共内核</td><td>62</td></tr><tr><td>services</td><td>服务</td><td>12</td></tr><tr><td>tests</td><td>测试与验收</td><td>145</td></tr><tr><td>tools</td><td>开发与检查工具</td><td>17</td></tr></tbody></table></div><p class="repo-note">框架图按当前提交的源码目录与架构文件生成；目录和文件数不代表功能完成率。</p><h2>原仓库架构与状态说明</h2><details><summary>README.md</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere"># OA
+
+一家小而美公司的**业务门户**:一核多应用,全部业务系统长在同一个内核上
+(ADR-0002)。核心是 **Keel(龙骨)**内核——承载机制、不含一行业务,
+继承自 [GlocalERP](https://github.com/niuroumiantt/glocalerp)(ADR-0001),
+受内核宪法十三条约束(`docs/keel-constitution.md`,逐条配攻击测试)。
+
+应用住在 `apps/`,只以元数据声明+钩子注册接入内核:
+财务/进销存(trade+books,已就位)→ OA(审批、考勤、公告,建设中)
+→ CRM / HRM / 项目 / 资产 / 合同(按需逐个添加)。
+
+## 文件优先级(冲突时以谁为准)
+
+| 优先级 | 文件 | 角色 | 什么时候看它 |
+|---|---|---|---|
+| 1 | `INVARIANTS.md` | **最高依据**。任何文档、代码、建议与它冲突,以它为准 | 做任何架构决定之前 |
+| 2 | `docs/adr/` | 已做出的不可逆决定,不得与不变量冲突 | 想知道&quot;为什么当初这么选&quot; |
+| 3 | `CLAUDE.md` | 日常操作规矩(目录、命名、流程) | **写代码时看这个就够了** |
+| 4 | `STATUS.md` | 完成度的**唯一**权威(它是事实记录,不是规则) | 想知道&quot;什么能用了&quot; |
+| — | `docs/` 其余 | 参考材料:way-of-working 是方法论来源,vision 是需求提炼,research 是证据库 | 写 ADR 找背书/反例时 |
+
+一句话:**定规矩看 1,做决定查 2,干活看 3,查进度看 4;其余是论据,不是命令。**
+
+## 读这个仓库的顺序
+
+1. `docs/way-of-working.md` — 方法论:每条原则都要有机器能执行的把手。
+2. `docs/vision.md` — 我们要造什么,发起人的六条硬要求。
+3. `docs/research/oa-landscape-review.md` — 开源 OA/ERP 横评:
+   谁成功在哪、谁失败在哪,是一切基础决定的背书与反例来源。
+4. `INVARIANTS.md` — 不变量(草稿)。改它必须单独开 PR。
+5. `STATUS.md` — 能力状态表。**以它为准**,不要相信任何别处的完成度描述。
+6. `CLAUDE.md` — 给 AI 协作者的硬规矩与目录/命名约定。
+
+## 一条命令
+
+```bash
+bash tools/precommit.sh
+```
+
+提交前必须跑,跑子集不算。(当前为占位实现,详见脚本头部与 STATUS.md。)
+
+## 2026-09-23 源码归属更正
+
+本仓库是公司 OA 办公底座；邮件、线索属于同一办公体系，当前分别由 Aimail、Leadsgen 实现。
+官网、图片和翻译已迁回 glocalstorage.com、semifly.ai；共用工具在 infra/site-localization。
+历史文档的 sites 路径不再是当前实现；详见 ADR-0038。真实办公/财务/HR 流程尚未生产验收，
+已有代码和测试通过不能替代实际业务上线验收。</pre></details><details><summary>STATUS.md</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere"># 能力状态表
+
+&gt; 状态定义写死,不得挪用:
+&gt;
+&gt; - ✅ = 存在攻击性用例且全部通过
+&gt; - ⚠ = 只有正向用例,或已知可绕过
+&gt; - ⏳ = 未实现
+&gt;
+&gt; 被跳过的测试不计入&quot;全绿&quot;。未接入运行链的模块标注为实验性,哪怕代码已写完。
+&gt; 表下方逐条公开已知缺口,不写摘要。
+
+## 执行状况
+
+内核宪法十三条(`docs/keel-constitution.md`)逐条的强制程度。
+每条对应 `tests/constitution/` 下一组不变量测试;
+下表状态以**本仓库本地全量跑通**为据(ruff+pyright+pytest+守卫)。
+
+| 条款 | 测试 | 状态 |
+|---|---|---|
+| 一 | `test_clause01_identity.py` + `test_external_v03_breaches.py` | ✅ `id` 由触发器强制不可变;`name` NOT NULL,双键制两把钥匙都在 |
+| 二 | `test_clause02_standard_fields.py` + `test_concurrency.py` 等 | ⚠ 创建事实与 `row_version` 由触发器强制;**`updated_by` 的值仍未校验**(随内核继承的已知缺口) |
+| 三 | `test_clause03_docstate.py` + `test_clause03_trail.py` + `test_breaches*.py` | ✅ 状态路径、离开草稿后的冻结、子行随父冻结,全部下沉到数据库触发器。**迁移痕迹已补**(I3 的第二半,ADR-0018):`keel_docevent` 只增不改不删,**由触发器写不由 Store 写**——绕过 Store 改状态的人正是最该留痕的那个;11 条攻击用例含裸 SQL 改状态照样留痕、没人报身份时记「不知道是谁」。**2026-09-02 审阅纠正又修回**:「keel_app 连 INSERT 都没有」一度在生产装库顺序下不成立(第七条那一行的同一个根因),收权集中之后按真实顺序装也守住了 |
+| 四 | `test_clause04_ledger.py` + `test_clause04_seal.py` 等 | ✅ 流水 append-only、余额由触发器维护并可重放核对、拒绝 NaN |
+| 五 | `test_clause05_outbox.py` + `test_clause05_delivery.py` + `test_delivery_backoff.py` | ⚠ 生产端与消费端(通道注册/最长前缀路由/失败指名插件/并发租约/可停循环/**失败趟退避不空转**,ADR-0003/0012)均有攻击测试;serve.py 已接投递线程与 dev 通道;**路由 notify 步已真实入队**,链路端到端。真实通道(邮件/企业微信)按 ADR-0012 待部署。**⚠ 而非 ✅ 的原因**:条款还有一句「外部不可回滚操作必须同时记录补偿凭据」——`keel_outbox.compensation` 列与入队参数都在,**但当前没有任何调用方使用它**(邮件本就不可撤回)。机制在、未被任何用例验证过,不该记作已强制(2026-08-07 逐条核对 §2) |
+| 六 | `test_clause06_meta.py` + `test_unique_together.py` + `test_clause06_migration.py` | ✅ 声明与库中实际的比对、漂移停机已强制(类型/NOT NULL/单字段唯一/**组合唯一**/外键/默认/SELECT 取值集,双向);组合唯一在 MASTER 上按存活行(部分索引,ADR-0010)。**字段迁移协议已补**(ADR-0014):改名搬列(`renamed_from`)、退役立碑(`retired`→`keel_retired_*`,不删数据)、改类型走扩—回填—退役;19 条攻击用例含&quot;内核源码出现 DROP COLUMN 即红&quot;。残余:**实体(表)改名**未支持,已在 ADR-0014 记为推迟 |
+| 七 | `test_clause07_authz.py` + `test_external_v03_breaches.py` + `test_data_scope.py` + `test_install_order_privileges.py` | ✅ **2026-09-02 全量审阅逮到又修回**:按生产 `serve.migrate` 的真实顺序装库后,`authz.install` 里的 `grant … on all tables` 曾把它之前各模块做的 revoke 全部反悔——路由三表、痕迹表、口令/会话/登录审计表对 `keel_app` 重新可写,**降权直连能伪造一条 approved 路由**(实证)。用例此前全绿是因为夹具手抄的装库顺序与生产相反。修法:**收权清单的单一来源放进 `authz.install`、跑在 grant all 之后**,顺序从此不再是机制的一部分;`test_install_order_privileges.py` 按真实顺序装后问数据库(含一条对照组)。原有三层攻破测试仍成立:编译查询、RLS、动作分类触发器;行级条件含 `=/!=/in/in_scope`,`in_scope` 经 `keel_scope` 接缝把组织树下钻编译进两层谓词(ADR-0011)。字段级为 Store 层保证、DB 兜底到行级(方案B,ADR-0007) |
+| 八 | `test_clause08_compute.py` + `test_clause08_no_tampering.py` | ✅ 依赖图、拓扑重算、公式失败指名插件 |
+| 九 | `test_clause09_hooks.py` | ✅ 钩子与计算公式失败都指名插件 |
+| 十 | `test_clause10_kernel.py` + `tests/portability/` | ⚠ **前半(内核克制)已强制**:行数守卫(日常预算 10,000,不是增长目标；宪法天花板 50,000)+词汇扫描;无关业务(会议室预订)零内核改动跑通。旧 8,000 线在加入持久任务、生产数据库能力边界与 AI 原生接缝后由发起人于 2026-09-04 明确重校准；不得以压缩代码或搬到无主目录凑数。**后半(持续减法)从未做过**——&quot;每个次版本收口前一次只减不加的简化审查&quot;靠制度执行,没有用例也不可能有。本仓库仍是 0.2.0、从未跨次版本,义务**尚未到期**,不算违约;但两半合记一个 ✅ 是覆盖面被夸大,故降为 ⚠(2026-08-07 逐条核对 §3.4) |
+| 十一 | `test_clause11_projection.py` | ✅ 控制台零业务词、可整体丢弃 |
+| 十二 | `test_breaches*.py` + `test_external_v06_*.py` + `docs/reviews/` | ✅ 制度有效:本仓库首轮外部审阅(v0.6,四人并行)攻破 13 项,全部先写成 `xfail(strict=True)` 常驻守卫——修一条即 XPASS 使 CI 红。继承的两轮审阅用例也在。**2026-09-02 全量自审**(`docs/reviews/2026-09-02-full-code-review.md`)逐文件读完内核与四个业务模块,实证 11 项;其中五项当天修回(装库顺序反悔收权、员工经真实路径加不了明细行、限流清错人、子行缺 parent_id 是 500、「我的」只取 50 条),xfail 全部转为常驻守卫。两个严重项由同一个根因隐身:**夹具的世界不真**(顺序手抄、连接是库主人的)——`World` 夹具降权仍待做(缺口 -9)。自审不替代第十二条要求的外部审阅,那一轮仍欠着 |
+| 十三 | `test_clause13_docs.py` + 本表本身 | ✅ 条款数一致性、每条有行、修宪不夹带代码由 git 历史盯住(基线 `51632bd`) |
+
+## 地基与治理
+
+| 能力 | 状态 | 说明 |
+|---|---|---|
+| 开源项目横评 | ⚠ | 已成文(三梯队 12+ 项目,13 条判断);文档无机器验证,永久 ⚠ |
+| 表现层横评(UI) | ⚠ | `docs/research/oa-ui-landscape-review.md`:按 I2 拆出四条可核对判据(元数据投影/业务规则不泄漏/换肤是配置/整层可弃),逐项对照 NocoBase、Directus/Payload、Frappe Desk、Odoo、若依系、Refine、shadcn、飞书审批。结论:**现在不引入前端框架**,并写死了重开此议题的触发条件;该抄的是判断不是代码。文档无机器验证,永久 ⚠。**追问&quot;这几家的代码比较如何&quot;已成文**(§3.6:技术栈/规模/视图从哪来/换肤机制四栏对比,并记下三条判断——元数据驱动≠可替换、换肤业界已收敛到语义 CSS 变量、代码量与我们的维护能力不匹配)。**当初识别的换肤缺口已补**(见下一行) |
+| 换肤是配置不是改代码(I2 的 C 条) | ✅ | `tools/guard_theme.py` 进了那一条命令:三个投影层(portal/console/landing)的颜色全部收成**语义令牌**,字面色值只许写在 `&#58;root` 块里,别处一律 `var(…)`。12 条用例含攻击:**塞一个 `#ff0000` 进样式,守卫必须当场认出**(变异验证)、**换掉整个令牌块后文件里一个字面色值都不剩**(这就是&quot;切换主题是一个配置项的改动&quot;的机器形态)、令牌按语义命名(`--brand` 改成蓝色时叫 `--green` 的令牌会变成谎话)。圆角/字号也入了令牌但不由守卫强制——写不进守卫的写在约定里。**尚未有第二套皮肤/深色模式**,STATUS 里也不写它们有 |
+| 门户在电脑上的布局 | ✅ | 第八轮真机使用:发起人在 1440 宽的浏览器里一眼看出「这是一个被拉宽的手机 app」——**底部标签栏是移动端专属语法**,飞书/钉钉/企业微信的电脑端都是左侧导航,没有一家把它搬上桌面。补法是**纯 CSS 媒体查询**(≥900px 时标签栏变左侧导航、正文列放宽、toast 跟着挪),**零 JS、零业务改动、同一份投影**。4 条用例**用 Chromium 真量位置**(getBoundingClientRect),不扫源码:手机上标签栏仍在底部(改宽屏不许弄坏手机)、电脑上贴左且竖起、正文不再卡在 640、断点两侧确是两种形态。变异验证:把断点改成 99999px,三条当场红。**过程中逮到我自己写的一条非歧视性断言**——原本写&quot;宽屏正文 &gt; 手机正文 × 1.5&quot;,而 640 天然大于 390×1.5,媒体查询在不在都能过;已改成与移动端上限 640 比 |
+| 表现层地基(ADR-0017) | ⚠ | **定位反转**:桌面是主场——发起人 2026-08-07 给出真实使用强度(每天 4 小时在办公文字与内部流程上),先前「员工一个月用几次」的假设是从人数推出来的,错了;移动端改为承载审批。仍是**同一份投影**,桌面不得有移动端没有的业务能力。**视图语法定死五种**(列表/表单/详情/看板/明细行),判据是**新增一种单据,表现层 diff 为零**(与内核那条同构);**交互契约六条**(键盘走主路径、错误就地显示、保存时机明确、危险动作二次确认、两档密度、等待可见)。**框架仍不引入,但这次是有条件的**:复审点写死——交互契约有一条在实现中被迫打折,或投影层超 3,000 行,即重开议题。**已兑现其中最重的一条:明细行表格**——门户此前 `childrenOf` 出现 0 次,对子实体一无所知,而真实场景(jidian.ai 的采购单/报价单/发票/装箱单)全是明细行单据。4 条用例:从元数据发现子实体(写死任何单据名即红)、以表格而非卡片呈现、计算字段不给输入框(说了不算的输入框比没有更坏)。端到端渲染验过:喂进采购订单+订单行的元数据,表头出「商品/数量/单价」,「金额」被正确剔除。**采购申请已成为第一张真实的明细行单据**,门户上的子表格从此有真东西可渲染,而不只是喂元数据的端到端验证。**交互契约第一条(键盘走主路径)已在明细行上兑现**:回车下一行(到底自动续一行)、上下键同列走行、**整块粘贴**按 TSV 切分并认引号(含制表符/换行的格子切错一格,数量与单价就错位到别的品名上,而金额是按行算的),放不下的列与认不出的选项当场说清、不悄悄丢。回车那条守的不是效率是**不可逆动作**——表单里回车会提交,而这张表单的提交是「提交并送审」。12 条用例**用真的 Chromium 按真的按键、发真的粘贴事件**(扫源码只能证明&quot;写了个 keydown 处理函数&quot;)。顺手修掉两个只有真按下去才发现的洞:**下拉框默认选中第一项**(人没选过也跟着单据交上去,&quot;没选&quot;和&quot;选了第一个&quot;是两回事,现已一律有空首项)、**明细格挂 HTML required 使一行空表格就让整张单据发不出去**(浏览器只说一句「请填写此字段」指着没人打算用的空行;现改为空行丢掉、填了一半的行在建单之前就地标红并说清是第几行的哪一格)。五轮变异验证,**其中两轮逮到我自己的非歧视性断言**:回车那条在处理函数被整个拆掉时仍绿着——先是必填项空着让浏览器代劳拦下,补上之后又被&quot;填了一半的行&quot;的把关挡住。**五种视图语法已到齐**:列表(带筛选/搜索)、表单、详情、看板、明细行。「我的」现在能按**事项种类**(来自元数据)、**处境**(来自内核的 docstate,外加「审批中」——同一个 `draft`,「还没送出去」和「送了在等」对人是两件事,该做的动作完全相反)、**关键词**(搜屏幕上那句话,人记得的是「硬盘」不是单号)三路收窄,并可切成**看板**:按处境分栏,或筛到一种单据后按该单据声明的取值集分栏(栏名用声明里的中文标签)。12 条用例含攻击:**分不了栏的那一张必须仍在板上**(字段空着或库里的取值已不在声明的取值集里,进「未分栏」——看板会漏,人就不敢用它对账)、**空栏不许藏起来**(「这一栏是空的」本身就是信息)、筛掉的不许从板上冒出来、打字中途光标不许被踢出搜索框、**搜索词原样回显处必须当文字不当标记**(找不到时会把搜的词说回去,那一句就是注入口子;用例先断言它真的被回显了,否则这条就是在守空气)、空结果说「没有符合条件的」而不是「还没有发起过」(后者会让人以为单据丢了)。六轮变异验证全部当场变红。**投影三层合计 2,062 行**(门户 1,460 + console 547 + landing 55),ADR-0017 写死的重开框架议题的门槛是 3,000 行——此处此前长期写着 1,456(portal 854),是旧数,2026-09-03 外部审阅指出后改正。**ADR-0017 欠下的那次回看已补做**,结论写在 ADR-0022 §三:行数与交互契约两个硬指标都没到,但「拆成按视图语法组织的渲染器、而不是继续往一个文件里堆」这一条**正在被违反**,本次又加了约 280 行;这笔账**已于 2026-09-03 结清**(ADR-0024:拆成 `keel/api/portal/`,一种视图语法一个文件)——期间又欠了一次(ADR-0023 §六),两次都记在案上。**交互契约第四条(危险动作二次确认)也已兑现**:作废改不回来,所以第一下只是「我想作废」,第二下才真的作废,中间那一步把「为什么」要走(空的不放行)——那句话会进内核的痕迹。7 条用例含攻击:点一下不许发出请求、没写原因不许放行、已生效的单据不给作废入口(它的出路是红冲,那不是员工的动作)、痕迹里没有人名时照直说「不知道是谁」。**其中一条又逮到我自己的非歧视性断言**:拿整个 body 比对文字,而页面脚本里也写着那句话——痕迹根本没渲染时它照样绿,已改成只读 `#view`。**⚠ 而非 ✅ 的原因**:交互契约六条兑现了两条(键盘走主路径、危险动作二次确认);错误就地显示只在明细行上做了,保存时机明确、两档密度、等待可见尚未做 |
+| GlocalERP(Keel)对比与复用评估 | ⚠ | 已成文;A 方案已由 ADR-0001 定案 |
+| 复用分层地图(L0–L3,上移法则,应用矩阵) | ⚠ | `docs/reuse-layers.md` 已成文;流程盘点表待发起人填 |
+| 内核推敲清单(继承≠免检) | ⚠ | `docs/kernel-scrutiny.md`:七个未验证/存疑点逐条列出,推敲路径已排 |
+| 不变量(OA 六条 + 内核宪法十三条) | ⚠ | 背书/反例已补;仍是草稿,1.0 前允许修宪 |
+| AI 原生不变量(I6,ADR-0027) | ⚠ | 已把「业务上下文而非孤立聊天、事实保留来源/证据/确定性/模型与提示版本/人工修订、同权限、重要动作默认人审、可审计可恢复、确定性规则不外包、无模型仍可办事」写成判据。CRM 首个纵向切片已持久化不可变 Artifact、Extraction、逐字段 Evidence、模型/提示/结构版本与人工差异；网页保存会在服务端重读原件，伪造 hash/trace/evidence/owner 被拒，同 RFC 线程后续邮件只归并并追加 touch，冲突绝不静默覆盖。模型是可移植认知内核：业务只认版本化 task 合同，当前本地 gateway 已真连 DGX `qwen3.8:27b`；换模型先过同一真实样本评测，不改业务代码。宪法守卫发现厂商 SDK 与 task gateway 接缝，并拒绝模型适配器直连 Store/数据库。**仍是 ⚠**：通用 Observation/Claim/Conflict/Resolution 尚未出现第二个业务例子，生产 gateway 与真实批次尚未部署；人类裁决也必须审计，不能把“人写的”误写成天然真值。 |
+| 持久任务机制(I6,ADR-0030) | ✅ | `keel.jobs` 三张 PostgreSQL 表接入显式迁移，attempt/event 只追加。真实数据库攻击覆盖身份、幂等契约、有限重试、租约接管、累计预算、终态封印。生产 Web 通过签名 Actor 绑定的固定 enqueue/get 能力，不获得任务表权限；独立 `services/crm_agent.py` 用 `oa_agent` 与只读快照卷运行两个 CRM task，只有指定执行者任务的 RLS 切片，无业务直写或数据库 owner。本人查询、跨人404、伪造请求哈希、冒用任务及最小权限由生产合同与真实 HTTP 用例守住；开发窗口与生产能力分别测试。原件先留存、成功结果按相同 receipt 采用，不二次调用模型。**边界**：进程/网关需与 `/infra` 成对发布；模型输出仍为建议，不代表事实正确性，也不自动发信。 |
+| `tools/precommit.sh` 一条命令 | ✅ | ruff + pyright + I1 边界守卫 + 目录命名守卫 + **提权窗口盘点守卫** + 主题令牌守卫 + **接缝清单守卫** + pytest(禁 skip)+ 行数/词汇守卫;CI 直接跑同一脚本,单清单不漂移 |
+| GitHub Actions CI | ✅ | 已在远端多次全绿(PR #1–#6 逐个验证);含修宪守卫所需 fetch-depth:0 |
+| 生产数据库最小权限 profile | ⚠ | `services/production_db` 已把 auth/operator/outbox 能力从内核移出；真实 PostgreSQL 攻击测试覆盖认证并发线性化、旧 ACL/RLS/grant-option 清理、运行期身份绑定和 worker SQL 失败 savepoint。**部署闸门仍关闭**：现有 22 个 `Store.privileged()` 窗口仅改密 1 个已有固定生产 capability，剩余 21 个会阻断 CRM AI enqueue/status、路由、OA 账本、进销存、结算与组织防环；route/history 读取、artifact 全量快照、旧 scrypt 账号受控迁移和审计保留上限也未闭环。CRM 普通读取/导入可做隔离演练，不等于 full OA 可生产。 |
+| 接缝清单(I4 的判据) | ✅ | `docs/seams.md` + `tools/guard_seams.py`:22 个 HTTP 出入口 + 3 个运维入口 + 2 条非文件的路(降权直连库、邮件出口),逐条写明**谁来裁决**(六种口径)与**哪条用例守着**。清单**由守卫强制而非靠人维护**:出入口从代码数出来(路由装饰器走 AST),少一条即红;裁决口径与代码对照(`公开`/`凭票` 必须没有 `Depends(get_store)`,其余必须有),说谎即红;归属测试必须存在且有用例。11 条用例造假仓库逐条攻,不是断言&quot;当前仓库通过&quot;。**上线当天逮到一处**:`/api/history` 此前只有门户的桩在打,没有真的走过 HTTP,已补越权用例。已知边界:**字段级授权不在本清单**(方案 B,ADR-0007),投影内部的接缝由 I2 那组守卫管 |
+| 主干保护 | ⚠ | main 已建,PR 流程实际在用;**分支保护是否已在 GitHub 设置里开启未确认**(需发起人核对) |
+
+## 内核机制(继承自 GlocalERP,状态见上表执行状况)
+
+存储/双键 ID、单据生命周期、账本、元数据、授权、计算字段、钩子——
+以宪法条款为准,不在此重复。
+
+## OA 业务能力
+
+| 能力 | 状态 | 说明 |
+|---|---|---|
+| 员工登录(密码+服务端会话,ADR-0006) | ✅ | scrypt(参数被测试读回断言)、会话表、HttpOnly cookie;攻击用例:错口令留审计、过期/伪造/他人令牌皆 nobody、**停用用户既有会话下一请求即死**、令牌永不复用、审计只增(改写被数据库拒);登录页进控制台,钥匙留给程序与 AI。**登录限流已兑现**(ADR-0012 的推迟项,触发条件到了):按账号 + 来源双计数滑窗,**来源只认套接字对端**(`X-Forwarded-For` 谁都能写,配了可信代理层数才往前数)、锁定留痕、被锁也跑等价 scrypt——存在与不存在的账号在内容/状态码/耗时上都无分别。计数用另一张**可清理**的表(审计删不掉,不能兼作计数簿,M5 存储型 DoS)。9 条用例含攻击。首口令由管理员发放;**临时口令现在真的只能用来改口令**——`must_change` 曾经只是库里一个没人读的布尔值,工具却在打印&quot;首登强制改&quot;,即那串在聊天里发出去的口令永远有效(首次真人使用暴露)。现由 `get_store` 在门口强制,白名单只留改口令/退出/whoami;`onboard.py reset-password` 补发(同时吊销全部会话)。HR 建档自动化待 HRM |
+| 审批路由机制(多级/会签/驳回/notify/ack/阅示) | ✅ | `keel/route/`(ADR-0004/0009),机制攻击测试+真实单据用例+HTTP 攻击用例全绿:无批准不得提交(Store 门+数据库触发器双层)、非受理人裁决被拒、改单即失效、会签缺一不可。**阅示流(ADR-0009):纯 ack 路由(无否决权确认)可推 draft→submitted,纯 notify 自我批准仍被拒**——审批与知会分开落到同一机制。运行时手动加签、任意退回未实现(盘点未强需)。**汇报线尽头有兜底**:无上级时指派给指定角色的持有人(由应用给出角色名),剔除申请人自己。**「没有人可以批准自己的单据」现在对所有寻址方式成立**:固定角色寻址(财务/CEO/HR)同样剔除当事人——第七轮真机使用暴露它只落在汇报线兜底里,而财务/CEO 步走的恰恰是固定角色(100 万的长期合同采购单末步派给了申请人本人,因他兼 ceo)。3 条用例含攻击,其中一条**横扫每种单据**:把一个人塞进所有角色、给自己发每一种单,断言他永不出现在任何 approve 步——这条不靠&quot;记得多传一个参数&quot;。阅示(ack)不剔除:备案不是批准 |</pre></details></main></body></html>

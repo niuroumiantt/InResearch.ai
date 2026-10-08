@@ -1,6 +1,6 @@
 {
   "inresearch": {
-    "synced_at": "2026-10-08",
+    "synced_at": "2026-10-08T18:03:20+08:00",
     "kind": "architecture_snapshot",
     "sources": [
       {
@@ -11,7 +11,17 @@
       {
         "repository": "inresearch",
         "path": "scripts/sync_repo_pages.py",
-        "sha256": "d7bcbb2104c207eaf88e4a1046cc906cf93f10586c75541fe76d482fbf8b0361"
+        "sha256": "b0b926dff73d11572ed2439ac4946d15e9de7150a869ff4239d1b0922d8a9631"
+      },
+      {
+        "repository": "inresearch",
+        "path": "scripts/repository_checks.py",
+        "sha256": "02dc68b0bdfdeef3b905d06ac98eb5b3f769db6be2d320957b1461c95762d215"
+      },
+      {
+        "repository": "inresearch",
+        "path": "scripts/daily_repository_pages.py",
+        "sha256": "90cece1d53ed4fe262ec2a310d5f567e4c52391872005b68a890c2687a76d294"
       },
       {
         "repository": "inresearch",
@@ -23,10 +33,38 @@
         "path": "web/assets/material-flow.css",
         "sha256": "2154cd1f38c082ef87909e083e578387a405db96305adaa5a5ebba07a0a76b32"
       }
-    ]
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:55+08:00",
+      "revision": "7d36925789b86b1727bd842c9c169465ae180ee3",
+      "endpoint": {
+        "observed_at": "2026-10-08T18:00:55+08:00",
+        "url": "https://inresearch.ai/healthz",
+        "scope": "公网入口 HTTP/TLS；不代表业务验收或数据库健康",
+        "state": "passed",
+        "status": 200,
+        "detail": "HTTP 200"
+      },
+      "ci": {
+        "state": "passed",
+        "observed_at": "2026-10-08T18:00:57+08:00",
+        "revision": "7d36925789b86b1727bd842c9c169465ae180ee3",
+        "runs": [
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-10-08T09:36:17Z",
+            "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37756789985",
+            "workflowName": "validate"
+          }
+        ],
+        "detail": "该源码提交的 GitHub 工作流；不是本次重跑完整测试"
+      }
+    }
   },
   "inews": {
-    "synced_at": "2026-10-03",
+    "synced_at": "2026-10-08T18:03:20+08:00",
     "kind": "architecture_snapshot",
     "sources": [
       {
@@ -37,23 +75,75 @@
       {
         "repository": "inews",
         "path": "src/lib/pipeline-map.js",
-        "sha256": "4bc22ff2accdb8935b91499ea8869b5ecaadcf77aa3ca350e52ab60b5ac227c7"
+        "sha256": "38f59677c5014628a49ade6a6e88f4fe2304dd35dc88e856420a664150f6d2db"
       }
-    ]
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:54+08:00",
+      "revision": "2d4437646e8779773798a0bf5ec01bba3f972283",
+      "endpoint": {
+        "observed_at": "2026-10-08T18:00:54+08:00",
+        "url": "https://inews.today/",
+        "scope": "公网入口 HTTP/TLS；不代表业务验收或数据库健康",
+        "state": "passed",
+        "status": 200,
+        "detail": "HTTP 200"
+      },
+      "ci": {
+        "state": "passed",
+        "observed_at": "2026-10-08T18:00:57+08:00",
+        "revision": "2d4437646e8779773798a0bf5ec01bba3f972283",
+        "runs": [
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-10-08T09:20:22Z",
+            "url": "https://github.com/niuroumiantt/inews.today/actions/runs/37755692187",
+            "workflowName": "test"
+          }
+        ],
+        "detail": "该源码提交的 GitHub 工作流；不是本次重跑完整测试"
+      }
+    }
   },
   "infra": {
-    "synced_at": "2026-10-03",
+    "synced_at": "2026-10-08T18:03:20+08:00",
     "kind": "architecture_snapshot",
     "sources": [
       {
         "repository": "infra",
         "path": "docs/infra-org-chart.html",
-        "sha256": "265fdc6fc00771e30213208c975728b0377b6a6698f42b71f1b835048de66b42"
+        "sha256": "294da4b7410100e6704772a2b478e6a36b728aac855c5acf05779dcdd40236b5"
       }
-    ]
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:54+08:00",
+      "revision": "5143cacd0fe464460c36999ac13528752b9e8246",
+      "endpoint": {
+        "state": "unknown",
+        "detail": "未登记公网检测入口"
+      },
+      "ci": {
+        "state": "passed",
+        "observed_at": "2026-10-08T18:00:56+08:00",
+        "revision": "5143cacd0fe464460c36999ac13528752b9e8246",
+        "runs": [
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-10-07T09:52:23Z",
+            "url": "https://github.com/niuroumiantt/infra/actions/runs/37603400741",
+            "workflowName": "test"
+          }
+        ],
+        "detail": "该源码提交的 GitHub 工作流；不是本次重跑完整测试"
+      }
+    }
   },
   "fetchspec": {
-    "synced_at": "2026-10-03",
+    "synced_at": "2026-10-08T18:03:20+08:00",
     "kind": "architecture_snapshot",
     "sources": [
       {
@@ -219,8 +309,441 @@
       {
         "repository": "inresearch",
         "path": "framework/tco_targets.json",
-        "sha256": "9791d0fba37aea994490d00e17807fff2fd8202a08b6412db1b684a4f18ecb3b"
+        "sha256": "6f32daf5040f28e55296be589b7054343551976632c747ef277e87d220676a70"
       }
-    ]
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:54+08:00",
+      "revision": "d73beba52019453a4d94b719e7cf4853cd051e7e",
+      "endpoint": {
+        "state": "unknown",
+        "detail": "未登记公网检测入口"
+      },
+      "ci": {
+        "state": "unknown",
+        "observed_at": "2026-10-08T18:00:55+08:00",
+        "revision": "d73beba52019453a4d94b719e7cf4853cd051e7e",
+        "runs": [],
+        "detail": "该提交无可读取的工作流结果"
+      }
+    }
+  },
+  "oa": {
+    "synced_at": "2026-10-08T18:03:20+08:00",
+    "kind": "architecture_snapshot",
+    "sources": [
+      {
+        "repository": "oa",
+        "path": "README.md",
+        "sha256": "c8509a6fd75da7248003b0a368eba464fdad0e4227351e644c99f32d320c055a"
+      },
+      {
+        "repository": "oa",
+        "path": "STATUS.md",
+        "sha256": "93065cc7ca6987eb3e19e58513fe79554cfecaedccccde2be6e0247052ea5ce4"
+      },
+      {
+        "repository": "oa",
+        "path": "pyproject.toml",
+        "sha256": "d0c8566a096e3dee8608de383bd4825f82bd195542845e036b25dce6b7bf8bf7"
+      },
+      {
+        "repository": "oa",
+        "path": "Dockerfile",
+        "sha256": "7bbde668683c80a9836a78d8d45b5396cc483bc38cf88f62f422c5dfc02f95da"
+      }
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:54+08:00",
+      "revision": "e487558748efae4e39d734bc7a7f0caf03a0b24a",
+      "endpoint": {
+        "observed_at": "2026-10-08T18:00:54+08:00",
+        "url": "https://oa.glocalstorage.cn/",
+        "scope": "公网入口 HTTP/TLS；不代表业务验收或数据库健康",
+        "state": "passed",
+        "status": 302,
+        "detail": "HTTP 302 · 登录保护跳转符合预期"
+      },
+      "ci": {
+        "state": "passed",
+        "observed_at": "2026-10-08T18:00:57+08:00",
+        "revision": "e487558748efae4e39d734bc7a7f0caf03a0b24a",
+        "runs": [
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-10-01T16:27:41Z",
+            "url": "https://github.com/niuroumiantt/oa/actions/runs/36890552108",
+            "workflowName": "ci"
+          }
+        ],
+        "detail": "该源码提交的 GitHub 工作流；不是本次重跑完整测试"
+      }
+    }
+  },
+  "aimail": {
+    "synced_at": "2026-10-08T18:03:20+08:00",
+    "kind": "architecture_snapshot",
+    "sources": [
+      {
+        "repository": "aimail",
+        "path": "README.md",
+        "sha256": "352944a02d8dd409b1dad2ade7978427f44da74663d87b8950d2c20ce64864d3"
+      },
+      {
+        "repository": "aimail",
+        "path": "STATUS.md",
+        "sha256": "b49e32c6e8dc7d81d76383a8b77b615823ac429538a7d815f38861f7230506fd"
+      },
+      {
+        "repository": "aimail",
+        "path": "docs/aimail-scope.md",
+        "sha256": "c4efe7e46ebd4e724168651a592ce469b2f99eb870ecbff8e2d9cb1644593d24"
+      },
+      {
+        "repository": "aimail",
+        "path": "pyproject.toml",
+        "sha256": "1e8019378efbd23fa75cb006d7ed8989172fea760e34386b4f5e8e00e0b64a1c"
+      },
+      {
+        "repository": "aimail",
+        "path": "Dockerfile",
+        "sha256": "c0798103721eb840932dbf72ea21fca33e2aa3af1a7fcb6e07d861e04daf6d46"
+      }
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:54+08:00",
+      "revision": "26774d275d5f2971959ac40f4523dc006866c37c",
+      "endpoint": {
+        "observed_at": "2026-10-08T18:00:54+08:00",
+        "url": "https://mail.glocalstorage.cn/",
+        "scope": "公网入口 HTTP/TLS；不代表业务验收或数据库健康",
+        "state": "passed",
+        "status": 302,
+        "detail": "HTTP 302 · 登录保护跳转符合预期"
+      },
+      "ci": {
+        "state": "passed",
+        "observed_at": "2026-10-08T18:00:58+08:00",
+        "revision": "26774d275d5f2971959ac40f4523dc006866c37c",
+        "runs": [
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-10-04T14:08:56Z",
+            "url": "https://github.com/niuroumiantt/aimail/actions/runs/37208066693",
+            "workflowName": "ci"
+          }
+        ],
+        "detail": "该源码提交的 GitHub 工作流；不是本次重跑完整测试"
+      }
+    }
+  },
+  "leadsgen": {
+    "synced_at": "2026-10-08T18:03:20+08:00",
+    "kind": "architecture_snapshot",
+    "sources": [
+      {
+        "repository": "leadsgen",
+        "path": "README.md",
+        "sha256": "7fa1706b5abfff33f499f2b85d0a3159772e51d40c5d062c45aed4bcff895bef"
+      },
+      {
+        "repository": "leadsgen",
+        "path": "docs/design-v1.md",
+        "sha256": "1e56d36dfbdf4d2bcf2853278dc8874bb4041311216b82395ac139222bcd3b22"
+      },
+      {
+        "repository": "leadsgen",
+        "path": "package.json",
+        "sha256": "f9b228d6088038ff2654ce788d7da2453fd79c4667e3bd0fef80ff7cffb50aa9"
+      },
+      {
+        "repository": "leadsgen",
+        "path": "pyproject.toml",
+        "sha256": "d37690102342cc88baaed46e45d6330844c9e0be5f4d73c420be211e7a7f11d3"
+      },
+      {
+        "repository": "leadsgen",
+        "path": "Dockerfile",
+        "sha256": "2d45f8e2d6af06896dcf00143129bbe94d5179391e12fe3e2b04864a8f89cc35"
+      }
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:55+08:00",
+      "revision": "51c4a7036525cc889491e323ed6ba5bc259ddade",
+      "endpoint": {
+        "observed_at": "2026-10-08T18:00:55+08:00",
+        "url": "https://leads.glocalstorage.cn/",
+        "scope": "公网入口 HTTP/TLS；不代表业务验收或数据库健康",
+        "state": "passed",
+        "status": 302,
+        "detail": "HTTP 302 · 登录保护跳转符合预期"
+      },
+      "ci": {
+        "state": "passed",
+        "observed_at": "2026-10-08T18:00:58+08:00",
+        "revision": "51c4a7036525cc889491e323ed6ba5bc259ddade",
+        "runs": [
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-10-03T14:30:59Z",
+            "url": "https://github.com/niuroumiantt/leadsgen/actions/runs/37129772737",
+            "workflowName": "Check"
+          }
+        ],
+        "detail": "该源码提交的 GitHub 工作流；不是本次重跑完整测试"
+      }
+    }
+  },
+  "semifly": {
+    "synced_at": "2026-10-08T18:03:20+08:00",
+    "kind": "architecture_snapshot",
+    "sources": [
+      {
+        "repository": "semifly",
+        "path": "README.md",
+        "sha256": "3191263be5136dc8f5d2591aaa85ff7d77f802eff7de2623c10e7a6981042c23"
+      },
+      {
+        "repository": "semifly",
+        "path": "docs/REPO_LAYOUT.md",
+        "sha256": "1a39ac754269689b5007ab8795904bcd8adc35d9657b5b3efafa8e93c5b27cb4"
+      }
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:56+08:00",
+      "revision": "0bc77cce70ec70e5f9e97d11ce32423c73e3f9b1",
+      "endpoint": {
+        "observed_at": "2026-10-08T18:00:56+08:00",
+        "url": "https://semifly.ai/",
+        "scope": "公网入口 HTTP/TLS；不代表业务验收或数据库健康",
+        "state": "passed",
+        "status": 200,
+        "detail": "HTTP 200"
+      },
+      "ci": {
+        "state": "passed",
+        "observed_at": "2026-10-08T18:00:58+08:00",
+        "revision": "0bc77cce70ec70e5f9e97d11ce32423c73e3f9b1",
+        "runs": [
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-09-25T04:32:54Z",
+            "url": "https://github.com/niuroumiantt/semifly.ai/actions/runs/36094825943",
+            "workflowName": "bilingual-site"
+          }
+        ],
+        "detail": "该源码提交的 GitHub 工作流；不是本次重跑完整测试"
+      }
+    }
+  },
+  "glocalstorage": {
+    "synced_at": "2026-10-08T18:03:20+08:00",
+    "kind": "architecture_snapshot",
+    "sources": [
+      {
+        "repository": "glocalstorage",
+        "path": "README.md",
+        "sha256": "3c3b5bbcf6d3bf717487258dbacfd8c8e2ffa69643a8faf9a54c378477a62c03"
+      },
+      {
+        "repository": "glocalstorage",
+        "path": "PROJECT_STRUCTURE.md",
+        "sha256": "58f672c0715976ed752449a3a5851b096afc05ee02ca84ff905a9dd1ada17dfa"
+      }
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:57+08:00",
+      "revision": "9c815e9da75a83e5897da67b2a6bb2e5c12e8c2d",
+      "endpoint": {
+        "observed_at": "2026-10-08T18:00:57+08:00",
+        "url": "https://glocalstorage.com/",
+        "scope": "公网入口 HTTP/TLS；不代表业务验收或数据库健康",
+        "state": "passed",
+        "status": 200,
+        "detail": "HTTP 200"
+      },
+      "ci": {
+        "state": "passed",
+        "observed_at": "2026-10-08T18:00:59+08:00",
+        "revision": "9c815e9da75a83e5897da67b2a6bb2e5c12e8c2d",
+        "runs": [
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-09-23T09:19:58Z",
+            "url": "https://github.com/niuroumiantt/glocalstorage.com/actions/runs/35842201100",
+            "workflowName": "Site CI"
+          },
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-09-23T09:19:26Z",
+            "url": "https://github.com/niuroumiantt/glocalstorage.com/actions/runs/35842201097",
+            "workflowName": "bilingual-site"
+          }
+        ],
+        "detail": "该源码提交的 GitHub 工作流；不是本次重跑完整测试"
+      }
+    }
+  },
+  "openapi": {
+    "synced_at": "2026-10-08T18:03:20+08:00",
+    "kind": "architecture_snapshot",
+    "sources": [
+      {
+        "repository": "openapi",
+        "path": "README.md",
+        "sha256": "333719bb574395e3ceb687d153edaa52b61546154a8ee3e82fe534a454f7154b"
+      },
+      {
+        "repository": "openapi",
+        "path": "Dockerfile",
+        "sha256": "689a603d2fc181b71d223b0e1c5cade09328ee78da96191c1b111896570402f2"
+      }
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:57+08:00",
+      "revision": "585e50c03227c566f990bea5ead4127bc909de58",
+      "endpoint": {
+        "observed_at": "2026-10-08T18:00:57+08:00",
+        "url": "https://api.semifly.ai/",
+        "scope": "公网入口 HTTP/TLS；不代表业务验收或数据库健康",
+        "state": "passed",
+        "status": 200,
+        "detail": "HTTP 200"
+      },
+      "ci": {
+        "state": "unknown",
+        "observed_at": "2026-10-08T18:00:59+08:00",
+        "revision": "585e50c03227c566f990bea5ead4127bc909de58",
+        "runs": [],
+        "detail": "该提交无可读取的工作流结果"
+      }
+    }
+  },
+  "suanming": {
+    "synced_at": "2026-10-08T18:03:20+08:00",
+    "kind": "architecture_snapshot",
+    "sources": [
+      {
+        "repository": "suanming",
+        "path": "docs/knowledge-model.md",
+        "sha256": "5c4aaa03da328f6930760a9c5ed1894bbb43a920ba6e55d38f56e51eb417add3"
+      },
+      {
+        "repository": "suanming",
+        "path": "docs/source-registry.md",
+        "sha256": "e79628cd1175e3c64898e66920c5999c94f30a93d9e93f680f0a62ff0d895f55"
+      },
+      {
+        "repository": "suanming",
+        "path": "server/package.json",
+        "sha256": "398320724a9a8d7b23d64296254d5f6d81e2a70fdbc59ce951e34db291e35c0c"
+      }
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:57+08:00",
+      "revision": "d2bb246e3c5a6f0c1e11cd48709e97b3085eca41",
+      "endpoint": {
+        "state": "unknown",
+        "detail": "未登记公网检测入口"
+      },
+      "ci": {
+        "state": "failed",
+        "observed_at": "2026-10-08T18:00:59+08:00",
+        "revision": "d2bb246e3c5a6f0c1e11cd48709e97b3085eca41",
+        "runs": [
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-05-27T03:27:48Z",
+            "url": "https://github.com/niuroumiantt/suanming/actions/runs/26488923291",
+            "workflowName": "CI"
+          },
+          {
+            "conclusion": "failure",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-05-27T03:27:40Z",
+            "url": "https://github.com/niuroumiantt/suanming/actions/runs/26488923312",
+            "workflowName": "自动部署到服务器"
+          }
+        ],
+        "detail": "该源码提交的 GitHub 工作流；不是本次重跑完整测试"
+      }
+    }
+  },
+  "agent": {
+    "synced_at": "2026-10-08T18:03:20+08:00",
+    "kind": "architecture_snapshot",
+    "sources": [
+      {
+        "repository": "agent",
+        "path": "README.md",
+        "sha256": "0c84ffb1b23b88df5c9e71f4f90620ed88bdfd1c80f58b62052cc8acd90e8bb1"
+      },
+      {
+        "repository": "agent",
+        "path": "docs/architecture.md",
+        "sha256": "e22ff0167319fec5f8d22dc6ec445992856d756dd6f8e6feae54a0be48ffd43c"
+      },
+      {
+        "repository": "agent",
+        "path": "pyproject.toml",
+        "sha256": "65a40d60f01117a14561a1760ed242dd5df3c2446233277910fd7dd8ba6e6063"
+      },
+      {
+        "repository": "agent",
+        "path": "Dockerfile",
+        "sha256": "55f6047e9875d01275caaec7c8662a4291d3a8fda34817846e500629cae33f68"
+      }
+    ],
+    "checks": {
+      "checked_at": "2026-10-08T18:00:58+08:00",
+      "revision": "3cf3cb3d35297b148d1b60669668332f03ab6bf6",
+      "endpoint": {
+        "observed_at": "2026-10-08T18:00:58+08:00",
+        "url": "https://agent.glocalstorage.cn/",
+        "scope": "公网入口 HTTP/TLS；不代表业务验收或数据库健康",
+        "state": "passed",
+        "status": 302,
+        "detail": "HTTP 302 · 登录保护跳转符合预期"
+      },
+      "ci": {
+        "state": "passed",
+        "observed_at": "2026-10-08T18:01:00+08:00",
+        "revision": "3cf3cb3d35297b148d1b60669668332f03ab6bf6",
+        "runs": [
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-10-06T04:53:10Z",
+            "url": "https://github.com/niuroumiantt/agent/actions/runs/37415659765",
+            "workflowName": "Release"
+          },
+          {
+            "conclusion": "success",
+            "event": "push",
+            "status": "completed",
+            "updatedAt": "2026-10-06T04:52:15Z",
+            "url": "https://github.com/niuroumiantt/agent/actions/runs/37415659771",
+            "workflowName": "Tests"
+          }
+        ],
+        "detail": "该源码提交的 GitHub 工作流；不是本次重跑完整测试"
+      }
+    }
   }
 }

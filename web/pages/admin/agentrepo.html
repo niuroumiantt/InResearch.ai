@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script src="/assets/theme-state.js"></script><script src="/assets/site-skin.js"></script>
+<link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+<title>agent · 仓库架构 · inresearch.ai</title>
+<style>
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.65 var(--ui-font)}
+.repo-wrap{max-width:1200px;margin:auto;padding:24px 20px 64px;min-width:0}
+.repo-wrap h1{font-size:28px;margin:8px 0}.repo-wrap h2{font-size:20px;margin:30px 0 12px}
+.repo-wrap a{color:var(--accent)}.repo-note{color:var(--muted);overflow-wrap:anywhere}
+.repo-nav{display:flex;flex-wrap:wrap;gap:10px 22px}.repo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.repo-card,.repo-flow li{padding:18px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
+.repo-card{min-width:0;overflow-wrap:anywhere}.repo-card h2{margin:0 0 8px}.repo-scroll{overflow-x:auto}.repo-wrap table{border-collapse:collapse;width:100%;font-size:13px}
+.repo-ecosystem{max-width:760px;margin:28px auto;text-align:center}.repo-upstream{display:grid;grid-template-columns:1fr 1fr;gap:18px}.repo-ecosystem .repo-card{margin-bottom:12px}
+.repo-wrap th,.repo-wrap td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid var(--line)}
+.repo-flow{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:0}.repo-flow li{flex:1;min-width:150px}
+.repo-flow li:not(:last-child)::after{content:' →';color:var(--accent)}
+.repo-frame{width:100%;height:76vh;min-height:480px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--card)}
+.repo-provenance{margin:18px 0;font-size:12px}.repo-provenance code{overflow-wrap:anywhere}
+@media(max-width:600px){.repo-wrap{padding:18px 12px 40px}.repo-wrap h1{font-size:23px}.repo-flow{display:block}.repo-flow li{margin:8px 0}.repo-frame{height:80vh}}
+</style></head><body><inresearch-shell data-section="admin"></inresearch-shell>
+<main class="repo-wrap"><nav class="repo-nav" aria-label="仓库架构">
+<a href="/admin/repos.html">仓库总览</a><a href="/admin/inresearchrepo.html">InResearch.ai</a><a href="/admin/inewsrepo.html">inews.today</a><a href="/admin/fetchspecrepo.html">Fetchspec</a><a href="/admin/infrarepo.html">infra</a><a href="/admin/oarepo.html">oa</a><a href="/admin/aimailrepo.html">aimail</a><a href="/admin/leadsgenrepo.html">leadsgen</a><a href="/admin/semiflyrepo.html">semifly.ai</a><a href="/admin/glocalstoragerepo.html">glocalstorage.com</a><a href="/admin/openapirepo.html">openapi</a><a href="/admin/suanmingrepo.html">suanming</a><a href="/admin/agentrepo.html">agent</a></nav><h1>agent</h1><p>任务工作台、文件分析与跨应用协调</p><p class="repo-note">最近更新：<time datetime="2026-10-08T18:03:20+08:00">2026-10-08 18:03:20</time> · 每日北京时间 0:00 更新。源图观察时间另行保留。</p><section class="repo-check"><h2>最近检测与结果</h2><p>检测时间：2026-10-08 18:00:58（北京时间）</p><p class="repo-note">检测的源码提交：<code>3cf3cb3d35297b148d1b60669668332f03ab6bf6</code></p><div class="repo-scroll"><table><thead><tr><th>检查范围</th><th>结果</th><th>说明</th></tr></thead><tbody><tr><td>公网入口 HTTP/TLS</td><td>通过</td><td>HTTP 302 · 登录保护跳转符合预期</td></tr><tr><td>当前源码的 GitHub 工作流</td><td>通过</td><td>该源码提交的 GitHub 工作流；不是本次重跑完整测试</td></tr></tbody></table></div><p class="repo-note">入口可达、源码检查与业务验收分别计量；工作流未重跑，不将无记录当通过。</p><p><a href="https://github.com/niuroumiantt/agent/actions/runs/37415659765">Release</a> · success</p><p><a href="https://github.com/niuroumiantt/agent/actions/runs/37415659771">Tests</a> · success</p></section><details class="repo-provenance"><summary>来源文件与内容校验</summary><div class="repo-scroll"><table><thead><tr><th>仓库</th><th>文件</th><th>SHA-256</th></tr></thead><tbody><tr><td>agent</td><td>README.md</td><td>0c84ffb1b23b88df5c9e71f4f90620ed88bdfd1c80f58b62052cc8acd90e8bb1</td></tr><tr><td>agent</td><td>docs/architecture.md</td><td>e22ff0167319fec5f8d22dc6ec445992856d756dd6f8e6feae54a0be48ffd43c</td></tr><tr><td>agent</td><td>pyproject.toml</td><td>65a40d60f01117a14561a1760ed242dd5df3c2446233277910fd7dd8ba6e6063</td></tr><tr><td>agent</td><td>Dockerfile</td><td>55f6047e9875d01275caaec7c8662a4291d3a8fda34817846e500629cae33f68</td></tr></tbody></table></div></details><h2>组织框架图</h2><div class="repo-card">agent · 任务工作台、文件分析与跨应用协调</div><p>↓ 按实际源码目录展开</p><div class="repo-grid"><div class="repo-card"><strong>docs</strong><p>规范、设计与交接</p></div><div class="repo-card"><strong>src</strong><p>程序实现</p></div><div class="repo-card"><strong>tests</strong><p>测试与验收</p></div><div class="repo-card"><strong>tools</strong><p>开发与检查工具</p></div></div><h2>源码模块与职责</h2><div class="repo-scroll"><table><thead><tr><th>目录</th><th>职责</th><th>在册文件数</th></tr></thead><tbody><tr><td>docs</td><td>规范、设计与交接</td><td>1</td></tr><tr><td>src</td><td>程序实现</td><td>17</td></tr><tr><td>tests</td><td>测试与验收</td><td>8</td></tr><tr><td>tools</td><td>开发与检查工具</td><td>3</td></tr></tbody></table></div><p class="repo-note">框架图按当前提交的源码目录与架构文件生成；目录和文件数不代表功能完成率。</p><h2>原仓库架构与状态说明</h2><details><summary>README.md</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere"># agent
+
+Glocal AI 原生办公体系的任务工作台与跨应用协调层。目标入口是
+`oa.glocalstorage.com`；OA 管办公单据与流程，Aimail 管邮件，agent 连接各应用，
+在授予的权限内阅读、分析、规划和调用工具。当前支持本机文件试点与独立的**服务器文件工作台**。服务器入口为
+`agent.glocalstorage.cn`，与 OA、Mail 并列；接入统一公司登录，用户上传材料后分析。
+代码提供上线能力，实际运行状态以部署回执为准；当前没有跨应用业务写入。
+
+## 当前可用范围
+
+- 工作台以对话为中心：左侧选择文件、切换历史对话；主区域是持续聊天，输入框
+  始终保留。文件分析、进度、原文预览、引用和报告下载都出现在助手消息中。
+- 可直接发送“总结这些文件”“查看原文”“停止当前任务”“下载报告”。模型根据
+  对话选择已有的只读操作；追问会带上先前讨论与已有分析，新增文件分析仍逐段
+  阅读所选原文。一般对话可以不选择文件。
+- 服务器上传支持输入框附件按钮和拖入对话。文件选择显示为本条消息的附件，
+  对话与任务一并持久化；刷新后可以恢复，旧任务也可转入对话继续讨论。
+- 在 M5 上明确授权一个目录，默认 `~/Downloads`。工作台启动或发送“扫描文件”后
+  列出授权目录中的文件；发送“扫描文件，包含子目录”才递归列出子目录。
+  模型只接收用户选中的文件文字。
+- 预览 PDF 文字层、DOCX、XLSX/XLSM、PPTX、TXT/MD/CSV/TSV、SH 和 HTML/HTM，记录原件
+  SHA-256、页码/段落/单元格出处、解析器和读取限制。
+- Spark Ollama 原生 API、LiteLLM/OpenAI 兼容 API、Codex CLI、Claude Code CLI
+  共用结构化分析与来源核对。后端由操作员在启动前配置，当前不在运行中切换。
+- 归纳资料类型、生成候选事实、引用和行动建议。逐字检查引用是否命中已读取的
+  原文块；命中不证明模型解释或业务结论正确。结果不会写入订单、合同或客户主档。
+- 导出 Word 报告、候选事实 Excel、Markdown 和完整 JSON，保存任务历史。
+  原件不重命名、不移动、不覆盖、不删除。
+
+图片和扫描 PDF 明确标记需要 OCR；当前未接入视觉模型。Excel 公式只展示，
+不执行宏、不重算公式、不保证缓存数值最新。PPTX 目前读取幻灯片文字，未提供
+原生 PPT 编辑/生成。Word 与 Excel 导出中的不可打印字符转为替代符，精确引用
+保存在 JSON。可全选所有可处理文件，逐文件、分段分析并综合摘要，显示文件与分段进度。
+停止任务会在当前模型调用结束后生效，保留已有分析及报告。综合摘要基于分段摘要，
+原文证据保留在分段结果中；汇总不等同于完整的法律或财务审阅。
+
+PEM、私钥和凭据文件名默认禁止读取；提取到明显密钥标记时也会阻止预览、分析。
+这属于保守过滤，不能识别所有敏感数据。SH 仅作为文本读取；HTML 仅提取正文，
+不执行脚本或加载外部资源。ZIP、旧版 DOC/XLS/PPT 当前不支持。
+
+## M5 启动
+
+源码路径遵循 `~/code/agent`，需要 `uv` 和 Python 3.12；`uv sync` 按锁文件安装。
+以下命令也可在 M3/M4 的 macOS 本机使用，前提是各机自行配置文件授权与模型网络。
+不会通过硬编码机器用户名访问其他 Mac。
+
+**[M5 本机，已检出本仓库]**
+
+```bash
+bash ~/code/agent/tools/start_local.sh
+```
+
+首次运行会询问模型后端、模型名、API 地址/专用 key 和授权目录。随后打开
+&lt;http://127.0.0.1:8768&gt;。浏览器显示“已配置”只表示本机配置存在或 CLI 可执行文件
+已找到；实际连接、登录与模型权限在任务调用时验证。
+
+### 使用现有 ssh spark 连接
+
+如果 Spark 的 Ollama 只监听它的 `127.0.0.1:11434`，用现有 SSH 别名建立隧道。
+这仍然是工作台通过 HTTP API 调用 Spark，SSH 只负责网络传输，不逐次运行模型命令。
+
+**[M5 本机，另一个终端，保持打开]**
+
+```bash
+bash ~/code/agent/tools/connect_spark.sh</pre></details><details><summary>docs/architecture.md</summary><pre style="white-space:pre-wrap;overflow-wrap:anywhere"># AI 原生 OA 与 agent：首期边界
+
+## 产品定位
+
+统一入口是 `oa.glocalstorage.com`。办公应用在各自流程中持续产生 AI 阅读、整理、
+候选提取和建议，agent 负责跨应用理解任务、检索证据、制定计划和协调执行。
+它可以在用户授予的范围内成为企业思考与决策中心；思考范围、阅读权限、业务写入
+权限、发送身份和最终确认是不同能力，分别由代码与源系统检查。
+
+`agent` 持有任务、来源引用、模型输出、候选建议和产物，不复制一份独立客户主档、
+订单账本或合同事实库。用户先在 M5 本机试用，再把成熟能力接入 OA。
+
+## 现有应用边界
+
+| 系统 | 权威数据与职责 |
+| --- | --- |
+| OA | 组织、权限、审批、办公业务单据与业务任务 |
+| Aimail | 原邮件、附件、线程、阅读/草稿结果、邮箱与发件身份 |
+| Leadsgen | 客户发现、分配、早期跟进 |
+| infra | Spark Ollama、网关、模型路由、设备与部署 |
+| agent | 授权任务工作台、工具编排、来源追溯、跨应用计划与派生产物 |
+
+现有 Aimail 实际支持 `local`、`claude` API、`codex_cli`、`claude_code_cli`。
+其 CLI 是隔离的文本推理后端，不能直接作为具有文件/业务权限的 agent 执行器。
+本试点复用这种分工：模型后端提供结构化推理，工具层独立检查路径、来源和权限。
+
+服务器工作台与 OA/Mail 共用 Authentik 登录，但持有独立 host-only 会话与代理密钥。
+当前没有接入 Aimail/OA 的业务 API，不会以自报身份头或直连生产库取得权限。
+企业接入需沿用 OA `INVARIANTS.md` I6 与 Aimail 的受信身份、邮箱授权、业务确认合同。
+
+## 首期实现
+
+```
+浏览器对话工作台（M5 localhost / agent.glocalstorage.cn）
+  → 左侧文件选择 / 对话附件上传
+  → 持久对话、上下文与受限操作选择
+  → 用户范围内的只读读取
+  → 文档解析、出处、哈希、限制
+  → 持久任务与不可并发的模型槽
+  → Provider：Spark API / 兼容 API / 本机 Codex CLI / 本机 Claude Code CLI
+  → 结构化输出与逐字引用核对
+  → 本机候选报告、Word、Excel、JSON
+```
+
+API 线路是直接 HTTP 请求。已有 `ssh spark` 可转发 Spark loopback Ollama 端口，
+不要求模型或 CLI 安装在 M5；M5 的可选 CLI 线路使用该机现有登录。
+源码在 `~/code/agent`，私有数据在 `~/.local/share/agent`，更换 M3/M4 不改变代码，
+但文件来源、登录和网络必须每机独立配置。当前没有共享多个 Mac 的本地任务数据库。
+
+提交时固定所选文件的扫描指纹，逐文件验证并读取，即使页面重新扫描也不替换任务输入。
+全部已提取文字按最多 8000 字符/200 块分段送入模型，保存哈希、读取限制、分段进度和
+原文引用。多文件综合归纳基于分段摘要；综合阶段的新引用不当作原文件证据。
+仅一项后台任务执行，可请求停止并保留已有结果。模型失败停止后续调用。
+凭据文件名与明显密钥标记默认排除，但不构成完整敏感数据识别。
+输入原件始终只读。文件变化后要求重新扫描；符号链接、越界与特殊文件拒绝读取。
+来源中的文字和文件名不能决定 shell 命令、服务地址或访问范围。
+
+对话控制器依据本轮请求、此前已完成的对话、所选文件名与有限的分析结果选择一次操作：
+普通回答、文件分析、原文预览、报告下载、文件刷新、进度查询或停止任务。读取与分析仍
+由工具层固定范围并核对来源；控制器不能自行扩大文件选择。明确的停止、进度和下载
+指令直接执行，模型工作期间也可使用。连续消息排队执行，不把后续消息加入当前轮上下文。
+
+模型和读取限制在对话中的分析结果可见。当前没有自主 tool-call 循环、全目录持续监控、
+自动业务写入、自动发信或桌面控制。消息、任务和报告会持久保存；重启中断的调用标为
+中断，需重新提交，暂不宣称恢复到模型执行过程中的精确步骤。</pre></details></main></body></html>

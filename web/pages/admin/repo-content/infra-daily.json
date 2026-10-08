@@ -1,0 +1,267 @@
+{
+  "started_at": "2026-10-08 10:00",
+  "summary": "1 项失败（aliyun）；5 台机器有变化（aws、spark、mini、m4、m5）；1 台没采到事实",
+  "reach": [
+    {
+      "host": "aws",
+      "ok": true,
+      "how": "ssh BatchMode",
+      "ms": 3463
+    },
+    {
+      "host": "aliyun",
+      "ok": false,
+      "how": "ssh BatchMode",
+      "ms": 5446,
+      "error": "网络通，但本机 ssh 密钥未被对方授权（deploy@47.104.143.95: Permission denied (publickey).）"
+    },
+    {
+      "host": "spark",
+      "ok": true,
+      "how": "ssh BatchMode",
+      "ms": 347
+    },
+    {
+      "host": "mini",
+      "ok": true,
+      "how": "ssh BatchMode",
+      "ms": 639
+    },
+    {
+      "host": "m4",
+      "ok": true,
+      "how": "ssh BatchMode",
+      "ms": 5985
+    },
+    {
+      "host": "m5",
+      "ok": true,
+      "how": "本机",
+      "ms": 0
+    }
+  ],
+  "warnings": {
+    "aws": [],
+    "spark": [],
+    "mini": [],
+    "m4": [],
+    "m5": []
+  },
+  "collect_errors": {
+    "aliyun": "连不上"
+  },
+  "changes": {
+    "aws": [
+      {
+        "key": "仓库 /srv/host"
+      },
+      {
+        "key": "仓库 /srv/inresearch.ai"
+      },
+      {
+        "key": "仓库 /srv/sources/inews.today"
+      },
+      {
+        "key": "仓库 /srv/sources/inresearch.ai"
+      },
+      {
+        "key": "容器 inresearch-host-inews-1"
+      },
+      {
+        "key": "容器 inresearch-host-inresearch-1"
+      },
+      {
+        "key": "磁盘 / 用量%"
+      }
+    ],
+    "spark": [
+      {
+        "key": "仓库 ~/code/inresearch.ai"
+      }
+    ],
+    "mini": [
+      {
+        "key": "launchd today.inews.column-writer"
+      },
+      {
+        "key": "仓库 ~/code/fetchspec"
+      },
+      {
+        "key": "仓库 ~/code/inews.today"
+      },
+      {
+        "key": "仓库 ~/code/infra"
+      },
+      {
+        "key": "仓库 ~/code/inresearch.ai"
+      }
+    ],
+    "m4": [
+      {
+        "key": "仓库 ~/code/fetchspec"
+      },
+      {
+        "key": "仓库 ~/code/inews.today"
+      },
+      {
+        "key": "仓库 ~/code/infra"
+      },
+      {
+        "key": "仓库 ~/code/inresearch.ai"
+      }
+    ],
+    "m5": [
+      {
+        "key": "launchd ai.inresearch.research-publish"
+      },
+      {
+        "key": "仓库 ~/code/agent"
+      },
+      {
+        "key": "仓库 ~/code/fetchspec"
+      },
+      {
+        "key": "仓库 ~/code/inews.today"
+      },
+      {
+        "key": "仓库 ~/code/infra"
+      }
+    ]
+  },
+  "facts": {
+    "aws": {
+      "容器 inresearch-host-inresearch-1": "inresearch-app:7d36925789b86b1727bd842c9c169465ae180ee3 running healthy",
+      "容器 inresearch-host-inews-1": "inews-app:2d4437646e8779773798a0bf5ec01bba3f972283 running healthy",
+      "容器 inresearch-host-caddy-1": "caddy:2-alpine running healthy",
+      "容器 inresearch-host-openapi-1": "openapi-app:585e50c03227c566f990bea5ead4127bc909de58 running healthy",
+      "容器 inresearch-host-glocal-1": "glocal-app:9c815e9da75a83e5897da67b2a6bb2e5c12e8c2d running healthy",
+      "单元 docker.service": "active/success",
+      "单元 infra-app-deploy@.service": "None/None",
+      "单元 infra-app-deploy@.timer": "None/None",
+      "单元 infra-app-deploy@glocal.service": "inactive/success",
+      "单元 infra-app-deploy@glocal.timer": "active/success",
+      "单元 infra-app-deploy@inews.service": "inactive/success",
+      "单元 infra-app-deploy@inews.timer": "active/success",
+      "单元 infra-app-deploy@openapi.service": "inactive/success",
+      "单元 infra-app-deploy@openapi.timer": "active/success",
+      "单元 infra-static-deploy@.service": "None/None",
+      "单元 infra-static-deploy@.timer": "None/None",
+      "单元 infra-static-deploy@marketplace.service": "inactive/success",
+      "单元 infra-static-deploy@marketplace.timer": "active/success",
+      "单元 infra-static-deploy@semifly.service": "inactive/success",
+      "单元 infra-static-deploy@semifly.timer": "active/success",
+      "单元 inresearch-deploy.service": "inactive/success",
+      "单元 inresearch-deploy.timer": "inactive/success",
+      "单元 inresearch-oa-backup.service": "inactive/success",
+      "单元 inresearch-oa-backup.timer": "inactive/success",
+      "单元 inresearch-oa-live-restore@.service": "None/None",
+      "单元 inresearch-oa-restore-drill.service": "inactive/success",
+      "单元 inresearch-oa-restore-drill.timer": "inactive/success",
+      "单元 inresearch-oa-restore-recovery.service": "inactive/success",
+      "单元 inresearch-only-deploy.service": "inactive/success",
+      "单元 inresearch-only-deploy.timer": "active/success",
+      "单元 ops-backup.service": "inactive/success",
+      "单元 ops-backup.timer": "active/success",
+      "单元 ops-collect.service": "inactive/success",
+      "单元 ops-collect.timer": "active/success",
+      "单元 ops-daily.service": "inactive/success",
+      "单元 ops-daily.timer": "active/success",
+      "单元 ops-docker-prune.service": "inactive/success",
+      "单元 ops-docker-prune.timer": "active/success",
+      "单元 ops-kit-sync.service": "inactive/success",
+      "单元 ops-kit-sync.timer": "active/success",
+      "单元 ops-release-retire.service": "inactive/success",
+      "单元 ops-release-retire.timer": "active/success",
+      "单元 ops-restore-drill.service": "inactive/success",
+      "单元 ops-restore-drill.timer": "active/success",
+      "单元 ops-spark-watch.service": "inactive/success",
+      "单元 ops-spark-watch.timer": "active/success",
+      "单元 tailscale-wait-online.service": "inactive/success",
+      "单元 tailscaled.service": "active/success"
+    },
+    "aliyun": {
+      "容器 mainland-agent-1": "agent:agent-f5281cd0ed4f9ab2d8e34bd67641e6067ec0ee6a running healthy",
+      "容器 mainland-caddy-1": "docker.m.daocloud.io/library/caddy@sha256:5f5c8640aae01df9654968d946d8f1a56c497f1dd5c5cda4cf95ab7c14d58648 running healthy",
+      "容器 mainland-agent-oidc-1": "quay.io/oauth2-proxy/oauth2-proxy@sha256:b1b2021fe8f4004573e8d690dec6c7bb29cc44364572cf8510a05bf3a0ae2ded running",
+      "容器 mainland-aimail-1": "aimail:aimail-26774d275d5f2971959ac40f4523dc006866c37c running",
+      "容器 mainland-leadsgen-1": "leadsgen:discovery-38ae5c64045778850aa1ec3527bdbdd32eca5305 running healthy",
+      "容器 oa-cn-oa-1": "sha256:78b42c39241fb90cb320ea533c50485be5cfa5a2a538570154fec9b773fac832 running healthy",
+      "容器 mainland-mail-oidc-1": "quay.io/oauth2-proxy/oauth2-proxy@sha256:b1b2021fe8f4004573e8d690dec6c7bb29cc44364572cf8510a05bf3a0ae2ded running",
+      "容器 mainland-leads-oidc-1": "quay.io/oauth2-proxy/oauth2-proxy@sha256:b1b2021fe8f4004573e8d690dec6c7bb29cc44364572cf8510a05bf3a0ae2ded running",
+      "容器 mainland-oa-oidc-1": "quay.io/oauth2-proxy/oauth2-proxy@sha256:b1b2021fe8f4004573e8d690dec6c7bb29cc44364572cf8510a05bf3a0ae2ded running",
+      "容器 identity-worker-1": "ghcr.io/goauthentik/server@sha256:ab9b4e8cc4ab3f8d1198d2db6aeea66bafea1963b3f2843589e0d163f97d9849 running healthy",
+      "容器 identity-server-1": "ghcr.io/goauthentik/server@sha256:ab9b4e8cc4ab3f8d1198d2db6aeea66bafea1963b3f2843589e0d163f97d9849 running healthy",
+      "容器 identity-postgres-1": "docker.m.daocloud.io/library/postgres@sha256:029660641a0cfc575b14f336ba448fb8a75fd595d42e1fa316b9fb4378742297 running healthy",
+      "容器 kind_tu": "sha256:e7deeb5cbf706ea4f7aa709fe475ad805d309fa896cbb168e88f20d17f284021 exited",
+      "容器 oa-cn-oa-db-1": "docker.m.daocloud.io/library/postgres@sha256:cf78e76683b9ca8c5733cbbdce6c9262b45b6767934dd0a95e671f9a0fc20685 running healthy",
+      "容器 oa-cn-caddy-1": "docker.m.daocloud.io/library/caddy@sha256:5f5c8640aae01df9654968d946d8f1a56c497f1dd5c5cda4cf95ab7c14d58648 running",
+      "单元 aimail-deploy.service": "failed/exit-code",
+      "单元 aimail-deploy.timer": "active/success",
+      "单元 docker.service": "active/success",
+      "单元 oa-cn-deploy.service": "inactive/success",
+      "单元 oa-cn-deploy.timer": "active/success",
+      "单元 tailscale-wait-online.service": "inactive/success",
+      "单元 tailscaled.service": "active/success"
+    },
+    "spark": {
+      "容器 dgx-litellm": "ghcr.io/berriai/litellm:main-stable@sha256:a53a7d3ffebede1925bd3ee8a21e4a7b9b63e2e68ec883af136edcccb6eeb82c running healthy",
+      "容器 dgx-litellm-db": "public.ecr.aws/docker/library/postgres:16-alpine@sha256:cf78e76683b9ca8c5733cbbdce6c9262b45b6767934dd0a95e671f9a0fc20685 running healthy",
+      "容器 open-webui": "ghcr.io/open-webui/open-webui:main running healthy",
+      "单元 docker.service": "active/success",
+      "单元 ollama.service": "active/success",
+      "单元 tailscale-wait-online.service": "inactive/success",
+      "单元 tailscaled.service": "active/success",
+      "模型 bge-m3:latest": "已装",
+      "模型 qwen3-embedding:0.6b": "已装",
+      "模型 qwen3-vl:8b": "已装",
+      "模型 qwen3.8:27b": "已装",
+      "模型 qwen3.8:27b-translate": "已装",
+      "模型 qwen3:30b-a3b": "已装",
+      "模型 qwen3:8b": "已装"
+    },
+    "mini": {
+      "launchd actions.runner.niuroumiantt-oa.mac-mini-translate": "已加载",
+      "launchd today.inews.ai-backfill-2026": "已加载",
+      "launchd today.inews.archive": "已加载",
+      "launchd today.inews.collector.aitimes": "已加载",
+      "launchd today.inews.collector.arstechnica": "已加载",
+      "launchd today.inews.collector.bloomberg": "已加载",
+      "launchd today.inews.collector.cnbc": "已加载",
+      "launchd today.inews.collector.etnews": "已加载",
+      "launchd today.inews.collector.fortune": "已加载",
+      "launchd today.inews.collector.guardian": "已加载",
+      "launchd today.inews.collector.hourly": "已加载",
+      "launchd today.inews.collector.reuters": "已加载",
+      "launchd today.inews.collector.serve": "已加载",
+      "launchd today.inews.collector.siliconangle": "已加载",
+      "launchd today.inews.collector.techcrunch": "已加载",
+      "launchd today.inews.collector.thedecoder": "已加载",
+      "launchd today.inews.collector.thelec": "已加载",
+      "launchd today.inews.collector.thenewstack": "已加载",
+      "launchd today.inews.collector.theregister": "已加载",
+      "launchd today.inews.collector.theverge": "已加载",
+      "launchd today.inews.collector.tomshardware": "已加载",
+      "launchd today.inews.collector.wired": "已加载",
+      "launchd today.inews.collector.wsj": "已加载",
+      "launchd today.inews.column-writer": "已加载",
+      "launchd today.inews.translation-backfill": "已加载",
+      "launchd today.infra.daily-check": "已加载"
+    },
+    "m4": {
+      "launchd com.inresearch.m4-offload-worker": "未加载",
+      "模型 qwen3-vl:8b": "已装",
+      "模型 qwen3:8b": "已装"
+    },
+    "m5": {
+      "launchd ai.inresearch.codex-batch-awake": "已加载",
+      "launchd ai.inresearch.codex-relay": "已加载",
+      "launchd ai.inresearch.codex-tunnel": "已加载",
+      "launchd ai.inresearch.research-publish": "已加载",
+      "launchd com.niuroumiantt.oa.sales-gateway": "已加载",
+      "launchd com.niuroumiantt.oa.sales-preview": "已加载",
+      "launchd today.inews.collector.tunnel": "已加载",
+      "launchd today.infra.daily-check": "已加载",
+      "模型 qwen3.8:27b-mxfp8": "已装"
+    }
+  }
+}
