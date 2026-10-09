@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1585。
+在册文件：1586。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 150 |
+| 配套说明 | 151 |
 | 测试 | 147 |
 
 ## 在册记录集合
@@ -884,6 +884,7 @@
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | 项目配置 |
 | [docs/handoff/daily-evidence-loop-20261006.md](handoff/daily-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/daily-oct7-adoption.md](handoff/daily-oct7-adoption.md) | 配套说明 |
+| [docs/handoff/editorial-delivery-20261009.md](handoff/editorial-delivery-20261009.md) | 配套说明 |
 | [docs/handoff/event-delivery-20261006.md](handoff/event-delivery-20261006.md) | 配套说明 |
 | [docs/handoff/event-verification-20261007.md](handoff/event-verification-20261007.md) | 配套说明 |
 | [docs/handoff/evidence-followup-20261007.md](handoff/evidence-followup-20261007.md) | 配套说明 |
