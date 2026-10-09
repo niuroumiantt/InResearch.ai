@@ -1,6 +1,6 @@
 # 美国数据中心电力专题反哺台账
 
-2026-10-09｜规则v2.4｜仅派生研究与交付索引；原件不入Git。
+2026-10-09｜规则v2.5｜仅派生研究与交付索引；原件不入Git。
 
 文章及图文入口：`outputs/geluoke-research/2026-10-09-us-datacenter-power/`。正式研究文字为该目录`research/research.md`与`research.txt`，机器登记见submission.json、claims.json、demand-snapshot.json、sources.json。正文不构成来源原件的独立佐证；身份相同的两种交付不重复计量。
 
@@ -25,3 +25,5 @@
 未改事实库、价格系列、模型或研究问题状态，未执行远程导入、C3或网站发布。需求快照在最新远程基线10cd748f上冻结。正文与研究材料在本机交付；本机原件及research-originals.zip的存在，不证明Spark已接收原件。正式采用由现行流程返回记录ID和回执后再更新台账。
 
 可用作者计算见交付calculations.json和work/tools/audit.py；供电选址视角可作为后续页面输入建议，未把其直接改成网站默认模型或站点基准。
+
+2026-10-09视觉与文风修订：正文12图、A主B辅、事件导语与具体问题目录；来源与50条研究候选保持原版本。AI工程场景仅用于解释，不作为新证据，不新增原始来源数量。

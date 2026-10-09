@@ -5,7 +5,7 @@ const root=path.resolve(__dirname,'../..');
  const browser=await chromium.launch({headless:true});
  const page=await browser.newPage({viewport:{width:800,height:1200},deviceScaleFactor:2});
  let records=[];
- for(const file of fs.readdirSync(path.join(root,'assets')).filter(x=>x.endsWith('.svg'))){
+ for(const file of fs.readdirSync(path.join(root,'assets')).filter(x=>x.endsWith('.svg')&&(x.startsWith('fig')||x.startsWith('cover')))){
   const cover=file.startsWith('cover');const svg=fs.readFileSync(path.join(root,'assets',file),'utf8');
   const width=cover?800:640;const height=Number(svg.match(/height="(\d+)"/)[1]);
   await page.setViewportSize({width,height});

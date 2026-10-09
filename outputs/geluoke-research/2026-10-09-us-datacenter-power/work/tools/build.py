@@ -46,14 +46,16 @@ def build(mode):
     return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>美国数据中心的电力现状｜格洛可</title>'+css+'</head><body style="'+wrap+'"><article style="background:white;'+('' if mode!='wechat' else 'margin:0;padding:0;')+'">'+''.join(content)+'</article></body></html>'
 for mode in ['wechat','full','lite']:(OUT/(mode+'.html')).write_text(build(mode))
 body=doc.split('## 来源')[0];body='\n'.join(x for x in body.splitlines() if not x.startswith(('#','!','图','本篇覆盖','格洛可｜')))
-stats=dict(body_hanzi=len(re.findall('[\u4e00-\u9fff]',body)),body_nonspace_characters=len(re.sub(r'\[\d+\]|\s','',body)),images=imgs,html_bytes={m:(OUT/(m+'.html')).stat().st_size for m in ['wechat','full','lite']},wechat_editor='未实粘；浏览器验收不替代微信编辑器',image_upload='单张公众号图JPG/PNG均小于1MB；Base64是复制包形式，发布需转为公众号素材URL')
+public_images=['assets/cover-wechat.jpg']+re.findall(r'!\[.*?\]\((.*?)\)',doc)
+stats=dict(body_images=len(public_images)-1,public_images=public_images,body_hanzi=len(re.findall('[\u4e00-\u9fff]',body)),body_nonspace_characters=len(re.sub(r'\[\d+\]|\s','',body)),images=imgs,html_bytes={m:(OUT/(m+'.html')).stat().st_size for m in ['wechat','full','lite']},wechat_editor='未实粘；浏览器验收不替代微信编辑器',image_upload='单张公众号图JPG/PNG均小于1MB；Base64是复制包形式，发布需转为公众号素材URL')
 (OUT/'checks/build.json').write_text(json.dumps(stats,ensure_ascii=False,indent=2))
-# A contact sheet of all six explanatory figures, for human visual inspection.
+# Contact sheet follows actual public figure order; older unused assets are excluded.
 thumbs=[]
-for p in sorted(A.glob('fig*.png')):
-    im=Image.open(p).convert('RGB');im.thumbnail((400,625));thumbs.append((p.name,im))
-sheet=Image.new('RGB',(1230,1320),'#e7ecf0');d=ImageDraw.Draw(sheet)
+for name in public_images[1:]:
+    im=Image.open(OUT/name).convert('RGB');im.thumbnail((400,600));thumbs.append((name,im))
+rows=(len(thumbs)+2)//3
+sheet=Image.new('RGB',(1230,rows*640),'#e7ecf0');d=ImageDraw.Draw(sheet)
 for i,(name,im) in enumerate(thumbs):
-    x=(i%3)*410;y=(i//3)*660;sheet.paste(im,(x,y+25));d.text((x+5,y+5),name,fill='black')
+    x=(i%3)*410;y=(i//3)*640;sheet.paste(im,(x,y+25));d.text((x+5,y+5),name,fill='black')
 sheet.save(OUT/'checks/figures-contact.jpg',quality=90)
-print(json.dumps(stats,ensure_ascii=False))
+print(json.dumps({'body_hanzi':stats['body_hanzi'],'body_images':stats['body_images'],'html_bytes':stats['html_bytes']},ensure_ascii=False))

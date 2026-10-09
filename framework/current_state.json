@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.02",
+  "version": "2026.10.09.03",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2427,9 +2427,9 @@
       "id": "geluoke-longform-20261009",
       "topic": "geluoke-longform",
       "scope": "editorial-delivery",
-      "status": "current",
+      "status": "superseded",
       "effective_at": "2026-10-09",
-      "source": "docs/geluoke/专题写作规则.md",
+      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md",
       "supersedes": [
         "geluoke-longform-20261008"
       ],
@@ -2441,7 +2441,33 @@
         "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/research.py",
         "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/audit.py"
       ],
-      "implementation_revision": "2.4"
+      "implementation_revision": "2.4",
+      "superseded_by": "geluoke-longform-20261009-visual"
+    },
+    {
+      "id": "geluoke-longform-20261009-visual",
+      "topic": "geluoke-longform",
+      "scope": "editorial-delivery",
+      "status": "current",
+      "effective_at": "2026-10-09",
+      "source": "docs/geluoke/专题写作规则.md",
+      "supersedes": [
+        "geluoke-longform-20261009"
+      ],
+      "reason": "用户明确指定五张工程场景图为以后正文配图标准，纠正数量少和文字卡片为主；核对inews既有A主B辅实现，并同步本项目唯一规则、话题目录、写稿输入与本篇十二幅正文图。",
+      "implementations": [
+        "docs/handoff/us-datacenter-power-20261009.md",
+        "docs/research/2026-10-09/us-datacenter-power/README.md",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/build.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/research.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/audit.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/writing-plan.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/visual-references.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/prepare_scenes.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/render_scene_labels.cjs",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/validate.cjs"
+      ],
+      "implementation_revision": "2.5"
     }
   ],
   "entrypoints": [

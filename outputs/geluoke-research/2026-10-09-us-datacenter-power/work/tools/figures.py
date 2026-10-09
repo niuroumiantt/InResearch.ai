@@ -16,7 +16,7 @@ def line(x,y,xx,yy,color=CYAN,dash=False):
 def save(name,h,body,w=640,bg='white'):
     (A/(name+'.svg')).write_text(f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}"><rect width="100%" height="100%" fill="{bg}"/><g font-family="Arial,PingFang SC,Microsoft YaHei,sans-serif">{body}</g></svg>')
 def head(n,title,sub):
-    return text(24,38,f'{n:02}  {title}',28,BLUE,700)+text(24,72,sub,18)
+    return text(24,38,title,28,BLUE,700)+text(24,72,sub,18)
 
 b=head(1,'三大互联，不等于七家公司','物理层 → 市场调度层 → 园区合同层')
 b+=text(24,116,'① 物理层：各互联内部同步',23,BLUE,700)
