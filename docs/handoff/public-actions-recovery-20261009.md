@@ -13,3 +13,11 @@
 工作源码：~/.worktrees/inresearch.ai/public-actions-release-20261009。原主工作区未跟踪电力专题原样保留。私有审计：~/.local/state/inresearch.ai/public-actions-recovery-20261009/，含原journal快照、完整单元测试与最终CI/合并/网站证明（以实际存在的最终证明为准）。运行专用工作树research-publisher-runtime-20261009有服务引用，不可清理。
 
 用户明确授权的15分钟合并协调已通知「spark 阅读并提交」，该聊天确认暂缓；原Reader/relay/独立审核不停止。本发布验收后需恢复M5 LaunchAgent并通知该聊天恢复；最终状态以私有final-proof.json和逐批journal为准，不把这里的CI等待时点当长期状态。
+
+## Final acceptance (2026-10-09T08:43:14+00:00)
+
+PR489 merged as e968b66cdaf58fb49bb60662c29bd747fa852e39. All seven checks on exact reviewed SHA ef2fa23c204fc8ec51410799efb937c5e1018e8c succeeded. The merge occurred before the last check completed; preserve that ordering rather than claiming all checks preceded merge. The eight unchanged statements from PR482/484 passed real HTTPS text/adoption/quotation/source coverage acceptance and both batches are published on Spark. Original PR485/488 were closed with context revalidation or existing split-context children preserved; all four old screenshot PRs are CLOSED. PR461/487 also passed exact-head checks and real live acceptance.
+
+M5 runtime, Spark and the actual healthy AWS image all match e968b66c. Spark Reader and review services are active. Publisher was reloaded after the runtime fast-forward and is running PID18897. An older process had been restored elsewhere during maintenance; disk revision alone was not treated as loaded code. Reader/relay were not restarted. The authorized coordination pause ended and the Spark chat was notified to resume. New PR490/491/492 are normal new-head CI work, not the original blocked PRs.
+
+Infra PR335 is already MERGED. Its rerun still has zero executed steps and the private Actions budget rejection; making InResearch public did not remove that separate restriction. Final raw proofs: private final-proof.json, ci-proof.json, merge-proof.json and accepted-proofs.json. No pending user decision.
