@@ -25092,6 +25092,516 @@
         },
         "batch_id": "9d0448574d36129d8378eca7b7c7f0f80271f51893b98a786e20363641e42905"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "630300c9f59853dfa75bf5165bdf87f509cd76f48b149e31d4390bde4526f2a5",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:4:ev:0",
+      "locator": "page:6/chunk:5",
+      "object_ids": [
+        "part:network-switch",
+        "part:nic"
+      ],
+      "page_index": 5,
+      "question_ids": [],
+      "quote": "Rail magic enables 512-port switches (currently popular choice) switches to be used in parallel, with same topology, to get the benefits of multiples of throughput. The big step forward is for the endpoints to be coordinated by UEC inside a single NIC so the host sees the large throughput and the NIC distributes the traffic across all paths.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续原文与相邻多轨拓扑条件充分支持有归属的机制描述，实质补充当前交换机、NIC接口依赖及NIC吞吐量扩展问题，可作B类局部采用。未发现A类触发条件。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-interfaces",
+          "Q-OBJ-nic-interfaces",
+          "Q-OBJ-nic-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "630300c9f59853dfa75bf5165bdf87f509cd76f48b149e31d4390bde4526f2a5",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:5:ev:0",
+      "locator": "page:6/chunk:5",
+      "object_ids": [
+        "part:network-switch",
+        "part:nic"
+      ],
+      "page_index": 5,
+      "question_ids": [],
+      "quote": "UEC NICs are engineered to handle routing even through multiple switch layers. As a bonus, the packets on multiple paths allow the UEC NICs to provide extremely fast lost packet replacement and super-fast flow control, ensuring smooth traffic flow even under suboptimal application scheduling or occasional network link flaps.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续引文明确机制、对象及不利工况，与当前NIC接口依赖、可靠性和失效条件工作单有实质关系，可作为有作者归属的B类局部材料。没有敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces",
+          "Q-OBJ-nic-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "630300c9f59853dfa75bf5165bdf87f509cd76f48b149e31d4390bde4526f2a5",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:6:ev:0",
+      "locator": "page:6/chunk:5",
+      "object_ids": [
+        "part:nic"
+      ],
+      "page_index": 5,
+      "question_ids": [
+        "OBJ-nic-definition"
+      ],
+      "quote": "Headers can be significant, up to 44 bytes, though optimized headers for frequent, shorter packets can be as small as 20 bytes.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续引文、协议构造语境及明确字节单位实质补充当前NIC接口工作单，可作B类局部采用。未发现A类条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "630300c9f59853dfa75bf5165bdf87f509cd76f48b149e31d4390bde4526f2a5",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:8:ev:0",
+      "locator": "page:6/chunk:5",
+      "object_ids": [
+        "part:network-switch",
+        "part:nic"
+      ],
+      "page_index": 5,
+      "question_ids": [],
+      "quote": "While UEC’s maximum throughput will be less than bare Ethernet’s theoretical maximum—modular switches typically use a slightly faster backplane to absorb packet overheads—UEC’s Ethernet acts as the backplane, resulting in a slightly slower user data rate. This trade-off is made for nearly perfect flow, which should generally improve actual data rates.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续引文保留比较基准、分组开销机制及预测措辞，实质贡献于当前性能口径和交换机替代架构权衡问题，可作B类局部采用。预测性质本身不触发A，未发现其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-performance",
+          "Q-OBJ-network-switch-alternatives",
+          "Q-OBJ-nic-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "630300c9f59853dfa75bf5165bdf87f509cd76f48b149e31d4390bde4526f2a5",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:9:ev:0",
+      "locator": "page:6/chunk:5",
+      "object_ids": [
+        "part:nic"
+      ],
+      "page_index": 5,
+      "question_ids": [],
+      "quote": "Section 3.5 (page 219!) dives into the specifics of packet operation. Unlike the commands and queues, this is unique to UEC. It appears comprehensively specified,",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续引文与跨页语境足以支持UEC特有分组操作相对于命令、队列的局部功能边界，实质补充当前NIC定义工作单，可按B类采用。完整性评价明确保留为作者观点，无A类触发条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "580090331b636c015c65dbc698b659a0859fa2d1f18bc00ecf3190172fdc1105",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:0:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [
+        "part:network-switch"
+      ],
+      "page_index": 6,
+      "question_ids": [],
+      "quote": "clearly leveraging modular switch experience, but no external reference is provided,\nsuggesting a consensus design rather than derivation from any single market solution.\nThis also makes sense given UEC’s reliance on Ethernet as a backplane, whereas\nmodern modular switches use proprietary backplanes.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续引文与前页分组操作、背板开销语境充分支持有归属的架构差异，实质贡献于当前交换机组成边界、接口依赖及替代方案问题，可作B类局部采用。未发现敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-definition",
+          "Q-OBJ-network-switch-interfaces",
+          "Q-OBJ-network-switch-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      }
     }
   ],
   "statements": [
@@ -48322,6 +48832,623 @@
         "request_sha256": "f897b3feb2c14f19841e75c73d52fb4cf7f6814319a1f3142ea1453d32d6b0be"
       },
       "object_mapping_check": "原文对象是未指定技术的备用发电策略，选择电力系统下的发电与储能链作为一般发电范围。合同中part:backup-power明确指柴油发电机组，原句没有柴油证据，因此不沿用该标签；也不增加燃气机组或储能部件映射。此范围限制不取消其对柴油备用接口问题的局部关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:4:ev:0"
+      ],
+      "id": "adoption:review:d4d11256ea834cd34df56fa2",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:network-switch",
+        "part:nic"
+      ],
+      "question_ids": [
+        "OBJ-network-switch-interfaces",
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者称，在多条等距、等速路径组成的UEC多轨网络中，相同拓扑的512端口交换机可并行使用，以获得吞吐量按倍数扩展的收益；UEC在单个NIC内协调端点，由NIC跨路径分配流量，使主机看到较大的吞吐量。这是来源对设计机制及预期收益的描述，未获当前独立性能或部署验证；来源发表时间及具体地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续原文与相邻多轨拓扑条件充分支持有归属的机制描述，实质补充当前交换机、NIC接口依赖及NIC吞吐量扩展问题，可作B类局部采用。未发现A类触发条件。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-interfaces",
+          "Q-OBJ-nic-interfaces",
+          "Q-OBJ-nic-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:4"
+      ],
+      "limitations": "吞吐量按倍数扩展是作者主张，不能改为已经实测的线性扩展或固定翻倍。未给出交换机型号、规范版本、超售比、负载、测试方法或互换认证；相邻800GbE示例不能成为本条已核验规格。",
+      "conflict_check": "现有UEC超大集群多层交换设计范围陈述与本条互补。已采用的NVIDIA交换机端口配置和AMD UALoE托盘参数涉及不同型号、速率及方案，不能将512端口数字直接视为冲突或佐证。所供legacy筛选记录为空，未发现同口径冲突、canonical重复或替换需求；检查限于所供材料。",
+      "gap_dependency_check": "接口问题获得交换机并联、拓扑一致及NIC路径分配的依赖线索；NIC性能问题获得吞吐扩展所需拓扑条件。未保留交换机性能问题标签，因为本条未说明交换机自身的测量、可靠性或失效机制。正式接口、互换限制、实测扩展及失效条件仍缺失，所有问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "39ef1e15743236565838ae2d993f3143f74d5bdde62c722196f6d34504f72590"
+      },
+      "object_mapping_check": "原文直接涉及数据中心多轨网络中的512端口交换机及UEC NIC，分别对应网络链下的scale-out交换机与NIC/DPU。无需扩展到CPU、GPU、整机柜、DCIM或外部网络接入权。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:5:ev:0"
+      ],
+      "id": "adoption:review:0f0d3ac0df9f958e006d5107",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:network-switch",
+        "part:nic"
+      ],
+      "question_ids": [
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者称，UEC NIC被设计为支持经过多层交换机的路由，并利用多路径分组实现快速丢包替换和流控；作者认为这些机制可在应用调度欠佳或网络链路偶发抖动时保持顺畅流量。这是作者对设计能力和可靠性收益的判断，本段没有量化验证；来源发表时间、具体地域及部署阶段未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续引文明确机制、对象及不利工况，与当前NIC接口依赖、可靠性和失效条件工作单有实质关系，可作为有作者归属的B类局部材料。没有敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces",
+          "Q-OBJ-nic-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:5"
+      ],
+      "limitations": "“快速”和“顺畅”没有量化阈值、测试方法或实际部署证据。未给出链路抖动频率、丢包率、网络规模、负载及恢复耗时，不能推断任何故障条件下均能保持性能，也不能认定所有UEC NIC实现已具备相同性能。",
+      "conflict_check": "现有UEC多层交换设计范围记录与本条一致，但来自同一来源，不能作为独立验证。BlueField功能、布局及参考架构记录涉及不同产品与角色，不构成直接反证或重复。所供legacy筛选记录为空，未发现同口径冲突，不覆盖既有结论。",
+      "gap_dependency_check": "NIC接口问题获得多层交换网络依赖线索，性能问题获得丢包恢复、流控及应用调度和链路抖动条件。未保留交换机性能问题标签：收益主体是NIC，原文未提供交换机自身的可靠性测量。恢复时延、失效边界及兼容测试仍待补证，问题不关闭。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "39ef1e15743236565838ae2d993f3143f74d5bdde62c722196f6d34504f72590"
+      },
+      "object_mapping_check": "主体是UEC NIC的多路径恢复与流控，交换机是其跨多层路由的互联对象；二者均属于网络链中的实际设备范围。流控不对应DCIM/BMS，也未涉及运营商网络接入。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:6:ev:0"
+      ],
+      "id": "adoption:review:16ba6c6f6a7ed90058436dca",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:nic"
+      ],
+      "question_ids": [
+        "OBJ-nic-interfaces"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "据SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》第6页作者对UEC分组和报头构造的描述，报头可达44字节，面向常见较短分组的优化报头可小至20字节。这些是来源所述协议参数，未获当前独立规范验证；来源发表时间、具体地域及产品交付阶段未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续引文、协议构造语境及明确字节单位实质补充当前NIC接口工作单，可作B类局部采用。未发现A类条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:6"
+      ],
+      "limitations": "44字节和20字节分别是原文所述可达大小与优化情形的较小大小，不能改为所有分组的固定报头长度。未给出报头字段、启用条件、规范版本、分组长度分布及完整封装开销，不能据此确定实际吞吐量、端到端时延或互操作能力。",
+      "conflict_check": "现有NIC组成、布局和BlueField功能陈述未规定UEC报头长度；交换机型号及端口参数也不是同口径比较。所供legacy筛选记录为空，未发现冲突、canonical重复或替换需求；未进行外部规范核验。",
+      "gap_dependency_check": "仅补充NIC协议接口中的报头大小及优化条件。原候选的定义标签不在本项allowed_question_ids内，且本条不足以建立完整组成边界；未保留性能标签，因为报头大小没有直接提供性能测量、可靠性或失效方法。字段格式、版本依赖和互换条件仍开放，不改变原候选及证据标签。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "39ef1e15743236565838ae2d993f3143f74d5bdde62c722196f6d34504f72590"
+      },
+      "object_mapping_check": "相邻正文明确UEC分组由NIC生成，本条描述其传输报头格式及开销参数，适合映射网络链下的NIC/DPU。没有交换机自身接口或硬件参数，故不增加交换机及其他对象。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:8:ev:0"
+      ],
+      "id": "adoption:review:cb75a2d6fa81655db975094a",
+      "kind": "author_forecast",
+      "object_ids": [
+        "part:network-switch",
+        "part:nic"
+      ],
+      "question_ids": [
+        "OBJ-network-switch-performance",
+        "OBJ-network-switch-alternatives",
+        "OBJ-nic-performance"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者预计，UEC最大吞吐量将低于裸以太网的理论最大值：模块化交换机通常采用略快的背板吸收分组开销，而UEC以以太网充当背板，因此用户数据速率略低。作者同时预期，为接近理想的流量控制作出的这一权衡通常会改善实际数据速率。此项保留为作者的架构分析及性能预期，未证明已实现的性能收益；来源发表时间及具体地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续引文保留比较基准、分组开销机制及预测措辞，实质贡献于当前性能口径和交换机替代架构权衡问题，可作B类局部采用。预测性质本身不触发A，未发现其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-performance",
+          "Q-OBJ-network-switch-alternatives",
+          "Q-OBJ-nic-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:8"
+      ],
+      "limitations": "理论最大吞吐量、用户数据速率与实际数据速率不是同一口径。原文没有给出降幅、改善幅度、工作负载、测试方法或明确的模块化交换机型号；“通常会改善”不能提升为普遍或已验证结论。加密等额外开销也未纳入本条量化比较。",
+      "conflict_check": "理论上限较低与实际速率可能改善具有不同基准，不构成内部真实冲突。现有CPO功耗模型、端口配置及UEC多层交换范围陈述均非同口径数据速率结论，未发现直接冲突或重复。所供legacy筛选记录为空，不替换任何已采用值。",
+      "gap_dependency_check": "性能问题获得理论速率、有效数据速率及流控收益应分开评估的口径线索；交换机替代方案问题获得背板与以太网架构的开销权衡。未保留NIC替代方案标签，因为本条没有具体NIC方案的可比替代分析。实测、成本、可靠性及工况失效边界仍缺失，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "39ef1e15743236565838ae2d993f3143f74d5bdde62c722196f6d34504f72590"
+      },
+      "object_mapping_check": "原文比较模块化交换机背板与UEC以太网互联，并讨论NIC生成分组的报头及流控对用户数据速率的影响，范围覆盖网络链中的交换机和NIC。无需添加电力、控制软件或整个数据中心映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:9:ev:0"
+      ],
+      "id": "adoption:review:bcc7d8eee61f9425dcbaff26",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:nic"
+      ],
+      "question_ids": [
+        "OBJ-nic-definition"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者称，其讨论的UEC规范第3.5节（规范第219页）详细讨论分组操作；与命令和队列不同，作者将这些分组操作描述为UEC特有，并评价其似乎规定得较全面。此项保留作者对协议功能边界及规范完整性的评价，不构成当前独立规范或实现认证；来源发表时间及具体地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续引文与跨页语境足以支持UEC特有分组操作相对于命令、队列的局部功能边界，实质补充当前NIC定义工作单，可按B类采用。完整性评价明确保留为作者观点，无A类触发条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:5:claim:9"
+      ],
+      "limitations": "没有列出具体分组操作、字段、状态机或完整NIC组成，也不能证明规范已经完备、实现正确或互操作验证通过。第219页是作者引用的规范页码，本证据实际位于文章PDF第6页。引文在页末结束，后续原生文本有续句，不能将分页截断解释为全文论述未完成。",
+      "conflict_check": "现有BlueField组成、功能和产品沿革描述针对DPU产品，不反驳UEC协议分组操作的边界。现有UEC多层交换范围陈述与本条互补，不构成重复。跨页纠正针对候选的截取说明，不替换既有采用结论；legacy筛选记录为空，未发现真实冲突。",
+      "gap_dependency_check": "定义问题仅获得UEC特有分组功能与命令、队列之间的局部边界。跨页文本已补齐阅读语境，但具体组成、排除对象、规范版本及实现对应关系仍待补证。不能据此认定完整NIC规格已交付或关闭定义问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "39ef1e15743236565838ae2d993f3143f74d5bdde62c722196f6d34504f72590"
+      },
+      "object_mapping_check": "第5至7页将分组生成和操作置于UEC NIC承担的协议功能中，本条区分UEC特有分组操作与命令、队列，局部对应NIC/DPU的组成和功能边界。没有DCIM/BMS或独立交换芯片规格证据。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:0:ev:0"
+      ],
+      "id": "adoption:review:fe08f7e578dd5cc4e0d3af4a",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:network-switch"
+      ],
+      "question_ids": [
+        "OBJ-network-switch-definition",
+        "OBJ-network-switch-interfaces",
+        "OBJ-network-switch-alternatives"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者指出，UEC依赖以太网充当背板，而现代模块化交换机采用专有背板；其对UEC分组操作设计的讨论未提供外部设计参考。这是作者对互联架构的比较，未获当前独立设计或互换能力验证；来源发表时间、具体地域及产品部署阶段未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:47:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续引文与前页分组操作、背板开销语境充分支持有归属的架构差异，实质贡献于当前交换机组成边界、接口依赖及替代方案问题，可作B类局部采用。未发现敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-definition",
+          "Q-OBJ-network-switch-interfaces",
+          "Q-OBJ-network-switch-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 170.464,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "85c21d2a1de17cf0c6ebcec93e6c1118b95176263e297617c338831b8dcf1980",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68277,
+            "output_tokens": 5252,
+            "reasoning_output_tokens": 697
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.036,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "1da1055db5dde5d3b29339ee925bb32a288e64f2c98669a1cfb9acf095b683bb",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65582,
+              "output_tokens": 455,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:0"
+      ],
+      "limitations": "“背板”应保留为该文的架构描述，不能解释为所有UEC网络都具有实体机箱背板。未给出模块化交换机型号、专有背板接口、设计参考或互换测试；不能推广为所有交换机的统一实现，也不能由此确定性能或成本优劣。",
+      "conflict_check": "现有UEC、UALink及SUE设计范围陈述与本条互补；其他型号端口配置、CPO耦合环境和AMD机柜组成涉及不同层级，不构成直接冲突。与本批吞吐权衡候选共用架构背景，但新增专有背板区别，且没有现有canonical记录覆盖整条主张。legacy筛选记录为空，不替换已有结论。",
+      "gap_dependency_check": "定义问题获得背板架构边界，接口问题获得以太网与专有背板的依赖区别，替代方案问题获得局部架构比较。完整组成、具体接口、互换限制、同口径性能和成本仍未回答，不关闭问题或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "adfde2a52935aeecedbb2117137edbecbab4989110f5d0f9b1ff1bc1014ae972",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "39ef1e15743236565838ae2d993f3143f74d5bdde62c722196f6d34504f72590"
+      },
+      "object_mapping_check": "本条直接比较UEC scale-out互联使用以太网充当背板与现代模块化交换机的专有背板，符合网络链下交换机的组成、接口及架构边界。没有NIC型号或其他组件的独立主张，故仅映射交换机。"
     }
   ],
   "answers": [],
