@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.25",
+  "version": "2026.10.09.26",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -594,8 +594,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 224356,
-      "sha256": "d4ef88464ff8bf3946af741d568a15cb453a04bf6063d544628867d144b7e74a",
+      "bytes": 225065,
+      "sha256": "98aa0ebae96169c30d0896751a0c37affdca6fb1d51ee571f9ca37c91431cd6c",
       "collections": []
     },
     {
@@ -5533,8 +5533,8 @@
     {
       "path": "docs/local_reader/SPARK_OPERATIONS.md",
       "role": "normative",
-      "bytes": 61493,
-      "sha256": "2ac7bafeebb481f799557d35746aecebaf733ce6d07e857edd598b4c05ce135f",
+      "bytes": 62969,
+      "sha256": "3edb02b5b7e2c5fac7289ffe41494fa5dfc2ccd81f605c64c8faf6249c13232a",
       "collections": []
     },
     {
@@ -9070,8 +9070,8 @@
     {
       "path": "framework/04_reading_scoring_standard.md",
       "role": "normative",
-      "bytes": 25225,
-      "sha256": "26b80f77354ebb9ba3b6320b6b2cd96160e64b09652624a4d9deda3757f9c6dd",
+      "bytes": 26253,
+      "sha256": "3467e74f0a04c56d6f2df1de870736cb54cbc74b591ae08845007df26332e19a",
       "collections": []
     },
     {
@@ -9112,8 +9112,8 @@
     {
       "path": "framework/09_software_contracts.md",
       "role": "normative",
-      "bytes": 22245,
-      "sha256": "3bcfa182de066c034493ff059d23546d683c2ac39e841cd9ad80d8c8ae756e70",
+      "bytes": 22972,
+      "sha256": "cf668f00db7c4fcf1ea942ebf1ff505f0518ea2e2c08332a91eff65c91321b9c",
       "collections": []
     },
     {
@@ -9126,8 +9126,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 24011,
-      "sha256": "c45445606b73f67756aafded837df07b84ead5438e092df29d29ed8fa1eeab38",
+      "bytes": 23458,
+      "sha256": "faf5f6fa7053a8dc3a97a8ab05eb2634f1e332955d5a8ffe76ea7d3bf3fd528c",
       "collections": []
     },
     {
@@ -9153,8 +9153,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 153964,
-      "sha256": "cd6cceb6adeaab712a31d7c4ecedc666ac71259be40b39c0fa77cc5d97e25ab5",
+      "bytes": 154897,
+      "sha256": "98bf99b1529075753ddce7fcc2b88bb6d5caca96916e30987dc7c8989d090e69",
       "collections": [
         {
           "name": "policies",
@@ -9500,8 +9500,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 234248,
-      "sha256": "f01edc8eed57588daeb875ab9176741e861bb47858ed6ae28a8de5c24d3d078f",
+      "bytes": 240027,
+      "sha256": "3f7441a38c15835d38c3720aa029ea234fc5d6f204c0f8abd2982b7653079fe5",
       "collections": [
         {
           "name": "policies",
@@ -13332,8 +13332,8 @@
     {
       "path": "src/inresearch/workflow/research_review.py",
       "role": "implementation",
-      "bytes": 60190,
-      "sha256": "0e42651d9d13726462f0ad74050ada0fa4d264533eb536e76689a4d9cbe494fc",
+      "bytes": 63615,
+      "sha256": "b7313175fa5c4b6cce545e104cd6f79be4894c8f981d33318b9672d4f5779507",
       "collections": []
     },
     {
@@ -13341,6 +13341,13 @@
       "role": "implementation",
       "bytes": 7881,
       "sha256": "bd79b4be8e22b1f388f2217c12f8b1fd59283abcc835294294005207a56f3388",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/workflow/review_preference.py",
+      "role": "implementation",
+      "bytes": 2376,
+      "sha256": "4482d7bf06f5530fca7cb301629916607bae96891100edd998a419d409bb81a7",
       "collections": []
     },
     {
@@ -14342,6 +14349,13 @@
       "role": "test",
       "bytes": 3102,
       "sha256": "3eaa6a8267784b0d15977dd8b9db94fd59ca90c10956fd347c01095dab4cdfad",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_review_preference.py",
+      "role": "test",
+      "bytes": 8979,
+      "sha256": "a711cda8e7df63e49ee2da0816fbc67c25d49f233df80b0bc9474a299282b728",
       "collections": []
     },
     {
@@ -15886,13 +15900,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 317,
-    "implementation": 310,
+    "implementation": 311,
     "normative": 15,
     "project_config": 352,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
     "supporting_document": 150,
-    "test": 149
+    "test": 150
   }
 }
