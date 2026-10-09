@@ -2,7 +2,7 @@
 
 2026-10-09｜规则v2.7｜派生研究、交付索引与真实运行回执；原件不入Git。
 
-当前研究接收：23份已注册，13:07完成来源补源；网站13:12自然发布全部23份来源身份，资料HTTP可读13份。13:15:50实核完整封存13、queued9/running1；本批后台C3正式计数本轮未核实，详见INTAKE和具名回执。
+当前研究接收：23份已注册并补源。13:31–13:35逐SHA实核13份完整封存、13来源566条公网资料可读；844条Reader候选，707条在121审核批次排队，当前本批正式支持C3采用0。14:22另一个旧Oracle包published5，来源不在本批23份内，分别计量。时点、来源身份与缺口见INTAKE和研究恢复交接。
 
 文章及图文入口：`outputs/geluoke-research/2026-10-09-us-datacenter-power/`。正式研究文字为该目录`research/research.md`与`research/research.txt`，机器登记见submission.json、claims.json、demand-snapshot.json、sources.json。正文不构成来源原件的独立佐证；身份相同的两种交付不重复计量。
 
