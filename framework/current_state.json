@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.27",
+  "version": "2026.10.09.28",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2301,12 +2301,23 @@
         "tests/browser_suites.cjs",
         "tests/unit/test_browser_shards.py",
         "framework/interface_manifest.json",
-        "docs/design/technical-atlas/TA-11/publication-20261009.json"
+        "docs/design/technical-atlas/TA-11/publication-20261009.json",
+        "web/assets/technical-atlas/server-plan-v1.png",
+        "web/assets/technical-atlas/server-plan-v1.svg",
+        "web/assets/technical-atlas/server-plan-v1-preview.svg",
+        "web/components/server-plan-generator.js",
+        "web/pages/server-plan.html",
+        "tests/server_plan.cjs",
+        "docs/design/technical-atlas/TA-12/labels-v1.json",
+        "docs/design/technical-atlas/TA-12/render-spec-v1.md",
+        "docs/design/technical-atlas/TA-12/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-12/preparation-v1.json",
+        "docs/design/technical-atlas/TA-12/mobile-fix-20261009.json"
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.09.24",
-      "change_reason": "TA-11已实际发布：PR464首发31dcd368，AWS06:09:38Z同源码/应用/精确镜像64bb2649 healthy/.23；真实公网六源码SHA、八视图逐张目检、12标签原PNG SHA、完整SVG/PNG下载和独立x55整机装配/顶部完整1129 inspector、实际子部件点选/当前SVG、手动镜头/手机明暗/资源释放/旧机柜入口通过。主计划11/35、补充4/4，下一TA-12。三次原图拒绝及漏子类别/底视问题和本地accepted保留为历史，示例计数/未知边界保持；新CI实际时点状态与用户自主合并授权分开，Spark只读较旧源码/两服务，未改服务/范围。保留PR453最新五条研究及.22来源/长文/scope/CI，画法1.7不变。"
+      "implementation_revision": "2026.10.09.28",
+      "change_reason": "TA12新source CI实际core_b失败定位360px共享顶栏第三行：本页nav作用域过宽。收窄为main>nav、补实际360px≤90px断言；完整32页ui_skin与正交server_plan本地通过。保留失败日志/首发AWS与公网观察，源PNG/标注/几何不改；原生重渲染采用跨平台像素差验证并保留精确投影/17原位置/遮挡/资产SHA，未把编码变化当技术错误。待修后公网验收，published仍11/35。"
     },
     {
       "id": "interface-repository-daily-20261008",
