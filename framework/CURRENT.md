@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.09.03 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.09.04 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -131,3 +131,5 @@ TA-03实际发布与服务/入口/原件回执见该项publication；当前完�
 2026-10-09: TA-05 actual publication verified, main 5/35 and supplemental 4/4; next TA-06. PR419 Actions budget prevented execution; explicit user exception permits closing/publishing this release. CI success is not claimed; local and public evidence are recorded separately.
 
 2026-10-09：TA-06主板/CPU/RDIMM通用装配图接入现有CPU和DRAM入口；示例单路八RDIMM与放大图不表示兼容性，旧mobo与已验GPU/HBM/机箱保留。实际发布另验。
+
+2026-10-09：TA-06已实际发布，CPU/DRAM入口、9标签母图、双下载和公网3D画布验收；主计划6/35，补充4/4，下一TA-07。预算阻止CI启动如实登记用户豁免，Spark版本滞后不冒称同步。
