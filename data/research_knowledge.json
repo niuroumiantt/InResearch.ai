@@ -3638,6 +3638,59 @@
     },
     {
       "acceptance": "candidate",
+      "content_sha256": "168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258",
+      "coverage": {
+        "characters_read": 6327,
+        "characters_total": 6327,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258",
+      "id": "doc-168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258",
+      "library_path": "library/by-node/part-immersion/2024_DCD_Tiger Global invests $20 million in LiquidStack__168f8eac14664abe.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:liquidstack-submer-grc",
+        "part:immersion"
+      ],
+      "question_ids": [
+        "OBJ-immersion-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-99e67c354ab04709a58af5554fdecd45",
+      "report_sha256": "78c89b33abc22cc873077007d617127615f4f0f6bfeaf7ce3b868fb61ece58e4",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258",
+        "url": "https://www.datacenterdynamics.com/en/news/tiger-global-invests-20-million-in-liquidstack/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/tiger-global-invests-20-million-in-liquidstack/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/16/168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258/dcd-168f8eac14664abe-Tiger Global invests -20 million in LiquidStack.html",
+      "title": "Tiger Global invests $20 million in LiquidStack"
+    },
+    {
+      "acceptance": "candidate",
       "content_sha256": "1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
       "coverage": {
         "characters_read": 7146,
@@ -25151,6 +25204,91 @@
           }
         },
         "batch_id": "9d0448574d36129d8378eca7b7c7f0f80271f51893b98a786e20363641e42905"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "94c0d4b1523c7a281f3a61d3c3e117678280829410d7bf90a884875815ff593f",
+      "document_id": "doc-168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258",
+      "id": "rev-99e67c354ab04709a58af5554fdecd45:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:liquidstack-submer-grc",
+        "part:immersion",
+        "chain:thermal/4"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "LiquidStack said it will use the funds to expand its manufacturing footprint, scale its direct-to-chip and immersion cooling product roadmaps, and broaden its commercial and R&D operations.",
+      "reading_revision_id": "rev-99e67c354ab04709a58af5554fdecd45",
+      "source_sha256": "168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:43:50+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本项评分5。连续原文引文及融资前后文充分支持公司归因的资金用途计划；制造布局与浸没产品路线对当前OBJ-immersion-supply的供应商及制造环节研究有具体但有限的贡献。未发现本项的敏感、真实冲突或拟替换条件，符合B层部分采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-immersion-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 139.539,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0262c076e347f6e2dfe67c5ff63bb1591441b4c6879590b740a5a34f3920a896",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 50162,
+            "output_tokens": 4149,
+            "reasoning_output_tokens": 973
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 31.988,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "000933a46c2bac49e9c36162fe0181703ad63d0e59b96c79d20ea19925884346",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 47904,
+              "output_tokens": 531,
+              "reasoning_output_tokens": 276
+            }
+          }
+        },
+        "batch_id": "22f881608d8738ed061b5687d00c2127961d17fb378e4e83fe3e04fdf18af39f"
       }
     },
     {
@@ -48553,6 +48691,108 @@
         "request_sha256": "f897b3feb2c14f19841e75c73d52fb4cf7f6814319a1f3142ea1453d32d6b0be"
       },
       "object_mapping_check": "原文对象是未指定技术的备用发电策略，选择电力系统下的发电与储能链作为一般发电范围。合同中part:backup-power明确指柴油发电机组，原句没有柴油证据，因此不沿用该标签；也不增加燃气机组或储能部件映射。此范围限制不取消其对柴油备用接口问题的局部关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258",
+      "evidence_ids": [
+        "rev-99e67c354ab04709a58af5554fdecd45:chunk:0:claim:1:ev:0"
+      ],
+      "id": "adoption:review:d48a5050a146314eeebfeae0",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:liquidstack-submer-grc",
+        "part:immersion",
+        "chain:thermal/4"
+      ],
+      "question_ids": [
+        "OBJ-immersion-supply"
+      ],
+      "reading_revision_id": "rev-99e67c354ab04709a58af5554fdecd45",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2024年9月20日的报道中转述LiquidStack的资金用途计划：扩大制造布局，推进芯片直冷和浸没冷却产品路线图，并扩展商业及研发业务。这是公司当时提出的计划，不构成扩产、产品开发或交付已经完成的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:43:50+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本项评分5。连续原文引文及融资前后文充分支持公司归因的资金用途计划；制造布局与浸没产品路线对当前OBJ-immersion-supply的供应商及制造环节研究有具体但有限的贡献。未发现本项的敏感、真实冲突或拟替换条件，符合B层部分采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-immersion-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 139.539,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0262c076e347f6e2dfe67c5ff63bb1591441b4c6879590b740a5a34f3920a896",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 50162,
+            "output_tokens": 4149,
+            "reasoning_output_tokens": 973
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 31.988,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "000933a46c2bac49e9c36162fe0181703ad63d0e59b96c79d20ea19925884346",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 47904,
+              "output_tokens": 531,
+              "reasoning_output_tokens": 276
+            }
+          }
+        },
+        "batch_id": "22f881608d8738ed061b5687d00c2127961d17fb378e4e83fe3e04fdf18af39f"
+      },
+      "source_candidate_ids": [
+        "rev-99e67c354ab04709a58af5554fdecd45:chunk:0:claim:1"
+      ],
+      "limitations": "未披露制造地点、资金分配、产能基线、新增产能、扩产完成日期、产品型号、交期或客户验收记录。芯片直冷与浸没冷却是原文并列的产品路线，不能合并为浸没系统；计划实现情况及地域范围未建立。",
+      "conflict_check": "与adoption:review:745696da226b39bf5b38ebf1要求继续核查选型、联调、验收和可用日期的采用声明兼容，计划没有被写成实际交付。其他采用声明对象不同；所供legacy匹配记录为空，未发现本项重复、真实冲突或替换需求。检查不包含外部反证检索。",
+      "gap_dependency_check": "仅部分支持OBJ-immersion-supply的供应商制造与产品开发活动，仍需实际产能、制造和交付分工、交期及成本边界。没有CDU等具体环节的产能证据，也没有上下游约束传导、反例或领先指标验证，因此不映射M08-Q03或NODE-activity-V2-chain。工作单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "22f881608d8738ed061b5687d00c2127961d17fb378e4e83fe3e04fdf18af39f",
+        "source_report_sha256": "78c89b33abc22cc873077007d617127615f4f0f6bfeaf7ce3b868fb61ece58e4",
+        "request_sha256": "6205bc921e6d82ebf64e55292ba5b2b63ee5f0ef993fe630346c374381e8a854"
+      },
+      "object_mapping_check": "公司计划支持多家主体节点中的LiquidStack成员，不能外推至Submer、GRC。原文明示immersion cooling，支持冷却系统下机房与机柜链的part:immersion；direct-to-chip支持冷却系统下的芯片级chain:thermal/4，但未明确冷板，故不映射part:coldplate。上述映射均保留计划阶段，不添加数据中心整体或实际产能范围。"
     },
     {
       "acceptance": "adopted",
