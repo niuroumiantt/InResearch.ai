@@ -35,7 +35,6 @@
   .dchip:hover { border-color: var(--accent); color: var(--accent); }
   .dchip.on { background: var(--accent); color: var(--ui-on-accent); font-weight: 700; border-color: var(--accent); }
   #domainParts { margin-top: 8px; max-height: 30vh; overflow-y: auto; }
-  .facility-domain-plate{margin:6px 0 10px;font-size:12px;line-height:1.6}.facility-domain-plate img{display:block;width:100%;height:auto;background:#FAF9F2}.facility-domain-plate a{display:block}.facility-domain-plate p{margin:4px 0;color:var(--muted)}
   #domainParts .pitem { display: flex; align-items: center; gap: 7px; padding: 4px 7px; border-radius: var(--ui-radius);
     font-size: 12px; cursor: pointer; }
   #domainParts .pitem:hover { background: rgba(96,165,250,.12); color: var(--accent); }
@@ -928,12 +927,6 @@ function focusCampus(objects){
   const radius=bounds.getBoundingSphere(new THREE.Sphere()).radius,distance=camera.position.distanceTo(controls.target);controls.maxDistance=Math.max(controls.maxDistance,distance*3);if(scene.fog){scene.fog.near=Math.max(0,distance-radius);scene.fog.far=distance+radius*4;}controls.update();
  }
 }
-function facilityModelState(p){
- if(p.kind==='site_right')return ['非物理权利','独立证据入口；设备与地面不证明权利成立'];
- if(p.id==='modular-dc')return ['交付模板','配置基型，不是新增物理设备'];
- if(p.id==='dcim')return ['控制软件','软件节点，无物理硬件模型'];
- return PARTMESH[p.id]?.length?null:['本场景未建模','独立类别图保留；不认证本布局安装或覆盖'];
-}
 function enterDomain(d) {
   if (covOn) covToggle();   // 热图与领域高亮不叠加：材质状态互斥，先退热图
   if (activeDomain === d.key) { clearDomain(); if(campusMode)sceneView.fit();else flyTo([46, 30, 52], [0, 6, 0]); return; }
@@ -947,12 +940,7 @@ function enterDomain(d) {
   const grouped = []; let last = null;
   for (const p of d.parts) { if (p.chain !== last) { grouped.push(`<div class="chainh">${esc(p.chain || (p.kind === "site_right" ? "站点权利" : ""))}</div>`); last = p.chain; } grouped.push(p); }
   document.getElementById("domainParts").innerHTML = grouped.map(p => typeof p === "string" ? p :
-    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${campusMode && d.key === "facility" ? (facilityModelState(p) ? `<span class="nm" title="${esc(facilityModelState(p)[1])}">${esc(facilityModelState(p)[0])}</span>` : "") : (PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>')}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
-  if(campusMode && d.key==='facility'){
-   const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-21';
-   plate.innerHTML='<a href="/facility-atlas.html"><b>设施与站点权利 · 完整图与下载 ↗</b><img src="/assets/technical-atlas/facility-domain-v1-preview.svg" width="1536" height="1024" alt="同源八柜建筑与独立消防安防类别图、六类非物理权利"></a><p>建筑包含八柜；消防/安防本场景未建模。六权利是非物理证据入口，地面与设备不证明权利成立。</p>';
-   document.getElementById('domainParts').prepend(plate);
-  }
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
   document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
     const p = PART[el.dataset.part];
     showDossier(p);
@@ -1012,7 +1000,7 @@ function campusPart(p,whole=false){
  if(!campusMode)return p;
  if(whole)return {...PART.shell,name:'园区空间示意 · 完整三维预览',desc:'本图是一个通用选定八柜园区：2行×4柜、5室内冷却、3CDU、一组4柜门UPS、3双风扇冷机、2变压器、3备用发电与2储能柜。数量与比例只是绘图选择；前墙/部分屋面虚拟省略。'+(campusLayeredMode?'屋面/围护/桥架/室内设备仅沿各组示意轴平移，灰线对应同实例空原位；室外设备/钢架/基础保持原位。':'')+'内接线、流体去回路、功率/电压/冗余、现场适用与站点权利未知；研究链接归建筑类别，不认证本示例。'};
  const physical=campusAssembly.objectsFor(p.id).length;
- return {...p,desc:physical?'本次三维仅展示选定通用外形；'+(campusSelectedInstance?'点选单个示例实例 '+campusSelectedInstance+'。':'类别含 '+physical+' 个示例实例，预览取第一个。')+' 外形/数量不是型号、额定配置或现场事实，内接线、流体拓扑、尺寸/功率/电压、冗余和适用条件未知。下方研究与公司数据属于类别。'+(p.id==='rack-frame'?'门内载盘密度是程序示例，非TA13整柜或TA11服务器配置。':''):p.kind==='site_right'?'站点权利是独立非物理研究入口，场景不以设备或地面证明权利成立。':p.id==='modular-dc'?'微模块是配置与交付模板，不新增物理设备；本图不证明某模板已经安装或适用。':p.id==='dcim'?'DCIM是软件入口，不画物理硬件，当前节点内容与现场实施另核。':'本类别在本次园区未造实体；既有类别研究及独立部件图入口保留，不假造位置/实例。'};
+ return {...p,desc:physical?'本次三维仅展示选定通用外形；'+(campusSelectedInstance?'点选单个示例实例 '+campusSelectedInstance+'。':'类别含 '+physical+' 个示例实例，预览取第一个。')+' 外形/数量不是型号、额定配置或现场事实，内接线、流体拓扑、尺寸/功率/电压、冗余和适用条件未知。下方研究与公司数据属于类别。'+(p.id==='rack-frame'?'门内载盘密度是程序示例，非TA13整柜或TA11服务器配置。':''):p.kind==='site_right'?'站点权利是独立非物理研究入口，场景不以设备或地面证明权利成立。':p.id==='dcim'?'DCIM是软件入口，不画物理硬件，当前节点内容与现场实施另核。':'本类别在本次园区未造实体；既有类别研究及独立部件图入口保留，不假造位置/实例。'};
 }
 function showDossier(p){if(!p)return;if(campusMode){const i=campusAssembly.instances.find(i=>i.part===p.id);campusSelectedInstance=i?.id||null;campusSelectedMeshes=[];i?.object.traverse(o=>{if(o.isMesh)campusSelectedMeshes.push(o)});rawShowDossier(campusPart(p));}else rawShowDossier(p)}
 function showCampusObject(object){const p=PART[object.userData.part];if(!p)return;if(!campusMode){showDossier(p);return;}const i=campusAssembly.instanceFor(object);if(!i)return;campusSelectedInstance=i.id;campusSelectedMeshes=[];i.object.traverse(o=>{if(o.isMesh)campusSelectedMeshes.push(o)});rawShowDossier(campusPart(p));}
