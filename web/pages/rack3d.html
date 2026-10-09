@@ -673,12 +673,14 @@ const showDossier = createPartDossier({el: document.getElementById('dossier'), v
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector,
   atlasViewFor:p=>rackOverviewMode&&p.id==='rack-frame'?'overview':null});
+const rackContextPart=()=>({...PART['rack-frame'],name:'机柜与结构 · 整柜上下文',
+  desc:'本图是通用整柜结构示意：2交换机、8计算托盘、2电源架为图示选择；侧部铜色长条与灰管未连接。尺寸、U高度、功率、承载及连接回路未知。研究链接仍指向机柜类别，不代表本示例的型号或额定配置。'});
 function showRackObject(object) {
   const p=PART[object.userData.part];if(!p)return;
   if(!rackOverviewMode){showDossier(p);return;}
   document.getElementById('dossier').classList.toggle('rack-overview-dossier',p.id==='rack-frame');
   if(p.id==='rack-frame'){
-    rackSelectedMeshes=[...pickables];showDossier({...p,name:'机柜与结构 · 整柜上下文'});return;
+    rackSelectedMeshes=[...pickables];showDossier(rackContextPart());return;
   }
   let instance=object;
   while(instance.parent && instance.parent!==rack && !/^(compute-\d+|switch-\d+|power-shelf-\d+|optional-busbar|optional-manifolds)$/.test(instance.name))instance=instance.parent;
@@ -687,7 +689,7 @@ function showRackObject(object) {
 }
 if(rackOverviewMode)document.getElementById('rack-overview-dossier').onclick=()=>{
   document.getElementById('dossier').classList.add('rack-overview-dossier');
-  rackSelectedMeshes=[...pickables];showDossier({...PART['rack-frame'],name:'机柜与结构 · 整柜上下文'});
+  rackSelectedMeshes=[...pickables];showDossier(rackContextPart());
 };
 const scenePicking = createScenePicking({THREE, canvas, camera, pickables, tip,
   describe: object => {
