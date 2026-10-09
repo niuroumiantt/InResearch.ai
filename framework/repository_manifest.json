@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.18",
+  "version": "2026.10.09.19",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -467,6 +467,20 @@
       "collections": []
     },
     {
+      "path": "deploy/spark-reader/inresearch-editorial.service",
+      "role": "project_config",
+      "bytes": 482,
+      "sha256": "f433f693ef70a01138a9dbf33e1e72008affde4c2285f63fdc27a706d220a860",
+      "collections": []
+    },
+    {
+      "path": "deploy/spark-reader/inresearch-editorial.timer",
+      "role": "project_config",
+      "bytes": 194,
+      "sha256": "8905022423e3690969919f705240b464174df4c5bba45ec98353bde31664208e",
+      "collections": []
+    },
+    {
       "path": "deploy/spark-reader/inresearch-material-intake.service",
       "role": "project_config",
       "bytes": 250,
@@ -580,8 +594,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 218151,
-      "sha256": "b45287f69bcaf85a0c62da71fa4f279a15ab05f533654c98a2f5083f0aa18101",
+      "bytes": 218781,
+      "sha256": "f8cd2be02f864e0152c8230fcbbcb47f34af6bfb60db25d737a2bdf18f29473e",
       "collections": []
     },
     {
@@ -2292,8 +2306,8 @@
     {
       "path": "docs/geluoke/专题写作规则.md",
       "role": "normative",
-      "bytes": 29281,
-      "sha256": "cdbc5a2466030583c09bb6c791b880b1ac5b91ae6bf01e34e1f13eaafa14e7b3",
+      "bytes": 29642,
+      "sha256": "8d42deab2b8a73b35c4a12f4c978f2b945f77c295b1777c8a715cb328c8d0bdb",
       "collections": []
     },
     {
@@ -5190,6 +5204,13 @@
       "role": "retired_entrypoint",
       "bytes": 415,
       "sha256": "5c56c32fddfacfe69324ad8dc4571764b938ad94cd6cd336576e4883b59d4080",
+      "collections": []
+    },
+    {
+      "path": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "role": "normative",
+      "bytes": 3112,
+      "sha256": "d932790d4ecdbc3fa6fef768d3e98a3d6a2bf87a2ec00840fbd306ebc0abe18a",
       "collections": []
     },
     {
@@ -8758,8 +8779,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 21063,
-      "sha256": "4165bce528bf141fdb257297e0412fb9d4913c7688c67046189543f3a1ff8744",
+      "bytes": 21259,
+      "sha256": "00fb3a68d1cacf515f6b7621894fc2075595d3b4fa66829647574fb6ff5f9f26",
       "collections": []
     },
     {
@@ -8785,12 +8806,12 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 147684,
-      "sha256": "3347523ec7eb686a1970895bb96315c1715cf35ee6f2d1cd5cad30a08bfe4464",
+      "bytes": 150956,
+      "sha256": "7a2d223672857c8e8dbfc43e90542d8ac938f5800a58e5c64b24fed605c3ee9a",
       "collections": [
         {
           "name": "policies",
-          "count": 48
+          "count": 49
         },
         {
           "name": "entrypoints",
@@ -8806,7 +8827,7 @@
         },
         {
           "name": "operational_guides",
-          "count": 10
+          "count": 11
         },
         {
           "name": "retired_scan_snapshots",
@@ -9132,12 +9153,12 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 223225,
-      "sha256": "bee42d180cdcecb5df647edbd3e7fe5c07c421d193bd1f0644507e17c8e1218c",
+      "bytes": 225362,
+      "sha256": "590a36bdc9890ec513c6acb1065cf64c55c69d0a941c114f51df3494ffb6b9f0",
       "collections": [
         {
           "name": "policies",
-          "count": 15
+          "count": 16
         }
       ]
     },
@@ -11858,6 +11879,13 @@
       "collections": []
     },
     {
+      "path": "scripts/editorial-outbox.py",
+      "role": "implementation",
+      "bytes": 4757,
+      "sha256": "f17e4ee2fa5595e08a8d952204fc83f38ecab0735fa7076b2b6098ad2f767c56",
+      "collections": []
+    },
+    {
       "path": "scripts/export_inews_research.cjs",
       "role": "project_config",
       "bytes": 1013,
@@ -11960,6 +11988,13 @@
       "role": "implementation",
       "bytes": 6201,
       "sha256": "a25758aa2fec44d1f65e7edf7d6a58add05e923ab490e56d66850cf81dd991ee",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/adapters/editorial_sync.py",
+      "role": "implementation",
+      "bytes": 9729,
+      "sha256": "fb0a4f7fb7bad346cbd8899074c219e16ea693caf9adb9efc0b14e793aeed5e0",
       "collections": []
     },
     {
@@ -12140,8 +12175,8 @@
     {
       "path": "src/inresearch/delivery/reader_export.py",
       "role": "implementation",
-      "bytes": 18149,
-      "sha256": "d0b5ec8497179a698e6353eacec9f48f34f45ab6e926c8f3ea747363d6738749",
+      "bytes": 19747,
+      "sha256": "2d86c22a3473929f2161568a285ef9a32032b314428f9bf2223e194153c9c6f2",
       "collections": []
     },
     {
@@ -12196,8 +12231,8 @@
     {
       "path": "src/inresearch/interfaces/cli.py",
       "role": "implementation",
-      "bytes": 5595,
-      "sha256": "f040277a5b662e5a067449cf85b61f70a0903349317ee0af9607c13b6d4c2767",
+      "bytes": 5655,
+      "sha256": "b437c2d6832d3020356ed0b5ed004edb6b88b13630eac95f109e9d2ac7d3c568",
       "collections": []
     },
     {
@@ -12357,8 +12392,8 @@
     {
       "path": "src/inresearch/knowledge/material_baseline.py",
       "role": "implementation",
-      "bytes": 5673,
-      "sha256": "4db8fe56abbc74c517a45e91510ccb2fefc2b2696b85253216a5ba78cfc06ea2",
+      "bytes": 5891,
+      "sha256": "12390f1776d882aea8817edf7024e6fc962901c465b5c084dbac60ca20bdbb62",
       "collections": []
     },
     {
@@ -12406,8 +12441,8 @@
     {
       "path": "src/inresearch/knowledge/registry.py",
       "role": "implementation",
-      "bytes": 54724,
-      "sha256": "47bf216b85ec71d49a530376f60a859719ec1a76cddaa3cbcb8f82cdde20a059",
+      "bytes": 55487,
+      "sha256": "09b2136a07862c7b3caf8c837ba44df538c480a09b2da4b3fb94eda8a9547bcd",
       "collections": []
     },
     {
@@ -12882,8 +12917,8 @@
     {
       "path": "src/inresearch/workflow/research_match.py",
       "role": "implementation",
-      "bytes": 17830,
-      "sha256": "3de401ea0b3a8c266dc668ce794d303ea0ff6186401bf4ef6feadce440fc116b",
+      "bytes": 17891,
+      "sha256": "416321b0399d8af193721b7df75824a9e27c3e8774ea152fff038cc337d46e8b",
       "collections": []
     },
     {
@@ -13353,6 +13388,13 @@
       "role": "test",
       "bytes": 3095,
       "sha256": "99983da6847024aca4592bcf7d89fbfe38522d45d9c645919c17d686bcb8e08e",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_editorial_sync.py",
+      "role": "test",
+      "bytes": 5757,
+      "sha256": "79308a5742305fc3d38ebecf8586285bbb7b5837e2df2bc2784ec594c3bf35e5",
       "collections": []
     },
     {
@@ -15256,8 +15298,8 @@
     {
       "path": "web/pages/node.html",
       "role": "implementation",
-      "bytes": 45105,
-      "sha256": "5044c1c0f098ada39c8dfc8133644f661c5bc14f50db608540b7ab98c343a4c4",
+      "bytes": 45217,
+      "sha256": "46cfa1b86eec1decb51b968f0796e5a672b5bbc5d6aa573a6b3624004cef4b69",
       "collections": []
     },
     {
@@ -15365,14 +15407,14 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 13,
-    "historical": 310,
-    "implementation": 306,
-    "normative": 14,
-    "project_config": 309,
+    "historical": 311,
+    "implementation": 308,
+    "normative": 15,
+    "project_config": 332,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
     "supporting_document": 150,
-    "test": 146
+    "test": 147
   }
 }

@@ -4,8 +4,6 @@ import hashlib
 import json
 import os
 import re
-import sqlite3
-import tempfile
 from pathlib import Path
 from urllib.parse import urlsplit, urlencode
 from urllib.request import Request, urlopen
@@ -24,7 +22,9 @@ def digest(body):
 def http_url(value):
     if not isinstance(value, str) or len(value) > 4096:
         raise ValueError('invalid_editorial_url')
+    if re.search(r'\s|[\x00-\x1f\x7f]', value): raise ValueError('invalid_editorial_url')
     u = urlsplit(value)
+    u.port
     if u.scheme not in ('https', 'http') or not u.hostname or u.username or u.password:
         raise ValueError('invalid_editorial_url')
     return value
@@ -123,6 +123,7 @@ def load_bundle(manifest):
     v = json.loads(manifest.read_text())
     if v.get('schema') != 'editorial-delivery-v1': raise ValueError('invalid_bundle_schema')
     verified = {}
+    if not isinstance(v.get('files'), list) or not 1 <= len(v['files']) <= 10: raise ValueError('invalid_bundle_files')
     for f in v['files']:
         name = f.get('path', '')
         if not re.fullmatch(r'[A-Za-z0-9_.-]+', name) or name in verified: raise ValueError('invalid_bundle_path')
@@ -154,8 +155,8 @@ def sync(data, root, endpoint, scope=None, fetch=None):
     after = 0
     results = []
     for _ in range(1000):
-        page = fetch(endpoint + '?' + urlencode({'after': after, 'limit': 10}))
-        if page.get('schema') != 'inews-editorial-feed-v1' or not isinstance(page.get('items'), list) or len(page['items']) > 10:
+        page = fetch(endpoint + '?' + urlencode({'after': after, 'limit': 1}))
+        if page.get('schema') != 'inews-editorial-feed-v1' or not isinstance(page.get('items'), list) or len(page['items']) > 1:
             raise ValueError('invalid_editorial_feed')
         previous = after
         for item in page['items']:

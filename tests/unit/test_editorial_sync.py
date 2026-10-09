@@ -8,6 +8,21 @@ from inresearch.paths import project_root
 from inresearch.workflow import research_match
 
 class EditorialSyncTests(unittest.TestCase):
+    def test_outbox_seal_requires_matching_completed_render(self):
+        import runpy
+        outbox=runpy.run_path(str(project_root()/'scripts/editorial-outbox.py'))
+        with tempfile.TemporaryDirectory() as tmp:
+            base=Path(tmp);folder=base/'2026-10-09-example';(folder/'checks').mkdir(parents=True)
+            (folder/'article.md').write_text('# Title\n\nData center grid TCO')
+            (folder/'sources.json').write_text('{"records":[]}')
+            hashes={}
+            for name in ('wechat','full','lite'):
+                body=(name+' rendered').encode();(folder/(name+'.html')).write_bytes(body);hashes[name]=hashlib.sha256(body).hexdigest()
+            p=folder/'checks/browser.json';p.write_text(json.dumps({'pass':True,'input_sha256':hashes}))
+            dest=outbox['seal'](folder,base/'outbox');self.assertEqual(e.load_bundle(dest/'manifest.json')['title'],'Title')
+            (folder/'full.html').write_text('changed after checking')
+            with self.assertRaises(ValueError):outbox['seal'](folder,base/'outbox')
+
     def item(self, **kw):
         return {'id':'inews-column-9','title':'机房用电','source_role':'authored_analysis',
                 'url':'https://inews.today/c/9','text':'# 机房用电\n\n数据中心电网接入电价 power electricity TCO cost $100.',
@@ -26,6 +41,10 @@ class EditorialSyncTests(unittest.TestCase):
             self.assertEqual(len(json.loads(scope.read_text())['doc_ids']),3)
             doc=next(r for r in research_match.projection(data)['records'] if r['sha256']==first['article_sha256'])
             self.assertEqual(doc['source_role'],'authored_analysis');self.assertEqual(len(doc['editorial_references']),1)
+            from inresearch.delivery.reader_export import supplied_sources
+            exported=supplied_sources(data)[first['article_sha256']]
+            self.assertEqual(exported['source_role'],'authored_analysis')
+            self.assertEqual(exported['source_url'],'https://inews.today/c/9')
             blob=data/'acquisition/blobs'/first['article_sha256'][:2]/(first['article_sha256']+'.md')
             research_match.ingest(blob,data,project_root())
             doc=next(r for r in research_match.projection(data)['records'] if r['sha256']==first['article_sha256'])

@@ -120,6 +120,28 @@ def supplied_sources(data, content_sha256=None):
                 result[sha] = {'source_url': url, 'source_provenance': proof}
             except (OSError, ValueError, TypeError, KeyError, IntegrityError, UnsafePath):
                 continue
+        editorial_query = """SELECT source_key,metadata FROM items WHERE source='fetchreports'
+            AND kind='supplied_research' AND json_extract(metadata,'$.source_role')='authored_analysis'"""
+        for sha, value in db.execute(editorial_query + (' AND source_key=?' if content_sha256 else ''),
+                                     (content_sha256,) if content_sha256 else ()):
+            try:
+                meta = json.loads(value)
+                delivery = meta['editorial_delivery']
+                ident, revision = delivery['id'], delivery['revision']
+                if not re.fullmatch(r'[A-Za-z0-9_-]{1,160}', ident) or not re.fullmatch(r'[0-9a-f]{64}', revision):
+                    continue
+                path = safe_path(data, 'incoming/editorial/' + ident + '/' + revision + '/delivery.json')
+                item = read_json(path)
+                from inresearch.adapters.editorial_sync import validate
+                validate(item)
+                if (digest_bytes(item['text'].encode()) != sha or item['id'] != ident
+                        or digest_bytes(json.dumps(item, ensure_ascii=False, sort_keys=True).encode()) != revision
+                        or meta.get('editorial_references') != item.get('references', [])):
+                    continue
+                result[sha] = {'source_role': 'authored_analysis', 'editorial_references': item.get('references', [])}
+                if item.get('url'): result[sha]['source_url'] = item['url']
+            except (OSError, ValueError, TypeError, KeyError, IntegrityError, UnsafePath):
+                continue
     except sqlite3.OperationalError:
         pass  # Older or absent acquisition catalogs retain the old projection.
     finally:

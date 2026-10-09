@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.18",
+  "version": "2026.10.09.19",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2596,6 +2596,29 @@
         "docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md"
       ],
       "implementation_revision": "2.7"
+    },
+    {
+      "id": "editorial-intake-20261009",
+      "topic": "editorial-intake",
+      "scope": "editorial-research-input",
+      "status": "current",
+      "effective_at": "2026-10-09",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "supersedes": [],
+      "reason": "User authorized automatic delivery of finished longforms and published datacenter columns; authored analysis remains separate from primary evidence.",
+      "implementations": [
+        "src/inresearch/adapters/editorial_sync.py",
+        "src/inresearch/interfaces/cli.py",
+        "src/inresearch/workflow/research_match.py",
+        "src/inresearch/delivery/reader_export.py",
+        "src/inresearch/knowledge/registry.py",
+        "src/inresearch/knowledge/material_baseline.py",
+        "scripts/editorial-outbox.py",
+        "deploy/spark-reader/inresearch-editorial.service",
+        "deploy/spark-reader/inresearch-editorial.timer",
+        "tests/unit/test_editorial_sync.py"
+      ],
+      "implementation_revision": "2026-10-09"
     }
   ],
   "entrypoints": [
@@ -2649,7 +2672,8 @@
     "docs/local_reader/M4_PREFLIGHT.md",
     "docs/local_setup/README.md",
     "docs/local_setup/ADD_3D_MODEL.md",
-    "docs/local_setup/REPOSITORY_PAGES.md"
+    "docs/local_setup/REPOSITORY_PAGES.md",
+    "docs/local_reader/EDITORIAL_DELIVERY.md"
   ],
   "decisions_retired_scan_since": "2026-09-28",
   "retired_scan_snapshots": [
