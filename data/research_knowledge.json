@@ -3451,6 +3451,71 @@
       "status": "candidate",
       "stored_path": "originals/3a/3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb/lbnl-full.pdf",
       "title": "2024 United States Data Center Energy Usage Report"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "coverage": {
+        "characters_read": 41725,
+        "characters_total": 41725,
+        "chunks_read": 28,
+        "chunks_total": 28,
+        "complete": true,
+        "pages_read": 28,
+        "pages_total": 28
+      },
+      "doc_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "library_path": "library/by-node/part-gpu/2026_SemiAnalysis_The Manos, The Mythos, The Legendos__2d947003ebd6542f.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:amd",
+        "actor:nvidia",
+        "part:dram",
+        "part:gpu",
+        "part:hbm",
+        "part:server",
+        "part:ssd",
+        "part:storage-array",
+        "root",
+        "system:compute",
+        "system:control",
+        "system:memory",
+        "system:network"
+      ],
+      "question_ids": [
+        "NODE-demand-D3-conversion",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile",
+        "OBJ-dram-interfaces",
+        "OBJ-dram-performance",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-hbm-alternatives",
+        "OBJ-hbm-interfaces",
+        "OBJ-hbm-performance",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/2d/2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c/The Manos The Mythos The Legendos.pdf",
+      "title": "The Manos, The Mythos, The Legendos"
     }
   ],
   "evidence": [
@@ -23568,6 +23633,419 @@
           }
         },
         "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6db0b36b5601ff2382aea1858ff3de6367e4046900543b100bb26910bf794ba8",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:18:claim:2:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [],
+      "page_index": 18,
+      "question_ids": [
+        "NODE-workload-inference-placement"
+      ],
+      "quote": "This computation is divided into inter-block attention for completed blocks and intra-block\nattention for evolving attention in the running block.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:02:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。连续原文及Inference小节上下文支持该分解，对当前推理运行阶段与计算组织问题有实质但局部的贡献。未发现A条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 127.52,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8f80341f2da9c7a2a8da7f65cc3d6631ff486294add89cdc48fbdc460b821a82",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70404,
+            "output_tokens": 4284,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.669,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "709edb790d460e9973c393b65a5254783d8c2eaf36e7bf4a13964e8aad297e6e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67810,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 171
+            }
+          }
+        },
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6db0b36b5601ff2382aea1858ff3de6367e4046900543b100bb26910bf794ba8",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:18:claim:3:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [],
+      "page_index": 18,
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "During decoding, we have to output the completed block and the query vector learned per\nlayer. All inter block layers simultaneously with a single batched query against the\ncompleted block representations, returning both outputs and softmax statistics which can\nbe reused for further computation.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:02:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。跨层批量查询与结果复用直接提供运行组织及内存访问需求的机制线索，与两个当前工单具有实质关系。连续引句及周边语境充分，未发现A条件，可作局部作者主张采用。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 127.52,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8f80341f2da9c7a2a8da7f65cc3d6631ff486294add89cdc48fbdc460b821a82",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70404,
+            "output_tokens": 4284,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.669,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "709edb790d460e9973c393b65a5254783d8c2eaf36e7bf4a13964e8aad297e6e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67810,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 171
+            }
+          }
+        },
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "beac4cc4a88cd4ed8440bbdbb88b27a597399599397fffa833b2b7c22cea68e5",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:19:claim:0:ev:0",
+      "locator": "page:20/chunk:19",
+      "object_ids": [],
+      "page_index": 19,
+      "question_ids": [],
+      "quote": "This phase is analogous to the decode phase, Similar to flash attention, evolving sum can\nbe computed with online softmax for intra blocks combined with precomputed inter block\nresults. Which reduces redundant memory access.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:02:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。原文直接说明第二阶段的计算组织及重复内存访问机制，对当前运行组织和资源需求工单具有实质的部分贡献。连续引用和跨页上下文充分，未触发A条件。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 127.52,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8f80341f2da9c7a2a8da7f65cc3d6631ff486294add89cdc48fbdc460b821a82",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70404,
+            "output_tokens": 4284,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.669,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "709edb790d460e9973c393b65a5254783d8c2eaf36e7bf4a13964e8aad297e6e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67810,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 171
+            }
+          }
+        },
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "beac4cc4a88cd4ed8440bbdbb88b27a597399599397fffa833b2b7c22cea68e5",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:19:claim:1:ev:0",
+      "locator": "page:20/chunk:19",
+      "object_ids": [],
+      "page_index": 19,
+      "question_ids": [],
+      "quote": "With this two phase design, the IO footprint is similar to standard residual architecture, with\nonly the addition of phase ones inter block computation, amortized by batching all queries\nin the block.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:02:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。IO足迹与批处理摊销实质关联当前推理资源特征和运行组织问题，可按B类作为局部作者解释采用。未发现A条件。标准残差架构是模型架构参照，尚不足以挂接要求计算与存储系统自身可比证据的NODE-system-compute-tradeoff。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-workload-inference-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 127.52,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8f80341f2da9c7a2a8da7f65cc3d6631ff486294add89cdc48fbdc460b821a82",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70404,
+            "output_tokens": 4284,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.669,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "709edb790d460e9973c393b65a5254783d8c2eaf36e7bf4a13964e8aad297e6e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67810,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 171
+            }
+          }
+        },
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "beac4cc4a88cd4ed8440bbdbb88b27a597399599397fffa833b2b7c22cea68e5",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:19:claim:2:ev:0",
+      "locator": "page:20/chunk:19",
+      "object_ids": [],
+      "page_index": 19,
+      "question_ids": [],
+      "quote": "LatentMoE compresses the routed tokens before the dispatch operation, and then\ndecompresses them after the aggregation operation.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:02:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。分发前压缩与聚合后解压缩提供模型结构影响通信载荷的具体机制，与当前模型需求向资源需求转换工单有实质但有限的关系。连续引文及邻页通信讨论提供充分语境，未发现A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 127.52,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8f80341f2da9c7a2a8da7f65cc3d6631ff486294add89cdc48fbdc460b821a82",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70404,
+            "output_tokens": 4284,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.669,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "709edb790d460e9973c393b65a5254783d8c2eaf36e7bf4a13964e8aad297e6e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67810,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 171
+            }
+          }
+        },
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad"
       }
     }
   ],
@@ -45191,6 +45669,502 @@
         "request_sha256": "05786205bbcfee48f1c2b9ec3ea680a43333137cd509c807aac0809be36067cb"
       },
       "object_mapping_check": "审定陈述的范围是美国数据中心能耗研究的设备层面汇总方法，而非某座AI数据中心或具体硬件、冷却、电力系统。相邻文本列举的设备及设施效率不能自动成为本项全部证据的对象范围；研究模型也不属于DCIM/BMS，故保留空映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:18:claim:2:ev:0"
+      ],
+      "id": "adoption:review:1c2d2f1aa6d35293881fe675",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-inference-placement"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The Manos, The Mythos, The Legendos》（发表时间未知）作者在第19页解释，Attention Residuals的推理计算分为两部分：针对已完成块的块间注意力，以及针对当前运行块中持续演变的注意力的块内注意力。这是作者对该算法运行组织方式的描述。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:02:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。连续原文及Inference小节上下文支持该分解，对当前推理运行阶段与计算组织问题有实质但局部的贡献。未发现A条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 127.52,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8f80341f2da9c7a2a8da7f65cc3d6631ff486294add89cdc48fbdc460b821a82",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70404,
+            "output_tokens": 4284,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.669,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "709edb790d460e9973c393b65a5254783d8c2eaf36e7bf4a13964e8aad297e6e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67810,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 171
+            }
+          }
+        },
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:18:claim:2"
+      ],
+      "limitations": "未给出硬件、调度实现、地域、利用率或部署阶段；不能将算法内部的两个计算部分等同于服务层的prefill/decode资源池分离，也不证明当前系统配置或性能。",
+      "conflict_check": "已比对所供采用陈述。既有prefill/decode并发干扰、优先调度和分离路由记录讨论服务请求组织，本条讨论Attention Residuals内部计算分解，未发现真实冲突或规范重复。legacy筛选记录为空，检查不构成完整外部反证搜索。",
+      "gap_dependency_check": "仅部分支持运行组织维度；系统配置约束仍需硬件、调度、利用率及负载共存证据。局部描述不依赖图像数值，不回答或关闭问题，也不更新既有模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "66baffef8c9b54b766a0e98e0a99217c6bf02add56220bb794b4d7be4faa8a3e"
+      },
+      "object_mapping_check": "实际对象是Attention Residuals的算法计算分解。合同中的system:compute属于数据中心IT计算系统，root是一座AI数据中心；本句未建立这些基础设施对象的具体范围，因此不继承候选的root和system:compute标签。空映射保留有效问题关系。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:18:claim:3:ev:0"
+      ],
+      "id": "adoption:review:9f800eced9a0802edcad19c7",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The Manos, The Mythos, The Legendos》（发表时间未知）作者在第19页的Attention Residuals推理讨论中称，解码时需输出已完成块及每层学习的查询向量；各块间注意力层通过一次批量查询同时访问已完成块的表示，返回可供后续计算复用的输出和softmax统计量。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:02:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。跨层批量查询与结果复用直接提供运行组织及内存访问需求的机制线索，与两个当前工单具有实质关系。连续引句及周边语境充分，未发现A条件，可作局部作者主张采用。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 127.52,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8f80341f2da9c7a2a8da7f65cc3d6631ff486294add89cdc48fbdc460b821a82",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70404,
+            "output_tokens": 4284,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.669,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "709edb790d460e9973c393b65a5254783d8c2eaf36e7bf4a13964e8aad297e6e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67810,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 171
+            }
+          }
+        },
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:18:claim:3"
+      ],
+      "limitations": "原文语法略有省略，未说明具体执行接口、硬件并行方式、批大小或复用开销；没有内存容量、带宽、时延或吞吐测量。地域与部署阶段未建立，不能解释为当前独立认证的实现。",
+      "conflict_check": "既有prefill/decode资源特征和同类硬件分离服务记录涉及不同层级的组织方式；本条未声称消除服务阶段干扰，未发现同口径冲突或重复。相关legacy筛选为空，未据此认证不存在外部反证。",
+      "gap_dependency_check": "placement仍缺实际调度、资源分配、地域与利用率；profile仍缺带工况的内存流量、带宽、容量和时延样本。采用内容由文字支持，不依赖未提供的图表数值，两项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "66baffef8c9b54b766a0e98e0a99217c6bf02add56220bb794b4d7be4faa8a3e"
+      },
+      "object_mapping_check": "查询、块表示及softmax统计量属于模型执行中的逻辑数据流；没有指定数据中心计算系统、物理内存类型或GPU资产。合同中的system:compute和system:memory是IT基础设施对象，不能仅凭算法并行与复用映射；不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:19:claim:0:ev:0"
+      ],
+      "id": "adoption:review:46a23f0f24e53b478cfd0b4f",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The Manos, The Mythos, The Legendos》（发表时间未知）作者在第20页称，Attention Residuals推理的第二阶段为顺序块内注意力，类似解码阶段；通过在线softmax将块内计算与预计算的块间结果结合，可减少重复内存访问。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:02:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。原文直接说明第二阶段的计算组织及重复内存访问机制，对当前运行组织和资源需求工单具有实质的部分贡献。连续引用和跨页上下文充分，未触发A条件。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-placement",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 127.52,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8f80341f2da9c7a2a8da7f65cc3d6631ff486294add89cdc48fbdc460b821a82",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70404,
+            "output_tokens": 4284,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.669,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "709edb790d460e9973c393b65a5254783d8c2eaf36e7bf4a13964e8aad297e6e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67810,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 171
+            }
+          }
+        },
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:19:claim:0"
+      ],
+      "limitations": "减少重复访问是作者的机制判断，未提供实测降幅、访问字节数、具体内存介质或硬件条件；不能换算为带宽、容量、GPU利用率或成本改善。地域、测试时间与部署阶段未知。",
+      "conflict_check": "既有短序列带宽瓶颈和重prefill带宽利用不足记录并未讨论相同Attention Residuals实现；减少重复访问也不等于所有带宽约束消失，未发现真实冲突或重复。legacy筛选无相关记录，反证检查限于所供材料。",
+      "gap_dependency_check": "两个问题仅获得算法机制支持，仍需原始实现、可比负载测量、资源配置及反例。文字支持不依赖图像，不关闭工单或更新模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "66baffef8c9b54b766a0e98e0a99217c6bf02add56220bb794b4d7be4faa8a3e"
+      },
+      "object_mapping_check": "本条说明在线softmax与逻辑中间结果的组合。虽然涉及内存访问，原文没有确立合同中system:memory所属的数据中心物理内存范围，更没有HBM或RDIMM/MRDIMM依据；算法软件也不属于DCIM/BMS与固件控制链，因此保持空映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:19:claim:1:ev:0"
+      ],
+      "id": "adoption:review:6740294826b2e0baefc7c076",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-inference-profile",
+        "NODE-workload-inference-placement"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The Manos, The Mythos, The Legendos》（发表时间未知）作者在第20页称，所述Attention Residuals两阶段推理设计的IO足迹与标准残差架构相似，额外增加的第一阶段块间计算通过批处理块内全部查询来摊销。这是作者对该设计的定性比较。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:02:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。IO足迹与批处理摊销实质关联当前推理资源特征和运行组织问题，可按B类作为局部作者解释采用。未发现A条件。标准残差架构是模型架构参照，尚不足以挂接要求计算与存储系统自身可比证据的NODE-system-compute-tradeoff。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-workload-inference-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 127.52,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8f80341f2da9c7a2a8da7f65cc3d6631ff486294add89cdc48fbdc460b821a82",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70404,
+            "output_tokens": 4284,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.669,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "709edb790d460e9973c393b65a5254783d8c2eaf36e7bf4a13964e8aad297e6e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67810,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 171
+            }
+          }
+        },
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:19:claim:1"
+      ],
+      "limitations": "未定义IO足迹的计量口径或相似程度，未给出同模型、同负载、同硬件环境的对照结果；摊销不表示额外计算被消除。未提供可靠性、运维、成本、地域或部署阶段证据。",
+      "conflict_check": "既有推理瓶颈与阶段调度记录没有相同两阶段实现的IO对照结论；本条不宣称普遍效率优势，未发现真实冲突或规范重复。legacy筛选为空，不能据此视为完成外部性能反证验证。",
+      "gap_dependency_check": "仍需明确IO分母、计算增量、块大小及带工况实测。系统tradeoff问题还缺系统层面的相同负载比较、成本、可靠性和运维约束，因此不挂接；已关联的两个问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "66baffef8c9b54b766a0e98e0a99217c6bf02add56220bb794b4d7be4faa8a3e"
+      },
+      "object_mapping_check": "比较对象为模型残差架构及算法IO组织，不是合同中system:compute下的计算设备或system:storage下的存储系统。未建立数据中心硬件系统范围，不能凭IO术语增添计算、内存或存储基础设施映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:19:claim:2:ev:0"
+      ],
+      "id": "adoption:review:df2911edbdb4bcd88aadad3b",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-conversion"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The Manos, The Mythos, The Legendos》（发表时间未知）作者在第20页描述，LatentMoE在分发操作前压缩路由token，在聚合操作后解压缩。这是作者对模型结构中通信载荷处理机制的说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:02:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。分发前压缩与聚合后解压缩提供模型结构影响通信载荷的具体机制，与当前模型需求向资源需求转换工单有实质但有限的关系。连续引文及邻页通信讨论提供充分语境，未发现A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 127.52,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8f80341f2da9c7a2a8da7f65cc3d6631ff486294add89cdc48fbdc460b821a82",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70404,
+            "output_tokens": 4284,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.669,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "709edb790d460e9973c393b65a5254783d8c2eaf36e7bf4a13964e8aad297e6e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 67810,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 171
+            }
+          }
+        },
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:19:claim:2"
+      ],
+      "limitations": "没有压缩比例、精度、实测通信量、网络类型、部署规模或净性能效果；不能直接量化数据中心网络设备、带宽、算力或电力需求。地域和实际部署阶段未建立。",
+      "conflict_check": "既有模型规模与专家稀疏程度预测没有说明相同压缩机制，属于相关但不同主张；后训练选址、平台经济性和推理阶段记录也无同口径反证。未发现真实冲突或重复，legacy空筛选不等于外部全面核验。",
+      "gap_dependency_check": "需求转换仍缺压缩系数、路由负载、专家并行条件、通信与计算净变化、时滞及不确定性验证。机制描述由文字独立支持，不依赖公式或图像数值；工单保持开放，不新增骨架或模型取值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "17510478fb82358d59f58cb8d926e2c61b947e40b0f063ae4176dec7dd311fad",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "66baffef8c9b54b766a0e98e0a99217c6bf02add56220bb794b4d7be4faa8a3e"
+      },
+      "object_mapping_check": "实际范围是LatentMoE的路由token表示与操作顺序。合同未列模型算法对象，且分发与聚合未指定数据中心网络资产、接口或网络设备，不能自动映射system:network或其网络链，也不能因问题位于root而映射整座数据中心。"
     }
   ],
   "answers": [],
