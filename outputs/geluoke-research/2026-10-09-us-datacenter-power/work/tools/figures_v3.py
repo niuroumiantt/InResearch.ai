@@ -148,7 +148,7 @@ b+=ls(22,822,['85%不是“85%的未使用电量”。','条款保护的是为�
 b+=footer(923,'来源：SCC 2026-02-24说明第2页；Ohio Consumers’ Counsel')
 save(8,'cost-contracts',950,b,'两地85%的分母、合同期限与生效条件分别是什么？',['scc','ohio'], 'comparison')
 # 9. Non-comparable forecasts are explicitly shown as separate panels.
-b=head('居民成本会怎样变，要看地区与合同','两种不同情景，不能拼成一个全国结论')
+b=head('客户成本会怎样变，要看地区与合同','两种不同情景，不能拼成一个全国结论')
 b+=rect(22,125,596,268,'#fff4ec')+t(42,167,'弗吉尼亚 · JLARC情景研究',28,GOLD,700)+t(42,226,'+14—37 美元 / 月',42,GOLD,700)
 b+=ls(42,276,['到2040年，典型Dominion居民客户','发电与输电相关月成本增量，不变价','2024年研究估计，并非现时账单涨幅'],24,INK,35)
 b+=rect(22,420,596,268,'#eef7f3')+t(42,463,'佐治亚 · Georgia Power公司预测',27,GREEN,700)+t(42,522,'约9.5 亿美元 / 年',42,GREEN,700)

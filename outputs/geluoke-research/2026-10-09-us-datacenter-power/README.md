@@ -20,13 +20,13 @@
 
 `sources.json`保留52条访问/线索记录：包括成功原件、网页工具正文与失败访问；失败不计已读证据。实际核对45条来源访问身份，其中7条受限原站链接使用归档工具响应，分别标识。原始PDF/HTML及响应放在本机原件目录，并独立打包`research-originals.zip`，不进入Git。`research/originals-manifest.json`记录原件SHA；网页工具响应的SHA不冒充原站字节SHA。
 
-导入前先核对原件包SHA，将research文字与submission目录交给既有素材接收/阅读流程。可运行`python3 manage.py submissions <解压目录>/research`复核字段；该命令没有执行Reader深读、C3或远程数据库采用。本包也不是inews日报daily-receive事件包。正式价格、事实、项目GW与模型基准均未改写，研究问题未关闭。
+2026-10-09续做已核对传输147文件与上游原始归档89文件SHA，Spark实际接收23/23来源（20下载原件+3明确身份的工具响应UTF-8载体），候选匹配23、错误0。接收回执与载体响应/派生SHA说明分别见checks/spark-intake-final-receipt-20261009.json和checks/spark-intake-final-provenance-20261009.json；当前状态与剩余步骤见[研究接收台账](../../../docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md)。本包不是inews日报daily-receive事件包；正式价格、事实、项目GW与模型基准均未改写，研究问题未关闭。
 
 ## 核验
 
-checks/validation.json记录来源身份、短引、实际表格、作者计算、HTML与图片限额；checks/browser.json记录wechat/full/lite在1000px和390px的整篇布局检查，无横向溢出。网页手机版两侧8px，实际正文374px，桌面正文720px。浏览器实际复制并读取HTML剪贴板，再插入contenteditable，15张图片全部保留（含首图）。
+初次第三版的历史检查：checks/validation.json记录来源身份、短引、实际表格、作者计算、HTML与图片限额；checks/browser.json记录当时wechat/full/lite在1000px和390px的整篇布局检查，无横向溢出。网页手机版两侧8px，实际正文374px，桌面正文720px。浏览器实际复制并读取HTML剪贴板，再插入contenteditable，15张图片全部保留（含首图）。
 
-十四幅正文图及首图已目检；手机正文与六章视口已检查，整篇截图在checks中。来源核对与编辑审核由同一作者完成，不宣称独立第三方终审。PDF采用物理页码并与正文页码分别标记；引用只定位相关内容，未宣称全部原件逐页深读。配电变压器历史交期不推广为全部主变2026报价，供电容量不冒充IT负荷，未来节点不冒充投运。
+初次第三版的十四幅正文图及首图已目检；当时手机正文与六章视口已检查，整篇截图在checks中。来源核对与编辑审核由同一作者完成，不宣称独立第三方终审。PDF采用物理页码并与正文页码分别标记；引用只定位相关内容，未宣称全部原件逐页深读。配电变压器历史交期不推广为全部主变2026报价，供电容量不冒充IT负荷，未来节点不冒充投运。
 
 仓库治理9项单元测试、governance检查、严格数据校验及对象引用检查通过。额外运行现有`submissions --selftest`时，一项既有“普通材料”样例被库内不同施工口径的11600元/㎡记录判为疑似冲突A（样例4200元/㎡），导致旧预期“待匹配”断言失败。本次未改分流代码、样例或事实库；实际交付23件格式校验通过，既有自检失败单独记录在checks/repository.json。
 
@@ -45,4 +45,18 @@ work/tools包含取材、研究侧车、SVG制图、浏览器渲染、组装、�
 
 三张地图使用真实州形状，互联范围依据EIA/ERCOT概览重绘，不能判定具体园区接入边界；其他两张州地图只标示案例/价格所在州。新版来源和几何身份在work/v3/visual-sources.json，原件/工具响应与失败请求分别保留。全部正文发布图1280px宽，单张最大约0.55MB。完整浏览器检查已通过15张图复制往返，真实公众号实粘仍待验证。
 
-第三版规则与成品源码已提交[草稿PR #427](https://github.com/niuroumiantt/InResearch.ai/pull/427)，尚未合并；旧PR #423已合并，与本次修订分开记。已保留远程同期技术图册改动。本机下载入口在主工作区同名outputs目录；包SHA见下载目录packages.json。
+第三版规则与成品源码[PR #427](https://github.com/niuroumiantt/InResearch.ai/pull/427)已合并；该PR的CI因Actions预算阻止job启动，不能记为CI通过。旧PR #423也已合并。已保留远程同期技术图册改动。初次交付包仍在m5原位置，续做图9成品zip另存本次工作树ignored的reports/output/geluoke-delivery/，不覆盖旧包；本轮包装SHA另存同目录packages.json。
+
+## 2026-10-09续做：图9与实际研究接收
+
+图9总题、alt与图注改为客户成本，数据及条件保持；只重制图9并实际查看374px手机图。三版HTML的390/1000px共6次检查通过；新检查为checks/*title*20261009*，原有检查未覆盖或冒充本轮执行。
+
+Reader scope保留既有133条与日报选择，追加23条至156（先21、解析器部署后再加DOE/PJM两条）。2026-10-09 11:39:55北京时间快照：23/23注册，hold0，queued22/complete1，triage14/read2/extract6/complete1，chunks_read13、完整封存报告1；完成项为Crane工具响应正文载体，不称23份已深读/C3。PR #436已合并，Spark Reader于11:27:32安全换代，新PID1644248 active/running、源码b5e669ab、解析器SHA322b316bbc5bc0bce0c3fc4b4835b2a23c7f9d42f06c0f81ae20f17a26aaa650。最终快照与服务回执为checks/spark-reader-progress-final-20261009.json和checks/spark-parser-service-release-20261009.json。
+
+首次官方扫描因another_worker_owns_queue拒绝，当时未强占/第二worker/重启；11:10:44的21注册/封存0快照与初次回执继续保留。后续安全换代及23注册以最终记录为准。最终回执保留初次阶段字段，当前由scope_after_parser_release156和空hold明确覆盖。
+
+FERC六月改革、Crane、Talen三份正文载体只解码归档工具JSON正文并加身份头；响应SHA与派生UTF-8 SHA分别登记，原站字节SHA保持null，不增加独立证据。URL仍在永久incoming来源侧车，未完整导入catalog。来源接收、候选匹配、Reader注册与完整阅读分开计量；已有1份封存，C3、正式研究采用及公众号实粘/上传/发布均未执行。
+
+初次交付历史保留：原README曾写“实际公众号账号上传、编辑器实粘及发布尚未执行”和“该命令没有执行Reader深读、C3或远程数据库采用”。其中公众号、深读与C3边界仍适用；本轮新增来源接收/Reader登记以真实回执为准，不改写旧检查。
+
+最终本轮本地验收：治理2026.10.09.12、1532文件清单通过，严格数据校验0 warnings、对象/问题引用353/458有效、9项治理单测及最终三HTML×两视口6次检查通过。图9最终374px手机图已实际目检。CI按本次用户授权不查询或等待；本机图文交付与Spark来源/Reader服务回执分别计量。
