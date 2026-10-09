@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.59。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.60。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2135。
+在册文件：2163。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 324 |
+| 静态资源 | 328 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 339 |
+| 运行代码 | 341 |
 | 现行规范 | 15 |
-| 项目配置 | 541 |
+| 项目配置 | 559 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 166 |
-| 测试 | 172 |
+| 配套说明 | 168 |
+| 测试 | 174 |
 
 ## 在册记录集合
 
@@ -699,7 +699,8 @@
 | `docs/design/technical-atlas/TA-20/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-20/acceptance-v1.json` | references | 4 |
 | `docs/design/technical-atlas/TA-20/acceptance-v1.json` | artifacts | 6 |
-| `docs/design/technical-atlas/TA-20/acceptance-v1.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-20/acceptance-v1.json` | not_verified | 8 |
+| `docs/design/technical-atlas/TA-20/acceptance-v1.json` | independent_reviews | 1 |
 | `docs/design/technical-atlas/TA-20/anchor-fix-v1.json` | old_local | 3 |
 | `docs/design/technical-atlas/TA-20/anchor-fix-v1.json` | correct_local | 3 |
 | `docs/design/technical-atlas/TA-20/asset-manifest-v1.json` | pixels | 2 |
@@ -728,12 +729,66 @@
 | `docs/design/technical-atlas/TA-20/offline-label-scan-v1.json` | paths | 12 |
 | `docs/design/technical-atlas/TA-20/offline-label-scan-v1.json` | hits | 0 |
 | `docs/design/technical-atlas/TA-20/offline-label-scan-v1.json` | outside | 0 |
+| `docs/design/technical-atlas/TA-20/public-checks-v1.json` | downloads | 2 |
+| `docs/design/technical-atlas/TA-20/public-checks-v1.json` | boundaries | 8 |
+| `docs/design/technical-atlas/TA-20/publication-20261010.json` | source_history | 2 |
+| `docs/design/technical-atlas/TA-20/publication-20261010.json` | related_interactive_entries | 2 |
+| `docs/design/technical-atlas/TA-20/publication-20261010.json` | downloads | 2 |
+| `docs/design/technical-atlas/TA-20/publication-20261010.json` | boundaries | 8 |
 | `docs/design/technical-atlas/TA-20/references-v1.json` | items | 4 |
 | `docs/design/technical-atlas/TA-20/source-public-geometry-check-v2.json` | sources | 2 |
 | `docs/design/technical-atlas/TA-20/source-public-geometry-check-v2.json` | route_errors | 0 |
 | `docs/design/technical-atlas/TA-20/source-validation-v1.json` | parse_only | 2 |
 | `docs/design/technical-atlas/TA-20/source-validation-v1.json` | public_required | 5 |
 | `docs/design/technical-atlas/TA-20/technical-sources-v1.json` | unknown | 7 |
+| `docs/design/technical-atlas/TA-21/acceptance-v1.json` | artifacts | 4 |
+| `docs/design/technical-atlas/TA-21/acceptance-v1.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-21/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-21/asset-manifest-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-21/asset-manifest-v1.json` | assets | 4 |
+| `docs/design/technical-atlas/TA-21/asset-manifest-v1.json` | source_components | 3 |
+| `docs/design/technical-atlas/TA-21/generation-v1.json` | native_components | 3 |
+| `docs/design/technical-atlas/TA-21/generation-v1.json` | component_affines | 3 |
+| `docs/design/technical-atlas/TA-21/independent-source-review-v1.json` | sources | 14 |
+| `docs/design/technical-atlas/TA-21/independent-source-review-v1.json` | confirmed_boundaries | 6 |
+| `docs/design/technical-atlas/TA-21/independent-source-review-v1.json` | old_page_diff_check | 4 |
+| `docs/design/technical-atlas/TA-21/independent-source-review-v1.json` | resolved_findings | 1 |
+| `docs/design/technical-atlas/TA-21/independent-source-review-v1.json` | remaining_risks | 2 |
+| `docs/design/technical-atlas/TA-21/labels-v1.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | source | 2 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | sourceInstances | 32 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | visibleInstances | 12 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | anchors | 4 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | nonphysical | 3 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | notModeled | 2 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | sourceBodies | 4 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | requests | 8 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | errors | 0 |
+| `docs/design/technical-atlas/TA-21/offline-label-scan-v1.json` | viewport | 2 |
+| `docs/design/technical-atlas/TA-21/offline-label-scan-v1.json` | external | 0 |
+| `docs/design/technical-atlas/TA-21/offline-label-scan-v1.json` | texts | 32 |
+| `docs/design/technical-atlas/TA-21/offline-label-scan-v1.json` | paths | 4 |
+| `docs/design/technical-atlas/TA-21/offline-label-scan-v1.json` | hits | 0 |
+| `docs/design/technical-atlas/TA-21/offline-label-scan-v1.json` | outside | 0 |
+| `docs/design/technical-atlas/TA-21/references-v1.json` | references | 5 |
+| `docs/design/technical-atlas/TA-21/source-review-v1.json` | artifacts | 4 |
+| `docs/design/technical-atlas/TA-21/source-review-v1.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-21/source-validation-v1.json` | parse_only | 3 |
+| `docs/design/technical-atlas/TA-21/source-validation-v1.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-21/source-validation-v1.json` | preparation_failures_retained | 5 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | source | 2 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | sourceInstances | 32 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | visibleInstances | 12 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | anchors | 4 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | nonphysical | 3 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | notModeled | 2 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | sourceBodies | 4 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | requests | 8 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | errors | 0 |
+| `docs/design/technical-atlas/TA-21/technical-sources-v1.json` | sources | 5 |
+| `docs/design/technical-atlas/TA-21/technical-sources-v1.json` | unknown | 4 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -1110,8 +1165,8 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 36 |
-| `framework/interface_manifest.json` | public_pages | 18 |
+| `framework/interface_manifest.json` | static_pages | 37 |
+| `framework/interface_manifest.json` | public_pages | 19 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -1625,12 +1680,32 @@
 | `docs/design/technical-atlas/TA-20/native-render-proof-v2.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-20/native-render-v2.cjs` | 项目配置 |
 | `docs/design/technical-atlas/TA-20/offline-label-scan-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-20/public-checks-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-20/public-progress-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-20/publication-20261010.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-20/references-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-20/source-public-geometry-check-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-20/source-public-geometry-check-v2.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-20/source-validation-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-20/technical-sources-v1.json` | 项目配置 |
+| [docs/design/technical-atlas/TA-21/SCOPE.md](design/technical-atlas/TA-21/SCOPE.md) | 配套说明 |
+| `docs/design/technical-atlas/TA-21/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/asset-manifest-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/bom3d-before-v1.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-21/composite-render-v1.cjs` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/generation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/independent-source-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/label-render-v1.cjs` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/labels-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/native-render-proof-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/native-render-v1.cjs` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/offline-label-scan-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/references-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/source-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/source-validation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.cjs` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/surface-verification-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-21/technical-sources-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -1722,6 +1797,7 @@
 | [docs/handoff/review-literal-recovery-20261008.md](handoff/review-literal-recovery-20261008.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
+| [docs/handoff/technical-atlas-20261010.md](handoff/technical-atlas-20261010.md) | 配套说明 |
 | [docs/handoff/technical-atlas-m4-20261009.md](handoff/technical-atlas-m4-20261009.md) | 配套说明 |
 | [docs/handoff/technical-atlas-standard-20261008.md](handoff/technical-atlas-standard-20261008.md) | 配套说明 |
 | [docs/handoff/us-datacenter-power-20261009.md](handoff/us-datacenter-power-20261009.md) | 配套说明 |
@@ -2789,6 +2865,7 @@
 | `tests/datacenter_economics.cjs` | 测试 |
 | `tests/datacenter_news.cjs` | 测试 |
 | `tests/datacenter_tco.cjs` | 测试 |
+| `tests/facility_domain.cjs` | 测试 |
 | `tests/industry.cjs` | 测试 |
 | `tests/model_assets.cjs` | 测试 |
 | `tests/nvidia_pilot.cjs` | 测试 |
@@ -2847,6 +2924,7 @@
 | `tests/unit/test_dropped_claims.py` | 测试 |
 | `tests/unit/test_editorial_sync.py` | 测试 |
 | `tests/unit/test_export_fold.py` | 测试 |
+| `tests/unit/test_facility_domain_assets.py` | 测试 |
 | `tests/unit/test_fact_contract.py` | 测试 |
 | `tests/unit/test_fetchspec_backflow.py` | 测试 |
 | `tests/unit/test_fetchspec_receive.py` | 测试 |
@@ -3015,6 +3093,10 @@
 | `web/assets/technical-atlas/coldplate-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/coldplate-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/coldplate-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/facility-domain-v1-preview.jpg` | 静态资源 |
+| `web/assets/technical-atlas/facility-domain-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/facility-domain-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/facility-domain-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/fan-wall-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/fan-wall-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/fan-wall-v1.png` | 静态资源 |
@@ -3359,6 +3441,7 @@
 | `web/pages/compare.html` | 运行代码 |
 | `web/pages/compute-catalog.html` | 运行代码 |
 | `web/pages/doc.html` | 运行代码 |
+| `web/pages/facility-atlas.html` | 运行代码 |
 | `web/pages/index.html` | 运行代码 |
 | `web/pages/ledger.html` | 运行代码 |
 | `web/pages/node.html` | 运行代码 |

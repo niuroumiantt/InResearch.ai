@@ -141,6 +141,20 @@ const campusPlan={
  related:[{id:'TA-18',title:'园区旋转与设备拾取 · TA-18',image:'/bom3d.html'},{id:'TA-19',title:'园区分层交互 · TA-19',image:'/bom3d.html?x=70'}],
 };
 
+const facilityDomain={
+ id:'TA-21',title:'设施与站点权利 · 同一八柜空间示例',
+ image:'/assets/technical-atlas/facility-domain-v1.svg',preview:'/assets/technical-atlas/facility-domain-v1-preview.svg',master:'/assets/technical-atlas/facility-domain-v1.png',
+ alt:'八个闭合机柜位于同源建筑梁柱、保留屋面和基础内；右侧消防、安防为独立类别图，本八柜场景未建模；底部六类站点权利为非物理文字入口。',
+ note:'同源建筑四实例组与八柜保持原位置；其他机电只在本母图隐藏。消防与安防采用独立已验类别图，不共用比例、不是本布局局部放大，也不证明安装、覆盖或合规。土地、取用水、电网、燃料、通信和许可是六类非物理证据入口，地面与设备不证明权利成立。微模块是交付模板，DCIM归控制软件；比例、数量与现场适用未知，非OEM/CAD或施工图。',
+ labels:['建筑与机柜：保留屋面、围护、梁柱、基础和八柜来自同一组实际程序几何；空间包含不是能量流',
+ '消防与安防：八柜三维场景未造实体，独立类别图与研究入口保留，未认证位置、覆盖或合规',
+ '六站点入口：site:land、site:water-rights、site:grid、site:gas-supply、site:network-access、site:permits；权属/配额/许可均需证据',
+ '非物理边界：modular-dc为配置交付模板，dcim为控制软件，不造额外设备或以建筑轮廓代替权利',
+ '研究关系：系统与链路是研究提纲，公司与产品属于类别；无现场证据不补供应者、权利人或有向连接',
+ '实际交互：设施领域保留旋转、逐实例拾取、类别档案、显式适配和当前视角导出；六权利独立档案无三维物理件'],
+ related:[{id:'TA-21-3D',title:'设施领域旋转与独立档案',image:'/bom3d.html?d=facility'},{id:'TA-37',title:'消防独立类别图',image:'/bom.html#fire'},{id:'TA-38',title:'安防独立类别图',image:'/bom.html#security'},{id:'TA-20',title:'同一园区严格俯视',image:'/campus-plan.html'}],
+};
+
 const rackOverview = {
   id:'TA-13', title:'机柜整柜 · 安装分区与结构',
   image:'/assets/technical-atlas/rack-overview-v1.svg', preview:'/assets/technical-atlas/rack-overview-v1-preview.svg',
@@ -203,7 +217,7 @@ export function atlasCategoryNote(partId, {view} = {}) {
 }
 
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
+  const item = partId === 'facility-domain' && view === 'domain' ? facilityDomain : ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');
