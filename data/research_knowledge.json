@@ -17002,6 +17002,173 @@
     },
     {
       "acceptance": "adopted",
+      "chunk_sha256": "58ee9d17a573e62b5b1267c7c449c8796d5ad3d614a9cd3db36ac917b6b05d10",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:18:claim:6:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [
+        "system:it"
+      ],
+      "page_index": 18,
+      "question_ids": [],
+      "quote": "In our testing, storage performance is strong, with\nvolume discounts available for file and object storage.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T06:27:00+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。文件与对象存储批量折扣实质关联当前存储成本及算力云服务计价工单，可作为有作者归属的局部定性证据采用。连续引文、前页的综合情境定义及后页的档次说明提供充分语境，未发现A类条件。存储性能较强未提供负载自身的资源需求或带工况实测样本，对NODE-workload-storage-profile仅有背景价值，因此不挂接。",
+        "workorder_ids": [
+          "Q-NODE-workload-storage-economics",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 76.901,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4827d1aec8f52fe3a38dc99b204957b5c24786429d4517a79662d2542b70a820",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57000,
+            "output_tokens": 2065,
+            "reasoning_output_tokens": 296
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.272,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7324e56f71a05d6b666eb2101b734bb24717a553c06225d940d2d84e4aed426b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 57028,
+              "output_tokens": 472,
+              "reasoning_output_tokens": 198
+            }
+          }
+        },
+        "batch_id": "c9a152cc71fb169cd7643dcd1c87769906985dc34c7e84753b564bf4dc8482ce"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "58ee9d17a573e62b5b1267c7c449c8796d5ad3d614a9cd3db36ac917b6b05d10",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:18:claim:7:ev:0",
+      "locator": "page:19/chunk:18",
+      "object_ids": [
+        "system:it"
+      ],
+      "page_index": 18,
+      "question_ids": [],
+      "quote": "On networking, we have seen\nexpected InfiniBand or RoCE performance out of the box with little to no setup time.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T06:27:00+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。网络初始配置开销是算力云交付中的具体工程约束，实质关联当前NODE-activity-V3-chain工单，可按作者观察作局部采用。连续引文和综合供应商情境足够，未触发A类条件。该段未区分训练、推理或其他负载，没有训练阶段、调度、地域、利用率或负载共存证据，因此不挂接NODE-workload-training-placement。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 76.901,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4827d1aec8f52fe3a38dc99b204957b5c24786429d4517a79662d2542b70a820",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57000,
+            "output_tokens": 2065,
+            "reasoning_output_tokens": 296
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.272,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7324e56f71a05d6b666eb2101b734bb24717a553c06225d940d2d84e4aed426b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 57028,
+              "output_tokens": 472,
+              "reasoning_output_tokens": 198
+            }
+          }
+        },
+        "batch_id": "c9a152cc71fb169cd7643dcd1c87769906985dc34c7e84753b564bf4dc8482ce"
+      }
+    },
+    {
+      "acceptance": "adopted",
       "chunk_sha256": "bf2bc7f459d73082a21e7741658a40e6c127d1fceb0f67caa7bc5eb6a3c2d3f1",
       "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
       "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:13:ev:0",
@@ -33930,6 +34097,206 @@
         "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634",
         "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
         "request_sha256": "fd85ad60f84dbffe68996fc5a134b72598b1faa1a5141900c86f612db33b871b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:18:claim:6:ev:0"
+      ],
+      "id": "adoption:review:9699161e03538c6fbbcb3dea",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:it"
+      ],
+      "question_ids": [
+        "NODE-workload-storage-economics",
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "《How Much Do GPU Clusters Really Cost?》（发表时间未知）作者在第19页称，在其测试中，Gold档云服务的存储性能较强，文件存储和对象存储可获得批量折扣。前页说明，这一档次是综合同档供应商平均使用体验构成的代表性情境，粗略以Nebius、Fluidstack和Crusoe表示，并非供应商间的直接比较。本项仅记录作者的测试评价及计价描述，未经本次独立验证，不认证各供应商当前均具备这些特征。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T06:27:00+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。文件与对象存储批量折扣实质关联当前存储成本及算力云服务计价工单，可作为有作者归属的局部定性证据采用。连续引文、前页的综合情境定义及后页的档次说明提供充分语境，未发现A类条件。存储性能较强未提供负载自身的资源需求或带工况实测样本，对NODE-workload-storage-profile仅有背景价值，因此不挂接。",
+        "workorder_ids": [
+          "Q-NODE-workload-storage-economics",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 76.901,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4827d1aec8f52fe3a38dc99b204957b5c24786429d4517a79662d2542b70a820",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57000,
+            "output_tokens": 2065,
+            "reasoning_output_tokens": 296
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.272,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7324e56f71a05d6b666eb2101b734bb24717a553c06225d940d2d84e4aed426b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 57028,
+              "output_tokens": 472,
+              "reasoning_output_tokens": 198
+            }
+          }
+        },
+        "batch_id": "c9a152cc71fb169cd7643dcd1c87769906985dc34c7e84753b564bf4dc8482ce"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:18:claim:6"
+      ],
+      "limitations": "未披露测试时间、地域、具体项目阶段、供应商与样本的对应关系、存储配置、负载、吞吐量、时延或可靠性指标；也未给出折扣幅度、容量门槛、合同条件、计费单位和费用包含范围。相邻段落关于GPU价格的大集群及长期合同条件不能自动移用于存储折扣。图题中的2026年4月是评级标注时间，不能据此确定文章发表时间或本项测试时间。",
+      "conflict_check": "现有已采用陈述涉及合同取消权、收入风险、平台利润传导及GPU云价格战，未与本条存储评价及折扣描述形成直接冲突或规范重复。旧H100挂牌价记录指出网络及对象存储另计，这与存储可有折扣可以并存；旧价格也不能验证本项折扣或提供当前报价。其他旧网络成本、设备功率及架构记录不属同口径存储测试。所供合同和项目匹配记录为空；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "仅补充两项当前问题中的服务计价维度，不回答或关闭问题。计算存储单位有效产出成本仍需实际报价、折扣条款、有效产出、性能工况与完整成本边界；评估算力资产经济性仍需收入、资本开支、运营成本及合同证据。不得据此更新已有成本参数或把服务档次评价覆盖为整个节点的答案。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c9a152cc71fb169cd7643dcd1c87769906985dc34c7e84753b564bf4dc8482ce",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "a1a11185d4119cd1fb15f0d04caa48aff3024172fe11b1882cbae019a2d2e965"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:18:claim:7:ev:0"
+      ],
+      "id": "adoption:review:ee036805dbf32ffebb25a8ea",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:it"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-chain"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "《How Much Do GPU Clusters Really Cost?》（发表时间未知）作者在第19页称，其观察到Gold档云服务的InfiniBand或RoCE网络开箱即可达到作者所称的预期性能，所需设置时间很少或没有。前页将Gold档定义为同档供应商平均使用体验的综合示例，粗略以Nebius、Fluidstack和Crusoe表示，并非供应商间的直接比较。本项记录作者对网络初始交付与配置体验的定性观察，不构成各供应商当前性能或交付时长的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T06:27:00+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。网络初始配置开销是算力云交付中的具体工程约束，实质关联当前NODE-activity-V3-chain工单，可按作者观察作局部采用。连续引文和综合供应商情境足够，未触发A类条件。该段未区分训练、推理或其他负载，没有训练阶段、调度、地域、利用率或负载共存证据，因此不挂接NODE-workload-training-placement。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 76.901,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4827d1aec8f52fe3a38dc99b204957b5c24786429d4517a79662d2542b70a820",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57000,
+            "output_tokens": 2065,
+            "reasoning_output_tokens": 296
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.272,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7324e56f71a05d6b666eb2101b734bb24717a553c06225d940d2d84e4aed426b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 57028,
+              "output_tokens": 472,
+              "reasoning_output_tokens": 198
+            }
+          }
+        },
+        "batch_id": "c9a152cc71fb169cd7643dcd1c87769906985dc34c7e84753b564bf4dc8482ce"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:18:claim:7"
+      ],
+      "limitations": "未定义预期性能，也未给出带宽、时延、吞吐量、设置耗时、网络拓扑、设备、协议版本、集群规模或测试方法。地域、测试时间、具体项目及阶段未建立；原话仅描述开箱配置体验，不证明完整训练系统无需部署调试或持续运行没有故障。不得把RoCE改写为特定版本。2026年4月评级图题不能确定发表或测试时间。",
+      "conflict_check": "已采用的AllReduce网络问题与GPU闲置陈述涉及大规模训练运行期间的同步问题，本项涉及综合云服务的初始配置体验；缺少同集群、同工况条件，不能确立真实冲突，也不能据此消除运行风险。旧以太网超过InfiniBand的年份预测、网络资本开支预测、网络设计节省推算及字节跳动RoCE架构上限均不验证或反驳本项设置体验。未发现规范重复；所供合同和项目匹配记录为空，不覆盖既有结论，亦不视为穷尽外部反证。",
+      "gap_dependency_check": "仅补充网络配置对算力云交付约束的定性线索，不回答或关闭传导问题。仍需具体交付项目的设置与调试记录、验收指标、前置依赖、延误原因、时间滞后及反例，才能判断交付周期和可验证领先指标。训练配置问题仍需训练自身的阶段与调度证据，不能由本项云服务体验自动覆盖；不得推导网络份额、吞吐量或利用率改善幅度。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c9a152cc71fb169cd7643dcd1c87769906985dc34c7e84753b564bf4dc8482ce",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "a1a11185d4119cd1fb15f0d04caa48aff3024172fe11b1882cbae019a2d2e965"
       }
     },
     {

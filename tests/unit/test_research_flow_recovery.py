@@ -1,6 +1,7 @@
 import copy
 import hashlib
 import json
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -76,6 +77,14 @@ class SourcePacketRecoveryTests(unittest.TestCase):
 
 
 class PublisherIsolationTests(unittest.TestCase):
+    def test_command_stdout_errors_are_actionable_and_other_output_private(self):
+        with self.assertRaises(RuntimeError) as caught:
+            publication.run([sys.executable,'-c',
+                "import sys; print('private diagnostic must stay out'); print('ERROR: reviewed source is stale'); sys.exit(2)"])
+        self.assertIn('exit=2',str(caught.exception))
+        self.assertIn('ERROR: reviewed source is stale',str(caught.exception))
+        self.assertNotIn('private diagnostic',str(caught.exception))
+
     def blocked_publisher(self, td):
         p = publication.Publisher({'repo':td, 'state':td})
         bid = 'a'*64
@@ -126,9 +135,37 @@ class PublisherIsolationTests(unittest.TestCase):
                 p.advance = Mock()
                 results = [SimpleNamespace(stdout=json.dumps({'state':'OPEN', 'headRefOid':head})),
                            SimpleNamespace(stdout=json.dumps([{'name':'validate','bucket':bucket}]))]
-                with patch.object(publication, 'run', side_effect=results):
+                with patch.object(publication, 'run', side_effect=results), \
+                        patch.object(publication, 'refresh_publication_base', return_value='c'*40):
+                    journal = json.loads((dr/'journal.json').read_text())
+                    journal['worktree'] = str(Path(td)/'publication')
+                    atomic_json(dr/'journal.json', journal)
                     self.assertEqual(p.tick()['state'], 'blocked_batches')
                 p.advance.assert_not_called()
+
+    def test_failed_checks_rebase_to_approved_fix_and_require_new_checks(self):
+        with tempfile.TemporaryDirectory() as td:
+            p, bid, dr = self.blocked_publisher(td)
+            journal = json.loads((dr/'journal.json').read_text())
+            journal['worktree'] = str(Path(td)/'publication')
+            atomic_json(dr/'journal.json', journal)
+            p.remote = Mock(side_effect=[[{'batch_id':bid}],
+                                        {'bundle_sha256':'seal', 'context_current':True}])
+            p.advance = Mock(return_value={'state':'pr_open'})
+            pr = {'state':'OPEN', 'headRefOid':'c'*40}
+            checks = [{'name':'browser (core)', 'bucket':'fail'}]
+            with patch.object(publication, 'run', side_effect=[SimpleNamespace(stdout=json.dumps(pr)),
+                                                               SimpleNamespace(stdout=json.dumps(checks))]), \
+                    patch.object(publication, 'refresh_publication_base', return_value='d'*40) as refresh:
+                self.assertEqual(p.tick()['state'], 'pr_open')
+            refresh.assert_called_once_with(journal['worktree'], 'c'*40)
+            recovered = p.advance.call_args.args[1]
+            self.assertEqual(recovered['state'], 'prepared')
+            self.assertEqual(recovered['commit'], 'd'*40)
+            self.assertEqual(recovered['checks'], [])
+            self.assertEqual(recovered['recoveries'][0]['checks'], checks)
+            self.assertEqual(recovered['recoveries'][0]['error'], journal['error'])
+            self.assertEqual(recovered['base_refreshes'][0]['from'], 'c'*40)
 
     def test_blocked_source_verification_does_not_stop_later_batch(self):
         with tempfile.TemporaryDirectory() as td:
