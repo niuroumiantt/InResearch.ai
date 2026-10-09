@@ -7,7 +7,7 @@ const accepted = new Set(JSON.parse(readFileSync(join(__dirname,'../framework/vi
   .filter(row => ['accepted','published'].includes(row.status)).map(row => row.id));
 async function thumbnailSource(page, part, mode) {
   const card=page.locator(`.pbox[data-atlas-part="${part}"]`);
-  return mode==='system' ? card.locator('img').getAttribute('src') : card.locator('image').getAttribute('href');
+  return (await card.locator('img').count()) ? card.locator('img').getAttribute('src') : card.locator('image').getAttribute('href');
 }
 async function thumbnailTitle(page, part) {
   const card=page.locator(`.pbox[data-atlas-part="${part}"]`);
@@ -53,7 +53,7 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
         assert.equal(await page.locator('.technical-atlas[data-figure="TA-01"]').count(),0,'HDD must not inherit the SSD figure');
         assert.equal(await page.locator('.technical-atlas[data-figure="TA-16"]').count(),1,'system HDD has its own category illustration');
         await page.locator('[data-mode="scale"]').click();
-        assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'mode change must retain the non-SSD selection');
+        assert.equal(await page.locator('.technical-atlas[data-figure="TA-16"] h3').textContent(),'机械硬盘 · 开盖结构示意','scale retains the selected HDD category, never the SSD figure');
         await page.locator('.pbox[data-atlas-part="ssd"]').click();
         assert.equal(await page.locator('.technical-atlas').count(),1);
       }
@@ -168,7 +168,7 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
     await page.locator('#c-hdd').click();
     assert.equal(await page.locator('.technical-atlas[data-figure="TA-16"]').count(),1,'system HDD has its independent drawing');
     await page.locator('[data-mode="scale"]').click();
-    assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'system-only HDD drawing must not leak into retained scale bindings');
+    assert.equal(await page.locator('.technical-atlas[data-figure="TA-16"] img').getAttribute('src'),'/assets/technical-atlas/system/hdd-v2-preview.svg','scale explicitly reuses the same HDD artwork');
     assert.deepEqual(errors, []);
     console.log(`Technical atlas: SSD and ${illustrationCases.length} accepted category illustrations, system/scale context, editable SVG, zoom/downloads, narrow/light/dark and retained 3D passed`);
   } finally { await browser.close(); }

@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.47。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.48。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2040。
+在册文件：2052。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 310 |
+| 静态资源 | 312 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 330 |
+| 运行代码 | 331 |
 | 现行规范 | 15 |
-| 项目配置 | 484 |
+| 项目配置 | 489 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 159 |
-| 测试 | 164 |
+| 配套说明 | 161 |
+| 测试 | 166 |
 
 ## 在册记录集合
 
@@ -606,6 +606,12 @@
 | `docs/design/technical-atlas/TA-16/source-validation-v1.json` | source_files | 11 |
 | `docs/design/technical-atlas/TA-16/source-validation-v1.json` | retained_failed_attempts | 3 |
 | `docs/design/technical-atlas/TA-16/source-validation-v1.json` | not_verified | 6 |
+| `docs/design/technical-atlas/TA-17/overview-composition-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-17/overview-composition-v1.json` | references | 5 |
+| `docs/design/technical-atlas/TA-17/overview-composition-v1.json` | unknown | 5 |
+| `docs/design/technical-atlas/TA-17/scale-asset-bindings-v1.json` | items | 61 |
+| `docs/design/technical-atlas/TA-17/source-validation-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-17/source-validation-v1.json` | required_public_validation | 8 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -1433,6 +1439,14 @@
 | `docs/design/technical-atlas/TA-16/publication-20261010.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-16/source-validation-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-16/technical-atlas-before-v1.js` | 运行代码 |
+| [docs/design/technical-atlas/TA-17/SCOPE.md](design/technical-atlas/TA-17/SCOPE.md) | 配套说明 |
+| [docs/design/technical-atlas/TA-17/SOURCES.md](design/technical-atlas/TA-17/SOURCES.md) | 配套说明 |
+| `docs/design/technical-atlas/TA-17/baseline-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-17/bom-before-v1.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-17/overview-composition-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-17/scale-asset-bindings-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-17/scale-overview-composition-source-v1.svg` | 项目配置 |
+| `docs/design/technical-atlas/TA-17/source-validation-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -2602,6 +2616,7 @@
 | `tests/research_delivery.cjs` | 测试 |
 | `tests/research_summary.cjs` | 测试 |
 | `tests/run_browser.cjs` | 测试 |
+| `tests/scale_atlas.cjs` | 测试 |
 | `tests/scene_atlas.cjs` | 测试 |
 | `tests/scene_bootstrap.cjs` | 测试 |
 | `tests/scene_framing.cjs` | 测试 |
@@ -2724,6 +2739,7 @@
 | `tests/unit/test_research_sources.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_review_preference.py` | 测试 |
+| `tests/unit/test_scale_atlas_assets.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
 | `tests/unit/test_storage_layout.py` | 测试 |
 | `tests/unit/test_suite_integrity.py` | 测试 |
@@ -2836,6 +2852,8 @@
 | `web/assets/technical-atlas/rack-overview-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/rack-overview-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/rack-overview-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/scale-overview-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/scale-overview-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/security-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/security-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/security-v1.png` | 静态资源 |

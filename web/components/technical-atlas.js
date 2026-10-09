@@ -174,21 +174,21 @@ const chipPackage={
 illustrations.dram = illustrations.cpu;
 
 export function atlasPreviewTitle(partId, {view} = {}) {
-  return (view==='system' ? systemIllustrations[partId] || illustrations[partId] : illustrations[partId])?.title || '';
+  return (['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : illustrations[partId])?.title || '';
 }
 
 export function atlasPreview(partId, {view} = {}) {
-  const item = view==='system' ? systemIllustrations[partId] || illustrations[partId] : illustrations[partId];
+  const item = ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : illustrations[partId];
   return item?.tile || item?.preview || null;
 }
 
-// Generic system artwork must not certify the category research description as a selected device.
+// Explicit system/scale artwork must not certify the category research description as a selected device.
 export function atlasCategoryNote(partId, {view} = {}) {
-  return view === 'system' ? systemIllustrations[partId]?.note || '' : '';
+  return ['system','scale'].includes(view) ? systemIllustrations[partId]?.note || '' : '';
 }
 
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = view==='system' ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
+  const item = ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');
