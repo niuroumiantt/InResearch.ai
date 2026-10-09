@@ -2798,6 +2798,97 @@
       "status": "candidate",
       "stored_path": "originals/11/11d81d8bccad6c35871bfa81c717da6695d6202139b314d5767791e876f3e1d8/How AI Labs Are Solving the Power Crisis_ The Onsite Gas Deep Dive.pdf",
       "title": "How AI Labs Are Solving the Power Crisis: The Onsite Gas Deep Dive"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "coverage": {
+        "characters_read": 70556,
+        "characters_total": 70556,
+        "chunks_read": 35,
+        "chunks_total": 35,
+        "complete": true,
+        "gap_pages": [
+          32
+        ],
+        "pages_read": 36,
+        "pages_total": 36
+      },
+      "doc_id": "doc-417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "id": "doc-417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "library_path": "library/by-node/part-gpu/2025_SemiAnalysis_AMD Advancing AI_ MI350X and MI400 UALoE72, MI500 UAL25__417e755a7c4dccf5.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:amazon",
+        "actor:amd",
+        "actor:amd-instinct",
+        "actor:amd-pensando",
+        "actor:astera-labs",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:meta",
+        "actor:microsoft",
+        "actor:nvidia",
+        "actor:nvidia-networking",
+        "actor:openai",
+        "actor:xai",
+        "part:connector",
+        "part:cpu",
+        "part:gpu",
+        "part:hbm",
+        "part:network-switch",
+        "part:nic",
+        "part:optics",
+        "part:rack-system",
+        "part:server",
+        "part:ssd",
+        "part:storage-array",
+        "part:switch-asic",
+        "root",
+        "system:compute",
+        "system:it",
+        "system:memory",
+        "system:power"
+      ],
+      "question_ids": [
+        "OBJ-connector-definition",
+        "OBJ-connector-interfaces",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-definition",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-hbm-definition",
+        "OBJ-hbm-interfaces",
+        "OBJ-hbm-performance",
+        "OBJ-hbm-supply",
+        "OBJ-nic-definition",
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance",
+        "Q-SCOPE-arch-amd-gpu",
+        "Q-SCOPE-arch-blackwell",
+        "Q-SCOPE-arch-cdna",
+        "Q-SCOPE-arch-nvidia-gpu",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-8945857cab4f49009dfd9caf2400ef34",
+      "report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/41/417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9/AMD Advancing AI_ MI350X and MI400 UALoE72, MI500 UAL256 – SemiAnalysis.pdf",
+      "title": "AMD Advancing AI: MI350X and MI400 UALoE72, MI500 UAL256"
     }
   ],
   "evidence": [
@@ -14649,6 +14740,262 @@
           }
         },
         "batch_id": "12f48cd91a4fb0fbd1ea90860e84621afb75f927df5fec8d5f3ede040571803f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "7334157f4bbabd5fe5cbc9c21ff2969f24dd7dba29f6784f6c315fa41854ca51",
+      "document_id": "doc-417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "id": "rev-8945857cab4f49009dfd9caf2400ef34:chunk:6:claim:2:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [
+        "actor:nvidia",
+        "system:compute"
+      ],
+      "page_index": 6,
+      "question_ids": [],
+      "quote": "If DGX Lepton is successful, they will have created a standard user experience, with\nexactly the same feature set, value proposition and performance across all Neoclouds,\nwhich will put all the Neoclouds into a race to the bottom on pricing. They will\neffectively be turning Neocloud margins into ultra-low commodity level margins.",
+      "reading_revision_id": "rev-8945857cab4f49009dfd9caf2400ef34",
+      "source_sha256": "417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T02:52:04+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。定价竞争与利润压缩机制实质关联当前 NODE-activity-V3-economics 工单；连续引文及完整周边语境支持限定归因的部分预测，未发现A类条件，符合B类采用要求。对M13-Q03的回本周期及M13-Q04的流动性发育程度只有间接关系，不挂接这两项。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 142.671,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f01c6b8649bf62fc9870dff7a6f1d28c6d34851ec3f278592b465b471db35eb5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 34991,
+            "output_tokens": 4955,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.292,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5c89e3325c2517c6328f1f7996cc2832af6a3186c50242314dd59cde26bab402",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30614,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 236
+            }
+          }
+        },
+        "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "7334157f4bbabd5fe5cbc9c21ff2969f24dd7dba29f6784f6c315fa41854ca51",
+      "document_id": "doc-417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "id": "rev-8945857cab4f49009dfd9caf2400ef34:chunk:6:claim:3:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [
+        "actor:nvidia",
+        "part:gpu",
+        "system:compute"
+      ],
+      "page_index": 6,
+      "question_ids": [],
+      "quote": "In the same way that Uber/Lyft is a platform for connecting customers to drivers, DGX\nLepton appears to be seeking to be that platform for GPU compute. Famously,\nUber/Lyft have spawned an entire army of low margin gig economy workers that are\ncaptive to their platforms. DGX Lepton could have the same effect on Neoclouds.",
+      "reading_revision_id": "rev-8945857cab4f49009dfd9caf2400ef34",
+      "source_sha256": "417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T02:52:04+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。客户、算力供应方与撮合平台的关系，以及供应方依赖和低利润风险，实质关联当前边界及经济性工单。连续原文与周边语境充分，未触发A类条件，可采用为有限的作者观点。M13-Q04所问市场流动性没有得到直接证据，不挂接该问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-boundary",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 142.671,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f01c6b8649bf62fc9870dff7a6f1d28c6d34851ec3f278592b465b471db35eb5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 34991,
+            "output_tokens": 4955,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.292,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5c89e3325c2517c6328f1f7996cc2832af6a3186c50242314dd59cde26bab402",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30614,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 236
+            }
+          }
+        },
+        "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "7334157f4bbabd5fe5cbc9c21ff2969f24dd7dba29f6784f6c315fa41854ca51",
+      "document_id": "doc-417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "id": "rev-8945857cab4f49009dfd9caf2400ef34:chunk:6:claim:4:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [
+        "actor:nvidia",
+        "system:compute"
+      ],
+      "page_index": 6,
+      "question_ids": [],
+      "quote": "By lowering\nmiddleman margins, Nvidia has effectively increased performance per TCO for end\nusers without any impact to Nvidia’s own eye watering margins.",
+      "reading_revision_id": "rev-8945857cab4f49009dfd9caf2400ef34",
+      "source_sha256": "417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T02:52:04+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。中间商利润向用户算力性价比传导、同时作者认为Nvidia利润不受影响，实质关联当前层间利润转移、算力变现经济性及需求成本工单。连续引文及相邻预测语境支持限定归因的部分判断，未发现A类条件，可按B类采用。",
+        "workorder_ids": [
+          "Q-M11-Q12",
+          "Q-NODE-activity-V3-economics",
+          "Q-NODE-demand-D1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 142.671,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f01c6b8649bf62fc9870dff7a6f1d28c6d34851ec3f278592b465b471db35eb5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 34991,
+            "output_tokens": 4955,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.292,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5c89e3325c2517c6328f1f7996cc2832af6a3186c50242314dd59cde26bab402",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30614,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 236
+            }
+          }
+        },
+        "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
       }
     }
   ],
@@ -28637,6 +28984,313 @@
         "batch_id": "12f48cd91a4fb0fbd1ea90860e84621afb75f927df5fec8d5f3ede040571803f",
         "source_report_sha256": "632a46c48c8afd03dfa1fb4663050302154ed90441a4b13405f874f910a7b6f9",
         "request_sha256": "ccae6ecce7f486c668220814c2cd7e960c0bab7b870ff8b84d2f3ff2226e4d53"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "evidence_ids": [
+        "rev-8945857cab4f49009dfd9caf2400ef34:chunk:6:claim:2:ev:0"
+      ],
+      "id": "adoption:review:38f9653572f297c96ae95da3",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:nvidia",
+        "system:compute"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-8945857cab4f49009dfd9caf2400ef34",
+      "status": "adopted",
+      "text": "SemiAnalysis《AMD Advancing AI: MI350X and MI400 UALoE72, MI500 UAL256》（发表时间未知）作者预测：如果 DGX Lepton 成功，使 Neocloud 的用户体验、功能、价值主张和性能标准化，将引发价格竞争并把 Neocloud 利润率压向极低的商品化水平。上下文主要讨论推理及小规模训练，作者不预期大规模推理部署或大规模训练使用该平台。这是平台战略的条件性预测，未经独立验证，未确定适用地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T02:52:04+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。定价竞争与利润压缩机制实质关联当前 NODE-activity-V3-economics 工单；连续引文及完整周边语境支持限定归因的部分预测，未发现A类条件，符合B类采用要求。对M13-Q03的回本周期及M13-Q04的流动性发育程度只有间接关系，不挂接这两项。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 142.671,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f01c6b8649bf62fc9870dff7a6f1d28c6d34851ec3f278592b465b471db35eb5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 34991,
+            "output_tokens": 4955,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.292,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5c89e3325c2517c6328f1f7996cc2832af6a3186c50242314dd59cde26bab402",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30614,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 236
+            }
+          }
+        },
+        "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      },
+      "source_candidate_ids": [
+        "rev-8945857cab4f49009dfd9caf2400ef34:chunk:6:claim:2"
+      ],
+      "limitations": "没有实际租价、利润率、平台采用率、合同、硬件折旧或回本周期数据；标准化成功及利润压缩均未获验证。不能外推为全部 Neocloud 业务已商品化。全文阅读报告标记第32页存在缺口，该缺口不涉及本条所在原生页面。",
+      "conflict_check": "所供旧记录中，2025-03美国新兴Neocloud每GPU小时成本高于超大规模厂商61%的作者推算，涉及成本结构，并不否定本条竞争预测；成本差异也不能据此视为消失。2024-10全球Neocloud客户训练需求80%—90%的记录与本条限定平台场景口径不同。三条已采用陈述涉及成本敏感性、Meta取消条款及AI收入风险，未见直接冲突或规范重复。检查仅限所供记录。",
+      "gap_dependency_check": "仅补充定价和利润风险机制，不回答或关闭问题。仍需平台采用、同口径租价与成本、实际利润率、合同条款及反证；M13-Q03缺少折旧和回本推导，M13-Q04缺少成交、深度及转租数据。不得更新已采用参数或现有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
+        "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
+        "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "evidence_ids": [
+        "rev-8945857cab4f49009dfd9caf2400ef34:chunk:6:claim:3:ev:0"
+      ],
+      "id": "adoption:review:3788388e8bde9831d78f7c3f",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:nvidia",
+        "part:gpu",
+        "system:compute"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-boundary",
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-8945857cab4f49009dfd9caf2400ef34",
+      "status": "adopted",
+      "text": "SemiAnalysis《AMD Advancing AI: MI350X and MI400 UALoE72, MI500 UAL256》（发表时间未知）作者类比认为，DGX Lepton似乎试图成为连接客户与GPU算力的平台，并可能像Uber/Lyft对低利润零工劳动者的影响一样，使Neocloud依赖平台。该类比处于主要面向推理及小规模训练的平台战略讨论中，属于未经独立验证的角色判断及风险预测；适用地域未确定。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T02:52:04+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。客户、算力供应方与撮合平台的关系，以及供应方依赖和低利润风险，实质关联当前边界及经济性工单。连续原文与周边语境充分，未触发A类条件，可采用为有限的作者观点。M13-Q04所问市场流动性没有得到直接证据，不挂接该问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-boundary",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 142.671,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f01c6b8649bf62fc9870dff7a6f1d28c6d34851ec3f278592b465b471db35eb5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 34991,
+            "output_tokens": 4955,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.292,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5c89e3325c2517c6328f1f7996cc2832af6a3186c50242314dd59cde26bab402",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30614,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 236
+            }
+          }
+        },
+        "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      },
+      "source_candidate_ids": [
+        "rev-8945857cab4f49009dfd9caf2400ef34:chunk:6:claim:3"
+      ],
+      "limitations": "类比不是交易或合同证据。未交代付款方、资产所有者、运营方与使用方的完整对应关系，也没有平台费率、供应方利润、排他约束或流动性数据；不能把网约车行业结构直接视为GPU算力市场事实。",
+      "conflict_check": "现有Meta取消条款观点及AI收入风险观点分别涉及合同灵活性和收入暴露，与本条平台依赖风险互补；终端用户成本敏感性观点也未否定平台角色判断。旧记录中的成本溢价及历史训练需求占比不构成同口径反证，未发现重复或实质冲突。检查不代表穷尽外部反证。",
+      "gap_dependency_check": "边界工单仍缺一笔完整交易及各方权责，经济性工单仍缺收入、成本、费率和合同风险计量；还需实际平台条款、用户与供应方证言及反例。仅贡献定性角色和风险线索，两项问题保持开放，不覆盖现有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
+        "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
+        "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-417e755a7c4dccf511f4a3cb78056c3e1608f9af104fd39e74b0ec2e14026df9",
+      "evidence_ids": [
+        "rev-8945857cab4f49009dfd9caf2400ef34:chunk:6:claim:4:ev:0"
+      ],
+      "id": "adoption:review:e57d0dd6c1bf84e8672bc3e0",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:nvidia",
+        "system:compute"
+      ],
+      "question_ids": [
+        "M11-Q12",
+        "NODE-activity-V3-economics",
+        "NODE-demand-D1-economics"
+      ],
+      "reading_revision_id": "rev-8945857cab4f49009dfd9caf2400ef34",
+      "status": "adopted",
+      "text": "SemiAnalysis《AMD Advancing AI: MI350X and MI400 UALoE72, MI500 UAL256》（发表时间未知）作者在DGX Lepton平台战略讨论中声称，压低中间商利润率提高了终端用户每单位TCO获得的性能，同时不影响Nvidia自身利润率。这是该来源未经独立验证的经济判断；周边论述包含平台成功条件及未来算力降价预期，不能据此认证改善已经实现。讨论主要涉及推理及小规模训练，适用地域未确定。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T02:52:04+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。中间商利润向用户算力性价比传导、同时作者认为Nvidia利润不受影响，实质关联当前层间利润转移、算力变现经济性及需求成本工单。连续引文及相邻预测语境支持限定归因的部分判断，未发现A类条件，可按B类采用。",
+        "workorder_ids": [
+          "Q-M11-Q12",
+          "Q-NODE-activity-V3-economics",
+          "Q-NODE-demand-D1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 142.671,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f01c6b8649bf62fc9870dff7a6f1d28c6d34851ec3f278592b465b471db35eb5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 34991,
+            "output_tokens": 4955,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.292,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5c89e3325c2517c6328f1f7996cc2832af6a3186c50242314dd59cde26bab402",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30614,
+              "output_tokens": 478,
+              "reasoning_output_tokens": 236
+            }
+          }
+        },
+        "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      },
+      "source_candidate_ids": [
+        "rev-8945857cab4f49009dfd9caf2400ef34:chunk:6:claim:4"
+      ],
+      "limitations": "未提供价格、性能测量、TCO构成、利润率、比较时点或可复算计算。Nvidia自身利润率的表述不能直接转换为某一数据中心的芯片层利润；没有同一GW项目、四层分母或利润分配数据。",
+      "conflict_check": "已采用的终端用户额外电费或数据中心租金不根本改变财务关系的观点，讨论不同成本项及投资周期，不与中间商利润压缩机制直接冲突。美国Neocloud成本溢价61%的旧作者推算不证明或否定本条TCO改善；印度H100一年长约最低约1.60美元/小时涉及特定采购机制，也不是DGX Lepton效果验证。未发现规范重复，检查仅限所供记录。",
+      "gap_dependency_check": "M11-Q12仅获定性利润传导观点，仍缺同一项目四层收入成本、分母、时点及可复算计算；另外两项工单仍缺实际成本变化、支付意愿、采用及合同数据。不得计算每GW利润或更新模型参数，三项问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
+        "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
+        "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
       }
     }
   ],
