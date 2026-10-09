@@ -140,8 +140,13 @@ const note = (label,data={}) => results.push({label,...data});
     }
     async function controlsOpen(open=true) {
       const panel = page.locator('[data-responsive-panel]');
-      if (await panel.evaluate(el => el.open) !== open)
-        await page.getByLabel('展开或收起场景控制').click();
+      const summary=page.getByLabel('展开或收起场景控制');
+      if (!await summary.isVisible()) {
+        assert.ok(page.viewportSize().width>700,'Mobile controls summary must actually be visible');
+        assert.equal(await panel.evaluate(el=>el.open),true,'Desktop controls remain open; hidden summary cannot collapse them');
+        await settled();return;
+      }
+      if (await panel.evaluate(el => el.open) !== open) await summary.click();
       await settled();
     }
     const camera = () => page.evaluate(() => {
@@ -191,6 +196,8 @@ const note = (label,data={}) => results.push({label,...data});
         return {count,left,right,top,bottom,minZ,maxZ,canvas:plain(rect),hud,legend,
           headerBottom:Math.max(0,...headers.map(e=>e.getBoundingClientRect().bottom)),
           legendTexts:[...document.querySelectorAll('.campus-legend-grid span')].map(e=>e.textContent),
+          legendColors:{background:getComputedStyle(document.querySelector('.campus-legend')).backgroundColor,
+            foreground:[...document.querySelectorAll('.campus-legend b,.campus-legend-grid span')].map(e=>getComputedStyle(e).color)},
           labels,aspect:v.camera.aspect,buffer:[v.canvas.width,v.canvas.height],
           viewport:[innerWidth,innerHeight],stage:v.state().stage,
           legendScroll:[document.querySelector('.campus-legend').scrollWidth,document.querySelector('.campus-legend').clientWidth]};
@@ -254,6 +261,9 @@ const note = (label,data={}) => results.push({label,...data});
         assert.ok(initial.hud.top>=initial.headerBottom+1,'HUD summary must be below the actual two-row header/navigation');
         assert.equal(initial.legendTexts.length,9);
         assert.ok(initial.legendScroll[0]<=initial.legendScroll[1]+1,'Legend text overflow');
+        const luminance=color=>{const rgb=color.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;};
+        const bg=luminance(initial.legendColors.background);
+        for(const color of initial.legendColors.foreground){const fg=luminance(color);assert.ok((Math.max(bg,fg)+.05)/(Math.min(bg,fg)+.05)>=4.5,'Actual legend text contrast below4.5 '+theme+' '+color+' on '+initial.legendColors.background);}
         assert.deepEqual(initial.labels.map(x=>x.text).sort(),
           ['01','02','03','04','05','06','07','08','09']);
         for (const label of initial.labels) assert.ok(label.rect.left>=0 && label.rect.right<=width+1 &&
