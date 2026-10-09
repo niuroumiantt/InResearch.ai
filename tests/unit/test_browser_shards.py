@@ -9,7 +9,7 @@ class BrowserShardTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('node'), 'Node required for browser suite selection')
     def test_ci_shards_cover_every_existing_core_case_once(self):
         root=Path(__file__).resolve().parents[2]
-        script="const s=require('./tests/browser_suites.cjs'); console.log(JSON.stringify({core:s.selectSuites(['core']),a:s.selectSuites(['core_a']),b:s.selectSuites(['core_b']),c:s.selectSuites(['core_c']),assets:s.selectSuites(['model_assets']),scenes:s.suiteScenarios('part_dossier'),densities:s.suiteScenarios('scene_atlas'),assetScenes:s.suiteScenarios('model_assets')}));"
+        script="const s=require('./tests/browser_suites.cjs'); console.log(JSON.stringify({core:s.selectSuites(['core']),a:s.selectSuites(['core_a']),b:s.selectSuites(['core_b']),c:s.selectSuites(['core_c']),assets:s.selectSuites(['model_assets']),scenes:s.suiteScenarios('part_dossier'),densities:s.suiteScenarios('scene_atlas'),assetScenes:s.suiteScenarios('model_assets'),rackScenes:s.suiteScenarios('rack_exploded')}));"
         groups=json.loads(subprocess.check_output(['node','-e',script],cwd=root,text=True))
         expected={'ops_dashboard','industry','repository_pages','supply','nvidia_pilot','product_catalog',
                   'company_page','company_window','company_catalog_map','catalog_materials','compute_catalog',
@@ -27,4 +27,5 @@ class BrowserShardTests(unittest.TestCase):
         self.assertEqual(len(groups['scenes']),10)
         self.assertEqual(groups['densities'],['1','2'])
         self.assertEqual(groups['assetScenes'],['bom3d','rack3d','compare'])
+        self.assertEqual(groups['rackScenes'],['views','assembly'])
         self.assertEqual(groups['assets'],['model_assets'])

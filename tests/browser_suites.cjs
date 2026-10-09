@@ -13,6 +13,6 @@ function selectSuites(requested) {
   return requested.length ? requested.flatMap(s => s === 'core' ? core : s === 'core_a' ? first : s === 'core_b' ? second : s === 'core_c' ? third : [s]) : defaults;
 }
 function suiteScenarios(suite) {
-  return suite === 'part_dossier' ? dossierScenes : suite === 'model_assets' ? ['bom3d', 'rack3d', 'compare'] : suite === 'scene_atlas' ? ['1', '2'] : [null];
+  return suite === 'part_dossier' ? dossierScenes : suite === 'model_assets' ? ['bom3d', 'rack3d', 'compare'] : suite === 'scene_atlas' ? ['1', '2'] : suite === 'rack_exploded' ? ['views', 'assembly'] : [null];
 }
 module.exports = {defaults, core, selectSuites, suiteScenarios, dossierScenes};

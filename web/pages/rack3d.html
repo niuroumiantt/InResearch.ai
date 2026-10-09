@@ -738,10 +738,10 @@ sceneView = mountSceneView({canvas, camera, controls,
   ...(rackExplodedMode?{fitView:options=>{
     const rect=canvas.getBoundingClientRect(),hud=document.querySelector('.hud'),phone=innerWidth<=700;
     const summary=hud.querySelector('summary').getBoundingClientRect();
-    const drill=document.querySelector('.drill').getBoundingClientRect();
+    const drill=document.querySelector('.drill')?.getBoundingClientRect();
     return fitRackExploded({...options,objects:framingObjects(),width:rect.width,height:rect.height,
       insets:{left:phone?10:hud.getBoundingClientRect().right+16,right:16,
-        top:phone?16:Math.max(16,drill.bottom-rect.top+16),
+        top:phone?16:Math.max(16,(drill?.bottom||rect.top)-rect.top+16),
         bottom:phone?summary.height+42:16}});
   }}:{}),
   headers:[document.getElementById("ui-skinbar"), document.querySelector(".topbar")],
@@ -815,6 +815,7 @@ fetch("framework/bom.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).th
     bar.appendChild(node);
   });
   document.body.appendChild(bar);
+  if(rackExplodedMode)sceneView.refresh();
 }).catch(() => {});
 </script>
 </body>
