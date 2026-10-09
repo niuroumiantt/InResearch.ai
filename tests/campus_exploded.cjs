@@ -1,4 +1,4 @@
-/* TA18 actual geometry/public observer. This file never starts a server.
+/* TA19 actual geometry/public observer. This file never starts a server.
  * Interactive invocations require public HTTPS; the separately authorized CI
  * runner may supply its own loopback HTTP origin when CI=true. This task only
  * runs actual production HTTPS after deployment; no local product test is run.
@@ -31,14 +31,14 @@ assert.ok(!baseURL.search && !baseURL.hash, 'UI_BASE_URL must not contain query/
 const base = baseURL.origin;
 const scenario = process.argv[2] || 'all';
 assert.ok(['all', 'views', 'assembly'].includes(scenario), 'Use views, assembly or all');
-const root = process.env.TA18_SOURCE_ROOT || path.resolve(__dirname, '..');
-const out = process.env.REVIEW_SCREENSHOTS || path.join('/private/tmp', 'ta18-campus-public-' + Date.now());
+const root = process.env.TA19_SOURCE_ROOT || path.resolve(__dirname, '..');
+const out = process.env.REVIEW_SCREENSHOTS || path.join('/private/tmp', 'ta19-campus-public-' + Date.now());
 fs.mkdirSync(out, {recursive:true});
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
-const assetNames = ['campus-overview-v1.svg', 'campus-overview-v1.png'];
+const assetNames = ['campus-exploded-v1.svg', 'campus-exploded-v1.png'];
 const expectedAssets = Object.fromEntries(assetNames.map(name => {
   const file = path.join(root, 'web/assets/technical-atlas', name);
-  assert.ok(fs.existsSync(file), 'Set TA18_SOURCE_ROOT to the reviewed source tree: ' + file);
+  assert.ok(fs.existsSync(file), 'Set TA19_SOURCE_ROOT to the reviewed source tree: ' + file);
   return [name, {sha256:sha(fs.readFileSync(file)), bytes:fs.statSync(file).size}];
 }));
 const {chromium} = require('playwright');
@@ -121,7 +121,10 @@ const note = (label,data={}) => results.push({label,...data});
     await page.route(/\/assets\/campus-assembly\.js(?:\?[^#]*)?$/, route =>
       observe(route, 'return {root,instances,counts:CAMPUS_COUNTS',
         'return {resourcesForTest:()=>({geometries:[...geometries],materials:[...materials]}),root,instances,counts:CAMPUS_COUNTS'));
-    const exposure = 'globalThis.__campusTest={THREE,atlasDrawing,campusMode,campusAssembly,scene,canvas,camera,controls,pickables,PART,RIGHTS,BOM,DOMAINS,PARTMESH,inspector,sceneView,sceneModels,sceneEnvironment,texturePool,composer,renderer,currentPartMeshes,showDossier,showCampusObject,resolveScenePart,focusCampus,campusInsets,clearDomain,enterDomain,walkChain,animateSlider,flyTo,disposePage,dimmed,state:()=>({selectedInstance:campusSelectedInstance,activeDomain,pageDisposed,stage:+slider.value})};\n</script>\n</body>';
+    await page.route(/\/assets\/campus-exploded-assembly\.js(?:\?[^#]*)?$/, route =>
+      observe(route,'return {...assembly,counts:CAMPUS_COUNTS',
+        'return {...assembly,resourcesForTest:()=>{const r=assembly.resourcesForTest();return{geometries:r.geometries.concat([...guideGeometries]),materials:r.materials.concat([guideMaterial])}},counts:CAMPUS_COUNTS'));
+    const exposure = 'globalThis.__campusTest={THREE,atlasDrawing,campusMode,campusLayeredMode,campusAssembly,scene,canvas,camera,controls,pickables,PART,RIGHTS,BOM,DOMAINS,PARTMESH,inspector,sceneView,sceneModels,sceneEnvironment,texturePool,composer,renderer,currentPartMeshes,showDossier,showCampusObject,resolveScenePart,focusCampus,campusInsets,clearDomain,enterDomain,walkChain,animateSlider,flyTo,disposePage,dimmed,state:()=>({selectedInstance:campusSelectedInstance,activeDomain,pageDisposed,stage:+slider.value})};\n</script>\n</body>';
     await page.route(/\/bom3d\.html(?:\?[^#]*)?$/, route =>
       observe(route,'</script>\n</body>',exposure));
 
@@ -132,7 +135,7 @@ const note = (label,data={}) => results.push({label,...data});
       });
       assert.deepEqual(routeErrors,[], 'Observation/network guard failure');
     }
-    async function go(suffix='/bom3d.html') {
+    async function go(suffix='/bom3d.html?x=70') {
       const response = await page.goto(base+suffix,{waitUntil:'domcontentloaded'});
       assert.equal(response.status(),200,'Public scene document must be HTTP 200');
       await page.waitForFunction(() => !!globalThis.__campusTest);
@@ -245,8 +248,8 @@ const note = (label,data={}) => results.push({label,...data});
       assert.equal(parsed.metadata.style,'white-technical-atlas-v1');
       assert.equal(parsed.leader,id);
       assert.ok(parsed.editable>=10);
-      assert.equal(parsed.markers.length,9);assert.ok(parsed.markers.every(m=>m.circle&&m.path));
-      assert.equal(parsed.markers.find(m=>m.label==='08').instance,'campus/standby-generator-2');assert.equal(parsed.markers.find(m=>m.label==='09').instance,'campus/battery-cabinet-2');
+      assert.equal(parsed.markers.length,12);assert.ok(parsed.markers.every(m=>m.circle&&m.path));
+      assert.equal(parsed.markers.find(m=>m.label==='11').instance,'campus/standby-generator-2');assert.equal(parsed.markers.find(m=>m.label==='12').instance,'campus/battery-cabinet-2');
       const pixels=PNG.sync.read(Buffer.from(parsed.image.split(',')[1],'base64'));
       assert.deepEqual([...pixels.data.subarray(0,4)],[250,249,242,255]);
       note('Actual current-view SVG local identity/PNG paper/editable labels',
@@ -254,32 +257,32 @@ const note = (label,data={}) => results.push({label,...data});
     }
 
     if (scenario!=='assembly') {
-      for (const width of [1280,390]) for (const theme of ['light','dark']) {
+      for (const stageValue of [0,100]) for (const width of [1280,390]) for (const theme of ['light','dark']) {
         await page.setViewportSize({width,height:width===390?844:900});
-        await go('/bom3d.html');
+        await go('/bom3d.html?view=exploded&x='+stageValue);
         assert.equal(await page.evaluate(()=>__campusTest.campusMode),true);
-        assert.equal(await page.locator('#explode').inputValue(),'0');
+        assert.equal(await page.locator('#explode').inputValue(),String(stageValue));
         await page.locator('#ui-appearance').selectOption(theme);
         await settled();
         const initial=await measure();
         clearsGeometry(initial,'Default assembled '+width+' '+theme);
         assert.ok(initial.hud.top>=initial.headerBottom+1,'HUD summary must be below the actual two-row header/navigation');
-        assert.equal(initial.legendTexts.length,9);
+        assert.equal(initial.legendTexts.length,12);
         assert.ok(initial.legendScroll[0]<=initial.legendScroll[1]+1,'Legend text overflow');
         const luminance=color=>{const rgb=color.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;};
-        assert.equal(initial.legendColors.foreground.length,10);
-        assert.equal(initial.markerSources.length,9);assert.equal(initial.markerLeaders.length,9);
+        assert.equal(initial.legendColors.foreground.length,13);
+        assert.equal(initial.markerSources.length,12);assert.equal(initial.markerLeaders.length,12);
         for(const leader of initial.markerLeaders){const source=initial.markerSources.find(s=>s.label===leader.label);assert.equal(leader.instance,source.instance);assert.equal(source.parent,source.instance);assert.ok(Math.hypot(leader.x-source.x,leader.y-source.y)<.02,'Leader must terminate at actual same-instance projection '+leader.label);}
-        assert.equal(initial.markerSources.find(s=>s.label==='08').instance,'campus/standby-generator-2');
-        assert.equal(initial.markerSources.find(s=>s.label==='09').instance,'campus/battery-cabinet-2');
+        assert.equal(initial.markerSources.find(s=>s.label==='11').instance,'campus/standby-generator-2');
+        assert.equal(initial.markerSources.find(s=>s.label==='12').instance,'campus/battery-cabinet-2');
         const bg=luminance(initial.legendColors.background);
         for(const color of initial.legendColors.foreground){const fg=luminance(color);assert.ok((Math.max(bg,fg)+.05)/(Math.min(bg,fg)+.05)>=4.5,'Actual legend text contrast below4.5 '+theme+' '+color+' on '+initial.legendColors.background);}
         assert.deepEqual(initial.labels.map(x=>x.text).sort(),
-          ['01','02','03','04','05','06','07','08','09']);
+          ['01','02','03','04','05','06','07','08','09','10','11','12']);
         for (const label of initial.labels) assert.ok(label.rect.left>=0 && label.rect.right<=width+1 &&
           label.rect.top>=initial.canvas.top-1 && label.rect.bottom<=initial.canvas.bottom+1,
           'Actual visible label cut: '+JSON.stringify(label));
-        await page.screenshot({path:path.join(out,'campus-default-'+width+'-'+theme+'.png')});
+        await page.screenshot({path:path.join(out,'campus-stage-'+stageValue+'-'+width+'-'+theme+'.png')});
         const pixels=PNG.sync.read(Buffer.from((await page.evaluate(()=>{
           __campusTest.composer.render();return __campusTest.canvas.toDataURL('image/png');
         })).split(',')[1],'base64'));
@@ -297,12 +300,12 @@ const note = (label,data={}) => results.push({label,...data});
           await controlsOpen(false);
           const closed=await measure();clearsGeometry(closed,'Phone close-after-fit');
           assert.equal(await page.locator('[data-responsive-panel]').evaluate(e=>e.open),false);
-          await page.screenshot({path:path.join(out,'campus-hud-close-'+width+'-'+theme+'.png')});
+          await page.screenshot({path:path.join(out,'campus-hud-close-'+stageValue+'-'+width+'-'+theme+'.png')});
           await controlsOpen();await fit();
-          const phoneExport=await downloadFrom(page.locator('#atlas-export'),'bom3d-technical-atlas.svg','campus-phone-'+theme+'-current.svg');
+          const phoneExport=await downloadFrom(page.locator('#atlas-export'),'bom3d-technical-atlas.svg','campus-phone-'+stageValue+'-'+theme+'-current.svg');
           const phoneMarkers=await page.evaluate(raw=>{const doc=new DOMParser().parseFromString(raw,'image/svg+xml');if(doc.querySelector('parsererror'))throw Error('Invalid phone SVG');return [...doc.querySelectorAll('.atlas-label-leader')].map(g=>({label:g.dataset.label,instance:g.dataset.instance,path:g.querySelector('path').getAttribute('d'),circle:[g.querySelector('circle').getAttribute('cx'),g.querySelector('circle').getAttribute('cy')]}))},phoneExport.bytes.toString('utf8'));
-          assert.equal(phoneMarkers.length,9);assert.equal(phoneMarkers.find(m=>m.label==='08').instance,'campus/standby-generator-2');assert.equal(phoneMarkers.find(m=>m.label==='09').instance,'campus/battery-cabinet-2');
-          note('Actual phone current SVG retains nine same-instance editable marker leaders',{theme,sha256:phoneExport.sha256,bytes:phoneExport.length,markers:phoneMarkers});
+          assert.equal(phoneMarkers.length,12);assert.equal(phoneMarkers.find(m=>m.label==='11').instance,'campus/standby-generator-2');assert.equal(phoneMarkers.find(m=>m.label==='12').instance,'campus/battery-cabinet-2');
+          note('Actual phone current SVG retains twelve same-instance editable marker leaders',{theme,sha256:phoneExport.sha256,bytes:phoneExport.length,markers:phoneMarkers});
           await controlsOpen(false);
           note('Phone HUD open/fit/close refresh keeps current available rectangle',closed);
         }
@@ -311,7 +314,7 @@ const note = (label,data={}) => results.push({label,...data});
 
     if (scenario!=='views') {
       await page.setViewportSize({width:1280,height:900});
-      await go('/bom3d.html?x=0');
+      await go('/bom3d.html?view=exploded&x=0');
       const structure=await page.evaluate(()=>{
         const v=__campusTest,a=v.campusAssembly;
         return {campus:v.campusMode,stage:v.state().stage,picks:v.pickables.length,
@@ -352,9 +355,32 @@ const note = (label,data={}) => results.push({label,...data});
       }
       note('Actual32 deterministic physical instances; per-instance packing and finite geometry',structure);
       const surfaces=await page.evaluate(()=>{const v=__campusTest,out=[];v.scene.updateMatrixWorld(true);for(const sprite of v.atlasDrawing.labels){const spec=sprite.userData.atlasLabel,anchor=sprite.parent.localToWorld(new v.THREE.Vector3(...spec.anchorPosition)),a=new v.THREE.Vector3(),b=new v.THREE.Vector3(),c=new v.THREE.Vector3(),nearest=new v.THREE.Vector3(),triangle=new v.THREE.Triangle();let distance=Infinity,triangles=0;sprite.parent.traverse(mesh=>{if(!mesh.isMesh)return;const position=mesh.geometry.getAttribute('position'),index=mesh.geometry.index;for(let n=0;n<(index?index.count:position.count);n+=3){a.fromBufferAttribute(position,index?index.getX(n):n).applyMatrix4(mesh.matrixWorld);b.fromBufferAttribute(position,index?index.getX(n+1):n+1).applyMatrix4(mesh.matrixWorld);c.fromBufferAttribute(position,index?index.getX(n+2):n+2).applyMatrix4(mesh.matrixWorld);triangle.set(a,b,c).closestPointToPoint(anchor,nearest);distance=Math.min(distance,nearest.distanceTo(anchor));triangles++;}});out.push({label:spec.text,instance:spec.anchorInstance,parent:sprite.parent.userData.instanceId,anchor:anchor.toArray(),distance,triangles});}return out});
-      assert.equal(surfaces.length,9);for(const surface of surfaces){assert.equal(surface.instance,surface.parent);assert.ok(surface.triangles>0&&surface.distance<.00001,'Anchor must lie on actual same-instance triangle surface '+JSON.stringify(surface));}
-      note('Nine annotation anchors lie on actual packed same-instance triangle surfaces',surfaces);
+      assert.equal(surfaces.length,12);for(const surface of surfaces){assert.equal(surface.instance,surface.parent);assert.ok(surface.triangles>0&&surface.distance<.00001,'Anchor must lie on actual same-instance triangle surface '+JSON.stringify(surface));}
+      note('Twelve annotation anchors lie on actual packed same-instance triangle surfaces',surfaces);
       await fit();
+      const layerBaseline=await page.evaluate(()=>{__campusTest.guideDistanceReferences=__campusTest.campusAssembly.guides.map(g=>g.object.geometry.attributes.lineDistance);return __campusTest.campusAssembly.instances.map(i=>({id:i.id,home:i.home.toArray(),points:(()=>{const out=[];i.object.traverse(m=>{if(m.isMesh){const a=m.geometry.attributes.position;for(let n=0;n<a.count;n+=13)out.push(new __campusTest.THREE.Vector3().fromBufferAttribute(a,n).applyMatrix4(m.matrixWorld).toArray())}});return out})()}));});
+      for(const value of[70,100]){
+        await stage(value);await settled();clearsGeometry(await measure(),'Automatic stage refresh '+value);await fit();
+        const layers=await page.evaluate(baseline=>{
+          const v=__campusTest,a=v.campusAssembly;a.root.updateMatrixWorld(true);
+          return {stage:v.state().stage,layered:v.campusLayeredMode,picks:v.pickables.length,
+            instances:a.instances.map(i=>{const b=baseline.find(b=>b.id===i.id),out=[];i.object.traverse(m=>{if(m.isMesh){const p=m.geometry.attributes.position;for(let n=0;n<p.count;n+=13)out.push(new v.THREE.Vector3().fromBufferAttribute(p,n).applyMatrix4(m.matrixWorld).toArray())}});const delta=i.object.position.clone().sub(i.home).toArray();return {id:i.id,part:i.part,delta,axis:i.axis.toArray(),maxPointError:Math.max(...out.flatMap((p,n)=>p.map((x,j)=>Math.abs(x-b.points[n][j]-delta[j]))))};}),
+            guides:a.guides.map((g,index)=>{const p=g.object.geometry.attributes.position;return{id:g.instance.id,home:g.home.toArray(),local:g.local.toArray(),position:g.instance.object.position.toArray(),points:[0,1].map(n=>[p.getX(n),p.getY(n),p.getZ(n)]),visible:g.object.visible,isMesh:!!g.object.isMesh,tag:g.object.userData.part||null,parentIsRoot:g.object.parent===a.root,homeInstance:g.object.userData.homeInstance,distanceReferenceSame:g.object.geometry.attributes.lineDistance===v.guideDistanceReferences[index],distances:Array.from(g.object.geometry.attributes.lineDistance.array)};}),
+            footprints:a.footprints.map(f=>{const p=f.object.geometry.attributes.position;return{id:f.instance.id,part:f.instance.part,ys:Array.from({length:p.count},(_,n)=>p.getY(n)),visible:f.object.visible,isMesh:!!f.object.isMesh,tag:f.object.userData.part||null};})};
+        },layerBaseline);
+        assert.equal(layers.layered,true);assert.equal(layers.stage,value);assert.equal(layers.picks,152);
+        assert.equal(layers.instances.length,32);assert.equal(layers.instances.filter(i=>i.delta.some(x=>Math.abs(x)>1e-8)).length,20);
+        for(const i of layers.instances){let expected=[0,0,0];if(i.id.endsWith('/retained-roof-sections'))expected=[0,14,0];else if(i.id.endsWith('/retained-wall-sections'))expected=[-4,0,-10];else if(i.id.endsWith('/overhead-service-trays'))expected=[0,11,0];else if(['rack-frame','room-cooling','cdu','ups'].includes(i.part))expected=[0,8,0];assert.deepEqual(i.axis,expected);i.delta.forEach((x,j)=>assert.ok(Math.abs(x-expected[j])<1e-8));assert.ok(i.maxPointError<1e-8,'Sampled actual mesh point rigid displacement '+i.id);}
+        assert.equal(layers.guides.length,42);assert.equal(layers.footprints.length,17);
+        for(const g of layers.guides){assert.equal(g.isMesh,false);assert.equal(g.tag,null);assert.equal(g.parentIsRoot,true);assert.equal(g.homeInstance,g.id);assert.equal(g.distanceReferenceSame,true);assert.equal(g.distances[0],0);assert.ok(Math.abs(g.distances[1]-Math.hypot(...g.points[1].map((x,j)=>x-g.points[0][j])))<1e-5);assert.equal(g.visible,true);g.points[0].forEach((x,j)=>assert.ok(Math.abs(x-g.home[j])<1e-5));g.points[1].forEach((x,j)=>assert.ok(Math.abs(x-g.position[j]-g.local[j])<1e-5));}
+        for(const f of layers.footprints){assert.equal(f.isMesh,false);assert.equal(f.tag,null);assert.equal(f.visible,true);assert.ok(f.ys.every(y=>Math.abs(y-.55)<1e-6),'Actual empty outline above actual .54 floor');}
+        note('Actual rigid same-instance mesh displacement/emptyhomes/nonphysical guides at '+value,layers);
+      }
+      // Home shapes return, without another equipment copy left at the old position.
+      await stage(0);await settled();
+      const restored=await page.evaluate(()=>({picks:__campusTest.pickables.length,home:__campusTest.campusAssembly.instances.every(i=>i.object.position.distanceToSquared(i.home)<1e-12),visibleGuides:__campusTest.campusAssembly.guides.filter(g=>g.object.visible).length,visibleHomes:__campusTest.campusAssembly.footprints.filter(g=>g.object.visible).length}));
+      assert.deepEqual(restored,{picks:152,home:true,visibleGuides:0,visibleHomes:0});note('Actual stage0 restores all32 homes and hides guides',restored);
+      await stage(70);await fit();
 
       // Real Raycaster locates a visible surface; the actual page mouse click,
       // gesture handling and dossier must agree. No direct showCampusObject call.
@@ -400,7 +426,8 @@ const note = (label,data={}) => results.push({label,...data});
         note('Actual surface mouse pick selects one repeated or distinct instance',hit);
       }
       for (const id of ['campus/rack-r2-c2','campus/rack-r2-c3','campus/CDU-2',
-        'campus/air-chiller-2','campus/transformer-1','campus/standby-generator-2'])
+        'campus/air-chiller-2','campus/transformer-1','campus/standby-generator-2',
+        'campus/retained-roof-sections','campus/retained-wall-sections','campus/overhead-service-trays'])
         await actualPick(id);
       await closeDossier();await controlsOpen();
       await page.locator('#campus-whole-dossier').click();
@@ -416,7 +443,7 @@ const note = (label,data={}) => results.push({label,...data});
       // no successful research content claim is made for an anonymous API401.
       for(const [canonical,legacy]of expectedRights)for(const query of[
         '?node='+encodeURIComponent('site:'+canonical),'?p='+encodeURIComponent(legacy)]) {
-        await go('/bom3d.html'+query);
+        await go('/bom3d.html?view=exploded&x=70&'+query.slice(1));
         await page.locator('#dossier h2').waitFor();
         const r=await page.evaluate(()=>{
           const v=__campusTest,id=document.querySelector('#dossier').dataset.partId,p=v.PART[id];
@@ -431,7 +458,7 @@ const note = (label,data={}) => results.push({label,...data});
         assert.ok(r.nodeLinks.some(h=>h.includes('supply.html?node='+encodeURIComponent('site:'+canonical))));
         note('Actual nonphysical canonical/legacy site entry',{query,...r});
       }
-      await go('/bom3d.html?node=part:dcim');
+      await go('/bom3d.html?view=exploded&x=70&node=part:dcim');
       await page.locator('#dossier h2').waitFor();
       assert.equal(await page.evaluate(()=>__campusTest.campusMode),true);
       assert.equal(await page.locator('#dossier .insp canvas').count(),0);
@@ -442,10 +469,10 @@ const note = (label,data={}) => results.push({label,...data});
       // Campus domains retain the assembled stage and focus only real categories.
       for(const width of[1280,390]) {
         await page.setViewportSize({width,height:width===390?844:900});
-        await go('/bom3d.html');await controlsOpen();
+        await go('/bom3d.html?view=exploded&x=70');await controlsOpen();
         for(const domain of['power','thermal','facility','control']) {
           await page.locator('#dchip-'+domain).click();await settled();
-          assert.equal(await page.locator('#explode').inputValue(),'0','Campus domain must not inherit legacy explode t');
+          assert.equal(await page.locator('#explode').inputValue(),'70','Campus domain must not inherit legacy explode t');
           const r=await page.evaluate(key=>{
             const v=__campusTest,d=v.DOMAINS.find(d=>d.key===key);
             const parts=d.parts.map(p=>p.id),represented=parts.filter(p=>v.campusAssembly.objectsFor(p).length);
@@ -457,7 +484,7 @@ const note = (label,data={}) => results.push({label,...data});
           note('Campus domain safe-fit, canonical ownership, unchanged assembly stage',{width,domain,...bounds});
         }
       }
-      await page.setViewportSize({width:1280,height:900});await go('/bom3d.html');await controlsOpen();
+      await page.setViewportSize({width:1280,height:900});await go('/bom3d.html?view=exploded&x=70');await controlsOpen();
       await page.locator('#campus-static-plate').evaluate(el=>el.open=true);await settled();
       for(const filename of assetNames) {
         const d=await downloadFrom(page.locator('a[download="'+filename+'"]'),filename);
@@ -472,12 +499,12 @@ const note = (label,data={}) => results.push({label,...data});
             return {data:doc.querySelector('image').getAttribute('href'),
               labels:doc.querySelectorAll('g.callout[data-label]').length};
           },d.bytes.toString('utf8'));
-          assert.equal(s.labels,9);
-          assert.equal(sha(Buffer.from(s.data.split(',')[1],'base64')),expectedAssets['campus-overview-v1.png'].sha256);
+          assert.equal(s.labels,12);
+          assert.equal(sha(Buffer.from(s.data.split(',')[1],'base64')),expectedAssets['campus-exploded-v1.png'].sha256);
         }
         note('Actual native UI download full byte SHA',{filename,sha256:d.sha256,bytes:d.length,saved:d.saved});
       }
-      const popupPending=page.waitForEvent('popup');await page.locator('#campus-static-plate>a').click();const popup=await popupPending;await popup.waitForLoadState('domcontentloaded');await popup.setViewportSize({width:1536,height:1024});await popup.evaluate(()=>document.fonts.ready);assert.equal(await popup.locator('g.callout[data-label]').count(),9);assert.equal(sha(Buffer.from((await popup.locator('svg image').getAttribute('href')).split(',')[1],'base64')),expectedAssets['campus-overview-v1.png'].sha256);await popup.screenshot({path:path.join(out,'campus-full-svg-1536.png')});note('Actual independent native SVG popup',{url:popup.url(),labels:9,pixels:[1536,1024]});await popup.close();
+      const popupPending=page.waitForEvent('popup');await page.locator('#campus-static-plate>a').click();const popup=await popupPending;await popup.waitForLoadState('domcontentloaded');await popup.setViewportSize({width:1536,height:1024});await popup.evaluate(()=>document.fonts.ready);assert.equal(await popup.locator('g.callout[data-label]').count(),12);assert.equal(sha(Buffer.from((await popup.locator('svg image').getAttribute('href')).split(',')[1],'base64')),expectedAssets['campus-exploded-v1.png'].sha256);await popup.screenshot({path:path.join(out,'campus-full-svg-1536.png')});note('Actual independent native SVG popup',{url:popup.url(),labels:12,pixels:[1536,1024]});await popup.close();
       await page.locator('#campus-static-plate').evaluate(el=>el.open=false);await settled();
 
       // Normal animation is actually started. Explicit fit must cancel all
@@ -550,8 +577,19 @@ const note = (label,data={}) => results.push({label,...data});
       assert.deepEqual(released.cameraAfter,released.cameraAtDispose);
       note('Factory cached/packed resources released once, main renderer loop stopped',released);
 
-      // These are retained legacy routes, not TA19/TA20 new-view acceptance.
-      for(const suffix of['?x=35','?p=server','?node=part:gpu','?view=legacy']) {
+      await go('/bom3d.html?x=70');
+      assert.equal(await page.evaluate(()=>__campusTest.campusLayeredMode),true);
+      assert.equal(await page.locator('#explode').inputValue(),'70');
+      note('Original TA19 x70 entry resolves layered assembly');
+      await go('/bom3d.html');
+      assert.equal(await page.evaluate(()=>__campusTest.campusLayeredMode),false);
+      assert.equal(await page.evaluate(()=>__campusTest.campusMode),true);
+      assert.equal(await page.evaluate(()=>__campusTest.campusAssembly.root.name),'generic-campus-overview');
+      assert.equal(await page.locator('#explode').inputValue(),'0');
+      note('Default TA18 keeps exact original factory and assembled stage');
+
+      // Other nonzero/detailed/explicit legacy routes stay old; default TA18 is separately checked.
+      for(const suffix of['?x=35','?p=server','?node=part:gpu','?view=legacy','?view=legacy&x=70','?x=70&p=server','?x=70&node=part:gpu','?view=exploded&p=server']) {
         await go('/bom3d.html'+suffix);
         const r=await page.evaluate(()=>({campus:__campusTest.campusMode,assembly:!!__campusTest.campusAssembly,
           racks:__campusTest.pickables.filter(m=>m.userData.part==='rack-frame').length,
@@ -563,12 +601,12 @@ const note = (label,data={}) => results.push({label,...data});
     }
     assert.deepEqual(routeErrors,[]);assert.deepEqual(errors,[]);
     note('Research response statuses only; anonymous401 is not content success',{responses:researchResponses});
-    console.log('PASS TA18 public '+scenario+' observer; native screenshots still require independent visual review');
+    console.log('PASS TA19 public '+scenario+' observer; native screenshots still require independent visual review');
   } catch (error) {
     failure={message:error.message,stack:error.stack};process.exitCode=1;
     console.error(error);
   } finally {
-    fs.writeFileSync(path.join(out,'campus-overview-results-'+scenario+'.json'),JSON.stringify({
+    fs.writeFileSync(path.join(out,'campus-exploded-results-'+scenario+'.json'),JSON.stringify({
       observed_at:new Date().toISOString(),scenario,base,
       browser_mode:process.env.UI_HEADED==='1'?'headed-default-graphics':'headless-software-graphics',
       source_root:root,expected_assets:expectedAssets,results,sources,page_errors:errors,
