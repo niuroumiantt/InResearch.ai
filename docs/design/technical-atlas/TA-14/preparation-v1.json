@@ -1,0 +1,147 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-14",
+  "prepared_at": "2026-10-09T10:00:31.206548+00:00",
+  "baseline_revision": "cd006ea62e7607033d29ae87bfa093c08788cae5",
+  "references": [
+    {
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "role": "Actual builtin imagegen style input; not technical evidence",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": true
+    },
+    {
+      "file": "web/assets/technical-atlas/rack-overview-v1.png",
+      "sha256": "d92ac021351375735f3b1ad93b3b6553aaecf84ad2a4bb1079ab20d03b89e49e",
+      "role": "Actual builtin input and same generic TA13 composition identity; not OEM spec",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": true
+    }
+  ],
+  "all_rejected_builtin_candidates": [
+    {
+      "private_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/candidates/rack-exploded-first-v1.png",
+      "sha256": "0ecf05138d0731a2ddbeb0b436695c2ba358d6e874c1feccd5bfdabbbb93dc91",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "prompt": "docs/design/technical-atlas/TA-14/prompt-v1.txt",
+      "reason": "3switches and7total compute, inconsistent axes",
+      "adopted": false
+    },
+    {
+      "private_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/candidates/rack-exploded-layout-v2.png",
+      "sha256": "a7b453a30995eaee9acc11ab19381c592fc27ae59615b51dfe5acefecb1d75d5",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "prompt": "docs/design/technical-atlas/TA-14/prompt-v2-layout.txt",
+      "reason": "Correct2/8/2 and axes/emptyhomes, but installedcompute7carriers and extractedpower5modules",
+      "adopted": false
+    },
+    {
+      "private_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/candidates/rack-exploded-count-v3-rejected.png",
+      "sha256": "ecf83e9521d58b8b0d9c520f3bec16b93df7a34da29279ac1d0d3ca6424a2d78",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "prompt": "docs/design/technical-atlas/TA-14/prompt-v3-count-edit.txt",
+      "reason": "Networkface incorrectly changed todrivebays; countsnotfixed",
+      "adopted": false
+    },
+    {
+      "private_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/candidates/rack-exploded-power-v4-rejected.png",
+      "sha256": "b91d19c2b0302293bdaba62bccb22c17520bd5a0e495e7ea289515ff8ef5ffd6",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "prompt": "docs/design/technical-atlas/TA-14/prompt-v4-power-only.txt",
+      "reason": "Extractedpower remains5modules",
+      "adopted": false
+    },
+    {
+      "private_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/candidates/rack-exploded-power-six-v5.png",
+      "sha256": "624af50efd5baf61c152396c12f8feb451418c64e45688e77a5ca77173eed279",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "prompt": "docs/design/technical-atlas/TA-14/prompt-v5-power-reference.txt",
+      "reason": "6modules but power enclosure widened beyond matching home; installedcompute7carriers",
+      "adopted": false
+    },
+    {
+      "private_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/candidates/rack-exploded-compute-v6-rejected.png",
+      "sha256": "40de1d744b83991afd1e1f3d175b790f984cdaae00d5b275c4e2d37b9e6a58cb",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "prompt": "docs/design/technical-atlas/TA-14/prompt-v6-compute-reference.txt",
+      "reason": "Filled compute vacancy, resulting8installed+1extracted; enclosurewidth mismatch remains",
+      "adopted": false
+    }
+  ],
+  "additional_actual_imagegen_inputs": [
+    {
+      "private_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/rack-exploded-layout-reference-v3.png",
+      "sha256": "ced4dd0c491ec3ba56f40c491f34de2795ec3d6c5b0ebbf6adfd5c3fa1b6abc7",
+      "role": "Exact same-geometry layout reference; not final adopted master",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": true
+    },
+    {
+      "private_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/rack-power-six-reference.png",
+      "sha256": "ee3752ac4316e003e3005be06bcfb7d4aa4c09f6a83bc088cdac0f872de52af5",
+      "role": "Native6module reference forv5",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": true
+    },
+    {
+      "private_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/rack-compute-eight-front-reference.png",
+      "sha256": "b240532b06b8ed3e58d36e4a362e1e62e85fb29e128b7aed0469039ab9247184",
+      "role": "Native8carrier frontal reference forv6",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": true
+    }
+  ],
+  "final_method_decision": "All6 builtin candidates rejected on observed geometry. Framework10 controlledSVG/3D allows an exact native procedural master; root original image review directs sharper same-geometry insets. Final native rendering, parameterized camera/light/geometry, 3 native same-instance details1:1 and independent SVG labels explicitly registered; not called adoptedAI art or resampled interactive snapshot.",
+  "native_generator": "web/components/rack-exploded-generator.js",
+  "native_render": "docs/design/technical-atlas/TA-14/native-render-v1.json",
+  "retained_baselines": [
+    {
+      "file": "docs/design/technical-atlas/TA-14/legacy/rack3d-before-TA14.html",
+      "sha256": "714011ac5ef4a26ea7a740841dba9dc5eac9f6845279248b09265162821ece8e",
+      "role": "Historical unchanged preTA14 .35 page, not current instruction/entry",
+      "actually_viewed": true
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-14/legacy/rack-assembly-before-TA14.js",
+      "sha256": "8ff8649d0c7abd4a23592b626e1a75657a47b8cbc2dc3c5254fb4918e2636409",
+      "role": "Readonly original TA13 factory used for actual default vertex/pose/tag comparison",
+      "actually_viewed": true
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://iportal.se.com/Contents/docs/UPS-AR3104.PDF",
+      "access": "TA13 independent reviewer full32page historical2008 officialmanual retained; TA14 reopen timedout, no fresh fullread claimed",
+      "supports": "Cabinet frame, roof, side panels, door, mounting supports and leveling categories only; no model/ratings/dimensions/procedure adopted"
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/networking-z9664f-on/z9664f-on_install_pub/four-post-rail-installation?guid=guid-5397c085-7b2c-4900-81e0-ef643b4ed5b4&lang=en-us",
+      "access": "Official fullchapter opened/read in current task",
+      "supports": "Deviceinner and fixedouter rails, front/rearpost brackets andfront retention categories; no SKU/portnumber/ratings/maintenanceprocedure adopted"
+    }
+  ],
+  "independent_review": {
+    "review_ta14": "Readonly actualv2/v5 review rejected installed7carriers and powerwidth, confirmsaxes/emptyhomes, asks clearer rails; no finalnative approval claimed from it",
+    "root": "Actual original nativev1 refused as too small/flat; nativev4/full14labels accepted for further checks. Actual13innerrail anchor corrected in labelledchatv2. Initial mobile smallmodel/longlabel and then control occlusion rejected; final v3 desktop0/100 and phone0/100 original images reviewed, controls clear and numberedlegend readable. First390-100 tool display omitted legend; original-byte identical unique copy reviewed by root confirms complete legend, no product defect inferred."
+  },
+  "scope": "docs/design/technical-atlas/TA-14/scope-v1.md"
+}
