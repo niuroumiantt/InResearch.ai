@@ -66,6 +66,33 @@ class BatchReaderTests(ReaderTests):
         self.assertIsNone(self.reader.claim())
         self.clock.advance(901);self.assertIsNotNone(self.reader.claim())
 
+    def test_model_wait_still_allows_verified_receipt_to_finish(self):
+        self.put();self.reader.scan()
+        while True:
+            job=self.reader.claim()
+            self.assertIsNotNone(job)
+            self.reader.process(job)
+            if job['stage']=='organize':break
+        self.scope([job['doc_id']])
+        self.reader.conn.execute("INSERT OR REPLACE INTO meta VALUES('model_wait_until',?)",(str(self.clock()+900),))
+        with mock.patch.object(self.model,'generate',side_effect=AssertionError('receipt must not infer')):
+            receipt=self.reader.claim()
+            self.assertEqual(receipt['stage'],'receipt')
+            self.assertEqual(self.reader.process(receipt),'succeeded')
+        self.assertEqual(self.reader.doc(job['doc_id'])['state'],'complete')
+        self.assertIsNone(self.reader.claim())
+
+    def test_busy_relay_preserves_attempts_without_pausing_other_documents(self):
+        self.put();self.reader.scan();job=self.reader.claim();self.reader.process(job)
+        job=self.reader.claim();before=self.reader.doc(job['doc_id'])['priority']
+        with mock.patch.object(self.reader.stages,'_triage',side_effect=Deferred('model_relay_busy')):
+            self.assertEqual(self.reader.process(job),'deferred')
+        self.assertEqual(self.reader.doc(job['doc_id'])['priority'],before)
+        self.assertEqual(self.reader.conn.execute('select attempts from jobs where job_id=?',(job['job_id'],)).fetchone()[0],0)
+        self.assertIsNone(self.reader.conn.execute("select value from meta where key='model_wait_until'").fetchone())
+        self.put('other.txt','other source');self.reader.scan()
+        self.assertNotEqual(self.reader.claim()['doc_id'],job['doc_id'])
+
     def test_ocr_checkpoint_preserves_attempts_and_does_not_pause_other_work(self):
         self.put();self.reader.scan();job=self.reader.claim()
         before=self.reader.doc(job['doc_id'])['priority']

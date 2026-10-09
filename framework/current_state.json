@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.41",
+  "version": "2026.10.09.44",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -838,10 +838,13 @@
         "src/inresearch/workflow/review_preference.py",
         "tests/unit/test_review_preference.py",
         "tests/unit/test_object_mapping_review.py",
-        "tests/unit/test_research_retry_transient.py"
+        "tests/unit/test_research_retry_transient.py",
+        "src/inresearch/delivery/publish.py",
+        "deploy/spark-reader/inresearch-reader-publish.service",
+        "deploy/spark-reader/inresearch-reader-publish.timer"
       ],
-      "implementation_revision": "2026.10.09.39",
-      "change_reason": "补充显式暂态恢复入口：精确batch/deferred/次数+错误CAS、耗尽预算白名单、当前完整封印/原件/失败审计复验、原去向history同事务；次数/available/候选/原审计及默认worker排序/C3/抽样/ready背压保持。本次仅实现及本地验收，生产恢复另验。"
+      "implementation_revision": "2026.10.09.42",
+      "change_reason": "补充显式暂态恢复入口：精确batch/deferred/次数+错误CAS、耗尽预算白名单、当前完整封印/原件/失败审计复验、原去向history同事务；次数/available/候选/原审计及默认worker排序/C3/抽样/ready背压保持。本次仅实现及本地验收，生产恢复另验。；用户要求修复上线延迟：忙任务局部退避、模型等待期间receipt封存、按变更一分钟发布、有界重试及精确重放，不改采用资格。；四个重型浏览器套件独立并行，保持全场景与期限，修复实测串行15分钟超时。"
     },
     {
       "id": "geluoke-longform-20261001",
@@ -1687,13 +1690,17 @@
         "src/inresearch/workflow/research_publish.py",
         "deploy/spark-reader/inresearch-research-review.service",
         "deploy/m5-research/research-publish.plist.example",
-        "tests/unit/test_research_review.py"
+        "tests/unit/test_research_review.py",
+        "src/inresearch/workflow/commands.py",
+        "deploy/spark-reader/inresearch-reader-publish.service",
+        "deploy/spark-reader/inresearch-reader-publish.timer"
       ],
       "supersedes": [
         "model-execution-20260912"
       ],
       "reason": "用户授权整批 Codex CLI 阅读；未完成配方显式迁移、点名范围、额度等待与真实进展；保留原件/当前结果/C3边界。；用户授权修复：CLI 失败分类/脱敏诊断、显式高分辨率视觉补读及逐 OCR 页检查点让槽，保留核验标准与失败证据。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。; bounded read_batch uses the frozen reader role and per-chunk provenance; concurrency benchmark coordinates client and relay without changing models.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。",
-      "implementation_revision": "2026.10.08.1"
+      "implementation_revision": "2026.10.09.42",
+      "change_reason": "；用户要求修复上线延迟：忙任务局部退避、模型等待期间receipt封存、按变更一分钟发布、有界重试及精确重放，不改采用资格。"
     },
     {
       "id": "reading-codex-batch-20261006",
@@ -1965,14 +1972,18 @@
         "tests/unit/test_review_preference.py",
         "src/inresearch/knowledge/registry.py",
         "tests/unit/test_object_mapping_review.py",
-        "tests/unit/test_research_retry_transient.py"
+        "tests/unit/test_research_retry_transient.py",
+        "src/inresearch/delivery/publish.py",
+        "src/inresearch/workflow/commands.py",
+        "deploy/spark-reader/inresearch-reader-publish.service",
+        "deploy/spark-reader/inresearch-reader-publish.timer"
       ],
       "supersedes": [
         "reading-codex-batch-20261006"
       ],
       "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。",
-      "implementation_revision": "2026.10.09.39",
-      "change_reason": "补充显式暂态恢复入口：精确batch/deferred/次数+错误CAS、耗尽预算白名单、当前完整封印/原件/失败审计复验、原去向history同事务；次数/available/候选/原审计及默认worker排序/C3/抽样/ready背压保持。本次仅实现及本地验收，生产恢复另验。"
+      "implementation_revision": "2026.10.09.42",
+      "change_reason": "补充显式暂态恢复入口：精确batch/deferred/次数+错误CAS、耗尽预算白名单、当前完整封印/原件/失败审计复验、原去向history同事务；次数/available/候选/原审计及默认worker排序/C3/抽样/ready背压保持。本次仅实现及本地验收，生产恢复另验。；用户要求修复上线延迟：忙任务局部退避、模型等待期间receipt封存、按变更一分钟发布、有界重试及精确重放，不改采用资格。"
     },
     {
       "id": "interface-reader-company-20261008",
@@ -2366,12 +2377,29 @@
         "tests/rack_exploded.cjs",
         "tests/rack_exploded_atlas.cjs",
         "web/components/scene-view.js",
-        "docs/design/technical-atlas/TA-14/publication-20261009.json"
+        "docs/design/technical-atlas/TA-14/publication-20261009.json",
+        "web/pages/chip-atlas.html",
+        "web/assets/technical-atlas/chip-package-v1.png",
+        "web/assets/technical-atlas/chip-package-v1.svg",
+        "web/assets/technical-atlas/chip-package-v1-preview.svg",
+        "web/components/chip-package-assembly.js",
+        "web/components/chip-package-generator.js",
+        "docs/design/technical-atlas/TA-15/labels-v1.json",
+        "docs/design/technical-atlas/TA-15/native-render-v1.json",
+        "docs/design/technical-atlas/TA-15/SCOPE.md",
+        "docs/design/technical-atlas/TA-15/technical-sources-v1.json",
+        "docs/design/technical-atlas/TA-15/preparation-v1.json",
+        "docs/design/technical-atlas/TA-15/prompt-v1.txt",
+        "docs/design/technical-atlas/TA-15/prompt-v2.txt",
+        "tests/chip_package.cjs",
+        "tests/chip_atlas.cjs",
+        "docs/design/technical-atlas/TA-15/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-15/publication-20261009.json"
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.09.40",
-      "change_reason": "TA14实际发布：PR512合并030c1e69，AWS10:51:43Z同源码/应用/.38及精确249c0e2c镜像healthy；真实公网四静态与八常规浏览器3D图逐张目检、14标注组（31文字节点）/14引线/原PNG SHA、完整SVG634116B与PNG471299B双下载、12源码SHA/health200/360px两行85.734、611整柜/三类单实例真实拾取当前SVG、空home/同轴/固定外轨/随动内轨、控件避让/六编号图例/初始显式fit/镜头接管/幂等释放与旧入口全部通过。母图受控原生法和六AI拒绝、headless软件合成残影与正确原buffer/常规浏览器对照分别留证；不是OEM/CAD/安装维修或热插拔程序。仅本轮用户授权不查CI，未声称通过；Spark/研究事实未改。主计划14/35、补充4/4，下一TA15原号芯片近景x90。"
+      "implementation_revision": "2026.10.09.44",
+      "change_reason": "TA15实际发布：PR531合并3e169899，AWS12:20:37Z同源码/应用/.43与精确bfb24f42镜像healthy，审定head与merge完整tree零差异；真实公网四静态/八常规浏览器3D逐张目检，八标注组（19文字节点）/八引线/原PNG SHA、完整SVG463119B与PNG344942B双下载、12源码SHA/HTTPShealth200/360px两行85.734通过。1049完整封装与三单实例真实拾取/SVG、200微凸点/108C4双面实际几何接触、TSV界限、同二维对应/共同竖轴、固定HUD与导航避让/五编号图例/镜头接管/资源释放与七旧入口实查。最终原生1536×1024与三个1:1同实例局部，二AI拒绝、原生旧稿/单面漏验与首次ui_skin缺fixture失败保留；通用示意非OEM/CAD/制造维修，不补造型号规格。仅本轮用户授权不查CI，不称通过；Spark/研究事实未改。主计划15/35、补充4/4，下一TA16按系统2D总览。"
     },
     {
       "id": "interface-repository-daily-20261008",
