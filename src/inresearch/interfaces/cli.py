@@ -11,6 +11,7 @@ from inresearch.storage.files import CommitUncertain
 ROOT = project_root()
 JSON_COMMANDS = ('add-price', 'assign', 'receive-snapshot')
 COMMANDS = {
+    'editorial-sync': 'inresearch.adapters.editorial_sync',
     'pipeline': 'inresearch.workflow.project_pipeline',
     'research-match': 'inresearch.workflow.research_match',
     'daily-events': 'inresearch.materials.daily_events',

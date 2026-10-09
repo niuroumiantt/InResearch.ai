@@ -149,7 +149,7 @@ def ingest(path, data, root, title=None, daily_sources=None):
         url = existing['url'] if existing else ''
         if existing:
             old = json.loads(existing['metadata'])
-            for key in ('source_url', 'source_provenance'):
+            for key in ('source_url', 'source_provenance', 'source_role', 'editorial_delivery', 'editorial_references'):
                 if key in old: document[key] = old[key]
         ident = c.item('fetchreports', sha, 'supplied_research', url, title or path.name, document, state='matched_candidate')
         # Original bytes and source receipt are permanent, separate from the index.
