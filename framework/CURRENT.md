@@ -1,6 +1,8 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.09.44 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.09.45 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+
+本版研究发表：缺省CI保持，任务显式local固定验收与精确head/main/member回执；同source优先汇总，singleton私有300秒有界等待。各批对同一未改baseline审核后一次追加，actual健康digest/source/public canonical与逐batchACK另验。背压非跨机器锁，旧CLOSED自动superseded未实现；源码/fixture不冒充生产载入，现行入口为09/Spark操作手册。
 
 ## 从哪里读当前规则
 
