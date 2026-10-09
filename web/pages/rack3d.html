@@ -637,9 +637,12 @@ const PARTMESH = {};
 function rebuildPartMesh() {
   Object.keys(PARTMESH).forEach(k => delete PARTMESH[k]);
   pickables.forEach(m => { (PARTMESH[m.userData.part] ||= []).push(m); });
+  // A server dossier inspects the complete assembly while child picks keep their IDs.
+  if (serverMode) PARTMESH.server = [...pickables];
 }
 rebuildPartMesh();
-const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid]});
+const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid],
+  initialRotation: pid => serverMode && pid === 'server' ? {x:0.6, y:0.7} : null});
 const showDossier = createPartDossier({el: document.getElementById('dossier'), view: 'rack',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector});

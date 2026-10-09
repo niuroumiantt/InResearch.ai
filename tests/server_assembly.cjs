@@ -5,9 +5,10 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=requ
  try {
   const page=await browser.newPage({viewport:{width:1280,height:900},deviceScaleFactor:1,reducedMotion:'reduce'}),errors=[],results=[];
   page.on('pageerror',e=>errors.push(e.message));
+  await page.route(/\/assets\/part-inspector\.js(?:\?[^#]*)?$/,async route=>{const response=await route.fetch(),source=await response.text();const body=source.replace('return {canvas: iCv,','return {objectsForTest:()=>iGroup?.children || [], rotationForTest:()=>({x:iRotX,y:iRotY}), canvas: iCv,');assert.notEqual(body,source);await route.fulfill({response,body});});
   await page.route(/\/rack3d\.html/,async route=>{
    const response=await route.fetch(),html=await response.text();
-   const body=html.replace('</script>\n</body>','globalThis.__serverTest={scene,serverMode,serverAssembly,rack,pickables,animated,camera,controls,canvas,sceneView,sceneModels,atlasDrawing,disposePage,renderer,composer,spinners};\n</script>\n</body>');
+   const body=html.replace('</script>\n</body>','globalThis.__serverTest={scene,serverMode,serverAssembly,rack,pickables,animated,camera,controls,canvas,sceneView,sceneModels,atlasDrawing,disposePage,renderer,composer,spinners,PARTMESH,inspector,showDossier,PART};\n</script>\n</body>');
    assert.notEqual(body,html,'observation must match current source');await route.fulfill({response,body});
   });
   async function openControls(){if(!await page.locator('details[data-responsive-panel]').evaluate(el=>el.open))await page.getByLabel('展开或收起场景控制').click();}
@@ -32,6 +33,9 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=requ
   assert.equal(await page.evaluate(()=>__serverTest.serverMode),true);assert.equal(await page.locator('#explode').inputValue(),'55');
   assert.deepEqual(await page.evaluate(()=>__serverTest.serverAssembly.counts),{server:1,cpu:2,dram:8,gpu:2,ssd:8,nic:1,psu:2,'server-fan':4});
   assert.equal(await page.evaluate(()=>__serverTest.rack.name),'generic-server-assembly');assert.equal(await page.evaluate(()=>__serverTest.sceneModels.objects().length),0);
+  await page.evaluate(()=>__serverTest.showDossier(__serverTest.PART.server));await page.locator('#dossier canvas').waitFor();
+  const whole=await page.evaluate(()=>({sources:__serverTest.pickables.length,index:__serverTest.PARTMESH.server.length,clones:__serverTest.inspector.objectsForTest().length,rotation:__serverTest.inspector.rotationForTest(),categories:[...new Set(__serverTest.PARTMESH.server.map(m=>m.userData.part))]}));
+  assert.equal(whole.index,whole.sources);assert.equal(whole.clones,whole.sources);assert.deepEqual(whole.rotation,{x:0.6,y:0.7});assert.deepEqual(new Set(whole.categories),new Set(['server','cpu','dram','gpu','ssd','psu','nic','server-fan']));await screenshot('server-complete-dossier');if(process.env.REVIEW_SCREENSHOTS)await page.locator('#dossier .insp canvas').screenshot({path:process.env.REVIEW_SCREENSHOTS+'/server-complete-inspector.png'});const ic=await page.locator('#dossier .insp canvas').boundingBox();await page.mouse.move(ic.x+30,ic.y+30);await page.mouse.down();await page.mouse.move(ic.x+80,ic.y+55,{steps:4});await page.mouse.up();assert.notDeepEqual(await page.evaluate(()=>__serverTest.inspector.rotationForTest()),whole.rotation,'initial view must yield to inspector dragging');const fullPending=page.waitForEvent('download');await page.locator('#atlas-export').click();const fullDownload=await fullPending;assert.equal(await fullDownload.failure(),null);const fullRaw=fs.readFileSync(await fullDownload.path(),'utf8');const fullMeta=await page.evaluate(raw=>JSON.parse(new DOMParser().parseFromString(raw,'image/svg+xml').querySelector('metadata').textContent),fullRaw);assert.equal(fullMeta.object_id,'part:server');if(process.env.REVIEW_SCREENSHOTS)fs.writeFileSync(process.env.REVIEW_SCREENSHOTS+'/server-whole-current.svg',fullRaw);await page.getByRole('button',{name:'关闭部件档案'}).click();results.push({label:'whole-server inspector includes every component',...whole,export_object_id:fullMeta.object_id});
   for(const stage of [0,55,100]){
    await page.locator('#explode').evaluate((el,stage)=>{el.value=stage;el.dispatchEvent(new Event('input',{bubbles:true}));},stage);await fitCheck('desktop stage '+stage);await screenshot('server-stage-'+stage+'-desktop');
   }

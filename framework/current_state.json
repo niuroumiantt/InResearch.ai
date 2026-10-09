@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.22",
+  "version": "2026.10.09.23",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2278,12 +2278,28 @@
         "docs/design/technical-atlas/TA-10/prompt-correction-v2.txt",
         "docs/design/technical-atlas/TA-10/prompt-cutaway-v3.txt",
         "docs/design/technical-atlas/TA-10/acceptance-v1.json",
-        "docs/design/technical-atlas/TA-10/publication-20261009.json"
+        "docs/design/technical-atlas/TA-10/publication-20261009.json",
+        "web/assets/technical-atlas/server-v1.png",
+        "web/assets/technical-atlas/server-v1.svg",
+        "web/assets/technical-atlas/server-v1-preview.jpg",
+        "web/assets/technical-atlas/server-v1-preview.svg",
+        "docs/design/technical-atlas/TA-11/ta11-prompt-v1.txt",
+        "docs/design/technical-atlas/TA-11/labels-v1.json",
+        "docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v3.txt",
+        "docs/design/technical-atlas/TA-11/preparation-v1.json",
+        "docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v4.txt",
+        "docs/design/technical-atlas/TA-11/ta11-prompt-correction-v2.txt",
+        "docs/design/technical-atlas/TA-11/acceptance-v1.json",
+        "web/components/server-assembly.js",
+        "tests/server_assembly.cjs",
+        "tests/browser_suites.cjs",
+        "tests/unit/test_browser_shards.py",
+        "framework/interface_manifest.json"
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.09.20",
-      "change_reason": "TA-10真实发布：PR451首发38c2d58b，AWS同源码/应用版本/精确镜像healthy；真实公网八视图逐张目检、十独立标签/原PNG SHA、完整SVG/PNG下载、既有coldplate交互画布验收。主计划10/35、补充4/4，下一TA-11。保留两次拒绝、一体剖视与未知边界、原图/事实/3D、.15来源与.18研究恢复/完整CI分片；自动CI按观测时点实录，本次用户自主合并部署授权与结果分开。Spark仅只读同源码及两服务，无服务或范围修改。；源码精确head新CI六job含完整浏览器分片与聚合已实际完成成功，早期进行中观测保留。"
+      "implementation_revision": "2026.10.09.23",
+      "change_reason": "TA-11整机主对象与安装装配交互完成本地验收：R2实际输入、三版拒绝留存、第四版内外接口方向修正，12独立标签与原PNG/轻量预览；通用示例2CPU/8DIMM/2GPU/4fans/8drives/2PSU与固定riser/盘背板/内DC外AC/NIC后口对应。x55独立服务器而非整柜，真实点选/当前视角导出/镜头所有权/手机明暗/资源释放和旧x0/35/90保留。主计划published10/35、补充4/4，仅accepted，CI/实际发布另验；最新.22来源与研究/写作/scope完整保留，Spark不改。；根复审发现整机档案漏子类别和底视遮挡，现聚合全部1129真实几何/八类、仅整机启用顶部初始姿态，用户拖动和整机选中导出实查，修正前图保留；机器计数不代替目检。"
     },
     {
       "id": "interface-repository-daily-20261008",

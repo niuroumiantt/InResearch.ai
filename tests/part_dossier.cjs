@@ -25,7 +25,7 @@ const {chromium} = require('playwright');
       assert.match(await dossier.locator('.rg-3d-panel .rg-chips').textContent(), /个问题.*条证据.*个关联任务/);
       assert.ok(await dossier.locator('.rg-3d-neighbors a').count()>0);
       console.log('Scene contract: research ready '+url);
-      if (url.includes('p=server') || url.includes('part:server')) {
+      if (url.includes('p=server') || new URL(url,'http://localhost').searchParams.get('node')==='part:server') {
         const server = dossier.locator('.technical-atlas[data-figure="TA-11"]');
         await server.waitFor();
         assert.match(await server.locator('figcaption').textContent(), /通用风冷.*仅为示例/);
