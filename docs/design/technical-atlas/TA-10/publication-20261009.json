@@ -1,0 +1,436 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-10",
+  "object_id": "part:coldplate",
+  "first_published_revision": "38c2d58bb6fab622c7061d3244fa9851e344a401",
+  "pull_request": "https://github.com/niuroumiantt/InResearch.ai/pull/451",
+  "source_head": "de8cd18477f693e488826d30d16255abf0b7ed5a",
+  "merged_at": "2026-10-09T04:50:53Z",
+  "verified_at": "2026-10-09T04:59:52.223935+00:00",
+  "acceptance_record": "docs/design/technical-atlas/TA-10/acceptance-v1.json",
+  "ci": {
+    "conclusion": "success",
+    "headSha": "de8cd18477f693e488826d30d16255abf0b7ed5a",
+    "jobs": [
+      {
+        "completedAt": "2026-10-09T04:51:08Z",
+        "conclusion": "success",
+        "name": "storage-container",
+        "startedAt": "2026-10-09T04:50:20Z",
+        "status": "completed",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113675202062"
+      },
+      {
+        "completedAt": "2026-10-09T04:59:20Z",
+        "conclusion": "success",
+        "name": "browser (core_b)",
+        "startedAt": "2026-10-09T04:50:19Z",
+        "status": "completed",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113675202173"
+      },
+      {
+        "completedAt": "2026-10-09T04:52:41Z",
+        "conclusion": "success",
+        "name": "validate",
+        "startedAt": "2026-10-09T04:50:19Z",
+        "status": "completed",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113675202213"
+      },
+      {
+        "completedAt": "2026-10-09T04:56:48Z",
+        "conclusion": "success",
+        "name": "browser (core_a)",
+        "startedAt": "2026-10-09T04:50:19Z",
+        "status": "completed",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113675202300"
+      },
+      {
+        "completedAt": "2026-10-09T04:51:53Z",
+        "conclusion": "success",
+        "name": "browser (model_assets)",
+        "startedAt": "2026-10-09T04:50:19Z",
+        "status": "completed",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113675202360"
+      },
+      {
+        "completedAt": "2026-10-09T04:59:45Z",
+        "conclusion": "success",
+        "name": "browser (core)",
+        "startedAt": "2026-10-09T04:59:42Z",
+        "status": "completed",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113677354193"
+      }
+    ],
+    "status": "completed",
+    "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325",
+    "observed_at": "2026-10-09T05:01:49.300762+00:00",
+    "user_authorization": "Human explicitly authorized autonomous PR handling and merge/deployment after complete actual local acceptance; budget restored and new automatic CI observed separately.",
+    "merge_did_not_wait_for_ci": true,
+    "acceptance_ci_field": "Earlier local and in-progress stage observations are retained. All six jobs completed successfully on the exact source head; merge used prior human authorization and did not wait for CI."
+  },
+  "local_pre_release_validation": {
+    "rebased_main_includes": "f66db02e article / PR444 and 14c4c6e3 research-recovery full browser shards / PR445, preserving provenance .15 / PR450 and TA09 .14 / PR449",
+    "technical_atlas_browser": "passed, 14 seconds, SSD and thirteen accepted category illustrations including coldplate",
+    "part_dossier_browser": "passed, 70 seconds, coldplate identity, original pickables and interaction/motion/material ownership/stale-frame/drag/cleanup cases",
+    "related_unit_tests": "22 passed at final source baseline: visual atlas/interface/governance and full browser shard contract; no skips",
+    "strict_validation": "passed, zero warnings",
+    "registry": "Research v3.0.0; 353 objects and 458 questions, references valid",
+    "governance": "source .19 refresh/check passed, 1578 registered files; digest integrity is not semantic completeness",
+    "visual_review": "Native master and complete labelled PNG, eight local and eight public views individually viewed. Independent reviewer and root each viewed complete ten-label composition. Two mismatched exploded-cover attempts rejected and retained; accepted third built-in edit is one assembled body with virtual cutaway. Master pixels unchanged."
+  },
+  "aws": {
+    "observed_at": "2026-10-09T04:52:37Z",
+    "source_revision": "38c2d58bb6fab622c7061d3244fa9851e344a401",
+    "applied_revision": "38c2d58bb6fab622c7061d3244fa9851e344a401",
+    "configured_image": "inresearch-app:38c2d58bb6fab622c7061d3244fa9851e344a401",
+    "image": "sha256:1a91589dd9c3b964f65e02c30234cc870d5b26f87b32ec06706184ad441c9442",
+    "status": "HEALTHY",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "deployment": "Existing project-scoped inresearch-only-deploy.timer/service automatically applied merged main; actual source HEAD observed during switch and exact applied/configured image match after health. No manual concurrent deployment or Spark action.",
+    "data_migration": false
+  },
+  "public_source_bytes": [
+    {
+      "url": "https://inresearch.ai/bom.html",
+      "bytes": 20257,
+      "sha256": "302fffcd55096e8d08365f92cacdeb4d1c993077171c676c4678f5aae250b5d8",
+      "seconds": 1.182,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/rack3d.html",
+      "bytes": 39072,
+      "sha256": "87ea353a1d8fcfc889e07e4c3528088e1d84c0032560dfd70e4b8ebabee13c15",
+      "seconds": 0.394,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas.js",
+      "bytes": 15220,
+      "sha256": "26fcc8593ebdc6736d759aafad1a3ada6a242d2485eac34ef24e01291c84cbeb",
+      "seconds": 0.345,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas/coldplate-v1-preview.svg",
+      "bytes": 387500,
+      "sha256": "1d3817c7065e5427bc0d99fc18a45470c6cc4b3f94d1e1adafd8c3749d60430d",
+      "seconds": 1.386,
+      "status": 200,
+      "matches_local_source": true
+    }
+  ],
+  "browser": {
+    "observed_at": "2026-10-09T04:53:33.299Z",
+    "scope": "TA-10 actual anonymous public browser",
+    "views": [
+      {
+        "width": 1280,
+        "mode": "system",
+        "theme": "light",
+        "file": "coldplate-system-1280-light.png",
+        "context": "冷却 → 冷板",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 1280,
+        "mode": "system",
+        "theme": "dark",
+        "file": "coldplate-system-1280-dark.png",
+        "context": "冷却 → 冷板",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 1280,
+        "mode": "scale",
+        "theme": "light",
+        "file": "coldplate-scale-1280-light.png",
+        "context": "冷却 → 冷板",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 1280,
+        "mode": "scale",
+        "theme": "dark",
+        "file": "coldplate-scale-1280-dark.png",
+        "context": "冷却 → 冷板",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "system",
+        "theme": "light",
+        "file": "coldplate-system-390-light.png",
+        "context": "冷却 → 冷板",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "system",
+        "theme": "dark",
+        "file": "coldplate-system-390-dark.png",
+        "context": "冷却 → 冷板",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "scale",
+        "theme": "light",
+        "file": "coldplate-scale-390-light.png",
+        "context": "冷却 → 冷板",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "scale",
+        "theme": "dark",
+        "file": "coldplate-scale-390-dark.png",
+        "context": "冷却 → 冷板",
+        "native": [
+          1536,
+          1024
+        ]
+      }
+    ],
+    "source_checks": [
+      {
+        "url": "/bom.html",
+        "bytes": 20257,
+        "sha256": "302fffcd55096e8d08365f92cacdeb4d1c993077171c676c4678f5aae250b5d8",
+        "seconds": 1.182
+      },
+      {
+        "url": "/rack3d.html",
+        "bytes": 39072,
+        "sha256": "87ea353a1d8fcfc889e07e4c3528088e1d84c0032560dfd70e4b8ebabee13c15",
+        "seconds": 0.394
+      },
+      {
+        "url": "/assets/technical-atlas.js",
+        "bytes": 15220,
+        "sha256": "26fcc8593ebdc6736d759aafad1a3ada6a242d2485eac34ef24e01291c84cbeb",
+        "seconds": 0.345
+      },
+      {
+        "url": "/assets/technical-atlas/coldplate-v1-preview.svg",
+        "bytes": 387500,
+        "sha256": "1d3817c7065e5427bc0d99fc18a45470c6cc4b3f94d1e1adafd8c3749d60430d",
+        "seconds": 1.386
+      }
+    ],
+    "full_svg_labels": 10,
+    "embedded_master_sha256": "ab1c11188f81015694bbc7be40e714cb675a09d59decd480b6546ace897408ce",
+    "downloads": [
+      {
+        "file": "coldplate-v1.svg",
+        "bytes": 2508759,
+        "sha256": "9e25d66884c92a6d66cb3f62436243482d0026f22f84598a457d1ddb32a13406"
+      },
+      {
+        "file": "coldplate-v1.png",
+        "bytes": 1879219,
+        "sha256": "ab1c11188f81015694bbc7be40e714cb675a09d59decd480b6546ace897408ce"
+      }
+    ],
+    "coldplate_3d_canvas": true,
+    "page_errors": []
+  },
+  "public_actions": {
+    "entry": "https://inresearch.ai/bom.html?view=system#coldplate",
+    "views": "system/scale x 1280/390 viewport x light/dark; eight actual public views individually inspected",
+    "correct_part_row": true,
+    "single_selected_atlas": true,
+    "full_svg_labels": 10,
+    "embedded_master": {
+      "width": 1536,
+      "height": 1024,
+      "bytes": 1879219,
+      "sha256": "ab1c11188f81015694bbc7be40e714cb675a09d59decd480b6546ace897408ce",
+      "matches_original_bytes": true
+    },
+    "downloads": [
+      {
+        "file": "coldplate-v1.svg",
+        "bytes": 2508759,
+        "sha256": "9e25d66884c92a6d66cb3f62436243482d0026f22f84598a457d1ddb32a13406"
+      },
+      {
+        "file": "coldplate-v1.png",
+        "bytes": 1879219,
+        "sha256": "ab1c11188f81015694bbc7be40e714cb675a09d59decd480b6546ace897408ce"
+      }
+    ],
+    "dossier": {
+      "url": "https://inresearch.ai/rack3d.html?node=part:coldplate",
+      "canvas_count": 1,
+      "rotation_input_exercised": true,
+      "original_geometry_retained": true,
+      "identity": "existing coldplate category and original GPU-unit coldplate geometry"
+    },
+    "page_errors": []
+  },
+  "browser_evidence": [
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/browser.json",
+      "sha256": "40ce11ae752c7f1023d25a22d8546c2389c65051bf85787e902a64c5893e72ef",
+      "bytes": 3128
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-full-svg.png",
+      "sha256": "40389c0eb11905a5ed1c14913510f49b8a592584ae9aa92265b55d45453fd9a8",
+      "bytes": 1728043
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-rack-dossier.png",
+      "sha256": "96e7c490671fd28bfd26965629e528b68b5be534261630f78c5dc091c8eef0b9",
+      "bytes": 109880
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-scale-1280-dark.png",
+      "sha256": "99ff4af28c48c95e57474a3a4f1cbc7fda8f31edae344d421b8a2a8cbdab4d2e",
+      "bytes": 548132
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-scale-1280-light.png",
+      "sha256": "452f541c67401ee7fa90217ae747bd3e03cd4136686dd1ab5ffc50baf98f804a",
+      "bytes": 547305
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-scale-390-dark.png",
+      "sha256": "6a69529e0c904c29e06b48e8584b52c9dd4525a3458ff2172f214d63b5d34f6a",
+      "bytes": 127937
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-scale-390-light.png",
+      "sha256": "c469e5e34695abc05d71cd55409dd868c6282445dc5f0b3b9792a84cfa46bd90",
+      "bytes": 127098
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-system-1280-dark.png",
+      "sha256": "f5b5a5ae2eda7a362fd9d4795ebeee3af4c41b3011579bb11ddcfd23e6107b49",
+      "bytes": 548137
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-system-1280-light.png",
+      "sha256": "da1ee02feb4f8727dac82256ede678bcfe6422623ba90ae2c13c7cda4e20a04e",
+      "bytes": 547299
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-system-390-dark.png",
+      "sha256": "bdc4460d5aa4640dfde67b7ce6ce1a90197b82a92a9c3160a63fa752812494c5",
+      "bytes": 127589
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-system-390-light.png",
+      "sha256": "70d3811a3a88d88211121c9ae07837b3e3a4bbda7071993fb9150c60c4c3caf0",
+      "bytes": 126757
+    }
+  ],
+  "complete_chat_preview": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/public/coldplate-full-svg.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "40389c0eb11905a5ed1c14913510f49b8a592584ae9aa92265b55d45453fd9a8",
+    "use": "Actual complete public ten-label SVG screenshot, individually viewed without crop; distinct from native imagegen master."
+  },
+  "spark_readonly": {
+    "observed_at": "2026-10-09T04:53:53Z",
+    "revision": "38c2d58bb6fab622c7061d3244fa9851e344a401",
+    "reader": "active/running",
+    "reader_pid": 1644248,
+    "reader_started": "2026-10-09 11:27:32 CST",
+    "research_review": "active/running",
+    "research_review_pid": 1543876,
+    "observation": "Read-only actual source/user-service query; matching source HEAD does not establish asset use, material intake, deep-read, C3 or adoption.",
+    "service_changes_by_this_task": false
+  },
+  "limits": [
+    "One closed body is virtually cut away to illustrate a channel bank and two end-header regions. Copper appearance, channel geometry and two ports are examples, not exact materials or design facts. Cutaway is not a disassembly or maintenance step.",
+    "Right lower male plug and female socket are a same-kind repeated enlarged detail, not another cooling circuit. No dripless/hot-swap/standard interchangeability claim; specific valves, geometry, pins, mating tolerance or compatibility remain unknown.",
+    "Exact SKU, dimensions/counts, contact material, coolant/electrochemical compatibility, sealing/joining process, flow direction/rate, pressure, temperature, thermal performance and leakage are not verified. Official sources establish categories only; Boyd legacy 2020 PDF is not a current performance source.",
+    "Two cover/base projection mismatches were rejected and retained with identity in preparation/acceptance. Labels do not conceal those mismatches; only third built-in cutaway edit is published.",
+    "Original coldplate.png keeps SHA 4e0925a507406b76de2c7140555523f04499332662333d24347476ef1519c047. Existing factual values and 3D geometry retained; this is no rebuilt CAD or TA-11/13/23/29 completion.",
+    "Anonymous public dossier honestly shows unavailable protected research state. Authenticated research, material registration/deep-read/C3/adoption are outside this artwork receipt; no Spark service or scope changed.",
+    "Observed source/download timings are not network or performance guarantees. Lightweight preview is 387500 bytes.",
+    "Record-only receipt revision is distinct from first artwork publication; final exact source/service observation after receipt deployment is kept separately."
+  ],
+  "ci_observations": [
+    {
+      "conclusion": null,
+      "headSha": "de8cd18477f693e488826d30d16255abf0b7ed5a",
+      "jobs": [
+        {
+          "completedAt": "2026-10-09T04:51:08Z",
+          "conclusion": "success",
+          "name": "storage-container",
+          "startedAt": "2026-10-09T04:50:20Z",
+          "status": "completed",
+          "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113675202062"
+        },
+        {
+          "completedAt": null,
+          "conclusion": null,
+          "name": "browser (core_b)",
+          "startedAt": "2026-10-09T04:50:19Z",
+          "status": "in_progress",
+          "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113675202173"
+        },
+        {
+          "completedAt": "2026-10-09T04:52:41Z",
+          "conclusion": "success",
+          "name": "validate",
+          "startedAt": "2026-10-09T04:50:19Z",
+          "status": "completed",
+          "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113675202213"
+        },
+        {
+          "completedAt": "2026-10-09T04:56:48Z",
+          "conclusion": "success",
+          "name": "browser (core_a)",
+          "startedAt": "2026-10-09T04:50:19Z",
+          "status": "completed",
+          "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113675202300"
+        },
+        {
+          "completedAt": "2026-10-09T04:51:53Z",
+          "conclusion": "success",
+          "name": "browser (model_assets)",
+          "startedAt": "2026-10-09T04:50:19Z",
+          "status": "completed",
+          "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325/job/113675202360"
+        }
+      ],
+      "status": "in_progress",
+      "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37885732325",
+      "observed_at": "2026-10-09T04:59:52.222622+00:00",
+      "user_authorization": "Human explicitly authorized autonomous PR handling and merge/deployment after complete actual local acceptance; budget restored and new automatic CI observed separately.",
+      "merge_did_not_wait_for_ci": true,
+      "acceptance_ci_field": "Earlier local acceptance fields are historical stage records. In-progress CI is not passed."
+    }
+  ]
+}
