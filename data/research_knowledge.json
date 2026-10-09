@@ -24272,6 +24272,504 @@
         },
         "batch_id": "db08c9bdbd3f2c806765ab1ba592d216785e66f5af8016b1cb3851280d2d1a3a"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "13fd7ebfa2d13b5657ec6d7f2636e062e60f4377545c0970d5f244540de2a5fa",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:1:ev:0",
+      "locator": "page:15/chunk:14",
+      "object_ids": [],
+      "page_index": 14,
+      "question_ids": [],
+      "quote": "the model characterizes IT equipment as either servers, storage, or\nnetworking equipment, and it uses shipment data to generate estimates for the “installed base”\nof equipment in each year. The installed base represents the quantity of equipment that is\nbeing operated in a given year; these values are distinguished by subcategories of equipment,\nthe type of data center the equipment is in, and other characteristics.",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性及评分均为5。设备分类、出货到在用量的估算及分组边界，对当前M01-Q05核算路径的输入审查有实质贡献；对M01-Q02仅提供口径比较线索。连续原文及相邻功率、能耗计算说明充分，符合B级部分采用条件，未发现A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "13fd7ebfa2d13b5657ec6d7f2636e062e60f4377545c0970d5f244540de2a5fa",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:2:ev:0",
+      "locator": "page:15/chunk:14",
+      "object_ids": [],
+      "page_index": 14,
+      "question_ids": [],
+      "quote": "For servers, there is an underlying model of power draw that leads to this assumption,\nconsidering rated power, maximum power, server operational time, and idle power to estimate\nannual average wattages.",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。平均功率与额定、最大、空闲功率及运行时间的区别，直接关系当前M01-Q05隐含利用率检验的分子、分母和时间条件。连续引文及设备存量、年度用电上下文充分，可作为部分方法证据采用，无A条件。",
+        "workorder_ids": [
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "13fd7ebfa2d13b5657ec6d7f2636e062e60f4377545c0970d5f244540de2a5fa",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:3:ev:0",
+      "locator": "page:15/chunk:14",
+      "object_ids": [],
+      "page_index": 14,
+      "question_ids": [],
+      "quote": "Adding up the product of installed base and wattage across each equipment category leads to\ntotal estimates for annual IT equipment electricity consumption. This value can then be\nmultiplied by modeled PUE and WUE values to estimate total on-site electricity and water\ndemand across the data centers.",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。IT用电到设施现场用电、用水的转换，对当前M01-Q05边界自洽检验和NODE-demand-D1-conversion资源转换工作单具有实质性方法贡献。连续原文和相邻平均功率、设施效率及电网足迹说明充分，符合B级部分采用条件，无A条件。",
+        "workorder_ids": [
+          "Q-M01-Q05",
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "13fd7ebfa2d13b5657ec6d7f2636e062e60f4377545c0970d5f244540de2a5fa",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:4:ev:0",
+      "locator": "page:15/chunk:14",
+      "object_ids": [
+        "system:thermal",
+        "part:ups"
+      ],
+      "page_index": 14,
+      "question_ids": [],
+      "quote": "The PUE and WUE models consider assumptions for the\ntypes of cooling systems present at different types of data centers, as well as the locations of\ndata centers and therefore the average surrounding weather conditions. These assumptions\nare paired with the results from a detailed, physics-based model of cooling electricity demand,\nwhich also accounts for ancillary electrical demands such as lighting and uninterruptible power\nsupplies (UPS)",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。冷却类型、地理天气及辅助用电明确进入设施效率核算，对当前M01-Q05具有实质性关系；对M08-Q04提供实际改善验证应控制的条件。连续引文及完整句子上下文充分，可作为部分方法证据采用，未发现A条件。",
+        "workorder_ids": [
+          "Q-M01-Q05",
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "79f65112d12ba4f5eb3f050fa0ca3347ebc02b022a330afcc0b3cbeba813d89b",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:15:claim:0:ev:0",
+      "locator": "page:16/chunk:15",
+      "object_ids": [
+        "part:server",
+        "system:thermal"
+      ],
+      "page_index": 15,
+      "question_ids": [],
+      "quote": "Key updates include extensive\nquantification and characterization of accelerated servers used for AI applications, consideration\nof various cooling system types and outdoor temperatures when modeling PUE and WUE,\ncalculation of carbon and water footprint of electricity consumed based on local grid mixes, and\nan estimate of electricity demand from cryptocurrency mining.",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性及评分均为5。明确新增AI加速服务器表征，对当前M01-Q04建立负载分类和估算边界具有方法贡献；冷却类型与温度的纳入对M01-Q05有实质关系，对M08-Q04仅贡献验证条件。连续引文及2016年模型比较上下文充分，符合B级有限采用条件，无A条件。",
+        "workorder_ids": [
+          "Q-M01-Q04",
+          "Q-M01-Q05",
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "79f65112d12ba4f5eb3f050fa0ca3347ebc02b022a330afcc0b3cbeba813d89b",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:15:claim:1:ev:0",
+      "locator": "page:16/chunk:15",
+      "object_ids": [],
+      "page_index": 15,
+      "question_ids": [],
+      "quote": "Total electricity, water, and emissions associated with U.S. data center operation are estimates\nfor the period 2014–2028. The years prior to 2024 are historical estimates",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性及评分均为5。地域、年份及历史估计与预测的分界，对当前M01-Q05使用已采用的2028年用电情景具有实质性约束；对M01-Q02提供比较时间和地域口径的部分依据。连续引文及预测不确定性的相邻原文充分，符合B级部分采用条件，无A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      }
     }
   ],
   "statements": [
@@ -46589,6 +47087,612 @@
         "request_sha256": "dfb307e24232d1a7d4bc80c6c7dc023a8965a44c72c142366148ff21af955967"
       },
       "object_mapping_check": "独立按声明范围复核：光伏加电池储能PPA明确涉及电力系统下“发电与储能”链的储能系统，映射part:bess；Amazon明确为交易采购参与方，映射actor:amazon。Anza没有允许的主体ID，不新增映射。本项未说明并网配额、排队或并网协议，不映射site:grid；电力储能不映射IT存储，也不扩展到整座数据中心或其他基础设施。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:1:ev:0"
+      ],
+      "id": "adoption:review:f26aec6a705f701bb4956e1b",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q02",
+        "M01-Q05"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者说明，其美国数据中心能耗模型将IT设备分为服务器、存储和网络设备，使用出货数据估算各年的在用设备数量，并按设备子类别、所在数据中心类型及其他特征区分。这是作者对估算方法的描述，不构成对设备存量或能耗结果的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性及评分均为5。设备分类、出货到在用量的估算及分组边界，对当前M01-Q05核算路径的输入审查有实质贡献；对M01-Q02仅提供口径比较线索。连续原文及相邻功率、能耗计算说明充分，符合B级部分采用条件，未发现A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:1"
+      ],
+      "limitations": "报告发表日期未由所供原生文本确立。出货量不是在用量，设备数量也不是GW容量；本段未提供存量数值、退役规则、功率参数或误差。模型包含传统及AI设备，不能外推全球、中国或单个项目，也不能确定建设、交付或实际上架状态。阅读覆盖为PDF原生文本，图像未审阅。",
+      "conflict_check": "已采用adoption:review:290d10da94777220e7045af8讨论存量数据质量，adoption:review:0d4eddfd371e5602bb28aa13描述设备层面汇总；本项补充具体分类和存量定义，兼容且非重复。所供legacy燃气轮机记录涉及不同设备、年度产能及出货口径，无直接冲突；合同和项目匹配记录为空。检查限于所供记录，不替换既有结论。",
+      "gap_dependency_check": "M01-Q05仍需设备存量序列、寿命与退役假设、平均功率、年度时间处理、PUE及同地域同年度容量定义，才能检验TWh与GW是否自洽。M01-Q02仍需指定机构的原文边界和可复查调和推导。本项不回答或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "35dc71fbf35133b27a7fc0ac346b969e92b8e813044dc75a28e8639b8a454fde"
+      },
+      "object_mapping_check": "实际范围是美国综合数据中心能耗模型的设备分类及存量估算。泛称服务器未区分合同中的AI服务器整机与通用CPU节点，存储和网络也未指认具体资产；不能据分类名称自动映射一座AI数据中心下的IT系统或部件。保留空映射及有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:2:ev:0"
+      ],
+      "id": "adoption:review:960b83f8b58f07a5f97f7187",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q05"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者说明，其美国数据中心服务器功率模型考虑额定功率、最大功率、服务器运行时间和空闲功率，以估算年平均功率，单位为瓦。这是作者的建模方法说明，不构成对实际功率或利用率的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。平均功率与额定、最大、空闲功率及运行时间的区别，直接关系当前M01-Q05隐含利用率检验的分子、分母和时间条件。连续引文及设备存量、年度用电上下文充分，可作为部分方法证据采用，无A条件。",
+        "workorder_ids": [
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:2"
+      ],
+      "limitations": "报告发表日期未知。引文没有给出功率、运行时间或利用率数值，也未给出完整计算公式。服务器运行时间不能直接等同于GPU利用率、商业利用率或出租率；额定功率和最大功率不能直接替代年平均功率。",
+      "conflict_check": "已采用的设备层面汇总陈述及2028年用电情景预测未认证这些功率参数，与本项兼容且不重复。所供legacy燃气轮机年度产能记录不属于服务器运行功率口径，未形成冲突；合同和项目匹配记录为空。检查限于所供材料，不覆盖既有参数或结论。",
+      "gap_dependency_check": "M01-Q05仍需按服务器类别和年度取得参数、运行模式及完整公式，并匹配IT容量或设施容量边界、PUE和年度用电数据。本项只支持识别需要验证的功率与时间条件，不完成TWh—GW推导，也不关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "35dc71fbf35133b27a7fc0ac346b969e92b8e813044dc75a28e8639b8a454fde"
+      },
+      "object_mapping_check": "本项描述通用于模型中服务器的平均功率估算，未限定AI加速服务器或通用CPU服务器。不能把泛称servers直接归入part:server，也不能据相邻AI内容继承GPU或计算系统映射；保留空对象列表。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:3:ev:0"
+      ],
+      "id": "adoption:review:9bde51f4aaac9b0c1559b566",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q05",
+        "NODE-demand-D1-conversion"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者描述，其美国数据中心模型结合各设备类别的在用量与功率假设，汇总年度IT设备用电估计，再分别利用模型中的PUE和WUE估算现场总用电与用水需求。这是作者描述的资源核算链条，不构成对转换参数或结果的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。IT用电到设施现场用电、用水的转换，对当前M01-Q05边界自洽检验和NODE-demand-D1-conversion资源转换工作单具有实质性方法贡献。连续原文和相邻平均功率、设施效率及电网足迹说明充分，符合B级部分采用条件，无A条件。",
+        "workorder_ids": [
+          "Q-M01-Q05",
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:3"
+      ],
+      "limitations": "报告发表日期未知。本段没有给出设备数量、功率、PUE、WUE数值或完整年度换算公式。瓦是功率单位，不能仅凭设备数量与瓦数的乘积直接认定已得到年度电量；时间处理、能量单位及WUE分母须回查。现场用水不能自动等同于包含发电端用水的完整水足迹。",
+      "conflict_check": "adoption:review:0d4eddfd371e5602bb28aa13仅说明自下而上汇总结构，本项增加IT与设施需求之间的具体转换环节，兼容且非重复。既有服务需求脱钩和聚合尺度限制也不否定这一核算结构。legacy燃气轮机记录无同口径比较关系；合同和项目匹配记录为空。未发现真实冲突，不替换既有结论。",
+      "gap_dependency_check": "M01-Q05仍需年度化推导、参数、容量边界和情景对应关系。NODE-demand-D1-conversion仍缺工作负载到设备需求的连接、算力及网络和存储需求系数、时滞、敏感性和反证；本项仅覆盖设备之后的能源与现场用水核算环节，不自动覆盖整个需求节点，不关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "35dc71fbf35133b27a7fc0ac346b969e92b8e813044dc75a28e8639b8a454fde"
+      },
+      "object_mapping_check": "实际范围是全国综合数据中心的资源核算关系，未形成具体设施、电力系统、冷却部件或水权的技术及状态陈述。PUE/WUE作为研究模型参数不等于DCIM/BMS软件，现场需求也不等于并网配额或取水许可；保留空映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:4:ev:0"
+      ],
+      "id": "adoption:review:5abc8e6347d1305f01372258",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal",
+        "part:ups"
+      ],
+      "question_ids": [
+        "M01-Q05",
+        "M08-Q04"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者说明，其美国数据中心PUE/WUE估算考虑不同数据中心的冷却系统类型、位置及平均周边天气，将这些假设与基于物理的冷却用电模型结果结合，并计入照明、UPS等辅助用电，以估算不同数据中心类型的平均PUE和WUE。这是作者的模型说明，不构成实际效率改善的独立核证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。冷却类型、地理天气及辅助用电明确进入设施效率核算，对当前M01-Q05具有实质性关系；对M08-Q04提供实际改善验证应控制的条件。连续引文及完整句子上下文充分，可作为部分方法证据采用，未发现A条件。",
+        "workorder_ids": [
+          "Q-M01-Q05",
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:4"
+      ],
+      "limitations": "报告发表日期未知。引文没有提供具体冷却技术配置、天气参数、PUE/WUE结果、UPS功率或损耗数值，也没有液冷实测改善或单MW散热Capex。物理模型结果不等于现场测量，不能推断某种冷却技术在所有地点都节电或节水。",
+      "conflict_check": "adoption:review:c0196294054d73d21ad154a3描述冷却类型及效率的未来情景变化；本项增加地理天气、物理模型及辅助负荷的核算机制，兼容且不重复。legacy燃气轮机产能记录无直接关系，合同和项目匹配记录为空。未发现真实冲突，检查限于所供记录，不替换任何效率结论。",
+      "gap_dependency_check": "M01-Q05仍需同年度同范围的设施效率参数、容量定义及年度电量推导。M08-Q04仍需液冷与基准系统的现场测量、天气和负载条件、PUE/WUE分母以及单MW散热成本序列。本项只能贡献建模及比较条件，不能回答或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "35dc71fbf35133b27a7fc0ac346b969e92b8e813044dc75a28e8639b8a454fde"
+      },
+      "object_mapping_check": "原文明确描述数据中心冷却系统类型及其用电模型，映射至root下的冷却系统system:thermal；另明确将UPS辅助用电纳入核算，可映射至电力系统UPS链下的part:ups，但仅限用电核算角色。未明确具体冷却设备或UPS电池，不下推冷水机组、CDU、冷却液或电池，也不从位置推导site:grid。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:15:claim:0:ev:0"
+      ],
+      "id": "adoption:review:80bda09ebb8b99ea1894de56",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:server",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M01-Q04",
+        "M01-Q05",
+        "M08-Q04"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者说明，相较2016年美国数据中心能耗研究，其模型更新包括用于AI应用的加速服务器量化与表征、冷却系统类型及室外温度对PUE/WUE建模的纳入、基于当地电网组合计算用电碳足迹与水足迹，以及加密货币挖矿用电估计。这是作者对模型更新的说明，不构成对AI负载占比、效率改善或环境足迹结果的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性及评分均为5。明确新增AI加速服务器表征，对当前M01-Q04建立负载分类和估算边界具有方法贡献；冷却类型与温度的纳入对M01-Q05有实质关系，对M08-Q04仅贡献验证条件。连续引文及2016年模型比较上下文充分，符合B级有限采用条件，无A条件。",
+        "workorder_ids": [
+          "Q-M01-Q04",
+          "Q-M01-Q05",
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:15:claim:0"
+      ],
+      "limitations": "报告发表日期未知；2016为所比较研究的引用年份。引文只列出更新方向，没有服务器数量、AI与传统负载占比或增速、冷却实测改善、成本或电网强度参数。相邻章节说明加密货币另行分析，不能将其自动并入AI负载或AI ASIC范围。原图未视觉审阅。",
+      "conflict_check": "既有自下而上模型定义和冷却情景陈述覆盖部分背景，本项新增与2016年框架比较的更新清单，未发现相同规范记录。既有2028年条件性用电预测与新增AI建模兼容。legacy燃气轮机年度产能记录不构成直接反证；合同和项目匹配记录为空。检查仅限所供材料，不替换既有结论。",
+      "gap_dependency_check": "M01-Q04仍需同口径AI与传统设备、工作负载及能耗序列和增速推导。M01-Q05仍需完整参数与容量—电量检验。M08-Q04仍需液冷实际测量和单MW成本证据。更新清单本身不验证模型系数或结果，不回答或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "35dc71fbf35133b27a7fc0ac346b969e92b8e813044dc75a28e8639b8a454fde"
+      },
+      "object_mapping_check": "独立复核后，原文明确指用于AI应用的加速服务器，符合计算链下加速器服务器整机part:server；明确讨论冷却系统类型与温度建模，符合system:thermal。未指明加速器种类或冷却设备，不继承GPU、ASIC、冷水机组等标签；当地电网组合是环境核算条件，不是site:grid的配额或并网权利。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:15:claim:1:ev:0"
+      ],
+      "id": "adoption:review:3395ba27604607497d6ea3a4",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q02",
+        "M01-Q05"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者将美国数据中心运行相关的用电、用水和排放估计覆盖期界定为2014–2028年：2024年前为历史估计；相邻原文说明，2024年起的估计依赖设备出货预测及未来运行实践预测，具有更高不确定性。这是作者界定的估算与预测范围，不构成已发生结果或当前独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:59:59+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性及评分均为5。地域、年份及历史估计与预测的分界，对当前M01-Q05使用已采用的2028年用电情景具有实质性约束；对M01-Q02提供比较时间和地域口径的部分依据。连续引文及预测不确定性的相邻原文充分，符合B级部分采用条件，无A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-M01-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 171.738,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f117ef9717b7e5b8548d12427b4ed8d46438f663b0eb02f32cc518c326469a7a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58325,
+            "output_tokens": 5604,
+            "reasoning_output_tokens": 871
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.77,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a7adf8675dec81881b2d1cc99555559e8381d57087687fc080577cf0f146c2b1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55686,
+              "output_tokens": 407,
+              "reasoning_output_tokens": 118
+            }
+          }
+        },
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:15:claim:1"
+      ],
+      "limitations": "覆盖期不等于报告发表日期，所供原生文本未确立发表日期。历史估计也不是全部现场实测值；2024年起的结果应保留预测属性，即使其中部分年份在审核时已过去。引文没有提供年度电量、用水、排放或容量数值，不能外推全球、中国或AI专属需求。",
+      "conflict_check": "adoption:review:f11de49e0c6470a21cb69188已将2028年美国总年用电量保留为条件性预测，本项与其一致，并增加2014–2028年的完整范围及2024年分界，非同一规范陈述。legacy燃气轮机记录的2024/2025年产能与出货口径不同，无直接冲突；合同和项目匹配记录为空。不覆盖既有预测或结论。",
+      "gap_dependency_check": "M01-Q02仍需指定机构各自的地域、时间、设备及能源边界和调和推导。M01-Q05仍需同年度、同地域、同情景的TWh与GW路径、容量定义及可复查利用率计算。本项只限定可比较范围和预测属性，不回答或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4933e2b784d634345466153cb145d5add9df7f6737e850f706a8b43200b1aa68",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "35dc71fbf35133b27a7fc0ac346b969e92b8e813044dc75a28e8639b8a454fde"
+      },
+      "object_mapping_check": "本项范围为美国全部数据中心运行的全国估计期及历史、预测属性。合同中的root是一座AI数据中心，内部电力、冷却和IT系统也不能直接承载这一全国综合时间边界；用水及用电估计不证明水权或并网权利，故保留空映射。"
     }
   ],
   "answers": [],
