@@ -1,5 +1,13 @@
 # 决策记录
 
+## 2026-10-09：研究反哺当前阶段与C03补充实际接收
+
+保留写作规则v2.7与完整原研究；本次只更正交接/INTAKE current：18:59原23正文封存16/1running/6queued（PDF非视觉），19:12独立HTTPS/ACK30（Alphabet18+LBNL5+EIA7）与main30、原50显式7分开；外部507真实语义/公网/原a4既有ACK绑定已补齐，已发表包currentcontext=false不作新采用许可。502/503真实闭包、501失效revalidate/close与旧attempt保留；515实际merge/Spark安全FF源码但驻留重载及四批恢复执行前被自动审批拒绝（0服务/queue动作），不伪称恢复。C03原PDF精确58缺口保留，DOE/LBL新同源两HTML永久acquisition接收匹配与来源metadata实核，Reader/C3均0、不改scope准入；具名root口径复核非C3、不虚构A。保留TA14实际PR517/.40与14/35/补充4/4。仅docs与治理，不修改产品实现、formal研究、原件、候选、scope、模型或运行队列；用户不查等CI授权保持。 见[现行交接](handoff/us-datacenter-power-20261009.md)。
+
+## 2026-10-09：TA14 原生分层装配实际发布
+
+TA14实际发布：PR512合并030c1e69，AWS10:51:43Z同源码/应用/.38及精确249c0e2c镜像healthy；真实公网四静态与八常规浏览器3D图逐张目检、14标注组（31文字节点）/14引线/原PNG SHA、完整SVG634116B与PNG471299B双下载、12源码SHA/health200/360px两行85.734、611整柜/三类单实例真实拾取当前SVG、空home/同轴/固定外轨/随动内轨、控件避让/六编号图例/初始显式fit/镜头接管/幂等释放与旧入口全部通过。母图受控原生法和六AI拒绝、headless软件合成残影与正确原buffer/常规浏览器对照分别留证；不是OEM/CAD/安装维修或热插拔程序。仅本轮用户授权不查CI，未声称通过；Spark/研究事实未改。主计划14/35、补充4/4，下一TA15原号芯片近景x90。
+
 ## 2026-10-09：点名耗尽预算的暂态失败恢复
 
 补充`research-review retry-transient`：完整batch ID、deferred、expected次数/错误精确比较，至少四次原预算已耗尽且仅网络不可用/CLI超时/额度等待白名单。复验当前完整revision/report/manifest、原件SHA、当前失败attempt及候选去向；事务内保留原去向/失败摘要并只排一轮，原attempts、available、候选和全部审计文件不动，不获得新的自动预算或排序优先权。下一失败仍deferred；认证、模型身份、格式、原文、抽样、语义或预算失败不能借此恢复。

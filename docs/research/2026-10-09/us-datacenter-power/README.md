@@ -2,7 +2,7 @@
 
 2026-10-09｜规则v2.7｜派生研究、交付索引与真实运行回执；原件不入Git。
 
-2026-10-09最新实核：17:23逐SHA为23登记、16份正文封存/7份queued，17:24对16份原件/manifest/chunks/report完整封印全部通过。PDF仍是native_text_only、visual=false、full_document_complete=false；封存完成不等于含图视觉深读。17:39已独立核公网和Spark发布闭环22条＝Alphabet B15（PR480＋PR487＋PR493）＋EIA具名代理A7（PR483）。原50为41C＋9S，仅C35–41七项有显式采用身份，另43未见显式绑定。PR499已实际补审并收窄首批6陈述/10证据的错误设施映射，原B、正文与完整before历史保留。最新main在17:40另有PR503同源新增1条，尚未在本轮核对其公网/ACK，不能写作已闭环23。旧队列恢复另计；具名时点、实际源码/服务与缺口见下方。 [最新交接](../../../handoff/us-datacenter-power-20261009.md)与[50项身份索引](../../../reviews/2026-10-09/research-publication/original-50-identity-index.md)。
+2026-10-09最新实核：技术图册TA14真实公网、下载、3D与精确镜像健康已通过，当前14/35，补充4/4另计。18:59:10原23逐SHA为16份正文封存、1 running、6 queued；JLARC53/154正在读，原Reader仍PID1906533/NRestarts0。PDF的native_text_only、visual=false、full_document_complete=false保留，正文封存不等于含图视觉深读。19:12:54 root组合验收后，原23已独立核对HTTPS及Spark发布闭环30条＝Alphabet B18＋LBNL B5＋EIA专项A7；外部PR507两条的具名root语义、真实公网2陈述/3证据与原attempt4既有ACK绑定均通过，不再沿用19:01的28已核/30主线待核状态。原50是41C＋9S，仅C35–41七项有显式采用身份，另43未见显式绑定。两份官方网页为C03新增同源补充：19:01已实际acquisition接收/匹配2份、来源填空2份且replay不变2；Reader登记/完成、review批次和正式记录均0，不能加到原23或原50完成数。PR499补审后的原B/正文/before保留；旧队列恢复另计。 [最新交接](../../../handoff/us-datacenter-power-20261009.md)与[50项身份索引](../../../reviews/2026-10-09/research-publication/original-50-identity-index.md)。
 
 文章及图文入口：`outputs/geluoke-research/2026-10-09-us-datacenter-power/`。正式研究文字为该目录`research/research.md`与`research/research.txt`，机器登记见submission.json、claims.json、demand-snapshot.json、sources.json。正文不构成来源原件的独立佐证；身份相同的两种交付不重复计量。
 
@@ -44,3 +44,6 @@
 历史13:15:50数据库只读快照完整封存13、queued9/running1，13份封印/产物完整性实核通过；全批深读未完成。本次没有重启Reader/relay/review或改变scope，13:07操作保持与13:15并行任务后的scope/PID观测分别留存。当时长期review PID1543876未确认加载新packet逻辑；此限制是历史观测。当前17:15新PID2433760已实际发出新对象core/sample请求，详见最新交接；不能以磁盘源码替代驻留证据。价格/GW/模型与闭题继续按现行专门路径核验。
 
 11:39:55的封存1/排队22与当时C3未运行是历史阶段，原接收、来源身份与安全解析器发布回执均保留。
+
+
+19:12补充阶段：原23已独立闭环30（Alphabet18＋LBNL5＋EIA7）、原50显式7分母独立；502/503真HTTPS＋ACK、501真实context失效关闭、515已merge并Spark源码快进、驻留重载/恢复被自动审批执行前拒绝，见[最新交接](../../../handoff/us-datacenter-power-20261009.md#1901当前研究反哺补源与图册阶段)。C03原PDF精确58未证实，新DOE/LBL同源两HTML已actual acquisition接收与匹配、Reader及C3均0，原件/headers/body留永久incoming，未改scope准入。

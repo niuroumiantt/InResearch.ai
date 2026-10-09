@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.09.39 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.09.41 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -174,11 +174,11 @@ TA-11整机档案复审修正：serverMode下整机聚合全部1129几何、保�
 
 TA13 public observer repair: the first empty route.fetch body remains a failed attempt with unknown exact cause because no status was captured. A real If-Modified-Since request returns304/empty; the observer removes only If-None-Match/If-Modified-Since and requires full200/nonempty before injecting. URL/status/bytes/cache headers are recorded without authentication headers. Local conditional recovery and full public3D assertions passed; a legal response without Last-Modified records conditional reproduction as inapplicable. Production assets/geometry and suite300-second deadline remain unchanged. Published remains12/35 until the separate receipt. Latest research/main retained; CI not queried or claimed passed under current user authorization.
 
-TA13实际发布：PR486合并b52c42ea，AWS08:28:18Z同源码/应用及精确290e1357镜像healthy/.31；真实公网四静态+四3D视图逐张目检、14文字/14引线/原PNG SHA、SVG2633211B与PNG1971646B完整双下载、7源码SHA/health200/360px两行85.734、整柜598及子实例/未知附件真实拾取当前SVG/镜头/资源释放/旧入口通过。类别研究与本图通用说明分开，原BOM/研究/其它图保留；用户本轮明确不查或等CI，未声称通过。Spark较旧源码及两服务仅只读观察；主计划13/35、补充4/4，下一TA14。
+TA13实际发布：PR486合并b52c42ea，AWS08:28:18Z同源码/应用及精确290e1357镜像healthy/.31；真实公网四静态+四3D视图逐张目检、14标注组（31文字节点）/14引线/原PNG SHA、SVG2633211B与PNG1971646B完整双下载、7源码SHA/health200/360px两行85.734、整柜598及子实例/未知附件真实拾取当前SVG/镜头/资源释放/旧入口通过。类别研究与本图通用说明分开，原BOM/研究/其它图保留；用户本轮明确不查或等CI，未声称通过。Spark较旧源码及两服务仅只读观察；主计划13/35、补充4/4，下一TA14。
 
 2026-10-09对象归属补审：C3显式审核注册对象IDs（允许空）、冻结目录/协议并独立抽样绑定，旧候选/审核保留。已采用记录仅允许完整before+SHA及实际具名A补审的技术严格收窄，原文/旧审/问题/支持与状态不变；替代结论与放宽分发仍按01所有者规则，见01/02/04/09。
 
-2026-10-09研究运行回执更新：原23在17:23正文封存16/7待完成（PDF非视觉），17:39已核网站/Spark闭环22，原50显式仍7。PR499的具名对象补审、M5/唯一review实际自然idle载入、新core/sample与首两ready包分开记录；外部PR503最新main23尚不冒充本轮公网已核23。现行入口见 [研究交接](../docs/handoff/us-datacenter-power-20261009.md)。本次只更正文档阶段和真实回执，不改写作/采用规则或服务。
+2026-10-09研究运行回执更新：18:59原23正文封存16/1running/6queued，JLARC53/154；19:12已独立核HTTPS及Spark闭环30，外部507两条的语义/公网/原a4既有ACK实核已补齐，main30与原50显式7分开。502/503真实5＋1 ACK、501上下文失效原路径revalidate/close与旧attempt保留；515已merge及Spark源码快进ab967，但驻留重载/四批恢复被自动审批执行前拒绝，0服务/队列动作。C03原PDF精确58缺口保留，新DOE/LBL同源两HTML实际acquisition接收匹配2、来源plan/apply/replay通过，Reader登记与C3均0，未改scope准入。TA14独立实际发布14/35，保留全部.40实现与回执。现行入口见 [研究交接](../docs/handoff/us-datacenter-power-20261009.md)。本次仅更新docs实际阶段和治理登记，不改写作/采用规则或运行服务。
 
 
 ### 2026-10-09 TA14 分层示意本地验收
@@ -186,3 +186,5 @@ TA13实际发布：PR486合并b52c42ea，AWS08:28:18Z同源码/应用及精确29
 TA14本地验收：同TA13通用2交换/8计算各8载盘/2电源架各6模块，仅每类一个代表实例沿共同前轴平移且原位空出；虚拟门/左板/顶盖分别前/侧/竖轴。固定外轨/前后支承留在安装柱、内轨随设备，611网格与稳定局部ID，原默认598顶点/姿态/类别逐一保持。六次内置imagegen结构回归均拒绝留证，最终按规范采用独立原生1536×1024程序渲染及三个原生同实例局部1:1合成、14可编辑标注，不称AI成图或交互快照。TA14专用实际角点取景避开控件矩形，手机编号+固定图例；默认球拟合、手动镜头所有权与幂等释放保持。完整档案/单实例拾取/当前SVG/双下载/手机明暗与旧入口已实测；未知附件、电压/协议/内部配置/供应者及非装维边界保持。仅accepted，实际published仍13/35、补充4/4，公网/精确健康镜像另验；本轮用户明确不查询或等待CI，不称通过。
 
 2026-10-09 显式暂态恢复：仅对耗尽原预算且当前源/失败审计一致的点名deferred批次，以expected次数/错误精确比较建立一轮queued；保留attempts、available、候选及全部审计，routing_history与状态同事务，不增加调度权或模型调用。实际relay恢复、自然空闲备份、逐批新审核/网站回执另验，见04/09与Spark操作手册。
+
+TA14实际发布：PR512合并030c1e69，AWS10:51:43Z同源码/应用/.38及精确249c0e2c镜像healthy；真实公网四静态与八常规浏览器3D图逐张目检、14标注组（31文字节点）/14引线/原PNG SHA、完整SVG634116B与PNG471299B双下载、12源码SHA/health200/360px两行85.734、611整柜/三类单实例真实拾取当前SVG、空home/同轴/固定外轨/随动内轨、控件避让/六编号图例/初始显式fit/镜头接管/幂等释放与旧入口全部通过。母图受控原生法和六AI拒绝、headless软件合成残影与正确原buffer/常规浏览器对照分别留证；不是OEM/CAD/安装维修或热插拔程序。仅本轮用户授权不查CI，未声称通过；Spark/研究事实未改。主计划14/35、补充4/4，下一TA15原号芯片近景x90。
