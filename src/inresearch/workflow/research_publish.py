@@ -90,8 +90,18 @@ class Publisher:
         return run(['ssh','-o','ConnectTimeout=10',self.config.get('spark','spark'),shlex.join(args)])
 
     def remote(self, *args):
-        return json.loads(self.ssh(['python3',self.spark_root+'/manage.py','research-review',
-                                   '--root',self.spark_root,'--data',self.spark_data,*args]).stdout)
+        try:
+            result = self.ssh(['python3', self.spark_root+'/manage.py', 'research-review',
+                               '--root', self.spark_root, '--data', self.spark_data, *args])
+        except RuntimeError as error:
+            # SSH preserves the remote semantic failure as stderr, not its Python
+            # exception class. Classify only explicit machine-readable codes;
+            # transport/authentication failures keep their retryable stage.
+            code = re.search(r'ValueError: ([a-z_]+)(?:: ([a-z_,]+))?', str(error))
+            if code:
+                raise ValueError(code.group(1)+((': '+code.group(2)) if code.group(2) else '')) from error
+            raise
+        return json.loads(result.stdout)
 
     def sync_source(self):
         # Preserve any unrelated active checkout changes. No reset, stash or
@@ -126,28 +136,77 @@ class Publisher:
                      'transport':'existing SSH, incremental Git bundle','verified_at':now_iso()})
 
     def tick(self):
-        journals=sorted(self.state.glob('*/journal.json'))
-        for path in journals:
-            value=read_json(path)
-            if value.get('state') not in ('published','blocked','revalidation'):
-                return self.advance(path.parent,value)
+        # Every batch has its own durable failure. A failed verification must
+        # never turn an otherwise healthy publication round into unavailable.
+        blocked, waiting = [], []
+        for path in sorted(self.state.glob('*/journal.json')):
+            value = read_json(path)
+            if value.get('state') not in ('published', 'blocked', 'revalidation'):
+                before = {k:value.get(k) for k in ('state', 'commit', 'merge_commit')}
+                result = self.advance(path.parent, value)
+                if result.get('error') or result['state'] in ('blocked', 'revalidation'):
+                    blocked.append({'batch_id':value['batch_id'], 'state':result['state']})
+                    continue
+                if any(result.get(k) != v for k,v in before.items()):
+                    return result
+                waiting.append({'batch_id':value['batch_id'], 'state':result['state']})
+                # A PR still waiting for checks/deployment cannot occupy the
+                # whole dispatcher. Later batches may advance independently.
         for pending in self.remote('ready'):
-            bid=pending['batch_id']
-            if not re.fullmatch('[0-9a-f]{64}',bid):raise ValueError('unsafe_batch_id')
-            directory=private_dir(self.state/bid)
-            path=directory/'journal.json'
-            if path.exists() and read_json(path).get('state') in ('blocked','revalidation'):
-                # A new immutable review attempt may resolve a changed context.
-                proof=self.remote('verify','--batch-id',bid)
-                if read_json(path).get('bundle_sha256')==proof['bundle_sha256']:continue
-            return self.advance(directory,{'state':'new','batch_id':bid})
-        return {'state':'idle','at':now_iso()}
+            bid = pending['batch_id']
+            if not re.fullmatch('[0-9a-f]{64}', bid):
+                raise ValueError('unsafe_batch_id')
+            directory = private_dir(self.state/bid)
+            path = directory/'journal.json'
+            value = read_json(path) if path.exists() else {}
+            if value.get('state') not in (None, 'blocked', 'revalidation'):
+                continue  # existing durable journal was already visited
+            if value.get('state') in ('blocked', 'revalidation'):
+                try:
+                    proof = self.remote('verify', '--batch-id', bid)
+                except Exception as error:
+                    value.update(error=str(error)[-1500:], updated=now_iso())
+                    atomic_json(path, value)
+                    blocked.append({'batch_id':bid, 'state':value['state']})
+                    continue
+                if value.get('bundle_sha256') == proof['bundle_sha256']:
+                    # A separately authorized release may have merged this
+                    # exact reviewed head while CI was blocked. Recover only
+                    # the website receipt; do not merge or waive any checks.
+                    if value.get('pr') and value.get('commit'):
+                        try:
+                            pr = json.loads(run(['gh', 'pr', 'view', str(value['pr']),
+                                                 '--json', 'state,mergeCommit,headRefOid'], self.root).stdout)
+                            if pr['state'] == 'MERGED':
+                                if pr['headRefOid'] != value['commit']:
+                                    raise ValueError('pr_head_changed_requires_review')
+                                value.setdefault('recoveries', []).append({
+                                    'from':value['state'], 'error':value.get('error'),
+                                    'reason':'exact_reviewed_head_already_merged', 'at':now_iso()})
+                                value.update(state='merged', merge_commit=pr['mergeCommit']['oid'])
+                                atomic_json(path, value)
+                                result = self.advance(directory, value)
+                                if not result.get('error'):
+                                    return result
+                        except Exception as error:
+                            value.update(error=str(error)[-1500:], updated=now_iso())
+                            atomic_json(path, value)
+                    blocked.append({'batch_id':bid, 'state':value['state']})
+                    continue
+            result = self.advance(directory, {'state':'new', 'batch_id':bid})
+            if result.get('error') or result['state'] in ('blocked', 'revalidation'):
+                blocked.append({'batch_id':bid, 'state':result['state']})
+                continue
+            return result
+        return {'state':'waiting_batches' if waiting else ('blocked_batches' if blocked else 'idle'),
+                'batches':blocked, 'waiting':waiting, 'at':now_iso()}
 
     def advance(self, directory, journal):
         bid=journal['batch_id']
         def save(state):
             journal.update(state=state,updated=now_iso())
             atomic_json(directory/'journal.json',journal)
+        journal.pop('error', None)
         try:
             if journal['state']=='new':
                 self.sync_source()
