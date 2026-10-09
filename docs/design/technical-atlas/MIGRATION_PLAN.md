@@ -33,7 +33,7 @@ TA-01入口补全：2D SSD详图在对应存储/尺度行后展开，显示骨�
 | TA-03 | 机箱盖板与壳体 | `web/assets/renders/chassis.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2, R3 | 已发布 · PR404 |
 | TA-04 | 加速器/GPU 基板 | `web/assets/renders/gpu-board.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2, R3 | 已发布 · PR409 |
 | TA-05 | GPU 与 HBM 封装 | `web/assets/renders/hbm.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2, R3 | 已发布 · PR419 |
-| TA-06 | 主板、CPU 与 DIMM | `web/assets/renders/mobo.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2 | 待制作 |
+| TA-06 | 主板、CPU 与 DIMM | `web/assets/renders/mobo.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2, R3 | 本地验收 · 待公网发布 |
 | TA-07 | 网卡与连接器 | `web/assets/renders/nic.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2 | 待制作 |
 | TA-08 | 电源模块 | `web/assets/renders/psu.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2 | 待制作 |
 | TA-09 | 风扇墙 | `web/assets/renders/fans.png` | 新版本图册部件图与原件关联；实际细节按结构证据确定 | R2 | 待制作 |
@@ -91,7 +91,7 @@ TA-36/37已完成真实无字母图、7条独立标注与四幅实际本地入�
 
 ## 持续执行（用户重申35项）
 
-主计划已发布5/35：TA-01、TA-02、TA-03、TA-04、TA-05。设施补充批次TA-36–39已发布4/4，单独计量；下一TA-05 HBM继续，不调整原01–35编号。当前对话已设每小时续做；只有新图实际发布、失败或需用户决定时通知，不发送无变化进度。每张仍逐项制作、审图、页面检查、CI与实际发布验收，不以调度记录冒充完成。
+主计划已发布5/35：TA-01、TA-02、TA-03、TA-04、TA-05。设施补充批次TA-36–39已发布4/4，单独计量；下一TA-06主板继续，不调整原01–35编号。当前对话已设每小时续做；只有新图实际发布、失败或需用户决定时通知，不发送无变化进度。每张仍逐项制作、审图、页面检查、CI与实际发布验收，不以调度记录冒充完成。
 
 ## 补充批次发布收尾
 
@@ -114,3 +114,5 @@ TA-04发布回执：[publication-20261008.json](TA-04/publication-20261008.json)
 TA-05本地验收：GPU/HBM并排于硅中介层，分离基板/焊球与HBM剖开局部；首版TSV外柱和板级身份错误被拒，第二版采用。四堆栈和层数/连接比例示意，8独立标签。实际发布之前主计划保持4/35，补充4/4。
 
 TA-05 publication: [publication-20261009.json](TA-05/publication-20261009.json). Actual public system/scale desktop/mobile views, eight editable labels, embedded master SHA, source bytes and both downloads verified. PR419 already merged; Actions did not run due to budget, user explicitly waived this release blocker. AWS/Spark observed 10cd748f and services healthy/active. Main 5/35, supplemental 4/4; next TA-06 motherboard/CPU/DIMM. Earlier TA-05 local-only notes are historical.
+
+TA-06本地验收：单路主板、CPU与两组各四条RDIMM，另有同类模组局部放大；9独立标注。既有CPU与DRAM类别各自系统/尺度主图入口共用装配上下文，不新增骨架对象，不推断MRDIMM兼容性；既有3D画布与GPU/HBM/机箱图保留。主计划在实际发布前仍5/35。

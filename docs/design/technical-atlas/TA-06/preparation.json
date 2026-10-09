@@ -1,0 +1,26 @@
+{
+  "status": "drafting",
+  "object_id": "part:cpu",
+  "related_object_id": "part:dram",
+  "scope": "Generic single-socket motherboard context for existing CPU and RDIMM category entries; no new motherboard BOM node",
+  "baseline_asset": "web/assets/renders/mobo.png",
+  "baseline_sha256": "1092160abec3b143353c01584b8d8a619e4856daaa1f0c4ff00ec412cff36628",
+  "observed": "Old two large heatsink blocks, blank DIMM rectangles and schematic flat PCB; missing detailed connector/socket relationship.",
+  "primary_sources": [
+    {
+      "url": "https://www.supermicro.com/en/products/motherboard/x13sei-f",
+      "observed_at": "2026-10-09",
+      "supports": "Single CPU socket, eight RDIMM slots, PCIe expansion and I/O/management/power board categories; no exact drawing/model claims."
+    }
+  ],
+  "source_access_failures": [
+    {
+      "url": "https://www.supermicro.com/manuals/motherboard/X13/MNL-2450.pdf",
+      "reason": "Web tool rejected 36,925,067-byte content as too large; manual was not read or used as structural evidence."
+    }
+  ],
+  "unknowns": [
+    "Exact motherboard model, size, PCB traces, port count, CPU carrier/retention mechanism, DIMM chip count, generation/capacity/speed and installation procedure unspecified."
+  ],
+  "next": "Actual built-in generation, visual review and local checks; actual public acceptance required before published."
+}
