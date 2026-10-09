@@ -5,7 +5,7 @@ const {join} = require('node:path');
 const {chromium} = require('playwright');
 const accepted = new Set(JSON.parse(readFileSync(join(__dirname,'../framework/visual_atlas_migration.json'),'utf8')).items
   .filter(row => ['accepted','published'].includes(row.status)).map(row => row.id));
-const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-03','chassis','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存'], ['cpu','TA-06','motherboard','IT · 计算'], ['dram','TA-06','motherboard','IT · 内存'], ['nic','TA-07','nic','IT · 网络'], ['psu','TA-08','psu','电力'], ['server-fan','TA-09','fan-wall','冷却']]
+const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-03','chassis','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存'], ['cpu','TA-06','motherboard','IT · 计算'], ['dram','TA-06','motherboard','IT · 内存'], ['nic','TA-07','nic','IT · 网络'], ['psu','TA-08','psu','电力'], ['server-fan','TA-09','fan-wall','冷却'], ['coldplate','TA-10','coldplate','冷却']]
   .filter(([,figure]) => accepted.has(figure));
 (async () => {
   const browser = await chromium.launch({headless: true, args: ['--enable-unsafe-swiftshader']});
@@ -86,6 +86,11 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
       await atlas.locator('img').evaluate(img => img.decode());
       assert.ok((await atlas.locator('img').getAttribute('src')).endsWith(`/${asset}-v1-preview.svg`));
       assert.ok((await page.locator('.atlas-context').textContent()).startsWith(context + ' →'));
+      if (figure === 'TA-10') {
+        assert.match(await atlas.locator('h3').textContent(), /冷板与接头.*内部液路与快接/);
+        assert.match(await atlas.locator('figcaption').textContent(), /双端口.*示例.*非额外回路.*不表示可拆维护或热插拔/);
+        assert.equal(await page.locator('.technical-atlas[data-figure="TA-09"]').count(), 0, 'coldplate selection clears the previous fan illustration');
+      }
       if (figure === 'TA-09') {
         assert.match(await atlas.locator('h3').textContent(), /服务器风扇墙.*模组与安装位/);
         assert.match(await atlas.locator('figcaption').textContent(), /三就位、一上提.*不表示气流或热插拔/);

@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-10",
+  "object_id": "part:coldplate",
+  "prepared_at": "2026-10-09",
+  "source_baseline": "84fa4038 with source provenance .15 and TA09 .14 retained",
+  "reference_identity": {
+    "file": "docs/design/technical-atlas/references/03-ssd.png",
+    "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+    "role": "R3 actual built-in imagegen style input only, not a coldplate engineering source"
+  },
+  "retained_old_identity": {
+    "file": "web/assets/renders/coldplate.png",
+    "sha256": "4e0925a507406b76de2c7140555523f04499332662333d24347476ef1519c047",
+    "review": "Actual old image viewed; exposed striped upper block and two simplified pipes make coldplate/heatsink identity unclear, not factual geometry to replicate."
+  },
+  "primary_sources": [
+    {
+      "url": "https://www.eaton.com/us/en-us/catalog/thermal-management-solutions/liquid-cold-plates.html",
+      "access": "full official HTML read",
+      "observed_at": "2026-10-09",
+      "supports": "Heat-source contact face, enclosed liquid path and inlet/outlet categories; customizable channels. No exact SKU or operating values adopted."
+    },
+    {
+      "url": "https://www.cpcworldwide.com/Liquid-Cooling/Computing/Cold-Plate",
+      "access": "full official HTML read",
+      "observed_at": "2026-10-09",
+      "supports": "Cold plate transfers contact heat to internal coolant; fluid tubing and quick-disconnect connection categories with product-dependent materials/terminations. No non-spill, compatibility or hot-swap claim generalized."
+    },
+    {
+      "url": "https://info.boydcorp.com/hubfs/Thermal/Liquid-Cooling/Boyd-Legacy-Liquid-Cooled-Cold-Plates-Technical-Datasheet.pdf",
+      "access": "full two-page official legacy PDF read",
+      "observed_at": "2026-10-09",
+      "document_age": "copyright2020 legacy, not current performance evidence",
+      "supports": "Microchannel/fin internal construction and copper/aluminum examples, with welded/brazed manufacturing alternatives; use generic copper-toned sectional illustration, not a product material or specification."
+    },
+    {
+      "url": "https://www.staubli.com/content/dam/fcs/brochures/products/uqd/uqd-thermal-management-standard-staubli-en.pdf",
+      "access": "full eight-page official PDF read; independent reviewer also read all pages",
+      "observed_at": "2026-10-09",
+      "supports": "Socket/plug and hose termination categories, connection of two halves; no model, dimensions, pressure, flow, valve detail or interchangeability adopted."
+    },
+    {
+      "url": "https://www.eaton.com/us/en-us/catalog/thermal-management-solutions/heat-sinks.html",
+      "access": "full official HTML read by independent reviewer",
+      "observed_at": "2026-10-09",
+      "supports": "External base/fins exchange heat with ambient air; a visible fin-like shape alone does not classify liquid coldplate internal geometry."
+    }
+  ],
+  "access_limits": [],
+  "composition": "One assembled generic coldplate with a virtual cover cutaway exposing internal channels and two end-header regions; two example ports/two hoses/two main fluid endpoints. Bottom-right opposing plug/socket pair is a repeated same-kind enlarged detail, not an extra circuit. No detached cap, invented maintenance or fixed inlet/outlet direction.",
+  "unknowns": [
+    "Exact SKU, materials/plating, seals/joining process, wetted-path compatibility, mounting hole/fin/channel/header counts or dimensions, thermal contact/TIM method, flow direction, coolant, operating pressure/flow/temperature, hydraulic/thermal performance, leakage/rating and valve/connector mating tolerances remain unknown.",
+    "Copper-toned microchannel and two-port layout are visual examples; virtual cover removal does not imply a removable lid or service procedure. Quick-connect nose/socket/collar is generic, not OCP/UQD compatibility or a dripless/hot-swap guarantee.",
+    "Existing coldplate 3D geometry and factual data stay intact; this illustration does not complete TA-11/13/29 or a full thermal loop."
+  ],
+  "rejected_iterations": [
+    {
+      "iteration": 1,
+      "original_filename": "exec-c646334c-bbb4-406b-92c5-2a15c787b698.png",
+      "private_retained_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/rejected/master-v1.png",
+      "sha256": "9644ebe9ec4da6f4ae5a26768d1c5afd43a66145a3f0b91ea8c8eebbb2c49cc6",
+      "decision": "rejected",
+      "reason": "Cover/base outline and corner-hole displacement differed, unclear port-to-header relation; independent/root reviews rejected, no label workaround."
+    },
+    {
+      "iteration": 2,
+      "original_filename": "exec-9b8471eb-d62d-4201-aa57-c05f5331e2e2.png",
+      "private_retained_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/rejected/master-v2.png",
+      "sha256": "70fbf7c95eef3aaf22c3a50bfafe409ec31213b9717ad1afa0ba0315ca0234f0",
+      "decision": "rejected",
+      "reason": "Imagegen edit still placed rear-left cover hole off the shared displacement and a guide began at plate edge; rejected."
+    }
+  ],
+  "accepted_strategy": "Third built-in edit adopts one assembled virtual cutaway, removing the erroneous exploded layers. Independently viewed master passed generic illustrative correspondence."
+}

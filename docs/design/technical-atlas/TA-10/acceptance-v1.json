@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-10",
+  "object_id": "part:coldplate",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Generic liquid coldplate internal channels and fluid couplings",
+  "reviewed_at": "2026-10-09",
+  "reviewer": "Codex actual native master/full labelled SVG and real local pages, independent actual view_image reviewer and root review",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "One assembled generic coldplate with a virtual cover cutaway exposing internal channels and two end-header regions; two example ports/two hoses/two main fluid endpoints. Bottom-right opposing plug/socket pair is a repeated same-kind enlarged detail, not an extra circuit. No detached cap, invented maintenance or fixed inlet/outlet direction.",
+  "master": "web/assets/technical-atlas/coldplate-v1.png",
+  "labelled": "web/assets/technical-atlas/coldplate-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "role": "R3 actual built-in imagegen style input only, not a coldplate engineering source",
+      "id": "R3",
+      "actually_passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "accepted_prompt": "docs/design/technical-atlas/TA-10/prompt-cutaway-v3.txt",
+    "iterations": 3,
+    "accepted_original_filename": "exec-8c3af224-e959-4cc7-bc9d-d8a132629546.png",
+    "raster_modified_after_final_generation": false,
+    "preview_method": "same-native-pixel JPEG encoding by macOS sips; native original PNG untouched",
+    "label_method": "independent editable SVG by existing stdlib atlas builder",
+    "label_review_iterations": 1,
+    "rejected_iterations": [
+      {
+        "iteration": 1,
+        "original_filename": "exec-c646334c-bbb4-406b-92c5-2a15c787b698.png",
+        "private_retained_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/rejected/master-v1.png",
+        "sha256": "9644ebe9ec4da6f4ae5a26768d1c5afd43a66145a3f0b91ea8c8eebbb2c49cc6",
+        "decision": "rejected",
+        "reason": "Cover/base outline and corner-hole displacement differed, unclear port-to-header relation; independent/root reviews rejected, no label workaround."
+      },
+      {
+        "iteration": 2,
+        "original_filename": "exec-9b8471eb-d62d-4201-aa57-c05f5331e2e2.png",
+        "private_retained_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/rejected/master-v2.png",
+        "sha256": "70fbf7c95eef3aaf22c3a50bfafe409ec31213b9717ad1afa0ba0315ca0234f0",
+        "decision": "rejected",
+        "reason": "Imagegen edit still placed rear-left cover hole off the shared displacement and a guide began at plate edge; rejected."
+      }
+    ]
+  },
+  "rights": {
+    "origin": "User-authorized built-in generation/editing with actual retained R3 style input",
+    "license": "Project-generated generic explanatory illustration, not vendor engineering drawing or CC0"
+  },
+  "technical_sources": [
+    {
+      "url": "https://www.eaton.com/us/en-us/catalog/thermal-management-solutions/liquid-cold-plates.html",
+      "access": "full official HTML read",
+      "observed_at": "2026-10-09",
+      "supports": "Heat-source contact face, enclosed liquid path and inlet/outlet categories; customizable channels. No exact SKU or operating values adopted."
+    },
+    {
+      "url": "https://www.cpcworldwide.com/Liquid-Cooling/Computing/Cold-Plate",
+      "access": "full official HTML read",
+      "observed_at": "2026-10-09",
+      "supports": "Cold plate transfers contact heat to internal coolant; fluid tubing and quick-disconnect connection categories with product-dependent materials/terminations. No non-spill, compatibility or hot-swap claim generalized."
+    },
+    {
+      "url": "https://info.boydcorp.com/hubfs/Thermal/Liquid-Cooling/Boyd-Legacy-Liquid-Cooled-Cold-Plates-Technical-Datasheet.pdf",
+      "access": "full two-page official legacy PDF read",
+      "observed_at": "2026-10-09",
+      "document_age": "copyright2020 legacy, not current performance evidence",
+      "supports": "Microchannel/fin internal construction and copper/aluminum examples, with welded/brazed manufacturing alternatives; use generic copper-toned sectional illustration, not a product material or specification."
+    },
+    {
+      "url": "https://www.staubli.com/content/dam/fcs/brochures/products/uqd/uqd-thermal-management-standard-staubli-en.pdf",
+      "access": "full eight-page official PDF read; independent reviewer also read all pages",
+      "observed_at": "2026-10-09",
+      "supports": "Socket/plug and hose termination categories, connection of two halves; no model, dimensions, pressure, flow, valve detail or interchangeability adopted."
+    },
+    {
+      "url": "https://www.eaton.com/us/en-us/catalog/thermal-management-solutions/heat-sinks.html",
+      "access": "full official HTML read by independent reviewer",
+      "observed_at": "2026-10-09",
+      "supports": "External base/fins exchange heat with ambient air; a visible fin-like shape alone does not classify liquid coldplate internal geometry."
+    }
+  ],
+  "source_access_limits": [],
+  "unknowns": [
+    "Exact SKU, materials/plating, seals/joining process, wetted-path compatibility, mounting hole/fin/channel/header counts or dimensions, thermal contact/TIM method, flow direction, coolant, operating pressure/flow/temperature, hydraulic/thermal performance, leakage/rating and valve/connector mating tolerances remain unknown.",
+    "Copper-toned microchannel and two-port layout are visual examples; virtual cover removal does not imply a removable lid or service procedure. Quick-connect nose/socket/collar is generic, not OCP/UQD compatibility or a dripless/hot-swap guarantee.",
+    "Existing coldplate 3D geometry and factual data stay intact; this illustration does not complete TA-11/13/29 or a full thermal loop."
+  ],
+  "checks": {
+    "one_main_assembled_coldplate": true,
+    "virtual_cover_cutaway_not_detached_lid": true,
+    "internal_channel_and_end_header_categories": true,
+    "example_ports": 2,
+    "hoses": 2,
+    "main_fluid_endpoints": 2,
+    "detail_pair_is_repeated_enlargement": true,
+    "opposing_plug_and_socket_faces": true,
+    "no_baked_text": true,
+    "independent_labels": 10,
+    "native_pixels_verified": true,
+    "leaders_reviewed": true,
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true,
+    "light_and_dark": true,
+    "retained_3d_canvas": true
+  },
+  "visual_review": {
+    "warm_white": "passed actual master, labelled PNG and eight page views",
+    "materials_and_geometry": "passed for generic cutaway: continuous assembled outer body, recessed internal liquid path, two end headers/ports, two hoses and two fluid endpoints, opposing repeated plug/socket detail",
+    "labels": "ten editable labels with nine corresponding leaders; actual full PNG viewed, no crossover, crop, text out of frame or key occlusion",
+    "scope": "Virtual cutaway, two ports and channels are examples; generic contact face is explicitly below, not a sidewall. No manufacturing, sealing/compatibility or maintenance claim."
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/coldplate-v1-preview.svg",
+    "bytes": 387500
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/coldplate-v1.png",
+      "sha256": "ab1c11188f81015694bbc7be40e714cb675a09d59decd480b6546ace897408ce",
+      "bytes": 1879219
+    },
+    {
+      "file": "web/assets/technical-atlas/coldplate-v1.svg",
+      "sha256": "9e25d66884c92a6d66cb3f62436243482d0026f22f84598a457d1ddb32a13406",
+      "bytes": 2508759
+    },
+    {
+      "file": "web/assets/technical-atlas/coldplate-v1-preview.jpg",
+      "sha256": "d33a2a7b67633a48f936186b8671fb35f4e9415e47f8a3f14dbe56e6b4355fa5",
+      "bytes": 288276
+    },
+    {
+      "file": "web/assets/technical-atlas/coldplate-v1-preview.svg",
+      "sha256": "1d3817c7065e5427bc0d99fc18a45470c6cc4b3f94d1e1adafd8c3749d60430d",
+      "bytes": 387500
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-10/labels-v1.json",
+      "sha256": "7ee6e1b5752a1440347a441ed9b3eb088fa2047c651856d031422f4bc05eb91b",
+      "bytes": 3194
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-10/preparation-v1.json",
+      "sha256": "c8037c5e2d480a34c4d500cf21a173190faa1c23184c0cf324caf792053283f6",
+      "bytes": 5335
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-10/prompt-v1.txt",
+      "sha256": "9e3cc4fec9db9cabe85f471f224c1fd939b31ee487092a4dfd5925e63ad5b1e9",
+      "bytes": 3680
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-10/prompt-correction-v2.txt",
+      "sha256": "b49d6a34f46b3a5cc3175a36d0c07a729addc7df7915161acc5e862f294cde82",
+      "bytes": 3050
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-10/prompt-cutaway-v3.txt",
+      "sha256": "ed2d3a5596dccebeaf72f3aeb9a4602e4338cb94479860080caacb0bffd20fd2",
+      "bytes": 3480
+    }
+  ],
+  "browser_checks": [
+    "tests/technical_atlas.cjs",
+    "tests/part_dossier.cjs"
+  ],
+  "browser_review": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/browser.json",
+    "views": 8,
+    "all_views_individually_viewed": true,
+    "full_svg_opened": true,
+    "page_errors": 0,
+    "label_count": 10,
+    "downloads": "actual full SVG2508759 and PNG1879219 bytes matched source SHA",
+    "retained_3d_canvas": true
+  },
+  "local_validation": {
+    "targeted_browser_review": "passed; eight local system/scale desktop/mobile light/dark screenshots individually viewed, native full ten-label SVG and original embedded PNG SHA, exact SVG2508759/PNG1879219 downloaded bytes, coldplate canvas/rotation and no page errors",
+    "technical_atlas_browser": "passed14s; SSD and13 accepted category illustrations including coldplate; own row, thumbnail, cross selection, native labels, zoom/downloads and retained3D",
+    "part_dossier_browser": "passed70s; all old entries plus actual coldplate identity/canvas, real scenes, motion/picking/material ownership/stale frame/drag/cleanup",
+    "unit_tests": "21 passed with correct src path and approved local socket permission",
+    "governance_check": "passed .16,1554 registered files; selected semantic scope explicit",
+    "strict_validation": "passed0warnings",
+    "registry": "passed353objects458questions/references valid",
+    "post_rebase_final_checks": {
+      "main": "14c4c6e3c0661c677245985e3c10b6abe21959f0",
+      "governance": "2026.10.09.19 /1578files refresh/check passed on latestf66db02e article merge",
+      "strict": "0warnings passed",
+      "registry": "353objects458questions valid",
+      "units": "22 passed: visual atlas/interfaces/governance/browser-shard completeness",
+      "technical_atlas": "14s passed including13accepted illustrations",
+      "part_dossier": "70s passed including original coldplate identity, all prior entries and interaction/resource cases",
+      "local_review_server": "stopped after actual manual checks; regression isolated server cleaned itself",
+      "latest_main": "f66db02e55fc8ad13b3a31622257ebccae7f917d /PR444 .18 article delivery retained; no runtime/browser file difference from14c4 test base"
+    }
+  },
+  "publication": {
+    "status": "not_published",
+    "reason": "Local acceptance only; source PR/automatic CI and actual AWS/public checks are separate. Human explicitly authorized autonomous PR/merge/deploy and requested immediate image display; do not borrow historic waiver."
+  },
+  "issues_resolved": [
+    {
+      "stage": "imagegen_iterations1and2",
+      "issue": "Exploded cover/base corners and hole displacement failed real visual correspondence",
+      "resolution": "Both native outputs retained/rejected. Third actual imagegen edit uses one assembled virtual cutaway; no leader-line repair of faulty raster."
+    },
+    {
+      "stage": "detail_leader_layout",
+      "issue": "Initial planned inset leader route would intersect interface leader",
+      "resolution": "Before first rendered label review, route moved into free outside margin; final actual native PNG independent review passed."
+    }
+  ],
+  "independent_visual_review": {
+    "status": "third_native_master_and_first_ten_label_version_passed",
+    "reviewed_at": "2026-10-09",
+    "reviewer": "Readonly subagent actual view_image of native master and complete labelled PNG",
+    "scope": "generic cutaway/port and header relation, two hoses/endpoints, opposing repeated plug/socket, labels and materials; not exact engineering or public publication"
+  },
+  "conversation_preview": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-10/coldplate-chat-full.png",
+    "pixels": [
+      1536,
+      1024
+    ],
+    "labels": 10,
+    "sha256": "40389c0eb11905a5ed1c14913510f49b8a592584ae9aa92265b55d45453fd9a8",
+    "bytes": 1728043,
+    "purpose": "Complete uncropped local labelled preview requested in current conversation before publication"
+  },
+  "ci": {
+    "status": "source_pr_not_created_yet",
+    "authorization": "Human explicitly authorized autonomous creation/merge/deployment after full local acceptance and budget restored; observe fresh automatic CI without historic waiver or repeated confirmation."
+  }
+}

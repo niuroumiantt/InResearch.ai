@@ -16,7 +16,7 @@ const {chromium} = require('playwright');
       assert.notEqual(instrumented, html);
       await route.fulfill({response, body:instrumented});
     });
-    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm', '/rack3d.html?node=part:cpu', '/rack3d.html?node=part:dram', '/rack3d.html?node=part:nic', '/rack3d.html?node=part:psu', '/rack3d.html?node=part:server-fan']) {
+    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm', '/rack3d.html?node=part:cpu', '/rack3d.html?node=part:dram', '/rack3d.html?node=part:nic', '/rack3d.html?node=part:psu', '/rack3d.html?node=part:server-fan', '/rack3d.html?node=part:coldplate']) {
       console.log('Scene contract: loading '+url);
       await page.goto(process.env.UI_BASE_URL + url);
       const dossier = page.locator('#dossier');
@@ -30,6 +30,13 @@ const {chromium} = require('playwright');
         await enclosure.waitFor();
         assert.match(await enclosure.locator('figcaption').textContent(), /子装配/);
         assert.ok((await enclosure.locator('img').getAttribute('src')).endsWith('/chassis-v1-preview.svg'));
+      } else if (url.includes('part:coldplate')) {
+        const coldplate = dossier.locator('.technical-atlas[data-figure="TA-10"]');
+        await coldplate.waitFor();
+        assert.match(await coldplate.locator('h3').textContent(), /冷板与接头.*内部液路与快接/);
+        assert.match(await coldplate.locator('figcaption').textContent(), /非额外回路.*不表示可拆维护或热插拔/);
+        assert.equal(await dossier.locator('.technical-atlas[data-figure="TA-09"]').count(), 0);
+        assert.ok(await page.evaluate(() => globalThis.__sceneForTest.pickables.some(m => m.userData.part === 'coldplate')), 'original coldplate scene meshes retain their current category identity');
       } else if (url.includes('part:server-fan')) {
         const fan = dossier.locator('.technical-atlas[data-figure="TA-09"]');
         await fan.waitFor();
