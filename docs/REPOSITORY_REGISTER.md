@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.32。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.34。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1645。
+在册文件：1657。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,10 +15,10 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 318 |
+| 历史快照 | 329 |
 | 运行代码 | 316 |
 | 现行规范 | 15 |
-| 项目配置 | 362 |
+| 项目配置 | 363 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
@@ -269,6 +269,8 @@
 | `docs/design/technical-atlas/TA-13/preparation-v1.json` | references | 2 |
 | `docs/design/technical-atlas/TA-13/preparation-v1.json` | prompt_records | 2 |
 | `docs/design/technical-atlas/TA-13/preparation-v1.json` | primary_sources | 2 |
+| `docs/design/technical-atlas/TA-13/public-observer-fix-20261009.json` | public_source_responses | 15 |
+| `docs/design/technical-atlas/TA-13/public-observer-fix-20261009.json` | boundaries | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -574,14 +576,24 @@
 | `docs/reviews/2026-09-15/l1-pipeline/file-plan.csv` | rows | 18 |
 | `docs/reviews/2026-09-15/task-authority/file-plan.csv` | rows | 796 |
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
+| `docs/reviews/2026-10-09/research-publication/eia-review-post-reload-progress.json` | observed_real_loop_events | 1 |
+| `docs/reviews/2026-10-09/research-publication/eia-review-post-reload-progress.json` | post_reload_reviewing | 1 |
+| `docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json` | eia_actual_reviewers | 1 |
+| `docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json` | eia_grants | 7 |
+| `docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json` | unique_worker_pids | 1 |
 | `docs/reviews/2026-10-09/research-publication/old-ready12-followup.json` | batches | 12 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | documents | 23 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | review_batches | 121 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | dispositions | 19 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | canonical_formal_records | 0 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1608.json` | documents | 23 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1608.json` | canonical_formal_records | 13 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage.json` | sources | 23 |
+| `docs/reviews/2026-10-09/research-publication/original-50-identity-index.json` | records | 50 |
 | `docs/reviews/2026-10-09/research-publication/pr453-actual-closure.json` | head_chain | 3 |
-| `docs/reviews/2026-10-09/research-publication/receipts.json` | receipts | 4 |
+| `docs/reviews/2026-10-09/research-publication/pr483-eia-ytd-actual-closure.json` | original_submission_claim_ids | 7 |
+| `docs/reviews/2026-10-09/research-publication/pr483-eia-ytd-actual-closure.json` | maintenance_events | 5 |
+| `docs/reviews/2026-10-09/research-publication/receipts.json` | receipts | 14 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -915,6 +927,7 @@
 | `docs/design/technical-atlas/TA-13/preparation-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-13/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-13/prompt-v2-edit.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-13/public-observer-fix-20261009.json` | 项目配置 |
 | [docs/design/technical-atlas/TA-13/scope-v1.md](design/technical-atlas/TA-13/scope-v1.md) | 配套说明 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
@@ -1471,10 +1484,21 @@
 | [docs/reviews/2026-10-02/homepage/DELIVERY.md](reviews/2026-10-02/homepage/DELIVERY.md) | 历史快照 |
 | [docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md](reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md) | 历史快照 |
 | [docs/reviews/2026-10-09/research-publication/README.md](reviews/2026-10-09/research-publication/README.md) | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/eia-review-post-reload-progress.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/old-ready12-followup.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1608.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/original-50-identity-index.json` | 历史快照 |
+| [docs/reviews/2026-10-09/research-publication/original-50-identity-index.md](reviews/2026-10-09/research-publication/original-50-identity-index.md) | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/pr453-actual-closure.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr480-alphabet-actual-closure.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr483-eia-ytd-actual-closure.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr485-context-revalidation.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr485-stale-context-closed.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr487-alphabet-actual-closure.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/publisher-unowned-gap-restoration.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/receipts.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |

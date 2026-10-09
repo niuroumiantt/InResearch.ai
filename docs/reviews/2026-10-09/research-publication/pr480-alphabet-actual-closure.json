@@ -1,0 +1,554 @@
+{
+  "local-acceptance": {
+    "checked_at": "2026-10-09T07:39:59.642356+00:00",
+    "pr": null,
+    "head": "5f9574328788f60155a2f63e025b3042aae0162e",
+    "main_baseline": "ee574f30f2b9cc045c97cbee666ea1b273801281",
+    "original_audit_verified": true,
+    "context_current": true,
+    "context_sha256": "1d96c40ada0edca9857f2a1ac1fc32466f9876ae09debc1819f9bd4599ce3baa",
+    "latest_main_promote_replay_matches_exact_head": true,
+    "append_only": {
+      "documents": {
+        "added": 1,
+        "ids": [
+          "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ],
+        "old_records_removed": 0,
+        "old_records_changed": 0
+      },
+      "evidence": {
+        "added": 10,
+        "ids": [
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:10:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:10:ev:1",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:10:ev:2",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:5:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:6:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:6:ev:1",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:7:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:8:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:9:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:9:ev:1"
+        ],
+        "old_records_removed": 0,
+        "old_records_changed": 0
+      },
+      "statements": {
+        "added": 6,
+        "ids": [
+          "adoption:review:4d9d490ec92a922f291826c8",
+          "adoption:review:6feb10f3690af7ad97f6a95e",
+          "adoption:review:a5a67902724b59e3852df9c1",
+          "adoption:review:b7c7ef5f4639608d3c0c4539",
+          "adoption:review:c148e09dcc10f8e5ebb02548",
+          "adoption:review:fb6656249b7447a6d6c26f3e"
+        ],
+        "old_records_removed": 0,
+        "old_records_changed": 0
+      }
+    },
+    "other_fields_unchanged": true,
+    "closed_questions_added": 0,
+    "promote_result": {
+      "state": "applied_in_checkout",
+      "statement_ids": [
+        "adoption:review:fb6656249b7447a6d6c26f3e",
+        "adoption:review:c148e09dcc10f8e5ebb02548",
+        "adoption:review:b7c7ef5f4639608d3c0c4539",
+        "adoption:review:6feb10f3690af7ad97f6a95e",
+        "adoption:review:a5a67902724b59e3852df9c1",
+        "adoption:review:4d9d490ec92a922f291826c8"
+      ],
+      "batch_id": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+      "published": false,
+      "closed_questions_added": 0,
+      "at": "2026-10-09T07:38:57+00:00"
+    },
+    "formal_sha256": "87309d0e37fdda7ebc9494daa2fdd001f7d665c49d589abb855368c8004d5edf",
+    "batch_id": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+    "attempt": "attempt-0001",
+    "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b",
+    "original_prepared_base": "73c2e725fda62c01c887780c525016eb8084bc65",
+    "original_prepared_error": "changed reviewed current_state/browser_suites/browser_shards hashes; approved PR475 fixes baseline, old dirty tree preserved",
+    "unit_tests": {
+      "count": 1983,
+      "seconds": 118.222,
+      "pass": true
+    },
+    "related_browser": {
+      "suites": [
+        "research_delivery",
+        "research_summary",
+        "supply"
+      ],
+      "all_pass": true
+    },
+    "previous_complete_matrix": {
+      "head": "8a12dcbebfa5b618e873013c5d85b48a0e5bd956",
+      "receipt": "/private/tmp/inresearch-pr455-final-local-acceptance-20261009.json",
+      "suites": 30,
+      "scenarios": 42,
+      "all_pass": true,
+      "entire_src_web_tests_deploy_unchanged": true,
+      "not_reported_as_rerun": true
+    },
+    "actual_storage": {
+      "checked_at": "2026-10-09T07:08:04.533474+00:00",
+      "head": "3eabe068f7bd69a9ce796e993ec8ad52f85b296b",
+      "source_archive_sha256": "1789fce72745a4045b0bbd3889349e07b81cd6d08e8c026124f9f51f5924f533",
+      "returncode": 0,
+      "log": "/tmp/inresearch-ready-storage-pr455-3eabe068/storage-acceptance.log",
+      "log_sha256": "3c8d47e24628a038f91e0ddb3b22995c82f6eabcaa13ae3f95183ec1815fffdf",
+      "operation": "actual isolated test-owned Docker images and temporary runtime; production container/state untouched",
+      "reused_for_final_head": "8a12dcbebfa5b618e873013c5d85b48a0e5bd956",
+      "unchanged_implementation_and_test_paths": [
+        "tests/container_storage.py",
+        "deploy/Dockerfile",
+        "src/inresearch/delivery.py",
+        "src/inresearch/storage.py",
+        "src/inresearch/paths.py",
+        "src/inresearch/interfaces/http.py",
+        "src/inresearch/commands.py"
+      ],
+      "not_reported_as_rerun_at_final_head": true
+    },
+    "governance": {
+      "version": "2026.10.09.29",
+      "paths": 1628,
+      "pass": true
+    },
+    "strict": {
+      "warnings": 0,
+      "pass": true
+    },
+    "registry": {
+      "objects": 353,
+      "questions": 458,
+      "pass": true
+    },
+    "source_identity": {
+      "sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "role": "downloaded_original",
+      "original_23": true
+    },
+    "semantic_review": "All six attributed product/customer/usage statements read against continuous native p5; no CAPEX/depreciation, no independent certification, no conversion of 30x workflow to spend/compute/GW, no problem closure. Root independently read and approved.",
+    "log_sha256": {
+      "/private/tmp/inresearch-alphabet-first-full-unit-20261009.log": "d82cadbb4cb316ac404e0d0e487692ef3f99bf4708255bd638009c19271f1301",
+      "/private/tmp/inresearch-alphabet-first-browser-20261009.log": "48f84190c83ba46612b9a51a38d7f7e9bfbead0e83e6ba9b7a340aa69aec6f90",
+      "/private/tmp/inresearch-alphabet-first-governance-20261009.log": "d7f1fa1c63a95beed280c693d8a92599c115f58d4f8ac127c05fa6dd7d8d4dad",
+      "/private/tmp/inresearch-alphabet-first-strict-20261009.log": "94984074fc56d8f87d931b1903d902248d811edc7fc7404e4a8441bae7e5bcc2",
+      "/private/tmp/inresearch-alphabet-first-registry-20261009.log": "ab28eba766007119771105b835a89215050bddd71ee4030d48d2e9f14a057c36"
+    }
+  },
+  "formal-verify": {
+    "checked_at": "2026-10-09T07:38:57.315120+00:00",
+    "pr": null,
+    "head": "5f9574328788f60155a2f63e025b3042aae0162e",
+    "main_baseline": "ee574f30f2b9cc045c97cbee666ea1b273801281",
+    "original_audit_verified": true,
+    "context_current": true,
+    "context_sha256": "1d96c40ada0edca9857f2a1ac1fc32466f9876ae09debc1819f9bd4599ce3baa",
+    "latest_main_promote_replay_matches_exact_head": true,
+    "append_only": {
+      "documents": {
+        "added": 1,
+        "ids": [
+          "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ],
+        "old_records_removed": 0,
+        "old_records_changed": 0
+      },
+      "evidence": {
+        "added": 10,
+        "ids": [
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:10:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:10:ev:1",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:10:ev:2",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:5:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:6:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:6:ev:1",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:7:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:8:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:9:ev:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:9:ev:1"
+        ],
+        "old_records_removed": 0,
+        "old_records_changed": 0
+      },
+      "statements": {
+        "added": 6,
+        "ids": [
+          "adoption:review:4d9d490ec92a922f291826c8",
+          "adoption:review:6feb10f3690af7ad97f6a95e",
+          "adoption:review:a5a67902724b59e3852df9c1",
+          "adoption:review:b7c7ef5f4639608d3c0c4539",
+          "adoption:review:c148e09dcc10f8e5ebb02548",
+          "adoption:review:fb6656249b7447a6d6c26f3e"
+        ],
+        "old_records_removed": 0,
+        "old_records_changed": 0
+      }
+    },
+    "other_fields_unchanged": true,
+    "closed_questions_added": 0,
+    "promote_result": {
+      "state": "applied_in_checkout",
+      "statement_ids": [
+        "adoption:review:fb6656249b7447a6d6c26f3e",
+        "adoption:review:c148e09dcc10f8e5ebb02548",
+        "adoption:review:b7c7ef5f4639608d3c0c4539",
+        "adoption:review:6feb10f3690af7ad97f6a95e",
+        "adoption:review:a5a67902724b59e3852df9c1",
+        "adoption:review:4d9d490ec92a922f291826c8"
+      ],
+      "batch_id": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+      "published": false,
+      "closed_questions_added": 0,
+      "at": "2026-10-09T07:38:57+00:00"
+    },
+    "formal_sha256": "87309d0e37fdda7ebc9494daa2fdd001f7d665c49d589abb855368c8004d5edf"
+  },
+  "final-source-audit": {
+    "checked_at": "2026-10-09T07:45:00.894920+00:00",
+    "spark_source_head": "ee574f30f2b9cc045c97cbee666ea1b273801281",
+    "operation": "read-only SQLite; immutable seal/audit/source/current-context/fixed-sample verification; existing native caches required; no constructor, queue, service, scope or source mutation",
+    "ready_batches": [
+      {
+        "queue_state": "review_ready",
+        "queue_attempts": 1,
+        "queue_updated": "2026-10-09T06:58:44+00:00",
+        "batch_id": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+        "attempt": "attempt-0001",
+        "title": "Alphabet Q1 2026 Earnings Call",
+        "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+        "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+        "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b",
+        "reviewed_at": "2026-10-09T06:58:44+00:00",
+        "audit_verified": true,
+        "source_packet_verified": true,
+        "context_current": true,
+        "sealed_context_sha256": "1d96c40ada0edca9857f2a1ac1fc32466f9876ae09debc1819f9bd4599ce3baa",
+        "current_context_sha256": "1d96c40ada0edca9857f2a1ac1fc32466f9876ae09debc1819f9bd4599ce3baa",
+        "fixed_sample_verified": true,
+        "source_type": "downloaded_original",
+        "audit_files": {
+          "request.json": {
+            "sha256": "9f85d17966aa76baf4bf49a1b3e2612b32f51164812bdebef1e6f6ea223795fa"
+          },
+          "response.json": {
+            "sha256": "4565a1ccc62c6a6593db3043d871e3ac2c71f0a6a228f3ffde37c864c14355f2"
+          },
+          "sampling-request.json": {
+            "sha256": "0bd42cf490eb3fd12c606a8362471a6f6d3fc898c0c18cbdd7dacddb42f943ca"
+          },
+          "sampling-response.json": {
+            "sha256": "df0f7f035be547095e8021331f386162090993aabb2716550f9ab409732a138e"
+          },
+          "matching-request.json": {
+            "sha256": "72dde4f5de8d26db6c2d89de7c2becb99ffd977452e4d699f3370ecafa9cfc6a"
+          },
+          "matching-response.json": {
+            "sha256": "94f613733c420fcf7ac01336b622c93cc86b652c9a1254d5eacfa4918c867571"
+          },
+          "packet.json": {
+            "sha256": "11865327559edb8773b86df50287c0e59db0c00f66d978fb229180a0a1585172"
+          },
+          "bundle.json": {
+            "sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b"
+          }
+        }
+      }
+    ]
+  },
+  "m5-recovery": {
+    "at": "2026-10-09T07:44:55.785770+00:00",
+    "pr": 480,
+    "state": "pr_open",
+    "batch_id": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+    "attempt": "attempt-0001",
+    "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b",
+    "head": "5f9574328788f60155a2f63e025b3042aae0162e",
+    "new_worktree": "/Users/m5/.worktrees/inresearch.ai/research-publication-dab6fcb8b605f6f5-attempt-0001-local-acceptance-20261009",
+    "original_dirty_worktree_preserved": true,
+    "original_head": "73c2e725fda62c01c887780c525016eb8084bc65",
+    "original_dirty_formal_sha256": "8c6959cd979ae0f9b6a00ec4ecf324199427c95b56dc55957c8e2bf806eac3fd",
+    "backup_manifest": "/Users/m5/.local/state/inresearch.ai/research-publish-maintenance/alphabet-first-20261009T074403Z/backup-manifest.json",
+    "formal_sha256": "87309d0e37fdda7ebc9494daa2fdd001f7d665c49d589abb855368c8004d5edf"
+  },
+  "actual-merge": {
+    "headRefOid": "5f9574328788f60155a2f63e025b3042aae0162e",
+    "mergeCommit": {
+      "oid": "0e1d6e5649bda913b10293aa146ce151ae2f20f1"
+    },
+    "mergedAt": "2026-10-09T07:45:18Z",
+    "state": "MERGED",
+    "url": "https://github.com/niuroumiantt/InResearch.ai/pull/480"
+  },
+  "spark-source-ff": {
+    "checked_at": "2026-10-09T07:46:59.710587+00:00",
+    "previous": "ee574f30f2b9cc045c97cbee666ea1b273801281",
+    "head": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+    "bundle_sha256": "37c9f32ed8668db9dd8ec37a18bfa3d708fa4c96c1d9769905202e6fdadd7e66",
+    "source_dirty_after": false,
+    "reader_before": "MainPID=1906533\nActiveState=active\nSubState=running\nDropInPaths=/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf /home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf",
+    "reader_after": "MainPID=1906533\nActiveState=active\nSubState=running\nDropInPaths=/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf /home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf",
+    "reader_same": true,
+    "formal_knowledge_sha256": "87309d0e37fdda7ebc9494daa2fdd001f7d665c49d589abb855368c8004d5edf",
+    "operation": "diag-approved canonical main fast-forward only; no Reader/relay/review/scope/catalog/service/independent-worktree edits"
+  },
+  "m5-merged-runtime": {
+    "at": "2026-10-09T07:47:03+00:00",
+    "runtime_head": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+    "journal_state": "merged",
+    "pr": 480,
+    "reviewed_head": "5f9574328788f60155a2f63e025b3042aae0162e",
+    "merge_commit": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+    "attempt": "attempt-0001",
+    "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b"
+  },
+  "publisher-restored": {
+    "checked_at": "2026-10-09T07:48:22.589303+00:00",
+    "launchctl": {
+      "state": "active",
+      "runs": "1",
+      "pid": "35290",
+      "last exit code": "(never exited)"
+    },
+    "process": "35290     1 S    Fri Oct  9 15:47:18 2026     /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python",
+    "program_path": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "program_entry": [
+      "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009/manage.py",
+      "research-publish"
+    ],
+    "configured_runtime": "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009",
+    "runtime_head": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+    "runtime_clean": true,
+    "publisher_source_sha256": "af0aee20a4a9152d89083c0d2f53a63e5e92f56f00d60b3a3963a6d419d5426f",
+    "publisher_source_mtime": "2026-10-09T07:12:34.305653+00:00",
+    "includes_exact_head_recovery": true,
+    "includes_current_context_revalidation": true,
+    "status_file_mtime": "2026-10-09T07:47:39.070689+00:00",
+    "status": {
+      "state": "published",
+      "at": null,
+      "batch_id": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+      "batches": null,
+      "waiting": null
+    },
+    "status_error_present": false,
+    "status_error_classes": [],
+    "alphabet_first": {
+      "state": "published",
+      "updated": "2026-10-09T07:47:39+00:00",
+      "commit": "5f9574328788f60155a2f63e025b3042aae0162e",
+      "merge_commit": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+      "attempt": "attempt-0001",
+      "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b"
+    },
+    "alphabet_first_error_present": false,
+    "alphabet_first_website_proof_present": true,
+    "operation": "read-only actual restored LaunchAgent/PID/source/current status and precise package journal; no new bootstrap, service or queue mutation"
+  },
+  "https-support": {
+    "checked_at": "2026-10-09T07:50:29.396283+00:00",
+    "http_base": "https://inresearch.ai",
+    "url": "https://inresearch.ai/api/research-adopted?node=root",
+    "http_status": 200,
+    "response_bytes": 333076,
+    "response_sha256": "45339c885926f0fc438d0e9a5e8b2cdf9b90ada51a394ee01ba1dd374717bd3c",
+    "batch_id": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+    "reviewed_head": "5f9574328788f60155a2f63e025b3042aae0162e",
+    "merge_commit": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+    "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b",
+    "checks": [
+      {
+        "id": "adoption:review:fb6656249b7447a6d6c26f3e",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:c148e09dcc10f8e5ebb02548",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:b7c7ef5f4639608d3c0c4539",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:6feb10f3690af7ad97f6a95e",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:a5a67902724b59e3852df9c1",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:4d9d490ec92a922f291826c8",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      }
+    ],
+    "verified_all_six": true,
+    "verified_formal_support_all_six": true,
+    "material_api": {
+      "url": "https://inresearch.ai/api/research-materials?node=root&q=Alphabet+Q1+2026+Earnings+Call&limit=50",
+      "http_status": 200,
+      "total": 122,
+      "matched_original_rows": 50,
+      "source_identity_url_role_verified": true,
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "source_url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Apr/29/2026_Q1_Earnings_Transcript.pdf",
+      "role": "downloaded_original",
+      "response_sha256": "882a64b7c97c561dc62cad78487c0bb7d3f5636755267f886853be6af31538f6"
+    },
+    "adopted_projection_note": "Adopted document API intentionally projects only id/title/content SHA/reading revision/coverage; URL and source provenance are bound by deployed curated ledger and separately verified through actual research-materials HTTPS.",
+    "deployed_ledger_sha256": "87309d0e37fdda7ebc9494daa2fdd001f7d665c49d589abb855368c8004d5edf",
+    "projection_contract": "HTTP exposes status/review/native quote/document content SHA/reading revision/coverage; source_candidate IDs, report SHA and partial-support flag are independently bound through the actual deployed curated ledger",
+    "operation": "authenticated external HTTPS GET using existing in-memory session; no account/auth/service/source/queue mutation"
+  },
+  "spark-published": {
+    "checked_at": "2026-10-09T07:48:24.439443+00:00",
+    "batch": {
+      "id": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+      "state": "published",
+      "attempts": 1,
+      "updated": "2026-10-09T07:47:38+00:00",
+      "error": ""
+    },
+    "dispositions": {
+      "published": 6
+    },
+    "proof": {
+      "api": "/api/research-adopted?node=root",
+      "batch_id": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+      "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b",
+      "links": [
+        "https://inresearch.ai/node.html?id=root#evidence"
+      ],
+      "merge_commit": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+      "verified_at": "2026-10-09T07:47:37+00:00",
+      "website_image": "inresearch-app:0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+      "website_statement_ids": [
+        "adoption:review:fb6656249b7447a6d6c26f3e",
+        "adoption:review:c148e09dcc10f8e5ebb02548",
+        "adoption:review:b7c7ef5f4639608d3c0c4539",
+        "adoption:review:6feb10f3690af7ad97f6a95e",
+        "adoption:review:a5a67902724b59e3852df9c1",
+        "adoption:review:4d9d490ec92a922f291826c8"
+      ]
+    },
+    "proof_sha256": "30d5914a33930f2c352ff1b9ef194bbb12e67a50c4180b56a95a2f231c216806",
+    "actual_bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b",
+    "global_ready": 9,
+    "operation": "read-only exact Spark published batch/proof/dispositions; no queue/source/service mutation"
+  },
+  "record_kind": "actual original23 first B6 publication; not original50 candidate identity mapping",
+  "timezone_note": "Source receipt timestamps are UTC; prose uses Asia/Shanghai.",
+  "original_scope": "23 original submitted sources",
+  "source_receipts": {
+    "inresearch-alphabet-first-local-acceptance-20261009.json": {
+      "sha256": "e5b225202812e324fbf52ab707e39c7302ee4d237403da9cbdf4d32dc43609b4",
+      "bytes": 5926
+    },
+    "inresearch-alphabet-first-formal-verify-20261009.json": {
+      "sha256": "f20325f2fe30de83475cc8082cd11a94a4e4c29a9c0a9761eef61b82b315e8e1",
+      "bytes": 2615
+    },
+    "inresearch-alphabet-first-final-source-audit-20261009.json": {
+      "sha256": "dd7c1255abb0b0adba9930ac48e0f087b0c21706d6b66783812d06b52cf9be38",
+      "bytes": 599984
+    },
+    "inresearch-alphabet-first-m5-recovery-20261009.json": {
+      "sha256": "6d932f5835db384c76d4e085b4e42ddd2dd0a898a349d49b6e25f95792b0631c",
+      "bytes": 907
+    },
+    "inresearch-alphabet-first-actual-merge-20261009.json": {
+      "sha256": "9efd30bd32c0feda72f25ce2b3edcf0c5b3566023eecf687c646b4fc79ff7ccf",
+      "bytes": 237
+    },
+    "inresearch-alphabet-first-spark-source-ff-20261009.json": {
+      "sha256": "d3e97fc8ed6fdd4ce19f154d2e01efec8a68df55723190d3a11f1bc2d4bb9375",
+      "bytes": 1060
+    },
+    "inresearch-alphabet-first-m5-merged-runtime-20261009.json": {
+      "sha256": "a22f5e329fd8dc98b495469e73d0bd58870c48c72d7356cca4a8f1f24b6010e3",
+      "bytes": 385
+    },
+    "inresearch-alphabet-first-publisher-restored-20261009.json": {
+      "sha256": "afe33fc37c8f0ccffa6316f8b4467efb9a9d4ba8723317cda1c795c6c15aad98",
+      "bytes": 1902
+    },
+    "inresearch-alphabet-first-https-support-20261009.json": {
+      "sha256": "ce044e8a1ebd63b294a97935f007b729b92b6ff8665198bdd8cb11e1f7f62209",
+      "bytes": 4920
+    },
+    "inresearch-alphabet-first-spark-published-20261009.json": {
+      "sha256": "a20653955de75771d71d8708d4a821fab9c65a1d205b2aa8d76b3811f19f3f1c",
+      "bytes": 1454
+    }
+  },
+  "old_prepared_error": "stale baseline verification_contract fingerprints; approved fix PR475 preserved; old dirty tree/diff/attempt/bundle not overwritten",
+  "original_batch": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+  "actual_pr": 480,
+  "actual_merge": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+  "formal_count": 6,
+  "original_submission_claim_ids": null,
+  "known_semantic_mapping_defect": "Root later reviewed: all first six object_ids wrongly include system:control for enterprise software/operational security. Text/source support remains valid; machine facility mapping needs real reviewed repair with original candidates/evidence/history preserved. This receipt does not certify object attribution."
+}
