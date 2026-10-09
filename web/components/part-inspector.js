@@ -1,7 +1,7 @@
 /* A component owns its renderer and cloned materials, never the source geometry. */
 import {createViewport, visibleBounds, fitPerspective} from './scene-view.js';
 import {configureAtlasRenderer, addAtlasLights, createAtlasDrawing} from './scene-atlas.js?v=20261008.14';
-export function createPartInspector({THREE, environment, meshesFor, materialFor = mesh => mesh.material}) {
+export function createPartInspector({THREE, environment, meshesFor, materialFor = mesh => mesh.material, initialRotation = () => null}) {
   const iCv = document.createElement("canvas");
   let drawing, viewport, bounds, disposed = false;
   const fit = () => {if (bounds) fitPerspective({camera:iCam, bounds, direction:new THREE.Vector3(0, 0.45, 2.9)});};
@@ -64,7 +64,10 @@ export function createPartInspector({THREE, environment, meshesFor, materialFor 
     const center = bounds.getCenter(new THREE.Vector3());
     iGroup.position.sub(center); bounds.translate(center.negate());
     viewport.sync(); fit();
-    iSpin = !matchMedia('(prefers-reduced-motion: reduce)').matches; iRotX = -0.35; iRotY = 0.7;
+    const initial = initialRotation(pid);
+    iSpin = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    iRotX = Number.isFinite(initial?.x) ? Math.max(-1.3, Math.min(1.3, initial.x)) : -0.35;
+    iRotY = Number.isFinite(initial?.y) ? initial.y : 0.7;
     iVisible = true;
     return true;
   }

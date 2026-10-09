@@ -57,12 +57,13 @@ const illustrations = {
     labels: ['GPU 模组：独立电路板承载 GPU 封装与供电元件', '接触盖：展示模组上方金属件的分离关系', '模组插槽：对应被抬起的单个模组', '已安装模组：展示基板上的装配位置', '互联芯片：展示多 GPU 基板上的互联部件类别', '供电元件与板边连接器：展示基板的元件与连接位置'],
   },
   server: {
-    id: 'TA-03', title: '服务器机箱 · 盖板与壳体',
-    image: '/assets/technical-atlas/chassis-v1.svg', preview: '/assets/technical-atlas/chassis-v1-preview.svg',
-    master: '/assets/technical-atlas/chassis-v1.png',
-    alt: '暖白服务器机箱子装配爆炸图：分离金属上盖、通风开孔、盖板锁扣、折边空壳、内部横梁和安装支柱。',
-    note: '通用机箱子装配示意；孔位、紧固件与锁扣形式以选定型号资料为准。整机内部部件另图展示。',
-    labels: ['上盖与紧固件：展示盖板和壳体的分离关系', '通风开孔与锁扣：展示盖板局部结构', '后部开孔：示意接口和扩展位置', '折边壳体、底板与横梁：展示机箱支撑结构', '安装支柱：示意板卡安装位置', '机架安装耳与把手：展示机箱前部结构'],
+    id: 'TA-11', title: '加速器服务器 · 整机剖视与安装位置',
+    image: '/assets/technical-atlas/server-v1.svg', preview: '/assets/technical-atlas/server-v1-preview.svg',
+    master: '/assets/technical-atlas/server-v1.png',
+    alt: '暖白风冷加速器服务器整机：前置存储载盘与风扇行、双加速卡和 riser 支承、后区 CPU 与 DIMM 主板、后置电源与内部配电接口；右上为同类加速卡与插槽放大。',
+    note: '通用风冷 PCIe 加速器服务器虚拟剖视；双 CPU、八 DIMM、两加速卡、四风扇、八载盘和双电源仅为示例。右上同类插接放大非新增卡，虚拟剖开非拆修步骤；型号、尺寸、走线、性能及兼容性以产品资料为准。',
+    labels: ['机箱与安装位置：按前置存储、风扇行、中部加速卡和后部主板/电源解释通用分区', 'CPU 散热器与 DIMM：在主板上各有对应安装和插槽位置，数量仅为示意', 'PCIe 加速卡与 riser：卡边接点对应插槽，卡笼和固定结构承载；右上是同类插接放大', '后置电源：外部交流输入朝后侧，内部配电接口与内部线束分开，不指定针脚或额定值', '后部 I/O：外部开口朝机箱后壁，当前内视角看见金属背壳', '前置载盘与风扇：8 载盘和 4 风扇不表示真实产品数量、气流或热插拔', '通用示意：虚拟剖开与交互拆解帮助理解位置，不替代具体型号的安全维护流程'],
+    related: [{id: 'TA-03', title: '机箱子装配 · TA-03', image: '/assets/technical-atlas/chassis-v1.svg'}],
   },
   'rack-frame': {
     id: 'TA-39', title: '机柜与结构 · 柜架、柜门和侧板',
@@ -161,6 +162,10 @@ export function mountTechnicalAtlas(parent, partId) {
     if (download) link.download = url.split('/').at(-1);
     else { link.target = '_blank'; link.rel = 'noopener'; }
     actions.append(link);
+  }
+  for (const related of item.related || []) {
+    const link = document.createElement('a'); link.textContent = related.title; link.href = related.image;
+    link.dataset.relatedFigure = related.id; link.target = '_blank'; link.rel = 'noopener'; actions.append(link);
   }
   section.append(heading, figure, detail, actions); parent.append(section);
   return true;
