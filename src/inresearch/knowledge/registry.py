@@ -71,7 +71,62 @@ def delegation_valid(review):
         return False
 
 
+def mapping_record_sha256(row):
+    return hashlib.sha256(json.dumps(row, ensure_ascii=False, sort_keys=True, separators=(',', ':'),
+                                     allow_nan=False).encode()).hexdigest()
+
+
+def object_mapping_review_valid(row):
+    """A supplemental technical narrowing; never an alternate claim replacement path."""
+    if 'object_mapping_review' not in row:
+        return True
+    m = row['object_mapping_review']
+    keys = {'kind', 'before_record', 'before_record_sha256', 'reviewed_object_ids',
+            'reason', 'reference', 'review'}
+    if not isinstance(m, dict) or set(m) != keys or m.get('kind') != 'technical_object_mapping_narrowing':
+        return False
+    before = m.get('before_record'); after_ids = m.get('reviewed_object_ids')
+    if (not isinstance(before, dict) or 'object_mapping_review' in before
+            or 'question_id' in before or not ('document_id' in before or 'evidence_ids' in before)
+            or not isinstance(before.get('object_ids'), list) or not isinstance(after_ids, list)
+            or any(not isinstance(o,str) or not o.strip() for o in before['object_ids']+after_ids)
+            or len(set(before['object_ids']))!=len(before['object_ids'])
+            or len(set(after_ids))!=len(after_ids) or not set(after_ids)<set(before['object_ids'])
+            or row.get('object_ids') != after_ids
+            or any(not isinstance(m.get(k),str) or not m[k].strip() for k in ('reason','reference'))):
+        return False
+    payload = {k:v for k,v in row.items() if k not in ('object_ids','object_mapping_review')}
+    old_payload = {k:v for k,v in before.items() if k != 'object_ids'}
+    supplemental = m.get('review')
+    try:
+        digest = mapping_record_sha256(before)
+    except (ValueError, TypeError):
+        return False
+    if (payload != old_payload or digest != m.get('before_record_sha256')
+            or not isinstance(supplemental,dict) or supplemental.get('tier')!='A'
+            or supplemental.get('replaces_record_ids',[]) != []
+            or supplemental.get('relaxes_distribution',False) is not False):
+        return False
+    return review_valid(before) and review_valid({'review': supplemental})
+
+
+def narrow_object_mapping(row, object_ids, review, reason, reference):
+    """Return a copy, binding the entire preserved before record and actual supplemental review."""
+    result = copy.deepcopy(row)
+    result['object_ids'] = copy.deepcopy(object_ids)
+    result['object_mapping_review'] = {
+        'kind':'technical_object_mapping_narrowing', 'before_record':copy.deepcopy(row),
+        'before_record_sha256':mapping_record_sha256(row),
+        'reviewed_object_ids':copy.deepcopy(object_ids), 'reason':reason,
+        'reference':reference, 'review':copy.deepcopy(review)}
+    if not object_mapping_review_valid(result):
+        raise ValueError('invalid_technical_object_mapping_narrowing')
+    return result
+
+
 def review_valid(row):
+    if not object_mapping_review_valid(row):
+        return False
     review = row.get('review', {})
     if not isinstance(review, dict):
         return False
@@ -215,6 +270,8 @@ def validate(graph, questions, knowledge):
                                    ('statement_ids', tables['statements'])]:
                 if not set(row.get(field, [])) <= targets.keys():
                     errors.append(f'{name}/{rid}: dangling {field}')
+            if not object_mapping_review_valid(row):
+                errors.append(f'{rid}: invalid supplemental object mapping review')
             if name == 'evidence':
                 if row.get('document_id') not in tables['documents']:
                     errors.append(f'{rid}: missing original document')
@@ -922,6 +979,12 @@ def adopted_for_node(root=ROOT, node='root'):
                                 'decision', 'score', 'operator_review_by', 'operator_review_at') if k in row['review']}
             if row['review'].get('authority') == 'delegated_reviewer':
                 result['review']['delegation'] = {k: row['review']['delegation'][k] for k in DELEGATION_KEYS}
+            if 'object_mapping_review' in row:
+                m=row['object_mapping_review']; actual=m['review']
+                result['object_mapping_review']={k:m[k] for k in ('kind','before_record_sha256','reviewed_object_ids','reason','reference')}
+                result['object_mapping_review']['review']={k:actual[k] for k in ('by','at','tier','authority','decision') if k in actual}
+                if actual.get('authority')=='delegated_reviewer':
+                    result['object_mapping_review']['review']['delegation']={k:actual['delegation'][k] for k in DELEGATION_KEYS}
         return out
     return dict(schema_version=1, node=node, unknown=scoped.get('unknown', False),
                 questions=project(scoped['questions'], ('id', 'status')),

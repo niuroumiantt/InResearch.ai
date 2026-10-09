@@ -197,6 +197,7 @@ class ResearchReviewTests(unittest.TestCase):
             root=Path(td);(root/'data').mkdir();(root/'framework').mkdir()
             atomic_json(root/'data/research_knowledge.json',{'statements':[],'evidence':[],'documents':[]})
             atomic_json(root/'framework/research_questions.json',{'records':[{'id':'q1','object_ids':['part:gpu']}]})
+            atomic_json(root/'framework/research_graph.json',registry.read_json(registry.ROOT/'framework/research_graph.json'))
             rows=[{'fact_id':'unrelated','node':'part:gpu','entity':{'label':'Other'},'value':2},
                   {'fact_id':'relevant','node':'root','entity':{'label':'NODE device'},'value':3,
                    'caliber':{'scope':'forecast'},'notes':'Counterevidence stays complete',
