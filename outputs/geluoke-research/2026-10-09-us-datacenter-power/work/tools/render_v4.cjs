@@ -1,0 +1,10 @@
+const {chromium}=require('playwright');const fs=require('fs');const path=require('path');
+const root=path.resolve(__dirname,'../..');
+(async()=>{const browser=await chromium.launch({headless:true});const page=await browser.newPage({deviceScaleFactor:2});let checks=[];
+const plan=JSON.parse(fs.readFileSync(path.join(root,'work/v4/figure-plan.json'),'utf8'));
+for(const f of plan.figures){await page.setViewportSize({width:f.design_width,height:f.design_height});await page.setContent('<html><body style="margin:0">'+fs.readFileSync(path.join(root,f.editable),'utf8')+'</body></html>');await page.evaluate(()=>document.fonts.ready);
+const overflow=await page.evaluate(()=>[...document.querySelectorAll('text')].map(e=>({text:e.textContent,x:e.getBBox().x,y:e.getBBox().y,w:e.getBBox().width,h:e.getBBox().height})).filter(e=>e.x<4||e.x+e.w>636||e.y<0||e.y+e.h>Number(document.querySelector('svg').getAttribute('height'))));checks.push({number:f.number,file:f.editable,overflow,reused_publishing_image:true});}
+fs.writeFileSync(path.join(root,'checks/v4-svg-layout.json'),JSON.stringify(checks,null,2));
+const cover=await browser.newPage({deviceScaleFactor:3});await cover.setViewportSize({width:800,height:1200});await cover.setContent('<html><body style="margin:0">'+fs.readFileSync(path.join(root,'assets/cover-master.svg'),'utf8')+'</body></html>');await cover.evaluate(()=>document.fonts.ready);
+const overflow=await cover.evaluate(()=>[...document.querySelectorAll('text')].filter(e=>e.getBBox().x<0||e.getBBox().x+e.getBBox().width>800||e.getBBox().y+e.getBBox().height>1200).map(e=>e.textContent));fs.writeFileSync(path.join(root,'checks/cover-layout.json'),JSON.stringify({overflow,master_width:2400,master_height:3600},null,2));await cover.screenshot({path:path.join(root,'assets/cover-master.png')});fs.writeFileSync(path.join(root,'assets/cover-render.png'),Buffer.from([0]));
+console.log(JSON.stringify({figures:checks.length,figure_overflow:checks.filter(x=>x.overflow.length),cover_overflow:overflow}));await browser.close();if(overflow.length||checks.some(x=>x.overflow.length))process.exitCode=1;})();

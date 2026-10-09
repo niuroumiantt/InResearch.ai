@@ -1,0 +1,204 @@
+{
+  "revision": 3,
+  "principle": "图回答紧邻正文的具体问题；先信息功能，再选择画法；关键限定直接标注",
+  "body_images": 14,
+  "figures": [
+    {
+      "number": 1,
+      "asset": "assets/v4-01-interconnections-map.png",
+      "editable": "assets/v4-01-interconnections-map.svg",
+      "question": "美国本土的三大互联分别在哪里，有哪些跨系统边界？",
+      "source_ids": [
+        "eia-grid",
+        "v3-ercot-map",
+        "v3-census"
+      ],
+      "kind": "map",
+      "design_width": 640,
+      "design_height": 761,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "对照首段、EIA/ERCOT和州界核对；三大互联、得州非全州与有限直流联络直接可见。 已查看最终374px手机图。",
+      "adjacent_paragraph": "美国本土连续的48个州，主要分属东部互联、西部互联和得州ERCOT互联。各系统内部的交流电网同步运行，系统之间靠有限联络交换电力。东、西系统还延伸到加拿大；ERCOT覆盖得州大部分地区，得州西端等部分地区属于其他互联。阿拉斯加和夏威夷另有系统。[1][6]",
+      "original_number": 1
+    },
+    {
+      "number": 2,
+      "asset": "assets/v4-02-demand.png",
+      "editable": "assets/v4-02-demand.svg",
+      "question": "实际用电增长与未来预测，分别有多大？",
+      "source_ids": [
+        "lbnl-full"
+      ],
+      "kind": "chart",
+      "design_width": 640,
+      "design_height": 840,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "历史与2024版预测分别标识；条长、TWh及年度/瞬时口径与正文一致。 已查看最终374px手机图。",
+      "adjacent_paragraph": "这样的电力系统，遇到的是一轮集中得多的需求增长。劳伦斯伯克利国家实验室2024年的全国研究估算，美国数据中心用电从2014年的58TWh增至2023年的176TWh，后者约占全国用电4.4%。同一研究预计，2028年可能达到325—580TWh，占比约6.7%—12%。这里的2028年是预测区间，已经发生的增长则有清楚的历史基数。[4]",
+      "original_number": 3
+    },
+    {
+      "number": 3,
+      "asset": "assets/v4-03-bottlenecks.jpg",
+      "editable": "assets/v4-03-bottlenecks.svg",
+      "question": "发电、输电、接入三种电不够，卡在哪个实际设施？",
+      "source_ids": [
+        "eia-grid",
+        "jlarc",
+        "nerc"
+      ],
+      "kind": "engineering",
+      "design_width": 640,
+      "design_height": 936,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "发电、输电和变电接入与本章三处瓶颈逐项对应，非实际场址。 已查看最终374px手机图。",
+      "adjacent_paragraph": "电从发电机出来，要经过高压输电线路，进入园区附近的变电站，再通过配电设施送到机房。变压器把电压降到后续设备能够使用的等级，机房内部还要把电分到各列机柜。数据中心接电，买到的是这条链路的服务，任何一段容量不足，都可能推迟通电。[3][7]",
+      "original_number": 4
+    },
+    {
+      "number": 4,
+      "asset": "assets/v4-04-project-evidence.png",
+      "editable": "assets/v4-04-project-evidence.svg",
+      "question": "一项接入申请需要怎样的合同和工程证据才能算真实负荷？",
+      "source_ids": [
+        "pjm-forecast",
+        "ercot-batch"
+      ],
+      "kind": "diagram",
+      "design_width": 640,
+      "design_height": 1038,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "意向、研究、合同、建设和运行分别对应真实性证据，不冒充全国法定流程。 已查看最终374px手机图。",
+      "adjacent_paragraph": "接电难的另一面，是电网很难提前知道谁会真正用电。一个项目申请了几百兆瓦，首先表示开发商希望保留这种供电能力。要把它写进长期规划，还需要了解客户、建设条件和负荷增长安排。申请规模与最终形成的用电负荷之间，有一段需要用合同和工程来填上的距离。[5][6]",
+      "original_number": 6
+    },
+    {
+      "number": 5,
+      "asset": "assets/v4-05-cost-contracts.png",
+      "editable": "assets/v4-05-cost-contracts.svg",
+      "question": "两地85%的分母、合同期限与生效条件分别是什么？",
+      "source_ids": [
+        "scc",
+        "ohio"
+      ],
+      "kind": "comparison",
+      "design_width": 640,
+      "design_height": 950,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "两种85%的基数、期限、起始日和例外直接入图，正文保持相同条件。 已查看最终374px手机图。",
+      "adjacent_paragraph": "设备投资不会随着当月用电量同步缩小。用多少度电决定了一部分能源支出，但为客户准备了多大的供电能力，决定了另一部分长期成本。把这两笔钱混在一起，就容易出现“没有用电，所以不该付钱”的争论。大负荷专门费率正在把两者分开，要求客户为占用的容量和新增设施承担最低付款。[8][17]",
+      "original_number": 8
+    },
+    {
+      "number": 6,
+      "asset": "assets/v4-06-nuclear-routes.jpg",
+      "editable": "assets/v4-06-nuclear-routes.svg",
+      "question": "Talen合同与Crane重启，分别改变合同分配还是发电供给？",
+      "source_ids": [
+        "talen-sec",
+        "crane-q2",
+        "crane-pdf",
+        "ferc-colocation"
+      ],
+      "kind": "engineering",
+      "design_width": 640,
+      "design_height": 1114,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "现有核电PPA与Crane重启分别呈现；1920MW、2042、2027均按合同或目标使用。 已查看最终374px手机图。",
+      "adjacent_paragraph": "Talen与Amazon在2025年公布的Susquehanna核电供电协议，完整安排涉及最高1920MW，期限延续至2042年。这是从现有核电站购买电力的合同，不是新建了同样规模的发电机组。长期客户为电厂提供收入确定性，数据中心获得一个规模较大、持续运行的电源安排。双方同时还要落实电力怎样进入网络、怎样送到客户。[11]",
+      "original_number": 10
+    },
+    {
+      "number": 7,
+      "asset": "assets/v4-07-onsite-sofc.jpg",
+      "editable": "assets/v4-07-onsite-sofc.svg",
+      "question": "AEP案例采用何种现场发电设备，燃料与电力分别怎样流动？",
+      "source_ids": [
+        "aep-onsite",
+        "v3-doe-fuelcells",
+        "v3-bloom"
+      ],
+      "kind": "engineering",
+      "design_width": 640,
+      "design_height": 1176,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "SOFC不是燃机；AEP客户、批准阶段、燃料处理及电力转换与正文对应。 已查看最终374px手机图。",
+      "adjacent_paragraph": "另一条路线更直接：在园区一侧布置发电设备。AEP在2025年公布，获批在俄亥俄州两个地点为AWS和Cologix安排Bloom燃料电池供电，并由这些客户承担全部相关成本。这个案例采用天然气燃料电池，不能画成燃气轮机或柴油发电机；所公布的是获批安排，也不等于两个地点已经全部投运。[18]",
+      "original_number": 11
+    },
+    {
+      "number": 8,
+      "asset": "assets/v4-08-annual-hourly.png",
+      "editable": "assets/v4-08-annual-hourly.svg",
+      "question": "为什么年度可再生能源采购不能独自保证全天可靠运行？",
+      "source_ids": [
+        "iea",
+        "nerc"
+      ],
+      "kind": "diagram",
+      "design_width": 640,
+      "design_height": 848,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "年度匹配与逐小时缺口分开；MW/MWh与本文储能解释一致，曲线是原理。 已查看最终374px手机图。",
+      "adjacent_paragraph": "绿电采购则最容易混淆电量与时间。数据中心一年用多少电，企业可以签合同购买相应规模的风电、光伏电量。年度账面上能够匹配，并不保证每个小时都有对应发电。太阳能出力在一天内变化，风电也随天气变化，而机房负荷通常不会照着这两条曲线同步升降。[13]",
+      "original_number": 12
+    },
+    {
+      "number": 9,
+      "asset": "assets/v4-09-state-prices-map.png",
+      "editable": "assets/v4-09-state-prices-map.svg",
+      "question": "文中比较的州在哪里，工业均价与具体合同电价如何区分？",
+      "source_ids": [
+        "eia-ytd",
+        "v3-census"
+      ],
+      "kind": "map",
+      "design_width": 640,
+      "design_height": 1150,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "六州形状和均价与EIA表逐项对应；时期/部门明确，不当园区报价。 已查看最终374px手机图。",
+      "adjacent_paragraph": "州级电价提供了一张粗略底图。EIA公布的2026年1—7月工业部门平均电价中，得州为6.72美分／kWh，弗吉尼亚为10.08美分／kWh。这个差距足以吸引选址者进一步调查，却不能直接作为数据中心报价。具体合同还会涉及容量、需求特征、服务等级和费用安排。[1]",
+      "original_number": 13
+    },
+    {
+      "number": 10,
+      "asset": "assets/v4-10-flexible-load.png",
+      "editable": "assets/v4-10-flexible-load.svg",
+      "question": "数据中心怎样把部分工作调整到其他时段，哪些只是合同承诺？",
+      "source_ids": [
+        "google-flex",
+        "ga-contract"
+      ],
+      "kind": "diagram",
+      "design_width": 640,
+      "design_height": 970,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "可延后任务与实时业务分开；OpenAI容量为合同承诺，非实测投运。 已查看最终374px手机图。",
+      "adjacent_paragraph": "Georgia Power在2026年披露与OpenAI有关的3200MW新增需求合同，同时包含最高1000MW的灵活负荷承诺。这里的规模是合同安排，不是已运行负荷。重要变化是双方开始把“什么时候可以少用一些电”写进服务条件，让供电保障与客户用电方式一起设计。[9]",
+      "original_number": 14
+    }
+  ],
+  "version": 4,
+  "source_version": "v3；本次按短稿论证重新选择和排序",
+  "body_word_target": "约7000字，统计排除图注及来源"
+}

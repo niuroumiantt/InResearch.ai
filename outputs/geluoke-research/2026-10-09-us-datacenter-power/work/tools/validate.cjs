@@ -1,4 +1,4 @@
-const {chromium}=require('playwright');const fs=require('fs');const path=require('path');
+const {chromium}=require('playwright');const fs=require('fs');const crypto=require('crypto');const path=require('path');
 const root=path.resolve(__dirname,'../..');const expectedImages=1+JSON.parse(fs.readFileSync(path.join(root,'work/writing-plan.json'),'utf8')).body_images;const base=process.env.ARTICLE_CHECK_URL||'http://127.0.0.1:18769';
 (async()=>{
  const browser=await chromium.launch({headless:true});let results=[];
@@ -35,7 +35,8 @@ const root=path.resolve(__dirname,'../..');const expectedImages=1+JSON.parse(fs.
    return {html_bytes:new TextEncoder().encode(html).length,inserted,images:ed.querySelectorAll('img').length,preserved_data_images:[...ed.querySelectorAll('img')].every(x=>x.src.startsWith('data:image/'))};
   });Object.assign(copy,pasted);copy.images_after=pasted.images||0;copy.pass=copied&&pasted.inserted&&pasted.images===expectedImages&&pasted.preserved_data_images;
  }catch(e){copy.error=String(e);}
- const result={checked_at:'2026-10-09',render:results,clipboard_roundtrip:copy,wechat_platform:'未进入实际微信编辑器；浏览器往返不等于公众号实粘',pass:results.every(x=>x.pass)&&copy.pass};
+ const input_sha256=Object.fromEntries(['wechat','full','lite'].map(x=>[x,crypto.createHash('sha256').update(fs.readFileSync(path.join(root,x+'.html'))).digest('hex')]));
+ const result={input_sha256,checked_at:'2026-10-09',render:results,clipboard_roundtrip:copy,wechat_platform:'未进入实际微信编辑器；浏览器往返不等于公众号实粘',pass:results.every(x=>x.pass)&&copy.pass};
  fs.writeFileSync(path.join(root,'checks','browser.json'),JSON.stringify(result,null,2));
  console.log(JSON.stringify({pass:result.pass,render:results.map(x=>({mode:x.mode,width:x.viewport,pass:x.pass,height:x.height})),copy}));
  await browser.close();if(!result.pass)process.exitCode=1;

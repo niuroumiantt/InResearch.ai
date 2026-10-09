@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.10",
+  "version": "2026.10.09.11",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2504,9 +2504,9 @@
       "id": "geluoke-longform-20261009-match",
       "topic": "geluoke-longform",
       "scope": "editorial-delivery",
-      "status": "current",
+      "status": "superseded",
       "effective_at": "2026-10-09",
-      "source": "docs/geluoke/专题写作规则.md",
+      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md",
       "supersedes": [
         "geluoke-longform-20261009-visual"
       ],
@@ -2529,7 +2529,39 @@
         "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/v3/figure-plan.json",
         "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/v3/visual-sources.json"
       ],
-      "implementation_revision": "2.6"
+      "implementation_revision": "2.6",
+      "superseded_by": "geluoke-longform-20261009-editor"
+    },
+    {
+      "id": "geluoke-longform-20261009-editor",
+      "topic": "geluoke-longform",
+      "scope": "editorial-delivery",
+      "status": "current",
+      "effective_at": "2026-10-09",
+      "source": "docs/geluoke/专题写作规则.md",
+      "supersedes": [
+        "geluoke-longform-20261009-match"
+      ],
+      "reason": "用户要求行业编辑讲解、删除中庸与官方套话，基建机制深入浅出，压到约7000字；v4重新撰写全文，图片按短稿保留10幅，研究全量保持。",
+      "implementations": [
+        "docs/handoff/us-datacenter-power-20261009.md",
+        "docs/research/2026-10-09/us-datacenter-power/README.md",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/build.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/research.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/audit.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/writing-plan.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/visual-references.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/prepare_scenes.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/render_scene_labels.cjs",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/validate.cjs",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/figures_v3.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/visual_sources_v3.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/v3/figure-plan.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/v3/visual-sources.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/render_v4.cjs",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/v4/figure-plan.json"
+      ],
+      "implementation_revision": "2.7"
     }
   ],
   "entrypoints": [
