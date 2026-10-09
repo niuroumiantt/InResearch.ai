@@ -58,7 +58,7 @@ function sameCamera(actual,expected){for(const key of ['position','target'])actu
    await page.setViewportSize({width:1280,height:900});
    // The optional model contract belongs to the retained legacy rack scene;
    // TA13's default procedural overview deliberately rejects replacement.
-   await page.goto(process.env.UI_BASE_URL+'/'+scene+'.html'+(scene==='rack3d'?'?x=35':''),{waitUntil:'domcontentloaded'});
+   await page.goto(process.env.UI_BASE_URL+'/'+scene+'.html'+(scene==='rack3d'?'?view=legacy&x=35':''),{waitUntil:'domcontentloaded'});
    await page.waitForFunction(()=>!!globalThis.__framing);
    await page.locator('.rg-scene-model-status[data-state=ready]').waitFor({state:'attached'});
    assert.ok((await page.locator('#fit-view').boundingBox()).height>=36,'fit button needs a usable touch target');

@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.37。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.38。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1677。
+在册文件：1698。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 114 |
+| 静态资源 | 117 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 347 |
-| 运行代码 | 316 |
+| 运行代码 | 321 |
 | 现行规范 | 15 |
-| 项目配置 | 364 |
+| 项目配置 | 374 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 154 |
-| 测试 | 155 |
+| 配套说明 | 155 |
+| 测试 | 157 |
 
 ## 在册记录集合
 
@@ -272,6 +272,24 @@
 | `docs/design/technical-atlas/TA-13/public-observer-fix-20261009.json` | public_source_responses | 15 |
 | `docs/design/technical-atlas/TA-13/public-observer-fix-20261009.json` | boundaries | 3 |
 | `docs/design/technical-atlas/TA-13/publication-20261009.json` | boundaries | 7 |
+| `docs/design/technical-atlas/TA-14/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-14/acceptance-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-14/acceptance-v1.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-14/acceptance-v1.json` | reviewed_differences | 3 |
+| `docs/design/technical-atlas/TA-14/acceptance-v1.json` | unknowns | 5 |
+| `docs/design/technical-atlas/TA-14/acceptance-v1.json` | browser_checks | 8 |
+| `docs/design/technical-atlas/TA-14/acceptance-v1.json` | retained_failures | 5 |
+| `docs/design/technical-atlas/TA-14/acceptance-v1.json` | artifacts | 9 |
+| `docs/design/technical-atlas/TA-14/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-14/labels-v1.json` | labels | 14 |
+| `docs/design/technical-atlas/TA-14/native-render-v1.json` | native_pixels | 2 |
+| `docs/design/technical-atlas/TA-14/native-render-v1.json` | instances | 6 |
+| `docs/design/technical-atlas/TA-14/native-render-v1.json` | details | 3 |
+| `docs/design/technical-atlas/TA-14/preparation-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-14/preparation-v1.json` | all_rejected_builtin_candidates | 6 |
+| `docs/design/technical-atlas/TA-14/preparation-v1.json` | additional_actual_imagegen_inputs | 3 |
+| `docs/design/technical-atlas/TA-14/preparation-v1.json` | retained_baselines | 2 |
+| `docs/design/technical-atlas/TA-14/preparation-v1.json` | sources | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -629,8 +647,8 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 33 |
-| `framework/interface_manifest.json` | public_pages | 15 |
+| `framework/interface_manifest.json` | static_pages | 34 |
+| `framework/interface_manifest.json` | public_pages | 16 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -949,6 +967,19 @@
 | `docs/design/technical-atlas/TA-13/public-observer-fix-20261009.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-13/publication-20261009.json` | 项目配置 |
 | [docs/design/technical-atlas/TA-13/scope-v1.md](design/technical-atlas/TA-13/scope-v1.md) | 配套说明 |
+| `docs/design/technical-atlas/TA-14/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-14/labels-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-14/legacy/rack-assembly-before-TA14.js` | 运行代码 |
+| `docs/design/technical-atlas/TA-14/legacy/rack3d-before-TA14.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-14/native-render-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-14/preparation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-14/prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-14/prompt-v2-layout.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-14/prompt-v3-count-edit.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-14/prompt-v4-power-only.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-14/prompt-v5-power-reference.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-14/prompt-v6-compute-reference.txt` | 项目配置 |
+| [docs/design/technical-atlas/TA-14/scope-v1.md](design/technical-atlas/TA-14/scope-v1.md) | 配套说明 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -2090,6 +2121,8 @@
 | `tests/product_catalog.cjs` | 测试 |
 | `tests/rack_assembly.cjs` | 测试 |
 | `tests/rack_atlas.cjs` | 测试 |
+| `tests/rack_exploded.cjs` | 测试 |
+| `tests/rack_exploded_atlas.cjs` | 测试 |
 | `tests/repository_pages.cjs` | 测试 |
 | `tests/research_delivery.cjs` | 测试 |
 | `tests/research_summary.cjs` | 测试 |
@@ -2309,6 +2342,9 @@
 | `web/assets/technical-atlas/psu-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/psu-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/psu-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/rack-exploded-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/rack-exploded-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/rack-exploded-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/rack-frame-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/rack-frame-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/rack-frame-v1.png` | 静态资源 |
@@ -2373,6 +2409,8 @@
 | `web/components/pilot.js` | 运行代码 |
 | `web/components/product-catalog.js` | 运行代码 |
 | `web/components/rack-assembly.js` | 运行代码 |
+| `web/components/rack-exploded-generator.js` | 运行代码 |
+| `web/components/rack-exploded-view.js` | 运行代码 |
 | `web/components/research-graph.js` | 运行代码 |
 | `web/components/scene-atlas.js` | 运行代码 |
 | `web/components/scene-data.js` | 运行代码 |
@@ -2427,6 +2465,7 @@
 | `web/pages/ops.html` | 运行代码 |
 | `web/pages/product-catalog.html` | 运行代码 |
 | `web/pages/rack-atlas.html` | 运行代码 |
+| `web/pages/rack-exploded.html` | 运行代码 |
 | `web/pages/rack3d.html` | 运行代码 |
 | `web/pages/report.html` | 运行代码 |
 | `web/pages/server-plan.html` | 运行代码 |
