@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-10-09T11:10:13.005994+00:00",
+  "proposed_action": "Natural-idle stop/reload of the unique production research-review service and one-shot retry-transient recovery of four exact production batches",
+  "blocked_batches": [
+    "c06012e42c5fdb149c67b99983462ddfd283a09842704947c76e9b171ad6a210",
+    "4c0c71fa4829df928b8cd746a8063b25ba0cc733fca52c102ad00f0b5af3df8f",
+    "ca5404ea583214cf8a74be0f4f64b4ece95df941876f5aa74f04ff3a892a9dd0",
+    "ac6aa31e6900c68defe3a39e6582bc4c8c56e47b366fbc172449ccfe58185a96"
+  ],
+  "approval_result": "rejected_before_execution",
+  "reason_verbatim": "This would stop a live review service and mutate four production queue batches, while the trusted user messages do not specifically authorize this concrete queue recovery and service interruption; broad task authorization is insufficient for this high-blast-radius action.",
+  "reviewer_instruction_verbatim": "Do not bypass this rejection through a workaround or indirect execution.",
+  "executed": false,
+  "service_actions": 0,
+  "queue_actions": 0,
+  "source_deployment_completed_separately": {
+    "commit": "ab9670067dec878e7ec9d6c7f5f56601ce5d2c98",
+    "receipt": "/private/tmp/inresearch-retry-transient-spark-source-ff-20261009.json"
+  },
+  "resident_review_pid_at_source_ff": 2433760,
+  "resident_reload_verified": false,
+  "recovery_verified": false
+}
