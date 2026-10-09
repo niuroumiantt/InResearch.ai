@@ -139,6 +139,20 @@ def ro(path):
     return conn
 
 
+TRANSIENT_RETRY_ERRORS = frozenset({'model_relay_unavailable', 'model_cli_timeout', 'model_quota_wait'})
+
+
+def validate_transient_retry(batch_id, expected_attempts, expected_error):
+    if not isinstance(batch_id, str) or not re.fullmatch('[0-9a-f]{64}', batch_id):
+        raise ValueError('invalid_review_batch_id')
+    # Ordinary transport retries exhaust at attempt four. Never reset that
+    # counter or give a failed explicit retry another automatic retry budget.
+    if type(expected_attempts) is not int or expected_attempts < 4:
+        raise ValueError('exhausted_transient_attempt_count_required')
+    if not isinstance(expected_error, str) or expected_error not in TRANSIENT_RETRY_ERRORS:
+        raise ValueError('only_explicit_transient_model_errors_can_retry')
+
+
 def progress(data):
     """Read-only count projection; no paths, original text or adoption authority."""
     path=Path(data)/'material-reviews/research-verification/queue.sqlite'
@@ -616,6 +630,79 @@ class ReviewStore:
         self.complete(dict(row),'queued','explicit semantic-values-v3 retry; old audit retained')
         self.db.execute('UPDATE batches SET available=0 WHERE id=?',(batch_id,));self.db.commit()
 
+    def retry_transient(self, batch_id, *, expected_attempts, expected_error):
+        """Queue one exhausted transport attempt, retaining its budget and audit.
+
+        This is an explicit compare-and-set operation, not worker recovery or
+        inference. Source checks are read-only; the normal worker checks them
+        again before generating a fresh packet and making any model request.
+        """
+        validate_transient_retry(batch_id, expected_attempts, expected_error)
+        self.db.execute('BEGIN IMMEDIATE')
+        try:
+            row = self.db.execute('SELECT * FROM batches WHERE id=?', (batch_id,)).fetchone()
+            if (not row or row['state'] != 'deferred' or row['attempts'] != expected_attempts
+                    or row['error'] != expected_error):
+                raise ValueError('transient_retry_compare_failed')
+            ids = json.loads(row['candidate_ids'])
+            if (not isinstance(ids, list) or not ids or any(not isinstance(cid, str) or not cid for cid in ids)
+                    or len(set(ids)) != len(ids)):
+                raise ValueError('transient_retry_candidates_invalid')
+            previous = []
+            for cid in ids:
+                disposition = self.db.execute('SELECT * FROM dispositions WHERE id=?', (cid,)).fetchone()
+                if (not disposition or disposition['state'] != 'deferred' or disposition['batch_id'] != batch_id
+                        or disposition['doc_id'] != row['doc_id'] or disposition['revision_id'] != row['revision_id']):
+                    raise ValueError('transient_retry_disposition_changed')
+                previous.append(dict(disposition))
+            failure_path = self.directory/batch_id/('attempt-%04d' % expected_attempts)/('failure-%d.json' % expected_attempts)
+            failure = read_json(failure_path)
+            if not isinstance(failure, dict) or failure.get('code') != expected_error:
+                raise ValueError('transient_retry_failure_audit_mismatch')
+            failure_sha = digest_file(failure_path)
+            conn = ro(self.data/'catalog/catalog.sqlite')
+            try:
+                current = conn.execute('SELECT * FROM current_readings WHERE doc_id=?', (row['doc_id'],)).fetchone()
+                if (not current or current['state'] != 'complete' or current['revision_id'] != row['revision_id']
+                        or current['report_sha256'] != row['report_sha']):
+                    raise ValueError('reading_revision_changed')
+                doc = dict(current)
+                report = ReadingArtifacts(self.data).verify_seal(doc)
+                if report.get('coverage', {}).get('complete') is not True:
+                    raise ValueError('complete_sealed_reading_required')
+                if digest_file(safe_path(self.data, doc['original_rel'])) != doc['sha256']:
+                    raise ValueError('original_changed')
+                # A Reader activation during verification must not make an old
+                # revision eligible. This does not lock the separate catalog;
+                # packet() remains the worker's final source eligibility gate.
+                latest = conn.execute('SELECT * FROM current_readings WHERE doc_id=?', (row['doc_id'],)).fetchone()
+                if latest is None or dict(latest) != doc:
+                    raise ValueError('reading_revision_changed')
+            finally:
+                conn.close()
+            stamp = now_iso()
+            reason = 'explicit transient retry; original attempt budget and audit retained'
+            for disposition in previous:
+                history = {'action': 'retry-transient', 'batch_id': batch_id,
+                           'expected_attempts': expected_attempts, 'expected_error': expected_error,
+                           'revision_id': row['revision_id'], 'report_sha256': row['report_sha'],
+                           'manifest_sha256': doc['manifest_sha256'], 'failure_sha256': failure_sha,
+                           'available': row['available'], 'previous_disposition': disposition}
+                self.db.execute('INSERT INTO routing_history VALUES(?,?,?,?)',
+                                (disposition['id'], 'deferred', encoded(history), stamp))
+                self.db.execute("UPDATE dispositions SET state='queued',reason=?,updated=? WHERE id=?",
+                                (reason, stamp, disposition['id']))
+            self.db.execute("UPDATE batches SET state='queued',error=?,updated=? WHERE id=?", (reason, stamp, batch_id))
+            self.db.commit()
+            return {'batch_id': batch_id, 'state': 'queued', 'attempts': expected_attempts,
+                    'available': row['available'], 'expected_error': expected_error,
+                    'revision_id': row['revision_id'], 'report_sha256': row['report_sha'],
+                    'manifest_sha256': doc['manifest_sha256'], 'failure_sha256': failure_sha,
+                    'routing_history_rows': len(previous)}
+        except Exception:
+            self.db.rollback()
+            raise
+
     def split(self, batch):
         """Split candidate cohorts, keeping all context and immutable attempts."""
         ids=json.loads(batch['candidate_ids'])
@@ -953,6 +1040,9 @@ def main():
     regroup = sub.add_parser('regroup-queued');regroup.add_argument('--batch-size',type=int,default=6)
     retry_context = sub.add_parser('retry-context');retry_context.add_argument('--batch-id',required=True)
     retry_matching = sub.add_parser('retry-matching');retry_matching.add_argument('--batch-id',required=True)
+    transient = sub.add_parser('retry-transient');transient.add_argument('--batch-id',required=True)
+    transient.add_argument('--expected-attempts',type=int,required=True)
+    transient.add_argument('--expected-error',required=True)
     mark = sub.add_parser('published');mark.add_argument('--batch-id',required=True)
     mark.add_argument('--proof',type=Path,required=True)
     a = sub.add_parser('promote');a.add_argument('--bundle',type=Path,required=True)
@@ -964,6 +1054,8 @@ def main():
     # A missing or malformed preference must fail before initializing the queue.
     if args.command == 'work' and args.preferred_sources is not None:
         load_preferred_sources(args.preferred_sources, args.data)
+    if args.command == 'retry-transient':
+        validate_transient_retry(args.batch_id, args.expected_attempts, args.expected_error)
     store = ReviewStore(args.data)
     if args.command=='discover':
         if not 1<=args.batch_size<=10:raise ValueError('batch_size_out_of_bounds')
@@ -972,6 +1064,9 @@ def main():
     elif args.command=='regroup-queued':print(encoded(store.regroup(args.batch_size)))
     elif args.command=='retry-context':store.retry_context(args.batch_id);print(encoded(store.status()))
     elif args.command=='retry-matching':store.retry_matching(args.batch_id);print(encoded(store.status()))
+    elif args.command=='retry-transient':
+        print(encoded(store.retry_transient(args.batch_id, expected_attempts=args.expected_attempts,
+                                           expected_error=args.expected_error)))
     elif args.command=='split-overbudget':
         row=store.db.execute('SELECT * FROM batches WHERE id=?',(args.batch_id,)).fetchone()
         if not row or row['state'] not in ('queued','deferred') or row['error'] not in ('review_context_over_budget','input_exceeds_context_budget'):
