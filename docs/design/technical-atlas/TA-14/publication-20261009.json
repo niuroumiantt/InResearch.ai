@@ -1,0 +1,1382 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-14",
+  "object_id": "part:rack-frame",
+  "first_published_revision": "030c1e69b7f6afe288e1bf4bb903ca1e51c99a05",
+  "source_pull_request": "https://github.com/niuroumiantt/InResearch.ai/pull/512",
+  "source_head": "d824a8ea12d696cb236ec23e91e6e714378ee155",
+  "source_merged_at": "2026-10-09T10:48:38Z",
+  "verified_at": "2026-10-09T11:01:49.542780+00:00",
+  "acceptance_record": "docs/design/technical-atlas/TA-14/acceptance-v1.json",
+  "initial_preapply_observation": {
+    "observed_at": "2026-10-09T10:49:52.031870+00:00",
+    "host": "ip-172-26-11-47",
+    "source_revision": "beb2c159d08ad43c5874476e2f9204d15894cc6c",
+    "applied_revision": "beb2c159d08ad43c5874476e2f9204d15894cc6c",
+    "applied_image": "sha256:0b8f3087de35f37845661f0404b5a53a6e6abf6f5b619f40e3e4b44666a85666",
+    "configured_image": "inresearch-app:beb2c159d08ad43c5874476e2f9204d15894cc6c",
+    "image": "sha256:0b8f3087de35f37845661f0404b5a53a6e6abf6f5b619f40e3e4b44666a85666",
+    "status": "HEALTHY: beb2c159d08ad43c5874476e2f9204d15894cc6c",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "governance": "2026.10.09.37",
+    "deployment_service": "ActiveState=inactive\nSubState=dead",
+    "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+    "data_migration": false
+  },
+  "aws": {
+    "observed_at": "2026-10-09T10:51:43.980565+00:00",
+    "host": "ip-172-26-11-47",
+    "source_revision": "030c1e69b7f6afe288e1bf4bb903ca1e51c99a05",
+    "applied_revision": "030c1e69b7f6afe288e1bf4bb903ca1e51c99a05",
+    "applied_image": "sha256:249c0e2c6f09b0acfde0b4ff96bbf783b0c5ca302535775a247a1b07413edb0b",
+    "configured_image": "inresearch-app:030c1e69b7f6afe288e1bf4bb903ca1e51c99a05",
+    "image": "sha256:249c0e2c6f09b0acfde0b4ff96bbf783b0c5ca302535775a247a1b07413edb0b",
+    "status": "HEALTHY: 030c1e69b7f6afe288e1bf4bb903ca1e51c99a05",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "governance": "2026.10.09.38",
+    "deployment_service": "ActiveState=inactive\nSubState=dead",
+    "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+    "data_migration": false
+  },
+  "ci": {
+    "status": "not_queried",
+    "authorization": "Current explicit user authorization: autonomously ready/merge source and receipt PRs, use existing production timer after complete local acceptance, do not query/wait for CI. CI pass not claimed."
+  },
+  "public_entry": "https://inresearch.ai/rack-exploded.html",
+  "public_3D_entry": "https://inresearch.ai/rack3d.html?x=35",
+  "public_actions": {
+    "static_views": [
+      {
+        "width": 1280,
+        "theme": "light",
+        "file": "rack-exploded-1280-light.png"
+      },
+      {
+        "width": 1280,
+        "theme": "dark",
+        "file": "rack-exploded-1280-dark.png"
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "file": "rack-exploded-390-light.png"
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "file": "rack-exploded-390-dark.png"
+      }
+    ],
+    "all_four_static_and_eight_headed_3D_images_individually_viewed": true,
+    "editable_labels": 14,
+    "actual_svg_text_nodes": 31,
+    "root_independent_review_receipt": "/private/tmp/inresearch-ta14-root-actual-public-review-20261009.json",
+    "independent_leaders": 14,
+    "native_master_sha256": "b1dc38d2bbf2672c380a1fc1aa739f235c6bd70ebb84d4dbb17eee2d54fe5da9",
+    "native_reproduction": {
+      "evidence": {
+        "method": "Independent native WebGL render, no interpolation or interactive snapshot",
+        "native_pixels": [
+          1536,
+          1024
+        ],
+        "projection": "OrthographicCamera, oblique exploded assembly view",
+        "identity": "Generic correspondence diagram; not OEM/CAD/maintenance procedure",
+        "mesh_count": 611,
+        "counts": {
+          "framePosts": 4,
+          "mountingRails": 4,
+          "computeChassis": 8,
+          "driveCarriersPerChassis": 8,
+          "powerShelves": 2,
+          "psuModulesPerShelf": 6,
+          "switches": 2,
+          "adjustableFeet": 4,
+          "optionalPipes": 2,
+          "optionalCopperBars": 1
+        },
+        "instances": [
+          {
+            "id": "rack/front-door",
+            "category": "rack-frame",
+            "home": [
+              0,
+              0,
+              0
+            ],
+            "axis": [
+              0,
+              0,
+              15
+            ],
+            "actual": [
+              0,
+              0,
+              15
+            ]
+          },
+          {
+            "id": "rack/left-side-panel",
+            "category": "rack-frame",
+            "home": [
+              0,
+              0,
+              0
+            ],
+            "axis": [
+              -8,
+              0,
+              0
+            ],
+            "actual": [
+              -8,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "rack/top-cover",
+            "category": "rack-frame",
+            "home": [
+              0,
+              0,
+              0
+            ],
+            "axis": [
+              0,
+              2.5,
+              0
+            ],
+            "actual": [
+              0,
+              2.5,
+              0
+            ]
+          },
+          {
+            "id": "rack/switch-1",
+            "category": "network-switch",
+            "home": [
+              0.3,
+              10.64,
+              0.15
+            ],
+            "axis": [
+              0,
+              0,
+              7
+            ],
+            "actual": [
+              0.3,
+              10.64,
+              7.15
+            ]
+          },
+          {
+            "id": "rack/compute-4",
+            "category": "server",
+            "home": [
+              0.3,
+              5.779999999999999,
+              0.15
+            ],
+            "axis": [
+              0,
+              0,
+              7
+            ],
+            "actual": [
+              0.3,
+              5.779999999999999,
+              7.15
+            ]
+          },
+          {
+            "id": "rack/power-shelf-1",
+            "category": "power-shelf",
+            "home": [
+              0.3,
+              1.04,
+              0.15
+            ],
+            "axis": [
+              0,
+              0,
+              7
+            ],
+            "actual": [
+              0.3,
+              1.04,
+              7.15
+            ]
+          }
+        ],
+        "camera": {
+          "position": [
+            22.911466098025333,
+            17.111564409027352,
+            41.720324153520004
+          ],
+          "target": [
+            -1.0885339019746696,
+            7.111564409027355,
+            5.720324153520004
+          ],
+          "frustum": [
+            -14.726434748918038,
+            14.726434748918038,
+            9.817623165945358,
+            -9.817623165945358
+          ]
+        },
+        "details": [
+          {
+            "id": "compute-front",
+            "rect": [
+              32,
+              106,
+              320,
+              145
+            ],
+            "native_pixels": [
+              320,
+              145
+            ],
+            "same_geometry": true,
+            "stage": 1,
+            "instance": "rack/compute-4",
+            "visible_meshes": 40,
+            "part_count": 8,
+            "anchors": null
+          },
+          {
+            "id": "power-front",
+            "rect": [
+              32,
+              330,
+              320,
+              145
+            ],
+            "native_pixels": [
+              320,
+              145
+            ],
+            "same_geometry": true,
+            "stage": 1,
+            "instance": "rack/power-shelf-1",
+            "visible_meshes": 32,
+            "part_count": 6,
+            "anchors": null
+          },
+          {
+            "id": "rail-pair",
+            "rect": [
+              1184,
+              630,
+              320,
+              210
+            ],
+            "native_pixels": [
+              320,
+              210
+            ],
+            "same_geometry": true,
+            "stage": 0,
+            "instance": "rack/compute-4",
+            "visible_meshes": 4,
+            "part_count": null,
+            "anchors": {
+              "outer": [
+                1344.0000000000002,
+                739.0324221984885
+              ],
+              "inner": [
+                1363.7531903720312,
+                739.9419350253577
+              ],
+              "bracket": [
+                1206.333903417431,
+                682.2559176437686
+              ]
+            }
+          }
+        ],
+        "composition": "Independent native main and same-geometry native detail renders copied1:1; no resampling; detail insets repeat existing instances"
+      },
+      "mean_absolute_rgb_delta": 0,
+      "large_delta_pixel_fraction": 0,
+      "scope": "Exact native dimensions and same-geometry insets; bounded GPU pixel differences, not a substitute for original visual review"
+    },
+    "full_native_labelled_preview": {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/public/rack-exploded-full-svg.png",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "f35d0f77dab51696e0eef84970029770d41bf917b1579324eb45ac7b4be2eb05"
+    },
+    "downloads": [
+      {
+        "file": "rack-exploded-v1.svg",
+        "bytes": 634116,
+        "sha256": "3d96cb01d4d8259410deace04be565411ca212cabcca21ca5ee50feb9ee03200"
+      },
+      {
+        "file": "rack-exploded-v1.png",
+        "bytes": 471299,
+        "sha256": "b1dc38d2bbf2672c380a1fc1aa739f235c6bd70ebb84d4dbb17eee2d54fe5da9"
+      }
+    ],
+    "download_HEADs": [
+      {
+        "asset": "rack-exploded-v1.svg",
+        "status": 200,
+        "content_type": "image/svg+xml"
+      },
+      {
+        "asset": "rack-exploded-v1.png",
+        "status": 200,
+        "content_type": "image/png"
+      }
+    ],
+    "source_checks": [
+      {
+        "url": "/rack-exploded.html",
+        "file": "web/pages/rack-exploded.html",
+        "status": 200,
+        "bytes": 1559,
+        "sha256": "1ce6979ed69d255b690851f6f2458cae539db9afe7387ca7eef4f52242501b3d"
+      },
+      {
+        "url": "/rack3d.html",
+        "file": "web/pages/rack3d.html",
+        "status": 200,
+        "bytes": 48516,
+        "sha256": "6718172441cf0ebca9c3fa0e8c45fa753d9f00f679c0f826babf3dc693000ec7"
+      },
+      {
+        "url": "/assets/rack-assembly.js",
+        "file": "web/components/rack-assembly.js",
+        "status": 200,
+        "bytes": 12792,
+        "sha256": "58814333bc32285c0dde793b8597a9634731429ccf370e654a5c8fa233aeea97"
+      },
+      {
+        "url": "/assets/rack-exploded-generator.js",
+        "file": "web/components/rack-exploded-generator.js",
+        "status": 200,
+        "bytes": 7352,
+        "sha256": "c5442dd070d803a203506b931caf6f2a7364b7cc774ef420aa167f4c85543263"
+      },
+      {
+        "url": "/assets/rack-exploded-view.js",
+        "file": "web/components/rack-exploded-view.js",
+        "status": 200,
+        "bytes": 2701,
+        "sha256": "43d6c292bc5d764d874de8d7e183f79c64e5454132417f1dbf9bc020fe9b41e3"
+      },
+      {
+        "url": "/assets/scene-view.js",
+        "file": "web/components/scene-view.js",
+        "status": 200,
+        "bytes": 4804,
+        "sha256": "04ff5001954f182fd8e12bd52403d9675ee34a7900ac66a91062c8d54804fdbe"
+      },
+      {
+        "url": "/assets/part-dossier.js",
+        "file": "web/components/part-dossier.js",
+        "status": 200,
+        "bytes": 5495,
+        "sha256": "d6d70283f6a5b5b9e276999be70a90351c50836c7a64d56673a970e9f2ea439e"
+      },
+      {
+        "url": "/assets/technical-atlas.js",
+        "file": "web/components/technical-atlas.js",
+        "status": 200,
+        "bytes": 22230,
+        "sha256": "6070c358632c99ba3f7d65e94e11154fa8524ceb63f11237f622c77c7f639952"
+      },
+      {
+        "url": "/assets/part-inspector.js",
+        "file": "web/components/part-inspector.js",
+        "status": 200,
+        "bytes": 4188,
+        "sha256": "7e0969f3a57bd96f409bbb5e1c57edb089ce052b54a1816b70b9df940f21e19e"
+      },
+      {
+        "url": "/assets/technical-atlas/rack-exploded-v1-preview.svg",
+        "file": "web/assets/technical-atlas/rack-exploded-v1-preview.svg",
+        "status": 200,
+        "bytes": 142229,
+        "sha256": "b86972a4f7c570009ecb45b09d1de342f4c7493edb58f3ab538499a6355eee21"
+      },
+      {
+        "url": "/assets/technical-atlas/rack-exploded-v1.png",
+        "file": "web/assets/technical-atlas/rack-exploded-v1.png",
+        "status": 200,
+        "bytes": 471299,
+        "sha256": "b1dc38d2bbf2672c380a1fc1aa739f235c6bd70ebb84d4dbb17eee2d54fe5da9"
+      },
+      {
+        "url": "/assets/technical-atlas/rack-exploded-v1.svg",
+        "file": "web/assets/technical-atlas/rack-exploded-v1.svg",
+        "status": 200,
+        "bytes": 634116,
+        "sha256": "3d96cb01d4d8259410deace04be565411ca212cabcca21ca5ee50feb9ee03200"
+      }
+    ],
+    "health": {
+      "status": 200,
+      "body": {
+        "ok": true,
+        "service": "inresearch",
+        "auth_required": true
+      }
+    },
+    "actual_phone_header360": {
+      "x": 0,
+      "y": 0,
+      "width": 360,
+      "height": 85.734375
+    },
+    "page_errors": []
+  },
+  "assembly_checks": {
+    "records": [
+      "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/public/rack-exploded-results-views.json",
+      "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/public/rack-exploded-results-assembly.json"
+    ],
+    "browser_mode": "headed-default-graphics",
+    "checks": [
+      {
+        "label": "initial authored view matches explicit fit",
+        "count": 4888,
+        "maxX": 0.5825329126906207,
+        "maxY": 0.893373640112208
+      },
+      {
+        "label": "actual initial and explicit fit coincide",
+        "initial": {
+          "p": [
+            19.93110576253567,
+            17.76531015801514,
+            37.584279619458336
+          ],
+          "t": [
+            -6.022489324970661,
+            7.609555558556142,
+            9.373850176516676
+          ]
+        },
+        "explicit": {
+          "p": [
+            19.93110576253567,
+            17.76531015801514,
+            37.584279619458336
+          ],
+          "t": [
+            -6.022489324970661,
+            7.609555558556142,
+            9.373850176516676
+          ]
+        }
+      },
+      {
+        "label": "fit 1280 light 0",
+        "count": 4888,
+        "maxX": 0.5058703733009282,
+        "maxY": 0.8925498780491381
+      },
+      {
+        "label": "all actual mesh corners clear canvas and persistent control rectangle",
+        "width": 1280,
+        "theme": "light",
+        "stage": 0,
+        "left": 639.7503401745026,
+        "right": 963.757038912594,
+        "top": 232.79968818950073,
+        "bottom": 857.3099826035148,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 395.09375,
+          "bottom": 882
+        },
+        "legend": "① 门　② 左侧板　③ 顶盖　④ 交换机　⑤ 计算托盘　⑥ 电源架"
+      },
+      {
+        "label": "actual stable rendered pixels",
+        "width": 1280,
+        "theme": "light",
+        "stage": 0,
+        "colors": 541,
+        "nonPaper": 8490
+      },
+      {
+        "label": "fit 1280 light 100",
+        "count": 4888,
+        "maxX": 0.5825329126906208,
+        "maxY": 0.8933736401122077
+      },
+      {
+        "label": "all actual mesh corners clear canvas and persistent control rectangle",
+        "width": 1280,
+        "theme": "light",
+        "stage": 100,
+        "left": 540.6962122333083,
+        "right": 1012.8210641219973,
+        "top": 292.27176945638337,
+        "bottom": 857.6372639147364,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 376.6953125,
+          "bottom": 882
+        },
+        "legend": "① 门　② 左侧板　③ 顶盖　④ 交换机　⑤ 计算托盘　⑥ 电源架"
+      },
+      {
+        "label": "actual stable rendered pixels",
+        "width": 1280,
+        "theme": "light",
+        "stage": 100,
+        "colors": 609,
+        "nonPaper": 7991
+      },
+      {
+        "label": "fit 1280 dark 0",
+        "count": 4888,
+        "maxX": 0.5058703733009281,
+        "maxY": 0.8925498780491378
+      },
+      {
+        "label": "all actual mesh corners clear canvas and persistent control rectangle",
+        "width": 1280,
+        "theme": "dark",
+        "stage": 0,
+        "left": 639.7503401745026,
+        "right": 963.757038912594,
+        "top": 232.79968818950067,
+        "bottom": 857.3099826035146,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 395.09375,
+          "bottom": 882
+        },
+        "legend": "① 门　② 左侧板　③ 顶盖　④ 交换机　⑤ 计算托盘　⑥ 电源架"
+      },
+      {
+        "label": "actual stable rendered pixels",
+        "width": 1280,
+        "theme": "dark",
+        "stage": 0,
+        "colors": 541,
+        "nonPaper": 8490
+      },
+      {
+        "label": "fit 1280 dark 100",
+        "count": 4888,
+        "maxX": 0.5825329126906208,
+        "maxY": 0.8933736401122077
+      },
+      {
+        "label": "all actual mesh corners clear canvas and persistent control rectangle",
+        "width": 1280,
+        "theme": "dark",
+        "stage": 100,
+        "left": 540.6962122333083,
+        "right": 1012.8210641219973,
+        "top": 292.27176945638337,
+        "bottom": 857.6372639147364,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 376.6953125,
+          "bottom": 882
+        },
+        "legend": "① 门　② 左侧板　③ 顶盖　④ 交换机　⑤ 计算托盘　⑥ 电源架"
+      },
+      {
+        "label": "actual stable rendered pixels",
+        "width": 1280,
+        "theme": "dark",
+        "stage": 100,
+        "colors": 609,
+        "nonPaper": 7991
+      },
+      {
+        "label": "fit 390 light 0",
+        "count": 4888,
+        "maxX": 0.734762729445119,
+        "maxY": 0.8137132155364525
+      },
+      {
+        "label": "all actual mesh corners clear canvas and persistent control rectangle",
+        "width": 390,
+        "theme": "light",
+        "stage": 0,
+        "left": 51.7212677582018,
+        "right": 324.510103675617,
+        "top": 198.31809526902293,
+        "bottom": 720.9794782684293,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 门　② 左侧板　③ 顶盖　④ 交换机　⑤ 计算托盘　⑥ 电源架"
+      },
+      {
+        "label": "actual stable rendered pixels",
+        "width": 390,
+        "theme": "light",
+        "stage": 0,
+        "colors": 420,
+        "nonPaper": 5958
+      },
+      {
+        "label": "fit 390 light 100",
+        "count": 4888,
+        "maxX": 0.8798078295694752,
+        "maxY": 0.5078663164175151
+      },
+      {
+        "label": "all actual mesh corners clear canvas and persistent control rectangle",
+        "width": 390,
+        "theme": "light",
+        "stage": 100,
+        "left": 23.43747323395233,
+        "right": 325.3988745996869,
+        "top": 307.19959135536465,
+        "bottom": 617.038293685694,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 门　② 左侧板　③ 顶盖　④ 交换机　⑤ 计算托盘　⑥ 电源架"
+      },
+      {
+        "label": "actual stable rendered pixels",
+        "width": 390,
+        "theme": "light",
+        "stage": 100,
+        "colors": 378,
+        "nonPaper": 3607
+      },
+      {
+        "label": "fit 390 dark 0",
+        "count": 4888,
+        "maxX": 0.734762729445119,
+        "maxY": 0.8137132155364525
+      },
+      {
+        "label": "all actual mesh corners clear canvas and persistent control rectangle",
+        "width": 390,
+        "theme": "dark",
+        "stage": 0,
+        "left": 51.7212677582018,
+        "right": 324.510103675617,
+        "top": 198.31809526902293,
+        "bottom": 720.9794782684293,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 门　② 左侧板　③ 顶盖　④ 交换机　⑤ 计算托盘　⑥ 电源架"
+      },
+      {
+        "label": "actual stable rendered pixels",
+        "width": 390,
+        "theme": "dark",
+        "stage": 0,
+        "colors": 420,
+        "nonPaper": 5958
+      },
+      {
+        "label": "fit 390 dark 100",
+        "count": 4888,
+        "maxX": 0.8798078295694752,
+        "maxY": 0.5078663164175151
+      },
+      {
+        "label": "all actual mesh corners clear canvas and persistent control rectangle",
+        "width": 390,
+        "theme": "dark",
+        "stage": 100,
+        "left": 23.43747323395233,
+        "right": 325.3988745996869,
+        "top": 307.19959135536465,
+        "bottom": 617.038293685694,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 门　② 左侧板　③ 顶盖　④ 交换机　⑤ 计算托盘　⑥ 电源架"
+      },
+      {
+        "label": "actual stable rendered pixels",
+        "width": 390,
+        "theme": "dark",
+        "stage": 100,
+        "colors": 378,
+        "nonPaper": 3607
+      },
+      {
+        "label": "initial authored view matches explicit fit",
+        "count": 4888,
+        "maxX": 0.5825329126906207,
+        "maxY": 0.893373640112208
+      },
+      {
+        "label": "actual initial and explicit fit coincide",
+        "initial": {
+          "p": [
+            19.93110576253567,
+            17.76531015801514,
+            37.584279619458336
+          ],
+          "t": [
+            -6.022489324970661,
+            7.609555558556142,
+            9.373850176516676
+          ]
+        },
+        "explicit": {
+          "p": [
+            19.93110576253567,
+            17.76531015801514,
+            37.584279619458336
+          ],
+          "t": [
+            -6.022489324970661,
+            7.609555558556142,
+            9.373850176516676
+          ]
+        }
+      },
+      {
+        "label": "TA13 default geometry, vertices, poses and category tags unchanged",
+        "count": 598,
+        "same": true
+      },
+      {
+        "label": "actual same cabinet counts, real perforations, stable instances and paired rails",
+        "meshes": 611,
+        "picks": 611,
+        "unique": 611,
+        "compute": 8,
+        "drives": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "power": 2,
+        "modules": [
+          6,
+          6
+        ],
+        "network": 2,
+        "doorHoles": 1280,
+        "instances": [
+          {
+            "id": "rack/front-door",
+            "part": "rack-frame",
+            "axis": [
+              0,
+              0,
+              15
+            ],
+            "home": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "rack/left-side-panel",
+            "part": "rack-frame",
+            "axis": [
+              -8,
+              0,
+              0
+            ],
+            "home": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "rack/top-cover",
+            "part": "rack-frame",
+            "axis": [
+              0,
+              2.5,
+              0
+            ],
+            "home": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "rack/switch-1",
+            "part": "network-switch",
+            "axis": [
+              0,
+              0,
+              7
+            ],
+            "home": [
+              0.3,
+              10.64,
+              0.15
+            ]
+          },
+          {
+            "id": "rack/compute-4",
+            "part": "server",
+            "axis": [
+              0,
+              0,
+              7
+            ],
+            "home": [
+              0.3,
+              5.779999999999999,
+              0.15
+            ]
+          },
+          {
+            "id": "rack/power-shelf-1",
+            "part": "power-shelf",
+            "axis": [
+              0,
+              0,
+              7
+            ],
+            "home": [
+              0.3,
+              1.04,
+              0.15
+            ]
+          }
+        ],
+        "fixedRails": 24,
+        "innerRails": 24,
+        "brackets": 48,
+        "models": 0
+      },
+      {
+        "label": "every mesh follows its one instance; fixed cabinet/outer rails stay at home, stage50",
+        "deltas": [
+          {
+            "id": "rack/front-door",
+            "actual": [
+              0,
+              0,
+              7.5
+            ],
+            "expected": [
+              0,
+              0,
+              7.5
+            ]
+          },
+          {
+            "id": "rack/left-side-panel",
+            "actual": [
+              -4,
+              0,
+              0
+            ],
+            "expected": [
+              -4,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "rack/top-cover",
+            "actual": [
+              0,
+              1.25,
+              0
+            ],
+            "expected": [
+              0,
+              1.25,
+              0
+            ]
+          },
+          {
+            "id": "rack/switch-1",
+            "actual": [
+              0.3,
+              10.64,
+              3.65
+            ],
+            "expected": [
+              0.3,
+              10.64,
+              3.65
+            ]
+          },
+          {
+            "id": "rack/compute-4",
+            "actual": [
+              0.3,
+              5.779999999999999,
+              3.65
+            ],
+            "expected": [
+              0.3,
+              5.779999999999999,
+              3.65
+            ]
+          },
+          {
+            "id": "rack/power-shelf-1",
+            "actual": [
+              0.3,
+              1.04,
+              3.65
+            ],
+            "expected": [
+              0.3,
+              1.04,
+              3.65
+            ]
+          }
+        ],
+        "fixed": 508,
+        "moving": 103,
+        "wrong": 0
+      },
+      {
+        "label": "every mesh follows its one instance; fixed cabinet/outer rails stay at home, stage100",
+        "deltas": [
+          {
+            "id": "rack/front-door",
+            "actual": [
+              0,
+              0,
+              15
+            ],
+            "expected": [
+              0,
+              0,
+              15
+            ]
+          },
+          {
+            "id": "rack/left-side-panel",
+            "actual": [
+              -8,
+              0,
+              0
+            ],
+            "expected": [
+              -8,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "rack/top-cover",
+            "actual": [
+              0,
+              2.5,
+              0
+            ],
+            "expected": [
+              0,
+              2.5,
+              0
+            ]
+          },
+          {
+            "id": "rack/switch-1",
+            "actual": [
+              0.3,
+              10.64,
+              7.15
+            ],
+            "expected": [
+              0.3,
+              10.64,
+              7.15
+            ]
+          },
+          {
+            "id": "rack/compute-4",
+            "actual": [
+              0.3,
+              5.779999999999999,
+              7.15
+            ],
+            "expected": [
+              0.3,
+              5.779999999999999,
+              7.15
+            ]
+          },
+          {
+            "id": "rack/power-shelf-1",
+            "actual": [
+              0.3,
+              1.04,
+              7.15
+            ],
+            "expected": [
+              0.3,
+              1.04,
+              7.15
+            ]
+          }
+        ],
+        "fixed": 508,
+        "moving": 103,
+        "wrong": 0
+      },
+      {
+        "label": "every mesh follows its one instance; fixed cabinet/outer rails stay at home, stage0",
+        "deltas": [
+          {
+            "id": "rack/front-door",
+            "actual": [
+              0,
+              0,
+              0
+            ],
+            "expected": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "rack/left-side-panel",
+            "actual": [
+              0,
+              0,
+              0
+            ],
+            "expected": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "rack/top-cover",
+            "actual": [
+              0,
+              0,
+              0
+            ],
+            "expected": [
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "rack/switch-1",
+            "actual": [
+              0.3,
+              10.64,
+              0.15
+            ],
+            "expected": [
+              0.3,
+              10.64,
+              0.15
+            ]
+          },
+          {
+            "id": "rack/compute-4",
+            "actual": [
+              0.3,
+              5.779999999999999,
+              0.15
+            ],
+            "expected": [
+              0.3,
+              5.779999999999999,
+              0.15
+            ]
+          },
+          {
+            "id": "rack/power-shelf-1",
+            "actual": [
+              0.3,
+              1.04,
+              0.15
+            ],
+            "expected": [
+              0.3,
+              1.04,
+              0.15
+            ]
+          }
+        ],
+        "fixed": 508,
+        "moving": 103,
+        "wrong": 0
+      },
+      {
+        "label": "every mesh follows its one instance; fixed cabinet/outer rails stay at home, stage100",
+        "deltas": [
+          {
+            "id": "rack/front-door",
+            "actual": [
+              0,
+              0,
+              15
+            ],
+            "expected": [
+              0,
+              0,
+              15
+            ]
+          },
+          {
+            "id": "rack/left-side-panel",
+            "actual": [
+              -8,
+              0,
+              0
+            ],
+            "expected": [
+              -8,
+              0,
+              0
+            ]
+          },
+          {
+            "id": "rack/top-cover",
+            "actual": [
+              0,
+              2.5,
+              0
+            ],
+            "expected": [
+              0,
+              2.5,
+              0
+            ]
+          },
+          {
+            "id": "rack/switch-1",
+            "actual": [
+              0.3,
+              10.64,
+              7.15
+            ],
+            "expected": [
+              0.3,
+              10.64,
+              7.15
+            ]
+          },
+          {
+            "id": "rack/compute-4",
+            "actual": [
+              0.3,
+              5.779999999999999,
+              7.15
+            ],
+            "expected": [
+              0.3,
+              5.779999999999999,
+              7.15
+            ]
+          },
+          {
+            "id": "rack/power-shelf-1",
+            "actual": [
+              0.3,
+              1.04,
+              7.15
+            ],
+            "expected": [
+              0.3,
+              1.04,
+              7.15
+            ]
+          }
+        ],
+        "fixed": 508,
+        "moving": 103,
+        "wrong": 0
+      },
+      {
+        "label": "complete dossier",
+        "count": 4888,
+        "maxX": 0.5825329126906207,
+        "maxY": 0.893373640112208
+      },
+      {
+        "label": "real front click selects one closed chassis and SVG local instance",
+        "name": "switch-1",
+        "id": "rack/switch-1",
+        "count": 17
+      },
+      {
+        "label": "real front click selects one closed chassis and SVG local instance",
+        "name": "compute-4",
+        "id": "rack/compute-4",
+        "count": 40
+      },
+      {
+        "label": "real front click selects one closed chassis and SVG local instance",
+        "name": "power-shelf-1",
+        "id": "rack/power-shelf-1",
+        "count": 32
+      },
+      {
+        "label": "manual camera survives stages, resize and late model refresh"
+      },
+      {
+        "label": "resources disposed exactly once and RAF stops",
+        "geometries": 424,
+        "materials": 6,
+        "g": 424,
+        "m": 6,
+        "after": 0,
+        "picks": 0,
+        "parent": false,
+        "labels": 0
+      }
+    ],
+    "page_errors": [],
+    "screenshots_individually_viewed": [
+      "rack-exploded-1280-light-0.png",
+      "rack-exploded-1280-light-100.png",
+      "rack-exploded-1280-dark-0.png",
+      "rack-exploded-1280-dark-100.png",
+      "rack-exploded-390-light-0.png",
+      "rack-exploded-390-light-100.png",
+      "rack-exploded-390-dark-0.png",
+      "rack-exploded-390-dark-100.png",
+      "rack-exploded-complete-dossier.png"
+    ],
+    "scope": "Same TA13 counts, 611actualmesh/598defaultsnapshot,6instancehomesandaxes/emptyhomes/fixedouterrail/movinginner/frontrearbrackets; truewhole611 andsingleinstancepicks/SVGIDs, mobilelegend/control-safeframing/initialexplicitfit/manualownership/exactrelease/alloldroutes"
+  },
+  "run_receipt": {
+    "observed_at": "2026-10-09T10:54:21.974891+00:00",
+    "base": "https://inresearch.ai",
+    "rows": [
+      {
+        "name": "views",
+        "exit_code": 0,
+        "seconds": 13.417,
+        "log": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/public/views.log"
+      },
+      {
+        "name": "assembly",
+        "exit_code": 0,
+        "seconds": 31.285,
+        "log": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/public/assembly.log"
+      },
+      {
+        "name": "atlas",
+        "exit_code": 0,
+        "seconds": 22.436,
+        "log": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/public/atlas.log"
+      },
+      {
+        "name": "source-health",
+        "exit_code": 0,
+        "seconds": 11.766,
+        "log": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-14/public/source-health.log"
+      }
+    ]
+  },
+  "retained_observations": {
+    "rejected_AI_and_native_method": "docs/design/technical-atlas/TA-14/preparation-v1.json",
+    "local_headless_composite": "Headless+softwaregraphics darkscreenshot rectangle reproduced but originalWebGLbuffer correct; headeddefaultgraphics samepage and final8views clear. Exactdriver/compositorcauseunknown; no speculativeproductionCSSpatch. See acceptance/browser_review."
+  },
+  "boundaries": [
+    "Generic2switch/8computex8carrier/2shelfx6module, dimensions/materials/portdensity are illustrative, notOEM/ORV3/CAD",
+    "Only1representative percategory moves; threehomesvacated and othersinstalled, shelltranslation not realtravel/removalorder/maintenance/hotswap or loadbearing guidance",
+    "Raildetail repeats samecompute4 ininstalledposition; fullseparation doesnotclaimrailsremainengaged or supportingdevice",
+    "Unconnectedcopperbar/graypipes remainrack-frame unknownserviceaccessories, notrectifier/manifold; originalBOM/researchlinks do notadopt800V/ODM/protocol/internalconfig/supplier facts",
+    "Mother independentlynative1536 withthree independentlynative1:1insets and14editablelabels; all6builtinAIbitmapsrejectedretained; current3DSVG isactualinteractiveview, notmother/CAD",
+    "Actuallocal/publicscreenshots/downloads/sourceSHA/exacthealth are pointintime checks, not allrealhardware/touchdevices/browsers/angles orengineeringaccuracy",
+    "Spark not changed by this atlas task; no diagramasset sync/materialintake/deepreading/C3/researchadoption claim. Parentresearchservice observations remain separately scoped"
+  ],
+  "progress": {
+    "primary_published": 14,
+    "primary_total": 35,
+    "supplemental_published": 4,
+    "supplemental_total": 4,
+    "next_figure": "TA-15"
+  },
+  "publication_status": "published_after_actual_AWS_and_public_acceptance"
+}
