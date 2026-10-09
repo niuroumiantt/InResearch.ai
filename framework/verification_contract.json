@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.29",
+  "version": "2026.10.09.30",
   "reviewed_at": "2026-10-09",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -19,8 +19,8 @@
     "docs/local_setup/README.md": "972bf5d0b9e7a682acdceef34bb59a58e8b5148e1e0cf479e19a6e09170e6daf",
     "docs/local_setup/REPOSITORY_PAGES.md": "468356165b8546ac3db3afc0a8cef8df27c559faa3b2981b87ad0920db84cade",
     "framework/00_overview.md": "801f2e4182d6ac59b3e278bb2da9b8dfafe9167021f2432d415b0d3717aed5ec",
-    "framework/01_data_standards.md": "765d6f91df5468f507e488000bec59ddc00823e4c74b2334a3a14e543ce54c70",
-    "framework/02_knowledge_format.md": "8042fcc8fff3ea51e154e7e2969dba36e526bd4f6fb8e2e19a9d7cac55939521",
+    "framework/01_data_standards.md": "0e35e761c33b85fa354351fc4018f9f54703a749f59a020ab6dcfde9a5ee5091",
+    "framework/02_knowledge_format.md": "c9ff6ccb971026d144462d5643c885dd78353d54b2fdfcd75987be977ebdf742",
     "framework/03_bom_and_collaboration.md": "07e5b461da6c0da081c2ab7a8b7af1089048d93edf98ca5a74878907d530a655",
     "framework/04_reading_scoring_standard.md": "3467e74f0a04c56d6f2df1de870736cb54cbc74b591ae08845007df26332e19a",
     "framework/05_interface_system.md": "f40ac3c09be8b5aa5777cd2f3eca3b2bfbc881b85430144cb20ded7f179de702",
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "cf668f00db7c4fcf1ea942ebf1ff505f0518ea2e2c08332a91eff65c91321b9c",
-    "framework/CURRENT.md": "85ad62cd58f7ad9d32d6479b54866a6d042655f612c8af59dccf10589375ba4f",
+    "framework/CURRENT.md": "5c9fee69c4061baff6449df993d307b5a7c6c57043310dee35b498bce9df9681",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "9f00b7d2f9ec6d3288701533f15c2f6b8bd8b05660a500e7028183f72ba5be0a",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -38,7 +38,7 @@
     "src/inresearch/adapters/reader_model.py": "7082aa0f3bcc1ac953466b0c90e82dca013b08064cdd1db85a57b4f0686d9a24",
     "src/inresearch/delivery/backup.py": "c567713fc5585ab79581cb316d12fc1947931ff73a19cfbc79da5a6de48ba71e",
     "src/inresearch/knowledge/news_observations.py": "763fac77a0eb2cc6223d1670c7cba61dc8e5a3f52e5bac37cc87e9c3666ea643",
-    "src/inresearch/knowledge/registry.py": "09b2136a07862c7b3caf8c837ba44df538c480a09b2da4b3fb94eda8a9547bcd",
+    "src/inresearch/knowledge/registry.py": "8919ae84cb62accafaa58664652b47f68cea76917e2328cfedd7a8b27ab7dddc",
     "src/inresearch/materials/daily_bundle.py": "f0e616d95517a2a9dda877c355f35733e230fc8e68cf641c7dff02b1c629a68d",
     "src/inresearch/materials/daily_events.py": "b5706491c64f33103d9965f29909bd58910ef8ca3d1ed299a4a0c842259b9239",
     "src/inresearch/materials/daily_research.py": "641f8c6e51472a1d93e72ba472f4f55e6040901168a72a2c723cb323ed39b820",
@@ -127,7 +127,7 @@
     "tests/unit/test_reading_revisions.py": "11159514736025f8532fde946401a726cd1c7fb08fb731d5c3195e34707f1c93",
     "tests/unit/test_report_model.py": "d4e81a2f27fb5a98cf4dff2292257cba53e7c451cefef7a3c13ee796d23ff426",
     "tests/unit/test_repository_pages.py": "f5cf584d645ad999a59ffc9bb5f6a9569fd1ed247850e5864ed165b0a9dead56",
-    "tests/unit/test_research.py": "069939d1da009fd0630f055ab44cd4578e585330a22a50c5f986c31f3700497d",
+    "tests/unit/test_research.py": "6def0ace57270f8465c4f77cb221bab0cbc7f23c250dd867136fc86686d35a23",
     "tests/unit/test_research_match.py": "2e165049113b12107b7d5a8149287bc766f49ed3c480c44bfbf770cee5c054e4",
     "tests/unit/test_research_navigation.py": "3eb2ee5b1321212b34d5ba61296079e01d5098b6597ab34cbeddb14f00525e20",
     "tests/unit/test_snapshot_overlay.py": "3c1e1f242bf69aa2014687b66798ab3ffb905b6767984c7828466549d0238418",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "44cb858cd1d005a217567f44dffb3cf86725a31aeac471091eefefbc9e9015f6",
+    "framework/current_state.json": "1e4ecd91dd67bb263e2915507c403e851c659f28b21e68e1e362a006149be393",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "57e9d07f4c3390d2850e4c4df37b5afa919fccfeaaf5bfb4dfff4569861057b7",
     "src/inresearch/adapters/html_document.py": "322b316bbc5bc0bce0c3fc4b4835b2a23c7f9d42f06c0f81ae20f17a26aaa650",
-    "docs/DECISIONS.md": "3f33de7ee52606d42c0b798501a68c31254373c2d2dd31944f82b560300082f8",
+    "docs/DECISIONS.md": "d7398213bffe46e9ef6b1959055ca0691fdcbee06ab771ca1b4945dc342da4b4",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -348,7 +348,7 @@
       "policy": "data-20260906",
       "scope": "project",
       "source": "framework/01_data_standards.md",
-      "checked_requirement": "C3 支持链资格、定位、数值口径、非数字候选、来源冲突并列与分发受限的对外阻断；2026-10-03 复审：园区可固定浮窗和独立详情；首页标签/卡片仅高亮，不改统计/新闻/URL；五视口边界保持。Frontier同址证据归一保留原记录，全球/样本年份、定义、未知及覆盖不可比，不计算差额。；2026-10-07中天新增复审：独立项目入库增加已登记地点及未知容量/坐标计数，IT总量及Frontier去重不变；行业审计期望值随126项项目更新。",
+      "checked_requirement": "C3 支持链资格、定位、数值口径、非数字候选、来源冲突并列与分发受限的对外阻断；2026-10-03 复审：园区可固定浮窗和独立详情；首页标签/卡片仅高亮，不改统计/新闻/URL；五视口边界保持。Frontier同址证据归一保留原记录，全球/样本年份、定义、未知及覆盖不可比，不计算差额。；2026-10-07中天新增复审：独立项目入库增加已登记地点及未知容量/坐标计数，IT总量及Frontier去重不变；行业审计期望值随126项项目更新。；2026-10-09具名A复审：新增/补充代理review须实际by、delegate一致、非空granted_by/granted_at/reference及固定scope；授权允许实际日期精度或带时区时间且不虚构时刻，日期/时间不得晚于相应审核精度；替代旧结论/放宽分发仅A-owner，普通A-owner/B-reviewer保持；失效代理支持链重开、接收候选不能自授；adopted API的陈述/回答/支持证据保留实际代理和五项最小委托，私有附加字段不出站。",
       "tests": [
         "tests/unit/test_research.py::ResearchTests.test_invalid_C3_review_never_closes_question",
         "tests/unit/test_research.py::ResearchTests.test_C_archive_cannot_close_and_valid_B_reopens_then_closes",
@@ -402,7 +402,13 @@
         "tests/unit/test_display_regressions.py::SplitAsserterTests.test_the_live_store_has_no_split_left",
         "tests/unit/test_industry.py::IndustryTests.test_reviewed_duplicate_preserves_evidence_without_double_counting",
         "tests/unit/test_industry.py::IndustryTests.test_capacity_audit_is_global_and_discloses_unknown_scope",
-        "tests/industry.cjs"
+        "tests/industry.cjs",
+        "tests/unit/test_research.py::ResearchTests.test_named_A_delegation_accepts_known_date_or_aware_time_without_owner_impersonation",
+        "tests/unit/test_research.py::ResearchTests.test_A_delegation_missing_mismatched_blank_or_invalid_credentials_fail_closed",
+        "tests/unit/test_research.py::ResearchTests.test_replacement_and_relaxed_distribution_remain_A_owner_decisions",
+        "tests/unit/test_research.py::ResearchTests.test_invalid_delegated_support_link_reopens_the_question",
+        "tests/unit/test_research.py::ResearchTests.test_candidate_receiver_cannot_self_grant_delegated_adoption",
+        "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_adopted_API_preserves_actual_delegate_and_minimal_grant_for_the_support_chain"
       ],
       "not_verified": [
         "38 条存量事实缺内容 SHA；27 条历史来源未登记；B 审核质量与语义冲突识别不能由机检代替。",
@@ -428,14 +434,15 @@
         "bound 不同（lower/upper vs point）的两条即便口径全同也不落进同一个 claim_identity，争议分诊自动看不见——全库当前 2 组，均已由人手工互指；没有为此加检测。",
         "别名表只判「是不是一家」，该用哪种写法仍需人定（原件官方写法优先）；写法一致未分裂的不改名，所以表里有某家不代表库内写法已按偏好统一。",
         "95GW底层统计方法、报告独立交叉验证、全部项目额定/实际IT定义与逐址重叠未穷尽；阿布扎比4GW仅既有推导余额；真实手机触屏与其他浏览器引擎未验。发布与服务以交接回执为准。",
-        "中天南通项目仅核验公司披露开工及半年报项目段，未知地块、IT/设施MW、运营方/客户；投运计划未证实现状。新增来源/审核回执与完整报告深读分别计量。"
+        "中天南通项目仅核验公司披露开工及半年报项目段，未知地块、IT/设施MW、运营方/客户；投运计划未证实现状。新增来源/审核回执与完整报告深读分别计量。",
+        "结构校验不能认证用户身份、授权真实性/撤销或reference所述事件，必须人工核实；具名代理资格不证明全部原文语义正确、外部反证穷尽、价格/事实/模型入口已更新或生产服务已载入。实际研究专项审核、部署及公开支持链分别留证。"
       ]
     },
     {
       "policy": "knowledge-20260906",
       "scope": "project",
       "source": "framework/02_knowledge_format.md",
-      "checked_requirement": "采用依赖失效重开、候选隔离、被替代正文退出当前报告；Reader 1 起始页号仅在导出边界转为 0 起始索引，供应投影保留索引且原报告不重写。；2026-10-08：资料基座以当前封存快照、内容身份/原文和骨架映射直接供研究使用，来源年代未知保持未知、跨节点和部分已采用报告不遮蔽其他材料；C3不作为资料展示前置，正式答案/GW/模型不由投影改写。",
+      "checked_requirement": "采用依赖失效重开、候选隔离、被替代正文退出当前报告；Reader 1 起始页号仅在导出边界转为 0 起始索引，供应投影保留索引且原报告不重写。；2026-10-08：资料基座以当前封存快照、内容身份/原文和骨架映射直接供研究使用，来源年代未知保持未知、跨节点和部分已采用报告不遮蔽其他材料；C3不作为资料展示前置，正式答案/GW/模型不由投影改写。；2026-10-09具名A复审：新增/补充代理review须实际by、delegate一致、非空granted_by/granted_at/reference及固定scope；授权允许实际日期精度或带时区时间且不虚构时刻，日期/时间不得晚于相应审核精度；替代旧结论/放宽分发仅A-owner，普通A-owner/B-reviewer保持；失效代理支持链重开、接收候选不能自授；adopted API的陈述/回答/支持证据保留实际代理和五项最小委托，私有附加字段不出站。",
       "tests": [
         "tests/unit/test_research.py::ResearchTests.test_withdrawn_or_invalid_original_evidence_reopens_question",
         "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_successful_http_receipt_is_candidate_only_and_bad_token_is_401",
@@ -446,11 +453,18 @@
         "tests/unit/test_material_baseline.py::MaterialBaselineTests.test_missing_or_mismatched_original_and_gap_pages_do_not_enter_baseline",
         "tests/unit/test_material_baseline.py::MaterialBaselineTests.test_current_snapshot_keeps_unadopted_claims_from_partly_adopted_document",
         "tests/unit/test_material_baseline.py::MaterialBaselineTests.test_http_filters_and_existing_login_gate",
-        "tests/research_summary.cjs"
+        "tests/research_summary.cjs",
+        "tests/unit/test_research.py::ResearchTests.test_named_A_delegation_accepts_known_date_or_aware_time_without_owner_impersonation",
+        "tests/unit/test_research.py::ResearchTests.test_A_delegation_missing_mismatched_blank_or_invalid_credentials_fail_closed",
+        "tests/unit/test_research.py::ResearchTests.test_replacement_and_relaxed_distribution_remain_A_owner_decisions",
+        "tests/unit/test_research.py::ResearchTests.test_invalid_delegated_support_link_reopens_the_question",
+        "tests/unit/test_research.py::ResearchTests.test_candidate_receiver_cannot_self_grant_delegated_adoption",
+        "tests/unit/test_research.py::ReaderSnapshotHTTPTests.test_adopted_API_preserves_actual_delegate_and_minimal_grant_for_the_support_chain"
       ],
       "not_verified": [
         "150 条兼容 Finding 尚未逐条迁入对象证据链；不等同 150 条已采用证据。",
-        "来源记载不证明当前语义准确或历史材料今天仍有效；新版本/冲突正式替代须定向核验，真实资料数量与生产网页另读实际快照。"
+        "来源记载不证明当前语义准确或历史材料今天仍有效；新版本/冲突正式替代须定向核验，真实资料数量与生产网页另读实际快照。",
+        "结构校验不能认证用户身份、授权真实性/撤销或reference所述事件，必须人工核实；具名代理资格不证明全部原文语义正确、外部反证穷尽、价格/事实/模型入口已更新或生产服务已载入。实际研究专项审核、部署及公开支持链分别留证。"
       ]
     },
     {

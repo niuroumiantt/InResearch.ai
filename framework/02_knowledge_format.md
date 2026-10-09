@@ -12,6 +12,8 @@
 
 当前文本证据的 `page_index` 从 0 开始，必须小于原件页数；采用须保留非空原文 `quote`，并核对内容身份及全文覆盖。陈述、回答的直接证据和间接 `statement_ids` 支持链均须通过 C3、保持 adopted；失效、缺失或循环依赖使问题重新开放，不能只看回答自己的状态。机器检查定位与依赖结构，不代替原文语义审核。
 
+具名代理 A 审核依 01 §4 保存实际 `by`、`authority=delegated_reviewer` 及结构化委托；不改署所有者。正式 adopted API 对陈述、回答和支持证据投影实际审核归属，并只保留委托的 `delegate/granted_by/granted_at/reference/scope`；日期级委托不补造时刻，附加私有字段不出站。支持链任一代理凭证失效即失去采用资格；新增资格不授予 Reader、B worker 或快照接收端正式写入权。
+
 成员投递可使用数字 `key_numbers`，或非数字 `key_statements`（定义、机制、接口、规范、失败案例）。后者须包含 `kind/text/quote/locator`，不因缺少数字退回高价值材料。兼容 CSV 保留陈述和出处，接收仍属候选登记。
 
 ## 资料基座：已有材料先用起来

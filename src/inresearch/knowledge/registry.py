@@ -17,12 +17,13 @@ import os
 import re
 import unicodedata
 from urllib.parse import urlencode, urlsplit
-from datetime import datetime, timezone
+from datetime import date, datetime, timezone
 from pathlib import Path
 from inresearch.knowledge.navigation import validate_navigation
 
 ROOT = project_root()
 COLLECTIONS = ('documents', 'evidence', 'statements', 'answers')
+DELEGATION_KEYS = ('delegate', 'granted_by', 'granted_at', 'reference', 'scope')
 
 
 def parse_time(value):
@@ -51,6 +52,25 @@ def coverage_complete(document):
     return True
 
 
+def delegation_valid(review):
+    """A named, bounded delegation; record known precision without inventing a clock time."""
+    delegation = review.get('delegation')
+    if (not isinstance(delegation, dict)
+            or any(not isinstance(delegation.get(k), str) or not delegation[k].strip()
+                   for k in DELEGATION_KEYS)
+            or delegation['delegate'] != review.get('by')
+            or delegation['scope'] != 'new_or_supplemental_research'):
+        return False
+    try:
+        reviewed_at = parse_time(review.get('at'))
+        granted_at = delegation['granted_at']
+        if re.fullmatch(r'\d{4}-\d{2}-\d{2}', granted_at):
+            return date.fromisoformat(granted_at) <= reviewed_at.date()
+        return parse_time(granted_at) <= reviewed_at
+    except (ValueError, TypeError):
+        return False
+
+
 def review_valid(row):
     review = row.get('review', {})
     if not isinstance(review, dict):
@@ -60,11 +80,28 @@ def review_valid(row):
     except (ValueError, TypeError):
         return False
     # Promotion is an explicit curated write; the worker and receiver cannot create it.
-    return (isinstance(review.get('by'), str) and bool(review['by'].strip())
-            and review.get('tier') in ('A', 'B')
-            and review.get('decision') == 'adopted'
-            and review.get('authority') in ('owner', 'reviewer')
-            and (review['tier'] != 'A' or review['authority'] == 'owner'))
+    if (not isinstance(review.get('by'), str) or not review['by'].strip()
+            or review.get('tier') not in ('A', 'B')
+            or review.get('decision') != 'adopted'):
+        return False
+    # Replacement and relaxed distribution remain owner decisions, including
+    # declarations carried in review metadata. Ambiguous declarations fail closed.
+    owner_only = False
+    for declaration in (row, review):
+        replacements = declaration.get('replaces_record_ids', [])
+        if (not isinstance(replacements, list)
+                or any(not isinstance(i, str) or not i.strip() for i in replacements)):
+            return False
+        if ('relaxes_distribution' in declaration
+                and type(declaration['relaxes_distribution']) is not bool):
+            return False
+        owner_only |= bool(replacements) or declaration.get('relaxes_distribution', False)
+    if owner_only:
+        return review['tier'] == 'A' and review.get('authority') == 'owner'
+    if review['tier'] == 'A':
+        return (review.get('authority') == 'owner'
+                or (review.get('authority') == 'delegated_reviewer' and delegation_valid(review)))
+    return review.get('authority') in ('owner', 'reviewer')
 
 
 def evidence_errors(row, document, adopted=False):
@@ -878,16 +915,18 @@ def adopted_for_node(root=ROOT, node='root'):
         return [{k: row[k] for k in keys if k in row} for row in rows]
     record_keys = ('id', 'kind', 'text', 'status', 'scope', 'limitations', 'published_date',
                    'question_ids', 'object_ids', 'evidence_ids', 'statement_ids', 'reading_revision_id')
-    def reviewed(rows):
-        out = project(rows, record_keys)
+    def reviewed(rows, keys=record_keys):
+        out = project(rows, keys)
         for result, row in zip(out, rows):
             result['review'] = {k: row['review'][k] for k in ('by', 'at', 'tier', 'authority',
                                 'decision', 'score', 'operator_review_by', 'operator_review_at') if k in row['review']}
+            if row['review'].get('authority') == 'delegated_reviewer':
+                result['review']['delegation'] = {k: row['review']['delegation'][k] for k in DELEGATION_KEYS}
         return out
     return dict(schema_version=1, node=node, unknown=scoped.get('unknown', False),
                 questions=project(scoped['questions'], ('id', 'status')),
                 knowledge=dict(statements=reviewed(list(statements.values())), answers=reviewed(answers),
-                    evidence=project(evidence, ('id', 'document_id', 'quote', 'page_index', 'locator', 'status')),
+                    evidence=reviewed(evidence, ('id', 'document_id', 'quote', 'page_index', 'locator', 'status')),
                     documents=project([d for d in curated['documents'] if d['id'] in document_ids],
                         ('id', 'title', 'content_sha256', 'reading_revision_id', 'coverage'))))
 
