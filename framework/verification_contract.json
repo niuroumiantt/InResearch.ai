@@ -1,14 +1,14 @@
 {
-  "version": "2026.10.09.07",
+  "version": "2026.10.09.08",
   "reviewed_at": "2026-10-09",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
     ".github/workflows/validate.yml": "1424142306d608e4834d92f6ac17c7ee4275e70daed27b1fe87bbe2e0ef3b0ff",
-    "AGENTS.md": "b94171a17c234e7bc9fa46b047e3692ec4fc00128a1d2ed0021967e950098f59",
+    "AGENTS.md": "ba280a763ab0168039f315ed7ebb3290583f05d156c8ce1e1196bda59415e05d",
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
     "docs/M4_TRIAGE_TASK.md": "924326e63de3dc50835609d2009c6550e228f7e1018972b1d4b75dd897701ed9",
-    "docs/geluoke/专题写作规则.md": "68b17798fe03c1ce063b61946ae52febaf47d58a98739b13defd0af7fb720978",
+    "docs/geluoke/专题写作规则.md": "846f3829980cff2a9b970f72c9db9fdb67624660df555227ffbfb459a3e0d0a4",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "11526ac244a5c8626ba0b6c1c2a40ab7cf354763302b6989ad640fc0704bdbd6",
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "1da84a8c03278f86ed4a38fcbe1e6c9ca1f87868354b5d952fb1802606a23a96",
-    "framework/CURRENT.md": "e13c766d08183f5ce05aace1a5dc3534221fe63892983927ced4333811fe5aeb",
+    "framework/CURRENT.md": "d4bc9c3ce9faa43ebd4af04c11a03b1e7f3fcce4baadd9e248f9fe5968db4acd",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "c900ea822d1b09d24810a369c7e663ae1a902e4bc990cbeefe5b46c3237e50f2",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "8f6042003415d82bdf1953b14ac89cb8f578cb5b98c4c1d4bb6c2f1bd9f0e826",
+    "framework/current_state.json": "d5fa753a5d95ae5be0c5ca229d10b9cecff32caec1881dddd18260cf7c174e37",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -1411,10 +1411,10 @@
       ]
     },
     {
-      "policy": "geluoke-longform-20261009-visual",
+      "policy": "geluoke-longform-20261009-match",
       "scope": "editorial-delivery",
       "source": "docs/geluoke/专题写作规则.md",
-      "checked_requirement": "v2.5人工审阅：A主B辅与话题目录/写稿输入一起采用；五张原字节参考登记，十二张正文图与工程场景/数据图分工，三张新图及一次去小标签编辑的内置提示词保留；设备、供能路径、计划/投运、费用口径与照片身份逐张人工核对。动态图片清单、上传限额、手机/桌面和复制往返由本篇实际脚本检查。研究23份submission、50条候选沿用；治理单测只验证登记，不能证明文章自然或技术准确。",
+      "checked_requirement": "v2.6人工审阅：图先回答紧邻段落问题，按地图/数据/阶段/合同/对应工程选择；州形状来自Census，互联界线对照EIA/ERCOT概览重绘。费用基数、预测/合同/投运状态与流向直接入图。本稿14幅解释图及章节顺序/承接重组，逐图语义和手机目检独立记录；脚本核对顺序、首段地图、关键标注、来源身份、SVG边界、上传限额与HTML复制。治理单测只覆盖登记，不替代语义或平台验收。",
       "tests": [
         "tests/unit/test_governance.py::GovernanceTests.test_replacement_valid_then_parallel_current_rejected",
         "tests/unit/test_governance.py::GovernanceTests.test_inventory_detects_added_and_modified_records_excludes_ignored"
@@ -1425,7 +1425,8 @@
         "本篇研究包保持候选；尚未执行远程数据库导入、Reader逐页深读/C3、价格/项目正式采用或问题关闭。",
         "原件仅在本机及独立原件zip；Git中保存派生文本、图与规则，不视作跨机器原件接收。",
         "AI工程图为通用示意，未按特定项目施工图验证；精确几何、设备数量与比例不作事实。",
-        "本次仅核对inews现有口吻代码与PR合并状态；没有将该仓库自动图表渲染器改成工程插画生成器。"
+        "本次仅核对inews现有口吻代码与PR合并状态；没有将该仓库自动图表渲染器改成工程插画生成器。",
+        "互联范围为依据官方图的概览重绘，未核验精确运营GIS或具体园区的接入边界；同一作者目检不是独立第三方终审。"
       ]
     }
   ]

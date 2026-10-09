@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.07",
+  "version": "2026.10.09.08",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2468,9 +2468,9 @@
       "id": "geluoke-longform-20261009-visual",
       "topic": "geluoke-longform",
       "scope": "editorial-delivery",
-      "status": "current",
+      "status": "superseded",
       "effective_at": "2026-10-09",
-      "source": "docs/geluoke/专题写作规则.md",
+      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md",
       "supersedes": [
         "geluoke-longform-20261009"
       ],
@@ -2487,7 +2487,39 @@
         "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/render_scene_labels.cjs",
         "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/validate.cjs"
       ],
-      "implementation_revision": "2.5"
+      "implementation_revision": "2.5",
+      "superseded_by": "geluoke-longform-20261009-match"
+    },
+    {
+      "id": "geluoke-longform-20261009-match",
+      "topic": "geluoke-longform",
+      "scope": "editorial-delivery",
+      "status": "current",
+      "effective_at": "2026-10-09",
+      "source": "docs/geluoke/专题写作规则.md",
+      "supersedes": [
+        "geluoke-longform-20261009-visual"
+      ],
+      "reason": "用户纠正图文不对应：第一章三大互联必须用美国本土电力地图；所有配图先解释紧邻段落，重要信息直接入图。替代v2.5把工程画风当作通用标准的表述，重组全文和14幅解释图。",
+      "implementations": [
+        "docs/handoff/us-datacenter-power-20261009.md",
+        "docs/research/2026-10-09/us-datacenter-power/README.md",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/build.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/research.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/audit.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/writing-plan.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/visual-references.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/prepare_scenes.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/render_scene_labels.cjs",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/validate.cjs",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/figures_v3.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/render_v3.cjs",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/visual_sources_v3.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/revise_v3.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/v3/figure-plan.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/v3/visual-sources.json"
+      ],
+      "implementation_revision": "2.6"
     }
   ],
   "entrypoints": [

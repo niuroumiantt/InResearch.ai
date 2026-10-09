@@ -1,6 +1,6 @@
 # 美国数据中心电力专题反哺台账
 
-2026-10-09｜规则v2.5｜仅派生研究与交付索引；原件不入Git。
+2026-10-09｜规则v2.6｜仅派生研究与交付索引；原件不入Git。
 
 文章及图文入口：`outputs/geluoke-research/2026-10-09-us-datacenter-power/`。正式研究文字为该目录`research/research.md`与`research.txt`，机器登记见submission.json、claims.json、demand-snapshot.json、sources.json。正文不构成来源原件的独立佐证；身份相同的两种交付不重复计量。
 
@@ -27,3 +27,5 @@
 可用作者计算见交付calculations.json和work/tools/audit.py；供电选址视角可作为后续页面输入建议，未把其直接改成网站默认模型或站点基准。
 
 2026-10-09视觉与文风修订：正文12图、A主B辅、事件导语与具体问题目录；来源与50条研究候选保持原版本。AI工程场景仅用于解释，不作为新证据，不新增原始来源数量。
+
+2026-10-09图文对应第三版：14幅图按紧邻段落选择；地图依据Census/EIA/ERCOT，SOFC依据AEP/DOE/Bloom；补充6份来源，45条成功访问身份，图与原件均留SHA。补充尚未生成新submission或候选，不扩大问题完成度。正文约1.29万汉字，公众号/研究文字均更新，图不能充当研究事实证据。
