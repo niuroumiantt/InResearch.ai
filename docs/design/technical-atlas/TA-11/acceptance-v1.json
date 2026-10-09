@@ -1,0 +1,375 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-11",
+  "object_id": "part:server",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Generic accelerator server cutaway and installation assembly",
+  "reviewed_at": "2026-10-09",
+  "reviewer": "Author actual native/labelled/local page view_image, independent reviewer and root actual source/image review",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "Air-cooled PCIe accelerator-server category; single virtual roof cutaway, repeated same-kind card/riser detail; two CPUs/eight DIMMs/two GPU cards/four fans/eight drive carriers/two PSUs are composition examples, not SKU specification. Rear I/O and AC outside face are occluded at current viewing angle; inside shield and power-distribution interface shown.",
+  "master": "web/assets/technical-atlas/server-v1.png",
+  "labelled": "web/assets/technical-atlas/server-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "role": "R2 actual built-in imagegen input, visual style only; same reference also supplied first corrective edit; final targeted correction uses prior output only",
+      "id": "R2",
+      "actually_passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "accepted_prompt": "docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v4.txt",
+    "iterations": 4,
+    "accepted_original_filename": "exec-9bc8db38-9e7d-46dc-a106-0aa8f0a08768.png",
+    "raster_modified_after_final_generation": false,
+    "preview_method": "same-native-pixel JPEG encoding by macOS sips; native original PNG unchanged",
+    "label_method": "independent editable SVG by existing stdlib atlas builder",
+    "label_review_iterations": 2,
+    "rejected_iterations": [
+      {
+        "iteration": 1,
+        "original_filename": "exec-72b1fee7-ac6e-4a96-9ef3-1ac8e6d47484.png",
+        "private_retained_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/rejected/master-v1.png",
+        "sha256": "b0046e9d11cc0b6db24baf31e55588a7b34fce1383dda6d7b0faff4052a7eb06",
+        "decision": "rejected",
+        "reason": "PSU external AC input receptacles pointed into chassis and connected to internal wiring; rear NIC openings likewise pointed inward. Rejected before labels."
+      },
+      {
+        "iteration": 2,
+        "original_filename": "exec-0929f022-ecce-48e6-9087-32352cb91f88.png",
+        "private_retained_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/rejected/master-v2.png",
+        "sha256": "5965d0b6cdf8fa906c63dcbd85214836a7b8552bbfdeb29b045abd062f571618",
+        "decision": "rejected",
+        "reason": "PSU direction corrected but rear NIC external openings still faced chassis interior. Rejected; exact targeted correction follows."
+      },
+      {
+        "iteration": 3,
+        "original_filename": "exec-11a068ab-37ba-40ee-b6e6-f8f74f6df3b5.png",
+        "private_retained_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/rejected/master-v3.png",
+        "sha256": "e84160c670bd392346ce40bf3b329e5cff1e5fd94d5154091cc420973a4db395",
+        "decision": "rejected",
+        "reason": "Two-image editing tool returned a changed R2-like layout with baked arrows, extra detail compositions and counts. Rejected for wrong edit target, no compositing workaround."
+      }
+    ]
+  },
+  "rights": {
+    "origin": "User-authorized built-in generation/editing with actual R2 input and target-image corrections",
+    "license": "Project generated explanatory category illustration, not vendor engineering drawing or CC0"
+  },
+  "technical_sources": [
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/poweredge-r750/per750_ism_pub/inside-the-system?guid=guid-86215914-c63d-48ee-9978-9eb22ee2149c&lang=en-us",
+      "access": "full official HTML and chapter image actually read by independent reviewer",
+      "supports": "Front storage/backplane, transverse fan cage, motherboard CPU/DIMM and rear riser/PSU installation categories; model instance only, no generic counts/dimensions/airflow."
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/poweredge-r750/per750_ism_pub/installing-a-gpu?guid=guid-6bb1c301-7595-4c6d-b631-b6a5761c6052&lang=en-us",
+      "access": "full official HTML read by author and reviewer; original images viewed by reviewer",
+      "supports": "Card-edge connector inserts into riser slot and cage/retainer fixes card; product-specific auxiliary power connection. Not arbitrary-card compatibility, two-card requirement or circuit topology."
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/poweredge-r750/per750_ism_pub/installing-the-drive-backplane?guid=guid-f3b4e522-e011-4fb0-b05c-f45c85787099&lang=en-us",
+      "access": "full official HTML and chapter image read by reviewer",
+      "supports": "Storage backplane behind drive bays, cable connection to system board/backplane. Specific protocols/pins and actual routing not generalized; main illustration does not identify the green fan-interface board as storage backplane."
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/poweredge-r750/per750_ism_pub/installing-a-power-supply-unit?guid=guid-090f794f-3936-4278-b0e4-bd033826b167&lang=en-us",
+      "access": "full official HTML read by author and reviewer; chapter image actually viewed by reviewer",
+      "supports": "PSU installed in rear bay, external AC socket/handle/latch face rear outside. Internal output connector is hidden in official view; no exact pin/connector form or hot-swap claim inferred."
+    },
+    {
+      "url": "https://www.supermicro.com/en/support/manuals/product/system/sys-422gl-nr/Content/component-installation/gpu-422gl-nr.htm",
+      "access": "full official HTML read by author",
+      "supports": "PCIe accelerator card, bracket and slot retention categories. Model-specific eight-card count/PCIe generation/interconnect and maintenance steps are not adopted."
+    },
+    {
+      "url": "https://www.supermicro.com/en/products/system/gpu/2u/sys-221ge-nr?mlg=0",
+      "access": "full official HTML read by author",
+      "supports": "Air-cooled PCIe accelerator system with CPU, DIMM, drives, fans, rear I/O and PSU categories; product-specific count/U size/materials/ratings are not copied."
+    }
+  ],
+  "source_access_limits": [
+    {
+      "url": "https://www.dell.com/support/manuals/en-uk/oth-r760xa/r760xa_ism_pub/inside-the-system?guid=guid-9cb209e8-f68e-419d-b445-12cc6104a3dd&lang=en-us",
+      "failure": "web full fetch cache miss; search snippet not used for engineering detail"
+    }
+  ],
+  "unknowns": [
+    "No vendor SKU, U height, dimensions, material grades, counts of contacts/fins/holes, precision board/chassis layout or mechanical tolerance adopted.",
+    "No exact PCIe generation, interconnect, storage protocol, cable circuit/pinout, coolant, flow, power/voltage/efficiency or performance claimed.",
+    "Virtual cutaway and procedural exploded stages are educational views, not servicing/hot-swap/redundancy/safe removal procedure.",
+    "Original TA03 chassis assets and prior publication stay accessible separately; TA11 is full server, not completed rack TA13 or orthographic TA12.",
+    "No Spark scope/service/research facts changed; source artifacts and operational observation remain separate."
+  ],
+  "checks": {
+    "one_generic_server": true,
+    "virtual_cutaway_not_servicing": true,
+    "example_counts": {
+      "cpu": 2,
+      "dram": 8,
+      "gpu": 2,
+      "server-fan": 4,
+      "ssd": 8,
+      "psu": 2
+    },
+    "rear_io_openings_outside": true,
+    "inner_psu_dc_outer_ac": true,
+    "same_kind_card_riser_detail_not_third_gpu": true,
+    "independent_labels": 12,
+    "native_pixels_verified": true,
+    "leaders_reviewed": true,
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true,
+    "light_and_dark": true,
+    "independent_server_assembly": true
+  },
+  "visual_review": {
+    "warm_white": "Native final, complete label PNG and eight actual page views individually viewed",
+    "materials_and_geometry": "Fourth native image preserves one chassis, example CPU/DIMM/PCIe card/fan/drive/PSU layout and outward rear interfaces; same-kind card/riser inset",
+    "labels": "12 editable text labels, 12 leaders including unlabeled card/detail correspondence; initial crossovers corrected and actual complete PNG reviewed",
+    "scope": "Illustrative counts, geometry, roof opening and installation axes only; not exact vendor model or service steps"
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/server-v1-preview.svg",
+    "bytes": 463773
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/server-v1.png",
+      "sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15",
+      "bytes": 2570554
+    },
+    {
+      "file": "web/assets/technical-atlas/server-v1.svg",
+      "sha256": "144f95ab6ac21e19f4043481e5daf44e58558e170c85d7c7250eae5579fddfbe",
+      "bytes": 3431244
+    },
+    {
+      "file": "web/assets/technical-atlas/server-v1-preview.jpg",
+      "sha256": "32cbd44e9d99a71b2e580188ad48812b1825a7ac8c1741bee20b717382bdb7ce",
+      "bytes": 344950
+    },
+    {
+      "file": "web/assets/technical-atlas/server-v1-preview.svg",
+      "sha256": "a1e02889a40e566aa0735963d280db732990da46c73a79f1d7bd25742999e32e",
+      "bytes": 463773
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-11/ta11-prompt-v1.txt",
+      "sha256": "debf522f6d788e928a9149cff249597c0a10d04b85c1da30ec6da37ca95bb854",
+      "bytes": 3834
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-11/labels-v1.json",
+      "sha256": "6a1a37989c8776690378e82c8d25cb7fb260f6245c0451e624d6537f38814e8e",
+      "bytes": 3894
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v3.txt",
+      "sha256": "625e48d7c8df28d90d734214bfd6dd164684ee201ab589b9a495a50559959340",
+      "bytes": 1627
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-11/preparation-v1.json",
+      "sha256": "ec3c66ab2ef6968586841b717740c1821d1242de22156b849332c399a95b9fd5",
+      "bytes": 7088
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v4.txt",
+      "sha256": "9f010809d2fe382a29edb0a98a34da459b2e4445b8bed12d6c7efe1276365be3",
+      "bytes": 1951
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-11/ta11-prompt-correction-v2.txt",
+      "sha256": "6ca982daa36076ee32ed15839348446ba7a9ec4d6b8dff0e73b91be954ea9044",
+      "bytes": 2558
+    }
+  ],
+  "assembly": {
+    "module": "web/components/server-assembly.js",
+    "route": "/rack3d.html?x=55",
+    "additional_routes": [
+      "/rack3d.html?view=server",
+      "/rack3d.html?node=part:server",
+      "/rack3d.html#server"
+    ],
+    "geometry_sha256": "6d3abd5554afeb621798b91a9fb35f78c05ea439b7012b75b4ae79cd0fb9d676",
+    "identity": "Procedural generic server matched to static component categories, not measured CAD or reuse of old whole-rack model",
+    "installation": "Drives +z forward; PSU -z rear; GPU/fans/lid +y; two matching riser slots stay fixed; drive backplane behind bays, PSU inner DC and outer AC, NIC aperture rear outside",
+    "counts": {
+      "cpu": 2,
+      "dram": 8,
+      "gpu": 2,
+      "server-fan": 4,
+      "ssd": 8,
+      "psu": 2,
+      "nic": 1
+    },
+    "exact_dimensions_or_circuit": false,
+    "old_rack_routes_retained": [
+      0,
+      35,
+      90
+    ],
+    "adopted_rack_models_replace_server": false,
+    "whole_server_inspector": {
+      "source_meshes": 1129,
+      "cloned_meshes": 1129,
+      "categories": [
+        "server",
+        "cpu",
+        "dram",
+        "gpu",
+        "server-fan",
+        "ssd",
+        "nic",
+        "psu"
+      ],
+      "initial_view": "serverMode/server only optional initialRotation x0.6/y0.7; top faces visible, actual native canvas screenshot independently viewed",
+      "user_dragging_verified": true,
+      "selected_export_object_id": "part:server",
+      "other_inspector_defaults_unchanged": true
+    }
+  },
+  "browser_checks": [
+    "tests/technical_atlas.cjs",
+    "tests/part_dossier.cjs",
+    "tests/server_assembly.cjs",
+    "tests/scene_framing.cjs",
+    "tests/scene_atlas.cjs",
+    "tests/scene_resources.cjs"
+  ],
+  "browser_review": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/browser.json",
+    "views": 8,
+    "all_views_individually_viewed": true,
+    "full_svg_opened": true,
+    "page_errors": 0,
+    "label_count": 12,
+    "downloads": [
+      {
+        "file": "server-v1.svg",
+        "bytes": 3431244,
+        "sha256": "144f95ab6ac21e19f4043481e5daf44e58558e170c85d7c7250eae5579fddfbe"
+      },
+      {
+        "file": "server-v1.png",
+        "bytes": 2570554,
+        "sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15"
+      }
+    ],
+    "retained_3d_canvas": true,
+    "final_source": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/local-final-source.json"
+  },
+  "assembly_browser_review": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/scene/server-assembly-results.json",
+    "observed_at": "2026-10-09T06:01:17.461Z",
+    "page_errors": 0,
+    "scope": "Real x55/counts/17 installation axes/outward interface orientation/actual GPU SSD PSU pointer picking/current-camera SVG downloaded/stage0&100 measured viewport fitting/manual canvas-drag ownership/desktop mobile light dark/geometry material animation spinner picker cleanup/old x0 x35 x90 other GPU route; complete whole-server inspector actual1129 clones/eight categories/top initial view/real inspector drag plus full selected-server current-view SVG downloaded",
+    "viewed_screenshots": [
+      "server-full-1280-light.png",
+      "server-full-1280-dark.png",
+      "server-full-390-light.png",
+      "server-full-390-dark.png",
+      "server-complete-dossier.png",
+      "server-complete-inspector.png"
+    ],
+    "mobile_controls": "Existing responsive panel starts collapsed; normal expand for fit/export then collapse for complete geometry viewing, no forced hidden-button click"
+  },
+  "local_validation": {
+    "targeted_browser": "passed actual eight views/12 labels/embedded unchanged master SHA/complete dual downloaded bytes and inspector rotation",
+    "server_assembly": "passed real new source fixture and DOM/pointers/downloads/geometry/resources; OrbitControls damping flushed after real drag to compare settled user-owned camera",
+    "regression": "All necessary source browser cases passed after actual fixes; no omitted density or deadline increase; technical_atlas29s binding source unchanged",
+    "technical_atlas_browser": "passed29s on unchanged 2D/master binding; SSD and all prior category cases including TA11",
+    "part_dossier_browser": "passed88s final source including server deep link/full inspector optional initial rotation and all existing parts; interaction/motion/picking/materials/cleanup",
+    "server_assembly_browser": "passed58s final source:1129 complete inspector/eight categories/top initial view/real inspector drag/server current-view export plus x55 counts/axes/pointers/fit/camera/mobile/cleanup/legacy",
+    "scene_framing_browser": "passed19s final source: main scenes/inspector/registered GLB/narrow geometry projection/user camera ownership and disposal",
+    "scene_atlas_browser": "passed15s at1x and24s at2x final source; full desktop/mobile/themes/current PNG pixels/editable labels/dossier/diagnostics and edge ownership",
+    "scene_resources_browser": "passed6s final source: environment timeout/retry/stale success/fallback/idempotent source page disposal",
+    "unit_tests": "22passed final source after whole-server/top-pose/legacy snapshot/full shard review",
+    "strict_validation": "passed0warnings",
+    "registry": "353objects458questions references valid",
+    "governance_check": "passed final .23 refresh/check1605files",
+    "final_main": "e6eb948a94bf1e2ac504f2b486ae8a30078b254a/.22, latest research/provenance/longform/scope changes retained, src/data/outputs diff zero",
+    "post_rebase_final_checks": {
+      "main": "e6eb948a94bf1e2ac504f2b486ae8a30078b254a",
+      "preserved": "PR462 .22 source provenance and all research/article/scope/CI revisions; no src/data/outputs edits",
+      "browser_matrix": "technical_atlas29s / final part_dossier88s / server_assembly58s / scene_framing19s / scene_atlas1x15s2x24s / scene_resources6s",
+      "governance": ".23 refresh/check1605files passed; strict0warnings; registry353objects458questions;22units passed without skip",
+      "local_review_server": "All real local checks completed; stopping isolated manual server before source PR"
+    }
+  },
+  "publication": {
+    "status": "not_published",
+    "reason": "Local accepted only; fresh automatic CI and actual deployment/public observations are separate. User explicitly authorizes autonomous PR/merge/deploy; no historic CI waiver reused."
+  },
+  "issues_resolved": [
+    {
+      "stage": "native iterations1to3",
+      "issue": "Inward AC/NIC interfaces; third edit used wrong composition and baked arrows",
+      "resolution": "All rejected unchanged images retained; fourth actual target-only imagegen edit repaired native geometry before labels"
+    },
+    {
+      "stage": "label layout",
+      "issue": "Initial leaders crossed CPU/GPU/detail text",
+      "resolution": "Editable SVG leaders rerouted in free margin then full actual PNG reviewed"
+    },
+    {
+      "stage": "resource integration",
+      "issue": "Scene picking disposer was not retained in inherited page",
+      "resolution": "Save picker handle and dispose it with page resources; real cleanup regression verifies source geometry/material counts and no continuing render/animation/picks"
+    },
+    {
+      "stage": "test fixtures",
+      "issue": "Initial phone fit hidden by collapsed panel; canvas ID/category text mismatches and unsettled OrbitControls tail",
+      "resolution": "Normal visible UI expand/collapse, exact current canvas/category identity, real drag plus settled-camera comparison; corrected runs passed"
+    },
+    {
+      "stage": "full dossier regression",
+      "issue": "Initial server condition used prefix matching and also caught server-fan",
+      "resolution": "URLSearchParams exact stable node ID match; corrected final complete run passed88s"
+    },
+    {
+      "stage": "interface registry",
+      "issue": "Unchanged retained rack3d HTML snapshot not in excluded-page manifest",
+      "resolution": "Historical snapshot explicitly registered excluded_pages, actual classification unit passed and final rerun follows"
+    },
+    {
+      "stage": "root independent whole-server inspector review",
+      "issue": "server stable part index initially excluded separately tagged child components, so inspector showed only shell; source count tests alone did not verify whole visual",
+      "resolution": "Within serverMode server index aggregates all pickable meshes while child IDs remain separate; true clone/source counts and eight categories verified; prior bare-shell screenshot retained"
+    },
+    {
+      "stage": "root independent initial inspector view review",
+      "issue": "Inherited negative pitch viewed horizontal server from below, hiding CPU/GPU even after aggregation",
+      "resolution": "Optional initialRotation callback chooses top view only for serverMode/server; actual native canvas screenshot viewed with CPU/DIMM/GPU/fans/drives visible, real drag takes ownership; other parts retain defaults"
+    }
+  ],
+  "independent_visual_review": {
+    "status": "native_v4_and_complete_12label_version_passed",
+    "reviewer": "Readonly actual image and integration reviewer plus root",
+    "scope": "Structural identity/counts/interfaces/static labels, integration ownership; actual browser/source results separately recorded"
+  },
+  "conversation_preview": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/server-chat-full.png",
+    "pixels": [
+      1536,
+      1024
+    ],
+    "labels": 12,
+    "sha256": "68f7a60d62513d0069eb431d82b6501e61e552aa55c07568095f209b299edf3a",
+    "bytes": 2330892,
+    "purpose": "Complete uncropped local labelled preview displayed in current conversation before publication"
+  },
+  "ci": {
+    "status": "source_pr_not_created_yet",
+    "authorization": "User explicitly authorizes autonomous create/merge/deploy after full local checks; restored budget, record fresh automatic results by actual time, no old failure treated as pass"
+  }
+}

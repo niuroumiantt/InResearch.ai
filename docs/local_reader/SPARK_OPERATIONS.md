@@ -408,3 +408,10 @@ M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用
 
 
 2026-10-09发布验收：网页core回归分core_a/core_b并行，保留27个suite、scene_atlas双密度和既有单项300秒期限；browser(core)聚合只有全部matrix通过才成功，模型资产仍保留三个场景。治理与运行器读取同一已审阅suite清单，选定浏览器入口缺失继续报错。新attempt开始前，将完整旧journal保存到旧attempt目录；新journal记录相对路径、状态与实际文件SHA，旧尝试/分支不删除。旧CI失败状态恢复沿同期发布器修复，不能将源码检查当作实际队列已恢复。
+
+
+### 2026-10-09 · 明确授权的本地验收恢复实例
+
+本会话用户明确授权每项完成完整本地验收后，不等CI自主更新原PR、精确head合并和部署；正常自动发布器的四项CI准入逻辑保持。首包PR453的真实原CI是part_dossier超过300秒失败，不能写为预算未启动或追认成功。独立精确head完整本地验证保留当前3D/浏览器契约，集成同期最新main再验；原审计/封存/固定抽样/当时来源与上下文均通过，原attempt/包/PR/head链保留。人工精确合并后，既有publisher仅恢复merged阶段，再按来源安全同步、真实HTTPS逐条支持闭包与Spark published回执完成交付。不是将local pass写成CI pass，也不对其它未审候选授予采用权。
+
+维护时使用独立维护锁、等待原worker锁自然释放、一致备份实际journal/审计与dirty草稿；不强删锁、reset/stash或调整账号凭据。恢复必须实核LaunchAgent、新PID、原程序/配置路径、当前源码及至少一轮真实status；bootstrap成功本身不足。首包实际恢复PID25958且published5/background1，原23新来源正式采用仍为0，计数不能混合。后续每包重新核对当前正式上下文，真变化走原revalidate并保留旧attempt/PR，prepared旧指南摘要不能盲重算。此为已授权实例和实际边界记录，不新增批量跳过检查或改队列接口；完整记录见[研究恢复交接](../handoff/research-flow-recovery-20261009.md)。

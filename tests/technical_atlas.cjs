@@ -5,7 +5,7 @@ const {join} = require('node:path');
 const {chromium} = require('playwright');
 const accepted = new Set(JSON.parse(readFileSync(join(__dirname,'../framework/visual_atlas_migration.json'),'utf8')).items
   .filter(row => ['accepted','published'].includes(row.status)).map(row => row.id));
-const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-03','chassis','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存'], ['cpu','TA-06','motherboard','IT · 计算'], ['dram','TA-06','motherboard','IT · 内存'], ['nic','TA-07','nic','IT · 网络'], ['psu','TA-08','psu','电力'], ['server-fan','TA-09','fan-wall','冷却'], ['coldplate','TA-10','coldplate','冷却']]
+const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-11','server','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存'], ['cpu','TA-06','motherboard','IT · 计算'], ['dram','TA-06','motherboard','IT · 内存'], ['nic','TA-07','nic','IT · 网络'], ['psu','TA-08','psu','电力'], ['server-fan','TA-09','fan-wall','冷却'], ['coldplate','TA-10','coldplate','冷却']]
   .filter(([,figure]) => accepted.has(figure));
 (async () => {
   const browser = await chromium.launch({headless: true, args: ['--enable-unsafe-swiftshader']});
@@ -106,17 +106,18 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
         assert.match(await atlas.locator('figcaption').textContent(), /双端口.*不概括所有 DPU/);
         assert.equal(await page.locator('.technical-atlas[data-figure="TA-06"]').count(), 0, 'NIC selection clears the previous motherboard assembly');
       }
-      if (figure === 'TA-03') {
-        assert.match(await atlas.locator('h3').textContent(), /服务器机箱/);
-        assert.match(await atlas.locator('figcaption').textContent(), /子装配/);
-        assert.match(await page.locator('.pbox[data-atlas-part="server"] title').textContent(), /服务器机箱/);
+      if (figure === 'TA-11') {
+        assert.match(await atlas.locator('h3').textContent(), /加速器服务器.*整机剖视/);
+        assert.match(await atlas.locator('figcaption').textContent(), /双 CPU.*八 DIMM.*仅为示例.*非新增卡.*非拆修步骤/);
+        assert.match(await page.locator('.pbox[data-atlas-part="server"] title').textContent(), /加速器服务器/);
+        assert.equal(await atlas.locator('[data-related-figure="TA-03"]').getAttribute('href'), '/assets/technical-atlas/chassis-v1.svg', 'retained chassis subassembly remains reachable');
       }
       if (figure === 'TA-04') {
         assert.match(await atlas.locator('h3').textContent(), /GPU 加速基板.*模组装配/);
         assert.ok(await page.locator('#dossier .spark-wrap').count()>0, 'GPU price series and the complete 2D dossier render without aborting the drawing');
         assert.match(await atlas.locator('figcaption').textContent(), /多 GPU 模组与基板/);
         assert.match(await page.locator('.pbox[data-atlas-part="gpu"] title').textContent(), /GPU 加速基板/);
-        assert.equal(await page.locator('.technical-atlas[data-figure="TA-03"]').count(), 0, 'GPU selection clears the previous server subassembly');
+        assert.equal(await page.locator('.technical-atlas[data-figure="TA-11"]').count(), 0, 'GPU selection clears the previous whole-server illustration');
       }
       if (figure === 'TA-05') {
         assert.match(await atlas.locator('figcaption').textContent(), /四堆栈.*仅为图示/);

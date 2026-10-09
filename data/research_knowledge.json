@@ -3019,6 +3019,87 @@
     },
     {
       "acceptance": "candidate",
+      "content_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "coverage": {
+        "characters_read": 35552,
+        "characters_total": 35552,
+        "chunks_read": 25,
+        "chunks_total": 25,
+        "complete": true,
+        "pages_read": 26,
+        "pages_total": 26
+      },
+      "doc_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "library_path": "library/by-node/root/2025_SemiAnalysis_How Oracle Is Winning the AI Compute Market__0688b2da7f1faf3d.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:amd",
+        "actor:arista-networks",
+        "actor:bytedance",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:dayone",
+        "actor:digital-realty",
+        "actor:g42",
+        "actor:gds",
+        "actor:lambda",
+        "actor:lancium",
+        "actor:meta",
+        "actor:nebius",
+        "actor:nvidia-networking",
+        "actor:openai",
+        "actor:oracle",
+        "actor:qts",
+        "part:cpu",
+        "part:gpu",
+        "part:network-switch",
+        "part:nic",
+        "part:rack-system",
+        "part:server",
+        "part:storage-array",
+        "root",
+        "site:grid",
+        "system:it",
+        "system:power"
+      ],
+      "question_ids": [
+        "M02-Q02",
+        "NODE-demand-D1-boundary",
+        "NODE-demand-D1-economics",
+        "NODE-demand-D3-boundary",
+        "NODE-demand-D3-economics",
+        "NODE-workload-enterprise-economics",
+        "NODE-workload-enterprise-placement",
+        "NODE-workload-hpc-profile",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-profile",
+        "NODE-workload-training-placement",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "Q-SCOPE-arch-blackwell"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/06/0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb/How Oracle Is Winning the AI Compute Market – SemiAnalysis (1).pdf",
+      "title": "How Oracle Is Winning the AI Compute Market"
+    },
+    {
+      "acceptance": "candidate",
       "content_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
       "coverage": {
         "characters_read": 78857,
@@ -16497,6 +16578,426 @@
           }
         },
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bbceb94c789bbc7a52a2944410b9768bc49b3b5afc850c1c627c180e49a21847",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:21:claim:5:ev:0",
+      "locator": "page:23/chunk:21",
+      "object_ids": [
+        "actor:oracle",
+        "part:gpu"
+      ],
+      "page_index": 22,
+      "question_ids": [],
+      "quote": "We expect a stellar ramp towards the second half of 2025 (calendar), with substantial growth in 2026 and 2027.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:52:25+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。GPU业务收入爬坡时间实质关联当前头部玩家扩张节奏及算力资产收入工单。连续引文及前后收入模型语境充分，未发现敏感、实质冲突或替换条件，符合B类限定归因采用要求。",
+        "workorder_ids": [
+          "Q-M02-Q02",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "52f8feadbfb8372f32e64ce552907bf084bf5d2d31a58d475a9819fa6b20bc79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65723,
+            "output_tokens": 4528,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.399,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e37168665319259590e98fa12e05391c0fc1fbd6eafa45177d019f63372700a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65222,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bbceb94c789bbc7a52a2944410b9768bc49b3b5afc850c1c627c180e49a21847",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:21:claim:7:ev:0",
+      "locator": "page:23/chunk:21",
+      "object_ids": [
+        "actor:oracle",
+        "part:gpu"
+      ],
+      "page_index": 22,
+      "question_ids": [],
+      "quote": "Given the non-dilutive margin profile of GPU contracts, we expect a >20% EBIT CAGR in the next two years for Oracle.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:52:25+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。GPU合同利润率与公司盈利预测实质关联当前算力资产变现经济性工单，连续引文及相邻模型与风险说明充分。未触发A类条件，可作为部分作者预测采用；不因一般盈利相关性挂接缺少回本推导的M13-Q03。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "52f8feadbfb8372f32e64ce552907bf084bf5d2d31a58d475a9819fa6b20bc79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65723,
+            "output_tokens": 4528,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.399,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e37168665319259590e98fa12e05391c0fc1fbd6eafa45177d019f63372700a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65222,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "48ba1956dd279071b3388d332bdedde862ae4d6ffe341cbdef56acfb4a1a8692",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:22:claim:0:ev:0",
+      "locator": "page:24/chunk:22",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 23,
+      "question_ids": [],
+      "quote": "We believe that Oracle has substantially grown its datacenter engineering team over the last year or so, and will soon begin self-building.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:52:25+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。工程能力扩充及预期自建方向实质关联当前甲骨文扩张节奏和自建相对租赁的方向性变化工单。连续引文及垂直整合上下文充分，无A类条件，可按B类采用；缺少边界与占比证据，不挂接M02-Q07。",
+        "workorder_ids": [
+          "Q-M02-Q02",
+          "Q-M02-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "52f8feadbfb8372f32e64ce552907bf084bf5d2d31a58d475a9819fa6b20bc79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65723,
+            "output_tokens": 4528,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.399,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e37168665319259590e98fa12e05391c0fc1fbd6eafa45177d019f63372700a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65222,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "48ba1956dd279071b3388d332bdedde862ae4d6ffe341cbdef56acfb4a1a8692",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:22:claim:1:ev:0",
+      "locator": "page:24/chunk:22",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 23,
+      "question_ids": [],
+      "quote": "Check out our Datacenter Cooling Systems report to understand why self-build typically enables increased energy efficiency, and our Electrical Systems report where we describe why self-builds are often more CapEx-efficient on a per-MW basis.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:52:25+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。建设方式对能源效率和每MW资本支出口径的影响实质关联当前资源、建设与运营经济性工单。连续引文及垂直整合语境足以支持限定归因的部分观点，无A类条件，可按B类采用。比例变化及powered shell收益率仅有间接关系，不挂接M02-Q03或M11-Q11。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "52f8feadbfb8372f32e64ce552907bf084bf5d2d31a58d475a9819fa6b20bc79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65723,
+            "output_tokens": 4528,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.399,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e37168665319259590e98fa12e05391c0fc1fbd6eafa45177d019f63372700a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65222,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "48ba1956dd279071b3388d332bdedde862ae4d6ffe341cbdef56acfb4a1a8692",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:22:claim:2:ev:0",
+      "locator": "page:24/chunk:22",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "page_index": 23,
+      "question_ids": [],
+      "quote": "we think the GPU Cloud market is and will become increasingly commoditized. When a downcycle inevitably hits, AI labs will turn to “cash saving” mode and pressurize their GPU cloud partners, triggering a price war.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:52:25+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。客户现金压力向服务商价格及利润传导，实质关联当前算力资产经济性和需求约束传导工单。连续引文及长期风险上下文充分，无A类条件，可按B类采用。M13-Q02的期限结构和M13-Q03的回本周期只有间接关系，不挂接。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics",
+          "Q-NODE-activity-V3-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "52f8feadbfb8372f32e64ce552907bf084bf5d2d31a58d475a9819fa6b20bc79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65723,
+            "output_tokens": 4528,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.399,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e37168665319259590e98fa12e05391c0fc1fbd6eafa45177d019f63372700a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65222,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634"
       }
     },
     {
@@ -32401,6 +32902,509 @@
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
         "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
         "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:21:claim:5:ev:0"
+      ],
+      "id": "adoption:review:028e790401195b701086368a",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:oracle",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M02-Q02",
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Oracle Is Winning the AI Compute Market》（发表时间未知）作者在甲骨文GPU业务收入预测中预计，该业务将在2025日历年下半年快速爬坡，并在2026年和2027年大幅增长。这是来源基于其供应链及数据中心跟踪作出的收入预测，未经本次独立验证；该段未限定地域，也不表示相应容量已经投运。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:52:25+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。GPU业务收入爬坡时间实质关联当前头部玩家扩张节奏及算力资产收入工单。连续引文及前后收入模型语境充分，未发现敏感、实质冲突或替换条件，符合B类限定归因采用要求。",
+        "workorder_ids": [
+          "Q-M02-Q02",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "52f8feadbfb8372f32e64ce552907bf084bf5d2d31a58d475a9819fa6b20bc79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65723,
+            "output_tokens": 4528,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.399,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e37168665319259590e98fa12e05391c0fc1fbd6eafa45177d019f63372700a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65222,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:21:claim:5"
+      ],
+      "limitations": "未提供可复核的收入数值、预测表、增长率或供应链推导。收入增长不能换算为GPU数量、投运MW、利用率或资金落实情况。预测年份明确，但文章发表时间未确立，不能把预测作为截至当前的实际结果。",
+      "conflict_check": "旧记录中的甲骨文RPO、资本开支指引、光模块需求预测及OpenAI合同分别涉及履约义务、投入、采购需求和特定合同，不构成GPU收入爬坡预测的同口径验证或反证。Abilene分期投运记录也不能验证公司收入预测。未发现所供记录中的实质冲突或规范重复，不替换既有结论；检查不覆盖外部全部反证。",
+      "gap_dependency_check": "M02-Q02仅获得收入扩张节奏的作者预测，仍缺实际交付、资金来源和现金流约束。NODE-activity-V3-economics仅获得收入前景线索，仍需业务收入、成本、合同及确认口径的一手数据。两项问题保持开放，不更新容量或收入参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "fd85ad60f84dbffe68996fc5a134b72598b1faa1a5141900c86f612db33b871b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:21:claim:7:ev:0"
+      ],
+      "id": "adoption:review:0427d8acbebaf5995151e19c",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:oracle",
+        "part:gpu"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Oracle Is Winning the AI Compute Market》（发表时间未知）作者基于其GPU合同不稀释甲骨文利润率的判断，预计甲骨文公司整体在来源所称的未来两年实现超过20%的EBIT复合年增长率。该判断处于大型GPU合同模型及六年折旧假设的语境中；作者同时提示该折旧假设偏乐观、合同结束后价格可能大幅下跌。这是未经本次独立验证的公司层面预测，适用地域及未来两年的具体日历区间未确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:52:25+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。GPU合同利润率与公司盈利预测实质关联当前算力资产变现经济性工单，连续引文及相邻模型与风险说明充分。未触发A类条件，可作为部分作者预测采用；不因一般盈利相关性挂接缺少回本推导的M13-Q03。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "52f8feadbfb8372f32e64ce552907bf084bf5d2d31a58d475a9819fa6b20bc79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65723,
+            "output_tokens": 4528,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.399,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e37168665319259590e98fa12e05391c0fc1fbd6eafa45177d019f63372700a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65222,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:21:claim:7"
+      ],
+      "limitations": "公司EBIT增长不能解释为GPU业务利润增长、现金回报率或回本周期。所供文本未保留完整成本模型和可复算表格，六年折旧亦非经验证的GPU寿命。不能把近中期利润率判断外推为长期可持续利润。",
+      "conflict_check": "既有信用脆弱性、AI收入风险及DGX Lepton利润压缩观点涉及不同主体、条件或业务范围，不直接否定甲骨文近中期公司盈利预测。本文长期价格战与利润率不可持续的提示属于预测期限与条件的限制，不构成同条件实质冲突。旧资本开支和负自由现金流记录不能直接等同于EBIT反证。未发现规范重复，不替换已有结论。",
+      "gap_dependency_check": "NODE-activity-V3-economics仍需实际合同、分部利润、资本开支、运营成本和折旧依据。M13-Q03仍缺租价与折旧对应的现金流及可复算回本推导，故不挂接。采用仅补充盈利预期及口径边界，不回答或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "fd85ad60f84dbffe68996fc5a134b72598b1faa1a5141900c86f612db33b871b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:22:claim:0:ev:0"
+      ],
+      "id": "adoption:review:bb2be6354419b1e7179c91d3",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M02-Q02",
+        "M02-Q03"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Oracle Is Winning the AI Compute Market》（发表时间未知）作者认为，甲骨文在来源所称的过去约一年显著扩充了数据中心工程团队，并预测其将很快开始自行建设数据中心。这是来源对组织扩充的判断及自建方向的预测，未经本次独立验证；该段未指定地域、具体项目或已开工阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:52:25+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。工程能力扩充及预期自建方向实质关联当前甲骨文扩张节奏和自建相对租赁的方向性变化工单。连续引文及垂直整合上下文充分，无A类条件，可按B类采用；缺少边界与占比证据，不挂接M02-Q07。",
+        "workorder_ids": [
+          "Q-M02-Q02",
+          "Q-M02-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "52f8feadbfb8372f32e64ce552907bf084bf5d2d31a58d475a9819fa6b20bc79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65723,
+            "output_tokens": 4528,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.399,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e37168665319259590e98fa12e05391c0fc1fbd6eafa45177d019f63372700a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65222,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:22:claim:0"
+      ],
+      "limitations": "过去约一年及很快均相对于未知的来源发表时点，不能转换为具体日期。未提供团队人数、招聘记录、自建项目、开工证明、交付时间、自建或租赁占比，也未定义自行建设的资产所有权与开发责任边界。",
+      "conflict_check": "Abilene记录中的Crusoe开发及Frontier记录中的Vantage开发描述具体项目角色，不否定甲骨文未来可能自行建设，也不能改写为甲骨文已经自建。微软自建冻结属于其他企业。甲骨文资本开支指引不区分自建与租赁。未发现实质冲突或规范重复，不改变任何项目开发者或阶段。",
+      "gap_dependency_check": "M02-Q02仍需扩张计划、项目交付及资金约束的一手证据；M02-Q03仍需按时点和容量分母统计自建与租赁比例。M02-Q07仍缺自建责任边界及占比，故不挂接。采用仅贡献方向性预测，不关闭问题，不更新许可或并网等待参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "fd85ad60f84dbffe68996fc5a134b72598b1faa1a5141900c86f612db33b871b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:22:claim:1:ev:0"
+      ],
+      "id": "adoption:review:0160cf826d5994b59404805f",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Oracle Is Winning the AI Compute Market》（发表时间未知）作者在讨论甲骨文未来数据中心垂直整合时，援引其Datacenter Cooling Systems及Electrical Systems报告，主张自行建设通常有助于提高能源效率，并且往往按每MW计更具资本支出效率。这是来源的定性比较主张，未经本次独立验证；该段未指定比较地域、项目阶段或MW的容量口径。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:52:25+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。建设方式对能源效率和每MW资本支出口径的影响实质关联当前资源、建设与运营经济性工单。连续引文及垂直整合语境足以支持限定归因的部分观点，无A类条件，可按B类采用。比例变化及powered shell收益率仅有间接关系，不挂接M02-Q03或M11-Q11。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "52f8feadbfb8372f32e64ce552907bf084bf5d2d31a58d475a9819fa6b20bc79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65723,
+            "output_tokens": 4528,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.399,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e37168665319259590e98fa12e05391c0fc1fbd6eafa45177d019f63372700a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65222,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:22:claim:1"
+      ],
+      "limitations": "所援引报告正文未随本批提供，不能视为已核验其推导。未给比较样本、每MW造价、PUE、能源成本、建设范围、租约条款或收益率。通常和往往不能改写为全部自建项目必然占优，也不能推定甲骨文已经取得相关收益。",
+      "conflict_check": "Abilene旧PUE记录是特定园区的作者推算，且建设方式未注明，不能验证本项自建比较优势。既有终端用户成本敏感性判断讨论支付方与不同经济问题，PJM容量账单及政策成本责任涉及其他成本机制，均无同口径冲突。未发现规范重复，不更新既有PUE或造价结论。",
+      "gap_dependency_check": "NODE-activity-V1-economics仍需原始比较报告、同口径建设成本、能源效率及适用条件。M11-Q11仍缺披露合同、年NOI、造价分母、时点和可复算收益率；M02-Q03仍缺自建与租赁比例序列。本项仅补充定性成本比较线索，不回答或关闭工单。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "fd85ad60f84dbffe68996fc5a134b72598b1faa1a5141900c86f612db33b871b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:22:claim:2:ev:0"
+      ],
+      "id": "adoption:review:ca04c8d86011b49dd9b058f0",
+      "kind": "author_forecast",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-economics",
+        "NODE-activity-V3-chain"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Oracle Is Winning the AI Compute Market》（发表时间未知）作者认为GPU云市场已经具有商品化特征并将进一步商品化，并预测在其预期的行业下行周期到来时，AI实验室将转向节省现金，向GPU云合作伙伴施压并触发价格战。这是来源对AI实验室需求压力向GPU云服务商定价传导的判断和预测，未经本次独立验证；该段未确定下行时点或适用地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:52:25+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。客户现金压力向服务商价格及利润传导，实质关联当前算力资产经济性和需求约束传导工单。连续引文及长期风险上下文充分，无A类条件，可按B类采用。M13-Q02的期限结构和M13-Q03的回本周期只有间接关系，不挂接。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics",
+          "Q-NODE-activity-V3-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "52f8feadbfb8372f32e64ce552907bf084bf5d2d31a58d475a9819fa6b20bc79",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65723,
+            "output_tokens": 4528,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.399,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e37168665319259590e98fa12e05391c0fc1fbd6eafa45177d019f63372700a6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65222,
+              "output_tokens": 453,
+              "reasoning_output_tokens": 152
+            }
+          }
+        },
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:22:claim:2"
+      ],
+      "limitations": "未提供实际租价、客户议价记录、合同调整、下行周期指标或传导幅度。涉及GPU云服务价格，不能转换为GPU或整柜采购报价，也不能推导现货与一年、三年长约价差、折旧寿命或回本周期。商品化与价格战不表示当前全部业务已经降价。",
+      "conflict_check": "已采用DGX Lepton陈述预测平台标准化引发竞争，主要涉及推理及小规模训练；本项新增AI实验室在下行周期节省现金的传导条件，范围和机制不同，因此不是规范重复。甲骨文近中期利润预测与长期下行风险可以并存。既有终端用户成本敏感性观点限定于强劲投资周期及额外电费、租金，未构成同条件实质冲突。检查仅限所供记录，不替换现有结论。",
+      "gap_dependency_check": "NODE-activity-V3-economics仍需实际租价、利润、成本和合同风险数据；NODE-activity-V3-chain仍需下游现金约束、议价行为、时间滞后及反例，不能把本预测作为已验证领先指标。M13-Q02仍缺同型号同条件期限报价，M13-Q03仍缺折旧现金流与可复算回本推导。两项挂接问题保持开放，不更新价格或折旧参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "fd85ad60f84dbffe68996fc5a134b72598b1faa1a5141900c86f612db33b871b"
       }
     },
     {
