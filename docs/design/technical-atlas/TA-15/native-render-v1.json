@@ -1,0 +1,206 @@
+{
+  "method": "Independent native WebGL render, no interpolation or interactive snapshot",
+  "native_pixels": [
+    1536,
+    1024
+  ],
+  "counts": {
+    "logicDies": 1,
+    "HBMStacks": 4,
+    "DRAMLayersPerStack": 8,
+    "internalTSVsInCutaway": 6,
+    "substrates": 1,
+    "interposers": 1,
+    "BGABalls": 280
+  },
+  "projection": "OrthographicCamera oblique",
+  "reference": "R3+adoptedTA05; generic illustrated dimensions/materials/contacts",
+  "camera": {
+    "position": [
+      7.261785663000903,
+      9.016926490444922,
+      12.417449418610428
+    ],
+    "target": [
+      -1.7382143369990974,
+      2.016926490444922,
+      1.4174494186104278
+    ],
+    "frustum": [
+      -8.321432900053782,
+      8.321432900053782,
+      5.5476219333691885,
+      -5.5476219333691885
+    ]
+  },
+  "instances": [
+    {
+      "id": "package/logic-die",
+      "home": [
+        0,
+        0.091,
+        0
+      ],
+      "axis": [
+        0,
+        1.7,
+        0
+      ],
+      "actual": [
+        0,
+        1.791,
+        0
+      ]
+    },
+    {
+      "id": "package/hbm-1",
+      "home": [
+        -2.6,
+        0.091,
+        -1.85
+      ],
+      "axis": [
+        0,
+        1.7,
+        0
+      ],
+      "actual": [
+        -2.6,
+        1.791,
+        -1.85
+      ]
+    },
+    {
+      "id": "package/hbm-2",
+      "home": [
+        -2.6,
+        0.091,
+        1.85
+      ],
+      "axis": [
+        0,
+        1.7,
+        0
+      ],
+      "actual": [
+        -2.6,
+        1.791,
+        1.85
+      ]
+    },
+    {
+      "id": "package/hbm-3",
+      "home": [
+        2.6,
+        0.091,
+        -1.85
+      ],
+      "axis": [
+        0,
+        1.7,
+        0
+      ],
+      "actual": [
+        2.6,
+        1.791,
+        -1.85
+      ]
+    },
+    {
+      "id": "package/hbm-4",
+      "home": [
+        2.6,
+        0.091,
+        1.85
+      ],
+      "axis": [
+        0,
+        1.7,
+        0
+      ],
+      "actual": [
+        2.6,
+        1.791,
+        1.85
+      ]
+    }
+  ],
+  "anchors": {
+    "logic": [
+      975,
+      381.4104180520675
+    ],
+    "hbm": [
+      1268.836676545323,
+      353.73161479452534
+    ],
+    "interposer": [
+      1082.4695468911623,
+      706.0602781706514
+    ],
+    "substrate": [
+      1076.9499629118577,
+      828.2191782576924
+    ]
+  },
+  "inset": {
+    "native_pixels": [
+      380,
+      330
+    ],
+    "rect": [
+      50,
+      160,
+      380,
+      330
+    ],
+    "instance": "package/hbm-2",
+    "repeated_existing_instance": true,
+    "TSVAnchor": [
+      244.85544080431262,
+      347.46464190347075
+    ],
+    "layerAnchor": [
+      239.1431593032727,
+      305.6361384220135
+    ],
+    "baseAnchor": [
+      239.1431593032727,
+      373.30949709787296
+    ]
+  },
+  "underside": {
+    "native_pixels": [
+      380,
+      210
+    ],
+    "rect": [
+      50,
+      750,
+      380,
+      210
+    ],
+    "instance": "package/substrate",
+    "repeated_existing_instance": true,
+    "attached_BGA_count": 280
+  },
+  "contact_detail": {
+    "native_pixels": [
+      380,
+      110
+    ],
+    "rect": [
+      50,
+      575,
+      380,
+      110
+    ],
+    "instance": "package/hbm-2",
+    "repeated_existing_instance": true,
+    "anchor": [
+      169.43161314769276,
+      677.7756984507215
+    ]
+  },
+  "sha256": "70a96800f1c0ef4e529d52b5c03adde027e05eb6e0f0e2ad39537d1c099e7721"
+}

@@ -1,0 +1,2037 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-15",
+  "object_id": "part:gpu",
+  "related_object_ids": [
+    "part:hbm"
+  ],
+  "style_id": "white-technical-atlas-v1",
+  "title": "Generic independent silicon-interposer package closeup and common-axis layer correspondence",
+  "reviewed_at": "2026-10-09T12:06:05.547385+00:00",
+  "reviewer": "Author actual original master/full labels/static4+3D8/whole and child inspector review; root independent original v3/unique v6 full labels and key lightdesktop/phone views plus all assembly/generator/integration source review. root identified unintended TA14 duplicate legend; corrected and regressions required. No additional reviewer endorsement claimed.",
+  "decision": "accepted_for_generic_package_correspondence_only",
+  "master": "web/assets/technical-atlas/chip-package-v1.png",
+  "labelled": "web/assets/technical-atlas/chip-package-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "preview": {
+    "file": "web/assets/technical-atlas/chip-package-v1-preview.svg",
+    "bytes": 192112,
+    "method": "Same1536 JPEG80 display derivative with identical8 independent editable label groups; fullSVG embeds original PNG"
+  },
+  "references": [
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "role": "Required style reference: stacked vertical separation and fine material/edge detail; not SSD geometry",
+      "passed_to_builtin_tool": true
+    },
+    {
+      "id": "TA-05",
+      "file": "web/assets/technical-atlas/hbm-package-v1.png",
+      "sha256": "263a421aeda7991bba719016b1cc400961019c0008e4bc8bcf6248503ddc1f6e",
+      "role": "Adopted generic package identity: one logic die, four HBM stacks, silicon interposer and substrate; new view retains layout",
+      "passed_to_builtin_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "Independent project controlled nativeThree.js WebGL rendering permitted by framework10",
+    "generator": "web/components/chip-package-generator.js",
+    "native_render": "docs/design/technical-atlas/TA-15/native-render-v1.json",
+    "resampling": false,
+    "interactive_snapshot_adopted": false,
+    "AI_bitmap_adopted": false,
+    "rejected_builtin_candidates": [
+      {
+        "file": "/Users/m4/.codex/generated_images/01a11e95-8197-7ae3-b0a8-9164128c5eaa/exec-453fbebc-0b66-419d-bb18-6582ed3041a6.png",
+        "sha256": "c5b4096ae60ee94328d4de6b7861fcae63f62f029091e884b158a375ef337788",
+        "stage": "rejected_projection_correction_needed",
+        "reason": "One logic/four HBM count correct, but top-device contact planes appear at unequal projected vertical offsets to four seats; left stack especially lower. Cannot certify common assembly correspondence from this candidate.",
+        "prompt": "docs/design/technical-atlas/TA-15/prompt-v1.txt"
+      },
+      {
+        "file": "/Users/m4/.codex/generated_images/01a11e95-8197-7ae3-b0a8-9164128c5eaa/exec-271cf165-2200-4ad5-8d92-c631bd1f2311.png",
+        "sha256": "c2014a516d5f0c44c728a81d20ca521b9a165f20ee3f83561620c36d89036fe2",
+        "stage": "rejected_not_adopted",
+        "reason": "Actual edit retained1logic4HBM but upper device seats still have unequal2D projected separation; common assembly axis not established.",
+        "prompt": "docs/design/technical-atlas/TA-15/prompt-v2.txt"
+      }
+    ],
+    "native_drafts": [
+      {
+        "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v1.png",
+        "sha256": "39ebb083617f9f28b768d6891a648c49f522dce15a7e125e92932c235af8b6b7",
+        "stage": "retained_draft",
+        "reason": "Cutface orientation/TSV height and invisible BGA detail rejected"
+      },
+      {
+        "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v2.png",
+        "sha256": "6edeb7414de1359f7e0d06bb0b9a8b7c3dec9e98b737b90fe4347b560b5c865f",
+        "stage": "retained_draft",
+        "reason": "Underside framing clipped and invented regular logic grid rejected"
+      },
+      {
+        "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v3.png",
+        "sha256": "be38817cdec74ef8f8a4f29097cb2fb4120d8d9add79cc1cdf061caeac75171d",
+        "stage": "retained_draft",
+        "reason": "Root structure review allowed continuedacceptance, not published"
+      },
+      {
+        "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v4.png",
+        "sha256": "0afd246e42e02b1f212dc4a946d62f0724bfd652c5740714d0d1f9dbf4054aa5",
+        "stage": "retained_draft",
+        "reason": "Label anchor/layout refinement"
+      },
+      {
+        "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v5.png",
+        "sha256": "084279a53acb3aad82bc7adfde8c3ce2b5bdfd36d6615c88553cf77dee2ae781",
+        "stage": "retained_draft",
+        "reason": "Actual contact height correction"
+      },
+      {
+        "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v6.png",
+        "sha256": "1b7a4c6de062725110d16e7df89a956f65e178d9b78a57aff1f705d106b2a509",
+        "stage": "retained_previous_master_before_C4_upper_contact_fix",
+        "reason": "Final native local spacing; unchanged actual package geometry"
+      },
+      {
+        "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v7.png",
+        "sha256": "70a96800f1c0ef4e529d52b5c03adde027e05eb6e0f0e2ad39537d1c099e7721",
+        "stage": "final_master",
+        "reason": "C4 radius/center corrected to touch both actual substrate top and interposer bottom; world-bounds tests on both faces. Layout, five-device poses and projected label anchors unchanged."
+      }
+    ]
+  },
+  "technical_sources": [
+    {
+      "url": "https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm",
+      "observed_at": "2026-10-09",
+      "supports": "CoWoS-S logic and HBM side by side on silicon interposer; other R/L variants are distinct, this generic example is not all CoWoS"
+    },
+    {
+      "url": "https://www.micron.com/about/blog/applications/data-center/hbm2e-fastest-memory-modern-data-center",
+      "observed_at": "2026-10-09",
+      "supports": "HBM DRAM vertical connections and interposer context, not this particular example layer or stack count"
+    }
+  ],
+  "technical_scope": [
+    "One generic silicon-interposer package:1logic,4HBM,1substrate,1interposer; not everyGPU orCoWoSvariant",
+    "200paired microbumps/pads and108C4 touch at home; fullx/zprojection andcommonverticalaxis retained acrossstages",
+    "EightillustrativeDRAMlayers andsix internalcutawayTSVs;280illustrativeattachedBGAballs; noOEMdimensions/pitch/capacity/performance adopted",
+    "Whole andthreechildactualpicks maintainlocalinstanceIDs and completegeometry inspector; related researchremainscategory"
+  ],
+  "reviewed_differences": [
+    "ComparedwithR3: retainwarmwhitefineedges/layeredmaterial/clearverticalseparation/nativeinsets, notSSDgeometry",
+    "ComparedwithTA05: same1logic4HBM siliconinterposer identity; controlledcornerstackpositions/proportion/layerthickness/routing/contactdensity differ andremainillustrationchoices; no OEM CAD oractualfloorplan",
+    "Staticmaster100% andinteractivestage100 sharefactory/positions; staticOrthographicCamera plus3sameinstanceinsets differsfrominteractiveperspective/numberlabels; insetsnotadditionalparts",
+    "TA11genericaircooledtwoPCIecardsiscontextonly; thisonepackageisnotidentityproofthatallTA11cardsusethisHBMconfiguration"
+  ],
+  "unknowns": [
+    "Generic1logic4HBM/eight illustrative DRAM layers, not vendor SKU/GB/bandwidth/pitch/U/mm/power/actual topology",
+    "Size/thickness/routing/material detail and underfill are explanatory; virtual separation not maintenance or fabrication recipe",
+    "No fluid path/coldplate geometry claimed; TA11 generic aircooled server has two PCIe accelerators, this one package is not every board or every SKU",
+    "Underfill/realbasecircuit/actualmaterialstack/DRAMgeneration/interposerprocess/thermalcompatibility andallrealOEMfabricationconditionsunverified"
+  ],
+  "checks": {
+    "native_pixels": [
+      1536,
+      1024
+    ],
+    "editable_label_groups": 8,
+    "editable_text_nodes": 19,
+    "leaders": 8,
+    "master_embedded_unchanged": true,
+    "native_and_full_labels_actually_viewed": true,
+    "downloads_complete": [
+      {
+        "file": "chip-package-v1.svg",
+        "bytes": 463119,
+        "sha256": "27c04dae03a2f1990b34e168453f01cf4c50f020a995ed01bfccda43c3615943"
+      },
+      {
+        "file": "chip-package-v1.png",
+        "bytes": 344942,
+        "sha256": "70a96800f1c0ef4e529d52b5c03adde027e05eb6e0f0e2ad39537d1c099e7721"
+      }
+    ],
+    "mobile_header_360px": {
+      "width": 360,
+      "height": 85.734375
+    },
+    "native_reproduction": {
+      "evidence": {
+        "method": "Independent native WebGL render, no interpolation or interactive snapshot",
+        "native_pixels": [
+          1536,
+          1024
+        ],
+        "counts": {
+          "logicDies": 1,
+          "HBMStacks": 4,
+          "DRAMLayersPerStack": 8,
+          "internalTSVsInCutaway": 6,
+          "substrates": 1,
+          "interposers": 1,
+          "BGABalls": 280
+        },
+        "projection": "OrthographicCamera oblique",
+        "reference": "R3+adoptedTA05; generic illustrated dimensions/materials/contacts",
+        "camera": {
+          "position": [
+            7.261785663000903,
+            9.016926490444922,
+            12.417449418610428
+          ],
+          "target": [
+            -1.7382143369990974,
+            2.016926490444922,
+            1.4174494186104278
+          ],
+          "frustum": [
+            -8.321432900053782,
+            8.321432900053782,
+            5.5476219333691885,
+            -5.5476219333691885
+          ]
+        },
+        "instances": [
+          {
+            "id": "package/logic-die",
+            "home": [
+              0,
+              0.091,
+              0
+            ],
+            "axis": [
+              0,
+              1.7,
+              0
+            ],
+            "actual": [
+              0,
+              1.791,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "home": [
+              -2.6,
+              0.091,
+              -1.85
+            ],
+            "axis": [
+              0,
+              1.7,
+              0
+            ],
+            "actual": [
+              -2.6,
+              1.791,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "home": [
+              -2.6,
+              0.091,
+              1.85
+            ],
+            "axis": [
+              0,
+              1.7,
+              0
+            ],
+            "actual": [
+              -2.6,
+              1.791,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "home": [
+              2.6,
+              0.091,
+              -1.85
+            ],
+            "axis": [
+              0,
+              1.7,
+              0
+            ],
+            "actual": [
+              2.6,
+              1.791,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "home": [
+              2.6,
+              0.091,
+              1.85
+            ],
+            "axis": [
+              0,
+              1.7,
+              0
+            ],
+            "actual": [
+              2.6,
+              1.791,
+              1.85
+            ]
+          }
+        ],
+        "anchors": {
+          "logic": [
+            975,
+            381.4104180520675
+          ],
+          "hbm": [
+            1268.836676545323,
+            353.73161479452534
+          ],
+          "interposer": [
+            1082.4695468911623,
+            706.0602781706514
+          ],
+          "substrate": [
+            1076.9499629118577,
+            828.2191782576924
+          ]
+        },
+        "inset": {
+          "native_pixels": [
+            380,
+            330
+          ],
+          "rect": [
+            50,
+            160,
+            380,
+            330
+          ],
+          "instance": "package/hbm-2",
+          "repeated_existing_instance": true,
+          "TSVAnchor": [
+            244.85544080431262,
+            347.46464190347075
+          ],
+          "layerAnchor": [
+            239.1431593032727,
+            305.6361384220135
+          ],
+          "baseAnchor": [
+            239.1431593032727,
+            373.30949709787296
+          ]
+        },
+        "underside": {
+          "native_pixels": [
+            380,
+            210
+          ],
+          "rect": [
+            50,
+            750,
+            380,
+            210
+          ],
+          "instance": "package/substrate",
+          "repeated_existing_instance": true,
+          "attached_BGA_count": 280
+        },
+        "contact_detail": {
+          "native_pixels": [
+            380,
+            110
+          ],
+          "rect": [
+            50,
+            575,
+            380,
+            110
+          ],
+          "instance": "package/hbm-2",
+          "repeated_existing_instance": true,
+          "anchor": [
+            169.43161314769276,
+            677.7756984507215
+          ]
+        }
+      },
+      "mean_absolute_rgb_delta": 0,
+      "large_delta_pixel_fraction": 0,
+      "scope": "Exact native dimensions and same-geometry insets; bounded GPU pixel differences, not a substitute for original visual review"
+    },
+    "all_geometry_interaction_results": [
+      {
+        "label": "authored x90 initial view equals explicit fit",
+        "initial": {
+          "p": [
+            6.635297484888628,
+            7.531196743750845,
+            12.154903868690251
+          ],
+          "t": [
+            -1.7418678686100422,
+            2.0860392639767116,
+            1.2645889091419804
+          ]
+        },
+        "explicit": {
+          "p": [
+            6.635297484888627,
+            7.531196743750845,
+            12.15490386869025
+          ],
+          "t": [
+            -1.7418678686100422,
+            2.0860392639767116,
+            1.26458890914198
+          ]
+        }
+      },
+      {
+        "label": "actual generic package geometry and unique local instances",
+        "counts": {
+          "logicDies": 1,
+          "HBMStacks": 4,
+          "DRAMLayersPerStack": 8,
+          "internalTSVsInCutaway": 6,
+          "substrates": 1,
+          "interposers": 1,
+          "BGABalls": 280
+        },
+        "meshes": 1049,
+        "picks": 1049,
+        "unique": 1049,
+        "models": 0,
+        "logic": "logic-die",
+        "hbms": [
+          {
+            "id": "package/hbm-1",
+            "layers": 8,
+            "tsv": 0
+          },
+          {
+            "id": "package/hbm-2",
+            "layers": 8,
+            "tsv": 6
+          },
+          {
+            "id": "package/hbm-3",
+            "layers": 8,
+            "tsv": 0
+          },
+          {
+            "id": "package/hbm-4",
+            "layers": 8,
+            "tsv": 0
+          }
+        ],
+        "ids": [
+          "package/logic-die",
+          "package/hbm-1",
+          "package/hbm-2",
+          "package/hbm-3",
+          "package/hbm-4"
+        ],
+        "axes": [
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ]
+        ]
+      },
+      {
+        "label": "all200 actual paired contacts touch their own pads; C4 touches both substrate and interposer; TSV stays in silicon",
+        "pairs": 200,
+        "maxGap": 5.159526139664194e-10,
+        "maxPlanar": 0,
+        "c4Count": 108,
+        "c4Gap": 5.364418076414523e-09,
+        "c4UpperGap": 1.4901158085223187e-10,
+        "substrateTop": 0.4900000059604645,
+        "interposerBottom": 0.584999999254942,
+        "postTop": 1.2459999994039535,
+        "siliconTop": 1.2610000000894068,
+        "measurement": "Actual mesh geometry boundingBox transformed to world; no copied sphere radius or plate thickness",
+        "substrate": [
+          0,
+          0.34,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage45",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              0,
+              0.091,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          1.685,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage100",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              0,
+              1.791,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.791,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.791,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.791,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.791,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          1.685,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage0",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              0,
+              0.091,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          0.635,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage90",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              0,
+              1.6428407212622085,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.6428407212622085,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.6428407212622085,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.6428407212622085,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.6428407212622085,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          1.685,
+          0
+        ]
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "light",
+        "stage": 0,
+        "colors": 846,
+        "left": 370.9225339808,
+        "right": 1229.5529282738792,
+        "top": 374.9499819296056,
+        "bottom": 803.6992495003553,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "light",
+        "stage": 100,
+        "colors": 801,
+        "left": 442.0462382945487,
+        "right": 1147.069596310982,
+        "top": 311.76378546638307,
+        "bottom": 857.682340611274,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "dark",
+        "stage": 0,
+        "colors": 846,
+        "left": 370.9225339807997,
+        "right": 1229.5529282738792,
+        "top": 374.9499819296056,
+        "bottom": 803.6992495003556,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "dark",
+        "stage": 100,
+        "colors": 801,
+        "left": 442.04623829454863,
+        "right": 1147.0695963109815,
+        "top": 311.763785466383,
+        "bottom": 857.682340611274,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "light",
+        "stage": 0,
+        "colors": 472,
+        "left": 24.209844991221892,
+        "right": 360.51854018071634,
+        "top": 386.5265061202597,
+        "bottom": 520.7625606818401,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "light",
+        "stage": 100,
+        "colors": 525,
+        "left": 24.309899000605956,
+        "right": 360.52241118010505,
+        "top": 344.1500413145018,
+        "bottom": 572.0406990378573,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "dark",
+        "stage": 0,
+        "colors": 472,
+        "left": 24.209844991221633,
+        "right": 360.5185401807161,
+        "top": 386.52650612025957,
+        "bottom": 520.7625606818399,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "dark",
+        "stage": 100,
+        "colors": 525,
+        "left": 24.309899000605828,
+        "right": 360.52241118010494,
+        "top": 344.15004131450166,
+        "bottom": 572.0406990378572,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "complete package dossier includes actual all4 stacks and connection layers",
+        "meshes": 1049
+      },
+      {
+        "label": "real canvas pick and current-view export retain one instance",
+        "name": "logic-die",
+        "x": 805.4796031866091,
+        "y": 403.0090361328934,
+        "count": 129,
+        "id": "package/logic-die"
+      },
+      {
+        "label": "real canvas pick and current-view export retain one instance",
+        "name": "hbm-3",
+        "x": 1055.1173099675145,
+        "y": 374.7200622234156,
+        "count": 37,
+        "id": "package/hbm-3"
+      },
+      {
+        "label": "real canvas pick and current-view export retain one instance",
+        "name": "substrate",
+        "x": 976.345821681303,
+        "y": 815.7074805098331,
+        "count": 361,
+        "id": "package/substrate"
+      },
+      {
+        "label": "manual camera survives stage resize and late refresh"
+      },
+      {
+        "label": "owned geometry/material resources release once and RAF stops",
+        "geometries": 43,
+        "materials": 8,
+        "g": 43,
+        "m": 8,
+        "after": 0,
+        "picks": 0,
+        "parent": false,
+        "labels": 0
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=0",
+        "want": [
+          false,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=35",
+        "want": [
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?view=legacy&x=90",
+        "want": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=55",
+        "want": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?node=part:gpu",
+        "want": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=90&node=part:ssd#ssd",
+        "want": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?view=chip&explode=0",
+        "want": [
+          true,
+          false,
+          false,
+          false
+        ]
+      }
+    ],
+    "final_static_four_and_3D_eight_views_individually_viewed": true
+  },
+  "browser_checks": [
+    "tests/chip_package.cjs",
+    "tests/chip_atlas.cjs",
+    "tests/technical_atlas.cjs",
+    "tests/server_assembly.cjs",
+    "tests/rack_exploded.cjs",
+    "tests/rack_assembly.cjs",
+    "tests/scene_framing.cjs",
+    "tests/scene_resources.cjs",
+    "tests/scene_atlas.cjs",
+    "tests/ui_skin.cjs"
+  ],
+  "browser_review": {
+    "finalassembly": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/local-final-c4/chip-package-results.json",
+    "finalstatic": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/local-final-c4/chip-package-atlas-results.json",
+    "staticviews": [
+      {
+        "width": 1280,
+        "theme": "light",
+        "file": "chip-package-1280-light.png"
+      },
+      {
+        "width": 1280,
+        "theme": "dark",
+        "file": "chip-package-1280-dark.png"
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "file": "chip-package-390-light.png"
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "file": "chip-package-390-dark.png"
+      }
+    ],
+    "all_geometry_interaction_results": [
+      {
+        "label": "authored x90 initial view equals explicit fit",
+        "initial": {
+          "p": [
+            6.635297484888628,
+            7.531196743750845,
+            12.154903868690251
+          ],
+          "t": [
+            -1.7418678686100422,
+            2.0860392639767116,
+            1.2645889091419804
+          ]
+        },
+        "explicit": {
+          "p": [
+            6.635297484888627,
+            7.531196743750845,
+            12.15490386869025
+          ],
+          "t": [
+            -1.7418678686100422,
+            2.0860392639767116,
+            1.26458890914198
+          ]
+        }
+      },
+      {
+        "label": "actual generic package geometry and unique local instances",
+        "counts": {
+          "logicDies": 1,
+          "HBMStacks": 4,
+          "DRAMLayersPerStack": 8,
+          "internalTSVsInCutaway": 6,
+          "substrates": 1,
+          "interposers": 1,
+          "BGABalls": 280
+        },
+        "meshes": 1049,
+        "picks": 1049,
+        "unique": 1049,
+        "models": 0,
+        "logic": "logic-die",
+        "hbms": [
+          {
+            "id": "package/hbm-1",
+            "layers": 8,
+            "tsv": 0
+          },
+          {
+            "id": "package/hbm-2",
+            "layers": 8,
+            "tsv": 6
+          },
+          {
+            "id": "package/hbm-3",
+            "layers": 8,
+            "tsv": 0
+          },
+          {
+            "id": "package/hbm-4",
+            "layers": 8,
+            "tsv": 0
+          }
+        ],
+        "ids": [
+          "package/logic-die",
+          "package/hbm-1",
+          "package/hbm-2",
+          "package/hbm-3",
+          "package/hbm-4"
+        ],
+        "axes": [
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ]
+        ]
+      },
+      {
+        "label": "all200 actual paired contacts touch their own pads; C4 touches both substrate and interposer; TSV stays in silicon",
+        "pairs": 200,
+        "maxGap": 5.159526139664194e-10,
+        "maxPlanar": 0,
+        "c4Count": 108,
+        "c4Gap": 5.364418076414523e-09,
+        "c4UpperGap": 1.4901158085223187e-10,
+        "substrateTop": 0.4900000059604645,
+        "interposerBottom": 0.584999999254942,
+        "postTop": 1.2459999994039535,
+        "siliconTop": 1.2610000000894068,
+        "measurement": "Actual mesh geometry boundingBox transformed to world; no copied sphere radius or plate thickness",
+        "substrate": [
+          0,
+          0.34,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage45",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              0,
+              0.091,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          1.685,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage100",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              0,
+              1.791,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.791,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.791,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.791,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.791,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          1.685,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage0",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              0,
+              0.091,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          0.635,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage90",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              0,
+              1.6428407212622085,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.6428407212622085,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.6428407212622085,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.6428407212622085,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.6428407212622085,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          1.685,
+          0
+        ]
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "light",
+        "stage": 0,
+        "colors": 846,
+        "left": 370.9225339808,
+        "right": 1229.5529282738792,
+        "top": 374.9499819296056,
+        "bottom": 803.6992495003553,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "light",
+        "stage": 100,
+        "colors": 801,
+        "left": 442.0462382945487,
+        "right": 1147.069596310982,
+        "top": 311.76378546638307,
+        "bottom": 857.682340611274,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "dark",
+        "stage": 0,
+        "colors": 846,
+        "left": 370.9225339807997,
+        "right": 1229.5529282738792,
+        "top": 374.9499819296056,
+        "bottom": 803.6992495003556,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "dark",
+        "stage": 100,
+        "colors": 801,
+        "left": 442.04623829454863,
+        "right": 1147.0695963109815,
+        "top": 311.763785466383,
+        "bottom": 857.682340611274,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "light",
+        "stage": 0,
+        "colors": 472,
+        "left": 24.209844991221892,
+        "right": 360.51854018071634,
+        "top": 386.5265061202597,
+        "bottom": 520.7625606818401,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "light",
+        "stage": 100,
+        "colors": 525,
+        "left": 24.309899000605956,
+        "right": 360.52241118010505,
+        "top": 344.1500413145018,
+        "bottom": 572.0406990378573,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "dark",
+        "stage": 0,
+        "colors": 472,
+        "left": 24.209844991221633,
+        "right": 360.5185401807161,
+        "top": 386.52650612025957,
+        "bottom": 520.7625606818399,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "dark",
+        "stage": 100,
+        "colors": 525,
+        "left": 24.309899000605828,
+        "right": 360.52241118010494,
+        "top": 344.15004131450166,
+        "bottom": 572.0406990378572,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "complete package dossier includes actual all4 stacks and connection layers",
+        "meshes": 1049
+      },
+      {
+        "label": "real canvas pick and current-view export retain one instance",
+        "name": "logic-die",
+        "x": 805.4796031866091,
+        "y": 403.0090361328934,
+        "count": 129,
+        "id": "package/logic-die"
+      },
+      {
+        "label": "real canvas pick and current-view export retain one instance",
+        "name": "hbm-3",
+        "x": 1055.1173099675145,
+        "y": 374.7200622234156,
+        "count": 37,
+        "id": "package/hbm-3"
+      },
+      {
+        "label": "real canvas pick and current-view export retain one instance",
+        "name": "substrate",
+        "x": 976.345821681303,
+        "y": 815.7074805098331,
+        "count": 361,
+        "id": "package/substrate"
+      },
+      {
+        "label": "manual camera survives stage resize and late refresh"
+      },
+      {
+        "label": "owned geometry/material resources release once and RAF stops",
+        "geometries": 43,
+        "materials": 8,
+        "g": 43,
+        "m": 8,
+        "after": 0,
+        "picks": 0,
+        "parent": false,
+        "labels": 0
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=0",
+        "want": [
+          false,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=35",
+        "want": [
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?view=legacy&x=90",
+        "want": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=55",
+        "want": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?node=part:gpu",
+        "want": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=90&node=part:ssd#ssd",
+        "want": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?view=chip&explode=0",
+        "want": [
+          true,
+          false,
+          false,
+          false
+        ]
+      }
+    ],
+    "unique_full_preview": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/root-review-unique-native-v7-labels-20261009.png",
+    "leader_crosscheck": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/leader-projection-crosscheck-v7.json",
+    "render_evidence_not_visual_substitute": true,
+    "related_regressions": [
+      {
+        "suite": "technical_atlas",
+        "exit": 0,
+        "seconds": 113.38,
+        "log": "/private/tmp/ta15-regression-technical_atlas.log"
+      },
+      {
+        "suite": "server_assembly",
+        "exit": 0,
+        "seconds": 227.96,
+        "log": "/private/tmp/ta15-regression-server_assembly.log"
+      },
+      {
+        "suite": "rack_exploded-assembly",
+        "exit": 0,
+        "seconds": 9.51,
+        "log": "/private/tmp/ta15-regression-rack_exploded-assembly.log"
+      },
+      {
+        "suite": "rack_exploded-views",
+        "exit": 0,
+        "seconds": 7.14,
+        "log": "/private/tmp/ta15-regression-rack_exploded-views.log"
+      },
+      {
+        "suite": "rack_assembly",
+        "exit": 0,
+        "seconds": 266.56,
+        "log": "/private/tmp/ta15-regression-rack_assembly.log"
+      },
+      {
+        "suite": "scene_framing",
+        "exit": 0,
+        "seconds": 89.69,
+        "log": "/private/tmp/ta15-regression-scene_framing.log"
+      },
+      {
+        "suite": "scene_resources",
+        "exit": 0,
+        "seconds": 24.48,
+        "log": "/private/tmp/ta15-regression-scene_resources.log"
+      },
+      {
+        "suite": "scene_atlas-1",
+        "exit": 0,
+        "seconds": 60.77,
+        "log": "/private/tmp/ta15-regression-scene_atlas-1.log"
+      },
+      {
+        "suite": "scene_atlas-2",
+        "exit": 0,
+        "seconds": 95.93,
+        "log": "/private/tmp/ta15-regression-scene_atlas-2.log"
+      },
+      {
+        "suite": "ui_skin",
+        "exit": 0,
+        "seconds_reported_by_existing_runner": 51,
+        "log": "/private/tmp/ta15-ui-skin-real-admin.log",
+        "fixture": "Existing tests/run_browser.cjs isolated realtemporaryadmin; productiongate/300seconddeadline unchanged",
+        "previous_failed_attempt": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/local/related-regressions-first-with-ui-admin-fixture-failure.json"
+      }
+    ]
+  },
+  "retained_failures": [
+    "ActualbuiltinAIv1/v2 unequalcontactprojection rejected; allnativev1-v5 retained",
+    "Nativev1cutface/TSV/BGAvisibility, v2undersideframing andinventedlogicgrid rejected; correctednativev6adopted",
+    "LocalinitialHTTPstarttimeout/missingdeclaredgeneratorroutes retained; ownpreviewserverstartedread-only",
+    "Staticfirstregex expected 非制造 whilecaption says 非OEM...制造; assertioncorrectedtoactualboundarywithno productchange",
+    "Root preliminary01/02mispoint display observation withdrawn after actualall8SVGpaths/sameSHAuniquepreview review; no geometry altered",
+    "Root found unintendedTA14desktopLegend from broadtextreplace; removedonlyextraTA14insertion; finalrelatedregressionrequired",
+    "Self-review found C4 upper gap0.005 after old test covered only lowerface; old source/nativev6/local-pre-c4-upper-contact evidence retained. v7 fixes only sphere radius/center; tests now derive both faces, all200 microbumps andTSV limits from actual geometry/world matrices, not copied dimensions.",
+    "First direct fullui_skin had no UI_ADMIN_COOKIE and timed out at protectedadmin page after18readablepages; originalfailure preserved. Existingrun_browser realisolatedtemporaryadmin fixture passed all35pages andstatechecks in51s; no gate/timeout/assertion changed."
+  ],
+  "local_validation": {
+    "status": "passed",
+    "governance_check": "passed2026.10.09.43; manual rebase retained PR520; finalrefresh/check repeated afterthisreceipt",
+    "strict_validate": "passed0warnings",
+    "registry": "passed353objects458questions",
+    "units": "passed22relatedtests on finalPR521 baseline",
+    "browser": "passedTA15finalC4worldgeometry/all8views/realpicks/completeinspector/camera/disposal/retainedroutes+static4/native/master/labels/fulldownloads;10relatedregressionspassed",
+    "actual_logs": [
+      "/private/tmp/ta15-governance-check-final.log",
+      "/private/tmp/ta15-strict-first.log",
+      "/private/tmp/ta15-registry-first.log",
+      "/private/tmp/ta15-related-units-final.log",
+      "/private/tmp/ta15-chip-final-c4.log",
+      "/private/tmp/ta15-static-final-c4.log",
+      "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/local/related-regressions.json",
+      "/private/tmp/ta15-governance-check-rebase.log",
+      "/private/tmp/ta15-units-rebase.log",
+      "/private/tmp/ta15-strict-rebase.log",
+      "/private/tmp/ta15-registry-rebase.log",
+      "/private/tmp/ta15-governance-check-final-main.log",
+      "/private/tmp/ta15-units-final-main.log",
+      "/private/tmp/ta15-strict-final-main.log",
+      "/private/tmp/ta15-registry-final-main.log"
+    ],
+    "final_baseline": "97e5b34f83edf4ef842c0c8be10ce4decd89c2ae",
+    "final_baseline_preserved": "PR520 delivery/reader/CI partition changes and PR521 formal research append preserved; 8 reviewed TA15 source SHA unchanged after rebase"
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/chip-package-v1.png",
+      "bytes": 344942,
+      "sha256": "70a96800f1c0ef4e529d52b5c03adde027e05eb6e0f0e2ad39537d1c099e7721"
+    },
+    {
+      "file": "web/assets/technical-atlas/chip-package-v1.svg",
+      "bytes": 463119,
+      "sha256": "27c04dae03a2f1990b34e168453f01cf4c50f020a995ed01bfccda43c3615943"
+    },
+    {
+      "file": "web/assets/technical-atlas/chip-package-v1-preview.svg",
+      "bytes": 192140,
+      "sha256": "d03fdfd35fa486b74c2f0165a0f303346fe719bef954eeffdeb5d797f794275b"
+    },
+    {
+      "file": "web/components/chip-package-assembly.js",
+      "bytes": 7790,
+      "sha256": "196e3ea3ac81a73108147aa438be0c41a3266169483acd12c272543f8a6a7241"
+    },
+    {
+      "file": "web/components/chip-package-generator.js",
+      "bytes": 6774,
+      "sha256": "f5f04bc3ea6fc7f1eaf4ea483d3a13262a8a26f257a906607d0bf0ca3b28b5ca"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-15/labels-v1.json",
+      "bytes": 4014,
+      "sha256": "f7c63d1c631315aa101dadd4f7903a0e50b0fe3a027b3e2cdbf49b0178fc4618"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-15/native-render-v1.json",
+      "bytes": 3331,
+      "sha256": "5e9d57fb634a3f7cf9e778cdec2b46a07af16e373a14bd424d163a7954e65c00"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-15/SCOPE.md",
+      "bytes": 4854,
+      "sha256": "9369d8198132977246733645a05db06363369ed639ec0a4bbb7fe42eb071273f"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-15/technical-sources-v1.json",
+      "bytes": 554,
+      "sha256": "c07d4d427e28a75c0207bc2d0bf7584bbd7f864e46b4d65fb379cc6c90518897"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-15/preparation-v1.json",
+      "bytes": 5628,
+      "sha256": "0ff71829fff5f7d4833d178431c14286d224ad02cf4b97fa142e25f4f9381ead"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-15/prompt-v1.txt",
+      "bytes": 3037,
+      "sha256": "f9379ffdc1616d6295a2c6e0859feae98c88675741b2bef56a4f962e4591c106"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-15/prompt-v2.txt",
+      "bytes": 2122,
+      "sha256": "daa2a23695da9ca265c202d12ef2f9cfb507e3175c6494d3206006fd44fdb13c"
+    }
+  ],
+  "publication": {
+    "status": "not_published",
+    "published_count": 14,
+    "supplemental_count": 4,
+    "CI": "Not queried or waited under current explicit userreleaseauthorization; not claimed passed",
+    "production_checks": "Actualpublicpage/native/downloads/independent3D/sourceSHA/version/exactimagehealthy stillrequired"
+  }
+}
