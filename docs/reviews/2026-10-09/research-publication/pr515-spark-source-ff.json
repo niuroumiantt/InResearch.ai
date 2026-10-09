@@ -1,0 +1,120 @@
+{
+  "at": "2026-10-09T11:01:10.771435+00:00",
+  "operation": "approved incremental Git main fast-forward only; no service restart, data store, scope or model mutation",
+  "manifest": {
+    "base": "030c1e69b7f6afe288e1bf4bb903ca1e51c99a05",
+    "target": "ab9670067dec878e7ec9d6c7f5f56601ce5d2c98",
+    "head": "ab9670067dec878e7ec9d6c7f5f56601ce5d2c98 refs/remotes/origin/main",
+    "sha256": "988e1e3cf673021964b77fc64ec9a10a7b4e63bd3bbd9eff0d2ef99e48143c38",
+    "bytes": 15586,
+    "paths": [
+      "docs/DECISIONS.md",
+      "docs/REPOSITORY_REGISTER.md",
+      "docs/local_reader/SPARK_OPERATIONS.md",
+      "framework/04_reading_scoring_standard.md",
+      "framework/09_software_contracts.md",
+      "framework/CURRENT.md",
+      "framework/current_state.json",
+      "framework/repository_manifest.json",
+      "framework/verification_contract.json",
+      "src/inresearch/workflow/research_review.py",
+      "tests/unit/test_research_retry_transient.py"
+    ]
+  },
+  "before": {
+    "head": "030c1e69b7f6afe288e1bf4bb903ca1e51c99a05",
+    "dirty": "",
+    "reader": {
+      "MainPID": "1906533",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "review": {
+      "MainPID": "2433760",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "reader_tree_head": "faa83480d3403ff35712716e4bc66c2407bd9209",
+    "files": {
+      "/home/spark/.config/systemd/user/inresearch-research-review.service.d/60-us-power-preferred-sources-20261009.conf": {
+        "sha256": "dc14177966aed1b8d1e78d8b4d91d52e062b22223a649a0fd296a06d7e71e4f0",
+        "bytes": 358
+      },
+      "/home/spark/.config/systemd/user/inresearch-research-review.service": {
+        "sha256": "f3528fb41b6fb53f0d59668cafc7ccac21a85d0f92512138a1c3ecd1e4537f21",
+        "bytes": 562
+      },
+      "/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf": {
+        "sha256": "d41bdb6dbce4d18ccc11d2ab3da73ce4b696baef117bfe0a0bb13b13dbe15b87",
+        "bytes": 148
+      },
+      "/home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf": {
+        "sha256": "94f8849c3490d5f19ce597b2256949afa9a51832ee9db998f47b305aa8806650",
+        "bytes": 243
+      },
+      "/home/spark/.config/inresearch.ai/codex-batch-scope.json": {
+        "sha256": "9b2b63fd6ffe00508d1a6d7066d6b4f69711226ac8f72578946011f33e86e66d",
+        "bytes": 403413
+      },
+      "/home/spark/.config/inresearch.ai/research-review.env": {
+        "sha256": "95e15960f8e090bc1fa1c8a2349c1781b433d181e456fa94db586c49c01741e0",
+        "bytes": 1184
+      },
+      "/home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json": {
+        "sha256": "397e208f330d72d2039e0fda5527aef612b832275d8e2e870fd8a2867cb0af78",
+        "bytes": 1793
+      }
+    }
+  },
+  "after": {
+    "head": "ab9670067dec878e7ec9d6c7f5f56601ce5d2c98",
+    "dirty": "",
+    "reader": {
+      "MainPID": "1906533",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "review": {
+      "MainPID": "2433760",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "reader_tree_head": "faa83480d3403ff35712716e4bc66c2407bd9209",
+    "files": {
+      "/home/spark/.config/systemd/user/inresearch-research-review.service.d/60-us-power-preferred-sources-20261009.conf": {
+        "sha256": "dc14177966aed1b8d1e78d8b4d91d52e062b22223a649a0fd296a06d7e71e4f0",
+        "bytes": 358
+      },
+      "/home/spark/.config/systemd/user/inresearch-research-review.service": {
+        "sha256": "f3528fb41b6fb53f0d59668cafc7ccac21a85d0f92512138a1c3ecd1e4537f21",
+        "bytes": 562
+      },
+      "/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf": {
+        "sha256": "d41bdb6dbce4d18ccc11d2ab3da73ce4b696baef117bfe0a0bb13b13dbe15b87",
+        "bytes": 148
+      },
+      "/home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf": {
+        "sha256": "94f8849c3490d5f19ce597b2256949afa9a51832ee9db998f47b305aa8806650",
+        "bytes": 243
+      },
+      "/home/spark/.config/inresearch.ai/codex-batch-scope.json": {
+        "sha256": "9b2b63fd6ffe00508d1a6d7066d6b4f69711226ac8f72578946011f33e86e66d",
+        "bytes": 403413
+      },
+      "/home/spark/.config/inresearch.ai/research-review.env": {
+        "sha256": "95e15960f8e090bc1fa1c8a2349c1781b433d181e456fa94db586c49c01741e0",
+        "bytes": 1184
+      },
+      "/home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json": {
+        "sha256": "397e208f330d72d2039e0fda5527aef612b832275d8e2e870fd8a2867cb0af78",
+        "bytes": 1793
+      }
+    }
+  },
+  "protected_equal": true,
+  "services_pid_equal": true
+}
