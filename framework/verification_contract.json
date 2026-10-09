@@ -8,7 +8,7 @@
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
     "docs/M4_TRIAGE_TASK.md": "924326e63de3dc50835609d2009c6550e228f7e1018972b1d4b75dd897701ed9",
-    "docs/geluoke/专题写作规则.md": "846f3829980cff2a9b970f72c9db9fdb67624660df555227ffbfb459a3e0d0a4",
+    "docs/geluoke/专题写作规则.md": "cdbc5a2466030583c09bb6c791b880b1ac5b91ae6bf01e34e1f13eaafa14e7b3",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "0876dc50e2312a87fced5332d10fdbe536e211a4876c47387bd0c71cb38699da",
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
@@ -1516,10 +1516,10 @@
       ]
     },
     {
-      "policy": "geluoke-longform-20261009-match",
+      "policy": "geluoke-longform-20261009-editor",
       "scope": "editorial-delivery",
       "source": "docs/geluoke/专题写作规则.md",
-      "checked_requirement": "v2.6人工审阅：图先回答紧邻段落问题，按地图/数据/阶段/合同/对应工程选择；州形状来自Census，互联界线对照EIA/ERCOT概览重绘。费用基数、预测/合同/投运状态与流向直接入图。本稿14幅解释图及章节顺序/承接重组，逐图语义和手机目检独立记录；脚本核对顺序、首段地图、关键标注、来源身份、SVG边界、上传限额与HTML复制。治理单测只覆盖登记，不替代语义或平台验收。 2026-10-09续做人工复审：图9总题归一为客户成本，数据条件不变；三版HTML及新手机图实际核对。Spark真实回执核对23份来源接收/候选匹配、147传输文件/89上游归档SHA；既有scope及日报保留，追加23条至156（先21、部署解析器后加2），23/23注册、封存1与C3未运行分开计量；安全换代服务/源码/解析器SHA有实际回执。",
+      "checked_requirement": "v2.7实际人工复审：按用户约7000字要求全文重写，明确通电时间这一角度，不以中庸套话拼接观点；电源/线路/变电和长期设施成本讲清机制，必要状态/口径保留。本稿正文约7000字（当前7225含标点字符，自动范围6500—7700）、10幅对应图逐张手机目检，原件与全量研究不随公开稿删减。build/audit检查实际字数、图号、首段地图、关键标注、来源身份、上传限额；浏览器复制/布局结果绑定最终HTML SHA。治理单测只覆盖登记，不代替事实语义、编辑质量或平台验收。 同期PR446已实际接收23份并Reader注册；保留全部回执、身份与11:39:55封存1/排队22快照，未将注册当全批深读或C3。",
       "tests": [
         "tests/unit/test_governance.py::GovernanceTests.test_replacement_valid_then_parallel_current_rejected",
         "tests/unit/test_governance.py::GovernanceTests.test_inventory_detects_added_and_modified_records_excludes_ignored"

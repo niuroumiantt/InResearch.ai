@@ -43,9 +43,9 @@ def build(mode):
             content.append(f'<p style="font-size:{size}px;line-height:1.8;color:{color};margin:0 0 {10 if small else 19}px;text-align:justify;font-family:{ff};overflow-wrap:break-word;">'+safe(para)+'</p>')
     wrap='margin:0;font-family:'+font+';background:white;'
     css='' if mode=='wechat' else '<style>html,body{margin:0;background:white}body{padding:0 16px}article{max-width:720px;margin:auto}@media(max-width:767px){body{padding:0 8px}}img{max-width:100%}h1,h2{text-wrap:balance}</style>'
-    return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>美国数据中心的电力现状｜格洛可</title>'+css+'</head><body style="'+wrap+'"><article style="background:white;'+('' if mode!='wechat' else 'margin:0;padding:0;')+'">'+''.join(content)+'</article></body></html>'
+    return '<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>美国数据中心抢电，争的是通电时间｜格洛可</title>'+css+'</head><body style="'+wrap+'"><article style="background:white;'+('' if mode!='wechat' else 'margin:0;padding:0;')+'">'+''.join(content)+'</article></body></html>'
 for mode in ['wechat','full','lite']:(OUT/(mode+'.html')).write_text(build(mode))
-body=doc.split('## 来源')[0];body='\n'.join(x for x in body.splitlines() if not x.startswith(('#','!','图','本篇覆盖','格洛可｜')))
+body=doc.split('## 来源')[0];body='\n'.join(x for x in body.splitlines() if not x.startswith(('#','!','本篇覆盖','格洛可｜')) and not re.match(r'^图\d+｜',x))
 public_images=['assets/cover-wechat.jpg']+re.findall(r'!\[.*?\]\((.*?)\)',doc)
 stats=dict(body_images=len(public_images)-1,public_images=public_images,body_hanzi=len(re.findall('[\u4e00-\u9fff]',body)),body_nonspace_characters=len(re.sub(r'\[\d+\]|\s','',body)),images=imgs,html_bytes={m:(OUT/(m+'.html')).stat().st_size for m in ['wechat','full','lite']},wechat_editor='未实粘；浏览器验收不替代微信编辑器',image_upload='单张公众号图JPG/PNG均小于1MB；Base64是复制包形式，发布需转为公众号素材URL')
 (OUT/'checks/build.json').write_text(json.dumps(stats,ensure_ascii=False,indent=2))
