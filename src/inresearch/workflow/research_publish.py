@@ -24,7 +24,13 @@ def run(argv, cwd=None, check=True, timeout=60, input=None):
                             text=True, timeout=timeout,input=input)
     if check and result.returncode:
         # Logs keep an actionable error, not authentication/configuration output.
-        raise RuntimeError('command_failed: '+str(argv[0])+' '+result.stderr[-1200:])
+        detail = result.stderr[-1200:]
+        if not detail:
+            # Governance/validation report failures on stdout. Only their
+            # explicit error lines may enter the journal, never arbitrary output.
+            detail = '\n'.join(line for line in result.stdout.splitlines()
+                               if line.startswith('ERROR:'))[-1200:]
+        raise RuntimeError('command_failed: '+str(argv[0])+' exit='+str(result.returncode)+' '+detail)
     return result
 
 

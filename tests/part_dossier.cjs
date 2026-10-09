@@ -1,6 +1,9 @@
 /* Real scene deep links exercise the shared dossier and WebGL inspector. */
 const assert = require('node:assert/strict');
 const {chromium} = require('playwright');
+const {dossierScenes} = require('./browser_suites.cjs');
+const requestedScene = process.argv[2];
+if (requestedScene && !dossierScenes.includes(requestedScene)) throw Error('Unknown dossier scene: ' + requestedScene);
 (async () => {
   const browser = await chromium.launch({headless:true, args:['--enable-unsafe-swiftshader']});
   try {
@@ -16,7 +19,7 @@ const {chromium} = require('playwright');
       assert.notEqual(instrumented, html);
       await route.fulfill({response, body:instrumented});
     });
-    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm', '/rack3d.html?node=part:cpu', '/rack3d.html?node=part:dram', '/rack3d.html?node=part:nic', '/rack3d.html?node=part:psu', '/rack3d.html?node=part:server-fan', '/rack3d.html?node=part:coldplate']) {
+    for (const url of requestedScene ? [requestedScene] : dossierScenes) {
       console.log('Scene contract: loading '+url);
       await page.goto(process.env.UI_BASE_URL + url);
       const dossier = page.locator('#dossier');

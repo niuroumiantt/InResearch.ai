@@ -1,6 +1,7 @@
 import copy
 import hashlib
 import json
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -76,6 +77,14 @@ class SourcePacketRecoveryTests(unittest.TestCase):
 
 
 class PublisherIsolationTests(unittest.TestCase):
+    def test_command_stdout_errors_are_actionable_and_other_output_private(self):
+        with self.assertRaises(RuntimeError) as caught:
+            publication.run([sys.executable,'-c',
+                "import sys; print('private diagnostic must stay out'); print('ERROR: reviewed source is stale'); sys.exit(2)"])
+        self.assertIn('exit=2',str(caught.exception))
+        self.assertIn('ERROR: reviewed source is stale',str(caught.exception))
+        self.assertNotIn('private diagnostic',str(caught.exception))
+
     def blocked_publisher(self, td):
         p = publication.Publisher({'repo':td, 'state':td})
         bid = 'a'*64

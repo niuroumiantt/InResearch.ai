@@ -407,4 +407,6 @@ M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用
 多个当前已审核批次并行追加同一研究 JSON 时，基线合并只接受 documents/evidence/statements 的按稳定ID追加：两侧必须完整保留每条原记录，新增ID重合时内容必须完全相同；其余字段及answers不得变化。原记录编辑/删除、ID重复或冲突保持Git冲突供审阅。合法追加保留已合并main及本批记录，重建清单、严格校验与registry后生成新head，重新跑全部四项CI。
 
 
-2026-10-09发布验收：网页core回归分core_a/core_b并行，保留27个suite、scene_atlas双密度和既有单项300秒期限；browser(core)聚合只有全部matrix通过才成功，模型资产仍保留三个场景。治理与运行器读取同一已审阅suite清单，选定浏览器入口缺失继续报错。新attempt开始前，将完整旧journal保存到旧attempt目录；新journal记录相对路径、状态与实际文件SHA，旧尝试/分支不删除。旧CI失败状态恢复沿同期发布器修复，不能将源码检查当作实际队列已恢复。
+2026-10-09发布验收：网页core回归分core_a/core_b/core_c并行，运行器使用同一完整suite清单；part_dossier的10个原场景分别执行，每个场景保留全部主题、动画、拾取与资源所有权断言，以及既有单项300秒期限。scene_atlas双密度继续保留；browser(core)聚合只有全部matrix通过才成功，模型资产仍保留三个场景。治理与运行器读取同一已审阅suite清单，选定浏览器入口缺失继续报错。新attempt开始前，将完整旧journal保存到旧attempt目录；新journal记录相对路径、状态与实际文件SHA，旧尝试/分支不删除。旧CI失败状态恢复沿同期发布器修复，不能将源码检查当作实际队列已恢复。
+
+发布前检查失败必须保存退出码与可用诊断。治理/数据校验仅在标准输出报告错误时，只记录显式ERROR行，不把任意输出、凭据或配置写入journal。prepared旧基线失效时保留原工作树、journal与封存包；在当前main和当前来源/上下文复验后重建发表，不改旧审计摘要来放行。
