@@ -3,7 +3,7 @@
   "style_id": "white-technical-atlas-v1",
   "source": "framework/10_visual_atlas.md",
   "plan": "docs/design/technical-atlas/MIGRATION_PLAN.md",
-  "observed_at": "2026-10-09T18:40:33.065299+00:00",
+  "observed_at": "2026-10-09T18:54:15.328530+00:00",
   "baseline_revision": "453f3625d427b9d989851ed5712737495891a378",
   "audit_scope": "Initial baseline inventory at baseline_revision; actual per-item acceptance and publication recorded separately, not a whole-site redesign receipt",
   "audit_directory": "~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/",
@@ -671,16 +671,18 @@
       "depends_on": [
         "TA-16"
       ],
-      "status": "drafting",
-      "acceptance_record": null,
-      "published_revision": null,
-      "partial_entry_supplement": "已静态接入61物理类别详细图（旧14+TA16新47）及五尺度独立总览；实际网页/下载/部署另验，不以静态登记完成原项",
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-17/acceptance-v1.json",
+      "published_revision": "97508cdc09fe66c615a74968784e59497e2bb873",
+      "partial_entry_supplement": "全部61类别在system和scale显式复用详细图；TA17真实公共验收已完成，默认其它3D仍按原队列。",
       "object_id": "scale-overview",
       "baseline_asset": {
         "file": "docs/design/technical-atlas/TA-17/bom-before-v1.html",
         "sha256": "1fb930d14751646a279afaf43b69c6a4d09461c15239259035132b677a6987e5"
       },
-      "implementation_stage": "61 category scale reuse and native overview statically reviewed; actual public validation pending. Not accepted/published; primary16/35."
+      "implementation_stage": "Actual61 scale selections/20 complete width-theme views/6nativeSVG exports/12representative downloads and exacthealthy source verified; primary17/35. Source-stage pending records retained.",
+      "publication_record": "docs/design/technical-atlas/TA-17/publication-20261010.json",
+      "published_at": "2026-10-09T18:54:15.328530+00:00"
     },
     {
       "id": "TA-18",
@@ -1275,7 +1277,7 @@
   "execution_priority": {
     "reason": "先收尾用户授权的四张设施补充图，原35项按用户再次明确的01–35顺序继续；两类进度分别计量",
     "next": [
-      "TA-17"
+      "TA-18"
     ]
   },
   "primary_plan": {
@@ -1318,7 +1320,7 @@
       "TA-35"
     ],
     "execution_order": "01–35 as reiterated by user on 2026-10-08",
-    "published": 16
+    "published": 17
   },
   "supplemental_items": [
     "TA-36",
