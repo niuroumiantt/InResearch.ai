@@ -1,0 +1,42 @@
+{
+  "figure_id": "TA-13",
+  "title": "机柜整柜 · 安装分区与结构",
+  "description": "通用机柜整柜示意：前门和左侧柜壳虚拟剖开，设备留在安装位置。顶部两台交换机、中部八托盘每台八载盘、底部两电源架各六模块均为图示选择，不是通用标配或型号规格。左侧铜排与管道为可选附件，接线和回路未知；不把风冷服务器接入液冷，不标U高度、真实尺寸、额定值或维护步骤。",
+  "master": "web/assets/technical-atlas/rack-overview-v1.png",
+  "output": "web/assets/technical-atlas/rack-overview-v1.svg",
+  "preview_raster": "web/assets/technical-atlas/rack-overview-v1-preview.jpg",
+  "preview_output": "web/assets/technical-atlas/rack-overview-v1-preview.svg",
+  "pixels": [1536, 1024],
+  "labels": [
+    {"id":"label-cutaway","text":"前门 / 左侧虚拟剖口","x":50,"y":65},
+    {"id":"label-frame","text":"外框柱与横向支撑","x":50,"y":215},
+    {"id":"label-rails","text":"内安装立柱与孔带","x":50,"y":365},
+    {"id":"label-guide","text":"侧部服务槽 · 附件可选","x":50,"y":515},
+    {"id":"label-busbar","text":"铜排示意 · 接线未知","x":50,"y":650},
+    {"id":"label-pipes","text":"管道附件 · 回路未知","x":50,"y":795},
+    {"id":"label-feet","text":"调平支脚 · 非承载测算","x":50,"y":950},
+    {"id":"label-skin","text":"顶板 / 右侧柜壳","x":1470,"y":65,"anchor":"end"},
+    {"id":"label-switch","text":"顶部交换机 ×2 · 示例","x":1470,"y":210,"anchor":"end"},
+    {"id":"label-compute","text":"计算托盘 ×8 · 示例","x":1470,"y":365,"anchor":"end"},
+    {"id":"label-drives","text":"每托盘8载盘 · 图示","x":1470,"y":500,"anchor":"end"},
+    {"id":"label-ears","text":"安装耳与固定位置","x":1470,"y":645,"anchor":"end"},
+    {"id":"label-power","text":"电源架 ×2 · 各6模块示例","x":1470,"y":790,"anchor":"end"},
+    {"id":"label-base","text":"底框与支撑 · 比例未知","x":1470,"y":950,"anchor":"end"}
+  ],
+  "leaders": [
+    {"id":"leader-cutaway","path":"M50 85 L350 85 L465 150","target":[465,150]},
+    {"id":"leader-frame","path":"M50 235 L355 235 L474 380","target":[474,380]},
+    {"id":"leader-rails","path":"M50 385 L370 385 L590 420","target":[590,420]},
+    {"id":"leader-guide","path":"M50 535 L350 535 L518 470","target":[518,470]},
+    {"id":"leader-busbar","path":"M50 670 L375 670 L540 630","target":[540,630]},
+    {"id":"leader-pipes","path":"M50 815 L385 815 L561 681","target":[561,681]},
+    {"id":"leader-feet","path":"M50 970 L375 970 L493 911","target":[493,911]},
+    {"id":"leader-skin","path":"M1470 85 L1180 85 L1035 140","target":[1035,140]},
+    {"id":"leader-switch","path":"M1470 230 L1165 230 L872 193","target":[872,193]},
+    {"id":"leader-compute","path":"M1470 385 L1180 385 L850 440","target":[850,440]},
+    {"id":"leader-drives","path":"M1470 520 L1165 520 L790 563","target":[790,563]},
+    {"id":"leader-ears","path":"M1470 665 L1175 665 L876 628","target":[876,628]},
+    {"id":"leader-power","path":"M1470 810 L1180 810 L850 830","target":[850,830]},
+    {"id":"leader-base","path":"M1470 970 L1165 970 L937 916","target":[937,916]}
+  ]
+}

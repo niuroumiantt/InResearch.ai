@@ -16,7 +16,7 @@ function dossierLink(text, href) {
   return a;
 }
 export function createPartDossier({el, view, BOM, companies: CN,
-  prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector, atlasHost = el}) {
+  prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector, atlasHost = el, atlasViewFor = () => null}) {
 return function showDossier(p) {
   el.replaceChildren();
   if (atlasHost !== el) atlasHost.replaceChildren();
@@ -43,7 +43,7 @@ return function showDossier(p) {
   slot.id = "inspSlot"; slot.style.display = "none";
   slot.append(dossierNode("div", "概念部件预览 · 拖动旋转", "ihint")); el.append(slot);
   el.append(dossierNode("div", p.desc || "说明待补充"));
-  const hasAtlas = mountTechnicalAtlas(atlasHost, p.id);
+  const hasAtlas = mountTechnicalAtlas(atlasHost, p.id, {view:atlasViewFor(p)});
   if (atlasHost !== el) atlasHost.hidden = !hasAtlas;
   const links = dossierNode("div", undefined, "sec");
   links.append(dossierNode("h3", "参考研究与结构"));

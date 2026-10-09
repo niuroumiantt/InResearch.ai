@@ -1,0 +1,302 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-13",
+  "object_id": "part:rack-frame",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Generic complete installed rack with separate frame, mounting posts and slide rails",
+  "reviewed_at": "2026-10-09T08:20:53.796983+00:00",
+  "reviewer": "Author and root original native/full labelled and actual four-view image inspection; independent review_ta13 original structure/source review",
+  "decision": "accepted_for_generic_installed_rack_overview",
+  "master": "web/assets/technical-atlas/rack-overview-v1.png",
+  "labelled": "web/assets/technical-atlas/rack-overview-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "preview": {
+    "file": "web/assets/technical-atlas/rack-overview-v1-preview.svg",
+    "bytes": 287744,
+    "method": "same native 1536x1024 JPEG65 display derivative plus identical14 independent editable labels, below512KiB; high-resolution SVG embeds unchanged original PNG"
+  },
+  "references": [
+    {
+      "file": "docs/design/technical-atlas/references/01-chain.png",
+      "sha256": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
+      "role": "actual original built-in imagegen input; visual style only",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": true
+    },
+    {
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "role": "actual original built-in imagegen input; visual style only",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen",
+    "initial_prompt": "docs/design/technical-atlas/TA-13/prompt-v1.txt",
+    "targeted_edit_prompt": "docs/design/technical-atlas/TA-13/prompt-v2-edit.txt",
+    "native_candidate": {
+      "file": "web/assets/technical-atlas/rack-overview-v1.png",
+      "sha256": "d92ac021351375735f3b1ad93b3b6553aaecf84ad2a4bb1079ab20d03b89e49e",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "original_generated_file": "/Users/m4/.codex/generated_images/01a11e95-8197-7ae3-b0a8-9164128c5eaa/exec-0e57abd4-95bc-4754-945b-89a56d980e5a.png",
+      "actual_native_visual_review": "author, root and independent review_ta13 viewed original; 2 switches, 8 compute each8 carriers, 2 shelves each6 modules and continuous frame; no structural blocker"
+    },
+    "rejected_first_candidate": {
+      "private_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/candidates/rack-first-v1.png",
+      "sha256": "b774fce063b73259e8dbb2ad9bb9c2e9931e4a175a177f1b3bff15904c324e83",
+      "reason": "Seven front carriers per compute tray instead of requested eight; rejected before labels"
+    },
+    "resampling": false
+  },
+  "rights": "Project-generated generic illustration and project procedural code; user supplied reference originals remain unchanged visual inputs, not technical facts",
+  "technical_sources": [
+    {
+      "url": "https://iportal.se.com/Contents/docs/UPS-AR3104.PDF",
+      "access": "Full official historical 32-page 2008 manual read by reviewer; author opened official PDF",
+      "supports": "Frame posts versus separate mounting flanges, roof/side panels/doors, leveling feet and cable-channel categories; no SKU/24U/dimensions/load/spacing/maintenance requirements copied"
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/networking-z9664f-on/z9664f-on_install_pub/four-post-rail-installation?guid=guid-5397c085-7b2c-4900-81e0-ef643b4ed5b4&lang=en-us",
+      "access": "Full official chapter read by reviewer and author opened",
+      "supports": "Device inner rails, cabinet outer rails fastened at front/rear posts and front retention; no SKU/port count/screw count/procedure copied"
+    }
+  ],
+  "technical_scope": {
+    "identity": "Generic example, not OEM/ORV3/digital twin/CAD",
+    "counts": "2 top switches,8 middle compute trays each8 front carriers,2 bottom power shelves each6 modules",
+    "installation": "Four outer frame posts distinct from4 perforated mounting posts; device inner/outer slides with front/rear brackets and retention ears; front/left shells virtually omitted in place",
+    "accessory_identity": "Copper-colored long bar and two gray pipes are unconnected optional service accessories, rack-frame dossier context; no rectifier or complete fluid path adopted",
+    "observed_3D_details": "598 actual meshes; four mounting rails each84 square holes;24 outer/24 inner slides and48 end brackets; real front perforations; positions fixed throughout partition focus",
+    "deep_link_semantics": "Default/no-partx0 owns new rack; explicitview=rack&node=part:rack-frame owns complete installed assembly; children inspect one instance with stable category IDs; oldx35/x90 and TA11x55 retained"
+  },
+  "reviewed_differences": [
+    "Static and procedural layouts agree on2+8+2/cutaway/front direction; generic switch port density, roof holes and accessory support details are separately drawn, not exact pixel/OEM correspondence",
+    "Static closed chassis does not prove identical TA11 internal configurations for all8 trays",
+    "Focus slider only controls category visibility; does not move parts or complete TA14 exploded assembly"
+  ],
+  "unknowns": [
+    "SKU/Uheight/dimensions/weight/load/perforationpitch/rail tolerances/grounding and fasteners unspecified",
+    "Power/voltage/efficiency/redundancy/internalwiring and barconnections unknown",
+    "Pipe flow/coolant/pressure/connections/compatibility and complete loop unknown",
+    "Switch port number/protocol/bandwidth and each closed tray internal configuration unknown",
+    "Virtual cutaway is explanatory, not service/installation/hot-swap instructions; machine counts do not replace visual or technical review"
+  ],
+  "checks": {
+    "actual_native_pixels": [
+      1536,
+      1024
+    ],
+    "editable_labels": 14,
+    "leaders": 14,
+    "master_embedded_unchanged": true,
+    "native_and_full_labels_actually_viewed": true,
+    "four_actual_page_views_individually_viewed": true,
+    "downloads_complete": [
+      {
+        "file": "rack-overview-v1.svg",
+        "bytes": 2633211,
+        "sha256": "3f428cdb1a83e902086605ff12288eb251b9265565e0015c5f1196367d202130"
+      },
+      {
+        "file": "rack-overview-v1.png",
+        "bytes": 1971646,
+        "sha256": "d92ac021351375735f3b1ad93b3b6553aaecf84ad2a4bb1079ab20d03b89e49e"
+      }
+    ],
+    "mobile_header_360px": {
+      "width": 360,
+      "height": 85.734375
+    },
+    "page_errors": [],
+    "actual_unknown_accessory_hover_click_export": "passed copper and graypipe actual pointers, unknown tooltip and part:rack-frame SVG",
+    "complete_inspector_and_deep_link": 598,
+    "child_instance_meshes": {
+      "server": 46,
+      "power-shelf": 38,
+      "network-switch": 23
+    },
+    "resource_release": {
+      "geometry": 417,
+      "materials": 6,
+      "each_once": true,
+      "post_dispose_render_picks_labels": 0
+    },
+    "overview_display_does_not_inherit_category_specs": true,
+    "original_BOM_unchanged": true
+  },
+  "browser_checks": [
+    "tests/rack_atlas.cjs",
+    "tests/rack_assembly.cjs",
+    "tests/server_assembly.cjs",
+    "tests/server_plan.cjs",
+    "tests/ui_skin.cjs",
+    "tests/scene_resources.cjs",
+    "tests/scene_framing.cjs",
+    "tests/technical_atlas.cjs",
+    "tests/part_dossier.cjs"
+  ],
+  "browser_review": {
+    "static_result": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/rack-atlas-results.json",
+    "four_views": [
+      {
+        "width": 1280,
+        "theme": "light",
+        "file": "rack-atlas-1280-light.png"
+      },
+      {
+        "width": 1280,
+        "theme": "dark",
+        "file": "rack-atlas-1280-dark.png"
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "file": "rack-atlas-390-light.png"
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "file": "rack-atlas-390-dark.png"
+      }
+    ],
+    "full_SVG_screenshot": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/rack-atlas-full-svg.png",
+    "3D_actual_views": [
+      "rack-whole-1280-light.png",
+      "rack-whole-1280-dark.png",
+      "rack-whole-390-light.png",
+      "rack-whole-390-dark.png"
+    ],
+    "complete_inspector_image": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/rack-complete-dossier.png",
+    "corrected_interaction_status": "Full actual273s pass then onlydisplay-description change covered by actual button/deep-link and3realpointer selected-instance narrow check; geometry unchanged",
+    "interaction_result": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/rack-assembly-results.json",
+    "context_display_check": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/rack-context-results.json"
+  },
+  "local_validation": {
+    "rack_atlas": "passed actual4views/14labels/originalmasterSHA/full dualdownloads360header85.734",
+    "server_assembly": "original unchanged full suite serial PASS211s within300s; original concurrent deadline failure retained",
+    "ui_skin": "passed33pages69s, all appearance/font/phone/persistence",
+    "scene_resources": "passed25s old explicitx35 fallback/dispose; new generic overview makes no OEMrequests",
+    "scene_framing": "passed119s full originalmodel/usercamera/viewport/inspector/compare assertions; old optionalmodel route explicitx35",
+    "targeted_units": "13pass after explicit legacyHTML historical classification",
+    "rack_assembly": "273sPASS allstructure/focus4views/whole598/realcopper&pipeunknownpicks+SVG/childinstances/currentSVG/usercamera/exactdisposal/legacy35,90,55+GPU/wholedeep",
+    "server_plan": "PASS4s actualprojection/nativePNG/sourcehomes/occlusion4views15labels/downloads",
+    "technical_atlas": "PASS122s full existing13category/system-scale/narrow-theme/retained3D",
+    "governance_strict_registry_unit": {
+      "governance": "2026.10.09.31;1644trackedfiles verified",
+      "validate": "strictpassed0warnings",
+      "registry": "353objects458questions valid",
+      "targeted_units": "27passed3.376s",
+      "integration_base": "c176496f5cd4ca8ec7f56e43d18dad0c2973615a/.30;full upstream research bytes preserved, including named EIA and Alphabet",
+      "research_sha256": "1f9ce6faf29184f5352fce8136e719a4e844a65adf136e8a36f8145312ccf8f0"
+    },
+    "part_dossier": "All10originalscenes serialPASS, each300sdeadline unchanged:59/78/50/42/46/44/43/53/46/50s; themes/motion/staleframes/material/picks/drag/cleanup",
+    "generic_dossier_scope": "Actualbutton+wholedeep and realserver/power/network pointers,598/598/46/38/23meshes; originalBOM remains, no inheritedOEM/voltage/protocolroute description"
+  },
+  "issues_resolved": [
+    {
+      "issue": "First generated compute trays had7 instead of8 front carriers",
+      "resolution": "Targeted built-in edit, first original retained as rejected; second native viewed by author/root/independent reviewer"
+    },
+    {
+      "issue": "Old copper bar tagged power-shelf and graypipesmanifold could acquire unsupported rectifier/fluid meanings",
+      "resolution": "Both unconnected optional service accessories now rack-frame context with explicit unknown tooltip; actual ordinary pointer hover/click and current SVG validated for both"
+    },
+    {
+      "issue": "Retained oldHTML unclassified",
+      "resolution": "Explicit interface_manifest excluded_pages historical source identity; unit passed"
+    },
+    {
+      "issue": "Original server_assembly300s deadline during concurrent softwareWebGL",
+      "resolution": "No deadline/assertion change; single WebGL serial fullsuite passed211s; failure kept privately"
+    },
+    {
+      "issue": "New whole-rack context inherited old category research description with GB200 power roadmap",
+      "resolution": "Only overview display description uses explicit generic counts/unknownlimits and categoryresearch distinction; original BOM and other dossiers preserved, narrow page validation separate"
+    },
+    {
+      "issue": "Three generic child instances inherited category ODM/800V+storage/network protocol route descriptions",
+      "resolution": "Onlyoverview display uses generic per-instance descriptions/unknown power/protocol/supplier, originalBOM/otherdossiers unchanged; truepointer narrowcheck passed for all3 with46/38/23geometry counts"
+    }
+  ],
+  "independent_visual_review": {
+    "root": "Original corrected native2+8x8+2x6 and full14labels viewed/displayed; full actual rack views reviewed",
+    "review_ta13": "Native candidate structural/source review passed, static image does not prove actual interactions"
+  },
+  "conversation_preview": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/rack-overview-chat-full.png",
+    "pixels": [
+      1536,
+      1024
+    ],
+    "bytes": 1817835,
+    "sha256": "94d8b4e31e60728304ef9ec8e9c111eb0250bcb3f6d13f46817e3903e9dff24e",
+    "purpose": "Uncropped native complete labelled image displayed in current conversation before production"
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/rack-overview-v1.png",
+      "sha256": "d92ac021351375735f3b1ad93b3b6553aaecf84ad2a4bb1079ab20d03b89e49e",
+      "bytes": 1971646
+    },
+    {
+      "file": "web/assets/technical-atlas/rack-overview-v1.svg",
+      "sha256": "3f428cdb1a83e902086605ff12288eb251b9265565e0015c5f1196367d202130",
+      "bytes": 2633211
+    },
+    {
+      "file": "web/assets/technical-atlas/rack-overview-v1-preview.jpg",
+      "sha256": "364cf8b3de35d6a3deb8d610cb01bb8d05626a6f4a90f70ce4d59812343b634a",
+      "bytes": 212545
+    },
+    {
+      "file": "web/assets/technical-atlas/rack-overview-v1-preview.svg",
+      "sha256": "69365786c13c7bcbc781ce29cb1dbad4152036159909da6300c2d698773156d7",
+      "bytes": 287744
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-13/labels-v1.json",
+      "sha256": "77827064dcf408388500446b3f4bad38d13d3e00ea2f915800dccff3a2699685",
+      "bytes": 3211
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-13/prompt-v1.txt",
+      "sha256": "23bc62d4647f504e40fd0bb802fa1ed5d73d5c92957b207be912bae28e39a1d0",
+      "bytes": 2798
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-13/prompt-v2-edit.txt",
+      "sha256": "834caab2b0a4b45e8a5556d7aac456070d1e42588006ccc7cbc2ad16bbc81d32",
+      "bytes": 1282
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-13/preparation-v1.json",
+      "sha256": "28cb1833bb94a202e0bdd094d4f46402cceaa95916529e24aec6c5d178b43d3e",
+      "bytes": 3604
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-13/scope-v1.md",
+      "sha256": "992caa3626aa90473d2c6d4b83198cb72d8d49e88532a6ed0b4efd6def49ba1e",
+      "bytes": 2548
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-13/legacy/rack3d-d91f376b.html",
+      "sha256": "fd88c53dbd23d71c10167a739c0fa15593701a36d9db05da2e2259730e0a575b",
+      "bytes": 41056
+    }
+  ],
+  "publication": {
+    "status": "not_published",
+    "reason": "Local review only; merged source/exact healthy AWS and actual public pages/downloads/3D require separate evidence"
+  },
+  "ci": {
+    "status": "not_queried",
+    "authorization": "User explicitly instructs autonomous PR/merge/deploy after complete local acceptance and no checking/waiting for CI; CI success is not claimed"
+  }
+}
