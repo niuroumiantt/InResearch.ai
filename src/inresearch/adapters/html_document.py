@@ -5,7 +5,7 @@ import re
 
 
 class _Document(HTMLParser):
-    OMIT = {"script", "style", "noscript", "svg", "canvas", "iframe", "form"}
+    OMIT = {"script", "style", "noscript", "svg", "canvas", "iframe", "button", "textarea", "select"}
     BREAK = {"p", "div", "section", "article", "main", "h1", "h2", "h3", "h4", "li", "tr", "br", "hr", "blockquote"}
 
     def __init__(self):
@@ -18,7 +18,8 @@ class _Document(HTMLParser):
         self.table_cell = False
 
     def handle_starttag(self, tag, attrs):
-        attrs = dict(attrs)
+        # HTMLParser uses None for valueless attributes such as <div class>.
+        attrs = {key: value or "" for key, value in attrs}
         if tag in self.OMIT:
             self.omit_stack.append(tag)
             return
