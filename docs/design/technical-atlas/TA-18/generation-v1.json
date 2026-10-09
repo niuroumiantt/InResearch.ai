@@ -1,0 +1,99 @@
+{
+  "figure_id": "TA-18",
+  "stage": "candidate_not_accepted_not_published",
+  "method": "built-in image_gen new then actual target edits; native PNG preserved, independent SVG labels",
+  "references": [
+    {
+      "id": "R1",
+      "file": "docs/design/technical-atlas/references/01-chain.png",
+      "sha256": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
+      "role": "actually original-viewed style reference only, not technical evidence and not passed to imagegen",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    },
+    {
+      "id": "R5",
+      "file": "docs/design/technical-atlas/references/05-thermal-cutaway.png",
+      "sha256": "6bfeea5980c8ad16b040561a6cf69ca6e020b4cb9f0bfd26a97dd1c88c0af1f6",
+      "role": "actually original-viewed style reference only, not technical evidence and not passed to imagegen",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    },
+    {
+      "id": "R10",
+      "file": "docs/design/technical-atlas/references/10-industrial-campus-cutaway.png",
+      "sha256": "4e7166a198d7bf40c4c7f6a1af97b3c3df51043de1c5b77cfec4600db708fc4f",
+      "role": "actually original-viewed style reference only, not technical evidence and not passed to imagegen",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    },
+    {
+      "id": "R14",
+      "file": "docs/design/technical-atlas/references/14-modern-campus-cutaway.png",
+      "sha256": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
+      "role": "actually original-viewed style reference only, not technical evidence and not passed to imagegen",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    }
+  ],
+  "generations": [
+    {
+      "version": 1,
+      "original_generated_file": "/Users/m4/.codex/generated_images/01a11e95-8197-7ae3-b0a8-9164128c5eaa/exec-cefc6c6c-35a0-49b2-bb0a-3fa95ccccbf8.png",
+      "audit_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-18/candidates/campus-native-v1.png",
+      "sha256": "23fb584e1c1f97db8e65c1ce70c54aacda1925a4aaed08f1d5c5ab5abe10342a",
+      "bytes": 2421006,
+      "pixels": [
+        1536,
+        1024
+      ],
+      "decision": "rejected count did not maintain requested28/rack configuration unreliable"
+    },
+    {
+      "version": 2,
+      "original_generated_file": "/Users/m4/.codex/generated_images/01a11e95-8197-7ae3-b0a8-9164128c5eaa/exec-aa2806da-e801-4d9b-87cd-9f4974b6fd11.png",
+      "audit_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-18/candidates/campus-native-v2.png",
+      "sha256": "ab8a52550c78b7b6d9f0700c55abc7f5ba4034f06615553a86b18474f02ac35a",
+      "bytes": 2250779,
+      "pixels": [
+        1536,
+        1024
+      ],
+      "decision": "rejected requested12 not maintained; actual8 clear, selected8 configuration explicitly chosen for subsequentv3; leftmostpad safety issue"
+    },
+    {
+      "version": 3,
+      "original_generated_file": "/Users/m4/.codex/generated_images/01a11e95-8197-7ae3-b0a8-9164128c5eaa/exec-a299963b-bfa8-4396-a345-aeea751d4aa0.png",
+      "audit_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-18/candidates/campus-native-v3.png",
+      "sha256": "c8a1ca2ef4e4c08d93fe2626575f8482831f057dbefaf2e235a4d764c7e6191f",
+      "bytes": 2113457,
+      "pixels": [
+        1536,
+        1024
+      ],
+      "decision": "candidate pending independent root/technical/page review"
+    }
+  ],
+  "selected_example_counts": {
+    "rack_cabinets": 8,
+    "rack_rows": 2,
+    "racks_per_row": 4,
+    "indoor_cooling": 5,
+    "cdu_cabinets": 3,
+    "ups_bank": 1,
+    "ups_visible_doors": 4,
+    "outdoor_air_chillers": 3,
+    "top_fans_per_chiller": 2,
+    "transformers": 2,
+    "standby_generators": 3,
+    "battery_cabinets": 2
+  },
+  "quantity_decision": "Actual v2 was8 despite requested12; explicitly adopt clearer8-rack generic composition in v3 prompt and new geometry, preserve failed requests/history and old28legacy. These are drawing choices, no project quantities or ratings.",
+  "unknown": [
+    "OEM/model/configuration/dimensions/capacity/voltage/redundancy",
+    "HV/LV bushing identities or complete transformer connections",
+    "fluid supply/return topology, medium, temperature or verified pipe endpoints",
+    "power switching/generator operation/battery connectivity",
+    "field readiness, permits, site rights and installation procedure"
+  ]
+}
