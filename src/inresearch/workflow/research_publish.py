@@ -48,11 +48,46 @@ def source_bundle(root, directory, target, base):
     return path
 
 
+def merge_appended_research(base, reviewed, upstream):
+    """Union unchanged records and independent append-only additions by ID.
+
+    A deletion, edit, ID collision or other field change requires review.
+    Accepted main records never lose to the publication branch.
+    """
+    sections = {'documents', 'evidence', 'statements'}
+    if set(base) != set(reviewed) or set(base) != set(upstream):
+        raise ValueError('research_merge_requires_review')
+    result = dict(base)
+    for name, original in base.items():
+        if name not in sections:
+            if original != reviewed[name] or original != upstream[name]:
+                raise ValueError('research_merge_requires_review')
+            continue
+        def indexed(rows):
+            if not isinstance(rows, list) or any(not isinstance(r, dict) or not r.get('id') for r in rows):
+                raise ValueError('research_merge_requires_review')
+            values = {r['id']:r for r in rows}
+            if len(values) != len(rows):raise ValueError('research_merge_requires_review')
+            return values
+        old = indexed(original)
+        left, right = indexed(reviewed[name]), indexed(upstream[name])
+        if any(left.get(k) != v or right.get(k) != v for k,v in old.items()):
+            raise ValueError('research_merge_requires_review')
+        union = dict(old)
+        # Main ordering/records first; identical additions are idempotent.
+        for row in upstream[name]+reviewed[name]:
+            if row['id'] in union and union[row['id']] != row:
+                raise ValueError('research_merge_requires_review')
+            union[row['id']] = row
+        result[name] = list(union.values())
+    return result
+
+
 def refresh_publication_base(worktree, expected_commit):
     """Merge current main into our exclusive, clean publication branch.
 
-    Only derived inventory conflicts are rebuilt automatically. Conflicts in
-    research, rules or source remain intact for review. A changed head must pass
+    Derived inventories are rebuilt; unchanged research records may receive
+    independent additions. Edits, rules or source conflicts remain for review. A changed head must pass
     every CI check again before it can be merged.
     """
     worktree = Path(worktree)
@@ -64,15 +99,27 @@ def refresh_publication_base(worktree, expected_commit):
         return expected_commit
     result=run(['git','merge','--no-commit','--no-ff','origin/main'],worktree,check=False)
     derived={'framework/repository_manifest.json','docs/REPOSITORY_REGISTER.md'}
+    resolved=set()
     if result.returncode:
         conflicts=set(run(['git','diff','--name-only','--diff-filter=U'],worktree).stdout.splitlines())
-        if not conflicts or not conflicts <= derived:
+        research='data/research_knowledge.json'
+        if not conflicts or not conflicts <= derived | {research}:
             raise ValueError('publication_non_inventory_conflict_preserved')
+        if research in conflicts:
+            try:
+                versions=[json.loads(run(['git','show',f':{stage}:'+research],worktree).stdout)
+                          for stage in (1,2,3)]
+                merged=merge_appended_research(*versions)
+            except (ValueError, KeyError, TypeError) as error:
+                raise ValueError('publication_non_inventory_conflict_preserved') from error
+            (worktree/research).write_text(json.dumps(merged,ensure_ascii=False,indent=2)+'\n')
+            resolved.add(research)
         for name in conflicts:
+            if name==research:continue
             (worktree/name).write_text(run(['git','show','origin/main:'+name],worktree).stdout)
     for args in (['governance','--refresh'],['governance','--check'],['validate','--strict'],['registry']):
         run([sys.executable,'manage.py',*args],worktree)
-    run(['git','add',*sorted(derived)],worktree)
+    run(['git','add',*sorted(derived | resolved)],worktree)
     run(['git','commit','-m','Refresh verified research publication against current main'],worktree)
     return run(['git','rev-parse','HEAD'],worktree).stdout.strip()
 
