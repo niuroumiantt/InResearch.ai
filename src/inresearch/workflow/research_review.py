@@ -324,7 +324,7 @@ class ReviewStore:
         self.db.commit()
         return dict(row) if row else None
 
-    def packet(self, root, batch):
+    def packet(self, root, batch, *, include_adopted=False):
         conn = ro(self.data/'catalog/catalog.sqlite')
         doc = dict(conn.execute('SELECT * FROM current_readings WHERE doc_id=?', (batch['doc_id'],)).fetchone())
         conn.close()
@@ -377,7 +377,7 @@ class ReviewStore:
         adopted={cid for s in read_json(root/'data/research_knowledge.json')['statements']
                  if s.get('acceptance')=='adopted' for cid in s.get('source_candidate_ids',[])}
         for cid in json.loads(batch['candidate_ids']):
-            if cid in adopted:
+            if cid in adopted and not include_adopted:
                 unsupported.append({'id':cid,'state':'already_adopted','reason':'already in formal source table'})
                 continue
             c = selected[cid]
@@ -716,6 +716,30 @@ def verify_audit(bundle, directory):
     return True
 
 
+def verify_source_packet(store, root, batch_id, bundle):
+    """Compare the sealed source, independently of later adoption routing.
+
+    An already-published candidate still belongs to its immutable audit packet.
+    Discovery may omit it from new work, but publication verification must not.
+    The original/report seals, native quotations and matching audit still apply.
+    """
+    row = store.db.execute('SELECT * FROM batches WHERE id=?', (batch_id,)).fetchone()
+    if not row:
+        raise ValueError('review_batch_missing')
+    current = store.packet(root, dict(row), include_adopted=True)
+    current['research_context'] = bundle['packet']['research_context']
+    if 'demand_matching' in bundle['packet']:
+        directory = store.directory_for(batch_id)/bundle['attempt']
+        matching = read_json(directory/'matching-request.json')
+        apply_matches(root, current, json.loads(matching['user']),
+                      read_json(directory/'matching-response.json'))
+    fields = [k for k in ('document', 'items', 'original_importance', 'coverage', 'native_pages')
+              if current[k] != bundle['packet'][k]]
+    if fields:
+        raise ValueError('source_report_changed: '+','.join(fields))
+    return current
+
+
 def promote(root, bundle, audit_directory):
     """Curated append-only source write. No GW, facts, answers or old conclusions."""
     root = Path(root)
@@ -861,15 +885,7 @@ def main():
         directory = store.directory_for(args.batch_id)
         bundle = read_json(directory/'bundle.json')
         verify_audit(bundle,directory/bundle['attempt'])
-        # Current source binding checked anew, separately from model audit.
-        row = store.db.execute('SELECT * FROM batches WHERE id=?',(args.batch_id,)).fetchone()
-        current = store.packet(args.root,dict(row))
-        current['research_context']=bundle['packet']['research_context']
-        if 'demand_matching' in bundle['packet']:
-            matching=read_json(directory/bundle['attempt']/'matching-request.json')
-            apply_matches(args.root,current,json.loads(matching['user']),read_json(directory/bundle['attempt']/'matching-response.json'))
-        if any(current[k]!=bundle['packet'][k] for k in ('document','items','original_importance','coverage','native_pages')):
-            raise ValueError('source_report_changed')
+        current = verify_source_packet(store, args.root, args.batch_id, bundle)
         print(encoded({'verified':True,'bundle_sha256':digest_file(directory/'bundle.json'),
                        'attempt':bundle['attempt'],'batch_id':args.batch_id,
                        'context_current':current['context_sha256']==bundle['packet']['context_sha256']}))
