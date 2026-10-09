@@ -685,7 +685,12 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
         new = copy.deepcopy(payload); new['generated'] = self.payload(seconds=2)['generated']
         new['reader']['acquisition']['news_feed']['items'][0]['title_zh'] = 'new'
         self.assertEqual(self.post(new)[0], 200)
-        for old in (payload, new): self.assertEqual(self.post(old)[0], 409)
+        self.assertEqual(self.post(payload)[0], 409)
+        before_replay = self.snapshot_path.read_bytes()
+        code, replay = self.post(new)
+        self.assertEqual(code, 200)
+        self.assertTrue(replay['replayed'])
+        self.assertEqual(self.snapshot_path.read_bytes(), before_replay)
         news = self.request('GET', '/api/news')[1]
         self.assertFalse(news['reader']['stale'])
         self.assertEqual(news['feed']['items'][0]['title_zh'], 'new')
@@ -823,8 +828,13 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
         replacement['knowledge']['answers'][0]['question_id'] = 'M02-Q01'
         self.assertEqual(self.post(replacement)[0], 200)
         current = self.snapshot_path.read_bytes()
-        for payload in (first, replacement):
-            self.assertEqual(self.post(payload)[0], 409)
+        self.assertEqual(self.post(first)[0], 409)
+        code, replay = self.post(replacement)
+        self.assertEqual(code, 200)
+        self.assertTrue(replay['replayed'])
+        conflicting = copy.deepcopy(replacement)
+        conflicting['knowledge']['answers'][0]['question_id'] = 'M01-Q01'
+        self.assertEqual(self.post(conflicting)[0], 409)
         with patch.object(research, 'current_tasks', side_effect=OSError('temporary read failure')):
             self.assertEqual(self.request('GET', '/api/research-summary')[0], 503)
         code, new = self.request('GET', '/api/research-summary')

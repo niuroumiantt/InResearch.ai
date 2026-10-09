@@ -1,12 +1,13 @@
-/* The serial core entry and both CI shards use one exhaustive suite list. */
+/* Serial core and CI shards share one exhaustive suite list. */
 const defaults = ['ops_dashboard', 'industry', 'repository_pages', 'supply', 'nvidia_pilot', 'product_catalog', 'company_page', 'company_window', 'company_catalog_map', 'catalog_materials', 'compute_catalog', 'ui_skin', 'datacenter_cost', 'datacenter_economics', 'datacenter_tco', 'datacenter_news',
   'url_rendering', 'research_delivery', 'auth_appearance', 'research_summary', 'part_dossier', 'technical_atlas', 'server_assembly', 'server_plan', 'rack_assembly', 'rack_atlas', 'rack_exploded', 'rack_exploded_atlas', 'dashboard', 'scene_bootstrap', 'scene_framing', 'scene_resources', 'scene_atlas', 'model_assets'];
 const core = defaults.filter(s => s !== 'model_assets');
 const dossierScenes = ['/bom3d.html?p=server', '/rack3d.html?node=part:server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm', '/rack3d.html?node=part:cpu', '/rack3d.html?node=part:dram', '/rack3d.html?node=part:nic', '/rack3d.html?node=part:psu', '/rack3d.html?node=part:server-fan', '/rack3d.html?node=part:coldplate'];
-// Separate the two costly software-rendered dossiers while alternating the
-// remaining cases. No case, density or per-case deadline is removed.
+// Isolate expensive software-rendered suites so their serial total cannot
+// exhaust one CI job. Preserve every scene, density and per-case deadline.
 const third = ['part_dossier'];
-const remaining = core.filter(s => !third.includes(s));
+const isolated = ['server_assembly', 'rack_assembly', 'rack_exploded', 'scene_atlas'];
+const remaining = core.filter(s => !third.includes(s) && !isolated.includes(s));
 const first = remaining.filter((s, i) => s === 'scene_resources' || (i % 2 === 0 && s !== 'scene_atlas'));
 const second = remaining.filter(s => !first.includes(s));
 function selectSuites(requested) {

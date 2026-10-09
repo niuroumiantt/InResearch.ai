@@ -480,8 +480,7 @@ class Reader:
         except (OSError, ValueError, KeyError, TypeError): fast = []
         with self.transaction():
             wait = self.conn.execute("SELECT value FROM meta WHERE key='model_wait_until'").fetchone()
-            if wait and float(wait[0]) > self.clock():
-                return None
+            model_waiting = bool(wait and float(wait[0]) > self.clock())
             n = int(self.conn.execute("SELECT value FROM meta WHERE key='dispatch_count'").fetchone()[0])
             # Every fourth dispatch serves the oldest eligible job, independently of new priorities.
             order = "j.created,j.doc_id,j.chunk,j.job_id" if n % 4 == 0 else "d.priority DESC,j.created,j.doc_id,j.chunk,j.job_id"
@@ -491,6 +490,10 @@ class Reader:
             # while holding the writer lock. Both keys make each lookup bounded.
             base = "SELECT j.* FROM jobs j JOIN reading_runs d ON d.doc_id=j.doc_id AND d.revision_id=j.revision_id JOIN documents original ON original.doc_id=d.doc_id WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed','superseded','rejected') AND d.priority>=?"
             params = (self.clock(), self.claim_min_priority)
+            # Receipt verifies and seals existing artifacts without inference.
+            # An unavailable provider must not hold these completed readings.
+            if model_waiting:
+                base += " AND j.stage='receipt'"
             if self.document_scope:
                 base += " AND original.doc_id IN (SELECT value FROM json_each(?))"
                 params += (encoded(self.document_scope.ids()),)
@@ -651,14 +654,15 @@ class Reader:
         code = error.code if isinstance(error, ReaderError) else type(error).__name__
         if isinstance(error, Deferred):
             remote_wait = code in {'model_quota_wait','model_relay_unavailable'}
+            relay_busy = code == 'model_relay_busy'
             checkpoint = code == 'ocr_checkpoint_yield'
-            delay = 1 if checkpoint else (900 if code=='model_quota_wait' else 60) if remote_wait else self.ocr_defer_seconds
+            delay = 1 if checkpoint else 10 if relay_busy else (900 if code=='model_quota_wait' else 60) if remote_wait else self.ocr_defer_seconds
             with self.transaction():
                 cur = self.conn.execute("UPDATE jobs SET state='pending',attempts=attempts-1,available=?,error_code=? WHERE job_id=? AND state='running' AND attempts=?",
                                         (self.clock() + delay, code, job["job_id"], job["attempts"]))
                 if cur.rowcount != 1:
                     raise IntegrityError()
-                self.conn.execute("UPDATE reading_runs SET state='queued',priority=?,error_code=?,updated=? WHERE revision_id=?", (doc['priority'] if remote_wait or checkpoint else OCR_DEFERRED_PRIORITY, code, self.clock(), doc["revision_id"]))
+                self.conn.execute("UPDATE reading_runs SET state='queued',priority=?,error_code=?,updated=? WHERE revision_id=?", (doc['priority'] if remote_wait or relay_busy or checkpoint else OCR_DEFERRED_PRIORITY, code, self.clock(), doc["revision_id"]))
                 if remote_wait:
                     self.conn.execute("INSERT OR REPLACE INTO meta VALUES ('model_wait_until',?)",(str(self.clock()+delay),))
                     self.conn.execute("INSERT OR REPLACE INTO meta VALUES ('model_wait_reason',?)",(code,))

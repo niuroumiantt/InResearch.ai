@@ -122,7 +122,12 @@ class CommandFlows(unittest.TestCase):
         self.assertEqual(invoke('receive-snapshot', payload)[0], 0)
         destination = self.root/'data/research_runtime.json'
         first = destination.read_bytes()
-        self.assertEqual(invoke('receive-snapshot', payload)[1]['status'], 409)
+        replay = invoke('receive-snapshot', payload)
+        self.assertEqual(replay[0], 0)
+        self.assertTrue(replay[1]['replayed'])
+        self.assertEqual(destination.read_bytes(), first)
+        conflicting = {**payload, 'knowledge': {**knowledge, 'documents': [complete_document()]}}
+        self.assertEqual(invoke('receive-snapshot', conflicting)[1]['status'], 409)
         self.assertEqual(destination.read_bytes(), first)
         newer = {**payload, 'generated': '2026-09-14T00:00:01+00:00',
                  'knowledge': {**knowledge, 'documents': [complete_document()]}}
