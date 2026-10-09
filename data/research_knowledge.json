@@ -3516,6 +3516,62 @@
       "status": "candidate",
       "stored_path": "originals/2d/2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c/The Manos The Mythos The Legendos.pdf",
       "title": "The Manos, The Mythos, The Legendos"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "coverage": {
+        "characters_read": 7157,
+        "characters_total": 7157,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "library_path": "library/by-node/part-bess/2026_DCD_Amazon signs first APAC battery storage tolling deal wi__2533958feb827909.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:bess",
+        "site:grid"
+      ],
+      "question_ids": [
+        "OBJ-bess-interfaces",
+        "OBJ-bess-performance",
+        "OBJ-bess-supply",
+        "OBJ-grid-interfaces"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-1ede36cd327844469ce9c0050c8fb0da",
+      "report_sha256": "e3aee547454d162750255ead6a171e8cb9398cde84d84fcf2dccd147bb354de6",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+        "url": "https://www.datacenterdynamics.com/en/news/amazon-signs-first-apac-battery-storage-tolling-deal-with-anza-power-in-victoria-australia/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/amazon-signs-first-apac-battery-storage-tolling-deal-with-anza-power-in-victoria-australia/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/25/2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a/dcd-2533958feb827909-Amazon signs first APAC battery storage tolling deal with Anza Po.html",
+      "title": "Amazon signs first APAC battery storage tolling deal with Anza Power in Victoria, Australia"
     }
   ],
   "evidence": [
@@ -24129,6 +24185,92 @@
           }
         },
         "batch_id": "1d59cd02ea70d938d78f16ee2da8c0c17188efde11e6c599c98c8017599d4b01"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a5fc8fd8c1b1edaccc88e35a092f800da4d766a8c7c33e1b45c39bf2e0b2262d",
+      "document_id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "id": "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:bess",
+        "actor:amazon"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-bess-supply"
+      ],
+      "quote": "the two firms inked five solar-plus-battery storage Power Purchase Agreements (PPAs) with Anza, as part of nine deals it announced in Australia for approximately 430MW of power.",
+      "reading_revision_id": "rev-1ede36cd327844469ce9c0050c8fb0da",
+      "source_sha256": "2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:16:42+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5。连续引文及原文相邻语境支持交易参与方、光伏与储能组合采购形式及规模口径，实质贡献当前BESS供应与价值形成工单中的合同和供给方线索。无敏感、真实冲突、替换或其他A条件，符合B级局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-bess-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 70.139,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ff771dbfa5af39170990854afb0a3716e5064e6f659d061df4fdd3d0760763fc",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 69248,
+            "input_tokens": 69523,
+            "output_tokens": 967,
+            "reasoning_output_tokens": 0
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.832,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5e265c06e99554d14d23ad818cce11dea23f7d9bbb0e915f52b62b5bf6a5c67b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 69940,
+              "output_tokens": 427,
+              "reasoning_output_tokens": 127
+            }
+          }
+        },
+        "batch_id": "db08c9bdbd3f2c806765ab1ba592d216785e66f5af8016b1cb3851280d2d1a3a"
       }
     }
   ],
@@ -46346,6 +46488,107 @@
         "request_sha256": "2963198f82d566ce95fbdd3bcb2d9e9f0cde44ca11e8f39dc65fbca91f7bb39d"
       },
       "object_mapping_check": "彩色块代表算法中的token表示，不是服务器、GPU、内存或数据中心结构部件。原文未建立本条与root或IT基础设施对象的直接范围关系，故不继承root标签；所选证据采用空对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "evidence_ids": [
+        "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:4cba9dd5fe5add26676dcd27",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:bess",
+        "actor:amazon"
+      ],
+      "question_ids": [
+        "OBJ-bess-supply"
+      ],
+      "reading_revision_id": "rev-1ede36cd327844469ce9c0050c8fb0da",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在原文标注2026年9月3日的报道中回顾称，Amazon作为电力采购方在4月与Anza签署五份光伏加电池储能购电协议（PPA）；这些协议属于Amazon在澳大利亚宣布的九项、合计约430MW电力交易。原文未明示该4月的年份；约430MW是九项交易的合计电力规模，不能据此认定五份PPA的储能功率。此处保留为该报道的签约陈述，未独立核验交付或投运状态。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:16:42+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5。连续引文及原文相邻语境支持交易参与方、光伏与储能组合采购形式及规模口径，实质贡献当前BESS供应与价值形成工单中的合同和供给方线索。无敏感、真实冲突、替换或其他A条件，符合B级局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-bess-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 70.139,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ff771dbfa5af39170990854afb0a3716e5064e6f659d061df4fdd3d0760763fc",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 69248,
+            "input_tokens": 69523,
+            "output_tokens": 967,
+            "reasoning_output_tokens": 0
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.832,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5e265c06e99554d14d23ad818cce11dea23f7d9bbb0e915f52b62b5bf6a5c67b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 69940,
+              "output_tokens": 427,
+              "reasoning_output_tokens": 127
+            }
+          }
+        },
+        "batch_id": "db08c9bdbd3f2c806765ab1ba592d216785e66f5af8016b1cb3851280d2d1a3a"
+      },
+      "source_candidate_ids": [
+        "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:6"
+      ],
+      "limitations": "未提供五份PPA的项目清单、各项目储能MW/MWh、设备型号、制造商、供应链分工、合同期限、交期、付款金额或生命周期成本。不能将签约视为已交付或已投运，也不能将五份PPA与本文另述的Bairnsdale独立储能租用协议混为同一交易。所链接的4月报道及合同原件未在本包中核验。",
+      "conflict_check": "当前采用陈述涉及BESS性能及Wärtsilä可能捆绑供给，与本项澳大利亚PPA交易无相反结论。所供legacy事实涉及Amazon资本开支、IT设备、数据中心容量及可再生能源比例；澳大利亚项目记录涉及AWS园区和配套光伏，未确认或否定这五份PPA。未发现同一交易的真实冲突或可认定重复的canonical记录；检查范围限于所供材料。",
+      "gap_dependency_check": "本项仅贡献OBJ-bess-supply的采购合同形式和交易对手线索，不足以回答供应链分工、交期及生命周期成本。仍需五份PPA对应项目、合同原件、设备供给与交付记录及成本边界证据，该问题保持开放；不改变既有结论、研究骨架或容量汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "db08c9bdbd3f2c806765ab1ba592d216785e66f5af8016b1cb3851280d2d1a3a",
+        "source_report_sha256": "e3aee547454d162750255ead6a171e8cb9398cde84d84fcf2dccd147bb354de6",
+        "request_sha256": "dfb307e24232d1a7d4bc80c6c7dc023a8965a44c72c142366148ff21af955967"
+      },
+      "object_mapping_check": "独立按声明范围复核：光伏加电池储能PPA明确涉及电力系统下“发电与储能”链的储能系统，映射part:bess；Amazon明确为交易采购参与方，映射actor:amazon。Anza没有允许的主体ID，不新增映射。本项未说明并网配额、排队或并网协议，不映射site:grid；电力储能不映射IT存储，也不扩展到整座数据中心或其他基础设施。"
     }
   ],
   "answers": [],
