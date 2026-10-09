@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.26",
+  "version": "2026.10.09.28",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -315,8 +315,8 @@
       "supersedes": [
         "operations-legacy"
       ],
-      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。；2026-09-27 用户采用 OCR 两步降级：救援双读 1.3/512，仍失败的页作显式缺页，报告列出，每份至多 max(1, 页数÷20)。；2026-09-27 用户采用：新增 READER_CLAIM_MIN_PRIORITY 认领下限，Spark 设 7 只读重点文档，其余暂停；进度页只在阻塞/失败时显示错误码并列出暂停份数。；2026-09-28 用户采用发布 M4 深读结果：Spark 发布时叠加外部快照目录中 Spark 未完整读过的文档，Spark 自己的完整阅读优先。；2026-09-28 外部快照按当前注册表过滤 ID；发布被拒时记录接收端原因（Spark 停在图谱 2.1.2、网站 2.2.0 导致 400）。；2026-09-28 快照 gzip 传输：网络上限 64 MiB 不变，解压上限 192 MiB，接收端兼容未压缩旧格式。；2026-09-28 用户采用：接收端对图谱版本落后的快照按现行注册表过滤 ID 后接收并标 registry_lag，不再整批拒收（#276 升 2.2.1 后发布再次中断）。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。；2026-10-07默认正文模式/纯图片用户处理、派生TXT留存、范围内未完成版本迁移和网站实际回执验收。；2026-10-07管理后台替代按钮日志为自动运行dashboard，当前版本/文档任务分母、排队定位、阻塞分类、完整日志与未知/过期边界。；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08管理后台实际加载超时修复：状态投影移除大明细并压缩，异步首屏与折叠按需加载，中文超时与浏览器慢样式恢复验收。；公网冷浏览器追加核验确认字体下载竞争：状态优先且首次结束后才启用共享字体，最终全站字体不变。；容器观测到监听连接丢弃，扩容HTTP待接队列并增加真实20连接突发验收。；公网刷新仍受远程字体下载影响，在管理后台范围替代延后下载：仅复用同源缓存原字体，无缓存系统回退，数据读取不与字库争用连接。其他页面/字库保持。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09明确用户授权的本地验收恢复实例：原CI真实失败保留，精确审核head/原包/attempt关联、维护一致备份/实际新PID与status、来源同步→HTTPS支持闭包→Spark published分别实录；旧ready5与专题23正式0分开，不改自动CI逻辑/共享scope/模型/C3。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。",
-      "implementation_revision": "2026.10.09.26",
+      "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。；2026-09-27 用户采用 OCR 两步降级：救援双读 1.3/512，仍失败的页作显式缺页，报告列出，每份至多 max(1, 页数÷20)。；2026-09-27 用户采用：新增 READER_CLAIM_MIN_PRIORITY 认领下限，Spark 设 7 只读重点文档，其余暂停；进度页只在阻塞/失败时显示错误码并列出暂停份数。；2026-09-28 用户采用发布 M4 深读结果：Spark 发布时叠加外部快照目录中 Spark 未完整读过的文档，Spark 自己的完整阅读优先。；2026-09-28 外部快照按当前注册表过滤 ID；发布被拒时记录接收端原因（Spark 停在图谱 2.1.2、网站 2.2.0 导致 400）。；2026-09-28 快照 gzip 传输：网络上限 64 MiB 不变，解压上限 192 MiB，接收端兼容未压缩旧格式。；2026-09-28 用户采用：接收端对图谱版本落后的快照按现行注册表过滤 ID 后接收并标 registry_lag，不再整批拒收（#276 升 2.2.1 后发布再次中断）。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。；2026-10-07默认正文模式/纯图片用户处理、派生TXT留存、范围内未完成版本迁移和网站实际回执验收。；2026-10-07管理后台替代按钮日志为自动运行dashboard，当前版本/文档任务分母、排队定位、阻塞分类、完整日志与未知/过期边界。；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08管理后台实际加载超时修复：状态投影移除大明细并压缩，异步首屏与折叠按需加载，中文超时与浏览器慢样式恢复验收。；公网冷浏览器追加核验确认字体下载竞争：状态优先且首次结束后才启用共享字体，最终全站字体不变。；容器观测到监听连接丢弃，扩容HTTP待接队列并增加真实20连接突发验收。；公网刷新仍受远程字体下载影响，在管理后台范围替代延后下载：仅复用同源缓存原字体，无缓存系统回退，数据读取不与字库争用连接。其他页面/字库保持。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09明确用户授权的本地验收恢复实例：原CI真实失败保留，精确审核head/原包/attempt关联、维护一致备份/实际新PID与status、来源同步→HTTPS支持闭包→Spark published分别实录；旧ready5与专题23正式0分开，不改自动CI逻辑/共享scope/模型/C3。；2026-10-09发布阻塞：core_c逐一保留10个三维档案场景及全部断言/300秒期限，所有matrix仍聚合；发布错误保留退出码与显式stdout ERROR，旧审计/工作树留存。；失败发表包在原来源/上下文/head有效且工作树干净时取得新批准基线，保存原失败和前后head，新head仍等全部CI。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。",
+      "implementation_revision": "2026.10.09.27",
       "change_reason": "2026-10-06 user-authorized event review → curated project → published receipt; Spark indefinite preservation; received/queued never imply formal adoption."
     },
     {
@@ -2301,12 +2301,23 @@
         "tests/browser_suites.cjs",
         "tests/unit/test_browser_shards.py",
         "framework/interface_manifest.json",
-        "docs/design/technical-atlas/TA-11/publication-20261009.json"
+        "docs/design/technical-atlas/TA-11/publication-20261009.json",
+        "web/assets/technical-atlas/server-plan-v1.png",
+        "web/assets/technical-atlas/server-plan-v1.svg",
+        "web/assets/technical-atlas/server-plan-v1-preview.svg",
+        "web/components/server-plan-generator.js",
+        "web/pages/server-plan.html",
+        "tests/server_plan.cjs",
+        "docs/design/technical-atlas/TA-12/labels-v1.json",
+        "docs/design/technical-atlas/TA-12/render-spec-v1.md",
+        "docs/design/technical-atlas/TA-12/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-12/preparation-v1.json",
+        "docs/design/technical-atlas/TA-12/mobile-fix-20261009.json"
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.09.24",
-      "change_reason": "TA-11已实际发布：PR464首发31dcd368，AWS06:09:38Z同源码/应用/精确镜像64bb2649 healthy/.23；真实公网六源码SHA、八视图逐张目检、12标签原PNG SHA、完整SVG/PNG下载和独立x55整机装配/顶部完整1129 inspector、实际子部件点选/当前SVG、手动镜头/手机明暗/资源释放/旧机柜入口通过。主计划11/35、补充4/4，下一TA-12。三次原图拒绝及漏子类别/底视问题和本地accepted保留为历史，示例计数/未知边界保持；新CI实际时点状态与用户自主合并授权分开，Spark只读较旧源码/两服务，未改服务/范围。保留PR453最新五条研究及.22来源/长文/scope/CI，画法1.7不变。"
+      "implementation_revision": "2026.10.09.28",
+      "change_reason": "TA12新source CI实际core_b失败定位360px共享顶栏第三行：本页nav作用域过宽。收窄为main>nav、补实际360px≤90px断言；完整32页ui_skin与正交server_plan本地通过。保留失败日志/首发AWS与公网观察，源PNG/标注/几何不改；原生重渲染采用跨平台像素差验证并保留精确投影/17原位置/遮挡/资产SHA，未把编码变化当技术错误。待修后公网验收，published仍11/35。"
     },
     {
       "id": "interface-repository-daily-20261008",
@@ -2497,7 +2508,7 @@
       "supersedes": [
         "interface-reader-company-20261008"
       ],
-      "reason": "2026-10-08 用户要求系统自行每日北京时间0:00刷新：十一仓库组织图、HTTP/CI/六机检测与原时点分开；常驻macmini Python/系统cron原子发布私有运行投影，不依赖Codex/对话，无每日PR。取代手动四仓库同步及本轮未采用的heartbeat；用户已删suanming/identiry不建入口，本地资料保留。；继承已合并TA-02收尾：公开可选产品登记未知不阻塞、导出文字/DPR及已部署回执；图册实际发布保留。；完整CI继承图册双密度矩阵，分项运行保持全部断言和原限额。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；首次跨Mac/Linux发布发现AppleDouble元数据，显式关闭BSD tar附带文件，17载体完整性/内容摘要验证不变。",
+      "reason": "2026-10-08 用户要求系统自行每日北京时间0:00刷新：十一仓库组织图、HTTP/CI/六机检测与原时点分开；常驻macmini Python/系统cron原子发布私有运行投影，不依赖Codex/对话，无每日PR。取代手动四仓库同步及本轮未采用的heartbeat；用户已删suanming/identiry不建入口，本地资料保留。；继承已合并TA-02收尾：公开可选产品登记未知不阻塞、导出文字/DPR及已部署回执；图册实际发布保留。；完整CI继承图册双密度矩阵，分项运行保持全部断言和原限额。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；首次跨Mac/Linux发布发现AppleDouble元数据，显式关闭BSD tar附带文件，17载体完整性/内容摘要验证不变。；截断的匹配窗口不再隐藏已收到的完整阅读交付，候选权限及私有路径边界保留。",
       "implementation_revision": "2026-10-08 homepage technical atlas, hover and coordinate-fixed marker size",
       "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data.；补齐此前未发布的首页地图需求：技术图册、悬停与固定尺寸地理锚定。"
     },

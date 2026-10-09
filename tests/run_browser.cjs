@@ -7,7 +7,7 @@ const {createInterface} = require('node:readline');
 const root = resolve(__dirname, '..');
 const directory = mkdtempSync(join(tmpdir(), 'inresearch-browser-'));
 const suites = process.argv.slice(2);
-const {defaults, selectSuites} = require('./browser_suites.cjs');
+const {defaults, selectSuites, suiteScenarios} = require('./browser_suites.cjs');
 const environment = {...process.env, INRESEARCH_INTAKE_ROOT: directory, INRESEARCH_MARKET_ENABLED: '0'};
 const server = spawn(process.env.PYTHON || 'python3', ['-u', '-c',
   "import sys,os,json,secrets; from pathlib import Path; sys.path.insert(0,'src'); from inresearch.interfaces import http as serve,auth; directory=Path(os.environ['INRESEARCH_INTAKE_ROOT']); auth.USERS_FILE=directory/'browser-users.json'; auth.SECRET_FILE=directory/'.browser-secret'; auth.add_user('browser-admin',secrets.token_urlsafe(32),'admin'); s=serve.ThreadingHTTPServer(('127.0.0.1',0),serve.Handler); print(json.dumps({'port':s.server_port,'admin_cookie':auth.make_cookie('browser-admin').split(';')[0]}),flush=True); s.serve_forever()"],
@@ -32,7 +32,7 @@ const ready = new Promise((resolve, reject) => {
       if (!defaults.includes(suite)) throw Error('Unknown suite: ' + suite);
       // Software WebGL at DPR 2 has four times the pixels. Give each density
       // its own existing per-case deadline while retaining the full matrix.
-      for(const scenario of suite==='model_assets'?['bom3d','rack3d','compare']:suite==='scene_atlas'?['1','2']:[null]) {
+      for(const scenario of suiteScenarios(suite)) {
       const label=suite+(scenario?':'+scenario:''),started=Date.now();
       console.log('START '+label);
       await new Promise((resolve, reject) => {
