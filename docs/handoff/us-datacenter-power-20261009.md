@@ -31,3 +31,5 @@
 继续审稿直接修改同一article.md、对应图及HTML；用户未要求本轮发布。微信实粘与研究正式采用按实际操作回执分别验收，不恢复已结案审批或新增每批确认。无需以/clear为交付前置条件。
 
 第四版规则/成品源码已推送草稿PR444：https://github.com/niuroumiantt/InResearch.ai/pull/444；未合并或部署。真实研究纯文本在research/research.txt，下载包使用同一实际路径。
+
+已整合同期origin/main 8a08600a：保留TA-08真实发布回执及C3增补；长文注册版本更新2026.10.09.12，不覆盖其他主题。
