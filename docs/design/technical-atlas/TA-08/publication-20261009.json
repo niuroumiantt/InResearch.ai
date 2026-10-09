@@ -1,0 +1,367 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-08",
+  "object_id": "part:psu",
+  "first_published_revision": "b5e669abe744d0bf29a6c5b00bb002bc9f48084a",
+  "pull_request": "https://github.com/niuroumiantt/InResearch.ai/pull/439",
+  "source_head": "0e3d393cb6b460bbfaf45e534aef1f6d1eaf5327",
+  "merged_at": "2026-10-09T03:20:48Z",
+  "verified_at": "2026-10-09T03:33:31.627126+00:00",
+  "acceptance_record": "docs/design/technical-atlas/TA-08/acceptance-v1.json",
+  "ci": {
+    "run_id": 37878788421,
+    "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37878788421",
+    "head": "0e3d393cb6b460bbfaf45e534aef1f6d1eaf5327",
+    "status": "completed",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "validate",
+        "conclusion": "success",
+        "completed_at": "2026-10-09T03:22:19Z"
+      },
+      {
+        "name": "browser (model_assets)",
+        "conclusion": "success",
+        "completed_at": "2026-10-09T03:22:17Z"
+      },
+      {
+        "name": "storage-container",
+        "conclusion": "success",
+        "completed_at": "2026-10-09T03:21:00Z"
+      },
+      {
+        "name": "browser (core)",
+        "conclusion": "success",
+        "completed_at": "2026-10-09T03:29:29Z"
+      }
+    ],
+    "authorization": "Human explicitly authorized this continuing task to merge/deploy after complete local acceptance without waiting for CI, then reported budget updated. Source PR CI started automatically and all four jobs subsequently succeeded; no historical run was retriggered or inherited as a waiver.",
+    "merge_did_not_wait_for_ci": true,
+    "acceptance_ci_field": "Earlier local-stage not_checked_or_waited field remains historical; this observed source-head run is the actual final CI result."
+  },
+  "local_pre_release_validation": {
+    "rebased_main_includes": "01557f9066c836fb23449a916dbe22945978bd07 (PR436 parser) and retained concurrent research changes",
+    "technical_atlas_browser": "passed, 14 seconds, SSD and eleven accepted object entries including PSU",
+    "part_dossier_browser": "passed, 56 seconds, PSU original 3D canvas and existing interaction/resource cases",
+    "related_unit_tests": "21 passed (visual atlas, interface system, governance)",
+    "strict_validation": "passed, zero warnings",
+    "registry": "Research v3.0.0; 353 objects and 458 questions, references valid",
+    "governance": "source .10 refresh/check passed, 1512 registered files; partial semantic scope explicit",
+    "visual_review": "Eight local and eight public screenshots individually viewed; independent review passed after fan leader routing correction. Master pixels were preserved."
+  },
+  "aws": {
+    "source_revision": "b5e669abe744d0bf29a6c5b00bb002bc9f48084a",
+    "applied_revision": "b5e669abe744d0bf29a6c5b00bb002bc9f48084a",
+    "configured_image": "inresearch-app:b5e669abe744d0bf29a6c5b00bb002bc9f48084a",
+    "image": "sha256:6e6325bbdccbb3ca915b398cca2abc08d04f51393049fd15ceb52a839cfe8f77",
+    "status": "HEALTHY",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "deployment": "Existing project-scoped inresearch-only-deploy.timer/service automatically applied the merged main; journal successful completion 2026-10-09T03:22:29Z. Actual scoped script preserves other services and verifies exact image ID.",
+    "data_migration": false,
+    "observation_window_utc": [
+      "2026-10-09T03:30:19Z",
+      "2026-10-09T03:33:31.627126+00:00"
+    ]
+  },
+  "public_source_bytes": [
+    {
+      "url": "https://inresearch.ai/bom.html",
+      "bytes": 20257,
+      "sha256": "302fffcd55096e8d08365f92cacdeb4d1c993077171c676c4678f5aae250b5d8",
+      "seconds": 1.186,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/rack3d.html",
+      "bytes": 39068,
+      "sha256": "351886f7226ba3f76c068685776a4e1a46a7df82ebab06a7f0f49659d75f6b9c",
+      "seconds": 0.395,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas.js",
+      "bytes": 12809,
+      "sha256": "2bf9f8bbd50fc53f135477f9514dd25005eaee38fc65eb1943b530a996331cc9",
+      "seconds": 0.335,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas/psu-v1-preview.svg",
+      "bytes": 358798,
+      "sha256": "6a780df212590cd1a96ef97a35bb68bb57537362ca7300ec0d4db1a2930bd476",
+      "seconds": 1.346,
+      "status": 200,
+      "matches_local_source": true
+    }
+  ],
+  "browser": {
+    "observed_at": "2026-10-09T03:24:58.270Z",
+    "scope": "TA-08 actual anonymous public browser",
+    "views": [
+      {
+        "width": 1280,
+        "mode": "system",
+        "theme": "light",
+        "file": "psu-system-1280-light.png",
+        "context": "电力 → 服务器电源模块（PSU）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 1280,
+        "mode": "system",
+        "theme": "dark",
+        "file": "psu-system-1280-dark.png",
+        "context": "电力 → 服务器电源模块（PSU）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 1280,
+        "mode": "scale",
+        "theme": "light",
+        "file": "psu-scale-1280-light.png",
+        "context": "电力 → 服务器电源模块（PSU）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 1280,
+        "mode": "scale",
+        "theme": "dark",
+        "file": "psu-scale-1280-dark.png",
+        "context": "电力 → 服务器电源模块（PSU）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "system",
+        "theme": "light",
+        "file": "psu-system-390-light.png",
+        "context": "电力 → 服务器电源模块（PSU）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "system",
+        "theme": "dark",
+        "file": "psu-system-390-dark.png",
+        "context": "电力 → 服务器电源模块（PSU）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "scale",
+        "theme": "light",
+        "file": "psu-scale-390-light.png",
+        "context": "电力 → 服务器电源模块（PSU）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "scale",
+        "theme": "dark",
+        "file": "psu-scale-390-dark.png",
+        "context": "电力 → 服务器电源模块（PSU）",
+        "native": [
+          1536,
+          1024
+        ]
+      }
+    ],
+    "source_checks": [
+      {
+        "url": "/bom.html",
+        "bytes": 20257,
+        "sha256": "302fffcd55096e8d08365f92cacdeb4d1c993077171c676c4678f5aae250b5d8",
+        "seconds": 1.186
+      },
+      {
+        "url": "/rack3d.html",
+        "bytes": 39068,
+        "sha256": "351886f7226ba3f76c068685776a4e1a46a7df82ebab06a7f0f49659d75f6b9c",
+        "seconds": 0.395
+      },
+      {
+        "url": "/assets/technical-atlas.js",
+        "bytes": 12809,
+        "sha256": "2bf9f8bbd50fc53f135477f9514dd25005eaee38fc65eb1943b530a996331cc9",
+        "seconds": 0.335
+      },
+      {
+        "url": "/assets/technical-atlas/psu-v1-preview.svg",
+        "bytes": 358798,
+        "sha256": "6a780df212590cd1a96ef97a35bb68bb57537362ca7300ec0d4db1a2930bd476",
+        "seconds": 1.346
+      }
+    ],
+    "full_svg_labels": 8,
+    "embedded_master_sha256": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
+    "downloads": [
+      {
+        "file": "psu-v1.svg",
+        "bytes": 2977225,
+        "sha256": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c"
+      },
+      {
+        "file": "psu-v1.png",
+        "bytes": 2230915,
+        "sha256": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c"
+      }
+    ],
+    "psu_3d_canvas": true,
+    "page_errors": []
+  },
+  "public_actions": {
+    "entry": "https://inresearch.ai/bom.html?view=system#psu",
+    "views": "system/scale × 1280/390 viewport × light/dark; eight actual public views",
+    "correct_part_row": true,
+    "single_selected_atlas": true,
+    "full_svg_labels": 8,
+    "embedded_master": {
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2230915,
+      "sha256": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
+      "matches_original_bytes": true
+    },
+    "downloads": [
+      {
+        "file": "psu-v1.svg",
+        "bytes": 2977225,
+        "sha256": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c"
+      },
+      {
+        "file": "psu-v1.png",
+        "bytes": 2230915,
+        "sha256": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c"
+      }
+    ],
+    "dossier": {
+      "url": "https://inresearch.ai/rack3d.html?node=part:psu",
+      "canvas_count": 1,
+      "rotation_input_exercised": true,
+      "original_geometry_retained": true
+    },
+    "page_errors": []
+  },
+  "browser_evidence": [
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/browser.json",
+      "sha256": "98269677310fdba2ccf4297b74c6db79545c7d902ccd2b87de82418833bb31ac",
+      "bytes": 3247
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/psu-full-svg.png",
+      "sha256": "11fae7a88875c2bc8685a216f68a652dadf656d9dd7482841764e264f3b487f1",
+      "bytes": 1553159
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/psu-rack-dossier.png",
+      "sha256": "31a4e9ddc7c1ad83e0a3a3c5f271e0c75128f9fd5ce2e577e0e236e2811a2f0e",
+      "bytes": 110622
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/psu-scale-1280-dark.png",
+      "sha256": "94359c38072c21bc0b56b044e798574d9afbab637dc1ee8815dff7673c20dcf9",
+      "bytes": 474738
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/psu-scale-1280-light.png",
+      "sha256": "679ee879d19748c5b66cff24d45d589b50aa0823581bcae21873d6b2e1da32f6",
+      "bytes": 474536
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/psu-scale-390-dark.png",
+      "sha256": "c417e768b26eb63222fbc30d3751d53caa70de6e99e3dbc7c6b28bcd142e0c18",
+      "bytes": 123042
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/psu-scale-390-light.png",
+      "sha256": "83bb34e2a9697865ad55852f5543499e3ffd1560fe9fc9f0a885dce98f309485",
+      "bytes": 122286
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/psu-system-1280-dark.png",
+      "sha256": "0628be53a89e5aee8abe6825850ac6010dfb2dc8e760f45ebadf919c16dfb6e2",
+      "bytes": 474762
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/psu-system-1280-light.png",
+      "sha256": "635e2496c8e3eb65f956aaa672b6bd47bbef8cd04d023f20beb95563b34bef5d",
+      "bytes": 474548
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/psu-system-390-dark.png",
+      "sha256": "c95b19dc3da280220661cc3e29a57c193a3be95c726f11be70982503bcc2bbfc",
+      "bytes": 122606
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/public/psu-system-390-light.png",
+      "sha256": "0ce217353633b3023467e5b1ff438ab5cff81e3b0378405468ece0ce3b626058",
+      "bytes": 121839
+    }
+  ],
+  "spark_readonly": {
+    "observed_at": "2026-10-09T03:27:33Z",
+    "revision": "b5e669abe744d0bf29a6c5b00bb002bc9f48084a",
+    "reader": "active/running",
+    "reader_pid": 1644248,
+    "reader_started": "2026-10-09 11:27:32 CST",
+    "parser_sha256": "322b316bbc5bc0bce0c3fc4b4835b2a23c7f9d42f06c0f81ae20f17a26aaa650",
+    "observation_source": "Parent task actual Spark deployment/service observation; TA-08 agent performed no Spark deployment or restart.",
+    "research_review": "Earlier system-scope inresearch-research-review.service query returned inactive. Actual review scheduling/service state remains under parent verification; no active claim.",
+    "service_changes_by_this_task": false
+  },
+  "limits": [
+    "Generic server AC–DC exterior and output-contact inset, not an exact SKU. Power/voltage/efficiency/certification, contact counts, dimensions, compatibility, latch/fan geometry, airflow, internal topology and hot-swap conditions remain unknown.",
+    "Delta full PDF terms redirect and Dell full-page/PDF access failures are retained in preparation. Indexed official excerpts support exterior categories only.",
+    "Original psu.png is retained at its baseline SHA; existing 3D geometry has not been rebuilt.",
+    "Public browser tested anonymous atlas entries. Authenticated research contents, actual Spark material registration/C3/adoption and broad production completeness are outside this figure receipt.",
+    "Observed source/download timings are not network or performance guarantees; current lightweight preview is 358798 bytes.",
+    "Record-only receipt commit is distinct from first artwork publication revision; subsequent source/service observations are reported separately."
+  ],
+  "conversation_preview": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/psu-chat-full.png",
+    "pixels": [
+      1536,
+      1024
+    ],
+    "bytes": 1966872,
+    "sha256": "cf628c3cb7c792d97644f54d6faaecea1e1dbbbad31174379e5da2af11790423",
+    "labels": 8,
+    "actual_source": "https://inresearch.ai/assets/technical-atlas/psu-v1.svg",
+    "purpose": "Complete uncropped native SVG rendering for the user-requested in-conversation display; separately recorded from earlier 1280×900 public screenshot.",
+    "visual_check": "Actual view_image inspection: all image edges, eight text labels and leader endpoints visible; no crop. Source master/SVG unchanged."
+  },
+  "receipt_validation": {
+    "governance": ".11 refresh/check passed with 1513 files",
+    "strict_validation": "passed, 0 warnings",
+    "registry": "353 objects/458 questions, valid",
+    "unit_tests": "14 visual-atlas/governance tests passed",
+    "diff_check": "passed"
+  }
+}
