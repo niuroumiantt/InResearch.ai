@@ -22,7 +22,7 @@
 
 `sources.json`保存52条访问/线索记录，45条成功访问身份按原始字节SHA或网页工具响应SHA分别核对；受限原站链接与工具正文的身份分开，失败不算已读。`work/v3/visual-sources.json`记录地图/地理/技术来源，第四版沿用已核对图并重新选择排序，任务及人工审核见`work/v4/figure-plan.json`。
 
-实际23份submission字段与JSON Schema验证通过；候选状态、原文定位与原件身份保持。原件放本机数据目录，并单独提供research-originals.zip和visual-originals.zip，不进入Git。研究文字与正文不重复算独立证据；未执行远程导入、Reader逐页深读/C3、事实/价格/项目容量/模型采用或研究问题关闭。
+实际23份submission字段与JSON Schema验证通过；候选状态、原文定位与原件身份保持。原件放本机数据目录，并单独提供research-originals.zip和visual-originals.zip，不进入Git。研究文字与正文不重复算独立证据；本轮仅重写正文；此前真实接收与Reader登记见下方同期回执。全批深读、C3、正式事实/价格/项目容量/模型采用与研究问题关闭须后续实际回执。
 
 ## 验收与制作
 
@@ -33,3 +33,8 @@
 长文规则v2.7补充明确角度、删中庸套话与基建机制讲解；规范与实现均在独立工作树处理。旧规则v2.6已归档，前三版文字/HTML/检查与包保存在本机history/v1—v3，旧图资产仍留存。交接见docs/handoff/us-datacenter-power-20261009.md，研究反哺见docs/research/2026-10-09/us-datacenter-power/README.md。
 
 交付包仅包括当前成品、当前图源、制作/检查和未删节研究材料；原件另包，SHA见下载目录packages.json。源码PR与本地交付不代表网站上线、微信发布或数据库采用。
+
+
+## 同期研究接收回执
+
+此前第三版研究包已由另一任务实际送入Spark：23来源接收/候选匹配、23/23注册Reader；2026-10-09 11:39:55北京时间快照为完整封存1、排队22，C3未运行。输入/原件/工具响应/派生载体与安全解析器发布分别记录。正式事实、价格、项目GW、模型及研究问题状态未由本篇采用。详见docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md及checks/spark-intake-final-receipt-20261009.json等回执；此为具名时点快照，不冒充当前队列实况。

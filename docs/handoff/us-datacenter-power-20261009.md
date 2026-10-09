@@ -22,7 +22,7 @@
 
 原件：~/.local/share/inresearch.ai/geluoke-research/2026-10-09-us-datacenter-power/raw/。前三稿/包/检查保存在同数据目录history/v1—v3。原件与图像原件分别独立打包，不入Git；下载包SHA见packages.json。
 
-微信图片JPG/PNG单张<1MB，复制版约2.95MB；手机374px正文，桌面720px。最终浏览器整篇与11图复制已检；真实微信编辑器粘贴/上传/发布未执行。未执行远程数据库导入、C3、正式事实/价格/项目GW/模型采用或闭题。
+微信图片JPG/PNG单张<1MB，复制版约2.95MB；手机374px正文，桌面720px。最终浏览器整篇与11图复制已检；真实微信编辑器粘贴/上传/发布未执行。此前23份已接收并Reader登记，见下方同期快照；本轮未作C3、正式事实/价格/项目GW/模型采用或闭题。
 
 ## 源码状态与下一步
 
@@ -33,3 +33,8 @@
 第四版规则/成品源码已推送草稿PR444：https://github.com/niuroumiantt/InResearch.ai/pull/444；未合并或部署。真实研究纯文本在research/research.txt，下载包使用同一实际路径。
 
 已整合同期origin/main 8a08600a：保留TA-08真实发布回执及C3增补；长文注册版本更新2026.10.09.12，不覆盖其他主题。
+
+
+## 同期研究接收回执
+
+此前第三版研究包已由另一任务实际送入Spark：23来源接收/候选匹配、23/23注册Reader；2026-10-09 11:39:55北京时间快照为完整封存1、排队22，C3未运行。输入/原件/工具响应/派生载体与安全解析器发布分别记录。正式事实、价格、项目GW、模型及研究问题状态未由本篇采用。详见docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md及checks/spark-intake-final-receipt-20261009.json等回执；此为具名时点快照，不冒充当前队列实况。

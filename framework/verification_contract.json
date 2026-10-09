@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.12",
+  "version": "2026.10.09.13",
   "reviewed_at": "2026-10-09",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "33a132fc2113fcfee302959ed4cbed692da96a312ccaf7fee55f8280f484cdfc",
-    "framework/CURRENT.md": "a906f89e8237c47e515d1bcaeba7df4dfeb92572f63a1259e26acd28789db116",
+    "framework/CURRENT.md": "6ec31af9a77cd6e7a45784eca9c8e2011ade4da4df917151d13ff94b0af8c694",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "c900ea822d1b09d24810a369c7e663ae1a902e4bc990cbeefe5b46c3237e50f2",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "6dcafe6f65c8a24a828549f93e64486d34a1201456f4e4fd66ce525a460cb668",
+    "framework/current_state.json": "02aaa6aadcf9c39def78d89bdbebabac14923296d9d8bf91fb76710d3d706427",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -1449,7 +1449,7 @@
       "policy": "geluoke-longform-20261009-editor",
       "scope": "editorial-delivery",
       "source": "docs/geluoke/专题写作规则.md",
-      "checked_requirement": "v2.7实际人工复审：按用户约7000字要求全文重写，明确通电时间这一角度，不以中庸套话拼接观点；电源/线路/变电和长期设施成本讲清机制，必要状态/口径保留。本稿正文约7000字（当前7225含标点字符，自动范围6500—7700）、10幅对应图逐张手机目检，原件与全量研究不随公开稿删减。build/audit检查实际字数、图号、首段地图、关键标注、来源身份、上传限额；浏览器复制/布局结果绑定最终HTML SHA。治理单测只覆盖登记，不代替事实语义、编辑质量或平台验收。",
+      "checked_requirement": "v2.7实际人工复审：按用户约7000字要求全文重写，明确通电时间这一角度，不以中庸套话拼接观点；电源/线路/变电和长期设施成本讲清机制，必要状态/口径保留。本稿正文约7000字（当前7225含标点字符，自动范围6500—7700）、10幅对应图逐张手机目检，原件与全量研究不随公开稿删减。build/audit检查实际字数、图号、首段地图、关键标注、来源身份、上传限额；浏览器复制/布局结果绑定最终HTML SHA。治理单测只覆盖登记，不代替事实语义、编辑质量或平台验收。 同期PR446已实际接收23份并Reader注册；保留全部回执、身份与11:39:55封存1/排队22快照，未将注册当全批深读或C3。",
       "tests": [
         "tests/unit/test_governance.py::GovernanceTests.test_replacement_valid_then_parallel_current_rejected",
         "tests/unit/test_governance.py::GovernanceTests.test_inventory_detects_added_and_modified_records_excludes_ignored"
@@ -1457,8 +1457,8 @@
       "not_verified": [
         "逐篇内容须独立核对；自动治理不覆盖事实语义、版权、所有原文定位或编辑质量。",
         "本篇手机/桌面与浏览器复制往返已检查；微信编辑器实粘、素材上传与发布未执行。",
-        "本篇研究包保持候选；尚未执行远程数据库导入、Reader逐页深读/C3、价格/项目正式采用或问题关闭。",
-        "原件仅在本机及独立原件zip；Git中保存派生文本、图与规则，不视作跨机器原件接收。",
+        "本篇研究输入仍保持候选；23份来源接收/匹配并Reader注册，11:39:55快照完整封存1/queued22；尚未完成本批全部深读，C3/价格/项目正式采用及问题关闭未执行。",
+        "原件/工具响应归档已按真实回执进入Spark永久incoming，20原件与3派生正文载体的blob身份已核对；Git只保存派生文本、图、规则和操作回执。来源URL保留侧车，未完整导入catalog。",
         "AI工程图为通用示意，未按特定项目施工图验证；精确几何、设备数量与比例不作事实。",
         "本次仅核对inews现有口吻代码与PR合并状态；没有将该仓库自动图表渲染器改成工程插画生成器。",
         "互联范围为依据官方图的概览重绘，未核验精确运营GIS或具体园区的接入边界；同一作者目检不是独立第三方终审。"
