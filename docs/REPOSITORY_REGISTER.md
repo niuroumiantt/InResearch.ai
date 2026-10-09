@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.42。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.44。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1720。
+在册文件：1738。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 117 |
+| 静态资源 | 120 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 321 |
+| 运行代码 | 325 |
 | 现行规范 | 15 |
-| 项目配置 | 375 |
+| 项目配置 | 383 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 156 |
-| 测试 | 158 |
+| 配套说明 | 157 |
+| 测试 | 160 |
 
 ## 在册记录集合
 
@@ -53,8 +53,8 @@
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
 | `data/research_knowledge.json` | documents | 31 |
-| `data/research_knowledge.json` | evidence | 235 |
-| `data/research_knowledge.json` | statements | 213 |
+| `data/research_knowledge.json` | evidence | 237 |
+| `data/research_knowledge.json` | statements | 215 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -291,6 +291,29 @@
 | `docs/design/technical-atlas/TA-14/preparation-v1.json` | retained_baselines | 2 |
 | `docs/design/technical-atlas/TA-14/preparation-v1.json` | sources | 2 |
 | `docs/design/technical-atlas/TA-14/publication-20261009.json` | boundaries | 7 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | related_object_ids | 1 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | technical_scope | 4 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | reviewed_differences | 4 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | unknowns | 4 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | browser_checks | 10 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | retained_failures | 8 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | artifacts | 12 |
+| `docs/design/technical-atlas/TA-15/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-15/labels-v1.json` | labels | 8 |
+| `docs/design/technical-atlas/TA-15/native-render-v1.json` | native_pixels | 2 |
+| `docs/design/technical-atlas/TA-15/native-render-v1.json` | instances | 5 |
+| `docs/design/technical-atlas/TA-15/preparation-v1.json` | object_scope | 2 |
+| `docs/design/technical-atlas/TA-15/preparation-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-15/preparation-v1.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-15/preparation-v1.json` | unknowns | 3 |
+| `docs/design/technical-atlas/TA-15/preparation-v1.json` | candidates | 2 |
+| `docs/design/technical-atlas/TA-15/preparation-v1.json` | native_versions | 7 |
+| `docs/design/technical-atlas/TA-15/publication-20261009.json` | related_object_ids | 1 |
+| `docs/design/technical-atlas/TA-15/publication-20261009.json` | boundaries | 7 |
+| `docs/design/technical-atlas/TA-15/technical-sources-v1.json` | items | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -667,8 +690,8 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 34 |
-| `framework/interface_manifest.json` | public_pages | 16 |
+| `framework/interface_manifest.json` | static_pages | 35 |
+| `framework/interface_manifest.json` | public_pages | 17 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -1001,6 +1024,16 @@
 | `docs/design/technical-atlas/TA-14/prompt-v6-compute-reference.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-14/publication-20261009.json` | 项目配置 |
 | [docs/design/technical-atlas/TA-14/scope-v1.md](design/technical-atlas/TA-14/scope-v1.md) | 配套说明 |
+| [docs/design/technical-atlas/TA-15/SCOPE.md](design/technical-atlas/TA-15/SCOPE.md) | 配套说明 |
+| `docs/design/technical-atlas/TA-15/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-15/labels-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-15/legacy/rack3d-before-TA15.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-15/native-render-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-15/preparation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-15/prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-15/prompt-v2.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-15/publication-20261009.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-15/technical-sources-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -2144,6 +2177,8 @@
 | `tests/auth_appearance.cjs` | 测试 |
 | `tests/browser_suites.cjs` | 测试 |
 | `tests/catalog_materials.cjs` | 测试 |
+| `tests/chip_atlas.cjs` | 测试 |
+| `tests/chip_package.cjs` | 测试 |
 | `tests/company_catalog_map.cjs` | 测试 |
 | `tests/company_page.cjs` | 测试 |
 | `tests/company_window.cjs` | 测试 |
@@ -2352,6 +2387,9 @@
 | `web/assets/technical-atlas/chassis-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/chassis-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/chassis-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/chip-package-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/chip-package-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/chip-package-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/coldplate-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/coldplate-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/coldplate-v1.png` | 静态资源 |
@@ -2435,6 +2473,8 @@
 | `web/components/auth.css` | 运行代码 |
 | `web/components/catalog-admin.js` | 运行代码 |
 | `web/components/catalog-materials.js` | 运行代码 |
+| `web/components/chip-package-assembly.js` | 运行代码 |
+| `web/components/chip-package-generator.js` | 运行代码 |
 | `web/components/company-browser.js` | 运行代码 |
 | `web/components/company-context.js` | 运行代码 |
 | `web/components/company-home.js` | 运行代码 |
@@ -2495,6 +2535,7 @@
 | `web/pages/auth/password.html` | 运行代码 |
 | `web/pages/bom.html` | 运行代码 |
 | `web/pages/bom3d.html` | 运行代码 |
+| `web/pages/chip-atlas.html` | 运行代码 |
 | `web/pages/company-home.html` | 运行代码 |
 | `web/pages/company-products.html` | 运行代码 |
 | `web/pages/company.html` | 运行代码 |
