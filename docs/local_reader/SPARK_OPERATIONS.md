@@ -422,3 +422,5 @@ M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用
 本会话用户明确授权每项完成完整本地验收后，不等CI自主更新原PR、精确head合并和部署；正常自动发布器的四项CI准入逻辑保持。首包PR453的真实原CI是part_dossier超过300秒失败，不能写为预算未启动或追认成功。独立精确head完整本地验证保留当前3D/浏览器契约，集成同期最新main再验；原审计/封存/固定抽样/当时来源与上下文均通过，原attempt/包/PR/head链保留。人工精确合并后，既有publisher仅恢复merged阶段，再按来源安全同步、真实HTTPS逐条支持闭包与Spark published回执完成交付。不是将local pass写成CI pass，也不对其它未审候选授予采用权。
 
 维护时使用独立维护锁、等待原worker锁自然释放、一致备份实际journal/审计与dirty草稿；不强删锁、reset/stash或调整账号凭据。恢复必须实核LaunchAgent、新PID、原程序/配置路径、当前源码及至少一轮真实status；bootstrap成功本身不足。首包实际恢复PID25958且published5/background1，原23新来源正式采用仍为0，计数不能混合。后续每包重新核对当前正式上下文，真变化走原revalidate并保留旧attempt/PR，prepared旧指南摘要不能盲重算。此为已授权实例和实际边界记录，不新增批量跳过检查或改队列接口；完整记录见[研究恢复交接](../handoff/research-flow-recovery-20261009.md)。
+
+2026-10-09公开仓库恢复：自动合并和blocked恢复均按精确审核commit SHA读取全部分页的GitHub check runs，逐项核对head_sha，仍要求四项具名CI及全部额外检查实际成功。PR界面的汇总可能短暂仍指向上一版；该汇总不能审批新提交。新head尚无检查、检查仍运行或结果来自另一SHA时等待/拒绝，不把先前成功继承给新head。已合并的另行授权发布仍按原MERGED精确head恢复回执规则，不追认CI。

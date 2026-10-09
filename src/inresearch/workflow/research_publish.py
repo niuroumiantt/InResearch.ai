@@ -39,6 +39,29 @@ def all_checks_pass(checks):
     return required <= {c['name'] for c in checks} and all(c.get('bucket')=='pass' for c in checks)
 
 
+def publication_checks(root, commit):
+    """Read checks on the reviewed SHA, never a PR's cached previous rollup."""
+    if not re.fullmatch('[0-9a-f]{40}', commit):
+        raise ValueError('invalid_publication_commit')
+    pages = json.loads(run(['gh', 'api',
+        'repos/{owner}/{repo}/commits/'+commit+'/check-runs?per_page=100&filter=latest',
+        '--paginate', '--slurp'], root).stdout)
+    checks = []
+    for page in pages:
+        for check in page['check_runs']:
+            if check['head_sha'] != commit:
+                raise ValueError('ci_head_changed_requires_review')
+            conclusion = check.get('conclusion')
+            if check['status'] != 'completed': bucket = 'pending'
+            elif conclusion == 'success': bucket = 'pass'
+            elif conclusion == 'cancelled': bucket = 'cancel'
+            else: bucket = 'fail'
+            checks.append({'name':check['name'], 'bucket':bucket,
+                           'state':(conclusion or check['status']).upper(),
+                           'head_sha':commit, 'check_run_id':check['id']})
+    return checks
+
+
 def source_bundle(root, directory, target, base):
     """Incremental approved-main Git objects; never replace a divergent head."""
     if not all(re.fullmatch('[0-9a-f]{40}',x) for x in (target,base)):
@@ -254,9 +277,7 @@ class Publisher:
                                     value.pop('error', None)
                                     atomic_json(path, value)
                                     return value
-                                checks = json.loads(run(['gh', 'pr', 'checks', str(value['pr']),
-                                                         '--json', 'name,bucket,state'],
-                                                        self.root, check=False).stdout or '[]')
+                                checks = publication_checks(self.root, value['commit'])
                                 if all_checks_pass(checks):
                                     value.setdefault('recoveries', []).append({
                                         'from':value['state'], 'error':value.get('error'),
@@ -358,7 +379,8 @@ class Publisher:
                 if pr['state']=='MERGED':
                     journal['merge_commit']=pr['mergeCommit']['oid'];save('merged')
                 else:
-                    checks=json.loads(run(['gh','pr','checks',str(journal['pr']),'--json','name,bucket,state'],self.root,check=False).stdout or '[]')
+                    if pr['headRefOid']!=journal['commit']:raise ValueError('pr_head_changed_requires_review')
+                    checks=publication_checks(self.root,journal['commit'])
                     journal['checks']=checks
                     if any(c.get('bucket') in ('fail','cancel') for c in checks):
                         raise ValueError('ci_failed_preserve_review_branch')

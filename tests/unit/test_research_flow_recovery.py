@@ -76,6 +76,55 @@ class SourcePacketRecoveryTests(unittest.TestCase):
             store.packet.assert_called_once_with('root', {'id':'b'*64}, include_adopted=True)
 
 
+class ExactPublicationChecksTests(unittest.TestCase):
+    names = ('validate', 'browser (core)', 'browser (model_assets)', 'storage-container')
+
+    def checks(self, head, status='completed', conclusion='success'):
+        return [{'id':i, 'name':name, 'head_sha':head, 'status':status,
+                 'conclusion':conclusion} for i, name in enumerate(self.names)]
+
+    def test_paginated_checks_are_bound_to_requested_sha(self):
+        head = 'c'*40
+        rows = self.checks(head)
+        pages = [{'check_runs':rows[:2]}, {'check_runs':rows[2:]}]
+        with patch.object(publication, 'run', return_value=SimpleNamespace(stdout=json.dumps(pages))) as run:
+            checks = publication.publication_checks('/repo', head)
+        self.assertTrue(publication.all_checks_pass(checks))
+        self.assertIn('/commits/'+head+'/check-runs', run.call_args.args[0][2])
+        self.assertEqual({c['head_sha'] for c in checks}, {head})
+        self.assertIn('--paginate', run.call_args.args[0])
+
+    def test_previous_head_success_cannot_approve_new_commit(self):
+        pages = [{'check_runs':self.checks('b'*40)}]
+        with patch.object(publication, 'run', return_value=SimpleNamespace(stdout=json.dumps(pages))):
+            with self.assertRaisesRegex(ValueError, 'ci_head_changed'):
+                publication.publication_checks('/repo', 'c'*40)
+
+    def test_unregistered_or_running_new_head_checks_still_wait(self):
+        for rows in ([], self.checks('c'*40, 'in_progress', None)):
+            with self.subTest(rows=bool(rows)), patch.object(publication, 'run',
+                    return_value=SimpleNamespace(stdout=json.dumps([{'check_runs':rows}]))):
+                self.assertFalse(publication.all_checks_pass(publication.publication_checks('/repo', 'c'*40)))
+
+    def test_pr_rollup_is_not_consulted_when_new_sha_checks_are_pending(self):
+        with tempfile.TemporaryDirectory() as td:
+            p = publication.Publisher({'repo':td, 'state':td})
+            head = 'c'*40
+            journal = {'state':'pr_open', 'batch_id':'b'*64, 'pr':418, 'commit':head}
+            def response(args, *a, **kw):
+                if args[:3] == ['gh','pr','view']:
+                    return SimpleNamespace(stdout=json.dumps({'state':'OPEN','headRefOid':head}))
+                if args[:2] == ['gh','api']:
+                    return SimpleNamespace(stdout=json.dumps([{'check_runs':self.checks(head,'queued',None)}]))
+                self.fail('Unexpected cached rollup, merge or command: '+repr(args))
+            p.sync_source = Mock()
+            with patch.object(publication, 'run', side_effect=response):
+                result = p.advance(Path(td), journal)
+            self.assertEqual(result['state'], 'pr_open')
+            self.assertNotIn('error', result)
+            p.sync_source.assert_not_called()
+
+
 class PublisherIsolationTests(unittest.TestCase):
     def test_command_stdout_errors_are_actionable_and_other_output_private(self):
         with self.assertRaises(RuntimeError) as caught:
@@ -120,8 +169,8 @@ class PublisherIsolationTests(unittest.TestCase):
             pr = {'state':'OPEN', 'headRefOid':'c'*40}
             checks = [{'name':n, 'bucket':'pass'} for n in
                       ('validate', 'browser (core)', 'browser (model_assets)', 'storage-container')]
-            with patch.object(publication, 'run', side_effect=[SimpleNamespace(stdout=json.dumps(pr)),
-                                                               SimpleNamespace(stdout=json.dumps(checks))]):
+            with patch.object(publication, 'run', return_value=SimpleNamespace(stdout=json.dumps(pr))), \
+                    patch.object(publication, 'publication_checks', return_value=checks):
                 self.assertEqual(p.tick()['state'], 'pr_open')
             self.assertEqual(p.advance.call_args.args[1]['recoveries'][0]['reason'],
                              'exact_head_checks_recovered')
@@ -136,6 +185,7 @@ class PublisherIsolationTests(unittest.TestCase):
                 results = [SimpleNamespace(stdout=json.dumps({'state':'OPEN', 'headRefOid':head})),
                            SimpleNamespace(stdout=json.dumps([{'name':'validate','bucket':bucket}]))]
                 with patch.object(publication, 'run', side_effect=results), \
+                        patch.object(publication, 'publication_checks', return_value=[{'name':'validate','bucket':bucket}]), \
                         patch.object(publication, 'refresh_publication_base', return_value='c'*40):
                     journal = json.loads((dr/'journal.json').read_text())
                     journal['worktree'] = str(Path(td)/'publication')
@@ -154,8 +204,8 @@ class PublisherIsolationTests(unittest.TestCase):
             p.advance = Mock(return_value={'state':'pr_open'})
             pr = {'state':'OPEN', 'headRefOid':'c'*40}
             checks = [{'name':'browser (core)', 'bucket':'fail'}]
-            with patch.object(publication, 'run', side_effect=[SimpleNamespace(stdout=json.dumps(pr)),
-                                                               SimpleNamespace(stdout=json.dumps(checks))]), \
+            with patch.object(publication, 'run', return_value=SimpleNamespace(stdout=json.dumps(pr))), \
+                    patch.object(publication, 'publication_checks', return_value=checks), \
                     patch.object(publication, 'refresh_publication_base', return_value='d'*40) as refresh:
                 self.assertEqual(p.tick()['state'], 'pr_open')
             refresh.assert_called_once_with(journal['worktree'], 'c'*40)
