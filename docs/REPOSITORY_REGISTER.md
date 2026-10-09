@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.45。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.46。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1740。
+在册文件：2037。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 120 |
+| 静态资源 | 310 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 325 |
+| 运行代码 | 330 |
 | 现行规范 | 15 |
-| 项目配置 | 383 |
+| 项目配置 | 481 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 157 |
-| 测试 | 162 |
+| 配套说明 | 159 |
+| 测试 | 164 |
 
 ## 在册记录集合
 
@@ -314,6 +314,290 @@
 | `docs/design/technical-atlas/TA-15/publication-20261009.json` | related_object_ids | 1 |
 | `docs/design/technical-atlas/TA-15/publication-20261009.json` | boundaries | 7 |
 | `docs/design/technical-atlas/TA-15/technical-sources-v1.json` | items | 2 |
+| `docs/design/technical-atlas/TA-16/baseline-v1.json` | files | 2 |
+| `docs/design/technical-atlas/TA-16/candidate-asset-manifest-v2.json` | items | 47 |
+| `docs/design/technical-atlas/TA-16/categories/ai-asic-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/ai-asic-generation.json` | sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/ai-asic-generation.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-16/categories/ai-asic-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/ai-asic-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/ai-asic-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/backup-power-generation.json` | references | 2 |
+| `docs/design/technical-atlas/TA-16/categories/backup-power-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/backup-power-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/backup-power-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/backup-power-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/backup-power-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/bbu-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/bbu-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/bbu-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/bbu-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/bbu-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/bbu-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/bess-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/bess-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/bess-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/bess-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/bess-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/bess-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/bmc-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/bmc-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/bmc-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/bmc-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/bmc-generation.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-16/categories/bmc-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/busway-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/busway-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/busway-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/busway-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/busway-generation.json` | not_verified | 6 |
+| `docs/design/technical-atlas/TA-16/categories/busway-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/cabling-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/cabling-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/cabling-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/cabling-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/cabling-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/cabling-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/cdu-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/cdu-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/cdu-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/cdu-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/cdu-generation.json` | not_verified | 7 |
+| `docs/design/technical-atlas/TA-16/categories/chilled-water-loop-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/chilled-water-loop-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/chilled-water-loop-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/chilled-water-loop-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/chilled-water-loop-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/chilled-water-loop-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/chiller-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/chiller-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/chiller-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/chiller-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/chiller-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/chiller-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/connector-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/connector-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/connector-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/connector-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/connector-generation.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-16/categories/connector-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/coolant-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/coolant-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/coolant-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/coolant-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/coolant-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/coolant-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/copper-interconnect-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/copper-interconnect-generation.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-16/categories/copper-interconnect-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/copper-interconnect-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/copper-interconnect-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/copper-interconnect-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/cxl-memory-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/cxl-memory-generation.json` | sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/cxl-memory-generation.json` | not_verified | 2 |
+| `docs/design/technical-atlas/TA-16/categories/cxl-memory-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/cxl-memory-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/cxl-memory-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/dry-cooler-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/dry-cooler-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/dry-cooler-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/dry-cooler-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/dry-cooler-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/dry-cooler-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/fpga-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/fpga-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/fpga-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/fpga-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/fpga-generation.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-16/categories/fpga-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-cell-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-cell-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-cell-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-cell-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-cell-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-cell-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-storage-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-storage-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-storage-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-storage-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-storage-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-storage-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/gas-engine-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/gas-engine-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/gas-engine-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/gas-engine-generation.json` | labels | 6 |
+| `docs/design/technical-atlas/TA-16/categories/gas-engine-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/gas-engine-generation.json` | label_display_anchors | 6 |
+| `docs/design/technical-atlas/TA-16/categories/gas-turbine-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/gas-turbine-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/gas-turbine-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/gas-turbine-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/gas-turbine-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/gas-turbine-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/general-server-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/general-server-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/general-server-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/general-server-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/general-server-generation.json` | not_verified | 6 |
+| `docs/design/technical-atlas/TA-16/categories/hdd-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/hdd-generation.json` | sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/hdd-generation.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-16/categories/hdd-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/hdd-generation.json` | labels | 6 |
+| `docs/design/technical-atlas/TA-16/categories/hdd-generation.json` | label_display_anchors | 6 |
+| `docs/design/technical-atlas/TA-16/categories/heatsink-vc-generation.json` | native_dimensions | 2 |
+| `docs/design/technical-atlas/TA-16/categories/heatsink-vc-generation.json` | category_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/heatsink-vc-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/heatsink-vc-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/heatsink-vc-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/hv-switchyard-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/hv-switchyard-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/hv-switchyard-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/hv-switchyard-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/hv-switchyard-generation.json` | not_verified | 5 |
+| `docs/design/technical-atlas/TA-16/categories/immersion-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/immersion-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/immersion-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/immersion-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/immersion-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/immersion-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-generation.json` | style_guides_viewed_not_passed | 2 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-generation.json` | technical_sources | 3 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-generation.json` | source_read_limitations | 2 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-generation.json` | not_verified | 10 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-generation.json` | history | 1 |
+| `docs/design/technical-atlas/TA-16/categories/lv-switchgear-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/lv-switchgear-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/lv-switchgear-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/lv-switchgear-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/lv-switchgear-generation.json` | not_verified | 5 |
+| `docs/design/technical-atlas/TA-16/categories/manifold-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/manifold-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/manifold-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/manifold-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/manifold-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/manifold-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/mv-switchgear-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/mv-switchgear-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/mv-switchgear-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/mv-switchgear-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/mv-switchgear-generation.json` | not_verified | 6 |
+| `docs/design/technical-atlas/TA-16/categories/network-switch-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/network-switch-generation.json` | sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/network-switch-generation.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-16/categories/network-switch-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/network-switch-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/network-switch-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/optics-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/optics-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/optics-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/optics-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/optics-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/optics-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/pcie-switch-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/pcie-switch-generation.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-16/categories/pcie-switch-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/pcie-switch-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/pcie-switch-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/pcie-switch-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/pdu-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/pdu-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/pdu-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/pdu-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/pdu-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/pdu-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/power-shelf-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/power-shelf-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/power-shelf-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/power-shelf-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/power-shelf-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/power-shelf-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/quick-disconnect-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/quick-disconnect-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/quick-disconnect-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/quick-disconnect-generation.json` | not_verified | 6 |
+| `docs/design/technical-atlas/TA-16/categories/rack-system-generation.json` | references | 2 |
+| `docs/design/technical-atlas/TA-16/categories/rack-system-generation.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-16/categories/rack-system-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/rack-system-generation.json` | labels | 6 |
+| `docs/design/technical-atlas/TA-16/categories/rack-system-generation.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-16/categories/rack-system-generation.json` | label_display_anchors | 6 |
+| `docs/design/technical-atlas/TA-16/categories/retimer-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/retimer-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/retimer-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/retimer-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/retimer-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/retimer-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/room-cooling-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/room-cooling-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/room-cooling-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/room-cooling-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/room-cooling-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/room-cooling-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/sidecar-hx-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/sidecar-hx-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/sidecar-hx-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/sidecar-hx-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/sidecar-hx-generation.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-16/categories/sidecar-hx-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/smr-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/smr-generation.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-16/categories/smr-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/smr-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/smr-generation.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-16/categories/smr-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/storage-array-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/storage-array-generation.json` | sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/storage-array-generation.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-16/categories/storage-array-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/storage-array-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/storage-array-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/switch-asic-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/switch-asic-generation.json` | sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/switch-asic-generation.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-16/categories/switch-asic-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/switch-asic-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/switch-asic-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/transformer-generation.json` | native_pixels | 2 |
+| `docs/design/technical-atlas/TA-16/categories/transformer-generation.json` | references | 2 |
+| `docs/design/technical-atlas/TA-16/categories/transformer-generation.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-16/categories/transformer-generation.json` | visible_review | 4 |
+| `docs/design/technical-atlas/TA-16/categories/transformer-generation.json` | not_verified | 5 |
+| `docs/design/technical-atlas/TA-16/categories/transformer-generation.json` | labels | 6 |
+| `docs/design/technical-atlas/TA-16/categories/ups-battery-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/ups-battery-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/ups-battery-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/ups-battery-generation.json` | labels | 4 |
+| `docs/design/technical-atlas/TA-16/categories/ups-battery-generation.json` | not_verified | 6 |
+| `docs/design/technical-atlas/TA-16/categories/ups-battery-generation.json` | label_display_anchors | 4 |
+| `docs/design/technical-atlas/TA-16/categories/ups-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/ups-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/ups-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/ups-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/ups-generation.json` | not_verified | 5 |
+| `docs/design/technical-atlas/TA-16/categories/ups-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/vrm-generation.json` | references | 1 |
+| `docs/design/technical-atlas/TA-16/categories/vrm-generation.json` | technical_sources | 1 |
+| `docs/design/technical-atlas/TA-16/categories/vrm-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/vrm-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/vrm-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/vrm-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/categories/water-treatment-generation.json` | references | 0 |
+| `docs/design/technical-atlas/TA-16/categories/water-treatment-generation.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-16/categories/water-treatment-generation.json` | notes | 2 |
+| `docs/design/technical-atlas/TA-16/categories/water-treatment-generation.json` | labels | 5 |
+| `docs/design/technical-atlas/TA-16/categories/water-treatment-generation.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-16/categories/water-treatment-generation.json` | label_display_anchors | 5 |
+| `docs/design/technical-atlas/TA-16/overview-composition-v2.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-16/overview-composition-v2.json` | references | 4 |
+| `docs/design/technical-atlas/TA-16/source-validation-v1.json` | source_files | 11 |
+| `docs/design/technical-atlas/TA-16/source-validation-v1.json` | retained_failed_attempts | 3 |
+| `docs/design/technical-atlas/TA-16/source-validation-v1.json` | not_verified | 6 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -1034,6 +1318,110 @@
 | `docs/design/technical-atlas/TA-15/prompt-v2.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-15/publication-20261009.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-15/technical-sources-v1.json` | 项目配置 |
+| [docs/design/technical-atlas/TA-16/SCOPE.md](design/technical-atlas/TA-16/SCOPE.md) | 配套说明 |
+| [docs/design/technical-atlas/TA-16/SOURCES.md](design/technical-atlas/TA-16/SOURCES.md) | 配套说明 |
+| `docs/design/technical-atlas/TA-16/baseline-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/bom-before-v1.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-16/candidate-asset-manifest-v2.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/ai-asic-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/ai-asic-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/backup-power-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/backup-power-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/bbu-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/bbu-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/bess-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/bess-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/bmc-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/bmc-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/busway-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/busway-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/cabling-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/cabling-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/cdu-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/cdu-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/chilled-water-loop-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/chilled-water-loop-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/chiller-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/chiller-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/connector-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/connector-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/coolant-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/coolant-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/copper-interconnect-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/copper-interconnect-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/cxl-memory-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/cxl-memory-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/dry-cooler-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/dry-cooler-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/fpga-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/fpga-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-cell-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-cell-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-storage-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/fuel-storage-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/gas-engine-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/gas-engine-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/gas-turbine-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/gas-turbine-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/general-server-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/general-server-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/hdd-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/hdd-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/heatsink-vc-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/heatsink-vc-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/hv-switchyard-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/hv-switchyard-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/immersion-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/immersion-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/leak-detection-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/lv-switchgear-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/lv-switchgear-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/manifold-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/manifold-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/mv-switchgear-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/mv-switchgear-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/network-switch-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/network-switch-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/optics-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/optics-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/pcie-switch-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/pcie-switch-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/pdu-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/pdu-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/power-shelf-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/power-shelf-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/quick-disconnect-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/quick-disconnect-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/rack-system-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/rack-system-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/retimer-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/retimer-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/room-cooling-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/room-cooling-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/sidecar-hx-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/sidecar-hx-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/smr-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/smr-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/storage-array-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/storage-array-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/switch-asic-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/switch-asic-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/transformer-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/transformer-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/ups-battery-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/ups-battery-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/ups-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/ups-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/vrm-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/vrm-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/water-treatment-generation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/categories/water-treatment-prompt.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/legacy/bom.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-16/legacy/technical-atlas.js` | 运行代码 |
+| `docs/design/technical-atlas/TA-16/overview-composition-v2.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/source-validation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-16/technical-atlas-before-v1.js` | 运行代码 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -2210,6 +2598,7 @@
 | `tests/server_assembly.cjs` | 测试 |
 | `tests/server_plan.cjs` | 测试 |
 | `tests/supply.cjs` | 测试 |
+| `tests/system_atlas.cjs` | 测试 |
 | `tests/technical_atlas.cjs` | 测试 |
 | `tests/ui_skin.cjs` | 测试 |
 | `tests/unit/deep_read_fixtures.py` | 测试 |
@@ -2328,6 +2717,7 @@
 | `tests/unit/test_storage_layout.py` | 测试 |
 | `tests/unit/test_suite_integrity.py` | 测试 |
 | `tests/unit/test_supply.py` | 测试 |
+| `tests/unit/test_system_atlas_assets.py` | 测试 |
 | `tests/unit/test_target_dispatch.py` | 测试 |
 | `tests/unit/test_tco_factors.py` | 测试 |
 | `tests/unit/test_tco_targets.py` | 测试 |
@@ -2454,6 +2844,196 @@
 | `web/assets/technical-atlas/ssd-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/ssd-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/ssd-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/system-overview-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system-overview-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/ai-asic-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/ai-asic-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/ai-asic-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/ai-asic-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/backup-power-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/backup-power-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/backup-power-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/backup-power-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/bbu-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/bbu-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/bbu-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/bbu-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/bess-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/bess-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/bess-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/bess-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/bmc-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/bmc-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/bmc-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/bmc-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/busway-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/busway-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/busway-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/busway-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/cabling-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/cabling-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/cabling-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/cabling-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/cdu-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/cdu-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/cdu-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/cdu-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/chilled-water-loop-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/chilled-water-loop-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/chilled-water-loop-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/chilled-water-loop-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/chiller-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/chiller-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/chiller-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/chiller-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/connector-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/connector-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/connector-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/connector-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/coolant-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/coolant-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/coolant-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/coolant-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/copper-interconnect-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/copper-interconnect-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/copper-interconnect-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/copper-interconnect-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/cxl-memory-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/cxl-memory-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/cxl-memory-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/cxl-memory-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/dry-cooler-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/dry-cooler-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/dry-cooler-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/dry-cooler-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/fpga-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/fpga-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/fpga-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/fpga-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/fuel-cell-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/fuel-cell-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/fuel-cell-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/fuel-cell-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/fuel-storage-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/fuel-storage-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/fuel-storage-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/fuel-storage-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/gas-engine-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/gas-engine-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/gas-engine-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/gas-engine-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/gas-turbine-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/gas-turbine-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/gas-turbine-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/gas-turbine-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/general-server-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/general-server-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/general-server-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/general-server-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/hdd-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/hdd-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/hdd-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/hdd-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/heatsink-vc-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/heatsink-vc-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/heatsink-vc-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/heatsink-vc-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/hv-switchyard-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/hv-switchyard-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/hv-switchyard-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/hv-switchyard-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/immersion-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/immersion-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/immersion-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/immersion-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/leak-detection-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/leak-detection-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/leak-detection-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/leak-detection-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/lv-switchgear-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/lv-switchgear-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/lv-switchgear-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/lv-switchgear-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/manifold-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/manifold-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/manifold-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/manifold-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/mv-switchgear-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/mv-switchgear-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/mv-switchgear-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/mv-switchgear-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/network-switch-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/network-switch-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/network-switch-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/network-switch-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/optics-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/optics-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/optics-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/optics-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/pcie-switch-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/pcie-switch-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/pcie-switch-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/pcie-switch-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/pdu-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/pdu-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/pdu-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/pdu-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/power-shelf-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/power-shelf-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/power-shelf-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/power-shelf-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/quick-disconnect-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/quick-disconnect-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/quick-disconnect-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/quick-disconnect-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/rack-system-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/rack-system-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/rack-system-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/rack-system-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/retimer-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/retimer-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/retimer-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/retimer-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/room-cooling-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/room-cooling-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/room-cooling-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/room-cooling-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/sidecar-hx-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/sidecar-hx-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/sidecar-hx-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/sidecar-hx-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/smr-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/smr-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/smr-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/smr-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/storage-array-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/storage-array-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/storage-array-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/storage-array-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/switch-asic-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/switch-asic-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/switch-asic-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/switch-asic-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/transformer-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/transformer-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/transformer-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/transformer-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/ups-battery-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/ups-battery-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/ups-battery-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/ups-battery-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/ups-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/ups-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/ups-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/ups-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/vrm-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/vrm-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/vrm-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/vrm-v2.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/water-treatment-v2-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/system/water-treatment-v2-tile.png` | 静态资源 |
+| `web/assets/technical-atlas/system/water-treatment-v2.png` | 静态资源 |
+| `web/assets/technical-atlas/system/water-treatment-v2.svg` | 静态资源 |
 | `web/assets/vendor/BufferGeometryUtils.js` | 静态资源 |
 | `web/assets/vendor/CopyShader.js` | 静态资源 |
 | `web/assets/vendor/EXRLoader.js` | 静态资源 |
@@ -2507,6 +3087,7 @@
 | `web/components/server-plan-generator.js` | 运行代码 |
 | `web/components/site-shell.js` | 运行代码 |
 | `web/components/supply.js` | 运行代码 |
+| `web/components/system-atlas.js` | 运行代码 |
 | `web/components/targets.js` | 运行代码 |
 | `web/components/tasks-board.js` | 运行代码 |
 | `web/components/technical-atlas.css` | 运行代码 |

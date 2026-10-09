@@ -1,0 +1,150 @@
+{
+  "id": "bmc",
+  "directory": "bmc-v1",
+  "generated_path": "/Users/m4/.codex/generated_images/01a11f41-bbdf-7d41-b6cc-b96c49523ce3/exec-1cd1c785-ce88-4f01-ad95-ffbd950ab01e.png",
+  "stage": "detailed_candidate_not_accepted",
+  "method": "built-in image_gen; R1 passed as style reference",
+  "publication": "not_published",
+  "references": [
+    {
+      "path": "/Users/m4/code/inresearch.ai/docs/design/technical-atlas/references/01-chain.png",
+      "role": "actual viewed R1; style only",
+      "sha256": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
+      "bytes": 2942574
+    }
+  ],
+  "technical_sources": [
+    {
+      "url": "https://www.aspeedtech.com/server/",
+      "supports": "BMC category and TFBGA package examples; image is generic unbranded selected package, not AST2600 geometry/pinout"
+    }
+  ],
+  "note": "Only a closed molded BGA package exterior. Function/model/624-pin count/21mm size/firmware/performance are not visually authenticated and are not drawn claims.",
+  "native": {
+    "path": "/private/tmp/atlas-ta16-it-reader-20261009/bmc-v1/bmc-native.png",
+    "bytes": 2212294,
+    "sha256": "afd868f8518e5320e2f7cc0d586fff1809421f41c9fb7ed7a81bebf2ceb84062",
+    "pixels": [
+      1536,
+      1024
+    ]
+  },
+  "prompt_path": "/private/tmp/atlas-ta16-it-reader-20261009/bmc-v1/prompt.txt",
+  "title": "基板管理控制器 · 封闭 BGA 外形示意",
+  "image_scale": 1.0,
+  "notes": [
+    "选定通用封装：外表不能认证 BMC 功能、厂商型号、固件或电路。",
+    "底面焊球仅局部可见；数量、尺寸、引脚定义及性能均未指定。"
+  ],
+  "labels": [
+    [
+      "01",
+      "模塑封装外表",
+      160,
+      210,
+      "M410 216 H500 L820 440",
+      [
+        820,
+        440
+      ]
+    ],
+    [
+      "02",
+      "角部定位凹点",
+      70,
+      448,
+      "M300 452 H335 L450 448",
+      [
+        450,
+        448
+      ]
+    ],
+    [
+      "03",
+      "封装下缘",
+      1050,
+      790,
+      "M1040 770 H980 L835 679",
+      [
+        835,
+        679
+      ]
+    ],
+    [
+      "04",
+      "底面焊球局部",
+      1110,
+      580,
+      "M1140 600 V625 L947 641",
+      [
+        947,
+        641
+      ]
+    ]
+  ],
+  "not_verified": [
+    "实际BMC功能/型号/固件/IO定义/性能与封装精确尺寸未认证"
+  ],
+  "image_display": {
+    "scale": 1.0,
+    "translate": [
+      0,
+      0
+    ],
+    "source_png_unchanged": true
+  },
+  "label_display_anchors": [
+    {
+      "id": "01",
+      "source_image_anchor": [
+        820,
+        440
+      ],
+      "display_anchor": [
+        820,
+        440
+      ]
+    },
+    {
+      "id": "02",
+      "source_image_anchor": [
+        450,
+        448
+      ],
+      "display_anchor": [
+        450,
+        448
+      ]
+    },
+    {
+      "id": "03",
+      "source_image_anchor": [
+        835,
+        679
+      ],
+      "display_anchor": [
+        835,
+        679
+      ]
+    },
+    {
+      "id": "04",
+      "source_image_anchor": [
+        947,
+        641
+      ],
+      "display_anchor": [
+        947,
+        641
+      ]
+    }
+  ],
+  "labelled_svg_sha256": "fb83c547decbea32da6ca154e08782508d01986571f18a850edf62fd7112bcd5",
+  "final_label_spec": "label-spec-v3.json",
+  "selected_svg": "bmc-full-v3.svg",
+  "selected_svg_sha256": "fb83c547decbea32da6ca154e08782508d01986571f18a850edf62fd7112bcd5",
+  "correction": "03封装基板边缘改为封装下缘，锚点由[805,715]移至[835,679]；原PNG不变",
+  "original_svg_preserved": "bmc-full.svg",
+  "previous_selected_svg": "bmc-full-v2.svg",
+  "correction_v3": "04由[947,633]下移至[947,641]，落点在可见焊球下部；其他3标注与原PNG不变"
+}

@@ -3,7 +3,7 @@
   "style_id": "white-technical-atlas-v1",
   "source": "framework/10_visual_atlas.md",
   "plan": "docs/design/technical-atlas/MIGRATION_PLAN.md",
-  "observed_at": "2026-10-08",
+  "observed_at": "2026-10-09T17:42:58.305307+00:00",
   "baseline_revision": "453f3625d427b9d989851ed5712737495891a378",
   "audit_scope": "Initial baseline inventory at baseline_revision; actual per-item acceptance and publication recorded separately, not a whole-site redesign receipt",
   "audit_directory": "~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/",
@@ -623,7 +623,9 @@
       "phase": "E · 总览",
       "kind": "existing",
       "source_paths": [
-        "web/pages/bom.html"
+        "web/pages/bom.html",
+        "web/components/system-atlas.js",
+        "web/components/technical-atlas.js"
       ],
       "entry": "bom.html",
       "reference": [
@@ -635,10 +637,16 @@
         "TA-02",
         "TA-11"
       ],
-      "status": "planned",
+      "status": "drafting",
       "acceptance_record": null,
       "published_revision": null,
-      "partial_entry_supplement": "已验SSD与四张设施2D补充图接入所属行和真实缩略图；其他部件仍待重制，整项不计完成"
+      "partial_entry_supplement": "保留原14类别图；47新类别候选只接system视图，当前静态全数齐，实际网页/下载与发布另验，不增加35项完成数",
+      "object_id": "system-overview",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-16/bom-before-v1.html",
+        "sha256": "302fffcd55096e8d08365f92cacdeb4d1c993077171c676c4678f5aae250b5d8"
+      },
+      "implementation_stage": "47 detailed candidates statically integrated; local website access denied and not bypassed; actual public page/download validation pending; not accepted/published"
     },
     {
       "id": "TA-17",
