@@ -1,0 +1,32 @@
+{
+  "figure_id": "TA-07",
+  "status": "preparation_only_not_generated",
+  "object_id": "part:nic",
+  "scope": "NIC/DPU existing category; proposed picture is a generic PCIe NIC example, not a depiction of every DPU architecture.",
+  "baseline_asset": "web/assets/renders/nic.png",
+  "baseline_sha256": "1a64f596f3ca67366897f307f488704aa3649160626ab07228f6b60bcb872e2c",
+  "observed": "Old low-detail board and large rectangular port/chip blocks with bright colored squares; missing connector cages, PCIe edge key and restrained detailed structure.",
+  "references_to_pass": [
+    "R2",
+    "R3"
+  ],
+  "primary_sources": [
+    {
+      "url": "https://networking-docs.nvidia.com/connectx5enhw/introduction",
+      "observed_at": "2026-10-09",
+      "supports": "Official examples of single/dual networking-port PCIe cards and mounting brackets; port count example only."
+    },
+    {
+      "url": "https://networking-docs.nvidia.com/connectx5enhw/interfaces",
+      "observed_at": "2026-10-09",
+      "supports": "SFP/QSFP networking connectors distinct from PCIe host edge, small port indicators and onboard regulators; no exact model claim."
+    }
+  ],
+  "proposed_composition": "One generic PCIe network card, fine PCB components, keyed gold PCIe edge, metal bracket with two recognizable empty QSFP-style cages, detailed heatsink. Optional separate enlarged port/cage inset. No cables/optical modules inserted unless coherent; avoid accidentally making an SSD/motherboard or GPU. Labels independent.",
+  "unknowns": [
+    "Exact vendor/SKU, connector generation/port rate, power, pin counts, board traces, cooling mechanics and DPU SoC/memory configuration unspecified.",
+    "Project category description mentions400/800G but this generic NIC example must not infer those rates from ConnectX5 examples.",
+    "No rebuilt3D geometry claim. Existing GPU/HBM/motherboard/SSD remain reachable."
+  ],
+  "next": "After TA-06 receipt final closure, claim queueTA-07, pass actual style references to built-in image tool and finish normal local/public release loop. No raster generated in this preparation."
+}

@@ -1,5 +1,13 @@
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
+  nic: {
+    id: 'TA-07', title: '网卡 · PCIe 与网络接口',
+    image: '/assets/technical-atlas/nic-v1.svg', preview: '/assets/technical-atlas/nic-v1-preview.svg',
+    master: '/assets/technical-atlas/nic-v1.png',
+    alt: '暖白 PCIe 网卡：双 QSFP 类端口、金属挡板、定位缺口与金手指、板级元件和网络控制器，上方为分离鳍片散热器，左上为端口笼局部放大。',
+    note: '通用 PCIe 网卡结构示意；双端口与分离散热器为图示示例，左上是端口笼放大。型号、端口代际、速率与装配以产品资料为准，不概括所有 DPU 架构。',
+    labels: ['网络端口：双 QSFP 类端口仅为类别示例，左上为同类端口笼放大', 'PCIe 金手指：与主机连接，定位缺口区分连接边', '金属挡板：展示扩展卡的安装部件', '网络控制器与鳍片散热器：展示板上器件与散热装配关系', '电路板与供电元件：细节解释部件类别，不指定走线、引脚或功耗', '产品差异：实际型号、接口代际和速率另查产品资料；图示不代表所有 DPU 的内部设计'],
+  },
   cpu: {
     id: 'TA-06', title: '服务器主板 · CPU 与 DIMM 装配',
     image: '/assets/technical-atlas/motherboard-v1.svg', preview: '/assets/technical-atlas/motherboard-v1-preview.svg',

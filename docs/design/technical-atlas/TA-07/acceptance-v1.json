@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-07",
+  "object_id": "part:nic",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Generic PCIe network card and connector assembly",
+  "reviewed_at": "2026-10-09",
+  "reviewer": "Codex实际母图/独立标签/网页逐项审阅",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "One generic PCIe NIC board with two empty QSFP-style port cages, keyed host edge, network controller, lifted fin heatsink and one separate enlarged cage detail; not all DPU architectures.",
+  "master": "web/assets/technical-atlas/nic-v1.png",
+  "labelled": "web/assets/technical-atlas/nic-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R2",
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "passed_to_tool": true
+    },
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "accepted_prompt": "docs/design/technical-atlas/TA-07/prompt-v1.txt",
+    "iterations": 1,
+    "accepted_original_filename": "exec-93e104c1-c992-42a3-804f-bd2b0e41c1ca.png",
+    "raster_modified_after_generation": false,
+    "preview_method": "same-pixel JPEG encoding with macOS sips; original PNG unchanged",
+    "label_method": "independent stdlib SVG layer embedding unchanged master"
+  },
+  "rights": {
+    "origin": "用户授权内置工具按实际R2/R3风格原件生成，原件保留",
+    "license": "项目生成插图，不冒称原厂工程图或CC0"
+  },
+  "technical_sources": [
+    {
+      "url": "https://networking-docs.nvidia.com/connectx5enhw/introduction",
+      "observed_at": "2026-10-09",
+      "supports": "Official examples of single/dual networking-port PCIe cards and mounting brackets; port count example only."
+    },
+    {
+      "url": "https://networking-docs.nvidia.com/connectx5enhw/interfaces",
+      "observed_at": "2026-10-09",
+      "supports": "SFP/QSFP networking connectors distinct from PCIe host edge, small port indicators and onboard regulators; no exact model claim."
+    }
+  ],
+  "unknowns": [
+    "Exact vendor, SKU, dimensions, port generation, rate, pin count, PCB traces, PCIe contact layout, power and heatsink mechanics unspecified; connector and contact details are explanatory, not fabrication geometry.",
+    "Two ports are an example; enlarged cage is not a third installed port. Example does not establish 400/800G performance or every DPU SoC/memory configuration.",
+    "3D geometry unchanged, earlier CPU/RDIMM, GPU/HBM, enclosure and SSD illustrations remain independently reachable."
+  ],
+  "checks": {
+    "counted_main_boards": 1,
+    "counted_main_network_ports": 2,
+    "counted_enlarged_cage_details": 1,
+    "no_baked_text": true,
+    "independent_labels": 8,
+    "native_pixels_verified": true,
+    "leaders_reviewed": true,
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/nic-v1-preview.svg",
+    "bytes": 336264
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/nic-v1.png",
+      "sha256": "a1262414eb704589eb1ec10bb290c6b238126b6b5dde574f28a4eb04ff24c151"
+    },
+    {
+      "file": "web/assets/technical-atlas/nic-v1.svg",
+      "sha256": "ab02de905b1660c2157d0628444f263d376dbd5c6205bd0ab313dc2308e091db"
+    },
+    {
+      "file": "web/assets/technical-atlas/nic-v1-preview.jpg",
+      "sha256": "1a6e4eec68b508b0b03e93f83d07379731d5f322bd38d11bfc15c88c5b2a902a"
+    },
+    {
+      "file": "web/assets/technical-atlas/nic-v1-preview.svg",
+      "sha256": "27b8ba161d3f7f54951a449f2250203cd80d87f5b6e4f6dd8e1533f3c1a7f0b8"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-07/labels-v1.json",
+      "sha256": "b64bebbeaa22813383c4d2201e11499962d35e30662c242dc1988795d05732cc"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-07/prompt-v1.txt",
+      "sha256": "041003946545c24b0a8c220258dc3566d619fc4e8a1acab18950f68d804420ab"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-07/preparation.json",
+      "sha256": "f72d262339f110ed8955c214574beba6c70dcba78b14848443fe198d623e4978"
+    }
+  ],
+  "browser_checks": [
+    "tests/technical_atlas.cjs",
+    "tests/part_dossier.cjs"
+  ],
+  "browser_review": {
+    "file": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-07/nic-local/browser.json",
+    "views": 4,
+    "full_svg_opened": true,
+    "page_errors": 0,
+    "label_count": 8
+  },
+  "local_validation": {
+    "technical_atlas_browser": "passed,15s,10 accepted categories plus SSD",
+    "part_dossier_browser": "passed,52s,server/GPU/HBM/CPU/DRAM/NIC retained interaction and ownership",
+    "unit_tests": 14,
+    "governance_check": "passed",
+    "strict_validation": "passed,0 warnings",
+    "registry": "passed"
+  }
+}

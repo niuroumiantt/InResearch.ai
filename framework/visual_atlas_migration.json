@@ -268,24 +268,35 @@
       "source_paths": [
         "web/assets/renders/nic.png"
       ],
-      "entry": "保留资产，当前无页面引用",
+      "entry": "bom.html#nic：网络/部件尺度行后的主图；3D NIC/DPU 档案保留交互预览",
       "reference": [
-        "R2"
+        "R2",
+        "R3"
       ],
       "observed_gap": "端口/器件用发光色块，识别细节不足",
       "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
       "depends_on": [
         "TA-02"
       ],
-      "status": "planned",
-      "acceptance_record": null,
+      "status": "accepted",
+      "acceptance_record": "docs/design/technical-atlas/TA-07/acceptance-v1.json",
       "published_revision": null,
       "baseline_asset": {
         "file": "web/assets/renders/nic.png",
         "sha256": "1a64f596f3ca67366897f307f488704aa3649160626ab07228f6b60bcb872e2c",
         "width": 1840,
         "height": 1280
-      }
+      },
+      "started_at": "2026-10-09",
+      "object_id": "part:nic",
+      "accepted_at": "2026-10-09",
+      "identity": "One generic PCIe NIC board with two empty QSFP-style port cages, keyed host edge, network controller, lifted fin heatsink and one separate enlarged cage detail; not all DPU architectures.",
+      "deliverable_paths": [
+        "web/assets/technical-atlas/nic-v1.png",
+        "web/assets/technical-atlas/nic-v1.svg",
+        "web/assets/technical-atlas/nic-v1-preview.jpg",
+        "web/assets/technical-atlas/nic-v1-preview.svg"
+      ]
     },
     {
       "id": "TA-08",
