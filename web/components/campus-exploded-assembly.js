@@ -21,7 +21,7 @@ export const CAMPUS_EXPLODED_MARKS=Object.freeze([
  ['05','室内冷却×5','room-cooling-3',[1.05,2.2,.70]],
  ['06','CDU×3','CDU-2',[0,2.6,.93]],
  ['07','UPS四柜门','UPS-bank',[-.28,2.304,1.095]],
- ['08','基础与原位','building-base',[0,.546,7]],
+ ['08','基础与原位','building-base',[0,.54,7]],
  ['09','冷水机×3','air-chiller-2',[.05,1.8,1.675]],
  ['10','变压器×2','transformer-1',[0,3.50,0]],
  ['11','备用发电×3','standby-generator-2',[0,1.0,1.45]],

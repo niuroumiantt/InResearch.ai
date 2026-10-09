@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.55。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.56。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2108。
+在册文件：2109。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,7 +18,7 @@
 | 历史快照 | 366 |
 | 运行代码 | 336 |
 | 现行规范 | 15 |
-| 项目配置 | 524 |
+| 项目配置 | 525 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
@@ -659,6 +659,7 @@
 | `docs/design/technical-atlas/TA-19/acceptance-v1.json` | artifacts | 9 |
 | `docs/design/technical-atlas/TA-19/acceptance-v1.json` | independent_reviews | 2 |
 | `docs/design/technical-atlas/TA-19/acceptance-v1.json` | not_verified | 7 |
+| `docs/design/technical-atlas/TA-19/anchor-fix-v1.json` | actual_floor_surface | 3 |
 | `docs/design/technical-atlas/TA-19/asset-manifest-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-19/asset-manifest-v1.json` | assets | 4 |
 | `docs/design/technical-atlas/TA-19/generation-native-v3.json` | public_source | 2 |
@@ -1549,6 +1550,7 @@
 | [docs/design/technical-atlas/TA-19/SCOPE.md](design/technical-atlas/TA-19/SCOPE.md) | 配套说明 |
 | [docs/design/technical-atlas/TA-19/SOURCES.md](design/technical-atlas/TA-19/SOURCES.md) | 配套说明 |
 | `docs/design/technical-atlas/TA-19/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/anchor-fix-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-19/asset-manifest-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-19/baseline-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-19/bom3d-before-v1.html` | 运行代码 |
