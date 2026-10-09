@@ -18,7 +18,7 @@ class BrowserShardTests(unittest.TestCase):
                   'company_page','company_window','company_catalog_map','catalog_materials','compute_catalog',
                   'ui_skin','datacenter_cost','datacenter_economics','datacenter_tco','datacenter_news',
                   'url_rendering','research_delivery','auth_appearance','research_summary','part_dossier',
-                  'technical_atlas','system_atlas','scale_atlas','campus_overview','campus_exploded','server_assembly','server_plan','rack_assembly','rack_atlas','rack_exploded','rack_exploded_atlas','chip_package','chip_atlas','dashboard','scene_bootstrap','scene_framing','scene_resources','scene_atlas'}
+                  'technical_atlas','system_atlas','scale_atlas','campus_overview','campus_exploded','campus_plan','server_assembly','server_plan','rack_assembly','rack_atlas','rack_exploded','rack_exploded_atlas','chip_package','chip_atlas','dashboard','scene_bootstrap','scene_framing','scene_resources','scene_atlas'}
         self.assertEqual(set(groups['core']),expected)
         selected=[suite for name,values in groups['shards'].items() if name!='model_assets' for suite in values]
         self.assertEqual(set(selected),expected)
