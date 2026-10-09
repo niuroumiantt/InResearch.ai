@@ -1,0 +1,67 @@
+{
+  "figure_id": "TA-17",
+  "stage": "drafting_static_source_only",
+  "observed_at": "2026-10-09T18:40:33.065299+00:00",
+  "baseline": "14da1b8e3e07e44dc4769b731f990a6ffe922733",
+  "master": "web/assets/technical-atlas/scale-overview-v1.png",
+  "labelled": "web/assets/technical-atlas/scale-overview-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "binding_manifest": "docs/design/technical-atlas/TA-17/scale-asset-bindings-v1.json",
+  "scale_counts": {
+    "S5": 21,
+    "S4": 13,
+    "S3": 12,
+    "S2": 3,
+    "S1": 12
+  },
+  "physical_categories": 61,
+  "independent_masters": 60,
+  "existing_source_images_unchanged": true,
+  "static_units": {
+    "tests": 25,
+    "status": "PASS",
+    "log": "/private/tmp/ta17-source-static-units-20261010.log",
+    "sha256": "36c4993168b0f192991e53eff8cd67b371303ce0db88ea179ad1d279844565eb",
+    "scope": "explicitly selected static methods only; no HTTP/browser/product JS"
+  },
+  "independent_source_native_review": {
+    "path": "/private/tmp/ta17-candidate-source-native-review-20261010.json",
+    "sha256": "c7751eb45509e1ff24b2736fecebc8b5a3e3ab5dcc7e035bd3956900606d7028",
+    "scope": "static/source and actual original PNG view, not browser behavior"
+  },
+  "offline_asset_render": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-17/overview-v1/offline-render.json",
+    "sha256": "16f12d557482fa01f16bf26595a0deb8cc13819c4dda6743c89fc6fc80c62166",
+    "external_requests": 0,
+    "product_JS": false
+  },
+  "retained_first_unit_failure": {
+    "path": "/private/tmp/ta17-source-related-units-20261010.log",
+    "sha256": "e421534fd3bb7e64643d349d797f75794f3327c7a3d0a8dce1221c9655c74661",
+    "tests": 20,
+    "failures": 1,
+    "reason": "three historical HTML snapshots missing interface classification; corrected without changing originals",
+    "boundary_deviation": "Existing mutable-static method internally started temporary stdlibHTTP and GET/HEAD local /bom.html, beyond prior rejection boundary; discovered by source inspection after batch, stopped and not rerun/not UI evidence. No browser/productJS executed; root informed."
+  },
+  "required_public_validation": [
+    "61 actual scale selections and owned rows with same adopted image/title/notes/download targets",
+    "20 desktop/phone/lightdark complete actual images, viewport and capture height recorded separately",
+    "five representative plus overview actual native SVG popup identity",
+    "12 actual downloads (five representative pairs +overview pair), not122全量",
+    "five scale navigation viewport+scroll and mode-stale-selection combinations",
+    "11aliases and DCIM/modular nonphysical deep links",
+    "retained system/14category/SSD3D regression",
+    "source/applied/exactimage/gov and HTTPShealth"
+  ],
+  "publication": "not_published",
+  "progress": {
+    "primary_published": 16,
+    "supplemental_published": 4,
+    "next": "TA-17"
+  },
+  "CI": "not_queried; no pass claimed",
+  "Spark": "not_modified"
+}

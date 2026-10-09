@@ -3,7 +3,7 @@
   "style_id": "white-technical-atlas-v1",
   "source": "framework/10_visual_atlas.md",
   "plan": "docs/design/technical-atlas/MIGRATION_PLAN.md",
-  "observed_at": "2026-10-08",
+  "observed_at": "2026-10-09T22:16:22.010174+00:00",
   "baseline_revision": "453f3625d427b9d989851ed5712737495891a378",
   "audit_scope": "Initial baseline inventory at baseline_revision; actual per-item acceptance and publication recorded separately, not a whole-site redesign receipt",
   "audit_directory": "~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/",
@@ -623,7 +623,9 @@
       "phase": "E · 总览",
       "kind": "existing",
       "source_paths": [
-        "web/pages/bom.html"
+        "web/pages/bom.html",
+        "web/components/system-atlas.js",
+        "web/components/technical-atlas.js"
       ],
       "entry": "bom.html",
       "reference": [
@@ -635,10 +637,18 @@
         "TA-02",
         "TA-11"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null,
-      "partial_entry_supplement": "已验SSD与四张设施2D补充图接入所属行和真实缩略图；其他部件仍待重制，整项不计完成"
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-16/acceptance-v1.json",
+      "published_revision": "867ccd4e37e651c4d500a360fbbbea2ff8963f1c",
+      "partial_entry_supplement": "已完整接入61物理类别：原14+新47。仅system视图采用新47；尺度TA17与其它3D迁移仍按原队列。",
+      "object_id": "system-overview",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-16/bom-before-v1.html",
+        "sha256": "302fffcd55096e8d08365f92cacdeb4d1c993077171c676c4678f5aae250b5d8"
+      },
+      "implementation_stage": "Actual public page/16 complete views/96 downloads/5 zooms/source and healthy exact image verified; primary16/35. Source-stage candidate records retained.",
+      "publication_record": "docs/design/technical-atlas/TA-16/publication-20261010.json",
+      "published_at": "2026-10-09T18:15:55.994584+00:00"
     },
     {
       "id": "TA-17",
@@ -647,7 +657,10 @@
       "phase": "E · 总览",
       "kind": "existing",
       "source_paths": [
-        "web/pages/bom.html"
+        "web/pages/bom.html",
+        "web/components/technical-atlas.js",
+        "web/assets/technical-atlas/scale-overview-v1.png",
+        "web/assets/technical-atlas/scale-overview-v1.svg"
       ],
       "entry": "bom.html?view=scale",
       "reference": [
@@ -658,10 +671,18 @@
       "depends_on": [
         "TA-16"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null,
-      "partial_entry_supplement": "已验SSD与四张设施2D补充图接入所属行和真实缩略图；其他部件仍待重制，整项不计完成"
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-17/acceptance-v1.json",
+      "published_revision": "97508cdc09fe66c615a74968784e59497e2bb873",
+      "partial_entry_supplement": "全部61类别在system和scale显式复用详细图；TA17真实公共验收已完成，默认其它3D仍按原队列。",
+      "object_id": "scale-overview",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-17/bom-before-v1.html",
+        "sha256": "1fb930d14751646a279afaf43b69c6a4d09461c15239259035132b677a6987e5"
+      },
+      "implementation_stage": "Actual61 scale selections/20 complete width-theme views/6nativeSVG exports/12representative downloads and exacthealthy source verified; primary17/35. Source-stage pending records retained.",
+      "publication_record": "docs/design/technical-atlas/TA-17/publication-20261010.json",
+      "published_at": "2026-10-09T18:54:15.328530+00:00"
     },
     {
       "id": "TA-18",
@@ -684,10 +705,28 @@
       "depends_on": [
         "TA-02"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null,
-      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。"
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-18/acceptance-v1.json",
+      "published_revision": "e8fcc9891f1048d7c0cc70e55fc96f10f71bba49",
+      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
+      "started_at": "2026-10-09T19:38:54.304411+00:00",
+      "object_id": "campus-overview",
+      "identity": "通用选定八柜园区装配示意，非具体项目/OEM/CAD/完整拓扑",
+      "deliverable_paths": [
+        "web/assets/technical-atlas/campus-overview-v1.png",
+        "web/assets/technical-atlas/campus-overview-v1.svg",
+        "web/assets/technical-atlas/campus-overview-v1-preview.jpg",
+        "web/assets/technical-atlas/campus-overview-v1-preview.svg"
+      ],
+      "accepted_at": "2026-10-09T20:53:06.149961+00:00",
+      "published_at": "2026-10-09T20:53:06.149961+00:00",
+      "publication_record": "docs/design/technical-atlas/TA-18/publication-20261010.json",
+      "implementation_stage": "Actual public-v4 9views/50assembly, same-instance leaders and downloads, exacthealthy source; full authenticated regression limits retained.",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-18/bom3d-before-v1.html",
+        "bytes": 59516,
+        "sha256": "84991a337e1df0ef8beae7db31484a3fc8ecad11bfb4aaa3e80e6b0de846011b"
+      }
     },
     {
       "id": "TA-19",
@@ -710,10 +749,22 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null,
-      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。"
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-19/acceptance-v1.json",
+      "published_revision": "0304ac54995e07376681d50da92d8fa2e1d5021f",
+      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
+      "production_record": "docs/design/technical-atlas/TA-19/generation-native-v3.json",
+      "publication_status": "published_after_actual_AWS_and_public_acceptance",
+      "object_id": "campus-exploded",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-19/bom3d-before-v1.html",
+        "bytes": 69666,
+        "sha256": "bf1ba65dbbf63ab87821ab0e704e190c635eeff546dc12a496fe7eb078e5966b"
+      },
+      "accepted_at": "2026-10-09T22:16:22.010174+00:00",
+      "published_at": "2026-10-09T22:16:22.010174+00:00",
+      "publication_record": "docs/design/technical-atlas/TA-19/publication-20261010.json",
+      "implementation_stage": "Actual public-v2 fullviews/assembly, corrected same-instance surfaces/rigidguides/mousepicks/downloads/resources plusTA18default regression andexacthealthy source."
     },
     {
       "id": "TA-20",
@@ -724,7 +775,7 @@
       "source_paths": [
         "web/pages/bom3d.html"
       ],
-      "entry": "尚无独立俯视入口",
+      "entry": "campus-plan.html；TA18/19园区HUD链接，独立放大/双下载并保留原3D交互",
       "reference": [
         "R1",
         "R5",
@@ -736,10 +787,19 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
+      "status": "drafting",
+      "acceptance_record": "docs/design/technical-atlas/TA-20/acceptance-v1.json",
       "published_revision": null,
-      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。"
+      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
+      "object_id": "campus-overview",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-20/bom3d-before-v1.html",
+        "bytes": 71071,
+        "sha256": "0c18a35e58d5af7a8c907c02d666351e8468d24ebadd5f411bed7c4f5f12304a"
+      },
+      "production_record": "docs/design/technical-atlas/TA-20/generation-native-v2.json",
+      "publication_status": "not_published",
+      "baseline_revision": "5619cdcdd16d8219193bfc151b02e2cd392a0f52"
     },
     {
       "id": "TA-21",
@@ -1256,7 +1316,7 @@
   "execution_priority": {
     "reason": "先收尾用户授权的四张设施补充图，原35项按用户再次明确的01–35顺序继续；两类进度分别计量",
     "next": [
-      "TA-16"
+      "TA-20"
     ]
   },
   "primary_plan": {
@@ -1299,7 +1359,7 @@
       "TA-35"
     ],
     "execution_order": "01–35 as reiterated by user on 2026-10-08",
-    "published": 15
+    "published": 19
   },
   "supplemental_items": [
     "TA-36",
