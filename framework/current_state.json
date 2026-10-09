@@ -844,7 +844,7 @@
         "deploy/spark-reader/inresearch-reader-publish.timer"
       ],
       "implementation_revision": "2026.10.09.42",
-      "change_reason": "补充显式暂态恢复入口：精确batch/deferred/次数+错误CAS、耗尽预算白名单、当前完整封印/原件/失败审计复验、原去向history同事务；次数/available/候选/原审计及默认worker排序/C3/抽样/ready背压保持。本次仅实现及本地验收，生产恢复另验。；用户要求修复上线延迟：忙任务局部退避、模型等待期间receipt封存、按变更一分钟发布、有界重试及精确重放，不改采用资格。"
+      "change_reason": "补充显式暂态恢复入口：精确batch/deferred/次数+错误CAS、耗尽预算白名单、当前完整封印/原件/失败审计复验、原去向history同事务；次数/available/候选/原审计及默认worker排序/C3/抽样/ready背压保持。本次仅实现及本地验收，生产恢复另验。；用户要求修复上线延迟：忙任务局部退避、模型等待期间receipt封存、按变更一分钟发布、有界重试及精确重放，不改采用资格。；四个重型浏览器套件独立并行，保持全场景与期限，修复实测串行15分钟超时。"
     },
     {
       "id": "geluoke-longform-20261001",
