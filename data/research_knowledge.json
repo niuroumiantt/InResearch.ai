@@ -22499,6 +22499,89 @@
     },
     {
       "acceptance": "adopted",
+      "chunk_sha256": "f3306e191be64a62ccca06b1ba4fdf8265f707ef6e7ee5f011dc29e7c72f0b8e",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:10:claim:7:ev:0",
+      "locator": "page:11/chunk:10",
+      "object_ids": [
+        "actor:alphabet-google"
+      ],
+      "page_index": 10,
+      "question_ids": [],
+      "quote": "Platforms & Devices revenues increased 19% this quarter to​\nS\n​$12.4 billion due to strong growth in both YouTube subscriptions, particularly in​\n ​YouTube Music and Premium, and Google One subscriptions, which benefited from​\n  ​increased demand for AI plans.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T09:23:07+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性6，本次评分6。Google One受益于AI套餐需求上升实质匹配当前应用与终端需求经济学工单的付费需求维度。连续引文及周边分部业绩语境充分，无已识别敏感、实际冲突、替换或其他A类条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 123.087,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a1776d56256540125b6e500090c36d7cc239b46f8d2634d4e22ae2f064012e4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58239,
+            "output_tokens": 3555,
+            "reasoning_output_tokens": 255
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 31.771,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "23c8d554b07ac4bd0ed4ea02cf60806e8750b272ee8ff8c27cc3e673de99a170",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54337,
+              "output_tokens": 547,
+              "reasoning_output_tokens": 265
+            }
+          }
+        },
+        "batch_id": "2e79f6095781dd9822a4695cf9949f994c338b692898f0bd2a02d4f56dfd26de"
+      }
+    },
+    {
+      "acceptance": "adopted",
       "chunk_sha256": "80e4cf8aabd9b4d563b2a28a52483fb71feb7e99da805b30c82db3db24d60113",
       "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
       "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:8:claim:8:ev:0",
@@ -43329,6 +43412,106 @@
         "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
         "request_sha256": "432620c2bc16d0c0438ee8392fca7f6a4567a404a66cc06cebebc57c94c1c49e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:10:claim:7:ev:0"
+      ],
+      "id": "adoption:review:0beb1804347d8b7628fb79c4",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:alphabet-google"
+      ],
+      "question_ids": [
+        "NODE-demand-D4-economics"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet管理层在《Alphabet Q1 2026 Earnings Call》（确切来源日期未知）中称，2026年第一季度订阅、平台及设备收入增长19%至124亿美元，源于YouTube订阅（尤其是YouTube Music和Premium）及Google One订阅的强劲增长，并称Google One订阅受益于AI套餐需求上升。这是管理层对订阅业务表现及需求驱动因素的陈述，为AI套餐付费需求提供有限的定性线索，不构成独立验证的AI收入或算力需求增长结论。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T09:23:07+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性6，本次评分6。Google One受益于AI套餐需求上升实质匹配当前应用与终端需求经济学工单的付费需求维度。连续引文及周边分部业绩语境充分，无已识别敏感、实际冲突、替换或其他A类条件，符合B类部分采用要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 123.087,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "8a1776d56256540125b6e500090c36d7cc239b46f8d2634d4e22ae2f064012e4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 58239,
+            "output_tokens": 3555,
+            "reasoning_output_tokens": 255
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 31.771,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "23c8d554b07ac4bd0ed4ea02cf60806e8750b272ee8ff8c27cc3e673de99a170",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54337,
+              "output_tokens": 547,
+              "reasoning_output_tokens": 265
+            }
+          }
+        },
+        "batch_id": "2e79f6095781dd9822a4695cf9949f994c338b692898f0bd2a02d4f56dfd26de"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:10:claim:7"
+      ],
+      "limitations": "19%和124亿美元均属于订阅、平台及设备合并业务，不能归为Google One或AI套餐的收入指标。未披露AI套餐付费用户数、采用率、价格、收入、留存、单位使用量、成本或地域；未提供客户侧核验及非增长或替代证据。覆盖限于原生文本，未进行视觉审核。",
+      "conflict_check": "所供已采用陈述涉及企业迁移、安全应用、Search使用及AI广告工具，没有同口径Google One或AI套餐需求规范记录，不构成重复或实际冲突。Network广告收入下降与本条订阅需求口径不同，不能相互反证。相关旧记录筛选为空，未完成外部反证检索或独立验证。",
+      "gap_dependency_check": "仅贡献AI套餐付费需求方向的管理层定性线索，不回答或关闭NODE-demand-D4-economics。仍需套餐自身的采用、付费与使用序列、价格和成本、留存及非增长或替代证据；不推算token、GPU用量、电力或GW，不更新模型参数或替换既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2e79f6095781dd9822a4695cf9949f994c338b692898f0bd2a02d4f56dfd26de",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "e2affe58427ef81557722d82a4a688c8be0423c8672808d6f5899c84d78a7f33"
+      },
+      "object_mapping_check": "Google One及YouTube订阅明确属于谷歌主体，支持actor:alphabet-google。AI套餐是终端订阅业务，未建立单座AI数据中心、计算硬件或DCIM/BMS范围；当前root工单的问题关系不自动形成root对象映射。"
     },
     {
       "acceptance": "adopted",
