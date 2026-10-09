@@ -1,5 +1,13 @@
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
+  'server-fan': {
+    id: 'TA-09', title: '服务器风扇墙 · 模组与安装位',
+    image: '/assets/technical-atlas/fan-wall-v1.svg', preview: '/assets/technical-atlas/fan-wall-v1-preview.svg',
+    master: '/assets/technical-atlas/fan-wall-v1.png',
+    alt: '暖白金属风扇笼：三只带防护格栅的风扇模组就位，第四只沿相应空位上提，显示底部连接端与对应连接座、提拉部和释放卡扣。',
+    note: '通用四位风扇笼装配示意：三就位、一上提，唯一空位对应上提模组。数量、结构、接口和气流以选定型号为准；上提关系不表示气流或热插拔条件。',
+    labels: ['风扇模组与防护格栅：展示叶轮和外部保护结构', '四位示例：三个就位、一个上提，不指定真实产品数量', '提拉部与释放卡扣：展示可拆模组的机械类别', '安装导向与金属承载框：对应风扇笼上的独立安装位', '模组连接端与对应连接座：解释同一空位的装配关系，不指定引脚或兼容性', '产品差异：气流、转速、风量、电压、冗余和更换条件以选定型号资料为准'],
+  },
   psu: {
     id: 'TA-08', title: '服务器电源模块 · 接口与抽拉结构',
     image: '/assets/technical-atlas/psu-v1.svg', preview: '/assets/technical-atlas/psu-v1-preview.svg',

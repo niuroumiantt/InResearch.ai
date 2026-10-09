@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.13。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.18。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1554。
+在册文件：1546。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 95 |
+| 静态资源 | 99 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 311 |
-| 运行代码 | 304 |
+| 历史快照 | 310 |
+| 运行代码 | 306 |
 | 现行规范 | 14 |
-| 项目配置 | 325 |
+| 项目配置 | 309 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 150 |
-| 测试 | 143 |
+| 测试 | 146 |
 
 ## 在册记录集合
 
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 24 |
-| `data/research_knowledge.json` | evidence | 153 |
-| `data/research_knowledge.json` | statements | 151 |
+| `data/research_knowledge.json` | documents | 25 |
+| `data/research_knowledge.json` | evidence | 161 |
+| `data/research_knowledge.json` | statements | 159 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -183,6 +183,24 @@
 | `docs/design/technical-atlas/TA-08/publication-20261009.json` | public_source_bytes | 4 |
 | `docs/design/technical-atlas/TA-08/publication-20261009.json` | browser_evidence | 11 |
 | `docs/design/technical-atlas/TA-08/publication-20261009.json` | limits | 6 |
+| `docs/design/technical-atlas/TA-09/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-09/acceptance-v1.json` | references | 1 |
+| `docs/design/technical-atlas/TA-09/acceptance-v1.json` | technical_sources | 3 |
+| `docs/design/technical-atlas/TA-09/acceptance-v1.json` | source_access_limits | 2 |
+| `docs/design/technical-atlas/TA-09/acceptance-v1.json` | unknowns | 3 |
+| `docs/design/technical-atlas/TA-09/acceptance-v1.json` | artifacts | 7 |
+| `docs/design/technical-atlas/TA-09/acceptance-v1.json` | browser_checks | 2 |
+| `docs/design/technical-atlas/TA-09/acceptance-v1.json` | issues_resolved | 5 |
+| `docs/design/technical-atlas/TA-09/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-09/labels-v1.json` | labels | 10 |
+| `docs/design/technical-atlas/TA-09/labels-v1.json` | leaders | 9 |
+| `docs/design/technical-atlas/TA-09/preparation-v1.json` | references_to_pass | 1 |
+| `docs/design/technical-atlas/TA-09/preparation-v1.json` | primary_sources | 3 |
+| `docs/design/technical-atlas/TA-09/preparation-v1.json` | access_limits | 2 |
+| `docs/design/technical-atlas/TA-09/preparation-v1.json` | unknowns | 3 |
+| `docs/design/technical-atlas/TA-09/publication-20261009.json` | public_source_bytes | 4 |
+| `docs/design/technical-atlas/TA-09/publication-20261009.json` | browser_evidence | 11 |
+| `docs/design/technical-atlas/TA-09/publication-20261009.json` | limits | 7 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -782,6 +800,11 @@
 | `docs/design/technical-atlas/TA-08/preparation-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-08/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-08/publication-20261009.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-09/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-09/labels-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-09/preparation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-09/prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-09/publication-20261009.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -1803,6 +1826,7 @@
 | `src/inresearch/materials/receive.py` | 运行代码 |
 | `src/inresearch/materials/records.py` | 运行代码 |
 | `src/inresearch/materials/retention.py` | 运行代码 |
+| `src/inresearch/materials/source_provenance.py` | 运行代码 |
 | `src/inresearch/materials/text_similarity.py` | 运行代码 |
 | `src/inresearch/materials/triage.py` | 运行代码 |
 | `src/inresearch/paths.py` | 运行代码 |
@@ -1847,6 +1871,7 @@
 | `src/inresearch/workflow/research_match.py` | 运行代码 |
 | `src/inresearch/workflow/research_publish.py` | 运行代码 |
 | `src/inresearch/workflow/research_review.py` | 运行代码 |
+| `src/inresearch/workflow/research_sources.py` | 运行代码 |
 | `src/inresearch/workflow/score.py` | 运行代码 |
 | `src/inresearch/workflow/submissions.py` | 运行代码 |
 | `src/inresearch/workflow/supply.py` | 运行代码 |
@@ -1854,6 +1879,7 @@
 | `src/inresearch/workflow/triage.py` | 运行代码 |
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
 | `tests/auth_appearance.cjs` | 测试 |
+| `tests/browser_suites.cjs` | 测试 |
 | `tests/catalog_materials.cjs` | 测试 |
 | `tests/company_catalog_map.cjs` | 测试 |
 | `tests/company_page.cjs` | 测试 |
@@ -1887,6 +1913,7 @@
 | `tests/unit/test_apply_triage.py` | 测试 |
 | `tests/unit/test_auth.py` | 测试 |
 | `tests/unit/test_bom.py` | 测试 |
+| `tests/unit/test_browser_shards.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
 | `tests/unit/test_catalog_browse.py` | 测试 |
 | `tests/unit/test_catalog_migration.py` | 测试 |
@@ -1983,6 +2010,7 @@
 | `tests/unit/test_research_progress.py` | 测试 |
 | `tests/unit/test_research_publication_merge.py` | 测试 |
 | `tests/unit/test_research_review.py` | 测试 |
+| `tests/unit/test_research_sources.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
 | `tests/unit/test_storage_layout.py` | 测试 |
@@ -2049,6 +2077,10 @@
 | `web/assets/technical-atlas/chassis-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/chassis-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/chassis-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/fan-wall-v1-preview.jpg` | 静态资源 |
+| `web/assets/technical-atlas/fan-wall-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/fan-wall-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/fan-wall-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/fire-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/fire-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/fire-v1.png` | 静态资源 |

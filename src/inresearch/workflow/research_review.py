@@ -19,7 +19,7 @@ import time
 from pathlib import Path
 
 from inresearch.adapters.models import configured_client, InferenceError
-from inresearch.delivery.reader_export import project_document
+from inresearch.delivery.reader_export import project_document, supplied_sources
 from inresearch.knowledge import registry
 from inresearch.materials.artifacts import (atomic_json, digest_file, encoded,
                                           now_iso, private_dir, read_json, safe_path)
@@ -338,7 +338,8 @@ class ReviewStore:
         allowed = {'object_ids': {x['id'] for x in graph['objects']},
                    'question_ids': {x['id'] for x in questions['records']}}
         projected = project_document(doc, [], report, allowed,
-                                     registry.object_resolver(graph['objects'],graph.get('legacy_root_prefixes')))
+                                     registry.object_resolver(graph['objects'],graph.get('legacy_root_prefixes')),
+                                     supplied_sources(self.data, doc['sha256']).get(doc['sha256']))
         selected = {x['id']: x for x in projected['statements']}
         evidence = {x['id']: x for x in projected['evidence']}
         original = safe_path(self.data, doc['original_rel'])
@@ -727,6 +728,13 @@ def verify_source_packet(store, root, batch_id, bundle):
     if not row:
         raise ValueError('review_batch_missing')
     current = store.packet(root, dict(row), include_adopted=True)
+    # Old immutable requests predate explicit SHA source-sidecar reception.
+    # Adding supplier metadata cannot rewrite their sealed source document;
+    # new requests include it and retain strict comparison on every field.
+    if isinstance(current['document'], dict) and 'source_provenance' not in bundle['packet']['document']:
+        current['document'].pop('source_provenance', None)
+        if 'source_url' not in bundle['packet']['document']:
+            current['document'].pop('source_url', None)
     current['research_context'] = bundle['packet']['research_context']
     if 'demand_matching' in bundle['packet']:
         directory = store.directory_for(batch_id)/bundle['attempt']

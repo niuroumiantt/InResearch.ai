@@ -347,7 +347,7 @@
       "source_paths": [
         "web/assets/renders/fans.png"
       ],
-      "entry": "保留资产，当前无页面引用",
+      "entry": "bom.html#server-fan冷却/尺度对应行后的详图；rack3d.html?node=part:server-fan既有风扇墙交互档案",
       "reference": [
         "R2"
       ],
@@ -356,15 +356,26 @@
       "depends_on": [
         "TA-02"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null,
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-09/acceptance-v1.json",
+      "published_revision": "945f7629334dd3de6c00217eea9d6a9193f96756",
       "baseline_asset": {
         "file": "web/assets/renders/fans.png",
         "sha256": "cc9812e9977f8ebd9a75599150105a34a1f45298d1827a241a33babf3aa3a31a",
         "width": 1840,
         "height": 1280
-      }
+      },
+      "object_id": "part:server-fan",
+      "started_at": "2026-10-09",
+      "deliverable_paths": [
+        "web/assets/technical-atlas/fan-wall-v1.png",
+        "web/assets/technical-atlas/fan-wall-v1.svg",
+        "web/assets/technical-atlas/fan-wall-v1-preview.jpg",
+        "web/assets/technical-atlas/fan-wall-v1-preview.svg"
+      ],
+      "accepted_at": "2026-10-09",
+      "published_at": "2026-10-09",
+      "publication_record": "docs/design/technical-atlas/TA-09/publication-20261009.json"
     },
     {
       "id": "TA-10",
@@ -1151,7 +1162,7 @@
   "execution_priority": {
     "reason": "先收尾用户授权的四张设施补充图，原35项按用户再次明确的01–35顺序继续；两类进度分别计量",
     "next": [
-      "TA-09"
+      "TA-10"
     ]
   },
   "primary_plan": {
@@ -1194,7 +1205,7 @@
       "TA-35"
     ],
     "execution_order": "01–35 as reiterated by user on 2026-10-08",
-    "published": 8
+    "published": 9
   },
   "supplemental_items": [
     "TA-36",

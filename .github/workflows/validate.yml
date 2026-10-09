@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suites: [core, model_assets]
+        suites: [core_a, core_b, model_assets]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -41,6 +41,14 @@ jobs:
           "$RUNNER_TEMP/browser-tests/node_modules/.bin/playwright" install --with-deps chromium
       - name: Full browser regression suite
         run: NODE_PATH="$RUNNER_TEMP/browser-tests/node_modules" node tests/run_browser.cjs ${{ matrix.suites }}
+  browser-core:
+    name: browser (core)
+    needs: browser
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Both complete core shards and model asset suite succeeded
+        run: test "${{ needs.browser.result }}" = success
   storage-container:
     runs-on: ubuntu-latest
     steps:
