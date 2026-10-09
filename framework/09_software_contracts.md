@@ -146,4 +146,6 @@ workflow.supply 持有需求/任务计划的唯一用例，HTTP 负责权限与�
 
 2026-10-08：需求匹配v3仅归一PDF排版空白，不改变原文与证据。完整响应缺ID或虚构问题仍拒绝；逐条检索词失败隔离保留，其余候选继续审核。审计复验完整原始响应、接受/拒绝分区、模型输入SHA和独立抽样，旧协议原样复验。`retry-matching`只受理旧的检索词协议失败，保留全部尝试；不得借此重试或放行独立复核/原文失败。
 
+2026-10-09显式暂态恢复：workflow.research_review拥有`retry-transient`的精确比较/排队用例，CLI只解析完整batch ID及expected-attempts/expected-error。坏参数在初始化队列前拒绝；仅耗尽原预算（至少四次）的deferred暂态模型错误白名单可受理，当前revision/report/完整封印/原件SHA与当前失败文件均复验。BEGIN IMMEDIATE事务同时保存每个候选的原去向、失败/封印SHA与恢复原因，并更新该批次去向；并发相同请求只允许一次成功，历史写入失败全部回滚。不得修改attempts、available、候选或原审计，不增加调度优先权；只排一轮，新的失败仍服从原预算，正常worker再核源身份与C3/固定抽样。catalog与queue为独立数据库，复验期间二次读取当前源指针，不宣称跨库锁；不得用此入口绕过认证/身份/格式/引文/抽样/语义错误或制造发布回执。
+
 2026-10-09发布验收提速：完整浏览器core按统一已审阅suite清单分core_a/core_b并行，保留所有suite、密度场景与逐项断言/期限；browser(core)聚合只在全部matrix成功后通过，模型资产场景沿用。旧发布尝试被新attempt替代前，将完整journal不可变地保存到旧attempt目录，新journal保留相对路径与实际SHA，不能用新状态覆盖旧失败审计。

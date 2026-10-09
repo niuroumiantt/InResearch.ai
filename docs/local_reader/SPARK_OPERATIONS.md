@@ -406,6 +406,18 @@ M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用
 
 新需求匹配v3只折叠连续排版空白，冲突上下文选择仍用v2。原文/引文及旧封印不改；未能逐字匹配的单条候选独立暂缓并保留拒绝审计，其余继续实际C3与独立抽样。部署加载独立研究worker前，停止该服务并对queue.sqlite作SQLite一致备份，保存SHA与候选计数。`research-review retry-matching --batch-id 完整ID`仅接受 `context_terms_must_be_literal_bounded_claim` 的deferred批次，保留旧attempt并优先排队；独立复核失败、引文缺口、预算失败不能使用此入口。先点名小批次真实验证，再恢复独立研究服务；原Reader和relay不重启。核对恢复/仍暂缓/待发布/网站正式采用分别计量。
 
+### 2026-10-09 · 精确定向的暂态失败恢复
+
+`/healthz`返回ready不等于模型调用已恢复。先只读核最近失败的实际阶段、当前失败attempt/安全错误码，核对近期真实core和固定独立抽样成功；诊断不得输出认证、prompt或原始上游错误，不为探测启动额外模型worker。只在确认服务已恢复后，等待唯一research-review自然空闲且无in-flight，优雅停止同一审核服务；按上文保存原unit/配置/scope与queue.sqlite一致备份、SHA和候选计数，原Reader/relay保持。
+
+使用现行队列中读到的完整ID、次数和错误作精确比较，逐批调用：
+
+```sh
+python3 manage.py research-review retry-transient --batch-id 完整64位批次ID --expected-attempts 实际次数 --expected-error model_relay_unavailable
+```
+
+仅state=deferred、attempts至少4且两项expected值完全一致，错误属于`model_relay_unavailable`/`model_cli_timeout`/`model_quota_wait`，当前完整封存版本/原件与失败attempt一致的批次可恢复。缺失/改派候选或坏封印均拒绝；已queued、reviewing、ready或published不得重复恢复。每次成功返回实际revision/report/manifest/failure SHA及保留的次数/available，routing_history同事务留原去向与原因，全部旧attempt文件不动。available仍约束领取，排队不新增优先权；恢复原同一服务后只核这一轮真实进展。若再次暂态失败，保留新failure并进入原耗尽预算的deferred，不能循环重置次数或available。认证/模型身份/格式/原文/抽样/语义/预算失败使用各自既有边界；不能把此入口当C3完成、采用或网站ACK。
+
 ### 2026-10-09 · 旧研究 PR 恢复
 
 发布器每轮复验 blocked 批次的封存来源与包摘要。GitHub 的实际 OPEN head 必须仍等于审核提交：现行研究上下文已变化时重新排入 C3 审核，关闭旧 PR，保留原尝试、分支、错误与恢复原因；四项 CI 在同一 head 实际恢复成功时回到正常发布检查，不跳过上下文、基线与网站验收。CI失败且main已有新的已批准基线时，只有来源/上下文及原PR head复验通过、独占工作树干净且无正式记录冲突，才可按既有追加合并规则更新基线；保存原错误、检查结果与前后head，重新推送并等待新head全部CI。基线未变化、摘要变化和别人修改的head仍阻塞，不自动放宽预算或检查。人工合并多个通过现行复验的增量时，每批原审核包、原 PR/head 与实际合并提交的关系保存在私有发布 journal；逐批真实 HTTPS 支持闭包验收后才记录 published。
