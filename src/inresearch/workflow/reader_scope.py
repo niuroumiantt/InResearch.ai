@@ -41,7 +41,7 @@ class DocumentScope:
             raise ValueError('reader scope is too large')
         value = json.loads(self.path.read_text(encoding='utf-8'))
         ids = value.get('doc_ids')
-        if value.get('schema_version') != 1 or not isinstance(ids,list) or len(ids)>5000 or any(
+        if value.get('schema_version') != 1 or not isinstance(ids,list) or len(ids)>10000 or any(
                 not isinstance(i,str) or not re.fullmatch(r'doc-[0-9a-f]{64}',i) for i in ids):
             raise ValueError('invalid reader document scope')
         result = set(ids)
