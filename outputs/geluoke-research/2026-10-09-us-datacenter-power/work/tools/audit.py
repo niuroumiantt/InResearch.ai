@@ -17,6 +17,8 @@ claims=json.loads((OUT/'research/claims.json').read_text())['records'];by={s['id
 for c in claims:
     s=by[c['source_id']];assert s['status'] in ['downloaded','web_tool_extract'];assert c['quote'].lower() in Path(s.get('extracted_text') or s['retrieval_artifact']).read_text().lower(),c['id']
 soup=BeautifulSoup((OUT/'wechat.html').read_text(),'html.parser');assert not soup.select('script,style,link,button,iframe,svg');assert len(soup.select('img'))==1+expected
+map_paragraph=next(p for p in soup.select('p') if p.get_text().startswith('图上的州界'))
+assert 'font-size:17px;' in map_paragraph['style'],'Map explanation must retain body text size'
 assert all(x['src'].startswith(('data:image/png;base64,','data:image/jpeg;base64,')) for x in soup.select('img'))
 assert (OUT/'wechat.html').stat().st_size<3.8*1024*1024
 for p in (OUT/'assets').glob('fig*.png'):assert p.stat().st_size<1_000_000
@@ -30,7 +32,25 @@ refs=json.loads((OUT/'work/visual-references.json').read_text())['records']
 for r in refs:
     assert hashlib.sha256(Path(r['original_file']).read_bytes()).hexdigest()==r['sha256']
     assert r['evidence_role'].startswith('视觉参考')
-    if r['article_asset']:assert r['article_asset'] in images
+    # Earlier reference scenes are retained; the current article selects by function.
+plan=json.loads((OUT/'work/v3/figure-plan.json').read_text())
+visual=json.loads((OUT/'work/v3/visual-sources.json').read_text())
+assert [f['asset'] for f in plan['figures']]==images
+assert [f['number'] for f in plan['figures']]==list(range(1,expected+1))
+for f in plan['figures']:
+    assert f['question'] and f['review_status']=='reviewed',f['number']
+    assert all(by[s]['status'] in ['downloaded','web_tool_extract'] for s in f['source_ids']),f['number']
+    text=(OUT/f['editable']).read_text();assert '<text ' in text
+    assert f['design_width']==640
+first=doc.split('## 第一章')[1].split('\n\n')
+assert first[2].startswith('![图1：美国本土的三大异步互联]'),first[:4]
+map_text=(OUT/plan['figures'][0]['editable']).read_text()
+assert all(s in map_text for s in ['东部互联','西部互联','得州互联','ERCOT','有限直流联络','本土48州','细线为州界'])
+assert all(s in (OUT/plan['figures'][7]['editable']).read_text() for s in ['输电与配电成本','合同容量相关付款','2027-01-01','2016年前','12年'])
+assert all(s in (OUT/plan['figures'][9]['editable']).read_text() for s in ['1920MW','2042年','2027年','过渡期部分表后'])
+assert all(s in (OUT/plan['figures'][10]['editable']).read_text() for s in ['燃料电池','电力转换','AWS','Cologix','2025年批准'])
+layout=json.loads((OUT/'checks/v3-svg-layout.json').read_text());assert len(layout)==expected and not any(f['overflow'] for f in layout)
+assert hashlib.sha256(Path(visual['generated_original']['file']).read_bytes()).hexdigest()==visual['generated_original']['sha256']
 assert len(re.findall(r'^图\d+｜',doc,re.M))==expected
 assert re.findall(r'^图(\d+)｜',doc,re.M)==[str(i) for i in range(1,expected+1)]
 # Transparent author calculation, independent from industry forecasts.
@@ -49,5 +69,5 @@ assert len(prices)==7,prices
 # The original native table cells are archived, not inferred from adjacent text.
 (OUT/'checks/eia-table-rows.json').write_text(json.dumps(prices,ensure_ascii=False,indent=2))
 browser=json.loads((OUT/'checks/browser.json').read_text());assert browser['pass']
-validation={'as_of':'2026-10-09','source_identity_checked':len(checks),'source_attempts':len(sources),'body_images':expected,'visual_originals_checked':len(refs),'candidate_records':len(claims),'material_submissions':len(sub['items']),'submission_schema':'pass','quoted_locators':'pass','original_byte_SHA_and_tool_response_SHA':'pass','wechat_inline_html':'pass','image_interface_limit':'jpg/png; each under 1MB','calculations':'pass','eia_native_rows':'7 saved','browser':'pass','editorial_review':'关键数字、属性、出处、反证与主线已统一人工核对；无独立第三方终审','not_verified':['微信编辑器实际粘贴/素材上传/发布','Reader逐页深读与C3正式采用','远程数据库导入、研究问题关闭','未公开客户合同、项目实测负荷、所有地区最新交期'],'database_state':'未变更正式事实、价格、项目容量或模型'}
+validation={'as_of':'2026-10-09','revision':3,'source_identity_checked':len(checks),'source_attempts':len(sources),'body_images':expected,'visual_originals_checked':len(refs)+1,'figure_plan_and_visible_qualifiers':'pass; machine checks fields, semantic fit reviewed manually','map_geometry':'49 state/DC shapes; overview interconnection split manually reviewed against EIA/ERCOT, not exact utility GIS','candidate_records':len(claims),'material_submissions':len(sub['items']),'submission_schema':'pass','quoted_locators':'pass','original_byte_SHA_and_tool_response_SHA':'pass','wechat_inline_html':'pass','image_interface_limit':'jpg/png; each under 1MB','calculations':'pass','eia_native_rows':'7 saved','browser':'pass','editorial_review':'按紧邻段落逐图核对对象、状态、收费基数与关键标注；手机图目检，非独立第三方终审','not_verified':['微信编辑器实际粘贴/素材上传/发布','Reader逐页深读与C3正式采用','远程数据库导入、研究问题关闭','未公开客户合同、项目实测负荷、所有地区最新交期','三大互联精确运营GIS与具体园区接入边界'],'database_state':'未变更正式事实、价格、项目容量或模型'}
 (OUT/'checks/validation.json').write_text(json.dumps(validation,ensure_ascii=False,indent=2));print(json.dumps(validation,ensure_ascii=False))

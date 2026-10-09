@@ -37,7 +37,7 @@ def build(mode):
         elif para.startswith('!['):
             m=re.fullmatch(r'!\[(.*?)\]\((.*?)\)',para);assert m;content.append(image_tag(m[2],m[1],embed))
         else:
-            size=11 if small else 12 if para.startswith('图') else 14 if para.startswith(('格洛可｜','本篇覆盖')) else 17
+            size=11 if small else 12 if re.match(r'^图\d+｜',para) else 14 if para.startswith(('格洛可｜','本篇覆盖')) else 17
             color='#5A6B7F' if size<17 else '#1F2A37'
             ff='FangSong,STFangsong,"仿宋","Songti SC",serif' if comment else font
             content.append(f'<p style="font-size:{size}px;line-height:1.8;color:{color};margin:0 0 {10 if small else 19}px;text-align:justify;font-family:{ff};overflow-wrap:break-word;">'+safe(para)+'</p>')
