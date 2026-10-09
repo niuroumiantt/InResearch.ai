@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1515。
+在册文件：1534。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,11 +18,11 @@
 | 历史快照 | 310 |
 | 运行代码 | 304 |
 | 现行规范 | 14 |
-| 项目配置 | 287 |
+| 项目配置 | 304 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 148 |
+| 配套说明 | 150 |
 | 测试 | 145 |
 
 ## 在册记录集合
@@ -53,8 +53,8 @@
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
 | `data/research_knowledge.json` | documents | 24 |
-| `data/research_knowledge.json` | evidence | 148 |
-| `data/research_knowledge.json` | statements | 146 |
+| `data/research_knowledge.json` | evidence | 153 |
+| `data/research_knowledge.json` | statements | 151 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -559,6 +559,8 @@
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | summary | 3 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/cards.json` | records | 50 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/browser.json` | render | 6 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/build-title-20261009.json` | public_images | 15 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/build-title-20261009.json` | images | 31 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/build.json` | public_images | 15 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/build.json` | images | 31 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | Ohio | 11 |
@@ -568,6 +570,23 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | Arizona | 11 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | Oregon | 11 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | U.S. Total | 11 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-html-20261009.json` | render | 6 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-html-20261009.json` | not_performed | 3 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-html-final-20261009.json` | render | 6 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-html-final-20261009.json` | not_performed | 3 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-render-20261009.json` | overflow | 0 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository-intake-20261009.json` | commands | 6 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository-intake-20261009.json` | not_verified | 3 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-provenance-20261009.json` | decoded_archived_tool_response_carriers | 3 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-receipt-20261009.json` | source_items | 23 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-receipt-20261009.json` | reader_before | 0 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-receipt-20261009.json` | reader_hold_source_ids | 0 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-provenance-20261009.json` | decoded_archived_tool_response_carriers | 3 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-receipt-20261009.json` | source_items | 23 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-receipt-20261009.json` | reader_before | 0 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-receipt-20261009.json` | reader_hold_source_ids | 2 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-20261009.json` | rows | 21 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-final-20261009.json` | rows | 23 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/svg-layout.json` | items | 7 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/v3-svg-layout.json` | items | 14 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/validation.json` | not_verified | 5 |
@@ -1040,6 +1059,7 @@
 | [docs/research/2026-10-01/ai-walle/feedback.md](research/2026-10-01/ai-walle/feedback.md) | 配套说明 |
 | [docs/research/2026-10-01/ai-walle/review.md](research/2026-10-01/ai-walle/review.md) | 配套说明 |
 | `docs/research/2026-10-01/ai-walle/sources.json` | 项目配置 |
+| [docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md](research/2026-10-09/us-datacenter-power/INTAKE-20261009.md) | 配套说明 |
 | [docs/research/2026-10-09/us-datacenter-power/README.md](research/2026-10-09/us-datacenter-power/README.md) | 配套说明 |
 | [docs/research/datacenter-economics/README.md](research/datacenter-economics/README.md) | 配套说明 |
 | `docs/research/datacenter-economics/model.py` | 运行代码 |
@@ -1516,9 +1536,19 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/article-390-full.jpg` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/article-390-top.png` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/browser.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/build-title-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/build.json` | 项目配置 |
 | [outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/editorial-review.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/editorial-review.md) | 配套说明 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-1000-20261009.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-390-20261009.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-final-1000-20261009.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-final-390-20261009.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-html-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-html-final-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-render-20261009.json` | 项目配置 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-review-20261009.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figure9-title-review-20261009.md) | 配套说明 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figures-contact-title-20261009.jpg` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figures-contact.jpg` | 项目配置 |
 | [outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/intake-review.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/intake-review.md) | 配套说明 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-chapter-1.png` | 项目配置 |
@@ -1541,7 +1571,15 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-7.png` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-8.png` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-9.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository-intake-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-provenance-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-receipt-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-provenance-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-receipt-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-parser-service-release-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-final-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/svg-layout.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/v3-svg-layout.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/validation.json` | 项目配置 |

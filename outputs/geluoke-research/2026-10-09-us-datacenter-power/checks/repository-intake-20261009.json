@@ -1,0 +1,101 @@
+{
+  "checked_at": "2026-10-09T03:45:57.746379+00:00",
+  "governance_version": "2026.10.09.12",
+  "base_main": "82fe87e2cc88fb4c11d0c735baac558affa548b4",
+  "commands": [
+    {
+      "command": "python3 manage.py governance --refresh",
+      "exit_code": 0,
+      "stdout": "Governance 2026.10.09.12: 1531 files; scopes, inventory and reviewed test map verified; semantic coverage remains partial",
+      "stderr": ""
+    },
+    {
+      "command": "python3 manage.py governance --check",
+      "exit_code": 0,
+      "stdout": "Governance 2026.10.09.12: 1531 files; scopes, inventory and reviewed test map verified; semantic coverage remains partial",
+      "stderr": ""
+    },
+    {
+      "command": "python3 manage.py validate --strict",
+      "exit_code": 0,
+      "stdout": "记录数: projects=126 companies=257 prices=512 policies=2 contracts=8 sources=74 products=175 bom_parts=63 product_docs_plan=801 product_library=0\n校验通过（0 warnings）",
+      "stderr": ""
+    },
+    {
+      "command": "python3 manage.py registry",
+      "exit_code": 0,
+      "stdout": "Research v3.0.0: 353 objects, 458 questions; references valid",
+      "stderr": ""
+    },
+    {
+      "command": "python3 -m unittest discover -s tests/unit -p test_governance.py",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.206s\n\nOK"
+    },
+    {
+      "command": "git diff --check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "governance_unit_tests": 9,
+  "final_html_render_checks": 6,
+  "figure9_mobile_visual_review": "view_image reviewed 374px rendered image; title/units/forecast periods and conditions readable; no clipping or overlap",
+  "other_13_figures_and_initial_checks": "exact bytes/records preserved",
+  "research_candidates_submissions_and_formal_data": "no branch changes",
+  "parser_module_sha256_matches_actual_Spark_release": "322b316bbc5bc0bce0c3fc4b4835b2a23c7f9d42f06c0f81ae20f17a26aaa650",
+  "reviewed_digest_repair": "Initial refresh rejected stale reviewed SHA for current_state; manually reviewed .12/version/intake-path/execution-reason-only diff and updated that specific source digest before retry. No bulk digest approval.",
+  "CI": "not queried or awaited; direct user authorized complete local acceptance before merge/deployment",
+  "not_verified": [
+    "公众号实粘/素材上传/发布",
+    "本批23份全部深读、C3正式采用及研究问题关闭",
+    "catalog来源URL侧车完整导入"
+  ],
+  "pass": true,
+  "final_governance_inventory_files": 1532,
+  "final_rebase_acceptance": {
+    "checked_at": "2026-10-09T03:50:55.784866+00:00",
+    "base_main": "8a08600a510fac0b4708baf1e4af21013edde5cb",
+    "commands": [
+      {
+        "command": "python3 manage.py governance --refresh",
+        "exit_code": 0,
+        "stdout": "Governance 2026.10.09.12: 1532 files; scopes, inventory and reviewed test map verified; semantic coverage remains partial",
+        "stderr": ""
+      },
+      {
+        "command": "python3 manage.py governance --check",
+        "exit_code": 0,
+        "stdout": "Governance 2026.10.09.12: 1532 files; scopes, inventory and reviewed test map verified; semantic coverage remains partial",
+        "stderr": ""
+      },
+      {
+        "command": "python3 manage.py validate --strict",
+        "exit_code": 0,
+        "stdout": "记录数: projects=126 companies=257 prices=512 policies=2 contracts=8 sources=74 products=175 bom_parts=63 product_docs_plan=801 product_library=0\n校验通过（0 warnings）",
+        "stderr": ""
+      },
+      {
+        "command": "python3 manage.py registry",
+        "exit_code": 0,
+        "stdout": "Research v3.0.0: 353 objects, 458 questions; references valid",
+        "stderr": ""
+      },
+      {
+        "command": "python3 -m unittest discover -s tests/unit -p test_governance.py",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.197s\n\nOK"
+      },
+      {
+        "command": "git diff --check",
+        "exit_code": 0,
+        "stdout": "",
+        "stderr": ""
+      }
+    ],
+    "parallel_main_research_publication": "Preserved PR443 research_knowledge and repository inventory updates; no source-candidate or formal data edits by this branch."
+  }
+}

@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "3bcfa182de066c034493ff059d23546d683c2ac39e841cd9ad80d8c8ae756e70",
-    "framework/CURRENT.md": "fdcdb8d9eb91dc6aee21966631a77a1556217b2b71a0157aa39c8f9437b61159",
+    "framework/CURRENT.md": "280775b9a0bdee76ca62666a83b2366412dac52db939e32f346ea296f84fe79d",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "c900ea822d1b09d24810a369c7e663ae1a902e4bc990cbeefe5b46c3237e50f2",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "8a5ec9fd69b88f962474028184b8b82bc469a0b1fdee03700da80539ce9a8eab",
+    "framework/current_state.json": "3d49843518a8fbefe6eec01e2f0c943a34bfbc67f5ece9d77d39711dd9a6792d",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -1459,7 +1459,7 @@
       "policy": "geluoke-longform-20261009-match",
       "scope": "editorial-delivery",
       "source": "docs/geluoke/专题写作规则.md",
-      "checked_requirement": "v2.6人工审阅：图先回答紧邻段落问题，按地图/数据/阶段/合同/对应工程选择；州形状来自Census，互联界线对照EIA/ERCOT概览重绘。费用基数、预测/合同/投运状态与流向直接入图。本稿14幅解释图及章节顺序/承接重组，逐图语义和手机目检独立记录；脚本核对顺序、首段地图、关键标注、来源身份、SVG边界、上传限额与HTML复制。治理单测只覆盖登记，不替代语义或平台验收。",
+      "checked_requirement": "v2.6人工审阅：图先回答紧邻段落问题，按地图/数据/阶段/合同/对应工程选择；州形状来自Census，互联界线对照EIA/ERCOT概览重绘。费用基数、预测/合同/投运状态与流向直接入图。本稿14幅解释图及章节顺序/承接重组，逐图语义和手机目检独立记录；脚本核对顺序、首段地图、关键标注、来源身份、SVG边界、上传限额与HTML复制。治理单测只覆盖登记，不替代语义或平台验收。 2026-10-09续做人工复审：图9总题归一为客户成本，数据条件不变；三版HTML及新手机图实际核对。Spark真实回执核对23份来源接收/候选匹配、147传输文件/89上游归档SHA；既有scope及日报保留，追加23条至156（先21、部署解析器后加2），23/23注册、封存1与C3未运行分开计量；安全换代服务/源码/解析器SHA有实际回执。",
       "tests": [
         "tests/unit/test_governance.py::GovernanceTests.test_replacement_valid_then_parallel_current_rejected",
         "tests/unit/test_governance.py::GovernanceTests.test_inventory_detects_added_and_modified_records_excludes_ignored"
@@ -1467,8 +1467,8 @@
       "not_verified": [
         "逐篇内容须独立核对；自动治理不覆盖事实语义、版权、所有原文定位或编辑质量。",
         "本篇手机/桌面与浏览器复制往返已检查；微信编辑器实粘、素材上传与发布未执行。",
-        "本篇研究包保持候选；尚未执行远程数据库导入、Reader逐页深读/C3、价格/项目正式采用或问题关闭。",
-        "原件仅在本机及独立原件zip；Git中保存派生文本、图与规则，不视作跨机器原件接收。",
+        "本篇研究输入仍保持候选；23份来源接收/匹配并Reader注册，11:39:55快照完整封存1/queued22；尚未完成本批全部深读，C3/价格/项目正式采用及问题关闭未执行。",
+        "原件/工具响应归档已按真实回执进入Spark永久incoming，20原件与3派生正文载体的blob身份已核对；Git只保存派生文本、图、规则和操作回执。来源URL保留侧车，未完整导入catalog。",
         "AI工程图为通用示意，未按特定项目施工图验证；精确几何、设备数量与比例不作事实。",
         "本次仅核对inews现有口吻代码与PR合并状态；没有将该仓库自动图表渲染器改成工程插画生成器。",
         "互联范围为依据官方图的概览重绘，未核验精确运营GIS或具体园区的接入边界；同一作者目检不是独立第三方终审。"
