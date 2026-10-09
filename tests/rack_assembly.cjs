@@ -5,8 +5,24 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),{chromium}=requ
  try{
   const page=await browser.newPage({viewport:{width:1280,height:900},deviceScaleFactor:1,reducedMotion:'reduce'}),errors=[],results=[],modelRequests=[];
   page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>{if(/api\/model-assets|assets\/panels\//.test(r.url()))modelRequests.push(r.url());});
-  await page.route(/\/assets\/part-inspector\.js(?:\?[^#]*)?$/,async r=>{const response=await r.fetch(),s=await response.text(),body=s.replace('return {canvas: iCv,','return {objectsForTest:()=>iGroup?.children||[],rotationForTest:()=>({x:iRotX,y:iRotY}),canvas: iCv,');assert.notEqual(body,s);await r.fulfill({response,body});});
-  await page.route(/\/rack3d\.html/,async r=>{const response=await r.fetch(),s=await response.text(),body=s.replace('</script>\n</body>','globalThis.__rackTest={rack,rackAssembly,rackOverviewMode,serverMode,pickables,PARTMESH,inspector,camera,controls,scene,canvas,sceneView,disposePage,animated,renderer,composer,currentPartMeshes,sceneModels};\n</script>\n</body>');assert.notEqual(body,s);await r.fulfill({response,body});});
+  const sourceResponses=[];
+  async function fullSource(fetchSource,originalHeaders,url){
+   const headers={...originalHeaders},removed=['if-none-match','if-modified-since'].filter(k=>k in headers);removed.forEach(k=>delete headers[k]);
+   const response=await fetchSource(headers),source=await response.text(),h=response.headers();
+   sourceResponses.push({url,status:response.status(),body_bytes:Buffer.byteLength(source),removed_conditional_headers:removed,last_modified:h['last-modified']||null,cache_control:h['cache-control']||null});
+   if(process.env.REVIEW_SCREENSHOTS)fs.writeFileSync(process.env.REVIEW_SCREENSHOTS+'/rack-source-responses.json',JSON.stringify(sourceResponses,null,2)+'\n');
+   assert.equal(response.status(),200,'observer needs complete200 source: '+url);assert.ok(source.length,'observer needs nonempty source: '+url);return {response,source};
+  }
+  // Reproduce a real304 then verify the observer can recover a full source body.
+  const probeURL=process.env.UI_BASE_URL+'/rack3d.html?x=0',initial=await page.request.get(probeURL),modified=initial.headers()['last-modified'];assert.equal(initial.status(),200);
+  if(modified){
+   const conditional=await page.request.get(probeURL,{headers:{'if-modified-since':modified}});assert.equal(conditional.status(),304);assert.equal((await conditional.body()).length,0);
+   await fullSource(headers=>page.request.get(probeURL,{headers}),{'if-modified-since':modified},probeURL);results.push({label:'real conditional304 empty response recovered as strict full200 for observer',conditional_status:304,conditional_body_bytes:0});
+  }else{
+   await fullSource(headers=>page.request.get(probeURL,{headers}),{},probeURL);results.push({label:'strict full200 source; server omits Last-Modified, conditional304 reproduction not applicable'});
+  }
+  await page.route(/\/assets\/part-inspector\.js(?:\?[^#]*)?$/,async r=>{const {response,source:s}=await fullSource(headers=>r.fetch({headers}),r.request().headers(),r.request().url()),body=s.replace('return {canvas: iCv,','return {objectsForTest:()=>iGroup?.children||[],rotationForTest:()=>({x:iRotX,y:iRotY}),canvas: iCv,');assert.notEqual(body,s);await r.fulfill({response,body});});
+  await page.route(/\/rack3d\.html/,async r=>{const {response,source:s}=await fullSource(headers=>r.fetch({headers}),r.request().headers(),r.request().url()),body=s.replace('</script>\n</body>','globalThis.__rackTest={rack,rackAssembly,rackOverviewMode,serverMode,pickables,PARTMESH,inspector,camera,controls,scene,canvas,sceneView,disposePage,animated,renderer,composer,currentPartMeshes,sceneModels};\n</script>\n</body>');assert.notEqual(body,s);await r.fulfill({response,body});});
   const screenshot=async name=>{if(process.env.REVIEW_SCREENSHOTS)await page.screenshot({path:process.env.REVIEW_SCREENSHOTS+'/'+name+'.png'});};
   const openControls=async()=>{if(!await page.locator('details[data-responsive-panel]').evaluate(e=>e.open))await page.getByLabel('展开或收起场景控制').click();};
   async function fit(label){
