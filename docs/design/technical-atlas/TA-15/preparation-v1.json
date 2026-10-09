@@ -1,0 +1,103 @@
+{
+  "figure_id": "TA-15",
+  "stage": "accepted_local_not_published",
+  "baseline_revision": "ab9670067dec878e7ec9d6c7f5f56601ce5d2c98",
+  "object_scope": [
+    "part:gpu",
+    "part:hbm"
+  ],
+  "references": [
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "role": "Required style reference: stacked vertical separation and fine material/edge detail; not SSD geometry",
+      "passed_to_builtin_tool": true
+    },
+    {
+      "id": "TA-05",
+      "file": "web/assets/technical-atlas/hbm-package-v1.png",
+      "sha256": "263a421aeda7991bba719016b1cc400961019c0008e4bc8bcf6248503ddc1f6e",
+      "role": "Adopted generic package identity: one logic die, four HBM stacks, silicon interposer and substrate; new view retains layout",
+      "passed_to_builtin_tool": true
+    }
+  ],
+  "method": "Final: independent1536x1024 controlled nativeThree.js geometry render+three1:1 same-instance native insets under framework10; both actual builtinAI candidates rejected/not adopted",
+  "technical_sources": [
+    {
+      "url": "https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm",
+      "observed_at": "2026-10-09",
+      "supports": "CoWoS-S logic and HBM side by side on silicon interposer; other R/L variants are distinct, this generic example is not all CoWoS"
+    },
+    {
+      "url": "https://www.micron.com/about/blog/applications/data-center/hbm2e-fastest-memory-modern-data-center",
+      "observed_at": "2026-10-09",
+      "supports": "HBM DRAM vertical connections and interposer context, not this particular example layer or stack count"
+    }
+  ],
+  "unknowns": [
+    "Generic1logic4HBM/eight illustrative DRAM layers, not vendor SKU/GB/bandwidth/pitch/U/mm/power/actual topology",
+    "Size/thickness/routing/material detail and underfill are explanatory; virtual separation not maintenance or fabrication recipe",
+    "No fluid path/coldplate geometry claimed; TA11 generic aircooled server has two PCIe accelerators, this one package is not every board or every SKU"
+  ],
+  "candidates": [
+    {
+      "file": "/Users/m4/.codex/generated_images/01a11e95-8197-7ae3-b0a8-9164128c5eaa/exec-453fbebc-0b66-419d-bb18-6582ed3041a6.png",
+      "sha256": "c5b4096ae60ee94328d4de6b7861fcae63f62f029091e884b158a375ef337788",
+      "stage": "rejected_projection_correction_needed",
+      "reason": "One logic/four HBM count correct, but top-device contact planes appear at unequal projected vertical offsets to four seats; left stack especially lower. Cannot certify common assembly correspondence from this candidate.",
+      "prompt": "docs/design/technical-atlas/TA-15/prompt-v1.txt"
+    },
+    {
+      "file": "/Users/m4/.codex/generated_images/01a11e95-8197-7ae3-b0a8-9164128c5eaa/exec-271cf165-2200-4ad5-8d92-c631bd1f2311.png",
+      "sha256": "c2014a516d5f0c44c728a81d20ca521b9a165f20ee3f83561620c36d89036fe2",
+      "stage": "rejected_not_adopted",
+      "reason": "Actual edit retained1logic4HBM but upper device seats still have unequal2D projected separation; common assembly axis not established.",
+      "prompt": "docs/design/technical-atlas/TA-15/prompt-v2.txt"
+    }
+  ],
+  "native_versions": [
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v1.png",
+      "sha256": "39ebb083617f9f28b768d6891a648c49f522dce15a7e125e92932c235af8b6b7",
+      "stage": "retained_draft",
+      "reason": "Cutface orientation/TSV height and invisible BGA detail rejected"
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v2.png",
+      "sha256": "6edeb7414de1359f7e0d06bb0b9a8b7c3dec9e98b737b90fe4347b560b5c865f",
+      "stage": "retained_draft",
+      "reason": "Underside framing clipped and invented regular logic grid rejected"
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v3.png",
+      "sha256": "be38817cdec74ef8f8a4f29097cb2fb4120d8d9add79cc1cdf061caeac75171d",
+      "stage": "retained_draft",
+      "reason": "Root structure review allowed continuedacceptance, not published"
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v4.png",
+      "sha256": "0afd246e42e02b1f212dc4a946d62f0724bfd652c5740714d0d1f9dbf4054aa5",
+      "stage": "retained_draft",
+      "reason": "Label anchor/layout refinement"
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v5.png",
+      "sha256": "084279a53acb3aad82bc7adfde8c3ce2b5bdfd36d6615c88553cf77dee2ae781",
+      "stage": "retained_draft",
+      "reason": "Actual contact height correction"
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v6.png",
+      "sha256": "1b7a4c6de062725110d16e7df89a956f65e178d9b78a57aff1f705d106b2a509",
+      "stage": "retained_previous_master_before_C4_upper_contact_fix",
+      "reason": "Final native local spacing; unchanged actual package geometry"
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/chip-native-v7.png",
+      "sha256": "70a96800f1c0ef4e529d52b5c03adde027e05eb6e0f0e2ad39537d1c099e7721",
+      "stage": "final_master",
+      "reason": "C4 radius/center corrected to touch both actual substrate top and interposer bottom; world-bounds tests on both faces. Layout, five-device poses and projected label anchors unchanged."
+    }
+  ]
+}
