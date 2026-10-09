@@ -1,0 +1,202 @@
+{
+  "figure_id": "TA-12",
+  "title": "服务器正交平面图 · 同一通用整机布局",
+  "description": "真正正交俯视；前在下、后在上。省略顶盖，所有部件保持TA11程序几何的原安装位置。2CPU、8DIMM、2加速卡、4风扇、8载盘、2PSU及1NIC仅为示例；俯视只见上层4盘，风扇正面、外部插口和下层4盘被遮挡。加速卡顶罩是示例几何，不等同TA11虚拟剖视母图露出的鳍片。非CAD、非实际尺寸或维护步骤。",
+  "master": "web/assets/technical-atlas/server-plan-v1.png",
+  "output": "web/assets/technical-atlas/server-plan-v1.svg",
+  "preview_output": "web/assets/technical-atlas/server-plan-v1-preview.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "labels": [
+    {
+      "id": "label-title",
+      "text": "正交俯视 · 布局示意",
+      "x": 70,
+      "y": 53
+    },
+    {
+      "id": "label-io",
+      "text": "后部 I/O · 俯视见背壳",
+      "x": 70,
+      "y": 135
+    },
+    {
+      "id": "label-cpu",
+      "text": "双 CPU 散热器",
+      "x": 70,
+      "y": 232
+    },
+    {
+      "id": "label-dimm",
+      "text": "八条 DIMM · 两组示例",
+      "x": 70,
+      "y": 334
+    },
+    {
+      "id": "label-board",
+      "text": "主板与板级元件",
+      "x": 70,
+      "y": 420
+    },
+    {
+      "id": "label-gpu",
+      "text": "PCIe 加速卡区 · 示例顶罩",
+      "x": 70,
+      "y": 538
+    },
+    {
+      "id": "label-fan",
+      "text": "四风扇 · 俯视见框架",
+      "x": 70,
+      "y": 745
+    },
+    {
+      "id": "label-storage",
+      "text": "前置载盘 · 上层四盘可见",
+      "x": 70,
+      "y": 862
+    },
+    {
+      "id": "label-rear",
+      "text": "后侧 · 外部接口朝后",
+      "x": 1100,
+      "y": 95
+    },
+    {
+      "id": "label-psu",
+      "text": "双电源模块",
+      "x": 1100,
+      "y": 203
+    },
+    {
+      "id": "label-dc",
+      "text": "内侧配电接口",
+      "x": 1100,
+      "y": 350
+    },
+    {
+      "id": "label-backplane",
+      "text": "存储背板 · 位于载盘后方",
+      "x": 1100,
+      "y": 710
+    },
+    {
+      "id": "label-chassis",
+      "text": "机箱折边与安装耳",
+      "x": 1100,
+      "y": 933
+    },
+    {
+      "id": "label-occlusion",
+      "text": "下层四盘被上层遮挡",
+      "x": 1100,
+      "y": 980
+    },
+    {
+      "id": "label-scope",
+      "text": "省略顶盖 · 非 CAD / 非尺寸图",
+      "x": 70,
+      "y": 980
+    }
+  ],
+  "leaders": [
+    {
+      "id": "leader-io",
+      "path": "M70 150 L460 150 L493 127 L550 101",
+      "target": [
+        550,
+        101
+      ]
+    },
+    {
+      "id": "leader-cpu",
+      "path": "M70 248 L490 248 L568 230",
+      "target": [
+        568,
+        230
+      ]
+    },
+    {
+      "id": "leader-dimm",
+      "path": "M70 350 L480 350 L662 308 L680 278",
+      "target": [
+        680,
+        278
+      ]
+    },
+    {
+      "id": "leader-board",
+      "path": "M70 435 L470 435 L544 376",
+      "target": [
+        544,
+        376
+      ]
+    },
+    {
+      "id": "leader-gpu",
+      "path": "M70 553 L480 553 L590 519",
+      "target": [
+        590,
+        519
+      ]
+    },
+    {
+      "id": "leader-fan",
+      "path": "M70 760 L473 760 L581 765",
+      "target": [
+        581,
+        765
+      ]
+    },
+    {
+      "id": "leader-storage",
+      "path": "M70 878 L470 878 L566 858",
+      "target": [
+        566,
+        858
+      ]
+    },
+    {
+      "id": "leader-rear",
+      "path": "M1100 110 L1062 110 L995 65",
+      "target": [
+        995,
+        65
+      ]
+    },
+    {
+      "id": "leader-psu",
+      "path": "M1100 218 L1060 218 L984 204",
+      "target": [
+        984,
+        204
+      ]
+    },
+    {
+      "id": "leader-dc",
+      "path": "M1100 365 L1052 365 L987 320",
+      "target": [
+        987,
+        320
+      ]
+    },
+    {
+      "id": "leader-backplane",
+      "path": "M1100 725 L1060 725 L987 798",
+      "target": [
+        987,
+        798
+      ]
+    },
+    {
+      "id": "leader-chassis",
+      "path": "M1100 948 L1070 948 L1020 930",
+      "target": [
+        1020,
+        930
+      ]
+    }
+  ]
+}
