@@ -16,7 +16,7 @@ const {chromium} = require('playwright');
       assert.notEqual(instrumented, html);
       await route.fulfill({response, body:instrumented});
     });
-    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm', '/rack3d.html?node=part:cpu', '/rack3d.html?node=part:dram', '/rack3d.html?node=part:nic', '/rack3d.html?node=part:psu', '/rack3d.html?node=part:server-fan', '/rack3d.html?node=part:coldplate']) {
+    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm', '/rack3d.html?node=part:cpu', '/rack3d.html?node=part:dram', '/rack3d.html?node=part:nic', '/rack3d.html?node=part:psu', '/rack3d.html?node=part:server-fan', '/rack3d.html?node=part:coldplate']) {
       console.log('Scene contract: loading '+url);
       await page.goto(process.env.UI_BASE_URL + url);
       const dossier = page.locator('#dossier');
@@ -25,11 +25,12 @@ const {chromium} = require('playwright');
       assert.match(await dossier.locator('.rg-3d-panel .rg-chips').textContent(), /个问题.*条证据.*个关联任务/);
       assert.ok(await dossier.locator('.rg-3d-neighbors a').count()>0);
       console.log('Scene contract: research ready '+url);
-      if (url.includes('p=server')) {
-        const enclosure = dossier.locator('.technical-atlas[data-figure="TA-03"]');
-        await enclosure.waitFor();
-        assert.match(await enclosure.locator('figcaption').textContent(), /子装配/);
-        assert.ok((await enclosure.locator('img').getAttribute('src')).endsWith('/chassis-v1-preview.svg'));
+      if (url.includes('p=server') || new URL(url,'http://localhost').searchParams.get('node')==='part:server') {
+        const server = dossier.locator('.technical-atlas[data-figure="TA-11"]');
+        await server.waitFor();
+        assert.match(await server.locator('figcaption').textContent(), /通用风冷.*仅为示例/);
+        assert.ok((await server.locator('img').getAttribute('src')).endsWith('/server-v1-preview.svg'));
+        assert.equal(await server.locator('[data-related-figure="TA-03"]').getAttribute('href'), '/assets/technical-atlas/chassis-v1.svg');
       } else if (url.includes('part:coldplate')) {
         const coldplate = dossier.locator('.technical-atlas[data-figure="TA-10"]');
         await coldplate.waitFor();

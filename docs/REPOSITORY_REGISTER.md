@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.22。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.23。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1591。
+在册文件：1605。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 103 |
+| 静态资源 | 107 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 311 |
-| 运行代码 | 308 |
+| 运行代码 | 310 |
 | 现行规范 | 15 |
-| 项目配置 | 344 |
+| 项目配置 | 351 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 150 |
-| 测试 | 148 |
+| 测试 | 149 |
 
 ## 在册记录集合
 
@@ -220,6 +220,21 @@
 | `docs/design/technical-atlas/TA-10/publication-20261009.json` | browser_evidence | 11 |
 | `docs/design/technical-atlas/TA-10/publication-20261009.json` | limits | 8 |
 | `docs/design/technical-atlas/TA-10/publication-20261009.json` | ci_observations | 1 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | references | 1 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | technical_sources | 6 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | source_access_limits | 1 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | unknowns | 5 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | artifacts | 10 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | browser_checks | 6 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | issues_resolved | 8 |
+| `docs/design/technical-atlas/TA-11/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-11/labels-v1.json` | labels | 12 |
+| `docs/design/technical-atlas/TA-11/labels-v1.json` | leaders | 12 |
+| `docs/design/technical-atlas/TA-11/preparation-v1.json` | primary_sources | 6 |
+| `docs/design/technical-atlas/TA-11/preparation-v1.json` | access_limits | 1 |
+| `docs/design/technical-atlas/TA-11/preparation-v1.json` | rejected_iterations | 3 |
+| `docs/design/technical-atlas/TA-11/preparation-v1.json` | boundaries | 5 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -837,6 +852,14 @@
 | `docs/design/technical-atlas/TA-10/prompt-cutaway-v3.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-10/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-10/publication-20261009.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/labels-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/legacy/rack3d-996cfa2e.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-11/preparation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/ta11-prompt-correction-v2.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v3.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v4.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/ta11-prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -1945,6 +1968,7 @@
 | `tests/scene_bootstrap.cjs` | 测试 |
 | `tests/scene_framing.cjs` | 测试 |
 | `tests/scene_resources.cjs` | 测试 |
+| `tests/server_assembly.cjs` | 测试 |
 | `tests/supply.cjs` | 测试 |
 | `tests/technical_atlas.cjs` | 测试 |
 | `tests/ui_skin.cjs` | 测试 |
@@ -2159,6 +2183,10 @@
 | `web/assets/technical-atlas/security-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/security-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/security-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/server-v1-preview.jpg` | 静态资源 |
+| `web/assets/technical-atlas/server-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/server-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/server-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/shell-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/shell-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/shell-v1.png` | 静态资源 |
@@ -2211,6 +2239,7 @@
 | `web/components/scene-resources.js` | 运行代码 |
 | `web/components/scene-view.js` | 运行代码 |
 | `web/components/series-summary.js` | 运行代码 |
+| `web/components/server-assembly.js` | 运行代码 |
 | `web/components/site-shell.js` | 运行代码 |
 | `web/components/supply.js` | 运行代码 |
 | `web/components/targets.js` | 运行代码 |

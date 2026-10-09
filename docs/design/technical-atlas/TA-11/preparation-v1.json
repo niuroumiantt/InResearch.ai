@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-11",
+  "object_id": "part:server",
+  "prepared_at": "2026-10-09",
+  "source_baseline": "996cfa2ee82612637c0fb28c386e1b26f948c38f / .20; final rebase must preserve newer parallel research/source revisions",
+  "reference_identity": {
+    "file": "docs/design/technical-atlas/references/02-server.png",
+    "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+    "role": "R2 actual built-in imagegen input, visual style only; same reference also supplied first corrective edit; final targeted correction uses prior output only"
+  },
+  "retained_old_identity": {
+    "file": "docs/design/technical-atlas/TA-11/legacy/rack3d-996cfa2e.html",
+    "sha256": "87ea353a1d8fcfc889e07e4c3528088e1d84c0032560dfd70e4b8ebabee13c15",
+    "role": "Unchanged former rack3d source bytes at base .20 retained; main rack and non-server routes remain legacy geometry, not claimed complete by TA11."
+  },
+  "primary_sources": [
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/poweredge-r750/per750_ism_pub/inside-the-system?guid=guid-86215914-c63d-48ee-9978-9eb22ee2149c&lang=en-us",
+      "access": "full official HTML and chapter image actually read by independent reviewer",
+      "supports": "Front storage/backplane, transverse fan cage, motherboard CPU/DIMM and rear riser/PSU installation categories; model instance only, no generic counts/dimensions/airflow."
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/poweredge-r750/per750_ism_pub/installing-a-gpu?guid=guid-6bb1c301-7595-4c6d-b631-b6a5761c6052&lang=en-us",
+      "access": "full official HTML read by author and reviewer; original images viewed by reviewer",
+      "supports": "Card-edge connector inserts into riser slot and cage/retainer fixes card; product-specific auxiliary power connection. Not arbitrary-card compatibility, two-card requirement or circuit topology."
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/poweredge-r750/per750_ism_pub/installing-the-drive-backplane?guid=guid-f3b4e522-e011-4fb0-b05c-f45c85787099&lang=en-us",
+      "access": "full official HTML and chapter image read by reviewer",
+      "supports": "Storage backplane behind drive bays, cable connection to system board/backplane. Specific protocols/pins and actual routing not generalized; main illustration does not identify the green fan-interface board as storage backplane."
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-us/poweredge-r750/per750_ism_pub/installing-a-power-supply-unit?guid=guid-090f794f-3936-4278-b0e4-bd033826b167&lang=en-us",
+      "access": "full official HTML read by author and reviewer; chapter image actually viewed by reviewer",
+      "supports": "PSU installed in rear bay, external AC socket/handle/latch face rear outside. Internal output connector is hidden in official view; no exact pin/connector form or hot-swap claim inferred."
+    },
+    {
+      "url": "https://www.supermicro.com/en/support/manuals/product/system/sys-422gl-nr/Content/component-installation/gpu-422gl-nr.htm",
+      "access": "full official HTML read by author",
+      "supports": "PCIe accelerator card, bracket and slot retention categories. Model-specific eight-card count/PCIe generation/interconnect and maintenance steps are not adopted."
+    },
+    {
+      "url": "https://www.supermicro.com/en/products/system/gpu/2u/sys-221ge-nr?mlg=0",
+      "access": "full official HTML read by author",
+      "supports": "Air-cooled PCIe accelerator system with CPU, DIMM, drives, fans, rear I/O and PSU categories; product-specific count/U size/materials/ratings are not copied."
+    }
+  ],
+  "access_limits": [
+    {
+      "url": "https://www.dell.com/support/manuals/en-uk/oth-r760xa/r760xa_ism_pub/inside-the-system?guid=guid-9cb209e8-f68e-419d-b445-12cc6104a3dd&lang=en-us",
+      "failure": "web full fetch cache miss; search snippet not used for engineering detail"
+    }
+  ],
+  "rejected_iterations": [
+    {
+      "iteration": 1,
+      "original_filename": "exec-72b1fee7-ac6e-4a96-9ef3-1ac8e6d47484.png",
+      "private_retained_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/rejected/master-v1.png",
+      "sha256": "b0046e9d11cc0b6db24baf31e55588a7b34fce1383dda6d7b0faff4052a7eb06",
+      "decision": "rejected",
+      "reason": "PSU external AC input receptacles pointed into chassis and connected to internal wiring; rear NIC openings likewise pointed inward. Rejected before labels."
+    },
+    {
+      "iteration": 2,
+      "original_filename": "exec-0929f022-ecce-48e6-9087-32352cb91f88.png",
+      "private_retained_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/rejected/master-v2.png",
+      "sha256": "5965d0b6cdf8fa906c63dcbd85214836a7b8552bbfdeb29b045abd062f571618",
+      "decision": "rejected",
+      "reason": "PSU direction corrected but rear NIC external openings still faced chassis interior. Rejected; exact targeted correction follows."
+    },
+    {
+      "iteration": 3,
+      "original_filename": "exec-11a068ab-37ba-40ee-b6e6-f8f74f6df3b5.png",
+      "private_retained_file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/rejected/master-v3.png",
+      "sha256": "e84160c670bd392346ce40bf3b329e5cff1e5fd94d5154091cc420973a4db395",
+      "decision": "rejected",
+      "reason": "Two-image editing tool returned a changed R2-like layout with baked arrows, extra detail compositions and counts. Rejected for wrong edit target, no compositing workaround."
+    }
+  ],
+  "accepted_native_candidate": {
+    "iteration": 4,
+    "original_file": "/Users/m4/.codex/generated_images/01a11e95-8197-7ae3-b0a8-9164128c5eaa/exec-9bc8db38-9e7d-46dc-a106-0aa8f0a08768.png",
+    "project_file": "web/assets/technical-atlas/server-v1.png",
+    "sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15",
+    "pixels": [
+      1536,
+      1024
+    ]
+  },
+  "generic_scope": "Air-cooled PCIe accelerator-server category; single virtual roof cutaway, repeated same-kind card/riser detail; two CPUs/eight DIMMs/two GPU cards/four fans/eight drive carriers/two PSUs are composition examples, not SKU specification. Rear I/O and AC outside face are occluded at current viewing angle; inside shield and power-distribution interface shown.",
+  "boundaries": [
+    "No vendor SKU, U height, dimensions, material grades, counts of contacts/fins/holes, precision board/chassis layout or mechanical tolerance adopted.",
+    "No exact PCIe generation, interconnect, storage protocol, cable circuit/pinout, coolant, flow, power/voltage/efficiency or performance claimed.",
+    "Virtual cutaway and procedural exploded stages are educational views, not servicing/hot-swap/redundancy/safe removal procedure.",
+    "Original TA03 chassis assets and prior publication stay accessible separately; TA11 is full server, not completed rack TA13 or orthographic TA12.",
+    "No Spark scope/service/research facts changed; source artifacts and operational observation remain separate."
+  ]
+}

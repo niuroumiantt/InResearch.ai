@@ -1,5 +1,9 @@
 # 当前决策摘要与变更记录
 
+## 2026-10-09：TA-11服务器整机本地验收
+
+TA-11整机本地验收：R2真实输入，三次拒绝留存后第四版通用整机剖视，12独立标签/原件及完整双下载；x55为独立服务器主对象，示例安装对应、实际GPU/SSD/PSU拾取、当前视角SVG、0/100适配与手动镜头、手机明暗、完整资源清理和旧机柜入口实测通过。仅accepted未发布，主计划published10/35、补充4/4；保留.22最新来源/研究/长文/scope/CI更改，Spark不动，画法1.7保持。 参考只负责画法，Dell/Supermicro正式来源仅支持类别与安装关系；不复制OEM规格或维修条件。
+
 ## 2026-10-09: Automatic editorial research delivery
 
 User authorized ongoing delivery: published columns synchronize every five minutes; completed longforms are sealed after render verification and retried from the M5 outbox. Content revisions preserve prior versions, SHA prevents duplicate intake, and existing Reader scope entries and daily settings are retained. Authored analysis and upstream originals keep separate identities; receipt, reading and adoption remain separate. The only current protocol source is docs/local_reader/EDITORIAL_DELIVERY.md. Unit validation and live deployment receipts are assessed separately.
@@ -1332,3 +1336,5 @@ Micron 的具体条目是一个个料号（1,363 个在售），不是 NVIDIA �
 ## 2026-10-09：恢复积压研究增量 PR
 
 用户要求尽快解决截图中的冲突/检查失败。原 Actions 预算错误与取消保持为历史失败，不视作测试通过。源包复验后，当前上下文一致的增量可在独立工作树经既有 promote 逐批追加并统一提交；相互影响后失效的批次重新 C3 核验。发布器修正 blocked 永久停留：确切旧 head 的 CI 恢复成功后继续正常准入，上下文变化则重新审核并关闭旧 PR。保留原始尝试/来源/分支；实际网站支持闭包与 Spark 回执决定正式发布，不能用关闭 PR 代替采用。
+
+TA-11整机档案复审修正：serverMode下整机聚合全部1129几何、保留八个子类别拾取；可选顶部初始姿态仅应用于整机，实际CPU/DIMM/GPU/风扇/载盘可辨，拖动接管与整机当前视角SVG身份实查。原空壳/底视问题与修正截图分别留存，数量检查不代替视觉。仍为本地accepted，生产另验。
