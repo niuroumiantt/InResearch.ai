@@ -93,9 +93,12 @@ def snapshot(root):
 def reading_deliveries(reader, matched):
     """Received reading results only; retain candidate scope and omit raw paths."""
     wanted = {r.get('sha256') for r in matched.get('records', [])}
+    truncated = matched.get('truncated') is True
     outputs = []
     for doc in reader.get('documents', []):
-        if doc.get('content_sha256') not in wanted or doc.get('read_status') != 'complete':
+        # The bounded match index is not the authority for received readings.
+        # Once truncated, absence from it cannot mean absence of a delivery.
+        if (not truncated and doc.get('content_sha256') not in wanted) or doc.get('read_status') != 'complete':
             continue
         ident = doc.get('doc_id') or doc.get('id')
         claims = [r.get('text', '') for r in reader.get('statements', []) if r.get('document_id') == ident]

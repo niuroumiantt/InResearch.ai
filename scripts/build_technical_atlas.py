@@ -1,4 +1,4 @@
-"""Typeset an editable SVG label layer over an unchanged imagegen PNG master.
+"""Typeset an editable SVG label layer over an unchanged native PNG master.
 
 This script does not generate or alter the raster image. Output embeds the original
 PNG bytes, so the downloaded SVG also works without adjacent files or a server.
