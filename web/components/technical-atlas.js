@@ -125,6 +125,22 @@ const serverPlan = {
   related: [{id: 'TA-11', title: '整机剖视与部件档案 · TA-11', image: '/bom.html#server'}, {id: 'TA-11-3D', title: '旋转、拾取与装配交互', image: '/rack3d.html?view=server&x=55&node=part:server'}],
 };
 
+const rackOverview = {
+  id:'TA-13', title:'机柜整柜 · 安装分区与结构',
+  image:'/assets/technical-atlas/rack-overview-v1.svg', preview:'/assets/technical-atlas/rack-overview-v1-preview.svg',
+  master:'/assets/technical-atlas/rack-overview-v1.png',
+  alt:'暖白整柜虚拟剖视：前门和左侧柜壳省略，外框柱、独立安装立柱和支撑、顶部两交换机、中部八托盘每台八载盘、底部两电源架各六模块。左侧可选铜色长条与竖管未接线。',
+  note:'通用整柜示意；2交换机、8托盘×8载盘、2电源架×6模块为图示选择，非通用标配、OEM型号或额定配置。前门/左侧为虚拟剖口，非维修步骤。侧部铜排和管道只作可选附件，接线与回路未知；比例、U高度、承载、功率和冷却性能未知。',
+  labels:['框架与安装：外框柱、内安装立柱、横向支撑和设备导轨各有位置，深部精密连接不由静态图证明',
+    '设备分区：底部电源架、中部计算托盘和顶部交换机仅为本图配置示例，设备保持安装位置',
+    '前脸细节：载盘、模块、端口与把手用于区分类别；孔距、端口协议、可维护性与热插拔不作推定',
+    '服务槽：铜色长条和灰色竖管是未接线的可选附件，不证明完整电连接或流体回路，不连接风冷服务器',
+    '柜壳与支撑：右侧板、顶板、底框和调平脚保持整柜关系，前门/左侧虚拟剖开不表示安装操作',
+    '交互对应：整柜可旋转点选及分区观察；程序几何保持同一分区/数量，端口细节为独立通用表达，不是原厂数字孪生'],
+  related:[{id:'TA-39',title:'柜架类别结构 · TA-39',image:'/assets/technical-atlas/rack-frame-v1.svg'},
+    {id:'TA-11',title:'独立服务器 · TA-11',image:'/rack3d.html?view=server&x=55&node=part:server'}],
+};
+
 // Existing CPU and server-memory categories share this one assembly context figure.
 illustrations.dram = illustrations.cpu;
 
@@ -137,7 +153,7 @@ export function atlasPreview(partId) {
 }
 
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = partId === 'server' && view === 'plan' ? serverPlan : illustrations[partId];
+  const item = partId === 'server' && view === 'plan' ? serverPlan : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');

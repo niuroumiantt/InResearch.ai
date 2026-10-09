@@ -89,7 +89,8 @@ const {chromium} = require('playwright');
         assert.notEqual(body, source, 'resource page fixture injection failed');
         await route.fulfill({response, body});
       });
-      await actual.goto(`${process.env.UI_BASE_URL}/${name}.html`, {waitUntil:'domcontentloaded'});
+      // Retained OEM panel fallback lives in the explicit legacy rack scene.
+      await actual.goto(`${process.env.UI_BASE_URL}/${name}.html${name==='rack3d'?'?x=35':''}`, {waitUntil:'domcontentloaded'});
       try { await actual.waitForFunction(() => !!globalThis.__resourcePage, null, {timeout:20000}); }
       catch (error) { throw new Error(name+' resource fixture unavailable: '+JSON.stringify(errors)); }
       const pageResult = await actual.evaluate(async name => {

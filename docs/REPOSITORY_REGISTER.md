@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.31。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.32。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1630。
+在册文件：1645。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 110 |
+| 静态资源 | 114 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 318 |
-| 运行代码 | 313 |
+| 运行代码 | 316 |
 | 现行规范 | 15 |
-| 项目配置 | 357 |
+| 项目配置 | 362 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 153 |
-| 测试 | 152 |
+| 配套说明 | 154 |
+| 测试 | 154 |
 
 ## 在册记录集合
 
@@ -255,6 +255,20 @@
 | `docs/design/technical-atlas/TA-12/preparation-v1.json` | not_claimed | 3 |
 | `docs/design/technical-atlas/TA-12/publication-20261009.json` | correction_ci_official_cause | 1 |
 | `docs/design/technical-atlas/TA-12/publication-20261009.json` | boundaries | 5 |
+| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | reviewed_differences | 3 |
+| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | unknowns | 5 |
+| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | browser_checks | 9 |
+| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | issues_resolved | 6 |
+| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | artifacts | 10 |
+| `docs/design/technical-atlas/TA-13/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-13/labels-v1.json` | labels | 14 |
+| `docs/design/technical-atlas/TA-13/labels-v1.json` | leaders | 14 |
+| `docs/design/technical-atlas/TA-13/preparation-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-13/preparation-v1.json` | prompt_records | 2 |
+| `docs/design/technical-atlas/TA-13/preparation-v1.json` | primary_sources | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -584,8 +598,8 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 32 |
-| `framework/interface_manifest.json` | public_pages | 14 |
+| `framework/interface_manifest.json` | static_pages | 33 |
+| `framework/interface_manifest.json` | public_pages | 15 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -895,6 +909,13 @@
 | `docs/design/technical-atlas/TA-12/preparation-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-12/publication-20261009.json` | 项目配置 |
 | [docs/design/technical-atlas/TA-12/render-spec-v1.md](design/technical-atlas/TA-12/render-spec-v1.md) | 配套说明 |
+| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-13/labels-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-13/legacy/rack3d-d91f376b.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-13/preparation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-13/prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-13/prompt-v2-edit.txt` | 项目配置 |
+| [docs/design/technical-atlas/TA-13/scope-v1.md](design/technical-atlas/TA-13/scope-v1.md) | 配套说明 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -2005,6 +2026,8 @@
 | `tests/ops_dashboard.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_catalog.cjs` | 测试 |
+| `tests/rack_assembly.cjs` | 测试 |
+| `tests/rack_atlas.cjs` | 测试 |
 | `tests/repository_pages.cjs` | 测试 |
 | `tests/research_delivery.cjs` | 测试 |
 | `tests/research_summary.cjs` | 测试 |
@@ -2227,6 +2250,10 @@
 | `web/assets/technical-atlas/rack-frame-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/rack-frame-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/rack-frame-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/rack-overview-v1-preview.jpg` | 静态资源 |
+| `web/assets/technical-atlas/rack-overview-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/rack-overview-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/rack-overview-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/security-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/security-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/security-v1.png` | 静态资源 |
@@ -2282,6 +2309,7 @@
 | `web/components/part-inspector.js` | 运行代码 |
 | `web/components/pilot.js` | 运行代码 |
 | `web/components/product-catalog.js` | 运行代码 |
+| `web/components/rack-assembly.js` | 运行代码 |
 | `web/components/research-graph.js` | 运行代码 |
 | `web/components/scene-atlas.js` | 运行代码 |
 | `web/components/scene-data.js` | 运行代码 |
@@ -2335,6 +2363,7 @@
 | `web/pages/node.html` | 运行代码 |
 | `web/pages/ops.html` | 运行代码 |
 | `web/pages/product-catalog.html` | 运行代码 |
+| `web/pages/rack-atlas.html` | 运行代码 |
 | `web/pages/rack3d.html` | 运行代码 |
 | `web/pages/report.html` | 运行代码 |
 | `web/pages/server-plan.html` | 运行代码 |
