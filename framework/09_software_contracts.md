@@ -1,6 +1,6 @@
 # 09 软件职责与写入契约
 
-2026-10-08：研究核验的 Spark 私有队列及请求/输出与正式源码记录分开。核验 worker 不写正式研究表；M5 发布器只在独立、可恢复的工作树追加通过 C3 B 的作者陈述/预测。正式上下文变化拒绝提交并保留旧审核，重新核验有独立尝试；已有结论、answer 与 GW 不因发布器改变。Git/CI 合并、网站采用 API 支持闭包与 Spark published 回执分别计量。新任务发现与发表来源复验使用不同投影：前者过滤已采用，后者保留封存候选/原文页，以原件/报告封印和逐字段比较判断真实变化。单批错误和无变化的待CI/部署不能阻塞其他批次；已独立合并且head精确等于原审核commit只恢复网站回执阶段，继续实际支持闭包验收，保留失败恢复记录。服务/网络异常保留日志与阶段，不靠 reset、重读、删除原件或重启共享 Reader 恢复；永久审计包不随工作树清理。
+2026-10-08：研究核验的 Spark 私有队列及请求/输出与正式源码记录分开。核验 worker 不写正式研究表；M5 发布器只在独立、可恢复的工作树追加通过 C3 B 的作者陈述/预测。正式上下文变化拒绝提交并保留旧审核，重新核验有独立尝试；已有结论、answer 与 GW 不因发布器改变。Git合并及配置模式验收、网站采用 API 支持闭包与 Spark published 回执分别计量。新任务发现与发表来源复验使用不同投影：前者过滤已采用，后者保留封存候选/原文页，以原件/报告封印和逐字段比较判断真实变化。单批错误和无变化的待CI/部署不能阻塞其他批次；已独立合并且head精确等于原审核commit只恢复网站回执阶段，继续实际支持闭包验收，保留失败恢复记录。服务/网络异常保留日志与阶段，不靠 reset、重读、删除原件或重启共享 Reader 恢复；永久审计包不随工作树清理。
 
 2026-09-13，用户采用按核心契约、统一用例、脚本拆分、目录迁移、页面结构、旧实现退出的顺序整改。本规范仅定义软件运行边界，不替代 00–08 的研究规则和 M4 原件操作 scope。
 
@@ -149,3 +149,14 @@ workflow.supply 持有需求/任务计划的唯一用例，HTTP 负责权限与�
 2026-10-09显式暂态恢复：workflow.research_review拥有`retry-transient`的精确比较/排队用例，CLI只解析完整batch ID及expected-attempts/expected-error。坏参数在初始化队列前拒绝；仅耗尽原预算（至少四次）的deferred暂态模型错误白名单可受理，当前revision/report/完整封印/原件SHA与当前失败文件均复验。BEGIN IMMEDIATE事务同时保存每个候选的原去向、失败/封印SHA与恢复原因，并更新该批次去向；并发相同请求只允许一次成功，历史写入失败全部回滚。不得修改attempts、available、候选或原审计，不增加调度优先权；只排一轮，新的失败仍服从原预算，正常worker再核源身份与C3/固定抽样。catalog与queue为独立数据库，复验期间二次读取当前源指针，不宣称跨库锁；不得用此入口绕过认证/身份/格式/引文/抽样/语义错误或制造发布回执。
 
 2026-10-09发布验收提速：完整浏览器core按统一已审阅suite清单分core_a/core_b并行，保留所有suite、密度场景与逐项断言/期限；browser(core)聚合只在全部matrix成功后通过，模型资产场景沿用。旧发布尝试被新attempt替代前，将完整journal不可变地保存到旧attempt目录，新journal保留相对路径与实际SHA，不能用新状态覆盖旧失败审计。
+
+
+## 显式本地与汇总发表职责
+
+workflow.research_publish拥有缺省CI/显式local模式、精确同源组和私有first_seen窗口、manifest/固定检查实际回执、普通push/match-head及部署/public canonical/逐batchACK恢复。任务默认4批/24条/300秒不修改审核queue、评分、原context或模型；旧journal继续推进。回执绑定精确head/main/成员/log SHA，head更新失效重验，不伪造CI。
+
+research_review.promote_group持同一formal-write锁，全部成员先按未改baseline完成原audit/core/sample/context，再内存追加、registry/闭题保护后一次写入；单包promote兼容。旧记录/answer/闭题集合不变，跨成员引用/对象冲突整组拒绝；完全已应用的精确requestSHA重放沿旧无写协议。
+
+local发表须核actual running/healthy digest与tag一致、merge属于运行source历史、外部health200/ok和全部公开stmt/ev/doc。私有audit/context/before不外送；原CLI逐成员proof保留batch/attempt/bundle和健康时点。闭包SHA按proof标记的encoded-v1顺序，不与其它compact/排序算法直接等同。
+
+GitHub主线、不同publisher state和多个queue ACK不是一个事务，背压非跨机器锁。部分ACK按实证继续，远端commit而本机未记时重新实核并幂等ACK。准备真冲突保留具名恢复；旧小PR CLOSED自动superseded尚未实现，不假记MERGED/篡改历史。默认CI保持，生产显式配置及唯一驻留加载另留实际回执。
