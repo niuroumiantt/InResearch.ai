@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.26",
+  "version": "2026.10.09.27",
   "reviewed_at": "2026-10-09",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -14,7 +14,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "b1c3ba850f3f7fd3dd94718a5d1c4bea5775395963af3705d3142bc93ff9ff64",
+    "docs/local_reader/SPARK_OPERATIONS.md": "828adb70043bb1da07eb7f3496ab817f6ec21bf9af766775a7e51be58e0f38b6",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "972bf5d0b9e7a682acdceef34bb59a58e8b5148e1e0cf479e19a6e09170e6daf",
     "docs/local_setup/REPOSITORY_PAGES.md": "468356165b8546ac3db3afc0a8cef8df27c559faa3b2981b87ad0920db84cade",
@@ -22,13 +22,13 @@
     "framework/01_data_standards.md": "765d6f91df5468f507e488000bec59ddc00823e4c74b2334a3a14e543ce54c70",
     "framework/02_knowledge_format.md": "8042fcc8fff3ea51e154e7e2969dba36e526bd4f6fb8e2e19a9d7cac55939521",
     "framework/03_bom_and_collaboration.md": "07e5b461da6c0da081c2ab7a8b7af1089048d93edf98ca5a74878907d530a655",
-    "framework/04_reading_scoring_standard.md": "26b80f77354ebb9ba3b6320b6b2cd96160e64b09652624a4d9deda3757f9c6dd",
+    "framework/04_reading_scoring_standard.md": "3467e74f0a04c56d6f2df1de870736cb54cbc74b591ae08845007df26332e19a",
     "framework/05_interface_system.md": "f40ac3c09be8b5aa5777cd2f3eca3b2bfbc881b85430144cb20ded7f179de702",
     "framework/06_acquisition.md": "e815ca8308b27ca6dd5c1c89b5e30750b0a87a872b8c08a8dd048337d4a0b908",
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
-    "framework/09_software_contracts.md": "3bcfa182de066c034493ff059d23546d683c2ac39e841cd9ad80d8c8ae756e70",
-    "framework/CURRENT.md": "597428b7674ffb7686e2589d1979c26621826caf62b1fb548daad96f2f41f56e",
+    "framework/09_software_contracts.md": "cf668f00db7c4fcf1ea942ebf1ff505f0518ea2e2c08332a91eff65c91321b9c",
+    "framework/CURRENT.md": "9d8781a0548aaf26e06bdfb83a0d911dc47bff9064f1509443a1d2d2745e2e1f",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "19ec024fa95826fc1b790d315d105911c10f54190471e1f50cee6cc819684e4c",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "7730d544b58062a99dfb67650614f6a3d9f199f4e03ce7e770d8cb3235785dc4",
+    "framework/current_state.json": "dbe0e65264e72606f2cff3a3027ce18285e069a4005d1522e4231354eb1a38b1",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -181,7 +181,7 @@
     "tests/ops_dashboard.cjs": "ff78e52669731274be998dce6b86698d89ced0fbc80e3b8ba311d5c72535dd23",
     "tests/unit/test_read_batch.py": "f751479f9249afb26322d5cf6b5bcbeca617e688a794a23bf9e3456b6d1980f5",
     "web/pages/node.html": "46cfa1b86eec1decb51b968f0796e5a672b5bbc5d6aa573a6b3624004cef4b69",
-    "src/inresearch/workflow/research_review.py": "0e42651d9d13726462f0ad74050ada0fa4d264533eb536e76689a4d9cbe494fc",
+    "src/inresearch/workflow/research_review.py": "b7313175fa5c4b6cce545e104cd6f79be4894c8f981d33318b9672d4f5779507",
     "src/inresearch/workflow/research_publish.py": "af0aee20a4a9152d89083c0d2f53a63e5e92f56f00d60b3a3963a6d419d5426f",
     "deploy/spark-reader/inresearch-research-review.service": "f3528fb41b6fb53f0d59668cafc7ccac21a85d0f92512138a1c3ecd1e4537f21",
     "deploy/m5-research/research-publish.plist.example": "1a5c9d9ae4f9015bf95423e6c4d56a799cfdd86d42e880420028c4951ae2dc32",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "57e9d07f4c3390d2850e4c4df37b5afa919fccfeaaf5bfb4dfff4569861057b7",
     "src/inresearch/adapters/html_document.py": "322b316bbc5bc0bce0c3fc4b4835b2a23c7f9d42f06c0f81ae20f17a26aaa650",
-    "docs/DECISIONS.md": "d4ef88464ff8bf3946af741d568a15cb453a04bf6063d544628867d144b7e74a",
+    "docs/DECISIONS.md": "98aa0ebae96169c30d0896751a0c37affdca6fb1d51ee571f9ca37c91431cd6c",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -301,7 +301,9 @@
     "web/components/server-assembly.js": "6d3abd5554afeb621798b91a9fb35f78c05ea439b7012b75b4ae79cd0fb9d676",
     "tests/server_assembly.cjs": "eb6ab8eeaaeb8850f254542c4edc77b68e8ce6e447016b7a113a921540478572",
     "web/components/part-inspector.js": "7e0969f3a57bd96f409bbb5e1c57edb089ce052b54a1816b70b9df940f21e19e",
-    "docs/design/technical-atlas/TA-11/publication-20261009.json": "fcc7416bb3a0bb3efeddde73376ec7acaf0f196e4fa4f4d78e24791b5caebaff"
+    "docs/design/technical-atlas/TA-11/publication-20261009.json": "fcc7416bb3a0bb3efeddde73376ec7acaf0f196e4fa4f4d78e24791b5caebaff",
+    "src/inresearch/workflow/review_preference.py": "4482d7bf06f5530fca7cb301629916607bae96891100edd998a419d409bb81a7",
+    "tests/unit/test_review_preference.py": "a711cda8e7df63e49ee2da0816fbc67c25d49f233df80b0bc9474a299282b728"
   },
   "policies": [
     {
@@ -469,7 +471,7 @@
       "policy": "operations-20260906",
       "scope": "project",
       "source": "docs/local_reader/SPARK_OPERATIONS.md",
-      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过；认领下限以下的文档任务不被认领、不计尝试且留在队列，下限 0 全部认领，非法下限拒绝，状态报告暂停份数；进度页只对阻塞/失败文档显示错误码并显示认领范围；外部快照叠加：Spark 发布时加入外部快照中 Spark 未完整读过的文档及其证据与陈述，Spark 完整阅读优先，较新快照覆盖较旧的，不完整/非候选/孤立行/符号链接拒绝，无目录时不变；外部快照的对象/问题 ID 按发布时注册表过滤并计数，输入不被改写；接收端拒收时错误带回其原因；快照以 gzip 发送并记录发送/解压大小，接收端解压有上限（超限 413）、坏压缩与未知编码 400 且不改已有快照，未压缩仍接受；图谱/问题版本落后的快照按现行注册表过滤对象/问题 ID、丢弃指向已退役问题的回答，照常接收并记 registry_lag；版本一致时仍严格拒绝未知 ID，缺版本字段拒绝；已存档快照在网站升版后照常显示并标落后；2026-10-07 显式缓存缺页也被发现；受控接收核对原件/页号/当前revision/独立双读与完整内嵌图片覆盖，归档旧证据，仅替换缺页缓存后通知；重复接收恢复通知，不改catalog或成功页，数字/空白/可读门槛保持。；默认正文零OCR及显式未完成新版本保留旧尝试/原件，图像模式仅兼容；派生导出不增加原件身份。；发布时只读生成当前执行版本诊断，旧失败不抬高当前阻塞，文档与分块分开，样本上限与总数并存，普通心跳不增加诊断扫描。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、正常自动准入四项CI完整通过后才可发布。；一致备份的独立快照使用DELETE journal，只读重开不依赖WAL/SHM，活跃源数据库仍保持WAL且原件不删除。；2026-10-08收尾复审：核验队列计数经HTTP候选接收和供应投影仍保留，仅白名单非负整数/时间/状态、不得取得采用权；坏计量显示unknown而非伪零；发表已有日志先恢复，main-only非交互同步仍保护dirty源码。；并行发布更新基线自动重建两个派生登记文件，研究记录仅接受保留全部旧记录且无稳定ID冲突的追加合并，其他正式研究/规则/源码冲突保留待审；新head重新等四项CI，dirty与外部改head拒绝。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；复审发布恢复：原封存来源不因已采用过滤改变；真原件/报告字段变更拒绝；坏批次与待CI隔离；仅精确审核head实际已合并可恢复网站回执，head变化拒绝。；旧blocked批次仅在来源封印/摘要及原PR head一致时恢复；现行上下文变化重新C3审核，同一head四CI全部恢复则继续正常发布。；完整core分组覆盖无漏项、聚合全部matrix；新attempt保留旧发表journal及实际SHA；治理读取已审阅suite清单。；逐个复审10个原三维场景/每场景完整断言/300秒不变；三core分组加model_assets聚合，套件和密度无漏项。发布失败仅保留退出码、stderr或显式stdout ERROR，任意输出不入日志；prepared旧基线保留并经现行复验重建，不修改原包。；本次明确用户授权的人工本地验收实例保留真实CI失败与精确head/原包/attempt关系，仍经实际来源同步、HTTPS支持闭包与Spark published；维护恢复实核PID/程序/源码/status，专题来源与旧ready采用独立计量。；原封存来源/上下文/精确PR head复验后，失败CI只在新批准main改变基线时重试；保留旧错误/检查/head，干净工作树及追加规则保持，新head清空旧checks并经prepared正常完整准入。",
+      "checked_requirement": "备份恢复和停止服务不报健康；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界;按 error_code 选择性重试,设计上阻塞的图纸不被顺带重跑；温度高于限值时暂停领取、按间隔重读、降到限值及以下恢复，传感器不可读不阻塞队列，限值为 0 时关闭；M4 分担 OCR 页结果按本机同一空白页规则接收（空白页两遍皆空、非空白页须有文字、unreadable 或缺 blank 仍阻塞）；运行中的 reader 只对因 OCR 阻塞且有晚于上次尝试的 M4 页结果的提取任务自动重新排队一次，旧结果与其他阻塞原因不动；进度页只读打开 catalog（内容与行不变），列出优先级达标文档、M4 已上传页数与认领、日志中的降温暂停占比，文档名转义，catalog 缺失时报错且不创建目录，输出文件整体替换；M4 缺页记录被接受为无文本页并列入报告 coverage.gap_pages 与 warning，超过 max(1, 页数÷20) 阻塞 ocr_gap_pages_exceed_limit，格式不符的缺页为完整性错误，篡改缺页列表的报告校验不过；认领下限以下的文档任务不被认领、不计尝试且留在队列，下限 0 全部认领，非法下限拒绝，状态报告暂停份数；进度页只对阻塞/失败文档显示错误码并显示认领范围；外部快照叠加：Spark 发布时加入外部快照中 Spark 未完整读过的文档及其证据与陈述，Spark 完整阅读优先，较新快照覆盖较旧的，不完整/非候选/孤立行/符号链接拒绝，无目录时不变；外部快照的对象/问题 ID 按发布时注册表过滤并计数，输入不被改写；接收端拒收时错误带回其原因；快照以 gzip 发送并记录发送/解压大小，接收端解压有上限（超限 413）、坏压缩与未知编码 400 且不改已有快照，未压缩仍接受；图谱/问题版本落后的快照按现行注册表过滤对象/问题 ID、丢弃指向已退役问题的回答，照常接收并记 registry_lag；版本一致时仍严格拒绝未知 ID，缺版本字段拒绝；已存档快照在网站升版后照常显示并标落后；2026-10-07 显式缓存缺页也被发现；受控接收核对原件/页号/当前revision/独立双读与完整内嵌图片覆盖，归档旧证据，仅替换缺页缓存后通知；重复接收恢复通知，不改catalog或成功页，数字/空白/可读门槛保持。；默认正文零OCR及显式未完成新版本保留旧尝试/原件，图像模式仅兼容；派生导出不增加原件身份。；发布时只读生成当前执行版本诊断，旧失败不抬高当前阻塞，文档与分块分开，样本上限与总数并存，普通心跳不增加诊断扫描。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、正常自动准入四项CI完整通过后才可发布。；一致备份的独立快照使用DELETE journal，只读重开不依赖WAL/SHM，活跃源数据库仍保持WAL且原件不删除。；2026-10-08收尾复审：核验队列计数经HTTP候选接收和供应投影仍保留，仅白名单非负整数/时间/状态、不得取得采用权；坏计量显示unknown而非伪零；发表已有日志先恢复，main-only非交互同步仍保护dirty源码。；并行发布更新基线自动重建两个派生登记文件，研究记录仅接受保留全部旧记录且无稳定ID冲突的追加合并，其他正式研究/规则/源码冲突保留待审；新head重新等四项CI，dirty与外部改head拒绝。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；复审发布恢复：原封存来源不因已采用过滤改变；真原件/报告字段变更拒绝；坏批次与待CI隔离；仅精确审核head实际已合并可恢复网站回执，head变化拒绝。；旧blocked批次仅在来源封印/摘要及原PR head一致时恢复；现行上下文变化重新C3审核，同一head四CI全部恢复则继续正常发布。；完整core分组覆盖无漏项、聚合全部matrix；新attempt保留旧发表journal及实际SHA；治理读取已审阅suite清单。；本次明确用户授权的人工本地验收实例保留真实CI失败与精确head/原包/attempt关系，仍经实际来源同步、HTTPS支持闭包与Spark published；维护恢复实核PID/程序/源码/status，专题来源与旧ready采用独立计量。；2026-10-09显式偏好复审：普通非符号链接1MiB/1–1000唯一已登记docIDs/严格字段与SHA；仅当前完整封存版本偏好，原packet复验封印；三偏好后原排序机会，空偏好立即原队列，租约/公平计数同事务、跨线程/重启/文件更新；原available/真实retry/尝试/default排序/角色/C3/抽样/单worker锁/ready12不变；上次调度与attempt留SHA审计。；逐个复审10个原三维场景/每场景完整断言/300秒不变；三core分组加model_assets聚合，套件和密度无漏项。发布失败仅保留退出码、stderr或显式stdout ERROR，任意输出不入日志；prepared旧基线保留并经现行复验重建，不修改原包。；原封存来源/上下文/精确PR head复验后，失败CI只在新批准main改变基线时重试；保留旧错误/检查/head，干净工作树及追加规则保持，新head清空旧checks并经prepared正常完整准入。",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_backup_restores_catalog_and_views_under_new_root",
         "tests/unit/test_publish_reader.py::PublisherTests.test_stopped_worker_is_not_reported_as_healthy_idle",
@@ -582,6 +584,15 @@
         "tests/unit/test_research_publication_merge.py::PublicationBaseTests.test_append_only_research_conflict_is_integrated_and_inventory_rebuilt",
         "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_new_attempt_retains_old_publication_journal",
         "tests/unit/test_browser_shards.py::BrowserShardTests.test_ci_shards_cover_every_existing_core_case_once",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_scope_validates_exact_registered_ids_and_excludes_unfinished_versions",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_missing_symlink_large_or_changed_scope_never_falls_back",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_default_preserves_retry_cohort_order_without_scheduler_table",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_three_preferred_then_original_queue_opportunity_survives_restart",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_available_current_revision_and_native_retry_order_remain_binding",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_concurrent_claims_share_one_fairness_counter_and_disjoint_leases",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_scope_byte_changes_cannot_reset_the_fairness_budget",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_invalid_cli_preference_is_rejected_before_queue_initialization",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_existing_worker_ready_backpressure_prevents_every_preferred_claim",
         "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_command_stdout_errors_are_actionable_and_other_output_private",
         "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_failed_checks_rebase_to_approved_fix_and_require_new_checks"
       ],
@@ -601,7 +612,8 @@
         "发布恢复夹具不证明生产队列已释放或新增正式采用；需实测版本、逐批网站闭包与Spark回执。M4仅执行隔离源码回归，不取得研究事实或任务队列写入权。",
         "2026-10-09恢复测试使用隔离模拟，不证明所有旧批次仍适合采用；每批运行复验和网站支持闭包独立验收。",
         "生产队列恢复、实际CI耗时与网站采用必须另读真实回执，不由夹具宣称。",
-        "2026-10-09实际首包回执只证明旧Oracle包5条published与当时专题23来源0；不证明剩余包持续符合当前上下文、全部旧ready已清空或专题C3已采用。正常自动CI准入代码未更改，用户本次人工发布授权不由单元测试产生。"
+        "2026-10-09实际首包回执只证明旧Oracle包5条published与当时专题23来源0；不证明剩余包持续符合当前上下文、全部旧ready已清空或专题C3已采用。正常自动CI准入代码未更改，用户本次人工发布授权不由单元测试产生。",
+        "偏好调度的本地确定性回归不能证明全部生产吞吐或语义质量；实际Spark部署、原23源正式采用及网站published另以运行回执验收。未完成/importance≥8/专门字段仍走原边界。"
       ]
     },
     {
@@ -1088,7 +1100,7 @@
       "policy": "reading-native-text-20261007",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07复审：以后默认正文配方，零OCR；混排页文字保留，空文字层不冒充空白，纯图片阻塞等待用户；正文完成与视觉排除机检/网页明确；冻结新revision不覆盖旧尝试或已完成报告；TXT只为派生提取，页数/SHA/尾段核验。；默认配置和新报告范围计数经测试；历史被替代错误不继续计为当前阻塞；网页同时呈现旧视觉缺页和新正文图片未读说明、空文字层页，并保持移动端宽度与转义。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、四项CI完整通过后才可发布。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；2026-10-08：资料基座以当前封存快照、内容身份/原文和骨架映射直接供研究使用，来源年代未知保持未知、跨节点和部分已采用报告不遮蔽其他材料；C3不作为资料展示前置，正式答案/GW/模型不由投影改写。；2026-10-08复审v3：仅排版空白折叠，语义/标点/外部主体拒绝，v2审计仍严格；完整ID校验及逐条拒绝分区可复验，原文不改；旧词协议失败显式排队不放行复核/引文失败。；2026-10-09来源侧车复审：默认只读，输入/响应/归档SHA及路径校验，整批冲突拒绝，已知URL/metadata不覆盖，重投真实字节回执；原件与工具响应载体原站SHA/null区分，按内容身份进入snapshot/receiver/资料API和新review包，旧封印不追补，只有绑定材料缓存失效；无重抓/提取/排队/正式采用。；2026-10-09复审DCD显式大批：内容身份上限从5000增至10000，1MiB载体上限、严格SHA身份、坏scope停止且不回退全库保持；既有文档和阅读版本不因此改变。",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07复审：以后默认正文配方，零OCR；混排页文字保留，空文字层不冒充空白，纯图片阻塞等待用户；正文完成与视觉排除机检/网页明确；冻结新revision不覆盖旧尝试或已完成报告；TXT只为派生提取，页数/SHA/尾段核验。；默认配置和新报告范围计数经测试；历史被替代错误不继续计为当前阻塞；网页同时呈现旧视觉缺页和新正文图片未读说明、空文字层页，并保持移动端宽度与转义。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、四项CI完整通过后才可发布。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；2026-10-08：资料基座以当前封存快照、内容身份/原文和骨架映射直接供研究使用，来源年代未知保持未知、跨节点和部分已采用报告不遮蔽其他材料；C3不作为资料展示前置，正式答案/GW/模型不由投影改写。；2026-10-08复审v3：仅排版空白折叠，语义/标点/外部主体拒绝，v2审计仍严格；完整ID校验及逐条拒绝分区可复验，原文不改；旧词协议失败显式排队不放行复核/引文失败。；2026-10-09来源侧车复审：默认只读，输入/响应/归档SHA及路径校验，整批冲突拒绝，已知URL/metadata不覆盖，重投真实字节回执；原件与工具响应载体原站SHA/null区分，按内容身份进入snapshot/receiver/资料API和新review包，旧封印不追补，只有绑定材料缓存失效；无重抓/提取/排队/正式采用。；2026-10-09复审DCD显式大批：内容身份上限从5000增至10000，1MiB载体上限、严格SHA身份、坏scope停止且不回退全库保持；既有文档和阅读版本不因此改变。；2026-10-09显式偏好复审：普通非符号链接1MiB/1–1000唯一已登记docIDs/严格字段与SHA；仅当前完整封存版本偏好，原packet复验封印；三偏好后原排序机会，空偏好立即原队列，租约/公平计数同事务、跨线程/重启/文件更新；原available/真实retry/尝试/default排序/角色/C3/抽样/单worker锁/ready12不变；上次调度与attempt留SHA审计。",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
@@ -1205,7 +1217,16 @@
         "tests/unit/test_research_sources.py::ResearchSourceTests.test_unreceived_source_unsafe_path_and_url_reject_without_queueing",
         "tests/unit/test_research_sources.py::ResearchSourceTests.test_cli_metadata_mode_does_not_extract_match_or_open_reader",
         "tests/unit/test_reader_scope_capacity.py::ScopeCapacityTests.test_large_explicit_batch_preserves_every_content_identity",
-        "tests/unit/test_reader_scope_capacity.py::ScopeCapacityTests.test_bad_large_batch_does_not_open_the_whole_library"
+        "tests/unit/test_reader_scope_capacity.py::ScopeCapacityTests.test_bad_large_batch_does_not_open_the_whole_library",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_scope_validates_exact_registered_ids_and_excludes_unfinished_versions",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_missing_symlink_large_or_changed_scope_never_falls_back",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_default_preserves_retry_cohort_order_without_scheduler_table",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_three_preferred_then_original_queue_opportunity_survives_restart",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_available_current_revision_and_native_retry_order_remain_binding",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_concurrent_claims_share_one_fairness_counter_and_disjoint_leases",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_scope_byte_changes_cannot_reset_the_fairness_budget",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_invalid_cli_preference_is_rejected_before_queue_initialization",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_existing_worker_ready_backpressure_prevents_every_preferred_claim"
       ],
       "not_verified": [
         "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality.",
@@ -1221,7 +1242,8 @@
         "逐条原文检索是范围明确的候选冲突检索，不能证明外部反证穷尽或新查询词对全库的语义召回。六条合批/十二批背压不保证线性提速，实际审核、抽样、发布与小时吞吐须私有真机回执；无需求匹配、A档、原文不足和超预算仍分别保留。",
         "来源记载不证明当前语义准确或历史材料今天仍有效；新版本/冲突正式替代须定向核验，真实资料数量与生产网页另读实际快照。",
         "2026-10-09来源侧车仅证明已交付字节与提交方元数据的SHA绑定，不证明URL原站字节、来源年代、内容事实或C3；Spark13:07实际应用及13:12自然发布已由真实回执核对，23快照来源身份/13资料API可读。长期review新模块载入和未来实际模型请求仍未确认，其他批次不由本次范围或本地隔离验收代替。",
-        "10000身份的实际整批吞吐与语义质量未由容量测试证明；DCD接收/逐篇阅读/正式采用各自计量，现场回执另存运行库。"
+        "10000身份的实际整批吞吐与语义质量未由容量测试证明；DCD接收/逐篇阅读/正式采用各自计量，现场回执另存运行库。",
+        "偏好调度的本地确定性回归不能证明全部生产吞吐或语义质量；实际Spark部署、原23源正式采用及网站published另以运行回执验收。未完成/importance≥8/专门字段仍走原边界。"
       ]
     },
     {
@@ -1394,7 +1416,7 @@
       "policy": "software-contracts-20260913",
       "scope": "project",
       "source": "framework/09_software_contracts.md",
-      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界; published/runtime authority, initialization recovery and concurrent writers, immutable source, HTTP/CLI, release rollback；视觉资产独占创建和登记主提交，中断重放、跨进程并发、同名不覆盖与采用决定保留；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；CLI 全局/子接口目录所有权，失败前拒绝、顺序委派参数恢复及真实派工/候选版本重放；场景资源加载超时、并发重试、A→fallback→A 替换、迟到回收与退出释放；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；计划不冒充执行或采用。；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、四项CI完整通过后才可发布。；2026-10-08收尾复审：核验队列计数经HTTP候选接收和供应投影仍保留，仅白名单非负整数/时间/状态、不得取得采用权；坏计量显示unknown而非伪零；发表已有日志先恢复，main-only非交互同步仍保护dirty源码。；并行发布更新基线自动重建两个派生登记文件，研究记录仅接受保留全部旧记录且无稳定ID冲突的追加合并，其他正式研究/规则/源码冲突保留待审；新head重新等四项CI，dirty与外部改head拒绝。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；资料计量：SQL只读/缺库不创建，索引为数据库内部结构，目录私有低频缓存且超时保留旧采样，聚合白名单去除私有路径/配置，正式支持链与候选核验状态分开。；缺失根目录统计的du返回显式unknown，不阻断既有发布，回归覆盖发布器四种状态。；TA-02共享图册复审：实际像素、独立文字、明暗/手机导出与原镜头/交互；模型只释放所属几何/材质，atlas派生边由drawing独占。；园区匿名启动可选受保护产品登记，302/失败/未知不阻塞渲染，未读不记假零。；2026-10-08复审v3：仅排版空白折叠，语义/标点/外部主体拒绝，v2审计仍严格；完整ID校验及逐条拒绝分区可复验，原文不改；旧词协议失败显式排队不放行复核/引文失败。；复审发布恢复：原封存来源不因已采用过滤改变；真原件/报告字段变更拒绝；坏批次与待CI隔离；仅精确审核head实际已合并可恢复网站回执，head变化拒绝。；旧blocked批次仅在来源封印/摘要及原PR head一致时恢复；现行上下文变化重新C3审核，同一head四CI全部恢复则继续正常发布。；完整core分组覆盖无漏项、聚合全部matrix；新attempt保留旧发表journal及实际SHA；治理读取已审阅suite清单。",
+      "checked_requirement": "统一写入、跨进程并发、提交前失败与提交后不确定、重放去重; catalog revision authority, atomic activation and consistent export snapshot；L2 用例/CLI 分离、缺口主提交及回执重放、来源计划替换；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界; published/runtime authority, initialization recovery and concurrent writers, immutable source, HTTP/CLI, release rollback；视觉资产独占创建和登记主提交，中断重放、跨进程并发、同名不覆盖与采用决定保留；实际视口/可见几何/透视 fit、旋转重开和 resize/失败/替换后的镜头所有权；CLI 全局/子接口目录所有权，失败前拒绝、顺序委派参数恢复及真实派工/候选版本重放；场景资源加载超时、并发重试、A→fallback→A 替换、迟到回收与退出释放；供应方向按对象/问题关联；真实需求任务与示例分开，管理员写入、成员只读；计划不冒充执行或采用。；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、四项CI完整通过后才可发布。；2026-10-08收尾复审：核验队列计数经HTTP候选接收和供应投影仍保留，仅白名单非负整数/时间/状态、不得取得采用权；坏计量显示unknown而非伪零；发表已有日志先恢复，main-only非交互同步仍保护dirty源码。；并行发布更新基线自动重建两个派生登记文件，研究记录仅接受保留全部旧记录且无稳定ID冲突的追加合并，其他正式研究/规则/源码冲突保留待审；新head重新等四项CI，dirty与外部改head拒绝。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；资料计量：SQL只读/缺库不创建，索引为数据库内部结构，目录私有低频缓存且超时保留旧采样，聚合白名单去除私有路径/配置，正式支持链与候选核验状态分开。；缺失根目录统计的du返回显式unknown，不阻断既有发布，回归覆盖发布器四种状态。；TA-02共享图册复审：实际像素、独立文字、明暗/手机导出与原镜头/交互；模型只释放所属几何/材质，atlas派生边由drawing独占。；园区匿名启动可选受保护产品登记，302/失败/未知不阻塞渲染，未读不记假零。；2026-10-08复审v3：仅排版空白折叠，语义/标点/外部主体拒绝，v2审计仍严格；完整ID校验及逐条拒绝分区可复验，原文不改；旧词协议失败显式排队不放行复核/引文失败。；复审发布恢复：原封存来源不因已采用过滤改变；真原件/报告字段变更拒绝；坏批次与待CI隔离；仅精确审核head实际已合并可恢复网站回执，head变化拒绝。；旧blocked批次仅在来源封印/摘要及原PR head一致时恢复；现行上下文变化重新C3审核，同一head四CI全部恢复则继续正常发布。；完整core分组覆盖无漏项、聚合全部matrix；新attempt保留旧发表journal及实际SHA；治理读取已审阅suite清单。；2026-10-09显式偏好复审：普通非符号链接1MiB/1–1000唯一已登记docIDs/严格字段与SHA；仅当前完整封存版本偏好，原packet复验封印；三偏好后原排序机会，空偏好立即原队列，租约/公平计数同事务、跨线程/重启/文件更新；原available/真实retry/尝试/default排序/角色/C3/抽样/单worker锁/ready12不变；上次调度与attempt留SHA审计。",
       "tests": [
         "tests/unit/test_commands.py::CommandFlows.test_independent_processes_do_not_lose_records",
         "tests/unit/test_commands.py::CommandFlows.test_exception_and_failed_replace_keep_old_bytes",
@@ -1500,7 +1522,16 @@
         "tests/unit/test_research_publication_merge.py::PublicationBaseTests.test_append_only_research_conflict_is_integrated_and_inventory_rebuilt",
         "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_new_attempt_retains_old_publication_journal",
         "tests/unit/test_browser_shards.py::BrowserShardTests.test_ci_shards_cover_every_existing_core_case_once",
-        "tests/unit/test_verification_contract.py::VerificationContractTests.test_shared_browser_catalog_requires_review_and_preserves_suite_membership"
+        "tests/unit/test_verification_contract.py::VerificationContractTests.test_shared_browser_catalog_requires_review_and_preserves_suite_membership",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_scope_validates_exact_registered_ids_and_excludes_unfinished_versions",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_missing_symlink_large_or_changed_scope_never_falls_back",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_default_preserves_retry_cohort_order_without_scheduler_table",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_three_preferred_then_original_queue_opportunity_survives_restart",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_available_current_revision_and_native_retry_order_remain_binding",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_concurrent_claims_share_one_fairness_counter_and_disjoint_leases",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_scope_byte_changes_cannot_reset_the_fairness_budget",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_invalid_cli_preference_is_rejected_before_queue_initialization",
+        "tests/unit/test_review_preference.py::PreferenceTests.test_existing_worker_ready_backpressure_prevents_every_preferred_claim"
       ],
       "not_verified": [
         "L2 已拆开参数/用例/准入/相似度/缺口/来源职责；两个 3D 场景仍需收敛。并非其他所有多文件流程均已逐阶段验收。",
@@ -1514,7 +1545,8 @@
         "资料容量不能推导去重效果或流程完成率，目录缓存并非原件备份证明；生产版本/接收字段需要另验。",
         "发布恢复夹具不证明生产队列已释放或新增正式采用；需实测版本、逐批网站闭包与Spark回执。M4仅执行隔离源码回归，不取得研究事实或任务队列写入权。",
         "2026-10-09恢复测试使用隔离模拟，不证明所有旧批次仍适合采用；每批运行复验和网站支持闭包独立验收。",
-        "生产队列恢复、实际CI耗时与网站采用必须另读真实回执，不由夹具宣称。"
+        "生产队列恢复、实际CI耗时与网站采用必须另读真实回执，不由夹具宣称。",
+        "偏好调度的本地确定性回归不能证明全部生产吞吐或语义质量；实际Spark部署、原23源正式采用及网站published另以运行回执验收。未完成/importance≥8/专门字段仍走原边界。"
       ]
     },
     {
