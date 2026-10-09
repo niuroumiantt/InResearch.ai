@@ -1,5 +1,5 @@
 import pathlib,json,math,base64,hashlib,html,datetime
-O=pathlib.Path('/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-19/native-v3')
+O=pathlib.Path('/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-19/native-v3-anchor-fix')
 p=json.loads((O/'native-render-proof.json').read_text()); b=(O/'campus-exploded-native.png').read_bytes()
 S=.8;DX=155;DY=90
 # Reproject a visible upper-right face of the same displaced wall using the
@@ -12,6 +12,12 @@ c=p['camera'];back=norm(vsub(c['position'],c['target']));right=norm(cross([0,1,0
 for a in p['anchors']:
  if a['num']=='02':
   a['local']=[14,6,-10.79];a['world']=[10,6,-20.79];q=vsub(a['world'],c['target']);a['pixel']=[(dot(q,right)-c['left'])/(c['right']-c['left'])*1536,(c['top']-dot(q,up))/(c['top']-c['bottom'])*1024]
+# Actual public same-instance triangle check found .546 is above the plain
+# floor at x=0,z=7 (floor joints are at odd x, not x=0). Correct only the
+# editable anchor; preserve the original render-proof and native PNG bytes.
+for a in p['anchors']:
+ if a['num']=='08':
+  a['local']=[0,.54,7];a['world']=[0,.54,7];q=vsub(a['world'],c['target']);a['pixel']=[(dot(q,right)-c['left'])/(c['right']-c['left'])*1536,(c['top']-dot(q,up))/(c['top']-c['bottom'])*1024]
 titles=['保留屋面分组 · 虚拟抬升','围护墙组 · 虚拟侧移','桥架分组 · 未绘完整布线','机柜×8 · 2行×4示例','室内冷却×5 · 外形示例','CDU×3 · 局部接口示意','UPS一组 · 4柜门示例','基础与空原位 · 灰虚线对应','室外冷水机×3','变压器×2 · 接线未知','备用发电×3 · 外排气示意','储能柜×2 · 容量未知']
 offsets=[[40,-30],[36,-25],[-34,-27],[-28,28],[-29,-29],[38,-28],[-38,-25],[-34,26],[-32,-27],[35,-27],[-32,-27],[38,-28]]
 out=['<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="1024" viewBox="0 0 1536 1024" role="img" aria-labelledby="title description">','<title id="title">园区分层爆炸图 · 通用八柜示例</title>','<desc id="description">同一组几何按虚拟装配轴平移；屋面、围护、桥架与室内设备层对应浅灰原位虚线。室外设备保持原位。非施工或拆装程序，不认证型号、规格或完整连接拓扑。</desc>','<rect width="1536" height="1024" fill="#FAF9F2"/>',f'<image x="{DX}" y="{DY}" width="{1536*S}" height="{1024*S}" href="data:image/png;base64,{base64.b64encode(b).decode()}"/>','<g id="editable-labels" font-family="Inter, Noto Sans SC, sans-serif" fill="#293B42">','<text x="54" y="47" font-size="28" font-weight="650">园区分层爆炸图</text>','<text x="54" y="76" font-size="16">同姿态、沿各组既定轴平移 · 保留钢架与室外设备 · 灰虚线对应空出的原位</text>','<text x="54" y="99" font-size="14">通用示意，非OEM/CAD或拆装程序；数量为画法选择，未认证尺寸、功率或完整电力/流体拓扑。</text>','</g>']
