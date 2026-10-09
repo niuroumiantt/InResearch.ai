@@ -675,6 +675,13 @@ const showDossier = createPartDossier({el: document.getElementById('dossier'), v
   atlasViewFor:p=>rackOverviewMode&&p.id==='rack-frame'?'overview':null});
 const rackContextPart=()=>({...PART['rack-frame'],name:'机柜与结构 · 整柜上下文',
   desc:'本图是通用整柜结构示意：2交换机、8计算托盘、2电源架为图示选择；侧部铜色长条与灰管未连接。尺寸、U高度、功率、承载及连接回路未知。研究链接仍指向机柜类别，不代表本示例的型号或额定配置。'});
+function rackInstancePart(p) {
+  const examples={
+    server:{name:'计算托盘 · 单个示例',desc:'本次点选一个示例计算托盘，前部8个载盘仅为图示选择。内部处理器/加速器/内存配置、供应者、功率与维修条件未知；研究链接指向服务器类别，不代表本示例型号或适用规格。'},
+    'power-shelf':{name:'机柜电源架 · 单个示例',desc:'本次点选一个示例电源架，可见6个前部模块仅为图示选择。电压、AC/DC输入输出、功率、储能、冗余与供应者未知；研究链接指向电源架类别，本示例的具体电气方案待核实。'},
+    'network-switch':{name:'交换机 · 单个示例',desc:'本次点选一个示例交换机，端口外观仅作通用表达。端口数量/速率、协议、内部配置、供应者和功率未知；研究链接指向交换机类别，本示例的具体网络方案待核实。'},
+  };return {...p,...examples[p.id]};
+}
 function showRackObject(object) {
   const p=PART[object.userData.part];if(!p)return;
   if(!rackOverviewMode){showDossier(p);return;}
@@ -685,7 +692,7 @@ function showRackObject(object) {
   let instance=object;
   while(instance.parent && instance.parent!==rack && !/^(compute-\d+|switch-\d+|power-shelf-\d+|optional-busbar|optional-manifolds)$/.test(instance.name))instance=instance.parent;
   rackSelectedMeshes=[];instance.traverse(m=>{if(m.isMesh&&m.userData.part===p.id)rackSelectedMeshes.push(m);});
-  showDossier(p);
+  showDossier(rackInstancePart(p));
 }
 if(rackOverviewMode)document.getElementById('rack-overview-dossier').onclick=()=>{
   document.getElementById('dossier').classList.add('rack-overview-dossier');

@@ -261,7 +261,7 @@
 | `docs/design/technical-atlas/TA-13/acceptance-v1.json` | reviewed_differences | 3 |
 | `docs/design/technical-atlas/TA-13/acceptance-v1.json` | unknowns | 5 |
 | `docs/design/technical-atlas/TA-13/acceptance-v1.json` | browser_checks | 9 |
-| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | issues_resolved | 5 |
+| `docs/design/technical-atlas/TA-13/acceptance-v1.json` | issues_resolved | 6 |
 | `docs/design/technical-atlas/TA-13/acceptance-v1.json` | artifacts | 10 |
 | `docs/design/technical-atlas/TA-13/labels-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-13/labels-v1.json` | labels | 14 |
