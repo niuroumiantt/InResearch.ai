@@ -23,3 +23,11 @@
 `pr487-alphabet-actual-closure.json`另记16:35实核原publisher产生的同源B3公网/ACK，累计已核来源闭环16；不是549待重审内容。首480六条文本支持与后来发现的system:control机器归属错误分开，真实审核修复另行，原历史不改。
 
 `publisher-unowned-gap-restoration.json`保留原服务外部缺席、双锁一致备份后恢复PID2818及16:42真实新status；后来磁盘源码变化不冒充驻留模块已载入，未知操作者不归因。
+
+17:00–17:40当前已核阶段：16正文封存/7待完成（PDF非视觉）；已核网站/Spark正式22（Alphabet15＋EIA7），原50显式仍7。首480的6＋10机器设施错误已由499具名补审并实际部署/公网核对，原文/B/before历史保留。外部503在17:40另增同源1条，main支持23与本轮已闭环22分开，尚不计新增published。
+
+- `original-23-stage-1700.json`保留整点14封存/IEA125未封存；`original-23-stage-1723.json`及`original-23-sealcheck-1724.json`为16完整正文封印。
+- `pr499-actual-merge.json`、`object-mapping-publisher-runtime.json`、`object-mapping-review-runtime.json`：精确合并与两唯一进程自然idle/一致备份后真实载入，Reader/scope/relay不改。
+- `object-mapping-resident-core.json` / `object-mapping-resident-sample.json` / `object-mapping-first-ready-audits.json`：真正新协议core与sample，首两ready包当时10提议，不作正式采用回执。
+- `object-mapping-public-https.json`和`object-mapping-aws-health.json`：root真实最终公网与精确镜像健康；`object-mapping-first-observation-recovered.json`是按首读工具输出恢复的窄观察，原完整raw已覆盖、SHA未知，不冒称原件。
+- `pr493-actual-closure.json`、`pr493-independent-semantic-review.json`、`pr493-public-https.json`、`pr493-spark-published.json`：外部旧协议6条/17引文独立语义复核、公网及原attempt4真实published；不升级旧审核、不改队列。
