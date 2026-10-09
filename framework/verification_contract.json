@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.11",
+  "version": "2026.10.09.12",
   "reviewed_at": "2026-10-09",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -14,7 +14,7 @@
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
     "docs/local_reader/PROJECT_BRIEF.md": "26af169ca2c61746b628df2105541b517941aa01e2e190d57ebc6076173ce445",
     "docs/local_reader/RUN_TO_COMPLETION.md": "a8eb25aa6718bab718ffbf73114e67204fd265cd05d7a2f0b9cc42e8fcfec10c",
-    "docs/local_reader/SPARK_OPERATIONS.md": "e127f05c9e0a8f5322817114e9e68218b276ba7f6cca2c91f31e8e07421921ca",
+    "docs/local_reader/SPARK_OPERATIONS.md": "26670087e6a44566166c7d3045364d1a32bb911b1257e6e5b6d62150e6ad3418",
     "docs/local_setup/ADD_3D_MODEL.md": "82ce43079ba62fa0e3626435667029efbedf8930e80a2e80dd27e733056cb987",
     "docs/local_setup/README.md": "972bf5d0b9e7a682acdceef34bb59a58e8b5148e1e0cf479e19a6e09170e6daf",
     "docs/local_setup/REPOSITORY_PAGES.md": "468356165b8546ac3db3afc0a8cef8df27c559faa3b2981b87ad0920db84cade",
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "33a132fc2113fcfee302959ed4cbed692da96a312ccaf7fee55f8280f484cdfc",
-    "framework/CURRENT.md": "acf86b31db40cbaa0db4144d744401f8a4a7cebefd9e0ce0d8e0e8b8931a8c7b",
+    "framework/CURRENT.md": "87cfb15e7de456b98617ef4e6e83e6fdda9ea7318ed895507429de2914c65655",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "c900ea822d1b09d24810a369c7e663ae1a902e4bc990cbeefe5b46c3237e50f2",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "85c8115bc53ceab6b56f7e135bc4bda6e98d8db5e2daba92d6c434dfc97a818f",
+    "framework/current_state.json": "64c569d07d494cd132090ab4d17c063cb0a33d5dbb39a21d9f05229741a71783",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -182,7 +182,7 @@
     "tests/unit/test_read_batch.py": "f751479f9249afb26322d5cf6b5bcbeca617e688a794a23bf9e3456b6d1980f5",
     "web/pages/node.html": "631a5cafcf5fe0e9513b4903d009bec215cd43215b7e6c5c63f1d0efdc21c4e0",
     "src/inresearch/workflow/research_review.py": "cea216e3baf81f5416718d5e9a881f0a7796b7c5f41b26d3ed77bb671e47b4e0",
-    "src/inresearch/workflow/research_publish.py": "7f67f9d487d2e975d28f64a0ea2415f9ec1be09650115305cbe67faf9f7e9501",
+    "src/inresearch/workflow/research_publish.py": "f4a4cacbb5331f4379e226b415ad81a7b3a3fa335e3b3614f4cc00dd58ec0e8f",
     "deploy/spark-reader/inresearch-research-review.service": "f3528fb41b6fb53f0d59668cafc7ccac21a85d0f92512138a1c3ecd1e4537f21",
     "deploy/m5-research/research-publish.plist.example": "1a5c9d9ae4f9015bf95423e6c4d56a799cfdd86d42e880420028c4951ae2dc32",
     "tests/unit/test_research_review.py": "a4e9b5cbd3b440c484f0453086c2a641635a6b6ab788b595fb6ea541e151e230",
@@ -240,9 +240,9 @@
     "docs/design/technical-atlas/references/12-site-context-triptych.png": "c6bad504f0c9648604ff17b5133d12fdcfe5a3f8d5b31267b0cb98a172d5ae3d",
     "docs/design/technical-atlas/references/13-supply-to-power-path.png": "d7fd7c09b8699e4078f89c489a9b8526d27b2d4218a880a0e8761f31b51a4a83",
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
-    "tests/unit/test_research_flow_recovery.py": "c7b57c5085d971b8c2b22b9ae50807ebec81e3b7ee0ad1529d6f723f8dfcf1ca",
+    "tests/unit/test_research_flow_recovery.py": "c3feaa85b9d430e510703cd713f6c36043b437d303aa89f8d79f1593d12f7a12",
     "src/inresearch/adapters/html_document.py": "322b316bbc5bc0bce0c3fc4b4835b2a23c7f9d42f06c0f81ae20f17a26aaa650",
-    "docs/DECISIONS.md": "44ab676bb4fdb2c90d854656ffd14423148585668fb214d83b4514b6beb16df6",
+    "docs/DECISIONS.md": "87b12328adadaf195e25cfc9f63c35d77441197f8de37d5b9afb2bef3a14ec50",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -523,7 +523,10 @@
         "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_all_blocked_batches_are_reported_without_global_unavailable",
         "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_remote_semantic_failure_is_distinct_from_transport_failure",
         "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_exact_reviewed_head_merged_elsewhere_recovers_receipt_only",
-        "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_changed_merged_pr_head_cannot_recover_receipt"
+        "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_changed_merged_pr_head_cannot_recover_receipt",
+        "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_changed_context_requeues_open_blocked_batch_and_preserves_audit",
+        "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_recovered_checks_resume_normal_validation_without_waiver",
+        "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_unrecovered_ci_and_changed_open_head_remain_blocked"
       ],
       "not_verified": [
         "本轮未连接 Spark/M4 验证服务、模型、备份和容量；历史启动记录不证明当前在线。",
@@ -538,7 +541,11 @@
         "Batch performance and semantic quality are sample-specific; machine rollout, concurrency and completed reports require private live receipts. Unit fixtures and matching quotes do not prove exhaustive semantic extraction or linear throughput across models.",
         "持续核验首通道仅作者陈述/预测；实体词/对象相关上下文非穷尽外部反证检索，缺源与项目身份/数字/模型值等专门通道不由本程序采用。跨机器常驻、实际CLI调用、Git/CI和网站逐项交付须保存真实运行回执，不由夹具证明；可提交不代表正式上线。",
         "逐条原文检索是范围明确的候选冲突检索，不能证明外部反证穷尽或新查询词对全库的语义召回。六条合批/十二批背压不保证线性提速，实际审核、抽样、发布与小时吞吐须私有真机回执；无需求匹配、A档、原文不足和超预算仍分别保留。",
-        "发布恢复夹具不证明生产队列已释放或新增正式采用；需实测版本、逐批网站闭包与Spark回执。M4仅执行隔离源码回归，不取得研究事实或任务队列写入权。"
+        "发布恢复夹具不证明生产队列已释放或新增正式采用；需实测版本、逐批网站闭包与Spark回执。M4仅执行隔离源码回归，不取得研究事实或任务队列写入权。",
+        "2026-10-09恢复测试使用隔离模拟，不证明所有旧批次仍适合采用；每批运行复验和网站支持闭包独立验收。"
+      ],
+      "requirements": [
+        "旧blocked批次仅在来源封印/摘要及原PR head一致时恢复；现行上下文变化重新C3审核，同一head四CI全部恢复则继续正常发布。"
       ]
     },
     {
@@ -1392,7 +1399,10 @@
         "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_all_blocked_batches_are_reported_without_global_unavailable",
         "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_remote_semantic_failure_is_distinct_from_transport_failure",
         "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_exact_reviewed_head_merged_elsewhere_recovers_receipt_only",
-        "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_changed_merged_pr_head_cannot_recover_receipt"
+        "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_changed_merged_pr_head_cannot_recover_receipt",
+        "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_changed_context_requeues_open_blocked_batch_and_preserves_audit",
+        "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_recovered_checks_resume_normal_validation_without_waiver",
+        "tests/unit/test_research_flow_recovery.py::PublisherIsolationTests.test_unrecovered_ci_and_changed_open_head_remain_blocked"
       ],
       "not_verified": [
         "L2 已拆开参数/用例/准入/相似度/缺口/来源职责；两个 3D 场景仍需收敛。并非其他所有多文件流程均已逐阶段验收。",
@@ -1404,7 +1414,11 @@
         "持续核验首通道仅作者陈述/预测；实体词/对象相关上下文非穷尽外部反证检索，缺源与项目身份/数字/模型值等专门通道不由本程序采用。跨机器常驻、实际CLI调用、Git/CI和网站逐项交付须保存真实运行回执，不由夹具证明；可提交不代表正式上线。",
         "逐条原文检索是范围明确的候选冲突检索，不能证明外部反证穷尽或新查询词对全库的语义召回。六条合批/十二批背压不保证线性提速，实际审核、抽样、发布与小时吞吐须私有真机回执；无需求匹配、A档、原文不足和超预算仍分别保留。",
         "资料容量不能推导去重效果或流程完成率，目录缓存并非原件备份证明；生产版本/接收字段需要另验。",
-        "发布恢复夹具不证明生产队列已释放或新增正式采用；需实测版本、逐批网站闭包与Spark回执。M4仅执行隔离源码回归，不取得研究事实或任务队列写入权。"
+        "发布恢复夹具不证明生产队列已释放或新增正式采用；需实测版本、逐批网站闭包与Spark回执。M4仅执行隔离源码回归，不取得研究事实或任务队列写入权。",
+        "2026-10-09恢复测试使用隔离模拟，不证明所有旧批次仍适合采用；每批运行复验和网站支持闭包独立验收。"
+      ],
+      "requirements": [
+        "旧blocked批次仅在来源封印/摘要及原PR head一致时恢复；现行上下文变化重新C3审核，同一head四CI全部恢复则继续正常发布。"
       ]
     },
     {

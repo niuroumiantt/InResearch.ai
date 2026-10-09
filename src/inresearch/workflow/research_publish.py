@@ -188,6 +188,29 @@ class Publisher:
                                 result = self.advance(directory, value)
                                 if not result.get('error'):
                                     return result
+                            elif pr['state'] == 'OPEN':
+                                if pr['headRefOid'] != value['commit']:
+                                    raise ValueError('pr_head_changed_requires_review')
+                                if proof.get('context_current') is False:
+                                    self.remote('revalidate', '--batch-id', bid)
+                                    run(['gh', 'pr', 'close', str(value['pr'])], self.root)
+                                    value.setdefault('recoveries', []).append({
+                                        'from':value['state'], 'error':value.get('error'),
+                                        'reason':'changed_context_requeued', 'at':now_iso()})
+                                    value.update(state='revalidation', updated=now_iso())
+                                    value.pop('error', None)
+                                    atomic_json(path, value)
+                                    return value
+                                checks = json.loads(run(['gh', 'pr', 'checks', str(value['pr']),
+                                                         '--json', 'name,bucket,state'],
+                                                        self.root, check=False).stdout or '[]')
+                                if all_checks_pass(checks):
+                                    value.setdefault('recoveries', []).append({
+                                        'from':value['state'], 'error':value.get('error'),
+                                        'reason':'exact_head_checks_recovered', 'at':now_iso()})
+                                    value.update(state='pr_open', checks=checks)
+                                    atomic_json(path, value)
+                                    return self.advance(directory, value)
                         except Exception as error:
                             value.update(error=str(error)[-1500:], updated=now_iso())
                             atomic_json(path, value)
