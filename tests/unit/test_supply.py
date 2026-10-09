@@ -15,6 +15,20 @@ from inresearch.interfaces import http, auth
 
 
 class SupplyTests(unittest.TestCase):
+    def test_truncated_match_window_cannot_hide_received_reading_results(self):
+        reader={'documents':[{'doc_id':'done','content_sha256':'outside-window','title':'received report',
+                             'read_status':'complete','stored_path':'private/original.pdf'},
+                            {'doc_id':'pending','content_sha256':'pending','read_status':'running'}],
+                'statements':[{'document_id':'done','text':'received candidate'}],
+                'evidence':[{'document_id':'done','quote':'original text','page_index':2}]}
+        matched={'truncated':True,'total':5917,'records':[{'sha256':'different'}]}
+        result=supply.reading_deliveries(reader,matched)
+        self.assertEqual(len(result),1)
+        self.assertEqual(result[0]['claims'],['received candidate'])
+        self.assertEqual(result[0]['quotes'],[{'quote':'original text','page_index':2}])
+        self.assertEqual(result[0]['acceptance'],'candidate_only')
+        self.assertNotIn('private',json.dumps(result))
+
     def test_reading_deliveries_keep_received_complete_scope_and_hide_paths(self):
         reader={'documents':[{'doc_id':'a','content_sha256':'a','title':'done','read_status':'complete','stored_path':'private/original.pdf','coverage':{'gap_pages':[2]}},
                              {'doc_id':'b','content_sha256':'b','read_status':'running'},
