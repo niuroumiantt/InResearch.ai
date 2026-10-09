@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.21。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.22。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1586。
+在册文件：1591。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,7 +18,7 @@
 | 历史快照 | 311 |
 | 运行代码 | 308 |
 | 现行规范 | 15 |
-| 项目配置 | 339 |
+| 项目配置 | 344 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
@@ -616,6 +616,9 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository-intake-20261009.json` | commands | 6 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository-intake-20261009.json` | not_verified | 3 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository.json` | tests | 5 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-live-http-20261009.json` | snapshot_sources | 23 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-live-http-20261009.json` | target_sources | 13 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-public-https-20261009.json` | target_sources | 2 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-provenance-20261009.json` | decoded_archived_tool_response_carriers | 3 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-receipt-20261009.json` | source_items | 23 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-receipt-20261009.json` | reader_before | 0 |
@@ -626,6 +629,7 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-receipt-20261009.json` | reader_hold_source_ids | 2 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-20261009.json` | rows | 21 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-final-20261009.json` | rows | 23 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-source-provenance-stage-20261009.json` | rows | 23 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/svg-layout.json` | items | 7 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/v3-svg-layout.json` | items | 14 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/v4-svg-layout.json` | items | 10 |
@@ -1648,6 +1652,9 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-9.png` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository-intake-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-live-http-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-public-https-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-release-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-provenance-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-receipt-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-provenance-20261009.json` | 项目配置 |
@@ -1655,6 +1662,8 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-parser-service-release-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-final-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-source-provenance-runtime-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-source-provenance-stage-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/svg-layout.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/v3-svg-layout.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/v4-svg-layout.json` | 项目配置 |
