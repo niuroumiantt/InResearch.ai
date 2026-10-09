@@ -2,7 +2,7 @@
 
 2026-10-09｜规则v2.7｜派生研究、交付索引与真实运行回执；原件不入Git。
 
-当前研究接收：23份已注册并补源。13:31–13:35逐SHA实核13份完整封存、13来源566条公网资料可读；844条Reader候选，707条在121审核批次排队，当前本批正式支持C3采用0。14:22另一个旧Oracle包published5，来源不在本批23份内，分别计量。时点、来源身份与缺口见INTAKE和研究恢复交接。
+当前研究反哺：16:08逐SHA核对23登记、14完整正文封存、9排队（PDF原生正文范围完成，未做视觉审阅，不等于含图整篇深读），16:35已核正式支持闭环16条＝Alphabet B9（PR480＋PR487）＋EIA具名代理A7（PR483），实际公网HTTPS与Spark正式ledger一致。原投递41个C＋9个S共50项中仅C35–41七项有显式采用绑定；Alphabet九条是Reader新提取，未映射原Cxx。其余43保留待核验身份。首批Alphabet六条有已证机器对象误含system:control，文本支持与对象归属区分，待具名审核保留历史后纠正；相关旧bundle暂停。旧PR453/455/466另计，完整证据见[最新交接](../../../handoff/us-datacenter-power-20261009.md)和[50项索引](../../../reviews/2026-10-09/research-publication/original-50-identity-index.md)。
 
 文章及图文入口：`outputs/geluoke-research/2026-10-09-us-datacenter-power/`。正式研究文字为该目录`research/research.md`与`research/research.txt`，机器登记见submission.json、claims.json、demand-snapshot.json、sources.json。正文不构成来源原件的独立佐证；身份相同的两种交付不重复计量。
 
@@ -19,7 +19,7 @@
 | M04-Q03，核电时间线 | Crane目标、公司关键批准进度 | NRC当前独立状态、完整复运条件、SMR逐项目 |
 | M04-Q04，电价与合同条款 | SCC/Ohio最低义务、JLARC反证、Georgia预测 | 完整费率及删节合同边界、实际居民账单因果 |
 | M04-Q05，全国需求 | LBNL历史/预测，NERC地区条件 | 统一2030园区阶段与可交付可靠GW，非简单相加 |
-| M04-Q11，州工业价格序列 | 7条2026年1—7月EIA工业均价 | 当前价格载体metric/caliber审核、园区费率，保持原基准 |
+| M04-Q11，州工业价格序列 | EIA专项A7已采用为2026年1—7月累计工业均价的历史观察 | 七月单月旧系列/模型保持；园区费率与后续专门输入另验，问题开放 |
 | M09-Q01，变压器交期 | DOE历史配电调查 | 2026主变型号/工厂交期，不能推广历史数字 |
 
 ## 采用边界
