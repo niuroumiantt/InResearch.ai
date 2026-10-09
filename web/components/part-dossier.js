@@ -16,7 +16,7 @@ function dossierLink(text, href) {
   return a;
 }
 export function createPartDossier({el, view, BOM, companies: CN,
-  prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector, atlasHost = el, atlasViewFor = () => null}) {
+  prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector, atlasHost = el, atlasViewFor = () => null, researchNodeFor = p => "part:" + p.id}) {
 return function showDossier(p) {
   el.replaceChildren();
   if (atlasHost !== el) atlasHost.replaceChildren();
@@ -38,7 +38,7 @@ return function showDossier(p) {
   meta.append(" · ", badge); el.append(meta);
   el.append(dossierNode("p", "概念示意 · 类别级研究锚点。形状、数量、尺寸不代表真实现场配置。", "rg-concept-note"));
   const research = document.createElement("div"); el.append(research);
-  mountNodeResearch(research, "part:" + p.id);
+  mountNodeResearch(research, researchNodeFor(p));
   const slot = dossierNode("div", undefined, "insp");
   slot.id = "inspSlot"; slot.style.display = "none";
   slot.append(dossierNode("div", "概念部件预览 · 拖动旋转", "ihint")); el.append(slot);
@@ -47,11 +47,11 @@ return function showDossier(p) {
   if (atlasHost !== el) atlasHost.hidden = !hasAtlas;
   const links = dossierNode("div", undefined, "sec");
   links.append(dossierNode("h3", "参考研究与结构"));
-  links.append(dossierLink("节点页：五列与目标", "node.html?id=" + encodeURIComponent("part:" + p.id)));
-  links.append(dossierLink("采集：这个部件的目标行", "supply.html?" + new URLSearchParams({ node: "part:" + p.id }) + "#targets"));
+  links.append(dossierLink("节点页：五列与目标", "node.html?id=" + encodeURIComponent(researchNodeFor(p))));
+  links.append(dossierLink("采集：这个部件的目标行", "supply.html?" + new URLSearchParams({ node: researchNodeFor(p) }) + "#targets"));
   if (view !== "bom") links.append(dossierLink("爆炸图档案", "bom.html#" + encodeURIComponent(p.id)));
   if (view === "campus" && ["S4", "S5"].includes(p.scale))
-    links.append(dossierLink("继续拆解机柜 →", "rack3d.html?x=100&node=" + encodeURIComponent("part:" + p.id) + "#" + encodeURIComponent(p.id)));
+    links.append(dossierLink("继续拆解机柜 →", "rack3d.html?x=100&node=" + encodeURIComponent(researchNodeFor(p)) + "#" + encodeURIComponent(p.id)));
   if (view === "rack")
     links.append(dossierLink("返回园区定位", "bom3d.html?" + new URLSearchParams({ p: p.id, node: "part:" + p.id })));
   el.append(links);

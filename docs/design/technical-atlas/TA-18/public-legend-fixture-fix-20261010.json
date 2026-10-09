@@ -1,0 +1,20 @@
+{
+  "figure_id": "TA-18",
+  "observed_at": "2026-10-09T20:12:12.127226+00:00",
+  "source_revision": "2ad98ef46d58c86d9138f60e28248ae4a27f30b5",
+  "retained_public_v2": {
+    "views": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-18/public-v2/campus-overview-results-views.json",
+    "assembly": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-18/public-v2/campus-overview-results-assembly.json",
+    "finding": "Owner actualoriginal dark1280/390 screenshots: legend inherited dark white text on local warmwhitepanel, unreadable. Automated projection/pixels/views pass did not cover textcontrast. Assembly failed because fixture tried to collapse desktop controls via display:none summary, not product runtime fault."
+  },
+  "fix": "Only campus legend explicit warmwhite #faf9f4 with dark #383d37, actual computed10 text contrast>=4.5 in both themes. controlsOpen uses real summary click only when visible; asserts desktop wide+alreadyopen otherwise. Mobile actual click remains mandatory. Native/factory/camera unchanged.",
+  "status": "source_fix_actual_public_revalidation_pending",
+  "progress": {
+    "primary_published": 17,
+    "supplemental_published": 4
+  },
+  "boundaries": [
+    "No local website, productJS or HTTP executed; parse-only/static checks then authorized true publicHTTPS",
+    "CI not queried, Spark/research unchanged"
+  ]
+}
