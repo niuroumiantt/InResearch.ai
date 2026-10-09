@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1502。
+在册文件：1503。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 146 |
+| 配套说明 | 147 |
 | 测试 | 143 |
 
 ## 在册记录集合
@@ -823,6 +823,7 @@
 | [docs/handoff/review-literal-recovery-20261008.md](handoff/review-literal-recovery-20261008.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
+| [docs/handoff/technical-atlas-m4-20261009.md](handoff/technical-atlas-m4-20261009.md) | 配套说明 |
 | [docs/handoff/technical-atlas-standard-20261008.md](handoff/technical-atlas-standard-20261008.md) | 配套说明 |
 | [docs/handoff/us-datacenter-power-20261009.md](handoff/us-datacenter-power-20261009.md) | 配套说明 |
 | [docs/handoff/worktree-integration-20261006.md](handoff/worktree-integration-20261006.md) | 配套说明 |
