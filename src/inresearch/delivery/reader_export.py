@@ -5,6 +5,7 @@ from pathlib import Path
 from inresearch.materials.reader_contracts import UnsafePath, IntegrityError
 from inresearch.materials.artifacts import now_iso, digest_bytes, digest_file, encoded, private_dir, safe_path, atomic_bytes, atomic_json, read_json, signature, is_partial
 from inresearch.knowledge.registry import object_resolver
+from inresearch.materials.source_provenance import validate as validate_provenance
 
 # Bumped when the projection of one document changes for the same registry and
 # report (the cache key otherwise only sees the registry versions).
@@ -65,7 +66,7 @@ def projection_cache(cache_root):
     return conn
 
 
-def fingerprint(doc, sources, registry_key):
+def fingerprint(doc, sources, registry_key, source_metadata=None):
     """Every input the projection reads, report content included via report_sha256.
 
     Any catalog column, any source row or a registry version change all miss the
@@ -73,8 +74,57 @@ def fingerprint(doc, sources, registry_key):
     """
     stable = {k: (v if isinstance(v, (str, int, float, bool)) or v is None else repr(v))
               for k, v in doc.items()}
-    return digest_bytes(encoded({"registry": registry_key, "projection": PROJECTION_VERSION, "doc": stable,
-                                 "sources": sources}).encode("utf-8"))
+    inputs = {"registry": registry_key, "projection": PROJECTION_VERSION, "doc": stable, "sources": sources}
+    # Keep cache keys for the other 30,000+ documents unchanged. Only an
+    # explicitly received SHA source binding adds a projection input.
+    if source_metadata is not None:
+        inputs['source_metadata'] = source_metadata
+    return digest_bytes(encoded(inputs).encode("utf-8"))
+
+
+def supplied_sources(data, content_sha256=None):
+    """Read only received source fields, not the full matching metadata corpus."""
+    path = Path(data) / 'acquisition/catalog.sqlite'
+    if not path.is_file() or path.is_symlink():
+        return {}
+    db = sqlite3.connect(path.resolve().as_uri() + '?mode=ro', uri=True, timeout=30)
+    result, sidecars = {}, {}
+    try:
+        query = """SELECT source_key,url,json_extract(metadata,'$.sha256'),
+            json_extract(metadata,'$.source_url'),json_extract(metadata,'$.source_provenance')
+            FROM items WHERE source='fetchreports' AND kind='supplied_research'
+            AND json_type(metadata,'$.source_provenance')='object'"""
+        rows = db.execute(query + (' AND source_key=?' if content_sha256 else ''),
+                          (content_sha256,) if content_sha256 else ())
+        for sha, url, metadata_sha, metadata_url, value in rows:
+            try:
+                proof = validate_provenance(json.loads(value), sha, url)
+                if metadata_sha != sha or metadata_url != url:
+                    continue
+                sidecar_sha = proof['sidecar_sha256']
+                if sidecar_sha not in sidecars:
+                    sidecar = safe_path(data, 'material-reviews/source-sidecars/' + sidecar_sha + '.json')
+                    if digest_file(sidecar) != sidecar_sha:
+                        raise ValueError('source_sidecar_archive_mismatch')
+                    payload = read_json(sidecar)
+                    sidecars[sidecar_sha] = (payload.get('batch'), {r.get('sha256'): r for r in payload.get('items', [])})
+                batch, selected = sidecars[sidecar_sha]
+                supplied = selected.get(sha, {})
+                if batch != proof['batch'] or any(supplied.get(k) != proof[k] for k in ('source_id', 'role', 'url')):
+                    continue
+                if proof['role'] == 'downloaded_original':
+                    if supplied.get('original_sha256') != sha:
+                        continue
+                elif any(supplied.get(k) != proof[k] for k in ('original_bytes_sha256', 'response_sha256', 'derivation')):
+                    continue
+                result[sha] = {'source_url': url, 'source_provenance': proof}
+            except (OSError, ValueError, TypeError, KeyError, IntegrityError, UnsafePath):
+                continue
+    except sqlite3.OperationalError:
+        pass  # Older or absent acquisition catalogs retain the old projection.
+    finally:
+        db.close()
+    return result
 
 
 def fold_ids(values, allowed_ids, resolve=None):
@@ -88,7 +138,7 @@ def fold_ids(values, allowed_ids, resolve=None):
     return sorted(kept), sorted(unknown)
 
 
-def project_document(doc, sources, report, allowed, resolve=None):
+def project_document(doc, sources, report, allowed, resolve=None, source_metadata=None):
     """Everything one document contributes to a snapshot, from its inputs alone."""
     resolvers = {key: (resolve if key == "object_ids" else None) for key in allowed}
     mapped, missing = {}, {}
@@ -103,6 +153,8 @@ def project_document(doc, sources, report, allowed, resolve=None):
              "reading_revision_id": doc["revision_id"] if doc["report_rel"] else None,
              "report_sha256": doc["report_sha256"],
              "model": report.get("model"), "status": "candidate", "acceptance": "candidate", **mapped}
+    if source_metadata is not None:
+        entry.update(source_metadata)
     if report.get('published_date') or report.get('classification', {}).get('published_date'):
         entry['published_date'] = report.get('published_date') or report['classification']['published_date']
     evidence_out = []
@@ -176,12 +228,14 @@ def export_snapshot(conn, data, registry, status, cache_root=None, verify=None, 
         source = dict(row)
         grouped.setdefault(source.pop("doc_id"), []).append(source)
     knowledge = {"documents": [], "evidence": [], "statements": [], "answers": []}
+    source_metadata = supplied_sources(data)
     proposals = []
     try:
         for row in rows:
             doc = dict(row)
             sources = grouped.get(doc["doc_id"], [])
-            key = fingerprint(doc, sources, registry_key)
+            provenance = source_metadata.get(doc['sha256'])
+            key = fingerprint(doc, sources, registry_key, provenance)
             piece = None
             if cache is not None:
                 hit = cache.execute("SELECT payload FROM projection WHERE doc_id=? AND fingerprint=?",
@@ -189,7 +243,7 @@ def export_snapshot(conn, data, registry, status, cache_root=None, verify=None, 
                 if hit is not None:
                     piece = json.loads(hit[0])
             if piece is None:
-                piece = project_document(doc, sources, read_report(data, doc), allowed, resolve)
+                piece = project_document(doc, sources, read_report(data, doc), allowed, resolve, provenance)
                 if cache is not None:
                     cache.execute("INSERT OR REPLACE INTO projection VALUES(?,?,?)",
                                   (doc["doc_id"], key, encoded(piece)))

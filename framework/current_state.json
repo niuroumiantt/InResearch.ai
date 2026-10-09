@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.17",
+  "version": "2026.10.09.18",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -682,13 +682,16 @@
         "src/inresearch/materials/reading_artifacts.py",
         "tests/unit/test_reading_results.py",
         "tests/unit/test_ocr_worker_named.py",
-        "tests/unit/test_ocr_worker_resume.py"
+        "tests/unit/test_ocr_worker_resume.py",
+        "src/inresearch/materials/source_provenance.py",
+        "src/inresearch/workflow/research_sources.py",
+        "tests/unit/test_research_sources.py"
       ],
       "supersedes": [
         "reading-m4-triage-20260909"
       ],
-      "reason": "2026-09-15：L1 的待处理选择、预览预算、活动速率和版本候选收敛到 workflow.l1_batch；各 CLI 仅处理参数和呈现，triage 不再转发 score run。reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 ocr-worker 支持 --doc-id 点名处理仍在排队（含 OCR 排后）的文档，排队文档上传页结果后不 retry。；2026-09-27 ocr-worker 只上传页结果，不再在 Spark 上 retry；OCR 阻塞文档由运行中的 reader 自动重新排队。；2026-09-27 ocr-worker 失败时上传已完成页并写明失败页，重跑跳过 Spark 上同一内容已有的页。",
-      "implementation_revision": "2026.09.15.2"
+      "reason": "2026-09-15：L1 的待处理选择、预览预算、活动速率和版本候选收敛到 workflow.l1_batch；各 CLI 仅处理参数和呈现，triage 不再转发 score run。reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-26 ocr-worker 支持 --doc-id 点名处理仍在排队（含 OCR 排后）的文档，排队文档上传页结果后不 retry。；2026-09-27 ocr-worker 只上传页结果，不再在 Spark 上 retry；OCR 阻塞文档由运行中的 reader 自动重新排队。；2026-09-27 ocr-worker 失败时上传已完成页并写明失败页，重跑跳过 Spark 上同一内容已有的页。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。",
+      "implementation_revision": "2026.10.09.15"
     },
     {
       "id": "model-execution-20260912",
@@ -1504,13 +1507,16 @@
         "tests/unit/test_company_window.py",
         "src/inresearch/workflow/catalog_ownership.py",
         "src/inresearch/workflow/catalog_ownership_audit.py",
-        "tests/unit/test_catalog_ownership.py"
+        "tests/unit/test_catalog_ownership.py",
+        "src/inresearch/materials/source_provenance.py",
+        "src/inresearch/workflow/research_sources.py",
+        "tests/unit/test_research_sources.py"
       ],
       "supersedes": [
         "acquisition-daily-20261006"
       ],
-      "reason": "用户采用按事件先交付、按缺失环节排队；回执和绑定来源齐全的日报元数据可进项目线索，补源/身份/容量/长报告分别推进，不改变 C3 或全文权限。；2026-10-07优先日报：同一功率单位支持英文全称；保留多园区事件的独立采用与组合/产品边界，不放宽C3。；站点权利采集字段前置进入目标notes；正式供电协议引用原件与具名C3，进入既有合同库。；2026-10-07用户替代密集公司首页为四区块企业窗口，产品子视图、actor新闻和财报索引；固定行情API展示缓存例外不恢复研究爬取。；2026-10-07产品归属修正：发布方不等于制造商，已核对第三方SSD支持表退出自有产品读取投影，历史保留；其他公司只读审计，部件品牌不排除整机。",
-      "implementation_revision": "2026.10.07.7",
+      "reason": "用户采用按事件先交付、按缺失环节排队；回执和绑定来源齐全的日报元数据可进项目线索，补源/身份/容量/长报告分别推进，不改变 C3 或全文权限。；2026-10-07优先日报：同一功率单位支持英文全称；保留多园区事件的独立采用与组合/产品边界，不放宽C3。；站点权利采集字段前置进入目标notes；正式供电协议引用原件与具名C3，进入既有合同库。；2026-10-07用户替代密集公司首页为四区块企业窗口，产品子视图、actor新闻和财报索引；固定行情API展示缓存例外不恢复研究爬取。；2026-10-07产品归属修正：发布方不等于制造商，已核对第三方SSD支持表退出自有产品读取投影，历史保留；其他公司只读审计，部件品牌不排除整机。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。",
+      "implementation_revision": "2026.10.09.15",
       "change_reason": "2026-10-06 user-authorized event review → curated project → published receipt; Spark indefinite preservation; received/queued never imply formal adoption."
     },
     {
@@ -1938,13 +1944,16 @@
         "deploy/m5-research/research-publish.plist.example",
         "tests/unit/test_research_review.py",
         "src/inresearch/knowledge/material_baseline.py",
-        "tests/unit/test_material_baseline.py"
+        "tests/unit/test_material_baseline.py",
+        "src/inresearch/materials/source_provenance.py",
+        "src/inresearch/workflow/research_sources.py",
+        "tests/unit/test_research_sources.py"
       ],
       "supersedes": [
         "reading-codex-batch-20261006"
       ],
-      "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。",
-      "implementation_revision": "2026.10.08.22"
+      "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。",
+      "implementation_revision": "2026.10.09.15"
     },
     {
       "id": "interface-reader-company-20261008",

@@ -92,6 +92,11 @@ finally:
     text:'<img src=x onerror=alert(1)> historical source '+i,
     source:{title:'Original 2015 report', url:null}, source_date:'2015-04-01',
     quotes:[{id:'quote:'+i, quote:'Original source quotation '+i, page_index:0}]}));
+  materialRows[0].source = {title:'Archived web tool response', url:'https://example.test/source',
+    provenance:{role:'decoded_archived_tool_response',original_bytes_sha256:null}};
+  materialRows[1].source = {title:'Downloaded original', url:'https://example.test/original',
+    provenance:{role:'downloaded_original'}};
+  materialRows[2].source.title = 'Unbound --archived-web-tool-response.md filename';
   await page.route(url => url.pathname === '/api/research-materials', route => {
     materialRequests++;
     if (materialRequests === 1) return route.fulfill({status:503,json:{error:'temporary'}});
@@ -112,6 +117,11 @@ finally:
   await materials.locator('[data-material-id="material:0"]').waitFor();
   assert.equal(await materials.locator('[data-material-id]').count(),20);
   assert.equal(await materials.locator('img').count(),0,'material text became active HTML');
+  assert.equal(await materials.locator('.material-source-role').count(),1);
+  assert.equal(await materials.locator('[data-material-id="material:0"] .material-source-role').innerText(),'工具响应正文');
+  assert.equal(await materials.locator('[data-material-id="material:0"] .source a').getAttribute('href'),'https://example.test/source');
+  assert.equal(await materials.locator('[data-material-id="material:1"] .material-source-role').count(),0,'downloaded original mislabeled');
+  assert.equal(await materials.locator('[data-material-id="material:2"] .material-source-role').count(),0,'filename guessed source identity');
   await materials.locator('details').first().locator('summary').click();
   assert.match(await materials.innerText(),/Original source quotation 0/);
   assert.match(await materials.innerText(),/2015-04-01/);
@@ -138,6 +148,8 @@ finally:
   assert.match(await detail.innerText(),/原件第 1 页/);
   assert.equal(await detail.locator('img').count(),0,'source text became active HTML');
   await page.setViewportSize({width:390,height:950});
+  assert.equal(await materials.locator('.material-source-role').innerText(),'工具响应正文');
+  if (process.env.SOURCE_ROLE_SCREENSHOT) await materials.screenshot({path:process.env.SOURCE_ROLE_SCREENSHOT});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   await page.setViewportSize({width:320,height:850});
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
