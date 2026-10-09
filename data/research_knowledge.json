@@ -24272,6 +24272,417 @@
         },
         "batch_id": "db08c9bdbd3f2c806765ab1ba592d216785e66f5af8016b1cb3851280d2d1a3a"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ff9c046cd9dac8b7e40fe117b640de87cd32c437ef1a40db287b295e18eb603a",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:0:ev:0",
+      "locator": "page:6/chunk:5",
+      "object_ids": [],
+      "page_index": 5,
+      "question_ids": [],
+      "quote": "For prefill, the critical path of K1 is at computing L, INV, and M_qk.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:55:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。计算步骤和矩阵乘法次数对当前推理负载特征与运行工程需求转换工单有实质的局部机制贡献。各引文连续，邻接上下文充分，未识别A条件，可按B采用为限定的作者主张。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-demand-D3-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.807,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cceac82b0abb7a4215928c9633078906e2310e9bef551a414072b9a3325751f0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69307,
+            "output_tokens": 3687,
+            "reasoning_output_tokens": 463
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.906,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "28f7e0101a50bdb2a5781dfa7e302e97d9a9ab2f7f3219ba11fe75de64ee472d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67521,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 240
+            }
+          }
+        },
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ff9c046cd9dac8b7e40fe117b640de87cd32c437ef1a40db287b295e18eb603a",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:0:ev:1",
+      "locator": "page:6/chunk:5",
+      "object_ids": [],
+      "page_index": 5,
+      "question_ids": [],
+      "quote": "INV: Neumann factorization, performs 6 C × C × C matrix multiplications",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:55:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。计算步骤和矩阵乘法次数对当前推理负载特征与运行工程需求转换工单有实质的局部机制贡献。各引文连续，邻接上下文充分，未识别A条件，可按B采用为限定的作者主张。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-demand-D3-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.807,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cceac82b0abb7a4215928c9633078906e2310e9bef551a414072b9a3325751f0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69307,
+            "output_tokens": 3687,
+            "reasoning_output_tokens": 463
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.906,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "28f7e0101a50bdb2a5781dfa7e302e97d9a9ab2f7f3219ba11fe75de64ee472d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67521,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 240
+            }
+          }
+        },
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ff9c046cd9dac8b7e40fe117b640de87cd32c437ef1a40db287b295e18eb603a",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:2:ev:0",
+      "locator": "page:6/chunk:5",
+      "object_ids": [],
+      "page_index": 5,
+      "question_ids": [],
+      "quote": "K1 write and K2 read Q_decay, K_decay, K_restore: C × D\n\n    K1 write and K2 read INV, M_qk: C × C",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:55:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。跨kernel中间矩阵访问和状态读写频次，对当前推理负载内存需求及运行工程转换工单具有直接但局部的关系。连续引文和周围实现说明充分，未发现A条件，可按B采用为有来源归属的访问机制说明。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-demand-D3-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.807,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cceac82b0abb7a4215928c9633078906e2310e9bef551a414072b9a3325751f0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69307,
+            "output_tokens": 3687,
+            "reasoning_output_tokens": 463
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.906,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "28f7e0101a50bdb2a5781dfa7e302e97d9a9ab2f7f3219ba11fe75de64ee472d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67521,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 240
+            }
+          }
+        },
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ff9c046cd9dac8b7e40fe117b640de87cd32c437ef1a40db287b295e18eb603a",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:2:ev:1",
+      "locator": "page:6/chunk:5",
+      "object_ids": [],
+      "page_index": 5,
+      "question_ids": [],
+      "quote": "K2 read and write S once per kernel: D × D",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:55:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。跨kernel中间矩阵访问和状态读写频次，对当前推理负载内存需求及运行工程转换工单具有直接但局部的关系。连续引文和周围实现说明充分，未发现A条件，可按B采用为有来源归属的访问机制说明。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-demand-D3-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.807,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cceac82b0abb7a4215928c9633078906e2310e9bef551a414072b9a3325751f0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69307,
+            "output_tokens": 3687,
+            "reasoning_output_tokens": 463
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.906,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "28f7e0101a50bdb2a5781dfa7e302e97d9a9ab2f7f3219ba11fe75de64ee472d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67521,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 240
+            }
+          }
+        },
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ff9c046cd9dac8b7e40fe117b640de87cd32c437ef1a40db287b295e18eb603a",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:4:ev:0",
+      "locator": "page:6/chunk:5",
+      "object_ids": [],
+      "page_index": 5,
+      "question_ids": [],
+      "quote": "This concretely shows that the computational complexity of KDA:\n\n    Prefill: Linear to sequence length for both computation and memory\n\n    Decode: Constant to sequence length for both computation and memory",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:55:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。序列长度与阶段资源复杂度的关系，对推理负载特征、模型结构需求转换和运行工程需求转换三个当前工单均有实质的局部贡献。连续引文与前后推导充分，保留分析条件后未识别A条件，可按B采用。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-demand-D2-conversion",
+          "Q-NODE-demand-D3-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.807,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cceac82b0abb7a4215928c9633078906e2310e9bef551a414072b9a3325751f0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69307,
+            "output_tokens": 3687,
+            "reasoning_output_tokens": 463
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.906,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "28f7e0101a50bdb2a5781dfa7e302e97d9a9ab2f7f3219ba11fe75de64ee472d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67521,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 240
+            }
+          }
+        },
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25"
+      }
     }
   ],
   "statements": [
@@ -46589,6 +47000,310 @@
         "request_sha256": "dfb307e24232d1a7d4bc80c6c7dc023a8965a44c72c142366148ff21af955967"
       },
       "object_mapping_check": "独立按声明范围复核：光伏加电池储能PPA明确涉及电力系统下“发电与储能”链的储能系统，映射part:bess；Amazon明确为交易采购参与方，映射actor:amazon。Anza没有允许的主体ID，不新增映射。本项未说明并网配额、排队或并网协议，不映射site:grid；电力储能不映射IT存储，也不扩展到整座数据中心或其他基础设施。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:0:ev:0",
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:0:ev:1"
+      ],
+      "id": "adoption:review:a0fdc8b53bcd7cc42409f5ef",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-inference-profile",
+        "NODE-demand-D3-conversion"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis在《The Manos, The Mythos, The Legendos》的FlashKDA注意力头复杂度分析中称，prefill阶段K1的关键路径在于计算L、INV和M_qk，其中INV采用Neumann分解，执行6次C × C × C矩阵乘法，C为分块大小。这是作者的算法分析，发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:55:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。计算步骤和矩阵乘法次数对当前推理负载特征与运行工程需求转换工单有实质的局部机制贡献。各引文连续，邻接上下文充分，未识别A条件，可按B采用为限定的作者主张。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-demand-D3-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.807,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cceac82b0abb7a4215928c9633078906e2310e9bef551a414072b9a3325751f0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69307,
+            "output_tokens": 3687,
+            "reasoning_output_tokens": 463
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.906,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "28f7e0101a50bdb2a5781dfa7e302e97d9a9ab2f7f3219ba11fe75de64ee472d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67521,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 240
+            }
+          }
+        },
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:0"
+      ],
+      "limitations": "限于所述FlashKDA实现及prefill阶段，不代表整个模型的关键路径或实测性能。未提供具体模型、硬件、批量、时延、吞吐或资源转换系数；地域和实际部署阶段未说明，不能认证当前实现或部署状态。",
+      "conflict_check": "已采用的重prefill带宽利用、阶段并发干扰及优先调度主张未讨论FlashKDA的INV运算次数；本文件已采用的Attention Residuals陈述涉及其他计算机制。legacy昇腾规格与路线图不构成同实现、同口径反证。所供记录未发现真实冲突或重复，不替换既有结论；检查不等于完整外部反证搜索。",
+      "gap_dependency_check": "本条由已提供第5—6页文字及所选引文支持，不依赖缺失图表或未支持的Kimi K3架构候选。它只补充计算机制，仍需开发方实现资料、带工况实测及反证，才能验证算力等需求的转换系数、时滞和不确定性；两个问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "b2261960a0daeb5321b54aaac0737d22424db4f01338e72244620f9da3fa9d90"
+      },
+      "object_mapping_check": "实际范围是FlashKDA算法及kernel计算步骤。system:compute及其计算链属于root所定义的一座AI数据中心的IT基础设施，原文未建立该资产范围，也未指定GPU或其他计算部件。独立复核后采用空对象范围，保留有效的问题匹配；所选证据均使用这一范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:2:ev:0",
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:2:ev:1"
+      ],
+      "id": "adoption:review:02ade2d34d0ac66176cc9f18",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-inference-profile",
+        "NODE-demand-D3-conversion"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis在《The Manos, The Mythos, The Legendos》的FlashKDA prefill内存流量分析中列出：K1写入、K2读取Q_decay、K_decay、K_restore，各为C × D；K1写入、K2读取INV、M_qk，各为C × C；K2每个kernel对D × D的状态S读取和写入一次。这里的尺寸是矩阵维度，所选引文未指定具体物理内存类型；发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:55:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。跨kernel中间矩阵访问和状态读写频次，对当前推理负载内存需求及运行工程转换工单具有直接但局部的关系。连续引文和周围实现说明充分，未发现A条件，可按B采用为有来源归属的访问机制说明。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-demand-D3-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.807,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cceac82b0abb7a4215928c9633078906e2310e9bef551a414072b9a3325751f0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69307,
+            "output_tokens": 3687,
+            "reasoning_output_tokens": 463
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.906,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "28f7e0101a50bdb2a5781dfa7e302e97d9a9ab2f7f3219ba11fe75de64ee472d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67521,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 240
+            }
+          }
+        },
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:2"
+      ],
+      "limitations": "属于作者对所述实现的访问模式分析，矩阵维度不能直接作为字节数或带宽值。未指定承载内存层级、具体硬件和工作负载，也没有实测流量、延迟或带宽利用率。地域与实际部署阶段未说明，不能据此确定HBM、服务器内存模组或其容量规格。",
+      "conflict_check": "既有prefill内存带宽未充分利用的作者陈述涉及利用率，本项涉及访问次数与矩阵维度，两者不能相互验证，也未建立相同工况下的矛盾。其他已采用模型机制、TPU执行路径及legacy昇腾内存规格不构成重复或直接反证。不改写现有结论，冲突筛查限于所供记录。",
+      "gap_dependency_check": "本条不依赖图像数值或其他未支持候选。回答负载需求仍需数据精度、内存层级、模型规模、序列与批量条件以及带工况测量；需求转换还需访问模式到实际带宽、容量及其他资源需求的验证和反证。两个问题均仅获部分支持，保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "b2261960a0daeb5321b54aaac0737d22424db4f01338e72244620f9da3fa9d90"
+      },
+      "object_mapping_check": "该主张描述算法张量的内存访问模式，但未建立与一座AI数据中心中system:memory这一IT内存系统的实际资产关系。其内存链下的HBM、RDIMM/MRDIMM及CXL部件也未被指定。独立复核后不继承候选和证据的system:memory标签，所选证据统一采用空对象范围；问题匹配仍有效。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:4:ev:0"
+      ],
+      "id": "adoption:review:4b1916d37c84bdb72cce0117",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-inference-profile",
+        "NODE-demand-D2-conversion",
+        "NODE-demand-D3-conversion"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis在《The Manos, The Mythos, The Legendos》的KDA注意力头复杂度分析中总结：prefill的计算与内存流量随序列长度线性增长，decode每步的计算与内存流量相对于序列长度保持常数。其prefill推导采用序列长度T远大于分块大小C的条件，该序列长度比较保持C、D不变。这是作者的理论分析，发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:55:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。序列长度与阶段资源复杂度的关系，对推理负载特征、模型结构需求转换和运行工程需求转换三个当前工单均有实质的局部贡献。连续引文与前后推导充分，保留分析条件后未识别A条件，可按B采用。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-demand-D2-conversion",
+          "Q-NODE-demand-D3-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 119.807,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cceac82b0abb7a4215928c9633078906e2310e9bef551a414072b9a3325751f0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 69307,
+            "output_tokens": 3687,
+            "reasoning_output_tokens": 463
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.906,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "28f7e0101a50bdb2a5781dfa7e302e97d9a9ab2f7f3219ba11fe75de64ee472d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 67521,
+              "output_tokens": 505,
+              "reasoning_output_tokens": 240
+            }
+          }
+        },
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:5:claim:4"
+      ],
+      "limitations": "限于所分析的KDA注意力计算与访问流量，不代表包含MLA等模块的整个模型，也不表示完整生成过程的累计decode开销为常数。不能把内存流量复杂度直接解释为物理内存容量。未提供实际吞吐、单位成本、部署容量、地域或交付状态，开发方实现未独立核验。",
+      "conflict_check": "既有重prefill带宽利用和阶段干扰陈述讨论资源利用及调度，不是KDA随序列长度的复杂度结论。模型专家稀疏度预测、Attention Residuals机制及legacy硬件规格均不构成同条件矛盾或相同规范记录。未发现真实冲突或重复；本条不覆盖或替换既有结论。",
+      "gap_dependency_check": "局部复杂度结论由已提供文字支持，不依赖Kimi K3架构图或未支持候选。三个问题仍缺开发方原始资料、可比工作负载和硬件测量、反证，以及从理论计算和流量到实际算力、电力、网络、存储需求的系数、时滞与不确定性验证。仅作部分贡献，均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "365fa4a771b1fda178a5d1f381bcd478e7dfefcdcd6980db03582a408025bb25",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "b2261960a0daeb5321b54aaac0737d22424db4f01338e72244620f9da3fa9d90"
+      },
+      "object_mapping_check": "本条对象是KDA算法在不同推理阶段的复杂度关系，未建立root所定义的数据中心整体或其IT计算、内存资产范围。memory在此为算法访问流量，不足以指定内存系统或物理部件；不因AI计算主题新增基础设施映射。独立复核后采用空对象范围，所选证据使用同一范围。"
     }
   ],
   "answers": [],
