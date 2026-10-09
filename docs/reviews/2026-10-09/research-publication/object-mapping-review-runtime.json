@@ -1,0 +1,224 @@
+{
+  "started_at": "2026-10-09T09:13:05.169387+00:00",
+  "target": "29afcf71231077f2a1083cc99c491a0b90ff0154",
+  "operation": "existing sole review service natural-idle reload; no queue edits, scope, model or Reader changes",
+  "reader_before": {
+    "MainPID": "1906533",
+    "NRestarts": "0",
+    "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 /home/spark/.worktrees/inresearch.ai/dcd-reader-claim/manage.py reader --repo-root /home/spark/code/inresearch.ai run ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+    "ActiveState": "active",
+    "SubState": "running",
+    "DropInPaths": "/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf /home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf"
+  },
+  "protected_before": {
+    "/home/spark/.config/systemd/user/inresearch-research-review.service.d/60-us-power-preferred-sources-20261009.conf": {
+      "sha256": "dc14177966aed1b8d1e78d8b4d91d52e062b22223a649a0fd296a06d7e71e4f0",
+      "bytes": 358
+    },
+    "/home/spark/.config/systemd/user/inresearch-research-review.service": {
+      "sha256": "f3528fb41b6fb53f0d59668cafc7ccac21a85d0f92512138a1c3ecd1e4537f21",
+      "bytes": 562
+    },
+    "/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf": {
+      "sha256": "d41bdb6dbce4d18ccc11d2ab3da73ce4b696baef117bfe0a0bb13b13dbe15b87",
+      "bytes": 148
+    },
+    "/home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf": {
+      "sha256": "94f8849c3490d5f19ce597b2256949afa9a51832ee9db998f47b305aa8806650",
+      "bytes": 243
+    },
+    "/home/spark/.config/inresearch.ai/codex-batch-scope.json": {
+      "sha256": "9b2b63fd6ffe00508d1a6d7066d6b4f69711226ac8f72578946011f33e86e66d",
+      "bytes": 403413
+    },
+    "/home/spark/.config/inresearch.ai/research-review.env": {
+      "sha256": "95e15960f8e090bc1fa1c8a2349c1781b433d181e456fa94db586c49c01741e0",
+      "bytes": 1184
+    },
+    "/home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json": {
+      "sha256": "397e208f330d72d2039e0fda5527aef612b832275d8e2e870fd8a2867cb0af78",
+      "bytes": 1793
+    }
+  },
+  "review_before": {
+    "MainPID": "2216083",
+    "NRestarts": "0",
+    "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -m inresearch.workflow.research_review --data /home/spark/.local/share/inresearch.ai --root /home/spark/code/inresearch.ai work --scope /home/spark/.config/inresearch.ai/codex-batch-scope.json --cycle-batches 2 --max-ready 12 --batch-size 6 --poll 30 --preferred-sources /home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 16:11:18 CST] ; stop_time=[n/a] ; pid=2216083 ; code=(null) ; status=0/0 }",
+    "ActiveState": "active",
+    "SubState": "running",
+    "DropInPaths": "/home/spark/.config/systemd/user/inresearch-research-review.service.d/60-us-power-preferred-sources-20261009.conf"
+  },
+  "review_cmdline_before": "/usr/bin/python3 -m inresearch.workflow.research_review --data /home/spark/.local/share/inresearch.ai --root /home/spark/code/inresearch.ai work --scope /home/spark/.config/inresearch.ai/codex-batch-scope.json --cycle-batches 2 --max-ready 12 --batch-size 6 --poll 30 --preferred-sources /home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json",
+  "current_scope": {
+    "raw_doc_ids": 5307,
+    "registered_doc_ids": 5307,
+    "original23_all_present": true,
+    "sha256": "9b2b63fd6ffe00508d1a6d7066d6b4f69711226ac8f72578946011f33e86e66d",
+    "scope_changed_by_this_task": false,
+    "prior_external_change_attribution": "unknown; original 5907 comparison retained separately"
+  },
+  "unit_cat_sha256": "638a43b73c61df9701bca6e64459b23b712fa0ffbbd916ee50b75abf1c12a556",
+  "idle_at": "2026-10-09T09:15:19.511504+00:00",
+  "in_flight_at_stop": 0,
+  "backups": {
+    "queue": {
+      "path": "/home/spark/.local/state/inresearch.ai/object-mapping-review-reload-20261009T091305Z/queue.sqlite",
+      "sha256": "b6f5b973fa1e007e07fef0a65aa8d572eac6fa1e16a89e5d3847c84454d0ad21",
+      "bytes": 11190272,
+      "quick_check": "ok"
+    },
+    "catalog": {
+      "path": "/home/spark/.local/state/inresearch.ai/object-mapping-review-reload-20261009T091305Z/catalog.sqlite",
+      "sha256": "d86f209b83edc3a232cf3af4783e77345c80bfcf18f87dab6b702fd386fcc801",
+      "bytes": 227983360,
+      "quick_check": "ok"
+    }
+  },
+  "eia_supported": {
+    "adoption:specialist:eia-ytd-2026-07:tx": true,
+    "adoption:specialist:eia-ytd-2026-07:va": true,
+    "adoption:specialist:eia-ytd-2026-07:az": true,
+    "adoption:specialist:eia-ytd-2026-07:ga": true,
+    "adoption:specialist:eia-ytd-2026-07:oh": true,
+    "adoption:specialist:eia-ytd-2026-07:or": true,
+    "adoption:specialist:eia-ytd-2026-07:us": true
+  },
+  "eia_actual_reviewers": [
+    "Codex /root (M4), delegated model reviewer"
+  ],
+  "eia_grants": [
+    {
+      "delegate": "Codex /root (M4), delegated model reviewer",
+      "granted_by": "user / repository owner",
+      "granted_at": "2026-10-09",
+      "reference": "docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md#delegation",
+      "scope": "new_or_supplemental_research"
+    },
+    {
+      "delegate": "Codex /root (M4), delegated model reviewer",
+      "granted_by": "user / repository owner",
+      "granted_at": "2026-10-09",
+      "reference": "docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md#delegation",
+      "scope": "new_or_supplemental_research"
+    },
+    {
+      "delegate": "Codex /root (M4), delegated model reviewer",
+      "granted_by": "user / repository owner",
+      "granted_at": "2026-10-09",
+      "reference": "docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md#delegation",
+      "scope": "new_or_supplemental_research"
+    },
+    {
+      "delegate": "Codex /root (M4), delegated model reviewer",
+      "granted_by": "user / repository owner",
+      "granted_at": "2026-10-09",
+      "reference": "docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md#delegation",
+      "scope": "new_or_supplemental_research"
+    },
+    {
+      "delegate": "Codex /root (M4), delegated model reviewer",
+      "granted_by": "user / repository owner",
+      "granted_at": "2026-10-09",
+      "reference": "docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md#delegation",
+      "scope": "new_or_supplemental_research"
+    },
+    {
+      "delegate": "Codex /root (M4), delegated model reviewer",
+      "granted_by": "user / repository owner",
+      "granted_at": "2026-10-09",
+      "reference": "docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md#delegation",
+      "scope": "new_or_supplemental_research"
+    },
+    {
+      "delegate": "Codex /root (M4), delegated model reviewer",
+      "granted_by": "user / repository owner",
+      "granted_at": "2026-10-09",
+      "reference": "docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md#delegation",
+      "scope": "new_or_supplemental_research"
+    }
+  ],
+  "registry_sha256": "cd71a0b82f19ccfbcb19d1bbf7a6277a7aa01c3781115a520c2529825c0fdcf0",
+  "review_sha256": "051a73ff7ceeabac9b7eb1176a598ed8f8b4bd0cdd46ee78976610098296d0ab",
+  "research_knowledge_sha256": "ed7768fc4d5aa322f6dda8495b9bb282f518b5ea7ff087fce575c88fb8d82527",
+  "corrected_mapping_records": 16,
+  "fresh_cli_object_contract": {
+    "version": "reviewed-object-mapping-v1",
+    "objects": 353,
+    "sha256": "001a50cc5ce6ad57f4a453f3abecb2a6ac88b7f7ea590b42861f5c45cadb1b24",
+    "system_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+    "sample_system_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049"
+  },
+  "resident_load_claim": "pending actual new worker request; fresh interpreter alone is not resident evidence",
+  "preferred": {
+    "sha256": "397e208f330d72d2039e0fda5527aef612b832275d8e2e870fd8a2867cb0af78",
+    "registered_doc_ids": 23,
+    "eligible_versions": 14
+  },
+  "unique_worker_pids": [
+    "2433760"
+  ],
+  "review_after": {
+    "MainPID": "2433760",
+    "NRestarts": "0",
+    "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -m inresearch.workflow.research_review --data /home/spark/.local/share/inresearch.ai --root /home/spark/code/inresearch.ai work --scope /home/spark/.config/inresearch.ai/codex-batch-scope.json --cycle-batches 2 --max-ready 12 --batch-size 6 --poll 30 --preferred-sources /home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 17:15:21 CST] ; stop_time=[n/a] ; pid=2433760 ; code=(null) ; status=0/0 }",
+    "ActiveState": "active",
+    "SubState": "running",
+    "DropInPaths": "/home/spark/.config/systemd/user/inresearch-research-review.service.d/60-us-power-preferred-sources-20261009.conf"
+  },
+  "cmdline": "/usr/bin/python3 -m inresearch.workflow.research_review --data /home/spark/.local/share/inresearch.ai --root /home/spark/code/inresearch.ai work --scope /home/spark/.config/inresearch.ai/codex-batch-scope.json --cycle-batches 2 --max-ready 12 --batch-size 6 --poll 30 --preferred-sources /home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json",
+  "protected_after": {
+    "/home/spark/.config/systemd/user/inresearch-research-review.service.d/60-us-power-preferred-sources-20261009.conf": {
+      "sha256": "dc14177966aed1b8d1e78d8b4d91d52e062b22223a649a0fd296a06d7e71e4f0",
+      "bytes": 358
+    },
+    "/home/spark/.config/systemd/user/inresearch-research-review.service": {
+      "sha256": "f3528fb41b6fb53f0d59668cafc7ccac21a85d0f92512138a1c3ecd1e4537f21",
+      "bytes": 562
+    },
+    "/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf": {
+      "sha256": "d41bdb6dbce4d18ccc11d2ab3da73ce4b696baef117bfe0a0bb13b13dbe15b87",
+      "bytes": 148
+    },
+    "/home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf": {
+      "sha256": "94f8849c3490d5f19ce597b2256949afa9a51832ee9db998f47b305aa8806650",
+      "bytes": 243
+    },
+    "/home/spark/.config/inresearch.ai/codex-batch-scope.json": {
+      "sha256": "9b2b63fd6ffe00508d1a6d7066d6b4f69711226ac8f72578946011f33e86e66d",
+      "bytes": 403413
+    },
+    "/home/spark/.config/inresearch.ai/research-review.env": {
+      "sha256": "95e15960f8e090bc1fa1c8a2349c1781b433d181e456fa94db586c49c01741e0",
+      "bytes": 1184
+    },
+    "/home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json": {
+      "sha256": "397e208f330d72d2039e0fda5527aef612b832275d8e2e870fd8a2867cb0af78",
+      "bytes": 1793
+    }
+  },
+  "reader_after": {
+    "MainPID": "1906533",
+    "NRestarts": "0",
+    "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 /home/spark/.worktrees/inresearch.ai/dcd-reader-claim/manage.py reader --repo-root /home/spark/code/inresearch.ai run ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+    "ActiveState": "active",
+    "SubState": "running",
+    "DropInPaths": "/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf /home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf"
+  },
+  "source_after": "29afcf71231077f2a1083cc99c491a0b90ff0154",
+  "completed_at": "2026-10-09T09:15:21.112703+00:00",
+  "state": "reloaded_existing_unique_service_pending_actual_progress",
+  "finally_observed": {
+    "unit": {
+      "MainPID": "2433760",
+      "NRestarts": "0",
+      "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 -m inresearch.workflow.research_review --data /home/spark/.local/share/inresearch.ai --root /home/spark/code/inresearch.ai work --scope /home/spark/.config/inresearch.ai/codex-batch-scope.json --cycle-batches 2 --max-ready 12 --batch-size 6 --poll 30 --preferred-sources /home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json ; ignore_errors=no ; start_time=[Fri 2026-10-09 17:15:21 CST] ; stop_time=[n/a] ; pid=2433760 ; code=(null) ; status=0/0 }",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/home/spark/.config/systemd/user/inresearch-research-review.service.d/60-us-power-preferred-sources-20261009.conf"
+    },
+    "unique_worker_pids": [
+      "2433760"
+    ]
+  },
+  "finally_service_active_preserved": true
+}

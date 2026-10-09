@@ -1,0 +1,21 @@
+{
+  "observed_at": "2026-10-09T09:40:21.988873+00:00",
+  "host": "ip-172-26-11-47",
+  "source_revision": "4276210628ff74bd9f1bde9a114af05b8a30aa01",
+  "applied_revision": "4276210628ff74bd9f1bde9a114af05b8a30aa01",
+  "applied_image": "sha256:550363055ad4f36de310e8046eeb3b1bc3b2952d1d909969ff6b410d1a3000e9",
+  "configured_image": "inresearch-app:4276210628ff74bd9f1bde9a114af05b8a30aa01",
+  "image": "sha256:550363055ad4f36de310e8046eeb3b1bc3b2952d1d909969ff6b410d1a3000e9",
+  "status": "HEALTHY: 4276210628ff74bd9f1bde9a114af05b8a30aa01",
+  "container": "inresearch-host-inresearch-1",
+  "container_state": "running/healthy",
+  "governance": "2026.10.09.36",
+  "deployment_service": "ActiveState=inactive\nSubState=dead",
+  "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+  "data_migration": false,
+  "public_healthz": {
+    "url": "https://inresearch.ai/healthz",
+    "status": 200,
+    "body": "{\"ok\":true,\"service\":\"inresearch\",\"auth_required\":true}"
+  }
+}

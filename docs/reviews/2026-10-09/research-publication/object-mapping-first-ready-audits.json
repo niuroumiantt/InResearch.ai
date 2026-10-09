@@ -1,0 +1,203 @@
+{
+  "at": "2026-10-09T09:21:43.630966+00:00",
+  "read_only": true,
+  "promoted_by_this_operation": false,
+  "audits": [
+    {
+      "batch_id": "ca5404ea583214cf8a74be0f4f64b4ece95df941876f5aa74f04ff3a892a9dd0",
+      "attempt": "attempt-0006",
+      "actual_path": "/home/spark/.local/share/inresearch.ai/material-reviews/research-verification/ca5404ea583214cf8a74be0f4f64b4ece95df941876f5aa74f04ff3a892a9dd0/bundle.json",
+      "title": "Alphabet Q1 2026 Earnings Call",
+      "bundle_sha256": "92d21f365be0fb997f1e2374e4960c8d1b40a54f5be5a933b0274359bf337e59",
+      "verify_audit": true,
+      "context_current": true,
+      "object_contract": "reviewed-object-mapping-v1",
+      "reviewed_at": "2026-10-09T09:19:26+00:00",
+      "reviews": [
+        {
+          "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:9",
+          "decision": "adopt_B",
+          "object_ids": [
+            "actor:alphabet-google"
+          ],
+          "object_mapping_check": "原文明确描述Google的Pixel及AI功能，支持合同中kind为actor、无父节点的谷歌主体。Pixel终端不属于计算链中的AI服务器；应用功能也不属于DCIM/BMS与固件链，因此不映射任何基础设施对象。"
+        },
+        {
+          "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:0",
+          "decision": "adopt_B",
+          "object_ids": [
+            "actor:alphabet-google"
+          ],
+          "object_mapping_check": "Search是谷歌提供的应用，支持独立的谷歌actor对象。应用查询量未定位到一座AI数据中心或其IT、计算、网络部件，故不因AI使用增长添加基础设施映射。"
+        },
+        {
+          "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:1",
+          "decision": "adopt_B",
+          "object_ids": [
+            "actor:alphabet-google"
+          ],
+          "object_mapping_check": "AI Overviews和AI Mode属于谷歌应用，支持合同中的谷歌actor对象。用户数与使用量没有明确数据中心资产范围，不映射root或IT、计算、控制系统及硬件部件。"
+        },
+        {
+          "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:2",
+          "decision": "adopt_B",
+          "object_ids": [
+            "actor:alphabet-google"
+          ],
+          "object_mapping_check": "原生上下文明确Personal Intelligence属于谷歌产品，支持谷歌actor对象。个性化应用不属于合同中以DCIM/BMS与固件为范围的控制系统，也没有明确计算或网络资产，故不添加基础设施映射。"
+        },
+        {
+          "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:3",
+          "decision": "adopt_B",
+          "object_ids": [
+            "actor:alphabet-google"
+          ],
+          "object_mapping_check": "Search中的预订体验及Search Live是谷歌应用能力，支持谷歌actor对象。代理能力和多模态名称不能建立数据中心计算、网络或DCIM/BMS资产归属，故不选择基础设施对象。"
+        },
+        {
+          "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:4",
+          "decision": "defer",
+          "object_ids": [
+            "actor:alphabet-google"
+          ],
+          "object_mapping_check": "原文描述谷歌Search服务，支持谷歌actor对象。端到端服务延迟没有定位到合同中的数据中心计算、网络或控制系统，亦未证明边缘基础设施，因此不继承Reader的硬件或系统标签。"
+        }
+      ],
+      "sampling": {
+        "checks": [
+          {
+            "confirmed": true,
+            "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:1",
+            "rationale": "第4页Search段落直接支持两项管理层陈述：AI Overviews推动Search整体增长；AI Mode的用户数和使用量在全球强劲增长。拟采用文本保留来源归因，未将全球范围扩展至AI Overviews，也未补定来源日期或增长期间。对象目录中的actor:alphabet-google与产品及发言主体一致；object_mapping_check正确排除了数据中心root、系统和硬件归属。AI Mode用户及使用增长可为D4经济学工单贡献有限的应用采用与使用线索，但不证明采用率、每用户使用量、付费增长或算力需求，也不覆盖数据中心节点自身需求。相邻段落另述核心AI回答成本下降超过30%，但未建立其与本条增长的因果联系，不构成反证。所供既有记录未见同口径冲突；同源Search总体查询增长不能独立验证本条。可按所提限定作为B类部分证据采用，研究问题仍保持开放。"
+          }
+        ],
+        "cohort_ids": [
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:9",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:0",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:1",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:2",
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:3"
+        ],
+        "method": "SHA256(frozen_batch_id|candidate_id), first ceil(10%)",
+        "model": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 28.287,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dbc89876b06ce53492550731f16c3d1bb64a452734ccb108b405db7895b5b4e3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67193,
+            "output_tokens": 440,
+            "reasoning_output_tokens": 164
+          }
+        },
+        "sample_ids": [
+          "rev-5d6d60a59b694b5297663493b372f2bd:chunk:3:claim:1"
+        ]
+      }
+    },
+    {
+      "batch_id": "2494a643e7d9f44921ad0ca740f3cb3c8264ad3d444abccee56ca81b5d0c9a6d",
+      "attempt": "attempt-0003",
+      "actual_path": "/home/spark/.local/share/inresearch.ai/material-reviews/research-verification/2494a643e7d9f44921ad0ca740f3cb3c8264ad3d444abccee56ca81b5d0c9a6d/bundle.json",
+      "title": "2024 United States Data Center Energy Usage Report",
+      "bundle_sha256": "96f72847daba51afd09fe19e03ccabdaae25ae4ee4e8c9c293c57813d9019a81",
+      "verify_audit": true,
+      "context_current": true,
+      "object_contract": "reviewed-object-mapping-v1",
+      "reviewed_at": "2026-10-09T09:19:46+00:00",
+      "reviews": [
+        {
+          "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:8:claim:7",
+          "decision": "background",
+          "object_ids": [],
+          "object_mapping_check": "独立复核后，该统计的对象是研究方法及文献样本，不是合同中root所指的一座AI数据中心，也未形成任何具体系统、部件或主体的陈述；保留空对象映射。"
+        },
+        {
+          "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:8:claim:8",
+          "decision": "adopt_B",
+          "object_ids": [],
+          "object_mapping_check": "陈述涉及瑞典混合数据／电信样本及估算数据来源，未建立一座AI数据中心或具体资产的范围。固定和移动站点不等于数据中心网络资产，电量测量也不证明并网权利；不映射root、网络系统、部件或site:grid。"
+        },
+        {
+          "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:9:claim:0",
+          "decision": "adopt_B",
+          "object_ids": [],
+          "object_mapping_check": "实际范围是聚合能耗估算的观测与准确性尺度，没有指认数据中心内部网络资产或电力系统。网络数据量和电表总量不足以建立合同中某个设施、系统、部件或并网权利的范围，因此对象列表为空。"
+        },
+        {
+          "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:9:claim:1",
+          "decision": "adopt_B",
+          "object_ids": [],
+          "object_mapping_check": "原文仅泛指能耗模型中的组件细分，没有形成任一允许部件或系统的具体技术陈述。方法层面的硬件构成讨论不足以映射计算、冷却、电力系统或一座AI数据中心；保留空映射。"
+        },
+        {
+          "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:9:claim:2",
+          "decision": "adopt_B",
+          "object_ids": [],
+          "object_mapping_check": "这是数据中心能耗预测方法，IT流量作为服务指标未指认数据中心网络系统或具体网络部件，亦未建立一座AI数据中心的范围。独立复核后无适合的设施、系统、部件或主体映射，保留空列表。"
+        },
+        {
+          "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:9:claim:3",
+          "decision": "adopt_B",
+          "object_ids": [],
+          "object_mapping_check": "实际陈述范围为预测模型及其输入误差，不涉及合同中的DCIM/BMS控制软件、任何具体硬件或一座AI数据中心。模型属于研究方法，不能据名称中的软件或数据概念添加基础设施映射；对象列表为空。"
+        }
+      ],
+      "sampling": {
+        "checks": [
+          {
+            "confirmed": true,
+            "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:9:claim:0",
+            "rationale": "原生正文第8—9页支持拟采用表述：前文介绍自上而下方法和Malmodin等（2014）的瑞典案例，并明确结合自下而上设备统计外推全球估计；随后原文直接说明实测网络数据总量、电表总能耗可提供高度聚合层面的准确性。拟文保留报告作者归属及案例语境，未将其升级为普遍或定量准确性认证。其与M01-Q02的关系限于估算方法和聚合尺度比较，与NODE-demand-D1-conversion的关系限于验证尺度约束；不能调和指定机构总量、验证细分转换系数或关闭工作单。报告年份不能代替案例测量年份，精确发布时间亦未建立。所供既有研究提议、国家能耗记录及微软项目无直接矛盾，且不构成独立交叉验证。独立核对对象目录后，object_ids为空合理：数据量与电表读数不支持归属于目录中的网络资产、电力系统、并网权利或代表单座AI数据中心的root；object_mapping_check与源文含义一致。"
+          }
+        ],
+        "cohort_ids": [
+          "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:8:claim:8",
+          "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:9:claim:0",
+          "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:9:claim:1",
+          "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:9:claim:2",
+          "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:9:claim:3"
+        ],
+        "method": "SHA256(frozen_batch_id|candidate_id), first ceil(10%)",
+        "model": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 29.938,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "86858c69c444c99afc1186239cd109b851de2a07d24bdfe6cc5de442cccb0618",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 37782,
+            "output_tokens": 495,
+            "reasoning_output_tokens": 186
+          }
+        },
+        "sample_ids": [
+          "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:9:claim:0"
+        ]
+      }
+    }
+  ]
+}
