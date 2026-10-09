@@ -12,6 +12,19 @@ from inresearch.materials.reader_contracts import Blocked, Deferred, IntegrityEr
 
 
 class FailureTests(unittest.TestCase):
+    def test_relay_busy_hint_is_distinct_from_transport_outage(self):
+        import io,os,urllib.error
+        profile=models.ModelProfile(backend='codex_cli',url='http://127.0.0.1:37261',model='gpt-6.1-sol',api_key_env='TEST_CODEX_KEY')
+        for reason,expected in [('relay_busy','model_relay_busy'),(None,'model_relay_unavailable')]:
+            failure={'error':'model_relay_unavailable'}
+            if reason:failure['reason']=reason
+            error=urllib.error.HTTPError(profile.url,503,'Unavailable',{},io.BytesIO(json.dumps(failure).encode()))
+            with mock.patch.dict(os.environ,{'TEST_CODEX_KEY':'private-test'}),mock.patch.object(codex_inference.urllib.request,'build_opener') as opener:
+                opener.return_value.open.side_effect=error
+                with self.assertRaises(models.InferenceError) as caught:
+                    models.JsonModelClient(profile).generate('system','supplied text')
+            self.assertEqual(caught.exception.code,expected)
+
     def test_failure_diagnostics_classify_waits_without_raw_secrets(self):
         for text, code in [('unexpected status 503: upstream unavailable','model_relay_unavailable'),
                            ('stream disconnected before completion','model_relay_unavailable'),

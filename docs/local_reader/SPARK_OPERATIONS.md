@@ -318,6 +318,8 @@ READER_PUBLISH_VERIFY=1 python3 manage.py publish
 
 2026-09-06 已在真实 Spark 启用 reader、`Linger=yes`、`qwen3-vl:8b` OCR 和五分钟发布器。主站实际收到候选快照；验收版本与边界见 `docs/reviews/2026-09-06/IMPLEMENTATION.md`。生产目录等待用户投料，测试文档不入生产库。
 
+发布器遇到 HTTP 502/503/504 或暂时连接中断，在同一 120 秒总预算内至多提交三次相同快照，间隔 1/3 秒；认证、格式和冲突拒绝不重试。主站先按现行候选规则验证，已持久保存的同时间戳且内容完全一致的重放返回原接收回执，不重写文件；旧时间戳或同时间戳不同内容仍拒绝。触发摘要在导出前捕获，只在实际成功回执后保存，导出/上传期间的新完成结果不会被跳过。
+
 发布器定义在 `deploy/spark-reader/inresearch-reader-publish.service` 与 `.timer`。它加载 `~/.config/inresearch.ai/reader.env` 和 `publish.env`，使用 `~/.local/state/inresearch.ai/reader-sync.token`（0600）向 HTTPS 主站提交候选。主站 token 文件为 `/srv/inresearch.ai/data/.reader_sync_token`，与用户登录权限分离。配置 `READER_RELEASE` 记录本次已安装的 Git SHA，源码更新后同步修改并重启 reader；不能仅修改这个标签冒充发布。
 
 ```bash
@@ -365,7 +367,7 @@ L2 的记录和 skip 是事实处理回执，不产生全文版本。pack 如有
 
 ## 管理后台运行诊断（2026-10-07）
 
-网站 `/ops.html` 自动显示 Spark 发布快照中的当前阶段、最早排队/运行/阻塞任务（每类最多 100 个）、错误组分布、近 1h / 24h 已结束任务以及调度信息。完整阅读文档与分块成功不能互换。诊断只在 `Reader.export_snapshot` 生成时查询 catalog，普通 worker 心跳不执行这组汇总；发布通常每五分钟一次，前端每 30 秒读取不改变上游频率。网站与 Spark 发布端都需更新版本；旧发布端未提供字段时网站显示未知，不伪造零队列。
+网站 `/ops.html` 自动显示 Spark 发布快照中的当前阶段、最早排队/运行/阻塞任务（每类最多 100 个）、错误组分布、近 1h / 24h 已结束任务以及调度信息。完整阅读文档与分块成功不能互换。诊断只在 `Reader.export_snapshot` 生成时查询 catalog，普通 worker 心跳不执行这组汇总；发布检查每分钟一次：`publish --if-changed` 只读检查实际材料更新、来源绑定及外部快照变化；变化时发布，未变化跳过大快照且保留上次成功回执，空闲最多五分钟心跳。前端每 30 秒读取不改变上游频率。网站与 Spark 发布端都需更新版本；旧发布端未提供字段时网站显示未知，不伪造零队列。
 
 当前执行 revision 包括在途替代版本，已被替代的旧失败不计当前瓶颈；当前完整结果另计。错误不是最近 20 个失败样本的外推，汇总覆盖当前执行任务。原件格式/图纸工作流缺口、OCR 质量问题、按策略暂存与执行错误分开，重排仍按前述 `error_code` 和文档范围处理，dashboard 没有全队重试按钮。任务定位给出身份、阶段模块与明确 UTC 的 `journalctl --user -u inresearch-reader.service` 检索入口，不猜异常行号。
 
