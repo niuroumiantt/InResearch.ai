@@ -64,7 +64,7 @@ class VisualAtlasTests(unittest.TestCase):
     def test_completed_illustrations_bind_master_labels_and_retained_baseline(self):
         ns = {'s': 'http://www.w3.org/2000/svg'}
         for row in self.queue['items']:
-            if row['status'] not in ('accepted', 'published') or row['kind'] not in ('existing', 'new_illustration'):
+            if row['status'] not in ('accepted', 'published') or row['kind'] not in ('existing', 'new_illustration', 'new_view'):
                 continue
             receipt = json.loads((ROOT / row['acceptance_record']).read_text())
             self.assertEqual(receipt['figure_id'], row['id'])
