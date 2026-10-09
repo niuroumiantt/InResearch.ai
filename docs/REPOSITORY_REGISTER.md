@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.24。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.25。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1606。
+在册文件：1612。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 311 |
+| 历史快照 | 317 |
 | 运行代码 | 310 |
 | 现行规范 | 15 |
 | 项目配置 | 352 |
@@ -543,6 +543,14 @@
 | `docs/reviews/2026-09-15/l1-pipeline/file-plan.csv` | rows | 18 |
 | `docs/reviews/2026-09-15/task-authority/file-plan.csv` | rows | 796 |
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
+| `docs/reviews/2026-10-09/research-publication/old-ready12-followup.json` | batches | 12 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | documents | 23 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | review_batches | 121 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | dispositions | 19 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | canonical_formal_records | 0 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage.json` | sources | 23 |
+| `docs/reviews/2026-10-09/research-publication/pr453-actual-closure.json` | head_chain | 3 |
+| `docs/reviews/2026-10-09/research-publication/receipts.json` | receipts | 4 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -1415,6 +1423,12 @@
 | `docs/reviews/2026-09-29/verify/macmini.sh` | 历史快照 |
 | `docs/reviews/2026-09-29/verify/spark.sh` | 历史快照 |
 | [docs/reviews/2026-10-02/homepage/DELIVERY.md](reviews/2026-10-02/homepage/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-10-09/research-publication/README.md](reviews/2026-10-09/research-publication/README.md) | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/old-ready12-followup.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr453-actual-closure.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/receipts.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
