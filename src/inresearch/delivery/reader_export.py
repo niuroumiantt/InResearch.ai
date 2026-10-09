@@ -138,7 +138,7 @@ def supplied_sources(data, content_sha256=None):
                         or digest_bytes(json.dumps(item, ensure_ascii=False, sort_keys=True).encode()) != revision
                         or meta.get('editorial_references') != item.get('references', [])):
                     continue
-                result[sha] = {'source_role': 'authored_analysis', 'editorial_references': item.get('references', [])}
+                result[sha] = {'title': item['title'], 'source_role': 'authored_analysis', 'editorial_references': item.get('references', [])}
                 if item.get('url'): result[sha]['source_url'] = item['url']
             except (OSError, ValueError, TypeError, KeyError, IntegrityError, UnsafePath):
                 continue

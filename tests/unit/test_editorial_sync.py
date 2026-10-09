@@ -44,6 +44,7 @@ class EditorialSyncTests(unittest.TestCase):
             from inresearch.delivery.reader_export import supplied_sources
             exported=supplied_sources(data)[first['article_sha256']]
             self.assertEqual(exported['source_role'],'authored_analysis')
+            self.assertEqual(exported['title'],'机房用电')
             self.assertEqual(exported['source_url'],'https://inews.today/c/9')
             blob=data/'acquisition/blobs'/first['article_sha256'][:2]/(first['article_sha256']+'.md')
             research_match.ingest(blob,data,project_root())
