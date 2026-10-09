@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+<script src="/assets/theme-state.js"></script>
+<script src="/assets/site-skin.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据中心爆炸图 — inresearch.ai</title>
+<style>
+
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 var(--ui-font); padding-bottom: 60px; }
+  a { color: var(--accent); text-decoration: none; }
+  .topbar { position: sticky; top: 0; background: var(--card); border-bottom: 1px solid var(--line);
+    display: flex; align-items: center; gap: 4px; padding: 0 18px; height: 46px; z-index: 20; }
+  .topbar b { font-size: 15px; margin-right: 14px; }
+  .tab { padding: 12px 14px; color: var(--muted); border-bottom: 2px solid transparent; }
+  .tab.on { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+  .topbar .sp { flex: 1; }
+  .wrap { max-width: 1360px; margin: 18px auto 0; padding: 0 16px; display: flex; gap: 16px; }
+  .stage { flex: 1; min-width: 0; }
+  .stage h1 { font-size: 26px; letter-spacing: .5px; }
+  .stage h1 em { font-style: normal; color: var(--accent); }
+  .sub { color: var(--muted); font-size: 12.5px; margin: 2px 0 10px; }
+  .legend { font-size: 11.5px; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; flex-wrap: wrap; gap: 2px; }
+  .legend i { display: inline-block; width: 10px; height: 10px; border-radius: var(--ui-radius); vertical-align: -1px; margin: 0 4px 0 12px; }
+  .modes { margin-left: 14px; display: inline-flex; gap: 4px; }
+  .mode { font: inherit; font-size: 11.5px; padding: 2px 10px; border: 1px solid var(--line); border-radius: var(--ui-radius); background: var(--card); color: var(--muted); cursor: pointer; }
+  .mode.on { color: var(--accent); border-color: var(--accent); font-weight: 600; }
+  .sysh { margin: 14px 0 6px; display: flex; align-items: baseline; gap: 10px; border-bottom: 1px solid var(--line); padding-bottom: 4px; }
+  .sysh b { font-size: 15px; } .sysh .en { color: var(--muted); font-size: 11.5px; }
+  .legend .go3d { margin-left: auto; font-size: 12px; border: 1px solid var(--accent); border-radius: var(--ui-radius); padding: 2px 12px; }
+
+  /* ── 爆炸堆叠：每层一行 = [等轴测平台] [引线] [编号标注] ── */
+  #stack { position: relative; }
+  #stack .axis { position: absolute; left: 30%; top: 10px; bottom: 24px; width: 0;
+    border-left: 2px dashed var(--axis); opacity: .5; z-index: 0; }
+  .lrow { position: relative; display: grid; grid-template-columns: minmax(0, 58%) 26px minmax(0, 1fr);
+    align-items: center; margin-bottom: 10px; z-index: 1; }
+  .lrow .slab { min-width: 0; }
+  #selected-atlas { position: relative; z-index: 1; scroll-margin-top: 180px; margin: 8px 0 24px; background: var(--bg); }
+  .atlas-context { padding: 8px 0; color: var(--muted); border-top: 1px solid var(--line); }
+  .lrow svg { display: block; width: 100%; height: auto; }
+  .lrow .lead { border-top: 2px dotted var(--axis); opacity: .7; position: relative; }
+  .lrow .lead::after { content: ""; position: absolute; right: -1px; top: -4px; width: 7px; height: 7px;
+    border-radius: 50%; background: var(--accent); }
+  .callout { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius);
+    padding: 12px 16px; box-shadow: 0 2px 10px rgba(15,30,60,.06); }
+  .callout .ch { display: flex; align-items: center; gap: 10px; }
+  .callout .num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: var(--ui-on-accent);
+    font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; flex: none;
+    box-shadow: 0 2px 6px rgba(37,99,235,.35); }
+  .callout .ch b { font-size: 15.5px; color: var(--accent); }
+  .callout .ch .en { color: var(--muted); font-size: 11px; letter-spacing: .4px; }
+  .callout .cd { font-size: 11.5px; color: var(--muted); margin: 4px 0 8px 40px; }
+  .callout .plist { display: flex; flex-wrap: wrap; gap: 5px; margin-left: 40px; }
+  .pchip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: var(--ui-radius);
+    padding: 2px 10px; font-size: 11.5px; cursor: pointer; background: var(--bg); transition: all .13s; }
+  .pchip i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  .pchip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .pchip.sel { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); font-weight: 600; }
+
+  /* SVG 部件盒 */
+  .pbox { cursor: pointer; transition: transform .15s; }
+  .pbox:hover { transform: translateY(-5px); }
+  .pbox:hover .pname { fill: var(--accent); font-weight: 700; }
+  .pbox.sel .ptop { fill: color-mix(in srgb, var(--accent) 30%, var(--box-top)); }
+  .pbox.sel .pname { fill: var(--accent); font-weight: 700; }
+  .pname { fill: var(--text); font-size: 12.5px; font-family: inherit;
+    paint-order: stroke; stroke: var(--card); stroke-width: 3.5px; stroke-linejoin: round; }
+  .lname { fill: var(--muted); font-size: 12px; font-family: inherit; letter-spacing: 1px; }
+
+  aside { width: 360px; flex-shrink: 0; position: sticky; top: 62px; align-self: flex-start;
+    max-height: calc(100vh - 80px); overflow-y: auto; }
+  .dossier { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 18px; }
+  .dossier h2 { font-size: 17px; margin-bottom: 2px; }
+  .dossier .meta { font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
+  .badge { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 1px 9px; border-radius: var(--ui-radius); color: #fff; }
+  .sec { margin-top: 14px; }
+  .sec h3 { font-size: 12px; color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+  .chip { display: inline-block; border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 2px 10px;
+    font-size: 11.5px; margin: 0 4px 6px 0; color: var(--text); }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .kv { display: flex; justify-content: space-between; padding: 5px 0; border-bottom: 1px dashed var(--line); font-size: 12.5px; }
+  .kv:last-child { border-bottom: none; }
+  .kv b { font-variant-numeric: tabular-nums; }
+  .empty { color: var(--gray); font-size: 12px; }
+  @media (max-width: 1080px) {
+    .wrap { flex-direction: column; } aside { width: 100%; position: static; }
+    .lrow { grid-template-columns: 1fr; }
+    .lrow .lead { display: none; }
+    #stack .axis { display: none; }
+  }
+</style>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+</head>
+<body>
+<inresearch-shell data-section="bom"></inresearch-shell>
+<div class="topbar">
+  <a class="tab on" href="bom.html">爆炸图 2D</a>
+  <a class="tab" href="bom3d.html">爆炸图 3D</a>
+  <a class="tab" href="rack3d.html">机柜拆解台</a>
+  <a class="tab" href="product-catalog.html">规格库</a>
+  <span class="sp"></span>
+</div>
+<div class="wrap">
+  <div class="stage">
+    <h1>一张图拆解 <em>AI 数据中心</em></h1>
+    <div class="sub">一个骨架：五个系统（IT 再分四个），系统内按能量流链路排；尺度是第二排法。——每个部件都挂着它的供应商、价格序列、监测指标与目标行。点击任意部件或词条查看档案。</div>
+    <div class="legend">供应状态：<i style="background:var(--red)"></i>紧缺 <i style="background:var(--yellow)"></i>技术切换中
+      <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴
+      <span class="modes"><button type="button" class="mode on" data-mode="system">按系统</button><button type="button" class="mode" data-mode="scale">按尺度</button></span>
+      <a class="go3d" href="bom3d.html">🧊 进入 3D 立体拆解 →</a></div>
+    <div id="stack">加载中…<div id="selected-atlas" hidden></div></div>
+  </div>
+  <aside><div class="dossier" id="dossier">
+    <h2>选择一个部件</h2>
+    <div class="meta">点击左侧部件图或词条查看档案——从电网到冷板，<span id="partCount">46</span> 个部件各有档案。</div>
+  </div></aside>
+</div>
+
+<script type="module">
+import { createPartDossier } from "./assets/part-dossier.js?v=20261008.15";
+import { atlasPreview, atlasPreviewTitle } from "./assets/technical-atlas.js?v=20261008.15";
+async function get(p) {
+  const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
+  if (!r.ok) throw new Error(p + " → " + r.status);
+  return r.json();
+}
+const SC = { tight: "var(--red)", transition: "var(--yellow)", mature: "var(--green)", emerging: "var(--purple)" };
+const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
+const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+let BOM, CN = {}, PRICES = [], INDS = {}, showDossier = null;
+
+/* ── 等轴测投影：plan(x,y) + 高 z → 屏幕 ── */
+const CX = Math.cos(Math.PI / 6), SY = 0.5;
+const P = (x, y, z = 0) => [(x - y) * CX, (x + y) * SY - z];
+const pt = a => a.map(v => v.toFixed(1)).join(",");
+function poly(pts, fill, stroke, extra = "") {
+  return `<path d="M${pts.map(pt).join("L")}Z" fill="${fill}" ${stroke ? `stroke="${stroke}" stroke-width="1"` : ""} ${extra}/>`;
+}
+/* 部件盒：三个可见面 + 状态色顶檐 + 名签 */
+function isoBox(px, py, w, d, h, part) {
+  const preview = atlasPreview(part.id);
+  if (preview) {
+    const center = P(px + w / 2, py + d / 2, 0), lab = P(px + w / 2, py + d, 0);
+    return `<g class="pbox" data-part="${part.id}" data-atlas-part="${part.id}">
+      <title>${esc(atlasPreviewTitle(part.id))}</title>
+      <image href="${preview}" x="${(center[0]-62).toFixed(1)}" y="${(center[1]-76).toFixed(1)}" width="124" height="83" preserveAspectRatio="xMidYMid meet"/>
+      <text class="pname" x="${lab[0].toFixed(1)}" y="${(lab[1]+16).toFixed(1)}" text-anchor="middle">${esc(part.name)}</text>
+    </g>`;
+  }
+  const c = SC[part.status];
+  const T = [P(px, py, h), P(px + w, py, h), P(px + w, py + d, h), P(px, py + d, h)];
+  const R = [P(px + w, py, h), P(px + w, py + d, h), P(px + w, py + d, 0), P(px + w, py, 0)];
+  const F = [P(px, py + d, h), P(px + w, py + d, h), P(px + w, py + d, 0), P(px, py + d, 0)];
+  // 顶檐：沿前缘的状态色条
+  const lipW = 7;
+  const L = [P(px, py + d - lipW, h), P(px + w, py + d - lipW, h), P(px + w, py + d, h), P(px, py + d, h)];
+  const lab = P(px + w / 2, py + d, 0);
+  const shd = P(px + w / 2 + 6, py + d / 2 + 6, 0);
+  return `<g class="pbox" data-part="${part.id}">
+    <ellipse cx="${shd[0].toFixed(1)}" cy="${shd[1].toFixed(1)}" rx="${w * .62}" ry="${d * .3}" fill="rgba(10,20,40,.13)"/>
+    ${poly(F, "var(--box-front)", "var(--box-line)")}
+    ${poly(R, "var(--box-right)", "var(--box-line)")}
+    ${poly(T, "var(--box-top)", "var(--box-line)", 'class="ptop"')}
+    ${poly(L, c)}
+    <text class="pname" x="${lab[0].toFixed(1)}" y="${(lab[1] + 16).toFixed(1)}" text-anchor="middle">${esc(part.name)}</text>
+  </g>`;
+}
+/* 一层平台 + 其上部件 */
+function isoSlab(layer, parts, idx) {
+  const n = parts.length;
+  const cols = Math.min(4, Math.max(2, Math.ceil(n / 2)));
+  const rows = Math.ceil(n / cols);
+  const CW = 128, CD = 152, M = 46;
+  const W = cols * CW + M, D = rows * CD + M * 0.9, T = 16;
+  const corners = [P(0, 0, 0), P(W, 0, 0), P(W, D, 0), P(0, D, 0)];
+  const Fr = [P(0, D, 0), P(W, D, 0), P(W, D, -T), P(0, D, -T)];
+  const Rt = [P(W, 0, 0), P(W, D, 0), P(W, D, -T), P(W, 0, -T)];
+  let inner = poly(Fr, "var(--slab-front)", "var(--slab-line)") + poly(Rt, "var(--slab-right)", "var(--slab-line)")
+    + poly(corners, "var(--slab-top)", "var(--slab-line)");
+  // 平台网格线（淡）
+  for (let gx = CW; gx < W - M / 2; gx += CW) inner += poly([P(gx, 4, 0.1), P(gx, D - 4, 0.1), P(gx, D - 4, 0.1), P(gx, 4, 0.1)], "none", "var(--slab-line)", 'opacity=".35" stroke-dasharray="3 4"');
+  // 层名刻在平台左前侧
+  const tag = P(-4, D + 2, -2);
+  inner += `<text class="lname" x="${tag[0].toFixed(1)}" y="${(tag[1] + 12).toFixed(1)}" text-anchor="end">${layer.id} ${layer.en.toUpperCase()}</text>`;
+  parts.forEach((p, i) => {
+    const col = i % cols, row = Math.floor(i / cols);
+    const px = M / 2 + col * CW + (row % 2) * 14, py = M / 2 + row * CD;
+    inner += isoBox(px, py, 86, 56, 26, p);
+  });
+  // 视窗测算
+  const xs = [], ys = [];
+  [[0, 0, 40], [W, 0, 40], [W, D, -T - 4], [0, D, -T - 4]].forEach(([x, y, z]) => { const s = P(x, y, z); xs.push(s[0]); ys.push(s[1]); });
+  const minX = Math.min(...xs) - 150, maxX = Math.max(...xs) + 16;
+  const minY = Math.min(...ys) - 14, maxY = Math.max(...ys) + 34;
+  return `<svg viewBox="${minX.toFixed(0)} ${minY.toFixed(0)} ${(maxX - minX).toFixed(0)} ${(maxY - minY).toFixed(0)}"
+    role="img" aria-label="${layer.name}">${inner}</svg>`;
+}
+
+(async () => {
+  const [bom, companies, prices, inds, rights] = await Promise.all([
+    get("framework/bom.json"), get("data/companies.json"), get("data/prices.json"),
+    get("framework/indicators.json"),
+    get("framework/site_rights.json").catch(() => ({ rights: [] }))]);
+  BOM = bom; PRICES = prices.records;
+  const isPart = p => (p.kind || "part") === "part";
+  document.getElementById("partCount").textContent = bom.parts.filter(isPart).length;
+  companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
+  inds.indicators.forEach(i => INDS[i.id] = i);
+  // 右栏是同一份部件档案（part-dossier.js，与 3D 共用）；2D 没有部件预览
+  showDossier = createPartDossier({ el: document.getElementById("dossier"), view: "bom", BOM: bom, companies: CN, prices, indicators: INDS,
+    statusNames: SN, statusColors: Object.fromEntries(Object.entries(SC).map(([k, v]) => [k, v])), inspector: { hide() {}, show() { return false; } },
+    atlasHost: document.getElementById('selected-atlas') });
+
+  // 两种排法：按系统（第一层五个系统，IT 展开四个，系统内按链路）是骨架；按尺度（S5 → S1）是第二排法
+  const chips = parts => parts.map(p => `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</span>`).join("");
+  const row = (layer, parts, i, indent) => `<div class="lrow" data-row-parts="${parts.map(p => esc(p.id)).join(' ')}" style="margin-left:${indent}%">
+      <div class="slab">${isoSlab(layer, parts, i)}</div>
+      <div class="lead"></div>
+      <div class="callout">
+        <div class="ch"><span class="num">${layer.num}</span><b>${esc(layer.name)}</b><span class="en">${esc(layer.en || "")}</span></div>
+        <div class="cd">${esc(layer.desc || "")}</div>
+        <div class="plist">${chips(parts)}</div>
+      </div>
+    </div>`;
+  function byScale() {
+    const order = bom.scales.map(l => l.id).reverse();
+    return order.map((lid, i) => {
+      const layer = bom.scales.find(l => l.id === lid);
+      return row({ ...layer, num: i + 1 }, bom.parts.filter(p => isPart(p) && p.scale === lid), i, i * 1.5);
+    }).join("");
+  }
+  function bySystem() {
+    const S = bom.systems;
+    const top = Object.entries(S).filter(([, s]) => !s.parent).sort((a, b) => a[1].order - b[1].order);
+    let i = 0, html = "";
+    for (const [sid, s] of top) {
+      const leaves = Object.entries(S).filter(([, x]) => x.parent === sid).sort((a, b) => a[1].order - b[1].order);
+      const groups = leaves.length ? leaves : [[sid, s]];
+      html += `<div class="sysh"><b>${esc(s.name)}</b><span class="en">${leaves.length ? "IT 展开为 " + leaves.map(([, x]) => esc(x.name.replace("IT · ", ""))).join(" · ") : s.chains.join(" → ")}</span></div>`;
+      for (const [lid, l] of groups) {
+        for (const chain of l.chains) {
+          const parts = bom.parts.filter(p => isPart(p) && p.system === lid && p.chain === chain).sort((a, b) => a.chain_order - b.chain_order);
+          if (!parts.length) continue;
+          html += row({ id: lid + ":" + chain, name: chain, en: l.name, desc: `${l.name} · 链路第 ${l.chains.indexOf(chain) + 1} 段 · ${parts.length} 件，按能量流顺序`, num: ++i }, parts, i - 1, (leaves.length ? 3 : 0) + (l.chains.indexOf(chain)) * 1.2);
+        }
+      }
+    }
+    return html;
+  }
+  const stack = document.getElementById("stack");
+  const atlasHost = document.getElementById('selected-atlas');
+  function render(mode) {
+    atlasHost.remove();
+    stack.innerHTML = '<div class="axis"></div>' + (mode === "scale" ? byScale() : bySystem()) + otherEntries(bom, rights.rights || []);
+    stack.querySelector('.lrow[data-row-parts~="ssd"]').insertAdjacentElement('afterend', atlasHost);
+    document.querySelectorAll("[data-mode]").forEach(b => b.classList.toggle("on", b.dataset.mode === mode));
+    document.querySelectorAll("[data-part]").forEach(el => el.addEventListener("click", () => show(el.dataset.part)));
+    history.replaceState(null, "", location.pathname + (mode === "scale" ? "?view=scale" : "") + location.hash);
+    const selected = resolveId(location.hash.slice(1));
+    if (selected) show(selected);
+  }
+  document.querySelectorAll("[data-mode]").forEach(b => b.addEventListener("click", () => render(b.dataset.mode)));
+  render(new URLSearchParams(location.search).get("view") === "scale" ? "scale" : "system");
+
+})().catch(e => document.getElementById("stack").textContent = "加载失败：" + e.message);
+
+// 不占尺度的条目（软件、设施基型）与站点权利（framework/site_rights.json）：有价格、有主体，但不是零件
+function otherEntries(bom, rights) {
+  const others = bom.parts.filter(p => (p.kind || "part") !== "part");
+  const chips = others.map(p =>
+    `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)} <small>${esc(p.kind)}</small></span>`).join("");
+  const rchips = rights.map(r =>
+    `<span class="pchip" title="${esc(r.desc || "")}"><i style="background:${SC[r.status]}"></i>${esc(r.name)}</span>`).join("");
+  if (!chips && !rchips) return "";
+  return `<div class="lrow" style="margin-left:7.5%"><div class="slab"></div><div class="lead"></div>
+    <div class="callout"><div class="ch"><b>不占尺度的条目</b><span class="en">Software · Archetype · Site rights</span></div>
+      <div class="cd">软件与设施基型有订阅价与供应商但不是零件；站点权利（土地、水权、电力配额、燃气接入、网络接入、许可）不可采购，进目标表不进 3D。</div>
+      <div class="plist">${chips}${rchips}</div></div></div>`;
+}
+// 旧部件 ID（重切前的 substation、fan-vc 等）经 bom.aliases 指向去处；指向权利的旧 ID 没有部件档案
+function resolveId(id) {
+  const a = BOM.aliases?.[id];
+  if (!a) return id;
+  return a.startsWith("site:") ? "" : a;
+}
+
+function latestSeries(sid) {
+  const pts = PRICES.filter(r => r.series_id === sid).sort((a, b) => a.as_of < b.as_of ? 1 : -1);
+  return pts[0];
+}
+
+function show(pid) {
+  pid = resolveId(pid);
+  const p = BOM.parts.find(x => x.id === pid);
+  if (!p || !showDossier) return;
+  document.querySelectorAll(".pbox.sel, .pchip.sel").forEach(el => el.classList.remove("sel"));
+  document.querySelectorAll(`[data-part="${pid}"]`).forEach(el => el.classList.add("sel"));
+  history.replaceState(null, "", "#" + pid);
+  showDossier(p);
+  const atlasHost = document.getElementById('selected-atlas');
+  if (!atlasHost.hidden) {
+    document.querySelector(`.lrow[data-row-parts~="${pid}"]`)?.insertAdjacentElement('afterend', atlasHost);
+    const context = document.createElement('p');
+    context.className = 'atlas-context';
+    context.textContent = `${BOM.systems[p.system].name} → ${p.name}`;
+    atlasHost.prepend(context);
+    requestAnimationFrame(() => {
+      if (!atlasHost.hidden && location.hash === '#' + pid) atlasHost.scrollIntoView({block:'start'});
+    });
+  }
+}
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+</script>
+</body>
+</html>
