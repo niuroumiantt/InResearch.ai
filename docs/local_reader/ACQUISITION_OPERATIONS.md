@@ -33,6 +33,12 @@ SEC 与 GPU 报价的采集凭据（如 `VAST_API_KEY`、`SEC_USER_AGENT`）不�
 
 在部署同版源码的 Spark 执行 `python3 manage.py research-match --input <已完整落地的原件或目录> --data-root ~/.local/share/inresearch.ai`；原件进入既有 acquisition 永久库，命中项进入既有 raw-materials 接收口，原来源目录不改动。命令的 processed/matched 是页内索引，不是已读/已采用。检查失败回执后再重试，不用批次大小冒充成果。
 
+给已经接收的研究材料补来源时，先执行 `python3 manage.py research-match --source-sidecar <完整批次/intake-selection.json> --data-root ~/.local/share/inresearch.ai`。这是只读 plan，不创建接收或 Reader 队列；核对 processed、filled、两个来源角色和原批次 SHA。确认对应原件/工具响应及 blob 字节均通过后，用同一命令加 `--apply-sources` 实际接收，保存其 source-receipts 回执。已知 URL/provenance 冲突、未归档材料、坏输入/响应/hash 或危险路径使整批拒收；不要手改 SQLite 绕过。清单原字节存 material-reviews/source-sidecars/<SHA>.json，未取得原站字节的工具响应载体仍为 null。
+
+实际补源只增加 source_url/source_provenance；既有匹配、Reader/catalog、阅读版本、报告和正式记录不改。重复执行 filled=0/unchanged=N，metadata 的 after SHA 来自真实持久字节。沿用原 publish 服务投影，核对候选 snapshot 文档的 content_sha256、URL/角色/原件与响应 SHA，再核对网站资料来源；无明确 binding 的其他材料 URL 保持原状，缓存不全量失效。仅完成 plan 或 Git 合并不能称生产补源已完成。
+
+新 review packet 的 document 同样按 SHA 带来源身份；旧封存 packet 保持旧字段并照常核对原件、报告和引文。新包若来源绑定丢失或变化仍拒绝。源码部署不自动重启/重审历史队列；现役worker换代按Spark操作手册安全收尾并备份，Reader和模型relay不因补来源而调整。
+
 升级后执行 `python3 manage.py pipeline --data-root ~/.local/share/inresearch.ai --reindex`，回放固定来源新闻档案并保留撤回；不会抓新全文。按原件核对候选身份后，可用既有 `pipeline --id <线索> --state linked --site <现行site_id> --note <公开复核依据>` 登记关联；这不采纳容量数值。
 
 接收、回放之后正常运行 Reader 与 publish 服务；核对 `/api/news` 的完整 progress、项目页候选、内部 `/supply.html#matching` 及实际发布回执。内部报告的标题/页码引文不由匿名接口公开。网站与 Spark 源码/服务版本、实际数量和未覆盖项记录在当次交接；不能只改 Git 后称链路已上线。

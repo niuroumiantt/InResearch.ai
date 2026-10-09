@@ -269,7 +269,7 @@ async function loadMaterials(offset = 0, query = '') {
       <p class="source">按来源记载积累，保留原文与年代；正式统计另列。</p>
       <form><input name="q" aria-label="搜索资料" placeholder="搜索内容或报告名称" value="${esc(query)}"><button type="submit">搜索</button></form>
       ${rows.map(r => `<article data-material-id="${esc(r.id)}"><h4>${esc(r.text)}</h4>
-        <p class="source">${esc(r.source.title)} · ${esc(r.source_date || '年代未登记')}${r.source.url ? ` · <a href="${esc(r.source.url)}" target="_blank" rel="noopener noreferrer">来源</a>` : ''}</p>
+        <p class="source">${esc(r.source.title)} · ${esc(r.source_date || '年代未登记')}${r.source.provenance?.role === 'decoded_archived_tool_response' ? ' · <span class="material-source-role">工具响应正文</span>' : ''}${r.source.url ? ` · <a href="${esc(r.source.url)}" target="_blank" rel="noopener noreferrer">来源</a>` : ''}</p>
         <details><summary>原文依据</summary>${r.quotes.map(e => `<blockquote>${esc(e.quote)}<p class="source">${Number.isInteger(e.page_index) ? `原件第 ${e.page_index + 1} 页` : esc(e.locator)}</p></blockquote>`).join('')}</details></article>`).join('') || `<p class="empty">${value.state === 'not_connected' ? '资料尚未接收。' : query ? '没有匹配的资料。' : '这个节点暂未收到带原文的阅读结果。'}</p>`}
       <div class="material-pages"><button data-page="previous" ${offset ? '' : 'disabled'}>上一页</button><span class="source">${value.total ? offset + 1 : 0}–${offset + rows.length} / ${value.total}</span><button data-page="next" ${value.next_offset == null ? 'disabled' : ''}>下一页</button></div>`;
     container.querySelector('form').onsubmit = event => { event.preventDefault(); loadMaterials(0, new FormData(event.target).get('q').trim()); };
