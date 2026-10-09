@@ -213,3 +213,27 @@ class PublisherIsolationTests(unittest.TestCase):
             p.advance.assert_not_called()
             self.assertEqual(json.loads((dr/'journal.json').read_text())['error'],
                              'pr_head_changed_requires_review')
+
+    def blocked_fixture(self, td):
+        p = publication.Publisher({'repo':td, 'state':td})
+        bid = 'a'*64
+        dr = Path(td)/bid
+        dr.mkdir()
+        journal = {'batch_id':bid, 'state':'blocked', 'bundle_sha256':'seal',
+                   'attempt':'attempt-0001', 'pr':431, 'commit':'c'*40,
+                   'error':'ci_failed_preserve_review_branch'}
+        atomic_json(dr/'journal.json', journal)
+        return p, bid, dr, journal
+
+
+    def test_new_attempt_retains_old_publication_journal(self):
+        with tempfile.TemporaryDirectory() as td:
+            p,bid,dr,journal=self.blocked_fixture(td)
+            p.remote=Mock(side_effect=[[{'batch_id':bid}], {'bundle_sha256':'new-seal'}])
+            p.advance=Mock(return_value={'batch_id':bid,'state':'pr_open'})
+            p.tick()
+            reference=p.advance.call_args.args[1]['previous_attempts'][0]
+            saved=dr/reference['path']
+            self.assertEqual(json.loads(saved.read_text()),journal)
+            self.assertEqual(hashlib.sha256(saved.read_bytes()).hexdigest(),reference['sha256'])
+

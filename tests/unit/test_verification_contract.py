@@ -74,6 +74,19 @@ class VerificationContractTests(unittest.TestCase):
         state.update(entrypoints=[], retired_entrypoints=[], operational_guides=[name])
         self.assertEqual('supporting_document', governance.classify(name, state))
 
+    def test_shared_browser_catalog_requires_review_and_preserves_suite_membership(self):
+        runner = self.root / 'tests/run_browser.cjs'
+        runner.write_text("const {defaults} = require('./browser_suites.cjs');")
+        self.map['reviewed_files']['tests/run_browser.cjs'] = hashlib.sha256(runner.read_bytes()).hexdigest()
+        catalog = self.root / 'tests/browser_suites.cjs'
+        catalog.write_text("const defaults = ['ui'];")
+        self.assertTrue(any('unreviewed browser suite catalog' in e for e in self.errors()))
+        self.map['reviewed_files']['tests/browser_suites.cjs'] = hashlib.sha256(catalog.read_bytes()).hexdigest()
+        self.assertEqual([], self.errors())
+        catalog.write_text('const defaults = [];')
+        self.map['reviewed_files']['tests/browser_suites.cjs'] = hashlib.sha256(catalog.read_bytes()).hexdigest()
+        self.assertTrue(any('not in default runner' in e for e in self.errors()))
+
 
 if __name__ == '__main__':
     unittest.main()
