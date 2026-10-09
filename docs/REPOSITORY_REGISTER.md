@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.56。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.57。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2109。
+在册文件：2111。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,7 +18,7 @@
 | 历史快照 | 366 |
 | 运行代码 | 336 |
 | 现行规范 | 15 |
-| 项目配置 | 525 |
+| 项目配置 | 527 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
@@ -657,7 +657,7 @@
 | `docs/design/technical-atlas/TA-19/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-19/acceptance-v1.json` | references | 4 |
 | `docs/design/technical-atlas/TA-19/acceptance-v1.json` | artifacts | 9 |
-| `docs/design/technical-atlas/TA-19/acceptance-v1.json` | independent_reviews | 2 |
+| `docs/design/technical-atlas/TA-19/acceptance-v1.json` | independent_reviews | 5 |
 | `docs/design/technical-atlas/TA-19/acceptance-v1.json` | not_verified | 7 |
 | `docs/design/technical-atlas/TA-19/anchor-fix-v1.json` | actual_floor_surface | 3 |
 | `docs/design/technical-atlas/TA-19/asset-manifest-v1.json` | pixels | 2 |
@@ -684,6 +684,13 @@
 | `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | paths | 12 |
 | `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | hits | 0 |
 | `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | outside | 0 |
+| `docs/design/technical-atlas/TA-19/public-checks-v1.json` | previous_independent_reviews | 2 |
+| `docs/design/technical-atlas/TA-19/public-checks-v1.json` | retained_failures | 2 |
+| `docs/design/technical-atlas/TA-19/public-checks-v1.json` | boundaries | 7 |
+| `docs/design/technical-atlas/TA-19/publication-20261010.json` | source_history | 2 |
+| `docs/design/technical-atlas/TA-19/publication-20261010.json` | source_checks | 13 |
+| `docs/design/technical-atlas/TA-19/publication-20261010.json` | downloads | 2 |
+| `docs/design/technical-atlas/TA-19/publication-20261010.json` | boundaries | 7 |
 | `docs/design/technical-atlas/TA-19/references-v1.json` | items | 4 |
 | `docs/design/technical-atlas/TA-19/source-validation-v1.json` | parse_only | 3 |
 | `docs/design/technical-atlas/TA-19/source-validation-v1.json` | public_required | 7 |
@@ -1564,6 +1571,8 @@
 | `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-19/prompt-v1-edit.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-19/prompt-v2-edit.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/public-checks-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/publication-20261010.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-19/references-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-19/source-validation-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-19/technical-sources-v1.json` | 项目配置 |

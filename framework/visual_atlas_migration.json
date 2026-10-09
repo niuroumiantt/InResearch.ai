@@ -3,7 +3,7 @@
   "style_id": "white-technical-atlas-v1",
   "source": "framework/10_visual_atlas.md",
   "plan": "docs/design/technical-atlas/MIGRATION_PLAN.md",
-  "observed_at": "2026-10-09T20:53:06.149961+00:00",
+  "observed_at": "2026-10-09T22:16:22.010174+00:00",
   "baseline_revision": "453f3625d427b9d989851ed5712737495891a378",
   "audit_scope": "Initial baseline inventory at baseline_revision; actual per-item acceptance and publication recorded separately, not a whole-site redesign receipt",
   "audit_directory": "~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/",
@@ -749,18 +749,22 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "drafting",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-19/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "0304ac54995e07376681d50da92d8fa2e1d5021f",
       "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
       "production_record": "docs/design/technical-atlas/TA-19/generation-native-v3.json",
-      "publication_status": "not_published",
+      "publication_status": "published_after_actual_AWS_and_public_acceptance",
       "object_id": "campus-exploded",
       "baseline_asset": {
         "file": "docs/design/technical-atlas/TA-19/bom3d-before-v1.html",
         "bytes": 69666,
         "sha256": "bf1ba65dbbf63ab87821ab0e704e190c635eeff546dc12a496fe7eb078e5966b"
-      }
+      },
+      "accepted_at": "2026-10-09T22:16:22.010174+00:00",
+      "published_at": "2026-10-09T22:16:22.010174+00:00",
+      "publication_record": "docs/design/technical-atlas/TA-19/publication-20261010.json",
+      "implementation_stage": "Actual public-v2 fullviews/assembly, corrected same-instance surfaces/rigidguides/mousepicks/downloads/resources plusTA18default regression andexacthealthy source."
     },
     {
       "id": "TA-20",
@@ -1303,7 +1307,7 @@
   "execution_priority": {
     "reason": "先收尾用户授权的四张设施补充图，原35项按用户再次明确的01–35顺序继续；两类进度分别计量",
     "next": [
-      "TA-19"
+      "TA-20"
     ]
   },
   "primary_plan": {
@@ -1346,7 +1350,7 @@
       "TA-35"
     ],
     "execution_order": "01–35 as reiterated by user on 2026-10-08",
-    "published": 18
+    "published": 19
   },
   "supplemental_items": [
     "TA-36",

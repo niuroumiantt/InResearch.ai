@@ -3,8 +3,8 @@
   "figure_id": "TA-19",
   "object_id": "campus-exploded",
   "style_id": "white-technical-atlas-v1",
-  "decision": "drafting_static_source_only",
-  "reviewed_at": "2026-10-09T21:37:48.561180+00:00",
+  "decision": "accepted_after_actual_public_validation",
+  "reviewed_at": "2026-10-09T22:16:22.010174+00:00",
   "master": "web/assets/technical-atlas/campus-exploded-v1.png",
   "labelled": "web/assets/technical-atlas/campus-exploded-v1.svg",
   "pixels": [
@@ -99,17 +99,205 @@
   },
   "independent_reviews": [
     "/private/tmp/ta19-native-v1-independent-review-child.json",
-    "/private/tmp/ta19-native-v3-label-wrapper-review-child.json"
+    "/private/tmp/ta19-native-v3-label-wrapper-review-child.json",
+    "/private/tmp/ta19-public-v1-independent-visual-review-child.json",
+    "/private/tmp/ta19-anchor08-fix-independent-review-child.json",
+    "/private/tmp/ta19-public-v2-independent-review-child.json"
   ],
   "not_verified": [
-    "通用选定八柜示意，数量/比例/分层位移是画法选择；非OEM、项目CAD、施工/维护/拆装程序、尺寸或额定功率/电压/冗余认证。",
-    "保留屋面/墙组/桥架及室内设备沿各组既定轴平移；灰原位线与框非物理设备、非完整连接通路。TA18同源几何32实例/152mesh，原屋面与前墙虚拟省略边界保持。",
-    "受控3D母图保留散热片/风扇/钢梁/柜门/局部排气细节；阴影和材质不同于TA18AI摄影底图，不称同质感、照片反推CAD或逐像素重建。",
-    "TA20严格俯视与后续项仍planned；TA18默认/其它legacy详细硬件隔离。实际TA19公网页面0/70/100、下载、拾取、资源释放与精确部署健康仍待，主18/35补4/4。",
-    "动态档案overlay可遮主画布；显式fit仅避固定HUD/图例/导航，整体mini仍保守偏小，不以152计数声称手机细节可读。匿名产品登记/研究401与compare登录限制不绕过、不称已读或全套通过。",
-    "本地50166访问拒绝继续，不另port/browser/headless/fileproduct入口绕过；本轮仅静态/parse-only/明确无HTTP测试、离线单SVG与授权实际HTTPS资产制作分开。",
-    "CI依用户要求不查询/等待不称通过；Spark/研究事实/运行数据/调度/模型/服务0改。"
+    "通用选定八柜示意，数量/几何单位/比例/分层轴与位移是画法选择；非OEM、现场CAD、施工/维护/拆装/热插拔程序、尺寸或额定功率电压/冗余认证。官方类别来源不认证本图几何或具体适用。",
+    "TA18相同32实例/152mesh/194916顶点，20移动12固定；42灰定位线与17空原位框是非物理Line，不拾取、不增加BOM；虚拟分层不是完整电力或流体连接拓扑。前部墙/部分屋面虚拟省略边界保持，三套管不构成完整HV/LV接线。",
+    "正式母图为独立1536×1024程序相机/画布渲染，未插值，非当前交互视图截图或AI照片；原PNG保持原字节。两真实AI编辑钢架短化拒稿、原7柜误数已撤回为8；原生v1埋框/遮冷机与v2屋面遮柜拒稿仍保留。材质/硬影较摄影底图不同，不称逐像素CAD重建。",
+    "手机是保守总览，十二编号/固定图例可读，8柜盘面/四UPS门/全部灰线细节须放大或完整图；不以152计数代替细节视觉验收。动态档案overlay可遮主画布，显式fit只避固定HUD/图例/导航；whole独立mini完整但仍偏小。",
+    "匿名研究/产品登记401与compare登录/旧研究ready边界不绕过；本次仅明示公网几何/拾取/下载/所有权/资源回归，不声称所有已登录研究流程或原protectedfullsuite通过。",
+    "原始本地50166访问拒绝继续，没有换port/browser/headless/fileproduct入口绕过。仅明确无HTTP静态/parse-only、离线单SVG及已授权实际HTTPS公网分开。CI依用户指令不查/不等、不称通过；Spark/研究事实/运行数据/服务/调度/模型0改。",
+    "TA20严格俯视仍独立待制，后续原队列不提前计量；当前实测时长不构成冷网络/所有触屏或浏览器性能保证。"
   ],
-  "source_stage": "TA19公网锚点修正：PR567实际80c1/.55已健康，公网八视图与13图原尺寸双审通过，assembly实际表面断言发现08基础点[0,.546,7]比实际平地板顶.54高.006。x=0不是奇数x地板缝，故仅改同实例锚点为[0,.54,7]，同一原生相机重新推导独立SVG；原生PNG/几何/32实例/152mesh/TA18factory保持，原native-proof保留制作时坐标不伪改历史。旧assembly失败留存，后续真实公网全交互仍待，不accepted/published，主18/35补4/4。不恢复本地拒绝、不查CI、不改Spark。",
-  "anchor_correction": "docs/design/technical-atlas/TA-19/anchor-fix-v1.json"
+  "source_stage": "Actual corrected public0304ac54/.56 verified; source-stage pending and first08 triangle failure retained historical.",
+  "anchor_correction": "docs/design/technical-atlas/TA-19/anchor-fix-v1.json",
+  "reviewer": "Owner actual original public images/native; independent child actual originals and same-instance anchor/static review, evidence paths below.",
+  "checks": {
+    "views_records": 17,
+    "width_theme_stage_views": 8,
+    "phone_HUD_close_views": 4,
+    "phone_currentSVG_exports": 4,
+    "assembly_records": 65,
+    "physical_instances": 32,
+    "packing": {
+      "sourceMeshes": 2293,
+      "drawMeshes": 152,
+      "inputVertices": 194916,
+      "packedVertices": 194916
+    },
+    "rigid_stages": [
+      70,
+      100
+    ],
+    "moving_instances": 20,
+    "fixed_instances": 12,
+    "same_instance_nonphysical_guides": 42,
+    "empty_home_outlines": 17,
+    "actual_same_instance_surface_anchors": [
+      {
+        "label": "01",
+        "instance": "campus/retained-roof-sections",
+        "parent": "campus/retained-roof-sections",
+        "anchor": [
+          0,
+          8.610000000000001,
+          -8.5
+        ],
+        "distance": 1.341105004826204e-09,
+        "triangles": 888
+      },
+      {
+        "label": "02",
+        "instance": "campus/retained-wall-sections",
+        "parent": "campus/retained-wall-sections",
+        "anchor": [
+          14,
+          6,
+          -10.79
+        ],
+        "distance": 3.814697180359876e-08,
+        "triangles": 576
+      },
+      {
+        "label": "03",
+        "instance": "campus/overhead-service-trays",
+        "parent": "campus/overhead-service-trays",
+        "anchor": [
+          -2.5,
+          6.6850000000000005,
+          0
+        ],
+        "distance": 1.490114698299294e-10,
+        "triangles": 1296
+      },
+      {
+        "label": "04",
+        "instance": "campus/rack-r2-c2",
+        "parent": "campus/rack-r2-c2",
+        "anchor": [
+          -0.3700000000000002,
+          2.8499999999999996,
+          5.67
+        ],
+        "distance": 4.76837147544984e-09,
+        "triangles": 4012
+      },
+      {
+        "label": "05",
+        "instance": "campus/room-cooling-3",
+        "parent": "campus/room-cooling-3",
+        "anchor": [
+          2.55,
+          2.75,
+          -8.5
+        ],
+        "distance": 1.192092824453539e-08,
+        "triangles": 504
+      },
+      {
+        "label": "06",
+        "instance": "campus/CDU-2",
+        "parent": "campus/CDU-2",
+        "anchor": [
+          14,
+          3.1500000000000004,
+          0.93
+        ],
+        "distance": 7.152557324197062e-09,
+        "triangles": 1172
+      },
+      {
+        "label": "07",
+        "instance": "campus/UPS-bank",
+        "parent": "campus/UPS-bank",
+        "anchor": [
+          -12.379999999999999,
+          2.854,
+          7.395
+        ],
+        "distance": 2.8610229740877458e-08,
+        "triangles": 684
+      },
+      {
+        "label": "08",
+        "instance": "campus/building-base",
+        "parent": "campus/building-base",
+        "anchor": [
+          0,
+          0.54,
+          7
+        ],
+        "distance": 2.1457672083613508e-08,
+        "triangles": 348
+      },
+      {
+        "label": "09",
+        "instance": "campus/air-chiller-2",
+        "parent": "campus/air-chiller-2",
+        "anchor": [
+          -23.95,
+          1.8,
+          1.675
+        ],
+        "distance": 4.768371586472142e-08,
+        "triangles": 2868
+      },
+      {
+        "label": "10",
+        "instance": "campus/transformer-1",
+        "parent": "campus/transformer-1",
+        "anchor": [
+          22,
+          3.5,
+          -7
+        ],
+        "distance": 0,
+        "triangles": 2276
+      },
+      {
+        "label": "11",
+        "instance": "campus/standby-generator-2",
+        "parent": "campus/standby-generator-2",
+        "anchor": [
+          26,
+          1,
+          15.45
+        ],
+        "distance": 4.7683716530855236e-08,
+        "triangles": 2040
+      },
+      {
+        "label": "12",
+        "instance": "campus/battery-cabinet-2",
+        "parent": "campus/battery-cabinet-2",
+        "anchor": [
+          28.9,
+          2,
+          8.05
+        ],
+        "distance": 4.768371653085537e-08,
+        "triangles": 240
+      }
+    ],
+    "actual_single_instance_mouse_picks": 9,
+    "whole_inspector_meshes": 152,
+    "nonphysical_site_entries": 12,
+    "DCIM_physical_meshes": 0,
+    "domain_fit_checks": 8,
+    "native_UI_downloads": 2,
+    "native_SVG_popup": [
+      1536,
+      1024
+    ],
+    "owned_resources_disposed_once": 593,
+    "legacy_conflict_routes": 8,
+    "TA18_default_regression": "9records,4actualwidththemeviews+2phoneclose+2phoneSVG+researchstatusboundary",
+    "source_sha_checks": 13,
+    "health_status": 200,
+    "public_checks": "docs/design/technical-atlas/TA-19/public-checks-v1.json"
+  }
 }
