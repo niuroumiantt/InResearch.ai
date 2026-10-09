@@ -3016,6 +3016,88 @@
       "status": "candidate",
       "stored_path": "originals/04/04e3af568142c327af50dd218fab0fd02ef46b59232d1859bdb6d992fa8d4a1c/TPU Inference Externalization Full Steam Ahead.pdf",
       "title": "TPU Inference Externalization Full Steam Ahead"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "coverage": {
+        "characters_read": 78857,
+        "characters_total": 78857,
+        "chunks_read": 39,
+        "chunks_total": 39,
+        "complete": true,
+        "pages_read": 39,
+        "pages_total": 39
+      },
+      "doc_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "library_path": "library/by-node/root/2026_未知_How Much Do GPU Clusters Really Cost___bcea0f5e5fb78dee.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:bytedance",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:fluidstack",
+        "actor:ibm",
+        "actor:lambda",
+        "actor:meta",
+        "actor:mgx",
+        "actor:mistral-ai",
+        "actor:nebius",
+        "actor:nscale",
+        "actor:nvidia-networking",
+        "actor:vast-data",
+        "actor:weka",
+        "chain:network/1",
+        "part:cpu",
+        "part:gpu",
+        "part:hbm",
+        "part:network-switch",
+        "part:nic",
+        "part:rack-system",
+        "part:server",
+        "part:storage-array",
+        "root",
+        "system:compute",
+        "system:control",
+        "system:it",
+        "system:memory",
+        "system:network",
+        "system:storage"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-economics",
+        "NODE-workload-storage-economics",
+        "NODE-workload-storage-profile",
+        "NODE-workload-training-economics",
+        "NODE-workload-training-profile",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-nic-alternatives",
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance",
+        "OBJ-server-performance",
+        "Q-SCOPE-part-gpu-device"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/bc/bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b/How Much Do GPU Clusters Really Cost_ (1).pdf",
+      "title": "How Much Do GPU Clusters Really Cost?"
     }
   ],
   "evidence": [
@@ -16415,6 +16497,94 @@
           }
         },
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "486f815ab0d7790aa78c43dbb2135d132e91b47e2414d00c2583fae2a7b240df",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:14:claim:9:ev:0",
+      "locator": "page:15/chunk:14",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "page_index": 14,
+      "question_ids": [
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-performance"
+      ],
+      "quote": "As a result, when considering\ngoodput expense, we allow for this performance difference to be considered in a\n“Memory overhead (%)” line item if the user chooses to run with checkpointless\ntraining.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T05:07:58+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性及评分保持7。该项具体提供训练容错性能差异进入 goodput 费用核算的项目，实质补充当前 checkpoint 开销、GPU 性能工况和训练单位有效产出成本问题。连续引文与周边条件充分，可按B采用为局部作者主张；未发现敏感、真实冲突或替换条件，不关闭问题或改写既有结论。",
+        "workorder_ids": [
+          "Q-M13-Q09",
+          "Q-OBJ-gpu-performance",
+          "Q-NODE-workload-training-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.668,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f80e5877b5b9399446df3a0cac16d4ce59a79171cdfc12fc7dfcd5d452aec412",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65957,
+            "output_tokens": 1110,
+            "reasoning_output_tokens": 191
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.53,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b0ff3f33b180e79484cc6e424e950c9563b4c50ecf34e439135fe48d7612bb2b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 66566,
+              "output_tokens": 464,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "af6ad61537e8a05561ca327d48c68be5610216d5b8dfe2fa2301ea3525defbfb"
       }
     }
   ],
@@ -32233,6 +32403,109 @@
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
         "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
         "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:14:claim:9:ev:0"
+      ],
+      "id": "adoption:review:7dd3bf54861bbb41f79cf9cf",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M13-Q09",
+        "OBJ-gpu-performance",
+        "NODE-workload-training-economics"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "《How Much Do GPU Clusters Really Cost?》作者在第15页讨论 AWS SageMaker HyperPod EKS 的 checkpointless training（上下文限定为 Kubernetes、NeMo Megatron）时表示，若用户选择这种训练方式，其 goodput 费用核算允许通过“Memory overhead (%)”项目计入相对 checkpoint restart 训练的性能差异。此项记录作者的核算方法；该段没有给出该项目的比例数值，来源发表时间未知。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T05:07:58+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性及评分保持7。该项具体提供训练容错性能差异进入 goodput 费用核算的项目，实质补充当前 checkpoint 开销、GPU 性能工况和训练单位有效产出成本问题。连续引文与周边条件充分，可按B采用为局部作者主张；未发现敏感、真实冲突或替换条件，不关闭问题或改写既有结论。",
+        "workorder_ids": [
+          "Q-M13-Q09",
+          "Q-OBJ-gpu-performance",
+          "Q-NODE-workload-training-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.668,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f80e5877b5b9399446df3a0cac16d4ce59a79171cdfc12fc7dfcd5d452aec412",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65957,
+            "output_tokens": 1110,
+            "reasoning_output_tokens": 191
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.53,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b0ff3f33b180e79484cc6e424e950c9563b4c50ecf34e439135fe48d7612bb2b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 66566,
+              "output_tokens": 464,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "af6ad61537e8a05561ca327d48c68be5610216d5b8dfe2fa2301ea3525defbfb"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:14:claim:9"
+      ],
+      "limitations": "这是作者的方法说明，未获当前独立性能或成本验证。上下文将性能影响联系到冗余状态带来的 GPU 内存压力，以及批大小或并行策略调整，但没有给出量化开销、计算公式、完整测试条件或故障率。不能把“Memory overhead (%)”直接解释为显存占用增长百分比，也不能据此更新利用率、吞吐量或单位有效产出成本参数。适用地域、具体部署项目及项目阶段未建立，不能推广到所有无检查点训练实现。",
+      "conflict_check": "已比对所供采用陈述及相关历史筛选结果。既有 checkpoint 毫秒级负载描述讨论 checkpoint 期间的负载与时长，本项讨论特定无检查点实现的性能差异核算，测量对象和实现条件不同，未形成可确立的直接冲突。既有推理内存瓶颈、训练同步及内核陈述不是相同主张，未发现重复 canonical 记录。legacy 匹配记录为空，仅表示所供筛选范围内没有相关记录，不代表穷尽外部反证；不验证或覆盖任何既有结论。",
+      "gap_dependency_check": "本项依赖第15页完整引句及所供相邻原生文字，不依赖缺引句而被暂缓的第16页候选或图表数值。M13-Q09仅获得容错开销核算线索，仍缺集群故障率、checkpoint 频率和累计开销；OBJ-gpu-performance仍缺测试方法、实测及失效条件；NODE-workload-training-economics仍缺成本公式、有效产出分母及需求增长与效率改进的推导。三项问题均保持开放，不新增模型值或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "af6ad61537e8a05561ca327d48c68be5610216d5b8dfe2fa2301ea3525defbfb",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "88590885a822cb7674e63e5fe0fe886c19b60023c8e17f6a47b47817c436b709"
       }
     }
   ],
