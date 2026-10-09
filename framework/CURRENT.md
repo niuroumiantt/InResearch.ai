@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.09.01 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.09.02 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -19,7 +19,7 @@
 | 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
 | 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
 | 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
-| 格洛可专题长文 | [专题写作规则 v2.3](../docs/geluoke/专题写作规则.md) | 精简专题、图文交付、手机排版；本机交付路径见长文交接 |
+| 格洛可专题长文 | [专题写作规则 v2.4](../docs/geluoke/专题写作规则.md) | 精简专题、图文交付、手机排版；本机交付路径见长文交接 |
 | 规则替代与在册管理 | 本页 | current_state.json、repository_manifest.json、inresearch.interfaces.governance |
 
 规范源的主题、状态、适用范围、被替代版本及相关实现都登记在 [current_state.json](current_state.json)。[在册清单](../docs/REPOSITORY_REGISTER.md)列出 Git 管理的全部文件、身份、内容摘要和记录集合。外部材料是研究输入，不因出现在仓库内就成为规范。
@@ -127,3 +127,5 @@ TA-03实际发布与服务/入口/原件回执见该项publication；当前完�
 2026-10-08 TA-04继续逐张制作：通用GPU模组/基板装配，计数错误的前两版保留并拒绝，旧gpu-board原件与服务器子装配可达；PR409精确头四项CI与实际公网四视图/高清原PNG/8标签/服务均核对；主计划4/35、补充4/4，下一TA-05。
 
 2026-10-09：TA-05 GPU与HBM通用封装图按原35项队列制作；四堆栈、层数与TSV为示意，原GPU基板与机箱图可达，实际发布另记。
+
+2026-10-09：专题长文双交付——公众号HTML与inresearch.ai研究文字素材；微信正文图片接口限制、现行需求快照、原件/工具响应身份、可定位候选与未覆盖项分别验收。格式通过不授予正式采用，见长文规则v2.4及电力专题交接。

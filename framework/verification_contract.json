@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.01",
+  "version": "2026.10.09.02",
   "reviewed_at": "2026-10-09",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -8,7 +8,7 @@
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
     "docs/M4_TRIAGE_TASK.md": "924326e63de3dc50835609d2009c6550e228f7e1018972b1d4b75dd897701ed9",
-    "docs/geluoke/专题写作规则.md": "93bd72004ae5fe54e0c0bd7f1ac01ab0e09a842af42e3cf6eb30afd4cd0953e8",
+    "docs/geluoke/专题写作规则.md": "bed437ab606eb010bf4a44b17f44de099abf9d1c20cf40ec2da4f4968d5adda8",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "11526ac244a5c8626ba0b6c1c2a40ab7cf354763302b6989ad640fc0704bdbd6",
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
@@ -28,9 +28,9 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "1da84a8c03278f86ed4a38fcbe1e6c9ca1f87868354b5d952fb1802606a23a96",
-    "framework/CURRENT.md": "d2e46f5f321dfe2fbf15c824ec9fc96cbb1382b3f18f21f894f5b98581e5834c",
+    "framework/CURRENT.md": "ee50420328055bb042165dea85a2e3e379bb96571419d6a75d289c449a1b9eb2",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
-    "framework/interface_manifest.json": "6f7220c1b4403de7fa609d1983f6a96794f65095c6425a04150f42cebe33dc6d",
+    "framework/interface_manifest.json": "c900ea822d1b09d24810a369c7e663ae1a902e4bc990cbeefe5b46c3237e50f2",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "75361a6744ec186d0ab997575f545e4fa9671530fc2ae7655e25d0524aec6c9b",
     "framework/tco_targets.json": "6f32daf5040f28e55296be589b7054343551976632c747ef277e87d220676a70",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "bc530721f3f855925450583c7f0bc344bd14c92a0dabc03f26d58105b3014b1b",
+    "framework/current_state.json": "1251f4befb32c981a16a43bdf5a398ac6d293005169254a84de9d8fed4359d84",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -1400,17 +1400,19 @@
       ]
     },
     {
-      "policy": "geluoke-longform-20261008",
+      "policy": "geluoke-longform-20261009",
       "scope": "editorial-delivery",
       "source": "docs/geluoke/专题写作规则.md",
-      "checked_requirement": "v2.3人工审阅：行业作者口吻、主线与明确判断，去掉流程式标题和重复免责声明；普通专栏复用材料、统一核稿、定向查证。旧v2.2独立归档，单一现行入口；自动治理只验证登记。",
+      "checked_requirement": "v2.4人工审阅：保留v2.3行业作者文风；每篇公众号HTML和研究文字双交付，官方图片上传限制及未实粘边界，现行需求/接收schema驱动取材，原始字节与工具响应SHA区分，格式校验不等于正式采用。实际本篇23份submission通过、50条候选；浏览器与来源校验见交付checks，治理测试只验证登记。",
       "tests": [
         "tests/unit/test_governance.py::GovernanceTests.test_replacement_valid_then_parallel_current_rejected",
         "tests/unit/test_governance.py::GovernanceTests.test_inventory_detects_added_and_modified_records_excludes_ignored"
       ],
       "not_verified": [
-        "事实准确性、来源完整性、篇幅、图中文字与手机视觉须逐篇验收；仓库治理测试不覆盖这些编辑要求。",
-        "上一稿本机390px和1000px渲染及浏览器复制已检查；公众号编辑器实粘未做，研究反哺仍是候选。本机成品不视为跨机器已同步。"
+        "逐篇内容须独立核对；自动治理不覆盖事实语义、版权、所有原文定位或编辑质量。",
+        "本篇手机/桌面与浏览器复制往返已检查；微信编辑器实粘、素材上传与发布未执行。",
+        "本篇研究包保持候选；尚未执行远程数据库导入、Reader逐页深读/C3、价格/项目正式采用或问题关闭。",
+        "原件仅在本机及独立原件zip；Git中保存派生文本、图与规则，不视作跨机器原件接收。"
       ]
     }
   ]

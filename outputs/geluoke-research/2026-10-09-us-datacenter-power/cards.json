@@ -1,0 +1,960 @@
+{
+  "as_of": "2026-10-09",
+  "records": [
+    {
+      "id": "C01",
+      "subject": "美国本土主要同步互联",
+      "value": 3,
+      "unit": "个",
+      "period": "截至2026-10-09",
+      "denominator_or_caliber": "本土48州；不含AK/HI；有有限直流联络",
+      "attribute": "定义",
+      "source_id": "eia-grid",
+      "org": "EIA",
+      "url": "https://www.eia.gov/energyexplained/electricity/delivery-to-consumers.php",
+      "source_date": null,
+      "quote": "Three",
+      "locator": "Electricity interconnections小节",
+      "research_question_ids": [
+        "OBJ-grid-definition"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C02",
+      "subject": "FERC大负荷改革适用区域运营商",
+      "value": 6,
+      "unit": "家",
+      "period": "2026-06-18",
+      "denominator_or_caliber": "FERC管辖六家，不含ERCOT；不是六家垂直电力公司",
+      "attribute": "监管行动",
+      "source_id": "ferc-june",
+      "org": "FERC",
+      "url": "https://ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration",
+      "source_date": "2026-06-18",
+      "quote": "six",
+      "locator": "正文及The Six Grid Operators",
+      "research_question_ids": [
+        "OBJ-grid-interfaces"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C03",
+      "subject": "美国数据中心年度用电",
+      "value": 58,
+      "unit": "TWh",
+      "period": "2014",
+      "denominator_or_caliber": "数据中心整体，非AI独有",
+      "attribute": "历史研究估算",
+      "source_id": "lbnl-full",
+      "org": "LBNL",
+      "url": "https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf",
+      "source_date": "2024-12",
+      "quote": "58",
+      "locator": "Executive Summary / Figure ES-1；匹配PDF物理页 7,9,52,58,63,73",
+      "research_question_ids": [
+        "M04-Q05"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C04",
+      "subject": "美国数据中心年度用电",
+      "value": 176,
+      "unit": "TWh",
+      "period": "2023",
+      "denominator_or_caliber": "总设施能源估算；非全国逐表实测",
+      "attribute": "历史研究估算",
+      "source_id": "lbnl-full",
+      "org": "LBNL",
+      "url": "https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf",
+      "source_date": "2024-12",
+      "quote": "176",
+      "locator": "Executive Summary；匹配PDF物理页 6,52,57,76",
+      "research_question_ids": [
+        "M04-Q05"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C05",
+      "subject": "美国数据中心用电占美国总用电",
+      "value": 4.4,
+      "unit": "%",
+      "period": "2023",
+      "denominator_or_caliber": "分母美国全年总用电",
+      "attribute": "历史研究估算",
+      "source_id": "lbnl-full",
+      "org": "LBNL",
+      "url": "https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf",
+      "source_date": "2024-12",
+      "quote": "4.4%",
+      "locator": "Executive Summary；匹配PDF物理页 6,52",
+      "research_question_ids": [
+        "M04-Q05"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C06",
+      "subject": "美国数据中心年度用电预测低端",
+      "value": 325,
+      "unit": "TWh",
+      "period": "2028",
+      "denominator_or_caliber": "2024年报告情景低端，不是2026年实际",
+      "attribute": "2024版预测",
+      "source_id": "lbnl-full",
+      "org": "LBNL",
+      "url": "https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf",
+      "source_date": "2024-12",
+      "quote": "325",
+      "locator": "Executive Summary；匹配PDF物理页 7,52",
+      "research_question_ids": [
+        "M04-Q05"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C07",
+      "subject": "美国数据中心年度用电预测高端",
+      "value": 580,
+      "unit": "TWh",
+      "period": "2028",
+      "denominator_or_caliber": "与低端同一模型情景范围，不做简单平均",
+      "attribute": "2024版预测",
+      "source_id": "lbnl-full",
+      "org": "LBNL",
+      "url": "https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf",
+      "source_date": "2024-12",
+      "quote": "580",
+      "locator": "Executive Summary；匹配PDF物理页 7,52",
+      "research_question_ids": [
+        "M04-Q05"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C08",
+      "subject": "美国数据中心占总用电预测低端",
+      "value": 6.7,
+      "unit": "%",
+      "period": "2028",
+      "denominator_or_caliber": "分母该报告预测的2028美国总用电",
+      "attribute": "2024版预测",
+      "source_id": "lbnl-full",
+      "org": "LBNL",
+      "url": "https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf",
+      "source_date": "2024-12",
+      "quote": "6.7%",
+      "locator": "Executive Summary；匹配PDF物理页 7,52",
+      "research_question_ids": [
+        "M04-Q05"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C09",
+      "subject": "美国数据中心占总用电预测高端",
+      "value": 12,
+      "unit": "%",
+      "period": "2028",
+      "denominator_or_caliber": "预测分母；非当前全国占比",
+      "attribute": "2024版预测",
+      "source_id": "lbnl-full",
+      "org": "LBNL",
+      "url": "https://eta-publications.lbl.gov/sites/default/files/2024-12/lbnl-2024-united-states-data-center-energy-usage-report_1.pdf",
+      "source_date": "2024-12",
+      "quote": "12.0%",
+      "locator": "Executive Summary；匹配PDF物理页 7,52",
+      "research_question_ids": [
+        "M04-Q05"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C10",
+      "subject": "ERCOT批次研究的大负荷资格规模门槛",
+      "value": 75,
+      "unit": "MW",
+      "period": "2026-06-18",
+      "denominator_or_caliber": "另须满足资格条件，不是投运IT容量",
+      "attribute": "公布规则",
+      "source_id": "ercot-batch",
+      "org": "ERCOT",
+      "url": "https://www.ercot.com/news/release/06182026-puct-approves-ercots",
+      "source_date": "2026-06-18",
+      "quote": "75 megawatts",
+      "locator": "正文第三段 qualified projects",
+      "research_question_ids": [
+        "M04-Q01",
+        "M04-Q07"
+      ],
+      "status": "candidate",
+      "capacity_stage": "另须满足资格条件，不是投运IT容量"
+    },
+    {
+      "id": "C11",
+      "subject": "ERCOT Batch Zero最终输电计划",
+      "value": 2027,
+      "unit": "年秋季",
+      "period": "2027",
+      "denominator_or_caliber": "研究/计划时间，不是所有项目投运时间",
+      "attribute": "公布预期节点",
+      "source_id": "ercot-batch",
+      "org": "ERCOT",
+      "url": "https://www.ercot.com/news/release/06182026-puct-approves-ercots",
+      "source_date": "2026-06-18",
+      "quote": "Fall 2027",
+      "locator": "正文 transmission plan",
+      "research_question_ids": [
+        "M04-Q07"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C12",
+      "subject": "配电变压器交期",
+      "value": "3—6",
+      "unit": "月",
+      "period": "2019",
+      "denominator_or_caliber": "配电变压器，不推广到所有主变压器",
+      "attribute": "DOE转录所述历史调查",
+      "source_id": "doe-transformer",
+      "org": "DOE",
+      "url": "https://www.energy.gov/oe/distribution-transformer-webinar-text-alternative",
+      "source_date": null,
+      "quote": "2019",
+      "locator": "lead time相关段落",
+      "research_question_ids": [
+        "M09-Q01"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C13",
+      "subject": "配电变压器交期",
+      "value": "1—2年以上",
+      "unit": "年",
+      "period": "2024",
+      "denominator_or_caliber": "不冒充2026年现货或工厂报价",
+      "attribute": "DOE转录所述历史调查",
+      "source_id": "doe-transformer",
+      "org": "DOE",
+      "url": "https://www.energy.gov/oe/distribution-transformer-webinar-text-alternative",
+      "source_date": null,
+      "quote": "2024",
+      "locator": "lead time相关段落",
+      "research_question_ids": [
+        "M09-Q01"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C14",
+      "subject": "Dominion适用新大型客户最低服务义务",
+      "value": 14,
+      "unit": "年",
+      "period": "2027-01-01及以后签约",
+      "denominator_or_caliber": "适用新增大型客户，非全美统一",
+      "attribute": "SCC已公布未来适用条款",
+      "source_id": "scc",
+      "org": "Virginia SCC",
+      "url": "https://www.scc.virginia.gov/media/sccvirginiagov-home/about-the-scc/fact-sheets/scc-data-center-initiatives-02-2026.pdf",
+      "source_date": "2026-02-24",
+      "quote": "14 years",
+      "locator": "WHAT IS THE MINIMUM CONTRACT OBLIGATION；匹配PDF物理页 1,2",
+      "research_question_ids": [
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C15",
+      "subject": "Dominion最低月输配电费用承担",
+      "value": 85,
+      "unit": "%",
+      "period": "SCC 2026-02-24说明",
+      "denominator_or_caliber": "分母为其服务的输配电成本；2016年前客户豁免",
+      "attribute": "已公布条款",
+      "source_id": "scc",
+      "org": "Virginia SCC",
+      "url": "https://www.scc.virginia.gov/media/sccvirginiagov-home/about-the-scc/fact-sheets/scc-data-center-initiatives-02-2026.pdf",
+      "source_date": "2026-02-24",
+      "quote": "85%",
+      "locator": "WHAT MINIMUM CHARGES WILL APPLY；匹配PDF物理页 1,2",
+      "research_question_ids": [
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C16",
+      "subject": "Dominion信用不足新客户担保上限",
+      "value": 60,
+      "unit": "%",
+      "period": "2027-01-01及以后签约",
+      "denominator_or_caliber": "分母最低合同费用；可能要求而非所有客户必缴",
+      "attribute": "已公布条款",
+      "source_id": "scc",
+      "org": "Virginia SCC",
+      "url": "https://www.scc.virginia.gov/media/sccvirginiagov-home/about-the-scc/fact-sheets/scc-data-center-initiatives-02-2026.pdf",
+      "source_date": "2026-02-24",
+      "quote": "60%",
+      "locator": "WHAT COLLATERAL WILL BE REQUIRED；匹配PDF物理页 1,2",
+      "research_question_ids": [
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C17",
+      "subject": "AEP Ohio新大型数据中心最低合同容量付款",
+      "value": 85,
+      "unit": "%",
+      "period": "2025-07-09决定",
+      "denominator_or_caliber": "分母合同电力容量，非未消耗的电能；2025-11上诉",
+      "attribute": "监管决定的官方机构说明",
+      "source_id": "ohio",
+      "org": "Ohio Consumers Counsel",
+      "url": "https://occ.ohio.gov/content/data-center-costs-24-0508-el-ata",
+      "source_date": "2026-01-21",
+      "quote": "85 percent",
+      "locator": "Update段落",
+      "research_question_ids": [
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C18",
+      "subject": "AEP Ohio最低容量义务最长期间",
+      "value": 12,
+      "unit": "年",
+      "period": "2025-07-09决定",
+      "denominator_or_caliber": "最长期限；保留爬坡细节待查完整费率",
+      "attribute": "监管决定的官方机构说明",
+      "source_id": "ohio",
+      "org": "Ohio Consumers Counsel",
+      "url": "https://occ.ohio.gov/content/data-center-costs-24-0508-el-ata",
+      "source_date": "2026-01-21",
+      "quote": "12 years",
+      "locator": "Update段落",
+      "research_question_ids": [
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C19",
+      "subject": "典型Dominion居民发电及输电月成本增量",
+      "value": "14—37",
+      "unit": "美元/月（不变价）",
+      "period": "到2040",
+      "denominator_or_caliber": "特定模型情景，非当前全国涨幅",
+      "attribute": "2024长期情景估算",
+      "source_id": "jlarc",
+      "org": "Virginia JLARC",
+      "url": "https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf",
+      "source_date": "2024-12-09",
+      "quote": "$14 to $37",
+      "locator": "Summary printed v；匹配PDF物理页 9",
+      "research_question_ids": [
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C20",
+      "subject": "Georgia Power大负荷组合客户预计年度节省",
+      "value": 9.5,
+      "unit": "亿美元/年",
+      "period": "从2029起",
+      "denominator_or_caliber": "组合口径；非单项目/已兑现现金收益",
+      "attribute": "公司预测",
+      "source_id": "ga-contract",
+      "org": "Georgia Power",
+      "url": "https://www.georgiapower.com/news-hub/press-releases/contract-openai-approved-part-portfolio-delivering-950-million-annual-savings.html",
+      "source_date": "2026-08-26",
+      "quote": "$950 million",
+      "locator": "projected incremental revenue段落",
+      "research_question_ids": [
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C21",
+      "subject": "Georgia Power / OpenAI新增合同需求",
+      "value": 3200,
+      "unit": "MW",
+      "period": "2026-08-26披露",
+      "denominator_or_caliber": "新增需求合同，不识别成投运或IT功率",
+      "attribute": "合同公告",
+      "source_id": "ga-contract",
+      "org": "Georgia Power",
+      "url": "https://www.georgiapower.com/news-hub/press-releases/contract-openai-approved-part-portfolio-delivering-950-million-annual-savings.html",
+      "source_date": "2026-08-26",
+      "quote": "3,200",
+      "locator": "contract filed in July段落",
+      "research_question_ids": [
+        "M04-Q05",
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": "新增需求合同，不识别成投运或IT功率"
+    },
+    {
+      "id": "C22",
+      "subject": "Georgia Power / OpenAI灵活响应承诺上限",
+      "value": 1000,
+      "unit": "MW",
+      "period": "2026-08-26披露",
+      "denominator_or_caliber": "承诺上限，不是已观测调度能力",
+      "attribute": "合同公告",
+      "source_id": "ga-contract",
+      "org": "Georgia Power",
+      "url": "https://www.georgiapower.com/news-hub/press-releases/contract-openai-approved-part-portfolio-delivering-950-million-annual-savings.html",
+      "source_date": "2026-08-26",
+      "quote": "1,000",
+      "locator": "flexible demand response段落",
+      "research_question_ids": [
+        "OBJ-grid-alternatives"
+      ],
+      "status": "candidate",
+      "capacity_stage": "承诺上限，不是已观测调度能力"
+    },
+    {
+      "id": "C23",
+      "subject": "反对本地建设AI数据中心受访成年人比例",
+      "value": 71,
+      "unit": "%",
+      "period": "2026-03-02至03-18调查",
+      "denominator_or_caliber": "美国成年人态度调查，非电费因果证据",
+      "attribute": "Gallup调查",
+      "source_id": "gallup",
+      "org": "Gallup",
+      "url": "https://news.gallup.com/poll/709772/americans-oppose-data-centers-area.aspx",
+      "source_date": "2026-05-13",
+      "quote": "71%",
+      "locator": "Two in Three以上正文/图",
+      "research_question_ids": [
+        "M05-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C24",
+      "subject": "Crane重启目标",
+      "value": 2027,
+      "unit": "年",
+      "period": "2025-09-23公告",
+      "denominator_or_caliber": "停运机组重启目标，非已投运电力",
+      "attribute": "公司目标",
+      "source_id": "crane-pdf",
+      "org": "Constellation",
+      "url": "https://constellationenergy.gcs-web.com/node/9421/pdf",
+      "source_date": "2025-09-23",
+      "quote": "2027",
+      "locator": "PDF第1页第三段",
+      "research_question_ids": [
+        "M04-Q03"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C25",
+      "subject": "Microsoft支持Crane重启的购电期限",
+      "value": 20,
+      "unit": "年",
+      "period": "2025-09-23公告",
+      "denominator_or_caliber": "PPA，不解释成全部电流直供微软园区",
+      "attribute": "已披露合约期限",
+      "source_id": "crane-pdf",
+      "org": "Constellation",
+      "url": "https://constellationenergy.gcs-web.com/node/9421/pdf",
+      "source_date": "2025-09-23",
+      "quote": "20-year",
+      "locator": "PDF第1页第一正文段",
+      "research_question_ids": [
+        "M04-Q03",
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C26",
+      "subject": "Talen/Amazon全合同规模",
+      "value": 1920,
+      "unit": "MW",
+      "period": "2025-06-11",
+      "denominator_or_caliber": "既有核电能源/容量协议，不等于新增装机或IT",
+      "attribute": "合同安排",
+      "source_id": "talen-sec",
+      "org": "Talen Energy",
+      "url": "https://www.sec.gov/Archives/edgar/data/1622536/000162828025030559/a20250611talenbusinessup.htm",
+      "source_date": "2025-06-11",
+      "quote": "1,920 MW",
+      "locator": "公司演示材料Slide 4",
+      "research_question_ids": [
+        "M04-Q02",
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": "既有核电能源/容量协议，不等于新增装机或IT"
+    },
+    {
+      "id": "C27",
+      "subject": "Talen/Amazon合同期末",
+      "value": 2042,
+      "unit": "年",
+      "period": "2025-06-11",
+      "denominator_or_caliber": "有延长选项；实际负荷按阶段爬坡",
+      "attribute": "合同安排",
+      "source_id": "talen-sec",
+      "org": "Talen Energy",
+      "url": "https://www.sec.gov/Archives/edgar/data/1622536/000162828025030559/a20250611talenbusinessup.htm",
+      "source_date": "2025-06-11",
+      "quote": "2042",
+      "locator": "Slide 4",
+      "research_question_ids": [
+        "M04-Q04"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C28",
+      "subject": "现场燃气可靠供电装机超配区间",
+      "value": "30—70",
+      "unit": "%",
+      "period": "2026模型",
+      "denominator_or_caliber": "分母所服务需求；取决配置，非全部园区固定系数",
+      "attribute": "IEA模型估算",
+      "source_id": "iea",
+      "org": "IEA",
+      "url": "https://iea.blob.core.windows.net/assets/3179f7f8-01f6-4dd6-bffa-c9f7b73f1dc9/KeyQuestionsonEnergyandAI.pdf",
+      "source_date": "2026-04-16",
+      "quote": "30% to 70%",
+      "locator": "Executive Summary；匹配PDF物理页 11",
+      "research_question_ids": [
+        "M04-Q02"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C29",
+      "subject": "已土地清理或建设的美国现场燃气项目",
+      "value": "约五分之一",
+      "unit": "比例",
+      "period": "2026报告观察",
+      "denominator_or_caliber": "项目数观察，不是投运比例或发电量",
+      "attribute": "IEA卫星观察",
+      "source_id": "iea",
+      "org": "IEA",
+      "url": "https://iea.blob.core.windows.net/assets/3179f7f8-01f6-4dd6-bffa-c9f7b73f1dc9/KeyQuestionsonEnergyandAI.pdf",
+      "source_date": "2026-04-16",
+      "quote": "one-fifth",
+      "locator": "Executive Summary；匹配PDF物理页 11",
+      "research_question_ids": [
+        "M04-Q02"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C30",
+      "subject": "全球数据中心现场燃气2030装机预测",
+      "value": "15—27",
+      "unit": "GW",
+      "period": "2030",
+      "denominator_or_caliber": "全球，主要在美国；不可改写美国现有装机",
+      "attribute": "IEA预测",
+      "source_id": "iea",
+      "org": "IEA",
+      "url": "https://iea.blob.core.windows.net/assets/3179f7f8-01f6-4dd6-bffa-c9f7b73f1dc9/KeyQuestionsonEnergyandAI.pdf",
+      "source_date": "2026-04-16",
+      "quote": "15-27 GW",
+      "locator": "Executive Summary / Figure 6.4；匹配PDF物理页 11",
+      "research_question_ids": [
+        "M04-Q02",
+        "M04-Q05"
+      ],
+      "status": "candidate",
+      "capacity_stage": "全球，主要在美国；不可改写美国现有装机"
+    },
+    {
+      "id": "C31",
+      "subject": "Alphabet收购Intersect现金对价",
+      "value": 47.5,
+      "unit": "亿美元",
+      "period": "2025-12-22宣布",
+      "denominator_or_caliber": "现金之外承担债务；并非全部交易企业价值",
+      "attribute": "协议对价",
+      "source_id": "intersect",
+      "org": "Intersect",
+      "url": "https://www.intersect.com/news/alphabet-announces-agreement-to-acquire-intersect-to-advance-u-s-energy-innovation",
+      "source_date": "2025-12-22",
+      "quote": "billion in cash",
+      "locator": "开头收购对价段",
+      "research_question_ids": [
+        "OBJ-grid-supply"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C32",
+      "subject": "Alphabet完成Intersect收购",
+      "value": "2026-03",
+      "unit": "日期",
+      "period": "2026-04-29披露",
+      "denominator_or_caliber": "后续事实替代仅宣布协议状态，资产不全已投运",
+      "attribute": "公司财报披露",
+      "source_id": "alphabet-q1",
+      "org": "Alphabet",
+      "url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Apr/29/2026_Q1_Earnings_Transcript.pdf",
+      "source_date": "2026-04-29",
+      "quote": "closed in March",
+      "locator": "PDF第13页CapEx段；匹配PDF物理页 13",
+      "research_question_ids": [
+        "OBJ-grid-supply"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C33",
+      "subject": "PJM大负荷登记工具计划上线",
+      "value": "2027-02-01",
+      "unit": "日期",
+      "period": "2026-10-09网页",
+      "denominator_or_caliber": "页面标Pending FERC Approval，不冒充已全面生效",
+      "attribute": "待批准方案/工具计划",
+      "source_id": "pjm-large",
+      "org": "PJM",
+      "url": "https://www.pjm.com/markets-and-operations/large-load",
+      "source_date": null,
+      "quote": "February 1, 2027",
+      "locator": "Existing and Future Large Load Registry",
+      "research_question_ids": [
+        "M04-Q01",
+        "M04-Q07"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C34",
+      "subject": "PJM按区域汇总登记信息计划公开",
+      "value": "2027-03",
+      "unit": "日期",
+      "period": "2026-10-09网页",
+      "denominator_or_caliber": "计划信息公开，不是所有新增需求投运",
+      "attribute": "待批准方案/工具计划",
+      "source_id": "pjm-large",
+      "org": "PJM",
+      "url": "https://www.pjm.com/markets-and-operations/large-load",
+      "source_date": null,
+      "quote": "March 2027",
+      "locator": "Public Registry Information",
+      "research_question_ids": [
+        "M04-Q01"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C35",
+      "subject": "Texas工业平均电价",
+      "value": 6.72,
+      "unit": "美分/kWh",
+      "period": "2026-01至2026-07",
+      "denominator_or_caliber": "售电收入÷售电量；非数据中心合同报价",
+      "attribute": "EIA初步估计",
+      "source_id": "eia-ytd",
+      "org": "EIA",
+      "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b",
+      "source_date": "2026-09-24",
+      "quote": "Texas",
+      "locator": "Table 5.6.B / Texas / Industrial 2026 YTD",
+      "research_question_ids": [
+        "M04-Q11"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C36",
+      "subject": "Virginia工业平均电价",
+      "value": 10.08,
+      "unit": "美分/kWh",
+      "period": "2026-01至2026-07",
+      "denominator_or_caliber": "售电收入÷售电量；非数据中心合同报价",
+      "attribute": "EIA初步估计",
+      "source_id": "eia-ytd",
+      "org": "EIA",
+      "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b",
+      "source_date": "2026-09-24",
+      "quote": "Virginia",
+      "locator": "Table 5.6.B / Virginia / Industrial 2026 YTD",
+      "research_question_ids": [
+        "M04-Q11"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C37",
+      "subject": "Arizona工业平均电价",
+      "value": 7.66,
+      "unit": "美分/kWh",
+      "period": "2026-01至2026-07",
+      "denominator_or_caliber": "售电收入÷售电量；非数据中心合同报价",
+      "attribute": "EIA初步估计",
+      "source_id": "eia-ytd",
+      "org": "EIA",
+      "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b",
+      "source_date": "2026-09-24",
+      "quote": "Arizona",
+      "locator": "Table 5.6.B / Arizona / Industrial 2026 YTD",
+      "research_question_ids": [
+        "M04-Q11"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C38",
+      "subject": "Georgia工业平均电价",
+      "value": 7.99,
+      "unit": "美分/kWh",
+      "period": "2026-01至2026-07",
+      "denominator_or_caliber": "售电收入÷售电量；非数据中心合同报价",
+      "attribute": "EIA初步估计",
+      "source_id": "eia-ytd",
+      "org": "EIA",
+      "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b",
+      "source_date": "2026-09-24",
+      "quote": "Georgia",
+      "locator": "Table 5.6.B / Georgia / Industrial 2026 YTD",
+      "research_question_ids": [
+        "M04-Q11"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C39",
+      "subject": "Ohio工业平均电价",
+      "value": 10.32,
+      "unit": "美分/kWh",
+      "period": "2026-01至2026-07",
+      "denominator_or_caliber": "售电收入÷售电量；非数据中心合同报价",
+      "attribute": "EIA初步估计",
+      "source_id": "eia-ytd",
+      "org": "EIA",
+      "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b",
+      "source_date": "2026-09-24",
+      "quote": "Ohio",
+      "locator": "Table 5.6.B / Ohio / Industrial 2026 YTD",
+      "research_question_ids": [
+        "M04-Q11"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C40",
+      "subject": "Oregon工业平均电价",
+      "value": 8.33,
+      "unit": "美分/kWh",
+      "period": "2026-01至2026-07",
+      "denominator_or_caliber": "售电收入÷售电量；非数据中心合同报价",
+      "attribute": "EIA初步估计",
+      "source_id": "eia-ytd",
+      "org": "EIA",
+      "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b",
+      "source_date": "2026-09-24",
+      "quote": "Oregon",
+      "locator": "Table 5.6.B / Oregon / Industrial 2026 YTD",
+      "research_question_ids": [
+        "M04-Q11"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "C41",
+      "subject": "U.S. Total工业平均电价",
+      "value": 9.03,
+      "unit": "美分/kWh",
+      "period": "2026-01至2026-07",
+      "denominator_or_caliber": "售电收入÷售电量；非数据中心合同报价",
+      "attribute": "EIA初步估计",
+      "source_id": "eia-ytd",
+      "org": "EIA",
+      "url": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b",
+      "source_date": "2026-09-24",
+      "quote": "U.S. Total",
+      "locator": "Table 5.6.B / U.S. Total / Industrial 2026 YTD",
+      "research_question_ids": [
+        "M04-Q11"
+      ],
+      "status": "candidate",
+      "capacity_stage": null
+    },
+    {
+      "id": "S01",
+      "statement": "PJM近期大负荷预测要求较明确建设/服务承诺，远期非确定项目折减",
+      "kind": "mechanism",
+      "source_id": "pjm-forecast",
+      "quote": "firm",
+      "locator": "PDF第6页（正文第4页）",
+      "url": "https://www.pjm.com/-/media/DotCom/library/reports-notices/load-forecast/2026-load-report.pdf",
+      "source_date": "2026-01-14",
+      "research_question_ids": [
+        "M04-Q01",
+        "M04-Q05"
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "S02",
+      "statement": "JLARC当时独立成本研究认为当前服务成本已适当分配，同时预测增长提高未来系统成本",
+      "kind": "mechanism",
+      "source_id": "jlarc",
+      "quote": "full cost of service",
+      "locator": "PDF第9、62页（正文摘要v、44）",
+      "url": "https://jlarc.virginia.gov/pdfs/reports/Rpt598.pdf",
+      "source_date": "2024-12-09",
+      "research_question_ids": [
+        "M04-Q04"
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "S03",
+      "statement": "Talen/Amazon项目建立电网连接后转表前零售，过渡期部分表后",
+      "kind": "interface",
+      "source_id": "talen-sec",
+      "quote": "Front-of-the-Meter",
+      "locator": "Slide 4",
+      "url": "https://www.sec.gov/Archives/edgar/data/1622536/000162828025030559/a20250611talenbusinessup.htm",
+      "source_date": "2025-06-11",
+      "research_question_ids": [
+        "M04-Q02"
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "S04",
+      "statement": "PJM IRAS截至查看时仍待FERC批准",
+      "kind": "standard",
+      "source_id": "pjm-large",
+      "quote": "Pending FERC Approval",
+      "locator": "Registry及IRAS标题",
+      "url": "https://www.pjm.com/markets-and-operations/large-load",
+      "source_date": null,
+      "research_question_ids": [
+        "M04-Q07"
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "S05",
+      "statement": "俄亥俄AEP现场项目采用天然气固体氧化物燃料电池，客户承担项目成本",
+      "kind": "mechanism",
+      "source_id": "aep-onsite",
+      "quote": "solid oxide fuel cells",
+      "locator": "正文Bloom系统段",
+      "url": "https://www.aep.com/news/stories/view/10262/",
+      "source_date": "2025-06-05",
+      "research_question_ids": [
+        "M04-Q02"
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "S06",
+      "statement": "Google以可调度机器学习负荷与电力公司开展需求响应合作",
+      "kind": "mechanism",
+      "source_id": "google-flex",
+      "quote": "machine learning",
+      "locator": "与I&M / TVA合作正文段",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/how-were-making-data-centers-more-flexible-to-benefit-power-grids/",
+      "source_date": "2025-08-04",
+      "research_question_ids": [
+        "OBJ-grid-alternatives"
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "S07",
+      "statement": "跨州输电涉及多个司法和土地权利层级",
+      "kind": "interface",
+      "source_id": "doe-transmission",
+      "quote": "state",
+      "locator": "正文选址许可部分",
+      "url": "https://www.energy.gov/oe/transmission-siting-and-permitting-efforts",
+      "source_date": null,
+      "research_question_ids": [
+        "OBJ-grid-interfaces",
+        "M04-Q07"
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "S08",
+      "statement": "NERC风险结果使用有时点的需求与资源假设；部分新加速资源未纳入",
+      "kind": "mechanism",
+      "source_id": "nerc",
+      "quote": "not included",
+      "locator": "PDF第8—11页",
+      "url": "https://www.nerc.com/globalassets/our-work/assessments/nerc_ltra_2025.pdf",
+      "source_date": "2026-01-29",
+      "research_question_ids": [
+        "M04-Q05",
+        "M04-Q07"
+      ],
+      "status": "candidate"
+    },
+    {
+      "id": "S09",
+      "statement": "白宫保护居民成本的承诺需与地方具体费率及合同衔接",
+      "kind": "standard",
+      "source_id": "pledge",
+      "quote": "Ratepayer",
+      "locator": "公告正文",
+      "url": "https://www.whitehouse.gov/presidential-actions/2026/03/ratepayer-protection-pledge-proclamation/",
+      "source_date": "2026-03-04",
+      "research_question_ids": [
+        "M04-Q04"
+      ],
+      "status": "candidate"
+    }
+  ]
+}

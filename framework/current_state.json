@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.01",
+  "version": "2026.10.09.02",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2410,9 +2410,9 @@
       "id": "geluoke-longform-20261008",
       "topic": "geluoke-longform",
       "scope": "editorial-delivery",
-      "status": "current",
+      "status": "superseded",
       "effective_at": "2026-10-08",
-      "source": "docs/geluoke/专题写作规则.md",
+      "source": "docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.3.md",
       "supersedes": [
         "geluoke-longform-20261001"
       ],
@@ -2420,7 +2420,28 @@
       "implementations": [
         "docs/handoff/history-foundation-writing-20261008.md"
       ],
-      "implementation_revision": "2.3"
+      "implementation_revision": "2.3",
+      "superseded_by": "geluoke-longform-20261009"
+    },
+    {
+      "id": "geluoke-longform-20261009",
+      "topic": "geluoke-longform",
+      "scope": "editorial-delivery",
+      "status": "current",
+      "effective_at": "2026-10-09",
+      "source": "docs/geluoke/专题写作规则.md",
+      "supersedes": [
+        "geluoke-longform-20261008"
+      ],
+      "reason": "用户明确要求每篇长文交付微信公众号HTML及inresearch.ai研究文字素材；图片按微信当前要求、按现行问题与目标取材，保留原文溯源与未覆盖项，格式校验不等于正式采用。",
+      "implementations": [
+        "docs/handoff/us-datacenter-power-20261009.md",
+        "docs/research/2026-10-09/us-datacenter-power/README.md",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/build.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/research.py",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/audit.py"
+      ],
+      "implementation_revision": "2.4"
     }
   ],
   "entrypoints": [
@@ -2525,5 +2546,6 @@
       "retire_when": "问题表、分包、成果专题目录全部改按 node 分组后，从 bom.json / site_rights.json / dashboard 去掉该属性",
       "retire_after": "2026-12-31"
     }
-  ]
+  ],
+  "updated": "2026-10-09"
 }
