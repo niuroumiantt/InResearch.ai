@@ -63,12 +63,12 @@ export function createViewport({canvas, camera, resize, headers=[], onResize=()=
 }
 
 // Initial/explicit fit may follow viewport changes; a user gesture or authored view takes ownership.
-export function mountSceneView({canvas, camera, controls, objects, resize, headers, button, fog=null, beforeFit=()=>{}}) {
+export function mountSceneView({canvas, camera, controls, objects, resize, headers, button, fog=null, beforeFit=()=>{}, fitView=fitPerspective}) {
   let automatic = true, disposed = false;
   function refresh() {
     if (disposed || !automatic) return false;
     const bounds = visibleBounds(objects());
-    const fitted = fitPerspective({camera, bounds, target:controls.target});
+    const fitted = fitView({camera, bounds, target:controls.target});
     if (fitted) {
       controls.maxDistance = Math.max(controls.maxDistance, camera.position.distanceTo(controls.target) * 3);
       if (fog) {

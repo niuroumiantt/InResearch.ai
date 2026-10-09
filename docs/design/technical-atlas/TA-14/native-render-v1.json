@@ -1,0 +1,292 @@
+{
+  "method": "Independent native WebGL render, no interpolation or interactive snapshot",
+  "native_pixels": [
+    1536,
+    1024
+  ],
+  "projection": "OrthographicCamera, oblique exploded assembly view",
+  "identity": "Generic correspondence diagram; not OEM/CAD/maintenance procedure",
+  "mesh_count": 611,
+  "counts": {
+    "framePosts": 4,
+    "mountingRails": 4,
+    "computeChassis": 8,
+    "driveCarriersPerChassis": 8,
+    "powerShelves": 2,
+    "psuModulesPerShelf": 6,
+    "switches": 2,
+    "adjustableFeet": 4,
+    "optionalPipes": 2,
+    "optionalCopperBars": 1
+  },
+  "instances": [
+    {
+      "id": "rack/front-door",
+      "category": "rack-frame",
+      "home": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        15
+      ],
+      "actual": [
+        0,
+        0,
+        15
+      ]
+    },
+    {
+      "id": "rack/left-side-panel",
+      "category": "rack-frame",
+      "home": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        -8,
+        0,
+        0
+      ],
+      "actual": [
+        -8,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "rack/top-cover",
+      "category": "rack-frame",
+      "home": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        2.5,
+        0
+      ],
+      "actual": [
+        0,
+        2.5,
+        0
+      ]
+    },
+    {
+      "id": "rack/switch-1",
+      "category": "network-switch",
+      "home": [
+        0.3,
+        10.64,
+        0.15
+      ],
+      "axis": [
+        0,
+        0,
+        7
+      ],
+      "actual": [
+        0.3,
+        10.64,
+        7.15
+      ]
+    },
+    {
+      "id": "rack/compute-4",
+      "category": "server",
+      "home": [
+        0.3,
+        5.779999999999999,
+        0.15
+      ],
+      "axis": [
+        0,
+        0,
+        7
+      ],
+      "actual": [
+        0.3,
+        5.779999999999999,
+        7.15
+      ]
+    },
+    {
+      "id": "rack/power-shelf-1",
+      "category": "power-shelf",
+      "home": [
+        0.3,
+        1.04,
+        0.15
+      ],
+      "axis": [
+        0,
+        0,
+        7
+      ],
+      "actual": [
+        0.3,
+        1.04,
+        7.15
+      ]
+    }
+  ],
+  "camera": {
+    "position": [
+      22.911466098025333,
+      17.111564409027352,
+      41.720324153520004
+    ],
+    "target": [
+      -1.0885339019746696,
+      7.111564409027355,
+      5.720324153520004
+    ],
+    "frustum": [
+      -14.726434748918038,
+      14.726434748918038,
+      9.817623165945358,
+      -9.817623165945358
+    ]
+  },
+  "details": [
+    {
+      "id": "compute-front",
+      "rect": [
+        32,
+        106,
+        320,
+        145
+      ],
+      "native_pixels": [
+        320,
+        145
+      ],
+      "same_geometry": true,
+      "stage": 1,
+      "instance": "rack/compute-4",
+      "visible_meshes": 40,
+      "part_count": 8,
+      "anchors": null
+    },
+    {
+      "id": "power-front",
+      "rect": [
+        32,
+        330,
+        320,
+        145
+      ],
+      "native_pixels": [
+        320,
+        145
+      ],
+      "same_geometry": true,
+      "stage": 1,
+      "instance": "rack/power-shelf-1",
+      "visible_meshes": 32,
+      "part_count": 6,
+      "anchors": null
+    },
+    {
+      "id": "rail-pair",
+      "rect": [
+        1184,
+        630,
+        320,
+        210
+      ],
+      "native_pixels": [
+        320,
+        210
+      ],
+      "same_geometry": true,
+      "stage": 0,
+      "instance": "rack/compute-4",
+      "visible_meshes": 4,
+      "part_count": null,
+      "anchors": {
+        "outer": [
+          1344.0000000000002,
+          739.0324221984885
+        ],
+        "inner": [
+          1363.7531903720312,
+          739.9419350253577
+        ],
+        "bracket": [
+          1206.333903417431,
+          682.2559176437686
+        ]
+      }
+    }
+  ],
+  "composition": "Independent native main and same-geometry native detail renders copied1:1; no resampling; detail insets repeat existing instances",
+  "anchors": {
+    "door": [
+      466.36892008738266,
+      682.2335955742126
+    ],
+    "side": [
+      546.3554871534366,
+      312.1946919201003
+    ],
+    "roof": [
+      980.7129209678302,
+      78.63059693357565
+    ],
+    "network": [
+      729.0372849914583,
+      375.27276219829855
+    ],
+    "compute": [
+      729.0372849914583,
+      622.2172513138553
+    ],
+    "power": [
+      729.0372849914583,
+      863.0643456364354
+    ],
+    "networkHome": [
+      932.9813348343804,
+      306.383926796879
+    ],
+    "computeHome": [
+      932.9813348343804,
+      553.3284159124357
+    ],
+    "powerHome": [
+      932.9813348343804,
+      794.1755102350158
+    ],
+    "frame": [
+      988.957467663608,
+      416.3259480800711
+    ],
+    "mount": [
+      870.0624258402875,
+      526.6067135184288
+    ],
+    "outer": [
+      881.7783606184978,
+      565.796806546792
+    ],
+    "inner": [
+      713.7053209607137,
+      623.8393146722434
+    ],
+    "feet": [
+      988.957467663608,
+      858.3870705708828
+    ],
+    "service": [
+      902.6066891130941,
+      367.7943335419553
+    ]
+  },
+  "sha256": "b1dc38d2bbf2672c380a1fc1aa739f235c6bd70ebb84d4dbb17eee2d54fe5da9"
+}
