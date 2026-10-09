@@ -3016,6 +3016,88 @@
       "status": "candidate",
       "stored_path": "originals/04/04e3af568142c327af50dd218fab0fd02ef46b59232d1859bdb6d992fa8d4a1c/TPU Inference Externalization Full Steam Ahead.pdf",
       "title": "TPU Inference Externalization Full Steam Ahead"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "coverage": {
+        "characters_read": 78857,
+        "characters_total": 78857,
+        "chunks_read": 39,
+        "chunks_total": 39,
+        "complete": true,
+        "pages_read": 39,
+        "pages_total": 39
+      },
+      "doc_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "library_path": "library/by-node/root/2026_未知_How Much Do GPU Clusters Really Cost___bcea0f5e5fb78dee.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:bytedance",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:fluidstack",
+        "actor:ibm",
+        "actor:lambda",
+        "actor:meta",
+        "actor:mgx",
+        "actor:mistral-ai",
+        "actor:nebius",
+        "actor:nscale",
+        "actor:nvidia-networking",
+        "actor:vast-data",
+        "actor:weka",
+        "chain:network/1",
+        "part:cpu",
+        "part:gpu",
+        "part:hbm",
+        "part:network-switch",
+        "part:nic",
+        "part:rack-system",
+        "part:server",
+        "part:storage-array",
+        "root",
+        "system:compute",
+        "system:control",
+        "system:it",
+        "system:memory",
+        "system:network",
+        "system:storage"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-economics",
+        "NODE-workload-storage-economics",
+        "NODE-workload-storage-profile",
+        "NODE-workload-training-economics",
+        "NODE-workload-training-profile",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-nic-alternatives",
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance",
+        "OBJ-server-performance",
+        "Q-SCOPE-part-gpu-device"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/bc/bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b/How Much Do GPU Clusters Really Cost_ (1).pdf",
+      "title": "How Much Do GPU Clusters Really Cost?"
     }
   ],
   "evidence": [
@@ -16415,6 +16497,92 @@
           }
         },
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "baeb3e7463b1019b22d8fef7b0dd9b143bd55ac15e9db03b014b4eabdcba4e8f",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:17:claim:1:ev:0",
+      "locator": "page:18/chunk:17",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "page_index": 17,
+      "question_ids": [
+        "OBJ-gpu-performance"
+      ],
+      "quote": "Overall, there are many fault tolerant frameworks to choose from, and as clusters scale\nin size it because necessary to contend with these reliability challenges, users can’t\nonly rely on their provider to handle every failure. A training codebase at 1k+ GPU\nscale really needs to be designed to work with the realities of the cluster it runs on.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:56:26+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为7。该项直接支持当前训练profile工作单中的可靠性需求，并为M13-Q09提供故障处理责任及代码适配的局部线索，但不回答故障率与checkpoint开销的数值问题。连续原文、周边容错讨论及封存全文摘要支持限定的作者主张；未识别A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M13-Q09",
+          "Q-NODE-workload-training-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 86.999,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "12619188091326c31c4bfbcdcec19ecaa4f34f181e2f287b45af81ea03a8e9c0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29387,
+            "output_tokens": 2919,
+            "reasoning_output_tokens": 326
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 39.784,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "768b4f629ed778ff2096812ff03be8479906cae9a7c909265acda80e606f8d34",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 27852,
+              "output_tokens": 682,
+              "reasoning_output_tokens": 425
+            }
+          }
+        },
+        "batch_id": "39d73a87f22d7f7f5b8aed7be4bd7195226c1f307f964ea1db7fe2d70397a997"
       }
     }
   ],
@@ -32233,6 +32401,107 @@
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
         "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
         "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:17:claim:1:ev:0"
+      ],
+      "id": "adoption:review:0d2cda1a3296d624ae54eecb",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M13-Q09",
+        "NODE-workload-training-profile"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "《How Much Do GPU Clusters Really Cost?》作者在第18页认为，随着训练集群规模扩大，用户需要处理可靠性挑战，不能仅依靠服务提供商处理每一次故障；1k+ GPU规模的训练代码需要针对实际运行集群的条件设计。此项记录来源作者对训练运行阶段容错要求的定性判断，不是当前独立认证的性能或可靠性结论；发表时间、地域及具体项目未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:56:26+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为7。该项直接支持当前训练profile工作单中的可靠性需求，并为M13-Q09提供故障处理责任及代码适配的局部线索，但不回答故障率与checkpoint开销的数值问题。连续原文、周边容错讨论及封存全文摘要支持限定的作者主张；未识别A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M13-Q09",
+          "Q-NODE-workload-training-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 86.999,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "12619188091326c31c4bfbcdcec19ecaa4f34f181e2f287b45af81ea03a8e9c0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29387,
+            "output_tokens": 2919,
+            "reasoning_output_tokens": 326
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 39.784,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "768b4f629ed778ff2096812ff03be8479906cae9a7c909265acda80e606f8d34",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 27852,
+              "output_tokens": 682,
+              "reasoning_output_tokens": 425
+            }
+          }
+        },
+        "batch_id": "39d73a87f22d7f7f5b8aed7be4bd7195226c1f307f964ea1db7fe2d70397a997"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:17:claim:1"
+      ],
+      "limitations": "未量化集群故障率、单个GPU失效率、checkpoint频率、保存恢复耗时或累计开销，也未给出1k+ GPU工况的实测样本。相邻文字中的8节点GKE测试主要针对计划迁移，不能作为该规模判断的实测验证。1k+ GPU是作者讨论的规模条件，不能据此确立普遍适用的容错门槛。",
+      "conflict_check": "现有采用记录中的checkpoint负载下降及毫秒级描述涉及特定运行现象，本项未提出时长或开销数值，不构成直接冲突；大规模训练联网与AllReduce停顿记录亦与本项相容。后训练选址记录未规定同规模容错实现，不能据此确立冲突。所供legacy匹配记录为空，不能视为完成外部反证搜索。未发现相同规范记录，不替换既有结论。",
+      "gap_dependency_check": "定性容错要求可由连续文字支持，不依赖图表。M13-Q09仍需有适用范围的故障统计、checkpoint实现及频率、端到端耗时和可复查开销推导；训练profile仍需设备、模型、拓扑及工况明确的可靠性样本和反证。两项问题均保持开放，不更新模型值或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "39d73a87f22d7f7f5b8aed7be4bd7195226c1f307f964ea1db7fe2d70397a997",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "47ac1503960ff55c92a7ee45906bedf65afbc7b1eb0d1f49917f05e3b5865ef7"
       }
     }
   ],
