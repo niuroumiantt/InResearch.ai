@@ -84,7 +84,8 @@ export function buildCampusAssembly({THREE,material,tag,label}){
  // Tag once after every instance is complete; every Mesh has one stable local instance.
  instances.forEach(i=>finish(i.object));
  const markSpecs=[['01','建筑围护与剖口','retained-roof-sections',[0,.15,-8.5]],['02','八柜示例','rack-r2-c2',[0,5,1.2]],['03','室内冷却×5','room-cooling-3',[0,4.9,0]],['04','CDU×3','CDU-2',[0,4.8,0]],['05','UPS一组4柜门','UPS-bank',[0,5.3,0]],['06','冷水机×3','air-chiller-2',[0,3.8,0]],['07','变压器×2','transformer-1',[0,5.1,0]],['08','备用发电×3','standby-generator-2',[0,4.7,0]],['09','储能×2','battery-cabinet-2',[0,4.2,0]]];
- if(label)for(const[num,text,id,pos]of markSpecs){const i=instances.find(i=>i.id==='campus/'+id),o=label(num,0,0,0,.8,null,null);if(o){o.position.set(...pos);i.object.add(o);decorations.push(o)}}
+ const markAnchors={'01':[0,.06,-8.5],'02':[.83,2.3,1.37],'03':[1.05,2.2,.70],'04':[0,2.6,.93],'05':[-.28,2.304,1.095],'06':[.05,1.8,1.675],'07':[0,3.50,0],'08':[0,1.0,1.45],'09':[.9,2.0,1.05]};
+ if(label)for(const[num,text,id,pos]of markSpecs){const i=instances.find(i=>i.id==='campus/'+id),o=label(num,0,0,0,.8,null,null);if(o){o.position.set(...pos);o.userData.atlasLabel.anchorPosition=markAnchors[num];o.userData.atlasLabel.anchorInstance=i.id;i.object.add(o);decorations.push(o)}}
  const clamp=t=>Math.max(0,Math.min(1,Number(t)||0)),ease=t=>t*t*(3-2*t);
  function explode(t){const k=clamp(t);for(const i of instances){const f=ease(clamp((k-i.range[0])/(i.range[1]-i.range[0])));i.object.position.copy(i.home).addScaledVector(i.axis,f)}root.updateMatrixWorld(true)}
  const instanceFor=o=>instances.find(i=>i.id===o?.userData?.campusInstance)||null;
