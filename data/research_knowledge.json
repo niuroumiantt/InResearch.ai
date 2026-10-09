@@ -25092,6 +25092,519 @@
         },
         "batch_id": "9d0448574d36129d8378eca7b7c7f0f80271f51893b98a786e20363641e42905"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "580090331b636c015c65dbc698b659a0859fa2d1f18bc00ecf3190172fdc1105",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:8:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [
+        "part:network-switch",
+        "part:nic"
+      ],
+      "page_index": 6,
+      "question_ids": [
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance"
+      ],
+      "quote": "In severe congestion, packets\ncan be trimmed, leaving only a tombstone header to explicitly inform the receiving NIC\nof the bad news – simply dropping a packet slows the corrective action.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续引文与相邻 UEC-CC、交换机 ECN 和接收端节奏控制语境充分，实质补充当前 NIC 接口及 NIC、交换机失效机制问题，可作 B 类局部采用。未发现敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces",
+          "Q-OBJ-nic-performance",
+          "Q-OBJ-network-switch-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "580090331b636c015c65dbc698b659a0859fa2d1f18bc00ecf3190172fdc1105",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:9:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [
+        "part:nic"
+      ],
+      "page_index": 6,
+      "question_ids": [
+        "OBJ-nic-definition",
+        "OBJ-nic-performance"
+      ],
+      "quote": "This mechanism is critical because the receiving FEP (one or more per NIC) is\nresponsible for pacing senders. With datacenter round trip times (RTTs) of only a few\nmicroseconds, senders have a very short window of data they can transmit without\nreceiving an ACK.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续原文明确 FEP 与 NIC 的关系、接收端职责和性能约束，与当前定义及性能工单有实质关系，符合 B 类局部采用条件。无所供 A 类触发条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-definition",
+          "Q-OBJ-nic-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "580090331b636c015c65dbc698b659a0859fa2d1f18bc00ecf3190172fdc1105",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:10:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [
+        "part:nic"
+      ],
+      "page_index": 6,
+      "question_ids": [
+        "OBJ-nic-performance"
+      ],
+      "quote": "The receiver decides how many new packets are granted, allowing\nsenders to be paused within microseconds, generally preventing losses.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续引文和接收端 FEP、RTT、ECN 的相邻上下文充分，直接补充当前端点接口及拥塞失效机制问题。采用为有归属的局部机制陈述，无敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces",
+          "Q-OBJ-nic-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9a1759343b2f161412f713d69ad74e904dc5f1d072339c716d2a908d5e17f6f7",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:7:claim:1:ev:0",
+      "locator": "page:8/chunk:7",
+      "object_ids": [
+        "part:nic",
+        "system:network"
+      ],
+      "page_index": 7,
+      "question_ids": [],
+      "quote": "It communicates its decisions to senders via ACKs and a special Credit CP command.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续引文及跨页前文补齐接收端指代和决策内容，实质补充当前 NIC 接口及网络系统输入输出问题，可作 B 类局部采用。控制系统问题不予关联，无 A 类条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces",
+          "Q-NODE-system-network-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9a1759343b2f161412f713d69ad74e904dc5f1d072339c716d2a908d5e17f6f7",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:7:claim:2:ev:0",
+      "locator": "page:8/chunk:7",
+      "object_ids": [
+        "system:network"
+      ],
+      "page_index": 7,
+      "question_ids": [],
+      "quote": "These decisions can also rebalance routes by adjusting specific “entropy capacities,” thereby altering the balance used for message spraying.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续引文与前后端点流控、entropy 路径选择语境充分，实质补充当前网络拓扑工单中的路径分配与容量平衡机制，可作 B 类局部采用。没有控制设施系统证据，未发现 A 类条件。",
+        "workorder_ids": [
+          "Q-NODE-system-network-topology"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9a1759343b2f161412f713d69ad74e904dc5f1d072339c716d2a908d5e17f6f7",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "id": "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:7:claim:3:ev:0",
+      "locator": "page:8/chunk:7",
+      "object_ids": [
+        "system:network"
+      ],
+      "page_index": 7,
+      "question_ids": [],
+      "quote": "UEC standardizes some level of reporting on (forward) error correction rates and packet drops, enabling detection of specific entropies using a weak link and rerouting traffic to avoid it.",
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "source_sha256": "995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续原文和相邻 entropy 路径选择、薄弱链路隔离及后文 FEC 遥测讨论提供充分语境，实质补充当前网络拓扑工单中的故障路径识别和绕行机制。限于作者主张的 B 类局部采用，无所供 A 类触发条件。",
+        "workorder_ids": [
+          "Q-NODE-system-network-topology"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      }
     }
   ],
   "statements": [
@@ -48322,6 +48835,618 @@
         "request_sha256": "f897b3feb2c14f19841e75c73d52fb4cf7f6814319a1f3142ea1453d32d6b0be"
       },
       "object_mapping_check": "原文对象是未指定技术的备用发电策略，选择电力系统下的发电与储能链作为一般发电范围。合同中part:backup-power明确指柴油发电机组，原句没有柴油证据，因此不沿用该标签；也不增加燃气机组或储能部件映射。此范围限制不取消其对柴油备用接口问题的局部关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:8:ev:0"
+      ],
+      "id": "adoption:review:002c8ef1f67b6eacf653a288",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:network-switch",
+        "part:nic"
+      ],
+      "question_ids": [
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance",
+        "OBJ-network-switch-performance"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者在 UEC-CC 拥塞控制讨论中称，严重拥塞时可裁剪数据包，仅留下 tombstone 报头，明确通知接收 NIC；作者认为直接丢包会减慢纠正动作。UEC-CC 和包裁剪均属于文中讨论的可选机制，此项不构成已部署功能或实测效果的独立验证；来源发表时间及具体地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续引文与相邻 UEC-CC、交换机 ECN 和接收端节奏控制语境充分，实质补充当前 NIC 接口及 NIC、交换机失效机制问题，可作 B 类局部采用。未发现敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces",
+          "Q-OBJ-nic-performance",
+          "Q-OBJ-network-switch-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:8"
+      ],
+      "limitations": "没有具体交换机或 NIC 型号、规范修订版、拥塞阈值、报头字段、测试方法或纠正时间比较。不能将裁剪描述为所有 UEC 网络的必备功能，也不能据此认证丢包率或恢复速度。",
+      "conflict_check": "所供已采用记录中的 UEC 多层交换设计范围、交换机端口配置、CPO 功耗及耦合环境与本项机制没有同口径冲突或重复。相关 legacy 筛选记录为空；核查限于所供材料，不修改既有结论。",
+      "gap_dependency_check": "为 NIC 接口提供拥塞通知机制，为 NIC 和交换机性能问题提供严重拥塞下的处理路径。尚缺接口规范、测试工况、可靠性测量和反证，三个问题均保持开放；采用不依赖未提供的图示细节。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "58d2d0ef3a733c9edd8149d0278048fd652fd923813a6a0f7bf953672b4f032b"
+      },
+      "object_mapping_check": "原文处于交换机拥塞通知与接收 NIC 反馈处理的连续网络语境，实际范围对应 chain:network/1 下的交换机和 NIC/DPU。此为网络协议机制，不映射到以 DCIM/BMS 与固件为范围的 system:control，也不扩展到设施网络接入权。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:9:ev:0"
+      ],
+      "id": "adoption:review:e2a30859fc6b381545f6e61f",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:nic"
+      ],
+      "question_ids": [
+        "OBJ-nic-definition",
+        "OBJ-nic-performance"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者在可选 UEC-CC 机制的讨论中称，接收端 FEP 负责控制发送端节奏，每个 NIC 有一个或多个 FEP；作者以数据中心往返时延（RTT）仅数微秒，说明发送端在收到 ACK 前可发送数据的窗口很短。这是来源对协议职责和时延约束的描述，未获独立实测验证；来源发表时间及具体地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续原文明确 FEP 与 NIC 的关系、接收端职责和性能约束，与当前定义及性能工单有实质关系，符合 B 类局部采用条件。无所供 A 类触发条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-definition",
+          "Q-OBJ-nic-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:9"
+      ],
+      "limitations": "FEP 数量不能直接解释为物理端口数、独立芯片数或所有 NIC 产品的硬件配置。数微秒 RTT 没有样本、拓扑、距离、负载及测量方法，也没有发送窗口的字节数或计算公式。",
+      "conflict_check": "已采用 BlueField 组成、功能及产品沿革记录针对 DPU 产品描述，不反驳 UEC 接收端 FEP 的协议职责，也不能验证该 RTT。GB200、Rubin NIC 布局记录属于不同层次。所供 legacy 筛选为空，未发现重复或真实冲突。",
+      "gap_dependency_check": "定义问题获得 FEP 配置关系及职责的局部线索，性能问题获得 ACK 反馈窗口与 RTT 的约束关系。完整组成、排除边界、具体产品配置、时延测试及失效条件仍缺失，不关闭问题或更新性能采用值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "58d2d0ef3a733c9edd8149d0278048fd652fd923813a6a0f7bf953672b4f032b"
+      },
+      "object_mapping_check": "主张明确讨论 NIC 内的 FEP 及其接收端协议职责，对应 chain:network/1 下的 NIC/DPU。没有独立 CPU、交换机或 DCIM/BMS 的组成主张，不因节奏控制一词添加 system:control。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:10:ev:0"
+      ],
+      "id": "adoption:review:5542fb0f814df88fe09b0e87",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:nic"
+      ],
+      "question_ids": [
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者在可选 UEC-CC 机制的讨论中称，接收端决定授予多少新数据包的发送额度，使发送端可在数微秒内暂停，通常可避免丢包。此项保留作者关于端点流控机制及预期效果的主张，不代表已验证的性能保证；来源发表时间及具体地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续引文和接收端 FEP、RTT、ECN 的相邻上下文充分，直接补充当前端点接口及拥塞失效机制问题。采用为有归属的局部机制陈述，无敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces",
+          "Q-OBJ-nic-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:6:claim:10"
+      ],
+      "limitations": "未提供具体 NIC 型号、额度单位与编码、控制算法、暂停时延测量、拥塞负载或丢包样本。“通常”不能改为零丢包或所有工况保证，数微秒也不是可核验的延迟上限。",
+      "conflict_check": "现有 BlueField 功能及参考架构记录没有相反的 UEC 流控结论，交换机标称配置及 CPO 模型也不构成本项的反证或重复。来源后文弃用旧流控方式并不否定此处 UEC-CC 接收端额度机制。相关 legacy 筛选记录为空。",
+      "gap_dependency_check": "接口问题获得接收端向发送端授予额度的关系，性能问题获得拥塞时暂停及损失控制的机制线索。仍需协议字段、算法条件、实测分布及失效反例，两项问题保持开放，不将作者效果判断写入已验证性能参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "58d2d0ef3a733c9edd8149d0278048fd652fd923813a6a0f7bf953672b4f032b"
+      },
+      "object_mapping_check": "相邻原文明确发送与接收端由 NIC/FEP 承担，主张范围是 NIC 端点之间的包额度和发送节奏，映射到 part:nic。协议流控不等同于 DCIM/BMS，不能继承 system:control 标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:7:claim:1:ev:0"
+      ],
+      "id": "adoption:review:5b3be21a851662ebcb35393f",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:nic",
+        "system:network"
+      ],
+      "question_ids": [
+        "OBJ-nic-interfaces",
+        "NODE-system-network-boundary"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者在可选 UEC-CC 机制的讨论中称，接收端将其流控决策通过 ACK 和专用 Credit CP 命令传达给发送端。这是来源对网络端点控制信息输出的描述，未获当前独立协议或部署验证；来源发表时间及具体地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续引文及跨页前文补齐接收端指代和决策内容，实质补充当前 NIC 接口及网络系统输入输出问题，可作 B 类局部采用。控制系统问题不予关联，无 A 类条件。",
+        "workorder_ids": [
+          "Q-OBJ-nic-interfaces",
+          "Q-NODE-system-network-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:7:claim:1"
+      ],
+      "limitations": "未提供 ACK 或 Credit CP 的字段、编码、时序、规范修订版及互操作测试。该输出路径不能单独确定整个数据中心网络的系统边界或测量边界，也不证明具体产品已实现命令。",
+      "conflict_check": "所供现有采用陈述没有关于该命令的同口径主张或 canonical 重复。来源后文弃用 Credit Based Flow Control，不能仅凭名称相似将其与 Credit CP 命令认定为同一机制或真实冲突。相关 legacy 筛选记录为空，不替换现有结论。",
+      "gap_dependency_check": "局部追溯接收 NIC/FEP 的控制输出与发送端输入，支持 NIC 接口和网络系统边界问题。仍缺一手规范核验、完整设备边界、字段及时序定义及反证，两项问题保持开放。没有 DCIM/BMS 或设施控制系统证据，不保留 NODE-system-control-boundary。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "58d2d0ef3a733c9edd8149d0278048fd652fd923813a6a0f7bf953672b4f032b"
+      },
+      "object_mapping_check": "跨页上下文明确这是 NIC/FEP 端点间的网络流控通信，可映射 part:nic 及其所属 IT 网络系统 system:network。system:control 的链范围是 DCIM/BMS 与固件；本项没有该范围的实现或管理主张，因此不继承 Reader 的控制系统映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:7:claim:2:ev:0"
+      ],
+      "id": "adoption:review:f08a6ed4b71b9b47d5fdeb34",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:network"
+      ],
+      "question_ids": [
+        "NODE-system-network-topology"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者称，其讨论的 UEC-CC 流控决策还可通过调整特定的 entropy capacities，改变消息喷洒的分配平衡，从而重新平衡路由。这是作者对网络路径分配机制的描述，不证明实际拓扑或重平衡效果已获验证；来源发表时间及具体地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续引文与前后端点流控、entropy 路径选择语境充分，实质补充当前网络拓扑工单中的路径分配与容量平衡机制，可作 B 类局部采用。没有控制设施系统证据，未发现 A 类条件。",
+        "workorder_ids": [
+          "Q-NODE-system-network-topology"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:7:claim:2"
+      ],
+      "limitations": "未定义 entropy capacities 的单位、调整算法、触发阈值或容量约束，没有实际网络图纸、路径负载、重平衡时间及故障测试。这里的 entropy 属于协议路径选择标识，不能解释为物理链路数量或信息论熵。",
+      "conflict_check": "已采用 UEC 多层交换设计范围与本项路由分配机制互补；CPO 网络层级简化预测针对不同配置，不构成冲突或重复。其余 NIC 布局和交换机端口记录不提供同口径反证。相关 legacy 筛选为空，核查限于所供材料。",
+      "gap_dependency_check": "仅为 NODE-system-network-topology 提供路由负载重新分配的机制线索。实际拓扑、冗余、瓶颈、调整效果及故障传播仍需规范、图纸或实测补证，问题保持开放。该机制不回答 DCIM/BMS 控制系统拓扑，不保留 NODE-system-control-topology。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "58d2d0ef3a733c9edd8149d0278048fd652fd923813a6a0f7bf953672b4f032b"
+      },
+      "object_mapping_check": "主张直接涉及 IT 网络内跨路径的消息分配与路由平衡，对应 system:network 的网络链范围。没有独立设备规格或 DCIM/BMS、固件实现证据，故仅映射网络系统，不继承 system:control，也不添加 GPU 或其他基础设施对象。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-995a1d6b456ce676b6d92f8e4a4e03dfb07ce8a5160d30881e50583b5284ce1a",
+      "evidence_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:7:claim:3:ev:0"
+      ],
+      "id": "adoption:review:521559747a04f1cb4c7756e9",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:network"
+      ],
+      "question_ids": [
+        "NODE-system-network-topology"
+      ],
+      "reading_revision_id": "rev-b879a71e8d3a42b1b78ebede58811cbb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The New AI Networks | Ultra Ethernet UEC | UALink vs Broadcom Scale Up Ethernet SUE》作者称，UEC 标准化了一定程度的前向纠错率和丢包报告，以便识别使用薄弱链路的特定 entropy，并通过重路由避开该链路。此项保留作者关于规范机制的描述，不构成规范条款或实际故障绕行效果的独立认证；来源发表时间及具体地域未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:57:44+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原重要性及评分均为6。连续原文和相邻 entropy 路径选择、薄弱链路隔离及后文 FEC 遥测讨论提供充分语境，实质补充当前网络拓扑工单中的故障路径识别和绕行机制。限于作者主张的 B 类局部采用，无所供 A 类触发条件。",
+        "workorder_ids": [
+          "Q-NODE-system-network-topology"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 187.792,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7c5f21ae70d63e51e312a48b7b84073dd90078d9e36bfcaa5dc9f7c4c222a6ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68247,
+            "output_tokens": 5054,
+            "reasoning_output_tokens": 672
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.155,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7e0ff3b3b731729384a8b6851b5938c024cab9120e373519e87947ff2c5956c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65630,
+              "output_tokens": 451,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
+      },
+      "source_candidate_ids": [
+        "rev-b879a71e8d3a42b1b78ebede58811cbb:chunk:7:claim:3"
+      ],
+      "limitations": "未提供规范版本、正式条款、报告单位、采样周期、弱链路判定阈值、故障类型或重路由算法。不能据此认定所有设备均支持该机制，也不能推导故障定位精度、修复时间、冗余容量或实际可靠性。",
+      "conflict_check": "已采用 CPO 耦合环境约束针对物理集成，本项针对协议层遥测与绕行，二者可并存；UEC 设计范围、端口配置及 NIC 组成记录也没有同口径反证或重复。相关 legacy 筛选记录为空，未发现真实冲突，不覆盖已有结论。",
+      "gap_dependency_check": "网络拓扑问题获得薄弱链路识别及流量绕行的局部机制。仍缺一手规范、实际路径图、故障注入测试、剩余容量及反证，问题保持开放。网络协议遥测不建立 DCIM/BMS 控制系统的边界或拓扑，不保留两个控制系统问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1",
+        "source_report_sha256": "a9abdb48f8b3a2c65cba652db741d0f9c12eb92317b2388f52656ccfbe8413ba",
+        "request_sha256": "58d2d0ef3a733c9edd8149d0278048fd652fd923813a6a0f7bf953672b4f032b"
+      },
+      "object_mapping_check": "原文实际范围是数据中心 IT 网络链路遥测、路径标识和重路由，对应 system:network。报告与检测行为本身不足以建立 system:control 所限定的 DCIM/BMS 或固件对象范围；也没有具体 NIC、交换机或光模块的独立规格主张，不额外添加部件映射。"
     }
   ],
   "answers": [],
