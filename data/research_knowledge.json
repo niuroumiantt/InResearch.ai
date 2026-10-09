@@ -3451,6 +3451,61 @@
       "status": "candidate",
       "stored_path": "originals/3a/3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb/lbnl-full.pdf",
       "title": "2024 United States Data Center Energy Usage Report"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "coverage": {
+        "characters_read": 7554,
+        "characters_total": 7554,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "library_path": "library/by-node/root/2025_DCD_Stack secures AU$1.3bn green financing in Australia to__26af30c3bf58c80b.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:blue-owl",
+        "actor:stack-infrastructure",
+        "root",
+        "system:facility"
+      ],
+      "question_ids": [
+        "NODE-demand-D1-boundary"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "report_sha256": "27a1035eac6e2bd94e6648e5bd43576a16bb9b1b91213e84c989bf9f37b3d192",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+        "url": "https://www.datacenterdynamics.com/en/news/stack-secures-au13bn-green-financing-in-australia-to-fund-melbourne-campus/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/stack-secures-au13bn-green-financing-in-australia-to-fund-melbourne-campus/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/26/26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6/dcd-26af30c3bf58c80b-Stack secures AU-1.3bn green financing in Australia to fund Melbo.html",
+      "title": "Stack secures AU$1.3bn green financing in Australia to fund Melbourne campus"
     }
   ],
   "evidence": [
@@ -23568,6 +23623,265 @@
           }
         },
         "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b8b3829b8b03d9d4140c299e7106762dc42987838797236c80f74f39d090050d",
+      "document_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "id": "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:stack-infrastructure"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Stack entered the Australian market  [link: entered the Australian market — https://www.datacenterdynamics.com/en/news/stack-moves-into-australia-plans-facilities-in-melbourne-perth-and-canberra/] in 2022 after taking over three development projects owned by local developer Hickory and launching its debut Aussie campus in Melbourne in 2023",
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "source_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:08:33+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。市场进入和首个园区推出的具体年份实质匹配当前M02-Q02的玩家扩张节奏工单，可作为历史时间线的部分贡献。连续引文及完整原生页面提供充分语境，未识别敏感、真实冲突、拟替换或其他A条件，符合B类限定归因采用条件。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 101.515,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "da3a68dcbe62304a06206935baf7749c1e796d5da155d437cb5f34626ab1aea0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3584,
+            "input_tokens": 71371,
+            "output_tokens": 3097,
+            "reasoning_output_tokens": 337
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.674,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "32815dc98d32a4bfe8bcf6a539511cd5a310422b491692551cfac482d419c03c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70774,
+              "output_tokens": 458,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "c23ee5886bbe74d5a20b9ca73ce44414a8b574267265887eb904e63e73422384"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b8b3829b8b03d9d4140c299e7106762dc42987838797236c80f74f39d090050d",
+      "document_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "id": "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:stack-infrastructure",
+        "system:facility",
+        "chain:facility/1"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Set on nine acres, MEL01 is set to offer 72MW and 409,000 sq ft (38,000 sqm) across two three-story buildings at full build-out.",
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "source_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:08:33+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。单个供给方园区的完整开发目标实质关联当前M02-Q01和M02-Q05；占地、建筑数量、层数及合计面积也为两个空间边界工单提供有限的节点描述。连续引文和完整上下文充分，未发现A类条件，可按B类作为明确归因的开发预期采用。",
+        "workorder_ids": [
+          "Q-M02-Q01",
+          "Q-M02-Q05",
+          "Q-NODE-space-site-boundary",
+          "Q-NODE-space-building-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 101.515,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "da3a68dcbe62304a06206935baf7749c1e796d5da155d437cb5f34626ab1aea0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3584,
+            "input_tokens": 71371,
+            "output_tokens": 3097,
+            "reasoning_output_tokens": 337
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.674,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "32815dc98d32a4bfe8bcf6a539511cd5a310422b491692551cfac482d419c03c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70774,
+              "output_tokens": 458,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "c23ee5886bbe74d5a20b9ca73ce44414a8b574267265887eb904e63e73422384"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b8b3829b8b03d9d4140c299e7106762dc42987838797236c80f74f39d090050d",
+      "document_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "id": "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:stack-infrastructure",
+        "system:facility",
+        "chain:facility/1"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "A second campus nearby, MEL02, is to provide 252MW across one 227,000 sq ft (21,000 sqm) building.",
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "source_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:08:33+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。252MW计划是当前M02-Q01供给方管线和M02-Q05单项目规模工单的实质项目线索；园区与单栋建筑的关系及面积为两个空间边界问题贡献有限描述。连续引文及完整上下文充分，所供材料未显示真实冲突、敏感或拟替换条件，符合B类限定归因采用条件。",
+        "workorder_ids": [
+          "Q-M02-Q01",
+          "Q-M02-Q05",
+          "Q-NODE-space-site-boundary",
+          "Q-NODE-space-building-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 101.515,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "da3a68dcbe62304a06206935baf7749c1e796d5da155d437cb5f34626ab1aea0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3584,
+            "input_tokens": 71371,
+            "output_tokens": 3097,
+            "reasoning_output_tokens": 337
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.674,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "32815dc98d32a4bfe8bcf6a539511cd5a310422b491692551cfac482d419c03c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70774,
+              "output_tokens": 458,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "c23ee5886bbe74d5a20b9ca73ce44414a8b574267265887eb904e63e73422384"
       }
     }
   ],
@@ -45191,6 +45505,322 @@
         "request_sha256": "05786205bbcfee48f1c2b9ec3ea680a43333137cd509c807aac0809be36067cb"
       },
       "object_mapping_check": "审定陈述的范围是美国数据中心能耗研究的设备层面汇总方法，而非某座AI数据中心或具体硬件、冷却、电力系统。相邻文本列举的设备及设施效率不能自动成为本项全部证据的对象范围；研究模型也不属于DCIM/BMS，故保留空映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "evidence_ids": [
+        "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:05104edf615c955820c3e343",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:stack-infrastructure"
+      ],
+      "question_ids": [
+        "M02-Q02"
+      ],
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "status": "adopted",
+      "text": "据DCD作者Dan Swinhoe于2025年7月24日发表的报道，STACK在2022年接手本地开发商Hickory拥有的三个开发项目后进入澳大利亚市场，并于2023年在墨尔本推出其首个澳大利亚园区。这是来源报道的市场进入与园区推出时间线，未经本次独立验证；园区推出不表示全部项目或完整开发容量已经投运。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:08:33+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。市场进入和首个园区推出的具体年份实质匹配当前M02-Q02的玩家扩张节奏工单，可作为历史时间线的部分贡献。连续引文及完整原生页面提供充分语境，未识别敏感、真实冲突、拟替换或其他A条件，符合B类限定归因采用条件。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 101.515,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "da3a68dcbe62304a06206935baf7749c1e796d5da155d437cb5f34626ab1aea0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3584,
+            "input_tokens": 71371,
+            "output_tokens": 3097,
+            "reasoning_output_tokens": 337
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.674,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "32815dc98d32a4bfe8bcf6a539511cd5a310422b491692551cfac482d419c03c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70774,
+              "output_tokens": 458,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "c23ee5886bbe74d5a20b9ca73ce44414a8b574267265887eb904e63e73422384"
+      },
+      "source_candidate_ids": [
+        "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:6"
+      ],
+      "limitations": "报道未列明三个项目的完整身份、接手条件、各项目容量及分期投运情况，也未提供一手交易或交付文件。两个年份不能推导年度新增容量、扩张速度或资金约束，更不能代表截至当前的项目状态。",
+      "conflict_check": "已采用的信用关联、Neocloud信用脆弱性、甲骨文扩张预测及Alphabet支出展望涉及其他命题，不构成同项重复或冲突。旧STACK美国项目、柔佛计划和日本既有机房位于其他地区；AWS澳大利亚集群属于其他主体。所供合同匹配为空，未发现可指认的同命题规范记录。检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "仅补充M02-Q02的澳大利亚历史扩张节点，仍需一手交易公告、项目身份、分期交付、实际容量和融资约束证据，问题保持开放。M05-Q01要求区域投运、在建及规划容量分布，本项没有容量和阶段拆分，仅属地理背景，故不挂接该问题。不更新模型参数、项目成熟度或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c23ee5886bbe74d5a20b9ca73ce44414a8b574267265887eb904e63e73422384",
+        "source_report_sha256": "27a1035eac6e2bd94e6648e5bd43576a16bb9b1b91213e84c989bf9f37b3d192",
+        "request_sha256": "eba251adfb01fa728de365be98962e420b65652ff4c72b1bf8373acdca1d6b2b"
+      },
+      "object_mapping_check": "独立核对后，命题直接描述允许actor对象STACK的市场进入和项目接手活动，映射actor:stack-infrastructure。未提供设施自身的空间、工程或系统属性，故不继承Reader的system:facility标签。Hickory不在允许对象表内；也不因数据中心行业背景映射名为一座AI数据中心的root。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "evidence_ids": [
+        "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:a4c1f2431cd1e76bf9974cff",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:stack-infrastructure",
+        "system:facility",
+        "chain:facility/1"
+      ],
+      "question_ids": [
+        "M02-Q01",
+        "M02-Q05",
+        "NODE-space-site-boundary",
+        "NODE-space-building-boundary"
+      ],
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "status": "adopted",
+      "text": "据DCD作者Dan Swinhoe于2025年7月24日发表的报道，STACK位于澳大利亚维多利亚州西墨尔本的MEL01园区占地九英亩，完整开发后预计提供72MW，并在两栋三层建筑中提供合计409,000平方英尺（38,000平方米）的面积。容量及建筑面积属于来源所述完整开发目标，未经本次独立验证，不表示已经全部建成或投运。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:08:33+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。单个供给方园区的完整开发目标实质关联当前M02-Q01和M02-Q05；占地、建筑数量、层数及合计面积也为两个空间边界工单提供有限的节点描述。连续引文和完整上下文充分，未发现A类条件，可按B类作为明确归因的开发预期采用。",
+        "workorder_ids": [
+          "Q-M02-Q01",
+          "Q-M02-Q05",
+          "Q-NODE-space-site-boundary",
+          "Q-NODE-space-building-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 101.515,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "da3a68dcbe62304a06206935baf7749c1e796d5da155d437cb5f34626ab1aea0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3584,
+            "input_tokens": 71371,
+            "output_tokens": 3097,
+            "reasoning_output_tokens": 337
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.674,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "32815dc98d32a4bfe8bcf6a539511cd5a310422b491692551cfac482d419c03c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70774,
+              "output_tokens": 458,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "c23ee5886bbe74d5a20b9ca73ce44414a8b574267265887eb904e63e73422384"
+      },
+      "source_candidate_ids": [
+        "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:7"
+      ],
+      "limitations": "72MW未注明IT负载或设施总功率口径，不能直接计入已投运IT容量。报道未拆分已建、在建和尚待开发部分，面积也未说明总建筑面积、净面积或机房面积口径。未提供场址图纸、各栋面积、功能分区、配置版本、许可或验收记录。",
+      "conflict_check": "所供已采用陈述没有MEL01同口径容量或建筑尺寸结论。旧STACK美国项目和柔佛计划是其他场址；APAC区域汇总具有不同覆盖范围、时点及阶段口径，不能作为本项目数值的验证或反证。墨尔本地价和用水记录涉及其他指标。未发现实质冲突或可识别的规范重复；不覆盖任何既有容量结论，检查不穷尽外部反证。",
+      "gap_dependency_check": "M02-Q01仅获单项目完整开发目标，仍缺三类供给方完整清单、阶段拆分和集中度分母；现有已投运部分可能包含在72MW内，不能把72MW全额列为未投运管线。M02-Q05仅获一个规模样本，不能证明分布随时间变化。两个空间问题仅获园区与建筑层级及尺寸描述，仍需一手图纸、配置版本、功能分区和边界反证。四项问题保持开放，不汇总GW、不更新项目阶段或骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c23ee5886bbe74d5a20b9ca73ce44414a8b574267265887eb904e63e73422384",
+        "source_report_sha256": "27a1035eac6e2bd94e6648e5bd43576a16bb9b1b91213e84c989bf9f37b3d192",
+        "request_sha256": "eba251adfb01fa728de365be98962e420b65652ff4c72b1bf8373acdca1d6b2b"
+      },
+      "object_mapping_check": "STACK是允许actor对象；园区占地、建筑数量、层数和面积直接落在设施system及其土地与建筑chain的范围内，故映射actor:stack-infrastructure、system:facility和chain:facility/1。未披露具体土建构件或工程配置，不下钻part:shell；占地不证明地价、租金或区划，不映射site:land。MW目标也不证明电力接入或IT设备配置，不增加电力、并网、计算或AI根对象映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "evidence_ids": [
+        "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:8:ev:0"
+      ],
+      "id": "adoption:review:f939d3ecb93ae7db5a573a00",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:stack-infrastructure",
+        "system:facility",
+        "chain:facility/1"
+      ],
+      "question_ids": [
+        "M02-Q01",
+        "M02-Q05",
+        "NODE-space-site-boundary",
+        "NODE-space-building-boundary"
+      ],
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "status": "adopted",
+      "text": "据DCD作者Dan Swinhoe于2025年7月24日发表的报道，STACK在澳大利亚墨尔本MEL01附近的第二个园区MEL02计划提供252MW，涉及一栋227,000平方英尺（21,000平方米）的建筑。这是来源报道的开发预期，未经本次独立验证，不表示该容量或建筑已经建成、投运。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:08:33+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。252MW计划是当前M02-Q01供给方管线和M02-Q05单项目规模工单的实质项目线索；园区与单栋建筑的关系及面积为两个空间边界问题贡献有限描述。连续引文及完整上下文充分，所供材料未显示真实冲突、敏感或拟替换条件，符合B类限定归因采用条件。",
+        "workorder_ids": [
+          "Q-M02-Q01",
+          "Q-M02-Q05",
+          "Q-NODE-space-site-boundary",
+          "Q-NODE-space-building-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 101.515,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "da3a68dcbe62304a06206935baf7749c1e796d5da155d437cb5f34626ab1aea0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 3584,
+            "input_tokens": 71371,
+            "output_tokens": 3097,
+            "reasoning_output_tokens": 337
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.674,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "32815dc98d32a4bfe8bcf6a539511cd5a310422b491692551cfac482d419c03c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70774,
+              "output_tokens": 458,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "c23ee5886bbe74d5a20b9ca73ce44414a8b574267265887eb904e63e73422384"
+      },
+      "source_candidate_ids": [
+        "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:8"
+      ],
+      "limitations": "原文未说明252MW是IT负载还是设施总功率，也未说明其与所述单栋建筑面积的详细对应口径。没有给出占地、层数、分期、开工状态、投运时间或已运营容量；未提供一手公告、图纸、配置版本及许可验收文件。不能自行修正容量、推导功率密度或指定成熟度等级。",
+      "conflict_check": "已采用陈述及所供旧记录没有MEL02同场址、同容量口径的相反结论或规范重复。STACK其他国家项目、AWS澳大利亚集群及APAC区域汇总不能验证或否定本项。容量与面积的工程对应尚未确立，这属于核验缺口，仅凭组合数值不能判定真实冲突或擅改原文。检查限于所供材料，不替换现有结论。",
+      "gap_dependency_check": "M02-Q01仅获单项目计划线索，仍需一手开发文件、阶段状态、既有容量及完整管线分母才能统计三类供给方和集中度。M02-Q05仅获百MW级项目样本，缺少可比时间序列，不能证明向GW级园区变化。两个空间问题仅获园区包含单栋建筑及面积描述，仍需场址和建筑图纸、容量覆盖边界、功能分区及配置版本。四项问题保持开放，不把计划计为投运容量，不与MEL01相加形成GW结论，不更新骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c23ee5886bbe74d5a20b9ca73ce44414a8b574267265887eb904e63e73422384",
+        "source_report_sha256": "27a1035eac6e2bd94e6648e5bd43576a16bb9b1b91213e84c989bf9f37b3d192",
+        "request_sha256": "eba251adfb01fa728de365be98962e420b65652ff4c72b1bf8373acdca1d6b2b"
+      },
+      "object_mapping_check": "独立核对命题后，STACK对应允许actor对象，MEL02园区、单栋建筑及其面积直接属于设施system下的土地与建筑chain。选取actor:stack-infrastructure、system:facility和chain:facility/1，不继承文档中的Blue Owl或root标签。容量预期没有证明电网接入、供配电设备、计算设备或AI负载，故不增加这些对象；未提供具体土建构件和土地权益条件，也不映射part:shell或site:land。"
     }
   ],
   "answers": [],
