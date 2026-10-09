@@ -486,7 +486,10 @@ class Reader:
             # Every fourth dispatch serves the oldest eligible job, independently of new priorities.
             order = "j.created,j.doc_id,j.chunk,j.job_id" if n % 4 == 0 else "d.priority DESC,j.created,j.doc_id,j.chunk,j.job_id"
             # The oldest-first turn also respects the floor: held documents wait, they do not starve the rest.
-            base = "SELECT j.* FROM jobs j JOIN reading_runs d ON d.revision_id=j.revision_id JOIN documents original ON original.doc_id=d.doc_id WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed','superseded','rejected') AND d.priority>=?"
+            # Match the composite job foreign key explicitly. With a large scope,
+            # revision-only joins can probe every scoped doc for every pending job
+            # while holding the writer lock. Both keys make each lookup bounded.
+            base = "SELECT j.* FROM jobs j JOIN reading_runs d ON d.doc_id=j.doc_id AND d.revision_id=j.revision_id JOIN documents original ON original.doc_id=d.doc_id WHERE j.state='pending' AND j.available<=? AND d.state NOT IN ('blocked','failed','superseded','rejected') AND d.priority>=?"
             params = (self.clock(), self.claim_min_priority)
             if self.document_scope:
                 base += " AND original.doc_id IN (SELECT value FROM json_each(?))"

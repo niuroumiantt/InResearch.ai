@@ -1,6 +1,44 @@
-# 当前决策摘要与变更记录
+# 决策记录
+
+## 2026-10-09：TA12正交平面真实发布
+
+TA12修后实际发布：PR473首发edaf后新CI检出手机nav三行并由PR474修正，成功版本1e185b4e/.28，AWS07:04:32Z同源码/应用/精确890c7eda镜像healthy。真实公网四视图/15文字12引线/原PNG SHA/完整SVG93204B与PNG66785B双下载、360px两行85.734px、七源码SHA/health200及原TA11独立装配/真实拾取当前SVG/镜头/手机明暗/资源释放/旧入口全通过并逐张目检。sourceCI真实失败与fixCI预算未启动不称通过；本地完整验收和现有自主发布授权分别保留。主计划12/35、补充4/4，下一TA13；保留PR467分场景deadline及PR463/466研究/恢复与PR470来源实现，Spark仅只读版本和两服务，不改数据/范围。
+
+## 2026-10-09：TA12手机顶栏修正与真实CI失败记录
+
+TA12新source CI实际core_b失败定位360px共享顶栏第三行：本页nav作用域过宽。收窄为main>nav、补实际360px≤90px断言；完整32页ui_skin与正交server_plan本地通过。保留失败日志/首发AWS与公网观察，源PNG/标注/几何不改；原生重渲染采用跨平台像素差验证并保留精确投影/17原位置/遮挡/资产SHA，未把编码变化当技术错误。待修后公网验收，published仍11/35。
+
+## 2026-10-09：TA-12正交平面本地验收
+
+TA-12正交平面完成本地验收：独立原生1536×1024 OrthographicCamera严格下视，同TA11程序几何的17安装位置不动、白浅灰填充，15可编辑文字/12引线和轻量自含预览；GPU示例顶罩差异、上层4盘可见/下层4盘遮挡、风扇框架与I/O背壳直接说明。独立/server-plan.html的四手机明暗、完整双下载和原PNG重渲染SHA/下视矩形/真实遮挡通过；TA11默认图、其它部件与装配/拾取/当前SVG/镜头/释放回归保留。仅accepted，主计划published11/35、补充4/4；保留.25研究恢复及.26 preferred-source新实现，Spark不动，公网/CI另验。 本张共用核对后几何但不以数量或投影机检替代视觉；原始参考不授予厂商规格事实，计划画法1.7保持。
+
+## 2026-10-09：显式来源偏好与有限公平审核调度
+
+用户要求已接收研究材料继续反哺；原23来源的121批虽已入队，work.scope只限制发现，不能使已有批次优先。新增可选preferred-sources私有文件，仅影响原单worker领取排序：注册身份严格校验、实际字节SHA审计、当前完整封存版本才取得偏好，三次偏好后一次原队列机会。租约/公平预算同事务，重启和文件更新不能取消公平；未配置维持原排序。原文、重要度、角色/C3/抽样、available/尝试、ready12背压及其他队列保持。源码验收、实际部署和23源正式采用分别留证，不由本条声称生产完成。
+
+## 2026-10-09：旧研究首包实际发布及专题反哺边界
+
+PR453实际merge d054f542，最终审核树b1c63a2f与merge无差异；旧CI part_dossier 300秒失败保留，完整本地1970单元/29浏览器suites与隔离容器等验收通过，按本会话明确授权不等CI合并。原publisher14:22恢复新PID25958、精确源码和真实status，先Spark安全来源同步，再公网五条支持闭包与published5/background1。该Oracle包不属于原23来源；13:35专题23逐SHA封存13/资料566/正式支持C3为0，排队707条不计完成。14:29其余旧包上下文变化分别走现行复验，不批量放行、闭题或改价格/GW/模型。现行运行指南补充已授权实例与实际恢复证据，保留TA11 .24和11/35。见[恢复交接](handoff/research-flow-recovery-20261009.md)。
+
+## 2026-10-09：TA-11服务器整机实际发布
+
+TA-11已实际发布：PR464首发31dcd368，AWS06:09:38Z同源码/应用/精确镜像64bb2649 healthy/.23；真实公网六源码SHA、八视图逐张目检、12标签原PNG SHA、完整SVG/PNG下载和独立x55整机装配/顶部完整1129 inspector、实际子部件点选/当前SVG、手动镜头/手机明暗/资源释放/旧机柜入口通过。主计划11/35、补充4/4，下一TA-12。三次原图拒绝及漏子类别/底视问题和本地accepted保留为历史，示例计数/未知边界保持；新CI实际时点状态与用户自主合并授权分开，Spark只读较旧源码/两服务，未改服务/范围。保留PR453最新五条研究及.22来源/长文/scope/CI，画法1.7不变。
+
+## 2026-10-09：TA-11服务器整机本地验收（历史阶段）
+
+TA-11整机本地验收：R2真实输入，三次拒绝留存后第四版通用整机剖视，12独立标签/原件及完整双下载；x55为独立服务器主对象，示例安装对应、实际GPU/SSD/PSU拾取、当前视角SVG、0/100适配与手动镜头、手机明暗、完整资源清理和旧机柜入口实测通过。仅accepted未发布，主计划published10/35、补充4/4；保留.22最新来源/研究/长文/scope/CI更改，Spark不动，画法1.7保持。 参考只负责画法，Dell/Supermicro正式来源仅支持类别与安装关系；不复制OEM规格或维修条件。
+
+## 2026-10-09: Automatic editorial research delivery
+
+User authorized ongoing delivery: published columns synchronize every five minutes; completed longforms are sealed after render verification and retried from the M5 outbox. Content revisions preserve prior versions, SHA prevents duplicate intake, and existing Reader scope entries and daily settings are retained. Authored analysis and upstream originals keep separate identities; receipt, reading and adoption remain separate. The only current protocol source is docs/local_reader/EDITORIAL_DELIVERY.md. Unit validation and live deployment receipts are assessed separately.
 
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
+
+## 2026-10-09：原23份来源元数据真实接收与网站回查
+
+PR450来源修复已在Spark13:07:23实际应用，plan23/apply23/replay新增0、unchanged23；输入/响应/封存及匹配身份保持，操作前后scope同SHA，没有重启Reader/relay/review。原publisher timer13:12:28自然成功，接收端23份来源身份全部核对；13:16:40生产容器内HTTP中13份完整且映射来源可读，包含全部三份工具响应正文，字段逐SHA一致，节点实际交付role标签与来源链接。另13:26公网HTTPS实核EIA原件/Crane载体2/2及节点200，路径与内部HTTP分开保存。三份载体原站字节SHA继续null；来源URL是提交方元数据，不授予事实采用资格。
+
+13:15:50数据库只读快照封存13、queued9/running1，13报告产物封印实核通过；旧11:39的1/22和URL未导入为历史阶段。另一次scope/PID观测与13:07操作分开，不回滚并行任务状态。review长期PID1543876未确认载入新packet模块，本批后台正式C3计数未核实；不把源码部署、材料可读或候选封存作实际模型请求/正式采用证据。保留全部原回执，更新INTAKE/README/交接及实际来源/阶段/HTTP记录，不增加实现或调度范围。
 
 ## 2026-10-09：TA-10冷板与接头实际发布
 
@@ -1322,3 +1360,5 @@ Micron 的具体条目是一个个料号（1,363 个在售），不是 NVIDIA �
 ## 2026-10-09：恢复积压研究增量 PR
 
 用户要求尽快解决截图中的冲突/检查失败。原 Actions 预算错误与取消保持为历史失败，不视作测试通过。源包复验后，当前上下文一致的增量可在独立工作树经既有 promote 逐批追加并统一提交；相互影响后失效的批次重新 C3 核验。发布器修正 blocked 永久停留：确切旧 head 的 CI 恢复成功后继续正常准入，上下文变化则重新审核并关闭旧 PR。保留原始尝试/来源/分支；实际网站支持闭包与 Spark 回执决定正式发布，不能用关闭 PR 代替采用。
+
+TA-11整机档案复审修正：serverMode下整机聚合全部1129几何、保留八个子类别拾取；可选顶部初始姿态仅应用于整机，实际CPU/DIMM/GPU/风扇/载盘可辨，拖动接管与整机当前视角SVG身份实查。原空壳/底视问题与修正截图分别留存，数量检查不代替视觉。仍为本地accepted，生产另验。

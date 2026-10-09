@@ -1,0 +1,97 @@
+{
+  "figure_id": "TA-12",
+  "stage": "postsource-CI correction; final publication still pending",
+  "observed_at": "2026-10-09T07:00:33.786280+00:00",
+  "original_source_pr": "https://github.com/niuroumiantt/InResearch.ai/pull/473",
+  "original_source_head": "96cfefe7abbb6e832fb3aba029f2c476c10b04c6",
+  "original_merge": "edaf8913b3c034ad5cb171b179995e9f52b6945b",
+  "ci": {
+    "conclusion": "",
+    "headSha": "96cfefe7abbb6e832fb3aba029f2c476c10b04c6",
+    "jobs": [
+      {
+        "completedAt": "2026-10-09T06:54:03Z",
+        "conclusion": "success",
+        "name": "storage-container",
+        "startedAt": "2026-10-09T06:53:15Z",
+        "status": "completed",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37895904232/job/113707067571"
+      },
+      {
+        "completedAt": "2026-10-09T06:55:29Z",
+        "conclusion": "failure",
+        "name": "browser (core_b)",
+        "startedAt": "2026-10-09T06:53:15Z",
+        "status": "completed",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37895904232/job/113707067839"
+      },
+      {
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "name": "browser (model_assets)",
+        "startedAt": "2026-10-09T06:53:15Z",
+        "status": "in_progress",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37895904232/job/113707067869"
+      },
+      {
+        "completedAt": "0001-01-01T00:00:00Z",
+        "conclusion": "",
+        "name": "browser (core_a)",
+        "startedAt": "2026-10-09T06:53:15Z",
+        "status": "in_progress",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37895904232/job/113707067877"
+      },
+      {
+        "completedAt": "2026-10-09T06:55:32Z",
+        "conclusion": "success",
+        "name": "validate",
+        "startedAt": "2026-10-09T06:53:15Z",
+        "status": "completed",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37895904232/job/113707067894"
+      }
+    ],
+    "status": "in_progress",
+    "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37895904232",
+    "observed_at": "2026-10-09T06:55:36.219941+00:00"
+  },
+  "actual_failure": {
+    "job": "browser(core_b)",
+    "test": "tests/ui_skin.cjs:87",
+    "message": "server-plan.html phone head bar is two rows, got120.28125px",
+    "cause": "New page generic nav CSS matched shared shell navigation, wrapping to third row",
+    "log_sha256": "8405d490a1941bede0a53ac6334de4d5b2c378179f5663152ce93a1f0e86043d"
+  },
+  "fix": {
+    "source": "web/pages/server-plan.html",
+    "change": "Scope local breadcrumb rule to main>nav; shared shell navigation uses unchanged project CSS",
+    "test": "tests/server_plan.cjs now asserts actual360px shared header height<=90",
+    "static_master_changed": false,
+    "geometry_changed": false
+  },
+  "portable_render_assertion": {
+    "reason": "PNG codec output and edge antialiasing differ across browsers/platforms; strict encoded-byte rerender equality is not a portable engineering invariant. This was a proactive test correction, not the observed CI failure.",
+    "checks_retained": [
+      "immutable master embedded-SHA and full downloads",
+      "native1536x1024 direct render",
+      "exact down-axis OrthographicCamera/parallel opposite edges",
+      "all17source installation homes unchanged",
+      "actual upper carriers occlude lower carriers",
+      "pixel mean absolute channel error<1.5/255 and fraction with any channel delta>32 below1%"
+    ],
+    "actual_local_pixel_comparison": {
+      "pixels": [
+        1536,
+        1024
+      ],
+      "mean_absolute_channel_error": 0,
+      "large_difference_fraction": 0
+    }
+  },
+  "local_results": {
+    "server_plan": "passed1s;4size/theme views/15labels/full downloads/native invariants/360px header",
+    "ui_skin": "passed12s complete32static pages, bundled fonts/light-dark/mobile/persistence/cross-tab/storage/research state;0pageerrors",
+    "screenshots": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-12/mobile-fix",
+    "phone_screenshot_individually_viewed": true
+  },
+  "release_boundary": "Initial AWS sourceedaf/.27exact1e60 healthy and public figure/download/3D observations are retained; mobile correction must actually deploy and pass public view before published12/35."
+}

@@ -56,6 +56,9 @@ def rows(knowledge, curated):
                'quotes': [{k: e[k] for k in ('id', 'quote', 'page_index', 'locator') if k in e} for e in refs]})
         if doc.get('source_provenance'):
             results[-1]['source']['provenance'] = doc['source_provenance']
+        if doc.get('source_role') == 'authored_analysis':
+            results[-1]['source']['role'] = 'authored_analysis'
+            results[-1]['source']['editorial_references'] = doc.get('editorial_references', [])
     return results, dict(skipped)
 
 

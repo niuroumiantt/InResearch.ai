@@ -1,0 +1,365 @@
+{
+  "record_kind": "actual old ready-package recovery; does not add adoption to original-23 input batch",
+  "pr": 453,
+  "original_ci_observation": {
+    "number": 453,
+    "url": "https://github.com/niuroumiantt/InResearch.ai/pull/453",
+    "title": "Adopt verified research increment 7fc9b1661eb4",
+    "state": "OPEN",
+    "head": "35b7bb0f2bc81414ff4a658d084231371dd8a3e6",
+    "checks": [
+      {
+        "name": "validate",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37886024895/job/113676111397"
+      },
+      {
+        "name": "browser (core_a)",
+        "status": "COMPLETED",
+        "conclusion": "FAILURE",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37886024895/job/113676111344"
+      },
+      {
+        "name": "browser (core_b)",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37886024895/job/113676111327"
+      },
+      {
+        "name": "browser (model_assets)",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37886024895/job/113676111403"
+      },
+      {
+        "name": "storage-container",
+        "status": "COMPLETED",
+        "conclusion": "SUCCESS",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37886024895/job/113676111469"
+      },
+      {
+        "name": "browser (core)",
+        "status": "COMPLETED",
+        "conclusion": "FAILURE",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37886024895/job/113677587365"
+      }
+    ]
+  },
+  "original_ci_error": "part_dossier timeout after 300 seconds; not budget exhaustion or cancellation; original failed status preserved",
+  "head_chain": [
+    "35b7bb0f2bc81414ff4a658d084231371dd8a3e6",
+    "fb31df970a54931c036383852c6eb16284bb10cd",
+    "b1c63a2f8d6a6dfb588f035167dbc1cdbd185b26"
+  ],
+  "merge_commit": "d054f5428b74b175e384a7297a25debaf1913968",
+  "scope": "Five bounded source-attributed adopt_B statements from the older Oracle imported PDF; no dedicated price, contract, GW, model, or question-answer modification",
+  "components": {
+    "local_acceptance": {
+      "checked_at": "2026-10-09T06:15:29.368016+00:00",
+      "pr": 453,
+      "original_head": "35b7bb0f2bc81414ff4a658d084231371dd8a3e6",
+      "intermediate_head": "fb31df970a54931c036383852c6eb16284bb10cd",
+      "head": "b1c63a2f8d6a6dfb588f035167dbc1cdbd185b26",
+      "main_baseline": "31dcd36853dbe33a5d4d6ef1801375badba54b05",
+      "source_audit": {
+        "checked_at": "2026-10-09T06:13:55.086205+00:00",
+        "attempt": "attempt-0003",
+        "bundle_sha256": "9dbf052fa56a3b845b68b1dc8d488b3cafa0b656d8c50024b172d036eed61afc",
+        "audit": true,
+        "source_packet": true,
+        "current_context": true,
+        "fixed_independent_sample": true
+      },
+      "governance": {
+        "version": "2026.10.09.23",
+        "paths": 1605,
+        "check": "pass"
+      },
+      "strict": {
+        "warnings": 0,
+        "check": "pass"
+      },
+      "registry": {
+        "objects": 353,
+        "questions": 458,
+        "check": "pass"
+      },
+      "asset_check": "pass",
+      "full_unit_tests": 1970,
+      "browser": {
+        "suites": 29,
+        "scenarios": 32,
+        "all_finished": true,
+        "part_dossier_seconds": 67,
+        "server_assembly_seconds": 42
+      },
+      "storage": {
+        "returncode": 0,
+        "head": "b1c63a2f8d6a6dfb588f035167dbc1cdbd185b26",
+        "source_archive_sha256": "d5e16a4872b856ae9ebf8a4e276c9c2463a7dcb874cadf95e975dd8dc7d4fd5d",
+        "log": "/tmp/inresearch-ready-storage-pr453-b1c63a2f/storage-acceptance.log",
+        "operation": "isolated test-owned Docker images and temp state; production container/state untouched"
+      },
+      "derived_fixture_commands": [
+        {
+          "command": "verify",
+          "returncode": 0
+        },
+        {
+          "command": "indicators",
+          "returncode": 0
+        }
+      ],
+      "log_shas": {
+        "/private/tmp/inresearch-pr453-ta11-full-browser-20261009.log": "fc9eb2d3005691f60f0fbced00c1e2267e04a96293afd6bf05590e468284446b",
+        "/private/tmp/inresearch-pr453-ta11-full-unit-20261009.log": "84deab07c65f0c33b766278c0f8178f99bef73317adaa99b13d2d83779c200b7"
+      },
+      "original_ci_failure_preserved": "part_dossier timeout after300s; no claim of CI success",
+      "added": {
+        "documents": 1,
+        "evidence": 5,
+        "statements": 5,
+        "dedicated_price_contract_GW_or_question_answer_fields": 0
+      },
+      "authorization": "user explicitly accepts complete local checks without waiting for CI"
+    },
+    "restored_publisher": {
+      "checked_at": "2026-10-09T06:23:55.458414+00:00",
+      "launchctl": {
+        "state": "active",
+        "runs": "1",
+        "pid": "25958",
+        "last exit code": "(never exited)"
+      },
+      "process": "25958     1 S    Fri Oct  9 14:22:26 2026     /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python",
+      "program_path": "/Library/Developer/CommandLineTools/usr/bin/python3",
+      "program_entry": [
+        "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009/manage.py",
+        "research-publish"
+      ],
+      "configured_runtime": "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009",
+      "runtime_head": "d054f5428b74b175e384a7297a25debaf1913968",
+      "runtime_clean": true,
+      "publisher_source_sha256": "81fbf49b7f4a57af2da842ed418a8bd9758c31c6867d25fc643da508164d82bb",
+      "publisher_source_mtime": "2026-10-09T04:40:25.558241+00:00",
+      "includes_exact_head_recovery": true,
+      "includes_current_context_revalidation": true,
+      "status": {
+        "state": "published",
+        "at": null,
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634",
+        "batches": null,
+        "waiting": null
+      },
+      "status_error_present": false,
+      "status_error_classes": [],
+      "pr453": {
+        "state": "published",
+        "updated": "2026-10-09T06:22:45+00:00",
+        "commit": "b1c63a2f8d6a6dfb588f035167dbc1cdbd185b26",
+        "merge_commit": "d054f5428b74b175e384a7297a25debaf1913968",
+        "attempt": "attempt-0003",
+        "bundle_sha256": "9dbf052fa56a3b845b68b1dc8d488b3cafa0b656d8c50024b172d036eed61afc"
+      },
+      "pr453_error_present": false,
+      "pr453_website_proof_present": true,
+      "operation": "read-only actual restored LaunchAgent/PID/source/current status and precise package journal; no new bootstrap, service or queue mutation"
+    },
+    "https_support": {
+      "checked_at": "2026-10-09T06:25:57.575304+00:00",
+      "http_base": "https://inresearch.ai",
+      "url": "https://inresearch.ai/api/research-adopted?node=root",
+      "http_status": 200,
+      "response_bytes": 315875,
+      "response_sha256": "360b398242a85b8931f33dbe4343776b9cbb74059a92c91aabb99c2e5443656a",
+      "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634",
+      "reviewed_head": "b1c63a2f8d6a6dfb588f035167dbc1cdbd185b26",
+      "merge_commit": "d054f5428b74b175e384a7297a25debaf1913968",
+      "bundle_sha256": "9dbf052fa56a3b845b68b1dc8d488b3cafa0b656d8c50024b172d036eed61afc",
+      "checks": [
+        {
+          "id": "adoption:review:028e790401195b701086368a",
+          "present": true,
+          "text_match": true,
+          "source_candidate_match": true,
+          "adopted_review": true,
+          "support_closure": true,
+          "source_content_sha256": [
+            "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb"
+          ]
+        },
+        {
+          "id": "adoption:review:0427d8acbebaf5995151e19c",
+          "present": true,
+          "text_match": true,
+          "source_candidate_match": true,
+          "adopted_review": true,
+          "support_closure": true,
+          "source_content_sha256": [
+            "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb"
+          ]
+        },
+        {
+          "id": "adoption:review:bb2be6354419b1e7179c91d3",
+          "present": true,
+          "text_match": true,
+          "source_candidate_match": true,
+          "adopted_review": true,
+          "support_closure": true,
+          "source_content_sha256": [
+            "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb"
+          ]
+        },
+        {
+          "id": "adoption:review:0160cf826d5994b59404805f",
+          "present": true,
+          "text_match": true,
+          "source_candidate_match": true,
+          "adopted_review": true,
+          "support_closure": true,
+          "source_content_sha256": [
+            "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb"
+          ]
+        },
+        {
+          "id": "adoption:review:ca04c8d86011b49dd9b058f0",
+          "present": true,
+          "text_match": true,
+          "source_candidate_match": true,
+          "adopted_review": true,
+          "support_closure": true,
+          "source_content_sha256": [
+            "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb"
+          ]
+        }
+      ],
+      "verified_all_five": true,
+      "deployed_ledger_sha256": "91bcbf0cdfb930734857bc21570f1f054237e1d95b6bd484124bc7eee68343c2",
+      "projection_contract": "HTTP exposes status/review/native quote/document content SHA/reading revision/coverage; source_candidate IDs, report SHA and partial-support flag are independently bound through the actual deployed curated ledger",
+      "operation": "authenticated external HTTPS GET using existing in-memory session; no account/auth/service/source/queue mutation"
+    },
+    "spark_published": {
+      "checked_at": "2026-10-09T06:25:56.914090+00:00",
+      "batch": {
+        "id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634",
+        "state": "published",
+        "attempts": 3,
+        "updated": "2026-10-09T06:22:45+00:00",
+        "error": ""
+      },
+      "dispositions": {
+        "background": 1,
+        "published": 5
+      },
+      "proof": {
+        "api": "/api/research-adopted?node=root",
+        "batch_id": "7fc9b1661eb4fe585ab3a284846261f2a6876cd8f9e73067548833d8575c8634",
+        "bundle_sha256": "9dbf052fa56a3b845b68b1dc8d488b3cafa0b656d8c50024b172d036eed61afc",
+        "links": [
+          "https://inresearch.ai/node.html?id=root#evidence"
+        ],
+        "merge_commit": "d054f5428b74b175e384a7297a25debaf1913968",
+        "verified_at": "2026-10-09T06:22:44+00:00",
+        "website_image": "inresearch-app:d054f5428b74b175e384a7297a25debaf1913968",
+        "website_statement_ids": [
+          "adoption:review:028e790401195b701086368a",
+          "adoption:review:0427d8acbebaf5995151e19c",
+          "adoption:review:bb2be6354419b1e7179c91d3",
+          "adoption:review:0160cf826d5994b59404805f",
+          "adoption:review:ca04c8d86011b49dd9b058f0"
+        ]
+      },
+      "proof_sha256": "de4fa72057640781413507780208b61119a955041267c2f17f03730dc7f3903f",
+      "actual_bundle_sha256": "9dbf052fa56a3b845b68b1dc8d488b3cafa0b656d8c50024b172d036eed61afc",
+      "global_ready": 9,
+      "operation": "read-only exact Spark published batch/proof/dispositions; no queue/source/service mutation"
+    },
+    "spark_source_sync": {
+      "checked_at": "2026-10-09T06:20:09.553472+00:00",
+      "previous": "a5b7d052f037bf25ec035ce069320ac9c823f33a",
+      "head": "d054f5428b74b175e384a7297a25debaf1913968",
+      "bundle_sha256": "a9d1ee6f598f6500ab505ceeb0e9cb7b44df9be61e730ad9810721234e0c3be7",
+      "source_dirty_after": false,
+      "reader_before": "MainPID=1906533\nActiveState=active\nSubState=running\nDropInPaths=/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf /home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf",
+      "reader_after": "MainPID=1906533\nActiveState=active\nSubState=running\nDropInPaths=/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf /home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf",
+      "reader_same": true,
+      "formal_knowledge_sha256": "91bcbf0cdfb930734857bc21570f1f054237e1d95b6bd484124bc7eee68343c2",
+      "operation": "diag-approved canonical main fast-forward only; no Reader/relay/review/scope/catalog/service/independent-worktree edits"
+    },
+    "independent_reader_after_sync": {
+      "checked_at": "2026-10-09T06:21:11.557032+00:00",
+      "canonical_head": "d054f5428b74b175e384a7297a25debaf1913968",
+      "canonical_dirty": "",
+      "isolated_reader_head": "faa83480d3403ff35712716e4bc66c2407bd9209",
+      "isolated_reader_dirty": "",
+      "unit": {
+        "MainPID": "1906533",
+        "NRestarts": "0",
+        "ExecMainStartTimestamp": "Fri 2026-10-09 13:58:46 CST",
+        "ExecStart": "{ path=/usr/bin/python3 ; argv[]=/usr/bin/python3 /home/spark/.worktrees/inresearch.ai/dcd-reader-claim/manage.py reader --repo-root /home/spark/code/inresearch.ai run ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }",
+        "ActiveState": "active",
+        "SubState": "running",
+        "DropInPaths": "/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf /home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf"
+      },
+      "process_cmdline": "/usr/bin/python3 /home/spark/.worktrees/inresearch.ai/dcd-reader-claim/manage.py reader --repo-root /home/spark/code/inresearch.ai run ",
+      "override_path": "/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf",
+      "override_matches_verified_body": true,
+      "override_sha256": "d41bdb6dbce4d18ccc11d2ab3da73ce4b696baef117bfe0a0bb13b13dbe15b87",
+      "scope_sha256": "35c15aebdd9f3d5844b631bed88aa1bd3cb6c6024a09a8cfe91420112eeafd38",
+      "scope_doc_ids": 5907,
+      "exact_changed_files": [
+        "data/research_knowledge.json",
+        "docs/DECISIONS.md",
+        "docs/REPOSITORY_REGISTER.md",
+        "docs/design/technical-atlas/MIGRATION_PLAN.md",
+        "docs/design/technical-atlas/TA-11/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-11/labels-v1.json",
+        "docs/design/technical-atlas/TA-11/legacy/rack3d-996cfa2e.html",
+        "docs/design/technical-atlas/TA-11/preparation-v1.json",
+        "docs/design/technical-atlas/TA-11/ta11-prompt-correction-v2.txt",
+        "docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v3.txt",
+        "docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v4.txt",
+        "docs/design/technical-atlas/TA-11/ta11-prompt-v1.txt",
+        "docs/handoff/us-datacenter-power-20261009.md",
+        "docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md",
+        "docs/research/2026-10-09/us-datacenter-power/README.md",
+        "framework/CURRENT.md",
+        "framework/current_state.json",
+        "framework/interface_manifest.json",
+        "framework/repository_manifest.json",
+        "framework/verification_contract.json",
+        "framework/visual_atlas_migration.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-live-http-20261009.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-public-https-20261009.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-release-20261009.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-source-provenance-runtime-20261009.json",
+        "outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-source-provenance-stage-20261009.json",
+        "tests/browser_suites.cjs",
+        "tests/part_dossier.cjs",
+        "tests/server_assembly.cjs",
+        "tests/technical_atlas.cjs",
+        "tests/unit/test_browser_shards.py",
+        "web/assets/technical-atlas/server-v1-preview.jpg",
+        "web/assets/technical-atlas/server-v1-preview.svg",
+        "web/assets/technical-atlas/server-v1.png",
+        "web/assets/technical-atlas/server-v1.svg",
+        "web/components/part-inspector.js",
+        "web/components/server-assembly.js",
+        "web/components/technical-atlas.js",
+        "web/pages/rack3d.html",
+        "web/routes.json"
+      ],
+      "runtime_changed_files": [],
+      "operation": "read-only canonical diff/head, independent Reader source, systemd/proc and exact override/scope bytes; no writes, restart or model"
+    }
+  },
+  "input_receipt_sha256": {
+    "inresearch-pr453-local-acceptance-final-20261009.json": "132589a9d75c3ba2fb35ad0355e0702c1f051c28a2e016ec56aea9681544c94d",
+    "inresearch-publisher-restored-state-20261009.json": "73a6d85c968cfaefe6154c8d64f4b2fd6958c5abf0ddf519435eb7b9b8a36ecf",
+    "inresearch-pr453-https-support-verified-20261009.json": "70c6dc4cd7ec4e580358a66eb25b4d1dda21354b00b2c9e59c94b21be4c0deca",
+    "inresearch-pr453-spark-published-20261009.json": "a2f979292d1843dc1d9e280796fe16d512240b982b3c389d4467a12d38bf94a2",
+    "inresearch-pr453-spark-source-ff-20261009.json": "7a9ca72cf16193bc60c975780e930daea2e980c099d52d13d55660dd5b4688d7",
+    "inresearch-reader-post-ff-d054-20261009.json": "4f028af5842f7091d0fa892285859aa6b718054c49adc13a952d78e3e6725b8e"
+  }
+}

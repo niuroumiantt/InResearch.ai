@@ -392,6 +392,12 @@ M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用
 既有 Reader/relay 不重启。发布器在M5获取当前已合并 origin/main，确认 Spark 源码干净且 HEAD 是目标的祖先后生成增量 Git bundle，经既有 SSH 传输，核对 SHA 和 bundle 前置提交，再重查 Spark HEAD/dirty 后 fast-forward；远端源地址不改。源码增量和传输回执保存私有 state/research-source 与 M5 source-releases。dirty、分歧或传输期间变更保留并等待，不能用 reset/stash 绕过。Git/CI/连接/部署错误保存私有 journal，原尝试/分支不 reset 或删除；模型成功与待提交数量不计正式采用。因另行授权发布而已合并的旧失败日志，只有复验封存包、核对GitHub实际MERGED及head与原审核commit完全一致后恢复merged阶段；仍须实际HTTPS支持闭包与Spark回执，保留旧错误恢复历史，不自动重合并、不伪造CI成功。`revalidate` 仅用于未发布、正式上下文已变化的批次；`split-overbudget` 仅拆预算阻塞，保留原审计。网站逐条正文、采用状态、引文和原件支持闭包通过后才有 published。单元测试不是全库语义保证；未匹配需求、A档、缺证据与专门字段仍分别计量。
 
 
+## 2026-10-09：点名来源优先审核
+
+原服务`work`命令可追加`--preferred-sources ~/.config/inresearch.ai/research-preferred-sources.json`。文件只含`{"schema_version":1,"doc_ids":["doc-完整64位小写SHA"]}`；1–1000个唯一已登记ID，至多1MiB、普通非符号链接文件。可登记未完成来源，只有当前完整封存版本取得排序偏好，不从部分块制造全文审核。每轮校验并输出实际文件SHA；缺失/坏文件停止，额外字段（含日报扩展）拒绝。原`--scope`只限制发现，不是已有队列硬过滤；三次偏好领取后一次原队列机会，偏好为空立即原队列，不伪造retry、不改rowid/available/评分/模型。未配置沿用原行为。
+
+首次部署前确认唯一research-review空闲、无in-flight，优雅停止该审核服务，保存原unit/drop-in、scope/私有配置和queue.sqlite一致备份并核SHA；Reader/relay及其独立源码入口保持运行。只修改审核服务参数，保留原角色、两批/十二批/六项和30秒预算，再恢复同一服务；不另启one-off或第二worker。公平元数据仅启用后写入queue.sqlite的`review_scheduling`表，租约同事务提交、跨线程/重启保留。核journal的`preferred_scope_sha256`及attempt的`scheduling.json`、选中doc/batch、原排序机会与ready背压；status的`last_scheduling`仅为上次领取审计。回切只移除参数并恢复原unit，审计和数据保留。
+
 ## 2026-10-08：资料基座直接交付
 
 当前封存正文经原有快照接收后，由 `/api/research-materials?node=<骨架ID>` 只读投影到节点页。无需运行 prepare/apply、新增模型调用、改C3分数或批量重排队列；日期未知保持未知，快照版本决定当前资料，旧原件/报告长期保留。C3继续服务正式采用，失败与重要性路由不阻止已有材料进入资料基座。整篇阅读完成、资料可用条数、正式采用与GW分别报告；不是所有历史资料都需要今天的独立认证。
@@ -402,9 +408,17 @@ M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用
 
 ### 2026-10-09 · 旧研究 PR 恢复
 
-发布器每轮复验 blocked 批次的封存来源与包摘要。GitHub 的实际 OPEN head 必须仍等于审核提交：现行研究上下文已变化时重新排入 C3 审核，关闭旧 PR，保留原尝试、分支、错误与恢复原因；四项 CI 在同一 head 实际恢复成功时回到正常发布检查，不跳过上下文、基线与网站验收。未恢复的 CI、摘要变化和别人修改的 head 仍阻塞，不自动放宽预算或检查。人工合并多个通过现行复验的增量时，每批原审核包、原 PR/head 与实际合并提交的关系保存在私有发布 journal；逐批真实 HTTPS 支持闭包验收后才记录 published。
+发布器每轮复验 blocked 批次的封存来源与包摘要。GitHub 的实际 OPEN head 必须仍等于审核提交：现行研究上下文已变化时重新排入 C3 审核，关闭旧 PR，保留原尝试、分支、错误与恢复原因；四项 CI 在同一 head 实际恢复成功时回到正常发布检查，不跳过上下文、基线与网站验收。CI失败且main已有新的已批准基线时，只有来源/上下文及原PR head复验通过、独占工作树干净且无正式记录冲突，才可按既有追加合并规则更新基线；保存原错误、检查结果与前后head，重新推送并等待新head全部CI。基线未变化、摘要变化和别人修改的head仍阻塞，不自动放宽预算或检查。人工合并多个通过现行复验的增量时，每批原审核包、原 PR/head 与实际合并提交的关系保存在私有发布 journal；逐批真实 HTTPS 支持闭包验收后才记录 published。
 
 多个当前已审核批次并行追加同一研究 JSON 时，基线合并只接受 documents/evidence/statements 的按稳定ID追加：两侧必须完整保留每条原记录，新增ID重合时内容必须完全相同；其余字段及answers不得变化。原记录编辑/删除、ID重复或冲突保持Git冲突供审阅。合法追加保留已合并main及本批记录，重建清单、严格校验与registry后生成新head，重新跑全部四项CI。
 
 
-2026-10-09发布验收：网页core回归分core_a/core_b并行，保留27个suite、scene_atlas双密度和既有单项300秒期限；browser(core)聚合只有全部matrix通过才成功，模型资产仍保留三个场景。治理与运行器读取同一已审阅suite清单，选定浏览器入口缺失继续报错。新attempt开始前，将完整旧journal保存到旧attempt目录；新journal记录相对路径、状态与实际文件SHA，旧尝试/分支不删除。旧CI失败状态恢复沿同期发布器修复，不能将源码检查当作实际队列已恢复。
+2026-10-09发布验收：网页core回归分core_a/core_b/core_c并行，运行器使用同一完整suite清单；part_dossier的10个原场景分别执行，每个场景保留全部主题、动画、拾取与资源所有权断言，以及既有单项300秒期限。scene_atlas双密度继续保留；browser(core)聚合只有全部matrix通过才成功，模型资产仍保留三个场景。治理与运行器读取同一已审阅suite清单，选定浏览器入口缺失继续报错。新attempt开始前，将完整旧journal保存到旧attempt目录；新journal记录相对路径、状态与实际文件SHA，旧尝试/分支不删除。旧CI失败状态恢复沿同期发布器修复，不能将源码检查当作实际队列已恢复。
+
+发布前检查失败必须保存退出码与可用诊断。治理/数据校验仅在标准输出报告错误时，只记录显式ERROR行，不把任意输出、凭据或配置写入journal。prepared旧基线失效时保留原工作树、journal与封存包；在当前main和当前来源/上下文复验后重建发表，不改旧审计摘要来放行。
+
+### 2026-10-09 · 明确授权的本地验收恢复实例
+
+本会话用户明确授权每项完成完整本地验收后，不等CI自主更新原PR、精确head合并和部署；正常自动发布器的四项CI准入逻辑保持。首包PR453的真实原CI是part_dossier超过300秒失败，不能写为预算未启动或追认成功。独立精确head完整本地验证保留当前3D/浏览器契约，集成同期最新main再验；原审计/封存/固定抽样/当时来源与上下文均通过，原attempt/包/PR/head链保留。人工精确合并后，既有publisher仅恢复merged阶段，再按来源安全同步、真实HTTPS逐条支持闭包与Spark published回执完成交付。不是将local pass写成CI pass，也不对其它未审候选授予采用权。
+
+维护时使用独立维护锁、等待原worker锁自然释放、一致备份实际journal/审计与dirty草稿；不强删锁、reset/stash或调整账号凭据。恢复必须实核LaunchAgent、新PID、原程序/配置路径、当前源码及至少一轮真实status；bootstrap成功本身不足。首包实际恢复PID25958且published5/background1，原23新来源正式采用仍为0，计数不能混合。后续每包重新核对当前正式上下文，真变化走原revalidate并保留旧attempt/PR，prepared旧指南摘要不能盲重算。此为已授权实例和实际边界记录，不新增批量跳过检查或改队列接口；完整记录见[研究恢复交接](../handoff/research-flow-recovery-20261009.md)。

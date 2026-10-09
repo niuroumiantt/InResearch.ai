@@ -425,7 +425,7 @@
       "source_paths": [
         "web/pages/rack3d.html"
       ],
-      "entry": "rack3d.html?x=55",
+      "entry": "rack3d.html?x=55独立服务器装配主体；bom.html#server计算/尺度所属行；rack3d.html?node=part:server档案",
       "reference": [
         "R2"
       ],
@@ -438,9 +438,26 @@
         "TA-05",
         "TA-06"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-11/acceptance-v1.json",
+      "published_revision": "31dcd36853dbe33a5d4d6ef1801375badba54b05",
+      "object_id": "part:server",
+      "started_at": "2026-10-09",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-11/legacy/rack3d-996cfa2e.html",
+        "sha256": "87ea353a1d8fcfc889e07e4c3528088e1d84c0032560dfd70e4b8ebabee13c15",
+        "role": "former source page bytes; legacy whole-rack scene retained separately"
+      },
+      "deliverable_paths": [
+        "web/assets/technical-atlas/server-v1.png",
+        "web/assets/technical-atlas/server-v1.svg",
+        "web/assets/technical-atlas/server-v1-preview.jpg",
+        "web/assets/technical-atlas/server-v1-preview.svg",
+        "web/components/server-assembly.js"
+      ],
+      "accepted_at": "2026-10-09",
+      "published_at": "2026-10-09",
+      "publication_record": "docs/design/technical-atlas/TA-11/publication-20261009.json"
     },
     {
       "id": "TA-12",
@@ -451,7 +468,7 @@
       "source_paths": [
         "web/pages/rack3d.html"
       ],
-      "entry": "尚无独立俯视入口",
+      "entry": "server-plan.html",
       "reference": [
         "R2"
       ],
@@ -460,9 +477,21 @@
       "depends_on": [
         "TA-11"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-12/acceptance-v1.json",
+      "published_revision": "1e185b4e6246c834d5a751bd31af5e5551955b6f",
+      "object_id": "part:server",
+      "accepted_at": "2026-10-09",
+      "baseline_revision": "3a5054a366f4e0d0a7e2075b03a3265da1a00ab8",
+      "published_at": "2026-10-09",
+      "publication_record": "docs/design/technical-atlas/TA-12/publication-20261009.json",
+      "deliverable_paths": [
+        "web/pages/server-plan.html",
+        "web/components/server-plan-generator.js",
+        "web/assets/technical-atlas/server-plan-v1.png",
+        "web/assets/technical-atlas/server-plan-v1.svg",
+        "web/assets/technical-atlas/server-plan-v1-preview.svg"
+      ]
     },
     {
       "id": "TA-13",
@@ -1173,7 +1202,7 @@
   "execution_priority": {
     "reason": "先收尾用户授权的四张设施补充图，原35项按用户再次明确的01–35顺序继续；两类进度分别计量",
     "next": [
-      "TA-11"
+      "TA-13"
     ]
   },
   "primary_plan": {
@@ -1216,7 +1245,7 @@
       "TA-35"
     ],
     "execution_order": "01–35 as reiterated by user on 2026-10-08",
-    "published": 10
+    "published": 12
   },
   "supplemental_items": [
     "TA-36",

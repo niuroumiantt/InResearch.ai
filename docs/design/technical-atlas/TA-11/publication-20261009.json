@@ -1,0 +1,1591 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-11",
+  "object_id": "part:server",
+  "first_published_revision": "31dcd36853dbe33a5d4d6ef1801375badba54b05",
+  "pull_request": "https://github.com/niuroumiantt/InResearch.ai/pull/464",
+  "source_head": "0d9b767b3ed2c6bc3565b479193e36be0306efa7",
+  "merged_at": "2026-10-09T06:07:06Z",
+  "verified_at": "2026-10-09T06:20:18.358598+00:00",
+  "acceptance_record": "docs/design/technical-atlas/TA-11/acceptance-v1.json",
+  "ci": {
+    "conclusion": null,
+    "databaseId": 37891822527,
+    "headSha": "0d9b767b3ed2c6bc3565b479193e36be0306efa7",
+    "jobs": [
+      {
+        "completedAt": "2026-10-09T06:08:17Z",
+        "conclusion": "success",
+        "databaseId": 113694227977,
+        "name": "browser (model_assets)",
+        "startedAt": "2026-10-09T06:06:33Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-09T06:06:34Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-09T06:06:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:48Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-09T06:06:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:48Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v4",
+            "number": 3,
+            "startedAt": "2026-10-09T06:06:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:07:14Z",
+            "conclusion": "success",
+            "name": "Install isolated browser test dependencies",
+            "number": 4,
+            "startedAt": "2026-10-09T06:06:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:08:15Z",
+            "conclusion": "success",
+            "name": "Full browser regression suite",
+            "number": 5,
+            "startedAt": "2026-10-09T06:07:14Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:08:15Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v4",
+            "number": 9,
+            "startedAt": "2026-10-09T06:08:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:08:15Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 10,
+            "startedAt": "2026-10-09T06:08:15Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:08:15Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 11,
+            "startedAt": "2026-10-09T06:08:15Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37891822527/job/113694227977"
+      },
+      {
+        "completedAt": "2026-10-09T06:15:31Z",
+        "conclusion": "success",
+        "databaseId": 113694228080,
+        "name": "browser (core_a)",
+        "startedAt": "2026-10-09T06:06:33Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-09T06:06:34Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-09T06:06:33Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:47Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-09T06:06:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:48Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v4",
+            "number": 3,
+            "startedAt": "2026-10-09T06:06:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:07:11Z",
+            "conclusion": "success",
+            "name": "Install isolated browser test dependencies",
+            "number": 4,
+            "startedAt": "2026-10-09T06:06:48Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:15:29Z",
+            "conclusion": "success",
+            "name": "Full browser regression suite",
+            "number": 5,
+            "startedAt": "2026-10-09T06:07:11Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:15:29Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-node@v4",
+            "number": 9,
+            "startedAt": "2026-10-09T06:15:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:15:29Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 10,
+            "startedAt": "2026-10-09T06:15:29Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:15:29Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 11,
+            "startedAt": "2026-10-09T06:15:29Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37891822527/job/113694228080"
+      },
+      {
+        "completedAt": null,
+        "conclusion": null,
+        "databaseId": 113694228126,
+        "name": "browser (core_b)",
+        "startedAt": "2026-10-09T06:06:34Z",
+        "status": "in_progress",
+        "steps": [
+          {
+            "completedAt": "2026-10-09T06:06:43Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-09T06:06:42Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:59Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-09T06:06:43Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:07:02Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-node@v4",
+            "number": 3,
+            "startedAt": "2026-10-09T06:06:59Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:07:51Z",
+            "conclusion": "success",
+            "name": "Install isolated browser test dependencies",
+            "number": 4,
+            "startedAt": "2026-10-09T06:07:02Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Full browser regression suite",
+            "number": 5,
+            "startedAt": "2026-10-09T06:07:51Z",
+            "status": "in_progress"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Post Run actions/setup-node@v4",
+            "number": 9,
+            "startedAt": "0001-01-01T00:00:00Z",
+            "status": "pending"
+          },
+          {
+            "completedAt": "0001-01-01T00:00:00Z",
+            "conclusion": "",
+            "name": "Post Run actions/checkout@v4",
+            "number": 10,
+            "startedAt": "0001-01-01T00:00:00Z",
+            "status": "pending"
+          }
+        ],
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37891822527/job/113694228126"
+      },
+      {
+        "completedAt": "2026-10-09T06:07:19Z",
+        "conclusion": "success",
+        "databaseId": 113694228140,
+        "name": "storage-container",
+        "startedAt": "2026-10-09T06:06:33Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-09T06:06:34Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-09T06:06:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:47Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-09T06:06:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:07:18Z",
+            "conclusion": "success",
+            "name": "Immutable research and persistent runtime across release replacement",
+            "number": 3,
+            "startedAt": "2026-10-09T06:06:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:07:18Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 6,
+            "startedAt": "2026-10-09T06:07:18Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:07:18Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 7,
+            "startedAt": "2026-10-09T06:07:18Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37891822527/job/113694228140"
+      },
+      {
+        "completedAt": "2026-10-09T06:08:51Z",
+        "conclusion": "success",
+        "databaseId": 113694228232,
+        "name": "validate",
+        "startedAt": "2026-10-09T06:06:33Z",
+        "status": "completed",
+        "steps": [
+          {
+            "completedAt": "2026-10-09T06:06:35Z",
+            "conclusion": "success",
+            "name": "Set up job",
+            "number": 1,
+            "startedAt": "2026-10-09T06:06:34Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:47Z",
+            "conclusion": "success",
+            "name": "Run actions/checkout@v4",
+            "number": 2,
+            "startedAt": "2026-10-09T06:06:35Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:47Z",
+            "conclusion": "success",
+            "name": "Run actions/setup-python@v5",
+            "number": 3,
+            "startedAt": "2026-10-09T06:06:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:54Z",
+            "conclusion": "success",
+            "name": "现行规则与在册文件检查",
+            "number": 4,
+            "startedAt": "2026-10-09T06:06:47Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:54Z",
+            "conclusion": "success",
+            "name": "口径与数据校验",
+            "number": 5,
+            "startedAt": "2026-10-09T06:06:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:54Z",
+            "conclusion": "success",
+            "name": "Visual model identity and adoption contract",
+            "number": 6,
+            "startedAt": "2026-10-09T06:06:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:54Z",
+            "conclusion": "success",
+            "name": "核验队列可生成",
+            "number": 7,
+            "startedAt": "2026-10-09T06:06:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:06:54Z",
+            "conclusion": "success",
+            "name": "指标回填可运行",
+            "number": 8,
+            "startedAt": "2026-10-09T06:06:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:08:49Z",
+            "conclusion": "success",
+            "name": "Research registry and continuous reader contracts",
+            "number": 9,
+            "startedAt": "2026-10-09T06:06:54Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:08:49Z",
+            "conclusion": "success",
+            "name": "Post Run actions/setup-python@v5",
+            "number": 17,
+            "startedAt": "2026-10-09T06:08:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:08:50Z",
+            "conclusion": "success",
+            "name": "Post Run actions/checkout@v4",
+            "number": 18,
+            "startedAt": "2026-10-09T06:08:49Z",
+            "status": "completed"
+          },
+          {
+            "completedAt": "2026-10-09T06:08:50Z",
+            "conclusion": "success",
+            "name": "Complete job",
+            "number": 19,
+            "startedAt": "2026-10-09T06:08:50Z",
+            "status": "completed"
+          }
+        ],
+        "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37891822527/job/113694228232"
+      }
+    ],
+    "status": "in_progress",
+    "url": "https://github.com/niuroumiantt/InResearch.ai/actions/runs/37891822527",
+    "observed_at": "2026-10-09T06:17:55.990647+00:00",
+    "user_authorization": "Human explicitly authorized autonomous PR create/attach/ready/merge/deploy after real local acceptance; restored budget, record new automatic CI truthfully, no historic waiver reused.",
+    "merge_did_not_wait_for_ci": true,
+    "acceptance_ci_field": "Local source acceptance is a historical phase. In-progress CI is not a pass."
+  },
+  "local_pre_release_validation": {
+    "targeted_browser": "passed actual eight views/12 labels/embedded unchanged master SHA/complete dual downloaded bytes and inspector rotation",
+    "server_assembly": "passed real new source fixture and DOM/pointers/downloads/geometry/resources; OrbitControls damping flushed after real drag to compare settled user-owned camera",
+    "regression": "All necessary source browser cases passed after actual fixes; no omitted density or deadline increase; technical_atlas29s binding source unchanged",
+    "technical_atlas_browser": "passed29s on unchanged 2D/master binding; SSD and all prior category cases including TA11",
+    "part_dossier_browser": "passed88s final source including server deep link/full inspector optional initial rotation and all existing parts; interaction/motion/picking/materials/cleanup",
+    "server_assembly_browser": "passed58s final source:1129 complete inspector/eight categories/top initial view/real inspector drag/server current-view export plus x55 counts/axes/pointers/fit/camera/mobile/cleanup/legacy",
+    "scene_framing_browser": "passed19s final source: main scenes/inspector/registered GLB/narrow geometry projection/user camera ownership and disposal",
+    "scene_atlas_browser": "passed15s at1x and24s at2x final source; full desktop/mobile/themes/current PNG pixels/editable labels/dossier/diagnostics and edge ownership",
+    "scene_resources_browser": "passed6s final source: environment timeout/retry/stale success/fallback/idempotent source page disposal",
+    "unit_tests": "22passed final source after whole-server/top-pose/legacy snapshot/full shard review",
+    "strict_validation": "passed0warnings",
+    "registry": "353objects458questions references valid",
+    "governance_check": "passed final .23 refresh/check1605files",
+    "final_main": "e6eb948a94bf1e2ac504f2b486ae8a30078b254a/.22, latest research/provenance/longform/scope changes retained, src/data/outputs diff zero",
+    "post_rebase_final_checks": {
+      "main": "e6eb948a94bf1e2ac504f2b486ae8a30078b254a",
+      "preserved": "PR462 .22 source provenance and all research/article/scope/CI revisions; no src/data/outputs edits",
+      "browser_matrix": "technical_atlas29s / final part_dossier88s / server_assembly58s / scene_framing19s / scene_atlas1x15s2x24s / scene_resources6s",
+      "governance": ".23 refresh/check1605files passed; strict0warnings; registry353objects458questions;22units passed without skip",
+      "local_review_server": "All real local checks completed; stopping isolated manual server before source PR"
+    }
+  },
+  "aws": {
+    "observed_at": "2026-10-09T06:09:38.903142+00:00",
+    "host": "ip-172-26-11-47",
+    "source_revision": "31dcd36853dbe33a5d4d6ef1801375badba54b05",
+    "applied_revision": "31dcd36853dbe33a5d4d6ef1801375badba54b05",
+    "applied_image": "sha256:64bb2649d7b9548f95d4847900a748d1e484f10f5852a58ab173cffe5695f6df",
+    "configured_image": "inresearch-app:31dcd36853dbe33a5d4d6ef1801375badba54b05",
+    "image": "sha256:64bb2649d7b9548f95d4847900a748d1e484f10f5852a58ab173cffe5695f6df",
+    "status": "HEALTHY: 31dcd36853dbe33a5d4d6ef1801375badba54b05",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "governance": "2026.10.09.23",
+    "deployment_service": "ActiveState=inactive\nSubState=dead",
+    "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+    "data_migration": false
+  },
+  "healthz": {
+    "observed_at": "2026-10-09T06:14:17.151369+00:00",
+    "url": "https://inresearch.ai/healthz",
+    "status": 200,
+    "body": "{\"ok\":true,\"service\":\"inresearch\",\"auth_required\":true}"
+  },
+  "public_source_bytes": [
+    {
+      "url": "https://inresearch.ai/bom.html",
+      "bytes": 20257,
+      "sha256": "302fffcd55096e8d08365f92cacdeb4d1c993077171c676c4678f5aae250b5d8",
+      "seconds": 1.177,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/rack3d.html",
+      "bytes": 41056,
+      "sha256": "fd88c53dbd23d71c10167a739c0fa15593701a36d9db05da2e2259730e0a575b",
+      "seconds": 0.407,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas.js",
+      "bytes": 16242,
+      "sha256": "fb95ed4dc82662e6e01e6338cbcdfc934ddcc39545ff5523be09b94b8c0f99bf",
+      "seconds": 0.345,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/assets/server-assembly.js",
+      "bytes": 20133,
+      "sha256": "6d3abd5554afeb621798b91a9fb35f78c05ea439b7012b75b4ae79cd0fb9d676",
+      "seconds": 0.351,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/assets/part-inspector.js",
+      "bytes": 4188,
+      "sha256": "7e0969f3a57bd96f409bbb5e1c57edb089ce052b54a1816b70b9df940f21e19e",
+      "seconds": 0.306,
+      "status": 200,
+      "matches_local_source": true
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas/server-v1-preview.svg",
+      "bytes": 463773,
+      "sha256": "a1e02889a40e566aa0735963d280db732990da46c73a79f1d7bd25742999e32e",
+      "seconds": 1.43,
+      "status": 200,
+      "matches_local_source": true
+    }
+  ],
+  "browser": {
+    "observed_at": "2026-10-09T06:11:04.096Z",
+    "scope": "TA-11 actual anonymous public browser",
+    "views": [
+      {
+        "width": 1280,
+        "mode": "system",
+        "theme": "light",
+        "file": "server-system-1280-light.png",
+        "context": "IT · 计算 → 加速器服务器（AI 服务器整机）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 1280,
+        "mode": "system",
+        "theme": "dark",
+        "file": "server-system-1280-dark.png",
+        "context": "IT · 计算 → 加速器服务器（AI 服务器整机）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 1280,
+        "mode": "scale",
+        "theme": "light",
+        "file": "server-scale-1280-light.png",
+        "context": "IT · 计算 → 加速器服务器（AI 服务器整机）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 1280,
+        "mode": "scale",
+        "theme": "dark",
+        "file": "server-scale-1280-dark.png",
+        "context": "IT · 计算 → 加速器服务器（AI 服务器整机）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "system",
+        "theme": "light",
+        "file": "server-system-390-light.png",
+        "context": "IT · 计算 → 加速器服务器（AI 服务器整机）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "system",
+        "theme": "dark",
+        "file": "server-system-390-dark.png",
+        "context": "IT · 计算 → 加速器服务器（AI 服务器整机）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "scale",
+        "theme": "light",
+        "file": "server-scale-390-light.png",
+        "context": "IT · 计算 → 加速器服务器（AI 服务器整机）",
+        "native": [
+          1536,
+          1024
+        ]
+      },
+      {
+        "width": 390,
+        "mode": "scale",
+        "theme": "dark",
+        "file": "server-scale-390-dark.png",
+        "context": "IT · 计算 → 加速器服务器（AI 服务器整机）",
+        "native": [
+          1536,
+          1024
+        ]
+      }
+    ],
+    "source_checks": [
+      {
+        "url": "/bom.html",
+        "bytes": 20257,
+        "sha256": "302fffcd55096e8d08365f92cacdeb4d1c993077171c676c4678f5aae250b5d8",
+        "seconds": 1.177
+      },
+      {
+        "url": "/rack3d.html",
+        "bytes": 41056,
+        "sha256": "fd88c53dbd23d71c10167a739c0fa15593701a36d9db05da2e2259730e0a575b",
+        "seconds": 0.407
+      },
+      {
+        "url": "/assets/technical-atlas.js",
+        "bytes": 16242,
+        "sha256": "fb95ed4dc82662e6e01e6338cbcdfc934ddcc39545ff5523be09b94b8c0f99bf",
+        "seconds": 0.345
+      },
+      {
+        "url": "/assets/server-assembly.js",
+        "bytes": 20133,
+        "sha256": "6d3abd5554afeb621798b91a9fb35f78c05ea439b7012b75b4ae79cd0fb9d676",
+        "seconds": 0.351
+      },
+      {
+        "url": "/assets/part-inspector.js",
+        "bytes": 4188,
+        "sha256": "7e0969f3a57bd96f409bbb5e1c57edb089ce052b54a1816b70b9df940f21e19e",
+        "seconds": 0.306
+      },
+      {
+        "url": "/assets/technical-atlas/server-v1-preview.svg",
+        "bytes": 463773,
+        "sha256": "a1e02889a40e566aa0735963d280db732990da46c73a79f1d7bd25742999e32e",
+        "seconds": 1.43
+      }
+    ],
+    "full_svg_labels": 12,
+    "embedded_master_sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15",
+    "downloads": [
+      {
+        "file": "server-v1.svg",
+        "bytes": 3431244,
+        "sha256": "144f95ab6ac21e19f4043481e5daf44e58558e170c85d7c7250eae5579fddfbe"
+      },
+      {
+        "file": "server-v1.png",
+        "bytes": 2570554,
+        "sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15"
+      }
+    ],
+    "server_3d_canvas": true,
+    "page_errors": []
+  },
+  "assembly_browser": {
+    "observed_at": "2026-10-09T06:11:51.061Z",
+    "results": [
+      {
+        "label": "whole-server inspector includes every component",
+        "sources": 1129,
+        "index": 1129,
+        "clones": 1129,
+        "rotation": {
+          "x": 0.6,
+          "y": 0.7
+        },
+        "categories": [
+          "server",
+          "cpu",
+          "dram",
+          "gpu",
+          "server-fan",
+          "ssd",
+          "nic",
+          "psu"
+        ],
+        "export_object_id": "part:server"
+      },
+      {
+        "label": "desktop stage 0",
+        "count": 9032,
+        "maxX": 0.5432767401419866,
+        "maxY": 0.5762963082980637,
+        "minZ": 0.994273147669003,
+        "maxZ": 0.9979103825002894,
+        "aspect": 1.610062893081761,
+        "canvas": {
+          "width": 1280,
+          "height": 794.609375,
+          "top": 105.390625
+        },
+        "header": 105.390625,
+        "labels": [
+          {
+            "text": "虚拟剖开 · 非维修步骤",
+            "x": 558.959228515625,
+            "y": 332.6260986328125,
+            "width": 157.390625,
+            "height": 20,
+            "font": 16
+          }
+        ]
+      },
+      {
+        "label": "desktop stage 55",
+        "count": 9032,
+        "maxX": 0.47672452721530534,
+        "maxY": 0.6226108739228361,
+        "minZ": 0.994797729865002,
+        "maxZ": 0.9979545638482049,
+        "aspect": 1.610062893081761,
+        "canvas": {
+          "width": 1280,
+          "height": 794.609375,
+          "top": 105.390625
+        },
+        "header": 105.390625,
+        "labels": [
+          {
+            "text": "虚拟剖开 · 非维修步骤",
+            "x": 538.3739624023438,
+            "y": 387.66424560546875,
+            "width": 157.390625,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "CPU / DIMM 主板区",
+            "x": 315.531494140625,
+            "y": 473.4508056640625,
+            "width": 145.1875,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "横向风扇行",
+            "x": 802.2921142578125,
+            "y": 452.8041687011719,
+            "width": 80,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "前置载盘与背板",
+            "x": 584.066162109375,
+            "y": 657.3884887695312,
+            "width": 112,
+            "height": 20,
+            "font": 16
+          }
+        ]
+      },
+      {
+        "label": "desktop stage 100",
+        "count": 9032,
+        "maxX": 0.480156124565991,
+        "maxY": 0.6026305327645857,
+        "minZ": 0.9947830901621616,
+        "maxZ": 0.9979385714348014,
+        "aspect": 1.610062893081761,
+        "canvas": {
+          "width": 1280,
+          "height": 794.609375,
+          "top": 105.390625
+        },
+        "header": 105.390625,
+        "labels": [
+          {
+            "text": "虚拟剖开 · 非维修步骤",
+            "x": 570.0188598632812,
+            "y": 412.4521789550781,
+            "width": 157.390625,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "CPU / DIMM 主板区",
+            "x": 366.13580322265625,
+            "y": 489.93621826171875,
+            "width": 145.1875,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "PCIe 加速卡与对应插槽",
+            "x": 437.11767578125,
+            "y": 525.8563232421875,
+            "width": 167.78125,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "横向风扇行",
+            "x": 813.2272338867188,
+            "y": 471.0831298828125,
+            "width": 80,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "前置载盘与背板",
+            "x": 620.2060546875,
+            "y": 657.9213256835938,
+            "width": 112,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "后舱电源 · 内 DC / 外 AC",
+            "x": 575.5958862304688,
+            "y": 436.4521789550781,
+            "width": 178.140625,
+            "height": 20,
+            "font": 16
+          }
+        ]
+      },
+      {
+        "label": "installation and interface correspondence",
+        "motions": 17,
+        "gpu": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "drive": [
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            1
+          ]
+        ],
+        "psu": [
+          [
+            0,
+            0,
+            -1
+          ],
+          [
+            0,
+            0,
+            -1
+          ]
+        ],
+        "fan": [
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            0
+          ]
+        ],
+        "slots": [
+          {
+            "slot": "accelerator-slot-1",
+            "exists": true
+          },
+          {
+            "slot": "accelerator-slot-2",
+            "exists": true
+          }
+        ],
+        "ports": [
+          [
+            "internal-dc-interface",
+            "+z"
+          ],
+          [
+            "external-ac-recess",
+            "-z"
+          ],
+          [
+            "internal-dc-interface",
+            "+z"
+          ],
+          [
+            "external-ac-recess",
+            "-z"
+          ],
+          [
+            "rear-network-aperture",
+            "-z"
+          ],
+          [
+            "rear-network-aperture",
+            "-z"
+          ]
+        ]
+      },
+      {
+        "label": "explicit fit after manual gesture",
+        "count": 9032,
+        "maxX": 0.4968484648639038,
+        "maxY": 0.491695402806733,
+        "minZ": 0.9954183008555918,
+        "maxZ": 0.9975594987175662,
+        "aspect": 1.610062893081761,
+        "canvas": {
+          "width": 1280,
+          "height": 794.609375,
+          "top": 105.390625
+        },
+        "header": 105.390625,
+        "labels": [
+          {
+            "text": "虚拟剖开 · 非维修步骤",
+            "x": 524.8084106445312,
+            "y": 403.2703552246094,
+            "width": 157.390625,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "CPU / DIMM 主板区",
+            "x": 330.0032958984375,
+            "y": 585.0616455078125,
+            "width": 145.1875,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "横向风扇行",
+            "x": 721.05908203125,
+            "y": 383.27435302734375,
+            "width": 80,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "前置载盘与背板",
+            "x": 786.9884033203125,
+            "y": 645.18017578125,
+            "width": 112,
+            "height": 20,
+            "font": 16
+          }
+        ]
+      },
+      {
+        "label": "actual pick and current-view export gpu",
+        "metadata": {
+          "style": "white-technical-atlas-v1",
+          "recipe": "scene-atlas-v1",
+          "title": "通用服务器整机装配图册",
+          "caption": "④ 风扇模块沿竖向抬升",
+          "pixels": [
+            1280,
+            795
+          ],
+          "object_id": "part:gpu",
+          "diagnostics": null,
+          "projection": "current interactive perspective",
+          "identity": "generic schematic; no model-specific dimensions"
+        },
+        "labels": [
+          "虚拟剖开 · 非维修步骤",
+          "CPU / DIMM 主板区",
+          "横向风扇行",
+          "前置载盘与背板"
+        ],
+        "pixels": [
+          1280,
+          795
+        ],
+        "leader": "part:gpu"
+      },
+      {
+        "label": "actual pick and current-view export ssd",
+        "metadata": {
+          "style": "white-technical-atlas-v1",
+          "recipe": "scene-atlas-v1",
+          "title": "通用服务器整机装配图册",
+          "caption": "④ 风扇模块沿竖向抬升",
+          "pixels": [
+            1280,
+            795
+          ],
+          "object_id": "part:ssd",
+          "diagnostics": null,
+          "projection": "current interactive perspective",
+          "identity": "generic schematic; no model-specific dimensions"
+        },
+        "labels": [
+          "虚拟剖开 · 非维修步骤",
+          "CPU / DIMM 主板区",
+          "横向风扇行",
+          "前置载盘与背板"
+        ],
+        "pixels": [
+          1280,
+          795
+        ],
+        "leader": "part:ssd"
+      },
+      {
+        "label": "actual pick and current-view export psu",
+        "metadata": {
+          "style": "white-technical-atlas-v1",
+          "recipe": "scene-atlas-v1",
+          "title": "通用服务器整机装配图册",
+          "caption": "④ 风扇模块沿竖向抬升",
+          "pixels": [
+            1280,
+            795
+          ],
+          "object_id": "part:psu",
+          "diagnostics": null,
+          "projection": "current interactive perspective",
+          "identity": "generic schematic; no model-specific dimensions"
+        },
+        "labels": [
+          "虚拟剖开 · 非维修步骤",
+          "CPU / DIMM 主板区",
+          "横向风扇行",
+          "前置载盘与背板"
+        ],
+        "pixels": [
+          1280,
+          795
+        ],
+        "leader": "part:psu"
+      },
+      {
+        "label": "1280 light fully exploded",
+        "count": 9032,
+        "maxX": 0.46967980342123505,
+        "maxY": 0.44535341798948097,
+        "minZ": 0.9955360561866367,
+        "maxZ": 0.9974563768768152,
+        "aspect": 1.610062893081761,
+        "canvas": {
+          "width": 1280,
+          "height": 794.609375,
+          "top": 105.390625
+        },
+        "header": 105.390625,
+        "labels": [
+          {
+            "text": "虚拟剖开 · 非维修步骤",
+            "x": 574.8060913085938,
+            "y": 417.5238037109375,
+            "width": 157.390625,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "CPU / DIMM 主板区",
+            "x": 407.33441162109375,
+            "y": 578.1243896484375,
+            "width": 145.1875,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "PCIe 加速卡与对应插槽",
+            "x": 562.6289672851562,
+            "y": 579.8349609375,
+            "width": 167.78125,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "横向风扇行",
+            "x": 749.0156860351562,
+            "y": 397.7392272949219,
+            "width": 80,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "前置载盘与背板",
+            "x": 811.67138671875,
+            "y": 630.513427734375,
+            "width": 112,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "后舱电源 · 内 DC / 外 AC",
+            "x": 445.58404541015625,
+            "y": 377.933837890625,
+            "width": 178.140625,
+            "height": 20,
+            "font": 16
+          }
+        ]
+      },
+      {
+        "label": "1280 dark fully exploded",
+        "count": 9032,
+        "maxX": 0.46967980342123505,
+        "maxY": 0.44535341798948097,
+        "minZ": 0.9955360561866367,
+        "maxZ": 0.9974563768768152,
+        "aspect": 1.610062893081761,
+        "canvas": {
+          "width": 1280,
+          "height": 794.609375,
+          "top": 105.390625
+        },
+        "header": 105.390625,
+        "labels": [
+          {
+            "text": "虚拟剖开 · 非维修步骤",
+            "x": 574.8060913085938,
+            "y": 417.5238037109375,
+            "width": 157.390625,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "CPU / DIMM 主板区",
+            "x": 407.33441162109375,
+            "y": 578.1243896484375,
+            "width": 145.1875,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "PCIe 加速卡与对应插槽",
+            "x": 562.6289672851562,
+            "y": 579.8349609375,
+            "width": 167.78125,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "横向风扇行",
+            "x": 749.0156860351562,
+            "y": 397.7392272949219,
+            "width": 80,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "前置载盘与背板",
+            "x": 811.67138671875,
+            "y": 630.513427734375,
+            "width": 112,
+            "height": 20,
+            "font": 16
+          },
+          {
+            "text": "后舱电源 · 内 DC / 外 AC",
+            "x": 445.58404541015625,
+            "y": 377.933837890625,
+            "width": 178.140625,
+            "height": 20,
+            "font": 16
+          }
+        ]
+      },
+      {
+        "label": "390 light fully exploded",
+        "count": 9032,
+        "maxX": 0.7846359094824672,
+        "maxY": 0.2264079362841043,
+        "minZ": 0.9984346281812729,
+        "maxZ": 0.9989679983308307,
+        "aspect": 0.5078125,
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 132
+        },
+        "header": 132,
+        "labels": [
+          {
+            "text": "虚拟剖开 · 非维修步骤",
+            "x": 132.80844116210938,
+            "y": 467.3016357421875,
+            "width": 137.921875,
+            "height": 17,
+            "font": 14
+          },
+          {
+            "text": "CPU / DIMM 主板区",
+            "x": 53.17250061035156,
+            "y": 546.5866088867188,
+            "width": 127.609375,
+            "height": 17,
+            "font": 14
+          },
+          {
+            "text": "PCIe 加速卡与对应插槽",
+            "x": 124.59927368164062,
+            "y": 570.5866088867188,
+            "width": 147.03125,
+            "height": 17,
+            "font": 14
+          },
+          {
+            "text": "横向风扇行",
+            "x": 239.51492309570312,
+            "y": 491.3016357421875,
+            "width": 70,
+            "height": 17,
+            "font": 14
+          },
+          {
+            "text": "前置载盘与背板",
+            "x": 255.29360961914062,
+            "y": 594.5866088867188,
+            "width": 98,
+            "height": 17,
+            "font": 14
+          },
+          {
+            "text": "后舱电源 · 内 DC / 外 AC",
+            "x": 59.722747802734375,
+            "y": 443.07049560546875,
+            "width": 156.453125,
+            "height": 17,
+            "font": 14
+          }
+        ]
+      },
+      {
+        "label": "390 dark fully exploded",
+        "count": 9032,
+        "maxX": 0.7846359094824672,
+        "maxY": 0.2264079362841043,
+        "minZ": 0.9984346281812729,
+        "maxZ": 0.9989679983308307,
+        "aspect": 0.5078125,
+        "canvas": {
+          "width": 390,
+          "height": 768,
+          "top": 132
+        },
+        "header": 132,
+        "labels": [
+          {
+            "text": "虚拟剖开 · 非维修步骤",
+            "x": 132.80844116210938,
+            "y": 467.3016357421875,
+            "width": 137.921875,
+            "height": 17,
+            "font": 14
+          },
+          {
+            "text": "CPU / DIMM 主板区",
+            "x": 53.17250061035156,
+            "y": 546.5866088867188,
+            "width": 127.609375,
+            "height": 17,
+            "font": 14
+          },
+          {
+            "text": "PCIe 加速卡与对应插槽",
+            "x": 124.59927368164062,
+            "y": 570.5866088867188,
+            "width": 147.03125,
+            "height": 17,
+            "font": 14
+          },
+          {
+            "text": "横向风扇行",
+            "x": 239.51492309570312,
+            "y": 491.3016357421875,
+            "width": 70,
+            "height": 17,
+            "font": 14
+          },
+          {
+            "text": "前置载盘与背板",
+            "x": 255.29360961914062,
+            "y": 594.5866088867188,
+            "width": 98,
+            "height": 17,
+            "font": 14
+          },
+          {
+            "text": "后舱电源 · 内 DC / 外 AC",
+            "x": 59.722747802734375,
+            "y": 443.07049560546875,
+            "width": 156.453125,
+            "height": 17,
+            "font": 14
+          }
+        ]
+      },
+      {
+        "label": "page resources and registries released",
+        "sourceGeometry": 92,
+        "sourceMaterials": 8,
+        "geometries": 92,
+        "materials": 8,
+        "rendersAfter": 0,
+        "parent": false,
+        "animations": 0,
+        "picks": 0,
+        "spinners": 0,
+        "labels": 0
+      }
+    ],
+    "page_errors": []
+  },
+  "public_actions": {
+    "entry": "https://inresearch.ai/bom.html?view=system#server",
+    "views": "system/scale x1280/390 xlight/dark; all eight actual public screenshots individually viewed",
+    "correct_part_row": true,
+    "single_selected_atlas": true,
+    "full_svg_labels": 12,
+    "embedded_master": {
+      "width": 1536,
+      "height": 1024,
+      "bytes": 2570554,
+      "sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15",
+      "matches_original_bytes": true
+    },
+    "downloads": [
+      {
+        "file": "server-v1.svg",
+        "bytes": 3431244,
+        "sha256": "144f95ab6ac21e19f4043481e5daf44e58558e170c85d7c7250eae5579fddfbe"
+      },
+      {
+        "file": "server-v1.png",
+        "bytes": 2570554,
+        "sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15"
+      }
+    ],
+    "assembly": {
+      "url": "https://inresearch.ai/rack3d.html?x=55",
+      "independent_server": true,
+      "example_counts": {
+        "cpu": 2,
+        "dram": 8,
+        "gpu": 2,
+        "server-fan": 4,
+        "ssd": 8,
+        "psu": 2,
+        "nic": 1
+      },
+      "installation_motions": 17,
+      "actual_pointer_parts": [
+        "gpu",
+        "ssd",
+        "psu"
+      ],
+      "current_view_downloads": [
+        "server-whole-current.svg",
+        "server-gpu-current.svg",
+        "server-ssd-current.svg",
+        "server-psu-current.svg"
+      ],
+      "whole_inspector": {
+        "label": "whole-server inspector includes every component",
+        "sources": 1129,
+        "index": 1129,
+        "clones": 1129,
+        "rotation": {
+          "x": 0.6,
+          "y": 0.7
+        },
+        "categories": [
+          "server",
+          "cpu",
+          "dram",
+          "gpu",
+          "server-fan",
+          "ssd",
+          "nic",
+          "psu"
+        ],
+        "export_object_id": "part:server"
+      },
+      "stage0_and100_inside_viewport": true,
+      "manual_camera_ownership": true,
+      "mobile_and_themes": true,
+      "resources_released": true,
+      "old_rack_x_retained": [
+        0,
+        35,
+        90
+      ],
+      "other_part_route": "/rack3d.html?node=part:gpu"
+    },
+    "page_errors": []
+  },
+  "browser_evidence": [
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/browser.json",
+      "sha256": "2e343dd40c36706ffd026a16eb0d82b0738bcf47921b72bb309e1e576d010c8d",
+      "bytes": 3795
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/health.json",
+      "sha256": "784a71f5c56fb9ef61cc0a1778b58be6aed6b2b0cbd690b5ab5bd5629da02cfa",
+      "bytes": 192
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-assembly-results.json",
+      "sha256": "c8a41f6033834c51e293b5aa095f6722564c2ed513e8695347cbe026734d7351",
+      "bytes": 16200
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-complete-dossier.png",
+      "sha256": "a07b763dccb31d72eca85bdbea36dad339c5a0031911387a8c272ba9825a38a4",
+      "bytes": 280554
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-complete-inspector.png",
+      "sha256": "5c2193568bc1e50e02b7a33d307bfde1350773df774ba4233d0845c181a7717d",
+      "bytes": 18211
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-full-1280-dark.png",
+      "sha256": "8a4d9dd7e2dbfc8ae8234f4cbef91da2a79162e39b79e51b4fa11f48cf811684",
+      "bytes": 157812
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-full-1280-light.png",
+      "sha256": "2b98daa618a2d9da5a5af66cb701e0f2543bbe74c0f85b4d966d20d53147a1d5",
+      "bytes": 156109
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-full-390-dark.png",
+      "sha256": "8018431102180b40df8734207d04233dc7dc9386c701a051281efa1bd1734b3c",
+      "bytes": 63035
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-full-390-light.png",
+      "sha256": "0587902b5eab7172df1dda4bbad99423576702f2606b7906ae6faf63b88ed703",
+      "bytes": 62280
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-gpu-current.svg",
+      "sha256": "ae34116233f6cad8ec8460080c7fd53c37c221d43f224fc626307569a0d26747",
+      "bytes": 170657
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-psu-current.svg",
+      "sha256": "a06abe0fe857afc6ec1dacbf4a3b725f7f2a2909db9dfb86045acb49fedfcd8c",
+      "bytes": 170432
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-ssd-current.svg",
+      "sha256": "93f03cca2f4151425c572e9d8f8413584e308e2df525ffca3d05a0cd3e9e58fc",
+      "bytes": 170471
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-stage-0-desktop.png",
+      "sha256": "318db2a348985545ed217eda9ed3bf545f633dafc7ea792dafe2b9af4d1b5381",
+      "bytes": 169084
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-stage-100-desktop.png",
+      "sha256": "67e3a85f006ea2c38fbd8f0892900191499094e888d371b209e7dfad5f57ac55",
+      "bytes": 179572
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-stage-55-desktop.png",
+      "sha256": "ddd648b11b8e5294fd12e77eb47f0fa73c37c48b24204cd73a65fe64e80e565f",
+      "bytes": 175342
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/scene/server-whole-current.svg",
+      "sha256": "41bae50570762ffdedcd9c96eef280ceb53eecd7437da918c1e7055a918d420a",
+      "bytes": 195503
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-full-svg.png",
+      "sha256": "68f7a60d62513d0069eb431d82b6501e61e552aa55c07568095f209b299edf3a",
+      "bytes": 2330892
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-rack-dossier.png",
+      "sha256": "2be817ceaf1d1e3fc45d77f2d0d44d2f8d84b1ee2d46b02cf6888d3348a3b6aa",
+      "bytes": 152645
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-scale-1280-dark.png",
+      "sha256": "637f0a65985f14ecd5220f8db099620a70a8bb17d202f7597e2663b77a7e200b",
+      "bytes": 656915
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-scale-1280-light.png",
+      "sha256": "167a52ab369bdc332d8f403f7900008993e703a6757e8ae3ea582fbe70450286",
+      "bytes": 655895
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-scale-390-dark.png",
+      "sha256": "2709d59e29b42ff224693eb6fc067e4ed0feadcae3b0928a1d826aaa66853e87",
+      "bytes": 166637
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-scale-390-light.png",
+      "sha256": "fbe278aaa263ceca35a18139e30e4859bc0353de50ce0bc3fa8dc8abd6d2ba64",
+      "bytes": 165403
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-system-1280-dark.png",
+      "sha256": "7a575d23013ee407d5058b21d46ac04013f4b656500e95a4faf1b54409e1cfc2",
+      "bytes": 655946
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-system-1280-light.png",
+      "sha256": "7077abd3a911069a5d954aff2bd87fecf489f339be6640a99f5b16e621226dc5",
+      "bytes": 654920
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-system-390-dark.png",
+      "sha256": "6142e2940eea382be50e36d1edf2927bc40ead50cebc03d590231ada48ac3adf",
+      "bytes": 167127
+    },
+    {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-system-390-light.png",
+      "sha256": "4c68508b0326c2fdf87a0f16ec5b191db183c3c5d8429340b252cc0573474d8e",
+      "bytes": 165889
+    }
+  ],
+  "complete_chat_preview": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-11/public/server-full-svg.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "68f7a60d62513d0069eb431d82b6501e61e552aa55c07568095f209b299edf3a",
+    "use": "Actual complete public twelve-label SVG screenshot; separately retained from unchanged native imagegen mother"
+  },
+  "spark_readonly": {
+    "observed_at": "2026-10-09T06:11:38Z",
+    "revision": "a5b7d052f037bf25ec035ce069320ac9c823f33a",
+    "reader": "active/running",
+    "reader_pid": 1906533,
+    "reader_started": "Fri2026-10-09 13:58:46 CST",
+    "research_review": "active/running",
+    "research_review_pid": 1859377,
+    "research_review_started": "Fri2026-10-09 13:38:19 CST",
+    "service_changes_by_this_task": false,
+    "observation": "Source is older than website first artwork revision; read-only services and source do not establish atlas deployment/use, material intake/deep-read/C3/adoption; parent owns services/scope."
+  },
+  "receipt_baseline": {
+    "latest_main": "d054f5428b74b175e384a7297a25debaf1913968",
+    "preserved": "PR453 merged06:16:12Z five approved research additions; .23 TA11 source and all prior .22 research/provenance/scope/longform remain; no implementation change in receipt",
+    "governance": "2026.10.09.24"
+  },
+  "limits": [
+    "One generic air-cooled PCIe server, virtual cutaway/exploded installation axes are educational, not maintenance/hot-swap/redundancy instructions. Example counts/layout/material/fins/holes/contacts/ports/dimensions/PCIe generation/interconnect/drive protocol/circuit/voltage/power/airflow/performance and mechanical compatibility remain unknown.",
+    "Fourth built-in native edit repaired inward AC/NIC geometry; three rejected unchanged attempts retained. Same-kind card/riser inset is not a third installed GPU. Labels do not mask structural errors.",
+    "Procedural server/whole inspector have actual matching categories and installation correspondence; not OEM CAD or exact identity with every native pixel. TA03 chassis retained separately, old rack and other parts remain; does not complete TA12/13/14.",
+    "Initial whole inspector excluded child categories and then viewed below; independent root review found both. Actual complete1129 aggregate/top pose/drag/selection export and prior screenshots retained. Quantity checks do not substitute for visual review.",
+    "Actual anonymous public research is honestly unavailable under original permissions; authenticated research/data/C3 and Spark scopes/services are outside artwork receipt. Spark version mismatch is explicitly preserved.",
+    "Source automatic CI recorded by observation time; in-progress is not passed and old budget failure is not revived or reused. This release uses current human authorization after complete local acceptance.",
+    "Native1536x1024 master bytes unchanged, actual downloaded SVG3431244/PNG2570554 bytes. Lightweight preview463773 bytes, timings are observations not performance promises.",
+    "Document-only receipt is distinct from first artwork deployment. Waited for PR453 research merge solely for main/governance coordination; no repeated business approval or duplicate public test. Final receipt source/applied/image/service observation kept separately."
+  ]
+}
