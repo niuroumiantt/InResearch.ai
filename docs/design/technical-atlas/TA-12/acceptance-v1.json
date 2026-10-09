@@ -1,0 +1,551 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-12",
+  "object_id": "part:server",
+  "style_id": "white-technical-atlas-v1",
+  "title": "True orthographic plan of the same generic server assembly",
+  "reviewed_at": "2026-10-09T06:46:33.270025+00:00",
+  "reviewer": "Author native/reference/full label/4actual page view_image plus root independent full1536 labelled view_image",
+  "decision": "accepted_for_generic_orthographic_plan",
+  "master": "web/assets/technical-atlas/server-plan-v1.png",
+  "labelled": "web/assets/technical-atlas/server-plan-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "preview": {
+    "file": "web/assets/technical-atlas/server-plan-v1-preview.svg",
+    "bytes": 93204,
+    "method": "same self-contained original PNG with editable SVG labels; below512KiB, no JPEG or interpolation needed"
+  },
+  "references": [
+    {
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "role": "R2 style and installation categories; perspective and original pictured quantities are not an orthographic plan or adopted product facts",
+      "actually_viewed": true,
+      "id": "R2",
+      "actually_passed_to_imagegen": false
+    },
+    {
+      "file": "web/assets/technical-atlas/server-v1.png",
+      "sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15",
+      "role": "TA11 accepted full-server mother: compare relative sections/direction/categories, not exact CAD projection",
+      "actually_viewed": true,
+      "id": "TA-11",
+      "actually_passed_to_imagegen": false
+    }
+  ],
+  "generation": {
+    "tool": "Project code-native Three.js OrthographicCamera",
+    "source": "web/components/server-plan-generator.js",
+    "source_geometry": "web/components/server-assembly.js",
+    "geometry_sha256": "6d3abd5554afeb621798b91a9fb35f78c05ea439b7012b75b4ae79cd0fb9d676",
+    "specification": "docs/design/technical-atlas/TA-12/render-spec-v1.md",
+    "native_render": "Separate native1536x1024 framebuffer with pixelRatio1; no current-scene snapshot resampling, imagegen, image editing or compositing",
+    "raster_modified_after_render": false,
+    "plan_materials": "White/lightgrey fill mapping preserves source shapes and original installation positions",
+    "label_method": "Existing stdlib SVG builder; 15independent editable text and12engineer-blue leader paths",
+    "roof": "Virtual omission only, no maintenance implication"
+  },
+  "rights": {
+    "origin": "Project procedural generic geometry and original authored plan renderer, existing bundled Three.js license applies to library",
+    "license": "Project explanatory diagram; not a vendor engineering plan or claimed CC0"
+  },
+  "technical_sources": [
+    "https://www.dell.com/support/manuals/en-us/poweredge-r750/per750_ism_pub/inside-the-system?guid=guid-86215914-c63d-48ee-9978-9eb22ee2149c&lang=en-us",
+    "https://www.supermicro.com/en/products/system/gpu/2u/sys-221ge-nr?mlg=0"
+  ],
+  "technical_scope": "Official product examples confirm installation categories, not the generic count, scaled geometry, layout, ports, dimensions or ratings. Specific 2U and product quantities not adopted.",
+  "reviewed_differences": [
+    "TA11 illustration is a virtual perspective cutaway with same-kind GPU detail; TA12 omits roof only, no exploded/repeated parts.",
+    "TA11 mother exposes GPU fins; shared procedural assembly has illustrative top covers. TA12 faithfully shows those covers and calls out generic accelerator zones, not verified OEM fin or housing details.",
+    "2x4 front carriers remain vertically tiered; exact overhead sees upper four and occludes lower four.",
+    "Vertical fan rotor faces and external rear I/O/AC openings are edge-on/hidden in plan; top frames, handles and back shells are labelled instead.",
+    "CPU/DIMM regions, mid-GPU, transverse fan row, front drives and rear-right PSU/rear-left NIC are checked by their relative region and interface direction; source geometry is approximate, not exact raster reconstruction."
+  ],
+  "unknowns": [
+    "U height/mm/power/airflow/capacity/fire distance/scale/tolerances/pinout/compatibility/hot-swap/safe servicing",
+    "CAD or vendor-specific accurate assembly; eight visible drives or overhead rotor openings",
+    "Spark data/services/source sync or formal research adoption"
+  ],
+  "projection_review": {
+    "projection": "OrthographicCamera",
+    "native_pixels": [
+      1536,
+      1024
+    ],
+    "up_axis": "-z",
+    "front": "+z at bottom",
+    "camera_position": [
+      0,
+      30,
+      0.06599999971687787
+    ],
+    "camera_up": [
+      0,
+      0,
+      -1
+    ],
+    "camera_direction": [
+      0,
+      -1,
+      -2.220446049250313e-16
+    ],
+    "camera_frustum": [
+      -8.999759998673202,
+      8.999759998673202,
+      5.999839999115467,
+      -5.999839999115467
+    ],
+    "counts": {
+      "server": 1,
+      "cpu": 2,
+      "dram": 8,
+      "gpu": 2,
+      "ssd": 8,
+      "nic": 1,
+      "psu": 2,
+      "server-fan": 4
+    },
+    "mesh_count": 1129,
+    "lid": "hidden virtual omission; not exploded servicing",
+    "view": "assembled at source homes; no movement/rotation/reposition of subassemblies",
+    "outer_corners": [
+      [
+        513.2732072479743,
+        79.68980502189555
+      ],
+      [
+        1022.7267927520256,
+        79.68980502189555
+      ],
+      [
+        513.2732072479743,
+        933.0458946434223
+      ],
+      [
+        1022.7267927520256,
+        933.0458946434223
+      ]
+    ],
+    "homes": [
+      {
+        "name": "accelerator-1",
+        "current": [
+          -1.48,
+          0,
+          0.59
+        ],
+        "home": [
+          -1.48,
+          0,
+          0.59
+        ]
+      },
+      {
+        "name": "accelerator-2",
+        "current": [
+          1.48,
+          0,
+          0.59
+        ],
+        "home": [
+          1.48,
+          0,
+          0.59
+        ]
+      },
+      {
+        "name": "fan-1",
+        "current": [
+          -2.1,
+          0.73,
+          3.02
+        ],
+        "home": [
+          -2.1,
+          0.73,
+          3.02
+        ]
+      },
+      {
+        "name": "fan-2",
+        "current": [
+          -0.7,
+          0.73,
+          3.02
+        ],
+        "home": [
+          -0.7,
+          0.73,
+          3.02
+        ]
+      },
+      {
+        "name": "fan-3",
+        "current": [
+          0.7,
+          0.73,
+          3.02
+        ],
+        "home": [
+          0.7,
+          0.73,
+          3.02
+        ]
+      },
+      {
+        "name": "fan-4",
+        "current": [
+          2.1,
+          0.73,
+          3.02
+        ],
+        "home": [
+          2.1,
+          0.73,
+          3.02
+        ]
+      },
+      {
+        "name": "drive-1",
+        "current": [
+          -2.1,
+          0.42,
+          4.27
+        ],
+        "home": [
+          -2.1,
+          0.42,
+          4.27
+        ]
+      },
+      {
+        "name": "drive-2",
+        "current": [
+          -2.1,
+          0.97,
+          4.27
+        ],
+        "home": [
+          -2.1,
+          0.97,
+          4.27
+        ]
+      },
+      {
+        "name": "drive-3",
+        "current": [
+          -0.7000000000000002,
+          0.42,
+          4.27
+        ],
+        "home": [
+          -0.7000000000000002,
+          0.42,
+          4.27
+        ]
+      },
+      {
+        "name": "drive-4",
+        "current": [
+          -0.7000000000000002,
+          0.97,
+          4.27
+        ],
+        "home": [
+          -0.7000000000000002,
+          0.97,
+          4.27
+        ]
+      },
+      {
+        "name": "drive-5",
+        "current": [
+          0.6999999999999997,
+          0.42,
+          4.27
+        ],
+        "home": [
+          0.6999999999999997,
+          0.42,
+          4.27
+        ]
+      },
+      {
+        "name": "drive-6",
+        "current": [
+          0.6999999999999997,
+          0.97,
+          4.27
+        ],
+        "home": [
+          0.6999999999999997,
+          0.97,
+          4.27
+        ]
+      },
+      {
+        "name": "drive-7",
+        "current": [
+          2.099999999999999,
+          0.42,
+          4.27
+        ],
+        "home": [
+          2.099999999999999,
+          0.42,
+          4.27
+        ]
+      },
+      {
+        "name": "drive-8",
+        "current": [
+          2.099999999999999,
+          0.97,
+          4.27
+        ],
+        "home": [
+          2.099999999999999,
+          0.97,
+          4.27
+        ]
+      },
+      {
+        "name": "rear-psu-1",
+        "current": [
+          2.015,
+          0,
+          -3.75
+        ],
+        "home": [
+          2.015,
+          0,
+          -3.75
+        ]
+      },
+      {
+        "name": "rear-psu-2",
+        "current": [
+          2.635,
+          0,
+          -3.75
+        ],
+        "home": [
+          2.635,
+          0,
+          -3.75
+        ]
+      },
+      {
+        "name": "lid",
+        "current": [
+          0,
+          1.41,
+          0
+        ],
+        "home": [
+          0,
+          1.41,
+          0
+        ]
+      }
+    ],
+    "upper_drive_hits": [
+      "drive-2",
+      "drive-4",
+      "drive-6",
+      "drive-8"
+    ],
+    "geometry_groups": [
+      "chassis",
+      "motherboard",
+      "CPU",
+      "DIMM",
+      "GPU",
+      "fan",
+      "drives",
+      "PSU",
+      "NIC",
+      "lid"
+    ],
+    "gpu_zone_centers": [
+      [
+        -1.48,
+        0,
+        0.59
+      ],
+      [
+        1.48,
+        0,
+        0.59
+      ]
+    ],
+    "roof_visible": false,
+    "rerender_sha256": "6b00a91418ab3c7e37c2a32a692caa6f987a2eb909b42038b20877f474e0cc4c"
+  },
+  "checks": {
+    "true_orthographic_downward": true,
+    "parallel_equal_opposite_edges": true,
+    "source_17_homes_unchanged": true,
+    "upper_4_occlude_lower_4": true,
+    "side_faces_not_invented": true,
+    "GPU_generic_top_covers_declared": true,
+    "front_bottom_rear_top": true,
+    "editable_labels": 15,
+    "leaders": 12,
+    "full_SVG_embeds_unchanged_PNG": true,
+    "downloads_complete": [
+      {
+        "file": "server-plan-v1.svg",
+        "bytes": 93204,
+        "sha256": "b8081d4249aa1291e0d6ed34c6878b4256cc25d34ccc79f28ac7ea3c0e822dca"
+      },
+      {
+        "file": "server-plan-v1.png",
+        "bytes": 66785,
+        "sha256": "6b00a91418ab3c7e37c2a32a692caa6f987a2eb909b42038b20877f474e0cc4c"
+      }
+    ],
+    "native_rerender_matches_master": true,
+    "four_actual_page_views_individually_viewed": true,
+    "old_TA11_default_and_other_parts_retained": true,
+    "3D_assembly_regression": "tests/server_assembly.cjs56s passed actual controls/picks/export/camera/cleanup"
+  },
+  "browser_checks": [
+    "tests/server_plan.cjs",
+    "tests/technical_atlas.cjs",
+    "tests/part_dossier.cjs",
+    "tests/server_assembly.cjs"
+  ],
+  "browser_review": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-12/local/server-plan-results.json",
+    "page_errors": 0,
+    "views": [
+      {
+        "width": 1280,
+        "theme": "light",
+        "file": "server-plan-1280-light.png"
+      },
+      {
+        "width": 1280,
+        "theme": "dark",
+        "file": "server-plan-1280-dark.png"
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "file": "server-plan-390-light.png"
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "file": "server-plan-390-dark.png"
+      }
+    ],
+    "full_SVG_screenshot": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-12/local/server-plan-full-svg.png",
+    "complete_downloads": [
+      {
+        "file": "server-plan-v1.svg",
+        "bytes": 93204,
+        "sha256": "b8081d4249aa1291e0d6ed34c6878b4256cc25d34ccc79f28ac7ea3c0e822dca"
+      },
+      {
+        "file": "server-plan-v1.png",
+        "bytes": 66785,
+        "sha256": "6b00a91418ab3c7e37c2a32a692caa6f987a2eb909b42038b20877f474e0cc4c"
+      }
+    ],
+    "native_pixels_and_SHA": "6b00a91418ab3c7e37c2a32a692caa6f987a2eb909b42038b20877f474e0cc4c"
+  },
+  "local_validation": {
+    "server_plan": "passed actual1s: projection/sourcehomes/occlusion/4views/15labels/dualdownloads/oldentries",
+    "technical_atlas": "passed25s full existing figure/system-scale/narrow-theme matrix",
+    "part_dossier": "passed96s full actual scene/part controls and ownership",
+    "server_assembly": "passed56s full independent TA11/current export/picks/camera/cleanup/old0,35,90",
+    "governance_strict_registry_unit": {
+      "governance": "2026.10.09.27;1624files checkpassed",
+      "validate": "strictpassed0warnings",
+      "registry": "353objects458questions referencesvalid",
+      "targeted_units": "22passed in1.324s; sockets run with appropriate local-port permission",
+      "observed_at": "2026-10-09T06:51:59.597164+00:00"
+    }
+  },
+  "issues_resolved": [
+    {
+      "stage": "plan fills",
+      "issue": "First code-native image used existing3D green/dark materials; current orthographic recipe calls for white/lightgrey",
+      "resolution": "Second separately rendered native candidate maps neutral fills only, no geometry change; first raw image retained in local audit"
+    },
+    {
+      "stage": "preview carrier",
+      "issue": "Chromium standalone XML addStyleTag/setContent/full screenshot paths failed or timed out",
+      "resolution": "Read actual SVG, display in a separate HTML carrier with project fonts and native dimensions; full image actually viewed; production SVG/PNG bytes unchanged"
+    },
+    {
+      "stage": "long page screenshots",
+      "issue": "Scrolled fixed nav appeared mid full-page screenshot",
+      "resolution": "Return document to top before actual screenshot; page itself unchanged, final4views individually viewed"
+    },
+    {
+      "stage": "unit command",
+      "issue": "Initial direct unittest invocation omitted project PYTHONPATH, so interface module import failed before test execution",
+      "resolution": "Corrected PYTHONPATH=src rerun passed all13 targeted units; no source test bypass"
+    }
+  ],
+  "independent_visual_review": {
+    "status": "root passed actual complete1536 labelled image",
+    "scope": "Strict overhead, front/rear,2CPU8DIMM2GPU4fanframes4upperdrives2PSUNICIObackshells,occlusion,neutral fills and generic GPU topcover caveat; source counts do not replace review"
+  },
+  "conversation_preview": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-12/server-plan-chat-full.png",
+    "pixels": [
+      1536,
+      1024
+    ],
+    "sha256": "d4cda4077dc556164707bc8b75ffc206954ad2ba0d0bf3c3b4738c0306820712",
+    "bytes": 119511,
+    "purpose": "Local uncropped labelled plan shown in current conversation before publication"
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/server-plan-v1.png",
+      "sha256": "6b00a91418ab3c7e37c2a32a692caa6f987a2eb909b42038b20877f474e0cc4c",
+      "bytes": 66785
+    },
+    {
+      "file": "web/assets/technical-atlas/server-plan-v1.svg",
+      "sha256": "b8081d4249aa1291e0d6ed34c6878b4256cc25d34ccc79f28ac7ea3c0e822dca",
+      "bytes": 93204
+    },
+    {
+      "file": "web/assets/technical-atlas/server-plan-v1-preview.svg",
+      "sha256": "b8081d4249aa1291e0d6ed34c6878b4256cc25d34ccc79f28ac7ea3c0e822dca",
+      "bytes": 93204
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-12/labels-v1.json",
+      "sha256": "ce6b378adc5befda0a3c94e1e2a43ca0eedea87e331668deda7812688edb06ff",
+      "bytes": 4151
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-12/render-spec-v1.md",
+      "sha256": "68c87212de3134196abcd722dec06fbe673290b76939e69bed4d9f910564e8c5",
+      "bytes": 1501
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-12/preparation-v1.json",
+      "sha256": "c977ae9503e9d5b6d72907557917bc238400a8b9ce8a08a28c1df8a879be8c5a",
+      "bytes": 4454
+    }
+  ],
+  "publication": {
+    "status": "not_published",
+    "reason": "Local accepted only; source PR/actual natural AWS and public full downloads/3D/version evidence separately required"
+  },
+  "ci": {
+    "status": "source_pr_not_created_yet",
+    "authorization": "User explicitly authorizes autonomous PR ready/merge/deploy after real local acceptance; budget restored, record fresh automatic CI actual result, no old CI failure treated as pass"
+  }
+}
