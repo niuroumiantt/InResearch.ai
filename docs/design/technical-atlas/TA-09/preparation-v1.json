@@ -1,0 +1,52 @@
+{
+  "figure_id": "TA-09",
+  "object_id": "part:server-fan",
+  "scope": "Generic four-position server fan cage assembly example, not a vendor/model/count/airflow/electrical rating claim.",
+  "baseline_asset": "web/assets/renders/fans.png",
+  "baseline_sha256": "cc9812e9977f8ebd9a75599150105a34a1f45298d1827a241a33babf3aa3a31a",
+  "observed_baseline": "Four simplified independent fan blocks, retained unmodified; no current page reference. Existing framework/bom.json server-fan category is thermal/芯片级. The existing rack fanwall meshes were tagged as server and will be bound to the existing server-fan category without changing geometry.",
+  "references_to_pass": [
+    "R2"
+  ],
+  "reference_identity": {
+    "file": "docs/design/technical-atlas/references/02-server.png",
+    "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+    "role": "actual built-in imagegen style reference only, not technical evidence"
+  },
+  "primary_sources": [
+    {
+      "url": "https://www.dell.com/support/kbdoc/en-us/000234366/poweredge-how-to-remove-and-install-cooling-fans-and-assembly",
+      "access": "full official HTML read",
+      "observed_at": "2026-10-09",
+      "supports": "Removable fan cartridge, release tab, base connector corresponding to system-board connector, fan assembly guide rails and chassis attachment categories. No model-specific mechanics, count or operating procedure copied."
+    },
+    {
+      "url": "https://pubs.lenovo.com/sr650-v2/setup_install_a_system_fan",
+      "access": "full official HTML read",
+      "observed_at": "2026-10-09",
+      "supports": "Example fan module positioned above fan cage and seated vertically; base connection. The model-specific rear-facing connector rule is not generalized to airflow or all servers."
+    },
+    {
+      "url": "https://pubs.lenovo.com/sr550/remove_a_system_fan",
+      "access": "full official HTML read",
+      "observed_at": "2026-10-09",
+      "supports": "Example uses cable disconnection and a fan cage bracket, demonstrating connection/mechanical differences between products; this illustration is only a generic base-connector example."
+    }
+  ],
+  "access_limits": [
+    {
+      "url": "https://www.dell.com/support/manuals/en-uk/poweredge-r730-dsms/r730_ompublication/removing-a-cooling-fan?guid=guid-172cb4c7-6f87-4456-8a71-d8b9faf9209a&lang=en-us",
+      "result": "web full-page cache miss; indexed excerpt only, no extra facts adopted"
+    },
+    {
+      "url": "https://dl.dell.com/topicspdf/poweredge-r730-dsms_owners-manual_en-us.pdf",
+      "result": "web full PDF exceeded tool content limit (10789728 bytes); no bypass or exact-model detail used"
+    }
+  ],
+  "composition": "Exactly four cartridges total: three seated + one lifted, and four bays total with one corresponding empty bay; no inset/extra fan. Vertical displacement is an assembly illustration, not airflow. Count is explicitly a composition example.",
+  "unknowns": [
+    "Exact SKU, fan diameter/size, blade and grille counts/geometry, carrier/latch/guide and connector mating tolerances, pins, voltage, speed/CFM/static pressure/acoustics, redundancy, controller/interface, airflow direction and hot-swap/service conditions remain unverified.",
+    "Cage layout and PCB are generic explanatory forms, not a vendor engineering drawing; no cooling capacity or running state is inferred.",
+    "Existing 3D fanwall geometry retained; new static TA-09 illustration does not complete TA-11/13/29. No new skeleton/category/fact is added."
+  ]
+}

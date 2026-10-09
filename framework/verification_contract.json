@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.12",
+  "version": "2026.10.09.13",
   "reviewed_at": "2026-10-09",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "33a132fc2113fcfee302959ed4cbed692da96a312ccaf7fee55f8280f484cdfc",
-    "framework/CURRENT.md": "937f00526ecdaee71432a5f4d8c5b91f507d484fcd9bef1cc2ec1b8b2d915de9",
+    "framework/CURRENT.md": "879ed889c1c2ad78df12863057b4aaa0b4ee9990dc43678881a1214968b7cadb",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "c900ea822d1b09d24810a369c7e663ae1a902e4bc990cbeefe5b46c3237e50f2",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -60,7 +60,7 @@
     "tests/industry.cjs": "8e02059a08894b4563a051ffa4539b51080cba3f04c48fed0575a68b2efbd148",
     "tests/model_assets.cjs": "9b96c1a178838cb93bf9e491f1d9973fb3803529878740ae432b7596dbf3aab2",
     "tests/nvidia_pilot.cjs": "06b9187ff6a3573f9facfee3bfb78c2ee3a7a19a25187fcbdc22c5a99ab0337f",
-    "tests/part_dossier.cjs": "1c66e73cabb974af05b86903b0edbcf474511321f69938955a1c0901587adbda",
+    "tests/part_dossier.cjs": "a8c2b735f2d795f0a85aae7923d09ca39ddb1e177fe9d164af87cd41a3e50db6",
     "tests/product_catalog.cjs": "d043018fbd2f1b8131d38439faf37a953ce305a9570699e03cc87f56e232f522",
     "tests/repository_pages.cjs": "151cf0d04b6544af880278c3d6c1beef044590c85407659edf19d062ab95d5f6",
     "tests/research_delivery.cjs": "81548cb9d821495c3f209341490fa036e832c9be94f97da35a83825a1381c1f4",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "80ffc2634abb37d2d4c12533304dbe98bda9b441cfac2139cf25189efe99a175",
+    "framework/current_state.json": "9e278dd85a2166118e708ea9e6e627ae30ff3338cc6b2936fb76cd147e970948",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -190,7 +190,7 @@
     "tests/unit/test_research_progress.py": "b9743aa642029369a858973eb5417dd67de4fc618343ef07beedc4930c2878f4",
     "tests/unit/test_research_publication_merge.py": "e41e83060667404033a4cdeec18d0396a54551dee5c9737c396111ee816014e3",
     "src/inresearch/interfaces/http.py": "4e9ca824c0ad129f89b0ddd0ec3cbc8fb83a3bb3ae76242e77bf4a4219abf65d",
-    "web/routes.json": "53d1df39542306b52210c5cbac6b9a7c381187d017caf00bef7c7a48b2373db0",
+    "web/routes.json": "b4b8531ce92bc4043c8899a15449f222d27e4d9ffaa183f5363d79ce5fd5fd56",
     "web/components/site-shell.js": "d1dbb2bea0538cc49084e66124b8841a11f5ffff05c07c77065e4f9b4f175f48",
     "web/components/company-home.js": "4db5baa5fcd45de2084d8a86c411f0822338550bfb29bfdf8ec00864dc2b65ff",
     "web/components/company-overview.js": "561b11ff9f66cd4f12b586efe540b707776b7d86a4f0be2ab52b087fa367d745",
@@ -205,8 +205,8 @@
     "tests/unit/test_material_flow.py": "6d7956fcb057acd12be4c225605a262b1eb7b9da45f7f33d4554ed94444b87fb",
     "framework/10_visual_atlas.md": "d8fa2383d3d47ffd4af571c00dd8252faa7f86d6a775c1cc6200a01ce932614a",
     "framework/visual_atlas.json": "bc596b9e58fca8ce1e5276901392513c10896a36b8b178348c16bc158c27a910",
-    "framework/visual_atlas_migration.json": "a42b51208201c0d83e0bf02444d3d03213acc49482f3a5b8d63c8a0ce7153b8b",
-    "docs/design/technical-atlas/MIGRATION_PLAN.md": "636f15ef320ab514ef223054c1c3a8fb6c0378d9067130d94257981f17b8f091",
+    "framework/visual_atlas_migration.json": "383b2079b35c9540e76e642aae94f773f396cb2718c9d1866dc61f1bf94e22ac",
+    "docs/design/technical-atlas/MIGRATION_PLAN.md": "902fdfaa1c4e762e59d5d79453591674747cd635a3912dc6a1800c43bad76b8c",
     "docs/design/technical-atlas/references/README.md": "f5aeb0fee5494b4a566c05ab6878e828569b25c2f15ee8686151e2b791610a7f",
     "tests/unit/test_visual_atlas.py": "cca07f6e22b404a901702f455f1926516c9448afbb66c77b5e313fa63ad4c5cd",
     "docs/design/technical-atlas/references/01-chain.png": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
@@ -216,8 +216,8 @@
     "docs/design/technical-atlas/references/05-thermal-cutaway.png": "6bfeea5980c8ad16b040561a6cf69ca6e020b4cb9f0bfd26a97dd1c88c0af1f6",
     "web/assets/renders/README.md": "82dfed1573f13e1641448bc046a5606e27e25db10341ea4f799bc0563eb2c9e8",
     "web/assets/panels/README.md": "793ac5832f0b14f448790fb0be18a457413b108c45dee709d2957cfec42cf785",
-    "tests/technical_atlas.cjs": "e6345fa6f0b39db2aed1cd460c2bbff03d8066d02623669d4b3503fa7c7a6335",
-    "web/components/technical-atlas.js": "2bf9f8bbd50fc53f135477f9514dd25005eaee38fc65eb1943b530a996331cc9",
+    "tests/technical_atlas.cjs": "99119d1220f5f362d3920d1045a60f2611a2c823b126f3c1a40c959213c5ad63",
+    "web/components/technical-atlas.js": "26da050478804b9d3351bdbfb7b26dc93f3942ca821a5eb5a1e09a0fa6d09c17",
     "web/components/technical-atlas.css": "8f7946fd9999937de65b168715903f14b78771845e36c4469c1ea0f6ec48dcc9",
     "web/components/part-dossier.js": "4ccbdac65ce7f6bd2d3a9163e00f53715e97b4a8b5a5cc9a25d569eb4a2d7ad9",
     "scripts/build_technical_atlas.py": "e97a2673d741af89d67472d46f27914d1ba565d39d8d2b5ebf834ec1e4689b8c",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "c7b57c5085d971b8c2b22b9ae50807ebec81e3b7ee0ad1529d6f723f8dfcf1ca",
     "src/inresearch/adapters/html_document.py": "322b316bbc5bc0bce0c3fc4b4835b2a23c7f9d42f06c0f81ae20f17a26aaa650",
-    "docs/DECISIONS.md": "44ab676bb4fdb2c90d854656ffd14423148585668fb214d83b4514b6beb16df6",
+    "docs/DECISIONS.md": "5acfeac839e2ed1798dedaa600d7327d044cebf799d90d4cb5d63bc4444bdd17",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -251,7 +251,16 @@
     "docs/design/technical-atlas/TA-08/prompt-v1.txt": "695561727135103f6268cb3f40579a13ac5800dbef1b6563f99b5b6959dc9925",
     "docs/design/technical-atlas/TA-08/preparation-v1.json": "22cdf8ac1b44d62c7718c68f1d95a281a7507261e83f25625cecb130a0b81db4",
     "docs/design/technical-atlas/TA-08/acceptance-v1.json": "79380b8b813d701c3bfe1fb38de77c9717713902d4df16db1bf602fab782dbcb",
-    "docs/design/technical-atlas/TA-08/publication-20261009.json": "afdaeff0b00343b3f53c2fab14da8c85a2db34e7b44679539140faffd725859c"
+    "docs/design/technical-atlas/TA-08/publication-20261009.json": "afdaeff0b00343b3f53c2fab14da8c85a2db34e7b44679539140faffd725859c",
+    "web/pages/rack3d.html": "87ea353a1d8fcfc889e07e4c3528088e1d84c0032560dfd70e4b8ebabee13c15",
+    "web/assets/technical-atlas/fan-wall-v1.png": "94583b5c60c150b1b312d3988cda521e0b26f70bf15ff1e5ff5c8d66ba9ba721",
+    "web/assets/technical-atlas/fan-wall-v1.svg": "db8f69256ea43a1417fa113ca58953fbf89112194e514acd05aa739380b821b6",
+    "web/assets/technical-atlas/fan-wall-v1-preview.jpg": "9cc1877f74fa7358a880e7a54486a0777fb509e0eeaa142751131b8d1e318628",
+    "web/assets/technical-atlas/fan-wall-v1-preview.svg": "dd630fa05ca43d6039ebdcbf1a8d5f17e3c622dfa1c689a2a75e9104aeeb3cdd",
+    "docs/design/technical-atlas/TA-09/labels-v1.json": "7b78a3d9c135742e3d6c2ca87ffb75787356728a1a507df43e21f045f46bc84d",
+    "docs/design/technical-atlas/TA-09/preparation-v1.json": "e8059c28ea6a20a102abde88d666a75890a418700dff56be492111cf7ab72b00",
+    "docs/design/technical-atlas/TA-09/prompt-v1.txt": "67fd1dd19acb53e6883a7d576569baeff3b59ef611db7d851aef5dafd84500f7",
+    "docs/design/technical-atlas/TA-09/acceptance-v1.json": "8623d85c75df095e8b87829bf777439f58ba02037fd1be36647a5afa5780a3c4"
   },
   "policies": [
     {
@@ -1411,7 +1420,7 @@
       "policy": "visual-atlas-20261008",
       "scope": "project",
       "source": "framework/10_visual_atlas.md",
-      "checked_requirement": "原五张与补充四张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。；导出共用实时文字避让与1x/2x像素比；匿名启动不依赖受保护产品登记、可选未读明确未知并保留原权限。；镜头观测测试兼容脚本版本参数，注入接口须实际匹配当前源码，缺失时立即失败而不跳过视口检查。；scene_atlas 保留双密度完整导出/交互断言，调度器将1x/2x分别运行在原单项300秒限额，避免共享期限受软件渲染速度影响。；用户实际入口补全：2D SSD主图区及系统/尺度缩略图用已验图，不留SSD方块；其他选择清除SSD、无侧栏重复。可变HTML/JS/CSS no-cache及GET/HEAD/304条件验证，私有权限保持。；部件详图在包含该部件的系统/尺度行后，骨架路径可见且不前置于总览；切换排法保留选中与所属行，非SSD选择在切换后仍不显示SSD。；设施2D四对象按用户优先顺序分别登记；已验图的PNG真实尺寸/SHA、原字节SVG与轻量同尺寸预览绑定对象，保留基线。实际浏览器按accepted/published项逐张验系统/尺度所属行、跨对象切换、缩略图替代、宽窄/明暗、独立SVG、放大及双下载，未完成项不假装有图。；35项主计划编号和补充四图分开计量，接受图完整性与逐项真实页面验证不因续做调度而免除。；TA-03子装配明确标题/图注，计算行缩略图身份和3D服务器档案绑定，GPU不继承机箱图，8条独立标注与旧chassis基线保留。；TA-04模组装配与GPU对象绑定、系统/尺度缩略图身份、跨服务器/GPU选择清除、GPU档案插图与既有3D画布保留；8条标签/同像素预览/原件SHA与旧gpu-board基线。；2D档案传入完整prices对象，GPU现有价格曲线与图册上下文能同时完成，不因records数组形状错误中断加载。；TA-04逐项实际发布回执与主计划4/35/下一TA-05绑定，补充四图独立，源码四项精确头CI与公网/原件/服务观察分别登记。；TA-05 HBM对象绑定通用GPU/HBM封装层次图，系统/尺度定位和跨GPU切换清除；3D HBM档案仍有交互画布，TA-03/04保留，8标签原件/预览与旧hbm基线绑定。; TA-05 actual public entry/native-master/labels/download/source checks bound to published queue5/35, user budget exception and unexecuted CI recorded separately.；TA-06 CPU与DRAM各自系统/尺度入口绑定同一主板装配上下文，九标签与原件绑定；跨选择不残留HBM/GPU图，CPU/DRAM 3D档案保留交互画布，不新增骨架对象。；TA-06真实公网两入口各四视图/九标签原件SHA/双下载字节/3D画布回执与published6/35绑定，Spark版本差异和CI预算豁免保持独立。；用户R10–R14五份参考原字节/SHA/实际尺寸绑定，参考集合14张且非技术证据；规范1.7细节要求及未来TA18–23/35引用同步，不新增计划项或回填已发布图参考。；TA-07网络系统/部件尺度的NIC入口绑定独立网卡图，八标签、原PNG和实际R2/R3绑定；不残留CPU图，3D查看器保留。；TA-07真实公网四视图/八标签原PNG SHA/双下载完整字节/3D画布回执与published7/35绑定，独立登记预算CI与Spark版本差异。；TA-08 PSU电力/尺度入口绑定通用服务器AC–DC外观图，R2真实工具输入、原生1536×1024、8独立标签/原件/轻量预览与旧psu基线绑定。实际本地8视图及高清8标签/原PNG嵌入SHA/双下载完整字节验证，3D PSU档案原交互画布保留，跨NIC选择不残图；本地accepted阶段完整验收，本次用户授权合并部署；实际发布另由回执验证。；TA-08真实公网八视图/八独立标签/原PNG嵌入SHA/双下载完整字节/原3D画布与published8/35回执绑定；AWS首发源码及精确镜像healthy、自动精确head四CI成功与本次用户合并授权分开登记。",
+      "checked_requirement": "原五张与补充四张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。；导出共用实时文字避让与1x/2x像素比；匿名启动不依赖受保护产品登记、可选未读明确未知并保留原权限。；镜头观测测试兼容脚本版本参数，注入接口须实际匹配当前源码，缺失时立即失败而不跳过视口检查。；scene_atlas 保留双密度完整导出/交互断言，调度器将1x/2x分别运行在原单项300秒限额，避免共享期限受软件渲染速度影响。；用户实际入口补全：2D SSD主图区及系统/尺度缩略图用已验图，不留SSD方块；其他选择清除SSD、无侧栏重复。可变HTML/JS/CSS no-cache及GET/HEAD/304条件验证，私有权限保持。；部件详图在包含该部件的系统/尺度行后，骨架路径可见且不前置于总览；切换排法保留选中与所属行，非SSD选择在切换后仍不显示SSD。；设施2D四对象按用户优先顺序分别登记；已验图的PNG真实尺寸/SHA、原字节SVG与轻量同尺寸预览绑定对象，保留基线。实际浏览器按accepted/published项逐张验系统/尺度所属行、跨对象切换、缩略图替代、宽窄/明暗、独立SVG、放大及双下载，未完成项不假装有图。；35项主计划编号和补充四图分开计量，接受图完整性与逐项真实页面验证不因续做调度而免除。；TA-03子装配明确标题/图注，计算行缩略图身份和3D服务器档案绑定，GPU不继承机箱图，8条独立标注与旧chassis基线保留。；TA-04模组装配与GPU对象绑定、系统/尺度缩略图身份、跨服务器/GPU选择清除、GPU档案插图与既有3D画布保留；8条标签/同像素预览/原件SHA与旧gpu-board基线。；2D档案传入完整prices对象，GPU现有价格曲线与图册上下文能同时完成，不因records数组形状错误中断加载。；TA-04逐项实际发布回执与主计划4/35/下一TA-05绑定，补充四图独立，源码四项精确头CI与公网/原件/服务观察分别登记。；TA-05 HBM对象绑定通用GPU/HBM封装层次图，系统/尺度定位和跨GPU切换清除；3D HBM档案仍有交互画布，TA-03/04保留，8标签原件/预览与旧hbm基线绑定。; TA-05 actual public entry/native-master/labels/download/source checks bound to published queue5/35, user budget exception and unexecuted CI recorded separately.；TA-06 CPU与DRAM各自系统/尺度入口绑定同一主板装配上下文，九标签与原件绑定；跨选择不残留HBM/GPU图，CPU/DRAM 3D档案保留交互画布，不新增骨架对象。；TA-06真实公网两入口各四视图/九标签原件SHA/双下载字节/3D画布回执与published6/35绑定，Spark版本差异和CI预算豁免保持独立。；用户R10–R14五份参考原字节/SHA/实际尺寸绑定，参考集合14张且非技术证据；规范1.7细节要求及未来TA18–23/35引用同步，不新增计划项或回填已发布图参考。；TA-07网络系统/部件尺度的NIC入口绑定独立网卡图，八标签、原PNG和实际R2/R3绑定；不残留CPU图，3D查看器保留。；TA-07真实公网四视图/八标签原PNG SHA/双下载完整字节/3D画布回执与published7/35绑定，独立登记预算CI与Spark版本差异。；TA-08 PSU电力/尺度入口绑定通用服务器AC–DC外观图，R2真实工具输入、原生1536×1024、8独立标签/原件/轻量预览与旧psu基线绑定。实际本地8视图及高清8标签/原PNG嵌入SHA/双下载完整字节验证，3D PSU档案原交互画布保留，跨NIC选择不残图；本地accepted阶段完整验收，本次用户授权合并部署；实际发布另由回执验证。；TA-08真实公网八视图/八独立标签/原PNG嵌入SHA/双下载完整字节/原3D画布与published8/35回执绑定；AWS首发源码及精确镜像healthy、自动精确head四CI成功与本次用户合并授权分开登记。；TA-09通用风扇笼实际R2、三就位/一上提与唯一对应空位、十标签/原PNG/同尺寸轻量预览及旧fans绑定；既有server-fan冷却/尺度入口和原fanwall拾取/交互档案对应，无新骨架或几何；实际本地八视图/十标签原件SHA/双下载完整字节验证，accepted与生产发布分开。",
       "tests": [
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_adopted_reference_bytes_and_actual_dimensions_match",
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_all_existing_render_and_panel_assets_have_individual_queue_rows",
@@ -1442,7 +1451,8 @@
         "R10–R14为视觉参考，不证明尺寸/数量/设施就绪/改建可行性/燃料路径；内部几何与真实工程仍逐张技术核对/人工审图。参考登记不代表未来成图已完成。",
         "TA-07精确型号、速率、引脚数量/接触边几何、功耗、散热机械与布线未知；双端口仅构图示例，不指定400/800G或所有DPU架构。3D几何未重建；实际发布另验。",
         "TA-07 Actions37867567667预算阻止四job启动，CI未运行；用户授权忽略预算阻塞。Spark较网站旧，不声称同步。匿名研究401，未验证已登录研究数据。",
-        "TA-08为通用服务器PSU外观：额定功率、电压/效率/认证、具体接点/锁扣/风扇几何、尺寸、兼容性、气流方向、内部电路与更换条件未核实；Delta完整PDF条款跳转/Dell全文超时及403记录保持。既有3D几何未重制；公网八视图/原件/下载/画布与AWS实测见publication回执，机检不替代逐张目检。源码CI四项自动成功不证明其他生产范围；匿名研究内容、Spark真实材料注册/C3/采用及review调度不由本图任务验收。"
+        "TA-08为通用服务器PSU外观：额定功率、电压/效率/认证、具体接点/锁扣/风扇几何、尺寸、兼容性、气流方向、内部电路与更换条件未核实；Delta完整PDF条款跳转/Dell全文超时及403记录保持。既有3D几何未重制；公网八视图/原件/下载/画布与AWS实测见publication回执，机检不替代逐张目检。源码CI四项自动成功不证明其他生产范围；匿名研究内容、Spark真实材料注册/C3/采用及review调度不由本图任务验收。",
+        "TA-09四位/三就位一上提仅是装配示例；精确型号、叶片与网罩/导向/卡扣几何、尺寸、引脚、电压、转速、风量/压力/噪音、冗余/控制、气流方向及热插拔/更换条件未知。3D几何保留，仅既有fanwall身份归回server-fan；不完成TA11/13/29。机器校验不替代逐张目检，生产实际发布、Spark服务/材料接收/C3采用不由本地验收证明。"
       ]
     },
     {

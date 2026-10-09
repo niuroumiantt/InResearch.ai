@@ -486,7 +486,7 @@ for (let k = 0; k < 4; k++) {
   rotor.add(new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 0.06, 12), M(0x59627a)).rotateX(Math.PI / 2));
   spinners.push(rotor);
 }
-tag(fanwall, "server");
+tag(fanwall, "server-fan");
 explode(fanwall, 0, 0.35, 1.4, 0.66, 0.8);
 /* PSU 对（后部） */
 const psuPair = new THREE.Group(); hero.add(psuPair);
