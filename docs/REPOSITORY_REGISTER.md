@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.29。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.30。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1628。
+在册文件：1629。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 317 |
+| 历史快照 | 318 |
 | 运行代码 | 313 |
 | 现行规范 | 15 |
 | 项目配置 | 357 |
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 28 |
-| `data/research_knowledge.json` | evidence | 181 |
-| `data/research_knowledge.json` | statements | 175 |
+| `data/research_knowledge.json` | documents | 29 |
+| `data/research_knowledge.json` | evidence | 190 |
+| `data/research_knowledge.json` | statements | 182 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -1447,6 +1447,7 @@
 | `docs/reviews/2026-09-29/verify/macmini.sh` | 历史快照 |
 | `docs/reviews/2026-09-29/verify/spark.sh` | 历史快照 |
 | [docs/reviews/2026-10-02/homepage/DELIVERY.md](reviews/2026-10-02/homepage/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md](reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md) | 历史快照 |
 | [docs/reviews/2026-10-09/research-publication/README.md](reviews/2026-10-09/research-publication/README.md) | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/old-ready12-followup.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | 历史快照 |

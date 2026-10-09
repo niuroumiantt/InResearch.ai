@@ -43,6 +43,15 @@ def adopted_knowledge():
             'statements': [statement], 'answers': [answer]}
 
 
+def delegated_review():
+    return {'by': 'Codex / named fixture agent', 'tier': 'A',
+            'at': '2026-10-09T07:30:00+00:00', 'authority': 'delegated_reviewer',
+            'decision': 'adopted', 'delegation': {
+                'delegate': 'Codex / named fixture agent', 'granted_by': 'fixture-owner',
+                'granted_at': '2026-10-09', 'reference': 'fixture-review.md#delegation',
+                'scope': 'new_or_supplemental_research'}}
+
+
 class ResearchTests(unittest.TestCase):
     def setUp(self):
         self.graph = research.read_json(research.ROOT / 'framework/research_graph.json')
@@ -198,6 +207,91 @@ class ResearchTests(unittest.TestCase):
         task_ids = {task['question_ids'][0] for task in research.question_tasks(self.questions, knowledge)}
         self.assertNotIn('M01-Q01', task_ids)
         self.assertIn('M01-Q02', task_ids)
+
+    def test_named_A_delegation_accepts_known_date_or_aware_time_without_owner_impersonation(self):
+        for granted in ('2026-10-09', '2026-10-08T23:30:00Z', '2026-10-09T15:30:00+08:00'):
+            with self.subTest(granted=granted):
+                knowledge = adopted_knowledge()
+                for table in ('evidence', 'statements', 'answers'):
+                    knowledge[table][0]['review'] = delegated_review()
+                    knowledge[table][0]['review']['delegation']['granted_at'] = granted
+                self.assertEqual([], research.validate(self.graph, self.questions, knowledge))
+                self.assertEqual({'M01-Q01'}, research.completed_questions(knowledge))
+                self.assertEqual(knowledge['statements'][0]['review']['by'], 'Codex / named fixture agent')
+                self.assertEqual(knowledge['statements'][0]['review']['delegation']['granted_at'], granted)
+        owner = adopted_knowledge()['statements'][0]
+        self.assertTrue(research.review_valid(owner))
+        owner['review'].update(tier='B', authority='reviewer')
+        self.assertTrue(research.review_valid(owner))
+        owner['review'].update(authority='delegated_reviewer', delegation=delegated_review()['delegation'])
+        self.assertFalse(research.review_valid(owner))
+
+    def test_A_delegation_missing_mismatched_blank_or_invalid_credentials_fail_closed(self):
+        valid = delegated_review()
+        cases = [None, '', 'legacy free-form delegation', [], {}]
+        for key in research.DELEGATION_KEYS:
+            missing = copy.deepcopy(valid['delegation']); missing.pop(key); cases.append(missing)
+            for value in ('', ' \t\n', None, True, []):
+                invalid = copy.deepcopy(valid['delegation']); invalid[key] = value; cases.append(invalid)
+        for key, value in (('delegate', 'different agent'), ('scope', 'all_research'),
+                           ('granted_at', '2026-02-30'), ('granted_at', '2026-10-10'),
+                           ('granted_at', '2026-10-09T07:30:01Z'),
+                           ('granted_at', '2026-10-09T00:00:00')):
+            invalid = copy.deepcopy(valid['delegation']); invalid[key] = value; cases.append(invalid)
+        for delegation in cases:
+            with self.subTest(delegation=delegation):
+                row = {'review': copy.deepcopy(valid)}
+                row['review']['delegation'] = delegation
+                self.assertFalse(research.review_valid(row))
+        for by in ('', ' \t', 'someone else'):
+            row = {'review': copy.deepcopy(valid)}; row['review']['by'] = by
+            self.assertFalse(research.review_valid(row))
+
+    def test_replacement_and_relaxed_distribution_remain_A_owner_decisions(self):
+        for container in ('record', 'review'):
+            for field, value in (('replaces_record_ids', ['old:conclusion']), ('relaxes_distribution', True)):
+                for tier, authority, expected in (('A', 'delegated_reviewer', False),
+                                                  ('B', 'reviewer', False), ('B', 'owner', False),
+                                                  ('A', 'owner', True)):
+                    with self.subTest(container=container, field=field, tier=tier, authority=authority):
+                        row = {'review': delegated_review()}
+                        row['review'].update(tier=tier, authority=authority)
+                        (row if container == 'record' else row['review'])[field] = value
+                        self.assertEqual(research.review_valid(row), expected)
+        for field, value in (('replaces_record_ids', []), ('relaxes_distribution', False)):
+            self.assertTrue(research.review_valid({'review': delegated_review(), field: value}))
+        for field, value in (('replaces_record_ids', 'old'), ('replaces_record_ids', [' ']),
+                             ('replaces_record_ids', None), ('relaxes_distribution', 'false'),
+                             ('relaxes_distribution', 0), ('relaxes_distribution', None)):
+            self.assertFalse(research.review_valid({'review': delegated_review(), field: value}))
+
+    def test_invalid_delegated_support_link_reopens_the_question(self):
+        knowledge = adopted_knowledge()
+        for table in ('evidence', 'statements', 'answers'):
+            knowledge[table][0]['review'] = delegated_review()
+        self.assertEqual({'M01-Q01'}, research.completed_questions(knowledge))
+        for table in ('evidence', 'statements', 'answers'):
+            for field, value in (('delegation', {}), ('authority', 'reviewer')):
+                with self.subTest(table=table, field=field):
+                    invalid = copy.deepcopy(knowledge)
+                    invalid[table][0]['review'][field] = value
+                    self.assertEqual(set(), research.completed_questions(invalid))
+                    self.assertTrue(research.validate(self.graph, self.questions, invalid))
+        knowledge['documents'][0]['coverage']['pages_read'] = 1
+        self.assertEqual(set(), research.completed_questions(knowledge))
+
+    def test_candidate_receiver_cannot_self_grant_delegated_adoption(self):
+        knowledge = adopted_knowledge()
+        for table in ('evidence', 'statements', 'answers'):
+            knowledge[table][0]['review'] = delegated_review()
+        payload = {'generated': '2026-10-09T07:30:00Z', 'graph_version': self.graph['version'],
+                   'questions_version': self.questions['version'], 'knowledge': knowledge,
+                   'reader': {'status': 'idle'}}
+        received = research.candidate_snapshot(payload, self.graph, self.questions)['knowledge']
+        for table in ('evidence', 'statements', 'answers'):
+            self.assertEqual(received[table][0]['status'], 'candidate')
+            self.assertNotIn('review', received[table][0])
+        self.assertEqual(set(), research.completed_questions(received))
 
     def test_withdrawn_or_invalid_original_evidence_reopens_question(self):
         cases = [
@@ -651,6 +745,30 @@ class ReaderSnapshotHTTPTests(unittest.TestCase):
         curated['evidence'][0]['status'] = 'withdrawn'
         research.atomic_json(self.curated_path, curated)
         self.assertEqual(self.request('GET', '/api/research-adopted?node=part:gpu')[1]['knowledge']['statements'], [])
+
+    def test_adopted_API_preserves_actual_delegate_and_minimal_grant_for_the_support_chain(self):
+        curated = adopted_knowledge()
+        for table in ('evidence', 'statements', 'answers'):
+            curated[table][0]['review'] = delegated_review()
+            curated[table][0]['review']['private_audit'] = 'PRIVATE_MARKER'
+            curated[table][0]['review']['delegation']['private_token'] = 'PRIVATE_MARKER'
+        research.atomic_json(self.curated_path, curated)
+        code, detail = self.request('GET', '/api/research-adopted?node=root')
+        self.assertEqual(code, 200)
+        for table in ('evidence', 'statements', 'answers'):
+            actual = detail['knowledge'][table][0]['review']
+            self.assertEqual(actual['by'], 'Codex / named fixture agent')
+            self.assertEqual(actual['authority'], 'delegated_reviewer')
+            self.assertEqual(set(actual['delegation']), set(research.DELEGATION_KEYS))
+            self.assertEqual(actual['delegation']['granted_at'], '2026-10-09')
+            self.assertEqual(actual['delegation']['delegate'], actual['by'])
+        self.assertNotIn('PRIVATE_MARKER', json.dumps(detail))
+        curated['evidence'][0]['review']['delegation']['delegate'] = 'another agent'
+        research.atomic_json(self.curated_path, curated)
+        broken = self.request('GET', '/api/research-adopted?node=root')[1]['knowledge']
+        self.assertEqual(broken['statements'], [])
+        self.assertEqual(broken['answers'], [])
+        self.assertEqual(broken['evidence'], [])
 
     def test_research_summary_shares_state_but_omits_content_catalog_and_reader_payload(self):
         payload = self.payload()
