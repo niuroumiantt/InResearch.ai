@@ -1,0 +1,435 @@
+{
+  "eia-pr483-merged": {
+    "headRefOid": "4142d56a239b51ea105b38f61a95b8d01ac7a352",
+    "mergeCommit": {
+      "oid": "6402120399f9933d8d91dfcbcbdd427729061fc4"
+    },
+    "mergedAt": "2026-10-09T08:02:40Z",
+    "number": 483,
+    "state": "MERGED",
+    "url": "https://github.com/niuroumiantt/InResearch.ai/pull/483"
+  },
+  "a-registry-m5-source-reload": {
+    "checked_at": "2026-10-09T08:03:59.346975+00:00",
+    "previous": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+    "target": "6402120399f9933d8d91dfcbcbdd427729061fc4",
+    "head": "6402120399f9933d8d91dfcbcbdd427729061fc4",
+    "source_clean": true,
+    "bundle_sha256": "b1a5383bfb9750b838e5d9f2a899f94bf81bda70fa2983e3d39ea51c1c525f5a",
+    "changed_paths": [
+      "data/research_knowledge.json",
+      "docs/DECISIONS.md",
+      "docs/REPOSITORY_REGISTER.md",
+      "docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md",
+      "framework/01_data_standards.md",
+      "framework/02_knowledge_format.md",
+      "framework/CURRENT.md",
+      "framework/current_state.json",
+      "framework/repository_manifest.json",
+      "framework/verification_contract.json",
+      "src/inresearch/knowledge/registry.py",
+      "tests/unit/test_research.py"
+    ],
+    "journals_unchanged": 114,
+    "registry_sha256": "8919ae84cb62accafaa58664652b47f68cea76917e2328cfedd7a8b27ab7dddc",
+    "formal_sha256": "d43e2a9d13650acc5782a691cc48b2cc099c083858bc64681a59b6426765cdb6",
+    "all_seven_supported_in_new_module": {
+      "adoption:specialist:eia-ytd-2026-07:tx": true,
+      "adoption:specialist:eia-ytd-2026-07:va": true,
+      "adoption:specialist:eia-ytd-2026-07:az": true,
+      "adoption:specialist:eia-ytd-2026-07:ga": true,
+      "adoption:specialist:eia-ytd-2026-07:oh": true,
+      "adoption:specialist:eia-ytd-2026-07:or": true,
+      "adoption:specialist:eia-ytd-2026-07:us": true
+    },
+    "registry_validation_errors": [],
+    "operation": "exact approved source Git fast-forward while independent maintenance and worker locks held; no journal, credentials, account, model, Reader, relay or queue mutation"
+  },
+  "a-registry-spark-source-ff": {
+    "checked_at": "2026-10-09T08:04:09.411750+00:00",
+    "previous": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+    "head": "6402120399f9933d8d91dfcbcbdd427729061fc4",
+    "bundle_sha256": "b1a5383bfb9750b838e5d9f2a899f94bf81bda70fa2983e3d39ea51c1c525f5a",
+    "source_dirty_after": false,
+    "reader_before": "MainPID=1906533\nActiveState=active\nSubState=running\nDropInPaths=/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf /home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf",
+    "reader_after": "MainPID=1906533\nActiveState=active\nSubState=running\nDropInPaths=/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf /home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf",
+    "reader_same": true,
+    "registry_sha256": "8919ae84cb62accafaa58664652b47f68cea76917e2328cfedd7a8b27ab7dddc",
+    "formal_knowledge_sha256": "d43e2a9d13650acc5782a691cc48b2cc099c083858bc64681a59b6426765cdb6",
+    "operation": "diag-approved canonical main fast-forward only; no Reader/relay/review/scope/catalog/service/independent-worktree edits"
+  },
+  "a-registry-publisher-restored": {
+    "checked_at": "2026-10-09T08:06:12.681860+00:00",
+    "launchctl": {
+      "state": "active",
+      "runs": "1",
+      "pid": "57656",
+      "last exit code": "(never exited)"
+    },
+    "process": "57656     1 S    Fri Oct  9 16:04:23 2026     /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python",
+    "program_path": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "program_entry": [
+      "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009/manage.py",
+      "research-publish"
+    ],
+    "configured_runtime": "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009",
+    "runtime_head": "6402120399f9933d8d91dfcbcbdd427729061fc4",
+    "runtime_clean": true,
+    "registry_source_sha256": "8919ae84cb62accafaa58664652b47f68cea76917e2328cfedd7a8b27ab7dddc",
+    "registry_source_mtime": "2026-10-09T08:03:59.304780+00:00",
+    "new_delegation_policy_present": true,
+    "publisher_source_sha256": "af0aee20a4a9152d89083c0d2f53a63e5e92f56f00d60b3a3963a6d419d5426f",
+    "publisher_source_mtime": "2026-10-09T07:12:34.305653+00:00",
+    "includes_exact_head_recovery": true,
+    "includes_current_context_revalidation": true,
+    "status_file_mtime": "2026-10-09T08:04:57.257375+00:00",
+    "status": {
+      "state": "pr_open",
+      "at": null,
+      "batch_id": "01b1ed69fe65126b4de6aa2fa203e456869cde3769fbb6e03bada2c3e8ee8508",
+      "batches": null,
+      "waiting": null
+    },
+    "status_error_present": false,
+    "status_error_classes": [],
+    "alphabet_first": {
+      "state": "published",
+      "updated": "2026-10-09T07:47:39+00:00",
+      "commit": "5f9574328788f60155a2f63e025b3042aae0162e",
+      "merge_commit": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+      "attempt": "attempt-0001",
+      "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b"
+    },
+    "alphabet_first_error_present": false,
+    "alphabet_first_website_proof_present": true,
+    "operation": "read-only actual restored LaunchAgent/PID/source/current status and precise package journal; no new bootstrap, service or queue mutation"
+  },
+  "eia-pr483-https-support": {
+    "checked_at": "2026-10-09T08:07:54.342858+00:00",
+    "url": "https://inresearch.ai/api/research-adopted?node=root",
+    "http_status": 200,
+    "actual_merge": "6402120399f9933d8d91dfcbcbdd427729061fc4",
+    "reviewed_head": "4142d56a239b51ea105b38f61a95b8d01ac7a352",
+    "deployed_ledger_sha256": "d43e2a9d13650acc5782a691cc48b2cc099c083858bc64681a59b6426765cdb6",
+    "registry_sha256": "8919ae84cb62accafaa58664652b47f68cea76917e2328cfedd7a8b27ab7dddc",
+    "response_sha256": "dd1212e9d39a426e50e2578792cc3e683ebb3181cf347a76ad2f77dd6e456aa5",
+    "checks": [
+      {
+        "id": "adoption:specialist:eia-ytd-2026-07:tx",
+        "present": true,
+        "text_match": true,
+        "ledger_row_exact": true,
+        "public_named_A_delegation": true,
+        "supported_adoption": true,
+        "source_closure": true,
+        "source_candidate_ids": true,
+        "measurement": true
+      },
+      {
+        "id": "adoption:specialist:eia-ytd-2026-07:va",
+        "present": true,
+        "text_match": true,
+        "ledger_row_exact": true,
+        "public_named_A_delegation": true,
+        "supported_adoption": true,
+        "source_closure": true,
+        "source_candidate_ids": true,
+        "measurement": true
+      },
+      {
+        "id": "adoption:specialist:eia-ytd-2026-07:az",
+        "present": true,
+        "text_match": true,
+        "ledger_row_exact": true,
+        "public_named_A_delegation": true,
+        "supported_adoption": true,
+        "source_closure": true,
+        "source_candidate_ids": true,
+        "measurement": true
+      },
+      {
+        "id": "adoption:specialist:eia-ytd-2026-07:ga",
+        "present": true,
+        "text_match": true,
+        "ledger_row_exact": true,
+        "public_named_A_delegation": true,
+        "supported_adoption": true,
+        "source_closure": true,
+        "source_candidate_ids": true,
+        "measurement": true
+      },
+      {
+        "id": "adoption:specialist:eia-ytd-2026-07:oh",
+        "present": true,
+        "text_match": true,
+        "ledger_row_exact": true,
+        "public_named_A_delegation": true,
+        "supported_adoption": true,
+        "source_closure": true,
+        "source_candidate_ids": true,
+        "measurement": true
+      },
+      {
+        "id": "adoption:specialist:eia-ytd-2026-07:or",
+        "present": true,
+        "text_match": true,
+        "ledger_row_exact": true,
+        "public_named_A_delegation": true,
+        "supported_adoption": true,
+        "source_closure": true,
+        "source_candidate_ids": true,
+        "measurement": true
+      },
+      {
+        "id": "adoption:specialist:eia-ytd-2026-07:us",
+        "present": true,
+        "text_match": true,
+        "ledger_row_exact": true,
+        "public_named_A_delegation": true,
+        "supported_adoption": true,
+        "source_closure": true,
+        "source_candidate_ids": true,
+        "measurement": true
+      }
+    ],
+    "source_document_native_seal_binding": true,
+    "unchanged_formal_paths": {
+      "data/prices.json": true,
+      "data/facts.json": true,
+      "data/datacenter_model.json": true,
+      "framework/research_questions.json": true
+    },
+    "M04-Q11_still_open": true,
+    "material_api": {
+      "url": "https://inresearch.ai/api/research-materials?node=root&q=Electric+Power+Monthly%EF%BC%9A%E8%A1%A85.6.B+%E7%BE%8E%E5%9B%BD%E5%90%84%E5%B7%9E%E5%88%86%E9%83%A8%E9%97%A8%E5%B9%B4%E5%88%9D%E8%87%B37%E6%9C%88%E5%B9%B3%E5%9D%87%E7%94%B5%E4%BB%B7%EF%BC%882026%E5%B9%B4%E4%B8%8E2025%E5%B9%B4%EF%BC%89&limit=50",
+      "http_status": 200,
+      "matched_source_rows": 15,
+      "source_url_role_match": true,
+      "source_sha256": "2d71d12585023e9506bf0bba137293c8564a27a4d6f577a4a20bdcddd4ad422c",
+      "role": "downloaded_original",
+      "url_expected": "https://www.eia.gov/electricity/monthly/epm_table_grapher.php?t=epmt_5_6_b"
+    },
+    "verified_all_seven": true,
+    "operation": "read-only external HTTPS with existing in-memory session plus actual deployed curated-ledger closure; no credentials/account/source/service/queue writes"
+  },
+  "alphabet-six-after-eia-https-support": {
+    "checked_at": "2026-10-09T08:06:42.094954+00:00",
+    "http_base": "https://inresearch.ai",
+    "url": "https://inresearch.ai/api/research-adopted?node=root",
+    "http_status": 200,
+    "response_bytes": 380845,
+    "response_sha256": "dd1212e9d39a426e50e2578792cc3e683ebb3181cf347a76ad2f77dd6e456aa5",
+    "batch_id": "dab6fcb8b605f6f5507ec6e8077b194f536abb68226164b288f563c7ef0b5742",
+    "reviewed_head": "5f9574328788f60155a2f63e025b3042aae0162e",
+    "merge_commit": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+    "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b",
+    "checks": [
+      {
+        "id": "adoption:review:fb6656249b7447a6d6c26f3e",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:c148e09dcc10f8e5ebb02548",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:b7c7ef5f4639608d3c0c4539",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:6feb10f3690af7ad97f6a95e",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:a5a67902724b59e3852df9c1",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:4d9d490ec92a922f291826c8",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      }
+    ],
+    "verified_all_six": true,
+    "verified_formal_support_all_six": true,
+    "material_api": {
+      "url": "https://inresearch.ai/api/research-materials?node=root&q=Alphabet+Q1+2026+Earnings+Call&limit=50",
+      "http_status": 200,
+      "total": 122,
+      "matched_original_rows": 50,
+      "source_identity_url_role_verified": true,
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "source_url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Apr/29/2026_Q1_Earnings_Transcript.pdf",
+      "role": "downloaded_original",
+      "response_sha256": "3b579d2ab2b68f938efd369c4f5d5133e33be17a563ef3ad3c2aa00938ab3c45"
+    },
+    "adopted_projection_note": "Adopted document API intentionally projects only id/title/content SHA/reading revision/coverage; URL and source provenance are bound by deployed curated ledger and separately verified through actual research-materials HTTPS.",
+    "deployed_ledger_sha256": "d43e2a9d13650acc5782a691cc48b2cc099c083858bc64681a59b6426765cdb6",
+    "projection_contract": "HTTP exposes status/review/native quote/document content SHA/reading revision/coverage; source_candidate IDs, report SHA and partial-support flag are independently bound through the actual deployed curated ledger",
+    "operation": "authenticated external HTTPS GET using existing in-memory session; no account/auth/service/source/queue mutation"
+  },
+  "eia-pr483-aws-health": {
+    "checked_at": "2026-10-09T08:08:29.704712+00:00",
+    "running": true,
+    "health": "healthy",
+    "started_at": "2026-10-09T08:04:17.757274485Z",
+    "image_id": "sha256:d1b3ca1b527ab666a38ef9653c33260d59c877873d0629a6da75ae8a809727b0",
+    "image_name": "inresearch-app:6402120399f9933d8d91dfcbcbdd427729061fc4",
+    "source_head": "6402120399f9933d8d91dfcbcbdd427729061fc4",
+    "applied": "6402120399f9933d8d91dfcbcbdd427729061fc4 sha256:d1b3ca1b527ab666a38ef9653c33260d59c877873d0629a6da75ae8a809727b0",
+    "deploy_status": "HEALTHY: 6402120399f9933d8d91dfcbcbdd427729061fc4",
+    "revision_labels": {
+      "com.docker.compose.version": "2.40.3"
+    },
+    "public_health_status": 200,
+    "public_health": {
+      "ok": true,
+      "service": "inresearch",
+      "auth_required": true
+    },
+    "operation": "read-only container state/revision and external HTTPS health; no deploy/service changes"
+  },
+  "record_kind": "actual named delegated A specialist supplemental review of EIA YTD table; not B publication queue ACK",
+  "actual_pr": 483,
+  "actual_merge": "6402120399f9933d8d91dfcbcbdd427729061fc4",
+  "formal_count": 7,
+  "original_submission_claim_ids": [
+    "C35",
+    "C36",
+    "C37",
+    "C38",
+    "C39",
+    "C40",
+    "C41"
+  ],
+  "source_receipts": {
+    "inresearch-eia-pr483-merged-20261009.json": {
+      "sha256": "07e2f79bc50ee70f38a1e1e03be5099d156d21b2985a1b592a0b62d1cdedf71e",
+      "bytes": 250
+    },
+    "inresearch-a-registry-m5-source-reload-20261009.json": {
+      "sha256": "cf3443a8bd7e53131c480d0da343a3454408187ffc480369993a0818217cd399",
+      "bytes": 1666
+    },
+    "inresearch-a-registry-spark-source-ff-20261009.json": {
+      "sha256": "09d23a253f5a669095d23745c96bd473bf1b50b058703b61195b2e877564ebec",
+      "bytes": 1149
+    },
+    "inresearch-a-registry-publisher-restored-20261009.json": {
+      "sha256": "8ebf7ce182b341f92e0d40726e9009914bc8e3da28848f5c9244695748be5e12",
+      "bytes": 2100
+    },
+    "inresearch-eia-pr483-https-support-20261009.json": {
+      "sha256": "787aecd5a1dff8e8c97e3f93cdc6f7e9f810d0618b82a0511c418a450ae700e4",
+      "bytes": 3874
+    },
+    "inresearch-alphabet-six-after-eia-https-support-20261009.json": {
+      "sha256": "f68b34938a613bc33785a794e9df42c08b5473fb9217c0a62ed449459ce91a92",
+      "bytes": 4920
+    },
+    "inresearch-eia-pr483-aws-health-20261009.json": {
+      "sha256": "fb68c65b2238468fc8fe022bcbf85ba2d6b69f9e83a3576e8f1f068f9870aece",
+      "bytes": 878
+    }
+  },
+  "scope_changes_by_this_operation": false,
+  "reader_restarted_by_this_operation": false,
+  "maintenance_events": [
+    {
+      "at": "2026-10-09T07:58:13.196863+00:00",
+      "stage": "waiting_for_natural_idle",
+      "previous_pid": "35290",
+      "wait_seconds": 180
+    },
+    {
+      "at": "2026-10-09T07:58:13.259421+00:00",
+      "stage": "idle_confirmed",
+      "previous_pid": "35290"
+    },
+    {
+      "at": "2026-10-09T07:58:14.151187+00:00",
+      "stage": "backed_up_locked",
+      "backup_manifest": "/Users/m5/.local/state/inresearch.ai/research-publish-maintenance/a-registry-20261009T075813Z/backup-manifest.json",
+      "backup_files": 1424,
+      "backup_bytes": 210301299,
+      "journal_count": 114,
+      "release_path": "/Users/m5/.local/state/inresearch.ai/research-publish-maintenance/a-registry-20261009T075813Z/release.json",
+      "runtime_root": "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009",
+      "deadline_seconds": 600
+    },
+    {
+      "at": "2026-10-09T08:04:23.566132+00:00",
+      "stage": "release_requested"
+    },
+    {
+      "at": "2026-10-09T08:04:23.611418+00:00",
+      "stage": "publisher_restored",
+      "returncode": 0,
+      "actual_pid": "57656",
+      "runtime_head": "6402120399f9933d8d91dfcbcbdd427729061fc4",
+      "publisher_source_sha256": "af0aee20a4a9152d89083c0d2f53a63e5e92f56f00d60b3a3963a6d419d5426f",
+      "registry_source_sha256": "8919ae84cb62accafaa58664652b47f68cea76917e2328cfedd7a8b27ab7dddc",
+      "program_entry": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009/manage.py"
+      ]
+    }
+  ]
+}

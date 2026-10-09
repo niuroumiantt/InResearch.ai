@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.09.32 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.09.34 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -166,3 +166,10 @@ TA-11整机档案复审修正：serverMode下整机聚合全部1129几何、保�
 2026-10-09 TA12新source CI实际core_b失败定位360px共享顶栏第三行：本页nav作用域过宽。收窄为main>nav、补实际360px≤90px断言；完整32页ui_skin与正交server_plan本地通过。保留失败日志/首发AWS与公网观察，源PNG/标注/几何不改；原生重渲染采用跨平台像素差验证并保留精确投影/17原位置/遮挡/资产SHA，未把编码变化当技术错误。待修后公网验收，published仍11/35。
 
 2026-10-09 TA12修后实际发布：PR473首发edaf后新CI检出手机nav三行并由PR474修正，成功版本1e185b4e/.28，AWS07:04:32Z同源码/应用/精确890c7eda镜像healthy。真实公网四视图/15文字12引线/原PNG SHA/完整SVG93204B与PNG66785B双下载、360px两行85.734px、七源码SHA/health200及原TA11独立装配/真实拾取当前SVG/镜头/手机明暗/资源释放/旧入口全通过并逐张目检。sourceCI真实失败与fixCI预算未启动不称通过；本地完整验收和现有自主发布授权分别保留。主计划12/35、补充4/4，下一TA13；保留PR467分场景deadline及PR463/466研究/恢复与PR470来源实现，Spark仅只读版本和两服务，不改数据/范围。
+
+
+2026-10-09研究反哺实际记录：原23来源16:08已14正文封存，PR480 B6与PR483具名代理A7经真实公网/正式支持链及Spark基线实核；原50实际41C＋9S，仅7显式身份对应，不将同源提取13反记原50。M5新publisher与Spark唯一review自然idle重载、原Reader/PID/当前scope保护与未知外部600删除各有实际回执。549在16:23新基线context失效，16:26按现行revalidate保留旧attempt并精确关闭原485，未采用该三条；其余未完成继续原流程。记录见专题/研究恢复交接，不新增CI豁免政策、评分或调度实现，保留TA13.31。
+
+16:35另核原publisher PR487同源B3真实公网/ACK，原23已核闭环累计16＝B9＋A7，原50显式仍7；首480六条文本支持与已证system:control机器归属错误分开，待具名审核保留历史修复。
+
+TA13 public observer repair: the first empty route.fetch body remains a failed attempt with unknown exact cause because no status was captured. A real If-Modified-Since request returns304/empty; the observer removes only If-None-Match/If-Modified-Since and requires full200/nonempty before injecting. URL/status/bytes/cache headers are recorded without authentication headers. Local conditional recovery and full public3D assertions passed; a legal response without Last-Modified records conditional reproduction as inapplicable. Production assets/geometry and suite300-second deadline remain unchanged. Published remains12/35 until the separate receipt. Latest research/main retained; CI not queried or claimed passed under current user authorization.
