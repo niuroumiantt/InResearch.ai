@@ -193,7 +193,16 @@ class Publisher:
                             atomic_json(path, value)
                     blocked.append({'batch_id':bid, 'state':value['state']})
                     continue
-            result = self.advance(directory, {'state':'new', 'batch_id':bid})
+            previous = value.get('previous_attempts', [])
+            if value.get('attempt'):
+                if not re.fullmatch('attempt-[0-9]{4,}', value['attempt']):
+                    raise ValueError('unsafe_attempt')
+                digest = hashlib.sha256(encoded(value).encode()).hexdigest()
+                saved = private_dir(directory/value['attempt'])/('publication-journal-'+digest+'.json')
+                if not saved.exists():atomic_json(saved, value)
+                previous = previous + [{'attempt':value['attempt'], 'state':value['state'],
+                                        'path':str(saved.relative_to(directory)), 'sha256':digest_file(saved)}]
+            result = self.advance(directory, {'state':'new', 'batch_id':bid, 'previous_attempts':previous})
             if result.get('error') or result['state'] in ('blocked', 'revalidation'):
                 blocked.append({'batch_id':bid, 'state':result['state']})
                 continue

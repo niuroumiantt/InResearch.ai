@@ -36,6 +36,11 @@ def verification_errors(state, root):
         if name not in reviewed:
             errors.append('verification: unreviewed operational guide ' + name)
     runner = (root / 'tests/run_browser.cjs').read_text()
+    if "require('./browser_suites.cjs')" in runner:
+        catalog = 'tests/browser_suites.cjs'
+        if catalog not in reviewed:
+            errors.append('verification: unreviewed browser suite catalog ' + catalog)
+        runner = (root / catalog).read_text() if (root / catalog).is_file() else ''
     match = re.search(r'const defaults = \[([^]]+)\]', runner)
     browser_suites = re.findall(r"'([^']+)'", match[1]) if match else []
     for row in rows:

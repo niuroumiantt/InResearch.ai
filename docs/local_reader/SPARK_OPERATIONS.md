@@ -399,3 +399,5 @@ M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用
 ### 2026-10-08：PDF换行导致的匹配失败恢复
 
 新需求匹配v3只折叠连续排版空白，冲突上下文选择仍用v2。原文/引文及旧封印不改；未能逐字匹配的单条候选独立暂缓并保留拒绝审计，其余继续实际C3与独立抽样。部署加载独立研究worker前，停止该服务并对queue.sqlite作SQLite一致备份，保存SHA与候选计数。`research-review retry-matching --batch-id 完整ID`仅接受 `context_terms_must_be_literal_bounded_claim` 的deferred批次，保留旧attempt并优先排队；独立复核失败、引文缺口、预算失败不能使用此入口。先点名小批次真实验证，再恢复独立研究服务；原Reader和relay不重启。核对恢复/仍暂缓/待发布/网站正式采用分别计量。
+
+2026-10-09发布验收：网页core回归分core_a/core_b并行，保留27个suite、scene_atlas双密度和既有单项300秒期限；browser(core)聚合只有全部matrix通过才成功，模型资产仍保留三个场景。治理与运行器读取同一已审阅suite清单，选定浏览器入口缺失继续报错。新attempt开始前，将完整旧journal保存到旧attempt目录；新journal记录相对路径、状态与实际文件SHA，旧尝试/分支不删除。旧CI失败状态恢复沿同期发布器修复，不能将源码检查当作实际队列已恢复。
