@@ -37,3 +37,9 @@ class CampusPlanAtlasAssetsTests(unittest.TestCase):
   m=load('asset-manifest-v1.json');old=(ROOT/m['raw_baseline']['file']).read_text();new=(ROOT/'web/pages/bom3d.html').read_text();self.assertEqual(new.replace('<a href="/campus-plan.html">园区正交平面图</a> · ',''),old);self.assertEqual(hashlib.sha256((ROOT/'web/components/campus-assembly.js').read_bytes()).hexdigest(),load('generation-native-v2.json')['TA18_factory_unchanged_sha256'])
   src=(ROOT/'web/components/technical-atlas.js').read_text();self.assertIn("partId === 'campus-overview' && view === 'plan' ? campusPlan",src);self.assertIn("partId === 'server' && view === 'plan' ? serverPlan",src);page=(ROOT/'web/pages/campus-plan.html').read_text();self.assertIn("'campus-overview',{view:'plan'}",page);self.assertIn('main>nav{',page);self.assertNotIn('}nav{',page);self.assertIn('/bom3d.html?x=70',page)
   routes=json.loads((ROOT/'web/routes.json').read_text());self.assertEqual(routes['/campus-plan.html'],'web/pages/campus-plan.html');self.assertEqual(json.loads((ROOT/'framework/visual_atlas_migration.json').read_text())['primary_plan']['total'],35)
+
+ def test_new_page_declared_resources_have_actual_routes(self):
+  page=(ROOT/"web/pages/campus-plan.html").read_text();routes=json.loads((ROOT/"web/routes.json").read_text());declared=re.findall(r"<(?:script|link)[^>]+(?:src|href)=\"([^\"]+)\"",page)
+  self.assertEqual(declared.count("/assets/site-skin.js"),1);self.assertNotIn("/assets/site-shell.js",declared)
+  for url in declared:
+   self.assertIn(url,routes);self.assertTrue((ROOT/routes[url]).is_file())

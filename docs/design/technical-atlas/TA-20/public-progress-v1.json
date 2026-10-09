@@ -1,0 +1,102 @@
+{
+  "figure_id": "TA-20",
+  "stage": "public_functional_validation_passed_resource_fix_pending",
+  "observed_at": "2026-10-09T23:01:23.984697+00:00",
+  "validated_source": "964147c748cf753638663df0d3ce2b2bf5c8bfa8",
+  "public_v1_failure": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-20/public-v1/campus-plan-results.json",
+    "sha256": "dd67240c235895a67956cb4ffc11f2d51cccce7dda06bc2a3d457f604f53a4f0",
+    "reason": "Observer #cv is not actual canvas #c; old3D checks did not run in initial fullsuite."
+  },
+  "public_v2": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-20/public-v2/campus-plan-results.json",
+    "sha256": "b716d21d3ef464b812accb2a8d6b3f01ab3c7a9ea149bf1d009a602652777ba3",
+    "status": "PASS",
+    "scope": "Fourviews/fullSVG39texts12labels,dualdownloadexactSHA,360header,actualold3Dlinks/actualfactory32homes142visiblemeshes/10surface+2derivedprojection/defaultTA12SSD isolation; no declared-resource200 check yet."
+  },
+  "source_health": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-20/public-source-health.json",
+    "sha256": "fc72758b4b9a786edc33349178a932b6204baed6c6b382232aee139b8919e671",
+    "actual_matched_resources": 13,
+    "health": 200
+  },
+  "actual_404_diagnostic": {
+    "observed_at": "2026-10-09T22:54:14.340286+00:00",
+    "responses": [
+      {
+        "url": "/campus-plan.html",
+        "status": 200,
+        "bytes": 1511
+      },
+      {
+        "url": "/bom3d.html",
+        "status": 200,
+        "bytes": 71128
+      },
+      {
+        "url": "/assets/technical-atlas.js",
+        "status": 200,
+        "bytes": 26868
+      },
+      {
+        "url": "/assets/technical-atlas.css",
+        "status": 200,
+        "bytes": 920
+      },
+      {
+        "url": "/assets/site-shell.js",
+        "status": 404,
+        "body": "<!DOCTYPE HTML>\n<html lang=\"en\">\n    <head>\n        <meta charset=\"utf-8\">\n        <title>Error response</title>\n    </head>\n    <body>\n        <h1>Er"
+      },
+      {
+        "url": "/assets/theme-state.js",
+        "status": 200,
+        "bytes": 1914
+      },
+      {
+        "url": "/assets/fonts/fonts.css",
+        "status": 200,
+        "bytes": 81679
+      },
+      {
+        "url": "/assets/campus-assembly.js",
+        "status": 200,
+        "bytes": 15884
+      },
+      {
+        "url": "/assets/scene-atlas.js",
+        "status": 200,
+        "bytes": 15340
+      },
+      {
+        "url": "/assets/technical-atlas/campus-plan-v1.svg",
+        "status": 200,
+        "bytes": 139367
+      },
+      {
+        "url": "/assets/technical-atlas/campus-plan-v1.png",
+        "status": 200,
+        "bytes": 95890
+      },
+      {
+        "url": "/assets/technical-atlas/campus-plan-v1-preview.svg",
+        "status": 200,
+        "bytes": 65336
+      },
+      {
+        "url": "/assets/technical-atlas/campus-plan-v1-preview.jpg",
+        "status": 200,
+        "bytes": 40367
+      }
+    ]
+  },
+  "product_fix": "Remove only TA20 unused duplicate /assets/site-shell.js module; actual shared shell route is /assets/site-skin.js. Existing server-plan and sharedshell unchanged.",
+  "still_required": "Deploy fix naturally then actual declared-resource200 and fullpublic rerun plus exactsource/applied/imagehealth. No accepted/published/count20 before that.",
+  "parent_original_review": {
+    "path": "/private/tmp/atlas-root-original-review-ta18-20-20261010.json",
+    "sha256": "3ef76e40945c28495f53d14e031e0a2c559bafc4be09438c9a4aa4a9eecab3c5"
+  },
+  "local_boundary": "No localproductpage/HTTP/server/JS; only explicit static parse/units and authorized actualpublicHTTPS.",
+  "CI": "notqueried; noPASSclaim",
+  "Spark": "notmodified"
+}

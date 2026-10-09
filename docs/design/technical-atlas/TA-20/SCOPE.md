@@ -9,3 +9,6 @@
 R1/R5/R12/R14已经owner original实看，只作图面参考，非技术事实或imagegen输入。本图按受控原生法制作，不称AI、交互当前快照或插值。标注SVG内嵌原PNG原字节，轻量JPEG预览不改文字/路径，放大及双下载保留。无需为静态plan新增独立WebGL交互，但原TA18/19旋转/拾取/手动镜头入口必须真实回归。
 
 本地50166产品访问拒绝继续；无另端口/browser/headless/file入口绕过。只静态/parse-only/明确无HTTP单测和离线单SVG允许；真实公网页面四明暗宽窄/360header、下载/高清、相关3D链接与原入口隔离、投影与表面、源码/应用/镜像/health将在正常部署后独立验。不提前accepted/published，主19/35补4/4；CI不查不称通过，Spark/研究数据服务0改。
+
+
+TA20公网复核与窄修：PR570已实际964147/.58精确镜像healthy；首轮四明暗页面/完整SVG/双下载已过，但观察器误选#cv导致原3D入口等待失败，改为实际#c+三RAF/真实截图后public-v2完整通过，32home/142可见mesh/10实际表面与2隐藏投影均真。13实际路由源码/资源SHA与HTTPShealth200、七图original双审通过；手机只作总览，细标签须放大。另实际逐URL发现新页沿用模板的重复/assets/site-shell.js无路由404，有效皮肤由/assets/site-skin.js工作；本轮仅删TA20新页多余module，增加声明资源真实HTTP200与静态路由断言，旧TA12等不改。初次夹具失败与实际404记录保留，尚待本修复部署后的无404完整公网复验，不accepted/published，主19/35补4/4。本地拒绝不绕过、不查CI不称通过、Spark/研究事实及服务0改；完成后TA20逐项publication随TA21实质源码PR一并交，按用户减少孤立状态PR。
