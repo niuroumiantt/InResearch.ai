@@ -169,6 +169,9 @@ class ObjectMappingReviewTests(unittest.TestCase):
     def test_technical_narrowing_rejects_other_edits_expansion_bad_grant_or_forged_history(self):
         row=adopted_knowledge()['statements'][0];row['object_ids']=['system:control']
         valid=registry.narrow_object_mapping(row,[],delegated_review(),'Wrong facility mapping.','audit.md#mapping')
+        answer=adopted_knowledge()['answers'][0];answer['object_ids']=['system:control']
+        with self.assertRaises(ValueError):
+            registry.narrow_object_mapping(answer,[],delegated_review(),'No answer rewrite.','audit.md#mapping')
         for ids in (['actor:alphabet-google'],['system:control'],['system:control','system:it'],[False]):
             with self.subTest(ids=ids),self.assertRaises(ValueError):
                 registry.narrow_object_mapping(row,ids,delegated_review(),'Reason.','audit.md#mapping')

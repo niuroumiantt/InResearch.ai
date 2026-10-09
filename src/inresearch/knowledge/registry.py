@@ -87,6 +87,7 @@ def object_mapping_review_valid(row):
         return False
     before = m.get('before_record'); after_ids = m.get('reviewed_object_ids')
     if (not isinstance(before, dict) or 'object_mapping_review' in before
+            or 'question_id' in before or not ('document_id' in before or 'evidence_ids' in before)
             or not isinstance(before.get('object_ids'), list) or not isinstance(after_ids, list)
             or any(not isinstance(o,str) or not o.strip() for o in before['object_ids']+after_ids)
             or len(set(before['object_ids']))!=len(before['object_ids'])

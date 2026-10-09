@@ -112,6 +112,8 @@ record --doc 须匹配已登记的完整 SHA 或唯一前缀；无 --doc 的人�
 
 持续研究审核的内容包选择按04，以实际需求匹配及逐条原文检索词生成版本化上下文；完整研究语义不作预算裁剪，重复执行回执只用可回查哈希引用。队列重组只处理未执行批次，旧尝试和每条候选去向保留。发布器通过M5发送已合并main的增量Git对象到Spark，校验祖先、传输SHA及干净HEAD后快进，不改原件或事实。预算失败清单只投影标题、内容SHA、批次ID、大小、时间和错误分类，不向网站输出原件路径或模型请求，亦不产生采用权。
 
+持续C3对象审核使用版本化提示和 `research_context.object_mapping_contract`，历史SYSTEM/SAMPLE常量保留。validate_reviews核对显式对象集合/注册ID/理由，verify_audit将独立抽样的实际proposed_reviews精确绑定，promote应用审核后对象归属而不修改封存候选。协议/目录真实变化沿既有context失效与revalidate处理，原件复验的document/items不因审阅协议升级而改写。knowledge.registry仅接受完整before+SHA的技术严格收窄补审，原审核/正文/引文/问题/状态不变，失效补审阻断支持闭包；不提供事实/结论替代或分发放宽入口。
+
 ## 审核来源偏好与公平租约
 
 `workflow.review_preference`只读校验显式私有来源文件、已登记身份和当前完整版本；`research_review`在原单worker锁和ready背压内共享该轮快照。仅启用偏好时，queue.sqlite增加`review_scheduling`元数据表；三次偏好/一次原排序机会的连续计数与领取租约同事务提交，不改候选批次或旧失败。状态中的`last_scheduling`为上次领取审计，实际scope SHA、选中批次/来源和通道同时保存到attempt的`scheduling.json`，不进入模型提示或取得采用权。未配置不新增调度表、不改默认排序；完整封印仍经原packet路径复验，C3与独立抽样使用原冻结角色。

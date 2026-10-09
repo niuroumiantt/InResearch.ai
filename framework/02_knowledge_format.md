@@ -16,6 +16,8 @@
 
 成员投递可使用数字 `key_numbers`，或非数字 `key_statements`（定义、机制、接口、规范、失败案例）。后者须包含 `kind/text/quote/locator`，不因缺少数字退回高价值材料。兼容 CSV 保留陈述和出处，接收仍属候选登记。
 
+技术对象收窄保留同一记录ID与原审核，`object_mapping_review.kind=technical_object_mapping_narrowing` 保存完整前版 `before_record`、`before_record_sha256`、`reviewed_object_ids`、`reason/reference` 及实际具名A `review`。SHA算法为UTF-8 JSON、`ensure_ascii=false/sort_keys=true/separators=(",",":")/allow_nan=false`；只许严格subset，其他原字段完全相同。完整前版与原候选/请求包留存；已有补审不得被同一入口覆盖。该字段无效会失去支持链资格，正式API同时投影原审核和最小补审/委托，完整前版及私有附加字段不出站。重复前版在模型上下文只作SHA引用，当前研究字段仍完整提供。
+
 ## 资料基座：已有材料先用起来
 
 历史报告、新闻和当前已读资料无需先逐条做 C3、重新检索行业反证或追回所有旧链接，才进入节点研究。接收到的当前正文阅读结果，只要原件身份、报告版本、原文定位和骨架映射齐全，直接以“来源记载”进入资料基座。重要性评分不阻止基础资料使用；没有完整正文、没有原文依据或无法匹配现有节点的条目保留原队列。
