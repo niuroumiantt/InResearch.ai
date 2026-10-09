@@ -112,6 +112,10 @@ record --doc 须匹配已登记的完整 SHA 或唯一前缀；无 --doc 的人�
 
 持续研究审核的内容包选择按04，以实际需求匹配及逐条原文检索词生成版本化上下文；完整研究语义不作预算裁剪，重复执行回执只用可回查哈希引用。队列重组只处理未执行批次，旧尝试和每条候选去向保留。发布器通过M5发送已合并main的增量Git对象到Spark，校验祖先、传输SHA及干净HEAD后快进，不改原件或事实。预算失败清单只投影标题、内容SHA、批次ID、大小、时间和错误分类，不向网站输出原件路径或模型请求，亦不产生采用权。
 
+## 审核来源偏好与公平租约
+
+`workflow.review_preference`只读校验显式私有来源文件、已登记身份和当前完整版本；`research_review`在原单worker锁和ready背压内共享该轮快照。仅启用偏好时，queue.sqlite增加`review_scheduling`元数据表；三次偏好/一次原排序机会的连续计数与领取租约同事务提交，不改候选批次或旧失败。状态中的`last_scheduling`为上次领取审计，实际scope SHA、选中批次/来源和通道同时保存到attempt的`scheduling.json`，不进入模型提示或取得采用权。未配置不新增调度表、不改默认排序；完整封印仍经原packet路径复验，C3与独立抽样使用原冻结角色。
+
 ## 当前全文结果的共同消费者
 
 workflow.reading_results.ReadingResults 使用 storage.catalog 的只读连接，在单个读事务内选择 current_readings 并调用 materials.reading_artifacts 的同一产物校验。ReadingStages 继承该产物责任；版本审阅继续使用相同封印检查。查询不初始化或迁移 schema；只读连接禁止写事务和直接 SQL 修改。它没有写入当前指针的接口。
