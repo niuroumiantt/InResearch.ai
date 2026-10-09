@@ -251,6 +251,7 @@ const note = (label,data={}) => results.push({label,...data});
         await settled();
         const initial=await measure();
         clearsGeometry(initial,'Default assembled '+width+' '+theme);
+        assert.ok(initial.hud.top>=initial.headerBottom+1,'HUD summary must be below the actual two-row header/navigation');
         assert.equal(initial.legendTexts.length,9);
         assert.ok(initial.legendScroll[0]<=initial.legendScroll[1]+1,'Legend text overflow');
         assert.deepEqual(initial.labels.map(x=>x.text).sort(),
@@ -365,6 +366,7 @@ const note = (label,data={}) => results.push({label,...data});
         assert.equal(actual.state.selectedInstance,id);assert.equal(actual.selected,hit.meshCount);
         assert.deepEqual(actual.clones,hit.geometryIDs,'Inspector must borrow exactly the clicked instance geometry');
         assert.match(await page.locator('#dossier').textContent(),/通用.*实例|单个示例/);
+        await settled();await page.locator('#dossier .insp').scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,id.replaceAll('/','-')+'-dossier.png')});
         await currentSVG(id);
         note('Actual surface mouse pick selects one repeated or distinct instance',hit);
       }
@@ -377,6 +379,7 @@ const note = (label,data={}) => results.push({label,...data});
       const whole=await page.evaluate(()=>({state:__campusTest.state(),
         picks:__campusTest.pickables.length,clones:__campusTest.inspector.objectsForTest().length}));
       assert.equal(whole.state.selectedInstance,'campus/whole');assert.equal(whole.clones,whole.picks);
+      await settled();await page.locator('#dossier .insp').scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,'campus-whole-inspector-1280.png')});await page.setViewportSize({width:390,height:844});await settled();await page.locator('#dossier .insp').scrollIntoViewIfNeeded();await page.screenshot({path:path.join(out,'campus-whole-inspector-390.png')});await page.setViewportSize({width:1280,height:900});await settled();
       await currentSVG('campus/whole');note('Whole campus inspector aggregates every real picked mesh',whole);
       await closeDossier();
 
