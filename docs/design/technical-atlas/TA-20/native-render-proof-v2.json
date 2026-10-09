@@ -1,0 +1,1998 @@
+{
+  "method": "Independent native1536x1024 strictly vertical OrthographicCamera plan; actualdeployedHTTPSfactory at exact homes, not currentinteractiveview snapshot or interpolation",
+  "origin": "https://inresearch.ai",
+  "source": [
+    {
+      "url": "https://inresearch.ai/assets/campus-assembly.js",
+      "status": 200,
+      "bytes": 15884,
+      "sha256": "377a08934681609a94f735e6eb5fa4d17cbfc8a573d0bc0e121fb436c0fceab5"
+    },
+    {
+      "url": "https://inresearch.ai/assets/scene-atlas.js",
+      "status": 200,
+      "bytes": 15340,
+      "sha256": "c668c1836ab13677cd272acacaf9ed06e881b66507bf9c61b2b8fd6b01c9cd4f"
+    }
+  ],
+  "pixels": [
+    1536,
+    1024
+  ],
+  "pixelRatio": 1,
+  "camera": {
+    "type": "OrthographicCamera",
+    "position": [
+      4.175000071525574,
+      184.02500009566546,
+      2.544999837875366
+    ],
+    "target": [
+      4.175000071525574,
+      4.025000095665455,
+      2.544999837875366
+    ],
+    "left": -34.719250026941296,
+    "right": 34.719250026941296,
+    "top": 23.14616668462753,
+    "bottom": -23.14616668462753,
+    "near": 0.1,
+    "far": 500,
+    "up": [
+      0,
+      0,
+      -1
+    ],
+    "direction": [
+      0,
+      -1,
+      -2.220446049250313e-16
+    ],
+    "screenRight": [
+      1,
+      0,
+      0
+    ],
+    "screenUp": [
+      0,
+      2.220446049250313e-16,
+      -1
+    ]
+  },
+  "orthographicRectangle": [
+    [
+      321.7230774596697,
+      212.3806284002069
+    ],
+    [
+      1029.5724688183432,
+      212.3806284002069
+    ],
+    [
+      1029.5724688183432,
+      699.0270849592948
+    ],
+    [
+      321.7230774596697,
+      699.0270849592948
+    ]
+  ],
+  "boundsPixels": {
+    "left": 88.35398230088492,
+    "right": 1447.646017699115,
+    "top": 212.15942040247387,
+    "bottom": 811.840579597528
+  },
+  "geometry": [
+    {
+      "id": "campus/building-base",
+      "part": "shell",
+      "home": [
+        0,
+        0,
+        0
+      ],
+      "packing": {
+        "sourceMeshes": 29,
+        "inputVertices": 1044,
+        "packedVertices": 1044,
+        "drawMeshes": 2
+      },
+      "features": {
+        "shallow-building-foundation": 1,
+        "interior-floor": 1,
+        "floor-joint": 27
+      }
+    },
+    {
+      "id": "campus/building-frame",
+      "part": "shell",
+      "home": [
+        0,
+        0,
+        0
+      ],
+      "packing": {
+        "sourceMeshes": 101,
+        "inputVertices": 9876,
+        "packedVertices": 9876,
+        "drawMeshes": 3
+      },
+      "features": {
+        "column-web": 10,
+        "column-flange": 20,
+        "column-baseplate": 10,
+        "baseplate-bolt": 40,
+        "beam-web": 2,
+        "beam-flange": 4,
+        "cross-beam-web": 5,
+        "cross-beam-flange": 10
+      }
+    },
+    {
+      "id": "campus/retained-wall-sections",
+      "part": "shell",
+      "home": [
+        0,
+        0,
+        0
+      ],
+      "packing": {
+        "sourceMeshes": 48,
+        "inputVertices": 1728,
+        "packedVertices": 1728,
+        "drawMeshes": 2
+      },
+      "features": {
+        "back-insulated-wall": 1,
+        "left-insulated-wall": 1,
+        "wall-panel-seam": 43,
+        "right-retained-wall-strip": 1,
+        "UPS-partition": 1,
+        "UPS-partition-return": 1
+      }
+    },
+    {
+      "id": "campus/retained-roof-sections",
+      "part": "shell",
+      "home": [
+        0,
+        8.55,
+        0
+      ],
+      "packing": {
+        "sourceMeshes": 74,
+        "inputVertices": 2664,
+        "packedVertices": 2664,
+        "drawMeshes": 3
+      },
+      "features": {
+        "roof-rear-skin": 1,
+        "roof-rear-insulation": 1,
+        "roof-left-skin": 1,
+        "roof-left-insulation": 1,
+        "roof-seam": 70
+      }
+    },
+    {
+      "id": "campus/UPS-bank",
+      "part": "ups",
+      "home": [
+        -12.1,
+        0.55,
+        6.3
+      ],
+      "packing": {
+        "sourceMeshes": 57,
+        "inputVertices": 2052,
+        "packedVertices": 2052,
+        "drawMeshes": 4
+      },
+      "features": {
+        "cabinet-envelope": 1,
+        "door-seam": 4,
+        "door-handle": 4,
+        "louver-recess": 4,
+        "louver-blade": 40,
+        "cabinet-foot": 4
+      }
+    },
+    {
+      "id": "campus/rack-r1-c1",
+      "part": "rack-frame",
+      "home": [
+        -5.8,
+        0.55,
+        -3
+      ],
+      "packing": {
+        "sourceMeshes": 97,
+        "inputVertices": 12036,
+        "packedVertices": 12036,
+        "drawMeshes": 4
+      },
+      "features": {
+        "rack-back": 1,
+        "rack-side": 2,
+        "rack-top": 1,
+        "rack-bottom": 1,
+        "front-mounting-post": 2,
+        "closed-server-front": 12,
+        "tray-ear": 24,
+        "carrier-front-detail": 48,
+        "perforated-closed-rack-door": 1,
+        "door-handle": 1,
+        "rack-foot": 4
+      }
+    },
+    {
+      "id": "campus/rack-r1-c2",
+      "part": "rack-frame",
+      "home": [
+        -1.2000000000000002,
+        0.55,
+        -3
+      ],
+      "packing": {
+        "sourceMeshes": 97,
+        "inputVertices": 12036,
+        "packedVertices": 12036,
+        "drawMeshes": 4
+      },
+      "features": {
+        "rack-back": 1,
+        "rack-side": 2,
+        "rack-top": 1,
+        "rack-bottom": 1,
+        "front-mounting-post": 2,
+        "closed-server-front": 12,
+        "tray-ear": 24,
+        "carrier-front-detail": 48,
+        "perforated-closed-rack-door": 1,
+        "door-handle": 1,
+        "rack-foot": 4
+      }
+    },
+    {
+      "id": "campus/rack-r1-c3",
+      "part": "rack-frame",
+      "home": [
+        3.3999999999999995,
+        0.55,
+        -3
+      ],
+      "packing": {
+        "sourceMeshes": 97,
+        "inputVertices": 12036,
+        "packedVertices": 12036,
+        "drawMeshes": 4
+      },
+      "features": {
+        "rack-back": 1,
+        "rack-side": 2,
+        "rack-top": 1,
+        "rack-bottom": 1,
+        "front-mounting-post": 2,
+        "closed-server-front": 12,
+        "tray-ear": 24,
+        "carrier-front-detail": 48,
+        "perforated-closed-rack-door": 1,
+        "door-handle": 1,
+        "rack-foot": 4
+      }
+    },
+    {
+      "id": "campus/rack-r1-c4",
+      "part": "rack-frame",
+      "home": [
+        7.999999999999999,
+        0.55,
+        -3
+      ],
+      "packing": {
+        "sourceMeshes": 97,
+        "inputVertices": 12036,
+        "packedVertices": 12036,
+        "drawMeshes": 4
+      },
+      "features": {
+        "rack-back": 1,
+        "rack-side": 2,
+        "rack-top": 1,
+        "rack-bottom": 1,
+        "front-mounting-post": 2,
+        "closed-server-front": 12,
+        "tray-ear": 24,
+        "carrier-front-detail": 48,
+        "perforated-closed-rack-door": 1,
+        "door-handle": 1,
+        "rack-foot": 4
+      }
+    },
+    {
+      "id": "campus/rack-r2-c1",
+      "part": "rack-frame",
+      "home": [
+        -5.8,
+        0.55,
+        4.3
+      ],
+      "packing": {
+        "sourceMeshes": 97,
+        "inputVertices": 12036,
+        "packedVertices": 12036,
+        "drawMeshes": 4
+      },
+      "features": {
+        "rack-back": 1,
+        "rack-side": 2,
+        "rack-top": 1,
+        "rack-bottom": 1,
+        "front-mounting-post": 2,
+        "closed-server-front": 12,
+        "tray-ear": 24,
+        "carrier-front-detail": 48,
+        "perforated-closed-rack-door": 1,
+        "door-handle": 1,
+        "rack-foot": 4
+      }
+    },
+    {
+      "id": "campus/rack-r2-c2",
+      "part": "rack-frame",
+      "home": [
+        -1.2000000000000002,
+        0.55,
+        4.3
+      ],
+      "packing": {
+        "sourceMeshes": 97,
+        "inputVertices": 12036,
+        "packedVertices": 12036,
+        "drawMeshes": 4
+      },
+      "features": {
+        "rack-back": 1,
+        "rack-side": 2,
+        "rack-top": 1,
+        "rack-bottom": 1,
+        "front-mounting-post": 2,
+        "closed-server-front": 12,
+        "tray-ear": 24,
+        "carrier-front-detail": 48,
+        "perforated-closed-rack-door": 1,
+        "door-handle": 1,
+        "rack-foot": 4
+      }
+    },
+    {
+      "id": "campus/rack-r2-c3",
+      "part": "rack-frame",
+      "home": [
+        3.3999999999999995,
+        0.55,
+        4.3
+      ],
+      "packing": {
+        "sourceMeshes": 97,
+        "inputVertices": 12036,
+        "packedVertices": 12036,
+        "drawMeshes": 4
+      },
+      "features": {
+        "rack-back": 1,
+        "rack-side": 2,
+        "rack-top": 1,
+        "rack-bottom": 1,
+        "front-mounting-post": 2,
+        "closed-server-front": 12,
+        "tray-ear": 24,
+        "carrier-front-detail": 48,
+        "perforated-closed-rack-door": 1,
+        "door-handle": 1,
+        "rack-foot": 4
+      }
+    },
+    {
+      "id": "campus/rack-r2-c4",
+      "part": "rack-frame",
+      "home": [
+        7.999999999999999,
+        0.55,
+        4.3
+      ],
+      "packing": {
+        "sourceMeshes": 97,
+        "inputVertices": 12036,
+        "packedVertices": 12036,
+        "drawMeshes": 4
+      },
+      "features": {
+        "rack-back": 1,
+        "rack-side": 2,
+        "rack-top": 1,
+        "rack-bottom": 1,
+        "front-mounting-post": 2,
+        "closed-server-front": 12,
+        "tray-ear": 24,
+        "carrier-front-detail": 48,
+        "perforated-closed-rack-door": 1,
+        "door-handle": 1,
+        "rack-foot": 4
+      }
+    },
+    {
+      "id": "campus/room-cooling-1",
+      "part": "room-cooling",
+      "home": [
+        -6.5,
+        0.55,
+        -9.2
+      ],
+      "packing": {
+        "sourceMeshes": 42,
+        "inputVertices": 1512,
+        "packedVertices": 1512,
+        "drawMeshes": 5
+      },
+      "features": {
+        "cabinet-envelope": 1,
+        "door-seam": 1,
+        "door-handle": 1,
+        "louver-recess": 2,
+        "louver-blade": 32,
+        "cabinet-foot": 4,
+        "top-duct-stub": 1
+      }
+    },
+    {
+      "id": "campus/room-cooling-2",
+      "part": "room-cooling",
+      "home": [
+        -2.5,
+        0.55,
+        -9.2
+      ],
+      "packing": {
+        "sourceMeshes": 42,
+        "inputVertices": 1512,
+        "packedVertices": 1512,
+        "drawMeshes": 5
+      },
+      "features": {
+        "cabinet-envelope": 1,
+        "door-seam": 1,
+        "door-handle": 1,
+        "louver-recess": 2,
+        "louver-blade": 32,
+        "cabinet-foot": 4,
+        "top-duct-stub": 1
+      }
+    },
+    {
+      "id": "campus/room-cooling-3",
+      "part": "room-cooling",
+      "home": [
+        1.5,
+        0.55,
+        -9.2
+      ],
+      "packing": {
+        "sourceMeshes": 42,
+        "inputVertices": 1512,
+        "packedVertices": 1512,
+        "drawMeshes": 5
+      },
+      "features": {
+        "cabinet-envelope": 1,
+        "door-seam": 1,
+        "door-handle": 1,
+        "louver-recess": 2,
+        "louver-blade": 32,
+        "cabinet-foot": 4,
+        "top-duct-stub": 1
+      }
+    },
+    {
+      "id": "campus/room-cooling-4",
+      "part": "room-cooling",
+      "home": [
+        5.5,
+        0.55,
+        -9.2
+      ],
+      "packing": {
+        "sourceMeshes": 42,
+        "inputVertices": 1512,
+        "packedVertices": 1512,
+        "drawMeshes": 5
+      },
+      "features": {
+        "cabinet-envelope": 1,
+        "door-seam": 1,
+        "door-handle": 1,
+        "louver-recess": 2,
+        "louver-blade": 32,
+        "cabinet-foot": 4,
+        "top-duct-stub": 1
+      }
+    },
+    {
+      "id": "campus/room-cooling-5",
+      "part": "room-cooling",
+      "home": [
+        9.5,
+        0.55,
+        -9.2
+      ],
+      "packing": {
+        "sourceMeshes": 42,
+        "inputVertices": 1512,
+        "packedVertices": 1512,
+        "drawMeshes": 5
+      },
+      "features": {
+        "cabinet-envelope": 1,
+        "door-seam": 1,
+        "door-handle": 1,
+        "louver-recess": 2,
+        "louver-blade": 32,
+        "cabinet-foot": 4,
+        "top-duct-stub": 1
+      }
+    },
+    {
+      "id": "campus/CDU-1",
+      "part": "cdu",
+      "home": [
+        14,
+        0.55,
+        -4
+      ],
+      "packing": {
+        "sourceMeshes": 29,
+        "inputVertices": 3516,
+        "packedVertices": 3516,
+        "drawMeshes": 5
+      },
+      "features": {
+        "cabinet-envelope": 1,
+        "door-seam": 1,
+        "door-handle": 1,
+        "louver-recess": 1,
+        "louver-blade": 10,
+        "cabinet-foot": 4,
+        "unlit-control-panel": 1,
+        "local-service-stub-not-loop": 6,
+        "local-service-stub-not-loop-bend": 4
+      }
+    },
+    {
+      "id": "campus/CDU-2",
+      "part": "cdu",
+      "home": [
+        14,
+        0.55,
+        0
+      ],
+      "packing": {
+        "sourceMeshes": 29,
+        "inputVertices": 3516,
+        "packedVertices": 3516,
+        "drawMeshes": 5
+      },
+      "features": {
+        "cabinet-envelope": 1,
+        "door-seam": 1,
+        "door-handle": 1,
+        "louver-recess": 1,
+        "louver-blade": 10,
+        "cabinet-foot": 4,
+        "unlit-control-panel": 1,
+        "local-service-stub-not-loop": 6,
+        "local-service-stub-not-loop-bend": 4
+      }
+    },
+    {
+      "id": "campus/CDU-3",
+      "part": "cdu",
+      "home": [
+        14,
+        0.55,
+        4
+      ],
+      "packing": {
+        "sourceMeshes": 29,
+        "inputVertices": 3516,
+        "packedVertices": 3516,
+        "drawMeshes": 5
+      },
+      "features": {
+        "cabinet-envelope": 1,
+        "door-seam": 1,
+        "door-handle": 1,
+        "louver-recess": 1,
+        "louver-blade": 10,
+        "cabinet-foot": 4,
+        "unlit-control-panel": 1,
+        "local-service-stub-not-loop": 6,
+        "local-service-stub-not-loop-bend": 4
+      }
+    },
+    {
+      "id": "campus/overhead-service-trays",
+      "part": "cabling",
+      "home": [
+        0,
+        6.65,
+        0
+      ],
+      "packing": {
+        "sourceMeshes": 108,
+        "inputVertices": 3888,
+        "packedVertices": 3888,
+        "drawMeshes": 4
+      },
+      "features": {
+        "tray-bottom": 2,
+        "tray-edge": 4,
+        "tray-crossmember": 80,
+        "illustrative-closed-cable": 4,
+        "cross-tray-bottom": 2,
+        "cross-tray-edge": 4,
+        "tray-suspension": 6,
+        "tray-support-foot": 6
+      }
+    },
+    {
+      "id": "campus/air-chiller-1",
+      "part": "chiller",
+      "home": [
+        -24,
+        0,
+        -8
+      ],
+      "packing": {
+        "sourceMeshes": 125,
+        "inputVertices": 8604,
+        "packedVertices": 8604,
+        "drawMeshes": 6
+      },
+      "features": {
+        "independent-concrete-pad": 1,
+        "chiller-frame": 1,
+        "chiller-upper-frame": 1,
+        "chiller-leg": 4,
+        "coil-recess": 2,
+        "individual-coil-fin": 76,
+        "fan-well": 2,
+        "fan-guard-ring": 2,
+        "fan-guard-spoke": 16,
+        "fan-hub": 2,
+        "fan-blade": 12,
+        "unconnected-service-pipe": 4,
+        "unconnected-service-pipe-bend": 2
+      }
+    },
+    {
+      "id": "campus/air-chiller-2",
+      "part": "chiller",
+      "home": [
+        -24,
+        0,
+        0
+      ],
+      "packing": {
+        "sourceMeshes": 125,
+        "inputVertices": 8604,
+        "packedVertices": 8604,
+        "drawMeshes": 6
+      },
+      "features": {
+        "independent-concrete-pad": 1,
+        "chiller-frame": 1,
+        "chiller-upper-frame": 1,
+        "chiller-leg": 4,
+        "coil-recess": 2,
+        "individual-coil-fin": 76,
+        "fan-well": 2,
+        "fan-guard-ring": 2,
+        "fan-guard-spoke": 16,
+        "fan-hub": 2,
+        "fan-blade": 12,
+        "unconnected-service-pipe": 4,
+        "unconnected-service-pipe-bend": 2
+      }
+    },
+    {
+      "id": "campus/air-chiller-3",
+      "part": "chiller",
+      "home": [
+        -24,
+        0,
+        8
+      ],
+      "packing": {
+        "sourceMeshes": 125,
+        "inputVertices": 8604,
+        "packedVertices": 8604,
+        "drawMeshes": 6
+      },
+      "features": {
+        "independent-concrete-pad": 1,
+        "chiller-frame": 1,
+        "chiller-upper-frame": 1,
+        "chiller-leg": 4,
+        "coil-recess": 2,
+        "individual-coil-fin": 76,
+        "fan-well": 2,
+        "fan-guard-ring": 2,
+        "fan-guard-spoke": 16,
+        "fan-hub": 2,
+        "fan-blade": 12,
+        "unconnected-service-pipe": 4,
+        "unconnected-service-pipe-bend": 2
+      }
+    },
+    {
+      "id": "campus/transformer-1",
+      "part": "transformer",
+      "home": [
+        22,
+        0,
+        -7
+      ],
+      "packing": {
+        "sourceMeshes": 77,
+        "inputVertices": 6828,
+        "packedVertices": 6828,
+        "drawMeshes": 7
+      },
+      "features": {
+        "independent-concrete-pad": 1,
+        "transformer-tank": 1,
+        "tank-top-flange": 1,
+        "individual-radiator-fin": 44,
+        "radiator-header": 4,
+        "generic-bushing": 3,
+        "bushing-shed": 15,
+        "bushing-terminal": 3,
+        "closed-conservator": 1,
+        "conservator-support": 2,
+        "tank-cabinet": 1,
+        "cabinet-handle": 1
+      }
+    },
+    {
+      "id": "campus/transformer-2",
+      "part": "transformer",
+      "home": [
+        29,
+        0,
+        -7
+      ],
+      "packing": {
+        "sourceMeshes": 77,
+        "inputVertices": 6828,
+        "packedVertices": 6828,
+        "drawMeshes": 7
+      },
+      "features": {
+        "independent-concrete-pad": 1,
+        "transformer-tank": 1,
+        "tank-top-flange": 1,
+        "individual-radiator-fin": 44,
+        "radiator-header": 4,
+        "generic-bushing": 3,
+        "bushing-shed": 15,
+        "bushing-terminal": 3,
+        "closed-conservator": 1,
+        "conservator-support": 2,
+        "tank-cabinet": 1,
+        "cabinet-handle": 1
+      }
+    },
+    {
+      "id": "campus/standby-generator-1",
+      "part": "backup-power",
+      "home": [
+        20,
+        0,
+        14
+      ],
+      "packing": {
+        "sourceMeshes": 78,
+        "inputVertices": 6120,
+        "packedVertices": 6120,
+        "drawMeshes": 6
+      },
+      "features": {
+        "independent-concrete-pad": 1,
+        "cabinet-envelope": 1,
+        "door-seam": 3,
+        "door-handle": 3,
+        "louver-recess": 4,
+        "louver-blade": 48,
+        "cabinet-foot": 4,
+        "generator-base": 1,
+        "external-horizontal-muffler": 1,
+        "continuous-inlet-duct": 2,
+        "continuous-inlet-duct-bend": 1,
+        "continuous-outlet-duct": 3,
+        "continuous-outlet-duct-bend": 2,
+        "muffler-bracket": 2,
+        "muffler-band": 2
+      }
+    },
+    {
+      "id": "campus/standby-generator-2",
+      "part": "backup-power",
+      "home": [
+        26,
+        0,
+        14
+      ],
+      "packing": {
+        "sourceMeshes": 78,
+        "inputVertices": 6120,
+        "packedVertices": 6120,
+        "drawMeshes": 6
+      },
+      "features": {
+        "independent-concrete-pad": 1,
+        "cabinet-envelope": 1,
+        "door-seam": 3,
+        "door-handle": 3,
+        "louver-recess": 4,
+        "louver-blade": 48,
+        "cabinet-foot": 4,
+        "generator-base": 1,
+        "external-horizontal-muffler": 1,
+        "continuous-inlet-duct": 2,
+        "continuous-inlet-duct-bend": 1,
+        "continuous-outlet-duct": 3,
+        "continuous-outlet-duct-bend": 2,
+        "muffler-bracket": 2,
+        "muffler-band": 2
+      }
+    },
+    {
+      "id": "campus/standby-generator-3",
+      "part": "backup-power",
+      "home": [
+        32,
+        0,
+        14
+      ],
+      "packing": {
+        "sourceMeshes": 78,
+        "inputVertices": 6120,
+        "packedVertices": 6120,
+        "drawMeshes": 6
+      },
+      "features": {
+        "independent-concrete-pad": 1,
+        "cabinet-envelope": 1,
+        "door-seam": 3,
+        "door-handle": 3,
+        "louver-recess": 4,
+        "louver-blade": 48,
+        "cabinet-foot": 4,
+        "generator-base": 1,
+        "external-horizontal-muffler": 1,
+        "continuous-inlet-duct": 2,
+        "continuous-inlet-duct-bend": 1,
+        "continuous-outlet-duct": 3,
+        "continuous-outlet-duct-bend": 2,
+        "muffler-bracket": 2,
+        "muffler-band": 2
+      }
+    },
+    {
+      "id": "campus/battery-cabinet-1",
+      "part": "bess",
+      "home": [
+        24,
+        0,
+        7
+      ],
+      "packing": {
+        "sourceMeshes": 20,
+        "inputVertices": 720,
+        "packedVertices": 720,
+        "drawMeshes": 6
+      },
+      "features": {
+        "independent-concrete-pad": 1,
+        "cabinet-envelope": 1,
+        "door-seam": 1,
+        "door-handle": 1,
+        "louver-recess": 1,
+        "louver-blade": 10,
+        "cabinet-foot": 4,
+        "closed-battery-lower-panel": 1
+      }
+    },
+    {
+      "id": "campus/battery-cabinet-2",
+      "part": "bess",
+      "home": [
+        28,
+        0,
+        7
+      ],
+      "packing": {
+        "sourceMeshes": 20,
+        "inputVertices": 720,
+        "packedVertices": 720,
+        "drawMeshes": 6
+      },
+      "features": {
+        "independent-concrete-pad": 1,
+        "cabinet-envelope": 1,
+        "door-seam": 1,
+        "door-handle": 1,
+        "louver-recess": 1,
+        "louver-blade": 10,
+        "cabinet-foot": 4,
+        "closed-battery-lower-panel": 1
+      }
+    }
+  ],
+  "instances": [
+    {
+      "id": "campus/building-base",
+      "part": "shell",
+      "home": [
+        0,
+        0,
+        0
+      ],
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "campus/building-frame",
+      "part": "shell",
+      "home": [
+        0,
+        0,
+        0
+      ],
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "campus/retained-wall-sections",
+      "part": "shell",
+      "home": [
+        0,
+        0,
+        0
+      ],
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "axis": [
+        0,
+        0,
+        -6
+      ]
+    },
+    {
+      "id": "campus/retained-roof-sections",
+      "part": "shell",
+      "home": [
+        0,
+        8.55,
+        0
+      ],
+      "position": [
+        0,
+        8.55,
+        0
+      ],
+      "axis": [
+        0,
+        10,
+        0
+      ]
+    },
+    {
+      "id": "campus/UPS-bank",
+      "part": "ups",
+      "home": [
+        -12.1,
+        0.55,
+        6.3
+      ],
+      "position": [
+        -12.1,
+        0.55,
+        6.3
+      ],
+      "axis": [
+        -6,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "campus/rack-r1-c1",
+      "part": "rack-frame",
+      "home": [
+        -5.8,
+        0.55,
+        -3
+      ],
+      "position": [
+        -5.8,
+        0.55,
+        -3
+      ],
+      "axis": [
+        0,
+        0,
+        -4
+      ]
+    },
+    {
+      "id": "campus/rack-r1-c2",
+      "part": "rack-frame",
+      "home": [
+        -1.2000000000000002,
+        0.55,
+        -3
+      ],
+      "position": [
+        -1.2000000000000002,
+        0.55,
+        -3
+      ],
+      "axis": [
+        0,
+        0,
+        -4
+      ]
+    },
+    {
+      "id": "campus/rack-r1-c3",
+      "part": "rack-frame",
+      "home": [
+        3.3999999999999995,
+        0.55,
+        -3
+      ],
+      "position": [
+        3.3999999999999995,
+        0.55,
+        -3
+      ],
+      "axis": [
+        0,
+        0,
+        -4
+      ]
+    },
+    {
+      "id": "campus/rack-r1-c4",
+      "part": "rack-frame",
+      "home": [
+        7.999999999999999,
+        0.55,
+        -3
+      ],
+      "position": [
+        7.999999999999999,
+        0.55,
+        -3
+      ],
+      "axis": [
+        0,
+        0,
+        -4
+      ]
+    },
+    {
+      "id": "campus/rack-r2-c1",
+      "part": "rack-frame",
+      "home": [
+        -5.8,
+        0.55,
+        4.3
+      ],
+      "position": [
+        -5.8,
+        0.55,
+        4.3
+      ],
+      "axis": [
+        0,
+        0,
+        4
+      ]
+    },
+    {
+      "id": "campus/rack-r2-c2",
+      "part": "rack-frame",
+      "home": [
+        -1.2000000000000002,
+        0.55,
+        4.3
+      ],
+      "position": [
+        -1.2000000000000002,
+        0.55,
+        4.3
+      ],
+      "axis": [
+        0,
+        0,
+        4
+      ]
+    },
+    {
+      "id": "campus/rack-r2-c3",
+      "part": "rack-frame",
+      "home": [
+        3.3999999999999995,
+        0.55,
+        4.3
+      ],
+      "position": [
+        3.3999999999999995,
+        0.55,
+        4.3
+      ],
+      "axis": [
+        0,
+        0,
+        4
+      ]
+    },
+    {
+      "id": "campus/rack-r2-c4",
+      "part": "rack-frame",
+      "home": [
+        7.999999999999999,
+        0.55,
+        4.3
+      ],
+      "position": [
+        7.999999999999999,
+        0.55,
+        4.3
+      ],
+      "axis": [
+        0,
+        0,
+        4
+      ]
+    },
+    {
+      "id": "campus/room-cooling-1",
+      "part": "room-cooling",
+      "home": [
+        -6.5,
+        0.55,
+        -9.2
+      ],
+      "position": [
+        -6.5,
+        0.55,
+        -9.2
+      ],
+      "axis": [
+        0,
+        0,
+        -5
+      ]
+    },
+    {
+      "id": "campus/room-cooling-2",
+      "part": "room-cooling",
+      "home": [
+        -2.5,
+        0.55,
+        -9.2
+      ],
+      "position": [
+        -2.5,
+        0.55,
+        -9.2
+      ],
+      "axis": [
+        0,
+        0,
+        -5
+      ]
+    },
+    {
+      "id": "campus/room-cooling-3",
+      "part": "room-cooling",
+      "home": [
+        1.5,
+        0.55,
+        -9.2
+      ],
+      "position": [
+        1.5,
+        0.55,
+        -9.2
+      ],
+      "axis": [
+        0,
+        0,
+        -5
+      ]
+    },
+    {
+      "id": "campus/room-cooling-4",
+      "part": "room-cooling",
+      "home": [
+        5.5,
+        0.55,
+        -9.2
+      ],
+      "position": [
+        5.5,
+        0.55,
+        -9.2
+      ],
+      "axis": [
+        0,
+        0,
+        -5
+      ]
+    },
+    {
+      "id": "campus/room-cooling-5",
+      "part": "room-cooling",
+      "home": [
+        9.5,
+        0.55,
+        -9.2
+      ],
+      "position": [
+        9.5,
+        0.55,
+        -9.2
+      ],
+      "axis": [
+        0,
+        0,
+        -5
+      ]
+    },
+    {
+      "id": "campus/CDU-1",
+      "part": "cdu",
+      "home": [
+        14,
+        0.55,
+        -4
+      ],
+      "position": [
+        14,
+        0.55,
+        -4
+      ],
+      "axis": [
+        6,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "campus/CDU-2",
+      "part": "cdu",
+      "home": [
+        14,
+        0.55,
+        0
+      ],
+      "position": [
+        14,
+        0.55,
+        0
+      ],
+      "axis": [
+        6,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "campus/CDU-3",
+      "part": "cdu",
+      "home": [
+        14,
+        0.55,
+        4
+      ],
+      "position": [
+        14,
+        0.55,
+        4
+      ],
+      "axis": [
+        6,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "campus/overhead-service-trays",
+      "part": "cabling",
+      "home": [
+        0,
+        6.65,
+        0
+      ],
+      "position": [
+        0,
+        6.65,
+        0
+      ],
+      "axis": [
+        0,
+        3,
+        0
+      ]
+    },
+    {
+      "id": "campus/air-chiller-1",
+      "part": "chiller",
+      "home": [
+        -24,
+        0,
+        -8
+      ],
+      "position": [
+        -24,
+        0,
+        -8
+      ],
+      "axis": [
+        -4,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "campus/air-chiller-2",
+      "part": "chiller",
+      "home": [
+        -24,
+        0,
+        0
+      ],
+      "position": [
+        -24,
+        0,
+        0
+      ],
+      "axis": [
+        -4,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "campus/air-chiller-3",
+      "part": "chiller",
+      "home": [
+        -24,
+        0,
+        8
+      ],
+      "position": [
+        -24,
+        0,
+        8
+      ],
+      "axis": [
+        -4,
+        0,
+        0
+      ]
+    },
+    {
+      "id": "campus/transformer-1",
+      "part": "transformer",
+      "home": [
+        22,
+        0,
+        -7
+      ],
+      "position": [
+        22,
+        0,
+        -7
+      ],
+      "axis": [
+        4,
+        0,
+        -2
+      ]
+    },
+    {
+      "id": "campus/transformer-2",
+      "part": "transformer",
+      "home": [
+        29,
+        0,
+        -7
+      ],
+      "position": [
+        29,
+        0,
+        -7
+      ],
+      "axis": [
+        4,
+        0,
+        -2
+      ]
+    },
+    {
+      "id": "campus/standby-generator-1",
+      "part": "backup-power",
+      "home": [
+        20,
+        0,
+        14
+      ],
+      "position": [
+        20,
+        0,
+        14
+      ],
+      "axis": [
+        3,
+        0,
+        3
+      ]
+    },
+    {
+      "id": "campus/standby-generator-2",
+      "part": "backup-power",
+      "home": [
+        26,
+        0,
+        14
+      ],
+      "position": [
+        26,
+        0,
+        14
+      ],
+      "axis": [
+        3,
+        0,
+        3
+      ]
+    },
+    {
+      "id": "campus/standby-generator-3",
+      "part": "backup-power",
+      "home": [
+        32,
+        0,
+        14
+      ],
+      "position": [
+        32,
+        0,
+        14
+      ],
+      "axis": [
+        3,
+        0,
+        3
+      ]
+    },
+    {
+      "id": "campus/battery-cabinet-1",
+      "part": "bess",
+      "home": [
+        24,
+        0,
+        7
+      ],
+      "position": [
+        24,
+        0,
+        7
+      ],
+      "axis": [
+        3,
+        0,
+        1
+      ]
+    },
+    {
+      "id": "campus/battery-cabinet-2",
+      "part": "bess",
+      "home": [
+        28,
+        0,
+        7
+      ],
+      "position": [
+        28,
+        0,
+        7
+      ],
+      "axis": [
+        3,
+        0,
+        1
+      ]
+    }
+  ],
+  "omittedInstances": [
+    "campus/retained-roof-sections",
+    "campus/overhead-service-trays",
+    "campus/building-frame"
+  ],
+  "sourcePhysicalMeshes": 152,
+  "visiblePhysicalMeshes": 142,
+  "sourceColumnFootprints": [
+    {
+      "sourceInstance": "campus/building-frame",
+      "sourceFeature": "column-baseplate",
+      "center": [
+        -15.6,
+        0.59,
+        -10.6
+      ],
+      "sourceDimensions": [
+        0.78,
+        0.09,
+        0.84
+      ],
+      "projectionY": 0.7,
+      "physical": false
+    },
+    {
+      "sourceInstance": "campus/building-frame",
+      "sourceFeature": "column-baseplate",
+      "center": [
+        -15.6,
+        0.59,
+        10.6
+      ],
+      "sourceDimensions": [
+        0.78,
+        0.09,
+        0.84
+      ],
+      "projectionY": 0.7,
+      "physical": false
+    },
+    {
+      "sourceInstance": "campus/building-frame",
+      "sourceFeature": "column-baseplate",
+      "center": [
+        -8,
+        0.59,
+        -10.6
+      ],
+      "sourceDimensions": [
+        0.78,
+        0.09,
+        0.84
+      ],
+      "projectionY": 0.7,
+      "physical": false
+    },
+    {
+      "sourceInstance": "campus/building-frame",
+      "sourceFeature": "column-baseplate",
+      "center": [
+        -8,
+        0.59,
+        10.6
+      ],
+      "sourceDimensions": [
+        0.78,
+        0.09,
+        0.84
+      ],
+      "projectionY": 0.7,
+      "physical": false
+    },
+    {
+      "sourceInstance": "campus/building-frame",
+      "sourceFeature": "column-baseplate",
+      "center": [
+        0,
+        0.59,
+        -10.6
+      ],
+      "sourceDimensions": [
+        0.78,
+        0.09,
+        0.84
+      ],
+      "projectionY": 0.7,
+      "physical": false
+    },
+    {
+      "sourceInstance": "campus/building-frame",
+      "sourceFeature": "column-baseplate",
+      "center": [
+        0,
+        0.59,
+        10.6
+      ],
+      "sourceDimensions": [
+        0.78,
+        0.09,
+        0.84
+      ],
+      "projectionY": 0.7,
+      "physical": false
+    },
+    {
+      "sourceInstance": "campus/building-frame",
+      "sourceFeature": "column-baseplate",
+      "center": [
+        8,
+        0.59,
+        -10.6
+      ],
+      "sourceDimensions": [
+        0.78,
+        0.09,
+        0.84
+      ],
+      "projectionY": 0.7,
+      "physical": false
+    },
+    {
+      "sourceInstance": "campus/building-frame",
+      "sourceFeature": "column-baseplate",
+      "center": [
+        8,
+        0.59,
+        10.6
+      ],
+      "sourceDimensions": [
+        0.78,
+        0.09,
+        0.84
+      ],
+      "projectionY": 0.7,
+      "physical": false
+    },
+    {
+      "sourceInstance": "campus/building-frame",
+      "sourceFeature": "column-baseplate",
+      "center": [
+        15.6,
+        0.59,
+        -10.6
+      ],
+      "sourceDimensions": [
+        0.78,
+        0.09,
+        0.84
+      ],
+      "projectionY": 0.7,
+      "physical": false
+    },
+    {
+      "sourceInstance": "campus/building-frame",
+      "sourceFeature": "column-baseplate",
+      "center": [
+        15.6,
+        0.59,
+        10.6
+      ],
+      "sourceDimensions": [
+        0.78,
+        0.09,
+        0.84
+      ],
+      "projectionY": 0.7,
+      "physical": false
+    }
+  ],
+  "sourceTrayProjection": [
+    {
+      "center": [
+        -2.5,
+        6.65,
+        0
+      ],
+      "width": 0.75,
+      "depth": 18
+    },
+    {
+      "center": [
+        6.5,
+        6.65,
+        0
+      ],
+      "width": 0.75,
+      "depth": 18
+    },
+    {
+      "center": [
+        2,
+        6.65,
+        -6
+      ],
+      "width": 22,
+      "depth": 0.75
+    },
+    {
+      "center": [
+        2,
+        6.65,
+        4
+      ],
+      "width": 22,
+      "depth": 0.75
+    }
+  ],
+  "floorContourExtraction": false,
+  "nonphysicalContextGroundHidden": true,
+  "anchors": [
+    {
+      "num": "01",
+      "instance": "campus/rack-r2-c2",
+      "local": [
+        0,
+        4.975,
+        0
+      ],
+      "world": [
+        -1.2000000000000002,
+        5.5249999999999995,
+        4.3
+      ],
+      "pixel": [
+        649.1034209630561,
+        550.8211186435726
+      ]
+    },
+    {
+      "num": "02",
+      "instance": "campus/room-cooling-3",
+      "local": [
+        0,
+        4.8,
+        -0.1
+      ],
+      "world": [
+        1.5,
+        5.35,
+        -9.299999999999999
+      ],
+      "pixel": [
+        708.8282133589441,
+        249.9851273161364
+      ]
+    },
+    {
+      "num": "03",
+      "instance": "campus/CDU-2",
+      "local": [
+        0.48,
+        4.42,
+        -0.4
+      ],
+      "world": [
+        14.48,
+        4.97,
+        -0.4
+      ],
+      "pixel": [
+        995.949622728806,
+        446.85573928776745
+      ]
+    },
+    {
+      "num": "04",
+      "instance": "campus/UPS-bank",
+      "local": [
+        0,
+        5,
+        0
+      ],
+      "world": [
+        -12.1,
+        5.55,
+        6.3
+      ],
+      "pixel": [
+        407.99222203150805,
+        595.0617056034897
+      ]
+    },
+    {
+      "num": "05",
+      "instance": "campus/air-chiller-2",
+      "local": [
+        -1,
+        3.3,
+        0
+      ],
+      "world": [
+        -25,
+        3.3,
+        0
+      ],
+      "pixel": [
+        122.64043614004285,
+        455.70385667975086
+      ]
+    },
+    {
+      "num": "06",
+      "instance": "campus/transformer-1",
+      "local": [
+        0,
+        3.5,
+        0
+      ],
+      "world": [
+        22,
+        3.5,
+        -7
+      ],
+      "pixel": [
+        1162.2942296980943,
+        300.8618023200411
+      ]
+    },
+    {
+      "num": "07",
+      "instance": "campus/standby-generator-2",
+      "local": [
+        0,
+        3.67,
+        0
+      ],
+      "world": [
+        26,
+        3.67,
+        14
+      ],
+      "pixel": [
+        1250.7754036179285,
+        765.3879653991705
+      ]
+    },
+    {
+      "num": "08",
+      "instance": "campus/battery-cabinet-2",
+      "local": [
+        0,
+        3.7,
+        0
+      ],
+      "world": [
+        28,
+        3.7,
+        7
+      ],
+      "pixel": [
+        1295.0159905778455,
+        610.5459110394606
+      ]
+    },
+    {
+      "num": "09",
+      "instance": "campus/retained-wall-sections",
+      "local": [
+        -12.4,
+        6.45,
+        1.3
+      ],
+      "world": [
+        -12.4,
+        6.45,
+        1.3
+      ],
+      "pixel": [
+        401.35613398752054,
+        484.460238203697
+      ]
+    },
+    {
+      "num": "10",
+      "instance": "campus/building-frame",
+      "local": [
+        -8,
+        0.635,
+        10.6
+      ],
+      "world": [
+        -8,
+        0.635,
+        10.6
+      ],
+      "pixel": [
+        498.6854252993381,
+        690.1789675673115
+      ]
+    },
+    {
+      "num": "11",
+      "instance": "campus/overhead-service-trays",
+      "local": [
+        -2.5,
+        0.11,
+        0
+      ],
+      "world": [
+        -2.5,
+        6.760000000000001,
+        0
+      ],
+      "pixel": [
+        620.34703943911,
+        455.70385667975086
+      ]
+    },
+    {
+      "num": "12",
+      "instance": "campus/building-base",
+      "local": [
+        0,
+        0.54,
+        7
+      ],
+      "world": [
+        0,
+        0.54,
+        7
+      ],
+      "pixel": [
+        675.6477731390064,
+        610.5459110394606
+      ]
+    }
+  ],
+  "webgl": "ANGLE (Apple, ANGLE Metal Renderer: Apple M4 Max, Unspecified Version)",
+  "native": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-20/native-v2/campus-plan-native.png",
+    "bytes": 95890,
+    "sha256": "61fc67a28a04850da2b8a4c04e077404683eb11af7eeb5d86968ad33b4c86214"
+  },
+  "observed_at": "2026-10-09T22:33:26.050Z",
+  "requests": [
+    "https://inresearch.ai/healthz",
+    "https://inresearch.ai/assets/campus-assembly.js",
+    "https://inresearch.ai/assets/scene-atlas.js",
+    "https://inresearch.ai/assets/vendor/three.module.js",
+    "https://inresearch.ai/assets/campus-assembly.js",
+    "https://inresearch.ai/assets/vendor/BufferGeometryUtils.js",
+    "https://inresearch.ai/assets/scene-atlas.js",
+    "https://inresearch.ai/assets/scene-view.js"
+  ],
+  "page_errors": [],
+  "boundary": "No localproductaccess or productsource substitutions; separate staticasset canvas/nativecamera is not actualTA20deployedUI, no acceptance/publication claim"
+}
