@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-19",
+  "object_id": "campus-exploded",
+  "style_id": "white-technical-atlas-v1",
+  "decision": "drafting_static_source_only",
+  "reviewed_at": "2026-10-09T21:37:48.561180+00:00",
+  "master": "web/assets/technical-atlas/campus-exploded-v1.png",
+  "labelled": "web/assets/technical-atlas/campus-exploded-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R1",
+      "file": "docs/design/technical-atlas/references/01-chain.png",
+      "sha256": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
+      "role": "TA19 owner actual original-viewed style reference; no technical facts or imagegen input claimed",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    },
+    {
+      "id": "R5",
+      "file": "docs/design/technical-atlas/references/05-thermal-cutaway.png",
+      "sha256": "6bfeea5980c8ad16b040561a6cf69ca6e020b4cb9f0bfd26a97dd1c88c0af1f6",
+      "role": "TA19 owner actual original-viewed style reference; no technical facts or imagegen input claimed",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    },
+    {
+      "id": "R10",
+      "file": "docs/design/technical-atlas/references/10-industrial-campus-cutaway.png",
+      "sha256": "4e7166a198d7bf40c4c7f6a1af97b3c3df51043de1c5b77cfec4600db708fc4f",
+      "role": "TA19 owner actual original-viewed style reference; no technical facts or imagegen input claimed",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    },
+    {
+      "id": "R14",
+      "file": "docs/design/technical-atlas/references/14-modern-campus-cutaway.png",
+      "sha256": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
+      "role": "TA19 owner actual original-viewed style reference; no technical facts or imagegen input claimed",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    }
+  ],
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/campus-exploded-v1.png",
+      "bytes": 600193,
+      "sha256": "260a6ccefbcdfca6234e00b148a062f99460b1d0438e8b965ac7297978781378"
+    },
+    {
+      "file": "web/assets/technical-atlas/campus-exploded-v1.svg",
+      "bytes": 810380,
+      "sha256": "fbb3f1f75d83fc7d15115eb38c8d66da7ea047579cb145d498009f9a81ed5b9c"
+    },
+    {
+      "file": "web/assets/technical-atlas/campus-exploded-v1-preview.jpg",
+      "bytes": 127912,
+      "sha256": "c9e04b8e5cdff3a6321ed2172025ef42628f46ed833862781581c9e72a83e5e5"
+    },
+    {
+      "file": "web/assets/technical-atlas/campus-exploded-v1-preview.svg",
+      "bytes": 180673,
+      "sha256": "2b311f35bbcd09169734db28a42f8fab925945f636efb083563c6df18b04f346"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-19/bom3d-before-v1.html",
+      "bytes": 69666,
+      "sha256": "bf1ba65dbbf63ab87821ab0e704e190c635eeff546dc12a496fe7eb078e5966b"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-19/labels-v1.json",
+      "bytes": 9804,
+      "sha256": "0698cca5d904a6c0ccd412e7d367820c16626027c947aa0389942deff284a6c7"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-19/references-v1.json",
+      "bytes": 1471,
+      "sha256": "a323a050cba025fb7759a428455a8d4254fb47307f3e04a15b39b339928b11d0"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-19/prompt-v1-edit.txt",
+      "bytes": 3075,
+      "sha256": "d15d555256be12c8a8d29d11787886252e2417fa0889f3138b260779018db66f"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-19/prompt-v2-edit.txt",
+      "bytes": 2266,
+      "sha256": "31ca66dddec00adcccf2a95f0d99b37f4628f8dda1c5b3419ea96e345a70ac3e"
+    }
+  ],
+  "preview": {
+    "file": "web/assets/technical-atlas/campus-exploded-v1-preview.svg",
+    "bytes": 180673,
+    "sha256": "2b311f35bbcd09169734db28a42f8fab925945f636efb083563c6df18b04f346"
+  },
+  "independent_reviews": [
+    "/private/tmp/ta19-native-v1-independent-review-child.json",
+    "/private/tmp/ta19-native-v3-label-wrapper-review-child.json"
+  ],
+  "not_verified": [
+    "通用选定八柜示意，数量/比例/分层位移是画法选择；非OEM、项目CAD、施工/维护/拆装程序、尺寸或额定功率/电压/冗余认证。",
+    "保留屋面/墙组/桥架及室内设备沿各组既定轴平移；灰原位线与框非物理设备、非完整连接通路。TA18同源几何32实例/152mesh，原屋面与前墙虚拟省略边界保持。",
+    "受控3D母图保留散热片/风扇/钢梁/柜门/局部排气细节；阴影和材质不同于TA18AI摄影底图，不称同质感、照片反推CAD或逐像素重建。",
+    "TA20严格俯视与后续项仍planned；TA18默认/其它legacy详细硬件隔离。实际TA19公网页面0/70/100、下载、拾取、资源释放与精确部署健康仍待，主18/35补4/4。",
+    "动态档案overlay可遮主画布；显式fit仅避固定HUD/图例/导航，整体mini仍保守偏小，不以152计数声称手机细节可读。匿名产品登记/研究401与compare登录限制不绕过、不称已读或全套通过。",
+    "本地50166访问拒绝继续，不另port/browser/headless/fileproduct入口绕过；本轮仅静态/parse-only/明确无HTTP测试、离线单SVG与授权实际HTTPS资产制作分开。",
+    "CI依用户要求不查询/等待不称通过；Spark/研究事实/运行数据/调度/模型/服务0改。"
+  ],
+  "source_stage": "Native/label candidate reviewed; static source checks and actual deployed TA19 UI verification separate. No accepted/published claim."
+}

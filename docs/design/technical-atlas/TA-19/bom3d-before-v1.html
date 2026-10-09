@@ -141,11 +141,9 @@
 <script type="module">
 import * as THREE from "three";
 import {buildCampusAssembly,CAMPUS_STAGES} from "/assets/campus-assembly.js";
-import {buildCampusExplodedAssembly,CAMPUS_EXPLODED_STAGES,CAMPUS_EXPLODED_MARKS} from "/assets/campus-exploded-assembly.js";
 import {fitRackExploded as fitCampusVisible} from "/assets/rack-exploded-view.js";
 const campusQuery=new URLSearchParams(location.search);
 const campusPhysicalParts=['shell','rack-frame','room-cooling','cdu','ups','cabling','chiller','transformer','backup-power','bess'];
-let campusLayeredMode=false;
 let campusMode=true; // resolved against the actual BOM/right registry below.
 let campusAssembly=null,campusSelectedMeshes=null,campusSelectedInstance=null,campusUiObserver=null;
 import {createScenePicking} from "/assets/scene-picking.js";
@@ -190,13 +188,9 @@ Object.entries(BOM.aliases || {}).forEach(([old, to]) => {
 function resolveScenePart(value){let id=String(value||'').replace(/^part:/,'');if(id.startsWith('site:')){id=id.slice(5);return RIGHTS.find(r=>r.site_right_id===id||r.id===id);}return PART[id]||RIGHTS.find(r=>r.site_right_id===id);}
 const campusRawPart=campusQuery.get('p')||campusQuery.get('node')||'';
 const campusRequestedPart=resolveScenePart(campusRawPart);
-// Preserve other old nonzero stages and detailed hardware routes;
+// Preserve old nonzero stage and detailed hardware routes until their own item;
 // the actual six rights and DCIM always remain independent nonphysical entries.
-const campusAllowedPart=!campusRawPart||campusPhysicalParts.includes(campusRequestedPart?.id)||campusRequestedPart?.kind==='site_right'||campusRequestedPart?.id==='dcim';
-// Only the original TA19 x70 entry or an explicit exploded view owns these layers.
-// TA18 default/x0 and detailed hardware/explicit legacy routes retain their scene.
-campusLayeredMode=campusAllowedPart&&(campusQuery.get('view')==='exploded'||(!campusQuery.has('view')&&campusQuery.has('x')&&Number(campusQuery.get('x'))===70));
-campusMode=campusLayeredMode||campusQuery.get('view')==='campus'||(campusQuery.get('view')!=='legacy'&&(!campusQuery.has('x')||(+campusQuery.get('x')||0)===0)&&campusAllowedPart);
+campusMode=campusQuery.get('view')==='campus'||(campusQuery.get('view')!=='legacy'&&(!campusQuery.has('x')||(+campusQuery.get('x')||0)===0)&&(!campusRawPart||campusPhysicalParts.includes(campusRequestedPart?.id)||campusRequestedPart?.kind==='site_right'||campusRequestedPart?.id==='dcim'));
 let PRODCOUNT = null; // Restricted product registry is optional; absent is unknown, never zero.
 /* 数据覆盖四维：公司/产品/价格序列/已录值指标——覆盖度热图与档案卡共用同一套口径 */
 const COVC = ["#ef4444", "#f59e0b", "#eab308", "#84cc16", "#22c55e"];
@@ -231,7 +225,7 @@ window.addEventListener('inresearch:appearance', syncSceneAppearance);
 let sceneView;
 let pageDisposed=false;
 const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 600);
-if(campusLayeredMode)camera.position.set(25,66,70);else if(campusMode)camera.position.set(-15,60,70);else camera.position.set(46,30,52);
+if(campusMode)camera.position.set(-15,60,70);else camera.position.set(46,30,52);
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 controls.target.set(0, 6, 0);
@@ -778,18 +772,18 @@ label("园区 · 土地与电网", 0, 0.8, FD / 2 + 14, 0.85, "#7d8aa3");
 
  } // Retained legacy layout; its old28-rack quantities are not the new8-rack example.
 if(campusMode){
- campusAssembly=(campusLayeredMode?buildCampusExplodedAssembly:buildCampusAssembly)({THREE,material:M,tag,label});scene.add(campusAssembly.root);
+ campusAssembly=buildCampusAssembly({THREE,material:M,tag,label});scene.add(campusAssembly.root);
  document.body.classList.add('campus-overview');
- const hud=document.querySelector('.ui-viewer-controls'),campusTitle=campusLayeredMode?'园区分层爆炸图':'园区装配全景',campusPlate=campusLayeredMode?'campus-exploded-v1':'campus-overview-v1';hud.querySelector('summary').textContent=campusTitle;hud.querySelector('h1').textContent=campusTitle;
+ const hud=document.querySelector('.ui-viewer-controls');hud.querySelector('summary').textContent='园区装配全景';hud.querySelector('h1').textContent='园区装配全景';
  hud.querySelector('.rg-concept-note').textContent='通用八柜示例 · 尺寸/功率/内接线/供回水拓扑与现场适用未知；虚拟分组非装维程序。';
- hud.querySelector('div').insertAdjacentHTML('beforeend',`<button id="campus-whole-dossier" type="button">整体三维预览</button><details id="campus-static-plate"><summary>完整标注图与原生下载</summary><a href="/assets/technical-atlas/${campusPlate}.svg" target="_blank" rel="noopener" aria-label="放大园区完整标注图"><img src="/assets/technical-atlas/${campusPlate}-preview.svg" alt="${campusTitle}，通用八柜与机电设备示例" width="300" height="200"></a><div><a download="${campusPlate}.svg" href="/assets/technical-atlas/${campusPlate}.svg">下载可编辑SVG</a> · <a download="${campusPlate}.png" href="/assets/technical-atlas/${campusPlate}.png">下载无字原生PNG</a></div></details><a href="bom3d.html${campusLayeredMode?'':'?x=70'}">${campusLayeredMode?'园区装配全景':'园区分层爆炸图'}</a> · <a href="bom3d.html?view=legacy">旧28柜/分层场景（保留）</a>`);
+ hud.querySelector('div').insertAdjacentHTML('beforeend',`<button id="campus-whole-dossier" type="button">整体三维预览</button><details id="campus-static-plate"><summary>完整标注图与原生下载</summary><a href="/assets/technical-atlas/campus-overview-v1.svg" target="_blank" rel="noopener" aria-label="放大园区完整标注图"><img src="/assets/technical-atlas/campus-overview-v1-preview.svg" alt="园区装配全景，通用八柜与机电设备示例" width="300" height="200"></a><div><a download="campus-overview-v1.svg" href="/assets/technical-atlas/campus-overview-v1.svg">下载可编辑SVG</a> · <a download="campus-overview-v1.png" href="/assets/technical-atlas/campus-overview-v1.png">下载无字原生PNG</a></div></details><a href="bom3d.html?view=legacy">旧28柜/分层场景（保留待后续重制）</a>`);
  const legend=document.createElement('div');legend.className='campus-legend';legend.setAttribute('aria-label','园区编号图例');
- legend.innerHTML=campusLayeredMode?'<b>虚拟分层示意 · 灰虚线对应原位，非拆装程序</b><div class="campus-legend-grid">'+CAMPUS_EXPLODED_MARKS.map(([n,t])=>'<span>'+n+' '+t+'</span>').join('')+'</div>':'<b>通用示例 · 局部服务线非完整拓扑</b><div class="campus-legend-grid"><span>01 建筑剖口</span><span>02 八柜示例</span><span>03 室内冷却×5</span><span>04 CDU×3</span><span>05 UPS四柜门</span><span>06 冷水机×3</span><span>07 变压器×2</span><span>08 备用发电×3</span><span>09 储能×2</span></div>';document.body.appendChild(legend);
+ legend.innerHTML='<b>通用示例 · 局部服务线非完整拓扑</b><div class="campus-legend-grid"><span>01 建筑剖口</span><span>02 八柜示例</span><span>03 室内冷却×5</span><span>04 CDU×3</span><span>05 UPS四柜门</span><span>06 冷水机×3</span><span>07 变压器×2</span><span>08 备用发电×3</span><span>09 储能×2</span></div>';document.body.appendChild(legend);
  campusUiObserver=new ResizeObserver(()=>sceneView?.refresh());campusUiObserver.observe(document.querySelector('.hud'));campusUiObserver.observe(legend);
  if(matchMedia('(max-width:700px)').matches)hud.open=false;
 }
 /* ─────────── 分解阶段说明 ─────────── */
-const STAGES = campusLayeredMode ? CAMPUS_EXPLODED_STAGES : campusMode ? CAMPUS_STAGES : [
+const STAGES = campusMode ? CAMPUS_STAGES : [
   [0.00, "概念全景：AI 数据中心"],
   [0.05, "① 设施 · 土地与建筑：掀开屋顶与幕墙——看见白空间"],
   [0.30, "② 电力与冷却链路：风墙 / CDU / UPS / 母线各就各位"],
@@ -816,12 +810,11 @@ function apply() {
   STAGES.forEach(([th, txt]) => { if (t >= th) s = txt; });
   stageEl.textContent = s;
   syncStageControl();
-  if(campusLayeredMode)sceneView?.refresh(); // automatic stage fit yields to manual camera ownership.
 }
 const sliderMotion = createSceneMotion();
 slider.addEventListener("input", () => { sliderMotion.cancel(); apply(); });
 const syncStageControl = installStageControl(STAGES, slider, apply);
-{ const x = new URLSearchParams(location.search).get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); else if(campusLayeredMode)slider.value=70; }
+{ const x = new URLSearchParams(location.search).get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); }
 apply();
 function animateSlider(to, duration = 1400) {
   const from = +slider.value;
@@ -998,7 +991,7 @@ const rawShowDossier = createPartDossier({el: document.getElementById('dossier')
 
 function campusPart(p,whole=false){
  if(!campusMode)return p;
- if(whole)return {...PART.shell,name:'园区空间示意 · 完整三维预览',desc:'本图是一个通用选定八柜园区：2行×4柜、5室内冷却、3CDU、一组4柜门UPS、3双风扇冷机、2变压器、3备用发电与2储能柜。数量与比例只是绘图选择；前墙/部分屋面虚拟省略。'+(campusLayeredMode?'屋面/围护/桥架/室内设备仅沿各组示意轴平移，灰线对应同实例空原位；室外设备/钢架/基础保持原位。':'')+'内接线、流体去回路、功率/电压/冗余、现场适用与站点权利未知；研究链接归建筑类别，不认证本示例。'};
+ if(whole)return {...PART.shell,name:'园区空间示意 · 完整三维预览',desc:'本图是一个通用选定八柜园区：2行×4柜、5室内冷却、3CDU、一组4柜门UPS、3双风扇冷机、2变压器、3备用发电与2储能柜。数量与比例只是绘图选择；前墙/部分屋面虚拟省略。内接线、流体去回路、功率/电压/冗余、现场适用与站点权利未知；研究链接归建筑类别，不认证本示例。'};
  const physical=campusAssembly.objectsFor(p.id).length;
  return {...p,desc:physical?'本次三维仅展示选定通用外形；'+(campusSelectedInstance?'点选单个示例实例 '+campusSelectedInstance+'。':'类别含 '+physical+' 个示例实例，预览取第一个。')+' 外形/数量不是型号、额定配置或现场事实，内接线、流体拓扑、尺寸/功率/电压、冗余和适用条件未知。下方研究与公司数据属于类别。'+(p.id==='rack-frame'?'门内载盘密度是程序示例，非TA13整柜或TA11服务器配置。':''):p.kind==='site_right'?'站点权利是独立非物理研究入口，场景不以设备或地面证明权利成立。':p.id==='dcim'?'DCIM是软件入口，不画物理硬件，当前节点内容与现场实施另核。':'本类别在本次园区未造实体；既有类别研究及独立部件图入口保留，不假造位置/实例。'};
 }

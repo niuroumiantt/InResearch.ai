@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.54。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.55。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2082。
+在册文件：2108。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 316 |
+| 静态资源 | 320 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 333 |
+| 运行代码 | 336 |
 | 现行规范 | 15 |
-| 项目配置 | 509 |
+| 项目配置 | 524 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 163 |
-| 测试 | 168 |
+| 配套说明 | 165 |
+| 测试 | 170 |
 
 ## 在册记录集合
 
@@ -654,6 +654,40 @@
 | `docs/design/technical-atlas/TA-18/source-validation-v1.json` | public_required | 7 |
 | `docs/design/technical-atlas/TA-18/technical-sources-v1.json` | sources | 7 |
 | `docs/design/technical-atlas/TA-18/technical-sources-v1.json` | failed_optional_reads | 2 |
+| `docs/design/technical-atlas/TA-19/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-19/acceptance-v1.json` | references | 4 |
+| `docs/design/technical-atlas/TA-19/acceptance-v1.json` | artifacts | 9 |
+| `docs/design/technical-atlas/TA-19/acceptance-v1.json` | independent_reviews | 2 |
+| `docs/design/technical-atlas/TA-19/acceptance-v1.json` | not_verified | 7 |
+| `docs/design/technical-atlas/TA-19/asset-manifest-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-19/asset-manifest-v1.json` | assets | 4 |
+| `docs/design/technical-atlas/TA-19/generation-native-v3.json` | public_source | 2 |
+| `docs/design/technical-atlas/TA-19/generation-native-v3.json` | AI_rejections | 2 |
+| `docs/design/technical-atlas/TA-19/generation-native-v3.json` | retained_native_candidates | 3 |
+| `docs/design/technical-atlas/TA-19/generation-native-v3.json` | reference_roles | 4 |
+| `docs/design/technical-atlas/TA-19/generation-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-19/generation-v2.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-19/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-19/labels-v1.json` | labels | 12 |
+| `docs/design/technical-atlas/TA-19/native-render-proof-v3.json` | source | 2 |
+| `docs/design/technical-atlas/TA-19/native-render-proof-v3.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-19/native-render-proof-v3.json` | geometry | 32 |
+| `docs/design/technical-atlas/TA-19/native-render-proof-v3.json` | instances | 32 |
+| `docs/design/technical-atlas/TA-19/native-render-proof-v3.json` | guideRecords | 42 |
+| `docs/design/technical-atlas/TA-19/native-render-proof-v3.json` | anchors | 12 |
+| `docs/design/technical-atlas/TA-19/native-render-proof-v3.json` | requests | 8 |
+| `docs/design/technical-atlas/TA-19/native-render-proof-v3.json` | page_errors | 0 |
+| `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | viewport | 2 |
+| `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | external | 0 |
+| `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | texts | 39 |
+| `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | paths | 12 |
+| `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | hits | 0 |
+| `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | outside | 0 |
+| `docs/design/technical-atlas/TA-19/references-v1.json` | items | 4 |
+| `docs/design/technical-atlas/TA-19/source-validation-v1.json` | parse_only | 3 |
+| `docs/design/technical-atlas/TA-19/source-validation-v1.json` | public_required | 7 |
+| `docs/design/technical-atlas/TA-19/technical-sources-v1.json` | sources | 7 |
+| `docs/design/technical-atlas/TA-19/technical-sources-v1.json` | failed_optional_reads | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -1512,6 +1546,25 @@
 | `docs/design/technical-atlas/TA-18/references-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-18/source-validation-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-18/technical-sources-v1.json` | 项目配置 |
+| [docs/design/technical-atlas/TA-19/SCOPE.md](design/technical-atlas/TA-19/SCOPE.md) | 配套说明 |
+| [docs/design/technical-atlas/TA-19/SOURCES.md](design/technical-atlas/TA-19/SOURCES.md) | 配套说明 |
+| `docs/design/technical-atlas/TA-19/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/asset-manifest-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/baseline-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/bom3d-before-v1.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-19/generation-native-v3.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/generation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/generation-v2.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/labels-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/native-labels-v1.py` | 运行代码 |
+| `docs/design/technical-atlas/TA-19/native-render-proof-v3.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/native-render-v3.cjs` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/offline-label-scan-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/prompt-v1-edit.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/prompt-v2-edit.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/references-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/source-validation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-19/technical-sources-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -2654,6 +2707,7 @@
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
 | `tests/auth_appearance.cjs` | 测试 |
 | `tests/browser_suites.cjs` | 测试 |
+| `tests/campus_exploded.cjs` | 测试 |
 | `tests/campus_overview.cjs` | 测试 |
 | `tests/catalog_materials.cjs` | 测试 |
 | `tests/chip_atlas.cjs` | 测试 |
@@ -2700,6 +2754,7 @@
 | `tests/unit/test_bom.py` | 测试 |
 | `tests/unit/test_browser_shards.py` | 测试 |
 | `tests/unit/test_campus_atlas_assets.py` | 测试 |
+| `tests/unit/test_campus_exploded_assets.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
 | `tests/unit/test_catalog_browse.py` | 测试 |
 | `tests/unit/test_catalog_migration.py` | 测试 |
@@ -2869,6 +2924,10 @@
 | `web/assets/repository-status.js` | 运行代码 |
 | `web/assets/research.css` | 运行代码 |
 | [web/assets/technical-atlas/README.md](../web/assets/technical-atlas/README.md) | 配套说明 |
+| `web/assets/technical-atlas/campus-exploded-v1-preview.jpg` | 静态资源 |
+| `web/assets/technical-atlas/campus-exploded-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/campus-exploded-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/campus-exploded-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/campus-overview-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/campus-overview-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/campus-overview-v1.png` | 静态资源 |
@@ -3154,6 +3213,7 @@
 | `web/components/auth-form.js` | 运行代码 |
 | `web/components/auth.css` | 运行代码 |
 | `web/components/campus-assembly.js` | 运行代码 |
+| `web/components/campus-exploded-assembly.js` | 运行代码 |
 | `web/components/catalog-admin.js` | 运行代码 |
 | `web/components/catalog-materials.js` | 运行代码 |
 | `web/components/chip-package-assembly.js` | 运行代码 |
