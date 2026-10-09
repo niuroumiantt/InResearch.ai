@@ -3179,6 +3179,83 @@
       "status": "candidate",
       "stored_path": "originals/bc/bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b/How Much Do GPU Clusters Really Cost_ (1).pdf",
       "title": "How Much Do GPU Clusters Really Cost?"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "coverage": {
+        "characters_read": 58342,
+        "characters_total": 58342,
+        "chunks_read": 24,
+        "chunks_total": 24,
+        "complete": true,
+        "full_document_complete": false,
+        "native_text_pages_read": 24,
+        "nul_character_pages": [],
+        "ocr_calls": 0,
+        "pages_read": 24,
+        "pages_total": 24,
+        "replacement_character_pages": [],
+        "scope": "pdf_native_text_only",
+        "skipped_image_pages": [],
+        "text_layer_empty_pages": [],
+        "visual_review_performed": false
+      },
+      "doc_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "library_path": "library/by-node/actor-alphabet-google/2026_Alphabet_Alphabet Q1 2026 Earnings Call__928dcbfdb0523301.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:amazon",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "actor:meta",
+        "part:ai-asic",
+        "part:cpu",
+        "part:gpu",
+        "part:rack-system",
+        "system:compute",
+        "system:control",
+        "system:it",
+        "system:network"
+      ],
+      "question_ids": [
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-definition",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "Q-SCOPE-arch-blackwell",
+        "Q-SCOPE-arch-hopper"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+      "source_provenance": {
+        "batch": "us-datacenter-power-20261009-v3",
+        "input_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+        "role": "downloaded_original",
+        "sidecar_sha256": "2f5df074d2368e7602e491855da59af9523e9f9976a5ed924733f2402a7b5ea6",
+        "source_id": "alphabet-q1",
+        "url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Apr/29/2026_Q1_Earnings_Transcript.pdf",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Apr/29/2026_Q1_Earnings_Transcript.pdf",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/92/928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b/alphabet-q1.pdf",
+      "title": "Alphabet Q1 2026 Earnings Call"
     }
   ],
   "evidence": [
@@ -17251,6 +17328,752 @@
           }
         },
         "batch_id": "39d73a87f22d7f7f5b8aed7be4bd7195226c1f307f964ea1db7fe2d70397a997"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a380de03d721a24b8022b95a9714c09d891299cc93e2684fb0c3b6894d83af81",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:0:ev:0",
+      "locator": "page:5/chunk:4",
+      "object_ids": [
+        "system:control"
+      ],
+      "page_index": 4,
+      "question_ids": [],
+      "quote": "e introduced a new Gemini Enterprise Agent Platform that empowers users to build,​",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "平台的具体功能直接补充当前D3工具链能力边界工作单。连续原文片段及完整段落语境支持局部采用，评分6、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a380de03d721a24b8022b95a9714c09d891299cc93e2684fb0c3b6894d83af81",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:0:ev:1",
+      "locator": "page:5/chunk:4",
+      "object_ids": [
+        "system:control"
+      ],
+      "page_index": 4,
+      "question_ids": [],
+      "quote": "orchestrate, govern and optimize agents with the controls that enterprise customers​",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "平台的具体功能直接补充当前D3工具链能力边界工作单。连续原文片段及完整段落语境支持局部采用，评分6、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a380de03d721a24b8022b95a9714c09d891299cc93e2684fb0c3b6894d83af81",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:1:ev:0",
+      "locator": "page:5/chunk:4",
+      "object_ids": [
+        "system:control"
+      ],
+      "page_index": 4,
+      "question_ids": [],
+      "quote": "long with new capabilities in Gemini Enterprise app — like Projects, Canvas, Long​",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "具名应用功能及面向员工的智能体构建定位，与当前D4产品能力边界工作单有实质关系。原文及周边平台介绍提供充分语境，可部分采用；评分6、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a380de03d721a24b8022b95a9714c09d891299cc93e2684fb0c3b6894d83af81",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:1:ev:1",
+      "locator": "page:5/chunk:4",
+      "object_ids": [
+        "system:control"
+      ],
+      "page_index": 4,
+      "question_ids": [],
+      "quote": "Running Agents and Skills, every employee can build agents.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "具名应用功能及面向员工的智能体构建定位，与当前D4产品能力边界工作单有实质关系。原文及周边平台介绍提供充分语境，可部分采用；评分6、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a380de03d721a24b8022b95a9714c09d891299cc93e2684fb0c3b6894d83af81",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:2:ev:0",
+      "locator": "page:5/chunk:4",
+      "object_ids": [
+        "system:control"
+      ],
+      "page_index": 4,
+      "question_ids": [],
+      "quote": "n Q1, Gemini Enterprise paid monthly active users grew 40% quarter over quarter.​",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "付费且活跃的用户指标及具名企业客户，为当前企业需求增长和D4采用问题提供实质但有限的一手公司陈述。连续原文与上下文充分，评分7、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-M03-Q05",
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a380de03d721a24b8022b95a9714c09d891299cc93e2684fb0c3b6894d83af81",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:2:ev:1",
+      "locator": "page:5/chunk:4",
+      "object_ids": [
+        "system:control"
+      ],
+      "page_index": 4,
+      "question_ids": [],
+      "quote": "That includes major global brands like Bosch, Citi Wealth, Merck, and Mars,​\n  ​Incorporated.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "付费且活跃的用户指标及具名企业客户，为当前企业需求增长和D4采用问题提供实质但有限的一手公司陈述。连续原文与上下文充分，评分7、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-M03-Q05",
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a380de03d721a24b8022b95a9714c09d891299cc93e2684fb0c3b6894d83af81",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:3:ev:0",
+      "locator": "page:5/chunk:4",
+      "object_ids": [
+        "system:control"
+      ],
+      "page_index": 4,
+      "question_ids": [],
+      "quote": "adoption. We saw 9x year over year growth both in seats sold with partners, and in the​\n ​number of partners adopting it for internal use.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "席位销售和伙伴内部采用是不同的购买与采用指标，直接贡献当前企业需求增长及D4经济学问题。原文连续、产品指代在周边段落明确，可按原措辞部分采用；评分7、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-M03-Q05",
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a380de03d721a24b8022b95a9714c09d891299cc93e2684fb0c3b6894d83af81",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:4:ev:0",
+      "locator": "page:5/chunk:4",
+      "object_ids": [],
+      "page_index": 4,
+      "question_ids": [],
+      "quote": "ver the past 12 months, 330 Google Cloud customers each processed over one​",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "客户级年度token处理门槛直接贡献当前D3经济学工作单中的单位使用量证据，可局部采用。连续原文与上下文充分，评分7、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a380de03d721a24b8022b95a9714c09d891299cc93e2684fb0c3b6894d83af81",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:4:ev:1",
+      "locator": "page:5/chunk:4",
+      "object_ids": [],
+      "page_index": 4,
+      "question_ids": [],
+      "quote": "trillion tokens. 35 reached the ten trillion token milestone.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "客户级年度token处理门槛直接贡献当前D3经济学工作单中的单位使用量证据，可局部采用。连续原文与上下文充分，评分7、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
       }
     }
   ],
@@ -33873,6 +34696,507 @@
         "batch_id": "39d73a87f22d7f7f5b8aed7be4bd7195226c1f307f964ea1db7fe2d70397a997",
         "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
         "request_sha256": "47ac1503960ff55c92a7ee45906bedf65afbc7b1eb0d1f49917f05e3b5865ef7"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:0:ev:0",
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:0:ev:1"
+      ],
+      "id": "adoption:review:0a5d98498d7ad4f9ef3e832b",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:control"
+      ],
+      "question_ids": [
+        "NODE-demand-D3-boundary"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet在《Alphabet Q1 2026 Earnings Call》中介绍新发布的Gemini Enterprise Agent Platform，称其使用户能够构建、编排、治理和优化智能体，并提供企业客户所需的控制能力。这是公司对企业智能体软件平台功能的陈述；来源发布日期未建立，地域未说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "平台的具体功能直接补充当前D3工具链能力边界工作单。连续原文片段及完整段落语境支持局部采用，评分6、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:0"
+      ],
+      "limitations": "发布介绍不证明所有功能已在客户生产环境部署。未披露支持范围、采购关系、价格或实际使用量；企业软件控制能力不能据此映射为机房控制与监测系统。",
+      "conflict_check": "既有采用的TorchAX、JAX及编译器记录描述另一类工具链职责，与本项企业智能体平台功能无直接冲突或重复。候选system:control标签不能作为设施系统归属证据；不据此改变现有骨架。所供legacy记录无同命题记录。",
+      "gap_dependency_check": "仅支持D3所提供能力的一部分。完整回答仍需平台交付范围、上下层交易接口、实际可用条件及反证；保持问题开放，不认证当前部署状态。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "555ed932ee2c5127071f5ce5f51960dddff76130c755a27ed17680ba84d5000b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:1:ev:0",
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:1:ev:1"
+      ],
+      "id": "adoption:review:eeb6d6817548e5a6922bcc26",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:control"
+      ],
+      "question_ids": [
+        "NODE-demand-D4-boundary"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet在《Alphabet Q1 2026 Earnings Call》中称，Gemini Enterprise应用新增Projects、Canvas、Long Running Agents和Skills等能力，并表示每位员工都能构建智能体。该表述记录公司的产品能力主张，不构成员工实际采用情况的独立认证；来源发布日期未建立，地域未说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "具名应用功能及面向员工的智能体构建定位，与当前D4产品能力边界工作单有实质关系。原文及周边平台介绍提供充分语境，可部分采用；评分6、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:1"
+      ],
+      "limitations": "未说明许可、权限、技能要求、功能可用范围或生产部署条件；没有员工采用率、工作负载、token用量或交易边界证据。软件应用功能不支持机房控制系统归属。",
+      "conflict_check": "已采用的安全模型能力陈述及TPU工具链陈述涉及不同产品和指标，与本项无直接冲突或重复。所供legacy记录也无同命题记录；候选system:control标签不足以建立设施系统映射。",
+      "gap_dependency_check": "仅补充D4应用功能范围。仍需实际可用条件、购买主体、与平台及模型服务的接口和反证，不能据此完成层级交易边界或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "555ed932ee2c5127071f5ce5f51960dddff76130c755a27ed17680ba84d5000b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:2:ev:0",
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:2:ev:1"
+      ],
+      "id": "adoption:review:408e3b32749a73de7b7135d4",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:control"
+      ],
+      "question_ids": [
+        "M03-Q05",
+        "NODE-demand-D4-economics"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet在《Alphabet Q1 2026 Earnings Call》中称，2026年第一季度Gemini Enterprise付费月活跃用户环比增长40%，并列举Bosch、Citi Wealth、Merck和Mars, Incorporated等全球品牌作为该用户群涉及的客户。这是公司报告的产品采用指标，来源发布日期未建立，未披露指标的地域分布。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "付费且活跃的用户指标及具名企业客户，为当前企业需求增长和D4采用问题提供实质但有限的一手公司陈述。连续原文与上下文充分，评分7、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-M03-Q05",
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:2"
+      ],
+      "limitations": "未提供用户绝对数量、统计定义、客户行业构成或各具名客户的增长数据。付费月活跃用户增长不等于企业支出增长、生产负载渗透率或续约率，也不能代表全部非AI实验室企业。",
+      "conflict_check": "所供采用陈述没有同产品、同期间、同口径的用户统计，legacy记录涉及其他容量、能源和预测指标，未发现直接冲突或规范记录重复。检查不构成外部独立验证。",
+      "gap_dependency_check": "仅贡献M03-Q05的产品级企业采用增长及D4经济学的付费采用线索。M12-Q04所需生产负载、支出渗透率和续约率均未获得支持，未将其列为支持问题；仍需基数、口径、客户构成及反证，相关问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "555ed932ee2c5127071f5ce5f51960dddff76130c755a27ed17680ba84d5000b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:3:ev:0"
+      ],
+      "id": "adoption:review:527044bb04bd40327bc9651f",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:control"
+      ],
+      "question_ids": [
+        "M03-Q05",
+        "NODE-demand-D4-economics"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet在《Alphabet Q1 2026 Earnings Call》中称，Gemini Enterprise与合作伙伴共同售出的席位数，以及采用该产品供内部使用的合作伙伴数量，两项指标均出现“9x year over year growth”（原文措辞）。该项保留公司的同比增长表述，不另行换算增长百分比；统计截止日、来源发布日期及地域分布未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "席位销售和伙伴内部采用是不同的购买与采用指标，直接贡献当前企业需求增长及D4经济学问题。原文连续、产品指代在周边段落明确，可按原措辞部分采用；评分7、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-M03-Q05",
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:3"
+      ],
+      "limitations": "未披露两项指标的基数、绝对数量、席位使用情况或同比可比口径。原文9x增长措辞不在此解释为精确增长率；售出席位不等于活跃用户，伙伴内部采用不证明生产负载、支出金额或续约。",
+      "conflict_check": "本批付费月活跃用户环比40%与本项年度席位及伙伴数量采用不同指标和期间，不构成冲突或重复。所供既有采用陈述和legacy记录无同口径记录，不替换既有结论。",
+      "gap_dependency_check": "仅提供渠道购买和伙伴采用扩张的局部证据，不能关闭企业需求增长或D4经济学问题。仍需基数、活跃及生产使用、费用、非增长案例和统计定义；M12-Q04的渗透率与续约率仍缺证据。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "555ed932ee2c5127071f5ce5f51960dddff76130c755a27ed17680ba84d5000b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:4:ev:0",
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:4:ev:1"
+      ],
+      "id": "adoption:review:133d0b03a367c11a3224c3cf",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D3-economics"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet在《Alphabet Q1 2026 Earnings Call》中称，在电话会所述的过去12个月，330家Google Cloud客户各自处理超过1万亿tokens，其中35家达到10万亿tokens里程碑。这是公司报告的客户使用规模门槛统计；观察窗口的具体起止日、来源发布日期及客户地域分布未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:16:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "客户级年度token处理门槛直接贡献当前D3经济学工作单中的单位使用量证据，可局部采用。连续原文与上下文充分，评分7、原始重要性6，无已识别A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 129.806,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc15539f2f57248c070055d2ff08d4d8de05e2e53dae3481d37ea11fe18632d0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 43859,
+            "output_tokens": 3950,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.341,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e2aa200f01e710bfc128c93a9cb9baf68c2819fbedce89121db8f544aa97da66",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 40382,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 295
+            }
+          }
+        },
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:4:claim:4"
+      ],
+      "limitations": "没有客户总数分母、完整用量分布、同口径前期数据、训练与推理拆分或客户类型。门槛统计不是精确客户用量、推理负载曲线或行业总量，也不能换算算力、电力、网络与存储需求。",
+      "conflict_check": "既有Meta传统推荐推理的非同步模式陈述针对负载组织，本项针对Google Cloud客户年度累计token规模，口径不同，无直接冲突或重复。TPU执行机制及legacy容量、能源、预测记录均不能验证该用量统计。",
+      "gap_dependency_check": "仅支持D3经济学的客户使用规模线索。M03-Q06需要实际推理时序曲线，D3转换问题需要模型、硬件、运行条件及换算系数，本项未直接提供这些证据，故未列为支持问题。仍需客户分母、完整分布、可比时序及反证；不关闭问题或填入模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fe2e3f0a0b51088136f4521d409bc916c8266a46d19a38ad6c88dc07b84ec862",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "555ed932ee2c5127071f5ce5f51960dddff76130c755a27ed17680ba84d5000b"
       }
     }
   ],
