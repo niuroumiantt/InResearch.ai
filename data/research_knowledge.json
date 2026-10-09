@@ -18591,6 +18591,264 @@
         "replaces_record_ids": [],
         "relaxes_distribution": false
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f51b93ee0ba7531f1107630016f0391820d9eeff3e491a15de3827a460f99d9b",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:11:claim:8:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "part:ai-asic"
+      ],
+      "page_index": 11,
+      "question_ids": [],
+      "quote": "we will begin to deliver TPU hardware to a​\n ​select group of customers in their own data centers. We expect to begin recognizing a​\n  ​small percent of the revenues from these agreements later this year, with the vast​\n   ​majority of revenues to be realized in 2027.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:49:26+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分7。连续引文和相邻上下文充分，客户自有数据中心交付边界及跨年度收入预期实质匹配当前硬件交易边界、收入计量和交付传导工作单，并为ASIC商业部署规划提供部分线索。未发现A条件，按明确归因的管理层预测采用。",
+        "workorder_ids": [
+          "Q-M06-Q02",
+          "Q-NODE-activity-V2-boundary",
+          "Q-NODE-activity-V2-economics",
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 133.802,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5db2aa78188c68233be1c09774410718bf9699ddbde6ce41bc53ef53277df79d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61405,
+            "output_tokens": 4182,
+            "reasoning_output_tokens": 318
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.644,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "835896a052fbe86915a5314e7853e1360b62c222f87500ee251a84c4bb65a321",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 58674,
+              "output_tokens": 369,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "549b5c7c2a237c471febcc18bd459b2728ea0da64f7ca441ab1f9e7bc0d96de6"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f51b93ee0ba7531f1107630016f0391820d9eeff3e491a15de3827a460f99d9b",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:11:claim:9:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "part:ai-asic"
+      ],
+      "page_index": 11,
+      "question_ids": [],
+      "quote": "revenues from TPU hardware sales will fluctuate​\n ​from quarter to quarter, depending on when TPUs are shipped to customers.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:49:26+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文及此前客户自有数据中心交付、跨年度收入预期提供充分语境；发货时间影响季度硬件收入的机制实质匹配当前收入计量和交付传导工作单。仅作为部分贡献采用，未发现A条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-economics",
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 133.802,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5db2aa78188c68233be1c09774410718bf9699ddbde6ce41bc53ef53277df79d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61405,
+            "output_tokens": 4182,
+            "reasoning_output_tokens": 318
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.644,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "835896a052fbe86915a5314e7853e1360b62c222f87500ee251a84c4bb65a321",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 58674,
+              "output_tokens": 369,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "549b5c7c2a237c471febcc18bd459b2728ea0da64f7ca441ab1f9e7bc0d96de6"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "dc492f4842a77876a0b400948643e65580e8a2d023d3ec2666b56334d95e781d",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:12:claim:0:ev:0",
+      "locator": "page:13/chunk:12",
+      "object_ids": [
+        "actor:alphabet-google"
+      ],
+      "page_index": 12,
+      "question_ids": [],
+      "quote": "$180 to $190 billion, up from our previous estimate of $175 to $185 billion, to now​\n ​include investment related to the acquisition of Intersect, which closed in March.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:49:26+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分7。连续原文与完整年度资本开支语境充分；同一电话会提供旧、新指引及纳入投资的原因，对当前季度指引核验和头部玩家扩张投入工作单有具体贡献。证据仅支持指引快照，不支持实际执行差异或资金落实；未发现A条件，按限定归因采用。",
+        "workorder_ids": [
+          "Q-M03-Q03",
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 133.802,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5db2aa78188c68233be1c09774410718bf9699ddbde6ce41bc53ef53277df79d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61405,
+            "output_tokens": 4182,
+            "reasoning_output_tokens": 318
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.644,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "835896a052fbe86915a5314e7853e1360b62c222f87500ee251a84c4bb65a321",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 58674,
+              "output_tokens": 369,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "549b5c7c2a237c471febcc18bd459b2728ea0da64f7ca441ab1f9e7bc0d96de6"
+      }
     }
   ],
   "statements": [
@@ -36335,6 +36593,317 @@
         "rev-2c51e1d4ad7c4e5f90dd16243035fb25:chunk:1:claim:1"
       ],
       "source_candidate_relation": "Specialist supplements the candidate with full native table headers and row; does not adopt other amounts or interpretations in that candidate"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:11:claim:8:ev:0"
+      ],
+      "id": "adoption:review:46332a8949f45f839718afbf",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "part:ai-asic"
+      ],
+      "question_ids": [
+        "M06-Q02",
+        "NODE-activity-V2-boundary",
+        "NODE-activity-V2-economics",
+        "NODE-activity-V2-chain"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet管理层在《Alphabet Q1 2026 Earnings Call》（发表日期未由所供原生正文建立）中表示，Google Cloud将开始向特定客户交付TPU硬件，供部署于客户自己的数据中心；管理层预计2026年晚些时候开始确认这些协议的一小部分收入，绝大多数收入预计于2027年实现。这是来源披露的交付安排及收入确认预期，不构成实际部署或收入实现的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:49:26+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分7。连续引文和相邻上下文充分，客户自有数据中心交付边界及跨年度收入预期实质匹配当前硬件交易边界、收入计量和交付传导工作单，并为ASIC商业部署规划提供部分线索。未发现A条件，按明确归因的管理层预测采用。",
+        "workorder_ids": [
+          "Q-M06-Q02",
+          "Q-NODE-activity-V2-boundary",
+          "Q-NODE-activity-V2-economics",
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 133.802,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5db2aa78188c68233be1c09774410718bf9699ddbde6ce41bc53ef53277df79d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61405,
+            "output_tokens": 4182,
+            "reasoning_output_tokens": 318
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.644,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "835896a052fbe86915a5314e7853e1360b62c222f87500ee251a84c4bb65a321",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 58674,
+              "output_tokens": 369,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "549b5c7c2a237c471febcc18bd459b2728ea0da64f7ca441ab1f9e7bc0d96de6"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:11:claim:8"
+      ],
+      "limitations": "未披露客户身份、地域、TPU型号、数量、具体交付日期、协议金额或收入确认条款。客户自有数据中心不等于已证明TPU资产所有权、付款方、运营责任或验收完成。收入确认预期不能换算为部署量、负载率、GPU与ASIC份额或投运容量；原生文本完整读取，未进行视觉审阅。",
+      "conflict_check": "已采用的adoption:review:745696da226b39bf5b38ebf1强调交付、验收与可用日期仍需取证，与本项计划阶段相容。既有Google自建园区不排斥客户自有数据中心部署；供电合同、API token量及2025年资本开支记录不验证这些硬件协议。未发现同口径规范重复、真实冲突或替换需求，检查限于所供材料。",
+      "gap_dependency_check": "M06-Q02仅获得商业部署方向和预计收入时间线，仍缺实际部署数量、下一代型号规划及GPU与ASIC份额。NODE-activity-V2-boundary仍缺付款、资产权属、运营和使用责任的完整合同；economics仍缺金额、价格、成本及确认条件；chain仍缺交期、验收、约束传导和实现情况。该交易实例不自动覆盖整个活动节点，所有问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "549b5c7c2a237c471febcc18bd459b2728ea0da64f7ca441ab1f9e7bc0d96de6",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "f2d838ee453d9ee76c2b1bd45e04165f07b035f26957b2bdd9663297410bb1e4"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:11:claim:9:ev:0"
+      ],
+      "id": "adoption:review:9c7509743d274bef28464dba",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "part:ai-asic"
+      ],
+      "question_ids": [
+        "NODE-activity-V2-economics",
+        "NODE-activity-V2-chain"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet管理层在《Alphabet Q1 2026 Earnings Call》（发表日期未由所供原生正文建立）的TPU硬件销售展望中表示，预计此类销售收入将随季度波动，取决于TPU向客户发货的时间。这是来源对发货节奏与季度收入关系的预期，不构成实际收入波动或部署量的独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:49:26+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文及此前客户自有数据中心交付、跨年度收入预期提供充分语境；发货时间影响季度硬件收入的机制实质匹配当前收入计量和交付传导工作单。仅作为部分贡献采用，未发现A条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-economics",
+          "Q-NODE-activity-V2-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 133.802,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5db2aa78188c68233be1c09774410718bf9699ddbde6ce41bc53ef53277df79d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61405,
+            "output_tokens": 4182,
+            "reasoning_output_tokens": 318
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.644,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "835896a052fbe86915a5314e7853e1360b62c222f87500ee251a84c4bb65a321",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 58674,
+              "output_tokens": 369,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "549b5c7c2a237c471febcc18bd459b2728ea0da64f7ca441ab1f9e7bc0d96de6"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:11:claim:9"
+      ],
+      "limitations": "未披露发货计划、数量、金额、波动幅度、客户地域、验收或收入确认的详细规则。不能由该句认定所有收入均在发货时立即确认，也不能由收入推算部署或投运时间。原生文本完整读取，未进行视觉审阅。",
+      "conflict_check": "本批claim:8说明年度收入预期，本项说明季度波动机制，二者相容且内容不同。已采用的设备交付取证陈述与本项相容；legacy供电、园区和资本开支记录没有同口径反证。未发现现有规范重复或真实冲突，不替换既有结论；检查限于所供材料。",
+      "gap_dependency_check": "NODE-activity-V2-economics仍需合同确认政策、价格、成本和实际季度收入；chain仍需发货、验收、交期及下游使用记录和反例。M06-Q02要求实际部署量、下一代规划和份额，本句没有这些证据，故不挂接该问题。不能据此填入部署量或交期采用值，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "549b5c7c2a237c471febcc18bd459b2728ea0da64f7ca441ab1f9e7bc0d96de6",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "f2d838ee453d9ee76c2b1bd45e04165f07b035f26957b2bdd9663297410bb1e4"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:12:claim:0:ev:0"
+      ],
+      "id": "adoption:review:bbce36cce5c183bf7d9a524a",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:alphabet-google"
+      ],
+      "question_ids": [
+        "M03-Q03",
+        "M02-Q02"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet管理层在《Alphabet Q1 2026 Earnings Call》（发表日期未由所供原生正文建立）中表示，将2026年全年资本开支指引从1750亿—1850亿美元上调至1800亿—1900亿美元，以纳入2026年3月完成的Intersect收购相关投资。这是来源在该电话会中的公司全年指引快照，不构成实际支出、项目交付或截至当前最新指引的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:49:26+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分7。连续原文与完整年度资本开支语境充分；同一电话会提供旧、新指引及纳入投资的原因，对当前季度指引核验和头部玩家扩张投入工作单有具体贡献。证据仅支持指引快照，不支持实际执行差异或资金落实；未发现A条件，按限定归因采用。",
+        "workorder_ids": [
+          "Q-M03-Q03",
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 133.802,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5db2aa78188c68233be1c09774410718bf9699ddbde6ce41bc53ef53277df79d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61405,
+            "output_tokens": 4182,
+            "reasoning_output_tokens": 318
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.644,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "835896a052fbe86915a5314e7853e1360b62c222f87500ee251a84c4bb65a321",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 58674,
+              "output_tokens": 369,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "549b5c7c2a237c471febcc18bd459b2728ea0da64f7ca441ab1f9e7bc0d96de6"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:12:claim:0"
+      ],
+      "limitations": "未披露本次纳入的投资明细、季度执行额、地域分配、项目清单或资金来源。公司全年资本开支不能等同于AI数据中心、美国项目或新增IT容量；也不能将区间端点变化直接解释为Intersect收购价或该业务全部投资额。来源URL日期仅有供应方元数据，不能据此确立发表日期；原生文本完整读取，未进行视觉审阅。",
+      "conflict_check": "legacy中的nomura2504-google-capex-guide-2025及nmk2503-capex-guidance-2025-alphabet记录2025年指引，nomura2504-google-capex-2025q1记录2025年季度实际支出，年份和指引/实际口径均不同，不构成冲突或重复。Google供电协议、各地园区投资及芬兰准备作业限制不能验证或否定2026年公司全年指引，也不能据此改变项目角色或阶段。既有融资信用判断属于不同主体或机制，未发现同口径真实冲突；不覆盖旧快照，检查限于所供材料。",
+      "gap_dependency_check": "M03-Q03获得2026年全年指引及本次修订的原文依据，但仍需同口径季度、全年实际资本开支及后续指引，才能评估执行差异。M02-Q02获得Alphabet扩张投入计划线索，仍缺项目交付时间、融资安排、现金流约束及其他头部玩家资料。所有问题保持开放，不汇总GW、不改变骨架或模型采用值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "549b5c7c2a237c471febcc18bd459b2728ea0da64f7ca441ab1f9e7bc0d96de6",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "f2d838ee453d9ee76c2b1bd45e04165f07b035f26957b2bdd9663297410bb1e4"
+      }
     }
   ],
   "answers": [],
