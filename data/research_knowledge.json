@@ -23637,6 +23637,172 @@
     },
     {
       "acceptance": "adopted",
+      "chunk_sha256": "2cd257041d9df1423a6336bec77b2288d3c5e29444ca89b354cc76654269b18d",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:6:claim:3:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "page_index": 6,
+      "question_ids": [],
+      "quote": "Cooling energy\nuse variations are based on scenarios in cooling system selection type and efficiency of those\ncooling systems, such as shifting to liquid base cooling or moving away from evaporative\ncooling.",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:55:41+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。冷却类型及效率作为设施能耗情景变量，与当前M01-Q05用电量和容量路径核算有实质关系；对M08-Q04仅提供待验证的技术选择线索。连续原文及相邻情景建模上下文充分，无A类触发条件，符合B级有限归属采用要求。",
+        "workorder_ids": [
+          "Q-M01-Q05",
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 103.307,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "bcf1393c38d29f1986d07229000c870934adfd14ad869d871532598ea2eb46ad",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 45058,
+            "output_tokens": 3070,
+            "reasoning_output_tokens": 646
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.998,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "bf33ffe327fb9bbf021b79d1d37e02914b4fa7998e0c4978064130be6ebeb806",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 44460,
+              "output_tokens": 515,
+              "reasoning_output_tokens": 225
+            }
+          }
+        },
+        "batch_id": "ad612a41449cf062f754e1c50d59054b502da065e83bf531cbf358326f325fec"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2cd257041d9df1423a6336bec77b2288d3c5e29444ca89b354cc76654269b18d",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:6:claim:4:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [],
+      "page_index": 6,
+      "question_ids": [],
+      "quote": "Together, the scenario variations provide a range of total data center energy estimates,\nwith the low and high end of roughly 325 and 580 TWh in 2028, as shown in Figure ES-1.",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:55:41+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。2028年美国年用电量区间为当前M01-Q05提供可定位的需求侧核算依据，并为M04-Q05提供局部需求约束参考。连续引文及相邻方法、地域和数据局限上下文充分，无A类触发条件，符合B级部分采用要求。",
+        "workorder_ids": [
+          "Q-M01-Q05",
+          "Q-M04-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 103.307,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "bcf1393c38d29f1986d07229000c870934adfd14ad869d871532598ea2eb46ad",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 45058,
+            "output_tokens": 3070,
+            "reasoning_output_tokens": 646
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.998,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "bf33ffe327fb9bbf021b79d1d37e02914b4fa7998e0c4978064130be6ebeb806",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 44460,
+              "output_tokens": 515,
+              "reasoning_output_tokens": 225
+            }
+          }
+        },
+        "batch_id": "ad612a41449cf062f754e1c50d59054b502da065e83bf531cbf358326f325fec"
+      }
+    },
+    {
+      "acceptance": "adopted",
       "chunk_sha256": "79dc84ad4515d36fe59058126dab6f29620b9dd4e36cadbd58c28ad7cccf87fd",
       "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
       "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:1:claim:0:ev:0",
@@ -45583,6 +45749,208 @@
         "request_sha256": "05786205bbcfee48f1c2b9ec3ea680a43333137cd509c807aac0809be36067cb"
       },
       "object_mapping_check": "审定陈述的范围是美国数据中心能耗研究的设备层面汇总方法，而非某座AI数据中心或具体硬件、冷却、电力系统。相邻文本列举的设备及设施效率不能自动成为本项全部证据的对象范围；研究模型也不属于DCIM/BMS，故保留空映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:6:claim:3:ev:0"
+      ],
+      "id": "adoption:review:c0196294054d73d21ad154a3",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M01-Q05",
+        "M08-Q04"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者说明，美国数据中心2023年之后的用电情景考虑冷却系统类型及效率变化，例如转向液冷或减少采用蒸发冷却。这是报告构建未来用电情景的方法说明，不是液冷已实现节能或节水的独立核证；所供原生文本未确立报告发表日期。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:55:41+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。冷却类型及效率作为设施能耗情景变量，与当前M01-Q05用电量和容量路径核算有实质关系；对M08-Q04仅提供待验证的技术选择线索。连续原文及相邻情景建模上下文充分，无A类触发条件，符合B级有限归属采用要求。",
+        "workorder_ids": [
+          "Q-M01-Q05",
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 103.307,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "bcf1393c38d29f1986d07229000c870934adfd14ad869d871532598ea2eb46ad",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 45058,
+            "output_tokens": 3070,
+            "reasoning_output_tokens": 646
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.998,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "bf33ffe327fb9bbf021b79d1d37e02914b4fa7998e0c4978064130be6ebeb806",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 44460,
+              "output_tokens": 515,
+              "reasoning_output_tokens": 225
+            }
+          }
+        },
+        "batch_id": "ad612a41449cf062f754e1c50d59054b502da065e83bf531cbf358326f325fec"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:6:claim:3"
+      ],
+      "limitations": "该段未提供设备参数、单MW散热Capex、PUE/WUE实测改善幅度或具体情景的冷却能耗变化值，也未说明两项技术选择各自影响的方向和幅度。不能据此认定减少蒸发冷却必然降低用电，不能外推全球、中国或具体项目。",
+      "conflict_check": "所供已采用陈述涉及PJM容量拍卖、季节能力及制度安排，与本项冷却情景方法不同，未发现重复或真实冲突。legacy筛选记录为空，仅能说明所供范围内未检出相关记录，不能声称完成外部反证检索。不替换任何既有结论。",
+      "gap_dependency_check": "M01-Q05仍需同范围、同年度的容量口径、设施能耗参数及可复查利用率推导；M08-Q04仍需成本数据、PUE/WUE实际测量、基准系统和运行条件。本项仅提供部分支持，两项问题及工单保持开放，骨架和模型值不变。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "ad612a41449cf062f754e1c50d59054b502da065e83bf531cbf358326f325fec",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "53e514a4543ade9e0727009b0ae9af9d2c8397eafe7b8b098c9ea5f3a743008f"
+      },
+      "object_mapping_check": "原文明确讨论数据中心冷却系统类型及效率，适合映射到冷却系统system:thermal。液冷未明确具体形式，蒸发冷却也未明确设备构成，故不下推至CDU、冷板、浸没槽、冷水机组或具体排热部件；不继承文档级Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:6:claim:4:ev:0"
+      ],
+      "id": "adoption:review:f11de49e0c6470a21cb69188",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q05",
+        "M04-Q05"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者基于设备出货、运行实践及冷却能耗的情景变化，预测2028年美国数据中心总年用电量约为325–580 TWh。报告的总量边界包括服务器、存储、网络设备及基础设施；这是作者的条件性情景估计，不是已发生用电量或当前独立核证结果。所供原生文本未确立报告发表日期。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:55:41+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。2028年美国年用电量区间为当前M01-Q05提供可定位的需求侧核算依据，并为M04-Q05提供局部需求约束参考。连续引文及相邻方法、地域和数据局限上下文充分，无A类触发条件，符合B级部分采用要求。",
+        "workorder_ids": [
+          "Q-M01-Q05",
+          "Q-M04-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 103.307,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "bcf1393c38d29f1986d07229000c870934adfd14ad869d871532598ea2eb46ad",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 45058,
+            "output_tokens": 3070,
+            "reasoning_output_tokens": 646
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.998,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "bf33ffe327fb9bbf021b79d1d37e02914b4fa7998e0c4978064130be6ebeb806",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 44460,
+              "output_tokens": 515,
+              "reasoning_output_tokens": 225
+            }
+          }
+        },
+        "batch_id": "ad612a41449cf062f754e1c50d59054b502da065e83bf531cbf358326f325fec"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:6:claim:4"
+      ],
+      "limitations": "范围为美国全部数据中心，不能当作全球用电量、AI专属用电量或2030年预测。该区间是年用电量，不是可供电容量、IT容量或已交付项目规模。原文承认直接能耗数据不足，模型依赖多项输入和假设；所供材料不足以复核完整模型和情景端点。",
+      "conflict_check": "现有PJM采用陈述描述区域容量拍卖及资源充裕性约束，本项描述美国全国数据中心年用电需求，时间、地域和计量口径不同，不构成真实冲突或重复。所供legacy筛选记录为空，未完成外部反证检索。本项不覆盖既有供给结论。",
+      "gap_dependency_check": "M01-Q05仍需容量定义、同口径路径、情景对应关系和可复查利用率检验；原文的条件性功率换算不能自动等同于IT容量验证。M04-Q05仍缺2030年分情景供给、其他负荷、可靠性及输配电可送达性约束。本项不能回答或关闭任一问题，也不更新模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "ad612a41449cf062f754e1c50d59054b502da065e83bf531cbf358326f325fec",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "53e514a4543ade9e0727009b0ae9af9d2c8397eafe7b8b098c9ea5f3a743008f"
+      },
+      "object_mapping_check": "本项范围是美国全国、包含AI及其他负载的数据中心总年用电量。对象合同中的root是一座AI数据中心，system:power是其内部电力系统，site:grid是电力配额与并网权利，均不能直接承载这一全国综合需求预测。保留空对象列表及有效问题匹配，不从AI背景或文档标签推导部件映射。"
     },
     {
       "acceptance": "adopted",
