@@ -46,6 +46,8 @@ Reader JSON 快照可用重复的 `--doc-id` 显式限定交付范围。限定�
 
 Codex CLI 0.160.0 JSONL 不返回实际 provider 模型，因此 `_model.actual=null`，记录明确请求、executor=codex-cli、reasoning_effort 与 identity_source=explicit_cli_request_not_provider_reported。不伪造实际模型已核实；这一限制不放宽其他后端的实际身份核验。本角色读取只产候选，不自动 C3。
 
+2026-10-09 中继容量：槽位占满仍给旧客户端返回 `model_relay_unavailable`，附加 `reason=relay_busy`；新客户端将其识别为 `model_relay_busy`，按 04 仅让当前任务退避。真实传输不可用和额度等待保持原分类，不用容量忙伪报全局网络故障；模型、配方及并发上限保持。
+
 2026-10-06 故障修复：CLI 的网络断流、HTTP 408/5xx 与额度失败分别进入连接或额度等待，不消耗文档尝试。诊断只存退出码、HTTP 状态、耗时、分类和错误摘要哈希，不存原文、令牌或原始 stderr；启动警告不能遮住末尾错误。无法分类的失败仍按有限重试处理，不能宣称历史错误原因已经还原。
 
 Codex 图片页常规双读失败后，可显式将 `gap_ocr` 角色选为 `codex_ocr_rescue`（同一请求型号、high、vision_json）。只重渲染该页至 3200 像素，补读至多三次；任意两次均满足既有可读、空白和数字一致规则才接受。常规失败与全部补读原文/模型/图片哈希写入执行版本的 `ocr-attempts/`。仍不一致或不可读默认保持阻塞。点名 Codex 批次可显式设置 `READER_CODEX_OCR_ALLOW_GAPS=1`，在补读用尽后登记 `vision_ocr_gap`：正文为空，未读页/原因/各次原文与模型保持可追溯；不伪造 M4/Claude 来源。沿用既有每份 max(1, 总页数÷20) 的缺页上限，超过仍阻塞，候选报告必须警告，不能宣称缺页已读或自动取得 C3。视觉角色与实际图像输入逐页记录；冻结的正文模型配方不改。
