@@ -49,6 +49,24 @@ class ResearchMatchTests(unittest.TestCase):
             self.assertTrue(all(p.is_symlink() for p in (Path(tmp)/'data/library/candidates-by-node').rglob('*.html')))
         self.assertEqual(before,{p:(root/p).read_bytes() for p in before})
 
+    def test_form_wrapped_grid_article_matches_without_control_text(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'large-load.html'
+            path.write_text('''<title>PJM - Large Load</title><form id="frmMain" class>
+              <input type="hidden" value="state"><nav>Navigation only</nav>
+              <main><p id>Large-Load data centers need electricity grid
+              interconnection approval and must pay electricity cost.</p>
+              <a href>Ratepayer Protection Pledge</a><button>Unrelated control</button>
+              </main></form>''')
+            doc = research_match.ingest(path, Path(tmp) / 'data', project_root())
+            self.assertTrue(doc['matches'])
+            self.assertTrue(all('Navigation only' not in m['quote']
+                                and 'Unrelated control' not in m['quote']
+                                for m in doc['matches']))
+            self.assertFalse(doc['full_read'])
+            self.assertEqual(doc['acceptance'], 'candidate')
+            self.assertTrue(list((Path(tmp) / 'data/raw-materials').rglob('*.html')))
+
     def test_unmatched_material_is_archived_without_expanding_reader_queue(self):
         with tempfile.TemporaryDirectory() as tmp:
             path=Path(tmp)/'flowers.txt';path.write_text('A garden with flowers.')

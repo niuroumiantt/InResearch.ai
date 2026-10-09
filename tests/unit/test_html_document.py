@@ -25,6 +25,49 @@ class HtmlDocumentTests(unittest.TestCase):
         self.assertNotIn('Cookie settings', text)
         self.assertFalse(meta['truncated'])
 
+    def test_valueless_attributes_preserve_body_and_navigation_omission(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / 'page.html'
+            path.write_text('''<html><head><title>Transformer report</title></head>
+              <body class id><nav class id>Navigation only</nav>
+              <div class="navigation" id>Hidden menu</div>
+              <main class id><p class>Transformer lead time is 12 months.</p>
+              <p id>Supply remains constrained.</p><a href>Source label</a>
+              <a href="/report.pdf" class id>Full report</a></main></body></html>''')
+            text, meta = extract(path)
+        self.assertEqual(meta['title'], 'Transformer report')
+        self.assertIn('Transformer lead time is 12 months.', text)
+        self.assertIn('Supply remains constrained.', text)
+        self.assertIn('Source label', text)
+        self.assertIn('/report.pdf', text)
+        self.assertNotIn('Navigation only', text)
+        self.assertNotIn('Hidden menu', text)
+        self.assertNotIn('[link: Source label', text)
+        self.assertFalse(meta['truncated'])
+
+    def test_form_container_preserves_article_and_omits_input_controls(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / 'page.html'
+            path.write_text('''<title>PJM - Large Load</title><form id="frmMain" method="post">
+              <input type="hidden" name="__VIEWSTATE" value="hidden state">
+              <nav>Navigation only</nav><script>IGNORE_SECRET()</script>
+              <main><h1>Large Load</h1><p>The rapid growth in demand for electricity
+              in PJM is largely driven by Large-Load customers, including data centers.</p>
+              <p>Interim Resource Adequacy Service provides a framework to connect
+              new Large Load customers that bring their own new power supply.</p>
+              <button>Submit search</button><textarea>User input</textarea>
+              <select><option>Select a region</option></select>
+              <p>Electricity grid approval and interconnection cost.</p></main></form>''')
+            text, meta = extract(path)
+        self.assertEqual(meta['title'], 'PJM - Large Load')
+        self.assertIn('Large-Load customers, including data centers.', text)
+        self.assertIn('bring their own new power supply.', text)
+        self.assertIn('Electricity grid approval and interconnection cost.', text)
+        for omitted in ('Navigation only', 'IGNORE_SECRET', 'hidden state',
+                        'Submit search', 'User input', 'Select a region'):
+            self.assertNotIn(omitted, text)
+        self.assertFalse(meta['truncated'])
+
     def test_explicitly_marks_text_truncation(self):
         with tempfile.TemporaryDirectory() as td:
             path = Path(td) / 'page.html'
