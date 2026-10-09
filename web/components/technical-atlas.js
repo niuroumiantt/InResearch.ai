@@ -1,5 +1,13 @@
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
+  psu: {
+    id: 'TA-08', title: '服务器电源模块 · 接口与抽拉结构',
+    image: '/assets/technical-atlas/psu-v1.svg', preview: '/assets/technical-atlas/psu-v1-preview.svg',
+    master: '/assets/technical-atlas/psu-v1.png',
+    alt: '暖白长条服务器电源模块：金属外壳、交流输入插口、风扇格栅、抽拉把手与释放锁扣，相反端是输出板边接点；左上为同类接点局部放大。',
+    note: '通用服务器 AC–DC 电源模块外观示意；左上为同类输出接点放大。型号、额定功率、效率、尺寸及装配兼容性以产品资料为准。',
+    labels: ['交流输入插口：位于外部供电端', '输出板边接点：位于相反端，展示与系统的连接位置', '风扇与防护格栅：展示电源模块上的散热部件', '抽拉把手与释放锁扣：展示可拆模块的机械结构', '金属壳体、折边与通风开孔：解释外部结构，内部电路另查型号资料', '产品差异：接口、额定值、兼容性与更换条件按选定型号资料确定'],
+  },
   nic: {
     id: 'TA-07', title: '网卡 · PCIe 与网络接口',
     image: '/assets/technical-atlas/nic-v1.svg', preview: '/assets/technical-atlas/nic-v1-preview.svg',
