@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-12",
+  "object_id": "part:server",
+  "prepared_at": "2026-10-09T06:36:57.461967+00:00",
+  "source_baseline": "3a5054a366f4e0d0a7e2075b03a3265da1a00ab8",
+  "render_method": "Code-native true OrthographicCamera, separately rendered1536x1024 with pixelRatio1; directly authorized by parent after reviewing current plan recipe. No imagegen/editing/compositing/upscaled current-view export claimed.",
+  "generator": "web/components/server-plan-generator.js",
+  "geometry": "web/components/server-assembly.js",
+  "render_evidence": {
+    "projection": "OrthographicCamera",
+    "native_pixels": [
+      1536,
+      1024
+    ],
+    "up_axis": "-z",
+    "front": "+z at bottom",
+    "camera_position": [
+      0,
+      30,
+      0.06599999971687787
+    ],
+    "camera_up": [
+      0,
+      0,
+      -1
+    ],
+    "camera_direction": [
+      0,
+      -1,
+      -2.220446049250313e-16
+    ],
+    "camera_frustum": [
+      -8.999759998673202,
+      8.999759998673202,
+      5.999839999115467,
+      -5.999839999115467
+    ],
+    "counts": {
+      "server": 1,
+      "cpu": 2,
+      "dram": 8,
+      "gpu": 2,
+      "ssd": 8,
+      "nic": 1,
+      "psu": 2,
+      "server-fan": 4
+    },
+    "mesh_count": 1129,
+    "lid": "hidden virtual omission; not exploded servicing",
+    "view": "assembled at source homes; no movement/rotation/reposition of subassemblies",
+    "outer_corners": [
+      [
+        513.2732072479743,
+        79.68980502189555
+      ],
+      [
+        1022.7267927520256,
+        79.68980502189555
+      ],
+      [
+        513.2732072479743,
+        933.0458946434223
+      ],
+      [
+        1022.7267927520256,
+        933.0458946434223
+      ]
+    ],
+    "master_sha256": "6b00a91418ab3c7e37c2a32a692caa6f987a2eb909b42038b20877f474e0cc4c",
+    "observed_at": "2026-10-09T06:35:23.765Z",
+    "errors": []
+  },
+  "reference_identity": [
+    {
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "role": "R2 style and installation categories; perspective and original pictured quantities are not an orthographic plan or adopted product facts",
+      "actually_viewed": true
+    },
+    {
+      "file": "web/assets/technical-atlas/server-v1.png",
+      "sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15",
+      "role": "TA11 accepted full-server mother: compare relative sections/direction/categories, not exact CAD projection",
+      "actually_viewed": true
+    }
+  ],
+  "geometry_sha256": "6d3abd5554afeb621798b91a9fb35f78c05ea439b7012b75b4ae79cd0fb9d676",
+  "master_sha256": "6b00a91418ab3c7e37c2a32a692caa6f987a2eb909b42038b20877f474e0cc4c",
+  "primary_sources_rechecked": [
+    "https://www.dell.com/support/manuals/en-us/poweredge-r750/per750_ism_pub/inside-the-system?guid=guid-86215914-c63d-48ee-9978-9eb22ee2149c&lang=en-us",
+    "https://www.supermicro.com/en/products/system/gpu/2u/sys-221ge-nr?mlg=0"
+  ],
+  "technical_evidence_scope": "Official product examples confirm installation categories, not the generic count, scaled geometry, layout, ports, dimensions or ratings. Specific 2U and product quantities not adopted.",
+  "reviewed_differences": [
+    "TA11 illustration is a virtual perspective cutaway with same-kind GPU detail; TA12 omits roof only, no exploded/repeated parts.",
+    "TA11 mother exposes GPU fins; shared procedural assembly has illustrative top covers. TA12 faithfully shows those covers and calls out generic accelerator zones, not verified OEM fin or housing details.",
+    "2x4 front carriers remain vertically tiered; exact overhead sees upper four and occludes lower four.",
+    "Vertical fan rotor faces and external rear I/O/AC openings are edge-on/hidden in plan; top frames, handles and back shells are labelled instead.",
+    "CPU/DIMM regions, mid-GPU, transverse fan row, front drives and rear-right PSU/rear-left NIC are checked by their relative region and interface direction; source geometry is approximate, not exact raster reconstruction."
+  ],
+  "not_claimed": [
+    "U height/mm/power/airflow/capacity/fire distance/scale/tolerances/pinout/compatibility/hot-swap/safe servicing",
+    "CAD or vendor-specific accurate assembly; eight visible drives or overhead rotor openings",
+    "Spark data/services/source sync or formal research adoption"
+  ],
+  "status": "local candidate; labels and page review pending"
+}

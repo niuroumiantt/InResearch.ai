@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.22。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.27。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1592。
+在册文件：1624。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 103 |
+| 静态资源 | 110 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 311 |
-| 运行代码 | 308 |
+| 历史快照 | 317 |
+| 运行代码 | 313 |
 | 现行规范 | 15 |
-| 项目配置 | 344 |
+| 项目配置 | 355 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 150 |
-| 测试 | 149 |
+| 配套说明 | 151 |
+| 测试 | 151 |
 
 ## 在册记录集合
 
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 25 |
-| `data/research_knowledge.json` | evidence | 161 |
-| `data/research_knowledge.json` | statements | 159 |
+| `data/research_knowledge.json` | documents | 26 |
+| `data/research_knowledge.json` | evidence | 166 |
+| `data/research_knowledge.json` | statements | 164 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -220,6 +220,39 @@
 | `docs/design/technical-atlas/TA-10/publication-20261009.json` | browser_evidence | 11 |
 | `docs/design/technical-atlas/TA-10/publication-20261009.json` | limits | 8 |
 | `docs/design/technical-atlas/TA-10/publication-20261009.json` | ci_observations | 1 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | references | 1 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | technical_sources | 6 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | source_access_limits | 1 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | unknowns | 5 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | artifacts | 10 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | browser_checks | 6 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | issues_resolved | 8 |
+| `docs/design/technical-atlas/TA-11/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-11/labels-v1.json` | labels | 12 |
+| `docs/design/technical-atlas/TA-11/labels-v1.json` | leaders | 12 |
+| `docs/design/technical-atlas/TA-11/preparation-v1.json` | primary_sources | 6 |
+| `docs/design/technical-atlas/TA-11/preparation-v1.json` | access_limits | 1 |
+| `docs/design/technical-atlas/TA-11/preparation-v1.json` | rejected_iterations | 3 |
+| `docs/design/technical-atlas/TA-11/preparation-v1.json` | boundaries | 5 |
+| `docs/design/technical-atlas/TA-11/publication-20261009.json` | public_source_bytes | 6 |
+| `docs/design/technical-atlas/TA-11/publication-20261009.json` | browser_evidence | 26 |
+| `docs/design/technical-atlas/TA-11/publication-20261009.json` | limits | 8 |
+| `docs/design/technical-atlas/TA-12/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-12/acceptance-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-12/acceptance-v1.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-12/acceptance-v1.json` | reviewed_differences | 5 |
+| `docs/design/technical-atlas/TA-12/acceptance-v1.json` | unknowns | 3 |
+| `docs/design/technical-atlas/TA-12/acceptance-v1.json` | browser_checks | 4 |
+| `docs/design/technical-atlas/TA-12/acceptance-v1.json` | issues_resolved | 4 |
+| `docs/design/technical-atlas/TA-12/acceptance-v1.json` | artifacts | 6 |
+| `docs/design/technical-atlas/TA-12/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-12/labels-v1.json` | labels | 15 |
+| `docs/design/technical-atlas/TA-12/labels-v1.json` | leaders | 12 |
+| `docs/design/technical-atlas/TA-12/preparation-v1.json` | reference_identity | 2 |
+| `docs/design/technical-atlas/TA-12/preparation-v1.json` | primary_sources_rechecked | 2 |
+| `docs/design/technical-atlas/TA-12/preparation-v1.json` | reviewed_differences | 5 |
+| `docs/design/technical-atlas/TA-12/preparation-v1.json` | not_claimed | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -525,6 +558,14 @@
 | `docs/reviews/2026-09-15/l1-pipeline/file-plan.csv` | rows | 18 |
 | `docs/reviews/2026-09-15/task-authority/file-plan.csv` | rows | 796 |
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
+| `docs/reviews/2026-10-09/research-publication/old-ready12-followup.json` | batches | 12 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | documents | 23 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | review_batches | 121 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | dispositions | 19 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | canonical_formal_records | 0 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage.json` | sources | 23 |
+| `docs/reviews/2026-10-09/research-publication/pr453-actual-closure.json` | head_chain | 3 |
+| `docs/reviews/2026-10-09/research-publication/receipts.json` | receipts | 4 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -541,8 +582,8 @@
 | `framework/data_contract.json` | current_supply_statuses | 2 |
 | `framework/data_contract.json` | price_frequency_rules | 4 |
 | `framework/indicators.json` | indicators | 44 |
-| `framework/interface_manifest.json` | static_pages | 31 |
-| `framework/interface_manifest.json` | public_pages | 13 |
+| `framework/interface_manifest.json` | static_pages | 32 |
+| `framework/interface_manifest.json` | public_pages | 14 |
 | `framework/interface_manifest.json` | template_fragments | 6 |
 | `framework/material_retention.json` | required | 7 |
 | `framework/metrics.json` | metrics | 312 |
@@ -837,6 +878,19 @@
 | `docs/design/technical-atlas/TA-10/prompt-cutaway-v3.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-10/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-10/publication-20261009.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/labels-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/legacy/rack3d-996cfa2e.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-11/preparation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/publication-20261009.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/ta11-prompt-correction-v2.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v3.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/ta11-prompt-nic-correction-v4.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-11/ta11-prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-12/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-12/labels-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-12/preparation-v1.json` | 项目配置 |
+| [docs/design/technical-atlas/TA-12/render-spec-v1.md](design/technical-atlas/TA-12/render-spec-v1.md) | 配套说明 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -1388,6 +1442,12 @@
 | `docs/reviews/2026-09-29/verify/macmini.sh` | 历史快照 |
 | `docs/reviews/2026-09-29/verify/spark.sh` | 历史快照 |
 | [docs/reviews/2026-10-02/homepage/DELIVERY.md](reviews/2026-10-02/homepage/DELIVERY.md) | 历史快照 |
+| [docs/reviews/2026-10-09/research-publication/README.md](reviews/2026-10-09/research-publication/README.md) | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/old-ready12-followup.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr453-actual-closure.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/receipts.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |
 | `docs/source/全球数据中心行业深度研究Q&A总报告_Q1-Q35_v1.0(2).docx` | 项目配置 |
 | `docs/source/全球数据中心行业现状_参考初稿版式v0.2_信源追溯版_2026-07-23.docx` | 项目配置 |
@@ -1912,6 +1972,7 @@
 | `src/inresearch/workflow/research_publish.py` | 运行代码 |
 | `src/inresearch/workflow/research_review.py` | 运行代码 |
 | `src/inresearch/workflow/research_sources.py` | 运行代码 |
+| `src/inresearch/workflow/review_preference.py` | 运行代码 |
 | `src/inresearch/workflow/score.py` | 运行代码 |
 | `src/inresearch/workflow/submissions.py` | 运行代码 |
 | `src/inresearch/workflow/supply.py` | 运行代码 |
@@ -1945,6 +2006,8 @@
 | `tests/scene_bootstrap.cjs` | 测试 |
 | `tests/scene_framing.cjs` | 测试 |
 | `tests/scene_resources.cjs` | 测试 |
+| `tests/server_assembly.cjs` | 测试 |
+| `tests/server_plan.cjs` | 测试 |
 | `tests/supply.cjs` | 测试 |
 | `tests/technical_atlas.cjs` | 测试 |
 | `tests/ui_skin.cjs` | 测试 |
@@ -2055,6 +2118,7 @@
 | `tests/unit/test_research_review.py` | 测试 |
 | `tests/unit/test_research_sources.py` | 测试 |
 | `tests/unit/test_result_versions.py` | 测试 |
+| `tests/unit/test_review_preference.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
 | `tests/unit/test_storage_layout.py` | 测试 |
 | `tests/unit/test_suite_integrity.py` | 测试 |
@@ -2160,6 +2224,13 @@
 | `web/assets/technical-atlas/security-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/security-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/security-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/server-plan-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/server-plan-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/server-plan-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/server-v1-preview.jpg` | 静态资源 |
+| `web/assets/technical-atlas/server-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/server-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/server-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/shell-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/shell-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/shell-v1.png` | 静态资源 |
@@ -2212,6 +2283,8 @@
 | `web/components/scene-resources.js` | 运行代码 |
 | `web/components/scene-view.js` | 运行代码 |
 | `web/components/series-summary.js` | 运行代码 |
+| `web/components/server-assembly.js` | 运行代码 |
+| `web/components/server-plan-generator.js` | 运行代码 |
 | `web/components/site-shell.js` | 运行代码 |
 | `web/components/supply.js` | 运行代码 |
 | `web/components/targets.js` | 运行代码 |
@@ -2257,6 +2330,7 @@
 | `web/pages/product-catalog.html` | 运行代码 |
 | `web/pages/rack3d.html` | 运行代码 |
 | `web/pages/report.html` | 运行代码 |
+| `web/pages/server-plan.html` | 运行代码 |
 | `web/pages/supply.html` | 运行代码 |
 | `web/robots.txt` | 项目配置 |
 | `web/routes.json` | 项目配置 |
