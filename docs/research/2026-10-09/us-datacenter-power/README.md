@@ -2,7 +2,7 @@
 
 2026-10-09｜规则v2.7｜仅派生研究与交付索引；原件不入Git。
 
-文章及图文入口：`outputs/geluoke-research/2026-10-09-us-datacenter-power/`。正式研究文字为该目录`research/research.md`与`research.txt`，机器登记见submission.json、claims.json、demand-snapshot.json、sources.json。正文不构成来源原件的独立佐证；身份相同的两种交付不重复计量。
+文章及图文入口：`outputs/geluoke-research/2026-10-09-us-datacenter-power/`。正式研究文字为该目录`research/research.md`与`research/research.txt`，机器登记见submission.json、claims.json、demand-snapshot.json、sources.json。正文不构成来源原件的独立佐证；身份相同的两种交付不重复计量。
 
 ## 已覆盖
 

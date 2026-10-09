@@ -18,7 +18,7 @@
 
 ## 研究与边界
 
-未删节research.txt/research/research.md保留；23份素材导读、50条候选、13问题/9目标快照不因正文缩短减少。52访问记录中45成功身份按原件SHA或工具响应SHA核对，失败单列。图不是事实证据。
+未删节research/research.txt和research/research.md保留；23份素材导读、50条候选、13问题/9目标快照不因正文缩短减少。52访问记录中45成功身份按原件SHA或工具响应SHA核对，失败单列。图不是事实证据。
 
 原件：~/.local/share/inresearch.ai/geluoke-research/2026-10-09-us-datacenter-power/raw/。前三稿/包/检查保存在同数据目录history/v1—v3。原件与图像原件分别独立打包，不入Git；下载包SHA见packages.json。
 
@@ -29,3 +29,5 @@
 本任务在独立干净工作树~/.worktrees/inresearch.ai/us-datacenter-power-20261009、分支codex/us-datacenter-power-7000-20261009进行，从最新origin/main b5e669ab启动，保留同期技术图册TA-08等任务改动。此前PR423、427已合并；本轮源码PR与验证结果另记checks/repository.json，不沿用旧PR未合并状态。
 
 继续审稿直接修改同一article.md、对应图及HTML；用户未要求本轮发布。微信实粘与研究正式采用按实际操作回执分别验收，不恢复已结案审批或新增每批确认。无需以/clear为交付前置条件。
+
+第四版规则/成品源码已推送草稿PR444：https://github.com/niuroumiantt/InResearch.ai/pull/444；未合并或部署。真实研究纯文本在research/research.txt，下载包使用同一实际路径。
