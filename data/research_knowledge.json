@@ -3451,6 +3451,66 @@
       "status": "candidate",
       "stored_path": "originals/3a/3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb/lbnl-full.pdf",
       "title": "2024 United States Data Center Energy Usage Report"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "coverage": {
+        "characters_read": 7146,
+        "characters_total": 7146,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "id": "doc-1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "library_path": "library/by-node/root/2025_DCD_600MW natural gas-powered data center campus proposed i__1d9825323fae6f61.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:backup-power",
+        "part:gas-turbine",
+        "root",
+        "site:gas-supply",
+        "site:grid",
+        "site:land",
+        "site:network-access",
+        "system:facility",
+        "system:power"
+      ],
+      "question_ids": [
+        "OBJ-grid-alternatives"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-d7582441c262448aa479dacb8ef07c7e",
+      "report_sha256": "4cff0b8040eda5a5a8dd7e51d85bf562c57bf607262743e1b296c1b3f68a53e8",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+        "url": "https://www.datacenterdynamics.com/en/news/600mw-natural-gas-powered-data-center-campus-proposed-in-hubbard-texas/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/600mw-natural-gas-powered-data-center-campus-proposed-in-hubbard-texas/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/1d/1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113/dcd-1d9825323fae6f61-600MW natural gas-powered data center campus proposed in Hubbard-.html",
+      "title": "600MW natural gas-powered data center campus proposed in Hubbard, Texas"
     }
   ],
   "evidence": [
@@ -23568,6 +23628,176 @@
           }
         },
         "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4f34542654ce1ac35ec7d426badac448c91248854a834b10795bc04474a54e46",
+      "document_id": "doc-1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "id": "rev-d7582441c262448aa479dacb8ef07c7e:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "part:water-treatment"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "“Nexus is constructing one of the largest AI data center campuses in the world, and our continued work together supports validation that AirJoule’s waste-heat-to-water platform can address urgent water security and sustainability needs for data center operators and other industrial customers.”",
+      "reading_revision_id": "rev-d7582441c262448aa479dacb8ef07c7e",
+      "source_sha256": "1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:08:38+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原始重要性5，评分5。供水保障方案及其验证目标实质关联当前M08-Q05工单，可作为约束应对机制的部分线索；连续原文引述与完整页面上下文足以支持限定归因的企业主张。未发现敏感、真实冲突或替换条件，符合B类有限采用要求，不构成问题答案。",
+        "workorder_ids": [
+          "Q-M08-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 88.803,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4a2ac280ca73e81740369ad4c25af9d189bafd75ff3913f0b4f8c01f2de1b741",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60199,
+            "output_tokens": 2245,
+            "reasoning_output_tokens": 410
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 58.011,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7cff1ca71d22ee1685cb17f194c4672a931805ec6e47b4dbf555af135f284f9b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61982,
+              "output_tokens": 1103,
+              "reasoning_output_tokens": 845
+            }
+          }
+        },
+        "batch_id": "7f5c7500ebfa5acd974b452a67aba96bdb7bbc9de3c5d200ac37948fc31eff27"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "4f34542654ce1ac35ec7d426badac448c91248854a834b10795bc04474a54e46",
+      "document_id": "doc-1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "id": "rev-d7582441c262448aa479dacb8ef07c7e:chunk:0:claim:9:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "part:water-treatment",
+        "system:power"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "AirJoule’s waste-heat-to-water approach provides a superior solution by utilizing thermal energy we are already generating to produce high-purity water for electricity production and cooling systems, and the WPA framework aligns well with our financial objectives.",
+      "reading_revision_id": "rev-d7582441c262448aa479dacb8ef07c7e",
+      "source_sha256": "1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:08:38+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原始重要性5，评分5。利用余热形成供水及以WPA采购的机制，分别实质关联当前水资源约束应对和资源运营经济性工单。连续引述及完整页面提供充分上下文，可采用明确归因的部分企业主张。无已识别的敏感、真实冲突或替换条件，符合B类要求，但未完成任何计量或问题回答。",
+        "workorder_ids": [
+          "Q-M08-Q05",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 88.803,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4a2ac280ca73e81740369ad4c25af9d189bafd75ff3913f0b4f8c01f2de1b741",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60199,
+            "output_tokens": 2245,
+            "reasoning_output_tokens": 410
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 58.011,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7cff1ca71d22ee1685cb17f194c4672a931805ec6e47b4dbf555af135f284f9b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61982,
+              "output_tokens": 1103,
+              "reasoning_output_tokens": 845
+            }
+          }
+        },
+        "batch_id": "7f5c7500ebfa5acd974b452a67aba96bdb7bbc9de3c5d200ac37948fc31eff27"
       }
     }
   ],
@@ -45191,6 +45421,211 @@
         "request_sha256": "05786205bbcfee48f1c2b9ec3ea680a43333137cd509c807aac0809be36067cb"
       },
       "object_mapping_check": "审定陈述的范围是美国数据中心能耗研究的设备层面汇总方法，而非某座AI数据中心或具体硬件、冷却、电力系统。相邻文本列举的设备及设施效率不能自动成为本项全部证据的对象范围；研究模型也不属于DCIM/BMS，故保留空映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "evidence_ids": [
+        "rev-d7582441c262448aa479dacb8ef07c7e:chunk:0:claim:8:ev:0"
+      ],
+      "id": "adoption:review:fcac30d7bceb7de7d04a4cf1",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "part:water-treatment"
+      ],
+      "question_ids": [
+        "M08-Q05"
+      ],
+      "reading_revision_id": "rev-d7582441c262448aa479dacb8ef07c7e",
+      "status": "adopted",
+      "text": "据Matthew Gooding于2025年12月3日在DCD发表的Hubbard项目报道，AirJoule Technologies首席执行官Matt Jore称，与Nexus的持续合作支持对AirJoule余热制水平台的验证，目标是应对数据中心运营商及其他工业客户的水安全和可持续性需求。该表述处于美国得克萨斯州Hubbard拟建园区及拟议工业规模购水协议的语境中，是供应商对方案用途和验证工作的主张，未经本次独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:08:38+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原始重要性5，评分5。供水保障方案及其验证目标实质关联当前M08-Q05工单，可作为约束应对机制的部分线索；连续原文引述与完整页面上下文足以支持限定归因的企业主张。未发现敏感、真实冲突或替换条件，符合B类有限采用要求，不构成问题答案。",
+        "workorder_ids": [
+          "Q-M08-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 88.803,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4a2ac280ca73e81740369ad4c25af9d189bafd75ff3913f0b4f8c01f2de1b741",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60199,
+            "output_tokens": 2245,
+            "reasoning_output_tokens": 410
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 58.011,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7cff1ca71d22ee1685cb17f194c4672a931805ec6e47b4dbf555af135f284f9b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61982,
+              "output_tokens": 1103,
+              "reasoning_output_tokens": 845
+            }
+          }
+        },
+        "batch_id": "7f5c7500ebfa5acd974b452a67aba96bdb7bbc9de3c5d200ac37948fc31eff27"
+      },
+      "source_candidate_ids": [
+        "rev-d7582441c262448aa479dacb8ef07c7e:chunk:0:claim:8"
+      ],
+      "limitations": "引述未提供验证方法、产水量、水质、运行条件、可靠性或实际供水记录，也未证明Hubbard存在水资源选址硬约束。企业引述中的施工和规模措辞不能替代正文所述拟建、寻求许可的项目阶段。报道所述2026年下半年部署意向仍是当时计划，不能认定已经完成。",
+      "conflict_check": "既有BP Batam海水淡化供水计划涉及不同地域、主体和技术，与本项可以并存，不是重复记录。其他已采纳经济性陈述未涉及本平台。legacy中的Nexus（Titan 1）属于芯片预测语境，不能据名称匹配认定为Nexus Data Centers；全球AI取水预测也不验证本项目供水能力。所供合同、项目匹配为空，未发现真实冲突或规范重复；检查不代表穷尽外部反证。",
+      "gap_dependency_check": "M08-Q05仍需区域水资源约束、一手监管或供水条件、适用边界及反证，才能判断是否构成选址硬约束。平台效果还需现场验证及运行记录。本项只补充应对方案线索，不把Hubbard加入硬约束区域清单，不关闭问题、不修改骨架或覆盖既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7f5c7500ebfa5acd974b452a67aba96bdb7bbc9de3c5d200ac37948fc31eff27",
+        "source_report_sha256": "4cff0b8040eda5a5a8dd7e51d85bf562c57bf607262743e1b296c1b3f68a53e8",
+        "request_sha256": "c5d8309ff401b2c216ea645ea469da6f37f5b11c9d03c8a93847751aed2b48c9"
+      },
+      "object_mapping_check": "独立核对对象名称和父链后，主张涉及数据中心整体供水保障及余热制水平台，映射至root和冷却系统排热链下的水处理与供水部件part:water-treatment。不沿用Reader的system:facility标签，其土地建筑、消防安防范围不对应本项主张；水安全目标也不证明水权或取水许可。AirJoule和Nexus没有允许的对应主体ID。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1d9825323fae6f61bdf3a26b1473c3d73d3ca8ae774f9d3c324009fed185d113",
+      "evidence_ids": [
+        "rev-d7582441c262448aa479dacb8ef07c7e:chunk:0:claim:9:ev:0"
+      ],
+      "id": "adoption:review:e51172682843e9ad90d8ea16",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "part:water-treatment",
+        "system:power"
+      ],
+      "question_ids": [
+        "M08-Q05",
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-d7582441c262448aa479dacb8ef07c7e",
+      "status": "adopted",
+      "text": "据Matthew Gooding于2025年12月3日在DCD发表的Hubbard项目报道，Nexus Data Centers首席执行官Ivan Van der Walt称，AirJoule余热制水方案可利用其所称已经产生的热能，生产用于发电和冷却系统的高纯水，并称购水协议（WPA）框架符合其财务目标。该表述针对美国得克萨斯州Hubbard拟建园区的拟议合作，是客户方对技术用途和合同经济适配性的定性评价，未经本次独立验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:08:38+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原始重要性5，评分5。利用余热形成供水及以WPA采购的机制，分别实质关联当前水资源约束应对和资源运营经济性工单。连续引述及完整页面提供充分上下文，可采用明确归因的部分企业主张。无已识别的敏感、真实冲突或替换条件，符合B类要求，但未完成任何计量或问题回答。",
+        "workorder_ids": [
+          "Q-M08-Q05",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 88.803,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4a2ac280ca73e81740369ad4c25af9d189bafd75ff3913f0b4f8c01f2de1b741",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60199,
+            "output_tokens": 2245,
+            "reasoning_output_tokens": 410
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 58.011,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7cff1ca71d22ee1685cb17f194c4672a931805ec6e47b4dbf555af135f284f9b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61982,
+              "output_tokens": 1103,
+              "reasoning_output_tokens": 845
+            }
+          }
+        },
+        "batch_id": "7f5c7500ebfa5acd974b452a67aba96bdb7bbc9de3c5d200ac37948fc31eff27"
+      },
+      "source_candidate_ids": [
+        "rev-d7582441c262448aa479dacb8ef07c7e:chunk:0:claim:9"
+      ],
+      "limitations": "未披露产水量、水质检测、余热温度或能耗，也未提供水价、资本支出、运营成本、合同期限、最低采购量、履约责任或融资条件。“高纯水”和财务适配均属企业主张；不能由其所称已有热能推断拟建园区已经投运，也不能认定拟议WPA已正式签署或已实现节省。",
+      "conflict_check": "既有自建资本支出效率、终端用户成本敏感性、PJM容量账单及政策成本责任陈述，涉及不同主体、成本口径和机制，与本项财务目标评价无同口径冲突。BP Batam供水计划不是本项WPA记录。legacy中的芯片Nexus名称和全球取水预测不能与本项目合并；所供合同、项目匹配为空。未发现规范重复或真实冲突，不替换既有结论；检查限于所供材料。",
+      "gap_dependency_check": "对M08-Q05仅提供供水应对机制，仍缺当地水约束及选址硬条件证据。对NODE-activity-V1-economics仅提供采购框架的定性客户评价，仍需正式合同、价格和数量、成本边界、风险条款、比较基准及可复算数据。两项问题保持开放，不填入成本或节水模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7f5c7500ebfa5acd974b452a67aba96bdb7bbc9de3c5d200ac37948fc31eff27",
+        "source_report_sha256": "4cff0b8040eda5a5a8dd7e51d85bf562c57bf607262743e1b296c1b3f68a53e8",
+        "request_sha256": "c5d8309ff401b2c216ea645ea469da6f37f5b11c9d03c8a93847751aed2b48c9"
+      },
+      "object_mapping_check": "主张明确涉及园区运营采购、制取供冷却使用的水以及发电用水，分别支持root、冷却系统排热链下的part:water-treatment及system:power范围。映射依据实际用途和系统接口，不依据AI标签；不推定具体燃气轮机、冷水机组、水权或天然气接入合同，也不沿用土地建筑和消防安防范围的system:facility标签。"
     }
   ],
   "answers": [],
