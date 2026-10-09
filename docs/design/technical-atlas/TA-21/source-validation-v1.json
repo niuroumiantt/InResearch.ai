@@ -1,0 +1,55 @@
+{
+  "figure_id": "TA-21",
+  "status": "source_validation_complete_public_pending",
+  "reviewed_at": "2026-10-09T23:39:03.447595+00:00",
+  "static_tests": {
+    "count": 29,
+    "status": "PASS",
+    "duration_seconds": 4.756,
+    "log": "/private/tmp/ta21-static-final-v1.log",
+    "no_http_or_product_js": true
+  },
+  "parse_only": [
+    "web/pages/bom3d.html inline module",
+    "web/components/technical-atlas.js",
+    "tests/facility_domain.cjs"
+  ],
+  "strict_validation": {
+    "status": "PASS",
+    "warnings": 0,
+    "projects": 126,
+    "companies": 257,
+    "prices": 512,
+    "products": 175
+  },
+  "registry": {
+    "status": "PASS",
+    "objects": 353,
+    "questions": 458
+  },
+  "independent_review": "independent-source-review-v1.json",
+  "not_verified": [
+    "New actual facility product browser acceptance pending deployed source",
+    "Local product access denied and not bypassed",
+    "Standalone actual-public CJS is not configured in local default runner; manual actual-public tests tracked separately",
+    "CI not queried or claimed; Spark/research unchanged"
+  ],
+  "preparation_failures_retained": [
+    "UTF8 script-loader diagnosis; explicit UTF8 decoded same saved reviewed script executed",
+    "interface excluded_pages type corrected before mutation",
+    "desktop hidden-summary test flaw fixed on static review before actual public run",
+    "governance first check rejected missing reviewed CURRENT/state/DECISIONS hashes and CJS outside configured runner; current explicit manual-public map retains known machine coverage limit",
+    "auto-review rejected localhost CI fallback; rejected command not executed, no fallback added"
+  ],
+  "governance": {
+    "version": "2026.10.10.60",
+    "refresh": "PASS",
+    "check": "PASS",
+    "registered_files": 2163,
+    "logs": [
+      "/private/tmp/ta21-governance-refresh-v2.log",
+      "/private/tmp/ta21-governance-check-v2.log"
+    ],
+    "semantic_coverage": "partial, explicit manual-public test separate from configured local runners"
+  }
+}

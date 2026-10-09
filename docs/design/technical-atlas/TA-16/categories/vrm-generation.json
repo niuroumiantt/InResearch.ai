@@ -1,0 +1,171 @@
+{
+  "id": "vrm",
+  "directory": "vrm-imagegen-v7",
+  "generated_path": "/Users/m4/.codex/generated_images/01a11e95-8197-7ae3-b0a8-9164128c5eaa/exec-8326d26c-3047-4009-a8aa-adce8424c6b3.png",
+  "stage": "detailed_candidate_not_accepted",
+  "method": "built_in_imagegen_with_actual_R1_style_reference",
+  "publication": "not_published",
+  "references": [
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta16-system-overview/inresearch.ai/docs/design/technical-atlas/references/01-chain.png",
+      "role": "style_only_not_technical_product_evidence",
+      "sha256": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
+      "bytes": 2942574
+    }
+  ],
+  "technical_sources": [
+    {
+      "url": "https://www.ti.com/product-category/power-management/multiphase.html",
+      "supports": "controller/power-stage multiphase component category only; not schematic or exact layout"
+    }
+  ],
+  "note": "板级VRM元件外形示例，4个电感为选定布局，不认证实际相数、拓扑、电压、电流或器件型号；非电路/板图。",
+  "native": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-16/vrm-imagegen-v6/vrm-native.png",
+    "bytes": 2615543,
+    "sha256": "4adcb46b3748261277ed06aed0f0c52fb69bdb8bda40375623d6a4b95f4d1258",
+    "pixels": [
+      1536,
+      1024
+    ]
+  },
+  "prompt_path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-16/vrm-imagegen-v6/prompt.txt",
+  "title": "板级VRM｜元件外形与示例布局",
+  "image_scale": 0.9,
+  "notes": [
+    "通用元件外形示例，非 OEM / CAD / 电路图；4个电感不认证实际相数或拓扑。",
+    "电压、电流、器件型号与电路连接未核实；示意位置和走线不得作为可制造板图。"
+  ],
+  "labels": [
+    [
+      "01",
+      "功率电感外形",
+      58,
+      145,
+      "M58 166 H280 L500 246",
+      [
+        500,
+        246
+      ]
+    ],
+    [
+      "02",
+      "电源级IC封装示例",
+      58,
+      624,
+      "M58 645 H320 L440 385",
+      [
+        440,
+        385
+      ]
+    ],
+    [
+      "03",
+      "控制器封装示例",
+      470,
+      909,
+      "M470 888 H700 L735 615",
+      [
+        735,
+        615
+      ]
+    ],
+    [
+      "04",
+      "电容元件外形",
+      1215,
+      249,
+      "M1215 270 H1460 L1300 595",
+      [
+        1300,
+        595
+      ]
+    ],
+    [
+      "05",
+      "PCB基板 / 焊盘",
+      1030,
+      912,
+      "M1030 891 H1370 L1135 845",
+      [
+        1135,
+        845
+      ]
+    ]
+  ],
+  "not_verified": [
+    "schematic/connectivity/phase count",
+    "device identification/rating",
+    "fabrication layout"
+  ],
+  "image_display": {
+    "scale": 0.9,
+    "translate": [
+      76.79999999999998,
+      51.19999999999999
+    ],
+    "source_png_unchanged": true
+  },
+  "label_display_anchors": [
+    {
+      "id": "01",
+      "source_image_anchor": [
+        500,
+        246
+      ],
+      "display_anchor": [
+        526.8,
+        272.6
+      ]
+    },
+    {
+      "id": "02",
+      "source_image_anchor": [
+        440,
+        385
+      ],
+      "display_anchor": [
+        472.8,
+        397.7
+      ]
+    },
+    {
+      "id": "03",
+      "source_image_anchor": [
+        735,
+        615
+      ],
+      "display_anchor": [
+        738.3,
+        604.7
+      ]
+    },
+    {
+      "id": "04",
+      "source_image_anchor": [
+        1300,
+        595
+      ],
+      "display_anchor": [
+        1246.8,
+        586.7
+      ]
+    },
+    {
+      "id": "05",
+      "source_image_anchor": [
+        1135,
+        845
+      ],
+      "display_anchor": [
+        1098.3,
+        811.7
+      ]
+    }
+  ],
+  "labelled_svg_sha256": "af5662d44bd33d3e1fc06d15d3db9436cdb88d50abcd510e0558344ef17927e8",
+  "label_revision": {
+    "supersedes": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-16/vrm-imagegen-v6/vrm-full.svg",
+    "reason": "PDU01 crosses03 leader; VRM02 text overlaps visible left capacitor. Adjust editable label only; original native unchanged."
+  }
+}

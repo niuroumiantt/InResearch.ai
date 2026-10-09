@@ -54,7 +54,7 @@ export function addAtlasLights(THREE, scene, keyPosition, shadowExtent) {
 
 export function createAtlasDrawing({THREE, scene, normalize = true}) {
   const edges = new Map(), geometries = new Map(), labels = new Set();
-  const labelNodes = new Map();
+  const labelNodes = new Map(), labelLeaders = new Map();
   let overlay = null, overlayCanvas, overlayCamera;
   const lineMaterial = new THREE.LineBasicMaterial({color:ATLAS.graphite, transparent:true, opacity:0.65});
   let disposed = false;
@@ -92,16 +92,34 @@ export function createAtlasDrawing({THREE, scene, normalize = true}) {
         overlay.append(text); labelNodes.set(sprite,text);
       }
       const text = labelNodes.get(sprite), point = sprite.getWorldPosition(new THREE.Vector3()).project(overlayCamera);
-      const visible = sprite.visible && Math.abs(point.x)<=1 && Math.abs(point.y)<=1 && Math.abs(point.z)<=1;
+      const spec=sprite.userData.atlasLabel, anchored=Array.isArray(spec.anchorPosition) && sprite.parent;
+      const anchor=anchored?sprite.parent.localToWorld(new THREE.Vector3(...spec.anchorPosition)).project(overlayCamera):null;
+      if(anchored && !labelLeaders.has(sprite)){
+        const group=document.createElementNS('http://www.w3.org/2000/svg','g'),line=document.createElementNS(group.namespaceURI,'path'),dot=document.createElementNS(group.namespaceURI,'circle');
+        group.classList.add('atlas-label-leader');group.dataset.label=spec.text;group.dataset.instance=spec.anchorInstance;
+        line.setAttribute('fill','none');line.setAttribute('stroke',ATLAS.blue);line.setAttribute('stroke-width','1.2');
+        dot.setAttribute('r','2');dot.setAttribute('fill',ATLAS.blue);group.append(line,dot);overlay.prepend(group);labelLeaders.set(sprite,{group,line,dot});
+      }
+      const visible = sprite.visible && Math.abs(point.x)<=1 && Math.abs(point.y)<=1 && Math.abs(point.z)<=1 &&
+        (!anchor || Math.abs(anchor.x)<=1 && Math.abs(anchor.y)<=1 && Math.abs(anchor.z)<=1);
       text.style.display = visible ? '' : 'none';
+      if(labelLeaders.has(sprite))labelLeaders.get(sprite).group.style.display=visible?'':'none';
       if (!visible) continue;
       const font = rect.width<480 ? 14 : 16;
       text.setAttribute('font-size',font);
       const half = Math.min(rect.width/2-8, text.getComputedTextLength()/2);
-      const x = Math.max(half+8,Math.min(rect.width-half-8,(point.x+1)*rect.width/2));
+      let x = Math.max(half+8,Math.min(rect.width-half-8,(point.x+1)*rect.width/2));
       let y = Math.max(22,Math.min(rect.height-12,(1-point.y)*rect.height/2));
-      for (const used of occupied) if (Math.abs(used.y-y)<22 && Math.abs(used.x-x)<used.half+half) y=used.y+24;
+      if(anchored){
+        const home={x,y},offsets=[[0,0],[24,0],[-24,0],[0,-24],[0,24],[32,-24],[-32,-24],[32,24],[-32,24]];
+        for(const [dx,dy]of offsets){const px=Math.max(half+8,Math.min(rect.width-half-8,home.x+dx)),py=Math.max(22,Math.min(rect.height-12,home.y+dy));
+          if(occupied.every(used=>Math.abs(used.y-py)>=22 || Math.abs(used.x-px)>=used.half+half+4)){x=px;y=py;break}}
+      }else for (const used of occupied) if (Math.abs(used.y-y)<22 && Math.abs(used.x-x)<used.half+half) y=used.y+24;
       occupied.push({x,y,half}); text.setAttribute('x',x); text.setAttribute('y',y);
+      if(anchored){const ax=(anchor.x+1)*rect.width/2,ay=(1-anchor.y)*rect.height/2,{line,dot}=labelLeaders.get(sprite);
+        line.setAttribute('d',`M ${ax} ${ay} L ${x} ${y+5}`);dot.setAttribute('cx',ax);dot.setAttribute('cy',ay);
+        text.dataset.anchorX=ax; text.dataset.anchorY=ay; text.dataset.instance=spec.anchorInstance;}
+
     }
   }
   function attachLabels(canvas,camera) {
@@ -134,6 +152,7 @@ export function createAtlasDrawing({THREE, scene, normalize = true}) {
     return [...labelNodes.values()].filter(text=>text.style.display!=='none').map(text=>({
       text:text.textContent,x:Number(text.getAttribute('x'))/rect.width,y:Number(text.getAttribute('y'))/rect.height,
       font:Number(text.getAttribute('font-size')),
+      ...(text.dataset.instance?{anchor:{x:Number(text.dataset.anchorX)/rect.width,y:Number(text.dataset.anchorY)/rect.height,instance:text.dataset.instance}}:{}),
     }));
   }
   return {sync,update,label,labels,attachLabels,projectedLabels,dispose() {
@@ -141,7 +160,7 @@ export function createAtlasDrawing({THREE, scene, normalize = true}) {
     edges.forEach((line,mesh)=>mesh.remove(line)); edges.clear();
     geometries.forEach(geometry=>geometry.dispose()); geometries.clear(); lineMaterial.dispose();
     labels.forEach(sprite=>{sprite.removeFromParent();sprite.material.map.dispose();sprite.material.dispose();}); labels.clear();
-    overlay?.remove(); labelNodes.clear();
+    overlay?.remove(); labelNodes.clear(); labelLeaders.clear();
   }};
 }
 
@@ -171,7 +190,7 @@ export function atlasSnapshot({THREE, scene, camera, canvas, render, drawing, ti
   const density=width/Math.max(1,canvas.getBoundingClientRect().width),margin=48*density,font=16*density;
   const footnote = wrappedText(`${caption} · 通用结构示意，非工程图；当前视角，像素 ${width}×${height}${diagnostics ? ' · '+diagnostics : ''}`,width-48*density,14*density);
   const footer = (66+footnote.length*20)*density;
-  const texts = coordinates.map(({text,x,y,font:labelFont})=>`<text x="${x*width}" y="${y*height+margin}" font-size="${labelFont*density}" text-anchor="middle" stroke="${ATLAS.paper}" stroke-width="${6*density}" paint-order="stroke">${escape(text)}</text>`);
+  const texts = coordinates.map(({text,x,y,font:labelFont,anchor})=>`${anchor?`<g class="atlas-label-leader" data-label="${escape(text)}" data-instance="${escape(anchor.instance)}"><path d="M ${anchor.x*width} ${anchor.y*height+margin} L ${x*width} ${y*height+margin+5*density}" fill="none" stroke="${ATLAS.blue}" stroke-width="${1.2*density}"/><circle cx="${anchor.x*width}" cy="${anchor.y*height+margin}" r="${2*density}" fill="${ATLAS.blue}"/></g>`:''}<text x="${x*width}" y="${y*height+margin}" font-size="${labelFont*density}" text-anchor="middle" stroke="${ATLAS.paper}" stroke-width="${6*density}" paint-order="stroke">${escape(text)}</text>`);
   let leader = '';
   if (selected?.meshes?.length) {
     const bounds = visibleBounds(selected.meshes);

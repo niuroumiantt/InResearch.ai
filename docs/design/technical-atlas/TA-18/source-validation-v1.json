@@ -1,0 +1,58 @@
+{
+  "figure_id": "TA-18",
+  "stage": "drafting_static_source_only",
+  "observed_at": "2026-10-09T19:45:08.443940+00:00",
+  "baseline": "4ea10ff65b28e503c6daf57ac08098ba63c14733",
+  "static_units": {
+    "count": 27,
+    "status": "PASS",
+    "log": "/private/tmp/ta18-source-static-units-final-20261010.log",
+    "sha256": "d16c6e2b4e1aa202a190160f9bb327f21703f8ebcc94b53e0f0bf1f758334deb",
+    "scope": "Explicit static noHTTP methods only; not product/browser JS execution"
+  },
+  "parse_only": [
+    "campus-assembly.js",
+    "part-dossier.js",
+    "extracted bom3d module",
+    "campus_overview.cjs"
+  ],
+  "independent_static_review": {
+    "path": "/private/tmp/ta18-candidate-source-static-review-20261010.json",
+    "sha256": "d1ad9c1d469646ef8aa6ecfb4d9057f2064847a793b16871f5a416e3613a4bc1",
+    "note": "Review snapshot precedes authored safe domain fit; new diff separately owner reviewed and parse-only, actual public pending"
+  },
+  "offline_asset_label_scan": {
+    "path": "docs/design/technical-atlas/TA-18/offline-label-scan-v1.json",
+    "paths": 9,
+    "texts": 21,
+    "pairs": 189,
+    "hits": 0,
+    "outside": 0,
+    "external_requests": []
+  },
+  "retained_first_unit_fixture_failure": {
+    "log": "/private/tmp/ta18-assets-unit-first.log",
+    "reason": "test historical end marker did not match actual source, corrected to actual 分解阶段说明; two integrity tests then pass"
+  },
+  "public_required": [
+    "four default real rendered views and actual corners/UI legend",
+    "32 instances and packing/real raycast-mouse selects/whole inspector",
+    "six canonical and six legacy site entries/DCIM no hardware",
+    "actual nativeSVG popup/dual download SHA/current SVG identity",
+    "real manual ownership/normalmotion fit cancellation/resource disposal",
+    "legacy x70/server/gpu/explicitlegacy and scene/resources regression",
+    "source/applied/exactimage healthy and public source bytes SHA/health200"
+  ],
+  "publication": "not_published",
+  "CI": "not queried, no pass claim",
+  "Spark": "not modified",
+  "progress": {
+    "primary_published": 17,
+    "supplemental_published": 4,
+    "current": "TA-18"
+  },
+  "retained_governance_first_failure": {
+    "log": "/private/tmp/ta18-governance-refresh-20261010.log",
+    "reason": "Four actual edited governance summaries missing reviewed hash updates; manually reread current/source stages then update exact hashes, no requirement waived"
+  }
+}

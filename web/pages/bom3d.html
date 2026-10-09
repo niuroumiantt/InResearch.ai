@@ -35,6 +35,7 @@
   .dchip:hover { border-color: var(--accent); color: var(--accent); }
   .dchip.on { background: var(--accent); color: var(--ui-on-accent); font-weight: 700; border-color: var(--accent); }
   #domainParts { margin-top: 8px; max-height: 30vh; overflow-y: auto; }
+  .facility-domain-plate{margin:6px 0 10px;font-size:12px;line-height:1.6}.facility-domain-plate img{display:block;width:100%;height:auto;background:#FAF9F2}.facility-domain-plate a{display:block}.facility-domain-plate p{margin:4px 0;color:var(--muted)}
   #domainParts .pitem { display: flex; align-items: center; gap: 7px; padding: 4px 7px; border-radius: var(--ui-radius);
     font-size: 12px; cursor: pointer; }
   #domainParts .pitem:hover { background: rgba(96,165,250,.12); color: var(--accent); }
@@ -98,6 +99,12 @@
     .insp canvas { height: 160px; }
   }
 
+  .campus-overview .hud {top:calc(var(--ui-bar-height) + 58px);bottom:auto;max-height:calc(100dvh - 240px);}
+  .campus-legend {position:fixed;z-index:12;bottom:12px;left:50%;transform:translateX(-50%);width:620px;max-width:calc(100vw - 24px);box-sizing:border-box;padding:9px 14px;background:#faf9f4;color:#383d37;border:1px solid #c6cabe;border-radius:8px;font:14px/1.6 Inter,"Noto Sans SC",sans-serif;white-space:nowrap;}
+  .campus-legend b {display:block;font-size:13px;}.campus-legend-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px 8px;}
+  #campus-static-plate img {display:block;width:100%;height:auto;}
+  #campus-static-plate summary {cursor:pointer;padding:6px 0;}
+  @media(max-width:700px){.campus-overview .hud {max-height:55dvh;}.campus-legend {font-size:11.5px;padding:7px 9px;}.campus-legend b {font-size:12px;}}
 </style>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
@@ -134,6 +141,14 @@
 <script type="importmap">{"imports": {"three": "./assets/vendor/three.module.js"}}</script>
 <script type="module">
 import * as THREE from "three";
+import {buildCampusAssembly,CAMPUS_STAGES} from "/assets/campus-assembly.js";
+import {buildCampusExplodedAssembly,CAMPUS_EXPLODED_STAGES,CAMPUS_EXPLODED_MARKS} from "/assets/campus-exploded-assembly.js";
+import {fitRackExploded as fitCampusVisible} from "/assets/rack-exploded-view.js";
+const campusQuery=new URLSearchParams(location.search);
+const campusPhysicalParts=['shell','rack-frame','room-cooling','cdu','ups','cabling','chiller','transformer','backup-power','bess'];
+let campusLayeredMode=false;
+let campusMode=true; // resolved against the actual BOM/right registry below.
+let campusAssembly=null,campusSelectedMeshes=null,campusSelectedInstance=null,campusUiObserver=null;
 import {createScenePicking} from "/assets/scene-picking.js";
 import {createSceneMotion} from "/assets/scene-motion.js";
 import {createPartDossier, dossierNode} from "/assets/part-dossier.js?v=20261008.14";
@@ -164,7 +179,7 @@ const MODNAME = {}; reg.modules.forEach(m => MODNAME[m.id] = m.name);
 const PART = {}; BOM.parts.forEach(p => PART[p.id] = p);
 /* 站点权利（土地、水权、并网、燃气接入、网络接入）不是部件，但园区场景里有它们的位置：
    按重切前的旧部件 ID 挂进 PART，档案与研究节点沿用 part:<旧 ID>。 */
-const RIGHTS = (siteRights.rights || []).map(r => ({ ...r, id: r.from_bom_part || r.id, scale: r.scale, kind: "site_right" }));
+const RIGHTS = (siteRights.rights || []).map(r => ({ ...r, id: r.from_bom_part || r.id, site_right_id:r.id, scale: r.scale, kind: "site_right" }));
 RIGHTS.forEach(r => { PART[r.id] ||= r; });
 /* 被拆分的旧部件 ID（bom.aliases：substation → transformer 等）解析到去处，场景造型不必随重切改名 */
 const ALIAS = {};
@@ -173,6 +188,16 @@ Object.entries(BOM.aliases || {}).forEach(([old, to]) => {
   if (target && !PART[old]) PART[old] = target;
   if (target) ALIAS[old] = target.id;
 });
+function resolveScenePart(value){let id=String(value||'').replace(/^part:/,'');if(id.startsWith('site:')){id=id.slice(5);return RIGHTS.find(r=>r.site_right_id===id||r.id===id);}return PART[id]||RIGHTS.find(r=>r.site_right_id===id);}
+const campusRawPart=campusQuery.get('p')||campusQuery.get('node')||'';
+const campusRequestedPart=resolveScenePart(campusRawPart);
+// Preserve other old nonzero stages and detailed hardware routes;
+// the actual six rights and DCIM always remain independent nonphysical entries.
+const campusAllowedPart=!campusRawPart||campusPhysicalParts.includes(campusRequestedPart?.id)||campusRequestedPart?.kind==='site_right'||campusRequestedPart?.id==='dcim';
+// Only the original TA19 x70 entry or an explicit exploded view owns these layers.
+// TA18 default/x0 and detailed hardware/explicit legacy routes retain their scene.
+campusLayeredMode=campusAllowedPart&&(campusQuery.get('view')==='exploded'||(!campusQuery.has('view')&&campusQuery.has('x')&&Number(campusQuery.get('x'))===70));
+campusMode=campusLayeredMode||campusQuery.get('view')==='campus'||(campusQuery.get('view')!=='legacy'&&(!campusQuery.has('x')||(+campusQuery.get('x')||0)===0)&&campusAllowedPart);
 let PRODCOUNT = null; // Restricted product registry is optional; absent is unknown, never zero.
 /* 数据覆盖四维：公司/产品/价格序列/已录值指标——覆盖度热图与档案卡共用同一套口径 */
 const COVC = ["#ef4444", "#f59e0b", "#eab308", "#84cc16", "#22c55e"];
@@ -205,13 +230,14 @@ function syncSceneAppearance() { configureAtlasRenderer(THREE, renderer, scene);
 window.addEventListener('inresearch:appearance', syncSceneAppearance);
 
 let sceneView;
+let pageDisposed=false;
 const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 600);
-camera.position.set(46, 30, 52);
+if(campusLayeredMode)camera.position.set(25,66,70);else if(campusMode)camera.position.set(-15,60,70);else camera.position.set(46,30,52);
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true;
 controls.target.set(0, 6, 0);
 controls.maxPolarAngle = Math.PI / 2 - 0.02;
-controls.autoRotate = !matchMedia('(prefers-reduced-motion: reduce)').matches; controls.autoRotateSpeed = 0.5;
+controls.autoRotate = !campusMode && !matchMedia('(prefers-reduced-motion: reduce)').matches; controls.autoRotateSpeed = 0.5;
 canvas.addEventListener("pointerdown", () => controls.autoRotate = false, { once: true });
 
 const composer = new EffectComposer(renderer);
@@ -438,6 +464,7 @@ function label(text,x,y,z,size=1,color=null,num=null) {
   return atlasDrawing.label(text,x,y,z,size,34,num);
 }
 
+if(!campusMode){
 /* ─────────── 建筑 ─────────── */
 const FW = 36, FD = 24, WH = 9;
 
@@ -750,8 +777,20 @@ label("散热 COOLING", -FW / 2 - 12, 8.6, 0, 1.0, "#8fd6a5", "2");
 }
 label("园区 · 土地与电网", 0, 0.8, FD / 2 + 14, 0.85, "#7d8aa3");
 
+ } // Retained legacy layout; its old28-rack quantities are not the new8-rack example.
+if(campusMode){
+ campusAssembly=(campusLayeredMode?buildCampusExplodedAssembly:buildCampusAssembly)({THREE,material:M,tag,label});scene.add(campusAssembly.root);
+ document.body.classList.add('campus-overview');
+ const hud=document.querySelector('.ui-viewer-controls'),campusTitle=campusLayeredMode?'园区分层爆炸图':'园区装配全景',campusPlate=campusLayeredMode?'campus-exploded-v1':'campus-overview-v1';hud.querySelector('summary').textContent=campusTitle;hud.querySelector('h1').textContent=campusTitle;
+ hud.querySelector('.rg-concept-note').textContent='通用八柜示例 · 尺寸/功率/内接线/供回水拓扑与现场适用未知；虚拟分组非装维程序。';
+ hud.querySelector('div').insertAdjacentHTML('beforeend',`<button id="campus-whole-dossier" type="button">整体三维预览</button><details id="campus-static-plate"><summary>完整标注图与原生下载</summary><a href="/assets/technical-atlas/${campusPlate}.svg" target="_blank" rel="noopener" aria-label="放大园区完整标注图"><img src="/assets/technical-atlas/${campusPlate}-preview.svg" alt="${campusTitle}，通用八柜与机电设备示例" width="300" height="200"></a><div><a download="${campusPlate}.svg" href="/assets/technical-atlas/${campusPlate}.svg">下载可编辑SVG</a> · <a download="${campusPlate}.png" href="/assets/technical-atlas/${campusPlate}.png">下载无字原生PNG</a></div></details><a href="bom3d.html${campusLayeredMode?'':'?x=70'}">${campusLayeredMode?'园区装配全景':'园区分层爆炸图'}</a> · <a href="/campus-plan.html">园区正交平面图</a> · <a href="bom3d.html?view=legacy">旧28柜/分层场景（保留）</a>`);
+ const legend=document.createElement('div');legend.className='campus-legend';legend.setAttribute('aria-label','园区编号图例');
+ legend.innerHTML=campusLayeredMode?'<b>虚拟分层示意 · 灰虚线对应原位，非拆装程序</b><div class="campus-legend-grid">'+CAMPUS_EXPLODED_MARKS.map(([n,t])=>'<span>'+n+' '+t+'</span>').join('')+'</div>':'<b>通用示例 · 局部服务线非完整拓扑</b><div class="campus-legend-grid"><span>01 建筑剖口</span><span>02 八柜示例</span><span>03 室内冷却×5</span><span>04 CDU×3</span><span>05 UPS四柜门</span><span>06 冷水机×3</span><span>07 变压器×2</span><span>08 备用发电×3</span><span>09 储能×2</span></div>';document.body.appendChild(legend);
+ campusUiObserver=new ResizeObserver(()=>sceneView?.refresh());campusUiObserver.observe(document.querySelector('.hud'));campusUiObserver.observe(legend);
+ if(matchMedia('(max-width:700px)').matches)hud.open=false;
+}
 /* ─────────── 分解阶段说明 ─────────── */
-const STAGES = [
+const STAGES = campusLayeredMode ? CAMPUS_EXPLODED_STAGES : campusMode ? CAMPUS_STAGES : [
   [0.00, "概念全景：AI 数据中心"],
   [0.05, "① 设施 · 土地与建筑：掀开屋顶与幕墙——看见白空间"],
   [0.30, "② 电力与冷却链路：风墙 / CDU / UPS / 母线各就各位"],
@@ -765,6 +804,7 @@ const slider = document.getElementById("explode");
 function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
 function apply() {
   const t = slider.value / 100;
+  campusAssembly?.explode(t);
   const poses = new Map();
   animated.forEach(a => {
     if (!poses.has(a.obj)) poses.set(a.obj, a.home.clone());
@@ -777,11 +817,12 @@ function apply() {
   STAGES.forEach(([th, txt]) => { if (t >= th) s = txt; });
   stageEl.textContent = s;
   syncStageControl();
+  if(campusLayeredMode)sceneView?.refresh(); // automatic stage fit yields to manual camera ownership.
 }
 const sliderMotion = createSceneMotion();
 slider.addEventListener("input", () => { sliderMotion.cancel(); apply(); });
 const syncStageControl = installStageControl(STAGES, slider, apply);
-{ const x = new URLSearchParams(location.search).get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); }
+{ const x = new URLSearchParams(location.search).get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); else if(campusLayeredMode)slider.value=70; }
 apply();
 function animateSlider(to, duration = 1400) {
   const from = +slider.value;
@@ -851,7 +892,7 @@ function flyTo(cam, tgt, duration = 1100) {
     controls.target.lerpVectors(fromTarget, toTarget, ease(progress));
   });
 }
-canvas.addEventListener("pointerdown", cameraMotion.cancel);
+canvas.addEventListener("pointerdown",()=>{cameraMotion.cancel();if(campusMode){clearTimeout(walkTimer);sliderMotion.cancel();}});
 
 let activeDomain = null;
 const dimmed = new Map();
@@ -879,28 +920,45 @@ function clearDomain() {
   document.querySelectorAll(".dchip").forEach(el => el.classList.remove("on"));
   document.getElementById("domainParts").innerHTML = "";
 }
+function campusInsets(){const rect=canvas.getBoundingClientRect(),hud=document.querySelector('.hud').getBoundingClientRect(),legend=document.querySelector('.campus-legend').getBoundingClientRect(),drill=document.querySelector('.drill'),drillBottom=drill&&getComputedStyle(drill).display!=='none'?drill.getBoundingClientRect().bottom:rect.top;return {width:rect.width,height:rect.height,insets:{left:rect.width<700?12:Math.max(12,hud.right-rect.left+14),right:12,top:Math.max(12,drillBottom-rect.top+12,...(rect.width<700?[hud.bottom-rect.top+12]:[])),bottom:Math.max(12,rect.bottom-legend.top+12)}};}
+function focusCampus(objects){
+ cameraMotion.cancel();sliderMotion.cancel();clearTimeout(walkTimer);sceneView?.takeControl();controls.autoRotate=false;
+ const targets=objects.length?objects:framingObjects(),bounds=new THREE.Box3();targets.forEach(o=>bounds.expandByObject(o));
+ if(fitCampusVisible({camera,bounds,target:controls.target,objects:targets,...campusInsets(),padding:1.08})){
+  const radius=bounds.getBoundingSphere(new THREE.Sphere()).radius,distance=camera.position.distanceTo(controls.target);controls.maxDistance=Math.max(controls.maxDistance,distance*3);if(scene.fog){scene.fog.near=Math.max(0,distance-radius);scene.fog.far=distance+radius*4;}controls.update();
+ }
+}
+function facilityModelState(p){
+ if(p.kind==='site_right')return ['非物理权利','独立证据入口；设备与地面不证明权利成立'];
+ if(p.id==='modular-dc')return ['交付模板','配置基型，不是新增物理设备'];
+ if(p.id==='dcim')return ['控制软件','软件节点，无物理硬件模型'];
+ return PARTMESH[p.id]?.length?null:['本场景未建模','独立类别图保留；不认证本布局安装或覆盖'];
+}
 function enterDomain(d) {
   if (covOn) covToggle();   // 热图与领域高亮不叠加：材质状态互斥，先退热图
-  if (activeDomain === d.key) { clearDomain(); flyTo([46, 30, 52], [0, 6, 0]); return; }
+  if (activeDomain === d.key) { clearDomain(); if(campusMode)sceneView.fit();else flyTo([46, 30, 52], [0, 6, 0]); return; }
   clearDomain();
   activeDomain = d.key;
   document.getElementById(`dchip-${d.key}`).classList.add("on");
   const ids = new Set(d.parts.map(p => p.id));
-  pickables.forEach(m => setDim(m, !ids.has(m.userData.part)));
+  pickables.forEach(m => setDim(m, !ids.has(campusMode?(ALIAS[m.userData.part] || m.userData.part):m.userData.part)));
   decor.forEach(m => m.material && setDim(m, true));
-  animateSlider(d.t);
-  flyTo(d.cam, d.tgt);
+  if(!campusMode){animateSlider(d.t);flyTo(d.cam,d.tgt);}
   const grouped = []; let last = null;
   for (const p of d.parts) { if (p.chain !== last) { grouped.push(`<div class="chainh">${esc(p.chain || (p.kind === "site_right" ? "站点权利" : ""))}</div>`); last = p.chain; } grouped.push(p); }
   document.getElementById("domainParts").innerHTML = grouped.map(p => typeof p === "string" ? p :
-    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${campusMode && d.key === "facility" ? (facilityModelState(p) ? `<span class="nm" title="${esc(facilityModelState(p)[1])}">${esc(facilityModelState(p)[0])}</span>` : "") : (PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>')}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
+  if(campusMode && d.key==='facility'){
+   const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-21';
+   plate.innerHTML='<a href="/facility-atlas.html"><b>设施与站点权利 · 完整图与下载 ↗</b><img src="/assets/technical-atlas/facility-domain-v1-preview.svg" width="1536" height="1024" alt="同源八柜建筑与独立消防安防类别图、六类非物理权利"></a><p>建筑包含八柜；消防/安防本场景未建模。六权利是非物理证据入口，地面与设备不证明权利成立。</p>';
+   document.getElementById('domainParts').prepend(plate);
+  }
   document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
     const p = PART[el.dataset.part];
     showDossier(p);
     const meshes = PARTMESH[p.id];
     if (meshes?.length) {
-      const wp = new THREE.Vector3(); meshes[0].getWorldPosition(wp);
-      flyTo([wp.x + 9, wp.y + 6, wp.z + 9], [wp.x, wp.y, wp.z], 900);
+      if(campusMode)focusCampus(campusAssembly.objectsFor(p.id));else{const wp = new THREE.Vector3(); meshes[0].getWorldPosition(wp);flyTo([wp.x + 9, wp.y + 6, wp.z + 9], [wp.x, wp.y, wp.z], 900);}
     }
   });
   if (d.chains.length > 1) {  // 镜头走链路是显式动作：不抢用户或页面框架对镜头的所有权
@@ -909,6 +967,7 @@ function enterDomain(d) {
     btn.onclick = () => walkChain(d);
     document.getElementById("domainParts").prepend(btn);
   }
+  if(campusMode)focusCampus(d.parts.flatMap(p=>campusAssembly.objectsFor(p.id)));
 }
 /* 镜头按链路走：点击「沿链路走一遍」后，沿能量流依次飞到有造型的部件（电网 → 变电 → 发电与储能 → UPS → 配电 → 板级供电），
    这条路线就是该系统的研究提纲。用户操作或切换视角即停止；不自动开始，镜头所有权仍归用户与页面框架。 */
@@ -921,8 +980,7 @@ function walkChain(d) {
     if (activeDomain !== d.key || i >= stops.length) return;
     const p = stops[i++];
     document.querySelectorAll("#domainParts .pitem").forEach(el => el.classList.toggle("walk", el.dataset.part === p.id));
-    const wp = new THREE.Vector3(); PARTMESH[p.id][0].getWorldPosition(wp);
-    flyTo([wp.x + 12, wp.y + 8, wp.z + 12], [wp.x, wp.y, wp.z], 900);
+    if(campusMode)focusCampus(campusAssembly.objectsFor(p.id));else{const wp = new THREE.Vector3(); PARTMESH[p.id][0].getWorldPosition(wp);flyTo([wp.x + 12, wp.y + 8, wp.z + 12], [wp.x, wp.y, wp.z], 900);}
     walkTimer = setTimeout(step, 1500);
   };
   step();
@@ -935,23 +993,37 @@ addEventListener("keydown", e => {
   if (e.target.tagName === "INPUT") return;
   const i = "12345678".indexOf(e.key);
   if (i >= 0 && DOMAINS[i]) enterDomain(DOMAINS[i]);
-  if (e.key === "0" || e.key === "Escape") { clearDomain(); flyTo([46, 30, 52], [0, 6, 0]); }
+  if (e.key === "0" || e.key === "Escape") { clearDomain(); if(campusMode)sceneView.fit();else flyTo([46, 30, 52], [0, 6, 0]); }
 });
 
 /* ─────────── 交互与档案 ─────────── */
 const tip = document.getElementById("tip3d");
 /* ── 部件旋转查看器：档案内单独渲染该部件，可拖动 360° 查看 ── */
-const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor: pid => PARTMESH[pid],
+const currentPartMeshes=pid=>campusMode&&campusSelectedMeshes?campusSelectedMeshes:PARTMESH[pid];
+const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor:currentPartMeshes,
+  initialRotation:()=>campusMode?{x:.25,y:.25}:null,
   materialFor: mesh => dimmed.get(mesh)?.original || mesh.userData.covPrev || mesh.material});
-const showDossier = createPartDossier({el: document.getElementById('dossier'), view: 'campus',
+const rawShowDossier = createPartDossier({el: document.getElementById('dossier'), view: 'campus',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
-  statusNames: SN, statusColors: SBADGE, inspector});
-createScenePicking({THREE, canvas, camera, pickables, tip,
+  statusNames: SN, statusColors: SBADGE, inspector,
+  researchNodeFor:p=>p.kind==='site_right'?'site:'+p.site_right_id:'part:'+p.id});
+
+function campusPart(p,whole=false){
+ if(!campusMode)return p;
+ if(whole)return {...PART.shell,name:'园区空间示意 · 完整三维预览',desc:'本图是一个通用选定八柜园区：2行×4柜、5室内冷却、3CDU、一组4柜门UPS、3双风扇冷机、2变压器、3备用发电与2储能柜。数量与比例只是绘图选择；前墙/部分屋面虚拟省略。'+(campusLayeredMode?'屋面/围护/桥架/室内设备仅沿各组示意轴平移，灰线对应同实例空原位；室外设备/钢架/基础保持原位。':'')+'内接线、流体去回路、功率/电压/冗余、现场适用与站点权利未知；研究链接归建筑类别，不认证本示例。'};
+ const physical=campusAssembly.objectsFor(p.id).length;
+ return {...p,desc:physical?'本次三维仅展示选定通用外形；'+(campusSelectedInstance?'点选单个示例实例 '+campusSelectedInstance+'。':'类别含 '+physical+' 个示例实例，预览取第一个。')+' 外形/数量不是型号、额定配置或现场事实，内接线、流体拓扑、尺寸/功率/电压、冗余和适用条件未知。下方研究与公司数据属于类别。'+(p.id==='rack-frame'?'门内载盘密度是程序示例，非TA13整柜或TA11服务器配置。':''):p.kind==='site_right'?'站点权利是独立非物理研究入口，场景不以设备或地面证明权利成立。':p.id==='modular-dc'?'微模块是配置与交付模板，不新增物理设备；本图不证明某模板已经安装或适用。':p.id==='dcim'?'DCIM是软件入口，不画物理硬件，当前节点内容与现场实施另核。':'本类别在本次园区未造实体；既有类别研究及独立部件图入口保留，不假造位置/实例。'};
+}
+function showDossier(p){if(!p)return;if(campusMode){const i=campusAssembly.instances.find(i=>i.part===p.id);campusSelectedInstance=i?.id||null;campusSelectedMeshes=[];i?.object.traverse(o=>{if(o.isMesh)campusSelectedMeshes.push(o)});rawShowDossier(campusPart(p));}else rawShowDossier(p)}
+function showCampusObject(object){const p=PART[object.userData.part];if(!p)return;if(!campusMode){showDossier(p);return;}const i=campusAssembly.instanceFor(object);if(!i)return;campusSelectedInstance=i.id;campusSelectedMeshes=[];i.object.traverse(o=>{if(o.isMesh)campusSelectedMeshes.push(o)});rawShowDossier(campusPart(p));}
+if(campusMode)document.getElementById('campus-whole-dossier').onclick=()=>{campusSelectedMeshes=[...pickables];campusSelectedInstance='campus/whole';rawShowDossier(campusPart(PART.shell,true));};
+
+const scenePicking = createScenePicking({THREE, canvas, camera, pickables, tip,
   describe: object => {
     const part = PART[object.userData.part];
-    return part ? `${part.name}（${SN[part.status]}）· 点击看档案` : '';
+    return part ? campusMode ? `${part.name} · 通用单个示例 · 点击档案` : `${part.name}（${SN[part.status]}）· 点击看档案` : '';
   },
-  select: object => showDossier(PART[object.userData.part])});
+  select: object => showCampusObject(object)});
 
 // sparkline 悬停读数（事件委托，一次绑定）
 const dossierEl = document.getElementById("dossier");
@@ -967,16 +1039,17 @@ dossierEl.addEventListener("pointermove", e => {
 dossierEl.addEventListener("pointerleave", () => { if (tip.textContent.includes("｜")) tip.style.display = "none"; });
 
 // The published adoption registry owns optional model selection.
-const sceneModels = mountSceneModels({scene, page:"bom3d", defaultHeight:4.6, onChange:()=>{atlasDrawing.sync();sceneView?.refresh();}});
+const sceneModels = campusMode ? {ready:Promise.resolve(),objects:()=>[],reload:()=>Promise.resolve(),dispose(){}} : mountSceneModels({scene, page:"bom3d", defaultHeight:4.6, onChange:()=>{atlasDrawing.sync();sceneView?.refresh();}});
 const framingObjects = () => [...pickables.filter(mesh => mesh.userData.part !== "land"), ...sceneModels.objects()];
 sceneView = mountSceneView({canvas, camera, controls, fog:scene.fog,
   objects:framingObjects,
   headers:[document.getElementById("ui-skinbar"), document.querySelector(".topbar")],
   button:document.getElementById("fit-view"),
   resize:(width, height) => {renderer.setSize(width, height, false);composer.setSize(width, height);},
-  beforeFit:() => cameraMotion.cancel(),
+  beforeFit:() => {cameraMotion.cancel();if(campusMode){sliderMotion.cancel();clearTimeout(walkTimer);controls.autoRotate=false;}},
+  ...(campusMode?{fitView:options=>{return fitCampusVisible({...options,objects:framingObjects(),...campusInsets(),padding:1.06});}}:{}),
 });
-sceneModels.ready.then(() => {atlasDrawing.sync(); sceneView.refresh();});
+sceneModels.ready.then(() => {if(pageDisposed)return;atlasDrawing.sync(); sceneView.refresh();});
 atlasDrawing.sync();
 atlasDrawing.attachLabels(canvas,camera);
 const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atlasDrawing,
@@ -985,12 +1058,13 @@ const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atla
   caption:()=>document.getElementById('stage').textContent,
   diagnostics:()=>covOn ? '索引覆盖：红0/4、橙1/4、黄2/4、浅绿3/4、绿4/4（公司、产品、序列、指标登记维度数；非硬件状态）' : null,
   selected:()=>{const id=document.getElementById('dossier').dataset.partId;
-    return id ? {id:'part:'+id,name:PART[id]?.name || id,meshes:PARTMESH[id] || []} : null;}
+    return id ? {id:campusMode&&campusSelectedInstance?campusSelectedInstance:'part:'+id,name:campusMode?(campusSelectedInstance==='campus/whole'?'园区空间示意 · 完整三维预览':'通用园区示例 · '+(PART[id]?.name || id)):PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
 });
 const covChip = document.getElementById('covChip');
 covChip.setAttribute('aria-disabled','true');
 covChip.textContent = '索引覆盖 · 产品登记未读，覆盖率未知';
 loadOptionalSceneData({url:'data/products.json',collection:'records'}).then(products=>{
+  if(pageDisposed)return;
   if (!products || products.records.some(row=>row.bom_parts!=null && (!Array.isArray(row.bom_parts) || row.bom_parts.some(id=>typeof id!=='string')))) return;
   PRODCOUNT = {};
   products.records.forEach(row=>(row.bom_parts || []).forEach(id=>PRODCOUNT[id]=(PRODCOUNT[id] || 0)+1));
@@ -1002,18 +1076,23 @@ loadOptionalSceneData({url:'data/products.json',collection:'records'}).then(prod
   if(new URLSearchParams(location.search).get('cov')==='1' && !covOn)covToggle();
 });
 let animationFrame = 0;
-let pageDisposed = false;
+
 function disposePage() {
   if (pageDisposed) return;
   pageDisposed = true;
   cancelAnimationFrame(animationFrame);
   window.removeEventListener('inresearch:appearance', syncSceneAppearance);
+  campusUiObserver?.disconnect();clearTimeout(walkTimer);cameraMotion.cancel();sliderMotion.cancel();scenePicking.dispose();controls.dispose();
+  pickables.forEach(m=>{m.userData.covMat?.dispose();if(m.userData.covPrev){m.material=m.userData.covPrev;delete m.userData.covPrev}});dimmed.forEach(({original,copies},mesh)=>{mesh.material=original;copies.forEach(m=>m.dispose())});dimmed.clear();
   atlasExport.dispose(); atlasDrawing.dispose();
   sceneView.dispose(); sceneModels.dispose(); inspector.dispose();
+  campusAssembly?.dispose();pickables.length=0;
+  // Optional/adopted and factory resources have been removed by their owners.
+  const gs=new Set(),ms=new Set();scene.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>ms.add(m))});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());
   sceneEnvironment.dispose(); texturePool.dispose(); composer.dispose(); renderer.dispose();
 }
-window.addEventListener("pagehide", event => {if (!event.persisted) disposePage();}, {once:true});
-(function loop() { animationFrame = requestAnimationFrame(loop); controls.update(); atlasDrawing.update(); composer.render(); inspector.tick(); })();
+window.addEventListener("pagehide", event => {if (!event.persisted) disposePage();});
+(function loop() { if(pageDisposed)return;animationFrame = requestAnimationFrame(loop); controls.update(); atlasDrawing.update(); composer.render(); inspector.tick(); })();
 
 // ?d=<domain> / ?p=<part> 深链：其他页面可直接链进领域视角或部件档案（放最后：依赖上面全部初始化完成）
 { const q = new URLSearchParams(location.search);
@@ -1021,7 +1100,7 @@ window.addEventListener("pagehide", event => {if (!event.persisted) disposePage(
   const d = DOMAINS.find(x => x.key === dkey);
   if (d) { controls.autoRotate = false; enterDomain(d); }
   const nodePart = (q.get("node") || "").replace(/^part:/, "");
-  const p = PART[q.get("p") || nodePart];
+  const p = resolveScenePart(q.get("p") || q.get("node") || nodePart);
   if (p) { controls.autoRotate = false; showDossier(p); }
   if (q.get("cov") === "1" && !covOn) { controls.autoRotate = false; covToggle(); } }
 
