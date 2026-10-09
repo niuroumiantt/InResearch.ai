@@ -264,6 +264,22 @@ class Publisher:
                                     value.update(state='pr_open', checks=checks)
                                     atomic_json(path, value)
                                     return self.advance(directory, value)
+                                if any(c.get('bucket') in ('fail', 'cancel') for c in checks):
+                                    # An approved fix on main must reach a failed
+                                    # publication branch before its tests can
+                                    # recover. Source/audit, context and exact PR
+                                    # head have already been checked above.
+                                    refreshed = refresh_publication_base(value['worktree'], value['commit'])
+                                    if refreshed != value['commit']:
+                                        value.setdefault('recoveries', []).append({
+                                            'from':value['state'], 'error':value.get('error'),
+                                            'checks':checks, 'reason':'failed_checks_new_approved_base',
+                                            'at':now_iso()})
+                                        value.setdefault('base_refreshes', []).append({
+                                            'from':value['commit'], 'to':refreshed, 'at':now_iso()})
+                                        value.update(state='prepared', commit=refreshed, checks=[])
+                                        atomic_json(path, value)
+                                        return self.advance(directory, value)
                         except Exception as error:
                             value.update(error=str(error)[-1500:], updated=now_iso())
                             atomic_json(path, value)
