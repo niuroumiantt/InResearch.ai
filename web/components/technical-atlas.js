@@ -155,6 +155,20 @@ const rackExploded={
   related:[{id:'TA-13',title:'同一整柜安装分区 · TA-13',image:'/rack-atlas.html'},{id:'TA-14-3D',title:'分层旋转、拾取与装配对应',image:'/rack3d.html?x=35&node=part:rack-frame'}],
 };
 
+const chipPackage={
+ id:'TA-15',title:'芯片封装 · 独立近景与虚拟分层',
+ image:'/assets/technical-atlas/chip-package-v1.svg',preview:'/assets/technical-atlas/chip-package-v1-preview.svg',master:'/assets/technical-atlas/chip-package-v1.png',
+ alt:'暖白一逻辑裸片和四组HBM沿共同竖轴展开，对应硅中介层接触面、封装基板和底部焊球；左侧三张原生局部重复同一HBM的剖口、接触点与同一基板底面。',
+ note:'独立原生1536×1024程序几何母图，与交互近景使用同一组位置。一个逻辑裸片、四组HBM、八层DRAM与TSV/微凸点/焊球数量为图示选择；左侧三处局部重复现有对象，不增加器件。此图只解释通用硅中介层封装，非OEM/CAD、特定逻辑版图、制造或拆修步骤；工艺、尺寸、容量、带宽、功率和供应者未知。',
+ labels:['逻辑裸片与四组HBM：并排结合在同一硅中介层，五个顶部器件沿同一竖轴虚拟分开，接触面保持对应',
+ 'HBM层次与TSV：八DRAM层和六铜柱为放大示意，剖口暴露硅内垂直连接，不是外置金属引脚',
+ '微凸点：左中是同一HBM的侧面原生放大，显示底部接触点，不增加一组HBM',
+ '中介层：对应接触pad和刻蚀路径仅解释连接层，不作为已核实布线、pitch或所有CoWoS方案',
+ '封装基板与BGA：左下重复同一基板的底部视角，层数、焊球数量和材料不构成产品规格',
+ '实际交互：x90独立主对象可旋转、展开、逐实例点选和查看完整封装，用户手动镜头不因阶段或迟到加载被夺回'],
+ related:[{id:'TA-15-3D',title:'封装旋转与分层对应',image:'/rack3d.html?x=90'},{id:'TA-05',title:'原HBM类别母图 · TA-05',image:'/bom.html#hbm'},{id:'TA-11',title:'服务器装配上下文 · TA-11',image:'/rack3d.html?x=55'}],
+};
+
 // Existing CPU and server-memory categories share this one assembly context figure.
 illustrations.dram = illustrations.cpu;
 
@@ -167,7 +181,7 @@ export function atlasPreview(partId) {
 }
 
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = partId === 'server' && view === 'plan' ? serverPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
+  const item = view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');
