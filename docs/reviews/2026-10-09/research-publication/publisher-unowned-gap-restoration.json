@@ -1,0 +1,69 @@
+{
+  "record_kind": "actual unowned original publisher absence recovery; no attribution of external gap or later source sync; future loaded module not inferred from file",
+  "restoration": {
+    "started_at": "2026-10-09T08:34:35.852323+00:00",
+    "operation": "original publisher absent and both locks free; atomic owner guard + consistent state backup + bootstrap original unchanged plist; no stop or source/queue/credential/account/model edits",
+    "previous_PID57656_alive": false,
+    "service_unloaded_before": true,
+    "locks_acquired_after_free": true,
+    "backup": "/Users/m5/.local/state/inresearch.ai/research-publish-maintenance/unowned-gap-restore-20261009T083435Z/publication-state",
+    "journal_count": 117,
+    "runtime_head_before": "6402120399f9933d8d91dfcbcbdd427729061fc4",
+    "plist_sha256": "c4182782db7106d53000f4524de59ebb916dfe81ddce65b5654cbbe330ba9d2e",
+    "restored_at": "2026-10-09T08:34:35.880991+00:00",
+    "actual_pid": "2818",
+    "bootstrap_returncode": 0,
+    "registry_sha256": "8919ae84cb62accafaa58664652b47f68cea76917e2328cfedd7a8b27ab7dddc",
+    "journals_unchanged_before_start": true
+  },
+  "fresh_status": {
+    "checked_at": "2026-10-09T08:42:26.807173+00:00",
+    "launchctl": {
+      "state": "active",
+      "runs": "1",
+      "pid": "2818",
+      "last exit code": "(never exited)"
+    },
+    "process": "2818     1 S    Fri Oct  9 16:34:35 2026     /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python",
+    "program_path": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "program_entry": [
+      "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009/manage.py",
+      "research-publish"
+    ],
+    "configured_runtime": "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009",
+    "runtime_head": "e968b66cdaf58fb49bb60662c29bd747fa852e39",
+    "runtime_clean": true,
+    "registry_source_sha256": "8919ae84cb62accafaa58664652b47f68cea76917e2328cfedd7a8b27ab7dddc",
+    "registry_source_mtime": "2026-10-09T08:03:59.304780+00:00",
+    "new_delegation_policy_present": true,
+    "publisher_source_sha256": "1da3d0747eebe50489991517a13b399eebe1390c80d676642012780ff59e75a6",
+    "publisher_source_mtime": "2026-10-09T08:41:37.291541+00:00",
+    "includes_exact_head_recovery": true,
+    "includes_current_context_revalidation": true,
+    "status_file_mtime": "2026-10-09T08:42:16.244509+00:00",
+    "status": {
+      "state": "pr_open",
+      "at": null,
+      "batch_id": "2e79f6095781dd9822a4695cf9949f994c338b692898f0bd2a02d4f56dfd26de",
+      "batches": null,
+      "waiting": null
+    },
+    "status_error_present": false,
+    "status_error_classes": [],
+    "alphabet_first": {
+      "state": "published",
+      "updated": "2026-10-09T07:47:39+00:00",
+      "commit": "5f9574328788f60155a2f63e025b3042aae0162e",
+      "merge_commit": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+      "attempt": "attempt-0001",
+      "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b"
+    },
+    "alphabet_first_error_present": false,
+    "alphabet_first_website_proof_present": true,
+    "operation": "read-only actual restored LaunchAgent/PID/source/current status and precise package journal; no new bootstrap, service or queue mutation"
+  },
+  "source_receipts": {
+    "inresearch-m5-unowned-publisher-restore-20261009.json": "e88a6092baedb6b784e29dcfbe81d2cc4f0dd26f8e43932da8d397137331afbd",
+    "inresearch-m5-publisher-restored-after-gap-fresh-20261009.json": "ef5d69a3c15f19b734a195a55738f780353f19bc4dfad9602fa08ba71e8f5c56"
+  }
+}
