@@ -5,7 +5,7 @@ const {join} = require('node:path');
 const {chromium} = require('playwright');
 const accepted = new Set(JSON.parse(readFileSync(join(__dirname,'../framework/visual_atlas_migration.json'),'utf8')).items
   .filter(row => ['accepted','published'].includes(row.status)).map(row => row.id));
-const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-03','chassis','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存'], ['cpu','TA-06','motherboard','IT · 计算'], ['dram','TA-06','motherboard','IT · 内存']]
+const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-03','chassis','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存'], ['cpu','TA-06','motherboard','IT · 计算'], ['dram','TA-06','motherboard','IT · 内存'], ['nic','TA-07','nic','IT · 网络']]
   .filter(([,figure]) => accepted.has(figure));
 (async () => {
   const browser = await chromium.launch({headless: true, args: ['--enable-unsafe-swiftshader']});
@@ -86,6 +86,11 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
       await atlas.locator('img').evaluate(img => img.decode());
       assert.ok((await atlas.locator('img').getAttribute('src')).endsWith(`/${asset}-v1-preview.svg`));
       assert.ok((await page.locator('.atlas-context').textContent()).startsWith(context + ' →'));
+      if (figure === 'TA-07') {
+        assert.match(await atlas.locator('h3').textContent(), /网卡.*PCIe.*网络接口/);
+        assert.match(await atlas.locator('figcaption').textContent(), /双端口.*不概括所有 DPU/);
+        assert.equal(await page.locator('.technical-atlas[data-figure="TA-06"]').count(), 0, 'NIC selection clears the previous motherboard assembly');
+      }
       if (figure === 'TA-03') {
         assert.match(await atlas.locator('h3').textContent(), /服务器机箱/);
         assert.match(await atlas.locator('figcaption').textContent(), /子装配/);

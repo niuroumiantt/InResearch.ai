@@ -114,3 +114,7 @@ SourcePR421 merged557690b8, precise headb582d855; Actions37862604108 fourjobs ze
 ## Current: adopted R10–R14, 2026-10-09
 
 TA-06 receiptPR422 merged95b74b5c; AWS same revisionhealthy, private TA-06/release-closure.json records final source/receipt heads and Spark lag. User explicitly adopts five new images as future campus/building/supply style references, says to reach their detail level. Sole norm1.7 and visual_atlas14refs, actual bytes/SHA/dimensions, futureTA18–23/35 refs updated. Not accepted production figures and no new plan items; published stays6/35+4/4, nextTA-07. R10–14 not added retroactively to prior generation receipts. Complete current reference-updatePR before nextimage; NIC preparation only at~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-07/preparation.json, no generation yet. Actions budget user waiver remains; local checks/public closure not waived.
+
+## Current: TA-07 local acceptance, 2026-10-09
+
+TA-06 source/receiptPR421/422 and R10–14 norm1.7 PR424 closed with real AWS healthy/private closures. TA-07 on codex/atlas-nic-20261009: one built-in generation with actualR2/R3; genericPCIeNIC, two QSFP-style ports plus enlarged cage, eight independent labels, no exact performance/fabrication claim. Local desktop/mobile/system/scale review zero pageerrors. Complete sourcePR and public acceptance before published7/35. NextTA-08 PSU. Budget-only zero-step Actions exceptions have explicit user authorization; real code test failure remains actionable.
