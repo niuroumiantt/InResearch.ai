@@ -52,4 +52,3 @@
 - **7A** Transmission Siting and Permitting Efforts ｜ DOE 2026 ｜ → ['M04'] ｜ 格洛可专题研究 / Codex ｜ *自主发现*
 - **7A** 2025 Long-Term Reliability Assessment ｜ NERC 2026 ｜ → ['M04'] ｜ 格洛可专题研究 / Codex ｜ *自主发现*
 - **7A** Ratepayer Protection Pledge Proclamation ｜ White House 2026 ｜ → ['M04'] ｜ 格洛可专题研究 / Codex ｜ *自主发现*
-
