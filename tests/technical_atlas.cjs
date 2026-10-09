@@ -5,6 +5,14 @@ const {join} = require('node:path');
 const {chromium} = require('playwright');
 const accepted = new Set(JSON.parse(readFileSync(join(__dirname,'../framework/visual_atlas_migration.json'),'utf8')).items
   .filter(row => ['accepted','published'].includes(row.status)).map(row => row.id));
+async function thumbnailSource(page, part, mode) {
+  const card=page.locator(`.pbox[data-atlas-part="${part}"]`);
+  return mode==='system' ? card.locator('img').getAttribute('src') : card.locator('image').getAttribute('href');
+}
+async function thumbnailTitle(page, part) {
+  const card=page.locator(`.pbox[data-atlas-part="${part}"]`);
+  return (await card.locator('img').count()) ? card.locator('img').getAttribute('alt') : card.locator('title').textContent();
+}
 const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-11','server','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存'], ['cpu','TA-06','motherboard','IT · 计算'], ['dram','TA-06','motherboard','IT · 内存'], ['nic','TA-07','nic','IT · 网络'], ['psu','TA-08','psu','电力'], ['server-fan','TA-09','fan-wall','冷却'], ['coldplate','TA-10','coldplate','冷却']]
   .filter(([,figure]) => accepted.has(figure));
 (async () => {
@@ -30,7 +38,7 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
         assert.equal(await page.locator('#selected-atlas .technical-atlas').count(),1,'SSD illustration belongs in the main drawing area');
         assert.equal(await page.locator('#dossier .technical-atlas').count(),0,'avoid a duplicate sidebar illustration');
         assert.ok((await atlas.boundingBox()).width>500,'desktop SSD figure must be readable outside the sidebar');
-        assert.equal(await page.locator('#selected-atlas').evaluate(el => el.parentElement.id), 'stack');
+        assert.equal(await page.locator('#stack #selected-atlas').count(),1,'selected drawing stays within its system/scale overview');
         assert.match(await page.locator('.atlas-context').textContent(), /IT · 存储 → 企业级 SSD/);
         for (const mode of ['scale','system']) {
           await page.locator(`[data-mode="${mode}"]`).click();
@@ -39,10 +47,11 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
           assert.equal(await page.locator('#selected-atlas .technical-atlas').count(),1,'mode change retains the selected SSD detail');
           assert.equal(await page.locator('#c-ssd.sel').count(),1);
           assert.equal(await page.locator('.pbox[data-part="ssd"] path').count(),0,'adopted SSD must not remain a classification box');
-          assert.match(await page.locator('.pbox[data-atlas-part="ssd"] image').getAttribute('href'),/ssd-v1-preview\.svg$/);
+          assert.match(await thumbnailSource(page,'ssd',mode),/ssd-v1-preview\.svg$/);
         }
         await page.locator('#c-hdd').click();
-        assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'other parts must not inherit the SSD figure');
+        assert.equal(await page.locator('.technical-atlas[data-figure="TA-01"]').count(),0,'HDD must not inherit the SSD figure');
+        assert.equal(await page.locator('.technical-atlas[data-figure="TA-16"]').count(),1,'system HDD has its own category illustration');
         await page.locator('[data-mode="scale"]').click();
         assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'mode change must retain the non-SSD selection');
         await page.locator('.pbox[data-atlas-part="ssd"]').click();
@@ -109,7 +118,7 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
       if (figure === 'TA-11') {
         assert.match(await atlas.locator('h3').textContent(), /加速器服务器.*整机剖视/);
         assert.match(await atlas.locator('figcaption').textContent(), /双 CPU.*八 DIMM.*仅为示例.*非新增卡.*非拆修步骤/);
-        assert.match(await page.locator('.pbox[data-atlas-part="server"] title').textContent(), /加速器服务器/);
+        assert.match(await thumbnailTitle(page,'server'), /加速器服务器/);
         assert.equal(await atlas.locator('[data-related-figure="TA-03"]').getAttribute('href'), '/assets/technical-atlas/chassis-v1.svg', 'retained chassis subassembly remains reachable');
         assert.equal(await atlas.locator('[data-related-figure="TA-12"]').getAttribute('href'), '/server-plan.html');
       }
@@ -117,7 +126,7 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
         assert.match(await atlas.locator('h3').textContent(), /GPU 加速基板.*模组装配/);
         assert.ok(await page.locator('#dossier .spark-wrap').count()>0, 'GPU price series and the complete 2D dossier render without aborting the drawing');
         assert.match(await atlas.locator('figcaption').textContent(), /多 GPU 模组与基板/);
-        assert.match(await page.locator('.pbox[data-atlas-part="gpu"] title').textContent(), /GPU 加速基板/);
+        assert.match(await thumbnailTitle(page,'gpu'), /GPU 加速基板/);
         assert.equal(await page.locator('.technical-atlas[data-figure="TA-11"]').count(), 0, 'GPU selection clears the previous whole-server illustration');
       }
       if (figure === 'TA-05') {
@@ -135,7 +144,7 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
         await page.locator(`[data-mode="${mode}"]`).click();
         assert.ok(await page.locator('#selected-atlas').evaluate((el,id) => el.previousElementSibling.matches(`.lrow[data-row-parts~="${id}"]`),part));
         assert.equal(await page.locator(`.pbox[data-part="${part}"] path`).count(),0);
-        assert.ok((await page.locator(`.pbox[data-atlas-part="${part}"] image`).getAttribute('href')).endsWith(`/${asset}-v1-preview.svg`));
+        assert.ok((await thumbnailSource(page,part,mode)).endsWith(`/${asset}-v1-preview.svg`));
         for (const width of [1280,390]) {
           await page.setViewportSize({width,height:900});
           for (const theme of ['light','dark']) {
@@ -157,7 +166,9 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
       }
     }
     await page.locator('#c-hdd').click();
-    assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'an unfinished object must not inherit another object diagram');
+    assert.equal(await page.locator('.technical-atlas[data-figure="TA-16"]').count(),1,'system HDD has its independent drawing');
+    await page.locator('[data-mode="scale"]').click();
+    assert.ok(await page.locator('#selected-atlas').evaluate(el=>el.hidden),'system-only HDD drawing must not leak into retained scale bindings');
     assert.deepEqual(errors, []);
     console.log(`Technical atlas: SSD and ${illustrationCases.length} accepted category illustrations, system/scale context, editable SVG, zoom/downloads, narrow/light/dark and retained 3D passed`);
   } finally { await browser.close(); }

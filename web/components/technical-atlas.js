@@ -1,3 +1,4 @@
+import {systemIllustrations} from './system-atlas.js?v=20261010.16';
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
   coldplate: {
@@ -172,16 +173,22 @@ const chipPackage={
 // Existing CPU and server-memory categories share this one assembly context figure.
 illustrations.dram = illustrations.cpu;
 
-export function atlasPreviewTitle(partId) {
-  return illustrations[partId]?.title || '';
+export function atlasPreviewTitle(partId, {view} = {}) {
+  return (view==='system' ? systemIllustrations[partId] || illustrations[partId] : illustrations[partId])?.title || '';
 }
 
-export function atlasPreview(partId) {
-  return illustrations[partId]?.preview || null;
+export function atlasPreview(partId, {view} = {}) {
+  const item = view==='system' ? systemIllustrations[partId] || illustrations[partId] : illustrations[partId];
+  return item?.tile || item?.preview || null;
+}
+
+// Generic system artwork must not certify the category research description as a selected device.
+export function atlasCategoryNote(partId, {view} = {}) {
+  return view === 'system' ? systemIllustrations[partId]?.note || '' : '';
 }
 
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
+  const item = view==='system' ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');
