@@ -42,12 +42,12 @@ export function renderNativeRackExploded(canvas,{width=1536,height=1024}={}) {
       const span=Math.max((Math.max(...dy)-Math.min(...dy))/2,(Math.max(...dx)-Math.min(...dx))*h/w/2)*1.10;Object.assign(cam,{left:-span*w/h,right:span*w/h,top:span,bottom:-span});cam.updateProjectionMatrix();cam.updateMatrixWorld(true);
       renderer.setSize(w,h,false);renderer.render(scene,cam);ctx.drawImage(canvas,x,y);
       const project=(name)=>{const o=[...chosen].find(o=>o.name===name),v=o.getWorldPosition(new THREE.Vector3()).project(cam);return[x+(v.x+1)*w/2,y+(1-v.y)*h/2];};
-      detailEvidence.push({id,rect:[x,y,w,h],native_pixels:[canvas.width,canvas.height],same_geometry:true,stage,instance:id==='power-front'?'rack/power-shelf-1':'rack/compute-4',visible_meshes:chosen.size,part_count:id==='compute-front'?8:id==='power-front'?6:null,anchors:id==='rail-pair'?{outer:project('outer-slide-rail'),inner:project('inner-slide-rail'),bracket:project('rail-end-bracket')}:null});
+      detailEvidence.push({id,rect:[x,y,w,h],native_pixels:[canvas.width,canvas.height],same_geometry:true,stage,instance:id==='power-front'?'rack/power-shelf-1':'rack/compute-4',visible_meshes:chosen.size,part_count:id==='compute-front'?compute.children.filter(o=>o.name.startsWith('drive-carrier-')).length:id==='power-front'?power.children.filter(o=>o.name.startsWith('psu-module-')).length:null,anchors:id==='rail-pair'?{outer:project('outer-slide-rail'),inner:project('inner-slide-rail'),bracket:project('rail-end-bracket')}:null});
     }
     states.forEach(([o,v])=>o.visible=v);assembly.explode(1);renderer.setSize(width,height,false);renderer.render(scene,camera);
     evidence.details=detailEvidence;evidence.composition='Independent native main and same-geometry native detail renders copied1:1; no resampling; detail insets repeat existing instances';
     return sheet.toDataURL('image/png');
   }
   function png(){renderer.render(scene,camera);return canvas.toDataURL('image/png');}
-  let disposed=false;return {scene,camera,assembly,renderer,evidence,point,png,composition,dispose(){if(disposed)return;disposed=true;drawing.dispose();assembly.dispose();environment.dispose();pmrem.dispose();studio.traverse(o=>{if(o.isMesh){o.geometry.dispose();[].concat(o.material).forEach(m=>m.dispose());}});renderer.dispose();}};
+  let disposed=false;return {scene,camera,assembly,renderer,evidence,point,png,composition,dispose(){if(disposed)return;disposed=true;drawing.dispose();assembly.dispose();scene.traverse(o=>{if(o.isLight)o.shadow?.dispose();});environment.dispose();pmrem.dispose();studio.traverse(o=>{if(o.isMesh){o.geometry.dispose();[].concat(o.material).forEach(m=>m.dispose());}});renderer.dispose();}};
 }

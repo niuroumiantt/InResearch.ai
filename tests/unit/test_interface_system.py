@@ -122,7 +122,9 @@ class InterfaceContractTests(unittest.TestCase):
                        '/login':200,'/assets/research.css':200,'/framework/research_graph.json':302,
                        '/api/research':401,'/data/users.json':404,'/assets/.hub_secret':404,
                        '/assets/site-skin.css/../../data/research_runtime.json':404,
-                       '/':200,'/index.html':200,'/node.html':200,'/ledger.html':200,'/bom.html':200,'/bom3d.html':200,'/server-plan.html':200,'/report.html':200,
+                       '/':200,'/index.html':200,'/node.html':200,'/ledger.html':200,'/bom.html':200,'/bom3d.html':200,'/server-plan.html':200,'/rack-atlas.html':200,'/rack-exploded.html':200,
+                       '/assets/rack-exploded-generator.js':200,'/assets/technical-atlas/rack-exploded-v1.png':200,
+                       '/assets/technical-atlas/rack-exploded-v1.svg':200,'/assets/technical-atlas/rack-exploded-v1-preview.svg':200,'/report.html':200,
                        '/data/dashboard.json':200,'/data/tco_targets.json':200,'/data/datacenter_model.json':200,'/api/whoami':200,
                        '/supply.html':302,'/team.html':302,'/ops.html':302,'/materials.html':302,'/company.html':302,'/doc.html':302,'/research.html':302,
                        '/data/facts.json':302,'/framework/part_fetch.json':302,'/api/tasks':401,'/api/supply':401,'/api/users':401}

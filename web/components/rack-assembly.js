@@ -1,7 +1,8 @@
-/* TA-13: one generic illustrated cabinet, front +z. Arbitrary drawing units.
+/* TA13/TA14: one generic illustrated cabinet, front +z. Arbitrary drawing units.
  * 2 shelves / 8 compute chassis / 2 switches are composition choices, not an
  * OEM configuration. Front/left skins are virtually cut away in position.
- * This overview does not claim the legacy exploded stages or servicing steps.
+ * Optional TA14 skins and representative translations explain correspondence,
+ * never servicing steps. Default TA13 geometry/poses remain unchanged.
  */
 export function buildRackAssembly({THREE, material, tag, label, exploded=false}) {
   const root = new THREE.Group(); root.name = exploded?'generic-rack-exploded':'generic-rack-overview';
@@ -190,10 +191,10 @@ export function buildRackAssembly({THREE, material, tag, label, exploded=false})
     groups.shells={door,side,roof};
     const installed=label('同一机柜 · 壳件保持安装位置',0,12.7,0,.9,null,null);installed.userData.assembledOnly=true;labels.push(installed);
     for(const [text,x,y,z,instance] of [
-      ['柜门 · 虚拟拆出',0,9.5,3.0,door],['左侧板 · 侧轴',-2.2,11,0,side],['顶盖 · 竖轴',0,12.7,0,roof],
-      ['交换机示例 · 前轴',.3,11.1,2.4,root.getObjectByName('switch-1')],
-      ['计算托盘示例 · 前轴',.3,6.3,2.4,root.getObjectByName('compute-4')],
-      ['电源架示例 · 前轴',.3,1.6,2.4,root.getObjectByName('power-shelf-1')]]){
+      ['①',0,9.5,3.0,door],['②',-2.2,11,0,side],['③',0,12.7,0,roof],
+      ['④',.3,11.1,2.4,root.getObjectByName('switch-1')],
+      ['⑤',.3,6.3,2.4,root.getObjectByName('compute-4')],
+      ['⑥',.3,1.6,2.4,root.getObjectByName('power-shelf-1')]]){
       const l=label(text,x,y,z,.9,null,null);labels.push(l);
       l.userData.explosionHome=l.position.clone();l.userData.explosionAxis=new THREE.Vector3(...instance.userData.explosionAxis);
     }
