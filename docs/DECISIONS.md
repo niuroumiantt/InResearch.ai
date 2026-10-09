@@ -1,5 +1,9 @@
 # 当前决策摘要与变更记录
 
+## 2026-10-09: Automatic editorial research delivery
+
+User authorized ongoing delivery: published columns synchronize every five minutes; completed longforms are sealed after render verification and retried from the M5 outbox. Content revisions preserve prior versions, SHA prevents duplicate intake, and existing Reader scope entries and daily settings are retained. Authored analysis and upstream originals keep separate identities; receipt, reading and adoption remain separate. The only current protocol source is docs/local_reader/EDITORIAL_DELIVERY.md. Unit validation and live deployment receipts are assessed separately.
+
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
 ## 2026-10-09：TA-10冷板与接头实际发布
