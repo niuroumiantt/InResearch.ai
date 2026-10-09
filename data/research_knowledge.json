@@ -24771,6 +24771,411 @@
         },
         "batch_id": "cc52e18ff3f701b6d7a652b8e111d226bf08a22c00970023e00c8fc766e1cdfc"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "52f57299f921e859a46da867a693c15062ba7b2e3cab792a01bd779b39114d00",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:1:ev:0",
+      "locator": "page:23/chunk:22",
+      "object_ids": [],
+      "page_index": 22,
+      "question_ids": [],
+      "quote": "QB directly computes the next bias from the distribution of router scores relative to routing cutoff threshold. Bias updates become small naturally when the router balances load evenly.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:25:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。路由分数到偏置更新的关系直接涉及模型运行工程如何分配专家计算负载，对当前D2需求转换工单具有实质但局部的机制贡献。连续引文和充分上下文支持限定的作者陈述，无A类条件，可按B采用。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.373,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a42b28827ea7dacfa0c69c035bf16003b89051d9198ca0cbb5e953760277732e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 67541,
+            "output_tokens": 4621,
+            "reasoning_output_tokens": 307
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "80708f10f796c0c9cdbae73a23a7f74e752343dba2a1f9a7a99da062e05b1e76",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65110,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "52f57299f921e859a46da867a693c15062ba7b2e3cab792a01bd779b39114d00",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:2:ev:0",
+      "locator": "page:23/chunk:22",
+      "object_ids": [],
+      "page_index": 22,
+      "question_ids": [],
+      "quote": "QB tries to find the bias that would have approximately balanced under the current cutoffs and routing on the current batch, solving constraint optimization problems and applying these updates for the next batch.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:25:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。当前批次求解、下一批次应用直接揭示模型负载分配中的更新顺序及批次滞后，对当前需求转换工单有实质的局部贡献。连续引文及相邻约束说明充分，无A类条件，可按B采用。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.373,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a42b28827ea7dacfa0c69c035bf16003b89051d9198ca0cbb5e953760277732e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 67541,
+            "output_tokens": 4621,
+            "reasoning_output_tokens": 307
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "80708f10f796c0c9cdbae73a23a7f74e752343dba2a1f9a7a99da062e05b1e76",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65110,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "52f57299f921e859a46da867a693c15062ba7b2e3cab792a01bd779b39114d00",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:3:ev:0",
+      "locator": "page:23/chunk:22",
+      "object_ids": [],
+      "page_index": 22,
+      "question_ids": [],
+      "quote": "The first constraint is that each token is routed to exactly k experts. The second constraint is a batch of m tokens each picks k experts, gives (mk) assignments in total, to spread load evenly across n experts each expert should process $q=mk/n$ tokens.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:25:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。token批量、每token专家数和专家总数之间的明确分配关系，可为当前D2工单提供模型内部负载转换系数，但不能直接转换为基础设施需求。连续引文和上下文充分，无A类条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.373,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a42b28827ea7dacfa0c69c035bf16003b89051d9198ca0cbb5e953760277732e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 67541,
+            "output_tokens": 4621,
+            "reasoning_output_tokens": 307
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "80708f10f796c0c9cdbae73a23a7f74e752343dba2a1f9a7a99da062e05b1e76",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65110,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "52f57299f921e859a46da867a693c15062ba7b2e3cab792a01bd779b39114d00",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:4:ev:0",
+      "locator": "page:23/chunk:22",
+      "object_ids": [],
+      "page_index": 22,
+      "question_ids": [],
+      "quote": "Each token finds the cutoff threshold as the (k+1)-th highest biased router score and uses it to calculate the bias update needed to balance load for each expert. For each expert, QB sorts the margins between its router score and every token’s cutoff.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:25:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。截断阈值与margin排序明确了模型运行工程如何生成专家分配的偏置更新，对当前需求转换工单有实质但局部的机制关系。连续引文及跨页上下文充分，无A类条件，可按B采用。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.373,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a42b28827ea7dacfa0c69c035bf16003b89051d9198ca0cbb5e953760277732e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 67541,
+            "output_tokens": 4621,
+            "reasoning_output_tokens": 307
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "80708f10f796c0c9cdbae73a23a7f74e752343dba2a1f9a7a99da062e05b1e76",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65110,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c0d7c98edababb6c99046053f1176579b6a8dda7fc9f7c9de8f72f55b6c62d69",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:23:claim:0:ev:0",
+      "locator": "page:24/chunk:23",
+      "object_ids": [],
+      "page_index": 23,
+      "question_ids": [],
+      "quote": "Since q/m=k/n, this is (1-k/n) quantile of the margin, which is why it’s called Quantile Balancing.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:25:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。目标负载比例与margin分位数的关系补充模型内部负载转换规则，对当前D2工单具有局部数学贡献。连续引文及前页完整定义提供充分语境，无A类条件，可按B采用；与前项总分配量约束相关但不是相同主张。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.373,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a42b28827ea7dacfa0c69c035bf16003b89051d9198ca0cbb5e953760277732e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 67541,
+            "output_tokens": 4621,
+            "reasoning_output_tokens": 307
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "80708f10f796c0c9cdbae73a23a7f74e752343dba2a1f9a7a99da062e05b1e76",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65110,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f"
+      }
     }
   ],
   "statements": [
@@ -47690,6 +48095,496 @@
         "request_sha256": "e53a9292864782caa549fc77935af3765f635cb2ff6949bcbed166387d810c2d"
       },
       "object_mapping_check": "独立核对相邻原文，UCP说明属于Google管理层对公司参与设计的代理式商务生态及应用体验的回答，支持合同内谷歌actor主体；该映射不表示谷歌独占标准。开放商务协议不属于数据中心网络链或DCIM/BMS与固件链，未建立单座数据中心及硬件范围。所选证据使用这一经复核的主体范围，不继承候选空标签或文档基础设施标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:1:ev:0"
+      ],
+      "id": "adoption:review:d7f0054eafcb2baf3903b93f",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-conversion"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis在《The Manos, The Mythos, The Legendos》中解释，QB根据路由分数相对于路由截断阈值的分布直接计算下一次偏置；当路由器均匀分配负载时，偏置更新会自然变小。这是来源作者对模型路由机制的说明，发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:25:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。路由分数到偏置更新的关系直接涉及模型运行工程如何分配专家计算负载，对当前D2需求转换工单具有实质但局部的机制贡献。连续引文和充分上下文支持限定的作者陈述，无A类条件，可按B采用。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.373,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a42b28827ea7dacfa0c69c035bf16003b89051d9198ca0cbb5e953760277732e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 67541,
+            "output_tokens": 4621,
+            "reasoning_output_tokens": 307
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "80708f10f796c0c9cdbae73a23a7f74e752343dba2a1f9a7a99da062e05b1e76",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65110,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:1"
+      ],
+      "limitations": "未直接核验开发方报告、实现或实验。偏置更新变小不是GPU利用率、吞吐或净资源节省的实测结果；未明确训练或推理工况、设备、地域及部署阶段，也未量化需求转换系数。",
+      "conflict_check": "当前已采用的Attention Residuals陈述涉及层间计算依赖，专家稀疏度预测涉及总专家与活跃专家的结构关系，均不等同于本项偏置更新规则；推理瓶颈和阶段分离陈述也未形成同条件矛盾。legacy的通信企标QB编号与本算法无关，未发现规范重复或真实冲突，不替换现有结论。",
+      "gap_dependency_check": "仅贡献NODE-demand-D2-conversion中的负载分配机制。仍需开发方原始资料、批次变化、专家放置、执行开销和可比测量，才能验证算力、电力、网络与存储的实际转换系数及不确定性；问题保持开放，不据此更新利用率或容量参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "80528ac180ba07d24aedb1f867cd6e0c339ec4cf546c3afc7436c67cea805f8f"
+      },
+      "object_mapping_check": "路由分数、截断阈值与偏置是模型算法变量，未描述root所定义的一座AI数据中心及其system:compute资产，也未指向物理网络路由器或DCIM/BMS控制系统。独立复核后不继承system:compute标签，所选证据采用空对象范围，保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:2:ev:0"
+      ],
+      "id": "adoption:review:6b388003a18872b02b3fadfc",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-conversion"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis在《The Manos, The Mythos, The Legendos》中称，QB尝试通过约束优化，求出在当前批次的截断阈值与路由条件下本可近似平衡负载的偏置，并将这些更新应用于下一批次。这是作者对算法更新过程的说明，发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:25:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。当前批次求解、下一批次应用直接揭示模型负载分配中的更新顺序及批次滞后，对当前需求转换工单有实质的局部贡献。连续引文及相邻约束说明充分，无A类条件，可按B采用。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.373,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a42b28827ea7dacfa0c69c035bf16003b89051d9198ca0cbb5e953760277732e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 67541,
+            "output_tokens": 4621,
+            "reasoning_output_tokens": 307
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "80708f10f796c0c9cdbae73a23a7f74e752343dba2a1f9a7a99da062e05b1e76",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65110,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:2"
+      ],
+      "limitations": "保留原文的尝试和近似限定，不保证当前或下一批次实际达到均衡。未提供批次持续时间、数据分布变化、收敛或稳定性实验，也未明确训练或推理阶段、硬件、地域及部署状态。",
+      "conflict_check": "所供已采用记录未对QB批次更新顺序作结论。Attention Residuals机制、专家稀疏度预测及后训练选址讨论涉及不同过程；legacy中的通信工程企标不构成算法反证。未发现真实冲突或既有规范重复，本项不改写已有采用内容。",
+      "gap_dependency_check": "仅关联NODE-demand-D2-conversion的模型运行机制及批次滞后线索。一个批次的更新顺序不能替代需求到基础设施的交付时滞；仍需批次时长、负载漂移、执行和通信测量及开发方资料验证，不能据此关闭问题或填写资源需求参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "80528ac180ba07d24aedb1f867cd6e0c339ec4cf546c3afc7436c67cea805f8f"
+      },
+      "object_mapping_check": "约束优化和跨批次偏置更新属于模型运行算法，未建立与system:compute这一数据中心IT系统或任何具体计算部件的直接对象关系。文中的负载和系统用语不足以证明基础设施范围，所选证据采用空对象范围，不继承原始对象标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:3:ev:0"
+      ],
+      "id": "adoption:review:61bd1eb791a32b22c43b30fb",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-conversion"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis在《The Manos, The Mythos, The Legendos》中说明QB的分配约束：每个token恰好选择k个专家，一批m个token共产生mk次专家分配；若在n个专家间均匀分配，每个专家的目标处理量为q=mk/n个token。这是作者给出的算法目标约束，发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:25:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。token批量、每token专家数和专家总数之间的明确分配关系，可为当前D2工单提供模型内部负载转换系数，但不能直接转换为基础设施需求。连续引文和上下文充分，无A类条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.373,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a42b28827ea7dacfa0c69c035bf16003b89051d9198ca0cbb5e953760277732e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 67541,
+            "output_tokens": 4621,
+            "reasoning_output_tokens": 307
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "80708f10f796c0c9cdbae73a23a7f74e752343dba2a1f9a7a99da062e05b1e76",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65110,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:3"
+      ],
+      "limitations": "q是均衡目标，不是实际观测负载、设备容量或GPU利用率。未给出m、k、n的实例取值、非整数目标处理方式、专家计算规模或专家与设备的对应关系；训练或推理工况、地域及部署阶段未明确。",
+      "conflict_check": "已采用的专家稀疏度预测讨论总专家相对活跃专家的未来结构，未提供本项批次分配公式，二者相关但不重复。已采用Attention Residuals及推理瓶颈陈述没有同条件矛盾；legacy通信企标与本项无同口径关系。未发现真实冲突，不替换已有记录。",
+      "gap_dependency_check": "对NODE-demand-D2-conversion仅提供token到专家目标分配量的局部数学关系。仍需专家操作量、权重与激活规模、设备放置、通信、批次时间和实际均衡测量，才能连接算力、电力、网络与存储需求；不得把q当作设备数量或更新容量、利用率参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "80528ac180ba07d24aedb1f867cd6e0c339ec4cf546c3afc7436c67cea805f8f"
+      },
+      "object_mapping_check": "token和专家是模型算法对象，专家数量不等于GPU、服务器或数据中心计算资产数量。system:compute及其计算链描述基础设施，本项未建立专家与这些对象的直接映射；所选证据采用空对象范围，保留问题匹配。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:4:ev:0"
+      ],
+      "id": "adoption:review:92355462c83aa08fb9e5a10e",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-conversion"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis在《The Manos, The Mythos, The Legendos》中解释，QB对每个token取加偏置后路由分数中第k+1高的分数作为截断阈值，并用它计算专家负载均衡所需的偏置更新；对每个专家，QB将其路由分数与各token截断阈值之间的差值（margin）排序。这是作者的算法说明，发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:25:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。截断阈值与margin排序明确了模型运行工程如何生成专家分配的偏置更新，对当前需求转换工单有实质但局部的机制关系。连续引文及跨页上下文充分，无A类条件，可按B采用。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.373,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a42b28827ea7dacfa0c69c035bf16003b89051d9198ca0cbb5e953760277732e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 67541,
+            "output_tokens": 4621,
+            "reasoning_output_tokens": 307
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "80708f10f796c0c9cdbae73a23a7f74e752343dba2a1f9a7a99da062e05b1e76",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65110,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:22:claim:4"
+      ],
+      "limitations": "未独立核验开发方实现、分数并列处理或排序成本。该规则不证明实际负载均衡、吞吐改善或硬件需求下降；未明确训练或推理工况、设备、地域及部署阶段。",
+      "conflict_check": "所供已采用的Attention Residuals、专家稀疏度预测及推理调度陈述没有相同的截断排序规则，未发现规范重复或真实冲突。legacy中的QB通信企标属于编号词项匹配，与模型路由无关。本项不修改已有结论。",
+      "gap_dependency_check": "仅为NODE-demand-D2-conversion补充专家负载分配的算法步骤。仍需开发方原始资料、分数分布、批次与专家规模、排序和通信开销以及可比运行测量，才能验证资源转换系数和不确定性；工单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "80528ac180ba07d24aedb1f867cd6e0c339ec4cf546c3afc7436c67cea805f8f"
+      },
+      "object_mapping_check": "这里的router是模型专家路由机制，分数和margin是算法变量，不能据此映射system:network或网络交换机。也未建立与数据中心system:compute资产的直接范围关系；所选证据采用空对象范围，不继承Reader的基础设施标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:23:claim:0:ev:0"
+      ],
+      "id": "adoption:review:c01cda058447ae11dc319fb3",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-conversion"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis在《The Manos, The Mythos, The Legendos》中解释，在前述每批m个token、每token选择k个专家、共n个专家且每专家目标负载q=mk/n的约束下，q/m=k/n，所述margin对应(1-k/n)分位数，因此该方法称为Quantile Balancing。这是作者的数学及命名说明，发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:25:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。目标负载比例与margin分位数的关系补充模型内部负载转换规则，对当前D2工单具有局部数学贡献。连续引文及前页完整定义提供充分语境，无A类条件，可按B采用；与前项总分配量约束相关但不是相同主张。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 138.373,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a42b28827ea7dacfa0c69c035bf16003b89051d9198ca0cbb5e953760277732e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 67541,
+            "output_tokens": 4621,
+            "reasoning_output_tokens": 307
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.902,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "80708f10f796c0c9cdbae73a23a7f74e752343dba2a1f9a7a99da062e05b1e76",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65110,
+              "output_tokens": 493,
+              "reasoning_output_tokens": 230
+            }
+          }
+        },
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:23:claim:0"
+      ],
+      "limitations": "这是算法目标比例及分位数的解释，未提供实际资源消耗或运行验证。非整数q、分位数计算约定及分数并列处理未明确；不能据此推定精确均衡、GPU利用率或资源节省。地域、训练或推理工况及部署阶段未明确。",
+      "conflict_check": "当前已采用记录未对QB分位数关系作结论，专家稀疏度预测及Attention Residuals机制与本项不同；legacy通信企标编号也不构成同口径材料。未发现既有规范重复或真实冲突，不替换任何已采用结论；检查限于所供记录。",
+      "gap_dependency_check": "仅关联NODE-demand-D2-conversion中的模型内部分配比例。仍需开发方资料、分位数实现、实际批次负载和专家到设备的执行测量，才能验证基础设施需求的转换系数、时滞及不确定性；不能用该比例填写设备容量或利用率，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "265ef18b2c35261e6f836447fc326cff13bd4df776130644adc04cf8606fb06f",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "80528ac180ba07d24aedb1f867cd6e0c339ec4cf546c3afc7436c67cea805f8f"
+      },
+      "object_mapping_check": "q/m、k/n及margin分位数属于模型算法的数学对象，没有对应允许的基础设施或actor对象。root是一座AI数据中心，system:compute是其IT计算系统，本项未直接描述这些对象；独立复核维持空对象范围，所选证据使用同一范围。"
     }
   ],
   "answers": [],
