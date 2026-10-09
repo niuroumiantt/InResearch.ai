@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1718。
+在册文件：1719。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 365 |
+| 历史快照 | 366 |
 | 运行代码 | 321 |
 | 现行规范 | 15 |
 | 项目配置 | 375 |
@@ -53,8 +53,8 @@
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
 | `data/research_knowledge.json` | documents | 30 |
-| `data/research_knowledge.json` | evidence | 235 |
-| `data/research_knowledge.json` | statements | 213 |
+| `data/research_knowledge.json` | evidence | 239 |
+| `data/research_knowledge.json` | statements | 217 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -598,6 +598,9 @@
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
 | `docs/reviews/2026-10-09/2026-10-09-alphabet-object-mapping-before.json` | statements | 6 |
 | `docs/reviews/2026-10-09/2026-10-09-alphabet-object-mapping-before.json` | evidence | 10 |
+| `docs/reviews/2026-10-09/pr509-root-semantic-review.json` | M4_continuous_native_physical_pages | 4 |
+| `docs/reviews/2026-10-09/pr509-root-semantic-review.json` | statement_ids | 4 |
+| `docs/reviews/2026-10-09/pr509-root-semantic-review.json` | open_questions_read | 2 |
 | `docs/reviews/2026-10-09/research-publication/c03-supplement-package-open.json` | files | 21 |
 | `docs/reviews/2026-10-09/research-publication/c03-supplement-runtime.json` | records | 2 |
 | `docs/reviews/2026-10-09/research-publication/c03-supplement-source-applied.json` | results | 2 |
@@ -1554,6 +1557,7 @@
 | `docs/reviews/2026-10-09/2026-10-09-alphabet-object-mapping-before.json` | 历史快照 |
 | [docs/reviews/2026-10-09/2026-10-09-alphabet-object-mapping-review.md](reviews/2026-10-09/2026-10-09-alphabet-object-mapping-review.md) | 历史快照 |
 | [docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md](reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md) | 历史快照 |
+| `docs/reviews/2026-10-09/pr509-root-semantic-review.json` | 历史快照 |
 | [docs/reviews/2026-10-09/research-publication/README.md](reviews/2026-10-09/research-publication/README.md) | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/c03-supplement-package-open.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/c03-supplement-runtime.json` | 历史快照 |
