@@ -16,7 +16,7 @@ const {chromium} = require('playwright');
       assert.notEqual(instrumented, html);
       await route.fulfill({response, body:instrumented});
     });
-    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm', '/rack3d.html?node=part:cpu', '/rack3d.html?node=part:dram', '/rack3d.html?node=part:nic', '/rack3d.html?node=part:psu']) {
+    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm', '/rack3d.html?node=part:cpu', '/rack3d.html?node=part:dram', '/rack3d.html?node=part:nic', '/rack3d.html?node=part:psu', '/rack3d.html?node=part:server-fan']) {
       console.log('Scene contract: loading '+url);
       await page.goto(process.env.UI_BASE_URL + url);
       const dossier = page.locator('#dossier');
@@ -30,6 +30,13 @@ const {chromium} = require('playwright');
         await enclosure.waitFor();
         assert.match(await enclosure.locator('figcaption').textContent(), /子装配/);
         assert.ok((await enclosure.locator('img').getAttribute('src')).endsWith('/chassis-v1-preview.svg'));
+      } else if (url.includes('part:server-fan')) {
+        const fan = dossier.locator('.technical-atlas[data-figure="TA-09"]');
+        await fan.waitFor();
+        assert.match(await fan.locator('h3').textContent(), /服务器风扇墙.*模组与安装位/);
+        assert.match(await fan.locator('figcaption').textContent(), /三就位、一上提.*不表示气流或热插拔/);
+        assert.equal(await dossier.locator('.technical-atlas[data-figure="TA-08"]').count(), 0);
+        assert.ok(await page.evaluate(() => globalThis.__sceneForTest.pickables.some(m => m.userData.part === 'server-fan')), 'existing fanwall meshes are pickable under their own current category');
       } else if (url.includes('part:psu')) {
         const psu = dossier.locator('.technical-atlas[data-figure="TA-08"]');
         await psu.waitFor();
