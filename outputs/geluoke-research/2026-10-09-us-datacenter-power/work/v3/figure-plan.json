@@ -1,0 +1,267 @@
+{
+  "revision": 3,
+  "principle": "图回答紧邻正文的具体问题；先信息功能，再选择画法；关键限定直接标注",
+  "body_images": 14,
+  "figures": [
+    {
+      "number": 1,
+      "asset": "assets/v3-01-interconnections-map.png",
+      "editable": "assets/v3-01-interconnections-map.svg",
+      "question": "美国本土的三大互联分别在哪里，有哪些跨系统边界？",
+      "source_ids": [
+        "eia-grid",
+        "v3-ercot-map",
+        "v3-census"
+      ],
+      "kind": "map",
+      "design_width": 640,
+      "design_height": 761,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "对照EIA/ERCOT完整图面核对三大互联；得州非全州、直流有限联络、州界和概览界线均在图内说明。",
+      "adjacent_paragraph": "美国本土连续的四十八个州，主要分属东部互联、西部互联和得州的ERCOT互联三大电力系统。每个系统内部的交流电网同步运行，三者之间没有全国统一的同步网络。东、西两大系统还连接加拿大部分电网；ERCOT覆盖得州大部分地区，州内西端、北部和东部另有其他互联覆盖。阿拉斯加和夏威夷不在这张本土地图里。[1][6]"
+    },
+    {
+      "number": 2,
+      "asset": "assets/v3-02-roles.png",
+      "editable": "assets/v3-02-roles.svg",
+      "question": "物理电网、调度机构和客户合同，分别解决什么？",
+      "source_ids": [
+        "eia-grid",
+        "ferc-rto"
+      ],
+      "kind": "diagram",
+      "design_width": 640,
+      "design_height": 825,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "调度机构与电力公司责任分层，未把七家RTO/ISO画成七家垂直垄断公司。",
+      "adjacent_paragraph": "美国常说的七家RTO/ISO，是PJM、MISO、SPP、CAISO、NYISO、ISO-NE和ERCOT。它们组织区域输电调度或批发市场，各自的职责和覆盖范围不同。七家机构并不是七家包办发电、输电、配电与零售的垂直垄断电力公司，也没有覆盖全美国所有地区。FERC在2026年6月针对其管辖的六家推出大负荷改革要求，ERCOT不在这组六家之中。[2]"
+    },
+    {
+      "number": 3,
+      "asset": "assets/v3-03-demand.png",
+      "editable": "assets/v3-03-demand.svg",
+      "question": "实际用电增长与未来预测，分别有多大？",
+      "source_ids": [
+        "lbnl-full"
+      ],
+      "kind": "chart",
+      "design_width": 640,
+      "design_height": 840,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "58、176与325—580同零点比例，历史估算和2024年提出的2028预测分别标注。",
+      "adjacent_paragraph": "同一报告预测，2028年美国数据中心全年用电可能达到325—580TWh，占美国总用电量约6.7%—12%。预测在2024年提出，区间宽度来自设备数量、使用率、AI需求与设施效率的不同假设。芯片功率提高会推动增长，新增设备装了多少、每年运行多久，同样影响最终电量。[3][4]"
+    },
+    {
+      "number": 4,
+      "asset": "assets/v3-04-bottlenecks.jpg",
+      "editable": "assets/v3-04-bottlenecks.svg",
+      "question": "发电、输电、接入三种电不够，卡在哪个实际设施？",
+      "source_ids": [
+        "eia-grid",
+        "jlarc",
+        "nerc"
+      ],
+      "kind": "engineering",
+      "design_width": 640,
+      "design_height": 936,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "发电、输电、变电接入名称直接连至设施；建设中的间隔不当作新增已释放容量。",
+      "adjacent_paragraph": "园区等电，可能等在三处。第一处是发电：区域在关键时段有没有足够可靠的资源。第二处是输电：电源有了，通道能否把电送进负荷区。第三处是接入：上游条件具备，园区所需的线路、变电站和设备是否完成。图中沿着电厂、线路和变电设施看过去，就能看到这三种约束；它们需要不同的工程，购电合同无法代替最后一段线路。[1][7][14]"
+    },
+    {
+      "number": 5,
+      "asset": "assets/v3-05-regional-cases.png",
+      "editable": "assets/v3-05-regional-cases.svg",
+      "question": "北弗吉尼亚、得州、俄亥俄和佐治亚的案例在哪里？",
+      "source_ids": [
+        "jlarc",
+        "ercot-batch",
+        "ohio",
+        "aep-onsite",
+        "ga-contract",
+        "v3-census"
+      ],
+      "kind": "map",
+      "design_width": 640,
+      "design_height": 1101,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "州色为案例所在州而非服务区；四地区各对应正文具名机制，得州色块不宣称ERCOT全州覆盖。",
+      "adjacent_paragraph": "四个案例放到地图上，位置与办法就更清楚了。北弗吉尼亚需要追上集群增长的扩建；得州调整共同接入研究；俄亥俄州既设定最低容量付款，也批准部分项目部署现场燃料电池；佐治亚州则把长期合同、扩建责任与灵活需求承诺放在一起。这些办法处理的是不同环节，费用与供电路线将在后文展开。[6][7][9][17][18]"
+    },
+    {
+      "number": 6,
+      "asset": "assets/v3-06-project-evidence.png",
+      "editable": "assets/v3-06-project-evidence.svg",
+      "question": "一项接入申请需要怎样的合同和工程证据才能算真实负荷？",
+      "source_ids": [
+        "pjm-forecast",
+        "ercot-batch"
+      ],
+      "kind": "diagram",
+      "design_width": 640,
+      "design_height": 1038,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "每阶段需要相应合同和工程证据，图内区分申请/合同/设施/IT MW。",
+      "adjacent_paragraph": "看项目是否会兑现，可以沿着图中的证据走：地点与容量意向，系统研究，具有约束力的合同，建设与调试，送电及实际运行。每一步回答不同问题。土地协议证明取得开发条件，购电协议证明安排了交易；到了送电和持续负荷，才看见真正进入电力系统的需求。各地流程名称和先后可能不同，证据仍需要分别登记。[5][6]"
+    },
+    {
+      "number": 7,
+      "asset": "assets/v3-07-planning-rules.png",
+      "editable": "assets/v3-07-planning-rules.svg",
+      "question": "为什么申请清单与电网负荷预测不应是同一个数？",
+      "source_ids": [
+        "pjm-forecast",
+        "ercot-batch"
+      ],
+      "kind": "timeline",
+      "design_width": 640,
+      "design_height": 908,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "预测版本和批次输电计划有年份及资格，计划与已送电分清。",
+      "adjacent_paragraph": "ERCOT这项改革面向75MW及以上、满足资格条件的大负荷，并提供现场自供电或可中断负荷等路径。它在2026年6月公布的安排，把首批最终输电计划预计完成时间放在2027年秋季。计划形成以后，还要建设和投运。PJM的预测折减与ERCOT的共同研究虽是两种办法，却都在让申请者交代承诺程度和交付条件。[5][6]"
+    },
+    {
+      "number": 8,
+      "asset": "assets/v3-08-cost-contracts.png",
+      "editable": "assets/v3-08-cost-contracts.svg",
+      "question": "两地85%的分母、合同期限与生效条件分别是什么？",
+      "source_ids": [
+        "scc",
+        "ohio"
+      ],
+      "kind": "comparison",
+      "design_width": 640,
+      "design_height": 950,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "两种85%分别对应网络成本与容量付款；合同年限、签约时点、豁免、担保、上诉放入图。",
+      "adjacent_paragraph": "俄亥俄州的条款，锁定的是另一种费用。州消费者法律代表机构介绍，PUCO于2025年7月9日通过的AEP Ohio数据中心费率，要求新的大型数据中心对约定电力容量承担至少85%的付款义务，期限最长十二年。该机构页面还记载，行业团体在2025年11月提出上诉。与弗吉尼亚相比，数字相同，收费基数不同：一边是输配电成本，一边是合同容量相关付款。[17]"
+    },
+    {
+      "number": 9,
+      "asset": "assets/v3-09-customer-costs.png",
+      "editable": "assets/v3-09-customer-costs.svg",
+      "question": "为什么两个地区能分别预测居民成本压力和客户节省？",
+      "source_ids": [
+        "jlarc",
+        "ga-contract"
+      ],
+      "kind": "comparison",
+      "design_width": 640,
+      "design_height": 879,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "不变价居民单户月增量与公司客户组合年节省分面，无共用轴或已实现表述。",
+      "adjacent_paragraph": "Georgia Power则预计，大客户的新增收入能够帮助分摊系统成本。它在2026年8月介绍获批的OpenAI合同及大负荷客户组合时，预测从2029年起每年可带来约9.5亿美元的客户节省。预测针对大负荷组合，采用公司测算，节省能否兑现取决于收入和成本进展。这与JLARC居民单户月成本模型，单位、期间和对象均不同。[9]"
+    },
+    {
+      "number": 10,
+      "asset": "assets/v3-10-nuclear-routes.jpg",
+      "editable": "assets/v3-10-nuclear-routes.svg",
+      "question": "Talen合同与Crane重启，分别改变合同分配还是发电供给？",
+      "source_ids": [
+        "talen-sec",
+        "crane-q2",
+        "crane-pdf",
+        "ferc-colocation"
+      ],
+      "kind": "engineering",
+      "design_width": 640,
+      "design_height": 1114,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "既有购电合同与机组重启分开；1920MW合同和2027目标带状态，不冒充实际新装机。",
+      "adjacent_paragraph": "Talen与Amazon的安排，则来自既有核电厂。Talen在2025年6月披露，扩大的购电合同在全合同规模下达到1920MW，期限至2042年，并有延长选择。材料说明，园区建立电网连接后转向表前零售安排，过渡期保留部分表后安排。图中把它与Crane分开：前者是已有电厂的电能与容量交易，后者是推动停运机组重启，不能把合同MW当成新增机组装机。[11]"
+    },
+    {
+      "number": 11,
+      "asset": "assets/v3-11-onsite-sofc.jpg",
+      "editable": "assets/v3-11-onsite-sofc.svg",
+      "question": "AEP案例采用何种现场发电设备，燃料与电力分别怎样流动？",
+      "source_ids": [
+        "aep-onsite",
+        "v3-doe-fuelcells",
+        "v3-bloom"
+      ],
+      "kind": "engineering",
+      "design_width": 640,
+      "design_height": 1176,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "实际案例采用SOFC，图画燃料电池而非内燃机；主图直接标燃料、电池、电力转换和供配电，批准不称投运。",
+      "adjacent_paragraph": "这两个项目采用Bloom固体氧化物燃料电池，AWS和Cologix按长期协议承担全部成本。图中天然气经过处理，进入燃料电池，通过电化学反应产生直流电，再经过电力转换供给负荷。这条路线与燃气轮机或内燃机的机械发电不同，设备、交付与维护也需要分别看。共同要求是燃料可靠送达、现场设施按期建成，以及供电与备用安排适合业务。[3][18]"
+    },
+    {
+      "number": 12,
+      "asset": "assets/v3-12-annual-hourly.png",
+      "editable": "assets/v3-12-annual-hourly.svg",
+      "question": "为什么年度可再生能源采购不能独自保证全天可靠运行？",
+      "source_ids": [
+        "iea",
+        "nerc"
+      ],
+      "kind": "diagram",
+      "design_width": 640,
+      "design_height": 848,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "年账与时段原理曲线分开；曲线图内明示非实测，蓝线需求、橙线太阳能，MW/MWh分开。",
+      "adjacent_paragraph": "储能也有两个不同的数字：MW描述放电功率，MWh描述储存能量。说明性地忽略损耗，以能量除以功率可得到额定放电时长；实际可用时长还受荷电状态、效率和运行策略影响。用于跨过短时系统高峰的电池，与用于连续多日供电的能源安排，面对的投资和充电条件不同。将一项大功率电池公告直接描述成园区全年能源已经解决，会跳过最关键的能量与时间问题。[13]"
+    },
+    {
+      "number": 13,
+      "asset": "assets/v3-13-state-prices-map.png",
+      "editable": "assets/v3-13-state-prices-map.svg",
+      "question": "文中比较的州在哪里，工业均价与具体合同电价如何区分？",
+      "source_ids": [
+        "eia-ytd",
+        "v3-census"
+      ],
+      "kind": "map",
+      "design_width": 640,
+      "design_height": 1150,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "用真实州形状、中文名称及定位线；六州价格核原表，工业部门/期间/初步统计/非园区报价在图内。",
+      "adjacent_paragraph": "同一期数据中，亚利桑那为7.66美分/kWh，佐治亚为7.99，俄亥俄为10.32，俄勒冈为8.33，全国为9.03。地图给出这些州的位置，条图比较同口径的数值。它能帮助初筛，园区报价还要继续查服务区、适用费率、接入电压、需量计费和合同义务。客户结构与收费安排不同，会改变实际成本。[1]"
+    },
+    {
+      "number": 14,
+      "asset": "assets/v3-14-flexible-load.png",
+      "editable": "assets/v3-14-flexible-load.svg",
+      "question": "数据中心怎样把部分工作调整到其他时段，哪些只是合同承诺？",
+      "source_ids": [
+        "google-flex",
+        "ga-contract"
+      ],
+      "kind": "diagram",
+      "design_width": 640,
+      "design_height": 970,
+      "annotation_layer": "editable SVG; important meaning in main image, not caption",
+      "review_status": "reviewed",
+      "reviewed_at": "2026-10-09",
+      "review_note": "实时服务与可延后任务分开；3200MW与最高1000MW均按合同和响应承诺，不按实测负荷。",
+      "adjacent_paragraph": "Georgia Power披露的2026年OpenAI合同，把这种灵活性写进了一份大负荷安排：3200MW新增需求、最高1000MW灵活需求响应承诺，由客户承担服务所需基础设施成本。合同组织了规模、扩建责任与调度条件；工程分期、实际用量和响应执行，还要在后续运行中兑现。图中的箭头表示任务调整机制，合同数字表示承诺范围，并非实测用电曲线。[9]"
+    }
+  ]
+}
