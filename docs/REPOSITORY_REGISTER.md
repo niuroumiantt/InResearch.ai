@@ -15,14 +15,14 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 307 |
-| 运行代码 | 292 |
+| 历史快照 | 309 |
+| 运行代码 | 301 |
 | 现行规范 | 14 |
 | 项目配置 | 169 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 114 |
+| 配套说明 | 146 |
 | 测试 | 142 |
 
 ## 在册记录集合
@@ -457,7 +457,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 44 |
+| `framework/current_state.json` | policies | 46 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -523,6 +523,31 @@
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | commentary | 3 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | sources_added | 0 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/lead.json` | summary | 3 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/cards.json` | records | 50 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/browser.json` | render | 6 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/build.json` | public_images | 13 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/build.json` | images | 16 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | Ohio | 11 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | Georgia | 11 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | Virginia | 11 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | Texas | 11 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | Arizona | 11 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | Oregon | 11 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | U.S. Total | 11 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/svg-layout.json` | items | 7 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/validation.json` | not_verified | 4 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/claims.json` | records | 50 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/demand-snapshot.json` | research_questions | 13 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/demand-snapshot.json` | tco_targets | 9 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/originals-manifest.json` | files | 77 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/research-gaps.json` | records | 8 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/sources.json` | records | 46 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/submission.json` | items | 23 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/sources.json` | records | 46 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/visual-references.json` | records | 9 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/writing-plan.json` | mainline | 6 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/writing-plan.json` | headings | 6 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/writing-plan.json` | lead_sources | 2 |
 | `reports/blindspot.json` | modules | 15 |
 | `reports/workorders.json` | orders | 564 |
 | `research/M01.md` | Finding | 7 |
@@ -650,6 +675,8 @@
 | [docs/archive/2026-10-08/docs__geluoke__专题写作规则-v2.2.md](archive/2026-10-08/docs__geluoke__专题写作规则-v2.2.md) | 历史快照 |
 | [docs/archive/2026-10-08/framework__05_interface_system__before_reader_company.md](archive/2026-10-08/framework__05_interface_system__before_reader_company.md) | 历史快照 |
 | [docs/archive/2026-10-08/framework__05_interface_system__before_repository_daily.md](archive/2026-10-08/framework__05_interface_system__before_repository_daily.md) | 历史快照 |
+| [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.3.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.3.md) | 历史快照 |
+| [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md) | 历史快照 |
 | [docs/design/technical-atlas/MIGRATION_PLAN.md](design/technical-atlas/MIGRATION_PLAN.md) | 配套说明 |
 | `docs/design/technical-atlas/TA-01/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-01/labels-v1.json` | 项目配置 |
@@ -770,6 +797,7 @@
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
 | [docs/handoff/technical-atlas-standard-20261008.md](handoff/technical-atlas-standard-20261008.md) | 配套说明 |
+| [docs/handoff/us-datacenter-power-20261009.md](handoff/us-datacenter-power-20261009.md) | 配套说明 |
 | [docs/handoff/worktree-integration-20261006.md](handoff/worktree-integration-20261006.md) | 配套说明 |
 | [docs/inbox/PHASE2_REPORT.md](inbox/PHASE2_REPORT.md) | 候选与外部输入 |
 | [docs/inbox/README.md](inbox/README.md) | 候选与外部输入 |
@@ -961,6 +989,7 @@
 | [docs/research/2026-10-01/ai-walle/feedback.md](research/2026-10-01/ai-walle/feedback.md) | 配套说明 |
 | [docs/research/2026-10-01/ai-walle/review.md](research/2026-10-01/ai-walle/review.md) | 配套说明 |
 | `docs/research/2026-10-01/ai-walle/sources.json` | 项目配置 |
+| [docs/research/2026-10-09/us-datacenter-power/README.md](research/2026-10-09/us-datacenter-power/README.md) | 配套说明 |
 | [docs/research/datacenter-economics/README.md](research/datacenter-economics/README.md) | 配套说明 |
 | `docs/research/datacenter-economics/model.py` | 运行代码 |
 | `docs/research/datacenter-economics/results.json` | 项目配置 |
@@ -1374,6 +1403,116 @@
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/wf_lead_long.js` | 运行代码 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/wf_research.js` | 运行代码 |
 | `outputs/geluoke-research/2026-09-27-datacenter-profit/work/tools/wf_write_long.js` | 运行代码 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/README.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/README.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/article.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/article.md) | 配套说明 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/cover-list-2.35.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/cover-master.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/cover-master.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/cover-wechat.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig1-grid.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig1-grid.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig2-demand.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig2-demand.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig3-project.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig3-project.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig4-cost.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig4-cost.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig5-routes.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig5-routes.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig6-location.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/fig6-location.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/scene-bottleneck.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/scene-campus.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/scene-cooling.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/scene-cost-assets.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/scene-gas-labeled.svg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/scene-gas-pipeline.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/scene-nuclear-grid.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/assets/scene-stages.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/calculations.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/cards.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/article-1000-full.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/article-1000-top.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/article-390-full.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/article-390-top.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/browser.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/build.json` | 项目配置 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/editorial-review.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/editorial-review.md) | 配套说明 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/eia-table-rows.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/figures-contact.jpg` | 项目配置 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/intake-review.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/intake-review.md) | 配套说明 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-chapter-1.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-chapter-2.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-chapter-3.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-chapter-4.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-chapter-5.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-chapter-6.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-1.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-10.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-11.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-12.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-2.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-3.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-4.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-5.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-6.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-7.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-8.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-9.png` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/svg-layout.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/validation.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/full.html` | 运行代码 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/lite.html` | 运行代码 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/report_facts.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/report_facts.md) | 配套说明 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/claims.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/demand-snapshot.json` | 项目配置 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/intake-scope-review.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/intake-scope-review.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/aep-onsite.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/aep-onsite.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/alphabet-q1.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/alphabet-q1.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/crane-pdf.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/crane-pdf.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/doe-transformer.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/doe-transformer.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/doe-transmission.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/doe-transmission.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/eia-grid.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/eia-grid.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/eia-ytd.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/eia-ytd.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/ercot-batch.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/ercot-batch.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/ferc-june.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/ferc-june.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/ga-contract.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/ga-contract.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/gallup.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/gallup.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/google-flex.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/google-flex.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/iea.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/iea.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/intersect.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/intersect.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/jlarc.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/jlarc.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/lbnl-full.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/lbnl-full.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/nerc.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/nerc.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/ohio.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/ohio.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/pjm-forecast.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/pjm-forecast.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/pjm-large.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/pjm-large.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/pledge.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/pledge.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/scc.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/scc.md) | 配套说明 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/talen-sec.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/materials/talen-sec.md) | 配套说明 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/originals-manifest.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/research-gaps.json` | 项目配置 |
+| [outputs/geluoke-research/2026-10-09-us-datacenter-power/research/research.md](../outputs/geluoke-research/2026-10-09-us-datacenter-power/research/research.md) | 配套说明 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/research.txt` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/sources.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/research/submission.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/sources.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/wechat.html` | 运行代码 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/gas-clean-prompt.txt` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/illustration-prompts.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/reference-previews/VR3.jpg` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/acquire.py` | 运行代码 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/audit.py` | 运行代码 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/build.py` | 运行代码 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/figures.py` | 运行代码 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/prepare_scenes.py` | 运行代码 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/render.cjs` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/render_scene_labels.cjs` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/research.py` | 运行代码 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/tools/validate.cjs` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/visual-references.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/work/writing-plan.json` | 项目配置 |
 | [reports/HOW_TO_OUTPUT.md](../reports/HOW_TO_OUTPUT.md) | 生成物 |
 | `reports/blindspot.json` | 生成物 |
 | [reports/blindspot.md](../reports/blindspot.md) | 生成物 |

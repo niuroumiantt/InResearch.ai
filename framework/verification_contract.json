@@ -4,11 +4,11 @@
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
     ".github/workflows/validate.yml": "1424142306d608e4834d92f6ac17c7ee4275e70daed27b1fe87bbe2e0ef3b0ff",
-    "AGENTS.md": "bb8725e7e67497e32d790c7c3995f816b1d9a5b332ce0c60ccf1e829f6fb7db3",
+    "AGENTS.md": "b94171a17c234e7bc9fa46b047e3692ec4fc00128a1d2ed0021967e950098f59",
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
     "docs/M4_TRIAGE_TASK.md": "924326e63de3dc50835609d2009c6550e228f7e1018972b1d4b75dd897701ed9",
-    "docs/geluoke/专题写作规则.md": "93bd72004ae5fe54e0c0bd7f1ac01ab0e09a842af42e3cf6eb30afd4cd0953e8",
+    "docs/geluoke/专题写作规则.md": "68b17798fe03c1ce063b61946ae52febaf47d58a98739b13defd0af7fb720978",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "11526ac244a5c8626ba0b6c1c2a40ab7cf354763302b6989ad640fc0704bdbd6",
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
@@ -30,7 +30,7 @@
     "framework/09_software_contracts.md": "1da84a8c03278f86ed4a38fcbe1e6c9ca1f87868354b5d952fb1802606a23a96",
     "framework/CURRENT.md": "9b66fd54319dd5572445dedd27b8199f5afd80547d985c47f4a663c009bd2f61",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
-    "framework/interface_manifest.json": "6f7220c1b4403de7fa609d1983f6a96794f65095c6425a04150f42cebe33dc6d",
+    "framework/interface_manifest.json": "c900ea822d1b09d24810a369c7e663ae1a902e4bc990cbeefe5b46c3237e50f2",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
     "framework/supply_contract.json": "75361a6744ec186d0ab997575f545e4fa9671530fc2ae7655e25d0524aec6c9b",
     "framework/tco_targets.json": "6f32daf5040f28e55296be589b7054343551976632c747ef277e87d220676a70",
@@ -1409,17 +1409,21 @@
       ]
     },
     {
-      "policy": "geluoke-longform-20261008",
+      "policy": "geluoke-longform-20261009-visual",
       "scope": "editorial-delivery",
       "source": "docs/geluoke/专题写作规则.md",
-      "checked_requirement": "v2.3人工审阅：行业作者口吻、主线与明确判断，去掉流程式标题和重复免责声明；普通专栏复用材料、统一核稿、定向查证。旧v2.2独立归档，单一现行入口；自动治理只验证登记。",
+      "checked_requirement": "v2.5人工审阅：A主B辅与话题目录/写稿输入一起采用；五张原字节参考登记，十二张正文图与工程场景/数据图分工，三张新图及一次去小标签编辑的内置提示词保留；设备、供能路径、计划/投运、费用口径与照片身份逐张人工核对。动态图片清单、上传限额、手机/桌面和复制往返由本篇实际脚本检查。研究23份submission、50条候选沿用；治理单测只验证登记，不能证明文章自然或技术准确。",
       "tests": [
         "tests/unit/test_governance.py::GovernanceTests.test_replacement_valid_then_parallel_current_rejected",
         "tests/unit/test_governance.py::GovernanceTests.test_inventory_detects_added_and_modified_records_excludes_ignored"
       ],
       "not_verified": [
-        "事实准确性、来源完整性、篇幅、图中文字与手机视觉须逐篇验收；仓库治理测试不覆盖这些编辑要求。",
-        "上一稿本机390px和1000px渲染及浏览器复制已检查；公众号编辑器实粘未做，研究反哺仍是候选。本机成品不视为跨机器已同步。"
+        "逐篇内容须独立核对；自动治理不覆盖事实语义、版权、所有原文定位或编辑质量。",
+        "本篇手机/桌面与浏览器复制往返已检查；微信编辑器实粘、素材上传与发布未执行。",
+        "本篇研究包保持候选；尚未执行远程数据库导入、Reader逐页深读/C3、价格/项目正式采用或问题关闭。",
+        "原件仅在本机及独立原件zip；Git中保存派生文本、图与规则，不视作跨机器原件接收。",
+        "AI工程图为通用示意，未按特定项目施工图验证；精确几何、设备数量与比例不作事实。",
+        "本次仅核对inews现有口吻代码与PR合并状态；没有将该仓库自动图表渲染器改成工程插画生成器。"
       ]
     }
   ]
