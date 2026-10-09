@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-19",
+  "object_id": "campus-exploded",
+  "first_published_revision": "0304ac54995e07376681d50da92d8fa2e1d5021f",
+  "source_pull_request": "https://github.com/niuroumiantt/InResearch.ai/pull/567",
+  "validated_fix_pull_request": "https://github.com/niuroumiantt/InResearch.ai/pull/568",
+  "validated_source_head": "e2c1eec0f7629cf06796ed420b76ca007228121c",
+  "verified_at": "2026-10-09T22:16:22.010174+00:00",
+  "source_history": [
+    {
+      "pr": {
+        "headRefOid": "31186654cc8c1efb6edb549f0ac78ca13327b891",
+        "isDraft": false,
+        "mergeCommit": {
+          "oid": "80c1d902cf20c008e21a3169e60428a71e21aebb"
+        },
+        "mergedAt": "2026-10-09T21:46:15Z",
+        "number": 567,
+        "state": "MERGED",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/pull/567"
+      },
+      "exact_tree": {
+        "observed_at": "2026-10-09T21:48:28.815404+00:00",
+        "baseline": "0b8e3ef8ac3bc74babce494d61234297f5da5127",
+        "head": "31186654cc8c1efb6edb549f0ac78ca13327b891",
+        "merge": "80c1d902cf20c008e21a3169e60428a71e21aebb",
+        "diff_exit": 0,
+        "full_tree_equal": true
+      }
+    },
+    {
+      "pr": {
+        "headRefOid": "e2c1eec0f7629cf06796ed420b76ca007228121c",
+        "mergeCommit": {
+          "oid": "0304ac54995e07376681d50da92d8fa2e1d5021f"
+        },
+        "mergedAt": "2026-10-09T22:01:04Z",
+        "number": 568,
+        "state": "MERGED",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/pull/568"
+      },
+      "exact_tree": {
+        "observed_at": "2026-10-09T22:02:00.481190+00:00",
+        "head": "e2c1eec0f7629cf06796ed420b76ca007228121c",
+        "merge": "0304ac54995e07376681d50da92d8fa2e1d5021f",
+        "full_tree_equal": true,
+        "diff_exit": 0,
+        "full_tree_diff": ""
+      }
+    }
+  ],
+  "acceptance_record": "docs/design/technical-atlas/TA-19/acceptance-v1.json",
+  "public_entry": "https://inresearch.ai/bom3d.html?x=70",
+  "explicit_entry": "https://inresearch.ai/bom3d.html?view=exploded&x=70",
+  "public_master": "https://inresearch.ai/assets/technical-atlas/campus-exploded-v1.png",
+  "public_labelled": "https://inresearch.ai/assets/technical-atlas/campus-exploded-v1.svg",
+  "aws": {
+    "observed_at": "2026-10-09T22:04:59.081265+00:00",
+    "host": "ip-172-26-11-47",
+    "source_revision": "0304ac54995e07376681d50da92d8fa2e1d5021f",
+    "applied_revision": "0304ac54995e07376681d50da92d8fa2e1d5021f",
+    "applied_image": "sha256:6bf0d3b76332c67b92d361211a22760afe670919a90e76c66d1a319a495d5a9f",
+    "configured_image": "inresearch-app:0304ac54995e07376681d50da92d8fa2e1d5021f",
+    "image": "sha256:6bf0d3b76332c67b92d361211a22760afe670919a90e76c66d1a319a495d5a9f",
+    "status": "HEALTHY: 0304ac54995e07376681d50da92d8fa2e1d5021f",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "governance": "2026.10.10.56",
+    "deployment_service": "ActiveState=inactive\nSubState=dead",
+    "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+    "data_migration": false
+  },
+  "public_checks": "docs/design/technical-atlas/TA-19/public-checks-v1.json",
+  "source_checks": [
+    {
+      "url": "https://inresearch.ai/assets/campus-exploded-assembly.js",
+      "status": 200,
+      "bytes": 5603,
+      "sha256": "da9fc2b7de2d00d1be63a2dcc07286d9d24d5ffff4ccf24b5cf816772629a860",
+      "match": true,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Length": "5603",
+        "Content-Type": "text/javascript",
+        "Last-Modified": "Fri, 09 Oct 2026 22:02:44 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/bom3d.html",
+      "status": 200,
+      "bytes": 71071,
+      "sha256": "0c18a35e58d5af7a8c907c02d666351e8468d24ebadd5f411bed7c4f5f12304a",
+      "match": true,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Length": "71071",
+        "Content-Type": "text/html",
+        "Last-Modified": "Fri, 09 Oct 2026 21:47:10 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/campus-assembly.js",
+      "status": 200,
+      "bytes": 15884,
+      "sha256": "377a08934681609a94f735e6eb5fa4d17cbfc8a573d0bc0e121fb436c0fceab5",
+      "match": true,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Length": "15884",
+        "Content-Type": "text/javascript",
+        "Last-Modified": "Fri, 09 Oct 2026 20:36:44 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/part-dossier.js",
+      "status": 200,
+      "bytes": 5550,
+      "sha256": "e8ef6baecc11adaa01c65ef5c8254a26212629ad57c1f6043b7df44c0b6218e1",
+      "match": true,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Length": "5550",
+        "Content-Type": "text/javascript",
+        "Last-Modified": "Fri, 09 Oct 2026 19:48:53 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/part-inspector.js",
+      "status": 200,
+      "bytes": 4188,
+      "sha256": "7e0969f3a57bd96f409bbb5e1c57edb089ce052b54a1816b70b9df940f21e19e",
+      "match": true,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Length": "4188",
+        "Content-Type": "text/javascript",
+        "Last-Modified": "Fri, 09 Oct 2026 06:08:37 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/scene-atlas.js",
+      "status": 200,
+      "bytes": 15340,
+      "sha256": "c668c1836ab13677cd272acacaf9ed06e881b66507bf9c61b2b8fd6b01c9cd4f",
+      "match": true,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Length": "15340",
+        "Content-Type": "text/javascript",
+        "Last-Modified": "Fri, 09 Oct 2026 20:36:44 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/scene-view.js",
+      "status": 200,
+      "bytes": 4804,
+      "sha256": "04ff5001954f182fd8e12bd52403d9675ee34a7900ac66a91062c8d54804fdbe",
+      "match": true,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Length": "4804",
+        "Content-Type": "text/javascript",
+        "Last-Modified": "Fri, 09 Oct 2026 10:50:39 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/rack-exploded-view.js",
+      "status": 200,
+      "bytes": 2701,
+      "sha256": "43d6c292bc5d764d874de8d7e183f79c64e5454132417f1dbf9bc020fe9b41e3",
+      "match": true,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Length": "2701",
+        "Content-Type": "text/javascript",
+        "Last-Modified": "Fri, 09 Oct 2026 10:50:39 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/scene-picking.js",
+      "status": 200,
+      "bytes": 3420,
+      "sha256": "207af98ede2cb64dfbe1a3ca917ca6be621bf0dad83f9a6dd57fe5fee06a5832",
+      "match": true,
+      "headers": {
+        "Cache-Control": "no-cache",
+        "Content-Length": "3420",
+        "Content-Type": "text/javascript",
+        "Last-Modified": "Sun, 13 Sep 2026 15:08:47 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas/campus-exploded-v1.svg",
+      "status": 200,
+      "bytes": 810380,
+      "sha256": "31752c8b8e1821b267f5ddf9dac2840c3252ab3e9cf10d2843bdbb70e0b1b0e4",
+      "match": true,
+      "headers": {
+        "Content-Length": "810380",
+        "Content-Type": "image/svg+xml",
+        "Last-Modified": "Fri, 09 Oct 2026 22:02:44 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas/campus-exploded-v1.png",
+      "status": 200,
+      "bytes": 600193,
+      "sha256": "260a6ccefbcdfca6234e00b148a062f99460b1d0438e8b965ac7297978781378",
+      "match": true,
+      "headers": {
+        "Content-Length": "600193",
+        "Content-Type": "image/png",
+        "Last-Modified": "Fri, 09 Oct 2026 21:47:10 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas/campus-exploded-v1-preview.svg",
+      "status": 200,
+      "bytes": 180673,
+      "sha256": "c254a8e2fbca7de4daf940e8bf593d3b76901cfeee96db7d45eead599c29a8a9",
+      "match": true,
+      "headers": {
+        "Content-Length": "180673",
+        "Content-Type": "image/svg+xml",
+        "Last-Modified": "Fri, 09 Oct 2026 22:02:44 GMT"
+      }
+    },
+    {
+      "url": "https://inresearch.ai/assets/technical-atlas/campus-exploded-v1-preview.jpg",
+      "status": 200,
+      "bytes": 127912,
+      "sha256": "c9e04b8e5cdff3a6321ed2172025ef42628f46ed833862781581c9e72a83e5e5",
+      "match": true,
+      "headers": {
+        "Content-Length": "127912",
+        "Content-Type": "image/jpeg",
+        "Last-Modified": "Fri, 09 Oct 2026 21:47:10 GMT"
+      }
+    }
+  ],
+  "health": {
+    "url": "https://inresearch.ai/healthz",
+    "status": 200,
+    "body": "{\"ok\":true,\"service\":\"inresearch\",\"auth_required\":true}"
+  },
+  "downloads": [
+    {
+      "label": "Actual native UI download full byte SHA",
+      "filename": "campus-exploded-v1.svg",
+      "sha256": "31752c8b8e1821b267f5ddf9dac2840c3252ab3e9cf10d2843bdbb70e0b1b0e4",
+      "bytes": 810380,
+      "saved": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-19/public-v2/campus-exploded-v1.svg"
+    },
+    {
+      "label": "Actual native UI download full byte SHA",
+      "filename": "campus-exploded-v1.png",
+      "sha256": "260a6ccefbcdfca6234e00b148a062f99460b1d0438e8b965ac7297978781378",
+      "bytes": 600193,
+      "saved": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-19/public-v2/campus-exploded-v1.png"
+    }
+  ],
+  "packing": {
+    "sourceMeshes": 2293,
+    "drawMeshes": 152,
+    "inputVertices": 194916,
+    "packedVertices": 194916
+  },
+  "CI": {
+    "status": "not_queried",
+    "authorization": "Current explicit user instruction autonomousPRmerge/release; do not query/waitCI; noCIpassclaimed."
+  },
+  "boundaries": [
+    "通用选定八柜示意，数量/几何单位/比例/分层轴与位移是画法选择；非OEM、现场CAD、施工/维护/拆装/热插拔程序、尺寸或额定功率电压/冗余认证。官方类别来源不认证本图几何或具体适用。",
+    "TA18相同32实例/152mesh/194916顶点，20移动12固定；42灰定位线与17空原位框是非物理Line，不拾取、不增加BOM；虚拟分层不是完整电力或流体连接拓扑。前部墙/部分屋面虚拟省略边界保持，三套管不构成完整HV/LV接线。",
+    "正式母图为独立1536×1024程序相机/画布渲染，未插值，非当前交互视图截图或AI照片；原PNG保持原字节。两真实AI编辑钢架短化拒稿、原7柜误数已撤回为8；原生v1埋框/遮冷机与v2屋面遮柜拒稿仍保留。材质/硬影较摄影底图不同，不称逐像素CAD重建。",
+    "手机是保守总览，十二编号/固定图例可读，8柜盘面/四UPS门/全部灰线细节须放大或完整图；不以152计数代替细节视觉验收。动态档案overlay可遮主画布，显式fit只避固定HUD/图例/导航；whole独立mini完整但仍偏小。",
+    "匿名研究/产品登记401与compare登录/旧研究ready边界不绕过；本次仅明示公网几何/拾取/下载/所有权/资源回归，不声称所有已登录研究流程或原protectedfullsuite通过。",
+    "原始本地50166访问拒绝继续，没有换port/browser/headless/fileproduct入口绕过。仅明确无HTTP静态/parse-only、离线单SVG及已授权实际HTTPS公网分开。CI依用户指令不查/不等、不称通过；Spark/研究事实/运行数据/服务/调度/模型0改。",
+    "TA20严格俯视仍独立待制，后续原队列不提前计量；当前实测时长不构成冷网络/所有触屏或浏览器性能保证。"
+  ],
+  "progress": {
+    "primary_published": 19,
+    "primary_total": 35,
+    "supplemental_published": 4,
+    "supplemental_total": 4,
+    "next_figure": "TA-20"
+  },
+  "publication_status": "published_after_actual_AWS_and_public_acceptance"
+}

@@ -920,15 +920,11 @@ def verify_source_packet(store, root, batch_id, bundle):
     return current
 
 
-def promote(root, bundle, audit_directory):
-    """Curated append-only source write. No GW, facts, answers or old conclusions."""
-    root = Path(root)
+def _checked_adoption(root, bundle, audit_directory, knowledge_before):
+    """Check one immutable C3 decision against the untouched formal baseline."""
     verify_audit(bundle,audit_directory)
     packet = bundle['packet']
     reviews = validate_reviews(packet,{'reviews':bundle['reviews']})
-    qids = packet['research_context']['question_ids']
-    source_tokens = packet['research_context'].get('source_tokens',[])
-    knowledge_before = read_json(root/'data/research_knowledge.json')
     existing = {s['id']:s for s in knowledge_before['statements']}
     expected_ids = ['adoption:review:'+hashlib.sha256(r['id'].encode()).hexdigest()[:24]
                     for r in reviews if r['decision']=='adopt_B']
@@ -936,7 +932,7 @@ def promote(root, bundle, audit_directory):
         if any(existing[i].get('audit_receipt',{}).get('request_sha256')!=bundle['request_sha256']
                for i in expected_ids):
             raise ValueError('adoption_collision_requires_explicit_review')
-        return {'state':'already_applied','statement_ids':expected_ids,'batch_id':packet['batch_id'],'published':False}
+        return [], [], expected_ids
     if sha(current_context(root,packet['research_context']))!=packet['context_sha256']:
         raise ValueError('research_context_changed_revalidation_required')
     eligible = [r for r in reviews if r['decision']=='adopt_B']
@@ -947,76 +943,115 @@ def promote(root, bundle, audit_directory):
     if (sampling.get('sample_ids')!=expected or {c['id'] for c in sampling.get('checks',[])}!=set(expected)
             or any(c.get('confirmed') is not True for c in sampling['checks']) or not sampling.get('model')):
         raise ValueError('fixed_cohort_independent_sample_required')
+    return eligible, expected, []
+
+
+def _append_adoption(knowledge, bundle, eligible, expected):
+    packet = bundle['packet']
+    sampling = bundle['sampling']
+    items = {x['candidate']['id']:x for x in packet['items']}
+    added = []
+    doc = packet['document']
+    docs = {x['id']:x for x in knowledge['documents']}
+    if doc['id'] in docs and docs[doc['id']].get('report_sha256')!=doc['report_sha256']:
+        raise ValueError('existing_document_revision_requires_explicit_review')
+    if doc['id'] not in docs:
+        knowledge['documents'].append(doc)
+    evidence = {x['id']:x for x in knowledge['evidence']}
+    statements = {x['id']:x for x in knowledge['statements']}
+    for r in eligible:
+        item = items[r['id']]
+        review = {'tier':'B','authority':'reviewer','by':'C3 core_review / '+bundle['model'].get('backend','configured executor'),
+                  'at':bundle['reviewed_at'],'decision':'adopted','score':r['score'],
+                  'original_importance':packet['original_importance'],'rationale':r['rationale'],
+                  'workorder_ids':['Q-'+q for q in r['question_ids']], 'model_provenance':bundle['model'],
+                  'sampling':{'cohort':len(eligible),'rate':.1,'sample_size':len(expected),
+                              'selected':r['id'] in expected,'result':'passed','model':sampling['model']},
+                  'batch_id':packet['batch_id']}
+        for ev in item['evidence']:
+            if ev['id'] not in r['evidence_ids']:
+                continue
+            if ev['id'] in evidence:
+                previous = evidence[ev['id']]
+                if (any(previous.get(k)!=ev.get(k) for k in ('document_id','page_index','quote'))
+                        or (packet['research_context'].get('object_mapping_contract') is not None
+                            and previous.get('object_ids',[])!=r['object_ids'])
+                        or previous.get('acceptance')!='adopted'):
+                    raise ValueError('existing_evidence_requires_explicit_review')
+            else:
+                entry = copy.deepcopy(ev)
+                if packet['research_context'].get('object_mapping_contract') is not None:
+                    entry['object_ids'] = list(r['object_ids'])
+                entry.update(status='adopted',acceptance='adopted',review=review)
+                knowledge['evidence'].append(entry)
+                evidence[entry['id']] = entry
+        sid = 'adoption:review:'+hashlib.sha256(r['id'].encode()).hexdigest()[:24]
+        entry = {**item['candidate'],'id':sid,'text':r['text'],'question_ids':r['question_ids'],
+                 'evidence_ids':r['evidence_ids'],'status':'adopted','acceptance':'adopted','review':review,
+                 'source_candidate_ids':[r['id']],'limitations':r['limitations'],
+                 'conflict_check':r['conflict_check'],'gap_dependency_check':r['gap_dependency_check'],
+                 'source_time_status':'unknown unless original text establishes publication date',
+                 'scope':'bounded attributed source statement; not current certification or IT GW',
+                 'partial_support_only':True,'audit_receipt':{'batch_id':packet['batch_id'],
+                     'source_report_sha256':doc['report_sha256'],'request_sha256':bundle['request_sha256']}}
+        if packet['research_context'].get('object_mapping_contract') is not None:
+            entry['object_ids'] = list(r['object_ids'])
+            entry['object_mapping_check'] = r['object_mapping_check']
+        if sid in statements:
+            if statements[sid]!=entry:
+                raise ValueError('adoption_collision_requires_explicit_review')
+        else:
+            knowledge['statements'].append(entry)
+            added.append(sid)
+    return added
+
+
+def promote_group(root, members):
+    """Validate every member on one unchanged baseline, then write once.
+
+    No member's additions become another member's review context. Existing
+    per-batch core/sample decisions, quotations and review lineage stay intact.
+    """
+    root = Path(root)
+    if not members:
+        raise ValueError('empty_publication_group')
     path = root/'data/research_knowledge.json'
     with locked(path):
-        # Recheck after acquiring the formal-write lock.
-        if sha(current_context(root,packet['research_context']))!=packet['context_sha256']:
-            raise ValueError('research_context_changed_revalidation_required')
         knowledge = read_json(path)
         baseline_questions = registry.completed_questions(knowledge)
-        items = {x['candidate']['id']:x for x in packet['items']}
-        added = []
-        doc = packet['document']
-        docs = {x['id']:x for x in knowledge['documents']}
-        if doc['id'] in docs and docs[doc['id']].get('report_sha256')!=doc['report_sha256']:
-            raise ValueError('existing_document_revision_requires_explicit_review')
-        if doc['id'] not in docs:
-            knowledge['documents'].append(doc)
-        evidence = {x['id']:x for x in knowledge['evidence']}
-        statements = {x['id']:x for x in knowledge['statements']}
-        for r in eligible:
-            item = items[r['id']]
-            review = {'tier':'B','authority':'reviewer','by':'C3 core_review / '+bundle['model'].get('backend','configured executor'),
-                      'at':bundle['reviewed_at'],'decision':'adopted','score':r['score'],
-                      'original_importance':packet['original_importance'],'rationale':r['rationale'],
-                      'workorder_ids':['Q-'+q for q in r['question_ids']], 'model_provenance':bundle['model'],
-                      'sampling':{'cohort':len(eligible),'rate':.1,'sample_size':len(expected),
-                                  'selected':r['id'] in expected,'result':'passed','model':sampling['model']},
-                      'batch_id':packet['batch_id']}
-            for ev in item['evidence']:
-                if ev['id'] not in r['evidence_ids']:
-                    continue
-                if ev['id'] in evidence:
-                    previous = evidence[ev['id']]
-                    if (any(previous.get(k)!=ev.get(k) for k in ('document_id','page_index','quote'))
-                            or (packet['research_context'].get('object_mapping_contract') is not None
-                                and previous.get('object_ids',[])!=r['object_ids'])
-                            or previous.get('acceptance')!='adopted'):
-                        raise ValueError('existing_evidence_requires_explicit_review')
-                else:
-                    entry = copy.deepcopy(ev)
-                    if packet['research_context'].get('object_mapping_contract') is not None:
-                        entry['object_ids'] = list(r['object_ids'])
-                    entry.update(status='adopted',acceptance='adopted',review=review)
-                    knowledge['evidence'].append(entry)
-                    evidence[entry['id']] = entry
-            sid = 'adoption:review:'+hashlib.sha256(r['id'].encode()).hexdigest()[:24]
-            entry = {**item['candidate'],'id':sid,'text':r['text'],'question_ids':r['question_ids'],
-                     'evidence_ids':r['evidence_ids'],'status':'adopted','acceptance':'adopted','review':review,
-                     'source_candidate_ids':[r['id']],'limitations':r['limitations'],
-                     'conflict_check':r['conflict_check'],'gap_dependency_check':r['gap_dependency_check'],
-                     'source_time_status':'unknown unless original text establishes publication date',
-                     'scope':'bounded attributed source statement; not current certification or IT GW',
-                     'partial_support_only':True,'audit_receipt':{'batch_id':packet['batch_id'],
-                         'source_report_sha256':doc['report_sha256'],'request_sha256':bundle['request_sha256']}}
-            if packet['research_context'].get('object_mapping_contract') is not None:
-                entry['object_ids'] = list(r['object_ids'])
-                entry['object_mapping_check'] = r['object_mapping_check']
-            if sid in statements:
-                if statements[sid]!=entry:
-                    raise ValueError('adoption_collision_requires_explicit_review')
-            else:
-                knowledge['statements'].append(entry)
-                added.append(sid)
-        errors = registry.validate(read_json(root/'framework/research_graph.json'),
-                                   read_json(root/'framework/research_questions.json'),knowledge)
-        if errors:
-            raise ValueError('; '.join(errors[:5]))
-        if registry.completed_questions(knowledge)!=baseline_questions:
-            raise ValueError('partial_evidence_cannot_close_question')
-        write_json(path,knowledge)
-    return {'state':'applied_in_checkout','statement_ids':added,'batch_id':packet['batch_id'],
-            'published':False,'closed_questions_added':0,'at':now_iso()}
+        checked = []
+        batch_ids = [bundle['packet']['batch_id'] for bundle, _ in members]
+        if len(set(batch_ids)) != len(batch_ids):
+            raise ValueError('duplicate_publication_group_batch')
+        # Finish all checks while formal data remains byte-for-byte baseline.
+        for bundle, audit_directory in members:
+            eligible, expected, existing = _checked_adoption(root, bundle, audit_directory, knowledge)
+            checked.append((bundle, eligible, expected, existing))
+        results = []
+        for bundle, eligible, expected, existing in checked:
+            added = _append_adoption(knowledge, bundle, eligible, expected) if not existing else []
+            results.append({'batch_id':bundle['packet']['batch_id'],
+                            'statement_ids':existing or added, 'already_applied':bool(existing)})
+        if any(not item['already_applied'] for item in results):
+            errors = registry.validate(read_json(root/'framework/research_graph.json'),
+                                       read_json(root/'framework/research_questions.json'),knowledge)
+            if errors:
+                raise ValueError('; '.join(errors[:5]))
+            if registry.completed_questions(knowledge) != baseline_questions:
+                raise ValueError('partial_evidence_cannot_close_question')
+            write_json(path,knowledge)
+        # Exact already-applied replay is an acknowledgment, not a new ledger
+        # submission. Preserve the old single-batch compatibility behavior.
+    return {'state':'already_applied' if all(item['already_applied'] for item in results)
+                    else 'applied_in_checkout',
+            'members':results, 'statement_ids':[sid for item in results for sid in item['statement_ids']],
+            'published':False, 'closed_questions_added':0, 'at':now_iso()}
+
+
+def promote(root, bundle, audit_directory):
+    """Single-batch compatibility entry point; same C3 and append-only checks."""
+    result = promote_group(root, [(bundle, audit_directory)])
+    return {k:v for k,v in result.items() if k!='members'} | {'batch_id':bundle['packet']['batch_id']}
 
 
 def main():
@@ -1088,7 +1123,12 @@ def main():
         current = verify_source_packet(store, args.root, args.batch_id, bundle)
         print(encoded({'verified':True,'bundle_sha256':digest_file(directory/'bundle.json'),
                        'attempt':bundle['attempt'],'batch_id':args.batch_id,
-                       'context_current':current['context_sha256']==bundle['packet']['context_sha256']}))
+                       'context_current':current['context_sha256']==bundle['packet']['context_sha256'],
+                       'doc_id':current['document']['id'],
+                       'source_sha256':current['document']['content_sha256'],
+                       'revision_id':current['document']['reading_revision_id'],
+                       'report_sha256':current['document']['report_sha256'],
+                       'adopt_B_count':sum(r['decision']=='adopt_B' for r in bundle['reviews'])}))
     elif args.command=='published':
         proof = read_json(args.proof)
         bundle = read_json(store.directory_for(args.batch_id)/'bundle.json')
