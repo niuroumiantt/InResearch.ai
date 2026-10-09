@@ -111,6 +111,7 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
         assert.match(await atlas.locator('figcaption').textContent(), /双 CPU.*八 DIMM.*仅为示例.*非新增卡.*非拆修步骤/);
         assert.match(await page.locator('.pbox[data-atlas-part="server"] title').textContent(), /加速器服务器/);
         assert.equal(await atlas.locator('[data-related-figure="TA-03"]').getAttribute('href'), '/assets/technical-atlas/chassis-v1.svg', 'retained chassis subassembly remains reachable');
+        assert.equal(await atlas.locator('[data-related-figure="TA-12"]').getAttribute('href'), '/server-plan.html');
       }
       if (figure === 'TA-04') {
         assert.match(await atlas.locator('h3').textContent(), /GPU 加速基板.*模组装配/);
