@@ -3572,6 +3572,61 @@
       "status": "candidate",
       "stored_path": "originals/25/2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a/dcd-2533958feb827909-Amazon signs first APAC battery storage tolling deal with Anza Po.html",
       "title": "Amazon signs first APAC battery storage tolling deal with Anza Power in Victoria, Australia"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "coverage": {
+        "characters_read": 7554,
+        "characters_total": 7554,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "library_path": "library/by-node/root/2025_DCD_Stack secures AU$1.3bn green financing in Australia to__26af30c3bf58c80b.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:blue-owl",
+        "actor:stack-infrastructure",
+        "root",
+        "system:facility"
+      ],
+      "question_ids": [
+        "NODE-demand-D1-boundary"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "report_sha256": "27a1035eac6e2bd94e6648e5bd43576a16bb9b1b91213e84c989bf9f37b3d192",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+        "url": "https://www.datacenterdynamics.com/en/news/stack-secures-au13bn-green-financing-in-australia-to-fund-melbourne-campus/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/stack-secures-au13bn-green-financing-in-australia-to-fund-melbourne-campus/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/26/26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6/dcd-26af30c3bf58c80b-Stack secures AU-1.3bn green financing in Australia to fund Melbo.html",
+      "title": "Stack secures AU$1.3bn green financing in Australia to fund Melbourne campus"
     }
   ],
   "evidence": [
@@ -24271,6 +24326,90 @@
           }
         },
         "batch_id": "db08c9bdbd3f2c806765ab1ba592d216785e66f5af8016b1cb3851280d2d1a3a"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b8b3829b8b03d9d4140c299e7106762dc42987838797236c80f74f39d090050d",
+      "document_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "id": "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:stack-infrastructure"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Stack didn’t share the green targets tied to this latest round of financing.",
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "source_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:33:14+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性7，评分7。连续原文及融资用途、一般机制说明的周边语境足以支持限定归因的信息披露主张。目标未披露实质关联当前融资条件与合同风险工单，可作为部分缺口证据采用；未识别敏感、真实冲突或替换条件，符合B类要求。",
+        "workorder_ids": [
+          "Q-M11-Q07",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 53.504,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "90eaf1cea83762be3d77a64bf99e262ef1473ff8cb944202dd77a38834bd6e3a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 63034,
+            "output_tokens": 1183,
+            "reasoning_output_tokens": 270
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.924,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7393f1d8d1166090861aa2a341b2a50831ec23d6ef227f3e3fdd7bfaeddfd412",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63538,
+              "output_tokens": 473,
+              "reasoning_output_tokens": 196
+            }
+          }
+        },
+        "batch_id": "c7505b28ea62e856308de5bec8e0454e37292e93a1ddb58ba7f7c0786d930627"
       }
     }
   ],
@@ -46589,6 +46728,108 @@
         "request_sha256": "dfb307e24232d1a7d4bc80c6c7dc023a8965a44c72c142366148ff21af955967"
       },
       "object_mapping_check": "独立按声明范围复核：光伏加电池储能PPA明确涉及电力系统下“发电与储能”链的储能系统，映射part:bess；Amazon明确为交易采购参与方，映射actor:amazon。Anza没有允许的主体ID，不新增映射。本项未说明并网配额、排队或并网协议，不映射site:grid；电力储能不映射IT存储，也不扩展到整座数据中心或其他基础设施。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "evidence_ids": [
+        "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:150390a02247b44947489949",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:stack-infrastructure"
+      ],
+      "question_ids": [
+        "M11-Q07",
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "status": "adopted",
+      "text": "据DCD作者Dan Swinhoe于2025年7月24日的报道，STACK未分享该轮绿色融资所关联的绿色目标。该轮融资用于澳大利亚维多利亚州西墨尔本MEL01园区的下一阶段开发。这是来源对报道时点披露情况的描述，未经本次独立核验，不表示融资没有绿色目标，也不证明此后仍未披露。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:33:14+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性7，评分7。连续原文及融资用途、一般机制说明的周边语境足以支持限定归因的信息披露主张。目标未披露实质关联当前融资条件与合同风险工单，可作为部分缺口证据采用；未识别敏感、真实冲突或替换条件，符合B类要求。",
+        "workorder_ids": [
+          "Q-M11-Q07",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 53.504,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "90eaf1cea83762be3d77a64bf99e262ef1473ff8cb944202dd77a38834bd6e3a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 63034,
+            "output_tokens": 1183,
+            "reasoning_output_tokens": 270
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 28.924,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7393f1d8d1166090861aa2a341b2a50831ec23d6ef227f3e3fdd7bfaeddfd412",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63538,
+              "output_tokens": 473,
+              "reasoning_output_tokens": 196
+            }
+          }
+        },
+        "batch_id": "c7505b28ea62e856308de5bec8e0454e37292e93a1ddb58ba7f7c0786d930627"
+      },
+      "source_candidate_ids": [
+        "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:3"
+      ],
+      "limitations": "证据来自媒体报道，未提供STACK公告、融资合同或绿色融资框架原文。未披露目标指标、阈值、考核时间、核验方式、利率调整或违约条款；不能将前段对可持续发展挂钩贷款和绿色债券的一般介绍视为本交易的具体机制，也不能据绿色标签推定资本成本优惠或实际合同风险。",
+      "conflict_check": "所供已采用陈述涉及信用关联、私人资本风险承接、财务透明度以及其他成本机制，均未说明本交易的绿色目标，无同义重复或实质冲突。legacy中的STACK美国项目、土地交易、柔佛规划及相关项目记录与本交易的地域、时点和事项不同；所供合同匹配记录为空。核查限于提供的记录，不构成穷尽性反证搜索，不替换既有结论。",
+      "gap_dependency_check": "对M11-Q07，仅补充绿色融资条件未能从该报道确定的缺口，不能计算资本成本。对NODE-activity-V1-economics，仅提示该开发融资相关合同条件仍待核实，未证明处罚、费用或风险已经发生，也未完成收入、资本开支、运营成本及可比口径计量。仍需借款人与贷款方的一手融资文件、目标及考核条款、实际定价和反证；两项问题保持开放，不更新模型参数或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c7505b28ea62e856308de5bec8e0454e37292e93a1ddb58ba7f7c0786d930627",
+        "source_report_sha256": "27a1035eac6e2bd94e6648e5bd43576a16bb9b1b91213e84c989bf9f37b3d192",
+        "request_sha256": "0dfdaeced92bf7977dfc11b2771e78087abef0ac734a590946d55ed4ac41d5f9"
+      },
+      "object_mapping_check": "独立核对对象合同：actor:stack-infrastructure为名称STACK的actor，原文明确其为该轮融资主体及未分享目标的主体，故仅映射该对象。融资披露主张未指明土地建筑、电力、冷却等系统的具体目标或性能，不扩展到root或设施系统；Blue Owl的所有权背景不属于本项主张。所选证据统一采用此主张范围，原始标签保持不变。"
     }
   ],
   "answers": [],
