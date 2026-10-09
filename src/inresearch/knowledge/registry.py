@@ -295,7 +295,7 @@ def candidate_snapshot(payload, graph, questions):
                'object_ids', 'question_ids', 'document_id', 'page_index', 'locator',
                'quote', 'text', 'kind', 'evidence_ids', 'statement_ids', 'question_id',
                'model', 'read_status', 'mapping_status', 'content_sha256', 'reading_revision_id', 'report_sha256',
-               'published_date', 'as_of'}
+               'published_date', 'as_of', 'source_provenance'}
     known = {'object_ids': {o['id'] for o in graph.get('objects', []) if isinstance(o, dict) and 'id' in o},
              'question_ids': {q['id'] for q in questions.get('records', []) if isinstance(q, dict) and 'id' in q}}
     # 图谱 3.0：旧对象 ID 先按对象登记的别名与根前缀折算到骨架节点（不猜），折算不了的才丢
@@ -309,6 +309,12 @@ def candidate_snapshot(payload, graph, questions):
             if not isinstance(row, dict):
                 raise ValueError(f'{name} contains a non-object')
             normalized = {k: v for k, v in row.items() if k in allowed}
+            if 'source_provenance' in normalized:
+                from inresearch.materials.source_provenance import validate as validate_provenance
+                if name != 'documents':
+                    raise ValueError('source provenance belongs to documents')
+                normalized['source_provenance'] = validate_provenance(
+                    normalized['source_provenance'], normalized.get('content_sha256'), normalized.get('source_url'))
             normalized.update(status='candidate', acceptance='candidate')
             if lagging:
                 for field, ids in known.items():

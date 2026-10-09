@@ -54,6 +54,8 @@ def rows(knowledge, curated):
                    'reading_revision_id': doc.get('reading_revision_id'),
                    'url': public_url(doc.get('source_url')), 'coverage_scope': doc['coverage'].get('scope')},
                'quotes': [{k: e[k] for k in ('id', 'quote', 'page_index', 'locator') if k in e} for e in refs]})
+        if doc.get('source_provenance'):
+            results[-1]['source']['provenance'] = doc['source_provenance']
     return results, dict(skipped)
 
 

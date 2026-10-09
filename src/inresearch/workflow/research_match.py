@@ -142,7 +142,16 @@ def ingest(path, data, root, title=None, daily_sources=None):
                 'scope': '页内主题检索，不证明整篇已读、引文支持数值或已采用。'}
     c = Collector(data)
     try:
-        ident = c.item('fetchreports', sha, 'supplied_research', '', title or path.name, document, state='matched_candidate')
+        # Serialize with source-sidecar reception: a normal re-index must not
+        # erase already received provenance or a known URL.
+        c.db.execute('BEGIN IMMEDIATE')
+        existing = c.db.execute("SELECT url,metadata FROM items WHERE source='fetchreports' AND source_key=?", (sha,)).fetchone()
+        url = existing['url'] if existing else ''
+        if existing:
+            old = json.loads(existing['metadata'])
+            for key in ('source_url', 'source_provenance'):
+                if key in old: document[key] = old[key]
+        ident = c.item('fetchreports', sha, 'supplied_research', url, title or path.name, document, state='matched_candidate')
         # Original bytes and source receipt are permanent, separate from the index.
         archived_sha = c.archive_file(ident, path, path.suffix.lower(), {'method': 'user_supplied', 'sha256': sha})
         if archived_sha != sha: raise ValueError('material_changed_during_archive')
@@ -233,9 +242,23 @@ def reading_objective(data, root, sha):
 def main():
     from inresearch.paths import project_root
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--input', type=Path, required=True)
+    inputs = parser.add_mutually_exclusive_group(required=True)
+    inputs.add_argument('--input', type=Path)
+    inputs.add_argument('--source-sidecar', type=Path, help='plan SHA-bound source metadata for already archived research')
+    parser.add_argument('--apply-sources', action='store_true', help='apply the preflighted sidecar metadata without reindexing or queueing')
     parser.add_argument('--data-root', type=Path, default=data_root())
     args = parser.parse_args()
+    if args.apply_sources and not args.source_sidecar:
+        parser.error('--apply-sources requires --source-sidecar')
+    if args.source_sidecar:
+        from inresearch.workflow.research_sources import receive
+        row = receive(args.source_sidecar, args.data_root, apply=args.apply_sources)
+        if args.apply_sources:
+            receipt = args.data_root/'material-reviews'/'source-receipts'/('sources-'+now().replace(':','-')+'.json')
+            write_json(receipt, row)
+            row['receipt'] = str(receipt)
+        print(json.dumps(row, ensure_ascii=False))
+        return 0
     files = sorted(p for p in args.input.rglob('*') if p.suffix.lower() in ('.pdf','.html','.htm','.txt','.md') and p.is_file()) if args.input.is_dir() else [args.input]
     results = []
     for path in files:
