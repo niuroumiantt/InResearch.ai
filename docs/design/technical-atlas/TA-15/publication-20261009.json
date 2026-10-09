@@ -1,0 +1,1507 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-15",
+  "object_id": "part:gpu",
+  "related_object_ids": [
+    "part:hbm"
+  ],
+  "first_published_revision": "3e169899cd5e9fbbfeadc5c493565d678a7306ea",
+  "source_pull_request": "https://github.com/niuroumiantt/InResearch.ai/pull/531",
+  "source_head": "035701a01c0fac919da5cb52d87864b85dd193ad",
+  "source_merged_at": "2026-10-09T12:17:40Z",
+  "verified_at": "2026-10-09T12:25:47.052944+00:00",
+  "acceptance_record": "docs/design/technical-atlas/TA-15/acceptance-v1.json",
+  "initial_preapply_observation": {
+    "observed_at": "2026-10-09T12:17:46.902552+00:00",
+    "host": "ip-172-26-11-47",
+    "source_revision": "97e5b34f83edf4ef842c0c8be10ce4decd89c2ae",
+    "applied_revision": "97e5b34f83edf4ef842c0c8be10ce4decd89c2ae",
+    "applied_image": "sha256:5e079ce30aad046271f3764ff549cb347a899bf2a92cf2d63c145f39cf1643dd",
+    "configured_image": "inresearch-app:97e5b34f83edf4ef842c0c8be10ce4decd89c2ae",
+    "image": "sha256:5e079ce30aad046271f3764ff549cb347a899bf2a92cf2d63c145f39cf1643dd",
+    "status": "HEALTHY: 97e5b34f83edf4ef842c0c8be10ce4decd89c2ae",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "governance": "2026.10.09.42",
+    "deployment_service": "ActiveState=inactive\nSubState=dead",
+    "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+    "data_migration": false
+  },
+  "source_merge_exact_tree": {
+    "observed_at": "2026-10-09T12:19:28.092867+00:00",
+    "head": "035701a01c0fac919da5cb52d87864b85dd193ad",
+    "merge": "3e169899cd5e9fbbfeadc5c493565d678a7306ea",
+    "full_tree_diff": "",
+    "head_tree": "a0b536263043ef8d534148a3eedfbd09d8a2a2ef",
+    "merge_tree": "a0b536263043ef8d534148a3eedfbd09d8a2a2ef"
+  },
+  "aws": {
+    "observed_at": "2026-10-09T12:20:37.142161+00:00",
+    "host": "ip-172-26-11-47",
+    "source_revision": "3e169899cd5e9fbbfeadc5c493565d678a7306ea",
+    "applied_revision": "3e169899cd5e9fbbfeadc5c493565d678a7306ea",
+    "applied_image": "sha256:bfb24f4262c2f760fc5813336c72d9cf5ccd0c77efa08c438b679605c5a4821a",
+    "configured_image": "inresearch-app:3e169899cd5e9fbbfeadc5c493565d678a7306ea",
+    "image": "sha256:bfb24f4262c2f760fc5813336c72d9cf5ccd0c77efa08c438b679605c5a4821a",
+    "status": "HEALTHY: 3e169899cd5e9fbbfeadc5c493565d678a7306ea",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "governance": "2026.10.09.43",
+    "deployment_service": "ActiveState=inactive\nSubState=dead",
+    "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+    "data_migration": false
+  },
+  "ci": {
+    "status": "not_queried",
+    "authorization": "Current explicit user authorization: autonomous PR ready/merge and existing timer production release after full local acceptance; do not query/wait CI. No CI pass claimed."
+  },
+  "public_entry": "https://inresearch.ai/chip-atlas.html",
+  "public_3D_entry": "https://inresearch.ai/rack3d.html?x=90",
+  "public_actions": {
+    "static_views": [
+      {
+        "width": 1280,
+        "theme": "light",
+        "file": "chip-package-1280-light.png"
+      },
+      {
+        "width": 1280,
+        "theme": "dark",
+        "file": "chip-package-1280-dark.png"
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "file": "chip-package-390-light.png"
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "file": "chip-package-390-dark.png"
+      }
+    ],
+    "all_four_static_and_eight_headed_3D_images_individually_viewed": true,
+    "editable_labels": 8,
+    "actual_svg_text_nodes": 19,
+    "independent_leaders": 8,
+    "native_master_sha256": "70a96800f1c0ef4e529d52b5c03adde027e05eb6e0f0e2ad39537d1c099e7721",
+    "native_reproduction": {
+      "evidence": {
+        "method": "Independent native WebGL render, no interpolation or interactive snapshot",
+        "native_pixels": [
+          1536,
+          1024
+        ],
+        "counts": {
+          "logicDies": 1,
+          "HBMStacks": 4,
+          "DRAMLayersPerStack": 8,
+          "internalTSVsInCutaway": 6,
+          "substrates": 1,
+          "interposers": 1,
+          "BGABalls": 280
+        },
+        "projection": "OrthographicCamera oblique",
+        "reference": "R3+adoptedTA05; generic illustrated dimensions/materials/contacts",
+        "camera": {
+          "position": [
+            7.261785663000903,
+            9.016926490444922,
+            12.417449418610428
+          ],
+          "target": [
+            -1.7382143369990974,
+            2.016926490444922,
+            1.4174494186104278
+          ],
+          "frustum": [
+            -8.321432900053782,
+            8.321432900053782,
+            5.5476219333691885,
+            -5.5476219333691885
+          ]
+        },
+        "instances": [
+          {
+            "id": "package/logic-die",
+            "home": [
+              0,
+              0.091,
+              0
+            ],
+            "axis": [
+              0,
+              1.7,
+              0
+            ],
+            "actual": [
+              0,
+              1.791,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "home": [
+              -2.6,
+              0.091,
+              -1.85
+            ],
+            "axis": [
+              0,
+              1.7,
+              0
+            ],
+            "actual": [
+              -2.6,
+              1.791,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "home": [
+              -2.6,
+              0.091,
+              1.85
+            ],
+            "axis": [
+              0,
+              1.7,
+              0
+            ],
+            "actual": [
+              -2.6,
+              1.791,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "home": [
+              2.6,
+              0.091,
+              -1.85
+            ],
+            "axis": [
+              0,
+              1.7,
+              0
+            ],
+            "actual": [
+              2.6,
+              1.791,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "home": [
+              2.6,
+              0.091,
+              1.85
+            ],
+            "axis": [
+              0,
+              1.7,
+              0
+            ],
+            "actual": [
+              2.6,
+              1.791,
+              1.85
+            ]
+          }
+        ],
+        "anchors": {
+          "logic": [
+            975,
+            381.4104180520675
+          ],
+          "hbm": [
+            1268.836676545323,
+            353.73161479452534
+          ],
+          "interposer": [
+            1082.4695468911623,
+            706.0602781706514
+          ],
+          "substrate": [
+            1076.9499629118577,
+            828.2191782576924
+          ]
+        },
+        "inset": {
+          "native_pixels": [
+            380,
+            330
+          ],
+          "rect": [
+            50,
+            160,
+            380,
+            330
+          ],
+          "instance": "package/hbm-2",
+          "repeated_existing_instance": true,
+          "TSVAnchor": [
+            244.85544080431262,
+            347.46464190347075
+          ],
+          "layerAnchor": [
+            239.1431593032727,
+            305.6361384220135
+          ],
+          "baseAnchor": [
+            239.1431593032727,
+            373.30949709787296
+          ]
+        },
+        "underside": {
+          "native_pixels": [
+            380,
+            210
+          ],
+          "rect": [
+            50,
+            750,
+            380,
+            210
+          ],
+          "instance": "package/substrate",
+          "repeated_existing_instance": true,
+          "attached_BGA_count": 280
+        },
+        "contact_detail": {
+          "native_pixels": [
+            380,
+            110
+          ],
+          "rect": [
+            50,
+            575,
+            380,
+            110
+          ],
+          "instance": "package/hbm-2",
+          "repeated_existing_instance": true,
+          "anchor": [
+            169.43161314769276,
+            677.7756984507215
+          ]
+        }
+      },
+      "mean_absolute_rgb_delta": 0,
+      "large_delta_pixel_fraction": 0,
+      "scope": "Exact native dimensions and same-geometry insets; bounded GPU pixel differences, not a substitute for original visual review"
+    },
+    "full_native_labelled_preview": {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/public/chip-package-full-svg.png",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "e2261bc5d47ac7f7a8c0be3a3ae912f684ad95ef8d74eb5f0b715ed4742adca6"
+    },
+    "downloads": [
+      {
+        "file": "chip-package-v1.svg",
+        "bytes": 463119,
+        "sha256": "27c04dae03a2f1990b34e168453f01cf4c50f020a995ed01bfccda43c3615943"
+      },
+      {
+        "file": "chip-package-v1.png",
+        "bytes": 344942,
+        "sha256": "70a96800f1c0ef4e529d52b5c03adde027e05eb6e0f0e2ad39537d1c099e7721"
+      }
+    ],
+    "download_HEADs": [
+      {
+        "url": "https://inresearch.ai/assets/technical-atlas/chip-package-v1.png",
+        "status": 200,
+        "content_length": "344942",
+        "content_type": "image/png"
+      },
+      {
+        "url": "https://inresearch.ai/assets/technical-atlas/chip-package-v1.svg",
+        "status": 200,
+        "content_length": "463119",
+        "content_type": "image/svg+xml"
+      }
+    ],
+    "source_checks": [
+      {
+        "path": "web/pages/rack3d.html",
+        "url": "https://inresearch.ai/rack3d.html",
+        "status": 200,
+        "bytes": 53394,
+        "sha256": "dd8413640c87745a0743a0a14d65a438b665c35c262110117795b28155639547",
+        "expected_sha256": "dd8413640c87745a0743a0a14d65a438b665c35c262110117795b28155639547",
+        "match": true
+      },
+      {
+        "path": "web/pages/chip-atlas.html",
+        "url": "https://inresearch.ai/chip-atlas.html",
+        "status": 200,
+        "bytes": 1460,
+        "sha256": "dcea39493fedf3a9c6f22ab1cc66aa6ddff4884c728e2d39e4404891e638c5b5",
+        "expected_sha256": "dcea39493fedf3a9c6f22ab1cc66aa6ddff4884c728e2d39e4404891e638c5b5",
+        "match": true
+      },
+      {
+        "path": "web/components/chip-package-assembly.js",
+        "url": "https://inresearch.ai/assets/chip-package-assembly.js",
+        "status": 200,
+        "bytes": 7790,
+        "sha256": "196e3ea3ac81a73108147aa438be0c41a3266169483acd12c272543f8a6a7241",
+        "expected_sha256": "196e3ea3ac81a73108147aa438be0c41a3266169483acd12c272543f8a6a7241",
+        "match": true
+      },
+      {
+        "path": "web/components/chip-package-generator.js",
+        "url": "https://inresearch.ai/assets/chip-package-generator.js",
+        "status": 200,
+        "bytes": 6774,
+        "sha256": "f5f04bc3ea6fc7f1eaf4ea483d3a13262a8a26f257a906607d0bf0ca3b28b5ca",
+        "expected_sha256": "f5f04bc3ea6fc7f1eaf4ea483d3a13262a8a26f257a906607d0bf0ca3b28b5ca",
+        "match": true
+      },
+      {
+        "path": "web/components/technical-atlas.js",
+        "url": "https://inresearch.ai/assets/technical-atlas.js",
+        "status": 200,
+        "bytes": 24164,
+        "sha256": "0e4b933670cc66aa5b295cb8c0f0ddc64998b249af0cc4508b309969de809045",
+        "expected_sha256": "0e4b933670cc66aa5b295cb8c0f0ddc64998b249af0cc4508b309969de809045",
+        "match": true
+      },
+      {
+        "path": "web/components/scene-atlas.js",
+        "url": "https://inresearch.ai/assets/scene-atlas.js",
+        "status": 200,
+        "bytes": 12909,
+        "sha256": "89d3a0164016355705e1f0995aebd45d16481b81f01bc429e0159cbcd1da1a5e",
+        "expected_sha256": "89d3a0164016355705e1f0995aebd45d16481b81f01bc429e0159cbcd1da1a5e",
+        "match": true
+      },
+      {
+        "path": "web/components/part-inspector.js",
+        "url": "https://inresearch.ai/assets/part-inspector.js",
+        "status": 200,
+        "bytes": 4188,
+        "sha256": "7e0969f3a57bd96f409bbb5e1c57edb089ce052b54a1816b70b9df940f21e19e",
+        "expected_sha256": "7e0969f3a57bd96f409bbb5e1c57edb089ce052b54a1816b70b9df940f21e19e",
+        "match": true
+      },
+      {
+        "path": "web/components/scene-view.js",
+        "url": "https://inresearch.ai/assets/scene-view.js",
+        "status": 200,
+        "bytes": 4804,
+        "sha256": "04ff5001954f182fd8e12bd52403d9675ee34a7900ac66a91062c8d54804fdbe",
+        "expected_sha256": "04ff5001954f182fd8e12bd52403d9675ee34a7900ac66a91062c8d54804fdbe",
+        "match": true
+      },
+      {
+        "path": "web/components/rack-exploded-view.js",
+        "url": "https://inresearch.ai/assets/rack-exploded-view.js",
+        "status": 200,
+        "bytes": 2701,
+        "sha256": "43d6c292bc5d764d874de8d7e183f79c64e5454132417f1dbf9bc020fe9b41e3",
+        "expected_sha256": "43d6c292bc5d764d874de8d7e183f79c64e5454132417f1dbf9bc020fe9b41e3",
+        "match": true
+      },
+      {
+        "path": "web/assets/technical-atlas/chip-package-v1.png",
+        "url": "https://inresearch.ai/assets/technical-atlas/chip-package-v1.png",
+        "status": 200,
+        "bytes": 344942,
+        "sha256": "70a96800f1c0ef4e529d52b5c03adde027e05eb6e0f0e2ad39537d1c099e7721",
+        "expected_sha256": "70a96800f1c0ef4e529d52b5c03adde027e05eb6e0f0e2ad39537d1c099e7721",
+        "match": true
+      },
+      {
+        "path": "web/assets/technical-atlas/chip-package-v1.svg",
+        "url": "https://inresearch.ai/assets/technical-atlas/chip-package-v1.svg",
+        "status": 200,
+        "bytes": 463119,
+        "sha256": "27c04dae03a2f1990b34e168453f01cf4c50f020a995ed01bfccda43c3615943",
+        "expected_sha256": "27c04dae03a2f1990b34e168453f01cf4c50f020a995ed01bfccda43c3615943",
+        "match": true
+      },
+      {
+        "path": "web/assets/technical-atlas/chip-package-v1-preview.svg",
+        "url": "https://inresearch.ai/assets/technical-atlas/chip-package-v1-preview.svg",
+        "status": 200,
+        "bytes": 192140,
+        "sha256": "d03fdfd35fa486b74c2f0165a0f303346fe719bef954eeffdeb5d797f794275b",
+        "expected_sha256": "d03fdfd35fa486b74c2f0165a0f303346fe719bef954eeffdeb5d797f794275b",
+        "match": true
+      }
+    ],
+    "health": {
+      "url": "https://inresearch.ai/healthz",
+      "status": 200,
+      "body": "{\"ok\":true,\"service\":\"inresearch\",\"auth_required\":true}"
+    },
+    "actual_phone_header360": {
+      "width": 360,
+      "height": 85.734375
+    },
+    "page_errors": []
+  },
+  "assembly_checks": {
+    "record": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-15/public/chip-package-results.json",
+    "browser_mode": "headed-default-graphics",
+    "checks": [
+      {
+        "label": "authored x90 initial view equals explicit fit",
+        "initial": {
+          "p": [
+            6.635297484888628,
+            7.531196743750845,
+            12.154903868690251
+          ],
+          "t": [
+            -1.7418678686100422,
+            2.0860392639767116,
+            1.2645889091419804
+          ]
+        },
+        "explicit": {
+          "p": [
+            6.635297484888627,
+            7.531196743750845,
+            12.15490386869025
+          ],
+          "t": [
+            -1.7418678686100422,
+            2.0860392639767116,
+            1.26458890914198
+          ]
+        }
+      },
+      {
+        "label": "actual generic package geometry and unique local instances",
+        "counts": {
+          "logicDies": 1,
+          "HBMStacks": 4,
+          "DRAMLayersPerStack": 8,
+          "internalTSVsInCutaway": 6,
+          "substrates": 1,
+          "interposers": 1,
+          "BGABalls": 280
+        },
+        "meshes": 1049,
+        "picks": 1049,
+        "unique": 1049,
+        "models": 0,
+        "logic": "logic-die",
+        "hbms": [
+          {
+            "id": "package/hbm-1",
+            "layers": 8,
+            "tsv": 0
+          },
+          {
+            "id": "package/hbm-2",
+            "layers": 8,
+            "tsv": 6
+          },
+          {
+            "id": "package/hbm-3",
+            "layers": 8,
+            "tsv": 0
+          },
+          {
+            "id": "package/hbm-4",
+            "layers": 8,
+            "tsv": 0
+          }
+        ],
+        "ids": [
+          "package/logic-die",
+          "package/hbm-1",
+          "package/hbm-2",
+          "package/hbm-3",
+          "package/hbm-4"
+        ],
+        "axes": [
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ],
+          [
+            0,
+            1.7,
+            0
+          ]
+        ]
+      },
+      {
+        "label": "all200 actual paired contacts touch their own pads; C4 touches both substrate and interposer; TSV stays in silicon",
+        "pairs": 200,
+        "maxGap": 5.159526139664194e-10,
+        "maxPlanar": 0,
+        "c4Count": 108,
+        "c4Gap": 5.364418076414523e-09,
+        "c4UpperGap": 1.4901158085223187e-10,
+        "substrateTop": 0.4900000059604645,
+        "interposerBottom": 0.584999999254942,
+        "postTop": 1.2459999994039535,
+        "siliconTop": 1.2610000000894068,
+        "measurement": "Actual mesh geometry boundingBox transformed to world; no copied sphere radius or plate thickness",
+        "substrate": [
+          0,
+          0.34,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage45",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              0,
+              0.091,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 1.05,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          1.685,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage100",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              0,
+              1.791,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.791,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.791,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.791,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.75,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.791,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          1.685,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage0",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              0,
+              0.091,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              0.091,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 0,
+            "rotation": 0,
+            "local": [
+              2.6,
+              0.091,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          0.635,
+          0
+        ]
+      },
+      {
+        "label": "all5 devices retain full2D contact projection and one common separation, stage90",
+        "rows": [
+          {
+            "id": "package/logic-die",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              0,
+              1.6428407212622085,
+              0
+            ]
+          },
+          {
+            "id": "package/hbm-1",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.6428407212622085,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-2",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              -2.6,
+              1.6428407212622085,
+              1.85
+            ]
+          },
+          {
+            "id": "package/hbm-3",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.6428407212622085,
+              -1.85
+            ]
+          },
+          {
+            "id": "package/hbm-4",
+            "dx": 0,
+            "dz": 0,
+            "dy": 2.6018407212622083,
+            "rotation": 0,
+            "local": [
+              2.6,
+              1.6428407212622085,
+              1.85
+            ]
+          }
+        ],
+        "substrate": [
+          0,
+          0.34,
+          0
+        ],
+        "layer": [
+          0,
+          1.685,
+          0
+        ]
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "light",
+        "stage": 0,
+        "colors": 846,
+        "left": 370.9225339808,
+        "right": 1229.5529282738792,
+        "top": 374.9499819296056,
+        "bottom": 803.6992495003553,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "light",
+        "stage": 100,
+        "colors": 801,
+        "left": 442.0462382945487,
+        "right": 1147.069596310982,
+        "top": 311.76378546638307,
+        "bottom": 857.682340611274,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "dark",
+        "stage": 0,
+        "colors": 846,
+        "left": 370.9225339807997,
+        "right": 1229.5529282738792,
+        "top": 374.9499819296056,
+        "bottom": 803.6992495003556,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 1280,
+        "theme": "dark",
+        "stage": 100,
+        "colors": 801,
+        "left": 442.04623829454863,
+        "right": 1147.0695963109815,
+        "top": 311.763785466383,
+        "bottom": 857.682340611274,
+        "canvas": {
+          "left": 0,
+          "right": 1280,
+          "top": 105.3984375,
+          "bottom": 900
+        },
+        "hud": {
+          "left": 18,
+          "right": 318,
+          "top": 377.8359375,
+          "bottom": 882
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "light",
+        "stage": 0,
+        "colors": 472,
+        "left": 24.209844991221892,
+        "right": 360.51854018071634,
+        "top": 386.5265061202597,
+        "bottom": 520.7625606818401,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "light",
+        "stage": 100,
+        "colors": 525,
+        "left": 24.309899000605956,
+        "right": 360.52241118010505,
+        "top": 344.1500413145018,
+        "bottom": 572.0406990378573,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "dark",
+        "stage": 0,
+        "colors": 472,
+        "left": 24.209844991221633,
+        "right": 360.5185401807161,
+        "top": 386.52650612025957,
+        "bottom": 520.7625606818399,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "actual rendered view clears canvas and persistent controls, with number mapping",
+        "width": 390,
+        "theme": "dark",
+        "stage": 100,
+        "colors": 525,
+        "left": 24.309899000605828,
+        "right": 360.52241118010494,
+        "top": 344.15004131450166,
+        "bottom": 572.0406990378572,
+        "canvas": {
+          "left": 0,
+          "right": 390,
+          "top": 132,
+          "bottom": 844
+        },
+        "hud": {
+          "left": 10,
+          "right": 380,
+          "top": 753.265625,
+          "bottom": 834
+        },
+        "legend": "① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球"
+      },
+      {
+        "label": "complete package dossier includes actual all4 stacks and connection layers",
+        "meshes": 1049
+      },
+      {
+        "label": "real canvas pick and current-view export retain one instance",
+        "name": "logic-die",
+        "x": 805.4796031866091,
+        "y": 403.0090361328934,
+        "count": 129,
+        "id": "package/logic-die"
+      },
+      {
+        "label": "real canvas pick and current-view export retain one instance",
+        "name": "hbm-3",
+        "x": 1055.1173099675145,
+        "y": 374.7200622234156,
+        "count": 37,
+        "id": "package/hbm-3"
+      },
+      {
+        "label": "real canvas pick and current-view export retain one instance",
+        "name": "substrate",
+        "x": 976.345821681303,
+        "y": 815.7074805098331,
+        "count": 361,
+        "id": "package/substrate"
+      },
+      {
+        "label": "manual camera survives stage resize and late refresh"
+      },
+      {
+        "label": "owned geometry/material resources release once and RAF stops",
+        "geometries": 43,
+        "materials": 8,
+        "g": 43,
+        "m": 8,
+        "after": 0,
+        "picks": 0,
+        "parent": false,
+        "labels": 0
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=0",
+        "want": [
+          false,
+          true,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=35",
+        "want": [
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?view=legacy&x=90",
+        "want": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=55",
+        "want": [
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?node=part:gpu",
+        "want": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?x=90&node=part:ssd#ssd",
+        "want": [
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      {
+        "label": "retained independent and legacy route",
+        "url": "/rack3d.html?view=chip&explode=0",
+        "want": [
+          true,
+          false,
+          false,
+          false
+        ]
+      }
+    ],
+    "source_responses": [
+      {
+        "url": "https://inresearch.ai/rack3d.html?x=90",
+        "status": 200,
+        "bytes": 53394
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "bytes": 4188
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?x=0",
+        "status": 200,
+        "bytes": 53394
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "bytes": 4188
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?x=35",
+        "status": 200,
+        "bytes": 53394
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "bytes": 4188
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?view=legacy&x=90",
+        "status": 200,
+        "bytes": 53394
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "bytes": 4188
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?x=55",
+        "status": 200,
+        "bytes": 53394
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "bytes": 4188
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?node=part:gpu",
+        "status": 200,
+        "bytes": 53394
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "bytes": 4188
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?x=90&node=part:ssd",
+        "status": 200,
+        "bytes": 53394
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "bytes": 4188
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?view=chip&explode=0",
+        "status": 200,
+        "bytes": 53394
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "bytes": 4188
+      }
+    ],
+    "page_errors": [],
+    "screenshots_individually_viewed": [
+      "chip-package-1280-light-0.png",
+      "chip-package-1280-light-100.png",
+      "chip-package-1280-dark-0.png",
+      "chip-package-1280-dark-100.png",
+      "chip-package-390-light-0.png",
+      "chip-package-390-light-100.png",
+      "chip-package-390-dark-0.png",
+      "chip-package-390-dark-100.png",
+      "chip-package-1280-light.png",
+      "chip-package-1280-dark.png",
+      "chip-package-390-light.png",
+      "chip-package-390-dark.png",
+      "chip-package-whole-inspector.png",
+      "chip-package-instance-logic-die.png",
+      "chip-package-instance-hbm-3.png",
+      "chip-package-instance-substrate.png",
+      "chip-package-full-svg.png"
+    ],
+    "scope": "1049whole/three actual canvas instance picks+SVG IDs; all200microbumps/108C4twofaces/TSV actualbounds; commonfull2D correspondence at0/45/90/100;8fixed-HUD/navigation-safe defaultviews/5numberlegend/initialfit/manualownership/exactrelease/sevenoldroutes",
+    "dynamic_dossier_overlay_observation": {
+      "observed_at": "2026-10-09T12:27:16.807Z",
+      "base": "https://inresearch.ai",
+      "scope": "Read-only test injection; actual corners and unchanged camera; compare inherited TA14 dynamic overlay and TA15. No product mutation.",
+      "rows": [
+        {
+          "x": 35,
+          "before": {
+            "camera": [
+              18.94908200718309,
+              16.567425034488778,
+              36.08304890677421
+            ],
+            "target": [
+              -5.684140248788953,
+              6.928338064760587,
+              9.307807324195904
+            ],
+            "model": {
+              "left": 521.9837709561251,
+              "right": 1023.841544178305,
+              "top": 263.6766101843042,
+              "bottom": 855.755497685185
+            },
+            "panel": {
+              "left": 0,
+              "right": 0,
+              "top": 0,
+              "bottom": 0,
+              "width": 0
+            },
+            "panelDisplay": "none",
+            "overlap": false
+          },
+          "opened": {
+            "camera": [
+              19.93110576253567,
+              17.76531015801514,
+              37.584279619458336
+            ],
+            "target": [
+              -6.022489324970661,
+              7.609555558556142,
+              9.373850176516676
+            ],
+            "model": {
+              "left": 540.6962122333082,
+              "right": 1012.8210641219972,
+              "top": 292.2717694563836,
+              "bottom": 857.6372639147366
+            },
+            "panel": {
+              "left": 922,
+              "right": 1262,
+              "top": 119,
+              "bottom": 876,
+              "width": 340
+            },
+            "panelDisplay": "block",
+            "overlap": true
+          },
+          "fitted": {
+            "camera": [
+              19.93110576253567,
+              17.76531015801514,
+              37.584279619458336
+            ],
+            "target": [
+              -6.022489324970661,
+              7.609555558556142,
+              9.373850176516676
+            ],
+            "model": {
+              "left": 540.6962122333082,
+              "right": 1012.8210641219972,
+              "top": 292.2717694563836,
+              "bottom": 857.6372639147366
+            },
+            "panel": {
+              "left": 922,
+              "right": 1262,
+              "top": 119,
+              "bottom": 876,
+              "width": 340
+            },
+            "panelDisplay": "block",
+            "overlap": true
+          },
+          "opening_preserves_camera": false,
+          "explicit_fit_includes_sidebar": false
+        },
+        {
+          "x": 90,
+          "before": {
+            "camera": [
+              6.722807663767127,
+              7.68056700622666,
+              12.31536893981258
+            ],
+            "target": [
+              -1.7652183086414304,
+              2.1633501241610995,
+              1.2809351756814558
+            ],
+            "model": {
+              "left": 442.046238294549,
+              "right": 1147.0695963109822,
+              "top": 311.763785466383,
+              "bottom": 857.682340611274
+            },
+            "panel": {
+              "left": 0,
+              "right": 0,
+              "top": 0,
+              "bottom": 0,
+              "width": 0
+            },
+            "panelDisplay": "none",
+            "overlap": false
+          },
+          "opened": {
+            "camera": [
+              6.722807663767127,
+              7.68056700622666,
+              12.31536893981258
+            ],
+            "target": [
+              -1.7652183086414304,
+              2.1633501241610995,
+              1.2809351756814558
+            ],
+            "model": {
+              "left": 442.046238294549,
+              "right": 1147.0695963109822,
+              "top": 311.763785466383,
+              "bottom": 857.682340611274
+            },
+            "panel": {
+              "left": 922,
+              "right": 1262,
+              "top": 119,
+              "bottom": 876,
+              "width": 340
+            },
+            "panelDisplay": "block",
+            "overlap": true
+          },
+          "fitted": {
+            "camera": [
+              6.722807663767127,
+              7.68056700622666,
+              12.31536893981258
+            ],
+            "target": [
+              -1.7652183086414306,
+              2.1633501241610995,
+              1.280935175681456
+            ],
+            "model": {
+              "left": 442.046238294549,
+              "right": 1147.0695963109822,
+              "top": 311.763785466383,
+              "bottom": 857.682340611274
+            },
+            "panel": {
+              "left": 922,
+              "right": 1262,
+              "top": 119,
+              "bottom": 876,
+              "width": 340
+            },
+            "panelDisplay": "block",
+            "overlap": true
+          },
+          "opening_preserves_camera": true,
+          "explicit_fit_includes_sidebar": false
+        }
+      ]
+    }
+  },
+  "run_receipt": {
+    "observed_at": "2026-10-09T12:25:47.051718+00:00",
+    "rows": [
+      {
+        "suite": "chip_package all",
+        "exit_code": 0,
+        "browser_mode": "headed-default-graphics",
+        "log": "/private/tmp/ta15-public-chip.log",
+        "log_sha256": "edf9a31228e6f1e9b78083fa44e2c81ec898c728fa2435d9a4a36f268fe179b5"
+      },
+      {
+        "suite": "chip_atlas",
+        "exit_code": 0,
+        "browser_mode": "headless-static-native-reproduction",
+        "log": "/private/tmp/ta15-public-atlas.log",
+        "log_sha256": "c8e7e8c198952c4daccd16d3c3c60cba8b195222925ca0f446843e844d6383e7"
+      }
+    ],
+    "scope": "Actual serial public executions; exit0 recorded from command results, log bytes retained. No inferred runtime duration."
+  },
+  "retained_observations": {
+    "rejected_AI_and_all_native_versions": "docs/design/technical-atlas/TA-15/preparation-v1.json",
+    "old_single_face_C4_test_and_upper_gap": "Local v6 test covered only C4 lower contact; upper0.005 gap found by self-review, old native/source/results retained. v7 fixed radius/center and both faces now independently derived from actual mesh bounds/world; 200microbumps retained.",
+    "original_preview_display_discrepancy": "Root preliminary01/02mispoint allegation withdrawn after same-byte unique preview and all8 SVG paths read; no geometry altered to conceal it.",
+    "first_ui_fixture_failure": "Direct ui_skin invocation missed UI_ADMIN_COOKIE and timed out on protected admin page after18readablepages; retained. Original project temporary-admin runner passed35pages+states51s; no auth gate/assertion changed."
+  },
+  "boundaries": [
+    "Generic1logic4HBM, eightDRAMlayers/sixTSVs/200microbumps/108C4/280BGA and all materials/geometry are illustration choices, not OEM/CAD/capacity/performance/power or manufacturing/repair steps",
+    "Actual both mating faces measured from geometry bounds and world matrices; illustration correspondence does not certify real fabrication/underfill/contact material or process feasibility",
+    "Three native1:1 insets repeat existing HBM2 and substrate; no additional stacks. Native1536x1024 controlled geometry method, not accepted AI output or resampled current-view export",
+    "Independent x90 controls and stable instance picks/export verified at recorded views; all devices/browsers/angles/physical touch and real hardware not exhaustively covered",
+    "Category GPU/HBM research links do not adopt specific product/logic floorplan/recipe/specifications; anonymous visual acceptance does not certify authenticated research content",
+    "Spark, Reader, review services, scope, models, research facts and formal adoption not changed by this atlas task; CI neither queried nor claimed passed",
+    "Inherited TA14 dynamic dossier is a340px overlay: actualx35 explicit-fit mainright1012.821>panelleft922, actualx90 mainright1147.070>922; explicitfit considers fixedHUD/drill only. Whole1049mesh Inspector means complete independent panel preview; main canvas may be obscured while dossier is open. TA15 opening preserved current camera. No automatic refit or new camera takeover added; future explicit-fit overlay handling remains separate."
+  ],
+  "progress": {
+    "primary_published": 15,
+    "primary_total": 35,
+    "supplemental_published": 4,
+    "supplemental_total": 4,
+    "next_figure": "TA-16"
+  },
+  "publication_status": "published_after_actual_AWS_and_public_acceptance"
+}
