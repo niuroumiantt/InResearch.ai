@@ -82,7 +82,6 @@
     .insp canvas { height: 160px; }
   }
 
-.chip-desktop-legend{display:none}@media(min-width:701px){.chip-desktop-legend{display:block}}
 </style>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
 </head>
@@ -115,17 +114,14 @@
 <script type="importmap">{"imports": {"three": "./assets/vendor/three.module.js"}}</script>
 <script type="module">
 import * as THREE from "three";
-import {buildChipPackage} from "/assets/chip-package-assembly.js";
 import {buildServerAssembly} from "/assets/server-assembly.js";
 import {buildRackAssembly} from "/assets/rack-assembly.js";
 import {fitRackExploded} from "/assets/rack-exploded-view.js";
 const serverQuery = new URLSearchParams(location.search);
 const serverMode = serverQuery.get("view") === "server" || serverQuery.get("x") === "55" || serverQuery.get("node") === "part:server" || location.hash === "#server";
 const requestedPart=(serverQuery.get('node')||'').replace(/^part:/,'')||location.hash.slice(1);
-const chipMode=!serverMode && (serverQuery.get('view')==='chip' || (serverQuery.get('view')!=='legacy' && serverQuery.get('x')==='90' && (!requestedPart || ['gpu','hbm'].includes(requestedPart))));
-let chipAssembly=null,chipSelectedMeshes=null,chipSelectedInstance=null;
-const rackExplodedMode=!chipMode && !serverMode && (serverQuery.get('view')==='rack-exploded' || (serverQuery.get('view')!=='legacy' && serverQuery.get('x')==='35'));
-const rackOverviewMode=!chipMode && !serverMode && !rackExplodedMode && (serverQuery.get('view')==='rack' || (!requestedPart && (!serverQuery.has('x')||serverQuery.get('x')==='0')));
+const rackExplodedMode=!serverMode && (serverQuery.get('view')==='rack-exploded' || (serverQuery.get('view')!=='legacy' && serverQuery.get('x')==='35'));
+const rackOverviewMode=!serverMode && !rackExplodedMode && (serverQuery.get('view')==='rack' || (!requestedPart && (!serverQuery.has('x')||serverQuery.get('x')==='0')));
 const rackMode=rackOverviewMode||rackExplodedMode;
 let serverAssembly = null;
 let rackAssembly = null;
@@ -196,21 +192,6 @@ if (serverMode) {
   document.querySelector('.topbar .on').textContent = '服务器拆解台';
   camera.position.set(-10, 9, 12); controls.target.set(0, 1.2, 0); controls.autoRotate = false;
 }
-if(chipMode){
-  document.title='芯片封装独立近景 · inresearch.ai';
-  document.querySelector('.hud summary').textContent='芯片封装近景 · 通用示意';
-  const legend=document.createElement('span');legend.className='rack-exploded-legend';legend.textContent='① 逻辑裸片　② 四组HBM　③ 硅中介层　④ 基板　⑤ 底部焊球';document.querySelector('.hud summary').append(legend);const desktopLegend=document.createElement('p');desktopLegend.className='m chip-desktop-legend';desktopLegend.textContent=legend.textContent;document.querySelector('.hud h1').after(desktopLegend);
-  document.querySelector('.hud h1').textContent='芯片封装独立近景';
-  document.querySelector('.rg-concept-note').textContent='一逻辑/四HBM示例 · 共用竖向分层 · 非制造或拆修步骤';
-  document.querySelector('.topbar .on').textContent='芯片封装近景';
-  document.getElementById('explode').setAttribute('aria-label','封装层次虚拟展开');
-  document.getElementById('play').textContent='▶ 自动查看封装层次';
-  const links=document.createElement('div');links.className='m';
-  for(const[text,url]of[['完整标注与双下载','/chip-atlas.html'],['原HBM类别母图','/bom.html#hbm'],['旧历史芯片阶段','/rack3d.html?view=legacy&x=90']]){const a=document.createElement('a');a.textContent=text;a.href=url;links.append(a,document.createTextNode(' · '));}
-  document.querySelector('.rg-concept-note').after(links);
-  const button=document.createElement('button');button.id='chip-package-dossier';button.type='button';button.textContent='完整封装档案与预览';links.after(button);
-  camera.position.set(10,8,13);controls.target.set(0,1.5,0);controls.autoRotate=false;controls.minDistance=2;
-}
 if (rackMode) {
   document.title='机柜整柜结构图 · inresearch.ai';
   document.querySelector('.hud summary').textContent='机柜整柜 · 通用示意';
@@ -255,7 +236,7 @@ addAtlasLights(THREE, scene, [14,22,12], {left:-14,right:14,top:18,bottom:-6,far
 /* ─────────── 程序化纹理 ─────────── */
 const ctex = texturePool.canvas;
 const rnd = (() => { let s = 7; return () => (s = s * 16807 % 2147483647) / 2147483647; })();
-const TEX = rackMode || chipMode ? {} : {
+const TEX = rackMode ? {} : {
   post: ctex(32, 256, (g, w, h) => {           // 机柜立柱：EIA 孔带
     g.fillStyle = "#10141c"; g.fillRect(0, 0, w, h);
     g.fillStyle = "#05070b";
@@ -371,7 +352,7 @@ function panel(name, accent) {
       g.fillStyle = accent; g.fillRect(w - 39, 12, 20, 5);
     }});
 }
-const PANEL = rackMode || chipMode ? {} : {
+const PANEL = rackMode ? {} : {
   server: panel("server_nvme", "#22c55e"), hero: panel("server_gpu", "#60a5fa"),
   storage: panel("server_storage", "#f59e0b"), tor: panel("switch_tor", "#38bdf8"),
   ib: panel("switch_ib", "#a78bfa"),
@@ -424,9 +405,7 @@ function label(text,x,y,z,size=1,color=null,num=null,showAfter) {
 /* ─────────── 机柜（放大比例：1 ≈ 0.1m）─────────── */
 const RW = 3.0, RD = 5.6, RH = 10.4;   // 柜宽/深/高
 let rack;
-if(chipMode){
-  chipAssembly=buildChipPackage({THREE,material:M,tag,label});rack=chipAssembly.root;scene.add(rack);
-} else if (serverMode) {
+if (serverMode) {
   serverAssembly = buildServerAssembly({THREE, material:M, tag, explode, label, spinners});
   rack = serverAssembly.root; scene.add(rack);
 } else if (rackMode) {
@@ -653,7 +632,7 @@ for (let n = 0; n < 3; n++) {
 } // Whole-rack geometry remains a separate legacy scope.
 
 /* ─────────── 阶段与滑杆 ─────────── */
-const STAGES = chipMode ? chipAssembly.stages : serverMode ? serverAssembly.stages : rackMode ? rackAssembly.stages : [
+const STAGES = serverMode ? serverAssembly.stages : rackMode ? rackAssembly.stages : [
   [0.00, "整柜：一台 AI 机柜（ORV3 形态示意）"],
   [0.04, "① 机柜与结构：拆外板与穿孔门——露出内部单元"],
   [0.20, "② 机柜与板级供电、机房与机柜冷却、网络：电源架 / 液冷歧管 / 交换机分离"],
@@ -676,7 +655,6 @@ function apply() {
   });
   poses.forEach((position, obj) => obj.position.copy(position));
   scene.traverse(o => { if (o.isSprite && o.userData.showAfter !== undefined) o.visible = t >= o.userData.showAfter; });
-  chipAssembly?.explode(t);
   if(rackExplodedMode)rackAssembly.explode(t);else rackAssembly?.focus(t);
   let s = STAGES[0][1];
   STAGES.forEach(([th, txt]) => { if (t >= th) s = txt; });
@@ -686,7 +664,7 @@ function apply() {
 const sliderMotion = createSceneMotion();
 slider.addEventListener("input", () => { sliderMotion.cancel(); apply(); });
 const syncStageControl = installStageControl(STAGES, slider, apply);
-{ const x = chipMode ? (serverQuery.get("explode")??"90") : rackExplodedMode ? (serverQuery.get("explode")??"100") : serverQuery.get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); else if (serverMode) slider.value = 55; }
+{ const x = rackExplodedMode ? (serverQuery.get("explode")??"100") : serverQuery.get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); else if (serverMode) slider.value = 55; }
 apply();
 function animateSlider(to, duration = 1400) {
   const from = +slider.value;
@@ -707,13 +685,13 @@ function rebuildPartMesh() {
 rebuildPartMesh();
 let rackSelectedMeshes=null;
 let rackSelectedInstance=null;
-const currentPartMeshes=pid=>chipMode&&chipSelectedMeshes?chipSelectedMeshes:rackMode&&rackSelectedMeshes?rackSelectedMeshes:PARTMESH[pid];
+const currentPartMeshes=pid=>rackMode&&rackSelectedMeshes?rackSelectedMeshes:PARTMESH[pid];
 const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor:currentPartMeshes,
-  initialRotation: pid => chipMode ? {x:.6,y:.55} : serverMode && pid === 'server' ? {x:0.6, y:0.7} : rackMode ? {x:.2,y:-.55} : null});
+  initialRotation: pid => serverMode && pid === 'server' ? {x:0.6, y:0.7} : rackMode ? {x:.2,y:-.55} : null});
 const showDossier = createPartDossier({el: document.getElementById('dossier'), view: 'rack',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector,
-  atlasViewFor:p=>chipMode?'chip':rackMode&&p.id==='rack-frame'?(rackExplodedMode?'exploded':'overview'):null});
+  atlasViewFor:p=>rackMode&&p.id==='rack-frame'?(rackExplodedMode?'exploded':'overview'):null});
 const rackContextPart=()=>({...PART['rack-frame'],name:'机柜与结构 · 整柜上下文',
   desc:'本图是通用整柜结构示意：2交换机、8计算托盘、2电源架为图示选择；侧部铜色长条与灰管未连接。尺寸、U高度、功率、承载及连接回路未知。研究链接仍指向机柜类别，不代表本示例的型号或额定配置。'});
 function rackInstancePart(p) {
@@ -723,16 +701,7 @@ function rackInstancePart(p) {
     'network-switch':{name:'交换机 · 单个示例',desc:'本次点选一个示例交换机，端口外观仅作通用表达。端口数量/速率、协议、内部配置、供应者和功率未知；研究链接指向交换机类别，本示例的具体网络方案待核实。'},
   };return {...p,...examples[p.id]};
 }
-function chipPart(p,whole=false){return {...p,name:whole?'芯片封装 · 完整通用示例':p.id==='hbm'?'HBM · 单个示例堆栈':'GPU · 单个逻辑裸片及封装连接层',desc:whole?'本图仅一个通用硅中介层封装：一块逻辑裸片、四组HBM、硅中介层、封装基板和底部焊球。八DRAM层与TSV/焊点数量、布线、厚度和比例仅为图示。虚拟分离不是制造或维修程序；类别研究不证明本示例的厂商/型号/容量/带宽/功率。':p.id==='hbm'?'本次选中四组示例HBM中的一个；八DRAM层和一处硅内TSV剖口是放大示意，未指定代际、容量、连接数量或供应者。研究链接属于HBM类别。':'本次选中单个逻辑裸片或与其同封装的连接层，非整块GPU扩展卡。工艺、算力、功耗、内部布线和供应者未知；研究链接属于GPU类别。'}}
-function showChipObject(object){
- const p=PART[object.userData.part];if(!p)return;
- let instance=object;while(instance.parent&&instance.parent!==rack&& !/^logic-die$|^hbm-\d+$|^substrate$|^interposer$/.test(instance.name))instance=instance.parent;
- chipSelectedInstance=instance.userData.instanceId||'package/'+instance.name;chipSelectedMeshes=[];
- instance.traverse(m=>{if(!m.isMesh||m.userData.part!==p.id)return;let child=false;for(let n=m.parent;n&&n!==instance;n=n.parent)if(chipAssembly.instances.some(i=>i.object===n))child=true;if(!child)chipSelectedMeshes.push(m)});showDossier(chipPart(p));
-}
-if(chipMode)document.getElementById('chip-package-dossier').onclick=()=>{chipSelectedMeshes=[...pickables];chipSelectedInstance='package/whole';showDossier(chipPart(PART.gpu,true))};
 function showRackObject(object) {
-  if(chipMode){showChipObject(object);return;}
   const p=PART[object.userData.part];if(!p)return;
   if(!rackMode){showDossier(p);return;}
   document.getElementById('dossier').classList.toggle('rack-overview-dossier',p.id==='rack-frame');
@@ -751,7 +720,6 @@ if(rackMode)document.getElementById('rack-overview-dossier').onclick=()=>{
 };
 const scenePicking = createScenePicking({THREE, canvas, camera, pickables, tip,
   describe: object => {
-    if(chipMode)return object.userData.part==='hbm'?'HBM · 单个示例堆栈 · 点击档案':'逻辑裸片与封装连接层 · 通用示意';
     if(rackMode&&['unconnected-copper-bar','unconnected-pipe-accessory'].includes(object.name))return '可选服务附件 · 连接未知 · 点击整柜上下文';
     const part = PART[object.userData.part];
     return part ? `${part.name}（${SN[part.status]}）· 点击看档案` : '';
@@ -761,13 +729,13 @@ const scenePicking = createScenePicking({THREE, canvas, camera, pickables, tip,
 /* ─────────── 主循环：渲染 + 风扇旋转 + LED 呼吸 ─────────── */
 // The published adoption registry owns optional model selection.
 // TA-11 owns its procedural server; rack-only optional adopted models do not replace it.
-const sceneModels = chipMode || serverMode || rackMode
+const sceneModels = serverMode || rackMode
   ? {ready:Promise.resolve(), objects:()=>[], reload:()=>Promise.resolve(), dispose(){}}
   : mountSceneModels({scene, page:"rack3d", defaultHeight:RH + 0.7, replacement:rack, onChange:()=>{atlasDrawing.sync();sceneView?.refresh();}});
 const framingObjects = () => [...pickables, ...sceneModels.objects()];
 sceneView = mountSceneView({canvas, camera, controls,
   objects:framingObjects,
-  ...((rackExplodedMode||chipMode)?{fitView:options=>{
+  ...(rackExplodedMode?{fitView:options=>{
     const rect=canvas.getBoundingClientRect(),hud=document.querySelector('.hud'),phone=innerWidth<=700;
     const summary=hud.querySelector('summary').getBoundingClientRect();
     const drill=document.querySelector('.drill')?.getBoundingClientRect();
@@ -785,10 +753,10 @@ atlasDrawing.sync();
 atlasDrawing.attachLabels(canvas,camera);
 const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atlasDrawing,
   render:()=>composer.render(), button:document.getElementById('atlas-export'),
-  filename:chipMode?'chip-package-technical-atlas.svg':serverMode?'server-technical-atlas.svg':'rack3d-technical-atlas.svg', title:chipMode?'通用芯片封装层次图册':serverMode?'通用服务器整机装配图册':rackExplodedMode?'通用机柜分层装配对应图册':rackOverviewMode?'通用机柜整柜结构图册':'机柜结构图册',
+  filename:serverMode?'server-technical-atlas.svg':'rack3d-technical-atlas.svg', title:serverMode?'通用服务器整机装配图册':rackExplodedMode?'通用机柜分层装配对应图册':rackOverviewMode?'通用机柜整柜结构图册':'机柜结构图册',
   caption:()=>document.getElementById('stage').textContent,
   selected:()=>{const id=document.getElementById('dossier').dataset.partId;
-    return id ? {id:chipSelectedInstance||rackSelectedInstance||'part:'+id,name:PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
+    return id ? {id:rackSelectedInstance||'part:'+id,name:PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
 });
 let animationFrame = 0;
 let pageDisposed = false;
@@ -798,7 +766,7 @@ function disposePage() {
   cancelAnimationFrame(animationFrame); sliderMotion.cancel();
   window.removeEventListener('inresearch:appearance', syncSceneAppearance);
   atlasExport.dispose(); atlasDrawing.dispose();
-  sceneView.dispose(); sceneModels.dispose(); scenePicking.dispose(); inspector.dispose(); serverAssembly?.dispose();rackAssembly?.dispose();chipAssembly?.dispose();
+  sceneView.dispose(); sceneModels.dispose(); scenePicking.dispose(); inspector.dispose(); serverAssembly?.dispose();rackAssembly?.dispose();
   animated.length = 0; pickables.length = 0; controls.dispose();
   sceneEnvironment.dispose(); texturePool.dispose(); composer.dispose(); renderer.dispose();
 }
@@ -820,7 +788,6 @@ const clock = new THREE.Clock();
   const pid = (q.get("node") || "").replace(/^part:/, "") || location.hash.slice(1);
   if (PART[pid]) { controls.autoRotate = false;
     if(rackMode && pid==='rack-frame') document.getElementById('rack-overview-dossier').click();
-    else if(chipMode&&['gpu','hbm'].includes(pid)){chipSelectedMeshes=pid==='hbm'?(()=>{const a=[];chipAssembly.hbms[0].traverse(m=>{if(m.isMesh)a.push(m)});return a})():[...pickables];chipSelectedInstance=pid==='hbm'?'package/hbm-1':'package/whole';showDossier(chipPart(PART[pid],pid==='gpu'));}
     else showDossier(PART[pid]);
   } }
 
@@ -834,7 +801,7 @@ fetch("framework/bom.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).th
   const entries = [{ id: "root", name: "🏢 数据中心全景", page: "bom3d.html", current: here === "bom3d.html" && !q.get("d") }];
   for (const [sid, s] of top) {
     if (sid === "it") entries.push({ id: sid, name: "🗄️ IT · 计算链路（机柜拆解）", page: "rack3d.html", current: here === "rack3d.html" && (q.get("x") || "0") < "70" },
-                                   { id: "chip", name: "🧠 芯片级（服务器拆到底）", page: "rack3d.html?x=90", current: here === "rack3d.html" && (q.get("x") || "0") >= "70" });
+                                   { id: "chip", name: "🧠 芯片级（服务器拆到底）", page: "rack3d.html?x=70", current: here === "rack3d.html" && (q.get("x") || "0") >= "70" });
     else if (sid === "control") entries.push({ id: sid, name: "🖥️ " + s.name, page: "", current: false, desc: "软件条目，不进 3D" });
     else entries.push({ id: sid, name: s.name, page: "bom3d.html?d=" + sid, current: here === "bom3d.html" && q.get("d") === sid, desc: (s.chains || []).join(" → ") });
   }
@@ -848,7 +815,7 @@ fetch("framework/bom.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).th
     bar.appendChild(node);
   });
   document.body.appendChild(bar);
-  if(rackExplodedMode||chipMode)sceneView.refresh();
+  if(rackExplodedMode)sceneView.refresh();
 }).catch(() => {});
 </script>
 </body>
