@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-08",
+  "object_id": "part:psu",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Generic server AC–DC PSU interfaces and removable exterior",
+  "reviewed_at": "2026-10-09",
+  "reviewer": "Codex actual native master, editable SVG and real local browser review",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "One generic slim removable server AC–DC power module with AC inlet/fan grille/handle/latch at the external end and board-edge output at the opposite end; upper-left inset enlarges the same output interface category.",
+  "master": "web/assets/technical-atlas/psu-v1.png",
+  "labelled": "web/assets/technical-atlas/psu-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R2",
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "accepted_prompt": "docs/design/technical-atlas/TA-08/prompt-v1.txt",
+    "iterations": 1,
+    "accepted_original_filename": "exec-e3aff5fb-d683-4c60-9080-15210f06acf6.png",
+    "raster_modified_after_generation": false,
+    "preview_method": "same-pixel JPEG encoding with macOS sips, PNG unchanged",
+    "label_method": "independent stdlib SVG layer embedding unchanged master",
+    "label_review_iterations": 3
+  },
+  "rights": {
+    "origin": "User-authorized built-in generation using the actual retained R2 style reference",
+    "license": "Project-generated explanatory illustration, not manufacturer engineering drawing or CC0"
+  },
+  "technical_sources": [
+    {
+      "url": "https://www.deltaww.com/en-US/products/ServerPower",
+      "observed_at": "2026-10-09",
+      "access": "full_official_page_read",
+      "supports": "Official server-power category includes slim CRPS AC–DC supply examples with different ratings/dimensions; this figure copies no model rating or dimension."
+    },
+    {
+      "url": "https://filecenter.deltaww.com/Products/download/01/010104/Catalogue/CRPS_ShortForm_0828.pdf",
+      "observed_at": "2026-10-09",
+      "access": "official_search_excerpts_only_full_pdf_redirected_to_terms",
+      "supports": "Official indexed mechanical section identifies IEC-type AC inlet, fan end and output power card edge as different module interfaces. Pin count, dimensions, airflow and exact IEC subtype are not adopted."
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-ca/poweredge-r530xd/r530xd_ompublication-v1/removing-an-ac-power-supply-unit?guid=guid-dbe90f79-e3d3-4204-93ef-488ae22ddbc2&lang=en-us",
+      "observed_at": "2026-10-09",
+      "access": "official_search_excerpt_only_full_page_cache_miss",
+      "supports": "Official removable AC PSU diagram names release latch, power-cable connection, output connector and PSU handle. Procedure conditions and hot-swap capability are not generalized."
+    }
+  ],
+  "unknowns": [
+    "Exact SKU, envelope dimensions, electrical ratings, efficiency/certifications, contact and pin count, guide/latch mating geometry, airflow direction and circuit topology unknown.",
+    "Removability does not establish universal hot-swap behavior; server redundancy and operating procedure remain model-specific.",
+    "Existing 3D geometry is retained; a new static exterior atlas picture does not complete TA-11/13/29."
+  ],
+  "checks": {
+    "counted_main_modules": 1,
+    "counted_enlarged_output_details": 1,
+    "no_baked_text": true,
+    "independent_labels": 8,
+    "native_pixels_verified": true,
+    "leaders_reviewed": true,
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true,
+    "light_and_dark": true,
+    "retained_3d_canvas": true
+  },
+  "visual_review": {
+    "warm_white": "passed: master and labelled previews remain warm white",
+    "materials_and_geometry": "passed for generic exterior: folded metal, fine screws/seam, separate inlet/grille/handle/latch/output, consistent isometric perspective",
+    "labels": "passed after independent reviewer found fan leader over side vents: label moved into upper-left whitespace and route now avoids side vents; eight endpoints individually rechecked",
+    "scope": "Exterior category only; contact/latch/fan details are illustrative, no specified electrical or manufacturing geometry"
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/psu-v1-preview.svg",
+    "bytes": 358798
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/psu-v1.png",
+      "sha256": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c"
+    },
+    {
+      "file": "web/assets/technical-atlas/psu-v1.svg",
+      "sha256": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c"
+    },
+    {
+      "file": "web/assets/technical-atlas/psu-v1-preview.jpg",
+      "sha256": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a"
+    },
+    {
+      "file": "web/assets/technical-atlas/psu-v1-preview.svg",
+      "sha256": "6a780df212590cd1a96ef97a35bb68bb57537362ca7300ec0d4db1a2930bd476"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-08/labels-v1.json",
+      "sha256": "5ecbdc5998c0b92f249241cf3e92e55145d150c8c5bed483bcb14ff7c16242df"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-08/prompt-v1.txt",
+      "sha256": "695561727135103f6268cb3f40579a13ac5800dbef1b6563f99b5b6959dc9925"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-08/preparation-v1.json",
+      "sha256": "22cdf8ac1b44d62c7718c68f1d95a281a7507261e83f25625cecb130a0b81db4"
+    }
+  ],
+  "browser_checks": [
+    "tests/technical_atlas.cjs",
+    "tests/part_dossier.cjs"
+  ],
+  "browser_review": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-08/browser.json",
+    "views": 8,
+    "full_svg_opened": true,
+    "page_errors": 0,
+    "label_count": 8,
+    "downloads": "actual SVG and PNG downloaded and byte SHA matched",
+    "retained_3d_canvas": true
+  },
+  "local_validation": {
+    "targeted_browser_review": "passed, eight real desktop/mobile system/scale light/dark views; native master bytes and downloads checked",
+    "technical_atlas_browser": "passed,13s,SSD and 11 accepted category illustrations",
+    "part_dossier_browser": "passed,56s,real PSU and earlier server/GPU/HBM/CPU/DRAM/NIC dossiers retain interaction and ownership",
+    "governance_check": "passed,1510 files,selected semantic coverage",
+    "strict_validation": "passed,0 warnings",
+    "registry": "passed,353 objects,458 questions,references valid",
+    "unit_tests": 21
+  },
+  "publication": {
+    "status": "not_published",
+    "reason": "Local acceptance complete. User explicitly authorized this continuous task to merge and deploy without GitHub CI checking on 2026-10-09. Actual public publication still separately required."
+  },
+  "issues_resolved": [
+    {
+      "stage": "first_local_browser",
+      "error": "preview EncodingError because new static asset routes were absent",
+      "resolution": "registered the four explicit atlas file routes, restarted isolated server, repeated actual browser review successfully"
+    },
+    {
+      "stage": "independent_visual_review",
+      "error": "Fan leader diagonally crossed side louvre/vent detail",
+      "resolution": "Moved fan label to upper-left whitespace and re-routed to original grille endpoint; independent actual-image review passed"
+    }
+  ],
+  "source_access_limits": [
+    "Delta full product category page read; indexed official CRPS PDF mechanical excerpts available, complete PDF redirected to terms page.",
+    "Dell indexed official service excerpt available; detailed HTML cache-miss/timeouts and direct official PDF 403 retained. No exact model geometry, rating or installation procedure inferred."
+  ],
+  "independent_visual_review": {
+    "status": "passed_after_one_leader_correction",
+    "reviewed_at": "2026-10-09",
+    "reviewer": "Codex read-only subagent; actual view_image before and after correction",
+    "scope": "generic exterior/label relationships only, not model/circuit/publication"
+  },
+  "ci": {
+    "status": "not_checked_or_waited",
+    "authorization": "2026-10-09 user explicitly: CI没有所以不用CI检测，直接close PR、部署、上线；允许按完整本地验收继续合并部署",
+    "not_a_ci_pass": true
+  }
+}

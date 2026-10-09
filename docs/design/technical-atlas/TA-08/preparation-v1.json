@@ -1,0 +1,36 @@
+{
+  "figure_id": "TA-08",
+  "object_id": "part:psu",
+  "scope": "Generic removable server AC–DC power module exterior only; no vendor/model/rating/compatibility claim.",
+  "baseline_asset": "web/assets/renders/psu.png",
+  "baseline_sha256": "3dd0aadcd440775a4e3ca3d404d4955e7bc46af2adfa251b37d53c104f5ac0d1",
+  "observed": "Old two plain low-detail blocks with handle and bright green indicator; new picture uses one slim PSU with visible distinct AC inlet, fan grille, handle, latch and opposite board-edge output; upper-left enlargement is not a second installed module.",
+  "references_to_pass": [
+    "R2"
+  ],
+  "primary_sources": [
+    {
+      "url": "https://www.deltaww.com/en-US/products/ServerPower",
+      "observed_at": "2026-10-09",
+      "access": "full_official_page_read",
+      "supports": "Official server-power category includes slim CRPS AC–DC supply examples with different ratings/dimensions; this figure copies no model rating or dimension."
+    },
+    {
+      "url": "https://filecenter.deltaww.com/Products/download/01/010104/Catalogue/CRPS_ShortForm_0828.pdf",
+      "observed_at": "2026-10-09",
+      "access": "official_search_excerpts_only_full_pdf_redirected_to_terms",
+      "supports": "Official indexed mechanical section identifies IEC-type AC inlet, fan end and output power card edge as different module interfaces. Pin count, dimensions, airflow and exact IEC subtype are not adopted."
+    },
+    {
+      "url": "https://www.dell.com/support/manuals/en-ca/poweredge-r530xd/r530xd_ompublication-v1/removing-an-ac-power-supply-unit?guid=guid-dbe90f79-e3d3-4204-93ef-488ae22ddbc2&lang=en-us",
+      "observed_at": "2026-10-09",
+      "access": "official_search_excerpt_only_full_page_cache_miss",
+      "supports": "Official removable AC PSU diagram names release latch, power-cable connection, output connector and PSU handle. Procedure conditions and hot-swap capability are not generalized."
+    }
+  ],
+  "unknowns": [
+    "Exact SKU, envelope dimensions, electrical ratings, efficiency/certifications, contact and pin count, guide/latch mating geometry, airflow direction and circuit topology unknown.",
+    "Removability does not establish universal hot-swap behavior; server redundancy and operating procedure remain model-specific.",
+    "Existing 3D geometry is retained; a new static exterior atlas picture does not complete TA-11/13/29."
+  ]
+}

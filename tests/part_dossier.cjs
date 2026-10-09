@@ -16,7 +16,7 @@ const {chromium} = require('playwright');
       assert.notEqual(instrumented, html);
       await route.fulfill({response, body:instrumented});
     });
-    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm', '/rack3d.html?node=part:cpu', '/rack3d.html?node=part:dram', '/rack3d.html?node=part:nic']) {
+    for (const url of ['/bom3d.html?p=server', '/rack3d.html?node=part:gpu', '/rack3d.html?node=part:hbm', '/rack3d.html?node=part:cpu', '/rack3d.html?node=part:dram', '/rack3d.html?node=part:nic', '/rack3d.html?node=part:psu']) {
       console.log('Scene contract: loading '+url);
       await page.goto(process.env.UI_BASE_URL + url);
       const dossier = page.locator('#dossier');
@@ -30,6 +30,12 @@ const {chromium} = require('playwright');
         await enclosure.waitFor();
         assert.match(await enclosure.locator('figcaption').textContent(), /子装配/);
         assert.ok((await enclosure.locator('img').getAttribute('src')).endsWith('/chassis-v1-preview.svg'));
+      } else if (url.includes('part:psu')) {
+        const psu = dossier.locator('.technical-atlas[data-figure="TA-08"]');
+        await psu.waitFor();
+        assert.match(await psu.locator('h3').textContent(), /服务器电源模块.*接口与抽拉结构/);
+        assert.match(await psu.locator('figcaption').textContent(), /通用服务器 AC–DC.*以产品资料为准/);
+        assert.equal(await dossier.locator('.technical-atlas[data-figure="TA-07"]').count(), 0);
       } else if (url.includes('part:nic')) {
         const nic = dossier.locator('.technical-atlas[data-figure="TA-07"]');
         await nic.waitFor();
