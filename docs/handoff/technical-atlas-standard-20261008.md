@@ -118,3 +118,7 @@ TA-06 receiptPR422 merged95b74b5c; AWS same revisionhealthy, private TA-06/relea
 ## Current: TA-07 local acceptance, 2026-10-09
 
 TA-06 source/receiptPR421/422 and R10–14 norm1.7 PR424 closed with real AWS healthy/private closures. TA-07 on codex/atlas-nic-20261009: one built-in generation with actualR2/R3; genericPCIeNIC, two QSFP-style ports plus enlarged cage, eight independent labels, no exact performance/fabrication claim. Local desktop/mobile/system/scale review zero pageerrors. Complete sourcePR and public acceptance before published7/35. NextTA-08 PSU. Budget-only zero-step Actions exceptions have explicit user authorization; real code test failure remains actionable.
+
+## Current: TA-07 published, next TA-08, 2026-10-09
+
+SourcePR425 mergedde17171b head e1b79f77; Actions37867567667 allfour zero steps budget; userexceptionadminmerge, no CI pass claim. AWShealthy de17171b image31e84683. PublicNIC system/scale×desktop/mobile4views, eightnativeSVG labels/masterSHAa1262414, actualfullSVG/PNG downloadbytes and3Ddossier onecanvas/image decode checked. Anonymousresearch401, Sparkread-only10cd748f both servicesactive, lagrecorded. ConcurrentPR423longformchanges retained; combinedgovernance two reviewed hashes and inventory stale, manually reviewed both topic chains and corrected in receipt. Main7/35, supplemental4/4, nextTA08PSU; receipt branch must closePR/deploy before nextgeneration.
