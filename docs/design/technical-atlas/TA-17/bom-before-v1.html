@@ -93,7 +93,7 @@
     #stack .axis { display: none; }
   }
 
-  /* Explicit system and scale category layouts reuse adopted equipment images. */
+  /* TA16: system hierarchy and neutral equipment illustrations; the scale view retains its own layout. */
   .system-index { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 18px; }
   .system-index a { border:1px solid var(--line); padding:5px 12px; background:var(--card); border-radius:var(--ui-radius); }
   .system-section { scroll-margin-top:110px; margin-bottom:28px; }
@@ -114,14 +114,8 @@
   .equipment .part-status i { display:inline-block; width:6px; height:6px; border-radius:50%; margin-right:5px; }
   .system-note { color:var(--muted); font-size:12px; margin:6px 0 10px; }
   .system-software { border:1px solid var(--line); border-radius:var(--ui-radius); padding:14px; background:var(--card); }
-  #stack > .axis { display:none; }
-  .scale-section { scroll-margin-top:110px; margin-bottom:26px; }
-  .scale-section .sysh b { font-size:21px; }
-  .scale-row.lrow { display:block; padding:14px; border:1px solid var(--line); background:var(--card); border-radius:var(--ui-radius); }
-  .scale-summary { font-size:12px; color:var(--muted); margin:0 0 12px; }
-  #scale-overview-actions { margin:6px 0 18px; }
-  #scale-overview-actions[hidden],#system-overview-actions[hidden] { display:none; }
-  #stack #selected-atlas { padding:0 12px 10px; }
+  #stack[data-mode="system"] > .axis { display:none; }
+  #stack[data-mode="system"] #selected-atlas { padding:0 12px 10px; }
   @media(min-width:1081px){.equipment-grid {grid-template-columns:repeat(3,minmax(0,1fr));}}
   @media(max-width:480px){.equipment-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.system-chain.lrow{padding:10px}.equipment b{font-size:12px}.legend .go3d{margin:8px 0}.system-section .sysh{align-items:center}.system-index a{font-size:12px;padding:4px 9px}}
 
@@ -146,7 +140,6 @@
       <span class="modes"><button type="button" class="mode on" data-mode="system">按系统</button><button type="button" class="mode" data-mode="scale">按尺度</button></span>
       <a class="go3d" href="bom3d.html">🧊 进入 3D 立体拆解 →</a></div>
     <p class="system-note" id="system-overview-actions"><a href="/assets/technical-atlas/system-overview-v2.svg" target="_blank" rel="noopener">查看五系统总览示意 ↗</a> · <a href="/assets/technical-atlas/system-overview-v2.svg" download="system-overview-v2.svg">下载标注总览</a> · <a href="/assets/technical-atlas/system-overview-v2.png" download="system-overview-v2.png">下载无字总览</a><br>每个物理系统仅取一个代表；完整类别展开在下方。</p>
-    <p class="system-note" id="scale-overview-actions" hidden><a href="/assets/technical-atlas/scale-overview-v1.svg" target="_blank" rel="noopener">查看五尺度总览示意 ↗</a> · <a href="/assets/technical-atlas/scale-overview-v1.svg" download="scale-overview-v1.svg">下载标注总览</a> · <a href="/assets/technical-atlas/scale-overview-v1.png" download="scale-overview-v1.png">下载无字总览</a><br>从部件到园区，每组取一代表；排版大小不表示实物比例。</p>
     <div id="stack">加载中…<div id="selected-atlas" hidden></div></div>
   </div>
   <aside><div class="dossier" id="dossier">
@@ -157,7 +150,7 @@
 
 <script type="module">
 import { createPartDossier } from "./assets/part-dossier.js?v=20261008.15";
-import { atlasPreview, atlasPreviewTitle, atlasCategoryNote } from "./assets/technical-atlas.js?v=20261010.17";
+import { atlasPreview, atlasPreviewTitle, atlasCategoryNote } from "./assets/technical-atlas.js?v=20261010.16";
 async function get(p) {
   const r = await fetch(p + "?t=" + Date.now(), { cache: "no-store" });
   if (!r.ok) throw new Error(p + " → " + r.status);
@@ -248,7 +241,7 @@ function isoSlab(layer, parts, idx) {
   // 右栏是同一份部件档案（part-dossier.js，与 3D 共用）；2D 档案不启用 WebGL 预览
   showDossier = createPartDossier({ el: document.getElementById("dossier"), view: "bom", BOM: bom, companies: CN, prices, indicators: INDS,
     statusNames: SN, statusColors: Object.fromEntries(Object.entries(SC).map(([k, v]) => [k, v])), inspector: { hide() {}, show() { return false; } },
-    atlasHost: document.getElementById('selected-atlas'), atlasViewFor: () => document.getElementById('stack').dataset.mode });
+    atlasHost: document.getElementById('selected-atlas'), atlasViewFor: () => document.getElementById('stack').dataset.mode === 'system' ? 'system' : null });
 
   // 两种排法：按系统（第一层五个系统，IT 展开四个，系统内按链路）是骨架；按尺度（S5 → S1）是第二排法
   const chips = parts => parts.map(p => `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</span>`).join("");
@@ -261,24 +254,20 @@ function isoSlab(layer, parts, idx) {
         <div class="plist">${chips(parts)}</div>
       </div>
     </div>`;
-  function equipmentCard(p, view) {
-    return `<button type="button" class="equipment pbox" data-part="${p.id}" data-atlas-part="${p.id}" aria-label="查看 ${esc(p.name)} 档案">
-      <img src="${atlasPreview(p.id,{view})}" alt="${esc(atlasPreviewTitle(p.id,{view}))}" width="1536" height="1024" loading="lazy" decoding="async">
-      <b id="c-${p.id}">${esc(p.name)}</b><span class="part-status"><i style="background:${SC[p.status]}"></i>供应状态：${SN[p.status]}</span></button>`;
-  }
   function byScale() {
-    const scales=[...bom.scales].reverse();
-    const nav=`<nav class="system-index scale-index" aria-label="五尺度定位">${scales.map(l=>`<a href="#scale-${l.id}" data-scale-link="${l.id}">${esc(l.id)} ${esc(l.name)}</a>`).join('')}</nav>`;
-    return nav+scales.map(layer=>{
-      const parts=bom.parts.filter(p=>isPart(p)&&p.scale===layer.id);
-      return `<section class="scale-section" id="scale-${layer.id}" data-scale="${layer.id}"><div class="sysh"><b>${esc(layer.id)} ${esc(layer.name)}</b><span class="en">${esc(layer.en)}</span></div><p class="scale-summary">${parts.length} 个物理类别 · ${esc(layer.desc)}。分组依据骨架登记，不表示图中设备的真实尺寸比例、项目数量或现场串联。</p><div class="scale-row lrow" data-row-parts="${parts.map(p=>p.id).join(' ')}"><div class="equipment-grid">${parts.map(p=>equipmentCard(p,'scale')).join('')}</div></div></section>`;
-    }).join('');
+    const order = bom.scales.map(l => l.id).reverse();
+    return order.map((lid, i) => {
+      const layer = bom.scales.find(l => l.id === lid);
+      return row({ ...layer, num: i + 1 }, bom.parts.filter(p => isPart(p) && p.scale === lid), i, i * 1.5);
+    }).join("");
   }
   function bySystem() {
     const S=bom.systems;
     const top=Object.entries(S).filter(([,s])=>!s.parent).sort((a,b)=>a[1].order-b[1].order);
     let n=0;
-    const card=p=>equipmentCard(p,'system');
+    const card=p=>`<button type="button" class="equipment pbox" data-part="${p.id}" data-atlas-part="${p.id}" aria-label="查看 ${esc(p.name)} 档案">
+      <img src="${atlasPreview(p.id,{view:'system'})}" alt="${esc(atlasPreviewTitle(p.id,{view:'system'}))}" width="1536" height="1024" loading="lazy" decoding="async">
+      <b id="c-${p.id}">${esc(p.name)}</b><span class="part-status"><i style="background:${SC[p.status]}"></i>供应状态：${SN[p.status]}</span></button>`;
     const nav=`<nav class="system-index" aria-label="五系统定位">${top.map(([id,s])=>`<a href="#system-${id}" data-system-link="${id}">${esc(s.name)}</a>`).join('')}</nav>`;
     return nav+top.map(([sid,s])=>{
       const children=Object.entries(S).filter(([,x])=>x.parent===sid).sort((a,b)=>a[1].order-b[1].order);
@@ -303,8 +292,6 @@ function isoSlab(layer, parts, idx) {
   function render(mode) {
     atlasHost.remove();
     stack.dataset.mode=mode;
-    document.getElementById("system-overview-actions").hidden=mode!=="system";
-    document.getElementById("scale-overview-actions").hidden=mode!=="scale";
     stack.innerHTML = '<div class="axis"></div>' + (mode === "scale" ? byScale() : bySystem()) + otherEntries(bom, rights.rights || [], mode);
     stack.querySelector('.lrow[data-row-parts~="ssd"]').insertAdjacentElement('afterend', atlasHost);
     document.querySelectorAll("[data-mode]").forEach(b => b.classList.toggle("on", b.dataset.mode === mode));
@@ -365,16 +352,14 @@ function show(pid) {
   document.querySelectorAll(".pbox.sel, .pchip.sel, .equipment b.sel").forEach(el => el.classList.remove("sel"));
   document.querySelectorAll(`[data-part="${pid}"], #c-${pid}`).forEach(el => el.classList.add("sel"));
   history.replaceState(null, "", "#" + pid);
-  const illustrationNote = atlasCategoryNote(pid, {view: document.getElementById('stack').dataset.mode});
+  const illustrationNote = atlasCategoryNote(pid, {view: document.getElementById('stack').dataset.mode === 'system' ? 'system' : null});
   showDossier(illustrationNote ? {...p, desc: illustrationNote + ' 类别研究说明（不认证图中示例已适用）：' + (p.desc || '待补充')} : p);
   const atlasHost = document.getElementById('selected-atlas');
   if (!atlasHost.hidden) {
     document.querySelector(`.lrow[data-row-parts~="${pid}"]`)?.insertAdjacentElement('afterend', atlasHost);
     const context = document.createElement('p');
     context.className = 'atlas-context';
-    const scale = BOM.scales.find(l=>l.id===p.scale);
-    const scaleContext = document.getElementById('stack').dataset.mode==='scale' && scale ? `${scale.id} ${scale.name} → ` : '';
-    context.textContent = `${scaleContext}${BOM.systems[p.system].name} → ${p.name}`;
+    context.textContent = `${BOM.systems[p.system].name} → ${p.name}`;
     atlasHost.prepend(context);
     requestAnimationFrame(() => {
       if (!atlasHost.hidden && location.hash === '#' + pid) atlasHost.scrollIntoView({block:'start'});

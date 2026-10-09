@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.47",
+  "version": "2026.10.09.48",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2698,12 +2698,24 @@
         "docs/design/technical-atlas/TA-16/source-validation-v1.json",
         "docs/design/technical-atlas/TA-16/acceptance-v1.json",
         "docs/design/technical-atlas/TA-16/publication-20261010.json",
-        "docs/design/technical-atlas/TA-16/public-checks-v1.json"
+        "docs/design/technical-atlas/TA-16/public-checks-v1.json",
+        "tests/scale_atlas.cjs",
+        "tests/unit/test_scale_atlas_assets.py",
+        "web/assets/technical-atlas/scale-overview-v1.png",
+        "web/assets/technical-atlas/scale-overview-v1.svg",
+        "docs/design/technical-atlas/TA-17/overview-composition-v1.json",
+        "docs/design/technical-atlas/TA-17/SOURCES.md",
+        "docs/design/technical-atlas/TA-17/SCOPE.md",
+        "docs/design/technical-atlas/TA-17/scale-asset-bindings-v1.json",
+        "docs/design/technical-atlas/TA-17/baseline-v1.json",
+        "docs/design/technical-atlas/TA-17/source-validation-v1.json",
+        "docs/design/technical-atlas/TA-17/bom-before-v1.html",
+        "docs/design/technical-atlas/TA-17/scale-overview-composition-source-v1.svg"
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.09.47",
-      "change_reason": "TA16实际发布：PR558合并867ccd4e，AWS17:59:01Z同源码/应用/.46与精确ab53ba16镜像healthy，source head与merge全tree零差异。61物理类别=旧14+新47按系统详细图，五系统/IT四子系统/17登记16物理/DCIM与六权利保持；47真实选择/16明暗宽度视图、96实际SVG/原PNG下载SHA、五原生SVG放大、13源码预览GET SHA/HTTPShealth200/360px85.734通过，旧14系统尺度及SSD3D入口回归通过。首轮桌面截图越出900绘制视口截断保留；真实滚动和明确增高完整抓图已逐张目检，仅修截图夹具不改生产图/JS。原生PNG/独立可编辑标注、来源/未知边界和拒稿保持；总览四代表受控合成非共同尺度/完整连接图。匿名研究API401未登录、节点内容未验，CI未查不称通过，Spark及研究事实/服务0改。主计划16/35、补充4/4，下一TA17按尺度总览。"
+      "implementation_revision": "2026.10.09.48",
+      "change_reason": "TA17按尺度总览源码阶段：S5/S4/S3/S2/S1为21/13/12/3/12，61物理类别复用已发布14+47详细图、60独立母图；软件/基型/六权利8入口独立，五系统和稳定ID不变。system/scale显式门禁一致，默认其它3D仍原14；原件/来源未知保持，五代表原生1536×1024受控合成非共同尺寸/项目数量或完整拓扑。25项明确无HTTP的静态测试、原件/资产SHA和独立原图/源码复审通过，实际公网页面/20视图/6SVG放大/12代表下载及健康另验，published仍16/35+补4/4。旧接口单测曾隐含临时HTTP读取bom，发现后停并留痕，不作为UI通过；没有浏览器/产品JS执行，不恢复被拒本地访问。历史HTML3份补明确非应用分类；不查CI、不改Spark/研究数据服务。"
     },
     {
       "id": "interface-repository-daily-20261008",
@@ -2898,8 +2910,8 @@
         "interface-reader-company-20261008"
       ],
       "reason": "2026-10-08 用户要求系统自行每日北京时间0:00刷新：十一仓库组织图、HTTP/CI/六机检测与原时点分开；常驻macmini Python/系统cron原子发布私有运行投影，不依赖Codex/对话，无每日PR。取代手动四仓库同步及本轮未采用的heartbeat；用户已删suanming/identiry不建入口，本地资料保留。；继承已合并TA-02收尾：公开可选产品登记未知不阻塞、导出文字/DPR及已部署回执；图册实际发布保留。；完整CI继承图册双密度矩阵，分项运行保持全部断言和原限额。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；首次跨Mac/Linux发布发现AppleDouble元数据，显式关闭BSD tar附带文件，17载体完整性/内容摘要验证不变。；截断的匹配窗口不再隐藏已收到的完整阅读交付，候选权限及私有路径边界保留。",
-      "implementation_revision": "2026-10-08 homepage technical atlas, hover and coordinate-fixed marker size",
-      "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data.；补齐此前未发布的首页地图需求：技术图册、悬停与固定尺寸地理锚定。"
+      "implementation_revision": "2026.10.09.48",
+      "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data.；补齐此前未发布的首页地图需求：技术图册、悬停与固定尺寸地理锚定。；TA17静态界面分类核对补登记TA16两份/TA17一份原字节历史bomHTML为excluded非应用页，现行页面/外观规则不变。"
     },
     {
       "id": "geluoke-longform-20261008",

@@ -3,7 +3,7 @@
   "style_id": "white-technical-atlas-v1",
   "source": "framework/10_visual_atlas.md",
   "plan": "docs/design/technical-atlas/MIGRATION_PLAN.md",
-  "observed_at": "2026-10-09T18:15:55.994584+00:00",
+  "observed_at": "2026-10-09T18:40:33.065299+00:00",
   "baseline_revision": "453f3625d427b9d989851ed5712737495891a378",
   "audit_scope": "Initial baseline inventory at baseline_revision; actual per-item acceptance and publication recorded separately, not a whole-site redesign receipt",
   "audit_directory": "~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/",
@@ -657,7 +657,10 @@
       "phase": "E · 总览",
       "kind": "existing",
       "source_paths": [
-        "web/pages/bom.html"
+        "web/pages/bom.html",
+        "web/components/technical-atlas.js",
+        "web/assets/technical-atlas/scale-overview-v1.png",
+        "web/assets/technical-atlas/scale-overview-v1.svg"
       ],
       "entry": "bom.html?view=scale",
       "reference": [
@@ -668,10 +671,16 @@
       "depends_on": [
         "TA-16"
       ],
-      "status": "planned",
+      "status": "drafting",
       "acceptance_record": null,
       "published_revision": null,
-      "partial_entry_supplement": "已验SSD与四张设施2D补充图接入所属行和真实缩略图；其他部件仍待重制，整项不计完成"
+      "partial_entry_supplement": "已静态接入61物理类别详细图（旧14+TA16新47）及五尺度独立总览；实际网页/下载/部署另验，不以静态登记完成原项",
+      "object_id": "scale-overview",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-17/bom-before-v1.html",
+        "sha256": "1fb930d14751646a279afaf43b69c6a4d09461c15239259035132b677a6987e5"
+      },
+      "implementation_stage": "61 category scale reuse and native overview statically reviewed; actual public validation pending. Not accepted/published; primary16/35."
     },
     {
       "id": "TA-18",
