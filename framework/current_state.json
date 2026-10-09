@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.35",
+  "version": "2026.10.09.36",
   "effective_at": "2026-10-09",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -111,13 +111,16 @@
         "src/inresearch/knowledge/industry.py",
         "data/projects.json",
         "data/schema/project.schema.json",
-        "tests/unit/test_industry.py"
+        "tests/unit/test_industry.py",
+        "src/inresearch/workflow/research_review.py",
+        "tests/unit/test_object_mapping_review.py"
       ],
       "supersedes": [
         "data-legacy"
       ],
       "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-10-03 用户已授权发布：替代首页地图/玩家直接跳页为可固定浮窗与仅高亮；核对全球95GW与样本年份/定义/去重/覆盖，Frontier同址记录显式归一，保留原证据和冲突，不构造全球差额。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。",
-      "implementation_revision": "2026.10.09.30"
+      "implementation_revision": "2026.10.09.36",
+      "change_reason": "版本化C3显式对象审核/目录冻结与抽样绑定，原候选/历史审计保留；原480六陈述十证据仅严格收窄技术归属，完整before+SHA、原B与实际具名A并存，其他字段/支持及开闭集合不变；当前本地验收，生产载入/发布另验。"
     },
     {
       "id": "knowledge-legacy",
@@ -147,13 +150,16 @@
         "data/research_knowledge.json",
         "src/inresearch/knowledge/fact_contract.py",
         "src/inresearch/knowledge/material_baseline.py",
-        "tests/unit/test_material_baseline.py"
+        "tests/unit/test_material_baseline.py",
+        "src/inresearch/workflow/research_review.py",
+        "tests/unit/test_object_mapping_review.py"
       ],
       "supersedes": [
         "knowledge-legacy"
       ],
       "reason": "补齐既有 C3 证据与依赖约束、非数字候选入口；网页和导出共用报告模型，失效 Finding 只保留历史入口。；按软件契约迁移职责与全部调用，保留原件及已采用知识权威，详见 2026-09-13 架构交付。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-09补齐既有具名A代理委托登记：实际by与结构化授权/已知日期精度、新增补充范围；替代及分发放宽仍A-owner；支持链/候选边界与公开最小归属一致。",
-      "implementation_revision": "2026.10.09.30"
+      "implementation_revision": "2026.10.09.36",
+      "change_reason": "版本化C3显式对象审核/目录冻结与抽样绑定，原候选/历史审计保留；原480六陈述十证据仅严格收窄技术归属，完整before+SHA、原B与实际具名A并存，其他字段/支持及开闭集合不变；当前本地验收，生产载入/发布另验。"
     },
     {
       "id": "products-legacy",
@@ -830,9 +836,11 @@
         "tests/unit/test_browser_shards.py",
         "src/inresearch/interfaces/verification.py",
         "src/inresearch/workflow/review_preference.py",
-        "tests/unit/test_review_preference.py"
+        "tests/unit/test_review_preference.py",
+        "tests/unit/test_object_mapping_review.py"
       ],
-      "implementation_revision": "2026.10.09.26"
+      "implementation_revision": "2026.10.09.36",
+      "change_reason": "版本化C3显式对象审核/目录冻结与抽样绑定，原候选/历史审计保留；原480六陈述十证据仅严格收窄技术归属，完整before+SHA、原B与实际具名A并存，其他字段/支持及开闭集合不变；当前本地验收，生产载入/发布另验。"
     },
     {
       "id": "geluoke-longform-20261001",
@@ -1953,13 +1961,16 @@
         "src/inresearch/workflow/research_sources.py",
         "tests/unit/test_research_sources.py",
         "src/inresearch/workflow/review_preference.py",
-        "tests/unit/test_review_preference.py"
+        "tests/unit/test_review_preference.py",
+        "src/inresearch/knowledge/registry.py",
+        "tests/unit/test_object_mapping_review.py"
       ],
       "supersedes": [
         "reading-codex-batch-20261006"
       ],
       "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。",
-      "implementation_revision": "2026.10.09.26"
+      "implementation_revision": "2026.10.09.36",
+      "change_reason": "版本化C3显式对象审核/目录冻结与抽样绑定，原候选/历史审计保留；原480六陈述十证据仅严格收窄技术归属，完整before+SHA、原B与实际具名A并存，其他字段/支持及开闭集合不变；当前本地验收，生产载入/发布另验。"
     },
     {
       "id": "interface-reader-company-20261008",

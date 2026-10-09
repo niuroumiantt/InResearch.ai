@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.35。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.36。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1658。
+在册文件：1661。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 329 |
+| 历史快照 | 331 |
 | 运行代码 | 316 |
 | 现行规范 | 15 |
 | 项目配置 | 364 |
@@ -23,7 +23,7 @@
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 154 |
-| 测试 | 154 |
+| 测试 | 155 |
 
 ## 在册记录集合
 
@@ -577,6 +577,8 @@
 | `docs/reviews/2026-09-15/l1-pipeline/file-plan.csv` | rows | 18 |
 | `docs/reviews/2026-09-15/task-authority/file-plan.csv` | rows | 796 |
 | `docs/reviews/2026-09-15/task-authority/scope.json` | changed | 15 |
+| `docs/reviews/2026-10-09/2026-10-09-alphabet-object-mapping-before.json` | statements | 6 |
+| `docs/reviews/2026-10-09/2026-10-09-alphabet-object-mapping-before.json` | evidence | 10 |
 | `docs/reviews/2026-10-09/research-publication/eia-review-post-reload-progress.json` | observed_real_loop_events | 1 |
 | `docs/reviews/2026-10-09/research-publication/eia-review-post-reload-progress.json` | post_reload_reviewing | 1 |
 | `docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json` | eia_actual_reviewers | 1 |
@@ -1484,6 +1486,8 @@
 | `docs/reviews/2026-09-29/verify/macmini.sh` | 历史快照 |
 | `docs/reviews/2026-09-29/verify/spark.sh` | 历史快照 |
 | [docs/reviews/2026-10-02/homepage/DELIVERY.md](reviews/2026-10-02/homepage/DELIVERY.md) | 历史快照 |
+| `docs/reviews/2026-10-09/2026-10-09-alphabet-object-mapping-before.json` | 历史快照 |
+| [docs/reviews/2026-10-09/2026-10-09-alphabet-object-mapping-review.md](reviews/2026-10-09/2026-10-09-alphabet-object-mapping-review.md) | 历史快照 |
 | [docs/reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md](reviews/2026-10-09/2026-10-09-eia-ytd-specialist-review.md) | 历史快照 |
 | [docs/reviews/2026-10-09/research-publication/README.md](reviews/2026-10-09/research-publication/README.md) | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/eia-review-post-reload-progress.json` | 历史快照 |
@@ -2135,6 +2139,7 @@
 | `tests/unit/test_news_projection.py` | 测试 |
 | `tests/unit/test_news_targets.py` | 测试 |
 | `tests/unit/test_nodes.py` | 测试 |
+| `tests/unit/test_object_mapping_review.py` | 测试 |
 | `tests/unit/test_ocr_repeat_penalty.py` | 测试 |
 | `tests/unit/test_ocr_worker_named.py` | 测试 |
 | `tests/unit/test_ocr_worker_resume.py` | 测试 |
