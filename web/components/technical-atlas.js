@@ -1,5 +1,13 @@
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
+  cpu: {
+    id: 'TA-06', title: '服务器主板 · CPU 与 DIMM 装配',
+    image: '/assets/technical-atlas/motherboard-v1.svg', preview: '/assets/technical-atlas/motherboard-v1-preview.svg',
+    master: '/assets/technical-atlas/motherboard-v1.png',
+    alt: '暖白单路服务器主板：中央 CPU 插槽与固定框、两组各四条 RDIMM、供电元件、PCIe 插槽及板边连接器；左上为内存模组局部放大。',
+    note: '通用单路主板装配示意；两组四条 RDIMM 为图示示例，左上为同类模组放大。布局、插槽及兼容性以选定型号为准，不代表 MRDIMM 配置。',
+    labels: ['CPU 与固定框：展示主板上的插槽装配位置', 'RDIMM 与插槽：两组已安装模组，左上仅为同类模组局部放大', '内存芯片与金手指：展示模组器件及连接边，不指定容量、速度或代际', '供电元件与连接器：展示板级供电部件类别', 'PCIe 扩展插槽与后部 I/O：展示扩展及外部连接位置', '共用装配图：CPU 与服务器内存入口查看同一主板关系，不新增骨架对象；精确走线与机械结构未知'],
+  },
   hbm: {
     id: 'TA-05', title: 'GPU 与 HBM · 封装层次',
     image: '/assets/technical-atlas/hbm-package-v1.svg', preview: '/assets/technical-atlas/hbm-package-v1-preview.svg',
@@ -73,6 +81,9 @@ const illustrations = {
     ],
   },
 };
+
+// Existing CPU and server-memory categories share this one assembly context figure.
+illustrations.dram = illustrations.cpu;
 
 export function atlasPreviewTitle(partId) {
   return illustrations[partId]?.title || '';

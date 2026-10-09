@@ -227,24 +227,36 @@
       "source_paths": [
         "web/assets/renders/mobo.png"
       ],
-      "entry": "保留资产，当前无页面引用",
+      "entry": "bom.html#cpu / #dram：各自系统/尺度行的共用装配图；3D CPU/内存档案保留交互预览",
       "reference": [
-        "R2"
+        "R2",
+        "R3"
       ],
       "observed_gap": "主板布局简化、器件粗块、缺少端口/插槽细线",
       "deliverable": "新版本图册部件图与原件关联；实际细节按结构证据确定",
       "depends_on": [
         "TA-02"
       ],
-      "status": "planned",
-      "acceptance_record": null,
+      "status": "accepted",
+      "acceptance_record": "docs/design/technical-atlas/TA-06/acceptance-v1.json",
       "published_revision": null,
       "baseline_asset": {
         "file": "web/assets/renders/mobo.png",
         "sha256": "1092160abec3b143353c01584b8d8a619e4856daaa1f0c4ff00ec412cff36628",
         "width": 1840,
         "height": 1280
-      }
+      },
+      "object_id": "part:cpu",
+      "related_object_id": "part:dram",
+      "started_at": "2026-10-09",
+      "accepted_at": "2026-10-09",
+      "identity": "Single CPU in motherboard socket/retention frame, two banks of four installed RDIMMs and separate enlarged module inset. Existing CPU and DRAM entries share the assembly context, not a new motherboard BOM object.",
+      "deliverable_paths": [
+        "web/assets/technical-atlas/motherboard-v1.png",
+        "web/assets/technical-atlas/motherboard-v1.svg",
+        "web/assets/technical-atlas/motherboard-v1-preview.jpg",
+        "web/assets/technical-atlas/motherboard-v1-preview.svg"
+      ]
     },
     {
       "id": "TA-07",
