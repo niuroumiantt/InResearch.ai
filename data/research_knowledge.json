@@ -23306,6 +23306,337 @@
     },
     {
       "acceptance": "adopted",
+      "chunk_sha256": "c0a6909f42a2a4799bef0bf6ddd9576ff156d5ec81996be8e2ddac713629e99f",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:11:claim:7:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [],
+      "page_index": 11,
+      "question_ids": [],
+      "quote": "While not meaningless, historical utility demand forecasts consistently\noverestimate both peak and average demand (Carvallo et al. 2018). Rigorous models of data\ncenter energy use are needed to adequately calibrate both future investment and public\nconcern.",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:34:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。该历史预测偏差判断对当前需求转化工作单的不确定性验证有实质性贡献，对M01-Q02提供审查预测输入及方法的反证线索，但没有完成机构总量调和。连续引文和周围讨论充分，符合B级部分证据条件；未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 153.986,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e6719cd54622f0f104c4cd2cb2209b4f50c2be00cb63b1c83c916adb262691bb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 48290,
+            "output_tokens": 4757,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.427,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "17f7cad266a100412b41db5e5b06f0d0684267a04390f4d58ac7846a7d356ffa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 43969,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2681d1ca58ffd083c343f02f380e1433dc71f2b9e94244d14fed46769968aaf6",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:13:claim:3:ev:0",
+      "locator": "page:14/chunk:13",
+      "object_ids": [],
+      "page_index": 13,
+      "question_ids": [
+        "NODE-demand-D1-conversion"
+      ],
+      "quote": "Bottom-up methods are recognized\nfor their accuracy and robustness, stemming from their reliance on meticulous data collection\nregarding the IT equipment inventory within data centers (Lei, Masanet, and Koomey 2021).\nWhile limitations exist in using this approach",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:34:28+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性及评分均为5。设备存量的数据质量依赖直接关系当前需求转换模型的输入审查和不确定性验证；对M01-Q02仅提供比较数据基础的线索。连续引文虽在转折处结束，但所供周围原文补足上下文，可作为有归属的部分方法证据采用，无A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 153.986,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e6719cd54622f0f104c4cd2cb2209b4f50c2be00cb63b1c83c916adb262691bb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 48290,
+            "output_tokens": 4757,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.427,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "17f7cad266a100412b41db5e5b06f0d0684267a04390f4d58ac7846a7d356ffa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 43969,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2681d1ca58ffd083c343f02f380e1433dc71f2b9e94244d14fed46769968aaf6",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:13:claim:4:ev:0",
+      "locator": "page:14/chunk:13",
+      "object_ids": [],
+      "page_index": 13,
+      "question_ids": [
+        "NODE-demand-D1-conversion"
+      ],
+      "quote": "top-down estimates instead interpolate\nbackwards from service demand, which has become increasingly uncoupled from electricity\nuse in the IT sector (Malmodin and Lundén 2016).",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:34:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。服务需求与电力需求关系的变化直接关联当前需求转化工作单的系数稳定性及不确定性验证，也为M01-Q02提供方法差异线索。连续原文及比较上下文充分，可作为部分方法限制采用，未发现A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 153.986,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e6719cd54622f0f104c4cd2cb2209b4f50c2be00cb63b1c83c916adb262691bb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 48290,
+            "output_tokens": 4757,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.427,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "17f7cad266a100412b41db5e5b06f0d0684267a04390f4d58ac7846a7d356ffa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 43969,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "13fd7ebfa2d13b5657ec6d7f2636e062e60f4377545c0970d5f244540de2a5fa",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:0:ev:0",
+      "locator": "page:15/chunk:14",
+      "object_ids": [],
+      "page_index": 14,
+      "question_ids": [],
+      "quote": "This report utilizes a “bottom-up” model, with data and assumptions starting at the equipment\nlevel being scaled up and aggregated to generate total results.",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:34:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。从设备数据及假设向总体结果汇总的计算层级对当前需求转化工作单具有实质性方法贡献。连续引文及相邻计算说明充分，按部分方法证据采用；没有敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 153.986,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e6719cd54622f0f104c4cd2cb2209b4f50c2be00cb63b1c83c916adb262691bb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 48290,
+            "output_tokens": 4757,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.427,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "17f7cad266a100412b41db5e5b06f0d0684267a04390f4d58ac7846a7d356ffa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 43969,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      }
+    },
+    {
+      "acceptance": "adopted",
       "chunk_sha256": "6927dfdb727644530788deeb16fa634abe8c23180b75cabf19e43d787acf8f8b",
       "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
       "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:3:ev:0",
@@ -44689,6 +45020,404 @@
         "request_sha256": "3f214ecf29734997b59c11adb5c4c13a7abbd0c13faf399b4fb16fd9be427419"
       },
       "object_mapping_check": "原文讨论谷歌自有应用之间的形式迁移预期，支持谷歌主体。没有DCIM/BMS、数据中心网络资产或具体计算设备范围，不能因涉及AI而增加基础设施对象；所选两项证据均使用这一经复核的主体范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:11:claim:7:ev:0"
+      ],
+      "id": "adoption:review:b338cdf4335136383d09b35b",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q02",
+        "NODE-demand-D1-conversion"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者在讨论美国数据中心用电预测时，引用Carvallo等（2018）称，历史公用事业需求预测持续高估峰值和平均需求，并主张需要严谨的数据中心能耗模型来校准未来投资和公众关切。这是报告作者引用既有研究提出的判断，不构成对当前具体预测准确性的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:34:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。该历史预测偏差判断对当前需求转化工作单的不确定性验证有实质性贡献，对M01-Q02提供审查预测输入及方法的反证线索，但没有完成机构总量调和。连续引文和周围讨论充分，符合B级部分证据条件；未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 153.986,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e6719cd54622f0f104c4cd2cb2209b4f50c2be00cb63b1c83c916adb262691bb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 48290,
+            "output_tokens": 4757,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.427,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "17f7cad266a100412b41db5e5b06f0d0684267a04390f4d58ac7846a7d356ffa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 43969,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:11:claim:7"
+      ],
+      "limitations": "报告精确发布时间未知；2018是被引研究的引用年份，未建立其观测年份、地域、样本、预测期限或误差幅度。不能将该历史判断直接外推至所有公用事业、当前AI需求预测或指定机构总量。所供覆盖仅为完整PDF原生文本阅读，未审阅图像，未独立回查被引研究。",
+      "conflict_check": "与已采用的外推输入误差、聚合尺度和技术细分限制相容，增加了历史公用事业预测偏差这一不同论点，不构成重复。既有时点追踪提议没有认证预测准确性。所供legacy匹配记录为空，未发现真实冲突；检查仅限所供记录，不否定或替换任何现有预测。",
+      "gap_dependency_check": "NODE-demand-D1-conversion仍需回查Carvallo等研究的样本和适用范围，并检验具体转换模型的系数、时滞及预测误差。M01-Q02仍需IEA、JLL、C&W、麦肯锡及高盛各自的原文边界、输入与调和推导。本候选仅贡献定性反证线索，不回答或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "05786205bbcfee48f1c2b9ec3ea680a43333137cd509c807aac0809be36067cb"
+      },
+      "object_mapping_check": "实际范围为公用事业需求预测的历史偏差和能耗研究方法。合同中的site:grid指电力配额与并网权利，system:power指数据中心电力基础设施，均不是本陈述对象；也未建立一座AI数据中心或允许主体的具体范围，因此保留空映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:13:claim:3:ev:0"
+      ],
+      "id": "adoption:review:290d10da94777220e7045af8",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q02",
+        "NODE-demand-D1-conversion"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者引用Lei、Masanet和Koomey（2021），将自下而上方法的准确性和稳健性归因于对数据中心IT设备存量的细致数据收集，同时承认该方法存在局限。这是作者的方法评价，不构成对本报告或当前具体模型准确性的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:34:28+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性及评分均为5。设备存量的数据质量依赖直接关系当前需求转换模型的输入审查和不确定性验证；对M01-Q02仅提供比较数据基础的线索。连续引文虽在转折处结束，但所供周围原文补足上下文，可作为有归属的部分方法证据采用，无A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 153.986,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e6719cd54622f0f104c4cd2cb2209b4f50c2be00cb63b1c83c916adb262691bb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 48290,
+            "output_tokens": 4757,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.427,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "17f7cad266a100412b41db5e5b06f0d0684267a04390f4d58ac7846a7d356ffa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 43969,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:13:claim:3"
+      ],
+      "limitations": "没有量化准确性、稳健性或存量数据误差，亦未逐项说明所有局限。2021是被引研究的引用年份，不确定其数据年份；报告精确发布时间未知。报告研究范围为美国数据中心直接能耗，不能外推为全球、单设施或特定AI部件的验证结果。",
+      "conflict_check": "已采用陈述认为自上而下方法在高度聚合层面具有准确性，但缺少组件细分会妨碍解释技术变化；与本项关于自下而上方法数据依赖的评价相容，未形成真实冲突或相同规范陈述。所供legacy匹配记录为空；不替换现有方法结论。",
+      "gap_dependency_check": "NODE-demand-D1-conversion仍需设备存量的来源、覆盖、退役假设、误差及其向功率和能耗的传播检验。M01-Q02仍需确认指定机构实际使用的数据基础及口径。本项只提供数据质量审查依据，不回答或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "05786205bbcfee48f1c2b9ec3ea680a43333137cd509c807aac0809be36067cb"
+      },
+      "object_mapping_check": "IT设备存量在此是能耗估算的数据基础，未指认合同中某类AI服务器、GPU或具体IT系统资产的性能或状态。system:it是设施下的IT系统，不能仅因泛称IT设备继承映射；保留空对象列表和有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:13:claim:4:ev:0"
+      ],
+      "id": "adoption:review:4a058b46f67fc502cd47d778",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q02",
+        "NODE-demand-D1-conversion"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者在比较估算方法时，引用Malmodin和Lundén（2016）指出，自上而下估计从服务需求向后推算，而IT部门的服务需求与用电量日益脱钩。这是作者转述的方法判断，不构成对当前特定转换系数或预测失准的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:34:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。服务需求与电力需求关系的变化直接关联当前需求转化工作单的系数稳定性及不确定性验证，也为M01-Q02提供方法差异线索。连续原文及比较上下文充分，可作为部分方法限制采用，未发现A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 153.986,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e6719cd54622f0f104c4cd2cb2209b4f50c2be00cb63b1c83c916adb262691bb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 48290,
+            "output_tokens": 4757,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.427,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "17f7cad266a100412b41db5e5b06f0d0684267a04390f4d58ac7846a7d356ffa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 43969,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:13:claim:4"
+      ],
+      "limitations": "未给出服务需求单位、脱钩幅度、观测期间、具体地域或导致脱钩的因素。2016是被引研究的引用年份，不能据此确定测量年份；报告精确发布时间未知。不能推论服务需求与用电量完全无关，或所有自上而下估计均不可靠。",
+      "conflict_check": "与已采用的自上而下瑞典观测案例及高度聚合准确性评价不存在必然冲突：那些陈述描述数据来源和适用尺度，并未认证服务需求与用电量存在稳定比例。与组件细分不足、外推误差依赖的既有评价相容，但新增脱钩论点，不重复。所供legacy匹配记录为空，未发现真实冲突。",
+      "gap_dependency_check": "NODE-demand-D1-conversion仍需回查被引研究，建立服务单位、能耗边界、时间变化、工作负载及效率因素，并验证具体转换系数。M01-Q02仍需逐机构确认服务需求指标和能耗强度假设。仅贡献系数稳定性审查线索，不关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "05786205bbcfee48f1c2b9ec3ea680a43333137cd509c807aac0809be36067cb"
+      },
+      "object_mapping_check": "实际范围是IT部门服务需求与用电量的关系及估算方法，没有具体数据中心网络、计算设备或控制软件资产陈述。合同中的root指一座AI数据中心，不能用部门级方法判断覆盖该对象；因此对象列表为空。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:0:ev:0"
+      ],
+      "id": "adoption:review:0d4eddfd371e5602bb28aa13",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D1-conversion"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者说明，该报告采用自下而上模型，从设备层面的数据和假设出发，经放大和汇总生成总体结果。该陈述描述美国数据中心能耗估算的方法，不构成对模型结果的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:34:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分6。从设备数据及假设向总体结果汇总的计算层级对当前需求转化工作单具有实质性方法贡献。连续引文及相邻计算说明充分，按部分方法证据采用；没有敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 153.986,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e6719cd54622f0f104c4cd2cb2209b4f50c2be00cb63b1c83c916adb262691bb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 48290,
+            "output_tokens": 4757,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.427,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "17f7cad266a100412b41db5e5b06f0d0684267a04390f4d58ac7846a7d356ffa",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 43969,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:14:claim:0"
+      ],
+      "limitations": "本项引文没有给出具体转换系数、设备数量、功率数值、误差或验证结果。相邻原文说明了设备存量、功率及设施效率的计算结构，但不能据此补造定量输入。报告精确发布时间未知；相邻原文将2024年前列为历史估计、2024年起列为预测，不能将汇总结果一概视为实测或已发生事实。图示未进行视觉审阅。",
+      "conflict_check": "与已采用的自上而下及外推方法陈述是不同方法的互补描述，不是重复；与既有开发、供电和使用时点追踪提议也相容。当前记录未提供相反的本报告模型定义，所供legacy匹配记录为空。检查仅限所供材料，不修改现有结论或模型值。",
+      "gap_dependency_check": "NODE-demand-D1-conversion仍需需求到设备存量的连接、设备功率与运行假设、设施效率参数、时间尺度、误差传播及反证。设备层面汇总并不自动验证算力、网络和存储需求转换，也不支持容量或GW汇总。本项只贡献能耗核算结构，不回答或关闭问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "05786205bbcfee48f1c2b9ec3ea680a43333137cd509c807aac0809be36067cb"
+      },
+      "object_mapping_check": "审定陈述的范围是美国数据中心能耗研究的设备层面汇总方法，而非某座AI数据中心或具体硬件、冷却、电力系统。相邻文本列举的设备及设施效率不能自动成为本项全部证据的对象范围；研究模型也不属于DCIM/BMS，故保留空映射。"
     },
     {
       "acceptance": "adopted",
