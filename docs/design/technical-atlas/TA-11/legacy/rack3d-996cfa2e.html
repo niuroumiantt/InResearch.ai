@@ -112,10 +112,6 @@
 <script type="importmap">{"imports": {"three": "./assets/vendor/three.module.js"}}</script>
 <script type="module">
 import * as THREE from "three";
-import {buildServerAssembly} from "/assets/server-assembly.js";
-const serverQuery = new URLSearchParams(location.search);
-const serverMode = serverQuery.get("view") === "server" || serverQuery.get("x") === "55" || serverQuery.get("node") === "part:server" || location.hash === "#server";
-let serverAssembly = null;
 import {createScenePicking} from "/assets/scene-picking.js";
 import {createSceneMotion} from "/assets/scene-motion.js";
 import {createPartDossier, dossierNode} from "/assets/part-dossier.js?v=20261008.14";
@@ -175,15 +171,6 @@ controls.maxPolarAngle = Math.PI / 2 + 0.05;
 controls.minDistance = 4; controls.maxDistance = 60;
 controls.autoRotate = !matchMedia('(prefers-reduced-motion: reduce)').matches; controls.autoRotateSpeed = 0.4;
 canvas.addEventListener("pointerdown", () => controls.autoRotate = false, { once: true });
-if (serverMode) {
-  document.title = '服务器整机拆解台 · inresearch.ai';
-  document.querySelector('.hud summary').textContent = '服务器整机拆解台 · 通用示意';
-  document.querySelector('.hud h1').textContent = '服务器整机拆解台';
-  document.querySelector('.rg-concept-note').textContent = '通用风冷 PCIe 示例 · 数量与尺寸非规格 · 虚拟拆解非维修步骤';
-  document.querySelector('.topbar .on').textContent = '服务器拆解台';
-  camera.position.set(-10, 9, 12); controls.target.set(0, 1.2, 0); controls.autoRotate = false;
-}
-
 
 const composer = new EffectComposer(renderer);
 composer.addPass(new RenderPass(scene, camera));
@@ -348,9 +335,7 @@ function mk(parent, geo, mat, x, y, z) {
 }
 const B = (w, h, d) => new THREE.BoxGeometry(w, h, d);
 function explode(obj, dx, dy, dz, t0, t1) {
-  const entry = {obj, home:obj.position.clone(), off:new THREE.Vector3(dx,dy,dz), t0,t1};
-  animated.push(entry);
-  return () => {const index = animated.indexOf(entry); if (index >= 0) animated.splice(index,1);};
+  animated.push({ obj, home: obj.position.clone(), off: new THREE.Vector3(dx, dy, dz), t0, t1 });
 }
 function label(text,x,y,z,size=1,color=null,num=null,showAfter) {
   return atlasDrawing.label(text,x,y,z,size,118,num,showAfter);
@@ -365,12 +350,7 @@ function label(text,x,y,z,size=1,color=null,num=null,showAfter) {
 
 /* ─────────── 机柜（放大比例：1 ≈ 0.1m）─────────── */
 const RW = 3.0, RD = 5.6, RH = 10.4;   // 柜宽/深/高
-let rack;
-if (serverMode) {
-  serverAssembly = buildServerAssembly({THREE, material:M, tag, explode, label, spinners});
-  rack = serverAssembly.root; scene.add(rack);
-} else {
-const rackLegacy = new THREE.Group(); rack = rackLegacy; scene.add(rack);
+const rack = new THREE.Group(); scene.add(rack);
 
 /* 结构框架 */
 {
@@ -588,10 +568,8 @@ for (let n = 0; n < 3; n++) {
   tag(bp, "rack-frame");
 }
 
-} // Whole-rack geometry remains a separate legacy scope.
-
 /* ─────────── 阶段与滑杆 ─────────── */
-const STAGES = serverMode ? serverAssembly.stages : [
+const STAGES = [
   [0.00, "整柜：一台 AI 机柜（ORV3 形态示意）"],
   [0.04, "① 机柜与结构：拆外板与穿孔门——露出内部单元"],
   [0.20, "② 机柜与板级供电、机房与机柜冷却、网络：电源架 / 液冷歧管 / 交换机分离"],
@@ -622,7 +600,7 @@ function apply() {
 const sliderMotion = createSceneMotion();
 slider.addEventListener("input", () => { sliderMotion.cancel(); apply(); });
 const syncStageControl = installStageControl(STAGES, slider, apply);
-{ const x = serverQuery.get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); else if (serverMode) slider.value = 55; }
+{ const x = new URLSearchParams(location.search).get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); }
 apply();
 function animateSlider(to, duration = 1400) {
   const from = +slider.value;
@@ -643,7 +621,7 @@ const inspector = createPartInspector({THREE, environment: () => scene.environme
 const showDossier = createPartDossier({el: document.getElementById('dossier'), view: 'rack',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector});
-const scenePicking = createScenePicking({THREE, canvas, camera, pickables, tip,
+createScenePicking({THREE, canvas, camera, pickables, tip,
   describe: object => {
     const part = PART[object.userData.part];
     return part ? `${part.name}（${SN[part.status]}）· 点击看档案` : '';
@@ -652,10 +630,7 @@ const scenePicking = createScenePicking({THREE, canvas, camera, pickables, tip,
 
 /* ─────────── 主循环：渲染 + 风扇旋转 + LED 呼吸 ─────────── */
 // The published adoption registry owns optional model selection.
-// TA-11 owns its procedural server; rack-only optional adopted models do not replace it.
-const sceneModels = serverMode
-  ? {ready:Promise.resolve(), objects:()=>[], reload:()=>Promise.resolve(), dispose(){}}
-  : mountSceneModels({scene, page:"rack3d", defaultHeight:RH + 0.7, replacement:rack, onChange:()=>{atlasDrawing.sync();sceneView?.refresh();}});
+const sceneModels = mountSceneModels({scene, page:"rack3d", defaultHeight:RH + 0.7, replacement:rack, onChange:()=>{atlasDrawing.sync();sceneView?.refresh();}});
 const framingObjects = () => [...pickables, ...sceneModels.objects()];
 sceneView = mountSceneView({canvas, camera, controls,
   objects:framingObjects,
@@ -668,7 +643,7 @@ atlasDrawing.sync();
 atlasDrawing.attachLabels(canvas,camera);
 const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atlasDrawing,
   render:()=>composer.render(), button:document.getElementById('atlas-export'),
-  filename:serverMode?'server-technical-atlas.svg':'rack3d-technical-atlas.svg', title:serverMode?'通用服务器整机装配图册':'机柜结构图册',
+  filename:'rack3d-technical-atlas.svg', title:'机柜结构图册',
   caption:()=>document.getElementById('stage').textContent,
   selected:()=>{const id=document.getElementById('dossier').dataset.partId;
     return id ? {id:'part:'+id,name:PART[id]?.name || id,meshes:PARTMESH[id] || []} : null;}
@@ -678,11 +653,10 @@ let pageDisposed = false;
 function disposePage() {
   if (pageDisposed) return;
   pageDisposed = true;
-  cancelAnimationFrame(animationFrame); sliderMotion.cancel();
+  cancelAnimationFrame(animationFrame);
   window.removeEventListener('inresearch:appearance', syncSceneAppearance);
   atlasExport.dispose(); atlasDrawing.dispose();
-  sceneView.dispose(); sceneModels.dispose(); scenePicking.dispose(); inspector.dispose(); serverAssembly?.dispose();
-  animated.length = 0; pickables.length = 0; controls.dispose();
+  sceneView.dispose(); sceneModels.dispose(); inspector.dispose();
   sceneEnvironment.dispose(); texturePool.dispose(); composer.dispose(); renderer.dispose();
 }
 window.addEventListener("pagehide", event => {if (!event.persisted) disposePage();}, {once:true});
