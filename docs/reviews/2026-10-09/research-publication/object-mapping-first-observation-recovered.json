@@ -1,0 +1,27 @@
+{
+  "record_kind": "Recovered narrow observation from actual tool output, not the original full JSON response",
+  "observed_at": "2026-10-09T09:30:35.073160+00:00",
+  "original_full_receipt_overwritten_by_second_read": true,
+  "all_16_target_row_checks_passed": true,
+  "wrong_facility_nodes_exclude_six": {
+    "system:control": true,
+    "system:network": true,
+    "system:it": true
+  },
+  "framework_version": "2026.10.09.36",
+  "file_checks": {
+    "src/inresearch/knowledge/registry.py": true,
+    "src/inresearch/workflow/research_review.py": true,
+    "data/research_knowledge.json": false,
+    "framework/current_state.json": true
+  },
+  "formal_answers": 0,
+  "public_health": {
+    "status": 200,
+    "ok": true
+  },
+  "verified_all_six_and_ten_including_global_table_digest": false,
+  "reason": "Expected entire formal table was frozen at 10ae; concurrent PR493 strict append changed its SHA to independently reviewed ed7768fc. All sixteen corrected target payloads, support checks and facility exclusions passed in the first observation. Second actual read binds compatible complete-table hash.",
+  "original_raw_response_sha256": "unavailable; not reconstructed or invented",
+  "later_actual_complete_receipt": "/private/tmp/inresearch-object-mapping-public-https-20261009.json"
+}

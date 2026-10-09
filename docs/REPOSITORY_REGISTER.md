@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.36。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.37。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1661。
+在册文件：1677。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,7 +15,7 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 331 |
+| 历史快照 | 347 |
 | 运行代码 | 316 |
 | 现行规范 | 15 |
 | 项目配置 | 364 |
@@ -584,19 +584,35 @@
 | `docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json` | eia_actual_reviewers | 1 |
 | `docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json` | eia_grants | 7 |
 | `docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json` | unique_worker_pids | 1 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-first-ready-audits.json` | audits | 2 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-public-https.json` | checks | 16 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-publisher-runtime.json` | events | 5 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-resident-core.json` | new_protocol_requests | 2 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-resident-sample.json` | new_protocol_requests | 2 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-review-runtime.json` | eia_actual_reviewers | 1 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-review-runtime.json` | eia_grants | 7 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-review-runtime.json` | unique_worker_pids | 1 |
 | `docs/reviews/2026-10-09/research-publication/old-ready12-followup.json` | batches | 12 |
+| `docs/reviews/2026-10-09/research-publication/original-23-sealcheck-1724.json` | records | 16 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | documents | 23 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | review_batches | 121 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | dispositions | 19 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | canonical_formal_records | 0 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1608.json` | documents | 23 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1608.json` | canonical_formal_records | 13 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1700.json` | documents | 23 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1700.json` | canonical_formal_records | 16 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1723.json` | documents | 23 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1723.json` | canonical_formal_records | 22 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage.json` | sources | 23 |
 | `docs/reviews/2026-10-09/research-publication/original-50-identity-index.json` | records | 50 |
 | `docs/reviews/2026-10-09/research-publication/pr453-actual-closure.json` | head_chain | 3 |
 | `docs/reviews/2026-10-09/research-publication/pr483-eia-ytd-actual-closure.json` | original_submission_claim_ids | 7 |
 | `docs/reviews/2026-10-09/research-publication/pr483-eia-ytd-actual-closure.json` | maintenance_events | 5 |
-| `docs/reviews/2026-10-09/research-publication/receipts.json` | receipts | 14 |
+| `docs/reviews/2026-10-09/research-publication/pr493-independent-semantic-review.json` | semantic_review | 6 |
+| `docs/reviews/2026-10-09/research-publication/pr493-public-https.json` | checks | 6 |
+| `docs/reviews/2026-10-09/research-publication/pr493-public-https.json` | facility_exclusion_checks | 3 |
+| `docs/reviews/2026-10-09/research-publication/receipts.json` | receipts | 30 |
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
@@ -1492,9 +1508,20 @@
 | [docs/reviews/2026-10-09/research-publication/README.md](reviews/2026-10-09/research-publication/README.md) | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/eia-review-post-reload-progress.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-aws-health.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-first-observation-recovered.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-first-ready-audits.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-public-https.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-publisher-runtime.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-resident-core.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-resident-sample.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/object-mapping-review-runtime.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/old-ready12-followup.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/original-23-sealcheck-1724.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1422.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage-1608.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1700.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/original-23-stage-1723.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/original-23-stage.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/original-50-identity-index.json` | 历史快照 |
 | [docs/reviews/2026-10-09/research-publication/original-50-identity-index.md](reviews/2026-10-09/research-publication/original-50-identity-index.md) | 历史快照 |
@@ -1504,6 +1531,11 @@
 | `docs/reviews/2026-10-09/research-publication/pr485-context-revalidation.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/pr485-stale-context-closed.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/pr487-alphabet-actual-closure.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr493-actual-closure.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr493-independent-semantic-review.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr493-public-https.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr493-spark-published.json` | 历史快照 |
+| `docs/reviews/2026-10-09/research-publication/pr499-actual-merge.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/publisher-unowned-gap-restoration.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/receipts.json` | 历史快照 |
 | `docs/source/全球数据中心行业_项目状态与玩家清单_v0.2_信源追溯版_2026-07-23.xlsx` | 项目配置 |

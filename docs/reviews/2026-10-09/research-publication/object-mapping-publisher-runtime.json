@@ -1,0 +1,160 @@
+{
+  "checked_at": "2026-10-09T09:12:37.895350+00:00",
+  "record_kind": "actual M5 source FF, natural-idle consistent backup, original LaunchAgent restoration and fresh first tick; Spark review/Reader/HTTPS owned separately",
+  "events": [
+    {
+      "at": "2026-10-09T09:07:02.054527+00:00",
+      "stage": "waiting_for_natural_idle",
+      "previous_pid": "18897",
+      "wait_seconds": 180
+    },
+    {
+      "at": "2026-10-09T09:07:14.440709+00:00",
+      "stage": "idle_confirmed",
+      "previous_pid": "18897",
+      "status_sha256": "1b1f2b5b06bc0393981c74bd3689c743e4ecf02c22e217ca9928a1498a32adcb",
+      "status_age_seconds": 2.8774800300598145
+    },
+    {
+      "at": "2026-10-09T09:07:15.339177+00:00",
+      "stage": "backed_up_locked",
+      "backup_manifest": "/Users/m5/.local/state/inresearch.ai/research-publish-maintenance/object-mapping-20261009T090702Z/backup-manifest.json",
+      "backup_files": 1580,
+      "backup_bytes": 221254988,
+      "journal_count": 120,
+      "release_path": "/Users/m5/.local/state/inresearch.ai/research-publish-maintenance/object-mapping-20261009T090702Z/release.json",
+      "runtime_root": "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009",
+      "deadline_seconds": 600
+    },
+    {
+      "at": "2026-10-09T09:10:06.891088+00:00",
+      "stage": "release_requested"
+    },
+    {
+      "at": "2026-10-09T09:10:06.942936+00:00",
+      "stage": "publisher_restored",
+      "configuration_unchanged": true,
+      "returncode": 0,
+      "actual_pid": "57180",
+      "runtime_head": "10ae8469d8128a7841cb6f3f6fc6f303198ed489",
+      "publisher_source_sha256": "1da3d0747eebe50489991517a13b399eebe1390c80d676642012780ff59e75a6",
+      "registry_source_sha256": "cd71a0b82f19ccfbcb19d1bbf7a6277a7aa01c3781115a520c2529825c0fdcf0",
+      "program_entry": [
+        "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009/manage.py"
+      ]
+    }
+  ],
+  "source_fast_forward": {
+    "checked_at": "2026-10-09T09:09:43.621586+00:00",
+    "previous": "e968b66cdaf58fb49bb60662c29bd747fa852e39",
+    "target": "10ae8469d8128a7841cb6f3f6fc6f303198ed489",
+    "head": "10ae8469d8128a7841cb6f3f6fc6f303198ed489",
+    "source_clean": true,
+    "bundle_sha256": "0ed5690f2ea5a37be3619c14d1475a8fd4370a9a6cd578013345df6f3f571f41",
+    "changed_paths": [
+      "data/research_knowledge.json",
+      "docs/DECISIONS.md",
+      "docs/REPOSITORY_REGISTER.md",
+      "docs/design/technical-atlas/MIGRATION_PLAN.md",
+      "docs/design/technical-atlas/TA-13/public-observer-fix-20261009.json",
+      "docs/design/technical-atlas/TA-13/publication-20261009.json",
+      "docs/handoff/research-flow-recovery-20261009.md",
+      "docs/handoff/us-datacenter-power-20261009.md",
+      "docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md",
+      "docs/research/2026-10-09/us-datacenter-power/README.md",
+      "docs/reviews/2026-10-09/2026-10-09-alphabet-object-mapping-before.json",
+      "docs/reviews/2026-10-09/2026-10-09-alphabet-object-mapping-review.md",
+      "docs/reviews/2026-10-09/research-publication/README.md",
+      "docs/reviews/2026-10-09/research-publication/eia-review-post-reload-progress.json",
+      "docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json",
+      "docs/reviews/2026-10-09/research-publication/original-23-stage-1608.json",
+      "docs/reviews/2026-10-09/research-publication/original-50-identity-index.json",
+      "docs/reviews/2026-10-09/research-publication/original-50-identity-index.md",
+      "docs/reviews/2026-10-09/research-publication/pr480-alphabet-actual-closure.json",
+      "docs/reviews/2026-10-09/research-publication/pr483-eia-ytd-actual-closure.json",
+      "docs/reviews/2026-10-09/research-publication/pr485-context-revalidation.json",
+      "docs/reviews/2026-10-09/research-publication/pr485-stale-context-closed.json",
+      "docs/reviews/2026-10-09/research-publication/pr487-alphabet-actual-closure.json",
+      "docs/reviews/2026-10-09/research-publication/publisher-unowned-gap-restoration.json",
+      "docs/reviews/2026-10-09/research-publication/receipts.json",
+      "framework/01_data_standards.md",
+      "framework/02_knowledge_format.md",
+      "framework/04_reading_scoring_standard.md",
+      "framework/09_software_contracts.md",
+      "framework/CURRENT.md",
+      "framework/current_state.json",
+      "framework/repository_manifest.json",
+      "framework/verification_contract.json",
+      "framework/visual_atlas_migration.json",
+      "src/inresearch/knowledge/registry.py",
+      "src/inresearch/workflow/research_review.py",
+      "tests/rack_assembly.cjs",
+      "tests/unit/test_object_mapping_review.py",
+      "tests/unit/test_research_review.py"
+    ],
+    "journals_unchanged": 120,
+    "registry_sha256": "cd71a0b82f19ccfbcb19d1bbf7a6277a7aa01c3781115a520c2529825c0fdcf0",
+    "review_source_sha256": "051a73ff7ceeabac9b7eb1176a598ed8f8b4bd0cdd46ee78976610098296d0ab",
+    "publisher_source_sha256": "1da3d0747eebe50489991517a13b399eebe1390c80d676642012780ff59e75a6",
+    "formal_sha256": "0c9573f3b2bd4c003c8cd294f8cb0f2b001b012f6049bf2f414ddfa51ad0f19c",
+    "new_cold_module_object_mapping_version": "reviewed-object-mapping-v1",
+    "reviewed_mapping_records_valid": 16,
+    "registry_validation_errors": [],
+    "configuration_unchanged": true,
+    "operation": "exact root-approved Git FF/cold source validation under existing M5 maintenance+worker locks; no journal/queue/model/Reader/relay or credentials changes"
+  },
+  "actual_fresh_service": {
+    "checked_at": "2026-10-09T09:12:37.895350+00:00",
+    "launchctl": {
+      "state": "active",
+      "runs": "1",
+      "pid": "57180",
+      "last exit code": "(never exited)"
+    },
+    "process": "57180     1 R    Fri Oct  9 17:10:06 2026     /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python",
+    "program_path": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "program_entry": [
+      "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009/manage.py",
+      "research-publish"
+    ],
+    "configured_runtime": "/Users/m5/.worktrees/inresearch.ai/research-publisher-runtime-20261009",
+    "runtime_head": "10ae8469d8128a7841cb6f3f6fc6f303198ed489",
+    "runtime_clean": true,
+    "registry_source_sha256": "cd71a0b82f19ccfbcb19d1bbf7a6277a7aa01c3781115a520c2529825c0fdcf0",
+    "registry_source_mtime": "2026-10-09T09:09:43.542464+00:00",
+    "new_delegation_policy_present": true,
+    "publisher_source_sha256": "1da3d0747eebe50489991517a13b399eebe1390c80d676642012780ff59e75a6",
+    "publisher_source_mtime": "2026-10-09T08:41:37.291541+00:00",
+    "includes_exact_head_recovery": true,
+    "includes_current_context_revalidation": true,
+    "status_file_mtime": "2026-10-09T09:10:47.881982+00:00",
+    "status": {
+      "state": "published",
+      "at": null,
+      "batch_id": "6ee5b8d0a0ae7dc3c86a4f615bafb7f93c8c0d71056617c9ab133344bdfbff93",
+      "batches": null,
+      "waiting": null
+    },
+    "status_error_present": false,
+    "status_error_classes": [],
+    "alphabet_first": {
+      "state": "published",
+      "updated": "2026-10-09T07:47:39+00:00",
+      "commit": "5f9574328788f60155a2f63e025b3042aae0162e",
+      "merge_commit": "0e1d6e5649bda913b10293aa146ce151ae2f20f1",
+      "attempt": "attempt-0001",
+      "bundle_sha256": "3e6cedc2acaa1bd7e99bc1db95847dc3bd0e3f74dc369ad97725cdff7fc6682b"
+    },
+    "alphabet_first_error_present": false,
+    "alphabet_first_website_proof_present": true,
+    "operation": "read-only actual restored LaunchAgent/PID/source/current status and precise package journal; no new bootstrap, service or queue mutation"
+  },
+  "source_receipts": {
+    "inresearch-object-mapping-publisher-maintenance-runtime-20261009.jsonl": "41f6d067f8765c9c11c1e4ce6f76f8cba0fe343df4e9d3946c5a35798928cc87",
+    "inresearch-object-mapping-m5-source-reload-20261009.json": "b442a9c02fd9d9a9e4da97a9cd8a68afd6e897ed1f47f0a730063e70ae655e53",
+    "inresearch-object-mapping-publisher-restored-fresh-20261009.json": "d10576dcde03e29b63779658952e6a7e8598e2b2da5caa6fa390e32cce03ef72"
+  },
+  "operator_boundary": "This task only operated M5 publisher. It did not merge PR493, fast-forward Spark, restart Reader/review/relay, modify scope or run a model. Published6ee5 first status is a real old-PR closure; new6 website/semantic accounting remains separately verified.",
+  "future_current_head_boundary": "Spark later29af changes only formal append+derived registry; exact mapping code10ae retained. Old journal/head history not rewritten."
+}
