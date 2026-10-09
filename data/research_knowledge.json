@@ -3016,6 +3016,88 @@
       "status": "candidate",
       "stored_path": "originals/04/04e3af568142c327af50dd218fab0fd02ef46b59232d1859bdb6d992fa8d4a1c/TPU Inference Externalization Full Steam Ahead.pdf",
       "title": "TPU Inference Externalization Full Steam Ahead"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "coverage": {
+        "characters_read": 78857,
+        "characters_total": 78857,
+        "chunks_read": 39,
+        "chunks_total": 39,
+        "complete": true,
+        "pages_read": 39,
+        "pages_total": 39
+      },
+      "doc_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "library_path": "library/by-node/root/2026_未知_How Much Do GPU Clusters Really Cost___bcea0f5e5fb78dee.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:bytedance",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:fluidstack",
+        "actor:ibm",
+        "actor:lambda",
+        "actor:meta",
+        "actor:mgx",
+        "actor:mistral-ai",
+        "actor:nebius",
+        "actor:nscale",
+        "actor:nvidia-networking",
+        "actor:vast-data",
+        "actor:weka",
+        "chain:network/1",
+        "part:cpu",
+        "part:gpu",
+        "part:hbm",
+        "part:network-switch",
+        "part:nic",
+        "part:rack-system",
+        "part:server",
+        "part:storage-array",
+        "root",
+        "system:compute",
+        "system:control",
+        "system:it",
+        "system:memory",
+        "system:network",
+        "system:storage"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-economics",
+        "NODE-workload-storage-economics",
+        "NODE-workload-storage-profile",
+        "NODE-workload-training-economics",
+        "NODE-workload-training-profile",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-nic-alternatives",
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance",
+        "OBJ-server-performance",
+        "Q-SCOPE-part-gpu-device"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/bc/bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b/How Much Do GPU Clusters Really Cost_ (1).pdf",
+      "title": "How Much Do GPU Clusters Really Cost?"
     }
   ],
   "evidence": [
@@ -16415,6 +16497,181 @@
           }
         },
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f32b7040fac60074318356590d7ed33480bf40bd7fadcfa040b22c51bcb235b8",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:37:claim:6:ev:0",
+      "locator": "page:38/chunk:37",
+      "object_ids": [
+        "part:gpu",
+        "root"
+      ],
+      "page_index": 37,
+      "question_ids": [],
+      "quote": "Thus, to derive cost per M Tok, we\ndivide the hourly GPU goodput expense by the hourly effective token throughput.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T05:14:36+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。连续原文及相邻条件充分支持计算方法，实质匹配当前推理单位成本和有效产出成本工单，可按B类部分采用。对M12-Q07仅贡献测算方法，对需求经济学仅贡献成本机制，不能据此回答实测成本或需求变化。",
+        "workorder_ids": [
+          "Q-M12-Q02",
+          "Q-M12-Q07",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 115.192,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "00762ed825b9b04db29f29a1335e2035da81a1cf11c55233b3c3259c268e96ac",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 27658,
+            "output_tokens": 3500,
+            "reasoning_output_tokens": 1225
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.02,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a9f680cd29b842131e4e4936e18907fadb09f1d32bf5eafd18de09a33869f38b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 26891,
+              "output_tokens": 636,
+              "reasoning_output_tokens": 353
+            }
+          }
+        },
+        "batch_id": "01b1ed69fe65126b4de6aa2fa203e456869cde3769fbb6e03bada2c3e8ee8508"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f32b7040fac60074318356590d7ed33480bf40bd7fadcfa040b22c51bcb235b8",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:37:claim:7:ev:0",
+      "locator": "page:38/chunk:37",
+      "object_ids": [
+        "part:gpu",
+        "root"
+      ],
+      "page_index": 37,
+      "question_ids": [],
+      "quote": "Consequently, the ~1.59x cost premium observed in hyperscaler environments for our\nInference Endpoints goodput calcualate translates almost directly into margin\ncompression",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T05:14:36+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。连续引句直接支持限定归因的作者判断，周边文字明确其推理端点成本与毛利分析角色，实质匹配当前成本及利润传导工单，可按B类部分采用。M12-Q05仅获盈利敏感性机制，M11-Q12仅获算力费用向模型服务利润传导的线索，均未被回答。",
+        "workorder_ids": [
+          "Q-M12-Q02",
+          "Q-M12-Q05",
+          "Q-M11-Q12",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 115.192,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "00762ed825b9b04db29f29a1335e2035da81a1cf11c55233b3c3259c268e96ac",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 27658,
+            "output_tokens": 3500,
+            "reasoning_output_tokens": 1225
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.02,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a9f680cd29b842131e4e4936e18907fadb09f1d32bf5eafd18de09a33869f38b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 26891,
+              "output_tokens": 636,
+              "reasoning_output_tokens": 353
+            }
+          }
+        },
+        "batch_id": "01b1ed69fe65126b4de6aa2fa203e456869cde3769fbb6e03bada2c3e8ee8508"
       }
     }
   ],
@@ -32233,6 +32490,220 @@
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
         "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
         "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:37:claim:6:ev:0"
+      ],
+      "id": "adoption:review:3804266b1e79352a4fdb35a2",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu",
+        "root"
+      ],
+      "question_ids": [
+        "M12-Q02",
+        "M12-Q07",
+        "NODE-demand-D3-economics",
+        "NODE-workload-inference-economics"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "《How Much Do GPU Clusters Really Cost?》作者（发表时间未知）在推理端点毛利敏感性分析中，以每小时GPU goodput费用除以每小时有效吞吐量（M token/小时），计算每百万token成本。邻近原文将情景限定为H200、DeepSeek R1、1k1k与8k1k、100 Interactivity，并使用326 token/秒/GPU及75%有效利用率假设，得到约0.88 M token/小时/GPU。这是作者的条件化成本计算方法，未独立认证为实际运营单位成本。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T05:14:36+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。连续原文及相邻条件充分支持计算方法，实质匹配当前推理单位成本和有效产出成本工单，可按B类部分采用。对M12-Q07仅贡献测算方法，对需求经济学仅贡献成本机制，不能据此回答实测成本或需求变化。",
+        "workorder_ids": [
+          "Q-M12-Q02",
+          "Q-M12-Q07",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 115.192,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "00762ed825b9b04db29f29a1335e2035da81a1cf11c55233b3c3259c268e96ac",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 27658,
+            "output_tokens": 3500,
+            "reasoning_output_tokens": 1225
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.02,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a9f680cd29b842131e4e4936e18907fadb09f1d32bf5eafd18de09a33869f38b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 26891,
+              "output_tokens": 636,
+              "reasoning_output_tokens": 353
+            }
+          }
+        },
+        "batch_id": "01b1ed69fe65126b4de6aa2fa203e456869cde3769fbb6e03bada2c3e8ee8508"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:37:claim:6"
+      ],
+      "limitations": "本段没有分解硬件、能耗、采购折旧或刷新成本，也没有证明该费用口径覆盖全部服务成本。75%是作者假设，不能作为实测利用率、变现比例或租用率。适用地域及实际项目阶段未确定。",
+      "conflict_check": "所供已采用陈述分别涉及内存资源浪费、工具链复用和中间商利润传导，不与本计算方法冲突，也不构成重复；相关旧记录筛选结果为空。邻近示例将1.90升至2.10美元称为约20%增幅存在算术问题，但本条公式及吞吐量换算不依赖该增幅。未发现本条主张的直接冲突。",
+      "gap_dependency_check": "本条方法不依赖未提供的图表或被列为缺引文的候选。仍需原始基准记录、费用构成、实际利用率、反证及可复查成本推导，才能回答硬件与能耗分解或实测成本；相关问题保持开放，不更新模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "01b1ed69fe65126b4de6aa2fa203e456869cde3769fbb6e03bada2c3e8ee8508",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "7be0e2df136136bf7a940209add795dc1f4f60b98bb1910a3bc7e166b0126e8d"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:37:claim:7:ev:0"
+      ],
+      "id": "adoption:review:9c0acc54c67a01d716a31b91",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu",
+        "root"
+      ],
+      "question_ids": [
+        "M12-Q02",
+        "M12-Q05",
+        "M11-Q12",
+        "NODE-demand-D3-economics",
+        "NODE-workload-inference-economics"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "《How Much Do GPU Clusters Really Cost?》作者（发表时间未知）称，在其推理端点goodput计算中，超大规模云环境存在约1.59倍成本溢价，并认为该溢价几乎直接转化为利润率压缩。这是作者在推理服务毛利敏感性分析中的局部估算与解释，不是当前云市场成本或实际利润率的独立认证；具体比较地域、供应商及项目阶段未确定。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T05:14:36+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。连续引句直接支持限定归因的作者判断，周边文字明确其推理端点成本与毛利分析角色，实质匹配当前成本及利润传导工单，可按B类部分采用。M12-Q05仅获盈利敏感性机制，M11-Q12仅获算力费用向模型服务利润传导的线索，均未被回答。",
+        "workorder_ids": [
+          "Q-M12-Q02",
+          "Q-M12-Q05",
+          "Q-M11-Q12",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 115.192,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "00762ed825b9b04db29f29a1335e2035da81a1cf11c55233b3c3259c268e96ac",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 27658,
+            "output_tokens": 3500,
+            "reasoning_output_tokens": 1225
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.02,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a9f680cd29b842131e4e4936e18907fadb09f1d32bf5eafd18de09a33869f38b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 26891,
+              "output_tokens": 636,
+              "reasoning_output_tokens": 353
+            }
+          }
+        },
+        "batch_id": "01b1ed69fe65126b4de6aa2fa203e456869cde3769fbb6e03bada2c3e8ee8508"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:37:claim:7"
+      ],
+      "limitations": "所供原页未给出约1.59倍的比较基准、完整成本构成及底层推导，不能推广为所有超大规模云服务的溢价。也未提供实际盈利负载占比、时间趋势、需求响应或同一项目四层利润分配。",
+      "conflict_check": "现有内存成本、工具链复用及中间商利润传导陈述涉及不同机制，未发现直接冲突或规范重复；所供相关旧记录为空。邻近1.90与3.10美元示例的费用比约为1.63，但原页未证明它与约1.59倍使用同一比较基准，因此不据此认定两者直接冲突。",
+      "gap_dependency_check": "可采用作者提出的局部判断，但验证约1.59倍仍依赖完整比较表、费用定义及可复算模型。M11-Q12还缺同一项目、四层分母、时点和可复算脚本；其他问题仍缺成本分解、实际利润与需求数据。所有关联问题保持开放，不汇总GW或改写既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "01b1ed69fe65126b4de6aa2fa203e456869cde3769fbb6e03bada2c3e8ee8508",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "7be0e2df136136bf7a940209add795dc1f4f60b98bb1910a3bc7e166b0126e8d"
       }
     }
   ],
