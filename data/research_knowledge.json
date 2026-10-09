@@ -14916,6 +14916,267 @@
         },
         "batch_id": "461cb2980fb76c6d7e86b5decbcdd8d102e9d9f7c0d496b9cca7f49bd5af2a6e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e16cb85ba5dc62563fb506d892b67bff5507cb2dbe450eeeaae7c9785d501d4e",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:2:claim:10:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [
+        "part:gpu",
+        "part:rack-system"
+      ],
+      "page_index": 2,
+      "question_ids": [
+        "Q-SCOPE-arch-nvidia-gpu"
+      ],
+      "quote": "1. VR200 NVL144: 72 GPUs packages across 18 compute trays, with 4 R200\n   GPU packages in each compute tray.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T03:22:10+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性及评分7。完整连续引句明确给出机架、托盘与GPU封装三个计数层级，实质补充当前NVIDIA产品关系问题及M06-Q07的封装口径。仅作局部作者主张采用，未发现敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-arch-nvidia-gpu",
+          "Q-M06-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.87,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cfb901fc8975f84ad6f3bea27ad4d2b0ad8fb875cd2af13c339e98cca6e57f17",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 71166,
+            "output_tokens": 2706,
+            "reasoning_output_tokens": 428
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.067,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f672e46e102854201502e66384da6fa561173122fbf7e02b08751f459f87c236",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 68596,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 139
+            }
+          }
+        },
+        "batch_id": "3a06f61a3e4da440eb17852b711968c4016b2fba45bfc80810efd16b0c5e2b6e"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e16cb85ba5dc62563fb506d892b67bff5507cb2dbe450eeeaae7c9785d501d4e",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:2:claim:11:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [
+        "part:gpu",
+        "part:rack-system"
+      ],
+      "page_index": 2,
+      "question_ids": [
+        "Q-SCOPE-arch-nvidia-gpu"
+      ],
+      "quote": "2. VR200 NVL144 CPX: 72 Logical GPUs packages in addition to 144 Rubin\n   CPX GPU packages across 18 compute trays, with 4 R200 GPU packages\n   and 8 Rubin CPX GPU packages in each compute tray.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T03:22:10+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性及评分7。连续原句具体说明R200与Rubin CPX在同一方案及托盘中的组合，实质贡献于两项当前问题。采用范围限于作者表述，并显式保留未定义术语；术语歧义尚未构成可确立的真实冲突，未触发A条件。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-arch-nvidia-gpu",
+          "Q-M06-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.87,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cfb901fc8975f84ad6f3bea27ad4d2b0ad8fb875cd2af13c339e98cca6e57f17",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 71166,
+            "output_tokens": 2706,
+            "reasoning_output_tokens": 428
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.067,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f672e46e102854201502e66384da6fa561173122fbf7e02b08751f459f87c236",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 68596,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 139
+            }
+          }
+        },
+        "batch_id": "3a06f61a3e4da440eb17852b711968c4016b2fba45bfc80810efd16b0c5e2b6e"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e16cb85ba5dc62563fb506d892b67bff5507cb2dbe450eeeaae7c9785d501d4e",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "id": "rev-438b89f9fbb74619804c42a12326e76d:chunk:2:claim:12:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [
+        "part:gpu",
+        "part:rack-system"
+      ],
+      "page_index": 2,
+      "question_ids": [
+        "Q-SCOPE-arch-nvidia-gpu"
+      ],
+      "quote": "3. Vera Rubin CPX Dual Rack: Two discrete racks – one VR200 NVL144 rack\n   plus one VR CPX rack with 144 Rubin CPX GPUs across 18 compute trays,\n   with 8 Rubin CPX GPUs in each compute tray.",
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "source_sha256": "c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T03:22:10+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性及评分7。连续引句明确区分双柜方案与其中一个机柜的GPU及托盘数量，对NVIDIA产品关系和M06-Q07的计数边界有实质贡献。补回候选缺少的作者归属后，可作B类局部采用，未发现A条件。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-arch-nvidia-gpu",
+          "Q-M06-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.87,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cfb901fc8975f84ad6f3bea27ad4d2b0ad8fb875cd2af13c339e98cca6e57f17",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 71166,
+            "output_tokens": 2706,
+            "reasoning_output_tokens": 428
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.067,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f672e46e102854201502e66384da6fa561173122fbf7e02b08751f459f87c236",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 68596,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 139
+            }
+          }
+        },
+        "batch_id": "3a06f61a3e4da440eb17852b711968c4016b2fba45bfc80810efd16b0c5e2b6e"
+      }
     }
   ],
   "statements": [
@@ -29112,6 +29373,312 @@
         "batch_id": "461cb2980fb76c6d7e86b5decbcdd8d102e9d9f7c0d496b9cca7f49bd5af2a6e",
         "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
         "request_sha256": "53185c81c0138263408de737ba08fb3b66df9dc87a50d51b2a0b1cdc5449be90"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:2:claim:10:ev:0"
+      ],
+      "id": "adoption:review:4d94f6c903682b69d72a5ef1",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu",
+        "part:rack-system"
+      ],
+      "question_ids": [
+        "Q-SCOPE-arch-nvidia-gpu",
+        "M06-Q07"
+      ],
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "status": "adopted",
+      "text": "SemiAnalysis《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》作者在第3页介绍Rubin CPX发布背景下的VR200系列机架方案时，将VR200 NVL144描述为：72个GPU封装分布于18个计算托盘，每个托盘含4个R200 GPU封装。此项记录来源当时的方案组成描述，未独立认证当前配置或实际部署；本批原生文本未建立发表时间及具体地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T03:22:10+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性及评分7。完整连续引句明确给出机架、托盘与GPU封装三个计数层级，实质补充当前NVIDIA产品关系问题及M06-Q07的封装口径。仅作局部作者主张采用，未发现敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-arch-nvidia-gpu",
+          "Q-M06-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.87,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cfb901fc8975f84ad6f3bea27ad4d2b0ad8fb875cd2af13c339e98cca6e57f17",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 71166,
+            "output_tokens": 2706,
+            "reasoning_output_tokens": 428
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.067,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f672e46e102854201502e66384da6fa561173122fbf7e02b08751f459f87c236",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 68596,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 139
+            }
+          }
+        },
+        "batch_id": "3a06f61a3e4da440eb17852b711968c4016b2fba45bfc80810efd16b0c5e2b6e"
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:2:claim:10"
+      ],
+      "limitations": "封装数不等于die数，NVL144名称也不能独立证明die计数。没有厂商原始规格或实际交付核验。现有同文采用记录标注2025-09-10，但本批所供原生页未展示日期，本条不独立确立发布日期。",
+      "conflict_check": "legacy记录sa2503-rubin-fp4-pflops-package的备注同样称VR200 NVL144有72个封装，未形成计数冲突；该记录主体是算力规格，不是本条完整托盘配置的重复canonical记录。GB200/GB300及AMD机柜记录属于不同产品。相邻原文算力数字与历史算力记录、封存摘要中的功率冲突均不用于本条计数主张，不据此改写既有结论。检查限于所供记录。",
+      "gap_dependency_check": "本条由第3页完整正文支持，不依赖缺页29、未提供图示或已延期的其他候选。M06-Q07仍缺厂商原始依据、封装与die对应关系及反证；NVIDIA架构问题仍缺完整定义和分类边界。两项问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3a06f61a3e4da440eb17852b711968c4016b2fba45bfc80810efd16b0c5e2b6e",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "request_sha256": "e049ae78d02372f50b82e0fc7baa1eb0163c98dcf6d36e425bcfd9ce7de8113a"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:2:claim:11:ev:0"
+      ],
+      "id": "adoption:review:48d16b843f30a68eaa322934",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu",
+        "part:rack-system"
+      ],
+      "question_ids": [
+        "Q-SCOPE-arch-nvidia-gpu",
+        "M06-Q07"
+      ],
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "status": "adopted",
+      "text": "SemiAnalysis《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》作者在第3页将VR200 NVL144 CPX方案描述为：18个计算托盘中包含72个原文称为“Logical GPUs packages”的计数项，另有144个Rubin CPX GPU封装；每个托盘含4个R200 GPU封装及8个Rubin CPX GPU封装。此项保留作者原始计数用语，未独立认证当前配置或实际部署；本批原生文本未建立发表时间及具体地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T03:22:10+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性及评分7。连续原句具体说明R200与Rubin CPX在同一方案及托盘中的组合，实质贡献于两项当前问题。采用范围限于作者表述，并显式保留未定义术语；术语歧义尚未构成可确立的真实冲突，未触发A条件。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-arch-nvidia-gpu",
+          "Q-M06-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.87,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cfb901fc8975f84ad6f3bea27ad4d2b0ad8fb875cd2af13c339e98cca6e57f17",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 71166,
+            "output_tokens": 2706,
+            "reasoning_output_tokens": 428
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.067,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f672e46e102854201502e66384da6fa561173122fbf7e02b08751f459f87c236",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 68596,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 139
+            }
+          }
+        },
+        "batch_id": "3a06f61a3e4da440eb17852b711968c4016b2fba45bfc80810efd16b0c5e2b6e"
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:2:claim:11"
+      ],
+      "limitations": "“Logical GPUs packages”未在所供上下文中得到定义，不能自行等同于物理封装、逻辑GPU或die。每托盘R200封装数与总计数用语的语义对应仍待核实，不推导混合GPU总数或die总数。现有同文记录的2025-09-10日期未由本批原生页重新建立。",
+      "conflict_check": "标准VR200 NVL144条目使用“GPU packages”，本条总计使用“Logical GPUs packages”；两者措辞不同，保留差异而不擅自统一。legacy的72封装备注及NVL名称按die计数的说明，没有定义本条术语，也未提供足以确立本条数值矛盾的同配置反证。已采用CPX定位及单裸片描述不是同一混合机架计数主张；未发现重复canonical记录，不覆盖既有结论。",
+      "gap_dependency_check": "本条直接依赖第3页完整正文，不依赖缺页29、功率表或其他延期候选。需补厂商原始材料以解释“Logical GPUs packages”、R200封装与die的对应及方案版本。两项问题仅获得局部配置线索，均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3a06f61a3e4da440eb17852b711968c4016b2fba45bfc80810efd16b0c5e2b6e",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "request_sha256": "e049ae78d02372f50b82e0fc7baa1eb0163c98dcf6d36e425bcfd9ce7de8113a"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c30e5c58d0b04df766c1481c6f55659cde21f62ad41dfb1fbcf07193260a9294",
+      "evidence_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:2:claim:12:ev:0"
+      ],
+      "id": "adoption:review:9b63764045c0fb775ff074f2",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu",
+        "part:rack-system"
+      ],
+      "question_ids": [
+        "Q-SCOPE-arch-nvidia-gpu",
+        "M06-Q07"
+      ],
+      "reading_revision_id": "rev-438b89f9fbb74619804c42a12326e76d",
+      "status": "adopted",
+      "text": "SemiAnalysis《Another Giant Leap: The Rubin CPX Specialized Accelerator & Rack》作者在第3页将Vera Rubin CPX Dual Rack描述为两个独立机柜：一个VR200 NVL144机柜，以及一个VR CPX机柜；后者含144个Rubin CPX GPU，分布于18个计算托盘，每个托盘含8个Rubin CPX GPU。此项记录来源当时的双柜方案描述，未独立认证当前配置或实际部署；本批原生文本未建立发表时间及具体地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T03:22:10+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性及评分7。连续引句明确区分双柜方案与其中一个机柜的GPU及托盘数量，对NVIDIA产品关系和M06-Q07的计数边界有实质贡献。补回候选缺少的作者归属后，可作B类局部采用，未发现A条件。",
+        "workorder_ids": [
+          "Q-Q-SCOPE-arch-nvidia-gpu",
+          "Q-M06-Q07"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.87,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cfb901fc8975f84ad6f3bea27ad4d2b0ad8fb875cd2af13c339e98cca6e57f17",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 71166,
+            "output_tokens": 2706,
+            "reasoning_output_tokens": 428
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.067,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f672e46e102854201502e66384da6fa561173122fbf7e02b08751f459f87c236",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 68596,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 139
+            }
+          }
+        },
+        "batch_id": "3a06f61a3e4da440eb17852b711968c4016b2fba45bfc80810efd16b0c5e2b6e"
+      },
+      "source_candidate_ids": [
+        "rev-438b89f9fbb74619804c42a12326e76d:chunk:2:claim:12"
+      ],
+      "limitations": "144个Rubin CPX GPU只属于VR CPX机柜，不是双柜方案的GPU总数。原句使用GPU而非GPU package，本条不将其改释为封装或die。没有厂商独立配置核验、地域或实际交付证据；同文既有记录的2025-09-10日期未由本批原生页重新建立。",
+      "conflict_check": "本条双柜配置与标准VR200 NVL144、单柜VR200 NVL144 CPX属于不同方案，数量边界不同，未构成直接冲突。现有CPX设计定位、AMD机柜配置及legacy机架出货预测没有同方案计数反证，也不能独立验证本条。未发现相同canonical记录；保留既有出货预测和封装口径结论，检查限于所供材料。",
+      "gap_dependency_check": "本条由第3页完整正文支持，不依赖缺页29、图表功率预算或已延期候选。M06-Q07仍缺GPU、封装、die及逻辑GPU的厂商对应依据和反证；NVIDIA架构问题仍缺完整分类及适用条件。两项问题均保持开放，不形成双柜总量或部署结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3a06f61a3e4da440eb17852b711968c4016b2fba45bfc80810efd16b0c5e2b6e",
+        "source_report_sha256": "cac6f68714fa3c51032e9cbdcadbd38d7bf8876ba4f88bff310e0b1efa30e12b",
+        "request_sha256": "e049ae78d02372f50b82e0fc7baa1eb0163c98dcf6d36e425bcfd9ce7de8113a"
       }
     }
   ],
