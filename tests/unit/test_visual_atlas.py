@@ -59,7 +59,19 @@ class VisualAtlasTests(unittest.TestCase):
                 self.assertTrue(row['acceptance_record'], row['id'] + ': no acceptance receipt')
             if row['status'] == 'published':
                 self.assertTrue(row['published_revision'], row['id'] + ': no publication receipt')
-        self.assertLessEqual(len(active), 1, 'the adopted plan works on one item at a time')
+        execution=self.queue['execution']
+        batches=execution['source_pr_batches'];expected=[['TA-21'],['TA-22','TA-23'],['TA-24','TA-25','TA-26','TA-27'],['TA-28'],['TA-29'],['TA-30','TA-31','TA-32','TA-33','TA-34'],['TA-35']]
+        self.assertEqual(batches,expected);self.assertIn(execution['current_source_batch'],batches)
+        self.assertEqual(execution['max_concurrent_drafting'],1)
+        self.assertLessEqual(sum(r['status']=='drafting'for r in rows),1)
+        self.assertTrue(set(active)<=set(execution['current_source_batch']))
+        for row in rows:
+            if row['status']=='review':
+                evidence=json.loads((ROOT/row['source_review_record']).read_text())
+                self.assertEqual(evidence['figure_id'],row['id']);self.assertEqual(evidence['decision'],'source_ready_public_pending');self.assertTrue(evidence['original_viewed'])
+                self.assertTrue(evidence['artifacts'])
+                for artifact in evidence['artifacts']:self.assertEqual(hashlib.sha256((ROOT/artifact['file']).read_bytes()).hexdigest(),artifact['sha256'])
+        self.assertEqual(self.queue['primary_plan']['published'],sum(r['status']=='published'for r in rows if r['id']in self.queue['primary_plan']['items']))
 
     def test_completed_illustrations_bind_master_labels_and_retained_baseline(self):
         ns = {'s': 'http://www.w3.org/2000/svg'}
