@@ -45,7 +45,7 @@
     "src/inresearch/materials/daily_sources.py": "f719e0d4592abfcb3b914d278bef4c246538ba61ec407e4ac0d31b1cca56a216",
     "src/inresearch/workflow/daily_dispatch.py": "06dd49baea056cc9976aacf8a32c34cdf0800ad38eedde2be4e60ebe49a82627",
     "src/inresearch/workflow/project_pipeline.py": "a36aa6aa0a43f462abc0c7e0747ca29dcb42c21b3b47ff8ed2c609127e69ba8a",
-    "src/inresearch/workflow/reader.py": "832cf23be33d7a26ac1cb35ccd9253b43133608dc44848e20c1411023355a659",
+    "src/inresearch/workflow/reader.py": "12e3b29e6af6db898cf304584b0dcd640561f80c7d2370b08b092690a8179f4a",
     "src/inresearch/workflow/reading_revisions.py": "01bf72e50b8b106d18647ae93f2fa0683293ff91e3f5fd2a3b5e299ecfb9b42e",
     "src/inresearch/workflow/reading_stages.py": "6fd90faf81d762d0e7f583f70612a9db97424d4175be1b0e7d3af59e276e279c",
     "src/inresearch/workflow/research_match.py": "416321b0399d8af193721b7df75824a9e27c3e8774ea152fff038cc337d46e8b",
@@ -286,7 +286,8 @@
     "web/assets/technical-atlas/coldplate-v1-preview.svg": "1d3817c7065e5427bc0d99fc18a45470c6cc4b3f94d1e1adafd8c3749d60430d",
     "web/assets/technical-atlas/coldplate-v1.png": "ab1c11188f81015694bbc7be40e714cb675a09d59decd480b6546ace897408ce",
     "docs/design/technical-atlas/TA-10/publication-20261009.json": "56d3a1caef1386c9beb559ca5972a21e8ed394a89cc74f219d2e904ab64aa91e",
-    "tests/unit/test_reader_scope_capacity.py": "b1546be8f3f5f2245dd2f6b05598df2c35a64b64e0c289a370f1a4cae4cbaa7a"
+    "tests/unit/test_reader_scope_capacity.py": "b1546be8f3f5f2245dd2f6b05598df2c35a64b64e0c289a370f1a4cae4cbaa7a",
+    "tests/unit/test_reader_claim_scope.py": "e62947ce465ee5faf78896d68332db066cc41c0a562c08a6103c905c8e9e31db"
   },
   "policies": [
     {
@@ -1069,7 +1070,7 @@
       "policy": "reading-native-text-20261007",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07复审：以后默认正文配方，零OCR；混排页文字保留，空文字层不冒充空白，纯图片阻塞等待用户；正文完成与视觉排除机检/网页明确；冻结新revision不覆盖旧尝试或已完成报告；TXT只为派生提取，页数/SHA/尾段核验。；默认配置和新报告范围计数经测试；历史被替代错误不继续计为当前阻塞；网页同时呈现旧视觉缺页和新正文图片未读说明、空文字层页，并保持移动端宽度与转义。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、四项CI完整通过后才可发布。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；2026-10-08：资料基座以当前封存快照、内容身份/原文和骨架映射直接供研究使用，来源年代未知保持未知、跨节点和部分已采用报告不遮蔽其他材料；C3不作为资料展示前置，正式答案/GW/模型不由投影改写。；2026-10-08复审v3：仅排版空白折叠，语义/标点/外部主体拒绝，v2审计仍严格；完整ID校验及逐条拒绝分区可复验，原文不改；旧词协议失败显式排队不放行复核/引文失败。；2026-10-09来源侧车复审：默认只读，输入/响应/归档SHA及路径校验，整批冲突拒绝，已知URL/metadata不覆盖，重投真实字节回执；原件与工具响应载体原站SHA/null区分，按内容身份进入snapshot/receiver/资料API和新review包，旧封印不追补，只有绑定材料缓存失效；无重抓/提取/排队/正式采用。；2026-10-09复审DCD显式大批：内容身份上限从5000增至10000，1MiB载体上限、严格SHA身份、坏scope停止且不回退全库保持；既有文档和阅读版本不因此改变。",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07复审：以后默认正文配方，零OCR；混排页文字保留，空文字层不冒充空白，纯图片阻塞等待用户；正文完成与视觉排除机检/网页明确；冻结新revision不覆盖旧尝试或已完成报告；TXT只为派生提取，页数/SHA/尾段核验。；默认配置和新报告范围计数经测试；历史被替代错误不继续计为当前阻塞；网页同时呈现旧视觉缺页和新正文图片未读说明、空文字层页，并保持移动端宽度与转义。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、四项CI完整通过后才可发布。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；2026-10-08：资料基座以当前封存快照、内容身份/原文和骨架映射直接供研究使用，来源年代未知保持未知、跨节点和部分已采用报告不遮蔽其他材料；C3不作为资料展示前置，正式答案/GW/模型不由投影改写。；2026-10-08复审v3：仅排版空白折叠，语义/标点/外部主体拒绝，v2审计仍严格；完整ID校验及逐条拒绝分区可复验，原文不改；旧词协议失败显式排队不放行复核/引文失败。；2026-10-09来源侧车复审：默认只读，输入/响应/归档SHA及路径校验，整批冲突拒绝，已知URL/metadata不覆盖，重投真实字节回执；原件与工具响应载体原站SHA/null区分，按内容身份进入snapshot/receiver/资料API和新review包，旧封印不追补，只有绑定材料缓存失效；无重抓/提取/排队/正式采用。；2026-10-09复审DCD显式大批：内容身份上限从5000增至10000，1MiB载体上限、严格SHA身份、坏scope停止且不回退全库保持；既有文档和阅读版本不因此改变。；2026-10-09大scope领取复审：按job复合外键doc_id/revision_id关联阅读版本，避免scope对每个pending job放大查询；原有范围、floor、available、四槽顺序及事务租约保持。",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
@@ -1186,7 +1187,8 @@
         "tests/unit/test_research_sources.py::ResearchSourceTests.test_unreceived_source_unsafe_path_and_url_reject_without_queueing",
         "tests/unit/test_research_sources.py::ResearchSourceTests.test_cli_metadata_mode_does_not_extract_match_or_open_reader",
         "tests/unit/test_reader_scope_capacity.py::ScopeCapacityTests.test_large_explicit_batch_preserves_every_content_identity",
-        "tests/unit/test_reader_scope_capacity.py::ScopeCapacityTests.test_bad_large_batch_does_not_open_the_whole_library"
+        "tests/unit/test_reader_scope_capacity.py::ScopeCapacityTests.test_bad_large_batch_does_not_open_the_whole_library",
+        "tests/unit/test_reader_claim_scope.py::ClaimScopeTests.test_large_scope_claim_uses_bounded_work_and_preserves_dispatch_order"
       ],
       "not_verified": [
         "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality.",
@@ -1202,7 +1204,8 @@
         "逐条原文检索是范围明确的候选冲突检索，不能证明外部反证穷尽或新查询词对全库的语义召回。六条合批/十二批背压不保证线性提速，实际审核、抽样、发布与小时吞吐须私有真机回执；无需求匹配、A档、原文不足和超预算仍分别保留。",
         "来源记载不证明当前语义准确或历史材料今天仍有效；新版本/冲突正式替代须定向核验，真实资料数量与生产网页另读实际快照。",
         "2026-10-09来源侧车仅证明已交付字节与提交方元数据的SHA绑定，不证明URL原站字节、来源年代、内容事实或C3；Spark13:07实际应用及13:12自然发布已由真实回执核对，23快照来源身份/13资料API可读。长期review新模块载入和未来实际模型请求仍未确认，其他批次不由本次范围或本地隔离验收代替。",
-        "10000身份的实际整批吞吐与语义质量未由容量测试证明；DCD接收/逐篇阅读/正式采用各自计量，现场回执另存运行库。"
+        "10000身份的实际整批吞吐与语义质量未由容量测试证明；DCD接收/逐篇阅读/正式采用各自计量，现场回执另存运行库。",
+        "大scope领取有确定性SQLite指令预算回归及真实Spark只读查询对比；全部生产并发、持续模型阅读完成与发布仍以运行回执为准。"
       ]
     },
     {
