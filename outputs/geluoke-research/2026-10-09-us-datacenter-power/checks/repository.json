@@ -1,26 +1,46 @@
 {
-  "checked_at": "2026-10-09",
-  "governance_unit_tests": {
-    "count": 9,
-    "result": "passed",
-    "command": "PYTHONPATH=src python3 -m unittest tests.unit.test_governance"
+  "revision": 4,
+  "base_commit": "b5e669abe744d0bf29a6c5b00bb002bc9f48084a",
+  "branch": "codex/us-datacenter-power-7000-20261009",
+  "tests": [
+    {
+      "command": "PYTHONPATH=src python3 -m unittest tests.unit.test_governance",
+      "exit_code": 0,
+      "tests": 9
+    },
+    {
+      "command": "python3 manage.py validate --strict",
+      "exit_code": 0,
+      "warnings": 0
+    },
+    {
+      "command": "python3 manage.py registry",
+      "exit_code": 0,
+      "objects": 353,
+      "questions": 458
+    },
+    {
+      "command": "python3 manage.py governance --check",
+      "exit_code": 0,
+      "version": "2026.10.09.13"
+    },
+    {
+      "command": "python3 manage.py submissions outputs/geluoke-research/2026-10-09-us-datacenter-power/research",
+      "exit_code": 0,
+      "field_pass": "23/23",
+      "manual_A": 4,
+      "pending_match": 19
+    }
+  ],
+  "governance_repair": "Missing superseded_by backlink corrected; check rerun passed. Only explicitly reviewed source hashes updated.",
+  "prior_selftest": "v3 submissions selftest failed an existing 4200/11600 construction-caliber fixture expectation. Not rerun in v4; splitter code unchanged.",
+  "remote_database": "Prior v3 research intake received and registered 23 sources; 2026-10-09 11:39:55 snapshot complete1 queued22 C3 not run. V4 does not adopt formal facts.",
+  "production": "not deployed",
+  "wechat_editor": "not pasted, uploaded or published",
+  "pull_request": {
+    "url": "https://github.com/niuroumiantt/InResearch.ai/pull/444",
+    "state": "draft",
+    "merged": false
   },
-  "governance_check": "passed; inventory refreshed after final file copy",
-  "strict_validate": "passed; 0 warnings",
-  "registry": "353 objects / 458 questions; references valid",
-  "submission_actual_bundle": "23 passed / 0 returned; 4 A / 19 pending-match",
-  "submission_extra_selftest": {
-    "result": "existing sample assertion failed",
-    "reason": "ordinary fixture 4200 CNY/m2 is compared against existing 11600 CNY/m2 shell-only estimate and rises to A; fixture expects pending-match",
-    "changed_by_this_task": false
-  },
-  "formal_data_changed": false,
-  "website_deployed": false,
-  "wechat_published": false,
-  "revision": 3,
-  "test_environment_note": "首次未设PYTHONPATH无法导入src/inresearch；按项目src路径重跑9项通过，非测试断言失败。",
-  "governance_version": "2026.10.09.08",
-  "governance_tracked_files": 1501,
-  "base_revision": "0f7dc743",
-  "draft_pr": "https://github.com/niuroumiantt/InResearch.ai/pull/427"
+  "integrated_main": "7ba61481196d39b7e501c90a24079aa491db995f"
 }
