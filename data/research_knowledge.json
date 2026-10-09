@@ -3451,6 +3451,62 @@
       "status": "candidate",
       "stored_path": "originals/3a/3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb/lbnl-full.pdf",
       "title": "2024 United States Data Center Energy Usage Report"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "coverage": {
+        "characters_read": 7157,
+        "characters_total": 7157,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "library_path": "library/by-node/part-bess/2026_DCD_Amazon signs first APAC battery storage tolling deal wi__2533958feb827909.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:bess",
+        "site:grid"
+      ],
+      "question_ids": [
+        "OBJ-bess-interfaces",
+        "OBJ-bess-performance",
+        "OBJ-bess-supply",
+        "OBJ-grid-interfaces"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-1ede36cd327844469ce9c0050c8fb0da",
+      "report_sha256": "e3aee547454d162750255ead6a171e8cb9398cde84d84fcf2dccd147bb354de6",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+        "url": "https://www.datacenterdynamics.com/en/news/amazon-signs-first-apac-battery-storage-tolling-deal-with-anza-power-in-victoria-australia/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/amazon-signs-first-apac-battery-storage-tolling-deal-with-anza-power-in-victoria-australia/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/25/2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a/dcd-2533958feb827909-Amazon signs first APAC battery storage tolling deal with Anza Po.html",
+      "title": "Amazon signs first APAC battery storage tolling deal with Anza Power in Victoria, Australia"
     }
   ],
   "evidence": [
@@ -23734,6 +23790,267 @@
           }
         },
         "batch_id": "ad612a41449cf062f754e1c50d59054b502da065e83bf531cbf358326f325fec"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a5fc8fd8c1b1edaccc88e35a092f800da4d766a8c7c33e1b45c39bf2e0b2262d",
+      "document_id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "id": "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:bess",
+        "site:grid"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-bess-interfaces",
+        "OBJ-grid-interfaces"
+      ],
+      "quote": "The project will connect directly to the grid as a standalone asset to provide dedicated storage capacity independent of a renewable asset.",
+      "reading_revision_id": "rev-1ede36cd327844469ce9c0050c8fb0da",
+      "source_sha256": "2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:14:18+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。独立储能资产与电网的计划连接关系，以及不依附可再生能源资产的配置边界，实质贡献当前两个接口工单。引文连续、上下文充分，明确保留未来计划属性后符合B条件；无敏感内容、真实冲突或替换提议。",
+        "workorder_ids": [
+          "Q-OBJ-bess-interfaces",
+          "Q-OBJ-grid-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 91.883,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7964c3ee169382da7f0ed7fe1379d0626537619bdcb1d4c2e17c329ea83b1023",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 74351,
+            "output_tokens": 2714,
+            "reasoning_output_tokens": 404
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.475,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e9bc5c6a655b6bca49298825137cac779d51eeddbff9970b767034ba7c4d97c5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71762,
+              "output_tokens": 644,
+              "reasoning_output_tokens": 401
+            }
+          }
+        },
+        "batch_id": "8ad2a113e44821e02a9eab7255a3bbfd1d245643558a5af16c75af56061cde8c"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a5fc8fd8c1b1edaccc88e35a092f800da4d766a8c7c33e1b45c39bf2e0b2262d",
+      "document_id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "id": "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:bess"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-bess-interfaces",
+        "OBJ-bess-performance",
+        "OBJ-grid-interfaces"
+      ],
+      "quote": "According to the companies, the agreement will help strengthen regional grid reliability and energy flexibility, enabling electricity to be stored and dispatched during periods of peak demand.",
+      "reading_revision_id": "rev-1ede36cd327844469ce9c0050c8fb0da",
+      "source_sha256": "2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:14:18+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。储存电能并在高峰期间调度，实质贡献当前BESS及电网接口工单中的输入输出和运行关系，足以作有限归属采用。对OBJ-bess-performance仅提供待验证效益方向，没有测量方法或性能结果，本次不列入该问题关联。连续引文和项目上下文充分，无A类触发条件，符合B条件。",
+        "workorder_ids": [
+          "Q-OBJ-bess-interfaces",
+          "Q-OBJ-grid-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 91.883,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7964c3ee169382da7f0ed7fe1379d0626537619bdcb1d4c2e17c329ea83b1023",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 74351,
+            "output_tokens": 2714,
+            "reasoning_output_tokens": 404
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.475,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e9bc5c6a655b6bca49298825137cac779d51eeddbff9970b767034ba7c4d97c5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71762,
+              "output_tokens": 644,
+              "reasoning_output_tokens": 401
+            }
+          }
+        },
+        "batch_id": "8ad2a113e44821e02a9eab7255a3bbfd1d245643558a5af16c75af56061cde8c"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a5fc8fd8c1b1edaccc88e35a092f800da4d766a8c7c33e1b45c39bf2e0b2262d",
+      "document_id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "id": "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:5:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:bess"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-bess-supply"
+      ],
+      "quote": "Anza has not disclosed when it expects the project to become operational.",
+      "reading_revision_id": "rev-1ede36cd327844469ce9c0050c8fb0da",
+      "source_sha256": "2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:14:18+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。项目投运时间的披露缺口实质关联当前BESS供应与交付工单的交期研究。原生上下文足以补全候选中省略的项目标识和地域，连续引文支持限定于来源时点的缺口记录。无敏感内容、真实冲突或替换条件，符合B级部分采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-bess-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 91.883,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7964c3ee169382da7f0ed7fe1379d0626537619bdcb1d4c2e17c329ea83b1023",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 74351,
+            "output_tokens": 2714,
+            "reasoning_output_tokens": 404
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.475,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e9bc5c6a655b6bca49298825137cac779d51eeddbff9970b767034ba7c4d97c5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71762,
+              "output_tokens": 644,
+              "reasoning_output_tokens": 401
+            }
+          }
+        },
+        "batch_id": "8ad2a113e44821e02a9eab7255a3bbfd1d245643558a5af16c75af56061cde8c"
       }
     }
   ],
@@ -45559,6 +45876,311 @@
         "request_sha256": "53e514a4543ade9e0727009b0ae9af9d2c8397eafe7b8b098c9ea5f3a743008f"
       },
       "object_mapping_check": "本项范围是美国全国、包含AI及其他负载的数据中心总年用电量。对象合同中的root是一座AI数据中心，system:power是其内部电力系统，site:grid是电力配额与并网权利，均不能直接承载这一全国综合需求预测。保留空对象列表及有效问题匹配，不从AI背景或文档标签推导部件映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "evidence_ids": [
+        "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:75242a4bb20bf71f2271bfe5",
+      "kind": "author_forecast",
+      "object_ids": [
+        "part:bess",
+        "site:grid"
+      ],
+      "question_ids": [
+        "OBJ-bess-interfaces",
+        "OBJ-grid-interfaces"
+      ],
+      "reading_revision_id": "rev-1ede36cd327844469ce9c0050c8fb0da",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年9月3日的报道中称，位于澳大利亚维多利亚州East Gippsland的Bairnsdale BESS项目计划作为独立资产直接连接电网，提供独立于可再生能源资产的专用储能容量。这是来源描述的开发计划，不是已经并网或投运的独立核证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:14:18+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。独立储能资产与电网的计划连接关系，以及不依附可再生能源资产的配置边界，实质贡献当前两个接口工单。引文连续、上下文充分，明确保留未来计划属性后符合B条件；无敏感内容、真实冲突或替换提议。",
+        "workorder_ids": [
+          "Q-OBJ-bess-interfaces",
+          "Q-OBJ-grid-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 91.883,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7964c3ee169382da7f0ed7fe1379d0626537619bdcb1d4c2e17c329ea83b1023",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 74351,
+            "output_tokens": 2714,
+            "reasoning_output_tokens": 404
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.475,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e9bc5c6a655b6bca49298825137cac779d51eeddbff9970b767034ba7c4d97c5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71762,
+              "output_tokens": 644,
+              "reasoning_output_tokens": 401
+            }
+          }
+        },
+        "batch_id": "8ad2a113e44821e02a9eab7255a3bbfd1d245643558a5af16c75af56061cde8c"
+      },
+      "source_candidate_ids": [
+        "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:3"
+      ],
+      "limitations": "未提供并网电压、连接点、接口规格、保护要求、充电来源、接入批准或可互换条件。独立于可再生能源资产不等于不依赖电网，也不能证明数据中心获得专属供电、并网配额或表后储能。",
+      "conflict_check": "已采用PJM和ERCOT陈述分别涉及美国发电资源或大负荷接入，与澳大利亚Bairnsdale储能项目的计划连接方式对象、地域及阶段不同，不构成重复或真实冲突。既有BESS技术和Wärtsilä供给陈述也不检验本项目连接计划。所供legacy匹配记录为空；检查仅限所供材料，不代表完成外部反证检索。",
+      "gap_dependency_check": "仍需项目并网协议、接口技术文件、接入审批及建设和投运记录，才能确认具体依赖、限制和实施状态。本条仅部分支持两个接口问题，相关工单保持开放，不改变研究骨架、既有结论或模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8ad2a113e44821e02a9eab7255a3bbfd1d245643558a5af16c75af56061cde8c",
+        "source_report_sha256": "e3aee547454d162750255ead6a171e8cb9398cde84d84fcf2dccd147bb354de6",
+        "request_sha256": "4904cdbcfbf5864723ee57e3babd54a490d1178d0074b285634363b47c3f9b85"
+      },
+      "object_mapping_check": "独立复核后，项目明确属于发电与储能链下的BESS，且主张直接涉及计划并网，分别符合part:bess和site:grid的对象范围。site:grid关联仅限连接关系，不确认配额或协议持有人；没有依据映射为某座数据中心、UPS或IT存储资产。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "evidence_ids": [
+        "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:e9e022ba989013edde5a6c00",
+      "kind": "author_forecast",
+      "object_ids": [
+        "part:bess"
+      ],
+      "question_ids": [
+        "OBJ-bess-interfaces",
+        "OBJ-grid-interfaces"
+      ],
+      "reading_revision_id": "rev-1ede36cd327844469ce9c0050c8fb0da",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年9月3日的报道中转述Amazon与Anza Power的预期：与澳大利亚维多利亚州East Gippsland的Bairnsdale BESS开发相关的协议，将通过储存电能并在需求高峰期间调度，帮助增强区域电网可靠性与能源灵活性。这是两家公司提出的预期用途和效益，不是运行实测或独立可靠性核证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:14:18+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。储存电能并在高峰期间调度，实质贡献当前BESS及电网接口工单中的输入输出和运行关系，足以作有限归属采用。对OBJ-bess-performance仅提供待验证效益方向，没有测量方法或性能结果，本次不列入该问题关联。连续引文和项目上下文充分，无A类触发条件，符合B条件。",
+        "workorder_ids": [
+          "Q-OBJ-bess-interfaces",
+          "Q-OBJ-grid-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 91.883,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7964c3ee169382da7f0ed7fe1379d0626537619bdcb1d4c2e17c329ea83b1023",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 74351,
+            "output_tokens": 2714,
+            "reasoning_output_tokens": 404
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.475,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e9bc5c6a655b6bca49298825137cac779d51eeddbff9970b767034ba7c4d97c5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71762,
+              "output_tokens": 644,
+              "reasoning_output_tokens": 401
+            }
+          }
+        },
+        "batch_id": "8ad2a113e44821e02a9eab7255a3bbfd1d245643558a5af16c75af56061cde8c"
+      },
+      "source_candidate_ids": [
+        "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:4"
+      ],
+      "limitations": "未提供调度权限、控制接口、充放电功率曲线、效率、响应时间、测试方法、基准可靠性或失效工况。需求高峰是预期调度情境，没有可复查的运行条件或实测效果；不能确认数据中心供电可靠性已经改善。",
+      "conflict_check": "已采用BESS频率调节、逆变器限流和故障电流贡献的技术判断，不否定本项目储存电能并在高峰调度的预期用途；预期可靠性效益也不能覆盖这些技术限制。PJM冬季建模和ERCOT接入记录的对象、地域及条件不同，不构成直接冲突或重复。所供legacy匹配记录为空，未完成外部反证检索。",
+      "gap_dependency_check": "接口问题仍需调度主体、控制协议、充放电约束及并网条件。性能问题仍需测试方法、运行数据、可靠性指标、比较基准和反例，不能以公司预期替代验收。所有相关问题及工单保持开放，不更新性能参数或既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8ad2a113e44821e02a9eab7255a3bbfd1d245643558a5af16c75af56061cde8c",
+        "source_report_sha256": "e3aee547454d162750255ead6a171e8cb9398cde84d84fcf2dccd147bb354de6",
+        "request_sha256": "4904cdbcfbf5864723ee57e3babd54a490d1178d0074b285634363b47c3f9b85"
+      },
+      "object_mapping_check": "主张的具体机制是BESS储存及调度电能，符合发电与储能链下的part:bess。区域电网可靠性的预期效益未涉及site:grid所定义的配额、排队或并网协议，故不沿用该候选标签；保留电网接口的问题关系。未证明某座数据中心的电力系统或控制软件范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a",
+      "evidence_ids": [
+        "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:5:ev:0"
+      ],
+      "id": "adoption:review:e698dad9d2a856c8b330a6ca",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:bess"
+      ],
+      "question_ids": [
+        "OBJ-bess-supply"
+      ],
+      "reading_revision_id": "rev-1ede36cd327844469ce9c0050c8fb0da",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年9月3日的报道中称，Anza Power尚未披露澳大利亚维多利亚州East Gippsland的Bairnsdale BESS项目预计投运时间。该表述限于报道时点的披露情况，不能据此确认项目已经运行，也不能认定截至本次审核时仍未披露。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:14:18+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。项目投运时间的披露缺口实质关联当前BESS供应与交付工单的交期研究。原生上下文足以补全候选中省略的项目标识和地域，连续引文支持限定于来源时点的缺口记录。无敏感内容、真实冲突或替换条件，符合B级部分采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-bess-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 91.883,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7964c3ee169382da7f0ed7fe1379d0626537619bdcb1d4c2e17c329ea83b1023",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 74351,
+            "output_tokens": 2714,
+            "reasoning_output_tokens": 404
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 36.475,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e9bc5c6a655b6bca49298825137cac779d51eeddbff9970b767034ba7c4d97c5",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 71762,
+              "output_tokens": 644,
+              "reasoning_output_tokens": 401
+            }
+          }
+        },
+        "batch_id": "8ad2a113e44821e02a9eab7255a3bbfd1d245643558a5af16c75af56061cde8c"
+      },
+      "source_candidate_ids": [
+        "rev-1ede36cd327844469ce9c0050c8fb0da:chunk:0:claim:5"
+      ],
+      "limitations": "未提供Anza原始披露、建设里程碑、预计交期或投运验收记录。预计投运时间未披露不等于项目延期、尚未开工或永远没有时间表；报道也不能确认当前运行状态。",
+      "conflict_check": "以原生上下文确定Bairnsdale项目后，所供已采用陈述中没有该项目投运时间或状态记录。Wärtsilä潜在捆绑销售属于另一供应商的供给线索，其他PJM及ERCOT记录也不构成重复或冲突。所供legacy匹配记录为空；不能据此宣称全部历史记录或外部披露均不存在反证。",
+      "gap_dependency_check": "仍需Anza项目公告、建设进度、设备交付与投运验收材料，建立时间线并核验后续披露。OBJ-bess-supply仍缺供应商分工、制造交期、成本边界及生命周期成本，本条只记录来源时点的交付时间缺口，问题和工单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8ad2a113e44821e02a9eab7255a3bbfd1d245643558a5af16c75af56061cde8c",
+        "source_report_sha256": "e3aee547454d162750255ead6a171e8cb9398cde84d84fcf2dccd147bb354de6",
+        "request_sha256": "4904cdbcfbf5864723ee57e3babd54a490d1178d0074b285634363b47c3f9b85"
+      },
+      "object_mapping_check": "投运披露缺口明确针对Bairnsdale电池储能系统，符合part:bess的设备类别范围。该主张没有并网协议、许可或数据中心交付内容，不扩展到site:grid、site:permits或root；Anza Power没有允许的主体ID，不新增或替代主体映射。"
     }
   ],
   "answers": [],
