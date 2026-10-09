@@ -95,7 +95,7 @@ class ModelClient:
         try:
             return client.generate(system, user, **kwargs)
         except models.InferenceError as exc:
-            if exc.code in {'model_quota_wait','model_relay_unavailable'}:
+            if exc.code in {'model_quota_wait','model_relay_unavailable','model_relay_busy'}:
                 raise Deferred(exc.code) from None
             if exc.code == "model_failure":
                 raise ModelError() from None

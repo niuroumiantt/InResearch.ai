@@ -145,6 +145,12 @@ def receive_snapshot(root, payload, destination=None):
         research.merge_knowledge(research.read_json(root / 'data/research_knowledge.json'), snapshot['knowledge'])
         previous = research.read_json(destination, {})
         if previous.get('generated') and research.parse_time(snapshot['generated']) <= research.parse_time(previous['generated']):
-            raise Rejected('stale or repeated snapshot', 409)
+            # The commit may succeed just before a deployment cuts its HTTP
+            # acknowledgement. An exact replay is safe; changed/stale input is not.
+            comparable = lambda value: {k: v for k, v in value.items() if k != 'received_at'}
+            if snapshot['generated'] == previous['generated'] and comparable(snapshot) == comparable(previous):
+                return {'ok': True, 'received_at': previous['received_at'],
+                        'documents': len(previous['knowledge']['documents']), 'replayed': True}
+            raise Rejected('stale or conflicting snapshot', 409)
         write_json(destination, snapshot)
     return {'ok': True, 'received_at': snapshot['received_at'], 'documents': len(snapshot['knowledge']['documents'])}
