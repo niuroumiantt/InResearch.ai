@@ -3635,6 +3635,65 @@
       "status": "candidate",
       "stored_path": "originals/1f/1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc/dcd-1f31ee1d7d4ca274-AI growth is running into a power and heat constraint.html",
       "title": "AI growth is running into a power and heat constraint"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "coverage": {
+        "characters_read": 10487,
+        "characters_total": 10487,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "library_path": "library/by-node/root/2025_DCD_Cryptominer TeraWulf secures 200MW lease with Fluidstac__18a9339080cf3510.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:fluidstack",
+        "actor:g42",
+        "actor:mistral-ai",
+        "part:gpu",
+        "root",
+        "system:facility",
+        "system:it"
+      ],
+      "question_ids": [
+        "NODE-workload-hpc-placement"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec",
+      "report_sha256": "45362120bae74d45bc8f9c48f4d3437c7f8b31921b3fb48ecea835744c472745",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+        "url": "https://www.datacenterdynamics.com/en/news/cryptominer-terawulf-secures-200mw-lease-with-fluidstack-google-to-take-stake-in-company/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/cryptominer-terawulf-secures-200mw-lease-with-fluidstack-google-to-take-stake-in-company/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/18/18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a/dcd-18a9339080cf3510-Cryptominer TeraWulf secures 200MW lease with Fluidstack- Google .html",
+      "title": "Cryptominer TeraWulf secures 200MW lease with Fluidstack, Google to take stake in company"
     }
   ],
   "evidence": [
@@ -25091,6 +25150,89 @@
           }
         },
         "batch_id": "9d0448574d36129d8378eca7b7c7f0f80271f51893b98a786e20363641e42905"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8baef3ee94f30fdcebe17c83a3d883cb03bf25b66851dc38696a6993974a016e",
+      "document_id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:15:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:power"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "“We are proud to unite world-class capital and compute partners to deliver the next generation of AI infrastructure, powered by low-cost, predominantly zero-carbon energy.",
+      "reading_revision_id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec",
+      "source_sha256": "18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:54:00+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性7，评分7。供能成本的定性主张实质关联当前经济性工单的运营成本维度；连续原文引句及CEO发言、园区和交付安排的上下文足以支持限定归因的部分主张。未发现敏感、真实冲突或替换条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 118.163,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "24a256d3ecf7dfa79e2281ca7f42997d87d486684682b45eb3cef4b1e4993684",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 52989,
+            "output_tokens": 3363,
+            "reasoning_output_tokens": 795
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.81,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f8c250bd434ea6c4192c823f7bee8a8a0469a5232586e138801b34a17111c921",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 51707,
+              "output_tokens": 469,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "aa17861ba58eb565ade5cff45de4b1c8abb6059f327f1d59d7a7c1fc07862111"
       }
     }
   ],
@@ -48322,6 +48464,106 @@
         "request_sha256": "f897b3feb2c14f19841e75c73d52fb4cf7f6814319a1f3142ea1453d32d6b0be"
       },
       "object_mapping_check": "原文对象是未指定技术的备用发电策略，选择电力系统下的发电与储能链作为一般发电范围。合同中part:backup-power明确指柴油发电机组，原句没有柴油证据，因此不沿用该标签；也不增加燃气机组或储能部件映射。此范围限制不取消其对柴油备用接口问题的局部关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "evidence_ids": [
+        "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:15:ev:0"
+      ],
+      "id": "adoption:review:495065e4d8bdf211a32ab8aa",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:power"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec",
+      "status": "adopted",
+      "text": "据Dan Swinhoe于2025年8月14日在DCD发表的报道，TeraWulf首席执行官Paul Prager在谈及纽约州Lake Mariner园区与Fluidstack的HPC托管安排时，称其拟交付的下一代AI基础设施由低成本、以零碳能源为主的能源供能。这是管理层对该开发与交付安排的定性主张，未经本次独立验证；报道未提供电价数值。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T13:54:00+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性7，评分7。供能成本的定性主张实质关联当前经济性工单的运营成本维度；连续原文引句及CEO发言、园区和交付安排的上下文足以支持限定归因的部分主张。未发现敏感、真实冲突或替换条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 118.163,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "24a256d3ecf7dfa79e2281ca7f42997d87d486684682b45eb3cef4b1e4993684",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 52989,
+            "output_tokens": 3363,
+            "reasoning_output_tokens": 795
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.81,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f8c250bd434ea6c4192c823f7bee8a8a0469a5232586e138801b34a17111c921",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 51707,
+              "output_tokens": 469,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "aa17861ba58eb565ade5cff45de4b1c8abb6059f327f1d59d7a7c1fc07862111"
+      },
+      "source_candidate_ids": [
+        "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:15"
+      ],
+      "limitations": "未披露能源采购合同、计价时点、币种及电量分母、需量费、零碳能源比例或核算边界，也未提供实际供能和运营成本记录。不能据此认定当前电价优势、测算每GPU小时成本或验证零碳属性；未来交付安排不能改写为已投运事实。",
+      "conflict_check": "既有终端用户成本敏感性、自建成本优势、PJM容量账单和政策成本责任陈述涉及不同角色、地域或成本口径，与本项园区供能主张不存在可识别的同口径冲突或重复。所供legacy匹配记录为空，不能据此排除外部反证；不替换既有结论。",
+      "gap_dependency_check": "仅为NODE-activity-V1-economics补充管理层所称的供能成本背景，未完成成本计量或可比口径。仍需一手能源合同、完整电费构成、实际用电与运营记录及反证；问题保持开放，不更新模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "aa17861ba58eb565ade5cff45de4b1c8abb6059f327f1d59d7a7c1fc07862111",
+        "source_report_sha256": "45362120bae74d45bc8f9c48f4d3437c7f8b31921b3fb48ecea835744c472745",
+        "request_sha256": "4f77633a5f8988474487da2e3c864d201b1568f76efd94c10669342f3a73debd"
+      },
+      "object_mapping_check": "主张直接涉及园区基础设施的能源供给及其成本和碳属性，对应root下的电力系统system:power。未说明并网权利、发电方式或具体设备，故不映射site:grid、发电链或部件；不继承Reader的root标签。"
     }
   ],
   "answers": [],
