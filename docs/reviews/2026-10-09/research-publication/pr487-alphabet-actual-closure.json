@@ -1,0 +1,143 @@
+{
+  "actual_merge": {
+    "headRefOid": "5a7add0d9c40ed2a8904b7c7d92f0b99c2078f4b",
+    "mergeCommit": {
+      "oid": "7fad46879c79175b69f1d380c8111c9cebf43b9e"
+    },
+    "state": "MERGED"
+  },
+  "independent_https": {
+    "checked_at": "2026-10-09T08:28:59.798662+00:00",
+    "http_base": "https://inresearch.ai",
+    "url": "https://inresearch.ai/api/research-adopted?node=root",
+    "http_status": 200,
+    "response_bytes": 389931,
+    "response_sha256": "838afa7f041f1db1d293672c4eddaa7070f730b866f92c7b189cfd98d6d99156",
+    "batch_id": "7f215ffab6a4b45ee3c35db03c67e259715e85687cb693c06b55461c4b842cd0",
+    "reviewed_head": "5a7add0d9c40ed2a8904b7c7d92f0b99c2078f4b",
+    "merge_commit": "7fad46879c79175b69f1d380c8111c9cebf43b9e",
+    "bundle_sha256": "36c265b5b8f0002a7294340c3fc2fa62eda5c33043681a156e923ccb2080f12c",
+    "checks": [
+      {
+        "id": "adoption:review:d50b6fbb4577ac2d081502dc",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:e566cb852ed448b32c573375",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      },
+      {
+        "id": "adoption:review:4048b3f9081b8b3cc9fcd4d2",
+        "present": true,
+        "text_match": true,
+        "source_candidate_match": true,
+        "adopted_review": true,
+        "http_source_url_and_role_match": false,
+        "ledger_source_provenance_matches_original": true,
+        "support_closure": true,
+        "source_content_sha256": [
+          "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b"
+        ]
+      }
+    ],
+    "verified_all_three": true,
+    "verified_formal_support_all_three": true,
+    "material_api": {
+      "url": "https://inresearch.ai/api/research-materials?node=root&q=Alphabet+Q1+2026+Earnings+Call&limit=50",
+      "http_status": 200,
+      "total": 119,
+      "matched_original_rows": 50,
+      "source_identity_url_role_verified": true,
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "source_url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Apr/29/2026_Q1_Earnings_Transcript.pdf",
+      "role": "downloaded_original",
+      "response_sha256": "d5fb5c8bd6a32b06be61e5a63267e05c96782369d4ff838938e36014159f3376"
+    },
+    "adopted_projection_note": "Adopted document API intentionally projects only id/title/content SHA/reading revision/coverage; URL and source provenance are bound by deployed curated ledger and separately verified through actual research-materials HTTPS.",
+    "deployed_ledger_sha256": "1f9ce6faf29184f5352fce8136e719a4e844a65adf136e8a36f8145312ccf8f0",
+    "projection_contract": "HTTP exposes status/review/native quote/document content SHA/reading revision/coverage; source_candidate IDs, report SHA and partial-support flag are independently bound through the actual deployed curated ledger",
+    "operation": "authenticated external HTTPS GET using existing in-memory session; no account/auth/service/source/queue mutation"
+  },
+  "actual_spark": {
+    "checked_at": "2026-10-09T08:35:33.524040+00:00",
+    "batch": {
+      "id": "7f215ffab6a4b45ee3c35db03c67e259715e85687cb693c06b55461c4b842cd0",
+      "state": "published",
+      "attempts": 1,
+      "updated": "2026-10-09T08:32:31+00:00",
+      "error": ""
+    },
+    "dispositions": {
+      "background": 3,
+      "published": 3
+    },
+    "proof": {
+      "api": "/api/research-adopted?node=root",
+      "batch_id": "7f215ffab6a4b45ee3c35db03c67e259715e85687cb693c06b55461c4b842cd0",
+      "bundle_sha256": "36c265b5b8f0002a7294340c3fc2fa62eda5c33043681a156e923ccb2080f12c",
+      "links": [
+        "https://inresearch.ai/node.html?id=root#evidence"
+      ],
+      "merge_commit": "7fad46879c79175b69f1d380c8111c9cebf43b9e",
+      "verified_at": "2026-10-09T08:32:30+00:00",
+      "website_image": "inresearch-app:b52c42ea588f4ef20093d368d3442e05c9f89d8f",
+      "website_statement_ids": [
+        "adoption:review:d50b6fbb4577ac2d081502dc",
+        "adoption:review:e566cb852ed448b32c573375",
+        "adoption:review:4048b3f9081b8b3cc9fcd4d2"
+      ]
+    },
+    "proof_sha256": "1e0ec65b9f0da08bb15886c55fa777c6efe5d9c25077ae3e18a4de0027fdf4d6",
+    "actual_bundle_sha256": "36c265b5b8f0002a7294340c3fc2fa62eda5c33043681a156e923ccb2080f12c",
+    "global_ready": 7,
+    "operation": "read-only exact Spark published batch/proof/dispositions; no queue/source/service mutation"
+  },
+  "original_publisher_journal_observed": {
+    "checked_at": "2026-10-09T08:31:12.970157+00:00",
+    "journal_exists": true,
+    "operation": "read-only exact original23 already merged package487 journal; no producer/worker/state mutations",
+    "journal": {
+      "state": "merged",
+      "pr": 487,
+      "commit": "5a7add0d9c40ed2a8904b7c7d92f0b99c2078f4b",
+      "merge_commit": "7fad46879c79175b69f1d380c8111c9cebf43b9e",
+      "branch": "codex/research-publication-7f215ffab6a4b45e-91efc5",
+      "worktree": "/Users/m5/.worktrees/inresearch.ai/research-publication-7f215ffab6a4b45e-attempt-0001",
+      "attempt": "attempt-0001",
+      "bundle_sha256": "36c265b5b8f0002a7294340c3fc2fa62eda5c33043681a156e923ccb2080f12c",
+      "updated": "2026-10-09T08:17:13+00:00"
+    },
+    "error_classes": [],
+    "error_excerpt": "",
+    "worktree_status": "",
+    "worktree_head": "5a7add0d9c40ed2a8904b7c7d92f0b99c2078f4b"
+  },
+  "source_receipts": {
+    "inresearch-original23-pr487-actual-merge-20261009.json": "b3fec24870b432955c14bb80c97908a40535ba27031586ffae487f73e6701a89",
+    "inresearch-original23-pr487-https-support-20261009.json": "9a7a7fbe4168b93836e784021e239cc7a0cf54da889edd67f54dcd9474b7be32",
+    "inresearch-original23-pr487-spark-published-latest-20261009.json": "598cbd8d761509c3e5c9d51006e7e3f4a30684ff6d4651e103321664e7d6b46b",
+    "inresearch-original23-pr487-publisher-journal-20261009.json": "80a560f3a7637a4acf7ef7513dcc0b1e154f5079b698f8346edcc10d24d03a5b"
+  },
+  "record_kind": "actual source-bound original23 B3 closure produced by existing publisher; this task independently verified external HTTPS and Spark ACK, did not create or merge PR487",
+  "formal_count": 3,
+  "object_mapping_note": "all three records bind actor:alphabet-google; no system:control",
+  "ACK_precedes_unowned_service_restore": true
+}

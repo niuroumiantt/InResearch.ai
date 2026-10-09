@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.32",
+  "version": "2026.10.09.35",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -594,8 +594,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 229183,
-      "sha256": "1f9cf6c7d0789701e542a58c561a1d488e0c54e4d2af52a0a7b8498211800500",
+      "bytes": 230062,
+      "sha256": "424a8c42a4a99ea95351712b5b6a2567fb5268347fab87a5efde116a46f23da2",
       "collections": []
     },
     {
@@ -1002,8 +1002,8 @@
     {
       "path": "docs/design/technical-atlas/MIGRATION_PLAN.md",
       "role": "supporting_document",
-      "bytes": 29715,
-      "sha256": "79b80ede124f49c5654cd9855eb9568f90c6093bf14be376f7a76b90e28629b8",
+      "bytes": 30466,
+      "sha256": "35544d781f43e533e44a5b1494fe05393dc8a61c23024e75931d9048cee940d7",
       "collections": []
     },
     {
@@ -2368,6 +2368,34 @@
       "collections": []
     },
     {
+      "path": "docs/design/technical-atlas/TA-13/public-observer-fix-20261009.json",
+      "role": "project_config",
+      "bytes": 13695,
+      "sha256": "9fa5613a3a2b4b8779fe4111467b4ac0f910f4dd03e3c4e3e2f4d96b62d8f795",
+      "collections": [
+        {
+          "name": "public_source_responses",
+          "count": 15
+        },
+        {
+          "name": "boundaries",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-13/publication-20261009.json",
+      "role": "project_config",
+      "bytes": 34235,
+      "sha256": "9dd972232aa57a6faa1e7ad24b75192b5b197799f0b12f04d98448c0625e9c08",
+      "collections": [
+        {
+          "name": "boundaries",
+          "count": 7
+        }
+      ]
+    },
+    {
       "path": "docs/design/technical-atlas/TA-13/scope-v1.md",
       "role": "supporting_document",
       "bytes": 2548,
@@ -3155,8 +3183,8 @@
     {
       "path": "docs/handoff/research-flow-recovery-20261009.md",
       "role": "supporting_document",
-      "bytes": 7171,
-      "sha256": "17a189ac037da35da9995a88de1ee13d5f3851fc26c7acfaffeb26c20d2ec56b",
+      "bytes": 14971,
+      "sha256": "8afc3c488354fb991cf8f6208442e51e0135233d2c4fb7bd3998e568865041d1",
       "collections": []
     },
     {
@@ -3218,8 +3246,8 @@
     {
       "path": "docs/handoff/us-datacenter-power-20261009.md",
       "role": "supporting_document",
-      "bytes": 8453,
-      "sha256": "1a3a0a07748e6b63fe5266902e40c8ecbb04e4378293e05575846f37e7d95078",
+      "bytes": 16160,
+      "sha256": "a584c04385b96742ba3f0aaf75110a6a86f1c49ac65fff86afcd8243a7fd33dd",
       "collections": []
     },
     {
@@ -6026,15 +6054,15 @@
     {
       "path": "docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md",
       "role": "supporting_document",
-      "bytes": 10574,
-      "sha256": "4b2d370b7bc17c0d61d9c089d7f27a0acd8498904a941a4ee55e4efa6a3e0090",
+      "bytes": 18454,
+      "sha256": "d33bb3bf4063e4d83c0b638dd650f45e3a8cbc947b3b3acf81833d87bc557ba3",
       "collections": []
     },
     {
       "path": "docs/research/2026-10-09/us-datacenter-power/README.md",
       "role": "supporting_document",
-      "bytes": 5449,
-      "sha256": "8fd3c419bc70b5a67524e05510863affb4e3ee304d45f4eb0a2940a8295063b8",
+      "bytes": 5982,
+      "sha256": "5f32a59cddf84bc53063ccd8c4670cbb2f41e1d0fb996ef1e5be65b54116f476",
       "collections": []
     },
     {
@@ -9178,9 +9206,45 @@
     {
       "path": "docs/reviews/2026-10-09/research-publication/README.md",
       "role": "historical",
-      "bytes": 1084,
-      "sha256": "d3bf5f91e7e238768b131b61798ce1d146c218fa1aa09effd0b93c999e4692f2",
+      "bytes": 2544,
+      "sha256": "877d5f9d30ce205a600236f504e996e232dc701b4a5f35232a4b1c35394b901f",
       "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-10-09/research-publication/eia-review-post-reload-progress.json",
+      "role": "historical",
+      "bytes": 2650,
+      "sha256": "847b74f6b836907fccab99bd72be33f5f706a0beaa4bc8df7e138284a4bc00ee",
+      "collections": [
+        {
+          "name": "observed_real_loop_events",
+          "count": 1
+        },
+        {
+          "name": "post_reload_reviewing",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-10-09/research-publication/eia-review-runtime-reload.json",
+      "role": "historical",
+      "bytes": 6054,
+      "sha256": "10cb1ba26ba1bc96496d74f7100ccaaaa7dbe7ceaa2a597ba7af622367ca5683",
+      "collections": [
+        {
+          "name": "eia_actual_reviewers",
+          "count": 1
+        },
+        {
+          "name": "eia_grants",
+          "count": 7
+        },
+        {
+          "name": "unique_worker_pids",
+          "count": 1
+        }
+      ]
     },
     {
       "path": "docs/reviews/2026-10-09/research-publication/old-ready12-followup.json",
@@ -9219,6 +9283,22 @@
       ]
     },
     {
+      "path": "docs/reviews/2026-10-09/research-publication/original-23-stage-1608.json",
+      "role": "historical",
+      "bytes": 27794,
+      "sha256": "5431d3dbc48f3db88d888edac288667f3bba3918ab153985c57fbadfb850ec04",
+      "collections": [
+        {
+          "name": "documents",
+          "count": 23
+        },
+        {
+          "name": "canonical_formal_records",
+          "count": 13
+        }
+      ]
+    },
+    {
       "path": "docs/reviews/2026-10-09/research-publication/original-23-stage.json",
       "role": "historical",
       "bytes": 78806,
@@ -9229,6 +9309,25 @@
           "count": 23
         }
       ]
+    },
+    {
+      "path": "docs/reviews/2026-10-09/research-publication/original-50-identity-index.json",
+      "role": "historical",
+      "bytes": 35908,
+      "sha256": "cf87a6a6ca5ad6da609c0e20b886c273dd88a0831ec35f151c3cfda18eb4d236",
+      "collections": [
+        {
+          "name": "records",
+          "count": 50
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-10-09/research-publication/original-50-identity-index.md",
+      "role": "historical",
+      "bytes": 6285,
+      "sha256": "5d4fa6a27a1d3933da3dc2e3c53db7f646860e87cb6488939864e706ee4e6208",
+      "collections": []
     },
     {
       "path": "docs/reviews/2026-10-09/research-publication/pr453-actual-closure.json",
@@ -9243,14 +9342,65 @@
       ]
     },
     {
+      "path": "docs/reviews/2026-10-09/research-publication/pr480-alphabet-actual-closure.json",
+      "role": "historical",
+      "bytes": 25805,
+      "sha256": "65095601ccaf3502a2b812e93580f43a028196e1b4855d2c8aedfa0f48aab133",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-10-09/research-publication/pr483-eia-ytd-actual-closure.json",
+      "role": "historical",
+      "bytes": 19039,
+      "sha256": "866036ba84834923e0a0b74d1398d42c5d9c7036e9340dd3b0016a89819bda60",
+      "collections": [
+        {
+          "name": "original_submission_claim_ids",
+          "count": 7
+        },
+        {
+          "name": "maintenance_events",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "path": "docs/reviews/2026-10-09/research-publication/pr485-context-revalidation.json",
+      "role": "historical",
+      "bytes": 5030,
+      "sha256": "ac3c6ef08117c97222bd6d6fb9747ddee966739f9e5541b6b2a1c5ac8f5fab0b",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-10-09/research-publication/pr485-stale-context-closed.json",
+      "role": "historical",
+      "bytes": 711,
+      "sha256": "6e3fd12546e1c67003b8bfb9bce8d572823980597cee84699c6bc3e6cd219869",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-10-09/research-publication/pr487-alphabet-actual-closure.json",
+      "role": "historical",
+      "bytes": 6914,
+      "sha256": "8aa349050377c93b0059170869460fe251496723a7d3481a1166ab7723cd9a19",
+      "collections": []
+    },
+    {
+      "path": "docs/reviews/2026-10-09/research-publication/publisher-unowned-gap-restoration.json",
+      "role": "historical",
+      "bytes": 3640,
+      "sha256": "a1ed73dd556e166bfe17cd75c255731214bb3cc78618f8056009be7850b409c9",
+      "collections": []
+    },
+    {
       "path": "docs/reviews/2026-10-09/research-publication/receipts.json",
       "role": "historical",
-      "bytes": 760,
-      "sha256": "5fc04cc502d0e7e1e7b3fc7bc3e342a7f570934f89c4f8d535abe51df503344b",
+      "bytes": 2438,
+      "sha256": "f8187b589e157f0ab240b1cc01cd11a2acb3c9171bbfbd3f7954f56b4ac25295",
       "collections": [
         {
           "name": "receipts",
-          "count": 4
+          "count": 14
         }
       ]
     },
@@ -9369,8 +9519,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 25308,
-      "sha256": "a95e5fd10088c5aadea2eee77d85d0b95f4782985bb5cc463c49efc543686816",
+      "bytes": 27494,
+      "sha256": "dd8b4afd6b55bfbab28fbf1abcf2860a683fd8ee7f3cfb4d1e996002670906a3",
       "collections": []
     },
     {
@@ -9396,8 +9546,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 157563,
-      "sha256": "0194951e83bca4ef5ce89ec0b3ebf2e5493762783861d8f04e766fd8ded1db21",
+      "bytes": 159801,
+      "sha256": "77833220a2a8c25133df04e503406d7478cabd8674422a6facb54cd308a00313",
       "collections": [
         {
           "name": "policies",
@@ -9743,8 +9893,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 252092,
-      "sha256": "a229a9afef243dd8d9571d75a17619e8e2e8ea03be994b4cb9cc986f907ba532",
+      "bytes": 255228,
+      "sha256": "91e5cf2b5aca373eb88f3fdcdbfdc9d3e1c8202a07d5fc9c41f3ecf8f2fa00c1",
       "collections": [
         {
           "name": "policies",
@@ -9767,8 +9917,8 @@
     {
       "path": "framework/visual_atlas_migration.json",
       "role": "project_config",
-      "bytes": 45157,
-      "sha256": "07ea446834ada3a6214b220126f8c0424ed6d5fc5af252857b749310a324d7f6",
+      "bytes": 45323,
+      "sha256": "923a2ced79f489f034e0c939d349e61c47dabaa125d47be5dd21d1b95b7084d3",
       "collections": [
         {
           "name": "states",
@@ -13771,8 +13921,8 @@
     {
       "path": "tests/rack_assembly.cjs",
       "role": "test",
-      "bytes": 15981,
-      "sha256": "8047a4b4e5866aa6de7a0e22c9e07f5a3b78f1d0a11a648d7094bb8d3d502635",
+      "bytes": 17903,
+      "sha256": "120da3dd7704d71c80f0af709103e5524daf3166fa9f20593e39c04f7f447416",
       "collections": []
     },
     {
@@ -16247,10 +16397,10 @@
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 13,
-    "historical": 318,
+    "historical": 329,
     "implementation": 316,
     "normative": 15,
-    "project_config": 362,
+    "project_config": 364,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
