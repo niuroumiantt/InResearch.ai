@@ -58,7 +58,7 @@ def deliver(manifest, state, host, remote_repo):
         subprocess.run(['ssh','-o','BatchMode=yes','-o','ConnectTimeout=15',host,'mkdir -p ' + remote], check=True, timeout=30)
         # The sealed manifest is immutable; retries verify the receiver's bytes.
         subprocess.run(['rsync','-a',str(Path(manifest).parent) + '/',host + ':' + remote + '/'],check=True,timeout=120)
-        command = 'cd ' + shlex.quote(remote_repo) + ' && set -a && . "$HOME/.config/inresearch.ai/reader.env" && set +a && python3 manage.py editorial-sync --bundle "$HOME/' + remote + '/manifest.json"'
+        command = 'cd ' + shlex.quote(remote_repo) + ' && set -a && . "$HOME/.config/inresearch.ai/reader.env" && set +a && INRESEARCH_PROJECT_ROOT="$HOME/code/inresearch.ai" python3 manage.py editorial-sync --bundle "$HOME/' + remote + '/manifest.json"'
         result = subprocess.run(['ssh','-o','BatchMode=yes',host,command],check=True,capture_output=True,text=True,timeout=180)
         value = json.loads(result.stdout)
         if value.get('acceptance') != 'candidate' or value.get('article_sha256') != sha((Path(manifest).parent/'article.md').read_bytes()):
