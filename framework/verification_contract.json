@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.06",
+  "version": "2026.10.09.07",
   "reviewed_at": "2026-10-09",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "1da84a8c03278f86ed4a38fcbe1e6c9ca1f87868354b5d952fb1802606a23a96",
-    "framework/CURRENT.md": "c99adf7bd18398d95eb663dac145201c3ef9203c5ecd4986f7eb8dfa464e6d65",
+    "framework/CURRENT.md": "e13c766d08183f5ce05aace1a5dc3534221fe63892983927ced4333811fe5aeb",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "c900ea822d1b09d24810a369c7e663ae1a902e4bc990cbeefe5b46c3237e50f2",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "72f1a8103b632a0649a3ebd5c7c8f3b87e63b780a94ef0f22a6266ee7279a741",
+    "framework/current_state.json": "8f6042003415d82bdf1953b14ac89cb8f578cb5b98c4c1d4bb6c2f1bd9f0e826",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -205,8 +205,8 @@
     "tests/unit/test_material_flow.py": "6d7956fcb057acd12be4c225605a262b1eb7b9da45f7f33d4554ed94444b87fb",
     "framework/10_visual_atlas.md": "d8fa2383d3d47ffd4af571c00dd8252faa7f86d6a775c1cc6200a01ce932614a",
     "framework/visual_atlas.json": "bc596b9e58fca8ce1e5276901392513c10896a36b8b178348c16bc158c27a910",
-    "framework/visual_atlas_migration.json": "fc879474e5608bbced672bbf66105d72c1ab00588715e16f41b70c845a554268",
-    "docs/design/technical-atlas/MIGRATION_PLAN.md": "b288c10cc2677632e6cfbf67053db6ae3bcb2eeca2ff185df6ccb7affdefa927",
+    "framework/visual_atlas_migration.json": "e2477b27b3a49892901ae9023642ec6e5e734f6a709474cb95984571cd859ef8",
+    "docs/design/technical-atlas/MIGRATION_PLAN.md": "bc5714de0de0aeecc68aa6eebbc3050e716b9dfafce9f2790806cef2aecdeb68",
     "docs/design/technical-atlas/references/README.md": "f5aeb0fee5494b4a566c05ab6878e828569b25c2f15ee8686151e2b791610a7f",
     "tests/unit/test_visual_atlas.py": "cca07f6e22b404a901702f455f1926516c9448afbb66c77b5e313fa63ad4c5cd",
     "docs/design/technical-atlas/references/01-chain.png": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
@@ -1377,7 +1377,7 @@
       "policy": "visual-atlas-20261008",
       "scope": "project",
       "source": "framework/10_visual_atlas.md",
-      "checked_requirement": "原五张与补充四张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。；导出共用实时文字避让与1x/2x像素比；匿名启动不依赖受保护产品登记、可选未读明确未知并保留原权限。；镜头观测测试兼容脚本版本参数，注入接口须实际匹配当前源码，缺失时立即失败而不跳过视口检查。；scene_atlas 保留双密度完整导出/交互断言，调度器将1x/2x分别运行在原单项300秒限额，避免共享期限受软件渲染速度影响。；用户实际入口补全：2D SSD主图区及系统/尺度缩略图用已验图，不留SSD方块；其他选择清除SSD、无侧栏重复。可变HTML/JS/CSS no-cache及GET/HEAD/304条件验证，私有权限保持。；部件详图在包含该部件的系统/尺度行后，骨架路径可见且不前置于总览；切换排法保留选中与所属行，非SSD选择在切换后仍不显示SSD。；设施2D四对象按用户优先顺序分别登记；已验图的PNG真实尺寸/SHA、原字节SVG与轻量同尺寸预览绑定对象，保留基线。实际浏览器按accepted/published项逐张验系统/尺度所属行、跨对象切换、缩略图替代、宽窄/明暗、独立SVG、放大及双下载，未完成项不假装有图。；35项主计划编号和补充四图分开计量，接受图完整性与逐项真实页面验证不因续做调度而免除。；TA-03子装配明确标题/图注，计算行缩略图身份和3D服务器档案绑定，GPU不继承机箱图，8条独立标注与旧chassis基线保留。；TA-04模组装配与GPU对象绑定、系统/尺度缩略图身份、跨服务器/GPU选择清除、GPU档案插图与既有3D画布保留；8条标签/同像素预览/原件SHA与旧gpu-board基线。；2D档案传入完整prices对象，GPU现有价格曲线与图册上下文能同时完成，不因records数组形状错误中断加载。；TA-04逐项实际发布回执与主计划4/35/下一TA-05绑定，补充四图独立，源码四项精确头CI与公网/原件/服务观察分别登记。；TA-05 HBM对象绑定通用GPU/HBM封装层次图，系统/尺度定位和跨GPU切换清除；3D HBM档案仍有交互画布，TA-03/04保留，8标签原件/预览与旧hbm基线绑定。; TA-05 actual public entry/native-master/labels/download/source checks bound to published queue5/35, user budget exception and unexecuted CI recorded separately.；TA-06 CPU与DRAM各自系统/尺度入口绑定同一主板装配上下文，九标签与原件绑定；跨选择不残留HBM/GPU图，CPU/DRAM 3D档案保留交互画布，不新增骨架对象。；TA-06真实公网两入口各四视图/九标签原件SHA/双下载字节/3D画布回执与published6/35绑定，Spark版本差异和CI预算豁免保持独立。；用户R10–R14五份参考原字节/SHA/实际尺寸绑定，参考集合14张且非技术证据；规范1.7细节要求及未来TA18–23/35引用同步，不新增计划项或回填已发布图参考。；TA-07网络系统/部件尺度的NIC入口绑定独立网卡图，八标签、原PNG和实际R2/R3绑定；不残留CPU图，3D查看器保留。",
+      "checked_requirement": "原五张与补充四张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。；导出共用实时文字避让与1x/2x像素比；匿名启动不依赖受保护产品登记、可选未读明确未知并保留原权限。；镜头观测测试兼容脚本版本参数，注入接口须实际匹配当前源码，缺失时立即失败而不跳过视口检查。；scene_atlas 保留双密度完整导出/交互断言，调度器将1x/2x分别运行在原单项300秒限额，避免共享期限受软件渲染速度影响。；用户实际入口补全：2D SSD主图区及系统/尺度缩略图用已验图，不留SSD方块；其他选择清除SSD、无侧栏重复。可变HTML/JS/CSS no-cache及GET/HEAD/304条件验证，私有权限保持。；部件详图在包含该部件的系统/尺度行后，骨架路径可见且不前置于总览；切换排法保留选中与所属行，非SSD选择在切换后仍不显示SSD。；设施2D四对象按用户优先顺序分别登记；已验图的PNG真实尺寸/SHA、原字节SVG与轻量同尺寸预览绑定对象，保留基线。实际浏览器按accepted/published项逐张验系统/尺度所属行、跨对象切换、缩略图替代、宽窄/明暗、独立SVG、放大及双下载，未完成项不假装有图。；35项主计划编号和补充四图分开计量，接受图完整性与逐项真实页面验证不因续做调度而免除。；TA-03子装配明确标题/图注，计算行缩略图身份和3D服务器档案绑定，GPU不继承机箱图，8条独立标注与旧chassis基线保留。；TA-04模组装配与GPU对象绑定、系统/尺度缩略图身份、跨服务器/GPU选择清除、GPU档案插图与既有3D画布保留；8条标签/同像素预览/原件SHA与旧gpu-board基线。；2D档案传入完整prices对象，GPU现有价格曲线与图册上下文能同时完成，不因records数组形状错误中断加载。；TA-04逐项实际发布回执与主计划4/35/下一TA-05绑定，补充四图独立，源码四项精确头CI与公网/原件/服务观察分别登记。；TA-05 HBM对象绑定通用GPU/HBM封装层次图，系统/尺度定位和跨GPU切换清除；3D HBM档案仍有交互画布，TA-03/04保留，8标签原件/预览与旧hbm基线绑定。; TA-05 actual public entry/native-master/labels/download/source checks bound to published queue5/35, user budget exception and unexecuted CI recorded separately.；TA-06 CPU与DRAM各自系统/尺度入口绑定同一主板装配上下文，九标签与原件绑定；跨选择不残留HBM/GPU图，CPU/DRAM 3D档案保留交互画布，不新增骨架对象。；TA-06真实公网两入口各四视图/九标签原件SHA/双下载字节/3D画布回执与published6/35绑定，Spark版本差异和CI预算豁免保持独立。；用户R10–R14五份参考原字节/SHA/实际尺寸绑定，参考集合14张且非技术证据；规范1.7细节要求及未来TA18–23/35引用同步，不新增计划项或回填已发布图参考。；TA-07网络系统/部件尺度的NIC入口绑定独立网卡图，八标签、原PNG和实际R2/R3绑定；不残留CPU图，3D查看器保留。；TA-07真实公网四视图/八标签原PNG SHA/双下载完整字节/3D画布回执与published7/35绑定，独立登记预算CI与Spark版本差异。",
       "tests": [
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_adopted_reference_bytes_and_actual_dimensions_match",
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_all_existing_render_and_panel_assets_have_individual_queue_rows",
@@ -1406,7 +1406,8 @@
         "TA-06精确板型、机械尺寸、走线/连接数量、内存代际容量速度与兼容性未知；单路八RDIMM仅构图示例，不代表MRDIMM配置或工程设计。既有3D几何未重建；实际发布另验。",
         "TA-06 Actions37862604108预算阻止四job启动，实际CI未运行；用户已授权忽略该预算阻塞。Spark只读版本10cd748f较网站源旧，未声称资产同步；匿名研究401与已登录数据未验证。",
         "R10–R14为视觉参考，不证明尺寸/数量/设施就绪/改建可行性/燃料路径；内部几何与真实工程仍逐张技术核对/人工审图。参考登记不代表未来成图已完成。",
-        "TA-07精确型号、速率、引脚数量/接触边几何、功耗、散热机械与布线未知；双端口仅构图示例，不指定400/800G或所有DPU架构。3D几何未重建；实际发布另验。"
+        "TA-07精确型号、速率、引脚数量/接触边几何、功耗、散热机械与布线未知；双端口仅构图示例，不指定400/800G或所有DPU架构。3D几何未重建；实际发布另验。",
+        "TA-07 Actions37867567667预算阻止四job启动，CI未运行；用户授权忽略预算阻塞。Spark较网站旧，不声称同步。匿名研究401，未验证已登录研究数据。"
       ]
     },
     {
