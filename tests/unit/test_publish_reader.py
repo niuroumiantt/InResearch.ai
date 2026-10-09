@@ -9,12 +9,46 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+import urllib.error
 from unittest.mock import patch
 
 from inresearch.delivery import publish as publish_reader
 
 
 class PublisherTests(unittest.TestCase):
+    def test_transient_deployment_errors_retry_identical_snapshot_without_waiting_for_timer(self):
+        request = publish_reader.urllib.request.Request('https://receiver.example.test/api/reader-snapshot', data=b'fixed-body')
+        response = unittest.mock.MagicMock()
+        response.__enter__.return_value.read.return_value = b'{"ok":true,"received_at":"original-commit","replayed":true}'
+        errors = [urllib.error.HTTPError(request.full_url, code, 'deployment', {}, io.BytesIO(b'')) for code in (502,503)]
+        with patch.object(publish_reader.urllib.request,'build_opener') as opener, patch.object(publish_reader.time,'sleep') as sleep:
+            opener.return_value.open.side_effect = [*errors,response]
+            reply, attempts = publish_reader.post_snapshot(request)
+            self.assertEqual(attempts,3)
+            self.assertTrue(reply['replayed'])
+            self.assertEqual([call.args[0] for call in opener.return_value.open.call_args_list],[request]*3)
+            self.assertEqual([call.args[0] for call in sleep.call_args_list],[1,3])
+
+    def test_transient_retry_is_bounded_and_validation_failures_are_not_retried(self):
+        request = publish_reader.urllib.request.Request('https://receiver.example.test/api/reader-snapshot', data=b'fixed-body')
+        for code, count in [(503,3),(400,1),(401,1),(409,1)]:
+            with self.subTest(code=code),patch.object(publish_reader.urllib.request,'build_opener') as opener,patch.object(publish_reader.time,'sleep'):
+                opener.return_value.open.side_effect = urllib.error.HTTPError(request.full_url,code,'failure',{},io.BytesIO(b''))
+                with self.assertRaisesRegex(ValueError,'HTTP '+str(code)):
+                    publish_reader.post_snapshot(request)
+                self.assertEqual(opener.return_value.open.call_count,count)
+
+    def test_unchanged_poll_skips_export_and_keeps_last_acknowledgement(self):
+        with tempfile.TemporaryDirectory() as temp:
+            state=Path(temp);token=state/'reader-sync.token';token.write_text('private-test-'*4);token.chmod(0o600)
+            marker={'readings':[1,1,100,2]}
+            (state/'publish-trigger.json').write_text(json.dumps({'marker':marker,'acknowledged_at':publish_reader.time.time()}))
+            status=state/'publish-status.json';status.write_text('{"status":"ok","received_at":"previous"}')
+            with patch.dict(os.environ,{'READER_STATE_ROOT':str(state)}),patch.object(publish_reader,'change_marker',return_value=marker),patch.object(publish_reader,'Reader') as reader,contextlib.redirect_stdout(io.StringIO()):
+                self.assertEqual(publish_reader.main(['--if-changed']),0)
+                reader.assert_not_called()
+            self.assertEqual(json.loads(status.read_text())['received_at'],'previous')
+
     def publish(self, worker_code=0, external=None):
         with tempfile.TemporaryDirectory() as temp:
             root = Path(temp)

@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suites: [core_a, core_b, core_c, model_assets]
+        suites: [core_a, core_b, core_c, server_assembly, rack_assembly, rack_exploded, scene_atlas, model_assets]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
@@ -37,7 +37,7 @@ jobs:
         with: { node-version: "22" }
       - name: Install isolated browser test dependencies
         run: |
-          npm install --prefix "$RUNNER_TEMP/browser-tests" --no-package-lock --no-save playwright@1.62.1
+          npm install --prefix "$RUNNER_TEMP/browser-tests" --no-package-lock --no-save playwright@1.62.1 pngjs@7.0.0
           "$RUNNER_TEMP/browser-tests/node_modules/.bin/playwright" install --with-deps chromium
       - name: Full browser regression suite
         run: NODE_PATH="$RUNNER_TEMP/browser-tests/node_modules" node tests/run_browser.cjs ${{ matrix.suites }}
