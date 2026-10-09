@@ -30,7 +30,7 @@ const {createInterface}=require('node:readline');const {chromium}=require('playw
   assert.equal(new URL(page.url()).searchParams.has('product_id'),false,'category never selects a first model');
   assert.equal(requests.filter(url=>new URL(url).searchParams.has('product_id')&&url.includes('/api/')).length,0,'category reads paginated projection only');
   await page.locator('#category-children a').filter({hasText:'机架式服务器'}).click();
-  await page.waitForFunction(()=>document.querySelector('#category-children').textContent.includes('1U 形态'));
+  await page.waitForFunction(()=>document.querySelector('#category-children')?.textContent.includes('1U 形态'));
   assert.match(await page.locator('#category-children').innerText(),/1U 形态.*2U 形态.*3U 形态/s);
   await page.locator('#category-children a').filter({hasText:'1U 形态'}).click();
   await page.locator('#browse-rows .model-link').first().waitFor();
