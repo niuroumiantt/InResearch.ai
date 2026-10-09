@@ -1,5 +1,9 @@
 # 决策记录
 
+## 2026-10-10：TA16按系统设备图册实际发布
+
+TA16实际发布：PR558合并867ccd4e，AWS17:59:01Z同源码/应用/.46与精确ab53ba16镜像healthy，source head与merge全tree零差异。61物理类别=旧14+新47按系统详细图，五系统/IT四子系统/17登记16物理/DCIM与六权利保持；47真实选择/16明暗宽度视图、96实际SVG/原PNG下载SHA、五原生SVG放大、13源码预览GET SHA/HTTPShealth200/360px85.734通过，旧14系统尺度及SSD3D入口回归通过。首轮桌面截图越出900绘制视口截断保留；真实滚动和明确增高完整抓图已逐张目检，仅修截图夹具不改生产图/JS。原生PNG/独立可编辑标注、来源/未知边界和拒稿保持；总览四代表受控合成非共同尺度/完整连接图。匿名研究API401未登录、节点内容未验，CI未查不称通过，Spark及研究事实/服务0改。主计划16/35、补充4/4，下一TA17按尺度总览。
+
 ## 2026-10-09：显式本地验收与同来源汇总发表
 
 用户要求不等CI自主发布，并尽量汇总同来源批次。本版研究发表：缺省CI保持，任务显式local固定验收与精确head/main/member回执；同source优先汇总，singleton私有300秒有界等待。各批对同一未改baseline审核后一次追加，actual健康digest/source/public canonical与逐batchACK另验。背压非跨机器锁，旧CLOSED自动superseded未实现；源码/fixture不冒充生产载入，现行入口为09/Spark操作手册。 原审计/封印/抽样/context不降级，旧记录/answer/闭题保持；normal push与原head/attempt/错误/receipt保留，不追认旧CI或候选采用。
