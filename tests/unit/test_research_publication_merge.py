@@ -4,7 +4,41 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from inresearch.workflow.research_publish import refresh_publication_base, source_bundle
+from inresearch.workflow.research_publish import refresh_publication_base, source_bundle, merge_appended_research
+import copy
+
+
+class AppendedResearchTests(unittest.TestCase):
+    def setUp(self):
+        self.base = {'version':1,'documents':[{'id':'doc','text':'original'}],
+                     'evidence':[{'id':'ev','quote':'original quote'}],
+                     'statements':[{'id':'claim','text':'existing adopted claim'}], 'answers':[]}
+
+    def test_independent_additions_and_identical_duplicates_preserve_existing_rows(self):
+        left, right = copy.deepcopy(self.base), copy.deepcopy(self.base)
+        left['statements'].append({'id':'left','text':'reviewed addition'})
+        right['statements'].append({'id':'right','text':'main addition'})
+        left['documents'].append({'id':'shared','text':'same source'})
+        right['documents'].append({'id':'shared','text':'same source'})
+        result = merge_appended_research(self.base,left,right)
+        self.assertEqual(result['statements'],self.base['statements']+right['statements'][1:]+left['statements'][1:])
+        self.assertEqual(result['documents'],left['documents'])
+        self.assertEqual(result['evidence'],self.base['evidence'])
+        self.assertEqual(result['answers'],[])
+
+    def test_edits_deletions_collisions_and_non_record_changes_require_review(self):
+        for mutation in ('edit','delete','collision','answers','duplicate'):
+            with self.subTest(mutation=mutation):
+                left, right = copy.deepcopy(self.base), copy.deepcopy(self.base)
+                if mutation=='edit':left['statements'][0]['text']='changed'
+                elif mutation=='delete':right['evidence']=[]
+                elif mutation=='collision':
+                    left['statements'].append({'id':'new','text':'left'})
+                    right['statements'].append({'id':'new','text':'right'})
+                elif mutation=='answers':left['answers'].append({'id':'answer'})
+                else:left['documents'].append(copy.deepcopy(left['documents'][0]))
+                with self.assertRaisesRegex(ValueError,'requires_review'):
+                    merge_appended_research(self.base,left,right)
 
 
 def git(root, *args):
@@ -73,6 +107,35 @@ if sys.argv[1:]==['governance','--refresh']:
         self.assertIn('reviewed new claim',data)
         self.assertIn('different upstream research',data)
         self.assertIn('data/research_knowledge.json',git(self.publication,'diff','--name-only','--diff-filter=U'))
+
+    def test_append_only_research_conflict_is_integrated_and_inventory_rebuilt(self):
+        base={'version':1,'documents':[],'evidence':[],
+              'statements':[{'id':'old','text':'original'}],'answers':[]}
+        (self.upstream/'data/research_knowledge.json').write_text(json.dumps(base))
+        git(self.upstream,'add','.');git(self.upstream,'commit','-m','structured research baseline')
+        git(self.upstream,'push','origin','main')
+        branch=Path(self.tmp.name)/'structured-publication'
+        git(Path(self.tmp.name),'clone',str(self.origin),str(branch))
+        for key,value in (('user.name','Fixture'),('user.email','fixture@example.invalid')):
+            git(branch,'config',key,value)
+        git(branch,'switch','-c','codex/structured')
+        left=copy.deepcopy(base);left['statements'].append({'id':'left','text':'reviewed'})
+        (branch/'data/research_knowledge.json').write_text(json.dumps(left))
+        (branch/'framework/repository_manifest.json').write_text('publication inventory')
+        git(branch,'add','.');git(branch,'commit','-m','reviewed addition')
+        head=git(branch,'rev-parse','HEAD')
+        right=copy.deepcopy(base);right['statements'].append({'id':'right','text':'accepted main'})
+        (self.upstream/'data/research_knowledge.json').write_text(json.dumps(right))
+        (self.upstream/'framework/repository_manifest.json').write_text('main inventory')
+        git(self.upstream,'add','.');git(self.upstream,'commit','-m','accepted addition')
+        git(self.upstream,'push','origin','main')
+        new=refresh_publication_base(branch,head)
+        self.assertNotEqual(new,head)
+        self.assertEqual(git(branch,'status','--porcelain'),'')
+        actual=json.loads((branch/'data/research_knowledge.json').read_text())
+        self.assertEqual(actual['statements'],base['statements']+right['statements'][1:]+left['statements'][1:])
+        inventory=json.loads((branch/'framework/repository_manifest.json').read_text())
+        self.assertEqual(inventory['research'],actual)
 
     def test_dirty_or_unexpected_head_cannot_be_rewritten(self):
         with self.assertRaisesRegex(ValueError,'worktree_changed'):

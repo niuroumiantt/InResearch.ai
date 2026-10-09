@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.15。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.18。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1544。
+在册文件：1546。
 
 | 身份 | 文件数 |
 |---|---|
@@ -23,7 +23,7 @@
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 150 |
-| 测试 | 144 |
+| 测试 | 146 |
 
 ## 在册记录集合
 
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 24 |
-| `data/research_knowledge.json` | evidence | 153 |
-| `data/research_knowledge.json` | statements | 151 |
+| `data/research_knowledge.json` | documents | 25 |
+| `data/research_knowledge.json` | evidence | 161 |
+| `data/research_knowledge.json` | statements | 159 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -1853,6 +1853,7 @@
 | `src/inresearch/workflow/triage.py` | 运行代码 |
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
 | `tests/auth_appearance.cjs` | 测试 |
+| `tests/browser_suites.cjs` | 测试 |
 | `tests/catalog_materials.cjs` | 测试 |
 | `tests/company_catalog_map.cjs` | 测试 |
 | `tests/company_page.cjs` | 测试 |
@@ -1886,6 +1887,7 @@
 | `tests/unit/test_apply_triage.py` | 测试 |
 | `tests/unit/test_auth.py` | 测试 |
 | `tests/unit/test_bom.py` | 测试 |
+| `tests/unit/test_browser_shards.py` | 测试 |
 | `tests/unit/test_catalog_bridge.py` | 测试 |
 | `tests/unit/test_catalog_browse.py` | 测试 |
 | `tests/unit/test_catalog_migration.py` | 测试 |

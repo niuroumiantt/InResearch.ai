@@ -76,6 +76,60 @@ class SourcePacketRecoveryTests(unittest.TestCase):
 
 
 class PublisherIsolationTests(unittest.TestCase):
+    def blocked_publisher(self, td):
+        p = publication.Publisher({'repo':td, 'state':td})
+        bid = 'a'*64
+        dr = Path(td)/bid
+        dr.mkdir()
+        atomic_json(dr/'journal.json', {'batch_id':bid, 'state':'blocked',
+                    'bundle_sha256':'seal', 'pr':418, 'commit':'c'*40,
+                    'error':'ci_failed_preserve_review_branch'})
+        return p, bid, dr
+
+    def test_changed_context_requeues_open_blocked_batch_and_preserves_audit(self):
+        with tempfile.TemporaryDirectory() as td:
+            p, bid, dr = self.blocked_publisher(td)
+            p.remote = Mock(side_effect=[[{'batch_id':bid}],
+                                        {'bundle_sha256':'seal', 'context_current':False}, {}])
+            p.advance = Mock()
+            pr = {'state':'OPEN', 'headRefOid':'c'*40}
+            with patch.object(publication, 'run', return_value=SimpleNamespace(stdout=json.dumps(pr))) as run:
+                self.assertEqual(p.tick()['state'], 'revalidation')
+            p.remote.assert_any_call('revalidate', '--batch-id', bid)
+            p.advance.assert_not_called()
+            self.assertIn(['gh', 'pr', 'close', '418'], [c.args[0] for c in run.call_args_list])
+            journal = json.loads((dr/'journal.json').read_text())
+            self.assertEqual(journal['commit'], 'c'*40)
+            self.assertEqual(journal['recoveries'][0]['error'], 'ci_failed_preserve_review_branch')
+
+    def test_recovered_checks_resume_normal_validation_without_waiver(self):
+        with tempfile.TemporaryDirectory() as td:
+            p, bid, dr = self.blocked_publisher(td)
+            p.remote = Mock(side_effect=[[{'batch_id':bid}],
+                                        {'bundle_sha256':'seal', 'context_current':True}])
+            p.advance = Mock(return_value={'state':'pr_open'})
+            pr = {'state':'OPEN', 'headRefOid':'c'*40}
+            checks = [{'name':n, 'bucket':'pass'} for n in
+                      ('validate', 'browser (core)', 'browser (model_assets)', 'storage-container')]
+            with patch.object(publication, 'run', side_effect=[SimpleNamespace(stdout=json.dumps(pr)),
+                                                               SimpleNamespace(stdout=json.dumps(checks))]):
+                self.assertEqual(p.tick()['state'], 'pr_open')
+            self.assertEqual(p.advance.call_args.args[1]['recoveries'][0]['reason'],
+                             'exact_head_checks_recovered')
+
+    def test_unrecovered_ci_and_changed_open_head_remain_blocked(self):
+        for head, bucket in (('c'*40, 'fail'), ('e'*40, 'pass')):
+            with self.subTest(head=head), tempfile.TemporaryDirectory() as td:
+                p, bid, dr = self.blocked_publisher(td)
+                p.remote = Mock(side_effect=[[{'batch_id':bid}],
+                                            {'bundle_sha256':'seal', 'context_current':True}])
+                p.advance = Mock()
+                results = [SimpleNamespace(stdout=json.dumps({'state':'OPEN', 'headRefOid':head})),
+                           SimpleNamespace(stdout=json.dumps([{'name':'validate','bucket':bucket}]))]
+                with patch.object(publication, 'run', side_effect=results):
+                    self.assertEqual(p.tick()['state'], 'blocked_batches')
+                p.advance.assert_not_called()
+
     def test_blocked_source_verification_does_not_stop_later_batch(self):
         with tempfile.TemporaryDirectory() as td:
             p = publication.Publisher({'repo':td, 'state':td})
@@ -159,3 +213,27 @@ class PublisherIsolationTests(unittest.TestCase):
             p.advance.assert_not_called()
             self.assertEqual(json.loads((dr/'journal.json').read_text())['error'],
                              'pr_head_changed_requires_review')
+
+    def blocked_fixture(self, td):
+        p = publication.Publisher({'repo':td, 'state':td})
+        bid = 'a'*64
+        dr = Path(td)/bid
+        dr.mkdir()
+        journal = {'batch_id':bid, 'state':'blocked', 'bundle_sha256':'seal',
+                   'attempt':'attempt-0001', 'pr':431, 'commit':'c'*40,
+                   'error':'ci_failed_preserve_review_branch'}
+        atomic_json(dr/'journal.json', journal)
+        return p, bid, dr, journal
+
+
+    def test_new_attempt_retains_old_publication_journal(self):
+        with tempfile.TemporaryDirectory() as td:
+            p,bid,dr,journal=self.blocked_fixture(td)
+            p.remote=Mock(side_effect=[[{'batch_id':bid}], {'bundle_sha256':'new-seal'}])
+            p.advance=Mock(return_value={'batch_id':bid,'state':'pr_open'})
+            p.tick()
+            reference=p.advance.call_args.args[1]['previous_attempts'][0]
+            saved=dr/reference['path']
+            self.assertEqual(json.loads(saved.read_text()),journal)
+            self.assertEqual(hashlib.sha256(saved.read_bytes()).hexdigest(),reference['sha256'])
+
