@@ -8,7 +8,7 @@
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
     "docs/M4_TRIAGE_TASK.md": "924326e63de3dc50835609d2009c6550e228f7e1018972b1d4b75dd897701ed9",
-    "docs/geluoke/专题写作规则.md": "8d42deab2b8a73b35c4a12f4c978f2b945f77c295b1777c8a715cb328c8d0bdb",
+    "docs/geluoke/专题写作规则.md": "88955cab90a3e5b3ad4e86a8d7a2077bdbb119c9117fcc1319867b367b8e4570",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "0876dc50e2312a87fced5332d10fdbe536e211a4876c47387bd0c71cb38699da",
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "06c0d276ae0d8f7fc814a1996a1b88d8213ba6f748760e544c8bb95807273af9",
     "framework/09_software_contracts.md": "89aea17b1a16415f32ac0a7ba0837c4a3182de94912e088e56ada049333689ca",
-    "framework/CURRENT.md": "b697fa23bc4579e6cf5ea290e8d778318d11658c2dbe54d730da0fb7068ba6f4",
+    "framework/CURRENT.md": "58239ef1eab5cf33873886dc85af626fd75ba09007998e3c4fe9b66ff862478d",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "77cb166cf9d7bbe203df1cd057926d8c089ae686192733de03092df17aa3b4de",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -173,7 +173,7 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "4206d1ecc7d020396415206bcb88937a87a02580ed3fab04b8154d19764b5586",
+    "framework/current_state.json": "3d473c06f8660e65979beb3bbe31b3ca88cb30c71f5c2c732eb50a7f1889537b",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "1e38f39a6e891f25b08924ac92a58f083857a3f754e29992616c760d5c4d1836",
     "src/inresearch/adapters/html_document.py": "322b316bbc5bc0bce0c3fc4b4835b2a23c7f9d42f06c0f81ae20f17a26aaa650",
-    "docs/DECISIONS.md": "e11aa7e06d22642bde5e9e6732ad18a76b544b351876ca3d3034f85fafb8ebc8",
+    "docs/DECISIONS.md": "df73dab85c8c25b15c06109b66bd0e0c3adeee091e395beec6f5acb0172ee714",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -2033,7 +2033,7 @@
       "policy": "geluoke-longform-20261009-editor",
       "scope": "editorial-delivery",
       "source": "docs/geluoke/专题写作规则.md",
-      "checked_requirement": "v2.7实际人工复审：按用户约7000字要求全文重写，明确通电时间这一角度，不以中庸套话拼接观点；电源/线路/变电和长期设施成本讲清机制，必要状态/口径保留。本稿正文约7000字（当前7225含标点字符，自动范围6500—7700）、10幅对应图逐张手机目检，原件与全量研究不随公开稿删减。build/audit检查实际字数、图号、首段地图、关键标注、来源身份、上传限额；浏览器复制/布局结果绑定最终HTML SHA。治理单测只覆盖登记，不代替事实语义、编辑质量或平台验收。 同期PR446已实际接收23份并Reader注册；保留全部回执、身份与11:39:55封存1/排队22快照，未将注册当全批深读或C3。 2026-10-09真实运行复审：13:07补源plan23/apply23/replay新增0；原timer13:12自然发布23份身份，实际资料HTTP核对13份含三carrier；13:15数据库封存13且verify_seal实核、queued9/running1。回执与历史分开，长驻review模块加载及本批C3数量不由源码/资料投影推定；本次只登记实际操作证据，不新增测试夹具或采用。 13来源全量资料API核验为生产容器内HTTP，另13:26真实公网HTTPS对EIA原件/Crane载体2/2字段核对并确认节点200，两路径证据分开。；本轮只审阅实际阶段文档/原50身份索引与回执完整性：14正文封存边界、PR480 B6/PR483具名A7公网和运行源码闭环、原50=41C+9S且显式7对应、未知外部scope变更及549真实context失效后原路径revalidate。没有新源实现或测试夹具，机器治理不冒充这些历史语义/操作验收。；16:35 PR487原publisher新增B3以独立公网和实际Spark published/proof核对，累计16来源支持与原50显式7继续分母独立；首6已证机器映射缺陷明示，不以结构支持代替语义归属正确性。；17:40文档人工复审：原23逐SHA16正文封存及全封印，不等于视觉深读；PR499具名收窄补审实际合并/原B与before、双唯一服务自然idle载入及真正SYSTEM/SAMPLE请求、公网6+10与PR493独立6/17/原ACK闭包分别核对。原50显式7与来源published22/main23分母独立，未发布提议/旧协议/首读raw覆盖与recovered观察不偷换。相关gov.manual运行边界通过实际回执审阅，测试仅核登记完整性，无新实现。；19:01本次派生文档人工复审：本次gov.manual实际复审只更新具名时点docs/派生回执：19:00原23正文范围16complete/1running/6queued、19:12真实HTTPS/ACK30与main30 vs原50显式7；507 root语义/公网/原a4既有ACK实核，不拿已发表包contextfalse作新许可；502/503/501实际链与源/驻留区分，515审批执行前拒绝的0动作边界；新C03同源两HTML真实acquisition2/Reader0/C3 0及旧PDF精度缺口，不借根语义复核虚构A。48份receipt字节SHA和相对链接实际核验；TA14/.40及上游retry实现完整保留。合同5回归只核治理契约，不证明未来服务重载、队列恢复、B审核或微信发布；docs不授新写入或调度权。",
+      "checked_requirement": "v2.7实际人工复审：按用户约7000字要求全文重写，明确通电时间这一角度，不以中庸套话拼接观点；电源/线路/变电和长期设施成本讲清机制，必要状态/口径保留。本稿正文约7000字（当前7225含标点字符，自动范围6500—7700）、10幅对应图逐张手机目检，原件与全量研究不随公开稿删减。build/audit检查实际字数、图号、首段地图、关键标注、来源身份、上传限额；浏览器复制/布局结果绑定最终HTML SHA。治理单测只覆盖登记，不代替事实语义、编辑质量或平台验收。 同期PR446已实际接收23份并Reader注册；保留全部回执、身份与11:39:55封存1/排队22快照，未将注册当全批深读或C3。 2026-10-09真实运行复审：13:07补源plan23/apply23/replay新增0；原timer13:12自然发布23份身份，实际资料HTTP核对13份含三carrier；13:15数据库封存13且verify_seal实核、queued9/running1。回执与历史分开，长驻review模块加载及本批C3数量不由源码/资料投影推定；本次只登记实际操作证据，不新增测试夹具或采用。 13来源全量资料API核验为生产容器内HTTP，另13:26真实公网HTTPS对EIA原件/Crane载体2/2字段核对并确认节点200，两路径证据分开。；本轮只审阅实际阶段文档/原50身份索引与回执完整性：14正文封存边界、PR480 B6/PR483具名A7公网和运行源码闭环、原50=41C+9S且显式7对应、未知外部scope变更及549真实context失效后原路径revalidate。没有新源实现或测试夹具，机器治理不冒充这些历史语义/操作验收。；16:35 PR487原publisher新增B3以独立公网和实际Spark published/proof核对，累计16来源支持与原50显式7继续分母独立；首6已证机器映射缺陷明示，不以结构支持代替语义归属正确性。；17:40文档人工复审：原23逐SHA16正文封存及全封印，不等于视觉深读；PR499具名收窄补审实际合并/原B与before、双唯一服务自然idle载入及真正SYSTEM/SAMPLE请求、公网6+10与PR493独立6/17/原ACK闭包分别核对。原50显式7与来源published22/main23分母独立，未发布提议/旧协议/首读raw覆盖与recovered观察不偷换。相关gov.manual运行边界通过实际回执审阅，测试仅核登记完整性，无新实现。；19:01本次派生文档人工复审：本次gov.manual实际复审只更新具名时点docs/派生回执：19:00原23正文范围16complete/1running/6queued、19:12真实HTTPS/ACK30与main30 vs原50显式7；507 root语义/公网/原a4既有ACK实核，不拿已发表包contextfalse作新许可；502/503/501实际链与源/驻留区分，515审批执行前拒绝的0动作边界；新C03同源两HTML真实acquisition2/Reader0/C3 0及旧PDF精度缺口，不借根语义复核虚构A。48份receipt字节SHA和相对链接实际核验；TA14/.40及上游retry实现完整保留。合同5回归只核治理契约，不证明未来服务重载、队列恢复、B审核或微信发布；docs不授新写入或调度权。；2026-10-10 v2.8人工规范复审：逐项核对删除外挂评价与保留具体机制/必要限制的分寸，日报唯一源回链及今日小结范围；仅文档同步，没有重写或验收今日稿。",
       "tests": [
         "tests/unit/test_governance.py::GovernanceTests.test_replacement_valid_then_parallel_current_rejected",
         "tests/unit/test_governance.py::GovernanceTests.test_inventory_detects_added_and_modified_records_excludes_ignored"
@@ -2046,7 +2046,8 @@
         "AI工程图为通用示意，未按特定项目施工图验证；精确几何、设备数量与比例不作事实。",
         "本次仅核对inews现有口吻代码与PR合并状态；没有将该仓库自动图表渲染器改成工程插画生成器。",
         "互联范围为依据官方图的概览重绘，未核验精确运营GIS或具体园区的接入边界；同一作者目检不是独立第三方终审。",
-        "17:23剩余7来源未正文封存，PDF native_text_only/visual=false/full_document_complete=false保持。原50另43未显式绑定；新协议两ready包10提议并非正式采用。17:40外部PR503同源追加1在main支持23，但本轮公网/ACK只独立闭环22。每批最新context和真实上线仍逐包核验；价格系列/模型/GW/合同/闭题/微信发布未由此完成。"
+        "17:23剩余7来源未正文封存，PDF native_text_only/visual=false/full_document_complete=false保持。原50另43未显式绑定；新协议两ready包10提议并非正式采用。17:40外部PR503同源追加1在main支持23，但本轮公网/ACK只独立闭环22。每批最新context和真实上线仍逐包核验；价格系列/模型/GW/合同/闭题/微信发布未由此完成。",
+        "v2.8为编辑规则同步；未来稿件的自然口吻、事实解释与删改分寸须逐篇人工复核，本轮未重新生成或验收日报。"
       ]
     },
     {
