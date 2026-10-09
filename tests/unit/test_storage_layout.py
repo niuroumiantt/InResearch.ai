@@ -272,7 +272,8 @@ class RuntimeHTTPTests(unittest.TestCase):
                 self.assertEqual(json.loads(stored)['knowledge']['answers'][0]['status'], 'candidate')
                 retry = subprocess.run([sys.executable, str(REPO / 'manage.py'), 'receive-snapshot'], input=json.dumps(payload),
                                        env=env, text=True, capture_output=True)
-                self.assertEqual(json.loads(retry.stdout)['status'], 409)
+                self.assertEqual(retry.returncode, 0)
+                self.assertTrue(json.loads(retry.stdout)['replayed'])
                 self.assertEqual((runtime / 'data/research_runtime.json').read_bytes(), stored)
                 for path in ('/data/users.json', '/data/research_runtime.json', '/data/raw/source.txt', '/runtime/data/users.json'):
                     with self.assertRaises(urllib.error.HTTPError) as error: request(path)

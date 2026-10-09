@@ -120,9 +120,13 @@ def generate(client, system, user, *, json_schema=None, image_path=None):
             if len(raw)>MAX_RESPONSE: raise InferenceError('model_output_invalid')
             value = json_object(raw.decode())
         except urllib.error.HTTPError as exc:
-            try: code=json_object(exc.read(1024).decode()).get('error')
+            try:
+                failure=json_object(exc.read(1024).decode())
+                code=failure.get('error')
+                if code=='model_relay_unavailable' and failure.get('reason')=='relay_busy':
+                    code='model_relay_busy'
             except (InferenceError,UnicodeError): code=None
-            allowed = {'model_quota_wait','model_relay_unavailable','model_cli_timeout','model_cli_failed',
+            allowed = {'model_quota_wait','model_relay_unavailable','model_relay_busy','model_cli_timeout','model_cli_failed',
                        'model_output_invalid','model_identity_unverified','model_cli_tool_activity',
                        'model_cli_authentication_failed','model_cli_not_installed','model_output_incomplete'}
             raise InferenceError(code if code in allowed else 'model_failure') from None
@@ -218,7 +222,7 @@ def main():
                 client=clients.get(json.dumps(value.get('profile'),sort_keys=True))
                 if client is None: return self.respond(409,{'error':'model_identity_unverified'})
                 if not isinstance(value.get('system'),str) or not isinstance(value.get('user'),str): raise ValueError()
-                if not slots.acquire(blocking=False): return self.respond(503,{'error':'model_relay_unavailable'})
+                if not slots.acquire(blocking=False): return self.respond(503,{'error':'model_relay_unavailable','reason':'relay_busy'})
                 try:
                     with tempfile.TemporaryDirectory(prefix='inresearch-codex-image-') as directory:
                         image=None
