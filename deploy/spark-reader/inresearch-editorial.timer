@@ -1,0 +1,11 @@
+[Unit]
+Description=Catch up published and revised columns every five minutes
+
+[Timer]
+OnBootSec=90
+OnUnitInactiveSec=5min
+Persistent=true
+RandomizedDelaySec=20
+
+[Install]
+WantedBy=timers.target

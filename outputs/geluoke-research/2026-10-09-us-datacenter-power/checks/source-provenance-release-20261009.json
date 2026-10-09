@@ -1,0 +1,45 @@
+{
+  "pr": "https://github.com/niuroumiantt/InResearch.ai/pull/450",
+  "head": "67227aa2a89c6be541567899f93a2059b9775b99",
+  "merge_commit": "84fa4038f88c19b70812ce6b321b8fe57f7db3ba",
+  "merged_at": "2026-10-09T04:24:27Z",
+  "governance": "2026.10.09.15",
+  "local_python_tests": 157,
+  "source_special_tests": 12,
+  "browser": "research_summary passed; 390/320 no overflow; 390 screenshot inspected",
+  "strict_warnings": 0,
+  "objects": 353,
+  "questions": 458,
+  "bundle_sha256": "6751c5b09bbefb96b9e0baac1c26d8d9aee320436e849774b565e748c2a3d402",
+  "source_module_sha256": {
+    "src/inresearch/workflow/research_sources.py": "bd79b4be8e22b1f388f2217c12f8b1fd59283abcc835294294005207a56f3388",
+    "src/inresearch/materials/source_provenance.py": "40c263a85fc22dc126f7ccac5bdd388a040740dce46b1fa76e3fa1ae29e5bdb2",
+    "src/inresearch/workflow/research_match.py": "3de401ea0b3a8c266dc668ce794d303ea0ff6186401bf4ef6feadce440fc116b",
+    "src/inresearch/delivery/reader_export.py": "d0b5ec8497179a698e6353eacec9f48f34f45ab6e926c8f3ea747363d6738749",
+    "src/inresearch/knowledge/registry.py": "47bf216b85ec71d49a530376f60a859719ec1a76cddaa3cbcb8f82cdde20a059",
+    "src/inresearch/knowledge/material_baseline.py": "4db8fe56abbc74c517a45e91510ccb2fefc2b2696b85253216a5ba78cfc06ea2",
+    "src/inresearch/workflow/research_review.py": "0e42651d9d13726462f0ad74050ada0fa4d264533eb536e76689a4d9cbe494fc",
+    "web/pages/node.html": "5044c1c0f098ada39c8dfc8133644f661c5bc14f50db608540b7ab98c343a4c4"
+  },
+  "ci_at_merge": {
+    "run": 37883703095,
+    "validate": "IN_PROGRESS",
+    "browser_core": "IN_PROGRESS",
+    "browser_model_assets": "IN_PROGRESS",
+    "storage_container": "IN_PROGRESS"
+  },
+  "deployment": "runtime receipts in spark-source-provenance-runtime-20261009.json and source-provenance-live-http-20261009.json",
+  "local_real_23_source_smoke": "private local acceptance receipt; no remote raw source data in Git",
+  "independent_api_review": "private independent fixture/API audit; not production evidence",
+  "role_screenshot": "private local 390px screenshot manually inspected; not production screenshot",
+  "ci_observed_after_merge": {
+    "run": 37883703095,
+    "checks": {
+      "validate": "SUCCESS",
+      "browser (core)": "SUCCESS",
+      "browser (model_assets)": "SUCCESS",
+      "storage-container": "SUCCESS"
+    },
+    "recorded_at": "2026-10-09T05:20:21.146024+00:00"
+  }
+}

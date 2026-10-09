@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.19。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.22。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1578。
+在册文件：1591。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 311 |
-| 运行代码 | 306 |
-| 现行规范 | 14 |
-| 项目配置 | 336 |
+| 运行代码 | 308 |
+| 现行规范 | 15 |
+| 项目配置 | 344 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 150 |
-| 测试 | 146 |
+| 测试 | 148 |
 
 ## 在册记录集合
 
@@ -216,6 +216,10 @@
 | `docs/design/technical-atlas/TA-10/preparation-v1.json` | access_limits | 0 |
 | `docs/design/technical-atlas/TA-10/preparation-v1.json` | unknowns | 3 |
 | `docs/design/technical-atlas/TA-10/preparation-v1.json` | rejected_iterations | 2 |
+| `docs/design/technical-atlas/TA-10/publication-20261009.json` | public_source_bytes | 4 |
+| `docs/design/technical-atlas/TA-10/publication-20261009.json` | browser_evidence | 11 |
+| `docs/design/technical-atlas/TA-10/publication-20261009.json` | limits | 8 |
+| `docs/design/technical-atlas/TA-10/publication-20261009.json` | ci_observations | 1 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -524,11 +528,11 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 48 |
+| `framework/current_state.json` | policies | 49 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
-| `framework/current_state.json` | operational_guides | 10 |
+| `framework/current_state.json` | operational_guides | 11 |
 | `framework/current_state.json` | retired_scan_snapshots | 1 |
 | `framework/current_state.json` | compat_retirements | 7 |
 | `framework/dashboard_rules.json` | honesty | 5 |
@@ -552,7 +556,7 @@
 | `framework/tco_factors.json` | factors | 26 |
 | `framework/tco_targets.json` | principles | 4 |
 | `framework/tco_targets.json` | targets | 351 |
-| `framework/verification_contract.json` | policies | 15 |
+| `framework/verification_contract.json` | policies | 16 |
 | `framework/visual_atlas.json` | references | 14 |
 | `framework/visual_atlas_migration.json` | states | 5 |
 | `framework/visual_atlas_migration.json` | items | 39 |
@@ -612,6 +616,9 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository-intake-20261009.json` | commands | 6 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository-intake-20261009.json` | not_verified | 3 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository.json` | tests | 5 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-live-http-20261009.json` | snapshot_sources | 23 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-live-http-20261009.json` | target_sources | 13 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-public-https-20261009.json` | target_sources | 2 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-provenance-20261009.json` | decoded_archived_tool_response_carriers | 3 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-receipt-20261009.json` | source_items | 23 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-receipt-20261009.json` | reader_before | 0 |
@@ -622,6 +629,7 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-receipt-20261009.json` | reader_hold_source_ids | 2 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-20261009.json` | rows | 21 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-final-20261009.json` | rows | 23 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-source-provenance-stage-20261009.json` | rows | 23 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/svg-layout.json` | items | 7 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/v3-svg-layout.json` | items | 14 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/v4-svg-layout.json` | items | 10 |
@@ -706,6 +714,8 @@
 | [deploy/README.md](../deploy/README.md) | 配套说明 |
 | `deploy/m5-research/research-publish.plist.example` | 项目配置 |
 | `deploy/models.json` | 项目配置 |
+| `deploy/spark-reader/inresearch-editorial.service` | 项目配置 |
+| `deploy/spark-reader/inresearch-editorial.timer` | 项目配置 |
 | `deploy/spark-reader/inresearch-material-intake.service` | 项目配置 |
 | `deploy/spark-reader/inresearch-material-intake.timer` | 项目配置 |
 | `deploy/spark-reader/inresearch-news.service` | 项目配置 |
@@ -826,6 +836,7 @@
 | `docs/design/technical-atlas/TA-10/prompt-correction-v2.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-10/prompt-cutaway-v3.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-10/prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-10/publication-20261009.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -1070,6 +1081,7 @@
 | [docs/intern/BATCH01_C_m11_abs_presales.md](intern/BATCH01_C_m11_abs_presales.md) | 历史快照 |
 | [docs/local_reader/ACQUISITION_OPERATIONS.md](local_reader/ACQUISITION_OPERATIONS.md) | 配套说明 |
 | [docs/local_reader/CONTINUOUS_READER_DESIGN.md](local_reader/CONTINUOUS_READER_DESIGN.md) | 已退役入口 |
+| [docs/local_reader/EDITORIAL_DELIVERY.md](local_reader/EDITORIAL_DELIVERY.md) | 现行规范 |
 | [docs/local_reader/KICKOFF_PROMPT.md](local_reader/KICKOFF_PROMPT.md) | 已退役入口 |
 | [docs/local_reader/M4_LOCAL_READER.md](local_reader/M4_LOCAL_READER.md) | 配套说明 |
 | [docs/local_reader/M4_PREFLIGHT.md](local_reader/M4_PREFLIGHT.md) | 配套说明 |
@@ -1640,6 +1652,9 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/mobile-figure-9.png` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository-intake-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/repository.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-live-http-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-public-https-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/source-provenance-release-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-provenance-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-final-receipt-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-intake-provenance-20261009.json` | 项目配置 |
@@ -1647,6 +1662,8 @@
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-parser-service-release-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-reader-progress-final-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-source-provenance-runtime-20261009.json` | 项目配置 |
+| `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/spark-source-provenance-stage-20261009.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/svg-layout.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/v3-svg-layout.json` | 项目配置 |
 | `outputs/geluoke-research/2026-10-09-us-datacenter-power/checks/v4-svg-layout.json` | 项目配置 |
@@ -1743,6 +1760,7 @@
 | `scripts/cards_ocr.py` | 运行代码 |
 | `scripts/cards_verify.py` | 运行代码 |
 | `scripts/daily_repository_pages.py` | 运行代码 |
+| `scripts/editorial-outbox.py` | 运行代码 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
 | `scripts/publish_repository_pages.py` | 运行代码 |
 | `scripts/repository_checks.py` | 运行代码 |
@@ -1758,6 +1776,7 @@
 | `src/inresearch/adapters/asset_download.py` | 运行代码 |
 | `src/inresearch/adapters/codex_inference.py` | 运行代码 |
 | `src/inresearch/adapters/company_quotes.py` | 运行代码 |
+| `src/inresearch/adapters/editorial_sync.py` | 运行代码 |
 | `src/inresearch/adapters/fetchspec_projection.py` | 运行代码 |
 | `src/inresearch/adapters/gap_ocr.py` | 运行代码 |
 | `src/inresearch/adapters/historical_brief.py` | 运行代码 |
@@ -1957,6 +1976,7 @@
 | `tests/unit/test_deliveries.py` | 测试 |
 | `tests/unit/test_display_regressions.py` | 测试 |
 | `tests/unit/test_dropped_claims.py` | 测试 |
+| `tests/unit/test_editorial_sync.py` | 测试 |
 | `tests/unit/test_export_fold.py` | 测试 |
 | `tests/unit/test_fact_contract.py` | 测试 |
 | `tests/unit/test_fetchspec_backflow.py` | 测试 |
@@ -2016,6 +2036,7 @@
 | `tests/unit/test_reader_demands.py` | 测试 |
 | `tests/unit/test_reader_depth.py` | 测试 |
 | `tests/unit/test_reader_progress.py` | 测试 |
+| `tests/unit/test_reader_scope_capacity.py` | 测试 |
 | `tests/unit/test_reader_thermal.py` | 测试 |
 | `tests/unit/test_reading_results.py` | 测试 |
 | `tests/unit/test_reading_revisions.py` | 测试 |

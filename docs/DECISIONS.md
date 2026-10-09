@@ -1,8 +1,22 @@
 # 当前决策摘要与变更记录
 
+## 2026-10-09: Automatic editorial research delivery
+
+User authorized ongoing delivery: published columns synchronize every five minutes; completed longforms are sealed after render verification and retried from the M5 outbox. Content revisions preserve prior versions, SHA prevents duplicate intake, and existing Reader scope entries and daily settings are retained. Authored analysis and upstream originals keep separate identities; receipt, reading and adoption remain separate. The only current protocol source is docs/local_reader/EDITORIAL_DELIVERY.md. Unit validation and live deployment receipts are assessed separately.
+
 > CURRENT · 2026-09-28。正式规则归属见 [当前基准](../framework/CURRENT.md)。历史会话全文已移入 [归档](archive/2026-09-06/docs__DECISIONS.md)，不从历史恢复当前指令。
 
-## 2026-10-09：TA-10冷板与接头本地验收
+## 2026-10-09：原23份来源元数据真实接收与网站回查
+
+PR450来源修复已在Spark13:07:23实际应用，plan23/apply23/replay新增0、unchanged23；输入/响应/封存及匹配身份保持，操作前后scope同SHA，没有重启Reader/relay/review。原publisher timer13:12:28自然成功，接收端23份来源身份全部核对；13:16:40生产容器内HTTP中13份完整且映射来源可读，包含全部三份工具响应正文，字段逐SHA一致，节点实际交付role标签与来源链接。另13:26公网HTTPS实核EIA原件/Crane载体2/2及节点200，路径与内部HTTP分开保存。三份载体原站字节SHA继续null；来源URL是提交方元数据，不授予事实采用资格。
+
+13:15:50数据库只读快照封存13、queued9/running1，13报告产物封印实核通过；旧11:39的1/22和URL未导入为历史阶段。另一次scope/PID观测与13:07操作分开，不回滚并行任务状态。review长期PID1543876未确认载入新packet模块，本批后台正式C3计数未核实；不把源码部署、材料可读或候选封存作实际模型请求/正式采用证据。保留全部原回执，更新INTAKE/README/交接及实际来源/阶段/HTTP记录，不增加实现或调度范围。
+
+## 2026-10-09：TA-10冷板与接头实际发布
+
+PR451首发38c2d58b，既有AWS独立timer应用同源码，精确镜像healthy。真实公网八视图逐张目检、完整十标注及母图SHA、SVG 2,508,759字节/PNG 1,879,219字节真实双下载、既有coldplate交互画布和零页面错误通过。完整1536×1024标注图无裁切，已实时展示。两次错配拒绝留存，第三版一体虚拟剖视与同类快接放大只作通用示意；原图/事实/3D保留。本地accepted保留为历史阶段；新CI精确head六项（含完整浏览器分片与聚合）已实际成功；此前运行中观测保留，合并依据本次用户已有授权，没有等待CI。Spark同首发源码、reader/research-review均active/running仅为只读观察，本图任务未改服务/范围，也不验材料/C3。保留来源.15、研究恢复/完整分片.18，主计划10/35、补充4/4，下一TA-11整机服务器。
+
+## 2026-10-09：TA-10冷板与接头本地验收（历史阶段）
 
 旧冷板外露条纹身份模糊，按官方冷板/流体快接类别重做通用内部液路与接头示意。R3原件实际工具输入；两版盖底投影不对应被拒绝并留存，第三次内置编辑采用同一封合体虚拟剖口，十独立标签明确非拆修/双端口示例/同类快接放大，不补造SKU/材料兼容/性能/热插拔。既有coldplate对象/系统尺度所属行/3D档案接入，原图/事实/几何保留。真实本地八视图/十标签原PNG SHA/完整双下载/3D画布及逐张目检通过；仅accepted，主计划published9/35、补充4/4。用户已授权自理PR/合并/部署，实际CI与生产仍分别核验；保留.15来源身份、TA09 .14和Spark边界。
 

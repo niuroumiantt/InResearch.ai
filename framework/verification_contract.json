@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.09.19",
+  "version": "2026.10.09.22",
   "reviewed_at": "2026-10-09",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
@@ -8,7 +8,7 @@
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
     "docs/M4_TRIAGE_TASK.md": "924326e63de3dc50835609d2009c6550e228f7e1018972b1d4b75dd897701ed9",
-    "docs/geluoke/专题写作规则.md": "cdbc5a2466030583c09bb6c791b880b1ac5b91ae6bf01e34e1f13eaafa14e7b3",
+    "docs/geluoke/专题写作规则.md": "8d42deab2b8a73b35c4a12f4c978f2b945f77c295b1777c8a715cb328c8d0bdb",
     "docs/inbox/submissions/README.md": "d4da3229d11971a41b1c5e551bb88d5e7fe6e84d066116596257bc811a93a12b",
     "docs/local_reader/ACQUISITION_OPERATIONS.md": "0876dc50e2312a87fced5332d10fdbe536e211a4876c47387bd0c71cb38699da",
     "docs/local_reader/M4_PREFLIGHT.md": "de1930159a3093b375441e8d848c06d3c4c72c66eb898293762acb5b889cedf8",
@@ -28,7 +28,7 @@
     "framework/07_product_ecosystems.md": "1e28e3da4a93c6b3b75edfc6d4fbd57e1c957c4bda7681183de524cb34b997df",
     "framework/08_model_execution.md": "0746a7659c31b784817ade7e38deab13da78555579c5489a1e072e592446faf1",
     "framework/09_software_contracts.md": "3bcfa182de066c034493ff059d23546d683c2ac39e841cd9ad80d8c8ae756e70",
-    "framework/CURRENT.md": "d690fd4584d0a294f0f631c0d26f4bcc381f77032a16b98b00e97534630031ae",
+    "framework/CURRENT.md": "ea75ed2060433daeaf24eb9210739888a6b15a472a258cc254000299c85a8466",
     "framework/data_contract.json": "e7ebae6a2e7ac2ee7aa6eb9a3517d3667fc5f7653a69f158f3196dfcd60547e3",
     "framework/interface_manifest.json": "c900ea822d1b09d24810a369c7e663ae1a902e4bc990cbeefe5b46c3237e50f2",
     "framework/storage_contract.json": "ec7e6931cb2d7cd3e8aa0af1768a19e8bca338e4156e723ec4eca965061790b8",
@@ -38,7 +38,7 @@
     "src/inresearch/adapters/reader_model.py": "7082aa0f3bcc1ac953466b0c90e82dca013b08064cdd1db85a57b4f0686d9a24",
     "src/inresearch/delivery/backup.py": "c567713fc5585ab79581cb316d12fc1947931ff73a19cfbc79da5a6de48ba71e",
     "src/inresearch/knowledge/news_observations.py": "763fac77a0eb2cc6223d1670c7cba61dc8e5a3f52e5bac37cc87e9c3666ea643",
-    "src/inresearch/knowledge/registry.py": "47bf216b85ec71d49a530376f60a859719ec1a76cddaa3cbcb8f82cdde20a059",
+    "src/inresearch/knowledge/registry.py": "09b2136a07862c7b3caf8c837ba44df538c480a09b2da4b3fb94eda8a9547bcd",
     "src/inresearch/materials/daily_bundle.py": "f0e616d95517a2a9dda877c355f35733e230fc8e68cf641c7dff02b1c629a68d",
     "src/inresearch/materials/daily_events.py": "b5706491c64f33103d9965f29909bd58910ef8ca3d1ed299a4a0c842259b9239",
     "src/inresearch/materials/daily_research.py": "641f8c6e51472a1d93e72ba472f4f55e6040901168a72a2c723cb323ed39b820",
@@ -48,7 +48,7 @@
     "src/inresearch/workflow/reader.py": "832cf23be33d7a26ac1cb35ccd9253b43133608dc44848e20c1411023355a659",
     "src/inresearch/workflow/reading_revisions.py": "01bf72e50b8b106d18647ae93f2fa0683293ff91e3f5fd2a3b5e299ecfb9b42e",
     "src/inresearch/workflow/reading_stages.py": "6fd90faf81d762d0e7f583f70612a9db97424d4175be1b0e7d3af59e276e279c",
-    "src/inresearch/workflow/research_match.py": "3de401ea0b3a8c266dc668ce794d303ea0ff6186401bf4ef6feadce440fc116b",
+    "src/inresearch/workflow/research_match.py": "416321b0399d8af193721b7df75824a9e27c3e8774ea152fff038cc337d46e8b",
     "src/inresearch/workflow/supply.py": "0bcdfd439b4ddafde2daf15f92353e3096e713328c05a21970a43435737da598",
     "tests/auth_appearance.cjs": "12fe45ce1017034aebce9d5f330ef4a63b510fb3fdb887331c338a965bd60c51",
     "tests/compute_catalog.cjs": "a09f49f986063fef1bc0e86bed0d6a779912ce8f99912ee72ef1d4e8adf0dbe8",
@@ -145,14 +145,14 @@
     "src/inresearch/adapters/models.py": "6093a8d7ba39b553b3cac08237444793f913b048ed9197dbd8321e8f22639fdb",
     "src/inresearch/adapters/codex_inference.py": "90a778975b38c76331a2bba1151d7f6b2d344871b4fe979dc2233196a1f5638c",
     "src/inresearch/storage/catalog.py": "8e6c7dfe1b6b183826a1565ad9ec2a186069b5947ba4224ef3b0f77b9feccc1f",
-    "src/inresearch/workflow/reader_scope.py": "c0968af933b476f09f2b8eeef728c4d15c97c9b8cadde8fb0d503297d1478662",
+    "src/inresearch/workflow/reader_scope.py": "d1d8992b10dc03e923c8fc267c7a4e72f0e8e47e386fa758651cab163681a02f",
     "tests/unit/test_codex_batch_reader.py": "5b009a6a381a384894c6a3ea57f0167fbd1e36ad44edea273fd2f8d39b63ad81",
     "tests/unit/test_codex_failure_ocr_rescue.py": "21d121faa5265b3504723d13ed39f8083f69fc7ec2bee5570fde9ae1558d2539",
     "framework/material_retention.json": "550b585d4558eeb3ef02f4aae204139915b8181008ce347ee5082ffc1f1ec012",
     "src/inresearch/workflow/project_review.py": "21276950cb0e63481817e6a9285fbc6065e87d7760e46bc7c89917ea001b5912",
     "src/inresearch/materials/retention.py": "5c0c13f0d78c69a513ba9e5540bb1e6523e7ab560678a1679345677a33d3b6d6",
     "src/inresearch/knowledge/industry.py": "34807dc28497376d5418e368e88a7bc051c144f62aaf5430bc4b6c8bfeda06e5",
-    "src/inresearch/interfaces/cli.py": "f040277a5b662e5a067449cf85b61f70a0903349317ee0af9607c13b6d4c2767",
+    "src/inresearch/interfaces/cli.py": "b437c2d6832d3020356ed0b5ed004edb6b88b13630eac95f109e9d2ac7d3c568",
     "tests/unit/test_project_review.py": "e34f73f679b8feb89ea16d900c2414884039f75b4f8763e26e70d866cef63de7",
     "tests/unit/test_material_retention.py": "ab976fc068dda7d885cba4eb0a74e8397c4f09b8eedf529ac0cbbe8459e6fee1",
     "web/components/industry.js": "5f00ebdc451fca76c4fd7b6c0609992c7e0bbf11833bb2c75538d6b73a9a7669",
@@ -173,20 +173,20 @@
     "tests/catalog_materials.cjs": "8ebc94840af41d213804a0b26e590eb32117ef3ebea51d706fb0326ea7dc976a",
     "tests/unit/test_catalog_supplement.py": "8b4b07351d90ff3d5276645d171f2bf00416e7bf38ec320e460734a220072877",
     "tests/unit/test_catalog_browse.py": "c79412e8e450ba8219aa0a1dec2268007923a5582bd27f5ede7895c9dd5e7b28",
-    "framework/current_state.json": "9f7b19512c69e91089d6f84b856e083514077177a4f9471a8ac5bb511d7f5955",
+    "framework/current_state.json": "b9533008294b55c17a0927b952a765e0018ce8e5307d3676081c401f0b18b0bf",
     "tests/unit/test_pdf_native_text.py": "adcaaefe8d7fe4e0b71dabccea168cf9648392989bd824370b93c496f75d2cca",
     "tests/unit/test_catalog_ownership.py": "380d0edee1d53515b9b63a7f7c3ef60d86460c0122d5db10bd193ef42ab6c071",
     "src/inresearch/workflow/operations.py": "c76c9f5a35d3d99435ec0fc4acd60d0be5634b61f3df912912a03291367d16cf",
     "tests/unit/test_operations.py": "765a0ba12850b40135382ab81f449fb2642d2d9f63f472e1fe5280b58d53f291",
     "tests/ops_dashboard.cjs": "ff78e52669731274be998dce6b86698d89ced0fbc80e3b8ba311d5c72535dd23",
     "tests/unit/test_read_batch.py": "f751479f9249afb26322d5cf6b5bcbeca617e688a794a23bf9e3456b6d1980f5",
-    "web/pages/node.html": "5044c1c0f098ada39c8dfc8133644f661c5bc14f50db608540b7ab98c343a4c4",
+    "web/pages/node.html": "46cfa1b86eec1decb51b968f0796e5a672b5bbc5d6aa573a6b3624004cef4b69",
     "src/inresearch/workflow/research_review.py": "0e42651d9d13726462f0ad74050ada0fa4d264533eb536e76689a4d9cbe494fc",
     "src/inresearch/workflow/research_publish.py": "81fbf49b7f4a57af2da842ed418a8bd9758c31c6867d25fc643da508164d82bb",
     "deploy/spark-reader/inresearch-research-review.service": "f3528fb41b6fb53f0d59668cafc7ccac21a85d0f92512138a1c3ecd1e4537f21",
     "deploy/m5-research/research-publish.plist.example": "1a5c9d9ae4f9015bf95423e6c4d56a799cfdd86d42e880420028c4951ae2dc32",
     "tests/unit/test_research_review.py": "a4e9b5cbd3b440c484f0453086c2a641635a6b6ab788b595fb6ea541e151e230",
-    "src/inresearch/delivery/reader_export.py": "d0b5ec8497179a698e6353eacec9f48f34f45ab6e926c8f3ea747363d6738749",
+    "src/inresearch/delivery/reader_export.py": "0591ce805c9d764393e3d8a4a991d679111cb423ee3f3a7c943ba451539f0d5a",
     "tests/unit/test_research_progress.py": "b9743aa642029369a858973eb5417dd67de4fc618343ef07beedc4930c2878f4",
     "tests/unit/test_research_publication_merge.py": "c55d779f4bc268141a0263756236bf693d37a716a9bfc3d1934ae22bd58349b7",
     "src/inresearch/interfaces/http.py": "4e9ca824c0ad129f89b0ddd0ec3cbc8fb83a3bb3ae76242e77bf4a4219abf65d",
@@ -205,8 +205,8 @@
     "tests/unit/test_material_flow.py": "6d7956fcb057acd12be4c225605a262b1eb7b9da45f7f33d4554ed94444b87fb",
     "framework/10_visual_atlas.md": "d8fa2383d3d47ffd4af571c00dd8252faa7f86d6a775c1cc6200a01ce932614a",
     "framework/visual_atlas.json": "bc596b9e58fca8ce1e5276901392513c10896a36b8b178348c16bc158c27a910",
-    "framework/visual_atlas_migration.json": "c62baef64b0b769cc26aff53af11fab23f04c07c8d159f3620a9ff4f57c3113c",
-    "docs/design/technical-atlas/MIGRATION_PLAN.md": "c779c0ca063f661d9bff8227788a5981b5ae7b8ee72422e9727649e33abef7f3",
+    "framework/visual_atlas_migration.json": "5dd6ca59c426543689ad121a2efb5dff62b5efccd4b31d4a387181808822ef45",
+    "docs/design/technical-atlas/MIGRATION_PLAN.md": "1661bc0885b11bb4c96689ceb37ebc1290a1da050871ea6272ea8f3292514062",
     "docs/design/technical-atlas/references/README.md": "f5aeb0fee5494b4a566c05ab6878e828569b25c2f15ee8686151e2b791610a7f",
     "tests/unit/test_visual_atlas.py": "cca07f6e22b404a901702f455f1926516c9448afbb66c77b5e313fa63ad4c5cd",
     "docs/design/technical-atlas/references/01-chain.png": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
@@ -226,7 +226,7 @@
     "tests/scene_atlas.cjs": "a2f07325f1a88879c02915aedd08f856e709d1ff7dc36c5a4b03a4b8829d0e1a",
     "tests/unit/test_repository_checks.py": "9d51fd33d45cb567fc9a774f157b61d0a1b13c576aec607d14e4a7e71ff447c0",
     "tests/unit/test_repository_projection.py": "3b7033bef0511c8dbc6c754d738e2d9a651cf40edddc7592ee33bc320d8f9348",
-    "src/inresearch/knowledge/material_baseline.py": "4db8fe56abbc74c517a45e91510ccb2fefc2b2696b85253216a5ba78cfc06ea2",
+    "src/inresearch/knowledge/material_baseline.py": "12390f1776d882aea8817edf7024e6fc962901c465b5c084dbac60ca20bdbb62",
     "tests/unit/test_material_baseline.py": "1faa32b6aa4e4450d3d84ff31e08f1aa93f4bf7ff0f8f39a35913a3ae332a59e",
     "docs/design/technical-atlas/references/06-campus-cutaway.png": "c2766f5a960933a49b4216f19a5bfebe3b94c2773a4a59c87b1a74b8cf3e3b75",
     "docs/design/technical-atlas/references/07-heat-path.png": "352a5c07dc55980b0871a6280f40c8ecdc219724ddca7b1fbf3295d43b032542",
@@ -242,7 +242,7 @@
     "docs/design/technical-atlas/references/14-modern-campus-cutaway.png": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
     "tests/unit/test_research_flow_recovery.py": "7df8a6f5e02c7dbae6b3f13d6276d858a5ecdfc6e142c300478418cc4b5d44b5",
     "src/inresearch/adapters/html_document.py": "322b316bbc5bc0bce0c3fc4b4835b2a23c7f9d42f06c0f81ae20f17a26aaa650",
-    "docs/DECISIONS.md": "812dbda221fd917b211ee6c3e2ffae8c07bfb1ea5635eca389a5808373d58b3e",
+    "docs/DECISIONS.md": "17b4ee3191f97567c62ba2540ca874b31faef0e606b2c0058af441f30b7e7770",
     "web/assets/technical-atlas/psu-v1.png": "1202db29eb6cc71193017d80f304b5fff27ac19aa9ff34adf1968f8e7e397c3c",
     "web/assets/technical-atlas/psu-v1.svg": "c1731cf2430524f1e9fc84b27d3ee90161c6bd75a9a8e161d615b5baf0a60c7c",
     "web/assets/technical-atlas/psu-v1-preview.jpg": "10690cf448bb38235f30e33918cb0d6e350f8a469ff81b6e03733abf7fd6f65a",
@@ -268,6 +268,13 @@
     "src/inresearch/materials/source_provenance.py": "40c263a85fc22dc126f7ccac5bdd388a040740dce46b1fa76e3fa1ae29e5bdb2",
     "src/inresearch/workflow/research_sources.py": "bd79b4be8e22b1f388f2217c12f8b1fd59283abcc835294294005207a56f3388",
     "tests/unit/test_research_sources.py": "6ef21a1f1555c9a0374749a5b34780c20737af2d4f2c6f1e316f6a22db15bae9",
+    "docs/local_reader/EDITORIAL_DELIVERY.md": "d932790d4ecdbc3fa6fef768d3e98a3d6a2bf87a2ec00840fbd306ebc0abe18a",
+    "src/inresearch/adapters/editorial_sync.py": "fb0a4f7fb7bad346cbd8899074c219e16ea693caf9adb9efc0b14e793aeed5e0",
+    "scripts/editorial-outbox.py": "7e06dabc151ada55e22e66c3d5af2b6929e22a82e7800ca1a40668583eef384d",
+    "deploy/spark-reader/inresearch-editorial.service": "ea2da560f225d7ee824a418543d490b29addbfa9dc7a5128345ca6b90a413106",
+    "deploy/spark-reader/inresearch-editorial.timer": "8905022423e3690969919f705240b464174df4c5bba45ec98353bde31664208e",
+    "tests/unit/test_editorial_sync.py": "7bb8f2ced6f11472ab640a1e548abda5ab5fa0b4cbc7153cd840a119f4f2e0f1",
+    "docs/geluoke/专题反哺规则.md": "1f7547f14634e8be6b6483efd29a87353aa86eff74d874e35786bfb5f5827330",
     "docs/design/technical-atlas/TA-10/labels-v1.json": "7ee6e1b5752a1440347a441ed9b3eb088fa2047c651856d031422f4bc05eb91b",
     "docs/design/technical-atlas/TA-10/prompt-v1.txt": "9e3cc4fec9db9cabe85f471f224c1fd939b31ee487092a4dfd5925e63ad5b1e9",
     "docs/design/technical-atlas/TA-10/prompt-cutaway-v3.txt": "ed2d3a5596dccebeaf72f3aeb9a4602e4338cb94479860080caacb0bffd20fd2",
@@ -277,7 +284,9 @@
     "web/assets/technical-atlas/coldplate-v1.svg": "9e25d66884c92a6d66cb3f62436243482d0026f22f84598a457d1ddb32a13406",
     "web/assets/technical-atlas/coldplate-v1-preview.jpg": "d33a2a7b67633a48f936186b8671fb35f4e9415e47f8a3f14dbe56e6b4355fa5",
     "web/assets/technical-atlas/coldplate-v1-preview.svg": "1d3817c7065e5427bc0d99fc18a45470c6cc4b3f94d1e1adafd8c3749d60430d",
-    "web/assets/technical-atlas/coldplate-v1.png": "ab1c11188f81015694bbc7be40e714cb675a09d59decd480b6546ace897408ce"
+    "web/assets/technical-atlas/coldplate-v1.png": "ab1c11188f81015694bbc7be40e714cb675a09d59decd480b6546ace897408ce",
+    "docs/design/technical-atlas/TA-10/publication-20261009.json": "56d3a1caef1386c9beb559ca5972a21e8ed394a89cc74f219d2e904ab64aa91e",
+    "tests/unit/test_reader_scope_capacity.py": "b1546be8f3f5f2245dd2f6b05598df2c35a64b64e0c289a370f1a4cae4cbaa7a"
   },
   "policies": [
     {
@@ -1026,7 +1035,7 @@
         "本次行情/新闻截图使用标记明确的夹具；AWS真实Nasdaq可达性、当日行情、inews公司标注覆盖、自动新增财报和结构化财务历史尚未验收。生产以本次实际status/applied和API为准。",
         "本次仅核对Fetchspec保存的16家公司169条历史目录记录及已核对支持路径；未取得所有公司的实时接收库、mini全量原件、AWS排除数量或部署回执。标题规则无命中不证明产品制造商已全部核验。",
         "2026-10-09 HTML修复以本批13份原件做本地提取/页内匹配，DOE和PJM正文已取得；不证明源站动态内容穷尽、真实模型深读、全部表格/图像语义或Spark/网站已部署。",
-        "2026-10-09来源侧车仅证明已交付字节与提交方元数据的SHA绑定，不证明URL原站字节、来源年代、内容事实或C3；真实Spark应用/worker换代与网站发布需独立回执，不由本地23份隔离验收代替。"
+        "2026-10-09来源侧车仅证明已交付字节与提交方元数据的SHA绑定，不证明URL原站字节、来源年代、内容事实或C3；Spark13:07实际应用及13:12自然发布已由真实回执核对，23快照来源身份/13资料API可读。长期review新模块载入和未来实际模型请求仍未确认，其他批次不由本次范围或本地隔离验收代替。"
       ],
       "uncovered": [
         "Scheduled tomorrow delivery, complete original-source recovery for legacy variants, full semantic reading/C3, and automatic formal project/GW adoption are not established by these unit tests. Actual deployed delivery receipts are separate evidence.",
@@ -1060,7 +1069,7 @@
       "policy": "reading-native-text-20261007",
       "scope": "project",
       "source": "framework/04_reading_scoring_standard.md",
-      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07复审：以后默认正文配方，零OCR；混排页文字保留，空文字层不冒充空白，纯图片阻塞等待用户；正文完成与视觉排除机检/网页明确；冻结新revision不覆盖旧尝试或已完成报告；TXT只为派生提取，页数/SHA/尾段核验。；默认配置和新报告范围计数经测试；历史被替代错误不继续计为当前阻塞；网页同时呈现旧视觉缺页和新正文图片未读说明、空文字层页，并保持移动端宽度与转义。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、四项CI完整通过后才可发布。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；2026-10-08：资料基座以当前封存快照、内容身份/原文和骨架映射直接供研究使用，来源年代未知保持未知、跨节点和部分已采用报告不遮蔽其他材料；C3不作为资料展示前置，正式答案/GW/模型不由投影改写。；2026-10-08复审v3：仅排版空白折叠，语义/标点/外部主体拒绝，v2审计仍严格；完整ID校验及逐条拒绝分区可复验，原文不改；旧词协议失败显式排队不放行复核/引文失败。；2026-10-09来源侧车复审：默认只读，输入/响应/归档SHA及路径校验，整批冲突拒绝，已知URL/metadata不覆盖，重投真实字节回执；原件与工具响应载体原站SHA/null区分，按内容身份进入snapshot/receiver/资料API和新review包，旧封印不追补，只有绑定材料缓存失效；无重抓/提取/排队/正式采用。",
+      "checked_requirement": "逐篇覆盖、失败恢复、不因换模型重复读、同名新版; explicit full reread, reviewed switch, failure isolation and version-scoped evidence；当前全文结果共享查询、回执与全文分开计量、同一快照和只读边界；按有效优先级分层：低于门槛只读首中尾三块并终止于 summarized、高优先级与短文全文、deepen 续读不重读已读块、park 先计划后提交且 retry 可恢复；模型证据引文仅允许忽略空白的逐字匹配，不能验证时舍弃主张且不得封存完整报告；引文不匹配时限一次反馈式纠正，第二次不合格仍阻断；限定导出仅含指定且 coverage 完整的当前文档，未知或未完成 ID 拒绝，且不覆盖全局 mapping-proposals；引文纠正一次后仍不符只剔除该主张：已核对主张保留、块与文档照常完成，被剔除主张及原引文记入块 dropped_claims，报告覆盖计数并警告；报告剔除条数与块记录不符不得封存；无剔除时不出现该字段；块摘要、综合摘要与要点为占位文字时拒收（model_output_placeholder），不写入结果；真实含“测试”的内容不误拦；2026-10-06 复审：新阅读冻结现行目标/队/模型输入、匹配缺口优先全文阅读，节点取代旧模块主分类，4800 字节上下文与旧配方保留，匹配不代表 C3；未命中不增加优先级。；已登记同 SHA 的待提取/待粗读版本可由新需求交付提升优先级，保留审计与冻结配方，不重读或修改停放。；2026-10-06 分流复审：实际接收回执和 HTML SHA/明确来源绑定决定元数据资格，未知园区或容量不挡动态；缺失项独立任务、纯文本渲染与通道筛选；每四槽的旧积压、收尾、短日报和普通服务均遵守 claim floor/available/冻结配方，坏日报台账不挡其他阅读；候选与正式数据分开。；2026-10-06 Codex 批次复审：范围注册/所有调度槽 fail closed；未完成执行显式新版本/保留历史/拒绝完成结果替换；候选完整覆盖及 receipt 收口；额度暂停不扣尝试/不降优先级；CLI 请求身份诚实留 actual=null；网页按材料/事件/块各自计量。；匹配逐份状态随当前执行入口迁移，不能继续查询已被替代的初始版本。；复审：HTTP/断流/额度分类和诊断不含原文或密钥；末尾错误不被启动警告遮住；显式 rescue 双读规则不放宽，失败记录按 SHA 留档；每个新视觉页后检查点让槽并保留缓存。；显式启用的Codex缺页为空文本并保留全部失败证据，沿用缺页上限与报告警告，不伪造M4来源、不产缺页主张。；2026-10-07复审：以后默认正文配方，零OCR；混排页文字保留，空文字层不冒充空白，纯图片阻塞等待用户；正文完成与视觉排除机检/网页明确；冻结新revision不覆盖旧尝试或已完成报告；TXT只为派生提取，页数/SHA/尾段核验。；默认配置和新报告范围计数经测试；历史被替代错误不继续计为当前阻塞；网页同时呈现旧视觉缺页和新正文图片未读说明、空文字层页，并保持移动端宽度与转义。; reviewed bounded read-batch-v1: frozen 4 adjacent chunks/6000 characters, atomic disjoint leases, independent hashes/IDs/quotes/coverage and provenance, invalid envelopes and timeouts fall back to singles, bad quotes remain rejected, provider waits retain attempts, partial successes survive, crash reuses artifacts, legacy recipes retained with explicit new revisions only.；复审持续C3通道：只读原件/封存、现行需求重匹配且不发明问题、A条件不降档、真实请求摘要与第二次抽样、上下文变更拒写、部分证据不关闭问题、源记录追加与重放、队列分批及只读计数、四项CI完整通过后才可发布。；2026-10-08复审提速：每条原文的实际匹配词强制逐字绑定；字段名不作实体，所选完整语义及原登记哈希可复验，v1旧审计兼容；未执行批次合并保留全部候选/父批次，抽样失败不作预算重试；只读失败材料名/大小白名单，标题转义和窄屏；增量已合并main bundle保留祖先与dirty保护，实际Git离线快进验收。；2026-10-08：资料基座以当前封存快照、内容身份/原文和骨架映射直接供研究使用，来源年代未知保持未知、跨节点和部分已采用报告不遮蔽其他材料；C3不作为资料展示前置，正式答案/GW/模型不由投影改写。；2026-10-08复审v3：仅排版空白折叠，语义/标点/外部主体拒绝，v2审计仍严格；完整ID校验及逐条拒绝分区可复验，原文不改；旧词协议失败显式排队不放行复核/引文失败。；2026-10-09来源侧车复审：默认只读，输入/响应/归档SHA及路径校验，整批冲突拒绝，已知URL/metadata不覆盖，重投真实字节回执；原件与工具响应载体原站SHA/null区分，按内容身份进入snapshot/receiver/资料API和新review包，旧封印不追补，只有绑定材料缓存失效；无重抓/提取/排队/正式采用。；2026-10-09复审DCD显式大批：内容身份上限从5000增至10000，1MiB载体上限、严格SHA身份、坏scope停止且不回退全库保持；既有文档和阅读版本不因此改变。",
       "tests": [
         "tests/unit/test_continuous_reader.py::ReaderTests.test_full_text_coverage_candidate_and_view",
         "tests/unit/test_continuous_reader.py::ReaderTests.test_switching_default_keeps_one_completed_reading",
@@ -1175,7 +1184,9 @@
         "tests/unit/test_research_sources.py::ResearchSourceTests.test_input_response_and_archive_corruption_reject_before_writes",
         "tests/unit/test_research_sources.py::ResearchSourceTests.test_tool_carrier_cannot_claim_original_or_conflicting_provenance",
         "tests/unit/test_research_sources.py::ResearchSourceTests.test_unreceived_source_unsafe_path_and_url_reject_without_queueing",
-        "tests/unit/test_research_sources.py::ResearchSourceTests.test_cli_metadata_mode_does_not_extract_match_or_open_reader"
+        "tests/unit/test_research_sources.py::ResearchSourceTests.test_cli_metadata_mode_does_not_extract_match_or_open_reader",
+        "tests/unit/test_reader_scope_capacity.py::ScopeCapacityTests.test_large_explicit_batch_preserves_every_content_identity",
+        "tests/unit/test_reader_scope_capacity.py::ScopeCapacityTests.test_bad_large_batch_does_not_open_the_whole_library"
       ],
       "not_verified": [
         "Actual Spark/M4 catalog migration and large historical-corpus reread are not verified. OCR/drawing capability gaps still block completion; mechanical coverage and a recorded reviewer do not prove semantic quality.",
@@ -1190,7 +1201,8 @@
         "持续核验首通道仅作者陈述/预测；实体词/对象相关上下文非穷尽外部反证检索，缺源与项目身份/数字/模型值等专门通道不由本程序采用。跨机器常驻、实际CLI调用、Git/CI和网站逐项交付须保存真实运行回执，不由夹具证明；可提交不代表正式上线。",
         "逐条原文检索是范围明确的候选冲突检索，不能证明外部反证穷尽或新查询词对全库的语义召回。六条合批/十二批背压不保证线性提速，实际审核、抽样、发布与小时吞吐须私有真机回执；无需求匹配、A档、原文不足和超预算仍分别保留。",
         "来源记载不证明当前语义准确或历史材料今天仍有效；新版本/冲突正式替代须定向核验，真实资料数量与生产网页另读实际快照。",
-        "2026-10-09来源侧车仅证明已交付字节与提交方元数据的SHA绑定，不证明URL原站字节、来源年代、内容事实或C3；真实Spark应用/worker换代与网站发布需独立回执，不由本地23份隔离验收代替。"
+        "2026-10-09来源侧车仅证明已交付字节与提交方元数据的SHA绑定，不证明URL原站字节、来源年代、内容事实或C3；Spark13:07实际应用及13:12自然发布已由真实回执核对，23快照来源身份/13资料API可读。长期review新模块载入和未来实际模型请求仍未确认，其他批次不由本次范围或本地隔离验收代替。",
+        "10000身份的实际整批吞吐与语义质量未由容量测试证明；DCD接收/逐篇阅读/正式采用各自计量，现场回执另存运行库。"
       ]
     },
     {
@@ -1490,7 +1502,7 @@
       "policy": "visual-atlas-20261008",
       "scope": "project",
       "source": "framework/10_visual_atlas.md",
-      "checked_requirement": "原五张与补充四张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。；导出共用实时文字避让与1x/2x像素比；匿名启动不依赖受保护产品登记、可选未读明确未知并保留原权限。；镜头观测测试兼容脚本版本参数，注入接口须实际匹配当前源码，缺失时立即失败而不跳过视口检查。；scene_atlas 保留双密度完整导出/交互断言，调度器将1x/2x分别运行在原单项300秒限额，避免共享期限受软件渲染速度影响。；用户实际入口补全：2D SSD主图区及系统/尺度缩略图用已验图，不留SSD方块；其他选择清除SSD、无侧栏重复。可变HTML/JS/CSS no-cache及GET/HEAD/304条件验证，私有权限保持。；部件详图在包含该部件的系统/尺度行后，骨架路径可见且不前置于总览；切换排法保留选中与所属行，非SSD选择在切换后仍不显示SSD。；设施2D四对象按用户优先顺序分别登记；已验图的PNG真实尺寸/SHA、原字节SVG与轻量同尺寸预览绑定对象，保留基线。实际浏览器按accepted/published项逐张验系统/尺度所属行、跨对象切换、缩略图替代、宽窄/明暗、独立SVG、放大及双下载，未完成项不假装有图。；35项主计划编号和补充四图分开计量，接受图完整性与逐项真实页面验证不因续做调度而免除。；TA-03子装配明确标题/图注，计算行缩略图身份和3D服务器档案绑定，GPU不继承机箱图，8条独立标注与旧chassis基线保留。；TA-04模组装配与GPU对象绑定、系统/尺度缩略图身份、跨服务器/GPU选择清除、GPU档案插图与既有3D画布保留；8条标签/同像素预览/原件SHA与旧gpu-board基线。；2D档案传入完整prices对象，GPU现有价格曲线与图册上下文能同时完成，不因records数组形状错误中断加载。；TA-04逐项实际发布回执与主计划4/35/下一TA-05绑定，补充四图独立，源码四项精确头CI与公网/原件/服务观察分别登记。；TA-05 HBM对象绑定通用GPU/HBM封装层次图，系统/尺度定位和跨GPU切换清除；3D HBM档案仍有交互画布，TA-03/04保留，8标签原件/预览与旧hbm基线绑定。; TA-05 actual public entry/native-master/labels/download/source checks bound to published queue5/35, user budget exception and unexecuted CI recorded separately.；TA-06 CPU与DRAM各自系统/尺度入口绑定同一主板装配上下文，九标签与原件绑定；跨选择不残留HBM/GPU图，CPU/DRAM 3D档案保留交互画布，不新增骨架对象。；TA-06真实公网两入口各四视图/九标签原件SHA/双下载字节/3D画布回执与published6/35绑定，Spark版本差异和CI预算豁免保持独立。；用户R10–R14五份参考原字节/SHA/实际尺寸绑定，参考集合14张且非技术证据；规范1.7细节要求及未来TA18–23/35引用同步，不新增计划项或回填已发布图参考。；TA-07网络系统/部件尺度的NIC入口绑定独立网卡图，八标签、原PNG和实际R2/R3绑定；不残留CPU图，3D查看器保留。；TA-07真实公网四视图/八标签原PNG SHA/双下载完整字节/3D画布回执与published7/35绑定，独立登记预算CI与Spark版本差异。；TA-08 PSU电力/尺度入口绑定通用服务器AC–DC外观图，R2真实工具输入、原生1536×1024、8独立标签/原件/轻量预览与旧psu基线绑定。实际本地8视图及高清8标签/原PNG嵌入SHA/双下载完整字节验证，3D PSU档案原交互画布保留，跨NIC选择不残图；本地accepted阶段完整验收，本次用户授权合并部署；实际发布另由回执验证。；TA-08真实公网八视图/八独立标签/原PNG嵌入SHA/双下载完整字节/原3D画布与published8/35回执绑定；AWS首发源码及精确镜像healthy、自动精确head四CI成功与本次用户合并授权分开登记。；TA-09通用风扇笼实际R2、三就位/一上提与唯一对应空位、十标签/原PNG/同尺寸轻量预览及旧fans绑定；既有server-fan冷却/尺度入口和原fanwall拾取/交互档案对应，无新骨架或几何；实际本地八视图/十标签原件SHA/双下载完整字节验证，accepted与生产发布分开。；TA-09真实公网八视图/十标签原PNG SHA/完整双下载/既有server-fan 3D画布与published9/35回执绑定；首发源码/AWS精确镜像healthy、自动CI时间状态及Spark只读版本/两服务各自登记，不用本地或生成图代替上线。；TA-10真实R3/两版错配拒绝记录/第三版一体冷板虚拟剖口、内部液路与端部集流区/两个示例端口软管/同类快接两半放大，十标签/原PNG/轻量预览与旧coldplate基线绑定；既有coldplate系统尺度所属行与原3D身份画布/旋转、实际本地八视图/原件SHA/完整双下载核对，不预填生产。",
+      "checked_requirement": "原五张与补充四张视觉参考按原始PNG字节/真实尺寸/SHA绑定且不作为技术事实；9张旧部件图与5张面板逐项在册；迁移来源路径/引用/依赖顺序、单项执行及验收/发布回执边界。；TA-01验收绑定新母图/独立标注/提示词SHA，导出SVG内嵌未修改母图并保留旧资产；实际SSD档案入口、放大、双下载、宽窄/明暗及旧3D预览。；档案预览小于512KiB且标签数量与高清版相同，避免预览加载高清大图；高清导出保持原PNG字节。；TA-02暖白实际PNG像素、可编辑SVG/实际画布像素、桌面/手机和明暗、原交互/查看器/模型替换与派生轮廓借用/释放边界。；诊断开启的导出保留覆盖图例/状态边界，关闭后恢复，非硬件状态。；导出共用实时文字避让与1x/2x像素比；匿名启动不依赖受保护产品登记、可选未读明确未知并保留原权限。；镜头观测测试兼容脚本版本参数，注入接口须实际匹配当前源码，缺失时立即失败而不跳过视口检查。；scene_atlas 保留双密度完整导出/交互断言，调度器将1x/2x分别运行在原单项300秒限额，避免共享期限受软件渲染速度影响。；用户实际入口补全：2D SSD主图区及系统/尺度缩略图用已验图，不留SSD方块；其他选择清除SSD、无侧栏重复。可变HTML/JS/CSS no-cache及GET/HEAD/304条件验证，私有权限保持。；部件详图在包含该部件的系统/尺度行后，骨架路径可见且不前置于总览；切换排法保留选中与所属行，非SSD选择在切换后仍不显示SSD。；设施2D四对象按用户优先顺序分别登记；已验图的PNG真实尺寸/SHA、原字节SVG与轻量同尺寸预览绑定对象，保留基线。实际浏览器按accepted/published项逐张验系统/尺度所属行、跨对象切换、缩略图替代、宽窄/明暗、独立SVG、放大及双下载，未完成项不假装有图。；35项主计划编号和补充四图分开计量，接受图完整性与逐项真实页面验证不因续做调度而免除。；TA-03子装配明确标题/图注，计算行缩略图身份和3D服务器档案绑定，GPU不继承机箱图，8条独立标注与旧chassis基线保留。；TA-04模组装配与GPU对象绑定、系统/尺度缩略图身份、跨服务器/GPU选择清除、GPU档案插图与既有3D画布保留；8条标签/同像素预览/原件SHA与旧gpu-board基线。；2D档案传入完整prices对象，GPU现有价格曲线与图册上下文能同时完成，不因records数组形状错误中断加载。；TA-04逐项实际发布回执与主计划4/35/下一TA-05绑定，补充四图独立，源码四项精确头CI与公网/原件/服务观察分别登记。；TA-05 HBM对象绑定通用GPU/HBM封装层次图，系统/尺度定位和跨GPU切换清除；3D HBM档案仍有交互画布，TA-03/04保留，8标签原件/预览与旧hbm基线绑定。; TA-05 actual public entry/native-master/labels/download/source checks bound to published queue5/35, user budget exception and unexecuted CI recorded separately.；TA-06 CPU与DRAM各自系统/尺度入口绑定同一主板装配上下文，九标签与原件绑定；跨选择不残留HBM/GPU图，CPU/DRAM 3D档案保留交互画布，不新增骨架对象。；TA-06真实公网两入口各四视图/九标签原件SHA/双下载字节/3D画布回执与published6/35绑定，Spark版本差异和CI预算豁免保持独立。；用户R10–R14五份参考原字节/SHA/实际尺寸绑定，参考集合14张且非技术证据；规范1.7细节要求及未来TA18–23/35引用同步，不新增计划项或回填已发布图参考。；TA-07网络系统/部件尺度的NIC入口绑定独立网卡图，八标签、原PNG和实际R2/R3绑定；不残留CPU图，3D查看器保留。；TA-07真实公网四视图/八标签原PNG SHA/双下载完整字节/3D画布回执与published7/35绑定，独立登记预算CI与Spark版本差异。；TA-08 PSU电力/尺度入口绑定通用服务器AC–DC外观图，R2真实工具输入、原生1536×1024、8独立标签/原件/轻量预览与旧psu基线绑定。实际本地8视图及高清8标签/原PNG嵌入SHA/双下载完整字节验证，3D PSU档案原交互画布保留，跨NIC选择不残图；本地accepted阶段完整验收，本次用户授权合并部署；实际发布另由回执验证。；TA-08真实公网八视图/八独立标签/原PNG嵌入SHA/双下载完整字节/原3D画布与published8/35回执绑定；AWS首发源码及精确镜像healthy、自动精确head四CI成功与本次用户合并授权分开登记。；TA-09通用风扇笼实际R2、三就位/一上提与唯一对应空位、十标签/原PNG/同尺寸轻量预览及旧fans绑定；既有server-fan冷却/尺度入口和原fanwall拾取/交互档案对应，无新骨架或几何；实际本地八视图/十标签原件SHA/双下载完整字节验证，accepted与生产发布分开。；TA-09真实公网八视图/十标签原PNG SHA/完整双下载/既有server-fan 3D画布与published9/35回执绑定；首发源码/AWS精确镜像healthy、自动CI时间状态及Spark只读版本/两服务各自登记，不用本地或生成图代替上线。；TA-10真实R3/两版错配拒绝记录/第三版一体冷板虚拟剖口、内部液路与端部集流区/两个示例端口软管/同类快接两半放大，十标签/原PNG/轻量预览与旧coldplate基线绑定；既有coldplate系统尺度所属行与原3D身份画布/旋转、实际本地八视图/原件SHA/完整双下载核对，不预填生产。；TA-10真实公网八视图逐张目检/十标签原件SHA/完整双下载/原coldplate交互画布与published10/35回执绑定，首发源码/AWS精确镜像healthy、自动CI时间状态及Spark只读同源码/两服务各自实录；不把本地或图像生成当上线。 源码精确head新CI六job（完整浏览器分片及聚合）最终成功与早期进行中观测分别留存。",
       "tests": [
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_adopted_reference_bytes_and_actual_dimensions_match",
         "tests/unit/test_visual_atlas.py::VisualAtlasTests.test_all_existing_render_and_panel_assets_have_individual_queue_rows",
@@ -1523,14 +1535,14 @@
         "TA-07 Actions37867567667预算阻止四job启动，CI未运行；用户授权忽略预算阻塞。Spark较网站旧，不声称同步。匿名研究401，未验证已登录研究数据。",
         "TA-08为通用服务器PSU外观：额定功率、电压/效率/认证、具体接点/锁扣/风扇几何、尺寸、兼容性、气流方向、内部电路与更换条件未核实；Delta完整PDF条款跳转/Dell全文超时及403记录保持。既有3D几何未重制；公网八视图/原件/下载/画布与AWS实测见publication回执，机检不替代逐张目检。源码CI四项自动成功不证明其他生产范围；匿名研究内容、Spark真实材料注册/C3/采用及review调度不由本图任务验收。",
         "TA-09四位/三就位一上提仅是装配示例；精确型号、叶片与网罩/导向/卡扣/接点几何、尺寸、引脚、电压、转速、风量/压力/噪音、冗余/控制、气流与热插拔/更换条件未知。既有3D几何保留，仅fanwall身份归回server-fan；不完成TA11/13/29。机器不替代逐张目检。实际公网/首发AWS见publication，CI按时间状态登记；Spark较旧版本和两服务只读实测不证明图册同步/材料接收/深读/C3采用，匿名受保护研究未验。",
-        "TA-10虚拟剖口、铜色与微通道/两端集流区/双端口仅示例；精确SKU/材质及电化学兼容、密封/焊接/加工、孔/鳍片/流道/集流/快接几何数量尺寸、热接触材料、介质/流向/压力/流量/温度/热性能与泄漏、阀门与配合公差未知。剖开非维修步骤，同类快接放大非额外回路，不承诺无滴漏/热插拔/标准互换。原3D/事实未改，机器不替代目检或真实生产/材料/C3验收。"
+        "TA-10虚拟剖口、铜色与微通道/两端集流区/双端口仅示例；精确SKU/材质及电化学兼容、密封/焊接/加工、孔/鳍片/流道/集流/快接几何数量尺寸、热接触材料、介质/流向/压力/流量/温度/热性能与泄漏、阀门与配合公差未知。剖开非维修步骤，同类快接放大非额外回路，不承诺无滴漏/热插拔/标准互换。原3D/事实未改，机器不替代目检或真实生产/材料/C3验收。 实际公网和首发AWS见publication；CI按观测时点而非预填成功，Spark同源码/两服务观察不证明图册使用或材料接收/深读/C3，匿名受保护研究未验。"
       ]
     },
     {
       "policy": "geluoke-longform-20261009-editor",
       "scope": "editorial-delivery",
       "source": "docs/geluoke/专题写作规则.md",
-      "checked_requirement": "v2.7实际人工复审：按用户约7000字要求全文重写，明确通电时间这一角度，不以中庸套话拼接观点；电源/线路/变电和长期设施成本讲清机制，必要状态/口径保留。本稿正文约7000字（当前7225含标点字符，自动范围6500—7700）、10幅对应图逐张手机目检，原件与全量研究不随公开稿删减。build/audit检查实际字数、图号、首段地图、关键标注、来源身份、上传限额；浏览器复制/布局结果绑定最终HTML SHA。治理单测只覆盖登记，不代替事实语义、编辑质量或平台验收。 同期PR446已实际接收23份并Reader注册；保留全部回执、身份与11:39:55封存1/排队22快照，未将注册当全批深读或C3。",
+      "checked_requirement": "v2.7实际人工复审：按用户约7000字要求全文重写，明确通电时间这一角度，不以中庸套话拼接观点；电源/线路/变电和长期设施成本讲清机制，必要状态/口径保留。本稿正文约7000字（当前7225含标点字符，自动范围6500—7700）、10幅对应图逐张手机目检，原件与全量研究不随公开稿删减。build/audit检查实际字数、图号、首段地图、关键标注、来源身份、上传限额；浏览器复制/布局结果绑定最终HTML SHA。治理单测只覆盖登记，不代替事实语义、编辑质量或平台验收。 同期PR446已实际接收23份并Reader注册；保留全部回执、身份与11:39:55封存1/排队22快照，未将注册当全批深读或C3。 2026-10-09真实运行复审：13:07补源plan23/apply23/replay新增0；原timer13:12自然发布23份身份，实际资料HTTP核对13份含三carrier；13:15数据库封存13且verify_seal实核、queued9/running1。回执与历史分开，长驻review模块加载及本批C3数量不由源码/资料投影推定；本次只登记实际操作证据，不新增测试夹具或采用。 13来源全量资料API核验为生产容器内HTTP，另13:26真实公网HTTPS对EIA原件/Crane载体2/2字段核对并确认节点200，两路径证据分开。",
       "tests": [
         "tests/unit/test_governance.py::GovernanceTests.test_replacement_valid_then_parallel_current_rejected",
         "tests/unit/test_governance.py::GovernanceTests.test_inventory_detects_added_and_modified_records_excludes_ignored"
@@ -1538,11 +1550,30 @@
       "not_verified": [
         "逐篇内容须独立核对；自动治理不覆盖事实语义、版权、所有原文定位或编辑质量。",
         "本篇手机/桌面与浏览器复制往返已检查；微信编辑器实粘、素材上传与发布未执行。",
-        "本篇研究输入仍保持候选；23份来源接收/匹配并Reader注册，11:39:55快照完整封存1/queued22；尚未完成本批全部深读，C3/价格/项目正式采用及问题关闭未执行。",
-        "原件/工具响应归档已按真实回执进入Spark永久incoming，20原件与3派生正文载体的blob身份已核对；Git只保存派生文本、图、规则和操作回执。来源URL保留侧车，未完整导入catalog。",
+        "本批全部23份深读尚未完成；13:15:50完整封存13、queued9/running1，实际资料HTTP可读13。后台本批具名C3/价格/项目/模型正式采用数量及问题关闭本轮未核实；来源补源操作未执行正式采用。",
+        "真实Spark来源侧车应用与原publisher自然发布已回执：23/23接收快照身份、13资料HTTP可读；原件20与工具响应载体3分别保留SHA/null边界。提交URL不证明原站字节或事实；长期review PID1543876未确认加载新packet实现，未来实际模型请求字段另验。",
         "AI工程图为通用示意，未按特定项目施工图验证；精确几何、设备数量与比例不作事实。",
         "本次仅核对inews现有口吻代码与PR合并状态；没有将该仓库自动图表渲染器改成工程插画生成器。",
         "互联范围为依据官方图的概览重绘，未核验精确运营GIS或具体园区的接入边界；同一作者目检不是独立第三方终审。"
+      ]
+    },
+    {
+      "policy": "editorial-intake-20261009",
+      "scope": "editorial-research-input",
+      "source": "docs/local_reader/EDITORIAL_DELIVERY.md",
+      "checked_requirement": "Reviewed: public reader eligibility and reference-only export; revision identity, replay deduplication, scope append preserving daily settings, failed-scope retry; verified author identity carried into Reader export. Longforms seal only after real HTML render hashes pass.",
+      "tests": [
+        "tests/unit/test_editorial_sync.py::EditorialSyncTests.test_dedup_revisions_scope_and_reindex_preserve_authorship",
+        "tests/unit/test_editorial_sync.py::EditorialSyncTests.test_broken_scope_fails_without_claiming_delivered_then_recovers",
+        "tests/unit/test_editorial_sync.py::EditorialSyncTests.test_bundle_tampering_and_roles",
+        "tests/unit/test_editorial_sync.py::EditorialSyncTests.test_polling_restarts_at_zero_for_changed_old_articles_and_rejects_bad_cursor",
+        "tests/unit/test_editorial_sync.py::EditorialSyncTests.test_outbox_seal_requires_matching_completed_render"
+      ],
+      "not_verified": [
+        "Receipt is not full reading, semantic verification, C3 adoption or question closure.",
+        "References alone do not prove originals were received or their primary status verified.",
+        "V1 does not infer withdrawals from missing pagination results.",
+        "Live timers and remote publication require separate runtime receipts."
       ]
     }
   ]
