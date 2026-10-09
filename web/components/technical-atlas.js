@@ -1,5 +1,13 @@
 /* Adopted illustrations enrich the category dossier; the live 3D inspector stays interactive. */
 const illustrations = {
+  coldplate: {
+    id: 'TA-10', title: '冷板与接头 · 内部液路与快接',
+    image: '/assets/technical-atlas/coldplate-v1.svg', preview: '/assets/technical-atlas/coldplate-v1-preview.svg',
+    master: '/assets/technical-atlas/coldplate-v1.png',
+    alt: '暖白一体冷板局部剖视：封合层虚拟剖开露出内部液路和两端集流区，两个示例接口各接一根软管，右下放大同类快接的插头与插座配合端。',
+    note: '通用冷板局部剖视；双端口、内部液路及材料仅为示例。右下为同类快接两半放大，非额外回路；虚拟剖开不表示可拆维护或热插拔，结构与性能以选定型号为准。',
+    labels: ['封合层与虚拟剖口：展示内部液体通路，不表示维护时开盖', '内部液路与两端集流区：通用微通道示例，非外露空气散热鳍片', '导热基底：热源接触面位于下方，不指定芯片或导热材料', '两处示例接口与柔性软管：液体连接数量和方向按具体产品核对', '快接插头与插座：右下为同类配合端的重复放大，不是新回路', '选型边界：材料、流量、压力、冷却液、密封和兼容性以产品资料为准，不承诺无滴漏或热插拔'],
+  },
   'server-fan': {
     id: 'TA-09', title: '服务器风扇墙 · 模组与安装位',
     image: '/assets/technical-atlas/fan-wall-v1.svg', preview: '/assets/technical-atlas/fan-wall-v1-preview.svg',
