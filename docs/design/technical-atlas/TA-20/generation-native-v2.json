@@ -1,0 +1,112 @@
+{
+  "figure_id": "TA-20",
+  "stage": "source_ready_public_pending",
+  "method": "Independent native1536x1024 strictly vertical OrthographicCamera plan; actualdeployedHTTPSfactory at exact homes, not currentinteractiveview snapshot or interpolation",
+  "native": {
+    "file": "web/assets/technical-atlas/campus-plan-v1.png",
+    "bytes": 95890,
+    "sha256": "61fc67a28a04850da2b8a4c04e077404683eb11af7eeb5d86968ad33b4c86214"
+  },
+  "camera": {
+    "type": "OrthographicCamera",
+    "position": [
+      4.175000071525574,
+      184.02500009566546,
+      2.544999837875366
+    ],
+    "target": [
+      4.175000071525574,
+      4.025000095665455,
+      2.544999837875366
+    ],
+    "left": -34.719250026941296,
+    "right": 34.719250026941296,
+    "top": 23.14616668462753,
+    "bottom": -23.14616668462753,
+    "near": 0.1,
+    "far": 500,
+    "up": [
+      0,
+      0,
+      -1
+    ],
+    "direction": [
+      0,
+      -1,
+      -2.220446049250313e-16
+    ],
+    "screenRight": [
+      1,
+      0,
+      0
+    ],
+    "screenUp": [
+      0,
+      2.220446049250313e-16,
+      -1
+    ]
+  },
+  "public_source": [
+    {
+      "url": "https://inresearch.ai/assets/campus-assembly.js",
+      "status": 200,
+      "bytes": 15884,
+      "sha256": "377a08934681609a94f735e6eb5fa4d17cbfc8a573d0bc0e121fb436c0fceab5"
+    },
+    {
+      "url": "https://inresearch.ai/assets/scene-atlas.js",
+      "status": 200,
+      "bytes": 15340,
+      "sha256": "c668c1836ab13677cd272acacaf9ed06e881b66507bf9c61b2b8fd6b01c9cd4f"
+    }
+  ],
+  "native_proof": "docs/design/technical-atlas/TA-20/native-render-proof-v2.json",
+  "script": "docs/design/technical-atlas/TA-20/native-render-v2.cjs",
+  "reference_roles": [
+    {
+      "id": "R1",
+      "file": "docs/design/technical-atlas/references/01-chain.png",
+      "bytes": 2942574,
+      "sha256": "826f87b7d3ce998f96c8a6f244a4bf7124feae4ea59067dfe9db5273b4726486",
+      "role": "Owner actual original-viewed style reference; not a technical source or actual imagegen input",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    },
+    {
+      "id": "R5",
+      "file": "docs/design/technical-atlas/references/05-thermal-cutaway.png",
+      "bytes": 2792063,
+      "sha256": "6bfeea5980c8ad16b040561a6cf69ca6e020b4cb9f0bfd26a97dd1c88c0af1f6",
+      "role": "Owner actual original-viewed style reference; not a technical source or actual imagegen input",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    },
+    {
+      "id": "R12",
+      "file": "docs/design/technical-atlas/references/12-site-context-triptych.png",
+      "bytes": 2832763,
+      "sha256": "c6bad504f0c9648604ff17b5133d12fdcfe5a3f8d5b31267b0cb98a172d5ae3d",
+      "role": "Owner actual original-viewed style reference; not a technical source or actual imagegen input",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    },
+    {
+      "id": "R14",
+      "file": "docs/design/technical-atlas/references/14-modern-campus-cutaway.png",
+      "bytes": 2305815,
+      "sha256": "4dfafe3bc42aaabdc02ff9539c3bf41c12219b8b197a6c46a5fddbf4e3a45896",
+      "role": "Owner actual original-viewed style reference; not a technical source or actual imagegen input",
+      "actually_viewed": true,
+      "actually_passed_to_imagegen": false
+    }
+  ],
+  "retained_candidate": {
+    "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-20/native-v1/campus-plan-native.png",
+    "sha256": "743d2a1638d31d4b7a7e55ad8b0a6e340277fb5269278bd00e2a847b6c066f01",
+    "decision": "v1 floor contour extraction too visually heavy; v2 only suppresses contour extraction from unchanged floor meshes"
+  },
+  "AI_method": "No imagegen output is claimed. Controlled independent native strict top render allowed by framework10; actualdeployedfactory imported unchanged. Not interactive snapshot/interpolation.",
+  "TA18_factory_unchanged_sha256": "377a08934681609a94f735e6eb5fa4d17cbfc8a573d0bc0e121fb436c0fceab5",
+  "correction": "docs/design/technical-atlas/TA-20/anchor-fix-v1.json",
+  "boundary": "No local product execution; sources/mesh/homes and drawing omissions explicit. All current32positions=homes. World-Y remains height, screen right+X/down+Z is drawing orientation not geographicnorth."
+}
