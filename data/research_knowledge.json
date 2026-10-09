@@ -3016,6 +3016,88 @@
       "status": "candidate",
       "stored_path": "originals/04/04e3af568142c327af50dd218fab0fd02ef46b59232d1859bdb6d992fa8d4a1c/TPU Inference Externalization Full Steam Ahead.pdf",
       "title": "TPU Inference Externalization Full Steam Ahead"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "coverage": {
+        "characters_read": 78857,
+        "characters_total": 78857,
+        "chunks_read": 39,
+        "chunks_total": 39,
+        "complete": true,
+        "pages_read": 39,
+        "pages_total": 39
+      },
+      "doc_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "library_path": "library/by-node/root/2026_未知_How Much Do GPU Clusters Really Cost___bcea0f5e5fb78dee.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:bytedance",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:fluidstack",
+        "actor:ibm",
+        "actor:lambda",
+        "actor:meta",
+        "actor:mgx",
+        "actor:mistral-ai",
+        "actor:nebius",
+        "actor:nscale",
+        "actor:nvidia-networking",
+        "actor:vast-data",
+        "actor:weka",
+        "chain:network/1",
+        "part:cpu",
+        "part:gpu",
+        "part:hbm",
+        "part:network-switch",
+        "part:nic",
+        "part:rack-system",
+        "part:server",
+        "part:storage-array",
+        "root",
+        "system:compute",
+        "system:control",
+        "system:it",
+        "system:memory",
+        "system:network",
+        "system:storage"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-economics",
+        "NODE-workload-storage-economics",
+        "NODE-workload-storage-profile",
+        "NODE-workload-training-economics",
+        "NODE-workload-training-profile",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-nic-alternatives",
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance",
+        "OBJ-server-performance",
+        "Q-SCOPE-part-gpu-device"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/bc/bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b/How Much Do GPU Clusters Really Cost_ (1).pdf",
+      "title": "How Much Do GPU Clusters Really Cost?"
     }
   ],
   "evidence": [
@@ -16415,6 +16497,432 @@
           }
         },
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a3d9821ee6bb777e8d83916c6a4b22455cd80493412c6af3f320c98d8df7bbd5",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:1:ev:0",
+      "locator": "page:20/chunk:19",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 19,
+      "question_ids": [],
+      "quote": "Hyperscalers also charge a premium for\nsupport, with different tiers that each have different response times and monthly\ncharges. These charges generally graduate down from 10% to 3% of the monthly bill as\nthe monthly spend increases.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:59:44+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。支持服务分档及按月支出变化的收费比例，实质补充当前算力服务定价和购买成本工单。连续引文及超大规模云商段落提供充分语境，未发现敏感、真实冲突或替换条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics",
+          "Q-NODE-demand-D1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 112.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cbb99b82887bff8e7db7870066b9f87f3584a3cb3823376b9804cb8504c6e8e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57014,
+            "output_tokens": 4293,
+            "reasoning_output_tokens": 320
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.442,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "837ae2af7dac8827dd8ef2c545b17d7877f1a2d95e25963ea2a1e05b1263d281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54407,
+              "output_tokens": 363,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a3d9821ee6bb777e8d83916c6a4b22455cd80493412c6af3f320c98d8df7bbd5",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:2:ev:0",
+      "locator": "page:20/chunk:19",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 19,
+      "question_ids": [],
+      "quote": "Finally, monitoring dashboards are not usually setup and\naccessible by default, and can have extra charges associated. However, health checks\nare generally easy to configure, the datacenters are well run (reducing the total amount\nof failures and interruptions that occur) and both a hot spare pool of nodes and\ncapacity guarantees exist.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:59:44+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。监控收费直接关联服务成本，健康检查、热备和容量保证则提供故障管理及服务连续性的机制线索，实质匹配当前工单。连续引文和相邻标题明确适用对象，无已识别A类条件，可按B类采用为局部作者观点。",
+        "workorder_ids": [
+          "Q-M13-Q09",
+          "Q-NODE-activity-V3-economics",
+          "Q-NODE-activity-V3-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 112.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cbb99b82887bff8e7db7870066b9f87f3584a3cb3823376b9804cb8504c6e8e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57014,
+            "output_tokens": 4293,
+            "reasoning_output_tokens": 320
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.442,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "837ae2af7dac8827dd8ef2c545b17d7877f1a2d95e25963ea2a1e05b1263d281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54407,
+              "output_tokens": 363,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a3d9821ee6bb777e8d83916c6a4b22455cd80493412c6af3f320c98d8df7bbd5",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:4:ev:0",
+      "locator": "page:20/chunk:19",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 19,
+      "question_ids": [],
+      "quote": "Typically, we see silver neocloud pricing at the 50th percentile on\nthe high end, and below the 25th percentile on the low end. Buyers should be wary of\naggressive discounts, which are a signal of low quality.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:59:44+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。相对价格位置及折扣风险判断实质关联当前定价和合同风险经济性工单。原文与综合画像上下文充分，无具体主体的敏感指控、真实冲突或替换条件，可作为B类有限作者观点采用。M13-Q02要求期限结构，本项未提供期限比较，不挂接。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 112.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cbb99b82887bff8e7db7870066b9f87f3584a3cb3823376b9804cb8504c6e8e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57014,
+            "output_tokens": 4293,
+            "reasoning_output_tokens": 320
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.442,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "837ae2af7dac8827dd8ef2c545b17d7877f1a2d95e25963ea2a1e05b1263d281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54407,
+              "output_tokens": 363,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a3d9821ee6bb777e8d83916c6a4b22455cd80493412c6af3f320c98d8df7bbd5",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:5:ev:0",
+      "locator": "page:20/chunk:19",
+      "object_ids": [
+        "actor:vast-data",
+        "actor:weka",
+        "part:storage-array"
+      ],
+      "page_index": 19,
+      "question_ids": [
+        "NODE-workload-storage-economics",
+        "NODE-workload-storage-profile"
+      ],
+      "quote": "Storage performance depends\non the provider’s experience with VAST or Weka, and some volume discounts are\navailable.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:59:44+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。供应商经验提供性能评估的实施条件线索，批量折扣直接补充存储服务成本问题；两者实质关联当前工单，但均仅为部分证据。连续原文和银级综合画像语境充分，未发现A类条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-storage-array-performance",
+          "Q-NODE-workload-storage-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 112.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cbb99b82887bff8e7db7870066b9f87f3584a3cb3823376b9804cb8504c6e8e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57014,
+            "output_tokens": 4293,
+            "reasoning_output_tokens": 320
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.442,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "837ae2af7dac8827dd8ef2c545b17d7877f1a2d95e25963ea2a1e05b1263d281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54407,
+              "output_tokens": 363,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a3d9821ee6bb777e8d83916c6a4b22455cd80493412c6af3f320c98d8df7bbd5",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:6:ev:0",
+      "locator": "page:20/chunk:19",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 19,
+      "question_ids": [],
+      "quote": "InfiniBand or RoCEv2 performance is generally good out-of-the-box, though\ntime can be lost for setup and debugging of orchestration software like Slurm or\nKubernetes, and POC’s not always free.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:59:44+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。编排配置调试导致时间损失的机制实质贡献于当前编排层工单；部署约束和POC收费分别补充交付链条与成本工单。连续引文及银级画像上下文充分，无已识别A类条件，可按B类采用为局部证据。",
+        "workorder_ids": [
+          "Q-M13-Q05",
+          "Q-NODE-activity-V3-chain",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 112.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cbb99b82887bff8e7db7870066b9f87f3584a3cb3823376b9804cb8504c6e8e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57014,
+            "output_tokens": 4293,
+            "reasoning_output_tokens": 320
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.442,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "837ae2af7dac8827dd8ef2c545b17d7877f1a2d95e25963ea2a1e05b1263d281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54407,
+              "output_tokens": 363,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739"
       }
     }
   ],
@@ -32233,6 +32741,515 @@
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
         "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
         "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:1:ev:0"
+      ],
+      "id": "adoption:review:87adaaf929f7ad1be1164cce",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-economics",
+        "NODE-demand-D1-economics"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Much Do GPU Clusters Really Cost?》第20页作者称，超大规模云商对支持服务额外收费，不同档位对应不同响应时间和月费；随着客户月支出增加，支持费占月账单的比例通常从10%降至3%。这是该来源对云服务收费的概括，未经独立验证；来源发表时间及适用地域未确定。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:59:44+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。支持服务分档及按月支出变化的收费比例，实质补充当前算力服务定价和购买成本工单。连续引文及超大规模云商段落提供充分语境，未发现敏感、真实冲突或替换条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics",
+          "Q-NODE-demand-D1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 112.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cbb99b82887bff8e7db7870066b9f87f3584a3cb3823376b9804cb8504c6e8e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57014,
+            "output_tokens": 4293,
+            "reasoning_output_tokens": 320
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.442,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "837ae2af7dac8827dd8ef2c545b17d7877f1a2d95e25963ea2a1e05b1263d281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54407,
+              "output_tokens": 363,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:1"
+      ],
+      "limitations": "未列具体云商、支持方案、响应时限、支出门槛、合同或账单，也未界定月账单包含哪些服务。不能把10%—3%作为所有客户的实际费率，或据此计算完整GPU小时成本。相邻图题的2026年4月评级时间不确立本文发表日期；未指向具体项目或交付阶段。",
+      "conflict_check": "已采用的终端用户电费和租金敏感性观点、DGX Lepton利润传导判断，分别讨论不同成本项与机制，不否定支持费的存在。旧H100挂牌价和存储另计记录未规定本项支持费口径，不构成重复或同口径冲突。合同和项目筛选结果为空；检查仅限所供记录。",
+      "gap_dependency_check": "仅补充NODE-activity-V3-economics的服务成本与定价结构，以及NODE-demand-D1-economics的算力购买附加成本。仍需具体方案、合同账单、计费基数和时点，才能复算总成本；未提供采用率、支付意愿或需求弹性。两项问题保持开放，不更新模型值或现有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "61f17038ad1defd74f2fb0a7e0dc0ef07257762ef979f62052e196c9c9466afa"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:2:ev:0"
+      ],
+      "id": "adoption:review:5d3b707e842b07f8d132f1ae",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M13-Q09",
+        "NODE-activity-V3-economics",
+        "NODE-activity-V3-chain"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Much Do GPU Clusters Really Cost?》第20页作者在超大规模云商段落中称，监控面板通常不会默认配置并开放访问，且可能额外收费；健康检查通常容易配置，数据中心运行良好，作者认为这会减少故障和中断，并称存在热备节点池及容量保证。这是来源的定性服务评价，未经独立验证；发表时间及适用地域未确定。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:59:44+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。监控收费直接关联服务成本，健康检查、热备和容量保证则提供故障管理及服务连续性的机制线索，实质匹配当前工单。连续引文和相邻标题明确适用对象，无已识别A类条件，可按B类采用为局部作者观点。",
+        "workorder_ids": [
+          "Q-M13-Q09",
+          "Q-NODE-activity-V3-economics",
+          "Q-NODE-activity-V3-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 112.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cbb99b82887bff8e7db7870066b9f87f3584a3cb3823376b9804cb8504c6e8e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57014,
+            "output_tokens": 4293,
+            "reasoning_output_tokens": 320
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.442,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "837ae2af7dac8827dd8ef2c545b17d7877f1a2d95e25963ea2a1e05b1263d281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54407,
+              "output_tokens": 363,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:2"
+      ],
+      "limitations": "未提供具体云商、监控费率、故障率、恢复时间、热备规模或容量保证条款。健康检查容易配置不等于默认启用；热备和容量保证不等于所有客户均获相同保障。未提供checkpoint开销或具体项目的运行记录。",
+      "conflict_check": "同页银级供应商通常不默认配置健康检查、一般无容量保证，描述的是另一服务类别，不构成真实冲突。已采用checkpoint几毫秒的作者主张涉及训练保存过程，与本项故障管理机制不同；两者互不验证。所供旧记录未提供同云商同工况反例，也无规范重复。",
+      "gap_dependency_check": "M13-Q09仅获故障预防及恢复资源线索，故障率和checkpoint开销仍缺失。经济性工单仅获可能的监控附加费，链条工单仅获容量与替换保障机制。仍需故障日志、恢复测试、收费及SLA条款、实际交付记录和反证；三项问题均不关闭。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "61f17038ad1defd74f2fb0a7e0dc0ef07257762ef979f62052e196c9c9466afa"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:4:ev:0"
+      ],
+      "id": "adoption:review:d488cae5f7976396a9aabf89",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Much Do GPU Clusters Really Cost?》第20页作者在由不同公司特征组成的典型银级neocloud画像中称，其价格高端通常位于第50百分位，低端低于第25百分位，并将激进折扣视为低质量信号。这是作者的价格观察和风险判断，未经独立验证；来源发表时间及适用地域未确定。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:59:44+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。相对价格位置及折扣风险判断实质关联当前定价和合同风险经济性工单。原文与综合画像上下文充分，无具体主体的敏感指控、真实冲突或替换条件，可作为B类有限作者观点采用。M13-Q02要求期限结构，本项未提供期限比较，不挂接。",
+        "workorder_ids": [
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 112.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cbb99b82887bff8e7db7870066b9f87f3584a3cb3823376b9804cb8504c6e8e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57014,
+            "output_tokens": 4293,
+            "reasoning_output_tokens": 320
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.442,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "837ae2af7dac8827dd8ef2c545b17d7877f1a2d95e25963ea2a1e05b1263d281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54407,
+              "output_tokens": 363,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:4"
+      ],
+      "limitations": "前页以作者的GPU Pricing Data讨论其他服务类别，但未给银级百分位的具体样本、统计时点、GPU型号、配置、合同期限或绝对租价。折扣与质量之间未提供检验或因果证据，不能据此认定某家低价供应商质量差，也不能计算现货、1年和3年价差。",
+      "conflict_check": "前页作者同时称金级供应商有更激进折扣、价格接近第25百分位，因此不能将银级段落的警示外推为所有折扣均意味着低质量。类别不同尚不构成同口径真实冲突。历史H100按需2.99美元/小时报价及DGX Lepton降价预测没有相同百分位样本，不构成重复或直接反证。",
+      "gap_dependency_check": "仅补充NODE-activity-V3-economics的相对定价及质量风险线索。仍需可审计样本、同配置报价、合同期限与质量测试，才能评估价格和风险。M13-Q02的现货、1年和3年同口径租价差仍缺失；不关闭问题，不修改历史报价或既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "61f17038ad1defd74f2fb0a7e0dc0ef07257762ef979f62052e196c9c9466afa"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:5:ev:0"
+      ],
+      "id": "adoption:review:216a756be241c403c13d0139",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:vast-data",
+        "actor:weka",
+        "part:storage-array"
+      ],
+      "question_ids": [
+        "OBJ-storage-array-performance",
+        "NODE-workload-storage-economics"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Much Do GPU Clusters Really Cost?》第20页作者在综合多家公司特征的典型银级neocloud画像中称，存储性能取决于供应商使用VAST或Weka的经验，且有部分批量折扣可用。这是作者对服务性能条件和折扣的定性描述，未经独立验证；来源发表时间及适用地域未确定。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:59:44+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。供应商经验提供性能评估的实施条件线索，批量折扣直接补充存储服务成本问题；两者实质关联当前工单，但均仅为部分证据。连续原文和银级综合画像语境充分，未发现A类条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-storage-array-performance",
+          "Q-NODE-workload-storage-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 112.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cbb99b82887bff8e7db7870066b9f87f3584a3cb3823376b9804cb8504c6e8e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57014,
+            "output_tokens": 4293,
+            "reasoning_output_tokens": 320
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.442,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "837ae2af7dac8827dd8ef2c545b17d7877f1a2d95e25963ea2a1e05b1263d281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54407,
+              "output_tokens": 363,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:5"
+      ],
+      "limitations": "未给存储产品版本、阵列配置、工作负载、测试方法、吞吐量、延迟、可靠性指标、折扣幅度或采购量门槛。供应商经验不是已测量的性能指标，也不能据此比较VAST与Weka优劣。未对应具体项目或部署阶段。",
+      "conflict_check": "旧记录的高性能网络存储6—9美分/GB/月及对象存储2—3美分/GB/月是历史另计价格区间，本项未给价格或捆绑口径，无法直接比较，也不构成重复或冲突。已采用BlueField存储卸载功能描述涉及另一层级，不验证或否定本项性能条件。",
+      "gap_dependency_check": "OBJ-storage-array-performance仅获实施经验这一可能影响条件，仍缺测量方法、工况、失效机制及反例。NODE-workload-storage-economics仅获折扣线索，仍缺有效产出分母、实际费率和完整成本计算。两项问题保持开放；不挂接本项allowed_question_ids以外的存储profile问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "61f17038ad1defd74f2fb0a7e0dc0ef07257762ef979f62052e196c9c9466afa"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:6:ev:0"
+      ],
+      "id": "adoption:review:9de58a06d58453442095d4b0",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M13-Q05",
+        "NODE-activity-V3-chain",
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Much Do GPU Clusters Really Cost?》第20页作者在综合多家公司特征的典型银级neocloud画像中称，InfiniBand或RoCEv2通常开箱性能良好，但Slurm或Kubernetes等编排软件的配置和调试可能损失时间，POC也并非总是免费。这是作者对集群部署准备及服务成本的定性观察，未经独立验证；来源发表时间及适用地域未确定。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:59:44+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。编排配置调试导致时间损失的机制实质贡献于当前编排层工单；部署约束和POC收费分别补充交付链条与成本工单。连续引文及银级画像上下文充分，无已识别A类条件，可按B类采用为局部证据。",
+        "workorder_ids": [
+          "Q-M13-Q05",
+          "Q-NODE-activity-V3-chain",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 112.476,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2cbb99b82887bff8e7db7870066b9f87f3584a3cb3823376b9804cb8504c6e8e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 57014,
+            "output_tokens": 4293,
+            "reasoning_output_tokens": 320
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.442,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "837ae2af7dac8827dd8ef2c545b17d7877f1a2d95e25963ea2a1e05b1263d281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 54407,
+              "output_tokens": 363,
+              "reasoning_output_tokens": 117
+            }
+          }
+        },
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:19:claim:6"
+      ],
+      "limitations": "未给网络拓扑、规模、软硬件版本、性能测试、调试耗时、POC价格或成功标准，也未量化编排层带来的利用率改善。开箱性能良好不表示无需编排调试，不能转为NIC/DPU性能测量或实际运营利用率。未对应具体项目的交付日期。",
+      "conflict_check": "旧Slurm ID分配不当导致训练速度下降20%—30%的作者推算涉及特定缺陷及不同指标，与本项一般配置调试时间损失互补，不能将该百分比并入本项。金级与超大规模云商的网络调试描述适用类别不同；AI后端网络份额预测及网络资本开支记录也不是性能反证。未发现真实冲突或规范重复。",
+      "gap_dependency_check": "M13-Q05仅获编排层可能损失有效运行时间的定性机制，量化贡献仍需同工况对照、运行日志和利用率定义。链条工单仍缺交付耗时和约束传导数据，经济性工单仍缺POC及调试费用、租价和计费条件。三项问题保持开放，不用goodput或历史训练速度损失替代运营利用率。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a3c18f64e40b09859c63fff518817601f2cc0942a7dcbee260e04585d3bff739",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "61f17038ad1defd74f2fb0a7e0dc0ef07257762ef979f62052e196c9c9466afa"
       }
     }
   ],
