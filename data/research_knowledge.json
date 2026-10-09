@@ -3688,6 +3688,61 @@
       "status": "candidate",
       "stored_path": "originals/16/168f8eac14664abe2d566188f7ba25b94bf4b07a653bec726521257696ed7258/dcd-168f8eac14664abe-Tiger Global invests -20 million in LiquidStack.html",
       "title": "Tiger Global invests $20 million in LiquidStack"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "coverage": {
+        "characters_read": 7554,
+        "characters_total": 7554,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "library_path": "library/by-node/root/2025_DCD_Stack secures AU$1.3bn green financing in Australia to__26af30c3bf58c80b.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:blue-owl",
+        "actor:stack-infrastructure",
+        "root",
+        "system:facility"
+      ],
+      "question_ids": [
+        "NODE-demand-D1-boundary"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "report_sha256": "27a1035eac6e2bd94e6648e5bd43576a16bb9b1b91213e84c989bf9f37b3d192",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+        "url": "https://www.datacenterdynamics.com/en/news/stack-secures-au13bn-green-financing-in-australia-to-fund-melbourne-campus/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/stack-secures-au13bn-green-financing-in-australia-to-fund-melbourne-campus/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/26/26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6/dcd-26af30c3bf58c80b-Stack secures AU-1.3bn green financing in Australia to fund Melbo.html",
+      "title": "Stack secures AU$1.3bn green financing in Australia to fund Melbourne campus"
     }
   ],
   "evidence": [
@@ -25229,6 +25284,91 @@
           }
         },
         "batch_id": "22f881608d8738ed061b5687d00c2127961d17fb378e4e83fe3e04fdf18af39f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b8b3829b8b03d9d4140c299e7106762dc42987838797236c80f74f39d090050d",
+      "document_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "id": "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:5:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:blue-owl",
+        "actor:stack-infrastructure"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Stack’s owner, IPI, was recently acquired  [link: acquired — https://www.datacenterdynamics.com/en/news/asset-manager-blue-owl-to-buy-ipi-partners-for-1bn/] by Blue Owl.",
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "source_sha256": "26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T14:28:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原文直接支持候选陈述，连续引文及其上下文充分。该所有权关系对当前角色边界工作单具有实质性的局部贡献，对私募资金年度流量问题仅提供待追踪的收购事件线索。原始重要性为7，未发现敏感材料、真实冲突或替换要求，按6分采用为有限作者主张；不据此回答或关闭任何问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-boundary",
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 70.198,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c0af5e8fb8056f88f8c772d926eb3188ef0a919cb19436c6887b3c602d8f14b8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 42318,
+            "output_tokens": 1284,
+            "reasoning_output_tokens": 371
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.175,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b0f4067809bec1acbc1a59f96d8ae9dfd7457765ab25ca9a0719aa533d707744",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42808,
+              "output_tokens": 524,
+              "reasoning_output_tokens": 249
+            }
+          }
+        },
+        "batch_id": "34a77feab20ddd89fbe40084cf8340c994854d431e43cd3cf379e38fdc69cc8f"
       }
     }
   ],
@@ -48562,6 +48702,109 @@
         "request_sha256": "6205bc921e6d82ebf64e55292ba5b2b63ee5f0ef993fe630346c374381e8a854"
       },
       "object_mapping_check": "公司计划支持多家主体节点中的LiquidStack成员，不能外推至Submer、GRC。原文明示immersion cooling，支持冷却系统下机房与机柜链的part:immersion；direct-to-chip支持冷却系统下的芯片级chain:thermal/4，但未明确冷板，故不映射part:coldplate。上述映射均保留计划阶段，不添加数据中心整体或实际产能范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-26af30c3bf58c80b7df353133b7ec6acfcf7af324dfc2d60b88471e195dcd6b6",
+      "evidence_ids": [
+        "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:5:ev:0"
+      ],
+      "id": "adoption:review:806e11fad3bb5c4130232690",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:blue-owl",
+        "actor:stack-infrastructure"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-boundary",
+        "M11-Q04"
+      ],
+      "reading_revision_id": "rev-3587656012914d72806c668da1ede3a2",
+      "status": "adopted",
+      "text": "据Dan Swinhoe于2025年7月24日在DCD发表的报道，STACK的所有者IPI在报道所称的“近期”被Blue Owl收购；具体收购日期未在所供正文中说明。此为该报道的公司所有权背景陈述。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T14:28:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原文直接支持候选陈述，连续引文及其上下文充分。该所有权关系对当前角色边界工作单具有实质性的局部贡献，对私募资金年度流量问题仅提供待追踪的收购事件线索。原始重要性为7，未发现敏感材料、真实冲突或替换要求，按6分采用为有限作者主张；不据此回答或关闭任何问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-boundary",
+          "Q-M11-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 70.198,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c0af5e8fb8056f88f8c772d926eb3188ef0a919cb19436c6887b3c602d8f14b8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 42318,
+            "output_tokens": 1284,
+            "reasoning_output_tokens": 371
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 33.175,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b0f4067809bec1acbc1a59f96d8ae9dfd7457765ab25ca9a0719aa533d707744",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 42808,
+              "output_tokens": 524,
+              "reasoning_output_tokens": 249
+            }
+          }
+        },
+        "batch_id": "34a77feab20ddd89fbe40084cf8340c994854d431e43cd3cf379e38fdc69cc8f"
+      },
+      "source_candidate_ids": [
+        "rev-3587656012914d72806c668da1ede3a2:chunk:0:claim:5"
+      ],
+      "limitations": "证据为媒体报道，未提供交易公告或交割文件。“近期”以报道日期为参照，不能改写为当前状态或确定的交割日期。公司所有权关系不等于具体园区、土地或设备的产权关系，也未说明付款方、服务使用方、交易金额、资金实际到账或年度资本流量。文章主题为澳大利亚园区融资，但该所有权陈述未限定收购的地域范围。",
+      "conflict_check": "当前采用知识为空；所供legacy记录中的STACK园区规划、土地成交及其他技术或行业记录均未提出相反的IPI—STACK—Blue Owl所有权关系，也未发现同一主张的既有规范记录。上述记录不构成交割状态的独立验证；本检查限于所供材料，并非外部穷尽反证检索。",
+      "gap_dependency_check": "NODE-activity-V1-boundary仅获得公司所有者这一角色的局部线索，尚需节点自身的完整交易证据及资产产权、运营方、付款方和使用方的互斥边界；成员公司的关系不能自动覆盖root节点。M11-Q04仅获得收购事件线索，仍缺一手交易文件、金额、实际资金流、年度归属、数据中心相关份额及统计口径，不能把收购对价直接视为数据中心建设资本流入。两项工作单均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "34a77feab20ddd89fbe40084cf8340c994854d431e43cd3cf379e38fdc69cc8f",
+        "source_report_sha256": "27a1035eac6e2bd94e6648e5bd43576a16bb9b1b91213e84c989bf9f37b3d192",
+        "request_sha256": "c55ec9aa0c9fb89e8230281de5175ea843655799c91d196cfe05bd5eeaa31e9f"
+      },
+      "object_mapping_check": "独立核对映射合同：Blue Owl与STACK均为parent为空的actor，原文分别明确其收购方及被述所有权关系中的公司身份，支持这两个主体映射。IPI没有允许的对象ID，不另造映射。主张未涉及一座具体AI数据中心或设施链条的资产产权，因此不添加root、system:facility或其他基础设施对象；所选证据采用同一主张级主体范围。"
     }
   ],
   "answers": [],
