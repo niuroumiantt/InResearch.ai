@@ -24272,6 +24272,416 @@
         },
         "batch_id": "db08c9bdbd3f2c806765ab1ba592d216785e66f5af8016b1cb3851280d2d1a3a"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6d22ccaa2c15b3a497431d65a7b5bdb4a95ce79f805ef86670e9c55637534b09",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "The derivation of linear attention stems from removing the softmax operation in the standard softmax attention.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:51:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。操作变化实质涉及当前推理负载特征工单中的计算流程，连续引文和迭代推理上下文足以支持局部作者主张。无A条件，可按B部分采用，不能回答整个问题。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 148.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "322bce8ca9833e82033cb4f6fbde715b0a0e33a304ae6216ead212d39b6adf5c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66326,
+            "output_tokens": 4637,
+            "reasoning_output_tokens": 378
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.227,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1ebd49bdce37884bb1620b565bb6d37a25c7749621b91e7ae3b90e7a8ef711f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63931,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "79dc84ad4515d36fe59058126dab6f29620b9dd4e36cadbd58c28ad7cccf87fd",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:1:claim:0:ev:0",
+      "locator": "page:2/chunk:1",
+      "object_ids": [],
+      "page_index": 1,
+      "question_ids": [],
+      "quote": "By removing the softmax operation, we can reorder the operations and reduce the\ncomputation complexity of attention from quadratic to linear:",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:51:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。运算重排与复杂度变化对当前模型需求转换和推理计算特征工单具有实质的局部贡献。连续原文和第1至3页上下文支持限定的作者主张，无A条件，可按B采用。未关联经济性问题，因为本条没有建立理论复杂度与单位有效产出总成本或机房需求的具体传导关系。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 148.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "322bce8ca9833e82033cb4f6fbde715b0a0e33a304ae6216ead212d39b6adf5c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66326,
+            "output_tokens": 4637,
+            "reasoning_output_tokens": 378
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.227,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1ebd49bdce37884bb1620b565bb6d37a25c7749621b91e7ae3b90e7a8ef711f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63931,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6927dfdb727644530788deeb16fa634abe8c23180b75cabf19e43d787acf8f8b",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:0:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "Vectors q, k, v, have dimensions L by d. The computational complexity of both equations\nare O(Ld²), thereby making the computation linear.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:51:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。序列长度和维度到注意力计算量的关系，实质支持当前模型需求转换及推理负载计算特征工单。连续引文明确给出维度和复杂度，邻接上下文足以定位范围；无A条件，可按B采用为局部作者关系。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 148.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "322bce8ca9833e82033cb4f6fbde715b0a0e33a304ae6216ead212d39b6adf5c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66326,
+            "output_tokens": 4637,
+            "reasoning_output_tokens": 378
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.227,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1ebd49bdce37884bb1620b565bb6d37a25c7749621b91e7ae3b90e7a8ef711f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63931,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6927dfdb727644530788deeb16fa634abe8c23180b75cabf19e43d787acf8f8b",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:1:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "softmax attention requires accessing all past\nkey and value vectors, whereas linear attention compresses all past key and value\nvectors into one hidden state S.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:51:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。历史向量访问与隐藏状态压缩直接涉及当前推理profile的状态访问特征，以及模型机制如何影响资源需求转换。连续引文和比较方程的上下文充分，无A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 148.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "322bce8ca9833e82033cb4f6fbde715b0a0e33a304ae6216ead212d39b6adf5c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66326,
+            "output_tokens": 4637,
+            "reasoning_output_tokens": 378
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.227,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1ebd49bdce37884bb1620b565bb6d37a25c7749621b91e7ae3b90e7a8ef711f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63931,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6927dfdb727644530788deeb16fa634abe8c23180b75cabf19e43d787acf8f8b",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:2:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "We view matrix S as\nan associative memory that stores the associations between key vector k and value vector\nv, and we retrieve v by multiplying S with k.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:51:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。矩阵状态和矩阵向量检索操作对当前推理负载特征工单的计算及状态分析具有实质但局部的关系。连续原文和前文推理比较、后文状态更新说明充分，无A条件，可按B采用为作者解释。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 148.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "322bce8ca9833e82033cb4f6fbde715b0a0e33a304ae6216ead212d39b6adf5c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66326,
+            "output_tokens": 4637,
+            "reasoning_output_tokens": 378
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.227,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1ebd49bdce37884bb1620b565bb6d37a25c7749621b91e7ae3b90e7a8ef711f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63931,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825"
+      }
     }
   ],
   "statements": [
@@ -46589,6 +46999,502 @@
         "request_sha256": "dfb307e24232d1a7d4bc80c6c7dc023a8965a44c72c142366148ff21af955967"
       },
       "object_mapping_check": "独立按声明范围复核：光伏加电池储能PPA明确涉及电力系统下“发电与储能”链的储能系统，映射part:bess；Amazon明确为交易采购参与方，映射actor:amazon。Anza没有允许的主体ID，不新增映射。本项未说明并网配额、排队或并网协议，不映射site:grid；电力储能不映射IT存储，也不扩展到整座数据中心或其他基础设施。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:0:claim:1:ev:0"
+      ],
+      "id": "adoption:review:4cdc68e5f7b80ada8838ccc4",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-inference-profile"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis作者Kimbo Chen、Shubham Choudhari、Bryan Shan和Dylan Patel在2026-08-03的《The Manos, The Mythos, The Legendos》中解释，线性注意力的推导源于移除标准softmax注意力中的softmax运算；该段以逐token的迭代推理公式引入比较。这是来源作者的算法说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:51:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。操作变化实质涉及当前推理负载特征工单中的计算流程，连续引文和迭代推理上下文足以支持局部作者主张。无A条件，可按B部分采用，不能回答整个问题。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 148.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "322bce8ca9833e82033cb4f6fbde715b0a0e33a304ae6216ead212d39b6adf5c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66326,
+            "output_tokens": 4637,
+            "reasoning_output_tokens": 378
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.227,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1ebd49bdce37884bb1620b565bb6d37a25c7749621b91e7ae3b90e7a8ef711f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63931,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:0:claim:1"
+      ],
+      "limitations": "未量化移除操作后的完整计算量、内存流量、时延或可靠性，也未提供具体模型与硬件的测量。本文引用教程，但本包没有开发方或教程原始材料供独立核验；地域和部署阶段未说明。",
+      "conflict_check": "同文已采用的Attention Residuals陈述包含softmax运算，但讨论的是层间残差注意力，而本条讨论线性注意力的推导，不构成同机制冲突或重复。既有prefill/decode及推荐推理陈述针对不同层面的负载特征。所供legacy记录为空，未发现真实冲突。",
+      "gap_dependency_check": "本条仅贡献计算步骤变化的机制线索，不依赖公式图片数值。完整回答仍需明确算法实现、张量维度、执行阶段、硬件工况、测量和反证；问题保持开放，不更新资源系数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "e176adcf0a1bcdb312fbe2643ed69993a9d5e1928001d14998679078e5d318ea"
+      },
+      "object_mapping_check": "softmax是模型算法操作，未指向一座数据中心、IT计算资产或DCIM/BMS与固件。按对象名称及父链独立复核，不继承root，也不新增system:compute或system:control映射；所选证据使用空对象范围，保留有效问题匹配。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:1:claim:0:ev:0"
+      ],
+      "id": "adoption:review:677dd5926e75b65612dcaa67",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-conversion",
+        "NODE-workload-inference-profile"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis作者Kimbo Chen、Shubham Choudhari、Bryan Shan和Dylan Patel在2026-08-03的《The Manos, The Mythos, The Legendos》中，在比较注意力迭代推理公式的语境下称，移除softmax运算后可以重排运算，将所述注意力计算复杂度由二次降为线性。这是作者对算法复杂度的解释。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:51:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。运算重排与复杂度变化对当前模型需求转换和推理计算特征工单具有实质的局部贡献。连续原文和第1至3页上下文支持限定的作者主张，无A条件，可按B采用。未关联经济性问题，因为本条没有建立理论复杂度与单位有效产出总成本或机房需求的具体传导关系。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 148.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "322bce8ca9833e82033cb4f6fbde715b0a0e33a304ae6216ead212d39b6adf5c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66326,
+            "output_tokens": 4637,
+            "reasoning_output_tokens": 378
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.227,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1ebd49bdce37884bb1620b565bb6d37a25c7749621b91e7ae3b90e7a8ef711f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63931,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:1:claim:0"
+      ],
+      "limitations": "复杂度描述限定于所讨论的注意力运算，不能扩展为整个模型的计算复杂度或实际速度提升。未提供硬件实测、完整服务成本或需求响应；地域和实际部署阶段未说明。图像中的完整公式未在所供原生文字中呈现。",
+      "conflict_check": "已采用的Attention Residuals说明层间softmax操作，与本条线性注意力的重排机制不同；现有阶段调度、内存带宽利用和成本陈述也未给出相同算法复杂度的相反结论。未发现规范重复或真实冲突，legacy筛选记录为空；不覆盖现有结论。",
+      "gap_dependency_check": "采用的文字主张不依赖补出公式内容；独立验证复杂度仍需完整原始公式及维度条件。D2转换尚缺资源系数、时滞和不确定性，推理profile尚缺带工况测量及反证。两项问题保持开放，不将理论阶数变化换算为硬件、功率或容量降幅。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "e176adcf0a1bcdb312fbe2643ed69993a9d5e1928001d14998679078e5d318ea"
+      },
+      "object_mapping_check": "本条范围是注意力算法的运算复杂度，不是合同中root所指的数据中心或其system:compute、计算链及部件。没有具体GPU或其他基础设施资产证据，所选证据使用空对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:0:ev:0"
+      ],
+      "id": "adoption:review:485621cb52c4fcce1db8bf1f",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-conversion",
+        "NODE-workload-inference-profile"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis作者Kimbo Chen、Shubham Choudhari、Bryan Shan和Dylan Patel在2026-08-03的《The Manos, The Mythos, The Legendos》中称，在其线性注意力推导中，q、k、v的维度为L×d，所述两条方程的计算复杂度均为O(Ld²)。按这一表达式，在d固定时，计算复杂度随序列长度L线性增长。这是作者给出的理论计算关系。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:51:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。序列长度和维度到注意力计算量的关系，实质支持当前模型需求转换及推理负载计算特征工单。连续引文明确给出维度和复杂度，邻接上下文足以定位范围；无A条件，可按B采用为局部作者关系。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 148.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "322bce8ca9833e82033cb4f6fbde715b0a0e33a304ae6216ead212d39b6adf5c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66326,
+            "output_tokens": 4637,
+            "reasoning_output_tokens": 378
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.227,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1ebd49bdce37884bb1620b565bb6d37a25c7749621b91e7ae3b90e7a8ef711f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63931,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:0"
+      ],
+      "limitations": "L×d是算法维度，O(Ld²)是渐近复杂度，均不是硬件容量或性能测量。未给出常数项、具体L和d、批量、精度或完整模型开销；地域和实际部署阶段未说明。两条方程的完整图像未提供，不能认证其推导正确性。",
+      "conflict_check": "现有采用陈述没有同一线性注意力维度与复杂度关系，故无规范重复。prefill内存带宽利用不足并不否定本条算法阶数，Attention Residuals也属于不同注意力范围。所供legacy记录为空，未发现真实冲突；不替换任何已采用关系。",
+      "gap_dependency_check": "本条文字关系可局部采用，完整推导核验仍需原始公式和维度定义。实际资源转换还需模型结构、其他算子、执行策略和带工况硬件测量，并验证系数、时滞及不确定性；两个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "e176adcf0a1bcdb312fbe2643ed69993a9d5e1928001d14998679078e5d318ea"
+      },
+      "object_mapping_check": "q、k、v和L、d属于算法张量与维度，不是计算链上的GPU、服务器或内存链上的部件。原文没有建立与root或其IT基础设施对象的直接范围关系，所选证据使用空对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:1:ev:0"
+      ],
+      "id": "adoption:review:7d86c00f4ff8f008cbc9cfc1",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-conversion",
+        "NODE-workload-inference-profile"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis作者Kimbo Chen、Shubham Choudhari、Bryan Shan和Dylan Patel在2026-08-03的《The Manos, The Mythos, The Legendos》中，在比较所述注意力推理方程时解释：softmax attention需要访问全部历史key和value向量，而linear attention将这些历史向量压缩为一个隐藏状态S。这是作者对算法状态组织与访问方式的比较。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:51:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。历史向量访问与隐藏状态压缩直接涉及当前推理profile的状态访问特征，以及模型机制如何影响资源需求转换。连续引文和比较方程的上下文充分，无A条件，可按B局部采用。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-conversion",
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 148.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "322bce8ca9833e82033cb4f6fbde715b0a0e33a304ae6216ead212d39b6adf5c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66326,
+            "output_tokens": 4637,
+            "reasoning_output_tokens": 378
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.227,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1ebd49bdce37884bb1620b565bb6d37a25c7749621b91e7ae3b90e7a8ef711f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63931,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:1"
+      ],
+      "limitations": "未量化状态大小、物理内存容量、带宽或访问次数，也未证明压缩后保持相同质量。不能推广为Kimi K3全部层均取消历史KV访问，或认证当前部署的缓存配置；地域和实际部署阶段未说明。",
+      "conflict_check": "既有prefill/decode及内存带宽陈述讨论运行阶段与资源利用，没有断言所有注意力机制使用相同历史状态，因此无直接冲突。Attention Residuals处理层间表示，与本条历史token状态不同；未发现规范重复。legacy筛选记录为空，不构成完整外部反证搜索。",
+      "gap_dependency_check": "本条比较由完整连续文字支持，不依赖图片数值。要推导容量或带宽仍需S与KV的尺寸、层数、精度、上下文长度、质量约束和执行测量；同页召回与状态增长限制需在效率比较中保留。两项问题只获部分支持，不关闭或更新模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "e176adcf0a1bcdb312fbe2643ed69993a9d5e1928001d14998679078e5d318ea"
+      },
+      "object_mapping_check": "历史key/value与隐藏状态S是算法数据，不是system:memory所定义的数据中心IT内存资产，也不能识别part:hbm或服务器内存模组。计算和内存链均未获得具体资产关系，所选证据使用空对象范围，保留问题匹配。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:2:ev:0"
+      ],
+      "id": "adoption:review:d0bd9d4c361775f3a97beef3",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-inference-profile"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis作者Kimbo Chen、Shubham Choudhari、Bryan Shan和Dylan Patel在2026-08-03的《The Manos, The Mythos, The Legendos》中，从在线学习目标的视角将矩阵S解释为存储key向量k与value向量v关联的关联记忆，并称通过S与k相乘检索v。这是作者对线性注意力算法状态与检索操作的解释。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:51:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。矩阵状态和矩阵向量检索操作对当前推理负载特征工单的计算及状态分析具有实质但局部的关系。连续原文和前文推理比较、后文状态更新说明充分，无A条件，可按B采用为作者解释。",
+        "workorder_ids": [
+          "Q-NODE-workload-inference-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 148.038,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "322bce8ca9833e82033cb4f6fbde715b0a0e33a304ae6216ead212d39b6adf5c",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66326,
+            "output_tokens": 4637,
+            "reasoning_output_tokens": 378
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.227,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1ebd49bdce37884bb1620b565bb6d37a25c7749621b91e7ae3b90e7a8ef711f",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 63931,
+              "output_tokens": 508,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:2"
+      ],
+      "limitations": "这里的关联记忆指算法状态，不是HBM或服务器内存模组。未提供矩阵尺寸、数值精度、访存流量、执行时延或硬件测量；在线学习目标的解释不能自动视为实际模型训练阶段。地域和实际部署阶段未说明。",
+      "conflict_check": "当前采用陈述未包含相同关联记忆检索操作，故无规范重复。Attention Residuals的层间表示、物理内存带宽利用及成本分析均属不同机制或指标，未构成真实冲突。所供legacy筛选记录为空，检查限于本包，不替换既有结论。",
+      "gap_dependency_check": "文字解释不依赖未呈现图片。要回答推理需求仍需状态维度、更新和检索开销、精度、工作负载、硬件工况及反证；同页状态增长与召回限制阻止将该机制直接认作质量等价的资源节省。问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8be37aaa1e164c5f6560f190846bfe3b6c4162f035ff71ce79ccb072d0dd3825",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "e176adcf0a1bcdb312fbe2643ed69993a9d5e1928001d14998679078e5d318ea"
+      },
+      "object_mapping_check": "associative memory及矩阵S明确属于算法状态；system:memory及其内存链指向数据中心物理IT内存，part:hbm和part:dram也有具体部件含义。本条未建立这些资产关系，矩阵运算亦不足以映射system:compute，所选证据使用空对象范围。"
     }
   ],
   "answers": [],
