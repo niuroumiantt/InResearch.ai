@@ -1,5 +1,9 @@
 # 决策记录
 
+## 2026-10-09：显式本地验收与同来源汇总发表
+
+用户要求不等CI自主发布，并尽量汇总同来源批次。本版研究发表：缺省CI保持，任务显式local固定验收与精确head/main/member回执；同source优先汇总，singleton私有300秒有界等待。各批对同一未改baseline审核后一次追加，actual健康digest/source/public canonical与逐batchACK另验。背压非跨机器锁，旧CLOSED自动superseded未实现；源码/fixture不冒充生产载入，现行入口为09/Spark操作手册。 原审计/封印/抽样/context不降级，旧记录/answer/闭题保持；normal push与原head/attempt/错误/receipt保留，不追认旧CI或候选采用。
+
 ## 2026-10-09：TA15 独立封装近景实际发布
 
 TA15实际发布：PR531合并3e169899，AWS12:20:37Z同源码/应用/.43与精确bfb24f42镜像healthy，审定head与merge完整tree零差异；真实公网四静态/八常规浏览器3D逐张目检，八标注组（19文字节点）/八引线/原PNG SHA、完整SVG463119B与PNG344942B双下载、12源码SHA/HTTPShealth200/360px两行85.734通过。1049完整封装与三单实例真实拾取/SVG、200微凸点/108C4双面实际几何接触、TSV界限、同二维对应/共同竖轴、固定HUD与导航避让/五编号图例/镜头接管/资源释放与七旧入口实查。最终原生1536×1024与三个1:1同实例局部，二AI拒绝、原生旧稿/单面漏验与首次ui_skin缺fixture失败保留；通用示意非OEM/CAD/制造维修，不补造型号规格。仅本轮用户授权不查CI，不称通过；Spark/研究事实未改。主计划15/35、补充4/4，下一TA16按系统2D总览。
