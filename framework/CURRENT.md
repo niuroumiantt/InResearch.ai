@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.09.34 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.09.35 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -173,3 +173,5 @@ TA-11整机档案复审修正：serverMode下整机聚合全部1129几何、保�
 16:35另核原publisher PR487同源B3真实公网/ACK，原23已核闭环累计16＝B9＋A7，原50显式仍7；首480六条文本支持与已证system:control机器归属错误分开，待具名审核保留历史修复。
 
 TA13 public observer repair: the first empty route.fetch body remains a failed attempt with unknown exact cause because no status was captured. A real If-Modified-Since request returns304/empty; the observer removes only If-None-Match/If-Modified-Since and requires full200/nonempty before injecting. URL/status/bytes/cache headers are recorded without authentication headers. Local conditional recovery and full public3D assertions passed; a legal response without Last-Modified records conditional reproduction as inapplicable. Production assets/geometry and suite300-second deadline remain unchanged. Published remains12/35 until the separate receipt. Latest research/main retained; CI not queried or claimed passed under current user authorization.
+
+TA13实际发布：PR486合并b52c42ea，AWS08:28:18Z同源码/应用及精确290e1357镜像healthy/.31；真实公网四静态+四3D视图逐张目检、14文字/14引线/原PNG SHA、SVG2633211B与PNG1971646B完整双下载、7源码SHA/health200/360px两行85.734、整柜598及子实例/未知附件真实拾取当前SVG/镜头/资源释放/旧入口通过。类别研究与本图通用说明分开，原BOM/研究/其它图保留；用户本轮明确不查或等CI，未声称通过。Spark较旧源码及两服务仅只读观察；主计划13/35、补充4/4，下一TA14。
