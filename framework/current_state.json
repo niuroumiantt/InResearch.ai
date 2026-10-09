@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10.57",
+  "version": "2026.10.10.58",
   "effective_at": "2026-10-10",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2770,12 +2770,35 @@
         "web/assets/technical-atlas/campus-exploded-v1-preview.svg",
         "docs/design/technical-atlas/TA-19/anchor-fix-v1.json",
         "docs/design/technical-atlas/TA-19/publication-20261010.json",
-        "docs/design/technical-atlas/TA-19/public-checks-v1.json"
+        "docs/design/technical-atlas/TA-19/public-checks-v1.json",
+        "docs/design/technical-atlas/TA-20/SCOPE.md",
+        "docs/design/technical-atlas/TA-20/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-20/anchor-fix-v1.json",
+        "docs/design/technical-atlas/TA-20/asset-manifest-v1.json",
+        "docs/design/technical-atlas/TA-20/bom3d-before-v1.html",
+        "docs/design/technical-atlas/TA-20/generation-native-v2.json",
+        "docs/design/technical-atlas/TA-20/labels-v1.json",
+        "docs/design/technical-atlas/TA-20/native-labels-v1.py",
+        "docs/design/technical-atlas/TA-20/native-render-proof-v2.json",
+        "docs/design/technical-atlas/TA-20/native-render-v2.cjs",
+        "docs/design/technical-atlas/TA-20/offline-label-scan-v1.json",
+        "docs/design/technical-atlas/TA-20/references-v1.json",
+        "docs/design/technical-atlas/TA-20/source-validation-v1.json",
+        "docs/design/technical-atlas/TA-20/technical-sources-v1.json",
+        "web/pages/campus-plan.html",
+        "tests/campus_plan.cjs",
+        "tests/unit/test_campus_plan_assets.py",
+        "web/assets/technical-atlas/campus-plan-v1.png",
+        "web/assets/technical-atlas/campus-plan-v1.svg",
+        "web/assets/technical-atlas/campus-plan-v1-preview.jpg",
+        "web/assets/technical-atlas/campus-plan-v1-preview.svg",
+        "docs/design/technical-atlas/TA-20/source-public-geometry-check-v1.json",
+        "docs/design/technical-atlas/TA-20/source-public-geometry-check-v2.json"
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.10.57",
-      "change_reason": "TA19实际发布：PR567与08锚点修正PR568，最终0304ac54/.56自然timer应用，22:04:59Z同source/applied与精确6bf0d3b7镜像healthy，两个PR精确head→merge全tree0差异。TA18相同32实例/2293→152mesh/194916顶点，20移动12固定，42同实例灰线与17空home非物理无拾取；真实0归home/70与100刚体终态、12实际三角表面锚点和每视图投影、9单实例鼠标拾取/整区152独立预览、12权利别名/DCIM零物理、8领域fit/手动所有权/取消writer/幂等资源释放、8明暗宽度阶段图/4手机收起与当前SVG、原生双下载SHA/1536完整SVG、13源码资源SHA/HTTPShealth200均通过；TA18默认四图与资源回归通过。原PNG260a6cce字节守恒与12独立编辑标注，AI/原生拒稿及初次08高出.006表面失败保持，修到实际.54后真实复验。手机细节须放大/动态overlay遮主图/wholemini偏小/匿名认证/未知OEM尺寸额定完整拓扑边界保留。原本地拒绝不绕过、不查CI、不改Spark或研究服务。主19/35补4/4，下一TA20严格正交平面。"
+      "implementation_revision": "2026.10.10.58",
+      "change_reason": "TA20正交平面源码阶段：独立campus-plan.html显式campus-overview+plan图册，保留TA18旋转/拾取与TA19分层链接；严格Y轴OrthographicCamera原生1536×1024，32实例全部home/152源mesh/194916顶点保持。屋面/钢架/实体桥架虚拟隐藏三组10mesh，29可见实例142mesh；10柱脚轮廓与4桥架矩形为同源非物理投影，不造完整电液连接。8机柜顶面/5顶部风管/3CDU/UPS一组与户外3冷机6风扇/2变压/3发电/2储能限定为绘图示例，不冒称UPS正面柜门俯视可见。12可编辑标注/原PNG61fc67a2原字节/轻量预览，v1重网格拒稿与05网罩锚点静态修正历史保持。R1/R5/R12/R14实际original仅风格参考，不称AI输入/成图或交互快照。25明确无HTTP静态与parse-only/离线单SVG通过；真实新公网页面/下载/10可见表面+2隐藏投影/原3D入口/精确健康另验，尚不accepted/published，主19/35补4/4。本地50166拒绝不绕过，CI不查不称通过，Spark/研究数据服务0改。"
     },
     {
       "id": "interface-repository-daily-20261008",

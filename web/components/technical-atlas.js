@@ -126,6 +126,21 @@ const serverPlan = {
   related: [{id: 'TA-11', title: '整机剖视与部件档案 · TA-11', image: '/bom.html#server'}, {id: 'TA-11-3D', title: '旋转、拾取与装配交互', image: '/rack3d.html?view=server&x=55&node=part:server'}],
 };
 
+const campusPlan={
+ id:'TA-20',title:'园区与机房正交平面图 · 同一八柜示例布局',
+ image:'/assets/technical-atlas/campus-plan-v1.svg',preview:'/assets/technical-atlas/campus-plan-v1-preview.svg',master:'/assets/technical-atlas/campus-plan-v1.png',
+ alt:'严格正交俯视的通用园区：机房内两行各四个机柜顶面、五室内冷却、三CDU和一组UPS；室外三双风扇冷机、两变压器、三备用发电和两储能柜，浅灰虚线投影已有上方桥架。',
+ note:'同一通用布局严格正上方示意，所有设备保持原位；屋面、上部钢架和实体桥架虚拟省略。10柱脚轮廓和4上方桥架矩形只是投影，灰虚线不表示完整电缆/水路。UPS只见顶面，不展示正面柜门或柜内配置；设备数量、朝向与比例是画法选择。无北向、比例尺或真实尺寸，非OEM/CAD、施工或维护图。',
+ labels:['机柜区：2行×4柜保留原位置与朝向，只见闭合顶面，不虚构柜内盘面或冷热通道规则',
+ '室内冷却：5个顶部风管短节和3CDU局部接口来自同一源几何，未连接成完整供回液路',
+ 'UPS分区：一组UPS顶面与保留分隔墙可见；四个正面柜门属于TA18侧视示例，不在俯视中冒称可见',
+ '室外机电：3双风扇冷机、2变压器、3备用发电与2储能柜为示例外形和数量，未知型号及额定值不补造',
+ '投影说明：10柱脚轮廓与4桥架矩形是同源位置的非物理线，桥架不代表完整电力、网络或流体连接',
+ '围护与地坪：保留墙顶轮廓和UPS分隔墙；基础轮廓不是地块边界，图上方向不是地理北向',
+ '交互入口：原园区装配和分层仍可旋转、逐实例点选与导出；本页静态图可放大、下载标注SVG与无字原生PNG'],
+ related:[{id:'TA-18',title:'园区旋转与设备拾取 · TA-18',image:'/bom3d.html'},{id:'TA-19',title:'园区分层交互 · TA-19',image:'/bom3d.html?x=70'}],
+};
+
 const rackOverview = {
   id:'TA-13', title:'机柜整柜 · 安装分区与结构',
   image:'/assets/technical-atlas/rack-overview-v1.svg', preview:'/assets/technical-atlas/rack-overview-v1-preview.svg',
@@ -188,7 +203,7 @@ export function atlasCategoryNote(partId, {view} = {}) {
 }
 
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
+  const item = ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');
