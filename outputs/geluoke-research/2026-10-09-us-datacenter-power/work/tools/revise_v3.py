@@ -79,7 +79,7 @@ figs=[
  ('看项目是否会兑现，',6,'project-evidence','申请容量走到实际负荷，需要哪些证据','PJM、ERCOT；阶段为作者归纳。'),
  ('ERCOT这项改革面向',7,'planning-rules','PJM与ERCOT怎样处理负荷申请的不确定性','PJM 2026年预测；ERCOT 2026年批次安排。'),
  ('俄亥俄州的条款，',8,'cost-contracts','两地最低付款中的85%，收费基数不同','SCC 2026年2月说明；Ohio Consumers’ Counsel。'),
- ('Georgia Power则预计，',9,'customer-costs','居民成本的两种未来测算','JLARC 2024年研究；Georgia Power 2026年公告。'),
+ ('Georgia Power则预计，',9,'customer-costs','客户成本的两种未来测算','JLARC 2024年研究；Georgia Power 2026年公告。'),
  ('Talen与Amazon的安排，',10,'nuclear-routes','既有核电购电与停运机组重启','Talen、Constellation公司材料；上部路径为通用工程示意。'),
  ('这两个项目采用Bloom',11,'onsite-sofc','俄亥俄案例中的现场燃料电池供电','AEP、DOE燃料电池说明、Bloom技术资料；通用工程示意。'),
  ('储能也有两个不同的数字：',12,'annual-hourly','年度电量匹配与逐时可靠供电','IEA、NERC；曲线为原理示意。'),

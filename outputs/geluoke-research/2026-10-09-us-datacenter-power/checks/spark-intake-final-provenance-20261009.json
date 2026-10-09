@@ -1,0 +1,51 @@
+{
+  "reviewed_at": "2026-10-09",
+  "downloaded_originals": 20,
+  "decoded_archived_tool_response_carriers": [
+    {
+      "source_id": "ferc-june",
+      "source_url": "https://ferc.gov/news-events/news/ferc-launches-aggressive-targeted-action-speed-large-load-integration",
+      "archive_response_path": "originals/official-web-extract.json",
+      "archive_response_sha256": "c8e76baa3ac23023f4bc165f43b56829173ce828ab2f9e7b293ea5423269c190",
+      "derived_utf8_input_path": "reader-inputs/ferc-june--archived-web-tool-response.md",
+      "derived_utf8_sha256": "cf128cd012e7d404c611c953ed405241f34558214f2e5b6aaacd7c2f10aa2c55",
+      "original_bytes_sha256": null,
+      "derivation": "JSON string decode only with provenance header; no independent evidence",
+      "permanent_blob_path": "/home/spark/.local/share/inresearch.ai/acquisition/blobs/cf/cf128cd012e7d404c611c953ed405241f34558214f2e5b6aaacd7c2f10aa2c55.md"
+    },
+    {
+      "source_id": "crane-pdf",
+      "source_url": "https://constellationenergy.gcs-web.com/node/9421/pdf",
+      "archive_response_path": "originals/crane-pdf-web-extract.json",
+      "archive_response_sha256": "f4492fffa9b0e7009ccbf26508df28847e673633ae3ed152cf2bcdc77fe50b39",
+      "derived_utf8_input_path": "reader-inputs/crane-pdf--archived-web-tool-response.md",
+      "derived_utf8_sha256": "900bde936eafeede5803b969aa2e6ea91c6db337a990904f5e5118b1b4d2bd9d",
+      "original_bytes_sha256": null,
+      "derivation": "JSON string decode only with provenance header; no independent evidence",
+      "permanent_blob_path": "/home/spark/.local/share/inresearch.ai/acquisition/blobs/90/900bde936eafeede5803b969aa2e6ea91c6db337a990904f5e5118b1b4d2bd9d.md"
+    },
+    {
+      "source_id": "talen-sec",
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1622536/000162828025030559/a20250611talenbusinessup.htm",
+      "archive_response_path": "originals/company-web-extract.json",
+      "archive_response_sha256": "52f72bacf96a42664da77db89ef6ceca03292daf9e4ec8acf2007e99d074e243",
+      "derived_utf8_input_path": "reader-inputs/talen-sec--archived-web-tool-response.md",
+      "derived_utf8_sha256": "9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "original_bytes_sha256": null,
+      "derivation": "JSON string decode only with provenance header; no independent evidence",
+      "permanent_blob_path": "/home/spark/.local/share/inresearch.ai/acquisition/blobs/9c/9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd.md"
+    }
+  ],
+  "identity_rule": "JSON响应中的正文字符串解码为UTF-8并加来源身份头；响应归档SHA与派生载体SHA分别保留；未取得原站HTML/PDF字节，不生成原站字节SHA，不计为独立证据或新增来源。",
+  "source_url_coverage": "URL在不可变incoming sources.json及按SHA的intake-selection侧车中保留；当前research-match没有把来源URL侧车完整导入catalog。",
+  "scope_preservation": "既有133条doc_ids和include_daily_deliveries保留；初次追加21条至154，解析器部署后再追加DOE/PJM两条至156；最终23/23注册，hold0。",
+  "candidate_and_formal_boundary": "23份来源已接收和候选匹配；正文50条研究候选保持原样，未运行C3，不改变正式事实、价格、GW或研究问题。",
+  "initial_receipt_file": "checks/spark-intake-receipt-20261009.json",
+  "initial_receipt_sha256": "a564bbc06efe15775da0886e1c85226b6caf69e1fef6176339d1f2f9074b5f5b",
+  "final_receipt_file": "checks/spark-intake-final-receipt-20261009.json",
+  "final_receipt_sha256": "542edc4f0cbcce5a08c33b12c3058cd641a6cf5910fb3838cb3be72500a21b69",
+  "final_reader_snapshot": "checks/spark-reader-progress-final-20261009.json",
+  "final_reader_snapshot_sha256": "c2ecaab5549adf585e04d919ce80e2ed88c5120e732b66c7477454c6969a70be",
+  "receipt_phase_interpretation": "最终回执保留初次scope/current_doc_ids154、reader_restart false与source_items中的历史reader_hold；当前范围以scope_after_parser_release156、reader_hold_source_ids空、parser deployed true及11:39:55 Reader快照为准。服务按11:27:32回执安全换代，原始阶段字段不改写。",
+  "reader_progress_boundary": "2026-10-09 11:39:55北京时间：queued22/complete1，triage14/read2/extract6/complete1，封存完整报告1、chunks_read13；未把23注册当成23完整阅读或C3采用。"
+}
