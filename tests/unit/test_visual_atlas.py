@@ -20,7 +20,7 @@ class VisualAtlasTests(unittest.TestCase):
 
     def test_adopted_reference_bytes_and_actual_dimensions_match(self):
         references = self.profile['references']
-        self.assertEqual({r['id'] for r in references}, {f'R{i}' for i in range(1, 10)})
+        self.assertEqual({r['id'] for r in references}, {f'R{i}' for i in range(1, 15)})
         for row in references:
             path = (ROOT / row['file']).resolve()
             self.assertTrue(path.is_relative_to(ROOT))
