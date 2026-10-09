@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-06",
+  "object_id": "part:cpu",
+  "related_object_id": "part:dram",
+  "style_id": "white-technical-atlas-v1",
+  "title": "Generic server motherboard with CPU and RDIMM assembly context",
+  "reviewed_at": "2026-10-09",
+  "reviewer": "Codex实际母图/独立标签/网页逐项审阅",
+  "decision": "accepted_for_generic_category_illustration",
+  "identity": "Single CPU in motherboard socket/retention frame, two banks of four installed RDIMMs and separate enlarged module inset. Existing CPU and DRAM entries share the assembly context, not a new motherboard BOM object.",
+  "master": "web/assets/technical-atlas/motherboard-v1.png",
+  "labelled": "web/assets/technical-atlas/motherboard-v1.svg",
+  "pixels": [
+    1536,
+    1024
+  ],
+  "references": [
+    {
+      "id": "R2",
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "passed_to_tool": true
+    },
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "passed_to_tool": true
+    }
+  ],
+  "generation": {
+    "tool": "built-in image_gen.imagegen",
+    "accepted_prompt": "docs/design/technical-atlas/TA-06/prompt-v1.txt",
+    "iterations": 1,
+    "accepted_original_filename": "exec-583c7325-131e-451d-a622-3fb931c3945c.png",
+    "raster_modified_after_generation": false,
+    "preview_method": "same-pixel JPEG encoding with macOS sips; original PNG unchanged",
+    "label_method": "independent stdlib SVG layer embedding unchanged master"
+  },
+  "rights": {
+    "origin": "用户授权内置工具按实际R2/R3风格原件生成，原件保留",
+    "license": "项目生成插图，不冒称原厂工程图或CC0"
+  },
+  "technical_sources": [
+    {
+      "url": "https://www.supermicro.com/en/products/motherboard/x13sei-f",
+      "observed_at": "2026-10-09",
+      "supports": "Single CPU socket, eight RDIMM slots, PCIe and I/O categories as generic composition example only."
+    },
+    {
+      "file": "framework/bom.json",
+      "supports": "Existing CPU and DRAM categories; no new object axis."
+    }
+  ],
+  "unknowns": [
+    "Exact model, dimensions, PCB traces, pin counts, retention mechanics, power wiring and supported generations/capacity/speed unspecified.",
+    "Two banks of four RDIMMs are a generic example, not a required configuration; inset module is an enlargement, not a ninth installed module. This is not an MRDIMM compatibility claim.",
+    "Existing 3D geometry unchanged. TA-03 enclosure, TA-04 GPU module/baseboard and TA-05 GPU/HBM package remain distinct and reachable.",
+    "Official 36,925,067-byte PDF could not be read by web; not used as engineering evidence."
+  ],
+  "checks": {
+    "counted_main_cpu_packages": 1,
+    "counted_main_installed_rdimm_modules": 8,
+    "counted_inset_modules": 1,
+    "no_baked_text": true,
+    "independent_labels": 9,
+    "native_pixels_verified": true,
+    "leaders_reviewed": true,
+    "leader_correction": "CPU/VRM labels separated above board to avoid crossing power leader; rear I/O label moved above PCIe caption; inset/retention labels separated.",
+    "correct_system_and_scale_context": true,
+    "desktop_and_mobile": true
+  },
+  "preview": {
+    "file": "web/assets/technical-atlas/motherboard-v1-preview.svg",
+    "bytes": 474699
+  },
+  "artifacts": [
+    {
+      "file": "web/assets/technical-atlas/motherboard-v1.png",
+      "sha256": "0049e1395fd31ff23fa9c70ad992eb44365b3c303118c43aa6557728e85378ac"
+    },
+    {
+      "file": "web/assets/technical-atlas/motherboard-v1.svg",
+      "sha256": "ab20e0152b2a74a6064d79db6dd16b23f19509dc3e3cd14a1b522edcdfb0a807"
+    },
+    {
+      "file": "web/assets/technical-atlas/motherboard-v1-preview.jpg",
+      "sha256": "6c84e1f112b60abc50a0715718844ca30d94feaa66330a789584aa86a6a97c4d"
+    },
+    {
+      "file": "web/assets/technical-atlas/motherboard-v1-preview.svg",
+      "sha256": "38b68d19fa78e20e23fce0189456d2cfb9ba774842c3aa4a59fa9003ae36f160"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-06/labels-v1.json",
+      "sha256": "1c8a591a95839c4218f549f7565a639a55284e2c960d6e3a84c909b309d23b48"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-06/prompt-v1.txt",
+      "sha256": "60b395b3b2fa3f0af35aa50232d0fc5f15ac060fc15662bef421fc66f9ffe23f"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-06/preparation.json",
+      "sha256": "13898ef7a3373665c5cefb31d86f3e5f325b136e56d5fffffda60f1abd1fccfc"
+    }
+  ],
+  "browser_checks": [
+    "tests/technical_atlas.cjs",
+    "tests/part_dossier.cjs"
+  ],
+  "browser_review": {
+    "cpu": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-06/cpu-local/browser.json",
+    "dram": "/Users/m5/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-06/dram-local/browser.json",
+    "views_per_entry": 4,
+    "full_svg_opened": true,
+    "page_errors": 0,
+    "label_count": 9
+  }
+}

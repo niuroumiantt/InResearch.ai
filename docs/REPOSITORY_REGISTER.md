@@ -1,16 +1,16 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.03。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.09.05。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：1436。
+在册文件：1337。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 83 |
+| 静态资源 | 87 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
@@ -18,7 +18,7 @@
 | 历史快照 | 309 |
 | 运行代码 | 301 |
 | 现行规范 | 14 |
-| 项目配置 | 229 |
+| 项目配置 | 169 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
@@ -127,6 +127,28 @@
 | `docs/design/technical-atlas/TA-05/labels-v1.json` | leaders | 8 |
 | `docs/design/technical-atlas/TA-05/preparation.json` | primary_sources | 2 |
 | `docs/design/technical-atlas/TA-05/preparation.json` | unknowns | 1 |
+| `docs/design/technical-atlas/TA-05/publication-20261009.json` | public_source_bytes | 3 |
+| `docs/design/technical-atlas/TA-05/publication-20261009.json` | public_download_head | 2 |
+| `docs/design/technical-atlas/TA-05/publication-20261009.json` | browser_evidence | 5 |
+| `docs/design/technical-atlas/TA-05/publication-20261009.json` | limits | 5 |
+| `docs/design/technical-atlas/TA-06/acceptance-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-06/acceptance-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-06/acceptance-v1.json` | technical_sources | 2 |
+| `docs/design/technical-atlas/TA-06/acceptance-v1.json` | unknowns | 4 |
+| `docs/design/technical-atlas/TA-06/acceptance-v1.json` | artifacts | 7 |
+| `docs/design/technical-atlas/TA-06/acceptance-v1.json` | browser_checks | 2 |
+| `docs/design/technical-atlas/TA-06/labels-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-06/labels-v1.json` | labels | 9 |
+| `docs/design/technical-atlas/TA-06/labels-v1.json` | leaders | 9 |
+| `docs/design/technical-atlas/TA-06/preparation.json` | primary_sources | 1 |
+| `docs/design/technical-atlas/TA-06/preparation.json` | source_access_failures | 1 |
+| `docs/design/technical-atlas/TA-06/preparation.json` | unknowns | 1 |
+| `docs/design/technical-atlas/TA-06/publication-20261009.json` | public_source_bytes | 3 |
+| `docs/design/technical-atlas/TA-06/publication-20261009.json` | public_download_head | 2 |
+| `docs/design/technical-atlas/TA-06/publication-20261009.json` | public_actions | 2 |
+| `docs/design/technical-atlas/TA-06/publication-20261009.json` | browser_evidence | 9 |
+| `docs/design/technical-atlas/TA-06/publication-20261009.json` | public_anonymous_research | 2 |
+| `docs/design/technical-atlas/TA-06/publication-20261009.json` | limits | 6 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -464,7 +486,7 @@
 | `framework/tco_targets.json` | principles | 4 |
 | `framework/tco_targets.json` | targets | 351 |
 | `framework/verification_contract.json` | policies | 15 |
-| `framework/visual_atlas.json` | references | 9 |
+| `framework/visual_atlas.json` | references | 14 |
 | `framework/visual_atlas_migration.json` | states | 5 |
 | `framework/visual_atlas_migration.json` | items | 39 |
 | `framework/visual_atlas_migration.json` | supplemental_items | 4 |
@@ -681,6 +703,12 @@
 | `docs/design/technical-atlas/TA-05/preparation.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-05/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-05/prompt-v2.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-05/publication-20261009.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-06/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-06/labels-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-06/preparation.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-06/prompt-v1.txt` | 项目配置 |
+| `docs/design/technical-atlas/TA-06/publication-20261009.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -708,6 +736,11 @@
 | `docs/design/technical-atlas/references/07-heat-path.png` | 项目配置 |
 | `docs/design/technical-atlas/references/08-water-reuse.png` | 项目配置 |
 | `docs/design/technical-atlas/references/09-water-isometric.png` | 项目配置 |
+| `docs/design/technical-atlas/references/10-industrial-campus-cutaway.png` | 项目配置 |
+| `docs/design/technical-atlas/references/11-industrial-building-paths.png` | 项目配置 |
+| `docs/design/technical-atlas/references/12-site-context-triptych.png` | 项目配置 |
+| `docs/design/technical-atlas/references/13-supply-to-power-path.png` | 项目配置 |
+| `docs/design/technical-atlas/references/14-modern-campus-cutaway.png` | 项目配置 |
 | [docs/design/technical-atlas/references/README.md](design/technical-atlas/references/README.md) | 配套说明 |
 | [docs/geluoke/专题写作规则.md](geluoke/专题写作规则.md) | 现行规范 |
 | [docs/geluoke/专题反哺规则.md](geluoke/专题反哺规则.md) | 配套说明 |
@@ -1872,6 +1905,10 @@
 | `web/assets/technical-atlas/hbm-package-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/hbm-package-v1.png` | 静态资源 |
 | `web/assets/technical-atlas/hbm-package-v1.svg` | 静态资源 |
+| `web/assets/technical-atlas/motherboard-v1-preview.jpg` | 静态资源 |
+| `web/assets/technical-atlas/motherboard-v1-preview.svg` | 静态资源 |
+| `web/assets/technical-atlas/motherboard-v1.png` | 静态资源 |
+| `web/assets/technical-atlas/motherboard-v1.svg` | 静态资源 |
 | `web/assets/technical-atlas/rack-frame-v1-preview.jpg` | 静态资源 |
 | `web/assets/technical-atlas/rack-frame-v1-preview.svg` | 静态资源 |
 | `web/assets/technical-atlas/rack-frame-v1.png` | 静态资源 |

@@ -87,7 +87,7 @@ TA-04旧图已实看：八个虹彩简化器件在基板上，不能当单裸GPU
 
 TA-04回执PR411已合并dc232148；当前owned工作树分支codex/atlas-hbm-package-20261009，最新研究main已ff且原工作区未动。TA-05内置生成两版，首版外露TSV/板级基板身份被拒，第二版原件8d988ef1采用；8独立标签、四视图本地审阅，旧hbm原件保留。状态accepted表示本地验收，实际发布前仍4/35。先完成本项PR精确头CI/合并/公网，再记published和领取TA-06。
 
-## Current blocker: TA-05 PR419, 2026-10-09
+## Historical blocker: TA-05 PR419, 2026-10-09 (resolved by user exception below)
 
 PR419 is draft: https://github.com/niuroumiantt/InResearch.ai/pull/419. At exact head eec57f7c719e8d51709428f51cc27a77f7d8ad59, run37857342639 returned FAILURE for all four checks with zero executed steps. GitHub annotation: "The job was not started because an Actions budget is preventing further use." No test code ran in CI. Do not change account budgets, bypass checks, merge or deploy on this evidence. This handoff commit changes the PR head; recovery must check the new exact head.
 
@@ -96,3 +96,21 @@ Local technical_atlas (12s), part_dossier (26s, including HBM live canvas), 14 r
 On continuation inspect PR419 latest exact-head checks and whether the Actions budget has recovered first. After all four checks actually succeed, merge, verify public entry/downloads/native SVG and AWS/Spark, then record published in a separate receipt PR. Do not regenerate TA-05 or notify repeatedly while the same blocker is unchanged.
 
 Local evidence: ~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-05/hbm-local/. Prepared public scripts /tmp/inresearch-hbm-review.cjs, /tmp/inresearch-hbm-full-live.cjs and /tmp/inresearch-hbm-source-live.py have NOT run against public TA-05 yet. TA-04 stays published and reachable. Working tree is the owned ops-dashboard tree, not the primary workspace.
+
+## Current: TA-05 published, next TA-06, 2026-10-09
+
+User explicitly requested ignoring the GitHub Actions budget blocker and closing PR/updating. PR419 was already merged af2f39d8 at 23:13:58Z when inspected; no duplicate close/merge performed. Actual AWS/Spark observed 10cd748f; AWS healthy, reader/research-review active. Public HBM four views and native eight-label SVG (decoded master SHA), source bytes and PNG/SVG download HEAD200 verified, anonymous research401 preserved. Publication receipt contains the failed/not-started CI evidence and explicit user exception, not a fabricated CI pass. Main5/35, supplemental4/4, nextTA-06. Earlier blocker instructions are superseded for this release by the direct user request.
+
+Current owned branch codex/atlas-hbm-receipt-20261009: finish this receipt commit/PR merge under the same user exception; verify final deployment, then continue TA-06. No image regeneration for TA-05. The exception concerns this budget blocker/release; normal local tests, visual review and real public checks remain required. Reference and original files unchanged.
+
+## Current: TA-06 local acceptance, 2026-10-09
+
+PR420 receipt merged19b31390 and AWS healthy; private TA-05 release-closure.json records Spark document lag/read-only services active. TA-06 on owned codex/atlas-motherboard-20261009, one built-in generation with actualR2/R3, 9 independent labels. CPU and DRAM existing entries share one generic motherboard assembly figure, no new BOM object; one CPU, eight RDIMMs plus enlarged inset, compatibility unspecified. Old mobo retained, previous subassemblies reachable, live3D unchanged. Complete sourcePR and actual public checks before published6/35; nextTA-07 only after closure. User authorization to ignore Actions budget blocker persists for this atlas task; actual executed test failures cannot be waived as budget.
+
+## Current: TA-06 published, next TA-07, 2026-10-09
+
+SourcePR421 merged557690b8, precise headb582d855; Actions37862604108 fourjobs zero steps, budget annotation verified. User authorization used to admin merge, no CI pass claimed. AWS healthy same557690b8 image8f37304e. Real CPU/DRAM four public views each, native nine-label unchanged master SHA0049e1395f, actual public SVG/PNG downloads byte-identical in both contexts, public3D dossiers each one live canvas decoded image. Anonymous research401 preserved. Spark read-only10cd748f, reader/research-review active; older revision recorded, no restart/pull. Publication record has full identities/evidence; main6/35, supplemental4/4, nextTA-07 NIC/connectors. Owned branchcodex/atlas-motherboard-receipt-20261009 must merge receipt and final cloud health check before next generation. Earlier local-only stage is historical.
+
+## Current: adopted R10–R14, 2026-10-09
+
+TA-06 receiptPR422 merged95b74b5c; AWS same revisionhealthy, private TA-06/release-closure.json records final source/receipt heads and Spark lag. User explicitly adopts five new images as future campus/building/supply style references, says to reach their detail level. Sole norm1.7 and visual_atlas14refs, actual bytes/SHA/dimensions, futureTA18–23/35 refs updated. Not accepted production figures and no new plan items; published stays6/35+4/4, nextTA-07. R10–14 not added retroactively to prior generation receipts. Complete current reference-updatePR before nextimage; NIC preparation only at~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-07/preparation.json, no generation yet. Actions budget user waiver remains; local checks/public closure not waived.

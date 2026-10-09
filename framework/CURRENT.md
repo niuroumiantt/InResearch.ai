@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.09.03 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.09.05 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 ## 从哪里读当前规则
 
@@ -13,7 +13,7 @@
 | 统一经济模型、账本与 dashboard | [05 界面规范](05_interface_system.md)「统一经济模型与账本」「数据中心节点页」「目录」 | data/datacenter_model.json、knowledge/economics.py、ledger.html、dashboard_rules.json、data/dashboard.json |
 | M4 原件分类整理（独立 scope） | [M4 任务卡](../docs/M4_TRIAGE_TASK.md) | inventory / triage / organize；不扩大 Spark originals 操作权限 |
 | 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
-| 技术插图、爆炸/平面/剖面图的画法与逐张迁移 | [10 白底技术图册](10_visual_atlas.md) | visual_atlas.json（九张参考/配方）、visual_atlas_migration.json（逐项队列）、[迁移计划](../docs/design/technical-atlas/MIGRATION_PLAN.md) |
+| 技术插图、爆炸/平面/剖面图的画法与逐张迁移 | [10 白底技术图册](10_visual_atlas.md) | visual_atlas.json（14张参考/配方）、visual_atlas_migration.json（逐项队列）、[迁移计划](../docs/design/technical-atlas/MIGRATION_PLAN.md) |
 | 全站界面、字体与外观 | [05 界面规范](05_interface_system.md) | web/components/site-shell.js、web/themes、web/assets/fonts（infra 字体包）、interface_manifest.json |
 | 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（六队、三仓库、来源归属）、[五类变量目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
 | 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
@@ -126,8 +126,12 @@ TA-03实际发布与服务/入口/原件回执见该项publication；当前完�
 
 2026-10-08 TA-04继续逐张制作：通用GPU模组/基板装配，计数错误的前两版保留并拒绝，旧gpu-board原件与服务器子装配可达；PR409精确头四项CI与实际公网四视图/高清原PNG/8标签/服务均核对；主计划4/35、补充4/4，下一TA-05。
 
-2026-10-09：TA-05 GPU与HBM通用封装图按原35项队列制作；四堆栈、层数与TSV为示意，原GPU基板与机箱图可达，实际发布另记。
+2026-10-09：TA-05 GPU与HBM通用封装图按原35项队列制作；四堆栈、层数与TSV为示意，原GPU基板与机箱图可达，已实际发布并核对公网四视图和母图SHA；主计划5/35。
 
-2026-10-09：专题长文双交付——公众号HTML与inresearch.ai研究文字素材；微信正文图片接口限制、现行需求快照、原件/工具响应身份、可定位候选与未覆盖项分别验收。格式通过不授予正式采用，见长文规则v2.4及电力专题交接。
+2026-10-09: TA-05 actual publication verified, main 5/35 and supplemental 4/4; next TA-06. PR419 Actions budget prevented execution; explicit user exception permits closing/publishing this release. CI success is not claimed; local and public evidence are recorded separately.
 
-2026-10-09正文图与文风修订：A行业编辑讲解为主、B科技报道叙事辅助，目录与写稿输入一起执行；以用户五张工程场景图为正文质量参考，完整专题10–14幅正文图按论证安排，场景与数据图共同使用。美国电力专题已改为十二幅正文图，样图与生成图不作为事实证据，原字节与提示词保留。见长文规则v2.5及本篇交接；本地交付与网站发布分别验收。
+2026-10-09：TA-06主板/CPU/RDIMM通用装配图接入现有CPU和DRAM入口；示例单路八RDIMM与放大图不表示兼容性，旧mobo与已验GPU/HBM/机箱保留。实际发布另验。
+
+2026-10-09：TA-06已实际发布，CPU/DRAM入口、9标签母图、双下载和公网3D画布验收；主计划6/35，补充4/4，下一TA-07。预算阻止CI启动如实登记用户豁免，Spark版本滞后不冒称同步。
+
+2026-10-09：白底图册规范1.7纳入用户新增五张R10–R14园区/建筑/供能参考，明确可辨建筑及设备细节；未来相关项按用途选用，事实/正交/独立标注边界保留。参考不计成图，主计划6/35、补充4/4、下一TA-07。
