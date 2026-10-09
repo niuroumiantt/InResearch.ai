@@ -3,8 +3,8 @@
  * OEM configuration. Front/left skins are virtually cut away in position.
  * This overview does not claim the legacy exploded stages or servicing steps.
  */
-export function buildRackAssembly({THREE, material, tag, label, exploded=false}) {
-  const root = new THREE.Group(); root.name = exploded?'generic-rack-exploded':'generic-rack-overview';
+export function buildRackAssembly({THREE, material, tag, label}) {
+  const root = new THREE.Group(); root.name = 'generic-rack-overview';
   const geometries = new Set(), materials = new Set();
   const groups = {}, labels = [];
   const dimensions = {width:4.2, depth:5.6, height:12.1, front:2.8};
@@ -68,9 +68,6 @@ export function buildRackAssembly({THREE, material, tag, label, exploded=false})
   function chassis(parent,name,y,h) {
     const g=group(name,parent);g.position.set(.3,y,.15);
     g.userData.installationAxis=[0,0,1];g.userData.front='+z';
-    if(exploded)g.userData.instanceId='rack/'+name;
-    const fixed=exploded?group(name+'-fixed-outer-rails',frame):g;
-    if(exploded)fixed.position.copy(g.position);
     // Folded metal envelope; installed equipment stays on the original plane.
     box(g,2.69,.045,3.8,bright,0,h/2,0,'chassis-cover');
     box(g,2.69,.045,3.8,steel,0,-h/2,0,'chassis-bottom');
@@ -80,11 +77,10 @@ export function buildRackAssembly({THREE, material, tag, label, exploded=false})
       box(g,.14,h,.065,bright,x,0,2.015,'rack-ear');
       for(const dy of [-h*.32,h*.32])bolt(g,x,dy,2.06);
       // Paired outer rail fastens at both front and rear mounting columns.
-      box(fixed,.10,.06,4.36,steel,x,-h/2-.06,-.23,'outer-slide-rail');
+      box(g,.10,.06,4.36,steel,x,-h/2-.06,-.23,'outer-slide-rail');
       box(g,.045,.08,3.8,dark,x*.955,-h/2-.025,0,'inner-slide-rail');
-      for(const z of [-2.41,1.95])box(fixed,.14,.19,.06,steel,x,-h/2-.02,z,'rail-end-bracket');
+      for(const z of [-2.41,1.95])box(g,.14,.19,.06,steel,x,-h/2-.02,z,'rail-end-bracket');
     }
-    if(exploded)tag(fixed,'rack-frame');
     return g;
   }
   const driveGeo=plate(.287,.57,gridHoles(3,6,.070,.073,.038,.043));
@@ -145,13 +141,11 @@ export function buildRackAssembly({THREE, material, tag, label, exploded=false})
   for(const z of [-1.8,-.9,0,.9,1.8])box(guide,.035,10.6,.045,dark,-1.88,6.15,z,'cable-guide-rib');
   tag(guide,'rack-frame');
   function note(text,x,y,z,category) {const l=label(text,x,y,z,.9,null,null);l.userData.rackCategory=category;labels.push(l);}
-  if(!exploded){
-    note('前门 / 左侧虚拟剖口',-2.7,12.2,2.8,'all');
-    note('示例交换机 ×2',2.6,11.2,2.6,'network');
-    note('示例计算托盘 ×8',2.7,6.8,2.6,'servers');
-    note('示例电源架 ×2',2.7,1.6,2.6,'power');
-    note('可选附件 · 未接线',-2.7,3.7,.3,'service');
-  }
+  note('前门 / 左侧虚拟剖口',-2.7,12.2,2.8,'all');
+  note('示例交换机 ×2',2.6,11.2,2.6,'network');
+  note('示例计算托盘 ×8',2.7,6.8,2.6,'servers');
+  note('示例电源架 ×2',2.7,1.6,2.6,'power');
+  note('可选附件 · 未接线',-2.7,3.7,.3,'service');
   const stages=[[0,'整柜概览 · 通用数量与比例示意'],[.2,'电源分区观察 · 设备保持安装位置'],
     [.4,'计算分区观察 · 八托盘仅为图示'],[.65,'网络分区观察 · 端口形状数量示意'],[.85,'可选服务附件 · 未核实连接拓扑']];
   function focus(t) {
@@ -160,52 +154,8 @@ export function buildRackAssembly({THREE, material, tag, label, exploded=false})
     labels.forEach(l=>l.visible=l.userData.rackCategory==='all'||selected==='all'||l.userData.rackCategory===selected);
     return selected;
   }
-  // TA14 only: virtual skins and representative instances. Translation is a
-  // correspondence diagram, never a removal/hot-swap procedure. Outer rails
-  // stay on the frame; each chassis carries only its inner slide rails.
-  const explosionInstances=[];
-  if(exploded){
-    const door=group('virtual-front-door');
-    mesh(door,plate(3.78,11.35,gridHoles(20,64,.17,.17,.10,.10),.055),steel,0,6.22,2.78,'perforated-front-door');
-    for(const x of [-1.9,1.9])box(door,.075,11.4,.09,steel,x,6.22,2.78,'door-edge');
-    for(const y of [.53,11.92])box(door,3.8,.075,.09,steel,0,y,2.78,'door-edge');
-    box(door,.1,.7,.13,dark,1.70,6.2,2.89,'door-handle');tag(door,'rack-frame');
-    const side=group('virtual-left-side-panel');
-    box(side,.055,11.4,5.15,steel,-2.01,6.22,0,'left-side-skin');
-    for(const z of [-2.4,2.4])for(const y of [1.0,5.8,10.9]){
-      const b=bolt(side,-2.05,y,z);b.rotation.z=Math.PI/2;b.rotation.x=0;
-    }
-    tag(side,'rack-frame');
-    const roof=group('virtual-top-cover');root.updateMatrixWorld(true);
-    roof.attach(root.getObjectByName('roof'));
-    const entries=[
-      [door,[0,0,15],'rack/front-door','rack-frame'],
-      [side,[-8,0,0],'rack/left-side-panel','rack-frame'],
-      [roof,[0,2.5,0],'rack/top-cover','rack-frame'],
-      [root.getObjectByName('switch-1'),[0,0,7],'rack/switch-1','network-switch'],
-      [root.getObjectByName('compute-4'),[0,0,7],'rack/compute-4','server'],
-      [root.getObjectByName('power-shelf-1'),[0,0,7],'rack/power-shelf-1','power-shelf'],
-    ];
-    for(const [object,axis,id,part]of entries){object.userData.instanceId=id;object.userData.explosionAxis=axis;explosionInstances.push({object,id,part,home:object.position.clone(),axis:new THREE.Vector3(...axis)});}
-    groups.shells={door,side,roof};
-    const installed=label('同一机柜 · 壳件保持安装位置',0,12.7,0,.9,null,null);installed.userData.assembledOnly=true;labels.push(installed);
-    for(const [text,x,y,z,instance] of [
-      ['柜门 · 虚拟拆出',0,9.5,3.0,door],['左侧板 · 侧轴',-2.2,11,0,side],['顶盖 · 竖轴',0,12.7,0,roof],
-      ['交换机示例 · 前轴',.3,11.1,2.4,root.getObjectByName('switch-1')],
-      ['计算托盘示例 · 前轴',.3,6.3,2.4,root.getObjectByName('compute-4')],
-      ['电源架示例 · 前轴',.3,1.6,2.4,root.getObjectByName('power-shelf-1')]]){
-      const l=label(text,x,y,z,.9,null,null);labels.push(l);
-      l.userData.explosionHome=l.position.clone();l.userData.explosionAxis=new THREE.Vector3(...instance.userData.explosionAxis);
-    }
-  }
-  function explode(t){
-    t=Math.max(0,Math.min(1,t));
-    explosionInstances.forEach(({object,home,axis})=>object.position.copy(home).addScaledVector(axis,t));
-    labels.forEach(l=>{if(l.userData.explosionHome){l.position.copy(l.userData.explosionHome).addScaledVector(l.userData.explosionAxis,t);l.visible=t>.03;}else if(l.userData.assembledOnly)l.visible=t<=.03;});
-    return t;
-  }
   let disposed=false;
   function dispose(){if(disposed)return;disposed=true;root.removeFromParent();geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());}
   focus(0);
-  return {root,groups,dimensions,counts,stages:exploded?[[0,'同一通用机柜 · 示例设备保持安装位置'],[.01,'虚拟平移对应 · 非安装、拆修或热插拔程序'],[.5,'中间装配对应 · 外轨留在框架，内轨随机箱平移'],[1,'六个代表对象完全展开 · 2交换机 / 8托盘各8载盘 / 2电源架各6模块']]:stages,focus,dispose,explode,explosionInstances};
+  return {root,groups,dimensions,counts,stages,focus,dispose};
 }

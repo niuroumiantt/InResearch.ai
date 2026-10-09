@@ -118,9 +118,7 @@ import {buildRackAssembly} from "/assets/rack-assembly.js";
 const serverQuery = new URLSearchParams(location.search);
 const serverMode = serverQuery.get("view") === "server" || serverQuery.get("x") === "55" || serverQuery.get("node") === "part:server" || location.hash === "#server";
 const requestedPart=(serverQuery.get('node')||'').replace(/^part:/,'')||location.hash.slice(1);
-const rackExplodedMode=!serverMode && (serverQuery.get('view')==='rack-exploded' || (serverQuery.get('view')!=='legacy' && serverQuery.get('x')==='35'));
-const rackOverviewMode=!serverMode && !rackExplodedMode && (serverQuery.get('view')==='rack' || (!requestedPart && (!serverQuery.has('x')||serverQuery.get('x')==='0')));
-const rackMode=rackOverviewMode||rackExplodedMode;
+const rackOverviewMode=!serverMode && (serverQuery.get('view')==='rack' || (!requestedPart && (!serverQuery.has('x')||serverQuery.get('x')==='0')));
 let serverAssembly = null;
 let rackAssembly = null;
 import {createScenePicking} from "/assets/scene-picking.js";
@@ -190,7 +188,7 @@ if (serverMode) {
   document.querySelector('.topbar .on').textContent = '服务器拆解台';
   camera.position.set(-10, 9, 12); controls.target.set(0, 1.2, 0); controls.autoRotate = false;
 }
-if (rackMode) {
+if (rackOverviewMode) {
   document.title='机柜整柜结构图 · inresearch.ai';
   document.querySelector('.hud summary').textContent='机柜整柜 · 通用示意';
   document.querySelector('.hud h1').textContent='机柜整柜结构图';
@@ -199,23 +197,12 @@ if (rackMode) {
   document.getElementById('explode').setAttribute('aria-label','整柜分区观察');
   document.getElementById('play').textContent='▶ 自动查看分区';
   const links=document.createElement('div');links.className='m';
-  for(const [text,url] of [['完整标注与双下载','/rack-atlas.html'],['分层拆解图','/rack3d.html?x=35'],['芯片近景','/rack3d.html?x=90']]){
+  for(const [text,url] of [['完整标注与双下载','/rack-atlas.html'],['旧分层视图','/rack3d.html?x=35'],['芯片近景','/rack3d.html?x=90']]){
     const a=document.createElement('a');a.textContent=text;a.href=url;links.append(a,document.createTextNode(' · '));
   }
   document.querySelector('.rg-concept-note').after(links);
   const dossierButton=document.createElement('button');dossierButton.id='rack-overview-dossier';dossierButton.type='button';dossierButton.textContent='整柜档案与预览';links.after(dossierButton);
   camera.position.set(-12,9,20);controls.target.set(0,6.0,0);controls.autoRotate=false;
-  if(rackExplodedMode){
-    document.title='机柜分层拆解图 · inresearch.ai';
-    document.querySelector('.hud summary').textContent='机柜分层拆解 · 通用示意';
-    document.querySelector('.hud h1').textContent='机柜分层拆解图';
-    document.querySelector('.rg-concept-note').textContent='门/侧板/顶盖虚拟拆出 · 三个代表实例沿共同前轴平移 · 非安装维修步骤';
-    document.getElementById('explode').setAttribute('aria-label','虚拟装配展开');
-    document.getElementById('play').textContent='▶ 自动展开对应关系';
-    links.replaceChildren();
-    for(const [text,url] of [['完整标注与双下载','/rack-exploded.html'],['整柜母图','/rack-atlas.html'],['旧历史分层','/rack3d.html?view=legacy&x=35']]){const a=document.createElement('a');a.textContent=text;a.href=url;links.append(a,document.createTextNode(' · '));}
-    camera.position.set(22,15,30);controls.target.set(-1,6,5);
-  }
 }
 
 
@@ -231,7 +218,7 @@ addAtlasLights(THREE, scene, [14,22,12], {left:-14,right:14,top:18,bottom:-6,far
 /* ─────────── 程序化纹理 ─────────── */
 const ctex = texturePool.canvas;
 const rnd = (() => { let s = 7; return () => (s = s * 16807 % 2147483647) / 2147483647; })();
-const TEX = rackMode ? {} : {
+const TEX = rackOverviewMode ? {} : {
   post: ctex(32, 256, (g, w, h) => {           // 机柜立柱：EIA 孔带
     g.fillStyle = "#10141c"; g.fillRect(0, 0, w, h);
     g.fillStyle = "#05070b";
@@ -347,7 +334,7 @@ function panel(name, accent) {
       g.fillStyle = accent; g.fillRect(w - 39, 12, 20, 5);
     }});
 }
-const PANEL = rackMode ? {} : {
+const PANEL = rackOverviewMode ? {} : {
   server: panel("server_nvme", "#22c55e"), hero: panel("server_gpu", "#60a5fa"),
   storage: panel("server_storage", "#f59e0b"), tor: panel("switch_tor", "#38bdf8"),
   ib: panel("switch_ib", "#a78bfa"),
@@ -403,8 +390,8 @@ let rack;
 if (serverMode) {
   serverAssembly = buildServerAssembly({THREE, material:M, tag, explode, label, spinners});
   rack = serverAssembly.root; scene.add(rack);
-} else if (rackMode) {
-  rackAssembly=buildRackAssembly({THREE,material:M,tag,label,exploded:rackExplodedMode});rack=rackAssembly.root;scene.add(rack);
+} else if (rackOverviewMode) {
+  rackAssembly=buildRackAssembly({THREE,material:M,tag,label});rack=rackAssembly.root;scene.add(rack);
 } else {
 const rackLegacy = new THREE.Group(); rack = rackLegacy; scene.add(rack);
 
@@ -627,7 +614,7 @@ for (let n = 0; n < 3; n++) {
 } // Whole-rack geometry remains a separate legacy scope.
 
 /* ─────────── 阶段与滑杆 ─────────── */
-const STAGES = serverMode ? serverAssembly.stages : rackMode ? rackAssembly.stages : [
+const STAGES = serverMode ? serverAssembly.stages : rackOverviewMode ? rackAssembly.stages : [
   [0.00, "整柜：一台 AI 机柜（ORV3 形态示意）"],
   [0.04, "① 机柜与结构：拆外板与穿孔门——露出内部单元"],
   [0.20, "② 机柜与板级供电、机房与机柜冷却、网络：电源架 / 液冷歧管 / 交换机分离"],
@@ -650,7 +637,7 @@ function apply() {
   });
   poses.forEach((position, obj) => obj.position.copy(position));
   scene.traverse(o => { if (o.isSprite && o.userData.showAfter !== undefined) o.visible = t >= o.userData.showAfter; });
-  if(rackExplodedMode)rackAssembly.explode(t);else rackAssembly?.focus(t);
+  rackAssembly?.focus(t);
   let s = STAGES[0][1];
   STAGES.forEach(([th, txt]) => { if (t >= th) s = txt; });
   stageEl.textContent = s;
@@ -659,7 +646,7 @@ function apply() {
 const sliderMotion = createSceneMotion();
 slider.addEventListener("input", () => { sliderMotion.cancel(); apply(); });
 const syncStageControl = installStageControl(STAGES, slider, apply);
-{ const x = rackExplodedMode ? (serverQuery.get("explode")??"100") : serverQuery.get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); else if (serverMode) slider.value = 55; }
+{ const x = serverQuery.get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); else if (serverMode) slider.value = 55; }
 apply();
 function animateSlider(to, duration = 1400) {
   const from = +slider.value;
@@ -679,14 +666,13 @@ function rebuildPartMesh() {
 }
 rebuildPartMesh();
 let rackSelectedMeshes=null;
-let rackSelectedInstance=null;
-const currentPartMeshes=pid=>rackMode&&rackSelectedMeshes?rackSelectedMeshes:PARTMESH[pid];
+const currentPartMeshes=pid=>rackOverviewMode&&rackSelectedMeshes?rackSelectedMeshes:PARTMESH[pid];
 const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor:currentPartMeshes,
-  initialRotation: pid => serverMode && pid === 'server' ? {x:0.6, y:0.7} : rackMode ? {x:.2,y:-.55} : null});
+  initialRotation: pid => serverMode && pid === 'server' ? {x:0.6, y:0.7} : rackOverviewMode ? {x:.2,y:-.55} : null});
 const showDossier = createPartDossier({el: document.getElementById('dossier'), view: 'rack',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector,
-  atlasViewFor:p=>rackMode&&p.id==='rack-frame'?(rackExplodedMode?'exploded':'overview'):null});
+  atlasViewFor:p=>rackOverviewMode&&p.id==='rack-frame'?'overview':null});
 const rackContextPart=()=>({...PART['rack-frame'],name:'机柜与结构 · 整柜上下文',
   desc:'本图是通用整柜结构示意：2交换机、8计算托盘、2电源架为图示选择；侧部铜色长条与灰管未连接。尺寸、U高度、功率、承载及连接回路未知。研究链接仍指向机柜类别，不代表本示例的型号或额定配置。'});
 function rackInstancePart(p) {
@@ -698,24 +684,23 @@ function rackInstancePart(p) {
 }
 function showRackObject(object) {
   const p=PART[object.userData.part];if(!p)return;
-  if(!rackMode){showDossier(p);return;}
+  if(!rackOverviewMode){showDossier(p);return;}
   document.getElementById('dossier').classList.toggle('rack-overview-dossier',p.id==='rack-frame');
   if(p.id==='rack-frame'){
-    rackSelectedMeshes=[...pickables];rackSelectedInstance=null;showDossier(rackContextPart());return;
+    rackSelectedMeshes=[...pickables];showDossier(rackContextPart());return;
   }
   let instance=object;
   while(instance.parent && instance.parent!==rack && !/^(compute-\d+|switch-\d+|power-shelf-\d+|optional-busbar|optional-manifolds)$/.test(instance.name))instance=instance.parent;
-  rackSelectedInstance=instance.userData.instanceId||null;
   rackSelectedMeshes=[];instance.traverse(m=>{if(m.isMesh&&m.userData.part===p.id)rackSelectedMeshes.push(m);});
   showDossier(rackInstancePart(p));
 }
-if(rackMode)document.getElementById('rack-overview-dossier').onclick=()=>{
+if(rackOverviewMode)document.getElementById('rack-overview-dossier').onclick=()=>{
   document.getElementById('dossier').classList.add('rack-overview-dossier');
-  rackSelectedMeshes=[...pickables];rackSelectedInstance=null;showDossier(rackContextPart());
+  rackSelectedMeshes=[...pickables];showDossier(rackContextPart());
 };
 const scenePicking = createScenePicking({THREE, canvas, camera, pickables, tip,
   describe: object => {
-    if(rackMode&&['unconnected-copper-bar','unconnected-pipe-accessory'].includes(object.name))return '可选服务附件 · 连接未知 · 点击整柜上下文';
+    if(rackOverviewMode&&['unconnected-copper-bar','unconnected-pipe-accessory'].includes(object.name))return '可选服务附件 · 连接未知 · 点击整柜上下文';
     const part = PART[object.userData.part];
     return part ? `${part.name}（${SN[part.status]}）· 点击看档案` : '';
   },
@@ -724,7 +709,7 @@ const scenePicking = createScenePicking({THREE, canvas, camera, pickables, tip,
 /* ─────────── 主循环：渲染 + 风扇旋转 + LED 呼吸 ─────────── */
 // The published adoption registry owns optional model selection.
 // TA-11 owns its procedural server; rack-only optional adopted models do not replace it.
-const sceneModels = serverMode || rackMode
+const sceneModels = serverMode || rackOverviewMode
   ? {ready:Promise.resolve(), objects:()=>[], reload:()=>Promise.resolve(), dispose(){}}
   : mountSceneModels({scene, page:"rack3d", defaultHeight:RH + 0.7, replacement:rack, onChange:()=>{atlasDrawing.sync();sceneView?.refresh();}});
 const framingObjects = () => [...pickables, ...sceneModels.objects()];
@@ -739,10 +724,10 @@ atlasDrawing.sync();
 atlasDrawing.attachLabels(canvas,camera);
 const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atlasDrawing,
   render:()=>composer.render(), button:document.getElementById('atlas-export'),
-  filename:serverMode?'server-technical-atlas.svg':'rack3d-technical-atlas.svg', title:serverMode?'通用服务器整机装配图册':rackExplodedMode?'通用机柜分层装配对应图册':rackOverviewMode?'通用机柜整柜结构图册':'机柜结构图册',
+  filename:serverMode?'server-technical-atlas.svg':'rack3d-technical-atlas.svg', title:serverMode?'通用服务器整机装配图册':rackOverviewMode?'通用机柜整柜结构图册':'机柜结构图册',
   caption:()=>document.getElementById('stage').textContent,
   selected:()=>{const id=document.getElementById('dossier').dataset.partId;
-    return id ? {id:rackSelectedInstance||'part:'+id,name:PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
+    return id ? {id:'part:'+id,name:PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
 });
 let animationFrame = 0;
 let pageDisposed = false;
@@ -773,7 +758,7 @@ const clock = new THREE.Clock();
 { const q = new URLSearchParams(location.search);
   const pid = (q.get("node") || "").replace(/^part:/, "") || location.hash.slice(1);
   if (PART[pid]) { controls.autoRotate = false;
-    if(rackMode && pid==='rack-frame') document.getElementById('rack-overview-dossier').click();
+    if(rackOverviewMode && pid==='rack-frame') document.getElementById('rack-overview-dossier').click();
     else showDossier(PART[pid]);
   } }
 

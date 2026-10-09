@@ -15,7 +15,7 @@ class BrowserShardTests(unittest.TestCase):
                   'company_page','company_window','company_catalog_map','catalog_materials','compute_catalog',
                   'ui_skin','datacenter_cost','datacenter_economics','datacenter_tco','datacenter_news',
                   'url_rendering','research_delivery','auth_appearance','research_summary','part_dossier',
-                  'technical_atlas','server_assembly','server_plan','rack_assembly','rack_atlas','dashboard','scene_bootstrap','scene_framing','scene_resources','scene_atlas'}
+                  'technical_atlas','server_assembly','server_plan','rack_assembly','rack_atlas','rack_exploded','rack_exploded_atlas','dashboard','scene_bootstrap','scene_framing','scene_resources','scene_atlas'}
         self.assertEqual(set(groups['core']),expected)
         self.assertEqual(set(groups['a'])|set(groups['b'])|set(groups['c']),expected)
         self.assertEqual(set(groups['a'])&set(groups['b']),set())

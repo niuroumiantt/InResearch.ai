@@ -141,6 +141,20 @@ const rackOverview = {
     {id:'TA-11',title:'独立服务器 · TA-11',image:'/rack3d.html?view=server&x=55&node=part:server'}],
 };
 
+const rackExploded={
+  id:'TA-14',title:'机柜分层 · 虚拟装配对应',
+  image:'/assets/technical-atlas/rack-exploded-v1.svg',preview:'/assets/technical-atlas/rack-exploded-v1-preview.svg',master:'/assets/technical-atlas/rack-exploded-v1.png',
+  alt:'同一通用机柜的分层对应：网孔门向前、左侧板向侧、顶盖向上，三个代表设备沿共同前轴平移，各有空位。总计2交换机、8计算托盘各8载盘、2电源架各6模块；局部放大重复现有盘位、模块和导轨。',
+  note:'独立原生1536×1024程序几何母图。门、侧板和顶盖为虚拟拆出壳件；每类只抽一个代表设备，对应空位保留。2交换机、8托盘各8载盘、2电源架各6模块仅为示例；三个局部放大重复现有对象。比例、U高度、承载、电压、功率、协议和连接未知；平移关系非安装、拆修或热插拔程序。',
+  labels:['共同前轴：代表交换机、计算托盘和电源架保持原朝向，沿同一前轴平移；其余实例保持安装位置',
+    '柜壳对应：门沿前轴、左侧板沿侧轴、顶盖沿竖轴；此处虚拟补画TA13省略的门和侧板',
+    '计算前脸：每个示例托盘8载盘，左上是同一代表托盘的正面放大，不新增托盘',
+    '电源前脸：每个示例电源架6模块，左侧是同一代表电源架的正面放大，不指定电气方案',
+    '导轨对应：外轨和前后支承固定在柜架，内轨随机箱；右侧放大显示同一计算位安装位置的单侧轨道，省略外壳便于观察',
+    '未知边界：服务槽铜色长条与灰管未连接，研究链接属于类别；图中平移不能作为维护、热插拔或载荷依据'],
+  related:[{id:'TA-13',title:'同一整柜安装分区 · TA-13',image:'/rack-atlas.html'},{id:'TA-14-3D',title:'分层旋转、拾取与装配对应',image:'/rack3d.html?x=35&node=part:rack-frame'}],
+};
+
 // Existing CPU and server-memory categories share this one assembly context figure.
 illustrations.dram = illustrations.cpu;
 
@@ -153,7 +167,7 @@ export function atlasPreview(partId) {
 }
 
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = partId === 'server' && view === 'plan' ? serverPlan : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
+  const item = partId === 'server' && view === 'plan' ? serverPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');
