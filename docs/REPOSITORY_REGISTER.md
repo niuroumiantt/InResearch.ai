@@ -2097,6 +2097,7 @@
 | `tests/unit/test_public_reader.py` | 测试 |
 | `tests/unit/test_publish_reader.py` | 测试 |
 | `tests/unit/test_read_batch.py` | 测试 |
+| `tests/unit/test_reader_claim_scope.py` | 测试 |
 | `tests/unit/test_reader_demands.py` | 测试 |
 | `tests/unit/test_reader_depth.py` | 测试 |
 | `tests/unit/test_reader_progress.py` | 测试 |
