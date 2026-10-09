@@ -3451,6 +3451,71 @@
       "status": "candidate",
       "stored_path": "originals/3a/3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb/lbnl-full.pdf",
       "title": "2024 United States Data Center Energy Usage Report"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "coverage": {
+        "characters_read": 41725,
+        "characters_total": 41725,
+        "chunks_read": 28,
+        "chunks_total": 28,
+        "complete": true,
+        "pages_read": 28,
+        "pages_total": 28
+      },
+      "doc_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "library_path": "library/by-node/part-gpu/2026_SemiAnalysis_The Manos, The Mythos, The Legendos__2d947003ebd6542f.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:amd",
+        "actor:nvidia",
+        "part:dram",
+        "part:gpu",
+        "part:hbm",
+        "part:server",
+        "part:ssd",
+        "part:storage-array",
+        "root",
+        "system:compute",
+        "system:control",
+        "system:memory",
+        "system:network"
+      ],
+      "question_ids": [
+        "NODE-demand-D3-conversion",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-placement",
+        "NODE-workload-inference-profile",
+        "OBJ-dram-interfaces",
+        "OBJ-dram-performance",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-hbm-alternatives",
+        "OBJ-hbm-interfaces",
+        "OBJ-hbm-performance",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/2d/2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c/The Manos The Mythos The Legendos.pdf",
+      "title": "The Manos, The Mythos, The Legendos"
     }
   ],
   "evidence": [
@@ -23237,6 +23302,168 @@
           }
         },
         "batch_id": "6a6782cb4e18ad4d7c8a6dae4985b26a3f2d65b567126ff1fce0e184630ac4a2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6927dfdb727644530788deeb16fa634abe8c23180b75cabf19e43d787acf8f8b",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:3:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "Under the online learning objective view, we see the values of matrix S will grow\nunboundedly: old and new information gets blurred together in S as the sequence grows,\nwhich destabilizes learning. Without softmax giving well-scaled and bounded outputs,\nlinear attention typically lags behind softmax attention on long-range recall tasks.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:48:15+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，连续引文和周边机制说明充分；该性能风险实质补充当前模型与权重产品经济性工单中的替代技术适用边界，可作为部分定性证据采用。没有敏感内容、实际冲突或替换要求，不触发A类条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 103.363,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4705ddfa61168b0cd66239dc3e973a51f69557bd517af149f39dd2a70b429e09",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 41319,
+            "output_tokens": 3858,
+            "reasoning_output_tokens": 175
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.411,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "370429068b851a909c7ecbee54f9f36e2286c27d86bd740b626d1d0e90246d77",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 40698,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "b9d5bb961badd7c5f72851f39e1e46780fee6d2f060162cacc08808995cdb7ce"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9b50f761c61c659d0edbe83904a721ab26546553528a7344a0dc54f70c79b7f5",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "id": "rev-622049403d7f4c4d8756ffc3e004affb:chunk:3:claim:3:ev:0",
+      "locator": "page:4/chunk:3",
+      "object_ids": [],
+      "page_index": 3,
+      "question_ids": [],
+      "quote": "Moonshot developed FlashKDA, their custom kernels for KDA, and open-sourced it.",
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "source_sha256": "2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:48:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，连续原文和算法实现上下文充分，直接补充当前工具链边界工单中的提供能力与提供方，虽未覆盖购买和交易边界全貌，仍可作为部分作者陈述采用。评分5，无敏感内容、实际冲突或替换要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 103.363,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4705ddfa61168b0cd66239dc3e973a51f69557bd517af149f39dd2a70b429e09",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 41319,
+            "output_tokens": 3858,
+            "reasoning_output_tokens": 175
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.411,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "370429068b851a909c7ecbee54f9f36e2286c27d86bd740b626d1d0e90246d77",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 40698,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "b9d5bb961badd7c5f72851f39e1e46780fee6d2f060162cacc08808995cdb7ce"
       }
     }
   ],
@@ -44462,6 +44689,202 @@
         "request_sha256": "3f214ecf29734997b59c11adb5c4c13a7abbd0c13faf399b4fb16fd9be427419"
       },
       "object_mapping_check": "原文讨论谷歌自有应用之间的形式迁移预期，支持谷歌主体。没有DCIM/BMS、数据中心网络资产或具体计算设备范围，不能因涉及AI而增加基础设施对象；所选两项证据均使用这一经复核的主体范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:3:ev:0"
+      ],
+      "id": "adoption:review:9af6565b5ed70799d23a7634",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-economics"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The Manos, The Mythos, The Legendos》的作者认为，在文中所述线性注意力的在线学习目标视角下，状态矩阵 S 的数值会无界增长，序列增长使新旧信息混合并造成学习不稳定；缺少 softmax 对输出尺度和有界性的约束时，线性注意力在长程召回任务上通常落后于 softmax attention。这是作者对该机制及任务表现的判断，来源发表时间未知。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:48:15+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，连续引文和周边机制说明充分；该性能风险实质补充当前模型与权重产品经济性工单中的替代技术适用边界，可作为部分定性证据采用。没有敏感内容、实际冲突或替换要求，不触发A类条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 103.363,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4705ddfa61168b0cd66239dc3e973a51f69557bd517af149f39dd2a70b429e09",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 41319,
+            "output_tokens": 3858,
+            "reasoning_output_tokens": 175
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.411,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "370429068b851a909c7ecbee54f9f36e2286c27d86bd740b626d1d0e90246d77",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 40698,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "b9d5bb961badd7c5f72851f39e1e46780fee6d2f060162cacc08808995cdb7ce"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:2:claim:3"
+      ],
+      "limitations": "没有具体基准、模型配置、差距数值、采用率、成本或需求变化数据。上下文随后介绍 DeltaNet 对状态增长的约束，以及 Gated DeltaNet、KDA 的进一步改动，因此不能推广为所有线性注意力变体均有相同缺陷。未确立地域或实际部署阶段。",
+      "conflict_check": "已核对所供当前采用陈述、证据、文档及 legacy 匹配记录。既有开放模型替代陈述讨论授权研究场景中的限制与能力差距，本条讨论注意力机制，二者不冲突且不重复；TPU工具链记录亦不覆盖本条。相关 legacy 匹配记录为空，未进行外部反证检索。",
+      "gap_dependency_check": "仅支持 NODE-demand-D2-economics 中替代技术的性能约束，未建立这些约束如何改变采用率、使用量、支付意愿、成本或净算力需求。进一步结论依赖带配置的基准、一手技术资料及实际采用和经济性数据；问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "b9d5bb961badd7c5f72851f39e1e46780fee6d2f060162cacc08808995cdb7ce",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "8dcda08e800613235d7f18c705279093423c96f4b07c3d472fd78535bc959d84"
+      },
+      "object_mapping_check": "本条范围是注意力算法、抽象状态矩阵和召回表现。S 的数值增长不等于物理内存容量增长；没有直接建立与一座AI数据中心、GPU或内存部件的关系。system:control 的链为DCIM/BMS与固件，也不适用于模型算法；保留空对象范围及有效问题匹配。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2d947003ebd6542fe19488f0b6a88041e60af19a20a0adc545f8f2ee5695a36c",
+      "evidence_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:3:claim:3:ev:0"
+      ],
+      "id": "adoption:review:94007cf388ad9d8804e25960",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D3-boundary"
+      ],
+      "reading_revision_id": "rev-622049403d7f4c4d8756ffc3e004affb",
+      "status": "adopted",
+      "text": "SemiAnalysis《The Manos, The Mythos, The Legendos》的作者称，Moonshot 开发并开源了用于 KDA 的定制内核 FlashKDA。该陈述识别了软件能力及其开发提供方；来源发表时间未知，不能据此独立确认目前的开源或维护状态。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T10:48:15+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，连续原文和算法实现上下文充分，直接补充当前工具链边界工单中的提供能力与提供方，虽未覆盖购买和交易边界全貌，仍可作为部分作者陈述采用。评分5，无敏感内容、实际冲突或替换要求。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 103.363,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "4705ddfa61168b0cd66239dc3e973a51f69557bd517af149f39dd2a70b429e09",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 41319,
+            "output_tokens": 3858,
+            "reasoning_output_tokens": 175
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.411,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "370429068b851a909c7ecbee54f9f36e2286c27d86bd740b626d1d0e90246d77",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 40698,
+              "output_tokens": 426,
+              "reasoning_output_tokens": 173
+            }
+          }
+        },
+        "batch_id": "b9d5bb961badd7c5f72851f39e1e46780fee6d2f060162cacc08808995cdb7ce"
+      },
+      "source_candidate_ids": [
+        "rev-622049403d7f4c4d8756ffc3e004affb:chunk:3:claim:3"
+      ],
+      "limitations": "未提供可核验的仓库、版本、许可证、发布日期、购买方、付费关系或维护责任。开源行为不等同商业交易。邻近原文说明prefill分块并行以在GPU上执行，但本条未给出兼容范围、性能收益或资源需求。",
+      "conflict_check": "所供已采用TPU记录描述PyTorch/XLA、JAX和TorchAX的路径及职责，与FlashKDA属于不同软件能力，互补而非冲突或重复。开放模型替代记录亦不覆盖本条；相关 legacy 匹配记录为空，未进行外部仓库核验。",
+      "gap_dependency_check": "仅支持 NODE-demand-D3-boundary 中本层提供的能力及提供方，未回答谁购买、与上下层如何交易或完整需求范围。仍需带日期的一手发布资料、许可证、使用和维护范围及交易证据；问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "b9d5bb961badd7c5f72851f39e1e46780fee6d2f060162cacc08808995cdb7ce",
+        "source_report_sha256": "16805d320f3773a5d9906f0c330448bb82ba065b27bf5ee2494703669f167dd7",
+        "request_sha256": "8dcda08e800613235d7f18c705279093423c96f4b07c3d472fd78535bc959d84"
+      },
+      "object_mapping_check": "本条范围是Moonshot提供的KDA软件内核。合同没有Moonshot或算法工具链对象；system:control的DCIM/BMS与固件链不包含此类内核。邻近GPU执行背景不足以把开发及开源行为映射为GPU资产范围；空对象列表保留有效的工具链问题匹配。"
     }
   ],
   "answers": [],
