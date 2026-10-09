@@ -3572,6 +3572,69 @@
       "status": "candidate",
       "stored_path": "originals/25/2533958feb82790974dfa9dc1c5941923db8cabead94b0d3ae4f25e222f6e93a/dcd-2533958feb827909-Amazon signs first APAC battery storage tolling deal with Anza Po.html",
       "title": "Amazon signs first APAC battery storage tolling deal with Anza Power in Victoria, Australia"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "coverage": {
+        "characters_read": 10779,
+        "characters_total": 10779,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "id": "doc-1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "library_path": "library/by-node/site-grid/2026_DCD；Red Oak Consulting_AI growth is running into a power and heat constraint__1f31ee1d7d4ca274.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "chain:power/4",
+        "part:backup-power",
+        "part:gpu",
+        "part:rack-frame",
+        "part:transformer",
+        "root",
+        "site:grid",
+        "system:facility"
+      ],
+      "question_ids": [
+        "OBJ-backup-power-interfaces",
+        "OBJ-grid-alternatives",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-performance",
+        "OBJ-grid-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-451a11454bd84fa5af604d92f1fca5a6",
+      "report_sha256": "ff456ea3807173d02482d6fda59e0048cf0c411613e9e674ea5a41edab8ee6a5",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+        "url": "https://www.datacenterdynamics.com/en/opinions/ai-growth-is-running-into-a-power-and-heat-constraint/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/opinions/ai-growth-is-running-into-a-power-and-heat-constraint/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/1f/1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc/dcd-1f31ee1d7d4ca274-AI growth is running into a power and heat constraint.html",
+      "title": "AI growth is running into a power and heat constraint"
     }
   ],
   "evidence": [
@@ -24271,6 +24334,176 @@
           }
         },
         "batch_id": "db08c9bdbd3f2c806765ab1ba592d216785e66f5af8016b1cb3851280d2d1a3a"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a5de9a377068bb99ea363f0ada2f3d24625455848a99bb789d5fdd219d1426f0",
+      "document_id": "doc-1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "id": "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:thermal",
+        "chain:thermal/3"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Conventional air-cooling struggles at higher heat flux, where airflow volume and heat transfer limits are reached quickly.",
+      "reading_revision_id": "rev-451a11454bd84fa5af604d92f1fca5a6",
+      "source_sha256": "1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:43:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分维持6；公开评论中的两条完整原句及上下文支持有限采用。该主张对当前 M06-Q04 提供功率密度上升向散热架构传导的定性机制，对 M08-Q01 提供作者观察到的采用方向，但均不能构成完整回答。未发现敏感内容、实质冲突或替换既有结论的情形，符合 B 类部分证据采用条件。",
+        "workorder_ids": [
+          "Q-M08-Q01",
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.289,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "934648d1348d9d3bfa7b03e0449cb60c008499cbc98a0e194600e3216f5f6579",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 34364,
+            "output_tokens": 1268,
+            "reasoning_output_tokens": 210
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.785,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "91165bf8b18e5f37960275ba96ba4624844bf1857f6e03265ec69e067e2524a1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35006,
+              "output_tokens": 569,
+              "reasoning_output_tokens": 244
+            }
+          }
+        },
+        "batch_id": "5b17c8b5eb8cad365505711aa9d0ba1bdc478d2650d8719afa425038abd9989a"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "a5de9a377068bb99ea363f0ada2f3d24625455848a99bb789d5fdd219d1426f0",
+      "document_id": "doc-1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "id": "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:0:claim:6:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:thermal",
+        "chain:thermal/3"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Liquid cooling is therefore becoming standard in AI-focused deployments because it supports higher heat density and tighter temperature control at rack level.",
+      "reading_revision_id": "rev-451a11454bd84fa5af604d92f1fca5a6",
+      "source_sha256": "1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:43:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分维持6；公开评论中的两条完整原句及上下文支持有限采用。该主张对当前 M06-Q04 提供功率密度上升向散热架构传导的定性机制，对 M08-Q01 提供作者观察到的采用方向，但均不能构成完整回答。未发现敏感内容、实质冲突或替换既有结论的情形，符合 B 类部分证据采用条件。",
+        "workorder_ids": [
+          "Q-M08-Q01",
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.289,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "934648d1348d9d3bfa7b03e0449cb60c008499cbc98a0e194600e3216f5f6579",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 34364,
+            "output_tokens": 1268,
+            "reasoning_output_tokens": 210
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.785,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "91165bf8b18e5f37960275ba96ba4624844bf1857f6e03265ec69e067e2524a1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35006,
+              "output_tokens": 569,
+              "reasoning_output_tokens": 244
+            }
+          }
+        },
+        "batch_id": "5b17c8b5eb8cad365505711aa9d0ba1bdc478d2650d8719afa425038abd9989a"
       }
     }
   ],
@@ -46589,6 +46822,110 @@
         "request_sha256": "dfb307e24232d1a7d4bc80c6c7dc023a8965a44c72c142366148ff21af955967"
       },
       "object_mapping_check": "独立按声明范围复核：光伏加电池储能PPA明确涉及电力系统下“发电与储能”链的储能系统，映射part:bess；Amazon明确为交易采购参与方，映射actor:amazon。Anza没有允许的主体ID，不新增映射。本项未说明并网配额、排队或并网协议，不映射site:grid；电力储能不映射IT存储，也不扩展到整座数据中心或其他基础设施。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "evidence_ids": [
+        "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:0:claim:6:ev:0",
+        "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:0:claim:6:ev:1"
+      ],
+      "id": "adoption:review:31d7358e9529d7c216dd553f",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal",
+        "chain:thermal/3"
+      ],
+      "question_ids": [
+        "M08-Q01",
+        "M06-Q04"
+      ],
+      "reading_revision_id": "rev-451a11454bd84fa5af604d92f1fca5a6",
+      "status": "adopted",
+      "text": "Red Oak Consulting 的 CEO 兼高级顾问 Owen Thomas 在 DCD 于2026年5月22日发表的评论中，围绕英国 AI 数据中心的电力与散热约束提出：传统风冷在较高热通量下容易触及风量和传热极限；液冷因支持更高热密度及更严格的机架级温控，正在面向 AI 的部署中成为标准。这是作者的定性判断，部署阶段未在该主张中区分。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:43:48+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分维持6；公开评论中的两条完整原句及上下文支持有限采用。该主张对当前 M06-Q04 提供功率密度上升向散热架构传导的定性机制，对 M08-Q01 提供作者观察到的采用方向，但均不能构成完整回答。未发现敏感内容、实质冲突或替换既有结论的情形，符合 B 类部分证据采用条件。",
+        "workorder_ids": [
+          "Q-M08-Q01",
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.289,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "934648d1348d9d3bfa7b03e0449cb60c008499cbc98a0e194600e3216f5f6579",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 34364,
+            "output_tokens": 1268,
+            "reasoning_output_tokens": 210
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.785,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "91165bf8b18e5f37960275ba96ba4624844bf1857f6e03265ec69e067e2524a1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35006,
+              "output_tokens": 569,
+              "reasoning_output_tokens": 244
+            }
+          }
+        },
+        "batch_id": "5b17c8b5eb8cad365505711aa9d0ba1bdc478d2650d8719afa425038abd9989a"
+      },
+      "source_candidate_ids": [
+        "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:0:claim:6"
+      ],
+      "limitations": "未提供液冷采用率、样本范围、统计分母、时间序列或新建与存量改造的分组数据；未给出热通量阈值、温控实测结果或具体液冷路线。不能将作者所称“成为标准”解释为已独立验证的普遍采用事实，也不能外推至全球。",
+      "conflict_check": "当前 knowledge 未提供已采用陈述或回答。所供旧记录中的谷歌自报液冷部署规模、液冷市场收入及预测、特定 GPU 和参考设计规格，均与本条的地域、指标或对象口径不同，不能视为直接互证或重复。B100 风冷记录不与较高热通量下风冷受限的条件性判断构成实质冲突。未发现所供记录中的直接反证；旧记录选择并非穷尽外部反证检索，本条不覆盖或替换任何旧结论。",
+      "gap_dependency_check": "M08-Q01 仍需按新建 AI 机房与存量改造区分的实际采用率序列、统计范围及反证；本条仅贡献定性采用方向。M06-Q04 仍需120kW→600kW→1MW各阶段的来源、工况及下游影响的可复查推导；本条仅贡献向散热架构传导的机制，未回答 M09 影响。两个问题均保持开放，不改变需求状态或模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "5b17c8b5eb8cad365505711aa9d0ba1bdc478d2650d8719afa425038abd9989a",
+        "source_report_sha256": "ff456ea3807173d02482d6fda59e0048cf0c411613e9e674ea5a41edab8ee6a5",
+        "request_sha256": "8986c289ed941203a741184d463d3ab26a5566927842cabab591f9bafa4e52f3"
+      },
+      "object_mapping_check": "独立依据对象合同复核：风冷传热限制与液冷采用属于“冷却”系统，机架级温控对应其下“机房与机柜”链。候选原标注 system:facility 的链为土地与建筑、消防安防，不符合本条实际范围。原文未明确液冷部件或路线，不映射冷板、CDU、浸没系统或机柜结构。两条所选证据统一使用此主张级范围，原始候选与证据标签保持不变。"
     }
   ],
   "answers": [],
