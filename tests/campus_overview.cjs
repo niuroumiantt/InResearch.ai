@@ -121,7 +121,7 @@ const note = (label,data={}) => results.push({label,...data});
     await page.route(/\/assets\/campus-assembly\.js(?:\?[^#]*)?$/, route =>
       observe(route, 'return {root,instances,counts:CAMPUS_COUNTS',
         'return {resourcesForTest:()=>({geometries:[...geometries],materials:[...materials]}),root,instances,counts:CAMPUS_COUNTS'));
-    const exposure = 'globalThis.__campusTest={THREE,campusMode,campusAssembly,scene,canvas,camera,controls,pickables,PART,RIGHTS,BOM,DOMAINS,PARTMESH,inspector,sceneView,sceneModels,sceneEnvironment,texturePool,composer,renderer,currentPartMeshes,showDossier,showCampusObject,resolveScenePart,focusCampus,campusInsets,clearDomain,enterDomain,walkChain,animateSlider,flyTo,disposePage,dimmed,state:()=>({selectedInstance:campusSelectedInstance,activeDomain,pageDisposed,stage:+slider.value})};\n</script>\n</body>';
+    const exposure = 'globalThis.__campusTest={THREE,atlasDrawing,campusMode,campusAssembly,scene,canvas,camera,controls,pickables,PART,RIGHTS,BOM,DOMAINS,PARTMESH,inspector,sceneView,sceneModels,sceneEnvironment,texturePool,composer,renderer,currentPartMeshes,showDossier,showCampusObject,resolveScenePart,focusCampus,campusInsets,clearDomain,enterDomain,walkChain,animateSlider,flyTo,disposePage,dimmed,state:()=>({selectedInstance:campusSelectedInstance,activeDomain,pageDisposed,stage:+slider.value})};\n</script>\n</body>';
     await page.route(/\/bom3d\.html(?:\?[^#]*)?$/, route =>
       observe(route,'</script>\n</body>',exposure));
 
@@ -196,6 +196,8 @@ const note = (label,data={}) => results.push({label,...data});
         return {count,left,right,top,bottom,minZ,maxZ,canvas:plain(rect),hud,legend,
           headerBottom:Math.max(0,...headers.map(e=>e.getBoundingClientRect().bottom)),
           legendTexts:[...document.querySelectorAll('.campus-legend-grid span')].map(e=>e.textContent),
+          markerSources:[...v.atlasDrawing.labels].map(sprite=>{const a=sprite.userData.atlasLabel,p=sprite.parent.localToWorld(new v.THREE.Vector3(...a.anchorPosition)).project(v.camera);return {label:a.text,instance:a.anchorInstance,parent:sprite.parent.userData.instanceId,x:rect.left+(p.x+1)*rect.width/2,y:rect.top+(1-p.y)*rect.height/2};}),
+          markerLeaders:[...document.querySelectorAll('.atlas-label-leader')].filter(g=>g.style.display!=='none').map(g=>({label:g.dataset.label,instance:g.dataset.instance,x:rect.left+Number(g.querySelector('circle').getAttribute('cx')),y:rect.top+Number(g.querySelector('circle').getAttribute('cy'))})),
           legendColors:{background:getComputedStyle(document.querySelector('.campus-legend')).backgroundColor,
             foreground:[...document.querySelectorAll('.campus-legend b,.campus-legend-grid span')].map(e=>getComputedStyle(e).color)},
           labels,aspect:v.camera.aspect,buffer:[v.canvas.width,v.canvas.height],
@@ -236,12 +238,15 @@ const note = (label,data={}) => results.push({label,...data});
         return {metadata:JSON.parse(doc.querySelector('metadata').textContent),
           leader:doc.querySelector('[data-object-id]')?.getAttribute('data-object-id'),
           image:doc.querySelector('image')?.getAttribute('href'),
-          editable:doc.querySelectorAll('#editable-labels text').length};
+          editable:doc.querySelectorAll('#editable-labels text').length,
+          markers:[...doc.querySelectorAll('.atlas-label-leader')].map(g=>({label:g.dataset.label,instance:g.dataset.instance,circle:!!g.querySelector('circle'),path:!!g.querySelector('path')}))};
       },d.bytes.toString('utf8'));
       assert.equal(parsed.metadata.object_id,id);
       assert.equal(parsed.metadata.style,'white-technical-atlas-v1');
       assert.equal(parsed.leader,id);
       assert.ok(parsed.editable>=10);
+      assert.equal(parsed.markers.length,9);assert.ok(parsed.markers.every(m=>m.circle&&m.path));
+      assert.equal(parsed.markers.find(m=>m.label==='08').instance,'campus/standby-generator-2');assert.equal(parsed.markers.find(m=>m.label==='09').instance,'campus/battery-cabinet-2');
       const pixels=PNG.sync.read(Buffer.from(parsed.image.split(',')[1],'base64'));
       assert.deepEqual([...pixels.data.subarray(0,4)],[250,249,242,255]);
       note('Actual current-view SVG local identity/PNG paper/editable labels',
@@ -262,6 +267,11 @@ const note = (label,data={}) => results.push({label,...data});
         assert.equal(initial.legendTexts.length,9);
         assert.ok(initial.legendScroll[0]<=initial.legendScroll[1]+1,'Legend text overflow');
         const luminance=color=>{const rgb=color.match(/[\d.]+/g).slice(0,3).map(Number).map(v=>v/255).map(v=>v<=.04045?v/12.92:((v+.055)/1.055)**2.4);return rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722;};
+        assert.equal(initial.legendColors.foreground.length,10);
+        assert.equal(initial.markerSources.length,9);assert.equal(initial.markerLeaders.length,9);
+        for(const leader of initial.markerLeaders){const source=initial.markerSources.find(s=>s.label===leader.label);assert.equal(leader.instance,source.instance);assert.equal(source.parent,source.instance);assert.ok(Math.hypot(leader.x-source.x,leader.y-source.y)<.02,'Leader must terminate at actual same-instance projection '+leader.label);}
+        assert.equal(initial.markerSources.find(s=>s.label==='08').instance,'campus/standby-generator-2');
+        assert.equal(initial.markerSources.find(s=>s.label==='09').instance,'campus/battery-cabinet-2');
         const bg=luminance(initial.legendColors.background);
         for(const color of initial.legendColors.foreground){const fg=luminance(color);assert.ok((Math.max(bg,fg)+.05)/(Math.min(bg,fg)+.05)>=4.5,'Actual legend text contrast below4.5 '+theme+' '+color+' on '+initial.legendColors.background);}
         assert.deepEqual(initial.labels.map(x=>x.text).sort(),
@@ -288,6 +298,12 @@ const note = (label,data={}) => results.push({label,...data});
           const closed=await measure();clearsGeometry(closed,'Phone close-after-fit');
           assert.equal(await page.locator('[data-responsive-panel]').evaluate(e=>e.open),false);
           await page.screenshot({path:path.join(out,'campus-hud-close-'+width+'-'+theme+'.png')});
+          await controlsOpen();await fit();
+          const phoneExport=await downloadFrom(page.locator('#atlas-export'),'bom3d-technical-atlas.svg','campus-phone-'+theme+'-current.svg');
+          const phoneMarkers=await page.evaluate(raw=>{const doc=new DOMParser().parseFromString(raw,'image/svg+xml');if(doc.querySelector('parsererror'))throw Error('Invalid phone SVG');return [...doc.querySelectorAll('.atlas-label-leader')].map(g=>({label:g.dataset.label,instance:g.dataset.instance,path:g.querySelector('path').getAttribute('d'),circle:[g.querySelector('circle').getAttribute('cx'),g.querySelector('circle').getAttribute('cy')]}))},phoneExport.bytes.toString('utf8'));
+          assert.equal(phoneMarkers.length,9);assert.equal(phoneMarkers.find(m=>m.label==='08').instance,'campus/standby-generator-2');assert.equal(phoneMarkers.find(m=>m.label==='09').instance,'campus/battery-cabinet-2');
+          note('Actual phone current SVG retains nine same-instance editable marker leaders',{theme,sha256:phoneExport.sha256,bytes:phoneExport.length,markers:phoneMarkers});
+          await controlsOpen(false);
           note('Phone HUD open/fit/close refresh keeps current available rectangle',closed);
         }
       }
@@ -335,6 +351,9 @@ const note = (label,data={}) => results.push({label,...data});
         assert.ok(i.featureCounts['continuous-inlet-duct']>=2 && i.featureCounts['continuous-outlet-duct']>=3);
       }
       note('Actual32 deterministic physical instances; per-instance packing and finite geometry',structure);
+      const surfaces=await page.evaluate(()=>{const v=__campusTest,out=[];v.scene.updateMatrixWorld(true);for(const sprite of v.atlasDrawing.labels){const spec=sprite.userData.atlasLabel,anchor=sprite.parent.localToWorld(new v.THREE.Vector3(...spec.anchorPosition)),a=new v.THREE.Vector3(),b=new v.THREE.Vector3(),c=new v.THREE.Vector3(),nearest=new v.THREE.Vector3(),triangle=new v.THREE.Triangle();let distance=Infinity,triangles=0;sprite.parent.traverse(mesh=>{if(!mesh.isMesh)return;const position=mesh.geometry.getAttribute('position'),index=mesh.geometry.index;for(let n=0;n<(index?index.count:position.count);n+=3){a.fromBufferAttribute(position,index?index.getX(n):n).applyMatrix4(mesh.matrixWorld);b.fromBufferAttribute(position,index?index.getX(n+1):n+1).applyMatrix4(mesh.matrixWorld);c.fromBufferAttribute(position,index?index.getX(n+2):n+2).applyMatrix4(mesh.matrixWorld);triangle.set(a,b,c).closestPointToPoint(anchor,nearest);distance=Math.min(distance,nearest.distanceTo(anchor));triangles++;}});out.push({label:spec.text,instance:spec.anchorInstance,parent:sprite.parent.userData.instanceId,anchor:anchor.toArray(),distance,triangles});}return out});
+      assert.equal(surfaces.length,9);for(const surface of surfaces){assert.equal(surface.instance,surface.parent);assert.ok(surface.triangles>0&&surface.distance<.00001,'Anchor must lie on actual same-instance triangle surface '+JSON.stringify(surface));}
+      note('Nine annotation anchors lie on actual packed same-instance triangle surfaces',surfaces);
       await fit();
 
       // Real Raycaster locates a visible surface; the actual page mouse click,
