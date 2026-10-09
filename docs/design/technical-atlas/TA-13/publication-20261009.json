@@ -1,0 +1,1031 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-13",
+  "object_id": "part:rack-frame",
+  "first_published_revision": "b52c42ea588f4ef20093d368d3442e05c9f89d8f",
+  "source_pull_request": "https://github.com/niuroumiantt/InResearch.ai/pull/486",
+  "source_head": "384eebae3bde8e703efad056fa067a5c915c68b5",
+  "source_merged_at": "2026-10-09T08:26:14Z",
+  "verified_at": "2026-10-09T08:51:42.927719+00:00",
+  "acceptance_record": "docs/design/technical-atlas/TA-13/acceptance-v1.json",
+  "initial_build_observation": {
+    "observed_at": "2026-10-09T08:26:45.441913+00:00",
+    "host": "ip-172-26-11-47",
+    "source_revision": "b52c42ea588f4ef20093d368d3442e05c9f89d8f",
+    "applied_revision": "c176496f5cd4ca8ec7f56e43d18dad0c2973615a",
+    "applied_image": "sha256:cf0eb0a68dc48a51b371c594639cd4bfe73f6699c286494777bb50f9a8593779",
+    "configured_image": "inresearch-app:c176496f5cd4ca8ec7f56e43d18dad0c2973615a",
+    "image": "sha256:cf0eb0a68dc48a51b371c594639cd4bfe73f6699c286494777bb50f9a8593779",
+    "status": "BUILDING: b52c42ea588f4ef20093d368d3442e05c9f89d8f",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "governance": "2026.10.09.30",
+    "deployment_service": "ActiveState=activating\nSubState=start",
+    "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+    "data_migration": false
+  },
+  "aws": {
+    "observed_at": "2026-10-09T08:28:18.637050+00:00",
+    "host": "ip-172-26-11-47",
+    "source_revision": "b52c42ea588f4ef20093d368d3442e05c9f89d8f",
+    "applied_revision": "b52c42ea588f4ef20093d368d3442e05c9f89d8f",
+    "applied_image": "sha256:290e1357bbd48927b017ee43cb004154f06e6919653b198ac4e63107c5c0cdf4",
+    "configured_image": "inresearch-app:b52c42ea588f4ef20093d368d3442e05c9f89d8f",
+    "image": "sha256:290e1357bbd48927b017ee43cb004154f06e6919653b198ac4e63107c5c0cdf4",
+    "status": "HEALTHY: b52c42ea588f4ef20093d368d3442e05c9f89d8f",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "governance": "2026.10.09.31",
+    "deployment_service": "ActiveState=inactive\nSubState=dead",
+    "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+    "data_migration": false
+  },
+  "ci": {
+    "status": "not_queried",
+    "authorization": "User explicitly directs autonomous source/receipt PR ready+merge and deployment after full local acceptance, and no checking/waiting for CI; CI success not claimed"
+  },
+  "public_entry": "https://inresearch.ai/rack-atlas.html",
+  "public_3D_entry": "https://inresearch.ai/rack3d.html?x=0",
+  "public_actions": {
+    "views": [
+      {
+        "width": 1280,
+        "theme": "light",
+        "file": "rack-atlas-1280-light.png"
+      },
+      {
+        "width": 1280,
+        "theme": "dark",
+        "file": "rack-atlas-1280-dark.png"
+      },
+      {
+        "width": 390,
+        "theme": "light",
+        "file": "rack-atlas-390-light.png"
+      },
+      {
+        "width": 390,
+        "theme": "dark",
+        "file": "rack-atlas-390-dark.png"
+      }
+    ],
+    "all_four_actual_static_and_3D_views_individually_viewed": true,
+    "editable_labels": 14,
+    "independent_leaders": 14,
+    "native_master_sha256": "d92ac021351375735f3b1ad93b3b6553aaecf84ad2a4bb1079ab20d03b89e49e",
+    "full_native_labelled_preview": {
+      "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-atlas-full-svg.png",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "sha256": "5dff11153be7bd018e9c55772510a957476c211bc747dd0b7381bb1e836dbfb3"
+    },
+    "downloads": [
+      {
+        "file": "rack-overview-v1.svg",
+        "bytes": 2633211,
+        "sha256": "3f428cdb1a83e902086605ff12288eb251b9265565e0015c5f1196367d202130"
+      },
+      {
+        "file": "rack-overview-v1.png",
+        "bytes": 1971646,
+        "sha256": "d92ac021351375735f3b1ad93b3b6553aaecf84ad2a4bb1079ab20d03b89e49e"
+      }
+    ],
+    "download_HEADs": [
+      {
+        "asset": "rack-overview-v1.svg",
+        "status": 200,
+        "content_type": "image/svg+xml"
+      },
+      {
+        "asset": "rack-overview-v1.png",
+        "status": 200,
+        "content_type": "image/png"
+      }
+    ],
+    "source_checks": [
+      {
+        "url": "/rack-atlas.html",
+        "file": "web/pages/rack-atlas.html",
+        "status": 200,
+        "bytes": 1481,
+        "sha256": "61a5e08f65c3670e4e6e307fddc64690e0e0332206251fcc2c1fd8e20df8ebf1"
+      },
+      {
+        "url": "/rack3d.html",
+        "file": "web/pages/rack3d.html",
+        "status": 200,
+        "bytes": 45864,
+        "sha256": "714011ac5ef4a26ea7a740841dba9dc5eac9f6845279248b09265162821ece8e"
+      },
+      {
+        "url": "/assets/rack-assembly.js",
+        "file": "web/components/rack-assembly.js",
+        "status": 200,
+        "bytes": 9255,
+        "sha256": "8ff8649d0c7abd4a23592b626e1a75657a47b8cbc2dc3c5254fb4918e2636409"
+      },
+      {
+        "url": "/assets/part-dossier.js",
+        "file": "web/components/part-dossier.js",
+        "status": 200,
+        "bytes": 5495,
+        "sha256": "d6d70283f6a5b5b9e276999be70a90351c50836c7a64d56673a970e9f2ea439e"
+      },
+      {
+        "url": "/assets/technical-atlas.js",
+        "file": "web/components/technical-atlas.js",
+        "status": 200,
+        "bytes": 20242,
+        "sha256": "5c042c0a68c235c122a8b4e504e458dd15bba3e601f96f74c549f705b5dc3d0e"
+      },
+      {
+        "url": "/assets/part-inspector.js",
+        "file": "web/components/part-inspector.js",
+        "status": 200,
+        "bytes": 4188,
+        "sha256": "7e0969f3a57bd96f409bbb5e1c57edb089ce052b54a1816b70b9df940f21e19e"
+      },
+      {
+        "url": "/assets/technical-atlas/rack-overview-v1-preview.svg",
+        "file": "web/assets/technical-atlas/rack-overview-v1-preview.svg",
+        "status": 200,
+        "bytes": 287744,
+        "sha256": "69365786c13c7bcbc781ce29cb1dbad4152036159909da6300c2d698773156d7"
+      }
+    ],
+    "health": {
+      "status": 200,
+      "body": {
+        "ok": true,
+        "service": "inresearch",
+        "auth_required": true
+      }
+    },
+    "actual_phone_header360": {
+      "x": 0,
+      "y": 0,
+      "width": 360,
+      "height": 85.734375
+    },
+    "page_errors": []
+  },
+  "assembly_checks": {
+    "record": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-assembly-results.json",
+    "observed_at": "2026-10-09T08:48:12.315Z",
+    "checks": [
+      {
+        "label": "real conditional304 empty response recovered as strict full200 for observer",
+        "conditional_status": 304,
+        "conditional_body_bytes": 0
+      },
+      {
+        "label": "derived actual structure and registry ownership",
+        "root": "generic-rack-overview",
+        "meshes": 598,
+        "picks": 598,
+        "distinctPicks": 598,
+        "posts": 4,
+        "rails": 4,
+        "railHoles": [
+          84,
+          84,
+          84,
+          84
+        ],
+        "feet": 4,
+        "compute": 8,
+        "drives": [
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8,
+          8
+        ],
+        "power": 2,
+        "modules": [
+          6,
+          6
+        ],
+        "switches": 2,
+        "outerSlides": 24,
+        "innerSlides": 24,
+        "brackets": 48,
+        "actualPerforations": true,
+        "categories": [
+          "network-switch",
+          "power-shelf",
+          "rack-frame",
+          "server"
+        ],
+        "models": 0
+      },
+      {
+        "label": "focus0",
+        "count": 4784,
+        "maxX": 0.2556354807786528,
+        "maxY": 0.8759286464001458,
+        "width": 1280,
+        "height": 794.609375,
+        "aspect": 1.610062893081761
+      },
+      {
+        "label": "focus only 0",
+        "visible": [
+          "frame",
+          "servers",
+          "power",
+          "network",
+          "service"
+        ],
+        "sameHomes": true
+      },
+      {
+        "label": "focus25",
+        "count": 1320,
+        "maxX": 0.2556354807786528,
+        "maxY": 0.8759286464001458,
+        "width": 1280,
+        "height": 794.609375,
+        "aspect": 1.610062893081761
+      },
+      {
+        "label": "focus only 25",
+        "visible": [
+          "frame",
+          "power"
+        ],
+        "sameHomes": true
+      },
+      {
+        "label": "focus50",
+        "count": 3656,
+        "maxX": 0.2556354807786528,
+        "maxY": 0.8759286464001458,
+        "width": 1280,
+        "height": 794.609375,
+        "aspect": 1.610062893081761
+      },
+      {
+        "label": "focus only 50",
+        "visible": [
+          "frame",
+          "servers"
+        ],
+        "sameHomes": true
+      },
+      {
+        "label": "focus70",
+        "count": 1080,
+        "maxX": 0.2556354807786528,
+        "maxY": 0.8759286464001458,
+        "width": 1280,
+        "height": 794.609375,
+        "aspect": 1.610062893081761
+      },
+      {
+        "label": "focus only 70",
+        "visible": [
+          "frame",
+          "network"
+        ],
+        "sameHomes": true
+      },
+      {
+        "label": "focus90",
+        "count": 864,
+        "maxX": 0.2556354807786528,
+        "maxY": 0.8759286464001458,
+        "width": 1280,
+        "height": 794.609375,
+        "aspect": 1.610062893081761
+      },
+      {
+        "label": "focus only 90",
+        "visible": [
+          "frame",
+          "service"
+        ],
+        "sameHomes": true
+      },
+      {
+        "label": "whole 1280 light",
+        "count": 4784,
+        "maxX": 0.2556354807786528,
+        "maxY": 0.8759286464001458,
+        "width": 1280,
+        "height": 794.609375,
+        "aspect": 1.610062893081761
+      },
+      {
+        "label": "whole 1280 dark",
+        "count": 4784,
+        "maxX": 0.2556354807786528,
+        "maxY": 0.8759286464001458,
+        "width": 1280,
+        "height": 794.609375,
+        "aspect": 1.610062893081761
+      },
+      {
+        "label": "whole 390 light",
+        "count": 4784,
+        "maxX": 0.4150671814503025,
+        "maxY": 0.4380007053046463,
+        "width": 390,
+        "height": 768,
+        "aspect": 0.5078125
+      },
+      {
+        "label": "whole 390 dark",
+        "count": 4784,
+        "maxX": 0.4150671814503025,
+        "maxY": 0.4380007053046463,
+        "width": 390,
+        "height": 768,
+        "aspect": 0.5078125
+      },
+      {
+        "label": "dossier",
+        "count": 4784,
+        "maxX": 0.2556354807786528,
+        "maxY": 0.8759286464001458,
+        "width": 1280,
+        "height": 794.609375,
+        "aspect": 1.610062893081761
+      },
+      {
+        "label": "whole dossier owns every actual installed mesh",
+        "count": 598,
+        "selected": 598,
+        "rotation": {
+          "x": 0.2,
+          "y": -0.55
+        }
+      },
+      {
+        "label": "actual unknown service accessory pick/export unconnected-copper-bar",
+        "object_id": "part:rack-frame"
+      },
+      {
+        "label": "actual unknown service accessory pick/export unconnected-pipe-accessory",
+        "object_id": "part:rack-frame"
+      },
+      {
+        "label": "actual single instance pick and export server",
+        "count": 46,
+        "category": true,
+        "metadata": {
+          "style": "white-technical-atlas-v1",
+          "recipe": "scene-atlas-v1",
+          "title": "通用机柜整柜结构图册",
+          "caption": "整柜概览 · 通用数量与比例示意",
+          "pixels": [
+            1280,
+            795
+          ],
+          "object_id": "part:server",
+          "diagnostics": null,
+          "projection": "current interactive perspective",
+          "identity": "generic schematic; no model-specific dimensions"
+        },
+        "labels": 5,
+        "pixels": [
+          1280,
+          795
+        ]
+      },
+      {
+        "label": "actual single instance pick and export power-shelf",
+        "count": 38,
+        "category": true,
+        "metadata": {
+          "style": "white-technical-atlas-v1",
+          "recipe": "scene-atlas-v1",
+          "title": "通用机柜整柜结构图册",
+          "caption": "整柜概览 · 通用数量与比例示意",
+          "pixels": [
+            1280,
+            795
+          ],
+          "object_id": "part:power-shelf",
+          "diagnostics": null,
+          "projection": "current interactive perspective",
+          "identity": "generic schematic; no model-specific dimensions"
+        },
+        "labels": 5,
+        "pixels": [
+          1280,
+          795
+        ]
+      },
+      {
+        "label": "actual single instance pick and export network-switch",
+        "count": 23,
+        "category": true,
+        "metadata": {
+          "style": "white-technical-atlas-v1",
+          "recipe": "scene-atlas-v1",
+          "title": "通用机柜整柜结构图册",
+          "caption": "整柜概览 · 通用数量与比例示意",
+          "pixels": [
+            1280,
+            795
+          ],
+          "object_id": "part:network-switch",
+          "diagnostics": null,
+          "projection": "current interactive perspective",
+          "identity": "generic schematic; no model-specific dimensions"
+        },
+        "labels": 5,
+        "pixels": [
+          1280,
+          795
+        ]
+      },
+      {
+        "label": "exact once resource release",
+        "geometryCount": 417,
+        "materialCount": 6,
+        "geometries": 417,
+        "materials": 6,
+        "rendersAfter": 0,
+        "parent": false,
+        "picks": 0,
+        "labels": 0
+      },
+      {
+        "label": "explicit rack-frame overview deep link includes whole installed assembly",
+        "count": 598
+      }
+    ],
+    "page_errors": [],
+    "screenshots_individually_viewed": [
+      "rack-whole-1280-light.png",
+      "rack-whole-1280-dark.png",
+      "rack-whole-390-light.png",
+      "rack-whole-390-dark.png",
+      "rack-complete-dossier.png"
+    ],
+    "scope": "Actual independent overview/counts/realholes/rails/fixedhomes/4views/598wholeinspector/button+deep/realunknownbar&pipehoverclickSVG/threechildsingleinstances+genericdisplay/currentSVG/usercamera/exactdisposal/noOEMmodels/old35,90,55andGPU"
+  },
+  "helper_observation_fix": {
+    "issue": "Private source-health helper passed viewport to context.newPage, which ignored it, yielding actual1280header; production page and rack_atlas360check were correct",
+    "retained_observation": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/source-health-before-helper-viewport-fix.json",
+    "resolution": "ExplicitsetViewportSize and exactwidth360assert; actual85.734px header verified, finalsource-health contains corrected realmeasurement"
+  },
+  "spark_readonly": {
+    "observed_at": "2026-10-09T08:17:45.986603+00:00",
+    "host": "dgx",
+    "source_revision": "7fad46879c79175b69f1d380c8111c9cebf43b9e",
+    "services": {
+      "inresearch-reader.service": "MainPID=1906533\nExecMainStartTimestamp=Fri 2026-10-09 13:58:46 CST\nActiveState=active\nSubState=running",
+      "inresearch-research-review.service": "MainPID=2216083\nExecMainStartTimestamp=Fri 2026-10-09 16:11:18 CST\nActiveState=active\nSubState=running"
+    },
+    "mode": "read_only; no source/service/data/scope mutation; does not prove atlas sync, material intake, deep reading or C3"
+  },
+  "boundaries": [
+    "Generic2switch/8computex8carrier/2shelfx6module and dimensions/relativepositions are illustrative, notOEM/ORV3/CAD or realengineering configuration",
+    "Outerframe/mountposts/rails andretention categories compared toofficialsources; exactpitch/tolerance/load/grounding/ratings/maintenance unknown",
+    "Unconnected copperlongbar/graypipes are optional serviceaccessories inrack-frame context, no rectifierorcompletefluidpath adopted",
+    "Whole and child overview descriptions separate thisexample from originalBOM categoryresearch/800Vstorage/protocol/ODMroute; originalresearchdata/otherdossiers unchanged",
+    "Current3D SVG actualinteractiveview/pixels, not staticmother/CAD; staticandproceduralfrontdetaildensity differencesexplicit",
+    "Staticnative/fullart and machinecounts donotreplace actualvisual review/publicruntime; allGPUdevices/touchhardware/browsers/angles notexhausted",
+    "Spark onlyreadonlyversion/services; material intake/deepreading/C3/factadoption notcertified here; noSpark mutation"
+  ],
+  "progress": {
+    "primary_published": 13,
+    "primary_total": 35,
+    "supplemental_published": 4,
+    "supplemental_total": 4,
+    "next_figure": "TA-14"
+  },
+  "publication_status": "published_after_actual_AWS_and_public_acceptance",
+  "observer_fixture": {
+    "record": "docs/design/technical-atlas/TA-13/public-observer-fix-20261009.json",
+    "pull_request": {
+      "headRefOid": "03f4305ca93160e6aa5d49fd66546bbdaf7d5d4b",
+      "mergeCommit": {
+        "oid": "d26b001e37a7fd31e94feb4ecb8432ce55541791"
+      },
+      "mergedAt": "2026-10-09T08:51:00Z",
+      "state": "MERGED",
+      "url": "https://github.com/niuroumiantt/InResearch.ai/pull/496"
+    },
+    "first_failed_log": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/browser-first-attempt.log",
+    "first_exact_cause": "Unknown because the first attempt did not capture HTTP status; separately reproduced304 is not asserted as exact root cause",
+    "real_conditional_http": {
+      "observed_at": "2026-10-09T08:37:13.488875+00:00",
+      "requests": [
+        {
+          "url": "https://inresearch.ai/rack3d.html?x=55",
+          "status": 200,
+          "body_bytes": 45864,
+          "etag": null,
+          "last_modified": "Fri, 09 Oct 2026 08:26:44 GMT"
+        },
+        {
+          "conditional_status": 304,
+          "body_bytes": 0
+        }
+      ],
+      "boundary": "This captures server conditional-response semantics; first browser failure had empty text without response metadata, so exact failure cause remains to instrument"
+    },
+    "strict_full_200_response_observations": [
+      {
+        "url": "https://inresearch.ai/rack3d.html?x=0",
+        "status": 200,
+        "body_bytes": 45864,
+        "removed_conditional_headers": [
+          "if-modified-since"
+        ],
+        "last_modified": "Fri, 09 Oct 2026 08:26:44 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?x=0",
+        "status": 200,
+        "body_bytes": 45864,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 08:26:44 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "body_bytes": 4188,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 06:08:37 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html",
+        "status": 200,
+        "body_bytes": 45864,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 08:26:44 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "body_bytes": 4188,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 06:08:37 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?x=35",
+        "status": 200,
+        "body_bytes": 45864,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 08:26:44 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "body_bytes": 4188,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 06:08:37 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?x=90",
+        "status": 200,
+        "body_bytes": 45864,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 08:26:44 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "body_bytes": 4188,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 06:08:37 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?x=55",
+        "status": 200,
+        "body_bytes": 45864,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 08:26:44 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "body_bytes": 4188,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 06:08:37 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?node=part:gpu",
+        "status": 200,
+        "body_bytes": 45864,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 08:26:44 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "body_bytes": 4188,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 06:08:37 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/rack3d.html?view=rack&node=part:rack-frame",
+        "status": 200,
+        "body_bytes": 45864,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 08:26:44 GMT",
+        "cache_control": "no-cache"
+      },
+      {
+        "url": "https://inresearch.ai/assets/part-inspector.js?v=20261008.14",
+        "status": 200,
+        "body_bytes": 4188,
+        "removed_conditional_headers": [],
+        "last_modified": "Fri, 09 Oct 2026 06:08:37 GMT",
+        "cache_control": "no-cache"
+      }
+    ],
+    "corrected_full_public_log": "/private/tmp/ta13-public-corrected.log"
+  },
+  "local_unit_invocation": {
+    "first": "Missing PYTHONPATH=src caused import errors; retained /private/tmp/ta13-fixture-local-checks.log",
+    "corrected": "PYTHONPATH=src; 27 tests passed; /private/tmp/ta13-fixture-local-corrected.log"
+  },
+  "dark_image_observation": {
+    "root_original_byte_review": {
+      "root_actual_original_png_pixel_analysis": true,
+      "rows": [
+        {
+          "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-whole-1280-dark.png",
+          "sha256": "c9d862c923322ecfc440f9d20292ccbb7f813f132f33c252290162590789a140",
+          "region": [
+            448,
+            360,
+            896,
+            630
+          ],
+          "unique_rgb": 874,
+          "pixels": 120960,
+          "top_colors": [
+            [
+              39017,
+              [
+                250,
+                249,
+                242
+              ]
+            ],
+            [
+              9973,
+              [
+                44,
+                47,
+                44
+              ]
+            ],
+            [
+              6726,
+              [
+                158,
+                160,
+                154
+              ]
+            ],
+            [
+              4541,
+              [
+                159,
+                161,
+                155
+              ]
+            ]
+          ]
+        },
+        {
+          "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-whole-390-dark.png",
+          "sha256": "1e4abc68eb02b6b39f22f77e3da05af058fe56e45cbad390c46f4d3ea76e58a5",
+          "region": [
+            136,
+            360,
+            273,
+            630
+          ],
+          "unique_rgb": 815,
+          "pixels": 36990,
+          "top_colors": [
+            [
+              2776,
+              [
+                44,
+                47,
+                44
+              ]
+            ],
+            [
+              2160,
+              [
+                158,
+                160,
+                154
+              ]
+            ],
+            [
+              2141,
+              [
+                250,
+                249,
+                242
+              ]
+            ],
+            [
+              1846,
+              [
+                159,
+                161,
+                155
+              ]
+            ]
+          ]
+        }
+      ],
+      "boundary": "Image observation only; root original-detail views of unique unchanged-byte copies also show complete cabinet and labels. Earlier cached-path display inconsistency cause not established; not evidence of a product rendering defect."
+    },
+    "author_unique_byte_copies": {
+      "observed_at": "2026-10-09T08:52:58.508136+00:00",
+      "issue": "Root reported blank dark screenshot; author earlier current-file view contained complete rack. Preserve current bytes in unique paths and investigate actual frames; publication paused.",
+      "files": [
+        {
+          "current": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-whole-1280-dark.png",
+          "retained_unique": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-whole-1280-dark-corrected-084812.png",
+          "sha256": "c9d862c923322ecfc440f9d20292ccbb7f813f132f33c252290162590789a140",
+          "mtime_utc": "2026-10-09T08:44:34.575196+00:00"
+        },
+        {
+          "current": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-whole-390-dark.png",
+          "retained_unique": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-whole-390-dark-corrected-084812.png",
+          "sha256": "1e4abc68eb02b6b39f22f77e3da05af058fe56e45cbad390c46f4d3ea76e58a5",
+          "mtime_utc": "2026-10-09T08:44:57.328441+00:00"
+        }
+      ]
+    },
+    "independent_public_theme_frames": {
+      "observed_at": "2026-10-09T08:56:41.688Z",
+      "results": [
+        {
+          "width": 1280,
+          "sample": 0,
+          "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-dark-frame-audit-1280-0-0858-v2.png",
+          "theme": "dark",
+          "frames": 29,
+          "calls": 1,
+          "triangles": 1,
+          "draw_max": {
+            "calls": 1202,
+            "triangles": 43192
+          },
+          "canvas": [
+            0,
+            105.390625,
+            1280,
+            794.609375
+          ],
+          "bbox": [
+            487.94592033181965,
+            178.21863395965585,
+            811.2268737286181,
+            850.7058696303079
+          ],
+          "visible_labels": [
+            "前门 / 左侧虚拟剖口",
+            "示例交换机 ×2",
+            "示例计算托盘 ×8",
+            "示例电源架 ×2",
+            "可选附件 · 未接线"
+          ],
+          "actual_pixel_region": {
+            "sampled": 217379,
+            "dark": 183191,
+            "dark_ratio": 0.8427262983084842,
+            "distinct_colors": 1244
+          },
+          "sha256": "c9d862c923322ecfc440f9d20292ccbb7f813f132f33c252290162590789a140"
+        },
+        {
+          "width": 1280,
+          "sample": 1,
+          "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-dark-frame-audit-1280-1-0858-v2.png",
+          "theme": "dark",
+          "frames": 39,
+          "calls": 1,
+          "triangles": 1,
+          "draw_max": {
+            "calls": 1202,
+            "triangles": 43192
+          },
+          "canvas": [
+            0,
+            105.390625,
+            1280,
+            794.609375
+          ],
+          "bbox": [
+            487.94592033181965,
+            178.21863395965585,
+            811.2268737286181,
+            850.7058696303079
+          ],
+          "visible_labels": [
+            "前门 / 左侧虚拟剖口",
+            "示例交换机 ×2",
+            "示例计算托盘 ×8",
+            "示例电源架 ×2",
+            "可选附件 · 未接线"
+          ],
+          "actual_pixel_region": {
+            "sampled": 217379,
+            "dark": 183191,
+            "dark_ratio": 0.8427262983084842,
+            "distinct_colors": 1244
+          },
+          "sha256": "c9d862c923322ecfc440f9d20292ccbb7f813f132f33c252290162590789a140"
+        },
+        {
+          "width": 1280,
+          "sample": 2,
+          "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-dark-frame-audit-1280-2-0858-v2.png",
+          "theme": "dark",
+          "frames": 49,
+          "calls": 1,
+          "triangles": 1,
+          "draw_max": {
+            "calls": 1202,
+            "triangles": 43192
+          },
+          "canvas": [
+            0,
+            105.390625,
+            1280,
+            794.609375
+          ],
+          "bbox": [
+            487.94592033181965,
+            178.21863395965585,
+            811.2268737286181,
+            850.7058696303079
+          ],
+          "visible_labels": [
+            "前门 / 左侧虚拟剖口",
+            "示例交换机 ×2",
+            "示例计算托盘 ×8",
+            "示例电源架 ×2",
+            "可选附件 · 未接线"
+          ],
+          "actual_pixel_region": {
+            "sampled": 217379,
+            "dark": 183191,
+            "dark_ratio": 0.8427262983084842,
+            "distinct_colors": 1244
+          },
+          "sha256": "c9d862c923322ecfc440f9d20292ccbb7f813f132f33c252290162590789a140"
+        },
+        {
+          "width": 390,
+          "sample": 0,
+          "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-dark-frame-audit-390-0-0858-v2.png",
+          "theme": "dark",
+          "frames": 105,
+          "calls": 1,
+          "triangles": 1,
+          "draw_max": {
+            "calls": 1202,
+            "triangles": 43192
+          },
+          "canvas": [
+            0,
+            132,
+            390,
+            768
+          ],
+          "bbox": [
+            116.08786873642134,
+            365.40289696324305,
+            278.9628385188412,
+            684.1922708369842
+          ],
+          "visible_labels": [
+            "前门 / 左侧虚拟剖口",
+            "示例交换机 ×2",
+            "示例计算托盘 ×8",
+            "示例电源架 ×2",
+            "可选附件 · 未接线"
+          ],
+          "actual_pixel_region": {
+            "sampled": 51997,
+            "dark": 44387,
+            "dark_ratio": 0.8536454026193819,
+            "distinct_colors": 898
+          },
+          "sha256": "1e4abc68eb02b6b39f22f77e3da05af058fe56e45cbad390c46f4d3ea76e58a5"
+        },
+        {
+          "width": 390,
+          "sample": 1,
+          "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-dark-frame-audit-390-1-0858-v2.png",
+          "theme": "dark",
+          "frames": 115,
+          "calls": 1,
+          "triangles": 1,
+          "draw_max": {
+            "calls": 1202,
+            "triangles": 43192
+          },
+          "canvas": [
+            0,
+            132,
+            390,
+            768
+          ],
+          "bbox": [
+            116.08786873642134,
+            365.40289696324305,
+            278.9628385188412,
+            684.1922708369842
+          ],
+          "visible_labels": [
+            "前门 / 左侧虚拟剖口",
+            "示例交换机 ×2",
+            "示例计算托盘 ×8",
+            "示例电源架 ×2",
+            "可选附件 · 未接线"
+          ],
+          "actual_pixel_region": {
+            "sampled": 51997,
+            "dark": 44387,
+            "dark_ratio": 0.8536454026193819,
+            "distinct_colors": 898
+          },
+          "sha256": "1e4abc68eb02b6b39f22f77e3da05af058fe56e45cbad390c46f4d3ea76e58a5"
+        },
+        {
+          "width": 390,
+          "sample": 2,
+          "file": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-13/public/rack-dark-frame-audit-390-2-0858-v2.png",
+          "theme": "dark",
+          "frames": 125,
+          "calls": 1,
+          "triangles": 1,
+          "draw_max": {
+            "calls": 1202,
+            "triangles": 43192
+          },
+          "canvas": [
+            0,
+            132,
+            390,
+            768
+          ],
+          "bbox": [
+            116.08786873642134,
+            365.40289696324305,
+            278.9628385188412,
+            684.1922708369842
+          ],
+          "visible_labels": [
+            "前门 / 左侧虚拟剖口",
+            "示例交换机 ×2",
+            "示例计算托盘 ×8",
+            "示例电源架 ×2",
+            "可选附件 · 未接线"
+          ],
+          "actual_pixel_region": {
+            "sampled": 51997,
+            "dark": 44387,
+            "dark_ratio": 0.8536454026193819,
+            "distinct_colors": 898
+          },
+          "sha256": "1e4abc68eb02b6b39f22f77e3da05af058fe56e45cbad390c46f4d3ea76e58a5"
+        }
+      ],
+      "page_errors": []
+    },
+    "first_private_meter_failure": {
+      "log": "/private/tmp/ta13-dark-frames.log",
+      "reason": "Mistook final EffectComposer fullscreen-pass triangle1 for scene triangles; first actual screenshot already full rack, matching original SHA. Private meter corrected to max actual draw; no product defect asserted"
+    },
+    "resolution": "Root actually viewed same original bytes through unique paths, and author repeated theme switches with three stable actual frames per viewport. Both show complete rack/labels; unexplained earlier tool display is not evidence of product render failure. No production code change or additional full interaction rerun."
+  }
+}
