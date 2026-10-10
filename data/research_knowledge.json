@@ -29426,6 +29426,92 @@
         },
         "batch_id": "db4c42d00e2061482d905e5c0bf4e3f078c15603454455499062920d908908b1"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "6b66afb1257d923ee16889ee8de3f7ce5806d385b8d13ec9c8b7a9e56e7d42e1",
+      "document_id": "doc-1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "id": "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:1:claim:3:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "root",
+        "system:power",
+        "system:thermal"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Data centers operate within fixed electrical and thermal envelopes. As densities increase, coordination between software engineers, electrical designers, mechanical engineers, and energy planners becomes critical to avoid overprovisioned plant, thermal instability, or stranded capacity.",
+      "reading_revision_id": "rev-451a11454bd84fa5af604d92f1fca5a6",
+      "source_sha256": "1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T00:06:05+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。连续原文与完整页面上下文充分；密度增加对电气、机械和能源规划协调的要求，实质关联当前M06-Q04的下游传导研究，也为NODE-activity-V1-chain提供资源条件、工程规划与运营风险之间的定性机制线索。仅按明确归因的作者观点采用为部分贡献，不回答或关闭问题。未识别敏感、真实冲突、拟替换或其他A条件，符合B条件。",
+        "workorder_ids": [
+          "Q-M06-Q04",
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.5,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "aae50eb5dc4aefe862a43c32c15b07b3e1f134fb88966fe320da795c5d7eea6b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 51619,
+            "output_tokens": 1421,
+            "reasoning_output_tokens": 265
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.058,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6a9d369aa2d81637e9068b707578be715efe8a22d11352a7b46c0373ea176828",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52351,
+              "output_tokens": 376,
+              "reasoning_output_tokens": 105
+            }
+          }
+        },
+        "batch_id": "cb38d11bb011fcd62048c2db06c0a3353efe8aad79b5fba5e5d79878e83e02c7"
+      }
     }
   ],
   "statements": [
@@ -57216,6 +57302,110 @@
         "request_sha256": "99f9d88b9827d4d85eca6000c834ed864195c72cc425afa5e76e7f0c45e6f361"
       },
       "object_mapping_check": "报告、entropy 路径识别和绕行的实际范围是数据中心 IT 网络，支持 system:network。原句未明确各设备的报告实现责任，也未建立光模块规格、DCIM/BMS 或固件系统关系，因此不继承 system:control 或额外设备标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1f31ee1d7d4ca2745cf70c2c4472dfca67f478631e404215b4bd889af75519dc",
+      "evidence_ids": [
+        "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:1:claim:3:ev:0"
+      ],
+      "id": "adoption:review:aa5dbe8a19c5315e0ae8ca5b",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "system:power",
+        "system:thermal"
+      ],
+      "question_ids": [
+        "M06-Q04",
+        "NODE-activity-V1-chain"
+      ],
+      "reading_revision_id": "rev-451a11454bd84fa5af604d92f1fca5a6",
+      "status": "adopted",
+      "text": "Red Oak Consulting的CEO兼高级顾问Owen Thomas在DCD于2026年5月22日发表的《AI growth is running into a power and heat constraint》中，围绕英国AI数据中心的电力与散热约束提出：数据中心在固定的电气和热边界内运行；随着密度增加，软件工程师、电气设计人员、机械工程师及能源规划人员之间的协调，对于避免工程设备过度配置、热不稳定或容量闲置变得关键。这是作者对跨专业设计与规划的定性判断，未指认具体项目或建设、改造及投运进度，不构成当前独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T00:06:05+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。连续原文与完整页面上下文充分；密度增加对电气、机械和能源规划协调的要求，实质关联当前M06-Q04的下游传导研究，也为NODE-activity-V1-chain提供资源条件、工程规划与运营风险之间的定性机制线索。仅按明确归因的作者观点采用为部分贡献，不回答或关闭问题。未识别敏感、真实冲突、拟替换或其他A条件，符合B条件。",
+        "workorder_ids": [
+          "Q-M06-Q04",
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.5,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "aae50eb5dc4aefe862a43c32c15b07b3e1f134fb88966fe320da795c5d7eea6b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 51619,
+            "output_tokens": 1421,
+            "reasoning_output_tokens": 265
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.058,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "6a9d369aa2d81637e9068b707578be715efe8a22d11352a7b46c0373ea176828",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 52351,
+              "output_tokens": 376,
+              "reasoning_output_tokens": 105
+            }
+          }
+        },
+        "batch_id": "cb38d11bb011fcd62048c2db06c0a3353efe8aad79b5fba5e5d79878e83e02c7"
+      },
+      "source_candidate_ids": [
+        "rev-451a11454bd84fa5af604d92f1fca5a6:chunk:1:claim:3"
+      ],
+      "limitations": "原生页面明确文章日期为2026年5月22日，未提供精确发布时间。所选引文没有密度数值、电气或热边界参数、设备配置、项目样本、测量方法、成本或故障记录；不能将固定边界解释为所有数据中心通用且不可调整的容量上限，也不能把所列风险写成已经发生的项目结果。全文以英国为背景，该段未建立其他地区的适用性或跨专业协调的实际效果。",
+      "conflict_check": "同文已采用的adoption:review:c346a845645c1107af478175讨论机架功率范围，adoption:review:4bdf656794d4452c9bc07a6a讨论持续高负载下配电容量与拓扑评估；本项新增跨专业协调及过度配置、热不稳定和容量闲置风险，未构成完整重复。其他已采用记录关于阶段区分、联调验收、资源计划及电力约束的判断与本项兼容。当前回答为空，所供legacy匹配记录为空；未发现真实冲突，不替换既有结论。检查限于所供记录，不代表完成外部反证检索。",
+      "gap_dependency_check": "M06-Q04仍需120 kW→600 kW→1 MW演进的直接证据、明确配置与工况，以及向M08/M09传导的可复查定量推导；本项不能支持这些密度阶段或量化成本。NODE-activity-V1-chain仍需节点自身的资源条件、交付周期、约束传导案例、反例及领先指标验证；本项只提出协调需求和风险路径，未证明因果关系或指标有效性。两项问题保持开放，不更新模型输入、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "cb38d11bb011fcd62048c2db06c0a3353efe8aad79b5fba5e5d79878e83e02c7",
+        "source_report_sha256": "ff456ea3807173d02482d6fda59e0048cf0c411613e9e674ea5a41edab8ee6a5",
+        "request_sha256": "99777a352605eb61d6554ed248d2632ae7617e38e6574cabf5c247f15ffbcf9e"
+      },
+      "object_mapping_check": "独立依据主张选择整体数据中心及其电力、冷却系统：原文直接讨论数据中心层面的协调、电气边界与热边界。未指认具体电力或冷却链条及设备，故不下沉到部件。system:facility在合同中限定土地建筑与消防安防，不能由plant泛称推出；软件工程师参与协调也不证明DCIM/BMS或固件范围，故不映射system:control。所选证据统一采用上述主张级范围，不沿用Reader标签。"
     }
   ],
   "answers": [],
