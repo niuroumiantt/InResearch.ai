@@ -36149,6 +36149,87 @@
         },
         "batch_id": "7c80c749519942c80a11ad05d59e9346e25f50760179597f68a22e7c0cd97318"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2d1563e0bf64f74a9713c76a6e52caf630ca99aba0ef303ada990ba6a4dda4a1",
+      "document_id": "doc-05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "id": "rev-b0d8b1315a924102bbb6eb40bb02c6d1:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "in data center hubs such as Columbus, Ohio. In the city, the average residential bill is set to increase by $27 a month.",
+      "reading_revision_id": "rev-b0d8b1315a924102bbb6eb40bb02c6d1",
+      "source_sha256": "05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:50:09+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性7，评分7。局部居民账单增量预测实质关联当前M04-Q04工单的居民成本压力部分；连续原文引句及完整文章上下文足以支持明确归因的有限预测采用。未发现敏感材料、真实冲突或替换条件，符合B类条件，但不满足工单整体验收或关闭要求。",
+        "workorder_ids": [
+          "Q-M04-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 46.779,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "48e4d03e6483f2f2e3c2caebd500919bdb434c1f7c569ce7a0f3a349bf142ee8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 44432,
+            "output_tokens": 1143,
+            "reasoning_output_tokens": 161
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.119,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "dcd879ba6201c8e19617cf15f69099001b3454bbc646e7a6f3ecba7c5ad0a601",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 45003,
+              "output_tokens": 489,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "4dd1b9d7a8d542cc560c733e16846480c4569d119dd646652b2ac71d17cae990"
+      }
     }
   ],
   "statements": [
@@ -70311,6 +70392,104 @@
         "request_sha256": "5899a1782f3a6b6a2e4a4403d9bc217cf1000852632d861873667ee3ccf1abdd"
       },
       "object_mapping_check": "该陈述讨论通用DRAM单元物理结构，合同没有对应芯片单元对象；part:dram为服务器内存模组，原文未建立具体模组适用性。也没有具体厂商或数据中心内存资产范围，故空映射保留性能问题的机制贡献。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "evidence_ids": [
+        "rev-b0d8b1315a924102bbb6eb40bb02c6d1:chunk:0:claim:11:ev:0"
+      ],
+      "id": "adoption:review:2461c9eae4470b347abaa979",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M04-Q04"
+      ],
+      "reading_revision_id": "rev-b0d8b1315a924102bbb6eb40bb02c6d1",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年1月19日发表的《PJM's power needs just got political》中称，美国俄亥俄州哥伦布市平均居民电费账单预计每月增加27美元。这是该来源对居民账单变化的预测，具体生效时间未明确，未经本次独立核验，不代表已经发生的涨幅。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:50:09+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性7，评分7。局部居民账单增量预测实质关联当前M04-Q04工单的居民成本压力部分；连续原文引句及完整文章上下文足以支持明确归因的有限预测采用。未发现敏感材料、真实冲突或替换条件，符合B类条件，但不满足工单整体验收或关闭要求。",
+        "workorder_ids": [
+          "Q-M04-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 46.779,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "48e4d03e6483f2f2e3c2caebd500919bdb434c1f7c569ce7a0f3a349bf142ee8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 44432,
+            "output_tokens": 1143,
+            "reasoning_output_tokens": 161
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.119,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "dcd879ba6201c8e19617cf15f69099001b3454bbc646e7a6f3ecba7c5ad0a601",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 45003,
+              "output_tokens": 489,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "4dd1b9d7a8d542cc560c733e16846480c4569d119dd646652b2ac71d17cae990"
+      },
+      "source_candidate_ids": [
+        "rev-b0d8b1315a924102bbb6eb40bb02c6d1:chunk:0:claim:11"
+      ],
+      "limitations": "未提供公用事业或监管机构的一手费率文件、居民账单基准、客户覆盖范围、用电量假设、生效日期及计算过程。27美元/月是平均居民账单增量，不能换算为数据中心PPA单价、电能单价或需量费，也不能据此证明数据中心造成该增量或已经引发政治反弹。原文链接指向的报道未在本次独立核验。",
+      "conflict_check": "既有IEA陈述讨论2019—2024年国家或州级平均负荷与零售电价关系，并明确总体平均值可能掩盖局部效应；与哥伦布市居民账单的后续局部预测没有同口径真实冲突。既有PJM容量账单反事实、马萨诸塞州居民保护政策及核电PPA财务情景涉及不同指标、地域或条件，不构成重复。legacy中谷歌哥伦布三园区容量目标不证明居民账单涨幅或其成因。未发现可指认的重复规范记录，不覆盖既有结论；所供记录不属于穷尽性外部反证搜索。",
+      "gap_dependency_check": "本项仅为M04-Q04中居民成本压力提供局部预测线索，不回答PPA价格走势，也不证明实际成本转嫁或政治反弹。后续仍需公用事业及监管一手文件、适用费率与账单计算、实际实施记录、数据中心成本分摊依据、政治反应记录及反证。问题保持开放，不更新电价或需量费参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4dd1b9d7a8d542cc560c733e16846480c4569d119dd646652b2ac71d17cae990",
+        "source_report_sha256": "e0fbdb308cdbe862e290b4d1a4bcc2282a21158ffdb50d1c48eb1701e9f70fa7",
+        "request_sha256": "fd7020916e211ebdf665e69d70ba389c3614e50b8f7d373fe776e43d1cb1341b"
+      },
+      "object_mapping_check": "实际主张范围是哥伦布市平均居民电费账单预测。合同中的root表示一座AI数据中心，site:grid是其电力配额与并网权利，system:power及电网接入链是其供电系统范围，均不对应居民账单这一对象。该预测未确立具体数据中心项目、并网协议或责任主体，因此采用空对象列表，保留M04-Q04问题关联；不继承Reader的site:grid标签，也不从周边AEP Ohio讨论补入主体映射。"
     }
   ],
   "answers": [],
