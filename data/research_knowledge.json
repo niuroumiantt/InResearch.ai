@@ -38833,6 +38833,520 @@
         },
         "batch_id": "ff74a888a3192a2f529bcbf5b2567cbf5b70539eef5191f1a39954db79e3bb53"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "536cfb92f9c55ab0d88a067d1575e482de623cf84447a6c4803941dca4bbd04f",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "id": "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:2:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [
+        "part:hbm"
+      ],
+      "page_index": 11,
+      "question_ids": [
+        "OBJ-dram-supply",
+        "OBJ-hbm-supply"
+      ],
+      "quote": "Yet, front-end wafer-sort yield should\nstill be materially lower for the core DRAM die used in HBM, given its larger die size,\nmore demanding cell performance, overall performance requirements versus\ncommodity DRAM.",
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "source_sha256": "099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。该项解释HBM制造环节中影响有效供给及制造经济性的具体因素，与当前HBM供应工作有实质关系。连续引文和相邻工艺讨论支持限定的作者判断，未发现A条件，可作B级部分贡献。商品DRAM仅作为比较对象，不保留服务器内存模组供应问题映射。",
+        "workorder_ids": [
+          "Q-OBJ-hbm-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "536cfb92f9c55ab0d88a067d1575e482de623cf84447a6c4803941dca4bbd04f",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "id": "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:3:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [
+        "actor:cxmt"
+      ],
+      "page_index": 11,
+      "question_ids": [
+        "OBJ-dram-supply",
+        "OBJ-hbm-supply"
+      ],
+      "quote": "We think the front-end wafer sort yield remain a major challenge\nfor the company, and its gap versus its peers here is still large.",
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "source_sha256": "099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。明确供应商及前端制造环节，对当前DRAM模组上游供应能力和HBM制造约束研究均有实质贡献。连续原句及相邻G4、HBM讨论足以支持局部作者判断，无敏感、真实冲突或拟替换条件，符合B要求。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply",
+          "Q-OBJ-hbm-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "536cfb92f9c55ab0d88a067d1575e482de623cf84447a6c4803941dca4bbd04f",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "id": "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:4:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [
+        "actor:cxmt"
+      ],
+      "page_index": 11,
+      "question_ids": [
+        "OBJ-dram-supply"
+      ],
+      "quote": "While we believe yields\non CXMT’s G4 node have improved, we suspect it still lower than industry standard of\n85-90% mature yield level for 1z given the lower margin we saw throughout 2024 and\n2025.",
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "source_sha256": "099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。节点成熟度及其制造经济性关系可实质贡献当前DRAM供应问题的上游环节研究。采用文本保留believe与suspect的不同确定性，并明确百分比归属；连续引文和充分上下文满足局部B条件，未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "536cfb92f9c55ab0d88a067d1575e482de623cf84447a6c4803941dca4bbd04f",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "id": "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:5:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [
+        "actor:cxmt"
+      ],
+      "page_index": 11,
+      "question_ids": [
+        "OBJ-dram-supply"
+      ],
+      "quote": "This might suggest that equipment limitations and manufacturing know-how\nremain persistent obstacles that CXMT will need to overcome.",
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "source_sha256": "099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分5。该项虽不具体，但明确提出一家DRAM上游制造商的设备及工艺经验约束，实质关联当前供应问题的制造依赖。连续引文及紧邻良率推测提供必要上下文，可采用为有限B线索；评分反映其信息粒度较低，未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "536cfb92f9c55ab0d88a067d1575e482de623cf84447a6c4803941dca4bbd04f",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "id": "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:6:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [
+        "actor:cxmt",
+        "actor:micron"
+      ],
+      "page_index": 11,
+      "question_ids": [
+        "OBJ-dram-supply"
+      ],
+      "quote": "For its next process node, the company’s G5, or 1a-equivalent DRAM node, while can\ntheoretically continue advancing without EUV akin to Micron in 1a process node, but\nit will face increasing fabrication and design challenges.",
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "source_sha256": "099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。具体供应商、节点和制造路线约束可实质贡献当前DRAM供应问题的上游工艺研究。连续引文及相邻制造讨论支持限定预测，保留理论条件和未来时态，无A条件，可作B级部分贡献。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "536cfb92f9c55ab0d88a067d1575e482de623cf84447a6c4803941dca4bbd04f",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "id": "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:7:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [
+        "actor:cxmt"
+      ],
+      "page_index": 11,
+      "question_ids": [
+        "OBJ-dram-supply"
+      ],
+      "quote": "The lower yield and more challenging ramp-up schedule could\nimpact company’s bit output as well despite the company can compensate the yield\nloss by adding more wafers.",
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "source_sha256": "099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。该项明确连接良率、制造爬坡、晶圆投入和有效比特产出，对当前DRAM供应问题的上游制造机制有实质贡献。连续原句和G5上下文充分，保留could及补偿条件，无A条件，可作B级部分贡献。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      }
     }
   ],
   "statements": [
@@ -75632,6 +76146,609 @@
         "request_sha256": "09ad436a7c0d6075d8f61f9793138ee9fe23aba61029d1b7430ba95c6c820a86"
       },
       "object_mapping_check": "独立按主张范围复核：披露主体是合同中作为actor列出的美国电力AEP；活跃并网队列直接属于site:grid所定义的电力配额与并网范围。该主张不描述一座AI数据中心整体或内部电力设备，因此不追加root、system:power或部件映射，也不因周边举例而映射SB Energy或其他客户。所选证据采用相同主张级范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "evidence_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:2:ev:0"
+      ],
+      "id": "adoption:review:6a2fa919cbb2e17d0a568072",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:hbm"
+      ],
+      "question_ids": [
+        "OBJ-hbm-supply"
+      ],
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "status": "adopted",
+      "text": "SemiAnalysis在《China’s CXMT Is Set to Challenge DRAM Incumbents》讨论中国长鑫存储的制造准备度时判断，用于HBM的核心DRAM裸片因面积更大、存储单元性能及整体性能要求更高，其前端晶圆测试良率应显著低于商品DRAM。来源确切发表时间未知；这是作者的比较判断，不是独立实测或当前良率认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。该项解释HBM制造环节中影响有效供给及制造经济性的具体因素，与当前HBM供应工作有实质关系。连续引文和相邻工艺讨论支持限定的作者判断，未发现A条件，可作B级部分贡献。商品DRAM仅作为比较对象，不保留服务器内存模组供应问题映射。",
+        "workorder_ids": [
+          "Q-OBJ-hbm-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      },
+      "source_candidate_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:2"
+      ],
+      "limitations": "未给出两类产品的具体型号、裸片面积、良率数值、测试标准或比较方法。前端晶圆测试良率不等于堆叠、封装或整体成品良率；不能据此计算实际供给、成本或交期，也不能推广为所有供应商和工艺节点的实测结果。",
+      "conflict_check": "已比对现有长鑫晶圆资源分配、HBM技术成熟度及HBM3供应稳定性陈述：本项补充前端良率机制，不是这些记录的同义重复。既有HBM带宽溢价陈述属于使用端价值解释；legacy晶圆产能记录不提供同口径良率反证。未发现直接冲突，不替换既有结论；检查范围限于所供记录。",
+      "gap_dependency_check": "仅部分支持OBJ-hbm-supply中的制造依赖和价值形成，不能回答交期或生命周期成本。该定性判断不依赖第21页缺口或未提供的图表数值；定量采用仍需同口径良率、产品及测试记录，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599",
+        "source_report_sha256": "35532c400a3ede8a42e5d79f8b4b49706610b021b63e67c87cc2923e5cb9efb8",
+        "request_sha256": "440b988ab58267530925bb84a5888681a5a8d36313e8633899521773d4bc9e9b"
+      },
+      "object_mapping_check": "契约中part:hbm是内存链下的HBM，直接对应被比较的核心裸片用途。商品DRAM芯片不等于名为服务器内存模组（RDIMM/MRDIMM）的part:dram。本条比较判断未单独指明具体厂商的良率，因此不追加企业或内存系统祖先映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "evidence_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:3:ev:0"
+      ],
+      "id": "adoption:review:4b55a7b4f8a838115288108f",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:cxmt"
+      ],
+      "question_ids": [
+        "OBJ-dram-supply",
+        "OBJ-hbm-supply"
+      ],
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "status": "adopted",
+      "text": "SemiAnalysis在《China’s CXMT Is Set to Challenge DRAM Incumbents》中认为，中国长鑫存储在作者讨论时仍面临前端晶圆测试良率这一主要挑战，与同行的差距仍然很大。来源确切发表时间未知；这是作者对制造能力的判断，不构成当前良率差距的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。明确供应商及前端制造环节，对当前DRAM模组上游供应能力和HBM制造约束研究均有实质贡献。连续原句及相邻G4、HBM讨论足以支持局部作者判断，无敏感、真实冲突或拟替换条件，符合B要求。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply",
+          "Q-OBJ-hbm-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      },
+      "source_candidate_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:3"
+      ],
+      "limitations": "未量化良率差距，未列明比较同行、测试标准或具体产品。该句没有分别给出商品DRAM与HBM核心裸片的良率，不能解释为二者具有相同差距，也不能证明服务器内存模组的成品良率或交付能力。",
+      "conflict_check": "现有长鑫HBM3供应不稳定陈述描述供货准备度，本项描述前端测试环节及同行差距，相关但不重复。既有晶圆分配判断和legacy总产能、DDR5/LPDDR5投片预测不能验证或反驳良率差距。其他供应商产品容量及使用端HBM价值记录口径不同，未发现直接冲突，不修改既有记录。",
+      "gap_dependency_check": "对OBJ-dram-supply仅提供模组上游芯片供应商能力线索，对OBJ-hbm-supply提供前端制造约束线索。仍缺分产品良率、实际出货、客户验收、成本和交期证据，两项问题保持开放。本句不依赖第21页缺口或图表数值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599",
+        "source_report_sha256": "35532c400a3ede8a42e5d79f8b4b49706610b021b63e67c87cc2923e5cb9efb8",
+        "request_sha256": "440b988ab58267530925bb84a5888681a5a8d36313e8633899521773d4bc9e9b"
+      },
+      "object_mapping_check": "前后文明确company为长鑫存储，对应契约中的actor:cxmt。所审句是公司前端良率的概括，未分别界定HBM和商品DRAM产品范围，故不把相邻产品讨论继承为本条对象标签；芯片制造能力也不等于part:dram服务器模组资产范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "evidence_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:4:ev:0"
+      ],
+      "id": "adoption:review:0b9da6e7f4cb7c95b93407b6",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:cxmt"
+      ],
+      "question_ids": [
+        "OBJ-dram-supply"
+      ],
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "status": "adopted",
+      "text": "SemiAnalysis在《China’s CXMT Is Set to Challenge DRAM Incumbents》中认为，中国长鑫存储G4节点的良率已有改善，但根据作者观察到的2024年和2025年较低利润率，怀疑其仍低于文中所称1z工艺85–90%的行业成熟良率水平。85–90%是作者所述行业参照值，不是长鑫实测良率。来源确切发表时间未知；上述判断未经独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。节点成熟度及其制造经济性关系可实质贡献当前DRAM供应问题的上游环节研究。采用文本保留believe与suspect的不同确定性，并明确百分比归属；连续引文和充分上下文满足局部B条件，未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      },
+      "source_candidate_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:4"
+      ],
+      "limitations": "作者以利润率推测良率，未提供直接良率测量、行业基准出处或从利润率到良率的计算。利润率还可能受其他因素影响，本项不能确立因果关系。未区分具体DRAM产品或服务器模组用途，不能将85–90%作为长鑫产出模型输入。",
+      "conflict_check": "现有长鑫HBM3供应准备度、晶圆机会成本及专利许可陈述没有同口径G4良率结论。legacy总DRAM和DDR5/LPDDR5产能记录描述投片能力，不反驳良率不足的推测。HBM带宽溢价不等于制造利润率；未发现直接冲突或canonical重复，不替换既有结论。",
+      "gap_dependency_check": "仅部分支持OBJ-dram-supply中的上游工艺成熟度和制造经济性，不回答模组成本、交期或生命周期成本。句内信息不依赖第21页缺口；若要采用良率数值或利润率归因，需补直接测试、行业基准及财务分解，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599",
+        "source_report_sha256": "35532c400a3ede8a42e5d79f8b4b49706610b021b63e67c87cc2923e5cb9efb8",
+        "request_sha256": "440b988ab58267530925bb84a5888681a5a8d36313e8633899521773d4bc9e9b"
+      },
+      "object_mapping_check": "原文明确讨论长鑫的G4制造节点，对应actor:cxmt。契约没有普通DRAM裸片或G4工艺对象；part:dram专指服务器内存模组，不能因DRAM字样而映射。本句也没有单独确定HBM产品良率，故不添加part:hbm或系统祖先。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "evidence_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:5:ev:0"
+      ],
+      "id": "adoption:review:1cfbc2924ff370916ba8b384",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:cxmt"
+      ],
+      "question_ids": [
+        "OBJ-dram-supply"
+      ],
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "status": "adopted",
+      "text": "SemiAnalysis在《China’s CXMT Is Set to Challenge DRAM Incumbents》中，根据其前文对中国长鑫存储G4良率及利润率的判断，推测设备限制和制造经验仍可能是长鑫需要克服的持续障碍。来源确切发表时间未知；这是作者的解释性推测，不是已核实的设备或工艺障碍清单。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分5。该项虽不具体，但明确提出一家DRAM上游制造商的设备及工艺经验约束，实质关联当前供应问题的制造依赖。连续引文及紧邻良率推测提供必要上下文，可采用为有限B线索；评分反映其信息粒度较低，未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      },
+      "source_candidate_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:5"
+      ],
+      "limitations": "未指明具体设备、限制形式、制造工序或缺少的经验，也未量化影响。原文might suggest不支持确定因果关系；不能据此补写出口规则、设备禁运范围或服务器模组供应缺口。",
+      "conflict_check": "现有长鑫技术成熟度和供应稳定性陈述可与本项推测并存，但不能独立证明设备限制。专利许可记录也不等于制造经验充分。legacy投片产能预测没有同口径设备或工序反证，所供合同和项目匹配记录为空；未发现直接冲突或重复，不替换既有结论。",
+      "gap_dependency_check": "对OBJ-dram-supply仅提供上游制造依赖线索。具体设备、规则适用条件、工序验证及实际成本和供给影响仍缺证据，问题保持开放。语义依赖已提供的前文推测，不依赖第21页缺口；不能把这条推测链当作多来源验证。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599",
+        "source_report_sha256": "35532c400a3ede8a42e5d79f8b4b49706610b021b63e67c87cc2923e5cb9efb8",
+        "request_sha256": "440b988ab58267530925bb84a5888681a5a8d36313e8633899521773d4bc9e9b"
+      },
+      "object_mapping_check": "被讨论的制造商明确为长鑫存储，对应actor:cxmt。未命名设备供应商或契约中的具体数据中心部件；制造设备不属于数据中心设施、控制软件或服务器内存模组，因此不继承候选part:dram标签或基础设施祖先。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "evidence_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:6:ev:0"
+      ],
+      "id": "adoption:review:c54824a298a8cd40ad0ea644",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:cxmt",
+        "actor:micron"
+      ],
+      "question_ids": [
+        "OBJ-dram-supply"
+      ],
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "status": "adopted",
+      "text": "SemiAnalysis在《China’s CXMT Is Set to Challenge DRAM Incumbents》中预计，中国长鑫存储的下一代G5、即作者所称相当于1a的DRAM节点，理论上可类似美光1a节点在不使用EUV的情况下继续推进，但将面临越来越大的制造和设计挑战。来源确切发表时间未知；这是对下一代工艺的有条件预测，不代表长鑫已实现该路线或量产。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。具体供应商、节点和制造路线约束可实质贡献当前DRAM供应问题的上游工艺研究。连续引文及相邻制造讨论支持限定预测，保留理论条件和未来时态，无A条件，可作B级部分贡献。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      },
+      "source_candidate_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:6"
+      ],
+      "limitations": "未给出G5推进时间、具体设计或制造障碍、良率及量产验证。美光1a仅作为作者的技术路线类比，不能证明长鑫具有相同能力；理论可行性不等于实际可行性、经济性或交付能力。",
+      "conflict_check": "既有长鑫HBM技术成熟度及HBM3供应稳定性陈述涉及当时产品准备度，本项涉及下一代工艺预测，阶段不同。legacy总产能和DDR5/LPDDR5投片计划不证明或否定G5技术路线；未提供同口径美光1a反证。未发现直接冲突或canonical重复，不改写既有产能或技术结论。",
+      "gap_dependency_check": "仅部分支持OBJ-dram-supply中的供应商制造路线及潜在约束，不回答模组成本、交期或生命周期成本。原句不依赖第21页缺口或图表；仍需企业工艺资料、实际节点验证和量产记录，问题保持开放。相邻HBM应用讨论不能用于添加本项未获允许的问题ID。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599",
+        "source_report_sha256": "35532c400a3ede8a42e5d79f8b4b49706610b021b63e67c87cc2923e5cb9efb8",
+        "request_sha256": "440b988ab58267530925bb84a5888681a5a8d36313e8633899521773d4bc9e9b"
+      },
+      "object_mapping_check": "actor:cxmt对应被预测的长鑫工艺主体，actor:micron对应原句明确命名的美光技术路线参照，后者仅保留类比角色。G5普通DRAM节点不等于part:dram服务器内存模组；本条未采用相邻HBM应用主张，不追加part:hbm或系统范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "evidence_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:7:ev:0"
+      ],
+      "id": "adoption:review:e9371a59bcd8eeb557195fd4",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:cxmt"
+      ],
+      "question_ids": [
+        "OBJ-dram-supply"
+      ],
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "status": "adopted",
+      "text": "SemiAnalysis在《China’s CXMT Is Set to Challenge DRAM Incumbents》讨论中国长鑫存储下一代G5工艺及其用于HBM裸片时的制造压力后预计，较低良率和更具挑战的爬坡安排可能影响长鑫的比特产出，即使公司可以通过增加晶圆投入补偿良率损失。来源确切发表时间未知；这是作者的有条件产出预测，不是实际产出或投片补偿能力的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:00:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。该项明确连接良率、制造爬坡、晶圆投入和有效比特产出，对当前DRAM供应问题的上游制造机制有实质贡献。连续原句和G5上下文充分，保留could及补偿条件，无A条件，可作B级部分贡献。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 135.19,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6df3036d4b42465f2702fde5b16ead29fb3cf44285eb19b59fe636d299f20554",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59189,
+            "output_tokens": 5478,
+            "reasoning_output_tokens": 912
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.387,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ca4249c89e8534af4f1fb0aa83886c29372f7b9636a766b069284512e7ef9832",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56717,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 176
+            }
+          }
+        },
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599"
+      },
+      "source_candidate_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:11:claim:7"
+      ],
+      "limitations": "未给出良率、爬坡时间表、新增晶圆投入量、比特产出数值或产品分项。不能将预测解释为已经发生的产出下降，也不能假定增加投片足以完全补偿损失；投片能力不等于合格成品供应。",
+      "conflict_check": "legacy长鑫总DRAM及DDR5/LPDDR5产能记录描述晶圆投入或计划，本项描述良率和爬坡对有效比特产出的潜在影响，二者不是同一指标，未形成直接矛盾。现有晶圆资源机会成本陈述解释投入取舍，本项另含投片补偿机制，不构成同义重复。未发现直接冲突，不替换产能或供应结论。",
+      "gap_dependency_check": "对OBJ-dram-supply仅贡献上游有效供给机制，不能据此推算服务器模组供给、成本或交期。仍需分产品良率、实际投片、爬坡进度及出货数据，问题保持开放。本项依赖已提供的G5段落语境，不依赖第21页缺口或未核验图表。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "57907cb2d04ac4a30004eba21305593f23f5ad92aea44fc163d4a607677cc599",
+        "source_report_sha256": "35532c400a3ede8a42e5d79f8b4b49706610b021b63e67c87cc2923e5cb9efb8",
+        "request_sha256": "440b988ab58267530925bb84a5888681a5a8d36313e8633899521773d4bc9e9b"
+      },
+      "object_mapping_check": "所审预测的直接范围是长鑫公司的比特产出和晶圆投入，对应actor:cxmt。原句未分配商品DRAM与HBM各自产出，不能据相邻HBM讨论把公司总体预测变成part:hbm专属预测；普通DRAM芯片产出也不等于part:dram服务器模组对象范围。"
     }
   ],
   "answers": [],
