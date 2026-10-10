@@ -47,13 +47,12 @@ jobs:
       - name: Install CI-only image decoder
         run: python3 -m pip install -r scripts/ci-requirements.txt
       - name: Verify changed content, image decoding and new local references
-        if: needs.scope.outputs.full != 'true'
         env:
           CI_PLAN: ${{ needs.scope.outputs.plan }}
           CI_BASE: ${{ fromJSON(needs.scope.outputs.plan).base }}
         run: |
-          if ! git cat-file -e "${CI_BASE}^{commit}" 2>/dev/null; then
-            git fetch --no-tags --depth=1 origin "$CI_BASE"
+          if [[ "$CI_BASE" =~ ^[0-9a-f]{40}$ ]] && ! git cat-file -e "${CI_BASE}^{commit}" 2>/dev/null; then
+            git fetch --no-tags --depth=1 origin "$CI_BASE" || echo "::warning::Base unavailable; full plan has no bounded content diff"
           fi
           python3 scripts/ci_scope.py check
       - name: 现行规则与在册文件检查

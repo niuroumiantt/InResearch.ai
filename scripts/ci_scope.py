@@ -169,13 +169,15 @@ def links(text):
 
 
 def check_content(root, plan):
-    if plan['mode'] == 'full':
-        return []  # Existing full acceptance remains authoritative.
     from PIL import Image
     from xml.etree import ElementTree as ET
     checked = []
     for row in plan['files']:
         path = row['path']
+        if row['status'] not in {'A', 'M'} or (root/path).is_symlink():
+            continue
+        if Path(path).suffix.lower() not in IMAGES | {'.md', '.html'}:
+            continue
         if path in DERIVED or path.startswith('framework/'):
             continue
         raw = (root/path).read_bytes()

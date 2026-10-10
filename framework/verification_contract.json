@@ -3,7 +3,7 @@
   "reviewed_at": "2026-10-10T10:49:12.560007+00:00",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
-    ".github/workflows/validate.yml": "1c39d313babbce24efeb3db9a48e67c53021eb438bd298eb67a1c9c6792ab070",
+    ".github/workflows/validate.yml": "160f37ec6c20757a367f482c73e2740a6e8e8957bb80dfc0f0e52953579ac725",
     "AGENTS.md": "4efb9bd9bfc713ea412107240339e421be6d28de0c46e2d8bcda111b419200c4",
     "CLAUDE.md": "322b8e598f53f516c60307f53781c0da4c8f49c7a639362b51b468967e91a9de",
     "data/schema/submission.schema.json": "b0d0b8a1b9150f585ede35da218149772d77ba33f898f0d2718c48f323e83fe8",
@@ -722,9 +722,9 @@
     "docs/design/technical-atlas/TA-35/publication-independent-review-v1.json": "7fb95f0de86fce6e41c6ba7554ce2560fdcb13c902fad9a9f382a8854a6dee52",
     "web/themes/site-skin.css": "c01241a519e6a315d85dc4c55afd6d878bfdf8b3c1d3068cc98072496a13af14",
     "docs/CI.md": "bf4093f5ccdacb60bc18d581af82cb17e5736d4d3a43f7536a419075d1efe89c",
-    "scripts/ci_scope.py": "46d915b5f7e70a4cb1b9578e0f25ff97f3035dc962c891a8cfa0071509db4348",
+    "scripts/ci_scope.py": "7267084ee694ffbcd4fc0c6c96873fad40dbf49d41f3149be3b055999192955d",
     "scripts/ci-requirements.txt": "6e3f04ab88d8544d0f16e3695fbf0e60afcef49a2efc8ee5678a09f351cef2b6",
-    "tests/unit/test_ci_scope.py": "5b545031495c6ea64822809d35abae0850456d1220ed89cfb14855394a1fdfc7"
+    "tests/unit/test_ci_scope.py": "d4bd867397a8daca9fa69d91fbc65600fd404fc471dc1a19fcc056c3d519187e"
   },
   "policies": [
     {
@@ -2501,7 +2501,8 @@
         "tests/unit/test_browser_shards.py::BrowserShardTests.test_ci_shards_cover_every_existing_core_case_once",
         "tests/unit/test_research_protected_merge.py::ProtectedMergeTests.test_protected_merge_keeps_tested_head_and_records_receipt",
         "tests/unit/test_ci_scope.py::CiScopeTests.test_nested_admin_page_and_unmapped_image_are_full",
-        "tests/unit/test_ci_scope.py::CiScopeTests.test_shallow_checkout_with_exact_base_tree_keeps_complete_diff"
+        "tests/unit/test_ci_scope.py::CiScopeTests.test_shallow_checkout_with_exact_base_tree_keeps_complete_diff",
+        "tests/unit/test_ci_scope.py::CiScopeTests.test_full_mixed_change_still_checks_corrupt_content"
       ],
       "not_verified": "不判断研究语义正确性、图片审美或公网链接在线；未映射/间接 web 消费者按全套；自动化单元测试不冒充 GitHub 实际作业回执、管理员保护回读或线上发布。"
     }

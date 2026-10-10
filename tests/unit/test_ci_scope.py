@@ -61,6 +61,14 @@ class CiScopeTests(unittest.TestCase):
         with self.assertRaises(OSError):
             ci.check_content(self.root, plan)
 
+    def test_full_mixed_change_still_checks_corrupt_content(self):
+        self.write('src/example.py', 'pass')
+        self.write('docs/broken.png', b'not PNG')
+        plan = self.plan()
+        self.assertEqual(plan['mode'], 'full')
+        with self.assertRaises(OSError):
+            ci.check_content(self.root, plan)
+
     def test_text_only_html_is_targeted_but_structure_and_code_are_full(self):
         self.write('web/pages/index.html', '<html><body><h1>New words</h1><script>const x=1;</script></body></html>')
         self.assertEqual(self.plan()['suites'], ['industry'])
