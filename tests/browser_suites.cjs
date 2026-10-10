@@ -6,7 +6,7 @@ const dossierScenes = ['/bom3d.html?p=server', '/rack3d.html?node=part:server', 
 // Isolate expensive software-rendered suites so their serial total cannot
 // exhaust one CI job. Preserve every scene, density and per-case deadline.
 const third = ['part_dossier'];
-const isolated = ['server_assembly', 'rack_assembly', 'rack_exploded', 'scene_atlas'];
+const isolated = ['server_assembly', 'rack_assembly', 'rack_exploded', 'scene_atlas', 'campus_overview', 'campus_exploded'];
 const remaining = core.filter(s => !third.includes(s) && !isolated.includes(s));
 const first = remaining.filter((s, i) => s === 'scene_resources' || (i % 2 === 0 && s !== 'scene_atlas'));
 const second = remaining.filter(s => !first.includes(s));

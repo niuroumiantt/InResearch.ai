@@ -23,7 +23,7 @@ class BrowserShardTests(unittest.TestCase):
         selected=[suite for name,values in groups['shards'].items() if name!='model_assets' for suite in values]
         self.assertEqual(set(selected),expected)
         self.assertEqual(len(selected),len(expected))
-        for heavy in ('server_assembly','rack_assembly','rack_exploded','scene_atlas'):
+        for heavy in ('server_assembly','rack_assembly','rack_exploded','scene_atlas','campus_overview','campus_exploded'):
             self.assertEqual(groups['shards'][heavy],[heavy])
         self.assertEqual(groups['c'],['part_dossier'])
         self.assertEqual(set(groups['scenes']),{'/bom3d.html?p=server',
