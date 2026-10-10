@@ -1,0 +1,70 @@
+{
+  "figure_id": "TA-29",
+  "artifact": "part-inspector.js implementation source self-review",
+  "status": "implemented_candidate; parse_only_pass; actual_public_pending",
+  "scope": "Only web/components/part-inspector.js edited by this child. Parent owns dossier, pages, governance and actual public acceptance.",
+  "api": {
+    "inputs": {
+      "identityFor": "pid => stable object/instance ID string, default part:pid",
+      "titleFor": "pid => truthful human title (whole/category aggregate/single instance supplied by caller)",
+      "materialFor": "Existing source baseline-material resolver retained",
+      "initialRotation": "Existing authored initial angle on show/reopen retained"
+    },
+    "returns": "canvas, controls, show, tick, hide, fit, expand, closeExpanded, download, dispose",
+    "controls": "Single DOM subtree returned; append after canvas in dossier slot. data-preview-action=fit/spin/expand/download. Includes truthful object title/ID/common-schematic note and status.",
+    "integration": "Caller must hide before replacing dossier DOM, then show(pid), and append canvas+controls on true. show0 hides controls, closes modal and clears clone meshes. Existing return {canvas: iCv, observer injection anchor remains."
+  },
+  "design": [
+    "Same independent WebGLRenderer/camera/clone scene and canvas are moved between inline slot and native dialog; no second renderer and no source-main-scene DOM or camera is supplied.",
+    "Comment placeholders restore exact inline canvas/control positions; outer dossier DOM is never replaced by this component. close/Escape retains iRotX/iRotY and spin state; show/reopen initializes authored angle.",
+    "fit computes visibleBounds at current pivot rotation, does not reset rotation; resize only refits. Main scene controls are not available inside this component.",
+    "Native modal top layer supplies focus trapping. Captured document keydown stops main scene hotkeys; Escape preventDefault/stopPropagation closes only preview. Dialog pointer events stop propagation. Focus restored only when originating control remains connected.",
+    "A queued native close event from an older opening is ignored when a new dialog is open, avoiding synchronous close/reopen races.",
+    "atlasSnapshot receives strictly own iScene/iCam/iCv/drawing and own clone meshes. SVG metadata.object_id uses identityFor; caption visibly states object title and ID, independent current-view/common-schematic limits. No main atlas-export is invoked.",
+    "Download uses own current drawing-buffer pixels at pixel ratio1 plus editable snapshot caption/leader; it is not a new1536 master or CAD file.",
+    "Shared warmwhite renderer/lights/drawing applied; normalize:false preserves baseline source material cloned through materialFor. No new product geometry or physical IDs."
+  ],
+  "resource_ownership": {
+    "owned": "Lazy renderer; independent scene/camera/groups; cloned materials per source; derived edge geometry/material via createAtlasDrawing; viewport ResizeObserver/window resize; canvas/control/modal/style DOM; pointer/click/key listeners; Blob URLs/timers.",
+    "borrowed": "Source geometry, original materials, textures and scene environment. Geometry reused in clone Mesh; original material is cloned, not mutated or disposed. Source textures/environment are not disposed.",
+    "replacement": "Disposes previous drawing edges/material and clone materials, removes clone meshes, builds fresh drawing; no old-source edge cache accumulation. No-mesh path leaves0clone meshes and hidden controls.",
+    "hide": "Stops visible render ticks and drag, closes modal/restores inline controls. It intentionally keeps reusable renderer until final dispose.",
+    "dispose": "Idempotent guard. Hides first, disconnects viewport, disposes derived drawing and clone materials, removes all owned listeners/document capture handler, clears/revokes pending Blob URLs, removes dialog/style/control/canvas and disposes renderer.",
+    "limits": "Public runtime instrumentation must count actual resource events and source-object preservation; static ownership review and parse do not prove those events."
+  },
+  "actual_checks": [
+    {
+      "command": "node --input-type=module --check < web/components/part-inspector.js",
+      "result": "exit0 (twice, after final race fix as well); syntax only, no module evaluation"
+    },
+    {
+      "command": "git diff --check -- web/components/part-inspector.js",
+      "result": "exit0"
+    },
+    {
+      "kind": "static source reads",
+      "result": "Existing scene-atlas atlasSnapshot and scene-view bounds/viewport API used; createSceneSVG name does not exist."
+    },
+    {
+      "kind": "static assertions",
+      "result": "Old return anchor retained, no source.geometry.dispose call, own-scene/camera/canvas snapshot arguments, document capture present."
+    }
+  ],
+  "not_verified": [
+    "No product HTTP, browser, WebGL rendering, server, module execution, unit or browser test run.",
+    "Actual enlarged desktop/phone light/dark readability, rotated fit, close/reopen focus/canvas restoration and main-camera/domain isolation require public verification.",
+    "Actual own-SVG download metadata/visible caption/pixels, software0mesh/cache transition and resource dispose counts remain pending.",
+    "Caller-provided instance identity and title correctness must be independently verified against campus/rack/server/chip selection in parent page integration.",
+    "No claims of source-ready overall TA29, accepted or published. No source/governance/BOM/queue/PR/research/service writes outside the one assigned file.",
+    "Owner also identified a source-derived fit boundary: after fitting current rotated AABB, long asymmetric whole scenes may drift toward edges during continued auto-spin. No executed failure; actual public different-yaw/bounded-bounds and long whole-scene rotation checks remain required. Pixel ratio1 is retained; actual buffer dimensions must be recorded rather than infer DPR2."
+  ],
+  "observed_at": "2026-10-10T03:15:11.907670+00:00",
+  "worktree": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai",
+  "head": "1c1a024a900df6f10d50a8b5b4d8416acd6129b6",
+  "source": {
+    "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/components/part-inspector.js",
+    "bytes": 14394,
+    "sha256": "9dd18f61d5f4d70b7e88d4b9815be6c8e9cfdc195783675074ffab847017ae79"
+  },
+  "diff_stat": "web/components/part-inspector.js | 272 ++++++++++++++++++++++++++++++---------\n 1 file changed, 208 insertions(+), 64 deletions(-)"
+}

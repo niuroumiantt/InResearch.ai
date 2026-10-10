@@ -344,7 +344,16 @@ let browser;
       results.scope_isolation.push({query,no_domain_plate:true});
     }
     for(const [url,expected] of [['/bom.html#ssd','TA-01'],['/bom.html#nic','TA-07'],['/server-plan.html','TA-12']]){
-      const response=await page.goto(base+url,{waitUntil:'domcontentloaded'}); assert.equal(response.status(),200);
+      const target=new URL(base+url), prior=new URL(page.url());
+      const documentResponse=await publicGet(target.origin+target.pathname+target.search);
+      const response=await page.goto(target.href,{waitUntil:'domcontentloaded'});
+      if(response)assert.equal(response.status(),200);
+      else {
+        assert.equal(prior.origin,target.origin);assert.equal(prior.pathname,target.pathname);
+        assert.equal(prior.search,target.search);assert.notEqual(prior.hash,target.hash);
+        assert.equal(page.url(),target.href,'Only an actual same-document fragment navigation can omit HTTP response');
+      }
+      results.scope_isolation.push({url,document_status:documentResponse.status(),navigation_response:response?response.status():null,same_document_fragment:response===null});
       await page.locator('.technical-atlas[data-figure="'+expected+'"]').waitFor();
       assert.equal(await page.locator('[data-figure="TA-28"]').count(),0);
       results.scope_isolation.push({url,figure:expected,no_control_binding:true});

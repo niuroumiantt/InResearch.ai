@@ -1,0 +1,110 @@
+{
+  "figure_id": "TA-29",
+  "review_type": "narrow read-only final integration static review",
+  "decision": "no_material_source_integration_blocker_found_in_reviewed_scope",
+  "status_scope": "static source readiness only; not visual/public acceptance",
+  "review_boundary": "Reviewed parent page/dossier/rack-ID integration against this child's already self-reviewed inspector implementation. Inspector implementation is not represented as a second independent author review.",
+  "checks": {
+    "server_selection": "showServerObject resolves actual cpu-N/dimm-N/accelerator-N/fan-N/drive-N/rear-psu-N/rear-network-card groups matching server-assembly names, scopes meshes to clicked part and sets server/instance. Unknown/group chassis falls back through showDossier; showDossier clears serverSelectedMeshes/serverSelectedInstance, so category/whole entry does not inherit prior single selection.",
+    "server_aggregation": "server PARTMESH remains complete server assembly, other category PARTMESH entries aggregate their category. titleFor distinguishes explicit instance from category aggregation. Current main export now includes serverSelectedInstance; mini identityFor shares selected server ID. No new BOM ID/geometry is created.",
+    "rack_default_identity": "chassis unconditionally assigns rack/name for x0 and exploded, so compute-1..8/switch-1..2/power-shelf-1..2 preserve unique identity. One-line factory change affects userData only; no geometry change in rack-assembly diff.",
+    "whole_boundary": "Rack whole mini explicitly uses rack/whole while existing main whole export still falls back to part:rack-frame; these are scoped object/context vs retained category identity, not a promise of normalized identical IDs. Server whole retains part:server and complete assembly; campus whole uses campus/whole. Public tests should assert each actual contract.",
+    "campus": "Current physical single/whole identity uses campusSelectedInstance, else part:pid. Existing original-material resolver retained. dcim0 and six rights remain no clone meshes/visible inspector, while logical atlas/view remains independent.",
+    "dossier_rebuild": "inspector.hide before replaceChildren restores any modal placeholders while old slot exists. show rebuilds clones, and controls is attached only when show returns true. Close hides inspector, and no-mesh path hides controls, closes modal and clears clone meshes.",
+    "modal_and_camera": "Captured document keydown blocks bubbling to main window shortcuts. Escape prevents default and closes only mini, preserving rotation and main scene inaccessible to component. Native dialog moves same canvas/controls and restores placeholders. Queued close from older opening guarded by !dialog.open. Dialog pointer events and canvas drag are isolated; focus restoration guarded by connection.",
+    "fit": "fit derives bounds from current rotation and does not reset iRot values. Enlargement/return refit own camera only. Long asymmetric whole-scene auto-spin after a particular yaw fit remains an explicitly unexecuted public bounded-bounds/visual check.",
+    "own_snapshot": "atlasSnapshot receives iScene/iCam/iCv/drawing and cloned iGroup children, never main scene. metadata.object_id and visible caption include own title/ID. Dossier's existing main export is retained as a separate action. Actual downloads/pixels await public verification.",
+    "materials_and_resources": "Clone materials are created through materialFor then disposed independently; geometry/textures/environment borrowed. Derived drawing disposed before clones replaced, old clones removed; viewport and listeners/URLs/modal/style/canvas/renderer disposed idempotently. No source.geometry.dispose call. Main pages dispose inspector before factory/environment disposal.",
+    "page_lifecycle": "Rack pagehide no longer once:true, so BFCache persisted event does not consume a later exit cleanup. RAF now checks pageDisposed before scheduling/writing. Both pages' disposePage guard remains, no double source cleanup added by this change."
+  },
+  "actual_parse_checks": [
+    {
+      "source": "web/components/part-inspector.js",
+      "command": "node --input-type=module --check < file",
+      "exit_code": 0
+    },
+    {
+      "source": "web/components/part-dossier.js",
+      "command": "node --input-type=module --check < file",
+      "exit_code": 0
+    },
+    {
+      "source": "web/components/rack-assembly.js",
+      "command": "node --input-type=module --check < file",
+      "exit_code": 0
+    },
+    {
+      "source": "web/pages/bom3d.html",
+      "command": "HTMLParser extracts its one inline module; node --input-type=module --check via stdin",
+      "exit_code": 0
+    },
+    {
+      "source": "web/pages/rack3d.html",
+      "command": "HTMLParser extracts its one inline module; node --input-type=module --check via stdin",
+      "exit_code": 0
+    },
+    {
+      "source": "five integration files",
+      "command": "git diff --check",
+      "exit_code": 0
+    }
+  ],
+  "material_findings": [],
+  "not_verified": [
+    "No browser, product URL, HTTP, WebGL, product module evaluation, unit or public fixture executed. Syntax checking does not run module code.",
+    "Actual single-instance picking, controls/dialog views desktop/phone light/dark, focus and main camera/domain isolation, software0mesh/cache transition and rotated bounds need actual public tests.",
+    "Actual preview SVG independent pixels, ID and visible caption, main SVG preserved state, downloads and resource-event disposal counts remain pending.",
+    "No source PR/deployment/public/visual acceptance claimed; head and working file SHA are only this snapshot.",
+    "Only /private/tmp receipt written in this review turn; product/source/governance/queue/research/services not changed."
+  ],
+  "observed_at": "2026-10-10T03:26:46.903718+00:00",
+  "worktree": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai",
+  "head": "1c1a024a900df6f10d50a8b5b4d8416acd6129b6",
+  "actual_read_files": [
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/pages/rack3d.html",
+      "bytes": 55074,
+      "sha256": "eb98c4b225442a82547d2ead85d110320eb40a23db66ac1e4abc1939a46bf666"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/pages/bom3d.html",
+      "bytes": 79499,
+      "sha256": "92938a2237597e9c94d180bfa1d36a7651b2d190880a2aeef4b8ec32b332cf3f"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/components/part-dossier.js",
+      "bytes": 5654,
+      "sha256": "f4a84a6f8c2d7187f1c735ade842a937e3b3edd6f6ba88fe016c94abac224d69"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/components/part-inspector.js",
+      "bytes": 14394,
+      "sha256": "9dd18f61d5f4d70b7e88d4b9815be6c8e9cfdc195783675074ffab847017ae79"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/components/rack-assembly.js",
+      "bytes": 12780,
+      "sha256": "e8a59af66489308d7daef67c053bcbb7621bb719b4115d3d324f7edc6857793e"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/components/server-assembly.js",
+      "bytes": 20133,
+      "sha256": "6d3abd5554afeb621798b91a9fb35f78c05ea439b7012b75b4ae79cd0fb9d676"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/components/scene-picking.js",
+      "bytes": 3420,
+      "sha256": "207af98ede2cb64dfbe1a3ca917ca6be621bf0dad83f9a6dd57fe5fee06a5832"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/components/scene-atlas.js",
+      "bytes": 15340,
+      "sha256": "c668c1836ab13677cd272acacaf9ed06e881b66507bf9c61b2b8fd6b01c9cd4f"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/components/scene-view.js",
+      "bytes": 4804,
+      "sha256": "04ff5001954f182fd8e12bd52403d9675ee34a7900ac66a91062c8d54804fdbe"
+    }
+  ]
+}

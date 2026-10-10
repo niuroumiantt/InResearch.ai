@@ -1,0 +1,86 @@
+{
+  "task": "TA28 public fixture v2 fragment correction narrow static review",
+  "reviewed_at": "2026-10-10T02:59:52.584345+00:00",
+  "status": "PASS_STATIC_SCOPE_ONLY",
+  "original": {
+    "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/tests/control_domain.cjs",
+    "bytes": 24725,
+    "sha256": "ead9b5f5ae565cffde8714346c40fca88fdf870fe8b79afc4fc6e8f822fba98a"
+  },
+  "corrected": {
+    "path": "/private/tmp/ta28-control-domain-public-v2.cjs",
+    "bytes": 25404,
+    "sha256": "41916c8e80f447a5e15f23b5346915371e2260f6dbc650ee7998297fc0afb6ef"
+  },
+  "supporting_owner_receipt": "/private/tmp/ta28-fragment-fixture-fix-v2.json",
+  "diff": [
+    {
+      "tag": "replace",
+      "original_start": 347,
+      "original_end": 347,
+      "corrected_start": 347,
+      "corrected_end": 356,
+      "removed": [
+        "      const response=await page.goto(base+url,{waitUntil:'domcontentloaded'}); assert.equal(response.status(),200);"
+      ],
+      "added": [
+        "      const target=new URL(base+url), prior=new URL(page.url());",
+        "      const documentResponse=await publicGet(target.origin+target.pathname+target.search);",
+        "      const response=await page.goto(target.href,{waitUntil:'domcontentloaded'});",
+        "      if(response)assert.equal(response.status(),200);",
+        "      else {",
+        "        assert.equal(prior.origin,target.origin);assert.equal(prior.pathname,target.pathname);",
+        "        assert.equal(prior.search,target.search);assert.notEqual(prior.hash,target.hash);",
+        "        assert.equal(page.url(),target.href,'Only an actual same-document fragment navigation can omit HTTP response');",
+        "      }",
+        "      results.scope_isolation.push({url,document_status:documentResponse.status(),navigation_response:response?response.status():null,same_document_fragment:response===null});"
+      ]
+    }
+  ],
+  "findings": [],
+  "checks": [
+    {
+      "check": "Only representative document-navigation statement changed",
+      "result": "PASS",
+      "evidence": "One replacement, original line347 -> corrected lines347-356; byte-for-byte identical prefix and suffix, including line endings, verified around that replacement."
+    },
+    {
+      "check": "Document HTTP200 remains mandatory",
+      "result": "PASS",
+      "evidence": "corrected line348 always awaits publicGet(origin+pathname+search); unchanged publicGet lines154-158 requires origin exactly https://inresearch.ai, maxRedirects0 and status200."
+    },
+    {
+      "check": "A real navigation response still requires HTTP200",
+      "result": "PASS",
+      "evidence": "corrected line350 asserts response.status()===200 for every non-null navigation response."
+    },
+    {
+      "check": "Missing navigation response allowed only actual same-document changed fragment",
+      "result": "PASS",
+      "evidence": "corrected lines352-354 compare previous/target origin, pathname and search; require different hash and actual page.url()===target.href. Different origin/path/query, identical fragment or incorrect resulting URL fails."
+    },
+    {
+      "check": "Expected new artwork remains visible and control artwork stays absent",
+      "result": "PASS",
+      "evidence": "unchanged subsequent checks at corrected lines357-359 waitFor expected TA01/TA07/TA12 technical-atlas (default state visible), require TA28 count0, then record figure isolation."
+    },
+    {
+      "check": "Public-only/source-identity/error gates preserved",
+      "result": "PASS",
+      "evidence": "exact environment public origin line13, context origin route lines38-46, observer original200+nonempty+SHA lines172-187, final errors/route_errors/resource_failures emptiness line364 all outside sole changed hunk."
+    }
+  ],
+  "execution_boundary": {
+    "script_executed": false,
+    "Node_or_product_JS_executed": false,
+    "browser_or_HTTP_used": false,
+    "local_product_URL_used": false,
+    "repository_written": false,
+    "PR_or_production_written": false,
+    "review_artifact_only": "/private/tmp/ta28-public-fixture-v2-static-review-child.json"
+  },
+  "limits": [
+    "This is a source comparison and static conclusion, not an independent public-browser PASS or review of public-v2 runtime output.",
+    "Source registration with the substantive TA29 PR remains parent-owned; this child makes no repository/PR changes."
+  ]
+}

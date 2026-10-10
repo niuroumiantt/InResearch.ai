@@ -1,0 +1,112 @@
+{
+  "figure_id": "TA-29",
+  "baseline_revision": "1c1a024a900df6f10d50a8b5b4d8416acd6129b6",
+  "source_derived_only": true,
+  "actual_new_public_pending": true,
+  "scope": "10campus/8server/4rack/2chip preview categories, individual stable IDs and whole; does not claim all61 categories have models",
+  "inventory": {
+    "campus": {
+      "physical_part_ids": [
+        "shell",
+        "ups",
+        "rack-frame",
+        "room-cooling",
+        "cdu",
+        "cabling",
+        "chiller",
+        "transformer",
+        "backup-power",
+        "bess"
+      ],
+      "prior_source_instances": 32,
+      "prior_source_meshes": 152,
+      "whole_identity": "campus/whole under shell research category",
+      "selection": "Pointer resolves exact campusAssembly.instanceFor; category/deep-link resolves first matching instance. These are different scopes.",
+      "prior_reference_instances_by_part": {
+        "shell": 4,
+        "ups": 1,
+        "rack-frame": 8,
+        "room-cooling": 5,
+        "cdu": 3,
+        "cabling": 1,
+        "chiller": 3,
+        "transformer": 2,
+        "backup-power": 3,
+        "bess": 2
+      },
+      "stable_instance_ids": [
+        "campus/building-base",
+        "campus/building-frame",
+        "campus/retained-wall-sections",
+        "campus/retained-roof-sections",
+        "campus/UPS-bank",
+        "campus/rack-r1-c1",
+        "campus/rack-r1-c2",
+        "campus/rack-r1-c3",
+        "campus/rack-r1-c4",
+        "campus/rack-r2-c1",
+        "campus/rack-r2-c2",
+        "campus/rack-r2-c3",
+        "campus/rack-r2-c4",
+        "campus/room-cooling-1",
+        "campus/room-cooling-2",
+        "campus/room-cooling-3",
+        "campus/room-cooling-4",
+        "campus/room-cooling-5",
+        "campus/CDU-1",
+        "campus/CDU-2",
+        "campus/CDU-3",
+        "campus/overhead-service-trays",
+        "campus/air-chiller-1",
+        "campus/air-chiller-2",
+        "campus/air-chiller-3",
+        "campus/transformer-1",
+        "campus/transformer-2",
+        "campus/standby-generator-1",
+        "campus/standby-generator-2",
+        "campus/standby-generator-3",
+        "campus/battery-cabinet-1",
+        "campus/battery-cabinet-2"
+      ]
+    },
+    "server": {
+      "source_part_ids": [
+        "server",
+        "cpu",
+        "dram",
+        "gpu",
+        "ssd",
+        "nic",
+        "psu",
+        "server-fan"
+      ],
+      "whole": "PARTMESH.server aggregates whole assembly",
+      "selection": "TA29 source adds actual pointer single subassembly server/<name>; category/deep link remains truthful aggregated category, server whole1129 retained. Actual new public verification pending."
+    },
+    "rack": {
+      "source_part_ids": [
+        "rack-frame",
+        "server",
+        "power-shelf",
+        "network-switch"
+      ],
+      "whole": "rack-frame intentionally aggregates all pickables",
+      "exploded_names": "rack/compute-1..8, rack/switch-1..2, rack/power-shelf-1..2; rack/front-door,left-side-panel,top-cover",
+      "installed_identity_gap": "TA29 source assigns same existing rack/<name> IDs in both default and exploded mode. Geometry unchanged; actual public nonfirst pointer/export pending.",
+      "optional_accessories": "Unconnected service accessories remain rack-frame context, not new power/fluid components."
+    },
+    "chip": {
+      "part_ids": [
+        "gpu",
+        "hbm"
+      ],
+      "stable_names": "package/logic-die, package/hbm-1..4, package/interposer, package/substrate and package/whole",
+      "reuse": "Only shared-preview smoke for logic, nonfirst HBM and whole. Reuse TA15 geometry/art; no full TSV/contact/BGA/anchor recertification."
+    },
+    "zero_entities": "dcim intentionally software0meshes, six site rights nonphysical site:canonical, modular-dc delivery template; missing campus IT categories get no invented geometry. Preview inventory is not all61 physical categories or47 system artworks."
+  },
+  "not_verified": [
+    "Counts inherited from prior source/public receipts and must be rechecked against TA29 executed public source.",
+    "Default legacy is scoped retained regression, not all historical geometry migrated."
+  ]
+}

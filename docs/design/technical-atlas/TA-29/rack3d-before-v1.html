@@ -707,27 +707,13 @@ function rebuildPartMesh() {
 rebuildPartMesh();
 let rackSelectedMeshes=null;
 let rackSelectedInstance=null;
-let serverSelectedMeshes=null,serverSelectedInstance=null;
-const currentPartMeshes=pid=>chipMode&&chipSelectedMeshes?chipSelectedMeshes:rackMode&&rackSelectedMeshes?rackSelectedMeshes:serverMode&&serverSelectedMeshes?serverSelectedMeshes:PARTMESH[pid];
+const currentPartMeshes=pid=>chipMode&&chipSelectedMeshes?chipSelectedMeshes:rackMode&&rackSelectedMeshes?rackSelectedMeshes:PARTMESH[pid];
 const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor:currentPartMeshes,
-  initialRotation: pid => chipMode ? {x:.6,y:.55} : serverMode && pid === 'server' ? {x:0.6, y:0.7} : rackMode ? {x:.2,y:-.55} : null,
-  identityFor:pid=>chipSelectedInstance||rackSelectedInstance||serverSelectedInstance||(rackMode&&pid==='rack-frame'?'rack/whole':'part:'+pid),
-  titleFor:pid=>(chipSelectedInstance==='package/whole'?'完整通用封装':rackMode&&pid==='rack-frame'?'完整通用机柜':serverMode&&pid==='server'?'完整通用服务器':PART[pid]?.name||pid)+' · '+(chipSelectedInstance||rackSelectedInstance||serverSelectedInstance?'示例实例':'类别聚合')});
-const rawShowDossier = createPartDossier({el: document.getElementById('dossier'), view: 'rack',
+  initialRotation: pid => chipMode ? {x:.6,y:.55} : serverMode && pid === 'server' ? {x:0.6, y:0.7} : rackMode ? {x:.2,y:-.55} : null});
+const showDossier = createPartDossier({el: document.getElementById('dossier'), view: 'rack',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector,
   atlasViewFor:p=>chipMode?'chip':rackMode&&p.id==='rack-frame'?(rackExplodedMode?'exploded':'overview'):null});
-function showDossier(p){if(serverMode){serverSelectedMeshes=null;serverSelectedInstance=null;}rawShowDossier(p);}
-function showServerObject(object){
-  const p=PART[object.userData.part];if(!p)return;
-  if(p.id==='server'){showDossier(p);return;}
-  let instance=object;
-  while(instance.parent&&instance.parent!==rack&&!/^(cpu-\d+|dimm-\d+|accelerator-\d+|fan-\d+|drive-\d+|rear-psu-\d+|rear-network-card)$/.test(instance.name))instance=instance.parent;
-  if(!/^(cpu-\d+|dimm-\d+|accelerator-\d+|fan-\d+|drive-\d+|rear-psu-\d+|rear-network-card)$/.test(instance.name)){showDossier(p);return;}
-  serverSelectedInstance='server/'+instance.name;serverSelectedMeshes=[];
-  instance.traverse(m=>{if(m.isMesh&&m.userData.part===p.id)serverSelectedMeshes.push(m)});
-  rawShowDossier({...p,name:p.name+' · 单个示例',desc:'本次独立预览 '+serverSelectedInstance+'，只取当前点选子装配。数量、位置与比例为通用绘图选择，型号、额定参数和现场适用未知；研究链接属于类别。'});
-}
 const rackContextPart=()=>({...PART['rack-frame'],name:'机柜与结构 · 整柜上下文',
   desc:'本图是通用整柜结构示意：2交换机、8计算托盘、2电源架为图示选择；侧部铜色长条与灰管未连接。尺寸、U高度、功率、承载及连接回路未知。研究链接仍指向机柜类别，不代表本示例的型号或额定配置。'});
 function rackInstancePart(p) {
@@ -747,7 +733,6 @@ function showChipObject(object){
 if(chipMode)document.getElementById('chip-package-dossier').onclick=()=>{chipSelectedMeshes=[...pickables];chipSelectedInstance='package/whole';showDossier(chipPart(PART.gpu,true))};
 function showRackObject(object) {
   if(chipMode){showChipObject(object);return;}
-  if(serverMode){showServerObject(object);return;}
   const p=PART[object.userData.part];if(!p)return;
   if(!rackMode){showDossier(p);return;}
   document.getElementById('dossier').classList.toggle('rack-overview-dossier',p.id==='rack-frame');
@@ -803,7 +788,7 @@ const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atla
   filename:chipMode?'chip-package-technical-atlas.svg':serverMode?'server-technical-atlas.svg':'rack3d-technical-atlas.svg', title:chipMode?'通用芯片封装层次图册':serverMode?'通用服务器整机装配图册':rackExplodedMode?'通用机柜分层装配对应图册':rackOverviewMode?'通用机柜整柜结构图册':'机柜结构图册',
   caption:()=>document.getElementById('stage').textContent,
   selected:()=>{const id=document.getElementById('dossier').dataset.partId;
-    return id ? {id:chipSelectedInstance||rackSelectedInstance||serverSelectedInstance||'part:'+id,name:PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
+    return id ? {id:chipSelectedInstance||rackSelectedInstance||'part:'+id,name:PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
 });
 let animationFrame = 0;
 let pageDisposed = false;
@@ -817,10 +802,9 @@ function disposePage() {
   animated.length = 0; pickables.length = 0; controls.dispose();
   sceneEnvironment.dispose(); texturePool.dispose(); composer.dispose(); renderer.dispose();
 }
-window.addEventListener("pagehide", event => {if (!event.persisted) disposePage();});
+window.addEventListener("pagehide", event => {if (!event.persisted) disposePage();}, {once:true});
 const clock = new THREE.Clock();
 (function loop() {
-  if (pageDisposed) return;
   animationFrame = requestAnimationFrame(loop);
   const dt = clock.getDelta(), t = clock.elapsedTime;
   spinners.forEach(r => r.rotation.z += dt * 9);

@@ -1,0 +1,148 @@
+{
+  "figure_id": "TA-29",
+  "object_id": "shared-part-preview",
+  "baseline_revision": "1c1a024a900df6f10d50a8b5b4d8416acd6129b6",
+  "reviewed_at": "2026-10-10T03:11:27.811356+00:00",
+  "decision": "source_ready_public_pending",
+  "method": "Controlled shared interaction implementation; adopted geometry/art byte-conserved, not new imagegen or original1536 master",
+  "source_inventory": "preview-inventory-v1.json",
+  "historical_sources": "baseline-v1.json",
+  "actual_local_product_execution": false,
+  "actual_new_public_execution": false,
+  "not_verified": [
+    "Actual deployed per-category previews, fullscreen pixels/rotation/maincamera ownership/current SVG, new stable single instance selections/material recovery/resource lifecycle pending.",
+    "Actual source/applied/exact image health and public source SHA pending.",
+    "No new hardware/OEM dimensions, site topology, control connection or authentication claim."
+  ],
+  "status": "review",
+  "publication_status": "not_published",
+  "style_id": "white-technical-atlas-v1",
+  "scope": "shared_part_preview_only",
+  "individual_geometry_migration_complete": false,
+  "geometry_and_original_art_conserved": true,
+  "export": {
+    "pixels": "actual_current_canvas",
+    "is_static_master_or_cad": false,
+    "identity": "actual selected stable instance or explicit category aggregation",
+    "source": "own preview camera, canvas and cloned meshes; not main snapshot"
+  },
+  "browser_checks": [
+    "tests/shared_part_preview.cjs"
+  ],
+  "implementation_at_review": [
+    {
+      "file": "web/components/part-inspector.js",
+      "sha256": "9dd18f61d5f4d70b7e88d4b9815be6c8e9cfdc195783675074ffab847017ae79",
+      "bytes": 14394
+    },
+    {
+      "file": "web/components/part-dossier.js",
+      "sha256": "f4a84a6f8c2d7187f1c735ade842a937e3b3edd6f6ba88fe016c94abac224d69",
+      "bytes": 5654
+    },
+    {
+      "file": "web/components/rack-assembly.js",
+      "sha256": "e8a59af66489308d7daef67c053bcbb7621bb719b4115d3d324f7edc6857793e",
+      "bytes": 12780
+    },
+    {
+      "file": "web/pages/bom3d.html",
+      "sha256": "92938a2237597e9c94d180bfa1d36a7651b2d190880a2aeef4b8ec32b332cf3f",
+      "bytes": 79499
+    },
+    {
+      "file": "web/pages/rack3d.html",
+      "sha256": "eb98c4b225442a82547d2ead85d110320eb40a23db66ac1e4abc1939a46bf666",
+      "bytes": 55074
+    },
+    {
+      "file": "tests/shared_part_preview.cjs",
+      "sha256": "908f2b60d482d0bc1cce1464c966f14ac47ddabdf7ed2ad72bb99247cabc395c",
+      "bytes": 50372
+    },
+    {
+      "file": "tests/unit/test_shared_part_preview_assets.py",
+      "sha256": "3b2e44c9f331b1843cb8d176b4c45ce76c03938c3a11daa401c456d998fe3e8b",
+      "bytes": 2781
+    },
+    {
+      "file": "tests/unit/test_visual_atlas.py",
+      "sha256": "a9275e0c6076726b87bec52320b419f5048175cadddebe9ae3670bd087541d9d",
+      "bytes": 8572
+    }
+  ],
+  "remaining_work": [
+    "Actual deployed per-category and representative nonfirst instance browser matrix, owner original screenshot review, current preview export and precise source/applied/image health pending."
+  ],
+  "references": [
+    {
+      "id": "R2",
+      "file": "docs/design/technical-atlas/references/02-server.png",
+      "sha256": "b19fbb3080e4855fab49093aa2ba90d3c5e2f2c3478a11ae87e851d5e8327cb5",
+      "width": 1536,
+      "height": 1024,
+      "role": "服务器剖开、局部放大与安装定位",
+      "provenance": "2026-10-08用户提供，描述为Codex制作；作为视觉标准采用",
+      "original_filename": "exec-12cf02d3-f255-4989-af3a-e802e505c2e0.png",
+      "use": "adopted style/structural context only, no new bitmap generation",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
+    },
+    {
+      "id": "R3",
+      "file": "docs/design/technical-atlas/references/03-ssd.png",
+      "sha256": "34823652dc73a07879536835205681583d0d9c693e6a203e7309342a8b7c7079",
+      "width": 1536,
+      "height": 1024,
+      "role": "部件爆炸、装配轴与芯片定位",
+      "provenance": "2026-10-08用户提供，描述为Codex制作；作为视觉标准采用",
+      "original_filename": "exec-69a988ec-2784-438f-8743-c4a8ff7485e7.png",
+      "use": "adopted style/structural context only, no new bitmap generation",
+      "technical_evidence": false,
+      "prompt": "未提供，不补造"
+    }
+  ],
+  "source_reviewed": true,
+  "reviewed_sources": [
+    {
+      "file": "web/components/part-inspector.js",
+      "sha256": "9dd18f61d5f4d70b7e88d4b9815be6c8e9cfdc195783675074ffab847017ae79",
+      "bytes": 14394
+    },
+    {
+      "file": "web/components/part-dossier.js",
+      "sha256": "f4a84a6f8c2d7187f1c735ade842a937e3b3edd6f6ba88fe016c94abac224d69",
+      "bytes": 5654
+    },
+    {
+      "file": "web/components/rack-assembly.js",
+      "sha256": "e8a59af66489308d7daef67c053bcbb7621bb719b4115d3d324f7edc6857793e",
+      "bytes": 12780
+    },
+    {
+      "file": "web/pages/bom3d.html",
+      "sha256": "92938a2237597e9c94d180bfa1d36a7651b2d190880a2aeef4b8ec32b332cf3f",
+      "bytes": 79499
+    },
+    {
+      "file": "web/pages/rack3d.html",
+      "sha256": "eb98c4b225442a82547d2ead85d110320eb40a23db66ac1e4abc1939a46bf666",
+      "bytes": 55074
+    },
+    {
+      "file": "tests/shared_part_preview.cjs",
+      "sha256": "908f2b60d482d0bc1cce1464c966f14ac47ddabdf7ed2ad72bb99247cabc395c",
+      "bytes": 50372
+    },
+    {
+      "file": "tests/unit/test_shared_part_preview_assets.py",
+      "sha256": "3b2e44c9f331b1843cb8d176b4c45ce76c03938c3a11daa401c456d998fe3e8b",
+      "bytes": 2781
+    },
+    {
+      "file": "tests/unit/test_visual_atlas.py",
+      "sha256": "a9275e0c6076726b87bec52320b419f5048175cadddebe9ae3670bd087541d9d",
+      "bytes": 8572
+    }
+  ]
+}

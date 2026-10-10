@@ -1037,8 +1037,6 @@ const tip = document.getElementById("tip3d");
 const currentPartMeshes=pid=>campusMode&&campusSelectedMeshes?campusSelectedMeshes:PARTMESH[pid];
 const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor:currentPartMeshes,
   initialRotation:()=>campusMode?{x:.25,y:.25}:null,
-  identityFor:pid=>campusMode?(campusSelectedInstance||'part:'+pid):'part:'+pid,
-  titleFor:pid=>campusSelectedInstance==='campus/whole'?'园区完整上下文 · 独立预览':(PART[pid]?.name||pid)+' · '+(campusSelectedInstance?'单个示例实例':'类别聚合'),
   materialFor: mesh => dimmed.get(mesh)?.original || mesh.userData.covPrev || mesh.material});
 const rawShowDossier = createPartDossier({el: document.getElementById('dossier'), view: 'campus',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
