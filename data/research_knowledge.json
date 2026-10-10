@@ -4681,6 +4681,65 @@
       "status": "candidate",
       "stored_path": "originals/96/96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d/DeepSeek Debrief_ _128 Days Later  – SemiAnalysis.pdf",
       "title": "DeepSeek Debrief: >128 Days Later"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb",
+      "coverage": {
+        "characters_read": 8610,
+        "characters_total": 8610,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb",
+      "id": "doc-9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb",
+      "library_path": "library/by-node/system-power/2026_DCD_Singapore gov't allocates 200MW of power for four data__9abf6ec8c5cc50c3.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:airtrunk",
+        "actor:digital-realty",
+        "actor:equinix",
+        "actor:stt-gdc",
+        "site:land",
+        "system:power"
+      ],
+      "question_ids": [
+        "NODE-system-power-boundary",
+        "OBJ-land-interfaces",
+        "OBJ-land-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-79613e1382334dadade83361c1811a54",
+      "report_sha256": "7a26ec2f583aedb12256fc7cda06a352b3938378ef76253d11c1f0f5dc19ed19",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb",
+        "url": "https://www.datacenterdynamics.com/en/news/singapore-govt-allocates-200mw-of-power-for-four-data-center-developers-on-jurong-island/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/singapore-govt-allocates-200mw-of-power-for-four-data-center-developers-on-jurong-island/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/9a/9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb/dcd-9abf6ec8c5cc50c3-Singapore gov-t allocates 200MW of power for four data center dev.html",
+      "title": "Singapore gov't allocates 200MW of power for four data center developers on Jurong Island"
     }
   ],
   "evidence": [
@@ -34165,6 +34224,92 @@
           }
         },
         "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "5417c69e621bb9d651bf96ff3d038c5ad788329f7470e93a4bdb0d68b940c338",
+      "document_id": "doc-9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb",
+      "id": "rev-79613e1382334dadade83361c1811a54:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:power",
+        "site:grid"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-system-power-boundary"
+      ],
+      "quote": "Under the agreement, 50 percent of the data centers' capacity must be supplied by low-carbon energy sources, such as biomethane, low-carbon ammonia, or hydrogen.",
+      "reading_revision_id": "rev-79613e1382334dadade83361c1811a54",
+      "source_sha256": "9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:09:55+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。连续原文及周边上下文充分，容量分配附带低碳供能要求，为当前资源、建设与运营传导问题提供具体的资源条件约束案例，具有实质性局部贡献。未识别敏感、真实冲突、拟替换或其他A条件，符合B条件；仅采用为明确归因的来源陈述，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 94.625,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cf4242fccaeadeb4e03fd88758c14ff13a3dd30ce3ed57f5471e8c3de11a24d8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 72932,
+            "output_tokens": 3120,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.266,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "73da2fd3a86fa6db4ee93bbd6ffc18ad3b1eba850ad8342e0ed704f44ebc205b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 72535,
+              "output_tokens": 500,
+              "reasoning_output_tokens": 203
+            }
+          }
+        },
+        "batch_id": "65d7b1eeee43851d6c1b665151aa8347321eb07acc932283352d937370966828"
       }
     }
   ],
@@ -66619,6 +66764,107 @@
         "request_sha256": "fead98c4fd41dd58baa2e47182c16e37c4d44e11bfcc01d3bbce2ffd95b17f68"
       },
       "object_mapping_check": "原文明确Microsoft Azure为服务提供方，契约中actor:microsoft对应微软主体。DeepSeek没有允许的actor对象，不用其他对象替代。价格与时延对照未指定微软数据中心、GPU、计算系统或自研ASIC，不添加root或基础设施映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb",
+      "evidence_ids": [
+        "rev-79613e1382334dadade83361c1811a54:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:8fe6328961b9416b0dffc9c6",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:power",
+        "site:grid"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-chain"
+      ],
+      "reading_revision_id": "rev-79613e1382334dadade83361c1811a54",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年8月21日的报道中称，新加坡第二轮Data Center Call for Application（DC-CFA2）向Digital Realty、Equinix、Keppel Data Centers及ST Telemedia Global Data Centers分配容量；协议要求相关拟建数据中心容量的50%由低碳能源供应，例如生物甲烷、低碳氨或氢。报道预计这些数据中心位于新加坡裕廊岛，开发时间表未披露。这是来源报道的容量分配条件，不构成对实际供能落实或项目投运状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:09:55+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。连续原文及周边上下文充分，容量分配附带低碳供能要求，为当前资源、建设与运营传导问题提供具体的资源条件约束案例，具有实质性局部贡献。未识别敏感、真实冲突、拟替换或其他A条件，符合B条件；仅采用为明确归因的来源陈述，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 94.625,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "cf4242fccaeadeb4e03fd88758c14ff13a3dd30ce3ed57f5471e8c3de11a24d8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 72932,
+            "output_tokens": 3120,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.266,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "73da2fd3a86fa6db4ee93bbd6ffc18ad3b1eba850ad8342e0ed704f44ebc205b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 72535,
+              "output_tokens": 500,
+              "reasoning_output_tokens": 203
+            }
+          }
+        },
+        "batch_id": "65d7b1eeee43851d6c1b665151aa8347321eb07acc932283352d937370966828"
+      },
+      "source_candidate_ids": [
+        "rev-79613e1382334dadade83361c1811a54:chunk:0:claim:3"
+      ],
+      "limitations": "所供证据是新闻转述，未提供EDB、IMDA一手声明或协议全文。50%的容量分母、计量边界、低碳认定标准、履约期限及核验方法均未披露，不能改写为年度用电量占比、可再生能源占比或已实现供能比例。没有实际供电拓扑、设备配置、建设进度或交付周期。",
+      "conflict_check": "已采用的阶段区分、资源保障计划、电力约束及跨专业协调陈述与本项兼容，未发现相同新加坡协议条件的规范记录。所供legacy事实主要涉及中国液冷市场、PUE及机柜功率，不构成本项50%低碳供能条件的同口径反证；合同和项目匹配记录为空。未发现真实冲突或重复，不替换既有结论；检查限于所供材料。",
+      "gap_dependency_check": "NODE-activity-V1-chain仍需协议及一手公告、能源供应落实记录、逐项目设计与建设时间线、实际履约结果、反例及领先指标验证。本项只证明来源报道存在资源条件与容量分配相连接的要求，未证明该要求如何改变交付周期或运营结果。问题保持开放，不更新容量汇总、模型参数或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "65d7b1eeee43851d6c1b665151aa8347321eb07acc932283352d937370966828",
+        "source_report_sha256": "7a26ec2f583aedb12256fc7cda06a352b3938378ef76253d11c1f0f5dc19ed19",
+        "request_sha256": "a9f74f75133a75d8afdec16dfda2ef866318f01d68c7e4233413700e0e9d4a6e"
+      },
+      "object_mapping_check": "独立依据主张选择system:power和site:grid：低碳能源供应直接涉及数据中心能源供给，协议条件处于电力容量配额分配背景。未披露发电设备、并网方式或配电拓扑，故不下沉到电力链条及部件；生物甲烷不自动证明天然气管道接入。裕廊岛选址不证明土地权利或许可范围。本项聚焦供能与配额条件，不继承文档层面的主体标签，尤其不将历史AirTrunk分配或合同中带印度地域限定的主体名称套入当前主张。所选证据统一采用上述主张级范围。"
     }
   ],
   "answers": [],
