@@ -37,7 +37,9 @@ class ClassificationPosterTests(unittest.TestCase):
         for name, digest in manifest['files'].items():
             self.assertEqual(hashlib.sha256((ROOT/name).read_bytes()).hexdigest(), digest)
         routes = json.loads((ROOT/'web/routes.json').read_text())
-        for name in ['overview-v1.png', 'overview-v1.svg']:
+        self.assertTrue((assets/'overview-v1-preview.jpg').read_bytes().startswith(b'\xff\xd8'))
+        self.assertLess((assets/'overview-v1-preview.jpg').stat().st_size, (assets/'overview-v1.png').stat().st_size/3)
+        for name in ['overview-v1.png', 'overview-v1.svg', 'overview-v1-preview.jpg']:
             self.assertEqual(routes['/assets/bom-classification/'+name], 'web/assets/bom-classification/'+name)
 
 

@@ -18,3 +18,6 @@ framework/bom.json、src/inresearch/knowledge/skeleton.py、web/pages/bom.html�
 
 ## 用户整图补充
 实际参考日报版式；imagegen生成无字剖面，独立SVG添加全部分类并内嵌许可字体，Chromium输出PNG；来源/提示词/字节登记于docs/design/bom-classification。页首直接显示，手机原尺寸平移/适应窗口，可展开文字分类定位。用户明确选择等待GitHub CI并按保护规则发布，不使用管理员合并。原候选7f772cfc的CI不能代表纳入此新图的最终head。
+
+## 轻量预览后续
+PR597最终76f3045b的20项CI通过，正常合并cf7bdb59；AWS精确c6cf2c镜像healthy。公网原PNG传输偏慢，首次并行公网观察分别出现30/120秒导航超时，未称公网验收成功。新分支codex/bom-classification-preview增加同尺寸JPEG（约783KiB，原PNG约2.85MiB），原PNG/SVG/底图与分类全部字节保持；实际点击下载等完整文件SHA，整项300秒不变。治理current_state.json匿名访问会跳登录，版本仅服务器只读核对；公开验字节只核页面/预览/PNG/SVG/BOM。新PR最终完整CI后正常发布，回执与失败记录仍在本机release目录。
