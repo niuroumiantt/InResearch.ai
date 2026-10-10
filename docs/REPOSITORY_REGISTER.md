@@ -53,8 +53,8 @@
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
 | `data/research_knowledge.json` | documents | 43 |
-| `data/research_knowledge.json` | evidence | 316 |
-| `data/research_knowledge.json` | statements | 291 |
+| `data/research_knowledge.json` | evidence | 319 |
+| `data/research_knowledge.json` | statements | 294 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
