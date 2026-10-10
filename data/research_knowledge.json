@@ -40730,6 +40730,89 @@
         },
         "batch_id": "43ecc182532b2ab2574baac66095528edae79cac6ea9d2eb8a797602fecbd38e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9202bcc12573479123c932f680a3ba3a325e8ac6d2ad390f49de0b9cc61b5154",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "id": "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:18:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "is expected to begin in Abilene, Texas.",
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "source_sha256": "c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T20:06:57+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5，评分5。连续引文及完整原生页面上下文足以支持这一明确归因的布局预测，对当前M05-Q01提供得克萨斯州一个项目第一阶段的地理线索，属于实质但有限的贡献。缺少容量和时间序列不妨碍局部采用。未识别敏感材料、针对本主张的真实冲突、拟替换或其他A条件，符合B类条件。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.431,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1b8e5e7ee0468c2845d32b7864debed8d465f6d4e35216c0b7db39b11b6b51d9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 59160,
+            "output_tokens": 1367,
+            "reasoning_output_tokens": 396
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 60.281,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7cc5656422e7c5770a8eaf05e32fdf0b30a522a26656555cec264aa388e56279",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 59722,
+              "output_tokens": 571,
+              "reasoning_output_tokens": 314
+            }
+          }
+        },
+        "batch_id": "82a1ffc2439746942e7558374b5649ef5e5500ff1844739067e22fa500e3501f"
+      }
     }
   ],
   "statements": [
@@ -79352,6 +79435,106 @@
         "request_sha256": "ce025b86784854b9227da61e6b618ac9f60206656be8c37d867aacc399625cff"
       },
       "object_mapping_check": "连续上下文将措施明确联系到单条天然气管道供气的共同中断风险，支持天然气管道接入对象；双燃料轮机及专门增设的柴油备用发电分别对应chain:power/3下的part:gas-turbine和part:backup-power。原文仅称现场液体燃料储存，未确定储存燃料为柴油，故不映射专指柴油储运的part:fuel-storage。候选措施不代表具体设备已经采购、安装或投运。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "evidence_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:18:ev:0"
+      ],
+      "id": "adoption:review:b2621c66a446e64ad44b63e0",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "status": "adopted",
+      "text": "DCD作者Niva Yadav在2025年2月21日的报道中预计，Stargate第一阶段将在美国得克萨斯州Abilene开始。这是来源当时的项目布局预测；原文没有给出具体开工或投运日期，不构成对项目当前状态或容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T20:06:57+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5，评分5。连续引文及完整原生页面上下文足以支持这一明确归因的布局预测，对当前M05-Q01提供得克萨斯州一个项目第一阶段的地理线索，属于实质但有限的贡献。缺少容量和时间序列不妨碍局部采用。未识别敏感材料、针对本主张的真实冲突、拟替换或其他A条件，符合B类条件。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 44.431,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1b8e5e7ee0468c2845d32b7864debed8d465f6d4e35216c0b7db39b11b6b51d9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 59160,
+            "output_tokens": 1367,
+            "reasoning_output_tokens": 396
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 60.281,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7cc5656422e7c5770a8eaf05e32fdf0b30a522a26656555cec264aa388e56279",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 59722,
+              "output_tokens": 571,
+              "reasoning_output_tokens": 314
+            }
+          }
+        },
+        "batch_id": "82a1ffc2439746942e7558374b5649ef5e5500ff1844739067e22fa500e3501f"
+      },
+      "source_candidate_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:18"
+      ],
+      "limitations": "所选引文是连续原文片段，主语和第一阶段范围须结合同句前文确认。报道未定义begin所指的具体里程碑，也未提供容量、分期边界、许可、融资、并网或交付条件。二手报道及其链接材料未在本包中获得独立原始来源核验，不能据此认定尚未开工、实际投运或区域增长速度。",
+      "conflict_check": "legacy中的us-tx-abilene已建立同一地点的项目记录，SemiAnalysis记录也涉及Abilene园区；地理信息相容。此前在建描述与本文预计Stargate第一阶段在该地开始不构成明确反证，因为begin未定义为首次土建开工。后续投运及扩建记录具有不同时间和阶段，不将其回写为本文已确认的事实。既有供电、IT容量和分期口径差异保持原状，本候选无容量主张，不能解决这些差异。所供记录未包含同等日期、作者和第一阶段预测范围的规范陈述，故不判为重复；不覆盖任何既有结论。核查限于所供材料。",
+      "gap_dependency_check": "M05-Q01仅获得一个带来源日期的区域布局预测，仍需原始项目公告、第一阶段边界、实际进度及同口径容量；各区域投运、在建、规划分布和新兴区域崛起速度仍需去重清单与增长时间序列。现有us-tx-abilene用于项目关联，不能由本条新增一个独立园区或重复计量。问题保持开放，不汇总GW、不更新模型输入或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "82a1ffc2439746942e7558374b5649ef5e5500ff1844739067e22fa500e3501f",
+        "source_report_sha256": "63dd4b11ba1d091d7220145a08d6cd4e50c5cedc69a9bbcc94dd4d3e6a405872",
+        "request_sha256": "ef48a3f3e35f9858de44243bc432f99100cda505ebe573f0fe26ff3a5c2c8f82"
+      },
+      "object_mapping_check": "独立依据完整同句及项目语境选择root：主张范围是Stargate在Abilene的第一阶段AI数据中心项目整体布局，而非全球Stargate项目组合。原文未指认内部设施系统、设备或土地及并网权利，也未在该主张中明确各参与方角色，故不增加系统、部件、场址权利或主体映射。所选证据统一使用这一主张级对象范围，不继承Reader标签。"
     }
   ],
   "answers": [],
