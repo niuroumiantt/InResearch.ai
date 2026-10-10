@@ -14,6 +14,13 @@ function selectSuites(requested) {
   return requested.length ? requested.flatMap(s => s === 'core' ? core : s === 'core_a' ? first : s === 'core_b' ? second : s === 'core_c' ? third : [s]) : defaults;
 }
 function suiteScenarios(suite) {
-  return suite === 'part_dossier' ? dossierScenes : suite === 'model_assets' ? ['bom3d', 'rack3d', 'compare'] : suite === 'scene_atlas' ? ['1', '2'] : ['system_atlas','scale_atlas'].includes(suite) ? ['views', 'downloads'] : ['rack_exploded', 'chip_package', 'campus_overview', 'campus_exploded'].includes(suite) ? ['views', 'assembly'] : [null];
+  return ['campus_overview','campus_exploded'].includes(suite) ? ['views','geometry','navigation','lifecycle'] : suite === 'part_dossier' ? dossierScenes : suite === 'model_assets' ? ['bom3d', 'rack3d', 'compare'] : suite === 'scene_atlas' ? ['1', '2'] : ['system_atlas','scale_atlas'].includes(suite) ? ['views', 'downloads'] : ['rack_exploded', 'chip_package'].includes(suite) ? ['views', 'assembly'] : [null];
 }
-module.exports = {defaults, core, selectSuites, suiteScenarios, dossierScenes};
+function selectCases(requested) {
+  return selectSuites(requested).flatMap(value => {
+    const [suite, scenario, extra] = value.split(':');
+    if (!defaults.includes(suite) || extra !== undefined || (scenario !== undefined && !suiteScenarios(suite).includes(scenario))) throw Error('Unknown browser case: '+value);
+    return (scenario === undefined ? suiteScenarios(suite) : [scenario]).map(scenario => ({suite,scenario}));
+  });
+}
+module.exports = {defaults, core, selectSuites, selectCases, suiteScenarios, dossierScenes};

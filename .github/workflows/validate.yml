@@ -28,7 +28,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        suites: [core_a, core_b, core_c, server_assembly, rack_assembly, rack_exploded, scene_atlas, campus_overview, campus_exploded, model_assets]
+        suites: [core_a, core_b, core_c, server_assembly, rack_assembly, rack_exploded, scene_atlas, campus_overview:views, campus_overview:geometry, campus_overview:navigation, campus_overview:lifecycle, campus_exploded:views, campus_exploded:geometry, campus_exploded:navigation, campus_exploded:lifecycle, model_assets]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
