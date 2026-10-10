@@ -4794,6 +4794,63 @@
       "status": "candidate",
       "stored_path": "originals/db/db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b/dcd-db5cc2544eac0dcc-Nebius to lease data center capacity from Vantage in Newport- Wal.html",
       "title": "Nebius to lease data center capacity from Vantage in Newport, Wales"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+      "coverage": {
+        "characters_read": 6022,
+        "characters_total": 6022,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+      "id": "doc-e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+      "library_path": "library/by-node/root/2026_DCD（援引 CBRE）_CBRE_ New data center capacity under construction in pr__e5a20fe05aae23f1.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "root",
+        "site:permits",
+        "system:it",
+        "system:power"
+      ],
+      "question_ids": [
+        "M01-Q02",
+        "NODE-activity-V1-chain",
+        "NODE-activity-V1-economics"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-f00ca0241ecb4718a3f2f8c81d57246b",
+      "report_sha256": "8d26f7ccecf9577a78b3fd8d18e358b04193e5ae3ee06807bb4f172719149bed",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+        "url": "https://www.datacenterdynamics.com/en/news/cbre-new-data-center-capacity-under-construction-in-primary-us-markets-declines-year-on-year/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/cbre-new-data-center-capacity-under-construction-in-primary-us-markets-declines-year-on-year/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/e5/e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc/dcd-e5a20fe05aae23f1-CBRE- New data center capacity under construction in primary US m.html",
+      "title": "CBRE: New data center capacity under construction in primary US markets declines year-on-year"
     }
   ],
   "evidence": [
@@ -35192,6 +35249,176 @@
           }
         },
         "batch_id": "2340a87c1474c5f865e0299e32503080762daf1ad4dafb625fad3a4eb5f40aa8"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "04d378c54fb4fd7bfa094257d993fe0f29747ee0579b1442f05bacec3a70c851",
+      "document_id": "doc-e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+      "id": "rev-f00ca0241ecb4718a3f2f8c81d57246b:chunk:0:claim:0:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [
+        "M01-Q02",
+        "NODE-activity-V1-chain"
+      ],
+      "quote": "The total amount of new capacity under construction in primary US data center markets has declined for the first time since 2020, according to research from CBRE.",
+      "reading_revision_id": "rev-f00ca0241ecb4718a3f2f8c81d57246b",
+      "source_sha256": "e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:59:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。两条连续原文引文直接支持候选，周围正文提供CBRE研究及年度市场比较语境，对当前M01-Q03的在建容量研究和M05-Q01的美国主要市场区域容量研究具有实质但局部的贡献。未发现敏感、真实冲突、拟替换或其他A条件，符合B级归属采用条件。M01-Q02仅获得一个额外统计口径参照，未比较指定机构或提供调和推导，不登记该问题关联。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.443,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5d63181f90d3ebb9e1bdbd0d39ce577b2622e1db48e87a0131a290fd7e6532bc",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71789,
+            "output_tokens": 1351,
+            "reasoning_output_tokens": 256
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.696,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "710b3c1336787d014335094ae24e9b104ace14b99e1c9929909a66be072060a1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 72528,
+              "output_tokens": 523,
+              "reasoning_output_tokens": 185
+            }
+          }
+        },
+        "batch_id": "e82ed33c8c68247d38754eb7f766a43270878b66c8a9444892480bbc40b9cdec"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "04d378c54fb4fd7bfa094257d993fe0f29747ee0579b1442f05bacec3a70c851",
+      "document_id": "doc-e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+      "id": "rev-f00ca0241ecb4718a3f2f8c81d57246b:chunk:0:claim:0:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [
+        "M01-Q02",
+        "NODE-activity-V1-chain"
+      ],
+      "quote": "At the end of 2025, there was 5.9GW of capacity under construction, down from 6.3GW in 2024.",
+      "reading_revision_id": "rev-f00ca0241ecb4718a3f2f8c81d57246b",
+      "source_sha256": "e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:59:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。两条连续原文引文直接支持候选，周围正文提供CBRE研究及年度市场比较语境，对当前M01-Q03的在建容量研究和M05-Q01的美国主要市场区域容量研究具有实质但局部的贡献。未发现敏感、真实冲突、拟替换或其他A条件，符合B级归属采用条件。M01-Q02仅获得一个额外统计口径参照，未比较指定机构或提供调和推导，不登记该问题关联。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.443,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5d63181f90d3ebb9e1bdbd0d39ce577b2622e1db48e87a0131a290fd7e6532bc",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71789,
+            "output_tokens": 1351,
+            "reasoning_output_tokens": 256
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.696,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "710b3c1336787d014335094ae24e9b104ace14b99e1c9929909a66be072060a1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 72528,
+              "output_tokens": 523,
+              "reasoning_output_tokens": 185
+            }
+          }
+        },
+        "batch_id": "e82ed33c8c68247d38754eb7f766a43270878b66c8a9444892480bbc40b9cdec"
       }
     }
   ],
@@ -68646,6 +68873,107 @@
         "request_sha256": "6200aa01aaf07b2db7d2143b8105d64b6ebcc7a2c00911fc2ec9a970f455730c"
       },
       "object_mapping_check": "本条实际范围为咨询与客户支持软件应用中的任务效果。合同内root及其系统、链条和部件均属于单座AI数据中心，正文没有建立这些设施范围，也未点名合同内企业主体。客户支持软件不属于DCIM/BMS与固件链，因此所选证据使用空对象范围，问题关系仍然成立。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc",
+      "evidence_ids": [
+        "rev-f00ca0241ecb4718a3f2f8c81d57246b:chunk:0:claim:0:ev:0",
+        "rev-f00ca0241ecb4718a3f2f8c81d57246b:chunk:0:claim:0:ev:1"
+      ],
+      "id": "adoption:review:7319dea74a5f09091605bff8",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q03",
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-f00ca0241ecb4718a3f2f8c81d57246b",
+      "status": "adopted",
+      "text": "DCD作者Barney Dixon在2026年3月4日的报道中援引CBRE研究称，美国主要数据中心市场的新增在建容量自2020年以来首次下降：2025年底为5.9GW，2024年为6.3GW。这是DCD转述的CBRE历史市场统计，范围为美国主要市场的在建容量，原文未限定为AI数据中心，也不构成对当前容量或项目状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:59:39+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性及评分6。两条连续原文引文直接支持候选，周围正文提供CBRE研究及年度市场比较语境，对当前M01-Q03的在建容量研究和M05-Q01的美国主要市场区域容量研究具有实质但局部的贡献。未发现敏感、真实冲突、拟替换或其他A条件，符合B级归属采用条件。M01-Q02仅获得一个额外统计口径参照，未比较指定机构或提供调和推导，不登记该问题关联。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.443,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5d63181f90d3ebb9e1bdbd0d39ce577b2622e1db48e87a0131a290fd7e6532bc",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 71789,
+            "output_tokens": 1351,
+            "reasoning_output_tokens": 256
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.696,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "710b3c1336787d014335094ae24e9b104ace14b99e1c9929909a66be072060a1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 72528,
+              "output_tokens": 523,
+              "reasoning_output_tokens": 185
+            }
+          }
+        },
+        "batch_id": "e82ed33c8c68247d38754eb7f766a43270878b66c8a9444892480bbc40b9cdec"
+      },
+      "source_candidate_ids": [
+        "rev-f00ca0241ecb4718a3f2f8c81d57246b:chunk:0:claim:0"
+      ],
+      "limitations": "报道属于二手来源，CBRE原始报告及图表未在本包中独立核验。原文明确2025年底时点，但比较句仅将6.3GW标为2024年，未单独说明其基准日。未完整交代主要市场纳入规则、容量是否为关键IT负载、项目去重方法或在建认定标准；不能直接指定为L6–L7。没有规划容量、历史队列、转化率或新兴区域增长数据，不能外推为美国全部市场、全球、中国或AI专属容量，也不能据在建存量下降推导取消量或交付量。",
+      "conflict_check": "已采用的GLOCAL及SemiAnalysis阶段区分陈述与本条保留在建性质相容。SemiAnalysis关于公告阶段、ERCOT需求分类及美国2026年交付的作者判断，与CBRE美国主要市场2024—2025年在建存量在范围、时间和阶段上不同，未形成同口径真实冲突。法国拟建项目、沙特达曼容量目标、IEA全球分布及LBNL能耗方法记录也不构成反证或重复。当前回答为空，所供legacy匹配记录为空；未发现相同统计的既有规范记录。检查限于所供材料，不代表已完成外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "M01-Q03获得美国主要市场在建存量的两年比较，仍需CBRE原始定义、项目清单与去重规则、既有漏斗等级的适用性核查、规划容量和历史队列，才能研究总量与转化率。M05-Q01获得一个美国主要市场合计参照，仍缺各区域投运、在建、规划的同口径分布及俄亥俄、印第安纳、中东的增长序列。两项问题保持开放；不汇总GW、不更新模型值或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "e82ed33c8c68247d38754eb7f766a43270878b66c8a9444892480bbc40b9cdec",
+        "source_report_sha256": "8d26f7ccecf9577a78b3fd8d18e358b04193e5ae3ee06807bb4f172719149bed",
+        "request_sha256": "9442349284be9e407a16531fb535d19190cb62c611b8811df86dab94ccbd9ed2"
+      },
+      "object_mapping_check": "独立复核后，本条对象是未限定AI的美国主要数据中心市场在建容量合计。合同中的root限定为一座AI数据中心，原文未建立该对象范围；容量单位GW也不足以指认其内部IT系统、电力系统或并网权利。相邻许可、区划及电力采购讨论不属于本条所选容量主张的对象证据，不继承Reader标签。所选两条证据统一采用空对象映射，保留有效问题关联。"
     }
   ],
   "answers": [],
