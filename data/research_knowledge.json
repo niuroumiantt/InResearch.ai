@@ -31829,6 +31829,174 @@
         },
         "batch_id": "d5f86bfedce0eae053883cc4b0393fd3df1348673b2d606b0b8a451fadf88726"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b8ed5b24e4aba4f1eda58925422d090443d85d24b7377b567fa32adc5cf8f824",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:41:claim:4:ev:0",
+      "locator": "page:42/chunk:41",
+      "object_ids": [
+        "chain:power/2"
+      ],
+      "page_index": 41,
+      "question_ids": [],
+      "quote": "However, current designs often face higher thermal\n                       management requirements and lower peak efficiency compared to high-efficiency\n                       liquid-filled transformers. Solid-state transformers are also still at an early phase of\n                       commercialisation.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:55:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文和周边语境充分，对当前替代方案及性能边界工作单提供实质性的定性支持，也为M09-Q04提供商业化阶段线索。未发现敏感内容、真实冲突或替换既有结论的提议，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M09-Q04",
+          "Q-OBJ-substation-alternatives",
+          "Q-OBJ-substation-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 86.835,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "74b3ee4f96ddc277936ce66d54bbc645d00a27217e18ba5a12bafb44803cf468",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 38202,
+            "output_tokens": 2868,
+            "reasoning_output_tokens": 426
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.643,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "aeec8f12706ac96baec287bda568b5001b52bb29870b58d45456dff7f7a12f96",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37559,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "20405df8a7f9b8e380deae4d2ab8c0497bcc31f75d554b998c476bdede3df998"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b8ed5b24e4aba4f1eda58925422d090443d85d24b7377b567fa32adc5cf8f824",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:41:claim:5:ev:0",
+      "locator": "page:42/chunk:41",
+      "object_ids": [
+        "system:power"
+      ],
+      "page_index": 41,
+      "question_ids": [],
+      "quote": "Power electronics, or the use of semiconductors for efficient power conversion and\n                       control. This technology enables voltage step-up or step-down, dynamic load balancing\n                       to maintain stable voltages, and microsecond-sensitive fault management",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:55:36+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。连续引文及上下文支持明确的转换、稳压和保护功能，对当前M09-Q04中新架构的技术机制具有实质贡献，可按B局部采用。原文未将这些一般电力电子功能限定于变电站或大型变压器，因此不采用需求匹配提出的两项变电对象问题关系。未发现A条件。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 86.835,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "74b3ee4f96ddc277936ce66d54bbc645d00a27217e18ba5a12bafb44803cf468",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 38202,
+            "output_tokens": 2868,
+            "reasoning_output_tokens": 426
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.643,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "aeec8f12706ac96baec287bda568b5001b52bb29870b58d45456dff7f7a12f96",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37559,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "20405df8a7f9b8e380deae4d2ab8c0497bcc31f75d554b998c476bdede3df998"
+      }
     }
   ],
   "statements": [
@@ -61952,6 +62120,210 @@
         "request_sha256": "66b7848e74b4436ce630f78cc1e978e7a1cff06d81e0420d2045317d36472447"
       },
       "object_mapping_check": "原文讨论整座数据中心的初始容量预期与扩展潜力，实际范围匹配root。MW口径未明，不能据此映射system:power、system:it或site:grid；本条也不采用许可或设备主张，不因AI背景增加基础设施对象。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:41:claim:4:ev:0"
+      ],
+      "id": "adoption:review:3e2390d5c49b2b71f1129801",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:power/2"
+      ],
+      "question_ids": [
+        "M09-Q04",
+        "OBJ-substation-alternatives",
+        "OBJ-substation-performance"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第42页讨论下一代AI数据中心供电架构时指出，报告所述的当时固态变压器设计往往比高效率液体填充变压器具有更高的热管理要求和更低的峰值效率，且固态变压器商业化仍处于早期阶段。该说法是IEA的技术评估，所供原文未确立发布日期，也未限定国家或具体项目，不构成当前设备性能或商业化进度的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:55:36+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。连续原文和周边语境充分，对当前替代方案及性能边界工作单提供实质性的定性支持，也为M09-Q04提供商业化阶段线索。未发现敏感内容、真实冲突或替换既有结论的提议，可按B局部采用。",
+        "workorder_ids": [
+          "Q-M09-Q04",
+          "Q-OBJ-substation-alternatives",
+          "Q-OBJ-substation-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 86.835,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "74b3ee4f96ddc277936ce66d54bbc645d00a27217e18ba5a12bafb44803cf468",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 38202,
+            "output_tokens": 2868,
+            "reasoning_output_tokens": 426
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.643,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "aeec8f12706ac96baec287bda568b5001b52bb29870b58d45456dff7f7a12f96",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37559,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "20405df8a7f9b8e380deae4d2ab8c0497bcc31f75d554b998c476bdede3df998"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:41:claim:4"
+      ],
+      "limitations": "未提供具体型号、效率数值、负载曲线、温度与冷却条件、测试方法、成本或可靠性数据；比较对象限定为高效率液体填充变压器，不能扩展为对全部传统变压器的统一结论。商业化早期是来源时点的定性判断，不能据此确定量产年份或替代比例。",
+      "conflict_check": "现有DCD采用记录讨论持续高负载下电气容量与拓扑的重新评估，未作同工况的固态变压器效率比较，不构成冲突或重复。华福证券记录保留2026年验证与送样预测、此前2028年大规模商用共识；国信证券记录为市场规模预测。送样、规模商用与商业化早期并非同一阶段，且本来源日期未知，不能认定真实时间冲突，也不能用本项修订这些预测。所供记录中未发现完整重复；检查不代表完成外部反证搜索。",
+      "gap_dependency_check": "M09-Q04仅获得商业化阶段与替代约束线索，仍缺量产时间表、实际部署和传统链替代范围。OBJ-substation-alternatives仍缺同口径性能与成本比较；OBJ-substation-performance仍缺测量方法、具体工况及可靠性和失效证据。各问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "20405df8a7f9b8e380deae4d2ab8c0497bcc31f75d554b998c476bdede3df998",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "3070c6a012243d6b4052ced0e6322ac1957cf8dd76421dba3f274d8685d33033"
+      },
+      "object_mapping_check": "原文比较固态变压器与液体填充变压器，实际范围属于system:power下的变电链。未明确设备容量、电压等级或大型电力变压器属性，因此采用chain:power/2，不继承Reader的part:transformer标签；热管理要求也不足以指认具体散热设备。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:41:claim:5:ev:0"
+      ],
+      "id": "adoption:review:9fe3f9a4e0f2b10ca1e891f7",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:power"
+      ],
+      "question_ids": [
+        "M09-Q04"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第42页讨论下一代AI数据中心供电架构时表示，电力电子利用半导体进行高效电力转换和控制，可实现电压升降、维持稳定电压的动态负载均衡，以及对微秒尺度敏感的故障管理。该表述是IEA对技术功能的说明，未证明某型号设备已经实现特定故障清除时间；所供原文未确立发布日期、国家或具体项目，也不构成当前独立性能认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:55:36+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分5。连续引文及上下文支持明确的转换、稳压和保护功能，对当前M09-Q04中新架构的技术机制具有实质贡献，可按B局部采用。原文未将这些一般电力电子功能限定于变电站或大型变压器，因此不采用需求匹配提出的两项变电对象问题关系。未发现A条件。",
+        "workorder_ids": [
+          "Q-M09-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 86.835,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "74b3ee4f96ddc277936ce66d54bbc645d00a27217e18ba5a12bafb44803cf468",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 38202,
+            "output_tokens": 2868,
+            "reasoning_output_tokens": 426
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.643,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "aeec8f12706ac96baec287bda568b5001b52bb29870b58d45456dff7f7a12f96",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 37559,
+              "output_tokens": 414,
+              "reasoning_output_tokens": 155
+            }
+          }
+        },
+        "batch_id": "20405df8a7f9b8e380deae4d2ab8c0497bcc31f75d554b998c476bdede3df998"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:41:claim:5"
+      ],
+      "limitations": "未给出器件或系统型号、输入输出电压、额定功率、控制接口、保护配合、测试方法或实测响应时间。原文microsecond-sensitive fault management不能改写为经验证的微秒级故障清除指标；技术功能不能证明量产、部署或传统设备替代已经发生。",
+      "conflict_check": "现有DCD采用记录强调高负载条件下需重新评估电气容量和拓扑，与本项功能说明相容，未形成同条件性能冲突或完整重复。华福证券的送样与商业化预测、国信证券的HVDC市场预测没有给出相同功能的实测指标，不能用于验证或否定本项。所供记录未发现真实冲突；未进行外部反证搜索。",
+      "gap_dependency_check": "M09-Q04仅获得新供电架构的转换与保护机制线索，仍需量产时间、实际部署、系统边界及传统设备保留或替代的直接证据。一般电力电子功能不足以回答大型变压器接口或可靠性问题；M09-Q04保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "20405df8a7f9b8e380deae4d2ab8c0497bcc31f75d554b998c476bdede3df998",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "3070c6a012243d6b4052ced0e6322ac1957cf8dd76421dba3f274d8685d33033"
+      },
+      "object_mapping_check": "原文明确讨论数据中心DC供电架构中的半导体电力转换、稳压及故障管理，属于电力系统。功能跨越转换与配电，未定位某一变电设备、UPS或板级电源，因此采用system:power。这里的电力控制不等于DCIM/BMS，也不继承root标签。"
     }
   ],
   "answers": [],
