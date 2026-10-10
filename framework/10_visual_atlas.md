@@ -241,7 +241,7 @@ source_display是保留的第三方来源展示：原始PNG及许可/来源/真�
 
 ### 五来源面板内容比例修正
 
-TA30–34 PR583最终20项GitHub检查通过、正常合并4cb09ce1/.66并由timer实际健康应用，21公网源字节/HTTPS health200已核；尚未逐项published，主29/35补4/4。公网v1保留Float32实际几何比绝对阈值失败，v2保留TA33弹窗内容比5.824485而目标5.764411的真实显示失败。实际computed border-box与1px边框解释约1.04%变形，五图均受同机制影响；仅来源canvas改content-box与扣两边框宽、padding0，独立候选公网观察与新实际部署后完整五项另验。世界几何比仅按实际Float32坐标采用8epsilon相对容差，CSS改实际内容高度1/64px布局量化门禁，不放宽图片/原件/下载/身份/几何/资源检查；原PNG、五SVG、全部采用场景几何保持。本地URL拒绝保留，按当前四必过及最终head全部检查，不触Spark/研究。
+TA30–34 PR583最终20项GitHub检查通过、正常合并4cb09ce1/.66并由timer实际健康应用，21公网源字节/HTTPS health200已核；尚未逐项published，主29/35补4/4。公网v1保留Float32实际几何比绝对阈值失败，v2保留TA33弹窗内容比5.824485而目标5.764411的真实显示失败。实际computed border-box与1px边框解释约1.04%变形，五图均受同机制影响；仅来源canvas改content-box与扣两边框宽、padding0，独立候选公网观察与新实际部署后完整五项另验。世界几何比仅按实际Float32坐标采用8epsilon相对容差，CSS改实际内容高度1/64px布局量化门禁，不放宽图片/原件/下载/身份/几何/资源检查；原PNG、五SVG、全部采用场景几何保持。本地URL拒绝保留，当时按四项必过及最终head全部检查（现行 CI 范围与门禁见 [CI 影响验收](../docs/CI.md)），不触Spark/研究。
 
 来源查看器的实际bitmap内容框必须保持所选示例表面比，不能仅检查外边框或metadata。边框与padding从实际getBoundingClientRect扣除，内容高度对宽/目标比的误差限于浏览器1/64 CSS px布局量化；窄屏/桌面和明暗五图分别执行。Float32几何UV边长误差与CSS box model失真分开核验，保留原错误与最窄修正记录。
 
@@ -255,4 +255,4 @@ TA30–34五项已实际a379dbba/.67、精确53c7镜像healthy，public-v4完整
 
 ### 原35项最终实际发布
 
-TA35已实际PR591合并084e0698/.68：精确head2e2最终20项CI成功，当前四必过/管理员保护已核，正常合并无bypass。AWS09:50:18Z source=applied与exact78f293镜像healthy；public-v1于09:51:59Z全部15阶段、62声明资源、四明暗宽度/360header、七说明、两实际下载、自含字体full/preview SVG、六关联页与四绘制3D冒烟通过，17图逐张original目检，17公网源SHA及HTTPShealth200成立。登记主35/35、补4/4，原计划全部实际闭包；TA35首次实际源仍084e/.68，不改成此登记SHA。六通用例型不认证同一OEM/同比例/现场完整拓扑；手机号细节须放大、关联仅导航冒烟、动态overlay和匿名研究未验边界保留。raw1条TA18关联/login ERR_ABORTED、旧预算0step失败/lease拒绝和inventory断言修正保留，非abort传输/页面/资源错误零。本地URL拒绝不绕过；Spark/研究事实服务0操作。 当前机器队列35项均published、补充4项均published，current_source_batch为空且next为空；旧源码阶段/pending是留存历史，不恢复成未完成任务。
+TA35已实际PR591合并084e0698/.68：精确head2e2最终20项CI成功，当时四必过/管理员保护已核，正常合并无bypass。AWS09:50:18Z source=applied与exact78f293镜像healthy；public-v1于09:51:59Z全部15阶段、62声明资源、四明暗宽度/360header、七说明、两实际下载、自含字体full/preview SVG、六关联页与四绘制3D冒烟通过，17图逐张original目检，17公网源SHA及HTTPShealth200成立。登记主35/35、补4/4，原计划全部实际闭包；TA35首次实际源仍084e/.68，不改成此登记SHA。六通用例型不认证同一OEM/同比例/现场完整拓扑；手机号细节须放大、关联仅导航冒烟、动态overlay和匿名研究未验边界保留。raw1条TA18关联/login ERR_ABORTED、旧预算0step失败/lease拒绝和inventory断言修正保留，非abort传输/页面/资源错误零。本地URL拒绝不绕过；Spark/研究事实服务0操作。 当前机器队列35项均published、补充4项均published，current_source_batch为空且next为空；旧源码阶段/pending是留存历史，不恢复成未完成任务。
