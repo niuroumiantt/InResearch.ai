@@ -1,0 +1,179 @@
+{
+  "task": "TA30-34 public fixture independent static review",
+  "created_utc": "2026-10-10T04:29:36.833012+00:00",
+  "source_root": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai",
+  "reviewed_head": "8db9fca914cfac747ff507989c4259472d3ff1c6",
+  "fixture": {
+    "path": "/private/tmp/ta30-34-panel-sources-public-v2.cjs",
+    "sha256": "31d703ce4170aadafb051f429029fbbc550346a3b3ca320b210b4a256c1e2ef8",
+    "lines": 241
+  },
+  "decision": "READY_FOR_OWNER_PUBLIC_EXECUTION_WITH_RECORDED_COVERAGE_LIMITS",
+  "unresolved_P2_or_higher_findings": [],
+  "resolved_history": [
+    {
+      "file": "/private/tmp/ta30-34-panel-sources-public-v1.cjs",
+      "line": 156,
+      "issue": "Missing outer scene.traverse callback closure was a syntax error; owner identified it and writer preserved v1 and fixed v2.",
+      "current": "v2 line156 closes forEach and traverse; parse-only exit0."
+    },
+    {
+      "file": "/private/tmp/ta30-34-panel-sources-public-v2.cjs",
+      "line": 208,
+      "issue": "Earlier v2 expected exploded pickables598, incorrectly reusing default TA13 count. Independently confirmed against actual current tests/rack_exploded.cjs:17 (meshes/picks/unique611).",
+      "current": "Latest v2 expected611; defaults remain598, server1129, chip1049. Original failure and early receipt should remain historical."
+    }
+  ],
+  "verified_static": [
+    {
+      "lines": [
+        11,
+        14,
+        60,
+        81,
+        82,
+        99
+      ],
+      "claim": "Exact public origin guard, absolute source-root reads, strict200/nonempty/SHA before observer replacement, no local source fulfillment fallback."
+    },
+    {
+      "lines": [
+        31,
+        37,
+        105,
+        106
+      ],
+      "claim": "Page hook is unique final module close; exposes actual module-scope declarations. It does not reference legacy block-scoped sleds. Pool hook captures its real private sets. DOMContentLoaded plus hook wait is sufficient for module initialization, not every later optional task."
+    },
+    {
+      "lines": [
+        146,
+        173
+      ],
+      "claim": "Actual source texture is located through scene mesh map identity. Each BoxGeometry material4 group uses position/index/UV corners 0,0 1,0 0,1; world distances measure actual front ratio. Current legacy six server, one hero, one storage, two switches support 6/1/1/1/1 bindings. Integer texture height compensation is verified in physical coordinates, not raw canvas aspect."
+    },
+    {
+      "lines": [
+        136,
+        144,
+        181,
+        196
+      ],
+      "claim": "Five current SVG title/desc/metadata and viewer text/IDs/download hrefs match. SVGs contain original PNG bytes and preserveAspectRatio meet; GPU and InfiniBand filename limits exist in actual visible text. Dialog Escape capture and focus restoration APIs match."
+    },
+    {
+      "lines": [
+        205,
+        215
+      ],
+      "claim": "Latest modern counts598/598/611/1129/1049 agree with unchanged factories and prior formal counts. Modern PANEL empty, hidden entry, zero dialogs and no original PNG requests are appropriate isolated-context assertions."
+    },
+    {
+      "lines": [
+        217,
+        236
+      ],
+      "claim": "503 fallback dimensions/colors and procedural caption, actual UI retry after unroute, stable texture UUID, superseded Image callback detachment, disposed handle guard, terminal release accounting after initial upload, viewer cleanup and repeated page dispose assertions match current APIs."
+    }
+  ],
+  "coverage_limits": [
+    {
+      "id": "pending_pool_page_ownership",
+      "lines": [
+        231,
+        236
+      ],
+      "status": "not_verified_by_this_fixture_sequence",
+      "detail": "The only pending server handle is explicitly disposed at231 before texturePool.dispose at233; pending responses are released at234 before disposePage at235. This proves pending handle cancellation plus quiescent pool/page release, not pool/page cancellation while a live handle is still pending. Do not extend that claim. A separate held handle passed directly to pool/page teardown would be required for that boundary."
+    },
+    {
+      "id": "optional_legacy_model_settlement",
+      "lines": [
+        33,
+        37,
+        105,
+        106,
+        179,
+        194
+      ],
+      "status": "runtime_timing_not_verified",
+      "detail": "go/settle await the module hook, fonts and three RAFs, but do not expose/await sceneModels.ready. Legacy rack3d.html:783-785 starts optional model loading and :802 can refresh later. If a real adopted optional model completes during dialog operations, sameMain can report a legitimate asynchronous refresh as a modal mutation. No such runtime failure was observed here; await existing readiness before the baseline if that public state is present."
+    },
+    {
+      "id": "visual_coverage",
+      "lines": [
+        114,
+        122,
+        238
+      ],
+      "status": "pending_actual_original_size_review",
+      "detail": "Scrollable screenshots preserve human review pending. Geometry/UV/source byte/pixel counts do not prove main-scene panel visibility or all screenshots readable."
+    }
+  ],
+  "source_evidence": [
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/web/pages/rack3d.html",
+      "sha256": "bb639fc0ae3efb99f6d412b6cbcbb54a10761d132e9403752dfcd178a13932e2",
+      "bytes": 55503
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/web/components/scene-resources.js",
+      "sha256": "d67ba290c0eeb2a68f99b87bad7537e74d81f0cf8ebf62560234db40d846a2d0",
+      "bytes": 9521
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/web/components/panel-source-viewer.js",
+      "sha256": "4bcfb83ec63dd4940b38775223686f39aab01d4d11b24214c716efb7eacbd9c1",
+      "bytes": 6155
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/web/components/rack-assembly.js",
+      "sha256": "e8a59af66489308d7daef67c053bcbb7621bb719b4115d3d324f7edc6857793e",
+      "bytes": 12780
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/web/components/rack-exploded-view.js",
+      "sha256": "43d6c292bc5d764d874de8d7e183f79c64e5454132417f1dbf9bc020fe9b41e3",
+      "bytes": 2701
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/web/components/server-assembly.js",
+      "sha256": "6d3abd5554afeb621798b91a9fb35f78c05ea439b7012b75b4ae79cd0fb9d676",
+      "bytes": 20133
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/web/components/chip-package-assembly.js",
+      "sha256": "196e3ea3ac81a73108147aa438be0c41a3266169483acd12c272543f8a6a7241",
+      "bytes": 7790
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/rack_exploded.cjs",
+      "sha256": "a1322204a66f326670dbe6a6184d4ca49b15326423bf6f542cc5ba9cb6c71b80",
+      "bytes": 17049
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/server_assembly.cjs",
+      "sha256": "2fd5ca63a10cd34318bd64b0a10293bdeb5be95ab03b3af6e57ef61f938d8889",
+      "bytes": 15239
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/chip_package.cjs",
+      "sha256": "a4a41647dd8d9c436b0bdf49e7c938cbbbba74fd57d9bd852097091841a214d4",
+      "bytes": 15508
+    }
+  ],
+  "execution": {
+    "fixture_executions": 0,
+    "product_JS_executions": 0,
+    "browser_launches": 0,
+    "HTTP_requests": 0,
+    "local_product_accesses": 0,
+    "repository_writes": 0,
+    "CI_queries": 0,
+    "parse_only": {
+      "command": "node --check /private/tmp/ta30-34-panel-sources-public-v2.cjs",
+      "exit_code": 0
+    }
+  },
+  "boundaries": "Independent static source-readiness only. No actual public functionality, visual acceptance, deployment, publication, authentication, optional-model readiness or future source changes accepted by this receipt."
+}

@@ -1,0 +1,111 @@
+{
+  "status": "PASS_NARROW_STATIC_ONLY",
+  "at": "2026-10-10T03:46:26.609701+00:00",
+  "original": {
+    "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/tests/shared_part_preview.cjs",
+    "bytes": 50372,
+    "sha256": "908f2b60d482d0bc1cce1464c966f14ac47ddabdf7ed2ad72bb99247cabc395c"
+  },
+  "v2": {
+    "path": "/private/tmp/ta29-shared-preview-public-v2.cjs",
+    "bytes": 51403,
+    "sha256": "39b3437c006659d8db1a335a1f60f9ac9786ca35cda91b0051f25332ae7e0875"
+  },
+  "owner_receipt": "/private/tmp/ta29-manual-baseline-fixture-fix-v2.json",
+  "findings": [],
+  "actual_diff": {
+    "blocks": 1,
+    "original_lines": [
+      350,
+      351
+    ],
+    "v2_lines": [
+      350,
+      359
+    ],
+    "prefix_and_suffix_byte_identical": true,
+    "removed": [
+      "    const owned=await mainState();await page.locator('#domainParts .pitem[data-part=\"transformer\"]').click();",
+      "    await miniGestures('manual-main');await page.setViewportSize({width:1180,height:820});await settle();sameMain(owned,await mainState(),'manual resize');"
+    ],
+    "added": [
+      "    const beforeExplicitFocus=await mainState();await page.locator('#domainParts .pitem[data-part=\"transformer\"]').click();await settle();",
+      "    const afterExplicitFocus=await mainState();",
+      "    // This existing visible selection intentionally calls focusCampus(). Establish",
+      "    // manual ownership after that explicit focus, not before an allowed camera action.",
+      "    const selectedMain=await canvas.boundingBox();await page.mouse.move(selectedMain.x+selectedMain.width*.6,selectedMain.y+selectedMain.height*.5);await page.mouse.down();",
+      "    await page.mouse.move(selectedMain.x+selectedMain.width*.7,selectedMain.y+selectedMain.height*.56,{steps:12});await page.mouse.up();",
+      "    await page.evaluate(()=>{__ta29.controls.enableDamping=false;__ta29.controls.update();});await settle();",
+      "    const owned=await mainState();assert.notDeepEqual(owned.camera,afterExplicitFocus.camera,'Real main drag must change camera after the explicit focus');",
+      "    await miniGestures('manual-main');await page.setViewportSize({width:1180,height:820});await settle();const afterResize=await mainState();sameMain(owned,afterResize,'manual resize');",
+      "    results.gestures.push({label:'Actual manual camera after explicit domain selection; mini and resize preserve it',beforeExplicitFocus,afterExplicitFocus,owned,afterResize});"
+    ]
+  },
+  "static_checks": [
+    {
+      "check": "Existing explicit category click is allowed to focus the main camera",
+      "result": "PASS",
+      "evidence": [
+        "web/pages/bom3d.html:991-996 showDossier then focusCampus(campusAssembly.objectsFor(p.id))",
+        "web/pages/bom3d.html:924-928 cancels writers, sceneView.takeControl, fitCampusVisible updates camera/target synchronously"
+      ]
+    },
+    {
+      "check": "Before/after explicit focus recorded before new baseline",
+      "result": "PASS",
+      "evidence": "v2:350-351 records beforeExplicitFocus/afterExplicitFocus around actual transformer row click and settle."
+    },
+    {
+      "check": "Second actual main-canvas mouse drag establishes baseline after explicit focus",
+      "result": "PASS",
+      "evidence": "v2:354-357 remeasures actual #c bounds, real mouse move/down/12-step move/up, disables damping/update/settle, then records owned. No camera assignment or synthetic focus substitution."
+    },
+    {
+      "check": "Strict mini/resize preservation remains",
+      "result": "PASS",
+      "evidence": "v2:358 calls unchanged miniGestures then actual viewport resize/settle and unchanged sameMain with owned/afterResize; sameMain:152-155 still compares camera/target <1e-7 plus exact mode/stage/domain/selectedInstance."
+    },
+    {
+      "check": "No other matrix/gate/threshold changes",
+      "result": "PASS",
+      "evidence": "One replacement only; all other bytes unchanged, including 6-mode inventories, source strict200/nonempty/SHA/public-only guards, software0/rights0, exports, resources/BFCache and final errors gates."
+    },
+    {
+      "check": "Owner receipt identifies exact reviewed v2 bytes",
+      "result": "PASS",
+      "evidence": "owner receipt sha256 equals actual v2 sha256."
+    },
+    {
+      "check": "Second gesture coordinates clear fixed sidebar at current desktop width",
+      "result": "PASS_STATIC_COORDINATES",
+      "evidence": "1280 canvas x0.6->0.7 =768->896, while right340 dossier with18px margin begins922. Runtime motion readback is still recommended."
+    },
+    {
+      "check": "Second actual main drag now positively changes camera",
+      "result": "PASS_STATIC_PRESENT",
+      "evidence": "One appended assert.notDeepEqual(owned.camera,afterExplicitFocus.camera) immediately follows owned baseline at v2:357 and precedes unchanged mini/resize strict comparisons."
+    }
+  ],
+  "boundary": {
+    "fixture_or_product_JS_executed": false,
+    "Node_or_browser_executed": false,
+    "HTTP_or_local_product_URL_used": false,
+    "repository_PR_or_production_written": false,
+    "only_artifact_written": "/private/tmp/ta29-public-fixture-v2-static-review-child.json"
+  },
+  "not_verified": [
+    "No public-v2 browser execution or pixels reviewed by this child. Actual drag response and final acceptance remain owner runtime checks.",
+    "Old public-v1 failure remains preserved at the owner receipt path; registration with substantive30-34 source batch is parent-owned."
+  ],
+  "final_reviewed_at": "2026-10-10T03:47:58.509593+00:00",
+  "prior_v2_sha256": "39fe93800a754ac4385f9086befa242dfe7e3f99021ca4876e2d44f8d787b378",
+  "motion_assert_followup": {
+    "result": "RESOLVED",
+    "additional_change": "Exactly one assertion statement appended to the existing owned-baseline line; every other prior reviewed v2 byte unchanged.",
+    "line": 357,
+    "assertion": "assert.notDeepEqual(owned.camera,afterExplicitFocus.camera,'Real main drag must change camera after the explicit focus');",
+    "actual_camera_change_required": true,
+    "target_change_not_required": true,
+    "script_not_executed_by_child": true
+  }
+}

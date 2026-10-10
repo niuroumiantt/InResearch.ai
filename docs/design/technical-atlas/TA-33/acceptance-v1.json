@@ -1,0 +1,96 @@
+{
+  "figure_id": "TA-33",
+  "object_id": "switch_tor",
+  "decision": "source_ready_public_pending",
+  "reviewed_at": "2026-10-10T04:13:08.738732+00:00",
+  "original_viewed": true,
+  "method": "Retain exact upstream PNG; controlled proportional contain display with warmwhite padding and explicit source identity; no imagegen/redraw",
+  "artifacts": [
+    {
+      "file": "web/assets/panels/switch_tor.png",
+      "sha256": "47a53a7338b8815efe4302a0a1f9fc9e5e4d67c3c4f871cfaf6ed64c5ef97c2e",
+      "bytes": 25639
+    },
+    {
+      "file": "web/assets/panels/display/switch_tor-contain.svg",
+      "sha256": "0270943e345243b5adbeb94f24526267ec6a0bd878f5b0d2c5534549d883bff6",
+      "bytes": 35060
+    }
+  ],
+  "source_display": {
+    "figure_id": "TA-33",
+    "source": "web/assets/panels/switch_tor.png",
+    "source_sha256": "47a53a7338b8815efe4302a0a1f9fc9e5e4d67c3c4f871cfaf6ed64c5ef97c2e",
+    "source_pixels": [
+      1820,
+      180
+    ],
+    "generic_surface_ratio": [
+      2300,
+      399
+    ],
+    "unit": "drawing coordinates only, not millimetres/OEM dimensions",
+    "fit": "contain",
+    "original_bytes_unchanged": true,
+    "not_static_master_or_cad": true
+  },
+  "provenance": {
+    "figure_id": "TA-33",
+    "actual_original_viewed": true,
+    "view_tool": "view_image",
+    "view_detail": "original",
+    "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/assets/panels/switch_tor.png",
+    "pixels": [
+      1820,
+      180
+    ],
+    "bytes": 25639,
+    "sha256": "47a53a7338b8815efe4302a0a1f9fc9e5e4d67c3c4f871cfaf6ed64c5ef97c2e",
+    "same_as_prior_original": true,
+    "computed_local_git_blob_sha": "8d5cd28db2ff581dadb700f84bfe43f88e20a9a0",
+    "upstream_git_blob_sha": "8d5cd28db2ff581dadb700f84bfe43f88e20a9a0",
+    "upstream_blob_identity_equal": true,
+    "upstream_image_metadata": {
+      "path": "elevation-images/Supermicro/supermicro-sse-g3648b.front.png",
+      "size": 25639,
+      "git_blob_sha": "8d5cd28db2ff581dadb700f84bfe43f88e20a9a0",
+      "html_url": "https://github.com/netbox-community/devicetype-library/blob/master/elevation-images/Supermicro/supermicro-sse-g3648b.front.png",
+      "api_url": "https://api.github.com/repos/netbox-community/devicetype-library/contents/elevation-images/Supermicro/supermicro-sse-g3648b.front.png?ref=master",
+      "git_url": "https://api.github.com/repos/netbox-community/devicetype-library/git/blobs/8d5cd28db2ff581dadb700f84bfe43f88e20a9a0"
+    },
+    "official_definition": {
+      "path": "device-types/Supermicro/SSE-G3648B.yaml",
+      "url": "https://github.com/netbox-community/devicetype-library/blob/master/device-types/Supermicro/SSE-G3648B.yaml",
+      "git_blob_sha": "94bbea94b9026830c04743fb5d34cc5a135d0224",
+      "actual_text_read": true,
+      "lines_read": "1-85; SSE-G3648B additionally 80-160"
+    },
+    "recorded_source_model": "SSE-G3648B",
+    "visual_observations": "Complete graphic elevation with rack ears and four mount holes, three banks of sixteen main RJ45-like openings (48 total), separate 49-52 marked group, right auxiliary ports/status and Supermicro mark. Black openings and thin numbering are integral source art, not empty/corrupt regions. No obvious clipped port row.",
+    "technical_boundary": "NetBox definition identifies Ethernet switch with swp1-48 1000base-t and swp49-52 10gbase-x-sfpp; these are recorded source-device properties, not a speed/deployment claim for the generic scene. TOR is a contextual role."
+  },
+  "actual_local_product_execution": false,
+  "actual_new_public_execution": false,
+  "offline_candidate": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-33/source-display-v1/source-display-candidate.png",
+  "not_verified": [
+    "Actual new public CanvasTexture/world face aspect, real legacy screen/mobile lightdark/source dialog/download/fallback/retry/disposal pending."
+  ],
+  "status": "review",
+  "publication_status": "not_published",
+  "style_id": "white-technical-atlas-v1",
+  "scope": "retained_source_display_only",
+  "original": "web/assets/panels/switch_tor.png",
+  "display": "web/assets/panels/display/switch_tor-contain.svg",
+  "source_pixels": [
+    1820,
+    180
+  ],
+  "generic_face_ratio": [
+    2300,
+    399
+  ],
+  "original_sha256": "47a53a7338b8815efe4302a0a1f9fc9e5e4d67c3c4f871cfaf6ed64c5ef97c2e",
+  "browser_checks": [
+    "tests/panel_sources.cjs"
+  ]
+}

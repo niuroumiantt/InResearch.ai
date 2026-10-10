@@ -1,0 +1,388 @@
+{
+  "task": "TA30-34 public runner v2 narrow syntax/count repair",
+  "stage": "PARSE_ONLY_PASSED_PUBLIC_EXECUTION_PENDING",
+  "created_at_utc": "2026-10-10T04:28:12.772375+00:00",
+  "runner": {
+    "path": "/private/tmp/ta30-34-panel-sources-public-v2.cjs",
+    "bytes": 32902,
+    "sha256": "31d703ce4170aadafb051f429029fbbc550346a3b3ca320b210b4a256c1e2ef8",
+    "lines": 241
+  },
+  "source_root": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai",
+  "source_snapshot": {
+    "web/pages/rack3d.html": {
+      "bytes": 55503,
+      "sha256": "bb639fc0ae3efb99f6d412b6cbcbb54a10761d132e9403752dfcd178a13932e2"
+    },
+    "web/components/scene-resources.js": {
+      "bytes": 9521,
+      "sha256": "d67ba290c0eeb2a68f99b87bad7537e74d81f0cf8ebf62560234db40d846a2d0"
+    },
+    "web/components/panel-source-viewer.js": {
+      "bytes": 6155,
+      "sha256": "4bcfb83ec63dd4940b38775223686f39aab01d4d11b24214c716efb7eacbd9c1"
+    },
+    "web/components/scene-atlas.js": {
+      "bytes": 15340,
+      "sha256": "c668c1836ab13677cd272acacaf9ed06e881b66507bf9c61b2b8fd6b01c9cd4f"
+    },
+    "web/components/scene-view.js": {
+      "bytes": 4804,
+      "sha256": "04ff5001954f182fd8e12bd52403d9675ee34a7900ac66a91062c8d54804fdbe"
+    },
+    "web/components/rack-assembly.js": {
+      "bytes": 12780,
+      "sha256": "e8a59af66489308d7daef67c053bcbb7621bb719b4115d3d324f7edc6857793e"
+    },
+    "web/components/rack-exploded-view.js": {
+      "bytes": 2701,
+      "sha256": "43d6c292bc5d764d874de8d7e183f79c64e5454132417f1dbf9bc020fe9b41e3"
+    },
+    "web/components/server-assembly.js": {
+      "bytes": 20133,
+      "sha256": "6d3abd5554afeb621798b91a9fb35f78c05ea439b7012b75b4ae79cd0fb9d676"
+    },
+    "web/components/chip-package-assembly.js": {
+      "bytes": 7790,
+      "sha256": "196e3ea3ac81a73108147aa438be0c41a3266169483acd12c272543f8a6a7241"
+    }
+  },
+  "assets": [
+    {
+      "figure": "TA-30",
+      "original": {
+        "path": "web/assets/panels/server_nvme.png",
+        "bytes": 137772,
+        "sha256": "935cda787dbdd9db2e09e655e8ec1ee6f858a31d069f0762c7c07273993b1fb2",
+        "pixels": [
+          966,
+          88
+        ]
+      },
+      "display": {
+        "path": "web/assets/panels/display/server_nvme-contain.svg",
+        "bytes": 184553,
+        "sha256": "21670231cdd631cdd3005ad9d7b00d342bff7622401b7dcd3a468dab7d1291ba",
+        "metadata": {
+          "figure_id": "TA-30",
+          "source": "web/assets/panels/server_nvme.png",
+          "source_sha256": "935cda787dbdd9db2e09e655e8ec1ee6f858a31d069f0762c7c07273993b1fb2",
+          "source_pixels": [
+            966,
+            88
+          ],
+          "generic_surface_ratio": [
+            2300,
+            735
+          ],
+          "unit": "drawing coordinates only, not millimetres/OEM dimensions",
+          "fit": "contain",
+          "original_bytes_unchanged": true,
+          "not_static_master_or_cad": true
+        },
+        "embedded_original_bytes_equal": true
+      }
+    },
+    {
+      "figure": "TA-31",
+      "original": {
+        "path": "web/assets/panels/server_gpu.png",
+        "bytes": 70243,
+        "sha256": "56386f5d0e9988f13d0b3cf3b2fa2cff99018f92d8045253bc5c9e7faccdd04f",
+        "pixels": [
+          400,
+          70
+        ]
+      },
+      "display": {
+        "path": "web/assets/panels/display/server_gpu-contain.svg",
+        "bytes": 94529,
+        "sha256": "d3b0d14a420c58baa0d88b8ba767b1c23c458508baf4f09b4b5f968f78f32ead",
+        "metadata": {
+          "figure_id": "TA-31",
+          "source": "web/assets/panels/server_gpu.png",
+          "source_sha256": "56386f5d0e9988f13d0b3cf3b2fa2cff99018f92d8045253bc5c9e7faccdd04f",
+          "source_pixels": [
+            400,
+            70
+          ],
+          "generic_surface_ratio": [
+            2300,
+            735
+          ],
+          "unit": "drawing coordinates only, not millimetres/OEM dimensions",
+          "fit": "contain",
+          "original_bytes_unchanged": true,
+          "not_static_master_or_cad": true
+        },
+        "embedded_original_bytes_equal": true
+      }
+    },
+    {
+      "figure": "TA-32",
+      "original": {
+        "path": "web/assets/panels/server_storage.png",
+        "bytes": 31262,
+        "sha256": "81c396ef73aa46505cbc91fd9f5c9a63b21eaa0fc6479f7ffe224ff03e987851",
+        "pixels": [
+          814,
+          72
+        ]
+      },
+      "display": {
+        "path": "web/assets/panels/display/server_storage-contain.svg",
+        "bytes": 42557,
+        "sha256": "348c39f81fdd3494e31562f4c7374d242c65f2094da9b33cd96018583659d93c",
+        "metadata": {
+          "figure_id": "TA-32",
+          "source": "web/assets/panels/server_storage.png",
+          "source_sha256": "81c396ef73aa46505cbc91fd9f5c9a63b21eaa0fc6479f7ffe224ff03e987851",
+          "source_pixels": [
+            814,
+            72
+          ],
+          "generic_surface_ratio": [
+            2300,
+            735
+          ],
+          "unit": "drawing coordinates only, not millimetres/OEM dimensions",
+          "fit": "contain",
+          "original_bytes_unchanged": true,
+          "not_static_master_or_cad": true
+        },
+        "embedded_original_bytes_equal": true
+      }
+    },
+    {
+      "figure": "TA-33",
+      "original": {
+        "path": "web/assets/panels/switch_tor.png",
+        "bytes": 25639,
+        "sha256": "47a53a7338b8815efe4302a0a1f9fc9e5e4d67c3c4f871cfaf6ed64c5ef97c2e",
+        "pixels": [
+          1820,
+          180
+        ]
+      },
+      "display": {
+        "path": "web/assets/panels/display/switch_tor-contain.svg",
+        "bytes": 35060,
+        "sha256": "0270943e345243b5adbeb94f24526267ec6a0bd878f5b0d2c5534549d883bff6",
+        "metadata": {
+          "figure_id": "TA-33",
+          "source": "web/assets/panels/switch_tor.png",
+          "source_sha256": "47a53a7338b8815efe4302a0a1f9fc9e5e4d67c3c4f871cfaf6ed64c5ef97c2e",
+          "source_pixels": [
+            1820,
+            180
+          ],
+          "generic_surface_ratio": [
+            2300,
+            399
+          ],
+          "unit": "drawing coordinates only, not millimetres/OEM dimensions",
+          "fit": "contain",
+          "original_bytes_unchanged": true,
+          "not_static_master_or_cad": true
+        },
+        "embedded_original_bytes_equal": true
+      }
+    },
+    {
+      "figure": "TA-34",
+      "original": {
+        "path": "web/assets/panels/switch_ib.png",
+        "bytes": 350635,
+        "sha256": "0354d636bbf6317cdb3eeaaa903a70383036f726f75b37532242cdc377ea5026",
+        "pixels": [
+          999,
+          211
+        ]
+      },
+      "display": {
+        "path": "web/assets/panels/display/switch_ib-contain.svg",
+        "bytes": 468384,
+        "sha256": "b8341c41b93dcc8428f522bbee1951525edd2cee415b8473b9dd50677791e39a",
+        "metadata": {
+          "figure_id": "TA-34",
+          "source": "web/assets/panels/switch_ib.png",
+          "source_sha256": "0354d636bbf6317cdb3eeaaa903a70383036f726f75b37532242cdc377ea5026",
+          "source_pixels": [
+            999,
+            211
+          ],
+          "generic_surface_ratio": [
+            2300,
+            399
+          ],
+          "unit": "drawing coordinates only, not millimetres/OEM dimensions",
+          "fit": "contain",
+          "original_bytes_unchanged": true,
+          "not_static_master_or_cad": true
+        },
+        "embedded_original_bytes_equal": true
+      }
+    }
+  ],
+  "static_checks": {
+    "unique_page_observer_anchor": true,
+    "unique_pool_observer_anchor": true,
+    "all_five_surfaceAspects_source_integrated": true,
+    "disposed_handle_retry_guard_present": true,
+    "superseded_image_detach_before_createImage": true,
+    "active_assignment_before_src": true,
+    "stale_callbacks_only_clear_matching_active": true,
+    "failure_redraw_and_clear_metadata": true,
+    "real_display_SVG_UI_href_present": true,
+    "viewer_disposal_in_page": true,
+    "no_block_scoped_sleds_in_final_observer": true,
+    "runner_headed_forced": true,
+    "runner_exact_origin_required": true,
+    "observer_strict200_nonempty_SHA_before_replacement": true,
+    "no_product_camera_or_target_assignment": true,
+    "legacy0_via_actual_slider_not_route_rewrite": true,
+    "no_implicit_legacy_no_request_contract": true,
+    "no_local_product_URL_literal": true,
+    "ready_resource_listener_attached_after_initial_upload": true,
+    "original_and_SVG_UI_downloads_required": true,
+    "five_modern_fresh_context_rows_required": true,
+    "raw_source_not_imported_or_evaled": true
+  },
+  "findings": [],
+  "resolved_during_static_review": [
+    "Removed direct sleds from terminal page observer: const sleds is inside legacy block, so an end-of-module reference would throw, including modern routes. Actual bindings are discovered from real scene mesh materials/UV geometry.",
+    "Historical implicit legacy routing retained as owner clarified; adopted modern modes plus default tested in independent contexts. Legacy0 is reached by actual slider UI from explicit legacy35.",
+    "Separated named routed PNG503/cancellation evidence from normal declared-resource strict200. Recovery requires real source GET/SHA and actual texture pixel equality.",
+    "Held real public response gates can release future arrivals too; waits are bounded. Two real Image attempts may share an HTTP request; cleanup assertion uses their actual refs, not an invented second network request.",
+    "Latest source reread confirms five surfaceAspects, superseded callback detach, disposed retry guard, active-before-src, fallback redraw, both download links and viewer page teardown. Earlier pending notes for these changes are obsolete."
+  ],
+  "coverage": {
+    "normal": "five actual ready handles, source PNG and display SVG strict200/fullbytes/SHA, display embedded original bytes, map/emissiveMap actual geometry front UV world ratio, independent decoded-public-source pixel comparison",
+    "dialog": "all five actual nav/select/title/visible note/file/model/aria/data status and real retry; rawPNG+displaySVG UI downloads exactly10, unchanged bytes/SHA; modal actions/Escape preserve main camera/target/quaternion/mode/stage",
+    "screenshots": "1280x900 and390x844, light/dark, each panel dialog actual scroll coverage plus legacy0/35 fullviews. Actual texture PNGs retained separately; no screenshot pixels claimed visually approved.",
+    "modern": "fresh independent default/rack0/rack35/server55/chip90 contexts, PANELempty/buttonhidden/no dialog/no original PNG requests, pickables598/598/611/1129/1049 plus unchanged adopted assembly source SHA",
+    "failure": "five real panel requests intentionally503; real procedural fallback colors/nonbackground pixels/caption/status; remove route and actual retry button restores same texture identities and exact previously recorded ready pixels",
+    "resources": "two overlapping real Image attempts, obsolete callbacks/ownership cleared, promises settle superseded/disposed, handle dispose2+retry no resurrect/upload, pool/viewer/page dispose2 actual sets/style/dialog/renderer/composer release, no late version or render changes"
+  },
+  "execution_scope_proof": {
+    "browser_launches": 0,
+    "HTTP_requests": 0,
+    "local_product_URL_accesses": 0,
+    "product_JS_executions": 0,
+    "fixture_executions": 0,
+    "repository_writes": 0,
+    "PR_or_production_writes": 0,
+    "CI_queries": 0,
+    "Spark_or_research_changes": 0,
+    "only_outputs_written_under": "/private/tmp",
+    "parse_only_node_checks": 2
+  },
+  "syntax_validation": {
+    "status": "passed",
+    "command": [
+      "node",
+      "--check",
+      "/private/tmp/ta30-34-panel-sources-public-v2.cjs"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "",
+    "execution_scope": "Node parse-only; no runner/module evaluation, no browser, product JS or HTTP. Per explicit parent authorization."
+  },
+  "limits": [
+    "Runtime browser selector/layout/timing and Image callback behavior await actual public execution.",
+    "Canvas pixel comparison allows <=4 per-channel delta and <=0.01% components over2 for floating resampling differences; actual world ratio and source SHA remain strict.",
+    "Main 3D legacy screenshots require owner original-size visibility/lighting review; canvas ratio/pixel checks alone do not assert each panel is unobscured in the main overview.",
+    "Modern geometry preservation is scoped to source byte identity of adopted assembly modules plus actual pickable counts; it is not a new all-mesh visual verdict.",
+    "No authentication/product registry/heatmap coverage. No OEM fit, protocol, hardware configuration or installation identity inferred from filenames."
+  ],
+  "owner_next_step": "Review the two exact diff hunks, retain v1 failure, deploy final reviewed source, then execute v2 serially headed against exact public origin.",
+  "suggested_run_environment": {
+    "UI_BASE_URL": "https://inresearch.ai",
+    "TA30_34_SOURCE_ROOT": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai",
+    "REVIEW_SCREENSHOTS": "/private/tmp/ta30-34-public-v1-owner-chosen"
+  },
+  "acceptance_claim": "Syntax parse-only passed. No public/browser/product/visual pass claimed.",
+  "prior_v1": {
+    "path": "/private/tmp/ta30-34-panel-sources-public-v1.cjs",
+    "sha256": "40d7c02556d6fd6a382416e5e642d6780790a232b29846c2759c645619cf21e5",
+    "preserved_unchanged": true,
+    "syntax_status": "FAILED owner node --check; missing outer scene.traverse closure caused await ref.decode to be in a non-async callback",
+    "prior_review_path": "/private/tmp/ta30-34-panel-sources-public-v1-static-review-child.json",
+    "prior_review_preserved": true,
+    "note": "v1 static review did not run parser and missed this syntax error. v2 supersedes its readiness conclusion."
+  },
+  "actual_diff": [
+    {
+      "line_v2": 156,
+      "before": "    });",
+      "after": "    });});",
+      "reason": "Close forEach and outer scene.traverse before async reference image decode."
+    },
+    {
+      "line_v2": 208,
+      "before": "{url:'/rack3d.html?view=rack-exploded&x=35',mode:'rack-exploded',pickables:598}",
+      "after": "{url:'/rack3d.html?view=rack-exploded&x=35',mode:'rack-exploded',pickables:611}",
+      "reason": "Use actual TA29 rack35 pickable count, not rack0 count or inspector clone totals."
+    }
+  ],
+  "unified_diff": "--- /private/tmp/ta30-34-panel-sources-public-v1.cjs\n+++ /private/tmp/ta30-34-panel-sources-public-v2.cjs\n@@ -153,7 +153,7 @@\n      for(let n=group.start;n<group.start+group.count;n++){const i=g.index?g.index.getX(n):n;corners.set(uv.getX(i)+','+uv.getY(i),new v.THREE.Vector3().fromBufferAttribute(pos,i).applyMatrix4(mesh.matrixWorld));}\n      const a=corners.get('0,0'),b=corners.get('1,0'),d=corners.get('0,1');if(!a||!b||!d)throw Error('Front UV unit quad unavailable');\n      bindings.push({mesh:mesh.uuid,materialIndex:mi,worldWidth:a.distanceTo(b),worldHeight:a.distanceTo(d),emissiveSame:m.emissiveMap===t,materialColor:m.color.getHex(),roughness:m.roughness,metalness:m.metalness,emissiveIntensity:m.emissiveIntensity});\n-    });\n+    });});\n     const ref=new Image();ref.src='data:image/png;base64,'+publicPNG;await ref.decode();\n     if(!meta||!bindings.length)throw Error('No actual contained panel/front');\n     const face=bindings[0].worldWidth/bindings[0].worldHeight,source=ref.naturalWidth/ref.naturalHeight;\n@@ -205,7 +205,7 @@\n   for(const m of [\n    {url:'/rack3d.html',mode:'rack',pickables:598},\n    {url:'/rack3d.html?view=rack&x=0',mode:'rack',pickables:598},\n-   {url:'/rack3d.html?view=rack-exploded&x=35',mode:'rack-exploded',pickables:598},\n+   {url:'/rack3d.html?view=rack-exploded&x=35',mode:'rack-exploded',pickables:611},\n    {url:'/rack3d.html?view=server&x=55',mode:'server',pickables:1129},\n    {url:'/rack3d.html?view=chip&x=90',mode:'chip',pickables:1049}\n   ]){\n",
+  "geometry_count_evidence": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-29/public-v2/ta29-shared-preview-results.json",
+    "bytes": 9976059,
+    "sha256": "a502f724c0e6a77a2b7aaed8f908031534f5ff048377b289c5732d59f2fe537d",
+    "matches_registered_public_receipt_SHA": true,
+    "actual_inventory": [
+      {
+        "json_path": "$.inventory[0]",
+        "mode": "campus0",
+        "pickables": 152,
+        "unique": 152
+      },
+      {
+        "json_path": "$.inventory[1]",
+        "mode": "campus70",
+        "pickables": 152,
+        "unique": 152
+      },
+      {
+        "json_path": "$.inventory[2]",
+        "mode": "rack0",
+        "pickables": 598,
+        "unique": 598
+      },
+      {
+        "json_path": "$.inventory[3]",
+        "mode": "rack35",
+        "pickables": 611,
+        "unique": 611
+      },
+      {
+        "json_path": "$.inventory[4]",
+        "mode": "server55",
+        "pickables": 1129,
+        "unique": 1129
+      },
+      {
+        "json_path": "$.inventory[5]",
+        "mode": "chip90",
+        "pickables": 1049,
+        "unique": 1049
+      }
+    ],
+    "legacy_front_bindings": {
+      "server": 6,
+      "hero": 1,
+      "storage": 1,
+      "tor": 1,
+      "ib": 1
+    },
+    "legacy_derivation": "rack3d eight chassis, hero index5 and storage index7, leaving six ordinary fronts; each of two switch chassis uses one matching panel map. Count mesh/material front map bindings, not all materials, sprites, inspector clones or source files."
+  },
+  "narrow_assertion_review": {
+    "status": "static coherent; actual runtime pending",
+    "same_class_brackets": "node --check parses all nested browser callback functions, including traverse/forEach and await sites. No remaining syntax diagnostics.",
+    "visible_text": "Latest viewer title/model/file/common source-note/status and hero GPU/ib InfiniBand negative scope phrases match runner. Changed hero binding text to 抽出的计算托盘 is not over-specified in runner and will not falsely fail.",
+    "geometry": "Front dimensions use UV-aligned world edge lengths and material index4, not rotated AABB; all five aspect configs present. Actual front bindings 6/1/1/1/1. Modern rack35 corrected to actual611."
+  }
+}

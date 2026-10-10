@@ -1,0 +1,100 @@
+{
+  "task": "TA30-34 independent fixture followup static review v2",
+  "created_utc": "2026-10-10T04:31:54.574326+00:00",
+  "source_root": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai",
+  "reviewed_fixture": {
+    "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs",
+    "bytes": 34156,
+    "sha256": "57799fd32775d5a90ae0b626dffa08da88a9dde2532de78936743d957e894ca8"
+  },
+  "prior_receipt": {
+    "path": "/private/tmp/ta30-34-fixture-independent-review-child.json",
+    "sha256": "320c509f826daaa46d8a84687baec7b1003a622b004bcfca1ff68c8e93a51a2c",
+    "history_preserved": true
+  },
+  "decision": "STATIC_READY_NO_REMAINING_MATERIAL_BLOCKER",
+  "P2_or_higher_findings": [],
+  "fixes_verified": [
+    {
+      "lines": [
+        33,
+        106
+      ],
+      "status": "closed_in_source",
+      "detail": "Observer now exposes actual module-scope sceneModels declared at rack3d.html:783. go now awaits actual sceneModels.ready and then settle/fonts/three RAFs before main-camera baselines. Modern modes use the existing resolved readiness stub; legacy uses existing mountSceneModels readiness, without mocks or local source execution."
+    },
+    {
+      "lines": [
+        233,
+        236
+      ],
+      "status": "closed_in_source",
+      "detail": "After manual server-handle cancellation, hero.retry starts a separate live handle. Snapshot asserts loading, exactly one tracked Image and complete=false. Pool.dispose twice settles the real p3 as disposed, detaches callbacks, removes tracked Images and preserves texture version, directly exercising pool ownership over a live pending attempt."
+    },
+    {
+      "lines": [
+        233,
+        239
+      ],
+      "status": "closed_in_source",
+      "detail": "poolImages are merged into allImages. Actual held network responses are released and all retained Images must complete before late checks. final.heroVersion is compared to poolPending.version after repeated page disposal plus100ms. This closes the previously missing hero late-upload/version assertion."
+    },
+    {
+      "lines": [
+        156,
+        208
+      ],
+      "status": "prior_corrections_preserved",
+      "detail": "Outer traverse callback closure and exploded pickables611 remain fixed."
+    }
+  ],
+  "review_iteration_history": [
+    {
+      "fixture_sha256": "5f3e4b67b575978ee8b56ee07455e917f3a430b141007809e950b157008360bd",
+      "observed": "Initial followup had exposed sceneModels but zero sceneModels.ready occurrences; hero Image was absent from final wait and hero version was not checked. Findings were immediately reported; owner corrected source."
+    },
+    {
+      "fixture_sha256": "57799fd32775d5a90ae0b626dffa08da88a9dde2532de78936743d957e894ca8",
+      "observed": "Final exact landed source includes all three missing statements; independently reread diff and API definitions."
+    }
+  ],
+  "actual_API_evidence": {
+    "sceneModels": "web/pages/rack3d.html:783-802",
+    "pool_retry": "web/components/scene-resources.js:126-175",
+    "handle_dispose": "web/components/scene-resources.js:177-184",
+    "pool_dispose": "web/components/scene-resources.js:189-196"
+  },
+  "product_source_sha256": {
+    "web/pages/rack3d.html": "bb639fc0ae3efb99f6d412b6cbcbb54a10761d132e9403752dfcd178a13932e2",
+    "web/components/scene-resources.js": "d67ba290c0eeb2a68f99b87bad7537e74d81f0cf8ebf62560234db40d846a2d0",
+    "web/components/panel-source-viewer.js": "4bcfb83ec63dd4940b38775223686f39aab01d4d11b24214c716efb7eacbd9c1"
+  },
+  "product_source_change_from_prior_review": false,
+  "checks": [
+    {
+      "command": "node --check tests/panel_sources.cjs",
+      "cwd": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai",
+      "exit_code": 0,
+      "scope": "parse-only, no module evaluation"
+    },
+    {
+      "command": "git diff --check",
+      "cwd": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai",
+      "exit_code": 0,
+      "scope": "whitespace diff validation only"
+    }
+  ],
+  "execution": {
+    "product_JS_executions": 0,
+    "fixture_executions": 0,
+    "browser_launches": 0,
+    "HTTP_requests": 0,
+    "repository_writes": 0,
+    "only_receipt_write": "/private/tmp/ta30-34-fixture-independent-review-child-v2.json"
+  },
+  "limits": [
+    "Static source readiness only; owner must run exact deployed public source before functional claims.",
+    "Direct pool pending-Image disposal and repeated page cleanup are now separately asserted; this is not an independently executed pagehide/BFCache pending-fetch experiment.",
+    "Actual screenshot original-size visual review, timing, render output and public network results remain pending."
+  ]
+}

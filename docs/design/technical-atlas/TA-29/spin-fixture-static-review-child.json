@@ -1,0 +1,51 @@
+{
+  "status": "READY_STATIC_SOURCE_ONLY_NOT_EXECUTED",
+  "at": "2026-10-10T03:51:46.064413+00:00",
+  "artifact": "/private/tmp/ta29-whole-spin-public-supplement.cjs",
+  "bytes": 15197,
+  "sha256": "f451bfb17d37730a9f4680735c31c0598ad04679922853df96edd13118fd7de5",
+  "reused_observer": {
+    "source": "/private/tmp/ta29-shared-preview-public-v2.cjs",
+    "sha256": "39b3437c006659d8db1a335a1f60f9ac9786ca35cda91b0051f25332ae7e0875",
+    "WIRING_copied_byte_identical": true,
+    "active_injections": [
+      "part-inspector.js",
+      "bom3d.html",
+      "rack3d.html"
+    ],
+    "unique_markers_verified": true
+  },
+  "scope": [
+    "Headed actual https://inresearch.ai only; strict environment/context/observer origin; no local fallback.",
+    "Source observer strips conditional headers,maxRedirects0,actual200+nonempty+SHA against explicit reviewed tree before exposing actual__ta29 refs.",
+    "campus0/campus70/rack35 actualwhole UI click, expanded true dialog, real fit and real start/pause UI buttons.",
+    "No iRot assignment, manual yaw stepping, source geometry replacement, fake meshes or product behavior rewrite.",
+    "Actual state yaw advances monotonically >=2pi; pivot yaw matches, 500ms samples record real mesh corner projections and actual main camera/target/quaternion/state.",
+    "Complete full-turn trace persists even if a sample clips; final pass requires fitted/paused bounds and every sample inside with main unchanged.",
+    "Each case saves full expanded pre-spin and post-pause page images plus incremental bounds/yaw/time series; actual visual inspection remains separate."
+  ],
+  "constraints": {
+    "browser_or_HTTP_access": false,
+    "local_product_URL_server_access": false,
+    "fixture_or_product_JS_execution": false,
+    "Node_syntax_check": false,
+    "repository_PR_or_production_writes": false,
+    "new_subagents": false
+  },
+  "source_review": {
+    "findings": [],
+    "main_tolerance": 1e-07,
+    "clip_bounds": "abs(x/y)<=1 and -1<=z<=1 for actual transformed local-bbox corners",
+    "minimum_turn": "Actual current.rotation.y minus actual start.rotation.y >=2*Math.PI",
+    "deadline_per_case_ms": 180000,
+    "sampling_interval_ms": 500,
+    "geometry_scope": "Every actual visible mesh under independent preview iGroup",
+    "no_TA15_full_regression": true
+  },
+  "not_verified": [
+    "Runner was not executed or parsed by Node; owner can run parse-only then headed public after full-v2.",
+    "500ms sampled bounds cover different actual yaw values through >=2pi; they do not mathematically prove unsampled angles.",
+    "No actual screenshot pixels, runtime bounds, auto-spin, main preservation or publication success proven by this source review.",
+    "Phone optional case omitted to keep narrow three-desktop-whole scope; existing v2 phone controls/reopen evidence remains separate."
+  ]
+}
