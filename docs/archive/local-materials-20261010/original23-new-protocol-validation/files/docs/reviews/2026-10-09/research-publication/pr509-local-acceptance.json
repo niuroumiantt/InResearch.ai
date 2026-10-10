@@ -1,0 +1,39 @@
+{
+  "checked_at": "2026-10-09T11:30:22.113642+00:00",
+  "pr": 509,
+  "head": "ca56f43af8ec138e33f02d3fb17463e5bc5bed83",
+  "baseline": "ef73a45701b3c2143293f9579dbb2218aacaa86a",
+  "original_head": "5234e82beafd3961da57db448b7682f3024cb147",
+  "refreshed_parent": "0552fa4ef5c1d36551be8b30f2216035f95b5371",
+  "source_bundle_sha256": "b16857cf37f60e44df495fbaa1c658b1516887636648956ef473a22bda13ed32",
+  "batch_id": "e24745173a6c3e1e5f399f093ac912a7ed4e4741e0dfa33cf1c52d6be111b1a2",
+  "attempt": 4,
+  "checks": {
+    "related_tests": {
+      "count": 397,
+      "result": "passed",
+      "command": "PYTHONPATH=src:tests/unit python3 -B -m unittest test_research_review test_research test_fact_contract test_verification_contract test_research_publication_merge",
+      "first_sandbox_run": "15 local HTTP fixture errors (bind denied); failed log preserved, local-only authorized rerun passed"
+    },
+    "governance_refresh": "passed .41 /1719files",
+    "governance_check": "passed .41 /1719files",
+    "validate_strict": "passed 0warnings",
+    "registry": "passed 353objects/458questions",
+    "git_diff_check": "passed"
+  },
+  "formal_data_sha256": "c34ec7a50f20fa31da056aaa26b4fdb86350bf35b8fd6101846d853526b2450f",
+  "diff_paths": [
+    "data/research_knowledge.json",
+    "docs/REPOSITORY_REGISTER.md",
+    "docs/reviews/2026-10-09/pr509-root-semantic-review.json",
+    "framework/repository_manifest.json"
+  ],
+  "clean": true,
+  "root_semantic_receipt_sha256": "22d7203977836f2ff359e46f61f4adc17765024ee7a7de81e562df138e667f4a",
+  "evidence": {
+    "/private/tmp/inresearch-pr509-related-tests-localhost-20261009.log": "aa4d0d226939b460fb33447e80ed491dc8e7ecf9751d0ae9eedff057586e7e1c",
+    "/private/tmp/inresearch-pr509-local-delta-source-check-20261009.json": "c9667e9d57d53b5e733573949097d3b2c549d2677f7faf56c01e889cfbe0a967",
+    "/private/tmp/inresearch-pr509-related-tests-20261009.log": "6b992e1268935dc5247fa15c90745600c1217b9a77381468e79d72e4548f81b1"
+  },
+  "boundary": "Fresh current-context/source audit and exact remote head gate required before merge; no CI checked; no product code change; no source queue/service/model/scope operation; no assertion of published status."
+}
