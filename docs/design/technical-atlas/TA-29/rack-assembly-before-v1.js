@@ -69,7 +69,7 @@ export function buildRackAssembly({THREE, material, tag, label, exploded=false})
   function chassis(parent,name,y,h) {
     const g=group(name,parent);g.position.set(.3,y,.15);
     g.userData.installationAxis=[0,0,1];g.userData.front='+z';
-    g.userData.instanceId='rack/'+name;
+    if(exploded)g.userData.instanceId='rack/'+name;
     const fixed=exploded?group(name+'-fixed-outer-rails',frame):g;
     if(exploded)fixed.position.copy(g.position);
     // Folded metal envelope; installed equipment stays on the original plane.

@@ -1,0 +1,333 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-29",
+  "phase": "read_only_preflight; planned; no claim or production",
+  "decision": "Concrete shared preview scope identified; actual implementation waits for TA28 publication.",
+  "deliverable": "共用新图册配方、旋转/重开适配与身份定位；按实际可预览部件清单逐项回归。依赖TA02/11/13，不将TA15全套重新制作。",
+  "current_implementation": [
+    "Inspector already calls configureAtlasRenderer, addAtlasLights and createAtlasDrawing(normalize:false). The historical queue gap does not prove the current mini still uses the old renderer recipe.",
+    "Inspector borrows source geometry, independently clones materials, clears clone userData, owns its renderer/viewport/derived edges, and never intentionally disposes source geometry or textures. bom3d materialFor resolves dimmed.original then covPrev then source material.",
+    "An independent PerspectiveCamera36, recentered visible bounds, sphere/narrower-FOV fit and measured viewport support rotation/reopen. Drag changes its pivot and stops auto-spin; show resets initial orientation and reduced-motion spin.",
+    "Existing 放大查看 opens static full SVG in a new window. Mini has drag rotation but no wheel zoom, independent enlargement, fit button or snapshot API.",
+    "Dossier 导出当前图册 triggers the main scene export. It is current-main-view SVG with embedded raster plus editable labels/caption/metadata, not a mini export or a1536 master.",
+    "hide stops visible rendering; borrowed geometry/texture/environment survive. Clone replacement disposes old cloned materials. Drawing edge cache may persist until component disposal: check bounded reuse/final ownership rather than demand an empty cache after every close."
+  ],
+  "inventory": {
+    "campus": {
+      "physical_part_ids": [
+        "shell",
+        "ups",
+        "rack-frame",
+        "room-cooling",
+        "cdu",
+        "cabling",
+        "chiller",
+        "transformer",
+        "backup-power",
+        "bess"
+      ],
+      "prior_source_instances": 32,
+      "prior_source_meshes": 152,
+      "whole_identity": "campus/whole under shell research category",
+      "selection": "Pointer resolves exact campusAssembly.instanceFor; category/deep-link resolves first matching instance. These are different scopes.",
+      "prior_reference_instances_by_part": {
+        "shell": 4,
+        "ups": 1,
+        "rack-frame": 8,
+        "room-cooling": 5,
+        "cdu": 3,
+        "cabling": 1,
+        "chiller": 3,
+        "transformer": 2,
+        "backup-power": 3,
+        "bess": 2
+      },
+      "stable_instance_ids": [
+        "campus/building-base",
+        "campus/building-frame",
+        "campus/retained-wall-sections",
+        "campus/retained-roof-sections",
+        "campus/UPS-bank",
+        "campus/rack-r1-c1",
+        "campus/rack-r1-c2",
+        "campus/rack-r1-c3",
+        "campus/rack-r1-c4",
+        "campus/rack-r2-c1",
+        "campus/rack-r2-c2",
+        "campus/rack-r2-c3",
+        "campus/rack-r2-c4",
+        "campus/room-cooling-1",
+        "campus/room-cooling-2",
+        "campus/room-cooling-3",
+        "campus/room-cooling-4",
+        "campus/room-cooling-5",
+        "campus/CDU-1",
+        "campus/CDU-2",
+        "campus/CDU-3",
+        "campus/overhead-service-trays",
+        "campus/air-chiller-1",
+        "campus/air-chiller-2",
+        "campus/air-chiller-3",
+        "campus/transformer-1",
+        "campus/transformer-2",
+        "campus/standby-generator-1",
+        "campus/standby-generator-2",
+        "campus/standby-generator-3",
+        "campus/battery-cabinet-1",
+        "campus/battery-cabinet-2"
+      ]
+    },
+    "server": {
+      "source_part_ids": [
+        "server",
+        "cpu",
+        "dram",
+        "gpu",
+        "ssd",
+        "nic",
+        "psu",
+        "server-fan"
+      ],
+      "whole": "PARTMESH.server aggregates whole assembly",
+      "selection": "Other part IDs can aggregate multiple category meshes. Source assemblyComponent names exist but no page selected-server-instance variable; do not label category aggregation as a single physical device."
+    },
+    "rack": {
+      "source_part_ids": [
+        "rack-frame",
+        "server",
+        "power-shelf",
+        "network-switch"
+      ],
+      "whole": "rack-frame intentionally aggregates all pickables",
+      "exploded_names": "rack/compute-1..8, rack/switch-1..2, rack/power-shelf-1..2; rack/front-door,left-side-panel,top-cover",
+      "installed_identity_gap": "chassis assigns userData.instanceId only when exploded=true. x0 default single-tray/switch/power-shelf selection gets rackSelectedInstance=null, so main export falls back to part:category despite single-group meshes. Stable group names exist but unique installed instance identity is not emitted.",
+      "optional_accessories": "Unconnected service accessories remain rack-frame context, not new power/fluid components."
+    },
+    "chip": {
+      "part_ids": [
+        "gpu",
+        "hbm"
+      ],
+      "stable_names": "package/logic-die, package/hbm-1..4, package/interposer, package/substrate and package/whole",
+      "reuse": "Only shared-preview smoke for logic, nonfirst HBM and whole. Reuse TA15 geometry/art; no full TSV/contact/BGA/anchor recertification."
+    },
+    "zero_entities": "dcim intentionally software0meshes, six site rights nonphysical site:canonical, modular-dc delivery template; missing campus IT categories get no invented geometry. Preview inventory is not all61 physical categories or47 system artworks."
+  },
+  "preparation_gaps": [
+    {
+      "id": "G01",
+      "finding": "Create an actual per-mode preview inventory at delivery, with part ID, selected instance, selected mesh count, preview mesh count and scope. Installed rack instance identity is a concrete current gap; server category aggregation needs truthful labels."
+    },
+    {
+      "id": "G02",
+      "finding": "State whether TA29 retains existing static-art enlargement or implements separately identified interactive enlargement. Do not claim static SVG zoom is interactive 3D zoom, or main export is mini export."
+    },
+    {
+      "id": "G03",
+      "finding": "Old part_dossier has10 deep links but requires authenticated research ready and retains historical domain-stage45 assumptions. scene_framing explicitly targets legacy and optional-model authenticated APIs. Neither alone proves current default preview completeness."
+    },
+    {
+      "id": "G04",
+      "finding": "Existing rack3d pagehide uses once:true; an initial persisted BFCache event can consume the later disposal listener. Its RAF lacks bom3d pageDisposed guard. If TA29 owns page lifecycle, consider a narrow fix and actual integration test; this is source-derived risk, not executed failure."
+    }
+  ],
+  "required_acceptance": [
+    {
+      "area": "actual inventory",
+      "scope": "Current campus assembled/layered, server, rack assembled/exploded, chip and narrow retained legacy. Every declared previewable part at least once; representative nonfirst repeated instances prove exact IDs. Empty/nonphysical cases separately listed."
+    },
+    {
+      "area": "visual/rotation/reopen",
+      "scope": "Desktop/phone light/dark, real mini pixels and full rotated bounds at different aspect ratios; reopen same/different part, whole→part→no-mesh→part and stage0→100. Keep actual viewport/canvas dimensions. Phone detail/whole-mini conservative limits remain explicit."
+    },
+    {
+      "area": "camera/control ownership",
+      "scope": "Real mini drag changes its own pivot and stops auto-spin; main camera/target/stage/selection unchanged. Reopen restores authored orientation and reduced motion. Any new interactive enlargement requires same instance, truthful current geometry/material, own fit/close controls and pointer isolation."
+    },
+    {
+      "area": "material ownership",
+      "scope": "During domain dimming and heatmap, clone baseline material values rather than presentation tint/opacity. Compare actual source material identities/properties before/after, including material arrays; visual review remains required."
+    },
+    {
+      "area": "resources",
+      "scope": "Finite repeated-corpus reopen and dispose twice; cloned materials/derived edge geometry/renderer/observer owned once, borrowed geometry/texture/environment untouched. No detached rendering/callback writes. Test whole/part→software cache, pointer cancel and page exit/BFCache if changed."
+    },
+    {
+      "area": "exports/static art",
+      "scope": "Current MAIN SVG visible caption, stable object_id and actual pixels, unchanged main viewpoint/stage/selection after mini operations. No fake leader for0mesh software. Any new MINI export separately identified. Reuse adopted static SVG/PNG bytes and real dual downloads; preserve default14/system47 and domain+part gates."
+    },
+    {
+      "area": "software/rights",
+      "scope": "dcim one software card/no visible inspector canvas/0selected meshes/null instance/part:dcim plus visible nonphysical caption. Six rights site identities and modular template remain no fake meshes. Physical→whole→software→physical never displays hidden cached geometry as software."
+    },
+    {
+      "area": "publication",
+      "scope": "Only after TA28 published: strict permitted HTTPS fixture, strict200 nonempty source, stripped conditional headers and executed-source SHA matching fetched/expected. Actual views/downloads/source-applied-image health close TA29 only. Authenticated research remains not_verified without actual authorized read."
+    }
+  ],
+  "reuse": [
+    "TA02 recipe and ownership contracts: verify touched behavior.",
+    "TA11/13/14 server/rack geometry/art: shared-preview integration only unless a real change requires broader checks.",
+    "TA15 source/art/geometry: logic/nonfirstHBM/whole smoke only.",
+    "TA18/19 32/152 and nonphysical namespace: no new OEM/CAD/topology claims.",
+    "TA28 software semantics remain owner-publication-pending in this preflight."
+  ],
+  "not_verified": [
+    "No browser, productHTTP/productJS/WebGL/server/tests executed; no repo/status/queue/governance/PR writes.",
+    "No actual pixels, runtime counts, rotation, resource release, downloads or deployment proven.",
+    "Static source inventories and prior geometry receipts must be checked against actual TA29 published source; legacy aliases/geometries are not silently migrated.",
+    "TA29 remains planned; actual work waits for TA28 published. No CI, Spark, research/service mutation."
+  ],
+  "observed_at": "2026-10-10T02:57:50.292150+00:00",
+  "worktree": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai",
+  "head": "1c1a024a900df6f10d50a8b5b4d8416acd6129b6",
+  "framework_version": "2026.10.10.64",
+  "queue_item": {
+    "id": "TA-29",
+    "order": 29,
+    "title": "部件档案旋转预览与放大",
+    "phase": "H · 同源复用",
+    "kind": "existing",
+    "source_paths": [
+      "web/components/part-inspector.js",
+      "web/components/part-dossier.js"
+    ],
+    "entry": "bom3d/rack3d 档案内预览",
+    "reference": [
+      "R2",
+      "R3"
+    ],
+    "observed_gap": "小预览继承旧材质；领域/热图状态不能串入原材质",
+    "deliverable": "共用新图册配方、旋转/重开适配与身份定位；按实际可预览部件清单逐项回归",
+    "depends_on": [
+      "TA-02",
+      "TA-11",
+      "TA-13"
+    ],
+    "status": "planned",
+    "acceptance_record": null,
+    "published_revision": null
+  },
+  "actual_read_files": [
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/framework/CURRENT.md",
+      "bytes": 43632,
+      "sha256": "41330d5d8369a52a1670d4de1f4973987e91d29375ade758a75525cdee0dbeb1"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/framework/current_state.json",
+      "bytes": 208885,
+      "sha256": "56864b1b3f8762072d25b8d9b23d6dfde713a9b251b96296a57aee305950a66a"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/docs/DECISIONS.md",
+      "bytes": 258401,
+      "sha256": "e319e20f229ea4e3c1f0b2e5ace1db8b1718ddb083f29fcac6a2c3c0661d8b38"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/framework/10_visual_atlas.md",
+      "bytes": 39963,
+      "sha256": "67051285f61b5fe1a98d6738147ec541390789142e704d872b9b645a22afc10f"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/framework/verification_contract.json",
+      "bytes": 369853,
+      "sha256": "fb4c165e79fd6bae5545bca453f9df3b422136991e6df286c9a8601b0c34af47"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/framework/visual_atlas_migration.json",
+      "bytes": 58306,
+      "sha256": "96bd57d9d052f6b59f746777180806fba040c9a7f85c8a6d328c9862e57206ee"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/docs/design/technical-atlas/MIGRATION_PLAN.md",
+      "bytes": 50425,
+      "sha256": "9ae098e18e9a542294f3259eb3035f83c4a6bc57cdcd86f4bfae7ce3c392532d"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/components/part-inspector.js",
+      "bytes": 4188,
+      "sha256": "7e0969f3a57bd96f409bbb5e1c57edb089ce052b54a1816b70b9df940f21e19e"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/components/part-dossier.js",
+      "bytes": 5550,
+      "sha256": "e8ef6baecc11adaa01c65ef5c8254a26212629ad57c1f6043b7df44c0b6218e1"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/components/technical-atlas.js",
+      "bytes": 45503,
+      "sha256": "e35b374d91c37413befbf6169fd4e080c5445ed4e13052a16dbcc9ca4cf51dd6"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/components/scene-atlas.js",
+      "bytes": 15340,
+      "sha256": "c668c1836ab13677cd272acacaf9ed06e881b66507bf9c61b2b8fd6b01c9cd4f"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/components/scene-view.js",
+      "bytes": 4804,
+      "sha256": "04ff5001954f182fd8e12bd52403d9675ee34a7900ac66a91062c8d54804fdbe"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/pages/bom3d.html",
+      "bytes": 79230,
+      "sha256": "a5985024635d479245f068113c26ba6ee54f6090ea05ebaa611f818f0525b9f9"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/pages/rack3d.html",
+      "bytes": 53394,
+      "sha256": "dd8413640c87745a0743a0a14d65a438b665c35c262110117795b28155639547"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/components/campus-assembly.js",
+      "bytes": 15884,
+      "sha256": "377a08934681609a94f735e6eb5fa4d17cbfc8a573d0bc0e121fb436c0fceab5"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/components/campus-exploded-assembly.js",
+      "bytes": 5603,
+      "sha256": "da9fc2b7de2d00d1be63a2dcc07286d9d24d5ffff4ccf24b5cf816772629a860"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/components/server-assembly.js",
+      "bytes": 20133,
+      "sha256": "6d3abd5554afeb621798b91a9fb35f78c05ea439b7012b75b4ae79cd0fb9d676"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/components/rack-assembly.js",
+      "bytes": 12792,
+      "sha256": "58814333bc32285c0dde793b8597a9634731429ccf370e654a5c8fa233aeea97"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/web/components/chip-package-assembly.js",
+      "bytes": 7790,
+      "sha256": "196e3ea3ac81a73108147aa438be0c41a3266169483acd12c272543f8a6a7241"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/tests/browser_suites.cjs",
+      "bytes": 2983,
+      "sha256": "7b7ed744989a8fc2f7037bc99dce34561bff02d51eaa229f52b21124e0b3dece"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/tests/part_dossier.cjs",
+      "bytes": 15915,
+      "sha256": "636e7fc5596c8e17384c72e259a5a73a098e7fb12d8ac20b8a8cb82f8116f1c5"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/tests/scene_framing.cjs",
+      "bytes": 12840,
+      "sha256": "0d4a3882b2c0fb542f5c140d0643645c7305bd444fb907f604c22ac271a665df"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/tests/scene_atlas.cjs",
+      "bytes": 6474,
+      "sha256": "a2f07325f1a88879c02915aedd08f856e709d1ff7dc36c5a4b03a4b8829d0e1a"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai/docs/design/technical-atlas/TA-28/existing-geometry-reference-v1.json",
+      "bytes": 9390,
+      "sha256": "9d1a6e188c1e076fb1070a44c572bba6bfbfe859ef2b46489201893c9e1f3997"
+    }
+  ]
+}

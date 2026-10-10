@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.64。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.65。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2317。
+在册文件：2339。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 353 |
+| 运行代码 | 358 |
 | 现行规范 | 15 |
-| 项目配置 | 665 |
+| 项目配置 | 679 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 170 |
-| 测试 | 180 |
+| 配套说明 | 171 |
+| 测试 | 182 |
 
 ## 在册记录集合
 
@@ -1025,7 +1025,8 @@
 | `docs/design/technical-atlas/TA-27/source-review-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-27/technical-sources-v1.json` | sources | 6 |
 | `docs/design/technical-atlas/TA-28/acceptance-v1.json` | artifacts | 4 |
-| `docs/design/technical-atlas/TA-28/acceptance-v1.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-28/acceptance-v1.json` | not_verified | 9 |
+| `docs/design/technical-atlas/TA-28/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-28/asset-manifest-v1.json` | assets | 4 |
 | `docs/design/technical-atlas/TA-28/component-manifest-v1.json` | components | 1 |
 | `docs/design/technical-atlas/TA-28/component-manifest-v1.json` | labels | 6 |
@@ -1052,6 +1053,21 @@
 | `docs/design/technical-atlas/TA-28/offline-label-scan-v1.json` | hits | 0 |
 | `docs/design/technical-atlas/TA-28/offline-label-scan-v1.json` | outside | 0 |
 | `docs/design/technical-atlas/TA-28/offline-label-scan-v1.json` | text_text_overlaps | 0 |
+| `docs/design/technical-atlas/TA-28/public-checks-v1.json` | boundaries | 9 |
+| `docs/design/technical-atlas/TA-28/public-checks-v1.json` | views | 14 |
+| `docs/design/technical-atlas/TA-28/public-checks-v1.json` | controls | 2 |
+| `docs/design/technical-atlas/TA-28/public-checks-v1.json` | downloads | 2 |
+| `docs/design/technical-atlas/TA-28/public-checks-v1.json` | declared_resources | 18 |
+| `docs/design/technical-atlas/TA-28/public-checks-v1.json` | geometry | 4 |
+| `docs/design/technical-atlas/TA-28/public-checks-v1.json` | software_dossiers | 3 |
+| `docs/design/technical-atlas/TA-28/public-checks-v1.json` | scope_isolation | 10 |
+| `docs/design/technical-atlas/TA-28/public-fixture-v2-static-review-child.json` | diff | 1 |
+| `docs/design/technical-atlas/TA-28/public-fixture-v2-static-review-child.json` | findings | 0 |
+| `docs/design/technical-atlas/TA-28/public-fixture-v2-static-review-child.json` | checks | 6 |
+| `docs/design/technical-atlas/TA-28/public-fixture-v2-static-review-child.json` | limits | 2 |
+| `docs/design/technical-atlas/TA-28/publication-20261010.json` | source_prs | 1 |
+| `docs/design/technical-atlas/TA-28/publication-20261010.json` | related_interactive_entries | 2 |
+| `docs/design/technical-atlas/TA-28/publication-20261010.json` | boundaries | 9 |
 | `docs/design/technical-atlas/TA-28/references-v1.json` | references | 2 |
 | `docs/design/technical-atlas/TA-28/source-review-v1.json` | artifacts | 4 |
 | `docs/design/technical-atlas/TA-28/source-review-v1.json` | not_verified | 4 |
@@ -1065,6 +1081,38 @@
 | `docs/design/technical-atlas/TA-28/technical-preflight-v1.json` | actual_static_reads | 8 |
 | `docs/design/technical-atlas/TA-28/technical-preflight-v1.json` | not_performed | 3 |
 | `docs/design/technical-atlas/TA-28/technical-sources-v1.json` | sources | 3 |
+| `docs/design/technical-atlas/TA-29/acceptance-v1.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-29/acceptance-v1.json` | browser_checks | 1 |
+| `docs/design/technical-atlas/TA-29/acceptance-v1.json` | implementation_at_review | 8 |
+| `docs/design/technical-atlas/TA-29/acceptance-v1.json` | remaining_work | 1 |
+| `docs/design/technical-atlas/TA-29/acceptance-v1.json` | references | 2 |
+| `docs/design/technical-atlas/TA-29/acceptance-v1.json` | reviewed_sources | 8 |
+| `docs/design/technical-atlas/TA-29/baseline-v1.json` | historical_sources | 5 |
+| `docs/design/technical-atlas/TA-29/baseline-v1.json` | unchanged_reuse | 5 |
+| `docs/design/technical-atlas/TA-29/independent-integration-static-review-v1.json` | actual_parse_checks | 6 |
+| `docs/design/technical-atlas/TA-29/independent-integration-static-review-v1.json` | material_findings | 0 |
+| `docs/design/technical-atlas/TA-29/independent-integration-static-review-v1.json` | not_verified | 5 |
+| `docs/design/technical-atlas/TA-29/independent-integration-static-review-v1.json` | actual_read_files | 9 |
+| `docs/design/technical-atlas/TA-29/independent-public-fixture-static-review-v1.json` | findings | 0 |
+| `docs/design/technical-atlas/TA-29/independent-public-fixture-static-review-v1.json` | checked | 9 |
+| `docs/design/technical-atlas/TA-29/independent-public-fixture-static-review-v1.json` | limits | 6 |
+| `docs/design/technical-atlas/TA-29/inspector-source-review-child-v1.json` | design | 8 |
+| `docs/design/technical-atlas/TA-29/inspector-source-review-child-v1.json` | actual_checks | 4 |
+| `docs/design/technical-atlas/TA-29/inspector-source-review-child-v1.json` | not_verified | 6 |
+| `docs/design/technical-atlas/TA-29/preview-inventory-v1.json` | not_verified | 2 |
+| `docs/design/technical-atlas/TA-29/public-fixture-owner-review-v1.json` | limits | 4 |
+| `docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json` | runtime_guards | 4 |
+| `docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json` | coverage | 11 |
+| `docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json` | not_verified | 6 |
+| `docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json` | static_source_snapshots | 6 |
+| `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | current_implementation | 6 |
+| `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | preparation_gaps | 4 |
+| `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | required_acceptance | 8 |
+| `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | reuse | 5 |
+| `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | actual_read_files | 24 |
+| `docs/design/technical-atlas/TA-29/source-review-v1.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-29/source-review-v1.json` | reviewed_sources | 8 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -2084,17 +2132,37 @@
 | `docs/design/technical-atlas/TA-28/bom3d-before-v1.html` | 运行代码 |
 | `docs/design/technical-atlas/TA-28/component-manifest-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/existing-geometry-reference-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-28/fragment-fixture-fix-v2.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/generation-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/independent-public-fixture-preflight-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/independent-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/independent-source-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/offline-label-scan-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-28/public-checks-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-28/public-fixture-v2-static-review-child.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-28/publication-20261010.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/references-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/source-nav-fix-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/source-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/technical-preflight-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-28/technical-sources-v1.json` | 项目配置 |
+| [docs/design/technical-atlas/TA-29/SOURCE_REVIEW.md](design/technical-atlas/TA-29/SOURCE_REVIEW.md) | 配套说明 |
+| `docs/design/technical-atlas/TA-29/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/baseline-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/bom3d-before-v1.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-29/independent-integration-static-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/independent-public-fixture-static-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/inspector-source-review-child-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/part-dossier-before-v1.js` | 运行代码 |
+| `docs/design/technical-atlas/TA-29/part-inspector-before-v1.js` | 运行代码 |
+| `docs/design/technical-atlas/TA-29/preview-inventory-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/public-fixture-owner-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/rack-assembly-before-v1.js` | 运行代码 |
+| `docs/design/technical-atlas/TA-29/rack3d-before-v1.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/source-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -3279,6 +3347,7 @@
 | `tests/scene_resources.cjs` | 测试 |
 | `tests/server_assembly.cjs` | 测试 |
 | `tests/server_plan.cjs` | 测试 |
+| `tests/shared_part_preview.cjs` | 测试 |
 | `tests/supply.cjs` | 测试 |
 | `tests/system_atlas.cjs` | 测试 |
 | `tests/technical_atlas.cjs` | 测试 |
@@ -3403,6 +3472,7 @@
 | `tests/unit/test_result_versions.py` | 测试 |
 | `tests/unit/test_review_preference.py` | 测试 |
 | `tests/unit/test_scale_atlas_assets.py` | 测试 |
+| `tests/unit/test_shared_part_preview_assets.py` | 测试 |
 | `tests/unit/test_snapshot_overlay.py` | 测试 |
 | `tests/unit/test_storage_layout.py` | 测试 |
 | `tests/unit/test_suite_integrity.py` | 测试 |

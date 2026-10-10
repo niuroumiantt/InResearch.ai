@@ -41,7 +41,7 @@
       ]
     ],
     "current_source_batch": [
-      "TA-28"
+      "TA-29"
     ],
     "max_concurrent_drafting": 1,
     "review_scope": "current_source_batch_with_per_item_evidence",
@@ -1118,9 +1118,9 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "review",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-28/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "1c1a024a900df6f10d50a8b5b4d8416acd6129b6",
       "object_id": "control-domain",
       "source_review_record": "docs/design/technical-atlas/TA-28/source-review-v1.json",
       "production_record": "docs/design/technical-atlas/TA-28/generation-v1.json",
@@ -1129,14 +1129,16 @@
         "file": "docs/design/technical-atlas/TA-28/bom3d-before-v1.html",
         "bytes": 77954,
         "sha256": "b7e7943bf04c96699f89da0742803a1e1045615cf4906e664af96107396c23b4"
-      }
+      },
+      "publication_status": "published",
+      "publication_record": "docs/design/technical-atlas/TA-28/publication-20261010.json"
     },
     {
       "id": "TA-29",
       "order": 29,
       "title": "部件档案旋转预览与放大",
       "phase": "H · 同源复用",
-      "kind": "existing",
+      "kind": "shared",
       "source_paths": [
         "web/components/part-inspector.js",
         "web/components/part-dossier.js"
@@ -1153,9 +1155,16 @@
         "TA-11",
         "TA-13"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null
+      "status": "review",
+      "acceptance_record": "docs/design/technical-atlas/TA-29/acceptance-v1.json",
+      "published_revision": null,
+      "object_id": "shared-part-preview",
+      "source_review_record": "docs/design/technical-atlas/TA-29/source-review-v1.json",
+      "preview_inventory": "docs/design/technical-atlas/TA-29/preview-inventory-v1.json",
+      "baseline_revision": "1c1a024a900df6f10d50a8b5b4d8416acd6129b6",
+      "previous_inventory_kind": "existing",
+      "implementation_scope": "Shared independent interactive preview, not new static illustration; source/geometry/art identity conservation and actual public interactive acceptance",
+      "kind_reason": "Original existing denotes existing UI; like TA02 this item is shared interaction and does not invent a new1536 static master. Static artwork requirements remain for actual static items."
     },
     {
       "id": "TA-30",
@@ -1441,9 +1450,9 @@
     }
   ],
   "execution_priority": {
-    "reason": "TA24–27 actual88d0/.63逐项公开闭包登记27/35；TA28控制软件source review，真实新公网另验",
-    "next": "TA-28",
-    "next_item": "TA-28"
+    "reason": "TA28 actual1c1a/.64 published with independentpublic-v2 closure; registration28 with TA29 substantive source. TA29 source drafting only.",
+    "next": "TA-29",
+    "next_item": "TA-29"
   },
   "primary_plan": {
     "total": 35,
@@ -1485,7 +1494,7 @@
       "TA-35"
     ],
     "execution_order": "01–35; sequential individual drawing/review; source PR batches do not change figure order",
-    "published": 27
+    "published": 28
   },
   "supplemental_items": [
     "TA-36",
