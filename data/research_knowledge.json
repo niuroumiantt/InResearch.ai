@@ -5423,6 +5423,60 @@
       "status": "candidate",
       "stored_path": "originals/a2/a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d/dcd-a2e039b8f81c7a9f-Waste heat from Goodman data center in Frankfurt- Germany- to pow.html",
       "title": "Waste heat from Goodman data center in Frankfurt, Germany, to power district heating system"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "coverage": {
+        "characters_read": 6877,
+        "characters_total": 6877,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "id": "doc-e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "library_path": "library/by-node/actor-airtrunk/2026_DCD_International Finance Corporation to invest up to $175m__e2d2b386228986cd.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:airtrunk",
+        "root",
+        "site:land"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-boundary"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-884cb1fb5cc74cc2acc3e38246929ba0",
+      "report_sha256": "f98e39cbf93dbcea0d8a5565f33552d958701ab1c1ffec7d3378af2e200c18ba",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+        "url": "https://www.datacenterdynamics.com/en/news/international-finance-corporation-to-invest-up-to-175m-in-two-airtrunk-data-centers-in-johor-malaysia/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/international-finance-corporation-to-invest-up-to-175m-in-two-airtrunk-data-centers-in-johor-malaysia/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/e2/e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1/dcd-e2d2b386228986cd-International Finance Corporation to invest up to -175m in two Ai.html",
+      "title": "International Finance Corporation to invest up to $175m in two AirTrunk data centers in Johor, Malaysia"
     }
   ],
   "evidence": [
@@ -42442,6 +42496,266 @@
           }
         },
         "batch_id": "28bba298e05f7cf398750822290bb284f6d5acd1bde072eba662993cc0547e21"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "520ef45c2c5c2c5a49c4e57e3aae2b83334af7d422425183b625b2e8f2858252",
+      "document_id": "doc-e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "id": "rev-884cb1fb5cc74cc2acc3e38246929ba0:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "actor:airtrunk"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "An environmental disclosure for the two projects states that the data centers would consume approximately 910 million liters of water per year at 100 percent utilization. Data centers do not run at full utilization for most of the time, however.",
+      "reading_revision_id": "rev-884cb1fb5cc74cc2acc3e38246929ba0",
+      "source_sha256": "e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:48:27+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。条件性年度用水规模对当前M08-Q05的选址水资源约束研究提供实质性的需求侧个案贡献。连续两句保留估计条件及紧邻限定，完整页面提供项目语境，符合B类部分采用要求；未发现敏感、真实冲突、替换或其他A条件。不据此回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M08-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 72.546,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "22cee0a42e9555ae388aa966bbf6d2848f3df9141bc67a882078f14a57448e39",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 70379,
+            "output_tokens": 3212,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.997,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c3d6533ba15fdc30f43b3be734bde9d57855877aefa5349d08dd1b19ab72fd8a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 69906,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 234
+            }
+          }
+        },
+        "batch_id": "868f91821ac4530fdcbf9b3d421ea0f6bb33131cbecc03fa3186de689fa4cf39"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "520ef45c2c5c2c5a49c4e57e3aae2b83334af7d422425183b625b2e8f2858252",
+      "document_id": "doc-e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "id": "rev-884cb1fb5cc74cc2acc3e38246929ba0:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:airtrunk",
+        "actor:blackstone"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-activity-V1-boundary"
+      ],
+      "quote": "Founded in 2018, AirTrunk was acquired by Blackstone and CPPIB for $16.1bn",
+      "reading_revision_id": "rev-884cb1fb5cc74cc2acc3e38246929ba0",
+      "source_sha256": "e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:48:27+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分6。收购年份、金额与买方为当前M11-Q01提供待补分母的交易样本，为M11-Q04提供资本进入的交易级线索，并为NODE-activity-V1-boundary提供企业层面的收购方关系。两条引文是同一连续句子的相邻片段，完整页面提供足够语境；无已识别A条件，可按B类部分采用，不认证成立年份或交易数据，也不关闭问题。",
+        "workorder_ids": [
+          "Q-M11-Q01",
+          "Q-M11-Q04",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 72.546,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "22cee0a42e9555ae388aa966bbf6d2848f3df9141bc67a882078f14a57448e39",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 70379,
+            "output_tokens": 3212,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.997,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c3d6533ba15fdc30f43b3be734bde9d57855877aefa5349d08dd1b19ab72fd8a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 69906,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 234
+            }
+          }
+        },
+        "batch_id": "868f91821ac4530fdcbf9b3d421ea0f6bb33131cbecc03fa3186de689fa4cf39"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "520ef45c2c5c2c5a49c4e57e3aae2b83334af7d422425183b625b2e8f2858252",
+      "document_id": "doc-e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "id": "rev-884cb1fb5cc74cc2acc3e38246929ba0:chunk:0:claim:8:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:airtrunk",
+        "actor:blackstone"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-activity-V1-boundary"
+      ],
+      "quote": "in 2024 in what was the largest-ever deal in the space at the time.",
+      "reading_revision_id": "rev-884cb1fb5cc74cc2acc3e38246929ba0",
+      "source_sha256": "e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:48:27+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分6。收购年份、金额与买方为当前M11-Q01提供待补分母的交易样本，为M11-Q04提供资本进入的交易级线索，并为NODE-activity-V1-boundary提供企业层面的收购方关系。两条引文是同一连续句子的相邻片段，完整页面提供足够语境；无已识别A条件，可按B类部分采用，不认证成立年份或交易数据，也不关闭问题。",
+        "workorder_ids": [
+          "Q-M11-Q01",
+          "Q-M11-Q04",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 72.546,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "22cee0a42e9555ae388aa966bbf6d2848f3df9141bc67a882078f14a57448e39",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 70379,
+            "output_tokens": 3212,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.997,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c3d6533ba15fdc30f43b3be734bde9d57855877aefa5349d08dd1b19ab72fd8a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 69906,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 234
+            }
+          }
+        },
+        "batch_id": "868f91821ac4530fdcbf9b3d421ea0f6bb33131cbecc03fa3186de689fa4cf39"
       }
     }
   ],
@@ -82670,6 +82984,213 @@
         "request_sha256": "9998e0041b237d31ffc8ee088b3bd164f1345cc007796106d8e8a2c991dd3824"
       },
       "object_mapping_check": "实际范围是能源部门的一般投资统计定义，未确立一座AI数据中心或其具体系统、部件及场址权利。site:gas-supply专指数据中心天然气管道接入容量和供气合同，一般天然气生产、转化与运输投资不足以建立该范围；也不据此映射root或system:power。IEA没有允许的主体ID。保留有效经济性问题关联，所选证据采用同一空对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "evidence_ids": [
+        "rev-884cb1fb5cc74cc2acc3e38246929ba0:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:4c570c7adb18229d9ea04bc9",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root",
+        "actor:airtrunk"
+      ],
+      "question_ids": [
+        "M08-Q05"
+      ],
+      "reading_revision_id": "rev-884cb1fb5cc74cc2acc3e38246929ba0",
+      "status": "adopted",
+      "text": "据DCD作者Jason Ma于2026年7月20日的报道，AirTrunk在马来西亚柔佛州JHB1、JHB2两项目的环境披露估计，数据中心在100%利用率条件下每年将用水约9.10亿升。作者同时指出，数据中心大多数时间并不满负荷运行。这是来源转述的条件性估计及作者的一般说明，未经本次独立验证，不代表两项目的实际用水量或实际利用率。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:48:27+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。条件性年度用水规模对当前M08-Q05的选址水资源约束研究提供实质性的需求侧个案贡献。连续两句保留估计条件及紧邻限定，完整页面提供项目语境，符合B类部分采用要求；未发现敏感、真实冲突、替换或其他A条件。不据此回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M08-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 72.546,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "22cee0a42e9555ae388aa966bbf6d2848f3df9141bc67a882078f14a57448e39",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 70379,
+            "output_tokens": 3212,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.997,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c3d6533ba15fdc30f43b3be734bde9d57855877aefa5349d08dd1b19ab72fd8a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 69906,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 234
+            }
+          }
+        },
+        "batch_id": "868f91821ac4530fdcbf9b3d421ea0f6bb33131cbecc03fa3186de689fa4cf39"
+      },
+      "source_candidate_ids": [
+        "rev-884cb1fb5cc74cc2acc3e38246929ba0:chunk:0:claim:6"
+      ],
+      "limitations": "未提供环境披露原文、披露日期、计算方法、利用率定义、用水用途、供水来源或两项目各自的估计值。报道处于JHB1已有投运部分并继续扩建、JHB2建设及完成安排的语境，估计不能视为这些阶段的实际年度用水。100%利用率不是实际GPU利用率或年度爬坡利用率；作者的一般说明也不是项目运行观测。",
+      "conflict_check": "已采用的BP Batam海水淡化计划和Hubbard余热制水主张涉及不同地点、主体及供水机制，与本项不重复、不冲突。legacy柔佛容量、建造成本、地价及规划记录没有同范围用水估计，不能交叉验证本项。所供合同匹配为空，未发现可指认的规范重复或真实冲突；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "M08-Q05仅获得条件性需求规模线索。仍需环境披露一手正文、当地可供水量、季节性压力、取水限制、许可或供水合同条件及反证，才能判断水资源是否构成选址硬约束。不能据此将柔佛列入硬约束区域清单，不与2022年全州日用水量直接计算压力比例；问题保持开放，不更新利用率输入或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "868f91821ac4530fdcbf9b3d421ea0f6bb33131cbecc03fa3186de689fa4cf39",
+        "source_report_sha256": "f98e39cbf93dbcea0d8a5565f33552d958701ab1c1ffec7d3378af2e200c18ba",
+        "request_sha256": "2a883937d51b32ccf96cab5f4b563a6b632d2b75ba20f6236f0a5383f06ffdb0"
+      },
+      "object_mapping_check": "独立核对对象契约：原文上下文明确为AirTrunk在马来西亚柔佛州的JHB1、JHB2，主张涉及数据中心整体用水估计及该企业，支持root和actor:airtrunk。原文未区分冷却与其他用水，不进一步映射水与散热系统或供水部件；环境披露不证明取水许可、水权或许可获批，不映射相应场址权利对象。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1",
+      "evidence_ids": [
+        "rev-884cb1fb5cc74cc2acc3e38246929ba0:chunk:0:claim:8:ev:0",
+        "rev-884cb1fb5cc74cc2acc3e38246929ba0:chunk:0:claim:8:ev:1"
+      ],
+      "id": "adoption:review:56de628eae2a43807242597c",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:airtrunk",
+        "actor:blackstone"
+      ],
+      "question_ids": [
+        "M11-Q01",
+        "M11-Q04",
+        "NODE-activity-V1-boundary"
+      ],
+      "reading_revision_id": "rev-884cb1fb5cc74cc2acc3e38246929ba0",
+      "status": "adopted",
+      "text": "DCD作者Jason Ma在2026年7月20日的报道中称，AirTrunk成立于2018年，并于2024年被Blackstone和CPPIB以$16.1bn收购。成立年份、收购年份、买方及金额均为该来源的陈述，未经本次独立验证；所选原文未明确“$”的币种或交易金额口径。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:48:27+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分6。收购年份、金额与买方为当前M11-Q01提供待补分母的交易样本，为M11-Q04提供资本进入的交易级线索，并为NODE-activity-V1-boundary提供企业层面的收购方关系。两条引文是同一连续句子的相邻片段，完整页面提供足够语境；无已识别A条件，可按B类部分采用，不认证成立年份或交易数据，也不关闭问题。",
+        "workorder_ids": [
+          "Q-M11-Q01",
+          "Q-M11-Q04",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 72.546,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "22cee0a42e9555ae388aa966bbf6d2848f3df9141bc67a882078f14a57448e39",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 70379,
+            "output_tokens": 3212,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.997,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c3d6533ba15fdc30f43b3be734bde9d57855877aefa5349d08dd1b19ab72fd8a",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 69906,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 234
+            }
+          }
+        },
+        "batch_id": "868f91821ac4530fdcbf9b3d421ea0f6bb33131cbecc03fa3186de689fa4cf39"
+      },
+      "source_candidate_ids": [
+        "rev-884cb1fb5cc74cc2acc3e38246929ba0:chunk:0:claim:8"
+      ],
+      "limitations": "未提供公司成立文件、收购公告或交易文件，未披露持股比例、收购实体、交割日期、企业价值与股权价值口径、债务处理或买方各自出资。未提供交易覆盖资产的MW、运营与开发状态分层，不能以JHB1、JHB2容量充当公司收购的分母。公司收购关系不证明两项目的具体所有者、运营方或使用方。",
+      "conflict_check": "已采用的Virtus共同所有权陈述涉及另一企业，其他园区租户、托管及运营记录也不是本项收购。legacy Digital Dulles记录涉及Blackstone与Digital Realty的另一项目合作，不构成AirTrunk收购的重复或冲突；柔佛容量和成本记录亦不验证交易金额。所供材料未提供相反成立年份或同一收购的冲突记录，不能凭未供证据更正原文。未发现规范重复、真实冲突或替换条件，检查限于所供材料。",
+      "gap_dependency_check": "M11-Q01仍需一手交易文件、金额及币种口径、同范围MW分母、运营资产与开发权分层和可比时间序列。M11-Q04仍需实际交割及支付口径、买方出资拆分、年度样本覆盖和去重，不能将整个收购金额直接记为Blackstone年度新增投资流量。NODE-activity-V1-boundary仍需项目权属、产品服务、付款方、运营方与最终使用方的合同证据及反证。三项问题保持开放，不计算每MW价格、不汇总容量、不覆盖既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "868f91821ac4530fdcbf9b3d421ea0f6bb33131cbecc03fa3186de689fa4cf39",
+        "source_report_sha256": "f98e39cbf93dbcea0d8a5565f33552d958701ab1c1ffec7d3378af2e200c18ba",
+        "request_sha256": "2a883937d51b32ccf96cab5f4b563a6b632d2b75ba20f6236f0a5383f06ffdb0"
+      },
+      "object_mapping_check": "独立核对对象契约：公司收购主张明确涉及AirTrunk及Blackstone，分别匹配两个允许的主体对象。CPPIB没有允许的对应主体ID，保留名称而不新增节点。本项范围为企业收购，不能自动扩展到root所指单座数据中心或JHB1、JHB2的项目资产权属，也不映射土地或基础设施系统。两条所选证据统一使用该主张范围。"
     }
   ],
   "answers": [],
