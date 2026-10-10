@@ -183,6 +183,143 @@ const thermalDomain={
  related:[{id:'TA-23-3D',title:'冷却领域 · 3类外形与12未建模入口',image:'/bom3d.html?d=thermal'},{id:'TA-16',title:'15类独立部件图',image:'/bom.html#system-thermal'},{id:'TA-10',title:'冷板与同类快接详细图',image:'/bom.html#coldplate'},{id:'TA-22',title:'电力功能路径',image:'/power-atlas.html'}],
 };
 
+const computeDomain={
+ id:'TA-24',title:'IT计算 · 整合范围与计算/管理角色',
+ image:'/assets/technical-atlas/compute-domain-v1.svg',preview:'/assets/technical-atlas/compute-domain-v1-preview.svg',master:'/assets/technical-atlas/compute-domain-v1.png',
+ alt:'暖白计算领域图：上层整柜、加速器服务器、封闭通用CPU节点；下层主板CPU装配、GPU基板、可选AI ASIC和FPGA封装、独立BMC管理芯片。',
+ note:'通用分类与功能角色示意，八图不共比例，不证明同一系统安装。CPU本身计算；GPU/AI ASIC/FPGA按任务和系统设计选择，不强制三者并装或串联。BMC是物理管理控制器，不是主机CPU或AI加速器。主板和GPU基板沿用独立装配图，封闭芯片不推导内部版图。园区仅facility rack-frame八柜，计算八类均未建模；独立服务器与整柜三维示例不证明已安装。型号、配置、协议/引脚、性能、功耗、兼容性及现场拓扑未知，非OEM/CAD。',
+ labels:['01 整柜系统：整合范围示例，2交换/8托盘/2电源架沿TA13画法，不是NVL72或本园区配置',
+ '02–03 服务器：加速器整机沿TA11双CPU/双加速卡示例，右上同类卡/插槽是重复局部；另一通用CPU节点只展示封闭外形，内部配置未知',
+ '04 CPU：沿TA06完整主板装配，包含DIMM同类局部；CPU可执行通用计算与控制，不改称独立裸片',
+ '05–07 可选加速：GPU基板沿TA04多模组示例；AI ASIC与FPGA闭合封装是不同类别，不靠外形认证内部或强制共同安装',
+ '08 BMC：独立管理角色的物理芯片；固件、针脚和管理链路按具体实现核，不塞入AI执行流水线',
+ '领域与独立示例：八类均本场景未建模，类别档案保留；TA11服务器、TA13整柜及TA15封装是独立通用三维示例，不证明共同配置'],
+ related:[{id:'TA-24-3D',title:'计算领域 · 八类未建模档案',image:'/bom3d.html?d=compute'},{id:'TA-11',title:'独立服务器装配三维',image:'/rack3d.html?view=server&x=55&node=part:server'},{id:'TA-13',title:'独立整柜结构三维',image:'/rack3d.html?view=rack&x=0&node=part:rack-frame'},{id:'TA-15',title:'独立四HBM封装示例',image:'/rack3d.html?view=chip&x=90&node=part:gpu'}],
+};
+
+const memoryDomain={
+ "id": "TA-25",
+ "title": "IT内存 · 三种实现与访问关系",
+ "image": "/assets/technical-atlas/memory-domain-v1.svg",
+ "preview": "/assets/technical-atlas/memory-domain-v1-preview.svg",
+ "master": "/assets/technical-atlas/memory-domain-v1.png",
+ "alt": "暖白内存领域图：同封装四HBM与同类剖层重复，完整主板CPU与RDIMM，封闭CXL扩展模组；三种访问关系独立。",
+ "note": "通用内存功能示意，三图不共比例。HBM是堆叠DRAM，服务器dram类别专指RDIMM/MRDIMM模组，CXL是内存接入与扩展方式，不是三级串联。四HBM、层数与TSV沿TA05画法；主板只示RDIMM，CPU属于计算上下文，不新增内存类。封闭模组外形不认证CXL协议、介质或控制器。园区三类均未建模，独立封装/主板与三维示例不证明八柜安装。型号、容量、通道、代际、性能、兼容平台和现场配置未知，非OEM/CAD。",
+ "labels": [
+  "01 HBM：同一封装内逻辑裸片旁的四堆栈沿TA05示例；堆栈本身是DRAM，不是服务器DIMM之后一级",
+  "02 同类剖开重复放大：层叠DRAM与TSV只为结构解释，不增加第五组、不给层数/代际规格",
+  "03 服务器模组：沿TA06完整主板与同类RDIMM局部；这里只示RDIMM，不据外形认证MRDIMM或八条真实配置",
+  "04 CPU上下文：锚点属于compute的cpu，源图取主板装配，非新增内存ID或已核控制器电路",
+  "05 CXL扩展：封闭E3.S式模组外形只示壳体/触点；支持CXL主机与扩展设备的功能关系不认证照片协议或内部介质",
+  "三种关系：逻辑↔HBM、CPU内存控制器↔RDIMM、支持CXL主机↔扩展设备分别表达，不能HBM→DIMM→CXL串联；园区三类均未建模"
+ ],
+ "related": [
+  {
+   "id": "TA-25-3D",
+   "title": "内存领域 · 三类未建模档案",
+   "image": "/bom3d.html?d=memory"
+  },
+  {
+   "id": "TA-15",
+   "title": "独立四HBM封装三维",
+   "image": "/rack3d.html?view=chip&x=90&node=part:hbm"
+  },
+  {
+   "id": "TA-06",
+   "title": "CPU与RDIMM装配原图",
+   "image": "/bom.html#dram"
+  },
+  {
+   "id": "TA-24",
+   "title": "计算与管理角色",
+   "image": "/compute-atlas.html"
+  }
+ ]
+};
+
+const storageDomain={
+ "id": "TA-26",
+ "title": "IT存储 · 系统与整盘、本地或网络访问",
+ "image": "/assets/technical-atlas/storage-domain-v1.svg",
+ "preview": "/assets/technical-atlas/storage-domain-v1-preview.svg",
+ "master": "/assets/technical-atlas/storage-domain-v1.png",
+ "alt": "暖白存储领域图：八前托架机架盒、SSD虚拟分层及同类芯片局部、虚拟开盖HDD；本地和网络访问分别表达。",
+ "note": "通用功能示意，非OEM/CAD，三图不共比例。系统类别也含软件与服务，机架盒只代表一种实体外形；八个前托架不证明已装盘、内部控制器或RAID。SSD同类芯片重复不增加整盘，HDD只画可见盘片、不认证内部总数，虚拟剖开不是维护步骤。本地/网络是访问选项，SSD/HDD是介质选项，不把目录顺序当数据路径。接口协议、容量、寿命、性能、数据保护、兼容性和现场配置未知。园区三类均未建模，八设施柜不证明存储已安装。",
+ "labels": [
+  "01 存储系统：封闭机架盒为选定外形，八外托架不证明介质已装、内部控制器或RAID；类别亦含软件/服务",
+  "02 企业SSD：沿TA01虚拟分层，上盖、PCB和底壳保留；连接器外形不认证NVMe/SATA/SAS",
+  "03 同类芯片重复局部：沿原图上下两个芯片解释，不新增整盘或物理ID",
+  "04 近线HDD：虚拟开盖锚点在整盘可见主轴面，盘片/磁头内部总数未知，不作维修步骤",
+  "05 盘片与磁头臂：引线指向真实可见臂结构，只取结构关系，不认证型号/转速/性能",
+  "本地直连SSD/HDD与主机经网络访问系统分别表达，系统按设计选用介质，不能强制串联；园区三类均未建模"
+ ],
+ "related": [
+  {
+   "id": "TA-26-3D",
+   "title": "存储领域 · 三类未建模档案",
+   "image": "/bom3d.html?d=storage"
+  },
+  {
+   "id": "TA-01",
+   "title": "独立SSD结构详图",
+   "image": "/bom.html#ssd"
+  },
+  {
+   "id": "TA-16-HDD",
+   "title": "HDD独立类别图",
+   "image": "/bom.html#hdd"
+  },
+  {
+   "id": "TA-25",
+   "title": "内存访问关系",
+   "image": "/memory-atlas.html"
+  }
+ ]
+};
+
+const networkDomain={
+ "id": "TA-27",
+ "title": "IT网络 · 机外互联、配接与PCIe接入角色",
+ "image": "/assets/technical-atlas/network-domain-v1.svg",
+ "preview": "/assets/technical-atlas/network-domain-v1-preview.svg",
+ "master": "/assets/technical-atlas/network-domain-v1.png",
+ "alt": "暖白网络领域九类别图：双口NIC、可插拔光模块、八口交换机、铜互联、交换ASIC、四护套机内线束、配接连接器、Retimer和PCIe交换封装；按角色区分，非九级串联。",
+ "note": "通用功能示意，非OEM/CAD，各图不共比例。八前口、NIC双主口与同类重复局部、四外护套沿已验图例，不认证规格。光/铜是匹配链路方案，交换ASIC为设备内部角色，不是外部一跳。Retimer与PCIe交换分别做信号调理/接入分支，不能按目录拼九级路径；PCIe也非绝对限于机箱内。可插拔光模块不是CPO，CPO仅关联集成方案无新增实体。园区已有cabling架空桥架1实例，其余八类未建模；桥架不等于四护套线束，不认证介质或网络已安装。协议、速率、端口、针脚、lane、内部电路、兼容性和现场配置未知。",
+ "labels": [
+  "01 NIC主机接入：原TA07一张板卡/两个主端口与一个同类端口重复，不认证全部DPU或每GPU配比",
+  "02 可插拔光模块：电光接入的选定外形，非CPO布局；协议与互配另核",
+  "03 网络交换整机：八前口为图例，封闭箱体不认证以太网/InfiniBand、速率或内部ASIC",
+  "04 铜互联：两端一缆外形不判断有源/无源，光与铜方案不强制串接",
+  "05 交换ASIC：内部功能类别，封装不展示内部阵列，也不是新增外部网络一跳",
+  "06 机内线束：四外护套与两端外形，不认证光纤、通道或针脚；现有园区桥架是另一示例",
+  "07 连接器：配接外形与锁扣，不能据图确认其它器件互配标准或电气定义",
+  "08 Retimer：按通道设计选择的时钟/数据恢复功能，不等于分组路由，外形不认证代际",
+  "09 PCIe交换：主机/I/O接入分支功能，外形不认证PCIe/CXL或现场拓扑；园区仅1组cabling桥架，其余八类未建模"
+ ],
+ "related": [
+  {
+   "id": "TA-27-3D",
+   "title": "网络领域 · 一组桥架与八类未建模档案",
+   "image": "/bom3d.html?d=network"
+  },
+  {
+   "id": "TA-07",
+   "title": "独立NIC结构详图",
+   "image": "/bom.html#nic"
+  },
+  {
+   "id": "TA-16-CABLING",
+   "title": "线束类别图",
+   "image": "/bom.html#cabling"
+  },
+  {
+   "id": "TA-26",
+   "title": "本地与网络存储访问",
+   "image": "/storage-atlas.html"
+  }
+ ]
+};
+
 const rackOverview = {
   id:'TA-13', title:'机柜整柜 · 安装分区与结构',
   image:'/assets/technical-atlas/rack-overview-v1.svg', preview:'/assets/technical-atlas/rack-overview-v1-preview.svg',
@@ -245,7 +382,7 @@ export function atlasCategoryNote(partId, {view} = {}) {
 }
 
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = partId === 'facility-domain' && view === 'domain' ? facilityDomain : partId === 'power-domain' && view === 'domain' ? powerDomain : partId === 'thermal-domain' && view === 'domain' ? thermalDomain : ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
+  const item = partId === 'facility-domain' && view === 'domain' ? facilityDomain : partId === 'power-domain' && view === 'domain' ? powerDomain : partId === 'thermal-domain' && view === 'domain' ? thermalDomain : partId === 'compute-domain' && view === 'domain' ? computeDomain : partId === 'network-domain' && view === 'domain' ? networkDomain : partId === 'storage-domain' && view === 'domain' ? storageDomain : partId === 'memory-domain' && view === 'domain' ? memoryDomain : ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');

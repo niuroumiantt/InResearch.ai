@@ -947,7 +947,7 @@ function enterDomain(d) {
   const grouped = []; let last = null;
   for (const p of d.parts) { if (p.chain !== last) { grouped.push(`<div class="chainh">${esc(p.chain || (p.kind === "site_right" ? "站点权利" : ""))}</div>`); last = p.chain; } grouped.push(p); }
   document.getElementById("domainParts").innerHTML = grouped.map(p => typeof p === "string" ? p :
-    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${campusMode && ["facility","power","thermal"].includes(d.key) ? (facilityModelState(p) ? `<span class="nm" title="${esc(facilityModelState(p)[1])}">${esc(facilityModelState(p)[0])}</span>` : "") : (PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>')}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${campusMode && ["facility","power","thermal","compute","memory","storage","network"].includes(d.key) ? (facilityModelState(p) ? `<span class="nm" title="${esc(facilityModelState(p)[1])}">${esc(facilityModelState(p)[0])}</span>` : "") : (PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>')}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
   if(campusMode && d.key==='facility'){
    const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-21';
    plate.innerHTML='<a href="/facility-atlas.html"><b>设施与站点权利 · 完整图与下载 ↗</b><img src="/assets/technical-atlas/facility-domain-v1-preview.svg" width="1536" height="1024" alt="同源八柜建筑与独立消防安防类别图、六类非物理权利"></a><p>建筑包含八柜；消防/安防本场景未建模。六权利是非物理证据入口，地面与设备不证明权利成立。</p>';
@@ -963,6 +963,26 @@ function enterDomain(d) {
    plate.innerHTML='<a href="/thermal-atlas.html"><b>冷却双流体域 · 完整图与下载 ↗</b><img src="/assets/technical-atlas/thermal-domain-v1-preview.svg" width="1536" height="1024" alt="蓝TCS与绿FWS分别闭合，跨CDU仅传热，所选风冷冷水机向空气排热"></a><p>液—液CDU与风冷冷机是本例选择，非所有方案全串。三维仅3类11外形实例，其余12未建模；功能路径不证明本八柜已接管或具备水权。</p>';
    document.getElementById('domainParts').prepend(plate);
   }
+  if(campusMode && d.key==='compute'){
+   const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-24';
+   plate.innerHTML='<a href="/compute-atlas.html"><b>计算整合与角色 · 完整图与下载 ↗</b><img src="/assets/technical-atlas/compute-domain-v1-preview.svg" width="1536" height="1024" alt="整柜服务器与主机CPU、可选GPU ASIC FPGA和独立BMC管理角色"></a><p>八类计算对象本场景均未建模；设施八柜不是rack-system或服务器。独立图册与三维示例不证明本园区安装。</p><p><a href="/rack3d.html?view=server&amp;x=55&amp;node=part:server">独立服务器三维 ↗</a> · <a href="/rack3d.html?view=rack&amp;x=0&amp;node=part:rack-frame">独立整柜三维 ↗</a></p>';
+   document.getElementById('domainParts').prepend(plate);
+  }
+  if(campusMode && d.key==='memory'){
+   const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-25';
+   plate.innerHTML="<a href=\"/memory-atlas.html\"><b>内存实现与访问 · 完整图与下载 ↗</b><img src=\"/assets/technical-atlas/memory-domain-v1-preview.svg\" width=\"1536\" height=\"1024\" alt=\"HBM封装、CPU与RDIMM、CXL扩展分别表达，非三级串联\"></a><p>HBM本身也是DRAM；CXL是内存接入/扩展方式。三类本场景均未建模，CPU只是上下文；独立封装图不证明园区安装。</p><p><a href=\"/rack3d.html?view=chip&amp;x=90&amp;node=part:hbm\">独立封装三维示例 ↗</a></p>";
+   document.getElementById('domainParts').prepend(plate);
+  }
+  if(campusMode && d.key==='storage'){
+   const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-26';
+   plate.innerHTML="<a href=\"/storage-atlas.html\"><b>系统与整盘 · 完整图与下载 ↗</b><img src=\"/assets/technical-atlas/storage-domain-v1-preview.svg\" width=\"1536\" height=\"1024\" alt=\"机架存储系统、分层SSD、开盖HDD，本地与网络是访问选项\"></a><p>八外托架不证明已装盘或RAID，SSD/HDD不是必经串联。三类本场景均未建模，独立整盘结构不证明八柜安装。</p>";
+   document.getElementById('domainParts').prepend(plate);
+  }
+  if(campusMode && d.key==='network'){
+   const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-27';
+   plate.innerHTML="<a href=\"/network-atlas.html\"><b>网络与PCIe接入角色 · 完整图与下载 ↗</b><img src=\"/assets/technical-atlas/network-domain-v1-preview.svg\" width=\"1536\" height=\"1024\" alt=\"九网络类别分别定位，机外光铜与PCIe角色分开，不强串九级\"></a><p>仅cabling有1组架空桥架示意，其余八类本场景未建模。桥架不等于本图四护套线束，也不证明完整网络连接或八柜已联网。</p>";
+   document.getElementById('domainParts').prepend(plate);
+  }
   document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
     const p = PART[el.dataset.part];
     showDossier(p);
@@ -973,7 +993,7 @@ function enterDomain(d) {
   });
   if (d.chains.length > 1) {  // 镜头走链路是显式动作：不抢用户或页面框架对镜头的所有权
     const btn = document.createElement("button"); btn.type = "button"; btn.className = "walkbtn"; btn.id = "walkBtn";
-    btn.textContent = (campusMode && ['power','thermal'].includes(d.key) ? "▶ 按类别查看（非接线/管线顺序）：" : "▶ 沿链路走一遍：") + d.chains.join(" → ");
+    btn.textContent = (campusMode && ['compute','memory','storage','network'].includes(d.key) ? "▶ 按类别查看（非执行拓扑顺序）：" : campusMode && ['power','thermal'].includes(d.key) ? "▶ 按类别查看（非接线/管线顺序）：" : "▶ 沿链路走一遍：") + d.chains.join(" → ");
     btn.onclick = () => walkChain(d);
     document.getElementById("domainParts").prepend(btn);
   }
@@ -1016,7 +1036,7 @@ const inspector = createPartInspector({THREE, environment: () => scene.environme
 const rawShowDossier = createPartDossier({el: document.getElementById('dossier'), view: 'campus',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector,
-  atlasViewFor:p=>campusMode && ['power','thermal'].includes(activeDomain) && p.system===activeDomain?'system':null,
+  atlasViewFor:p=>campusMode && (['power','thermal'].includes(activeDomain) || ['compute','memory','storage','network'].includes(activeDomain)) && p.system===activeDomain?'system':null,
   researchNodeFor:p=>p.kind==='site_right'?'site:'+p.site_right_id:'part:'+p.id});
 
 function campusPart(p,whole=false){
@@ -1066,10 +1086,12 @@ atlasDrawing.attachLabels(canvas,camera);
 const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atlasDrawing,
   render:()=>composer.render(), button:document.getElementById('atlas-export'),
   filename:'bom3d-technical-atlas.svg', title:'园区结构图册',
-  caption:()=>document.getElementById('stage').textContent,
+  caption:()=>{const stage=document.getElementById('stage').textContent,id=document.getElementById('dossier').dataset.partId;
+    return campusMode&&['compute','memory','storage','network'].includes(activeDomain)&&id&&!currentPartMeshes(id)?.length
+      ? stage+'；'+(PART[id]?.name||id)+'仅为类别上下文，本园区无物理实体；背景园区不是该部件造型' : stage;},
   diagnostics:()=>covOn ? '索引覆盖：红0/4、橙1/4、黄2/4、浅绿3/4、绿4/4（公司、产品、序列、指标登记维度数；非硬件状态）' : null,
   selected:()=>{const id=document.getElementById('dossier').dataset.partId;
-    return id ? {id:campusMode&&campusSelectedInstance?campusSelectedInstance:'part:'+id,name:campusMode?(campusSelectedInstance==='campus/whole'?'园区空间示意 · 完整三维预览':'通用园区示例 · '+(PART[id]?.name || id)):PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
+    return id ? {id:campusMode&&campusSelectedInstance?campusSelectedInstance:'part:'+id,name:campusMode?(campusSelectedInstance==='campus/whole'?'园区空间示意 · 完整三维预览':(['compute','memory','storage','network'].includes(activeDomain)&&!currentPartMeshes(id)?.length?'本园区未建模 · '+(PART[id]?.name || id)+'（类别上下文，无物理实体）':'通用园区示例 · '+(PART[id]?.name || id))):PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
 });
 const covChip = document.getElementById('covChip');
 covChip.setAttribute('aria-disabled','true');
