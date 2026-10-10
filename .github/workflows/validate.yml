@@ -62,7 +62,9 @@ jobs:
       - name: 口径与数据校验
         run: python3 manage.py validate --strict
       - name: Research registry references
-        run: python3 manage.py registry
+        run: |
+          python3 manage.py registry
+          python3 manage.py deliveries check
       - name: Visual identity and adoption contract
         if: needs.scope.outputs.assets == 'true'
         run: python3 manage.py asset-check

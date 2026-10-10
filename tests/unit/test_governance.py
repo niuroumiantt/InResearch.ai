@@ -7,7 +7,7 @@ import tempfile
 import unittest
 
 from inresearch.interfaces import governance as g
-from inresearch.knowledge.policy import price_series_freq, price_series_limit
+from inresearch.knowledge.data_rules import price_series_freq, price_series_limit
 
 
 class GovernanceTests(unittest.TestCase):

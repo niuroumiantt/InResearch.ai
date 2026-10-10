@@ -27,6 +27,12 @@ class DashboardTests(unittest.TestCase):
         self.assertEqual(dashboard.render(built), (ROOT / dashboard.SNAPSHOT).read_text(encoding='utf-8'),
                          'data/dashboard.json is stale; run python3 manage.py dashboard --refresh')
 
+    def test_part_scale_and_product_counts_never_grant_sourced_status(self):
+        for part in self.doc['parts'].values():
+            cell = part['cells']['1']
+            self.assertNotEqual(cell['status'], 'sourced', part['id'])
+            self.assertTrue(all(i.get('kind') in ('count', 'attribute') for i in cell['items']))
+
     def test_account_matches_the_baseline_preset(self):
         out = economics.compute(economics.with_preset(self.model, 'baseline'), self.model)
         rows = {r['key']: r['value'] for r in self.doc['root']['account']['rows']}
@@ -107,12 +113,13 @@ class DashboardTests(unittest.TestCase):
             self.assertIn(r['stage'], {s['id'] for s in self.bom['stages']}, r['id'])
         self.assertEqual(set(self.doc['rights']), {r['id'] for r in load('framework/site_rights.json')['rights']})
 
-    def test_critical_path_is_max_part_lead_time(self):
+    def test_longest_registered_lead_time_does_not_claim_project_critical_path(self):
         power = next(e for e in self.doc['system_nodes'] if e['id'] == 'power')
         lead = [i['value'] for p in power['parts'] for i in self.doc['parts'][p['id']]['cells']['4']['items'] if isinstance(i['value'], (int, float))]
         self.assertTrue(lead)
         self.assertEqual(power['cells']['4']['items'][0]['value'], max(lead))
         self.assertEqual(power['cells']['4']['items'][0]['source']['type'], 'max')
+        self.assertTrue(power['cells']['4']['items'][0]['label'].startswith('最长已登记部件交期（'))
 
     def test_no_forecast_points_in_changes(self):
         for p in self.doc['changes']['series_points']:

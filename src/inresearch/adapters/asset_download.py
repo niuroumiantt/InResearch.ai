@@ -163,7 +163,7 @@ def main():
         # 包里可能直接是 .glb，也可能是 scene.gltf 散件
         glb = next((os.path.join(r, f) for r, _, fs in os.walk(tmp) for f in fs if f.endswith(".glb")), None)
         if glb:
-            data = open(glb, "rb").read()
+            data = Path(glb).read_bytes()
             print("  包内已是 .glb，直接用")
         else:
             gp = next((os.path.join(r, f) for r, _, fs in os.walk(tmp) for f in fs if f.endswith(".gltf")), None)

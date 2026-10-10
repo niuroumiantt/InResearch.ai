@@ -29,7 +29,7 @@ from datetime import date, datetime
 ROOT = project_root()
 OUT = workspace_path("reports/verify_queue.md", ROOT)
 
-from inresearch.knowledge.policy import FRESH_DAYS as FRESH, price_series_freq, price_series_limit
+from inresearch.knowledge.data_rules import FRESH_DAYS as FRESH, price_series_freq, price_series_limit
 
 LOW_GRADES = {"media", "estimate"}
 

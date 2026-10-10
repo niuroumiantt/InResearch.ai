@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.75。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.76。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2513。
+在册文件：2520。
 
 | 身份 | 文件数 |
 |---|---|
@@ -15,15 +15,15 @@
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 404 |
-| 运行代码 | 367 |
+| 历史快照 | 407 |
+| 运行代码 | 369 |
 | 现行规范 | 16 |
 | 项目配置 | 761 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 190 |
-| 测试 | 194 |
+| 配套说明 | 191 |
+| 测试 | 195 |
 
 ## 在册记录集合
 
@@ -1995,6 +1995,7 @@
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md) | 历史快照 |
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md) | 历史快照 |
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md) | 历史快照 |
+| [docs/archive/2026-10-10/framework__CURRENT__before_reassessment.md](archive/2026-10-10/framework__CURRENT__before_reassessment.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/README.md](archive/local-materials-20261010/original23-new-protocol-validation/README.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md) | 历史快照 |
 | [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md) | 历史快照 |
@@ -2622,6 +2623,7 @@
 | [docs/handoff/repository-daily-refresh-20261008.md](handoff/repository-daily-refresh-20261008.md) | 配套说明 |
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
 | [docs/handoff/research-append-ci-20261010.md](handoff/research-append-ci-20261010.md) | 配套说明 |
+| [docs/handoff/research-architecture-reassessment-20261010.md](handoff/research-architecture-reassessment-20261010.md) | 配套说明 |
 | [docs/handoff/research-flow-recovery-20261009.md](handoff/research-flow-recovery-20261009.md) | 配套说明 |
 | [docs/handoff/research-pr-backlog-20261009.md](handoff/research-pr-backlog-20261009.md) | 配套说明 |
 | [docs/handoff/research-throughput-20261008.md](handoff/research-throughput-20261008.md) | 配套说明 |
@@ -3170,6 +3172,8 @@
 | `docs/reviews/2026-10-09/research-publication/receipts.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/ta14-final-deployment-healthy.json` | 历史快照 |
 | `docs/reviews/2026-10-09/research-publication/ta14-root-actual-public-review.json` | 历史快照 |
+| [docs/reviews/2026-10-10/architecture-reassessment/PLAN.md](reviews/2026-10-10/architecture-reassessment/PLAN.md) | 历史快照 |
+| [docs/reviews/2026-10-10/architecture-reassessment/REVIEW.md](reviews/2026-10-10/architecture-reassessment/REVIEW.md) | 历史快照 |
 | [docs/reviews/2026-10-10/project-audit/REVIEW.md](reviews/2026-10-10/project-audit/REVIEW.md) | 历史快照 |
 | `docs/reviews/2026-10-10/project-audit/news-coverage.json` | 历史快照 |
 | `docs/reviews/2026-10-10/project-audit/product-coverage.json` | 历史快照 |
@@ -3591,8 +3595,8 @@
 | `src/inresearch/delivery/acquisition_status.py` | 运行代码 |
 | `src/inresearch/delivery/backup.py` | 运行代码 |
 | `src/inresearch/delivery/export.py` | 运行代码 |
-| `src/inresearch/delivery/map.py` | 运行代码 |
 | `src/inresearch/delivery/material_measurements.py` | 运行代码 |
+| `src/inresearch/delivery/project_capacity_map.py` | 运行代码 |
 | `src/inresearch/delivery/publish.py` | 运行代码 |
 | `src/inresearch/delivery/publish_pilot_progress.py` | 运行代码 |
 | `src/inresearch/delivery/reader_export.py` | 运行代码 |
@@ -3619,6 +3623,7 @@
 | `src/inresearch/knowledge/company_ids.py` | 运行代码 |
 | `src/inresearch/knowledge/coverage.py` | 运行代码 |
 | `src/inresearch/knowledge/dashboard.py` | 运行代码 |
+| `src/inresearch/knowledge/data_rules.py` | 运行代码 |
 | `src/inresearch/knowledge/deliveries.py` | 运行代码 |
 | `src/inresearch/knowledge/economics.py` | 运行代码 |
 | `src/inresearch/knowledge/fact_contract.py` | 运行代码 |
@@ -3631,10 +3636,11 @@
 | `src/inresearch/knowledge/news_observations.py` | 运行代码 |
 | `src/inresearch/knowledge/news_policy.py` | 运行代码 |
 | `src/inresearch/knowledge/nodes.py` | 运行代码 |
-| `src/inresearch/knowledge/policy.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
+| `src/inresearch/knowledge/research_readiness.py` | 运行代码 |
 | `src/inresearch/knowledge/skeleton.py` | 运行代码 |
+| `src/inresearch/knowledge/target_request_contract.py` | 运行代码 |
 | `src/inresearch/knowledge/targets.py` | 运行代码 |
 | `src/inresearch/knowledge/validate.py` | 运行代码 |
 | `src/inresearch/knowledge/verify.py` | 运行代码 |
@@ -3692,7 +3698,6 @@
 | `src/inresearch/workflow/product_catalog.py` | 运行代码 |
 | `src/inresearch/workflow/product_coverage.py` | 运行代码 |
 | `src/inresearch/workflow/product_navigation.py` | 运行代码 |
-| `src/inresearch/workflow/progress.py` | 运行代码 |
 | `src/inresearch/workflow/project_pipeline.py` | 运行代码 |
 | `src/inresearch/workflow/project_review.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
@@ -3713,6 +3718,7 @@
 | `src/inresearch/workflow/supply.py` | 运行代码 |
 | `src/inresearch/workflow/terminal_batch.py` | 运行代码 |
 | `src/inresearch/workflow/triage.py` | 运行代码 |
+| `src/inresearch/workflow/triage_progress.py` | 运行代码 |
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
 | `tests/auth_appearance.cjs` | 测试 |
 | `tests/bom_layout.cjs` | 测试 |
@@ -3888,6 +3894,7 @@
 | `tests/unit/test_research_protected_merge.py` | 测试 |
 | `tests/unit/test_research_publication_group.py` | 测试 |
 | `tests/unit/test_research_publication_merge.py` | 测试 |
+| `tests/unit/test_research_readiness.py` | 测试 |
 | `tests/unit/test_research_retry_transient.py` | 测试 |
 | `tests/unit/test_research_review.py` | 测试 |
 | `tests/unit/test_research_sources.py` | 测试 |

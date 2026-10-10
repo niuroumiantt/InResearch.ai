@@ -44,6 +44,14 @@
   const dbs=m.databases||{};
   host.querySelector('#material-stores').innerHTML=Object.entries(roles).map(([k,[name,why]])=>{const v=dbs[k]||{};return `<article><h3>${name}</h3><strong>${bytes(v.file_bytes,'MB')}</strong><p>${why}</p><p>WAL ${bytes(v.wal_bytes,'MB')} · SHM ${bytes(v.shm_bytes,'MB')}</p><p>索引 ${bytes(v.index_bytes,'MB')}，属于库内部，勿重复相加。</p></article>`;}).join('');
   const website=data.website||{};host.querySelector('#material-web-storage').innerHTML=`<h3>网站运行目录的包含关系</h3><div class="material-example"><span>AWS 运行目录<br><b>${bytes(website.allocated_bytes,'MB')}</b></span> ⊃ <span>候选 JSON 快照<br><b>${bytes(website.candidate_snapshot_bytes,'MB')}</b></span> ＋ <span>产品 SQLite 库<br><b>${bytes(website.product_database_bytes,'MB')}</b></span> ＋ <span>其他运行文件</span></div><p>父目录按磁盘分配计量，子文件按文件大小计量；产品数据库服务规格页，与研究核验库用途不同。索引是库内部结构，WAL 是尚未归并的事务页，SHM 是 WAL 协调信息；它们不代表新增材料或新增事实。</p><p>数据库引用原件与产物身份，正文、图像和原件保存在 Spark 文件目录中。数据量变小是载体和覆盖范围变化，不能解释为研究处理完成率。</p>`;
+  const live=document.getElementById('research-health'),r=data.research;
+  if(live){
+   if(!r||r.schema_version!==1)live.textContent='研究对账暂未取得；运行值未知，不以零替代。';
+   else{
+    const providers=(r.providers||[]).filter(p=>p.connected),q=r.questions||{},f=r.formal||{};
+    live.innerHTML=`<strong>当前研究闭环</strong><p>支持链有效的答案 ${count(q.answered)} / ${count(q.total)} 个问题 · 支持链有效的陈述 ${count(f.supported_statements)} 条 · 模型待验证输入 ${count(r.model?.unresolved)} 个。</p><p>运行快照 ${date(data.received_at)} · ${data.stale?'快照延迟，以下仅为上次收到的观察':'已接收快照'}；正式研究按当前发布版本计算。</p><div class="repo-scroll"><table><thead><tr><th>供应方</th><th>运行见到交付的目标</th><th>运行已见 / Git仍缺</th><th>计量范围</th></tr></thead><tbody>${providers.map(p=>`<tr><td>${esc(p.team)}</td><td>${count(p.runtime_observed_targets)}</td><td>${count(p.runtime_received_git_needed)}</td><td>${p.runtime_scope==='current_news_window'?'新闻当前窗口':'累计原件回执'}</td></tr>`).join('')}</tbody></table></div><p>差异是对账提示，需要核原件、条件和回执。这里不修改目标状态、不产生研究采用；两个供应方的范围不同。</p>`;
+   }
+  }
   detail();
  }
  host.addEventListener('click',e=>{const step=e.target.closest('[data-step]');if(step){selected=step.dataset.step;detail();}if(e.target.closest('#material-refresh'))refresh();});

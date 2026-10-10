@@ -45,6 +45,9 @@ const ready = new Promise((resolve, reject)=>{
    await page.locator('#ui-skinbar').waitFor();
    assert.equal(await page.locator('.repo-nav a').count(),12);
    if(name==='inresearchrepo') {
+     await page.waitForFunction(()=>document.querySelector('#research-health').innerText.includes('当前研究闭环'));
+     assert.match(await page.locator('#research-health').innerText(),/答案 0 \/ 458/);
+     assert.match(await page.locator('#research-health').innerText(),/新闻当前窗口/);
      await page.locator('#material-lineage .value').filter({hasText:'447.65'}).waitFor();
      assert.equal(await page.locator('[data-step]').count(),5);
      for(const [step,text] of [['catalog','12,728'],['reading','17,347'],['review','9,819'],['website','29'],['archive','268.06']]) {
@@ -98,6 +101,7 @@ const ready = new Promise((resolve, reject)=>{
   await page.route('**/api/admin/material-flow',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({schema_version:1,stale:true,measurements:{state:'unavailable'},review:{state:'unavailable',candidates:{}},formal:{statements:0},website:{}})}));
   await page.locator('#material-refresh').click();
   await page.waitForFunction(()=>document.querySelector('#material-lineage').innerText.includes('未测量'));
+  assert.match(await page.locator('#research-health').innerText(),/运行值未知，不以零替代/);
   assert.equal(await page.locator('[data-step=review]').locator('..').locator('.value').innerText(),'— 条');
   await page.unroute('**/api/admin/material-flow');
   await page.route('**/api/admin/material-flow',r=>r.fulfill({contentType:'application/json',body:JSON.stringify({schema_version:1,measurements:{archive:{state:'observed',allocated_bytes:100,directories:{'raw-materials':20}}},review:{state:'unavailable',candidates:{}},formal:{},website:{}})}));

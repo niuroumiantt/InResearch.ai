@@ -79,7 +79,8 @@ class SupplyTests(unittest.TestCase):
 
     def request(self, **changes):
         value = dict(action='create', operation_id=str(uuid.uuid4()), expected_revision=0,
-                     question_id='M01-Q01', title='容量原件', scope='全球投运容量与统计期',
+                     target_id='F.cost.energy.price.power_price.state_industrial',
+                     question_id='', title='工业电价原件', scope='美国州级工业电价与统计期',
                      acceptance='原文、定位与口径', provider_id='fetchstat',
                      execution_mode='continuous', execution_host='aws')
         value.update(changes)
@@ -130,34 +131,77 @@ class SupplyTests(unittest.TestCase):
         db = sqlite3.connect(reader / 'catalog/catalog.sqlite')
         db.executescript('''CREATE TABLE documents(doc_id TEXT,sha256 TEXT);
             CREATE TABLE reading_runs(doc_id TEXT,base_revision_id TEXT,state TEXT,phase TEXT,
-            pages_total INTEGER,chunks_total INTEGER,chunks_read INTEGER,report_sha256 TEXT,manifest_sha256 TEXT);''')
+            pages_total INTEGER,chunks_total INTEGER,chunks_read INTEGER,report_sha256 TEXT,manifest_sha256 TEXT);
+            CREATE VIEW current_readings AS SELECT d.sha256,r.* FROM reading_runs r JOIN documents d USING(doc_id) WHERE r.base_revision_id IS NOT NULL;''')
         db.execute('INSERT INTO documents VALUES(?,?)', ('doc-1', sha))
         db.execute('INSERT INTO reading_runs VALUES(?,?,?,?,?,?,?,?,?)',
-                   ('doc-1', None, 'ready', 'complete', 2, 3, 3, 'report', 'sealed'))
+                   ('doc-1', None, 'failed', 'read', 2, 3, 1, None, None))
+        db.execute('INSERT INTO reading_runs VALUES(?,?,?,?,?,?,?,?,?)',
+                   ('doc-1', 'activated-successor', 'complete', 'complete', 2, 3, 3, 'report', 'sealed'))
         db.commit(); db.close()
         with patch.dict(os.environ, {'READER_DATA_ROOT': str(reader)}):
             delivery = supply.snapshot(self.root)['deliveries'][0]
         self.assertEqual(delivery['reading']['candidate_ready'], 1)
+        self.assertEqual(delivery['reading']['blocked'], 0)
         self.assertEqual(delivery['reading']['adoption'], 'not_inferred')
 
-    def test_multiple_suppliers_and_concurrent_revision(self):
+    def test_reader_unavailable_is_distinct_from_unregistered_and_queries_are_bounded(self):
+        reader = Path(self.tmp.name) / 'reader-empty'
+        def project():
+            deliveries=[{'items':[{'sha256':str(i),'reader_handoff':'eligible'} for i in range(1001)]}]
+            supply._attach_reader_status(deliveries)
+            return deliveries[0]['reading']
+        with patch.dict(os.environ, {'READER_DATA_ROOT': str(reader)}):
+            self.assertEqual(project()['status_unavailable'],1001)
+            (reader/'catalog').mkdir(parents=True)
+            db=sqlite3.connect(reader/'catalog/catalog.sqlite')
+            db.execute('CREATE TABLE current_readings(sha256,doc_id,state,phase,pages_total,chunks_total,chunks_read,report_sha256,manifest_sha256)')
+            db.commit(); db.close()
+            observed=project()
+            self.assertEqual(observed['not_registered'],1001)
+            self.assertEqual(observed['status_unavailable'],0)
+
+    def test_single_target_authority_and_concurrent_revision(self):
         req=self.request();supply.mutate(self.root,req,'admin')
         demand=supply.read(self.root)['demands'][0]['id']
-        supply.mutate(self.root, self.request(action='assign', demand_id=demand, provider_id='local', expected_revision=1,
-                                               execution_mode='assisted', execution_host='macmini'), 'admin')
+        with self.assertRaises(ValueError):
+            supply.mutate(self.root, self.request(action='assign', demand_id=demand, provider_id='local', expected_revision=1,
+                                                   execution_mode='assisted', execution_host='macmini'), 'admin')
         results=[]
         def add():
             try:
-                supply.mutate(self.root,self.request(expected_revision=2),'admin');results.append('saved')
+                supply.mutate(self.root,self.request(expected_revision=1),'admin');results.append('saved')
             except supply.Conflict:
                 results.append('conflict')
         threads=[threading.Thread(target=add) for _ in range(2)]
         for t in threads:t.start()
         for t in threads:t.join()
         self.assertCountEqual(results,['saved','conflict'])
-        self.assertEqual(len(supply.read(self.root)['tasks']),3)
+        self.assertEqual(len(supply.read(self.root)['tasks']),2)
         self.assertTrue(all(t['status']=='planned' for t in supply.read(self.root)['tasks']))
-        self.assertEqual(supply.read(self.root)['tasks'][1]['execution_host'], 'macmini')
+        self.assertEqual(supply.read(self.root)['tasks'][1]['target_id'], req['target_id'])
+
+    def test_new_demand_requires_target_and_provider_host_follows_target(self):
+        for change in ({'question_id': 'M01-Q01'}, {'target_id': ''}, {'target_id': 'unknown'}, {'provider_id': 'inews'},
+                       {'execution_host': 'macmini'}):
+            with self.assertRaises(ValueError):
+                supply.mutate(self.root, self.request(**change), 'admin')
+        self.assertEqual(supply.read(self.root)['revision'], 0)
+        # Public vendor collection runs continuously on its registered macmini.
+        req = self.request(target_id='P.gpu.spec', question_id='', provider_id='fetchspec',
+                           execution_mode='continuous', execution_host='macmini')
+        supply.mutate(self.root, req, 'admin')
+        self.assertEqual(supply.read(self.root)['tasks'][0]['execution_host'], 'macmini')
+
+    def test_unbound_historical_demand_is_preserved_but_cannot_gain_new_task(self):
+        path = supply.ledger_path(self.root)
+        path.parent.mkdir(parents=True)
+        state = {'version': 1, 'revision': 0, 'demands': [{'id': 'old', 'question_id': 'M01-Q01'}], 'tasks': [], 'operations': []}
+        path.write_text(json.dumps(state))
+        before = path.read_bytes()
+        with self.assertRaises(ValueError):
+            supply.mutate(self.root, self.request(action='assign', demand_id='old'), 'admin')
+        self.assertEqual(path.read_bytes(), before)
 
     def test_http_roles_and_private_storage(self):
         server=http.ThreadingHTTPServer(('127.0.0.1',0),http.Handler)

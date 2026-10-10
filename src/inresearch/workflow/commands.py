@@ -9,7 +9,7 @@ from datetime import date
 from pathlib import Path
 
 from inresearch.knowledge import registry as research
-from inresearch.knowledge.policy import price_errors
+from inresearch.knowledge.data_rules import price_errors
 from inresearch.storage.layout import workspace_path
 from inresearch.storage.files import json_transaction, locked, write_json
 

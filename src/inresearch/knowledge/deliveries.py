@@ -16,6 +16,7 @@ import json
 import re
 from datetime import date
 from pathlib import Path
+from inresearch.knowledge.target_request_contract import target_node
 from urllib.parse import urlsplit
 
 from inresearch.paths import project_root
@@ -104,6 +105,7 @@ def import_assignments(root, assignments_path, by=None, today=None):
             continue
         t = targets[tid]
         card = {'target_id': tid, 'part_id': t.get('part_id'), 'site_right_id': t.get('site_right_id'), 'team': t.get('team'),
+                'object_ids': [target_node(t)], 'object_binding': 'target_registry',
                 'origin_pointer': pointer, 'pointer_kind': kind, 'delivered_at': delivery.get('at'),
                 'delivered_by': delivery.get('by') or rec.get('assignee'), 'note': (delivery.get('note') or '')[:500],
                 'imported_at': today, 'imported_by': by or None, 'source': 'assignments.register_delivery'}
@@ -123,12 +125,14 @@ def import_assignments(root, assignments_path, by=None, today=None):
 def check(root):
     """每张卡：目标行存在、指针可用、不重复。返回错误列表。"""
     root = Path(root)
-    targets = {t['id'] for t in json.loads((root / TARGETS).read_text(encoding='utf-8'))['targets']}
+    targets = {t['id']: t for t in json.loads((root / TARGETS).read_text(encoding='utf-8'))['targets']}
     errors, seen = [], set()
     for c in load_cards(root)['records']:
         key = (c.get('target_id'), c.get('origin_pointer'))
         if c.get('target_id') not in targets:
             errors.append(f"event card for unknown target {c.get('target_id')}")
+        elif 'object_ids' in c and c['object_ids'] != [target_node(targets[c['target_id']])]:
+            errors.append(f"event card {c.get('target_id')}: object binding differs from target")
         if pointer_kind(c.get('origin_pointer')) is None:
             errors.append(f"event card {c.get('target_id')}: origin_pointer unusable")
         if 'parameters' in c and parameters({'fetchspec': {'observations': c['parameters']}}) is None:

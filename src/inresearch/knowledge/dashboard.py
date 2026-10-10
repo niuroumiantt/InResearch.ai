@@ -1,6 +1,6 @@
 """Generate the dashboard snapshot (data/dashboard.json): one tree, five columns, four questions.
 
-Tree: datacenter root → five systems (IT expands into four) → chains → parts; site rights alongside. Every node carries the five
+Tree: datacenter root → five systems (IT expands into compute/storage/network; storage into memory/persistent storage) → chains → parts; site rights alongside. Every node carries the five
 variable classes (构成 运行 价格 时间 主体) as cells whose sources are registered in
 framework/dashboard_rules.json. The page (web/pages/node.html) reads this snapshot and the target
 list; it aggregates nothing itself. ``--refresh`` rewrites the snapshot, ``--check`` (default) fails
@@ -141,13 +141,13 @@ def build(root=ROOT, as_of=None):
 
     def status_of(items, cov):
         """Honesty rule: counts registered by us (parts, product lines, suppliers) are 'registered', never 'sourced'."""
-        if any(i['value'] is not None and i.get('kind') != 'count' for i in items):
+        if any(i['value'] is not None and i.get('kind') not in ('count', 'attribute') for i in items):
             return 'sourced'
         if cov['sourced'] or cov['assumed']:
             return 'assumed'
         if cov['delivered']:
             return 'delivered'
-        return 'registered' if any(i.get('kind') == 'count' and i['value'] for i in items) else 'needed'
+        return 'registered' if any(i.get('kind') in ('count', 'attribute') and i['value'] for i in items) else 'needed'
 
     # ---- parts
     prod_lines = {}
@@ -161,7 +161,7 @@ def build(root=ROOT, as_of=None):
         lines = prod_lines.get(p['id'], [])
         cells['1'] = {'items': [{'label': pr['1']['label'], 'value': len(lines), 'unit': pr['1']['unit'], 'as_of': bom.get('updated'),
                                  'source': {'type': 'bom', 'key': p['id']}, 'kind': 'count'},
-                                {'label': '尺度', 'value': p['scale'] or p['kind'], 'unit': None, 'as_of': bom.get('updated'), 'source': {'type': 'bom', 'key': 'scale'}}],
+                                {'label': '尺度', 'value': p['scale'] or p['kind'], 'unit': None, 'as_of': bom.get('updated'), 'source': {'type': 'bom', 'key': 'scale'}, 'kind': 'attribute'}],
                       'instances': lines[:12]}
         run_items = [c for c in (indicator_cell(i) for i in p['indicators'] if any(m in i for m in pr['2']['match'])) if c]
         cells['2'] = {'items': run_items}

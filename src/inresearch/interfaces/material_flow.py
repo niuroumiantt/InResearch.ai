@@ -9,6 +9,7 @@ from pathlib import Path
 
 from inresearch.delivery.material_measurements import database_sizes,sanitize,sanitize_scope
 from inresearch.knowledge import registry
+from inresearch.knowledge.research_readiness import summarize
 from inresearch.storage.layout import workspace_path
 
 _CACHE={}
@@ -32,7 +33,8 @@ def website_sizes(root):
 def snapshot(root):
     file=Path(os.environ.get('INRESEARCH_READER_SNAPSHOT',workspace_path('data/research_runtime.json',root)))
     root=Path(root)
-    paths=[file]+[root/'data'/name for name in ('research_knowledge.json','research_graph.json','research_questions.json','projects.json','contracts.json')]
+    paths=[file]+[root/'data'/name for name in ('research_knowledge.json','datacenter_model.json','projects.json','contracts.json')]
+    paths += [root/'framework'/name for name in ('research_graph.json','research_questions.json','tco_targets.json')]
     signature=tuple((str(p),p.stat().st_mtime_ns,p.stat().st_size) if p.exists() else (str(p),None,None) for p in paths)
     with _LOCK:
         cached=_CACHE.get(signature)
@@ -50,6 +52,12 @@ def snapshot(root):
                 'measurements':measurements,'execution_scope':scope,
                 'review':review,
                 'website':website_sizes(root),'formal':{'statements':len(adopted)}}
+        def read(name):
+            return json.loads((root/name).read_text())
+        result['research'] = summarize(read('framework/tco_targets.json'), questions['records'], curated,
+            read('data/datacenter_model.json'), graph,
+            completed_question_ids=registry.completed_questions(curated),
+            supported_statement_ids=[s['id'] for s in adopted], acquisition=reader.get('acquisition'))
         for name in ('projects','contracts'):
             rows=json.loads((root/'data'/(name+'.json')).read_text())['records']
             result['formal'][name]=len(rows)

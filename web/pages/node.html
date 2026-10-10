@@ -361,7 +361,7 @@ function changes(d) {
       <div class="readings" id="readings">${(d.root.account.readings || []).map(r => `<a class="reading" href="${esc(r.href)}"><b>${esc(r.label)}</b><small>${esc(r.hint)}</small></a>`).join("")}</div>
       <div class="links">${d.root.account.links.map(([l, h]) => `<a href="${h}">${esc(l)} ↗</a>`).join("")}<span class="empty">三级由经济模型基准情景计算；回报是账的输出，不是一列。账本是统一模型的四个视图。四个读法是五列的横向展开，不是新轴。</span></div>`;
     byId("q1").textContent = "五类变量在根节点：构成是规模与代际，运行是效率与利用率，价格是资本开支与年成本，时间是寿命与周期，主体是持有与融资方式。";
-    byId("h2").innerHTML = COL === "4" ? `它怎么建<small>时间列 · 六段建设阶段，从站点权利起；下方矩阵停在时间列</small>` : `它由什么组成<small>树 · 五个系统（IT 展开四个）× 五类变量 · 站点权利并列</small>`;
+    byId("h2").innerHTML = COL === "4" ? `它怎么建<small>时间列 · 六段建设阶段，从站点权利起；下方矩阵停在时间列</small>` : `它由什么组成<small>树 · 五个系统（IT 展开三类，存储再分两类）× 五类变量 · 站点权利并列</small>`;
     children = (COL === "4" ? buildTimeline(d) : "") + matrix(d);
     byId("q3").textContent = "因子树从公式往下推：每个因子汇总它的部件与权利，再喂经济模型的输入。";
     byId("q4").textContent = `目标清单 ${T.length} 行：已有 ${d.root.targets.sourced}、假设 ${d.root.targets.assumed}、已交付未成序列 ${d.root.targets.delivered || 0}、缺 ${d.root.targets.needed}；其中 ${d.root.targets.not_connected || 0} 行归待建队，不排到期。采集需求、研究工单、价格库新点与新闻事件都从这里出发；因子级目标折叠在下，部件级目标在各系统与部件节点。`;
@@ -387,7 +387,7 @@ function changes(d) {
     cells = eco.cells; const ids = new Set(eco.parts.map(p => p.id));
     factorPred = f => (f.bom_parts || []).some(p => ids.has(p));
     rows = T.filter(t => t.part_id && ids.has(t.part_id));
-    byId("q1").textContent = "系统的五列由部件聚合：部件数、系统效率、每 MW 造价（因子树分线 × 份额）、关键路径交期（部件交期取最大）、供应商数与单一来源部件。";
+    byId("q1").textContent = "系统的五列由部件聚合：部件数、系统效率、每 MW 造价（因子树分线 × 份额）、最长已登记部件交期（取最大值，不是项目关键路径）、供应商数与单一来源部件。";
     byId("h2").innerHTML = `它由什么组成<small>树 · 部件按链路分段，每行五个状态点</small>`;
     children = partsTable(eco.parts, d);
     byId("q3").textContent = "挂到这个系统任一部件的因子。";
