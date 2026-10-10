@@ -4917,6 +4917,69 @@
       "status": "candidate",
       "stored_path": "originals/c9/c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0/dcd-c95d8669c246de9f-Capital deployment in US data construction reached -31.5bn in 202.html",
       "title": "Capital deployment in US data construction reached $31.5bn in 2024 - Newmark"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "coverage": {
+        "characters_read": 57992,
+        "characters_total": 57992,
+        "chunks_read": 24,
+        "chunks_total": 24,
+        "complete": true,
+        "gap_pages": [
+          21
+        ],
+        "pages_read": 25,
+        "pages_total": 25
+      },
+      "doc_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "library_path": "library/by-node/part-dram/2026_SemiAnalysis_China’s CXMT Is Set to Challenge DRAM Incumbents__099edab88b856763.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:cxmt",
+        "actor:infineon-mps-renesas-adi-ti",
+        "actor:micron",
+        "actor:samsung",
+        "actor:samsung-cmm-micron-cz120-mxc-smart-modular",
+        "actor:sk-hynix",
+        "chain:memory/1",
+        "part:ai-asic",
+        "part:dram",
+        "part:gpu",
+        "part:hbm",
+        "root",
+        "system:memory"
+      ],
+      "question_ids": [
+        "NODE-activity-V2-economics",
+        "OBJ-dram-definition",
+        "OBJ-dram-performance",
+        "OBJ-dram-supply",
+        "OBJ-hbm-alternatives",
+        "OBJ-hbm-definition",
+        "OBJ-hbm-interfaces",
+        "OBJ-hbm-performance",
+        "OBJ-hbm-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "report_sha256": "35532c400a3ede8a42e5d79f8b4b49706610b021b63e67c87cc2923e5cb9efb8",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/09/099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703/China’s CXMT Is Set to Challenge DRAM Incumbents.pdf",
+      "title": "China’s CXMT Is Set to Challenge DRAM Incumbents"
     }
   ],
   "evidence": [
@@ -35916,6 +35979,175 @@
           }
         },
         "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ccccd7011232e150a9750ac812084712942f6687c4bf8e459c68f455a7e5b894",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "id": "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:1:claim:3:ev:0",
+      "locator": "page:2/chunk:1",
+      "object_ids": [
+        "actor:cxmt"
+      ],
+      "page_index": 1,
+      "question_ids": [
+        "OBJ-dram-supply"
+      ],
+      "quote": "In June 2015, Polaris Innovations, a subsidiary of WiLAN, a Canadian\npatent-monetization firm, bought roughly 7,000 Qimonda patents and applications\nfrom Infineon for about 30 million euros. In December 2019, Polaris and CXMT signed\nan agreement: a license to a large set of DRAM patents.",
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "source_sha256": "099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:57:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "专利资产与许可是上游DRAM供应商能力和价值形成的具体环节，与当前供应及成本边界工作有实质关系，可作有限B贡献。连续引文及相邻段落提供充分历史上下文；原始重要性6，未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 150.558,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "59a736f7036a6a43cba28d610d574f6be9c46a1dec377b5f94d5589519c8ad06",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 38684,
+            "output_tokens": 4716,
+            "reasoning_output_tokens": 917
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.492,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "44ff10601005f1eeee3c9f8fcf89b0aa26b25c504ed7e9ff991d283e3257768d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35971,
+              "output_tokens": 499,
+              "reasoning_output_tokens": 182
+            }
+          }
+        },
+        "batch_id": "7c80c749519942c80a11ad05d59e9346e25f50760179597f68a22e7c0cd97318"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ccccd7011232e150a9750ac812084712942f6687c4bf8e459c68f455a7e5b894",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "id": "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:1:claim:6:ev:0",
+      "locator": "page:2/chunk:1",
+      "object_ids": [],
+      "page_index": 1,
+      "question_ids": [
+        "OBJ-dram-definition",
+        "OBJ-dram-performance"
+      ],
+      "quote": "Instead of routing the access transistor’s gate across the wafer\nsurface, BWL sinks it into a trench beneath the bitline. It pulls the gate off the surface\nso the cell collapses to a 6F2 layout (versus 8F2). It also lengthens the channel without\nspending surface area, suppressing the short-channel leakage that wrecks retention.\nAnd it cuts gate-to-bitline parasitic capacitance.",
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "source_sha256": "099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:57:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "当前性能工作明确要求研究可靠性与失效机制；短沟道漏电对数据保持的影响及结构上的抑制机制构成实质性部分贡献。连续引文和周边架构段落充分限定其单元层范围，可有限采纳B，但不能回答测量和工况问题。原始重要性6，未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-dram-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 150.558,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "59a736f7036a6a43cba28d610d574f6be9c46a1dec377b5f94d5589519c8ad06",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 38684,
+            "output_tokens": 4716,
+            "reasoning_output_tokens": 917
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.492,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "44ff10601005f1eeee3c9f8fcf89b0aa26b25c504ed7e9ff991d283e3257768d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35971,
+              "output_tokens": 499,
+              "reasoning_output_tokens": 182
+            }
+          }
+        },
+        "batch_id": "7c80c749519942c80a11ad05d59e9346e25f50760179597f68a22e7c0cd97318"
       }
     }
   ],
@@ -69881,6 +70113,204 @@
         "request_sha256": "7e0b69b60e6aaf27f24e0e6e5fd17b87a447d571c6005ba8fc4dd45aacb1f438"
       },
       "object_mapping_check": "独立选择system:power及其发电与储能链条，依据是主张明确讨论为数据中心提供天然气与核电相结合的供电模式。合同没有Oklo或RPower主体ID，不创建或借用其他企业对象。该句未明确反应堆及燃气机组类型，故不下沉到part:smr、燃气轮机或往复式机组；也未建立天然气管道、并网权利或具体数据中心整体范围。两条所选证据统一采用上述主张级范围，不沿用Reader的root标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "evidence_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:1:claim:3:ev:0"
+      ],
+      "id": "adoption:review:b5c7ee37aee2a7ad8c8b7ffd",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:cxmt"
+      ],
+      "question_ids": [
+        "OBJ-dram-supply"
+      ],
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "status": "adopted",
+      "text": "SemiAnalysis在2026年6月23日刊文称，加拿大专利运营公司WiLAN的子公司Polaris Innovations于2015年6月，以约3000万欧元从Infineon购买约7000项Qimonda专利及申请；2019年12月，Polaris与CXMT签订大量DRAM专利的许可协议。约3000万欧元是上述专利资产交易金额，不是CXMT许可费、DRAM模组价格或数据中心IT资本开支。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:57:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "专利资产与许可是上游DRAM供应商能力和价值形成的具体环节，与当前供应及成本边界工作有实质关系，可作有限B贡献。连续引文及相邻段落提供充分历史上下文；原始重要性6，未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-dram-supply"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 150.558,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "59a736f7036a6a43cba28d610d574f6be9c46a1dec377b5f94d5589519c8ad06",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 38684,
+            "output_tokens": 4716,
+            "reasoning_output_tokens": 917
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.492,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "44ff10601005f1eeee3c9f8fcf89b0aa26b25c504ed7e9ff991d283e3257768d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35971,
+              "output_tokens": 499,
+              "reasoning_output_tokens": 182
+            }
+          }
+        },
+        "batch_id": "7c80c749519942c80a11ad05d59e9346e25f50760179597f68a22e7c0cd97318"
+      },
+      "source_candidate_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:1:claim:3"
+      ],
+      "limitations": "仅采纳为作者报告的上游知识产权交易与许可关系，未独立核验交易文件。未披露CXMT许可费、许可范围细项、期限或向具体服务器模组分摊成本的方法。",
+      "conflict_check": "当前采用陈述为空，legacy合同匹配记录为空；所供产能事实不涉及这笔专利交易或许可。未发现直接冲突或重复，不替换任何产能结论，也不以本条认证当前许可状态。",
+      "gap_dependency_check": "部分支持OBJ-dram-supply中的上游供应能力及价值形成；模组报价、单位成本、生命周期成本、当前许可有效性和交付能力仍需其他证据，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7c80c749519942c80a11ad05d59e9346e25f50760179597f68a22e7c0cd97318",
+        "source_report_sha256": "35532c400a3ede8a42e5d79f8b4b49706610b021b63e67c87cc2923e5cb9efb8",
+        "request_sha256": "5899a1782f3a6b6a2e4a4403d9bc217cf1000852632d861873667ee3ccf1abdd"
+      },
+      "object_mapping_check": "actor:cxmt是合同中的长鑫存储主体，原文明确其为2019年许可协议的一方。Polaris、WiLAN和Qimonda没有对应对象，Infineon组合对象的业务范围未获确认；交易不涉及具体RDIMM/MRDIMM或CXL资产，不添加part:dram、part:cxl-memory或其基础设施祖先。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-099edab88b8567637d85d5322127b2cbca0813053c611b1c1988833a2040e703",
+      "evidence_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:1:claim:6:ev:0"
+      ],
+      "id": "adoption:review:7e9f886fc017ede3484c6523",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "OBJ-dram-performance"
+      ],
+      "reading_revision_id": "rev-cfdb22bc45544e7887ba30c076a00c1e",
+      "status": "adopted",
+      "text": "SemiAnalysis在2026年6月23日刊文称，埋入式字线（BWL）将DRAM访问晶体管的栅极埋入位线下方的沟槽，使单元布局由8F2缩至6F2；作者解释，该结构通过延长沟道抑制损害数据保持的短沟道漏电，并降低栅极与位线之间的寄生电容。此为作者对单元层机制的解释，未构成服务器内存模组的实测性能结论。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:57:28+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "当前性能工作明确要求研究可靠性与失效机制；短沟道漏电对数据保持的影响及结构上的抑制机制构成实质性部分贡献。连续引文和周边架构段落充分限定其单元层范围，可有限采纳B，但不能回答测量和工况问题。原始重要性6，未发现A条件。",
+        "workorder_ids": [
+          "Q-OBJ-dram-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 150.558,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "59a736f7036a6a43cba28d610d574f6be9c46a1dec377b5f94d5589519c8ad06",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 38684,
+            "output_tokens": 4716,
+            "reasoning_output_tokens": 917
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 20.492,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "44ff10601005f1eeee3c9f8fcf89b0aa26b25c504ed7e9ff991d283e3257768d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35971,
+              "output_tokens": 499,
+              "reasoning_output_tokens": 182
+            }
+          }
+        },
+        "batch_id": "7c80c749519942c80a11ad05d59e9346e25f50760179597f68a22e7c0cd97318"
+      },
+      "source_candidate_ids": [
+        "rev-cfdb22bc45544e7887ba30c076a00c1e:chunk:1:claim:6"
+      ],
+      "limitations": "未给出具体芯片或模组型号、温度、电压、刷新设置、测试方法、保持时间、漏电或寄生电容测量值，也未给出失效边界及反证。8F2与6F2是单元布局尺度表述，不能换算为模组性能提升比例。",
+      "conflict_check": "当前采用陈述为空；所供legacy产能记录没有同口径性能或结构结论，未发现直接冲突或重复。全文摘要中的产能质疑不构成本机制陈述的反证；未做外部技术认证。",
+      "gap_dependency_check": "仅部分支持OBJ-dram-performance的底层失效机制研究；仍依赖具体芯片与模组的适用性、测试方法、运行条件和反证资料。不能认定该问题已回答或关闭，也不使用未获允许的定义问题ID。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7c80c749519942c80a11ad05d59e9346e25f50760179597f68a22e7c0cd97318",
+        "source_report_sha256": "35532c400a3ede8a42e5d79f8b4b49706610b021b63e67c87cc2923e5cb9efb8",
+        "request_sha256": "5899a1782f3a6b6a2e4a4403d9bc217cf1000852632d861873667ee3ccf1abdd"
+      },
+      "object_mapping_check": "该陈述讨论通用DRAM单元物理结构，合同没有对应芯片单元对象；part:dram为服务器内存模组，原文未建立具体模组适用性。也没有具体厂商或数据中心内存资产范围，故空映射保留性能问题的机制贡献。"
     }
   ],
   "answers": [],
