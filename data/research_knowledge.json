@@ -35420,6 +35420,88 @@
         },
         "batch_id": "e82ed33c8c68247d38754eb7f766a43270878b66c8a9444892480bbc40b9cdec"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "e7f4209607bb25607eab44dc9989185fdd97ad44e044d794abc371576a914f34",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:100:claim:1:ev:0",
+      "locator": "page:100/chunk:100",
+      "object_ids": [],
+      "page_index": 99,
+      "question_ids": [],
+      "quote": "These rely on a bottom-up approach that considers\n                   shipments of different types of IT equipment, complemented by detailed tracking of data\n                   centre projects. The outlook reflects rising demand for a broad range of server classes\n                   alongside anticipated improvements in server efficiency.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:51:03+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。该项明确提供IEA预测的数据基础、项目跟踪与效率假设，对当前M01-Q02比较机构方法及NODE-demand-D1-conversion审查设备需求向能源预测的转换环节具有实质但局部的贡献。连续引文及周围上下文充分，符合B级部分证据条件；未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 75.305,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6dfe3a7a1aa7a23870911c921e0a61c3a100ac35eed70d9876008218c0312fc4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 60663,
+            "output_tokens": 2822,
+            "reasoning_output_tokens": 360
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.074,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7c304ce3452353ae12e2c5c308510cb1beedc1872d93d0cf8523377c9989fc89",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 60208,
+              "output_tokens": 513,
+              "reasoning_output_tokens": 188
+            }
+          }
+        },
+        "batch_id": "717df65ba3a075a427fdd8dcc3a99cdc9492afce37645a98c969ec1a51bb6b90"
+      }
     }
   ],
   "statements": [
@@ -68974,6 +69056,106 @@
         "request_sha256": "9442349284be9e407a16531fb535d19190cb62c611b8811df86dab94ccbd9ed2"
       },
       "object_mapping_check": "独立复核后，本条对象是未限定AI的美国主要数据中心市场在建容量合计。合同中的root限定为一座AI数据中心，原文未建立该对象范围；容量单位GW也不足以指认其内部IT系统、电力系统或并网权利。相邻许可、区划及电力采购讨论不属于本条所选容量主张的对象证据，不继承Reader标签。所选两条证据统一采用空对象映射，保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:100:claim:1:ev:0"
+      ],
+      "id": "adoption:review:a055d49329a63f53ae6dc59a",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q02",
+        "NODE-demand-D1-conversion"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》中说明，其数据中心未来需求预测采用自下而上方法，考虑不同类型IT设备的出货量，并辅以数据中心项目的详细跟踪；展望同时纳入各类服务器需求增长及预期的服务器效率改善。这是IEA对自身预测方法和假设的说明，不构成对预测准确性、效率改善兑现或项目实际投运的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:51:03+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。该项明确提供IEA预测的数据基础、项目跟踪与效率假设，对当前M01-Q02比较机构方法及NODE-demand-D1-conversion审查设备需求向能源预测的转换环节具有实质但局部的贡献。连续引文及周围上下文充分，符合B级部分证据条件；未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M01-Q02",
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 75.305,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6dfe3a7a1aa7a23870911c921e0a61c3a100ac35eed70d9876008218c0312fc4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 60663,
+            "output_tokens": 2822,
+            "reasoning_output_tokens": 360
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.074,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7c304ce3452353ae12e2c5c308510cb1beedc1872d93d0cf8523377c9989fc89",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 60208,
+              "output_tokens": 513,
+              "reasoning_output_tokens": 188
+            }
+          }
+        },
+        "batch_id": "717df65ba3a075a427fdd8dcc3a99cdc9492afce37645a98c969ec1a51bb6b90"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:100:claim:1"
+      ],
+      "limitations": "所供原生文本未确立报告发表日期。服务器效率改善属于预期，不能转成已实现结果。引文没有给出设备出货到在用量的转换规则、工作负载系数、效率参数、项目阶段、地域分解、时滞或样本外验证。相邻2035年用电结果属于情景预测，不纳入本项采用文本，也不能据此换算或汇总GW。PDF原生文本已完整阅读，但未完成图像审阅。",
+      "conflict_check": "已采用adoption:review:0d4eddfd371e5602bb28aa13、adoption:review:f26aec6a705f701bb4956e1b及adoption:review:9bde51f4aaac9b0c1559b566描述LBNL的设备层面汇总、存量估算和资源核算，与本项相容；本项新增IEA自身方法及项目跟踪依据，不能以不同来源的方法相似认定为重复。已有数据不足、外推误差及模型透明度限制未被本项否定。legacy匹配记录为空，未发现真实冲突；检查仅限所供记录，不替换既有结论。",
+      "gap_dependency_check": "M01-Q02仍需IEA、JLL、C&W、麦肯锡和高盛各自的地域、时间、容量与能源边界、设备范围、情景和版本，并给出可复查调和推导及反证。NODE-demand-D1-conversion仍需生产要素及工作负载到设备需求的连接、出货到在用量的规则、功率和效率参数、时滞及不确定性验证。项目跟踪不证明项目已投运，本项只贡献预测输入与方法环节，不回答或关闭任何问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "717df65ba3a075a427fdd8dcc3a99cdc9492afce37645a98c969ec1a51bb6b90",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "624615c686ae2aa04ba9adeb68d78e26c3d2fbe9a5b082f489274c8e08531dd7"
+      },
+      "object_mapping_check": "独立复核后，实际范围是数据中心总体需求预测的方法。合同中的root是一座AI数据中心，part:server专指加速器服务器；原文的各类服务器未区分AI服务器与通用CPU节点，也未建立具体设施下system:it的资产范围。研究预测模型不属于DCIM/BMS，项目跟踪未提供许可或并网权利陈述。因此不继承Reader的root和part:server标签，所选证据统一采用空对象范围，保留有效问题关联。"
     }
   ],
   "answers": [],
