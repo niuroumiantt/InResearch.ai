@@ -3016,6 +3016,87 @@
       "status": "candidate",
       "stored_path": "originals/04/04e3af568142c327af50dd218fab0fd02ef46b59232d1859bdb6d992fa8d4a1c/TPU Inference Externalization Full Steam Ahead.pdf",
       "title": "TPU Inference Externalization Full Steam Ahead"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "coverage": {
+        "characters_read": 35552,
+        "characters_total": 35552,
+        "chunks_read": 25,
+        "chunks_total": 25,
+        "complete": true,
+        "pages_read": 26,
+        "pages_total": 26
+      },
+      "doc_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "library_path": "library/by-node/root/2025_SemiAnalysis_How Oracle Is Winning the AI Compute Market__0688b2da7f1faf3d.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:amd",
+        "actor:arista-networks",
+        "actor:bytedance",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:dayone",
+        "actor:digital-realty",
+        "actor:g42",
+        "actor:gds",
+        "actor:lambda",
+        "actor:lancium",
+        "actor:meta",
+        "actor:nebius",
+        "actor:nvidia-networking",
+        "actor:openai",
+        "actor:oracle",
+        "actor:qts",
+        "part:cpu",
+        "part:gpu",
+        "part:network-switch",
+        "part:nic",
+        "part:rack-system",
+        "part:server",
+        "part:storage-array",
+        "root",
+        "site:grid",
+        "system:it",
+        "system:power"
+      ],
+      "question_ids": [
+        "M02-Q02",
+        "NODE-demand-D1-boundary",
+        "NODE-demand-D1-economics",
+        "NODE-demand-D3-boundary",
+        "NODE-demand-D3-economics",
+        "NODE-workload-enterprise-economics",
+        "NODE-workload-enterprise-placement",
+        "NODE-workload-hpc-profile",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-profile",
+        "NODE-workload-training-placement",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "Q-SCOPE-arch-blackwell"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/06/0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb/How Oracle Is Winning the AI Compute Market – SemiAnalysis (1).pdf",
+      "title": "How Oracle Is Winning the AI Compute Market"
     }
   ],
   "evidence": [
@@ -16415,6 +16496,176 @@
           }
         },
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "debdd501aa08238aa6ce44622d7e5a93fe03728360df6f6797e4752687bfe97d",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:10:claim:8:ev:0",
+      "locator": "page:11/chunk:10",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 10,
+      "question_ids": [],
+      "quote": "Oracle’s bold move was key to making it a part of Stargate, the high-profile JV claiming to invest $500B on GenAI.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T03:53:07+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性7，评分7。连续引文及前后合同、信用风险与Stargate主体区分语境充分，实质关联当前扩张与资金约束、新进入者落地工单，可作为部分作者主张采用。未发现敏感、实质冲突或替换条件，符合B类要求。",
+        "workorder_ids": [
+          "Q-M02-Q02",
+          "Q-M02-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 97.803,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "feb6b99c0a3975d970a2ad624e0cd9a666ca596521f3a8afbd99a00bdcea47e9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59671,
+            "output_tokens": 3327,
+            "reasoning_output_tokens": 416
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.714,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c82ec4dca9137f438ef7b71570f49cd0209df1a83e1347739701f281dce286db",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56826,
+              "output_tokens": 509,
+              "reasoning_output_tokens": 239
+            }
+          }
+        },
+        "batch_id": "f5585eaa7123e1c44852ff253bdb721847dcddec6260bda857061d4b9385f013"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ce8636347cf1654cef11a94c3823fe0edf8e8582d2d1d8a760c4af76ee309ca8",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:11:claim:2:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [
+        "actor:openai",
+        "root"
+      ],
+      "page_index": 11,
+      "question_ids": [],
+      "quote": "We believe that Phase 2 was booked in January 2025, and it shows on both Oracle’s leasing activity, and RPO growth in that specific quarter. The first phase was booked two quarters before.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T03:53:07+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性7，评分7。连续引文和完整交易主体语境支持限定归因的部分主张，实质关联当前扩张时序、外租变化及合同经济口径工单。未发现敏感、实质冲突或替换条件，符合B类要求；部分证据不足以关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q02",
+          "Q-M02-Q03",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 97.803,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "feb6b99c0a3975d970a2ad624e0cd9a666ca596521f3a8afbd99a00bdcea47e9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59671,
+            "output_tokens": 3327,
+            "reasoning_output_tokens": 416
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.714,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c82ec4dca9137f438ef7b71570f49cd0209df1a83e1347739701f281dce286db",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56826,
+              "output_tokens": 509,
+              "reasoning_output_tokens": 239
+            }
+          }
+        },
+        "batch_id": "f5585eaa7123e1c44852ff253bdb721847dcddec6260bda857061d4b9385f013"
       }
     }
   ],
@@ -32233,6 +32484,211 @@
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
         "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
         "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:10:claim:8:ev:0"
+      ],
+      "id": "adoption:review:aa7be9be8b98912e446f9d67",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M02-Q02",
+        "M02-Q04"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis在《How Oracle Is Winning the AI Compute Market》（发表时间未知）中认为，Oracle此前围绕美国得克萨斯州Abilene园区作出的交易承诺，是其参与Stargate的关键；作者将Stargate描述为宣称向生成式AI投资5000亿美元的合资项目。这是来源的因果判断及对宣称规模的描述，未经独立核验，不表示资金已经落实或项目已经投运。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T03:53:07+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性7，评分7。连续引文及前后合同、信用风险与Stargate主体区分语境充分，实质关联当前扩张与资金约束、新进入者落地工单，可作为部分作者主张采用。未发现敏感、实质冲突或替换条件，符合B类要求。",
+        "workorder_ids": [
+          "Q-M02-Q02",
+          "Q-M02-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 97.803,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "feb6b99c0a3975d970a2ad624e0cd9a666ca596521f3a8afbd99a00bdcea47e9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59671,
+            "output_tokens": 3327,
+            "reasoning_output_tokens": 416
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.714,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c82ec4dca9137f438ef7b71570f49cd0209df1a83e1347739701f281dce286db",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56826,
+              "output_tokens": 509,
+              "reasoning_output_tokens": 239
+            }
+          }
+        },
+        "batch_id": "f5585eaa7123e1c44852ff253bdb721847dcddec6260bda857061d4b9385f013"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:10:claim:8"
+      ],
+      "limitations": "5000亿美元对应Stargate宣称的项目规模，不能归为Oracle自身资本开支、已到位融资或已完成投资，也不能转换为建设容量。引文未确立投资期限、完整地域范围或合资实体法律状态；Abilene是前述交易所在地，不能据此限定整个Stargate的范围。没有新进入者样本、落地率分母或可复查融资数据。",
+      "conflict_check": "旧记录stargate-tco-500b保存同一5000亿美元宣称，并按另一篇来源解释为全周期TCO；本条没有将其改为资本开支，未形成口径冲突。该旧记录未保存Oracle此前承诺促成参与的因果判断，故整条不属重复。其他Oracle资本开支、后续算力合同及园区记录范围不同；所供已采用陈述未直接覆盖本项。检查限于所供材料，不覆盖既有结论。",
+      "gap_dependency_check": "对M02-Q02仅补充Oracle通过长期交易承诺参与扩张的机制线索，仍需公司披露、融资条款、现金流与扩张时间表。对M02-Q04仅提供参与及宣称规模的背景，不能证明合资实体或新进入者已经落地，更不能计算落地率；仍需主体、项目分期、实际建设运营及反证。两项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f5585eaa7123e1c44852ff253bdb721847dcddec6260bda857061d4b9385f013",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "fded631ad5473fca0c2d0a80d6404c3f731e42ddb4bbee083d8f2373627c139f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:11:claim:2:ev:0"
+      ],
+      "id": "adoption:review:9437c482025d7382fdcdce5d",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:openai",
+        "root"
+      ],
+      "question_ids": [
+        "M02-Q02",
+        "M02-Q03",
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis在《How Oracle Is Winning the AI Compute Market》（发表时间未知）中认为，美国得克萨斯州Abilene的Crusoe/Lancium园区OpenAI交易第二阶段于2025年1月被Oracle记入账面，并体现在相应季度的Oracle租赁活动及剩余履约义务（RPO）增长中；作者称第一阶段在此前两个季度记入账面。这是来源对交易入账时序及财务信号的判断，未经独立核验，不表示收入已经确认或项目已经投运。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T03:53:07+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原始重要性7，评分7。连续引文和完整交易主体语境支持限定归因的部分主张，实质关联当前扩张时序、外租变化及合同经济口径工单。未发现敏感、实质冲突或替换条件，符合B类要求；部分证据不足以关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q02",
+          "Q-M02-Q03",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 97.803,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "feb6b99c0a3975d970a2ad624e0cd9a666ca596521f3a8afbd99a00bdcea47e9",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 59671,
+            "output_tokens": 3327,
+            "reasoning_output_tokens": 416
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.714,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c82ec4dca9137f438ef7b71570f49cd0209df1a83e1347739701f281dce286db",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 56826,
+              "output_tokens": 509,
+              "reasoning_output_tokens": 239
+            }
+          }
+        },
+        "batch_id": "f5585eaa7123e1c44852ff253bdb721847dcddec6260bda857061d4b9385f013"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:11:claim:2"
+      ],
+      "limitations": "原文使用We believe和booked，未给合同、会计处理依据、季度数值或可复算归因。没有明确Oracle财季标签，不能自行将第一阶段换算为某个具体月份或把booked等同于收入确认。租赁活动与RPO是不同财务信号，均不能确定建设、许可、并网、投运时间或自建租赁比例。",
+      "conflict_check": "旧合同openai-oracle-2025描述2025年9月报道的五年期3000亿美元合同及2027年起始时间，未证明它就是本条两个阶段的同一合同，不能合并或据此判定时序冲突。bern2509-oracle-rpo-fy26q1为后续公司整体RPO，不能独立验证2025年1月该交易的贡献。旧Abilene规划、在建及运营容量记录与本条财务时序口径不同；本条不采用相邻容量估计更新台账。所供已采用陈述未直接重复或否定本项，不替换既有结论。",
+      "gap_dependency_check": "对M02-Q02提供单笔交易承诺时序的作者线索，仍需一手合同、租赁及RPO披露和资金约束数据。对M02-Q03提供Oracle外租活动的个案信号，缺自建与租赁的同口径分子、分母和时间序列，不能判断比例变化。对NODE-activity-V1-economics补充交易承诺与财务指标的时序关联，仍缺收入确认、资本开支、运营成本、定价及合同风险计量。三项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f5585eaa7123e1c44852ff253bdb721847dcddec6260bda857061d4b9385f013",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "fded631ad5473fca0c2d0a80d6404c3f731e42ddb4bbee083d8f2373627c139f"
       }
     }
   ],
