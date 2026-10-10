@@ -64,11 +64,17 @@ print(json.dumps(dict(facts=hashlib.sha256(workspace_path('data/facts.json').rea
             print(json.dumps({'verified': 'kernel read-only, HTTP/CLI, release A→B→A; runtime writes retained',
                               'releases': outputs}, ensure_ascii=False))
         finally:
-            subprocess.run(['docker', 'image', 'rm', *images], check=False)
-            # Containers run as root; hand only the test-owned runtime back to
-            # the invoking user so TemporaryDirectory can clean it on Linux.
-            subprocess.run(['docker', 'run', '--rm', '-v', str(stage) + ':/test-state',
-                            'python:3.12-slim', 'chown', '-R', f'{os.getuid()}:{os.getgid()}', '/test-state'], check=True)
+            # Reuse the built test image: cleanup must not pull another image.
+            # Only this TemporaryDirectory's files change ownership.
+            try:
+                exists = subprocess.run(['docker', 'image', 'inspect', images[0]],
+                                        stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
+                if exists:
+                    run('docker', 'run', '--pull=never', '--rm', '--user', '0:0',
+                        '--entrypoint', 'chown', '-v', str(stage) + ':/test-state',
+                        images[0], '-R', f'{os.getuid()}:{os.getgid()}', '/test-state')
+            finally:
+                subprocess.run(['docker', 'image', 'rm', *images], check=False)
 
 
 if __name__ == '__main__':

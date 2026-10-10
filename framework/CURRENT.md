@@ -228,3 +228,7 @@ TA15实际发布：PR531合并3e169899，AWS12:20:37Z同源码/应用/.43与精�
 ；GitHub TA19仅geometry最后整园区SVG事件等待触及300秒，其余17项已过；将原whole inspector/双屏截图/真实SVG完整独立为whole case，单独加载同x70/fit，原all/assembly顺序及全部拾取、几何和SVG断言保持。
 
 2026-10-10共享验收收尾：TA28历史HTML补excluded登记；TA18/19软件说明断言跟随现行“软件有意无物理模型，不是待建硬件”，原零mesh/零inspector与其余验收保持。并行任务规则补充共享改动合并前相关测试、历史HTML登记、单发布所有者/旧PR优先、实际网站回执与吞吐计量，不增加用户确认步骤。
+
+2026-10-10发布收尾：main现已启用GitHub四项必过检查（validate、browser(core)、browser(model_assets)、storage-container），管理员同样受限，不新增人工审批，非strict不要求无关基线移动自动重跑。TA29真实点选导出按可识别服务器子装配身份核验，未归入具名子装配的网格仍按原类别聚合回退，追加预览几何UUID精确一致断言；完整server聚合身份及原像素/标题/引线/下载/手势断言保持。容器测试清理复用已构建本批镜像、pull=never，仅chown自有TemporaryDirectory，清理前不删镜像，取消无谓的外部基础镜像下载。
+
+显式CI配置base_update_policy=protected_merge：仍先要求审核head全部CI（四必需及额外检查）、源与当前正式上下文；仅新鲜GitHub API确认同head/open/main/clean可合并、main非strict且管理员受四项GitHub Actions检查保护时，保存head/base/保护回执并按原head合并，不因无关main移动重建head。任一条件未知或不符回到原refresh+新head重验，冲突恢复与上下文revalidate不变；默认always_refresh、local不得选择。
