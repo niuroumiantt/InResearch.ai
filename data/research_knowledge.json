@@ -4740,6 +4740,60 @@
       "status": "candidate",
       "stored_path": "originals/9a/9abf6ec8c5cc50c306363141d6628da801e2fbbf6a40e00a26f6e277b4295abb/dcd-9abf6ec8c5cc50c3-Singapore gov-t allocates 200MW of power for four data center dev.html",
       "title": "Singapore gov't allocates 200MW of power for four data center developers on Jurong Island"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b",
+      "coverage": {
+        "characters_read": 9138,
+        "characters_total": 9138,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b",
+      "id": "doc-db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b",
+      "library_path": "library/by-node/actor-nebius/2026_DCD_Nebius to lease data center capacity from Vantage in Ne__db5cc2544eac0dcc.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:meta",
+        "actor:nebius",
+        "actor:nvidia",
+        "actor:vantage",
+        "part:gpu"
+      ],
+      "question_ids": [],
+      "read_status": "complete",
+      "reading_revision_id": "rev-48aa9a8f430d46be9fa45b9a56fa30f1",
+      "report_sha256": "08725d667e22bee975943c0697f19824235d2841703c5a8b911432f6a3cfc4dd",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b",
+        "url": "https://www.datacenterdynamics.com/en/news/nebius-to-lease-data-center-capacity-from-vantage-in-newport-wales/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/nebius-to-lease-data-center-capacity-from-vantage-in-newport-wales/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/db/db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b/dcd-db5cc2544eac0dcc-Nebius to lease data center capacity from Vantage in Newport- Wal.html",
+      "title": "Nebius to lease data center capacity from Vantage in Newport, Wales"
     }
   ],
   "evidence": [
@@ -34478,6 +34532,91 @@
           }
         },
         "batch_id": "fe8e982bc6b2904270b6b0f676d73dbc5c995ee587d1c45fcc91eb276a1028e2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "96e4308e9ff54a140f6870c3eb09a55d7c79c550275639a3932baa0684b14725",
+      "document_id": "doc-db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b",
+      "id": "rev-48aa9a8f430d46be9fa45b9a56fa30f1:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:nebius",
+        "actor:vantage",
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The companies this week announced an agreement to deploy high-density, Nvidia-powered AI infrastructure at Vantage’s CWL1 campus in Newport.",
+      "reading_revision_id": "rev-48aa9a8f430d46be9fa45b9a56fa30f1",
+      "source_sha256": "db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:14:46+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。该协议提供Nebius与Vantage在英国扩张的具体事件线索，实质关联当前M02-Q02；连续原文引句及相邻租赁、规模未披露的语境充分，可作为限定归因的部分证据采用。未发现敏感、真实冲突或替换条件，不触发A类审核。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.799,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "b308f04bab7ad7babc479b44e8d0c5aae35ccd546608c2ed399c9ce3fec86272",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 49715,
+            "output_tokens": 1286,
+            "reasoning_output_tokens": 296
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.538,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "23fb1408d0e56550e136043e83c7ce9e98ce8f086f8415db183f106897626e81",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 50294,
+              "output_tokens": 437,
+              "reasoning_output_tokens": 143
+            }
+          }
+        },
+        "batch_id": "555d732ccc157d7f98f712f3aa7ca66570fbc77c1a98f83e7319d929fefdc4ed"
       }
     }
   ],
@@ -67233,6 +67372,108 @@
         "request_sha256": "745203c161d416c07a77be1d8ea65256e8c5257667dcc80cdd0b99dfea21d1d0"
       },
       "object_mapping_check": "本项描述模型软件及物理AI设备端运行，没有对应允许的模型或边缘设备对象。system:control及chain:control/1限定于数据中心DCIM/BMS与固件，不能因出现软件改进而映射；root和system:compute亦没有直接范围证据。所选证据采用空对象范围，不因AI主题增加基础设施标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-db5cc2544eac0dcce4b165e2cd7b0a90e5579ff7ef6c70baafb7527535244d5b",
+      "evidence_ids": [
+        "rev-48aa9a8f430d46be9fa45b9a56fa30f1:chunk:0:claim:1:ev:0"
+      ],
+      "id": "adoption:review:fe6ae157baabfc8de4f57e45",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:nebius",
+        "actor:vantage",
+        "root"
+      ],
+      "question_ids": [
+        "M02-Q02"
+      ],
+      "reading_revision_id": "rev-48aa9a8f430d46be9fa45b9a56fa30f1",
+      "status": "adopted",
+      "text": "据DCD作者Dan Swinhoe于2026年8月13日发表的报道，Nebius与Vantage在该周宣布协议，拟在英国威尔士Newport的Vantage CWL1园区部署高密度、由Nvidia技术支持的AI基础设施；相邻原文说明Nebius将租用该园区的高密度容量。这是来源对公司公告及部署计划的转述，未经本次独立核验，不表示该项部署已经交付或投运。文中未指定GPU型号或架构代际。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:14:46+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5。该协议提供Nebius与Vantage在英国扩张的具体事件线索，实质关联当前M02-Q02；连续原文引句及相邻租赁、规模未披露的语境充分，可作为限定归因的部分证据采用。未发现敏感、真实冲突或替换条件，不触发A类审核。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.799,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "b308f04bab7ad7babc479b44e8d0c5aae35ccd546608c2ed399c9ce3fec86272",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 49715,
+            "output_tokens": 1286,
+            "reasoning_output_tokens": 296
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.538,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "23fb1408d0e56550e136043e83c7ce9e98ce8f086f8415db183f106897626e81",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 50294,
+              "output_tokens": 437,
+              "reasoning_output_tokens": 143
+            }
+          }
+        },
+        "batch_id": "555d732ccc157d7f98f712f3aa7ca66570fbc77c1a98f83e7319d929fefdc4ed"
+      },
+      "source_candidate_ids": [
+        "rev-48aa9a8f430d46be9fa45b9a56fa30f1:chunk:0:claim:1"
+      ],
+      "limitations": "报道明确部署规模未披露，也未给出确切公告日、交付时间表、租赁期限、价格、融资安排或资金缺口。既有园区运营不等于Nebius新增部署已投运。Nvidia基础设施泛称及DSX参考设计不能确立具体GPU型号、架构、性能或价格；英国多站点投资计划和Vantage跨站点扩张目标不能分配给本项部署。",
+      "conflict_check": "所供已采用陈述涉及一般融资信用判断、Oracle扩张预测、Alphabet支出展望及STACK澳大利亚融资，与本条Newport协议不存在同命题冲突或重复。旧Nebius促销价格、2025年资本开支和并网容量指引，以及Vineland项目记录，均不能验证或否定本项部署；Vantage美国项目和土地记录的地点、时点及事项不同。未发现规范重复，不覆盖任何既有结论；检查限于所供记录。",
+      "gap_dependency_check": "M02-Q02仅获得一项有报道时点和地点的扩张协议线索，不能据此确定扩张交付节奏或资金约束，也不能回答或关闭问题。仍需一手协议或公告、部署规模、分期交付及实际投运证据，以及融资来源、租赁承诺和现金流约束资料。不更新容量总量、价格参数或项目成熟度。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "555d732ccc157d7f98f712f3aa7ca66570fbc77c1a98f83e7319d929fefdc4ed",
+        "source_report_sha256": "08725d667e22bee975943c0697f19824235d2841703c5a8b911432f6a3cfc4dd",
+        "request_sha256": "92cb69ede2b4a55fd70b796221e5515c28b48a665d4cb612ff93175095a85143"
+      },
+      "object_mapping_check": "独立核对对象契约：Nebius与Vantage是原文明示的协议主体，分别承担容量租用和园区提供角色；CWL1数据中心园区的容量租赁及部署计划支持园区整体层面的root映射。选用主体及整体园区范围，不继承Reader的part:gpu标签：本条证据未展开GPU部件层面的供给或技术主张。Nvidia是技术品牌背景，未被报道为协议当事方，故本条协议主张不另映射actor:nvidia；其他基础设施子系统亦无明确分项范围。所选证据统一采用上述主张级对象范围。"
     }
   ],
   "answers": [],
