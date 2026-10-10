@@ -39,6 +39,12 @@ def main(argv=None):
     retry.add_argument("--revision-id")
     retry.add_argument("--error-code",
                        help="only this block reason; a parser fix retires one class, not all")
+    retry_job = sub.add_parser('retry-job', help='CAS retry one failed read job online; preserve attempts and source artifacts')
+    for name in ('doc-id','revision-id','stage','expected-error','expected-recipe','expected-recipe-sha256','request-id','by','reason'):
+        retry_job.add_argument('--' + name, required=True)
+    retry_job.add_argument('--chunk-index', type=int, required=True)
+    retry_job.add_argument('--expected-attempts', type=int, required=True)
+    retry_job.add_argument('--dry-run', action='store_true')
     reread = sub.add_parser('reread', help='create a separately reviewed reading candidate')
     for name in ('doc-id','expected-current','request-id','reason'):
         reread.add_argument('--' + name, required=True)
@@ -74,6 +80,20 @@ def main(argv=None):
             parser.add_argument("--doc-id", action="append",
                                 help="include only this complete document in a scoped candidate export; repeat as needed")
     args = ap.parse_args(argv)
+    if args.command == 'retry-job':
+        from inresearch.workflow.reader_retry_job import retry_job
+        try:
+            result = retry_job(args.data_root, doc_id=args.doc_id, revision_id=args.revision_id,
+                               stage=args.stage, chunk_index=args.chunk_index,
+                               error_code=args.expected_error, expected_attempts=args.expected_attempts,
+                               expected_recipe=args.expected_recipe, expected_recipe_sha256=args.expected_recipe_sha256,
+                               request_id=args.request_id,
+                               by=args.by, reason=args.reason, dry_run=args.dry_run)
+            print(encoded(result))
+            return 0
+        except (ReaderError, OSError, ValueError, KeyError, TypeError, sqlite3.Error) as exc:
+            print(encoded({'error': exc.code if isinstance(exc, ReaderError) else type(exc).__name__}), file=sys.stderr)
+            return 1
     if args.command == 'current':
         try:
             print(encoded(ReadingResults(args.data_root).current(args.sha)))

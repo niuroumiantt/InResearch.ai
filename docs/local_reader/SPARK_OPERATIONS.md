@@ -200,6 +200,29 @@ python3 ~/code/inresearch.ai/manage.py reader retry --error-code ocr_output_inva
 
 一份材料只维护一套有效阅读结果；更换默认模型只影响新任务，已完成材料不会重读。执行配方冻结 backend/model/context、输出预算、请求路由、可选 revision、分块和注册表快照；旧配方补齐默认值后兼容本次升级。已有任务的推理配置不符时仍阻塞，恢复匹配配置后可 retry；自动选择旧配置仍未实现，显式重读流程见下节，不能用删除台账来重读。可在同一配方追加已明确配置的 OCR 能力，逐页记录实际视觉模型，retry 从已保存页继续。
 
+### 单个失败阅读任务在线恢复（2026-10-10 补充）
+
+`reader retry-job` 用于点名恢复当前失败阅读版本中的一个 `read` 块，不改变上文持队列锁的 `retry`，也不替代独立研究队列的 `research-review retry-transient`。它要求显式数据根、完整 doc/revision ID、零起始块号、`expected-error=model_cli_failed`、实际 attempts、冻结 recipe ID 与 recipe.json 原字节 SHA256、稳定 request ID、操作者与具体恢复原因。只受理当前版本的 `failed/read`、唯一 failed 且没有 blocked/running 的任务集合，指定块已耗尽原 max_attempts 且没有结果路径或已有块缓存；其他错误、旧版本或状态变化拒绝。
+
+恢复前逐项核对原件 SHA、冻结上下文 snapshot_hash、以同一阅读版本算法计算的 recipe ID、提取/粗读及全部成功块的哈希、块号、页号和字符数；失败目标若已有块缓存则保留并拒绝恢复，上下文/配方/缓存损坏不能靠重新提取掩盖。命令不初始化或迁移 catalog、不构造 Reader、不调用模型，也不取得常驻 worker 生命周期锁；可以与持锁 worker 共存，仍遵守原 scope、claim floor、available、模型等待和调度规则。
+
+以下为已点名且逐项复核目标后的模板；变量必须取自同一实际失败版本，不用示例值替代。先执行只读计划，再以相同参数去掉 `--dry-run` 提交：
+
+```bash
+python3 manage.py reader --data-root "$INRESEARCH_DATA_ROOT" retry-job \
+  --doc-id "$DOC_ID" --revision-id "$REVISION_ID" \
+  --stage read --chunk-index "$CHUNK_INDEX" \
+  --expected-error model_cli_failed --expected-attempts "$ACTUAL_ATTEMPTS" \
+  --expected-recipe "$RECIPE_ID" --expected-recipe-sha256 "$RECIPE_FILE_SHA256" \
+  --request-id "$REQUEST_ID" --by "$OPERATOR" --reason "$RECOVERY_REASON" --dry-run
+```
+
+`--dry-run` 不写数据库、审计目录或缓存。实际提交先经 SQLite online backup 保存一致的 `catalog-before.sqlite`（0600）与 `before.json` 前快照，路径为数据根内 `catalog/reader-job-retries/<request_id>/`；保留原件和全部旧尝试。`BEGIN IMMEDIATE` 事务重验数据库快照及文件 SHA，只将指定 jobs 的 state/error 改为 pending/空、对应 reading_runs 的 state/error 改为 queued/空，并写同事务 meta marker；attempts、max_attempts、available、时间、优先级、成功块及其他文档不变。排队只让正常 worker 再领取一次，领取仍递增 attempts；再次失败按原耗尽预算终止，不增加自动重试预算。
+
+提交前失败完整回滚；提交已可见而返回或 receipt.json 写入失败时，以数据库 marker 为准，不撤销已被 worker 看到的恢复。同 request ID 重放只返回已应用，不再次排队；改参数重用 ID、备份/审计损坏或不完整 prepare 均拒绝。不完整目录与备份须保留，经复核尚未提交后可用新的 request ID；若后来需要另一次人工恢复，须重新核对当前实际次数与失败状态，以新的原因和 request ID 单独授权，不由重放或本次发布自动触发。
+
+本次为入口源码发布，没有点名线上 doc/revision，未执行真实恢复。部署版本、常驻服务、实际模型恢复、目标排队/再领取/完整报告及网站回执分别以运行证据验收；queued 或 CLI 成功不计阅读完成或 C3 采用。
+
 ## 阅读版本升级与受控重读
 
 首次升级 catalog v2 前停止旧 worker 和发布器，运行 `reader init`：程序持同一队列锁，先保存 catalog 内的 `before-reading-revisions-*.sqlite`，再事务迁移；保留文档/来源、任务次数、旧报告与原件路径。外键或遗失任务检查失败则回滚并报错。备份有旧 schema，仅用于停机后在新空目录进行恢复演练，不能将旧库直接覆盖运行中的新库；新版本写入的记录须独立保留与核对。

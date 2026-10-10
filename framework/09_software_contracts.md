@@ -152,6 +152,8 @@ workflow.supply 持有需求/任务计划的唯一用例，HTTP 负责权限与�
 
 2026-10-09显式暂态恢复：workflow.research_review拥有`retry-transient`的精确比较/排队用例，CLI只解析完整batch ID及expected-attempts/expected-error。坏参数在初始化队列前拒绝；仅耗尽原预算（至少四次）的deferred暂态模型错误白名单可受理，当前revision/report/完整封印/原件SHA与当前失败文件均复验。BEGIN IMMEDIATE事务同时保存每个候选的原去向、失败/封印SHA与恢复原因，并更新该批次去向；并发相同请求只允许一次成功，历史写入失败全部回滚。不得修改attempts、available、候选或原审计，不增加调度优先权；只排一轮，新的失败仍服从原预算，正常worker再核源身份与C3/固定抽样。catalog与queue为独立数据库，复验期间二次读取当前源指针，不宣称跨库锁；不得用此入口绕过认证/身份/格式/引文/抽样/语义错误或制造发布回执。
 
+2026-10-10单任务阅读恢复补充：`workflow.reader_retry_job` 拥有既有 catalog 中 `retry-job` 的在线精确比较用例，CLI在构造 Reader/模型及取得 worker 生命周期锁之前分流，显式绑定数据根、doc/revision/read块、`model_cli_failed`、expected attempts、冻结recipe ID/文件SHA、request ID/by/reason。只接受当前 failed/read版本的唯一failed且无blocked/running任务、原预算已耗尽、目标无结果路径且无已有块缓存（存在则保留并拒绝）；复验原件SHA、context snapshot_hash、与reading_revisions同算法的recipe ID及冻结提取/粗读/全部成功块及块号/页号/字符数，不初始化库、不重抽取或调用模型。先保存0600的SQLite online一致备份和前快照，`BEGIN IMMEDIATE`重验同一快照与文件SHA后，只改目标jobs及reading_runs的state/error并保存meta事务marker；任何提交前失败均回滚，提交已可见后以marker为准，receipt写入失败不再次排队。attempts/max_attempts/available/时间/优先级、成功块、其他文档与scope/floor/model-wait保持；每个显式请求只恢复一轮，正常claim递增原次数，失败仍原预算终止。相同请求键幂等、改意图或破损审计拒绝；不完整prepare保留且须另经复核以新key恢复，后续独立人工恢复须重新比较当前实际次数/失败并记录新原因。该入口补充既有reader retry和研究retry-transient，不授予新模型执行、重读替换、C3或发布资格。
+
 2026-10-09发布验收提速：完整浏览器core按统一已审阅suite清单分core_a/core_b并行，保留所有suite、密度场景与逐项断言/期限；browser(core)聚合只在全部matrix成功后通过，模型资产场景沿用。旧发布尝试被新attempt替代前，将完整journal不可变地保存到旧attempt目录，新journal保留相对路径与实际SHA，不能用新状态覆盖旧失败审计。
 
 

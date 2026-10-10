@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.70。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.71。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2455。
+在册文件：2457。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 363 |
+| 运行代码 | 364 |
 | 现行规范 | 16 |
 | 项目配置 | 756 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 187 |
-| 测试 | 190 |
+| 测试 | 191 |
 
 ## 在册记录集合
 
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 41 |
-| `data/research_knowledge.json` | evidence | 314 |
-| `data/research_knowledge.json` | statements | 289 |
+| `data/research_knowledge.json` | documents | 42 |
+| `data/research_knowledge.json` | evidence | 315 |
+| `data/research_knowledge.json` | statements | 290 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -3609,6 +3609,7 @@
 | `src/inresearch/workflow/project_pipeline.py` | 运行代码 |
 | `src/inresearch/workflow/project_review.py` | 运行代码 |
 | `src/inresearch/workflow/reader.py` | 运行代码 |
+| `src/inresearch/workflow/reader_retry_job.py` | 运行代码 |
 | `src/inresearch/workflow/reader_scope.py` | 运行代码 |
 | `src/inresearch/workflow/reading_gaps.py` | 运行代码 |
 | `src/inresearch/workflow/reading_queue.py` | 运行代码 |
@@ -3778,6 +3779,7 @@
 | `tests/unit/test_reader_demands.py` | 测试 |
 | `tests/unit/test_reader_depth.py` | 测试 |
 | `tests/unit/test_reader_progress.py` | 测试 |
+| `tests/unit/test_reader_retry_job.py` | 测试 |
 | `tests/unit/test_reader_scope_capacity.py` | 测试 |
 | `tests/unit/test_reader_thermal.py` | 测试 |
 | `tests/unit/test_reading_results.py` | 测试 |
