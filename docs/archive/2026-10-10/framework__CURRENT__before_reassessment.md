@@ -1,12 +1,12 @@
 # 历史基准页快照（非现行执行指令）
 
-已由 framework/CURRENT.md 的规则索引替代。保留此前发布回执与失败边界，当前规则以注册表和唯一源为准。
+已由 framework/CURRENT.md 的规则索引替代。保留此前发布回执与失败边界，当前规则以注册表和唯一源为准。归档移动后的链接按原 framework 位置重定位，历史正文的业务结论保持。
 
 # 当前研究与执行基准
 
 2026-10-10 项目审查：研究控制室按六项审查与来源生成的需求/供应状态重设计，保留运行指标独立计量及私有日更投影。Reader/editorial 共用10,000/1MiB范围校验，修复生产7,739条被旧5,000限制误拒绝；满容量重放幂等、新增拒绝。facts帮助/未知参数先解析，summary只读审计；供料映射及包/feed原则与现行规范对齐，移除README失效命令。审查证据见 docs/reviews/2026-10-10/project-audit/REVIEW.md；37条旧事实SHA缺口、107项来源/时效任务、供应未接能力及实际生产恢复/发布回执分别保留，不以源码改动冒充完成。
 
-2026-10-10 CI 按影响分流：普通资料文案/图像只做基础和相关检查；既有页面纯文字及已知模型图像跑对应浏览器场景；仅追加有界研究资料跑研究来源/审核/发布链路及成果/摘要页面检查；修改旧记录、正式答案、代码、结构、权限、其他数据、依赖、规则和未知改动保持完整回归。两个稳定必过名称 validate、browser (core)，后者始终上报所选作业汇总，未选任务才可 skipped；研究追加不跑无关3D/装配/园区和存储测试。唯一规范见 [CI 影响验收](../docs/CI.md)。
+2026-10-10 CI 按影响分流：普通资料文案/图像只做基础和相关检查；既有页面纯文字及已知模型图像跑对应浏览器场景；仅追加有界研究资料跑研究来源/审核/发布链路及成果/摘要页面检查；修改旧记录、正式答案、代码、结构、权限、其他数据、依赖、规则和未知改动保持完整回归。两个稳定必过名称 validate、browser (core)，后者始终上报所选作业汇总，未选任务才可 skipped；研究追加不跑无关3D/装配/园区和存储测试。唯一规范见 [CI 影响验收](../../CI.md)。
 
 2026-10-10 用户替代 BOM 分类：设施、水与散热、电、IT设施、控制与软件；IT 分计算、存储、网络，存储再分内存与持久存储，计算处理器分 CPU/GPU/其他、承载与管理配套单列。爆炸图总图为场景剖面＋完整分类说明的整张讲解图，替代仅HTML分类框；独立文字SVG/整图PNG、同尺寸轻量JPEG预览、手机放大/适应窗口与可展开定位树；高清下载原字节保持。五类色块贯穿下方；稳定叶子/部件/问题ID保留，递归汇总后代叶子不重计。现行规范见03「一个骨架」与05「爆炸图2D」。
 
@@ -56,24 +56,24 @@ TA16实际发布：PR558合并867ccd4e，AWS17:59:01Z同源码/应用/.46与精�
 
 | 主题 | 唯一现行规范源 | 机器实现或配套入口 |
 |---|---|---|
-| 研究架构（一棵树、三级账、四问四段、五类变量、六队、一个模板） | [00 研究框架总览 v3](00_overview.md) | bom.json、site_rights.json、research_graph.json、research_questions.json、dashboard_rules.json、node.html |
-| 数据口径与核验 | [01 口径手册](01_data_standards.md) | data_contract.json；inresearch.knowledge.validate、inresearch.knowledge.verify、inresearch.knowledge.facts、inresearch.knowledge.registry |
-| 知识与版本 | [02 知识格式](02_knowledge_format.md) | research_knowledge.json、兼容 Finding、inresearch.delivery.export |
-| 骨架、部件、站点权利与产品映射 | [03 对象与协作](03_bom_and_collaboration.md) | 稳定部件 ID、系统与链路、建设阶段、站点权利、产品线目录 |
-| 统一经济模型、账本与 dashboard | [05 界面规范](05_interface_system.md)「统一经济模型与账本」「数据中心节点页」「目录」 | data/datacenter_model.json、knowledge/economics.py、ledger.html、dashboard_rules.json、data/dashboard.json |
-| M4 原件分类整理（独立 scope） | [M4 任务卡](../docs/M4_TRIAGE_TASK.md) | inventory / triage / organize；不扩大 Spark originals 操作权限 |
-| 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
-| 技术插图、爆炸/平面/剖面图的画法与逐张迁移 | [10 白底技术图册](10_visual_atlas.md) | visual_atlas.json（14张参考/配方）、visual_atlas_migration.json（逐项队列）、[迁移计划](../docs/design/technical-atlas/MIGRATION_PLAN.md) |
-| 全站界面、字体与外观 | [05 界面规范](05_interface_system.md) | web/components/site-shell.js、web/themes、web/assets/fonts（infra 字体包）、interface_manifest.json |
-| 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（六队、三仓库、来源归属）、[五类变量目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
-| 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
-| 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
-| 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
-| 格洛可专题长文 | [专题写作规则 v2.8](../docs/geluoke/专题写作规则.md) | 精简专题、图文交付、手机排版；本机交付路径见长文交接 |
-| 专栏与长文自动研究交付 | [自动交付协议](../docs/local_reader/EDITORIAL_DELIVERY.md) | editorial-sync；Spark 五分钟专栏同步；M5 封装后的长文 outbox 自动发送 |
+| 研究架构（一棵树、三级账、四问四段、五类变量、六队、一个模板） | [00 研究框架总览 v3](../../../framework/00_overview.md) | bom.json、site_rights.json、research_graph.json、research_questions.json、dashboard_rules.json、node.html |
+| 数据口径与核验 | [01 口径手册](../../../framework/01_data_standards.md) | data_contract.json；inresearch.knowledge.validate、inresearch.knowledge.verify、inresearch.knowledge.facts、inresearch.knowledge.registry |
+| 知识与版本 | [02 知识格式](../../../framework/02_knowledge_format.md) | research_knowledge.json、兼容 Finding、inresearch.delivery.export |
+| 骨架、部件、站点权利与产品映射 | [03 对象与协作](../../../framework/03_bom_and_collaboration.md) | 稳定部件 ID、系统与链路、建设阶段、站点权利、产品线目录 |
+| 统一经济模型、账本与 dashboard | [05 界面规范](../../../framework/05_interface_system.md)「统一经济模型与账本」「数据中心节点页」「目录」 | data/datacenter_model.json、knowledge/economics.py、ledger.html、dashboard_rules.json、data/dashboard.json |
+| M4 原件分类整理（独立 scope） | [M4 任务卡](../../M4_TRIAGE_TASK.md) | inventory / triage / organize；不扩大 Spark originals 操作权限 |
+| 全文阅读与采用 | [04 阅读标准](../../../framework/04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
+| 技术插图、爆炸/平面/剖面图的画法与逐张迁移 | [10 白底技术图册](../../../framework/10_visual_atlas.md) | visual_atlas.json（14张参考/配方）、visual_atlas_migration.json（逐项队列）、[迁移计划](../../design/technical-atlas/MIGRATION_PLAN.md) |
+| 全站界面、字体与外观 | [05 界面规范](../../../framework/05_interface_system.md) | web/components/site-shell.js、web/themes、web/assets/fonts（infra 字体包）、interface_manifest.json |
+| 采集与翻译 | [06 采集规范](../../../framework/06_acquisition.md) | supply_contract.json（六队、三仓库、来源归属）、[五类变量目标清单](../../../framework/tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
+| 模型执行与客户端 | [08 模型执行](../../../framework/08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
+| 软件职责与写入 | [09 软件契约](../../../framework/09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
+| 运行与部署 | [Spark 操作手册](../../local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
+| 格洛可专题长文 | [专题写作规则 v2.8](../../geluoke/专题写作规则.md) | 精简专题、图文交付、手机排版；本机交付路径见长文交接 |
+| 专栏与长文自动研究交付 | [自动交付协议](../../local_reader/EDITORIAL_DELIVERY.md) | editorial-sync；Spark 五分钟专栏同步；M5 封装后的长文 outbox 自动发送 |
 | 规则替代与在册管理 | 本页 | current_state.json、repository_manifest.json、inresearch.interfaces.governance |
 
-规范源的主题、状态、适用范围、被替代版本及相关实现都登记在 [current_state.json](current_state.json)。[在册清单](../docs/REPOSITORY_REGISTER.md)列出 Git 管理的全部文件、身份、内容摘要和记录集合。外部材料是研究输入，不因出现在仓库内就成为规范。
+规范源的主题、状态、适用范围、被替代版本及相关实现都登记在 [current_state.json](../../../framework/current_state.json)。[在册清单](../../REPOSITORY_REGISTER.md)列出 Git 管理的全部文件、身份、内容摘要和记录集合。外部材料是研究输入，不因出现在仓库内就成为规范。
 
 ## 哪一种“新”可以覆盖旧内容
 
@@ -88,7 +88,7 @@ TA16实际发布：PR558合并867ccd4e，AWS17:59:01Z同源码/应用/.46与精�
 
 查现行主题及引用 → 判定变更类型与范围 → 修改唯一源和适用实现 → 登记 supersedes / 原因 / 影响路径 → 归档旧执行正文 → 审阅并更新规范验收映射 → 更新清单 → 校验与测试 → 已授权的仓库合并和部署 → 核对实际运行版本。
 
-`python3 manage.py governance --check` 检查在册路径/内容摘要、主题单一生效、替代链、规范引用、历史边界及已知失效表述。还检查 [规范验收映射](verification_contract.json) 的已审阅源文件/操作指南/测试内容摘要、15 条政策的适用 scope 和测试入口。修改规范、指南或所映射测试后，必须实际复审对应要求、实现及未覆盖项，再显式更新映射；`--refresh` 只更新文件清单，不能自动批准映射变化。映射列举选定要求并明确剩余缺口，不是所有自然语言条款的穷尽证明。它不能自动证明所有自然语言都没有语义冲突；任何规则变更仍须审阅关联实现和记录。新文件或修改后的在册内容没有刷新清单会使 CI 失败。
+`python3 manage.py governance --check` 检查在册路径/内容摘要、主题单一生效、替代链、规范引用、历史边界及已知失效表述。还检查 [规范验收映射](../../../framework/verification_contract.json) 的已审阅源文件/操作指南/测试内容摘要、15 条政策的适用 scope 和测试入口。修改规范、指南或所映射测试后，必须实际复审对应要求、实现及未覆盖项，再显式更新映射；`--refresh` 只更新文件清单，不能自动批准映射变化。映射列举选定要求并明确剩余缺口，不是所有自然语言条款的穷尽证明。它不能自动证明所有自然语言都没有语义冲突；任何规则变更仍须审阅关联实现和记录。新文件或修改后的在册内容没有刷新清单会使 CI 失败。
 
 ## 记录与运行边界
 
@@ -228,7 +228,7 @@ TA13实际发布：PR486合并b52c42ea，AWS08:28:18Z同源码/应用及精确29
 
 2026-10-09对象归属补审：C3显式审核注册对象IDs（允许空）、冻结目录/协议并独立抽样绑定，旧候选/审核保留。已采用记录仅允许完整before+SHA及实际具名A补审的技术严格收窄，原文/旧审/问题/支持与状态不变；替代结论与放宽分发仍按01所有者规则，见01/02/04/09。
 
-2026-10-09研究运行回执更新：18:59原23正文封存16/1running/6queued，JLARC53/154；19:12已独立核HTTPS及Spark闭环30，外部507两条的语义/公网/原a4既有ACK实核已补齐，main30与原50显式7分开。502/503真实5＋1 ACK、501上下文失效原路径revalidate/close与旧attempt保留；515已merge及Spark源码快进ab967，但驻留重载/四批恢复被自动审批执行前拒绝，0服务/队列动作。C03原PDF精确58缺口保留，新DOE/LBL同源两HTML实际acquisition接收匹配2、来源plan/apply/replay通过，Reader登记与C3均0，未改scope准入。TA14独立实际发布14/35，保留全部.40实现与回执。现行入口见 [研究交接](../docs/handoff/us-datacenter-power-20261009.md)。本次仅更新docs实际阶段和治理登记，不改写作/采用规则或运行服务。
+2026-10-09研究运行回执更新：18:59原23正文封存16/1running/6queued，JLARC53/154；19:12已独立核HTTPS及Spark闭环30，外部507两条的语义/公网/原a4既有ACK实核已补齐，main30与原50显式7分开。502/503真实5＋1 ACK、501上下文失效原路径revalidate/close与旧attempt保留；515已merge及Spark源码快进ab967，但驻留重载/四批恢复被自动审批执行前拒绝，0服务/队列动作。C03原PDF精确58缺口保留，新DOE/LBL同源两HTML实际acquisition接收匹配2、来源plan/apply/replay通过，Reader登记与C3均0，未改scope准入。TA14独立实际发布14/35，保留全部.40实现与回执。现行入口见 [研究交接](../../handoff/us-datacenter-power-20261009.md)。本次仅更新docs实际阶段和治理登记，不改写作/采用规则或运行服务。
 
 
 ### 2026-10-09 TA14 分层示意本地验收
