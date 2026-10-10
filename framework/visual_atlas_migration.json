@@ -3,7 +3,7 @@
   "style_id": "white-technical-atlas-v1",
   "source": "framework/10_visual_atlas.md",
   "plan": "docs/design/technical-atlas/MIGRATION_PLAN.md",
-  "observed_at": "2026-10-09T22:16:22.010174+00:00",
+  "observed_at": "2026-10-10T09:58:31.923005+00:00",
   "baseline_revision": "453f3625d427b9d989851ed5712737495891a378",
   "audit_scope": "Initial baseline inventory at baseline_revision; actual per-item acceptance and publication recorded separately, not a whole-site redesign receipt",
   "audit_directory": "~/.local/share/inresearch.ai/technical-atlas-audit/2026-10-08/",
@@ -40,13 +40,12 @@
         "TA-35"
       ]
     ],
-    "current_source_batch": [
-      "TA-35"
-    ],
+    "current_source_batch": [],
     "max_concurrent_drafting": 1,
     "review_scope": "current_source_batch_with_per_item_evidence",
     "acceptance_policy": "per_item_actual_public_closure",
-    "publication_registration": "previous_closed_items_with_next_substantive_source_pr"
+    "publication_registration": "previous_closed_items_with_next_substantive_source_pr",
+    "completion": "All35 primary and4 supplemental items actually published; no active drawing or next item."
   },
   "states": [
     "planned",
@@ -1332,14 +1331,15 @@
         "TA-22",
         "TA-23"
       ],
-      "status": "review",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-35/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "084e0698c09f047e0e17bcd4e8eca9456c71ea14",
       "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
       "object_id": "cross-scale",
       "source_review_record": "docs/design/technical-atlas/TA-35/source-review-v1.json",
       "production_record": "docs/design/technical-atlas/TA-35/generation-v1.json",
-      "baseline_revision": "a379dbba9799c82b095843d87775271b0427686d"
+      "baseline_revision": "a379dbba9799c82b095843d87775271b0427686d",
+      "publication_record": "docs/design/technical-atlas/TA-35/publication-20261010.json"
     },
     {
       "id": "TA-36",
@@ -1480,9 +1480,9 @@
     }
   ],
   "execution_priority": {
-    "reason": "TA30–34 actual a379/.67 public-v4 and33original closure registered with TA35 substantive source; actual34/35. TA35 source only, new actual public pending.",
-    "next": "TA-35",
-    "next_item": "TA-35"
+    "reason": "All35 primary and4 supplemental items have per-item actual public closure; TA35 first source084e/.68, final registration does not change it.",
+    "next": null,
+    "next_item": null
   },
   "primary_plan": {
     "total": 35,
@@ -1524,7 +1524,7 @@
       "TA-35"
     ],
     "execution_order": "01–35; sequential individual drawing/review; source PR batches do not change figure order",
-    "published": 34
+    "published": 35
   },
   "supplemental_items": [
     "TA-36",
