@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10.69",
+  "version": "2026.10.10.70",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -594,8 +594,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 265501,
-      "sha256": "9bd2dd758b87ea7329a5005b2fcdf9909f6b06e8bcecdabf8002f36d5f69a7e3",
+      "bytes": 266263,
+      "sha256": "b750d598bb5bb7ea3638456dbd939ff86db2f0a1b556f8887539c5bd28f87457",
       "collections": []
     },
     {
@@ -997,6 +997,37 @@
       "role": "historical",
       "bytes": 28784,
       "sha256": "846f3829980cff2a9b970f72c9db9fdb67624660df555227ffbfb459a3e0d0a4",
+      "collections": []
+    },
+    {
+      "path": "docs/design/bom-classification/manifest-v1.json",
+      "role": "project_config",
+      "bytes": 3106,
+      "sha256": "79d50c324c1612c95c1e6af0a993c0e997fc87910160ac15be46c06bbe7d86d1",
+      "collections": [
+        {
+          "name": "pixels",
+          "count": 2
+        },
+        {
+          "name": "scene_pixels",
+          "count": 2
+        },
+        {
+          "name": "categories",
+          "count": 5
+        },
+        {
+          "name": "fonts",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "path": "docs/design/bom-classification/prompt-v1.txt",
+      "role": "project_config",
+      "bytes": 2879,
+      "sha256": "5394768b2413967049793efbb8f5e7140e111b63dc9f56487a5601fc325062b7",
       "collections": []
     },
     {
@@ -10222,8 +10253,8 @@
     {
       "path": "docs/handoff/bom-classification-20261010.md",
       "role": "supporting_document",
-      "bytes": 1665,
-      "sha256": "646c394f1311659072161060e3ce7bf34e99cee080723e73696b9a470573d1e8",
+      "bytes": 2151,
+      "sha256": "018059eac1cdcc57fce44e7db8f99727f51903717c866c7174c0af705db0169c",
       "collections": []
     },
     {
@@ -17551,8 +17582,8 @@
     {
       "path": "framework/05_interface_system.md",
       "role": "normative",
-      "bytes": 63955,
-      "sha256": "4e37435e586d9349316f00d9cc14936b356fce8a31d3aec7b7dc6b769fea3abc",
+      "bytes": 64591,
+      "sha256": "110f37ad9661fec56260de9aeb60f9fae79ee489c2a86666b53e53693fe989b7",
       "collections": []
     },
     {
@@ -17593,15 +17624,15 @@
     {
       "path": "framework/10_visual_atlas.md",
       "role": "normative",
-      "bytes": 48411,
-      "sha256": "ee4899591fbfb29c76cacf4d281af7c1a6938d1d02044dc0045c4878ac75d3a1",
+      "bytes": 49274,
+      "sha256": "a9cc81831237f2e7a1315c25746ef03503763d236a173f60f7ffb8a667fd5b25",
       "collections": []
     },
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 49461,
-      "sha256": "2e343acb73dc26725ecec88b13de8f957e26bfd8268931e9063dc75459df9ca4",
+      "bytes": 49599,
+      "sha256": "ebf45f67768e697297b5c7f8dd4c0c7d544cef3f0c4ca73d5bffcbf7bc362741",
       "collections": []
     },
     {
@@ -17627,8 +17658,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 218380,
-      "sha256": "97ab4bed6b617bf062ee715e6d8eedcdbe27b8b119538d813f6ca626eb55edcf",
+      "bytes": 219344,
+      "sha256": "aa49982ef433e8ab3830b079e5aab539edec953965f959f002487f1da352d03c",
       "collections": [
         {
           "name": "policies",
@@ -17974,8 +18005,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 403385,
-      "sha256": "99e06f3a99949fc6bd0ed02bc915315b8248dbc47341e4ba23fe72768ab61e6d",
+      "bytes": 401887,
+      "sha256": "cbf00e0c75dcfb3df594146c7dd34d40ae7b0e6e78b68fcfa5d535220a50a091",
       "collections": [
         {
           "name": "policies",
@@ -20726,6 +20757,13 @@
       "collections": []
     },
     {
+      "path": "scripts/build_bom_classification_poster.py",
+      "role": "implementation",
+      "bytes": 9336,
+      "sha256": "8940ec985e7433a9516450abac8851c48bf5b98d73f43e28bc88e8c326d1580d",
+      "collections": []
+    },
+    {
       "path": "scripts/build_technical_atlas.py",
       "role": "implementation",
       "bytes": 3244,
@@ -21883,8 +21921,8 @@
     {
       "path": "tests/bom_layout.cjs",
       "role": "test",
-      "bytes": 5706,
-      "sha256": "13325c5b30d61fb43541085a46044bcbc95f58c6d7efcd899cac599496626ebd",
+      "bytes": 7400,
+      "sha256": "c1d67360b289eeec22b1889135deeed726dd130a9802ce4fba08f85ad7e52c5b",
       "collections": []
     },
     {
@@ -22270,6 +22308,13 @@
       "role": "test",
       "bytes": 8682,
       "sha256": "e7e41c4c15911c166eae96738db3ac5b21068d873b6451cb19d08479c2b847f6",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_bom_classification_poster.py",
+      "role": "test",
+      "bytes": 2468,
+      "sha256": "fccc7683fb29a51467c36f5462a488c56dbfa42c75aa92d995d6a5b8d59d2bb2",
       "collections": []
     },
     {
@@ -23194,6 +23239,27 @@
       "role": "test",
       "bytes": 3963,
       "sha256": "fed5b3d04f8fa049a812ec3c11117630be2e095dc1cec026818eb33bfff6d7a9",
+      "collections": []
+    },
+    {
+      "path": "web/assets/bom-classification/cutaway-v1.png",
+      "role": "asset",
+      "bytes": 3043755,
+      "sha256": "ef5ef396791a7d100aacc6e968bddc5110fb69a56c366a7b90c2dfe85b12ac89",
+      "collections": []
+    },
+    {
+      "path": "web/assets/bom-classification/overview-v1.png",
+      "role": "asset",
+      "bytes": 2985056,
+      "sha256": "769baeb474c74a71667008d7363d764149f1757d316cc8335199c4160a031171",
+      "collections": []
+    },
+    {
+      "path": "web/assets/bom-classification/overview-v1.svg",
+      "role": "asset",
+      "bytes": 4148392,
+      "sha256": "0fcb2b3f2b0c611cb1c833cb801e5b7594dc791c156c0d9c6a8ca1351d2ec872",
       "collections": []
     },
     {
@@ -26350,8 +26416,8 @@
     {
       "path": "web/pages/bom.html",
       "role": "implementation",
-      "bytes": 35660,
-      "sha256": "079e376a062322beaf12779f97e75d3372d256a008134f7031dd8627bfecec8b",
+      "bytes": 39150,
+      "sha256": "759396ee4ff23779c5eb0807e27fac2d7f518e3de677e41b80f6f1c7aaf01e17",
       "collections": []
     },
     {
@@ -26567,8 +26633,8 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 46188,
-      "sha256": "5b509384c5e028134c2ab04e12d22ccdbadd8ae784f47d87cb076c1b2f9344ba",
+      "bytes": 46477,
+      "sha256": "9f2e2ff3152920c8643ec2bbf790a22175714d6b8e0cf93cfd2698a3d747f238",
       "collections": []
     },
     {
@@ -26622,19 +26688,19 @@
     }
   ],
   "counts_by_role": {
-    "asset": 365,
+    "asset": 368,
     "candidate": 146,
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 13,
     "historical": 366,
-    "implementation": 363,
+    "implementation": 364,
     "normative": 15,
-    "project_config": 754,
+    "project_config": 756,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
     "supporting_document": 187,
-    "test": 189
+    "test": 190
   }
 }

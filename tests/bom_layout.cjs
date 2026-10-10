@@ -11,6 +11,11 @@ const bom=require('../framework/bom.json');
   await page.goto(process.env.UI_BASE_URL+'/bom.html');
   await page.locator('.equipment[data-part="ssd"]').waitFor();
   await page.evaluate(()=>document.fonts.ready);
+  const poster = page.locator('.classification-poster img');
+  await poster.evaluate(e=>e.decode());
+  assert.deepEqual(await poster.evaluate(e=>[e.naturalWidth,e.naturalHeight]),[1536,1800]);
+  assert.ok(await poster.evaluate(e=>!!(e.compareDocumentPosition(document.querySelector('.equipment'))&Node.DOCUMENT_POSITION_FOLLOWING)));
+  assert.equal(await page.locator('#classification-nav').evaluate(e=>e.open),false);
   const physical=bom.parts.filter(p=>(p.kind||'part')==='part');
   assert.equal(await page.locator('.equipment').count(),physical.length);
   assert.equal(await page.locator('[data-overview-system]').count(),5);
@@ -45,6 +50,23 @@ const bom=require('../framework/bom.json');
     }
    }
   }
+  // A phone must be able to read the full-resolution poster without page overflow.
+  await page.locator('.poster-actions [data-open-classification]').click();
+  assert.ok(await page.locator('#classification-dialog').isVisible());
+  assert.ok(await page.locator('.poster-scroll').evaluate(e=>e.scrollWidth>e.clientWidth));
+  await page.locator('.poster-scroll').evaluate(e=>{e.scrollLeft=e.scrollWidth;e.scrollTop=e.scrollHeight});
+  assert.ok(await page.locator('.poster-scroll').evaluate(e=>e.scrollLeft>0&&e.scrollTop>0));
+  await page.locator('#poster-fit').click();
+  assert.ok(await page.locator('.poster-scroll').evaluate(e=>e.scrollWidth<=e.clientWidth));
+  await page.keyboard.press('Escape');
+  assert.ok(await page.locator('#classification-dialog').evaluate(e=>!e.open));
+  // The editable export and whole-image download must be real public resources.
+  for(const ext of ['png','svg']) {
+   const resource=await page.request.get(process.env.UI_BASE_URL+'/assets/bom-classification/overview-v1.'+ext);
+   assert.equal(resource.status(),200);
+   if(ext==='svg') { const xml=await resource.text();assert.ok(xml.includes('data:image/png;base64,'));assert.ok(xml.includes('data:font/woff2;base64,')); }
+  }
+  await page.locator('#classification-nav summary').click();
   // Top diagram links must land below both sticky navigation rows on a phone.
   for(const id of ['facility','power','thermal','it','control']){
    await page.locator(`[data-overview-system="${id}"]`).click();

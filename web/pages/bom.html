@@ -103,6 +103,22 @@
   [data-category="it"] { --category:#9270c6; }
   [data-category="control"] { --category:#58936d; }
   .framework-map { display:block; }
+  .classification-poster { margin:0; }
+  .classification-poster > button { display:block; width:100%; border:0; background:none; padding:0; cursor:zoom-in; }
+  .classification-poster img { display:block; width:100%; height:auto; }
+  .poster-actions { display:flex; flex-wrap:wrap; gap:10px 18px; align-items:center; padding:12px 0; font-size:13px; }
+  .poster-actions button { font:inherit; color:var(--text); border:1px solid var(--line); background:var(--bg); padding:5px 12px; cursor:pointer; }
+  #classification-nav { margin-top:10px; border-top:1px solid var(--line); }
+  #classification-nav summary { padding:14px 0; cursor:pointer; font-weight:550; }
+  #classification-links { padding-top:12px; }
+  #classification-dialog { width:calc(100vw - 24px); max-width:1640px; max-height:calc(100dvh - 24px); margin:auto; padding:0; border:1px solid var(--line); background:var(--card); color:var(--text); }
+  #classification-dialog::backdrop { background:#000a; }
+  .poster-toolbar { display:flex; gap:12px; flex-wrap:wrap; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); }
+  .poster-toolbar h2 { font-size:16px; margin-right:auto; }
+  .poster-toolbar button { font:inherit; padding:5px 12px; color:var(--text); border:1px solid var(--line); background:var(--bg); cursor:pointer; }
+  .poster-scroll { overflow:auto; max-height:calc(100dvh - 110px); overscroll-behavior:contain; }
+  .poster-scroll img { display:block; width:1536px; max-width:none; height:auto; }
+  .poster-scroll.fit img { width:100%; }
   .tree-root { width:220px; margin:0 auto 48px; padding:10px; text-align:center; background:var(--bg); border:1px solid var(--line); font-size:18px; font-weight:600; position:relative; }
   .tree-root::after { content:""; position:absolute; top:100%; left:50%; height:24px; border-left:1px solid var(--line); }
   .tree-columns { display:grid; grid-template-columns:1fr 1.15fr 1.15fr 2.6fr 1.2fr; gap:12px; position:relative; }
@@ -218,12 +234,18 @@
 <div class="wrap">
   <div class="stage">
     <h1>一张图拆解 <em>AI 数据中心</em></h1>
-    <div class="sub">先看一张分类总图：五大类 → IT 三分 → 计算与存储细分，再向下查看设备与组件。点击总图定位系统，点击设备查看结构图与研究档案。</div>
+    <div class="sub">先看数据中心剖面与分类总图，再向下查看设备与组件。总图支持放大与下载，展开分类定位可跳到对应区块。</div>
     <section id="overview" aria-labelledby="overview-title">
       <div class="section-heading"><span class="section-step">01</span><h2 id="overview-title">先看分类：这一页怎么读</h2><p>五大类 → 子分类 → 设备与组件</p></div>
-      <div id="system-map" class="framework-map" aria-label="数据中心分类树">正在加载系统总图…</div>
+      <div id="system-map" class="framework-map" aria-label="数据中心场景与分类总图">
+        <figure class="classification-poster">
+          <button type="button" data-open-classification aria-label="放大数据中心分类总图"><img src="/assets/bom-classification/overview-v1.png" width="1536" height="1800" alt="数据中心剖面与五类系统：设施、水与散热、电、IT设施、控制与软件。IT分计算、存储、网络；计算分CPU、GPU、其他；存储分内存与持久存储。"></button>
+          <figcaption class="poster-actions"><button type="button" data-open-classification>放大总图</button><a href="/assets/bom-classification/overview-v1.png" download="数据中心分类总图.png">下载整图 PNG</a><a href="/assets/bom-classification/overview-v1.svg" download="数据中心分类总图.svg">下载可编辑标注 SVG</a><span>手机可放大后横向、纵向查看</span></figcaption>
+        </figure>
+        <details id="classification-nav"><summary>按分类定位设备与组件</summary><div id="classification-links">正在加载分类定位…</div></details>
+      </div>
       <div id="scale-map" aria-label="五尺度构成总图" hidden></div>
-      <p class="overview-note" id="overview-note">连接线表示分类归属。五大类使用固定颜色，下方同色区块沿用同一分类；设备卡片的小圆点另表示供应状态。</p>
+      <p class="overview-note" id="overview-note">图中编号对应五大类的场景位置，下方同色区块沿用同一分类；设备卡片的小圆点另表示供应状态。</p>
     </section>
     <div class="section-heading"><span class="section-step">02</span><h2 id="breakdown-title">沿分类拆解：设备与组件</h2><p>设备类别示例 · 点击查看部件档案</p></div>
     <div class="legend">供应状态：<i style="background:var(--red)"></i>紧缺 <i style="background:var(--yellow)"></i>技术切换中
@@ -241,6 +263,10 @@
   </div></aside>
 </div>
 
+<dialog id="classification-dialog" aria-labelledby="classification-dialog-title">
+  <div class="poster-toolbar"><h2 id="classification-dialog-title">数据中心分类总图</h2><button type="button" id="poster-fit">适应窗口</button><form method="dialog"><button autofocus>关闭</button></form></div>
+  <div class="poster-scroll"><img src="/assets/bom-classification/overview-v1.png" width="1536" height="1800" alt="数据中心五大类及完整子分类；可滚动查看整图。" loading="lazy"></div>
+</dialog>
 <script type="module">
 import { createPartDossier } from "./assets/part-dossier.js?v=20261008.15";
 import { atlasPreview, atlasPreviewTitle, atlasCategoryNote } from "./assets/technical-atlas.js?v=20261010.17";
@@ -253,6 +279,12 @@ const SC = { tight: "var(--red)", transition: "var(--yellow)", mature: "var(--gr
 const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 let BOM, CN = {}, PRICES = [], INDS = {}, showDossier = null;
+const classificationDialog = document.getElementById('classification-dialog');
+document.querySelectorAll('[data-open-classification]').forEach(button => button.addEventListener('click', () => classificationDialog.showModal()));
+document.getElementById('poster-fit').addEventListener('click', event => {
+  const fit = classificationDialog.querySelector('.poster-scroll').classList.toggle('fit');
+  event.target.textContent = fit ? '原尺寸查看' : '适应窗口';
+});
 
 (async () => {
   const [bom, companies, prices, inds, rights] = await Promise.all([
@@ -279,7 +311,7 @@ let BOM, CN = {}, PRICES = [], INDS = {}, showDossier = null;
   const label = sid => esc(S[sid].name.replace('IT · ',''));
   const groups=S.compute.processor_groups;
   const mapNode = sid => `<div class="map-node" data-category="${sid}"><a href="#system-${sid}" data-overview-system="${sid}"><strong>${systemTitle(sid)}</strong></a><small>${sid==='control'?'1 个软件类别':systemParts(sid).length+' 个设备类别'}</small><ul>${S[sid].chains.map(c=>`<li>${esc(c)}</li>`).join('')}</ul></div>`;
-  document.getElementById('system-map').innerHTML = `<div class="tree-root">AI 数据中心</div><div class="tree-columns">`+
+  document.getElementById('classification-links').innerHTML = `<div class="tree-root">AI 数据中心</div><div class="tree-columns">`+
     mapNode('facility')+mapNode('thermal')+mapNode('power')+
     `<div class="map-node map-it" data-category="it"><a href="#system-it" data-overview-system="it"><strong>${systemTitle('it')}</strong></a><small>${systemParts('it').length} 个设备类别</small><div class="it-branches">`+
     `<div class="tree-branch"><a href="#it-compute" data-it-branch="compute">计算</a><div class="tree-leaves">${groups.map(g=>`<a href="#compute-${g.id}" data-processor-link="${g.id}">${esc(g.name)}</a>`).join('')}</div><p class="tree-support">配套：服务器、整机柜与管理控制器</p></div>`+
@@ -336,7 +368,7 @@ let BOM, CN = {}, PRICES = [], INDS = {}, showDossier = null;
     document.getElementById('scale-map').hidden=mode!=='scale';
     document.getElementById('overview-title').textContent=mode==='system'?'先看分类：这一页怎么读':'先看全局：从园区到组件';
     document.getElementById('breakdown-title').textContent=mode==='system'?'沿分类拆解：设备与组件':'再看拆解：五个尺度的设备类别';
-    document.getElementById('overview-note').textContent=mode==='system'?'连接线表示分类归属。五大类使用固定颜色，下方同色区块沿用同一分类；设备卡片的小圆点另表示供应状态。':'尺度表示部件归属层级，排版大小不代表实物比例；替代方案并列展示，不表示现场串联。';
+    document.getElementById('overview-note').textContent=mode==='system'?'图中编号对应五大类的场景位置，下方同色区块沿用同一分类；设备卡片的小圆点另表示供应状态。':'尺度表示部件归属层级，排版大小不代表实物比例；替代方案并列展示，不表示现场串联。';
     document.getElementById("system-overview-actions").hidden=mode!=="system";
     document.getElementById("scale-overview-actions").hidden=mode!=="scale";
     stack.innerHTML = (mode === "scale" ? byScale() : bySystem()) + otherEntries(bom, rights.rights || [], mode);

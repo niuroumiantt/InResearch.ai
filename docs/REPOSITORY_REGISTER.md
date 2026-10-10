@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.69。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.70。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2451。
+在册文件：2458。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 365 |
+| 静态资源 | 368 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 363 |
+| 运行代码 | 364 |
 | 现行规范 | 15 |
-| 项目配置 | 754 |
+| 项目配置 | 756 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 187 |
-| 测试 | 189 |
+| 测试 | 190 |
 
 ## 在册记录集合
 
@@ -70,6 +70,10 @@
 | `docs/LIBRARY_SCORES.csv` | rows | 13664 |
 | `docs/archive/2026-10-06/worktree-snapshots/patches.json` | git_diff_options | 3 |
 | `docs/archive/2026-10-06/worktree-snapshots/patches.json` | patches | 3 |
+| `docs/design/bom-classification/manifest-v1.json` | pixels | 2 |
+| `docs/design/bom-classification/manifest-v1.json` | scene_pixels | 2 |
+| `docs/design/bom-classification/manifest-v1.json` | categories | 5 |
+| `docs/design/bom-classification/manifest-v1.json` | fonts | 3 |
 | `docs/design/technical-atlas/TA-01/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-01/acceptance-v1.json` | technical_sources | 3 |
 | `docs/design/technical-atlas/TA-01/acceptance-v1.json` | unknowns | 3 |
@@ -1942,6 +1946,8 @@
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md) | 历史快照 |
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md) | 历史快照 |
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md) | 历史快照 |
+| `docs/design/bom-classification/manifest-v1.json` | 项目配置 |
+| `docs/design/bom-classification/prompt-v1.txt` | 项目配置 |
 | [docs/design/technical-atlas/MIGRATION_PLAN.md](design/technical-atlas/MIGRATION_PLAN.md) | 配套说明 |
 | `docs/design/technical-atlas/TA-01/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-01/labels-v1.json` | 项目配置 |
@@ -3445,6 +3451,7 @@
 | [research/M14.md](../research/M14.md) | 兼容研究记录 |
 | [research/M15.md](../research/M15.md) | 兼容研究记录 |
 | [research/SUMMARY.md](../research/SUMMARY.md) | 兼容研究记录 |
+| `scripts/build_bom_classification_poster.py` | 运行代码 |
 | `scripts/build_technical_atlas.py` | 运行代码 |
 | `scripts/cards_ocr.py` | 运行代码 |
 | `scripts/cards_verify.py` | 运行代码 |
@@ -3666,6 +3673,7 @@
 | `tests/unit/test_apply_triage.py` | 测试 |
 | `tests/unit/test_auth.py` | 测试 |
 | `tests/unit/test_bom.py` | 测试 |
+| `tests/unit/test_bom_classification_poster.py` | 测试 |
 | `tests/unit/test_browser_shards.py` | 测试 |
 | `tests/unit/test_campus_atlas_assets.py` | 测试 |
 | `tests/unit/test_campus_exploded_assets.py` | 测试 |
@@ -3798,6 +3806,9 @@
 | `tests/unit/test_verification_contract.py` | 测试 |
 | `tests/unit/test_visual_atlas.py` | 测试 |
 | `tests/url_rendering.cjs` | 测试 |
+| `web/assets/bom-classification/cutaway-v1.png` | 静态资源 |
+| `web/assets/bom-classification/overview-v1.png` | 静态资源 |
+| `web/assets/bom-classification/overview-v1.svg` | 静态资源 |
 | `web/assets/datacenter-news.css` | 运行代码 |
 | `web/assets/fonts/LICENSE-Inter.txt` | 静态资源 |
 | `web/assets/fonts/LICENSE-NotoSansSC.txt` | 静态资源 |
