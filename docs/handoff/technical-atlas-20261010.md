@@ -11,19 +11,15 @@
 - 小时heartbeat id=automation仍ACTIVE同thread；工具更新提示词曾拒绝requires approval,but approval policy is never，未替写TOML/未建重复。最新用户指令/现行规范优先。
 
 ## 实际进度
-- 实际23/35、补4/4。本source批次登记main21→23；TA24–27各source_ready_public_pending，不提前计24–27，TA28仍planned。
-- TA22/23 PR574 exacthead f8d2f2efbb39696ab5651908b461a3c14f4a7850→merge5be58335878d115c797ea82e7e4777a4124da358/.61，全tree相同。2026-10-10T00:45:31.125602Z source=applied5be58335，精确sha256:9079dbeec80c57e1ce68842d74ff0a8facc5af63e1c0d3138d08f1014a1a90a6 running/healthy/HEALTHY。20源码资源SHA及HTTPShealth200真，非当前登记版本冒充首次发布。
-- TA22 public-v3/power-domain-results.json PASS00:50:08Z，19类/15未建模/8实体、双下载/真实拾取/手动镜头/跨域隔离均真；v1缓存观察错误/v2错误历史shell文件名保留。TA23 public-v1/thermal-domain-results.json PASS00:53:30Z，15类/12未建模/11实体、双闭环说明/双下载/真实拾取/镜头与旧scope真。两项原尺寸公网图已逐张实看。
-- 两final-publication-receipt.json位于 /Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-22/（SHA39d5b8f404550f791276448c749aae68cb287629eb03642f156815eccfc1ed90）与TA-23/（SHAa99fde023d122885745e184fd8f251b47a0c40444773ac98f55e2fa1435f589f）。
-- 当前树/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai，分支codex/atlas-ta24-27-it-domains，已整合baseline6f0ccab93d607f43fbda58da3382d357066b7967/.62，保留PR573/575/529并行源码和正式数据，不操作研究服务。
-- TA24计算8图8引线/TA25内存3图5引线/TA26存储3图5引线/TA27网络9图9引线均独立原生1536×1024受控组合、原件字节守恒，可编辑文字/轻量预览、逐张official功能边界与original双审保持。CPU上下文、HBM同类剖口、SSD重复芯片、CPO非实体均有明确身份。
-- 计算8/内存3/存储3类均0园区实体；网络仅原cabling桥架1类1实例，余8类未建模。四护套线束不当桥架或光纤，旧32home/152mesh/factory/默认14/system47/旧3D保持。TA27v1全未建模错句拒稿、v2仅修SVG文字且native原字节相同。
-- tests/it_domain.cjs仅显式实际https://inresearch.ai，四图分别执行，不挂本地runner或CI。补TA27正确实体计数、whole152缓存隐藏、实际独立入口点击及导出metadata身份；新网页与全部交互实际执行待本批部署。
+- 实际27/35、补4/4，本源码登记main23→27；TA28 source_ready_public_pending，不计28。
+- TA24–27 PR576 exacthead9494f116→merge88d0de38/.63。2026-10-10T02:14:58.720146Z source=applied88d0，精确sha256:f4fb39252b51eb753a194d3a396ef2c991434be1e6c6af8adc929ac98083e37a running/healthy/HEALTHY；30源码资源SHA与HTTPShealth200真。PR539并发新增研究3路径，head→merge全tree不等，92自身图册路径全等审定head，研究字节等实际firstparentec03，原失败保留。
+- 四public-v1/domain-results全部PASS/errors[]/route_errors[]/resource_failures[]，实际23类别、真实背景/桥架拾取、whole152缓存隐藏、manualcamera、可见zero-entity SVG与metadata、独立服务器1129/整柜598/封装1049入口、四静态+四3D明暗宽度/双下载；59实际PNG所有者逐张original实看。各final-publication-receipt.json位于/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-24至27/，登记首次88d0不倒写。
+- 当前独立树/Users/m4/.codex/worktrees/atlas-ta28-control/inresearch.ai，分支codex/atlas-ta28-control，baseline已快进实际d82de692/.63，保留PR545/544/539研究增量；母图制作基线69d7仍留证。TA28原生1536×1024采用TA18字节原件作设施上下文、逻辑框和6独立定位；DCIM/BMS/EPMS仅一个dcim软件，0物理实体、有交集职责非串联；信息链与条件授权操作分开，无伪实测或正常状态。候选original双审/离线0穿字0网络通过；实际新公网待部署。
 
 ## 下一步
-1. 完成本批规范合同及明确无HTTP静态/离线资产检查后自主PR合并；现行timer自然应用，核source/applied/configuredtag/exactimage/health，不查询CI。
-2. 按24→25→26→27串行实际公网四静态/四领域视图、全部23类及缺项、高清/双下载SHA、真实拾取/当前导出/缓存隐藏/手动镜头/独立旧例和scope；逐图original实看，失败保留修后实测。
-3. 各图真实闭包才accepted/published；全批闭包后进入TA28控制软件，前项pub随下一source。TA29完整预览/双密度与TA30–34面板/TA35跨尺度按原单元执行，不提前领取。
+1. TA28明确无HTTP静态/parse及规范合同审阅→实质PR/attach/ready/merge→现行timer自然部署，精确source/applied/tag/image/health核对，不查询CI。
+2. 真实公网4静态/4领域图、dcim纯软件档案/隐藏inspector与cachewhole、可见导出软件caption+part:dcim、背景真实pointer、controlalias/manualcamera/旧scope/双下载/声明资源200；逐图original实看才accepted/published。
+3. 实际28闭包后继续29→30–34→35，不提前并行领取；前项pub随下一实质source，末35最终收口不得遗留。当前实际27与登记27，TA28仍review。
 
 ## 长期边界与资料
 比例/数量为通用示例，不认证OEM/CAD/额定/施工/现场权利、消防安防覆盖或完整电液网络拓扑。手机母图总览细字需放大；动态档案overlay会遮主场景，不为截图自动抢镜头；独立预览完整性另验；匿名研究内容需登录，未验不称通过。
