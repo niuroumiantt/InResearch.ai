@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10.69",
+  "version": "2026.10.10.70",
   "effective_at": "2026-10-10",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -319,14 +319,16 @@
         "tests/unit/test_review_preference.py",
         "tests/unit/test_research_local_acceptance.py",
         "tests/unit/test_research_publication_group.py",
-        "tests/unit/test_research_protected_merge.py"
+        "tests/unit/test_research_protected_merge.py",
+        "src/inresearch/workflow/reader_retry_job.py",
+        "tests/unit/test_reader_retry_job.py"
       ],
       "supersedes": [
         "operations-legacy"
       ],
       "reason": "2026-09-13：reader/L2 共用当前全文查询及产物封印，L2 回执只计事实处理；旧库/旧声明不自动提级，跨机器资料迁移另验。此前适用范围与既有阅读/采用/恢复规则保留。；2026-09-14 代码审阅：退役桩 setup.sh 不再列为现行实现，禁用的 start.sh 与 2026-08 部署手册/Caddyfile/compose 退出活动路径（归档至 docs/archive/2026-09-14），deploy/ 只保留 Dockerfile、models.json 与 spark-reader。；2026-09-26 用户要求：reader 每次领取任务前读取 GPU 与 thermal zone，高于 85 ℃ 暂停 60 秒再读，降温后继续；阈值与间隔可配置，0 关闭。；2026-09-27 Spark 不做本机 OCR；M4 分担 OCR 的空白页按本机 OCR 同一规则接收，运行中的 reader 在收到晚于上次尝试的 M4 页结果时自动重排因 OCR 阻塞的提取任务，不需停 reader retry。；2026-09-27 用户要求实时进度：新增只读 reader-progress HTML 页与 Mac 端 60 秒拉取脚本。；2026-09-27 用户采用 OCR 两步降级：救援双读 1.3/512，仍失败的页作显式缺页，报告列出，每份至多 max(1, 页数÷20)。；2026-09-27 用户采用：新增 READER_CLAIM_MIN_PRIORITY 认领下限，Spark 设 7 只读重点文档，其余暂停；进度页只在阻塞/失败时显示错误码并列出暂停份数。；2026-09-28 用户采用发布 M4 深读结果：Spark 发布时叠加外部快照目录中 Spark 未完整读过的文档，Spark 自己的完整阅读优先。；2026-09-28 外部快照按当前注册表过滤 ID；发布被拒时记录接收端原因（Spark 停在图谱 2.1.2、网站 2.2.0 导致 400）。；2026-09-28 快照 gzip 传输：网络上限 64 MiB 不变，解压上限 192 MiB，接收端兼容未压缩旧格式。；2026-09-28 用户采用：接收端对图谱版本落后的快照按现行注册表过滤 ID 后接收并标 registry_lag，不再整批拒收（#276 升 2.2.1 后发布再次中断）。；2026-10-07 用户点名四份 PDF 定向救援：補充发现 Codex 缺页缓存，独立分区双读与原图覆盖核验，全部原文/模型/哈希留档，受控接收先缓存后通知，旧方法兼容且不放宽缺页/C3门槛。；2026-10-07默认正文模式/纯图片用户处理、派生TXT留存、范围内未完成版本迁移和网站实际回执验收。；2026-10-07管理后台替代按钮日志为自动运行dashboard，当前版本/文档任务分母、排队定位、阻塞分类、完整日志与未知/过期边界。；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08管理后台实际加载超时修复：状态投影移除大明细并压缩，异步首屏与折叠按需加载，中文超时与浏览器慢样式恢复验收。；公网冷浏览器追加核验确认字体下载竞争：状态优先且首次结束后才启用共享字体，最终全站字体不变。；容器观测到监听连接丢弃，扩容HTTP待接队列并增加真实20连接突发验收。；公网刷新仍受远程字体下载影响，在管理后台范围替代延后下载：仅复用同源缓存原字体，无缓存系统回退，数据读取不与字库争用连接。其他页面/字库保持。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-09发布恢复：发现新任务过滤已采用项，来源复验保留封存批次全部项；失败和待CI逐批隔离，已合并精确审核head仅恢复真实网站回执。；2026-10-09积压PR恢复：原head的CI实际恢复后继续正常准入，上下文变化重新审核并关闭旧PR，保留原错误与审核尝试。；并行研究基线仅自动整合无编辑/删除/稳定ID冲突的追加，其他正式研究冲突仍保留，新head重跑全部CI。；2026-10-09完整浏览器回归分组并保留旧发表日志SHA引用。；2026-10-09明确用户授权的本地验收恢复实例：原CI真实失败保留，精确审核head/原包/attempt关联、维护一致备份/实际新PID与status、来源同步→HTTPS支持闭包→Spark published分别实录；旧ready5与专题23正式0分开，不改自动CI逻辑/共享scope/模型/C3。；2026-10-09发布阻塞：core_c逐一保留10个三维档案场景及全部断言/300秒期限，所有matrix仍聚合；发布错误保留退出码与显式stdout ERROR，旧审计/工作树留存。；失败发表包在原来源/上下文/head有效且工作树干净时取得新批准基线，保存原失败和前后head，新head仍等全部CI。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09公开仓库恢复复审：按精确审核SHA查询全部分页check runs，拒绝PR上一版汇总、异SHA结果和新head未注册/运行中检查，防止推送后过早合并。；2026-10-09显式local固定检查回执/精确同源300秒聚合/同baseline一次追加/actual健康digest与public canonical逐batchACK；默认CI保留，背压非跨机锁，CLOSED自动superseded未实现。",
-      "implementation_revision": "2026.10.10.65",
-      "change_reason": "2026-10-06 user-authorized event review → curated project → published receipt; Spark indefinite preservation; received/queued never imply formal adoption.；2026-10-10发布收尾：main现已启用GitHub四项必过检查（validate、browser(core)、browser(model_assets)、storage-container），管理员同样受限，不新增人工审批，非strict不要求无关基线移动自动重跑。TA29真实点选导出按可识别服务器子装配身份核验，未归入具名子装配的网格仍按原类别聚合回退，追加预览几何UUID精确一致断言；完整server聚合身份及原像素/标题/引线/下载/手势断言保持。容器测试清理复用已构建本批镜像、pull=never，仅chown自有TemporaryDirectory，清理前不删镜像，取消无谓的外部基础镜像下载。；显式CI配置base_update_policy=protected_merge：仍先要求审核head全部CI（四必需及额外检查）、源与当前正式上下文；仅新鲜GitHub API确认同head/open/main/clean可合并、main非strict且管理员受四项GitHub Actions检查保护时，保存head/base/保护回执并按原head合并，不因无关main移动重建head。任一条件未知或不符回到原refresh+新head重验，冲突恢复与上下文revalidate不变；默认always_refresh、local不得选择。"
+      "implementation_revision": "2026.10.10.70",
+      "change_reason": "2026-10-06 user-authorized event review → curated project → published receipt; Spark indefinite preservation; received/queued never imply formal adoption.；2026-10-10发布收尾：main现已启用GitHub四项必过检查（validate、browser(core)、browser(model_assets)、storage-container），管理员同样受限，不新增人工审批，非strict不要求无关基线移动自动重跑。TA29真实点选导出按可识别服务器子装配身份核验，未归入具名子装配的网格仍按原类别聚合回退，追加预览几何UUID精确一致断言；完整server聚合身份及原像素/标题/引线/下载/手势断言保持。容器测试清理复用已构建本批镜像、pull=never，仅chown自有TemporaryDirectory，清理前不删镜像，取消无谓的外部基础镜像下载。；显式CI配置base_update_policy=protected_merge：仍先要求审核head全部CI（四必需及额外检查）、源与当前正式上下文；仅新鲜GitHub API确认同head/open/main/clean可合并、main非strict且管理员受四项GitHub Actions检查保护时，保存head/base/保护回执并按原head合并，不因无关main移动重建head。任一条件未知或不符回到原refresh+新head重验，冲突恢复与上下文revalidate不变；默认always_refresh、local不得选择。；2026-10-10补充单个Reader retry-job：精确doc/revision/read块/model_cli_failed/实际次数与冻结recipe ID/SHA绑定；原件/context snapshot_hash/同版本recipe算法/成功块复验，一致online备份及前快照后事务只改目标state/error+marker。次数/available/配方/scope/floor/model-wait保持，幂等重放不增加claim，提交可见以marker为准；不完整prepare保留且经复核新key恢复，新的人工恢复重核实际失败/次数/原因。不替代reader retry或研究retry-transient；本地测试与生产实际恢复分别验收，本次无点名线上任务。"
     },
     {
       "id": "change_management-legacy",
@@ -847,10 +849,12 @@
         "deploy/spark-reader/inresearch-reader-publish.service",
         "deploy/spark-reader/inresearch-reader-publish.timer",
         "tests/unit/test_research_local_acceptance.py",
-        "tests/unit/test_research_publication_group.py"
+        "tests/unit/test_research_publication_group.py",
+        "src/inresearch/workflow/reader_retry_job.py",
+        "tests/unit/test_reader_retry_job.py"
       ],
-      "implementation_revision": "2026.10.09.45",
-      "change_reason": "补充显式暂态恢复入口：精确batch/deferred/次数+错误CAS、耗尽预算白名单、当前完整封印/原件/失败审计复验、原去向history同事务；次数/available/候选/原审计及默认worker排序/C3/抽样/ready背压保持。本次仅实现及本地验收，生产恢复另验。；用户要求修复上线延迟：忙任务局部退避、模型等待期间receipt封存、按变更一分钟发布、有界重试及精确重放，不改采用资格。；四个重型浏览器套件独立并行，保持全场景与期限，修复实测串行15分钟超时。"
+      "implementation_revision": "2026.10.10.70",
+      "change_reason": "补充显式暂态恢复入口：精确batch/deferred/次数+错误CAS、耗尽预算白名单、当前完整封印/原件/失败审计复验、原去向history同事务；次数/available/候选/原审计及默认worker排序/C3/抽样/ready背压保持。本次仅实现及本地验收，生产恢复另验。；用户要求修复上线延迟：忙任务局部退避、模型等待期间receipt封存、按变更一分钟发布、有界重试及精确重放，不改采用资格。；四个重型浏览器套件独立并行，保持全场景与期限，修复实测串行15分钟超时。；2026-10-10补充单个Reader retry-job：精确doc/revision/read块/model_cli_failed/实际次数与冻结recipe ID/SHA绑定；原件/context snapshot_hash/同版本recipe算法/成功块复验，一致online备份及前快照后事务只改目标state/error+marker。次数/available/配方/scope/floor/model-wait保持，幂等重放不增加claim，提交可见以marker为准；不完整prepare保留且经复核新key恢复，新的人工恢复重核实际失败/次数/原因。不替代reader retry或研究retry-transient；本地测试与生产实际恢复分别验收，本次无点名线上任务。"
     },
     {
       "id": "geluoke-longform-20261001",
@@ -1984,14 +1988,16 @@
         "src/inresearch/delivery/publish.py",
         "src/inresearch/workflow/commands.py",
         "deploy/spark-reader/inresearch-reader-publish.service",
-        "deploy/spark-reader/inresearch-reader-publish.timer"
+        "deploy/spark-reader/inresearch-reader-publish.timer",
+        "src/inresearch/workflow/reader_retry_job.py",
+        "tests/unit/test_reader_retry_job.py"
       ],
       "supersedes": [
         "reading-codex-batch-20261006"
       ],
       "reason": "用户明确采用以后默认正文、混排图片跳过OCR、纯图片由用户处理；冻结范围、正文完整与视觉未读分开。未完成批次显式新版本，旧原件/报告/OCR尝试保留，候选与C3仍分开。; 2026-10-07 user authorized frozen bounded read batches; per-page evidence and verification retained, fallback to singles, explicit unread revisions, no reread of active/completed materials.；2026-10-08 用户授权持续研究核验：封存正文复用、现行需求语义重匹配、实际core_review与固定独立抽样、追加B档、CI/网站支持闭包回执；A/专门字段/补证和原件长期保留。；2026-10-08用户授权提速：逐条主张/引文检索词和字段值选择、完整语义保留与回执哈希、旧协议复验，未执行六条合批/两批并行/十二批背压/空闲30秒，预算失败显式重试和可见清单，M5已合并main增量Git bundle经SSH快进Spark，原Reader/原件/C3保持。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；2026-10-08需求匹配v3替代新请求v2的排版空白敏感比较/整批词错误阻塞，逐条拒绝可复验，受控协议重试保留旧审计/C3/独立抽样。；2026-10-09补充SHA绑定来源侧车预检/显式接收、Reader与新核验包投影及旧封印兼容；保留已知URL、原件/工具响应身份，不变更队列/C3/正式数据。；2026-10-09显式来源偏好：仅原审核单worker领取排序，注册/当前封存版本、三偏好一原队列、公平预算与租约同事务、SHA审计；默认行为及C3/角色/背压保持。；2026-10-09显式暂态恢复补充：点名耗尽预算的网络/超时/额度错误可保留原预算与审计恢复一轮，源与失败绑定、事务history及精确比较，不改变任何采用资格或默认执行。",
-      "implementation_revision": "2026.10.09.42",
-      "change_reason": "补充显式暂态恢复入口：精确batch/deferred/次数+错误CAS、耗尽预算白名单、当前完整封印/原件/失败审计复验、原去向history同事务；次数/available/候选/原审计及默认worker排序/C3/抽样/ready背压保持。本次仅实现及本地验收，生产恢复另验。；用户要求修复上线延迟：忙任务局部退避、模型等待期间receipt封存、按变更一分钟发布、有界重试及精确重放，不改采用资格。"
+      "implementation_revision": "2026.10.10.70",
+      "change_reason": "补充显式暂态恢复入口：精确batch/deferred/次数+错误CAS、耗尽预算白名单、当前完整封印/原件/失败审计复验、原去向history同事务；次数/available/候选/原审计及默认worker排序/C3/抽样/ready背压保持。本次仅实现及本地验收，生产恢复另验。；用户要求修复上线延迟：忙任务局部退避、模型等待期间receipt封存、按变更一分钟发布、有界重试及精确重放，不改采用资格。；2026-10-10补充单个Reader retry-job：精确doc/revision/read块/model_cli_failed/实际次数与冻结recipe ID/SHA绑定；原件/context snapshot_hash/同版本recipe算法/成功块复验，一致online备份及前快照后事务只改目标state/error+marker。次数/available/配方/scope/floor/model-wait保持，幂等重放不增加claim，提交可见以marker为准；不完整prepare保留且经复核新key恢复，新的人工恢复重核实际失败/次数/原因。不替代reader retry或研究retry-transient；本地测试与生产实际恢复分别验收，本次无点名线上任务。"
     },
     {
       "id": "interface-reader-company-20261008",
