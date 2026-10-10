@@ -18,6 +18,11 @@ FULL_SUITES = ['core_a', 'core_b', 'core_c', 'server_assembly', 'rack_assembly',
                'campus_exploded:navigation', 'campus_exploded:lifecycle', 'model_assets']
 IMAGES = {'.png', '.jpg', '.jpeg', '.gif', '.webp', '.ico', '.svg'}
 DERIVED = {'framework/repository_manifest.json', 'docs/REPOSITORY_REGISTER.md'}
+RESEARCH_PATH = 'data/research_knowledge.json'
+RESEARCH_SUITES = ['research']
+RESEARCH_TEST_PATTERNS = ('test_research*.py', 'test_public_reader.py',
+                          'test_publish_reader.py', 'test_verification_contract.py',
+                          'test_ci_scope.py')
 # A page absent here needs a full run, even if only its visible text changed.
 PAGES = {'index': 'industry', 'company': 'company_page', 'company-home': 'company_window',
          'company-products': 'company_catalog_map', 'product-catalog': 'product_catalog',
@@ -98,10 +103,90 @@ def active_svg(raw):
                       for k, v in e.attrib.items()) for e in ET.fromstring(raw).iter())
 
 
+def research_append_only(before, after):
+    """Only new bounded source records; never edits, answers or policy changes.
+
+    Keep existing array order and every existing JSON value, including its type.
+    Reject ambiguous JSON rather than letting duplicate keys or NaN hide edits.
+    Shape selection is not a source/adoption approval: registry and research
+    regression still verify the actual support chain in the selected CI jobs.
+    """
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError('duplicate JSON key')
+            result[key] = value
+        return result
+
+    def invalid_constant(value):
+        raise ValueError('non-finite JSON value: '+value)
+
+    def canonical(value):
+        return json.dumps(value, sort_keys=True, ensure_ascii=True, allow_nan=False)
+
+    old, new = [json.loads(raw, object_pairs_hook=pairs, parse_constant=invalid_constant)
+                for raw in (before, after)]
+    sections = {'documents', 'evidence', 'statements'}
+    keys = sections | {'version', 'note', 'answers'}
+    if not isinstance(old, dict) or not isinstance(new, dict) or set(old) != keys or set(new) != keys:
+        return False
+    if old['version'] != '2.0.0':
+        return False
+    if any(canonical(old[k]) != canonical(new[k]) for k in keys-sections):
+        return False
+    added = 0
+    for name in sections:
+        a, b = old[name], new[name]
+        if not isinstance(a, list) or not isinstance(b, list) or len(b) < len(a):
+            return False
+        for rows in (a, b):
+            if any(not isinstance(r, dict) or not isinstance(r.get('id'), str)
+                   or not r['id'].strip() for r in rows):
+                return False
+            if len({r['id'] for r in rows}) != len(rows):
+                return False
+        if canonical(a) != canonical(b[:len(a)]):
+            return False
+        for row in b[len(a):]:
+            if name == 'statements' and (row.get('partial_support_only') is not True
+                                         or 'question_id' in row):
+                return False
+            if row.get('status') in {'withdrawn', 'rejected', 'superseded'} or 'object_mapping_review' in row:
+                return False
+            for declaration in (row, row.get('review', {})):
+                if (not isinstance(declaration, dict)
+                        or declaration.get('replaces_record_ids', []) != []
+                        or declaration.get('supersedes', []) != []
+                        or declaration.get('relaxes_distribution', False) is not False):
+                    return False
+        added += len(b)-len(a)
+    return added > 0
+
+
+def research_test_suite(root):
+    """Select the fixed research/adoption/HTTP/publication regression surface."""
+    import sys
+    import unittest
+    root = Path(root)
+    directory = root/'tests/unit'
+    # Fail if a selected entry disappears; unittest discovery alone accepts zero.
+    if any(not list(directory.glob(pattern)) for pattern in RESEARCH_TEST_PATTERNS):
+        raise ValueError('missing research regression test entry')
+    sys.path.insert(0, str(root))
+    suite = unittest.TestSuite()
+    for pattern in RESEARCH_TEST_PATTERNS:
+        selected = unittest.TestLoader().discover(str(directory), pattern=pattern)
+        if not selected.countTestCases():
+            raise ValueError('empty research regression test entry: '+pattern)
+        suite.addTests(selected)
+    return suite
+
+
 def select(root, base, head, event='pull_request', force=False):
     def full(reason, changes=()):
         return {'mode': 'full', 'reason': reason, 'base': base, 'head': head,
-                'files': list(changes), 'suites': FULL_SUITES, 'storage': True}
+                'files': list(changes), 'suites': FULL_SUITES, 'storage': True, 'assets': True}
     if force or event in {'schedule', 'workflow_dispatch'}:
         return full('scheduled or explicitly requested full regression')
     try:
@@ -117,7 +202,7 @@ def select(root, base, head, event='pull_request', force=False):
         protected = {p['source'] for p in state['policies'] if p['status'] == 'current'}
         protected.update(state.get('operational_guides', []))
         protected.update(state['entrypoints'])
-        suites, changed = set(), {r['path'] for r in changes}
+        suites, changed, research = set(), {r['path'] for r in changes}, False
         for row in changes:
             path, status = row['path'], row['status']
             if status not in {'A', 'M'}:
@@ -134,6 +219,12 @@ def select(root, base, head, event='pull_request', force=False):
                 return full('rules or acceptance contract changed: '+path, changes)
             if path in protected or path in {'AGENTS.md', 'CLAUDE.md', 'framework/CURRENT.md'}:
                 return full('normative instructions changed: '+path, changes)
+            if path == RESEARCH_PATH:
+                if status != 'M' or not research_append_only(blob(root, base, path), blob(root, head, path)):
+                    return full('research edit, schema, answer or non-additive change: '+path, changes)
+                research = True
+                suites.update(RESEARCH_SUITES)
+                continue
             suffix = Path(path).suffix.lower()
             if suffix == '.md' and (path.startswith(('docs/', 'research/', 'outputs/')) or path == 'README.md'):
                 continue
@@ -166,8 +257,10 @@ def select(root, base, head, event='pull_request', force=False):
                     suites.add(suite)
                     continue
             return full('implementation, structure, data, dependency or unknown path: '+path, changes)
-        return {'mode': 'targeted' if suites else 'content', 'reason': 'all changed paths have bounded content impact',
-                'base': base, 'head': head, 'files': changes, 'suites': sorted(suites), 'storage': False}
+        return {'mode': 'research' if research else 'targeted' if suites else 'content',
+                'reason': 'append-only bounded research with related checks' if research else 'all changed paths have bounded content impact',
+                'base': base, 'head': head, 'files': changes, 'suites': sorted(suites), 'storage': False,
+                'assets': bool(suites-set(RESEARCH_SUITES))}
     except (subprocess.CalledProcessError, UnicodeError, ValueError, KeyError, IndexError, TypeError,
             __import__('xml.etree.ElementTree', fromlist=['ParseError']).ParseError):
         return full('comparison or classification failed; full regression required')
@@ -226,7 +319,7 @@ def gate(plan, results):
     expected = {'scope': 'success', 'validate': 'success',
                 'browser': 'success' if plan['suites'] else 'skipped',
                 'storage-container': 'success' if plan['storage'] else 'skipped'}
-    if plan['mode'] not in {'full', 'targeted', 'content'}:
+    if plan['mode'] not in {'full', 'targeted', 'content', 'research'}:
         return False
     if plan['mode'] == 'full' and (plan['suites'] != FULL_SUITES or not plan['storage']):
         return False
@@ -234,18 +327,25 @@ def gate(plan, results):
         return False
     if plan['mode'] == 'content' and (plan['suites'] or plan['storage']):
         return False
+    if plan['mode'] == 'research' and (not set(RESEARCH_SUITES) <= set(plan['suites']) or plan['storage']):
+        return False
     return all(results.get(k, {}).get('result') == v for k, v in expected.items())
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('command', choices=['plan', 'check', 'gate'])
+    parser.add_argument('command', choices=['plan', 'check', 'gate', 'research-tests'])
     parser.add_argument('--base', default='')
     parser.add_argument('--head', default='')
     parser.add_argument('--event', default='pull_request')
     parser.add_argument('--full', action='store_true')
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[1]
+    if args.command == 'research-tests':
+        import unittest
+        if not unittest.TextTestRunner().run(research_test_suite(root)).wasSuccessful():
+            raise SystemExit('Research regression failed; merge blocked')
+        return
     if args.command == 'plan':
         plan = select(root, args.base, args.head, args.event, args.full)
         encoded = json.dumps(plan, ensure_ascii=True, separators=(',', ':'))
@@ -255,6 +355,8 @@ def main():
                 out.write('suites='+json.dumps(plan['suites'])+'\n')
                 out.write('browser='+str(bool(plan['suites'])).lower()+'\n')
                 out.write('full='+str(plan['mode'] == 'full').lower()+'\n')
+                out.write('research='+str(plan['mode'] == 'research').lower()+'\n')
+                out.write('assets='+str(plan['assets']).lower()+'\n')
         print(encoded)
         if os.environ.get('GITHUB_STEP_SUMMARY'):
             with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as out:

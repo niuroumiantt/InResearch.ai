@@ -8,6 +8,15 @@ from pathlib import Path
 
 class BrowserShardTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('node'), 'Node required for browser suite selection')
+    def test_research_append_alias_selects_only_existing_delivery_and_summary_cases(self):
+        root=Path(__file__).resolve().parents[2]
+        from scripts.ci_scope import RESEARCH_SUITES
+        script="console.log(JSON.stringify(require('./tests/browser_suites.cjs').selectCases(JSON.parse(process.argv[1]))));"
+        selected=json.loads(subprocess.check_output(['node','-e',script,json.dumps(RESEARCH_SUITES)],cwd=root,text=True))
+        self.assertEqual(selected,[{'suite':'research_delivery','scenario':None},
+                                   {'suite':'research_summary','scenario':None}])
+
+    @unittest.skipUnless(shutil.which('node'), 'Node required for browser suite selection')
     def test_ci_shards_cover_every_existing_core_case_once(self):
         root=Path(__file__).resolve().parents[2]
         from scripts.ci_scope import FULL_SUITES

@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10.73",
+  "version": "2026.10.10.74",
   "effective_at": "2026-10-10",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -3541,7 +3541,7 @@
       "source": "docs/CI.md",
       "effective_at": "2026-10-10",
       "supersedes": [],
-      "reason": "用户授权按实际影响范围替代无条件全套 CI；同步稳定必过门禁、研究发布器、失败关闭和规则映射。",
+      "reason": "用户授权在研究资料追加范围替代研究 JSON 一律全套：完整 JSON 旧值/类型/顺序守恒、唯一新增ID、有界资料与结论/替代/规则边界；运行固定研究回归和单个相关浏览器作业，混合影响取并集、未知仍全套，稳定门禁与审核发布标准保持。",
       "implementations": [
         ".github/workflows/validate.yml",
         "scripts/ci_scope.py",
@@ -3551,8 +3551,10 @@
         "tests/unit/test_browser_shards.py",
         "tests/unit/test_research_protected_merge.py",
         "AGENTS.md",
-        "tests/unit/test_research_review.py"
-      ]
+        "tests/unit/test_research_review.py",
+        "tests/browser_suites.cjs"
+      ],
+      "implementation_revision": "2026.10.10.74"
     }
   ],
   "entrypoints": [
