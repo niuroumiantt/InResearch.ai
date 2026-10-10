@@ -5257,6 +5257,60 @@
       "status": "candidate",
       "stored_path": "originals/d6/d64210e67f4a940e00696ef4f02406205237a24a1c5361ce8d1e840fe1ca82c9/dcd-d64210e67f4a940e-AI data center demand -larger than we-re prepared for- despite -e.html",
       "title": "AI data center demand “larger than we’re prepared for” despite “existential investment” - report"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+      "coverage": {
+        "characters_read": 7502,
+        "characters_total": 7502,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+      "id": "doc-336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+      "library_path": "library/by-node/system-power/2025_DCD_Virtus signs cPPA for 31MW of power from UK offshore wi__336ff5e5718f1077.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:stt-gdc",
+        "site:land",
+        "system:power"
+      ],
+      "question_ids": [
+        "OBJ-land-definition"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-6fa253e738a846868aa65c8a450edd78",
+      "report_sha256": "b755c7501ff681f16ccbc9dc1566043d14d79596a033a7eb68a7a9c34380c7c2",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+        "url": "https://www.datacenterdynamics.com/en/news/virtus-signs-cppa-for-31mw-of-power-from-uk-offshore-wind-farms/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/virtus-signs-cppa-for-31mw-of-power-from-uk-offshore-wind-farms/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/33/336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a/dcd-336ff5e5718f1077-Virtus signs cPPA for 31MW of power from UK offshore wind farms.html",
+      "title": "Virtus signs cPPA for 31MW of power from UK offshore wind farms"
     }
   ],
   "evidence": [
@@ -39740,6 +39794,168 @@
           }
         },
         "batch_id": "0d7eff1080605ee4abeafa7df5fbbc205b2e9a00cfdc4240bf6c790affd2a72b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "200d4352bab86cc6ff8599f03b791934ea0bab1a573b4312392ef3353db59556",
+      "document_id": "doc-336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+      "id": "rev-6fa253e738a846868aa65c8a450edd78:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "cPPA’s are direct contracts between a corporate buyer and a renewable energy generator. PPAs, on the other hand, are typically between a generator and a utility or energy supplier, who then sells the power on to end-users",
+      "reading_revision_id": "rev-6fa253e738a846868aa65c8a450edd78",
+      "source_sha256": "336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:44:39+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5。连续原文及完整购电报道语境充分，对当前交易边界问题提供企业买方、发电商、中间售电方与终端用户的实质性局部角色线索。无敏感、真实冲突、替换或其他A类条件，可按B类采用有界作者陈述，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.211,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c85047504af49d76a31eb12d0db24af5774402780e496cbd47fa7236f7405de2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 43693,
+            "output_tokens": 2022,
+            "reasoning_output_tokens": 277
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.991,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "4719f7b573acbe0c2d3374e722f6df6431d29aa6eb30e44a9e522f66f5094281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43642,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 213
+            }
+          }
+        },
+        "batch_id": "14c3543645a1c5b87e23fd51399ffc6175a681eac121b897a1913122bfc69a16"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "200d4352bab86cc6ff8599f03b791934ea0bab1a573b4312392ef3353db59556",
+      "document_id": "doc-336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+      "id": "rev-6fa253e738a846868aa65c8a450edd78:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Virtus is one of the UK’s most prominent data center developers. It is jointly owned by STT GDC and Macquarie Asset Management.",
+      "reading_revision_id": "rev-6fa253e738a846868aa65c8a450edd78",
+      "source_sha256": "336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:44:39+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5。连续两句及完整报道语境充分，对当前交易边界问题提供开发商与企业股东的局部身份关系，有助于区分企业股权、项目资产权属和合同角色。无敏感、真实冲突、替换或其他A类条件，按B类部分采用，不将股东材料自动视为具体项目权责证据。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.211,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c85047504af49d76a31eb12d0db24af5774402780e496cbd47fa7236f7405de2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 43693,
+            "output_tokens": 2022,
+            "reasoning_output_tokens": 277
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.991,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "4719f7b573acbe0c2d3374e722f6df6431d29aa6eb30e44a9e522f66f5094281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43642,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 213
+            }
+          }
+        },
+        "batch_id": "14c3543645a1c5b87e23fd51399ffc6175a681eac121b897a1913122bfc69a16"
       }
     }
   ],
@@ -77448,6 +77664,202 @@
         "request_sha256": "23f5771b2ca11bbe9845e06456079f103e226a2de588c060b08a54093b2b81b1"
       },
       "object_mapping_check": "依据page:19/chunk:18的分组注释独立映射：Hyperscalers为Alphabet、Meta、Microsoft和AWS；neo-clouds为Oracle、CoreWeave和Nebius，分别对应允许的企业actor对象。AWS通过所属企业对应actor:amazon，但保留来源的AWS口径，不据此认定亚马逊全公司统计边界。七个对象共同构成两组比较范围，不能把组内合计增量归给任何单家公司。企业市值不是一座数据中心或其设备的估值，不选择root或基础设施对象。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+      "evidence_ids": [
+        "rev-6fa253e738a846868aa65c8a450edd78:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:10dbc1d312cd28da288cf6bc",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-activity-V1-boundary"
+      ],
+      "reading_revision_id": "rev-6fa253e738a846868aa65c8a450edd78",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2025年9月2日关于英国Virtus海上风电购电协议的报道中，将cPPA描述为企业买方与可再生能源发电商之间的直接合同；作者称，PPA通常由发电商与公用事业或能源供应商签订，再由后者向终端用户售电。这是该来源对合同参与方和转售链条的说明，不构成当前独立认证或适用于所有购电协议的互斥分类。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:44:39+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5。连续原文及完整购电报道语境充分，对当前交易边界问题提供企业买方、发电商、中间售电方与终端用户的实质性局部角色线索。无敏感、真实冲突、替换或其他A类条件，可按B类采用有界作者陈述，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.211,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c85047504af49d76a31eb12d0db24af5774402780e496cbd47fa7236f7405de2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 43693,
+            "output_tokens": 2022,
+            "reasoning_output_tokens": 277
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.991,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "4719f7b573acbe0c2d3374e722f6df6431d29aa6eb30e44a9e522f66f5094281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43642,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 213
+            }
+          }
+        },
+        "batch_id": "14c3543645a1c5b87e23fd51399ffc6175a681eac121b897a1913122bfc69a16"
+      },
+      "source_candidate_ids": [
+        "rev-6fa253e738a846868aa65c8a450edd78:chunk:0:claim:6"
+      ],
+      "limitations": "所选引文是新闻作者的概括，未提供合同原文、分类标准或例外情形。“通常”不能改写为必然；cPPA与PPA的作者比较不能推导为普遍互斥关系。合同直接性不证明物理直供，也未确定Virtus交易的付款安排、资产权属、运营责任或最终使用方。报道时该协议尚未到正文所述的计划起始日，不能据此确认实际履约。",
+      "conflict_check": "所供已采用陈述涉及园区转型、托管租约、租户身份及批发运营角色，与本项购电合同角色说明可以并存，不构成同范围重复或真实冲突。legacy合同匹配为空；STT GDC越南规划及印度园区记录不涉及本项合同定义。检查限于所供材料，不替换既有交易分类或结论。",
+      "gap_dependency_check": "NODE-activity-V1-boundary获得直接购电与经中间方转售的角色区分线索，仍需具体交易的一手合同、产品或服务范围、付款方、资产所有者、运营方、最终使用方及反证，才能建立互斥边界。本文的一般说明不能自动覆盖数据中心建设与运营活动，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "14c3543645a1c5b87e23fd51399ffc6175a681eac121b897a1913122bfc69a16",
+        "source_report_sha256": "b755c7501ff681f16ccbc9dc1566043d14d79596a033a7eb68a7a9c34380c7c2",
+        "request_sha256": "7cfbfdd9d0d0b2a5919a91ea4f0f5b3f0d74adcc7c42f74db0565ecc7f383a99"
+      },
+      "object_mapping_check": "独立核对对象契约：本项范围是一般购电合同参与方关系，没有确立某座AI数据中心或其设备系统范围。system:power及其子链对应数据中心电力基础设施，site:grid对应电力配额与并网；本项未提供这些对象的证据，因此均不映射。空对象列表保留有效的问题关联，所选证据统一使用此审核范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-336ff5e5718f107760d59fce6b6c4484919f5741fda3f2672b963ce7552a751a",
+      "evidence_ids": [
+        "rev-6fa253e738a846868aa65c8a450edd78:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:677407165920140f97434268",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-activity-V1-boundary"
+      ],
+      "reading_revision_id": "rev-6fa253e738a846868aa65c8a450edd78",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2025年9月2日的报道中称，Virtus是一家英国数据中心开发商，由STT GDC与Macquarie Asset Management共同拥有。这是报道时点的企业股权关系陈述，不构成当前独立认证，也未确定具体项目资产或购电合同的权责。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:44:39+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5。连续两句及完整报道语境充分，对当前交易边界问题提供开发商与企业股东的局部身份关系，有助于区分企业股权、项目资产权属和合同角色。无敏感、真实冲突、替换或其他A类条件，按B类部分采用，不将股东材料自动视为具体项目权责证据。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.211,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c85047504af49d76a31eb12d0db24af5774402780e496cbd47fa7236f7405de2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 43693,
+            "output_tokens": 2022,
+            "reasoning_output_tokens": 277
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.991,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "4719f7b573acbe0c2d3374e722f6df6431d29aa6eb30e44a9e522f66f5094281",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43642,
+              "output_tokens": 457,
+              "reasoning_output_tokens": 213
+            }
+          }
+        },
+        "batch_id": "14c3543645a1c5b87e23fd51399ffc6175a681eac121b897a1913122bfc69a16"
+      },
+      "source_candidate_ids": [
+        "rev-6fa253e738a846868aa65c8a450edd78:chunk:0:claim:7"
+      ],
+      "limitations": "原文未披露持股比例、持股实体、控制安排或股权关系生效日期。企业共同所有权不等于具体园区或风电资产的共同所有权，也不证明股东直接签署或履行此次cPPA。正文未说明STT GDC印度业务参与协议；这种缺载不能证明其没有参与。所选引文未提供一手股权文件。",
+      "conflict_check": "所供已采用陈述没有相同的Virtus共同所有权记录，不构成规范重复。legacy的STT GDC越南规划、Chennai Siruseri分期运营及Hyderabad规划记录属于不同地域和项目，与英国Virtus企业股权关系可以并存。正文另述Macquarie拥有风电资产，所涉资产与Virtus企业不同，不能混同。所供材料未显示真实冲突，不覆盖既有容量、阶段或权属结论；检查并非穷尽性外部反证搜索。",
+      "gap_dependency_check": "NODE-activity-V1-boundary获得开发商企业层面的股东关系线索，仍缺具体交易的产品或服务、付款方、项目资产所有者、运营方、使用方及合同责任。一手股权文件、项目权属文件和合同反证尚缺，不能据此完成互斥角色划分或确认印度业务参与，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "14c3543645a1c5b87e23fd51399ffc6175a681eac121b897a1913122bfc69a16",
+        "source_report_sha256": "b755c7501ff681f16ccbc9dc1566043d14d79596a033a7eb68a7a9c34380c7c2",
+        "request_sha256": "7cfbfdd9d0d0b2a5919a91ea4f0f5b3f0d74adcc7c42f74db0565ecc7f383a99"
+      },
+      "object_mapping_check": "独立核对对象契约：actor:stt-gdc的名称限定为“新电信数据中心（印度）”，原文仅称STT GDC，未建立印度业务范围，故不沿用候选标签。Virtus与Macquarie Asset Management没有允许的对应主体ID。本项是企业股权关系，未确立某座AI数据中心、土地权利或电力系统范围，故不映射root、site:land或system:power。空对象列表保留问题关联，所选证据统一使用此审核范围。"
     }
   ],
   "answers": [],
