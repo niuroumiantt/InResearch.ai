@@ -4551,6 +4551,68 @@
       "status": "candidate",
       "stored_path": "originals/e4/e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b/dcd-e438ba517ca33b37-Khazna enters Saudi Arabia- buys land in Dammam for 200MW data ce.html",
       "title": "Khazna enters Saudi Arabia, buys land in Dammam for 200MW data center campus"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0",
+      "coverage": {
+        "characters_read": 11151,
+        "characters_total": 11151,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0",
+      "id": "doc-0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0",
+      "library_path": "library/by-node/root/2025_DCD_Pure DC CEO_ UK's high power prices will deter hypersca__0afba31cf4c5deee.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:meta",
+        "actor:nscale",
+        "part:cpu",
+        "part:gpu",
+        "root",
+        "site:grid",
+        "system:facility"
+      ],
+      "question_ids": [
+        "OBJ-gpu-supply",
+        "OBJ-grid-definition",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-performance",
+        "OBJ-grid-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-6307cce5d30843e6910449190193e518",
+      "report_sha256": "2001cc65fa1d0d1e6355992e660d3d6df7a55aadfaacf47b2343eec90c76b6a7",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0",
+        "url": "https://www.datacenterdynamics.com/en/news/pure-dc-ceo-uks-high-power-prices-will-deter-hyperscalers/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/pure-dc-ceo-uks-high-power-prices-will-deter-hyperscalers/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/0a/0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0/dcd-0afba31cf4c5deee-Pure DC CEO- UK-s high power prices will deter hyperscalers.html",
+      "title": "Pure DC CEO: UK's high power prices will deter hyperscalers"
     }
   ],
   "evidence": [
@@ -33520,6 +33582,90 @@
           }
         },
         "batch_id": "92244fd814bde6ea45553c47906dd594f984371f39bc2b41c0b6f06bcb69f33f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "07187dd5f806c56a7495dd0075d200c823021bf8b541c5986438113a958d3d2f",
+      "document_id": "doc-0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0",
+      "id": "rev-6307cce5d30843e6910449190193e518:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Citing Department for Energy Security and Net Zero figures  [link: figures — https://www.gov.uk/government/statistical-data-sets/international-industrial-energy-prices] , Childs warned that power in the UK costs approximately four times more than it does in the US – this equates to an additional £226 million ($302m) annually for a 100MW facility.",
+      "reading_revision_id": "rev-6307cce5d30843e6910449190193e518",
+      "source_sha256": "0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:58:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。区域电力成本比较与设施年度费用估算实质关联当前区域成本弹性及资源运营经济性工单。连续原文引句和完整页面上下文足以支持明确归因的部分作者主张；未识别敏感、真实冲突或替换条件，符合B类采用要求。采用限于来源主张，不构成问题的完整回答。",
+        "workorder_ids": [
+          "Q-M04-Q11",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 46.049,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "fa530e277ea230042e06a3c34d89d4c66c1a45313c8edf73ab0db9c7c23e2eac",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68604,
+            "output_tokens": 1320,
+            "reasoning_output_tokens": 231
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 40.492,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5a1e35132ec33d6ad468466a3752663c7ace6cc6692f9011a247e5d60fbe8b11",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 69271,
+              "output_tokens": 796,
+              "reasoning_output_tokens": 515
+            }
+          }
+        },
+        "batch_id": "3ebd947d583d8be741f83ae5424b344c3b407cd9bc28ca5758e636f113ba20b3"
       }
     }
   ],
@@ -65358,6 +65504,108 @@
         "request_sha256": "02e6681ab75576b3ce67a9b5a3fc7118678c714282b76c0d7b141f2d5635f483"
       },
       "object_mapping_check": "主张是宏观电价分析的空间聚合限制，未确立任何数据中心项目、阶段、设备、并网权利或具体主体。合同中root表示一座AI数据中心，site:grid表示电力配额与并网，均不对应这一方法性主张，故采用空对象列表并保留问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0",
+      "evidence_ids": [
+        "rev-6307cce5d30843e6910449190193e518:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:68d51d768b8b9932e469b6ea",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M04-Q11",
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-6307cce5d30843e6910449190193e518",
+      "status": "adopted",
+      "text": "据Ben Wodecki于2025年10月16日在DCD发表的报道，Pure Data Centers首席执行官Dame Dawn Childs在Lockton举办的研讨会上援引英国能源安全与净零部数据，称英国电力成本约为美国的四倍，并估计对一座100MW数据中心设施而言，这意味着每年额外£226 million（$302m）的电力成本。此为报道转述的区域成本比较及设施年度差额估算，未经本次独立核验；研讨会日期、所引统计期间和100MW容量口径未确立，不代表具体已投运项目的账单或当前合同报价。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:58:43+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。区域电力成本比较与设施年度费用估算实质关联当前区域成本弹性及资源运营经济性工单。连续原文引句和完整页面上下文足以支持明确归因的部分作者主张；未识别敏感、真实冲突或替换条件，符合B类采用要求。采用限于来源主张，不构成问题的完整回答。",
+        "workorder_ids": [
+          "Q-M04-Q11",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 46.049,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "fa530e277ea230042e06a3c34d89d4c66c1a45313c8edf73ab0db9c7c23e2eac",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 68604,
+            "output_tokens": 1320,
+            "reasoning_output_tokens": 231
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 40.492,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5a1e35132ec33d6ad468466a3752663c7ace6cc6692f9011a247e5d60fbe8b11",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 69271,
+              "output_tokens": 796,
+              "reasoning_output_tokens": 515
+            }
+          }
+        },
+        "batch_id": "3ebd947d583d8be741f83ae5424b344c3b407cd9bc28ca5758e636f113ba20b3"
+      },
+      "source_candidate_ids": [
+        "rev-6307cce5d30843e6910449190193e518:chunk:0:claim:6"
+      ],
+      "limitations": "未提供所引政府统计表正文、统计期间、客户类别、英美绝对电价、需量费及税费边界。100MW未区分IT容量、设施总功率或实际负载；缺年用电量、利用率、PUE、汇率及差额计算过程，不能独立复算，也不能转化为每GPU小时全成本、租金覆盖能力或模型电价参数。",
+      "conflict_check": "既有SemiAnalysis陈述讨论其所述投资周期中GPU云终端用户对额外电费和租金的定性敏感性；本项讨论英国设施侧相对美国的年度电力成本，角色、地域和计量对象不同，未形成同口径真实冲突。既有EIA记录是2026年1—7月美国各州工业部门平均价，本项未说明统计期间和类别，不能直接验证或推翻其倍数。其余已采用陈述涉及不同政策、交易或成本机制。所供legacy匹配为空，未发现可指认的重复，但检查不是穷尽性外部反证搜索；不替换任何既有结论。",
+      "gap_dependency_check": "对M04-Q11仅补充英美区域电价差异影响设施成本的比较线索，未覆盖题定区域，也未提供GPU小时分母、全成本结构、租金数据或可复算弹性。对NODE-activity-V1-economics仅提供电力运营成本差额的来源估算及口径缺失实例。仍需政府原始统计、同期间同类别费率、设施负载与能耗边界、计算脚本、合同和租金数据及反证；两项问题保持开放，不更新模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "3ebd947d583d8be741f83ae5424b344c3b407cd9bc28ca5758e636f113ba20b3",
+        "source_report_sha256": "2001cc65fa1d0d1e6355992e660d3d6df7a55aadfaacf47b2343eec90c76b6a7",
+        "request_sha256": "5fbdc330a7d4722e3c6457174cc65a5853343119810471d4f5d33504cc3e21bf"
+      },
+      "object_mapping_check": "实际主张以一座100MW数据中心设施的整体年度电力运营成本为对象，匹配root“一座AI数据中心”。未涉及电力系统具体设备、并网配额或协议，故不扩展至system:power或site:grid；设施一词也不确立土地建筑或消防安防范围，不映射system:facility。Pure Data Centers和Childs没有允许的主体ID，不能映射为Pure Storage；文中其他主体及GPU、CPU讨论不属于本项证据范围。"
     }
   ],
   "answers": [],
