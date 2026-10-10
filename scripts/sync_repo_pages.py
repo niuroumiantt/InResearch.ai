@@ -106,7 +106,107 @@ def source_note(meta):
 
 def inresearch_sources():
     return [('inresearch', ROOT, p) for p in ('src/inresearch/README.md',
-        'scripts/sync_repo_pages.py','scripts/repository_checks.py','scripts/daily_repository_pages.py','web/assets/material-flow.js','web/assets/material-flow.css')]
+        'scripts/sync_repo_pages.py','scripts/repository_checks.py','scripts/daily_repository_pages.py',
+        'web/assets/material-flow.js','web/assets/material-flow.css',
+        'framework/bom.json','framework/site_rights.json','framework/tco_targets.json','framework/supply_contract.json')]
+
+
+def _load(relative):
+    return json.loads((ROOT / relative).read_text())
+
+
+def _records(relative):
+    doc = _load(relative)
+    return doc if isinstance(doc, list) else doc.get('records') or []
+
+
+def architecture_board():
+    """Current skeleton, target routing, stores and gates. Counts come from the source files."""
+    bom, rights = _load('framework/bom.json'), _load('framework/site_rights.json')
+    targets, supply = _load('framework/tco_targets.json'), _load('framework/supply_contract.json')
+    knowledge = _load('data/research_knowledge.json')
+    systems, parts = bom['systems'], bom['parts']
+    kinds = {}
+    for part in parts:
+        kinds[part.get('kind')] = kinds.get(part.get('kind'), 0) + 1
+
+    def walk(parent, depth=0):
+        rows = []
+        children = sorted((item['order'], key) for key, item in systems.items() if item.get('parent') == parent)
+        for _, key in children:
+            item = systems[key]
+            own = sum(1 for part in parts if part.get('system') == key and part.get('kind') == 'part')
+            name = ('└ ' * depth) + item['name']
+            parent_name = '—' if not item.get('parent') else systems[item['parent']]['name']
+            rows.append([name, parent_name, '、'.join(item.get('chains') or []) or '—', own])
+            rows.extend(walk(key, depth + 1))
+        return rows
+
+    by_team, unconnected = {}, 0
+    for row in targets['targets']:
+        by_team[row['team']] = by_team.get(row['team'], 0) + 1
+        if row.get('team_state') == 'not_connected':
+            unconnected += 1
+    status = targets['counts']['by_status']
+    providers = {item['team']: item for item in supply['providers'] if item.get('team')}
+    labels = {'receiver_live_generated_targets_exposed': '已接通', 'feed_v1_consumed': '已接通', 'not_connected': '未接通'}
+    order = ('fetchspec', 'inews', 'fetchstat', 'fetchfilings', 'fetchreports', 'fetchquotes')
+    team_rows = []
+    for team in order:
+        provider = providers[team]
+        repo = provider.get('repository') or '—'
+        team_rows.append([provider['name'], provider['capability'], labels.get(provider['connection'], provider['connection']),
+                          by_team.get(team, 0), repo.rstrip('/').rsplit('/', 1)[-1]])
+    stores = [
+        ['事实', len(_records('data/facts.json'))],
+        ['价格', len(_records('data/prices.json'))],
+        ['项目', len(_records('data/projects.json'))],
+        ['公司', len(_records('data/companies.json'))],
+        ['产品', len(_records('data/products.json'))],
+        ['合同', len(_records('data/contracts.json'))],
+        ['来源索引', len(_records('data/sources.json'))],
+        ['事件卡', len(_records('data/event_cards.json'))],
+        ['文档', len(knowledge.get('documents') or [])],
+        ['证据', len(knowledge.get('evidence') or [])],
+        ['陈述', len(knowledge.get('statements') or [])],
+        ['答案', len(knowledge.get('answers') or [])],
+    ]
+    logic = [
+        ('一棵树', '数据中心 → 五个系统。IT 展开计算、存储、网络，存储再分内存与持久存储。尺度和旧模块是属性，不是另一棵树。'),
+        ('三级账', '成本、收入、回报来自同一个经济模型。回报是账的输出。账本页是四个视图。'),
+        ('四问四段', '它值多少、由什么组成、怎么影响账、数据从哪来。采集 → 事实 → 规则 → 视图，四问是四段倒过来读。'),
+        ('五类变量', '构成、运行、价格、时间、主体。一条数据只属一类。'),
+        ('六队', 'fetchspec 与 inews 已接通。统计、披露、研报、报价四队还没有仓库，目标行不排到期。'),
+        ('一个模板', 'node.html 是节点页唯一模板：任一节点 × 五列 × 四问。'),
+    ]
+    return (
+        '<h2>现行架构</h2><p>研究站交付一座可以被追问到底的数据中心。下面的计数在生成本页时从骨架、目标表和 Git 正式库读出；Spark 上的原件和阅读量见后文实时计量，两套数字不能相减。</p>'
+        + '<div class="repo-grid">' + ''.join(f'<article class="repo-card"><h2>{escape(title)}</h2><p>{escape(text)}</p></article>' for title, text in logic) + '</div>'
+        + flow(['骨架提出目标行', '仓库交付原件或事件', '校验通过只进候选', 'C3 之后才进正式库'])
+        + '<h2>骨架</h2><p class="repo-note">物理部件 ' + str(kinds.get('part', 0)) + '，软件 ' + str(kinds.get('software', 0))
+        + '，基型 ' + str(kinds.get('archetype', 0)) + '，站点权利 ' + str(len(rights['rights']))
+        + '，建设阶段 ' + str(len(bom['stages'])) + '。父级行不重复计入部件。</p>'
+        + table(['系统', '上级', '链路', '本级物理部件'], walk(None))
+        + '<p><a href="/bom.html">爆炸图</a> · <a href="/node.html">节点页</a> · <a href="/ledger.html">账本</a></p>'
+        + '<h2>爆炸图怎样提出需求</h2><p>爆炸图负责把系统和部件讲清。点开部件之后，采集需求不画在图上，而在目标表里：每个部件按规格、运行、价格、交期，未成熟的再加新闻。目标表由骨架生成，各队不自己决定抓什么。</p>'
+        + '<p class="repo-note">目标行 ' + f"{targets['counts']['total']:,}" + '。已有序列 ' + str(status.get('sourced', 0))
+        + '，已交付未成序列 ' + str(status.get('delivered', 0)) + '，假设 ' + str(status.get('assumed', 0))
+        + '，缺 ' + str(status.get('needed', 0)) + '。未接通 ' + f'{unconnected:,}' + ' 行不排到期。</p>'
+        + table(['队', '负责', '接通', '目标行', '仓库'], team_rows)
+        + '<p><a href="/supply.html#targets">供应目标表</a> · <a href="/admin/fetchspecrepo.html">Fetchspec</a> · <a href="/admin/inewsrepo.html">inews.today</a></p>'
+        + '<h2>两个库，两道门槛</h2><p>Git 里是正式研究：JSON 记录，随源码发布。Spark 上是原件、登记和阅读：SQLite 加内容寻址文件，不进 Git。接收成功只表示候选到了，不表示数已经可以采用。</p>'
+        + table(['Git 正式记录', '条数'], [[name, f'{count:,}'] for name, count in stores])
+        + table(['来源', '整批拒绝', '收下但还不采用'], [
+            ['Fetchspec', '哈希不符、清单和文件不一致、不是中文或英文、不是公开资料、目标行不属于本队、路径逃出资料库、同一交付号换了清单', '合格包进入 Spark 原件和登记。没有点名要阅读的文件，不进阅读队列。'],
+            ['inews', '窗口、时间、guid 或附加字段不合法时整页拒绝', '合格事件只存标题和指针。认不出的对象或目标行从该条去掉，不拒整页。'],
+            ['正式采用', '没有 C3 审阅、采用证据没有引文、支持链不闭合', '阅读完成、候选和 delivered 都还不是正式答案或容量。'],
+        ])
+        + '<h2>这次审查后仍要决定的</h2><ol>'
+        + '<li>四支采集队还没有仓库。未接通的目标行覆盖价格、交期和一部分权利时间。要决定是建立 fetchdata，还是把这些行改派给已经在跑的队。</li>'
+        + '<li>事件卡规范要求同时有对象和原件指针，生成 delivered 的代码目前只检查原件指针。这次不改这道门槛。</li>'
+        + '<li>改代码、规则、旧记录或无法判定的差异仍跑完整浏览器回归。只追加有界研究资料才走 docs/CI.md 的分流。不放宽单次作业时限。</li>'
+        + '</ol>'
+    )
 
 
 def material_board():
@@ -131,12 +231,12 @@ def build_inresearch(meta):
     readme = (ROOT / 'src/inresearch/README.md').read_text()
     rows = [[p.strip().replace('`', '') for p in line.strip('|').split('|')]
             for line in readme.splitlines() if line.startswith('| ')][1:]
+    prose = ''.join(f'<p>{escape(line)}</p>' for line in readme.splitlines() if line and not line.startswith(('#', '|')))
     return shell('InResearch.ai',
-        '<p>研究框架与目标 → 接收原件和事件 → 阅读与审阅 → 证据采用 → 模型与报告。</p>' +
-        source_note(meta) + material_board() + flow(['目标与资料接收', '阅读与证据审阅', '事实与经济模型', '网站与研究成果']) +
-        '<h2>程序职责</h2>' + table(['模块', '责任与主要实现'], rows) +
-        '<h2>运行边界与未完成</h2>' + ''.join(f'<p>{escape(line)}</p>' for line in readme.splitlines()
-            if line and not line.startswith(('#', '|'))),
+        '<p>一座数据中心，可以被追问到底：怎么建、由什么组成、怎么运转、挣不挣钱，每个数从哪来、缺什么。</p>' +
+        source_note(meta) + architecture_board() + material_board() +
+        '<h2>程序职责</h2>' + table(['目录', '责任与主要实现'], rows) +
+        '<details><summary>程序入口与校验</summary>' + prose + '</details>',
         '<link rel="stylesheet" href="/assets/material-flow.css"><script defer src="/assets/material-flow.js"></script>')
 
 

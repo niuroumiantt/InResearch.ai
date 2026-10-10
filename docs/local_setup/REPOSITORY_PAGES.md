@@ -1,8 +1,9 @@
 # 仓库架构页维护
 
 现行地址与权限以 `framework/05_interface_system.md` 为准。总入口为
-`https://inresearch.ai/admin/repos.html`；原有四页使用 `inresearchrepo.html`、
-`inewsrepo.html`、`fetchspecrepo.html`、`infrarepo.html`。
+`https://inresearch.ai/admin/repos.html`。现行 11 个仓库都有入口。
+`inresearchrepo.html`、`inewsrepo.html`、`fetchspecrepo.html`、`infrarepo.html`
+保留专用图；其余仓库从当前源码目录生成组织图。
 
 每个仓库维护自己的事实；研究站保存可审阅的架构快照，研究主页另附只读运行聚合。infra 原 HTML 原样保留，
 Fetchspec 调用自身生成器，inews 导出同一份 pipeline-map 架构声明，InResearch 从程序职责说明生成。

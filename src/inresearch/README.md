@@ -20,4 +20,4 @@
 
 新模型、终端和网页功能调用现有用例，不能另建一套“当前结果”规则。Reader 任务 SQLite、M4 原件整理和网站账号仍保留各自正式 scope；不因目录迁移合并或清空运行数据。reader 的显式阅读版本与审核替换已经实现，L2 与 reader 已共用当前全文查询；真实跨机器数据根连接及历史资料迁移仍待验；产品资料库已使用可重放的预备日志，以索引为主提交点、计划为回执，保留输入原件，见整改交付台账。
 
-校验顺序：治理 refresh/check → validate --strict → registry → `PYTHONPATH=src python3 -m unittest discover -s tests/unit` → `node tests/run_browser.cjs`。`facts` 使用同一事实契约审计既有记录，缺失原文哈希的记录如实报告，不用伪造值通过校验。
+校验顺序：治理 refresh/check → validate --strict → registry。影响范围按 `docs/CI.md`：只追加有界研究资料时不跑无关 3D、装配和园区；改代码、结构、规则、旧记录或无法判定的差异仍跑单元测试和完整浏览器。`facts` 使用同一事实契约审计既有记录，缺失原文哈希的记录如实报告，不用伪造值通过校验。

@@ -361,7 +361,7 @@ function changes(d) {
       <div class="readings" id="readings">${(d.root.account.readings || []).map(r => `<a class="reading" href="${esc(r.href)}"><b>${esc(r.label)}</b><small>${esc(r.hint)}</small></a>`).join("")}</div>
       <div class="links">${d.root.account.links.map(([l, h]) => `<a href="${h}">${esc(l)} ↗</a>`).join("")}<span class="empty">三级由经济模型基准情景计算；回报是账的输出，不是一列。账本是统一模型的四个视图。四个读法是五列的横向展开，不是新轴。</span></div>`;
     byId("q1").textContent = "五类变量在根节点：构成是规模与代际，运行是效率与利用率，价格是资本开支与年成本，时间是寿命与周期，主体是持有与融资方式。";
-    byId("h2").innerHTML = COL === "4" ? `它怎么建<small>时间列 · 六段建设阶段，从站点权利起；下方矩阵停在时间列</small>` : `它由什么组成<small>树 · 五个系统（IT 展开四个）× 五类变量 · 站点权利并列</small>`;
+    byId("h2").innerHTML = COL === "4" ? `它怎么建<small>时间列 · 六段建设阶段，从站点权利起；下方矩阵停在时间列</small>` : `它由什么组成<small>树 · 五个系统（IT 展开计算、存储、网络，存储再分两类）× 五类变量 · 站点权利并列</small>`;
     children = (COL === "4" ? buildTimeline(d) : "") + matrix(d);
     byId("q3").textContent = "因子树从公式往下推：每个因子汇总它的部件与权利，再喂经济模型的输入。";
     byId("q4").textContent = `目标清单 ${T.length} 行：已有 ${d.root.targets.sourced}、假设 ${d.root.targets.assumed}、已交付未成序列 ${d.root.targets.delivered || 0}、缺 ${d.root.targets.needed}；其中 ${d.root.targets.not_connected || 0} 行归待建队，不排到期。采集需求、研究工单、价格库新点与新闻事件都从这里出发；因子级目标折叠在下，部件级目标在各系统与部件节点。`;
