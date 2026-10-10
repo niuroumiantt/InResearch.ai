@@ -151,8 +151,8 @@ class ResearchReviewTests(unittest.TestCase):
         self.assertEqual(len(review.sample('batch',ids)),2)
         self.assertEqual(review.sample('batch',ids),review.sample('batch',list(reversed(ids))))
 
-    def test_ci_requires_all_four_checks_success(self):
-        checks=[{'name':n,'bucket':'pass'} for n in ('validate','browser (core)','browser (model_assets)','storage-container')]
+    def test_ci_requires_both_gates_success(self):
+        checks=[{'name':n,'bucket':'pass'} for n in ('validate','browser (core)')]
         self.assertTrue(all_checks_pass(checks));self.assertFalse(all_checks_pass(checks[:-1]))
         checks[0]['bucket']='pending';self.assertFalse(all_checks_pass(checks))
 

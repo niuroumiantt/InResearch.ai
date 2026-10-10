@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.69。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.70。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2450。
+在册文件：2455。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,14 +16,14 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 362 |
-| 现行规范 | 15 |
-| 项目配置 | 755 |
+| 运行代码 | 363 |
+| 现行规范 | 16 |
+| 项目配置 | 756 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 186 |
-| 测试 | 189 |
+| 配套说明 | 187 |
+| 测试 | 190 |
 
 ## 在册记录集合
 
@@ -1701,7 +1701,7 @@
 | `framework/bom.json` | scales | 5 |
 | `framework/bom.json` | parts | 63 |
 | `framework/bom.json` | stages | 6 |
-| `framework/current_state.json` | policies | 49 |
+| `framework/current_state.json` | policies | 50 |
 | `framework/current_state.json` | entrypoints | 4 |
 | `framework/current_state.json` | retired_entrypoints | 3 |
 | `framework/current_state.json` | known_retired_patterns | 28 |
@@ -1729,7 +1729,7 @@
 | `framework/tco_factors.json` | factors | 26 |
 | `framework/tco_targets.json` | principles | 4 |
 | `framework/tco_targets.json` | targets | 351 |
-| `framework/verification_contract.json` | policies | 16 |
+| `framework/verification_contract.json` | policies | 17 |
 | `framework/visual_atlas.json` | references | 14 |
 | `framework/visual_atlas_migration.json` | states | 5 |
 | `framework/visual_atlas_migration.json` | items | 39 |
@@ -1899,6 +1899,7 @@
 | `deploy/spark-reader/inresearch-research-review.service` | 项目配置 |
 | `deploy/spark-reader/install.sh` | 运行代码 |
 | `deploy/spark-reader/reader.env.example` | 项目配置 |
+| [docs/CI.md](CI.md) | 现行规范 |
 | [docs/CN_PROJECT_ARCHIVES.csv](CN_PROJECT_ARCHIVES.csv) | 在册数据/索引 |
 | [docs/DATA_SOURCING.md](DATA_SOURCING.md) | 配套说明 |
 | [docs/DECISIONS.md](DECISIONS.md) | 现行入口 |
@@ -2495,6 +2496,7 @@
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
 | [docs/handoff/bom-page-layout-20261010.md](handoff/bom-page-layout-20261010.md) | 配套说明 |
 | [docs/handoff/catalog-ownership-20261007.md](handoff/catalog-ownership-20261007.md) | 配套说明 |
+| [docs/handoff/ci-impact-scoping-20261010.md](handoff/ci-impact-scoping-20261010.md) | 配套说明 |
 | [docs/handoff/codex-batch-reader-20261006.md](handoff/codex-batch-reader-20261006.md) | 配套说明 |
 | [docs/handoff/company-catalog-map-20261007.md](handoff/company-catalog-map-20261007.md) | 配套说明 |
 | [docs/handoff/company-category-navigation-20261007.md](handoff/company-category-navigation-20261007.md) | 配套说明 |
@@ -3462,6 +3464,8 @@
 | `scripts/build_technical_atlas.py` | 运行代码 |
 | `scripts/cards_ocr.py` | 运行代码 |
 | `scripts/cards_verify.py` | 运行代码 |
+| `scripts/ci-requirements.txt` | 项目配置 |
+| `scripts/ci_scope.py` | 运行代码 |
 | `scripts/daily_repository_pages.py` | 运行代码 |
 | `scripts/editorial-outbox.py` | 运行代码 |
 | `scripts/export_inews_research.cjs` | 项目配置 |
@@ -3688,6 +3692,7 @@
 | `tests/unit/test_catalog_migration.py` | 测试 |
 | `tests/unit/test_catalog_ownership.py` | 测试 |
 | `tests/unit/test_catalog_supplement.py` | 测试 |
+| `tests/unit/test_ci_scope.py` | 测试 |
 | `tests/unit/test_claim_floor.py` | 测试 |
 | `tests/unit/test_codex_batch_reader.py` | 测试 |
 | `tests/unit/test_codex_failure_ocr_rescue.py` | 测试 |
