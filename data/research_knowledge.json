@@ -4367,6 +4367,71 @@
     },
     {
       "acceptance": "candidate",
+      "content_sha256": "e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "coverage": {
+        "characters_read": 10018,
+        "characters_total": 10018,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "id": "doc-e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "library_path": "library/by-node/root/2026_DCD_Volta launches out of stealth, to lease capacity in Nor__e9f62283720b27a4.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:anthropic",
+        "actor:atnorth",
+        "actor:dell-technologies",
+        "actor:nebius",
+        "part:gpu",
+        "root",
+        "site:land",
+        "system:compute",
+        "system:facility",
+        "system:it",
+        "system:power"
+      ],
+      "question_ids": [
+        "M02-Q02",
+        "NODE-demand-D1-conversion",
+        "NODE-workload-hpc-placement"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-a4068a2c1a1645f18d12a20154f04450",
+      "report_sha256": "af2efe37f1ff72a401503f277902c221589cc60ed5118c0e7154e638eb0127c8",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+        "url": "https://www.datacenterdynamics.com/en/news/volta-launches-out-of-stealth-to-lease-capacity-in-norway-from-bitdeer-for-leading-ai-lab/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/volta-launches-out-of-stealth-to-lease-capacity-in-norway-from-bitdeer-for-leading-ai-lab/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/e9/e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885/dcd-e9f62283720b27a4-Volta launches out of stealth- to lease capacity in Norway from B.html",
+      "title": "Volta launches out of stealth, to lease capacity in Norway from Bitdeer for “leading AI lab”"
+    },
+    {
+      "acceptance": "candidate",
       "content_sha256": "05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
       "coverage": {
         "characters_read": 12605,
@@ -32398,6 +32463,258 @@
           }
         },
         "batch_id": "0673934d9ef9028620ade84f7f36921a149c03e64a3eca04b6eba85b4aa194e1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b160261a49a03743b62ee66bd30dfe6521587bd28a00aa4f7ebd26060fffa579",
+      "document_id": "doc-e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "id": "rev-a4068a2c1a1645f18d12a20154f04450:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Volta has launched with a $10bn strategic partnership with an unnamed “leading frontier AI lab,” the first phase of which will be deployed at Bitdeer’s campus in Norway.",
+      "reading_revision_id": "rev-a4068a2c1a1645f18d12a20154f04450",
+      "source_sha256": "e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T12:11:24+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分6。100亿美元合作及首期地点实质关联当前大额算力合同清单工单；连续原文及完整页面语境充分支持限定归因的部分作者主张。未发现敏感、真实冲突或替换条件，符合B类采用要求。仅采用有界线索，不改变骨架或模型输入。",
+        "workorder_ids": [
+          "Q-M03-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 97.342,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a8e8fb1110da6e0057a9d4af9bced87239df5030376a4b4c895abf8643dee9a0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 62074,
+            "output_tokens": 3078,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.139,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "200d1f8828d3f79b8c98b726c87089662c9df268dd2d5109565cfc39d55c5d68",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61376,
+              "output_tokens": 461,
+              "reasoning_output_tokens": 177
+            }
+          }
+        },
+        "batch_id": "90c4750495c737f0294aaf790d5739cbbd0a6457a8ca79b4eaef1dfa392a70d1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b160261a49a03743b62ee66bd30dfe6521587bd28a00aa4f7ebd26060fffa579",
+      "document_id": "doc-e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "id": "rev-a4068a2c1a1645f18d12a20154f04450:chunk:0:claim:5:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Nasdaq-listed Bitdeer this week said it has executed a 16-year colocation lease with a subsidiary of Volta. Bitdeer will be delivering the capacity at a former cryptomine in Norway.",
+      "reading_revision_id": "rev-a4068a2c1a1645f18d12a20154f04450",
+      "source_sha256": "e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T12:11:24+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分6。已签租约、托管服务、提供方与承租方关系及16年期限，对当前租赁分界、交易边界和合同风险工单有实质性局部贡献，也提供转型进入者的签约阶段个案。连续两句及完整页面语境充分，无A类触发条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M02-Q04",
+          "Q-M02-Q07",
+          "Q-NODE-activity-V1-boundary",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 97.342,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a8e8fb1110da6e0057a9d4af9bced87239df5030376a4b4c895abf8643dee9a0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 62074,
+            "output_tokens": 3078,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.139,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "200d1f8828d3f79b8c98b726c87089662c9df268dd2d5109565cfc39d55c5d68",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61376,
+              "output_tokens": 461,
+              "reasoning_output_tokens": 177
+            }
+          }
+        },
+        "batch_id": "90c4750495c737f0294aaf790d5739cbbd0a6457a8ca79b4eaef1dfa392a70d1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b160261a49a03743b62ee66bd30dfe6521587bd28a00aa4f7ebd26060fffa579",
+      "document_id": "doc-e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "id": "rev-a4068a2c1a1645f18d12a20154f04450:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:dell-technologies"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Volta’s customer at the Tydal site will be an unnamed “leading AI lab,” with Dell Technologies as the technology provider.",
+      "reading_revision_id": "rev-a4068a2c1a1645f18d12a20154f04450",
+      "source_sha256": "e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T12:11:24+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。明确技术提供方，对当前硬件交易参与方边界工单具有实质性的局部贡献。连续引文及相邻租约、硬件和交付规划语境充分支持限定归因的角色线索；无敏感、真实冲突或替换条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 97.342,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a8e8fb1110da6e0057a9d4af9bced87239df5030376a4b4c895abf8643dee9a0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 62074,
+            "output_tokens": 3078,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.139,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "200d1f8828d3f79b8c98b726c87089662c9df268dd2d5109565cfc39d55c5d68",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61376,
+              "output_tokens": 461,
+              "reasoning_output_tokens": 177
+            }
+          }
+        },
+        "batch_id": "90c4750495c737f0294aaf790d5739cbbd0a6457a8ca79b4eaef1dfa392a70d1"
       }
     },
     {
@@ -63303,6 +63620,312 @@
         "request_sha256": "915346216b45f0f5fd8d35a1405d41d378e55da9629041707c48599e86a41cf5"
       },
       "object_mapping_check": "独立映射site:grid以表示电网供电来源，part:ups以表示原文明确提及的UPS系统，chain:power/3以表示未指定技术的备用发电作用；后者名称为“发电与储能”，父节点为system:power。part:backup-power在对象契约中专指柴油发电机组，原文未指定柴油，故不选；也不由备用储能推定BESS、UPS电池介质或具体燃机。所选证据统一使用此主张级范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "evidence_ids": [
+        "rev-a4068a2c1a1645f18d12a20154f04450:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:4e5b6d512b6783d7482a9ac4",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M03-Q01"
+      ],
+      "reading_revision_id": "rev-a4068a2c1a1645f18d12a20154f04450",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2026年8月4日的报道中称，Volta启动时与一家未具名的“领先前沿AI实验室”建立了100亿美元战略合作，其首期计划部署于Bitdeer的挪威园区。这是报道时点的来源陈述及部署计划，不构成对合同履行或当前投运状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T12:11:24+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分6。100亿美元合作及首期地点实质关联当前大额算力合同清单工单；连续原文及完整页面语境充分支持限定归因的部分作者主张。未发现敏感、真实冲突或替换条件，符合B类采用要求。仅采用有界线索，不改变骨架或模型输入。",
+        "workorder_ids": [
+          "Q-M03-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 97.342,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a8e8fb1110da6e0057a9d4af9bced87239df5030376a4b4c895abf8643dee9a0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 62074,
+            "output_tokens": 3078,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.139,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "200d1f8828d3f79b8c98b726c87089662c9df268dd2d5109565cfc39d55c5d68",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61376,
+              "output_tokens": 461,
+              "reasoning_output_tokens": 177
+            }
+          }
+        },
+        "batch_id": "90c4750495c737f0294aaf790d5739cbbd0a6457a8ca79b4eaef1dfa392a70d1"
+      },
+      "source_candidate_ids": [
+        "rev-a4068a2c1a1645f18d12a20154f04450:chunk:0:claim:3"
+      ],
+      "limitations": "所选证据未披露实验室身份、合作期限、金额组成、付款义务、容量或具体交付日期，也未提供合作协议原文。战略合作金额不能直接认定为采购支出、已实现收入、机柜单价或电力单价。正文转述Bloomberg对客户身份的报道，并明确双方尚未确认，不能据此确定客户为Anthropic。",
+      "conflict_check": "所供已采用陈述没有同一Volta合作记录；Lake Mariner客户与租赁记录属于另一项目，Alphabet TPU交付预测也属于另一交易，不构成重复或真实冲突。legacy中的Volta是英伟达GPU架构名称，与本项公司同名但不同对象；合同及项目筛选为空。检查限于所供材料，不能证明外部不存在反证，不替换既有结论。",
+      "gap_dependency_check": "M03-Q01获得超过10亿美元的合作清单线索及首期地域，但尚未取得一手协议、完整交易主体、合同期限、金额口径、容量及交付曲线。正文中的Bitdeer托管租约是另一合同层级，不能直接将其期限、收入或阶段安排套用于100亿美元合作。问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "90c4750495c737f0294aaf790d5739cbbd0a6457a8ca79b4eaef1dfa392a70d1",
+        "source_report_sha256": "af2efe37f1ff72a401503f277902c221589cc60ed5118c0e7154e638eb0127c8",
+        "request_sha256": "712ee67a5e0ed38019c72e007b2fd5fda0106e41c6e88efad967a713e87ab4c0"
+      },
+      "object_mapping_check": "首期部署明确指向Bitdeer挪威数据中心园区，支持root所代表的数据中心整体项目范围。战略合作与部署地点未说明土地、建筑、消防、电力或IT系统的具体交易范围，故不沿用system:facility或扩展其他基础设施映射。Volta和Bitdeer没有允许的主体ID；客户未确认，不映射actor:anthropic。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "evidence_ids": [
+        "rev-a4068a2c1a1645f18d12a20154f04450:chunk:0:claim:5:ev:0"
+      ],
+      "id": "adoption:review:1dabc44cfd337b86e7c5052a",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M02-Q04",
+        "M02-Q07",
+        "NODE-activity-V1-boundary",
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-a4068a2c1a1645f18d12a20154f04450",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2026年8月4日的报道中转述Bitdeer当周声明：Bitdeer已与Volta的一家子公司签署16年托管租约，并将从挪威一处原加密货币矿场交付容量。签约属于来源转述的合同进展，容量交付仍为未来安排，未经本次独立核验。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T12:11:24+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分6。已签租约、托管服务、提供方与承租方关系及16年期限，对当前租赁分界、交易边界和合同风险工单有实质性局部贡献，也提供转型进入者的签约阶段个案。连续两句及完整页面语境充分，无A类触发条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M02-Q04",
+          "Q-M02-Q07",
+          "Q-NODE-activity-V1-boundary",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 97.342,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a8e8fb1110da6e0057a9d4af9bced87239df5030376a4b4c895abf8643dee9a0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 62074,
+            "output_tokens": 3078,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.139,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "200d1f8828d3f79b8c98b726c87089662c9df268dd2d5109565cfc39d55c5d68",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61376,
+              "output_tokens": 461,
+              "reasoning_output_tokens": 177
+            }
+          }
+        },
+        "batch_id": "90c4750495c737f0294aaf790d5739cbbd0a6457a8ca79b4eaef1dfa392a70d1"
+      },
+      "source_candidate_ids": [
+        "rev-a4068a2c1a1645f18d12a20154f04450:chunk:0:claim:5"
+      ],
+      "limitations": "所选证据未提供租约原文、起租日期、付款安排、资产权属、运营责任、具体容量、租金或履约条件。正文提供更多合同与交付规划，但未由本项所选引文完整承载，不能将其作为本项已采用的量化结论。签约不证明改造、验收或投运完成；单个矿场转型案例不能计算新进入者落地率或自建与租赁占比。",
+      "conflict_check": "已采用的Lake Mariner转型记录属于TeraWulf的另一园区，可以与本项并存，不是规范重复。既有自建效率和终端用户成本判断不否定某一项目采用托管租赁；其他经济性陈述涉及不同主体与口径。legacy的GPU架构Volta记录与本项公司无关，合同及项目匹配为空。未发现真实冲突，不更新或覆盖既有结论；检查并非穷尽性反证搜索。",
+      "gap_dependency_check": "M02-Q04仅获得矿场转型的签约阶段线索，尚需确定其是否属于问题定义的新进入者，并取得实际交付、样本分母及一致时间窗。M02-Q07获得单项租赁部署实例，仍缺自建与租赁分类规则和可比规模分母。NODE-activity-V1-boundary仅识别托管提供方与承租关系，未完整确定付款方、所有者、运营方及最终使用方。NODE-activity-V1-economics仅获得租期，仍需收入、成本、定价及风险条款。一手租约及反证尚缺，所有问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "90c4750495c737f0294aaf790d5739cbbd0a6457a8ca79b4eaef1dfa392a70d1",
+        "source_report_sha256": "af2efe37f1ff72a401503f277902c221589cc60ed5118c0e7154e638eb0127c8",
+        "request_sha256": "712ee67a5e0ed38019c72e007b2fd5fda0106e41c6e88efad967a713e87ab4c0"
+      },
+      "object_mapping_check": "主张实际范围是挪威数据中心园区整体托管交易及原矿场转型，匹配root。托管租约不等于土地租赁，原矿场也未确立具体建筑、消防、供电或IT部件范围，因此不沿用system:facility，不映射site:land或其他系统。Bitdeer和Volta没有允许的主体ID，保留名称而不新增节点。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885",
+      "evidence_ids": [
+        "rev-a4068a2c1a1645f18d12a20154f04450:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:eb5dffabba8de9d42a3ff2cf",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:dell-technologies"
+      ],
+      "question_ids": [
+        "NODE-activity-V2-boundary"
+      ],
+      "reading_revision_id": "rev-a4068a2c1a1645f18d12a20154f04450",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2026年8月4日的报道中称，Volta在挪威Tydal场址的客户将是一家未具名的“领先AI实验室”，Dell Technologies将作为技术提供方。这是来源对拟部署项目参与方角色的陈述，不构成已完成供货或当前角色状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T12:11:24+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，本次评分5。明确技术提供方，对当前硬件交易参与方边界工单具有实质性的局部贡献。连续引文及相邻租约、硬件和交付规划语境充分支持限定归因的角色线索；无敏感、真实冲突或替换条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 97.342,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a8e8fb1110da6e0057a9d4af9bced87239df5030376a4b4c895abf8643dee9a0",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 62074,
+            "output_tokens": 3078,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.139,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "200d1f8828d3f79b8c98b726c87089662c9df268dd2d5109565cfc39d55c5d68",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 61376,
+              "output_tokens": 461,
+              "reasoning_output_tokens": 177
+            }
+          }
+        },
+        "batch_id": "90c4750495c737f0294aaf790d5739cbbd0a6457a8ca79b4eaef1dfa392a70d1"
+      },
+      "source_candidate_ids": [
+        "rev-a4068a2c1a1645f18d12a20154f04450:chunk:0:claim:6"
+      ],
+      "limitations": "原文仅称Dell Technologies为技术提供方，未确定其承担制造、集成、分销中的哪些职责，也未披露供货形态、数量、价格、合同、交付或验收状态。客户未具名；客户角色不能直接认定为付款方或最终使用方。正文另述园区拟采用英伟达硬件，但不能据此推定Dell的完整供货范围。",
+      "conflict_check": "既有Alphabet向客户自有数据中心交付TPU的预测涉及不同供应方与交易，不能用于补齐Dell的角色，也不与其冲突。Lake Mariner客户记录属于另一项目。当前已采用陈述及所供legacy未出现同一Dell—Tydal技术提供关系，未发现规范重复或真实冲突；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "NODE-activity-V2-boundary获得Dell的技术提供方身份线索，但尚缺具体产品或服务、签约和付款主体、硬件所有者、运营方、最终使用方及制造、集成、分销职责划分。需一手供货协议、项目交付记录和反证，才能建立完整且互斥的交易边界。该角色线索不自动覆盖整个活动节点，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "90c4750495c737f0294aaf790d5739cbbd0a6457a8ca79b4eaef1dfa392a70d1",
+        "source_report_sha256": "af2efe37f1ff72a401503f277902c221589cc60ed5118c0e7154e638eb0127c8",
+        "request_sha256": "712ee67a5e0ed38019c72e007b2fd5fda0106e41c6e88efad967a713e87ab4c0"
+      },
+      "object_mapping_check": "原文明示Dell Technologies，准确匹配允许的actor:dell-technologies；不同时选择同名的actor:dell。技术提供方称谓未确立具体IT系统、服务器、机柜或GPU的供货范围，因此不沿用system:it或新增部件映射。场址仅限定角色发生地点，不另映射整体数据中心；未具名客户不映射Anthropic。"
     },
     {
       "acceptance": "adopted",
