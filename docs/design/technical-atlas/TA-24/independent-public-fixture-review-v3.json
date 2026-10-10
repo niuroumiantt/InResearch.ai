@@ -1,0 +1,54 @@
+{
+  "review_type": "final_narrow_static_review_only",
+  "version": "v3",
+  "reviewed_at": "2026-10-10T02:00:06.198324+00:00",
+  "scope": "Only the two v2 findings: mobile drill attached readiness and empty-selection export caption dataflow. Earlier v1/v2 findings retained in prior receipts.",
+  "browser_run": false,
+  "http_access": false,
+  "local_product_access": false,
+  "product_js_executed": false,
+  "node_executed": false,
+  "repository_mutated": false,
+  "prior_receipts_retained": [
+    "/private/tmp/ta24-27-public-fixture-static-review-child.json",
+    "/private/tmp/ta24-27-public-fixture-static-review-child-v2.json"
+  ],
+  "snapshots": {
+    "tests/it_domain.cjs": {
+      "bytes": 20652,
+      "sha256": "081bd7991d4f667fbfdc164a29268923c615320c69a7fc1b554f293ac6ba23d7"
+    },
+    "web/pages/bom3d.html": {
+      "bytes": 77954,
+      "sha256": "b7e7943bf04c96699f89da0742803a1e1045615cf4906e664af96107396c23b4"
+    },
+    "web/components/scene-atlas.js": {
+      "bytes": 15340,
+      "sha256": "c668c1836ab13677cd272acacaf9ed06e881b66507bf9c61b2b8fd6b01c9cd4f"
+    }
+  },
+  "resolved_findings": [
+    {
+      "id": "V2-F1",
+      "status": "resolved_statically",
+      "evidence": "tests/it_domain.cjs:21 and :38 now both waitFor({state:attached}); no default-visible drill wait remains. This awaits asynchronous DOM insertion while allowing <=900px CSS to hide drill. Existing settle follows each wait.",
+      "static_checks": {
+        "attached_wait_count": 2,
+        "default_visible_wait_count": 0
+      }
+    },
+    {
+      "id": "V2-F2",
+      "status": "resolved_statically",
+      "evidence": "bom3d export caption now adds explicit category-only/no-physical-entity/background-not-geometry wording only when campusMode, active IT domain, selected dossier id and currentPartMeshes(id).length===0. showDossier for an unmodeled id sets campusSelectedMeshes=[] and selectedInstance=null, so this branch is reached without fake geometry. scene-atlas evaluates caption callback, includes caption in metadata and independently wraps caption into visible footer <text> nodes outside the selected.meshes leader guard. Fixture parses metadata.object_id exactly, asserts caption contains no-entity wording and concatenates all SVG <text> content before checking visible wording; wrapped lines therefore do not cause an artificial substring failure.",
+      "locations": [
+        "tests/it_domain.cjs:29",
+        "web/pages/bom3d.html:1032,1048,1089-1095",
+        "web/components/scene-atlas.js:178-180,191-193,205-206"
+      ],
+      "retained_scope": "Nonempty entity selections and whole-campus selection fall back to original stage caption. Legacy campusMode=false also retains the original stage caption. Shared scene-atlas implementation remains unchanged."
+    }
+  ],
+  "findings": [],
+  "conclusion": "Both v2 findings are closed in static code/dataflow review. No remaining issue found within this deliberately narrow re-review. This is not browser acceptance, public verification or deployment proof."
+}

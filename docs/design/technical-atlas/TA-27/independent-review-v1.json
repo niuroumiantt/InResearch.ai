@@ -1,0 +1,141 @@
+{
+  "figure_id": "TA-27",
+  "revision": "composite-v2",
+  "review_type": "independent_narrow_static_asset_review_after_v1_footer_fact_fix",
+  "observed_at": "2026-10-10T01:50:12.888119+00:00",
+  "decision": "no_remaining_material_asset_blocker_in_reviewed_v2",
+  "scope": "Two local PNG files actual original-size visual review plus byte/SVG/manifest/offline-report and campus factory static review only; not product-page, public-deployment, or publication acceptance.",
+  "actual_original_images_viewed": [
+    {
+      "path": "/private/tmp/atlas-ta27-network-20261010/composite-v2/network-chat-full.png",
+      "sha256": "e4d93ae2d01b9dfe9cfad5efade917cea204c298e55e15aed16ef0f22b03478c",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "detail": "original",
+      "actual_visual_review": true
+    },
+    {
+      "path": "/private/tmp/atlas-ta27-network-20261010/composite-v2/network-domain-native.png",
+      "sha256": "ef667abd50b39a4bc5a20d8a1d9f706deee1eef22cb995cfa9a3c60aabba646f",
+      "dimensions": [
+        1536,
+        1024
+      ],
+      "detail": "original",
+      "actual_visual_review": true
+    }
+  ],
+  "files": {
+    "/private/tmp/atlas-ta27-network-20261010/composite-v2/component-manifest.json": {
+      "sha256": "dff212f19b9007aed63af7c422c20d790554850071ab0e34e5be70ee45449010",
+      "bytes": 9238
+    },
+    "/private/tmp/atlas-ta27-network-20261010/composite-v2/network-base.svg": {
+      "sha256": "7e099e8f819d15072bddece477bea38e9d1d03bfc0cc34a30aada2b1edcc4f84",
+      "bytes": 25113137
+    },
+    "/private/tmp/atlas-ta27-network-20261010/composite-v2/network-chat-full.png": {
+      "sha256": "e4d93ae2d01b9dfe9cfad5efade917cea204c298e55e15aed16ef0f22b03478c",
+      "bytes": 758797
+    },
+    "/private/tmp/atlas-ta27-network-20261010/composite-v2/network-domain-native.png": {
+      "sha256": "ef667abd50b39a4bc5a20d8a1d9f706deee1eef22cb995cfa9a3c60aabba646f",
+      "bytes": 526259
+    },
+    "/private/tmp/atlas-ta27-network-20261010/composite-v2/network-full.svg": {
+      "sha256": "0fc394ba95bcbdd114d6b71e789e2baf46854604dcbf985015a6a796f2d9f9fb",
+      "bytes": 709878
+    },
+    "/private/tmp/atlas-ta27-network-20261010/composite-v2/network-preview.jpg": {
+      "sha256": "e9bd36dabc9da7b6d0107f12f15f0f3c0436984f56e54d61dbe5cf1b9090357d",
+      "bytes": 55759
+    },
+    "/private/tmp/atlas-ta27-network-20261010/composite-v2/network-preview.svg": {
+      "sha256": "936b85276f6f675373b5511b01a18f55299619066e6c1ce9d55dbc95e81326ae",
+      "bytes": 82547
+    },
+    "/private/tmp/atlas-ta27-network-20261010/composite-v2/offline-render.json": {
+      "sha256": "8dbd7d50316cd3c4299fe219ce1d1721255fa7d9645d25d373f47564353cc696",
+      "bytes": 7945
+    }
+  },
+  "preserved_v1_rejection": {
+    "path": "/private/tmp/ta27-composite-v1-review-child.json",
+    "sha256": "66ca212241cceed78cb0821669d1069e6a57fdfbe71fdc188725d8b5d0c33158",
+    "decision": "revision_required_one_material_footer_fact",
+    "finding_id": "TA27-V1-F1",
+    "unchanged": true
+  },
+  "resolved_finding": {
+    "id": "TA27-V1-F1",
+    "status": "resolved",
+    "actual_svg_text_changes": [
+      {
+        "index": 41,
+        "before": "机内线束与连接器只示配接角色，CPO仅为关联集成方案、没有本图实体；九类在本园区均未建模。",
+        "after": "本园区仅cabling类有1组架空桥架示意，非本图四护套线束；其它八类未建模，CPO没有独立实体。"
+      }
+    ],
+    "source_path": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/web/components/campus-assembly.js",
+    "source_sha256": "377a08934681609a94f735e6eb5fa4d17cbfc8a573d0bc0e121fb436c0fceab5",
+    "source_line_evidence": [
+      {
+        "line": 73,
+        "text": " const trays=instance('overhead-service-trays','cabling',0,6.65,0,[0,3,0],[.3,.55]);"
+      }
+    ],
+    "modeled_network_category": "cabling",
+    "modeled_network_instance": "campus/overhead-service-trays",
+    "modeled_network_categories": 1,
+    "modeled_network_instances": 1,
+    "other_network_categories_unmodeled": 8,
+    "note": "The existing campus overhead tray is not the pictured four-sleeve harness; CPO has no independent part/asset/physical entity."
+  },
+  "static_evidence": {
+    "byte_identical_to_v1": {
+      "network-domain-native.png": true,
+      "network-base.svg": true,
+      "component-manifest.json": true
+    },
+    "full_svg_text_count": 43,
+    "only_changed_full_svg_text_index": 41,
+    "full_svg_structure_equal_except_text": true,
+    "full_svg_embedded_native_byte_exact": true,
+    "full_svg_embedded_native_sha256": "ef667abd50b39a4bc5a20d8a1d9f706deee1eef22cb995cfa9a3c60aabba646f",
+    "component_count": 9,
+    "anchor_count": 9,
+    "data_object_ids": [
+      "nic",
+      "optics",
+      "network-switch",
+      "copper-interconnect",
+      "switch-asic",
+      "cabling",
+      "connector",
+      "retimer",
+      "pcie-switch"
+    ],
+    "producer_report_supplement_only": {
+      "hits": 0,
+      "outside": 0,
+      "external": 0
+    },
+    "prior_nine_raw_source_byte_affine_and_anchor_review": "Retained v1 receipt; unchanged native/base/manifest bytes make its nine source-image/affine/anchor findings applicable without claiming a new production execution."
+  },
+  "visual_findings": [
+    "The corrected footer is fully visible and readable, fits its row, and does not cross equipment, leaders, adjacent text or page boundaries.",
+    "The three-by-three nine-category overview remains visually unchanged. The native and annotated views show complete equipment extents; no new clipping, overlap or geometry change was found.",
+    "Nine blue leaders still point to their corresponding pictured objects. The switch still visibly has two rows of four empty port cages; the cable harness has four traceable outer sleeves. The enlarged NIC port is a repeated same-kind detail, not an added card or third physical port.",
+    "The external-network functional relationship remains separate from PCIe retimer/fanout roles. Optical/copper choices are alternatives; the layout does not force nine categories into a serial network path or give CPO an equipment panel.",
+    "The footer now accurately distinguishes the one existing campus cabling/tray example from the eight unmodeled network categories and from the standalone adopted four-sleeve harness."
+  ],
+  "remaining_material_findings": [],
+  "limits": [
+    "The full overview is 1536 by 1024; fine NIC port/pin/board details require original-source zoom. Mobile page readability and interactive zoom have not been reviewed here.",
+    "Category illustrations do not certify protocol, rate, lane/pin count, compatibility, internal circuitry, OEM/model, deployment, connection distance, redundancy or installed campus networking.",
+    "No product page, local or remote HTTP request, browser, WebGL or product JavaScript was executed; no repository, source, state, governance, PR or production changes were made.",
+    "Producer bbox/hit metadata was read only as supplementary evidence and did not substitute for actual image review. This receipt is not a public-functional or publication acceptance."
+  ]
+}

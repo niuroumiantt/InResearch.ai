@@ -1,0 +1,109 @@
+{
+  "schema_version": 2,
+  "figures": [
+    "TA-24",
+    "TA-25",
+    "TA-26",
+    "TA-27"
+  ],
+  "review_type": "independent_narrow_caption_dataflow_fix_static_recheck",
+  "observed_at": "2026-10-10T02:01:33.338891+00:00",
+  "worktree": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai",
+  "observed_head": "1c9c29e56b464ca3780231bae720927d831c94a3",
+  "decision": "source_ready_public_pending_no_remaining_material_findings_in_reviewed_scope",
+  "supersedes_for_current_source_readiness": {
+    "path": "/private/tmp/ta24-27-final-source-static-review-child.json",
+    "sha256": "10460ff8d2294c099cb5691b66b3e5d95e66eff1baf6be188a11e97e800f006b",
+    "finding_id": "IT-FINAL-F1",
+    "prior_receipt_preserved": true
+  },
+  "scope": "Only the zero-entity caption callback fix and its actual SVG text/metadata assertion data flow; no repeat image/page review or product execution. Unchanged narrow integration findings remain in v1 evidence.",
+  "resolved_findings": [
+    {
+      "id": "IT-FINAL-F1",
+      "status": "resolved_by_static_control_flow",
+      "source_file": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/web/pages/bom3d.html",
+      "line": 1089,
+      "actual_caption_callback": "  caption:()=>{const stage=document.getElementById('stage').textContent,id=document.getElementById('dossier').dataset.partId;\n    return campusMode&&['compute','memory','storage','network'].includes(activeDomain)&&id&&!currentPartMeshes(id)?.length\n      ? stage+'；'+(PART[id]?.name||id)+'仅为类别上下文，本园区无物理实体；背景园区不是该部件造型' : stage;},\n",
+      "data_flow": [
+        "The callback appends category-only/no-physical-entity/background-is-not-this-part wording only for campus mode, one of four IT domains, a selected dossier ID, and zero selected meshes.",
+        "atlasSnapshot evaluates caption independently of selected.meshes.length.",
+        "The shared exporter wraps caption into footnote strings and always emits footTexts outside the selected geometry leader branch.",
+        "The shared exporter also includes the same caption in metadata, preserving the selected part object_id.",
+        "Public fixture now parses all actual SVG text nodes and metadata.caption/object_id; the visible-text assertion prevents metadata-only acceptance."
+      ],
+      "unchanged_paths": [
+        "Physical campus selections have selected meshes and return original stage text.",
+        "Whole-campus selection has 152 meshes and returns original stage text.",
+        "Explicit legacy has campusMode=false and returns original stage text.",
+        "No selected ID or non-IT domain returns original stage text.",
+        "scene-atlas.js is byte-identical to the previous reviewed version; no shared exporter/geometry or camera ownership change is introduced."
+      ]
+    }
+  ],
+  "remaining_material_findings": [],
+  "prior_static_checks_retained": {
+    "reference": "/private/tmp/ta24-27-final-source-static-review-child.json",
+    "IT_categories": 23,
+    "domain_counts": [
+      8,
+      3,
+      3,
+      9
+    ],
+    "modeled_instances": [
+      0,
+      0,
+      0,
+      1
+    ],
+    "network_only": "campus/overhead-service-trays (cabling), not four-sleeve harness",
+    "campus_instances": 32,
+    "campus_meshes": 152,
+    "default_bindings": 14,
+    "system_entries": 47,
+    "TA28": "planned/unclaimed",
+    "changed_files_since_v1": [],
+    "hash_capture_note": "V1 was written while owner edits were concurrent; v1 actual_static_reads captured later bytes and are not used to prove the earlier caption text. The earlier defect is reproduced against exact reviewed source commit 1c9c29e5; v2 dataflow is from current working bytes."
+  },
+  "actual_static_reads": [
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/web/pages/bom3d.html",
+      "sha256": "b7e7943bf04c96699f89da0742803a1e1045615cf4906e664af96107396c23b4"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/web/components/scene-atlas.js",
+      "sha256": "c668c1836ab13677cd272acacaf9ed06e881b66507bf9c61b2b8fd6b01c9cd4f"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/tests/it_domain.cjs",
+      "sha256": "081bd7991d4f667fbfdc164a29268923c615320c69a7fc1b554f293ac6ba23d7"
+    },
+    {
+      "path": "/private/tmp/ta24-27-public-fixture-static-review-child-v3.json",
+      "sha256": "8b7b4c7dd16c0afd6ae984126d8554936de8e3ef414918beda35410c9474854c"
+    }
+  ],
+  "fixture_review_reference": {
+    "path": "/private/tmp/ta24-27-public-fixture-static-review-child-v3.json",
+    "sha256": "8b7b4c7dd16c0afd6ae984126d8554936de8e3ef414918beda35410c9474854c",
+    "scope_only": "Companion v3 static fixture review, not an executed public result"
+  },
+  "not_verified": [
+    "Actual public downloadable SVG text, layout, metadata and object_id still require the planned actual HTTPS execution.",
+    "No browser, HTTP, website, local product URL, server, WebGL or product JavaScript was executed; no repository/source/governance/state/PR/production writes were made.",
+    "No new visual review was performed in this caption-only recheck; prior per-image original-size reviews are retained.",
+    "Source readiness closure does not constitute deployed, accepted or published TA24–27. CI was not queried or claimed."
+  ],
+  "exact_implementation_fix_comparison": {
+    "base_revision": "1c9c29e56b464ca3780231bae720927d831c94a3",
+    "changed_implementation_test_files": [
+      "tests/it_domain.cjs",
+      "web/pages/bom3d.html"
+    ],
+    "bom3d_before_sha256": "6c77ac87f9b9421595cf1f039604a6024fb2963437b7143bbea6578599557177",
+    "bom3d_current_sha256": "b7e7943bf04c96699f89da0742803a1e1045615cf4906e664af96107396c23b4",
+    "previous_caption": "caption:()=>document.getElementById('stage').textContent,",
+    "scene_atlas_unchanged_vs_exact_source_commit": true
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-24",
+  "candidate": "composite-v2",
+  "review_date": "2026-10-10",
+  "decision": "no_material_blocker_found_in_specified_candidate_asset_review",
+  "status_scope": "限定候选图面/技术复审；不写队列或accepted/published状态，不等于页面/公网验收",
+  "actual_original_views": [
+    {
+      "path": "/private/tmp/atlas-ta24-compute-20261010/composite-v2/compute-chat-full.png",
+      "sha256": "9c140ae81fadb2d180d7f306948134a0d973c9dc413b17de5f0772b7b0e772aa",
+      "detail": "original",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "actually_viewed": true
+    },
+    {
+      "path": "/private/tmp/atlas-ta24-compute-20261010/composite-v2/compute-domain-native.png",
+      "sha256": "81bdc59c6cbc77937dfc4b82a6aab967bc6c8c41c31ad94470500e02f711b75c",
+      "detail": "original",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "actually_viewed": true
+    }
+  ],
+  "additional_original_views": [
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta22-23-energy/inresearch.ai/web/assets/technical-atlas/system/rack-system-v2.png",
+      "sha256": "d92ac021351375735f3b1ad93b3b6553aaecf84ad2a4bb1079ab20d03b89e49e",
+      "detail": "original",
+      "purpose": "逐层核八计算托盘/两交换/两电源架与组合裁切完整性"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta22-23-energy/inresearch.ai/web/assets/technical-atlas/server-v1.png",
+      "sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15",
+      "detail": "original",
+      "purpose": "核双CPU/双实装加速卡和右上同类卡/插槽局部非新增实装"
+    }
+  ],
+  "actual_static_reads": [
+    {
+      "path": "/private/tmp/atlas-ta24-compute-20261010/composite-v2/compute-full.svg",
+      "sha256": "8907f3da5ce0dc5bbcb2a93966d9d46ad6c77f1bf3587f45e240db6b11aa548c",
+      "method": "JSON解析/完整SVG XML读取及base64嵌入SHA；非产品执行"
+    },
+    {
+      "path": "/private/tmp/atlas-ta24-compute-20261010/composite-v2/component-manifest.json",
+      "sha256": "0ae1f15d5fb3bd2c57343267551c48b4d784636db4c2d67fd6a791ed306af295",
+      "method": "JSON解析/完整SVG XML读取及base64嵌入SHA；非产品执行"
+    },
+    {
+      "path": "/private/tmp/atlas-ta24-compute-20261010/composite-v2/offline-render.json",
+      "sha256": "3ecf3d53041a2f6aa2f7183c357add5eb849186984e5245451192fad42d269e6",
+      "method": "JSON解析/完整SVG XML读取及base64嵌入SHA；非产品执行"
+    }
+  ],
+  "visual_findings": [
+    {
+      "label": "01",
+      "part_id": "rack-system",
+      "display_anchor": [
+        168.72,
+        352.41
+      ],
+      "finding": "整柜中部实际托盘前脸；所指为完整系统类别例图内设备，非空裸框。两交换、八计算托盘、两组六模块电源架沿TA13原件保持；底部明确本园区八柜只是facility rack-frame。"
+    },
+    {
+      "label": "02",
+      "part_id": "server",
+      "display_anchor": [
+        674.5117,
+        365.8984
+      ],
+      "finding": "整机内加速卡/固定安装区实物边缘；主机内双CPU、两加速卡、四风扇与前部八载盘分区清楚。右上同类加速卡与插槽局部沿TA11保留，不是第三块实装卡；图注明确双CPU/双加速卡示例。"
+    },
+    {
+      "label": "03",
+      "part_id": "general-server",
+      "display_anchor": [
+        1272.1074,
+        355.4545
+      ],
+      "finding": "封闭通用机箱金属顶面；未画未知内部CPU。可见前脸载盘位置，文案不凭盘面推断CPU配置。"
+    },
+    {
+      "label": "04",
+      "part_id": "cpu",
+      "display_anchor": [
+        186.3893,
+        764.6966
+      ],
+      "finding": "完整主板图中的CPU金属接触盖；原图全幅包含左上DIMM同类局部，未裁成伪独立裸片。标题与非独立裸片说明匹配。"
+    },
+    {
+      "label": "05",
+      "part_id": "gpu",
+      "display_anchor": [
+        407.4219,
+        752.2552
+      ],
+      "finding": "GPU基板上的左侧已装模组金属盖；其它已装模块、空位与抬起模组/金属盖关系沿原件保持。不指向基板空白、相邻ASIC或虚构裸片。"
+    },
+    {
+      "label": "06",
+      "part_id": "ai-asic",
+      "display_anchor": [
+        778.6364,
+        770.9318
+      ],
+      "finding": "封闭ASIC类别封装盖面；图中文字明确外形不认证内部阵列/性能，无新内部版图。"
+    },
+    {
+      "label": "07",
+      "part_id": "fpga",
+      "display_anchor": [
+        1068.7288,
+        768.1949
+      ],
+      "finding": "FPGA类别封装金属盖面；可重配置逻辑的类别功能独立于外形认证，板级实现/配置/任务另核。"
+    },
+    {
+      "label": "08",
+      "part_id": "bmc",
+      "display_anchor": [
+        1364.7059,
+        770.7353
+      ],
+      "finding": "BMC类别封装模塑顶面；独立管理栏在可选加速器框之外，不被接成CPU或AI加速器后级。"
+    }
+  ],
+  "relationships": {
+    "three_delivery_examples": "整柜、加速器服务器、通用CPU节点并列；层级文字说明按方案配置，不把三者串成执行流水线。",
+    "cpu_gpu_role": "CPU主机与可选加速器只作功能分工，CPU自身仍为通用计算/控制。",
+    "accelerator_options": "灰虚线框实际只围05 GPU、06 AI ASIC、07 FPGA；上文明确依工作负载/系统设计选择，不强制三者并装。",
+    "bmc": "08在加速器框外单独管理，无主负载流水线或非物理软件误认。",
+    "nic": "本图未引入network NIC/DPU，未重分类。",
+    "noninstallation": "顶部非现场拓扑/不共比例，底部计算八类未造实体与独立入口不证明园区安装均可读。"
+  },
+  "layout_actual_observation": "完整标注图标题、八类别标题/编号、两层说明与三行页脚全部在1536×1024内；引线不穿字、各点不误落邻类、无设备截头/切脚或标签重叠。原生无字图保留相同位置和完整轮廓。下排较小图片可解释类别/装配外形，不能据此读取针脚/阵列等细节。",
+  "mechanical_support": {
+    "source_png_sha_matches_actual_eight_files": true,
+    "expected_affine_vs_svg_dot_max_error_px": 0.0000593,
+    "svg_embedded_png": "compute-domain-native.png",
+    "svg_embedded_png_sha256": "81bdc59c6cbc77937dfc4b82a6aab967bc6c8c41c31ad94470500e02f711b75c",
+    "svg_callout_ids": [
+      "rack-system",
+      "server",
+      "general-server",
+      "cpu",
+      "gpu",
+      "ai-asic",
+      "fpga",
+      "bmc"
+    ],
+    "offline_viewport": [
+      1536,
+      1024
+    ],
+    "offline_external_requests_reported": [],
+    "offline_hits_reported": [],
+    "offline_outside_reported": [],
+    "note": "bbox/affine仅辅助；上述图面结论来自本轮actual original视觉。SVG嵌入单张组合native，非8个独立原件URI；本轮核8源文件SHA与manifest，没有另行像素重合成。"
+  },
+  "material_blockers": [],
+  "requested_source_changes": [],
+  "boundaries": [
+    "TA11右上同类卡/插槽局部与CPU原件左上DIMM局部均不增加物理计数；八类别图不是同一柜实装清单。",
+    "封闭ASIC/FPGA/BMC图只支持外形说明；功能来自前置官方资料，不反推内部阵列、具体型号或性能。",
+    "GPU图的分离模组/金属盖仅是已验原件表现，不据caption的剖开字样推导内部版图或维护步骤。",
+    "未核新页面、手机UI、交互、下载、部署、CI或public closure。"
+  ],
+  "tool_boundary": {
+    "product_urls_or_http": 0,
+    "browsers": 0,
+    "product_javascript_execution": 0,
+    "repo_source_state_or_production_writes": 0,
+    "only_tmp_receipt_write": true
+  }
+}
