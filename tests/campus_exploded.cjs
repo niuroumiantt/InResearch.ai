@@ -474,7 +474,7 @@ const note = (label,data={}) => results.push({label,...data});
       assert.equal(await page.evaluate(()=>__campusTest.campusMode),true);
       assert.equal(await page.locator('#dossier .insp canvas').count(),0);
       assert.equal(await page.evaluate(()=>__campusTest.campusAssembly.objectsFor('dcim').length),0);
-      assert.match(await page.locator('#dossier').textContent(),/软件.*不画物理硬件/);
+      assert.match(await page.locator('#dossier').textContent(),/软件有意无物理模型，不是待建硬件/);
       note('DCIM remains a software entry with zero physical mesh');
 
       // Campus domains retain the assembled stage and focus only real categories.
