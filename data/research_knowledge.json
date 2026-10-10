@@ -5041,6 +5041,58 @@
       "status": "candidate",
       "stored_path": "originals/ce/ce311870942307e0075bf83180b9aa217731fcd75d4f7500e587a70fac642f37/dcd-ce311870942307e0-Digital Realty files to expand planned data center campus in Garl.html",
       "title": "Digital Realty files to expand planned data center campus in Garland, Texas"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "coverage": {
+        "characters_read": 7759,
+        "characters_total": 7759,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "id": "doc-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "library_path": "library/by-node/part-fuel-cell/2026_DCD_Siemens and FuelCell Energy partner on fuel cell power__cc4e669d9a74b1bc.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:bloom-energy",
+        "actor:mgx",
+        "part:fuel-cell"
+      ],
+      "question_ids": [],
+      "read_status": "complete",
+      "reading_revision_id": "rev-aab44d5d91d544bf942ca9101d5288bd",
+      "report_sha256": "359e7346910cd28251f7f65c688c81a45a41344aec94d3832b4271f54dddd870",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+        "url": "https://www.datacenterdynamics.com/en/news/siemens-and-fuelcell-energy-partner-on-fuel-cell-power-for-data-centers-and-other-industrial-offtakers/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/siemens-and-fuelcell-energy-partner-on-fuel-cell-power-for-data-centers-and-other-industrial-offtakers/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/cc/cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c/dcd-cc4e669d9a74b1bc-Siemens and FuelCell Energy partner on fuel cell power for data c.html",
+      "title": "Siemens and FuelCell Energy partner on fuel cell power for data centers and other industrial offtakers"
     }
   ],
   "evidence": [
@@ -37408,6 +37460,346 @@
           }
         },
         "batch_id": "c493577f2c3a0f3c67212e1c7fffc208c78e2d70f37fb4441edb78b348f18c11"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "3cab4979e82dee5aafbbade70d721df135fc676aed566e8c0fe2c8d488614d0b",
+      "document_id": "doc-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "id": "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:8:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:power",
+        "chain:power/3",
+        "part:fuel-cell"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The deal will see FuelCell supply up to 380MW of on-site fuel cell generation to power data centers behind the meter. If realized, it would be one of the largest fuel cell deployments to date.",
+      "reading_revision_id": "rev-aab44d5d91d544bf942ca9101d5288bd",
+      "source_sha256": "cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:28:12+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。连续引文明确给出现场发电、表后供电、容量上限及实现条件，完整原文提供交易主体与协议阶段，对当前M04-Q02具有实质性的具体项目核查线索价值。按明确归因的部分贡献采用，不回答或关闭问题。未识别敏感材料、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.977,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "aeea70a78c9c618136a0adf0d83451bb560680a77ccfbe6d8c034a0a4b6a11d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 35758,
+            "output_tokens": 2525,
+            "reasoning_output_tokens": 483
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.222,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5fa8468386cd0e4e1931506732af1ebc6e29b4f600e02381e6148eb0366040c3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 35119,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "8f4dd107976761c5b51481d9277651be44041a8d500ec047ddab07c1cf999052"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "3cab4979e82dee5aafbbade70d721df135fc676aed566e8c0fe2c8d488614d0b",
+      "document_id": "doc-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "id": "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:9:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:power",
+        "chain:power/3",
+        "part:fuel-cell"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "In addition to its latest deal with Fit Energy, the company has also signed two non-binding agreements in the space.",
+      "reading_revision_id": "rev-aab44d5d91d544bf942ca9101d5288bd",
+      "source_sha256": "cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:28:12+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分5。三条引文各为连续原文片段，完整页面提供共同的非约束性限定、主体角色、时间与地域上下文。两项具体合作为当前M04-Q02提供可追踪的燃料电池供电案例候选及阶段核查入口，贡献限于后续验证线索，尚不能证明表后属性或实际投运。作为明确归因的部分贡献采用，问题保持开放；未识别敏感材料、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.977,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "aeea70a78c9c618136a0adf0d83451bb560680a77ccfbe6d8c034a0a4b6a11d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 35758,
+            "output_tokens": 2525,
+            "reasoning_output_tokens": 483
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.222,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5fa8468386cd0e4e1931506732af1ebc6e29b4f600e02381e6148eb0366040c3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 35119,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "8f4dd107976761c5b51481d9277651be44041a8d500ec047ddab07c1cf999052"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "3cab4979e82dee5aafbbade70d721df135fc676aed566e8c0fe2c8d488614d0b",
+      "document_id": "doc-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "id": "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:9:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:power",
+        "chain:power/3",
+        "part:fuel-cell"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "it partnered with investment company Sustainable Development Capital (SDC) to explore deploying up to 450MW of fuel cell power systems to support global data center growth.",
+      "reading_revision_id": "rev-aab44d5d91d544bf942ca9101d5288bd",
+      "source_sha256": "cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:28:12+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分5。三条引文各为连续原文片段，完整页面提供共同的非约束性限定、主体角色、时间与地域上下文。两项具体合作为当前M04-Q02提供可追踪的燃料电池供电案例候选及阶段核查入口，贡献限于后续验证线索，尚不能证明表后属性或实际投运。作为明确归因的部分贡献采用，问题保持开放；未识别敏感材料、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.977,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "aeea70a78c9c618136a0adf0d83451bb560680a77ccfbe6d8c034a0a4b6a11d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 35758,
+            "output_tokens": 2525,
+            "reasoning_output_tokens": 483
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.222,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5fa8468386cd0e4e1931506732af1ebc6e29b4f600e02381e6148eb0366040c3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 35119,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "8f4dd107976761c5b51481d9277651be44041a8d500ec047ddab07c1cf999052"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "3cab4979e82dee5aafbbade70d721df135fc676aed566e8c0fe2c8d488614d0b",
+      "document_id": "doc-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "id": "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:9:ev:2",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:power",
+        "chain:power/3",
+        "part:fuel-cell"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "it partnered with AI data center developer Inuverse to explore deploying up to 100MW of fuel cell power at a data center in Daegu, South Korea.",
+      "reading_revision_id": "rev-aab44d5d91d544bf942ca9101d5288bd",
+      "source_sha256": "cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:28:12+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分5。三条引文各为连续原文片段，完整页面提供共同的非约束性限定、主体角色、时间与地域上下文。两项具体合作为当前M04-Q02提供可追踪的燃料电池供电案例候选及阶段核查入口，贡献限于后续验证线索，尚不能证明表后属性或实际投运。作为明确归因的部分贡献采用，问题保持开放；未识别敏感材料、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.977,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "aeea70a78c9c618136a0adf0d83451bb560680a77ccfbe6d8c034a0a4b6a11d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 35758,
+            "output_tokens": 2525,
+            "reasoning_output_tokens": 483
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.222,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5fa8468386cd0e4e1931506732af1ebc6e29b4f600e02381e6148eb0366040c3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 35119,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "8f4dd107976761c5b51481d9277651be44041a8d500ec047ddab07c1cf999052"
       }
     }
   ],
@@ -72895,6 +73287,212 @@
         "request_sha256": "2b8a00bc520a357a3ba9ed10a2af59b27bc7e7681d290872c6bf0ed3bf66b364"
       },
       "object_mapping_check": "主张实际范围是星座能源的商业业务表现、资本配置和公司运维费用，仅映射对象合同中的actor:constellation-energy。经济性问题关联不自动确立一座AI数据中心或其电力系统范围，不映射root、system:power或site:grid。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "evidence_ids": [
+        "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:8:ev:0"
+      ],
+      "id": "adoption:review:7b3381821fbe39a3bc2893a2",
+      "kind": "author_forecast",
+      "object_ids": [
+        "system:power",
+        "chain:power/3",
+        "part:fuel-cell"
+      ],
+      "question_ids": [
+        "M04-Q02"
+      ],
+      "reading_revision_id": "rev-aab44d5d91d544bf942ca9101d5288bd",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年7月10日的报道中称，FuelCell Energy与美国开发商Fit Energy USA的协议拟供应最多380MW现场燃料电池发电，用于数据中心表后供电。作者明确以项目实现为条件，预测其若实现可能成为迄今最大的燃料电池部署之一。这是来源报道的协议供电计划及条件性预测，不构成对实际投运容量或当前运行状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:28:12+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分6。连续引文明确给出现场发电、表后供电、容量上限及实现条件，完整原文提供交易主体与协议阶段，对当前M04-Q02具有实质性的具体项目核查线索价值。按明确归因的部分贡献采用，不回答或关闭问题。未识别敏感材料、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.977,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "aeea70a78c9c618136a0adf0d83451bb560680a77ccfbe6d8c034a0a4b6a11d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 35758,
+            "output_tokens": 2525,
+            "reasoning_output_tokens": 483
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.222,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5fa8468386cd0e4e1931506732af1ebc6e29b4f600e02381e6148eb0366040c3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 35119,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "8f4dd107976761c5b51481d9277651be44041a8d500ec047ddab07c1cf999052"
+      },
+      "source_candidate_ids": [
+        "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:8"
+      ],
+      "limitations": "380MW为计划供应上限，不是实际交付、投运或IT负载容量。未提供具体项目地点、协议全文、建设与投运时间、计量拓扑、运行数据、燃料保障或经济性。来源为新闻报道，未提供双方一手合同或项目验收材料。",
+      "conflict_check": "所供已采用陈述adoption:review:5b79c407c5242b218a4bb901及adoption:review:fb1421a48ee877d8de37dae7分别讨论替代供电探索及Oklo与RPower合作计划，未记载同一Fit Energy交易，与本项无直接冲突或重复。当前回答为空，legacy匹配记录为空；检查限于所供材料，不代表外部反证已穷尽，不覆盖既有结论。",
+      "gap_dependency_check": "M04-Q02仍需双方一手协议、逐项目地点与表后计量边界、实际投运及运行记录，以及包含资本开支、燃料、运维、电价和利用率假设的可复查经济性推导与反证。本项只增加明确表后供电的协议阶段线索，问题保持开放；不将上限计入投运容量，不更新模型输入或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8f4dd107976761c5b51481d9277651be44041a8d500ec047ddab07c1cf999052",
+        "source_report_sha256": "359e7346910cd28251f7f65c688c81a45a41344aec94d3832b4271f54dddd870",
+        "request_sha256": "6fa22471a3f1ee4aa2f87e90febad6f17412a7b6c84893ba35d7afa9ca659631"
+      },
+      "object_mapping_check": "独立依据主张选择电系统system:power、其发电与储能链条chain:power/3及燃料电池部件part:fuel-cell：正文直接讨论为数据中心供应现场燃料电池发电。合同没有FuelCell Energy或Fit Energy对应主体ID，不借用其他企业对象。表后供电不证明天然气管道接入或并网权利，也不建立其他设备范围。所选证据统一采用上述主张级范围，不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c",
+      "evidence_ids": [
+        "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:9:ev:0",
+        "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:9:ev:1",
+        "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:9:ev:2"
+      ],
+      "id": "adoption:review:fdcb9aff4a6c9d175d3e3961",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:power",
+        "chain:power/3",
+        "part:fuel-cell"
+      ],
+      "question_ids": [
+        "M04-Q02"
+      ],
+      "reading_revision_id": "rev-aab44d5d91d544bf942ca9101d5288bd",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年7月10日的报道中称，FuelCell Energy另有两项非约束性协议：2026年1月与投资公司Sustainable Development Capital（SDC）合作，探索部署最多450MW燃料电池电力系统以支持全球数据中心发展；此前与AI数据中心开发商Inuverse合作，探索在韩国大邱一座数据中心部署最多100MW燃料电池电力，后者具体签署日期未由本文建立。两项均为来源报道的探索安排，不构成对实际投运、表后供电边界或当前项目状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:28:12+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分5。三条引文各为连续原文片段，完整页面提供共同的非约束性限定、主体角色、时间与地域上下文。两项具体合作为当前M04-Q02提供可追踪的燃料电池供电案例候选及阶段核查入口，贡献限于后续验证线索，尚不能证明表后属性或实际投运。作为明确归因的部分贡献采用，问题保持开放；未识别敏感材料、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.977,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "aeea70a78c9c618136a0adf0d83451bb560680a77ccfbe6d8c034a0a4b6a11d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 35758,
+            "output_tokens": 2525,
+            "reasoning_output_tokens": 483
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.222,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "5fa8468386cd0e4e1931506732af1ebc6e29b4f600e02381e6148eb0366040c3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 35119,
+              "output_tokens": 530,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "8f4dd107976761c5b51481d9277651be44041a8d500ec047ddab07c1cf999052"
+      },
+      "source_candidate_ids": [
+        "rev-aab44d5d91d544bf942ca9101d5288bd:chunk:0:claim:9"
+      ],
+      "limitations": "450MW与100MW分别为两项探索安排的部署上限，不能视为已落实订单、交付或投运容量，也不能相加为实际供电规模。本文未明确两项采用表后供电；SDC安排没有具体项目清单，Inuverse安排仅给出城市与单个数据中心范围。缺少一手协议、许可、建设进度、运行记录、成本及经济性资料。",
+      "conflict_check": "所供已采用替代供电探索及Oklo与RPower合作陈述与本项保留探索阶段兼容，涉及不同主体与安排，未发现同一SDC或Inuverse合作的既有规范记录。当前回答及legacy匹配记录为空，未识别重复或真实冲突；检查仅覆盖所供材料，不构成外部反证穷尽，不替换既有结论。",
+      "gap_dependency_check": "M04-Q02仍需逐项核验双方一手协议及后续约束性承诺、具体项目和表后计量拓扑、实际投运时间与运行数据、可复查经济性推导及反证。非约束性燃料电池合作不能证明表后部署或实际运行，本项仅提供两个后续核查对象，不回答或关闭问题，不汇总GW或更新模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8f4dd107976761c5b51481d9277651be44041a8d500ec047ddab07c1cf999052",
+        "source_report_sha256": "359e7346910cd28251f7f65c688c81a45a41344aec94d3832b4271f54dddd870",
+        "request_sha256": "6fa22471a3f1ee4aa2f87e90febad6f17412a7b6c84893ba35d7afa9ca659631"
+      },
+      "object_mapping_check": "独立依据两项主张选择system:power、其发电与储能链条chain:power/3及part:fuel-cell，因为正文明确讨论为数据中心探索燃料电池电力部署。合同没有FuelCell Energy、SDC或Inuverse对应主体ID，不借用Bloom Energy、MGX或Siemens对象。AI开发商身份不支持计算设施映射；全球及大邱地域不证明土地、天然气接入、并网或许可范围。三条所选证据统一采用上述主张级范围，不继承Reader标签。"
     }
   ],
   "answers": [],
