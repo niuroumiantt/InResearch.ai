@@ -1,0 +1,241 @@
+{
+  "scope": "TA30-34 independent narrow static source review, no product execution or repository writes",
+  "checked_at_utc": "2026-10-10T04:18:15.910742+00:00",
+  "worktree": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai",
+  "head_observed": "f99d7b226a59b112afadaf2b35db6676a362a95b",
+  "decision": "no_material_source_blocker_found_in_reviewed_scope",
+  "p0_p1_p2_findings": [],
+  "checks": [
+    {
+      "topic": "optional physical contain and integer compensation",
+      "source": "web/components/scene-resources.js:118-160",
+      "result": "static dataflow coherent",
+      "detail": "surfaceAspect null retains natural image layout; positive finite validation precedes allocation. For A=surfaceAspect and R=sourceWidth/sourceHeight, physical image width=min(A,R), height=min(A,R)/R. Mapping drawWidth/canvasWidth*A and drawHeight/canvasHeight yields exactly R despite ceil canvas height. Both axes fit inside the face. Warm-white empty area is filled without new source pixels/interfaces."
+    },
+    {
+      "topic": "real five face ratios",
+      "source": "web/pages/rack3d.html:376-379,518,536",
+      "result": "exact static match",
+      "detail": "Original geometry literals RW=3.0, u=.42 produce face width 2.3, sled height .735 and switch height .399. Three server sources use 2.3/.735; two switch sources use 2.3/.399. Six regular sleds use server, i=5 hero, i=7 storage; i=0 tor and i=1 ib. Original generic geometry/tagging unchanged."
+    },
+    {
+      "topic": "generation/retry/fallback/disposal",
+      "source": "web/components/scene-resources.js:126-196",
+      "result": "static lifecycle coherent",
+      "detail": "Retry resolves superseded readiness, detaches old request handlers/removes tracking, creates a new generation, and assigns active before src. Stale callbacks cannot publish. Error restores fallback dimensions/content, removes sourceDisplay metadata and marks fallback. Handle/pool disposal detaches requests and settles promises; disposed handle retry returns disposed and cannot recreate. Texture identity retained; dispose on dimension changes means release/reupload existing GPU allocation, distinct from final handle ownership."
+    },
+    {
+      "topic": "source viewer identity and downloads",
+      "source": "web/components/panel-source-viewer.js:3-44",
+      "result": "static bindings coherent",
+      "detail": "Five independent figure/model/file rows match source records. Uses textContent and fixed own-route href/download pairs, original PNG and matching contain SVG. Status separates ready/loading/fallback and source-model/scene-matching unknowns. source_gpu is chassis context and source_ib explicitly does not certify InfiniBand."
+    },
+    {
+      "topic": "modal Escape/DOM/ownership",
+      "source": "web/components/panel-source-viewer.js:10-48; web/pages/rack3d.html:819",
+      "result": "no material issue found statically",
+      "detail": "Missing modern handles create no viewer DOM. Legacy viewer owns only style/dialog/2D canvas/button listeners, borrows texture handles, and never disposes scene textures/geometry/camera. Captured Escape prevents default and stops propagation before close; focus restores to connected opener. Selection/retry token rejects obsolete paint; disposed guard and token prevent late paint. dispose closes/removes dialog/style/listener and disables button before pool teardown."
+    },
+    {
+      "topic": "legacy gates and routes",
+      "source": "web/pages/rack3d.html:260,376,431-657; web/routes.json",
+      "result": "static isolation coherent",
+      "detail": "TEX and PANEL now exclude rackMode/chipMode/serverMode, eliminating modern unused image loads. Construction uses them only in existing legacy else block. Route predicates are unchanged, including implicit historical paths. New helper and five source SVG routes exist; original five PNG routes still map to retained originals. No requirement imposed to delete x70 or other retained routes."
+    },
+    {
+      "topic": "SVG source conservation",
+      "source": "web/assets/panels/display/*-contain.svg",
+      "result": "all five actual XML/base64 byte reads equal originals",
+      "detail": "Each metadata figure/source SHA/source pixels matches its retained original. preserveAspectRatio=xMidYMid meet and 2300x735 or 2300x399 drawing-only viewBox agree with source presentation. Exact PNG bytes embedded, no external media reference, no native-master/CAD claim. See artifact records."
+    },
+    {
+      "topic": "unit source-conservation meaning",
+      "source": "tests/unit/test_panel_source_assets.py",
+      "result": "source-read checks meaningful; suite not executed by this reviewer",
+      "detail": "Per-item baseline original SHA/dimensions, exact embedded PNG, viewBox/meet/metadata/route consistency, existing adopted geometry/art SHA and source-only pending/public distinctions covered. It is explicitly no-HTTP and makes no appearance/provenance/WebGL claim. Actual new public execution remains false in current five records."
+    }
+  ],
+  "artifacts": [
+    {
+      "figure_id": "TA-31",
+      "source": "web/assets/panels/server_gpu.png",
+      "source_sha256": "56386f5d0e9988f13d0b3cf3b2fa2cff99018f92d8045253bc5c9e7faccdd04f",
+      "display": "web/assets/panels/display/server_gpu-contain.svg",
+      "display_sha256": "d3b0d14a420c58baa0d88b8ba767b1c23c458508baf4f09b4b5f968f78f32ead",
+      "embedded_bytes_equal_original": true,
+      "source_pixels": [
+        400,
+        70
+      ],
+      "preserveAspectRatio": "xMidYMid meet",
+      "viewBox": "0 0 2300 735",
+      "not_static_master_or_cad": true
+    },
+    {
+      "figure_id": "TA-30",
+      "source": "web/assets/panels/server_nvme.png",
+      "source_sha256": "935cda787dbdd9db2e09e655e8ec1ee6f858a31d069f0762c7c07273993b1fb2",
+      "display": "web/assets/panels/display/server_nvme-contain.svg",
+      "display_sha256": "21670231cdd631cdd3005ad9d7b00d342bff7622401b7dcd3a468dab7d1291ba",
+      "embedded_bytes_equal_original": true,
+      "source_pixels": [
+        966,
+        88
+      ],
+      "preserveAspectRatio": "xMidYMid meet",
+      "viewBox": "0 0 2300 735",
+      "not_static_master_or_cad": true
+    },
+    {
+      "figure_id": "TA-32",
+      "source": "web/assets/panels/server_storage.png",
+      "source_sha256": "81c396ef73aa46505cbc91fd9f5c9a63b21eaa0fc6479f7ffe224ff03e987851",
+      "display": "web/assets/panels/display/server_storage-contain.svg",
+      "display_sha256": "348c39f81fdd3494e31562f4c7374d242c65f2094da9b33cd96018583659d93c",
+      "embedded_bytes_equal_original": true,
+      "source_pixels": [
+        814,
+        72
+      ],
+      "preserveAspectRatio": "xMidYMid meet",
+      "viewBox": "0 0 2300 735",
+      "not_static_master_or_cad": true
+    },
+    {
+      "figure_id": "TA-34",
+      "source": "web/assets/panels/switch_ib.png",
+      "source_sha256": "0354d636bbf6317cdb3eeaaa903a70383036f726f75b37532242cdc377ea5026",
+      "display": "web/assets/panels/display/switch_ib-contain.svg",
+      "display_sha256": "b8341c41b93dcc8428f522bbee1951525edd2cee415b8473b9dd50677791e39a",
+      "embedded_bytes_equal_original": true,
+      "source_pixels": [
+        999,
+        211
+      ],
+      "preserveAspectRatio": "xMidYMid meet",
+      "viewBox": "0 0 2300 399",
+      "not_static_master_or_cad": true
+    },
+    {
+      "figure_id": "TA-33",
+      "source": "web/assets/panels/switch_tor.png",
+      "source_sha256": "47a53a7338b8815efe4302a0a1f9fc9e5e4d67c3c4f871cfaf6ed64c5ef97c2e",
+      "display": "web/assets/panels/display/switch_tor-contain.svg",
+      "display_sha256": "0270943e345243b5adbeb94f24526267ec6a0bd878f5b0d2c5534549d883bff6",
+      "embedded_bytes_equal_original": true,
+      "source_pixels": [
+        1820,
+        180
+      ],
+      "preserveAspectRatio": "xMidYMid meet",
+      "viewBox": "0 0 2300 399",
+      "not_static_master_or_cad": true
+    }
+  ],
+  "prior_original_provenance": "Reused actually viewed original/provenance review; no duplicate upstream browse or pixel review in this static task.",
+  "source_receipt_stage": {
+    "TA30_to_TA34": "source_ready_public_pending / publication_status not_published / actual_new_public_execution false",
+    "norm_contract": "Owner explicitly completing source_display-specific norm/contract in parallel; not reviewed or treated as a code blocker here."
+  },
+  "remaining_actual_public_checks": [
+    "Actual physical front aspect and full uncropped ports/trays/marks under lighting, five individual source rows, mobile/desktop light/dark and modal overflow.",
+    "Original/SVG download bytes and source readiness/fallback/retry including ready-to-failure and rapid switched requests.",
+    "Escape/focus restoration, close/reopen, late callbacks after dispose and handle/pool ownership in browser.",
+    "Modern rack/server/chip no legacy panel loads and retained implicit legacy routes."
+  ],
+  "verification_boundary": {
+    "read_only_file_metadata_xml_hash_checks": true,
+    "git_diff_check": "actual exit 0",
+    "javascript_parse_check": "not executed in this narrow read-only task",
+    "unit_or_browser_suite": "not executed",
+    "product_URL_HTTP_browser_WebGL_JS": "not executed",
+    "repository_product_governance_research_PR_service_writes": 0,
+    "accepted_published_or_deployment_claim": false
+  },
+  "read_sources": [
+    {
+      "file": "web/components/scene-resources.js",
+      "sha256": "d67ba290c0eeb2a68f99b87bad7537e74d81f0cf8ebf62560234db40d846a2d0"
+    },
+    {
+      "file": "web/components/panel-source-viewer.js",
+      "sha256": "4bcfb83ec63dd4940b38775223686f39aab01d4d11b24214c716efb7eacbd9c1"
+    },
+    {
+      "file": "web/pages/rack3d.html",
+      "sha256": "bb639fc0ae3efb99f6d412b6cbcbb54a10761d132e9403752dfcd178a13932e2"
+    },
+    {
+      "file": "web/routes.json",
+      "sha256": "439337cb82ce34774ab7cc9da3034f9fe3688b28b89a8ad7cafa01ba9260ee1a"
+    },
+    {
+      "file": "web/assets/panels/README.md",
+      "sha256": "e5169c3e7af5dec9f7d6faaf79581a19961ece6b42943bd5019aaa7a7bc363e4"
+    },
+    {
+      "file": "tests/unit/test_panel_source_assets.py",
+      "sha256": "173d0677d6976f1f473bda9d06d4e1f7aae2d41c4da989dc8d0e6b26b3ea82c8"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-30/baseline-v1.json",
+      "sha256": "daed58ee4b6acb800b59f818751bcc5adc407079181129c657e833d7c0b2a094"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-30/source-review-v1.json",
+      "sha256": "8b5567ab4b903b0021110b6cbb7cd5b9880f667f19178fb852ebcf64da9f0603"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-30/acceptance-v1.json",
+      "sha256": "b943c313ca5c66dd674bd6c458c5b7e92426f4a74447b2fee522aab359d57ce6"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-31/baseline-v1.json",
+      "sha256": "23da318ad657cf753829129012f726eccc1798e8059a8bb628017fdfab19c6ee"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-31/source-review-v1.json",
+      "sha256": "55892edcc9d07f5eeb8b3106302c5bc04cadda851a5ae23f7f80b1e82a3fd0ff"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-31/acceptance-v1.json",
+      "sha256": "42f4f57499ab87b8bd97d345e69227e6940a644c689193104fa5a70e77adbd66"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-32/baseline-v1.json",
+      "sha256": "a597f4231f21354f4cbbce3da41cb26566169a8a3bed951838f935d7d2ff210b"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-32/source-review-v1.json",
+      "sha256": "57886e3d82e347b95410a4cd41173b97d07d329aad481cec24c33c345cc8ce30"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-32/acceptance-v1.json",
+      "sha256": "14eda4edc2452a3e923df9b447a5ccc39fc651ef576c66728f01cd934dbad4d9"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-33/baseline-v1.json",
+      "sha256": "0fa6d39c2983a87f982af290cd74f800b32cd4a4e59d309dc8159378b76760da"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-33/source-review-v1.json",
+      "sha256": "2477302cee5a3e1f740d937b6ca0ef308839126f365d0e0d6ea388b4965a57fc"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-33/acceptance-v1.json",
+      "sha256": "04691a06e090f5eaf922d0c801e3fd268fcd38696f9a4bffa7f4ede0eac54611"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-34/baseline-v1.json",
+      "sha256": "0f7c571940006b97bcaa0564d9c8e9b2fc6c439e38682a186a998f40daab3a23"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-34/source-review-v1.json",
+      "sha256": "ad998a99d0e5318c23f6e05631784e130c924f3d659fc9a17ca50d2f1332c45d"
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-34/acceptance-v1.json",
+      "sha256": "c779a815cf7f7b7b8a15cc6138bea693cdc7bd566a00d3f9e2b87d7fd933e256"
+    }
+  ]
+}

@@ -1,0 +1,481 @@
+{
+  "task": "TA30-34 same-source panel public fixture preflight",
+  "stage": "STATIC_PREFLIGHT_ONLY_SOURCE_AND_PUBLIC_PREVIEW_PENDING",
+  "created_at_utc": "2026-10-10T04:09:28.757598+00:00",
+  "source_root": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai",
+  "scope": {
+    "allowed_actions": [
+      "read source/test/PNG bytes and headers",
+      "read HEAD original PNG bytes",
+      "write this /private/tmp receipt"
+    ],
+    "performed_product_execution": false,
+    "performed_browser_or_HTTP": false,
+    "local_product_access": false,
+    "repository_writes": false,
+    "CI_queries": false,
+    "Spark_or_research_changes": false,
+    "runtime_visual_acceptance": false
+  },
+  "source_snapshot": {
+    "web/pages/rack3d.html": {
+      "sha256": "432e7d07ed9438ad7c153bb7380b4d756701b67f634e769b8fcf6af1abf0f820",
+      "bytes": 55451
+    },
+    "web/components/scene-resources.js": {
+      "sha256": "b2123cb8d39bd3ec7ff658b9b3e64f7500e48f64ab4903964532e4e0fbfdf608",
+      "bytes": 9428
+    },
+    "web/assets/panels/README.md": {
+      "sha256": "793ac5832f0b14f448790fb0be18a457413b108c45dee709d2957cfec42cf785",
+      "bytes": 1876
+    },
+    "tests/scene_resources.cjs": {
+      "sha256": "c86e3681d0fe640c64edd9cca3c669731078cd1b426bf722ac569a83ce1db820",
+      "bytes": 9492
+    },
+    "tests/shared_part_preview.cjs": {
+      "sha256": "39b3437c006659d8db1a335a1f60f9ac9786ca35cda91b0051f25332ae7e0875",
+      "bytes": 51403
+    },
+    "web/components/panel-source-viewer.js": {
+      "sha256": "619f544bf733560057d8337768b684ff930444e55989bb1c56cbd5cd72391ab4",
+      "bytes": 5951
+    }
+  },
+  "originals": [
+    {
+      "item": "TA-30",
+      "handle": "server",
+      "path": "web/assets/panels/server_nvme.png",
+      "public_path": "/assets/panels/server_nvme.png",
+      "role": "NVMe server front",
+      "provenance_model": "AS-1114S-WN10RT",
+      "provenance_vendor": "Supermicro",
+      "width": 966,
+      "height": 88,
+      "source_aspect": 10.977272727272727,
+      "bytes": 137772,
+      "sha256": "935cda787dbdd9db2e09e655e8ec1ee6f858a31d069f0762c7c07273993b1fb2",
+      "matches_HEAD_original_bytes": true,
+      "source_read_face": {
+        "world_width_if_unscaled": 2.3,
+        "world_height_if_unscaled": 0.735,
+        "aspect": 3.129251700680272,
+        "front_material_index": 4,
+        "map_occurrences_expected": 6
+      },
+      "contain_diagnostic_if_current_geometry_retained": {
+        "canvas_width": 966,
+        "canvas_height": 309,
+        "rect": {
+          "left": 0.0,
+          "top": 110.45724003887268,
+          "width": 966.0,
+          "height": 88.08551992225463
+        },
+        "padding_axis": "vertical"
+      },
+      "identity_boundary": "asset handle and source model are provenance, not a BOM item, installed device identity, protocol, or an accelerator board identity"
+    },
+    {
+      "item": "TA-31",
+      "handle": "hero",
+      "path": "web/assets/panels/server_gpu.png",
+      "public_path": "/assets/panels/server_gpu.png",
+      "role": "compute server front",
+      "provenance_model": "SYS-620BT-CHASSIS",
+      "provenance_vendor": "Supermicro",
+      "width": 400,
+      "height": 70,
+      "source_aspect": 5.714285714285714,
+      "bytes": 70243,
+      "sha256": "56386f5d0e9988f13d0b3cf3b2fa2cff99018f92d8045253bc5c9e7faccdd04f",
+      "matches_HEAD_original_bytes": true,
+      "source_read_face": {
+        "world_width_if_unscaled": 2.3,
+        "world_height_if_unscaled": 0.735,
+        "aspect": 3.129251700680272,
+        "front_material_index": 4,
+        "map_occurrences_expected": 1
+      },
+      "contain_diagnostic_if_current_geometry_retained": {
+        "canvas_width": 400,
+        "canvas_height": 128,
+        "rect": {
+          "left": -2.842170943040401e-14,
+          "top": 28.952380952380956,
+          "width": 400.00000000000006,
+          "height": 70.09523809523809
+        },
+        "padding_axis": "vertical"
+      },
+      "identity_boundary": "asset handle and source model are provenance, not a BOM item, installed device identity, protocol, or an accelerator board identity"
+    },
+    {
+      "item": "TA-32",
+      "handle": "storage",
+      "path": "web/assets/panels/server_storage.png",
+      "public_path": "/assets/panels/server_storage.png",
+      "role": "storage server front",
+      "provenance_model": "SSG-610P-ACR12N4H",
+      "provenance_vendor": "Supermicro",
+      "width": 814,
+      "height": 72,
+      "source_aspect": 11.305555555555555,
+      "bytes": 31262,
+      "sha256": "81c396ef73aa46505cbc91fd9f5c9a63b21eaa0fc6479f7ffe224ff03e987851",
+      "matches_HEAD_original_bytes": true,
+      "source_read_face": {
+        "world_width_if_unscaled": 2.3,
+        "world_height_if_unscaled": 0.735,
+        "aspect": 3.129251700680272,
+        "front_material_index": 4,
+        "map_occurrences_expected": 1
+      },
+      "contain_diagnostic_if_current_geometry_retained": {
+        "canvas_width": 814,
+        "canvas_height": 261,
+        "rect": {
+          "left": 5.684341886080802e-14,
+          "top": 94.37905530762674,
+          "width": 813.9999999999999,
+          "height": 72.24188938474653
+        },
+        "padding_axis": "vertical"
+      },
+      "identity_boundary": "asset handle and source model are provenance, not a BOM item, installed device identity, protocol, or an accelerator board identity"
+    },
+    {
+      "item": "TA-33",
+      "handle": "tor",
+      "path": "web/assets/panels/switch_tor.png",
+      "public_path": "/assets/panels/switch_tor.png",
+      "role": "TOR switch front",
+      "provenance_model": "SSE-G3648B",
+      "provenance_vendor": "Supermicro",
+      "width": 1820,
+      "height": 180,
+      "source_aspect": 10.11111111111111,
+      "bytes": 25639,
+      "sha256": "47a53a7338b8815efe4302a0a1f9fc9e5e4d67c3c4f871cfaf6ed64c5ef97c2e",
+      "matches_HEAD_original_bytes": true,
+      "source_read_face": {
+        "world_width_if_unscaled": 2.3,
+        "world_height_if_unscaled": 0.399,
+        "aspect": 5.764411027568921,
+        "front_material_index": 4,
+        "map_occurrences_expected": 1
+      },
+      "contain_diagnostic_if_current_geometry_retained": {
+        "canvas_width": 1820,
+        "canvas_height": 316,
+        "rect": {
+          "left": 0.0,
+          "top": 67.92315954721971,
+          "width": 1820.0,
+          "height": 180.15368090556058
+        },
+        "padding_axis": "vertical"
+      },
+      "identity_boundary": "asset handle and source model are provenance, not a BOM item, installed device identity, protocol, or an accelerator board identity"
+    },
+    {
+      "item": "TA-34",
+      "handle": "ib",
+      "path": "web/assets/panels/switch_ib.png",
+      "public_path": "/assets/panels/switch_ib.png",
+      "role": "high-speed switch front",
+      "provenance_model": "SN2100",
+      "provenance_vendor": "Mellanox",
+      "width": 999,
+      "height": 211,
+      "source_aspect": 4.734597156398104,
+      "bytes": 350635,
+      "sha256": "0354d636bbf6317cdb3eeaaa903a70383036f726f75b37532242cdc377ea5026",
+      "matches_HEAD_original_bytes": true,
+      "source_read_face": {
+        "world_width_if_unscaled": 2.3,
+        "world_height_if_unscaled": 0.399,
+        "aspect": 5.764411027568921,
+        "front_material_index": 4,
+        "map_occurrences_expected": 1
+      },
+      "contain_diagnostic_if_current_geometry_retained": {
+        "canvas_width": 999,
+        "canvas_height": 174,
+        "rect": {
+          "left": 89.23583453533894,
+          "top": 0.0,
+          "width": 820.5283309293221,
+          "height": 174.0
+        },
+        "padding_axis": "horizontal"
+      },
+      "identity_boundary": "asset handle and source model are provenance, not a BOM item, installed device identity, protocol, or an accelerator board identity"
+    }
+  ],
+  "source_read_findings": [
+    {
+      "id": "contain-dataflow",
+      "status": "statically_coherent_for_supplied_surfaceAspect",
+      "evidence": [
+        "web/components/scene-resources.js:118-160",
+        "web/pages/rack3d.html:362-377",
+        "web/pages/rack3d.html:512-535"
+      ],
+      "detail": "Contain uses physical face coordinates, then maps the rectangle to integer canvas coordinates. Height rounding is compensated by separate canvas/world scale factors. sourceDisplay is a useful diagnostic, but the acceptance must derive actual bound face geometry and canvas pixels independently."
+    },
+    {
+      "id": "remaining-four-aspects",
+      "status": "integration_pending",
+      "evidence": [
+        "web/pages/rack3d.html:374-377"
+      ],
+      "detail": "At this read snapshot only PANEL.server supplies surfaceAspect=2.3/.735. hero, storage, tor, ib still pass undefined and therefore use the legacy source-sized canvas branch. All five need final source reread after integration; not a final-delivery bug claim."
+    },
+    {
+      "id": "explicit-legacy-scope",
+      "status": "integration_pending_requirement_gap",
+      "evidence": [
+        "web/pages/rack3d.html:123-130",
+        "web/pages/rack3d.html:374"
+      ],
+      "detail": "PANEL is currently enabled by the complement of rack/chip/server modes, not an explicit view=legacy guard. Examples ?x=70, ?x=100 or ?node=part:ssd may enter the legacy branch without explicit view. If the adopted rule is explicit legacy only, final routing/fallback must avoid original-image requests and undefined-map crashes for these implicit states. Do not blindly change PANEL gating while leaving legacy geometry dereferencing absent handles."
+    },
+    {
+      "id": "texture-resize-dispose",
+      "status": "fixture_accounting_requirement",
+      "evidence": [
+        "web/components/scene-resources.js:139-142",
+        "web/components/scene-resources.js:173-190"
+      ],
+      "detail": "Canvas resize deliberately dispatches texture.dispose() to invalidate allocated GPU storage while retaining the same CanvasTexture object. Count resize invalidations separately from terminal handle/pool disposal; only terminal repeated dispose must add zero events."
+    },
+    {
+      "id": "disposed-handle-retry",
+      "status": "source_fixed_runtime_pending",
+      "evidence": [
+        "web/components/scene-resources.js:126-127",
+        "web/components/scene-resources.js:172-178"
+      ],
+      "detail": "Latest reread adds disposed || state === disposed to retry. The terminal-handle restart path is now guarded statically; retain actual-public no-new-request/no-write lifecycle verification."
+    },
+    {
+      "id": "superseded-active-reference",
+      "status": "source_active_clobber_fixed_remaining_cleanup_probe",
+      "evidence": [
+        "web/components/scene-resources.js:128-135",
+        "web/components/scene-resources.js:162-175"
+      ],
+      "detail": "Latest reread clears active only when active===request, closing the stale-completion clobber. Superseding still leaves previous Image callbacks tracked until completion/pool cleanup; narrowly verify per-handle disposal during overlapping real requests detaches obsolete callbacks too, with no retained attempts or late writes. This is cleanup coverage, not a stale-publication claim after token guards."
+    },
+    {
+      "id": "fallback-redraw-on-retry-failure",
+      "status": "source_fixed_runtime_pending",
+      "evidence": [
+        "web/components/scene-resources.js request.onerror latest reread"
+      ],
+      "detail": "Current failure branch restores configured fallback dimensions and drawFallback, removes sourceDisplay, marks upload. A retry failure after ready must now be checked for genuine procedural fallback instead of old image pixels; resize invalidation can occur on this reverse dimension change too."
+    },
+    {
+      "id": "new-source-viewer",
+      "status": "source_integrated_public_pending",
+      "evidence": [
+        "web/components/panel-source-viewer.js",
+        "web/pages/rack3d.html #panel-sources and mountPanelSources",
+        "web/pages/rack3d.html:819"
+      ],
+      "detail": "New actual modal supplies five TA nav buttons, copied real CanvasTexture canvas, raw original PNG download and a real retry button. Use these real UI actions for per-item display/retry evidence. Latest page teardown explicitly calls panelSources.dispose(); runtime idempotence and no delayed repaint remain pending."
+    }
+  ],
+  "public_guard_contract": {
+    "origin": "https://inresearch.ai",
+    "UI_BASE_URL": "must equal the origin exactly",
+    "source_root": "explicit reviewed absolute TA30_34_SOURCE_ROOT; only byte/SHA comparison, never imports or file navigation",
+    "network": "fresh serviceWorkers:block context; fail any product request whose URL origin differs; no local fallback or localhost/loopback routes; reject navigation/observer redirects with maxRedirects:0",
+    "source_observation": "Before any accessor injection: actual public GET status 200, nonempty original bytes, exact expected local reviewed SHA; retain original URL/status/SHA/bytes and separately patched SHA. Require unique exact source anchor, fail on drift. Modified observer response must not be labelled unmodified public source.",
+    "originals": "For five PNGs actual GET status 200 + complete body SHA + decoded natural size matching originals above; originals unchanged vs HEAD is static provenance only, not deployed proof.",
+    "request_accounting": "Separate intentional API preflight/source fetches from browser image-use requests. Modern isolation is assessed in its own fresh browser contexts without source-PNG prefetches, so fixture fetches cannot disguise product requests.",
+    "fault_accounting": "Fault rows are explicitly labelled injected_failure. Fetch and hash the real 200 source first where used; a routed 503/abort/corrupt body is not a successful declared resource. In normal contexts require declared resources 200 and pageerror/route_errors empty."
+  },
+  "narrow_public_acceptance_matrix": [
+    {
+      "case": "legacy-five-ready",
+      "route": "/rack3d.html?view=legacy&x=35",
+      "required": [
+        "actual read mode legacy-rack, actual #explode value 35; if stages obscure a panel, move with real slider/orbit UI and record actual stage",
+        "Object.keys(PANEL) equals server,hero,storage,tor,ib and each actual handle.ready() settles ready within a bounded outer deadline",
+        "five distinct stable CanvasTexture identities and maps actually bound to positive-Z front-face material index 4; scene traversal expected counts 6/1/1/1/1, including hero chassis even if absent from pickables",
+        "map and emissiveMap refer to the same corresponding handle texture; observed surfaceAspect equals actual bound geometry world edge width/height",
+        "source metadata URL and width/height match independently fetched source bytes; ready status alone cannot prove display"
+      ]
+    },
+    {
+      "case": "source-ratio-and-pixels",
+      "required": [
+        "derive actual front quad from geometry group/UV vertices and matrixWorld edge lengths; avoid world-axis AABB aspect, which varies under rotation",
+        "compute displayed world image aspect = (rect.width/canvasWidth*worldFaceWidth)/(rect.height/canvasHeight*worldFaceHeight); require sourceWidth/sourceHeight within numeric tolerance",
+        "independently require contain inside canvas, centered nonnegative padding, no crop, no repeat/offset/rotation distortion; whole canvas opaque with warm-white padding #faf8f2 for the contained branch",
+        "extract each actual texture.image PNG and SHA; inspect actual pixels with same-origin decoded original composited against warm white, including transparent originals, corner padding and landmarks on both source edges; do not trust sourceDisplay alone",
+        "do not demand unlit source RGB equality from final PBR scene; inspect final materials/exposure plus screenshots for visibility, detail and clipped glare"
+      ]
+    },
+    {
+      "case": "real-front-visibility-and-screenshots",
+      "viewports": [
+        {
+          "width": 1280,
+          "height": 900
+        },
+        {
+          "width": 390,
+          "height": 844
+        }
+      ],
+      "appearances": [
+        "light",
+        "dark"
+      ],
+      "required": [
+        "headful actual public, real UI slider/orbit/zoom only; await current ready statuses, renderer frames and appearance paint before capture",
+        "for each of five representative bound front meshes retain actual projected quad, visible screen area, material state and at least one unobstructed front-surface sample ray; DOM elementFromPoint sample must equal #c and actual nearest face materialIndex/map must be the intended panel",
+        "save full main-view screenshots in desktop/phone light/dark plus each actual texture PNG and useful in-scene crops; all five must be visible in evidence across a short set of actual views",
+        "phone may need real zoom/detail views; do not claim small text readable at overview scale",
+        "original-size owner review required for image proportions, panel identity, crop, whitespace, lighting and mobile readability; counts/variance are diagnostics, not a visual pass"
+      ]
+    },
+    {
+      "case": "modern-no-original-requests",
+      "routes": [
+        "/rack3d.html",
+        "/rack3d.html?view=rack&x=0",
+        "/rack3d.html?view=rack-exploded&x=35",
+        "/rack3d.html?view=server&x=55",
+        "/rack3d.html?view=chip&x=90",
+        "/bom3d.html"
+      ],
+      "required": [
+        "fresh browser contexts and full declared-resource request logs; no /assets/panels/*.png requests by product",
+        "rack PANEL empty in modern branches; actual mode/title and existing geometry remain available with errors empty",
+        "no change in modern material/map ownership or scene inventory due to panel recipe",
+        "if explicit-only legacy rule adopted, include one implicit old state e.g. /rack3d.html?x=70 as a specific route gate, with no originals/no undefined-map error; record actual chosen mode instead of inventing it"
+      ]
+    },
+    {
+      "case": "actual-failure-and-retry",
+      "route": "/rack3d.html?view=legacy&x=35",
+      "required": [
+        "separate fault context, initially fail the five real panel image requests by named 503/abort or decode failure; every actual handle settles fallback and retains visible nonempty procedural front canvas",
+        "five initial fallback canvases/texture identities remain valid and bound; scene keeps rendering and UI works; expected network failure receipts remain separate from JS errors",
+        "Release fault and use actual #panel-sources dialog, each data-figure-id nav, and the real 重新载入来源 button. Real 200 PNG bytes/SHA must load and all five become ready with unchanged texture identity/material binding and correct contain pixels. Keep handle.retry direct calls only for concurrency/terminal API lifecycle probes.",
+        "After a successful ready load, fail a real UI retry and require restored procedural fallback at configured 256x64, sourceDisplay removed, valid nonempty pixels, status fallback. Count reverse-size GPU invalidation separately.",
+        "bound each ready/retry wait because current image loader has no network timeout; record a timeout as actual failure, not a pass"
+      ]
+    },
+    {
+      "case": "retry-and-resource-terminal-boundaries",
+      "required": [
+        "observe actual sets, request handlers, texture version/pixel hash and disposal events; first normal size-changing upload may legitimately invalidate GPU allocation",
+        "same-size successful retry must keep texture identity and avoid unnecessary resize invalidation",
+        "overlap two actual public requests with controlled response delay, supersede old, complete old first; stale response cannot publish, clear newer active request, or retain handlers after handle disposal",
+        "handle.dispose twice while pool alive adds exactly one terminal disposal; retry after handle disposal yields disposed with no new image request, texture upload or pixels",
+        "pool.dispose twice clears image/handle/texture ownership sets and detaches outstanding callbacks once; late real responses cannot update canvas/version/state",
+        "disposePage twice separately closes renderer/composer and stops subsequent render ticks; do not count legitimate final page texture release as inspector/borrowed-resource failure",
+        "Dispose the real panel-source viewer/page twice: dialog/style/listeners/button handlers released once; pending ready/retry completion cannot repaint removed UI or alter main scene."
+      ]
+    },
+    {
+      "case": "actual-source-viewer-five-UI",
+      "route": "/rack3d.html?view=legacy&x=35",
+      "selectors": {
+        "open": "#panel-sources",
+        "dialog": ".panel-source-dialog[open]",
+        "nav": ".panel-source-dialog nav button[data-figure-id]",
+        "canvas": ".panel-source-dialog canvas",
+        "retry": ".panel-source-actions button",
+        "original": ".panel-source-actions a[download]",
+        "close": ".panel-source-dialog > button"
+      },
+      "required": [
+        "real open click; select all five nav buttons and wait actual dialog.dataset.figureId/sourceStatus plus current handle.ready status, title/model/file/binding text and nav aria-pressed",
+        "dialog canvas pixels must match the actual current handle.texture.image copied pixels, canvas backing dimensions equal sourceDisplay canvasWidth/Height; displayed CSS content box aspect equals actual world face aspect (exclude borders and rounding) and original content remains source-ratio",
+        "click all five actual original download links; download bytes/SHA must equal the corresponding public original SHA, suggested filename correct and no transformed display canvas substituted",
+        "capture full dialog desktop/phone light/dark for each selected TA item, with source-loaded vs procedural/loading status unambiguous; phone scroll all source/unknown/binding/download/retry details into view",
+        "viewer open/nav/download/close/Escape/retry must preserve main camera/target/stage and material binding; Escape capture must close only the modal, focus returns to opener, no new renderer or forged mesh",
+        "external source link href equals actual provenance library; do not navigate off-origin in the strict product test"
+      ]
+    }
+  ],
+  "source_observer_injection_proposal": {
+    "page": {
+      "public_path": "/rack3d.html",
+      "local_path": "web/pages/rack3d.html",
+      "anchor": "</script>\n</body>",
+      "anchor_count": 1,
+      "expose_actual_refs": [
+        "THREE",
+        "PANEL",
+        "texturePool",
+        "scene",
+        "rack",
+        "renderer",
+        "composer",
+        "camera",
+        "controls",
+        "canvas",
+        "slider",
+        "sceneView",
+        "disposePage",
+        "panelSources"
+      ],
+      "read_only_state": [
+        "serverMode",
+        "chipMode",
+        "rackMode",
+        "rackOverviewMode",
+        "rackExplodedMode",
+        "pageDisposed",
+        "slider.value"
+      ],
+      "front_mesh_discovery": "Traverse actual scene meshes and material arrays; select actual map===PANEL[key].texture, geometry group materialIndex 4, then compute geometry UV/front edge and matrixWorld. Do not synthesize panel meshes/IDs or use only pickables."
+    },
+    "pool": {
+      "public_path": "/assets/scene-resources.js",
+      "local_path": "web/components/scene-resources.js",
+      "anchor": "return {canvas, image,",
+      "anchor_count": 1,
+      "optional_accessor": "Expose read-only snapshots of actual textures/images/handles Sets and disposed closure flag. Return actual Image refs for callback/complete inspection; do not replace createImage or use mock image objects."
+    },
+    "method_calls": "Only later actual-public lifecycle probes may call existing handle.retry/handle.dispose/pool.dispose/page.disposePage, with observation event wrappers that preserve original arguments/return/call count. No method replacements that bypass loading, materials or mode routing.",
+    "no_production_API_change": true,
+    "viewer": {
+      "public_path": "/assets/panel-source-viewer.js",
+      "local_path": "web/components/panel-source-viewer.js",
+      "need_injection": false,
+      "observation": "Actual DOM dataset/aria/text/canvas/download href are sufficient; pending post-dispose DOM writes may be observed with a MutationObserver without changing product dataflow."
+    }
+  },
+  "semantic_gates": [
+    "switch_ib is a legacy asset key. SN2100/Mellanox provenance does not prove InfiniBand protocol; do not relabel it IB equipment from the filename.",
+    "server_gpu is the provenance image of SYS-620BT-CHASSIS, a multi-node chassis front. It must not be assigned a GPU accelerator board identity or claim that its pictured chassis contains specific GPUs.",
+    "all five originals remain CC0 provenance plus README model/vendor; current legacy scene is generic illustrative structure, not an OEM CAD/installed-device fit or interface/port count assertion."
+  ],
+  "existing_test_gaps": {
+    "tests/scene_resources.cjs": [
+      "environment and synthetic unit dependencies are outside this narrow five-panel public proof",
+      "checks fallback and one ready image but not world face aspect, all-five pixel identity, source SHA, mobile light/dark or modern no-request isolation",
+      "legacy route injection currently does not validate fetched status/nonempty/SHA or unique exact anchors; do not copy that weaker gate into new public fixture",
+      "disposal listener attached after ready is appropriate for terminal-only counting; keep separate resize accounting if listener moves earlier"
+    ]
+  },
+  "delivery_status": {
+    "source_review": "pending final integrated source reread",
+    "public_runner": "not created by this preflight task",
+    "public_run": "not performed",
+    "visual_review": "pending owner actual original-size public screenshots",
+    "publication_progress": "parent-reported TA29 pub29; this preflight does not count TA30-34 as accepted/published"
+  },
+  "findings_count": 8,
+  "snapshot_note": "The source tree was actively integrating during this read. This final receipt records the latest reread hashes; any later source change needs a narrow reread before runner approval."
+}

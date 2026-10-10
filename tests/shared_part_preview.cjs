@@ -347,8 +347,16 @@ for (const key of ['enlarge','shrink','fit','spin','exportMini','enlargedHost'])
     const canvas=page.locator('#c'),rect=await canvas.boundingBox();await page.mouse.move(rect.x+rect.width*.6,rect.y+rect.height*.5);await page.mouse.down();
     await page.mouse.move(rect.x+rect.width*.7,rect.y+rect.height*.56,{steps:12});await page.mouse.up();
     await page.evaluate(()=>{__ta29.controls.enableDamping=false;__ta29.controls.update();});await settle();
-    const owned=await mainState();await page.locator('#domainParts .pitem[data-part="transformer"]').click();
-    await miniGestures('manual-main');await page.setViewportSize({width:1180,height:820});await settle();sameMain(owned,await mainState(),'manual resize');
+    const beforeExplicitFocus=await mainState();await page.locator('#domainParts .pitem[data-part="transformer"]').click();await settle();
+    const afterExplicitFocus=await mainState();
+    // This existing visible selection intentionally calls focusCampus(). Establish
+    // manual ownership after that explicit focus, not before an allowed camera action.
+    const selectedMain=await canvas.boundingBox();await page.mouse.move(selectedMain.x+selectedMain.width*.6,selectedMain.y+selectedMain.height*.5);await page.mouse.down();
+    await page.mouse.move(selectedMain.x+selectedMain.width*.7,selectedMain.y+selectedMain.height*.56,{steps:12});await page.mouse.up();
+    await page.evaluate(()=>{__ta29.controls.enableDamping=false;__ta29.controls.update();});await settle();
+    const owned=await mainState();assert.notDeepEqual(owned.camera,afterExplicitFocus.camera,'Real main drag must change camera after the explicit focus');
+    await miniGestures('manual-main');await page.setViewportSize({width:1180,height:820});await settle();const afterResize=await mainState();sameMain(owned,afterResize,'manual resize');
+    results.gestures.push({label:'Actual manual camera after explicit domain selection; mini and resize preserve it',beforeExplicitFocus,afterExplicitFocus,owned,afterResize});
 
     // Whole -> part -> software -> physical on one inspector/cache lifetime.
     await go('/bom3d.html?d=control','campus');await controls();await page.locator('#campus-whole-dossier').click();

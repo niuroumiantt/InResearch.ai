@@ -115,38 +115,63 @@ export function createTexturePool({THREE, document: documentRef = document,
     textures.add(texture);
     return texture;
   };
-  const image = ({url, width = 256, height = 64, drawFallback}) => {
+  const image = ({url, width = 256, height = 64, drawFallback, surfaceAspect = null,
+                  background = "#faf8f2"}) => {
+    if (surfaceAspect !== null && (!Number.isFinite(surfaceAspect) || surfaceAspect <= 0)) {
+      throw new TypeError("positive surface aspect required");
+    }
     const texture = canvas(width, height, drawFallback);
     let generation = 0, active = null, settle = null;
     let state = "fallback", ready = Promise.resolve({status: state});
     const retry = () => {
-      if (disposed) return Promise.resolve({status: "disposed"});
+      if (disposed || state === "disposed") return Promise.resolve({status: "disposed"});
       settle?.({status: "superseded"}); settle = null;
+      if (active) { active.onload = active.onerror = null; images.delete(active); active = null; }
       const token = ++generation, request = createImage();
       images.add(request); state = "loading";
       ready = new Promise(resolve => {
         settle = resolve;
         request.onload = () => {
-          images.delete(request); active = null;
+          images.delete(request); if (active === request) active = null;
           if (disposed || token !== generation) return resolve({status: "superseded"});
           const element = texture.image, context = element.getContext("2d");
           const nextWidth = request.naturalWidth || request.width || width;
-          const nextHeight = request.naturalHeight || request.height || height;
+          const sourceHeight = request.naturalHeight || request.height || height;
+          const nextHeight = surfaceAspect === null ? sourceHeight : Math.ceil(nextWidth / surfaceAspect);
           // GPU storage was allocated at the fallback size; a resized canvas needs a fresh upload.
           if (nextWidth !== element.width || nextHeight !== element.height) texture.dispose();
           element.width = nextWidth; element.height = nextHeight;
           context.clearRect(0, 0, element.width, element.height);
-          context.drawImage(request, 0, 0, element.width, element.height);
+          if (surfaceAspect === null) {
+            context.drawImage(request, 0, 0, element.width, element.height);
+          } else {
+            // Fit in physical face coordinates, then map to integer canvas pixels.
+            // This also compensates canvas height rounding: final image ratio is exact on the face.
+            const sourceAspect = nextWidth / sourceHeight;
+            const faceWidth = Math.min(surfaceAspect, sourceAspect), faceHeight = faceWidth / sourceAspect;
+            const drawWidth = element.width * faceWidth / surfaceAspect;
+            const drawHeight = element.height * faceHeight;
+            const left = (element.width - drawWidth) / 2, top = (element.height - drawHeight) / 2;
+            context.fillStyle = background; context.fillRect(0, 0, element.width, element.height);
+            context.drawImage(request, left, top, drawWidth, drawHeight);
+            texture.userData.sourceDisplay = {url, sourceWidth:nextWidth, sourceHeight,
+              surfaceAspect, canvasWidth:element.width, canvasHeight:element.height,
+              rect:{left,top,width:drawWidth,height:drawHeight}, fit:"contain", background};
+          }
           texture.needsUpdate = true; state = "ready"; settle = null; resolve({status: state});
         };
         request.onerror = () => {
-          images.delete(request); active = null;
+          images.delete(request); if (active === request) active = null;
           if (disposed || token !== generation) return resolve({status: "superseded"});
+          const element = texture.image;
+          if (element.width !== width || element.height !== height) texture.dispose();
+          element.width = width; element.height = height;
+          drawFallback(element.getContext("2d"), width, height);
+          delete texture.userData.sourceDisplay; texture.needsUpdate = true;
           state = "fallback"; settle = null; resolve({status: state});
         };
-        request.src = url;
+        active = request; request.src = url;
       });
-      active = request;
       return ready;
     };
     const handle = {texture, retry, ready: () => ready, status: () => state,

@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10.65",
+  "version": "2026.10.10.66",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -594,8 +594,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 260939,
-      "sha256": "63eda95752428457128d8e685a479fc5239cee624bf7ae91c5fc3d1e6a64d208",
+      "bytes": 262087,
+      "sha256": "3eb402a9653784496ba3e7e8b09fd127daace265296d9e5089f1ac06bfa2b00c",
       "collections": []
     },
     {
@@ -1002,8 +1002,8 @@
     {
       "path": "docs/design/technical-atlas/MIGRATION_PLAN.md",
       "role": "supporting_document",
-      "bytes": 51553,
-      "sha256": "943b024c9c5dc6a0e847eb999d7da13d98b171a4c3061f03623a31a57976b6c7",
+      "bytes": 52541,
+      "sha256": "0eac285e4c0b7c6b56949b7027b56302b59677273125d26be0c6ff1b978aaf6b",
       "collections": []
     },
     {
@@ -8232,12 +8232,12 @@
     {
       "path": "docs/design/technical-atlas/TA-29/acceptance-v1.json",
       "role": "project_config",
-      "bytes": 5712,
-      "sha256": "d579fa4f40a1a1a059eb646f17385298076bec3a28a9020ba9d44ef830f9975b",
+      "bytes": 6715,
+      "sha256": "8ab2ec8c112449deb60e631152f85b974cc7d768610e15f42880a3d92bc00628",
       "collections": [
         {
           "name": "not_verified",
-          "count": 3
+          "count": 8
         },
         {
           "name": "browser_checks",
@@ -8375,6 +8375,34 @@
       ]
     },
     {
+      "path": "docs/design/technical-atlas/TA-29/public-checks-v1.json",
+      "role": "project_config",
+      "bytes": 2696,
+      "sha256": "fd94de8464db0d50e83fa2c66759ff292aae6f30562231c5d427da1a9d533d96",
+      "collections": [
+        {
+          "name": "errors",
+          "count": 0
+        },
+        {
+          "name": "not_verified",
+          "count": 8
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-29/public-fixture-baseline-fix-v2.json",
+      "role": "project_config",
+      "bytes": 1071,
+      "sha256": "7071aabea59a8d40d39b907388c96b7b60bf13f540238c1ce87d5daf323197b7",
+      "collections": [
+        {
+          "name": "actual_source_references",
+          "count": 2
+        }
+      ]
+    },
+    {
       "path": "docs/design/technical-atlas/TA-29/public-fixture-owner-review-v1.json",
       "role": "project_config",
       "bytes": 1010,
@@ -8407,6 +8435,46 @@
         {
           "name": "static_source_snapshots",
           "count": 6
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-29/public-fixture-v2-static-review-child.json",
+      "role": "project_config",
+      "bytes": 6151,
+      "sha256": "c66eef4cfc67c1299e6c3b79e6f1ab143026b3c0d7a850b9bb68886ec9c37e1d",
+      "collections": [
+        {
+          "name": "findings",
+          "count": 0
+        },
+        {
+          "name": "static_checks",
+          "count": 8
+        },
+        {
+          "name": "not_verified",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-29/publication-20261010.json",
+      "role": "project_config",
+      "bytes": 5561,
+      "sha256": "f2cc6ec182f830a6c2971bd746a618e6a59c5e084829167d51d0bbdaa25b7abf",
+      "collections": [
+        {
+          "name": "source_prs",
+          "count": 1
+        },
+        {
+          "name": "related_interactive_entries",
+          "count": 6
+        },
+        {
+          "name": "boundaries",
+          "count": 8
         }
       ]
     },
@@ -8469,6 +8537,506 @@
         {
           "name": "reviewed_sources",
           "count": 8
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-29/spin-fixture-static-review-child.json",
+      "role": "project_config",
+      "bytes": 2853,
+      "sha256": "acb91a963f59844db4ed97a10ec8cb1d0f118df8dcb85d66e12979ff88153273",
+      "collections": [
+        {
+          "name": "scope",
+          "count": 7
+        },
+        {
+          "name": "not_verified",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/acceptance-v1.json",
+      "role": "project_config",
+      "bytes": 4336,
+      "sha256": "b943c313ca5c66dd674bd6c458c5b7e92426f4a74447b2fee522aab359d57ce6",
+      "collections": [
+        {
+          "name": "artifacts",
+          "count": 2
+        },
+        {
+          "name": "not_verified",
+          "count": 1
+        },
+        {
+          "name": "source_pixels",
+          "count": 2
+        },
+        {
+          "name": "generic_face_ratio",
+          "count": 2
+        },
+        {
+          "name": "browser_checks",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/baseline-v1.json",
+      "role": "project_config",
+      "bytes": 3103,
+      "sha256": "daed58ee4b6acb800b59f818751bcc5adc407079181129c657e833d7c0b2a094",
+      "collections": [
+        {
+          "name": "limits",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json",
+      "role": "project_config",
+      "bytes": 8056,
+      "sha256": "320c509f826daaa46d8a84687baec7b1003a622b004bcfca1ff68c8e93a51a2c",
+      "collections": [
+        {
+          "name": "unresolved_P2_or_higher_findings",
+          "count": 0
+        },
+        {
+          "name": "resolved_history",
+          "count": 2
+        },
+        {
+          "name": "verified_static",
+          "count": 6
+        },
+        {
+          "name": "coverage_limits",
+          "count": 3
+        },
+        {
+          "name": "source_evidence",
+          "count": 10
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/fixture-independent-review-v2.json",
+      "role": "project_config",
+      "bytes": 4700,
+      "sha256": "be68585e64c96f9dfe208c2791cc0fa6070758db96f78f32bf0fcbc3543a0c49",
+      "collections": [
+        {
+          "name": "P2_or_higher_findings",
+          "count": 0
+        },
+        {
+          "name": "fixes_verified",
+          "count": 4
+        },
+        {
+          "name": "review_iteration_history",
+          "count": 2
+        },
+        {
+          "name": "checks",
+          "count": 2
+        },
+        {
+          "name": "limits",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/independent-provenance-original-review-v1.json",
+      "role": "project_config",
+      "bytes": 17418,
+      "sha256": "f455bfb39bdcf080f6d71451e2d68d9c9aa23efb28132a1a7382326406b171fc",
+      "collections": [
+        {
+          "name": "items",
+          "count": 5
+        },
+        {
+          "name": "primary_sources",
+          "count": 5
+        },
+        {
+          "name": "findings",
+          "count": 5
+        },
+        {
+          "name": "not_verified",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/independent-source-review-v1.json",
+      "role": "project_config",
+      "bytes": 12704,
+      "sha256": "4de924772e6b8478d01e2cd7d19f37b6ec47604614e189bb5f9091ae5db75904",
+      "collections": [
+        {
+          "name": "p0_p1_p2_findings",
+          "count": 0
+        },
+        {
+          "name": "checks",
+          "count": 8
+        },
+        {
+          "name": "artifacts",
+          "count": 5
+        },
+        {
+          "name": "remaining_actual_public_checks",
+          "count": 4
+        },
+        {
+          "name": "read_sources",
+          "count": 21
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/public-fixture-preflight-v1.json",
+      "role": "project_config",
+      "bytes": 26375,
+      "sha256": "270cccf7cecf24406319eb4ecdd576316066a922afa8d9e5d1b433b2f5b269b9",
+      "collections": [
+        {
+          "name": "originals",
+          "count": 5
+        },
+        {
+          "name": "source_read_findings",
+          "count": 8
+        },
+        {
+          "name": "narrow_public_acceptance_matrix",
+          "count": 7
+        },
+        {
+          "name": "semantic_gates",
+          "count": 3
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/public-fixture-static-review-v1.json",
+      "role": "project_config",
+      "bytes": 13083,
+      "sha256": "c13ab8dbdfe1bd3d79c626625d78d46d7ff6abf911d6fe7ef16f016f53f66037",
+      "collections": [
+        {
+          "name": "assets",
+          "count": 5
+        },
+        {
+          "name": "findings",
+          "count": 0
+        },
+        {
+          "name": "resolved_during_static_review",
+          "count": 5
+        },
+        {
+          "name": "limits",
+          "count": 5
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/public-fixture-static-review-v2.json",
+      "role": "project_config",
+      "bytes": 18137,
+      "sha256": "7b749a6b40eaadb1f34aacfe0e0dcf2995249de226be8e53a2d7fc8e2319ddf6",
+      "collections": [
+        {
+          "name": "assets",
+          "count": 5
+        },
+        {
+          "name": "findings",
+          "count": 0
+        },
+        {
+          "name": "resolved_during_static_review",
+          "count": 5
+        },
+        {
+          "name": "limits",
+          "count": 5
+        },
+        {
+          "name": "actual_diff",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/source-review-v1.json",
+      "role": "project_config",
+      "bytes": 3834,
+      "sha256": "8b5567ab4b903b0021110b6cbb7cd5b9880f667f19178fb852ebcf64da9f0603",
+      "collections": [
+        {
+          "name": "artifacts",
+          "count": 2
+        },
+        {
+          "name": "not_verified",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-30/source-validation-v1.json",
+      "role": "project_config",
+      "bytes": 7954,
+      "sha256": "c68410b0735bcf2672214bcbda678213b4adcd26f086fedde21c48a78f7b66bc",
+      "collections": [
+        {
+          "name": "figure_ids",
+          "count": 5
+        },
+        {
+          "name": "independent_product_sha_matches",
+          "count": 21
+        },
+        {
+          "name": "failures_retained",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-31/acceptance-v1.json",
+      "role": "project_config",
+      "bytes": 4393,
+      "sha256": "42f4f57499ab87b8bd97d345e69227e6940a644c689193104fa5a70e77adbd66",
+      "collections": [
+        {
+          "name": "artifacts",
+          "count": 2
+        },
+        {
+          "name": "not_verified",
+          "count": 1
+        },
+        {
+          "name": "source_pixels",
+          "count": 2
+        },
+        {
+          "name": "generic_face_ratio",
+          "count": 2
+        },
+        {
+          "name": "browser_checks",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-31/baseline-v1.json",
+      "role": "project_config",
+      "bytes": 3211,
+      "sha256": "23da318ad657cf753829129012f726eccc1798e8059a8bb628017fdfab19c6ee",
+      "collections": [
+        {
+          "name": "limits",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-31/source-review-v1.json",
+      "role": "project_config",
+      "bytes": 3893,
+      "sha256": "55892edcc9d07f5eeb8b3106302c5bc04cadda851a5ae23f7f80b1e82a3fd0ff",
+      "collections": [
+        {
+          "name": "artifacts",
+          "count": 2
+        },
+        {
+          "name": "not_verified",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-32/acceptance-v1.json",
+      "role": "project_config",
+      "bytes": 4370,
+      "sha256": "14eda4edc2452a3e923df9b447a5ccc39fc651ef576c66728f01cd934dbad4d9",
+      "collections": [
+        {
+          "name": "artifacts",
+          "count": 2
+        },
+        {
+          "name": "not_verified",
+          "count": 1
+        },
+        {
+          "name": "source_pixels",
+          "count": 2
+        },
+        {
+          "name": "generic_face_ratio",
+          "count": 2
+        },
+        {
+          "name": "browser_checks",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-32/baseline-v1.json",
+      "role": "project_config",
+      "bytes": 3118,
+      "sha256": "a597f4231f21354f4cbbce3da41cb26566169a8a3bed951838f935d7d2ff210b",
+      "collections": [
+        {
+          "name": "limits",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-32/source-review-v1.json",
+      "role": "project_config",
+      "bytes": 3862,
+      "sha256": "57886e3d82e347b95410a4cd41173b97d07d329aad481cec24c33c345cc8ce30",
+      "collections": [
+        {
+          "name": "artifacts",
+          "count": 2
+        },
+        {
+          "name": "not_verified",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-33/acceptance-v1.json",
+      "role": "project_config",
+      "bytes": 4392,
+      "sha256": "04691a06e090f5eaf922d0c801e3fd268fcd38696f9a4bffa7f4ede0eac54611",
+      "collections": [
+        {
+          "name": "artifacts",
+          "count": 2
+        },
+        {
+          "name": "not_verified",
+          "count": 1
+        },
+        {
+          "name": "source_pixels",
+          "count": 2
+        },
+        {
+          "name": "generic_face_ratio",
+          "count": 2
+        },
+        {
+          "name": "browser_checks",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-33/baseline-v1.json",
+      "role": "project_config",
+      "bytes": 3165,
+      "sha256": "0fa6d39c2983a87f982af290cd74f800b32cd4a4e59d309dc8159378b76760da",
+      "collections": [
+        {
+          "name": "limits",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-33/source-review-v1.json",
+      "role": "project_config",
+      "bytes": 3890,
+      "sha256": "2477302cee5a3e1f740d937b6ca0ef308839126f365d0e0d6ea388b4965a57fc",
+      "collections": [
+        {
+          "name": "artifacts",
+          "count": 2
+        },
+        {
+          "name": "not_verified",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-34/acceptance-v1.json",
+      "role": "project_config",
+      "bytes": 4550,
+      "sha256": "c779a815cf7f7b7b8a15cc6138bea693cdc7bd566a00d3f9e2b87d7fd933e256",
+      "collections": [
+        {
+          "name": "artifacts",
+          "count": 2
+        },
+        {
+          "name": "not_verified",
+          "count": 1
+        },
+        {
+          "name": "source_pixels",
+          "count": 2
+        },
+        {
+          "name": "generic_face_ratio",
+          "count": 2
+        },
+        {
+          "name": "browser_checks",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-34/baseline-v1.json",
+      "role": "project_config",
+      "bytes": 3358,
+      "sha256": "0f7c571940006b97bcaa0564d9c8e9b2fc6c439e38682a186a998f40daab3a23",
+      "collections": [
+        {
+          "name": "limits",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "path": "docs/design/technical-atlas/TA-34/source-review-v1.json",
+      "role": "project_config",
+      "bytes": 4051,
+      "sha256": "ad998a99d0e5318c23f6e05631784e130c924f3d659fc9a17ca50d2f1332c45d",
+      "collections": [
+        {
+          "name": "artifacts",
+          "count": 2
+        },
+        {
+          "name": "not_verified",
+          "count": 1
         }
       ]
     },
@@ -9309,8 +9877,8 @@
     {
       "path": "docs/handoff/technical-atlas-20261010.md",
       "role": "supporting_document",
-      "bytes": 4596,
-      "sha256": "e6020ca2489ba0f869febffd5d81fb4c0092d062692736fe933dc60bf73223de",
+      "bytes": 4453,
+      "sha256": "33c16213c3011c543bab1b8d185292d494855c4d9a923c240fb223ab1884317c",
       "collections": []
     },
     {
@@ -16027,15 +16595,15 @@
     {
       "path": "framework/10_visual_atlas.md",
       "role": "normative",
-      "bytes": 42427,
-      "sha256": "d7e73c155b3d9c95ea6c82137536f7e0ba17b87d61fcf1a3c7a8f339f2311443",
+      "bytes": 44999,
+      "sha256": "cf9b1cc6ab8268f61dd621fec142e30eb30768cf54c246ac43c6e630349e1946",
       "collections": []
     },
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 46110,
-      "sha256": "f164fd96c0b1e86f69095205c7ea7aa1f71bbd1f087fc4f36d2159c0cb09dbe6",
+      "bytes": 47187,
+      "sha256": "6766b8103ed4777a4a914e44d623e2e12ed549c59673df7e884cf46b1d9fc2f5",
       "collections": []
     },
     {
@@ -16061,8 +16629,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 212892,
-      "sha256": "33d61e7a579fbc5fa43b1475b85daeb148031c7b15d34eca3f324ef4dbb18371",
+      "bytes": 215144,
+      "sha256": "2966a810c578d40ea7d9b3d81915e2139d05f37442ebdae434826cfe278cf42b",
       "collections": [
         {
           "name": "policies",
@@ -16408,8 +16976,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 378678,
-      "sha256": "f0fa239d4f52769affdbca6680e8c002d1cb155c3d4251a3f3b8d373ae12da29",
+      "bytes": 388061,
+      "sha256": "2303363d7c6eca6649ff2b87f54ff9afb70e1947ea9aff8ab92d28cf7868e8ff",
       "collections": [
         {
           "name": "policies",
@@ -16432,8 +17000,8 @@
     {
       "path": "framework/visual_atlas_migration.json",
       "role": "project_config",
-      "bytes": 59285,
-      "sha256": "303ddadd80a52c30dce02b70647328ad07ed5bd7f3906070fa444e80fc1c6a16",
+      "bytes": 60691,
+      "sha256": "991ed85426dbded9d1cc499b55e0097b950f1962216bf23438e925693d97351c",
       "collections": [
         {
           "name": "states",
@@ -20483,6 +21051,13 @@
       "collections": []
     },
     {
+      "path": "tests/panel_sources.cjs",
+      "role": "test",
+      "bytes": 34156,
+      "sha256": "57799fd32775d5a90ae0b626dffa08da88a9dde2532de78936743d957e894ca8",
+      "collections": []
+    },
+    {
       "path": "tests/part_dossier.cjs",
       "role": "test",
       "bytes": 15915,
@@ -20604,8 +21179,15 @@
     {
       "path": "tests/shared_part_preview.cjs",
       "role": "test",
-      "bytes": 50372,
-      "sha256": "908f2b60d482d0bc1cce1464c966f14ac47ddabdf7ed2ad72bb99247cabc395c",
+      "bytes": 51403,
+      "sha256": "39b3437c006659d8db1a335a1f60f9ac9786ca35cda91b0051f25332ae7e0875",
+      "collections": []
+    },
+    {
+      "path": "tests/shared_part_preview_spin.cjs",
+      "role": "test",
+      "bytes": 15197,
+      "sha256": "f451bfb17d37730a9f4680735c31c0598ad04679922853df96edd13118fd7de5",
       "collections": []
     },
     {
@@ -21211,6 +21793,13 @@
       "collections": []
     },
     {
+      "path": "tests/unit/test_panel_source_assets.py",
+      "role": "test",
+      "bytes": 3157,
+      "sha256": "173d0677d6976f1f473bda9d06d4e1f7aae2d41c4da989dc8d0e6b26b3ea82c8",
+      "collections": []
+    },
+    {
       "path": "tests/unit/test_pdf_native_text.py",
       "role": "test",
       "bytes": 7568,
@@ -21487,7 +22076,7 @@
       "path": "tests/unit/test_shared_part_preview_assets.py",
       "role": "test",
       "bytes": 2781,
-      "sha256": "3b2e44c9f331b1843cb8d176b4c45ce76c03938c3a11daa401c456d998fe3e8b",
+      "sha256": "b89e5c77308bdf6b04326840fde47c01d0ef55384d8d90878e53a6864211a9ea",
       "collections": []
     },
     {
@@ -21799,8 +22388,43 @@
     {
       "path": "web/assets/panels/README.md",
       "role": "supporting_document",
-      "bytes": 1876,
-      "sha256": "793ac5832f0b14f448790fb0be18a457413b108c45dee709d2957cfec42cf785",
+      "bytes": 3571,
+      "sha256": "e5169c3e7af5dec9f7d6faaf79581a19961ece6b42943bd5019aaa7a7bc363e4",
+      "collections": []
+    },
+    {
+      "path": "web/assets/panels/display/server_gpu-contain.svg",
+      "role": "asset",
+      "bytes": 94529,
+      "sha256": "d3b0d14a420c58baa0d88b8ba767b1c23c458508baf4f09b4b5f968f78f32ead",
+      "collections": []
+    },
+    {
+      "path": "web/assets/panels/display/server_nvme-contain.svg",
+      "role": "asset",
+      "bytes": 184553,
+      "sha256": "21670231cdd631cdd3005ad9d7b00d342bff7622401b7dcd3a468dab7d1291ba",
+      "collections": []
+    },
+    {
+      "path": "web/assets/panels/display/server_storage-contain.svg",
+      "role": "asset",
+      "bytes": 42557,
+      "sha256": "348c39f81fdd3494e31562f4c7374d242c65f2094da9b33cd96018583659d93c",
+      "collections": []
+    },
+    {
+      "path": "web/assets/panels/display/switch_ib-contain.svg",
+      "role": "asset",
+      "bytes": 468384,
+      "sha256": "b8341c41b93dcc8428f522bbee1951525edd2cee415b8473b9dd50677791e39a",
+      "collections": []
+    },
+    {
+      "path": "web/assets/panels/display/switch_tor-contain.svg",
+      "role": "asset",
+      "bytes": 35060,
+      "sha256": "0270943e345243b5adbeb94f24526267ec6a0bd878f5b0d2c5534549d883bff6",
       "collections": []
     },
     {
@@ -24322,6 +24946,13 @@
       "collections": []
     },
     {
+      "path": "web/components/panel-source-viewer.js",
+      "role": "implementation",
+      "bytes": 6155,
+      "sha256": "4bcfb83ec63dd4940b38775223686f39aab01d4d11b24214c716efb7eacbd9c1",
+      "collections": []
+    },
+    {
       "path": "web/components/part-dossier.js",
       "role": "implementation",
       "bytes": 5654,
@@ -24408,8 +25039,8 @@
     {
       "path": "web/components/scene-resources.js",
       "role": "implementation",
-      "bytes": 7597,
-      "sha256": "cda675f317814f75ccd9ac5ec6b403a549f9705a50731100f82ee7a7d3ce02cc",
+      "bytes": 9521,
+      "sha256": "d67ba290c0eeb2a68f99b87bad7537e74d81f0cf8ebf62560234db40d846a2d0",
       "collections": []
     },
     {
@@ -24826,8 +25457,8 @@
     {
       "path": "web/pages/rack3d.html",
       "role": "implementation",
-      "bytes": 55074,
-      "sha256": "eb98c4b225442a82547d2ead85d110320eb40a23db66ac1e4abc1939a46bf666",
+      "bytes": 55503,
+      "sha256": "bb639fc0ae3efb99f6d412b6cbcbb54a10761d132e9403752dfcd178a13932e2",
       "collections": []
     },
     {
@@ -24875,8 +25506,8 @@
     {
       "path": "web/routes.json",
       "role": "project_config",
-      "bytes": 45103,
-      "sha256": "d787f43f8c86c93a438d3bc5f61e749d1f0b9efce43fb20dabd07932ade6c240",
+      "bytes": 45703,
+      "sha256": "439337cb82ce34774ab7cc9da3034f9fe3688b28b89a8ad7cafa01ba9260ee1a",
       "collections": []
     },
     {
@@ -24930,19 +25561,19 @@
     }
   ],
   "counts_by_role": {
-    "asset": 356,
+    "asset": 361,
     "candidate": 146,
     "design_reference": 1,
     "entrypoint": 4,
     "generated": 13,
     "historical": 366,
-    "implementation": 358,
+    "implementation": 359,
     "normative": 15,
-    "project_config": 679,
+    "project_config": 707,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
     "supporting_document": 171,
-    "test": 183
+    "test": 186
   }
 }
