@@ -5368,6 +5368,61 @@
       "status": "candidate",
       "stored_path": "originals/08/088f26181392b4b2e6cae5e073e6e7a00064413f4c574772efb1db3c4805e92c/dcd-088f26181392b4b2-ILI files to develop 600MW Stoic data center in Fife- Scotland.html",
       "title": "ILI files to develop 600MW Stoic data center in Fife, Scotland"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+      "coverage": {
+        "characters_read": 7175,
+        "characters_total": 7175,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+      "id": "doc-a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+      "library_path": "library/by-node/system-facility/2026_DCD_Waste heat from Goodman data center in Frankfurt, Germa__a2e039b8f81c7a9f.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "system:facility",
+        "system:it"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-boundary",
+        "NODE-activity-V1-chain",
+        "NODE-activity-V1-economics"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-7958e9c77d224e84a17b86e125a72e30",
+      "report_sha256": "64e60b0a709e0816fa75726f75c21a21e18906ed17e736c991234d64235c39aa",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+        "url": "https://www.datacenterdynamics.com/en/news/waste-heat-from-goodman-data-center-in-frankfurt-germany-to-power-district-heating-system/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/waste-heat-from-goodman-data-center-in-frankfurt-germany-to-power-district-heating-system/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/a2/a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d/dcd-a2e039b8f81c7a9f-Waste heat from Goodman data center in Frankfurt- Germany- to pow.html",
+      "title": "Waste heat from Goodman data center in Frankfurt, Germany, to power district heating system"
     }
   ],
   "evidence": [
@@ -42056,6 +42111,91 @@
           }
         },
         "batch_id": "1e9b5daab819cddbeb25eec6090ff5103f00555bda2b69ecf82c4bbb07cea071"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "762d4723303094e85aa80edc97edbc0bfe13631fe072555e4195682d6682baf3",
+      "document_id": "doc-a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+      "id": "rev-7958e9c77d224e84a17b86e125a72e30:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:thermal",
+        "system:power",
+        "part:shell"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "including a closed-loop cooling system to limit the use of drinking water, PV systems on the roofs, and a green facade.",
+      "reading_revision_id": "rev-7958e9c77d224e84a17b86e125a72e30",
+      "source_sha256": "a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:04:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5，评分5。闭环冷却限制饮用水使用的设计目的，对当前M08-Q04的冷却用水研究提供具体项目线索，可有限采用为待验证的设计案例。连续引文与市长身份、项目阶段的周边原文充分；无敏感、真实冲突或替换条件。该线索不能作为液冷实际改善数据，亦不能关闭工单。",
+        "workorder_ids": [
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.808,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "11f3b504b7d58b06b2788d463aaeca02662c00746bee236223c2604efd719988",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 35326,
+            "output_tokens": 1339,
+            "reasoning_output_tokens": 390
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.527,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "37d5002c06b3b7f2fd515a407735a128c2c56b30b4e8ca2ca5c17b540205d9c4",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 35864,
+              "output_tokens": 423,
+              "reasoning_output_tokens": 164
+            }
+          }
+        },
+        "batch_id": "179498f4d3592bac61a8d55131fbd416b4d56ea31997921d4cbb8457d313bcde"
       }
     }
   ],
@@ -81886,6 +82026,108 @@
         "request_sha256": "7cd145587d16c1441ac1a150c3bad561ab46594821f4c566aaa8c12392909e1f"
       },
       "object_mapping_check": "独立复核后，陈述范围是跨终端用能部门的AI应用节能潜力及宏观GDP标签，不是一座AI数据中心或其具体资产。泛称AI应用不建立GPU、ASIC、IT系统或DCIM/BMS范围，终端部门节能也不证明并网权利。所选证据统一采用空对象范围，保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a2e039b8f81c7a9f5a0ccd780738f1796f00fa0ab4b77a6248bdc4456982074d",
+      "evidence_ids": [
+        "rev-7958e9c77d224e84a17b86e125a72e30:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:26efb06adf2d4f3e3eb7f29f",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:thermal",
+        "system:power",
+        "part:shell"
+      ],
+      "question_ids": [
+        "M08-Q04"
+      ],
+      "reading_revision_id": "rev-7958e9c77d224e84a17b86e125a72e30",
+      "status": "adopted",
+      "text": "DCD作者Matthew Gooding在2026年10月8日的报道中援引德国Neu-Isenburg市长Dirk Gene Hagelstein称，Goodman的FRA02开发包含旨在限制饮用水使用的闭环冷却系统、屋顶光伏系统及绿色立面。报道时项目仍在开发，预计2028年投入使用。这是报道转述的项目设计措施及目的，不构成实际节水、发电效果或PUE/WUE改善的独立核证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:04:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原重要性5，评分5。闭环冷却限制饮用水使用的设计目的，对当前M08-Q04的冷却用水研究提供具体项目线索，可有限采用为待验证的设计案例。连续引文与市长身份、项目阶段的周边原文充分；无敏感、真实冲突或替换条件。该线索不能作为液冷实际改善数据，亦不能关闭工单。",
+        "workorder_ids": [
+          "Q-M08-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.808,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "11f3b504b7d58b06b2788d463aaeca02662c00746bee236223c2604efd719988",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 35326,
+            "output_tokens": 1339,
+            "reasoning_output_tokens": 390
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.527,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "37d5002c06b3b7f2fd515a407735a128c2c56b30b4e8ca2ca5c17b540205d9c4",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 35864,
+              "output_tokens": 423,
+              "reasoning_output_tokens": 164
+            }
+          }
+        },
+        "batch_id": "179498f4d3592bac61a8d55131fbd416b4d56ea31997921d4cbb8457d313bcde"
+      },
+      "source_candidate_ids": [
+        "rev-7958e9c77d224e84a17b86e125a72e30:chunk:0:claim:7"
+      ],
+      "limitations": "所供证据为媒体转述市长发言，未提供项目技术文件或现场测量。闭环冷却不证明采用芯片液冷；限制饮用水使用不等于总耗水或WUE下降。原文未给出冷却配置、用水基准、节水量、运行负载、天气条件、PUE/WUE或单MW散热Capex，也未量化屋顶光伏发电效果。",
+      "conflict_check": "所供三项已采用陈述讨论美国数据中心冷却情景和PUE/WUE建模条件，与本项德国项目设计发言兼容，未发现同一规范记录或真实冲突。legacy合同、事实及项目筛选结果均为空，只能说明所供筛选范围未检出相关记录，不能视为完成外部反证检索。不替换既有结论。",
+      "gap_dependency_check": "M08-Q04仍需项目一手技术资料、液冷形式确认、同口径基准与实际测量、负载和天气条件、PUE/WUE计算边界，以及单MW散热成本序列和可复查推导。屋顶光伏与绿色立面不能补足冷却效率缺口。本项仅贡献部分设计线索，问题和工单保持开放，不调整骨架或模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "179498f4d3592bac61a8d55131fbd416b4d56ea31997921d4cbb8457d313bcde",
+        "source_report_sha256": "64e60b0a709e0816fa75726f75c21a21e18906ed17e736c991234d64235c39aa",
+        "request_sha256": "cdb571be5056901a24288941a5baa55456139c31a7eba10c33b5be1266604438"
+      },
+      "object_mapping_check": "独立按完整陈述复核：闭环冷却及饮用水使用属于root下的水与散热系统system:thermal；屋顶光伏属于电力系统system:power的发电范围；绿色立面属于土地与建筑链下涵盖外墙的part:shell。原文不足以确认冷水机组、CDU、冷板、具体供水设备或水权，不下推这些对象。未继承Reader的设施或IT标签，也不推定AI用途；该范围统一适用于所选证据。"
     }
   ],
   "answers": [],
