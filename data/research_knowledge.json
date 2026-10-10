@@ -36230,6 +36230,262 @@
         },
         "batch_id": "4dd1b9d7a8d542cc560c733e16846480c4569d119dd646652b2ac71d17cae990"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "cf2a2facd1ef460686a4a2523176391a4bc7ac9e8ec675840a7bb9a51dc3cad8",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:4:ev:0",
+      "locator": "page:112/chunk:111",
+      "object_ids": [
+        "chain:power/3"
+      ],
+      "page_index": 111,
+      "question_ids": [
+        "OBJ-backup-power-definition",
+        "OBJ-backup-power-interfaces"
+      ],
+      "quote": "Back-up generators are typically fuelled with diesel or gasoline.\n                  Capacity can be as little as a few hundred watts.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:00:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。燃料类型和一般容量边界实质贡献当前备用电源定义问题，燃料输入亦局部贡献接口问题。连续引文与完整定义段提供足够语境，可采用为有明确来源归因的局部术语证据。未发现敏感、真实冲突、拟替换或其他A条件；不更新设备参数或改动研究骨架。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-definition",
+          "Q-OBJ-backup-power-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 88.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ef1e5cbc836e29c78a73eefde874e6ae7c810491752652925b54182c55b91720",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53035,
+            "output_tokens": 2785,
+            "reasoning_output_tokens": 397
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.726,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e02b156e5cc9dcb70fa1eebc0660cda325794208798ce8775f6953cc434b0a02",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 52391,
+              "output_tokens": 578,
+              "reasoning_output_tokens": 303
+            }
+          }
+        },
+        "batch_id": "946ef3f1c02c55d96cb67eeeb7c8feb7d5bbd9f2cac69513318685a1066a64ad"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "cf2a2facd1ef460686a4a2523176391a4bc7ac9e8ec675840a7bb9a51dc3cad8",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:5:ev:0",
+      "locator": "page:112/chunk:111",
+      "object_ids": [
+        "chain:power/3"
+      ],
+      "page_index": 111,
+      "question_ids": [
+        "OBJ-backup-power-definition"
+      ],
+      "quote": "Such capacity is distinct from mini-grid and\n                  off-grid systems that are not connected to a main power grid.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:00:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。主电网连接条件和被区分对象实质贡献当前备用电源定义与边界工单。连续引文中的指代可由同页完整定义段明确恢复，语境充分，可作为局部边界证据采用。未发现敏感、真实冲突、替换或其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 88.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ef1e5cbc836e29c78a73eefde874e6ae7c810491752652925b54182c55b91720",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53035,
+            "output_tokens": 2785,
+            "reasoning_output_tokens": 397
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.726,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e02b156e5cc9dcb70fa1eebc0660cda325794208798ce8775f6953cc434b0a02",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 52391,
+              "output_tokens": 578,
+              "reasoning_output_tokens": 303
+            }
+          }
+        },
+        "batch_id": "946ef3f1c02c55d96cb67eeeb7c8feb7d5bbd9f2cac69513318685a1066a64ad"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "cf2a2facd1ef460686a4a2523176391a4bc7ac9e8ec675840a7bb9a51dc3cad8",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:6:ev:0",
+      "locator": "page:112/chunk:111",
+      "object_ids": [
+        "part:bess"
+      ],
+      "page_index": 111,
+      "question_ids": [],
+      "quote": "Battery storage: Energy storage technology that uses reversible chemical reactions to\n                  absorb, store and release electricity on demand.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:00:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。该技术机制直接贡献当前BESS定义工单，吸收和释放电力的功能局部贡献当前接口工单。虽然原候选问题标签为空，本次依据允许的问题ID、当前工单及原文独立建立匹配。连续完整定义句和附录语境足够，未发现敏感、真实冲突、替换或其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-bess-definition",
+          "Q-OBJ-bess-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 88.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ef1e5cbc836e29c78a73eefde874e6ae7c810491752652925b54182c55b91720",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53035,
+            "output_tokens": 2785,
+            "reasoning_output_tokens": 397
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.726,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e02b156e5cc9dcb70fa1eebc0660cda325794208798ce8775f6953cc434b0a02",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 52391,
+              "output_tokens": 578,
+              "reasoning_output_tokens": 303
+            }
+          }
+        },
+        "batch_id": "946ef3f1c02c55d96cb67eeeb7c8feb7d5bbd9f2cac69513318685a1066a64ad"
+      }
     }
   ],
   "statements": [
@@ -70490,6 +70746,310 @@
         "request_sha256": "fd7020916e211ebdf665e69d70ba389c3614e50b8f7d373fe776e43d1cb1341b"
       },
       "object_mapping_check": "实际主张范围是哥伦布市平均居民电费账单预测。合同中的root表示一座AI数据中心，site:grid是其电力配额与并网权利，system:power及电网接入链是其供电系统范围，均不对应居民账单这一对象。该预测未确立具体数据中心项目、并网协议或责任主体，因此采用空对象列表，保留M04-Q04问题关联；不继承Reader的site:grid标签，也不从周边AEP Ohio讨论补入主体映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:4:ev:0"
+      ],
+      "id": "adoption:review:dca0e36498f72f513f986f62",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:power/3"
+      ],
+      "question_ids": [
+        "OBJ-backup-power-definition",
+        "OBJ-backup-power-interfaces"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》附录B第112页称，备用发电机通常以柴油或汽油为燃料，容量可低至几百瓦。这是该报告的一般术语说明，其备用发电机口径包含汽油机，并不限于柴油发电机组；发表时间未知，未限定地域或具体项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:00:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。燃料类型和一般容量边界实质贡献当前备用电源定义问题，燃料输入亦局部贡献接口问题。连续引文与完整定义段提供足够语境，可采用为有明确来源归因的局部术语证据。未发现敏感、真实冲突、拟替换或其他A条件；不更新设备参数或改动研究骨架。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-definition",
+          "Q-OBJ-backup-power-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 88.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ef1e5cbc836e29c78a73eefde874e6ae7c810491752652925b54182c55b91720",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53035,
+            "output_tokens": 2785,
+            "reasoning_output_tokens": 397
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.726,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e02b156e5cc9dcb70fa1eebc0660cda325794208798ce8775f6953cc434b0a02",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 52391,
+              "output_tokens": 578,
+              "reasoning_output_tokens": 303
+            }
+          }
+        },
+        "batch_id": "946ef3f1c02c55d96cb67eeeb7c8feb7d5bbd9f2cac69513318685a1066a64ad"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:4"
+      ],
+      "limitations": "几百瓦是一般备用发电容量可达到的小规模描述，不能作为数据中心柴油机组的容量下限或典型规格。原文未提供型号、设备组成、电压、频率、切换接口、燃料消耗、备用等级、运行时长或互换条件。全文覆盖仅限PDF原生文字，未完成图片及全文视觉复核；本页相关文字未列入缺字或空文本页。",
+      "conflict_check": "现有采用陈述涉及燃气发动机、RICE及燃气轮机的备用用途，以及负载和运行时长对策略的影响。通常使用柴油或汽油并不排除其他技术，与这些限定的作者主张无直接冲突。所供legacy匹配记录为空，未发现完整覆盖本项的canonical记录；检查限于本包，不代表外部反证搜索。",
+      "gap_dependency_check": "定义问题获得燃料范围和一般规模边界线索，接口问题仅获得燃料输入类别。仍需数据中心柴油机组的适用对象、组成、接口规格、工况、上下游保障及互换限制；两项问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "946ef3f1c02c55d96cb67eeeb7c8feb7d5bbd9f2cac69513318685a1066a64ad",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "88f551336ad38a5b8ac39e871d76400940e1a308798a7ae503dead7036250caa"
+      },
+      "object_mapping_check": "独立按原文范围映射至电力系统下的发电与储能链。主张同时涵盖柴油和汽油备用发电机及一般容量，宽于part:backup-power所限定的柴油发电机组，故不将整项范围收窄为该部件。未涉及柴油储运设施、UPS或具体数据中心配置，不增加这些映射；所选证据统一采用该声明级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:5:ev:0"
+      ],
+      "id": "adoption:review:bcd58e20dead7607666142d9",
+      "kind": "author_claim",
+      "object_ids": [
+        "chain:power/3"
+      ],
+      "question_ids": [
+        "OBJ-backup-power-definition"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》附录B第112页将已接主电网的家庭和企业在供电中断时可提供电力的备用发电容量，与未连接主电网的小型电网（mini-grid）和离网系统区分。这是该报告的术语分类边界；发表时间未知，未限定地域或具体项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:00:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。主电网连接条件和被区分对象实质贡献当前备用电源定义与边界工单。连续引文中的指代可由同页完整定义段明确恢复，语境充分，可作为局部边界证据采用。未发现敏感、真实冲突、替换或其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-backup-power-definition"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 88.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ef1e5cbc836e29c78a73eefde874e6ae7c810491752652925b54182c55b91720",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53035,
+            "output_tokens": 2785,
+            "reasoning_output_tokens": 397
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.726,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e02b156e5cc9dcb70fa1eebc0660cda325794208798ce8775f6953cc434b0a02",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 52391,
+              "output_tokens": 578,
+              "reasoning_output_tokens": 303
+            }
+          }
+        },
+        "batch_id": "946ef3f1c02c55d96cb67eeeb7c8feb7d5bbd9f2cac69513318685a1066a64ad"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:5"
+      ],
+      "limitations": "该分类针对报告中的备用发电容量口径，不是对所有微电网运行方式或技术能力的判断，也不能据此排除已并网且可孤岛运行的系统。原文未说明柴油机组组成、技术接口、具体项目连接状态或分类标准的地域适用性。全文仅完成原生文字阅读，未完成图片及全文视觉复核。",
+      "conflict_check": "现有备用技术替代、启动性能及策略依赖陈述未对主电网连接分类作相反判断；技术可用于备用发电与其具体系统是否接主电网属于不同条件，未发现真实冲突。所供legacy匹配记录为空，未发现完整重复的canonical记录；核查限于供应材料。",
+      "gap_dependency_check": "仅补充OBJ-backup-power-definition的连接条件和分类边界，不完整定义数据中心柴油发电机组。仍需柴油机组自身组成、适用工况、与其他供电设备的边界及项目连接证据；问题保持开放，不调整既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "946ef3f1c02c55d96cb67eeeb7c8feb7d5bbd9f2cac69513318685a1066a64ad",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "88f551336ad38a5b8ac39e871d76400940e1a308798a7ae503dead7036250caa"
+      },
+      "object_mapping_check": "原文主张是一般备用发电容量与小型电网、离网系统的分类关系，映射电力系统下的发电与储能链。该分类未限定柴油技术，不沿用part:backup-power。主电网连接在此是术语条件，未涉及site:grid所定义的电力配额、排队年限或并网协议，故不沿用site:grid；所选证据统一采用该声明级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:6:ev:0"
+      ],
+      "id": "adoption:review:101fcc9548b11f67719b9b70",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:bess"
+      ],
+      "question_ids": [
+        "OBJ-bess-definition",
+        "OBJ-bess-interfaces"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》附录B第112页将电池储能定义为利用可逆化学反应，按需吸收、储存和释放电力的储能技术。此处保留该报告的技术定义与电力输入输出功能说明；发表时间未知，未限定地域或具体项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T15:00:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。该技术机制直接贡献当前BESS定义工单，吸收和释放电力的功能局部贡献当前接口工单。虽然原候选问题标签为空，本次依据允许的问题ID、当前工单及原文独立建立匹配。连续完整定义句和附录语境足够，未发现敏感、真实冲突、替换或其他A条件。",
+        "workorder_ids": [
+          "Q-OBJ-bess-definition",
+          "Q-OBJ-bess-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 88.376,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "ef1e5cbc836e29c78a73eefde874e6ae7c810491752652925b54182c55b91720",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53035,
+            "output_tokens": 2785,
+            "reasoning_output_tokens": 397
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 29.726,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "e02b156e5cc9dcb70fa1eebc0660cda325794208798ce8775f6953cc434b0a02",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 52391,
+              "output_tokens": 578,
+              "reasoning_output_tokens": 303
+            }
+          }
+        },
+        "batch_id": "946ef3f1c02c55d96cb67eeeb7c8feb7d5bbd9f2cac69513318685a1066a64ad"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:111:claim:6"
+      ],
+      "limitations": "原文定义的是电池储能技术，未给出完整BESS的组成、系统边界、逆变器及控制配置、电压、功率、储能容量、效率、响应时间、充放电条件或互换规格。不能扩展为所有储能技术均利用可逆化学反应，也不能视为具体设备当前性能的独立认证。全文阅读仅覆盖原生文字，图片未复核。",
+      "conflict_check": "现有BESS采用陈述涉及快速负载响应、逆变器限流、供应模式、采购交易及混合供电设计目标，均未否定本项技术定义，也未完整覆盖该定义。所供legacy匹配记录为空，未发现真实冲突或可判重复的canonical记录；不代表完成外部反证核查。",
+      "gap_dependency_check": "OBJ-bess-definition获得电池储能的机制与功能定义，OBJ-bess-interfaces仅获得电力吸收和释放方向。仍需完整BESS组成和边界、物理及控制接口、量化规格、上下游依赖及互换条件；两项问题均保持开放，不赋值模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "946ef3f1c02c55d96cb67eeeb7c8feb7d5bbd9f2cac69513318685a1066a64ad",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "88f551336ad38a5b8ac39e871d76400940e1a308798a7ae503dead7036250caa"
+      },
+      "object_mapping_check": "原文明确讨论电力的电池储能技术，与电力系统下发电与储能链的储能系统（BESS）形成直接概念对应，映射part:bess，但不据此认定完整系统组成。未指定UPS电池、机柜备份单元或IT存储用途，不增加这些对象；所选证据统一采用该声明级范围。"
     }
   ],
   "answers": [],
