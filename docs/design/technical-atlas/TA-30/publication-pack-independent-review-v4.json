@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-10T05:40:30.893096+00:00",
+  "decision": "PASS_NARROW_STATIC_ARTIFACT_BINDING_REVIEW",
+  "scope": "V4 closure generator and already-produced publication artifacts only; independent file/SHA/data checks, no new product execution or visual acceptance",
+  "generator": {
+    "path": "/private/tmp/ta30-34-close-publication.py",
+    "bytes": 7908,
+    "sha256": "2b9c9ee07b1e747c0a1daa0901badf0f7d150afdc53b0b01174625fd11513cb6"
+  },
+  "ast_parse_only": "PASS",
+  "actual_evidence": [
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/public-v4/receipt.json",
+      "bytes": 72189,
+      "sha256": "23a0f1649cf784dd17353c392ab4e5b8e79b5a599143d9dbf24840a147941e54"
+    },
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/public-v4/owner-original-review.json",
+      "bytes": 5882,
+      "sha256": "f3f8030336e9bf8a78b03f072c318726831bd47f2e53978e34159762ff4bfc06"
+    },
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/fix-deployment-healthy.json",
+      "bytes": 927,
+      "sha256": "d0bdca4a7a891f99a1a2ffe6c2f1cc37c53e3b683ed76a7b7b93924f00faeff5"
+    },
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/public-source-health-final.json",
+      "bytes": 9851,
+      "sha256": "c9473e897b4886a4cb2d889a1a98a05b02192937afb2fd082c61e3d66854e6b1"
+    }
+  ],
+  "binding": {
+    "head": "d8348ee3de523ae1a182cd0fb8fb7b9dbd21fe84",
+    "merge": "a379dbba9799c82b095843d87775271b0427686d",
+    "governance": "2026.10.10.67",
+    "exact_image": "sha256:53c7bf9cb70867a8888891a28b77eb155312927ca1dfe526f87562a846381fc2",
+    "observed_original_body_SHA_matches_health": 16,
+    "health_sources": 21,
+    "healthz": 200
+  },
+  "counts": {
+    "downloads": 10,
+    "dialogs": 20,
+    "modern_states": 5,
+    "faults": {
+      "injected503": 5,
+      "fallback": 5,
+      "recovery": 5
+    },
+    "resource_records": 4,
+    "receipt_views": 28,
+    "owner_original_size_review_records": 33
+  },
+  "items": [
+    {
+      "figure_id": "TA-30",
+      "object_id": "server_nvme",
+      "actual_primary_published": 30,
+      "status": "published",
+      "main_registered_count_before_next_source": 29
+    },
+    {
+      "figure_id": "TA-31",
+      "object_id": "server_gpu",
+      "actual_primary_published": 31,
+      "status": "published",
+      "main_registered_count_before_next_source": 29
+    },
+    {
+      "figure_id": "TA-32",
+      "object_id": "server_storage",
+      "actual_primary_published": 32,
+      "status": "published",
+      "main_registered_count_before_next_source": 29
+    },
+    {
+      "figure_id": "TA-33",
+      "object_id": "switch_tor",
+      "actual_primary_published": 33,
+      "status": "published",
+      "main_registered_count_before_next_source": 29
+    },
+    {
+      "figure_id": "TA-34",
+      "object_id": "switch_ib",
+      "actual_primary_published": 34,
+      "status": "published",
+      "main_registered_count_before_next_source": 29
+    }
+  ],
+  "registered_queue_primary_published": 29,
+  "actual_primary_published": 34,
+  "supplemental_published": 4,
+  "retained_failures": [
+    "public-v1",
+    "public-v2",
+    "public-v3"
+  ],
+  "boundaries_preserved": [
+    "V3 retry cause remains unknown; V4 same30s condition passed",
+    "Legacy mobile controls overlay underlying rack; compatibility screenshots do not establish unobstructed full-rack acceptance",
+    "Source-display only; retained low native resolution and SN2100 Ethernet/source-chassis identity limits",
+    "Main remains29; five actual closures registered with next substantive TA35 source"
+  ],
+  "verified_referenced_proof_files": 19,
+  "generated_artifacts": [
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-30/publication-20261010.json",
+      "bytes": 5702,
+      "sha256": "899991b1812db7a9b496f24b0f8e084633735c9688d993a4983f0b2acff4df56"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-30/acceptance-v1.json",
+      "bytes": 7905,
+      "sha256": "728df71abbdc99f9613124b916a1fefa2e9343672aa5b0e7a97aa50b6b23c36d"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-30/public-checks-v1.json",
+      "bytes": 8327,
+      "sha256": "a5773797271ab0ade2593cfdc224bfa8a99ea47076a8cf3578b8471fff944e55"
+    },
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/final-publication-receipt.json",
+      "bytes": 4343,
+      "sha256": "ecbd13dbed2a959551b2ecfaf5b8723c4a3959beeb75dafb8b24718fc164cad7"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-31/publication-20261010.json",
+      "bytes": 5699,
+      "sha256": "1a2433244c50b7df13faf4bbe69cf2932de30c38d1443e9a693924d13f4e3767"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-31/acceptance-v1.json",
+      "bytes": 7962,
+      "sha256": "319298e7e1cb8f665f4bef1af4ccfffcc16c520862f1fec10022d5936e7b0fd7"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-31/public-checks-v1.json",
+      "bytes": 8411,
+      "sha256": "58915f9c01a2ca6c1f01f56f8f1f11f67571cecc1aff967c6b9cc203484b91a9"
+    },
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-31/final-publication-receipt.json",
+      "bytes": 4343,
+      "sha256": "892a59b4bec3b167f491ce82ac9bc7a8108c48d236c674e1c41f215245aac9af"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-32/publication-20261010.json",
+      "bytes": 5711,
+      "sha256": "efe59c13046795f9fc0560e1e2e67d440e13f0d49a28c22ea54ab6aaf39df1b3"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-32/acceptance-v1.json",
+      "bytes": 7939,
+      "sha256": "fcb46b8e53b5eb72f756d6d45828cd6fc0fd980fb3599accec074e134cea2816"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-32/public-checks-v1.json",
+      "bytes": 8467,
+      "sha256": "d24c5401d50686484d1562d89a3bb9f1e9b55405b61ff3be79fdbcb9c5d8f1ec"
+    },
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-32/final-publication-receipt.json",
+      "bytes": 4343,
+      "sha256": "6c38ac1bca8a1d825c066c0cfa4f72c7a71d852c9aabb0f3adb5fe0d5eff7058"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-33/publication-20261010.json",
+      "bytes": 5699,
+      "sha256": "62515217676ed9a25d49afb1d0a201ff32ecb5013444aa134fe52962ee6930ab"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-33/acceptance-v1.json",
+      "bytes": 7961,
+      "sha256": "b2da8c265c71365b4d90c3bedba9879dbeec6f94579cb1c1bbb466da02dc982c"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-33/public-checks-v1.json",
+      "bytes": 8347,
+      "sha256": "6ea56e44aaa303bfdc1a52e95c108d1b460718698e9e4bbc37872af66c1ce8ce"
+    },
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-33/final-publication-receipt.json",
+      "bytes": 4343,
+      "sha256": "21d8a83e442e76aa0628bb0f82b23dfb8e140b7276228202c7d007ece355bf77"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-34/publication-20261010.json",
+      "bytes": 5696,
+      "sha256": "e8abaab3e22a130a3d7acd02ca5f86713dd0e0f082f4ee76be790a6eb5f968ca"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-34/acceptance-v1.json",
+      "bytes": 8119,
+      "sha256": "3470a6a935294dce0f716dfb487f9f524921dcb6524f9be68e0f61a38073a5d5"
+    },
+    {
+      "path": "/private/tmp/ta30-34-publication-pack-20261010/TA-34/public-checks-v1.json",
+      "bytes": 8387,
+      "sha256": "f0cd233ee72783ff442bc326cd6c17772074b80e0f6dcd2e4caab21898b1806b"
+    },
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-34/final-publication-receipt.json",
+      "bytes": 4343,
+      "sha256": "bd5a8fb5ed4a23f5bd3f5b1ba213fe220c3094e5e5397b0f4566e52acec06b13"
+    }
+  ],
+  "findings": [],
+  "not_verified": [
+    "No individual screenshot was viewed again by this reviewer; 33-image owner original review was read and all image SHA verified.",
+    "No browser, HTTP, CI, generator or product JavaScript was executed by this review.",
+    "No repository/product/queue changes; TA35 remains planned in current queue."
+  ]
+}

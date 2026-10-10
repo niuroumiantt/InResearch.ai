@@ -1,0 +1,287 @@
+{
+  "figure_id": "TA-35",
+  "method": "controlled adopted original-byte composition plus independent editable locators and functional relationship bands; no imagegen or product snapshot",
+  "components": [
+    {
+      "id": "package",
+      "file": "chip-package-v1.png",
+      "sha256": "70a96800f1c0ef4e529d52b5c03adde027e05eb6e0f0e2ad39537d1c099e7721",
+      "bytes": 344942,
+      "crop": [
+        500,
+        175,
+        950,
+        710
+      ],
+      "box": [
+        32,
+        182,
+        394,
+        308
+      ],
+      "affine": {
+        "scale": 0.4147368421052632,
+        "translate": [
+          -175.3684210526316,
+          116.18947368421051
+        ]
+      },
+      "source_anchor": [
+        975,
+        381.41
+      ],
+      "display_anchor": [
+        229.0,
+        274.3743
+      ],
+      "scope": "TA15 main package only; 1logic/4HBM. Left repeated process insets omitted, not new package inside server."
+    },
+    {
+      "id": "server",
+      "file": "server-v1.png",
+      "sha256": "abc8d42457216cf752fb6028c9c4251c50213e56c530ea99a005106bb15fdd15",
+      "bytes": 2570554,
+      "crop": [
+        0,
+        0,
+        1536,
+        1024
+      ],
+      "box": [
+        444,
+        179,
+        455,
+        328
+      ],
+      "affine": {
+        "scale": 0.2962239583333333,
+        "translate": [
+          444.0,
+          191.33333333333334
+        ]
+      },
+      "source_anchor": [
+        568,
+        490
+      ],
+      "display_anchor": [
+        612.2552,
+        336.4831
+      ],
+      "scope": "TA11 air-cooled example; upper right repeated card detail kept complete. No liquid retrofit."
+    },
+    {
+      "id": "rack",
+      "file": "rack-overview-v1.png",
+      "sha256": "d92ac021351375735f3b1ad93b3b6553aaecf84ad2a4bb1079ab20d03b89e49e",
+      "bytes": 1971646,
+      "crop": [
+        450,
+        0,
+        630,
+        1024
+      ],
+      "box": [
+        918,
+        173,
+        222,
+        361
+      ],
+      "affine": {
+        "scale": 0.3523809523809524,
+        "translate": [
+          759.4285714285714,
+          173.08095238095237
+        ]
+      },
+      "source_anchor": [
+        850,
+        440
+      ],
+      "display_anchor": [
+        1058.9524,
+        328.1286
+      ],
+      "scope": "TA13 standalone generic rack-frame; not rack-system/NVL72 or literal TA18 closed-rack interiors."
+    },
+    {
+      "id": "facility",
+      "file": "campus-overview-v1.png",
+      "sha256": "c8a1ca2ef4e4c08d93fe2626575f8482831f057dbefaf2e235a4d764c7e6191f",
+      "bytes": 2113457,
+      "crop": [
+        0,
+        120,
+        1536,
+        780
+      ],
+      "box": [
+        1154,
+        202,
+        350,
+        244
+      ],
+      "affine": {
+        "scale": 0.22786458333333334,
+        "translate": [
+          1154.0,
+          207.7890625
+        ]
+      },
+      "source_anchor": [
+        808,
+        540
+      ],
+      "display_anchor": [
+        1338.1146,
+        330.8359
+      ],
+      "scope": "TA18 facility context, no common OEM/scale/topology with other examples."
+    },
+    {
+      "id": "nic",
+      "file": "nic-v1.png",
+      "sha256": "a1262414eb704589eb1ec10bb290c6b238126b6b5dde574f28a4eb04ff24c151",
+      "bytes": 2190163,
+      "crop": [
+        0,
+        0,
+        1536,
+        1024
+      ],
+      "box": [
+        484,
+        606,
+        210,
+        120
+      ],
+      "affine": {
+        "scale": 0.1171875,
+        "translate": [
+          499.0,
+          606.0
+        ]
+      },
+      "source_anchor": [
+        965,
+        500
+      ],
+      "display_anchor": [
+        612.0859,
+        664.5938
+      ],
+      "scope": "Generic PCIe network card category; no exact protocol/rate/OEM or direct GPU-NIC link."
+    },
+    {
+      "id": "switch",
+      "file": "system/network-switch-v2.png",
+      "sha256": "a6269fa55228a0a856e6924e98fed53ee2fccefc3c3bb07e215ae8f652643e61",
+      "bytes": 2526514,
+      "crop": [
+        35,
+        225,
+        1465,
+        545
+      ],
+      "box": [
+        895,
+        611,
+        255,
+        100
+      ],
+      "affine": {
+        "scale": 0.17406143344709898,
+        "translate": [
+          888.9078498293516,
+          574.4044368600682
+        ]
+      },
+      "source_anchor": [
+        810,
+        570
+      ],
+      "display_anchor": [
+        1029.8976,
+        673.6195
+      ],
+      "scope": "Generic external switch category; ports do not prove protocol/physical fabric topology."
+    }
+  ],
+  "labels": [
+    {
+      "number": "01",
+      "part_id": "gpu",
+      "title": "GPU / HBM 封装",
+      "display_anchor": [
+        229.0,
+        274.3743
+      ],
+      "scope": "TA15 same illustrated package; source→display affine"
+    },
+    {
+      "number": "02",
+      "part_id": "server",
+      "title": "风冷 PCIe 服务器",
+      "display_anchor": [
+        612.2552,
+        336.4831
+      ],
+      "scope": "TA11 main accelerator inside air-cooled server"
+    },
+    {
+      "number": "04",
+      "part_id": "rack-frame",
+      "title": "结构机柜",
+      "display_anchor": [
+        1058.9524,
+        328.1286
+      ],
+      "scope": "TA13 compute-tray position in standalone rack"
+    },
+    {
+      "number": "05",
+      "part_id": "shell",
+      "title": "设施与园区",
+      "display_anchor": [
+        1338.1146,
+        330.8359
+      ],
+      "scope": "TA18 building context, no installed complete topology"
+    },
+    {
+      "number": "03",
+      "part_id": "nic",
+      "title": "主机接入与外部互联",
+      "display_anchor": [
+        612.0859,
+        664.5938
+      ],
+      "scope": "Generic network card controller, not a server-specific physical instance"
+    },
+    {
+      "number": "06",
+      "part_id": "psu",
+      "title": "供电：选定独立 PSU 路径",
+      "display_anchor": [
+        500,
+        858
+      ],
+      "scope": "logical function band, not traced physical installed cable"
+    },
+    {
+      "number": "07",
+      "part_id": "cdu",
+      "title": "排热：独立液—液 CDU 方案",
+      "display_anchor": [
+        1140,
+        855
+      ],
+      "scope": "logical heat transfer band; not physical fit of coldplate to TA15 or TA11"
+    }
+  ],
+  "originals_modified": false,
+  "source_images_already_original_viewed": true,
+  "not_common_scale_or_same_OEM": true,
+  "no_new_BOM_objects": true,
+  "no_product_access_during_composition": true
+}
