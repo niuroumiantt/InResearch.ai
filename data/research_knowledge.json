@@ -40551,6 +40551,185 @@
         },
         "batch_id": "266683ce6b4977eb635d5d648ab4414d3b9a73f6e3794438f54408bf093f5e54"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "3ea0be1df86174755445a57ca64147b9c11c22c16acfca3f957147b07647f7c2",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:52:claim:3:ev:0",
+      "locator": "page:53/chunk:52",
+      "object_ids": [
+        "part:gas-turbine",
+        "site:gas-supply"
+      ],
+      "page_index": 52,
+      "question_ids": [
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-performance"
+      ],
+      "quote": "However, this overbuild primarily guards against turbine failure modes that are\n                  independent. Onsite units supplied by a single gas pipeline remain exposed to fuel supply\n                  interruptions that can affect all turbines simultaneously.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T20:10:33+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。单管道供气依赖和同时失效机制实质贡献于当前燃料接口、燃料可靠性及主用自备电源性能工作单。连续完整引文和相邻可靠性讨论提供充分语境；未发现敏感内容、真实冲突或拟替换，符合B档局部采用条件。采用范围限于有明确来源归因的机制判断。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-interfaces",
+          "Q-OBJ-fuel-supply-performance",
+          "Q-OBJ-prime-power-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.805,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6abb17bc4fa281bddc030540e65e62df9780ae9d8f1136866c9c611cfb0e7965",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61378,
+            "output_tokens": 2256,
+            "reasoning_output_tokens": 235
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.9,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "73da7df972d6bee109628ce371340938fb8ca32c522a8efc30a5929d78f4d17b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61293,
+              "output_tokens": 496,
+              "reasoning_output_tokens": 165
+            }
+          }
+        },
+        "batch_id": "43ecc182532b2ab2574baac66095528edae79cac6ea9d2eb8a797602fecbd38e"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "3ea0be1df86174755445a57ca64147b9c11c22c16acfca3f957147b07647f7c2",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:52:claim:4:ev:0",
+      "locator": "page:53/chunk:52",
+      "object_ids": [
+        "part:gas-turbine",
+        "part:backup-power",
+        "site:gas-supply"
+      ],
+      "page_index": 52,
+      "question_ids": [
+        "OBJ-fuel-supply-alternatives",
+        "OBJ-fuel-supply-performance"
+      ],
+      "quote": "Mitigating this risk may require\n                  additional measures, such as deploying turbines with dual‑fuel capability and onsite liquid\n                  fuel storage, or dedicated additional diesel backup generation.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T20:10:33+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。两种明确的风险缓解配置实质贡献于当前燃料供给替代、可靠性及主用自备电源替代方案工作单，属于方案识别与机制层面的局部支持。完整连续引文和明确的风险指代上下文充分；保留“可能需要”的条件性表述后，未发现敏感内容、真实冲突或拟替换，符合B档采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-alternatives",
+          "Q-OBJ-fuel-supply-performance",
+          "Q-OBJ-prime-power-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.805,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6abb17bc4fa281bddc030540e65e62df9780ae9d8f1136866c9c611cfb0e7965",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61378,
+            "output_tokens": 2256,
+            "reasoning_output_tokens": 235
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.9,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "73da7df972d6bee109628ce371340938fb8ca32c522a8efc30a5929d78f4d17b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61293,
+              "output_tokens": 496,
+              "reasoning_output_tokens": 165
+            }
+          }
+        },
+        "batch_id": "43ecc182532b2ab2574baac66095528edae79cac6ea9d2eb8a797602fecbd38e"
+      }
     }
   ],
   "statements": [
@@ -78962,6 +79141,217 @@
         "request_sha256": "4bcc1a3252b4847b020edf0ed2d5ec5a83026bfab211a3a23d730f084b1f14dd"
       },
       "object_mapping_check": "独立依据正文将美国数据中心开发商Switch映射为允许的actor:switch；供电协议及相邻SMR、核电语境支持system:power及其发电与储能链条chain:power/3。主张未给出具体反应堆配置，不进一步下沉到part:smr；未建立并网权利或具体数据中心整体范围，不沿用root。允许名单没有Oklo主体ID，不新增或借用其他企业ID。Switch在此是企业名称，不映射到网络交换机。两条所选证据统一采用上述主张级对象范围，原候选及证据标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:52:claim:3:ev:0"
+      ],
+      "id": "adoption:review:6d7380c75a005c332b5093b0",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gas-turbine",
+        "site:gas-supply"
+      ],
+      "question_ids": [
+        "OBJ-fuel-supply-interfaces",
+        "OBJ-fuel-supply-performance",
+        "OBJ-prime-power-performance"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA《Key Questions on Energy and AI》第53页在数据中心现场发电可靠性讨论中指出，发电容量超配主要防范相互独立的轮机故障；由单条天然气管道供气的现场机组仍面临可能同时影响全部轮机的燃料供应中断风险。报告发表时间未知；这是来源对现场供电冗余边界的定性判断，不构成具体项目可靠性的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T20:10:33+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。单管道供气依赖和同时失效机制实质贡献于当前燃料接口、燃料可靠性及主用自备电源性能工作单。连续完整引文和相邻可靠性讨论提供充分语境；未发现敏感内容、真实冲突或拟替换，符合B档局部采用条件。采用范围限于有明确来源归因的机制判断。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-interfaces",
+          "Q-OBJ-fuel-supply-performance",
+          "Q-OBJ-prime-power-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.805,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6abb17bc4fa281bddc030540e65e62df9780ae9d8f1136866c9c611cfb0e7965",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61378,
+            "output_tokens": 2256,
+            "reasoning_output_tokens": 235
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.9,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "73da7df972d6bee109628ce371340938fb8ca32c522a8efc30a5929d78f4d17b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61293,
+              "output_tokens": 496,
+              "reasoning_output_tokens": 165
+            }
+          }
+        },
+        "batch_id": "43ecc182532b2ab2574baac66095528edae79cac6ea9d2eb8a797602fecbd38e"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:52:claim:3"
+      ],
+      "limitations": "未给出具体轮机型号、管道及场址、供气合同、燃料中断概率与持续时间、实测方法或项目阶段。相邻容量超配示例设定于先进经济体，但本段未指定具体国家，不能直接推广为某地区的风险统计。不能量化共同燃料中断对供电可用率的影响，也不能据此认定任何已建项目符合或不符合可靠性目标。所供全文覆盖限于PDF原生文本，未完成图像核验。",
+      "conflict_check": "已检查所供当前采用陈述和相关legacy筛选记录。既有RICE启动、环境适应性、燃机灵活性及备用用途陈述讨论不同性能维度，不证明燃料供应独立，也不与本项单管道共同中断风险形成同口径冲突。未发现完整重复的规范记录。legacy匹配记录为空仅表示本批未供对应记录，不是穷尽反证检索；本项不覆盖或替换既有结论。",
+      "gap_dependency_check": "部分支持OBJ-fuel-supply-interfaces中的上游依赖识别，以及OBJ-fuel-supply-performance和OBJ-prime-power-performance中的共同失效边界。仍需场址供气拓扑、合同保障、管道中断记录、统一可靠性定义、测试或建模方法及反证。没有提供完整接口规格或可靠性测量结果，三个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "43ecc182532b2ab2574baac66095528edae79cac6ea9d2eb8a797602fecbd38e",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "ce025b86784854b9227da61e6b618ac9f60206656be8c37d867aacc399625cff"
+      },
+      "object_mapping_check": "原文明确讨论现场燃气轮机的容量超配，以及这些机组依赖单条天然气管道的供气条件，分别对应system:power下chain:power/3的燃气轮机部件和root下的天然气管道接入对象。映射依据原文对象及依赖关系独立确定，不继承Reader标签；没有依据扩大到整个数据中心、电网接入或其他备用设备。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:52:claim:4:ev:0"
+      ],
+      "id": "adoption:review:3e9caf0c3b696c4b36951113",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gas-turbine",
+        "part:backup-power",
+        "site:gas-supply"
+      ],
+      "question_ids": [
+        "OBJ-fuel-supply-alternatives",
+        "OBJ-fuel-supply-performance",
+        "OBJ-prime-power-alternatives"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA《Key Questions on Energy and AI》第53页提出，为缓解单条天然气管道供气可能同时影响全部现场轮机的燃料中断风险，可能需要额外措施，例如采用双燃料轮机并配置现场液体燃料储存，或专门增设柴油备用发电。报告发表时间未知；这些是来源提出的可能措施，该段没有给出方案成本或性能的量化比较，也未证明具体项目中的实施效果。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T20:10:33+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，评分6。两种明确的风险缓解配置实质贡献于当前燃料供给替代、可靠性及主用自备电源替代方案工作单，属于方案识别与机制层面的局部支持。完整连续引文和明确的风险指代上下文充分；保留“可能需要”的条件性表述后，未发现敏感内容、真实冲突或拟替换，符合B档采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-fuel-supply-alternatives",
+          "Q-OBJ-fuel-supply-performance",
+          "Q-OBJ-prime-power-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 55.805,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6abb17bc4fa281bddc030540e65e62df9780ae9d8f1136866c9c611cfb0e7965",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 61378,
+            "output_tokens": 2256,
+            "reasoning_output_tokens": 235
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.9,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "73da7df972d6bee109628ce371340938fb8ca32c522a8efc30a5929d78f4d17b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 61293,
+              "output_tokens": 496,
+              "reasoning_output_tokens": 165
+            }
+          }
+        },
+        "batch_id": "43ecc182532b2ab2574baac66095528edae79cac6ea9d2eb8a797602fecbd38e"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:52:claim:4"
+      ],
+      "limitations": "未指定双燃料轮机型号、第二燃料种类、储存量、保障时长、切换方式、柴油备用容量、负载恢复时间或测试条件。未提供许可、排放、补给、成本及运行可靠性比较，不能认定两种措施等效、可直接互换或足以达到目标可用率。该段未建立具体国家、场址或项目阶段，也没有实施或投运证据。所供阅读限于原生文本，图像未核验。",
+      "conflict_check": "既有燃机可转作备用及RICE备用用途陈述讨论设备用途和启动特性，本项讨论共同燃料中断的额外保障措施，未形成同条件冲突。既有关于备用切换仍需电池或柴油辅助的限制没有被本项否定；双燃料措施也未被表述为取消其他保障的充分条件。所供legacy对应筛选记录为空，未发现完整重复规范记录或真实冲突；检查限于本批材料，不替换既有结论。",
+      "gap_dependency_check": "部分支持OBJ-fuel-supply-alternatives的候选路径识别、OBJ-fuel-supply-performance的风险缓解机制，以及OBJ-prime-power-alternatives的附加配置比较线索。仍需机型和燃料兼容性、切换与过渡供电条件、储存及补给保障、统一工况下的成本和可靠性数据以及反证。不能据此证明风险已消除或完成方案优劣排序，三个问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "43ecc182532b2ab2574baac66095528edae79cac6ea9d2eb8a797602fecbd38e",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "ce025b86784854b9227da61e6b618ac9f60206656be8c37d867aacc399625cff"
+      },
+      "object_mapping_check": "连续上下文将措施明确联系到单条天然气管道供气的共同中断风险，支持天然气管道接入对象；双燃料轮机及专门增设的柴油备用发电分别对应chain:power/3下的part:gas-turbine和part:backup-power。原文仅称现场液体燃料储存，未确定储存燃料为柴油，故不映射专指柴油储运的part:fuel-storage。候选措施不代表具体设备已经采购、安装或投运。"
     }
   ],
   "answers": [],
