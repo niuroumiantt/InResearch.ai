@@ -4851,6 +4851,72 @@
       "status": "candidate",
       "stored_path": "originals/e5/e5a20fe05aae23f169cdc0ee808041c0f753caf04fa858bd6c81ac4397989ffc/dcd-e5a20fe05aae23f1-CBRE- New data center capacity under construction in primary US m.html",
       "title": "CBRE: New data center capacity under construction in primary US markets declines year-on-year"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "coverage": {
+        "characters_read": 10278,
+        "characters_total": 10278,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "library_path": "library/by-node/system-facility/2025_Data Center Dynamics（援引 N_Capital deployment in US data construction reached $31__c95d8669c246de9f.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:amazon",
+        "actor:energy-northwest",
+        "actor:kairos-power",
+        "actor:kkr",
+        "actor:meta",
+        "actor:switch",
+        "root",
+        "system:compute",
+        "system:facility"
+      ],
+      "question_ids": [
+        "M04-Q03",
+        "NODE-activity-V1-chain",
+        "NODE-activity-V1-economics",
+        "NODE-demand-D1-boundary",
+        "NODE-demand-D1-conversion",
+        "NODE-demand-D1-economics"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "report_sha256": "63dd4b11ba1d091d7220145a08d6cd4e50c5cedc69a9bbcc94dd4d3e6a405872",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+        "url": "https://www.datacenterdynamics.com/en/news/capital-deployment-in-us-data-construction-reached-315bn-in-2024-newmark/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/capital-deployment-in-us-data-construction-reached-315bn-in-2024-newmark/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/c9/c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0/dcd-c95d8669c246de9f-Capital deployment in US data construction reached -31.5bn in 202.html",
+      "title": "Capital deployment in US data construction reached $31.5bn in 2024 - Newmark"
     }
   ],
   "evidence": [
@@ -35501,6 +35567,355 @@
           }
         },
         "batch_id": "717df65ba3a075a427fdd8dcc3a99cdc9492afce37645a98c969ec1a51bb6b90"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9202bcc12573479123c932f680a3ba3a325e8ac6d2ad390f49de0b9cc61b5154",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "id": "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:9:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "system:power",
+        "chain:power/3",
+        "part:smr"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-demand-D1-boundary"
+      ],
+      "quote": "The constraints are pushing data center developers to explore alternative solutions, from natural gas-fired power plants to investments in small nuclear reactors.",
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "source_sha256": "c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:14:00+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分5。连续原文引文及完整页面上下文充分，电力约束推动开发商探索发电方案，对当前NODE-activity-V1-chain具有实质性机制线索贡献；对M04-Q02仅提供待核查的替代供电方向。作为明确归因的部分贡献采用，不回答或关闭问题。未识别敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q02",
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 99.821,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "11ca4e2ffa5369eff959711d5f7884d9b3286e97bed0e099d194fcb9ed2f8935",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64147,
+            "output_tokens": 3230,
+            "reasoning_output_tokens": 513
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.626,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fe71b60ba78812ab8baa404f0447488c9f26a8c43a4a6c1400ed5fb357187355",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 63185,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 169
+            }
+          }
+        },
+        "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9202bcc12573479123c932f680a3ba3a325e8ac6d2ad390f49de0b9cc61b5154",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "id": "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:10:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:kairos-power",
+        "part:smr"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q03"
+      ],
+      "quote": "Several SMR firms have signed agreements with data center operators in the last 12 months, including Kairos",
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "source_sha256": "c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:14:00+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分5。连续原文引文与完整页面上下文充分，明确点名的SMR协议线索对当前M04-Q03核查合同与宣传具有实质性局部贡献。仅按明确归因的来源陈述采用，不确认交付时间或关闭问题。未识别敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 99.821,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "11ca4e2ffa5369eff959711d5f7884d9b3286e97bed0e099d194fcb9ed2f8935",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64147,
+            "output_tokens": 3230,
+            "reasoning_output_tokens": 513
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.626,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fe71b60ba78812ab8baa404f0447488c9f26a8c43a4a6c1400ed5fb357187355",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 63185,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 169
+            }
+          }
+        },
+        "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9202bcc12573479123c932f680a3ba3a325e8ac6d2ad390f49de0b9cc61b5154",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "id": "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:power",
+        "chain:power/3"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q03"
+      ],
+      "quote": "In January, the firm inked an MoU with RPower",
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "source_sha256": "c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:14:00+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分5。两条引文各为连续原文片段，完整页面提供同一句及主体上下文，未省略改变含义的实质文字。Oklo与RPower的MoU及混合供电计划，对当前M04-Q03提供协议阶段核查线索，对M04-Q02提供待核查的供电路径。作为明确归因的部分贡献采用，不回答或关闭问题；未识别敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q03",
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 99.821,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "11ca4e2ffa5369eff959711d5f7884d9b3286e97bed0e099d194fcb9ed2f8935",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64147,
+            "output_tokens": 3230,
+            "reasoning_output_tokens": 513
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.626,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fe71b60ba78812ab8baa404f0447488c9f26a8c43a4a6c1400ed5fb357187355",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 63185,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 169
+            }
+          }
+        },
+        "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9202bcc12573479123c932f680a3ba3a325e8ac6d2ad390f49de0b9cc61b5154",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "id": "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:11:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "system:power",
+        "chain:power/3"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M04-Q03"
+      ],
+      "quote": "to deploy a power model that combines natural gas and nuclear power for the data center sector.",
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "source_sha256": "c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:14:00+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分5。两条引文各为连续原文片段，完整页面提供同一句及主体上下文，未省略改变含义的实质文字。Oklo与RPower的MoU及混合供电计划，对当前M04-Q03提供协议阶段核查线索，对M04-Q02提供待核查的供电路径。作为明确归因的部分贡献采用，不回答或关闭问题；未识别敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q03",
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 99.821,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "11ca4e2ffa5369eff959711d5f7884d9b3286e97bed0e099d194fcb9ed2f8935",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64147,
+            "output_tokens": 3230,
+            "reasoning_output_tokens": 513
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.626,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fe71b60ba78812ab8baa404f0447488c9f26a8c43a4a6c1400ed5fb357187355",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 63185,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 169
+            }
+          }
+        },
+        "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705"
       }
     }
   ],
@@ -69156,6 +69571,316 @@
         "request_sha256": "624615c686ae2aa04ba9adeb68d78e26c3d2fbe9a5b082f489274c8e08531dd7"
       },
       "object_mapping_check": "独立复核后，实际范围是数据中心总体需求预测的方法。合同中的root是一座AI数据中心，part:server专指加速器服务器；原文的各类服务器未区分AI服务器与通用CPU节点，也未建立具体设施下system:it的资产范围。研究预测模型不属于DCIM/BMS，项目跟踪未提供许可或并网权利陈述。因此不继承Reader的root和part:server标签，所选证据统一采用空对象范围，保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "evidence_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:9:ev:0"
+      ],
+      "id": "adoption:review:5b79c407c5242b218a4bb901",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "system:power",
+        "chain:power/3",
+        "part:smr"
+      ],
+      "question_ids": [
+        "M04-Q02",
+        "NODE-activity-V1-chain"
+      ],
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "status": "adopted",
+      "text": "DCD作者Niva Yadav在2025年2月21日的美国数据中心市场报道中称，电力约束正促使数据中心开发商探索替代供电方案，包括天然气发电厂及小型核反应堆投资。这是来源对约束与开发商探索行为的定性陈述，不构成对具体项目投资、投运或当前供电状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:14:00+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分5。连续原文引文及完整页面上下文充分，电力约束推动开发商探索发电方案，对当前NODE-activity-V1-chain具有实质性机制线索贡献；对M04-Q02仅提供待核查的替代供电方向。作为明确归因的部分贡献采用，不回答或关闭问题。未识别敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q02",
+          "Q-NODE-activity-V1-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 99.821,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "11ca4e2ffa5369eff959711d5f7884d9b3286e97bed0e099d194fcb9ed2f8935",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64147,
+            "output_tokens": 3230,
+            "reasoning_output_tokens": 513
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.626,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fe71b60ba78812ab8baa404f0447488c9f26a8c43a4a6c1400ed5fb357187355",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 63185,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 169
+            }
+          }
+        },
+        "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705"
+      },
+      "source_candidate_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:9"
+      ],
+      "limitations": "未指认开发商、项目地点、设备配置、供电容量或投资落实情况；未证明方案采用表后供电，也没有成本、运行记录、交付周期、量化影响或反例。来源为新闻报道，未提供相关开发商及公用事业机构的一手材料。",
+      "conflict_check": "已采用的adoption:review:ab5cae5937295552ed195f51讨论电力约束对选址和扩张速度的条件性影响，与本项兼容，但没有本项探索替代供电的具体内容，故不判重复。既有阶段区分、资源计划及联调验收陈述也无直接冲突。当前回答为空，所供legacy匹配记录为空；检查限于所供材料，不代表外部反证已穷尽，不替换既有结论。",
+      "gap_dependency_check": "M04-Q02仍需证明表后供电边界的一手项目资料、实际投运与运行记录、成本及经济性推导和反证。NODE-activity-V1-chain仍需逐项目资源条件、决策及交付时间线，验证约束传导、反例和领先指标。本项不提供这些验收证据，两项问题保持开放，不更新模型输入、容量汇总或研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705",
+        "source_report_sha256": "63dd4b11ba1d091d7220145a08d6cd4e50c5cedc69a9bbcc94dd4d3e6a405872",
+        "request_sha256": "7e0b69b60e6aaf27f24e0e6e5fd17b87a447d571c6005ba8fc4dd45aacb1f438"
+      },
+      "object_mapping_check": "独立依据主张选择root、system:power及其发电与储能链条：正文直接讨论数据中心开发商面对供电约束探索发电方案。小型核反应堆在相邻SMR段落语境中对应part:smr。天然气发电厂未明确机组类型，不能下沉为燃气轮机或往复式机组；也未建立天然气管道接入、并网权利或设施建筑范围。所选证据统一采用上述主张级范围，不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "evidence_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:10:ev:0"
+      ],
+      "id": "adoption:review:e623249f8b66d2013ceef424",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:kairos-power",
+        "part:smr"
+      ],
+      "question_ids": [
+        "M04-Q03"
+      ],
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "status": "adopted",
+      "text": "DCD作者Niva Yadav在2025年2月21日的美国数据中心市场报道中称，多家SMR企业在报道所述过去12个月内与数据中心运营商签署协议，其中包括Kairos。该陈述提供来源报道的协议线索，未给出Kairos协议的交付时间，不构成对合同履约或实际供电的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:14:00+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分5。连续原文引文与完整页面上下文充分，明确点名的SMR协议线索对当前M04-Q03核查合同与宣传具有实质性局部贡献。仅按明确归因的来源陈述采用，不确认交付时间或关闭问题。未识别敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q03"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 99.821,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "11ca4e2ffa5369eff959711d5f7884d9b3286e97bed0e099d194fcb9ed2f8935",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64147,
+            "output_tokens": 3230,
+            "reasoning_output_tokens": 513
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.626,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fe71b60ba78812ab8baa404f0447488c9f26a8c43a4a6c1400ed5fb357187355",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 63185,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 169
+            }
+          }
+        },
+        "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705"
+      },
+      "source_candidate_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:10"
+      ],
+      "limitations": "未列Kairos协议的具体签署日期、运营商、项目地点、合同文本、约束力、容量、审批条件或交付里程碑。美国是报道的市场背景，不能据此确定每份协议的项目所在地。过去12个月是相对于报道日期的回顾范围，不能解释为交付周期。",
+      "conflict_check": "已采用的adoption:review:f366f6d8cec1a493ed43842e区分合作意向与交付，adoption:review:c3a2f2a9023d3b0b72072f30限制以公告数量替代投运进度，均与本项限定兼容。所供已采用陈述未包含相同Kairos协议记录；当前回答及legacy匹配记录为空。未发现重复或真实冲突，检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "M04-Q03仍需Kairos及交易对手的一手协议、约束性条款、监管与工程条件、原定及修订交付里程碑、实际进度和反证，才能比较真实时间表与宣传。本项仅建立核查线索，不能用签署时间替代供电交付时间；问题保持开放，不汇总容量或调整研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705",
+        "source_report_sha256": "63dd4b11ba1d091d7220145a08d6cd4e50c5cedc69a9bbcc94dd4d3e6a405872",
+        "request_sha256": "7e0b69b60e6aaf27f24e0e6e5fd17b87a447d571c6005ba8fc4dd45aacb1f438"
+      },
+      "object_mapping_check": "独立依据正文将Kairos识别为合同允许的Kairos Power主体，并将明确的SMR范围映射到发电与储能链条下的part:smr。主张聚焦SMR企业协议，未建立具体数据中心整体、供电拓扑、并网权利或建筑设施范围，故不沿用root或文档中其他企业标签。所选证据统一采用上述主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "evidence_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:11:ev:0",
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:11:ev:1"
+      ],
+      "id": "adoption:review:fb1421a48ee877d8de37dae7",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:power",
+        "chain:power/3"
+      ],
+      "question_ids": [
+        "M04-Q03",
+        "M04-Q02"
+      ],
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "status": "adopted",
+      "text": "DCD作者Niva Yadav在2025年2月21日的美国数据中心市场报道中称，Oklo在当年1月与RPower签署谅解备忘录，拟为数据中心行业部署结合天然气与核电的供电模式。这是来源报道的合作计划，不构成对正式供电合同、交付时间、表后供电安排或实际投运状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:14:00+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性为5，评分5。两条引文各为连续原文片段，完整页面提供同一句及主体上下文，未省略改变含义的实质文字。Oklo与RPower的MoU及混合供电计划，对当前M04-Q03提供协议阶段核查线索，对M04-Q02提供待核查的供电路径。作为明确归因的部分贡献采用，不回答或关闭问题；未识别敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M04-Q03",
+          "Q-M04-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 99.821,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "11ca4e2ffa5369eff959711d5f7884d9b3286e97bed0e099d194fcb9ed2f8935",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 64147,
+            "output_tokens": 3230,
+            "reasoning_output_tokens": 513
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.626,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "fe71b60ba78812ab8baa404f0447488c9f26a8c43a4a6c1400ed5fb357187355",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 63185,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 169
+            }
+          }
+        },
+        "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705"
+      },
+      "source_candidate_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:11"
+      ],
+      "limitations": "未提供谅解备忘录全文及约束力、具体项目所在地、容量、燃气发电技术、核反应堆配置、建设主体、监管许可、成本或部署时间表。不能从MoU名称判断全部条款均不具约束力，也不能将相邻Switch协议的非约束性属性套用于本项。",
+      "conflict_check": "已采用的adoption:review:f366f6d8cec1a493ed43842e明确区分备忘录意向与实际交付，与本项保留合作阶段一致。既有开发、供电和客户使用时点及公告口径陈述也无直接冲突。所供已采用陈述没有同一Oklo与RPower合作的规范记录，当前回答及legacy匹配记录为空；未发现重复或真实冲突，检查限于所供材料，不覆盖既有结论。",
+      "gap_dependency_check": "M04-Q03仍需双方一手MoU及后续合同、监管条件、工程里程碑、承诺与实际交付时间和反证。M04-Q02仍需具体项目供电计量与拓扑证明、实际运行数据及可复查经济性推导。混合能源模式本身不能证明表后供电；两项问题保持开放，不将计划转为投运容量或更新模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "860ae6cca51189bdf2a0c9849ecb0444966017ad2b4c8a61695108fcb0d31705",
+        "source_report_sha256": "63dd4b11ba1d091d7220145a08d6cd4e50c5cedc69a9bbcc94dd4d3e6a405872",
+        "request_sha256": "7e0b69b60e6aaf27f24e0e6e5fd17b87a447d571c6005ba8fc4dd45aacb1f438"
+      },
+      "object_mapping_check": "独立选择system:power及其发电与储能链条，依据是主张明确讨论为数据中心提供天然气与核电相结合的供电模式。合同没有Oklo或RPower主体ID，不创建或借用其他企业对象。该句未明确反应堆及燃气机组类型，故不下沉到part:smr、燃气轮机或往复式机组；也未建立天然气管道、并网权利或具体数据中心整体范围。两条所选证据统一采用上述主张级范围，不沿用Reader的root标签。"
     }
   ],
   "answers": [],
