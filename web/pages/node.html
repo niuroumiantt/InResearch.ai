@@ -183,29 +183,29 @@ function fiveColumns(cells, columns) {
 
 function matrix(d) {
   const cols = Object.entries(d.columns);
-  // 一个骨架：第一层五个系统（IT 作为父级可展开成四个子系统），第九行站点权利
   const parents = d.parent_systems || [];
   const rows = [];
   const leaves = d.system_nodes;
-  const topOrder = Object.entries(d.systems || {}).filter(([, x]) => !x.parent).sort((a, b) => a[1].order - b[1].order).map(([id]) => id);
-  for (const sid of topOrder) {
-    const parent = parents.find(x => x.id === sid);
-    if (parent) { rows.push({ ...parent, kind: "parent" }); leaves.filter(e => e.parent === sid).forEach(e => rows.push({ ...e, kind: "child" })); }
-    else { const e = leaves.find(x => x.id === sid); if (e) rows.push({ ...e, kind: "top" }); }
-  }
+  const all = [...leaves, ...parents];
+  const append = (sid, depth=0) => {
+    const row = all.find(x=>x.id===sid); if(!row)return;
+    rows.push({...row, depth, kind:depth?'child':row.children?'parent':'top'});
+    (row.children || []).forEach(id=>append(id,depth+1));
+  };
+  Object.entries(d.systems || {}).filter(([,x])=>!x.parent).sort((a,b)=>a[1].order-b[1].order).forEach(([id])=>append(id));
   rows.push({ ...d.site, kind: "top" });
   const open = new URLSearchParams(location.search).get("it") === "1";
   // 列覆盖率：这一列下所有目标行的四态之和（IT 父行不重复计入其子行）
-  const colCov = n => rows.filter(r => r.kind !== "parent").reduce((a, r) => { const c = r.cells[n].coverage || {}; for (const k of ["sourced", "assumed", "delivered", "needed"]) a[k] += c[k] || 0; return a; }, { sourced: 0, assumed: 0, delivered: 0, needed: 0 });
+  const colCov = n => rows.filter(r => !r.children).reduce((a, r) => { const c = r.cells[n].coverage || {}; for (const k of ["sourced", "assumed", "delivered", "needed"]) a[k] += c[k] || 0; return a; }, { sourced: 0, assumed: 0, delivered: 0, needed: 0 });
   return `<div class="tscroll"><table id="matrix" class="${open ? "it-open" : ""}"><thead><tr><th>系统 × 五类变量</th>${cols.map(([n, name]) => { const c = colCov(n); return `<th class="${COL === n ? "hl" : ""}">${n} ${esc(name)}<span class="c">目标 已有 ${c.sourced + c.delivered} · 缺 ${c.needed}</span></th>`; }).join("")}</tr></thead><tbody>${rows.map(r => {
     const id = r.id === "site" ? "site" : "system:" + r.id;
-    const label = r.kind === "parent" ? `<button type="button" class="it-toggle" aria-expanded="${open}" title="展开 / 收起 IT 的四个子系统">${open ? "▾" : "▸"}</button> <a href="${nodeHref(id)}">${esc(r.name)}</a>` : r.kind === "child" ? `<span class="child-mark">└</span> <a href="${nodeHref(id)}">${esc(r.name.replace("IT · ", ""))}</a>` : `<a href="${nodeHref(id)}">${esc(r.name)}</a>`;
+    const label = r.kind === "parent" ? `<button type="button" class="it-toggle" aria-expanded="${open}" title="展开 / 收起 IT 分类">${open ? "▾" : "▸"}</button> <a href="${nodeHref(id)}">${esc(r.name)}</a>` : r.kind === "child" ? `<span class="child-mark" style="padding-left:${(r.depth-1)*16}px">└</span> <a href="${nodeHref(id)}">${esc(r.name.replace("IT · ", ""))}</a>` : `<a href="${nodeHref(id)}">${esc(r.name)}</a>`;
     return `<tr class="row-${r.kind}"><th>${label}</th>${cols.map(([n]) => {
       const c = r.cells[n]; const i = c.items[0];
       return `<td class="cell ${c.status} ${COL === n ? "hl" : ""}"><a href="${nodeHref(id, n)}" title="${esc(i ? i.label : "缺")} · 目标 已有 ${c.coverage.sourced} / 假设 ${c.coverage.assumed} / 已交付 ${c.coverage.delivered || 0} / 缺 ${c.coverage.needed}">${i ? `<span class="v">${fmt(i.value, i.unit)}</span>` : '<span class="v">缺</span>'}<span class="c">${esc(i ? i.label : "无来源")}</span></a></td>`;
     }).join("")}</tr>`;
   }).join("")}</tbody></table></div>
-  <div class="cov" style="margin-top:8px">左侧色条：<i class="st-sourced"></i>已有数据 <i class="st-assumed"></i>模型假设或部分目标已有 <i class="st-delivered"></i>队已交付、未成序列 <i class="st-registered"></i>只有登记数 <i class="st-needed"></i>缺。每格点开进入系统节点并停在那一列；IT 一行可展开四个子系统；灰格与虚线格就是采集任务书。</div>`;
+  <div class="cov" style="margin-top:8px">左侧色条：<i class="st-sourced"></i>已有数据 <i class="st-assumed"></i>模型假设或部分目标已有 <i class="st-delivered"></i>队已交付、未成序列 <i class="st-registered"></i>只有登记数 <i class="st-needed"></i>缺。每格点开进入系统节点并停在那一列；IT 展开计算、存储、网络，存储下分内存与持久存储；灰格与虚线格就是采集任务书。</div>`;
 }
 
 function partsTable(parts, snapshot) {
@@ -371,18 +371,19 @@ function changes(d) {
     crumbs.push([NODE, parentSys.name]);
     title = `<em>${esc(parentSys.name)}</em> 系统`; kind = `第一层节点 · 展开为 ${parentSys.children.length} 个子系统`;
     cells = parentSys.cells; const kidIds = new Set(parentSys.children);
-    const kidParts = new Set(d.system_nodes.filter(e => kidIds.has(e.id)).flatMap(e => e.parts.map(p => p.id)));
+    const allSystems = [...d.system_nodes, ...(d.parent_systems || [])];
+    const kidParts = new Set(parentSys.parts.map(p=>p.id));
     factorPred = f => (f.bom_parts || []).some(p => kidParts.has(p));
     rows = T.filter(t => t.part_id && kidParts.has(t.part_id));
-    byId("q1").textContent = "IT 是五个系统之一，再分计算、内存、存储、网络；本行是四个子系统的汇总。";
-    byId("h2").innerHTML = `它由什么组成<small>树 · 四个子系统</small>`;
-    children = `<div class="tscroll"><table><thead><tr><th>子系统</th><th>构成</th><th>运行</th><th>价格</th><th>时间</th><th>主体</th></tr></thead><tbody>${d.system_nodes.filter(e => kidIds.has(e.id)).map(e => `<tr><td><a href="${nodeHref("ecosystem:" + e.id)}">${esc(e.name.replace("IT · ", ""))}</a></td>${["1", "2", "3", "4", "5"].map(n => { const c = e.cells[n]; const i = c.items[0]; return `<td><span class="dot st-${c.status}"></span>${i ? fmt(i.value, i.unit) : '<span class="empty">缺</span>'}</td>`; }).join("")}</tr>`).join("")}</tbody></table></div>`;
-    byId("q3").textContent = "挂到 IT 任一部件的因子。";
-    byId("q4").textContent = "四个子系统全部部件的目标行，按队汇总。";
+    byId("q1").textContent = `${parentSys.name} 汇总其下全部部件；子分类分别展开，不重复计数。`;
+    byId("h2").innerHTML = `它由什么组成<small>树 · ${parentSys.children.length} 个子分类</small>`;
+    children = `<div class="tscroll"><table><thead><tr><th>子系统</th><th>构成</th><th>运行</th><th>价格</th><th>时间</th><th>主体</th></tr></thead><tbody>${allSystems.filter(e => kidIds.has(e.id)).map(e => `<tr><td><a href="${nodeHref("system:" + e.id)}">${esc(e.name.replace("IT · ", ""))}</a></td>${["1", "2", "3", "4", "5"].map(n => { const c = e.cells[n]; const i = c.items[0]; return `<td><span class="dot st-${c.status}"></span>${i ? fmt(i.value, i.unit) : '<span class="empty">缺</span>'}</td>`; }).join("")}</tr>`).join("")}</tbody></table></div>`;
+    byId("q3").textContent = "挂到本分类任一部件的因子。";
+    byId("q4").textContent = "下属全部部件的目标行，按队汇总。";
   } else if (eco) {
     if (eco.parent) crumbs.push(["system:" + eco.parent, d.systems?.[eco.parent]?.name || eco.parent]);
     crumbs.push([NODE, eco.name]);
-    title = `<em>${esc(eco.name)}</em> 系统`; kind = `${eco.parent ? "IT 的子系统" : "第一层节点"} · ${eco.parts.length} 个条目 · 链路：${(eco.chains || []).join(" → ") || "—"}`;
+    title = `<em>${esc(eco.name)}</em> 系统`; kind = `${eco.parent ? esc(d.systems?.[eco.parent]?.name || eco.parent)+"的子分类" : "第一层节点"} · ${eco.parts.length} 个条目 · 链路：${(eco.chains || []).join(" → ") || "—"}`;
     cells = eco.cells; const ids = new Set(eco.parts.map(p => p.id));
     factorPred = f => (f.bom_parts || []).some(p => ids.has(p));
     rows = T.filter(t => t.part_id && ids.has(t.part_id));

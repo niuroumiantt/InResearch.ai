@@ -184,6 +184,18 @@ def main():
                 err(f"bom.json: 键 {forbidden} 已改名 scales，不得再出现")
         kinds = set(bom.get("kinds") or {"part": ""})
         stage_ids = {s["id"] for s in bom.get("stages", [])}
+        from inresearch.knowledge.skeleton import system_path
+        systems = bom.get('systems', {})
+        for sid in systems:
+            try:
+                system_path(systems, sid)
+            except (KeyError, ValueError) as exc:
+                err(f"bom.systems[{sid}]: 非法父子关系: {exc}")
+        compute = systems.get('compute', {})
+        grouped = [pid for g in compute.get('processor_groups', []) for pid in g['parts']] + compute.get('support_parts', [])
+        expected = [p['id'] for p in bom.get('parts', []) if p.get('system') == 'compute']
+        if sorted(grouped) != sorted(expected):
+            err('bom.compute: processor_groups 与 support_parts 必须恰好覆盖计算部件且不重复')
         chain_slots = {}
         bom_part_ids = {p["id"] for p in bom.get("parts", [])}
         if len(bom_part_ids) != len(bom.get("parts", [])):

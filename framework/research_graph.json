@@ -1,9 +1,9 @@
 {
   "version": "3.0.0",
-  "updated": "2026-09-28",
+  "updated": "2026-10-10",
   "kinds": {
     "root": "数据中心（根）",
-    "system": "系统（五个顶层，IT 分四个子系统）",
+    "system": "系统（五个顶层，IT 三分、存储再分两类）",
     "chain": "系统内的能量流链路",
     "part": "部件（含软件条目与设施基型）",
     "site_right": "站点权利（园区之外并列的六条）",
@@ -106,11 +106,29 @@
       "representation": "conceptual"
     },
     {
-      "id": "system:power",
-      "name": "电力",
+      "id": "system:thermal",
+      "name": "水与散热",
       "kind": "system",
       "parent": "root",
       "order": 2,
+      "chains": [
+        "排热",
+        "冷水与 CDU",
+        "机房与机柜",
+        "芯片级"
+      ],
+      "children": [],
+      "aliases": [
+        "ecosystem:thermal"
+      ],
+      "representation": "conceptual"
+    },
+    {
+      "id": "system:power",
+      "name": "电",
+      "kind": "system",
+      "parent": "root",
+      "order": 3,
       "chains": [
         "电网接入",
         "变电",
@@ -126,34 +144,15 @@
       "representation": "conceptual"
     },
     {
-      "id": "system:thermal",
-      "name": "冷却",
-      "kind": "system",
-      "parent": "root",
-      "order": 3,
-      "chains": [
-        "排热",
-        "冷水与 CDU",
-        "机房与机柜",
-        "芯片级"
-      ],
-      "children": [],
-      "aliases": [
-        "ecosystem:thermal"
-      ],
-      "representation": "conceptual"
-    },
-    {
       "id": "system:it",
-      "name": "IT",
+      "name": "IT设施",
       "kind": "system",
       "parent": "root",
       "order": 4,
       "chains": [],
       "children": [
         "system:compute",
-        "system:memory",
-        "system:storage",
+        "system:storage-group",
         "system:network"
       ],
       "aliases": [],
@@ -175,11 +174,25 @@
       "representation": "conceptual"
     },
     {
-      "id": "system:memory",
-      "name": "IT · 内存",
+      "id": "system:storage-group",
+      "name": "IT · 存储",
       "kind": "system",
       "parent": "system:it",
       "order": 2,
+      "chains": [],
+      "children": [
+        "system:memory",
+        "system:storage"
+      ],
+      "aliases": [],
+      "representation": "conceptual"
+    },
+    {
+      "id": "system:memory",
+      "name": "IT · 内存",
+      "kind": "system",
+      "parent": "system:storage-group",
+      "order": 1,
       "chains": [
         "内存"
       ],
@@ -192,10 +205,10 @@
     },
     {
       "id": "system:storage",
-      "name": "IT · 存储",
+      "name": "IT · 持久存储",
       "kind": "system",
-      "parent": "system:it",
-      "order": 3,
+      "parent": "system:storage-group",
+      "order": 2,
       "chains": [
         "存储"
       ],
@@ -210,7 +223,7 @@
       "name": "IT · 网络",
       "kind": "system",
       "parent": "system:it",
-      "order": 4,
+      "order": 3,
       "chains": [
         "网络"
       ],
@@ -472,6 +485,265 @@
       "aliases": [],
       "representation": "conceptual",
       "description": "与消防不是同一批厂商"
+    },
+    {
+      "id": "part:dry-cooler",
+      "name": "干冷器/冷却塔/蒸发冷",
+      "kind": "part",
+      "parent": "chain:thermal/1",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "排热",
+      "chain_order": 1,
+      "stage": "mep",
+      "scale": "S1",
+      "status": "mature",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "室外排热设备，与冷水机组不是同一批厂商；待补 evapco / bac 档案"
+    },
+    {
+      "id": "part:water-treatment",
+      "name": "水处理与供水（泵站、过滤、软化）",
+      "kind": "part",
+      "parent": "chain:thermal/1",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "排热",
+      "chain_order": 2,
+      "stage": "mep",
+      "scale": "S1",
+      "status": "mature",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "取水许可是站点权利，设备在此"
+    },
+    {
+      "id": "part:chiller",
+      "name": "冷水机组",
+      "kind": "part",
+      "parent": "chain:thermal/2",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "冷水与 CDU",
+      "chain_order": 1,
+      "stage": "mep",
+      "scale": "S3",
+      "status": "mature",
+      "legacy_module": "M08",
+      "aliases": [
+        "part:heat-reject"
+      ],
+      "representation": "conceptual",
+      "description": "按冷吨计价；干冷/蒸发/冷机组合由气候与水价值决定"
+    },
+    {
+      "id": "part:chilled-water-loop",
+      "name": "冷冻水泵、管路与阀门",
+      "kind": "part",
+      "parent": "chain:thermal/2",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "冷水与 CDU",
+      "chain_order": 2,
+      "stage": "mep",
+      "scale": "S3",
+      "status": "mature",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "机电分包的一门独立生意；待补泵阀管路厂档案"
+    },
+    {
+      "id": "part:cdu",
+      "name": "CDU 与液冷分配",
+      "kind": "part",
+      "parent": "chain:thermal/2",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "冷水与 CDU",
+      "chain_order": 3,
+      "stage": "mep",
+      "scale": "S3",
+      "status": "transition",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "MW 级 CDU 已量产（2-10MW+ 平台），TCS/FWS 双环路的可用性边界"
+    },
+    {
+      "id": "part:coolant",
+      "name": "冷却液/工质",
+      "kind": "part",
+      "parent": "chain:thermal/2",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "冷水与 CDU",
+      "chain_order": 4,
+      "stage": "mep",
+      "scale": "S4",
+      "status": "mature",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "冷却液与工质——液冷环路的化学约束"
+    },
+    {
+      "id": "part:room-cooling",
+      "name": "机房空气冷却（CRAH/CRAC/风墙）",
+      "kind": "part",
+      "parent": "chain:thermal/3",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 1,
+      "stage": "mep",
+      "scale": "S3",
+      "status": "mature",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "液冷时代空气系统不消失——冷板留下 10-30% 余热仍走空气"
+    },
+    {
+      "id": "part:immersion",
+      "name": "浸没式液冷槽/系统",
+      "kind": "part",
+      "parent": "chain:thermal/3",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 2,
+      "stage": "mep",
+      "scale": "S3",
+      "status": "emerging",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "浸没式液冷的设备条目（槽体与系统）；技术路线是它的属性，不是零件"
+    },
+    {
+      "id": "part:sidecar-hx",
+      "name": "机柜级液-气换热器（RDHx/Sidecar）",
+      "kind": "part",
+      "parent": "chain:thermal/3",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 3,
+      "stage": "mep",
+      "scale": "S4",
+      "status": "transition",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "机柜级液-气热交换（sidecar/RDHx）——NVL72 时代介于 CDU 与机柜之间的新层级，此前两头都不算它"
+    },
+    {
+      "id": "part:manifold",
+      "name": "机柜歧管与管路",
+      "kind": "part",
+      "parent": "chain:thermal/3",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 4,
+      "stage": "mep",
+      "scale": "S4",
+      "status": "tight",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "快接头/软管/水质是液冷可用性的隐形风险点"
+    },
+    {
+      "id": "part:quick-disconnect",
+      "name": "快接头",
+      "kind": "part",
+      "parent": "chain:thermal/3",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 5,
+      "stage": "mep",
+      "scale": "S4",
+      "status": "tight",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "供应商集中、认证周期长的隐形风险点"
+    },
+    {
+      "id": "part:leak-detection",
+      "name": "漏液检测",
+      "kind": "part",
+      "parent": "chain:thermal/3",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "机房与机柜",
+      "chain_order": 6,
+      "stage": "mep",
+      "scale": "S3",
+      "status": "tight",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "漏液检测——液冷进机房后的新增安全层"
+    },
+    {
+      "id": "part:coldplate",
+      "name": "冷板",
+      "kind": "part",
+      "parent": "chain:thermal/4",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "芯片级",
+      "chain_order": 1,
+      "stage": "it",
+      "scale": "S5",
+      "status": "transition",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "入液热捕获率 70-90%；GPU/OEM 认证是专业厂商的护城河"
+    },
+    {
+      "id": "part:heatsink-vc",
+      "name": "均热板与散热器",
+      "kind": "part",
+      "parent": "chain:thermal/4",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "芯片级",
+      "chain_order": 2,
+      "stage": "it",
+      "scale": "S5",
+      "status": "mature",
+      "legacy_module": "M08",
+      "aliases": [],
+      "representation": "conceptual",
+      "description": "风冷末端与混合散热的常青件"
+    },
+    {
+      "id": "part:server-fan",
+      "name": "服务器风扇",
+      "kind": "part",
+      "parent": "chain:thermal/4",
+      "part_kind": "part",
+      "system": "thermal",
+      "chain": "芯片级",
+      "chain_order": 3,
+      "stage": "it",
+      "scale": "S5",
+      "status": "mature",
+      "legacy_module": "M08",
+      "aliases": [
+        "part:fan-vc"
+      ],
+      "representation": "conceptual",
+      "description": "与均热板/散热器不是同一批厂商"
     },
     {
       "id": "part:hv-switchyard",
@@ -801,265 +1073,6 @@
       "aliases": [],
       "representation": "conceptual",
       "description": "GPU 千瓦时代的板级供电——垂直供电（VPD）与电源级密度是 psu 之外独立的瓶颈件"
-    },
-    {
-      "id": "part:dry-cooler",
-      "name": "干冷器/冷却塔/蒸发冷",
-      "kind": "part",
-      "parent": "chain:thermal/1",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "排热",
-      "chain_order": 1,
-      "stage": "mep",
-      "scale": "S1",
-      "status": "mature",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "室外排热设备，与冷水机组不是同一批厂商；待补 evapco / bac 档案"
-    },
-    {
-      "id": "part:water-treatment",
-      "name": "水处理与供水（泵站、过滤、软化）",
-      "kind": "part",
-      "parent": "chain:thermal/1",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "排热",
-      "chain_order": 2,
-      "stage": "mep",
-      "scale": "S1",
-      "status": "mature",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "取水许可是站点权利，设备在此"
-    },
-    {
-      "id": "part:chiller",
-      "name": "冷水机组",
-      "kind": "part",
-      "parent": "chain:thermal/2",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "冷水与 CDU",
-      "chain_order": 1,
-      "stage": "mep",
-      "scale": "S3",
-      "status": "mature",
-      "legacy_module": "M08",
-      "aliases": [
-        "part:heat-reject"
-      ],
-      "representation": "conceptual",
-      "description": "按冷吨计价；干冷/蒸发/冷机组合由气候与水价值决定"
-    },
-    {
-      "id": "part:chilled-water-loop",
-      "name": "冷冻水泵、管路与阀门",
-      "kind": "part",
-      "parent": "chain:thermal/2",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "冷水与 CDU",
-      "chain_order": 2,
-      "stage": "mep",
-      "scale": "S3",
-      "status": "mature",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "机电分包的一门独立生意；待补泵阀管路厂档案"
-    },
-    {
-      "id": "part:cdu",
-      "name": "CDU 与液冷分配",
-      "kind": "part",
-      "parent": "chain:thermal/2",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "冷水与 CDU",
-      "chain_order": 3,
-      "stage": "mep",
-      "scale": "S3",
-      "status": "transition",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "MW 级 CDU 已量产（2-10MW+ 平台），TCS/FWS 双环路的可用性边界"
-    },
-    {
-      "id": "part:coolant",
-      "name": "冷却液/工质",
-      "kind": "part",
-      "parent": "chain:thermal/2",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "冷水与 CDU",
-      "chain_order": 4,
-      "stage": "mep",
-      "scale": "S4",
-      "status": "mature",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "冷却液与工质——液冷环路的化学约束"
-    },
-    {
-      "id": "part:room-cooling",
-      "name": "机房空气冷却（CRAH/CRAC/风墙）",
-      "kind": "part",
-      "parent": "chain:thermal/3",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "机房与机柜",
-      "chain_order": 1,
-      "stage": "mep",
-      "scale": "S3",
-      "status": "mature",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "液冷时代空气系统不消失——冷板留下 10-30% 余热仍走空气"
-    },
-    {
-      "id": "part:immersion",
-      "name": "浸没式液冷槽/系统",
-      "kind": "part",
-      "parent": "chain:thermal/3",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "机房与机柜",
-      "chain_order": 2,
-      "stage": "mep",
-      "scale": "S3",
-      "status": "emerging",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "浸没式液冷的设备条目（槽体与系统）；技术路线是它的属性，不是零件"
-    },
-    {
-      "id": "part:sidecar-hx",
-      "name": "机柜级液-气换热器（RDHx/Sidecar）",
-      "kind": "part",
-      "parent": "chain:thermal/3",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "机房与机柜",
-      "chain_order": 3,
-      "stage": "mep",
-      "scale": "S4",
-      "status": "transition",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "机柜级液-气热交换（sidecar/RDHx）——NVL72 时代介于 CDU 与机柜之间的新层级，此前两头都不算它"
-    },
-    {
-      "id": "part:manifold",
-      "name": "机柜歧管与管路",
-      "kind": "part",
-      "parent": "chain:thermal/3",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "机房与机柜",
-      "chain_order": 4,
-      "stage": "mep",
-      "scale": "S4",
-      "status": "tight",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "快接头/软管/水质是液冷可用性的隐形风险点"
-    },
-    {
-      "id": "part:quick-disconnect",
-      "name": "快接头",
-      "kind": "part",
-      "parent": "chain:thermal/3",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "机房与机柜",
-      "chain_order": 5,
-      "stage": "mep",
-      "scale": "S4",
-      "status": "tight",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "供应商集中、认证周期长的隐形风险点"
-    },
-    {
-      "id": "part:leak-detection",
-      "name": "漏液检测",
-      "kind": "part",
-      "parent": "chain:thermal/3",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "机房与机柜",
-      "chain_order": 6,
-      "stage": "mep",
-      "scale": "S3",
-      "status": "tight",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "漏液检测——液冷进机房后的新增安全层"
-    },
-    {
-      "id": "part:coldplate",
-      "name": "冷板",
-      "kind": "part",
-      "parent": "chain:thermal/4",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "芯片级",
-      "chain_order": 1,
-      "stage": "it",
-      "scale": "S5",
-      "status": "transition",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "入液热捕获率 70-90%；GPU/OEM 认证是专业厂商的护城河"
-    },
-    {
-      "id": "part:heatsink-vc",
-      "name": "均热板与散热器",
-      "kind": "part",
-      "parent": "chain:thermal/4",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "芯片级",
-      "chain_order": 2,
-      "stage": "it",
-      "scale": "S5",
-      "status": "mature",
-      "legacy_module": "M08",
-      "aliases": [],
-      "representation": "conceptual",
-      "description": "风冷末端与混合散热的常青件"
-    },
-    {
-      "id": "part:server-fan",
-      "name": "服务器风扇",
-      "kind": "part",
-      "parent": "chain:thermal/4",
-      "part_kind": "part",
-      "system": "thermal",
-      "chain": "芯片级",
-      "chain_order": 3,
-      "stage": "it",
-      "scale": "S5",
-      "status": "mature",
-      "legacy_module": "M08",
-      "aliases": [
-        "part:fan-vc"
-      ],
-      "representation": "conceptual",
-      "description": "与均热板/散热器不是同一批厂商"
     },
     {
       "id": "part:rack-system",
@@ -4742,16 +4755,16 @@
       "representation": "conceptual"
     },
     {
-      "id": "part_of:system:power>root",
+      "id": "part_of:system:thermal>root",
       "type": "part_of",
-      "source": "system:power",
+      "source": "system:thermal",
       "target": "root",
       "representation": "conceptual"
     },
     {
-      "id": "part_of:system:thermal>root",
+      "id": "part_of:system:power>root",
       "type": "part_of",
-      "source": "system:thermal",
+      "source": "system:power",
       "target": "root",
       "representation": "conceptual"
     },
@@ -4770,17 +4783,24 @@
       "representation": "conceptual"
     },
     {
-      "id": "part_of:system:memory>system:it",
+      "id": "part_of:system:storage-group>system:it",
       "type": "part_of",
-      "source": "system:memory",
+      "source": "system:storage-group",
       "target": "system:it",
       "representation": "conceptual"
     },
     {
-      "id": "part_of:system:storage>system:it",
+      "id": "part_of:system:memory>system:storage-group",
+      "type": "part_of",
+      "source": "system:memory",
+      "target": "system:storage-group",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:system:storage>system:storage-group",
       "type": "part_of",
       "source": "system:storage",
-      "target": "system:it",
+      "target": "system:storage-group",
       "representation": "conceptual"
     },
     {
@@ -5040,6 +5060,412 @@
       "type": "supplies",
       "source": "actor:cn-security-group",
       "target": "part:security",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:dry-cooler>chain:thermal/1",
+      "type": "part_of",
+      "source": "part:dry-cooler",
+      "target": "chain:thermal/1",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:munters>part:dry-cooler",
+      "type": "supplies",
+      "source": "actor:munters",
+      "target": "part:dry-cooler",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:modine-airedale>part:dry-cooler",
+      "type": "supplies",
+      "source": "actor:modine-airedale",
+      "target": "part:dry-cooler",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:water-treatment>chain:thermal/1",
+      "type": "part_of",
+      "source": "part:water-treatment",
+      "target": "chain:thermal/1",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:ecolab>part:water-treatment",
+      "type": "supplies",
+      "source": "actor:ecolab",
+      "target": "part:water-treatment",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:ecolab-veolia>part:water-treatment",
+      "type": "supplies",
+      "source": "actor:ecolab-veolia",
+      "target": "part:water-treatment",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:chiller>chain:thermal/2",
+      "type": "part_of",
+      "source": "part:chiller",
+      "target": "chain:thermal/2",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:johnson-controls>part:chiller",
+      "type": "supplies",
+      "source": "actor:johnson-controls",
+      "target": "part:chiller",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:trane>part:chiller",
+      "type": "supplies",
+      "source": "actor:trane",
+      "target": "part:chiller",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:johnson-controls-trane-carrier-modine>part:chiller",
+      "type": "supplies",
+      "source": "actor:johnson-controls-trane-carrier-modine",
+      "target": "part:chiller",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:chilled-water-loop>chain:thermal/2",
+      "type": "part_of",
+      "source": "part:chilled-water-loop",
+      "target": "chain:thermal/2",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:cdu>chain:thermal/2",
+      "type": "part_of",
+      "source": "part:cdu",
+      "target": "chain:thermal/2",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:coolit-systems>part:cdu",
+      "type": "supplies",
+      "source": "actor:coolit-systems",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:vertiv>part:cdu",
+      "type": "supplies",
+      "source": "actor:vertiv",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:schneider-electric>part:cdu",
+      "type": "supplies",
+      "source": "actor:schneider-electric",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:munters>part:cdu",
+      "type": "supplies",
+      "source": "actor:munters",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:johnson-controls>part:cdu",
+      "type": "supplies",
+      "source": "actor:johnson-controls",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:modine-airedale>part:cdu",
+      "type": "supplies",
+      "source": "actor:modine-airedale",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:motivair-by-schneider>part:cdu",
+      "type": "supplies",
+      "source": "actor:motivair-by-schneider",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:boyd>part:cdu",
+      "type": "supplies",
+      "source": "actor:boyd",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:nvent>part:cdu",
+      "type": "supplies",
+      "source": "actor:nvent",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:envicool>part:cdu",
+      "type": "supplies",
+      "source": "actor:envicool",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:shenling>part:cdu",
+      "type": "supplies",
+      "source": "actor:shenling",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:goaland>part:cdu",
+      "type": "supplies",
+      "source": "actor:goaland",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:cn-cooling-group>part:cdu",
+      "type": "supplies",
+      "source": "actor:cn-cooling-group",
+      "target": "part:cdu",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:coolant>chain:thermal/2",
+      "type": "part_of",
+      "source": "part:coolant",
+      "target": "chain:thermal/2",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:chemours>part:coolant",
+      "type": "supplies",
+      "source": "actor:chemours",
+      "target": "part:coolant",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:room-cooling>chain:thermal/3",
+      "type": "part_of",
+      "source": "part:room-cooling",
+      "target": "chain:thermal/3",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:vertiv>part:room-cooling",
+      "type": "supplies",
+      "source": "actor:vertiv",
+      "target": "part:room-cooling",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:munters>part:room-cooling",
+      "type": "supplies",
+      "source": "actor:munters",
+      "target": "part:room-cooling",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:johnson-controls>part:room-cooling",
+      "type": "supplies",
+      "source": "actor:johnson-controls",
+      "target": "part:room-cooling",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:modine-airedale>part:room-cooling",
+      "type": "supplies",
+      "source": "actor:modine-airedale",
+      "target": "part:room-cooling",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:stulz>part:room-cooling",
+      "type": "supplies",
+      "source": "actor:stulz",
+      "target": "part:room-cooling",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:immersion>chain:thermal/3",
+      "type": "part_of",
+      "source": "part:immersion",
+      "target": "chain:thermal/3",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:liquidstack-submer-grc>part:immersion",
+      "type": "supplies",
+      "source": "actor:liquidstack-submer-grc",
+      "target": "part:immersion",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:sugon-dcu>part:immersion",
+      "type": "supplies",
+      "source": "actor:sugon-dcu",
+      "target": "part:immersion",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:sidecar-hx>chain:thermal/3",
+      "type": "part_of",
+      "source": "part:sidecar-hx",
+      "target": "chain:thermal/3",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:nvent>part:sidecar-hx",
+      "type": "supplies",
+      "source": "actor:nvent",
+      "target": "part:sidecar-hx",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:motivair>part:sidecar-hx",
+      "type": "supplies",
+      "source": "actor:motivair",
+      "target": "part:sidecar-hx",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:coolit-systems>part:sidecar-hx",
+      "type": "supplies",
+      "source": "actor:coolit-systems",
+      "target": "part:sidecar-hx",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:boyd>part:sidecar-hx",
+      "type": "supplies",
+      "source": "actor:boyd",
+      "target": "part:sidecar-hx",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:manifold>chain:thermal/3",
+      "type": "part_of",
+      "source": "part:manifold",
+      "target": "chain:thermal/3",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:coolit-systems>part:manifold",
+      "type": "supplies",
+      "source": "actor:coolit-systems",
+      "target": "part:manifold",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:vertiv>part:manifold",
+      "type": "supplies",
+      "source": "actor:vertiv",
+      "target": "part:manifold",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:quick-disconnect>chain:thermal/3",
+      "type": "part_of",
+      "source": "part:quick-disconnect",
+      "target": "chain:thermal/3",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:staubli-cpc-parker-danfoss>part:quick-disconnect",
+      "type": "supplies",
+      "source": "actor:staubli-cpc-parker-danfoss",
+      "target": "part:quick-disconnect",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:leak-detection>chain:thermal/3",
+      "type": "part_of",
+      "source": "part:leak-detection",
+      "target": "chain:thermal/3",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:ttk-rle-nvent>part:leak-detection",
+      "type": "supplies",
+      "source": "actor:ttk-rle-nvent",
+      "target": "part:leak-detection",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:coldplate>chain:thermal/4",
+      "type": "part_of",
+      "source": "part:coldplate",
+      "target": "chain:thermal/4",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:coolit-systems>part:coldplate",
+      "type": "supplies",
+      "source": "actor:coolit-systems",
+      "target": "part:coldplate",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:motivair>part:coldplate",
+      "type": "supplies",
+      "source": "actor:motivair",
+      "target": "part:coldplate",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:zutacore>part:coldplate",
+      "type": "supplies",
+      "source": "actor:zutacore",
+      "target": "part:coldplate",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:accelsius>part:coldplate",
+      "type": "supplies",
+      "source": "actor:accelsius",
+      "target": "part:coldplate",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:zutacore-accelsius>part:coldplate",
+      "type": "supplies",
+      "source": "actor:zutacore-accelsius",
+      "target": "part:coldplate",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:heatsink-vc>chain:thermal/4",
+      "type": "part_of",
+      "source": "part:heatsink-vc",
+      "target": "chain:thermal/4",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:nidec-ebm-papst-avc-auras>part:heatsink-vc",
+      "type": "supplies",
+      "source": "actor:nidec-ebm-papst-avc-auras",
+      "target": "part:heatsink-vc",
+      "representation": "conceptual"
+    },
+    {
+      "id": "part_of:part:server-fan>chain:thermal/4",
+      "type": "part_of",
+      "source": "part:server-fan",
+      "target": "chain:thermal/4",
+      "representation": "conceptual"
+    },
+    {
+      "id": "supplies:actor:nidec-ebm-papst-avc-auras>part:server-fan",
+      "type": "supplies",
+      "source": "actor:nidec-ebm-papst-avc-auras",
+      "target": "part:server-fan",
       "representation": "conceptual"
     },
     {
@@ -5551,412 +5977,6 @@
       "type": "supplies",
       "source": "actor:delta-electronics",
       "target": "part:vrm",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:dry-cooler>chain:thermal/1",
-      "type": "part_of",
-      "source": "part:dry-cooler",
-      "target": "chain:thermal/1",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:munters>part:dry-cooler",
-      "type": "supplies",
-      "source": "actor:munters",
-      "target": "part:dry-cooler",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:modine-airedale>part:dry-cooler",
-      "type": "supplies",
-      "source": "actor:modine-airedale",
-      "target": "part:dry-cooler",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:water-treatment>chain:thermal/1",
-      "type": "part_of",
-      "source": "part:water-treatment",
-      "target": "chain:thermal/1",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:ecolab>part:water-treatment",
-      "type": "supplies",
-      "source": "actor:ecolab",
-      "target": "part:water-treatment",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:ecolab-veolia>part:water-treatment",
-      "type": "supplies",
-      "source": "actor:ecolab-veolia",
-      "target": "part:water-treatment",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:chiller>chain:thermal/2",
-      "type": "part_of",
-      "source": "part:chiller",
-      "target": "chain:thermal/2",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:johnson-controls>part:chiller",
-      "type": "supplies",
-      "source": "actor:johnson-controls",
-      "target": "part:chiller",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:trane>part:chiller",
-      "type": "supplies",
-      "source": "actor:trane",
-      "target": "part:chiller",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:johnson-controls-trane-carrier-modine>part:chiller",
-      "type": "supplies",
-      "source": "actor:johnson-controls-trane-carrier-modine",
-      "target": "part:chiller",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:chilled-water-loop>chain:thermal/2",
-      "type": "part_of",
-      "source": "part:chilled-water-loop",
-      "target": "chain:thermal/2",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:cdu>chain:thermal/2",
-      "type": "part_of",
-      "source": "part:cdu",
-      "target": "chain:thermal/2",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:coolit-systems>part:cdu",
-      "type": "supplies",
-      "source": "actor:coolit-systems",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:vertiv>part:cdu",
-      "type": "supplies",
-      "source": "actor:vertiv",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:schneider-electric>part:cdu",
-      "type": "supplies",
-      "source": "actor:schneider-electric",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:munters>part:cdu",
-      "type": "supplies",
-      "source": "actor:munters",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:johnson-controls>part:cdu",
-      "type": "supplies",
-      "source": "actor:johnson-controls",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:modine-airedale>part:cdu",
-      "type": "supplies",
-      "source": "actor:modine-airedale",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:motivair-by-schneider>part:cdu",
-      "type": "supplies",
-      "source": "actor:motivair-by-schneider",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:boyd>part:cdu",
-      "type": "supplies",
-      "source": "actor:boyd",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:nvent>part:cdu",
-      "type": "supplies",
-      "source": "actor:nvent",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:envicool>part:cdu",
-      "type": "supplies",
-      "source": "actor:envicool",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:shenling>part:cdu",
-      "type": "supplies",
-      "source": "actor:shenling",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:goaland>part:cdu",
-      "type": "supplies",
-      "source": "actor:goaland",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:cn-cooling-group>part:cdu",
-      "type": "supplies",
-      "source": "actor:cn-cooling-group",
-      "target": "part:cdu",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:coolant>chain:thermal/2",
-      "type": "part_of",
-      "source": "part:coolant",
-      "target": "chain:thermal/2",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:chemours>part:coolant",
-      "type": "supplies",
-      "source": "actor:chemours",
-      "target": "part:coolant",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:room-cooling>chain:thermal/3",
-      "type": "part_of",
-      "source": "part:room-cooling",
-      "target": "chain:thermal/3",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:vertiv>part:room-cooling",
-      "type": "supplies",
-      "source": "actor:vertiv",
-      "target": "part:room-cooling",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:munters>part:room-cooling",
-      "type": "supplies",
-      "source": "actor:munters",
-      "target": "part:room-cooling",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:johnson-controls>part:room-cooling",
-      "type": "supplies",
-      "source": "actor:johnson-controls",
-      "target": "part:room-cooling",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:modine-airedale>part:room-cooling",
-      "type": "supplies",
-      "source": "actor:modine-airedale",
-      "target": "part:room-cooling",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:stulz>part:room-cooling",
-      "type": "supplies",
-      "source": "actor:stulz",
-      "target": "part:room-cooling",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:immersion>chain:thermal/3",
-      "type": "part_of",
-      "source": "part:immersion",
-      "target": "chain:thermal/3",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:liquidstack-submer-grc>part:immersion",
-      "type": "supplies",
-      "source": "actor:liquidstack-submer-grc",
-      "target": "part:immersion",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:sugon-dcu>part:immersion",
-      "type": "supplies",
-      "source": "actor:sugon-dcu",
-      "target": "part:immersion",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:sidecar-hx>chain:thermal/3",
-      "type": "part_of",
-      "source": "part:sidecar-hx",
-      "target": "chain:thermal/3",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:nvent>part:sidecar-hx",
-      "type": "supplies",
-      "source": "actor:nvent",
-      "target": "part:sidecar-hx",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:motivair>part:sidecar-hx",
-      "type": "supplies",
-      "source": "actor:motivair",
-      "target": "part:sidecar-hx",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:coolit-systems>part:sidecar-hx",
-      "type": "supplies",
-      "source": "actor:coolit-systems",
-      "target": "part:sidecar-hx",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:boyd>part:sidecar-hx",
-      "type": "supplies",
-      "source": "actor:boyd",
-      "target": "part:sidecar-hx",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:manifold>chain:thermal/3",
-      "type": "part_of",
-      "source": "part:manifold",
-      "target": "chain:thermal/3",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:coolit-systems>part:manifold",
-      "type": "supplies",
-      "source": "actor:coolit-systems",
-      "target": "part:manifold",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:vertiv>part:manifold",
-      "type": "supplies",
-      "source": "actor:vertiv",
-      "target": "part:manifold",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:quick-disconnect>chain:thermal/3",
-      "type": "part_of",
-      "source": "part:quick-disconnect",
-      "target": "chain:thermal/3",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:staubli-cpc-parker-danfoss>part:quick-disconnect",
-      "type": "supplies",
-      "source": "actor:staubli-cpc-parker-danfoss",
-      "target": "part:quick-disconnect",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:leak-detection>chain:thermal/3",
-      "type": "part_of",
-      "source": "part:leak-detection",
-      "target": "chain:thermal/3",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:ttk-rle-nvent>part:leak-detection",
-      "type": "supplies",
-      "source": "actor:ttk-rle-nvent",
-      "target": "part:leak-detection",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:coldplate>chain:thermal/4",
-      "type": "part_of",
-      "source": "part:coldplate",
-      "target": "chain:thermal/4",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:coolit-systems>part:coldplate",
-      "type": "supplies",
-      "source": "actor:coolit-systems",
-      "target": "part:coldplate",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:motivair>part:coldplate",
-      "type": "supplies",
-      "source": "actor:motivair",
-      "target": "part:coldplate",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:zutacore>part:coldplate",
-      "type": "supplies",
-      "source": "actor:zutacore",
-      "target": "part:coldplate",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:accelsius>part:coldplate",
-      "type": "supplies",
-      "source": "actor:accelsius",
-      "target": "part:coldplate",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:zutacore-accelsius>part:coldplate",
-      "type": "supplies",
-      "source": "actor:zutacore-accelsius",
-      "target": "part:coldplate",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:heatsink-vc>chain:thermal/4",
-      "type": "part_of",
-      "source": "part:heatsink-vc",
-      "target": "chain:thermal/4",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:nidec-ebm-papst-avc-auras>part:heatsink-vc",
-      "type": "supplies",
-      "source": "actor:nidec-ebm-papst-avc-auras",
-      "target": "part:heatsink-vc",
-      "representation": "conceptual"
-    },
-    {
-      "id": "part_of:part:server-fan>chain:thermal/4",
-      "type": "part_of",
-      "source": "part:server-fan",
-      "target": "chain:thermal/4",
-      "representation": "conceptual"
-    },
-    {
-      "id": "supplies:actor:nidec-ebm-papst-avc-auras>part:server-fan",
-      "type": "supplies",
-      "source": "actor:nidec-ebm-papst-avc-auras",
-      "target": "part:server-fan",
       "representation": "conceptual"
     },
     {

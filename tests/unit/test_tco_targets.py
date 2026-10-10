@@ -36,6 +36,13 @@ class TcoTargetListTests(unittest.TestCase):
         self.assertEqual(targets_mod.render(built), (ROOT / targets_mod.TARGETS).read_text(encoding='utf-8'),
                          'framework/tco_targets.json is stale; run python3 manage.py targets --refresh')
 
+    def test_classification_update_does_not_move_deadlines(self):
+        bom = load('framework/bom.json')
+        self.assertLess(bom['schedule_updated'], bom['updated'])
+        implicit = targets_mod.build(ROOT)
+        explicit = targets_mod.build(ROOT, bom['schedule_updated'])
+        self.assertEqual({r['id']:r['next_due'] for r in implicit['targets']}, {r['id']:r['next_due'] for r in explicit['targets']})
+
     def test_ids_unique_and_fields_complete(self):
         ids = [t['id'] for t in self.targets]
         self.assertEqual(len(ids), len(set(ids)))

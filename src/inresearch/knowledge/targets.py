@@ -18,6 +18,7 @@ price records carrying ``target_id``) that is not yet a series; nothing that liv
 runtime store counts. Rows of teams that are not connected carry no due date.
 """
 import argparse
+from inresearch.knowledge.skeleton import system_path, system_key
 import csv
 import datetime as dt
 import json
@@ -132,7 +133,7 @@ def build(root=ROOT, as_of=None):
                 card_targets.add(c['target_id'])
     price_targets = {r['target_id'] for r in prices if r.get('target_id')}
     hosts = {k: v['host'] for k, v in contract['execution_policy'].items() if isinstance(v, dict) and 'host' in v}
-    as_of = as_of or max(factors_doc.get('updated', ''), bom.get('updated', ''))
+    as_of = as_of or max(factors_doc.get('updated', ''), bom.get('schedule_updated', bom.get('updated', '')))
     base_day = dt.date.fromisoformat(as_of)
 
     factors = {f['id']: f for f in factors_doc['factors']}
@@ -222,17 +223,13 @@ def build(root=ROOT, as_of=None):
     # 2. part targets: data classes a part has by construction; rows walk each system's chain from upstream
     systems = bom.get('systems', {})
     def sys_rank(p):
-        s = systems.get(p['system'], {})
-        if not isinstance(s, dict):
-            return (99, 0)
-        parent = systems.get(s.get('parent') or '', {})
-        return ((parent.get('order', 0) if s.get('parent') else s.get('order', 0)), s.get('order', 0) if s.get('parent') else 0)
+        return system_key(systems, p['system'])
     chain_pos = {}
     for sid, s in systems.items():
         if isinstance(s, dict):
             for i, c in enumerate(s.get('chains', [])):
                 chain_pos[(sid, c)] = i
-    for p in sorted(bom['parts'], key=lambda p: (*sys_rank(p), chain_pos.get((p['system'], p.get('chain')), 99), p.get('chain_order', 99))):
+    for p in sorted(bom['parts'], key=lambda p: (sys_rank(p), chain_pos.get((p['system'], p.get('chain')), 99), p.get('chain_order', 99))):
         lines = [f"{companies.get(r['company_id'], r['company_id'])} · {r['product_line']}"
                  for r in products if p['id'] in (r.get('bom_parts') or [])]
         names = [companies.get(c, c) for c in p['companies']]

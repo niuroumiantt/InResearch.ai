@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10.70",
+  "version": "2026.10.10.71",
   "effective_at": "2026-10-10",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -175,7 +175,7 @@
       "topic": "products",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-10-02",
+      "effective_at": "2026-10-10",
       "source": "framework/03_bom_and_collaboration.md",
       "implementations": [
         "src/inresearch/knowledge/registry.py",
@@ -198,13 +198,24 @@
         "tests/unit/test_bom.py",
         "data/companies.json",
         "src/inresearch/workflow/compute_catalog.py",
-        "tests/unit/test_compute_catalog.py"
+        "tests/unit/test_compute_catalog.py",
+        "src/inresearch/knowledge/skeleton.py",
+        "src/inresearch/knowledge/graph.py",
+        "src/inresearch/knowledge/dashboard.py",
+        "src/inresearch/knowledge/targets.py",
+        "web/pages/node.html",
+        "web/components/targets.js",
+        "tests/unit/test_dashboard.py",
+        "src/inresearch/workflow/dispatch.py",
+        "tests/unit/test_target_dispatch.py",
+        "tests/unit/test_tco_targets.py"
       ],
       "supersedes": [
         "products-legacy"
       ],
       "reason": "用户采用的新基准替代同范围旧规则；本次对齐正式文档、实现与入口。；2026-09-13 现行标准复审：C3 权威归一、候选分流/内容身份、提交失败阶段及规范验收映射对齐，未覆盖能力明确披露。；2026-09-14 视觉资产内容身份/候选与采用归一，共享导入、发布投影及 GLB 加载替换；HDR/面板纹理、构图和研究证据采用仍分别待验。；2026-09-28 一个骨架：第一层按系统、系统内按链路、尺度是属性；骨架的三个补充（建设阶段、部件级运行行、登记表两列）登记为现行。；2026-10-02 计算芯片补充：按具体产品 CPU/GPU/其他加速器与形态独立投影，原厂 navigation 保留，复用公司ID与母公司关系，中国厂商筛选，来源/架构证据校验，候选与真实交付分开。；第二批：独立模组、证据支持的芯片关系、增量保留生产目录，服务器和内存存储不混入计算芯片。；2026-10-07按物理园区的十二角度信息清单和有方向的多角色关系登记，未知留位；不新增对象类型。",
-      "implementation_revision": "2026.10.03.1"
+      "implementation_revision": "2026.10.10.71",
+      "change_reason": "；2026-10-10用户确认五类与IT三分、存储再分、处理器三分及同色分类总图，替代旧IT四直属分类；保留叶子ID，递归排序/汇总及节点/采集/3D对齐。"
     },
     {
       "id": "reading-legacy",
@@ -593,7 +604,7 @@
       "topic": "product-ecosystems",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-09-28",
+      "effective_at": "2026-10-10",
       "source": "framework/03_bom_and_collaboration.md",
       "implementations": [
         "framework/bom.json",
@@ -608,12 +619,22 @@
         "web/components/research-graph.js",
         "src/inresearch/knowledge/navigation.py",
         "src/inresearch/knowledge/registry.py",
-        "src/inresearch/workflow/reader.py"
+        "src/inresearch/workflow/reader.py",
+        "src/inresearch/knowledge/skeleton.py",
+        "src/inresearch/knowledge/graph.py",
+        "src/inresearch/knowledge/dashboard.py",
+        "src/inresearch/knowledge/targets.py",
+        "web/pages/node.html",
+        "web/components/targets.js",
+        "tests/unit/test_bom.py",
+        "tests/unit/test_dashboard.py"
       ],
       "supersedes": [
         "product-ecosystems-20260906"
       ],
-      "reason": "八生态入口、主生态与九主题退役：产品目录按骨架部件进入（部件 → 厂商产品线 → 型号），生态不再是任何视图的第一层；本主题的现行正文并入 03「一个骨架」与「骨架的三个补充」。旧实现文件在页面改写完成前保留于实现清单，随迁移各步移除。；2026-10-07按物理园区的十二角度信息清单和有方向的多角色关系登记，未知留位；不新增对象类型。"
+      "reason": "八生态入口、主生态与九主题退役：产品目录按骨架部件进入（部件 → 厂商产品线 → 型号），生态不再是任何视图的第一层；本主题的现行正文并入 03「一个骨架」与「骨架的三个补充」。旧实现文件在页面改写完成前保留于实现清单，随迁移各步移除。；2026-10-07按物理园区的十二角度信息清单和有方向的多角色关系登记，未知留位；不新增对象类型。",
+      "implementation_revision": "2026.10.10.71",
+      "change_reason": "；2026-10-10用户确认五类与IT三分、存储再分、处理器三分及同色分类总图，替代旧IT四直属分类；保留叶子ID，递归排序/汇总及节点/采集/3D对齐。"
     },
     {
       "id": "reading-20260912",
@@ -876,7 +897,7 @@
       "topic": "architecture",
       "status": "current",
       "scope": "project",
-      "effective_at": "2026-10-02",
+      "effective_at": "2026-10-10",
       "source": "framework/00_overview.md",
       "implementations": [
         "framework/bom.json",
@@ -909,13 +930,21 @@
         "web/components/industry.js",
         "web/themes/industry.css",
         "tests/unit/test_industry.py",
-        "tests/industry.cjs"
+        "tests/industry.cjs",
+        "src/inresearch/knowledge/skeleton.py",
+        "web/components/targets.js",
+        "tests/unit/test_bom.py",
+        "tests/unit/test_dashboard.py",
+        "src/inresearch/workflow/dispatch.py",
+        "tests/unit/test_target_dispatch.py",
+        "tests/unit/test_tco_targets.py"
       ],
       "supersedes": [
         "architecture-20260928"
       ],
       "reason": "用户采用独立行业总览、地图主体下钻、容量统计与长期项目线索；研究节点保留。替代此前首页退役的入口范围；资本开支、新闻线索与物理容量分别计量。",
-      "implementation_revision": "2026.10.02.1"
+      "implementation_revision": "2026.10.10.71",
+      "change_reason": "；2026-10-10用户确认五类与IT三分、存储再分、处理器三分及同色分类总图，替代旧IT四直属分类；保留叶子ID，递归排序/汇总及节点/采集/3D对齐。"
     },
     {
       "id": "interface-20261002",
@@ -3073,14 +3102,20 @@
         "docs/design/technical-atlas/TA-35/generation-v1.json",
         "docs/design/technical-atlas/TA-35/source-review-v1.json",
         "docs/design/technical-atlas/TA-35/bom-layout-main-baseline-20261010.json",
+        "docs/design/technical-atlas/bom-source-20260928.json",
+        "scripts/build_bom_classification_poster.py",
+        "tests/unit/test_bom_classification_poster.py",
+        "docs/design/bom-classification/manifest-v1.json",
+        "web/assets/bom-classification/overview-v1.png",
+        "web/assets/bom-classification/overview-v1.svg",
         "docs/design/technical-atlas/TA-35/public-checks-v1.json",
         "docs/design/technical-atlas/TA-35/publication-20261010.json",
         "docs/design/technical-atlas/TA-35/publication-independent-review-v1.json"
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.10.69",
-      "change_reason": "TA35已实际PR591合并084e0698/.68：精确head2e2最终20项CI成功，当前四必过/管理员保护已核，正常合并无bypass。AWS09:50:18Z source=applied与exact78f293镜像healthy；public-v1于09:51:59Z全部15阶段、62声明资源、四明暗宽度/360header、七说明、两实际下载、自含字体full/preview SVG、六关联页与四绘制3D冒烟通过，17图逐张original目检，17公网源SHA及HTTPShealth200成立。登记主35/35、补4/4，原计划全部实际闭包；TA35首次实际源仍084e/.68，不改成此登记SHA。六通用例型不认证同一OEM/同比例/现场完整拓扑；手机号细节须放大、关联仅导航冒烟、动态overlay和匿名研究未验边界保留。raw1条TA18关联/login ERR_ABORTED、旧预算0step失败/lease拒绝和inventory断言修正保留，非abort传输/页面/资源错误零。本地URL拒绝不绕过；Spark/研究事实服务0操作。"
+      "implementation_revision": "2026.10.10.71",
+      "change_reason": "TA35已实际PR591合并084e0698/.68：精确head2e2最终20项CI成功，当前四必过/管理员保护已核，正常合并无bypass。AWS09:50:18Z source=applied与exact78f293镜像healthy；public-v1于09:51:59Z全部15阶段、62声明资源、四明暗宽度/360header、七说明、两实际下载、自含字体full/preview SVG、六关联页与四绘制3D冒烟通过，17图逐张original目检，17公网源SHA及HTTPShealth200成立。登记主35/35、补4/4，原计划全部实际闭包；TA35首次实际源仍084e/.68，不改成此登记SHA。六通用例型不认证同一OEM/同比例/现场完整拓扑；手机号细节须放大、关联仅导航冒烟、动态overlay和匿名研究未验边界保留。raw1条TA18关联/login ERR_ABORTED、旧预算0step失败/lease拒绝和inventory断言修正保留，非abort传输/页面/资源错误零。本地URL拒绝不绕过；Spark/研究事实服务0操作。；现行BOM五类与分类海报规则同时保留：TA30–34 PR583最终20项GitHub检查通过、正常合并4cb09ce1/.66并由timer实际健康应用，21公网源字节/HTTPS health200已核；尚未逐项published，主29/35补4/4。公网v1保留Float32实际几何比绝对阈值失败，v2保留TA33弹窗内容比5.824485而目标5.764411的真实显示失败。实际computed border-box与1px边框解释约1.04%变形，五图均受同机制影响；仅来源canvas改content-box与扣两边框宽、padding0，独立候选公网观察与新实际部署后完整五项另验。世界几何比仅按实际Float32坐标采用8epsilon相对容差，CSS改实际内容高度1/64px布局量化门禁，不放宽图片/原件/下载/身份/几何/资源检查；原PNG、五SVG、全部采用场景几何保持。本地URL拒绝保留，按当前四必过及最终head全部检查，不触Spark/研究。；2026-10-10现行分类按03/05新树；历史图册制作源BOM原字节归档，原SHA和审阅记录保留，继续核现行类别与几何。；2026-10-10用户以日报海报明确要求BOM整图：真实场景底图与独立完整分类文字层、PNG/SVG下载及手机原尺寸放大；此单张深蓝说明带单独适用，原暖白图册与迁移计量保持。"
     },
     {
       "id": "interface-repository-daily-20261008",
@@ -3088,7 +3123,7 @@
       "status": "current",
       "source": "framework/05_interface_system.md",
       "scope": "project",
-      "effective_at": "2026-10-08",
+      "effective_at": "2026-10-10",
       "implementations": [
         "web/components/site-shell.js",
         "web/themes/site-skin.css",
@@ -3271,14 +3306,20 @@
         "tests/rack_assembly.cjs",
         "tests/browser_suites.cjs",
         "web/pages/bom.html",
-        "tests/bom_layout.cjs"
+        "tests/bom_layout.cjs",
+        "tests/unit/test_tco_targets.py",
+        "scripts/build_bom_classification_poster.py",
+        "tests/unit/test_bom_classification_poster.py",
+        "docs/design/bom-classification/manifest-v1.json",
+        "web/assets/bom-classification/overview-v1.png",
+        "web/assets/bom-classification/overview-v1.svg"
       ],
       "supersedes": [
         "interface-reader-company-20261008"
       ],
       "reason": "2026-10-08 用户要求系统自行每日北京时间0:00刷新：十一仓库组织图、HTTP/CI/六机检测与原时点分开；常驻macmini Python/系统cron原子发布私有运行投影，不依赖Codex/对话，无每日PR。取代手动四仓库同步及本轮未采用的heartbeat；用户已删suanming/identiry不建入口，本地资料保留。；继承已合并TA-02收尾：公开可选产品登记未知不阻塞、导出文字/DPR及已部署回执；图册实际发布保留。；完整CI继承图册双密度矩阵，分项运行保持全部断言和原限额。；2026-10-08 用户采用历史资料先填资料基座，节点直接使用已封存正文；C3限于正式采用，保留年代、原文和版本。；首次跨Mac/Linux发布发现AppleDouble元数据，显式关闭BSD tar附带文件，17载体完整性/内容摘要验证不变。；截断的匹配窗口不再隐藏已收到的完整阅读交付，候选权限及私有路径边界保留。",
-      "implementation_revision": "2026.10.10.68",
-      "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data.；补齐此前未发布的首页地图需求：技术图册、悬停与固定尺寸地理锚定。；TA17静态界面分类核对补登记TA16两份/TA17一份原字节历史bomHTML为excluded非应用页，现行页面/外观规则不变。；2026-10-10 用户要求爆炸图2D总图先于分拆、逻辑线清楚并修正右侧留白：采用全宽正文、五系统运行关系/五尺度总图、桌面链段双列/窄屏单列、图册与档案点选就地展开；替代总览仅外链与常驻空右栏。；2026-10-10 手机页头：真实公网常驻滚动条环境复现导航额外占15px，页头100.742px；仅共享ui-navigation隐藏滚动条轨道并保留overflow:auto与原链接/触摸/键盘横滚，原360px高度门槛不放宽。"
+      "implementation_revision": "2026.10.10.71",
+      "change_reason": "Replace mixed company catalog progress/registry/annex presentation with a reader product page and authenticated admin workspace; other pages and customer membership remain outside this pilot. User approved production release and compact name-only model rows on 2026-10-08. Dashboard regression now verifies supplied parts, adopted agreements and geography in the real-admin company annex; reader relationship links stay public without fetching private annex data.；补齐此前未发布的首页地图需求：技术图册、悬停与固定尺寸地理锚定。；TA17静态界面分类核对补登记TA16两份/TA17一份原字节历史bomHTML为excluded非应用页，现行页面/外观规则不变。；2026-10-10 用户要求爆炸图2D总图先于分拆、逻辑线清楚并修正右侧留白：采用全宽正文、五系统运行关系/五尺度总图、桌面链段双列/窄屏单列、图册与档案点选就地展开；替代总览仅外链与常驻空右栏。；2026-10-10用户确认五类与IT三分、存储再分、处理器三分及同色分类总图，替代旧IT四直属分类；保留叶子ID，递归排序/汇总及节点/采集/3D对齐。；2026-10-10用户以日报海报明确要求整图：真实场景底图与独立完整分类文字层、PNG/SVG下载及手机原尺寸放大，替代仅HTML分类框。；2026-10-10 手机页头：真实公网常驻滚动条环境复现导航额外占15px，页头100.742px；仅共享ui-navigation隐藏滚动条轨道并保留overflow:auto与原链接/触摸/键盘横滚，原360px高度门槛不放宽。"
     },
     {
       "id": "geluoke-longform-20261008",
@@ -3595,5 +3636,5 @@
       "retire_after": "2026-12-31"
     }
   ],
-  "updated": "2026-10-10T09:58:31.923005+00:00"
+  "updated": "2026-10-10"
 }

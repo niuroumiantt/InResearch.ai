@@ -12,7 +12,7 @@ inresearch.ai 交付一件东西：**一座 AI 数据中心，可以被追问到
 
 | # | 逻辑 | 一句话 | 唯一规范源 | 机器登记 |
 |---|---|---|---|---|
-| 1 | **一棵树（骨架）** | 数据中心 → 五个系统（设施、电力、冷却、IT、控制与软件）→ IT 分计算、内存、存储、网络 → 系统内按能量流链路 → 61 个部件 + 软件 + 基型；园区之外并列六条站点权利；尺度、旧模块、尺寸都是部件属性，不是任何树的第一层 | [03 对象与协作](03_bom_and_collaboration.md) | `bom.json`（systems、chain、chain_order、stage）、`site_rights.json` |
+| 1 | **一棵树（骨架）** | 数据中心 → 五个系统（设施、水与散热、电、IT设施、控制与软件）→ IT 分计算、存储、网络，存储再分内存与持久存储 → 系统内按能量流链路 → 61 个部件 + 软件 + 基型；园区之外并列六条站点权利；尺度、旧模块、尺寸都是部件属性，不是任何树的第一层 | [03 对象与协作](03_bom_and_collaboration.md) | `bom.json`（systems、chain、chain_order、stage）、`site_rights.json` |
 | 3 | **三级账** | 成本、收入、回报，来自唯一的统一经济模型；回报是账的输出不是一列；一个账本页，四个视图，三种问法（正算、反算、情景网格） | [05 界面规范](05_interface_system.md)「统一经济模型与账本」 | `data/datacenter_model.json`、`knowledge/economics.py` |
 | 4 | **四问 · 四段** | 四问：它值多少 / 它由什么组成 / 它怎么影响账 / 数据从哪来、缺什么。四段：采集 → 事实 → 规则 → 视图；四问就是四段倒序 | [05 界面规范](05_interface_system.md)「数据中心节点页」「目录」 | `dashboard_rules.json` → `data/dashboard.json` |
 | 5 | **五类变量** | 1 构成、2 运行、3 价格、4 时间、5 主体。正交，无先后，一条数据只属一类；每个模型输入、每条目标行、每张登记表的记录都打这五类之一 | [06 采集规范](06_acquisition.md) | `datacenter_model.json` 的 `groups` 与 `evidence.variable_class`；登记表的 `variable_class` 列 |

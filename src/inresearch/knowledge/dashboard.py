@@ -7,6 +7,7 @@ list; it aggregates nothing itself. ``--refresh`` rewrites the snapshot, ``--che
 when it differs from what the inputs produce.
 """
 import argparse
+from inresearch.knowledge.skeleton import system_path, system_key
 import datetime as dt
 import json
 from pathlib import Path
@@ -209,10 +210,7 @@ def build(root=ROOT, as_of=None):
         s = systems[sid]; return s['name'] if isinstance(s, dict) else s
     leaf_ids = [sid for sid, s in systems.items() if not any(isinstance(x, dict) and x.get('parent') == sid for x in systems.values())]
     def sys_key(sid):
-        s = systems[sid]
-        if not isinstance(s, dict):
-            return (99, 0)
-        return (systems[s['parent']]['order'], s['order']) if s.get('parent') else (s['order'], 0)
+        return system_key(systems, sid)
     def chain_key(p):
         s = systems.get(p['system'], {})
         chains = s.get('chains', []) if isinstance(s, dict) else []
@@ -268,12 +266,12 @@ def build(root=ROOT, as_of=None):
                            'parent': sdef.get('parent'), 'chains': sdef.get('chains', []),
                            'cells': cells, 'parts': [{'id': p['id'], 'name': p['name'], 'kind': p['kind'], 'scale': p['scale'], 'supply_status': p['status'],
                                                       'chain': p.get('chain'), 'chain_order': p.get('chain_order'), 'stage': p.get('stage')} for p in members]})
-    # parent systems (IT): one aggregate row over their children, so the matrix can show five systems and expand IT into four
+    # Aggregate each parent from descendant leaves exactly once; retain immediate child identities.
     parents = []
     for pid, pdef in systems.items():
         if not isinstance(pdef, dict) or pid in leaf_ids:
             continue
-        kids = [e for e in system_nodes if e['parent'] == pid]
+        kids = [e for e in system_nodes if pid in system_path(systems, e['id'])[:-1]]
         cells = {}
         for col in ('1', '2', '3', '4', '5'):
             items = []
@@ -297,8 +295,8 @@ def build(root=ROOT, as_of=None):
                 for s, n in e['cells'][col]['coverage'].items():
                     cov[s] += n
             cells[col] = {'items': items, 'coverage': cov, 'status': status_of(items, cov)}
-        parents.append({'id': pid, 'name': pdef['name'], 'node_id': 'system:' + pid, 'parent': None, 'order': pdef['order'], 'chains': [],
-                        'children': [e['id'] for e in kids], 'cells': cells})
+        parents.append({'id': pid, 'name': pdef['name'], 'node_id': 'system:' + pid, 'parent': pdef.get('parent'), 'order': pdef['order'], 'chains': [], 'parts': [p for e in kids for p in e['parts']],
+                        'children': sorted([sid for sid, s in systems.items() if s.get('parent') == pid], key=sys_key), 'cells': cells})
     # site rights row, alongside the systems
     keys = ['site:' + r['id'] for r in rights]
     site_cells = {}
@@ -350,7 +348,7 @@ def build(root=ROOT, as_of=None):
         'columns': rules['columns'], 'formulas': factors_doc.get('formulas', {}),
         'root': {'id': 'root', 'name': '一座 AI 数据中心', 'account': account, 'cells': root_cells, 'targets': totals},
         'systems': {sid: (s if isinstance(s, dict) else {'name': s}) for sid, s in systems.items()},
-        'system_nodes': system_nodes, 'parent_systems': sorted(parents, key=lambda x: x['order']), 'site': site_row, 'parts': parts, 'rights': rights_out, 'factors': factors, 'changes': changes,
+        'system_nodes': system_nodes, 'parent_systems': sorted(parents, key=lambda x: sys_key(x['id'])), 'site': site_row, 'parts': parts, 'rights': rights_out, 'factors': factors, 'changes': changes,
     }
 
 
