@@ -1,6 +1,6 @@
 {
   "version": "2026.10.10.74",
-  "reviewed_at": "2026-10-10T12:17:44.981481+00:00",
+  "reviewed_at": "2026-10-10T12:20:33.363718+00:00",
   "coverage": "Selected requirements only; every current policy has explicit unverified scope. Integrity is not execution or semantic completeness.",
   "reviewed_files": {
     ".github/workflows/validate.yml": "ad06601f4eba6801450974273fdd1bd427fbd1a0733d189f15f508c31e6599e9",
@@ -730,9 +730,9 @@
     "tests/unit/test_target_dispatch.py": "f411bd7b375904cf16b8f2241a2c24244a1697721b469176ab9d7e5b55ba7071",
     "tests/unit/test_bom_classification_poster.py": "f521eada641eb0a4abe6a2f864a1e0afe30d72d9b0521f16383d3db44c432e6e",
     "docs/CI.md": "4aacfd357741d739eab3afb65628714838a4a7d078807fc78ecdffa2d95cdcc8",
-    "scripts/ci_scope.py": "38548070ce6e0009906a6239dcfb7905708057fb93f47dda10f447ec2987fd35",
+    "scripts/ci_scope.py": "d6a6c59f83f262b4fc680396f2b67ae0af3f8f2b273832752209c3697037f6b8",
     "scripts/ci-requirements.txt": "6e3f04ab88d8544d0f16e3695fbf0e60afcef49a2efc8ee5678a09f351cef2b6",
-    "tests/unit/test_ci_scope.py": "169459c66834bd2031a629b8137100a1eb21b7100abded93d98bf9d6fcb125ea",
+    "tests/unit/test_ci_scope.py": "dd6a517c97ca181c84d444a4438a6da37a27d182221957ed0b299145eaf8c2ab",
     "scripts/build_bom_classification_poster.py": "71c1bb3848d63bd8e98edc813ca29e4809b20e1fc3b06717e4fb75668471e12f",
     "docs/design/bom-classification/manifest-v1.json": "a40f57a1b948ee2ca375273e0b699e3c1ecff888d9929bb52f64e46763e5d193"
   },
@@ -2479,7 +2479,8 @@
         "tests/unit/test_ci_scope.py::CiScopeTests.test_research_replacements_relaxed_review_and_formal_answers_are_full",
         "tests/unit/test_ci_scope.py::CiScopeTests.test_research_mixed_changes_union_bounded_checks_and_code_still_wins",
         "tests/unit/test_ci_scope.py::CiScopeTests.test_research_regression_selection_keeps_adoption_publication_and_http_contracts",
-        "tests/unit/test_browser_shards.py::BrowserShardTests.test_research_append_alias_selects_only_existing_delivery_and_summary_cases"
+        "tests/unit/test_browser_shards.py::BrowserShardTests.test_research_append_alias_selects_only_existing_delivery_and_summary_cases",
+        "tests/unit/test_ci_scope.py::CiScopeTests.test_research_parse_failure_keeps_other_changed_content_checks"
       ],
       "not_verified": "追加形状不证明研究事实或来源语义正确，不代替私有原件/C3/当前上下文/公网实际发布回执；固定研究回归及页面测试不证明所有未来间接消费者；未知schema/路径仍全套。GitHub实际运行与管理员保护另存回执，保留既有文案图像验收边界。"
     }

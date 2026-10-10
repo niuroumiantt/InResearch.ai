@@ -189,6 +189,7 @@ def select(root, base, head, event='pull_request', force=False):
                 'files': list(changes), 'suites': FULL_SUITES, 'storage': True, 'assets': True}
     if force or event in {'schedule', 'workflow_dispatch'}:
         return full('scheduled or explicitly requested full regression')
+    changes = ()
     try:
         if not re.fullmatch('[0-9a-f]{40}', base) or not re.fullmatch('[0-9a-f]{40}', head):
             return full('missing or invalid comparison SHA')
@@ -263,7 +264,7 @@ def select(root, base, head, event='pull_request', force=False):
                 'assets': bool(suites-set(RESEARCH_SUITES))}
     except (subprocess.CalledProcessError, UnicodeError, ValueError, KeyError, IndexError, TypeError,
             __import__('xml.etree.ElementTree', fromlist=['ParseError']).ParseError):
-        return full('comparison or classification failed; full regression required')
+        return full('comparison or classification failed; full regression required', changes)
 
 
 def links(text):

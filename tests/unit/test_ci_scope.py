@@ -110,6 +110,15 @@ class CiScopeTests(unittest.TestCase):
             self.write(ci.RESEARCH_PATH,json.dumps(changed))
             self.assertEqual(self.plan()['mode'],'full',fields)
 
+    def test_research_parse_failure_keeps_other_changed_content_checks(self):
+        self.write(ci.RESEARCH_PATH,'{invalid JSON')
+        self.write('docs/broken.png',b'not PNG')
+        plan=self.plan()
+        self.assertEqual(plan['mode'],'full')
+        self.assertEqual({r['path'] for r in plan['files']},{ci.RESEARCH_PATH,'docs/broken.png'})
+        with self.assertRaises(OSError):
+            ci.check_content(self.root,plan)
+
     def test_research_mixed_changes_union_bounded_checks_and_code_still_wins(self):
         self.write(ci.RESEARCH_PATH,json.dumps(self.appended_research()))
         self.write('docs/a.md','New source commentary')
