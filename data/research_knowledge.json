@@ -40041,6 +40041,91 @@
         },
         "batch_id": "b93b79e75efdbf2c4f8c1ea440a61e210c04710f6a435a6f9a05cee02fd8b34c"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9202bcc12573479123c932f680a3ba3a325e8ac6d2ad390f49de0b9cc61b5154",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "id": "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-demand-D1-boundary"
+      ],
+      "quote": "with 2025 set to see the first official 1GW project.",
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "source_sha256": "c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T19:08:33+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原重要性5。连续原文引文及美国市场、园区交易的相邻上下文充分，对当前M02-Q05提供向GW级项目规模演进的实质性预测线索。未发现敏感、真实冲突、拟替换或其他A类条件，符合B类有界部分采用要求；不以该预测回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "165812ae882119e59be800883df6b874d54af71560dd5a0dff971134f6935d13",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 42509,
+            "output_tokens": 1159,
+            "reasoning_output_tokens": 219
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.573,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "271032ab520bce5fb85cb2dda86c6744604ac6631c2870c21fe87f3c06c5d34d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43036,
+              "output_tokens": 562,
+              "reasoning_output_tokens": 239
+            }
+          }
+        },
+        "batch_id": "0ebb117245432eecf72a72698ede856bb59f16951966f5089ade9393807b0ffc"
+      }
     }
   ],
   "statements": [
@@ -78046,6 +78131,106 @@
         "request_sha256": "7b5202b5a2b38c806f6bb885eecc9b435eb86749320dfeac7f50154fd8fb2a1d"
       },
       "object_mapping_check": "独立依据原文的computing resources确定范围为IT计算资源利用率，对应system:compute（IT · 计算，隶属system:it）。原文未限定GPU、CPU或服务器型号，故不映射具体部件；亦不涉及DCIM/BMS、供电或整座设施的运行指标。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-c95d8669c246de9fead0804b1e410cec3c67ea5a3008964e94dbaeee869400d0",
+      "evidence_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:890f8328df3470a46d1f0191",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M02-Q05"
+      ],
+      "reading_revision_id": "rev-21b0829ef5f34d5b93f1066e57899b63",
+      "status": "adopted",
+      "text": "DCD作者Niva Yadav在2025年2月21日关于美国数据中心市场、援引Newmark报告的报道中预计，2025年将出现“首个正式的1GW项目”。这是作者在报道时表达的项目规模预测；原文未定义“正式”的判定标准，未给出该项目身份或投运日期，不证明预测已经实现，也不构成对当前项目状态或容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T19:08:33+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原重要性5。连续原文引文及美国市场、园区交易的相邻上下文充分，对当前M02-Q05提供向GW级项目规模演进的实质性预测线索。未发现敏感、真实冲突、拟替换或其他A类条件，符合B类有界部分采用要求；不以该预测回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.24,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "165812ae882119e59be800883df6b874d54af71560dd5a0dff971134f6935d13",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 42509,
+            "output_tokens": 1159,
+            "reasoning_output_tokens": 219
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.573,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "271032ab520bce5fb85cb2dda86c6744604ac6631c2870c21fe87f3c06c5d34d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 43036,
+              "output_tokens": 562,
+              "reasoning_output_tokens": 239
+            }
+          }
+        },
+        "batch_id": "0ebb117245432eecf72a72698ede856bb59f16951966f5089ade9393807b0ffc"
+      },
+      "source_candidate_ids": [
+        "rev-21b0829ef5f34d5b93f1066e57899b63:chunk:0:claim:3"
+      ],
+      "limitations": "所供材料为二手报道，Newmark原始报告未在本包中核验。1GW未定义为关键IT负载、设施总容量或其他口径；“首个正式”缺少统计范围和判定标准，不能扩展为全球首个或首个投运项目。未提供具体场址、参与方、建设阶段、分期安排或实现条件，也没有同口径跨期规模分布。",
+      "conflict_check": "已采用的法国Fluidstack 1GW拟建安排与本条美国市场预测地域不同，且“正式”的含义未定义，不能据此判为真实冲突或同项目重复。Lake Mariner、巴西Omnia、沙特Khazna及Garland建筑配置记录分别涉及其他项目、容量口径和阶段，也不构成同范围反证。所供legacy筛选结果为空，不能据此宣称已完成全面反证搜索。未发现规范重复，不替换或覆盖既有结论。",
+      "gap_dependency_check": "M02-Q05获得一条带发表日期的GW级项目规模预测，尚未获得规模分布变化的完整回答。仍需核验Newmark原始报告及具名项目记录，明确容量口径、项目边界、“正式”标准和后续实现情况，并取得同口径跨期项目样本及反证。当前工作单要求的原始来源和可复查分布推导仍有缺口；不汇总GW、不更新模型或骨架，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0ebb117245432eecf72a72698ede856bb59f16951966f5089ade9393807b0ffc",
+        "source_report_sha256": "63dd4b11ba1d091d7220145a08d6cd4e50c5cedc69a9bbcc94dd4d3e6a405872",
+        "request_sha256": "e3019b192844ca4ca0755b0455657f84a8eeb616641a57a00cfc5ba9def8fac1"
+      },
+      "object_mapping_check": "独立依据原文判断，本条讨论数据中心项目整体规模预测，匹配root所表示的数据中心整体范围。未披露具体设施、计算设备、供电系统或场址权利，且1GW口径未明，不映射设施、电力、IT系统或其部件。超大规模运营商未在本条具名，不从全文其他段落借用主体ID；所选证据统一采用此主张范围，不继承Reader标签。"
     }
   ],
   "answers": [],
