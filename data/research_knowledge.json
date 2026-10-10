@@ -5477,6 +5477,68 @@
       "status": "candidate",
       "stored_path": "originals/e2/e2d2b386228986cd4e5233821561e3c84775944196c64f4e50d2ed9119eefbc1/dcd-e2d2b386228986cd-International Finance Corporation to invest up to -175m in two Ai.html",
       "title": "International Finance Corporation to invest up to $175m in two AirTrunk data centers in Johor, Malaysia"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+      "coverage": {
+        "characters_read": 7338,
+        "characters_total": 7338,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+      "id": "doc-bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+      "library_path": "library/by-node/root/2026_DCD_Anthropic signs $45bn compute capacity agreement with N__bb5d094349ce7d2a.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:anthropic",
+        "actor:coreweave",
+        "actor:fluidstack",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "actor:nscale",
+        "part:ai-asic",
+        "part:rack-system",
+        "part:server",
+        "root",
+        "system:compute"
+      ],
+      "question_ids": [
+        "M06-Q01",
+        "OBJ-server-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-0324249c564842fa81c23f65498880c0",
+      "report_sha256": "ad8845de7e2f4e672ca67feacbe81b904da4d8f284957f07b72d9cd1b244b361",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+        "url": "https://www.datacenterdynamics.com/en/news/anthropic-signs-45bn-compute-capacity-agreement-with-nscale-report/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/anthropic-signs-45bn-compute-capacity-agreement-with-nscale-report/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/bb/bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22/dcd-bb5d094349ce7d2a-Anthropic signs -45bn compute capacity agreement with Nscale - re.html",
+      "title": "Anthropic signs $45bn compute capacity agreement with Nscale - report"
     }
   ],
   "evidence": [
@@ -43172,6 +43234,180 @@
           }
         },
         "batch_id": "2933ade46275567dd937a0587b5fd3ff994c02e2eb15f7bbe205c9765e1256d8"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "5a42f71d057e5f99d4caa9ff9bb21843c6328c619b6ed4fda7a7302f563b5aa0",
+      "document_id": "doc-bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+      "id": "rev-0324249c564842fa81c23f65498880c0:chunk:0:claim:0:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:anthropic",
+        "actor:nscale"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "August 27, 2026 By Georgia Butler",
+      "reading_revision_id": "rev-0324249c564842fa81c23f65498880c0",
+      "source_sha256": "bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T22:53:47+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。协议金额超过10亿美元，直接贡献于当前M03-Q01的大额合同清单；对M12-Q03贡献单笔承诺金额线索，对NODE-activity-V3-boundary贡献购买方与提供方关系，对NODE-activity-V3-economics贡献服务协议总额与设备价格、收入及资本开支的口径边界。两段原始引文连续完整，原生全文提供充分语境，可作为有限且明确归因的作者主张采用。未发现敏感、真实冲突、替换或其他A类条件；不关闭问题或修改模型参数。",
+        "workorder_ids": [
+          "Q-M03-Q01",
+          "Q-M12-Q03",
+          "Q-NODE-activity-V3-boundary",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.244,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6ab08acb7651cf1127c5996deedcb5df291301aa299845d67c26f7cddc3ebe32",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 67927,
+            "output_tokens": 1776,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.033,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "727fd5256d57cc1e2b63c626c1c56221e15711495ec0d86bf39f1c9e4a48a6c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68759,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "2dc8b96242d9f79068573924f21e3dea82e29a634f7746388ea7ce1b780c7bf1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "5a42f71d057e5f99d4caa9ff9bb21843c6328c619b6ed4fda7a7302f563b5aa0",
+      "document_id": "doc-bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+      "id": "rev-0324249c564842fa81c23f65498880c0:chunk:0:claim:0:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:anthropic",
+        "actor:nscale"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "AI lab Anthropic has signed a $45 billion AI cloud capacity agreement with Nscale.",
+      "reading_revision_id": "rev-0324249c564842fa81c23f65498880c0",
+      "source_sha256": "bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T22:53:47+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。协议金额超过10亿美元，直接贡献于当前M03-Q01的大额合同清单；对M12-Q03贡献单笔承诺金额线索，对NODE-activity-V3-boundary贡献购买方与提供方关系，对NODE-activity-V3-economics贡献服务协议总额与设备价格、收入及资本开支的口径边界。两段原始引文连续完整，原生全文提供充分语境，可作为有限且明确归因的作者主张采用。未发现敏感、真实冲突、替换或其他A类条件；不关闭问题或修改模型参数。",
+        "workorder_ids": [
+          "Q-M03-Q01",
+          "Q-M12-Q03",
+          "Q-NODE-activity-V3-boundary",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.244,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6ab08acb7651cf1127c5996deedcb5df291301aa299845d67c26f7cddc3ebe32",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 67927,
+            "output_tokens": 1776,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.033,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "727fd5256d57cc1e2b63c626c1c56221e15711495ec0d86bf39f1c9e4a48a6c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68759,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "2dc8b96242d9f79068573924f21e3dea82e29a634f7746388ea7ce1b780c7bf1"
       }
     }
   ],
@@ -84109,6 +84345,114 @@
         "request_sha256": "7e9a9eec9f07cf4007fbf0ba06be77fd1f02fb54fdb04ef1e2b68b117e981495"
       },
       "object_mapping_check": "独立根据Alphabet管理层对Maps及Gemini公司产品的说明，选择合同内name为谷歌、kind为actor、parent为空的actor:alphabet-google。路线指引属于终端应用能力，未建立数据中心网络、DCIM/BMS与固件、计算硬件或root所指单座AI数据中心的范围。所选证据统一使用这一主体范围，不因涉及AI而增加基础设施对象。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bb5d094349ce7d2af939b9abf3a049ed89e54c6b8e2284993b0749bb478eda22",
+      "evidence_ids": [
+        "rev-0324249c564842fa81c23f65498880c0:chunk:0:claim:0:ev:0",
+        "rev-0324249c564842fa81c23f65498880c0:chunk:0:claim:0:ev:1"
+      ],
+      "id": "adoption:review:c1182eed46522493ea88d993",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:anthropic",
+        "actor:nscale"
+      ],
+      "question_ids": [
+        "M03-Q01",
+        "M12-Q03",
+        "NODE-activity-V3-boundary",
+        "NODE-activity-V3-economics"
+      ],
+      "reading_revision_id": "rev-0324249c564842fa81c23f65498880c0",
+      "status": "adopted",
+      "text": "DCD作者Georgia Butler在2026年8月27日的报道中称，Anthropic与Nscale签署了450亿美元AI云容量协议。周边正文将消息归于Bloomberg及知情人士，并称Anthropic将租用Nscale在美国西弗吉尼亚州园区的容量；报道时DCD已联系Nscale寻求确认，所供原文未载其确认回复。本条记录的是来源报告的容量服务协议总额及Anthropic购买方、Nscale提供方关系，不构成对合同签署、履行或当前投运状态的独立认证，也不是服务器、整机柜或ASIC设备单价。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T22:53:47+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "保留原重要性7。协议金额超过10亿美元，直接贡献于当前M03-Q01的大额合同清单；对M12-Q03贡献单笔承诺金额线索，对NODE-activity-V3-boundary贡献购买方与提供方关系，对NODE-activity-V3-economics贡献服务协议总额与设备价格、收入及资本开支的口径边界。两段原始引文连续完整，原生全文提供充分语境，可作为有限且明确归因的作者主张采用。未发现敏感、真实冲突、替换或其他A类条件；不关闭问题或修改模型参数。",
+        "workorder_ids": [
+          "Q-M03-Q01",
+          "Q-M12-Q03",
+          "Q-NODE-activity-V3-boundary",
+          "Q-NODE-activity-V3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 49.244,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6ab08acb7651cf1127c5996deedcb5df291301aa299845d67c26f7cddc3ebe32",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 67927,
+            "output_tokens": 1776,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.033,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "727fd5256d57cc1e2b63c626c1c56221e15711495ec0d86bf39f1c9e4a48a6c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 68759,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 211
+            }
+          }
+        },
+        "batch_id": "2dc8b96242d9f79068573924f21e3dea82e29a634f7746388ea7ce1b780c7bf1"
+      },
+      "source_candidate_ids": [
+        "rev-0324249c564842fa81c23f65498880c0:chunk:0:claim:0"
+      ],
+      "limitations": "未提供一手合同、双方确认、金额组成、付款安排、取消条款或实际交付证据。正文另报460MW、六年租期及预计上线安排，因此不能笼统称全文没有期限或容量；但这些细节未包含于本条选定引文，不扩展为本条独立采用的数值证据。460MW未明确区分IT与设施容量，预计上线仍是预测，不能计入已投运容量。未提供设备单价、会计收入、完整算力承诺或可比时间序列，不能计算硬件单位成本、支出收入比或其走势。",
+      "conflict_check": "所供已采用陈述未包含同一Anthropic—Nscale协议。Volta挪威合作的客户未确认，不能与本项合并；Fluidstack客户关系及GPU云利润、合同风险观点不构成同口径反证。旧Anthropic ARR与token价格涉及不同时间和计量口径，不能验证本协议或用于直接计算比值；Hut 8托管合同、AWS Rainier及Nscale挪威项目均属不同交易或项目。合同筛选记录为空，未发现规范重复或真实冲突。全读摘要的遗漏属于阅读概括问题，不是既有研究结论的实质冲突。检查限于所供材料，不替换现有结论。",
+      "gap_dependency_check": "M03-Q01仍需一手协议、金额口径及实际交付节奏；M12-Q03仍需完整且去重的算力承诺、同期收入及可比时间序列，跨年合同总额不能直接与某时点ARR相比。边界工单仍缺付款义务、资产所有者、运营方和使用方的完整权责对应；经济性工单仍缺收入确认、资本开支、运营成本、价格组成及合同风险条款。四项问题均仅获部分支持并保持开放，不汇总GW、不更新设备价格或覆盖已有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2dc8b96242d9f79068573924f21e3dea82e29a634f7746388ea7ce1b780c7bf1",
+        "source_report_sha256": "ad8845de7e2f4e672ca67feacbe81b904da4d8f284957f07b72d9cd1b244b361",
+        "request_sha256": "24ff90e41fd1f1f53d2fe19e2a460f4426186bcd9a5383334dcb9d302ba09448"
+      },
+      "object_mapping_check": "原始金额主张明确列名Anthropic与Nscale，分别支持无父节点的actor:anthropic和actor:nscale，并由周边租赁语境支持购买方与提供方角色。选定主张未拆分具体设施、计算系统或硬件资产的交易范围；园区背景不使协议总额自动覆盖root所代表的一座AI数据中心或其下属系统、链和部件。未继承Reader或文档级标签；所有选定证据统一使用这两个主体的主张级范围。"
     }
   ],
   "answers": [],
