@@ -39957,6 +39957,90 @@
         },
         "batch_id": "14c3543645a1c5b87e23fd51399ffc6175a681eac121b897a1913122bfc69a16"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "46dcd644254177623d167c4a280c172536854ff12a3031d754c831913e8a084a",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:119:claim:8:ev:0",
+      "locator": "page:120/chunk:119",
+      "object_ids": [
+        "system:compute"
+      ],
+      "page_index": 119,
+      "question_ids": [],
+      "quote": "Utilisation rate: The utilisation rate of IT equipment measures the proportion of the available\n                  computing resources actively used over a given period.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:43:49+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，无敏感、真实冲突或替换条件。连续原文和术语表上下文充分支持定义，且与当前M13-Q01的实际利用率研究、M15-Q08的利用率口径核对存在实质关系，满足B类辅助证据采用条件。采用范围仅为定义，不改变数值结论或模型输入，不关闭问题。",
+        "workorder_ids": [
+          "Q-M13-Q01",
+          "Q-M15-Q08"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.054,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6f4324bfbb426ed79187e7bf215a3b36e3b26fe867020f51040ac972d59fefba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 31057,
+            "output_tokens": 2214,
+            "reasoning_output_tokens": 268
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.207,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "470f648c59dbece100d7c7f61ecc636755e28b214921e1afa20fa96eaf2adfe6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 30374,
+              "output_tokens": 383,
+              "reasoning_output_tokens": 99
+            }
+          }
+        },
+        "batch_id": "b93b79e75efdbf2c4f8c1ea440a61e210c04710f6a435a6f9a05cee02fd8b34c"
+      }
     }
   ],
   "statements": [
@@ -77860,6 +77944,108 @@
         "request_sha256": "7cfbfdd9d0d0b2a5919a91ea4f0f5b3f0d74adcc7c42f74db0565ecc7f383a99"
       },
       "object_mapping_check": "独立核对对象契约：actor:stt-gdc的名称限定为“新电信数据中心（印度）”，原文仅称STT GDC，未建立印度业务范围，故不沿用候选标签。Virtus与Macquarie Asset Management没有允许的对应主体ID。本项是企业股权关系，未确立某座AI数据中心、土地权利或电力系统范围，故不映射root、site:land或system:power。空对象列表保留问题关联，所选证据统一使用此审核范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:119:claim:8:ev:0"
+      ],
+      "id": "adoption:review:a1143c8e64dd1ff4efb87b80",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:compute"
+      ],
+      "question_ids": [
+        "M13-Q01",
+        "M15-Q08"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA《Key Questions on Energy and AI》附录B将IT设备利用率定义为：给定期间可用计算资源中被实际使用的比例。该定义可作为利用率口径核对的辅助依据；本条证据未提供训练或推理集群的实际利用率，也未说明券商模型80%与信通院GPU利用率低于30%的口径是否一致。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T18:43:49+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，无敏感、真实冲突或替换条件。连续原文和术语表上下文充分支持定义，且与当前M13-Q01的实际利用率研究、M15-Q08的利用率口径核对存在实质关系，满足B类辅助证据采用条件。采用范围仅为定义，不改变数值结论或模型输入，不关闭问题。",
+        "workorder_ids": [
+          "Q-M13-Q01",
+          "Q-M15-Q08"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.054,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6f4324bfbb426ed79187e7bf215a3b36e3b26fe867020f51040ac972d59fefba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 31057,
+            "output_tokens": 2214,
+            "reasoning_output_tokens": 268
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 16.207,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "470f648c59dbece100d7c7f61ecc636755e28b214921e1afa20fa96eaf2adfe6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 30374,
+              "output_tokens": 383,
+              "reasoning_output_tokens": 99
+            }
+          }
+        },
+        "batch_id": "b93b79e75efdbf2c4f8c1ea440a61e210c04710f6a435a6f9a05cee02fd8b34c"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:119:claim:8"
+      ],
+      "limitations": "来源发布日期未确立；第137页的April 2026仅为排版时间。定义未指定设备类型、资源计量单位、统计周期长度、采样方法、地域或训练与推理场景，也未给出GPU实测值或收入变现比例。全文覆盖限于原生文本，未完成图像和视觉复核。",
+      "conflict_check": "所供当前已采用回答、陈述和证据为空，相关legacy筛选记录亦为空，未发现可确认的冲突或重复。80%与低于30%仅为当前问题中的待核查差异，本定义不能证明两者冲突；检查范围不构成外部穷尽检索。",
+      "gap_dependency_check": "M13-Q01仍需训练与推理集群的原始测量、适用范围及统计方法。M15-Q08仍需券商与信通院各自的原文、分子分母、时间窗口、设备边界及可复查推导；本条只贡献定义参照，不能完成口径调和或回本模型重算。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "b93b79e75efdbf2c4f8c1ea440a61e210c04710f6a435a6f9a05cee02fd8b34c",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "7b5202b5a2b38c806f6bb885eecc9b435eb86749320dfeac7f50154fd8fb2a1d"
+      },
+      "object_mapping_check": "独立依据原文的computing resources确定范围为IT计算资源利用率，对应system:compute（IT · 计算，隶属system:it）。原文未限定GPU、CPU或服务器型号，故不映射具体部件；亦不涉及DCIM/BMS、供电或整座设施的运行指标。"
     }
   ],
   "answers": [],
