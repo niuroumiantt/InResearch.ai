@@ -15,12 +15,21 @@
 - 本地预览 `http://127.0.0.1:53239/bom.html` 由当前会话启动，仅进程存活期间可用；截图/日志位于 `/tmp/inresearch-bom-layout-qa/` 与 `/tmp/inresearch-bom-*.log`，属于临时验收资料。
 - 主工作区 `/Users/m5/code/inresearch.ai` 的原分支及未跟踪研究资料未修改。
 
+## 上线授权与发布验收（2026-10-10）
+
+- 用户已明确要求「请上线」，无需重复确认。分支接入 `e848a8f6` 主线。
+- 上线前 GitHub validate 跑完 2,108 项，发现新增 `bom_layout` 遗漏在 `test_browser_shards.py` 期望清单；已补齐，分片不重不漏断言保留。本机完整 2,108 项现已通过。
+- 原浏览器与容器 CI 的 GitHub annotation 明确为 Actions budget 阻止启动；不记作代码通过或测试执行失败。本次采用完整本地验收后由用户授权合并发布，不改自动研究发布器的 CI 准入规则。
+- 本机容器存储验收通过：只读内核边界、HTTP/CLI、A→B→A 发布回退，运行写入保留。
+- Spark 本次只读核对：`d5b92913`，源码干净，reader 与 reader-publish.timer active；页面排版无需重启阅读服务。
+- 全套浏览器结果和最终部署 SHA 在完成后写入本机 `~/.local/state/inresearch.ai/releases/bom-page-layout-20261010/receipt.json`；该回执记录实际生产状态，本文不预先声称上线。
+
 ## 下一步
 1. 审阅实际页面/草稿 PR；如用户要求继续修改，在此分支实现并复跑相关验收。
 2. 合并发布需基于当时最新 main 处理版本/登记清单冲突，重新审阅摘要；不能拿本地测试声称生产上线。
 
 ## 待用户决定
-- 新排版的审阅反馈；本次没有执行生产发布。
+- 无新增审批问题；用户已授权上线，按上文验收闭环继续。
 
 ## 入口文件与工具
 - `web/pages/bom.html`、`tests/bom_layout.cjs`、`tests/browser_suites.cjs`。
