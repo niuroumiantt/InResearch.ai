@@ -106,7 +106,9 @@ def source_note(meta):
 
 def inresearch_sources():
     return [('inresearch', ROOT, p) for p in ('src/inresearch/README.md',
-        'scripts/sync_repo_pages.py','scripts/repository_checks.py','scripts/daily_repository_pages.py','web/assets/material-flow.js','web/assets/material-flow.css')]
+        'scripts/sync_repo_pages.py','scripts/repository_checks.py','scripts/daily_repository_pages.py','web/assets/material-flow.js','web/assets/material-flow.css',
+        'scripts/repository_research_dashboard.py','framework/bom.json','framework/tco_targets.json',
+        'framework/research_questions.json','framework/supply_contract.json','data/research_knowledge.json')]
 
 
 def material_board():
@@ -128,16 +130,17 @@ def material_board():
 
 
 def build_inresearch(meta):
+    from repository_research_dashboard import build as research_dashboard, STYLE
     readme = (ROOT / 'src/inresearch/README.md').read_text()
     rows = [[p.strip().replace('`', '') for p in line.strip('|').split('|')]
             for line in readme.splitlines() if line.startswith('| ')][1:]
     return shell('InResearch.ai',
         '<p>研究框架与目标 → 接收原件和事件 → 阅读与审阅 → 证据采用 → 模型与报告。</p>' +
-        source_note(meta) + material_board() + flow(['目标与资料接收', '阅读与证据审阅', '事实与经济模型', '网站与研究成果']) +
-        '<h2>程序职责</h2>' + table(['模块', '责任与主要实现'], rows) +
+        '<p class="repo-note">需求与架构快照生成于 ' + escape(display_time(meta['synced_at'])) + '（北京时间）；实时容量与发布状态见下方独立采样。</p>' + research_dashboard(ROOT, table) + material_board() + '<details><summary>源码检查快照与出处</summary>' + source_note(meta) + '</details>' +
+        '<details><summary>程序职责与运行边界</summary><h2>程序职责</h2>' + table(['模块', '责任与主要实现'], rows) +
         '<h2>运行边界与未完成</h2>' + ''.join(f'<p>{escape(line)}</p>' for line in readme.splitlines()
-            if line and not line.startswith(('#', '|'))),
-        '<link rel="stylesheet" href="/assets/material-flow.css"><script defer src="/assets/material-flow.js"></script>')
+            if line and not line.startswith(('#', '|'))) + '</details>',
+        STYLE + '<link rel="stylesheet" href="/assets/material-flow.css"><script defer src="/assets/material-flow.js"></script>')
 
 
 def check_note(checks):

@@ -166,3 +166,7 @@ research_review.promote_group持同一formal-write锁，全部成员先按未改
 local发表须核actual running/healthy digest与tag一致、merge属于运行source历史、外部health200/ok和全部公开stmt/ev/doc。私有audit/context/before不外送；原CLI逐成员proof保留batch/attempt/bundle和健康时点。闭包SHA按proof标记的encoded-v1顺序，不与其它compact/排序算法直接等同。
 
 GitHub主线、不同publisher state和多个queue ACK不是一个事务，背压非跨机器锁。部分ACK按实证继续，远端commit而本机未记时重新实核并幂等ACK。准备真冲突保留具名恢复；旧小PR CLOSED自动superseded尚未实现，不假记MERGED/篡改历史。默认CI保持，生产显式配置及唯一驻留加载另留实际回执。
+
+## 2026-10-10 源码审查的边界修正
+
+Reader 与 editorial 接收复用 workflow.reader_scope.read_scope 的存储范围合同，10,000 文档/1 MiB 上限、有效内容身份与失败关闭一致；enroll 在原稳定锁内追加，已有 SHA 重放可在满容量成功，新增超过容量则不修改原范围。不因此扩张配方、改变优先级或授予采用。facts CLI 在加载事实前用标准参数解析处理帮助与未知选项，--summary 保留相同契约审计和失败退出码，只省略全指标展开；原文哈希缺口不自动修复。程序职责 README 的退役 SEC/GPU 入口说明和供应目标的交付协议原则与现行实现对齐。
