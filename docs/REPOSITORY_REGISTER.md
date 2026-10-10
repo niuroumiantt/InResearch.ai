@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.68。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.69。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2447。
+在册文件：2450。
 
 | 身份 | 文件数 |
 |---|---|
@@ -16,13 +16,13 @@
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 362 |
+| 运行代码 | 363 |
 | 现行规范 | 15 |
-| 项目配置 | 752 |
+| 项目配置 | 753 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 186 |
+| 配套说明 | 187 |
 | 测试 | 189 |
 
 ## 在册记录集合
@@ -39,7 +39,7 @@
 | `data/contracts.json` | records | 8 |
 | `data/dashboard.json` | stages | 6 |
 | `data/dashboard.json` | system_nodes | 8 |
-| `data/dashboard.json` | parent_systems | 1 |
+| `data/dashboard.json` | parent_systems | 2 |
 | `data/dashboard.json` | factors | 26 |
 | `data/datacenter_model.json` | groups | 5 |
 | `data/datacenter_model.json` | anchors | 2 |
@@ -1347,6 +1347,9 @@
 | `docs/design/technical-atlas/TA-39/publication-20261008.json` | public_source_bytes | 2 |
 | `docs/design/technical-atlas/TA-39/publication-20261008.json` | browser_evidence | 5 |
 | `docs/design/technical-atlas/TA-39/publication-20261008.json` | limits | 2 |
+| `docs/design/technical-atlas/bom-source-20260928.json` | scales | 5 |
+| `docs/design/technical-atlas/bom-source-20260928.json` | parts | 63 |
+| `docs/design/technical-atlas/bom-source-20260928.json` | stages | 6 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | companies | 7 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | unpublished | 2 |
 | `docs/handoff/github-sync-20261010-audit.json` | history_backups | 15 |
@@ -1704,8 +1707,8 @@
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | legacy_root_prefixes | 4 |
-| `framework/research_graph.json` | objects | 353 |
-| `framework/research_graph.json` | relations | 372 |
+| `framework/research_graph.json` | objects | 354 |
+| `framework/research_graph.json` | relations | 373 |
 | `framework/research_questions.json` | records | 458 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
@@ -2452,6 +2455,7 @@
 | `docs/design/technical-atlas/TA-39/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-39/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-39/publication-20261008.json` | 项目配置 |
+| `docs/design/technical-atlas/bom-source-20260928.json` | 项目配置 |
 | `docs/design/technical-atlas/references/01-chain.png` | 项目配置 |
 | `docs/design/technical-atlas/references/02-server.png` | 项目配置 |
 | `docs/design/technical-atlas/references/03-ssd.png` | 项目配置 |
@@ -2473,6 +2477,7 @@
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
 | [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
+| [docs/handoff/bom-classification-20261010.md](handoff/bom-classification-20261010.md) | 配套说明 |
 | [docs/handoff/bom-page-layout-20261010.md](handoff/bom-page-layout-20261010.md) | 配套说明 |
 | [docs/handoff/catalog-ownership-20261007.md](handoff/catalog-ownership-20261007.md) | 配套说明 |
 | [docs/handoff/codex-batch-reader-20261006.md](handoff/codex-batch-reader-20261006.md) | 配套说明 |
@@ -3524,6 +3529,7 @@
 | `src/inresearch/knowledge/policy.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
+| `src/inresearch/knowledge/skeleton.py` | 运行代码 |
 | `src/inresearch/knowledge/targets.py` | 运行代码 |
 | `src/inresearch/knowledge/validate.py` | 运行代码 |
 | `src/inresearch/knowledge/verify.py` | 运行代码 |

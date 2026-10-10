@@ -78,6 +78,9 @@ class DispatchTests(unittest.TestCase):
         self.assertEqual([t['id'] for t in node['targets']], ['P.transformer.lead_time'])
         system = dispatch.targets_view(self.root, 'boss', 'member', {'node': 'system:it', 'col': '2'})
         self.assertTrue(system['targets'] and all(t['variable_class'] == 2 and t['part_id'] for t in system['targets']))
+        self.assertTrue({'hbm','dram','cxl-memory','ssd','hdd','storage-array'} <= {t['part_id'] for t in system['targets']})
+        storage = dispatch.targets_view(self.root, 'boss', 'member', {'node':'system:storage-group', 'col':'2'})
+        self.assertEqual({t['part_id'] for t in storage['targets']}, {'hbm','dram','cxl-memory','ssd','hdd','storage-array'})
         self.assertTrue(all(t['node'].startswith('site:') for t in dispatch.targets_view(self.root, 'boss', 'member', {'node': 'site:grid'})['targets']))
 
 

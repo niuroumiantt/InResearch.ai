@@ -70,9 +70,19 @@ class DashboardTests(unittest.TestCase):
     def test_tree_and_matrix_shape(self):
         leaf = [s for s, d in self.bom['systems'].items() if not any(x.get('parent') == s for x in self.bom['systems'].values())]
         self.assertEqual(sorted(e['id'] for e in self.doc['system_nodes']), sorted(leaf))
-        self.assertEqual([e['id'] for e in self.doc['system_nodes']][:3], ['facility', 'power', 'thermal'], '五个系统的骨架顺序')
-        self.assertEqual([p['id'] for p in self.doc['parent_systems']], ['it'])
-        self.assertEqual(self.doc['parent_systems'][0]['children'], ['compute', 'memory', 'storage', 'network'])
+        self.assertEqual([e['id'] for e in self.doc['system_nodes']][:3], ['facility', 'thermal', 'power'], '五个系统的骨架顺序')
+        self.assertEqual([p['id'] for p in self.doc['parent_systems']], ['it', 'storage-group'])
+        self.assertEqual(self.doc['parent_systems'][0]['children'], ['compute', 'storage-group', 'network'])
+        storage = next(e for e in self.doc['parent_systems'] if e['id']=='storage-group')
+        self.assertEqual(storage['children'], ['memory', 'storage'])
+        self.assertEqual(storage['cells']['1']['items'][0]['value'], 6)
+        it = next(e for e in self.doc['parent_systems'] if e['id']=='it')
+        self.assertEqual(it['cells']['1']['items'][0]['value'], 23)
+        self.assertEqual(len({p['id'] for p in it['parts']}), 23)
+        for col in ('1','2','3','4','5'):
+            leaves = [e for e in self.doc['system_nodes'] if e['id'] in ['compute','memory','storage','network']]
+            for status in ('sourced','assumed','delivered','needed'):
+                self.assertEqual(it['cells'][col]['coverage'][status], sum(e['cells'][col]['coverage'][status] for e in leaves))
         power = next(e for e in self.doc['system_nodes'] if e['id'] == 'power')
         self.assertEqual([p['chain'] for p in power['parts']][:3], ['电网接入', '变电', '变电'], '电力系统的部件按链路从电网走到板级')
         self.assertEqual(self.doc['site']['id'], 'site')

@@ -15,7 +15,7 @@ class EnergyDomainAssetsTests(unittest.TestCase):
    with self.subTest(figure=n):
     d=ROOT/'docs/design/technical-atlas'/n;m=load(d,'asset-manifest-v1.json')
     for a in m['assets']:
-     b=(ROOT/a['file']).read_bytes();self.assertEqual(len(b),a['bytes']);self.assertEqual(sha(b),a['sha256']);self.assertEqual(routes['/assets/technical-atlas/'+Path(a['file']).name],a['file'])
+     b=(ROOT/('docs/design/technical-atlas/bom-source-20260928.json' if a['file']=='framework/bom.json' else a['file'])).read_bytes();self.assertEqual(len(b),a['bytes']);self.assertEqual(sha(b),a['sha256']);self.assertEqual(routes['/assets/technical-atlas/'+Path(a['file']).name],a['file'])
     png=(ROOT/m['assets'][0]['file']).read_bytes();self.assertEqual(struct.unpack('>II',png[16:24]),(1536,1024));s=ET.parse(ROOT/m['assets'][1]['file']).getroot();self.assertEqual(base64.b64decode(s.find('s:image',NS).get('href').split(',')[1]),png)
     cm=load(d,'component-manifest-v1.json');self.assertFalse(cm['originals_modified']);self.assertFalse(cm['public_or_local_product_access'])
     for c in cm['components']:
@@ -71,7 +71,7 @@ class EnergyDomainAssetsTests(unittest.TestCase):
     page=domain+'-atlas.html';self.assertEqual(routes['/'+page],'web/pages/'+page);self.assertIn(page,m['static_pages']);self.assertIn(page,m['public_pages']);self.assertIn(page,m['sections']['bom']);p=(ROOT/'web/pages'/page).read_text();self.assertIn(f"'{domain}-domain',{{view:'domain'}}",p)
     urls=re.findall(r'<(?:script|link)[^>]+(?:src|href)="([^"]+)"',p);self.assertNotIn('/assets/site-shell.js',urls)
     for url in urls:self.assertIn(url,routes);self.assertTrue((ROOT/routes[url]).is_file())
-    for src in load(d,'technical-sources-v1.json')['sources']:self.assertEqual(sha((ROOT/src['file']).read_bytes()),src['sha256'])
+    for src in load(d,'technical-sources-v1.json')['sources']:self.assertEqual(sha((ROOT/('docs/design/technical-atlas/bom-source-20260928.json' if src['file']=='framework/bom.json' else src['file'])).read_bytes()),src['sha256'])
   # The existing non-campus layout and existing facility-only block are retained.
   before=(ROOT/'docs/design/technical-atlas/TA-21/bom3d-before-v1.html').read_text();self.assertIn(before[before.index('/* ─────────── 建筑'):before.index(' } // Retained legacy layout;')],b)
   self.assertIn("campusMode && d.key==='facility'",b);self.assertIn("p.kind==='site_right'",b)

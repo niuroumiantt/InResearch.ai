@@ -6,6 +6,7 @@
 运行库里的登记，一行进不进 ``delivered`` 由 Git 内载体决定（``knowledge/targets.py``），页面标"运行库有 / Git 无"。
 """
 import json
+from inresearch.knowledge.skeleton import system_path
 from datetime import date
 from pathlib import Path
 
@@ -63,8 +64,7 @@ def targets_view(root, user, role, params=None):
     if bom_path.exists():
         bom = json.loads(bom_path.read_text(encoding='utf-8'))
         for p in bom['parts']:
-            s = bom['systems'].get(p['system'], {})
-            systems[p['id']] = [p['system']] + ([s['parent']] if isinstance(s, dict) and s.get('parent') else [])
+            systems[p['id']] = system_path(bom['systems'], p['system'])
     want_node = params.get('node') or ''
     rows = []
     for t in doc['targets']:

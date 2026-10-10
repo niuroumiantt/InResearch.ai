@@ -5,7 +5,7 @@
   const esc = v => String(v ?? '').replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
   const STATUS = {sourced: '已有', assumed: '假设', delivered: '已交付', needed: '缺'};
   const CLASSES = {1: '构成', 2: '运行', 3: '价格', 4: '时间', 5: '主体'};
-  const TOP = [['facility', '设施'], ['power', '电力'], ['thermal', '冷却'], ['it', 'IT'], ['control', '控制与软件'], ['site', '站点权利'], ['root', '因子（根）']];
+  const TOP = [['facility', '设施'], ['thermal', '水与散热'], ['power', '电'], ['it', 'IT设施'], ['control', '控制与软件'], ['site', '站点权利'], ['root', '因子（根）']];
   const state = {filters: {team: '', col: '', status: '', system: '', q: '', mine: ''}, data: null, bom: null, host: null, dialog: null};
   const params = new URLSearchParams(location.search);
   for (const k of ['team', 'col', 'status', 'mine', 'node', 'q']) if (params.get(k)) state.filters[k] = params.get(k);
@@ -15,8 +15,9 @@
     if (!row.part_id) return 'root';
     const part = state.bom?.parts?.find(p => p.id === row.part_id);
     if (!part) return 'root';
-    const sys = state.bom.systems[part.system] || {};
-    return sys.parent || part.system;
+    let id = part.system;
+    while (state.bom.systems[id]?.parent) id = state.bom.systems[id].parent;
+    return id;
   }
   function nodeHref(row) { return 'node.html?' + new URLSearchParams(row.node === 'root' ? {col: row.variable_class} : {id: row.node, col: row.variable_class}); }
   function due(row) { return row.team_state === 'not_connected' ? '<span class="muted">待建队</span>' : esc(row.next_due || ''); }

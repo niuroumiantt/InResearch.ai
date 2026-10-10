@@ -13,7 +13,7 @@ async function thumbnailTitle(page, part) {
   const card=page.locator(`.pbox[data-atlas-part="${part}"]`);
   return (await card.locator('img').count()) ? card.locator('img').getAttribute('alt') : card.locator('title').textContent();
 }
-const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-11','server','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存'], ['cpu','TA-06','motherboard','IT · 计算'], ['dram','TA-06','motherboard','IT · 内存'], ['nic','TA-07','nic','IT · 网络'], ['psu','TA-08','psu','电力'], ['server-fan','TA-09','fan-wall','冷却'], ['coldplate','TA-10','coldplate','冷却']]
+const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','fire','设施'], ['security','TA-38','security','设施'], ['rack-frame','TA-39','rack-frame','设施'], ['server','TA-11','server','IT · 计算'], ['gpu','TA-04','gpu-board','IT · 计算'], ['hbm','TA-05','hbm-package','IT · 内存'], ['cpu','TA-06','motherboard','IT · 计算'], ['dram','TA-06','motherboard','IT · 内存'], ['nic','TA-07','nic','IT · 网络'], ['psu','TA-08','psu','电'], ['server-fan','TA-09','fan-wall','水与散热'], ['coldplate','TA-10','coldplate','水与散热']]
   .filter(([,figure]) => accepted.has(figure));
 (async () => {
   const browser = await chromium.launch({headless: true, args: ['--enable-unsafe-swiftshader']});
@@ -39,7 +39,7 @@ const illustrationCases = [['shell','TA-36','shell','设施'], ['fire','TA-37','
         assert.equal(await page.locator('#dossier .technical-atlas').count(),0,'avoid a duplicate sidebar illustration');
         assert.ok((await atlas.boundingBox()).width>500,'desktop SSD figure must be readable outside the sidebar');
         assert.equal(await page.locator('#stack #selected-atlas').count(),1,'selected drawing stays within its system/scale overview');
-        assert.match(await page.locator('.atlas-context').textContent(), /IT · 存储 → 企业级 SSD/);
+        assert.match(await page.locator('.atlas-context').textContent(), /IT · 持久存储 → 企业级 SSD/);
         for (const mode of ['scale','system']) {
           await page.locator(`[data-mode="${mode}"]`).click();
           assert.ok(await page.locator('#selected-atlas').evaluate(el => el.previousElementSibling.matches('.lrow[data-row-parts~="ssd"]')),

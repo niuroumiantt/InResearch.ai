@@ -14,7 +14,18 @@ const bom=require('../framework/bom.json');
   const physical=bom.parts.filter(p=>(p.kind||'part')==='part');
   assert.equal(await page.locator('.equipment').count(),physical.length);
   assert.equal(await page.locator('[data-overview-system]').count(),5);
-  assert.equal(await page.locator('.it-branches a').count(),4);
+  assert.equal(await page.locator('[data-it-branch]').count(),3);
+  assert.deepEqual(await page.locator('[data-it-branch]').evaluateAll(es=>es.map(e=>e.textContent)),['计算','存储','网络']);
+  assert.deepEqual(await page.locator('[data-processor-link]').evaluateAll(es=>es.map(e=>e.textContent)),['CPU','GPU','其他']);
+  assert.deepEqual(await page.locator('[data-storage-link]').evaluateAll(es=>es.map(e=>e.textContent)),['内存','持久存储']);
+  for(const id of ['facility','thermal','power','it','control']) {
+   const colors=await page.evaluate(id=>{
+    const color=el=>getComputedStyle(el).getPropertyValue('--category').trim();
+    return [color(document.querySelector('#system-map [data-category="'+id+'"]')),color(document.querySelector('#system-'+id)),color(document.querySelector('.system-index [data-category="'+id+'"]'))];
+   },id);
+   assert.ok(colors[0]);assert.equal(new Set(colors).size,1,'diagram, section and navigation share category color');
+  }
+  assert.deepEqual(await page.locator('[data-processor-group="other"] .equipment').evaluateAll(es=>es.map(e=>e.dataset.part)),['ai-asic','fpga']);
   assert.ok(await page.locator('#detail-panel').evaluate(e=>e.hidden));
   assert.ok(await page.locator('#overview').evaluate(e=>!!(e.compareDocumentPosition(document.querySelector('.equipment'))&Node.DOCUMENT_POSITION_FOLLOWING)));
   for(const width of [1920,1440,1280,900,390,320]){
@@ -42,7 +53,14 @@ const bom=require('../framework/bom.json');
    const bar=await page.locator('.system-index').boundingBox();
    assert.ok(pos.y>=bar.y+bar.height-1,`${id} heading not hidden by sticky index`);
   }
-  await page.locator('.it-branches a[href="#it-memory"]').click();
+  for(const id of ['cpu','gpu','other']) {
+   await page.locator('[data-processor-link="'+id+'"]').click();
+   assert.equal(new URL(page.url()).hash,'#compute-'+id);
+   const pos=await page.locator('#compute-'+id).boundingBox();
+   const bar=await page.locator('.system-index').boundingBox();
+   assert.ok(pos.y>=bar.y+bar.height-1,'processor heading visible below sticky navigation');
+  }
+  await page.locator('[data-storage-link="memory"]').click();
   assert.equal(new URL(page.url()).hash,'#it-memory');
   await page.locator('.equipment[data-part="ssd"]').click();
   await page.locator('#selected-atlas .technical-atlas').waitFor();

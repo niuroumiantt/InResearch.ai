@@ -97,21 +97,41 @@
   .section-heading p,.overview-note { color:var(--muted); font-size:13px; }
   .section-step { font-size:13px; color:var(--muted); border:1px solid var(--line); padding:2px 8px; }
   #overview { padding:24px; border:1px solid var(--line); background:var(--card); margin-bottom:28px; }
-  .framework-map { display:grid; grid-template-columns:minmax(0,1fr) 70px minmax(0,1.3fr) 70px minmax(0,1fr); gap:12px 0; }
-  .map-node { display:block; min-width:0; padding:18px; border:1px solid var(--line); color:var(--text); background:var(--bg); }
-  a.map-node:hover { border-color:var(--accent); }
-  .map-node strong { font-size:18px; font-weight:600; }
-  .map-node small { float:right; font-size:13px; color:var(--muted); }
+  [data-category="facility"] { --category:#94765d; }
+  [data-category="thermal"] { --category:#398bbd; }
+  [data-category="power"] { --category:#c58a28; }
+  [data-category="it"] { --category:#9270c6; }
+  [data-category="control"] { --category:#58936d; }
+  .framework-map { display:block; }
+  .tree-root { width:220px; margin:0 auto 48px; padding:10px; text-align:center; background:var(--bg); border:1px solid var(--line); font-size:18px; font-weight:600; position:relative; }
+  .tree-root::after { content:""; position:absolute; top:100%; left:50%; height:24px; border-left:1px solid var(--line); }
+  .tree-columns { display:grid; grid-template-columns:1fr 1.15fr 1.15fr 2.6fr 1.2fr; gap:12px; position:relative; }
+  .tree-columns::before { content:""; position:absolute; top:-24px; left:7%; right:8%; border-top:1px solid var(--line); }
+  .map-node { display:block; min-width:0; padding:14px; color:var(--text); background:color-mix(in srgb,var(--category) 9%,var(--card)); border:1px solid color-mix(in srgb,var(--category) 35%,var(--line)); border-top:4px solid var(--category); position:relative; }
+  .tree-columns > .map-node::before { content:""; position:absolute; top:-28px; left:50%; height:24px; border-left:1px solid var(--line); }
+  .map-node:not([data-category]) { --category:var(--line); border-top-width:1px; }
+  .map-node strong { display:block; font-size:17px; font-weight:600; color:var(--text); }
+  .map-node small { display:block; font-size:12px; color:var(--muted); margin:3px 0 10px; }
   .map-node p { color:var(--muted); font-size:13px; margin-top:6px; }
-  .map-facility,.map-control { grid-column:1/-1; display:flex; gap:24px; align-items:center; }
-  .map-control { border-style:dashed; }
-  .map-control p,.map-facility p { margin:0; }
-  .map-flow { align-self:center; text-align:center; color:var(--muted); font-size:13px; }
-  .map-flow span { display:block; font-size:28px; line-height:1.2; color:var(--text); }
-  .map-it { border-color:var(--accent); }
-  .it-branches { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; margin:12px 0; }
-  .it-branches a { text-align:center; padding:5px; border:1px solid var(--line); color:var(--text); font-size:14px; }
-  .it-branches a:hover { border-color:var(--accent); }
+  .map-node ul { list-style:none; padding:0 0 0 10px; border-left:1px solid color-mix(in srgb,var(--category) 40%,var(--line)); font-size:13px; }
+  .map-node li { padding:5px 0; }
+  .map-node a:hover { text-decoration:underline; }
+  .it-branches { display:grid; gap:10px; margin-top:12px; }
+  .tree-branch { padding:10px; background:var(--card); border-left:2px solid var(--category); }
+  .tree-branch > a { color:var(--text); font-weight:600; font-size:15px; }
+  .tree-leaves { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+  .tree-leaves a { flex:1; text-align:center; color:var(--text); background:color-mix(in srgb,var(--category) 10%,var(--card)); padding:5px 7px; font-size:13px; white-space:nowrap; }
+  .tree-leaves a:hover { background:color-mix(in srgb,var(--category) 20%,var(--card)); }
+  .tree-support { font-size:12px; color:var(--muted); margin-top:8px; }
+  .system-section > .sysh { background:color-mix(in srgb,var(--category) 12%,var(--card)); border:1px solid color-mix(in srgb,var(--category) 25%,var(--line)); border-left:5px solid var(--category); padding:14px 16px; }
+  .system-index a[data-category] { background:color-mix(in srgb,var(--category) 12%,var(--card)); border-bottom:3px solid var(--category); color:var(--text); }
+  .system-section .system-chain,.system-section .system-software { border-top:3px solid color-mix(in srgb,var(--category) 60%,var(--line)); }
+  .system-chain.compute-chain { grid-column:1/-1; }
+  .compute-families { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+  .compute-family h4 { padding:8px 10px; margin-bottom:10px; background:color-mix(in srgb,var(--category) 12%,var(--card)); font-size:15px; }
+  .compute-support { margin-top:20px; padding-top:14px; border-top:1px solid var(--line); }
+  .compute-support h4 { margin-bottom:10px; font-size:15px; }
+  .it-group-heading { grid-column:1/-1; margin:8px 0 -6px; padding:10px 14px; background:color-mix(in srgb,var(--category) 8%,var(--card)); font-size:18px; }
   .map-rights { grid-column:1/-1; display:flex; gap:12px; align-items:baseline; flex-wrap:wrap; padding-top:12px; border-top:1px solid var(--line); }
   .map-rights span { color:var(--muted); font-size:13px; }
   .overview-note { margin-top:14px; }
@@ -135,6 +155,7 @@
   .chain-heading { justify-content:space-between; gap:8px; margin-bottom:14px; }
   .chain-heading h3 { font-size:16px; font-weight:600; }
   .chain-heading small { font-size:13px; }
+  .compute-family { scroll-margin-top:calc(var(--ui-bar-height) + 150px); }
   .system-subhead { margin:0 0 10px; scroll-margin-top:calc(var(--ui-bar-height) + 130px); }
   .equipment-grid { grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
   .equipment { max-width:280px; }
@@ -145,7 +166,11 @@
   .scale-row .equipment-grid { grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); }
   @media(max-width:900px) {
     .wrap { padding:0 18px; margin-top:20px; }
-    .framework-map { grid-template-columns:minmax(0,1fr) 44px minmax(0,1.2fr) 44px minmax(0,1fr); }
+    .tree-columns { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .tree-columns::before,.tree-columns > .map-node::before,.tree-root::after { display:none; }
+    .tree-root { margin-bottom:18px; }
+    .map-it { grid-column:span 2; }
+    .tree-columns { padding-left:16px; border-left:1px solid var(--line); }
     .map-node { padding:12px; }
     .map-node small { float:none; display:block; }
     .chain-grid { grid-template-columns:1fr; }
@@ -156,7 +181,9 @@
     .stage h1 { font-size:24px; }
     #overview { padding:14px; }
     .section-heading h2 { font-size:19px; }
-    .framework-map { grid-template-columns:1fr; gap:10px; }
+    .tree-columns { grid-template-columns:1fr; gap:10px; }
+    .map-it { grid-column:auto; }
+    .compute-families { grid-template-columns:1fr; }
     .map-facility,.map-control { grid-column:auto; display:block; }
     .map-control p,.map-facility p { margin-top:6px; }
     .map-rights { grid-column:auto; }
@@ -191,20 +218,20 @@
 <div class="wrap">
   <div class="stage">
     <h1>一张图拆解 <em>AI 数据中心</em></h1>
-    <div class="sub">先看五个系统怎样协作，再沿功能链路拆到设备与组件。点击总图定位系统，点击设备查看结构图与研究档案。</div>
+    <div class="sub">先看一张分类总图：五大类 → IT 三分 → 计算与存储细分，再向下查看设备与组件。点击总图定位系统，点击设备查看结构图与研究档案。</div>
     <section id="overview" aria-labelledby="overview-title">
-      <div class="section-heading"><span class="section-step">01</span><h2 id="overview-title">先看全局：系统怎样协作</h2><p>总图 → 系统 → 功能链段 → 设备与组件</p></div>
-      <div id="system-map" class="framework-map" aria-label="五系统运行关系总图">正在加载系统总图…</div>
+      <div class="section-heading"><span class="section-step">01</span><h2 id="overview-title">先看分类：这一页怎么读</h2><p>五大类 → 子分类 → 设备与组件</p></div>
+      <div id="system-map" class="framework-map" aria-label="数据中心分类树">正在加载系统总图…</div>
       <div id="scale-map" aria-label="五尺度构成总图" hidden></div>
-      <p class="overview-note" id="overview-note">箭头表示供电与排热关系；设施提供空间与安全环境，控制与软件贯穿各系统。设备类别与替代方案在下方分别展开。</p>
+      <p class="overview-note" id="overview-note">连接线表示分类归属。五大类使用固定颜色，下方同色区块沿用同一分类；设备卡片的小圆点另表示供应状态。</p>
     </section>
-    <div class="section-heading"><span class="section-step">02</span><h2 id="breakdown-title">再看拆解：系统与功能链路</h2><p>设备类别示例 · 点击查看部件档案</p></div>
+    <div class="section-heading"><span class="section-step">02</span><h2 id="breakdown-title">沿分类拆解：设备与组件</h2><p>设备类别示例 · 点击查看部件档案</p></div>
     <div class="legend">供应状态：<i style="background:var(--red)"></i>紧缺 <i style="background:var(--yellow)"></i>技术切换中
       <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴
       <span class="modes"><button type="button" class="mode on" data-mode="system">按系统</button><button type="button" class="mode" data-mode="scale">按尺度</button></span>
       <a class="mode" href="/cross-scale-atlas.html" data-atlas-cross-scale>跨尺度讲解图 →</a>
       <a class="go3d" href="bom3d.html">🧊 进入 3D 立体拆解 →</a></div>
-    <p class="system-note" id="system-overview-actions"><a href="/assets/technical-atlas/system-overview-v2.svg" target="_blank" rel="noopener">查看五系统总览示意 ↗</a> · <a href="/assets/technical-atlas/system-overview-v2.svg" download="system-overview-v2.svg">下载标注总览</a> · <a href="/assets/technical-atlas/system-overview-v2.png" download="system-overview-v2.png">下载无字总览</a><br>每个物理系统仅取一个代表；完整类别展开在下方。</p>
+    <p class="system-note" id="system-overview-actions"><a href="/assets/technical-atlas/system-overview-v2.svg" target="_blank" rel="noopener">查看设备代表示意 ↗</a> · <a href="/assets/technical-atlas/system-overview-v2.svg" download="system-overview-v2.svg">下载标注总览</a> · <a href="/assets/technical-atlas/system-overview-v2.png" download="system-overview-v2.png">下载无字总览</a><br>每个物理系统仅取一个代表；完整类别展开在下方。</p>
     <p class="system-note" id="scale-overview-actions" hidden><a href="/assets/technical-atlas/scale-overview-v1.svg" target="_blank" rel="noopener">查看五尺度总览示意 ↗</a> · <a href="/assets/technical-atlas/scale-overview-v1.svg" download="scale-overview-v1.svg">下载标注总览</a> · <a href="/assets/technical-atlas/scale-overview-v1.png" download="scale-overview-v1.png">下载无字总览</a><br>从部件到园区，每组取一代表；排版大小不表示实物比例。</p>
     <div id="stack">加载中…<div id="selected-atlas" hidden></div></div>
   </div>
@@ -242,23 +269,23 @@ let BOM, CN = {}, PRICES = [], INDS = {}, showDossier = null;
     statusNames: SN, statusColors: Object.fromEntries(Object.entries(SC).map(([k, v]) => [k, v])), inspector: { hide() {}, show() { return false; } },
     atlasHost: document.getElementById('selected-atlas'), atlasViewFor: () => document.getElementById('stack').dataset.mode });
 
-  // 两种排法：按系统（第一层五个系统，IT 展开四个，系统内按链路）是骨架；按尺度（S5 → S1）是第二排法
+  // 两种排法：按系统（第一层五个系统，IT 三分、存储再分，系统内按链路）是骨架；按尺度（S5 → S1）是第二排法
   const chips = parts => parts.map(p => `<button type="button" class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</button>`).join("");
-  const systemParts = sid => bom.parts.filter(p=>isPart(p) && (p.system===sid || bom.systems[p.system]?.parent===sid));
-  const systemTitle = sid => `${String(bom.systems[sid].order).padStart(2,'0')} ${esc(bom.systems[sid].name)}`;
-  function overviewNode(sid, description, cls='') {
-    return `<a class="map-node ${cls}" href="#system-${sid}" data-overview-system="${sid}"><strong>${systemTitle(sid)}</strong><small>${systemParts(sid).length} 个设备类别</small><p>${description}</p></a>`;
-  }
-  const itBranches = Object.entries(bom.systems).filter(([,s])=>s.parent==='it').sort((a,b)=>a[1].order-b[1].order);
-  document.getElementById('system-map').innerHTML =
-    overviewNode('facility','提供建筑空间、机柜承载与消防安防','map-facility') +
-    overviewNode('power','电网接入 / 变电 / 发电与储能 / UPS / 配电 / 板级供电') +
-    '<div class="map-flow">供电<span aria-hidden="true">→</span></div>' +
-    `<div class="map-node map-it"><a href="#system-it" data-overview-system="it"><strong>${systemTitle('it')}</strong></a><small>${systemParts('it').length} 个设备类别</small><div class="it-branches">${itBranches.map(([id,s])=>`<a href="#it-${id}">${esc(s.name.replace('IT · ',''))}</a>`).join('')}</div><p>计算处理任务；内存、存储与网络共同支撑。</p></div>` +
-    '<div class="map-flow">热量<span aria-hidden="true">→</span></div>' +
-    overviewNode('thermal','芯片与机柜集热 → 冷却回路 → 向环境排热') +
-    `<a class="map-node map-control" href="#system-control" data-overview-system="control"><strong>${systemTitle('control')}</strong><p>DCIM / BMS 与固件 · 监测、管理和控制各系统</p></a>` +
-    `<div class="map-rights"><a href="#site-rights">建设前提：站点权利 ↘</a><span>${rights.rights.map(r=>esc(r.name)).join(' · ')}</span></div>`;
+  const S=bom.systems;
+  const children = sid => Object.entries(S).filter(([,s])=>s.parent===sid).sort((a,b)=>a[1].order-b[1].order);
+  const descends = (leaf,sid) => leaf===sid || !!S[leaf]?.parent && descends(S[leaf].parent,sid);
+  const systemParts = sid => bom.parts.filter(p=>isPart(p)&&descends(p.system,sid));
+  const systemTitle = sid => `${String(S[sid].order).padStart(2,'0')} ${esc(S[sid].name)}`;
+  const label = sid => esc(S[sid].name.replace('IT · ',''));
+  const groups=S.compute.processor_groups;
+  const mapNode = sid => `<div class="map-node" data-category="${sid}"><a href="#system-${sid}" data-overview-system="${sid}"><strong>${systemTitle(sid)}</strong></a><small>${sid==='control'?'1 个软件类别':systemParts(sid).length+' 个设备类别'}</small><ul>${S[sid].chains.map(c=>`<li>${esc(c)}</li>`).join('')}</ul></div>`;
+  document.getElementById('system-map').innerHTML = `<div class="tree-root">AI 数据中心</div><div class="tree-columns">`+
+    mapNode('facility')+mapNode('thermal')+mapNode('power')+
+    `<div class="map-node map-it" data-category="it"><a href="#system-it" data-overview-system="it"><strong>${systemTitle('it')}</strong></a><small>${systemParts('it').length} 个设备类别</small><div class="it-branches">`+
+    `<div class="tree-branch"><a href="#it-compute" data-it-branch="compute">计算</a><div class="tree-leaves">${groups.map(g=>`<a href="#compute-${g.id}" data-processor-link="${g.id}">${esc(g.name)}</a>`).join('')}</div><p class="tree-support">配套：服务器、整机柜与管理控制器</p></div>`+
+    `<div class="tree-branch"><a href="#it-storage-group" data-it-branch="storage-group">存储</a><div class="tree-leaves">${children('storage-group').map(([id])=>`<a href="#it-${id}" data-storage-link="${id}">${label(id)}</a>`).join('')}</div></div>`+
+    `<div class="tree-branch"><a href="#it-network" data-it-branch="network">网络</a><p>交换、互连与数据传输</p></div></div></div>`+
+    mapNode('control')+`</div><div class="map-rights"><a href="#site-rights">建设前提：站点权利 ↘</a><span>${rights.rights.map(r=>esc(r.name)).join(' · ')}</span></div>`;
   document.getElementById('scale-map').innerHTML = [...bom.scales].reverse().map(l=>`<a class="map-node" href="#scale-${l.id}"><strong>${esc(l.id)} ${esc(l.name)}</strong><p>${esc(l.desc)}</p><small>${bom.parts.filter(p=>isPart(p)&&p.scale===l.id).length} 个设备类别</small></a>`).join('');
   function equipmentCard(p, view) {
     return `<button type="button" class="equipment pbox" data-part="${p.id}" data-atlas-part="${p.id}" aria-label="查看 ${esc(p.name)} 档案">
@@ -274,27 +301,28 @@ let BOM, CN = {}, PRICES = [], INDS = {}, showDossier = null;
     }).join('');
   }
   function bySystem() {
-    const S=bom.systems;
-    const top=Object.entries(S).filter(([,s])=>!s.parent).sort((a,b)=>a[1].order-b[1].order);
+    const top=children(null);
     let n=0;
     const card=p=>equipmentCard(p,'system');
-    const nav=`<nav class="system-index" aria-label="五系统定位">${top.map(([id,s])=>`<a href="#system-${id}" data-system-link="${id}">${esc(s.name)}</a>`).join('')}</nav>`;
-    return nav+top.map(([sid,s])=>{
-      const children=Object.entries(S).filter(([,x])=>x.parent===sid).sort((a,b)=>a[1].order-b[1].order);
-      const groups=children.length?children:[[sid,s]];
-      let inner=`<div class="sysh"><b>${systemTitle(sid)}</b><span class="en">${children.length?'计算 · 内存 · 存储 · 网络':s.chains.map(esc).join(' · ')}</span></div><p class="system-intro">${({facility:'先有承载设备的空间与安全环境。',power:'从电力接入到负载供电，按功能链段拆解；发电、储能与不同供电方案分别列示。',thermal:'设备产生的热量经冷却回路排向环境；下列类别按登记链段从设施端到芯片端展开。',it:'计算、内存、存储和网络是协作的四个子系统，分别展开。',control:'贯穿设施、电力、冷却与 IT 的监测、管理和固件控制。'})[sid]}</p><div class="chain-grid">`;
-      for(const[lid,l]of groups){
-        const subheading=children.length?`<h2 class="system-subhead" id="it-${lid}" data-it-system="${lid}">${esc(l.name)}</h2>`:"";
-        for(const chain of l.chains){
-          const parts=bom.parts.filter(p=>isPart(p)&&p.system===lid&&p.chain===chain).sort((a,b)=>a.chain_order-b.chain_order);
-          if(!parts.length){
-            const software=bom.parts.filter(p=>!isPart(p)&&p.system===lid&&p.chain===chain);
-            inner+=`<div class="system-software" data-chain="${lid}:${esc(chain)}"><h3>${esc(chain)}</h3><p class="system-note">软件用于监测、管理与固件控制，不画成物理设备，不占零件尺度。</p>${chips(software)}</div>`;continue;
-          }
-          inner+=`<section class="system-chain lrow" data-chain="${lid}:${esc(chain)}" data-row-parts="${parts.map(p=>p.id).join(' ')}">${subheading}<div class="chain-heading"><h3>${++n}. ${esc(chain)}</h3><small>${parts.length} 个设备类别 · 按骨架登记顺序</small></div><div class="equipment-grid">${parts.map(card).join('')}</div></section>`;
+    const nav=`<nav class="system-index" aria-label="五系统定位">${top.map(([id,s])=>`<a href="#system-${id}" data-system-link="${id}" data-category="${id}">${esc(s.name)}</a>`).join('')}</nav>`;
+    const leafPanels = lid => {
+      const l=S[lid];
+      if(children(lid).length) return `<h2 class="system-subhead it-group-heading" id="it-${lid}" data-it-system="${lid}">${label(lid)} · 内存与持久存储</h2>`+children(lid).map(([id])=>leafPanels(id)).join('');
+      return l.chains.map(chain=>{
+        const parts=bom.parts.filter(p=>isPart(p)&&p.system===lid&&p.chain===chain).sort((a,b)=>a.chain_order-b.chain_order);
+        const subheading=l.parent?`<h2 class="system-subhead" id="it-${lid}" data-it-system="${lid}">${label(lid)}</h2>`:'';
+        if(!parts.length){
+          const software=bom.parts.filter(p=>!isPart(p)&&p.system===lid&&p.chain===chain);
+          return `<div class="system-software" data-chain="${lid}:${esc(chain)}"><h3>${esc(chain)}</h3><p class="system-note">软件用于监测、管理与固件控制。</p>${chips(software)}</div>`;
         }
-      }
-      return `<section class="system-section" id="system-${sid}" data-system="${sid}">${inner}</div></section>`;
+        const content=lid==='compute'?`<div class="compute-families">${groups.map(g=>`<section class="compute-family" id="compute-${g.id}" data-processor-group="${g.id}"><h4>${esc(g.name)}${g.id==='other'?' · ASIC / FPGA':''}</h4><div class="equipment-grid">${g.parts.map(id=>card(parts.find(p=>p.id===id))).join('')}</div></section>`).join('')}</div><section class="compute-support"><h4>承载与管理配套</h4><div class="equipment-grid">${l.support_parts.map(id=>card(parts.find(p=>p.id===id))).join('')}</div></section>`:`<div class="equipment-grid">${parts.map(card).join('')}</div>`;
+        return `<section class="system-chain lrow ${lid==='compute'?'compute-chain':''}" data-chain="${lid}:${esc(chain)}" data-row-parts="${parts.map(p=>p.id).join(' ')}">${subheading}<div class="chain-heading"><h3>${++n}. ${esc(chain)}</h3><small>${parts.length} 个设备类别</small></div>${content}</section>`;
+      }).join('');
+    };
+    return nav+top.map(([sid,s])=>{
+      const inner=children(sid).length?children(sid).map(([id])=>leafPanels(id)).join(''):leafPanels(sid);
+      const intro=({facility:'建筑、机柜承载、消防与安防。',thermal:'供水、水处理、液冷、风冷与向环境排热，覆盖完整冷却链。',power:'从电网接入到负载供电，发电、储能与供电方案分别展开。',it:'先分计算、存储、网络；计算看 CPU、GPU、其他处理器，存储再分内存与持久存储。',control:'贯穿设施、水与散热、电及 IT 的监测、管理和固件控制。'})[sid];
+      return `<section class="system-section" id="system-${sid}" data-system="${sid}" data-category="${sid}"><div class="sysh"><b>${systemTitle(sid)}</b><span class="en">${children(sid).length?children(sid).map(([id])=>label(id)).join(' · '):s.chains.map(esc).join(' · ')}</span></div><p class="system-intro">${intro}</p><div class="chain-grid">${inner}</div></section>`;
     }).join('');
   }
   const stack = document.getElementById("stack");
@@ -306,9 +334,9 @@ let BOM, CN = {}, PRICES = [], INDS = {}, showDossier = null;
     stack.dataset.mode=mode;
     document.getElementById('system-map').hidden=mode!=='system';
     document.getElementById('scale-map').hidden=mode!=='scale';
-    document.getElementById('overview-title').textContent=mode==='system'?'先看全局：系统怎样协作':'先看全局：从园区到组件';
-    document.getElementById('breakdown-title').textContent=mode==='system'?'再看拆解：系统与功能链路':'再看拆解：五个尺度的设备类别';
-    document.getElementById('overview-note').textContent=mode==='system'?'箭头表示供电与排热关系；设施提供空间与安全环境，控制与软件贯穿各系统。设备类别与替代方案在下方分别展开。':'尺度表示部件归属层级，排版大小不代表实物比例；替代方案并列展示，不表示现场串联。';
+    document.getElementById('overview-title').textContent=mode==='system'?'先看分类：这一页怎么读':'先看全局：从园区到组件';
+    document.getElementById('breakdown-title').textContent=mode==='system'?'沿分类拆解：设备与组件':'再看拆解：五个尺度的设备类别';
+    document.getElementById('overview-note').textContent=mode==='system'?'连接线表示分类归属。五大类使用固定颜色，下方同色区块沿用同一分类；设备卡片的小圆点另表示供应状态。':'尺度表示部件归属层级，排版大小不代表实物比例；替代方案并列展示，不表示现场串联。';
     document.getElementById("system-overview-actions").hidden=mode!=="system";
     document.getElementById("scale-overview-actions").hidden=mode!=="scale";
     stack.innerHTML = (mode === "scale" ? byScale() : bySystem()) + otherEntries(bom, rights.rights || [], mode);
