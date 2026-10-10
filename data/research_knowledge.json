@@ -4248,6 +4248,66 @@
       "status": "candidate",
       "stored_path": "originals/13/1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f/dcd-1395eb0f6ff1b5a7-The power brokers- Brian Janous on building Cloverleaf Infrastruc.html",
       "title": "The power brokers: Brian Janous on building Cloverleaf Infrastructure"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "2fa4855754b40a411ff5201c4c0f3c1379014b71b09b7145f3859d2f9bcf3a4c",
+      "coverage": {
+        "characters_read": 11240,
+        "characters_total": 11240,
+        "chunks_read": 14,
+        "chunks_total": 14,
+        "complete": true,
+        "gap_pages": [
+          4
+        ],
+        "pages_read": 14,
+        "pages_total": 14
+      },
+      "doc_id": "doc-2fa4855754b40a411ff5201c4c0f3c1379014b71b09b7145f3859d2f9bcf3a4c",
+      "id": "doc-2fa4855754b40a411ff5201c4c0f3c1379014b71b09b7145f3859d2f9bcf3a4c",
+      "library_path": "library/by-node/part-rack-system/2026_SemiAnalysis_Rubin Ultra NVL576 架构：快速概览__2fa4855754b40a41.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:sk-hynix",
+        "chain:network/1",
+        "part:connector",
+        "part:cpu",
+        "part:gpu",
+        "part:hbm",
+        "part:manifold",
+        "part:optics",
+        "part:rack-system",
+        "part:switch-asic",
+        "system:memory",
+        "system:network"
+      ],
+      "question_ids": [
+        "M06-Q01",
+        "M07-Q02",
+        "OBJ-switch-asic-alternatives",
+        "OBJ-switch-asic-definition",
+        "OBJ-switch-asic-interfaces",
+        "OBJ-switch-asic-performance",
+        "Q-SCOPE-tech-gpu-memory"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-f39459d120574143be73ed9fe46c66d0",
+      "report_sha256": "2ada12cf70abdd21aa8b425998e6d6d0dc8939f33069873fa5fa3d85b7b6e3d6",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/2f/2fa4855754b40a411ff5201c4c0f3c1379014b71b09b7145f3859d2f9bcf3a4c/Rubin Ultra NVL576 架构：快速概览.pdf",
+      "title": "Rubin Ultra NVL576 架构：快速概览"
     }
   ],
   "evidence": [
@@ -31291,6 +31351,92 @@
           }
         },
         "batch_id": "98ea9c23f52e726f62a4de53fbf1da74a16376ecd3ec0730095721a3fa0f9b5b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2839bbfece7536f821de5b829105160032755161b35c163b4f15f435bdc27ea0",
+      "document_id": "doc-2fa4855754b40a411ff5201c4c0f3c1379014b71b09b7145f3859d2f9bcf3a4c",
+      "id": "rev-f39459d120574143be73ed9fe46c66d0:chunk:9:claim:6:ev:0",
+      "locator": "page:10/chunk:9",
+      "object_ids": [
+        "part:rack-system",
+        "chain:network/1"
+      ],
+      "page_index": 9,
+      "question_ids": [
+        "OBJ-switch-asic-alternatives"
+      ],
+      "quote": "最后，NVLink Switch 7 托盘（Portia）的 PCB 将根据交换机版本的不同而有所差异。Portia NPO 版本的 PCB 内容将最为复杂，而非扩展版本的 PCB 虽然也较为复杂，但其面积仅为扩展版本的一半。",
+      "reading_revision_id": "rev-f39459d120574143be73ed9fe46c66d0",
+      "source_sha256": "2fa4855754b40a411ff5201c4c0f3c1379014b71b09b7145f3859d2f9bcf3a4c",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T05:05:31+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性 6。连续引文及相邻版本说明足以支持限定的作者设计比较，实质补充当前交换芯片替代方案工作单中的配套板级实现约束，可作 B 类局部采用。未发现 A 类触发条件。",
+        "workorder_ids": [
+          "Q-OBJ-switch-asic-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 108.563,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "76fc1ed1b653c96d70266a277b1cda960f8263339fefd0756204e922d9b1d548",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66515,
+            "output_tokens": 4313,
+            "reasoning_output_tokens": 725
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.8,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "51f9e3dcdad7b7cd9d9554b114cc4a83e2bf2ae9f7ab1f7b922bdfefcb715f5b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 63836,
+              "output_tokens": 635,
+              "reasoning_output_tokens": 359
+            }
+          }
+        },
+        "batch_id": "f207b20df35621032e68af4dea4a42d35b120b09923a90ecc6686b3cbc2532c0"
       }
     }
   ],
@@ -60908,6 +61054,107 @@
         "request_sha256": "5d47b6e47806e7a33002eda3a7549b34f1b9146b13de5f9171649d7aa02f587f"
       },
       "object_mapping_check": "独立依据原文选择root（一座AI数据中心）及part:backup-power（发电与储能链下的柴油发电机组）：主张涉及训练用途对整座数据中心柴油备用配置的约束。许可难度仅为该配置观点的背景，未形成具体许可权利或办理流程结论，因此不扩展映射site:permits。未建立特定企业项目、GPU器件或其他备用技术的主张，不沿用文档中的其他对象标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-2fa4855754b40a411ff5201c4c0f3c1379014b71b09b7145f3859d2f9bcf3a4c",
+      "evidence_ids": [
+        "rev-f39459d120574143be73ed9fe46c66d0:chunk:9:claim:6:ev:0"
+      ],
+      "id": "adoption:review:34dd34d7211fc37853e431ec",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:rack-system",
+        "chain:network/1"
+      ],
+      "question_ids": [
+        "OBJ-switch-asic-alternatives"
+      ],
+      "reading_revision_id": "rev-f39459d120574143be73ed9fe46c66d0",
+      "status": "adopted",
+      "text": "SemiAnalysis《Rubin Ultra NVL576 架构：快速概览》的作者在 Rubin Ultra 机柜互连设计讨论中预计，NVLink Switch 7 托盘（Portia）的 PCB 将因交换机版本而异：Portia NPO 版本的 PCB 内容最为复杂；非扩展版本的 PCB 也较复杂，其 PCB 面积仅为扩展版本的一半。这是作者对设计方案的预期性比较，未获当前独立核验；所供原文未确立发表时间、具体地域或量产交付阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T05:05:31+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性 6。连续引文及相邻版本说明足以支持限定的作者设计比较，实质补充当前交换芯片替代方案工作单中的配套板级实现约束，可作 B 类局部采用。未发现 A 类触发条件。",
+        "workorder_ids": [
+          "Q-OBJ-switch-asic-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 108.563,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "76fc1ed1b653c96d70266a277b1cda960f8263339fefd0756204e922d9b1d548",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66515,
+            "output_tokens": 4313,
+            "reasoning_output_tokens": 725
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 30.8,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "51f9e3dcdad7b7cd9d9554b114cc4a83e2bf2ae9f7ab1f7b922bdfefcb715f5b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 63836,
+              "output_tokens": 635,
+              "reasoning_output_tokens": 359
+            }
+          }
+        },
+        "batch_id": "f207b20df35621032e68af4dea4a42d35b120b09923a90ecc6686b3cbc2532c0"
+      },
+      "source_candidate_ids": [
+        "rev-f39459d120574143be73ed9fe46c66d0:chunk:9:claim:6"
+      ],
+      "limitations": "一半是 PCB 面积比例，不是 ASIC 面积、成本或性能比例。原文没有面积绝对值、尺寸单位、复杂度指标、完整布局或同口径测试。扩展版本包含 NPO/CPO 两种变体，但该面积句未分别给出两者的尺寸；不能据此恢复完整比较表。",
+      "conflict_check": "现有 CPO 网络功耗模型、SoIC 光引擎带宽密度及机箱内耦合约束涉及不同对象和指标，不能核验或反驳本项 PCB 比较。所供旧事实、合同和项目匹配记录为空，未发现同口径真实冲突或可指定的重复规范记录；不提出替换。",
+      "gap_dependency_check": "仅为 OBJ-switch-asic-alternatives 补充交换芯片配套托盘的板级复杂度及面积约束，不回答 ASIC 本体的替代、性能或成本比较。仍需完整型号配置、PCB 尺寸及复杂度定义、制造成本和验证证据；问题保持开放，不更新模型值或覆盖已有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f207b20df35621032e68af4dea4a42d35b120b09923a90ecc6686b3cbc2532c0",
+        "source_report_sha256": "2ada12cf70abdd21aa8b425998e6d6d0dc8939f33069873fa5fa3d85b7b6e3d6",
+        "request_sha256": "4bf222608971a2c0cf6a6bcf3821d371942a851393633dca349d53be1130d1bf"
+      },
+      "object_mapping_check": "实际主张对象是整机柜中的 NVLink 互连托盘 PCB，映射计算链下的整机柜系统及 IT 网络链。PCB 不是交换芯片本体，不沿用候选的 part:switch-asic 标签；part:network-switch 明确限定 scale-out 以太网/IB，也不用于该 scale-up 托盘。该对象边界不否定其对交换芯片配套方案问题的局部贡献。"
     }
   ],
   "answers": [],
