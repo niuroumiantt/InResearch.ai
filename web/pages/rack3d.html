@@ -105,6 +105,7 @@
   <div class="stage" id="stage">整柜：一台 AI 机柜（ORV3 形态示意）</div>
   <button id="fit-view" type="button">适配视图</button>
   <button id="atlas-export" type="button" title="导出当前视角，SVG文字可编辑">导出图册</button>
+  <button id="panel-sources" class="ghost" type="button" hidden>保留来源面板 · 比例与原件</button>
   <button id="play">▶ 自动拆解</button>
   <a href="bom3d.html?d=compute"><button class="ghost">← 返回数据中心全景</button></a>
 </div></details>
@@ -140,6 +141,7 @@ import { RenderPass } from "./assets/vendor/RenderPass.js";
 import { OutputPass } from "./assets/vendor/OutputPass.js";
 import {mountSceneView} from "/assets/scene-view.js";
 import {mountSceneModels} from "/assets/model-assets.js";
+import {mountPanelSources} from "/assets/panel-source-viewer.js";
 import {createSceneEnvironment, createTexturePool} from "/assets/scene-resources.js";
 import {configureAtlasRenderer, atlasMaterial, atlasStudio, addAtlasLights, createAtlasDrawing, mountAtlasExport} from "/assets/scene-atlas.js?v=20261008.14";
 
@@ -255,7 +257,7 @@ addAtlasLights(THREE, scene, [14,22,12], {left:-14,right:14,top:18,bottom:-6,far
 /* ─────────── 程序化纹理 ─────────── */
 const ctex = texturePool.canvas;
 const rnd = (() => { let s = 7; return () => (s = s * 16807 % 2147483647) / 2147483647; })();
-const TEX = rackMode || chipMode ? {} : {
+const TEX = rackMode || chipMode || serverMode ? {} : {
   post: ctex(32, 256, (g, w, h) => {           // 机柜立柱：EIA 孔带
     g.fillStyle = "#10141c"; g.fillRect(0, 0, w, h);
     g.fillStyle = "#05070b";
@@ -359,8 +361,8 @@ const spinners = [];   // 旋转风扇叶
 const pulsers = [];    // 呼吸 LED
 /* 真实设备面板贴图（NetBox devicetype-library，CC0；来源见 assets/panels/README.md）
    加载失败自动退回程序化面板，不阻塞渲染 */
-function panel(name, accent) {
-  return texturePool.image({url:`assets/panels/${name}.png`, width:256, height:64,
+function panel(name, accent, surfaceAspect) {
+  return texturePool.image({url:`assets/panels/${name}.png`, width:256, height:64, surfaceAspect,
     drawFallback:(g, w, h) => {
       g.fillStyle = "#111827"; g.fillRect(0, 0, w, h);
       g.fillStyle = "#334155"; g.fillRect(4, 6, 12, h - 12); g.fillRect(w - 16, 6, 12, h - 12);
@@ -371,11 +373,13 @@ function panel(name, accent) {
       g.fillStyle = accent; g.fillRect(w - 39, 12, 20, 5);
     }});
 }
-const PANEL = rackMode || chipMode ? {} : {
-  server: panel("server_nvme", "#22c55e"), hero: panel("server_gpu", "#60a5fa"),
-  storage: panel("server_storage", "#f59e0b"), tor: panel("switch_tor", "#38bdf8"),
-  ib: panel("switch_ib", "#a78bfa"),
+const PANEL = rackMode || chipMode || serverMode ? {} : {
+  server: panel("server_nvme", "#22c55e", 2.3 / .735), hero: panel("server_gpu", "#60a5fa", 2.3 / 0.735),
+  storage: panel("server_storage", "#f59e0b", 2.3 / 0.735), tor: panel("switch_tor", "#38bdf8", 2.3 / 0.399),
+  ib: panel("switch_ib", "#a78bfa", 2.3 / 0.399),
 };
+
+const panelSources = mountPanelSources({handles:PANEL,button:document.getElementById("panel-sources")});
 
 function M(color, opt = {}) { return atlasMaterial(THREE, color, opt); }
 function tag(obj, partId) {
@@ -812,7 +816,7 @@ function disposePage() {
   pageDisposed = true;
   cancelAnimationFrame(animationFrame); sliderMotion.cancel();
   window.removeEventListener('inresearch:appearance', syncSceneAppearance);
-  atlasExport.dispose(); atlasDrawing.dispose();
+  panelSources.dispose(); atlasExport.dispose(); atlasDrawing.dispose();
   sceneView.dispose(); sceneModels.dispose(); scenePicking.dispose(); inspector.dispose(); serverAssembly?.dispose();rackAssembly?.dispose();chipAssembly?.dispose();
   animated.length = 0; pickables.length = 0; controls.dispose();
   sceneEnvironment.dispose(); texturePool.dispose(); composer.dispose(); renderer.dispose();

@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.65。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.66。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2340。
+在册文件：2377。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 356 |
+| 静态资源 | 361 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
 | 历史快照 | 366 |
-| 运行代码 | 358 |
+| 运行代码 | 359 |
 | 现行规范 | 15 |
-| 项目配置 | 679 |
+| 项目配置 | 707 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
 | 配套说明 | 171 |
-| 测试 | 183 |
+| 测试 | 186 |
 
 ## 在册记录集合
 
@@ -1081,7 +1081,7 @@
 | `docs/design/technical-atlas/TA-28/technical-preflight-v1.json` | actual_static_reads | 8 |
 | `docs/design/technical-atlas/TA-28/technical-preflight-v1.json` | not_performed | 3 |
 | `docs/design/technical-atlas/TA-28/technical-sources-v1.json` | sources | 3 |
-| `docs/design/technical-atlas/TA-29/acceptance-v1.json` | not_verified | 3 |
+| `docs/design/technical-atlas/TA-29/acceptance-v1.json` | not_verified | 8 |
 | `docs/design/technical-atlas/TA-29/acceptance-v1.json` | browser_checks | 1 |
 | `docs/design/technical-atlas/TA-29/acceptance-v1.json` | implementation_at_review | 8 |
 | `docs/design/technical-atlas/TA-29/acceptance-v1.json` | remaining_work | 1 |
@@ -1100,11 +1100,20 @@
 | `docs/design/technical-atlas/TA-29/inspector-source-review-child-v1.json` | actual_checks | 4 |
 | `docs/design/technical-atlas/TA-29/inspector-source-review-child-v1.json` | not_verified | 6 |
 | `docs/design/technical-atlas/TA-29/preview-inventory-v1.json` | not_verified | 2 |
+| `docs/design/technical-atlas/TA-29/public-checks-v1.json` | errors | 0 |
+| `docs/design/technical-atlas/TA-29/public-checks-v1.json` | not_verified | 8 |
+| `docs/design/technical-atlas/TA-29/public-fixture-baseline-fix-v2.json` | actual_source_references | 2 |
 | `docs/design/technical-atlas/TA-29/public-fixture-owner-review-v1.json` | limits | 4 |
 | `docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json` | runtime_guards | 4 |
 | `docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json` | coverage | 11 |
 | `docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json` | not_verified | 6 |
 | `docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json` | static_source_snapshots | 6 |
+| `docs/design/technical-atlas/TA-29/public-fixture-v2-static-review-child.json` | findings | 0 |
+| `docs/design/technical-atlas/TA-29/public-fixture-v2-static-review-child.json` | static_checks | 8 |
+| `docs/design/technical-atlas/TA-29/public-fixture-v2-static-review-child.json` | not_verified | 2 |
+| `docs/design/technical-atlas/TA-29/publication-20261010.json` | source_prs | 1 |
+| `docs/design/technical-atlas/TA-29/publication-20261010.json` | related_interactive_entries | 6 |
+| `docs/design/technical-atlas/TA-29/publication-20261010.json` | boundaries | 8 |
 | `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | current_implementation | 6 |
 | `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | preparation_gaps | 4 |
 | `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | required_acceptance | 8 |
@@ -1113,6 +1122,83 @@
 | `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | actual_read_files | 24 |
 | `docs/design/technical-atlas/TA-29/source-review-v1.json` | not_verified | 3 |
 | `docs/design/technical-atlas/TA-29/source-review-v1.json` | reviewed_sources | 8 |
+| `docs/design/technical-atlas/TA-29/spin-fixture-static-review-child.json` | scope | 7 |
+| `docs/design/technical-atlas/TA-29/spin-fixture-static-review-child.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-30/acceptance-v1.json` | artifacts | 2 |
+| `docs/design/technical-atlas/TA-30/acceptance-v1.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-30/acceptance-v1.json` | source_pixels | 2 |
+| `docs/design/technical-atlas/TA-30/acceptance-v1.json` | generic_face_ratio | 2 |
+| `docs/design/technical-atlas/TA-30/acceptance-v1.json` | browser_checks | 1 |
+| `docs/design/technical-atlas/TA-30/baseline-v1.json` | limits | 2 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json` | unresolved_P2_or_higher_findings | 0 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json` | resolved_history | 2 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json` | verified_static | 6 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json` | coverage_limits | 3 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json` | source_evidence | 10 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v2.json` | P2_or_higher_findings | 0 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v2.json` | fixes_verified | 4 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v2.json` | review_iteration_history | 2 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v2.json` | checks | 2 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v2.json` | limits | 3 |
+| `docs/design/technical-atlas/TA-30/independent-provenance-original-review-v1.json` | items | 5 |
+| `docs/design/technical-atlas/TA-30/independent-provenance-original-review-v1.json` | primary_sources | 5 |
+| `docs/design/technical-atlas/TA-30/independent-provenance-original-review-v1.json` | findings | 5 |
+| `docs/design/technical-atlas/TA-30/independent-provenance-original-review-v1.json` | not_verified | 5 |
+| `docs/design/technical-atlas/TA-30/independent-source-review-v1.json` | p0_p1_p2_findings | 0 |
+| `docs/design/technical-atlas/TA-30/independent-source-review-v1.json` | checks | 8 |
+| `docs/design/technical-atlas/TA-30/independent-source-review-v1.json` | artifacts | 5 |
+| `docs/design/technical-atlas/TA-30/independent-source-review-v1.json` | remaining_actual_public_checks | 4 |
+| `docs/design/technical-atlas/TA-30/independent-source-review-v1.json` | read_sources | 21 |
+| `docs/design/technical-atlas/TA-30/public-fixture-preflight-v1.json` | originals | 5 |
+| `docs/design/technical-atlas/TA-30/public-fixture-preflight-v1.json` | source_read_findings | 8 |
+| `docs/design/technical-atlas/TA-30/public-fixture-preflight-v1.json` | narrow_public_acceptance_matrix | 7 |
+| `docs/design/technical-atlas/TA-30/public-fixture-preflight-v1.json` | semantic_gates | 3 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v1.json` | assets | 5 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v1.json` | findings | 0 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v1.json` | resolved_during_static_review | 5 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v1.json` | limits | 5 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v2.json` | assets | 5 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v2.json` | findings | 0 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v2.json` | resolved_during_static_review | 5 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v2.json` | limits | 5 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v2.json` | actual_diff | 2 |
+| `docs/design/technical-atlas/TA-30/source-review-v1.json` | artifacts | 2 |
+| `docs/design/technical-atlas/TA-30/source-review-v1.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-30/source-validation-v1.json` | figure_ids | 5 |
+| `docs/design/technical-atlas/TA-30/source-validation-v1.json` | independent_product_sha_matches | 21 |
+| `docs/design/technical-atlas/TA-30/source-validation-v1.json` | failures_retained | 2 |
+| `docs/design/technical-atlas/TA-31/acceptance-v1.json` | artifacts | 2 |
+| `docs/design/technical-atlas/TA-31/acceptance-v1.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-31/acceptance-v1.json` | source_pixels | 2 |
+| `docs/design/technical-atlas/TA-31/acceptance-v1.json` | generic_face_ratio | 2 |
+| `docs/design/technical-atlas/TA-31/acceptance-v1.json` | browser_checks | 1 |
+| `docs/design/technical-atlas/TA-31/baseline-v1.json` | limits | 2 |
+| `docs/design/technical-atlas/TA-31/source-review-v1.json` | artifacts | 2 |
+| `docs/design/technical-atlas/TA-31/source-review-v1.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-32/acceptance-v1.json` | artifacts | 2 |
+| `docs/design/technical-atlas/TA-32/acceptance-v1.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-32/acceptance-v1.json` | source_pixels | 2 |
+| `docs/design/technical-atlas/TA-32/acceptance-v1.json` | generic_face_ratio | 2 |
+| `docs/design/technical-atlas/TA-32/acceptance-v1.json` | browser_checks | 1 |
+| `docs/design/technical-atlas/TA-32/baseline-v1.json` | limits | 2 |
+| `docs/design/technical-atlas/TA-32/source-review-v1.json` | artifacts | 2 |
+| `docs/design/technical-atlas/TA-32/source-review-v1.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-33/acceptance-v1.json` | artifacts | 2 |
+| `docs/design/technical-atlas/TA-33/acceptance-v1.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-33/acceptance-v1.json` | source_pixels | 2 |
+| `docs/design/technical-atlas/TA-33/acceptance-v1.json` | generic_face_ratio | 2 |
+| `docs/design/technical-atlas/TA-33/acceptance-v1.json` | browser_checks | 1 |
+| `docs/design/technical-atlas/TA-33/baseline-v1.json` | limits | 2 |
+| `docs/design/technical-atlas/TA-33/source-review-v1.json` | artifacts | 2 |
+| `docs/design/technical-atlas/TA-33/source-review-v1.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-34/acceptance-v1.json` | artifacts | 2 |
+| `docs/design/technical-atlas/TA-34/acceptance-v1.json` | not_verified | 1 |
+| `docs/design/technical-atlas/TA-34/acceptance-v1.json` | source_pixels | 2 |
+| `docs/design/technical-atlas/TA-34/acceptance-v1.json` | generic_face_ratio | 2 |
+| `docs/design/technical-atlas/TA-34/acceptance-v1.json` | browser_checks | 1 |
+| `docs/design/technical-atlas/TA-34/baseline-v1.json` | limits | 2 |
+| `docs/design/technical-atlas/TA-34/source-review-v1.json` | artifacts | 2 |
+| `docs/design/technical-atlas/TA-34/source-review-v1.json` | not_verified | 1 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | technical_sources | 2 |
@@ -2157,12 +2243,40 @@
 | `docs/design/technical-atlas/TA-29/part-dossier-before-v1.js` | 运行代码 |
 | `docs/design/technical-atlas/TA-29/part-inspector-before-v1.js` | 运行代码 |
 | `docs/design/technical-atlas/TA-29/preview-inventory-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/public-checks-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/public-fixture-baseline-fix-v2.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-29/public-fixture-owner-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/public-fixture-v2-static-review-child.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/publication-20261010.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-29/rack-assembly-before-v1.js` | 运行代码 |
 | `docs/design/technical-atlas/TA-29/rack3d-before-v1.html` | 运行代码 |
 | `docs/design/technical-atlas/TA-29/readonly-preflight-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-29/source-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-29/spin-fixture-static-review-child.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/baseline-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/fixture-independent-review-v2.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/independent-provenance-original-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/independent-source-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/public-fixture-preflight-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/public-fixture-static-review-v2.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/source-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/source-validation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-31/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-31/baseline-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-31/source-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-32/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-32/baseline-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-32/source-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-33/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-33/baseline-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-33/source-review-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-34/acceptance-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-34/baseline-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-34/source-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-36/prompt-v1.txt` | 项目配置 |
@@ -3330,6 +3444,7 @@
 | `tests/model_assets.cjs` | 测试 |
 | `tests/nvidia_pilot.cjs` | 测试 |
 | `tests/ops_dashboard.cjs` | 测试 |
+| `tests/panel_sources.cjs` | 测试 |
 | `tests/part_dossier.cjs` | 测试 |
 | `tests/product_catalog.cjs` | 测试 |
 | `tests/rack_assembly.cjs` | 测试 |
@@ -3348,6 +3463,7 @@
 | `tests/server_assembly.cjs` | 测试 |
 | `tests/server_plan.cjs` | 测试 |
 | `tests/shared_part_preview.cjs` | 测试 |
+| `tests/shared_part_preview_spin.cjs` | 测试 |
 | `tests/supply.cjs` | 测试 |
 | `tests/system_atlas.cjs` | 测试 |
 | `tests/technical_atlas.cjs` | 测试 |
@@ -3434,6 +3550,7 @@
 | `tests/unit/test_ollama_schema.py` | 测试 |
 | `tests/unit/test_operations.py` | 测试 |
 | `tests/unit/test_optional_mapping_ids.py` | 测试 |
+| `tests/unit/test_panel_source_assets.py` | 测试 |
 | `tests/unit/test_pdf_native_text.py` | 测试 |
 | `tests/unit/test_pilot_progress.py` | 测试 |
 | `tests/unit/test_placeholder_output.py` | 测试 |
@@ -3518,6 +3635,11 @@
 | `web/assets/ops-dashboard.js` | 运行代码 |
 | `web/assets/ops-forms.js` | 运行代码 |
 | [web/assets/panels/README.md](../web/assets/panels/README.md) | 配套说明 |
+| `web/assets/panels/display/server_gpu-contain.svg` | 静态资源 |
+| `web/assets/panels/display/server_nvme-contain.svg` | 静态资源 |
+| `web/assets/panels/display/server_storage-contain.svg` | 静态资源 |
+| `web/assets/panels/display/switch_ib-contain.svg` | 静态资源 |
+| `web/assets/panels/display/switch_tor-contain.svg` | 静态资源 |
 | `web/assets/panels/server_gpu.png` | 静态资源 |
 | `web/assets/panels/server_nvme.png` | 静态资源 |
 | `web/assets/panels/server_storage.png` | 静态资源 |
@@ -3877,6 +3999,7 @@
 | `web/components/markdown-inline.js` | 运行代码 |
 | `web/components/model-assets.js` | 运行代码 |
 | `web/components/object-network.js` | 运行代码 |
+| `web/components/panel-source-viewer.js` | 运行代码 |
 | `web/components/part-dossier.js` | 运行代码 |
 | `web/components/part-inspector.js` | 运行代码 |
 | `web/components/pilot.js` | 运行代码 |

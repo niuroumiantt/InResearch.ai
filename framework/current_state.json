@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10.65",
+  "version": "2026.10.10.66",
   "effective_at": "2026-10-10",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -3000,12 +3000,50 @@
         "docs/design/technical-atlas/TA-29/independent-public-fixture-static-review-v1.json",
         "docs/design/technical-atlas/TA-29/inspector-source-review-child-v1.json",
         "docs/design/technical-atlas/TA-29/public-fixture-owner-review-v1.json",
-        "docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json"
+        "docs/design/technical-atlas/TA-29/public-fixture-scope-v1.json",
+        "docs/design/technical-atlas/TA-30/source-review-v1.json",
+        "docs/design/technical-atlas/TA-30/public-fixture-preflight-v1.json",
+        "docs/design/technical-atlas/TA-30/independent-provenance-original-review-v1.json",
+        "docs/design/technical-atlas/TA-30/baseline-v1.json",
+        "docs/design/technical-atlas/TA-30/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-31/source-review-v1.json",
+        "docs/design/technical-atlas/TA-31/baseline-v1.json",
+        "docs/design/technical-atlas/TA-31/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-32/source-review-v1.json",
+        "docs/design/technical-atlas/TA-32/baseline-v1.json",
+        "docs/design/technical-atlas/TA-32/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-33/source-review-v1.json",
+        "docs/design/technical-atlas/TA-33/baseline-v1.json",
+        "docs/design/technical-atlas/TA-33/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-34/source-review-v1.json",
+        "docs/design/technical-atlas/TA-34/baseline-v1.json",
+        "docs/design/technical-atlas/TA-34/acceptance-v1.json",
+        "web/assets/panels/display/switch_ib-contain.svg",
+        "web/assets/panels/display/server_storage-contain.svg",
+        "web/assets/panels/display/server_nvme-contain.svg",
+        "web/assets/panels/display/server_gpu-contain.svg",
+        "web/assets/panels/display/switch_tor-contain.svg",
+        "web/components/panel-source-viewer.js",
+        "web/assets/panels/README.md",
+        "tests/panel_sources.cjs",
+        "tests/unit/test_panel_source_assets.py",
+        "tests/shared_part_preview_spin.cjs",
+        "docs/design/technical-atlas/TA-29/public-checks-v1.json",
+        "docs/design/technical-atlas/TA-29/publication-20261010.json",
+        "docs/design/technical-atlas/TA-29/public-fixture-v2-static-review-child.json",
+        "docs/design/technical-atlas/TA-29/public-fixture-baseline-fix-v2.json",
+        "docs/design/technical-atlas/TA-29/spin-fixture-static-review-child.json",
+        "docs/design/technical-atlas/TA-30/public-fixture-static-review-v1.json",
+        "docs/design/technical-atlas/TA-30/independent-source-review-v1.json",
+        "docs/design/technical-atlas/TA-30/public-fixture-static-review-v2.json",
+        "docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json",
+        "docs/design/technical-atlas/TA-30/fixture-independent-review-v2.json",
+        "docs/design/technical-atlas/TA-30/source-validation-v1.json"
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.10.65",
-      "change_reason": "TA28实际1c1a024a/.64、精确ab514镜像healthy、独立public-v2与16原尺寸截图/双下载/16源SHA/HTTPShealth200闭合，登记28/35补4/4；首轮同页hash导航null观察器失败保留，最窄更正经独立审后真实全复验，随本批保存。TA29共享档案预览源码阶段：复用已验几何与暖白配方，独立3D放大/旋转暂停/当前姿态适配/自己的当前SVG，单canvas独立renderer与camera，title/可见caption/metadata同对象ID。原静态SVG放大及主场景导出分别保留；default rack单实例ID、server真实子组拾取及类别聚合分开，软件/权利/模板不造实体。10园区/8服务器/4机柜/2封装预览类别逐项实测待部署，不以库存当视觉验收；资源借用/拥有与主镜头所有权分别核对，TA15仅共享路径冒烟。新公网未验，不计29；本地URL拒绝/CI未查/Spark研究0改，保留并行研究全部变化。；保留最新main追加：；2026-10-10共享验收收尾：TA28历史HTML补excluded登记；TA18/19软件说明断言跟随现行“软件有意无物理模型，不是待建硬件”，原零mesh/零inspector与其余验收保持。并行任务规则补充共享改动合并前相关测试、历史HTML登记、单发布所有者/旧PR优先、实际网站回执与吞吐计量，不增加用户确认步骤。；2026-10-10发布收尾：main现已启用GitHub四项必过检查（validate、browser(core)、browser(model_assets)、storage-container），管理员同样受限，不新增人工审批，非strict不要求无关基线移动自动重跑。TA29真实点选导出按可识别服务器子装配身份核验，未归入具名子装配的网格仍按原类别聚合回退，追加预览几何UUID精确一致断言；完整server聚合身份及原像素/标题/引线/下载/手势断言保持。容器测试清理复用已构建本批镜像、pull=never，仅chown自有TemporaryDirectory，清理前不删镜像，取消无谓的外部基础镜像下载。；同源TA13机柜点击测试同步实例编号，并比对实际设备几何UUID，不改变整柜、附件和其他验收。"
+      "implementation_revision": "2026.10.10.66",
+      "change_reason": "TA29已真实f99d7b22/.65与精确2b41a946镜像healthy，public-v2的83预览/40手势/30导出/21资源释放/63结构化截图及三个整对象整圈20/20/30采样、14公网源SHA/HTTPShealth200闭包，69实际截图逐张original实看，登记29/35补4/4；v1显式选中焦点后旧baseline观察器失败保留，v2仅修观察基线并完整复验，随本批保存。TA30–34五来源面板顺序source review：原PNG字节/标识/比例与官方Git blob元数据保持，分别建立contain展示SVG、实际CanvasTexture按通用前脸物理比留白，补偿整数canvas取整；独立来源入口/状态/原PNG与等比SVG双下载，仅旧场景使用。SN2100正式Ethernet，旧ib文件名不认证IB；400×70等低分辨率原件不冒充高清母图。未改变已验服务器/整柜/封装/园区几何，不增加BOM实体；本批新公网逐项另验，不计30–34。localURL拒绝保持；TA29历史CI未查如实保留，本批按用户新AGENTS核GitHub保护与最终head全部检查，失败不跳过；Spark研究0改，保留并行main。；2026-10-10发布收尾：main现已启用GitHub四项必过检查（validate、browser(core)、browser(model_assets)、storage-container），管理员同样受限，不新增人工审批，非strict不要求无关基线移动自动重跑。TA29真实点选导出按可识别服务器子装配身份核验，未归入具名子装配的网格仍按原类别聚合回退，追加预览几何UUID精确一致断言；完整server聚合身份及原像素/标题/引线/下载/手势断言保持。容器测试清理复用已构建本批镜像、pull=never，仅chown自有TemporaryDirectory，清理前不删镜像，取消无谓的外部基础镜像下载。；同源TA13机柜点击测试同步实例编号，并比对实际设备几何UUID，不改变整柜、附件和其他验收。"
     },
     {
       "id": "interface-repository-daily-20261008",
@@ -3518,5 +3556,5 @@
       "retire_after": "2026-12-31"
     }
   ],
-  "updated": "2026-10-10T03:13:51.521229+00:00"
+  "updated": "2026-10-10T04:17:21.180351+00:00"
 }

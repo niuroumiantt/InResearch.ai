@@ -1,0 +1,15 @@
+{
+  "figure": "TA-29",
+  "scope": "test-only actual public observer baseline order",
+  "old_failure": "public-v1 strict manual resize compared against camera before explicit domain row selection; actual existing click handler synchronously focusCampus then takes ownership",
+  "actual_source_references": [
+    "web/pages/bom3d.html:924 focusCampus",
+    "web/pages/bom3d.html:991 domain item handler"
+  ],
+  "correction": "Record before/after explicit selection; then perform second actual main-canvas drag and record manual baseline. Strict mini/resize unchanged comparisons retained. No product change.",
+  "source": "/private/tmp/ta29-shared-preview-public-v2.cjs",
+  "sha256": "39b3437c006659d8db1a335a1f60f9ac9786ca35cda91b0051f25332ae7e0875",
+  "old_result": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-29/public-v1/ta29-shared-preview-results.json",
+  "actual_v2_public_pending": true,
+  "added_guard": "Strict assert owned.camera differs from afterExplicitFocus.camera, so a missed/blocked drag cannot be called manual ownership"
+}

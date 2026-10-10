@@ -1,0 +1,96 @@
+{
+  "figure_id": "TA-31",
+  "object_id": "server_gpu",
+  "decision": "source_ready_public_pending",
+  "reviewed_at": "2026-10-10T04:10:32.878025+00:00",
+  "original_viewed": true,
+  "method": "Retain exact upstream PNG; controlled proportional contain display with warmwhite padding and explicit source identity; no imagegen/redraw",
+  "artifacts": [
+    {
+      "file": "web/assets/panels/server_gpu.png",
+      "sha256": "56386f5d0e9988f13d0b3cf3b2fa2cff99018f92d8045253bc5c9e7faccdd04f",
+      "bytes": 70243
+    },
+    {
+      "file": "web/assets/panels/display/server_gpu-contain.svg",
+      "sha256": "d3b0d14a420c58baa0d88b8ba767b1c23c458508baf4f09b4b5f968f78f32ead",
+      "bytes": 94529
+    }
+  ],
+  "source_display": {
+    "figure_id": "TA-31",
+    "source": "web/assets/panels/server_gpu.png",
+    "source_sha256": "56386f5d0e9988f13d0b3cf3b2fa2cff99018f92d8045253bc5c9e7faccdd04f",
+    "source_pixels": [
+      400,
+      70
+    ],
+    "generic_surface_ratio": [
+      2300,
+      735
+    ],
+    "unit": "drawing coordinates only, not millimetres/OEM dimensions",
+    "fit": "contain",
+    "original_bytes_unchanged": true,
+    "not_static_master_or_cad": true
+  },
+  "provenance": {
+    "figure_id": "TA-31",
+    "actual_original_viewed": true,
+    "view_tool": "view_image",
+    "view_detail": "original",
+    "path": "/Users/m4/.codex/worktrees/atlas-ta29-shared-preview/inresearch.ai/web/assets/panels/server_gpu.png",
+    "pixels": [
+      400,
+      70
+    ],
+    "bytes": 70243,
+    "sha256": "56386f5d0e9988f13d0b3cf3b2fa2cff99018f92d8045253bc5c9e7faccdd04f",
+    "same_as_prior_original": true,
+    "computed_local_git_blob_sha": "59fa5fa4fa96e0dddcbf35a4de7c7e0521f833dc",
+    "upstream_git_blob_sha": "59fa5fa4fa96e0dddcbf35a4de7c7e0521f833dc",
+    "upstream_blob_identity_equal": true,
+    "upstream_image_metadata": {
+      "path": "elevation-images/Supermicro/supermicro-sys-620bt-chassis.front.png",
+      "size": 70243,
+      "git_blob_sha": "59fa5fa4fa96e0dddcbf35a4de7c7e0521f833dc",
+      "html_url": "https://github.com/netbox-community/devicetype-library/blob/master/elevation-images/Supermicro/supermicro-sys-620bt-chassis.front.png",
+      "api_url": "https://api.github.com/repos/netbox-community/devicetype-library/contents/elevation-images/Supermicro/supermicro-sys-620bt-chassis.front.png?ref=master",
+      "git_url": "https://api.github.com/repos/netbox-community/devicetype-library/git/blobs/59fa5fa4fa96e0dddcbf35a4de7c7e0521f833dc"
+    },
+    "official_definition": {
+      "path": "device-types/Supermicro/SYS-620BT-CHASSIS.yaml",
+      "url": "https://github.com/netbox-community/devicetype-library/blob/master/device-types/Supermicro/SYS-620BT-CHASSIS.yaml",
+      "git_blob_sha": "4b36ae725b209b73162b55754befdee4f5b9c4a7",
+      "actual_text_read": true,
+      "lines_read": "1-85; SSE-G3648B additionally 80-160"
+    },
+    "recorded_source_model": "SYS-620BT-CHASSIS",
+    "visual_observations": "Complete compact front with twelve rectangular tray fronts in three rows of four, orange tabs and side ears. Native 400x70 is visibly coarse; small markings cannot be read reliably. No GPU boards/chips visible; no obvious truncation.",
+    "technical_boundary": "Official definition is a parent chassis for SYS-620BT with four node bays and twelve HDD module bays. This image and historical filename do not certify a GPU-equipped server. Preserve it as source chassis front; scaling does not create a high-resolution native master."
+  },
+  "actual_local_product_execution": false,
+  "actual_new_public_execution": false,
+  "offline_candidate": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-31/source-display-v1/source-display-candidate.png",
+  "not_verified": [
+    "Actual new public CanvasTexture/world face aspect, real legacy screen/mobile lightdark/source dialog/download/fallback/retry/disposal pending."
+  ],
+  "status": "review",
+  "publication_status": "not_published",
+  "style_id": "white-technical-atlas-v1",
+  "scope": "retained_source_display_only",
+  "original": "web/assets/panels/server_gpu.png",
+  "display": "web/assets/panels/display/server_gpu-contain.svg",
+  "source_pixels": [
+    400,
+    70
+  ],
+  "generic_face_ratio": [
+    2300,
+    735
+  ],
+  "original_sha256": "56386f5d0e9988f13d0b3cf3b2fa2cff99018f92d8045253bc5c9e7faccdd04f",
+  "browser_checks": [
+    "tests/panel_sources.cjs"
+  ]
+}
