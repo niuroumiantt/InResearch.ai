@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2377。
+在册文件：2403。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,11 +18,11 @@
 | 历史快照 | 366 |
 | 运行代码 | 359 |
 | 现行规范 | 15 |
-| 项目配置 | 707 |
+| 项目配置 | 719 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 171 |
+| 配套说明 | 185 |
 | 测试 | 186 |
 
 ## 在册记录集合
@@ -1245,6 +1245,10 @@
 | `docs/design/technical-atlas/TA-39/publication-20261008.json` | limits | 2 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | companies | 7 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | unpublished | 2 |
+| `docs/handoff/github-sync-20261010-audit.json` | history_backups | 15 |
+| `docs/handoff/github-sync-20261010-audit.json` | unfinished_research_backups | 7 |
+| `docs/handoff/github-sync-20261010-audit.json` | merged_pr_evidence | 39 |
+| `docs/handoff/github-sync-20261010-audit.json` | integrated_branches | 4 |
 | `docs/inbox/facts_candidates/m01_market_20260817.json` | records | 4 |
 | `docs/inbox/facts_candidates/m02_supply_20260817.json` | records | 5 |
 | `docs/inbox/facts_candidates/m03_demand_20260817.json` | records | 5 |
@@ -1355,6 +1359,20 @@
 | `docs/research/2026-10-01/ai-walle/cards.json` | cards | 10 |
 | `docs/research/2026-10-01/ai-walle/sources.json` | groups | 8 |
 | `docs/research/2026-10-01/ai-walle/sources.json` | background_sources | 1 |
+| `docs/research/2026-10-08/solidigm/cards.json` | items | 123 |
+| `docs/research/2026-10-08/solidigm/cover-composition.json` | portraits | 2 |
+| `docs/research/2026-10-08/solidigm/cover-portrait-source.json` | portraits | 2 |
+| `docs/research/2026-10-08/solidigm/figure-manifest.json` | items | 8 |
+| `docs/research/2026-10-08/solidigm/image-prompts.json` | items | 8 |
+| `docs/research/2026-10-08/solidigm/photo-sources.json` | items | 10 |
+| `docs/research/2026-10-08/solidigm/reading-highlights.json` | passages | 32 |
+| `docs/research/2026-10-08/solidigm/revision-05-qa-summary.json` | screens | 2 |
+| `docs/research/2026-10-08/solidigm/revision-05-qa-summary.json` | figure_text_delta | 8 |
+| `docs/research/2026-10-08/solidigm/revision-05-qa-summary.json` | html_sizes | 2 |
+| `docs/research/2026-10-08/solidigm/revision-06-qa-summary.json` | screens | 2 |
+| `docs/research/2026-10-08/solidigm/revision-06-qa-summary.json` | html_sizes | 2 |
+| `docs/research/2026-10-08/solidigm/scene-photo-sources.json` | items | 2 |
+| `docs/research/2026-10-08/solidigm/sources.json` | items | 103 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_ranges | 4 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | public_precision | 3 |
 | `docs/reviews/2026-09-06/evidence/backend-probes.json` | collect_steps | 3 |
@@ -2329,12 +2347,15 @@
 | [docs/handoff/daily-evidence-loop-20261006.md](handoff/daily-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/daily-oct7-adoption.md](handoff/daily-oct7-adoption.md) | 配套说明 |
 | [docs/handoff/dcd-publish-latency-20261009.md](handoff/dcd-publish-latency-20261009.md) | 配套说明 |
+| [docs/handoff/editorial-delivery-20261009.md](handoff/editorial-delivery-20261009.md) | 配套说明 |
 | [docs/handoff/event-delivery-20261006.md](handoff/event-delivery-20261006.md) | 配套说明 |
 | [docs/handoff/event-verification-20261007.md](handoff/event-verification-20261007.md) | 配套说明 |
 | [docs/handoff/evidence-followup-20261007.md](handoff/evidence-followup-20261007.md) | 配套说明 |
 | [docs/handoff/evidence-gaps-20261007.md](handoff/evidence-gaps-20261007.md) | 配套说明 |
 | [docs/handoff/fetchdata-bootstrap.md](handoff/fetchdata-bootstrap.md) | 配套说明 |
 | [docs/handoff/fetchspec-redesign-2026-09-29.md](handoff/fetchspec-redesign-2026-09-29.md) | 配套说明 |
+| `docs/handoff/github-sync-20261010-audit.json` | 项目配置 |
+| [docs/handoff/github-sync-20261010.md](handoff/github-sync-20261010.md) | 配套说明 |
 | [docs/handoff/historical-source-recovery-20261007.md](handoff/historical-source-recovery-20261007.md) | 配套说明 |
 | [docs/handoff/history-foundation-writing-20261008.md](handoff/history-foundation-writing-20261008.md) | 配套说明 |
 | [docs/handoff/home-map-visible-20261008.md](handoff/home-map-visible-20261008.md) | 配套说明 |
@@ -2356,16 +2377,19 @@
 | [docs/handoff/primary-records-20261007.md](handoff/primary-records-20261007.md) | 配套说明 |
 | [docs/handoff/project-evidence-loop-20261006.md](handoff/project-evidence-loop-20261006.md) | 配套说明 |
 | [docs/handoff/public-actions-recovery-20261009.md](handoff/public-actions-recovery-20261009.md) | 配套说明 |
+| [docs/handoff/publication-block-recovery-20261009.md](handoff/publication-block-recovery-20261009.md) | 配套说明 |
 | [docs/handoff/publication-throughput-recovery-20261009.md](handoff/publication-throughput-recovery-20261009.md) | 配套说明 |
 | [docs/handoff/reader-failure-ocr-repair-20261006.md](handoff/reader-failure-ocr-repair-20261006.md) | 配套说明 |
 | [docs/handoff/reading-adoption-first-batch-20261007.md](handoff/reading-adoption-first-batch-20261007.md) | 配套说明 |
 | [docs/handoff/repository-daily-refresh-20261008.md](handoff/repository-daily-refresh-20261008.md) | 配套说明 |
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
 | [docs/handoff/research-flow-recovery-20261009.md](handoff/research-flow-recovery-20261009.md) | 配套说明 |
+| [docs/handoff/research-pr-backlog-20261009.md](handoff/research-pr-backlog-20261009.md) | 配套说明 |
 | [docs/handoff/research-throughput-20261008.md](handoff/research-throughput-20261008.md) | 配套说明 |
 | [docs/handoff/research-verification-20261008.md](handoff/research-verification-20261008.md) | 配套说明 |
 | [docs/handoff/review-2026-09-29.md](handoff/review-2026-09-29.md) | 配套说明 |
 | [docs/handoff/review-literal-recovery-20261008.md](handoff/review-literal-recovery-20261008.md) | 配套说明 |
+| [docs/handoff/solidigm-longform-20261008.md](handoff/solidigm-longform-20261008.md) | 配套说明 |
 | [docs/handoff/supermicro-historical-supplement-20261007.md](handoff/supermicro-historical-supplement-20261007.md) | 配套说明 |
 | [docs/handoff/tco-model-fetch-teams.md](handoff/tco-model-fetch-teams.md) | 配套说明 |
 | [docs/handoff/technical-atlas-20261010.md](handoff/technical-atlas-20261010.md) | 配套说明 |
@@ -2564,6 +2588,26 @@
 | [docs/research/2026-10-01/ai-walle/feedback.md](research/2026-10-01/ai-walle/feedback.md) | 配套说明 |
 | [docs/research/2026-10-01/ai-walle/review.md](research/2026-10-01/ai-walle/review.md) | 配套说明 |
 | `docs/research/2026-10-01/ai-walle/sources.json` | 项目配置 |
+| [docs/research/2026-10-08/solidigm/README.md](research/2026-10-08/solidigm/README.md) | 配套说明 |
+| [docs/research/2026-10-08/solidigm/article.md](research/2026-10-08/solidigm/article.md) | 配套说明 |
+| `docs/research/2026-10-08/solidigm/cards.json` | 项目配置 |
+| `docs/research/2026-10-08/solidigm/cover-composition.json` | 项目配置 |
+| `docs/research/2026-10-08/solidigm/cover-portrait-source.json` | 项目配置 |
+| [docs/research/2026-10-08/solidigm/feedback.md](research/2026-10-08/solidigm/feedback.md) | 配套说明 |
+| `docs/research/2026-10-08/solidigm/figure-manifest.json` | 项目配置 |
+| `docs/research/2026-10-08/solidigm/image-prompts.json` | 项目配置 |
+| `docs/research/2026-10-08/solidigm/photo-sources.json` | 项目配置 |
+| `docs/research/2026-10-08/solidigm/reading-highlights.json` | 项目配置 |
+| [docs/research/2026-10-08/solidigm/review.md](research/2026-10-08/solidigm/review.md) | 配套说明 |
+| [docs/research/2026-10-08/solidigm/revision-03-review.md](research/2026-10-08/solidigm/revision-03-review.md) | 配套说明 |
+| [docs/research/2026-10-08/solidigm/revision-04-review.md](research/2026-10-08/solidigm/revision-04-review.md) | 配套说明 |
+| `docs/research/2026-10-08/solidigm/revision-05-qa-summary.json` | 项目配置 |
+| [docs/research/2026-10-08/solidigm/revision-05-review.md](research/2026-10-08/solidigm/revision-05-review.md) | 配套说明 |
+| `docs/research/2026-10-08/solidigm/revision-06-qa-summary.json` | 项目配置 |
+| [docs/research/2026-10-08/solidigm/revision-06-review.md](research/2026-10-08/solidigm/revision-06-review.md) | 配套说明 |
+| [docs/research/2026-10-08/solidigm/revision-review.md](research/2026-10-08/solidigm/revision-review.md) | 配套说明 |
+| `docs/research/2026-10-08/solidigm/scene-photo-sources.json` | 项目配置 |
+| `docs/research/2026-10-08/solidigm/sources.json` | 项目配置 |
 | [docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md](research/2026-10-09/us-datacenter-power/INTAKE-20261009.md) | 配套说明 |
 | [docs/research/2026-10-09/us-datacenter-power/README.md](research/2026-10-09/us-datacenter-power/README.md) | 配套说明 |
 | [docs/research/datacenter-economics/README.md](research/datacenter-economics/README.md) | 配套说明 |
