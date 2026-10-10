@@ -30,7 +30,7 @@ assert.equal(baseURL.pathname, '/', 'UI_BASE_URL must be an origin');
 assert.ok(!baseURL.search && !baseURL.hash, 'UI_BASE_URL must not contain query/hash');
 const base = baseURL.origin;
 const scenario = process.argv[2] || 'all';
-assert.ok(['all', 'views', 'assembly', 'geometry', 'navigation', 'lifecycle'].includes(scenario), 'Use views, geometry, navigation, lifecycle, assembly or all');
+assert.ok(['all', 'views', 'assembly', 'geometry', 'whole', 'navigation', 'lifecycle'].includes(scenario), 'Use views, geometry, navigation, lifecycle, assembly or all');
 const root = process.env.TA19_SOURCE_ROOT || path.resolve(__dirname, '..');
 const out = process.env.REVIEW_SCREENSHOTS || path.join(require('node:os').tmpdir(), 'ta19-campus-public-' + Date.now());
 fs.mkdirSync(out, {recursive:true});
@@ -429,6 +429,14 @@ const note = (label,data={}) => results.push({label,...data});
         'campus/air-chiller-2','campus/transformer-1','campus/standby-generator-2',
         'campus/retained-roof-sections','campus/retained-wall-sections','campus/overhead-service-trays'])
         await actualPick(id);
+    }
+
+    if (['all','assembly','whole'].includes(scenario)) {
+      if (scenario==='whole') {
+        await page.setViewportSize({width:1280,height:900});
+        await go('/bom3d.html?view=exploded&x=70');
+        await fit();
+      }
       await closeDossier();await controlsOpen();
       await page.locator('#campus-whole-dossier').click();
       await page.locator('#dossier .insp canvas').waitFor();

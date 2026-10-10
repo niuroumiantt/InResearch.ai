@@ -39,5 +39,5 @@ class BrowserShardTests(unittest.TestCase):
         self.assertEqual(groups['scaleScenes'],['views','downloads'])
         self.assertEqual(groups['campusScenes'],['views','geometry','navigation','lifecycle'])
         for campus in ('campus_overview','campus_exploded'):
-            self.assertEqual({c['scenario'] for c in groups['cases'] if c['suite']==campus},{'views','geometry','navigation','lifecycle'})
+            self.assertEqual({c['scenario'] for c in groups['cases'] if c['suite']==campus},({'views','geometry','navigation','lifecycle'} | ({'whole'} if campus=='campus_exploded' else set())))
         self.assertEqual(groups['assets'],['model_assets'])

@@ -1503,3 +1503,5 @@ TA18实际发布：PR562及563/564/565修正，最终e8fcc989/.53由现行timer�
 ### 2026-10-10 TA19实际发布
 
 TA19实际发布：PR567与08锚点修正PR568，最终0304ac54/.56自然timer应用，22:04:59Z同source/applied与精确6bf0d3b7镜像healthy，两个PR精确head→merge全tree0差异。TA18相同32实例/2293→152mesh/194916顶点，20移动12固定，42同实例灰线与17空home非物理无拾取；真实0归home/70与100刚体终态、12实际三角表面锚点和每视图投影、9单实例鼠标拾取/整区152独立预览、12权利别名/DCIM零物理、8领域fit/手动所有权/取消writer/幂等资源释放、8明暗宽度阶段图/4手机收起与当前SVG、原生双下载SHA/1536完整SVG、13源码资源SHA/HTTPShealth200均通过；TA18默认四图与资源回归通过。原PNG260a6cce字节守恒与12独立编辑标注，AI/原生拒稿及初次08高出.006表面失败保持，修到实际.54后真实复验。手机细节须放大/动态overlay遮主图/wholemini偏小/匿名认证/未知OEM尺寸额定完整拓扑边界保留。原本地拒绝不绕过、不查CI、不改Spark或研究服务。主19/35补4/4，下一TA20严格正交平面。 前源码/修正pending是保留阶段，当前采用以本项acceptance/publication为准。
+
+；GitHub TA19仅geometry最后整园区SVG事件等待触及300秒，其余17项已过；将原whole inspector/双屏截图/真实SVG完整独立为whole case，单独加载同x70/fit，原all/assembly顺序及全部拾取、几何和SVG断言保持。

@@ -14,7 +14,7 @@ function selectSuites(requested) {
   return requested.length ? requested.flatMap(s => s === 'core' ? core : s === 'core_a' ? first : s === 'core_b' ? second : s === 'core_c' ? third : [s]) : defaults;
 }
 function suiteScenarios(suite) {
-  return ['campus_overview','campus_exploded'].includes(suite) ? ['views','geometry','navigation','lifecycle'] : suite === 'part_dossier' ? dossierScenes : suite === 'model_assets' ? ['bom3d', 'rack3d', 'compare'] : suite === 'scene_atlas' ? ['1', '2'] : ['system_atlas','scale_atlas'].includes(suite) ? ['views', 'downloads'] : ['rack_exploded', 'chip_package'].includes(suite) ? ['views', 'assembly'] : [null];
+  return suite === 'campus_exploded' ? ['views','geometry','whole','navigation','lifecycle'] : suite === 'campus_overview' ? ['views','geometry','navigation','lifecycle'] : suite === 'part_dossier' ? dossierScenes : suite === 'model_assets' ? ['bom3d', 'rack3d', 'compare'] : suite === 'scene_atlas' ? ['1', '2'] : ['system_atlas','scale_atlas'].includes(suite) ? ['views', 'downloads'] : ['rack_exploded', 'chip_package'].includes(suite) ? ['views', 'assembly'] : [null];
 }
 function selectCases(requested) {
   return selectSuites(requested).flatMap(value => {
