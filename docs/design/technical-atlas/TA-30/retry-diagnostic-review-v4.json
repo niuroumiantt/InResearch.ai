@@ -1,0 +1,72 @@
+{
+  "task": "TA30-34 retry-failure diagnostic v4 narrow independent read-only review",
+  "status": "PASS_DIAGNOSTIC_ONLY_SUCCESS_AND_GATES_UNCHANGED",
+  "created_at_utc": "2026-10-10T05:25:30.961916+00:00",
+  "baseline": {
+    "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs",
+    "HEAD": "a379dbba9799c82b095843d87775271b0427686d",
+    "sha256": "6f6d24f158c2d97362462aa50291e7a99739daf6546e780d8545b0c8718a18a1"
+  },
+  "fixed": {
+    "path": "/private/tmp/ta30-34-panel-sources-public-v4.cjs",
+    "bytes": 35601,
+    "sha256": "785ae85dfbb46f11fc4d97deac5543ac3acb2dbb9c416efa7df4ee26dafbde09"
+  },
+  "diff": {
+    "hunks": 1,
+    "line": 192,
+    "reverse_only_diagnostic_wrapper_equals_baseline_bytes": true,
+    "unified_diff": "--- /Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs\n+++ /private/tmp/ta30-34-panel-sources-public-v4.cjs\n@@ -189,7 +189,7 @@\n      const raw='.panel-source-actions a[download][href$=\"/'+item.file+'.png\"]',svg='.panel-source-actions a[download][href$=\"/'+item.file+'-contain.svg\"]';\n      assert.equal(await page.locator(raw).getAttribute('href'),'/assets/panels/'+item.file+'.png');assert.equal(await page.locator(svg).getAttribute('href'),'/assets/panels/display/'+item.file+'-contain.svg');\n      await download(page,raw,item.file+'.png',pngs[item.key]);await download(page,svg,item.file+'-contain.svg',svgs[item.key]);\n-     const uuid=await page.evaluate(key=>__taPanels.PANEL[key].texture.uuid,item.key);await page.locator('.panel-source-actions button').click();await page.waitForFunction(key=>__taPanels.PANEL[key].status()==='ready'&&document.querySelector('.panel-source-dialog').dataset.sourceStatus==='ready',item.key);await settle(page);assert.equal(await page.evaluate(key=>__taPanels.PANEL[key].texture.uuid,item.key),uuid);await inspect(item);\n+     const uuid=await page.evaluate(key=>__taPanels.PANEL[key].texture.uuid,item.key);await page.locator('.panel-source-actions button').click();try{await page.waitForFunction(key=>__taPanels.PANEL[key].status()==='ready'&&document.querySelector('.panel-source-dialog').dataset.sourceStatus==='ready',item.key);}catch(error){receipt.retry_failure_diagnostic={item:item.id,at:new Date().toISOString(),state:await page.evaluate(()=>({handles:Object.fromEntries(Object.entries(__taPanels.PANEL).map(([k,h])=>[k,{status:h.status(),uuid:h.texture.uuid,version:h.texture.version,meta:h.texture.userData.sourceDisplay||null}])),dialog:{open:document.querySelector('.panel-source-dialog').open,figure:document.querySelector('.panel-source-dialog').dataset.figureId,status:document.querySelector('.panel-source-dialog').dataset.sourceStatus,text:document.querySelector('.panel-source-dialog').innerText},images:__taPanels.texturePool.observeForTest().images.map(i=>({src:i.src,complete:i.complete,naturalWidth:i.naturalWidth,load:i.onload!==null,error:i.onerror!==null}))})),panel_requests:normal.stats.requests.filter(r=>r.url.includes('/assets/panels/')),panel_responses:normal.stats.responses.filter(r=>r.url.includes('/assets/panels/')),network_failures:normal.stats.failures};await capture(page,item.id+'-retry-failure-diagnostic');throw error;}await settle(page);assert.equal(await page.evaluate(key=>__taPanels.PANEL[key].texture.uuid,item.key),uuid);await inspect(item);\n     }\n     sameMain(before,await main(page),'dialog '+item.id);\n    }\n"
+  },
+  "findings": [],
+  "closed_checks": {
+    "wait_predicate_and_arguments_exactly_preserved": true,
+    "default_timeout_30000_unchanged": true,
+    "real_retry_click_before_wait_unchanged": true,
+    "success_settle_uuid_pixel_geometry_checks_unchanged": true,
+    "all_other_bytes_unchanged": true,
+    "failure_never_becomes_success": "catch collects diagnostics/screenshot then throws the original error if diagnostic collection succeeds; outer failure handler remains byte-identical.",
+    "no_timing_retry_or_threshold_waiver": "No added retry, delay, fallback, response mock, camera/state assignment or tolerance change. Failure-only observation reads actual references."
+  },
+  "diagnostic_scope": {
+    "fields": [
+      "current item and timestamp",
+      "five actual handles status/texture UUID/version/sourceDisplay",
+      "public panel dialog open/figure/status/text",
+      "actual Image src/complete/naturalWidth/handler presence",
+      "panel request URLs and resource types",
+      "panel response URLs/status codes",
+      "existing current-context request-failure URL/error/expected-fault records",
+      "full-page screenshot of fresh anonymous exact-public context"
+    ],
+    "authentication_data_read": false,
+    "why": "The new code reads no cookies, request/response headers, storage, credentials, auth tokens, response bodies or logged-in state. The pre-existing context is created fresh without storageState, and requests are exact-public-origin guarded. Dialog text/meta/image src are the retained public panel UI/assets.",
+    "boundary_note": "network_failures copies all existing normal-context failures, not only panel URLs; records contain URL/error metadata only. This is broader than panel-only telemetry but does not add authentication-data access in this anonymous fixture."
+  },
+  "nonblocking_limit": "If diagnostic page.evaluate or capture itself throws, that secondary error can replace the original Timeout before throw error runs. The run still fails and no gate is relaxed. For stronger failure provenance, owner may later wrap diagnostics in a nested try/finally that always rethrows the original error; this review does not require a product change.",
+  "prior_failure": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/public-v3/receipt.json",
+    "sha256": "00ad48e5ea5c34837be01b07e0ff437f22b0fcf9d6e9a9d6d458a54987b5e96f",
+    "stage": "FAILED",
+    "error": "page.waitForFunction: Timeout 30000ms exceeded.\n    at /Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs:192:157",
+    "counts": {
+      "panels": 5,
+      "dialogs": 1,
+      "downloads": 2,
+      "views": 3,
+      "errors": 0,
+      "route_errors": 0
+    },
+    "cause": "unknown from existing receipt; no HTTP/status/handle diagnostic was present",
+    "retained": true
+  },
+  "execution_scope": {
+    "HTTP": 0,
+    "browser": 0,
+    "product_JS": 0,
+    "fixture_execution": 0,
+    "repository_writes": 0,
+    "only_output": "/private/tmp/ta30-34-retry-diagnostic-fixture-review-child.json"
+  },
+  "acceptance_claim": "Narrow diagnostic-source review only. Actual v4 run result/cause and full public/visual acceptance remain pending."
+}

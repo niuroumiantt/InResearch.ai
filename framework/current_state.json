@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10.67",
+  "version": "2026.10.10.68",
   "effective_at": "2026-10-10",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -3045,12 +3045,29 @@
         "docs/design/technical-atlas/TA-30/world-float-fixture-fix-v3.json",
         "docs/design/technical-atlas/TA-30/world-float-fixture-review-child.json",
         "docs/design/technical-atlas/TA-30/content-ratio-prospective-test-v3.json",
-        "docs/design/technical-atlas/TA-30/content-ratio-working-diff-review-child.json"
+        "docs/design/technical-atlas/TA-30/content-ratio-working-diff-review-child.json",
+        "web/pages/cross-scale-atlas.html",
+        "tests/unit/test_cross_scale_atlas_assets.py",
+        "tests/cross_scale_atlas.cjs",
+        "web/assets/technical-atlas/cross-scale-v1.png",
+        "web/assets/technical-atlas/cross-scale-v1.svg",
+        "web/assets/technical-atlas/cross-scale-v1-preview.jpg",
+        "web/assets/technical-atlas/cross-scale-v1-preview.svg",
+        "docs/design/technical-atlas/TA-35/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-35/asset-manifest-v1.json",
+        "docs/design/technical-atlas/TA-35/component-manifest-v1.json",
+        "docs/design/technical-atlas/TA-35/labels-v1.json",
+        "docs/design/technical-atlas/TA-35/font-subset-proof-v1.json",
+        "docs/design/technical-atlas/TA-35/offline-label-scan-v1.json",
+        "docs/design/technical-atlas/TA-35/reference-review-v1.json",
+        "docs/design/technical-atlas/TA-35/technical-sources-v1.json",
+        "docs/design/technical-atlas/TA-35/generation-v1.json",
+        "docs/design/technical-atlas/TA-35/source-review-v1.json"
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.10.67",
-      "change_reason": "TA30–34 PR583最终20项GitHub检查通过、正常合并4cb09ce1/.66并由timer实际健康应用，21公网源字节/HTTPS health200已核；尚未逐项published，主29/35补4/4。公网v1保留Float32实际几何比绝对阈值失败，v2保留TA33弹窗内容比5.824485而目标5.764411的真实显示失败。实际computed border-box与1px边框解释约1.04%变形，五图均受同机制影响；仅来源canvas改content-box与扣两边框宽、padding0，独立候选公网观察与新实际部署后完整五项另验。世界几何比仅按实际Float32坐标采用8epsilon相对容差，CSS改实际内容高度1/64px布局量化门禁，不放宽图片/原件/下载/身份/几何/资源检查；原PNG、五SVG、全部采用场景几何保持。本地URL拒绝保留，按当前四必过及最终head全部检查，不触Spark/研究。"
+      "implementation_revision": "2026.10.10.68",
+      "change_reason": "TA30–34五项已实际a379dbba/.67、精确53c7镜像healthy，public-v4完整交互/20弹窗/10下载/28视图/5实际贴图/15故障恢复/4资源路径和33张原尺寸目检闭包，21公网源SHA与HTTPShealth200成立，登记34/35、补4/4。v1 Float32观察、v2真实CSS比例、v3原因未知retry超时与PR586最后premerge UNKNOWN记录保留；正常受保护合并且最终20检查通过，不伪称CLEAN或全tree零差异，并发研究三路径逐字保留。TA35为六已验原件字节守恒的独立1536×1024受控组合、7可编辑定位与自含字体；位置/主机PCIe/外部网络/选定独立PSU供电/独立液—液CDU排热分层，不把不同示例接成同一OEM或现场完整拓扑。新图及页面仅source review，真实公网/下载/链接/精确部署另验，不计35。本地产品URL拒绝不绕过，最终head必过CI、Spark研究0改。"
     },
     {
       "id": "interface-repository-daily-20261008",

@@ -41,11 +41,7 @@
       ]
     ],
     "current_source_batch": [
-      "TA-30",
-      "TA-31",
-      "TA-32",
-      "TA-33",
-      "TA-34"
+      "TA-35"
     ],
     "max_concurrent_drafting": 1,
     "review_scope": "current_source_batch_with_per_item_evidence",
@@ -1190,12 +1186,14 @@
       "depends_on": [
         "TA-02"
       ],
-      "status": "review",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-30/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "a379dbba9799c82b095843d87775271b0427686d",
       "source_review_record": "docs/design/technical-atlas/TA-30/source-review-v1.json",
       "baseline_revision": "f99d7b226a59b112afadaf2b35db6676a362a95b",
-      "object_id": "server_nvme"
+      "object_id": "server_nvme",
+      "publication_status": "published",
+      "publication_record": "docs/design/technical-atlas/TA-30/publication-20261010.json"
     },
     {
       "id": "TA-31",
@@ -1216,12 +1214,14 @@
       "depends_on": [
         "TA-02"
       ],
-      "status": "review",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-31/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "a379dbba9799c82b095843d87775271b0427686d",
       "source_review_record": "docs/design/technical-atlas/TA-31/source-review-v1.json",
       "baseline_revision": "f99d7b226a59b112afadaf2b35db6676a362a95b",
-      "object_id": "server_gpu"
+      "object_id": "server_gpu",
+      "publication_status": "published",
+      "publication_record": "docs/design/technical-atlas/TA-31/publication-20261010.json"
     },
     {
       "id": "TA-32",
@@ -1242,12 +1242,14 @@
       "depends_on": [
         "TA-02"
       ],
-      "status": "review",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-32/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "a379dbba9799c82b095843d87775271b0427686d",
       "source_review_record": "docs/design/technical-atlas/TA-32/source-review-v1.json",
       "baseline_revision": "f99d7b226a59b112afadaf2b35db6676a362a95b",
-      "object_id": "server_storage"
+      "object_id": "server_storage",
+      "publication_status": "published",
+      "publication_record": "docs/design/technical-atlas/TA-32/publication-20261010.json"
     },
     {
       "id": "TA-33",
@@ -1268,12 +1270,14 @@
       "depends_on": [
         "TA-02"
       ],
-      "status": "review",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-33/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "a379dbba9799c82b095843d87775271b0427686d",
       "source_review_record": "docs/design/technical-atlas/TA-33/source-review-v1.json",
       "baseline_revision": "f99d7b226a59b112afadaf2b35db6676a362a95b",
-      "object_id": "switch_tor"
+      "object_id": "switch_tor",
+      "publication_status": "published",
+      "publication_record": "docs/design/technical-atlas/TA-33/publication-20261010.json"
     },
     {
       "id": "TA-34",
@@ -1294,12 +1298,14 @@
       "depends_on": [
         "TA-02"
       ],
-      "status": "review",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-34/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "a379dbba9799c82b095843d87775271b0427686d",
       "source_review_record": "docs/design/technical-atlas/TA-34/source-review-v1.json",
       "baseline_revision": "f99d7b226a59b112afadaf2b35db6676a362a95b",
-      "object_id": "switch_ib"
+      "object_id": "switch_ib",
+      "publication_status": "published",
+      "publication_record": "docs/design/technical-atlas/TA-34/publication-20261010.json"
     },
     {
       "id": "TA-35",
@@ -1312,7 +1318,7 @@
         "web/pages/bom3d.html",
         "web/pages/rack3d.html"
       ],
-      "entry": "新增技术讲解图，发布位置随该项验收确定",
+      "entry": "/cross-scale-atlas.html; /bom.html visible cross-scale link",
       "reference": [
         "R4",
         "R1",
@@ -1326,10 +1332,14 @@
         "TA-22",
         "TA-23"
       ],
-      "status": "planned",
-      "acceptance_record": null,
+      "status": "review",
+      "acceptance_record": "docs/design/technical-atlas/TA-35/acceptance-v1.json",
       "published_revision": null,
-      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。"
+      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
+      "object_id": "cross-scale",
+      "source_review_record": "docs/design/technical-atlas/TA-35/source-review-v1.json",
+      "production_record": "docs/design/technical-atlas/TA-35/generation-v1.json",
+      "baseline_revision": "a379dbba9799c82b095843d87775271b0427686d"
     },
     {
       "id": "TA-36",
@@ -1470,9 +1480,9 @@
     }
   ],
   "execution_priority": {
-    "reason": "TA28 actual1c1a/.64 published with independentpublic-v2 closure; registration28 with TA29 substantive source. TA29 source drafting only.",
-    "next": "TA-29",
-    "next_item": "TA-29"
+    "reason": "TA30–34 actual a379/.67 public-v4 and33original closure registered with TA35 substantive source; actual34/35. TA35 source only, new actual public pending.",
+    "next": "TA-35",
+    "next_item": "TA-35"
   },
   "primary_plan": {
     "total": 35,
@@ -1514,7 +1524,7 @@
       "TA-35"
     ],
     "execution_order": "01–35; sequential individual drawing/review; source PR batches do not change figure order",
-    "published": 29
+    "published": 34
   },
   "supplemental_items": [
     "TA-36",

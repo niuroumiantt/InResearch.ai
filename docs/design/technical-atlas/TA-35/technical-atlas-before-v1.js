@@ -416,59 +416,8 @@ export function atlasCategoryNote(partId, {view} = {}) {
   return ['system','scale'].includes(view) ? systemIllustrations[partId]?.note || '' : '';
 }
 
-const crossScale={
- "id": "TA-35",
- "title": "跨尺度讲解 · GPU/HBM、互联与运行条件",
- "image": "/assets/technical-atlas/cross-scale-v1.svg",
- "preview": "/assets/technical-atlas/cross-scale-v1-preview.svg",
- "master": "/assets/technical-atlas/cross-scale-v1.png",
- "alt": "暖白跨尺度技术讲解：GPU/HBM封装、风冷PCIe服务器、结构机柜和八柜设施；主机PCIe与外部网络分开，下方独立电能路径与双流体CDU排热方案。不同通用例型、非共同比例。",
- "note": "不同通用例型，非同一套设备或共同实物比例，不认证OEM/CAD、已安装数量、性能或现场完整拓扑。封装内存关系与主机/外部网络分开；独立PSU路径和共享架替代分开；液冷功能带是另一选定方案，不给上方风冷机箱补装液路。灰点线只示层次上下文，彩线为定位/功能。手机可看总览，细节请放大；下方文字说明保持可读。",
- "labels": [
-  "01 封装：一个逻辑裸片与四组HBM经中介层连接；TA15通用例型，非服务器内已核实封装",
-  "02 主机：TA11风冷PCIe示例，主机、内存、加速卡与后部网络卡分工；右上同类卡重复细节",
-  "03 互联：主机内PCIe与外部网络分开；NIC和交换机为类别外形，不确认型号、协议或直接GPU-NIC路径",
-  "04 机柜：TA13的8计算托盘/2交换/2电源架为示例；结构机柜不是rack-system/NVL72",
-  "05 设施：TA18八闭柜与室内外设施为上下文，未知其内部完整连接、权利与交付容量",
-  "06 电能：选定独立PSU→板级VRM→计算负载；UPS电池/条件旁路另有支路，共享电源架/BBU是替代",
-  "07 排热：另一选定液—液CDU方案；TCS/FWS各自闭环，换热壁只传热不混液；不表示上方风冷整机已改液冷"
- ],
- "related": [
-  {
-   "id": "TA-15",
-   "title": "封装独立3D · TA15",
-   "image": "/rack3d.html?x=90"
-  },
-  {
-   "id": "TA-11",
-   "title": "服务器独立3D · TA11",
-   "image": "/rack3d.html?x=55"
-  },
-  {
-   "id": "TA-13",
-   "title": "结构机柜独立3D · TA13",
-   "image": "/rack3d.html?x=0"
-  },
-  {
-   "id": "TA-18",
-   "title": "设施装配3D · TA18",
-   "image": "/bom3d.html"
-  },
-  {
-   "id": "TA-22",
-   "title": "电力完整功能图 · TA22",
-   "image": "/power-atlas.html"
-  },
-  {
-   "id": "TA-23",
-   "title": "冷却完整功能图 · TA23",
-   "image": "/thermal-atlas.html"
-  }
- ]
-};
-
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = partId === 'cross-scale' && view === 'cross-scale' ? crossScale : partId === 'facility-domain' && view === 'domain' ? facilityDomain : partId === 'power-domain' && view === 'domain' ? powerDomain : partId === 'thermal-domain' && view === 'domain' ? thermalDomain : (partId === 'control-domain' || partId === 'dcim') && view === 'domain' ? controlDomain : partId === 'compute-domain' && view === 'domain' ? computeDomain : partId === 'network-domain' && view === 'domain' ? networkDomain : partId === 'storage-domain' && view === 'domain' ? storageDomain : partId === 'memory-domain' && view === 'domain' ? memoryDomain : ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
+  const item = partId === 'facility-domain' && view === 'domain' ? facilityDomain : partId === 'power-domain' && view === 'domain' ? powerDomain : partId === 'thermal-domain' && view === 'domain' ? thermalDomain : (partId === 'control-domain' || partId === 'dcim') && view === 'domain' ? controlDomain : partId === 'compute-domain' && view === 'domain' ? computeDomain : partId === 'network-domain' && view === 'domain' ? networkDomain : partId === 'storage-domain' && view === 'domain' ? storageDomain : partId === 'memory-domain' && view === 'domain' ? memoryDomain : ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');

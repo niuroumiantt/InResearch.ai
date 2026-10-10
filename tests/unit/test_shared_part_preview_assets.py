@@ -41,7 +41,8 @@ class SharedPartPreviewAssetTests(unittest.TestCase):
         self.assertNotIn('dcim',campus['physical_part_ids'])
         self.assertNotIn('modular-dc',campus['physical_part_ids'])
         queue=json.loads((ROOT/'framework/visual_atlas_migration.json').read_text())
-        self.assertEqual(queue['primary_plan']['published'],29)
+        self.assertEqual(next(i for i in queue['items'] if i['id']=='TA-29')['status'],'published')
+        self.assertEqual(next(i for i in queue['items'] if i['id']=='TA-29')['published_revision'],'f99d7b226a59b112afadaf2b35db6676a362a95b')
         self.assertEqual(next(i for i in queue['items']if i['id']=='TA-28')['published_revision'],'1c1a024a900df6f10d50a8b5b4d8416acd6129b6')
 
 if __name__=='__main__': unittest.main()

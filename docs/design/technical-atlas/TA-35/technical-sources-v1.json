@@ -1,0 +1,38 @@
+{
+  "figure_id": "TA-35",
+  "sources": [
+    {
+      "title": "TSMC CoWoS technology",
+      "url": "https://3dfabric.tsmc.com/english/dedicatedFoundry/technology/cowos.htm",
+      "actual_read": "2026-10-10 official body170–196",
+      "supports": "Selected silicon-interposer package integrates logic and HBM; other interposer implementations exist",
+      "does_not_support": "Pictured OEM/floorplan/stack count/generation/ratings/performance or literal package in TA11"
+    },
+    {
+      "title": "NVIDIA BlueField-3 Networking Platform User Guide — Introduction",
+      "url": "https://networking-docs.nvidia.com/bf3dpu/introduction",
+      "actual_read": "2026-10-10 official body40–61",
+      "supports": "PCIe host interface distinguished from external Ethernet/InfiniBand network interface roles",
+      "does_not_support": "Pictured NIC is BlueField, verified protocol/rate, direct GPU-NIC, actual fabric topology or all DPU architectures"
+    },
+    {
+      "title": "TI SSZTDB4 — first-generation versus shared-shelf power architectures",
+      "url": "https://www.ti.com/document-viewer/lit/html/SSZTDB4/GUID-4C27D06A-1852-4990-B137-23DA8A14DEAE",
+      "actual_read": "2026-10-10 official body23–30",
+      "supports": "Selected dedicated PSU then point-of-load regulation; shared power shelf is a different implementation, not second mandatory series stage",
+      "does_not_support": "Specific pictured voltage/power/redundancy/efficiency/installed implementation"
+    },
+    {
+      "title": "Vertiv — Installing and Managing CDUs",
+      "url": "https://www.vertiv.com/en-us/insights/articles/blog-posts/deploying-liquid-cooling-in-data-centers-installing-and-managing-coolant-distribution-units-cdus2/",
+      "actual_read": "2026-10-10 official body133–154",
+      "supports": "Selected liquid-liquid CDU isolates secondary loop and exchanges heat with facility loop; liquid-air differs",
+      "does_not_support": "Physical retrofit of TA11 air-cooled server, direct fit of coldplate to TA15, exact installed pumps/ports/flow/fluid/ratings"
+    }
+  ],
+  "retained_functional_reference_records": [
+    "docs/design/technical-atlas/TA-22/technical-sources-v1.json",
+    "docs/design/technical-atlas/TA-23/technical-sources-v1.json"
+  ],
+  "scope": "Primary text actually read; generic functions only, source figure pixels not claimed viewed. Original adopted assets retain previous identity/provenance."
+}
