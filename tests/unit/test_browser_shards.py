@@ -10,8 +10,9 @@ class BrowserShardTests(unittest.TestCase):
     @unittest.skipUnless(shutil.which('node'), 'Node required for browser suite selection')
     def test_ci_shards_cover_every_existing_core_case_once(self):
         root=Path(__file__).resolve().parents[2]
-        matrix=re.search(r'suites: \[([^]]+)\]',(root/'.github/workflows/validate.yml').read_text()).group(1)
-        names=[name.strip() for name in matrix.split(',')]
+        from scripts.ci_scope import FULL_SUITES
+        names=FULL_SUITES
+        self.assertIn('fromJSON(needs.scope.outputs.suites)', (root/'.github/workflows/validate.yml').read_text())
         script="const names=JSON.parse(process.argv[1]);const s=require('./tests/browser_suites.cjs'); console.log(JSON.stringify({cases:s.selectCases(names),expectedCases:s.selectCases(['core','model_assets']),shards:Object.fromEntries(names.map(n=>[n,s.selectSuites([n])])),core:s.selectSuites(['core']),a:s.selectSuites(['core_a']),b:s.selectSuites(['core_b']),c:s.selectSuites(['core_c']),assets:s.selectSuites(['model_assets']),scenes:s.suiteScenarios('part_dossier'),densities:s.suiteScenarios('scene_atlas'),assetScenes:s.suiteScenarios('model_assets'),rackScenes:s.suiteScenarios('rack_exploded'),chipScenes:s.suiteScenarios('chip_package'),systemScenes:s.suiteScenarios('system_atlas'),scaleScenes:s.suiteScenarios('scale_atlas'),campusScenes:s.suiteScenarios('campus_overview')}));"
         groups=json.loads(subprocess.check_output(['node','-e',script,json.dumps(names)],cwd=root,text=True))
         expected={'ops_dashboard','industry','repository_pages','supply','nvidia_pilot','product_catalog',
