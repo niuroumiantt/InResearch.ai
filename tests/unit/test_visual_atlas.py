@@ -61,7 +61,18 @@ class VisualAtlasTests(unittest.TestCase):
                 self.assertTrue(row['published_revision'], row['id'] + ': no publication receipt')
         execution=self.queue['execution']
         batches=execution['source_pr_batches'];expected=[['TA-21'],['TA-22','TA-23'],['TA-24','TA-25','TA-26','TA-27'],['TA-28'],['TA-29'],['TA-30','TA-31','TA-32','TA-33','TA-34'],['TA-35']]
-        self.assertEqual(batches,expected);self.assertIn(execution['current_source_batch'],batches)
+        self.assertEqual(batches,expected)
+        self.assertIsInstance(execution['current_source_batch'],list)
+        if execution['current_source_batch']:
+            self.assertIn(execution['current_source_batch'],batches)
+        else:
+            # A terminal queue has no active batch only after every item is published.
+            self.assertEqual(self.queue['primary_plan']['published'],35)
+            self.assertEqual(len(self.queue['supplemental_items']),4)
+            self.assertEqual(set(by_id),set(self.queue['primary_plan']['items'])|set(self.queue['supplemental_items']))
+            self.assertTrue(all(row['status']=='published' for row in rows))
+            self.assertIsNone(self.queue['execution_priority']['next'])
+            self.assertIsNone(self.queue['execution_priority']['next_item'])
         self.assertEqual(execution['max_concurrent_drafting'],1)
         self.assertLessEqual(sum(r['status']=='drafting'for r in rows),1)
         self.assertTrue(set(active)<=set(execution['current_source_batch']))

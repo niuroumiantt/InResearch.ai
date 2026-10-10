@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-10T09:57:16.008200+00:00",
+  "decision": "PASS_WITH_RETAINED_SCOPE_BOUNDARIES",
+  "reviewer": "review_ta14",
+  "figure_id": "TA-35",
+  "object_id": "cross-scale",
+  "final_publication_receipt": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-35/final-publication-receipt.json",
+    "bytes": 5545,
+    "sha256": "1a105e89ed0c3d1f020402828a9d9af6db94d015023ffaf0902ba1c86221fc36"
+  },
+  "binding": {
+    "source_head": "2e2bfc5abbe89790e7fae61c13f2d67f5c7a7328",
+    "first_source_merge": "084e0698c09f047e0e17bcd4e8eca9456c71ea14",
+    "governance": "2026.10.10.68",
+    "exact_image": "sha256:78f293a4b010051ad37367ed5045f035e894c98e8b1e71dc1d401d935eb3d458",
+    "saved_CI_checks_completed_success_on_exact_head": 20,
+    "head_to_merge_changed_paths": [
+      "data/research_knowledge.json",
+      "docs/REPOSITORY_REGISTER.md",
+      "framework/repository_manifest.json"
+    ],
+    "atlas_bytes_equal_reviewed_head": true,
+    "full_tree_equality_claimed": false
+  },
+  "verified_counts": {
+    "passed_stages": 15,
+    "views": 17,
+    "readable_lists": 4,
+    "locators_per_list": 7,
+    "actual_downloads": 2,
+    "declared_resources": 62,
+    "actual_related_links": 6,
+    "drawn_3D_canvases": 4,
+    "full_preview_svg_fonts": 2,
+    "source_health_SHA_checks": 17
+  },
+  "source_bytes_verified_against_current_checkout": {
+    "public_source_rows": 72,
+    "health_sources": 17,
+    "declared_resources_mapped_to_public_source_SHA": 62
+  },
+  "proof_files_with_actual_bytes_SHA_verified": 24,
+  "actual_original_images_viewed": [
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-35/public-v1/cross-scale-full-svg-1536.png",
+      "bytes": 776178,
+      "sha256": "94d7f4c1af0958b433eaf3a7bf159fb4f4e92861acaaf80e2f6d2cbf6d6a88b2",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "actual_original_viewed_by_this_reviewer": true
+    },
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-35/public-v1/cross-scale-390-dark.png",
+      "bytes": 270661,
+      "sha256": "d3a63890967af7a97500ac0c30da16daf407bf6af3f0b6f20c66376ca83bba2c",
+      "pixels": [
+        390,
+        1555
+      ],
+      "actual_original_viewed_by_this_reviewer": true
+    }
+  ],
+  "visual_findings": [
+    {
+      "image": "cross-scale-full-svg-1536.png",
+      "decision": "PASS",
+      "observed": "Full native1536x1024 composition complete. Seven title/locator groups readable, none clipped. Package/server/rack/facility contexts remain distinct. Bidirectional host/external-network arrows and separate power/thermal bands readable; separated fluid loops with only brown dashed heat crossing the two wall lines. Six source illustrations retain their own illustrative identities; no same-OEM or installed topology evidence inferred."
+    },
+    {
+      "image": "cross-scale-390-dark.png",
+      "decision": "PASS_WITH_OVERVIEW_LIMIT",
+      "observed": "Full390px dark page captured through sources/footer text. Main heading, intro, seven14px explanations, zoom/two downloads and six related links readable without body-text clipping. Embedded overview is small; detail requires full-SVG zoom as stated. Warm-white image remains readable in dark UI. The inherited header navigation extends to the right edge; this review does not enlarge global-header or old3D framing acceptance."
+    }
+  ],
+  "owner_original_review_verified": {
+    "count": 17,
+    "all_recorded_file_bytes_and_SHA_match": true,
+    "source_receipt_SHA_match": true,
+    "independently_viewed_here": 2,
+    "remaining15_not_reviewed_visually_by_this_reviewer": true
+  },
+  "retained_request_failure": [
+    {
+      "url": "https://inresearch.ai/login",
+      "resource_type": "fetch",
+      "stage": "related_TA-18",
+      "navigation_request": false,
+      "failure": "net::ERR_ABORTED"
+    }
+  ],
+  "stage_scope": [
+    "ActualTA35 page/full+previewSVG/fonts/downloads/links observed in saved public receipt; no new browser run by this reviewer.",
+    "Six related links/four drawn3D canvases only navigation/render smoke; no reacceptance of old geometry/lifecycle/framing.",
+    "One raw/login ERR_ABORTED fetch during TA18 relation preserved; authenticated content not verified.",
+    "Actual35/35+supplemental4; registeredmain34 pending separate final registration PR. First actual084e/.68 identity is not replaced by registration revision.",
+    "No browser/HTTP/productJS/code/repo changes."
+  ],
+  "findings": []
+}
