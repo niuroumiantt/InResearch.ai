@@ -37967,6 +37967,92 @@
         },
         "batch_id": "6cd7099bd00440009762237dc7bc10009b87ba91e2b9e409c90e66e23f956809"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9865e8ea76032d3d593548615201f1d261a1eafb29cdfe16e5abd013a957c842",
+      "document_id": "doc-e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "id": "rev-ae3e6816cf104bcca029151328f524c4:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-demand-D1-boundary"
+      ],
+      "quote": "Khazna, which bills itself as the largest hyperscale wholesale data center provider in the region, currently operates 30 live data centers, totaling almost 650MW of capacity.",
+      "reading_revision_id": "rev-ae3e6816cf104bcca029151328f524c4",
+      "source_sha256": "e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:29:53+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6。连续原句及完整报道语境充分，对当前投运容量研究贡献单一运营商的有界规模线索，对交易边界研究贡献批发服务定位和运营角色线索。容量口径与完整交易权责仍缺失，但局部证据具有实质性贡献，可按B类采用作者陈述。未发现本候选的敏感、真实冲突、替换或其他A类条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q01",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.625,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2d2d4071dbd3675ed6a00540e63a7fe287f53194cf0a743cbc4dead0fde0136e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 45950,
+            "output_tokens": 1505,
+            "reasoning_output_tokens": 398
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.209,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8194ee730a7f2afea5261f473d2bf1807e059860022477072fcbf628e3969c3e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 46633,
+              "output_tokens": 545,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "09e81f44bf1ff9ba092e16e78e91742ab3fdf7caa29e62a548ab13ff1d71ca7e"
+      }
     }
   ],
   "statements": [
@@ -73863,6 +73949,108 @@
         "request_sha256": "5a7722e177370a24c8671de49ad0f6a2b44128de2890eec15d6952da91856725"
       },
       "object_mapping_check": "本项讨论互联网搜索替代情景及数据中心总体用电对照，没有指定一座AI数据中心或其供电、计算设备范围。契约中的root及其系统、链条和部件均为设施资产对象，不能用总体用电分母建立该映射；IEA也没有允许的actor对象。不继承候选和证据的root标签，空对象列表保留需求转换问题关系。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "evidence_ids": [
+        "rev-ae3e6816cf104bcca029151328f524c4:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:52e159d887a1ff8663f9e160",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M01-Q01",
+        "NODE-activity-V1-boundary"
+      ],
+      "reading_revision_id": "rev-ae3e6816cf104bcca029151328f524c4",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年12月16日的报道中称，阿联酋数据中心企业Khazna在报道时运营30座已投运数据中心，合计容量接近650MW；报道同时指出，Khazna自称是“该地区最大的超大规模批发数据中心提供商”。这是报道时点的作者陈述及企业自我定位，不构成当前独立认证；原文未明确650MW的容量口径或这30座数据中心的地域分布。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:29:53+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6。连续原句及完整报道语境充分，对当前投运容量研究贡献单一运营商的有界规模线索，对交易边界研究贡献批发服务定位和运营角色线索。容量口径与完整交易权责仍缺失，但局部证据具有实质性贡献，可按B类采用作者陈述。未发现本候选的敏感、真实冲突、替换或其他A类条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q01",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.625,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2d2d4071dbd3675ed6a00540e63a7fe287f53194cf0a743cbc4dead0fde0136e",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 45950,
+            "output_tokens": 1505,
+            "reasoning_output_tokens": 398
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 24.209,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "8194ee730a7f2afea5261f473d2bf1807e059860022477072fcbf628e3969c3e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 46633,
+              "output_tokens": 545,
+              "reasoning_output_tokens": 264
+            }
+          }
+        },
+        "batch_id": "09e81f44bf1ff9ba092e16e78e91742ab3fdf7caa29e62a548ab13ff1d71ca7e"
+      },
+      "source_candidate_ids": [
+        "rev-ae3e6816cf104bcca029151328f524c4:chunk:0:claim:4"
+      ],
+      "limitations": "650MW为近似容量，未明确属于IT负载、设施供电或其他口径，也未披露各站容量、投运比例、负载类型和统计方法。“该地区”未在所选句中给出明确地理边界，不能把运营组合全部归入沙特、阿联酋或某一区域。企业最大规模定位未经独立验证。批发提供商及运营角色不证明资产所有权、付款责任或最终使用关系；一手运营清单和合同未提供。",
+      "conflict_check": "与已采用的阶段区分陈述兼容：本项保留报道时点的运营表述，同时不把拟开发容量计入投运容量。IEA地域占比、Lake Mariner、Bitdeer与Volta及Newport租户记录均属不同范围，不构成重复或同口径冲突。legacy的Stargate UAE属于规划项目，不能并入Khazna运营组合；Switch Citadel的650MW属于另一主体和园区，不能因数字相近而认定冲突或重复。报道副标题与正文的土地面积差异不涉及所选运营规模主张，本项不采用土地面积。检查限于所供记录，不替换既有结论。",
+      "gap_dependency_check": "M01-Q01获得报道时点的运营商规模样本，仍需一手来源、明确IT容量口径、站点去重、统一基准日、区域与类型拆分及反证，才能参与可复查的全球统计；本项不汇总GW或认证L8+容量。NODE-activity-V1-boundary获得批发提供商定位及运营角色，仍缺具体产品或服务、付款方、资产所有者、使用方和合同责任，不能完成互斥边界划分。两项问题继续开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "09e81f44bf1ff9ba092e16e78e91742ab3fdf7caa29e62a548ab13ff1d71ca7e",
+        "source_report_sha256": "8e8be461a1daebf9ea17d520bbe24e04acafc88adc68866b649d15505a1effa5",
+        "request_sha256": "07386cab780fe87fa1cf58505f50be2b29a6e86fa06d417cfb6db649788f4de4"
+      },
+      "object_mapping_check": "独立依据对象契约选择root：主张范围是数据中心整体运营组合容量及批发服务角色。容量未明确为IT或电力口径，故不映射system:it或system:power；未涉及土地权利、建筑系统、GPU或模块化交付。Khazna没有允许的主体ID，不新增节点；相邻融资段的G42和MGX不属于所选主张，不沿用其标签。所选证据统一使用此审核后的主张范围。"
     }
   ],
   "answers": [],
