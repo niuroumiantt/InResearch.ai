@@ -1,0 +1,46 @@
+{
+  "figure_id": "TA-22",
+  "sources": [
+    {
+      "file": "framework/bom.json",
+      "bytes": 42212,
+      "sha256": "651e893e516a09c03d5871c319bc1e915916635d3857d1d6789f63e88b698573",
+      "supports": "19 power categories across six research chains; category order is not installed electrical topology"
+    },
+    {
+      "file": "web/components/campus-assembly.js",
+      "bytes": 15884,
+      "sha256": "377a08934681609a94f735e6eb5fa4d17cbfc8a573d0bc0e121fb436c0fceab5",
+      "supports": "existing generic campus only4power categories/8instances (transformer2, UPS1, backup3, BESS2); no new physical model or connecting wires"
+    }
+  ],
+  "external_sources": [
+    {
+      "url": "https://www.eaton.com/content/dam/eaton/markets/buildings/critical-power/documents/eaton-ups-basics-whitepaper-WP153005EN-en-gb.pdf",
+      "title": "Eaton UPS Basics (2019-11)",
+      "actual_text_read": "physical PDF pages2,4,7",
+      "supports": "double-conversion rectifier/inverter/DC battery branch and static bypass; generator role and two distribution layers",
+      "does_not_support": "device photo internal wiring/ports, local site topology, specific ratings; primary figure pixels not viewed"
+    },
+    {
+      "url": "https://www.vertiv.com/4909d6/globalassets/documents/ebook/vertiv-datacenterpowertrain-eb-en-na-sl-80203-web-small.pdf",
+      "title": "Vertiv Data Center Power Train (2025)",
+      "actual_text_read": "text178–187 and265+",
+      "supports": "functional power-train stages and facility distribution versus UPS/mechanical loads",
+      "does_not_support": "all research categories mandatory series; adopted photo geometry or site implementation"
+    },
+    {
+      "url": "https://www.ti.com/document-viewer/lit/html/SSZTDB4/GUID-4C27D06A-1852-4990-B137-23DA8A14DEAE",
+      "title": "TI SSZTDB4",
+      "actual_text_read": "continuous body26–34",
+      "supports": "dedicated server PSU versus combined power shelf/BBU and design-dependent UPS/intermediate conversion",
+      "does_not_support": "selected numeric bus voltages/efficiency/ratings/OEM/photo internals"
+    }
+  ],
+  "unknown": [
+    "OEM/CAD/physical dimensions/ratings/protection/earthing/redundancy",
+    "site rights/installed positions/complete internal circuit",
+    "battery charging management/switching/isolation/interlocks",
+    "available SMR installation or generation technologies universal coexistence"
+  ]
+}

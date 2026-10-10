@@ -1,0 +1,38 @@
+{
+  "figure_id": "TA-23",
+  "sources": [
+    {
+      "file": "framework/bom.json",
+      "bytes": 42212,
+      "sha256": "651e893e516a09c03d5871c319bc1e915916635d3857d1d6789f63e88b698573",
+      "supports": "15thermal categories, research classification not installed mandatory series"
+    },
+    {
+      "file": "web/components/campus-assembly.js",
+      "bytes": 15884,
+      "sha256": "377a08934681609a94f735e6eb5fa4d17cbfc8a573d0bc0e121fb436c0fceab5",
+      "supports": "existing3thermal classes/11instances (room-cooling5/CDU3/chiller3); other12unmodeled, same homes, no complete pipes"
+    }
+  ],
+  "external_sources": [
+    {
+      "url": "https://www.ashrae.org/file%20library/technical%20resources/bookstore/whitepaper_tc099-watercooledservers.pdf",
+      "title": "ASHRAE TC9.9 Water-Cooled Servers (2019)",
+      "actual_text_read": "physical PDF13–14 printed10–11; contextual physical11; body254–287",
+      "supports": "selected liquid-liquid CDU heat exchange separates TCS/FWS fluid and water-quality domains, primary FWS and secondary TCS, TCS circulation; non-CDU alternative exists",
+      "does_not_support": "specific pictured OEM ports/internal pump/valve configuration/chemistry/ratings; original figures not pixel-viewed"
+    },
+    {
+      "url": "https://www.vertiv.com/en-us/insights/articles/blog-posts/deploying-liquid-cooling-in-data-centers-installing-and-managing-coolant-distribution-units-cdus2/",
+      "title": "Vertiv Installing and Managing CDUs (2024-03-15)",
+      "actual_text_read": "continuous body133–154,166",
+      "supports": "liquid-liquid separated secondary loop and FWS/HX; liquid-air is another implementation, coldplate/remaining air load distinction",
+      "does_not_support": "statistics/temperature/flow/filter/redundancy values or pictured cabinet port assignments"
+    }
+  ],
+  "unknown": [
+    "OEM/CAD/ratings/flow/temperature/pressure/fluid compatibility",
+    "actual campus installed loop/port assignments/complete internal pump,valve,refrigerant/condensing loops",
+    "air-vs-liquid heat capture fraction, availability, water rights and site installation"
+  ]
+}

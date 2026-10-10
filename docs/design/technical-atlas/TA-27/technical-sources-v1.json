@@ -1,0 +1,48 @@
+{
+  "figure_id": "TA-27",
+  "sources": [
+    {
+      "url": "https://networking-docs.nvidia.com/bf3dpu/introduction",
+      "title": "NVIDIA DPU与主机接口角色",
+      "actual_read": "independent specialist actual HTML body lines 39–64, 148–166",
+      "supports": "One documented DPU implementation combines network interfaces, infrastructure processing/offload and host-side PCIe connectivity. NIC/network-facing and host-facing roles differ.",
+      "does_not_support": "Product example, not all NIC/DPU architectures. No rates, lane/core counts, power, firmware guarantees or supplier installation transplanted into generic asset."
+    },
+    {
+      "url": "https://networking-docs.nvidia.com/cablemanagfaq/cable-and-connector-definitions",
+      "title": "NVIDIA 光电与线缆配接定义",
+      "actual_read": "independent specialist actual HTML body lines 28–48, 135–165; owner additionally actual same official body read",
+      "supports": "Optical transceiver converts between electrical and optical domains; fiber/optical patching differs from direct electrical copper cable. Connector form factor and physical medium are separate concepts.",
+      "does_not_support": "Only basic roles adopted. Historical portfolio rate/reach/MSA/compatibility examples and broad marketing comparisons are not applied to source drawings. No source webpage images claimed viewed."
+    },
+    {
+      "url": "https://docs.broadcom.com/doc/BCM78919-PB",
+      "title": "Broadcom CPO集成示例",
+      "actual_read": "independent specialist actual PDF physical page 1, Overview lines 26–58; page 2 publication line 65; owner additionally actual same official body read",
+      "supports": "One CPO architecture integrates optical engines with network-switch silicon, rather than treating a separate pluggable transceiver as a co-packaged engine. Network switching/routing is a different functional role from host PCIe switching.",
+      "does_not_support": "Uses functional distinction only. Specific ASIC, front-panel fiber counts, process, bandwidth, power/reliability claims and topology are not generic picture facts."
+    },
+    {
+      "url": "https://docs.broadcom.com/doc/BC-0484EN",
+      "title": "Broadcom PCIe交换功能示例",
+      "actual_read": "independent specialist actual PDF physical page 1 lines 24–39; page 2 lines 77–84,106–130; page 3 lines151–157; publication page4 line249; owner additionally actual same official body read",
+      "supports": "PCIe switch supports host/I/O connectivity and fan-out; selected simple example may be inside a server. The source also supports in-rack PCIe fabrics, so PCIe must not be defined as physically incapable of leaving a chassis.",
+      "does_not_support": "2019 implementation example for stable function only, not current standard/version or candidate model certification. It does not certify CXL support of the generic pcie-switch picture, nor mandate a PCIe switch on every host/NIC path."
+    },
+    {
+      "url": "https://www.ti.com/document-viewer/lit/html/snla401",
+      "title": "TI Retimer功能解释",
+      "actual_read": "independent specialist actual Introduction / When Should a PCIe Retimer be Implemented, lines9–19; owner additionally actual same official body read",
+      "supports": "PCIe retimer recovers clock/data and regenerates an impaired high-speed signal. This conditioning role differs from fan-out switching or network-packet forwarding.",
+      "does_not_support": "No fixed loss threshold, protocol version, universal retimer requirement or chip placement adopted. This PCIe example does not certify every AEC/Ethernet retimer family."
+    },
+    {
+      "url": "https://credosemi.com/products/zeroflapaec/",
+      "title": "Credo AEC有源铜缆示例",
+      "actual_read": "independent specialist actual HTML body AEC Attributes lines645–668; category heading and copper media lines90–99",
+      "supports": "One AEC product family places active signal-processing circuitry in copper cable ends; a copper exterior alone cannot distinguish passive direct attach from a chosen active implementation.",
+      "does_not_support": "No numeric rates/reach/weight/power/reliability or universal active-cable circuit claim adopted. Existing copper illustration remains externally generic, not a certified Credo device or AEC."
+    }
+  ],
+  "scope": "Stable functional relationships only; no OEM/installed topology or referencepixels certification"
+}
