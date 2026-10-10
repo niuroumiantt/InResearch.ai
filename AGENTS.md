@@ -20,7 +20,9 @@
 
 - 阅读、原件整理、候选审核和独立源码任务可并行。研究发布保留一个队列所有者；有已有研究 PR 时先完成其验收、合并/重新审核和网站回执，再接纳新 PR，不重启旧发布服务并行造单。
 - 修改共享页面、档案组件或图册入口时，合并前运行受影响的浏览器场景；修改文案时同步核对语义断言，保留物理模型、权限、身份与下载验收。新增历史 HTML 必须同提交登记 `framework/interface_manifest.json`，运行 `PYTHONPATH=src python3 -m unittest tests.unit.test_interface_system`。
+- main 已启用 GitHub 必过检查 `validate`、`browser (core)`、`browser (model_assets)`、`storage-container`，管理员也受约束，不新增人工 approve；检查失败不得以跳过检查合并来推动其它任务。
 - 合并前在最终 head 完成治理检查、严格校验和相关测试；共享基线 CI 失败先修主因，不让资料 PR 反复重试相同失败。不以读取很快、PR 已关闭或已合并代替实际上线；上下文失效的旧 PR 重新审核，不能计入采用。
+- 研究发布可按 `docs/local_reader/SPARK_OPERATIONS.md` 的显式 `protected_merge` 策略，保留当前 head 全部 CI 和现行上下文核验，在受保护且可合并的 main 上避免无关基线变化造成重复验收；保护不明、冲突或失败保持原恢复路径。
 - 每阶段按“有效资料阅读完成、正式采用上线、未完成 PR 数量与最老等待时间”报告吞吐；合并且网站回执核实后清理对应远程分支，保留原件、本地审计和未合并分支。
 
 ## 实施边界

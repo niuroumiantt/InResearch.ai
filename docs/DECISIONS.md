@@ -1522,3 +1522,7 @@ TA19实际发布：PR567与08锚点修正PR568，最终0304ac54/.56自然timer�
 TA22/23真实5be58335/.61与精确9079镜像healthy，独立public-v3/public-v1交互、双下载/20源SHA/HTTPShealth200闭合，登记23/35补4/4且不倒写首次SHA。TA24–27计算/内存/存储/网络同主题实质源码：8/3/3/9原件受控组合独立1536×1024与8/5/5/9可编辑定位，逐项original双审和拒稿保留；计算主机/加速/管理分工、三内存访问、系统/整盘与本地/网络替代、网络/PCIe/光铜角色分开，不把目录串联。前三域均0实体，网络仅原cabling桥架1实例/其余8类未建模，桥架不是四护套线束；32home/152mesh与默认14/system47/旧场景保持。新域图只activeDomain与类别system双匹配，未建模导出明示类别上下文无实体。公网观察器补whole缓存隐藏、实际入口点击/metadata身份与真实可点ray，四图实际新公网仍待，不计24–27或提前TA28。本地URL拒绝/公网专用无回退、CI未查、Spark研究0改；保留最新并行研究及浏览器分片变更。
 
 2026-10-10共享验收收尾：TA28历史HTML补excluded登记；TA18/19软件说明断言跟随现行“软件有意无物理模型，不是待建硬件”，原零mesh/零inspector与其余验收保持。并行任务规则补充共享改动合并前相关测试、历史HTML登记、单发布所有者/旧PR优先、实际网站回执与吞吐计量，不增加用户确认步骤。
+
+2026-10-10发布收尾：main现已启用GitHub四项必过检查（validate、browser(core)、browser(model_assets)、storage-container），管理员同样受限，不新增人工审批，非strict不要求无关基线移动自动重跑。TA29真实点选导出按可识别服务器子装配身份核验，未归入具名子装配的网格仍按原类别聚合回退，追加预览几何UUID精确一致断言；完整server聚合身份及原像素/标题/引线/下载/手势断言保持。容器测试清理复用已构建本批镜像、pull=never，仅chown自有TemporaryDirectory，清理前不删镜像，取消无谓的外部基础镜像下载。
+
+显式CI配置base_update_policy=protected_merge：仍先要求审核head全部CI（四必需及额外检查）、源与当前正式上下文；仅新鲜GitHub API确认同head/open/main/clean可合并、main非strict且管理员受四项GitHub Actions检查保护时，保存head/base/保护回执并按原head合并，不因无关main移动重建head。任一条件未知或不符回到原refresh+新head重验，冲突恢复与上下文revalidate不变；默认always_refresh、local不得选择。
