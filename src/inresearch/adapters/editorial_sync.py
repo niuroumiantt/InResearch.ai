@@ -58,15 +58,18 @@ def enroll(scope, sha):
     if not scope: return False
     path = Path(scope).expanduser()
     with locked(path):
-        if path.stat().st_size > 1024 * 1024: raise ValueError('scope_too_large')
-        v = json.loads(path.read_text())
-        ids = v.get('doc_ids')
-        if v.get('schema_version') != 1 or not isinstance(ids, list) or len(ids) >= 5000 or any(
-                not isinstance(i, str) or not re.fullmatch(r'doc-[0-9a-f]{64}', i) for i in ids):
-            raise ValueError('invalid_existing_scope')
+        from inresearch.workflow.reader_scope import read_scope, MAX_SCOPE_DOCUMENTS, MAX_SCOPE_BYTES
+        v = read_scope(path)
+        ids = v['doc_ids']
         ident = 'doc-' + sha
+        if not re.fullmatch(r'doc-[0-9a-f]{64}', ident):
+            raise ValueError('invalid_editorial_document_sha')
         if ident not in ids:
+            if len(ids) >= MAX_SCOPE_DOCUMENTS:
+                raise ValueError('reader_scope_full')
             v['doc_ids'] = ids + [ident]
+            if len(json.dumps(v, ensure_ascii=False, indent=2).encode('utf-8')) + 1 > MAX_SCOPE_BYTES:
+                raise ValueError('scope_too_large')
             write_json(path, v)
     return True
 

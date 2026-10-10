@@ -54,6 +54,12 @@ const ready = new Promise((resolve, reject)=>{
      assert.ok((await page.locator('#material-stores').innerText()).includes('209.29 MB'));
      assert.ok((await page.locator('#material-web-storage').innerText()).includes('138.28 MB'));
    }
+   if(name==='inresearchrepo') {
+     assert.equal(await page.locator('.audit-section').count(),6);
+     assert.ok((await page.locator('#audit-demand').innerText()).includes('未接入'));
+     assert.equal(await page.locator('.audit-map article').count(),6);
+     await page.locator('summary').filter({hasText:'源码检查快照与出处'}).click();
+   }
    assert.ok((await page.locator('.repo-wrap').innerText()).includes('最近检测与结果'));
    const backgrounds=new Set();
    for(const width of (name==='inresearchrepo'?[1440,390,320]:[1440,390])) for(const mode of ['light','dark']) {
@@ -65,6 +71,10 @@ const ready = new Promise((resolve, reject)=>{
     if(process.env.REPO_SCREENSHOTS) {
       mkdirSync(process.env.REPO_SCREENSHOTS,{recursive:true});
       await page.screenshot({path:join(process.env.REPO_SCREENSHOTS, name+'-'+width+'-'+mode+'.png'),fullPage:name==='inresearchrepo'});
+      if(name==='inresearchrepo') {
+        await page.evaluate(()=>scrollTo(0,0));
+        await page.screenshot({path:join(process.env.REPO_SCREENSHOTS, name+'-'+width+'-'+mode+'-top.png')});
+      }
     }
    }
    assert.equal(backgrounds.size,2,'light and dark modes must change the rendered background');

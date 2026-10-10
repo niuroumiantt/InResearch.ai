@@ -1,0 +1,130 @@
+{
+  "baseline": "265237e7378500f2a7226aec61230c89dd5cb2a6",
+  "python_modules": 154,
+  "owned_web_files": 105,
+  "largest_modules": [
+    {
+      "lines": 1183,
+      "path": "src/inresearch/workflow/research_review.py"
+    },
+    {
+      "lines": 1035,
+      "path": "src/inresearch/knowledge/registry.py"
+    },
+    {
+      "lines": 1014,
+      "path": "src/inresearch/workflow/research_publish.py"
+    },
+    {
+      "lines": 942,
+      "path": "src/inresearch/workflow/reader.py"
+    },
+    {
+      "lines": 913,
+      "path": "src/inresearch/interfaces/http.py"
+    },
+    {
+      "lines": 740,
+      "path": "src/inresearch/workflow/product_catalog.py"
+    },
+    {
+      "lines": 650,
+      "path": "src/inresearch/workflow/reading_stages.py"
+    },
+    {
+      "lines": 573,
+      "path": "src/inresearch/materials/library.py"
+    },
+    {
+      "lines": 564,
+      "path": "src/inresearch/knowledge/fact_contract.py"
+    },
+    {
+      "lines": 480,
+      "path": "src/inresearch/materials/fetchspec_receive.py"
+    }
+  ],
+  "missing_internal_imports": [],
+  "duplicate_nonempty_modules": [],
+  "import_cycles_including_lazy_imports": [
+    [
+      "inresearch.adapters.acquisition",
+      "inresearch.materials.daily_events"
+    ],
+    [
+      "inresearch.adapters.acquisition",
+      "inresearch.materials.daily_events",
+      "inresearch.materials.daily_sources",
+      "inresearch.adapters.news_sync"
+    ],
+    [
+      "inresearch.adapters.acquisition",
+      "inresearch.workflow.research_match"
+    ],
+    [
+      "inresearch.adapters.acquisition",
+      "inresearch.workflow.research_match",
+      "inresearch.workflow.research_sources"
+    ],
+    [
+      "inresearch.adapters.codex_inference",
+      "inresearch.adapters.models"
+    ],
+    [
+      "inresearch.adapters.gap_ocr",
+      "inresearch.workflow.reading_stages"
+    ],
+    [
+      "inresearch.delivery.reader_export",
+      "inresearch.workflow.research_review"
+    ]
+  ],
+  "unreferenced_from_core": [
+    "src/inresearch/__main__.py",
+    "src/inresearch/adapters/asset_check.py",
+    "src/inresearch/adapters/asset_compare.py",
+    "src/inresearch/adapters/asset_download.py",
+    "src/inresearch/adapters/historical_brief.py",
+    "src/inresearch/adapters/ocr_worker.py",
+    "src/inresearch/delivery/acquisition_status.py",
+    "src/inresearch/delivery/backup.py",
+    "src/inresearch/delivery/export.py",
+    "src/inresearch/delivery/map.py",
+    "src/inresearch/delivery/publish.py",
+    "src/inresearch/delivery/reader_progress.py",
+    "src/inresearch/delivery/reader_status.py",
+    "src/inresearch/interfaces/deep_read.py",
+    "src/inresearch/interfaces/governance.py",
+    "src/inresearch/interfaces/http.py",
+    "src/inresearch/interfaces/reader.py",
+    "src/inresearch/interfaces/users.py",
+    "src/inresearch/knowledge/company_ids.py",
+    "src/inresearch/knowledge/coverage.py",
+    "src/inresearch/knowledge/dashboard.py",
+    "src/inresearch/knowledge/facts.py",
+    "src/inresearch/knowledge/validate.py",
+    "src/inresearch/materials/daily_bundle.py",
+    "src/inresearch/materials/fetchspec_receive.py",
+    "src/inresearch/materials/inventory.py",
+    "src/inresearch/materials/library.py",
+    "src/inresearch/materials/preflight.py",
+    "src/inresearch/materials/receive.py",
+    "src/inresearch/materials/retention.py",
+    "src/inresearch/workflow/attribution.py",
+    "src/inresearch/workflow/catalog_bundle.py",
+    "src/inresearch/workflow/catalog_ownership.py",
+    "src/inresearch/workflow/catalog_ownership_audit.py",
+    "src/inresearch/workflow/progress.py",
+    "src/inresearch/workflow/research_publish.py",
+    "src/inresearch/workflow/score.py",
+    "src/inresearch/workflow/submissions.py",
+    "src/inresearch/workflow/terminal_batch.py",
+    "src/inresearch/workflow/triage.py",
+    "src/inresearch/workflow/workorders.py"
+  ],
+  "limits": [
+    "AST includes function-local imports; cycles are not evidence of load failure.",
+    "CLI, tests, deployments and dynamic imports are separate consumers; unreferenced_from_core does not prove dead code.",
+    "No runtime database, original, secret or file was deleted."
+  ]
+}

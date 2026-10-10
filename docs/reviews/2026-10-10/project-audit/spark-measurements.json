@@ -1,0 +1,128 @@
+{
+  "schema_version": 1,
+  "measured_at": "2026-10-10T13:30:05.021122+00:00",
+  "catalog": {
+    "files": 44758,
+    "content_identities": 44758,
+    "size_bytes": 107666738916,
+    "types": [
+      {
+        "suffix": ".pdf",
+        "files": 12794,
+        "size_bytes": 58533984763
+      },
+      {
+        "suffix": ".txt",
+        "files": 12770,
+        "size_bytes": 714681528
+      },
+      {
+        "suffix": ".html",
+        "files": 8696,
+        "size_bytes": 993890218
+      },
+      {
+        "suffix": ".dwg",
+        "files": 3947,
+        "size_bytes": 8384598439
+      },
+      {
+        "suffix": ".dwf",
+        "files": 835,
+        "size_bytes": 488476372
+      },
+      {
+        "suffix": ".log",
+        "files": 772,
+        "size_bytes": 59453573
+      },
+      {
+        "suffix": ".jpg",
+        "files": 608,
+        "size_bytes": 1177457349
+      },
+      {
+        "suffix": ".xlsx",
+        "files": 568,
+        "size_bytes": 122718631
+      }
+    ],
+    "states": {
+      "blocked": 24211,
+      "complete": 1276,
+      "failed": 11,
+      "queued": 19257,
+      "running": 3
+    }
+  },
+  "archive": {
+    "allocated_bytes": 458119794688,
+    "directories": {
+      "artifacts": 13610184704,
+      "backups": 19206144,
+      "extracted": 539283456,
+      "fulltext": 234950656,
+      "fulltext_ocr": 5580152832,
+      "incoming": 51690422272,
+      "offload": 96571392,
+      "originals": 107948236800,
+      "pdf-text": 4734976,
+      "raw-materials": 269091278848
+    },
+    "measured_at": "2026-10-10T12:42:53.156968+00:00",
+    "other_bytes": 9304772608,
+    "state": "observed"
+  },
+  "databases": {
+    "reader": {
+      "state": "observed",
+      "file_bytes": 247685120,
+      "wal_bytes": 21914312,
+      "shm_bytes": 65536,
+      "index_bytes": 86212608
+    },
+    "acquisition": {
+      "state": "observed",
+      "file_bytes": 231305216,
+      "wal_bytes": 0,
+      "shm_bytes": 0,
+      "index_bytes": 12234752
+    },
+    "review": {
+      "state": "observed",
+      "file_bytes": 17358848,
+      "wal_bytes": 4190072,
+      "shm_bytes": 32768,
+      "index_bytes": 3059712
+    }
+  },
+  "review_batch_states": {
+    "deferred": 281,
+    "published": 80,
+    "queued": 2480,
+    "regrouped": 3272,
+    "review_ready": 4,
+    "reviewed": 42,
+    "reviewing": 1,
+    "split_context": 1285
+  },
+  "acquisition_sources": {
+    "fetchreports": 15319,
+    "fetchspec": 45,
+    "inews": 16136,
+    "sec": 89
+  },
+  "acquisition_tables": [
+    "items",
+    "observations",
+    "links",
+    "runs",
+    "product_documents"
+  ],
+  "catalog_table_counts": {
+    "sources": 95964,
+    "documents": 44758,
+    "reading_runs": 44931,
+    "jobs": 76514
+  }
+}

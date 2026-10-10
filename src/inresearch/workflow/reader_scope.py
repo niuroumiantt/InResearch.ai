@@ -6,6 +6,25 @@ from inresearch.materials.artifacts import digest_file, read_json, safe_path
 from inresearch.materials.reader_contracts import IntegrityError
 
 
+MAX_SCOPE_BYTES = 1024 * 1024
+MAX_SCOPE_DOCUMENTS = 10000
+
+
+def read_scope(path):
+    """Shared stored scope contract for readers and delivery enrollment."""
+    path = Path(path)
+    if path.stat().st_size > MAX_SCOPE_BYTES:
+        raise ValueError('reader scope is too large')
+    value = json.loads(path.read_text(encoding='utf-8'))
+    ids = value.get('doc_ids') if isinstance(value, dict) else None
+    if (not isinstance(value, dict) or type(value.get('schema_version')) is not int
+            or value['schema_version'] != 1 or not isinstance(ids, list)
+            or len(ids) > MAX_SCOPE_DOCUMENTS or any(
+                not isinstance(i, str) or not re.fullmatch(r'doc-[0-9a-f]{64}', i) for i in ids)):
+        raise ValueError('invalid reader document scope')
+    return value
+
+
 def gap_counts(data, rows, cache):
     """Only sealed current reports contribute; a gap never means a read page."""
     counts=[]
@@ -37,13 +56,8 @@ class DocumentScope:
         self.ids()
 
     def ids(self):
-        if self.path.stat().st_size > 1024*1024:
-            raise ValueError('reader scope is too large')
-        value = json.loads(self.path.read_text(encoding='utf-8'))
-        ids = value.get('doc_ids')
-        if value.get('schema_version') != 1 or not isinstance(ids,list) or len(ids)>10000 or any(
-                not isinstance(i,str) or not re.fullmatch(r'doc-[0-9a-f]{64}',i) for i in ids):
-            raise ValueError('invalid reader document scope')
+        value = read_scope(self.path)
+        ids = value['doc_ids']
         result = set(ids)
         if value.get('include_daily_deliveries') is True:
             from inresearch.workflow.daily_dispatch import receipt_documents

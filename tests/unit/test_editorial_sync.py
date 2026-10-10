@@ -59,6 +59,25 @@ class EditorialSyncTests(unittest.TestCase):
             scope.write_text('{"schema_version":1,"doc_ids":[]}')
             self.assertTrue(e.receive(self.item(),data,project_root(),scope)['scope_enrolled'])
 
+    def test_scope_matches_reader_limit_and_duplicate_at_capacity(self):
+        from inresearch.workflow.reader_scope import DocumentScope
+        with tempfile.TemporaryDirectory() as tmp:
+            path = Path(tmp) / 'scope.json'
+            ids = ['doc-' + format(i, '064x') for i in range(7739)]
+            path.write_text(json.dumps({'schema_version': 1, 'doc_ids': ids, 'include_daily_deliveries': False}))
+            self.assertTrue(e.enroll(path, 'f' * 64))
+            self.assertIn('doc-' + 'f' * 64, DocumentScope(path, Path(tmp)).ids())
+            ids = ['doc-' + format(i, '064x') for i in range(10000)]
+            path.write_text(json.dumps({'schema_version': 1, 'doc_ids': ids}))
+            before = path.read_bytes()
+            self.assertTrue(e.enroll(path, format(0, '064x')))
+            with self.assertRaisesRegex(ValueError, 'reader_scope_full'):
+                e.enroll(path, 'f' * 64)
+            self.assertEqual(path.read_bytes(), before)
+            for value in [[], {'schema_version': True, 'doc_ids': []}, {'schema_version': 1, 'doc_ids': ['invalid']}]:
+                path.write_text(json.dumps(value))
+                with self.assertRaises(ValueError): e.enroll(path, 'f' * 64)
+
     def test_bundle_tampering_and_roles(self):
         with tempfile.TemporaryDirectory() as tmp:
             base=Path(tmp);body=self.item()['text'].encode();(base/'article.md').write_bytes(body)

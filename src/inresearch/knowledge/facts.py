@@ -27,6 +27,7 @@ from inresearch.paths import project_root
 import json
 import re
 import sys
+import argparse
 from collections import defaultdict, Counter
 from datetime import date
 
@@ -324,14 +325,20 @@ def buried_asserters(facts):
 
 
 def main():
-    args = sys.argv[1:]
-    public = "--public" in args
-    if "--asserters" in args:
+    parser = argparse.ArgumentParser(description='审计事实口径与可比性；只读，不补造来源身份。')
+    parser.add_argument('metric', nargs='?', help='仅展示指定指标')
+    parser.add_argument('--public', action='store_true', help='对外口径预览')
+    parser.add_argument('--asserters', action='store_true', help='列出断言者及命名提示')
+    parser.add_argument('--outliers', action='store_true', help='提示预测离群项')
+    parser.add_argument('--summary', action='store_true', help='只输出条数与契约问题，不展开全部指标')
+    options = parser.parse_args()
+    public = options.public
+    if options.asserters:
         facts, _ = load()
         for line in asserter_listing(facts):
             print(line)
         return 0
-    if "--outliers" in args:
+    if options.outliers:
         facts, metrics = load()
         rows = forecast_outliers(facts, metrics)
         print("同一目标年份上离同行中位数 2 倍以上的预测：%d 条" % len(rows))
@@ -342,7 +349,7 @@ def main():
                   % (row["about"], row["value"], row["unit"], row["peer_median"],
                      row["off_by"], row["peers"], row["fact_id"] + " ← " + row["asserter"]))
         return 0
-    only = next((a for a in args if not a.startswith("-")), None)
+    only = options.metric
     facts, metrics = load()
     validate(facts, metrics)
 
@@ -353,6 +360,9 @@ def main():
             print(f"  ✗ {e}")
     else:
         print("校验通过（0 errors）")
+
+    if options.summary:
+        return 1 if errors else 0
 
     if public:
         print("\n=== 对外口径预览 ===")

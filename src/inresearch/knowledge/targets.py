@@ -43,7 +43,7 @@ MECHANISMS = {'api': '公开 API 或固定表格下载', 'table': '固定网页�
               'js_page': '需浏览器渲染或登录的页面（macmini）'}
 ASSISTED = ('pdf_registered', 'js_page')
 PRINCIPLES = ['需求只来自本清单，各队不自定抓什么', '一个来源只属一个队、一台主执行机；换主机等于结束旧任务开新任务',
-              '交付只走供应中心一个入口，按 fetchspec 包格式', '给 inresearch 的采集默认不翻译；挑选在先，翻译在后']
+              '交付在供应中心汇总；Fetchspec 使用原件包，inews 使用只读事件 feed，正式采用另验', '给 inresearch 的采集默认不翻译；挑选在先，翻译在后']
 # fetch.kind → defaults for entries that carry no explicit routing
 KIND_DEFAULTS = {
     'product': dict(variable_class=1, data_class='reference', mechanism='vendor_page', team='fetchspec'),
