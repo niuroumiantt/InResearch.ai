@@ -168,12 +168,42 @@ def refresh_publication_base(worktree, expected_commit):
     return run(['git','rev-parse','HEAD'],worktree).stdout.strip()
 
 
+def protected_main_merge_receipt(root, pr, commit):
+    """Allow an already tested head on protected main; never waive its CI."""
+    required = {'validate', 'browser (core)', 'browser (model_assets)', 'storage-container'}
+    try:
+        info = json.loads(run(['gh', 'api', 'repos/{owner}/{repo}/pulls/'+str(pr)+'?fresh='+str(time.time_ns()),
+                               '-H', 'Cache-Control: no-cache'], root).stdout)
+        if (info['state'] != 'open' or info['head']['sha'] != commit
+                or info['base']['ref'] != 'main' or info['mergeable'] is not True
+                or info['mergeable_state'] != 'clean'
+                or not re.fullmatch('[0-9a-f]{40}', info['base']['sha'])):
+            return None
+        protection = json.loads(run(['gh', 'api',
+            'repos/{owner}/{repo}/branches/main/protection?fresh='+str(time.time_ns()),
+            '-H', 'Cache-Control: no-cache'], root).stdout)
+        checks = protection['required_status_checks']['checks']
+        if (protection['required_status_checks']['strict'] is not False
+                or protection['enforce_admins']['enabled'] is not True
+                or not required <= {c['context'] for c in checks if c.get('app_id') == 15368}):
+            return None
+        return {'commit':commit, 'base':info['base']['sha'], 'pr':pr,
+                'mergeable':True, 'required_checks':sorted(required),
+                'protected_main':True, 'verified_at':now_iso()}
+    except (RuntimeError, ValueError, KeyError, TypeError, OSError, subprocess.SubprocessError):
+        return None  # Unknown protection/mergeability retains the old refresh path.
+
+
 class Publisher:
     def __init__(self, config):
         self.config = config
         self.publication_mode = config.get('publication_mode', 'ci')
         if self.publication_mode not in ('ci', 'local_acceptance'):
             raise ValueError('invalid_publication_mode')
+        self.base_update_policy = config.get('base_update_policy', 'always_refresh')
+        if (self.base_update_policy not in ('always_refresh', 'protected_merge')
+                or (self.publication_mode != 'ci' and self.base_update_policy != 'always_refresh')):
+            raise ValueError('invalid_publication_base_update_policy')
         self.group_wait_seconds = config.get('group_wait_seconds', 300)
         if type(self.group_wait_seconds) is not int or not 0 <= self.group_wait_seconds <= 3600:
             raise ValueError('invalid_publication_group_wait')
@@ -906,7 +936,13 @@ with urllib.request.urlopen(request,timeout=30) as response:
                         self.remote('revalidate','--batch-id',bid)
                         run(['gh','pr','close',str(journal['pr'])],self.root)
                         save('revalidation');return journal
-                    refreshed=refresh_publication_base(journal['worktree'],journal['commit'])
+                    receipt = (protected_main_merge_receipt(self.root, journal['pr'], journal['commit'])
+                               if self.base_update_policy == 'protected_merge' else None)
+                    if receipt:
+                        journal.setdefault('protected_merges', []).append(receipt)
+                        save('pr_open')  # Persist the exact head, base and protection before merge.
+                    refreshed=(journal['commit'] if receipt else
+                               refresh_publication_base(journal['worktree'],journal['commit']))
                     if refreshed!=journal['commit']:
                         previous=journal['commit']
                         journal.update(commit=refreshed,checks=[])

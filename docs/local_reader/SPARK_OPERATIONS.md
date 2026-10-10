@@ -467,3 +467,10 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 逐成员用自己的bundle/IDs调用原published CLI，group journal逐个保存实际proofSHA；部分ACK继续未完成成员。远端ACK已commit而本机未记时重新实核网站并原CLI幂等恢复，不猜ACK、不宣称跨数据库原子。准备阶段网络失败/已有树/真冲突保留blocked和工作树供具名恢复，不自动删除或覆盖。
 
 人工汇总后旧小PR CLOSED不能伪记MERGED；自动superseded尚未实现。后续仅精确既有published ACK/bundle/IDs与真实canonical支持闭包全通过才单列superseded并保留旧PR/head/branch/错误/group关系；不从关闭猜采用或造新ACK。源码/fixture不证明配置已启用、唯一驻留进程已加载或生产已发布，实际部署分别留回执。
+
+
+### 2026-10-10 受保护主分支下的 CI 发布
+
+显式CI配置base_update_policy=protected_merge：仍先要求审核head全部CI（四必需及额外检查）、源与当前正式上下文；仅新鲜GitHub API确认同head/open/main/clean可合并、main非strict且管理员受四项GitHub Actions检查保护时，保存head/base/保护回执并按原head合并，不因无关main移动重建head。任一条件未知或不符回到原refresh+新head重验，冲突恢复与上下文revalidate不变；默认always_refresh、local不得选择。
+
+该策略解决共享改动与研究PR互相追赶基线造成的重复验收，不替代C3、精确head CI、真实网站支持闭包或逐批published ACK。配置启用、源码加载、主分支保护和实际收尾须各自留回执。
