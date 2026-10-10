@@ -4429,6 +4429,70 @@
       "status": "candidate",
       "stored_path": "originals/e9/e9f62283720b27a4c07f708ad9b07ae063c1b884a0a98a53c32d52ad958a5885/dcd-e9f62283720b27a4-Volta launches out of stealth- to lease capacity in Norway from B.html",
       "title": "Volta launches out of stealth, to lease capacity in Norway from Bitdeer for “leading AI lab”"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "coverage": {
+        "characters_read": 12605,
+        "characters_total": 12605,
+        "chunks_read": 3,
+        "chunks_total": 3,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "id": "doc-05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "library_path": "library/by-node/site-grid/2026_Data Center Dynamics（DCD）_PJM's power needs just got political__05798c8b7a5daf9c.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:gas-turbine",
+        "root",
+        "site:gas-supply",
+        "site:grid",
+        "site:permits",
+        "system:power"
+      ],
+      "question_ids": [
+        "OBJ-grid-alternatives",
+        "OBJ-grid-definition",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-performance",
+        "OBJ-grid-supply",
+        "OBJ-prime-power-alternatives",
+        "OBJ-prime-power-definition",
+        "OBJ-prime-power-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-b0d8b1315a924102bbb6eb40bb02c6d1",
+      "report_sha256": "e0fbdb308cdbe862e290b4d1a4bcc2282a21158ffdb50d1c48eb1701e9f70fa7",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+        "url": "https://www.datacenterdynamics.com/en/opinions/pjms-power-needs-just-got-political/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/opinions/pjms-power-needs-just-got-political/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/05/05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36/dcd-05798c8b7a5daf9c-PJM-s power needs just got political.html",
+      "title": "PJM's power needs just got political"
     }
   ],
   "evidence": [
@@ -32651,6 +32715,178 @@
           }
         },
         "batch_id": "90c4750495c737f0294aaf790d5739cbbd0a6457a8ca79b4eaef1dfa392a70d1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2d1563e0bf64f74a9713c76a6e52caf630ca99aba0ef303ada990ba6a4dda4a1",
+      "document_id": "doc-05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "id": "rev-b0d8b1315a924102bbb6eb40bb02c6d1:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-prime-power-alternatives",
+        "OBJ-prime-power-definition"
+      ],
+      "quote": "This has led to more novel natural gas solutions emerging from the woodwork, such as Boom Supersonic and ProEnergy",
+      "reading_revision_id": "rev-b0d8b1315a924102bbb6eb40bb02c6d1",
+      "source_sha256": "05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T12:14:09+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分5。该项明确识别一种候选表后供电路线及相关主体，实质贡献于当前替代方案工作单的方案识别部分。连续原文内容及周围语境支持有限的来源归因陈述；未发现敏感内容、真实冲突、拟替换或其他A条件，符合B档局部采用。采用不涉及方案优劣排序或模型参数更新。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.304,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f2d1e0ffd896db73c97599cd27a53eb860dbd059ca4c1fead65f75b341cb492d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 56047,
+            "output_tokens": 1287,
+            "reasoning_output_tokens": 252
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.123,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a190186dc607590f1a7614b962f857905e587470e85611f576011584cb1af904",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 56659,
+              "output_tokens": 449,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "838a02a1430e702de3b144d0b658042bd0b0701fe949f47725ef80d8b08a8948"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2d1563e0bf64f74a9713c76a6e52caf630ca99aba0ef303ada990ba6a4dda4a1",
+      "document_id": "doc-05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "id": "rev-b0d8b1315a924102bbb6eb40bb02c6d1:chunk:0:claim:7:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-prime-power-alternatives",
+        "OBJ-prime-power-definition"
+      ],
+      "quote": "’s plans to repurpose airline jet engines to power data centers behind the meter.",
+      "reading_revision_id": "rev-b0d8b1315a924102bbb6eb40bb02c6d1",
+      "source_sha256": "05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T12:14:09+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分5。该项明确识别一种候选表后供电路线及相关主体，实质贡献于当前替代方案工作单的方案识别部分。连续原文内容及周围语境支持有限的来源归因陈述；未发现敏感内容、真实冲突、拟替换或其他A条件，符合B档局部采用。采用不涉及方案优劣排序或模型参数更新。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.304,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f2d1e0ffd896db73c97599cd27a53eb860dbd059ca4c1fead65f75b341cb492d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 56047,
+            "output_tokens": 1287,
+            "reasoning_output_tokens": 252
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.123,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a190186dc607590f1a7614b962f857905e587470e85611f576011584cb1af904",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 56659,
+              "output_tokens": 449,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "838a02a1430e702de3b144d0b658042bd0b0701fe949f47725ef80d8b08a8948"
       }
     }
   ],
@@ -63690,6 +63926,107 @@
         "request_sha256": "712ee67a5e0ed38019c72e007b2fd5fda0106e41c6e88efad967a713e87ab4c0"
       },
       "object_mapping_check": "原文明示Dell Technologies，准确匹配允许的actor:dell-technologies；不同时选择同名的actor:dell。技术提供方称谓未确立具体IT系统、服务器、机柜或GPU的供货范围，因此不沿用system:it或新增部件映射。场址仅限定角色发生地点，不另映射整体数据中心；未具名客户不映射Anthropic。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36",
+      "evidence_ids": [
+        "rev-b0d8b1315a924102bbb6eb40bb02c6d1:chunk:0:claim:7:ev:0",
+        "rev-b0d8b1315a924102bbb6eb40bb02c6d1:chunk:0:claim:7:ev:1"
+      ],
+      "id": "adoption:review:96c26606d1878339c2025ac4",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gas-turbine"
+      ],
+      "question_ids": [
+        "OBJ-prime-power-alternatives"
+      ],
+      "reading_revision_id": "rev-b0d8b1315a924102bbb6eb40bb02c6d1",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年1月19日发表的《PJM's power needs just got political》中，在美国PJM电力需求及燃气轮机供应约束的讨论背景下，提及Boom Supersonic与ProEnergy将航空喷气发动机改造用于数据中心表后供电的计划。这仅是作者报道的候选技术路线线索，不代表计划已经实现，也未确认具体项目的主用、桥接或备用运行角色。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T12:14:09+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分5。该项明确识别一种候选表后供电路线及相关主体，实质贡献于当前替代方案工作单的方案识别部分。连续原文内容及周围语境支持有限的来源归因陈述；未发现敏感内容、真实冲突、拟替换或其他A条件，符合B档局部采用。采用不涉及方案优劣排序或模型参数更新。",
+        "workorder_ids": [
+          "Q-OBJ-prime-power-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 51.304,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f2d1e0ffd896db73c97599cd27a53eb860dbd059ca4c1fead65f75b341cb492d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 56047,
+            "output_tokens": 1287,
+            "reasoning_output_tokens": 252
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.123,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a190186dc607590f1a7614b962f857905e587470e85611f576011584cb1af904",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 56659,
+              "output_tokens": 449,
+              "reasoning_output_tokens": 174
+            }
+          }
+        },
+        "batch_id": "838a02a1430e702de3b144d0b658042bd0b0701fe949f47725ef80d8b08a8948"
+      },
+      "source_candidate_ids": [
+        "rev-b0d8b1315a924102bbb6eb40bb02c6d1:chunk:0:claim:7"
+      ],
+      "limitations": "未提供具体型号、项目地点、燃料规格、运行工况、性能指标、成本边界、交期、许可或投运证据。文章将两家公司并列提及，未分别说明各自技术路径及项目进度，不能认定二者采用相同改造方案。PJM是文章讨论背景，不能据此认定这些计划位于PJM区域。未独立核验链接所指报道或企业一手资料，也不能据此证明该路线适合持续主用供电。",
+      "conflict_check": "已检查所供采用陈述及legacy筛选结果。既有IEA航空衍生燃气轮机定义涉及设备来源，既有运输、启动、交期和RICE比较记录涉及其他技术维度，均未完整覆盖本项两家公司计划，也未形成同口径反证。legacy的contracts、facts及projects所供匹配记录均为空，不能解释为外部不存在相关记录。未发现真实冲突或可指定的重复规范记录；不覆盖或替换既有结论。",
+      "gap_dependency_check": "仅部分贡献于OBJ-prime-power-alternatives中的候选方案识别。仍需分别取得两家公司的技术及项目一手资料，确认实际供电角色、型号、工况、地点和阶段，再与其他方案按统一性能、成本和约束口径比较。当前问题保持开放，不因路线线索被采用而回答或关闭；不扩展至未获允许的定义或供应问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "838a02a1430e702de3b144d0b658042bd0b0701fe949f47725ef80d8b08a8948",
+        "source_report_sha256": "e0fbdb308cdbe862e290b4d1a4bcc2282a21158ffdb50d1c48eb1701e9f70fa7",
+        "request_sha256": "4c57fbf197b6e29f26bc78992ad927f6bf046c3ed3a2a0df59a1b71283eaed6d"
+      },
+      "object_mapping_check": "原文在天然气方案及燃气轮机供应约束语境中讨论航空喷气发动机改作发电用途，支持映射至system:power下chain:power/3的燃气轮机部件。该映射独立于Reader标签；表后供电描述未建立并网权利、供气合同或整套电力系统的对象范围。Boom Supersonic与ProEnergy没有允许的对应actor ID，不补造或借用其他厂商ID。"
     }
   ],
   "answers": [],
