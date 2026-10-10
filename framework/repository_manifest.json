@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10.69",
+  "version": "2026.10.10.70",
   "scope": "Git source/records only; runtime stores and cloud originals excluded",
   "files": [
     {
@@ -297,20 +297,20 @@
     {
       "path": "data/research_knowledge.json",
       "role": "source_record",
-      "bytes": 2920877,
-      "sha256": "dd2658a177eda98b9d5cb37cf70544aeebfdd4788ec9bf270a41fc5283d23d2c",
+      "bytes": 2934435,
+      "sha256": "1ba9c6a7057846f87d0332df3a0b4b3d9d2b46cec811b6c2c9146bf98c28b813",
       "collections": [
         {
           "name": "documents",
-          "count": 41
+          "count": 42
         },
         {
           "name": "evidence",
-          "count": 314
+          "count": 315
         },
         {
           "name": "statements",
-          "count": 289
+          "count": 290
         },
         {
           "name": "answers",
@@ -594,8 +594,8 @@
     {
       "path": "docs/DECISIONS.md",
       "role": "entrypoint",
-      "bytes": 265922,
-      "sha256": "21f53b4601f9dc860c8f017d793f0ae1f7cdbe65057e99c8376bfe2685293dee",
+      "bytes": 267508,
+      "sha256": "71ea97cde32d44071f00654798599fa5b6e2d2ea602ea8af4c4f64fa6c059690",
       "collections": []
     },
     {
@@ -13629,8 +13629,8 @@
     {
       "path": "docs/local_reader/SPARK_OPERATIONS.md",
       "role": "normative",
-      "bytes": 72175,
-      "sha256": "ae18d307c65ad42eb7b6e9c693989adaa77c8c220e9a65ed4996b0671ca4fcdd",
+      "bytes": 75591,
+      "sha256": "af93585506a1ae9d7bb9e3259060b7682a4f5d099161525b7488be1baea70ea5",
       "collections": []
     },
     {
@@ -17933,8 +17933,8 @@
     {
       "path": "framework/04_reading_scoring_standard.md",
       "role": "normative",
-      "bytes": 28490,
-      "sha256": "514f92a8a02bb08f95cb080ea505b5a4cbe413c4b00014cb9d780366455f1bcf",
+      "bytes": 29482,
+      "sha256": "3953bf00340bc3be6aad19287b31fe3ec612627d33126963597693a859c9ff06",
       "collections": []
     },
     {
@@ -17975,8 +17975,8 @@
     {
       "path": "framework/09_software_contracts.md",
       "role": "normative",
-      "bytes": 26085,
-      "sha256": "89aea17b1a16415f32ac0a7ba0837c4a3182de94912e088e56ada049333689ca",
+      "bytes": 27617,
+      "sha256": "a69c33e1159f8dd268faba9461a825d147efd8f05817966a5d3ad329dd397b09",
       "collections": []
     },
     {
@@ -17989,8 +17989,8 @@
     {
       "path": "framework/CURRENT.md",
       "role": "normative",
-      "bytes": 50287,
-      "sha256": "4844c6026b104847a6e0cdbbb531d8f2936c13a5a23ee50c4af1ff84a7136c2f",
+      "bytes": 50855,
+      "sha256": "2af813908ffbf7626dea788816f9cc19dcad5e43d08e47509cd3bd346e2015af",
       "collections": []
     },
     {
@@ -18016,8 +18016,8 @@
     {
       "path": "framework/current_state.json",
       "role": "project_config",
-      "bytes": 218007,
-      "sha256": "c344556442eabce02dfee12821c0622e2b5c7041f38835ef9eb60d07edc57427",
+      "bytes": 220155,
+      "sha256": "b1350d1e724b59a2c9617bdd764245b1e7b4c78a45a0ae5025f39882403072d4",
       "collections": [
         {
           "name": "policies",
@@ -18363,8 +18363,8 @@
     {
       "path": "framework/verification_contract.json",
       "role": "project_config",
-      "bytes": 363908,
-      "sha256": "077a16fdeec0b639a3cb13be24ca3d9c2992b4f405d47f5b8ff835ed7366e0cb",
+      "bytes": 373371,
+      "sha256": "7a0c6a017b94e6f7db19a926491c74fb3a37d30e495ad213cd82441ea0b67401",
       "collections": [
         {
           "name": "policies",
@@ -21544,8 +21544,8 @@
     {
       "path": "src/inresearch/interfaces/reader.py",
       "role": "implementation",
-      "bytes": 10921,
-      "sha256": "ddc0bde18b094bd5b75f01b2e8afdec315c273e8e685e9165aadec9f8d068daa",
+      "bytes": 12405,
+      "sha256": "447ac13d4c0285ce7691ee213b40e927b714f54f59d7a39eb16c5b2ffc80782b",
       "collections": []
     },
     {
@@ -22134,6 +22134,13 @@
       "role": "implementation",
       "bytes": 60486,
       "sha256": "58b61e3cc6f84181497202acccfab9fcfce5a63bfba4d9bd055d2f756c92b4aa",
+      "collections": []
+    },
+    {
+      "path": "src/inresearch/workflow/reader_retry_job.py",
+      "role": "implementation",
+      "bytes": 15805,
+      "sha256": "4baea478e2f21025078f18330f17c3c8fe126b7f68e871bdbebcab073584a3bc",
       "collections": []
     },
     {
@@ -23310,6 +23317,13 @@
       "role": "test",
       "bytes": 6173,
       "sha256": "22f5514887bcac6cf9fd9096cab6256f8c293408e7885d0c60f0188ea36b3772",
+      "collections": []
+    },
+    {
+      "path": "tests/unit/test_reader_retry_job.py",
+      "role": "test",
+      "bytes": 22596,
+      "sha256": "ee1de0a75be52c0c1be7c9afd32d5cee486d6ef0519ec850a65c4d3e832095bf",
       "collections": []
     },
     {
@@ -27010,13 +27024,13 @@
     "entrypoint": 4,
     "generated": 13,
     "historical": 397,
-    "implementation": 362,
+    "implementation": 363,
     "normative": 15,
     "project_config": 755,
     "research_record": 16,
     "retired_entrypoint": 3,
     "source_record": 29,
     "supporting_document": 186,
-    "test": 189
+    "test": 190
   }
 }
