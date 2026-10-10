@@ -146,7 +146,9 @@ scene-view 只持有画布尺寸观察、可见几何边界、透视适配及自
 
 ## 资料供应规划（2026-09-21）
 
-workflow.supply 持有需求/任务计划的唯一用例，HTTP 负责权限与参数，supply.js 只消费服务端视图。能力目录随版本发布，运行台账复用 private data/raw 存储边界；台账读改写锁、expected_revision、UUID 回执共同防止覆盖和重复。交付、验收及正式采用尚未接入，前端不得模拟服务端完成状态。具体业务契约唯一见 06。
+workflow.supply 持有需求/任务计划的唯一用例，HTTP 负责权限与参数，supply.js 只消费服务端视图。能力目录随版本发布，运行台账复用 private data/raw 存储边界；台账读改写锁、expected_revision、UUID 回执共同防止覆盖和重复。采集需求只能细化现行 target_id；服务端复验目标版本、可选问题的节点/变量类、责任队与目标主执行机。旧无目标需求只读保留，不能继续派工。原件包接收、阅读候选和 C3 采用分别处理，前端不得模拟完成；业务契约唯一见 06。供料的阅读查询必须使用 catalog.current_readings，与其他当前结果消费者一致，不从初始版本推断现状。读库失败显示状态不可取得，不冒充尚未登记。
+
+knowledge.target_request_contract 只生成目标请求轮廓，knowledge.research_readiness 只聚合研究就绪度；生成器与 admin API 共用聚合。运行回执来自接收快照，缓存按真实 framework 目标/问题/图谱、模型与正式研究文件失效。目标问题链接仅为同节点/变量类的检索关系，范围仍须由任务说明与研究审核确认。不同队的当前新闻窗口与累计原件回执分母不相加，不自动回写 Git 状态。
 
 2026-10-08：需求匹配v3仅归一PDF排版空白，不改变原文与证据。完整响应缺ID或虚构问题仍拒绝；逐条检索词失败隔离保留，其余候选继续审核。审计复验完整原始响应、接受/拒绝分区、模型输入SHA和独立抽样，旧协议原样复验。`retry-matching`只受理旧的检索词协议失败，保留全部尝试；不得借此重试或放行独立复核/原文失败。
 
@@ -170,3 +172,23 @@ GitHub主线、不同publisher state和多个queue ACK不是一个事务，背�
 ## 2026-10-10 源码审查的边界修正
 
 Reader 与 editorial 接收复用 workflow.reader_scope.read_scope 的存储范围合同，10,000 文档/1 MiB 上限、有效内容身份与失败关闭一致；enroll 在原稳定锁内追加，已有 SHA 重放可在满容量成功，新增超过容量则不修改原范围。不因此扩张配方、改变优先级或授予采用。facts CLI 在加载事实前用标准参数解析处理帮助与未知选项，--summary 保留相同契约审计和失败退出码，只省略全指标展开；原文哈希缺口不自动修复。程序职责 README 的退役 SEC/GPU 入口说明和供应目标的交付协议原则与现行实现对齐。
+
+## 源码目录与命名（2026-10-10 整改）
+
+| 目录 | 所有权 | 不应混入 |
+|---|---|---|
+| framework | 当前规则、声明与生成目标；CURRENT 只作路由 | 运行台账、不断追加的发布过程 |
+| data | storage_contract 登记的研究发布 JSON/CSV | 原件、账号、密钥、运行 SQLite |
+| src/inresearch/materials | 原件身份、接收、提取输入和覆盖契约 | HTTP/CLI 展示 |
+| src/inresearch/knowledge | 数据口径、研究身份与只读语义聚合 | 平台认证与模型调用 |
+| src/inresearch/workflow | 用例编排、状态转换与写入权威 | 第二套数据判定规则 |
+| src/inresearch/storage | 原子文件、追加日志、SQLite 与布局 | 研究采用判断 |
+| src/inresearch/adapters | 模型、Office/PDF、新闻与厂商等外部协议 | 自定研究目标 |
+| src/inresearch/interfaces | CLI、HTTP、权限与页面投影 | 重复实现用例 |
+| src/inresearch/delivery | 报告、候选快照、导出与传输 | 不经审核直接修改采用 |
+| scripts / deploy / tests | 构建发布工具 / 机器服务声明 / 相应验收 | 唯一业务逻辑或生产数据库 |
+| docs/archive / docs/reviews / docs/handoff | 失效指令 / 历史评审证据 / 阶段交接 | 当前执行规则 |
+
+模块与脚本采用 snake_case 的领域名+用途，测试随对象命名；避免泛化的 map/progress/policy/new/old/final2。已将 map 改为 project_capacity_map、progress 改为 triage_progress、policy 改为 data_rules；CLI 的 map/progress 是现有调用协议，注册表直接指向新实现，不留空转发模块。新增 target_request_contract 与 research_readiness 明示目标请求和研究就绪度。目录中的同名 reader/triage/model_assets 是不同层责任，不因同名自动判为重复实现。
+
+删除前核对导入、命令注册、路由、服务/cron、当前指南与测试。私有未调用辅助函数可直接删除；平台动态调用或外部稳定入口须先核对消费者。历史源代码快照退出运行入口，保留为审阅证据；不把年龄当成无用证明，也不保留已确认无用途的占位或注释。

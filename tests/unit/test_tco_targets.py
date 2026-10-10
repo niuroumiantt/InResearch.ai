@@ -141,9 +141,25 @@ class TcoTargetListTests(unittest.TestCase):
             statuses = {self.evidence[k]['status'] for k in t['model_inputs'] if k in self.evidence}
             if t['status'] == 'sourced':
                 self.assertIn('sourced', statuses, f"{t['id']} claims sourced but model evidence is {statuses}")
+                self.assertTrue(statuses <= {'sourced', 'input'}, t['id'])
                 self.assertTrue(t['series'] or t['indicators'] or t['data_class'] == 'reference', t['id'])
             if t['origin'] != 'factor' and not (t['series'] or t['indicators']):
                 self.assertIn(t['status'], ('needed', 'delivered'), f"{t['id']} generated row without data must stay needed or delivered")
+
+    def test_requests_expose_real_links_and_provider_boundaries(self):
+        questions = {q['id']: q for q in load('framework/research_questions.json')['records']}
+        profiles = self.doc['request_contract']['profiles']
+        for target in self.targets:
+            request = target['request']
+            self.assertIn(request['profile'], profiles)
+            self.assertTrue(request['scope_required'])
+            for qid in request['question_ids']:
+                self.assertEqual(questions[qid]['node'], request['node'])
+                self.assertEqual(questions[qid]['variable_class'], target['variable_class'])
+            if target['id'].endswith('.operation'):
+                self.assertEqual(request['profile'], 'vendor_operation')
+                self.assertNotIn('利用率', target['disclosure_type'])
+        self.assertTrue(any(not t['request']['question_ids'] for t in self.targets))
 
     def test_skeleton_additions_of_2026_09_28(self):
         # 运行行、建设时间线因子、建设阶段（03「骨架的三个补充」）
@@ -180,8 +196,6 @@ class TcoTargetListTests(unittest.TestCase):
         cards_path = ROOT / targets_mod.EVENT_CARDS
         cards = json.loads(cards_path.read_text(encoding='utf-8')).get('records', []) if cards_path.exists() else []
         # a card bound to a target row holds only that row; part/right widen target-less cards only
-        card_parts = {c.get('part_id') for c in cards if c.get('origin_pointer') and not c.get('target_id')}
-        card_rights = {c.get('site_right_id') for c in cards if c.get('origin_pointer') and not c.get('target_id')}
         card_targets = {c.get('target_id') for c in cards if c.get('origin_pointer')}
         price_targets = {r.get('target_id') for r in load('data/prices.json')['records'] if r.get('target_id')}
         for t in self.targets:
@@ -189,9 +203,7 @@ class TcoTargetListTests(unittest.TestCase):
                 continue
             kind = t['id'].rsplit('.', 1)[1]
             held = (t['id'] in price_targets or t['id'] in card_targets
-                    or (kind == 'spec' and t['part_id'] in plan_parts)
-                    or (kind == 'news' and t['part_id'] in card_parts)
-                    or (kind == 'holders' and t['site_right_id'] in card_rights))
+                    or (kind == 'spec' and t['part_id'] in plan_parts))
             self.assertTrue(held, f"{t['id']} is delivered without a Git carrier")
 
 
@@ -213,7 +225,7 @@ class TcoTargetListTests(unittest.TestCase):
         self.assertEqual(status['P.server.spec'], 'delivered')
         self.assertEqual(status['P.server.news'], 'needed')
         self.assertEqual(status['P.server.operation'], 'needed')
-        self.assertEqual(status['P.gpu.news'], 'delivered')  # legacy target-less part card keeps its meaning
+        self.assertEqual(status['P.gpu.news'], 'needed')  # an unbound old card cannot certify a current demand
 
 if __name__ == '__main__':
     unittest.main()

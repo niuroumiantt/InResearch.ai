@@ -75,7 +75,9 @@ def snapshot(root):
             'ecosystem_updates': ecosystem_updates,
             'matching_reader': {k: reader.get(k) for k in ('received_at','stale','status','execution_scope')},
             'demands': state['demands'], 'tasks': state['tasks'],
-            'questions': [{'id': q['id'], 'text': q['text'], 'object_ids': q.get('object_ids', [])} for q in questions],
+            'questions': [{'id': q['id'], 'text': q['text'], 'node':q.get('node'),
+                           'variable_class':q.get('variable_class'), 'object_ids': q.get('object_ids', [])} for q in questions],
+            'target_registry': {'version': target_document['version'], 'records': target_document['targets']},
             'generated_targets': {
                 'source': 'framework/tco_targets.json',
                 'provider_id': 'fetchspec',
@@ -117,19 +119,23 @@ def _attach_reader_status(deliveries):
     wanted = {item.get('sha256') for delivery in deliveries for item in delivery.get('items', [])
               if isinstance(item, dict) and isinstance(item.get('sha256'), str)}
     states = {}
+    catalog_state = 'unavailable'
     if wanted and catalog_path.is_file() and not catalog_path.is_symlink():
         try:
             db = sqlite3.connect(catalog_path.resolve().as_uri() + '?mode=ro', uri=True, timeout=2)
             db.row_factory = sqlite3.Row
             try:
-                placeholders = ','.join('?' for _ in wanted)
-                rows = db.execute('''SELECT d.sha256,d.doc_id,r.state,r.phase,r.pages_total,r.chunks_total,
-                                    r.chunks_read,r.report_sha256,r.manifest_sha256
-                                    FROM documents d LEFT JOIN reading_runs r
-                                    ON r.doc_id=d.doc_id AND r.base_revision_id IS NULL
-                                    WHERE d.sha256 IN (''' + placeholders + ')', tuple(sorted(wanted))).fetchall()
+                db.execute('BEGIN')
+                rows = []
+                ordered = sorted(wanted)
+                for offset in range(0, len(ordered), 500):
+                    subset = ordered[offset:offset+500]
+                    placeholders = ','.join('?' for _ in subset)
+                    rows.extend(db.execute('''SELECT sha256,doc_id,state,phase,pages_total,chunks_total,
+                        chunks_read,report_sha256,manifest_sha256 FROM current_readings
+                        WHERE sha256 IN (''' + placeholders + ')', subset).fetchall())
                 for row in rows:
-                    if row['state'] == 'ready' and row['manifest_sha256']:
+                    if row['state'] in {'ready', 'complete'} and row['manifest_sha256'] and row['report_sha256']:
                         status = 'candidate_ready'
                     elif row['state'] in {'blocked', 'failed'}:
                         status = row['state']
@@ -141,6 +147,7 @@ def _attach_reader_status(deliveries):
                         'phase': row['phase'], 'pages_total': row['pages_total'],
                         'chunks_total': row['chunks_total'], 'chunks_read': row['chunks_read'],
                         'candidate_report': bool(row['report_sha256'])}
+                catalog_state = 'observed'
             finally:
                 db.close()
         except sqlite3.Error:
@@ -152,13 +159,14 @@ def _attach_reader_status(deliveries):
                 continue
             reading = states.get(item.get('sha256'))
             if reading is None:
-                reading = {'status': 'not_registered' if item.get('reader_handoff') == 'eligible'
-                           else 'extractor_required'}
+                reading = {'status': ('not_registered' if catalog_state == 'observed' else 'reader_status_unavailable')
+                           if item.get('reader_handoff') == 'eligible' else 'extractor_required'}
             readings.append(reading)
         delivery['reading'] = {'items': readings,
             'candidate_ready': sum(row['status'] == 'candidate_ready' for row in readings),
             'blocked': sum(row['status'] in {'blocked', 'failed'} for row in readings),
             'not_registered': sum(row['status'] == 'not_registered' for row in readings),
+            'status_unavailable': sum(row['status'] == 'reader_status_unavailable' for row in readings),
             'adoption': 'not_inferred'}
 
 
@@ -191,7 +199,7 @@ def mutate(root, payload, actor):
     host = payload.get('execution_host', '')
     if provider:
         policy = contract['execution_policy'].get(mode)
-        if not policy or host != policy['host']:
+        if not policy or (mode == 'assisted' and host != policy['host']):
             raise ValueError('执行方式与主机不符合供应策略')
     elif mode or host:
         raise ValueError('未分配供应方时不能指定执行方式')
@@ -206,14 +214,25 @@ def mutate(root, payload, actor):
         if payload['expected_revision'] != state['revision']:
             raise Conflict('台账已变化，请刷新后再提交')
         now = datetime.now(timezone.utc).isoformat()
+        targets = json.loads((root / 'framework/tco_targets.json').read_text())
+        registered = {row['id']: row for row in targets['targets']}
         if action == 'create':
-            question_id = text(payload, 'question_id', 120)
+            target_id = text(payload, 'target_id', 200)
+            target = registered.get(target_id)
+            if not target:
+                raise ValueError('请选择现行目标行；研究问题不能另建采集任务轴')
+            question_id = payload.get('question_id') or None
             questions = json.loads((root / 'framework/research_questions.json').read_text())['records']
             question = next((q for q in questions if q['id'] == question_id), None)
-            if not question:
-                raise ValueError('请选择已登记研究问题')
-            demand = {'id': 'demand-' + operation_id, 'question_id': question_id,
-                      'object_ids': question.get('object_ids', []),
+            if question_id is not None and not question:
+                raise ValueError('研究问题不存在')
+            if question and (question.get('node') != target.get('request', {}).get('node') or
+                             question.get('variable_class') != target['variable_class']):
+                raise ValueError('研究问题与目标节点或变量类不一致；跨范围研究先修订需求关联')
+            from inresearch.knowledge.target_request_contract import target_node
+            demand = {'id': 'demand-' + operation_id, 'target_id': target_id,
+                      'target_version': targets['version'], 'question_id': question_id,
+                      'object_ids': [target_node(target)],
                       'title': text(payload, 'title', 300), 'scope': text(payload, 'scope', 3000),
                       'acceptance': text(payload, 'acceptance', 3000),
                       'created_at': now, 'created_by': actor}
@@ -222,10 +241,15 @@ def mutate(root, payload, actor):
             demand = next((d for d in state['demands'] if d['id'] == payload.get('demand_id')), None)
             if not demand:
                 raise ValueError('需求不存在')
+            target = registered.get(demand.get('target_id'))
+            if not target:
+                raise ValueError('旧需求未绑定现行目标行；保留记录，请从目标行新建细化需求')
         if provider:
+            if provider != target['team'] or host != target['host']:
+                raise ValueError('供应方与主执行机必须服从目标行；变更归属先更新目标规则')
             if any(t['demand_id'] == demand['id'] and t['provider_id'] == provider for t in state['tasks']):
                 raise Conflict('该供应方已有本需求任务')
-            state['tasks'].append({'id': 'task-' + operation_id, 'demand_id': demand['id'],
+            state['tasks'].append({'id': 'task-' + operation_id, 'demand_id': demand['id'], 'target_id': target['id'],
                                    'provider_id': provider, 'execution_mode': mode,
                                    'execution_host': host, 'status': 'planned',
                                    'created_at': now, 'created_by': actor})

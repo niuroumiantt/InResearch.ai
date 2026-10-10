@@ -110,9 +110,9 @@ flowchart LR
  P --> Q
 ```
 
-采集请求至少记录 `question_id`、对象范围、要找什么、来源、时间与地域、证据要求、优先级和完成条件。请求 ID 与来源文档 ID 分开；一份材料可服务多个问题，多个来源可证明或反驳同一问题。归档一次、关系多挂，不为每个物理层级复制一份原文。
+采集任务必须绑定现行 `target_id`；可选 `question_id` 必须与目标节点及变量类一致。请求至少记录对象范围、要找什么、来源、时间与地域、证据要求、优先级和完成条件。请求 ID 与来源文档 ID 分开；一份材料可服务多个问题，多个来源可证明或反驳同一问题。归档一次、关系多挂，不为每个物理层级复制一份原文。
 
-已有 `research_questions.json` 与缺口任务是需求源，不再手写另一份竞争性任务树。第一阶段 CLI 的 `--question` 会验证现行问题 ID 并登记 `top_down` 关联；未指定问题的线索保留为 bottom-up 待映射材料。实体词命中只是候选，不构成回答或采用。
+研究问题定义研究需求；采集派工统一由 `tco_targets.json` 目标行细化，问题链接是检索导航而非语义闭环，不另写竞争性采集任务树。第一阶段 CLI 的 `--question` 会验证现行问题 ID 并登记 `top_down` 关联；未指定问题的线索保留为 bottom-up 待映射材料。实体词命中只是候选，不构成回答或采用。
 
 ## 六队、三仓库与来源归属（2026-09-28 采用）
 
@@ -126,7 +126,7 @@ flowchart LR
 
 ### 目标行状态四态与 Git 内登记载体（2026-09-28 采用）
 
-目标行 `status` 从三态（sourced / assumed / needed）改为四态，加 `delivered`：某队已交付但尚未进入价格序列或指标的行。判定源必须在 Git 内可复现：规格行以产品资料库登记为准（`data/product_docs_plan.csv` 的 doc_id / source_url，或产品库索引入库）；新闻行与持有方行只认带 `origin_pointer` 的事件卡快照（`site_rights.companies` 只标"登记数"）；价格行以带 `target_id` 与 `variable_class` 的价格记录为准。只在运行库有的，页面标"运行库有 / Git 无"，不计 delivered。**回执进 Git 载体只有一条通道（2026-09-29）**：作者在 checkout 里跑 `python3 manage.py deliveries import --assignments <运行库导出的 data/assignments.json>`，把 `register_delivery` 写的交付指针逐条变成 `data/event_cards.json` 的事件卡（`target_id` + `origin_pointer`，公网 URL 或仓库内相对路径），重跑目标表，走 PR；`deliveries check` 校验卡片。不自动、不在网站上跑、幂等；进入 delivered 后仍不是序列，正式采用另走研究流程。三种载体里，`product_docs_plan.csv` 与 `prices.json` 同时是运行状态（storage_contract），线上写入不回 Git，同样只经作者 checkout 提交。四个待建队名下由 2026-09-27 人工定向抓取得到的行改标 `local` 队，在来源登记（`part_fetch.json`、`tco_factors.json`）里改，不改生成物。到期日历只对已接入的队显示；未建队的行显示"待建队"，不显示到期。生成行另写 `sourced_by`（registry = 人工登记的序列或指标；delivery = 队交付的载体）与 `team_state`（connected / not_connected，按 `supply_contract.json` 的 `connection`）；dashboard 格的状态在四态之外多一个 `registered`：只有我们自己登记的计数（部件数、产品线数、供应商数、持有方数）时用它，不算已采集。骨架补齐（03「骨架的三个补充」）后：每个物理部件多一行运行目标（`operation`，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率；`part_fetch.json` 可登记出版方，未登记的沿用模板）；因子树的 `time.build` 生成工期、排队与审批三行；部件级与权利级目标行带建设阶段 `stage`（采集页默认排序）。派工按目标行 ID：采集页第一屏是目标表（六队卡、五系统 × 五类热图、目标行表），`/api/targets` 在服务端按角色过滤——实习生只见分配给自己的行；`assign` 用例带 `target_id`，`register_delivery(target_id, evidence_path)` 把交付指针记到 `data/assignments.json`；指针只是运行库登记，进入 `delivered` 仍看 Git 内载体，页面标"运行库有 / Git 无"。节点页每列有"→ 采集"链接按节点与列预筛，采集页每行链回节点页停在该列。
+目标行 `status` 从三态（sourced / assumed / needed）改为四态，加 `delivered`：某队已交付但尚未进入价格序列或指标的行。判定源必须在 Git 内可复现：规格行以产品资料库登记为准（`data/product_docs_plan.csv` 的 doc_id / source_url，或产品库索引入库）；新闻行与持有方行只认带 `origin_pointer` 的事件卡快照（`site_rights.companies` 只标"登记数"）；价格行以带 `target_id` 与 `variable_class` 的价格记录为准。只在运行库有的，页面标"运行库有 / Git 无"，不计 delivered。**回执进 Git 载体只有一条通道（2026-09-29）**：作者在 checkout 里跑 `python3 manage.py deliveries import --assignments <运行库导出的 data/assignments.json>`，把 `register_delivery` 写的交付指针逐条变成 `data/event_cards.json` 的事件卡（`target_id` + `origin_pointer`，公网 URL 或仓库内相对路径），重跑目标表，走 PR；`deliveries check` 校验卡片。不自动、不在网站上跑、幂等；进入 delivered 后仍不是序列，正式采用另走研究流程。三种载体里，`product_docs_plan.csv` 与 `prices.json` 同时是运行状态（storage_contract），线上写入不回 Git，同样只经作者 checkout 提交。四个待建队名下由 2026-09-27 人工定向抓取得到的行改标 `local` 队，在来源登记（`part_fetch.json`、`tco_factors.json`）里改，不改生成物。到期日历只对已接入的队显示；未建队的行显示"待建队"，不显示到期。生成行另写 `sourced_by`（registry = 人工登记的序列或指标；delivery = 队交付的载体）与 `team_state`（connected / not_connected，按 `supply_contract.json` 的 `connection`）；dashboard 格的状态在四态之外多一个 `registered`：只有我们自己登记的计数（部件数、产品线数、供应商数、持有方数）时用它，不算已采集。骨架补齐（03「骨架的三个补充」）后：每个物理部件多一行运行目标（`operation`，变量类 2：原厂额定功率、效率曲线、寿命与 MTBF 的规格/测试声明，保留型号、负载点和条件；现场 PUE、利用率与实耗不由规格采集认证；`part_fetch.json` 可登记出版方，未登记的沿用模板）；因子树的 `time.build` 生成工期、排队与审批三行；部件级与权利级目标行带建设阶段 `stage`（采集页默认排序）。派工按目标行 ID：采集页第一屏是目标表（六队卡、五系统 × 五类热图、目标行表），`/api/targets` 在服务端按角色过滤——实习生只见分配给自己的行；`assign` 用例带 `target_id`，`register_delivery(target_id, evidence_path)` 把交付指针记到 `data/assignments.json`；指针只是运行库登记，进入 `delivered` 仍看 Git 内载体，页面标"运行库有 / Git 无"。节点页每列有"→ 采集"链接按节点与列预筛，采集页每行链回节点页停在该列。
 
 inresearch 内置的 SEC 与 GPU 采集器于 2026-09-28 退役：`adapters.acquisition` 不再提供 `sec`、`gpu` 子命令，其实现由 Git 历史保留并作为 fetchfilings、fetchquotes 的种子迁入 `fetchdata`；采集台账中历史 `sec`、`gpu` 行只读保留，网页运维台账不再提供对应按钮。下文"SEC"与"GPU"两小节记录的口径要求（清单、原文与结构化事实分开；报价是低价样本不是成交价）继续对迁出后的分队有效。
 
@@ -137,7 +137,7 @@ inews.today 同时是采集队与媒体产品，拆成两条线，共享一个�
 - **采集线**求广：发现 → 闸门 → 打标（事件类型、研究角度、变量类标签）→ 事件 feed。给 inresearch 的采集**默认不翻译**；inews 只给事件卡与原件指针，不抓原件，原件由拥有该来源的分队按目标清单抓取。
 - **编辑线**求精：从打标池按配额选簇 → 取正文 → 全文翻译 → 发布。**挑选在先，翻译在后**：翻译只花在被挑出来的对象上，先翻再挑一律不做；簇头标题翻译只在机器初选之后、按批量进行，与编辑选题后的全文翻译分开计预算。选题单位是簇不是文章；批准（approved）是精选、日报与全文翻译的唯一发布闸。如何挑的配额与排序规则另行讨论后登记。
 
-事件 feed（`/api/feeds/datacenter`）在 schema_version 1 上**只增不改**，附加字段 `event_type`（融资发债、租约合同、项目里程碑、费率电力政策、交期供应链、自备电源并网、税收法规、运行事故、交易估值、产品价格变动）、`research_angle`、`layer_tags`（1–5，变量类的兼容键名）、`origin_pointer`（通稿或监管原文链接，没有则空）、`editorial_pick`，以及 2026-09-29 采用的 `object_ids`（该事件涉及的骨架节点 ID：`part:<部件>`、`site:<权利>`、`actor:<公司>`，按 `bom.json` 别名与公司词典打，没有则空数组）。研究端在 `news_sync` 校验形状（`object_ids` 只允许现行骨架与公司 ID，缺字段照常消费）、随事件卡保存，标签只是线索，不构成证据；有 `object_ids` 与 `origin_pointer` 的事件才可经 `deliveries import` 进入目标行的 delivered。
+事件 feed（`/api/feeds/datacenter`）在 schema_version 1 上**只增不改**，附加字段 `event_type`（融资发债、租约合同、项目里程碑、费率电力政策、交期供应链、自备电源并网、税收法规、运行事故、交易估值、产品价格变动）、`research_angle`、`layer_tags`（1–5，变量类的兼容键名）、`origin_pointer`（通稿或监管原文链接，没有则空）、`editorial_pick`，以及 2026-09-29 采用的 `object_ids`（该事件涉及的骨架节点 ID：`part:<部件>`、`site:<权利>`、`actor:<公司>`，按 `bom.json` 别名与公司词典打，没有则空数组）。研究端在 `news_sync` 校验形状（`object_ids` 只允许现行骨架与公司 ID，缺字段照常消费）、随事件卡保存，标签只是线索，不构成证据；事件 feed 的 object_ids 只是线索。进入 Git delivered 必须有有效 target_id 和可用 origin_pointer：由目标注册表确定交付的对象范围，新 import 显式保存 object_ids 与 object_binding=target_registry；历史卡缺该字段时按有效目标解析，提供的对象绑定若与目标不一致则拒绝。目标绑定只证明需求归属，不证明新闻正文已支持该对象或已经 C3 采用。
 
 ## 产品与机器边界
 
@@ -360,3 +360,11 @@ daily_dispatch 逐事件生成独立任务：来源未找到由 inews/M5 补源�
 `material-retention --snapshot` 在Spark只读核对两份catalog的原件引用，并用SQLite backup保留包含WAL已提交内容的一致快照。清单不是独立异地备份；不将Git清单、网页快照或同盘备份冒充资料全集/灾难备份。inews的新闻及专栏材料快照单独保存到Spark，排除账号和登录态表，来源库继续由inews运行；它不代替原文章/PDF原件的归档。
 
 2026-10-07需求接口：公开只读 `/api/targets/backflow?team=inews` 保留by_target计数，并以records返回该队现行目标ID、对象属性、变量类、采集说明/notes、阶段、状态和模型输入；不公开内部原件/引句/本机路径。采集前以这些说明为任务书，计数不是字段要求。
+
+## 目标请求合同与执行边界（2026-10-10 整改）
+
+目标表 2.2 的 request.version=1 定义五类请求轮廓：原厂规格、原厂运行规格/测试、事件线索、时点观测、研究材料。request_contract 登记所需字段、验收说明与不能证明什么；每行记录节点、同节点/变量类的问题 ID 和 scope_required。请求中的型号/配置、地域、时间、条件、来源、缺失项由实际任务细化，不能把字段轮廓当作原件包已符合新版结构 schema 的声明。Fetchspec/inews 原有接收协议兼容，包完整性和来源权限仍严格验证；研究适用性另验。
+
+新任务的供应方与执行机必须等于目标行；assisted 仍在 macmini，continuous 使用目标登记的主执行机（包括 Fetchspec 的 macmini），不能由网页任意换主机。供应责任不等于接通状态，四支未接通队保留缺口且无到期日，不创建空 repo 冒充能力。先按有价值的具体缺口验证统计/披露/报告/报价适配器，再确定由 fetchdata 共仓还是独立仓库承载；当前规范中的 fetchdata 为设计归属，未接通能力不是已运行交付。
+
+状态 sourced 要有已有序列/录值指标或来源证据，且同目标关联的模型证据不含 assumed/needed；混合行显示 assumed。已有 Git 载体的 delivered 仍不证明覆盖所有条件或问题，只有运行回执的保持原 Git 状态并单独对账。原件路径、正文与账号不进入只读状态板。

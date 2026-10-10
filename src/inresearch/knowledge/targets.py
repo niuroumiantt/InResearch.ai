@@ -58,7 +58,7 @@ PART_ROWS = {  # data class a physical part has by construction → routing
     'spec': dict(variable_class=1, data_class='reference', mechanism='vendor_page', team='fetchspec',
                  disclosure_type='产品规格、数据手册与参考设计', publisher_category='厂商、ODM', calendar='每代际发布'),
     'operation': dict(variable_class=2, data_class='reference', mechanism='vendor_page', team='fetchspec',
-                      disclosure_type='额定功率与功率份额、效率曲线或 PUE 贡献、寿命与 MTBF、上架与利用率', publisher_category='厂商数据手册、实测与运营披露', calendar='每代际发布'),
+                      disclosure_type='原厂额定功率、效率曲线、寿命与 MTBF（保留型号、测试条件及未披露项）', publisher_category='厂商数据手册与官方测试说明', calendar='每代际发布'),
     'price': dict(variable_class=3, data_class='observation', mechanism='js_page', team='fetchquotes',
                   disclosure_type='挂牌价、报价与成交价', publisher_category='厂商价目、分销商、研报 BOM', calendar='月'),
     'lead_time': dict(variable_class=4, data_class='observation', mechanism='pdf_free', team='fetchreports',
@@ -78,10 +78,6 @@ RIGHT_ROWS = {
 
 def load(root, rel):
     return json.loads((Path(root) / rel).read_text(encoding='utf-8'))
-
-
-def _slug(text):
-    return ''.join(c if c.isalnum() else '_' for c in text.lower()).strip('_')
 
 
 def build(root=ROOT, as_of=None):
@@ -110,27 +106,17 @@ def build(root=ROOT, as_of=None):
     contract = load(root, 'framework/supply_contract.json')
     providers = {p['id']: p for p in contract['providers']}
     # Git-registered delivery carriers (a runtime store never counts)
-    delivered_parts, card_parts, card_rights, card_targets = set(), set(), set(), set()
+    delivered_parts, card_targets = set(), {}
     if (root / DOCS_PLAN).is_file():
         with open(root / DOCS_PLAN, encoding='utf-8-sig', newline='') as fh:
             for r in csv.DictReader(fh):
                 if (r.get('status') or 'todo') != 'todo' and (r.get('doc_id') or r.get('source_url')):
                     delivered_parts.add(r.get('bom_part'))
     if (root / EVENT_CARDS).is_file():
+        from inresearch.knowledge.deliveries import pointer_kind
         for c in load(root, EVENT_CARDS).get('records', []):
-            if not c.get('origin_pointer'):
-                continue
-            if c.get('target_id'):
-                # a card bound to one target row delivers exactly that row; its part/right
-                # only widen legacy target-less cards (a spec card must not mark the part's news row)
-                card_targets.add(c['target_id'])
-                continue
-            if c.get('part_id'):
-                card_parts.add(c['part_id'])
-            if c.get('site_right_id'):
-                card_rights.add(c['site_right_id'])
-            if c.get('target_id'):
-                card_targets.add(c['target_id'])
+            if c.get('target_id') and pointer_kind(c.get('origin_pointer')):
+                card_targets.setdefault(c['target_id'], []).append(c)
     price_targets = {r['target_id'] for r in prices if r.get('target_id')}
     hosts = {k: v['host'] for k, v in contract['execution_policy'].items() if isinstance(v, dict) and 'host' in v}
     as_of = as_of or max(factors_doc.get('updated', ''), bom.get('schedule_updated', bom.get('updated', '')))
@@ -159,13 +145,15 @@ def build(root=ROOT, as_of=None):
                 'mechanism_family': p.get('mechanism_family', ''), 'host_default': p.get('host_default', hosts['continuous'])}
 
     def delivered(target_id, kind, part_id, right_id):
+        # Each card delivers exactly its registered target; category membership
+        # never widens one receipt to every demand about the same part.
+        node = 'part:' + part_id if part_id else 'site:' + right_id if right_id else 'root'
+        for card in card_targets.get(target_id, []):
+            if 'object_ids' in card and card['object_ids'] != [node]:
+                raise ValueError(f'{target_id}: delivery object differs from target')
         if target_id in price_targets or target_id in card_targets:
             return True
-        if kind in ('spec', 'operation') and part_id in delivered_parts:
-            return True
-        if kind == 'news' and part_id in card_parts:
-            return True
-        return kind == 'holders' and right_id in card_rights
+        return kind in ('spec', 'operation') and part_id in delivered_parts
 
     def status_for(data_class, series, indicator_ids, inputs, origin, target_id=None, kind=None, part_id=None, right_id=None):
         ev = {evidence[k]['status'] for k in inputs if k in evidence}
@@ -173,7 +161,9 @@ def build(root=ROOT, as_of=None):
         # a reference row registered on a factor counts as sourced when the model's evidence already cites it;
         # a generated part row does not: its spec sheet has to be in the product library first
         has_data = bool(series or valued) or (data_class == 'reference' and origin == 'factor' and 'sourced' in ev)
-        if has_data and 'sourced' in ev:
+        # A single cited input cannot certify the other assumptions in the row.
+        # User choices are not missing supplier evidence, but needed/assumed inputs are.
+        if has_data and 'sourced' in ev and ev <= {'sourced', 'input'}:
             return 'sourced'
         # a factor row whose inputs the model still assumes is 'assumed'; a generated row without data is simply needed
         if has_data or (origin == 'factor' and ev and ev <= {'assumed', 'input'}):
@@ -253,7 +243,7 @@ def build(root=ROOT, as_of=None):
                 inds = [i for i in p.get('indicators', []) if ('lead_time' in i or 'backlog' in i) == (kind == 'lead_time') and not any(m in i for m in OPERATION_MATCH)] if kind in ('price', 'lead_time') else []
             sysname = bom['systems'][p['system']]['name'] if isinstance(bom['systems'][p['system']], dict) else bom['systems'][p['system']]
             notes = {'spec': f"{p['name']}：规格与供应商名单（{sysname} · {p.get('chain', '')}，{p['scale'] or p['kind']}）",
-                     'operation': f"{p['name']}：运行参数——额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率（{bom['stages'][[s['id'] for s in bom['stages']].index(p['stage'])]['name'] if p.get('stage') else ''} 阶段）",
+                     'operation': f"{p['name']}：原厂声明的额定功率、效率曲线与可靠性；现场利用率、实耗与设施 PUE 另需运营证据，不能由规格推定",
                      'price': f"{p['name']}：自己的价格——重切规则的第一条件", 'lead_time': f"{p['name']}：自己的交期——重切规则的第三条件",
                      'news': f"{p['name']}：{p['status']} 状态部件的供应事件"}[kind]
             if p['kind'] == 'software' and kind == 'price':
@@ -296,6 +286,8 @@ def build(root=ROOT, as_of=None):
             primary.setdefault(k, t['id'])
     for t in targets:
         t['feeds_primary'] = [k for k in t['model_inputs'] if primary[k] == t['id']]
+    from inresearch.knowledge.target_request_contract import attach_contracts, PROFILES
+    attach_contracts(targets, load(root, 'framework/research_questions.json')['records'])
     counts = {'factor': 0, 'part': 0, 'software': 0, 'archetype': 0, 'site_right': 0}
     by_status = {s: 0 for s in STATUSES}
     for t in targets:
@@ -303,17 +295,17 @@ def build(root=ROOT, as_of=None):
         by_status[t['status']] += 1
     teams = sorted({t['team'] for t in targets})
     return {
-        'version': '2.1.0', 'updated': as_of, 'title': '五类变量目标清单',
+        'version': '2.2.0', 'updated': as_of, 'title': '五类变量目标清单',
         'note': ('六队采集分队的唯一任务来源，由 python3 manage.py targets --refresh 生成，不手写：'
                  '因子树登记的抓取条目（framework/tco_factors.json fetch，带因子的模型输入键）各成一行；'
                  '每个物理部件按"自己的价格、供应商名单、交期"各成规格、价格、交期三行，非成熟部件再加一行新闻事件；'
-                 '软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。2026-09-28 骨架补齐：每个物理部件再加一行运行（operation，变量类 2：额定功率与份额、效率或 PUE 贡献、寿命与 MTBF、上架与利用率）；因子树的 time.build 生成工期、排队与审批行；部件级与权利级行带建设阶段 stage。'
+                 '软件条目成规格与订阅价两行，设施基型只成规格一行；站点权利按登记的变量类各成一行。2026-09-28 骨架补齐：每个物理部件再加一行运行（operation，变量类 2：原厂额定功率、效率曲线与可靠性（保留测试条件，现场实耗/PUE/利用率另验））；因子树的 time.build 生成工期、排队与审批行；部件级与权利级行带建设阶段 stage。'
                  '部件级行的出版方、实例、日历、机制与队优先取 framework/part_fetch.json 的人工登记（curated=true），没有登记的沿用模板。'
                  '每一行写明变量类（构成、运行、价格、时间、主体；2026-09-29 起不再带 layer 兼容键，尺度与变量类彻底分开）、汇到哪些因子、喂模型的哪些输入、'
                  '已有序列与指标、披露类型 × 出版方类别 × 日历、实例、机制、主责队与主执行机；feeds_primary 列出这一行作为主行的模型输入（一个输入只有一条主行，因子行优先），账本可信边界只回链主行。'
-                 'status 只在已有序列、已录值指标或模型证据支持时为 sourced；2026-09-28 起加第四态 delivered：队已交付到 Git 内载体'
+                 'status 只在已有数据支持且关联模型输入无 assumed/needed 时为 sourced；2026-09-28 起加第四态 delivered：队已交付到 Git 内载体'
                  '（资料计划的 doc_id / source_url、带 origin_pointer 的事件卡、带 target_id 的价格记录）但尚未成为序列；只在运行库有的不算。'
-                 'sourced_by 写明 sourced 来自人工登记的序列（registry）还是队交付（delivery）；team_state 写明主责队是否已接入，'
+                 'sourced_by 为 sourced 写 registry、为 delivered 写 delivery；team_state 写明主责队是否已接入，'
                  '未接入的队不排到期（next_due 为空，页面显示"待建队"）。公司只是实例，随时可换。'),
         'generated_from': {'tco_factors': factors_doc.get('version'), 'bom': bom.get('version'),
                            'site_rights': load(root, 'framework/site_rights.json').get('version'),
@@ -322,6 +314,10 @@ def build(root=ROOT, as_of=None):
         'statuses': STATUSES,
         'carriers': {'spec': DOCS_PLAN + '（status ≠ todo 且有 doc_id 或 source_url）', 'news / holders': EVENT_CARDS + '（带 origin_pointer 的事件卡）',
                      'observation': 'data/prices.json（带 target_id 的记录）'},
+        'request_contract': {'version': 1, 'profiles': PROFILES,
+            'question_links': '同节点与变量类的检索入口，不是语义匹配、采用或闭题证明；空集合显式表示尚无精确映射。',
+            'model_links': 'model_inputs 是依赖范围，feeds_primary 是回链主行；均不证明该行交付已验证每个输入。',
+            'scope': '执行前在目标行内细化型号/配置、地区、时间窗与所需字段；未披露作为缺口回执，不猜值。'},
         'principles': PRINCIPLES, 'variable_classes': VARIABLE_CLASSES,
         'data_classes': DATA_CLASSES, 'mechanisms': MECHANISMS,
         'teams': {t: team_meta(t) for t in teams}, 'targets': targets,

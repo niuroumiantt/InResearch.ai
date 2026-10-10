@@ -6,7 +6,7 @@ import tempfile
 import time
 import unittest
 
-from inresearch.workflow import progress as RP
+from inresearch.workflow import triage_progress as RP
 from inresearch.materials import triage as L1
 
 

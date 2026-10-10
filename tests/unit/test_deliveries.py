@@ -39,12 +39,21 @@ class DeliveriesTests(unittest.TestCase):
         cards = json.loads((self.tmp / 'data/event_cards.json').read_text())['records']
         self.assertEqual([c['pointer_kind'] for c in cards], ['url', 'repo_path'])
         self.assertEqual(cards[0]['part_id'], self.news['part_id'])
+        self.assertEqual(cards[0]['object_ids'], ['part:' + self.news['part_id']])
         self.assertEqual(cards[1]['site_right_id'], self.right['site_right_id'])
         self.assertEqual(cards[0]['imported_by'], 'tester')
         again = deliveries.import_assignments(self.tmp, self.runtime([
             {'target_id': self.news['id'], 'delivery': {'evidence_path': 'https://example.com/press/1'}}]), today='2026-09-30')
         self.assertEqual((len(again['imported']), again['skipped'][0]['reason'], again['cards']), (0, 'already imported', 2))
         self.assertEqual(deliveries.check(self.tmp), [])
+
+    def test_object_binding_cannot_disagree_with_target(self):
+        deliveries.import_assignments(self.tmp, self.runtime([
+            {'target_id':self.news['id'],'delivery':{'evidence_path':'https://example.org/original'}}]))
+        path=self.tmp/'data/event_cards.json'
+        doc=json.loads(path.read_text());doc['records'][0]['object_ids']=['part:not-the-target']
+        path.write_text(json.dumps(doc))
+        self.assertEqual(deliveries.check(self.tmp),[f"event card {self.news['id']}: object binding differs from target"])
 
     def observation(self, **change):
         o = {'product_id': 'micron-x', 'parameter_name': 'hbm.stack_capacity', 'value': '36GB', 'unit': 'GB',

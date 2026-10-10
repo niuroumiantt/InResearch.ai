@@ -248,7 +248,7 @@ def markdown_snapshot(report, generated):
         lines.append(f"- {col} {c['name']}（{c['status']}）：{vals}")
     if q1['calibration']:
         lines += ['', '校准锚：', ''] + [f"- {c['label']}：{'，'.join(f'{k} {v}' for k, v in c['anchors'].items())}（{c['source']}）" for c in q1['calibration']]
-    lines += ['', '## 二、它由什么组成', '', f"五个系统（IT 展开四个）× 链路 {q2['counts']['chains']} 条，部件 {q2['counts']['parts']} 个、软件 {q2['counts']['software']}、基型 {q2['counts']['archetype']}；站点权利 {q2['counts']['rights']} 条并列。", '']
+    lines += ['', '## 二、它由什么组成', '', f"五个系统（IT 展开三类，存储再分两类）× 链路 {q2['counts']['chains']} 条，部件 {q2['counts']['parts']} 个、软件 {q2['counts']['software']}、基型 {q2['counts']['archetype']}；站点权利 {q2['counts']['rights']} 条并列。", '']
     for e in q2['systems']:
         lines.append(f"- {e['name']}：{e['parts']} 个部件，链路 {' → '.join(e['chains'])}；五列状态 " + ' / '.join(f"{COLUMNS[c]} {s}" for c, s in e['cells'].items()))
     lines += ['', '建设阶段（它怎么建）：', ''] + [f"- {st['order']} {st['name']}：部件 {len(st['parts'])} 个，权利 {len(st['rights'])} 条" for st in q2['stages']]

@@ -12,6 +12,7 @@
 
 from inresearch.paths import project_root
 import json
+from pathlib import Path
 import os
 import re
 import struct
@@ -26,7 +27,7 @@ BRAND_WORDS = re.compile(r"ovh|dell|hpe|hp_|cisco|ibm|lenovo|supermicro|logo|bra
 
 
 def read_glb(path):
-    d = open(path, "rb").read()
+    d = Path(path).read_bytes()
     if d[:4] != b"glTF":
         return None, "不是 GLB（可能是 .gltf 散件或别的格式）"
     off, chunks = 12, {}

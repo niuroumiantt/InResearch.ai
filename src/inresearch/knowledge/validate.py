@@ -25,7 +25,7 @@ from datetime import date, datetime
 ROOT = project_root()
 DATA = ROOT / "data"
 
-from inresearch.knowledge.policy import STATUS_LEVELS, SOURCE_GRADES as GRADES, FRESH_DAYS, price_errors
+from inresearch.knowledge.data_rules import STATUS_LEVELS, SOURCE_GRADES as GRADES, FRESH_DAYS, price_errors
 
 errors, warns = [], []
 

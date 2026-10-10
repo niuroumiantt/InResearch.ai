@@ -36,6 +36,12 @@ def measured_fixture():
             'skipped_image_pages':1063,'text_layer_empty_pages':3},
         'review':{'state':'observed','candidates':{'queued':9819,'reviewing':12,'review_ready':7,'background':6161,'published':10,'already_adopted':19}},
         'formal':{'statements':29,'projects':126,'contracts':8},
+        'research':{'schema_version':1,'questions':{'answered':0,'total':458},
+            'formal':{'supported_statements':29},'model':{'unresolved':17},
+            'providers':[{'team':'inews','connected':True,'runtime_observed_targets':23,
+                'runtime_received_git_needed':23,'runtime_scope':'current_news_window'},
+                {'team':'fetchspec','connected':True,'runtime_observed_targets':39,
+                'runtime_received_git_needed':0,'runtime_scope':'received_originals'}]},
         'website':{'measured_at':'2026-10-08T04:01:00+00:00','allocated_bytes':227868672,
             'candidate_snapshot_bytes':78715015,'product_database_bytes':138280960}}
 
@@ -109,18 +115,27 @@ class MaterialMeasurementsTests(unittest.TestCase):
     def test_projection_uses_supported_formal_records_not_ready_queue(self):
         root=self.root
         (root/'data').mkdir()
+        (root/'framework').mkdir()
+        (root/'framework/tco_targets.json').write_text('{"targets":[]}')
+        (root/'data/datacenter_model.json').write_text('{"inputs":{},"evidence":{}}')
         for name in ('projects','contracts'):(root/'data'/(name+'.json')).write_text('{"records":[]}')
         curated={'statements':[{'id':'adopted'},{'id':'invalid'}]}
         reader={'execution_scope':measured_fixture()['execution_scope'],
                 'research_verification':{'state':'observed','active_batches':0,'candidates':{'review_ready':700}},
                 'material_measurements':measured_fixture()['measurements']}
         material_flow._CACHE.clear()
-        with patch.object(material_flow.registry,'_snapshot_inputs',return_value=({}, {},curated,{},{})), \
+        with patch.object(material_flow.registry,'_snapshot_inputs',return_value=({}, {'records':[]},curated,{},{})), \
              patch.object(material_flow.registry,'_reader_state',return_value=reader), \
              patch.object(material_flow.registry,'supported_adoption',side_effect=lambda s,k:s['id']=='adopted'), \
              patch.object(material_flow,'website_sizes',return_value={}):
             result=material_flow.snapshot(root)
+            cached=material_flow.snapshot(root)
+            self.assertIs(cached,result)
+            (root/'framework/tco_targets.json').write_text('{"targets":[],"version":"changed"}')
+            refreshed=material_flow.snapshot(root)
+            self.assertIsNot(refreshed,result)
         self.assertEqual(result['formal']['statements'],1)
+        self.assertEqual(result['research']['formal']['supported_statements'],1)
         self.assertEqual(result['review']['candidates']['review_ready'],700)
         self.assertEqual(result['execution_scope']['documents'],135)
 

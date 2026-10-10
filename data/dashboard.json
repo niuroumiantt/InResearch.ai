@@ -44,7 +44,7 @@
  "generated_from": {
   "rules": "1.0",
   "bom": "2.3",
-  "targets": "2.1.0",
+  "targets": "2.2.0",
   "factors": "1.3.0",
   "model_as_of": "2026-09-28"
  },
@@ -176,8 +176,8 @@
     ],
     "status": "sourced",
     "coverage": {
-     "sourced": 6,
-     "assumed": 0,
+     "sourced": 4,
+     "assumed": 2,
      "delivered": 0,
      "needed": 1
     }
@@ -258,8 +258,8 @@
     ],
     "status": "sourced",
     "coverage": {
-     "sourced": 14,
-     "assumed": 2,
+     "sourced": 12,
+     "assumed": 4,
      "delivered": 0,
      "needed": 2
     }
@@ -299,8 +299,8 @@
     ],
     "status": "sourced",
     "coverage": {
-     "sourced": 5,
-     "assumed": 1,
+     "sourced": 4,
+     "assumed": 2,
      "delivered": 0,
      "needed": 3
     }
@@ -340,16 +340,16 @@
     ],
     "status": "sourced",
     "coverage": {
-     "sourced": 3,
-     "assumed": 0,
+     "sourced": 2,
+     "assumed": 1,
      "delivered": 0,
      "needed": 6
     }
    }
   },
   "targets": {
-   "sourced": 37,
-   "assumed": 4,
+   "sourced": 29,
+   "assumed": 12,
    "delivered": 39,
    "needed": 271,
    "not_connected": 171
@@ -1000,7 +1000,7 @@
     "4": {
      "items": [
       {
-       "label": "关键路径交期（大型电力变压器）",
+       "label": "最长已登记部件交期（大型电力变压器）",
        "value": 30,
        "unit": "月",
        "as_of": "2026-06-30",
@@ -1011,8 +1011,8 @@
       }
      ],
      "coverage": {
-      "sourced": 1,
-      "assumed": 0,
+      "sourced": 0,
+      "assumed": 1,
       "delivered": 0,
       "needed": 18
      },
@@ -1318,8 +1318,8 @@
       }
      ],
      "coverage": {
-      "sourced": 1,
-      "assumed": 0,
+      "sourced": 0,
+      "assumed": 1,
       "delivered": 0,
       "needed": 7
      },
@@ -2318,8 +2318,8 @@
       }
      ],
      "coverage": {
-      "sourced": 1,
-      "assumed": 0,
+      "sourced": 0,
+      "assumed": 1,
       "delivered": 0,
       "needed": 22
      },
@@ -2688,7 +2688,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [],
@@ -2698,7 +2699,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -2798,7 +2799,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -2811,7 +2813,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -2857,8 +2859,8 @@
       }
      ],
      "coverage": {
-      "sourced": 1,
-      "assumed": 0,
+      "sourced": 0,
+      "assumed": 1,
       "delivered": 0,
       "needed": 0
      },
@@ -2938,7 +2940,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -2950,7 +2953,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -3052,7 +3055,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -3064,7 +3068,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -3166,7 +3170,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [],
@@ -3176,7 +3181,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -3272,7 +3277,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -3284,7 +3290,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -3380,7 +3386,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [],
@@ -3390,7 +3397,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -3482,7 +3489,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -3497,7 +3505,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -3601,7 +3609,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -3614,7 +3623,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -3712,7 +3721,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [],
@@ -3722,7 +3732,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -3814,7 +3824,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -3826,7 +3837,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -3924,7 +3935,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -3936,7 +3948,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -4034,7 +4046,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [],
@@ -4044,7 +4057,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -4136,7 +4149,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -4148,7 +4162,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -4244,7 +4258,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -4256,7 +4271,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -4352,7 +4367,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -4370,7 +4386,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -4480,7 +4496,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -4492,7 +4509,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -4588,7 +4605,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -4601,7 +4619,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -4705,7 +4723,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [],
@@ -4715,7 +4734,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -4815,7 +4834,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [],
@@ -4825,7 +4845,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -4925,7 +4945,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -4937,7 +4958,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -5037,7 +5058,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [],
@@ -5047,7 +5069,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -5139,7 +5161,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -5152,7 +5175,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -5256,7 +5279,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -5276,7 +5300,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -5394,7 +5418,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -5407,7 +5432,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -5505,7 +5530,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -5519,7 +5545,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -5619,7 +5645,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -5631,7 +5658,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -5727,7 +5754,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -5743,7 +5771,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -5851,7 +5879,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -5865,7 +5894,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -5971,7 +6000,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -5994,7 +6024,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -6112,7 +6142,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -6135,7 +6166,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -6253,7 +6284,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -6273,7 +6305,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -6391,7 +6423,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -6414,7 +6447,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -6532,7 +6565,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -6544,7 +6578,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -6642,7 +6676,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -6654,7 +6689,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -6750,7 +6785,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -6762,7 +6798,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -6860,7 +6896,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -6872,7 +6909,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -6970,7 +7007,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -6983,7 +7021,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -7081,7 +7119,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -7093,7 +7132,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -7189,7 +7228,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [],
@@ -7199,7 +7239,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -7301,7 +7341,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -7323,7 +7364,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -7369,8 +7410,8 @@
       }
      ],
      "coverage": {
-      "sourced": 1,
-      "assumed": 0,
+      "sourced": 0,
+      "assumed": 1,
       "delivered": 0,
       "needed": 0
      },
@@ -7472,7 +7513,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -7485,7 +7527,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -7591,7 +7633,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -7612,7 +7655,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -7726,7 +7769,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -7738,7 +7782,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -7834,7 +7878,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -7846,7 +7891,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -7942,7 +7987,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -7957,7 +8003,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -8059,7 +8105,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -8075,7 +8122,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -8177,7 +8224,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -8190,7 +8238,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -8288,7 +8336,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -8311,7 +8360,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -8429,7 +8478,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -8443,7 +8493,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -8543,7 +8593,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -8558,7 +8609,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -8662,7 +8713,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -8681,7 +8733,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -8795,7 +8847,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -8809,7 +8862,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -8909,7 +8962,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -8923,7 +8977,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -9025,7 +9079,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -9039,7 +9094,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -9137,7 +9192,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [],
@@ -9147,7 +9203,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -9243,7 +9299,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -9255,7 +9312,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -9359,7 +9416,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -9371,7 +9429,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],
@@ -9469,7 +9527,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -9481,7 +9540,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -9579,7 +9638,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -9591,7 +9651,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -9687,7 +9747,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -9699,7 +9760,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -9795,7 +9856,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -9812,7 +9874,7 @@
       "delivered": 0,
       "needed": 1
      },
-     "status": "sourced"
+     "status": "registered"
     },
     "2": {
      "items": [],
@@ -9922,7 +9984,8 @@
        "source": {
         "type": "bom",
         "key": "scale"
-       }
+       },
+       "kind": "attribute"
       }
      ],
      "instances": [
@@ -9937,7 +10000,7 @@
       "delivered": 1,
       "needed": 0
      },
-     "status": "sourced"
+     "status": "delivered"
     },
     "2": {
      "items": [],

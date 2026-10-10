@@ -15,6 +15,30 @@ function dossierLink(text, href) {
   if (valid) a.href = valid;
   return a;
 }
+let targetSnapshot;
+function mountTargetSummary(host, node) {
+  const section = dossierNode('section', undefined, 'sec dossier-targets');
+  section.append(dossierNode('h3', '采集需求 · 只读目标摘要'));
+  const content = dossierNode('div', '正在读取目标表…', 'meta'); section.append(content); host.append(section);
+  if (!targetSnapshot) targetSnapshot = fetch('/framework/tco_targets.json', {cache:'no-store'})
+    .then(response => { if (!response.ok) throw Error('targets unavailable'); return response.json(); })
+    .then(doc => { if (!Array.isArray(doc.targets)) throw Error('invalid targets'); return doc; })
+    .catch(error => { targetSnapshot = undefined; throw error; });
+  targetSnapshot.then(doc => {
+    const rows = doc.targets.filter(row => row.request?.node === node ||
+      (row.part_id && 'part:' + row.part_id === node) || (row.site_right_id && 'site:' + row.site_right_id === node));
+    content.replaceChildren();
+    if (!rows.length) content.append(dossierNode('p', '此节点尚无目标行；不能据此认定数据齐全。'));
+    for (const row of rows) {
+      const line = dossierNode('p'); line.dataset.targetId = row.id;
+      line.append(dossierLink(row.id, '/supply.html?' + new URLSearchParams({node, col:row.variable_class}) + '#targets'));
+      line.append(dossierNode('span', ' · ' + row.team + (row.team_state === 'connected' ? '（已接通）' : '（未接通）') +
+        ' · ' + (doc.mechanisms?.[row.mechanism] || row.mechanism) + ' · ' + (doc.statuses?.[row.status] || row.status)));
+      content.append(line);
+    }
+    content.append(dossierNode('p', '目标表 ' + doc.version + ' · ' + doc.updated + '；交付与正式采用分别验收。'));
+  }).catch(() => { content.textContent = '目标表暂不可读取；请从采集页重试，缺失状态不计为零。'; });
+}
 export function createPartDossier({el, view, BOM, companies: CN,
   prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector, atlasHost = el, atlasViewFor = () => null, researchNodeFor = p => "part:" + p.id}) {
 return function showDossier(p) {
@@ -56,6 +80,7 @@ return function showDossier(p) {
   if (view === "rack")
     links.append(dossierLink("返回园区定位", "bom3d.html?" + new URLSearchParams({ p: p.id, node: "part:" + p.id })));
   el.append(links);
+  mountTargetSummary(el, researchNodeFor(p));
   if (p.upstream?.length) {
     const upstream = dossierNode("div", undefined, "sec"); upstream.append(dossierNode("h3", "上游研究主题"));
     p.upstream.forEach(u => upstream.append(dossierNode("span", u, "chip"))); el.append(upstream);

@@ -19,7 +19,7 @@
 
 ## 模型和客户端
 
-当前 Spark 不可用，暂用本机已登录的 **Claude CLI** 推理。后续接 Spark、换更大型号通过配置完成，业务代码不以模型品牌或参数规模决定研究规则。每次记录实际模型与执行者；Claude Code、Codex CLI 是操作客户端，不用终端名称冒充模型。
+Spark 承载原件归档、Reader 与研究审核；网站消费受控发布的派生快照。模型与执行机按现行配置选择，实际健康和版本以运行回执为准。更换型号通过配置完成，业务代码不以模型品牌或参数规模决定研究规则。每次记录实际模型与执行者；Claude Code、Codex CLI 是操作客户端，不用终端名称冒充模型。
 
 同一材料默认一套当前有效阅读结果。失败重试不覆盖成功结果，换默认模型不自动重读已完成材料。原文、被引用的历史证据和尝试日志保留；受控重读通过 reader 的 reread / inspect-revision / activate-revision / reject-revision 共用用例，完整统一任务 CLI/API 等剩余边界见 [08 模型执行](framework/08_model_execution.md)。
 
@@ -70,6 +70,6 @@ node tests/run_browser.cjs
 
 inews.today 是独立产品、独立仓库，提供明确约定的数据中心新闻投影；inresearch 消费验证后的投影，负责专业资料、产品规格及研究证据。旧“本库不知道 inews”与直接读取对方目录的方案均已被 [06 采集规范](framework/06_acquisition.md) 替代，不复制上游业务。
 
-网站沿用 infra 的正式发布流程；原件和 reader 服务须在实际运行机器单独验收。部署入口与健康检查见 `infra/inresearch-host/README.md`。Spark 恢复前不推断其版本、完成量或模型可用性。
+网站沿用 infra 的正式发布流程；原件和 reader 服务须在实际运行机器单独验收。部署入口与健康检查见 `infra/inresearch-host/README.md`。源码更新、进程加载和运行数据回执分别核对，不从源码版本推断完成量或模型可用性。
 
 行业总览的容量为已追踪园区合计，非全球普查。市场规模、主体布局、项目分期与精选新闻可分别下钻；建设中与筹备机会分列，新闻线索持久保留且不自动计入容量。

@@ -84,6 +84,10 @@ if (requestedScene && !dossierScenes.includes(requestedScene)) throw Error('Unkn
       const canvas = dossier.locator('canvas'); await canvas.waitFor();
       assert.equal(await canvas.count(), 1);
       assert.ok(await dossier.getByRole('link', {name:'采集：这个部件的目标行'}).isVisible());
+      await dossier.locator('.dossier-targets [data-target-id]').first().waitFor();
+      assert.ok((await dossier.locator('.dossier-targets').innerText()).includes('交付与正式采用分别验收'));
+      const part = await dossier.getAttribute('data-part-id');
+      assert.ok((await dossier.locator('.dossier-targets').innerText()).includes('P.'+part+'.spec'));
       assert.ok(await dossier.getByRole('heading', {name:'类别数据与指标 · 按原记录时点'}).isVisible());
       const box = await canvas.boundingBox();
       await page.mouse.move(box.x+40, box.y+40); await page.mouse.down();

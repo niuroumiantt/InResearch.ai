@@ -130,7 +130,7 @@ def main():
 <div class="note">⚖ 口径提醒：容量为各状态合计——多数园区大部分容量仍在建/规划中，<b>不得解读为已投运规模</b>；
 用电量为满载推算：IT 容量 × PUE 1.2 × 利用率 90% × 8760h（S5 级推算，非实测/非公司披露）；
 排名基于本项目库（{len(sites)} 个有容量记录的园区，核验日期见各记录），不代表全球普查。
-生成：src/inresearch/delivery/map.py ｜ 数据：data/projects.json ｜ © inresearch.ai</div>
+生成：src/inresearch/delivery/project_capacity_map.py ｜ 数据：data/projects.json ｜ © inresearch.ai</div>
 </body></html>"""
 
     OUT.mkdir(parents=True, exist_ok=True)

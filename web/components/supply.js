@@ -9,7 +9,7 @@
   const internTabs = new Set(['targets','tasks']);
   let data, tab = 'targets', selected = 'fetchspec', admin = false, role = 'member', generation = 0, pending, saving = false;
   const kinds = {existing_repo:'已有 repo · 接收已上线',existing_feed:'已有新闻接口 · 任务未接入',existing_channel:'已有上传渠道 · 待统一接入',proposed:'能力已登记 · repo 待规划'};
-  const execution = task => task.execution_mode === 'continuous' ? '持续采集 · AWS' : task.execution_mode === 'assisted' ? '人工辅助 · macmini' : '旧计划 · 尚未指定执行机';
+  const execution = task => task.execution_mode === 'continuous' ? '持续采集 · '+escape(task.execution_host) : task.execution_mode === 'assisted' ? '人工辅助 · '+escape(task.execution_host) : '旧计划 · 尚未指定执行机';
   const providerOptions = () => data.catalog.providers.map(p => `<option value="${escape(p.id)}">${escape(p.name)} · ${escape(p.capability)}</option>`).join('');
   const setTab = next => { tab = allowedTabs.has(next) ? next : 'overview'; if (location.hash !== '#'+tab) history.replaceState(null,'','#'+tab); render(); };
   const plan = () => data.catalog.operating_plan;
@@ -38,7 +38,7 @@
     } else if (tab === 'overview') {
       const p=plan(), c=taskCounts();
       $('list').innerHTML=`<h2>目的与当前进展</h2><p>${escape(p.purpose)}</p><div class="plan-grid"><div class="plan-card"><strong>${data.generated_targets.total} 条</strong><small>Fetchspec 生成目标</small></div><div class="plan-card"><strong>${data.generated_targets.needed} 条</strong><small>仍缺规格目标</small></div><div class="plan-card"><strong>${data.catalog.providers.length} 个</strong><small>已登记资料供应入口</small></div><div class="plan-card"><strong>${data.demands.length} 项</strong><small>人工补充需求</small></div><div class="plan-card"><strong>${data.deliveries.length} 个</strong><small>真实交付回执</small></div><div class="plan-card"><strong>${receivedItems} 件</strong><small>已校验并接收原件</small></div></div><p class="muted">${escape(p.baseline.meaning)}</p>`;
-      $('detail').innerHTML=`<h2>本页如何使用</h2><ol><li><b>广度与深度</b>：确认先补哪一类产品和何时进入深抓。</li><li><b>资源与执行</b>：确认 AWS、macmini、Spark 的固定职责。</li><li><b>供应方与任务</b>：查看各供应入口承担的计划任务。</li><li><b>研究需求</b>：由研究问题创建可验收的资料任务。</li><li><b>交付与验收</b>：查看原件接收、审核和研究采用状态。</li></ol><p class="${data.deliveries.length?'status-ready':'status-waiting'}">${data.deliveries.length?'已接通 Fetchspec 交付回执；阅读、证据审核和研究采用仍分别计量。':'等待第一份 Fetchspec 交付包；不把历史文件或新闻数量计入本流程。'}</p>`;
+      $('detail').innerHTML=`<h2>本页如何使用</h2><ol><li><b>广度与深度</b>：确认先补哪一类产品和何时进入深抓。</li><li><b>资源与执行</b>：确认 AWS、macmini、Spark 的固定职责。</li><li><b>供应方与任务</b>：查看各供应入口承担的计划任务。</li><li><b>研究需求</b>：从目标行细化范围与验收条件，按其供应方和主机保存计划。</li><li><b>交付与验收</b>：查看原件接收、审核和研究采用状态。</li></ol><p class="${data.deliveries.length?'status-ready':'status-waiting'}">${data.deliveries.length?'已接通 Fetchspec 交付回执；阅读、证据审核和研究采用仍分别计量。':'等待第一份 Fetchspec 交付包；不把历史文件或新闻数量计入本流程。'}</p>`;
     } else if (tab === 'coverage') {
       const p=plan();
       $('list').innerHTML=`<h2>先广后深</h2>${p.phases.map(x=>`<div class="phase"><b>${escape(x.name)}</b><span>${escape(x.purpose)}<br><small>退出条件：${escape(x.exit)}</small></span></div>`).join('')}`;
@@ -55,11 +55,11 @@
       $('to-demands').onclick=()=>setTab('demands');
       document.querySelectorAll('[data-provider]').forEach(b=>b.onclick=()=>{selected=b.dataset.provider;render();});
     } else if (tab === 'demands') {
-      $('list').innerHTML = data.demands.length ? data.demands.map(d=>`<button type="button" class="record" data-demand="${escape(d.id)}" aria-pressed="${selected===d.id}"><strong>${escape(d.title)}</strong><small>${escape(d.question_id)} · ${data.tasks.filter(t=>t.demand_id===d.id).length} 个供应任务</small></button>`).join('') : '<h3>尚无资料需求</h3><p>管理员可在下方创建第一项真实需求。演示数据不会写入这里。</p>';
+      $('list').innerHTML = data.demands.length ? data.demands.map(d=>`<button type="button" class="record" data-demand="${escape(d.id)}" aria-pressed="${selected===d.id}"><strong>${escape(d.title)}</strong><small>${escape(d.target_id||'旧需求 · 未绑定目标行')} · ${escape(d.question_id||'未关联问题')} · ${data.tasks.filter(t=>t.demand_id===d.id).length} 个供应任务</small></button>`).join('') : '<h3>尚无资料需求</h3><p>管理员可在下方创建第一项真实需求。演示数据不会写入这里。</p>';
       const d = data.demands.find(x=>x.id===selected) || data.demands[0];
-      $('detail').innerHTML = d ? `<h3>${escape(d.title)}</h3><dl><dt>研究问题</dt><dd>${escape(d.question_id)}</dd><dt>范围</dt><dd>${escape(d.scope)}</dd><dt>验收条件</dt><dd>${escape(d.acceptance)}</dd><dt>已分配</dt><dd>${data.tasks.filter(t=>t.demand_id===d.id).map(t=>`${escape(data.catalog.providers.find(p=>p.id===t.provider_id)?.name)}（${escape(execution(t))}）`).join('<br>') || '待分配'}</dd><dt>登记人 / 时间</dt><dd>${escape(d.created_by)} / ${escape(d.created_at)}</dd></dl>${admin?`<form id="assign-form"><label for="assign-provider">增加供应方任务</label><select id="assign-provider">${providerOptions()}</select><label for="assign-mode">执行方式</label><select id="assign-mode"><option value="continuous">持续采集 · AWS</option><option value="assisted">人工辅助 · macmini</option></select><p class="muted">同一项任务只有一个主执行机；切换要建立新任务，不在两台机器同时采集。</p><button type="submit">保存分配</button></form>`:''}` : '<h3>需求先于采集</h3><p>选择研究问题，定义对象范围和验收条件，再匹配供应方。新需求不会自动关闭研究问题。</p>';
+      $('detail').innerHTML = d ? `<h3>${escape(d.title)}</h3><dl><dt>目标行</dt><dd>${escape(d.target_id||'旧记录未绑定；请从现行目标行新建')}</dd><dt>研究问题</dt><dd>${escape(d.question_id||'未关联')}</dd><dt>范围</dt><dd>${escape(d.scope)}</dd><dt>验收条件</dt><dd>${escape(d.acceptance)}</dd><dt>已分配</dt><dd>${data.tasks.filter(t=>t.demand_id===d.id).map(t=>`${escape(data.catalog.providers.find(p=>p.id===t.provider_id)?.name)}（${escape(execution(t))}）`).join('<br>') || '待分配'}</dd><dt>登记人 / 时间</dt><dd>${escape(d.created_by)} / ${escape(d.created_at)}</dd></dl>${admin&&d.target_id?`<form id="assign-form"><label for="assign-provider">增加供应方任务</label><select id="assign-provider">${data.catalog.providers.filter(p=>p.id===data.target_registry.records.find(t=>t.id===d.target_id)?.team).map(p=>`<option value="${escape(p.id)}">${escape(p.name)}</option>`).join('')}</select><label for="assign-mode">执行方式</label><select id="assign-mode"><option value="continuous">持续采集 · 目标行主机</option><option value="assisted">人工辅助 · macmini</option></select><p class="muted">同一项任务只有一个主执行机；切换要建立新任务，不在两台机器同时采集。</p><button type="submit">保存分配</button></form>`:''}` : '<h3>需求先于采集</h3><p>选择现行目标行，细化对象范围和验收条件，供应方与主机服从该行。新需求不会自动关闭研究问题。</p>';
       document.querySelectorAll('[data-demand]').forEach(b=>b.onclick=()=>{selected=b.dataset.demand;render();});
-      if ($('assign-form')) $('assign-form').onsubmit=e=>{e.preventDefault();const mode=$('assign-mode').value;save({action:'assign',demand_id:d.id,provider_id:$('assign-provider').value,execution_mode:mode,execution_host:data.catalog.execution_policy[mode].host});};
+      if ($('assign-form')) $('assign-form').onsubmit=e=>{e.preventDefault();const mode=$('assign-mode').value;save({action:'assign',demand_id:d.id,provider_id:$('assign-provider').value,execution_mode:mode,execution_host:data.target_registry.records.find(t=>t.id===d.target_id)?.host||''});};
     } else {
       $('list').innerHTML=(data.deliveries.length?`<h2>已登记交付</h2>${data.deliveries.map(d=>`<button type="button" class="record" data-delivery="${escape(d.delivery_id)}" aria-pressed="false"><strong>${escape(d.delivery_id)}</strong><small>${escape(d.status)} · ${d.received_items||0} 件 · ${escape(d.task_id_or_discovery||'discovery')}</small></button>`).join('')}`:'<h3>等待第一份交付包</h3><p>Fetchspec 在采集机生成包含 manifest、SHA256SUMS 和去重原件的 package；Spark 使用接收命令校验后登记。</p>')+`<h2>跨产品资料检索</h2><form id="product-search" class="product-search"><label>公司 ID<input name="company_id" placeholder="nvidia"></label><label>第一层产品分类<input name="category" placeholder="Networking"></label><label>研究问题 ID<input name="question_id" placeholder="Q-SCOPE-arch-nvidia-gpu"></label><label>格式<input name="format" placeholder="pdf"></label><button type="submit">检索已接收资料</button></form><div id="product-results" role="status">正在读取资料索引…</div>`;
       if ($('product-search')) {
@@ -67,7 +67,7 @@
         searchProducts(new FormData($('product-search')));
       }
       const d=data.deliveries[0];
-      $('detail').innerHTML=d?`<h3>${escape(d.delivery_id)}</h3><dl><dt>交付状态</dt><dd>${escape(d.status)}</dd><dt>研究任务关联</dt><dd>${escape(d.task_id_or_discovery||'discovery')} · ${escape((d.research_context?.question_ids||[]).join(', ')||'待分配研究问题')}</dd><dt>原件回执</dt><dd>${d.received_items||0} 件</dd><dt>Reader 候选报告</dt><dd>${d.reading?.candidate_ready||0} 件就绪 · ${d.reading?.blocked||0} 件阻塞 · ${d.reading?.not_registered||0} 件尚未登记</dd><dt>后续动作</dt><dd>${escape(d.next||'查看接收回执')}</dd></dl><div class="task">Reader 报告仍是候选；证据审核和 C3 采用不从“已接收/已阅读”推断。</div>`:'<h3>交付闭环</h3><ol><li>采集包逐文件验 SHA256 与契约</li><li>保留不可变原件、URL、第一层产品分类和版本关系</li><li>合格格式进入 Reader，其他格式明确待补</li><li>抽取/深读结果仍为候选证据</li><li>人工复核并按研究标准单独采用</li></ol><p>接收命令：<code>python3 manage.py fetchspec-receive /path/to/deliveries/&lt;delivery-id&gt;</code></p>';
+      $('detail').innerHTML=d?`<h3>${escape(d.delivery_id)}</h3><dl><dt>交付状态</dt><dd>${escape(d.status)}</dd><dt>研究任务关联</dt><dd>${escape(d.task_id_or_discovery||'discovery')} · ${escape((d.research_context?.question_ids||[]).join(', ')||'待分配研究问题')}</dd><dt>原件回执</dt><dd>${d.received_items||0} 件</dd><dt>Reader 候选报告</dt><dd>${d.reading?.candidate_ready||0} 件就绪 · ${d.reading?.blocked||0} 件阻塞 · ${d.reading?.not_registered||0} 件尚未登记 · ${d.reading?.status_unavailable||0} 件状态暂不可取得</dd><dt>后续动作</dt><dd>${escape(d.next||'查看接收回执')}</dd></dl><div class="task">Reader 报告仍是候选；证据审核和 C3 采用不从“已接收/已阅读”推断。</div>`:'<h3>交付闭环</h3><ol><li>采集包逐文件验 SHA256 与契约</li><li>保留不可变原件、URL、第一层产品分类和版本关系</li><li>合格格式进入 Reader，其他格式明确待补</li><li>抽取/深读结果仍为候选证据</li><li>人工复核并按研究标准单独采用</li></ol><p>接收命令：<code>python3 manage.py fetchspec-receive /path/to/deliveries/&lt;delivery-id&gt;</code></p>';
     }
   }
   async function searchProducts(form) {
@@ -97,11 +97,14 @@
       const next=await supplyRes.json();
       if(seq!==generation)return;
       data=next;
-      const question=$('question').value,provider=$('provider').value,mode=$('execution-mode').value;
+      const question=$('question').value,provider=$('provider').value,mode=$('execution-mode').value,target=$('demand-target').value;
+      $('demand-target').innerHTML='<option value="">请选择目标行</option>'+(data.target_registry?.records||[]).map(t=>`<option value="${escape(t.id)}">${escape(t.id+' · '+t.disclosure_type+' · '+t.team+' / '+t.host)}</option>`).join('');
+      $('demand-target').value=target;
       $('question').innerHTML='<option value="">请选择研究问题</option>'+data.questions.map(q=>`<option value="${escape(q.id)}">${escape(q.id+' · '+q.text)}</option>`).join('');
       $('question').value=question;
       $('provider').innerHTML='<option value="">暂不分配</option>'+providerOptions();$('provider').value=provider;
       $('execution-mode').value=mode;
+      bindTarget();
       render();$('status').textContent='';
     } catch(error) {if(seq===generation)$('status').textContent=error.message+' 已显示内容可能过期。';}
   }
@@ -189,11 +192,21 @@
   document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
   window.addEventListener('hashchange',()=>setTab(location.hash.slice(1)));
   $('refresh').onclick=load;
+  function bindTarget(){
+    const t=data?.target_registry?.records.find(t=>t.id===$('demand-target').value),old=$('provider').value;
+    const question=$('question').value;
+    $('question').innerHTML='<option value="">不附加研究问题</option>'+data.questions.filter(q=>t&&q.node===t.request?.node&&q.variable_class===t.variable_class).map(q=>`<option value="${escape(q.id)}">${escape(q.id+' · '+q.text)}</option>`).join('');
+    $('question').value=[...$('question').options].some(o=>o.value===question)?question:'';
+    $('provider').innerHTML='<option value="">暂不分配</option>'+(t?data.catalog.providers.filter(p=>p.id===t.team).map(p=>`<option value="${escape(p.id)}">${escape(p.name)} · ${escape(t.host)}</option>`).join(''):'');
+    $('provider').value=t?.team===old?old:'';
+    if(!$('provider').value)$('execution-mode').value='';
+  }
+  $('demand-target').onchange=bindTarget;
   $('provider').onchange=()=>{
     if (!$('provider').value) $('execution-mode').value='';
     else if (!$('execution-mode').value) $('execution-mode').value='continuous';
   };
-  $('create-form').onsubmit=e=>{e.preventDefault();const mode=$('execution-mode').value;const provider=$('provider').value;save({action:'create',question_id:$('question').value,title:$('title').value,scope:$('scope').value,acceptance:$('acceptance').value,provider_id:provider,execution_mode:mode,execution_host:mode?data.catalog.execution_policy[mode].host:''});};
+  $('create-form').onsubmit=e=>{e.preventDefault();const mode=$('execution-mode').value;const provider=$('provider').value;save({action:'create',target_id:$('demand-target').value,question_id:$('question').value,title:$('title').value,scope:$('scope').value,acceptance:$('acceptance').value,provider_id:provider,execution_mode:mode,execution_host:mode?(data.target_registry.records.find(t=>t.id===$('demand-target').value)?.host||''):''});};
   tab=allowedTabs.has(location.hash.slice(1))?location.hash.slice(1):'targets';
   if(!location.hash) history.replaceState(null,'','#targets');
   render();

@@ -1,11 +1,10 @@
 # 仓库架构页维护
 
 现行地址与权限以 `framework/05_interface_system.md` 为准。总入口为
-`https://inresearch.ai/admin/repos.html`；原有四页使用 `inresearchrepo.html`、
-`inewsrepo.html`、`fetchspecrepo.html`、`infrarepo.html`。
+`https://inresearch.ai/admin/repos.html`；现有 11 个仓库页以 infra 注册表和本项目路由清单为准，不能把最初四页当作完整清单。
 
 每个仓库维护自己的事实；研究站保存可审阅的架构快照，研究主页另附只读运行聚合。infra 原 HTML 原样保留，
-Fetchspec 调用自身生成器，inews 导出同一份 pipeline-map 架构声明，InResearch 从程序职责说明生成。
+Fetchspec 调用自身生成器，inews 导出同一份 pipeline-map 架构声明，InResearch 从目标、骨架、问题、模型与正式研究生成状态板，程序职责保留为展开项。
 源图观察时间、声明状态与同步日期分开；同步不证明生产已部署或原记录已重新核验。
 inews 统一页不读生产库，也不把演示库计数带入页面；实时统计仍在新闻站原架构页。
 
