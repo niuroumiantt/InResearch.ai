@@ -42923,6 +42923,90 @@
         },
         "batch_id": "2a715f65d187c6b123aae0cd23d8491e9e887804b65327ffa09a20b7a801158e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f99eabcc675f06cfd76bc7e58b1911770229679c9140bf086fb0eb48040efab2",
+      "document_id": "doc-bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "id": "rev-b144ef49eaf8430a93996fe00c9ce86f:chunk:0:claim:0:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "site:land"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "reports the Ministry of Defence confirmed to the publication that it has granted Hyperco permission to purchase a property in Espoo.",
+      "reading_revision_id": "rev-b144ef49eaf8430a93996fe00c9ce86f",
+      "source_sha256": "bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T22:18:13+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性及评分5。连续引文和周边Espoo拟建、土地交易及地方协调语境充分，对当前M01-Q03和M15-Q02具有实质但局部的贡献：区分购地授权、完成土地交易与后续开发阶段。无敏感、真实冲突、拟替换或其他A条件，符合B类部分采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M15-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.743,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1c16f8fb4556779c5d57ac85f78eee0c826ea78c4729e6d6e4581b3599cac788",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 55691,
+            "output_tokens": 1393,
+            "reasoning_output_tokens": 363
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.632,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "97338fbf2cf1cdf05579ddcac26a84a3463fbd57e4924be07d17af299c614fe2",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 56312,
+              "output_tokens": 567,
+              "reasoning_output_tokens": 278
+            }
+          }
+        },
+        "batch_id": "7e93ed7ab95621fb7b15abf0d58d30132432886b944e85266f27c71d7883ac4e"
+      }
     }
   ],
   "statements": [
@@ -83557,6 +83641,108 @@
         "request_sha256": "a0349ad86a356d8defaec6a4dfc4fbe9c092c9c58478f55a9573f3e3ce83b2cf"
       },
       "object_mapping_check": "Alphabet电话会中对Gemma 4和“our open models”的陈述，直接支持映射到无父节点的actor:alphabet-google（谷歌）。下载对象是模型产品，原文未建立下载行为与具体数据中心、GPU、内存、网络资产或DCIM/BMS及固件的直接关系，因此不继承文档层基础设施标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "evidence_ids": [
+        "rev-b144ef49eaf8430a93996fe00c9ce86f:chunk:0:claim:0:ev:0"
+      ],
+      "id": "adoption:review:27b2af6086ca457738d61b85",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:land"
+      ],
+      "question_ids": [
+        "M01-Q03",
+        "M15-Q02"
+      ],
+      "reading_revision_id": "rev-b144ef49eaf8430a93996fe00c9ce86f",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年6月3日的报道中援引Helsingin Sanomat称，芬兰国防部向该报确认，已给予Hyperco购买芬兰Espoo一处物业的许可。该报道涉及拟开发数据中心的购地授权，不能据此确认土地交易已完成、已取得区划、环评或建设许可，或已开工、投运；也不构成对项目当前状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T22:18:13+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性及评分5。连续引文和周边Espoo拟建、土地交易及地方协调语境充分，对当前M01-Q03和M15-Q02具有实质但局部的贡献：区分购地授权、完成土地交易与后续开发阶段。无敏感、真实冲突、拟替换或其他A条件，符合B类部分采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M15-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.743,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1c16f8fb4556779c5d57ac85f78eee0c826ea78c4729e6d6e4581b3599cac788",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 55691,
+            "output_tokens": 1393,
+            "reasoning_output_tokens": 363
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 23.632,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "97338fbf2cf1cdf05579ddcac26a84a3463fbd57e4924be07d17af299c614fe2",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 56312,
+              "output_tokens": 567,
+              "reasoning_output_tokens": 278
+            }
+          }
+        },
+        "batch_id": "7e93ed7ab95621fb7b15abf0d58d30132432886b944e85266f27c71d7883ac4e"
+      },
+      "source_candidate_ids": [
+        "rev-b144ef49eaf8430a93996fe00c9ce86f:chunk:0:claim:0"
+      ],
+      "limitations": "这是经DCD转述的媒体报道，国防部原始决定及Helsingin Sanomat原报道未在本包中独立核验。原文明确DCD报道日期，但未提供购地许可的审批日期、条款或有效期。所选证据没有Espoo项目容量、审批耗时、建设进度或历史转化数据；不能赋予具体漏斗等级，也不能把未提供其他许可证明解释为这些许可确定不存在。",
+      "conflict_check": "与已采用的格洛可阶段区分、土地交易不等于投运容量及SemiAnalysis场址控制前置条件陈述相容。购地授权与相邻正文所述尚未完成最终交易可以并存；Kouvola的建筑许可属于另一项目，不能移用于Espoo。所供legacy匹配记录为空，现有采用记录未见同一Espoo购地授权的规范重复或同口径真实冲突。检查限于所供材料，不代表完成外部反证检索，不替换既有结论。",
+      "gap_dependency_check": "M01-Q03获得一个拟开发项目的土地取得前置事项线索，仍需原始审批及交易文件、项目去重、阶段验收、同口径容量和历史队列才能计算规划与在建漏斗总量及转化率。M15-Q02仍需既有九级定义、项目后续进展、各级容量快照和历史基线。本条不能确认已完成场址控制或指定具体等级，不汇总GW、不更新模型值，两项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "7e93ed7ab95621fb7b15abf0d58d30132432886b944e85266f27c71d7883ac4e",
+        "source_report_sha256": "48c8aceedc74bf03e20177f300b11ed9f61b1993dd5d031ff0bb9e39ea9705f2",
+        "request_sha256": "945c169aa4d159677ed449a339648fda2aacf5ba8977f7ecda7751f40720453b"
+      },
+      "object_mapping_check": "独立依据原文，将主张映射至site:land这一场址权利对象：实际范围是Espoo物业的购买授权，属于土地取得事项，尚不证明取得土地控制权。site:permits名称限定区划、环评、排放和建设许可，本条购地授权不能据此映射为这些开发许可。原文未确认Espoo项目为AI数据中心，不选root；也未涉及设施内部系统或部件，不扩展至system:facility。Hyperco没有允许的主体ID，不借用其他公司ID。所选证据统一采用这一主张范围，不继承Reader标签。"
     }
   ],
   "answers": [],
