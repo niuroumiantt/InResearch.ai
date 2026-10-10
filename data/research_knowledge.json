@@ -3998,6 +3998,66 @@
       "status": "candidate",
       "stored_path": "originals/18/18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a/dcd-18a9339080cf3510-Cryptominer TeraWulf secures 200MW lease with Fluidstack- Google .html",
       "title": "Cryptominer TeraWulf secures 200MW lease with Fluidstack, Google to take stake in company"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "coverage": {
+        "characters_read": 35178,
+        "characters_total": 35178,
+        "chunks_read": 7,
+        "chunks_total": 7,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "library_path": "library/by-node/root/2025_Talen／SEC归档；预览另含Constella_Amazon PPA Amendment_ Transaction Highlights（归档网页响应）__9caf0a9498b5af7a.md",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:amazon",
+        "actor:constellation-energy",
+        "root",
+        "site:grid",
+        "site:permits"
+      ],
+      "question_ids": [
+        "OBJ-grid-alternatives",
+        "OBJ-grid-performance",
+        "OBJ-grid-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "report_sha256": "1f1517764ca6223b7ce9a4a5ba3e6d940c53dfa81fba0b830ae21e37b3a97251",
+      "source_provenance": {
+        "batch": "us-datacenter-power-20261009-v3",
+        "derivation": "JSON string decode only with provenance header; no independent evidence",
+        "input_sha256": "9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": null,
+        "response_sha256": "52f72bacf96a42664da77db89ef6ceca03292daf9e4ec8acf2007e99d074e243",
+        "role": "decoded_archived_tool_response",
+        "sidecar_sha256": "2f5df074d2368e7602e491855da59af9523e9f9976a5ed924733f2402a7b5ea6",
+        "source_id": "talen-sec",
+        "url": "https://www.sec.gov/Archives/edgar/data/1622536/000162828025030559/a20250611talenbusinessup.htm",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.sec.gov/Archives/edgar/data/1622536/000162828025030559/a20250611talenbusinessup.htm",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/9c/9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd/talen-sec--archived-web-tool-response.md",
+      "title": "Amazon PPA Amendment: Transaction Highlights（归档网页响应）"
     }
   ],
   "evidence": [
@@ -30098,6 +30158,256 @@
           }
         },
         "batch_id": "867a6f2015bdf9ba388842e2f115774631db9a5432753caa7bac07588ca3d1d8"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ae0c1d179cb0e46bf5ae5d48c6e04f8c985b4f5442046847f90b55a105dd3ec2",
+      "document_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "id": "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:4:ev:0",
+      "locator": "page:1/chunk:5",
+      "object_ids": [
+        "actor:constellation-energy"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Brazos Valley Energy Center sold for $860M, ~$1,419/kW, pending regulatory approval $5.9B in total gross proceeds for required divestitures reflects premium to $960/kW implied purchase price",
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "source_sha256": "9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T03:28:13+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。发电资产单位容量售价、毛收入与隐含收购价格的口径差异，实质关联当前经济性工单。连续原文及第12页交易背景足以支持限定归因的部分公司主张；无敏感、真实冲突或替换条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.83,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a43c2e51c7fb3587e61fbd15c3816b566e52f8e965d50ec577fc314f17f7b9ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 51356,
+            "output_tokens": 3293,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.769,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "47af742b334ae11aa7974fc56d577281d5843fda9620eac3e2d3e2d972ba7074",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 50704,
+              "output_tokens": 663,
+              "reasoning_output_tokens": 372
+            }
+          }
+        },
+        "batch_id": "1622a09c64456996b2177dcb8e6e371eddf24b4f427da3ea56080405abde7ff7"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ae0c1d179cb0e46bf5ae5d48c6e04f8c985b4f5442046847f90b55a105dd3ec2",
+      "document_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "id": "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:5:ev:0",
+      "locator": "page:1/chunk:5",
+      "object_ids": [
+        "actor:constellation-energy"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "(1) Opportunities may not be additive (2) Illustrative (3) Excludes after-tax proceeds from asset sales (4) Assumes 1% - 2% change in capacity factor calculated at $20 average base spark spread",
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "source_sha256": "9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T03:28:13+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。可加性、示意数值、现金流排除项及发电利用率情景假设，实质关联当前经济性工单的计量与可比性问题。连续脚注及完整第13页文字语境足够支持限定归因的部分采用；无A类触发条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.83,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a43c2e51c7fb3587e61fbd15c3816b566e52f8e965d50ec577fc314f17f7b9ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 51356,
+            "output_tokens": 3293,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.769,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "47af742b334ae11aa7974fc56d577281d5843fda9620eac3e2d3e2d972ba7074",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 50704,
+              "output_tokens": 663,
+              "reasoning_output_tokens": 372
+            }
+          }
+        },
+        "batch_id": "1622a09c64456996b2177dcb8e6e371eddf24b4f427da3ea56080405abde7ff7"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ae0c1d179cb0e46bf5ae5d48c6e04f8c985b4f5442046847f90b55a105dd3ec2",
+      "document_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "id": "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:6:ev:0",
+      "locator": "page:1/chunk:5",
+      "object_ids": [
+        "actor:constellation-energy"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "$125M - $325M $0.40 - $1.00 $20-$50/MWh premium to PTC floor 1 GW Nuclear PPA",
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "source_sha256": "9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T03:28:13+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。核电PPA相对PTC底价的定价假设及发电侧财务敏感性，实质关联当前合同经济性工单；对M04-Q04仅贡献定价机制线索。连续表格行与周边列名、2029年标题及风险说明足以支持明确归因的部分预测采用，无敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-M04-Q04",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.83,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a43c2e51c7fb3587e61fbd15c3816b566e52f8e965d50ec577fc314f17f7b9ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 51356,
+            "output_tokens": 3293,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.769,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "47af742b334ae11aa7974fc56d577281d5843fda9620eac3e2d3e2d972ba7074",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 50704,
+              "output_tokens": 663,
+              "reasoning_output_tokens": 372
+            }
+          }
+        },
+        "batch_id": "1622a09c64456996b2177dcb8e6e371eddf24b4f427da3ea56080405abde7ff7"
       }
     }
   ],
@@ -58694,6 +59004,308 @@
         "request_sha256": "c83e905db68a7c84c7e80a2d5a5341bc79b159e2b6c570abddb33cbdb5118cb1"
       },
       "object_mapping_check": "原文明确主体Siemens Energy，支持actor:siemens-energy。合同中的part:transformer专指大型电力变压器，而本项仅称transformer，未确定大型或变电用途，因此不继承原候选的部件标签。电网技术业务整体订单也不足以映射具体变电、开关柜或数据中心并网资产。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "evidence_ids": [
+        "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:4:ev:0"
+      ],
+      "id": "adoption:review:5240814bc84d3ecadc8978d7",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:constellation-energy"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "status": "adopted",
+      "text": "据所供归档网页响应中星座能源2026年8月6日第二季度业绩演示第12页，公司称Brazos Valley Energy Center出售价格为8.60亿美元、约1,419美元/kW，当时仍待监管批准；公司另称，所要求资产剥离的总毛收入为59亿美元，并将其描述为相对960美元/kW隐含收购价体现溢价。这是发电企业对资产交易及单位发电容量定价的披露，未经本次独立核验，不代表交易已经完成或数据中心资产成交价；该段未明确资产所在地。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T03:28:13+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。发电资产单位容量售价、毛收入与隐含收购价格的口径差异，实质关联当前经济性工单。连续原文及第12页交易背景足以支持限定归因的部分公司主张；无敏感、真实冲突或替换条件，符合B类采用要求。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.83,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a43c2e51c7fb3587e61fbd15c3816b566e52f8e965d50ec577fc314f17f7b9ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 51356,
+            "output_tokens": 3293,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.769,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "47af742b334ae11aa7974fc56d577281d5843fda9620eac3e2d3e2d972ba7074",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 50704,
+              "output_tokens": 663,
+              "reasoning_output_tokens": 372
+            }
+          }
+        },
+        "batch_id": "1622a09c64456996b2177dcb8e6e371eddf24b4f427da3ea56080405abde7ff7"
+      },
+      "source_candidate_ids": [
+        "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:4"
+      ],
+      "limitations": "仅取得归档工具响应，未取得原站HTML/PDF字节，也未独立核验交易文件或监管结果。59亿美元是所要求剥离资产的总毛收入，不是Brazos单项售价；总金额与美元/kW不能直接作数值比较。未披露各项容量分母、资产范围、税费、净收入或溢价计算过程，不能转换为数据中心每MW造价或成交价。",
+      "conflict_check": "既有自建每MW资本支出效率、PJM容量账单、居民电费保护、终端用户成本判断及WPA评价涉及不同资产、主体和经济口径，未发现同口径真实冲突或重复。所供legacy筛选结果为空，不能视为穷尽性反证搜索；不替换任何既有结论。",
+      "gap_dependency_check": "对NODE-activity-V1-economics仅补充资源侧资产定价与不可比口径的实例。仍需原始交易文件、容量分母、资产范围、毛净收入调节及监管结果，才能复算或比较。不能据此填入数据中心造价、收入或资本开支参数，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1622a09c64456996b2177dcb8e6e371eddf24b4f427da3ea56080405abde7ff7",
+        "source_report_sha256": "1f1517764ca6223b7ce9a4a5ba3e6d940c53dfa81fba0b830ae21e37b3a97251",
+        "request_sha256": "3d89d2fa86e17fe13579558cb92b2d120e639c08e4e84146b17bed3c5066e8da"
+      },
+      "object_mapping_check": "当前对象合同明确包含星座能源主体，且本项实际范围是该公司的发电资产剥离披露，因此仅选择actor:constellation-energy。发电厂交易不构成一座AI数据中心、园区发电设备或并网权利的直接证据，不映射root、电力系统、燃气轮机或许可对象。封存摘要关于主体ID缺失的判断不适用于当前对象合同。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "evidence_ids": [
+        "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:5:ev:0"
+      ],
+      "id": "adoption:review:b1983a4b80c4f88aea484cbf",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:constellation-energy"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "status": "adopted",
+      "text": "据所供归档网页响应中星座能源2026年8月6日业绩演示第13页，公司对其2029年收益与增长前自由现金流机会说明：机会可能不可相加，标注(2)的数值为示意，标注(3)的现金流口径排除资产出售税后收入；天然气容量因子机会标注(4)，假设按20美元平均基础spark spread计算1%—2%的容量因子变化。这些是公司前瞻性、非GAAP情景的计量限制，未经本次独立验证，不是实际收益或数据中心利用率；该页未限定具体项目地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T03:28:13+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。可加性、示意数值、现金流排除项及发电利用率情景假设，实质关联当前经济性工单的计量与可比性问题。连续脚注及完整第13页文字语境足够支持限定归因的部分采用；无A类触发条件。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.83,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a43c2e51c7fb3587e61fbd15c3816b566e52f8e965d50ec577fc314f17f7b9ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 51356,
+            "output_tokens": 3293,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.769,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "47af742b334ae11aa7974fc56d577281d5843fda9620eac3e2d3e2d972ba7074",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 50704,
+              "output_tokens": 663,
+              "reasoning_output_tokens": 372
+            }
+          }
+        },
+        "batch_id": "1622a09c64456996b2177dcb8e6e371eddf24b4f427da3ea56080405abde7ff7"
+      },
+      "source_candidate_ids": [
+        "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:5"
+      ],
+      "limitations": "排除资产出售税后收入的说明须随图中(3)标记使用，不能扩展为所有现金流数字的统一定义；示意性质也须保留对应标记。脚注未明确20美元spark spread的单位分母，不能自行补为美元/MWh；1%—2%不能擅自改写为百分点。未取得原始图表或计算模型，缺各机会依赖关系、假设实现概率及GAAP调节。",
+      "conflict_check": "既有经济性陈述未涉及星座能源这组现金流排除项或天然气容量因子情景，与其不存在同口径真实冲突或规范重复。封存摘要所称缺少可直接采用的模型参数，与本项仅采用情景限制一致。legacy筛选为空，不证明外部不存在反证；不覆盖现有结论。",
+      "gap_dependency_check": "对NODE-activity-V1-economics仅贡献公司情景口径和不可直接相加的限制。仍需原始图表、各脚注适用范围、完整非GAAP定义及调节、容量因子基准、spark spread单位和可复算模型。不能据此计算实际收益或数据中心运营指标，问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1622a09c64456996b2177dcb8e6e371eddf24b4f427da3ea56080405abde7ff7",
+        "source_report_sha256": "1f1517764ca6223b7ce9a4a5ba3e6d940c53dfa81fba0b830ae21e37b3a97251",
+        "request_sha256": "3d89d2fa86e17fe13579558cb92b2d120e639c08e4e84146b17bed3c5066e8da"
+      },
+      "object_mapping_check": "该主张是对象合同所列星座能源的公司财务情景及发电业务假设，仅映射actor:constellation-energy。天然气容量因子不确立园区燃气轮机或管道接入范围，财务情景也不确立AI数据中心整体对象；不沿用或扩展任何基础设施标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "evidence_ids": [
+        "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:6:ev:0"
+      ],
+      "id": "adoption:review:826b69c39d00a4d7a4706414",
+      "kind": "author_forecast",
+      "object_ids": [
+        "actor:constellation-energy"
+      ],
+      "question_ids": [
+        "M04-Q04",
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "status": "adopted",
+      "text": "据所供归档网页响应中星座能源2026年8月6日业绩演示第13页，公司在2029年机会表中列出一个1 GW核电PPA情景：相对PTC底价溢价20—50美元/MWh，对应增长前自由现金流增量1.25亿—3.25亿美元及调整后每股收益增量0.40—1.00美元。该表提示机会可能不可相加。这是公司对未来发电侧合同经济性的机会情景，未经本次独立验证，不是已签数据中心PPA的实际电价或已实现收益；未披露该情景的客户、具体电站或项目地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T03:28:13+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。核电PPA相对PTC底价的定价假设及发电侧财务敏感性，实质关联当前合同经济性工单；对M04-Q04仅贡献定价机制线索。连续表格行与周边列名、2029年标题及风险说明足以支持明确归因的部分预测采用，无敏感、真实冲突或替换条件。",
+        "workorder_ids": [
+          "Q-M04-Q04",
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 89.83,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a43c2e51c7fb3587e61fbd15c3816b566e52f8e965d50ec577fc314f17f7b9ba",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 51356,
+            "output_tokens": 3293,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.769,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "47af742b334ae11aa7974fc56d577281d5843fda9620eac3e2d3e2d972ba7074",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 50704,
+              "output_tokens": 663,
+              "reasoning_output_tokens": 372
+            }
+          }
+        },
+        "batch_id": "1622a09c64456996b2177dcb8e6e371eddf24b4f427da3ea56080405abde7ff7"
+      },
+      "source_candidate_ids": [
+        "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:6"
+      ],
+      "limitations": "20—50美元/MWh是相对PTC底价的溢价假设，不是完整购电单价，也不是价格变化时间序列。1 GW是核电PPA情景容量，不能解释为数据中心已投运IT容量。现金流与调整后每股收益属非GAAP前瞻性指标；缺合同期限、交付曲线、容量因子、税率、股数及复算公式。仅有归档文字响应，原始表格布局和原站字节未独立核验。",
+      "conflict_check": "既有PJM容量账单估计、居民成本保护政策、终端用户成本判断、自建效率与WPA评价，均未给出该核电PPA溢价情景，不构成同口径冲突或重复。发电侧收益机会与终端用户成本敏感性判断可以并存。所供legacy匹配为空，外部反证搜索尚未穷尽；不替换已采用陈述或电价参数。",
+      "gap_dependency_check": "对M04-Q04仅补充PTC底价与核电PPA溢价的假设关系，仍缺实际数据中心合同单价、同口径时间序列、居民成本转嫁及政治反弹证据。对NODE-activity-V1-economics仅提供公司财务敏感性情景，仍需正式合同、计量边界、完整假设、可复算模型及反证。两项问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "1622a09c64456996b2177dcb8e6e371eddf24b4f427da3ea56080405abde7ff7",
+        "source_report_sha256": "1f1517764ca6223b7ce9a4a5ba3e6d940c53dfa81fba0b830ae21e37b3a97251",
+        "request_sha256": "3d89d2fa86e17fe13579558cb92b2d120e639c08e4e84146b17bed3c5066e8da"
+      },
+      "object_mapping_check": "实际主张范围是星座能源的核电PPA财务机会情景，对象合同中有准确的actor:constellation-energy。该行未确立数据中心客户、并网协议、电力配额或园区设备；核电也不能映射为小型模块化反应堆。因此仅保留主体映射，问题关联不自动产生root或基础设施映射。"
     }
   ],
   "answers": [],
