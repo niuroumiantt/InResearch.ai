@@ -21,7 +21,6 @@ jobs:
       full: ${{ steps.select.outputs.full }}
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - id: select
@@ -30,13 +29,16 @@ jobs:
           CI_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
           CI_HEAD: ${{ github.sha }}
           CI_EVENT: ${{ github.event_name }}
-        run: python3 scripts/ci_scope.py plan --base "$CI_BASE" --head "$CI_HEAD" --event "$CI_EVENT"
+        run: |
+          if [[ "$CI_BASE" =~ ^[0-9a-f]{40}$ ]] && ! git cat-file -e "${CI_BASE}^{commit}" 2>/dev/null; then
+            git fetch --no-tags --depth=1 origin "$CI_BASE" || echo "::warning::Base fetch unavailable; selector will require full regression"
+          fi
+          python3 scripts/ci_scope.py plan --base "$CI_BASE" --head "$CI_HEAD" --event "$CI_EVENT"
   validate:
     needs: scope
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
@@ -48,7 +50,12 @@ jobs:
         if: needs.scope.outputs.full != 'true'
         env:
           CI_PLAN: ${{ needs.scope.outputs.plan }}
-        run: python3 scripts/ci_scope.py check
+          CI_BASE: ${{ fromJSON(needs.scope.outputs.plan).base }}
+        run: |
+          if ! git cat-file -e "${CI_BASE}^{commit}" 2>/dev/null; then
+            git fetch --no-tags --depth=1 origin "$CI_BASE"
+          fi
+          python3 scripts/ci_scope.py check
       - name: 现行规则与在册文件检查
         run: python3 manage.py governance --check
       - name: 口径与数据校验

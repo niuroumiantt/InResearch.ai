@@ -123,6 +123,18 @@ class CiScopeTests(unittest.TestCase):
         self.write('framework/current_state.json', json.dumps({'version':'2','entrypoints':['docs/a.md'], 'policies':[], 'operational_guides':[]}))
         self.assertEqual(self.plan()['mode'], 'full')
 
+    def test_shallow_checkout_with_exact_base_tree_keeps_complete_diff(self):
+        self.write('docs/a.md', 'new words')
+        head = self.commit()
+        checkout = self.root.parent/(self.root.name+'-shallow')
+        import shutil
+        self.addCleanup(lambda: shutil.rmtree(checkout, ignore_errors=True))
+        subprocess.run(['git','clone','-q','--depth=1',self.root.as_uri(),str(checkout)], check=True)
+        subprocess.run(['git','-C',str(checkout),'fetch','-q','--depth=1','origin',self.base], check=True)
+        plan = ci.select(checkout, self.base, head)
+        self.assertEqual(plan['mode'], 'content')
+        self.assertEqual(plan['files'], [{'status':'M','path':'docs/a.md'}])
+
     def test_scheduled_and_manual_runs_preserve_complete_full_suite(self):
         for event in ('schedule', 'workflow_dispatch'):
             plan = ci.select(self.root, '', '', event)
