@@ -722,9 +722,9 @@
     "docs/design/technical-atlas/TA-35/publication-independent-review-v1.json": "7fb95f0de86fce6e41c6ba7554ce2560fdcb13c902fad9a9f382a8854a6dee52",
     "web/themes/site-skin.css": "c01241a519e6a315d85dc4c55afd6d878bfdf8b3c1d3068cc98072496a13af14",
     "docs/CI.md": "bf4093f5ccdacb60bc18d581af82cb17e5736d4d3a43f7536a419075d1efe89c",
-    "scripts/ci_scope.py": "7267084ee694ffbcd4fc0c6c96873fad40dbf49d41f3149be3b055999192955d",
+    "scripts/ci_scope.py": "a39180834748ea2a1959ccb51700131d3bb0ad0ab44b277a91438d65dbe446f2",
     "scripts/ci-requirements.txt": "6e3f04ab88d8544d0f16e3695fbf0e60afcef49a2efc8ee5678a09f351cef2b6",
-    "tests/unit/test_ci_scope.py": "d4bd867397a8daca9fa69d91fbc65600fd404fc471dc1a19fcc056c3d519187e"
+    "tests/unit/test_ci_scope.py": "d9928c6455cdeaec251604a424c75dfbcfb375e96cb92a6639a1392cfdb27853"
   },
   "policies": [
     {
@@ -2502,7 +2502,8 @@
         "tests/unit/test_research_protected_merge.py::ProtectedMergeTests.test_protected_merge_keeps_tested_head_and_records_receipt",
         "tests/unit/test_ci_scope.py::CiScopeTests.test_nested_admin_page_and_unmapped_image_are_full",
         "tests/unit/test_ci_scope.py::CiScopeTests.test_shallow_checkout_with_exact_base_tree_keeps_complete_diff",
-        "tests/unit/test_ci_scope.py::CiScopeTests.test_full_mixed_change_still_checks_corrupt_content"
+        "tests/unit/test_ci_scope.py::CiScopeTests.test_full_mixed_change_still_checks_corrupt_content",
+        "tests/unit/test_ci_scope.py::CiScopeTests.test_svg_script_or_embedded_html_is_code_and_requires_full"
       ],
       "not_verified": "不判断研究语义正确性、图片审美或公网链接在线；未映射/间接 web 消费者按全套；自动化单元测试不冒充 GitHub 实际作业回执、管理员保护回读或线上发布。"
     }

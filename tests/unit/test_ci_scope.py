@@ -83,6 +83,14 @@ class CiScopeTests(unittest.TestCase):
         plan = self.plan()
         self.assertEqual((plan['mode'], plan['suites']), ('targeted', ['technical_atlas']))
 
+    def test_svg_script_or_embedded_html_is_code_and_requires_full(self):
+        for contents in ['<script>let x=1;</script>', '<foreignObject><p>text</p></foreignObject>',
+                         '<a href="javascript:alert(1)"><text>x</text></a>']:
+            self.write('docs/active.svg', '<svg xmlns="http://www.w3.org/2000/svg">'+contents+'</svg>')
+            plan = self.plan()
+            self.assertEqual(plan['mode'], 'full')
+            self.assertEqual(len(ci.check_content(self.root, plan)), 1)
+
     def test_ordinary_web_image_maps_direct_page_but_shared_consumer_is_full(self):
         self.write('web/pages/index.html', '<html><body><img src="/assets/logo.png"></body></html>')
         self.write('web/assets/logo.png', b'old')

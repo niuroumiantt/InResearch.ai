@@ -91,6 +91,13 @@ def metadata_only(path, before, after, changed):
     return a == b
 
 
+def active_svg(raw):
+    from xml.etree import ElementTree as ET
+    return any(e.tag.split('}')[-1].lower() in {'script', 'foreignobject'}
+               or any(k.lower().startswith('on') or str(v).strip().lower().startswith('javascript:')
+                      for k, v in e.attrib.items()) for e in ET.fromstring(raw).iter())
+
+
 def select(root, base, head, event='pull_request', force=False):
     def full(reason, changes=()):
         return {'mode': 'full', 'reason': reason, 'base': base, 'head': head,
@@ -131,6 +138,8 @@ def select(root, base, head, event='pull_request', force=False):
             if suffix == '.md' and (path.startswith(('docs/', 'research/', 'outputs/')) or path == 'README.md'):
                 continue
             if suffix in IMAGES and path.startswith(('docs/', 'research/', 'outputs/', 'web/assets/')):
+                if suffix == '.svg' and active_svg(blob(root, head, path)):
+                    return full('SVG contains active code or embedded HTML: '+path, changes)
                 if path.startswith('web/assets/technical-atlas/'):
                     suites.add('technical_atlas')
                 elif path.startswith(('web/assets/models/', 'web/assets/textures/')):
@@ -159,7 +168,8 @@ def select(root, base, head, event='pull_request', force=False):
             return full('implementation, structure, data, dependency or unknown path: '+path, changes)
         return {'mode': 'targeted' if suites else 'content', 'reason': 'all changed paths have bounded content impact',
                 'base': base, 'head': head, 'files': changes, 'suites': sorted(suites), 'storage': False}
-    except (subprocess.CalledProcessError, UnicodeError, ValueError, KeyError, IndexError, TypeError):
+    except (subprocess.CalledProcessError, UnicodeError, ValueError, KeyError, IndexError, TypeError,
+            __import__('xml.etree.ElementTree', fromlist=['ParseError']).ParseError):
         return full('comparison or classification failed; full regression required')
 
 
@@ -186,9 +196,8 @@ def check_content(root, plan):
             tree = ET.fromstring(raw)
             if tree.tag.split('}')[-1] != 'svg':
                 raise ValueError('invalid SVG: '+path)
-            for e in tree.iter():
-                if e.tag.split('}')[-1].lower() in {'script', 'foreignobject'} or any(k.lower().startswith('on') for k in e.attrib):
-                    raise ValueError('active SVG requires code review/full CI: '+path)
+            if plan['mode'] != 'full' and active_svg(raw):
+                raise ValueError('active SVG was incorrectly classified as content: '+path)
         elif suffix in IMAGES:
             with Image.open(root/path) as image:
                 image.verify()
