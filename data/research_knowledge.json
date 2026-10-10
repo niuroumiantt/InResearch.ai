@@ -31997,6 +31997,92 @@
         },
         "batch_id": "20405df8a7f9b8e380deae4d2ab8c0497bcc31f75d554b998c476bdede3df998"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "67dd55ed5b9b0501132aea4173044971f3939fe9f20d6942949f6c9afffad23c",
+      "document_id": "doc-06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "id": "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:6:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:nebius",
+        "system:network"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-network-switch-performance"
+      ],
+      "quote": "“At gigascale, performance comes down to coordination: keeping every GPU in lockstep so one slow link doesn’t stall an entire job,” Laurelle Roseman, VP of global partnerships at Nebius, noted.",
+      "reading_revision_id": "rev-c1dd79392e0643d18d6cc2cdee772393",
+      "source_sha256": "06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:58:27+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续原文和充分相邻语境支持有明确归属的定性主张，实质补充当前性能工作单中的慢链路与同步作业失效机制线索。未发现敏感、真实冲突或替换条件，符合 B 类局部采用要求；不将局部机制线索作为完整测量结论。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.001,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2ebc2e098cd743339a04bc06b62b16e17e51ba278927741ccb1a90973c7aeb05",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 61865,
+            "output_tokens": 1228,
+            "reasoning_output_tokens": 179
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.966,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a87843b23f66de7e220b643009a20c46c4cb3f7e267cf66183a792429306d6ea",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 62492,
+              "output_tokens": 432,
+              "reasoning_output_tokens": 160
+            }
+          }
+        },
+        "batch_id": "2592a0d9735684f02e90cf783c97426663bf0fa9f47a063129e209589ffde1a4"
+      }
     }
   ],
   "statements": [
@@ -62324,6 +62410,107 @@
         "request_sha256": "3070c6a012243d6b4052ced0e6322ac1957cf8dd76421dba3f274d8685d33033"
       },
       "object_mapping_check": "原文明确讨论数据中心DC供电架构中的半导体电力转换、稳压及故障管理，属于电力系统。功能跨越转换与配电，未定位某一变电设备、UPS或板级电源，因此采用system:power。这里的电力控制不等于DCIM/BMS，也不继承root标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "evidence_ids": [
+        "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:6:ev:0"
+      ],
+      "id": "adoption:review:fd23157401d5ddd79f356ee7",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:nebius",
+        "system:network"
+      ],
+      "question_ids": [
+        "OBJ-network-switch-performance"
+      ],
+      "reading_revision_id": "rev-c1dd79392e0643d18d6cc2cdee772393",
+      "status": "adopted",
+      "text": "Ben Wodecki 在 DCD 刊载、注明原载 SDxCentral 的2026年7月22日报道中，引用 Nebius 全球合作伙伴副总裁 Laurelle Roseman 的观点：在她所称的“gigascale”规模下，性能取决于协调，需要保持各 GPU 同步，避免单个慢链路阻塞整个作业。这是运营商代表在 Spectrum-6 网络讨论中的定性风险描述，未获当前独立测试或部署验证；原文未限定具体地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:58:27+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。连续原文和充分相邻语境支持有明确归属的定性主张，实质补充当前性能工作单中的慢链路与同步作业失效机制线索。未发现敏感、真实冲突或替换条件，符合 B 类局部采用要求；不将局部机制线索作为完整测量结论。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 42.001,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "2ebc2e098cd743339a04bc06b62b16e17e51ba278927741ccb1a90973c7aeb05",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 61865,
+            "output_tokens": 1228,
+            "reasoning_output_tokens": 179
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.966,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a87843b23f66de7e220b643009a20c46c4cb3f7e267cf66183a792429306d6ea",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 62492,
+              "output_tokens": 432,
+              "reasoning_output_tokens": 160
+            }
+          }
+        },
+        "batch_id": "2592a0d9735684f02e90cf783c97426663bf0fa9f47a063129e209589ffde1a4"
+      },
+      "source_candidate_ids": [
+        "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:6"
+      ],
+      "limitations": "“gigascale”没有量化定义，不能解释为电力 GW 或确定的 GPU 数量。未给出作业类型、同步机制、网络拓扑、链路速率、拥塞阈值、测试方法、响应时间、故障注入条件或反证，不能推广为所有 GPU 作业都会被单个慢链路阻塞。相邻的早期引入表述不证明具体站点、配置、验收阶段或实际性能，也不能据此更新 GPU 利用率。",
+      "conflict_check": "既有 adoption:review:f55e0df1018832a893394e3f 描述流控防拥塞并绕开慢链路，本项描述同步作业受慢链路牵制的风险，二者互补且不构成整体重复。既有 UEC 可选实现、包裁剪、CPO 功耗及耦合热环境陈述涉及不同机制或条件，没有同口径反证。所供 legacy 的 Nebius GPU 促销价格、资本开支、并网容量预期及 Vineland 项目记录不能验证或反驳本项，也不能用于指定其部署地点。核查限于所供材料，未发现真实冲突。",
+      "gap_dependency_check": "OBJ-network-switch-performance 仅获得可进一步检验的网络慢链路与 GPU 同步作业关系。仍需具体适用对象、带工况测量、可靠性数据、反证及结论失效边界；该问题保持开放。不能把相邻厂商性能数字当作本项机制的测试结果，不改变骨架、既有结论、工作单状态或模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2592a0d9735684f02e90cf783c97426663bf0fa9f47a063129e209589ffde1a4",
+        "source_report_sha256": "49234b34d34adf13daa57f436ed6c193e12931c04bf104a59e8b8184c698499d",
+        "request_sha256": "98c1ffaf1f27d13356661c24cf70c5a5052b5572da98e7fb66955582fe4d48d0"
+      },
+      "object_mapping_check": "Nebius 是明确署名发言人的所属运营商，对应 actor:nebius。主张描述数据中心 GPU 作业所依赖的网络 fabric 整体协调与慢链路风险，实际范围对应 system:it 下的 system:network。虽然相邻语境点名 Spectrum-6，但本项没有把阻塞机制归于具体交换机部件，故不继承 part:network-switch 标签；GPU 仅为同步作业参与者，也不据此映射 GPU 产品性能。所选证据统一采用这一主张级范围，问题匹配仍保留。"
     }
   ],
   "answers": [],
