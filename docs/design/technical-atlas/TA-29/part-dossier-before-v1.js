@@ -18,7 +18,6 @@ function dossierLink(text, href) {
 export function createPartDossier({el, view, BOM, companies: CN,
   prices, indicators: INDS, statusNames: SN, statusColors: SBADGE, inspector, atlasHost = el, atlasViewFor = () => null, researchNodeFor = p => "part:" + p.id}) {
 return function showDossier(p) {
-  inspector.hide();
   el.replaceChildren();
   if (atlasHost !== el) atlasHost.replaceChildren();
   el.dataset.partId = p.id;
@@ -42,7 +41,7 @@ return function showDossier(p) {
   mountNodeResearch(research, researchNodeFor(p));
   const slot = dossierNode("div", undefined, "insp");
   slot.id = "inspSlot"; slot.style.display = "none";
-  slot.append(dossierNode("div", "独立三维预览 · 拖动旋转；可放大与单独导出", "ihint")); el.append(slot);
+  slot.append(dossierNode("div", "概念部件预览 · 拖动旋转", "ihint")); el.append(slot);
   el.append(dossierNode("div", p.desc || "说明待补充"));
   const hasAtlas = mountTechnicalAtlas(atlasHost, p.id, {view:atlasViewFor(p)});
   if (atlasHost !== el) atlasHost.hidden = !hasAtlas;
@@ -82,7 +81,7 @@ return function showDossier(p) {
   });
   if (!n) metrics.append(dossierNode("div", "当前没有量化数据。非数字陈述与未知见节点研究。", "meta"));
   el.append(metrics);
-  if (inspector.show(p.id)) { slot.style.display = "block"; slot.insertBefore(inspector.canvas, slot.firstChild); if (inspector.controls) slot.append(inspector.controls); }
+  if (inspector.show(p.id)) { slot.style.display = "block"; slot.insertBefore(inspector.canvas, slot.firstChild); }
   el.style.display = "block";
 }
 

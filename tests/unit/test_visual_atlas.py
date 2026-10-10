@@ -68,9 +68,13 @@ class VisualAtlasTests(unittest.TestCase):
         for row in rows:
             if row['status']=='review':
                 evidence=json.loads((ROOT/row['source_review_record']).read_text())
-                self.assertEqual(evidence['figure_id'],row['id']);self.assertEqual(evidence['decision'],'source_ready_public_pending');self.assertTrue(evidence['original_viewed'])
-                self.assertTrue(evidence['artifacts'])
-                for artifact in evidence['artifacts']:self.assertEqual(hashlib.sha256((ROOT/artifact['file']).read_bytes()).hexdigest(),artifact['sha256'])
+                self.assertEqual(evidence['figure_id'],row['id']);self.assertEqual(evidence['decision'],'source_ready_public_pending')
+                if row['kind']=='shared':
+                    self.assertTrue(evidence['source_reviewed']);self.assertTrue(evidence['reviewed_sources'])
+                    for artifact in evidence['reviewed_sources']:self.assertEqual(hashlib.sha256((ROOT/artifact['file']).read_bytes()).hexdigest(),artifact['sha256'])
+                else:
+                    self.assertTrue(evidence['original_viewed']);self.assertTrue(evidence['artifacts'])
+                    for artifact in evidence['artifacts']:self.assertEqual(hashlib.sha256((ROOT/artifact['file']).read_bytes()).hexdigest(),artifact['sha256'])
         self.assertEqual(self.queue['primary_plan']['published'],sum(r['status']=='published'for r in rows if r['id']in self.queue['primary_plan']['items']))
 
     def test_completed_illustrations_bind_master_labels_and_retained_baseline(self):
@@ -109,7 +113,7 @@ class VisualAtlasTests(unittest.TestCase):
             receipt = json.loads((ROOT / row['acceptance_record']).read_text())
             self.assertEqual(receipt['figure_id'], row['id'])
             self.assertEqual(receipt['style_id'], self.queue['style_id'])
-            self.assertEqual(receipt['scope'], 'shared_render_and_export_only')
+            self.assertIn(receipt['scope'], ('shared_render_and_export_only', 'shared_part_preview_only'))
             self.assertFalse(receipt['individual_geometry_migration_complete'])
             self.assertFalse(receipt['export']['is_static_master_or_cad'])
             self.assertEqual(receipt['export']['pixels'], 'actual_current_canvas')
@@ -119,5 +123,12 @@ class VisualAtlasTests(unittest.TestCase):
             for artifact in receipt['implementation_at_review']:
                 self.assertTrue((ROOT / artifact['file']).is_file())
                 self.assertRegex(artifact['sha256'], r'^[a-f0-9]{64}$')
-            self.assertIn('tests/scene_atlas.cjs', receipt['browser_checks'])
+            if receipt['scope'] == 'shared_part_preview_only':
+                self.assertEqual(row['id'], 'TA-29')
+                self.assertIn('tests/shared_part_preview.cjs', receipt['browser_checks'])
+                self.assertTrue(receipt['geometry_and_original_art_conserved'])
+                self.assertEqual(receipt['publication_status'], 'published')
+                self.assertTrue(receipt['actual_public_receipt'])
+            else:
+                self.assertIn('tests/scene_atlas.cjs', receipt['browser_checks'])
             self.assertTrue(receipt['remaining_work'])
