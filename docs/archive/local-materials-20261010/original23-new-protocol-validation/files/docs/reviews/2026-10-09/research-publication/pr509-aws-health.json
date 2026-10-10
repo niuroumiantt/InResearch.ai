@@ -1,0 +1,42 @@
+{
+  "checked_at": "2026-10-09T11:36:18.324210+00:00",
+  "required_merge": "3901d9daf280e8ec98ef24cd5008ea5cb99bfab3",
+  "source_head": "3901d9daf280e8ec98ef24cd5008ea5cb99bfab3",
+  "applied": "3901d9daf280e8ec98ef24cd5008ea5cb99bfab3 sha256:5242ecf5efd4c2f3c8a2610573a1fc1eb002fb8a9a02f4ea0f287b1cea6d7a0f",
+  "deploy_status": "HEALTHY: 3901d9daf280e8ec98ef24cd5008ea5cb99bfab3",
+  "container": {
+    "running": true,
+    "health": "healthy",
+    "image_name": "inresearch-app:3901d9daf280e8ec98ef24cd5008ea5cb99bfab3",
+    "image_id": "sha256:5242ecf5efd4c2f3c8a2610573a1fc1eb002fb8a9a02f4ea0f287b1cea6d7a0f"
+  },
+  "framework_version": "2026.10.09.41",
+  "file_checks": {
+    "framework/current_state.json": {
+      "sha256": "bc34b8114bee04d7ca3c67c84363ac6eea01d33edaefc18982be5982a6eaae97",
+      "expected": "bc34b8114bee04d7ca3c67c84363ac6eea01d33edaefc18982be5982a6eaae97",
+      "matches": true
+    },
+    "framework/verification_contract.json": {
+      "sha256": "6ef6dcba6bf61722ba6ee0d5c713640eb028edcc2188d3abe1bff9e534ea16ae",
+      "expected": "6ef6dcba6bf61722ba6ee0d5c713640eb028edcc2188d3abe1bff9e534ea16ae",
+      "matches": true
+    },
+    "data/research_knowledge.json": {
+      "sha256": "c34ec7a50f20fa31da056aaa26b4fdb86350bf35b8fd6101846d853526b2450f",
+      "expected": "c34ec7a50f20fa31da056aaa26b4fdb86350bf35b8fd6101846d853526b2450f",
+      "matches": true
+    },
+    "docs/reviews/2026-10-09/pr509-root-semantic-review.json": {
+      "sha256": "22d7203977836f2ff359e46f61f4adc17765024ee7a7de81e562df138e667f4a",
+      "expected": "22d7203977836f2ff359e46f61f4adc17765024ee7a7de81e562df138e667f4a",
+      "matches": true
+    }
+  },
+  "all_file_checks_match": true,
+  "public_health": {
+    "status": 200,
+    "ok": true
+  },
+  "operation": "read-only source/applied/container/current document hashes and external HTTPS health; existing timer natural deploy, no manual service/source/queue/config mutation"
+}
