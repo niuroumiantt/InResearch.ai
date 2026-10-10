@@ -32,7 +32,7 @@ const base = baseURL.origin;
 const scenario = process.argv[2] || 'all';
 assert.ok(['all', 'views', 'assembly'].includes(scenario), 'Use views, assembly or all');
 const root = process.env.TA19_SOURCE_ROOT || path.resolve(__dirname, '..');
-const out = process.env.REVIEW_SCREENSHOTS || path.join('/private/tmp', 'ta19-campus-public-' + Date.now());
+const out = process.env.REVIEW_SCREENSHOTS || path.join(require('node:os').tmpdir(), 'ta19-campus-public-' + Date.now());
 fs.mkdirSync(out, {recursive:true});
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const assetNames = ['campus-exploded-v1.svg', 'campus-exploded-v1.png'];
