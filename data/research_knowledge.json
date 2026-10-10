@@ -5093,6 +5093,59 @@
       "status": "candidate",
       "stored_path": "originals/cc/cc4e669d9a74b1bcd0805baa8c4aa1576dec399c65d91f3b26c0023222d1484c/dcd-cc4e669d9a74b1bc-Siemens and FuelCell Energy partner on fuel cell power for data c.html",
       "title": "Siemens and FuelCell Energy partner on fuel cell power for data centers and other industrial offtakers"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "coverage": {
+        "characters_read": 10647,
+        "characters_total": 10647,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "id": "doc-bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "library_path": "library/by-node/site-land/2025_DCD_Damac’s Hyperco targets data center development in Espo__bcd589d4844aef65.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "root",
+        "site:land",
+        "site:permits",
+        "system:facility"
+      ],
+      "question_ids": [],
+      "read_status": "complete",
+      "reading_revision_id": "rev-b144ef49eaf8430a93996fe00c9ce86f",
+      "report_sha256": "48c8aceedc74bf03e20177f300b11ed9f61b1993dd5d031ff0bb9e39ea9705f2",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+        "url": "https://www.datacenterdynamics.com/en/news/damacs-hyperco-targets-data-center-development-in-espoo-finland/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/damacs-hyperco-targets-data-center-development-in-espoo-finland/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/bc/bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4/dcd-bcd589d4844aef65-Damac-s Hyperco targets data center development in Espoo- Finland.html",
+      "title": "Damac’s Hyperco targets data center development in Espoo, Finland"
     }
   ],
   "evidence": [
@@ -38217,6 +38270,170 @@
           }
         },
         "batch_id": "121e5f746bdd8651e9c2116e46758a37333de718b0a6f05ab048fcf4ba77a098"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8ecb5bbc46e8abc6383de44ed2482657bd0e99d30abfa163689016d3e8ba162f",
+      "document_id": "doc-bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "id": "rev-b144ef49eaf8430a93996fe00c9ce86f:chunk:1:claim:3:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "actor:bytedance"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "It was only in October 2024  [link: October 2024 — https://www.datacenterdynamics.com/en/news/tiktok-migrates-european-data-to-norwegian-data-center/] that the company officially began moving its European data to the campus.",
+      "reading_revision_id": "rev-b144ef49eaf8430a93996fe00c9ce86f",
+      "source_sha256": "bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:52:16+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5，评分5。连续完整原句及相邻ByteDance、Project Clover、挪威园区语境充分，对当前存储与数据服务地域布局工作单提供实际迁移开始节点这一实质但有限的贡献。缺少系统配置证据不妨碍局部采用；未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类归因采用条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-workload-storage-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 85.283,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "23bc37b0a5c94994e103dc2efda86f0352a3b8360cd80305acdc1532d7301f7d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60255,
+            "output_tokens": 2842,
+            "reasoning_output_tokens": 958
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.658,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "4f871c0c39d3d040a856bfd7ea7f9f90f5cfc88bffd9bf7b93fac92dac9e3418",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 60325,
+              "output_tokens": 490,
+              "reasoning_output_tokens": 229
+            }
+          }
+        },
+        "batch_id": "6d01d208bfb9aef47aaaa0d76488d39e9f7ebfd6e9f6948c4ae89f719a477664"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8ecb5bbc46e8abc6383de44ed2482657bd0e99d30abfa163689016d3e8ba162f",
+      "document_id": "doc-bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "id": "rev-b144ef49eaf8430a93996fe00c9ce86f:chunk:1:claim:4:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "TikTok also has a data center in Ireland  [link: Ireland — https://www.datacenterdynamics.com/en/news/tiktok-opens-data-center-in-dublin-ireland/] , which is part of Project Clover and came online in 2023.",
+      "reading_revision_id": "rev-b144ef49eaf8430a93996fe00c9ce86f",
+      "source_sha256": "bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:52:16+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5，评分5。连续完整原句明确国家、Project Clover归属及2023年上线节点，对当前区域投运、在建和规划分布工作单提供一个上线项目的实质性个案线索。未披露容量限制其贡献范围，但不要求局部证据独立回答整个问题。未发现敏感材料、真实冲突、拟替换或其他A条件，按B类归因采用，问题保持开放。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 85.283,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "23bc37b0a5c94994e103dc2efda86f0352a3b8360cd80305acdc1532d7301f7d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60255,
+            "output_tokens": 2842,
+            "reasoning_output_tokens": 958
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.658,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "4f871c0c39d3d040a856bfd7ea7f9f90f5cfc88bffd9bf7b93fac92dac9e3418",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 60325,
+              "output_tokens": 490,
+              "reasoning_output_tokens": 229
+            }
+          }
+        },
+        "batch_id": "6d01d208bfb9aef47aaaa0d76488d39e9f7ebfd6e9f6948c4ae89f719a477664"
       }
     }
   ],
@@ -74416,6 +74633,204 @@
         "request_sha256": "02d793e19b2c8a51b4c2e2996017b6528542a39f02ba5656fe37c0f740b428e3"
       },
       "object_mapping_check": "独立依据原文明确的专为AI设计的数据中心选择root，映射范围仅为AI数据中心整体这一设施对象类型；不将跨项目增长判断解释为某一座设施的容量或状态。原文没有识别内部IT、电力、计算系统或具体部件，卫星跟踪也不是数据中心DCIM/BMS控制系统，因此不增加系统、部件或场址权利映射。所选证据统一使用此主张范围，不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "evidence_ids": [
+        "rev-b144ef49eaf8430a93996fe00c9ce86f:chunk:1:claim:3:ev:0"
+      ],
+      "id": "adoption:review:4acf84b09677413299464390",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:bytedance"
+      ],
+      "question_ids": [
+        "NODE-workload-storage-placement"
+      ],
+      "reading_revision_id": "rev-b144ef49eaf8430a93996fe00c9ce86f",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年6月3日的报道中，在ByteDance（TikTok母公司）及Project Clover的语境下称，TikTok于2024年10月正式开始将其欧洲数据迁入挪威Green Mountain的OSL2-Hamar园区。这是来源报道的数据迁移开始节点，不代表迁移已经完成，也不构成对当前数据部署或园区状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:52:16+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5，评分5。连续完整原句及相邻ByteDance、Project Clover、挪威园区语境充分，对当前存储与数据服务地域布局工作单提供实际迁移开始节点这一实质但有限的贡献。缺少系统配置证据不妨碍局部采用；未发现敏感材料、真实冲突、拟替换或其他A条件，符合B类归因采用条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-NODE-workload-storage-placement"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 85.283,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "23bc37b0a5c94994e103dc2efda86f0352a3b8360cd80305acdc1532d7301f7d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60255,
+            "output_tokens": 2842,
+            "reasoning_output_tokens": 958
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.658,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "4f871c0c39d3d040a856bfd7ea7f9f90f5cfc88bffd9bf7b93fac92dac9e3418",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 60325,
+              "output_tokens": 490,
+              "reasoning_output_tokens": 229
+            }
+          }
+        },
+        "batch_id": "6d01d208bfb9aef47aaaa0d76488d39e9f7ebfd6e9f6948c4ae89f719a477664"
+      },
+      "source_candidate_ids": [
+        "rev-b144ef49eaf8430a93996fe00c9ce86f:chunk:1:claim:3"
+      ],
+      "limitations": "报道为二手来源，所链接的迁移报道及公司原始披露未在本包中独立核验。未说明迁移数据量、完成时间、存储架构、调度、利用率、训练或推理用途及与其他负载的共存方式。迁移开始不等于园区首次投运、全部容量可用或全部欧洲数据完成本地化；不能由此前建设和计划上线节点推导许可、并网等待或建设耗时。",
+      "conflict_check": "所供已采用的法国、沙特及Bitdeer项目陈述、IEA地域分布陈述和CBRE美国在建统计涉及不同主体、地域、阶段或口径，未形成同范围冲突或重复。legacy中的中国秦淮数据ByteDance客户项目及爱尔兰Google、Microsoft项目属于其他场址；爱尔兰全国能耗、电价和匿名冷却案例不能反证挪威迁移节点。未发现相同主张的规范记录；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "NODE-workload-storage-placement仅获得欧洲数据向挪威部署的开始节点。仍需原始迁移公告、迁移范围及完成情况、地域选择约束、存储与数据服务配置、调度和利用率、负载分类及共存证据，才能解释系统配置约束。问题保持开放；不更新模型输入、推导工程耗时或汇总容量。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "6d01d208bfb9aef47aaaa0d76488d39e9f7ebfd6e9f6948c4ae89f719a477664",
+        "source_report_sha256": "48c8aceedc74bf03e20177f300b11ed9f61b1993dd5d031ff0bb9e39ea9705f2",
+        "request_sha256": "96ec1af341f1c882a1b0d410d37db770ced2870df6283efb5461f2030ebd9007"
+      },
+      "object_mapping_check": "独立依据相邻原文选择actor:bytedance：正文明确ByteDance为TikTok母公司及Project Clover发起方，随后以the company衔接园区使用和迁移叙述。映射限定于这一来源明确的参与方语境，不认定其为园区运营商或法律合同主体。原文未确立该园区为一座AI数据中心，故不选root；数据迁移也未指认持久存储系统、网络设备、土地、许可或并网权利，不继承Reader标签。所选证据统一采用此主张级对象范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcd589d4844aef65790e599d2d0a7653eb94615665ce2f332dd9341143bdeab4",
+      "evidence_ids": [
+        "rev-b144ef49eaf8430a93996fe00c9ce86f:chunk:1:claim:4:ev:0"
+      ],
+      "id": "adoption:review:774541648a58f602841c08cf",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-b144ef49eaf8430a93996fe00c9ce86f",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年6月3日的报道中称，TikTok在爱尔兰另有一座属于Project Clover的数据中心，该中心于2023年上线。这是来源报道的历史上线及区域布局线索，未披露容量，也不构成对项目当前状态或容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:52:16+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "维持原始重要性5，评分5。连续完整原句明确国家、Project Clover归属及2023年上线节点，对当前区域投运、在建和规划分布工作单提供一个上线项目的实质性个案线索。未披露容量限制其贡献范围，但不要求局部证据独立回答整个问题。未发现敏感材料、真实冲突、拟替换或其他A条件，按B类归因采用，问题保持开放。",
+        "workorder_ids": [
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 85.283,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "23bc37b0a5c94994e103dc2efda86f0352a3b8360cd80305acdc1532d7301f7d",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 60255,
+            "output_tokens": 2842,
+            "reasoning_output_tokens": 958
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.658,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "4f871c0c39d3d040a856bfd7ea7f9f90f5cfc88bffd9bf7b93fac92dac9e3418",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 60325,
+              "output_tokens": 490,
+              "reasoning_output_tokens": 229
+            }
+          }
+        },
+        "batch_id": "6d01d208bfb9aef47aaaa0d76488d39e9f7ebfd6e9f6948c4ae89f719a477664"
+      },
+      "source_candidate_ids": [
+        "rev-b144ef49eaf8430a93996fe00c9ce86f:chunk:1:claim:4"
+      ],
+      "limitations": "报道为二手来源，所链接的上线报道及公司原始披露未在本包中独立核验。所选原句未给出具体场址、上线月份、容量及口径、分期、开发商或运营商，也未说明AI负载用途。不能由came online认定特定验收等级、满负荷运营或当前状态；不能将单个上线个案换算为投运MW或GW。",
+      "conflict_check": "所供已采用陈述未包含同一TikTok爱尔兰上线主张。legacy中的Google Dublin和Microsoft Dublin记录主体不同；匿名华为及EXCOOL爱尔兰案例没有证据可与该中心合并。爱尔兰全国数据中心用电量及占比、预测和电价属于不同统计对象与单位，不构成项目上线时间的反证或重复。未发现可指定的既有规范重复记录；检查限于所供材料，不覆盖或替换已有结论。",
+      "gap_dependency_check": "M05-Q01仅获得爱尔兰一个历史上线项目的布局线索，仍缺项目唯一标识、原始上线证明、同口径容量、各区域分阶段清单及增长时间序列。不能回答区域容量分布或俄亥俄、印第安纳、中东的崛起速度。问题保持开放；不汇总GW、不指定漏斗等级或更新模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "6d01d208bfb9aef47aaaa0d76488d39e9f7ebfd6e9f6948c4ae89f719a477664",
+        "source_report_sha256": "48c8aceedc74bf03e20177f300b11ed9f61b1993dd5d031ff0bb9e39ea9705f2",
+        "request_sha256": "96ec1af341f1c882a1b0d410d37db770ced2870df6283efb5461f2030ebd9007"
+      },
+      "object_mapping_check": "独立复核后保留空映射：本条明确主语为TikTok，合同没有TikTok主体ID；相邻ByteDance母公司关系不能自动改写该中心的持有、开发或运营主体。原句未确立AI用途，不能对应限定为一座AI数据中心的root；上线及国家信息也未指认设施内部系统、部件或场址权利。所选证据统一采用空对象范围，保留有效的M05-Q01关联，不继承Reader标签。"
     }
   ],
   "answers": [],
