@@ -3179,6 +3179,83 @@
       "status": "candidate",
       "stored_path": "originals/bc/bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b/How Much Do GPU Clusters Really Cost_ (1).pdf",
       "title": "How Much Do GPU Clusters Really Cost?"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "coverage": {
+        "characters_read": 58342,
+        "characters_total": 58342,
+        "chunks_read": 24,
+        "chunks_total": 24,
+        "complete": true,
+        "full_document_complete": false,
+        "native_text_pages_read": 24,
+        "nul_character_pages": [],
+        "ocr_calls": 0,
+        "pages_read": 24,
+        "pages_total": 24,
+        "replacement_character_pages": [],
+        "scope": "pdf_native_text_only",
+        "skipped_image_pages": [],
+        "text_layer_empty_pages": [],
+        "visual_review_performed": false
+      },
+      "doc_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "library_path": "library/by-node/actor-alphabet-google/2026_Alphabet_Alphabet Q1 2026 Earnings Call__928dcbfdb0523301.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:amazon",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "actor:meta",
+        "part:ai-asic",
+        "part:cpu",
+        "part:gpu",
+        "part:rack-system",
+        "system:compute",
+        "system:control",
+        "system:it",
+        "system:network"
+      ],
+      "question_ids": [
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-definition",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "Q-SCOPE-arch-blackwell",
+        "Q-SCOPE-arch-hopper"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+      "source_provenance": {
+        "batch": "us-datacenter-power-20261009-v3",
+        "input_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+        "role": "downloaded_original",
+        "sidecar_sha256": "2f5df074d2368e7602e491855da59af9523e9f9976a5ed924733f2402a7b5ea6",
+        "source_id": "alphabet-q1",
+        "url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Apr/29/2026_Q1_Earnings_Transcript.pdf",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://s206.q4cdn.com/479360582/files/doc_events/2026/Apr/29/2026_Q1_Earnings_Transcript.pdf",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/92/928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b/alphabet-q1.pdf",
+      "title": "Alphabet Q1 2026 Earnings Call"
     }
   ],
   "evidence": [
@@ -17165,6 +17242,494 @@
           }
         },
         "batch_id": "c9a152cc71fb169cd7643dcd1c87769906985dc34c7e84753b564bf4dc8482ce"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ab1e27edd63c4e594423d8b5c68ed71f8bad58a1e1a5040c0f0f00ff269078de",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:3:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "Nano Banana 2 reached one billion images in nearly half the time of Nano Banana 1.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，连续引文与上下文充分，无已识别A条件。累计输出量达标速度实质关联当前模型使用量问题，也为推理实际负载问题提供有限的输出节奏线索；可以采用为局部作者主张，不能回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M03-Q06",
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ab1e27edd63c4e594423d8b5c68ed71f8bad58a1e1a5040c0f0f00ff269078de",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:4:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "And Veo 3.1 Lite is our most cost efficient video model to date.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，无已识别A条件。该陈述直接涉及模型成本效率，实质匹配当前模型经济性与推理经济性工作单；连续原文支持有限的定性采用，不能据此完成成本计算或需求推导。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-economics",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ab1e27edd63c4e594423d8b5c68ed71f8bad58a1e1a5040c0f0f00ff269078de",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:5:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "It's been​\nO\n​downloaded over 50 million times in just a few weeks. In fact, our open models have​\n ​now been downloaded over 500 million times.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，无已识别A条件。下载量是与当前模型与权重产品采用问题实质相关的有限代理指标。连续引文和指代上下文支持作者归属明确的采用，不足以证明采用率或经济效果。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ab1e27edd63c4e594423d8b5c68ed71f8bad58a1e1a5040c0f0f00ff269078de",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:6:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "with Antigravity, we are shifting to truly agentic workflows. Our engineers​\nF\n​are now orchestrating fully autonomous digital task forces, and building at a faster​\n ​velocity.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，无已识别A条件。公司内部代理应用及构建速度评价与当前应用和Agent经济性工作单有实质关系，可贡献局部定性证据。Alphabet自身是AI模型及平台提供者，本项不满足M03-Q05明确要求的非AI实验室企业侧需求增长证据，故不关联该问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ab1e27edd63c4e594423d8b5c68ed71f8bad58a1e1a5040c0f0f00ff269078de",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:7:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "It's now in the Gemini app, AI Mode and Gemini in​\n ​Chrome. Early traction has been good, and this month we integrated Nano Banana 2 to​\n  ​make personalized image creation possible in the Gemini app.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，无已识别A条件。所述入口及个性化图像能力直接匹配当前应用与终端需求边界工作单。虽封存摘要将产品内容归为背景，当前工作单提供了实质采用关系；仅采用有来源归属的局部能力描述。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ab1e27edd63c4e594423d8b5c68ed71f8bad58a1e1a5040c0f0f00ff269078de",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "id": "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:8:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "recently got its most significant upgrade in over a decade with Gemini. Users can​\nM\n​now have a conversation with Maps and get more personalized suggestions and​\n ​intuitive directions.",
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "source_sha256": "928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，无已识别A条件。对话、个性化建议和路线指引是Maps应用提供的具体能力，实质匹配当前应用与终端需求边界工作单。可作为局部作者主张采用，不能完成整体交易边界判断。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
       }
     }
   ],
@@ -33686,6 +34251,592 @@
         "batch_id": "c9a152cc71fb169cd7643dcd1c87769906985dc34c7e84753b564bf4dc8482ce",
         "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
         "request_sha256": "a1a11185d4119cd1fb15f0d04caa48aff3024172fe11b1882cbae019a2d2e965"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:3:ev:0"
+      ],
+      "id": "adoption:review:ca0a63df4e6371a5259a6ad2",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M03-Q06",
+        "NODE-demand-D2-economics"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet／谷歌管理层在《Alphabet Q1 2026 Earnings Call》中称，Nano Banana 2 达到累计10亿张图像所需时间接近 Nano Banana 1 的一半。此项仅记录管理层对两代模型累计图像生成量达标速度的比较。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，连续引文与上下文充分，无已识别A条件。累计输出量达标速度实质关联当前模型使用量问题，也为推理实际负载问题提供有限的输出节奏线索；可以采用为局部作者主张，不能回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M03-Q06",
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:3"
+      ],
+      "limitations": "来源具体日期未由所供原生文本确立。未说明两代模型的具体累计期间、统计范围、用户构成、地域或图像规格；不能解释为单张图像生成速度翻倍，也不能据此确定算力、功率或容量需求。",
+      "conflict_check": "已比对所供采用陈述及legacy记录。传统推荐推理非同步模式、重prefill资源利用和Google直接API token速率分别涉及不同负载及单位，与本项无直接冲突，也不是同一主张的规范重复记录。未覆盖既有结论；检查限于所供记录。",
+      "gap_dependency_check": "局部比较不依赖未审阅图像。实际负载曲线仍需时间序列、并发、硬件、利用率及采样条件；模型经济性仍需付费、成本及替代证据。两项工作单保持开放，不转换为模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "7a2ac08375eef4c5938cd009e38f09f00227842a6e7914b91fc44860d1e8fd70"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:4:ev:0"
+      ],
+      "id": "adoption:review:221945e07dc70681c749cd98",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-economics",
+        "NODE-workload-inference-economics"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet／谷歌管理层在《Alphabet Q1 2026 Earnings Call》中将 Veo 3.1 Lite 称为该公司截至发言时成本效率最高的视频模型。此项保留为公司范围内的管理层定性评价。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，无已识别A条件。该陈述直接涉及模型成本效率，实质匹配当前模型经济性与推理经济性工作单；连续原文支持有限的定性采用，不能据此完成成本计算或需求推导。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-economics",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:4"
+      ],
+      "limitations": "来源具体日期未由所供原生文本确立。未定义成本效率指标、比较模型、输出质量、视频长度、分辨率、硬件或服务条件；不能视为已验证的单位成本下降、行业最优或硬件需求减少。",
+      "conflict_check": "现有重prefill内存浪费陈述针对特定资源利用机制，legacy中的Gemini 3.1 Pro Preview输出token价格针对另一模型及计费单位，均不与Veo评价构成直接冲突或重复。未调整现有结论，未完成外部反证检索。",
+      "gap_dependency_check": "本项局部评价不依赖图像或缺页。进一步判断须取得同质量、同工况的单位有效产出总成本、使用量和硬件资源数据；效率改善如何影响净需求仍未建立。两项工作单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "7a2ac08375eef4c5938cd009e38f09f00227842a6e7914b91fc44860d1e8fd70"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:5:ev:0"
+      ],
+      "id": "adoption:review:b683c37d197b9a685c1f77e3",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-economics"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet／谷歌管理层在《Alphabet Q1 2026 Earnings Call》中称，Gemma 4 在数周内下载超过5000万次，该公司的开放模型截至发言时累计下载超过5亿次。两项数字分别属于Gemma 4和公司开放模型整体的下载统计。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，无已识别A条件。下载量是与当前模型与权重产品采用问题实质相关的有限代理指标。连续引文和指代上下文支持作者归属明确的采用，不足以证明采用率或经济效果。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:5"
+      ],
+      "limitations": "来源具体日期及“数周”的起止时间未由所供原生文本确立。下载去重、版本、渠道及地域口径未说明；下载次数不等于独立用户、活跃部署、付费需求或实际算力消耗，不能将5亿次归于Gemma 4。",
+      "conflict_check": "现有开放模型替代机制和安全基准陈述涉及特定能力及采用约束，与下载统计无直接矛盾，也不构成重复。所供legacy价格及API token记录采用不同指标，不能验证下载量或推导部署规模；既有结论保持不变。",
+      "gap_dependency_check": "指代可由同页文字解决，不依赖视觉审阅。回答模型采用及经济性仍需去重用户、活跃部署、使用量、支付意愿、成本及非增长或替代证据；当前工作单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "7a2ac08375eef4c5938cd009e38f09f00227842a6e7914b91fc44860d1e8fd70"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:6:ev:0"
+      ],
+      "id": "adoption:review:abc65d015a57ade706a16f31",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D4-economics"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet／谷歌管理层在《Alphabet Q1 2026 Earnings Call》中称，公司借助 Antigravity 转向代理式工作流，其工程师正在编排管理层所称的“完全自主的数字任务团队”，并提高构建速度。此项记录公司内部采用及效率收益的定性自述。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，无已识别A条件。公司内部代理应用及构建速度评价与当前应用和Agent经济性工作单有实质关系，可贡献局部定性证据。Alphabet自身是AI模型及平台提供者，本项不满足M03-Q05明确要求的非AI实验室企业侧需求增长证据，故不关联该问题。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:6"
+      ],
+      "limitations": "来源具体日期未由所供原生文本确立，地域未说明。未提供部署覆盖率、任务范围、自主程度验证、速度基线、人工投入、费用或使用量；不能视为独立验证的生产率提升，也不能外推为非AI企业需求增长。",
+      "conflict_check": "现有安全应用开发门槛及开放模型替代陈述涉及不同应用场景，与本项内部工程工作流无直接冲突或规范重复。所供legacy记录没有同口径生产率记录；未改变既有结论，检查不代表外部效果验证。",
+      "gap_dependency_check": "局部作者主张的上下文充分，不依赖图像。应用经济性仍需实际任务、采用覆盖、耗时、成本、人工替代及失败案例；非AI企业需求问题需另取符合主体条件的证据。相关工作单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "7a2ac08375eef4c5938cd009e38f09f00227842a6e7914b91fc44860d1e8fd70"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:7:ev:0"
+      ],
+      "id": "adoption:review:1d0f3bf14476a95a50b8ef50",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D4-boundary"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet／谷歌管理层在《Alphabet Q1 2026 Earnings Call》中称，Personal Intelligence 已进入 Gemini app、AI Mode 和 Gemini in Chrome，并在发言所称的“本月”整合 Nano Banana 2，使 Gemini app 支持个性化图像创作。此项记录管理层所述的应用入口与产品能力。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，无已识别A条件。所述入口及个性化图像能力直接匹配当前应用与终端需求边界工作单。虽封存摘要将产品内容归为背景，当前工作单提供了实质采用关系；仅采用有来源归属的局部能力描述。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:7"
+      ],
+      "limitations": "来源具体日期未由所供原生文本确立，“本月”不能据此落实为具体月份。未说明各入口的地域、用户资格、开放范围、收费方式或采用率；相邻页的美国扩展描述不能自动覆盖全部入口和图像功能。",
+      "conflict_check": "所供采用陈述没有相同产品入口及功能记录；legacy的API token统计明确采用直接API口径，不覆盖Gemini app等自有产品，与本项能力描述无直接冲突或重复。未替换既有记录。",
+      "gap_dependency_check": "指代与局部能力范围可由同页文字核对，不依赖图像。完整交易边界仍需收费、购买主体、上游模型采购或调用关系及实际开放条件；本项不能证明需求增长，工作单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "7a2ac08375eef4c5938cd009e38f09f00227842a6e7914b91fc44860d1e8fd70"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-928dcbfdb052330143383595c79b54834aa373c66e3b64a527cc3afa02d4445b",
+      "evidence_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:8:ev:0"
+      ],
+      "id": "adoption:review:f06fe5b227fca3bda074ddd4",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D4-boundary"
+      ],
+      "reading_revision_id": "rev-5d6d60a59b694b5297663493b372f2bd",
+      "status": "adopted",
+      "text": "Alphabet／谷歌管理层在《Alphabet Q1 2026 Earnings Call》中将 Maps 借助 Gemini 的近期升级评价为十余年来最重大的一次，并称用户可以与 Maps 对话，获取更个性化的建议和直观路线指引。此项保留为管理层的产品能力描述及升级评价。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T07:07:06+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分为6，无已识别A条件。对话、个性化建议和路线指引是Maps应用提供的具体能力，实质匹配当前应用与终端需求边界工作单。可作为局部作者主张采用，不能完成整体交易边界判断。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.749,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d848a9b659ba696be732f4ca3ab6b2112fd0daafa7a21a4eee8efc9ee58bc813",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 32550,
+            "output_tokens": 3868,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 6,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.386,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "df5bcc7edb660686f02a9307bf196e39334a80a769faeeee1100aba45cdabb69",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 30120,
+              "output_tokens": 366,
+              "reasoning_output_tokens": 113
+            }
+          }
+        },
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3"
+      },
+      "source_candidate_ids": [
+        "rev-5d6d60a59b694b5297663493b372f2bd:chunk:2:claim:8"
+      ],
+      "limitations": "来源具体日期及“近期”的时间未由所供原生文本确立。未说明地域、上线覆盖、用户资格、收费方式、采用率或效果测量；升级重要程度属于管理层评价，不能作为独立认证，也不证明使用量或算力需求增长。",
+      "conflict_check": "现有采用陈述及所供legacy记录没有同口径Maps功能、效果或上线记录，未发现直接冲突或可识别的规范重复。其他模型成本、API token及推荐推理记录不能验证本项；不改变既有结论。",
+      "gap_dependency_check": "主体及功能可由同页原生文本确认，不依赖视觉审阅。仍需具体开放条件、购买及收费关系、上下层交易接口和反证，才能完善应用边界；需求规模需另取使用数据。工作单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "2ba893bfaad0cf5ee0e54215b20ac47ac3d95b8212cd31ee47fadfa2c1ba25f3",
+        "source_report_sha256": "718341ae07562e5ac534b13e578f3848e67284d80972209962a3290da66d2608",
+        "request_sha256": "7a2ac08375eef4c5938cd009e38f09f00227842a6e7914b91fc44860d1e8fd70"
       }
     }
   ],
