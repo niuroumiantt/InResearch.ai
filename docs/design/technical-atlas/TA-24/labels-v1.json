@@ -1,0 +1,205 @@
+{
+  "figure_id": "TA-24",
+  "labels": [
+    {
+      "number": "01",
+      "part_id": "rack-system",
+      "name": "整机柜系统示例",
+      "source_file": "web/assets/technical-atlas/system/rack-system-v2.png",
+      "source_anchor": [
+        700,
+        450
+      ],
+      "affine": {
+        "scale": 0.338,
+        "translate": [
+          -67.88000000000001,
+          200.31
+        ]
+      },
+      "display_anchor": [
+        168.72000000000003,
+        352.41
+      ],
+      "notes": [
+        "柜内配置按系统方案",
+        "不等于本园区八柜已安装"
+      ]
+    },
+    {
+      "number": "02",
+      "part_id": "server",
+      "name": "加速器服务器示例",
+      "source_file": "web/assets/technical-atlas/server-v1.png",
+      "source_anchor": [
+        730,
+        500
+      ],
+      "affine": {
+        "scale": 0.341796875,
+        "translate": [
+          425.0,
+          195.0
+        ]
+      },
+      "display_anchor": [
+        674.51171875,
+        365.8984375
+      ],
+      "notes": [
+        "虚拟剖开显示主机与加速卡分区",
+        "双CPU/双加速卡等数量沿用TA11示例"
+      ]
+    },
+    {
+      "number": "03",
+      "part_id": "general-server",
+      "name": "通用CPU节点示例",
+      "source_file": "web/assets/technical-atlas/system/general-server-v2.png",
+      "source_anchor": [
+        800,
+        460
+      ],
+      "affine": {
+        "scale": 0.35537190082644626,
+        "translate": [
+          987.8099173553719,
+          191.98347107438013
+        ]
+      },
+      "display_anchor": [
+        1272.107438016529,
+        355.4545454545454
+      ],
+      "notes": [
+        "另一整机类别，封闭外形",
+        "不据前盘数量推定内部CPU配置"
+      ]
+    },
+    {
+      "number": "04",
+      "part_id": "cpu",
+      "name": "CPU与主板装配",
+      "source_file": "web/assets/technical-atlas/motherboard-v1.png",
+      "source_anchor": [
+        830,
+        438
+      ],
+      "affine": {
+        "scale": 0.15950520833333334,
+        "translate": [
+          54.0,
+          694.8333333333334
+        ]
+      },
+      "display_anchor": [
+        186.38932291666669,
+        764.6966145833334
+      ],
+      "notes": [
+        "主机通用计算/控制",
+        "共用装配原图，非独立裸片"
+      ]
+    },
+    {
+      "number": "05",
+      "part_id": "gpu",
+      "name": "GPU基板模组",
+      "source_file": "web/assets/technical-atlas/gpu-board-v1.png",
+      "source_anchor": [
+        360,
+        360
+      ],
+      "affine": {
+        "scale": 0.15950520833333334,
+        "translate": [
+          350.0,
+          694.8333333333334
+        ]
+      },
+      "display_anchor": [
+        407.421875,
+        752.2552083333334
+      ],
+      "notes": [
+        "可选并行加速计算",
+        "多模组与剖开沿用TA04示例"
+      ]
+    },
+    {
+      "number": "06",
+      "part_id": "ai-asic",
+      "name": "AI ASIC封装外形",
+      "source_file": "web/assets/technical-atlas/system/ai-asic-v2.png",
+      "source_anchor": [
+        800,
+        500
+      ],
+      "affine": {
+        "scale": 0.22272727272727272,
+        "translate": [
+          600.4545454545455,
+          659.5681818181819
+        ]
+      },
+      "display_anchor": [
+        778.6363636363637,
+        770.9318181818182
+      ],
+      "notes": [
+        "面向特定AI计算设计",
+        "外形不认证内部阵列/性能"
+      ]
+    },
+    {
+      "number": "07",
+      "part_id": "fpga",
+      "name": "FPGA封装外形",
+      "source_file": "web/assets/technical-atlas/system/fpga-v2.png",
+      "source_anchor": [
+        800,
+        460
+      ],
+      "affine": {
+        "scale": 0.2076271186440678,
+        "translate": [
+          902.6271186440678,
+          672.6864406779661
+        ]
+      },
+      "display_anchor": [
+        1068.728813559322,
+        768.1949152542372
+      ],
+      "notes": [
+        "可重配置逻辑与异构加速",
+        "板级实现、配置与任务另核"
+      ]
+    },
+    {
+      "number": "08",
+      "part_id": "bmc",
+      "name": "BMC管理控制器",
+      "source_file": "web/assets/technical-atlas/system/bmc-v2.png",
+      "source_anchor": [
+        800,
+        500
+      ],
+      "affine": {
+        "scale": 0.28823529411764703,
+        "translate": [
+          1134.1176470588234,
+          626.6176470588235
+        ]
+      },
+      "display_anchor": [
+        1364.705882352941,
+        770.7352941176471
+      ],
+      "notes": [
+        "独立管理角色",
+        "不是主机CPU或AI加速器"
+      ]
+    }
+  ]
+}

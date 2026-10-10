@@ -1,0 +1,34 @@
+{
+  "figure_id": "TA-24",
+  "sources": [
+    {
+      "url": "https://docs.nvidia.com/cuda/cuda-programming-guide/01-introduction/programming-model.html",
+      "title": "NVIDIA CUDA Programming Guide · Programming Model",
+      "actual_read": "owner official body lines64–73",
+      "supports": "CPU host and GPU device both perform computation; selected task/data cooperation",
+      "does_not_support": "Our image OEM/model/bus/installed configuration or requiring all three accelerators"
+    },
+    {
+      "url": "https://docs.cloud.google.com/tpu/docs/intro-to-tpu",
+      "title": "Google · Introduction to Cloud TPU",
+      "actual_read": "owner official body lines137–143",
+      "supports": "TPU is an application-specific ML accelerator example; functional ASIC category only",
+      "does_not_support": "Our closed package is a TPU, its internal HBM/array/performance"
+    },
+    {
+      "url": "https://www.amd.com/content/dam/amd/en/documents/products/adaptive-socs-and-fpgas/spartan-ultrascale-plus/unlocking-innovation-cop-fpga-adaptive-socs-ebook.pdf",
+      "title": "AMD · Unlocking Innovation with Cost-Optimized FPGAs and Adaptive SoCs",
+      "actual_read": "owner actual PDF text physical page5 lines237–259",
+      "supports": "Programmable logic enables customized hardware functionality",
+      "does_not_support": "Package internal floorplan or OEM features. Earlier child UG640 title/source mismatch retained in technical preflight; not adopted as this claim source."
+    },
+    {
+      "url": "https://redfish.dmtf.org/schemas/DSP0266_1.7.0.html",
+      "title": "DMTF Redfish Specification1.7.0",
+      "actual_read": "owner actual stable text lines406 and430–436",
+      "supports": "BMC abbreviation means baseboard management controller; Redfish is out-of-band capable management standard",
+      "does_not_support": "A particular BMC silicon/firmware/pins or every Redfish service requiring this physical chip"
+    }
+  ],
+  "scope": "Functional category roles only; no official figure pixels claimed viewed, no OEM identity inferred from appearance"
+}

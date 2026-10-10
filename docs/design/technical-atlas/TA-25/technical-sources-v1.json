@@ -1,0 +1,27 @@
+{
+  "figure_id": "TA-25",
+  "sources": [
+    {
+      "url": "https://news.skhynix.com/en/hbm2e-opens-the-era-of-ultra-speed-memory-semiconductors/",
+      "title": "SK hynix HBM/DRAM堆叠解释",
+      "actual_read": "owner official text lines47–54",
+      "supports": "HBM uses stacked DRAM and sits near logic within package via interposer",
+      "does_not_support": "Our4stacks/layer count/TSVdimension, any latest generation or OEM rating"
+    },
+    {
+      "url": "https://www.micron.com/products/memory/dram-modules/rdimm",
+      "title": "Micron RDIMM定义",
+      "actual_read": "owner official FAQlines387–403",
+      "supports": "RegisteredDIMM module communicates with memorycontroller using register; server memory category",
+      "does_not_support": "Our drawing actualOEM, DDRgeneration, capacity/channels/ranks or MRDIMM compliance"
+    },
+    {
+      "url": "https://computeexpresslink.org/wp-content/uploads/2024/02/CXL-1.1-Specification.pdf",
+      "title": "CXL联盟Type3内存扩展定义",
+      "actual_read": "owner actual PDF section2.3/printed28,lines1091–1100",
+      "supports": "Type3 is host memoryexpander, CXLmem accesses/CXLio discoverymanagement, technologyindependent under hostsupport",
+      "does_not_support": "Latest CXL standard complete features, photo actualprotocol, media/capacity/hostcompatibility or installed addressmap"
+    }
+  ],
+  "scope": "Stable functional relationships only; no OEM/installed topology or referencepixels certification"
+}

@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-25",
+  "candidate": "composite-v2",
+  "review_date": "2026-10-10",
+  "decision": "no_material_blocker_found_after_two_narrow_fixes_actual_original_recheck",
+  "scope": "独立候选原尺寸图面/静态资产审核；不是产品页/发布验收，也未改任何正式状态",
+  "actual_original_views": [
+    {
+      "path": "/private/tmp/atlas-ta25-memory-20261010/composite-v2/memory-domain-native.png",
+      "sha256": "b1dc9a7b807d517f3b4ab648742214a42b0531f44582d2b77343b5466ce31798",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "detail": "original",
+      "actually_viewed": true
+    },
+    {
+      "path": "/private/tmp/atlas-ta25-memory-20261010/composite-v2/memory-chat-full.png",
+      "sha256": "c0427561fcd5bb0058b88c95b3a552c37993e5ac62cbde55bb5ad30667b203c4",
+      "pixels": [
+        1536,
+        1024
+      ],
+      "detail": "original",
+      "actually_viewed": true
+    }
+  ],
+  "additional_original_view": {
+    "path": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/web/assets/technical-atlas/motherboard-v1.png",
+    "sha256": "0049e1395fd31ff23fa9c70ad992eb44365b3c303118c43aa6557728e85378ac",
+    "detail": "original",
+    "purpose": "独立核03 source1160,407已装DIMM与04 source810,402 CPU盖的区别"
+  },
+  "static_reads": [
+    {
+      "path": "/private/tmp/atlas-ta25-memory-20261010/composite-v2/memory-full.svg",
+      "sha256": "283fb942dee76b1baf441add366bf36d1450cf24a7a5fd8d5153e4266abf58ea",
+      "method": "完整XML、callout与文字/内嵌PNG SHA"
+    },
+    {
+      "path": "/private/tmp/atlas-ta25-memory-20261010/composite-v2/component-manifest.json",
+      "sha256": "6fa1f0658ae50304bb345eb1086b304974304086ff07c7dd5d8f73e285fd8238",
+      "method": "完整JSON组件与五锚点"
+    },
+    {
+      "path": "/private/tmp/atlas-ta25-memory-20261010/composite-v2/offline-render.json",
+      "sha256": "3f0484e925fe568c14cd1f2538f22b70a977ccec673f6b73581fa01ad03a422b",
+      "method": "完整JSON；bbox仅辅助"
+    }
+  ],
+  "anchor_findings": [
+    {
+      "label": "01",
+      "source": [
+        1370,
+        470
+      ],
+      "display": [
+        472.125,
+        410.875
+      ],
+      "actual": "右上HBM堆栈顶面，未误指中央逻辑裸片；主封装内四堆栈保留。"
+    },
+    {
+      "label": "02",
+      "source": [
+        250,
+        250
+      ],
+      "display": [
+        122.125,
+        342.125
+      ],
+      "actual": "左侧同类堆栈剖层内部铜柱/层叠区域；文字明确重复局部，不增第五组。"
+    },
+    {
+      "label": "03",
+      "source": [
+        1160,
+        407
+      ],
+      "display": [
+        885.8020833333334,
+        393.78515625
+      ],
+      "actual": "右侧四已装DIMM组中朝右端实际板体/芯片区域；离CPU盖约100.7px，非CPU/邻空槽/浮动DIMM。"
+    },
+    {
+      "label": "04",
+      "source": [
+        810,
+        402
+      ],
+      "display": [
+        785.0859375,
+        392.34635416666663
+      ],
+      "actual": "CPU metal contact cover; manifest cpu/context_only=true now matches actual CPU context and keeps source_component=dram for original-image affine."
+    },
+    {
+      "label": "05",
+      "source": [
+        790,
+        500
+      ],
+      "display": [
+        1272.3020833333333,
+        424.5625
+      ],
+      "actual": "CXL类别封闭金属壳实际表面；不是虚构内部介质或外部端口认证。"
+    }
+  ],
+  "visual_observations": {
+    "native": "三全幅原件完整，HBM/主板/CXL无切头、触点切断或脚边缺失；位置与标注版一致。",
+    "text": "标题、五编号、三组说明、三关系文字、页脚在画布内，未见穿字或重叠；定位引线与功能关系文字分开。",
+    "counts": "HBM四主堆栈+左侧重复剖层不计第五；主板同类浮动RDIMM局部不计新增条；CPU/中央逻辑是上下文。",
+    "relations": "底部三组关系分别计算逻辑↔HBM、CPU控制器↔RDIMM、支持CXL主机↔扩展；没有HBM→DIMM→CXL必经链。",
+    "unknown": "RDIMM不冒充MRDIMM；CXL内部媒体/协议/兼容/容量未知明示；三类campus未建模与八柜未安装证明边界可读。"
+  },
+  "material_findings": [],
+  "static_support": {
+    "source_original_sha_matches": [
+      "hbm-package-v1.png",
+      "motherboard-v1.png",
+      "system/cxl-memory-v2.png"
+    ],
+    "three_source_files_match_manifest": true,
+    "five_source_affine_to_display_anchor_errors_px": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "svg_embedded_native_sha256": "b1dc9a7b807d517f3b4ab648742214a42b0531f44582d2b77343b5466ce31798",
+    "note": "SVG内嵌单组合native，非三逐件原PNG URI。未另做像素重合成；视觉结论不由bbox/hits替代。",
+    "offline_viewport": [
+      1536,
+      1024
+    ],
+    "offline_external_reported": [],
+    "offline_hits_reported": [],
+    "offline_outside_reported": []
+  },
+  "not_verified": [
+    "No product URL/HTTP/browser/WebGL/product JavaScript, repository/state/production writes or candidate generation by this reviewer. Only /private/tmp receipt.",
+    "No TA25 page/mobile UI/download/interaction/deployment/CI/publication acceptance.",
+    "v1 findings remain recorded in prior receipt; current v2 fixes were actually read and visually rechecked."
+  ],
+  "supersedes_for_current_candidate": {
+    "path": "/private/tmp/ta25-composite-v1-review-child.json",
+    "sha256": "79a3c2d3bea7347ea5c9065b5aa179f5683ebea0652f4f4784830f63b4d382d7",
+    "history_retained": true
+  },
+  "resolved_findings": [
+    {
+      "id": "F1",
+      "actual_evidence": "Full v2 title now says package-internal stacks; label01 says memory beside logic die. Actual full1536 view confirms wording and no new text collision."
+    },
+    {
+      "id": "F2",
+      "actual_evidence": "Manifest04 part_id=cpu/source_component=dram/context_only=true; SVG04 data-object=cpu. Three memory component IDs remain hbm/dram/cxl-memory."
+    }
+  ],
+  "current_static_recheck": {
+    "native_v1_v2_byte_equal": true,
+    "five_source_and_display_coordinates_unchanged": true,
+    "SVG04_data_object": "cpu",
+    "manifest04": {
+      "part_id": "cpu",
+      "source_component": "dram",
+      "context_only": true
+    },
+    "three_memory_component_ids": [
+      "hbm",
+      "dram",
+      "cxl-memory"
+    ],
+    "actual_original_recheck": "Both v2 complete labelled PNG and v2 native PNG actually viewed with detail original; visual conclusions not taken from bbox."
+  }
+}
