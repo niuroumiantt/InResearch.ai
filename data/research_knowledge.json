@@ -42197,6 +42197,89 @@
         },
         "batch_id": "179498f4d3592bac61a8d55131fbd416b4d56ea31997921d4cbb8457d313bcde"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b6fe9516fbd29bbb790358d5f222e51c0feaf13b8533d0809529b40f3666a8b4",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:102:claim:1:ev:0",
+      "locator": "page:102/chunk:102",
+      "object_ids": [],
+      "page_index": 101,
+      "question_ids": [
+        "NODE-demand-D1-conversion"
+      ],
+      "quote": "Other AI‑related trends monitored by the IEA will also affect outcomes. These include rising\n                  electricity needs from the expansion of data centres and potential efficiency improvements\n                  across end‑use sectors as energy services become increasingly automated and responsive.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:06:55+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。数据中心扩张向电力需求传导，以及终端效率变化对能源结果的影响，对当前NODE-demand-D1-conversion工作单具有实质但局部的机制与不确定性贡献。连续原文和周围上下文充分，按有归属的部分定性证据采用；未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 45.218,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f661920bd0902473e926e7ca2ebe787096bff76c82206c882975efa4de2297e8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 55687,
+            "output_tokens": 1924,
+            "reasoning_output_tokens": 261
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.581,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "87f78393094d8453521b654b3a5aed74ced643545a7ccadf8ee428d6ee854961",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55593,
+              "output_tokens": 644,
+              "reasoning_output_tokens": 364
+            }
+          }
+        },
+        "batch_id": "e850f28f2c2a7a3944208e25dd2782f57497db4633d90f3f090af88359b03cd0"
+      }
     }
   ],
   "statements": [
@@ -82128,6 +82211,104 @@
         "request_sha256": "cdb571be5056901a24288941a5baa55456139c31a7eba10c33b5be1266604438"
       },
       "object_mapping_check": "独立按完整陈述复核：闭环冷却及饮用水使用属于root下的水与散热系统system:thermal；屋顶光伏属于电力系统system:power的发电范围；绿色立面属于土地与建筑链下涵盖外墙的part:shell。原文不足以确认冷水机组、CDU、冷板、具体供水设备或水权，不下推这些对象。未继承Reader的设施或IT标签，也不推定AI用途；该范围统一适用于所选证据。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:102:claim:1:ev:0"
+      ],
+      "id": "adoption:review:5dd99af7e58641ca0bb53fe9",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D1-conversion"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》中指出，其监测的AI相关趋势包括数据中心扩张带来的电力需求增加，以及能源服务日益自动化和响应能力增强所带来的终端用能部门效率改善潜力。这是IEA对影响能源需求的不同机制的定性判断，不构成对具体需求增量或效率改善兑现的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:06:55+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。数据中心扩张向电力需求传导，以及终端效率变化对能源结果的影响，对当前NODE-demand-D1-conversion工作单具有实质但局部的机制与不确定性贡献。连续原文和周围上下文充分，按有归属的部分定性证据采用；未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-demand-D1-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 45.218,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "f661920bd0902473e926e7ca2ebe787096bff76c82206c882975efa4de2297e8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 55687,
+            "output_tokens": 1924,
+            "reasoning_output_tokens": 261
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.581,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "87f78393094d8453521b654b3a5aed74ced643545a7ccadf8ee428d6ee854961",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 55593,
+              "output_tokens": 644,
+              "reasoning_output_tokens": 364
+            }
+          }
+        },
+        "batch_id": "e850f28f2c2a7a3944208e25dd2782f57497db4633d90f3f090af88359b03cd0"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:102:claim:1"
+      ],
+      "limitations": "报告发表日期未由所供原生文本确立。此处处于全球能源影响讨论中，未给出地区分解、具体项目阶段、工作负载、转换系数、时间差或效率参数。终端用能效率改善是潜力，不能视为已实现节能，也不能直接用于抵减数据中心用电；相邻正文明确这些影响不能简单合并为AI的单一净影响。全文覆盖仅限PDF原生文本，未完成图像审阅。",
+      "conflict_check": "已采用adoption:review:a055d49329a63f53ae6dc59a描述IEA设备出货、项目跟踪与预期服务器效率的预测方法，本项描述数据中心用电与跨终端部门效率的不同机制，兼容且不重复。既有服务需求脱钩及资源核算陈述也未被否定。legacy匹配记录为空，未发现真实冲突；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "NODE-demand-D1-conversion仍需生产要素到工作负载、设备及资源需求的连接，及转换系数、时滞、效率假设和反证。本项仅支持扩张影响电力需求这一环节，并提示终端效率潜力的独立边界，不能验证算力、网络或存储转换，不能计算净能源影响，不回答或关闭该问题。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "e850f28f2c2a7a3944208e25dd2782f57497db4633d90f3f090af88359b03cd0",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "b17aa91aedf355cdad3cbe317c03aa4263c1a745a6b8fbdeef4ad0d77b5c1270"
+      },
+      "object_mapping_check": "独立复核后，实际范围是总体数据中心扩张与跨终端部门能源效率。原文未限定一座AI数据中心、其内部电力系统或具体设备；能源服务自动化也不等于合同中的DCIM/BMS，电力需求不等于并网配额或权利。因此不继承Reader的root标签，所选证据统一采用空对象范围，保留有效问题关联。"
     }
   ],
   "answers": [],
