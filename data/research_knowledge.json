@@ -37801,6 +37801,172 @@
         },
         "batch_id": "8f4dd107976761c5b51481d9277651be44041a8d500ec047ddab07c1cf999052"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8b9cc87a8c56a0519d1fecca2b055a60b68f861364b3b2c289496e193608a545",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:8:claim:5:ev:0",
+      "locator": "page:9/chunk:8",
+      "object_ids": [],
+      "page_index": 8,
+      "question_ids": [],
+      "quote": "Simple text queries now typically consume less electricity than running a television over the\n                  same period of time.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:22:10+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文与周边简单文本、复杂任务及效率变化的讨论充分支持限定归属的作者主张。它为当前D3需求到电力转换提供任务能耗的定性比较，对M12-Q02及推理经济学仅贡献能耗成本方面的局部信息。未识别敏感、真实冲突、替换或其他A条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M12-Q02",
+          "Q-NODE-demand-D3-conversion",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 57.939,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc0f9843c225b729e5b6df4450c7bebf64f70aa60ee1eb7d3f3216a093c4803b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65066,
+            "output_tokens": 2170,
+            "reasoning_output_tokens": 437
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.665,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c7783fd9ae4b3d2cac722481f922b30fd4851c99d41d4e9e04cc7ad011e72582",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 64886,
+              "output_tokens": 428,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "6cd7099bd00440009762237dc7bc10009b87ba91e2b9e409c90e66e23f956809"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8b9cc87a8c56a0519d1fecca2b055a60b68f861364b3b2c289496e193608a545",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:8:claim:6:ev:0",
+      "locator": "page:9/chunk:8",
+      "object_ids": [],
+      "page_index": 8,
+      "question_ids": [],
+      "quote": "If all conventional internet searches were performed with simple AI text\n                  queries, it would consume less than 4 terawatt-hours (TWh) of electricity annually,\n                  equivalent to less than 1% of total data centre consumption today.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:22:10+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文明确保留全部搜索替代为简单AI文本查询的条件、年度TWh单位及相对分母。它实质补充当前D4应用需求和D3推理服务需求到年度用电的条件转换，对推理经济学仅贡献能源需求规模的局部信息。未识别A条件，可按B类采用有归属的情景估算，不能据此关闭工单。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-conversion",
+          "Q-NODE-demand-D3-conversion",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 57.939,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc0f9843c225b729e5b6df4450c7bebf64f70aa60ee1eb7d3f3216a093c4803b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65066,
+            "output_tokens": 2170,
+            "reasoning_output_tokens": 437
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.665,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c7783fd9ae4b3d2cac722481f922b30fd4851c99d41d4e9e04cc7ad011e72582",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 64886,
+              "output_tokens": 428,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "6cd7099bd00440009762237dc7bc10009b87ba91e2b9e409c90e66e23f956809"
+      }
     }
   ],
   "statements": [
@@ -73493,6 +73659,210 @@
         "request_sha256": "6fa22471a3f1ee4aa2f87e90febad6f17412a7b6c84893ba35d7afa9ca659631"
       },
       "object_mapping_check": "独立依据两项主张选择system:power、其发电与储能链条chain:power/3及part:fuel-cell，因为正文明确讨论为数据中心探索燃料电池电力部署。合同没有FuelCell Energy、SDC或Inuverse对应主体ID，不借用Bloom Energy、MGX或Siemens对象。AI开发商身份不支持计算设施映射；全球及大邱地域不证明土地、天然气接入、并网或许可范围。三条所选证据统一采用上述主张级范围，不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:8:claim:5:ev:0"
+      ],
+      "id": "adoption:review:c184458f3758920d30abb0a0",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M12-Q02",
+        "NODE-demand-D3-conversion",
+        "NODE-workload-inference-economics"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第9页称，在报告所述时点，简单AI文本查询通常比在相同时间内运行一台电视消耗更少电力。这是作者的定性比较，不是当前推理能耗的独立认证；报告出版时间未知，适用地域及具体部署项目阶段未说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:22:10+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文与周边简单文本、复杂任务及效率变化的讨论充分支持限定归属的作者主张。它为当前D3需求到电力转换提供任务能耗的定性比较，对M12-Q02及推理经济学仅贡献能耗成本方面的局部信息。未识别敏感、真实冲突、替换或其他A条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M12-Q02",
+          "Q-NODE-demand-D3-conversion",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 57.939,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc0f9843c225b729e5b6df4450c7bebf64f70aa60ee1eb7d3f3216a093c4803b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65066,
+            "output_tokens": 2170,
+            "reasoning_output_tokens": 437
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.665,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c7783fd9ae4b3d2cac722481f922b30fd4851c99d41d4e9e04cc7ad011e72582",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 64886,
+              "output_tokens": 428,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "6cd7099bd00440009762237dc7bc10009b87ba91e2b9e409c90e66e23f956809"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:8:claim:5"
+      ],
+      "limitations": "原文没有给出查询持续时间、电视功率、每次查询能耗、模型、输入输出token数、硬件或计量边界。“通常”不表示所有查询均满足该比较。不能据此计算$/M token、硬件与能耗成本占比、毛利或机房需求。",
+      "conflict_check": "已采用的Gemini 0.24 Wh披露、Microsoft Research 0.34 Wh估算及Google效率改善转述没有提供同一电视功率、持续时间与任务工况的相反比较，不构成直接冲突或重复。GPU费用、内存资源浪费及服务价格记录讨论其他成本机制。所供legacy匹配记录为空；这不等于完成外部反证检索。不修改既有结论。",
+      "gap_dependency_check": "该局部作者主张由所供原生文字直接支持，不依赖未审阅图像；原生文字覆盖完整不等于全文视觉核验。仍需带日期的能耗测量、比较设备与时间条件、计量边界及反证；成本分析还缺token分母、电价和硬件费用。三个关联问题均保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "6cd7099bd00440009762237dc7bc10009b87ba91e2b9e409c90e66e23f956809",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "5a7722e177370a24c8671de49ad0f6a2b44128de2890eec15d6952da91856725"
+      },
+      "object_mapping_check": "本项范围是通用文本查询与电视用电比较。契约没有对应的通用推理服务、电视或IEA主体对象；root指一座AI数据中心，其他系统与部件也要求具体资产范围，本句未建立这些范围。不继承Reader的root标签，空对象列表保留有效问题关系。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:8:claim:6:ev:0"
+      ],
+      "id": "adoption:review:67e60a8f3d9c501533f49bdf",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D4-conversion",
+        "NODE-demand-D3-conversion",
+        "NODE-workload-inference-economics"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第9页估计：若所有传统互联网搜索都以简单AI文本查询执行，其年度用电量将低于4 TWh，相当于报告所称当时数据中心总用电量的不到1%。这是条件情景估算，不是实际AI用电量或全部AI负载的预测；报告出版时间、具体情景年份、地域分组及部署项目阶段未由所供原文确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T17:22:10+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文明确保留全部搜索替代为简单AI文本查询的条件、年度TWh单位及相对分母。它实质补充当前D4应用需求和D3推理服务需求到年度用电的条件转换，对推理经济学仅贡献能源需求规模的局部信息。未识别A条件，可按B类采用有归属的情景估算，不能据此关闭工单。",
+        "workorder_ids": [
+          "Q-NODE-demand-D4-conversion",
+          "Q-NODE-demand-D3-conversion",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 57.939,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "dc0f9843c225b729e5b6df4450c7bebf64f70aa60ee1eb7d3f3216a093c4803b",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 65066,
+            "output_tokens": 2170,
+            "reasoning_output_tokens": 437
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 19.665,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "c7783fd9ae4b3d2cac722481f922b30fd4851c99d41d4e9e04cc7ad011e72582",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 64886,
+              "output_tokens": 428,
+              "reasoning_output_tokens": 136
+            }
+          }
+        },
+        "batch_id": "6cd7099bd00440009762237dc7bc10009b87ba91e2b9e409c90e66e23f956809"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:8:claim:6"
+      ],
+      "limitations": "本段没有给出搜索量、每次查询平均能耗、模型及token组成、计量边界、完整推导或不到1%的分母时点。不能将中位数能耗直接当作平均值补齐计算，也不能外推至视频、复杂推理、Agent或所有AI应用。该情景不提供实际替代率、时滞、$/M token或总成本输入。",
+      "conflict_check": "同报告已采用的每天100亿次查询规模对照及单次查询能耗记录涉及相关假设或样本，但不是本项完整替代情景的相同规范陈述，不判为重复，也不能视为独立互证。现有GPU成本、利润率及服务价格记录没有同口径的相反年度用电估算。所供legacy匹配记录为空，未完成外部反证检索；未发现真实冲突，不替换既有结论。",
+      "gap_dependency_check": "保留该作者情景不依赖未审阅图像，但独立复算仍需搜索量来源、适用时间、平均任务能耗、计量范围、数据中心分母及反证。D3与D4还缺实际采用率、工作负载构成、资源系数和时滞；推理经济学还缺有效产出分母、电价及硬件成本。所供封存摘要不能补齐这些缺项，所有关联问题保持开放，不换算或汇总GW。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "6cd7099bd00440009762237dc7bc10009b87ba91e2b9e409c90e66e23f956809",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "5a7722e177370a24c8671de49ad0f6a2b44128de2890eec15d6952da91856725"
+      },
+      "object_mapping_check": "本项讨论互联网搜索替代情景及数据中心总体用电对照，没有指定一座AI数据中心或其供电、计算设备范围。契约中的root及其系统、链条和部件均为设施资产对象，不能用总体用电分母建立该映射；IEA也没有允许的actor对象。不继承候选和证据的root标签，空对象列表保留需求转换问题关系。"
     }
   ],
   "answers": [],
