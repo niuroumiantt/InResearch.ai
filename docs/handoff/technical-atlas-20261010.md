@@ -1,34 +1,28 @@
-# 技术图册持续制作交接（2026-10-10，m4）
+# 图册持续执行交接 · 2026-10-10
 
-## 目标
-完成原TA01–35逐图制作、审图、网页与真实发布闭环；TA36–39补充四项单独计量。这个文件是交接快照，实际状态始终读当前机器队列与逐项publication。
+## 目标与现行入口
+原TA01–35逐张制作、独立审图、网页与实际公网闭包；TA36–39四补充另计。现行唯一规范framework/10_visual_atlas.md，机器队列framework/visual_atlas_migration.json，计划docs/design/technical-atlas/MIGRATION_PLAN.md。本文件是阶段快照，不能把保留的旧pending记录恢复成当前状态。
 
-## 已定规则（不要重复问）
-- 用户已明确授权自主制作、修正、开PR、合并/关闭本任务PR、部署和实读上线；不查询或等待CI，不冒称CI通过。每小时中文汇报，即使尚无新增完成；新图用真实绝对路径直接贴当前聊天。
-- 本聊天只推进图册；研究PR、接收和研究服务由另一个对话处理。不干预Spark、研究队列、M5发布服务或研究事实。
-- 用户要求同主题合成较实质PR。后续提交单元：21 → 22–23 → 24–27 → 28 → 29 → 30–34 → 35。批内仍按图号逐张制作、独立技术/视觉/页面验收与状态；正式规范、execution、计划和验证合同须同步。前项完成后的发布记录可随下一单元源码同交，分别绑定实际源码/应用版本与登记版本。
-- 本地50166产品页面曾被浏览器权限明确拒绝。不得换端口、浏览器、headless、file或间接途径访问该页面；只做明确无HTTP静态/parse检查、离线单资产检查，以及正常授权发布后的独立许可公网HTTPS验收。TA17旧单测隐含localHTTP的偏差已记录并停用，不复用为通过依据。
-- 保留原件、旧稿/拒稿、原生尺寸、来源角色、独立SVG与实际检查回执。新位图省略引用参数；编辑传已实看的实际目标，区分风格参考实看与实际工具输入。技术数量/连接、权利或OEM参数不由图片推定。
+## 已授权，不重复问
+- 用户授权自主制作、修正、开/合并/关闭本任务PR、正常部署并实读上线。不查询/等待CI，不称CI通过。每小时中文实际进展；新图真实绝对路径贴当前聊天。
+- 只图册；研究PR、Spark/Reader/研究队列/事实/模型/服务归其它对话，本任务0操作。
+- 源码提交单元21 → 22–23 → 24–27 → 28 → 29 → 30–34 → 35。批内仍逐图制作/独立审图，drafting≤1，逐项source_review_record；实际公网逐项accepted/published。前项已实闭包publication可随下一实质source同交，首次实际source/applied不得改成登记SHA。末35最终登记不遗留。
+- 本地http://127.0.0.1:50166/bom.html被明确拒绝。不得换端口、浏览器、headless、file或间接方式绕过；只明确无HTTP静态/parse、离线单SVG嵌字体且网络全阻断、正常授权公网https://inresearch.ai实测。公网脚本无localhost/CI回退，未挂默认本地runner。
+- 小时heartbeat id=automation仍ACTIVE同thread；工具更新提示词曾拒绝requires approval,but approval policy is never，未替写TOML/未建重复。最新用户指令/现行规范优先。
 
-## 当前精确进度
-- 实际完成20/35、补充4/4。TA20最终修复PR571于2026-10-09T23:04:48Z合并ef918aaa567ddd3ad013a10756112bd75b739fdd/.59；23:08:12Z source=applied与精确0e962a54镜像running/healthy。
-- TA20 public-v3实际PASS、四页面/完整SVG/双下载SHA、5声明资源直接200、13源码资源SHA/health200及原TA18/19渲染完整；7图owner/独立原尺寸复审。真实firstpublication是ef918/.59，本次TA21只是登记提交，不能倒写历史。
-- TA21工作树 /Users/m4/.codex/worktrees/atlas-ta21-facility/inresearch.ai，基线ef918/.59，分支codex/atlas-ta21-facility。已制作独立原生1536×1024设施领域母图/4可编辑标签；source review，真实新页面/领域面板/下载/精确部署待验，不计21。
-- 本提交将main机器队列从19登记到20，下一TA21；批次22–23以后仍未制作。source_ready不冒充公网accepted。
-- TA20完整原字节回执 /Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-20/final-publication-receipt.json；最终public-v3与fix-deployment-healthy.json同目录。
+## 实际进度
+- 实际21/35、补4/4。本source批次将main登记20→21；TA22/23仅source_ready_public_pending，不提前计22/23。
+- TA21PR572 head2a66eeb61fbd2e7e099074f55ef18192d4ccdd53→merge de104b8c2a27478dced10d904cb99e72cce79377/.60，全tree相同；23:45:39Z source=appliedde104，exactsha256:3154ca17185b4f78b0400fa9bdca4af3c10fad92c25e59b5070d6afbe029841b healthy。public-v2全部PASS/errors[]，17源资源SHA+health200，六权利/两未建模/原实例拾取/导出/镜头/旧范围完整；v1SVGRect观察器失败原件保留，测试修正随本实质批次。
+- TA21final /Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-21/final-publication-receipt.json，SHA ff93401b8a24042464ab5464ad8229e95d188b54aea59bcf3e2eb15d6ae53f4e。
+- 当前树/Users/m4/.codex/worktrees/atlas-ta22-23-energy/inresearch.ai，分支codex/atlas-ta22-23-energy，基线1034e4ae5ef799b1aee25c0a0d31cfa42f782206，保留PR573作者写作更新。
+- TA22七原件受控组合、6标注，UPS电池/旁路接点闭合；独立PSU与共享电源架替代分开，19分类非强串。TA23五原件/6标注，冷板剖口/同类QD、TCS/FWS各闭合且只传热不混液，风冷冷机选定方案。独立原生1536×1024、可编辑功能线、轻量预览、primary文本与所有拒稿保留，非新AI成图。
+- 两域仅已有4电力类8实例/3冷却类11实例；其它15/12未建模，有独立类别图。32home/152mesh/factory原字节、默认14/system47/legacy保持。公网tests/energy_domain.cjs已准备，逐项实际执行仍待部署。
 
 ## 下一步
-1. TA21源码/规范/合同/交接与TA20发布登记同PR，本地只明确无HTTP静态/parse/离线单资产；真实新产品网页在正常授权公网部署后核验。
-2. TA21实际完成后按22–23、24–27、28、29、30–34、35提交单元顺序继续。批内逐图制作审图，逐项公网回执与sourceSHA，前项pub随下一实质source。
-3. 四旧专页(server-plan/chip-atlas/rack-atlas/rack-exploded)最小清除重复无路由site-shell module，有效site-skin保留；实际公网直200另验，明确微改不声称零diff。
-4. TA35全部真实闭包后最终登记，并停止小时自动任务。
+1. 本批规范/合同/纯静态及离线资产检查后合并，同原timer自然应用；核source/applied/configuredtag/exactimage/health。
+2. 分别TA22与23真实四静态/四领域视图、每类别/缺项、高清/双下载SHA、真实拾取/导出/手动镜头/旧入口回归；逐图original实看，失败保留且修后实测。
+3. 只有两图实际闭包后进入TA24–27 IT同主题单元；各pub随其source登记。TA28控制软件/TA29真实双密度与TA30–34面板/TA35跨尺度边界分别执行。
 
-## 待用户决定
-无相同业务批准待决。工具权限拒绝须准确报原因，不写文件/换途径绕过。现有ACTIVE小时heartbeat id=automation绑定当前聊天；更新提示词工具曾返回“requires approval, but approval policy is never”，未替写TOML、未创建重复任务。聊天最新指令及现行规范优先于旧自动提示。
-
-## 入口与现场
-- 常驻源码 /Users/m4/code/inresearch.ai 保持clean但落后；不要切换、reset、stash或带入其它工作。图册使用Codex自管独立工作树。
-- 当前TA20树 /Users/m4/.codex/worktrees/atlas-ta20-campus-plan/inresearch.ai；实际后续树以owner及app attachments为准。
-- 唯一规则 framework/10_visual_atlas.md；机器状态 framework/visual_atlas_migration.json；计划 docs/design/technical-atlas/MIGRATION_PLAN.md；逐图 docs/design/technical-atlas/TA-XX/{acceptance-v1.json,publication-YYYYMMDD.json}。
-- 本机原图、失败稿、实际公网截图与健康原字节 /Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-16/ 及 /Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-17…21/。不删唯一资料。
-- 每次人工审阅验证合同后治理refresh/check、严格validate、registry及适用检查；生产由既有inresearch-only-deploy.timer自然应用，图册只观察与核验，不改调度。
+## 长期边界与资料
+比例/数量为通用示例，不认证OEM/CAD/额定/施工/现场权利、消防安防覆盖或完整电液网络拓扑。手机母图总览细字需放大；动态档案overlay会遮主场景，不为截图自动抢镜头；独立预览完整性另验；匿名研究内容需登录，未验不称通过。
+原件/旧失败/实际截图和健康数据保存在/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/，TA22/23本轮临时制作/private/tmp/atlas-ta22-power-20261010/与/private/tmp/atlas-ta23-thermal-20261010/。不删除唯一资料，不清理活跃工作树；常驻/Users/m4/code/inresearch.ai与其它任务0覆盖。
