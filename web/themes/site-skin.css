@@ -88,7 +88,9 @@ html[data-ui-skin] .ui-icon{stroke-width:1.2;stroke-linejoin:miter;stroke-lineca
 html[data-ui-skin] #ui-skinbar{position:fixed;top:0;left:0;right:0;z-index:1000;box-sizing:border-box;display:flex;align-items:center;gap:16px;flex-wrap:wrap;min-height:53px;margin:0;padding:9px 20px;background:var(--ui-surface);color:var(--ui-ink);border:0;border-bottom:1px solid var(--ui-line);border-radius:0;box-shadow:none;font:13px/1.35 var(--ui-font);width:auto;text-align:left}
 html[data-ui-skin] #ui-skinbar *{box-sizing:border-box}
 html[data-ui-skin] #ui-skinbar .ui-home{display:inline-flex;align-items:center;gap:8px;color:var(--ui-ink);font:600 14px/1.3 var(--ui-font);margin:0;text-decoration:none}
-.ui-navigation{display:flex;align-items:center;gap:4px;min-width:0;overflow:auto}
+/* Native horizontal scrollbars must not add a third phone-header row. Scrolling remains enabled. */
+.ui-navigation{display:flex;align-items:center;gap:4px;min-width:0;overflow:auto;scrollbar-width:none}
+.ui-navigation::-webkit-scrollbar{display:none}
 .ui-navigation a{display:block;flex:none;padding:7px 12px;color:var(--ui-secondary);text-decoration:none;border-bottom:1px solid transparent;white-space:nowrap}
 .ui-navigation a[aria-current=page]{color:var(--ui-accent);border-bottom-color:var(--ui-accent)}
 .ui-navigation a:hover{background:var(--ui-hover);color:var(--ui-ink)}

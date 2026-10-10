@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 40 |
-| `data/research_knowledge.json` | evidence | 310 |
-| `data/research_knowledge.json` | statements | 286 |
+| `data/research_knowledge.json` | documents | 41 |
+| `data/research_knowledge.json` | evidence | 313 |
+| `data/research_knowledge.json` | statements | 288 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
