@@ -4180,6 +4180,74 @@
       "status": "candidate",
       "stored_path": "originals/06/06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae/dcd-06ecddf435b6a332-Nvidia debuts Spectrum-6 switches to power next-gen AI networking.html",
       "title": "Nvidia debuts Spectrum-6 switches to power next-gen AI networking"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f",
+      "coverage": {
+        "characters_read": 13848,
+        "characters_total": 13848,
+        "chunks_read": 3,
+        "chunks_total": 3,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f",
+      "id": "doc-1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f",
+      "library_path": "library/by-node/site-grid/2024_DCD_The power brokers_ Brian Janous on building Cloverleaf__1395eb0f6ff1b5a7.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:meta",
+        "actor:openai",
+        "part:backup-power",
+        "root",
+        "site:grid",
+        "site:land",
+        "site:network-access",
+        "site:permits",
+        "system:power"
+      ],
+      "question_ids": [
+        "M04-Q02",
+        "NODE-workload-edge-placement",
+        "NODE-workload-inference-placement",
+        "NODE-workload-training-placement",
+        "NODE-workload-training-profile",
+        "OBJ-grid-alternatives",
+        "OBJ-grid-definition",
+        "OBJ-grid-interfaces",
+        "OBJ-grid-supply"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-44001e6dbf0141ccbc592abbd3b968c6",
+      "report_sha256": "61a87a5c62360eceb09f11da68a7137ce921a804759c0489a4fbca000870219c",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f",
+        "url": "https://www.datacenterdynamics.com/en/analysis/cloverleaf-infrastructure-brian-janous-microsoft/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/analysis/cloverleaf-infrastructure-brian-janous-microsoft/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/13/1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f/dcd-1395eb0f6ff1b5a7-The power brokers- Brian Janous on building Cloverleaf Infrastruc.html",
+      "title": "The power brokers: Brian Janous on building Cloverleaf Infrastructure"
     }
   ],
   "evidence": [
@@ -31134,6 +31202,95 @@
           }
         },
         "batch_id": "bc31813cdf48cd49c462970e69916f14dbc0e6a65590be05d09cb848a020fe5a"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "b39df17361c7cdb3fb28706b47c51302b63f5eebcc775b43ff8af2036360f3f6",
+      "document_id": "doc-1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f",
+      "id": "rev-44001e6dbf0141ccbc592abbd3b968c6:chunk:1:claim:9:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [
+        "root",
+        "part:backup-power"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-workload-training-placement",
+        "NODE-workload-training-profile"
+      ],
+      "quote": "“You'd have a hard time permitting 5GW of diesel gens,” Janous says. “If this is a training model, you might not need it anyway.”",
+      "reading_revision_id": "rev-44001e6dbf0141ccbc592abbd3b968c6",
+      "source_sha256": "1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T06:30:44+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。训练用途与柴油备用配置之间的条件性关系，实质匹配当前训练可靠性、负载对系统配置的约束及柴油备用替代方案工作单。连续引文和完整原文上下文足以支持限定的受访者观点，可按B局部采用。未识别敏感材料、真实冲突、替换既有结论或其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-workload-training-profile",
+          "Q-NODE-workload-training-placement",
+          "Q-OBJ-backup-power-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 54.08,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c11afc8f6055b7ae28a711ce704b57bc30c650c7e680992bd4faffa217ea2657",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 69640,
+            "output_tokens": 1304,
+            "reasoning_output_tokens": 232
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.351,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "94305cf989ac7f9f8348e183296fd678adac7fdedbe141ab8ed0164e20c17e7e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70286,
+              "output_tokens": 470,
+              "reasoning_output_tokens": 166
+            }
+          }
+        },
+        "batch_id": "98ea9c23f52e726f62a4de53fbf1da74a16376ecd3ec0730095721a3fa0f9b5b"
       }
     }
   ],
@@ -60646,6 +60803,111 @@
         "request_sha256": "bc33467c34108589033eb64cf0f329acd2cffcc62593890e412fd9ba23990541"
       },
       "object_mapping_check": "独立复核后，陈述对象是研究预测模型的透明度及来源链。研究模型不属于合同中的DCIM/BMS与固件控制系统，公用事业负荷预测也不是一座AI数据中心的电力系统、配额或并网协议。引文未建立任何允许主体或具体资产的范围，因此对象列表为空，所选证据采用同一空映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1395eb0f6ff1b5a7d75d1e15b61d76ecf6421b488f6e55815817de8f8ed3a68f",
+      "evidence_ids": [
+        "rev-44001e6dbf0141ccbc592abbd3b968c6:chunk:1:claim:9:ev:0"
+      ],
+      "id": "adoption:review:935d9cf3f3bc75dc91a07f15",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "part:backup-power"
+      ],
+      "question_ids": [
+        "NODE-workload-training-profile",
+        "NODE-workload-training-placement",
+        "OBJ-backup-power-alternatives"
+      ],
+      "reading_revision_id": "rev-44001e6dbf0141ccbc592abbd3b968c6",
+      "status": "adopted",
+      "text": "在Sebastian Moss于2024年9月24日发表于DCD的《The power brokers: Brian Janous on building Cloverleaf Infrastructure》中，Cloverleaf联合创始人、前Microsoft能源副总裁Brian Janous在多吉瓦数据中心供电与备用配置的讨论中认为，5 GW柴油发电机组很难获准建设，并条件性提出：如果用于模型训练，可能不需要上述柴油备用配置。此项保留为Janous在该文时点的设计观点，不构成训练项目无需柴油备用或无需任何备用供电的独立认证；未确认具体项目、地域或实施阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T06:30:44+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。训练用途与柴油备用配置之间的条件性关系，实质匹配当前训练可靠性、负载对系统配置的约束及柴油备用替代方案工作单。连续引文和完整原文上下文足以支持限定的受访者观点，可按B局部采用。未识别敏感材料、真实冲突、替换既有结论或其他A条件。",
+        "workorder_ids": [
+          "Q-NODE-workload-training-profile",
+          "Q-NODE-workload-training-placement",
+          "Q-OBJ-backup-power-alternatives"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 54.08,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "c11afc8f6055b7ae28a711ce704b57bc30c650c7e680992bd4faffa217ea2657",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 69640,
+            "output_tokens": 1304,
+            "reasoning_output_tokens": 232
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.351,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "94305cf989ac7f9f8348e183296fd678adac7fdedbe141ab8ed0164e20c17e7e",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70286,
+              "output_tokens": 470,
+              "reasoning_output_tokens": 166
+            }
+          }
+        },
+        "batch_id": "98ea9c23f52e726f62a4de53fbf1da74a16376ecd3ec0730095721a3fa0f9b5b"
+      },
+      "source_candidate_ids": [
+        "rev-44001e6dbf0141ccbc592abbd3b968c6:chunk:1:claim:9"
+      ],
+      "limitations": "原文未说明训练阶段、模型、调度方式、允许中断时长、恢复机制、可靠性目标或电网供电条件，也没有实测样本及同口径性能、成本比较。“it”依据紧邻语境指向柴油备用配置，不能扩大为所有备用电源。5 GW是许可难度讨论的假设规模，不是已投运容量、设备采购量或获证项目；不能用于容量汇总或模型参数更新。",
+      "conflict_check": "现有RICE取消柴油备用及燃气轮机备用用途陈述讨论保留其他发电方案，本项讨论训练用途下柴油备用配置可能省略，适用条件不同，不构成直接冲突，也非完整重复。现有千卡级训练容错、checkpoint及通信故障陈述未规定柴油备用要求；软件容错既不能验证本项，也不足以反驳其条件性观点。所供legacy匹配记录为空，检查不等于全面外部反证搜索；不改写既有结论。",
+      "gap_dependency_check": "训练profile仅获得可靠性需求可能影响柴油备用配置的观点，仍需带工况的可靠性目标和实测。训练placement仅获得负载用途约束系统配置的局部线索，仍缺阶段、调度、地域、利用率及负载共存证据。备用替代问题获得省略柴油配置的待验证路径，仍需明确剩余供电架构、失效与恢复分析、许可条件及同口径性能成本权衡。三项问题均保持开放，不改变研究骨架或采用值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "98ea9c23f52e726f62a4de53fbf1da74a16376ecd3ec0730095721a3fa0f9b5b",
+        "source_report_sha256": "61a87a5c62360eceb09f11da68a7137ce921a804759c0489a4fbca000870219c",
+        "request_sha256": "5d47b6e47806e7a33002eda3a7549b34f1b9146b13de5f9171649d7aa02f587f"
+      },
+      "object_mapping_check": "独立依据原文选择root（一座AI数据中心）及part:backup-power（发电与储能链下的柴油发电机组）：主张涉及训练用途对整座数据中心柴油备用配置的约束。许可难度仅为该配置观点的背景，未形成具体许可权利或办理流程结论，因此不扩展映射site:permits。未建立特定企业项目、GPU器件或其他备用技术的主张，不沿用文档中的其他对象标签。"
     }
   ],
   "answers": [],

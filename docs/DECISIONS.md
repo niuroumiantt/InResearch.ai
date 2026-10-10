@@ -1,8 +1,15 @@
+# 决策记录
+
 ## 2026-10-10：原35项图册实际闭包
 
 TA35已实际PR591合并084e0698/.68：精确head2e2最终20项CI成功，当前四必过/管理员保护已核，正常合并无bypass。AWS09:50:18Z source=applied与exact78f293镜像healthy；public-v1于09:51:59Z全部15阶段、62声明资源、四明暗宽度/360header、七说明、两实际下载、自含字体full/preview SVG、六关联页与四绘制3D冒烟通过，17图逐张original目检，17公网源SHA及HTTPShealth200成立。登记主35/35、补4/4，原计划全部实际闭包；TA35首次实际源仍084e/.68，不改成此登记SHA。六通用例型不认证同一OEM/同比例/现场完整拓扑；手机号细节须放大、关联仅导航冒烟、动态overlay和匿名研究未验边界保留。raw1条TA18关联/login ERR_ABORTED、旧预算0step失败/lease拒绝和inventory断言修正保留，非abort传输/页面/资源错误零。本地URL拒绝不绕过；Spark/研究事实服务0操作。
 
-# 决策记录
+## 2026-10-10：补齐单个 Reader 失败块的在线恢复入口
+
+用户要求解决两处未提交工作树并合并上线。两份 Reader retry-job 草稿为同功能的重复工作，本批合为一个实现；这是对现行阅读/软件/操作规范的补充，不替换持队列锁的 reader retry 或独立研究的 retry-transient。显式点名当前失败阅读版本的一个 read 块，仅 model_cli_failed、唯一failed且无blocked/running、预算已耗尽；绑定实际次数、冻结recipe ID/文件SHA、request ID/操作者/原因，复验原件、context snapshot_hash、版本同算法recipe与已成功块。
+
+提交前保存私有SQLite online一致备份和前快照；BEGIN IMMEDIATE比较完整快照/文件SHA，只改目标jobs与reading_runs的state/error并写meta事务marker。保持attempts/available/配方/成功块和其他文档，不初始化Reader、不抢常驻worker锁或运行模型；每次显式请求只恢复一轮，正常claim递增次数、失败仍按原预算终止。同ID重放不增claim，提交后回执失败以marker为准；不完整prepare保留，经复核新key恢复，独立再次人工恢复需重新核实际次数/状态及新原因。此次同步正式源、版本.70、实现登记与实际具名测试，并合并 main PR599 的 TA35 实际完成登记，保留首次实际发布 SHA/版本及全部旧失败；源码/本地夹具不冒充生产恢复。本次没有点名线上doc/revision，实际服务部署、模型恢复、目标排队/再领取、完整报告和网站回执须各自留运行证据。
+
 
 ## 2026-10-10：BOM 分类总图采用场景讲解海报
 
