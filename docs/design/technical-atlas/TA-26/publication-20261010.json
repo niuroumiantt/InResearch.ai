@@ -1,0 +1,116 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-26",
+  "object_id": "storage-domain",
+  "status": "published",
+  "observed_at": "2026-10-10T02:22:22.715351+00:00",
+  "actual_primary_published": 26,
+  "supplemental_published": 4,
+  "source_head": "9494f11666e4b304c1b19334a7c74ab20419bc4f",
+  "source_merge": "88d0de38b374dccc89320e8e8345ead0099e6f6a",
+  "governance": "2026.10.10.63",
+  "source_prs": [
+    {
+      "pr": {
+        "headRefOid": "9494f11666e4b304c1b19334a7c74ab20419bc4f",
+        "mergeCommit": {
+          "oid": "88d0de38b374dccc89320e8e8345ead0099e6f6a"
+        },
+        "mergedAt": "2026-10-10T02:09:55Z",
+        "state": "MERGED",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/pull/576"
+      },
+      "exact_atlas_tree": {
+        "headRefOid": "9494f11666e4b304c1b19334a7c74ab20419bc4f",
+        "mergeCommit": {
+          "oid": "88d0de38b374dccc89320e8e8345ead0099e6f6a"
+        },
+        "mergedAt": "2026-10-10T02:09:55Z",
+        "state": "MERGED",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/pull/576",
+        "observed_at": "2026-10-10T02:11:06.637744+00:00",
+        "head_to_merge_full_tree_equal": false,
+        "head_to_merge_changed_paths": [
+          "data/research_knowledge.json",
+          "docs/REPOSITORY_REGISTER.md",
+          "framework/repository_manifest.json"
+        ],
+        "concurrent_main_first_parent": "ec03e75a01ab49557c9428071f1681705c42a965",
+        "reason": "PR539 research increment merged between last fetch and exact PR576 merge; actual research bytes retained from first parent, manifests combined by Git",
+        "all_atlas_sources_and_assets_equal_reviewed_head": true,
+        "equal_own_nonmanifest_paths": 92,
+        "research_bytes_equal_actual_first_parent": true,
+        "initial_full_tree_zero_assertion_failed_retained": true
+      },
+      "receipt": {
+        "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-26/ta24-27-pr576-merged.json",
+        "bytes": 237,
+        "sha256": "12264c5c70c4ea835f121293d8fa760c4c90ea16b065007ba4e29d072325cb6a"
+      },
+      "atlas_tree_receipt": {
+        "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-26/ta24-27-pr576-merge-tree.json",
+        "bytes": 966,
+        "sha256": "e264f45acb37cec4c0290e0d318f51a0cb18831d652559064b24d6258ca1d388"
+      }
+    }
+  ],
+  "acceptance_record": "docs/design/technical-atlas/TA-26/acceptance-v1.json",
+  "public_entry": "https://inresearch.ai/storage-atlas.html",
+  "related_interactive_entries": [
+    "https://inresearch.ai/bom3d.html?d=storage"
+  ],
+  "public_master": "https://inresearch.ai/assets/technical-atlas/storage-domain-v1.png",
+  "public_labelled": "https://inresearch.ai/assets/technical-atlas/storage-domain-v1.svg",
+  "aws": {
+    "observed_at": "2026-10-10T02:14:58.720146+00:00",
+    "host": "ip-172-26-11-47",
+    "source_revision": "88d0de38b374dccc89320e8e8345ead0099e6f6a",
+    "applied_revision": "88d0de38b374dccc89320e8e8345ead0099e6f6a",
+    "applied_image": "sha256:f4fb39252b51eb753a194d3a396ef2c991434be1e6c6af8adc929ac98083e37a",
+    "configured_image": "inresearch-app:88d0de38b374dccc89320e8e8345ead0099e6f6a",
+    "image": "sha256:f4fb39252b51eb753a194d3a396ef2c991434be1e6c6af8adc929ac98083e37a",
+    "status": "HEALTHY: 88d0de38b374dccc89320e8e8345ead0099e6f6a",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "governance": "2026.10.10.63",
+    "deployment_service": "ActiveState=inactive\nSubState=dead",
+    "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+    "data_migration": false
+  },
+  "public_checks": "docs/design/technical-atlas/TA-26/public-checks-v1.json",
+  "public_checks_evidence": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-26/public-v1/storage-domain-results.json",
+    "bytes": 18522,
+    "sha256": "222b3c5947225ee496601ed8ec130f454677b0953010e1962335e0d8db5eea0d"
+  },
+  "source_checks_evidence": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-26/public-source-health.json",
+    "bytes": 14613,
+    "sha256": "ad1d95ae1626ad8e50775ec2e16f5d7c3def6fedae681b04378dc6c32a4cb238"
+  },
+  "owner_original_review": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-26/public-v1/owner-original-review.json",
+    "bytes": 5668,
+    "sha256": "dc5a4bf058db1cd0566d070bfc6d76081670a32f80486832c8cc7ce2ada05db9"
+  },
+  "final_closure_evidence": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-26/final-publication-receipt.json",
+    "bytes": 6384,
+    "sha256": "3a6fb12c8bbe625ab70ba488c92447627ed22960fc26124f1ee8adfe5f1f8a8a"
+  },
+  "CI": {
+    "status": "not_queried",
+    "pass_claimed": false
+  },
+  "boundaries": [
+    "Controlled composition of independently sourced generic examples, not OEM/CAD, common scale, installed topology, complete internals, performance or protocol certification. Original PNGs retained byte-for-byte with separately editable labels.",
+    "Campus remains32home/152meshes; compute8/memory3/storage3 have zero domain entities, network9 has only existing cabling bridge instance and8unmodeled. Four-jacket cable source is not the geometry of that bridge.",
+    "Delivery/optional acceleration/management, three memory access relationships, storage system and local/network alternatives, network/media/board-level connectivity are separate roles rather than a mandatory serial parts list. HBM cutaways are repeated detail, not extra packages; CPU within motherboard image is contextual, not DRAM.",
+    "Zero-entity category has null selected instance, hidden inspector slot and disconnected canvas; old152whole clone cache can remain hidden. Current-view SVG visibly states category context/no physical entity and metadata preserves part ID; background is not category geometry.",
+    "Independent server/rack/chip links depict separate examples and do not establish campus installation. Original14 binding/system47/default scenes remain scoped; no new physical objects or topology added.",
+    "Phone composite is an overview; small component labels require fullSVG zoom. Existing broad-campus fit and dynamic dossier overlay may cover main canvas; independent selected inspector is distinct. Manual camera ownership remains and no automatic refit is introduced.",
+    "No local product URL/browser/HTTP/productJS access; explicit refusal retained. Actual public fixture requires https://inresearch.ai and no local fallback/default runner. CI not queried/waited/claimed passed. Existing AWS timer naturally applies main; no Spark/research data or service mutation by this atlas task.",
+    "PR539 concurrent research increment entered actual merge firstparent after last fetch: full head-to-merge tree differs in research JSON and2generated manifests, while all92atlas nonmanifest paths equal reviewedhead and research bytes equal firstparent. Not described as full-tree0diff.",
+    "Publication registration accompanies nextTA28 substantive source batch; first actual source/applied remains88d0/.63, not future registration SHA."
+  ]
+}

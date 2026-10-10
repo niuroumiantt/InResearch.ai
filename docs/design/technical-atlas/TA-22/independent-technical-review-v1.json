@@ -1,0 +1,170 @@
+{
+  "schema": "ta22-functional-architecture-readonly-review-v1",
+  "reviewed_at": "2026-10-09T23:57:43.015745+00:00",
+  "worktree": "/Users/m4/.codex/worktrees/atlas-ta21-facility/inresearch.ai",
+  "conclusion": "Chosen normal AC path is technically supportable as one functional example, subject to the five boundaries below; no artwork or public acceptance is claimed.",
+  "scope": {
+    "official_public_source_text_checked": true,
+    "source_images_pixels_checked": false,
+    "local_product_browser_http_or_js": false,
+    "repository_write": false,
+    "figure_production": false,
+    "physical_id_added": false
+  },
+  "input_evidence": [
+    {
+      "path": "/private/tmp/ta22-power-reader-primary-preflight-20261009T231902Z.md",
+      "sha256": "91396313cc485556872b647e9e80ec9b5dbd1630b8cf1c307ae099cdd3d36ff5"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta21-facility/inresearch.ai/framework/10_visual_atlas.md",
+      "sha256": "b542d49761f613ff98298e79ad13be454e11386c8b0167d64c163a735307f03e"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta21-facility/inresearch.ai/framework/bom.json",
+      "sha256": "651e893e516a09c03d5871c319bc1e915916635d3857d1d6789f63e88b698573"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta21-facility/inresearch.ai/framework/current_state.json",
+      "sha256": "4206d1ecc7d020396415206bcb88937a87a02580ed3fab04b8154d19764b5586"
+    },
+    {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta21-facility/inresearch.ai/docs/DECISIONS.md",
+      "sha256": "e11aa7e06d22642bde5e9e6732ad18a76b544b351876ca3d3034f85fafb8ebc8"
+    }
+  ],
+  "bom": {
+    "physical_power_part_count": 19,
+    "chains": [
+      "电网接入",
+      "变电",
+      "发电与储能",
+      "UPS",
+      "配电",
+      "机柜与板级供电"
+    ],
+    "part_ids": [
+      "hv-switchyard",
+      "transformer",
+      "mv-switchgear",
+      "gas-turbine",
+      "gas-engine",
+      "fuel-cell",
+      "smr",
+      "backup-power",
+      "bess",
+      "fuel-storage",
+      "ups",
+      "ups-battery",
+      "lv-switchgear",
+      "busway",
+      "pdu",
+      "power-shelf",
+      "bbu",
+      "psu",
+      "vrm"
+    ],
+    "chain_order_is_electrical_series": false
+  },
+  "chosen_path": [
+    "电网接入",
+    "变压/输入开关配电",
+    "双变换UPS",
+    "机房/行分配",
+    "机柜分配",
+    "服务器PSU（AC-DC）",
+    "板级DC稳压/负载"
+  ],
+  "sources": {
+    "Eaton": {
+      "title": "UPS Basics WP153005EN",
+      "url": "https://www.eaton.com/content/dam/eaton/markets/buildings/critical-power/documents/eaton-ups-basics-whitepaper-WP153005EN-en-gb.pdf",
+      "actual_read": "PDF正文：物理第2页双变换/电池/静态旁路，第4页发电机角色，第7页两级PDU。",
+      "support": "UPS正常整流与逆变、电池接续、静态旁路绕过转换链；发电机承担另一时间层级的备用；房间与机柜PDU层级不同。",
+      "source_pixels_visually_verified": false
+    },
+    "Vertiv": {
+      "title": "The data center power train: Managing energy from grid to chip",
+      "url": "https://www.vertiv.com/4909d6/globalassets/documents/ebook/vertiv-datacenterpowertrain-eb-en-na-sl-80203-web-small.pdf",
+      "actual_read": "PDF正文：物理第6页设施变换与分配，第7页机房/行与机柜分配，第8–9页BESS协同。",
+      "support": "设施分配可分IT与其它负载；room/row与rack功能层次；房间PDU与母线槽有方案差异；BESS与UPS可协同但无唯一通用接线。",
+      "source_pixels_visually_verified": false
+    },
+    "TI": {
+      "title": "SSZTDB4 — A brief history",
+      "url": "https://www.ti.com/document-viewer/lit/html/SSZTDB4/GUID-4C27D06A-1852-4990-B137-23DA8A14DEAE",
+      "actual_read": "官方HTML正文连续段落图2/3对应叙述（lines22–34）。",
+      "support": "专属服务器PSU与共享power shelf为不同架构；共享直流分配可能需中间转换；BBU与UPS组合依实现而异；PoL为DC末端稳压。",
+      "source_pixels_visually_verified": false
+    }
+  },
+  "material_risks": [
+    {
+      "id": "R1",
+      "severity": "material_semantic",
+      "risk": "分类顺序被误读为所有19件硬串联；变压/开关/房间PDU/母线槽被排列成唯一现场单线图。",
+      "fix": "主标题限定“选定AC供电功能示例”。把输入变压/开关与下游分配标为功能区，room/row分配内写“PDU/RPP或母线槽，按设计”，再独立注明机柜rPDU。同一个pdu类别可解释两层功能，不新增实体ID、不宣称每柜必经所有器件。可由输入配电旁标“其它负载另路，未展开”，避免全部建筑负载都经UPS的暗示。",
+      "sources": [
+        "Vertiv",
+        "Eaton"
+      ],
+      "verification": "主链不以chain_order生成固定连线；每条线有功能语义，分配选择用文字/分区表达而非硬串接。"
+    },
+    {
+      "id": "R2",
+      "severity": "material_technical",
+      "risk": "“电池旁路”混成一条路径，或把UPS电池画在AC主线；旁路被误认为同等调理的储能输出。",
+      "fix": "单独UPS功能inset只解释同一ups：正常AC→整流→DC功能节点→逆变→AC输出；ups-battery支路向该DC功能节点供能；静态旁路从AC输入侧绕过转换链至输出侧，写“条件路径/不经双变换”。inset不是第二台UPS。整流/逆变/DC节点/静态开关均为功能注释，不新增采购或物理ID，不画维护操作流程。",
+      "sources": [
+        "Eaton"
+      ],
+      "verification": "电池箭头不落在AC输入/输出，旁路线不穿过整流或逆变；正常/电池/旁路三个状态不同时画成同一实线活动工况。"
+    },
+    {
+      "id": "R3",
+      "severity": "material_technical",
+      "risk": "共享power-shelf→另一套服务器AC-DC PSU→VRM被画成必经链，或BBU默认直连AC/负载绕过所需变换。",
+      "fix": "主图保留rPDU→服务器psu（AC-DC）→板级DC稳压vrm/负载。下方独立替代inset用“共享power-shelf→DC分配→按需中间变换→板级稳压/负载”，bbu只标该选定共享DC方案的备份功能；明确替代关系与UPS是否保留依设计。中间变换为说明功能块，VRM不接AC。",
+      "sources": [
+        "TI"
+      ],
+      "verification": "替代inset不与主图服务器psu顺序连线；无额定数字、PSU数量或默认冗余配置。"
+    },
+    {
+      "id": "R4",
+      "severity": "material_technical",
+      "risk": "BESS、UPS配套电池、BBU被等同为一个柜或同时必装；备用发电候选被硬并联到单一母线，fuel-storage被接成电力线。",
+      "fix": "底部独立“备用/储能与其它设计候选”区，不接未选定母线；BESS、backup-power与其它发电候选分别标“接入位置/转换/控制按设计”。fuel-storage按当前BOM仅作柴油燃料物流→backup-power支路，明确“燃料”线，不能连气机/燃料电池/SMR或UPS。smr只登记研究候选，不暗示已建或可采购。",
+      "sources": [
+        "Eaton",
+        "Vertiv"
+      ],
+      "verification": "替代区无全候选串联/硬并联；fuel-storage没有电力箭头；三种储能层级及用途分开。"
+    },
+    {
+      "id": "R5",
+      "severity": "material_visual",
+      "risk": "十九类别、设备缩略图、UPS功能inset和多候选连线同时挤进主链，读者将跨尺度解释图误认同一园区安装图，或把定位引线当能量流。",
+      "fix": "保留一条自左向右AC→DC主叙事，真实设备图仅解释所在功能；UPS inset近UPS且以虚线括号注明“同一系统功能解释”；替代区与主图留清晰分隔。工程蓝圆点只定位，带箭头路径配“电力/条件旁路/燃料”文字图例，不能只靠颜色。保留通用功能示意、非共同尺寸/数量/现场拓扑及规格未知边界。",
+      "sources": [
+        "Eaton",
+        "Vertiv",
+        "TI"
+      ],
+      "verification": "母图原生1536×1024保留独立文字层与页边；手机总览提供全图放大，细字不以缩略图合格替代。"
+    }
+  ],
+  "compact_layout": {
+    "canvas": "1536×1024 原生暖白母图，独立可编辑文字",
+    "main": "上部约60%为单条左→右主路径；设备外形有细节，功能组不新增物理ID。",
+    "ups_inset": "中部靠UPS的独立解释，不复制一台实体；电池支路与条件静态旁路分别标注。",
+    "alternatives": "下部两块：共享power-shelf/BBU替代末端；备用发电/BESS及其它候选。两块均不硬连主母线。",
+    "fuel": "只在柴油备用候选内附fuel-storage→backup-power燃料支路。",
+    "footnote": "选定功能示例；不同方案连接不同。无OEM/额定规格、冗余、保护、并网/接地控制或现场适用证明。"
+  },
+  "not_verified": [
+    "源PDF/HTML图像未取得可见像素，未视觉核验原厂图结构；未下载替代副本或绕过展示限制。",
+    "尚无TA22候选成图，本次没有实际图面数量、锚点、文字或交互验收。",
+    "不据来源宣传数字/预测及BOM趋势描述推定本图容量、时长、冗余或BESS必需。"
+  ]
+}

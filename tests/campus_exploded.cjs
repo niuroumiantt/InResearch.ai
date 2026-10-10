@@ -30,9 +30,9 @@ assert.equal(baseURL.pathname, '/', 'UI_BASE_URL must be an origin');
 assert.ok(!baseURL.search && !baseURL.hash, 'UI_BASE_URL must not contain query/hash');
 const base = baseURL.origin;
 const scenario = process.argv[2] || 'all';
-assert.ok(['all', 'views', 'assembly'].includes(scenario), 'Use views, assembly or all');
+assert.ok(['all', 'views', 'assembly', 'geometry', 'whole', 'navigation', 'lifecycle'].includes(scenario), 'Use views, geometry, navigation, lifecycle, assembly or all');
 const root = process.env.TA19_SOURCE_ROOT || path.resolve(__dirname, '..');
-const out = process.env.REVIEW_SCREENSHOTS || path.join('/private/tmp', 'ta19-campus-public-' + Date.now());
+const out = process.env.REVIEW_SCREENSHOTS || path.join(require('node:os').tmpdir(), 'ta19-campus-public-' + Date.now());
 fs.mkdirSync(out, {recursive:true});
 const sha = bytes => crypto.createHash('sha256').update(bytes).digest('hex');
 const assetNames = ['campus-exploded-v1.svg', 'campus-exploded-v1.png'];
@@ -256,7 +256,7 @@ const note = (label,data={}) => results.push({label,...data});
         {id,sha256:d.sha256,bytes:d.length,metadata:parsed.metadata,editable:parsed.editable});
     }
 
-    if (scenario!=='assembly') {
+    if (['all','views'].includes(scenario)) {
       for (const stageValue of [0,100]) for (const width of [1280,390]) for (const theme of ['light','dark']) {
         await page.setViewportSize({width,height:width===390?844:900});
         await go('/bom3d.html?view=exploded&x='+stageValue);
@@ -312,7 +312,7 @@ const note = (label,data={}) => results.push({label,...data});
       }
     }
 
-    if (scenario!=='views') {
+    if (['all','assembly','geometry'].includes(scenario)) {
       await page.setViewportSize({width:1280,height:900});
       await go('/bom3d.html?view=exploded&x=0');
       const structure=await page.evaluate(()=>{
@@ -429,6 +429,14 @@ const note = (label,data={}) => results.push({label,...data});
         'campus/air-chiller-2','campus/transformer-1','campus/standby-generator-2',
         'campus/retained-roof-sections','campus/retained-wall-sections','campus/overhead-service-trays'])
         await actualPick(id);
+    }
+
+    if (['all','assembly','whole'].includes(scenario)) {
+      if (scenario==='whole') {
+        await page.setViewportSize({width:1280,height:900});
+        await go('/bom3d.html?view=exploded&x=70');
+        await fit();
+      }
       await closeDossier();await controlsOpen();
       await page.locator('#campus-whole-dossier').click();
       await page.locator('#dossier .insp canvas').waitFor();
@@ -439,6 +447,9 @@ const note = (label,data={}) => results.push({label,...data});
       await currentSVG('campus/whole');note('Whole campus inspector aggregates every real picked mesh',whole);
       await closeDossier();
 
+    }
+
+    if (['all','assembly','navigation'].includes(scenario)) {
       // Six canonical site nodes and legacy IDs really navigate to the new scene;
       // no successful research content claim is made for an anonymous API401.
       for(const [canonical,legacy]of expectedRights)for(const query of[
@@ -484,6 +495,9 @@ const note = (label,data={}) => results.push({label,...data});
           note('Campus domain safe-fit, canonical ownership, unchanged assembly stage',{width,domain,...bounds});
         }
       }
+    }
+
+    if (['all','assembly','lifecycle'].includes(scenario)) {
       await page.setViewportSize({width:1280,height:900});await go('/bom3d.html?view=exploded&x=70');await controlsOpen();
       await page.locator('#campus-static-plate').evaluate(el=>el.open=true);await settled();
       for(const filename of assetNames) {

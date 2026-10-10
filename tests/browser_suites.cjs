@@ -6,7 +6,7 @@ const dossierScenes = ['/bom3d.html?p=server', '/rack3d.html?node=part:server', 
 // Isolate expensive software-rendered suites so their serial total cannot
 // exhaust one CI job. Preserve every scene, density and per-case deadline.
 const third = ['part_dossier'];
-const isolated = ['server_assembly', 'rack_assembly', 'rack_exploded', 'scene_atlas'];
+const isolated = ['server_assembly', 'rack_assembly', 'rack_exploded', 'scene_atlas', 'campus_overview', 'campus_exploded'];
 const remaining = core.filter(s => !third.includes(s) && !isolated.includes(s));
 const first = remaining.filter((s, i) => s === 'scene_resources' || (i % 2 === 0 && s !== 'scene_atlas'));
 const second = remaining.filter(s => !first.includes(s));
@@ -14,6 +14,13 @@ function selectSuites(requested) {
   return requested.length ? requested.flatMap(s => s === 'core' ? core : s === 'core_a' ? first : s === 'core_b' ? second : s === 'core_c' ? third : [s]) : defaults;
 }
 function suiteScenarios(suite) {
-  return suite === 'part_dossier' ? dossierScenes : suite === 'model_assets' ? ['bom3d', 'rack3d', 'compare'] : suite === 'scene_atlas' ? ['1', '2'] : ['system_atlas','scale_atlas'].includes(suite) ? ['views', 'downloads'] : ['rack_exploded', 'chip_package', 'campus_overview', 'campus_exploded'].includes(suite) ? ['views', 'assembly'] : [null];
+  return suite === 'campus_exploded' ? ['views','geometry','whole','navigation','lifecycle'] : suite === 'campus_overview' ? ['views','geometry','navigation','lifecycle'] : suite === 'part_dossier' ? dossierScenes : suite === 'model_assets' ? ['bom3d', 'rack3d', 'compare'] : suite === 'scene_atlas' ? ['1', '2'] : ['system_atlas','scale_atlas'].includes(suite) ? ['views', 'downloads'] : ['rack_exploded', 'chip_package'].includes(suite) ? ['views', 'assembly'] : [null];
 }
-module.exports = {defaults, core, selectSuites, suiteScenarios, dossierScenes};
+function selectCases(requested) {
+  return selectSuites(requested).flatMap(value => {
+    const [suite, scenario, extra] = value.split(':');
+    if (!defaults.includes(suite) || extra !== undefined || (scenario !== undefined && !suiteScenarios(suite).includes(scenario))) throw Error('Unknown browser case: '+value);
+    return (scenario === undefined ? suiteScenarios(suite) : [scenario]).map(scenario => ({suite,scenario}));
+  });
+}
+module.exports = {defaults, core, selectSuites, selectCases, suiteScenarios, dossierScenes};

@@ -1,0 +1,8 @@
+{
+  "figure_id": "TA-28",
+  "stage": "source_review_only_public_pending",
+  "finding": "Independent static review found two candidate links /campus-atlas.html had no real route",
+  "decision": "both linked TA18 context paths corrected to actual /bom3d.html before source publication; no deployed incident",
+  "regression": "all internal href base paths now checked against routes in ControlDomainAssetTests; final39noHTTP/10parseonly passed",
+  "prior_test_limit": "first39passed did not cover this internalnav; original finding retained, not falsely productaccepted"
+}

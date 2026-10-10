@@ -41,7 +41,7 @@
       ]
     ],
     "current_source_batch": [
-      "TA-21"
+      "TA-28"
     ],
     "max_concurrent_drafting": 1,
     "review_scope": "current_source_batch_with_per_item_evidence",
@@ -865,15 +865,21 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "review",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-21/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "de104b8c2a27478dced10d904cb99e72cce79377",
       "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
       "object_id": "facility-domain",
       "baseline_revision": "ef918aaa567ddd3ad013a10756112bd75b739fdd",
-      "publication_status": "not_published",
+      "publication_status": "published",
       "production_record": "docs/design/technical-atlas/TA-21/generation-v1.json",
-      "source_review_record": "docs/design/technical-atlas/TA-21/source-review-v1.json"
+      "source_review_record": "docs/design/technical-atlas/TA-21/source-review-v1.json",
+      "publication_record": "docs/design/technical-atlas/TA-21/publication-20261010.json",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-21/bom3d-before-v1.html",
+        "bytes": 71128,
+        "sha256": "617497990f0db27ae0b197f1f90d5418b537bebfef9920b1bc12818aadc3daab"
+      }
     },
     {
       "id": "TA-22",
@@ -885,7 +891,7 @@
         "web/pages/bom3d.html",
         "framework/bom.json"
       ],
-      "entry": "bom3d.html?d=power",
+      "entry": "bom3d.html?d=power；独立power-atlas.html放大与双下载",
       "reference": [
         "R4",
         "R1",
@@ -898,10 +904,21 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null,
-      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。"
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-22/acceptance-v1.json",
+      "published_revision": "5be58335878d115c797ea82e7e4777a4124da358",
+      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
+      "object_id": "power-domain",
+      "source_review_record": "docs/design/technical-atlas/TA-22/source-review-v1.json",
+      "production_record": "docs/design/technical-atlas/TA-22/generation-v1.json",
+      "baseline_revision": "1034e4ae5ef799b1aee25c0a0d31cfa42f782206",
+      "publication_status": "not_published",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-22/bom3d-before-v1.html",
+        "bytes": 72768,
+        "sha256": "4300d83861a43ecf6f478e6ab4efbece6a4fd665cea24b01a4b84d59fc51da52"
+      },
+      "publication_record": "docs/design/technical-atlas/TA-22/publication-20261010.json"
     },
     {
       "id": "TA-23",
@@ -913,7 +930,7 @@
         "web/pages/bom3d.html",
         "framework/bom.json"
       ],
-      "entry": "bom3d.html?d=thermal",
+      "entry": "bom3d.html?d=thermal；独立thermal-atlas.html放大与双下载",
       "reference": [
         "R5",
         "R1",
@@ -925,10 +942,21 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null,
-      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。"
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-23/acceptance-v1.json",
+      "published_revision": "5be58335878d115c797ea82e7e4777a4124da358",
+      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
+      "object_id": "thermal-domain",
+      "source_review_record": "docs/design/technical-atlas/TA-23/source-review-v1.json",
+      "production_record": "docs/design/technical-atlas/TA-23/generation-v1.json",
+      "baseline_revision": "1034e4ae5ef799b1aee25c0a0d31cfa42f782206",
+      "publication_status": "not_published",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-22/bom3d-before-v1.html",
+        "bytes": 72768,
+        "sha256": "4300d83861a43ecf6f478e6ab4efbece6a4fd665cea24b01a4b84d59fc51da52"
+      },
+      "publication_record": "docs/design/technical-atlas/TA-23/publication-20261010.json"
     },
     {
       "id": "TA-24",
@@ -950,9 +978,20 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-24/acceptance-v1.json",
+      "published_revision": "88d0de38b374dccc89320e8e8345ead0099e6f6a",
+      "object_id": "compute-domain",
+      "source_review_record": "docs/design/technical-atlas/TA-24/source-review-v1.json",
+      "production_record": "docs/design/technical-atlas/TA-24/generation-v1.json",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-24/bom3d-before-v1.html",
+        "bytes": 74253,
+        "sha256": "cf25213b897311e58d12baf32bc2742ac27cc13ba4a1ef97144b138dc1907ad2",
+        "use": "historical exact5be58335 page baseline; notcurrentinstructions"
+      },
+      "publication_status": "published",
+      "publication_record": "docs/design/technical-atlas/TA-24/publication-20261010.json"
     },
     {
       "id": "TA-25",
@@ -974,9 +1013,20 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-25/acceptance-v1.json",
+      "published_revision": "88d0de38b374dccc89320e8e8345ead0099e6f6a",
+      "object_id": "memory-domain",
+      "source_review_record": "docs/design/technical-atlas/TA-25/source-review-v1.json",
+      "production_record": "docs/design/technical-atlas/TA-25/generation-v1.json",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-24/bom3d-before-v1.html",
+        "bytes": 74253,
+        "sha256": "cf25213b897311e58d12baf32bc2742ac27cc13ba4a1ef97144b138dc1907ad2",
+        "use": "historical exact5be58335 page baseline; notcurrentinstructions"
+      },
+      "publication_status": "published",
+      "publication_record": "docs/design/technical-atlas/TA-25/publication-20261010.json"
     },
     {
       "id": "TA-26",
@@ -998,9 +1048,20 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-26/acceptance-v1.json",
+      "published_revision": "88d0de38b374dccc89320e8e8345ead0099e6f6a",
+      "object_id": "storage-domain",
+      "source_review_record": "docs/design/technical-atlas/TA-26/source-review-v1.json",
+      "production_record": "docs/design/technical-atlas/TA-26/generation-v1.json",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-24/bom3d-before-v1.html",
+        "bytes": 74253,
+        "sha256": "cf25213b897311e58d12baf32bc2742ac27cc13ba4a1ef97144b138dc1907ad2",
+        "use": "historical exact5be58335 page baseline; notcurrentinstructions"
+      },
+      "publication_status": "published",
+      "publication_record": "docs/design/technical-atlas/TA-26/publication-20261010.json"
     },
     {
       "id": "TA-27",
@@ -1022,9 +1083,20 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null
+      "status": "published",
+      "acceptance_record": "docs/design/technical-atlas/TA-27/acceptance-v1.json",
+      "published_revision": "88d0de38b374dccc89320e8e8345ead0099e6f6a",
+      "object_id": "network-domain",
+      "source_review_record": "docs/design/technical-atlas/TA-27/source-review-v1.json",
+      "production_record": "docs/design/technical-atlas/TA-27/generation-v1.json",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-24/bom3d-before-v1.html",
+        "bytes": 74253,
+        "sha256": "cf25213b897311e58d12baf32bc2742ac27cc13ba4a1ef97144b138dc1907ad2",
+        "use": "historical exact5be58335 page baseline; notcurrentinstructions"
+      },
+      "publication_status": "published",
+      "publication_record": "docs/design/technical-atlas/TA-27/publication-20261010.json"
     },
     {
       "id": "TA-28",
@@ -1036,7 +1108,7 @@
         "web/pages/bom3d.html",
         "framework/bom.json"
       ],
-      "entry": "bom3d.html?d=control",
+      "entry": "bom3d.html?d=control；独立control-atlas.html与dcim软件档案放大/双下载",
       "reference": [
         "R1",
         "R2"
@@ -1046,9 +1118,18 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
-      "published_revision": null
+      "status": "review",
+      "acceptance_record": "docs/design/technical-atlas/TA-28/acceptance-v1.json",
+      "published_revision": null,
+      "object_id": "control-domain",
+      "source_review_record": "docs/design/technical-atlas/TA-28/source-review-v1.json",
+      "production_record": "docs/design/technical-atlas/TA-28/generation-v1.json",
+      "baseline_revision": "69d7c2839023c286725c0f1612e220330bb3d4e8",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-28/bom3d-before-v1.html",
+        "bytes": 77954,
+        "sha256": "b7e7943bf04c96699f89da0742803a1e1045615cf4906e664af96107396c23b4"
+      }
     },
     {
       "id": "TA-29",
@@ -1360,8 +1441,9 @@
     }
   ],
   "execution_priority": {
-    "reason": "先收尾用户授权的四张设施补充图，原35项按用户再次明确的01–35顺序继续；两类进度分别计量",
-    "next": "TA-21"
+    "reason": "TA24–27 actual88d0/.63逐项公开闭包登记27/35；TA28控制软件source review，真实新公网另验",
+    "next": "TA-28",
+    "next_item": "TA-28"
   },
   "primary_plan": {
     "total": 35,
@@ -1403,7 +1485,7 @@
       "TA-35"
     ],
     "execution_order": "01–35; sequential individual drawing/review; source PR batches do not change figure order",
-    "published": 20
+    "published": 27
   },
   "supplemental_items": [
     "TA-36",
