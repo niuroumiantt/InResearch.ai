@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-09T11:50:33.553096+00:00",
+  "operation": "read-only canonical current selector and frozen failed-chunk request SHA; no inference/model client or payload export",
+  "document_id": "doc-d794e060d2697b41ac69aa6133cf73ea0473433736e4e1ab85d26df219383322",
+  "documents_current_revision_id": null,
+  "execution_root_meta": null,
+  "current_readings_revision_id": "rev-f05ecf179f2147348d9738943c37bf2f",
+  "expected_failed_revision_id": "rev-f05ecf179f2147348d9738943c37bf2f",
+  "current_readings_matches_expected": true,
+  "reading_runs": [
+    {
+      "revision_id": "rev-f05ecf179f2147348d9738943c37bf2f",
+      "base_revision_id": null,
+      "request_id": "initial",
+      "state": "failed",
+      "recipe": "c57f87740c40432dfc225d6f"
+    }
+  ],
+  "read_success_count": 62,
+  "read_success_minmax": [
+    0,
+    61
+  ],
+  "failed_read_indices": [
+    63
+  ],
+  "pending_read_indices_before_failed": [
+    62
+  ],
+  "failed_chunk_user_input_sha256": "2faeea8183f77038813c72ba5bf7c7756afd726e9a17a3d6e45c449497406e52",
+  "current_reader_pid": 2735090,
+  "reader_tree_head": "41c4bc2f05bd9031825470f064db31bd49f5da2c",
+  "payload_builder_sha256": "6fd90faf81d762d0e7f583f70612a9db97424d4175be1b0e7d3af59e276e279c",
+  "recipe_read_batch": {
+    "max_characters": 6000,
+    "max_chunks": 4,
+    "version": "read-batch-v1"
+  },
+  "observer_correction": "documents.current_revision_id can be NULL for unfinished initial reading; actual selection is COALESCE(current pointer, execution_root meta, initial revision). Earlier boolean compared the nullable activated pointer and was mislabeled."
+}

@@ -51,11 +51,11 @@ class BomStructureTests(unittest.TestCase):
         self.assertEqual(self.parts['modular-dc']['kind'], 'archetype')
 
     def test_one_skeleton_systems_and_chains(self):
-        # 一个骨架：五个系统，IT 再分四个；系统内按能量流链路排；部件只挂叶子系统
+        # 一个骨架：五个系统，IT 三分、存储再分；系统内按能量流链路排；部件只挂叶子系统
         systems = self.bom['systems']
         top = [sid for sid, s in systems.items() if not s.get('parent')]
-        self.assertEqual([systems[s]['name'] for s in sorted(top, key=lambda s: systems[s]['order'])], ['设施', '电力', '冷却', 'IT', '控制与软件'])
-        self.assertEqual(sorted(sid for sid, s in systems.items() if s.get('parent') == 'it'), ['compute', 'memory', 'network', 'storage'])
+        self.assertEqual([systems[s]['name'] for s in sorted(top, key=lambda s: systems[s]['order'])], ['设施', '水与散热', '电', 'IT设施', '控制与软件'])
+        self.assertEqual(sorted(sid for sid, s in systems.items() if s.get('parent') == 'it'), ['compute', 'network', 'storage-group'])
         self.assertEqual(systems['power']['chains'], ['电网接入', '变电', '发电与储能', 'UPS', '配电', '机柜与板级供电'])
         self.assertEqual(systems['thermal']['chains'], ['排热', '冷水与 CDU', '机房与机柜', '芯片级'])
         slots = set()
@@ -77,11 +77,23 @@ class BomStructureTests(unittest.TestCase):
         # 图谱 3.0 由骨架生成：部件对象按系统顺序 × 链路顺序 × chain_order 排
         systems = self.bom['systems']
         def key(o):
-            s = systems[o['system']]
-            top = systems[s['parent']]['order'] if s.get('parent') else s['order']
-            return (top, s['order'] if s.get('parent') else 0, s['chains'].index(o['chain']), o['chain_order'])
+            from inresearch.knowledge.skeleton import system_key
+            return (system_key(systems, o['system']), systems[o['system']]['chains'].index(o['chain']), o['chain_order'])
         keys = [key(o) for o in self.graph['objects'] if o['kind'] == 'part']
         self.assertEqual(keys, sorted(keys))
+
+    def test_user_classification_of_2026_10_10(self):
+        systems = self.bom['systems']
+        self.assertEqual(systems['memory']['parent'], 'storage-group')
+        self.assertEqual(systems['storage']['parent'], 'storage-group')
+        self.assertEqual(systems['storage']['name'], 'IT · 持久存储')
+        groups = systems['compute']['processor_groups']
+        self.assertEqual([g['name'] for g in groups], ['CPU', 'GPU', '其他'])
+        self.assertEqual([g['parts'] for g in groups], [['cpu'], ['gpu'], ['ai-asic', 'fpga']])
+        partition = [pid for g in groups for pid in g['parts']] + systems['compute']['support_parts']
+        self.assertEqual(sorted(partition), sorted(p['id'] for p in self.parts.values() if p['system']=='compute'))
+        self.assertEqual(self.objects['system:memory']['parent'], 'system:storage-group')
+        self.assertEqual(self.objects['system:storage-group']['parent'], 'system:it')
 
     def test_aliases_resolve(self):
         for old, target in self.bom['aliases'].items():

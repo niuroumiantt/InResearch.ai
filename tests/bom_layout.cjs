@@ -11,10 +11,26 @@ const bom=require('../framework/bom.json');
   await page.goto(process.env.UI_BASE_URL+'/bom.html');
   await page.locator('.equipment[data-part="ssd"]').waitFor();
   await page.evaluate(()=>document.fonts.ready);
+  const poster = page.locator('.classification-poster img');
+  await poster.evaluate(e=>e.decode());
+  assert.deepEqual(await poster.evaluate(e=>[e.naturalWidth,e.naturalHeight]),[1536,1800]);
+  assert.ok(await poster.evaluate(e=>!!(e.compareDocumentPosition(document.querySelector('.equipment'))&Node.DOCUMENT_POSITION_FOLLOWING)));
+  assert.equal(await page.locator('#classification-nav').evaluate(e=>e.open),false);
   const physical=bom.parts.filter(p=>(p.kind||'part')==='part');
   assert.equal(await page.locator('.equipment').count(),physical.length);
   assert.equal(await page.locator('[data-overview-system]').count(),5);
-  assert.equal(await page.locator('.it-branches a').count(),4);
+  assert.equal(await page.locator('[data-it-branch]').count(),3);
+  assert.deepEqual(await page.locator('[data-it-branch]').evaluateAll(es=>es.map(e=>e.textContent)),['计算','存储','网络']);
+  assert.deepEqual(await page.locator('[data-processor-link]').evaluateAll(es=>es.map(e=>e.textContent)),['CPU','GPU','其他']);
+  assert.deepEqual(await page.locator('[data-storage-link]').evaluateAll(es=>es.map(e=>e.textContent)),['内存','持久存储']);
+  for(const id of ['facility','thermal','power','it','control']) {
+   const colors=await page.evaluate(id=>{
+    const color=el=>getComputedStyle(el).getPropertyValue('--category').trim();
+    return [color(document.querySelector('#system-map [data-category="'+id+'"]')),color(document.querySelector('#system-'+id)),color(document.querySelector('.system-index [data-category="'+id+'"]'))];
+   },id);
+   assert.ok(colors[0]);assert.equal(new Set(colors).size,1,'diagram, section and navigation share category color');
+  }
+  assert.deepEqual(await page.locator('[data-processor-group="other"] .equipment').evaluateAll(es=>es.map(e=>e.dataset.part)),['ai-asic','fpga']);
   assert.ok(await page.locator('#detail-panel').evaluate(e=>e.hidden));
   assert.ok(await page.locator('#overview').evaluate(e=>!!(e.compareDocumentPosition(document.querySelector('.equipment'))&Node.DOCUMENT_POSITION_FOLLOWING)));
   for(const width of [1920,1440,1280,900,390,320]){
@@ -34,6 +50,23 @@ const bom=require('../framework/bom.json');
     }
    }
   }
+  // A phone must be able to read the full-resolution poster without page overflow.
+  await page.locator('.poster-actions [data-open-classification]').click();
+  assert.ok(await page.locator('#classification-dialog').isVisible());
+  assert.ok(await page.locator('.poster-scroll').evaluate(e=>e.scrollWidth>e.clientWidth));
+  await page.locator('.poster-scroll').evaluate(e=>{e.scrollLeft=e.scrollWidth;e.scrollTop=e.scrollHeight});
+  assert.ok(await page.locator('.poster-scroll').evaluate(e=>e.scrollLeft>0&&e.scrollTop>0));
+  await page.locator('#poster-fit').click();
+  assert.ok(await page.locator('.poster-scroll').evaluate(e=>e.scrollWidth<=e.clientWidth));
+  await page.keyboard.press('Escape');
+  assert.ok(await page.locator('#classification-dialog').evaluate(e=>!e.open));
+  // The editable export and whole-image download must be real public resources.
+  for(const ext of ['png','svg']) {
+   const resource=await page.request.get(process.env.UI_BASE_URL+'/assets/bom-classification/overview-v1.'+ext);
+   assert.equal(resource.status(),200);
+   if(ext==='svg') { const xml=await resource.text();assert.ok(xml.includes('data:image/png;base64,'));assert.ok(xml.includes('data:font/woff2;base64,')); }
+  }
+  await page.locator('#classification-nav summary').click();
   // Top diagram links must land below both sticky navigation rows on a phone.
   for(const id of ['facility','power','thermal','it','control']){
    await page.locator(`[data-overview-system="${id}"]`).click();
@@ -42,7 +75,14 @@ const bom=require('../framework/bom.json');
    const bar=await page.locator('.system-index').boundingBox();
    assert.ok(pos.y>=bar.y+bar.height-1,`${id} heading not hidden by sticky index`);
   }
-  await page.locator('.it-branches a[href="#it-memory"]').click();
+  for(const id of ['cpu','gpu','other']) {
+   await page.locator('[data-processor-link="'+id+'"]').click();
+   assert.equal(new URL(page.url()).hash,'#compute-'+id);
+   const pos=await page.locator('#compute-'+id).boundingBox();
+   const bar=await page.locator('.system-index').boundingBox();
+   assert.ok(pos.y>=bar.y+bar.height-1,'processor heading visible below sticky navigation');
+  }
+  await page.locator('[data-storage-link="memory"]').click();
   assert.equal(new URL(page.url()).hash,'#it-memory');
   await page.locator('.equipment[data-part="ssd"]').click();
   await page.locator('#selected-atlas .technical-atlas').waitFor();

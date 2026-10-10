@@ -1,29 +1,29 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.71。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.72。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2457。
+在册文件：2499。
 
 | 身份 | 文件数 |
 |---|---|
-| 静态资源 | 365 |
+| 静态资源 | 368 |
 | 候选与外部输入 | 146 |
 | 已采用设计依据 | 1 |
 | 现行入口 | 4 |
 | 生成物 | 13 |
-| 历史快照 | 366 |
-| 运行代码 | 364 |
+| 历史快照 | 397 |
+| 运行代码 | 366 |
 | 现行规范 | 16 |
-| 项目配置 | 756 |
+| 项目配置 | 760 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 187 |
-| 测试 | 191 |
+| 配套说明 | 188 |
+| 测试 | 192 |
 
 ## 在册记录集合
 
@@ -39,7 +39,7 @@
 | `data/contracts.json` | records | 8 |
 | `data/dashboard.json` | stages | 6 |
 | `data/dashboard.json` | system_nodes | 8 |
-| `data/dashboard.json` | parent_systems | 1 |
+| `data/dashboard.json` | parent_systems | 2 |
 | `data/dashboard.json` | factors | 26 |
 | `data/datacenter_model.json` | groups | 5 |
 | `data/datacenter_model.json` | anchors | 2 |
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 42 |
-| `data/research_knowledge.json` | evidence | 315 |
-| `data/research_knowledge.json` | statements | 290 |
+| `data/research_knowledge.json` | documents | 43 |
+| `data/research_knowledge.json` | evidence | 316 |
+| `data/research_knowledge.json` | statements | 291 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -70,6 +70,34 @@
 | `docs/LIBRARY_SCORES.csv` | rows | 13664 |
 | `docs/archive/2026-10-06/worktree-snapshots/patches.json` | git_diff_options | 3 |
 | `docs/archive/2026-10-06/worktree-snapshots/patches.json` | patches | 3 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/c03-supplement-process-guard-readonly.json` | processes | 2 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/c03-supplement-reader-admission-first-refused.json` | added_doc_ids | 2 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/c03-supplement-reader-admission.json` | added_doc_ids | 2 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/c03-supplement-reader-admission.json` | source_checks | 2 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/c03-supplement-reader-natural-1934.json` | supplementary_sources | 2 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/jlarc-current-selector-readonly.json` | reading_runs | 1 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/jlarc-current-selector-readonly.json` | read_success_minmax | 2 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/jlarc-current-selector-readonly.json` | failed_read_indices | 1 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/jlarc-current-selector-readonly.json` | pending_read_indices_before_failed | 1 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/jlarc-relay-failure-metadata.json` | failure_events | 8 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/jlarc-relay-failure-metadata.json` | inspected_logs | 2 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original-23-stage-1939.json` | supplementary2_reader_current | 2 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original-50-identity-index.json` | records | 50 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original-50-identity-index.json` | verified_updates_history | 1 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-actual-closure.json` | boundaries | 5 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-exact-merge-tree.json` | all_tree_diff_files | 0 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-fresh-source-context-gate.json` | batches | 1 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-local-acceptance.json` | diff_paths | 4 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-public-https.json` | checks | 8 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-published-ack.json` | batches | 1 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-root-final-head-review.json` | exact_paths | 4 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-root-independent-closure.json` | stable_statement_ids | 4 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/stage-1939-receipt-index.json` | records | 22 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/manifest.json` | files | 29 |
+| `docs/design/bom-classification/manifest-v1.json` | pixels | 2 |
+| `docs/design/bom-classification/manifest-v1.json` | scene_pixels | 2 |
+| `docs/design/bom-classification/manifest-v1.json` | categories | 5 |
+| `docs/design/bom-classification/manifest-v1.json` | fonts | 3 |
 | `docs/design/technical-atlas/TA-01/acceptance-v1.json` | pixels | 2 |
 | `docs/design/technical-atlas/TA-01/acceptance-v1.json` | technical_sources | 3 |
 | `docs/design/technical-atlas/TA-01/acceptance-v1.json` | unknowns | 3 |
@@ -1364,6 +1392,9 @@
 | `docs/design/technical-atlas/TA-39/publication-20261008.json` | public_source_bytes | 2 |
 | `docs/design/technical-atlas/TA-39/publication-20261008.json` | browser_evidence | 5 |
 | `docs/design/technical-atlas/TA-39/publication-20261008.json` | limits | 2 |
+| `docs/design/technical-atlas/bom-source-20260928.json` | scales | 5 |
+| `docs/design/technical-atlas/bom-source-20260928.json` | parts | 63 |
+| `docs/design/technical-atlas/bom-source-20260928.json` | stages | 6 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | companies | 7 |
 | `docs/handoff/compute-catalog-batch2-production-20261003.json` | unpublished | 2 |
 | `docs/handoff/github-sync-20261010-audit.json` | history_backups | 15 |
@@ -1721,8 +1752,8 @@
 | `framework/metrics.json` | metrics | 312 |
 | `framework/modules.json` | modules | 15 |
 | `framework/research_graph.json` | legacy_root_prefixes | 4 |
-| `framework/research_graph.json` | objects | 353 |
-| `framework/research_graph.json` | relations | 372 |
+| `framework/research_graph.json` | objects | 354 |
+| `framework/research_graph.json` | relations | 373 |
 | `framework/research_questions.json` | records | 458 |
 | `framework/site_rights.json` | rights | 6 |
 | `framework/supply_contract.json` | providers | 7 |
@@ -1957,6 +1988,39 @@
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.4.md) | 历史快照 |
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.5.md) | 历史快照 |
 | [docs/archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md](archive/2026-10-09/docs__geluoke__专题写作规则-v2.6.md) | 历史快照 |
+| [docs/archive/local-materials-20261010/original23-new-protocol-validation/README.md](archive/local-materials-20261010/original23-new-protocol-validation/README.md) | 历史快照 |
+| [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/handoff/us-datacenter-power-20261009.md) | 历史快照 |
+| [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md) | 历史快照 |
+| [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/README.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/research/2026-10-09/us-datacenter-power/README.md) | 历史快照 |
+| [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/README.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/README.md) | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/c03-supplement-process-guard-readonly.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/c03-supplement-reader-admission-first-refused.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/c03-supplement-reader-admission.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/c03-supplement-reader-natural-1934.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/hourly-2000-root-progress.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/jlarc-current-selector-readonly.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/jlarc-relay-failure-metadata.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original-23-stage-1939.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original-50-identity-index.json` | 历史快照 |
+| [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original-50-identity-index.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original-50-identity-index.md) | 历史快照 |
+| [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original50-c01-c02-root-preflight.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original50-c01-c02-root-preflight.md) | 历史快照 |
+| [docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original50-c12-c13-root-preflight.md](archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/original50-c12-c13-root-preflight.md) | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-actual-closure.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-actual-merge.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-aws-health.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-exact-merge-tree.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-fresh-source-context-gate.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-historical-journal-observation.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-local-acceptance.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-public-https.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-published-ack.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-root-final-head-review.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-root-independent-closure.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/pr509-spark-source-ff.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/files/docs/reviews/2026-10-09/research-publication/stage-1939-receipt-index.json` | 历史快照 |
+| `docs/archive/local-materials-20261010/original23-new-protocol-validation/manifest.json` | 历史快照 |
+| `docs/design/bom-classification/manifest-v1.json` | 项目配置 |
+| `docs/design/bom-classification/prompt-v1.txt` | 项目配置 |
 | [docs/design/technical-atlas/MIGRATION_PLAN.md](design/technical-atlas/MIGRATION_PLAN.md) | 配套说明 |
 | `docs/design/technical-atlas/TA-01/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-01/labels-v1.json` | 项目配置 |
@@ -2441,6 +2505,7 @@
 | `docs/design/technical-atlas/TA-35/asset-manifest-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/bom-before-v1.html` | 运行代码 |
 | `docs/design/technical-atlas/TA-35/bom-layout-main-baseline-20261010.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-35/bom-source-before-classification-20261010.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/component-manifest-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/font-subset-proof-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/generation-v1.json` | 项目配置 |
@@ -2473,6 +2538,7 @@
 | `docs/design/technical-atlas/TA-39/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-39/prompt-v1.txt` | 项目配置 |
 | `docs/design/technical-atlas/TA-39/publication-20261008.json` | 项目配置 |
+| `docs/design/technical-atlas/bom-source-20260928.json` | 项目配置 |
 | `docs/design/technical-atlas/references/01-chain.png` | 项目配置 |
 | `docs/design/technical-atlas/references/02-server.png` | 项目配置 |
 | `docs/design/technical-atlas/references/03-ssd.png` | 项目配置 |
@@ -2494,6 +2560,7 @@
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
 | [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
+| [docs/handoff/bom-classification-20261010.md](handoff/bom-classification-20261010.md) | 配套说明 |
 | [docs/handoff/bom-page-layout-20261010.md](handoff/bom-page-layout-20261010.md) | 配套说明 |
 | [docs/handoff/catalog-ownership-20261007.md](handoff/catalog-ownership-20261007.md) | 配套说明 |
 | [docs/handoff/ci-impact-scoping-20261010.md](handoff/ci-impact-scoping-20261010.md) | 配套说明 |
@@ -3461,6 +3528,7 @@
 | [research/M14.md](../research/M14.md) | 兼容研究记录 |
 | [research/M15.md](../research/M15.md) | 兼容研究记录 |
 | [research/SUMMARY.md](../research/SUMMARY.md) | 兼容研究记录 |
+| `scripts/build_bom_classification_poster.py` | 运行代码 |
 | `scripts/build_technical_atlas.py` | 运行代码 |
 | `scripts/cards_ocr.py` | 运行代码 |
 | `scripts/cards_verify.py` | 运行代码 |
@@ -3548,6 +3616,7 @@
 | `src/inresearch/knowledge/policy.py` | 运行代码 |
 | `src/inresearch/knowledge/provenance.py` | 运行代码 |
 | `src/inresearch/knowledge/registry.py` | 运行代码 |
+| `src/inresearch/knowledge/skeleton.py` | 运行代码 |
 | `src/inresearch/knowledge/targets.py` | 运行代码 |
 | `src/inresearch/knowledge/validate.py` | 运行代码 |
 | `src/inresearch/knowledge/verify.py` | 运行代码 |
@@ -3684,6 +3753,7 @@
 | `tests/unit/test_apply_triage.py` | 测试 |
 | `tests/unit/test_auth.py` | 测试 |
 | `tests/unit/test_bom.py` | 测试 |
+| `tests/unit/test_bom_classification_poster.py` | 测试 |
 | `tests/unit/test_browser_shards.py` | 测试 |
 | `tests/unit/test_campus_atlas_assets.py` | 测试 |
 | `tests/unit/test_campus_exploded_assets.py` | 测试 |
@@ -3818,6 +3888,9 @@
 | `tests/unit/test_verification_contract.py` | 测试 |
 | `tests/unit/test_visual_atlas.py` | 测试 |
 | `tests/url_rendering.cjs` | 测试 |
+| `web/assets/bom-classification/cutaway-v1.png` | 静态资源 |
+| `web/assets/bom-classification/overview-v1.png` | 静态资源 |
+| `web/assets/bom-classification/overview-v1.svg` | 静态资源 |
 | `web/assets/datacenter-news.css` | 运行代码 |
 | `web/assets/fonts/LICENSE-Inter.txt` | 静态资源 |
 | `web/assets/fonts/LICENSE-NotoSansSC.txt` | 静态资源 |

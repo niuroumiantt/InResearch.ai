@@ -283,7 +283,11 @@ class CrossScaleAtlasAssetTests(unittest.TestCase):
         matches = link.findall(actual); self.assertEqual(len(matches), 1)
         self.assertIn('href="/cross-scale-atlas.html"', matches[0])
         self.assertNotIn('hidden', matches[0])
-        self.assertEqual(link.sub('', actual), before)
+        # TA35's link-only receipt is historical; the approved classification
+        # update may replace the live BOM body while retaining this entry.
+        integrated = read(D / 'bom-source-before-classification-20261010.json')
+        self.assertEqual(sha(integrated['html'].encode()), integrated['sha256'])
+        self.assertEqual(link.sub('', integrated['html']), before)
         for row in read(ROOT / 'docs/design/technical-atlas/TA-29/baseline-v1.json')['unchanged_reuse']:
             raw = (ROOT / row['source']).read_bytes()
             self.assertEqual((sha(raw), len(raw)), (row['sha256'], row['bytes']))

@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-09T11:24:58.529962+00:00",
+  "operation": "read-only process identity and scope metadata after fail-closed admission; no SQL/service/scope mutation",
+  "processes": [
+    {
+      "MainPID": "1906533",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Fri 2026-10-09 13:58:46 CST",
+      "ActiveState": "active",
+      "SubState": "running",
+      "unit": "inresearch-reader.service",
+      "expected_pid": 1906533,
+      "expected_pid_exists": true,
+      "expected_needle_present": true,
+      "cmdline_sha256": "0753627cbb1c01850dac80833d99eaf96f39e10a2eeaafabb9cf281c0da8667e",
+      "python_entry_paths": [
+        "/home/spark/.worktrees/inresearch.ai/dcd-reader-claim/manage.py"
+      ],
+      "module_names": [],
+      "selected_paths": {
+        "--repo-root": "/home/spark/code/inresearch.ai"
+      },
+      "process_start_ticks": "105549634"
+    },
+    {
+      "MainPID": "2433760",
+      "NRestarts": "0",
+      "ExecMainStartTimestamp": "Fri 2026-10-09 17:15:21 CST",
+      "ActiveState": "active",
+      "SubState": "running",
+      "unit": "inresearch-research-review.service",
+      "expected_pid": 2433760,
+      "expected_pid_exists": true,
+      "expected_needle_present": false,
+      "cmdline_sha256": "c336632cf2cbb247ae06cb34b86308cc2abb54b21c75e7ee28dcfcc6e2b65199",
+      "python_entry_paths": [],
+      "module_names": [
+        "inresearch.workflow.research_review"
+      ],
+      "selected_paths": {
+        "--root": "/home/spark/code/inresearch.ai",
+        "--scope": "/home/spark/.config/inresearch.ai/codex-batch-scope.json",
+        "--preferred-sources": "/home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json"
+      },
+      "process_start_ticks": "106729138"
+    }
+  ],
+  "scope": {
+    "sha256": "4550b75a7689b5495f5ea828efa31d75face9fcc691b25c8b1b48b48c953f36f",
+    "explicit_count": 8237,
+    "unique_count": 8237,
+    "schema_version": 1,
+    "include_daily_deliveries": true,
+    "two_ids_present": [
+      false,
+      false
+    ]
+  }
+}

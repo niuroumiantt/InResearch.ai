@@ -1,0 +1,93 @@
+{
+  "version": "1.0",
+  "title": "AI 数据中心分类总图",
+  "source": "framework/bom.json",
+  "imagegen": {
+    "tool": "built-in image_gen",
+    "prompt": "docs/design/bom-classification/prompt-v1.txt",
+    "input_images": [],
+    "reference_role": "User supplied editorial poster was viewed; composition reference only, not tool input or technical evidence"
+  },
+  "scope": "Generic classification illustration; not engineering topology, OEM configuration or completed TA-01–35 item",
+  "pixels": [
+    1536,
+    1800
+  ],
+  "scene_pixels": [
+    1536,
+    1024
+  ],
+  "colors": {
+    "facility": "#94765d",
+    "thermal": "#398bbd",
+    "power": "#c58a28",
+    "it": "#9270c6",
+    "control": "#58936d"
+  },
+  "categories": [
+    {
+      "id": "facility",
+      "name": "设施"
+    },
+    {
+      "id": "thermal",
+      "name": "水与散热"
+    },
+    {
+      "id": "power",
+      "name": "电"
+    },
+    {
+      "id": "it",
+      "name": "IT设施"
+    },
+    {
+      "id": "control",
+      "name": "控制与软件"
+    }
+  ],
+  "fonts": [
+    {
+      "source": "web/assets/fonts/inter-variable.woff2",
+      "source_sha256": "693b77d4f32ee9b8bfc995589b5fad5e99adf2832738661f5402f9978429a8e3",
+      "glyphs": 22,
+      "bytes": 11328
+    },
+    {
+      "source": "web/assets/fonts/noto-sans-sc-1.woff2",
+      "source_sha256": "5ef843022a47e73a0cfcdb3fcf8f9e8ae399effac8814f908ccd4153dbd7243d",
+      "glyphs": 141,
+      "bytes": 39972
+    },
+    {
+      "source": "web/assets/fonts/noto-sans-sc-2.woff2",
+      "source_sha256": "39105a102f58149297ea281679c809a759b25626b24eabba2b37870b9269baed",
+      "glyphs": 2,
+      "bytes": 1716
+    }
+  ],
+  "files": {
+    "web/assets/bom-classification/cutaway-v1.png": "ef5ef396791a7d100aacc6e968bddc5110fb69a56c366a7b90c2dfe85b12ac89",
+    "web/assets/bom-classification/overview-v1.svg": "0fcb2b3f2b0c611cb1c833cb801e5b7594dc791c156c0d9c6a8ca1351d2ec872",
+    "web/assets/bom-classification/overview-v1.png": "769baeb474c74a71667008d7363d764149f1757d316cc8335199c4160a031171"
+  },
+  "reference": {
+    "name": "2026-10-09-article-summary.png",
+    "sha256": "c7b523d7d158e0d1a7c4210ecabb42c8b1fcf90e31fbcd337377c463c6ddefda",
+    "role": "User supplied composition reference only; viewed original, no image was passed to new-generation tool; its news facts are not adopted"
+  },
+  "render": {
+    "method": "Chromium native SVG rendering at 1536x1800, DPR1, document.fonts.ready",
+    "scope": "Typesetting/export only; native illustration bytes unchanged"
+  },
+  "review": {
+    "status": "local visual review complete; production pending protected CI",
+    "checks": [
+      "Original image and complete poster inspected",
+      "Five category callout endpoints correspond to frame, cooling, transformer, rack and control-room contexts",
+      "IT compute/storage/network and nested processor/memory labels legible with no overlap",
+      "Mobile 390/320 has original-size pan/fit and separate text navigation"
+    ],
+    "not_certified": "Engineering accuracy, chosen OEM equipment, installed topology, quantities and project facts"
+  }
+}

@@ -1,6 +1,6 @@
 """研究图谱 3.0：由骨架生成，不手写（00「机器执行入口」、提案 §7，2026-09-28）。
 
-对象只有六种：根、系统（五个顶层 + IT 四个子系统）、链路、部件（61 + 软件 + 基型）、站点权利、主体（公司）。
+对象只有六种：根、系统（五个顶层，IT 三分、存储再分内存与持久存储）、链路、部件（61 + 软件 + 基型）、站点权利、主体（公司）。
 来源是 ``framework/bom.json``、``framework/site_rights.json``、``data/companies.json``；``python3 manage.py graph --refresh``
 重生成 ``framework/research_graph.json``，并给 ``framework/research_questions.json`` 的每条问题打 ``node`` 与
 ``variable_class``（问题 ID 不变，M4 的深读按问题 ID 回写不失效）。``--check`` 核对两个文件与生成结果一致。
@@ -10,6 +10,7 @@
 旧 ID 不再是对象。五视角、导航树、生态目录、九主题不再存在。
 """
 import argparse
+from inresearch.knowledge.skeleton import system_path, system_key
 import json
 from pathlib import Path
 
@@ -19,7 +20,7 @@ ROOT = project_root()
 GRAPH = 'framework/research_graph.json'
 QUESTIONS = 'framework/research_questions.json'
 VERSION = '3.0.0'
-KINDS = {'root': '数据中心（根）', 'system': '系统（五个顶层，IT 分四个子系统）', 'chain': '系统内的能量流链路', 'part': '部件（含软件条目与设施基型）',
+KINDS = {'root': '数据中心（根）', 'system': '系统（五个顶层，IT 三分、存储再分两类）', 'chain': '系统内的能量流链路', 'part': '部件（含软件条目与设施基型）',
          'site_right': '站点权利（园区之外并列的六条）', 'actor': '主体（公司）'}
 RELATIONS = {'part_of': '骨架的包含关系：部件 → 链路 → 系统 → 根；权利 → 根；子系统 → 父系统',
              'supplies': '主体供应部件（bom.json companies）', 'holds': '主体持有站点权利（site_rights.companies，登记数）'}
@@ -123,15 +124,12 @@ def build(root=ROOT):
             aliases_of.setdefault(target, []).append(old)
     top = sorted((s for s in systems if not systems[s].get('parent')), key=lambda s: systems[s]['order'])
     kids = lambda s: sorted((k for k in systems if systems[k].get('parent') == s), key=lambda k: systems[k]['order'])
-    for sid in top:
-        objects.append({'id': 'system:' + sid, 'name': systems[sid]['name'], 'kind': 'system', 'parent': 'root', 'order': systems[sid]['order'],
+    for sid in sorted(systems, key=lambda sid: system_key(systems, sid)):
+        parent = 'system:' + systems[sid]['parent'] if systems[sid].get('parent') else 'root'
+        objects.append({'id': 'system:' + sid, 'name': systems[sid]['name'], 'kind': 'system', 'parent': parent, 'order': systems[sid]['order'],
                         'chains': systems[sid].get('chains', []), 'children': ['system:' + k for k in kids(sid)],
                         'aliases': sorted(aliases_of.get('system:' + sid, [])), 'representation': 'conceptual'})
-        rel('part_of', 'system:' + sid, 'root')
-        for k in kids(sid):
-            objects.append({'id': 'system:' + k, 'name': systems[k]['name'], 'kind': 'system', 'parent': 'system:' + sid, 'order': systems[k]['order'],
-                            'chains': systems[k].get('chains', []), 'children': [], 'aliases': sorted(aliases_of.get('system:' + k, [])), 'representation': 'conceptual'})
-            rel('part_of', 'system:' + k, 'system:' + sid)
+        rel('part_of', 'system:' + sid, parent)
     for sid, s in systems.items():
         for i, chain in enumerate(s.get('chains', []), 1):
             cid = f'chain:{sid}/{i}'
@@ -139,9 +137,7 @@ def build(root=ROOT):
             rel('part_of', cid, 'system:' + sid)
     chain_id = {(sid, c): f'chain:{sid}/{i}' for sid, s in systems.items() for i, c in enumerate(s.get('chains', []), 1)}
     def part_key(p):  # 顺序 = 系统顺序 × 链路顺序 × chain_order（子系统排在父系统的序号下）
-        s = systems[p['system']]
-        top_order = systems[s['parent']]['order'] if s.get('parent') else s['order']
-        return (top_order, s['order'] if s.get('parent') else 0, systems[p['system']].get('chains', []).index(p.get('chain')) if p.get('chain') in systems[p['system']].get('chains', []) else 99, p.get('chain_order') or 0)
+        return (system_key(systems, p['system']), systems[p['system']].get('chains', []).index(p.get('chain')) if p.get('chain') in systems[p['system']].get('chains', []) else 99, p.get('chain_order') or 0)
     for p in sorted(bom['parts'], key=part_key):
         oid = 'part:' + p['id']
         cid = chain_id.get((p['system'], p.get('chain')))
@@ -234,8 +230,7 @@ def validate(graph, bom=None, root=ROOT):
             seen.add(at)
             at = parent[at]
     order = [(o['system'], o.get('chain'), o.get('chain_order')) for o in graph.get('objects', []) if o.get('kind') == 'part']
-    sys_order = {k: (bom['systems'][bom['systems'][k].get('parent')]['order'] if bom['systems'][k].get('parent') else bom['systems'][k]['order'],
-                     bom['systems'][k]['order'] if bom['systems'][k].get('parent') else 0) for k in systems}
+    sys_order = {k: system_key(bom['systems'], k) for k in systems}
     chain_pos = {(k, c): i for k in systems for i, c in enumerate(bom['systems'][k].get('chains', []))}
     keys = [(sys_order[s], chain_pos.get((s, c), 99), n or 0) for s, c, n in order]
     if keys != sorted(keys):

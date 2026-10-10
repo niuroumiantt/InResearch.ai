@@ -870,8 +870,9 @@ const CAMERA = {
   control: { icon: "🖥️", t: 55,  cam: [-42, 20, 26], tgt: [-22, 7, 4] },
 };
 const SYSTEMS = BOM.systems || {};
+const systemSortKey = id => { const s=SYSTEMS[id]; return (s.parent ? systemSortKey(s.parent)+'.' : '')+String(s.order).padStart(2,'0'); };
 const leafSystems = Object.entries(SYSTEMS).filter(([id]) => !Object.values(SYSTEMS).some(x => x.parent === id))
-  .sort((a, b) => ((a[1].parent ? SYSTEMS[a[1].parent].order : a[1].order) - (b[1].parent ? SYSTEMS[b[1].parent].order : b[1].order)) || ((a[1].parent ? a[1].order : 0) - (b[1].parent ? b[1].order : 0)));
+  .sort((a,b)=>systemSortKey(a[0]).localeCompare(systemSortKey(b[0])));
 const chainKey = p => { const chains = SYSTEMS[p.system]?.chains || []; return [chains.indexOf(p.chain), p.chain_order || 0]; };
 const DOMAINS = leafSystems.map(([key, sdef]) => ({
   key, name: sdef.name.replace("IT · ", ""), chains: sdef.chains, ...(CAMERA[key] || { icon: "•", t: 60, cam: [46, 30, 52], tgt: [0, 6, 0] }),
