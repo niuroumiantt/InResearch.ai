@@ -1,0 +1,121 @@
+{
+  "task": "TA30-34 Float32 observer precision narrow independent review",
+  "status": "PASS_STATIC_NARROW_FIX_ONLY_PUBLIC_RERUN_PENDING",
+  "created_at_utc": "2026-10-10T04:52:51.816641+00:00",
+  "baseline": {
+    "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs",
+    "sha256": "57799fd32775d5a90ae0b626dffa08da88a9dde2532de78936743d957e894ca8",
+    "role": "Actual public-v1 stack names this registered tests/panel_sources.cjs, not earlier /tmp v2 draft"
+  },
+  "fixed": {
+    "path": "/private/tmp/ta30-34-panel-sources-public-v3.cjs",
+    "bytes": 34309,
+    "sha256": "c5ff4da2f92a3ca90ae6220f09d4f6e677ab1c2f8488b44a19c7fda519323976"
+  },
+  "fix_note": {
+    "path": "/private/tmp/ta30-34-world-float-fixture-fix-v3.json",
+    "sha256": "eccd3cbf0f209aa9bcf62fc90a2907b7436eba7dc3b9fae2ad71534083ce4efc"
+  },
+  "findings": [],
+  "actual_diff": {
+    "hunks": 2,
+    "reverse_precision_changes_equals_baseline_bytes": true,
+    "changed_lines": [
+      155,
+      171
+    ],
+    "changes": [
+      "Record actual BufferAttribute position array constructor name in each binding.",
+      "Require Float32Array and use expected ratio * 8 * 2^-23 only for actual-world-face and displayed-source-world-ratio comparisons."
+    ],
+    "unified_diff": "--- /Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs\n+++ /private/tmp/ta30-34-panel-sources-public-v3.cjs\n@@ -152,7 +152,7 @@\n      const pos=g.getAttribute('position'),uv=g.getAttribute('uv'),corners=new Map();\n      for(let n=group.start;n<group.start+group.count;n++){const i=g.index?g.index.getX(n):n;corners.set(uv.getX(i)+','+uv.getY(i),new v.THREE.Vector3().fromBufferAttribute(pos,i).applyMatrix4(mesh.matrixWorld));}\n      const a=corners.get('0,0'),b=corners.get('1,0'),d=corners.get('0,1');if(!a||!b||!d)throw Error('Front UV unit quad unavailable');\n-     bindings.push({mesh:mesh.uuid,materialIndex:mi,worldWidth:a.distanceTo(b),worldHeight:a.distanceTo(d),emissiveSame:m.emissiveMap===t,materialColor:m.color.getHex(),roughness:m.roughness,metalness:m.metalness,emissiveIntensity:m.emissiveIntensity});\n+     bindings.push({mesh:mesh.uuid,coordinateType:pos.array.constructor.name,materialIndex:mi,worldWidth:a.distanceTo(b),worldHeight:a.distanceTo(d),emissiveSame:m.emissiveMap===t,materialColor:m.color.getHex(),roughness:m.roughness,metalness:m.metalness,emissiveIntensity:m.emissiveIntensity});\n     });});\n     const ref=new Image();ref.src='data:image/png;base64,'+publicPNG;await ref.decode();\n     if(!meta||!bindings.length)throw Error('No actual contained panel/front');\n@@ -168,7 +168,7 @@\n    assert.equal(data.meta.sourceWidth,item.width);assert.equal(data.meta.sourceHeight,item.height);assert.deepEqual(data.pixels,[data.meta.canvasWidth,data.meta.canvasHeight]);near(data.meta.surfaceAspect,item.aspect,item.id+' configured face');\n    assert.deepEqual(data.repeat,[1,1]);assert.deepEqual(data.offset,[0,0]);assert.equal(data.rotation,0);\n    const r=data.meta.rect;assert.ok(r.left>=-1e-8&&r.top>=-1e-8&&r.left+r.width<=data.pixels[0]+1e-8&&r.top+r.height<=data.pixels[1]+1e-8);near(r.left,(data.pixels[0]-r.width)/2,item.id+' center x');near(r.top,(data.pixels[1]-r.height)/2,item.id+' center y');\n-   for(const b of data.bindings){assert.equal(b.materialIndex,4);assert.equal(b.emissiveSame,true);near(b.worldWidth/b.worldHeight,data.meta.surfaceAspect,item.id+' actual world face');near((r.width/data.pixels[0]*b.worldWidth)/(r.height/data.pixels[1]*b.worldHeight),item.width/item.height,item.id+' displayed source ratio');}\n+   for(const b of data.bindings){assert.equal(b.materialIndex,4);assert.equal(b.emissiveSame,true);assert.equal(b.coordinateType,'Float32Array');near(b.worldWidth/b.worldHeight,data.meta.surfaceAspect,item.id+' actual world face',data.meta.surfaceAspect*8*2**-23);near((r.width/data.pixels[0]*b.worldWidth)/(r.height/data.pixels[1]*b.worldHeight),item.width/item.height,item.id+' displayed source ratio',item.width/item.height*8*2**-23);}\n    assert.ok(data.pixelDifference.max<=4&&data.pixelDifference.componentsOver2<=data.pixelDifference.total*.0001,item.id+' actual canvas differs from decoded public original contain');\n    const filename=item.id+'-actual-texture.png';fs.writeFileSync(path.join(OUT,filename),Buffer.from(data.png.split(',')[1],'base64'));delete data.png;receipt.panels.push({item:item.id,file:filename,...data});return data;\n   }\n",
+    "earlier_tmp_v2_note": "Registered baseline also contains owner-reviewed sceneModels.ready and pending-pool disposal coverage added after child /tmp v2. These are already baseline bytes and are not new precision-fix changes."
+  },
+  "numeric_review": {
+    "method": "Python struct Float32 round-trip of nominal BoxGeometry half-edge coordinates; no product or fixture JS evaluated",
+    "width_from_Float32": 2.299999952316284,
+    "height_from_Float32": 0.7350000143051147,
+    "derived_ratio": 3.129251574900655,
+    "observed_ratio_exact_match": true,
+    "configured_ratio": 3.129251700680272,
+    "absolute_error": 1.2577961694404394e-07,
+    "relative_error": 4.019479063211839e-08,
+    "single_Float32_epsilon": 1.1920928955078125e-07,
+    "relative_tolerance": 9.5367431640625e-07,
+    "relative_tolerance_ppm": 0.95367431640625,
+    "actual_error_less_than_single_epsilon": true,
+    "per_item": [
+      {
+        "asset": "server_nvme",
+        "face_expected": 3.129251700680272,
+        "Float32_face": 3.129251574900655,
+        "face_tolerance": 2.9842869765093537e-06,
+        "display_source_tolerance": 1.046874306418679e-05,
+        "rounding_relative_error": 4.019479063211839e-08
+      },
+      {
+        "asset": "server_gpu",
+        "face_expected": 3.129251700680272,
+        "Float32_face": 3.129251574900655,
+        "face_tolerance": 2.9842869765093537e-06,
+        "display_source_tolerance": 5.449567522321429e-06,
+        "rounding_relative_error": 4.019479063211839e-08
+      },
+      {
+        "asset": "server_storage",
+        "face_expected": 3.129251700680272,
+        "Float32_face": 3.129251574900655,
+        "face_tolerance": 2.9842869765093537e-06,
+        "display_source_tolerance": 1.0781817966037326e-05,
+        "rounding_relative_error": 4.019479063211839e-08
+      },
+      {
+        "asset": "switch_tor",
+        "face_expected": 5.764411027568921,
+        "Float32_face": 5.764411066506386,
+        "face_tolerance": 5.49737074620144e-06,
+        "display_source_tolerance": 9.642706976996527e-06,
+        "rounding_relative_error": 6.754803677559406e-09
+      },
+      {
+        "asset": "switch_ib",
+        "face_expected": 5.764411027568921,
+        "Float32_face": 5.764411066506386,
+        "face_tolerance": 5.49737074620144e-06,
+        "display_source_tolerance": 4.515263706586937e-06,
+        "rounding_relative_error": 6.754803677559406e-09
+      }
+    ],
+    "assessment": "Appropriate conservative sub-1-ppm allowance for a ratio derived from stored Float32 edge coordinates and world-space length arithmetic. It remains far below a visible proportion change, and unlike the old fixed 1e-7 threshold it scales with the expected ratio. This is a numerical fixture correction, not evidence that geometry changed or a general bound for arbitrary ill-conditioned transforms."
+  },
+  "preserved_byte_exact_by_reverse_diff": [
+    "near() default 1e-7 and finite-value checks",
+    "Configured surfaceAspect/item ratio checks",
+    "Source PNG/display SVG full byte SHA and original embedded bytes",
+    "Independent source canvas pixel comparison and tolerance",
+    "Source dimensions/map/material binding counts/UV coordinates/repeat/offset/rotation",
+    "Padding/canvas dimensions/center checks",
+    "Main camera/target/quaternion/mode/stage invariance",
+    "Exact public origin/200/nonempty/SHA observer gates and route assertions",
+    "Modern pickable counts and zero original-image requests",
+    "Downloads/fallback/retry/resource ownership assertions"
+  ],
+  "prior_failure": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/public-v1/receipt.json",
+    "sha256": "b2cdfcfced67186cc8dde223777da6ea3a98693a6195b952b0d819e9c6a1232d",
+    "stage": "FAILED",
+    "panels_recorded": 0,
+    "views_recorded": 0,
+    "failure_retained": true,
+    "error": "AssertionError [ERR_ASSERTION]: TA-30 actual world face: 3.129251574900655 vs 3.129251700680272\n    at near (/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs:48:48)\n    at inspect (/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs:171:100)\n    at async /Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs:175:62"
+  },
+  "scope": {
+    "browser_or_HTTP": 0,
+    "product_JS_execution": 0,
+    "fixture_execution": 0,
+    "repository_writes": 0,
+    "only_output_written": "/private/tmp/ta30-34-world-float-fixture-review-child.json",
+    "syntax_check": "Owner-reported node --check passed; reviewer did not rerun it in this read-only precision task."
+  },
+  "acceptance_claim": "Narrow static precision correction accepted; actual public rerun and screenshots remain pending. Save with TA35 substantive source batch as directed."
+}

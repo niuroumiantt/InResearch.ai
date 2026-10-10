@@ -1,0 +1,82 @@
+{
+  "figure_ids": [
+    "TA-30",
+    "TA-31",
+    "TA-32",
+    "TA-33",
+    "TA-34"
+  ],
+  "status": "source_fix_new_public_pending",
+  "updated": "2026-10-10T05:01:54.471553+00:00",
+  "scope": "retained source viewer only",
+  "summary": "TA30–34 PR583最终20项GitHub检查通过、正常合并4cb09ce1/.66并由timer实际健康应用，21公网源字节/HTTPS health200已核；尚未逐项published，主29/35补4/4。公网v1保留Float32实际几何比绝对阈值失败，v2保留TA33弹窗内容比5.824485而目标5.764411的真实显示失败。实际computed border-box与1px边框解释约1.04%变形，五图均受同机制影响；仅来源canvas改content-box与扣两边框宽、padding0，独立候选公网观察与新实际部署后完整五项另验。世界几何比仅按实际Float32坐标采用8epsilon相对容差，CSS改实际内容高度1/64px布局量化门禁，不放宽图片/原件/下载/身份/几何/资源检查；原PNG、五SVG、全部采用场景几何保持。本地URL拒绝保留，按当前四必过及最终head全部检查，不触Spark/研究。",
+  "preserved_failures": [
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/public-v1/receipt.json",
+      "bytes": 10942,
+      "sha256": "b2cdfcfced67186cc8dde223777da6ea3a98693a6195b952b0d819e9c6a1232d",
+      "stage": "FAILED",
+      "failure": "AssertionError [ERR_ASSERTION]: TA-30 actual world face: 3.129251574900655 vs 3.129251700680272\n    at near (/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs:48:48)\n    at inspect (/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs:171:100)\n    at async /Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/tests/panel_sources.cjs:175:62",
+      "counts": {
+        "sources": 9,
+        "assets": 5,
+        "displays": 10,
+        "downloads": 0,
+        "panels": 0,
+        "dialogs": 0,
+        "views": 0,
+        "modern": 0,
+        "faults": 0,
+        "resources": 0,
+        "errors": 0,
+        "route_errors": 0,
+        "network_failures": 0,
+        "limits": 5
+      }
+    },
+    {
+      "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/public-v2/receipt.json",
+      "bytes": 31292,
+      "sha256": "eb5301c624e1605085867d91f6c9ca7f2bcbde2cfc8525f5222ad8e71c180c07",
+      "stage": "FAILED",
+      "failure": "AssertionError [ERR_ASSERTION]: TA-33 actual dialog CSS face: 5.824485373781148 vs 5.764411027568921\n    at near (/private/tmp/ta30-34-panel-sources-public-v3.cjs:48:48)\n    at /private/tmp/ta30-34-panel-sources-public-v3.cjs:185:58",
+      "counts": {
+        "sources": 9,
+        "assets": 5,
+        "displays": 10,
+        "downloads": 6,
+        "panels": 8,
+        "dialogs": 3,
+        "views": 5,
+        "modern": 0,
+        "faults": 0,
+        "resources": 0,
+        "errors": 0,
+        "route_errors": 0,
+        "network_failures": 0,
+        "limits": 5
+      }
+    }
+  ],
+  "product_change": "content-box; width:calc(100% - 2px); padding:0 only canvas CSS",
+  "assertion_change": "actual content height expected width/aspect within 1/64 CSS px; require content-box, transform none and padding0; Float32 actual world coordinates relative tolerance 8*2^-23 only two comparisons",
+  "no_changes": [
+    "five original PNGs",
+    "five contain SVGs",
+    "all adopted modern geometry",
+    "source identity",
+    "BOM",
+    "camera/control code",
+    "Spark/research"
+  ],
+  "first_source_PR": 583,
+  "first_source_merge": "4cb09ce1d9a8d62fe1804b4e3a837f8871a39a2b",
+  "current_main_baseline": "cb13959167f5e36e180712e78a4170dc6a556ed5",
+  "CI": "new final head checks and normal protected merge required",
+  "actual_new_public": "pending after fix deployment",
+  "count": 29,
+  "final_main_integration": {
+    "baseline": "4102479cb02c4e1808bccb1e9293b86c9580cdf6",
+    "preserved": "All 28 incoming GitHub backup/editorial/Solidigm paths retained. Only two generated inventory conflicts regenerated. Product/test reviewed hashes unchanged."
+  }
+}
