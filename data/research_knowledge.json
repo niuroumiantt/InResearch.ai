@@ -4058,6 +4058,64 @@
       "status": "candidate",
       "stored_path": "originals/9c/9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd/talen-sec--archived-web-tool-response.md",
       "title": "Amazon PPA Amendment: Transaction Highlights（归档网页响应）"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673",
+      "coverage": {
+        "characters_read": 6154,
+        "characters_total": 6154,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673",
+      "id": "doc-1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673",
+      "library_path": "library/by-node/part-bess/2025_DCD_ProPetro signs 60MW power supply contract with hypersca__1216c1ccbda03d25.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "part:bess",
+        "part:gas-engine",
+        "site:grid"
+      ],
+      "question_ids": [
+        "OBJ-bess-definition",
+        "OBJ-bess-interfaces",
+        "OBJ-bess-performance",
+        "OBJ-bess-supply",
+        "OBJ-grid-alternatives"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-35dae2b2bd494a759dea63bc9b22cce7",
+      "report_sha256": "5c547a4ea35ddd37f279edaa44143ddac4c18edf4d4f83139cf1bc89b8cc4574",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673",
+        "url": "https://www.datacenterdynamics.com/en/news/propetro-signs-60mw-power-supply-contract-with-hyperscale-data-center-in-us-midwest/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/propetro-signs-60mw-power-supply-contract-with-hyperscale-data-center-in-us-midwest/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/12/1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673/dcd-1216c1ccbda03d25-ProPetro signs 60MW power supply contract with hyperscale data ce.html",
+      "title": "ProPetro signs 60MW power supply contract with hyperscale data center in US Midwest"
     }
   ],
   "evidence": [
@@ -30408,6 +30466,92 @@
           }
         },
         "batch_id": "1622a09c64456996b2177dcb8e6e371eddf24b4f427da3ea56080405abde7ff7"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "f3c6f21f3d213b948b6f4188995312a6463c29da3446a414db26d0bb88706378",
+      "document_id": "doc-1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673",
+      "id": "rev-35dae2b2bd494a759dea63bc9b22cce7:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "part:bess",
+        "part:gas-engine"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-bess-performance"
+      ],
+      "quote": "According to the company, the configuration is designed to manage rapid load swings, ensuring continuous, stable power delivery while enhancing grid resiliency and operational flexibility.",
+      "reading_revision_id": "rev-35dae2b2bd494a759dea63bc9b22cce7",
+      "source_sha256": "1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T02:57:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，连续原文及相邻配置语境充分支持限定后的公司设计目标陈述。该目标为当前BESS性能工单提供快速负载响应、供电稳定性及韧性的评价方向，具有实质但局部的贡献。无敏感、真实冲突、替换或其他A条件，符合B级采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-bess-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 37.87,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0e831ede13fc7863a48eb4ea19d19bcfa9559e07689f939516ce35c053b262bb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 35284,
+            "output_tokens": 1195,
+            "reasoning_output_tokens": 245
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.643,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "55b61f03e060ac2ecbb12117ce6561ceceb48fcf6a89b6748f800d5c8d3e5d37",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35823,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 236
+            }
+          }
+        },
+        "batch_id": "f5ff52130ab65edd1bb2ba951e86cdaa8ad37f0b29e978de3fd9c2d2e25cdffd"
       }
     }
   ],
@@ -59306,6 +59450,107 @@
         "request_sha256": "3d89d2fa86e17fe13579558cb92b2d120e639c08e4e84146b17bed3c5066e8da"
       },
       "object_mapping_check": "实际主张范围是星座能源的核电PPA财务机会情景，对象合同中有准确的actor:constellation-energy。该行未确立数据中心客户、并网协议、电力配额或园区设备；核电也不能映射为小型模块化反应堆。因此仅保留主体映射，问题关联不自动产生root或基础设施映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673",
+      "evidence_ids": [
+        "rev-35dae2b2bd494a759dea63bc9b22cce7:chunk:0:claim:2:ev:0"
+      ],
+      "id": "adoption:review:994b3f093a5e3f8907dac760",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:bess",
+        "part:gas-engine"
+      ],
+      "question_ids": [
+        "OBJ-bess-performance"
+      ],
+      "reading_revision_id": "rev-35dae2b2bd494a759dea63bc9b22cce7",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2025年10月27日的报道中转述ProPetro公司表述：面向美国中西部一家未具名超大规模数据中心运营商、由PROPWR交付的BESS与天然气往复式机组混合供电配置，旨在管理快速负载波动、维持持续稳定供电，并增强电网韧性与运行灵活性。这些是公司提出的设计目标，未获文中实测结果验证；报道当时预计于2026年第二季度开始部署，不能据此确认当前部署或投运状态。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T02:57:09+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，连续原文及相邻配置语境充分支持限定后的公司设计目标陈述。该目标为当前BESS性能工单提供快速负载响应、供电稳定性及韧性的评价方向，具有实质但局部的贡献。无敏感、真实冲突、替换或其他A条件，符合B级采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-bess-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 37.87,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0e831ede13fc7863a48eb4ea19d19bcfa9559e07689f939516ce35c053b262bb",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 35284,
+            "output_tokens": 1195,
+            "reasoning_output_tokens": 245
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 27.643,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "55b61f03e060ac2ecbb12117ce6561ceceb48fcf6a89b6748f800d5c8d3e5d37",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35823,
+              "output_tokens": 526,
+              "reasoning_output_tokens": 236
+            }
+          }
+        },
+        "batch_id": "f5ff52130ab65edd1bb2ba951e86cdaa8ad37f0b29e978de3fd9c2d2e25cdffd"
+      },
+      "source_candidate_ids": [
+        "rev-35dae2b2bd494a759dea63bc9b22cce7:chunk:0:claim:2"
+      ],
+      "limitations": "未提供BESS型号、独立功率与储能容量、响应时间、负载波动幅度、控制策略、测试方法、运行工况、可靠性统计或失效机制。原文60MW属于混合供电合同规模，不能视为BESS功率或数据中心IT容量。未独立核验公司表述、合同及后续部署状态。",
+      "conflict_check": "现有采用陈述关于电池快速响应及逆变器限流的定性判断，与本项混合配置的公司设计目标没有相反结论；Wärtsilä潜在捆绑供给及Amazon澳大利亚PPA记录涉及其他主体与交易。所供legacy匹配记录为空，未发现同一项目的真实冲突或可认定重复的canonical记录。检查范围仅限本包，不代表完成外部反证搜索；不替换现有结论。",
+      "gap_dependency_check": "本项仅贡献OBJ-bess-performance的设计目标与适用配置线索，不能回答性能如何测量、可靠性如何验证或在哪些工况失效。仍需项目技术规格、测试协议、负载与环境条件、响应和稳定性实测、故障记录及反证；问题保持开放，不更新模型参数或容量汇总。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f5ff52130ab65edd1bb2ba951e86cdaa8ad37f0b29e978de3fd9c2d2e25cdffd",
+        "source_report_sha256": "5c547a4ea35ddd37f279edaa44143ddac4c18edf4d4f83139cf1bc89b8cc4574",
+        "request_sha256": "21dfc6ab281aa5f52986f2647279e47fa9a023d4d102a789642615fbdd97c38a"
+      },
+      "object_mapping_check": "独立按原文范围复核：目标明确属于BESS与天然气往复式机组的组合配置，两者均位于电力系统的“发电与储能”链，映射part:bess和part:gas-engine。电网韧性措辞未涉及电力配额、并网排队或并网协议，不映射site:grid。ProPetro与PROPWR没有允许的主体ID，不新增主体映射；所选证据统一采用上述声明级范围。"
     }
   ],
   "answers": [],
