@@ -1,0 +1,88 @@
+{
+  "task": "TA30-34 actual dialog content ratio narrow source review",
+  "status": "CONFIRMED_PRODUCT_CSS_CONTENT_RATIO_BUG_FIX_PENDING",
+  "created_at_utc": "2026-10-10T04:59:05.494268+00:00",
+  "source_root": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai",
+  "sources": {
+    "panel_source_viewer": {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/web/components/panel-source-viewer.js",
+      "sha256": "4bcfb83ec63dd4940b38775223686f39aab01d4d11b24214c716efb7eacbd9c1",
+      "line": 15
+    },
+    "global_box_sizing": {
+      "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/web/pages/rack3d.html",
+      "sha256": "bb639fc0ae3efb99f6d412b6cbcbb54a10761d132e9403752dfcd178a13932e2",
+      "line": 12
+    }
+  },
+  "finding": {
+    "priority": "P2",
+    "cause": "The page universal selector sets box-sizing:border-box. The modal canvas has width:100%, 1px border on both axes and style.aspectRatio=the desired physical face ratio. CSS applies this preferred ratio to the border box; subtracting equal 2px in each direction changes a non-square content ratio. It is a real display distortion, not Float32 geometry error.",
+    "evidence": [
+      "web/pages/rack3d.html:12 global * margin0/padding0/box-sizing:border-box",
+      "web/components/panel-source-viewer.js:15 canvas width100%/heightauto/border1px",
+      "web/components/panel-source-viewer.js:31 style.aspectRatio from sourceDisplay.surfaceAspect"
+    ],
+    "all_five_affected": "The server canvases have a smaller content ratio drift and passed the old .03 absolute ratio allowance; this is not only a TOR-specific issue."
+  },
+  "numeric_crosscheck": {
+    "configured_TOR_aspect": 5.764411027568921,
+    "actual_failure_ratio": 5.824485373781148,
+    "actual_content_width_in_prior_successful_desktop_rows": 924,
+    "inferred_TOR_content_height_from_ratio_if_same_width": 158.640625,
+    "inferred_border_box_size": [
+      926,
+      160.640625
+    ],
+    "ideal_border_box_height_for_configured_ratio": 160.64086956521743,
+    "border_box_height_residual": -0.0002445652174287716,
+    "correct_content_height": 160.29391304347828,
+    "incorrect_content_height_error": -1.653288043478284,
+    "inference_scope": "TOR content height is inferred from failure ratio and preceding desktop width, not a new browser measurement. Owner should record actual bounding/computed dimensions."
+  },
+  "minimal_fix_recommendation": {
+    "target": "Only .panel-source-dialog canvas rule",
+    "change": "Add box-sizing:content-box; change width:100% to width:calc(100% - 2px); keep height:auto and existing 1px border. Explicit padding:0 makes the component contract self-contained.",
+    "suggested_rule": ".panel-source-dialog canvas{box-sizing:content-box;display:block;width:calc(100% - 2px);height:auto;padding:0;background:#faf8f2;border:1px solid var(--line);margin:12px 0}",
+    "reason": "aspect-ratio then governs the bitmap content. Subtracting the two known 1px borders from the width preserves the current total width and avoids horizontal overflow. Keep source PNG/CanvasTexture/meta/geometry/lighting unchanged.",
+    "alternative_if_owner_prefers": "border:0 plus an outline preserves content aspect without width compensation, but changes the decoration box; no need to implement both approaches."
+  },
+  "tight_actual_CSS_assertion": {
+    "record": [
+      "getBoundingClientRect width/height",
+      "computed boxSizing, border widths, padding widths, aspectRatio and transform",
+      "actual content width/height",
+      "expected face aspect",
+      "height residual CSSpx and chosen layout quantum"
+    ],
+    "content_formula": "contentW=rect.width-borderLeft-borderRight-paddingLeft-paddingRight; contentH=rect.height-borderTop-borderBottom-paddingTop-paddingBottom; these are direct content dimensions when no CSS transform scales the canvas. Record/assert transform none for this fixture.",
+    "hard_gate": "Require finite positive content dimensions, then abs(contentH-contentW/expectedFaceAspect) <= 1/64 CSS px + 1e-7 numerical guard. Keep the quantum explicit for the chosen headed Chromium environment; do not use one whole CSS pixel or the old .03 ratio allowance.",
+    "layout_quantum_csspx": 0.015625,
+    "ratio_equivalent_bound": "expectedFaceAspect * quantum / contentH; checking height residual directly is clearer and scales automatically for narrow phone layouts.",
+    "desktop_TOR_example": {
+      "correct_content_height": 160.29391304347828,
+      "height_budget": 0.015625,
+      "equivalent_ratio_budget_approx": 0.0005618985811478319,
+      "old_ratio_budget": 0.03,
+      "current_error_fails_by_factor": 105.81043478261017
+    },
+    "coverage": "Apply to every panel at1280/390 light/dark. Retain actual values in failure receipt before the assertion, so the offending row is not omitted.",
+    "Float32_boundary": "Keep v3 world-coordinate Float32Array/8epsilon gates exactly as reviewed. CSS uses the configured aspect and its own layout quantization; do not reuse or enlarge the geometry tolerance."
+  },
+  "prior_failure": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/public-v2/receipt.json",
+    "sha256": "eb5301c624e1605085867d91f6c9ca7f2bcbde2cfc8525f5222ad8e71c180c07",
+    "stage": "FAILED",
+    "views": 5,
+    "completed_dialog_rows": 3,
+    "error": "AssertionError [ERR_ASSERTION]: TA-33 actual dialog CSS face: 5.824485373781148 vs 5.764411027568921\n    at near (/private/tmp/ta30-34-panel-sources-public-v3.cjs:48:48)\n    at /private/tmp/ta30-34-panel-sources-public-v3.cjs:185:58",
+    "retained": true
+  },
+  "scope": {
+    "HTTP_or_browser": 0,
+    "product_or_fixture_JS_execution": 0,
+    "repository_or_product_edits": 0,
+    "only_output_written": "/private/tmp/ta30-34-panel-content-ratio-static-review-child.json"
+  },
+  "acceptance_claim": "Source diagnosis/numeric inference only. Owner actual public measurement, product fix and full public rerun remain pending."
+}

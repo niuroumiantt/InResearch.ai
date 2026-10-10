@@ -1,0 +1,25 @@
+{
+  "stage": "public_observer_precision_fix_pending_actual_rerun",
+  "created_at": "2026-10-10T04:51:21.249779+00:00",
+  "original_failure": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/public-v1/receipt.json",
+  "actual_world_ratio": 3.129251574900655,
+  "configured_ratio": 3.129251700680272,
+  "difference": 1.2577961694404394e-07,
+  "cause": "Float32 BufferAttribute geometry coordinates; first 1e-7 absolute threshold was tighter than observed representational error. Preserve product and source assets.",
+  "fix": "Record actual Float32Array type; allow at most eight Float32 epsilon relative only for the two world-coordinate ratio comparisons. Pixel equality, configured ratios, source bytes and every other assertion unchanged.",
+  "product_changes": false,
+  "repository_writes": false,
+  "fixed_runner": "/private/tmp/ta30-34-panel-sources-public-v3.cjs",
+  "fixed_sha256": "c5ff4da2f92a3ca90ae6220f09d4f6e677ab1c2f8488b44a19c7fda519323976",
+  "independent_numeric_evidence": {
+    "BoxGeometry_position_type": "Float32Array",
+    "half_width_rounded": 1.149999976158142,
+    "half_height_rounded": 0.3675000071525574,
+    "world_width_from_Float32_positions": 2.299999952316284,
+    "world_height_from_Float32_positions": 0.7350000143051147,
+    "derived_ratio": 3.129251574900655,
+    "exactly_equals_actual_observed": true,
+    "relative_error": 4.019479063211839e-08,
+    "Float32_epsilon": 1.1920928955078125e-07
+  }
+}

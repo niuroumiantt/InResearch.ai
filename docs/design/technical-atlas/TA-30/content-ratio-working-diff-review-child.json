@@ -1,0 +1,94 @@
+{
+  "task": "TA30-34 panel content-ratio working diff narrow read-only review",
+  "status": "PASS_NARROW_SOURCE_DIFF_ONLY_ACTUAL_DEPLOYED_RERUN_PENDING",
+  "created_at_utc": "2026-10-10T05:04:37.461796+00:00",
+  "root": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai",
+  "branch": "codex/atlas-ta30-34-panel-ratio-fix",
+  "HEAD": "cb13959167f5e36e180712e78a4170dc6a556ed5",
+  "scope_files": [
+    "web/components/panel-source-viewer.js",
+    "tests/panel_sources.cjs"
+  ],
+  "source_hashes": {
+    "web/components/panel-source-viewer.js": {
+      "base_sha256": "4bcfb83ec63dd4940b38775223686f39aab01d4d11b24214c716efb7eacbd9c1",
+      "working_sha256": "7069710c4a27aa7da2cea2819992164b9762af73c4b9a2989533af36c9e3d35a",
+      "bytes": 6200
+    },
+    "tests/panel_sources.cjs": {
+      "base_sha256": "57799fd32775d5a90ae0b626dffa08da88a9dde2532de78936743d957e894ca8",
+      "working_sha256": "6f6d24f158c2d97362462aa50291e7a99739daf6546e780d8545b0c8718a18a1",
+      "bytes": 34567
+    }
+  },
+  "diff": {
+    "path": "/private/tmp/ta30-34-panel-ratio-working-diff-child.patch",
+    "sha256": "9501a48e832b1f14ba9fa4bad48f33dbb321fe21481a97c4e7d03664fea34a4c",
+    "bytes": 8170,
+    "hunks": 4
+  },
+  "findings": [],
+  "closed_checks": {
+    "viewer_only_intended_CSS_properties_changed": true,
+    "fixture_only_intended_precision_and_CSS_checks_changed": true,
+    "geometry_precision": "Actual Float32Array binding type + 8*2^-23 relative tolerance only for the two world-coordinate-derived ratios. near default and other numeric gates unchanged.",
+    "CSS_content_ratio": "content-box makes style.aspectRatio govern bitmap content; calc(100% - 2px) reserves the same two 1px borders; padding0 prevents padding from entering the ratio. height:auto/material/canvas draw/identity/download/lifecycle code unchanged.",
+    "CSS_assertion": "Reads actual rect and computed border widths, records boxSizing/transform/padding, requires content-box/none/[0,0,0,0], then finite actual content height equals actual content width / configured expected aspect within 1/64+1e-7 CSS px. Because padding is asserted zero, subtracting only borders is a correct content measurement.",
+    "precision_scopes_separate": "CSS uses its own length-space layout quantum and exact configured ratio. It does not inherit or enlarge Float32 geometry tolerance.",
+    "other_gates": "Source/asset/PNG/SVG SHA, pixel comparison, nav/title/caption/identity, manual camera preservation, modern counts/zero requests, fallback/retry and resource assertions remain byte-identical outside the reviewed changes."
+  },
+  "actual_diagnostic_read": {
+    "path": "/Users/m4/.codex/worktrees/atlas-ta30-34-panels/inresearch.ai/docs/design/technical-atlas/TA-30/content-ratio-actual-diagnostic-v1.json",
+    "sha256": "01aec5a28e115efcfd639adc8c2c54185b4b7ffd83c988fa9462eb0770f00dad",
+    "origin": "https://inresearch.ai",
+    "boxSizing": "border-box",
+    "border": [
+      "1px",
+      "1px",
+      "1px",
+      "1px"
+    ],
+    "padding": [
+      "0px",
+      "0px",
+      "0px",
+      "0px"
+    ],
+    "rect": {
+      "width": 926,
+      "height": 160.640625
+    },
+    "content": [
+      924.0,
+      158.640625
+    ],
+    "actual_content_ratio": 5.824485373781148,
+    "target_ratio": 5.764411027568921,
+    "old_content_height_residual_csspx": -1.653288043478284,
+    "old_error_exceeds_new_quantum_by": 105.81043478261017,
+    "scope": "Read owner actual-public diagnostic only; reviewer did not measure a browser."
+  },
+  "preserved_failure": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-30/public-v2/receipt.json",
+    "sha256": "eb5301c624e1605085867d91f6c9ca7f2bcbde2cfc8525f5222ad8e71c180c07",
+    "stage": "FAILED",
+    "views": 5,
+    "error": "AssertionError [ERR_ASSERTION]: TA-33 actual dialog CSS face: 5.824485373781148 vs 5.764411027568921\n    at near (/private/tmp/ta30-34-panel-sources-public-v3.cjs:48:48)\n    at /private/tmp/ta30-34-panel-sources-public-v3.cjs:185:58"
+  },
+  "limits": [
+    "This review covers the two implementation/test files only; other governance/document changes are outside this narrow approval.",
+    "1/64 CSS px is the chosen Chromium layout quantum, not a universal browser guarantee; actual20-case candidate and fresh deployed complete suite must provide runtime evidence.",
+    "Candidate goto/selector failures and prior public-v1/v2 failures stay retained; source diff approval is not publication/visual acceptance."
+  ],
+  "execution_scope": {
+    "browser": 0,
+    "HTTP": 0,
+    "product_JS": 0,
+    "fixture": 0,
+    "CI_queries": 0,
+    "repository_or_permanent_writes": 0,
+    "outputs_under": "/private/tmp",
+    "node_check": "not run in this read-only review"
+  },
+  "owner_next_step": "Finish candidate20-case actual measurements, finalize source/CI/deploy, then run the complete strict-public fixture against deployed exact source and review original-size images."
+}

@@ -152,7 +152,7 @@ function sameMain(a,b,label){for(const k of ['camera','target','quaternion'])a[k
      const pos=g.getAttribute('position'),uv=g.getAttribute('uv'),corners=new Map();
      for(let n=group.start;n<group.start+group.count;n++){const i=g.index?g.index.getX(n):n;corners.set(uv.getX(i)+','+uv.getY(i),new v.THREE.Vector3().fromBufferAttribute(pos,i).applyMatrix4(mesh.matrixWorld));}
      const a=corners.get('0,0'),b=corners.get('1,0'),d=corners.get('0,1');if(!a||!b||!d)throw Error('Front UV unit quad unavailable');
-     bindings.push({mesh:mesh.uuid,materialIndex:mi,worldWidth:a.distanceTo(b),worldHeight:a.distanceTo(d),emissiveSame:m.emissiveMap===t,materialColor:m.color.getHex(),roughness:m.roughness,metalness:m.metalness,emissiveIntensity:m.emissiveIntensity});
+     bindings.push({mesh:mesh.uuid,coordinateType:pos.array.constructor.name,materialIndex:mi,worldWidth:a.distanceTo(b),worldHeight:a.distanceTo(d),emissiveSame:m.emissiveMap===t,materialColor:m.color.getHex(),roughness:m.roughness,metalness:m.metalness,emissiveIntensity:m.emissiveIntensity});
     });});
     const ref=new Image();ref.src='data:image/png;base64,'+publicPNG;await ref.decode();
     if(!meta||!bindings.length)throw Error('No actual contained panel/front');
@@ -168,7 +168,7 @@ function sameMain(a,b,label){for(const k of ['camera','target','quaternion'])a[k
    assert.equal(data.meta.sourceWidth,item.width);assert.equal(data.meta.sourceHeight,item.height);assert.deepEqual(data.pixels,[data.meta.canvasWidth,data.meta.canvasHeight]);near(data.meta.surfaceAspect,item.aspect,item.id+' configured face');
    assert.deepEqual(data.repeat,[1,1]);assert.deepEqual(data.offset,[0,0]);assert.equal(data.rotation,0);
    const r=data.meta.rect;assert.ok(r.left>=-1e-8&&r.top>=-1e-8&&r.left+r.width<=data.pixels[0]+1e-8&&r.top+r.height<=data.pixels[1]+1e-8);near(r.left,(data.pixels[0]-r.width)/2,item.id+' center x');near(r.top,(data.pixels[1]-r.height)/2,item.id+' center y');
-   for(const b of data.bindings){assert.equal(b.materialIndex,4);assert.equal(b.emissiveSame,true);near(b.worldWidth/b.worldHeight,data.meta.surfaceAspect,item.id+' actual world face');near((r.width/data.pixels[0]*b.worldWidth)/(r.height/data.pixels[1]*b.worldHeight),item.width/item.height,item.id+' displayed source ratio');}
+   for(const b of data.bindings){assert.equal(b.materialIndex,4);assert.equal(b.emissiveSame,true);assert.equal(b.coordinateType,'Float32Array');near(b.worldWidth/b.worldHeight,data.meta.surfaceAspect,item.id+' actual world face',data.meta.surfaceAspect*8*2**-23);near((r.width/data.pixels[0]*b.worldWidth)/(r.height/data.pixels[1]*b.worldHeight),item.width/item.height,item.id+' displayed source ratio',item.width/item.height*8*2**-23);}
    assert.ok(data.pixelDifference.max<=4&&data.pixelDifference.componentsOver2<=data.pixelDifference.total*.0001,item.id+' actual canvas differs from decoded public original contain');
    const filename=item.id+'-actual-texture.png';fs.writeFileSync(path.join(OUT,filename),Buffer.from(data.png.split(',')[1],'base64'));delete data.png;receipt.panels.push({item:item.id,file:filename,...data});return data;
   }
@@ -179,10 +179,10 @@ function sameMain(a,b,label){for(const k of ['camera','target','quaternion'])a[k
    const before=await main(page);await open(page);
    assert.equal(await page.locator('.panel-source-dialog nav button[data-figure-id]').count(),5);
    for(const item of ITEMS){
-    await choose(page,item);const ui=await page.locator('.panel-source-dialog[open]').evaluate(e=>{const c=e.querySelector('canvas'),r=c.getBoundingClientRect(),s=getComputedStyle(c);return {figure:e.dataset.figureId,status:e.dataset.sourceStatus,text:e.innerText,pressed:[...e.querySelectorAll('nav button[aria-pressed="true"]')].map(b=>b.dataset.figureId),pixels:[c.width,c.height],content:[r.width-parseFloat(s.borderLeftWidth)-parseFloat(s.borderRightWidth),r.height-parseFloat(s.borderTopWidth)-parseFloat(s.borderBottomWidth)],png:c.toDataURL('image/png')};});
+    await choose(page,item);const ui=await page.locator('.panel-source-dialog[open]').evaluate(e=>{const c=e.querySelector('canvas'),r=c.getBoundingClientRect(),s=getComputedStyle(c);return {figure:e.dataset.figureId,status:e.dataset.sourceStatus,text:e.innerText,pressed:[...e.querySelectorAll('nav button[aria-pressed="true"]')].map(b=>b.dataset.figureId),boxSizing:s.boxSizing,transform:s.transform,padding:[s.paddingLeft,s.paddingRight,s.paddingTop,s.paddingBottom].map(parseFloat),pixels:[c.width,c.height],content:[r.width-parseFloat(s.borderLeftWidth)-parseFloat(s.borderRightWidth),r.height-parseFloat(s.borderTopWidth)-parseFloat(s.borderBottomWidth)],png:c.toDataURL('image/png')};});
     assert.equal(ui.figure,item.id);assert.equal(ui.status,'ready');assert.deepEqual(ui.pressed,[item.id]);for(const text of [item.title,item.model,item.file+'.png','原始PNG不裁切','不表示三维机箱相符','现场配置、数量和安装规格未知','来源已载入'])assert.ok(ui.text.includes(text),item.id+' visible caption '+text);
     if(item.key==='hero')assert.ok(ui.text.includes('文件名不证明GPU配置'));if(item.key==='ib')assert.ok(ui.text.includes('文件名ib不认证InfiniBand'));
-    assert.deepEqual(ui.pixels,initial[item.key].pixels);near(ui.content[0]/ui.content[1],item.aspect,item.id+' actual dialog CSS face',.03);
+    assert.deepEqual(ui.pixels,initial[item.key].pixels);assert.equal(ui.boxSizing,'content-box');assert.equal(ui.transform,'none');assert.deepEqual(ui.padding,[0,0,0,0]);near(ui.content[1],ui.content[0]/item.aspect,item.id+' actual dialog CSS content height',1/64+1e-7);
     const actualTexture=fs.readFileSync(path.join(OUT,item.id+'-actual-texture.png'));assert.equal(sha(Buffer.from(ui.png.split(',')[1],'base64')),sha(actualTexture),'Actual dialog copies actual CanvasTexture');
     delete ui.png;receipt.dialogs.push({item:item.id,width,theme,...ui});await fullDialog(page,item.id+'-'+width+'-'+theme);
     if(width===1280&&theme==='light'){

@@ -11,7 +11,7 @@ export function mountPanelSources({handles, button, document:doc=document}) {
   const style=doc.createElement('style');style.textContent=`
   .panel-source-dialog{position:fixed;inset:0;margin:auto;width:min(960px,calc(100vw - 24px));max-height:calc(100dvh - 32px);overflow:auto;padding:16px;border:1px solid var(--line);border-radius:var(--ui-radius);background:var(--ui-surface);color:var(--text);font:13px/1.65 var(--ui-font)}
   .panel-source-dialog::backdrop{background:#0007}.panel-source-dialog h2{font-size:17px}.panel-source-dialog nav{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.panel-source-dialog button,.panel-source-dialog a{padding:6px 10px;border:1px solid var(--line);border-radius:var(--ui-radius);background:transparent;color:var(--text);font:inherit;cursor:pointer}.panel-source-dialog nav button[aria-pressed=true]{border-color:var(--accent);color:var(--accent)}
-  .panel-source-dialog canvas{display:block;width:100%;height:auto;background:#faf8f2;border:1px solid var(--line);margin:12px 0}.panel-source-dialog .panel-source-actions{display:flex;flex-wrap:wrap;gap:8px}.panel-source-dialog p{overflow-wrap:anywhere;margin:8px 0}
+  .panel-source-dialog canvas{display:block;box-sizing:content-box;width:calc(100% - 2px);height:auto;padding:0;background:#faf8f2;border:1px solid var(--line);margin:12px 0}.panel-source-dialog .panel-source-actions{display:flex;flex-wrap:wrap;gap:8px}.panel-source-dialog p{overflow-wrap:anywhere;margin:8px 0}
   `;doc.head.append(style);
   const dialog=doc.createElement('dialog');dialog.className='panel-source-dialog';dialog.setAttribute('aria-label','保留来源面板与显示比例');
   const heading=doc.createElement('h2');heading.textContent='保留来源面板 · 外观参考';

@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.66。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.67。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2403。
+在册文件：2410。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,7 +18,7 @@
 | 历史快照 | 366 |
 | 运行代码 | 359 |
 | 现行规范 | 15 |
-| 项目配置 | 719 |
+| 项目配置 | 726 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
@@ -1130,6 +1130,20 @@
 | `docs/design/technical-atlas/TA-30/acceptance-v1.json` | generic_face_ratio | 2 |
 | `docs/design/technical-atlas/TA-30/acceptance-v1.json` | browser_checks | 1 |
 | `docs/design/technical-atlas/TA-30/baseline-v1.json` | limits | 2 |
+| `docs/design/technical-atlas/TA-30/content-ratio-actual-diagnostic-v1.json` | padding | 4 |
+| `docs/design/technical-atlas/TA-30/content-ratio-actual-diagnostic-v1.json` | border | 4 |
+| `docs/design/technical-atlas/TA-30/content-ratio-actual-diagnostic-v1.json` | pixels | 2 |
+| `docs/design/technical-atlas/TA-30/content-ratio-fix-v1.json` | figure_ids | 5 |
+| `docs/design/technical-atlas/TA-30/content-ratio-fix-v1.json` | preserved_failures | 2 |
+| `docs/design/technical-atlas/TA-30/content-ratio-fix-v1.json` | no_changes | 7 |
+| `docs/design/technical-atlas/TA-30/content-ratio-prospective-test-v3.json` | network_module | 1 |
+| `docs/design/technical-atlas/TA-30/content-ratio-prospective-test-v3.json` | measurements | 20 |
+| `docs/design/technical-atlas/TA-30/content-ratio-prospective-test-v3.json` | screenshot_paths | 20 |
+| `docs/design/technical-atlas/TA-30/content-ratio-prospective-test-v3.json` | owner_original_views | 2 |
+| `docs/design/technical-atlas/TA-30/content-ratio-prospective-test-v3.json` | retained_prior_candidate_failures | 2 |
+| `docs/design/technical-atlas/TA-30/content-ratio-working-diff-review-child.json` | scope_files | 2 |
+| `docs/design/technical-atlas/TA-30/content-ratio-working-diff-review-child.json` | findings | 0 |
+| `docs/design/technical-atlas/TA-30/content-ratio-working-diff-review-child.json` | limits | 3 |
 | `docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json` | unresolved_P2_or_higher_findings | 0 |
 | `docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json` | resolved_history | 2 |
 | `docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json` | verified_static | 6 |
@@ -1167,6 +1181,8 @@
 | `docs/design/technical-atlas/TA-30/source-validation-v1.json` | figure_ids | 5 |
 | `docs/design/technical-atlas/TA-30/source-validation-v1.json` | independent_product_sha_matches | 21 |
 | `docs/design/technical-atlas/TA-30/source-validation-v1.json` | failures_retained | 2 |
+| `docs/design/technical-atlas/TA-30/world-float-fixture-review-child.json` | findings | 0 |
+| `docs/design/technical-atlas/TA-30/world-float-fixture-review-child.json` | preserved_byte_exact_by_reverse_diff | 10 |
 | `docs/design/technical-atlas/TA-31/acceptance-v1.json` | artifacts | 2 |
 | `docs/design/technical-atlas/TA-31/acceptance-v1.json` | not_verified | 1 |
 | `docs/design/technical-atlas/TA-31/acceptance-v1.json` | source_pixels | 2 |
@@ -2274,6 +2290,11 @@
 | `docs/design/technical-atlas/TA-29/spin-fixture-static-review-child.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-30/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-30/baseline-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/content-ratio-actual-diagnostic-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/content-ratio-fix-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/content-ratio-prospective-test-v3.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/content-ratio-static-review-child.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/content-ratio-working-diff-review-child.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-30/fixture-independent-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-30/fixture-independent-review-v2.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-30/independent-provenance-original-review-v1.json` | 项目配置 |
@@ -2283,6 +2304,8 @@
 | `docs/design/technical-atlas/TA-30/public-fixture-static-review-v2.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-30/source-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-30/source-validation-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/world-float-fixture-fix-v3.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-30/world-float-fixture-review-child.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-31/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-31/baseline-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-31/source-review-v1.json` | 项目配置 |
