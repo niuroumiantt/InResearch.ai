@@ -19,6 +19,8 @@ jobs:
       suites: ${{ steps.select.outputs.suites }}
       browser: ${{ steps.select.outputs.browser }}
       full: ${{ steps.select.outputs.full }}
+      research: ${{ steps.select.outputs.research }}
+      assets: ${{ steps.select.outputs.assets }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -62,8 +64,11 @@ jobs:
       - name: Research registry references
         run: python3 manage.py registry
       - name: Visual identity and adoption contract
-        if: needs.scope.outputs.full == 'true' || needs.scope.outputs.browser == 'true'
+        if: needs.scope.outputs.assets == 'true'
         run: python3 manage.py asset-check
+      - name: Research source, adoption, projection and publication regression
+        if: needs.scope.outputs.research == 'true'
+        run: PYTHONPATH=src python3 scripts/ci_scope.py research-tests
       - name: Full verification, indicators and unit regression
         if: needs.scope.outputs.full == 'true'
         run: |

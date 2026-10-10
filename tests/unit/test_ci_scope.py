@@ -24,6 +24,12 @@ class CiScopeTests(unittest.TestCase):
         self.write('docs/a.md', 'Old text\n')
         self.write('web/pages/index.html', '<html><body><h1>Hello</h1><script>const x=1;</script></body></html>')
         self.write('web/assets/technical-atlas/test.svg', '<svg xmlns="http://www.w3.org/2000/svg"><text>old</text></svg>')
+        self.knowledge = {'version':'2.0.0', 'note':'Curated source records',
+                          'documents':[{'id':'doc:old', 'metadata':{'count':1, 'enabled':False}}],
+                          'evidence':[{'id':'evidence:old', 'document_id':'doc:old'}],
+                          'statements':[{'id':'statement:old', 'partial_support_only':True}],
+                          'answers':[]}
+        self.write(ci.RESEARCH_PATH, json.dumps(self.knowledge))
         self.base = self.commit()
 
     def git(self, *args):
@@ -41,6 +47,107 @@ class CiScopeTests(unittest.TestCase):
 
     def plan(self):
         return ci.select(self.root, self.base, self.commit())
+
+    def appended_research(self):
+        result = copy.deepcopy(self.knowledge)
+        result['documents'].append({'id':'doc:new', 'status':'candidate'})
+        result['evidence'].append({'id':'evidence:new', 'document_id':'doc:new'})
+        result['statements'].append({'id':'statement:new', 'partial_support_only':True,
+                                     'evidence_ids':['evidence:new']})
+        return result
+
+    def test_append_only_research_runs_related_pages_without_visual_assets_or_storage(self):
+        self.write(ci.RESEARCH_PATH, json.dumps(self.appended_research()))
+        self.write('framework/repository_manifest.json', '{}')
+        self.write('docs/REPOSITORY_REGISTER.md', 'derived')
+        plan = self.plan()
+        self.assertEqual((plan['mode'],plan['suites'],plan['storage'],plan['assets']),
+                         ('research',['research'],False,False))
+        self.assertFalse(set(plan['suites']) & {'core_a','core_b','core_c','model_assets',
+                                              'rack_assembly','server_assembly','scene_atlas'})
+        # Sources/evidence may be appended before a statement exists as well.
+        for section in ('documents','evidence','statements'):
+            changed = copy.deepcopy(self.knowledge)
+            changed[section].append(self.appended_research()[section][-1])
+            self.write(ci.RESEARCH_PATH, json.dumps(changed))
+            self.assertEqual(self.plan()['mode'], 'research')
+
+    def test_research_edits_deletions_reordering_answers_and_schema_are_full(self):
+        edits = []
+        changed=self.appended_research();changed['documents'][0]['metadata']['count']=True;edits.append(changed)
+        changed=self.appended_research();changed['documents'][0]['metadata']['enabled']=0;edits.append(changed)
+        changed=self.appended_research();changed['evidence'][0]['document_id']='doc:new';edits.append(changed)
+        changed=self.appended_research();changed['documents'].pop(0);edits.append(changed)
+        changed=self.appended_research();changed['documents'].reverse();edits.append(changed)
+        changed=self.appended_research();changed['answers'].append({'id':'answer:new'});edits.append(changed)
+        changed=self.appended_research();changed['version']='3.0.0';edits.append(changed)
+        changed=self.appended_research();changed['note']='New rule';edits.append(changed)
+        changed=self.appended_research();changed['unknown_schema']=[];edits.append(changed)
+        edits.append(self.knowledge)  # Formatting/no additions is not evidence of this route.
+        for changed in edits:
+            self.write(ci.RESEARCH_PATH, json.dumps(changed, indent=2))
+            self.assertEqual(self.plan()['mode'], 'full')
+
+    def test_research_id_collisions_ambiguous_json_and_nonfinite_values_are_full(self):
+        for section in ('documents','evidence','statements'):
+            changed=self.appended_research();changed[section][-1]['id']=changed[section][0]['id']
+            self.write(ci.RESEARCH_PATH, json.dumps(changed))
+            self.assertEqual(self.plan()['mode'],'full')
+        encoded=json.dumps(self.appended_research())
+        for raw in (encoded.replace('"doc:new"','"doc:new", "id":"doc:hidden"',1),
+                    encoded.replace('"partial_support_only": true','"partial_support_only": NaN',1),
+                    '{invalid JSON', encoded.replace('"id": "doc:new"','"id": 12',1)):
+            self.write(ci.RESEARCH_PATH, raw)
+            self.assertEqual(self.plan()['mode'],'full')
+
+    def test_research_replacements_relaxed_review_and_formal_answers_are_full(self):
+        for fields in ({'partial_support_only':False}, {'question_id':'question:formal'},
+                       {'replaces_record_ids':['statement:old']}, {'supersedes':['statement:old']},
+                       {'relaxes_distribution':True}, {'object_mapping_review':{}},
+                       {'review':{'replaces_record_ids':['statement:old']}},
+                       {'review':{'relaxes_distribution':True}}, {'status':'superseded'}):
+            changed=self.appended_research();changed['statements'][-1].update(fields)
+            self.write(ci.RESEARCH_PATH,json.dumps(changed))
+            self.assertEqual(self.plan()['mode'],'full',fields)
+
+    def test_research_parse_failure_keeps_other_changed_content_checks(self):
+        self.write(ci.RESEARCH_PATH,'{invalid JSON')
+        self.write('docs/broken.png',b'not PNG')
+        plan=self.plan()
+        self.assertEqual(plan['mode'],'full')
+        self.assertEqual({r['path'] for r in plan['files']},{ci.RESEARCH_PATH,'docs/broken.png'})
+        with self.assertRaises(OSError):
+            ci.check_content(self.root,plan)
+
+    def test_research_mixed_changes_union_bounded_checks_and_code_still_wins(self):
+        self.write(ci.RESEARCH_PATH,json.dumps(self.appended_research()))
+        self.write('docs/a.md','New source commentary')
+        self.assertEqual(self.plan()['mode'],'research')
+        self.write('web/pages/index.html','<html><body><h1>New</h1><script>const x=1;</script></body></html>')
+        plan=self.plan()
+        self.assertEqual((plan['mode'],plan['suites'],plan['assets']),
+                         ('research',['industry','research'],True))
+        self.write('src/change.py','pass')
+        plan=self.plan()
+        self.assertEqual((plan['mode'],plan['suites'],plan['storage']),('full',ci.FULL_SUITES,True))
+
+    def test_research_regression_selection_keeps_adoption_publication_and_http_contracts(self):
+        def cases(suite):
+            for test in suite:
+                if isinstance(test,unittest.TestSuite):
+                    yield from cases(test)
+                else:
+                    yield test.id()
+        names=list(cases(ci.research_test_suite(Path(__file__).resolve().parents[2])))
+        modules={name.split('.')[0] for name in names}
+        self.assertTrue({'test_research','test_research_review','test_research_publication_group',
+                         'test_research_publication_merge','test_research_protected_merge',
+                         'test_research_sources','test_public_reader','test_publish_reader',
+                         'test_verification_contract','test_ci_scope'} <= modules)
+        self.assertFalse(any('atlas' in module or 'assembly' in module for module in modules))
+        self.assertFalse(any('_FailedTest' in name for name in names),names)
+        with self.assertRaisesRegex(ValueError,'missing research regression'):
+            ci.research_test_suite(self.root)
 
     def test_document_image_and_derived_inventory_only_are_content(self):
         self.write('docs/a.md', 'New text ![diagram](picture.png)\n')
@@ -163,6 +270,14 @@ class CiScopeTests(unittest.TestCase):
         plans.append(self.plan())
         self.write('web/pages/index.html', '<html><body><h1>New</h1><script>const x=1;</script></body></html>')
         plans.append(self.plan())
+        self.write(ci.RESEARCH_PATH,json.dumps(self.appended_research()))
+        research_plan=self.plan()
+        plans.append(research_plan)
+        for suites in ([],['research_delivery'],['research_summary']):
+            broken=dict(research_plan,suites=suites)
+            results={k:{'result':v} for k,v in {'scope':'success','validate':'success',
+                     'browser':'success' if suites else 'skipped','storage-container':'skipped'}.items()}
+            self.assertFalse(ci.gate(broken,results))
         for plan in plans:
             results = {k:{'result':v} for k,v in {'scope':'success','validate':'success',
                        'browser':'success' if plan['suites'] else 'skipped',

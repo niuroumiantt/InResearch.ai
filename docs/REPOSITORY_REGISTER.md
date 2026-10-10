@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.73。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.74。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2501。
+在册文件：2502。
 
 | 身份 | 文件数 |
 |---|---|
@@ -22,7 +22,7 @@
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 188 |
+| 配套说明 | 189 |
 | 测试 | 192 |
 
 ## 在册记录集合
@@ -2613,6 +2613,7 @@
 | [docs/handoff/reading-adoption-first-batch-20261007.md](handoff/reading-adoption-first-batch-20261007.md) | 配套说明 |
 | [docs/handoff/repository-daily-refresh-20261008.md](handoff/repository-daily-refresh-20261008.md) | 配套说明 |
 | [docs/handoff/repository-pages-20261003.md](handoff/repository-pages-20261003.md) | 配套说明 |
+| [docs/handoff/research-append-ci-20261010.md](handoff/research-append-ci-20261010.md) | 配套说明 |
 | [docs/handoff/research-flow-recovery-20261009.md](handoff/research-flow-recovery-20261009.md) | 配套说明 |
 | [docs/handoff/research-pr-backlog-20261009.md](handoff/research-pr-backlog-20261009.md) | 配套说明 |
 | [docs/handoff/research-throughput-20261008.md](handoff/research-throughput-20261008.md) | 配套说明 |
