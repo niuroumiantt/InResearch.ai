@@ -3016,6 +3016,88 @@
       "status": "candidate",
       "stored_path": "originals/04/04e3af568142c327af50dd218fab0fd02ef46b59232d1859bdb6d992fa8d4a1c/TPU Inference Externalization Full Steam Ahead.pdf",
       "title": "TPU Inference Externalization Full Steam Ahead"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "coverage": {
+        "characters_read": 78857,
+        "characters_total": 78857,
+        "chunks_read": 39,
+        "chunks_total": 39,
+        "complete": true,
+        "pages_read": 39,
+        "pages_total": 39
+      },
+      "doc_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "library_path": "library/by-node/root/2026_未知_How Much Do GPU Clusters Really Cost___bcea0f5e5fb78dee.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:bytedance",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:fluidstack",
+        "actor:ibm",
+        "actor:lambda",
+        "actor:meta",
+        "actor:mgx",
+        "actor:mistral-ai",
+        "actor:nebius",
+        "actor:nscale",
+        "actor:nvidia-networking",
+        "actor:vast-data",
+        "actor:weka",
+        "chain:network/1",
+        "part:cpu",
+        "part:gpu",
+        "part:hbm",
+        "part:network-switch",
+        "part:nic",
+        "part:rack-system",
+        "part:server",
+        "part:storage-array",
+        "root",
+        "system:compute",
+        "system:control",
+        "system:it",
+        "system:memory",
+        "system:network",
+        "system:storage"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-economics",
+        "NODE-workload-storage-economics",
+        "NODE-workload-storage-profile",
+        "NODE-workload-training-economics",
+        "NODE-workload-training-profile",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-nic-alternatives",
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance",
+        "OBJ-server-performance",
+        "Q-SCOPE-part-gpu-device"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/bc/bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b/How Much Do GPU Clusters Really Cost_ (1).pdf",
+      "title": "How Much Do GPU Clusters Really Cost?"
     }
   ],
   "evidence": [
@@ -16415,6 +16497,183 @@
           }
         },
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bf2bc7f459d73082a21e7741658a40e6c127d1fceb0f67caa7bc5eb6a3c2d3f1",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:0:ev:0",
+      "locator": "page:14/chunk:13",
+      "object_ids": [
+        "part:gpu",
+        "part:server"
+      ],
+      "page_index": 13,
+      "question_ids": [
+        "OBJ-gpu-performance",
+        "OBJ-server-performance"
+      ],
+      "quote": "When a replica group dies, you lose that whole group’s GPUs until the node is replaced, a surviving group serializes its full model + optimizer state via state_dict(), serves it over HTTP to the recovering group, calls load_state_dict(), syncs its step counter, and rejoins the quorum.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:43:13+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性及评分均为7。完整连续引句与相邻正文支持限定的作者主张。整组退出训练及恢复路径实质关联GPU和服务器的失效机制、训练可靠性需求，并为M13-Q09提供故障后状态恢复的局部线索；不构成故障率或checkpoint开销的完整回答。未发现敏感、真实冲突或替换条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance",
+          "Q-OBJ-server-performance",
+          "Q-M13-Q09",
+          "Q-NODE-workload-training-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 57.745,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7faaef6056f56e4db2fbffc6f3453e832fef5a75ac64e861e562474c5528dfd2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70503,
+            "output_tokens": 1922,
+            "reasoning_output_tokens": 270
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.012,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ef66a74746b211a43e0920e3081d872f9b361db923bed2bd0b8af48c6a0d327c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 70300,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 197
+            }
+          }
+        },
+        "batch_id": "8befb5d22c39dc8f349f48f4caa3e409ef0645f041fc5a9dfc0d4ba76f13285b"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bf2bc7f459d73082a21e7741658a40e6c127d1fceb0f67caa7bc5eb6a3c2d3f1",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:1:ev:0",
+      "locator": "page:14/chunk:13",
+      "object_ids": [
+        "part:server"
+      ],
+      "page_index": 13,
+      "question_ids": [
+        "OBJ-server-performance"
+      ],
+      "quote": "This whole process is orchestrated by the TorchFT lighthouse server, which you must install on the cluster.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:43:13+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性及评分均为7。连续原句及前文恢复流程足以支持有归属的软件依赖说明，实质贡献于当前服务器上下游依赖问题，并为服务器故障恢复及M13-Q09补充编排条件。后两项仅获机制层面的部分支持，未获性能或开销量化。未识别A类条件，可按B采用。",
+        "workorder_ids": [
+          "Q-OBJ-server-performance",
+          "Q-OBJ-server-interfaces",
+          "Q-M13-Q09"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 57.745,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7faaef6056f56e4db2fbffc6f3453e832fef5a75ac64e861e562474c5528dfd2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70503,
+            "output_tokens": 1922,
+            "reasoning_output_tokens": 270
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.012,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ef66a74746b211a43e0920e3081d872f9b361db923bed2bd0b8af48c6a0d327c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 70300,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 197
+            }
+          }
+        },
+        "batch_id": "8befb5d22c39dc8f349f48f4caa3e409ef0645f041fc5a9dfc0d4ba76f13285b"
       }
     }
   ],
@@ -32233,6 +32492,215 @@
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
         "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
         "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:0:ev:0"
+      ],
+      "id": "adoption:review:0fc04fe23cdb97ae11148a80",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu",
+        "part:server"
+      ],
+      "question_ids": [
+        "OBJ-gpu-performance",
+        "OBJ-server-performance",
+        "M13-Q09",
+        "NODE-workload-training-profile"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "《How Much Do GPU Clusters Really Cost?》作者在第14页的TorchFT训练容错讨论中称，副本组失效后，该组全部GPU在节点替换及恢复完成前无法参与训练；存活组通过state_dict()序列化完整模型与优化器状态，并经HTTP提供给恢复组，恢复组加载状态、同步步数后重新加入quorum。此项记录来源作者对恢复流程的描述；发表时间、适用地域及具体部署项目和阶段未建立，未获当前独立实现或实测验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:43:13+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性及评分均为7。完整连续引句与相邻正文支持限定的作者主张。整组退出训练及恢复路径实质关联GPU和服务器的失效机制、训练可靠性需求，并为M13-Q09提供故障后状态恢复的局部线索；不构成故障率或checkpoint开销的完整回答。未发现敏感、真实冲突或替换条件，符合B类局部采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-gpu-performance",
+          "Q-OBJ-server-performance",
+          "Q-M13-Q09",
+          "Q-NODE-workload-training-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 57.745,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7faaef6056f56e4db2fbffc6f3453e832fef5a75ac64e861e562474c5528dfd2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70503,
+            "output_tokens": 1922,
+            "reasoning_output_tokens": 270
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.012,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ef66a74746b211a43e0920e3081d872f9b361db923bed2bd0b8af48c6a0d327c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 70300,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 197
+            }
+          }
+        },
+        "batch_id": "8befb5d22c39dc8f349f48f4caa3e409ef0645f041fc5a9dfc0d4ba76f13285b"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:0"
+      ],
+      "limitations": "适用语境为TorchFT及HSDP中的副本组，不能推广为所有GPU或服务器故障的恢复方式。未提供硬件型号、软件版本、模型状态量、传输性能、故障率或端到端恢复耗时；组内GPU无法参与训练不等于全部GPU发生物理故障或断电。不能据此计算goodput损失、checkpoint累计开销或更新利用率模型。",
+      "conflict_check": "已比对所供采用陈述。adoption:review:de855c24f7452e9331df1c4d记录作者所称checkpoint通常持续几毫秒，但明确不能推广为完整保存或恢复耗时；本项没有恢复时长，因此未构成同实现、同测量边界的真实冲突。训练AllReduce停顿和后训练选址记录涉及不同机制或阶段，不直接反驳本项。所供legacy匹配记录为空，检查不代表穷尽外部反证；未发现相同canonical记录，不覆盖既有结论。",
+      "gap_dependency_check": "局部流程由所供第13—15页原生文字充分支持，不依赖图片或缺少引句的其他候选。验证机制仍需TorchFT原始技术文档或实现及版本依据；量化损失还需故障分布、组规模、状态量、检测与恢复时序、checkpoint频率和反证。四项问题均只获得部分支持并保持开放，不改变研究骨架或现有模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8befb5d22c39dc8f349f48f4caa3e409ef0645f041fc5a9dfc0d4ba76f13285b",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "d6917c5819e6dab4680d3c87def9a71e96dc7ffdc302db30880ba4aaa09c0922"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:1:ev:0"
+      ],
+      "id": "adoption:review:187155d2f0c7ae601825611b",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:server"
+      ],
+      "question_ids": [
+        "OBJ-server-performance",
+        "OBJ-server-interfaces",
+        "M13-Q09"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "《How Much Do GPU Clusters Really Cost?》作者在第14页称，文中所述TorchFT训练副本组恢复流程由TorchFT lighthouse server编排，并称该服务必须安装在集群上。此项保留为该来源对恢复软件依赖的作者说明；发表时间、适用地域及具体部署项目和阶段未建立，未获当前独立配置或运行验证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:43:13+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原重要性及评分均为7。连续原句及前文恢复流程足以支持有归属的软件依赖说明，实质贡献于当前服务器上下游依赖问题，并为服务器故障恢复及M13-Q09补充编排条件。后两项仅获机制层面的部分支持，未获性能或开销量化。未识别A类条件，可按B采用。",
+        "workorder_ids": [
+          "Q-OBJ-server-performance",
+          "Q-OBJ-server-interfaces",
+          "Q-M13-Q09"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 57.745,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7faaef6056f56e4db2fbffc6f3453e832fef5a75ac64e861e562474c5528dfd2",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70503,
+            "output_tokens": 1922,
+            "reasoning_output_tokens": 270
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.012,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "ef66a74746b211a43e0920e3081d872f9b361db923bed2bd0b8af48c6a0d327c",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 70300,
+              "output_tokens": 450,
+              "reasoning_output_tokens": 197
+            }
+          }
+        },
+        "batch_id": "8befb5d22c39dc8f349f48f4caa3e409ef0645f041fc5a9dfc0d4ba76f13285b"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:1"
+      ],
+      "limitations": "“必须安装”限定于作者所述TorchFT恢复流程，不是所有AI服务器或训练集群的通用要求。未提供服务版本、部署拓扑、接口规范、资源需求、兼容条件、服务自身的可靠性或恢复开销，不能据此认定软件互换能力、实际安装状态或2026年当前支持情况。",
+      "conflict_check": "所供采用陈述没有TorchFT lighthouse server部署要求或编排角色的相同主张。既有checkpoint耗时、训练网络停顿和资源瓶颈记录没有同版本、同配置的反例，也不能独立验证本项。本项与同批恢复流程候选互补，软件编排依赖并非同一主张。legacy匹配记录为空，未发现可确立的真实冲突或重复canonical记录，不替换任何结论。",
+      "gap_dependency_check": "该句的指代与适用对象可由所供连续正文确定，不依赖未读图示或其他缺失引句。服务器接口问题仍需正式软件接口、兼容和互换依据；服务器性能问题仍需带工况的测试与失效证据；M13-Q09仍需故障率、checkpoint及恢复开销的原始记录和可复查推导。三项问题保持开放，不更新既有模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "8befb5d22c39dc8f349f48f4caa3e409ef0645f041fc5a9dfc0d4ba76f13285b",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "d6917c5819e6dab4680d3c87def9a71e96dc7ffdc302db30880ba4aaa09c0922"
       }
     }
   ],
