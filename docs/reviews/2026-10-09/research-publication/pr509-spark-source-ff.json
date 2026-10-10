@@ -1,0 +1,144 @@
+{
+  "at": "2026-10-09T11:37:20.903224+00:00",
+  "operation": "approved incremental Git main fast-forward only; no service restart, data store, scope or model mutation",
+  "manifest": {
+    "created_at": "2026-10-09T11:36:41.123133+00:00",
+    "base": "fecb1735c955ad32c5ce5201ac95750c41207082",
+    "target": "3901d9daf280e8ec98ef24cd5008ea5cb99bfab3",
+    "head": "3901d9daf280e8ec98ef24cd5008ea5cb99bfab3 refs/remotes/origin/main",
+    "sha256": "86377780bceab01ce31f7fc0f4877d0e8c6afebf4ef87c0149cf656dcd8c07de",
+    "bytes": 58831,
+    "delta_paths": [
+      "data/research_knowledge.json",
+      "docs/DECISIONS.md",
+      "docs/REPOSITORY_REGISTER.md",
+      "docs/handoff/us-datacenter-power-20261009.md",
+      "docs/research/2026-10-09/us-datacenter-power/INTAKE-20261009.md",
+      "docs/research/2026-10-09/us-datacenter-power/README.md",
+      "docs/reviews/2026-10-09/pr509-root-semantic-review.json",
+      "docs/reviews/2026-10-09/research-publication/README.md",
+      "docs/reviews/2026-10-09/research-publication/c03-supplement-package-open.json",
+      "docs/reviews/2026-10-09/research-publication/c03-supplement-runtime.json",
+      "docs/reviews/2026-10-09/research-publication/c03-supplement-source-applied.json",
+      "docs/reviews/2026-10-09/research-publication/c03-supplement-source-plan.json",
+      "docs/reviews/2026-10-09/research-publication/lbnl-original50-root-caliber-review.md",
+      "docs/reviews/2026-10-09/research-publication/original-23-stage-1900.json",
+      "docs/reviews/2026-10-09/research-publication/original-50-identity-index.json",
+      "docs/reviews/2026-10-09/research-publication/original-50-identity-index.md",
+      "docs/reviews/2026-10-09/research-publication/pr501-actual-close.json",
+      "docs/reviews/2026-10-09/research-publication/pr501-actual-revalidation.json",
+      "docs/reviews/2026-10-09/research-publication/pr502-pr503-actual-published-ack.json",
+      "docs/reviews/2026-10-09/research-publication/pr507-existing-published-binding.json",
+      "docs/reviews/2026-10-09/research-publication/pr507-public-https.json",
+      "docs/reviews/2026-10-09/research-publication/pr507-root-independent-closure.json",
+      "docs/reviews/2026-10-09/research-publication/pr507-root-semantic-review.json",
+      "docs/reviews/2026-10-09/research-publication/pr515-actual-merge.json",
+      "docs/reviews/2026-10-09/research-publication/pr515-runtime-operation-denied.json",
+      "docs/reviews/2026-10-09/research-publication/pr515-spark-source-ff.json",
+      "docs/reviews/2026-10-09/research-publication/receipts.json",
+      "docs/reviews/2026-10-09/research-publication/ta14-final-deployment-healthy.json",
+      "docs/reviews/2026-10-09/research-publication/ta14-root-actual-public-review.json",
+      "framework/CURRENT.md",
+      "framework/current_state.json",
+      "framework/repository_manifest.json",
+      "framework/verification_contract.json"
+    ],
+    "implementation_delta": []
+  },
+  "before": {
+    "head": "fecb1735c955ad32c5ce5201ac95750c41207082",
+    "dirty": "",
+    "reader": {
+      "MainPID": "2707916",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "review": {
+      "MainPID": "2433760",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "reader_tree_head": "faa83480d3403ff35712716e4bc66c2407bd9209",
+    "files": {
+      "/home/spark/.config/systemd/user/inresearch-research-review.service.d/60-us-power-preferred-sources-20261009.conf": {
+        "sha256": "dc14177966aed1b8d1e78d8b4d91d52e062b22223a649a0fd296a06d7e71e4f0",
+        "bytes": 358
+      },
+      "/home/spark/.config/systemd/user/inresearch-research-review.service": {
+        "sha256": "f3528fb41b6fb53f0d59668cafc7ccac21a85d0f92512138a1c3ecd1e4537f21",
+        "bytes": 562
+      },
+      "/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf": {
+        "sha256": "d41bdb6dbce4d18ccc11d2ab3da73ce4b696baef117bfe0a0bb13b13dbe15b87",
+        "bytes": 148
+      },
+      "/home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf": {
+        "sha256": "94f8849c3490d5f19ce597b2256949afa9a51832ee9db998f47b305aa8806650",
+        "bytes": 243
+      },
+      "/home/spark/.config/inresearch.ai/codex-batch-scope.json": {
+        "sha256": "2575bd21f07e9b32f9521a02ffcbc28d9123137345bf15f5975a714dc6aae240",
+        "bytes": 626245
+      },
+      "/home/spark/.config/inresearch.ai/research-review.env": {
+        "sha256": "95e15960f8e090bc1fa1c8a2349c1781b433d181e456fa94db586c49c01741e0",
+        "bytes": 1184
+      },
+      "/home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json": {
+        "sha256": "397e208f330d72d2039e0fda5527aef612b832275d8e2e870fd8a2867cb0af78",
+        "bytes": 1793
+      }
+    }
+  },
+  "after": {
+    "head": "3901d9daf280e8ec98ef24cd5008ea5cb99bfab3",
+    "dirty": "",
+    "reader": {
+      "MainPID": "2707916",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "review": {
+      "MainPID": "2433760",
+      "NRestarts": "0",
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "reader_tree_head": "faa83480d3403ff35712716e4bc66c2407bd9209",
+    "files": {
+      "/home/spark/.config/systemd/user/inresearch-research-review.service.d/60-us-power-preferred-sources-20261009.conf": {
+        "sha256": "dc14177966aed1b8d1e78d8b4d91d52e062b22223a649a0fd296a06d7e71e4f0",
+        "bytes": 358
+      },
+      "/home/spark/.config/systemd/user/inresearch-research-review.service": {
+        "sha256": "f3528fb41b6fb53f0d59668cafc7ccac21a85d0f92512138a1c3ecd1e4537f21",
+        "bytes": 562
+      },
+      "/home/spark/.config/systemd/user/inresearch-reader.service.d/91-dcd-verified-claim-20261009.conf": {
+        "sha256": "d41bdb6dbce4d18ccc11d2ab3da73ce4b696baef117bfe0a0bb13b13dbe15b87",
+        "bytes": 148
+      },
+      "/home/spark/.config/systemd/user/inresearch-reader.service.d/limits.conf": {
+        "sha256": "94f8849c3490d5f19ce597b2256949afa9a51832ee9db998f47b305aa8806650",
+        "bytes": 243
+      },
+      "/home/spark/.config/inresearch.ai/codex-batch-scope.json": {
+        "sha256": "2575bd21f07e9b32f9521a02ffcbc28d9123137345bf15f5975a714dc6aae240",
+        "bytes": 626245
+      },
+      "/home/spark/.config/inresearch.ai/research-review.env": {
+        "sha256": "95e15960f8e090bc1fa1c8a2349c1781b433d181e456fa94db586c49c01741e0",
+        "bytes": 1184
+      },
+      "/home/spark/.config/inresearch.ai/us-power-preferred-sources-20261009.json": {
+        "sha256": "397e208f330d72d2039e0fda5527aef612b832275d8e2e870fd8a2867cb0af78",
+        "bytes": 1793
+      }
+    }
+  },
+  "protected_equal": true,
+  "services_pid_equal": true
+}

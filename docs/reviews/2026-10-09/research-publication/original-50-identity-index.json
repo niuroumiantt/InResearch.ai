@@ -886,20 +886,51 @@
     "reader_stage_not_resampled": "14/23 source seal counts remain the separately dated 08:08 observation"
   },
   "latest_verified_update": {
-    "observed_at": "2026-10-09T11:12:54.797078+00:00",
+    "observed_at": "2026-10-09T11:40:42.096293+00:00",
+    "original23_reader_observed_at": "2026-10-09T11:39:15.071170+00:00",
     "original23_reader_complete": 16,
-    "original23_reader_running": 1,
+    "original23_reader_running": 0,
     "original23_reader_queued": 6,
-    "independently_closed_source_records": 30,
-    "formal_source_supported_records": 30,
+    "original23_reader_failed": 1,
+    "jlarc_revision_observed": "rev-f05ecf179f2147348d9738943c37bf2f",
+    "jlarc_successful_native_read_chunks": 62,
+    "jlarc_native_chunks_total": 154,
+    "jlarc_current_revision_binding": "verified canonical current_readings selector at11:50; nullable inactive documents pointer is not a missing current",
+    "independently_closed_source_records": 34,
+    "formal_source_supported_records": 34,
     "pending_independent_publication_records": 0,
-    "pending_pr": null,
     "explicit_original_submission_identities": 7,
     "unbound_original_submission_identities": 43,
     "supplemental_new_html_sources": 2,
-    "supplemental_reader_registered": 0,
+    "supplemental_reader_observed_at": "2026-10-09T11:34:50.684712+00:00",
+    "supplemental_reader_registered": 2,
+    "supplemental_reader_queued": 2,
+    "supplemental_reader_current_result": 0,
     "supplemental_formal_records": 0,
-    "boundary": "Original records/table remain observed_at16:08; new source/topic candidates do not create explicit C/S adoption. Source supported records, verified publication and original50 bindings are distinct."
+    "closure_receipt": "pr509-root-independent-closure.json",
+    "preflight_only": [
+      "original50-c01-c02-root-preflight.md",
+      "original50-c12-c13-root-preflight.md"
+    ],
+    "boundary": "Original per-item table, top-level13 and mapping rule remain observed_at16:08. Source closure34, original50 explicit7 and supplementary2 Reader queued/C3zero are distinct; preflight is not C3."
   },
-  "historical_snapshot_boundary": "Top-level formal_source_supported_record_count=13 and same_source_new_extractions_unmapped_count=6, records Reader states and original mapping_rule refer only to observed_at=2026-10-09T08:08:29.459683+00:00 (16:08 Beijing). Current separately dated formal/Reader observations are in latest_verified_update; original C/S identity counts remain 7 explicit and43 unbound."
+  "historical_snapshot_boundary": "Top-level formal_source_supported_record_count=13 and same_source_new_extractions_unmapped_count=6, records Reader states and original mapping_rule refer only to observed_at=2026-10-09T08:08:29.459683+00:00 (16:08 Beijing). Current separately dated formal/Reader observations are in latest_verified_update; original C/S identity counts remain 7 explicit and43 unbound.",
+  "verified_updates_history": [
+    {
+      "observed_at": "2026-10-09T11:12:54.797078+00:00",
+      "original23_reader_complete": 16,
+      "original23_reader_running": 1,
+      "original23_reader_queued": 6,
+      "independently_closed_source_records": 30,
+      "formal_source_supported_records": 30,
+      "pending_independent_publication_records": 0,
+      "pending_pr": null,
+      "explicit_original_submission_identities": 7,
+      "unbound_original_submission_identities": 43,
+      "supplemental_new_html_sources": 2,
+      "supplemental_reader_registered": 0,
+      "supplemental_formal_records": 0,
+      "boundary": "Original records/table remain observed_at16:08; new source/topic candidates do not create explicit C/S adoption. Source supported records, verified publication and original50 bindings are distinct."
+    }
+  ]
 }

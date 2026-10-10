@@ -2,7 +2,9 @@
 
 2026-10-09｜规则v2.7｜派生研究、交付索引与真实运行回执；原件不入Git。
 
-2026-10-09最新实核：技术图册TA14真实公网、下载、3D与精确镜像健康已通过，当前14/35，补充4/4另计。18:59:10原23逐SHA为16份正文封存、1 running、6 queued；JLARC53/154正在读，原Reader仍PID1906533/NRestarts0。PDF的native_text_only、visual=false、full_document_complete=false保留，正文封存不等于含图视觉深读。19:12:54 root组合验收后，原23已独立核对HTTPS及Spark发布闭环30条＝Alphabet B18＋LBNL B5＋EIA专项A7；外部PR507两条的具名root语义、真实公网2陈述/3证据与原attempt4既有ACK绑定均通过，不再沿用19:01的28已核/30主线待核状态。原50是41C＋9S，仅C35–41七项有显式采用身份，另43未见显式绑定。两份官方网页为C03新增同源补充：19:01已实际acquisition接收/匹配2份、来源填空2份且replay不变2；Reader登记/完成、review批次和正式记录均0，不能加到原23或原50完成数。PR499补审后的原B/正文/before保留；旧队列恢复另计。 [最新交接](../../../handoff/us-datacenter-power-20261009.md)与[50项身份索引](../../../reviews/2026-10-09/research-publication/original-50-identity-index.md)。
+2026-10-09 19:40独立复核：原23来源正式发布闭环34条＝Alphabet B18＋LBNL B9＋EIA专项A7。PR509四条有限方法陈述的真实HTTPS与19:39:09 Spark published ACK均已核对，两条背景不采用。原50仍是41C＋9S，仅C35–41显式绑定7项，其余43未见显式绑定；同源新提取不回填原候选。19:12的30条与更早28/30、22/23是具名历史阶段。
+
+19:39逐来源Reader观察为原23共16 complete、6 queued、1 failed；JLARC rev-f05…成功读取62/154个原生文本块、model_cli_failed；19:50另核真实current选择仍为该修订。PDF的native_text_only、visual=false、full_document_complete=false保留，正文封存不等于含图视觉深读。Reader外部PID/override变化仅观察，不归因于本轮来源同步。C03两份同源HTML19:30实际scope准入8237→8239，19:34自然登记queued2、无revision/report；acquisition2、Reader登记2与C3 0分开，不增加原23分母或原50完成数。图册已核TA14、14/35及补充4/4；TA15按后续实际publication更新。
 
 文章及图文入口：`outputs/geluoke-research/2026-10-09-us-datacenter-power/`。正式研究文字为该目录`research/research.md`与`research/research.txt`，机器登记见submission.json、claims.json、demand-snapshot.json、sources.json。正文不构成来源原件的独立佐证；身份相同的两种交付不重复计量。
 
@@ -46,4 +48,11 @@
 11:39:55的封存1/排队22与当时C3未运行是历史阶段，原接收、来源身份与安全解析器发布回执均保留。
 
 
-19:12补充阶段：原23已独立闭环30（Alphabet18＋LBNL5＋EIA7）、原50显式7分母独立；502/503真HTTPS＋ACK、501真实context失效关闭、515已merge并Spark源码快进、驻留重载/恢复被自动审批执行前拒绝，见[最新交接](../../../handoff/us-datacenter-power-20261009.md#1901当前研究反哺补源与图册阶段)。C03原PDF精确58未证实，新DOE/LBL同源两HTML已actual acquisition接收与匹配、Reader及C3均0，原件/headers/body留永久incoming，未改scope准入。
+19:12历史补充阶段：原23已独立闭环30（Alphabet18＋LBNL5＋EIA7）、原50显式7分母独立；502/503真HTTPS＋ACK、501真实context失效关闭、515已merge并Spark源码快进、驻留重载/恢复被自动审批执行前拒绝，见[最新交接](../../../handoff/us-datacenter-power-20261009.md#1939最新研究反哺补源准入与运行边界)。C03原PDF精确58未证实，新DOE/LBL同源两HTML已actual acquisition接收与匹配、Reader及C3均0，原件/headers/body留永久incoming，未改scope准入。
+
+
+## 19:39当前阶段
+
+原23独立正式闭包34＝Alphabet18＋LBNL9＋EIA A7，原50显式仍7。PR509原a4/b168、B审核和抽样保持，四条方法陈述/四证据经过本地397项验收、精确ca56→3901全树一致、自然部署healthy、真实HTTPS与19:39:09原published CLI ACK，root独立组合验收通过。19:39逐来源观察16complete/6queued/1failed，JLARC rev-f05…成功读取62/154个原生文本块，19:50真实current选择同修订；PDF正文范围非视觉全篇。Reader外部PID/override变化仅观察，FF保护当下身份。[最新交接](../../../handoff/us-datacenter-power-20261009.md#1939最新研究反哺补源准入与运行边界)、[独立闭包](../../../reviews/2026-10-09/research-publication/pr509-root-independent-closure.json)。
+
+C03两HTML19:30实际scope准入8237→8239，19:34自然登记queued2、无revision/report，C3仍0，原23分母不变。初次静态process needle错误在写前自停，修正actualSHA/startticks后正常获准执行，区别于PR515服务停止/四批恢复的自动审批拒绝；515四批未因此恢复。C01/C02与C12/C13 root前置审阅为非C3输入，不取得采用或替代权。原件/headers/privateaudit/native/proof正文不入Git，仅归档安全metadata回执。
