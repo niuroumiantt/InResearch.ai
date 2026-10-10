@@ -3016,6 +3016,87 @@
       "status": "candidate",
       "stored_path": "originals/04/04e3af568142c327af50dd218fab0fd02ef46b59232d1859bdb6d992fa8d4a1c/TPU Inference Externalization Full Steam Ahead.pdf",
       "title": "TPU Inference Externalization Full Steam Ahead"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "coverage": {
+        "characters_read": 35552,
+        "characters_total": 35552,
+        "chunks_read": 25,
+        "chunks_total": 25,
+        "complete": true,
+        "pages_read": 26,
+        "pages_total": 26
+      },
+      "doc_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "library_path": "library/by-node/root/2025_SemiAnalysis_How Oracle Is Winning the AI Compute Market__0688b2da7f1faf3d.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:amd",
+        "actor:arista-networks",
+        "actor:bytedance",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:dayone",
+        "actor:digital-realty",
+        "actor:g42",
+        "actor:gds",
+        "actor:lambda",
+        "actor:lancium",
+        "actor:meta",
+        "actor:nebius",
+        "actor:nvidia-networking",
+        "actor:openai",
+        "actor:oracle",
+        "actor:qts",
+        "part:cpu",
+        "part:gpu",
+        "part:network-switch",
+        "part:nic",
+        "part:rack-system",
+        "part:server",
+        "part:storage-array",
+        "root",
+        "site:grid",
+        "system:it",
+        "system:power"
+      ],
+      "question_ids": [
+        "M02-Q02",
+        "NODE-demand-D1-boundary",
+        "NODE-demand-D1-economics",
+        "NODE-demand-D3-boundary",
+        "NODE-demand-D3-economics",
+        "NODE-workload-enterprise-economics",
+        "NODE-workload-enterprise-placement",
+        "NODE-workload-hpc-profile",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-profile",
+        "NODE-workload-training-placement",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "Q-SCOPE-arch-blackwell"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/06/0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb/How Oracle Is Winning the AI Compute Market – SemiAnalysis (1).pdf",
+      "title": "How Oracle Is Winning the AI Compute Market"
     }
   ],
   "evidence": [
@@ -16415,6 +16496,338 @@
           }
         },
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ea4ec86eb81299d7eaecb0a357a38ea4053ddfe7cd98ea57491c177cf7de4bd2",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:1:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "page_index": 2,
+      "question_ids": [
+        "OBJ-gpu-supply"
+      ],
+      "quote": "With both flagship customers among the world’s largest and fastest-growing GPU renter and significant additional pipeline ahead, we forecasted a stellar CapEx ramp back in February 2025.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:15:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分6。连续引文及相邻客户、合同管线和资本开支语境充分支持限定转述。客户GPU租用增长和后续项目储备与Oracle资本开支预期之间的关系，实质贡献于当前扩张节奏及算力资产需求传导研究；仅部分采用。未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M02-Q02",
+          "Q-NODE-activity-V3-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.822,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1c0917de7290bfb4974a5b2c5d82887e14bb32355a6384813175b4737eee91c7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66700,
+            "output_tokens": 4266,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.786,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "207e5b5158159b646027ae370ee27dcd98f30b563fea2971b448a41bcb3b5237",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65004,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 259
+            }
+          }
+        },
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ea4ec86eb81299d7eaecb0a357a38ea4053ddfe7cd98ea57491c177cf7de4bd2",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:2:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "The announcements made two weeks ago by Larry Ellison, forecasting >$130B of contracts to be booked in the next twelve months, confirm our expectations.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:15:02+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分7。连续原文及Oracle扩张、资本开支和客户需求上下文充分支持归因转述。金额下限与预测窗口为当前大额合同管线和扩张预期研究提供具体线索，虽不能形成已签合同清单，仍有实质性部分贡献。未发现A条件。",
+        "workorder_ids": [
+          "Q-M03-Q01",
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.822,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1c0917de7290bfb4974a5b2c5d82887e14bb32355a6384813175b4737eee91c7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66700,
+            "output_tokens": 4266,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.786,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "207e5b5158159b646027ae370ee27dcd98f30b563fea2971b448a41bcb3b5237",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65004,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 259
+            }
+          }
+        },
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ea4ec86eb81299d7eaecb0a357a38ea4053ddfe7cd98ea57491c177cf7de4bd2",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:3:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [
+        "part:rack-system"
+      ],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "And our new month-by-month GB200/300 rack orders and shipments tracker confirms extreme demand from Oracle.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:15:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分5。连续引文与相邻Oracle客户需求和资本开支语境充分支持作者归因的定性需求判断。明确的客户和产品范围对当前Oracle扩张需求研究有有限但实质性的贡献；评分反映缺少底层跟踪数据和交付结果。未发现A条件。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.822,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1c0917de7290bfb4974a5b2c5d82887e14bb32355a6384813175b4737eee91c7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66700,
+            "output_tokens": 4266,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.786,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "207e5b5158159b646027ae370ee27dcd98f30b563fea2971b448a41bcb3b5237",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65004,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 259
+            }
+          }
+        },
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ea4ec86eb81299d7eaecb0a357a38ea4053ddfe7cd98ea57491c177cf7de4bd2",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "id": "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:4:ev:0",
+      "locator": "page:3/chunk:2",
+      "object_ids": [],
+      "page_index": 2,
+      "question_ids": [],
+      "quote": "This is not only driven by the largest customers, but also a large number of smaller firms going to Oracle for their technical expertise.",
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "source_sha256": "0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:15:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分5。连续引文及前一句Oracle需求上下文明确被指代对象，足以支持限定的作者转述。最大客户之外仍有大量小型客户，是当前需求方集中度研究的客户构成线索，但缺少占比和风险计量，故仅作有限贡献。未发现A条件。",
+        "workorder_ids": [
+          "Q-M03-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.822,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1c0917de7290bfb4974a5b2c5d82887e14bb32355a6384813175b4737eee91c7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66700,
+            "output_tokens": 4266,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.786,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "207e5b5158159b646027ae370ee27dcd98f30b563fea2971b448a41bcb3b5237",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65004,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 259
+            }
+          }
+        },
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23"
       }
     }
   ],
@@ -32233,6 +32646,402 @@
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
         "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
         "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:1:ev:0"
+      ],
+      "id": "adoption:review:818c94461c4a94eaa8c6ae63",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:gpu"
+      ],
+      "question_ids": [
+        "M02-Q02",
+        "NODE-activity-V3-chain"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Oracle Is Winning the AI Compute Market》（发表时间未知）作者称，两家旗舰客户属于全球最大且增长最快的GPU租用者之列，并有显著的后续项目储备；作者据此回述其在2025年2月对Oracle资本开支大幅增长的预测。这是来源对客户需求与资本开支预期关系的判断，不构成实际资本开支增长或项目交付的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:15:02+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分6。连续引文及相邻客户、合同管线和资本开支语境充分支持限定转述。客户GPU租用增长和后续项目储备与Oracle资本开支预期之间的关系，实质贡献于当前扩张节奏及算力资产需求传导研究；仅部分采用。未发现敏感、真实冲突、拟替换或其他A条件。",
+        "workorder_ids": [
+          "Q-M02-Q02",
+          "Q-NODE-activity-V3-chain"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.822,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1c0917de7290bfb4974a5b2c5d82887e14bb32355a6384813175b4737eee91c7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66700,
+            "output_tokens": 4266,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.786,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "207e5b5158159b646027ae370ee27dcd98f30b563fea2971b448a41bcb3b5237",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65004,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 259
+            }
+          }
+        },
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:1"
+      ],
+      "limitations": "2025年2月是作者回述的预测时点，邻近图表标注的2025年2月13日及图片日期均不能确定本文发表日期。未提供客户租用规模、增长率、项目储备清单、资本开支金额、执行节奏或资金落实情况；该句未限定地域或具体项目阶段。",
+      "conflict_check": "既有信用关联及AI云信用脆弱性陈述讨论资金约束，与本项需求驱动的扩张预期兼容。legacy中的Oracle资本开支实际值、FY2026不同快照指引及Apple/Oracle合并分部预测，与本项定性预测的时点和范围不同，不构成同口径冲突或重复；Stargate全周期TCO不能作为本项资本开支的验证。检查限于所供记录，不替换既有结论。",
+      "gap_dependency_check": "M02-Q02仍需Oracle一手资本开支披露、扩张时间表、融资和现金流约束。NODE-activity-V3-chain仍需客户需求如何落实为资产采购、交付和变现的项目记录、反例及领先指标验证。本项提供定性机制线索，不回答或关闭问题，不更新容量、模型值或骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "251222edea123fe13f0369c012d3375411c3b5379c69c0f6be80ff3419f3c6f2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:2:ev:0"
+      ],
+      "id": "adoption:review:fa51f0ca205e4d5fbcc2c81e",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M03-Q01",
+        "M02-Q02"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Oracle Is Winning the AI Compute Market》（发表时间未知）作者转述，Larry Ellison在报告所称的两周前预测，未来十二个月将签订超过1300亿美元（>$130B）的合同；作者认为这一预测符合其对Oracle扩张的预期。这是来源转述的未来签约预测，不是已签合同额、已确认收入或GPU采购额。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:15:02+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分7。连续原文及Oracle扩张、资本开支和客户需求上下文充分支持归因转述。金额下限与预测窗口为当前大额合同管线和扩张预期研究提供具体线索，虽不能形成已签合同清单，仍有实质性部分贡献。未发现A条件。",
+        "workorder_ids": [
+          "Q-M03-Q01",
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.822,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1c0917de7290bfb4974a5b2c5d82887e14bb32355a6384813175b4737eee91c7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66700,
+            "output_tokens": 4266,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.786,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "207e5b5158159b646027ae370ee27dcd98f30b563fea2971b448a41bcb3b5237",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65004,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 259
+            }
+          }
+        },
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:2"
+      ],
+      "limitations": "未建立报告发表日期、Ellison讲话绝对日期及未来十二个月的起止日期。未提供讲话原始材料、合同类别、交易对手、单笔金额、期限、约束条件或交付节奏，也未明确地域及项目范围。作者认为预测符合预期，不等于预测已经兑现。",
+      "conflict_check": "legacy的openai-oracle-2025是有独立公告日期、五年期限及媒体报道金额的特定合同记录；本项是绝对时点未知的未来签约预测，不能认定为该合同的重复或替换。bern2509-oracle-rpo-fy26q1记录剩余履约义务存量，不能与未来签约流量直接比较。未建立同口径真实冲突，亦不以这些记录证明预测兑现；检查限于所供材料。",
+      "gap_dependency_check": "M03-Q01仍需逐笔合同清单、一手合同或公告、期限、金额口径及交付计划。M02-Q02仍需签约预期向资本开支、融资需求和项目建设传导的证据。应先定位Ellison原始讲话及其日期，再核查后续签约结果；两个问题均保持开放，不更新既有合同或模型输入。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "251222edea123fe13f0369c012d3375411c3b5379c69c0f6be80ff3419f3c6f2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:3:ev:0"
+      ],
+      "id": "adoption:review:e5f11b1c9784dc64fa7682bd",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:rack-system"
+      ],
+      "question_ids": [
+        "M02-Q02"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Oracle Is Winning the AI Compute Market》（发表时间未知）作者称，其新的逐月GB200/300机柜订单与出货跟踪显示Oracle需求极强。这是来源依据自有跟踪作出的定性需求判断，不构成Oracle实际机柜出货、部署或投运规模的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:15:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分5。连续引文与相邻Oracle客户需求和资本开支语境充分支持作者归因的定性需求判断。明确的客户和产品范围对当前Oracle扩张需求研究有有限但实质性的贡献；评分反映缺少底层跟踪数据和交付结果。未发现A条件。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.822,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1c0917de7290bfb4974a5b2c5d82887e14bb32355a6384813175b4737eee91c7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66700,
+            "output_tokens": 4266,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.786,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "207e5b5158159b646027ae370ee27dcd98f30b563fea2971b448a41bcb3b5237",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65004,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 259
+            }
+          }
+        },
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:3"
+      ],
+      "limitations": "未提供跟踪表、数据来源、观察月份、订单与出货定义、数量、取消率、交付日期或价格，也未拆分GB200与GB300。地域、具体采购项目和交付阶段未知，不能把订单、出货、部署及可用容量互换。",
+      "conflict_check": "已采用的设备交付取证陈述区分产品发布、选型、联调和验收，与本项需求判断兼容。legacy中的野村GB200出货低于预期记录及摩根士丹利机柜产出、出货预测涉及全市场、不同时间及当量口径，不能直接否定或验证Oracle需求；需求强也不意味着交付顺畅。未见同口径冲突或重复，不替换任何出货记录。",
+      "gap_dependency_check": "本项仅部分支持M02-Q02的扩张需求侧线索，仍缺采购执行、资本开支、融资约束和建设节奏。对M06-Q01未提供实际出货时间序列，对NODE-activity-V2-chain未提供交期、约束传导或可验证指标，因此不挂接这两个问题。需取得原始跟踪数据并核对订单到交付的转换；相关问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "251222edea123fe13f0369c012d3375411c3b5379c69c0f6be80ff3419f3c6f2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-0688b2da7f1faf3d9a604a9c063015a53dc887924104a28ed385295c21f52bcb",
+      "evidence_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:4:ev:0"
+      ],
+      "id": "adoption:review:b3be89d6bc6e4596a9cf1b0e",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M03-Q04"
+      ],
+      "reading_revision_id": "rev-68331e67fe364da8b2ab1eb979b314c5",
+      "status": "adopted",
+      "text": "SemiAnalysis《How Oracle Is Winning the AI Compute Market》（发表时间未知）作者称，Oracle的需求不仅由最大客户驱动，也来自大量因其技术专长而选择Oracle的小型公司。这是来源对客户构成和选择原因的定性判断，不能据此确认收入集中度或集中度风险已经下降。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:15:02+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 7,
+        "rationale": "原始重要性7，本次评分5。连续引文及前一句Oracle需求上下文明确被指代对象，足以支持限定的作者转述。最大客户之外仍有大量小型客户，是当前需求方集中度研究的客户构成线索，但缺少占比和风险计量，故仅作有限贡献。未发现A条件。",
+        "workorder_ids": [
+          "Q-M03-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 130.822,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1c0917de7290bfb4974a5b2c5d82887e14bb32355a6384813175b4737eee91c7",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 66700,
+            "output_tokens": 4266,
+            "reasoning_output_tokens": 1034
+          }
+        },
+        "sampling": {
+          "cohort": 4,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.786,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "207e5b5158159b646027ae370ee27dcd98f30b563fea2971b448a41bcb3b5237",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65004,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 259
+            }
+          }
+        },
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23"
+      },
+      "source_candidate_ids": [
+        "rev-68331e67fe364da8b2ab1eb979b314c5:chunk:2:claim:4"
+      ],
+      "limitations": "未列明小型公司名称、数量、规模标准、客户类型、地域、合同期限或收入和算力消费占比；未提供选择原因的调查方法。不能将小型公司自动归类为非AI实验室企业，也不能由客户数量推算前五大租户占比或排除循环交易。",
+      "conflict_check": "legacy中的OpenAI—Oracle大额合同及Oracle RPO记录体现大额业务，不能否定小型客户存在，也不能证明其贡献足以降低集中度。既有信用关联和信用脆弱性陈述讨论不同机制，与本项兼容。未发现同内容规范记录或真实冲突；检查限于所供材料，不覆盖既有风险判断。",
+      "gap_dependency_check": "M03-Q04仍需同口径前五大租户收入或消费占比、客户关联关系，以及供应商入股客户的交易规模。本项不回答风险水平。对NODE-activity-V3-chain仅有客户选择原因，缺少需求向资产采购、交付和变现传导的节点证据，故不挂接该问题。工作单保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fad3cbb8e85b6bfdbdc3deaaa1c7ab593d51114d17ba867985b12826159bec23",
+        "source_report_sha256": "d7f870103b8fb490939a0b0f2399a433ae5200f7c5f485b47fcf565c2e66d9db",
+        "request_sha256": "251222edea123fe13f0369c012d3375411c3b5379c69c0f6be80ff3419f3c6f2"
       }
     }
   ],
