@@ -412,7 +412,7 @@ python3 manage.py research-review ready
 
 提速选择协议按04：需求匹配调用生成当前候选/引文中的逐字检索词，仅检索字段值；完整保存所选语义记录，重复执行回执用原登记SHA引用，保留旧协议复验。修改队列前停止该独立研究服务并作 SQLite 一致备份；`research-review regroup-queued --batch-size 6` 只合并未执行的 queued，同报告/版本，父批次留存。`research-review retry-context --batch-id 完整ID` 只重试预算失败，保留原尝试；不重试原文缺失或独立抽样未确认。恢复独立研究服务；原 Reader/relay 不重启。
 
-M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用源码工作树）、state（本机私有状态目录）、spark/aws SSH别名及各自已存在路径。由 `deploy/m5-research/research-publish.plist.example` 安装用户 LaunchAgent，显式替换 Python/源码/配置/日志绝对路径。每轮逐批恢复已有日志并领取可发表批次；单批来源/上下文/CI失败持久化到该批，不阻止其他批次，未变化的待CI/待部署批次也不独占调度。新任务发现跳过已采用项，来源复验保留封存批次的全部原始候选和原文页，再比较原件/报告封印；已采用过滤不构成来源变化。原件、正文、引文或当前研究上下文真的变化仍拒绝或重新核验。缺省publication_mode=ci时，CI四项通过且PR head未变才自动合并；显式local_acceptance按下文固定验收；网页部署后使用容器里已有管理员的临时会话验收真实HTTPS采用接口，不打印会话/密钥，不改账号。研究事实、规范和原件不得通过该凭据临时放宽分发。
+M5 `research-publish --config 私有JSON` 常驻；配置含 repo（干净专用源码工作树）、state（本机私有状态目录）、spark/aws SSH别名及各自已存在路径。由 `deploy/m5-research/research-publish.plist.example` 安装用户 LaunchAgent，显式替换 Python/源码/配置/日志绝对路径。每轮逐批恢复已有日志并领取可发表批次；单批来源/上下文/CI失败持久化到该批，不阻止其他批次，未变化的待CI/待部署批次也不独占调度。新任务发现跳过已采用项，来源复验保留封存批次的全部原始候选和原文页，再比较原件/报告封印；已采用过滤不构成来源变化。原件、正文、引文或当前研究上下文真的变化仍拒绝或重新核验。缺省publication_mode=ci时，CI两项门禁及所选作业通过且PR head未变才自动合并；显式local_acceptance按下文固定验收；网页部署后使用容器里已有管理员的临时会话验收真实HTTPS采用接口，不打印会话/密钥，不改账号。研究事实、规范和原件不得通过该凭据临时放宽分发。
 
 既有 Reader/relay 不重启。发布器在M5获取当前已合并 origin/main，确认 Spark 源码干净且 HEAD 是目标的祖先后生成增量 Git bundle，经既有 SSH 传输，核对 SHA 和 bundle 前置提交，再重查 Spark HEAD/dirty 后 fast-forward；远端源地址不改。源码增量和传输回执保存私有 state/research-source 与 M5 source-releases。dirty、分歧或传输期间变更保留并等待，不能用 reset/stash 绕过。Git/CI/连接/部署错误保存私有 journal，原尝试/分支不 reset 或删除；模型成功与待提交数量不计正式采用。因另行授权发布而已合并的旧失败日志，只有复验封存包、核对GitHub实际MERGED及head与原审核commit完全一致后恢复merged阶段；仍须实际HTTPS支持闭包与Spark回执，保留旧错误恢复历史，不自动重合并、不伪造CI成功。`revalidate` 仅用于未发布、正式上下文已变化的批次；`split-overbudget` 仅拆预算阻塞，保留原审计。网站逐条正文、采用状态、引文和原件支持闭包通过后才有 published。单元测试不是全库语义保证；未匹配需求、A档、缺证据与专门字段仍分别计量。
 
@@ -445,27 +445,27 @@ python3 manage.py research-review retry-transient --batch-id 完整64位批次ID
 
 ### 2026-10-09 · 旧研究 PR 恢复
 
-默认CI模式的发布器每轮复验 blocked 批次的封存来源与包摘要。GitHub 的实际 OPEN head 必须仍等于审核提交：现行研究上下文已变化时重新排入 C3 审核，关闭旧 PR，保留原尝试、分支、错误与恢复原因；四项 CI 在同一 head 实际恢复成功时回到正常发布检查，不跳过上下文、基线与网站验收。CI失败且main已有新的已批准基线时，只有来源/上下文及原PR head复验通过、独占工作树干净且无正式记录冲突，才可按既有追加合并规则更新基线；保存原错误、检查结果与前后head，重新推送并等待新head全部CI。基线未变化、摘要变化和别人修改的head仍阻塞，不自动放宽预算或检查。人工合并多个通过现行复验的增量时，每批原审核包、原 PR/head 与实际合并提交的关系保存在私有发布 journal；逐批真实 HTTPS 支持闭包验收后才记录 published。
+默认CI模式的发布器每轮复验 blocked 批次的封存来源与包摘要。GitHub 的实际 OPEN head 必须仍等于审核提交：现行研究上下文已变化时重新排入 C3 审核，关闭旧 PR，保留原尝试、分支、错误与恢复原因；两项 CI 门禁及所选作业在同一 head 实际恢复成功时回到正常发布检查，不跳过上下文、基线与网站验收。CI失败且main已有新的已批准基线时，只有来源/上下文及原PR head复验通过、独占工作树干净且无正式记录冲突，才可按既有追加合并规则更新基线；保存原错误、检查结果与前后head，重新推送并等待新head全部CI。基线未变化、摘要变化和别人修改的head仍阻塞，不自动放宽预算或检查。人工合并多个通过现行复验的增量时，每批原审核包、原 PR/head 与实际合并提交的关系保存在私有发布 journal；逐批真实 HTTPS 支持闭包验收后才记录 published。
 
-多个当前已审核批次并行追加同一研究 JSON 时，基线合并只接受 documents/evidence/statements 的按稳定ID追加：两侧必须完整保留每条原记录，新增ID重合时内容必须完全相同；其余字段及answers不得变化。原记录编辑/删除、ID重复或冲突保持Git冲突供审阅。合法追加保留已合并main及本批记录，重建清单、严格校验与registry后生成新head；默认CI重跑全部四项CI，显式local重跑全部固定本地验收，不能继承旧head回执。
+多个当前已审核批次并行追加同一研究 JSON 时，基线合并只接受 documents/evidence/statements 的按稳定ID追加：两侧必须完整保留每条原记录，新增ID重合时内容必须完全相同；其余字段及answers不得变化。原记录编辑/删除、ID重复或冲突保持Git冲突供审阅。合法追加保留已合并main及本批记录，重建清单、严格校验与registry后生成新head；默认CI重跑按影响计划所选的全部CI（研究 JSON 修改仍全套），显式local重跑全部固定本地验收，不能继承旧head回执。
 
 
-2026-10-09发布验收：网页core回归分core_a/core_b/core_c并行，运行器使用同一完整suite清单；part_dossier的10个原场景分别执行，每个场景保留全部主题、动画、拾取与资源所有权断言，以及既有单项300秒期限。scene_atlas双密度继续保留；browser(core)聚合只有全部matrix通过才成功，模型资产仍保留三个场景。治理与运行器读取同一已审阅suite清单，选定浏览器入口缺失继续报错。新attempt开始前，将完整旧journal保存到旧attempt目录；新journal记录相对路径、状态与实际文件SHA，旧尝试/分支不删除。旧CI失败状态恢复沿同期发布器修复，不能将源码检查当作实际队列已恢复。
+2026-10-09发布验收：网页core回归分core_a/core_b/core_c并行，运行器使用同一完整suite清单；part_dossier的10个原场景分别执行，每个场景保留全部主题、动画、拾取与资源所有权断言，以及既有单项300秒期限。scene_atlas双密度继续保留；当时 browser(core) 聚合要求完整 matrix 通过；2026-10-10 起按 [CI 影响契约](../CI.md) 汇总本次所选范围，研究数据改动仍选全套，模型资产仍保留三个场景。治理与运行器读取同一已审阅suite清单，选定浏览器入口缺失继续报错。新attempt开始前，将完整旧journal保存到旧attempt目录；新journal记录相对路径、状态与实际文件SHA，旧尝试/分支不删除。旧CI失败状态恢复沿同期发布器修复，不能将源码检查当作实际队列已恢复。
 
 发布前检查失败必须保存退出码与可用诊断。治理/数据校验仅在标准输出报告错误时，只记录显式ERROR行，不把任意输出、凭据或配置写入journal。prepared旧基线失效时保留原工作树、journal与封存包；在当前main和当前来源/上下文复验后重建发表，不改旧审计摘要来放行。
 
 ### 2026-10-09 · 明确授权的本地验收恢复实例
 
-本会话用户明确授权每项完成完整本地验收后，不等CI自主更新原PR、精确head合并和部署；默认CI模式的四项准入逻辑保持；任务显式local模式按下文实际本地回执准入。首包PR453的真实原CI是part_dossier超过300秒失败，不能写为预算未启动或追认成功。独立精确head完整本地验证保留当前3D/浏览器契约，集成同期最新main再验；原审计/封存/固定抽样/当时来源与上下文均通过，原attempt/包/PR/head链保留。人工精确合并后，既有publisher仅恢复merged阶段，再按来源安全同步、真实HTTPS逐条支持闭包与Spark published回执完成交付。不是将local pass写成CI pass，也不对其它未审候选授予采用权。
+本会话用户明确授权每项完成完整本地验收后，不等CI自主更新原PR、精确head合并和部署；默认CI模式按现行 docs/CI.md 两项汇总门禁准入；任务显式local模式按下文实际本地回执准入。首包PR453的真实原CI是part_dossier超过300秒失败，不能写为预算未启动或追认成功。独立精确head完整本地验证保留当前3D/浏览器契约，集成同期最新main再验；原审计/封存/固定抽样/当时来源与上下文均通过，原attempt/包/PR/head链保留。人工精确合并后，既有publisher仅恢复merged阶段，再按来源安全同步、真实HTTPS逐条支持闭包与Spark published回执完成交付。不是将local pass写成CI pass，也不对其它未审候选授予采用权。
 
 维护时使用独立维护锁、等待原worker锁自然释放、一致备份实际journal/审计与dirty草稿；不强删锁、reset/stash或调整账号凭据。恢复必须实核LaunchAgent、新PID、原程序/配置路径、当前源码及至少一轮真实status；bootstrap成功本身不足。首包实际恢复PID25958且published5/background1，原23新来源正式采用仍为0，计数不能混合。后续每包重新核对当前正式上下文，真变化走原revalidate并保留旧attempt/PR，prepared旧指南摘要不能盲重算。此为已授权实例和实际边界记录，不新增批量跳过检查或改队列接口；完整记录见[研究恢复交接](../handoff/research-flow-recovery-20261009.md)。
 
-2026-10-09公开仓库恢复：默认CI模式的自动合并和blocked恢复均按精确审核commit SHA读取全部分页的GitHub check runs，逐项核对head_sha，仍要求四项具名CI及全部额外检查实际成功。PR界面的汇总可能短暂仍指向上一版；该汇总不能审批新提交。新head尚无检查、检查仍运行或结果来自另一SHA时等待/拒绝，不把先前成功继承给新head。已合并的另行授权发布仍按原MERGED精确head恢复回执规则，不追认CI。
+2026-10-09公开仓库恢复：默认CI模式的自动合并和blocked恢复均按精确审核commit SHA读取全部分页的GitHub check runs，逐项核对head_sha，现行要求两个具名门禁实际成功及全部已选择检查成功；仅计划未选择的可选作业允许 skipped。PR界面的汇总可能短暂仍指向上一版；该汇总不能审批新提交。新head尚无检查、检查仍运行或结果来自另一SHA时等待/拒绝，不把先前成功继承给新head。已合并的另行授权发布仍按原MERGED精确head恢复回执规则，不追认CI。
 
 
 ## 显式本地验收与同来源汇总
 
-用户授权的研究发布任务可在私有配置显式设置publication_mode=local_acceptance；缺省ci及四项检查保持。local不查询CI，不把本地通过记成CI通过；原来源封印、immutable audit、固定独立抽样与当前正式上下文仍须通过。source/report/context真实变化沿既有拒绝或revalidate，不改原packet或摘要取得许可。
+用户授权的研究发布任务可在私有配置显式设置publication_mode=local_acceptance；缺省ci按现行 docs/CI.md 两项汇总门禁及所选检查准入。local不查询CI，不把本地通过记成CI通过；原来源封印、immutable audit、固定独立抽样与当前正式上下文仍须通过。source/report/context真实变化沿既有拒绝或revalidate，不改原packet或摘要取得许可。
 
 local准入在精确head的干净publication工作树固定实际运行五项，Python为publisher解释器，配置不能注入命令：
 
@@ -494,6 +494,6 @@ local ACK前仅取Docker容器.Image/.Config.Image/.State.Status/.State.Health.S
 
 ### 2026-10-10 受保护主分支下的 CI 发布
 
-显式CI配置base_update_policy=protected_merge：仍先要求审核head全部CI（四必需及额外检查）、源与当前正式上下文；仅新鲜GitHub API确认同head/open/main/clean可合并、main非strict且管理员受四项GitHub Actions检查保护时，保存head/base/保护回执并按原head合并，不因无关main移动重建head。任一条件未知或不符回到原refresh+新head重验，冲突恢复与上下文revalidate不变；默认always_refresh、local不得选择。
+显式CI配置base_update_policy=protected_merge：仍先要求审核head两项必过门禁及全部已选择CI、源与当前正式上下文；仅新鲜GitHub API确认同head/open/main/clean可合并、main非strict且管理员受现行两项GitHub Actions门禁保护时，保存head/base/保护回执并按原head合并，不因无关main移动重建head。任一条件未知或不符回到原refresh+新head重验，冲突恢复与上下文revalidate不变；默认always_refresh、local不得选择。
 
 该策略解决共享改动与研究PR互相追赶基线造成的重复验收，不替代C3、精确head CI、真实网站支持闭包或逐批published ACK。配置启用、源码加载、主分支保护和实际收尾须各自留回执。

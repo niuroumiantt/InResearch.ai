@@ -3,53 +3,119 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 18 * * *' # Daily 02:17 Asia/Shanghai full regression.
+permissions:
+  contents: read
+concurrency:
+  group: validate-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
-  validate:
+  scope:
     runs-on: ubuntu-latest
+    outputs:
+      plan: ${{ steps.select.outputs.plan }}
+      suites: ${{ steps.select.outputs.suites }}
+      browser: ${{ steps.select.outputs.browser }}
+      full: ${{ steps.select.outputs.full }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
+      - id: select
+        name: Select checks from the complete Git tree diff
+        env:
+          CI_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          CI_HEAD: ${{ github.sha }}
+          CI_EVENT: ${{ github.event_name }}
+        run: |
+          if [[ "$CI_BASE" =~ ^[0-9a-f]{40}$ ]] && ! git cat-file -e "${CI_BASE}^{commit}" 2>/dev/null; then
+            git fetch --no-tags --depth=1 origin "$CI_BASE" || echo "::warning::Base fetch unavailable; selector will require full regression"
+          fi
+          python3 scripts/ci_scope.py plan --base "$CI_BASE" --head "$CI_HEAD" --event "$CI_EVENT"
+  validate:
+    needs: scope
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: scripts/ci-requirements.txt
+      - name: Install CI-only image decoder
+        run: python3 -m pip install -r scripts/ci-requirements.txt
+      - name: Verify changed content, image decoding and new local references
+        env:
+          CI_PLAN: ${{ needs.scope.outputs.plan }}
+          CI_BASE: ${{ fromJSON(needs.scope.outputs.plan).base }}
+        run: |
+          if [[ "$CI_BASE" =~ ^[0-9a-f]{40}$ ]] && ! git cat-file -e "${CI_BASE}^{commit}" 2>/dev/null; then
+            git fetch --no-tags --depth=1 origin "$CI_BASE" || echo "::warning::Base unavailable; full plan has no bounded content diff"
+          fi
+          python3 scripts/ci_scope.py check
       - name: 现行规则与在册文件检查
         run: python3 manage.py governance --check
       - name: 口径与数据校验
         run: python3 manage.py validate --strict
-      - name: Visual model identity and adoption contract
+      - name: Research registry references
+        run: python3 manage.py registry
+      - name: Visual identity and adoption contract
+        if: needs.scope.outputs.full == 'true' || needs.scope.outputs.browser == 'true'
         run: python3 manage.py asset-check
-      - name: 核验队列可生成
-        run: python3 manage.py verify
-      - name: 指标回填可运行
-        run: python3 manage.py indicators
-      - name: Research registry and continuous reader contracts
+      - name: Full verification, indicators and unit regression
+        if: needs.scope.outputs.full == 'true'
         run: |
-          python3 manage.py registry
+          python3 manage.py verify
+          python3 manage.py indicators
           PYTHONPATH=src python3 -m unittest discover -s tests/unit -p "test_*.py"
   browser:
+    needs: scope
+    if: needs.scope.outputs.browser == 'true'
     strategy:
       fail-fast: false
       matrix:
-        suites: [core_a, core_b, core_c, server_assembly, rack_assembly, rack_exploded, scene_atlas, campus_overview:views, campus_overview:geometry, campus_overview:navigation, campus_overview:lifecycle, campus_exploded:views, campus_exploded:geometry, campus_exploded:whole, campus_exploded:navigation, campus_exploded:lifecycle, model_assets]
+        suites: ${{ fromJSON(needs.scope.outputs.suites) }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: "22" }
+      - uses: actions/cache@v4
+        id: browser-cache
+        with:
+          path: |
+            ${{ runner.temp }}/browser-tests
+            ~/.cache/ms-playwright
+          key: browser-${{ runner.os }}-${{ runner.arch }}-playwright-1.62.1-pngjs-7.0.0
       - name: Install isolated browser test dependencies
         run: |
-          npm install --prefix "$RUNNER_TEMP/browser-tests" --no-package-lock --no-save playwright@1.62.1 pngjs@7.0.0
+          if [ ! -d "$RUNNER_TEMP/browser-tests/node_modules/playwright" ]; then
+            npm install --prefix "$RUNNER_TEMP/browser-tests" --no-package-lock --no-save playwright@1.62.1 pngjs@7.0.0
+          fi
           "$RUNNER_TEMP/browser-tests/node_modules/.bin/playwright" install --with-deps chromium
-      - name: Full browser regression suite
-        run: NODE_PATH="$RUNNER_TEMP/browser-tests/node_modules" node tests/run_browser.cjs ${{ matrix.suites }}
+      - name: Selected browser regression suites
+        env:
+          CI_SUITE: ${{ matrix.suites }}
+        run: NODE_PATH="$RUNNER_TEMP/browser-tests/node_modules" node tests/run_browser.cjs "$CI_SUITE"
   browser-core:
+    # Keep the existing required context so already-open PRs remain compatible.
     name: browser (core)
-    needs: browser
+    needs: [scope, validate, browser, storage-container]
     if: always()
     runs-on: ubuntu-latest
     steps:
-      - name: All complete core shards and model asset suite succeeded
-        run: test "${{ needs.browser.result }}" = success
+      - uses: actions/checkout@v4
+      - name: Require every selected check; reject unexpected skips or cancellations
+        env:
+          CI_PLAN: ${{ needs.scope.outputs.plan }}
+          CI_RESULTS: ${{ toJSON(needs) }}
+        run: python3 scripts/ci_scope.py gate
   storage-container:
+    needs: scope
+    if: needs.scope.outputs.full == 'true'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

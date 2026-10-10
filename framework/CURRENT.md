@@ -1,16 +1,18 @@
 # 当前研究与执行基准
 
+2026-10-10 CI 按影响分流：普通资料文案/图像只做基础和相关检查；既有页面纯文字及已知模型图像跑对应浏览器场景；代码、结构、权限、数据、依赖、规则和未知改动保持完整回归。两个稳定必过名称 validate、browser (core)，后者始终上报所选作业汇总，未选任务才可 skipped；研究数据仍全套。唯一规范见 [CI 影响验收](../docs/CI.md)。
+
 2026-10-10 用户替代 BOM 分类：设施、水与散热、电、IT设施、控制与软件；IT 分计算、存储、网络，存储再分内存与持久存储，计算处理器分 CPU/GPU/其他、承载与管理配套单列。爆炸图总图为场景剖面＋完整分类说明的整张讲解图，替代仅HTML分类框；独立文字SVG/整图PNG、手机放大/适应窗口与可展开定位树。五类色块贯穿下方；稳定叶子/部件/问题ID保留，递归汇总后代叶子不重计。现行规范见03「一个骨架」与05「爆炸图2D」。
 
 真实GitHub TA18装配在原300秒终止（views71秒已过，非断言降级）。将TA18/19原assembly逐语句分为geometry/navigation/lifecycle，各与views独立并行且各保留300秒；原all/assembly入口仍顺序执行全部，原断言与动作逐字保留、矩阵每个实际case恰一次。
 
 TA16/17浏览器连续下载夹具修复：真实点击间隔250ms，保留全部96/12下载、完整字节SHA及既有界面验收。研究PR共同下载超时已本地复现，修复后完整套件另验；不改产品、原件、权限或研究采用标准。另修TA18–20截图目录为系统tmpdir，保留CI/公网来源门禁与全部断言。；将新增campus_overview/campus_exploded重型views+assembly作为独立并行CI作业，公共core移除这两项且完整矩阵恰覆盖一次，所有场景/密度/单项期限及聚合门禁保持。
 
-> CURRENT · 基准版本 2026.10.10.71 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.10.72 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 本版补充 Reader 单个失败块在线 `retry-job`：精确 doc/revision/read块/model_cli_failed/次数与冻结recipe SHA绑定，复验原件、上下文和成功块，一致备份+前快照后事务只改目标state/error及marker。原次数/available/配方/worker锁/模型等待保持，重放不再排队、提交可见以marker为准；不替代reader retry或研究retry-transient。实现和本地测试登记不证明生产任务恢复；本次无点名线上目标，真实服务版本、模型恢复、再领取/完整报告与网站回执另验。
 
-TA35已实际PR591合并084e0698/.68：精确head2e2最终20项CI成功，当前四必过/管理员保护已核，正常合并无bypass。AWS09:50:18Z source=applied与exact78f293镜像healthy；public-v1于09:51:59Z全部15阶段、62声明资源、四明暗宽度/360header、七说明、两实际下载、自含字体full/preview SVG、六关联页与四绘制3D冒烟通过，17图逐张original目检，17公网源SHA及HTTPShealth200成立。登记主35/35、补4/4，原计划全部实际闭包；TA35首次实际源仍084e/.68，不改成此登记SHA。六通用例型不认证同一OEM/同比例/现场完整拓扑；手机号细节须放大、关联仅导航冒烟、动态overlay和匿名研究未验边界保留。raw1条TA18关联/login ERR_ABORTED、旧预算0step失败/lease拒绝和inventory断言修正保留，非abort传输/页面/资源错误零。本地URL拒绝不绕过；Spark/研究事实服务0操作。
+TA35已实际PR591合并084e0698/.68：精确head2e2最终20项CI成功，当时四必过/管理员保护已核，正常合并无bypass。AWS09:50:18Z source=applied与exact78f293镜像healthy；public-v1于09:51:59Z全部15阶段、62声明资源、四明暗宽度/360header、七说明、两实际下载、自含字体full/preview SVG、六关联页与四绘制3D冒烟通过，17图逐张original目检，17公网源SHA及HTTPShealth200成立。登记主35/35、补4/4，原计划全部实际闭包；TA35首次实际源仍084e/.68，不改成此登记SHA。六通用例型不认证同一OEM/同比例/现场完整拓扑；手机号细节须放大、关联仅导航冒烟、动态overlay和匿名研究未验边界保留。raw1条TA18关联/login ERR_ABORTED、旧预算0step失败/lease拒绝和inventory断言修正保留，非abort传输/页面/资源错误零。本地URL拒绝不绕过；Spark/研究事实服务0操作。
 
 ## 已保留的来源制作阶段（TA35 pending已由实际发布记录替代）
 
@@ -18,7 +20,7 @@ TA30–34五项已实际a379dbba/.67、精确53c7镜像healthy，public-v4完整
 
 ## 已保留的阶段记录（此前pending由上述实际闭包及逐项publication替代）
 
-TA30–34 PR583最终20项GitHub检查通过、正常合并4cb09ce1/.66并由timer实际健康应用，21公网源字节/HTTPS health200已核；尚未逐项published，主29/35补4/4。公网v1保留Float32实际几何比绝对阈值失败，v2保留TA33弹窗内容比5.824485而目标5.764411的真实显示失败。实际computed border-box与1px边框解释约1.04%变形，五图均受同机制影响；仅来源canvas改content-box与扣两边框宽、padding0，独立候选公网观察与新实际部署后完整五项另验。世界几何比仅按实际Float32坐标采用8epsilon相对容差，CSS改实际内容高度1/64px布局量化门禁，不放宽图片/原件/下载/身份/几何/资源检查；原PNG、五SVG、全部采用场景几何保持。本地URL拒绝保留，按当前四必过及最终head全部检查，不触Spark/研究。
+TA30–34 PR583最终20项GitHub检查通过、正常合并4cb09ce1/.66并由timer实际健康应用，21公网源字节/HTTPS health200已核；尚未逐项published，主29/35补4/4。公网v1保留Float32实际几何比绝对阈值失败，v2保留TA33弹窗内容比5.824485而目标5.764411的真实显示失败。实际computed border-box与1px边框解释约1.04%变形，五图均受同机制影响；仅来源canvas改content-box与扣两边框宽、padding0，独立候选公网观察与新实际部署后完整五项另验。世界几何比仅按实际Float32坐标采用8epsilon相对容差，CSS改实际内容高度1/64px布局量化门禁，不放宽图片/原件/下载/身份/几何/资源检查；原PNG、五SVG、全部采用场景几何保持。本地URL拒绝保留，当时按四项必过及最终head全部检查（现行 CI 范围与门禁见 docs/CI.md），不触Spark/研究。
 
 TA29已真实f99d7b22/.65与精确2b41a946镜像healthy，public-v2的83预览/40手势/30导出/21资源释放/63结构化截图及三个整对象整圈20/20/30采样、14公网源SHA/HTTPShealth200闭包，69实际截图逐张original实看，登记29/35补4/4；v1显式选中焦点后旧baseline观察器失败保留，v2仅修观察基线并完整复验，随本批保存。TA30–34五来源面板顺序source review：原PNG字节/标识/比例与官方Git blob元数据保持，分别建立contain展示SVG、实际CanvasTexture按通用前脸物理比留白，补偿整数canvas取整；独立来源入口/状态/原PNG与等比SVG双下载，仅旧场景使用。SN2100正式Ethernet，旧ib文件名不认证IB；400×70等低分辨率原件不冒充高清母图。未改变已验服务器/整柜/封装/园区几何，不增加BOM实体；本批新公网逐项另验，不计30–34。localURL拒绝保持；TA29历史CI未查如实保留，本批按用户新AGENTS核GitHub保护与最终head全部检查，失败不跳过；Spark研究0改，保留并行main。
 
@@ -245,9 +247,9 @@ TA15实际发布：PR531合并3e169899，AWS12:20:37Z同源码/应用/.43与精�
 
 2026-10-10共享验收收尾：TA28历史HTML补excluded登记；TA18/19软件说明断言跟随现行“软件有意无物理模型，不是待建硬件”，原零mesh/零inspector与其余验收保持。并行任务规则补充共享改动合并前相关测试、历史HTML登记、单发布所有者/旧PR优先、实际网站回执与吞吐计量，不增加用户确认步骤。
 
-2026-10-10发布收尾：main现已启用GitHub四项必过检查（validate、browser(core)、browser(model_assets)、storage-container），管理员同样受限，不新增人工审批，非strict不要求无关基线移动自动重跑。TA29真实点选导出按可识别服务器子装配身份核验，未归入具名子装配的网格仍按原类别聚合回退，追加预览几何UUID精确一致断言；完整server聚合身份及原像素/标题/引线/下载/手势断言保持。容器测试清理复用已构建本批镜像、pull=never，仅chown自有TemporaryDirectory，清理前不删镜像，取消无谓的外部基础镜像下载。
+2026-10-10发布收尾：main 现行必过名单为 validate、browser(core)，后者按 docs/CI.md 汇总所选作业，管理员同样受限，不新增人工审批，非strict不要求无关基线移动自动重跑。TA29真实点选导出按可识别服务器子装配身份核验，未归入具名子装配的网格仍按原类别聚合回退，追加预览几何UUID精确一致断言；完整server聚合身份及原像素/标题/引线/下载/手势断言保持。容器测试清理复用已构建本批镜像、pull=never，仅chown自有TemporaryDirectory，清理前不删镜像，取消无谓的外部基础镜像下载。
 
-显式CI配置base_update_policy=protected_merge：仍先要求审核head全部CI（四必需及额外检查）、源与当前正式上下文；仅新鲜GitHub API确认同head/open/main/clean可合并、main非strict且管理员受四项GitHub Actions检查保护时，保存head/base/保护回执并按原head合并，不因无关main移动重建head。任一条件未知或不符回到原refresh+新head重验，冲突恢复与上下文revalidate不变；默认always_refresh、local不得选择。
+显式CI配置base_update_policy=protected_merge：仍先要求审核head两个必过门禁与全部所选CI、源与当前正式上下文；仅新鲜GitHub API确认同head/open/main/clean可合并、main非strict且管理员受现行两项GitHub Actions门禁保护时，保存head/base/保护回执并按原head合并，不因无关main移动重建head。任一条件未知或不符回到原refresh+新head重验，冲突恢复与上下文revalidate不变；默认always_refresh、local不得选择。
 
 
 2026-10-10 手机页头：真实公网常驻滚动条环境复现导航额外占15px，页头100.742px；仅共享ui-navigation隐藏滚动条轨道并保留overflow:auto与原链接/触摸/键盘横滚，原360px高度门槛不放宽。

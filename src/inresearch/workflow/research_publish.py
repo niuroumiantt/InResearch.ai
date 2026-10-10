@@ -37,9 +37,15 @@ def run(argv, cwd=None, check=True, timeout=60, input=None):
     return result
 
 
+REQUIRED_CI_CHECKS = {'validate', 'browser (core)'}
+
+
 def all_checks_pass(checks):
-    required = {'validate', 'browser (core)', 'browser (model_assets)', 'storage-container'}
-    return required <= {c['name'] for c in checks} and all(c.get('bucket')=='pass' for c in checks)
+    # Only the impact gate may authorize skipping an optional job. Required
+    # contexts must really succeed on this SHA; cancelled/failed jobs still block.
+    passed = {c['name'] for c in checks if c.get('bucket') == 'pass'}
+    return (REQUIRED_CI_CHECKS <= passed
+            and all(c.get('bucket') in {'pass', 'skipped'} for c in checks))
 
 
 def publication_checks(root, commit):
@@ -58,6 +64,7 @@ def publication_checks(root, commit):
             if check['status'] != 'completed': bucket = 'pending'
             elif conclusion == 'success': bucket = 'pass'
             elif conclusion == 'cancelled': bucket = 'cancel'
+            elif conclusion == 'skipped': bucket = 'skipped'
             else: bucket = 'fail'
             checks.append({'name':check['name'], 'bucket':bucket,
                            'state':(conclusion or check['status']).upper(),
@@ -170,7 +177,7 @@ def refresh_publication_base(worktree, expected_commit):
 
 def protected_main_merge_receipt(root, pr, commit):
     """Allow an already tested head on protected main; never waive its CI."""
-    required = {'validate', 'browser (core)', 'browser (model_assets)', 'storage-container'}
+    required = REQUIRED_CI_CHECKS
     try:
         info = json.loads(run(['gh', 'api', 'repos/{owner}/{repo}/pulls/'+str(pr)+'?fresh='+str(time.time_ns()),
                                '-H', 'Cache-Control: no-cache'], root).stdout)

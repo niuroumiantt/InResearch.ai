@@ -7,7 +7,7 @@ from types import SimpleNamespace
 from unittest.mock import Mock, patch
 from inresearch.workflow import research_publish as publication
 
-REQUIRED = ('validate', 'browser (core)', 'browser (model_assets)', 'storage-container')
+REQUIRED = ('validate', 'browser (core)')
 HEAD = 'a' * 40
 
 
