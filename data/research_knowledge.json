@@ -42280,6 +42280,88 @@
         },
         "batch_id": "e850f28f2c2a7a3944208e25dd2782f57497db4633d90f3f090af88359b03cd0"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "d7e46b66de372f358f511e29aaa35f41611831fa93c880d9ca34ce39da058d77",
+      "document_id": "doc-ce311870942307e0075bf83180b9aa217731fcd75d4f7500e587a70fac642f37",
+      "id": "rev-a645d4a829ca477b8cdc8be2e22b8ef8:chunk:1:claim:1:ev:0",
+      "locator": "page:1/chunk:1",
+      "object_ids": [],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Prime  [link: Prime — https://www.datacenterdynamics.com/en/news/prime-files-for-two-data-center-campuses-in-dallas-fort-worth/] is planning to develop a three-building campus in the area.",
+      "reading_revision_id": "rev-a645d4a829ca477b8cdc8be2e22b8ef8",
+      "source_sha256": "ce311870942307e0075bf83180b9aa217731fcd75d4f7500e587a70fac642f37",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:39:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6，评分6。连续完整原句及Garland、达拉斯地区的周边正文提供充分语境，对当前M02-Q01贡献一家供给方的规划项目线索，对M05-Q01贡献一个区域规划布局个案。缺少容量限制贡献范围，但不妨碍局部证据采用。未发现敏感材料、针对本主张的真实冲突、拟替换或其他A条件，符合B类归因采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q01",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 36.945,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5e4b5f98d87c78e8c1495c65d5317fb2054c4e351bb18a848a72dbdea4b9ad91",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 58149,
+            "output_tokens": 1284,
+            "reasoning_output_tokens": 247
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.634,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7a7531ea758d0f4ece0f0767bfd4a27c3ec9a1c3d2f619c0b8b4b2dcc0027304",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 58775,
+              "output_tokens": 464,
+              "reasoning_output_tokens": 153
+            }
+          }
+        },
+        "batch_id": "fc0e02d0ae9a932c577ab5dcd1413040d594a971e003519ee8e2dfc197528b18"
+      }
     }
   ],
   "statements": [
@@ -82309,6 +82391,106 @@
         "request_sha256": "b17aa91aedf355cdad3cbe317c03aa4263c1a745a6b8fbdeef4ad0d77b5c1270"
       },
       "object_mapping_check": "独立复核后，实际范围是总体数据中心扩张与跨终端部门能源效率。原文未限定一座AI数据中心、其内部电力系统或具体设备；能源服务自动化也不等于合同中的DCIM/BMS，电力需求不等于并网配额或权利。因此不继承Reader的root标签，所选证据统一采用空对象范围，保留有效问题关联。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-ce311870942307e0075bf83180b9aa217731fcd75d4f7500e587a70fac642f37",
+      "evidence_ids": [
+        "rev-a645d4a829ca477b8cdc8be2e22b8ef8:chunk:1:claim:1:ev:0"
+      ],
+      "id": "adoption:review:b031931d2aeb531bcfe3f5b7",
+      "kind": "author_forecast",
+      "object_ids": [],
+      "question_ids": [
+        "M02-Q01",
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-a645d4a829ca477b8cdc8be2e22b8ef8",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2024年9月14日的报道中称，Prime计划在美国得克萨斯州达拉斯的Garland一带开发一个包含三栋建筑的数据中心园区。这是来源当时报道的开发计划，不构成对项目当前进度、实际建成规模或容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T21:39:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6，评分6。连续完整原句及Garland、达拉斯地区的周边正文提供充分语境，对当前M02-Q01贡献一家供给方的规划项目线索，对M05-Q01贡献一个区域规划布局个案。缺少容量限制贡献范围，但不妨碍局部证据采用。未发现敏感材料、针对本主张的真实冲突、拟替换或其他A条件，符合B类归因采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q01",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 36.945,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "5e4b5f98d87c78e8c1495c65d5317fb2054c4e351bb18a848a72dbdea4b9ad91",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 58149,
+            "output_tokens": 1284,
+            "reasoning_output_tokens": 247
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.634,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "7a7531ea758d0f4ece0f0767bfd4a27c3ec9a1c3d2f619c0b8b4b2dcc0027304",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 58775,
+              "output_tokens": 464,
+              "reasoning_output_tokens": 153
+            }
+          }
+        },
+        "batch_id": "fc0e02d0ae9a932c577ab5dcd1413040d594a971e003519ee8e2dfc197528b18"
+      },
+      "source_candidate_ids": [
+        "rev-a645d4a829ca477b8cdc8be2e22b8ef8:chunk:1:claim:1"
+      ],
+      "limitations": "报道为二手来源，链接所指材料及公司原始披露未在本包中独立核验。该主张未提供具体地址、项目唯一标识、容量及口径、建筑面积、开工或完工时间、许可、融资或并网条件，也未说明AI用途。三栋建筑不能换算为MW或GW，不能据此指定漏斗等级、计算集中度或区域增长速度。",
+      "conflict_check": "legacy中Garland – Phase 1是可能相关的项目线索，但其阶段、园区边界与本条三栋建筑计划尚未建立对应关系；其中48MW为戴德梁行估计，主体版面归属亦标为未核，不能移入本条。Fort Worth、Dallas及其他Prime项目的地点或项目范围不同，不能合并或视为反证。所供已采用的Bitdeer组合、CBRE市场统计、法国和沙特项目及Abilene预测均未包含同范围的Prime三栋建筑计划。正文中Digital Realty同址面积差异涉及另一主体，不构成本条冲突。未发现可确认的规范重复记录；检查限于所供材料，不替换既有结论。",
+      "gap_dependency_check": "M02-Q01仍需供给方分类、Prime主体及项目边界核验、同口径容量、完整分阶段管线和集中度分母。M05-Q01仍需各区域投运、在建、规划容量清单及历史增长序列，本条不能回答俄亥俄、印第安纳或中东的崛起速度。须补核原始项目披露并与legacy Garland项目去重，不将本条另计为一个已确认独立园区。两项问题保持开放，不汇总GW、不更新模型值或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fc0e02d0ae9a932c577ab5dcd1413040d594a971e003519ee8e2dfc197528b18",
+        "source_report_sha256": "c4d3c3ff49efd2dc44df95fb569fc55f967df06af6cd8e485b0cb330082466fd",
+        "request_sha256": "5d094e13c53c3b33042a917efd056e130426b1d3755719c4f197e5150033eeda"
+      },
+      "object_mapping_check": "独立复核后保留空映射：合同没有Prime主体ID，Prime不能等同于actor:primary-digital，也不能借用邻近项目的Digital Realty或NTT主体。原文未确立AI用途，不能对应限定为一座AI数据中心的root；三栋建筑的园区计数也未建立该AI设施内部建筑土建部件或设施系统的范围，未涉及土地权利或许可。不继承文档或Reader标签，所选证据统一使用空对象范围，保留有效问题关联。"
     }
   ],
   "answers": [],
