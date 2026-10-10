@@ -4493,6 +4493,64 @@
       "status": "candidate",
       "stored_path": "originals/05/05798c8b7a5daf9c2b75ebcbe065f2b6343ea6188553f22be939b0b00532df36/dcd-05798c8b7a5daf9c-PJM-s power needs just got political.html",
       "title": "PJM's power needs just got political"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "coverage": {
+        "characters_read": 6362,
+        "characters_total": 6362,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "id": "doc-e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "library_path": "library/by-node/site-land/2025_DCD_Khazna enters Saudi Arabia, buys land in Dammam for 200__e438ba517ca33b37.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:g42",
+        "actor:mgx",
+        "part:gpu",
+        "part:modular-dc",
+        "root",
+        "site:land",
+        "system:facility"
+      ],
+      "question_ids": [
+        "NODE-demand-D1-boundary"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-ae3e6816cf104bcca029151328f524c4",
+      "report_sha256": "8e8be461a1daebf9ea17d520bbe24e04acafc88adc68866b649d15505a1effa5",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+        "url": "https://www.datacenterdynamics.com/en/news/khazna-enters-saudi-arabia-buys-land-in-dammam-for-200mw-data-center-campus/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/khazna-enters-saudi-arabia-buys-land-in-dammam-for-200mw-data-center-campus/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/e4/e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b/dcd-e438ba517ca33b37-Khazna enters Saudi Arabia- buys land in Dammam for 200MW data ce.html",
+      "title": "Khazna enters Saudi Arabia, buys land in Dammam for 200MW data center campus"
     }
   ],
   "evidence": [
@@ -33049,6 +33107,176 @@
           }
         },
         "batch_id": "ca96fcc9dddb9f8454bd37d1abc0808517f8438479951fc803cb354fa147cca7"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9865e8ea76032d3d593548615201f1d261a1eafb29cdfe16e5abd013a957c842",
+      "document_id": "doc-e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "id": "rev-ae3e6816cf104bcca029151328f524c4:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "The company said the site, the company’s first in the kingdom, will support up to 200MW of capacity.",
+      "reading_revision_id": "rev-ae3e6816cf104bcca029151328f524c4",
+      "source_sha256": "e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:27:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6。连续原句及相邻达曼购地、未来开发语境充分，对当前规划漏斗、供给方项目管线、单项目规模及区域布局工作单提供实质性个案贡献，也为漏斗监测提供带日期的项目线索。保留公司预测和二手报道性质作B类部分采用；本项未发现敏感、真实冲突、替换或其他A条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M02-Q01",
+          "Q-M02-Q05",
+          "Q-M05-Q01",
+          "Q-M15-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.39,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1af800a4c5b9d9a901844a5965a1cf96f9595276ab580fc65ef28ec8066d3d90",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 59997,
+            "output_tokens": 2970,
+            "reasoning_output_tokens": 345
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.058,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0b15a1c76c3f7b4a203d3a5feb756cda6e34fe233e2f1c4c15cc0bae81a18105",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59136,
+              "output_tokens": 401,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "4945748efd229e1c89a9f36c6b773b435553377536192b1996f53e4ef2bdfa94"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "9865e8ea76032d3d593548615201f1d261a1eafb29cdfe16e5abd013a957c842",
+      "document_id": "doc-e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "id": "rev-ae3e6816cf104bcca029151328f524c4:chunk:0:claim:3:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Few details were provided, but Khazna said the site will be developed using modular architecture and will be able to support a range of workloads, including those running on GPUs.",
+      "reading_revision_id": "rev-ae3e6816cf104bcca029151328f524c4",
+      "source_sha256": "e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:27:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6。连续原句保留公司归因、未来时态及细节有限的限定，对当前M10-Q04提供一个具名项目拟采用模块化架构的实质性线索。按来源预测作B类部分采用，不将计划作为实际建造结果；未发现敏感、真实冲突、替换或其他A条件，问题继续开放。",
+        "workorder_ids": [
+          "Q-M10-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.39,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1af800a4c5b9d9a901844a5965a1cf96f9595276ab580fc65ef28ec8066d3d90",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 59997,
+            "output_tokens": 2970,
+            "reasoning_output_tokens": 345
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.058,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0b15a1c76c3f7b4a203d3a5feb756cda6e34fe233e2f1c4c15cc0bae81a18105",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59136,
+              "output_tokens": 401,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "4945748efd229e1c89a9f36c6b773b435553377536192b1996f53e4ef2bdfa94"
       }
     }
   ],
@@ -64385,6 +64613,214 @@
         "request_sha256": "534e428b0fc96c743ce8067652752a1edc849097a308c66f503646a272c036d5"
       },
       "object_mapping_check": "独立审查后不映射基础设施对象：主张涉及按州级数据中心负荷分类的公用事业公司群体市值，未指认合同中的具体企业，也未讨论一座数据中心的电力系统、并网权利或设备。热点标签不能自动建立root、system:power或site:grid范围。空对象列表保留有效的问题匹配；所选证据统一采用空的主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "evidence_ids": [
+        "rev-ae3e6816cf104bcca029151328f524c4:chunk:0:claim:1:ev:0"
+      ],
+      "id": "adoption:review:b1540b2aac6816d574b4a34a",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M01-Q03",
+        "M02-Q01",
+        "M02-Q05",
+        "M05-Q01",
+        "M15-Q02"
+      ],
+      "reading_revision_id": "rev-ae3e6816cf104bcca029151328f524c4",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年12月16日的报道中转述Khazna的说法：拟开发的沙特达曼场址是该公司在沙特的首个场址，未来可支持最高200MW容量。这是公司通过报道表达的未来容量上限，容量口径及实现条件未明确，不是已投运容量，也不构成对项目当前状态或容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:27:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6。连续原句及相邻达曼购地、未来开发语境充分，对当前规划漏斗、供给方项目管线、单项目规模及区域布局工作单提供实质性个案贡献，也为漏斗监测提供带日期的项目线索。保留公司预测和二手报道性质作B类部分采用；本项未发现敏感、真实冲突、替换或其他A条件，不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M02-Q01",
+          "Q-M02-Q05",
+          "Q-M05-Q01",
+          "Q-M15-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.39,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1af800a4c5b9d9a901844a5965a1cf96f9595276ab580fc65ef28ec8066d3d90",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 59997,
+            "output_tokens": 2970,
+            "reasoning_output_tokens": 345
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.058,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0b15a1c76c3f7b4a203d3a5feb756cda6e34fe233e2f1c4c15cc0bae81a18105",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59136,
+              "output_tokens": 401,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "4945748efd229e1c89a9f36c6b773b435553377536192b1996f53e4ef2bdfa94"
+      },
+      "source_candidate_ids": [
+        "rev-ae3e6816cf104bcca029151328f524c4:chunk:0:claim:1"
+      ],
+      "limitations": "200MW未明确属于关键IT负载、设施总容量或其他口径；未提供分期、开发时间表、融资、许可、并网或交付验收。公司原始公告未在本包中核验。“首个”仅限Khazna在沙特的场址，不指沙特首个数据中心。单项目上限不能证明供给集中度、规模分布变化或区域增长速度。",
+      "conflict_check": "与已采用的公告、土地交易、目标和投运容量应区分的陈述一致。法国Fluidstack、Lake Mariner及巴西Omnia记录涉及不同项目，不能与达曼容量混同。legacy中Stargate UAE的首期200MW目标位于阿布扎比，DataVolt Oxagon是另一沙特项目；“Khazna在沙特首个场址”不与其存在冲突。报道的土地面积冲突保留在购地候选中，未形成针对本条200MW预测的同口径反证。未见规范重复，不替换既有结论；检查限于所供记录。",
+      "gap_dependency_check": "M01-Q03和M15-Q02仍缺明确阶段验收、同口径容量、历史队列及转化率推导，本条不能指定L1–L7或九级漏斗等级。M02-Q01仅新增一家开发商的项目线索，仍缺三类供给方定义、完整管线和集中度分母；M02-Q05仍缺可比样本及时间序列；M05-Q01仍缺各区域分阶段清单及增长数据。须补核公司原始公告、容量定义和后续项目进度；不汇总GW、不更新模型值，五项问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4945748efd229e1c89a9f36c6b773b435553377536192b1996f53e4ef2bdfa94",
+        "source_report_sha256": "8e8be461a1daebf9ea17d520bbe24e04acafc88adc68866b649d15505a1effa5",
+        "request_sha256": "2313a8407d300efa1bb257b4e8980a054592563ae11f42946ec0ff88e5fe34c3"
+      },
+      "object_mapping_check": "独立依据原文选择root，范围为拟开发数据中心场址整体及其未来容量。所选证据没有土地交易或权利条款，不继承site:land标签；MW口径未明，不映射system:power、system:it或site:grid。Khazna无允许的主体ID，不借用其投资方ID代替。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-e438ba517ca33b378ea24b0a8860040b71ea13150bf91c3afbd997770223194b",
+      "evidence_ids": [
+        "rev-ae3e6816cf104bcca029151328f524c4:chunk:0:claim:3:ev:0"
+      ],
+      "id": "adoption:review:5f0030546cc5aa3f71f18222",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M10-Q04"
+      ],
+      "reading_revision_id": "rev-ae3e6816cf104bcca029151328f524c4",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年12月16日的报道中转述Khazna的计划：沙特达曼拟开发场址将采用模块化架构，并能够支持包括在GPU上运行的负载在内的多种负载。报道同时说明披露细节有限；这是公司所述的未来设计与承载目标，不证明模块化建设已经实施、GPU已经部署或当前负载能力已经获得独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:27:35+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原始重要性6。连续原句保留公司归因、未来时态及细节有限的限定，对当前M10-Q04提供一个具名项目拟采用模块化架构的实质性线索。按来源预测作B类部分采用，不将计划作为实际建造结果；未发现敏感、真实冲突、替换或其他A条件，问题继续开放。",
+        "workorder_ids": [
+          "Q-M10-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 92.39,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "1af800a4c5b9d9a901844a5965a1cf96f9595276ab580fc65ef28ec8066d3d90",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 59997,
+            "output_tokens": 2970,
+            "reasoning_output_tokens": 345
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.058,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "0b15a1c76c3f7b4a203d3a5feb756cda6e34fe233e2f1c4c15cc0bae81a18105",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 59136,
+              "output_tokens": 401,
+              "reasoning_output_tokens": 122
+            }
+          }
+        },
+        "batch_id": "4945748efd229e1c89a9f36c6b773b435553377536192b1996f53e4ef2bdfa94"
+      },
+      "source_candidate_ids": [
+        "rev-ae3e6816cf104bcca029151328f524c4:chunk:0:claim:3"
+      ],
+      "limitations": "未说明模块化架构是否采用预制化或微模块交付，也未提供模块边界、制造与现场施工方式、实际实施状态、工期或对照基线。未给出GPU型号、数量、训练或推理配置、性能、时延及可靠性要求，不能推导建造渗透率或周期压缩幅度。",
+      "conflict_check": "已采用的阶段区分陈述要求设计目标与实际交付分别取证，本条保留计划性质，与其一致。所供已采用记录及legacy没有达曼场址的同范围架构或施工结果记录，未发现真实冲突或规范重复。购地面积矛盾不提供针对模块化设计计划的反证，仍由购地候选单独保留；不替换任何既有结论，检查限于所供材料。",
+      "gap_dependency_check": "M10-Q04仅获得一个未来采用意向个案，仍需模块化建造定义、实际交付项目样本、样本分母、适用时间窗，以及可比传统建造基线和工期测量，才能回答渗透率及周期压缩效果。应补核项目方设计、采购和施工记录；本条不填写施工周期或渗透率参数，不关闭工作单。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "4945748efd229e1c89a9f36c6b773b435553377536192b1996f53e4ef2bdfa94",
+        "source_report_sha256": "8e8be461a1daebf9ea17d520bbe24e04acafc88adc68866b649d15505a1effa5",
+        "request_sha256": "2313a8407d300efa1bb257b4e8980a054592563ae11f42946ec0ff88e5fe34c3"
+      },
+      "object_mapping_check": "独立选择root，主张实际范围是场址整体的未来架构与负载承载目标。“modular architecture”未建立合同中part:modular-dc所指预制化或微模块交付方式，故不作该部件映射；GPU仅作为拟支持负载的运行载体出现，未形成GPU设备规格、采购或部署主张，不继承part:gpu标签。所选证据统一使用此整体范围。"
     }
   ],
   "answers": [],
