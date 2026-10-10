@@ -6,7 +6,7 @@
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2444。
+在册文件：2447。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,12 +18,12 @@
 | 历史快照 | 366 |
 | 运行代码 | 362 |
 | 现行规范 | 15 |
-| 项目配置 | 751 |
+| 项目配置 | 752 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
-| 配套说明 | 185 |
-| 测试 | 188 |
+| 配套说明 | 186 |
+| 测试 | 189 |
 
 ## 在册记录集合
 
@@ -52,9 +52,9 @@
 | `data/product_docs_plan.csv` | rows | 801 |
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
-| `data/research_knowledge.json` | documents | 38 |
-| `data/research_knowledge.json` | evidence | 300 |
-| `data/research_knowledge.json` | statements | 276 |
+| `data/research_knowledge.json` | documents | 39 |
+| `data/research_knowledge.json` | evidence | 307 |
+| `data/research_knowledge.json` | statements | 283 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -2422,6 +2422,7 @@
 | `docs/design/technical-atlas/TA-35/acceptance-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/asset-manifest-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/bom-before-v1.html` | 运行代码 |
+| `docs/design/technical-atlas/TA-35/bom-layout-main-baseline-20261010.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/component-manifest-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/font-subset-proof-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/generation-v1.json` | 项目配置 |
@@ -2472,6 +2473,7 @@
 | `docs/guides/model-governance-2026-09-27.pdf` | 项目配置 |
 | [docs/handoff/2026-10-01-ai-walle.md](handoff/2026-10-01-ai-walle.md) | 配套说明 |
 | [docs/handoff/2026-10-01-geluoke-longform.md](handoff/2026-10-01-geluoke-longform.md) | 配套说明 |
+| [docs/handoff/bom-page-layout-20261010.md](handoff/bom-page-layout-20261010.md) | 配套说明 |
 | [docs/handoff/catalog-ownership-20261007.md](handoff/catalog-ownership-20261007.md) | 配套说明 |
 | [docs/handoff/codex-batch-reader-20261006.md](handoff/codex-batch-reader-20261006.md) | 配套说明 |
 | [docs/handoff/company-catalog-map-20261007.md](handoff/company-catalog-map-20261007.md) | 配套说明 |
@@ -3601,6 +3603,7 @@
 | `src/inresearch/workflow/triage.py` | 运行代码 |
 | `src/inresearch/workflow/workorders.py` | 运行代码 |
 | `tests/auth_appearance.cjs` | 测试 |
+| `tests/bom_layout.cjs` | 测试 |
 | `tests/browser_suites.cjs` | 测试 |
 | `tests/campus_exploded.cjs` | 测试 |
 | `tests/campus_overview.cjs` | 测试 |

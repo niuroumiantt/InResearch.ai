@@ -272,7 +272,12 @@ class CrossScaleAtlasAssetTests(unittest.TestCase):
         self.assertEqual(len(item['related']), 6)
 
     def test_visible_bom_link_only_geometry_conservation_and_real_public_routes(self):
-        before = (D / 'bom-before-v1.html').read_text()
+        self.assertEqual(sha((D / 'bom-before-v1.html').read_bytes()), '1cc47c684bb523da1d6829c673c5b3c2dcb64d700fd41440e082f3c3629466f3')
+        baseline = read(D / 'bom-layout-main-baseline-20261010.json')
+        self.assertEqual(baseline['source_commit'], '7b0d392c0a2376a4701635964c998602cc47d316')
+        self.assertEqual(baseline['sha256'], '39b98ffd48059906b4eff00c04fc08996893be6d42ed276abfef4c53c876547b')
+        before = baseline['html']
+        self.assertEqual(sha(before.encode()), baseline['sha256'])
         actual = (ROOT / 'web/pages/bom.html').read_text()
         link = re.compile(r'^\s*<a\b[^\n]*\bdata-atlas-cross-scale>[^\n]*</a>\n', re.M)
         matches = link.findall(actual); self.assertEqual(len(matches), 1)

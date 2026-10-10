@@ -32,48 +32,21 @@
   .sysh b { font-size: 15px; } .sysh .en { color: var(--muted); font-size: 11.5px; }
   .legend .go3d { margin-left: auto; font-size: 12px; border: 1px solid var(--accent); border-radius: var(--ui-radius); padding: 2px 12px; }
 
-  /* ── 爆炸堆叠：每层一行 = [等轴测平台] [引线] [编号标注] ── */
-  #stack { position: relative; }
-  #stack .axis { position: absolute; left: 30%; top: 10px; bottom: 24px; width: 0;
-    border-left: 2px dashed var(--axis); opacity: .5; z-index: 0; }
-  .lrow { position: relative; display: grid; grid-template-columns: minmax(0, 58%) 26px minmax(0, 1fr);
-    align-items: center; margin-bottom: 10px; z-index: 1; }
-  .lrow .slab { min-width: 0; }
-  #selected-atlas { position: relative; z-index: 1; scroll-margin-top: 180px; margin: 8px 0 24px; background: var(--bg); }
-  .atlas-context { padding: 8px 0; color: var(--muted); border-top: 1px solid var(--line); }
-  .lrow svg { display: block; width: 100%; height: auto; }
-  .lrow .lead { border-top: 2px dotted var(--axis); opacity: .7; position: relative; }
-  .lrow .lead::after { content: ""; position: absolute; right: -1px; top: -4px; width: 7px; height: 7px;
-    border-radius: 50%; background: var(--accent); }
-  .callout { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius);
-    padding: 12px 16px; box-shadow: 0 2px 10px rgba(15,30,60,.06); }
-  .callout .ch { display: flex; align-items: center; gap: 10px; }
-  .callout .num { width: 30px; height: 30px; border-radius: 50%; background: var(--accent); color: var(--ui-on-accent);
-    font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; flex: none;
-    box-shadow: 0 2px 6px rgba(37,99,235,.35); }
-  .callout .ch b { font-size: 15.5px; color: var(--accent); }
-  .callout .ch .en { color: var(--muted); font-size: 11px; letter-spacing: .4px; }
-  .callout .cd { font-size: 11.5px; color: var(--muted); margin: 4px 0 8px 40px; }
-  .callout .plist { display: flex; flex-wrap: wrap; gap: 5px; margin-left: 40px; }
-  .pchip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: var(--ui-radius);
-    padding: 2px 10px; font-size: 11.5px; cursor: pointer; background: var(--bg); transition: all .13s; }
-  .pchip i { width: 7px; height: 7px; border-radius: 50%; flex: none; }
-  .pchip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
-  .pchip.sel { border-color: var(--accent); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); font-weight: 600; }
-
-  /* SVG 部件盒 */
-  .pbox { cursor: pointer; transition: transform .15s; }
-  .pbox:hover { transform: translateY(-5px); }
-  .pbox:hover .pname { fill: var(--accent); font-weight: 700; }
-  .pbox.sel .ptop { fill: color-mix(in srgb, var(--accent) 30%, var(--box-top)); }
-  .pbox.sel .pname { fill: var(--accent); font-weight: 700; }
-  .pname { fill: var(--text); font-size: 12.5px; font-family: inherit;
-    paint-order: stroke; stroke: var(--card); stroke-width: 3.5px; stroke-linejoin: round; }
-  .lname { fill: var(--muted); font-size: 12px; font-family: inherit; letter-spacing: 1px; }
-
-  aside { width: 360px; flex-shrink: 0; position: sticky; top: 62px; align-self: flex-start;
-    max-height: calc(100vh - 80px); overflow-y: auto; }
+  #stack { position:relative; }
+  .pchip { display:inline-flex; align-items:center; gap:6px; border:1px solid var(--line); padding:4px 10px; font:inherit; background:var(--bg); color:var(--text); cursor:pointer; }
+  .pchip i { width:7px; height:7px; border-radius:50%; }
+  .pchip.sel { border-color:var(--accent); }
+  .callout { padding:18px; background:var(--card); border:1px solid var(--line); }
+  .callout .cd { color:var(--muted); margin:6px 0 12px; }
+  .plist { display:flex; flex-wrap:wrap; gap:8px; }
+  aside { grid-column:1/-1; min-width:0; margin:0 0 18px; }
+  aside[hidden] { display:none; }
+  #selected-atlas { grid-column:1/-1; min-width:0; scroll-margin-top:calc(var(--ui-bar-height) + 66px); margin:0 0 18px; }
+  .atlas-context { padding:10px 0; color:var(--muted); }
   .dossier { background: var(--card); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 18px; }
+  html[data-ui-skin] #detail-panel #dossier { position:relative; top:auto; max-height:none; }
+  #detail-panel .close { position:absolute; right:14px; top:14px; cursor:pointer; }
+  #detail-panel h2 { padding-right:32px; }
   .dossier h2 { font-size: 17px; margin-bottom: 2px; }
   .dossier .meta { font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
   .badge { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 1px 9px; border-radius: var(--ui-radius); color: #fff; }
@@ -86,13 +59,6 @@
   .kv:last-child { border-bottom: none; }
   .kv b { font-variant-numeric: tabular-nums; }
   .empty { color: var(--gray); font-size: 12px; }
-  @media (max-width: 1080px) {
-    .wrap { flex-direction: column; } aside { width: 100%; position: static; }
-    .lrow { grid-template-columns: 1fr; }
-    .lrow .lead { display: none; }
-    #stack .axis { display: none; }
-  }
-
   /* Explicit system and scale category layouts reuse adopted equipment images. */
   .system-index { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 18px; }
   .system-index a { border:1px solid var(--line); padding:5px 12px; background:var(--card); border-radius:var(--ui-radius); }
@@ -122,8 +88,93 @@
   #scale-overview-actions { margin:6px 0 18px; }
   #scale-overview-actions[hidden],#system-overview-actions[hidden] { display:none; }
   #stack #selected-atlas { padding:0 12px 10px; }
-  @media(min-width:1081px){.equipment-grid {grid-template-columns:repeat(3,minmax(0,1fr));}}
-  @media(max-width:480px){.equipment-grid {grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.system-chain.lrow{padding:10px}.equipment b{font-size:12px}.legend .go3d{margin:8px 0}.system-section .sysh{align-items:center}.system-index a{font-size:12px;padding:4px 9px}}
+  /* Overview first; the main document owns the full page width. */
+  .wrap { max-width:1600px; display:block; margin:28px auto 0; padding:0 32px; }
+  body { font-size:14px; }
+  .sub { font-size:14px; max-width:1000px; margin:8px 0 24px; }
+  .section-heading { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin:0 0 16px; }
+  .section-heading h2 { font-size:22px; font-weight:600; }
+  .section-heading p,.overview-note { color:var(--muted); font-size:13px; }
+  .section-step { font-size:13px; color:var(--muted); border:1px solid var(--line); padding:2px 8px; }
+  #overview { padding:24px; border:1px solid var(--line); background:var(--card); margin-bottom:28px; }
+  .framework-map { display:grid; grid-template-columns:minmax(0,1fr) 70px minmax(0,1.3fr) 70px minmax(0,1fr); gap:12px 0; }
+  .map-node { display:block; min-width:0; padding:18px; border:1px solid var(--line); color:var(--text); background:var(--bg); }
+  a.map-node:hover { border-color:var(--accent); }
+  .map-node strong { font-size:18px; font-weight:600; }
+  .map-node small { float:right; font-size:13px; color:var(--muted); }
+  .map-node p { color:var(--muted); font-size:13px; margin-top:6px; }
+  .map-facility,.map-control { grid-column:1/-1; display:flex; gap:24px; align-items:center; }
+  .map-control { border-style:dashed; }
+  .map-control p,.map-facility p { margin:0; }
+  .map-flow { align-self:center; text-align:center; color:var(--muted); font-size:13px; }
+  .map-flow span { display:block; font-size:28px; line-height:1.2; color:var(--text); }
+  .map-it { border-color:var(--accent); }
+  .it-branches { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; margin:12px 0; }
+  .it-branches a { text-align:center; padding:5px; border:1px solid var(--line); color:var(--text); font-size:14px; }
+  .it-branches a:hover { border-color:var(--accent); }
+  .map-rights { grid-column:1/-1; display:flex; gap:12px; align-items:baseline; flex-wrap:wrap; padding-top:12px; border-top:1px solid var(--line); }
+  .map-rights span { color:var(--muted); font-size:13px; }
+  .overview-note { margin-top:14px; }
+  #scale-map { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:10px; }
+  #scale-map .map-node { padding:14px; }
+  #scale-map .map-node strong { font-size:16px; }
+  #scale-map .map-node small { float:none; display:block; margin-top:8px; }
+  #scale-map[hidden],.framework-map[hidden] { display:none; }
+  .legend { font-size:13px; gap:6px; margin:14px 0; }
+  .mode { font-size:14px; padding:5px 14px; }
+  .legend .go3d { font-size:13px; }
+  .system-index { position:sticky; top:calc(var(--ui-bar-height) + 50px); z-index:10; background:var(--bg); padding:10px 0; border-bottom:1px solid var(--line); margin:0 0 24px; }
+  .system-index a { font-size:14px; }
+  .system-section,.scale-section { scroll-margin-top:calc(var(--ui-bar-height) + 130px); margin-bottom:36px; }
+  .system-section .sysh { display:flex; flex-wrap:wrap; gap:8px 16px; }
+  .system-section .sysh b { font-size:22px; font-weight:600; }
+  .sysh .en { font-size:13px; }
+  .system-intro { font-size:14px; color:var(--muted); margin:0 0 16px; }
+  .chain-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:18px; align-items:start; }
+  .system-chain.lrow { margin:0; padding:16px; }
+  .chain-heading { justify-content:space-between; gap:8px; margin-bottom:14px; }
+  .chain-heading h3 { font-size:16px; font-weight:600; }
+  .chain-heading small { font-size:13px; }
+  .system-subhead { margin:0 0 10px; scroll-margin-top:calc(var(--ui-bar-height) + 130px); }
+  .equipment-grid { grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:12px; }
+  .equipment { max-width:280px; }
+  .equipment b { font-size:14px; font-weight:550; padding:10px 12px 5px; }
+  .equipment .part-status { font-size:13px; padding:0 12px; }
+  .system-note,.scale-summary { font-size:13px; }
+  .other-entries { display:block; margin:24px 0 0; scroll-margin-top:calc(var(--ui-bar-height) + 130px); }
+  .scale-row .equipment-grid { grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); }
+  @media(max-width:900px) {
+    .wrap { padding:0 18px; margin-top:20px; }
+    .framework-map { grid-template-columns:minmax(0,1fr) 44px minmax(0,1.2fr) 44px minmax(0,1fr); }
+    .map-node { padding:12px; }
+    .map-node small { float:none; display:block; }
+    .chain-grid { grid-template-columns:1fr; }
+    #scale-map { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  }
+  @media(max-width:600px) {
+    .wrap { padding:0 12px; }
+    .stage h1 { font-size:24px; }
+    #overview { padding:14px; }
+    .section-heading h2 { font-size:19px; }
+    .framework-map { grid-template-columns:1fr; gap:10px; }
+    .map-facility,.map-control { grid-column:auto; display:block; }
+    .map-control p,.map-facility p { margin-top:6px; }
+    .map-rights { grid-column:auto; }
+    .map-flow { display:flex; gap:10px; align-items:center; justify-content:center; }
+    .map-flow span { transform:rotate(90deg); font-size:24px; }
+    #scale-map { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .legend .go3d { margin:8px 0; }
+    .modes { margin-left:0; }
+    .system-index { gap:6px; top:calc(var(--ui-bar-height) + 50px); }
+    .system-index a { padding:4px 9px; font-size:13px; }
+    .equipment-grid,.scale-row .equipment-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    .system-chain.lrow,.scale-row.lrow { padding:10px; }
+    .equipment b { padding:8px 8px 4px; }
+    .equipment .part-status { padding:0 8px; }
+    aside { width:100%; }
+    aside .dossier { padding:14px; }
+  }
+  @media print { aside,.legend,.system-index { display:none; } .wrap { max-width:none; padding:0; } .chain-grid { display:block; } .system-chain { break-inside:avoid; } }
 
 </style>
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
@@ -140,7 +191,14 @@
 <div class="wrap">
   <div class="stage">
     <h1>一张图拆解 <em>AI 数据中心</em></h1>
-    <div class="sub">一个骨架：五个系统（IT 再分四个），系统内按功能链段排列，IT 分计算、内存、存储、网络。设备图为类别示例，替代方案并列，链段顺序不表示现场串联。点击图形或名称查看研究档案；尺度保留为第二排法。</div>
+    <div class="sub">先看五个系统怎样协作，再沿功能链路拆到设备与组件。点击总图定位系统，点击设备查看结构图与研究档案。</div>
+    <section id="overview" aria-labelledby="overview-title">
+      <div class="section-heading"><span class="section-step">01</span><h2 id="overview-title">先看全局：系统怎样协作</h2><p>总图 → 系统 → 功能链段 → 设备与组件</p></div>
+      <div id="system-map" class="framework-map" aria-label="五系统运行关系总图">正在加载系统总图…</div>
+      <div id="scale-map" aria-label="五尺度构成总图" hidden></div>
+      <p class="overview-note" id="overview-note">箭头表示供电与排热关系；设施提供空间与安全环境，控制与软件贯穿各系统。设备类别与替代方案在下方分别展开。</p>
+    </section>
+    <div class="section-heading"><span class="section-step">02</span><h2 id="breakdown-title">再看拆解：系统与功能链路</h2><p>设备类别示例 · 点击查看部件档案</p></div>
     <div class="legend">供应状态：<i style="background:var(--red)"></i>紧缺 <i style="background:var(--yellow)"></i>技术切换中
       <i style="background:var(--green)"></i>成熟 <i style="background:var(--purple)"></i>新兴
       <span class="modes"><button type="button" class="mode on" data-mode="system">按系统</button><button type="button" class="mode" data-mode="scale">按尺度</button></span>
@@ -150,9 +208,9 @@
     <p class="system-note" id="scale-overview-actions" hidden><a href="/assets/technical-atlas/scale-overview-v1.svg" target="_blank" rel="noopener">查看五尺度总览示意 ↗</a> · <a href="/assets/technical-atlas/scale-overview-v1.svg" download="scale-overview-v1.svg">下载标注总览</a> · <a href="/assets/technical-atlas/scale-overview-v1.png" download="scale-overview-v1.png">下载无字总览</a><br>从部件到园区，每组取一代表；排版大小不表示实物比例。</p>
     <div id="stack">加载中…<div id="selected-atlas" hidden></div></div>
   </div>
-  <aside><div class="dossier" id="dossier">
+  <aside id="detail-panel" aria-label="部件研究档案" hidden><div class="dossier" id="dossier">
     <h2>选择一个部件</h2>
-    <div class="meta">点击左侧部件图或词条查看档案——从电网到冷板，<span id="partCount">61</span> 个部件各有档案。</div>
+    <div class="meta">点击部件图或词条查看档案——从电网到冷板，<span id="partCount">61</span> 个部件各有档案。</div>
   </div></aside>
 </div>
 
@@ -168,73 +226,6 @@ const SC = { tight: "var(--red)", transition: "var(--yellow)", mature: "var(--gr
 const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
 const esc = s => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
 let BOM, CN = {}, PRICES = [], INDS = {}, showDossier = null;
-
-/* ── 等轴测投影：plan(x,y) + 高 z → 屏幕 ── */
-const CX = Math.cos(Math.PI / 6), SY = 0.5;
-const P = (x, y, z = 0) => [(x - y) * CX, (x + y) * SY - z];
-const pt = a => a.map(v => v.toFixed(1)).join(",");
-function poly(pts, fill, stroke, extra = "") {
-  return `<path d="M${pts.map(pt).join("L")}Z" fill="${fill}" ${stroke ? `stroke="${stroke}" stroke-width="1"` : ""} ${extra}/>`;
-}
-/* 部件盒：三个可见面 + 状态色顶檐 + 名签 */
-function isoBox(px, py, w, d, h, part) {
-  const preview = atlasPreview(part.id);
-  if (preview) {
-    const center = P(px + w / 2, py + d / 2, 0), lab = P(px + w / 2, py + d, 0);
-    return `<g class="pbox" data-part="${part.id}" data-atlas-part="${part.id}">
-      <title>${esc(atlasPreviewTitle(part.id))}</title>
-      <image href="${preview}" x="${(center[0]-62).toFixed(1)}" y="${(center[1]-76).toFixed(1)}" width="124" height="83" preserveAspectRatio="xMidYMid meet"/>
-      <text class="pname" x="${lab[0].toFixed(1)}" y="${(lab[1]+16).toFixed(1)}" text-anchor="middle">${esc(part.name)}</text>
-    </g>`;
-  }
-  const c = SC[part.status];
-  const T = [P(px, py, h), P(px + w, py, h), P(px + w, py + d, h), P(px, py + d, h)];
-  const R = [P(px + w, py, h), P(px + w, py + d, h), P(px + w, py + d, 0), P(px + w, py, 0)];
-  const F = [P(px, py + d, h), P(px + w, py + d, h), P(px + w, py + d, 0), P(px, py + d, 0)];
-  // 顶檐：沿前缘的状态色条
-  const lipW = 7;
-  const L = [P(px, py + d - lipW, h), P(px + w, py + d - lipW, h), P(px + w, py + d, h), P(px, py + d, h)];
-  const lab = P(px + w / 2, py + d, 0);
-  const shd = P(px + w / 2 + 6, py + d / 2 + 6, 0);
-  return `<g class="pbox" data-part="${part.id}">
-    <ellipse cx="${shd[0].toFixed(1)}" cy="${shd[1].toFixed(1)}" rx="${w * .62}" ry="${d * .3}" fill="rgba(10,20,40,.13)"/>
-    ${poly(F, "var(--box-front)", "var(--box-line)")}
-    ${poly(R, "var(--box-right)", "var(--box-line)")}
-    ${poly(T, "var(--box-top)", "var(--box-line)", 'class="ptop"')}
-    ${poly(L, c)}
-    <text class="pname" x="${lab[0].toFixed(1)}" y="${(lab[1] + 16).toFixed(1)}" text-anchor="middle">${esc(part.name)}</text>
-  </g>`;
-}
-/* 一层平台 + 其上部件 */
-function isoSlab(layer, parts, idx) {
-  const n = parts.length;
-  const cols = Math.min(4, Math.max(2, Math.ceil(n / 2)));
-  const rows = Math.ceil(n / cols);
-  const CW = 128, CD = 152, M = 46;
-  const W = cols * CW + M, D = rows * CD + M * 0.9, T = 16;
-  const corners = [P(0, 0, 0), P(W, 0, 0), P(W, D, 0), P(0, D, 0)];
-  const Fr = [P(0, D, 0), P(W, D, 0), P(W, D, -T), P(0, D, -T)];
-  const Rt = [P(W, 0, 0), P(W, D, 0), P(W, D, -T), P(W, 0, -T)];
-  let inner = poly(Fr, "var(--slab-front)", "var(--slab-line)") + poly(Rt, "var(--slab-right)", "var(--slab-line)")
-    + poly(corners, "var(--slab-top)", "var(--slab-line)");
-  // 平台网格线（淡）
-  for (let gx = CW; gx < W - M / 2; gx += CW) inner += poly([P(gx, 4, 0.1), P(gx, D - 4, 0.1), P(gx, D - 4, 0.1), P(gx, 4, 0.1)], "none", "var(--slab-line)", 'opacity=".35" stroke-dasharray="3 4"');
-  // 层名刻在平台左前侧
-  const tag = P(-4, D + 2, -2);
-  inner += `<text class="lname" x="${tag[0].toFixed(1)}" y="${(tag[1] + 12).toFixed(1)}" text-anchor="end">${layer.id} ${layer.en.toUpperCase()}</text>`;
-  parts.forEach((p, i) => {
-    const col = i % cols, row = Math.floor(i / cols);
-    const px = M / 2 + col * CW + (row % 2) * 14, py = M / 2 + row * CD;
-    inner += isoBox(px, py, 86, 56, 26, p);
-  });
-  // 视窗测算
-  const xs = [], ys = [];
-  [[0, 0, 40], [W, 0, 40], [W, D, -T - 4], [0, D, -T - 4]].forEach(([x, y, z]) => { const s = P(x, y, z); xs.push(s[0]); ys.push(s[1]); });
-  const minX = Math.min(...xs) - 150, maxX = Math.max(...xs) + 16;
-  const minY = Math.min(...ys) - 14, maxY = Math.max(...ys) + 34;
-  return `<svg viewBox="${minX.toFixed(0)} ${minY.toFixed(0)} ${(maxX - minX).toFixed(0)} ${(maxY - minY).toFixed(0)}"
-    role="img" aria-label="${layer.name}">${inner}</svg>`;
-}
 
 (async () => {
   const [bom, companies, prices, inds, rights] = await Promise.all([
@@ -252,16 +243,23 @@ function isoSlab(layer, parts, idx) {
     atlasHost: document.getElementById('selected-atlas'), atlasViewFor: () => document.getElementById('stack').dataset.mode });
 
   // 两种排法：按系统（第一层五个系统，IT 展开四个，系统内按链路）是骨架；按尺度（S5 → S1）是第二排法
-  const chips = parts => parts.map(p => `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</span>`).join("");
-  const row = (layer, parts, i, indent) => `<div class="lrow" data-row-parts="${parts.map(p => esc(p.id)).join(' ')}" style="margin-left:${indent}%">
-      <div class="slab">${isoSlab(layer, parts, i)}</div>
-      <div class="lead"></div>
-      <div class="callout">
-        <div class="ch"><span class="num">${layer.num}</span><b>${esc(layer.name)}</b><span class="en">${esc(layer.en || "")}</span></div>
-        <div class="cd">${esc(layer.desc || "")}</div>
-        <div class="plist">${chips(parts)}</div>
-      </div>
-    </div>`;
+  const chips = parts => parts.map(p => `<button type="button" class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)}</button>`).join("");
+  const systemParts = sid => bom.parts.filter(p=>isPart(p) && (p.system===sid || bom.systems[p.system]?.parent===sid));
+  const systemTitle = sid => `${String(bom.systems[sid].order).padStart(2,'0')} ${esc(bom.systems[sid].name)}`;
+  function overviewNode(sid, description, cls='') {
+    return `<a class="map-node ${cls}" href="#system-${sid}" data-overview-system="${sid}"><strong>${systemTitle(sid)}</strong><small>${systemParts(sid).length} 个设备类别</small><p>${description}</p></a>`;
+  }
+  const itBranches = Object.entries(bom.systems).filter(([,s])=>s.parent==='it').sort((a,b)=>a[1].order-b[1].order);
+  document.getElementById('system-map').innerHTML =
+    overviewNode('facility','提供建筑空间、机柜承载与消防安防','map-facility') +
+    overviewNode('power','电网接入 / 变电 / 发电与储能 / UPS / 配电 / 板级供电') +
+    '<div class="map-flow">供电<span aria-hidden="true">→</span></div>' +
+    `<div class="map-node map-it"><a href="#system-it" data-overview-system="it"><strong>${systemTitle('it')}</strong></a><small>${systemParts('it').length} 个设备类别</small><div class="it-branches">${itBranches.map(([id,s])=>`<a href="#it-${id}">${esc(s.name.replace('IT · ',''))}</a>`).join('')}</div><p>计算处理任务；内存、存储与网络共同支撑。</p></div>` +
+    '<div class="map-flow">热量<span aria-hidden="true">→</span></div>' +
+    overviewNode('thermal','芯片与机柜集热 → 冷却回路 → 向环境排热') +
+    `<a class="map-node map-control" href="#system-control" data-overview-system="control"><strong>${systemTitle('control')}</strong><p>DCIM / BMS 与固件 · 监测、管理和控制各系统</p></a>` +
+    `<div class="map-rights"><a href="#site-rights">建设前提：站点权利 ↘</a><span>${rights.rights.map(r=>esc(r.name)).join(' · ')}</span></div>`;
+  document.getElementById('scale-map').innerHTML = [...bom.scales].reverse().map(l=>`<a class="map-node" href="#scale-${l.id}"><strong>${esc(l.id)} ${esc(l.name)}</strong><p>${esc(l.desc)}</p><small>${bom.parts.filter(p=>isPart(p)&&p.scale===l.id).length} 个设备类别</small></a>`).join('');
   function equipmentCard(p, view) {
     return `<button type="button" class="equipment pbox" data-part="${p.id}" data-atlas-part="${p.id}" aria-label="查看 ${esc(p.name)} 档案">
       <img src="${atlasPreview(p.id,{view})}" alt="${esc(atlasPreviewTitle(p.id,{view}))}" width="1536" height="1024" loading="lazy" decoding="async">
@@ -284,31 +282,42 @@ function isoSlab(layer, parts, idx) {
     return nav+top.map(([sid,s])=>{
       const children=Object.entries(S).filter(([,x])=>x.parent===sid).sort((a,b)=>a[1].order-b[1].order);
       const groups=children.length?children:[[sid,s]];
-      let inner=`<div class="sysh"><b>${esc(s.name)}</b><span class="en">${children.length?'计算 · 内存 · 存储 · 网络':s.chains.map(esc).join(' · ')}</span></div>`;
+      let inner=`<div class="sysh"><b>${systemTitle(sid)}</b><span class="en">${children.length?'计算 · 内存 · 存储 · 网络':s.chains.map(esc).join(' · ')}</span></div><p class="system-intro">${({facility:'先有承载设备的空间与安全环境。',power:'从电力接入到负载供电，按功能链段拆解；发电、储能与不同供电方案分别列示。',thermal:'设备产生的热量经冷却回路排向环境；下列类别按登记链段从设施端到芯片端展开。',it:'计算、内存、存储和网络是协作的四个子系统，分别展开。',control:'贯穿设施、电力、冷却与 IT 的监测、管理和固件控制。'})[sid]}</p><div class="chain-grid">`;
       for(const[lid,l]of groups){
-        if(children.length)inner+=`<h2 class="system-subhead" data-it-system="${lid}">${esc(l.name)}</h2>`;
+        const subheading=children.length?`<h2 class="system-subhead" id="it-${lid}" data-it-system="${lid}">${esc(l.name)}</h2>`:"";
         for(const chain of l.chains){
           const parts=bom.parts.filter(p=>isPart(p)&&p.system===lid&&p.chain===chain).sort((a,b)=>a.chain_order-b.chain_order);
           if(!parts.length){
             const software=bom.parts.filter(p=>!isPart(p)&&p.system===lid&&p.chain===chain);
             inner+=`<div class="system-software" data-chain="${lid}:${esc(chain)}"><h3>${esc(chain)}</h3><p class="system-note">软件用于监测、管理与固件控制，不画成物理设备，不占零件尺度。</p>${chips(software)}</div>`;continue;
           }
-          inner+=`<section class="system-chain lrow" data-chain="${lid}:${esc(chain)}" data-row-parts="${parts.map(p=>p.id).join(' ')}"><div class="chain-heading"><h3>${++n}. ${esc(chain)}</h3><small>${parts.length} 个设备类别 · 按骨架登记顺序</small></div><div class="equipment-grid">${parts.map(card).join('')}</div></section>`;
+          inner+=`<section class="system-chain lrow" data-chain="${lid}:${esc(chain)}" data-row-parts="${parts.map(p=>p.id).join(' ')}">${subheading}<div class="chain-heading"><h3>${++n}. ${esc(chain)}</h3><small>${parts.length} 个设备类别 · 按骨架登记顺序</small></div><div class="equipment-grid">${parts.map(card).join('')}</div></section>`;
         }
       }
-      return `<section class="system-section" id="system-${sid}" data-system="${sid}">${inner}</section>`;
+      return `<section class="system-section" id="system-${sid}" data-system="${sid}">${inner}</div></section>`;
     }).join('');
   }
   const stack = document.getElementById("stack");
   const atlasHost = document.getElementById('selected-atlas');
+  const detailPanel = document.getElementById('detail-panel');
   function render(mode) {
     atlasHost.remove();
+    detailPanel.remove();
     stack.dataset.mode=mode;
+    document.getElementById('system-map').hidden=mode!=='system';
+    document.getElementById('scale-map').hidden=mode!=='scale';
+    document.getElementById('overview-title').textContent=mode==='system'?'先看全局：系统怎样协作':'先看全局：从园区到组件';
+    document.getElementById('breakdown-title').textContent=mode==='system'?'再看拆解：系统与功能链路':'再看拆解：五个尺度的设备类别';
+    document.getElementById('overview-note').textContent=mode==='system'?'箭头表示供电与排热关系；设施提供空间与安全环境，控制与软件贯穿各系统。设备类别与替代方案在下方分别展开。':'尺度表示部件归属层级，排版大小不代表实物比例；替代方案并列展示，不表示现场串联。';
     document.getElementById("system-overview-actions").hidden=mode!=="system";
     document.getElementById("scale-overview-actions").hidden=mode!=="scale";
-    stack.innerHTML = '<div class="axis"></div>' + (mode === "scale" ? byScale() : bySystem()) + otherEntries(bom, rights.rights || [], mode);
+    stack.innerHTML = (mode === "scale" ? byScale() : bySystem()) + otherEntries(bom, rights.rights || [], mode);
     stack.querySelector('.lrow[data-row-parts~="ssd"]').insertAdjacentElement('afterend', atlasHost);
-    document.querySelectorAll("[data-mode]").forEach(b => b.classList.toggle("on", b.dataset.mode === mode));
+    atlasHost.insertAdjacentElement('afterend', detailPanel);
+    document.querySelectorAll('[data-mode]').forEach(b => {
+      b.classList.toggle('on', b.dataset.mode === mode);
+      b.setAttribute('aria-pressed', String(b.dataset.mode === mode));
+    });
     document.querySelectorAll("[data-part]").forEach(el => el.addEventListener("click", () => show(el.dataset.part)));
     history.replaceState(null, "", location.pathname + (mode === "scale" ? "?view=scale" : "") + location.hash);
     const selected = resolveId(location.hash.slice(1));
@@ -323,11 +332,11 @@ function isoSlab(layer, parts, idx) {
 function otherEntries(bom, rights, mode) {
   const others = bom.parts.filter(p => (p.kind || "part") !== "part" && (mode !== "system" || p.system !== "control"));
   const chips = others.map(p =>
-    `<span class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)} <small>${esc(p.kind)}</small></span>`).join("");
+    `<button type="button" class="pchip" data-part="${p.id}" id="c-${p.id}"><i style="background:${SC[p.status]}"></i>${esc(p.name)} <small>${esc(p.kind)}</small></button>`).join("");
   const rchips = rights.map(r =>
-    `<span class="pchip" title="${esc(r.desc || "")}"><i style="background:${SC[r.status]}"></i>${esc(r.name)}</span>`).join("");
+    `<a class="pchip" href="node.html?id=site:${r.id}" title="${esc(r.desc || "")}"><i style="background:${SC[r.status]}"></i>${esc(r.name)}</a>`).join("");
   if (!chips && !rchips) return "";
-  return `<div class="lrow other-entries"${mode === "scale" ? ' style="margin-left:7.5%"' : ""}><div class="slab"></div><div class="lead"></div>
+  return `<div class="lrow other-entries" id="site-rights">
     <div class="callout"><div class="ch"><b>不占尺度的条目</b><span class="en">Software · Archetype · Site rights</span></div>
       <div class="cd">软件与设施基型有订阅价与供应商但不是零件；站点权利（土地、水权、电力配额、燃气接入、网络接入、许可）不可采购，进目标表不进 3D。</div>
       <div class="plist">${chips}${rchips}</div></div></div>`;
@@ -339,21 +348,17 @@ function resolveId(id) {
   return a.startsWith("site:") ? "" : a;
 }
 
-function latestSeries(sid) {
-  const pts = PRICES.filter(r => r.series_id === sid).sort((a, b) => a.as_of < b.as_of ? 1 : -1);
-  return pts[0];
-}
-
 function clearSelection({clearHash = false} = {}) {
   const host = document.getElementById('selected-atlas');
   host.replaceChildren(); host.hidden = true;
+  document.getElementById('detail-panel').hidden = true;
   document.querySelectorAll('.sel').forEach(el => el.classList.remove('sel'));
   const dossier = document.getElementById('dossier');
   const heading = document.createElement('h2'); heading.textContent = '选择一个部件';
   const meta = document.createElement('div'); meta.className = 'meta';
   const count = document.createElement('span'); count.id = 'partCount';
   count.textContent = BOM?.parts.filter(p => (p.kind || 'part') === 'part').length ?? 61;
-  meta.append('点击左侧设备图或名称查看档案——', count, ' 个物理类别各有档案。');
+  meta.append('点击设备图或名称查看档案——', count, ' 个物理类别各有档案。');
   dossier.replaceChildren(heading, meta); dossier.style.display = clearHash ? 'none' : 'block'; delete dossier.dataset.partId;
   if (clearHash) history.replaceState(null, '', location.pathname + location.search);
 }
@@ -367,10 +372,17 @@ function show(pid) {
   document.querySelectorAll(`[data-part="${pid}"], #c-${pid}`).forEach(el => el.classList.add("sel"));
   history.replaceState(null, "", "#" + pid);
   const illustrationNote = atlasCategoryNote(pid, {view: document.getElementById('stack').dataset.mode});
+  document.getElementById('detail-panel').hidden = false;
   showDossier(illustrationNote ? {...p, desc: illustrationNote + ' 类别研究说明（不认证图中示例已适用）：' + (p.desc || '待补充')} : p);
   const atlasHost = document.getElementById('selected-atlas');
+  if (atlasHost.hidden) {
+    const entry=document.querySelector(`[data-part="${pid}"]`);
+    entry?.closest('.system-software, .other-entries')?.insertAdjacentElement('afterend', document.getElementById('detail-panel'));
+    document.getElementById('detail-panel').scrollIntoView({block:'nearest'});
+  }
   if (!atlasHost.hidden) {
     document.querySelector(`.lrow[data-row-parts~="${pid}"]`)?.insertAdjacentElement('afterend', atlasHost);
+    atlasHost.insertAdjacentElement('afterend', document.getElementById('detail-panel'));
     const context = document.createElement('p');
     context.className = 'atlas-context';
     const scale = BOM.scales.find(l=>l.id===p.scale);
@@ -382,6 +394,12 @@ function show(pid) {
     });
   }
 }
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape' || document.getElementById('detail-panel').hidden) return;
+  const selected = document.querySelector('.equipment.sel');
+  clearSelection({clearHash:true});
+  selected?.focus({preventScroll:true});
+});
 window.addEventListener('hashchange', () => show(location.hash.slice(1)));
 document.getElementById('dossier').addEventListener('click',event=>{
   if(!event.target.closest('button[aria-label="关闭部件档案"]'))return;
