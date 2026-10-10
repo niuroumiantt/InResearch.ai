@@ -41,7 +41,8 @@
       ]
     ],
     "current_source_batch": [
-      "TA-21"
+      "TA-22",
+      "TA-23"
     ],
     "max_concurrent_drafting": 1,
     "review_scope": "current_source_batch_with_per_item_evidence",
@@ -865,15 +866,21 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "review",
+      "status": "published",
       "acceptance_record": "docs/design/technical-atlas/TA-21/acceptance-v1.json",
-      "published_revision": null,
+      "published_revision": "de104b8c2a27478dced10d904cb99e72cce79377",
       "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
       "object_id": "facility-domain",
       "baseline_revision": "ef918aaa567ddd3ad013a10756112bd75b739fdd",
-      "publication_status": "not_published",
+      "publication_status": "published",
       "production_record": "docs/design/technical-atlas/TA-21/generation-v1.json",
-      "source_review_record": "docs/design/technical-atlas/TA-21/source-review-v1.json"
+      "source_review_record": "docs/design/technical-atlas/TA-21/source-review-v1.json",
+      "publication_record": "docs/design/technical-atlas/TA-21/publication-20261010.json",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-21/bom3d-before-v1.html",
+        "bytes": 71128,
+        "sha256": "617497990f0db27ae0b197f1f90d5418b537bebfef9920b1bc12818aadc3daab"
+      }
     },
     {
       "id": "TA-22",
@@ -885,7 +892,7 @@
         "web/pages/bom3d.html",
         "framework/bom.json"
       ],
-      "entry": "bom3d.html?d=power",
+      "entry": "bom3d.html?d=power；独立power-atlas.html放大与双下载",
       "reference": [
         "R4",
         "R1",
@@ -898,10 +905,20 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
+      "status": "review",
+      "acceptance_record": "docs/design/technical-atlas/TA-22/acceptance-v1.json",
       "published_revision": null,
-      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。"
+      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
+      "object_id": "power-domain",
+      "source_review_record": "docs/design/technical-atlas/TA-22/source-review-v1.json",
+      "production_record": "docs/design/technical-atlas/TA-22/generation-v1.json",
+      "baseline_revision": "1034e4ae5ef799b1aee25c0a0d31cfa42f782206",
+      "publication_status": "not_published",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-22/bom3d-before-v1.html",
+        "bytes": 72768,
+        "sha256": "4300d83861a43ecf6f478e6ab4efbece6a4fd665cea24b01a4b84d59fc51da52"
+      }
     },
     {
       "id": "TA-23",
@@ -913,7 +930,7 @@
         "web/pages/bom3d.html",
         "framework/bom.json"
       ],
-      "entry": "bom3d.html?d=thermal",
+      "entry": "bom3d.html?d=thermal；独立thermal-atlas.html放大与双下载",
       "reference": [
         "R5",
         "R1",
@@ -925,10 +942,20 @@
       "depends_on": [
         "TA-18"
       ],
-      "status": "planned",
-      "acceptance_record": null,
+      "status": "review",
+      "acceptance_record": "docs/design/technical-atlas/TA-23/acceptance-v1.json",
       "published_revision": null,
-      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。"
+      "reference_scope": "R10–R14为2026-10-09用户采用的空间/材质/细节参考，非技术事实；平面项须重新正交构图。",
+      "object_id": "thermal-domain",
+      "source_review_record": "docs/design/technical-atlas/TA-23/source-review-v1.json",
+      "production_record": "docs/design/technical-atlas/TA-23/generation-v1.json",
+      "baseline_revision": "1034e4ae5ef799b1aee25c0a0d31cfa42f782206",
+      "publication_status": "not_published",
+      "baseline_asset": {
+        "file": "docs/design/technical-atlas/TA-22/bom3d-before-v1.html",
+        "bytes": 72768,
+        "sha256": "4300d83861a43ecf6f478e6ab4efbece6a4fd665cea24b01a4b84d59fc51da52"
+      }
     },
     {
       "id": "TA-24",
@@ -1361,7 +1388,7 @@
   ],
   "execution_priority": {
     "reason": "先收尾用户授权的四张设施补充图，原35项按用户再次明确的01–35顺序继续；两类进度分别计量",
-    "next": "TA-21"
+    "next": "TA-22"
   },
   "primary_plan": {
     "total": 35,
@@ -1403,7 +1430,7 @@
       "TA-35"
     ],
     "execution_order": "01–35; sequential individual drawing/review; source PR batches do not change figure order",
-    "published": 20
+    "published": 21
   },
   "supplemental_items": [
     "TA-36",

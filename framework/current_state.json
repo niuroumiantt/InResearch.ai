@@ -1,5 +1,5 @@
 {
-  "version": "2026.10.10.60",
+  "version": "2026.10.10.61",
   "effective_at": "2026-10-10",
   "scope": "tracked project source and records; external/runtime materials excluded",
   "policies": [
@@ -2823,12 +2823,59 @@
         "web/assets/technical-atlas/facility-domain-v1-preview.jpg",
         "web/assets/technical-atlas/facility-domain-v1-preview.svg",
         "docs/design/technical-atlas/TA-21/source-validation-v1.json",
-        "docs/design/technical-atlas/TA-21/independent-source-review-v1.json"
+        "docs/design/technical-atlas/TA-21/independent-source-review-v1.json",
+        "tests/energy_domain.cjs",
+        "tests/unit/test_energy_domain_assets.py",
+        "web/pages/power-atlas.html",
+        "web/pages/thermal-atlas.html",
+        "docs/design/technical-atlas/TA-21/publication-20261010.json",
+        "docs/design/technical-atlas/TA-21/public-checks-v1.json",
+        "docs/design/technical-atlas/TA-21/public-observer-fix-v2.json",
+        "docs/design/technical-atlas/TA-22/independent-visual-review-v1.json",
+        "docs/design/technical-atlas/TA-22/offline-render-v1.cjs",
+        "docs/design/technical-atlas/TA-22/labels-v1.json",
+        "docs/design/technical-atlas/TA-22/source-review-v1.json",
+        "docs/design/technical-atlas/TA-22/asset-manifest-v1.json",
+        "docs/design/technical-atlas/TA-22/SCOPE.md",
+        "docs/design/technical-atlas/TA-22/independent-technical-review-v1.json",
+        "docs/design/technical-atlas/TA-22/references-v1.json",
+        "docs/design/technical-atlas/TA-22/generation-v1.json",
+        "docs/design/technical-atlas/TA-22/independent-final-static-review-v1.json",
+        "docs/design/technical-atlas/TA-22/offline-label-scan-v1.json",
+        "docs/design/technical-atlas/TA-22/bom3d-before-v1.html",
+        "docs/design/technical-atlas/TA-22/compose-v1.py",
+        "docs/design/technical-atlas/TA-22/existing-geometry-reference-v1.json",
+        "docs/design/technical-atlas/TA-22/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-22/independent-integration-review-v1.json",
+        "docs/design/technical-atlas/TA-22/technical-sources-v1.json",
+        "docs/design/technical-atlas/TA-22/component-manifest-v1.json",
+        "web/assets/technical-atlas/power-domain-v1.png",
+        "web/assets/technical-atlas/power-domain-v1.svg",
+        "web/assets/technical-atlas/power-domain-v1-preview.jpg",
+        "web/assets/technical-atlas/power-domain-v1-preview.svg",
+        "docs/design/technical-atlas/TA-23/independent-visual-review-v1.json",
+        "docs/design/technical-atlas/TA-23/offline-render-v1.cjs",
+        "docs/design/technical-atlas/TA-23/labels-v1.json",
+        "docs/design/technical-atlas/TA-23/source-review-v1.json",
+        "docs/design/technical-atlas/TA-23/asset-manifest-v1.json",
+        "docs/design/technical-atlas/TA-23/SCOPE.md",
+        "docs/design/technical-atlas/TA-23/references-v1.json",
+        "docs/design/technical-atlas/TA-23/generation-v1.json",
+        "docs/design/technical-atlas/TA-23/offline-label-scan-v1.json",
+        "docs/design/technical-atlas/TA-23/compose-v1.py",
+        "docs/design/technical-atlas/TA-23/existing-geometry-reference-v1.json",
+        "docs/design/technical-atlas/TA-23/acceptance-v1.json",
+        "docs/design/technical-atlas/TA-23/technical-sources-v1.json",
+        "docs/design/technical-atlas/TA-23/component-manifest-v1.json",
+        "web/assets/technical-atlas/thermal-domain-v1.png",
+        "web/assets/technical-atlas/thermal-domain-v1.svg",
+        "web/assets/technical-atlas/thermal-domain-v1-preview.jpg",
+        "web/assets/technical-atlas/thermal-domain-v1-preview.svg"
       ],
       "supersedes": [],
       "reason": "用户明确采用五张参考图为以后技术图的标准：细线/真实材质/结构爆炸与平面、逼真场景剖面和技术讲解；新增唯一画法入口与逐张队列。在技术图范围替代任意PBR/色光/塑料方块画法，现有未迁移页面保留待制作身份，不宣称已完成。；用户授权开始逐项迁移，TA-01通用SSD样板经图像生成、结构修正与SVG独立文字层接入原部件档案；旧资产保留，34项继续待制作。；公网核对高清SVG慢读取后增加同尺寸轻量预览，独立标注与高清原件/下载保留，纠正TA-02误列的资料上传组件。；用户肯定TA-01线上样板并要求继续，TA-02共用渲染/文字/导出基础，33项具体造型不提前计完成。；首次发布后复审导出文字/像素比及园区匿名启动，可选受保护登记不阻塞公开图册、不伪造零覆盖。；用户主入口反馈补全TA-01：2D SSD主图区及两种排法缩略图接入已有样板，清除跨对象残图；可变页面与组件重新验证缓存，不增加总览完成计数。；用户确认新图可见后纠正展示层级：替代页面顶端SSD详图，归入包含SSD的存储/尺度行后，骨架路径与深链定位保持，切换排法和跨对象选择复验。；用户继续工作并优先2D土地与建筑、消防与安全：新增R6–R9四张视觉参考、TA-36/37/38设施类别剖面并分开消防/安防对象；原35项留存，制作和实际上线分别计量。；土地与建筑还包含rack-frame，补充TA-39独立2D柜架结构图；不将建筑图复用为柜架，不提前完成TA-13原3D造型。；用户再次重申原35项按01–35持续推进，补充设施四图独立计量；安防与机柜结构逐张生成/独立标注及实际本地验收，不预填发布。；补充四图分别完成实际网站入口与高清原图、源码SHA、CI、AWS/Spark版本和服务核对，原35项仍2/35，下一TA-03；不是整页或3D个体完成。；原计划继续TA-03：通用服务器机箱子装配、独立8标签和同像素预览接入计算行/服务器档案，旧原图保留；整机TA-11另项，发布凭实际验收。；TA-03实际发布/系统尺度四视图/高清8标签与原PNG SHA/精确CI头/AWS及Spark服务核对完成，主计划3/35、补充4/4，下一TA-04。；TA-04通用多GPU模组基板继续：保留旧原件与服务器子装配，拒绝数量错误的前两版；官方结构类别与示意几何分开，单项页面/CI/实际发布闭环。；TA-04实际发布回执含PR409精确头CI、系统/尺度四视图、高清8标签/嵌入原PNG SHA和AWS/Spark；首探502真实保留，后续读取通过；主计划4/35、补充4/4，下一TA-05。",
-      "implementation_revision": "2026.10.10.60",
-      "change_reason": "TA20最终ef918aaa/.59真实公网及精确镜像闭包，主队列登记20/35补4/4；TA21设施领域源码review：同源4建筑组+8柜原位、独立消防安防类别图且本场景未建模，六权利/微模块模板/DCIM软件非物理。4三角面/首可见ray与离线排版通过，实际新公网另验，不计21。按用户同主题实质PR指令同步7源码提交单元，drafting≤1、同批逐项review证据、accepted/published逐项实际公网、前项pub随下一source；不以批次机检证明视觉。清4旧专页多余无路由module，明确微改。新交接指向现行快照；本地拒绝保持，公网专用测试无本地回退，不查CI，Spark/研究0改。"
+      "implementation_revision": "2026.10.10.61",
+      "change_reason": "TA21真实de104/.60与精确3154镜像healthy、public-v2全部交互/双下载/17SHA/health200闭合，主登记21/35补4/4，首次真实SHA不倒写。TA22–23同主题实质源码批次：7/5原件受控组合独立1536×1024，6/6可编辑定位与功能线；UPS真实电池/旁路节点闭合、独立PSU与共享架替代分开；TCS/FWS各自闭环且仅热量跨换热壁，所选风冷冷机与其它方案分开。电力19类4建模8实例15未建模，冷却15类3建模11实例12未建模；32原home/152mesh、默认14/系统47与legacy保持。领域详情仅系统与类别双匹配，不泄入其它背景。两图均source review，实际新公网逐项另验，不计22/23。TA21观察器SVGRect窄修与旧失败保留；本地URL拒绝/公网专用无回退、不查CI、Spark/研究0改。"
     },
     {
       "id": "interface-repository-daily-20261008",
@@ -3341,5 +3388,5 @@
       "retire_after": "2026-12-31"
     }
   ],
-  "updated": "2026-10-09T23:36:21.655049+00:00"
+  "updated": "2026-10-10T00:35:04.465919+00:00"
 }

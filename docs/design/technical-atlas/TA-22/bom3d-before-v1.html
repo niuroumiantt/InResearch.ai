@@ -947,20 +947,10 @@ function enterDomain(d) {
   const grouped = []; let last = null;
   for (const p of d.parts) { if (p.chain !== last) { grouped.push(`<div class="chainh">${esc(p.chain || (p.kind === "site_right" ? "站点权利" : ""))}</div>`); last = p.chain; } grouped.push(p); }
   document.getElementById("domainParts").innerHTML = grouped.map(p => typeof p === "string" ? p :
-    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${campusMode && ["facility","power","thermal"].includes(d.key) ? (facilityModelState(p) ? `<span class="nm" title="${esc(facilityModelState(p)[1])}">${esc(facilityModelState(p)[0])}</span>` : "") : (PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>')}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${campusMode && d.key === "facility" ? (facilityModelState(p) ? `<span class="nm" title="${esc(facilityModelState(p)[1])}">${esc(facilityModelState(p)[0])}</span>` : "") : (PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>')}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
   if(campusMode && d.key==='facility'){
    const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-21';
    plate.innerHTML='<a href="/facility-atlas.html"><b>设施与站点权利 · 完整图与下载 ↗</b><img src="/assets/technical-atlas/facility-domain-v1-preview.svg" width="1536" height="1024" alt="同源八柜建筑与独立消防安防类别图、六类非物理权利"></a><p>建筑包含八柜；消防/安防本场景未建模。六权利是非物理证据入口，地面与设备不证明权利成立。</p>';
-   document.getElementById('domainParts').prepend(plate);
-  }
-  if(campusMode && d.key==='power'){
-   const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-22';
-   plate.innerHTML='<a href="/power-atlas.html"><b>电力功能路径 · 完整图与下载 ↗</b><img src="/assets/technical-atlas/power-domain-v1-preview.svg" width="1536" height="1024" alt="选定UPS与独立PSU功能链，共享电源架是另一末端"></a><p>19类是研究分类，非强制串/并联。三维仅4类8外形实例，其余15未建模；功能图不认证本场景接线、电压或站点权利。</p>';
-   document.getElementById('domainParts').prepend(plate);
-  }
-  if(campusMode && d.key==='thermal'){
-   const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-23';
-   plate.innerHTML='<a href="/thermal-atlas.html"><b>冷却双流体域 · 完整图与下载 ↗</b><img src="/assets/technical-atlas/thermal-domain-v1-preview.svg" width="1536" height="1024" alt="蓝TCS与绿FWS分别闭合，跨CDU仅传热，所选风冷冷水机向空气排热"></a><p>液—液CDU与风冷冷机是本例选择，非所有方案全串。三维仅3类11外形实例，其余12未建模；功能路径不证明本八柜已接管或具备水权。</p>';
    document.getElementById('domainParts').prepend(plate);
   }
   document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
@@ -973,14 +963,14 @@ function enterDomain(d) {
   });
   if (d.chains.length > 1) {  // 镜头走链路是显式动作：不抢用户或页面框架对镜头的所有权
     const btn = document.createElement("button"); btn.type = "button"; btn.className = "walkbtn"; btn.id = "walkBtn";
-    btn.textContent = (campusMode && ['power','thermal'].includes(d.key) ? "▶ 按类别查看（非接线/管线顺序）：" : "▶ 沿链路走一遍：") + d.chains.join(" → ");
+    btn.textContent = "▶ 沿链路走一遍：" + d.chains.join(" → ");
     btn.onclick = () => walkChain(d);
     document.getElementById("domainParts").prepend(btn);
   }
   if(campusMode)focusCampus(d.parts.flatMap(p=>campusAssembly.objectsFor(p.id)));
 }
-/* 镜头按研究类别依次查看已有外形；分类顺序不证明真实电气串联、流体通路或安装拓扑。
-   用户操作或切换视角即停止；不自动开始，镜头所有权仍归用户与页面框架。 */
+/* 镜头按链路走：点击「沿链路走一遍」后，沿能量流依次飞到有造型的部件（电网 → 变电 → 发电与储能 → UPS → 配电 → 板级供电），
+   这条路线就是该系统的研究提纲。用户操作或切换视角即停止；不自动开始，镜头所有权仍归用户与页面框架。 */
 let walkTimer = null;
 function walkChain(d) {
   clearTimeout(walkTimer);
@@ -1016,7 +1006,6 @@ const inspector = createPartInspector({THREE, environment: () => scene.environme
 const rawShowDossier = createPartDossier({el: document.getElementById('dossier'), view: 'campus',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector,
-  atlasViewFor:p=>campusMode && ['power','thermal'].includes(activeDomain) && p.system===activeDomain?'system':null,
   researchNodeFor:p=>p.kind==='site_right'?'site:'+p.site_right_id:'part:'+p.id});
 
 function campusPart(p,whole=false){

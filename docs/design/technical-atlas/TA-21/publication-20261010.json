@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-21",
+  "object_id": "facility-domain",
+  "status": "published",
+  "observed_at": "2026-10-09T23:53:50.922842+00:00",
+  "actual_primary_published": 21,
+  "supplemental_published": 4,
+  "source_head": "2a66eeb61fbd2e7e099074f55ef18192d4ccdd53",
+  "source_merge": "de104b8c2a27478dced10d904cb99e72cce79377",
+  "governance": "2026.10.10.60",
+  "source_prs": [
+    {
+      "pr": {
+        "baseRefOid": "ef918aaa567ddd3ad013a10756112bd75b739fdd",
+        "headRefOid": "2a66eeb61fbd2e7e099074f55ef18192d4ccdd53",
+        "isDraft": false,
+        "mergeCommit": {
+          "oid": "de104b8c2a27478dced10d904cb99e72cce79377"
+        },
+        "mergedAt": "2026-10-09T23:41:17Z",
+        "state": "MERGED",
+        "url": "https://github.com/niuroumiantt/InResearch.ai/pull/572"
+      },
+      "exact_tree": {
+        "observed_at": "2026-10-09T23:41:21.400201+00:00",
+        "baseline": "ef918aaa567ddd3ad013a10756112bd75b739fdd",
+        "head": "2a66eeb61fbd2e7e099074f55ef18192d4ccdd53",
+        "merge": "de104b8c2a27478dced10d904cb99e72cce79377",
+        "entire_git_tree_equal": true,
+        "diff_exit": 0,
+        "diff": ""
+      },
+      "receipt": {
+        "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-21/source-pr-merged.json",
+        "bytes": 309,
+        "sha256": "9678ac771be8a9f4d22a874924f3c5e0e3fc3a6e1af8c11f1e4160904f42ee02"
+      },
+      "exact_tree_receipt": {
+        "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-21/source-merge-exact-tree.json",
+        "bytes": 288,
+        "sha256": "79fad7de4bd85c2bd69fea0e372f8131c7ffa7a5cd1b3194e9dd5fa183687d06"
+      }
+    }
+  ],
+  "acceptance_record": "docs/design/technical-atlas/TA-21/acceptance-v1.json",
+  "public_entry": "https://inresearch.ai/facility-atlas.html",
+  "related_interactive_entries": [
+    "https://inresearch.ai/bom3d.html?d=facility",
+    "https://inresearch.ai/bom3d.html?d=campus"
+  ],
+  "public_master": "https://inresearch.ai/assets/technical-atlas/facility-domain-v1.png",
+  "public_labelled": "https://inresearch.ai/assets/technical-atlas/facility-domain-v1.svg",
+  "aws": {
+    "observed_at": "2026-10-09T23:45:39.039652+00:00",
+    "host": "ip-172-26-11-47",
+    "source_revision": "de104b8c2a27478dced10d904cb99e72cce79377",
+    "applied_revision": "de104b8c2a27478dced10d904cb99e72cce79377",
+    "applied_image": "sha256:3154ca17185b4f78b0400fa9bdca4af3c10fad92c25e59b5070d6afbe029841b",
+    "configured_image": "inresearch-app:de104b8c2a27478dced10d904cb99e72cce79377",
+    "image": "sha256:3154ca17185b4f78b0400fa9bdca4af3c10fad92c25e59b5070d6afbe029841b",
+    "status": "HEALTHY: de104b8c2a27478dced10d904cb99e72cce79377",
+    "container": "inresearch-host-inresearch-1",
+    "container_state": "running/healthy",
+    "governance": "2026.10.10.60",
+    "deployment_service": "ActiveState=inactive\nSubState=dead",
+    "deployment": "Existing inresearch-only-deploy.timer naturally applies main; this task only observes source/applied/exact image health, no manual switch or Spark mutation",
+    "data_migration": false
+  },
+  "public_checks": "docs/design/technical-atlas/TA-21/public-checks-v1.json",
+  "public_checks_evidence": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-21/public-v2/facility-domain-results.json",
+    "bytes": 24893,
+    "sha256": "96f81b4085891db3ee55a60f0ee914b7684eede2fe3b7fa3759a7fa147ac18be"
+  },
+  "source_checks_evidence": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-21/public-source-health.json",
+    "bytes": 7312,
+    "sha256": "c30c9cd26dac20a8298ab8f0064ba0ce64858c195f0c8f84abb26b427aee7aee"
+  },
+  "owner_original_review": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-21/public-v2/owner-original-review.json",
+    "bytes": 7718,
+    "sha256": "f6896d101492d441fbaa4d167747f2563635d092f9553dd8bbe315359e5eed10"
+  },
+  "final_closure_evidence": {
+    "path": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-10/TA-21/final-publication-receipt.json",
+    "bytes": 5964,
+    "sha256": "ff93401b8a24042464ab5464ad8229e95d188b54aea59bcf3e2eb15d6ae53f4e"
+  },
+  "CI": {
+    "status": "not_queried",
+    "pass_claimed": false
+  },
+  "boundaries": [
+    "Selected generic eight-rack example, not OEM/CAD, dimensions, ratings, actual site installation or compliance certification.",
+    "Static composition retains twelve facility instances (four shell groups/eight closed racks),42 visible meshes; live domain retains32 homes/152 meshes and dims other MEP context. No complete power/liquid topology is asserted.",
+    "Fire/security adopted category images are independent examples, not enlarged portions of this campus; actual campus fire/security meshes remain zero. Coverage, placement and installation remain unknown.",
+    "Six site rights are nonphysical research entrances; actual click tests produce zero selected meshes/inspector clones and canonical site links. Modular-dc is delivery archetype; DCIM remains control software, both zero physical instances.",
+    "Mother image is controlled independent native1536x1024 geometry/diagram composition, not AI generation or scaled interactive snapshot. Native component PNG bytes unchanged; four leader anchors checked on actual same-instance triangle/first-visible ray surfaces.",
+    "Phone342x228 mother image is a complete overview; fine labels need fullSVG zoom. Mobile live domain keeps existing broad-fit behavior; cabinet internals/ports are not readable at default zoom. Desktop HUD is internally scrollable.",
+    "Independent selected rack inspector is complete for the selected generic closed cabinet, not TA13 full rack or TA11 server; main canvas may be occluded by dynamic dossier overlay as already documented. No automatic refit that overrides manual camera was introduced.",
+    "Public v1 toJSON TypeError is a test observer fixture failure, retained. Temporary v2 changes only SVGRect extraction to explicit x/y/width/height, full run passes. Repo fixture correction will be saved with next22-23 substantive source batch, no publication-only PR.",
+    "No local product website/HTTP/productJS executed; explicitlocalhost refusal remains. Auto-review rejected CI localhost fallback and safepublic-only test has no local fallback, outside default localrunner; machinecoveragegap explicitly recorded.",
+    "CI not queried/waited or claimed passed; Spark/research data/services/queues/models unchanged. Existing AWS timer naturally applied main; no manual production switch.",
+    "Actual TA21 is closed21/35 supplemental4/4; currentmain machinequeue20, pending publication registration in next22-23 substantive source batch. First actual source/applied stays de104/.60 rather than future registration SHA."
+  ]
+}
