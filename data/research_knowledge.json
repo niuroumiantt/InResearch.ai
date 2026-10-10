@@ -31054,6 +31054,87 @@
         },
         "batch_id": "576500508898da116b295ad97dde204a16d2d5e6b47aa64a0f13226190145a9c"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c0a6909f42a2a4799bef0bf6ddd9576ff156d5ec81996be8e2ddac713629e99f",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "id": "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:11:claim:6:ev:0",
+      "locator": "page:12/chunk:11",
+      "object_ids": [],
+      "page_index": 11,
+      "question_ids": [],
+      "quote": "Many underlying models on which\nfinancial analytics firms build these projections are proprietary or methodologically opaque\n(Goldman Sachs Research 2024; Jeff Brown 2024; Bloomberg 2024). Others are often\nextrapolations from utility load growth forecasts based on market research demand projections\n(Aljbour et al. 2024).",
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "source_sha256": "3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T04:28:44+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原始重要性及评分5。模型透明度及预测来源依赖直接影响当前M01-Q02对机构总量差异的可复查调和，尤其为回查高盛预测的方法与输入提供明确线索，属于实质但局部的方法证据。连续原文及周围预测讨论充分，无敏感、真实冲突、替换或其他A条件，符合B级有限归属采用要求。对M15-Q01仅有一般证据质量启示，缺少三情景及本季度更新关系，不登记该问题关联。",
+        "workorder_ids": [
+          "Q-M01-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 67.049,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "91e0b28f4c9e71c333bc60654ad75ef6094a7a19e9b0a4f887b6f6a6d61fe3a4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 68035,
+            "output_tokens": 2649,
+            "reasoning_output_tokens": 783
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.448,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f21d620afe85fe31ebefc1ed5cd06b86bf5e037b072c33c322a95a400d52ca8d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 68106,
+              "output_tokens": 448,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "bc31813cdf48cd49c462970e69916f14dbc0e6a65590be05d09cb848a020fe5a"
+      }
     }
   ],
   "statements": [
@@ -60467,6 +60548,104 @@
         "request_sha256": "c248d80cfe550257f0a9c2b4e296b39ae457d5cd9aeca7e2f3e00b603e63910c"
       },
       "object_mapping_check": "SN6800和SN6810是网络链下的scale-out以太网交换机，映射part:network-switch及产品厂商actor:nvidia-networking。液冷仅为交换机配置描述，没有指明冷板、CDU、冷却液或管路对象，故不扩展冷却组件映射；本项也未直接描述光模块或整个网络系统。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-3a2257cdf4c350356062ffd8f75e886f099b13781b0a37af5605d65d5e46c2eb",
+      "evidence_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:11:claim:6:ev:0"
+      ],
+      "id": "adoption:review:54b52d1cfad68468683b31df",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M01-Q02"
+      ],
+      "reading_revision_id": "rev-2f773fa12ee64b32a7770cbdddb0b928",
+      "status": "adopted",
+      "text": "《2024 United States Data Center Energy Usage Report》作者在讨论美国数据中心用电预测时指出，金融分析机构构建这些预测所依据的许多模型属于专有模型或方法不透明；还有一些预测往往由公用事业负荷增长预测外推，而这些负荷预测以市场研究的需求预测为基础。这是报告作者对预测方法及来源链的判断，不构成对各机构当前模型或预测准确性的独立认证；所供原生文本未确立报告发表日期。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T04:28:44+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "保留原始重要性及评分5。模型透明度及预测来源依赖直接影响当前M01-Q02对机构总量差异的可复查调和，尤其为回查高盛预测的方法与输入提供明确线索，属于实质但局部的方法证据。连续原文及周围预测讨论充分，无敏感、真实冲突、替换或其他A条件，符合B级有限归属采用要求。对M15-Q01仅有一般证据质量启示，缺少三情景及本季度更新关系，不登记该问题关联。",
+        "workorder_ids": [
+          "Q-M01-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 67.049,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "91e0b28f4c9e71c333bc60654ad75ef6094a7a19e9b0a4f887b6f6a6d61fe3a4",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 68035,
+            "output_tokens": 2649,
+            "reasoning_output_tokens": 783
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.448,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "f21d620afe85fe31ebefc1ed5cd06b86bf5e037b072c33c322a95a400d52ca8d",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 68106,
+              "output_tokens": 448,
+              "reasoning_output_tokens": 170
+            }
+          }
+        },
+        "batch_id": "bc31813cdf48cd49c462970e69916f14dbc0e6a65590be05d09cb848a020fe5a"
+      },
+      "source_candidate_ids": [
+        "rev-2f773fa12ee64b32a7770cbdddb0b928:chunk:11:claim:6"
+      ],
+      "limitations": "原文列举Goldman Sachs Research、Jeff Brown、Bloomberg及Aljbour等引用，但未提供各模型的完整方法、输入或逐机构对应关系；不能认定所有金融机构模型均不透明，也不能把这种描述推广至IEA、JLL、C&W和麦肯锡。未给出预测总量、能源及容量口径、误差幅度或概率权重。引用年份不等于模型数据年份或本报告发表日期，所供阅读仅覆盖PDF原生文本。",
+      "conflict_check": "已采用的外推误差累积、聚合尺度、组件细分不足及服务需求脱钩陈述讨论不同方法局限，本项新增模型透明度与具体预测来源链，不构成规范重复。已采用的历史公用事业预测高估判断与本项相容，但不能据二者认定当前预测必然高估。PJM容量分析、2028年美国用电情景及2026年交付预测也未认证本项所述模型透明度，未形成真实冲突。所供legacy匹配记录为空；检查限于所供记录，不替换现有结论。",
+      "gap_dependency_check": "M01-Q02仍需取得IEA、JLL、C&W、麦肯锡及高盛的原始预测，逐项核对地域、年份、能源与容量定义、AI及传统负载边界、输入来源、情景和版本，并给出可复查调和推导及反证。还需回查本句引用以确认模型和来源链的具体适用范围。本项仅贡献方法审查依据，不回答或关闭问题，不调整预测值或情景概率。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "bc31813cdf48cd49c462970e69916f14dbc0e6a65590be05d09cb848a020fe5a",
+        "source_report_sha256": "ab6eb56cbf3f18b1a1744c45bd5ee21b66898f9f478ca8fa6bf587b9406ed2c1",
+        "request_sha256": "bc33467c34108589033eb64cf0f329acd2cffcc62593890e412fd9ba23990541"
+      },
+      "object_mapping_check": "独立复核后，陈述对象是研究预测模型的透明度及来源链。研究模型不属于合同中的DCIM/BMS与固件控制系统，公用事业负荷预测也不是一座AI数据中心的电力系统、配额或并网协议。引文未建立任何允许主体或具体资产的范围，因此对象列表为空，所选证据采用同一空映射。"
     }
   ],
   "answers": [],

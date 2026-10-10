@@ -1,12 +1,12 @@
 # 在册源码与记录清单
 
-> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.69。
+> GENERATED · 由 `python3 manage.py governance --refresh` 从 Git 在册与本次新增路径生成。当前基准：2026.10.10.70。
 
 现行依据见 [CURRENT](../framework/CURRENT.md)。本清单覆盖每个在册文件；对应内容 SHA-256、大小和记录集合结构见 `framework/repository_manifest.json`。修改内容或新增文件须重新生成并通过 CI。
 
 范围仅限 Git 源码和记录，不扫描百度网盘、Spark 原件/SQLite、密钥、忽略文件或外置盘。记录集合分别计数，不能相加当作唯一文档数、已读数或研究完成度。内容摘要用于发现改动，不表示逐条事实已核验。
 
-在册文件：2449。
+在册文件：2452。
 
 | 身份 | 文件数 |
 |---|---|
@@ -18,7 +18,7 @@
 | 历史快照 | 366 |
 | 运行代码 | 363 |
 | 现行规范 | 15 |
-| 项目配置 | 752 |
+| 项目配置 | 755 |
 | 兼容研究记录 | 16 |
 | 已退役入口 | 3 |
 | 在册数据/索引 | 29 |
@@ -53,8 +53,8 @@
 | `data/products.json` | records | 175 |
 | `data/projects.json` | records | 126 |
 | `data/research_knowledge.json` | documents | 41 |
-| `data/research_knowledge.json` | evidence | 313 |
-| `data/research_knowledge.json` | statements | 288 |
+| `data/research_knowledge.json` | evidence | 314 |
+| `data/research_knowledge.json` | statements | 289 |
 | `data/research_knowledge.json` | answers | 0 |
 | `data/schema/company.schema.json` | required | 6 |
 | `data/schema/contract.schema.json` | required | 7 |
@@ -1276,7 +1276,7 @@
 | `docs/design/technical-atlas/TA-35/acceptance-v1.json` | artifacts | 4 |
 | `docs/design/technical-atlas/TA-35/acceptance-v1.json` | references_original_viewed | 3 |
 | `docs/design/technical-atlas/TA-35/acceptance-v1.json` | browser_checks | 1 |
-| `docs/design/technical-atlas/TA-35/acceptance-v1.json` | not_verified | 4 |
+| `docs/design/technical-atlas/TA-35/acceptance-v1.json` | not_verified | 7 |
 | `docs/design/technical-atlas/TA-35/asset-manifest-v1.json` | assets | 4 |
 | `docs/design/technical-atlas/TA-35/component-manifest-v1.json` | components | 6 |
 | `docs/design/technical-atlas/TA-35/component-manifest-v1.json` | labels | 7 |
@@ -1296,6 +1296,23 @@
 | `docs/design/technical-atlas/TA-35/offline-label-scan-v1.json` | hits | 0 |
 | `docs/design/technical-atlas/TA-35/offline-label-scan-v1.json` | text_text_overlaps | 0 |
 | `docs/design/technical-atlas/TA-35/offline-label-scan-v1.json` | outside | 0 |
+| `docs/design/technical-atlas/TA-35/public-checks-v1.json` | downloads | 2 |
+| `docs/design/technical-atlas/TA-35/public-checks-v1.json` | views | 17 |
+| `docs/design/technical-atlas/TA-35/public-checks-v1.json` | request_failures | 1 |
+| `docs/design/technical-atlas/TA-35/public-checks-v1.json` | errors | 0 |
+| `docs/design/technical-atlas/TA-35/public-checks-v1.json` | route_errors | 0 |
+| `docs/design/technical-atlas/TA-35/public-checks-v1.json` | resource_failures | 0 |
+| `docs/design/technical-atlas/TA-35/public-checks-v1.json` | not_verified | 7 |
+| `docs/design/technical-atlas/TA-35/publication-20261010.json` | source_prs | 1 |
+| `docs/design/technical-atlas/TA-35/publication-20261010.json` | downloads | 2 |
+| `docs/design/technical-atlas/TA-35/publication-20261010.json` | failures_preserved | 1 |
+| `docs/design/technical-atlas/TA-35/publication-20261010.json` | request_failures | 1 |
+| `docs/design/technical-atlas/TA-35/publication-20261010.json` | boundaries | 7 |
+| `docs/design/technical-atlas/TA-35/publication-independent-review-v1.json` | actual_original_images_viewed | 2 |
+| `docs/design/technical-atlas/TA-35/publication-independent-review-v1.json` | visual_findings | 2 |
+| `docs/design/technical-atlas/TA-35/publication-independent-review-v1.json` | retained_request_failure | 1 |
+| `docs/design/technical-atlas/TA-35/publication-independent-review-v1.json` | stage_scope | 5 |
+| `docs/design/technical-atlas/TA-35/publication-independent-review-v1.json` | findings | 0 |
 | `docs/design/technical-atlas/TA-35/reference-review-v1.json` | references | 3 |
 | `docs/design/technical-atlas/TA-35/source-review-v1.json` | artifacts | 4 |
 | `docs/design/technical-atlas/TA-35/source-review-v1.json` | not_verified | 4 |
@@ -2429,6 +2446,9 @@
 | `docs/design/technical-atlas/TA-35/independent-source-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/labels-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/offline-label-scan-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-35/public-checks-v1.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-35/publication-20261010.json` | 项目配置 |
+| `docs/design/technical-atlas/TA-35/publication-independent-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/reference-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/source-review-v1.json` | 项目配置 |
 | `docs/design/technical-atlas/TA-35/static-unit-review-v1.json` | 项目配置 |

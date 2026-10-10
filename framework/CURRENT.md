@@ -4,9 +4,13 @@
 
 TA16/17浏览器连续下载夹具修复：真实点击间隔250ms，保留全部96/12下载、完整字节SHA及既有界面验收。研究PR共同下载超时已本地复现，修复后完整套件另验；不改产品、原件、权限或研究采用标准。另修TA18–20截图目录为系统tmpdir，保留CI/公网来源门禁与全部断言。；将新增campus_overview/campus_exploded重型views+assembly作为独立并行CI作业，公共core移除这两项且完整矩阵恰覆盖一次，所有场景/密度/单项期限及聚合门禁保持。
 
-> CURRENT · 基准版本 2026.10.10.69 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
+> CURRENT · 基准版本 2026.10.10.70 · 2026-09-06 用户明确要求：更新性讨论要替代对应旧内容，确保代码、规范和记录一致。
 
 本版补充 Reader 单个失败块在线 `retry-job`：精确 doc/revision/read块/model_cli_failed/次数与冻结recipe SHA绑定，复验原件、上下文和成功块，一致备份+前快照后事务只改目标state/error及marker。原次数/available/配方/worker锁/模型等待保持，重放不再排队、提交可见以marker为准；不替代reader retry或研究retry-transient。实现和本地测试登记不证明生产任务恢复；本次无点名线上目标，真实服务版本、模型恢复、再领取/完整报告与网站回执另验。
+
+TA35已实际PR591合并084e0698/.68：精确head2e2最终20项CI成功，当前四必过/管理员保护已核，正常合并无bypass。AWS09:50:18Z source=applied与exact78f293镜像healthy；public-v1于09:51:59Z全部15阶段、62声明资源、四明暗宽度/360header、七说明、两实际下载、自含字体full/preview SVG、六关联页与四绘制3D冒烟通过，17图逐张original目检，17公网源SHA及HTTPShealth200成立。登记主35/35、补4/4，原计划全部实际闭包；TA35首次实际源仍084e/.68，不改成此登记SHA。六通用例型不认证同一OEM/同比例/现场完整拓扑；手机号细节须放大、关联仅导航冒烟、动态overlay和匿名研究未验边界保留。raw1条TA18关联/login ERR_ABORTED、旧预算0step失败/lease拒绝和inventory断言修正保留，非abort传输/页面/资源错误零。本地URL拒绝不绕过；Spark/研究事实服务0操作。
+
+## 已保留的来源制作阶段（TA35 pending已由实际发布记录替代）
 
 TA30–34五项已实际a379dbba/.67、精确53c7镜像healthy，public-v4完整交互/20弹窗/10下载/28视图/5实际贴图/15故障恢复/4资源路径和33张原尺寸目检闭包，21公网源SHA与HTTPShealth200成立，登记34/35、补4/4。v1 Float32观察、v2真实CSS比例、v3原因未知retry超时与PR586最后premerge UNKNOWN记录保留；正常受保护合并且最终20检查通过，不伪称CLEAN或全tree零差异，并发研究三路径逐字保留。TA35为六已验原件字节守恒的独立1536×1024受控组合、7可编辑定位与自含字体；位置/主机PCIe/外部网络/选定独立PSU供电/独立液—液CDU排热分层，不把不同示例接成同一OEM或现场完整拓扑。新图及页面仅source review，真实公网/下载/链接/精确部署另验，不计35。本地产品URL拒绝不绕过，最终head必过CI、Spark研究0改。
 
