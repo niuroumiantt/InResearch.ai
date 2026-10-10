@@ -4308,6 +4308,62 @@
       "status": "candidate",
       "stored_path": "originals/2f/2fa4855754b40a411ff5201c4c0f3c1379014b71b09b7145f3859d2f9bcf3a4c/Rubin Ultra NVL576 架构：快速概览.pdf",
       "title": "Rubin Ultra NVL576 架构：快速概览"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "eae68ebb78efb8c6c5b8c63d6604832db4ef6806da2d88011c41d7f17decc3e5",
+      "coverage": {
+        "characters_read": 7592,
+        "characters_total": 7592,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-eae68ebb78efb8c6c5b8c63d6604832db4ef6806da2d88011c41d7f17decc3e5",
+      "id": "doc-eae68ebb78efb8c6c5b8c63d6604832db4ef6806da2d88011c41d7f17decc3e5",
+      "library_path": "library/by-node/system-power/2026_DCD_Omnia signs $2bn wind energy deal with Casa dos Ventos__eae68ebb78efb8c6.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:bytedance",
+        "actor:odata",
+        "root",
+        "site:permits",
+        "system:power"
+      ],
+      "question_ids": [
+        "NODE-demand-D1-boundary"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-ec9a807cabd344f996b69aad6f597138",
+      "report_sha256": "94b0710ec0d073fe40df4748d6e2d3c81156ceed8d967cf19795a9563b608917",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "eae68ebb78efb8c6c5b8c63d6604832db4ef6806da2d88011c41d7f17decc3e5",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "eae68ebb78efb8c6c5b8c63d6604832db4ef6806da2d88011c41d7f17decc3e5",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-eae68ebb78efb8c6c5b8c63d6604832db4ef6806da2d88011c41d7f17decc3e5",
+        "url": "https://www.datacenterdynamics.com/en/news/omnia-signs-2bn-wind-energy-deal-with-casa-dos-ventos-to-power-bytedance-data-center-in-brazil-report/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/omnia-signs-2bn-wind-energy-deal-with-casa-dos-ventos-to-power-bytedance-data-center-in-brazil-report/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/ea/eae68ebb78efb8c6c5b8c63d6604832db4ef6806da2d88011c41d7f17decc3e5/dcd-eae68ebb78efb8c6-Omnia signs -2bn wind energy deal with Casa dos Ventos to power B.html",
+      "title": "Omnia signs $2bn wind energy deal with Casa dos Ventos to power ByteDance data center in Brazil - report"
     }
   ],
   "evidence": [
@@ -31689,6 +31745,89 @@
           }
         },
         "batch_id": "42d8e9200f77fb0443264e521ef52485a05f18ab839536e14a8b6e7b78391056"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "750aa0dddd4367a7d6e133cf0fbd708ccc6439a07d06919b3aee7ffab21a4c89",
+      "document_id": "doc-eae68ebb78efb8c6c5b8c63d6604832db4ef6806da2d88011c41d7f17decc3e5",
+      "id": "rev-ec9a807cabd344f996b69aad6f597138:chunk:0:claim:7:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "with a Reuters report revealing that it would have an initial capacity of 300MW with the potential to scale to 900MW.",
+      "reading_revision_id": "rev-ec9a807cabd344f996b69aad6f597138",
+      "source_sha256": "eae68ebb78efb8c6c5b8c63d6604832db4ef6806da2d88011c41d7f17decc3e5",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:54:59+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原重要性6。连续原文引文及相邻项目语境充分，对当前M02-Q05提供一个由300MW初始预期扩展至900MW潜力的实质性个案。无A类触发条件，符合B类有界部分采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 75.639,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a9e996f93f16733d7137491e1b53b39acd7df1e00f3aaf4c1b4b09aa041f5269",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 37398,
+            "output_tokens": 2182,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.729,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "82263fbc04bd1af9209a7aaf602822e1b50808eed13001556caba253121e355b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 36733,
+              "output_tokens": 427,
+              "reasoning_output_tokens": 154
+            }
+          }
+        },
+        "batch_id": "d5f86bfedce0eae053883cc4b0393fd3df1348673b2d606b0b8a451fadf88726"
       }
     }
   ],
@@ -61713,6 +61852,106 @@
         "request_sha256": "8fe845b3d5f507f918722f7e6ea320e092b7381bedf61b1ef2413ae154d11169"
       },
       "object_mapping_check": "独立选择root，范围为数据中心整体投资及选址政策环境。税收优惠和数据本地化规则没有对应的允许政策对象；它们不自动构成site:permits所定义的区划、环评、排放或建设许可。物理安全考量未涉及门禁、视频、周界设备，故不采用part:security，也不添加IT、控制或电力系统映射。所选证据统一采用上述主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-eae68ebb78efb8c6c5b8c63d6604832db4ef6806da2d88011c41d7f17decc3e5",
+      "evidence_ids": [
+        "rev-ec9a807cabd344f996b69aad6f597138:chunk:0:claim:7:ev:0"
+      ],
+      "id": "adoption:review:5e9d80bee7758d55ef5e7be4",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M02-Q05"
+      ],
+      "reading_revision_id": "rev-ec9a807cabd344f996b69aad6f597138",
+      "status": "adopted",
+      "text": "DCD作者Zachary Skidmore在2026年5月19日的报道中援引此前Reuters报道，称位于巴西Ceará州Pecém港区、拟承载ByteDance的Omnia数据中心预计初始容量为300MW，并有扩展至900MW的潜力。DCD正文将项目描述为开发中；这些数值是报道所述的容量预期及扩展潜力，不能视为已投运容量，也不构成对当前项目状态的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:54:59+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "维持原重要性6。连续原文引文及相邻项目语境充分，对当前M02-Q05提供一个由300MW初始预期扩展至900MW潜力的实质性个案。无A类触发条件，符合B类有界部分采用要求；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q05"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 75.639,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "a9e996f93f16733d7137491e1b53b39acd7df1e00f3aaf4c1b4b09aa041f5269",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 37398,
+            "output_tokens": 2182,
+            "reasoning_output_tokens": 516
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.729,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "82263fbc04bd1af9209a7aaf602822e1b50808eed13001556caba253121e355b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 36733,
+              "output_tokens": 427,
+              "reasoning_output_tokens": 154
+            }
+          }
+        },
+        "batch_id": "d5f86bfedce0eae053883cc4b0393fd3df1348673b2d606b0b8a451fadf88726"
+      },
+      "source_candidate_ids": [
+        "rev-ec9a807cabd344f996b69aad6f597138:chunk:0:claim:7"
+      ],
+      "limitations": "原文未定义300MW和900MW属于IT负载、设施总容量还是其他口径，未明确扩展潜力的实现条件，也未提供业务需求转换系数。容量说法为DCD转引Reuters，原始Reuters容量报道及项目方材料未在本包中核验。单项目预期不能证明规模分布变化或GW级园区化趋势。",
+      "conflict_check": "已采用的法国Fluidstack 1GW拟建安排和Lake Mariner 500MW场址容量、750MW扩展潜力涉及不同项目，与本条不冲突，也非规范重复；保留各自阶段和容量口径，不相加。legacy的墨西哥ODATA QR03供电容量与本条地点、主体及范围不同。所供记录没有同范围反证或规范重复，不替换既有结论；检查不是外部全面反证搜索。",
+      "gap_dependency_check": "M02-Q05获得一个接近GW规模的扩展目标个案，仍需跨时间、同口径项目样本、阶段区分、项目去重及反证才能判断规模分布如何变化。应补核Reuters原始报道和项目方容量定义及扩展条件；不汇总GW、不指定投运等级、不更新模型参数，问题继续开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "d5f86bfedce0eae053883cc4b0393fd3df1348673b2d606b0b8a451fadf88726",
+        "source_report_sha256": "94b0710ec0d073fe40df4748d6e2d3c81156ceed8d967cf19795a9563b608917",
+        "request_sha256": "66b7848e74b4436ce630f78cc1e978e7a1cff06d81e0420d2045317d36472447"
+      },
+      "object_mapping_check": "原文讨论整座数据中心的初始容量预期与扩展潜力，实际范围匹配root。MW口径未明，不能据此映射system:power、system:it或site:grid；本条也不采用许可或设备主张，不因AI背景增加基础设施对象。"
     }
   ],
   "answers": [],
