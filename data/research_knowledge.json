@@ -41722,6 +41722,92 @@
         },
         "batch_id": "8f77ae9fc86c73c37dbbd10ef3a387f4ade154ba639593c2e081f362842b770f"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "cfb1f7f8180a13d7aecd7c72bf45c83e67dca6cf6298880007bd71b91b1db2f4",
+      "document_id": "doc-ce311870942307e0075bf83180b9aa217731fcd75d4f7500e587a70fac642f37",
+      "id": "rev-a645d4a829ca477b8cdc8be2e22b8ef8:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:digital-realty",
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "M02-Q02"
+      ],
+      "quote": "The company first announced plans for a campus in Garland on W Campell Road in 2017 and an expansion in 2018",
+      "reading_revision_id": "rev-a645d4a829ca477b8cdc8be2e22b8ef8",
+      "source_sha256": "ce311870942307e0075bf83180b9aa217731fcd75d4f7500e587a70fac642f37",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T20:40:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6，评分6。历史规划及扩建公告时点实质关联当前M02-Q02的头部玩家扩张节奏；连续原文和完整页面提供充分语境，可按明确来源归因作部分证据采用。未发现本项敏感、真实冲突或拟替换条件，符合B类要求。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 59.905,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "10779921212c47077834626c5e69a3caf12746c042e727b3a81fb8a5bc11406f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 65368,
+            "output_tokens": 2279,
+            "reasoning_output_tokens": 400
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.623,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b76eb34d251d6ee1c491b2d7ce384405a72d4999e7b10252e8a3a105d1d401e6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65098,
+              "output_tokens": 386,
+              "reasoning_output_tokens": 145
+            }
+          }
+        },
+        "batch_id": "a9ffaced3dfe94f46a8b25d39198ad4a00ca3885cc427b949b1286c10e5a3e9e"
+      }
     }
   ],
   "statements": [
@@ -81253,6 +81339,107 @@
         "request_sha256": "0b2b10c91e194b4631f37c5679987085bae22a78c4a20363c72b68e271e35f89"
       },
       "object_mapping_check": "本条明确讨论长鑫的公司比特出货和平均售价，对应actor:cxmt。契约part:dram是RDIMM/MRDIMM服务器模组，普通DRAM比特及混合ASP未建立该产品范围；也未单独界定HBM，故不继承part:dram、part:hbm或内存系统标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-ce311870942307e0075bf83180b9aa217731fcd75d4f7500e587a70fac642f37",
+      "evidence_ids": [
+        "rev-a645d4a829ca477b8cdc8be2e22b8ef8:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:9517220b638483f26daace87",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:digital-realty",
+        "root"
+      ],
+      "question_ids": [
+        "M02-Q02"
+      ],
+      "reading_revision_id": "rev-a645d4a829ca477b8cdc8be2e22b8ef8",
+      "status": "adopted",
+      "text": "据DCD作者Dan Swinhoe于2024年9月14日发表的报道，Digital Realty于2017年首次宣布美国得克萨斯州Dallas地区Garland的园区计划，位置为原文所写的W Campell Road，并于2018年宣布扩建。这是来源对历史规划公告的回溯，未经本次独立核验，不表示对应工程已开工、交付或投运。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T20:40:38+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6，评分6。历史规划及扩建公告时点实质关联当前M02-Q02的头部玩家扩张节奏；连续原文和完整页面提供充分语境，可按明确来源归因作部分证据采用。未发现本项敏感、真实冲突或拟替换条件，符合B类要求。",
+        "workorder_ids": [
+          "Q-M02-Q02"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 59.905,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "10779921212c47077834626c5e69a3caf12746c042e727b3a81fb8a5bc11406f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 65368,
+            "output_tokens": 2279,
+            "reasoning_output_tokens": 400
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 18.623,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "b76eb34d251d6ee1c491b2d7ce384405a72d4999e7b10252e8a3a105d1d401e6",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 65098,
+              "output_tokens": 386,
+              "reasoning_output_tokens": 145
+            }
+          }
+        },
+        "batch_id": "a9ffaced3dfe94f46a8b25d39198ad4a00ca3885cc427b949b1286c10e5a3e9e"
+      },
+      "source_candidate_ids": [
+        "rev-a645d4a829ca477b8cdc8be2e22b8ef8:chunk:0:claim:4"
+      ],
+      "limitations": "未提供2017年与2018年的确切公告日期、一手公告正文、各期建设范围、交付记录或融资安排。两个年份属于宣布计划的时点，不能计算实际建设周期或证明截至当前的扩张执行情况。",
+      "conflict_check": "既有Garland扩建申请、DFW37申请和建筑配置陈述涉及2024年进展，与本项历史公告互补，不是同命题重复。legacy的Garland & Lewisville合并记录涉及2024-H1建设状态，未建立与2017年或2018年公告范围的对应关系，不能据此验证或否定本项。其他地区项目、容量估计和融资观点未形成直接冲突。检查限于所供记录，不覆盖既有结论。",
+      "gap_dependency_check": "M02-Q02仅获得Digital Realty单一地区历史扩张公告的时间线片段，仍需一手公告、项目分期对应关系、实际建设交付及资金约束资料。不得把公告次数作为独立项目数或已交付规模；问题保持开放，不修改容量、时间参数或模型骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "a9ffaced3dfe94f46a8b25d39198ad4a00ca3885cc427b949b1286c10e5a3e9e",
+        "source_report_sha256": "c4d3c3ff49efd2dc44df95fb569fc55f967df06af6cd8e485b0cb330082466fd",
+        "request_sha256": "38cbfbac31200a04cb62a40e3ed68a6a64ef559bf8d1ea88696bf4927ca6591a"
+      },
+      "object_mapping_check": "独立核对对象契约：Digital Realty是公告主体，支持actor:digital-realty；主张涉及数据中心园区整体规划及扩张，支持root。未描述具体建筑结构、土建工程或功能分区，不继承Reader的system:facility标签；道路位置也不证明土地权利或许可，不映射site:land或site:permits。所选证据统一采用此主张级范围。"
     }
   ],
   "answers": [],
