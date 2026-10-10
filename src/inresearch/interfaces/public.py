@@ -9,7 +9,7 @@ from urllib.parse import urlsplit
 from inresearch.workflow.product_catalog import COMPANIES
 
 # 目录三项 + 账本，及它们的子页（爆炸图的 3D、芯片级镜头与规格库入口）。
-READER_PAGES = ('/', '/industry.html', '/projects.html', '/project.html', '/market.html', '/index.html', '/node.html', '/ledger.html', '/bom.html', '/bom3d.html', '/rack3d.html', '/server-plan.html', '/rack-atlas.html', '/rack-exploded.html', '/chip-atlas.html',
+READER_PAGES = ('/', '/industry.html', '/projects.html', '/project.html', '/market.html', '/index.html', '/node.html', '/ledger.html', '/bom.html', '/bom3d.html', '/rack3d.html', '/server-plan.html', '/campus-plan.html', '/facility-atlas.html', '/rack-atlas.html', '/rack-exploded.html', '/chip-atlas.html',
                 '/product-catalog.html', '/compute-catalog.html', '/report.html')
 # 这些页面读的登记与生成物。目标表的行不含来源 URL（来源登记在 part_fetch.json，不公开）。
 READER_DATA = ('/data/dashboard.json', '/data/dashboard_rules.json', '/data/tco_targets.json', '/data/tco_factors.json',

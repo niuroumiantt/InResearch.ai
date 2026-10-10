@@ -1,0 +1,133 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-16",
+  "stage": "source_drafting_static_validation_only",
+  "observed_at": "2026-10-09T17:51:11.641245+00:00",
+  "governance": "2026.10.09.46",
+  "baseline": "b4ad147f6d082242dff24defb7840b9fee4990ce",
+  "primary_published": 15,
+  "supplemental_published": 4,
+  "source_files": [
+    {
+      "file": "web/pages/bom.html",
+      "sha256": "1fb930d14751646a279afaf43b69c6a4d09461c15239259035132b677a6987e5",
+      "bytes": 26284
+    },
+    {
+      "file": "web/components/system-atlas.js",
+      "sha256": "7de1091a690ce3901bfbc267e02828527db712c7ce4363f1200bfcb17f08608a",
+      "bytes": 47428
+    },
+    {
+      "file": "web/components/technical-atlas.js",
+      "sha256": "a95cb0ecef100a4c8ee54e334aca6114fad9f5e0ab44380c7a5692a12d2a9a57",
+      "bytes": 24749
+    },
+    {
+      "file": "web/routes.json",
+      "sha256": "20da1b7e1157d79972f95521c4482f843429e9cfae4d756a5d9211f45ba3a73a",
+      "bytes": 39376
+    },
+    {
+      "file": "tests/system_atlas.cjs",
+      "sha256": "b467f6564002b3606759dd071e632ab0184de42789e89d6b169c37bdec5ba296",
+      "bytes": 10946
+    },
+    {
+      "file": "tests/technical_atlas.cjs",
+      "sha256": "75984eba3c40dee7b3f99af1779f714e65db002ec0322f79e1176b01cba1856c",
+      "bytes": 14002
+    },
+    {
+      "file": "tests/browser_suites.cjs",
+      "sha256": "972b194d6df03ae5b405f7b93ca6af12169fe9b954448616ec15e130c1b1285c",
+      "bytes": 2243
+    },
+    {
+      "file": "tests/unit/test_system_atlas_assets.py",
+      "sha256": "9785d7677ff58b1326ba514e3458ccc3602d68f8827e4e928fdca78c3730008f",
+      "bytes": 5825
+    },
+    {
+      "file": "tests/unit/test_browser_shards.py",
+      "sha256": "013eb404416886c92b6858ccfa5a442a5cd800fd800251e2b577456aa275d232",
+      "bytes": 3066
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-16/candidate-asset-manifest-v2.json",
+      "sha256": "1eb289c78f47c57085518e84e35555364775eb56470c7a69a2c188e8420299bf",
+      "bytes": 176923
+    },
+    {
+      "file": "docs/design/technical-atlas/TA-16/overview-composition-v2.json",
+      "sha256": "2133bec0a31f7c4774780b99291129ae0e6eaeb673818bdbcafbb1bbcbccf155",
+      "bytes": 2729
+    }
+  ],
+  "executed_checks": {
+    "native_and_label_identity": {
+      "items": 47,
+      "record": "/Users/m4/.local/share/inresearch.ai/technical-atlas-audit/2026-10-09/TA-16/partial-static-validation47-v4.json",
+      "sha256": "fa8bb895952d2078ca924b1c883d9726f25885294daa06e0906a788b9815b4ef",
+      "scope": "actual current native1536x1024, exact SVG embed, title/labels/notes, preview rest exact, tile480x320, actual font/path scan matched to current SVG SHA; not webpage acceptance"
+    },
+    "independent_static_source_review": {
+      "file": "/private/tmp/ta16-static-source-review-20261010.json",
+      "sha256": "9f81bbba1f9873f396246bfeaa07803e4c0bd2815b07a0585110fc54e82bf54c",
+      "scope": "static source/topology/default isolation/navigation logic; no product JavaScript or website execution"
+    },
+    "unit_tests": 24,
+    "syntax_only_files": 6,
+    "strict_warnings": 0,
+    "registry": {
+      "objects": 353,
+      "questions": 458,
+      "references_valid": true
+    },
+    "governance_files": 2036,
+    "logs": {
+      "governance_refresh": {
+        "file": "/private/tmp/ta16-source46-governance-refresh-final-20261010.log",
+        "sha256": "55aacfed47b2e4b4c8cac77a2dd3e7f994cb08d59c21629334b32bd17fedf1ed"
+      },
+      "governance_check": {
+        "file": "/private/tmp/ta16-source46-governance-check-final-20261010.log",
+        "sha256": "55aacfed47b2e4b4c8cac77a2dd3e7f994cb08d59c21629334b32bd17fedf1ed"
+      },
+      "strict": {
+        "file": "/private/tmp/ta16-source46-strict-20261010.log",
+        "sha256": "94984074fc56d8f87d931b1903d902248d811edc7fc7404e4a8441bae7e5bcc2"
+      },
+      "registry": {
+        "file": "/private/tmp/ta16-source46-registry-20261010.log",
+        "sha256": "ab28eba766007119771105b835a89215050bddd71ee4030d48d2e9f14a057c36"
+      },
+      "related_unit": {
+        "file": "/private/tmp/ta16-source46-related-unit-final-20261010.log",
+        "sha256": "aae47e6791cc62929543e926e3032a3b4fb6569b392c4ef7da4a557468c255a1"
+      }
+    }
+  },
+  "retained_failed_attempts": [
+    {
+      "file": "/private/tmp/ta16-source46-related-unit-20261010.log",
+      "reason": "test loader missing src in PYTHONPATH; original10 passed, 2 import errors; rerun unchanged code with src:tests/unit passed24"
+    },
+    {
+      "file": "/private/tmp/ta16-source46-governance-refresh-20261010.log",
+      "reason": "six reviewed hashes not yet recorded; manually reviewed routes/policy/queue/doc changes and added hashes; final refresh/check passed"
+    },
+    {
+      "file": "/private/tmp/ta16-source46-governance-refresh-retry-20261010.log",
+      "reason": "review helper initially counted four supplemental entries with primary; invariant assertion failed before writing hashes; corrected primary scope<=TA35 and reran"
+    }
+  ],
+  "not_verified": [
+    "Current product page browser/navigation, mobile/light/dark and 96 actual downloads still pending normal public validation",
+    "Local bom50166 user declined permission; no new port/browser/headless/file product page workaround; later offline blank asset-only SVG/PNG harness contains embedded fonts and aborts all network",
+    "Historical page-draft-v2 sevenobjects/fourteendownloads is partial old evidence, not current acceptance",
+    "Source merge/deployment/exact healthy image and public source bytes pending; not accepted/published",
+    "Category sources do not certify chosen examples as specific OEM/model, internal chemistry/structure/specifications/complete connections or installation suitability",
+    "CI not queried or claimed passed; Spark/research/services/scope not changed"
+  ]
+}

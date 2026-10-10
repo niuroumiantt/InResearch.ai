@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-ui-skin="folk" data-ui-theme="light" data-ui-mode="light">
+<head>
+<script src="/assets/theme-state.js"></script>
+<script src="/assets/site-skin.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="assets/research.css">
+<title>三维爆炸图 — inresearch.ai</title>
+<style>
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font: 13.5px/1.6 var(--ui-font); overflow: hidden; }
+  a { color: var(--accent); text-decoration: none; }
+  .topbar { position: fixed; top: 0; left: 0; right: 0; height: 46px; background: var(--ui-surface);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); display: flex; align-items: center;
+    gap: 4px; padding: 0 18px; z-index: 30; }
+  .topbar b { font-size: 15px; margin-right: 14px; }
+  .tab { padding: 12px 14px; color: var(--muted); }
+  .tab.on { color: var(--accent); font-weight: 600; }
+  .topbar .sp { flex: 1; }
+  #c { position: fixed; inset: 0; }
+  .hud { position: fixed; left: 18px; bottom: 18px; z-index: 20; background: var(--ui-surface);
+    border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 12px 16px; width: 300px;
+    box-shadow: 0 12px 40px rgba(0,0,0,.45); }
+  .hud h1 { font-size: 15px; margin-bottom: 2px; }
+  .hud .m { color: var(--muted); font-size: 11.5px; }
+  .hud input[type=range] { width: 100%; margin-top: 10px; accent-color: var(--accent); }
+  .hud .stage { font-size: 11.5px; color: var(--accent); min-height: 18px; margin-top: 2px; }
+  .hud button { margin-top: 8px; width: 100%; padding: 7px; border: none; border-radius: var(--ui-radius);
+    background: var(--accent); color: var(--ui-on-accent); font: inherit; font-weight: 700; cursor: pointer; }
+  .domrow { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 10px; }
+  .dchip { flex: 1 1 30%; text-align: center; padding: 5px 2px; border: 1px solid var(--line); border-radius: var(--ui-radius);
+    font-size: 11.5px; cursor: pointer; color: var(--text); background: transparent; transition: all .15s; user-select: none; }
+  .dchip:hover { border-color: var(--accent); color: var(--accent); }
+  .dchip.on { background: var(--accent); color: var(--ui-on-accent); font-weight: 700; border-color: var(--accent); }
+  #domainParts { margin-top: 8px; max-height: 30vh; overflow-y: auto; }
+  #domainParts .pitem { display: flex; align-items: center; gap: 7px; padding: 4px 7px; border-radius: var(--ui-radius);
+    font-size: 12px; cursor: pointer; }
+  #domainParts .pitem:hover { background: rgba(96,165,250,.12); color: var(--accent); }
+  #domainParts .dot { width: 7px; height: 7px; border-radius: 50%; flex: none; }
+  #domainParts .lay { margin-left: auto; font-size: 10px; color: var(--muted); }
+  #domainParts .covb { font-size: 9.5px; padding: 1px 5px; border-radius: var(--ui-radius); color: var(--ui-on-accent); font-weight: 700; flex: none; }
+  #domainParts .walkbtn { display: block; width: 100%; margin: 4px 0 6px; font: inherit; font-size: 11px; padding: 4px 8px; border: 1px solid var(--accent); border-radius: var(--ui-radius); background: none; color: var(--accent); cursor: pointer; }
+  #domainParts .chainh { font-size: 10.5px; color: var(--muted); margin: 6px 0 2px; padding-left: 7px; border-left: 2px solid var(--accent); }
+  #domainParts .pitem.walk { background: rgba(96,165,250,.18); color: var(--accent); }
+  #domainParts .nm { font-size: 9.5px; color: var(--muted); border: 1px dashed var(--line); border-radius: var(--ui-radius); padding: 0 4px; flex: none; }
+  #covLegend { display: none; gap: 8px; margin-top: 6px; font-size: 10.5px; color: var(--muted); align-items: center; }
+  #covLegend i { display: inline-block; width: 9px; height: 9px; border-radius: var(--ui-radius); margin-right: 3px; vertical-align: -1px; }
+  .spark-wrap { margin-top: 6px; }
+  .spark-wrap .sname { font-size: 10.5px; color: var(--muted); display: flex; justify-content: space-between; }
+  .spark-wrap .sname b { color: var(--text); }
+  #dossier { position: fixed; right: 18px; top: 62px; bottom: 18px; width: 340px; z-index: 20;
+    background: var(--ui-surface); border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 18px;
+    overflow-y: auto; display: none; box-shadow: 0 12px 40px rgba(0,0,0,.45); }
+  #dossier h2 { font-size: 16px; margin-bottom: 2px; }
+  #dossier .meta { font-size: 11.5px; color: var(--muted); margin-bottom: 10px; }
+  .badge { display: inline-block; font-size: 10.5px; font-weight: 600; padding: 1px 9px; border-radius: var(--ui-radius); color: #fff; }
+  .sec { margin-top: 12px; }
+  .sec h3 { font-size: 11.5px; color: var(--muted); font-weight: 500; margin-bottom: 5px; }
+  .chip { display: inline-block; border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 2px 10px;
+    font-size: 11.5px; margin: 0 4px 6px 0; color: var(--text); }
+  .chip:hover { border-color: var(--accent); color: var(--accent); }
+  .kv { display: flex; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed var(--line); font-size: 12px; }
+  .kv:last-child { border-bottom: none; }
+  #tip3d { position: fixed; pointer-events: none; z-index: 40; background: var(--ui-surface);
+    border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 6px 10px; font-size: 12px; display: none; }
+  .close { float: right; cursor: pointer; color: var(--muted); font-size: 16px; }
+  .insp { margin: 8px 0 4px; border: 1px solid var(--line); border-radius: var(--ui-radius); overflow: hidden; background: var(--ui-surface); }
+  .insp canvas { display: block; width: 100%; height: 190px; cursor: grab; touch-action: none; }
+  .insp .ihint { font-size: 10.5px; color: var(--muted); text-align: center; padding: 3px 0 5px; }
+  /* 钻取链：按骨架（bom.json 的系统与链路）生成 */
+  .drill { position: fixed; top: calc(var(--ui-bar-height) + 56px); left: 50%; transform: translateX(-50%); z-index: 25;
+    display: flex; align-items: center; gap: 2px; background: var(--ui-surface);
+    border: 1px solid var(--line); border-radius: var(--ui-radius); padding: 4px 6px;
+    backdrop-filter: blur(8px); box-shadow: 0 6px 22px rgba(0,0,0,.4); font-size: 12px; }
+  .drill a, .drill span { padding: 3px 11px; border-radius: var(--ui-radius); color: var(--muted);
+    text-decoration: none; white-space: nowrap; }
+  .drill a:hover { background: rgba(96,165,250,.15); color: var(--accent); }
+  .drill .on { background: var(--accent); color: var(--ui-on-accent); font-weight: 700; }
+  .drill .soon { opacity: .45; cursor: default; }
+  .drill .sep { padding: 0 1px; color: var(--line); }
+  @media (max-width: 900px) { .drill { display: none; } }
+
+  .topbar { overflow-x: auto; white-space: nowrap; }
+  .topbar .tab { flex: none; }
+  .close { border: 0; background: transparent; padding: 0 2px; }
+  .hud { max-height: calc(100dvh - 122px); overflow-y: auto; }
+  #dossier .sec .kv { gap: 12px; overflow-wrap: anywhere; }
+  @media (max-width: 700px) {
+    .topbar { height: 46px; padding: 0 10px; gap: 0; }
+    .topbar b { font-size: 12px; margin-right: 6px; }
+    .topbar .tab { font-size: 11px; padding: 12px 9px; }
+    .hud { left: 10px; right: 10px; bottom: 10px; width: auto; padding: 10px 12px; max-height: 37dvh; }
+    .hud h1 { font-size: 13px; }
+    #domainParts { max-height: 15dvh; }
+    #dossier { left: 10px; right: 10px; top: 55px; bottom: 10px; width: auto; padding: 14px; z-index: 28; }
+    .insp canvas { height: 160px; }
+  }
+
+  .campus-overview .hud {top:calc(var(--ui-bar-height) + 58px);bottom:auto;max-height:calc(100dvh - 240px);}
+  .campus-legend {position:fixed;z-index:12;bottom:12px;left:50%;transform:translateX(-50%);width:620px;max-width:calc(100vw - 24px);box-sizing:border-box;padding:9px 14px;background:#faf9f4;color:#383d37;border:1px solid #c6cabe;border-radius:8px;font:14px/1.6 Inter,"Noto Sans SC",sans-serif;white-space:nowrap;}
+  .campus-legend b {display:block;font-size:13px;}.campus-legend-grid {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px 8px;}
+  #campus-static-plate img {display:block;width:100%;height:auto;}
+  #campus-static-plate summary {cursor:pointer;padding:6px 0;}
+  @media(max-width:700px){.campus-overview .hud {max-height:55dvh;}.campus-legend {font-size:11.5px;padding:7px 9px;}.campus-legend b {font-size:12px;}}
+</style>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/assets/fonts/noto-sans-sc-1.woff2"><link rel="stylesheet" href="/assets/fonts/fonts.css"><link rel="stylesheet" href="/assets/site-skin.css">
+</head>
+<body>
+<inresearch-shell data-section="bom"></inresearch-shell>
+<div class="topbar">
+  <a class="tab" href="/node.html?id=system%3Astorage">存储系统</a>
+  <a class="tab" href="bom.html">爆炸图 2D</a>
+  <a class="tab on" href="bom3d.html">爆炸图 3D</a>
+  <a class="tab" href="rack3d.html">机柜拆解台</a>
+  <span class="sp"></span>
+</div>
+<canvas id="c"></canvas>
+<div class="hud">
+<details class="ui-viewer-controls" data-responsive-panel open><summary aria-label="展开或收起场景控制">数据中心拆解</summary><div>
+  <h1>数据中心拆解</h1>
+  <div class="m">拖动旋转 · 滚轮缩放 · 点击设备看档案 · 按 1-6 直达领域</div>
+  <div class="m rg-concept-note">概念示意 · 现场安装与尺寸未知 · 点击节点追溯证据</div>
+  <input aria-label="爆炸拆解进度" type="range" id="explode" min="0" max="100" value="0">
+  <div class="stage" id="stage">概念全景：AI 数据中心</div>
+  <div class="domrow" id="domrow"></div>
+  <div class="dchip" id="covChip" style="margin-top:8px" title="类别索引丰富度：公司/产品/序列/指标四维；不代表节点证据或现场核实">📊 类别索引热图</div>
+  <div id="covLegend"><span><i style="background:#ef4444"></i>0/4</span><span><i style="background:#f59e0b"></i>1</span><span><i style="background:#eab308"></i>2</span><span><i style="background:#84cc16"></i>3</span><span><i style="background:#22c55e"></i>4 类</span></div>
+  <div id="domainParts"></div>
+  <button id="fit-view" type="button">适配视图</button>
+  <button id="atlas-export" type="button" title="导出当前视角，SVG文字可编辑">导出图册</button>
+  <button id="play">▶ 自动拆解</button>
+  <a href="rack3d.html"><button style="background:transparent;border:1px solid var(--line);color:var(--text);font-weight:500">🔬 进入机柜拆解台 →</button></a>
+</div></details>
+</div>
+<div id="dossier"></div>
+<div id="tip3d"></div>
+
+<script type="importmap">{"imports": {"three": "./assets/vendor/three.module.js"}}</script>
+<script type="module">
+import * as THREE from "three";
+import {buildCampusAssembly,CAMPUS_STAGES} from "/assets/campus-assembly.js";
+import {fitRackExploded as fitCampusVisible} from "/assets/rack-exploded-view.js";
+const campusQuery=new URLSearchParams(location.search);
+const campusPhysicalParts=['shell','rack-frame','room-cooling','cdu','ups','cabling','chiller','transformer','backup-power','bess'];
+let campusMode=true; // resolved against the actual BOM/right registry below.
+let campusAssembly=null,campusSelectedMeshes=null,campusSelectedInstance=null,campusUiObserver=null;
+import {createScenePicking} from "/assets/scene-picking.js";
+import {createSceneMotion} from "/assets/scene-motion.js";
+import {createPartDossier, dossierNode} from "/assets/part-dossier.js?v=20261008.14";
+import {createPartInspector} from "/assets/part-inspector.js?v=20261008.14";
+import {escapeHtml as esc} from "/assets/series-summary.js";
+import { bindResearchMeshNodes, installStageControl, safeURL } from "./assets/research-graph.js";
+import { OrbitControls } from "./assets/vendor/OrbitControls.js";
+import { EffectComposer } from "./assets/vendor/EffectComposer.js";
+import { RenderPass } from "./assets/vendor/RenderPass.js";
+import { OutputPass } from "./assets/vendor/OutputPass.js";
+import {mountSceneView} from "/assets/scene-view.js";
+import {mountSceneModels} from "/assets/model-assets.js";
+import {createSceneEnvironment, createTexturePool} from "/assets/scene-resources.js";
+import {configureAtlasRenderer, atlasMaterial, atlasStudio, addAtlasLights, createAtlasDrawing, mountAtlasExport} from "/assets/scene-atlas.js?v=20261008.14";
+
+import {loadSceneData,loadOptionalSceneData} from "/assets/scene-data.js?v=20261008.14";
+const [BOM, companies, prices, inds, reg, siteRights] = await loadSceneData([
+  {url:"framework/bom.json", collection:"parts"},
+  {url:"data/companies.json", collection:"records"},
+  {url:"data/prices.json", collection:"records"},
+  {url:"framework/indicators.json", collection:"indicators"},
+  {url:"framework/modules.json", collection:"modules"},
+  {url:"framework/site_rights.json", collection:"rights"},
+], {controls:[document.querySelector(".hud")]});
+const CN = {}; companies.records.forEach(c => CN[c.company_id] = c.name_cn || c.name);
+const INDS = {}; inds.indicators.forEach(i => INDS[i.id] = i);
+const MODNAME = {}; reg.modules.forEach(m => MODNAME[m.id] = m.name);
+const PART = {}; BOM.parts.forEach(p => PART[p.id] = p);
+/* 站点权利（土地、水权、并网、燃气接入、网络接入）不是部件，但园区场景里有它们的位置：
+   按重切前的旧部件 ID 挂进 PART，档案与研究节点沿用 part:<旧 ID>。 */
+const RIGHTS = (siteRights.rights || []).map(r => ({ ...r, id: r.from_bom_part || r.id, site_right_id:r.id, scale: r.scale, kind: "site_right" }));
+RIGHTS.forEach(r => { PART[r.id] ||= r; });
+/* 被拆分的旧部件 ID（bom.aliases：substation → transformer 等）解析到去处，场景造型不必随重切改名 */
+const ALIAS = {};
+Object.entries(BOM.aliases || {}).forEach(([old, to]) => {
+  const target = to.startsWith("site:") ? RIGHTS.find(r => r.id === old || r.id === to.slice(5)) : PART[to];
+  if (target && !PART[old]) PART[old] = target;
+  if (target) ALIAS[old] = target.id;
+});
+function resolveScenePart(value){let id=String(value||'').replace(/^part:/,'');if(id.startsWith('site:')){id=id.slice(5);return RIGHTS.find(r=>r.site_right_id===id||r.id===id);}return PART[id]||RIGHTS.find(r=>r.site_right_id===id);}
+const campusRawPart=campusQuery.get('p')||campusQuery.get('node')||'';
+const campusRequestedPart=resolveScenePart(campusRawPart);
+// Preserve old nonzero stage and detailed hardware routes until their own item;
+// the actual six rights and DCIM always remain independent nonphysical entries.
+campusMode=campusQuery.get('view')==='campus'||(campusQuery.get('view')!=='legacy'&&(!campusQuery.has('x')||(+campusQuery.get('x')||0)===0)&&(!campusRawPart||campusPhysicalParts.includes(campusRequestedPart?.id)||campusRequestedPart?.kind==='site_right'||campusRequestedPart?.id==='dcim'));
+let PRODCOUNT = null; // Restricted product registry is optional; absent is unknown, never zero.
+/* 数据覆盖四维：公司/产品/价格序列/已录值指标——覆盖度热图与档案卡共用同一套口径 */
+const COVC = ["#ef4444", "#f59e0b", "#eab308", "#84cc16", "#22c55e"];
+const covDims = p => [
+  ["公司", (p.companies || []).length],
+  ["产品", PRODCOUNT === null ? null : (PRODCOUNT[p.id] || 0)],
+  ["序列", (p.series || []).length],
+  ["指标", (p.indicators || []).filter(i => INDS[i] && INDS[i].value != null).length],
+];
+const covScore = p => PRODCOUNT === null ? null : covDims(p).filter(d => d[1] > 0).length;
+const SN = { tight: "紧缺", transition: "技术切换中", mature: "成熟", emerging: "新兴" };
+const SBADGE = { tight: "#ef4444", transition: "#f59e0b", mature: "#22c55e", emerging: "#a78bfa" };
+
+/* ─────────── 共享技术图册 WebGL ─────────── */
+const canvas = document.getElementById("c");
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.12;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+const texturePool = createTexturePool({THREE});
+
+const scene = new THREE.Scene();
+configureAtlasRenderer(THREE, renderer, scene);
+const atlasDrawing = createAtlasDrawing({THREE, scene});
+// The technical plate stays warm white while the surrounding controls follow appearance.
+function syncSceneAppearance() { configureAtlasRenderer(THREE, renderer, scene); }
+window.addEventListener('inresearch:appearance', syncSceneAppearance);
+
+let sceneView;
+let pageDisposed=false;
+const camera = new THREE.PerspectiveCamera(44, 1, 0.1, 600);
+if(campusMode)camera.position.set(-15,60,70);else camera.position.set(46,30,52);
+const controls = new OrbitControls(camera, canvas);
+controls.enableDamping = true;
+controls.target.set(0, 6, 0);
+controls.maxPolarAngle = Math.PI / 2 - 0.02;
+controls.autoRotate = !campusMode && !matchMedia('(prefers-reduced-motion: reduce)').matches; controls.autoRotateSpeed = 0.5;
+canvas.addEventListener("pointerdown", () => controls.autoRotate = false, { once: true });
+
+const composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+composer.addPass(new OutputPass());
+
+/* Neutral atlas studio: stable lighting without the previous colored HDR reflections. */
+const sceneEnvironment = createSceneEnvironment({THREE, renderer, scene, proceduralOnly:true,
+  fallback:()=>atlasStudio(THREE)});
+addAtlasLights(THREE, scene, [38,55,26], {left:-70,right:70,top:60,bottom:-60,far:160});
+
+/* ─────────── 程序化纹理（零二进制：全部 canvas 现画）─────────── */
+const ctex = texturePool.canvas;
+const rnd = (() => { let s = 42; return () => (s = s * 16807 % 2147483647) / 2147483647; })();
+
+const TEX = {
+  rackFront: hero => ctex(128, 256, (g, w, h) => {
+    g.fillStyle = hero ? "#182234" : "#12161f"; g.fillRect(0, 0, w, h);
+    g.fillStyle = "#0a0d13"; g.fillRect(0, 0, 8, h); g.fillRect(w - 8, 0, 8, h);   // 立柱
+    for (let y = 10; y < h - 8; y += 13) {                                          // 1U 槽位
+      g.fillStyle = "#1d2635"; g.fillRect(11, y, w - 22, 10);
+      g.fillStyle = "#2c3850"; g.fillRect(13, y + 1, 3, 8); g.fillRect(w - 16, y + 1, 3, 8);
+      for (let x = 20; x < w - 24; x += 4) { g.fillStyle = "#0d1119"; g.fillRect(x, y + 3, 2, 5); }  // 进风孔
+      const on = rnd();
+      g.fillStyle = on > .5 ? "#22c55e" : (on > .25 ? "#3b82f6" : "#1a2333");
+      g.fillRect(w - 22, y + 3, 3, 3);
+    }
+  }),
+  rackSide: ctex(64, 128, (g, w, h) => {
+    const gr = g.createLinearGradient(0, 0, w, 0);
+    gr.addColorStop(0, "#171d29"); gr.addColorStop(.5, "#1f2735"); gr.addColorStop(1, "#151b26");
+    g.fillStyle = gr; g.fillRect(0, 0, w, h);
+    g.strokeStyle = "rgba(255,255,255,.05)"; g.strokeRect(4, 4, w - 8, h - 8);
+  }),
+  sled: ctex(128, 32, (g, w, h) => {
+    g.fillStyle = "#232c3d"; g.fillRect(0, 0, w, h);
+    g.fillStyle = "#161d2a"; g.fillRect(4, 6, 26, h - 12); g.fillRect(34, 6, 26, h - 12);   // 盘位
+    for (let x = 68; x < w - 14; x += 6) { g.fillStyle = "#10151f"; g.fillRect(x, 8, 3, h - 16); }
+    g.fillStyle = "#22c55e"; g.fillRect(w - 9, 8, 3, 3);
+    g.fillStyle = "#f59e0b"; g.fillRect(w - 9, 16, 3, 3);
+  }),
+  ports: ctex(128, 32, (g, w, h) => {
+    g.fillStyle = "#101828"; g.fillRect(0, 0, w, h);
+    for (let x = 6; x < w - 10; x += 9) {
+      g.fillStyle = "#1e293b"; g.fillRect(x, 8, 7, 7); g.fillRect(x, 18, 7, 7);
+      if (rnd() > .4) { g.fillStyle = "#38bdf8"; g.fillRect(x + 2, 10, 3, 3); }
+      if (rnd() > .5) { g.fillStyle = "#22c55e"; g.fillRect(x + 2, 20, 3, 3); }
+    }
+  }),
+  perf: ctex(64, 64, (g, w, h) => {
+    g.fillStyle = "#232a36"; g.fillRect(0, 0, w, h);
+    g.fillStyle = "#141922";
+    for (let y = 4; y < h; y += 8) for (let x = 4 + (y % 16 ? 4 : 0); x < w; x += 8) {
+      g.beginPath(); g.arc(x, y, 2.2, 0, 7); g.fill();
+    }
+  }, 3, 2),
+  fins: ctex(128, 64, (g, w, h) => {
+    g.fillStyle = "#39404d"; g.fillRect(0, 0, w, h);
+    for (let x = 0; x < w; x += 7) {
+      g.fillStyle = "#4c5665"; g.fillRect(x, 2, 3, h - 4);
+      g.fillStyle = "#20242d"; g.fillRect(x + 3, 2, 2, h - 4);
+    }
+  }, 2, 1),
+  copperFins: ctex(128, 64, (g, w, h) => {
+    g.fillStyle = "#8a5a2e"; g.fillRect(0, 0, w, h);
+    for (let x = 0; x < w; x += 6) {
+      g.fillStyle = "#c98a4b"; g.fillRect(x, 1, 3, h - 2);
+      g.fillStyle = "#5e3c1e"; g.fillRect(x + 3, 1, 2, h - 2);
+    }
+  }, 2, 1),
+  pcb: ctex(128, 128, (g, w, h) => {
+    g.fillStyle = "#0f3d2a"; g.fillRect(0, 0, w, h);
+    g.strokeStyle = "rgba(212,255,222,.28)"; g.lineWidth = 1;
+    for (let i = 0; i < 26; i++) {
+      g.beginPath();
+      let x = rnd() * w, y = rnd() * h;
+      g.moveTo(x, y);
+      for (let k = 0; k < 3; k++) { rnd() > .5 ? x = rnd() * w : y = rnd() * h; g.lineTo(x, y); }
+      g.stroke();
+    }
+    g.fillStyle = "#c9a227";
+    for (let i = 0; i < 40; i++) g.fillRect(rnd() * w, rnd() * h, 2, 2);
+  }),
+  die: ctex(64, 64, (g, w, h) => {
+    const gr = g.createLinearGradient(0, 0, w, h);
+    gr.addColorStop(0, "#3d2f6b"); gr.addColorStop(.4, "#2d6b5a"); gr.addColorStop(.7, "#6b3d5e"); gr.addColorStop(1, "#2f3d6b");
+    g.fillStyle = gr; g.fillRect(0, 0, w, h);
+    g.strokeStyle = "rgba(255,255,255,.18)";
+    for (let i = 8; i < w; i += 8) { g.strokeRect(i, 0, .5, h); g.strokeRect(0, i, w, .5); }
+  }),
+  fan: ctex(128, 128, (g, w, h) => {
+    g.fillStyle = "#2a313d"; g.fillRect(0, 0, w, h);
+    const cx = w / 2, cy = h / 2;
+    g.fillStyle = "#12161e"; g.beginPath(); g.arc(cx, cy, 56, 0, 7); g.fill();
+    g.fillStyle = "#39404d";
+    for (let i = 0; i < 7; i++) {
+      g.save(); g.translate(cx, cy); g.rotate(i / 7 * Math.PI * 2);
+      g.beginPath(); g.ellipse(28, 0, 26, 10, .5, 0, 7); g.fill(); g.restore();
+    }
+    g.fillStyle = "#59627a"; g.beginPath(); g.arc(cx, cy, 12, 0, 7); g.fill();
+    g.strokeStyle = "#454d5e"; g.lineWidth = 4; g.beginPath(); g.arc(cx, cy, 56, 0, 7); g.stroke();
+  }),
+  louvre: ctex(64, 64, (g, w, h) => {
+    g.fillStyle = "#8a93a2"; g.fillRect(0, 0, w, h);
+    for (let y = 0; y < h; y += 8) {
+      g.fillStyle = "#c5cdd9"; g.fillRect(2, y + 1, w - 4, 4);
+      g.fillStyle = "#3f4652"; g.fillRect(2, y + 5, w - 4, 3);
+    }
+  }, 3, 2),
+  glass: ctex(256, 128, (g, w, h) => {
+    g.fillStyle = "rgba(130,170,220,.30)"; g.fillRect(0, 0, w, h);
+    g.strokeStyle = "rgba(220,235,255,.55)"; g.lineWidth = 2;
+    for (let x = 0; x <= w; x += 32) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
+    g.beginPath(); g.moveTo(0, h * .45); g.lineTo(w, h * .45); g.stroke();
+    g.strokeRect(1, 1, w - 2, h - 2);
+  }),
+  roof: ctex(256, 192, (g, w, h) => {
+    g.fillStyle = "#a9aaa3"; g.fillRect(0, 0, w, h);
+    g.strokeStyle = "rgba(0,0,0,.18)";
+    for (let x = 0; x < w; x += 32) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
+    for (let y = 0; y < h; y += 32) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+    g.fillStyle = "rgba(255,255,255,.07)";
+    for (let i = 0; i < 300; i++) g.fillRect(rnd() * w, rnd() * h, 2, 2);
+  }),
+  ground: ctex(512, 384, (g, w, h) => {
+    g.fillStyle = "#11161f"; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 2600; i++) {
+      g.fillStyle = `rgba(255,255,255,${rnd() * .035})`;
+      g.fillRect(rnd() * w, rnd() * h, 1.6, 1.6);
+    }
+    g.strokeStyle = "rgba(140,165,200,.10)"; g.lineWidth = 1;
+    for (let x = 0; x <= w; x += 32) { g.beginPath(); g.moveTo(x, 0); g.lineTo(x, h); g.stroke(); }
+    for (let y = 0; y <= h; y += 32) { g.beginPath(); g.moveTo(0, y); g.lineTo(w, y); g.stroke(); }
+  }),
+  concrete: ctex(128, 128, (g, w, h) => {
+    g.fillStyle = "#2b3240"; g.fillRect(0, 0, w, h);
+    for (let i = 0; i < 500; i++) {
+      g.fillStyle = `rgba(255,255,255,${rnd() * .05})`;
+      g.fillRect(rnd() * w, rnd() * h, 1.5, 1.5);
+    }
+  }),
+  cab: ctex(96, 128, (g, w, h) => {
+    g.fillStyle = "#3d4656"; g.fillRect(0, 0, w, h);
+    for (let x = 4; x < w - 8; x += 30) {
+      g.fillStyle = "#2a3140"; g.fillRect(x, 6, 26, h - 12);
+      g.fillStyle = "#202634"; g.fillRect(x + 2, 10, 22, 30);
+      g.fillStyle = "#22c55e"; g.fillRect(x + 4, h - 20, 4, 4);
+      g.fillStyle = "#38bdf8"; g.fillRect(x + 12, h - 20, 4, 4);
+    }
+  }),
+};
+
+/* ─────────── 造物助手 ─────────── */
+const pickables = [];
+const decor = [];
+const animated = [];
+function matsOf(o) { return Array.isArray(o.material) ? o.material : [o.material]; }
+function M(color, opt = {}) { return atlasMaterial(THREE, color, opt); }
+function tag(obj, partId) {
+  obj.traverse(m => {
+    if (m.isMesh) {
+      m.castShadow = true; m.receiveShadow = true;
+      if (partId) { m.userData.part = partId; pickables.push(m); }
+    }
+  });
+  return obj;
+}
+function box(w, h, d, color, x, y, z, partId, opt = {}) {
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), M(color, opt));
+  m.position.set(x, y, z);
+  tag(m, partId);
+  scene.add(m);
+  return m;
+}
+function texbox(w, h, d, x, y, z, partId, faceMats) {
+  // faceMats: {px,nx,py,ny,pz,nz,all} —— 未给的面用 all
+  const all = faceMats.all || M(0x39445a);
+  const order = ["px", "nx", "py", "ny", "pz", "nz"].map(k => faceMats[k] || all);
+  const m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), order);
+  m.position.set(x, y, z);
+  tag(m, partId);
+  scene.add(m);
+  return m;
+}
+function rboxGeo(w, h, d, r = 0.12) {
+  const hw = Math.max(0.01, w / 2 - r), hd = Math.max(0.01, d / 2 - r);
+  const s = new THREE.Shape();
+  s.absarc(hw, hd, r, 0, Math.PI / 2);
+  s.absarc(-hw, hd, r, Math.PI / 2, Math.PI);
+  s.absarc(-hw, -hd, r, Math.PI, Math.PI * 1.5);
+  s.absarc(hw, -hd, r, Math.PI * 1.5, Math.PI * 2);
+  const g = new THREE.ExtrudeGeometry(s, { depth: Math.max(0.01, h - 2 * r), bevelEnabled: true, bevelSegments: 2, bevelSize: r * 0.9, bevelThickness: r });
+  g.center();
+  g.rotateX(-Math.PI / 2);
+  return g;
+}
+function rbox(w, h, d, color, x, y, z, partId, opt = {}, r = 0.12) {
+  const m = new THREE.Mesh(rboxGeo(w, h, d, r), M(color, opt));
+  m.position.set(x, y, z);
+  tag(m, partId);
+  scene.add(m);
+  return m;
+}
+function cyl(r, h, color, x, y, z, partId, opt = {}, seg = 28) {
+  const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, h, seg), M(color, opt));
+  m.position.set(x, y, z);
+  tag(m, partId);
+  scene.add(m);
+  return m;
+}
+function group(x, y, z, partId) {
+  const g = new THREE.Group();
+  g.position.set(x, y, z);
+  g.userData.partId = partId;
+  scene.add(g);
+  return g;
+}
+function put(parent, mesh) { scene.remove(mesh); parent.add(mesh); return mesh; }
+function explode(obj, dx, dy, dz, t0 = 0, t1 = 1) {
+  animated.push({ obj, home: obj.position.clone(), off: new THREE.Vector3(dx, dy, dz), t0, t1 });
+}
+/* 标注牌：编号圆点 + 文字的 pill，高分屏渲染 */
+function label(text,x,y,z,size=1,color=null,num=null) {
+  return atlasDrawing.label(text,x,y,z,size,34,num);
+}
+
+if(!campusMode){
+/* ─────────── 建筑 ─────────── */
+const FW = 36, FD = 24, WH = 9;
+
+// 场地：沥青地 + 主路 + 混凝土设备台
+{
+  const g = new THREE.Mesh(new THREE.PlaneGeometry(150, 100), new THREE.MeshStandardMaterial({ color:0xf2f1ea, roughness:1, metalness:0 }));
+  g.rotation.x = -Math.PI / 2; g.position.y = 0.01; g.receiveShadow = true;
+  g.userData.atlasSkip = true; g.userData.part = "land"; pickables.push(g); scene.add(g);
+  const road = box(120, 0.06, 5, 0xbebeb4, 0, 0.06, FD / 2 + 16, "land", { roughness: 1 });
+  road.castShadow = false;
+  const pads = [[FW / 2 + 11.5, -6, 20, 10], [FW / 2 + 11, 8.5, 22, 12], [-FW / 2 - 12, 0, 18, 20], [-8, FD / 2 + 7, 8, 7]];
+  pads.forEach(([px, pz, pw, pd]) => {
+    const p = new THREE.Mesh(new THREE.BoxGeometry(pw, 0.18, pd), new THREE.MeshStandardMaterial({ map: TEX.concrete, roughness: .95 }));
+    p.position.set(px, 0.1, pz); p.receiveShadow = true; p.castShadow = false; scene.add(p); decor.push(p);
+  });
+}
+
+// 底板（架空地板）
+{
+  const slab = rbox(FW, 0.9, FD, 0x323b4e, 0, 0.55, 0, "shell", { roughness: .8 }, 0.18);
+  const edge = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(FW, 0.9, FD)),
+    new THREE.LineBasicMaterial({ color: 0x454641, transparent: true, opacity: 0.35 }));
+  edge.position.copy(slab.position); scene.add(edge); decor.push(edge);
+}
+
+// 屋面：板 + 女儿墙 + 屋顶机组，一体上掀
+{
+  const roofG = group(0, WH + 0.55, 0, null);
+  put(roofG, texbox(FW + 1, 0.7, FD + 1, 0, 0, 0, "shell",
+    { py: new THREE.MeshStandardMaterial({ map: TEX.roof, roughness: .85 }), ny: M(0x55617a), all: M(0x6b7a92) }));
+  [[0, -FD / 2 - .3, FW + 1, .35], [0, FD / 2 + .3, FW + 1, .35]].forEach(([px, pz, pw, pd]) =>
+    put(roofG, box(pw, 0.7, pd, 0x8fa0b8, px, 0.65, pz, "shell")));
+  [[-FW / 2 - .3, 0, .35, FD + 1.6], [FW / 2 + .3, 0, .35, FD + 1.6]].forEach(([px, pz, pw, pd]) =>
+    put(roofG, box(pw, 0.7, pd, 0x8fa0b8, px, 0.65, pz, "shell")));
+  // 屋顶 AHU 机组 ×3
+  for (let i = 0; i < 3; i++) {
+    const ax = -10 + i * 10;
+    put(roofG, texbox(4.6, 1.6, 3, ax, 1.35, -3, "shell",
+      { pz: M(0x39445a, { map: TEX.perf }), all: M(0x8494ab) }));
+    put(roofG, cyl(0.9, 0.35, 0x2a313d, ax - 0.9, 2.25, -3, "shell", { map: TEX.fan, roughness: .7 }, 24));
+    put(roofG, cyl(0.9, 0.35, 0x2a313d, ax + 0.9, 2.25, -3, "shell", { map: TEX.fan, roughness: .7 }, 24));
+  }
+  tag(roofG, null);
+  explode(roofG, 0, 17, 0, 0.02, 0.3);
+}
+
+// 玻璃幕墙（带竖梃分格），四面外炸
+{
+  const wallMat = () => new THREE.MeshStandardMaterial({
+    map: TEX.glass, transparent: true, opacity: 0.5, roughness: 0.12, metalness: 0.1,
+    envMapIntensity: 1.4, side: THREE.DoubleSide, depthWrite: false,
+  });
+  const mk = (w, h, x, y, z, ry, dx, dz) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), wallMat());
+    m.position.set(x, y, z); m.rotation.y = ry;
+    m.userData.part = "shell"; pickables.push(m); m.castShadow = false; scene.add(m);
+    explode(m, dx, 2, dz, 0.08, 0.35);
+  };
+  mk(FW, WH, 0, WH / 2 + 0.9, -FD / 2, 0, 0, -13);
+  mk(FW, WH, 0, WH / 2 + 0.9, FD / 2, 0, 0, 13);
+  mk(FD, WH, FW / 2, WH / 2 + 0.9, 0, Math.PI / 2, 13, 0);
+  mk(FD, WH, -FW / 2, WH / 2 + 0.9, 0, Math.PI / 2, -13, 0);
+  // 角柱
+  [[-FW / 2, -FD / 2], [FW / 2, -FD / 2], [-FW / 2, FD / 2], [FW / 2, FD / 2]].forEach(([cx, cz]) =>
+    box(0.55, WH, 0.55, 0x2b3444, cx, WH / 2 + 0.9, cz, "shell", { roughness: .5, metalness: .4 }));
+}
+label("数据中心 · 拖动滑杆拆解", 0, WH + 4.5, 0, 1.25, "#9fc2f0");
+
+/* ─────────── 机房内部 ─────────── */
+const rackRows = 4, rackN = 7;
+let hero = null;
+for (let r = 0; r < rackRows; r++) {
+  for (let i = 0; i < rackN; i++) {
+    const x = -12 + i * 3.0, z = -7.5 + r * 4.2;
+    const isHero = (r === rackRows - 1 && i === 3);
+    const rack = texbox(2.1, 4.6, 1.6, x, 3.15, z, "rack-frame", {
+      pz: new THREE.MeshStandardMaterial({ map: TEX.rackFront(isHero), roughness: .6, emissive: 0xffffff, emissiveMap: TEX.rackFront(isHero), emissiveIntensity: isHero ? .5 : .3 }),
+      px: new THREE.MeshStandardMaterial({ map: TEX.rackSide, roughness: .55 }),
+      nx: new THREE.MeshStandardMaterial({ map: TEX.rackSide, roughness: .55 }),
+      all: M(isHero ? 0x24354f : 0x161d29, { roughness: 0.45 }),
+    });
+    const rowOff = (r - (rackRows - 1) / 2) * 3.2;
+    explode(rack, 0, 0, rowOff, 0.3, 0.55);
+    if (isHero) hero = { rack, x, z, rowOff };
+  }
+}
+// 明星机柜：进一步前移 + 抽出服务器
+explode(hero.rack, 0, 0, 9, 0.5, 0.68);
+const sleds = [];
+for (let s = 0; s < 6; s++) {
+  const sled = texbox(1.9, 0.55, 1.45, hero.x, 1.4 + s * 0.72, hero.z, s === 3 ? null : "server", {
+    pz: new THREE.MeshStandardMaterial({ map: TEX.sled, roughness: .5, emissive: 0xffffff, emissiveMap: TEX.sled, emissiveIntensity: .25 }),
+    all: M(0x39445c, { roughness: 0.35, metalness: 0.35 }),
+  });
+  explode(sled, 0, 0, hero.rowOff + 9, 0.5, 0.68);
+  explode(sled, 0, s * 1.15, 3 + s * 0.35, 0.68, 0.84);
+  sleds.push(sled);
+}
+// 顶部交换机（带端口面板）
+const tor = texbox(1.9, 0.5, 1.45, hero.x, 5.1, hero.z, "network-switch", {
+  pz: new THREE.MeshStandardMaterial({ map: TEX.ports, roughness: .45, emissive: 0xffffff, emissiveMap: TEX.ports, emissiveIntensity: .55 }),
+  all: M(0x1d4ed8, { roughness: 0.4, metalness: 0.3 }),
+});
+explode(tor, 0, 0, hero.rowOff + 9, 0.5, 0.68);
+explode(tor, 0, 8.2, 3, 0.68, 0.84);
+
+// 第 4 层服务器炸成部件（真实件形：冷板/GPU 板/HBM/NIC/PSU）
+function makePart(pid, k) {
+  const g = group(hero.x, 1.4 + 3 * 0.72, hero.z, null);
+  if (pid === "coldplate") {
+    put(g, rbox(1.7, 0.1, 1.3, 0xb87333, 0, 0, 0, null, { metalness: .85, roughness: .3 }, 0.05));
+    const f = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.1, 1.1),
+      [M(0x8a5a2e), M(0x8a5a2e), new THREE.MeshStandardMaterial({ map: TEX.copperFins, metalness: .7, roughness: .45 }), M(0x8a5a2e), M(0x8a5a2e), M(0x8a5a2e)]);
+    f.position.y = 0.1; put(g, f);
+    put(g, cyl(0.07, 0.5, 0xd9dee6, -0.4, 0.12, -0.7, null, { metalness: .9, roughness: .25 }, 14)).rotation.x = Math.PI / 2;
+    put(g, cyl(0.07, 0.5, 0xd9dee6, 0.4, 0.12, -0.7, null, { metalness: .9, roughness: .25 }, 14)).rotation.x = Math.PI / 2;
+  } else if (pid === "gpu") {
+    const b = new THREE.Mesh(new THREE.BoxGeometry(1.7, 0.07, 1.3),
+      [M(0x0f3d2a), M(0x0f3d2a), new THREE.MeshStandardMaterial({ map: TEX.pcb, roughness: .6 }), M(0x0f3d2a), M(0x0f3d2a), M(0x0f3d2a)]);
+    put(g, b);
+    const die = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.07, 0.62),
+      [M(0x1a1f2b), M(0x1a1f2b), new THREE.MeshStandardMaterial({ map: TEX.die, metalness: .6, roughness: .2, emissive: 0x223, emissiveIntensity: .3 }), M(0x1a1f2b), M(0x1a1f2b), M(0x1a1f2b)]);
+    die.position.y = 0.07; put(g, die);
+    for (let i = 0; i < 8; i++) {
+      const a = [[-0.55, -0.45], [-0.55, 0], [-0.55, 0.45], [0.55, -0.45], [0.55, 0], [0.55, 0.45], [0, -0.5], [0, 0.5]][i];
+      put(g, rbox(0.26, 0.09, 0.3, 0x8b93a8, a[0], 0.075, a[1], null, { metalness: .5, roughness: .35 }, 0.03));
+    }
+  } else if (pid === "hbm") {
+    for (let i = 0; i < 4; i++)
+      put(g, rbox(1.1 - i * 0.02, 0.06, 0.8 - i * 0.02, i % 2 ? 0xa78bfa : 0x7c6bd8, 0, i * 0.09, 0, null, { metalness: .4, roughness: .4, emissive: 0xa78bfa, emissiveIntensity: .12 }, 0.03));
+  } else if (pid === "nic") {
+    const b = new THREE.Mesh(new THREE.BoxGeometry(1.5, 0.07, 1.0),
+      [M(0x0f3d2a), M(0x0f3d2a), new THREE.MeshStandardMaterial({ map: TEX.pcb, roughness: .6 }), M(0x0f3d2a), M(0x0f3d2a), M(0x0f3d2a)]);
+    put(g, b);
+    put(g, rbox(0.5, 0.14, 0.4, 0x2b3444, -0.3, 0.1, 0, null, { metalness: .5 }, 0.04));
+    put(g, rbox(0.34, 0.16, 0.5, 0xcfd6e2, 0.45, 0.1, -0.15, null, { metalness: .9, roughness: .2 }, 0.04));
+    put(g, rbox(0.34, 0.16, 0.5, 0xcfd6e2, 0.45, 0.1, 0.35, null, { metalness: .9, roughness: .2 }, 0.04));
+  } else { // psu
+    const b = texbox(1.5, 0.34, 1.1, 0, 0.1, 0, null, {
+      pz: M(0x39404d, { map: TEX.perf }),
+      all: M(0xb9c2cf, { metalness: .75, roughness: .3 }),
+    });
+    put(g, b);
+    put(g, rbox(0.3, 0.16, 0.1, 0x10151f, 0.45, 0.12, 0.56, null, {}, 0.03));
+  }
+  tag(g, pid);
+  explode(g, 0, 0, hero.rowOff + 9, 0.5, 0.68);
+  explode(g, 0, 3 * 1.15, 3 + 3 * 0.35, 0.68, 0.84);
+  explode(g, 2.8, 1.2 + k * 1.05, 1.5, 0.84, 1.0);
+  return g;
+}
+const comp = [["coldplate", "冷板"], ["gpu", "GPU/ASIC"], ["hbm", "HBM"], ["nic", "NIC/光"], ["psu", "电源"]];
+comp.forEach(([pid, nm], k) => {
+  makePart(pid, k);
+  const lb = label(nm, hero.x, 0, hero.z, 0.6, "#dbe6f5");
+  lb.visible = false;
+  animated.push({ obj: lb, home: new THREE.Vector3(hero.x, 1.4 + 3 * 0.72, hero.z), off: new THREE.Vector3(4.7, 3 * 1.15 + 1.2 + k * 1.05, hero.rowOff + 9 + 3 + 3 * 0.35 + 1.5), t0: 0.84, t1: 1.0, showAfter: 0.86 });
+});
+
+// 末端散热：风墙（北墙内侧，带风扇面板）+ CDU 排（东侧）
+for (let i = 0; i < 5; i++) {
+  const fw2 = texbox(2.6, 3.2, 1.0, -9 + i * 4.5, 2.5, -FD / 2 + 1.3, "room-cooling", {
+    pz: new THREE.MeshStandardMaterial({ map: TEX.fan, roughness: .7 }),
+    all: M(0x76879c, { roughness: .55 }),
+  });
+  explode(fw2, 0, 0, -8, 0.35, 0.55);
+}
+for (let i = 0; i < 3; i++) {
+  const g = group(FW / 2 - 2.2, 0, -5 + i * 5, null);
+  put(g, texbox(1.8, 3.4, 1.8, 0, 2.6, 0, null, {
+    pz: M(0x2b5f9e, { map: TEX.louvre }),
+    all: M(0x2f6db8, { roughness: .4, metalness: .3 }),
+  }));
+  put(g, rbox(1.2, 0.5, 0.1, 0x0e141f, 0, 3.6, 0.93, null, { emissive: 0x38bdf8, emissiveIntensity: .8 }, 0.04));
+  put(g, cyl(0.12, 1.4, 0x9fb0c4, -0.5, 4.8, 0, null, { metalness: .8, roughness: .3 }, 12));
+  put(g, cyl(0.12, 1.4, 0x9fb0c4, 0.5, 4.8, 0, null, { metalness: .8, roughness: .3 }, 12));
+  tag(g, "cdu");
+  explode(g, 8, 0, 0, 0.35, 0.55);
+}
+// UPS/配电室（西端，带成排机柜立面）+ 母线
+{
+  const g = group(-FW / 2 + 3, 0, 4, null);
+  put(g, texbox(4.5, 4.2, 8, 0, 3.0, 0, null, {
+    px: new THREE.MeshStandardMaterial({ map: TEX.cab, roughness: .55, emissive: 0xffffff, emissiveMap: TEX.cab, emissiveIntensity: .18 }),
+    all: M(0x4b5871, { roughness: .5 }),
+  }));
+  tag(g, "ups");
+  explode(g, -9, 0, 0, 0.35, 0.55);
+}
+{
+  const bus = group(-1, 6.3, -1.5, null);
+  put(bus, box(26, 0.35, 0.6, 0xb87333, 0, 0, 0, null, { metalness: 0.85, roughness: 0.25 }));
+  for (let x = -11; x <= 11; x += 5.5) put(bus, box(0.12, 1.2, 0.12, 0x55617a, x, 0.7, 0, null, { metalness: .5 }));
+  tag(bus, "power-dist");
+  explode(bus, 0, 5.5, 0, 0.3, 0.5);
+}
+// DCIM（软件层示意：发光标志体）
+const dcim = rbox(1.6, 0.9, 1.2, 0x7c3aed, -FW / 2 + 3, 5.85, 4, "dcim", { emissive: 0x7c3aed, emissiveIntensity: 0.5, metalness: .3, roughness: .3 }, 0.14);
+explode(dcim, -9, 6, 0, 0.35, 0.6);
+
+/* ─────────── 园区（建筑外）─────────── */
+// 东侧：变电站（油箱+散热鳍+套管）×2 + 输电塔与导线
+for (let i = 0; i < 2; i++) {
+  const tx = FW / 2 + 8 + i * 6;
+  const g = group(tx, 0, -6, null);
+  put(g, rbox(3.0, 2.8, 2.4, 0x8b98ab, 0, 1.7, 0, null, { metalness: .55, roughness: .4 }, 0.16));
+  [-1, 1].forEach(s => {
+    const fin = new THREE.Mesh(new THREE.BoxGeometry(2.6, 2.2, 0.5),
+      [new THREE.MeshStandardMaterial({ map: TEX.fins, metalness: .5, roughness: .5 }), new THREE.MeshStandardMaterial({ map: TEX.fins, metalness: .5, roughness: .5 }),
+       M(0x39404d), M(0x39404d),
+       new THREE.MeshStandardMaterial({ map: TEX.fins, metalness: .5, roughness: .5 }), new THREE.MeshStandardMaterial({ map: TEX.fins, metalness: .5, roughness: .5 })]);
+    fin.position.set(0, 1.6, s * 1.5); put(g, fin);
+  });
+  put(g, cyl(0.5, 0.9, 0x9aa7b8, -1.0, 3.5, 0, null, { metalness: .6, roughness: .4 }, 18)).rotation.z = Math.PI / 2;
+  [-0.9, 0, 0.9].forEach(dx => {
+    put(g, cyl(0.13, 1.2, 0xd9dee6, dx, 3.7, 0.4, null, { roughness: .3 }, 12));
+    put(g, cyl(0.2, 0.1, 0xb9c2cf, dx, 3.5, 0.4, null, {}, 12));
+    put(g, cyl(0.2, 0.1, 0xb9c2cf, dx, 3.9, 0.4, null, {}, 12));
+    put(g, cyl(0.09, 0.25, 0xffd77a, dx, 4.4, 0.4, null, { emissive: 0xffd77a, emissiveIntensity: .3 }, 10));
+  });
+  tag(g, "substation");
+  explode(g, 5 + i * 2.5, 0, -3, 0.12, 0.4);
+}
+{
+  const g = group(FW / 2 + 21, 0, -6, null);
+  [-0.55, 0.55].forEach(s => {
+    const leg = put(g, box(0.22, 9, 0.22, 0x66748a, s, 4.5, 0, null, { metalness: .5 }));
+    leg.rotation.z = s * -0.06;
+  });
+  put(g, box(0.2, 0.2, 3.6, 0x66748a, 0, 7.6, 0, null, { metalness: .5 }));
+  put(g, box(0.2, 0.2, 2.6, 0x66748a, 0, 6.2, 0, null, { metalness: .5 }));
+  [-1.6, 1.6, -1.2, 1.2].forEach((z, k) =>
+    put(g, cyl(0.07, 0.55, 0xe8edf3, 0, (k < 2 ? 7.6 : 6.2) - 0.4, z, null, {}, 8)));
+  tag(g, "grid");
+  explode(g, 8, 0, -3, 0.12, 0.4);
+}
+label("电力 POWER", FW / 2 + 13, 9.2, -6, 1.0, "#f0908a", "1");
+// 东南：柴发（集装箱+排气筒）×3 + BESS 电池柜 ×2
+for (let i = 0; i < 3; i++) {
+  const g = group(FW / 2 + 7 + i * 5, 0, 7, null);
+  put(g, texbox(4.2, 2.4, 1.9, 0, 1.5, 0, null, {
+    pz: M(0xc79a45, { map: TEX.louvre }), nz: M(0xc79a45, { map: TEX.louvre }),
+    all: M(0xd9a441, { roughness: .5, metalness: .25 }),
+  }));
+  put(g, cyl(0.16, 1.1, 0x39404d, 1.6, 3.2, 0.4, null, { metalness: .7, roughness: .35 }, 12));
+  put(g, box(4.2, 0.24, 1.9, 0x6b6f78, 0, 0.22, 0, null, { roughness: .8 }));
+  tag(g, "backup-power");
+  explode(g, 4 + i * 2, 0, 4, 0.15, 0.42);
+}
+for (let i = 0; i < 2; i++) {
+  const g = group(FW / 2 + 9 + i * 5, 0, 12, null);
+  put(g, texbox(3.4, 2.3, 1.7, 0, 1.35, 0, null, {
+    pz: M(0xdfe5ee, { map: TEX.perf }),
+    all: M(0xe8edf3, { roughness: .4, metalness: .2 }),
+  }));
+  put(g, rbox(3.0, 0.28, 0.2, 0x22c55e, 0, 2.6, 0.78, null, { emissive: 0x22c55e, emissiveIntensity: .5 }, 0.06));
+  tag(g, "bess");
+  explode(g, 4 + i * 2, 0, 7, 0.15, 0.42);
+}
+// 燃机（主用电源）：进气室 + 机壳 + 排气烟囱
+{
+  const g = group(FW / 2 + 12, 0, 17, null);
+  const shell = put(g, new THREE.Mesh(new THREE.CapsuleGeometry(1.4, 4.6, 6, 22), M(0xc4cdd9, { metalness: .6, roughness: .3 })));
+  shell.rotation.z = Math.PI / 2; shell.position.y = 1.8;
+  put(g, texbox(2.6, 3.4, 2.8, -4.2, 1.9, 0, null, { px: M(0x9aa7b8, { map: TEX.louvre }), all: M(0xaab6c6, { roughness: .45 }) }));
+  put(g, cyl(0.75, 4.6, 0x8b98ab, 3.9, 2.9, 0, null, { metalness: .55, roughness: .4 }, 20));
+  put(g, cyl(0.6, 0.4, 0x39404d, 3.9, 5.3, 0, null, { metalness: .6 }, 20));
+  tag(g, "prime-power");
+  explode(g, 7, 0, 9, 0.15, 0.42);
+}
+// 西侧：风冷冷机 ×3（V 型盘管+顶置风扇）+ 冷却塔 ×2
+for (let i = 0; i < 3; i++) {
+  const g = group(-FW / 2 - 8 - i * 5.5, 0, -5, null);
+  put(g, texbox(3.6, 2.0, 2.4, 0, 1.2, 0, null, {
+    px: new THREE.MeshStandardMaterial({ map: TEX.fins, roughness: .55 }),
+    nx: new THREE.MeshStandardMaterial({ map: TEX.fins, roughness: .55 }),
+    pz: new THREE.MeshStandardMaterial({ map: TEX.fins, roughness: .55 }),
+    nz: new THREE.MeshStandardMaterial({ map: TEX.fins, roughness: .55 }),
+    all: M(0xc9d2dd, { roughness: .45, metalness: .3 }),
+  }));
+  [-0.85, 0.85].forEach(dx => {
+    put(g, cyl(0.85, 0.28, 0x2a313d, dx, 2.35, 0, null, { map: TEX.fan, roughness: .7 }, 24));
+    put(g, cyl(0.9, 0.12, 0x8b98ab, dx, 2.2, 0, null, { metalness: .5 }, 24));
+  });
+  tag(g, "heat-reject");
+  explode(g, -(4 + i * 2.5), 0, -3, 0.15, 0.42);
+}
+for (let i = 0; i < 2; i++) {
+  const g = group(-FW / 2 - 9 - i * 6, 0, 6, null);
+  put(g, texbox(3.4, 3.4, 3.4, 0, 1.9, 0, null, {
+    px: M(0xa9b4c2, { map: TEX.louvre }), nx: M(0xa9b4c2, { map: TEX.louvre }),
+    pz: M(0xa9b4c2, { map: TEX.louvre }), nz: M(0xa9b4c2, { map: TEX.louvre }),
+    all: M(0xbcc7d4, { roughness: .5 }),
+  }));
+  put(g, cyl(1.35, 0.5, 0x9aa7b8, 0, 3.85, 0, null, { metalness: .4, roughness: .5 }, 26));
+  put(g, cyl(1.15, 0.3, 0x2a313d, 0, 4.15, 0, null, { map: TEX.fan, roughness: .7 }, 26));
+  tag(g, "heat-reject");
+  explode(g, -(5 + i * 3), 0, 4, 0.15, 0.42);
+}
+label("散热 COOLING", -FW / 2 - 12, 8.6, 0, 1.0, "#8fd6a5", "2");
+// 南侧：储水罐（筒身+穹顶+梯子）
+{
+  const g = group(-8, 0, FD / 2 + 7, null);
+  put(g, cyl(1.5, 3.4, 0x7fb3d8, 0, 1.9, 0, null, { metalness: .45, roughness: .35 }, 30));
+  const dome = put(g, new THREE.Mesh(new THREE.SphereGeometry(1.5, 26, 12, 0, Math.PI * 2, 0, Math.PI / 2), M(0x9cc4e4, { metalness: .45, roughness: .35 })));
+  dome.position.y = 3.6;
+  put(g, box(0.1, 3.4, 0.35, 0x55617a, 1.55, 1.9, 0, null, { metalness: .5 }));
+  tag(g, "water");
+  explode(g, 0, 0, 6, 0.15, 0.42);
+}
+label("园区 · 土地与电网", 0, 0.8, FD / 2 + 14, 0.85, "#7d8aa3");
+
+ } // Retained legacy layout; its old28-rack quantities are not the new8-rack example.
+if(campusMode){
+ campusAssembly=buildCampusAssembly({THREE,material:M,tag,label});scene.add(campusAssembly.root);
+ document.body.classList.add('campus-overview');
+ const hud=document.querySelector('.ui-viewer-controls');hud.querySelector('summary').textContent='园区装配全景';hud.querySelector('h1').textContent='园区装配全景';
+ hud.querySelector('.rg-concept-note').textContent='通用八柜示例 · 尺寸/功率/内接线/供回水拓扑与现场适用未知；虚拟分组非装维程序。';
+ hud.querySelector('div').insertAdjacentHTML('beforeend',`<button id="campus-whole-dossier" type="button">整体三维预览</button><details id="campus-static-plate"><summary>完整标注图与原生下载</summary><a href="/assets/technical-atlas/campus-overview-v1.svg" target="_blank" rel="noopener" aria-label="放大园区完整标注图"><img src="/assets/technical-atlas/campus-overview-v1-preview.svg" alt="园区装配全景，通用八柜与机电设备示例" width="300" height="200"></a><div><a download="campus-overview-v1.svg" href="/assets/technical-atlas/campus-overview-v1.svg">下载可编辑SVG</a> · <a download="campus-overview-v1.png" href="/assets/technical-atlas/campus-overview-v1.png">下载无字原生PNG</a></div></details><a href="bom3d.html?view=legacy">旧28柜/分层场景（保留待后续重制）</a>`);
+ const legend=document.createElement('div');legend.className='campus-legend';legend.setAttribute('aria-label','园区编号图例');
+ legend.innerHTML='<b>通用示例 · 局部服务线非完整拓扑</b><div class="campus-legend-grid"><span>01 建筑剖口</span><span>02 八柜示例</span><span>03 室内冷却×5</span><span>04 CDU×3</span><span>05 UPS四柜门</span><span>06 冷水机×3</span><span>07 变压器×2</span><span>08 备用发电×3</span><span>09 储能×2</span></div>';document.body.appendChild(legend);
+ campusUiObserver=new ResizeObserver(()=>sceneView?.refresh());campusUiObserver.observe(document.querySelector('.hud'));campusUiObserver.observe(legend);
+ if(matchMedia('(max-width:700px)').matches)hud.open=false;
+}
+/* ─────────── 分解阶段说明 ─────────── */
+const STAGES = campusMode ? CAMPUS_STAGES : [
+  [0.00, "概念全景：AI 数据中心"],
+  [0.05, "① 设施 · 土地与建筑：掀开屋顶与幕墙——看见白空间"],
+  [0.30, "② 电力与冷却链路：风墙 / CDU / UPS / 母线各就各位"],
+  [0.50, "③ IT 进场：机柜列拉开，明星机柜出列"],
+  [0.68, "④ 计算与网络链路：抽出服务器与交换机"],
+  [0.84, "⑤ 芯片级：冷板 / GPU / HBM / NIC / 电源"],
+];
+bindResearchMeshNodes(pickables);
+const stageEl = document.getElementById("stage");
+const slider = document.getElementById("explode");
+function ease(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+function apply() {
+  const t = slider.value / 100;
+  campusAssembly?.explode(t);
+  const poses = new Map();
+  animated.forEach(a => {
+    if (!poses.has(a.obj)) poses.set(a.obj, a.home.clone());
+    const k = a.t1 <= a.t0 ? 1 : Math.min(1, Math.max(0, (t - a.t0) / (a.t1 - a.t0)));
+    poses.get(a.obj).addScaledVector(a.off, ease(k));
+    if (a.showAfter !== undefined) a.obj.visible = t >= a.showAfter;
+  });
+  poses.forEach((position, obj) => obj.position.copy(position));
+  let s = STAGES[0][1];
+  STAGES.forEach(([th, txt]) => { if (t >= th) s = txt; });
+  stageEl.textContent = s;
+  syncStageControl();
+}
+const sliderMotion = createSceneMotion();
+slider.addEventListener("input", () => { sliderMotion.cancel(); apply(); });
+const syncStageControl = installStageControl(STAGES, slider, apply);
+{ const x = new URLSearchParams(location.search).get("x"); if (x !== null) slider.value = Math.max(0, Math.min(100, +x || 0)); }
+apply();
+function animateSlider(to, duration = 1400) {
+  const from = +slider.value;
+  sliderMotion.run(duration, progress => { slider.value = from + (to - from) * progress; apply(); });
+}
+document.getElementById("play").onclick = () => animateSlider(+slider.value > 90 ? 0 : 100, 6000);
+
+/* ─────────── 领域导航：一键飞进想探索的领域 ─────────── */
+const PARTMESH = {};
+pickables.forEach(m => { (PARTMESH[m.userData.part] ||= []).push(m); if (ALIAS[m.userData.part] && ALIAS[m.userData.part] !== m.userData.part) (PARTMESH[ALIAS[m.userData.part]] ||= []).push(m); });
+
+/* ─────────── 数据覆盖热图（2026-08-26 用户批复）：爆炸图同时显示每个部件的数据覆盖 ───────────
+   开启时按 covScore 换成纯色材质（每网格独立克隆，不动原材质、不与 hover/dim 共享状态），
+   关闭即换回。装饰件不在 pickables 里，保持原样作对比。 */
+let covOn = false;
+function covToggle() {
+  if (PRODCOUNT === null) return;
+  covOn = !covOn;
+  document.getElementById("covChip").classList.toggle("on", covOn);
+  document.getElementById("covLegend").style.display = covOn ? "flex" : "none";
+  if (covOn && activeDomain) clearDomain();
+  pickables.forEach(m => {
+    if (covOn) {
+      if (!m.userData.covMat) {
+        const c = COVC[covScore(PART[m.userData.part] || {})];
+        // land/shell 是整场级大件，实色会把全屏染成一种颜色——降透明度当背景，小部件才读得出来
+        const bg = m.userData.part === "land" || m.userData.part === "shell";
+        m.userData.covMat = new THREE.MeshStandardMaterial({ color: c, roughness: .55, metalness: .1, emissive: new THREE.Color(c), emissiveIntensity: .18, transparent: bg, opacity: bg ? 0.22 : 1 });
+      }
+      if (!m.userData.covPrev) { m.userData.covPrev = m.material; m.material = m.userData.covMat; }
+    } else if (m.userData.covPrev) { m.material = m.userData.covPrev; delete m.userData.covPrev; }
+  });
+}
+document.getElementById("covChip").onclick = covToggle;
+
+/* 领域视角 = 八个叶子系统，从 bom.json 的 systems 生成，不再手写；镜头与爆炸程度按系统登记，链路顺序来自部件的 chain / chain_order。 */
+const CAMERA = {
+  power:   { icon: "⚡", t: 45,  cam: [72, 28, 14],  tgt: [30, 3, 3] },
+  thermal: { icon: "❄️", t: 45,  cam: [-70, 26, 10], tgt: [-28, 3, 0] },
+  compute: { icon: "🧠", t: 100, cam: [13, 11, 40],  tgt: [0, 5, 20] },
+  memory:  { icon: "🧩", t: 100, cam: [13, 11, 40],  tgt: [0, 5, 20] },
+  storage: { icon: "💾", t: 100, cam: [13, 11, 40],  tgt: [0, 5, 20] },
+  network: { icon: "🔗", t: 100, cam: [15, 17, 38],  tgt: [0, 10, 20] },
+  facility:{ icon: "🏗️", t: 32,  cam: [58, 44, 64],  tgt: [0, 4, 0] },
+  control: { icon: "🖥️", t: 55,  cam: [-42, 20, 26], tgt: [-22, 7, 4] },
+};
+const SYSTEMS = BOM.systems || {};
+const leafSystems = Object.entries(SYSTEMS).filter(([id]) => !Object.values(SYSTEMS).some(x => x.parent === id))
+  .sort((a, b) => ((a[1].parent ? SYSTEMS[a[1].parent].order : a[1].order) - (b[1].parent ? SYSTEMS[b[1].parent].order : b[1].order)) || ((a[1].parent ? a[1].order : 0) - (b[1].parent ? b[1].order : 0)));
+const chainKey = p => { const chains = SYSTEMS[p.system]?.chains || []; return [chains.indexOf(p.chain), p.chain_order || 0]; };
+const DOMAINS = leafSystems.map(([key, sdef]) => ({
+  key, name: sdef.name.replace("IT · ", ""), chains: sdef.chains, ...(CAMERA[key] || { icon: "•", t: 60, cam: [46, 30, 52], tgt: [0, 6, 0] }),
+  parts: BOM.parts.filter(p => p.system === key).sort((a, b) => { const x = chainKey(a), y = chainKey(b); return x[0] - y[0] || x[1] - y[1]; }),
+}));
+// 站点权利在园区场景里跟设施视角走
+DOMAINS.find(d => d.key === "facility")?.parts.push(...RIGHTS);
+const DOMAIN_ALIAS = { cooling: "thermal", campus: "facility", dcim: "control" };  // 旧的 ?d= 深链
+
+const cameraMotion = createSceneMotion();
+function flyTo(cam, tgt, duration = 1100) {
+  sceneView?.takeControl();
+  controls.autoRotate = false;
+  const fromCamera = camera.position.clone(), fromTarget = controls.target.clone();
+  const toCamera = new THREE.Vector3(...cam), toTarget = new THREE.Vector3(...tgt);
+  cameraMotion.run(duration, progress => {
+    camera.position.lerpVectors(fromCamera, toCamera, ease(progress));
+    controls.target.lerpVectors(fromTarget, toTarget, ease(progress));
+  });
+}
+canvas.addEventListener("pointerdown",()=>{cameraMotion.cancel();if(campusMode){clearTimeout(walkTimer);sliderMotion.cancel();}});
+
+let activeDomain = null;
+const dimmed = new Map();
+function setDim(mesh, dim) {
+  if (dim && !dimmed.has(mesh)) {
+    const original = mesh.material;
+    const copies = matsOf(mesh).map(material => {
+      const copy = material.clone(); copy.transparent = true; copy.opacity = Math.min(material.opacity, 0.10);
+      if ('emissiveIntensity' in copy) copy.emissiveIntensity = 0;
+      return copy;
+    });
+    dimmed.set(mesh, {original, copies});
+    mesh.material = Array.isArray(original) ? copies : copies[0];
+  } else if (!dim && dimmed.has(mesh)) {
+    const {original, copies} = dimmed.get(mesh);
+    mesh.material = original; copies.forEach(material => material.dispose()); dimmed.delete(mesh);
+  }
+}
+function clearDomain() {
+  sliderMotion.cancel();
+  clearTimeout(walkTimer);
+  activeDomain = null;
+  pickables.forEach(m => setDim(m, false));
+  decor.forEach(m => m.material && setDim(m, false));
+  document.querySelectorAll(".dchip").forEach(el => el.classList.remove("on"));
+  document.getElementById("domainParts").innerHTML = "";
+}
+function campusInsets(){const rect=canvas.getBoundingClientRect(),hud=document.querySelector('.hud').getBoundingClientRect(),legend=document.querySelector('.campus-legend').getBoundingClientRect(),drill=document.querySelector('.drill'),drillBottom=drill&&getComputedStyle(drill).display!=='none'?drill.getBoundingClientRect().bottom:rect.top;return {width:rect.width,height:rect.height,insets:{left:rect.width<700?12:Math.max(12,hud.right-rect.left+14),right:12,top:Math.max(12,drillBottom-rect.top+12,...(rect.width<700?[hud.bottom-rect.top+12]:[])),bottom:Math.max(12,rect.bottom-legend.top+12)}};}
+function focusCampus(objects){
+ cameraMotion.cancel();sliderMotion.cancel();clearTimeout(walkTimer);sceneView?.takeControl();controls.autoRotate=false;
+ const targets=objects.length?objects:framingObjects(),bounds=new THREE.Box3();targets.forEach(o=>bounds.expandByObject(o));
+ if(fitCampusVisible({camera,bounds,target:controls.target,objects:targets,...campusInsets(),padding:1.08})){
+  const radius=bounds.getBoundingSphere(new THREE.Sphere()).radius,distance=camera.position.distanceTo(controls.target);controls.maxDistance=Math.max(controls.maxDistance,distance*3);if(scene.fog){scene.fog.near=Math.max(0,distance-radius);scene.fog.far=distance+radius*4;}controls.update();
+ }
+}
+function enterDomain(d) {
+  if (covOn) covToggle();   // 热图与领域高亮不叠加：材质状态互斥，先退热图
+  if (activeDomain === d.key) { clearDomain(); if(campusMode)sceneView.fit();else flyTo([46, 30, 52], [0, 6, 0]); return; }
+  clearDomain();
+  activeDomain = d.key;
+  document.getElementById(`dchip-${d.key}`).classList.add("on");
+  const ids = new Set(d.parts.map(p => p.id));
+  pickables.forEach(m => setDim(m, !ids.has(campusMode?(ALIAS[m.userData.part] || m.userData.part):m.userData.part)));
+  decor.forEach(m => m.material && setDim(m, true));
+  if(!campusMode){animateSlider(d.t);flyTo(d.cam,d.tgt);}
+  const grouped = []; let last = null;
+  for (const p of d.parts) { if (p.chain !== last) { grouped.push(`<div class="chainh">${esc(p.chain || (p.kind === "site_right" ? "站点权利" : ""))}</div>`); last = p.chain; } grouped.push(p); }
+  document.getElementById("domainParts").innerHTML = grouped.map(p => typeof p === "string" ? p :
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>'}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
+  document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
+    const p = PART[el.dataset.part];
+    showDossier(p);
+    const meshes = PARTMESH[p.id];
+    if (meshes?.length) {
+      if(campusMode)focusCampus(campusAssembly.objectsFor(p.id));else{const wp = new THREE.Vector3(); meshes[0].getWorldPosition(wp);flyTo([wp.x + 9, wp.y + 6, wp.z + 9], [wp.x, wp.y, wp.z], 900);}
+    }
+  });
+  if (d.chains.length > 1) {  // 镜头走链路是显式动作：不抢用户或页面框架对镜头的所有权
+    const btn = document.createElement("button"); btn.type = "button"; btn.className = "walkbtn"; btn.id = "walkBtn";
+    btn.textContent = "▶ 沿链路走一遍：" + d.chains.join(" → ");
+    btn.onclick = () => walkChain(d);
+    document.getElementById("domainParts").prepend(btn);
+  }
+  if(campusMode)focusCampus(d.parts.flatMap(p=>campusAssembly.objectsFor(p.id)));
+}
+/* 镜头按链路走：点击「沿链路走一遍」后，沿能量流依次飞到有造型的部件（电网 → 变电 → 发电与储能 → UPS → 配电 → 板级供电），
+   这条路线就是该系统的研究提纲。用户操作或切换视角即停止；不自动开始，镜头所有权仍归用户与页面框架。 */
+let walkTimer = null;
+function walkChain(d) {
+  clearTimeout(walkTimer);
+  const stops = d.parts.filter(p => PARTMESH[p.id]?.length);
+  let i = 0;
+  const step = () => {
+    if (activeDomain !== d.key || i >= stops.length) return;
+    const p = stops[i++];
+    document.querySelectorAll("#domainParts .pitem").forEach(el => el.classList.toggle("walk", el.dataset.part === p.id));
+    if(campusMode)focusCampus(campusAssembly.objectsFor(p.id));else{const wp = new THREE.Vector3(); PARTMESH[p.id][0].getWorldPosition(wp);flyTo([wp.x + 12, wp.y + 8, wp.z + 12], [wp.x, wp.y, wp.z], 900);}
+    walkTimer = setTimeout(step, 1500);
+  };
+  step();
+}
+canvas.addEventListener("pointerdown", () => clearTimeout(walkTimer));
+const domrow = document.getElementById("domrow");
+domrow.innerHTML = DOMAINS.map(d => `<div class="dchip" id="dchip-${d.key}">${d.icon} ${d.name}</div>`).join("");
+DOMAINS.forEach(d => document.getElementById(`dchip-${d.key}`).onclick = () => enterDomain(d));
+addEventListener("keydown", e => {
+  if (e.target.tagName === "INPUT") return;
+  const i = "12345678".indexOf(e.key);
+  if (i >= 0 && DOMAINS[i]) enterDomain(DOMAINS[i]);
+  if (e.key === "0" || e.key === "Escape") { clearDomain(); if(campusMode)sceneView.fit();else flyTo([46, 30, 52], [0, 6, 0]); }
+});
+
+/* ─────────── 交互与档案 ─────────── */
+const tip = document.getElementById("tip3d");
+/* ── 部件旋转查看器：档案内单独渲染该部件，可拖动 360° 查看 ── */
+const currentPartMeshes=pid=>campusMode&&campusSelectedMeshes?campusSelectedMeshes:PARTMESH[pid];
+const inspector = createPartInspector({THREE, environment: () => scene.environment, meshesFor:currentPartMeshes,
+  initialRotation:()=>campusMode?{x:.25,y:.25}:null,
+  materialFor: mesh => dimmed.get(mesh)?.original || mesh.userData.covPrev || mesh.material});
+const rawShowDossier = createPartDossier({el: document.getElementById('dossier'), view: 'campus',
+  BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
+  statusNames: SN, statusColors: SBADGE, inspector,
+  researchNodeFor:p=>p.kind==='site_right'?'site:'+p.site_right_id:'part:'+p.id});
+
+function campusPart(p,whole=false){
+ if(!campusMode)return p;
+ if(whole)return {...PART.shell,name:'园区空间示意 · 完整三维预览',desc:'本图是一个通用选定八柜园区：2行×4柜、5室内冷却、3CDU、一组4柜门UPS、3双风扇冷机、2变压器、3备用发电与2储能柜。数量与比例只是绘图选择；前墙/部分屋面虚拟省略。内接线、流体去回路、功率/电压/冗余、现场适用与站点权利未知；研究链接归建筑类别，不认证本示例。'};
+ const physical=campusAssembly.objectsFor(p.id).length;
+ return {...p,desc:physical?'本次三维仅展示选定通用外形；'+(campusSelectedInstance?'点选单个示例实例 '+campusSelectedInstance+'。':'类别含 '+physical+' 个示例实例，预览取第一个。')+' 外形/数量不是型号、额定配置或现场事实，内接线、流体拓扑、尺寸/功率/电压、冗余和适用条件未知。下方研究与公司数据属于类别。'+(p.id==='rack-frame'?'门内载盘密度是程序示例，非TA13整柜或TA11服务器配置。':''):p.kind==='site_right'?'站点权利是独立非物理研究入口，场景不以设备或地面证明权利成立。':p.id==='dcim'?'DCIM是软件入口，不画物理硬件，当前节点内容与现场实施另核。':'本类别在本次园区未造实体；既有类别研究及独立部件图入口保留，不假造位置/实例。'};
+}
+function showDossier(p){if(!p)return;if(campusMode){const i=campusAssembly.instances.find(i=>i.part===p.id);campusSelectedInstance=i?.id||null;campusSelectedMeshes=[];i?.object.traverse(o=>{if(o.isMesh)campusSelectedMeshes.push(o)});rawShowDossier(campusPart(p));}else rawShowDossier(p)}
+function showCampusObject(object){const p=PART[object.userData.part];if(!p)return;if(!campusMode){showDossier(p);return;}const i=campusAssembly.instanceFor(object);if(!i)return;campusSelectedInstance=i.id;campusSelectedMeshes=[];i.object.traverse(o=>{if(o.isMesh)campusSelectedMeshes.push(o)});rawShowDossier(campusPart(p));}
+if(campusMode)document.getElementById('campus-whole-dossier').onclick=()=>{campusSelectedMeshes=[...pickables];campusSelectedInstance='campus/whole';rawShowDossier(campusPart(PART.shell,true));};
+
+const scenePicking = createScenePicking({THREE, canvas, camera, pickables, tip,
+  describe: object => {
+    const part = PART[object.userData.part];
+    return part ? campusMode ? `${part.name} · 通用单个示例 · 点击档案` : `${part.name}（${SN[part.status]}）· 点击看档案` : '';
+  },
+  select: object => showCampusObject(object)});
+
+// sparkline 悬停读数（事件委托，一次绑定）
+const dossierEl = document.getElementById("dossier");
+dossierEl.addEventListener("pointermove", e => {
+  const c = e.target.closest("circle[data-v]");
+  if (c) {
+    tip.style.display = "block";
+    tip.style.left = Math.min(e.clientX + 12, innerWidth - 200) + "px";
+    tip.style.top = (e.clientY + 12) + "px";
+    tip.textContent = `${c.dataset.d} ｜ ${c.dataset.v}`;
+  } else if (tip.textContent.includes("｜")) tip.style.display = "none";
+});
+dossierEl.addEventListener("pointerleave", () => { if (tip.textContent.includes("｜")) tip.style.display = "none"; });
+
+// The published adoption registry owns optional model selection.
+const sceneModels = campusMode ? {ready:Promise.resolve(),objects:()=>[],reload:()=>Promise.resolve(),dispose(){}} : mountSceneModels({scene, page:"bom3d", defaultHeight:4.6, onChange:()=>{atlasDrawing.sync();sceneView?.refresh();}});
+const framingObjects = () => [...pickables.filter(mesh => mesh.userData.part !== "land"), ...sceneModels.objects()];
+sceneView = mountSceneView({canvas, camera, controls, fog:scene.fog,
+  objects:framingObjects,
+  headers:[document.getElementById("ui-skinbar"), document.querySelector(".topbar")],
+  button:document.getElementById("fit-view"),
+  resize:(width, height) => {renderer.setSize(width, height, false);composer.setSize(width, height);},
+  beforeFit:() => {cameraMotion.cancel();if(campusMode){sliderMotion.cancel();clearTimeout(walkTimer);controls.autoRotate=false;}},
+  ...(campusMode?{fitView:options=>{return fitCampusVisible({...options,objects:framingObjects(),...campusInsets(),padding:1.06});}}:{}),
+});
+sceneModels.ready.then(() => {if(pageDisposed)return;atlasDrawing.sync(); sceneView.refresh();});
+atlasDrawing.sync();
+atlasDrawing.attachLabels(canvas,camera);
+const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atlasDrawing,
+  render:()=>composer.render(), button:document.getElementById('atlas-export'),
+  filename:'bom3d-technical-atlas.svg', title:'园区结构图册',
+  caption:()=>document.getElementById('stage').textContent,
+  diagnostics:()=>covOn ? '索引覆盖：红0/4、橙1/4、黄2/4、浅绿3/4、绿4/4（公司、产品、序列、指标登记维度数；非硬件状态）' : null,
+  selected:()=>{const id=document.getElementById('dossier').dataset.partId;
+    return id ? {id:campusMode&&campusSelectedInstance?campusSelectedInstance:'part:'+id,name:campusMode?(campusSelectedInstance==='campus/whole'?'园区空间示意 · 完整三维预览':'通用园区示例 · '+(PART[id]?.name || id)):PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
+});
+const covChip = document.getElementById('covChip');
+covChip.setAttribute('aria-disabled','true');
+covChip.textContent = '索引覆盖 · 产品登记未读，覆盖率未知';
+loadOptionalSceneData({url:'data/products.json',collection:'records'}).then(products=>{
+  if(pageDisposed)return;
+  if (!products || products.records.some(row=>row.bom_parts!=null && (!Array.isArray(row.bom_parts) || row.bom_parts.some(id=>typeof id!=='string')))) return;
+  PRODCOUNT = {};
+  products.records.forEach(row=>(row.bom_parts || []).forEach(id=>PRODCOUNT[id]=(PRODCOUNT[id] || 0)+1));
+  covChip.setAttribute('aria-disabled','false');covChip.textContent='📊 类别索引热图';
+  document.querySelectorAll('#domainParts .pitem').forEach(el=>{
+    const badge=el.querySelector('.covb'),part=PART[el.dataset.part];if(!badge || !part)return;
+    const score=covScore(part);badge.textContent=score+'/4';badge.style.background=COVC[score];badge.title='数据覆盖 '+score+'/4（公司/产品/序列/指标）';
+  });
+  if(new URLSearchParams(location.search).get('cov')==='1' && !covOn)covToggle();
+});
+let animationFrame = 0;
+
+function disposePage() {
+  if (pageDisposed) return;
+  pageDisposed = true;
+  cancelAnimationFrame(animationFrame);
+  window.removeEventListener('inresearch:appearance', syncSceneAppearance);
+  campusUiObserver?.disconnect();clearTimeout(walkTimer);cameraMotion.cancel();sliderMotion.cancel();scenePicking.dispose();controls.dispose();
+  pickables.forEach(m=>{m.userData.covMat?.dispose();if(m.userData.covPrev){m.material=m.userData.covPrev;delete m.userData.covPrev}});dimmed.forEach(({original,copies},mesh)=>{mesh.material=original;copies.forEach(m=>m.dispose())});dimmed.clear();
+  atlasExport.dispose(); atlasDrawing.dispose();
+  sceneView.dispose(); sceneModels.dispose(); inspector.dispose();
+  campusAssembly?.dispose();pickables.length=0;
+  // Optional/adopted and factory resources have been removed by their owners.
+  const gs=new Set(),ms=new Set();scene.traverse(o=>{if(o.geometry)gs.add(o.geometry);if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>ms.add(m))});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());
+  sceneEnvironment.dispose(); texturePool.dispose(); composer.dispose(); renderer.dispose();
+}
+window.addEventListener("pagehide", event => {if (!event.persisted) disposePage();});
+(function loop() { if(pageDisposed)return;animationFrame = requestAnimationFrame(loop); controls.update(); atlasDrawing.update(); composer.render(); inspector.tick(); })();
+
+// ?d=<domain> / ?p=<part> 深链：其他页面可直接链进领域视角或部件档案（放最后：依赖上面全部初始化完成）
+{ const q = new URLSearchParams(location.search);
+  const dkey = DOMAIN_ALIAS[q.get("d")] || q.get("d");
+  const d = DOMAINS.find(x => x.key === dkey);
+  if (d) { controls.autoRotate = false; enterDomain(d); }
+  const nodePart = (q.get("node") || "").replace(/^part:/, "");
+  const p = resolveScenePart(q.get("p") || q.get("node") || nodePart);
+  if (p) { controls.autoRotate = false; showDossier(p); }
+  if (q.get("cov") === "1" && !covOn) { controls.autoRotate = false; covToggle(); } }
+
+
+
+/* ── 钻取链按骨架生成（bom.json systems / chains）；尺度钻取链 levels.json 已退役（2026-09-28） ── */
+fetch("framework/bom.json?t=" + Date.now()).then(r => r.ok ? r.json() : null).then(bom => {
+  if (!bom?.systems) return;
+  const here = location.pathname.split("/").pop() || "index.html", q = new URLSearchParams(location.search);
+  const top = Object.entries(bom.systems).filter(([, s]) => !s.parent).sort((a, b) => a[1].order - b[1].order);
+  const entries = [{ id: "root", name: "🏢 数据中心全景", page: "bom3d.html", current: here === "bom3d.html" && !q.get("d") }];
+  for (const [sid, s] of top) {
+    if (sid === "it") entries.push({ id: sid, name: "🗄️ IT · 计算链路（机柜拆解）", page: "rack3d.html", current: here === "rack3d.html" && (q.get("x") || "0") < "70" },
+                                   { id: "chip", name: "🧠 芯片级（服务器拆到底）", page: "rack3d.html?x=70", current: here === "rack3d.html" && (q.get("x") || "0") >= "70" });
+    else if (sid === "control") entries.push({ id: sid, name: "🖥️ " + s.name, page: "", current: false, desc: "软件条目，不进 3D" });
+    else entries.push({ id: sid, name: s.name, page: "bom3d.html?d=" + sid, current: here === "bom3d.html" && q.get("d") === sid, desc: (s.chains || []).join(" → ") });
+  }
+  const bar = document.createElement("div"); bar.className = "drill";
+  entries.forEach((L, i) => {
+    if (i) bar.appendChild(dossierNode("span", "›", "sep"));
+    const active = L.page && safeURL(L.page);
+    const node = dossierNode(active ? "a" : "span", L.name, active ? (L.current ? "on" : "") : "soon");
+    node.title = L.name + (L.desc ? " · " + L.desc : "");
+    if (active) node.href = safeURL(L.page);
+    bar.appendChild(node);
+  });
+  document.body.appendChild(bar);
+}).catch(() => {});
+</script>
+</body>
+</html>
