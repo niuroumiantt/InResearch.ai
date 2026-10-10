@@ -4116,6 +4116,70 @@
       "status": "candidate",
       "stored_path": "originals/12/1216c1ccbda03d25ede25183eb350a6269ca8812ef744c353d3bb31c5c322673/dcd-1216c1ccbda03d25-ProPetro signs 60MW power supply contract with hyperscale data ce.html",
       "title": "ProPetro signs 60MW power supply contract with hyperscale data center in US Midwest"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "coverage": {
+        "characters_read": 7506,
+        "characters_total": 7506,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "id": "doc-06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "library_path": "library/by-node/part-network-switch/2026_DCD（原载 SDxCentral）_Nvidia debuts Spectrum-6 switches to power next-gen AI__06ecddf435b6a332.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:coreweave",
+        "actor:lambda",
+        "actor:microsoft",
+        "actor:nebius",
+        "actor:nvidia-networking",
+        "part:network-switch",
+        "part:optics",
+        "system:network"
+      ],
+      "question_ids": [
+        "OBJ-network-switch-alternatives",
+        "OBJ-network-switch-definition",
+        "OBJ-network-switch-interfaces",
+        "OBJ-network-switch-performance",
+        "OBJ-network-switch-supply",
+        "OBJ-optics-performance"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-c1dd79392e0643d18d6cc2cdee772393",
+      "report_sha256": "49234b34d34adf13daa57f436ed6c193e12931c04bf104a59e8b8184c698499d",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+        "url": "https://www.datacenterdynamics.com/en/news/nvidia-debuts-spectrum-6-switches-to-power-next-gen-ai-networking/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/nvidia-debuts-spectrum-6-switches-to-power-next-gen-ai-networking/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/06/06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae/dcd-06ecddf435b6a332-Nvidia debuts Spectrum-6 switches to power next-gen AI networking.html",
+      "title": "Nvidia debuts Spectrum-6 switches to power next-gen AI networking"
     }
   ],
   "evidence": [
@@ -30724,6 +30788,271 @@
           }
         },
         "batch_id": "a58975828efec7678d89de22704d1a579918c83ae5bc6bbed4278288ef4731e4"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "67dd55ed5b9b0501132aea4173044971f3939fe9f20d6942949f6c9afffad23c",
+      "document_id": "doc-06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "id": "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:1:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:nvidia-networking",
+        "part:network-switch"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-network-switch-definition",
+        "OBJ-network-switch-interfaces",
+        "OBJ-network-switch-performance"
+      ],
+      "quote": "Set to form the networking anchor for Nvidia’s upcoming Vera Rubin platform, Spectrum-6 is Ethernet-based",
+      "reading_revision_id": "rev-c1dd79392e0643d18d6cc2cdee772393",
+      "source_sha256": "06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T05:34:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。以太网属性及具体型号的端口配置实质补充当前定义与接口工作单，连续原文片段和完整相邻语境支持限定归属的局部采用，无A类触发条件。不保留性能问题标签：本项没有测量、可靠性或失效机制证据。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-definition",
+          "Q-OBJ-network-switch-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.02,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d88cd4a127f6785165a208d356c06f525a631c5e4051aa758cf5b3401f31d3c6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 66867,
+            "output_tokens": 2974,
+            "reasoning_output_tokens": 469
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.464,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "865236fa9008c22eacf77de80b948e994b15b7fa139e7f22927c1bb341cb2e54",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65808,
+              "output_tokens": 468,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "576500508898da116b295ad97dde204a16d2d5e6b47aa64a0f13226190145a9c"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "67dd55ed5b9b0501132aea4173044971f3939fe9f20d6942949f6c9afffad23c",
+      "document_id": "doc-06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "id": "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:1:ev:1",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:nvidia-networking",
+        "part:network-switch"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-network-switch-definition",
+        "OBJ-network-switch-interfaces",
+        "OBJ-network-switch-performance"
+      ],
+      "quote": "the SN6810 version features 128 ports at 800Gbps.",
+      "reading_revision_id": "rev-c1dd79392e0643d18d6cc2cdee772393",
+      "source_sha256": "06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T05:34:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。以太网属性及具体型号的端口配置实质补充当前定义与接口工作单，连续原文片段和完整相邻语境支持限定归属的局部采用，无A类触发条件。不保留性能问题标签：本项没有测量、可靠性或失效机制证据。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-definition",
+          "Q-OBJ-network-switch-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.02,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d88cd4a127f6785165a208d356c06f525a631c5e4051aa758cf5b3401f31d3c6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 66867,
+            "output_tokens": 2974,
+            "reasoning_output_tokens": 469
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.464,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "865236fa9008c22eacf77de80b948e994b15b7fa139e7f22927c1bb341cb2e54",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65808,
+              "output_tokens": 468,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "576500508898da116b295ad97dde204a16d2d5e6b47aa64a0f13226190145a9c"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "67dd55ed5b9b0501132aea4173044971f3939fe9f20d6942949f6c9afffad23c",
+      "document_id": "doc-06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "id": "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:2:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "actor:nvidia-networking",
+        "part:network-switch"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "OBJ-network-switch-interfaces",
+        "OBJ-network-switch-performance"
+      ],
+      "quote": "There’s also the SN6800, which the self-proclaimed “largest networking company in the world” said offers 409.6Tbps of bandwidth across 512 ports at 800Gbps. Both are liquid-cooled.",
+      "reading_revision_id": "rev-c1dd79392e0643d18d6cc2cdee772393",
+      "source_sha256": "06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T05:34:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。具体端口配置及型号明确的液冷要求实质补充当前接口与上下游依赖工作单，连续引文和前后型号语境充分，无A类触发条件，可作B类局部采用。既有记录仅覆盖其中部分端口配置，本项新增带宽声明和两型号冷却描述，不属于整体重复。不保留性能标签，因未提供测量或失效机制证据。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.02,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d88cd4a127f6785165a208d356c06f525a631c5e4051aa758cf5b3401f31d3c6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 66867,
+            "output_tokens": 2974,
+            "reasoning_output_tokens": 469
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.464,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "865236fa9008c22eacf77de80b948e994b15b7fa139e7f22927c1bb341cb2e54",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65808,
+              "output_tokens": 468,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "576500508898da116b295ad97dde204a16d2d5e6b47aa64a0f13226190145a9c"
       }
     }
   ],
@@ -59933,6 +60262,211 @@
         "request_sha256": "9e9385b4b890d8c837b634edc37da36f495622a70fee9ed616131c4535685895"
       },
       "object_mapping_check": "原文讨论Alphabet旗下Google Cloud的TPU硬件销售，主体对应actor:alphabet-google，产品对应计算链下的part:ai-asic。收入时间关系没有建立整机柜、服务器、网络、控制软件或设施资产的具体范围，不增加这些映射。仅谷歌TPU的证据不足以赋予包含其他自研阵营的组合主体完整范围，因此不继承组合actor标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "evidence_ids": [
+        "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:1:ev:0",
+        "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:1:ev:1"
+      ],
+      "id": "adoption:review:100a51fa0733e0b26f95e1ba",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:nvidia-networking",
+        "part:network-switch"
+      ],
+      "question_ids": [
+        "OBJ-network-switch-definition",
+        "OBJ-network-switch-interfaces"
+      ],
+      "reading_revision_id": "rev-c1dd79392e0643d18d6cc2cdee772393",
+      "status": "adopted",
+      "text": "Ben Wodecki 在 DCD 刊载、注明原载 SDxCentral 的2026年7月22日报道中称，Spectrum-6基于以太网，计划成为 Nvidia 当时尚待推出的 Vera Rubin 平台的网络基础；报道援引此前 Nvidia 博客称，SN6810版本具有128个800Gbps端口。这些是来源所述技术属性、计划角色和标称接口配置，未获当前独立规格、互操作或部署验证；报道未限定具体地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T05:34:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。以太网属性及具体型号的端口配置实质补充当前定义与接口工作单，连续原文片段和完整相邻语境支持限定归属的局部采用，无A类触发条件。不保留性能问题标签：本项没有测量、可靠性或失效机制证据。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-definition",
+          "Q-OBJ-network-switch-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.02,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d88cd4a127f6785165a208d356c06f525a631c5e4051aa758cf5b3401f31d3c6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 66867,
+            "output_tokens": 2974,
+            "reasoning_output_tokens": 469
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.464,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "865236fa9008c22eacf77de80b948e994b15b7fa139e7f22927c1bb341cb2e54",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65808,
+              "output_tokens": 468,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "576500508898da116b295ad97dde204a16d2d5e6b47aa64a0f13226190145a9c"
+      },
+      "source_candidate_ids": [
+        "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:1"
+      ],
+      "limitations": "未给出完整组成、排除边界、连接器、lane配置、协议版本、互换条件或上下游设备兼容清单。此前博客的发表时间未建立，也未直接提供其原文。端口速率不能视为实测吞吐，平台计划角色不能视为实际交付。",
+      "conflict_check": "现有UEC设计范围及交换机实现可选性陈述没有规定Spectrum-6采用何种具体协议实现，与以太网属性无冲突。既有Quantum型号、Spectrum 6800及AMD机柜配置涉及不同型号，不是本项canonical重复。相关legacy中的Vera Rubin计算托盘、GPU、机柜功率和冷却记录不能验证或反驳该交换机接口；未发现所供范围内的真实冲突。",
+      "gap_dependency_check": "定义问题获得协议属性与平台计划角色，接口问题获得型号、端口数及速率的局部支持。完整边界、组成、依赖和互换条件仍需原始规格及兼容测试补证；两个问题保持开放，不改变骨架、既有结论或交付状态。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "576500508898da116b295ad97dde204a16d2d5e6b47aa64a0f13226190145a9c",
+        "source_report_sha256": "49234b34d34adf13daa57f436ed6c193e12931c04bf104a59e8b8184c698499d",
+        "request_sha256": "c248d80cfe550257f0a9c2b4e296b39ae457d5cd9aeca7e2f3e00b603e63910c"
+      },
+      "object_mapping_check": "Spectrum-6及SN6810明确是用于AI基础设施组网的以太网交换机，对应chain:network/1下的part:network-switch；Nvidia为产品厂商，对应actor:nvidia-networking。Vera Rubin只作为计划适用平台出现，不足以映射GPU、整机柜、交换芯片或DCIM/BMS。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-06ecddf435b6a3321735fe6cb2ba3d40d115e1ebc49f1f0670b1d2edccb8d6ae",
+      "evidence_ids": [
+        "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:2:ev:0"
+      ],
+      "id": "adoption:review:c0ffafadd2ec3ae5f2e92394",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:nvidia-networking",
+        "part:network-switch"
+      ],
+      "question_ids": [
+        "OBJ-network-switch-interfaces"
+      ],
+      "reading_revision_id": "rev-c1dd79392e0643d18d6cc2cdee772393",
+      "status": "adopted",
+      "text": "Ben Wodecki 在 DCD 刊载、注明原载 SDxCentral 的2026年7月22日报道中转述 Nvidia 声明：SN6800通过512个800Gbps端口提供409.6Tbps带宽；报道同时称SN6800和前文的SN6810均采用液冷。此项记录来源所述标称接口、带宽及冷却配置，未获当前独立规格、实测或部署验证；报道未限定具体地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T05:34:37+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性及评分6。具体端口配置及型号明确的液冷要求实质补充当前接口与上下游依赖工作单，连续引文和前后型号语境充分，无A类触发条件，可作B类局部采用。既有记录仅覆盖其中部分端口配置，本项新增带宽声明和两型号冷却描述，不属于整体重复。不保留性能标签，因未提供测量或失效机制证据。",
+        "workorder_ids": [
+          "Q-OBJ-network-switch-interfaces"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.02,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d88cd4a127f6785165a208d356c06f525a631c5e4051aa758cf5b3401f31d3c6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 66867,
+            "output_tokens": 2974,
+            "reasoning_output_tokens": 469
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 25.464,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "865236fa9008c22eacf77de80b948e994b15b7fa139e7f22927c1bb341cb2e54",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 65808,
+              "output_tokens": 468,
+              "reasoning_output_tokens": 192
+            }
+          }
+        },
+        "batch_id": "576500508898da116b295ad97dde204a16d2d5e6b47aa64a0f13226190145a9c"
+      },
+      "source_candidate_ids": [
+        "rev-c1dd79392e0643d18d6cc2cdee772393:chunk:0:claim:2"
+      ],
+      "limitations": "未说明端口物理布局、连接器、带宽统计方向、有效吞吐或互换条件。液冷描述没有给出冷却方式、供液温度、流量、热负载、液路接口及设施依赖，不能补入其他Vera Rubin设备的45°C条件，也不能推导功耗或可靠性收益。",
+      "conflict_check": "adoption:review:c0083abceb2e68948fdf2515已记录来源所述Spectrum 6800的512个800G端口，与本项端口描述相容，但没有本项带宽声明及两型号液冷内容，不能算整体重复或独立规格认证。开头Spectrum-6的102.4Tbps未建立与SN6800相同的统计层级，不认定真实冲突，也不自行汇总。legacy的计算托盘冷却温度、液冷机队规模及其他设备功耗均不同口径；未发现直接反证。",
+      "gap_dependency_check": "接口问题获得标称端口配置和冷却依赖线索。仍需原始型号规格、液路条件、上下游兼容及互换限制；带宽测量、可靠性和失效条件仍未回答。不关闭问题，不替换既有采用陈述，不更新网络功耗、利用率、成本或GW记录。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "576500508898da116b295ad97dde204a16d2d5e6b47aa64a0f13226190145a9c",
+        "source_report_sha256": "49234b34d34adf13daa57f436ed6c193e12931c04bf104a59e8b8184c698499d",
+        "request_sha256": "c248d80cfe550257f0a9c2b4e296b39ae457d5cd9aeca7e2f3e00b603e63910c"
+      },
+      "object_mapping_check": "SN6800和SN6810是网络链下的scale-out以太网交换机，映射part:network-switch及产品厂商actor:nvidia-networking。液冷仅为交换机配置描述，没有指明冷板、CDU、冷却液或管路对象，故不扩展冷却组件映射；本项也未直接描述光模块或整个网络系统。"
     }
   ],
   "answers": [],
