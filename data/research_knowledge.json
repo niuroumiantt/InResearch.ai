@@ -37326,6 +37326,89 @@
         },
         "batch_id": "145a3884d327494d2ede8e808b6b93fbec85199edd8cd768bdc099915644023e"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ae0c1d179cb0e46bf5ae5d48c6e04f8c985b4f5442046847f90b55a105dd3ec2",
+      "document_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "id": "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:3:ev:0",
+      "locator": "page:1/chunk:5",
+      "object_ids": [
+        "actor:constellation-energy"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "• Commercial business outperforming plan in a dynamic market – Higher realized customer margins – Successful portfolio optimization • Accretive deployment of capital through share repurchases • Partially offset by higher O&M due to performance related compensation expenses",
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "source_sha256": "9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:48:09+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。商业利润率、组合优化、回购与绩效薪酬费用的不同作用，实质关联当前经济性工单的收益机制及不可直接比较的口径。连续原文和第11页指引语境充分，无敏感、真实冲突或替换条件，符合B类限定归因的部分采用要求；资源供应企业材料仅贡献关联证据，不覆盖数据中心节点自身。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.632,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3f6a2f8a6c29c9e97bbbaebe5c898e71ce2222c67953b4c56d9dadace8bca1b8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 62721,
+            "output_tokens": 1904,
+            "reasoning_output_tokens": 259
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 39.736,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "bcc1fef5fdd4ecf8c5787ea40c82329e99e9136882625251a2f9c1af65c552c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 62650,
+              "output_tokens": 1025,
+              "reasoning_output_tokens": 715
+            }
+          }
+        },
+        "batch_id": "c493577f2c3a0f3c67212e1c7fffc208c78e2d70f37fb4441edb78b348f18c11"
+      }
     }
   ],
   "statements": [
@@ -72712,6 +72795,106 @@
         "request_sha256": "b7af62bf62ef7a2f020be3a1c5d16bf45d465590e727d4f26f5d4d04235c6792"
       },
       "object_mapping_check": "Digital Realty由相邻原文明示为DFW37申请主体。主张具体涉及建筑面积及办公室与数据大厅的功能分区，匹配system:facility的土地与建筑范围，并在其土地与建筑链下匹配part:shell的建筑及机房装修空间范围；此映射不认证具体土建工程或性能。8MW口径未明，不能据此映射电力、IT或散热系统；对象契约没有独立大厅ID，不新增节点。所选证据统一采用上述范围，不继承无关Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-9caf0a9498b5af7acaf0246aa793edb2b8417c0901dc77e6c7f2cfb376a3dbcd",
+      "evidence_ids": [
+        "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:3:ev:0"
+      ],
+      "id": "adoption:review:728a2e2f45a447d8340bf55e",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:constellation-energy"
+      ],
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "reading_revision_id": "rev-a034bd64769d459da23cf84e95d949d5",
+      "status": "adopted",
+      "text": "据所供归档网页响应中标注2026年8月6日的星座能源第二季度业绩演示第11页，公司在上调2026全年调整后经营收益指引的说明中称：商业业务表现超过计划，驱动因素包括其所称更高的“客户实现利润率”和成功的组合优化；股份回购的资本部署具有收益增厚作用，部分正面影响被绩效相关薪酬费用导致的较高运维费用抵消。这是发电企业对公司层面非GAAP收益指引驱动因素的定性解释，未经本次独立验证；未限定具体数据中心客户、项目或地域。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T16:48:09+00:00",
+        "decision": "adopted",
+        "score": 5,
+        "original_importance": 5,
+        "rationale": "原始重要性5，评分5。商业利润率、组合优化、回购与绩效薪酬费用的不同作用，实质关联当前经济性工单的收益机制及不可直接比较的口径。连续原文和第11页指引语境充分，无敏感、真实冲突或替换条件，符合B类限定归因的部分采用要求；资源供应企业材料仅贡献关联证据，不覆盖数据中心节点自身。",
+        "workorder_ids": [
+          "Q-NODE-activity-V1-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 62.632,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "3f6a2f8a6c29c9e97bbbaebe5c898e71ce2222c67953b4c56d9dadace8bca1b8",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 62721,
+            "output_tokens": 1904,
+            "reasoning_output_tokens": 259
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 39.736,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "bcc1fef5fdd4ecf8c5787ea40c82329e99e9136882625251a2f9c1af65c552c1",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 62650,
+              "output_tokens": 1025,
+              "reasoning_output_tokens": 715
+            }
+          }
+        },
+        "batch_id": "c493577f2c3a0f3c67212e1c7fffc208c78e2d70f37fb4441edb78b348f18c11"
+      },
+      "source_candidate_ids": [
+        "rev-a034bd64769d459da23cf84e95d949d5:chunk:5:claim:3"
+      ],
+      "limitations": "未量化各项驱动因素、利润率变化或薪酬费用，也未给出客户合同、购电单价及费用分摊。股份回购属于资本配置因素，不能等同于经营效率提高；公司运维费用不能替代数据中心运维费用。仅有归档文字响应，原站字节及原始图表未独立核验。",
+      "conflict_check": "既有星座能源资产定价及2029年机会情景没有采用本项指引驱动因素，不构成重复。终端用户成本敏感性、区域设施电费、自建效率及PJM容量账单陈述的主体、角色和指标不同，未发现同口径真实冲突。封存摘要关于缺少可直接采用模型参数的结论与本项定性部分采用一致。legacy匹配为空，外部反证尚未穷尽；不覆盖既有结论。",
+      "gap_dependency_check": "对NODE-activity-V1-economics仅补充资源供应企业收益形成及经营因素与资本配置因素的区分。仍需收益调整桥接、利润率定义、合同价格与数量、成本边界、费用数据及反证，才能计量或比较。不能推导数据中心购电价、项目盈利改善或运营成本，问题保持开放，不更新模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "c493577f2c3a0f3c67212e1c7fffc208c78e2d70f37fb4441edb78b348f18c11",
+        "source_report_sha256": "1f1517764ca6223b7ce9a4a5ba3e6d940c53dfa81fba0b830ae21e37b3a97251",
+        "request_sha256": "2b8a00bc520a357a3ba9ed10a2af59b27bc7e7681d290872c6bf0ed3bf66b364"
+      },
+      "object_mapping_check": "主张实际范围是星座能源的商业业务表现、资本配置和公司运维费用，仅映射对象合同中的actor:constellation-energy。经济性问题关联不自动确立一座AI数据中心或其电力系统范围，不映射root、system:power或site:grid。"
     }
   ],
   "answers": [],
