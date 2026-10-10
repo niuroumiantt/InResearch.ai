@@ -2,6 +2,9 @@ import importlib.util
 import json
 from html.parser import HTMLParser
 import tempfile
+import sys
+import shutil
+from unittest.mock import patch
 import unittest
 from pathlib import Path
 from inresearch.paths import project_root
@@ -37,3 +40,18 @@ class ResearchDashboardTests(unittest.TestCase):
             changed=dashboard.build(root,table)
             self.assertNotEqual(changed,html)
             self.assertIn('<strong>0</strong>资料目标',changed)
+
+    def test_daily_archive_contains_all_real_control_room_dependencies(self):
+        def module(name):
+            spec=importlib.util.spec_from_file_location(name,ROOT/'scripts'/ (name+'.py'))
+            m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);return m
+        daemon=module('repository_pages_daemon');sync=module('sync_repo_pages')
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp)
+            for name in daemon.SOURCE_FILES:
+                p=root/name;p.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/name,p)
+            with patch.object(sync,'ROOT',root), patch.object(sys,'path',[str(root/'scripts')]+sys.path):
+                meta=sync.provenance(sync.inresearch_sources(),'2026-10-10T22:00:00+08:00')
+                html=sync.build_inresearch(meta)
+                self.assertIn('audit-demand',html)
+                self.assertIn('material-board',html)
