@@ -155,7 +155,7 @@ def build():
         scope='Generic classification illustration; not engineering topology, OEM configuration or completed TA-01–35 item',
         pixels=[1536, 1800], scene_pixels=[1536, 1024], colors=COLORS,
         categories=[dict(id=sid, name=systems[sid]['name']) for sid, _, _ in columns],
-        fonts=proof, files={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [OUT/'cutaway-v1.png',output]})
+        fonts=proof, files={str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest() for p in [OUT/'cutaway-v1.png',output,OUT/'overview-v1.png',OUT/'overview-v1-preview.jpg'] if p.exists()})
     (ROOT/'docs/design/bom-classification/manifest-v1.json').write_text(json.dumps(manifest,ensure_ascii=False,indent=2)+'\n')
     print(output.relative_to(ROOT))
 

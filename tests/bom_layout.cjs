@@ -2,6 +2,7 @@
 const assert=require('node:assert/strict');
 const {chromium}=require('playwright');
 const fs=require('node:fs'),path=require('node:path');
+const {createHash}=require('node:crypto');
 const bom=require('../framework/bom.json');
 (async()=>{
  const browser=await chromium.launch({headless:true});
@@ -14,6 +15,7 @@ const bom=require('../framework/bom.json');
   const poster = page.locator('.classification-poster img');
   await poster.evaluate(e=>e.decode());
   assert.deepEqual(await poster.evaluate(e=>[e.naturalWidth,e.naturalHeight]),[1536,1800]);
+  assert.ok((await poster.getAttribute('src')).endsWith('overview-v1-preview.jpg'));
   assert.ok(await poster.evaluate(e=>!!(e.compareDocumentPosition(document.querySelector('.equipment'))&Node.DOCUMENT_POSITION_FOLLOWING)));
   assert.equal(await page.locator('#classification-nav').evaluate(e=>e.open),false);
   const physical=bom.parts.filter(p=>(p.kind||'part')==='part');
@@ -62,9 +64,14 @@ const bom=require('../framework/bom.json');
   assert.ok(await page.locator('#classification-dialog').evaluate(e=>!e.open));
   // The editable export and whole-image download must be real public resources.
   for(const ext of ['png','svg']) {
-   const resource=await page.request.get(process.env.UI_BASE_URL+'/assets/bom-classification/overview-v1.'+ext);
+   const resource=await page.request.head(process.env.UI_BASE_URL+'/assets/bom-classification/overview-v1.'+ext);
    assert.equal(resource.status(),200);
-   if(ext==='svg') { const xml=await resource.text();assert.ok(xml.includes('data:image/png;base64,'));assert.ok(xml.includes('data:font/woff2;base64,')); }
+   const [download]=await Promise.all([page.waitForEvent('download'),page.locator('.poster-actions a[download][href$=".'+ext+'"]').click()]);
+   assert.equal(await download.failure(),null);
+   const bytes=fs.readFileSync(await download.path());
+   const expected=fs.readFileSync(path.join(__dirname,'../web/assets/bom-classification/overview-v1.'+ext));
+   assert.equal(createHash('sha256').update(bytes).digest('hex'),createHash('sha256').update(expected).digest('hex'));
+   if(ext==='svg') { const xml=bytes.toString();assert.ok(xml.includes('data:image/png;base64,'));assert.ok(xml.includes('data:font/woff2;base64,')); }
   }
   await page.locator('#classification-nav summary').click();
   // Top diagram links must land below both sticky navigation rows on a phone.
