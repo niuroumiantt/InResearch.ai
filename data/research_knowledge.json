@@ -3016,6 +3016,88 @@
       "status": "candidate",
       "stored_path": "originals/04/04e3af568142c327af50dd218fab0fd02ef46b59232d1859bdb6d992fa8d4a1c/TPU Inference Externalization Full Steam Ahead.pdf",
       "title": "TPU Inference Externalization Full Steam Ahead"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "coverage": {
+        "characters_read": 78857,
+        "characters_total": 78857,
+        "chunks_read": 39,
+        "chunks_total": 39,
+        "complete": true,
+        "pages_read": 39,
+        "pages_total": 39
+      },
+      "doc_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "library_path": "library/by-node/root/2026_未知_How Much Do GPU Clusters Really Cost___bcea0f5e5fb78dee.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:bytedance",
+        "actor:coreweave",
+        "actor:crusoe",
+        "actor:fluidstack",
+        "actor:ibm",
+        "actor:lambda",
+        "actor:meta",
+        "actor:mgx",
+        "actor:mistral-ai",
+        "actor:nebius",
+        "actor:nscale",
+        "actor:nvidia-networking",
+        "actor:vast-data",
+        "actor:weka",
+        "chain:network/1",
+        "part:cpu",
+        "part:gpu",
+        "part:hbm",
+        "part:network-switch",
+        "part:nic",
+        "part:rack-system",
+        "part:server",
+        "part:storage-array",
+        "root",
+        "system:compute",
+        "system:control",
+        "system:it",
+        "system:memory",
+        "system:network",
+        "system:storage"
+      ],
+      "question_ids": [
+        "NODE-workload-inference-economics",
+        "NODE-workload-storage-economics",
+        "NODE-workload-storage-profile",
+        "NODE-workload-training-economics",
+        "NODE-workload-training-profile",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-interfaces",
+        "OBJ-gpu-performance",
+        "OBJ-gpu-supply",
+        "OBJ-nic-alternatives",
+        "OBJ-nic-interfaces",
+        "OBJ-nic-performance",
+        "OBJ-server-performance",
+        "Q-SCOPE-part-gpu-device"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/bc/bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b/How Much Do GPU Clusters Really Cost_ (1).pdf",
+      "title": "How Much Do GPU Clusters Really Cost?"
     }
   ],
   "evidence": [
@@ -16415,6 +16497,271 @@
           }
         },
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bf2bc7f459d73082a21e7741658a40e6c127d1fceb0f67caa7bc5eb6a3c2d3f1",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:11:ev:0",
+      "locator": "page:14/chunk:13",
+      "object_ids": [
+        "part:server",
+        "root"
+      ],
+      "page_index": 13,
+      "question_ids": [
+        "OBJ-server-performance"
+      ],
+      "quote": "A meaningful share of incidents first appear as stuck collectives or watchdog timeouts, which are just symptoms.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:45:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为7。两条连续原文引句及分布式训练通信组、恢复流程的周边语境充分支持限定的作者主张。该项对当前服务器失效机制、集群故障开销、训练可靠性需求及单位有效产出成本工作单均有实质但局部贡献；未发现敏感、真实冲突、替换或其他A条件，符合B类局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-server-performance",
+          "Q-M13-Q09",
+          "Q-NODE-workload-training-profile",
+          "Q-NODE-workload-training-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.624,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d681660751ecb18a93e0ad3da4c730a9789ff411dc9b57ffa24ce23dc3a727d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29246,
+            "output_tokens": 2064,
+            "reasoning_output_tokens": 171
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.576,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "176b5dfd00e6506e655c1f7225cd0dcc5cfc56f71fc7e6da8b8d3a6d46741bcc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29344,
+              "output_tokens": 483,
+              "reasoning_output_tokens": 205
+            }
+          }
+        },
+        "batch_id": "5db483d9757a5c7b6cc8f65e913be42cb464f03902c95d50f0b12455396f6e47"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bf2bc7f459d73082a21e7741658a40e6c127d1fceb0f67caa7bc5eb6a3c2d3f1",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:11:ev:1",
+      "locator": "page:14/chunk:13",
+      "object_ids": [
+        "part:server",
+        "root"
+      ],
+      "page_index": 13,
+      "question_ids": [
+        "OBJ-server-performance"
+      ],
+      "quote": "From a TCO perspective, that means goodput loss includes not only repair or replacement time, but also the time required to detect, attribute, and unwind a hung collective across the participating ranks.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:45:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为7。两条连续原文引句及分布式训练通信组、恢复流程的周边语境充分支持限定的作者主张。该项对当前服务器失效机制、集群故障开销、训练可靠性需求及单位有效产出成本工作单均有实质但局部贡献；未发现敏感、真实冲突、替换或其他A条件，符合B类局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-server-performance",
+          "Q-M13-Q09",
+          "Q-NODE-workload-training-profile",
+          "Q-NODE-workload-training-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.624,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d681660751ecb18a93e0ad3da4c730a9789ff411dc9b57ffa24ce23dc3a727d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29246,
+            "output_tokens": 2064,
+            "reasoning_output_tokens": 171
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.576,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "176b5dfd00e6506e655c1f7225cd0dcc5cfc56f71fc7e6da8b8d3a6d46741bcc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29344,
+              "output_tokens": 483,
+              "reasoning_output_tokens": 205
+            }
+          }
+        },
+        "batch_id": "5db483d9757a5c7b6cc8f65e913be42cb464f03902c95d50f0b12455396f6e47"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "bf2bc7f459d73082a21e7741658a40e6c127d1fceb0f67caa7bc5eb6a3c2d3f1",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "id": "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:12:ev:0",
+      "locator": "page:14/chunk:13",
+      "object_ids": [
+        "part:server"
+      ],
+      "page_index": 13,
+      "question_ids": [
+        "OBJ-server-performance"
+      ],
+      "quote": "On FSDP2, converting a DTensor state dict back to a full tensor for saving issues an all-gather across ranks Checkpoint frequency is a reliability parameter and a communication and failure-surface parameter.",
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "source_sha256": "bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:45:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为7。连续原文引文及“Checkpointing itself can be part of the failure tax”的上下文支持限定的作者机制主张。该项直接关联当前checkpoint开销工作单，并对服务器可靠性与失效机制、训练通信和可靠性需求提供局部支持。未发现敏感、真实冲突、替换或其他A条件，可按B类采用。",
+        "workorder_ids": [
+          "Q-OBJ-server-performance",
+          "Q-M13-Q09",
+          "Q-NODE-workload-training-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.624,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d681660751ecb18a93e0ad3da4c730a9789ff411dc9b57ffa24ce23dc3a727d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29246,
+            "output_tokens": 2064,
+            "reasoning_output_tokens": 171
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.576,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "176b5dfd00e6506e655c1f7225cd0dcc5cfc56f71fc7e6da8b8d3a6d46741bcc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29344,
+              "output_tokens": 483,
+              "reasoning_output_tokens": 205
+            }
+          }
+        },
+        "batch_id": "5db483d9757a5c7b6cc8f65e913be42cb464f03902c95d50f0b12455396f6e47"
       }
     }
   ],
@@ -32233,6 +32580,216 @@
         "batch_id": "201073dec406cc2f198577fc5cc4e28c16a205f647e8e33db233fc69bec4cc60",
         "source_report_sha256": "aa38f45ffee93535ae7c2473839518f18225156b6531f46a9916b7492161faeb",
         "request_sha256": "52cb649b8020ce0d852d70f556d71e2fa670e87d9fe3e5a1ad1499df078ed4bd"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:11:ev:0",
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:11:ev:1"
+      ],
+      "id": "adoption:review:fdbedcfa08aa8493a6376295",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:server",
+        "root"
+      ],
+      "question_ids": [
+        "OBJ-server-performance",
+        "M13-Q09",
+        "NODE-workload-training-profile",
+        "NODE-workload-training-economics"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "《How Much Do GPU Clusters Really Cost?》作者在第14页的大规模分布式训练容错讨论中称，相当一部分故障事件首先表现为 collective 卡住或 watchdog 超时，这些只是症状；从总拥有成本（TCO）角度，goodput 损失除维修或更换耗时外，还包括在参与通信的各 rank 间检测、归因和解除 collective 挂起所需的时间。这是来源作者的定性主张，未给事件比例或耗时数值，未经独立核验；所供材料未建立作者姓名、发表时间、地域或具体项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:45:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为7。两条连续原文引句及分布式训练通信组、恢复流程的周边语境充分支持限定的作者主张。该项对当前服务器失效机制、集群故障开销、训练可靠性需求及单位有效产出成本工作单均有实质但局部贡献；未发现敏感、真实冲突、替换或其他A条件，符合B类局部采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-server-performance",
+          "Q-M13-Q09",
+          "Q-NODE-workload-training-profile",
+          "Q-NODE-workload-training-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.624,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d681660751ecb18a93e0ad3da4c730a9789ff411dc9b57ffa24ce23dc3a727d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29246,
+            "output_tokens": 2064,
+            "reasoning_output_tokens": 171
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.576,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "176b5dfd00e6506e655c1f7225cd0dcc5cfc56f71fc7e6da8b8d3a6d46741bcc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29344,
+              "output_tokens": 483,
+              "reasoning_output_tokens": 205
+            }
+          }
+        },
+        "batch_id": "5db483d9757a5c7b6cc8f65e913be42cb464f03902c95d50f0b12455396f6e47"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:11"
+      ],
+      "limitations": "未给事件样本、统计分母、集群规模、GPU型号、软件版本、网络拓扑、故障根因或检测与恢复耗时分布。不能把症状等同于硬件故障根因，也不能由“相当一部分”推导故障率。未给损失计算公式及成本数据，不能据此更新利用率、训练成本或其他模型输入。",
+      "conflict_check": "已采用的adoption:review:6a1cf89ffdfd78931c02f3fe描述大规模训练AllReduce网络问题导致计算闲置，与本项症状及诊断恢复时间讨论相关，但没有相同实现和测量边界，既不能独立验证本项，也不构成重复或直接冲突。adoption:review:de855c24f7452e9331df1c4d讨论checkpoint期间负载及作者所称时长，不是故障诊断恢复耗时。其余采用记录涉及训练组织、功率动态或后训练特征，未发现直接反证。所供legacy匹配记录为空，不能视为完成全面反证检索；不覆盖任何既有结论。",
+      "gap_dependency_check": "文字足以支持局部失效表现与goodput损失口径，无需依赖邻近图表。OBJ-server-performance仍缺测试方法、工况和反证；M13-Q09仍缺故障率及checkpoint开销量化；训练profile仍缺带工况的可靠性样本；训练economics仍缺损失到单位有效产出成本的可复查推导。四项问题均保持开放，不将部分证据当作完整回答或关闭依据。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "5db483d9757a5c7b6cc8f65e913be42cb464f03902c95d50f0b12455396f6e47",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "4e2294610443a7a6c4b51535dc5307fcffc48d901929c8a031924168f64e64a8"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-bcea0f5e5fb78dee79701d2cb62daee1e4045d70fec2859ac9f54a786af4b24b",
+      "evidence_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:12:ev:0"
+      ],
+      "id": "adoption:review:b35e1ebfe7f1427d3218ab22",
+      "kind": "author_claim",
+      "object_ids": [
+        "part:server"
+      ],
+      "question_ids": [
+        "OBJ-server-performance",
+        "M13-Q09",
+        "NODE-workload-training-profile"
+      ],
+      "reading_revision_id": "rev-61881c11771c408e9b1b2a4c50fae73e",
+      "status": "adopted",
+      "text": "《How Much Do GPU Clusters Really Cost?》作者在第14页称，在FSDP2中，为保存检查点而将DTensor状态字典转换回完整张量会发起跨rank的all-gather；作者据此将检查点频率视为可靠性、通信及故障暴露面的参数。这是来源作者对特定转换保存路径的机制解释，未经独立核验，不能推广为所有FSDP2检查点保存方式；所供材料未建立作者姓名、发表时间、地域或具体项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T04:45:28+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性为7，评分为7。连续原文引文及“Checkpointing itself can be part of the failure tax”的上下文支持限定的作者机制主张。该项直接关联当前checkpoint开销工作单，并对服务器可靠性与失效机制、训练通信和可靠性需求提供局部支持。未发现敏感、真实冲突、替换或其他A条件，可按B类采用。",
+        "workorder_ids": [
+          "Q-OBJ-server-performance",
+          "Q-M13-Q09",
+          "Q-NODE-workload-training-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 69.624,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "d681660751ecb18a93e0ad3da4c730a9789ff411dc9b57ffa24ce23dc3a727d5",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "7cd8d766b85928806470e62019dea6d4c56f787ffb385ebd3ffdf761923428c1",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 29246,
+            "output_tokens": 2064,
+            "reasoning_output_tokens": 171
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 26.576,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "176b5dfd00e6506e655c1f7225cd0dcc5cfc56f71fc7e6da8b8d3a6d46741bcc",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "7423fd78e9ab26aaea16e92ce38482f549c2557e96bb0166003d72cf362574f0",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 29344,
+              "output_tokens": 483,
+              "reasoning_output_tokens": 205
+            }
+          }
+        },
+        "batch_id": "5db483d9757a5c7b6cc8f65e913be42cb464f03902c95d50f0b12455396f6e47"
+      },
+      "source_candidate_ids": [
+        "rev-61881c11771c408e9b1b2a4c50fae73e:chunk:13:claim:12"
+      ],
+      "limitations": "未给PyTorch/FSDP2具体版本、保存API、状态量、通信组规模、GPU与网络配置、同步或异步方式、检查点频率、端到端耗时及故障率。未提供通信成本或故障暴露面随频率变化的方向、幅度和实测证据，不能据此量化checkpoint开销或确定最优频率。",
+      "conflict_check": "已采用的adoption:review:de855c24f7452e9331df1c4d记录另一来源对checkpoint期间负载和几毫秒时长的作者判断，且已明确不能推广为完整保存或恢复流程的普遍耗时。本项讨论FSDP2特定转换路径中的all-gather，未给耗时，二者不存在已确立的同口径冲突，也不是重复。其他采用陈述未提供同实现的反例。所供legacy匹配记录为空，核查范围不等于全面外部反证检索；不修改既有checkpoint结论。",
+      "gap_dependency_check": "局部机制解释由原生文字支持，不依赖图像或未审阅实现代码。验证仍需对应版本的原始文档或代码、保存路径、通信量、频率及带工况测量。M13-Q09的故障率和checkpoint开销数值仍未回答；OBJ-server-performance仍缺测量方法与反证；训练profile仍缺通信和可靠性实测样本。三项问题保持开放，不关闭工作单或更新模型值。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "5db483d9757a5c7b6cc8f65e913be42cb464f03902c95d50f0b12455396f6e47",
+        "source_report_sha256": "896339c49ed7c88db8da4babf191967beb0fb52d6d64526a41659d3c38f838fb",
+        "request_sha256": "4e2294610443a7a6c4b51535dc5307fcffc48d901929c8a031924168f64e64a8"
       }
     }
   ],
