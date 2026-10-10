@@ -1,5 +1,12 @@
 # 决策记录
 
+## 2026-10-10：补齐单个 Reader 失败块的在线恢复入口
+
+用户要求解决两处未提交工作树并合并上线。两份 Reader retry-job 草稿为同功能的重复工作，本批合为一个实现；这是对现行阅读/软件/操作规范的补充，不替换持队列锁的 reader retry 或独立研究的 retry-transient。显式点名当前失败阅读版本的一个 read 块，仅 model_cli_failed、唯一failed且无blocked/running、预算已耗尽；绑定实际次数、冻结recipe ID/文件SHA、request ID/操作者/原因，复验原件、context snapshot_hash、版本同算法recipe与已成功块。
+
+提交前保存私有SQLite online一致备份和前快照；BEGIN IMMEDIATE比较完整快照/文件SHA，只改目标jobs与reading_runs的state/error并写meta事务marker。保持attempts/available/配方/成功块和其他文档，不初始化Reader、不抢常驻worker锁或运行模型；每次显式请求只恢复一轮，正常claim递增次数、失败仍按原预算终止。同ID重放不增claim，提交后回执失败以marker为准；不完整prepare保留，经复核新key恢复，独立再次人工恢复需重新核实际次数/状态及新原因。此次同步正式源、版本.69、实现登记与实际具名测试；源码/本地夹具不冒充生产恢复。本次没有点名线上doc/revision，实际服务部署、模型恢复、目标排队/再领取、完整报告和网站回执须各自留运行证据。
+
+
 ## 2026-10-10：五来源真实闭包与跨尺度讲解独立接入
 
 TA30–34五项已实际a379dbba/.67、精确53c7镜像healthy，public-v4完整交互/20弹窗/10下载/28视图/5实际贴图/15故障恢复/4资源路径和33张原尺寸目检闭包，21公网源SHA与HTTPShealth200成立，登记34/35、补4/4。v1 Float32观察、v2真实CSS比例、v3原因未知retry超时与PR586最后premerge UNKNOWN记录保留；正常受保护合并且最终20检查通过，不伪称CLEAN或全tree零差异，并发研究三路径逐字保留。TA35为六已验原件字节守恒的独立1536×1024受控组合、7可编辑定位与自含字体；位置/主机PCIe/外部网络/选定独立PSU供电/独立液—液CDU排热分层，不把不同示例接成同一OEM或现场完整拓扑。新图及页面仅source review，真实公网/下载/链接/精确部署另验，不计35。本地产品URL拒绝不绕过，最终head必过CI、Spark研究0改。
