@@ -4613,6 +4613,74 @@
       "status": "candidate",
       "stored_path": "originals/0a/0afba31cf4c5deeeff067a7520899420cda966fe5180c172f1ec2e0ce40e30f0/dcd-0afba31cf4c5deee-Pure DC CEO- UK-s high power prices will deter hyperscalers.html",
       "title": "Pure DC CEO: UK's high power prices will deter hyperscalers"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "coverage": {
+        "characters_read": 22793,
+        "characters_total": 22793,
+        "chunks_read": 16,
+        "chunks_total": 16,
+        "complete": true,
+        "pages_read": 16,
+        "pages_total": 16
+      },
+      "doc_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "library_path": "library/by-node/part-gpu/2025_SemiAnalysis_DeepSeek Debrief_ _128 Days Later__96eff4de17f583f1.pdf",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "gpt-6.1-sol",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alibaba",
+        "actor:alphabet-google",
+        "actor:amd",
+        "actor:anthropic",
+        "actor:google-tpu-aws-trainium-ms-maia-meta-mtia",
+        "actor:lambda",
+        "actor:nebius",
+        "actor:nvidia",
+        "actor:openai",
+        "part:ai-asic",
+        "part:gpu",
+        "part:optics",
+        "part:rack-system",
+        "root",
+        "system:compute",
+        "system:control"
+      ],
+      "question_ids": [
+        "M12-Q01",
+        "M12-Q02",
+        "M12-Q06",
+        "M12-Q08",
+        "NODE-activity-V1-economics",
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-profile",
+        "NODE-workload-training-placement",
+        "NODE-workload-training-profile",
+        "OBJ-gpu-alternatives",
+        "OBJ-gpu-performance",
+        "Q-SCOPE-arch-blackwell",
+        "Q-SCOPE-arch-hopper",
+        "Q-SCOPE-arch-other-gpu"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "report_sha256": "f619a1458f2c184d95e6ef5e7548cc092032e92d66258e35afc0c1839df7b443",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/96/96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d/DeepSeek Debrief_ _128 Days Later  – SemiAnalysis.pdf",
+      "title": "DeepSeek Debrief: >128 Days Later"
     }
   ],
   "evidence": [
@@ -33666,6 +33734,437 @@
           }
         },
         "batch_id": "3ebd947d583d8be741f83ae5424b344c3b407cd9bc28ca5758e636f113ba20b3"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "37c528b4bc98c58a2a71b4760dcddf1ba37b86f19110850bf8b2cf609ba7460a",
+      "document_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "id": "rev-473462573feb4ab7a61251da748cfded:chunk:5:claim:6:ev:0",
+      "locator": "page:6/chunk:5",
+      "object_ids": [],
+      "page_index": 5,
+      "question_ids": [
+        "NODE-activity-V1-economics"
+      ],
+      "quote": "For any given model, you can manipulate these 3 KPIs to produce effectively any price\nper token. Therefore it is not always productive or practical to discuss tokens on purely\nprice per million-token ($/Mtok) as this ignores the nature of the workload and\nrequirements of the token user.",
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "source_sha256": "96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:30:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分为6。连续引文与相邻KPI定义充分支持有归属的局部作者主张，实质补充当前价格可比性、Token服务替代经济性及推理成本口径研究。未发现A条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M12-Q01",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 122.708,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0c4fc4d67a15a34c04bd158bd99f45c9350574a793bc074b76fd89cb83cedaa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67536,
+            "output_tokens": 4180,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.978,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afb7fd15f75693c59cbfa689e18c072b100573d5c25339c775c43803fa521df3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65603,
+              "output_tokens": 534,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2ff1e3cb0917433b0df44a842d730fa417fc8703cd744eb61b3970ba7bd63b20",
+      "document_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "id": "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:1:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [],
+      "page_index": 6,
+      "question_ids": [
+        "NODE-workload-inference-economics"
+      ],
+      "quote": "Now let’s look at the tokenomics of how DeepSeek serves its R1 model to understand why they have been losing market share on their own model.",
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "source_sha256": "96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:30:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续原文明确表达作者的份额判断，对当前Token服务采用与供应商替代工单有实质贡献。周边渠道说明足以限定含义，未发现A条件，可按B类采用局部作者主张。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 122.708,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0c4fc4d67a15a34c04bd158bd99f45c9350574a793bc074b76fd89cb83cedaa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67536,
+            "output_tokens": 4180,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.978,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afb7fd15f75693c59cbfa689e18c072b100573d5c25339c775c43803fa521df3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65603,
+              "output_tokens": 534,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2ff1e3cb0917433b0df44a842d730fa417fc8703cd744eb61b3970ba7bd63b20",
+      "document_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "id": "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:2:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [],
+      "page_index": 6,
+      "question_ids": [
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "Plotting Latency against Price, we can see that DeepSeek’s own service is no longer the cheapest for its latency.",
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "source_sha256": "96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:30:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文及原页R1服务、价格混合口径和时延定义充分支持限定归属的比较判断，对当前服务替代、时延条件及价格可比性工单有实质贡献。未发现A条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M12-Q01",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 122.708,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0c4fc4d67a15a34c04bd158bd99f45c9350574a793bc074b76fd89cb83cedaa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67536,
+            "output_tokens": 4180,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.978,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afb7fd15f75693c59cbfa689e18c072b100573d5c25339c775c43803fa521df3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65603,
+              "output_tokens": 534,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2ff1e3cb0917433b0df44a842d730fa417fc8703cd744eb61b3970ba7bd63b20",
+      "document_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "id": "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:3:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [],
+      "page_index": 6,
+      "question_ids": [
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "In fact, a big reason why DeepSeek is able to price their product so cheaply is because they force users to wait many seconds before the model responds with the first token. This compares to some other providers offering it for the same price but delaying responses by much less time.",
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "source_sha256": "96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:30:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续原文完整包含作者的低价原因解释和同价服务比较，实质匹配当前Token服务替代及推理时延、经济性工单。保留为作者判断且未发现A条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M12-Q01",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 122.708,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0c4fc4d67a15a34c04bd158bd99f45c9350574a793bc074b76fd89cb83cedaa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67536,
+            "output_tokens": 4180,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.978,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afb7fd15f75693c59cbfa689e18c072b100573d5c25339c775c43803fa521df3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65603,
+              "output_tokens": 534,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "2ff1e3cb0917433b0df44a842d730fa417fc8703cd744eb61b3970ba7bd63b20",
+      "document_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "id": "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:5:ev:0",
+      "locator": "page:7/chunk:6",
+      "object_ids": [
+        "actor:microsoft"
+      ],
+      "page_index": 6,
+      "question_ids": [
+        "NODE-workload-inference-economics",
+        "NODE-workload-inference-profile"
+      ],
+      "quote": "Microsoft Azure offers the service for 2.5x more than DeepSeek but with 25s less latency.",
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "source_sha256": "96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:30:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文直接给出比较主体、价格倍数及25秒时延差，周边条件明确R1服务及混合价格口径，对当前服务替代和推理时延经济性工单有实质贡献。未发现A条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M12-Q01",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 122.708,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0c4fc4d67a15a34c04bd158bd99f45c9350574a793bc074b76fd89cb83cedaa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67536,
+            "output_tokens": 4180,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.978,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afb7fd15f75693c59cbfa689e18c072b100573d5c25339c775c43803fa521df3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65603,
+              "output_tokens": 534,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
       }
     }
   ],
@@ -65606,6 +66105,520 @@
         "request_sha256": "5fbdc330a7d4722e3c6457174cc65a5853343119810471d4f5d33504cc3e21bf"
       },
       "object_mapping_check": "实际主张以一座100MW数据中心设施的整体年度电力运营成本为对象，匹配root“一座AI数据中心”。未涉及电力系统具体设备、并网配额或协议，故不扩展至system:power或site:grid；设施一词也不确立土地建筑或消防安防范围，不映射system:facility。Pure Data Centers和Childs没有允许的主体ID，不能映射为Pure Storage；文中其他主体及GPU、CPU讨论不属于本项证据范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "evidence_ids": [
+        "rev-473462573feb4ab7a61251da748cfded:chunk:5:claim:6:ev:0"
+      ],
+      "id": "adoption:review:f1370d4ea9932f9edbc34c07",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M12-Q01",
+        "NODE-demand-D3-economics",
+        "NODE-workload-inference-economics"
+      ],
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "status": "adopted",
+      "text": "SemiAnalysis作者在《DeepSeek Debrief: >128 Days Later》第6页主张，对同一模型，调节首token时延、每用户输出吞吐量和上下文窗口三项KPI，可形成其所称“实际上任意”的每token价格；因此，仅比较每百万token价格（$/Mtok）并不总是有效，因为这忽略了工作负载性质和用户要求。此项是作者的服务定价论述，出版时间未知，地域及具体项目阶段未说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:30:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性为6，评分为6。连续引文与相邻KPI定义充分支持有归属的局部作者主张，实质补充当前价格可比性、Token服务替代经济性及推理成本口径研究。未发现A条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M12-Q01",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 122.708,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0c4fc4d67a15a34c04bd158bd99f45c9350574a793bc074b76fd89cb83cedaa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67536,
+            "output_tokens": 4180,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.978,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afb7fd15f75693c59cbfa689e18c072b100573d5c25339c775c43803fa521df3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65603,
+              "output_tokens": 534,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
+      },
+      "source_candidate_ids": [
+        "rev-473462573feb4ab7a61251da748cfded:chunk:5:claim:6"
+      ],
+      "limitations": "“实际上任意”保留为作者表述，未由可复查定价模型或实测验证。没有价格时间序列、下降幅度、硬件成本分解或需求响应数据；服务收费不能等同于单位有效产出总成本。",
+      "conflict_check": "已采用的GPU goodput费用除以有效吞吐量方法讨论成本，本项讨论服务价格，未构成直接冲突或重复。内存资源浪费、工具链复用及能耗陈述也未提供同条件的相反定价结论。所供旧记录主要涉及芯片份额、项目填充率及GPU投资，与本项口径不同；未进行外部反证检索。",
+      "gap_dependency_check": "三项KPI的指代由已提供原页补足，不依赖缺失引文候选。M12-Q01仅获得价格曲线比较需控制服务条件的依据；另外两问仅获得定价与成本比较的机制线索。仍需可比价格序列、原始服务记录、总成本及需求数据，所有问题保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d",
+        "source_report_sha256": "f619a1458f2c184d95e6ef5e7548cc092032e92d66258e35afc0c1839df7b443",
+        "request_sha256": "fead98c4fd41dd58baa2e47182c16e37c4d44e11bfcc01d3bbce2ffd95b17f68"
+      },
+      "object_mapping_check": "本项讨论通用模型服务定价，契约没有对应的Token服务对象。root指一座AI数据中心，system:control指DCIM/BMS与固件，均不是本项范围；未指定计算设备，不继承Reader的root标签。空对象列表保留有效问题关系。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "evidence_ids": [
+        "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:1:ev:0"
+      ],
+      "id": "adoption:review:3003c2762b62504e24e486e6",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D3-economics"
+      ],
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "status": "adopted",
+      "text": "SemiAnalysis作者在《DeepSeek Debrief: >128 Days Later》第7页讨论DeepSeek自营R1推理服务时，称DeepSeek正在其自身模型的服务市场中失去份额。此项保留为作者对服务渠道替代的判断，未给出份额数值；出版时间未知，地域及具体项目阶段未说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:30:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续原文明确表达作者的份额判断，对当前Token服务采用与供应商替代工单有实质贡献。周边渠道说明足以限定含义，未发现A条件，可按B类采用局部作者主张。",
+        "workorder_ids": [
+          "Q-NODE-demand-D3-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 122.708,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0c4fc4d67a15a34c04bd158bd99f45c9350574a793bc074b76fd89cb83cedaa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67536,
+            "output_tokens": 4180,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.978,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afb7fd15f75693c59cbfa689e18c072b100573d5c25339c775c43803fa521df3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65603,
+              "output_tokens": 534,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
+      },
+      "source_candidate_ids": [
+        "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:1"
+      ],
+      "limitations": "相邻文字的数据范围是OpenRouter托管token，不能认证为全市场份额测量。没有明确分母、份额数值、完整时间序列或用户迁移记录；自营服务份额下降不能推出DeepSeek模型总需求下降。",
+      "conflict_check": "现有ChatGPT每日提示量记录涉及另一服务及规模指标，不构成冲突或重复。旧记录中利川项目DeepSeek部署后的填充率属于中国单项目售出进度，GPU数量和投资属于共享算力估算，均不是自营R1服务份额，不能用于验证或反驳本项。未发现同口径直接冲突。",
+      "gap_dependency_check": "局部判断不依赖图表数值即可作为作者主张保留，但验证份额变化仍需OpenRouter原始序列、分母定义、渠道覆盖及反证。当前问题仅获得供应商替代线索，未回答采用率、单位使用量、支付意愿或总体需求变化，保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d",
+        "source_report_sha256": "f619a1458f2c184d95e6ef5e7548cc092032e92d66258e35afc0c1839df7b443",
+        "request_sha256": "fead98c4fd41dd58baa2e47182c16e37c4d44e11bfcc01d3bbce2ffd95b17f68"
+      },
+      "object_mapping_check": "实际主体是DeepSeek自营模型服务，契约没有DeepSeek对应actor或通用模型服务对象。不能用其他云厂商actor代替，也不能把服务份额映射为一座数据中心或计算资产；不继承root标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "evidence_ids": [
+        "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:2:ev:0"
+      ],
+      "id": "adoption:review:16425cb4705efa346c6fe987",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M12-Q01",
+        "NODE-demand-D3-economics",
+        "NODE-workload-inference-profile",
+        "NODE-workload-inference-economics"
+      ],
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "status": "adopted",
+      "text": "SemiAnalysis作者在《DeepSeek Debrief: >128 Days Later》第7页比较R1推理服务的时延与价格，认为DeepSeek自营服务按其时延表现衡量已不再是最便宜的选择。相邻图注标明OpenRouter数据于2025年5月访问，混合价格单位为$/Mtok，按输入:输出token为3:1计算。这是作者对该数据截面的判断，出版时间未知，地域及具体项目阶段未说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:30:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文及原页R1服务、价格混合口径和时延定义充分支持限定归属的比较判断，对当前服务替代、时延条件及价格可比性工单有实质贡献。未发现A条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M12-Q01",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 122.708,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0c4fc4d67a15a34c04bd158bd99f45c9350574a793bc074b76fd89cb83cedaa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67536,
+            "output_tokens": 4180,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.978,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afb7fd15f75693c59cbfa689e18c072b100573d5c25339c775c43803fa521df3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65603,
+              "output_tokens": 534,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
+      },
+      "source_candidate_ids": [
+        "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:2"
+      ],
+      "limitations": "没有核验完整图表、供应商样本及原始价格和时延记录。“不再”不能据此形成价格下降曲线；其他供应商的上下文窗口、输出速度、请求长度及测试条件未统一，不能认证当前最低价服务或单位推理成本。",
+      "conflict_check": "已采用的阶段调度与首token等待机制不提供相同供应商价格排名；GPU费用与利润率估算讨论成本，也不与本项服务收费比较直接冲突。所供旧记录没有同模型、同时点、同条件的相反排名或相同规范记录。",
+      "gap_dependency_check": "可保留文字中的作者判断，独立验证仍依赖原始横截面数据、测试方法、完整服务条件及反证。M12-Q01仅获可比性提示；需求经济学仅获服务替代线索；推理负载与经济学仅获时延和收费关系，均不构成完整答案，保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d",
+        "source_report_sha256": "f619a1458f2c184d95e6ef5e7548cc092032e92d66258e35afc0c1839df7b443",
+        "request_sha256": "fead98c4fd41dd58baa2e47182c16e37c4d44e11bfcc01d3bbce2ffd95b17f68"
+      },
+      "object_mapping_check": "本项比较DeepSeek与未逐一指定的模型服务供应商，DeepSeek不在允许actor列表中。服务时延与收费没有建立GPU、计算系统或一座数据中心的资产范围，不继承root或整篇文档对象标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "evidence_ids": [
+        "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:3:ev:0"
+      ],
+      "id": "adoption:review:1792ce409e32ec910e7af28e",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "M12-Q01",
+        "NODE-demand-D3-economics",
+        "NODE-workload-inference-profile",
+        "NODE-workload-inference-economics"
+      ],
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "status": "adopted",
+      "text": "SemiAnalysis作者在《DeepSeek Debrief: >128 Days Later》第7页将DeepSeek自营R1服务低价的重要原因之一归于用户需等待多秒才能收到首个token，并称有其他供应商以相同价格提供更短的响应等待时间。相邻比较图注明OpenRouter数据于2025年5月访问，混合价格按输入:输出token为3:1计算。这是作者的原因解释及服务比较，出版时间未知，地域及具体项目阶段未说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:30:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续原文完整包含作者的低价原因解释和同价服务比较，实质匹配当前Token服务替代及推理时延、经济性工单。保留为作者判断且未发现A条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M12-Q01",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 122.708,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0c4fc4d67a15a34c04bd158bd99f45c9350574a793bc074b76fd89cb83cedaa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67536,
+            "output_tokens": 4180,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.978,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afb7fd15f75693c59cbfa689e18c072b100573d5c25339c775c43803fa521df3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65603,
+              "output_tokens": 534,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
+      },
+      "source_candidate_ids": [
+        "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:3"
+      ],
+      "limitations": "原文没有量化首token等待对定价的独立贡献，也未在该引句中给出其他供应商名称、具体价格、时延或统一测试工况。不能证明等待造成成本下降，不能推导硬件需求系数、GPU利用率或用户实际支付意愿。",
+      "conflict_check": "现有优先decode导致prefill等待的作者解释讨论另一调度条件，不证明DeepSeek采用该方案，也不构成本项重复。GPU单位成本计算及能耗记录没有给出相反的同条件低价原因。旧GPU数量和投资估算不能证明或否定首token等待对服务定价的作用，未发现直接冲突。",
+      "gap_dependency_check": "作者解释的局部含义由已提供上下文支持，不依赖缺失的claim:4引文。验证原因仍需服务配置、定价决策、成本数据及同工况反证。各问题仅获收费与等待的权衡或替代线索，价格时间序列、带工况实测与总成本分解仍缺，保持开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d",
+        "source_report_sha256": "f619a1458f2c184d95e6ef5e7548cc092032e92d66258e35afc0c1839df7b443",
+        "request_sha256": "fead98c4fd41dd58baa2e47182c16e37c4d44e11bfcc01d3bbce2ffd95b17f68"
+      },
+      "object_mapping_check": "本项范围为DeepSeek及未指名供应商的R1服务，契约没有对应的DeepSeek或通用服务对象。首token等待不是DCIM/BMS控制，也未指定基础设施资产，不映射root、system:control或计算设备。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-96eff4de17f583f11eb00653ce21a02b57baab6585a168e21c88e1924694935d",
+      "evidence_ids": [
+        "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:5:ev:0"
+      ],
+      "id": "adoption:review:d07478c2db4069c50cc1ef18",
+      "kind": "author_claim",
+      "object_ids": [
+        "actor:microsoft"
+      ],
+      "question_ids": [
+        "M12-Q01",
+        "NODE-demand-D3-economics",
+        "NODE-workload-inference-profile",
+        "NODE-workload-inference-economics"
+      ],
+      "reading_revision_id": "rev-473462573feb4ab7a61251da748cfded",
+      "status": "adopted",
+      "text": "SemiAnalysis作者在《DeepSeek Debrief: >128 Days Later》第7页称，在其R1推理服务比较中，Microsoft Azure的服务价格为DeepSeek自营服务的2.5倍，首token时延少25秒。相邻图注标明OpenRouter数据于2025年5月访问，混合价格单位为$/Mtok，按输入:输出token为3:1计算。这是作者报告的横截面对照，未独立认证；出版时间未知，地域及具体项目阶段未说明。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:30:57+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文直接给出比较主体、价格倍数及25秒时延差，周边条件明确R1服务及混合价格口径，对当前服务替代和推理时延经济性工单有实质贡献。未发现A条件，可按B类部分采用。",
+        "workorder_ids": [
+          "Q-M12-Q01",
+          "Q-NODE-demand-D3-economics",
+          "Q-NODE-workload-inference-profile",
+          "Q-NODE-workload-inference-economics"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 122.708,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "0c4fc4d67a15a34c04bd158bd99f45c9350574a793bc074b76fd89cb83cedaa3",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 67536,
+            "output_tokens": 4180,
+            "reasoning_output_tokens": 498
+          }
+        },
+        "sampling": {
+          "cohort": 5,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.978,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "afb7fd15f75693c59cbfa689e18c072b100573d5c25339c775c43803fa521df3",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 65603,
+              "output_tokens": 534,
+              "reasoning_output_tokens": 246
+            }
+          }
+        },
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d"
+      },
+      "source_candidate_ids": [
+        "rev-473462573feb4ab7a61251da748cfded:chunk:6:claim:5"
+      ],
+      "limitations": "没有提供双方绝对价格、绝对时延、分位数、请求长度、并发量、硬件、输出速度或完整测试方法。2.5倍按原文保留，未作底层复算；不能外推为当前Azure报价、长期价差、成本溢价或相同上下文窗口下的比较。",
+      "conflict_check": "已采用的约1.59倍超大规模云成本溢价属于另一作者情景的GPU goodput成本，不是Azure对DeepSeek的R1服务价格倍数，不能判为冲突或互证。Microsoft Research能耗估算也不是本项收费与时延指标。所供旧记录没有同条件相反对照或现有规范重复。",
+      "gap_dependency_check": "局部作者对照可由完整引句及原页上下文保留，验证数值仍需OpenRouter原始记录、报价来源、统一测试工况及反证。M12-Q01仅获条件化价格单点；其他问题仅获服务替代、时延差及收费权衡，不能关闭问题或更新成本参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "b4d5d961e4ac27fb1650dc4ea7ec8e89abf2dc6e66da72dd04cea56ee242ff8d",
+        "source_report_sha256": "f619a1458f2c184d95e6ef5e7548cc092032e92d66258e35afc0c1839df7b443",
+        "request_sha256": "fead98c4fd41dd58baa2e47182c16e37c4d44e11bfcc01d3bbce2ffd95b17f68"
+      },
+      "object_mapping_check": "原文明确Microsoft Azure为服务提供方，契约中actor:microsoft对应微软主体。DeepSeek没有允许的actor对象，不用其他对象替代。价格与时延对照未指定微软数据中心、GPU、计算系统或自研ASIC，不添加root或基础设施映射。"
     }
   ],
   "answers": [],
