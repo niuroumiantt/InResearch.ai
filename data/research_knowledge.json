@@ -3939,6 +3939,65 @@
       "status": "candidate",
       "stored_path": "originals/a3/a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858/iea.pdf",
       "title": "Key Questions on Energy and AI — World Energy Outlook Special Report"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "coverage": {
+        "characters_read": 10487,
+        "characters_total": 10487,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "library_path": "library/by-node/root/2025_DCD_Cryptominer TeraWulf secures 200MW lease with Fluidstac__18a9339080cf3510.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:alphabet-google",
+        "actor:fluidstack",
+        "actor:g42",
+        "actor:mistral-ai",
+        "part:gpu",
+        "root",
+        "system:facility",
+        "system:it"
+      ],
+      "question_ids": [
+        "NODE-workload-hpc-placement"
+      ],
+      "read_status": "complete",
+      "reading_revision_id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec",
+      "report_sha256": "45362120bae74d45bc8f9c48f4d3437c7f8b31921b3fb48ecea835744c472745",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist-refill-01",
+        "input_sha256": "18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+        "role": "downloaded_original",
+        "sidecar_sha256": "649aa60abb08708536cfe480052c9b949dcf21062e817a494e1f3250701626ae",
+        "source_id": "dcd-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+        "url": "https://www.datacenterdynamics.com/en/news/cryptominer-terawulf-secures-200mw-lease-with-fluidstack-google-to-take-stake-in-company/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/news/cryptominer-terawulf-secures-200mw-lease-with-fluidstack-google-to-take-stake-in-company/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/18/18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a/dcd-18a9339080cf3510-Cryptominer TeraWulf secures 200MW lease with Fluidstack- Google .html",
+      "title": "Cryptominer TeraWulf secures 200MW lease with Fluidstack, Google to take stake in company"
     }
   ],
   "evidence": [
@@ -27929,6 +27988,265 @@
           }
         },
         "batch_id": "92f6c259638917eb5f26ca8d8e88950096db2937b2299545d76f20dd88054e5e"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8baef3ee94f30fdcebe17c83a3d883cb03bf25b66851dc38696a6993974a016e",
+      "document_id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:9:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "actor:fluidstack"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Fluidstack signed an MoU with the French government that would see it build a 1GW AI supercomputer in France.",
+      "reading_revision_id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec",
+      "source_sha256": "18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:41:52+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "维持原重要性7。连续原句及相邻日期语境充分，对当前规划漏斗、单项目规模及法国区域布局工作单提供实质性的项目线索，符合B类部分采用条件。未发现敏感、真实冲突、替换或其他A条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M02-Q05",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 104.872,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e45cee072ac5ec0580faae1d8888acaa66199368e140549e6e6ccd763ef47478",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53798,
+            "output_tokens": 3111,
+            "reasoning_output_tokens": 336
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.15,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1aeae14c292b6b97e24a2d3b80c52d902fd573f3f882a68bd342d52185797fe",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53194,
+              "output_tokens": 548,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "f0253976e40108abe66521f0187b58d9dc305977a5a87949625e968d21a4e51f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8baef3ee94f30fdcebe17c83a3d883cb03bf25b66851dc38696a6993974a016e",
+      "document_id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:10:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root"
+      ],
+      "page_index": 0,
+      "question_ids": [
+        "NODE-workload-hpc-placement"
+      ],
+      "quote": "Located on the site of a former coal plant and originally developed for cryptomining, TeraWulf has been pivoting the Lake Mariner campus towards AI and HPC leasing. The site currently has 500MW of capacity, expandable to 750MW.",
+      "reading_revision_id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec",
+      "source_sha256": "18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:41:52+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "维持原重要性7。连续两句及前文园区交易语境充分，对当前转型进入者落地路径和单项目规模工作单有实质性的个案贡献，并为HPC地点与租赁活动边界提供局部线索。无A类触发条件，按作者陈述作B类部分采用，不以局部证据关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q04",
+          "Q-M02-Q05",
+          "Q-NODE-workload-hpc-placement",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 104.872,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e45cee072ac5ec0580faae1d8888acaa66199368e140549e6e6ccd763ef47478",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53798,
+            "output_tokens": 3111,
+            "reasoning_output_tokens": 336
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.15,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1aeae14c292b6b97e24a2d3b80c52d902fd573f3f882a68bd342d52185797fe",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53194,
+              "output_tokens": 548,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "f0253976e40108abe66521f0187b58d9dc305977a5a87949625e968d21a4e51f"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "8baef3ee94f30fdcebe17c83a3d883cb03bf25b66851dc38696a6993974a016e",
+      "document_id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:11:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "actor:g42"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Core42, a subsidiary of Abu Dhabi-based tech group G42, is also a customer of the campus",
+      "reading_revision_id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec",
+      "source_sha256": "18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:41:52+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "维持原重要性7。连续引文及紧邻Lake Mariner描述明确客户与母公司关系，对当前需求方集中度研究的客户识别和完整交易边界研究具有实质性的局部贡献。虽不能量化集中度或完成权责划分，仍可按B类采用这一有界身份线索；未发现A类条件。",
+        "workorder_ids": [
+          "Q-M03-Q04",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 104.872,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e45cee072ac5ec0580faae1d8888acaa66199368e140549e6e6ccd763ef47478",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53798,
+            "output_tokens": 3111,
+            "reasoning_output_tokens": 336
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.15,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1aeae14c292b6b97e24a2d3b80c52d902fd573f3f882a68bd342d52185797fe",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53194,
+              "output_tokens": 548,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "f0253976e40108abe66521f0187b58d9dc305977a5a87949625e968d21a4e51f"
       }
     }
   ],
@@ -54097,6 +54415,320 @@
         "request_sha256": "d5964de0eaf94fbe3201f375f501c73c34a74c8e845ad6dcd291b15040075d0a"
       },
       "object_mapping_check": "连续原文明确区分 network interface cards 与现有 Ethernet switches 的实现要求，直接对应网络链下的 part:nic 和 scale-out 交换机 part:network-switch。没有外部运营商接入、PCIe 交换芯片或 DCIM/BMS 证据，不扩展映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "evidence_ids": [
+        "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:9:ev:0"
+      ],
+      "id": "adoption:review:84da451f3f83a0b964a0fc73",
+      "kind": "author_forecast",
+      "object_ids": [
+        "root",
+        "actor:fluidstack"
+      ],
+      "question_ids": [
+        "M01-Q03",
+        "M02-Q05",
+        "M05-Q01"
+      ],
+      "reading_revision_id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年8月14日的报道中称，Fluidstack于2025年2月与法国政府签署谅解备忘录，拟在法国建设一座1GW AI超级计算机。这是报道所述的拟建安排，原文未确认该项目已经开工或投运，也不构成对其当前状态或容量的独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:41:52+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "维持原重要性7。连续原句及相邻日期语境充分，对当前规划漏斗、单项目规模及法国区域布局工作单提供实质性的项目线索，符合B类部分采用条件。未发现敏感、真实冲突、替换或其他A条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M01-Q03",
+          "Q-M02-Q05",
+          "Q-M05-Q01"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 104.872,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e45cee072ac5ec0580faae1d8888acaa66199368e140549e6e6ccd763ef47478",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53798,
+            "output_tokens": 3111,
+            "reasoning_output_tokens": 336
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.15,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1aeae14c292b6b97e24a2d3b80c52d902fd573f3f882a68bd342d52185797fe",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53194,
+              "output_tokens": 548,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "f0253976e40108abe66521f0187b58d9dc305977a5a87949625e968d21a4e51f"
+      },
+      "source_candidate_ids": [
+        "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:9"
+      ],
+      "limitations": "所选引文未定义1GW属于关键IT负载、设施总容量还是其他口径，未提供具体场址、交付时间、融资、许可、并网条件或谅解备忘录条款。报道为二手来源，链接指向的原始材料未在本包中独立核验；不能据此指定L1–L7等级、认定法律约束力或计算容量总量及转化率。",
+      "conflict_check": "已采用的GLOCAL及SemiAnalysis陈述要求区分公告、规划与实际交付，本条保留谅解备忘录和拟建性质，与其相容。legacy中的fr-essonne-bruyeres-mistral提及法国1GW承诺，但主体记录是40MW Eclairion场址，不能据此确认两者项目边界或将1GW视为已投运；未见具有同等范围的规范重复记录。法国历史用电、PUE及未来TWh预测与本条对象、单位、时间和阶段不同，不构成真实冲突；既有争议保持原状。未将legacy中的PDF创建月份认作发表月份，不替换任何结论。检查限于所供记录。",
+      "gap_dependency_check": "M01-Q03获得一个拟建项目线索，仍需阶段验收、项目去重、同口径容量和历史队列才能计算漏斗总量与转化率；M02-Q05获得一个GW级目标个案，仍缺规模分布及时间序列；M05-Q01获得法国拟建布局线索，仍缺各区域分阶段清单。须核查原始谅解备忘录及后续项目记录，不汇总GW、不更新模型或关闭工作单。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f0253976e40108abe66521f0187b58d9dc305977a5a87949625e968d21a4e51f",
+        "source_report_sha256": "45362120bae74d45bc8f9c48f4d3437c7f8b31921b3fb48ecea835744c472745",
+        "request_sha256": "114bb3c6579a7b1535c0e500973d89017e7bf6bc84edeab0ecb0247b91955221"
+      },
+      "object_mapping_check": "独立依据原文选择root，范围为拟建AI计算项目整体；选择actor:fluidstack，范围为明确具名的拟建参与方。法国政府无允许的主体ID，仅保留名称。1GW口径未明，未据此映射电力系统、并网权利、IT系统或GPU部件；不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "evidence_ids": [
+        "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:10:ev:0"
+      ],
+      "id": "adoption:review:e0b8ccf32a343da15c57a716",
+      "kind": "author_claim",
+      "object_ids": [
+        "root"
+      ],
+      "question_ids": [
+        "M02-Q04",
+        "M02-Q05",
+        "NODE-workload-hpc-placement",
+        "NODE-activity-V1-boundary"
+      ],
+      "reading_revision_id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年8月14日的报道中称，美国纽约州的TeraWulf Lake Mariner园区位于原煤电厂场址，最初为加密货币挖矿开发，正在转向AI与HPC租赁；作者称该场址在报道时有500MW容量，可扩展至750MW。这些数值是作者所述的场址容量及扩展潜力，不能视为全部已投运的AI或HPC关键IT负载，也不构成当前独立认证。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:41:52+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "维持原重要性7。连续两句及前文园区交易语境充分，对当前转型进入者落地路径和单项目规模工作单有实质性的个案贡献，并为HPC地点与租赁活动边界提供局部线索。无A类触发条件，按作者陈述作B类部分采用，不以局部证据关闭问题。",
+        "workorder_ids": [
+          "Q-M02-Q04",
+          "Q-M02-Q05",
+          "Q-NODE-workload-hpc-placement",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 104.872,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e45cee072ac5ec0580faae1d8888acaa66199368e140549e6e6ccd763ef47478",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53798,
+            "output_tokens": 3111,
+            "reasoning_output_tokens": 336
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.15,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1aeae14c292b6b97e24a2d3b80c52d902fd573f3f882a68bd342d52185797fe",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53194,
+              "output_tokens": 548,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "f0253976e40108abe66521f0187b58d9dc305977a5a87949625e968d21a4e51f"
+      },
+      "source_candidate_ids": [
+        "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:10"
+      ],
+      "limitations": "原文未定义500MW和750MW的容量口径、已投运比例、AI/HPC占比或扩展条件。原煤电厂场址不证明发电设施仍运行；转向租赁不证明全部改造或交付完成。未提供训练与运行阶段、调度方式、利用率、系统配置或完整交易权责，亦无新进入者样本分母。",
+      "conflict_check": "与已采用的阶段区分陈述一致：扩展潜力及租赁转型不能直接计作投运容量。所供legacy未列Lake Mariner同范围容量记录；Hut 8与Fluidstack合同是另一项目，不能与本园区混同。G42阿布扎比项目及法国Fluidstack项目的地点和项目范围不同，未形成真实冲突或规范重复。不覆盖既有项目状态、容量或结论；检查限于所供材料。",
+      "gap_dependency_check": "M02-Q04获得矿业园区转型个案，仍需实际交付、进入者定义、样本分母和一致时间窗才能计算落地率；M02-Q05获得场址规模个案，仍缺可比口径及规模分布。NODE-workload-hpc-placement仅获得HPC拟承载地点与历史用途，不证明配置约束或负载共存方式；NODE-activity-V1-boundary仅获得租赁活动及TeraWulf的转型角色，仍缺付款方、所有权、运营责任和最终使用方的完整条款。不指定漏斗等级、不将容量相加、不关闭工作单。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f0253976e40108abe66521f0187b58d9dc305977a5a87949625e968d21a4e51f",
+        "source_report_sha256": "45362120bae74d45bc8f9c48f4d3437c7f8b31921b3fb48ecea835744c472745",
+        "request_sha256": "114bb3c6579a7b1535c0e500973d89017e7bf6bc84edeab0ecb0247b91955221"
+      },
+      "object_mapping_check": "原文讨论Lake Mariner园区整体用途、租赁转型与场址规模，实际范围匹配root。未披露土地权利、建筑改造细节、供电系统或计算设备，故不映射site:land、设施链、电力链或IT部件。TeraWulf没有允许的主体ID，仅保留名称；不因AI/HPC字样扩展基础设施映射。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-18a9339080cf3510a5a0557daa2963415f8628a8938afd7dbd88adab7f90b05a",
+      "evidence_ids": [
+        "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:11:ev:0"
+      ],
+      "id": "adoption:review:a218a0937e8863c436f35620",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "actor:g42"
+      ],
+      "question_ids": [
+        "M03-Q04",
+        "NODE-activity-V1-boundary"
+      ],
+      "reading_revision_id": "rev-3b0428c7fad94c4a86a2f1bfafcf71ec",
+      "status": "adopted",
+      "text": "DCD作者Dan Swinhoe在2025年8月14日的报道中称，Core42是总部位于阿布扎比的科技集团G42的子公司，也是美国纽约州Lake Mariner园区的客户。该客户身份及隶属关系属于报道时点的作者陈述，不构成当前独立认证，也未确认Core42或G42为最终使用方。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-09T12:41:52+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "维持原重要性7。连续引文及紧邻Lake Mariner描述明确客户与母公司关系，对当前需求方集中度研究的客户识别和完整交易边界研究具有实质性的局部贡献。虽不能量化集中度或完成权责划分，仍可按B类采用这一有界身份线索；未发现A类条件。",
+        "workorder_ids": [
+          "Q-M03-Q04",
+          "Q-NODE-activity-V1-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 104.872,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "e45cee072ac5ec0580faae1d8888acaa66199368e140549e6e6ccd763ef47478",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 53798,
+            "output_tokens": 3111,
+            "reasoning_output_tokens": 336
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 32.15,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "a1aeae14c292b6b97e24a2d3b80c52d902fd573f3f882a68bd342d52185797fe",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 53194,
+              "output_tokens": 548,
+              "reasoning_output_tokens": 228
+            }
+          }
+        },
+        "batch_id": "f0253976e40108abe66521f0187b58d9dc305977a5a87949625e968d21a4e51f"
+      },
+      "source_candidate_ids": [
+        "rev-3b0428c7fad94c4a86a2f1bfafcf71ec:chunk:0:claim:11"
+      ],
+      "limitations": "所选证据仅称Core42为客户，未披露其租用容量、合同金额、收入贡献、付款责任、具体服务、最终用户或股权交易。不能将G42母公司直接改写为承租签约方，也不能推导前五大租户占比或循环交易规模。所链接的客户合同报道未在本包中独立核验。",
+      "conflict_check": "当前采用陈述未包含同一客户关系，未构成规范重复。legacy的Stargate UAE及UAE-US AI Campus涉及G42在阿布扎比的开发角色，与Core42在纽约州园区的客户角色可以并存；不能将这些项目容量归入Lake Mariner。Hut 8与Fluidstack记录亦非本客户关系。所供材料未形成真实冲突，不替换任何客户、项目或集中度结论；检查并非外部全面反证搜索。",
+      "gap_dependency_check": "M03-Q04获得一个园区客户及其集团归属线索，后续仍需完整租户清单、同口径容量或收入分母及股权交易证据，不能回答前五大占比或循环交易规模。NODE-activity-V1-boundary获得客户身份关系，仍需合同确定产品、付款方、资产所有者、运营方及最终使用方；客户身份不能自动覆盖这些角色。两项问题继续开放。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f0253976e40108abe66521f0187b58d9dc305977a5a87949625e968d21a4e51f",
+        "source_report_sha256": "45362120bae74d45bc8f9c48f4d3437c7f8b31921b3fb48ecea835744c472745",
+        "request_sha256": "114bb3c6579a7b1535c0e500973d89017e7bf6bc84edeab0ecb0247b91955221"
+      },
+      "object_mapping_check": "root对应Lake Mariner园区的客户关系；actor:g42对应原文明示的母公司关联，映射不意味着G42直接签约或使用资产。Core42没有允许的独立主体ID，保留名称，不新增骨架节点。未提供设备或系统范围，故不映射IT、网络、控制软件或其他基础设施对象。"
     }
   ],
   "answers": [],
