@@ -141,6 +141,48 @@ const campusPlan={
  related:[{id:'TA-18',title:'园区旋转与设备拾取 · TA-18',image:'/bom3d.html'},{id:'TA-19',title:'园区分层交互 · TA-19',image:'/bom3d.html?x=70'}],
 };
 
+const facilityDomain={
+ id:'TA-21',title:'设施与站点权利 · 同一八柜空间示例',
+ image:'/assets/technical-atlas/facility-domain-v1.svg',preview:'/assets/technical-atlas/facility-domain-v1-preview.svg',master:'/assets/technical-atlas/facility-domain-v1.png',
+ alt:'八个闭合机柜位于同源建筑梁柱、保留屋面和基础内；右侧消防、安防为独立类别图，本八柜场景未建模；底部六类站点权利为非物理文字入口。',
+ note:'同源建筑四实例组与八柜保持原位置；其他机电只在本母图隐藏。消防与安防采用独立已验类别图，不共用比例、不是本布局局部放大，也不证明安装、覆盖或合规。土地、取用水、电网、燃料、通信和许可是六类非物理证据入口，地面与设备不证明权利成立。微模块是交付模板，DCIM归控制软件；比例、数量与现场适用未知，非OEM/CAD或施工图。',
+ labels:['建筑与机柜：保留屋面、围护、梁柱、基础和八柜来自同一组实际程序几何；空间包含不是能量流',
+ '消防与安防：八柜三维场景未造实体，独立类别图与研究入口保留，未认证位置、覆盖或合规',
+ '六站点入口：site:land、site:water-rights、site:grid、site:gas-supply、site:network-access、site:permits；权属/配额/许可均需证据',
+ '非物理边界：modular-dc为配置交付模板，dcim为控制软件，不造额外设备或以建筑轮廓代替权利',
+ '研究关系：系统与链路是研究提纲，公司与产品属于类别；无现场证据不补供应者、权利人或有向连接',
+ '实际交互：设施领域保留旋转、逐实例拾取、类别档案、显式适配和当前视角导出；六权利独立档案无三维物理件'],
+ related:[{id:'TA-21-3D',title:'设施领域旋转与独立档案',image:'/bom3d.html?d=facility'},{id:'TA-37',title:'消防独立类别图',image:'/bom.html#fire'},{id:'TA-38',title:'安防独立类别图',image:'/bom.html#security'},{id:'TA-20',title:'同一园区严格俯视',image:'/campus-plan.html'}],
+};
+
+const powerDomain={
+ id:'TA-22',title:'电力链路 · 选定功能与替代末端',
+ image:'/assets/technical-atlas/power-domain-v1.svg',preview:'/assets/technical-atlas/power-domain-v1-preview.svg',master:'/assets/technical-atlas/power-domain-v1.png',
+ alt:'暖白电力领域图：交流接入、变压、双变换UPS、分配、服务器PSU与板级稳压；UPS电池与静态旁路独立支路，共享电源架为另一方案。',
+ note:'通用功能示例A采用服务器独立AC–DC PSU；共享电源架与BBU是另一种末端方案B，不再串第二套服务器AC–DC。UPS电池、条件旁路与正常转换各有角色；BESS、备用发电和其它发电候选不强制串/并联。七幅外形图不共实物比例，也不认证内部电路或端口。园区三维仅4电力类别8外形实例，其余15类别明确未建模；功能图不是场景实际接线。电压、功率、保护、接地、冗余、现场权利与适用均未知，非OEM/CAD/施工单线图。',
+ labels:['01–02 接入与变压：GIS外形不证明电网接入权利，输入分配/保护按设计；其它负载支路未展开',
+ '03 UPS：本图选双变换功能；正常整流→逆变，电池向DC节点供能，静态旁路绕过转换链。充电管理、切换和隔离未展开，不能作为操作步骤',
+ '04 分配：机房/行PDU与机柜rPDU分层；中低压柜、母线槽按方案选，类别次序不是电路',
+ '05–06 服务器PSU输出进入DC分配、按需中间转换和板级VRM；不从外观推定额定值或实际接线',
+ '替代方案B：共享AC–DC电源架、DC分配及BBU备份；UPS是否保留和BBU控制按具体方案，不硬串第二套AC–DC',
+ '候选与未知：燃料储运仅属燃料支路，BESS/UPS电池/BBU不互换；其它发电技术是候选，不证明可用安装或现场并存'],
+ related:[{id:'TA-22-3D',title:'电力领域 · 4类外形与15未建模入口',image:'/bom3d.html?d=power'},{id:'TA-16',title:'19类独立部件图',image:'/bom.html#system-power'},{id:'TA-18',title:'园区通用外形全景',image:'/bom3d.html'}],
+};
+
+const thermalDomain={
+ id:'TA-23',title:'冷却链路 · 两个流体域与热传递',
+ image:'/assets/technical-atlas/thermal-domain-v1.svg',preview:'/assets/technical-atlas/thermal-domain-v1-preview.svg',master:'/assets/technical-atlas/thermal-domain-v1.png',
+ alt:'暖白冷却领域图：冷板虚拟剖口及同类快接放大、歧管、封闭CDU、设施管路和风冷冷水机；蓝TCS与绿FWS各自供回，棕色热箭头跨隔离换热壁。',
+ note:'选定冷板液冷+液—液CDU+风冷冷水机功能示例。TCS与FWS各自循环，换热器只传热、不混液；功能节点不认证上方照片内部或端口分工。冷板虚拟剖口/快接同类放大沿用TA10原件，五图不共实物比例。其它冷源、液—气CDU、浸没和后门换热器另列，非全部串接。三维仅3类别11外形实例，其余12未建模，不证明八柜实际接管。温压/流量/流体兼容、泵阀/制冷剂内部、冗余、现场与水权未知，非OEM/CAD/施工管线图；残余空气冷却占比未知。',
+ labels:['01–02 冷板虚拟剖口解释液路，热源接触面在下方；右下为同类快接重复放大，非额外回路或维修步骤',
+ '03 歧管：单根八支路外形只是示例；下方供回功能节点不认证照片具体端口分工或连接数量',
+ '04 CDU：本例为液—液；TCS和FWS由换热器隔开，热量跨壁，液体分别循环，内部泵阀/控制未展开',
+ '05–06 设施供回与风冷冷水机：所选冷源向室外空气排热；制冷剂和泵阀回路未展开，不硬加冷却塔或冷凝水回路',
+ '颜色与箭头：蓝TCS/绿FWS是各自液体循环，棕色只示热流；细蓝引线是设备定位，不是管道',
+ '方案边界：干冷器、液—气CDU、浸没、后门换热器是其它方案；水处理、冷却液和泄漏检测按系统核，不把空气负荷或全部热量入水比例补成事实'],
+ related:[{id:'TA-23-3D',title:'冷却领域 · 3类外形与12未建模入口',image:'/bom3d.html?d=thermal'},{id:'TA-16',title:'15类独立部件图',image:'/bom.html#system-thermal'},{id:'TA-10',title:'冷板与同类快接详细图',image:'/bom.html#coldplate'},{id:'TA-22',title:'电力功能路径',image:'/power-atlas.html'}],
+};
+
 const rackOverview = {
   id:'TA-13', title:'机柜整柜 · 安装分区与结构',
   image:'/assets/technical-atlas/rack-overview-v1.svg', preview:'/assets/technical-atlas/rack-overview-v1-preview.svg',
@@ -203,7 +245,7 @@ export function atlasCategoryNote(partId, {view} = {}) {
 }
 
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
+  const item = partId === 'facility-domain' && view === 'domain' ? facilityDomain : partId === 'power-domain' && view === 'domain' ? powerDomain : partId === 'thermal-domain' && view === 'domain' ? thermalDomain : ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');
