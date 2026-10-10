@@ -1,0 +1,349 @@
+{
+  "schema_version": 1,
+  "figure_id": "TA-28",
+  "phase": "read_only_technical_preflight_no_production_claim",
+  "observed_at": "2026-10-10T02:31:07.734133+00:00",
+  "worktree": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai",
+  "head": "88d0de38b374dccc89320e8e8345ead0099e6f6a",
+  "framework_version": "2026.10.10.63",
+  "queue_status": "planned",
+  "queue_title": "控制与软件领域图",
+  "entry": "bom3d.html?d=control",
+  "scope": "Static current framework/BOM/control-path review plus actual primary external text browsing. No candidate generation, UI, local product URL/HTTP/browser/productJS, repository/research/service writes.",
+  "exact_registry_identity": {
+    "part": {
+      "id": "dcim",
+      "scale": null,
+      "name": "DCIM / BMS / EPMS（监控、运维、电力监控软件）",
+      "legacy_module": "M13",
+      "companies": [
+        "schneider-electric",
+        "vertiv",
+        "schneider-ecostruxure-it",
+        "vertiv-environet",
+        "sunbird-dctrack-nlyte",
+        "neteco",
+        "vertiv-avocent-legrand-raritan",
+        "cn-inspection-robot-group"
+      ],
+      "series": [],
+      "indicators": [],
+      "status": "mature",
+      "desc": "软件条目：有订阅价与供应商，进目标表，不进 3D（用户 2026-09-28 决定）",
+      "kind": "software",
+      "system": "control",
+      "chain": "DCIM/BMS 与固件",
+      "chain_order": 1,
+      "stage": "commissioning"
+    },
+    "software_categories": 1,
+    "physical_instances": 0,
+    "physical_meshes": 0,
+    "scale": null,
+    "not_new_IDs": [
+      "bms",
+      "epms",
+      "gateway",
+      "sensor",
+      "PLC",
+      "DDC",
+      "HMI",
+      "dashboard",
+      "firmware-agent"
+    ],
+    "identity_note": "DCIM/BMS/EPMS are three selected responsibility labels within one registered dcim software category, not three new physical or software IDs. Software is intentionally nonphysical, not a pending hardware-model omission."
+  },
+  "primary_sources_actually_read": [
+    {
+      "id": "P1",
+      "title": "EcoStruxure IT Expert — official DCIM product overview",
+      "requested_url": "https://www.se.com/uk/en/product-range/65972-ecostruxure-it-expert/",
+      "canonical_url": "https://www.se.com/uk/en/product-range/65972-ecostruxure-it-expert/",
+      "actual_read": "HTML substantive lines9–62 and FAQ153–158; page total193lines, via web open, not search-only.",
+      "supports": [
+        "One vendor DCIM example centralizes visibility for power/cooling/IT assets, device/environment alarms, reports and analysis.",
+        "Some software management capabilities include device discovery/configuration, user management and remote firmware deployment."
+      ],
+      "does_not_establish": [
+        "Universal DCIM scope or a complete DCIM standard definition.",
+        "Actual site discovery, sensors, points, alarm values, polling interval/latency, connection state, installation or autonomous control.",
+        "All devices support remote firmware/configuration or every DCIM deployment supports identical write actions."
+      ],
+      "adopted_limit": "Only generic monitoring/alarms/analysis/management role and conditional optional operations. No AI, downtime prevention, sustainability/UPS health or real-time performance claims are adopted."
+    },
+    {
+      "id": "P2",
+      "title": "Johnson Controls — Data Center Building Controls",
+      "requested_url": "https://www.johnsoncontrols.com/industries/data-centers/solutions/building-controls",
+      "canonical_url": "https://www.johnsoncontrols.com/industries/data-centers/solutions/building-controls",
+      "actual_read": "HTML substantive lines312–393; page total516lines. Read monitoring/control at322, system description337, access/logs363, software monitor/command/report376, distributed controller381 and sensor-data collection393.",
+      "supports": [
+        "One BMS/BAS example includes environmental/connected-equipment monitoring, software commands and reporting; local controllers and sensors are separate from supervisory software.",
+        "Actual BMS offerings can include equipment control and automated response, with access-control/event-log capabilities."
+      ],
+      "does_not_establish": [
+        "That a generic DCIM screen directly closes a plant loop or bypasses local controllers/protection.",
+        "Specific setpoints, controller algorithms, failover/redundancy, PUE/WUE values, safety/compliance, site topology or installed controllers/sensors."
+      ],
+      "adopted_limit": "Represent supervisory environmental/equipment role; if local control is referenced, use a separate conditional functional boundary, no new physical ID or unmodeled actuator geometry. Automation may exist in particular designs, but TA28 does not certify it."
+    },
+    {
+      "id": "P3",
+      "title": "Power Monitoring Expert 2024 — Default User Access Level Privileges",
+      "requested_url": "https://product-help.schneider-electric.com/EcoStruxure/Power-Monitoring-Expert-2024/content/8_reference/webapps/usermanager/ref_dflt_privileges.htm",
+      "canonical_url": "https://product-help.se.com/docs/EcoStruxure/Power-Monitoring-Expert-2024/content/8_reference/webapps/usermanager/ref_dflt_privileges.htm",
+      "actual_read": "Full substantive HTML table lines27–115, page total122; original official URL redirects to canonical. Original/reference open returned actual text twice. One direct canonical re-open returned tool-access error, retained as failed read attempt, then reference re-open succeeded.",
+      "document_date": "Last updated2024-01-09; version-specific example, not all EPMS policy.",
+      "supports": [
+        "This power-monitoring software distinguishes application viewing, alarm acknowledgment, dashboard/trend/report work and configuration through permissions.",
+        "Alarm acknowledgment and view permissions differ; user-group application scope is an additional condition.",
+        "Device connection/configuration, UPS/generator configuration, Modbus gateway and notifications are separate gated functions in this example."
+      ],
+      "does_not_establish": [
+        "That acknowledging an alarm fixes its physical cause, or that reading telemetry authorizes a device write.",
+        "A universal five-role system, an installed EPMS, all electric metrics/quality analysis, automatic breaker operation, point mapping or local control readiness."
+      ],
+      "adopted_limit": "Use electricity-focused monitoring/alarms/trends/reports as a functional lane; optional operations require product capability, integration and software permission. Do not label software credentials as six site rights."
+    }
+  ],
+  "selected_functional_roles": [
+    {
+      "label": "DCIM",
+      "part_id": "dcim",
+      "role": "基础设施设备/资产可见性、告警、运维与分析示意",
+      "sources": [
+        "P1"
+      ],
+      "scope": "选定角色例，有交集，不声称全部产品具备资产规划或所有控制能力"
+    },
+    {
+      "label": "BMS",
+      "part_id": "dcim",
+      "role": "建筑环境与机电设备监测、监督管理；适用系统可有本地控制层",
+      "sources": [
+        "P2"
+      ],
+      "scope": "软件监督角色与现场控制器/执行器分开，自动闭环不由本图认证"
+    },
+    {
+      "label": "EPMS",
+      "part_id": "dcim",
+      "role": "电力监测软件的告警、趋势、报告与受权限限制的配置操作",
+      "sources": [
+        "P3"
+      ],
+      "scope": "采用一个官方电力监测软件例，不认证所有电能质量/计量功能或实际读数"
+    }
+  ],
+  "reusable_context_asset": {
+    "file": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/web/assets/technical-atlas/campus-overview-v1.png",
+    "sha256": "c8a1ca2ef4e4c08d93fe2626575f8482831f057dbefaf2e235a4d764c7e6191f",
+    "pixels": [
+      1536,
+      1024
+    ],
+    "existing_factory_sha256": "377a08934681609a94f735e6eb5fa4d17cbfc8a573d0bc0e121fb436c0fceab5",
+    "source_instances": 32,
+    "source_meshes": 152,
+    "use": "只作为被监测对象类别上下文，单独区域，保留原字节/比例，不把软件画在园区坐标或把八柜变成已接入数据源。",
+    "visual_review_this_preflight": false,
+    "note": "Previously adopted mother reused by identity; new TA28 composition and crop need later actual original review."
+  },
+  "suggested_1536_layout": {
+    "canvas": [
+      1536,
+      1024
+    ],
+    "title": "控制与软件：监测、告警与可选授权操作",
+    "subtitle": "一个dcim软件类别的职责示例；信息关系非现场接线，示意界面非实测",
+    "paper": "#FAF9F2",
+    "context_area": {
+      "rect": [
+        48,
+        180,
+        560,
+        374
+      ],
+      "content": "同源TA18园区母图等比完整呈现；标题“被监测对象上下文（未证明接入）”。不添加传感器、线缆、PLC或硬件屏幕。"
+    },
+    "software_area": {
+      "rect": [
+        688,
+        180,
+        800,
+        450
+      ],
+      "content": "纯二维软件信息区：DCIM/BMS/EPMS三平行职责条，统一标注part:dcim；职责有交叉，非三个必须串联或互斥产品。"
+    },
+    "primary_information_flow": {
+      "rect": [
+        48,
+        650,
+        1440,
+        130
+      ],
+      "nodes": [
+        "设备/系统提供信息（功能来源，不表示已经接入）",
+        "接口采集与点位映射（功能节点，具体协议/点表未知）",
+        "监测/历史趋势/告警与报告（示意小屏，无数值）",
+        "人员研判、确认与处置记录（不等于物理故障已清除）"
+      ],
+      "arrows": "工程蓝实线箭头表示信息前向流，不表示供电、管线或实物电缆；圆点只做真实图片对象定位，功能线用明确端点。"
+    },
+    "optional_operations_inset": {
+      "rect": [
+        48,
+        806,
+        1440,
+        120
+      ],
+      "content": "灰虚线独立分支：按产品能力+接口配置+软件权限发起操作请求→既有设备/现场控制层；状态/结果可返回。注明“可选，非本园区已部署自动闭环”。不把命令箭头直接连为全部机电设备的自动闭环。"
+    },
+    "illustrative_screen": "只画字段名、空白/未接入占位、告警/趋势/报告视图类别；可用无刻度无数值的界面框，显著标“界面示意”。不画伪时间戳、百分比、功率、温度、PUE、告警计数或正常绿色状态。",
+    "footer": "软件访问权限与站点权利不同；所有对象/点表/采样时效/连接/自动策略与现场部署未知。"
+  },
+  "five_material_semantic_risks": [
+    {
+      "id": "TA28-R1",
+      "risk": "把一个dcim软件登记拆成三个实体、机房中的屏幕/控制箱，或写“尚未建模”暗示未来要造软件硬件。",
+      "required_boundary": "明确kind=software/无物理模型；三职责条不增加BOM/物理ID；示意屏是解释图元。"
+    },
+    {
+      "id": "TA28-R2",
+      "risk": "把监测→告警→确认→设备控制画成无条件自动闭环；把确认告警等同修复。",
+      "required_boundary": "监测/告警/人员处置是主流；可选授权操作独立虚线区，本地控制/保护能力按具体系统另核。BMS确可自动控制，但本图不证明部署。"
+    },
+    {
+      "id": "TA28-R3",
+      "risk": "示意dashboard数值/趋势曲线/绿色正常/实时时钟暗示已采集或实时实测。",
+      "required_boundary": "图面明确界面示意、未证明接入；仅字段与视图占位，无实测数字/刻度/告警计数/状态结论；厂商real-time宣传不作为本图时效保证。"
+    },
+    {
+      "id": "TA28-R4",
+      "risk": "把职责边界画成绝对互斥或三软件硬串联；从园区母图拉32条实物线暗示现场点表/协议/完整拓扑。",
+      "required_boundary": "三平行角色有交集，采集/映射只是功能节点；上下文图与信息逻辑分区，不给未证协议、传感器点位、网关/PLC实体或跨全部设备连接。"
+    },
+    {
+      "id": "TA28-R5",
+      "risk": "软件访问权限、设备存在/电量统计或合规报告被当作土地/水权/并网/供气/网络接入/许可的成立证据。",
+      "required_boundary": "六站点权利保持独立非物理site节点；软件账号权限只控制软件操作，不代表工程许可或资源权利。"
+    }
+  ],
+  "six_site_rights": [
+    {
+      "id": "land",
+      "legacy_bom_id": "land",
+      "name": "土地（地价、租金、区划）",
+      "physical_meshes": 0
+    },
+    {
+      "id": "water-rights",
+      "legacy_bom_id": "water",
+      "name": "水权与取水许可",
+      "physical_meshes": 0
+    },
+    {
+      "id": "grid",
+      "legacy_bom_id": "grid",
+      "name": "电力配额与并网（排队年限、并网协议）",
+      "physical_meshes": 0
+    },
+    {
+      "id": "gas-supply",
+      "legacy_bom_id": "fuel-supply",
+      "name": "天然气管道接入（容量、供气合同）",
+      "physical_meshes": 0
+    },
+    {
+      "id": "network-access",
+      "legacy_bom_id": "network-access",
+      "name": "网络接入（暗光纤、运营商、IXP）",
+      "physical_meshes": 0
+    },
+    {
+      "id": "permits",
+      "legacy_bom_id": null,
+      "name": "许可（区划、环评、排放、建设）",
+      "physical_meshes": 0
+    }
+  ],
+  "current_control_code_notes": [
+    {
+      "file": "web/pages/bom3d.html",
+      "line": 934,
+      "fact": "facilityModelState has dcim -> 控制软件/无物理硬件模型, but current enterDomain badge gate at950 excludes control.",
+      "future_TA28_requirement": "Control row should use software-aware labeling, not generic pending hardware-model badge."
+    },
+    {
+      "file": "web/pages/bom3d.html",
+      "line": 1039,
+      "fact": "atlasViewFor currently scopes system art only to power/thermal/fourIT; no dcim system illustration exists.",
+      "future_TA28_requirement": "Use explicit domain-art gate for dcim/context rather than claiming system hardware artwork or binding new control picture to background shell/other category."
+    },
+    {
+      "file": "web/pages/bom3d.html",
+      "line": 1089,
+      "fact": "Zero-entity contextual export caption currently applies only to fourIT domains.",
+      "future_TA28_requirement": "Control/dcim current export must explicitly say software information context/no physical model; do not export campus pixel context as a dcim hardware instance."
+    },
+    {
+      "file": "web/pages/bom3d.html",
+      "line": 870,
+      "fact": "Legacy control camera/stage still exists; campus control uses existing safe-focus fallback with no dcim objects.",
+      "future_TA28_requirement": "Keep old explicit legacy routing separate; software selection should create no fake box, pickable, position or instance and not steal manual camera ownership."
+    }
+  ],
+  "unknown": [
+    "Actual deployment/product vendor, licenses, asset inventory, sensors/controllers, discovery status and credential scope.",
+    "Interfaces/protocols/point mapping, poll/change/event mechanism, time synchronization, sampling latency, missing/stale data and exact measurements.",
+    "Alarm thresholds/priority/acknowledgment/clearing rules, maintenance workflows and whether any cause is resolved.",
+    "Which commands, configuration or firmware actions a selected product/device supports, authorization and local command/feedback/interlock conditions.",
+    "Automatic control laws, safety/protection, redundancy/failover, network topology and installation.",
+    "All six site-right evidence and applicability; energy/compliance reports do not establish them."
+  ],
+  "future_meaningful_acceptance": [
+    "Actual original composition review must distinguish picture anchors from information arrows, text readability, no fake dashboard values, and nonphysical software identity.",
+    "Future source route should show exactly one dcim software item/zero meshes, software-aware badge/dossier and zero-instance inspector hidden without stale cache leakage.",
+    "Actual public control domain and new static page four width/theme views, fullSVG and dualdownloads, current exported SVG visible software-context text+metadata identity.",
+    "Background/whole/default14/system47/TA18/19 and manual-camera/dispose contracts remain isolated; no control geometry or new physical sensor/PLC IDs."
+  ],
+  "actual_static_reads": [
+    {
+      "file": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/framework/bom.json",
+      "sha256": "651e893e516a09c03d5871c319bc1e915916635d3857d1d6789f63e88b698573"
+    },
+    {
+      "file": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/framework/10_visual_atlas.md",
+      "sha256": "7a10fc4344db6b4bb4ff64d3c8a489869591210912a83ae96c1862bc975a1513"
+    },
+    {
+      "file": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/framework/visual_atlas_migration.json",
+      "sha256": "f496e68adbc642e4337f3e3a9743f8f1a9e3b33ce282f7fe1bfa7aee5ffcefac"
+    },
+    {
+      "file": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/framework/site_rights.json",
+      "sha256": "21222fcb5e775707bf0538aeaa49892b140e5381b849c4e00388daa657663c7c"
+    },
+    {
+      "file": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/web/pages/bom3d.html",
+      "sha256": "b7e7943bf04c96699f89da0742803a1e1045615cf4906e664af96107396c23b4"
+    },
+    {
+      "file": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/web/components/campus-assembly.js",
+      "sha256": "377a08934681609a94f735e6eb5fa4d17cbfc8a573d0bc0e121fb436c0fceab5"
+    },
+    {
+      "file": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/web/assets/technical-atlas/campus-overview-v1.png",
+      "sha256": "c8a1ca2ef4e4c08d93fe2626575f8482831f057dbefaf2e235a4d764c7e6191f"
+    },
+    {
+      "file": "/Users/m4/.codex/worktrees/atlas-ta24-27-it-domains/inresearch.ai/docs/design/technical-atlas/TA-18/acceptance-v1.json",
+      "sha256": "775d04a56b574dc18a70027e56544b65a1871b72d796655024d6913c71acd5eb"
+    }
+  ],
+  "not_performed": [
+    "No image generation, composition, candidate acceptance, product-page/browser/localHTTP/productJS/WebGL or website deployment tests.",
+    "No repo/governance/BOM/queue/research/service/PR/production or Spark writes. Only the requested private/tmp MD/JSON receipts are written.",
+    "No claim all source marketing capabilities apply universally; official images were not inspected or downloaded. No screenshot, product version or real-time measurement was fabricated."
+  ]
+}

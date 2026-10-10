@@ -2,6 +2,11 @@
 
 真实GitHub TA18装配在原300秒终止（views71秒已过，非断言降级）。将TA18/19原assembly逐语句分为geometry/navigation/lifecycle，各与views独立并行且各保留300秒；原all/assembly入口仍顺序执行全部，原断言与动作逐字保留、矩阵每个实际case恰一次。
 
+
+## 2026-10-10：TA24–27闭包登记与TA28控制软件
+
+TA24–27真实88d0de38/.63与精确f4fb镜像healthy，四项独立public-v1/23类实际点选/双下载/30源SHA/HTTPShealth200闭合，登记27/35补4/4；PR539并发研究3路径差异真记，92图册路径仍等审定head，不伪称全tree零差异。TA28控制软件：采用TA18原件作设施上下文，独立原生1536×1024受控组合、6可编辑逻辑定位与信息/可选授权操作两层功能线；DCIM/BMS/EPMS三平行职责仅归一个dcim软件类别，0物理件，非待建硬件。采集/告警确认/写入/现场自动控制及六站点权利分开，无伪实测或已接入。control-only领域图/软件badge/隐藏inspector及可见软件导出语义接入，32home/152mesh/默认14/system47/legacy保持。新图仅source review，真实新公网逐项另验，不计28。本地URL拒绝/公网专用无回退、CI未查、Spark研究0改；保留并行研究全部变化。
+
 ## 2026-10-10：修复研究PR共用浏览器下载验收
 
 TA16/17快速连续下载在第11次等待事件超时；逐点击加入250ms间隔，保留所有真实下载、文件名、失败状态和完整字节SHA校验，不跳过案例、不调整权限或产品。未节流失败日志保留于DCD任务记录；本地完整套件和新head CI分别记录。GitHub继续检出TA18–20截图目录写死macOS /private/tmp导致Linux EACCES；只改系统tmpdir，不改公网/CI目标门禁及全部图面、几何、下载断言。；将新增campus_overview/campus_exploded重型views+assembly作为独立并行CI作业，公共core移除这两项且完整矩阵恰覆盖一次，所有场景/密度/单项期限及聚合门禁保持。

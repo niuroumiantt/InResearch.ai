@@ -947,7 +947,7 @@ function enterDomain(d) {
   const grouped = []; let last = null;
   for (const p of d.parts) { if (p.chain !== last) { grouped.push(`<div class="chainh">${esc(p.chain || (p.kind === "site_right" ? "站点权利" : ""))}</div>`); last = p.chain; } grouped.push(p); }
   document.getElementById("domainParts").innerHTML = grouped.map(p => typeof p === "string" ? p :
-    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${campusMode && ["facility","power","thermal","compute","memory","storage","network","control"].includes(d.key) ? (facilityModelState(p) ? `<span class="nm" title="${esc(facilityModelState(p)[1])}">${esc(facilityModelState(p)[0])}</span>` : "") : (PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>')}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
+    `<div class="pitem" data-part="${p.id}"><span class="dot" style="background:${SBADGE[p.status]}"></span>${esc(p.name)}<span class="covb" style="background:${covScore(p)===null ? '#64748b' : COVC[covScore(p)]}" title="${covScore(p)===null ? '产品登记未读取，完整覆盖率未知' : '数据覆盖 '+covScore(p)+'/4（公司/产品/序列/指标）'}">${covScore(p)??'—'}/4</span>${campusMode && ["facility","power","thermal","compute","memory","storage","network"].includes(d.key) ? (facilityModelState(p) ? `<span class="nm" title="${esc(facilityModelState(p)[1])}">${esc(facilityModelState(p)[0])}</span>` : "") : (PARTMESH[p.id] ? "" : '<span class="nm" title="场景中尚无 3D 造型——点击直接看档案">未建模</span>')}<span class="lay">${p.scale || (BOM.kinds?.[p.kind] ? p.kind : "")}</span></div>`).join("");
   if(campusMode && d.key==='facility'){
    const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-21';
    plate.innerHTML='<a href="/facility-atlas.html"><b>设施与站点权利 · 完整图与下载 ↗</b><img src="/assets/technical-atlas/facility-domain-v1-preview.svg" width="1536" height="1024" alt="同源八柜建筑与独立消防安防类别图、六类非物理权利"></a><p>建筑包含八柜；消防/安防本场景未建模。六权利是非物理证据入口，地面与设备不证明权利成立。</p>';
@@ -981,11 +981,6 @@ function enterDomain(d) {
   if(campusMode && d.key==='network'){
    const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-27';
    plate.innerHTML="<a href=\"/network-atlas.html\"><b>网络与PCIe接入角色 · 完整图与下载 ↗</b><img src=\"/assets/technical-atlas/network-domain-v1-preview.svg\" width=\"1536\" height=\"1024\" alt=\"九网络类别分别定位，机外光铜与PCIe角色分开，不强串九级\"></a><p>仅cabling有1组架空桥架示意，其余八类本场景未建模。桥架不等于本图四护套线束，也不证明完整网络连接或八柜已联网。</p>";
-   document.getElementById('domainParts').prepend(plate);
-  }
-  if(campusMode && d.key==='control'){
-   const plate=document.createElement('section');plate.className='facility-domain-plate';plate.dataset.figure='TA-28';
-   plate.innerHTML='<a href="/control-atlas.html"><b>控制软件职责与信息关系 · 完整图与下载 ↗</b><img src="/assets/technical-atlas/control-domain-v1-preview.svg" width="1536" height="1024" alt="一个dcim软件类别，三平行职责、信息采集与人工处置，可选授权操作独立"></a><p>软件有意不进3D，不是待建硬件。设施仅为上下文，实际接入、点位与自动策略未知；软件权限与六站点权利独立。</p>';
    document.getElementById('domainParts').prepend(plate);
   }
   document.querySelectorAll("#domainParts .pitem").forEach(el => el.onclick = () => {
@@ -1041,14 +1036,14 @@ const inspector = createPartInspector({THREE, environment: () => scene.environme
 const rawShowDossier = createPartDossier({el: document.getElementById('dossier'), view: 'campus',
   BOM, moduleNames: MODNAME, companies: CN, prices, indicators: INDS,
   statusNames: SN, statusColors: SBADGE, inspector,
-  atlasViewFor:p=>campusMode && activeDomain==='control' && p.id==='dcim'?'domain':campusMode && (['power','thermal'].includes(activeDomain) || ['compute','memory','storage','network'].includes(activeDomain)) && p.system===activeDomain?'system':null,
+  atlasViewFor:p=>campusMode && (['power','thermal'].includes(activeDomain) || ['compute','memory','storage','network'].includes(activeDomain)) && p.system===activeDomain?'system':null,
   researchNodeFor:p=>p.kind==='site_right'?'site:'+p.site_right_id:'part:'+p.id});
 
 function campusPart(p,whole=false){
  if(!campusMode)return p;
  if(whole)return {...PART.shell,name:'园区空间示意 · 完整三维预览',desc:'本图是一个通用选定八柜园区：2行×4柜、5室内冷却、3CDU、一组4柜门UPS、3双风扇冷机、2变压器、3备用发电与2储能柜。数量与比例只是绘图选择；前墙/部分屋面虚拟省略。'+(campusLayeredMode?'屋面/围护/桥架/室内设备仅沿各组示意轴平移，灰线对应同实例空原位；室外设备/钢架/基础保持原位。':'')+'内接线、流体去回路、功率/电压/冗余、现场适用与站点权利未知；研究链接归建筑类别，不认证本示例。'};
  const physical=campusAssembly.objectsFor(p.id).length;
- return {...p,desc:physical?'本次三维仅展示选定通用外形；'+(campusSelectedInstance?'点选单个示例实例 '+campusSelectedInstance+'。':'类别含 '+physical+' 个示例实例，预览取第一个。')+' 外形/数量不是型号、额定配置或现场事实，内接线、流体拓扑、尺寸/功率/电压、冗余和适用条件未知。下方研究与公司数据属于类别。'+(p.id==='rack-frame'?'门内载盘密度是程序示例，非TA13整柜或TA11服务器配置。':''):p.kind==='site_right'?'站点权利是独立非物理研究入口，场景不以设备或地面证明权利成立。':p.id==='modular-dc'?'微模块是配置与交付模板，不新增物理设备；本图不证明某模板已经安装或适用。':p.id==='dcim'?'DCIM / BMS / EPMS属于一个在册软件类别，职责有交集；软件有意无物理模型，不是待建硬件。设施仅为背景上下文，不证明数据接入；监测、告警确认、可选授权操作与现场控制分开，点位、接口、软件权限、许可与实际实施另核。':'本类别在本次园区未造实体；既有类别研究及独立部件图入口保留，不假造位置/实例。'};
+ return {...p,desc:physical?'本次三维仅展示选定通用外形；'+(campusSelectedInstance?'点选单个示例实例 '+campusSelectedInstance+'。':'类别含 '+physical+' 个示例实例，预览取第一个。')+' 外形/数量不是型号、额定配置或现场事实，内接线、流体拓扑、尺寸/功率/电压、冗余和适用条件未知。下方研究与公司数据属于类别。'+(p.id==='rack-frame'?'门内载盘密度是程序示例，非TA13整柜或TA11服务器配置。':''):p.kind==='site_right'?'站点权利是独立非物理研究入口，场景不以设备或地面证明权利成立。':p.id==='modular-dc'?'微模块是配置与交付模板，不新增物理设备；本图不证明某模板已经安装或适用。':p.id==='dcim'?'DCIM是软件入口，不画物理硬件，当前节点内容与现场实施另核。':'本类别在本次园区未造实体；既有类别研究及独立部件图入口保留，不假造位置/实例。'};
 }
 function showDossier(p){if(!p)return;if(campusMode){const i=campusAssembly.instances.find(i=>i.part===p.id);campusSelectedInstance=i?.id||null;campusSelectedMeshes=[];i?.object.traverse(o=>{if(o.isMesh)campusSelectedMeshes.push(o)});rawShowDossier(campusPart(p));}else rawShowDossier(p)}
 function showCampusObject(object){const p=PART[object.userData.part];if(!p)return;if(!campusMode){showDossier(p);return;}const i=campusAssembly.instanceFor(object);if(!i)return;campusSelectedInstance=i.id;campusSelectedMeshes=[];i.object.traverse(o=>{if(o.isMesh)campusSelectedMeshes.push(o)});rawShowDossier(campusPart(p));}
@@ -1092,12 +1087,11 @@ const atlasExport = mountAtlasExport({THREE, scene, camera, canvas, drawing:atla
   render:()=>composer.render(), button:document.getElementById('atlas-export'),
   filename:'bom3d-technical-atlas.svg', title:'园区结构图册',
   caption:()=>{const stage=document.getElementById('stage').textContent,id=document.getElementById('dossier').dataset.partId;
-    if(campusMode&&activeDomain==='control'&&id==='dcim')return stage+'；DCIM / BMS / EPMS为软件信息上下文，无物理模型；背景设施不证明数据接入或自动控制';
     return campusMode&&['compute','memory','storage','network'].includes(activeDomain)&&id&&!currentPartMeshes(id)?.length
       ? stage+'；'+(PART[id]?.name||id)+'仅为类别上下文，本园区无物理实体；背景园区不是该部件造型' : stage;},
   diagnostics:()=>covOn ? '索引覆盖：红0/4、橙1/4、黄2/4、浅绿3/4、绿4/4（公司、产品、序列、指标登记维度数；非硬件状态）' : null,
   selected:()=>{const id=document.getElementById('dossier').dataset.partId;
-    return id ? {id:campusMode&&campusSelectedInstance?campusSelectedInstance:'part:'+id,name:campusMode?(campusSelectedInstance==='campus/whole'?'园区空间示意 · 完整三维预览':(activeDomain==='control'&&id==='dcim'?'控制软件 · 无物理模型 · '+(PART[id]?.name || id):['compute','memory','storage','network'].includes(activeDomain)&&!currentPartMeshes(id)?.length?'本园区未建模 · '+(PART[id]?.name || id)+'（类别上下文，无物理实体）':'通用园区示例 · '+(PART[id]?.name || id))):PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
+    return id ? {id:campusMode&&campusSelectedInstance?campusSelectedInstance:'part:'+id,name:campusMode?(campusSelectedInstance==='campus/whole'?'园区空间示意 · 完整三维预览':(['compute','memory','storage','network'].includes(activeDomain)&&!currentPartMeshes(id)?.length?'本园区未建模 · '+(PART[id]?.name || id)+'（类别上下文，无物理实体）':'通用园区示例 · '+(PART[id]?.name || id))):PART[id]?.name || id,meshes:currentPartMeshes(id) || []} : null;}
 });
 const covChip = document.getElementById('covChip');
 covChip.setAttribute('aria-disabled','true');

@@ -320,6 +320,41 @@ const networkDomain={
  ]
 };
 
+const controlDomain={
+ "id": "TA-28",
+ "title": "控制与软件 · 监测、告警与可选授权操作",
+ "image": "/assets/technical-atlas/control-domain-v1.svg",
+ "preview": "/assets/technical-atlas/control-domain-v1-preview.svg",
+ "master": "/assets/technical-atlas/control-domain-v1.png",
+ "alt": "暖白控制软件功能图：左侧八柜设施仅作被监测对象上下文，右侧DCIM BMS EPMS三平行职责，下方信息采集、监测告警、人工处置与独立可选授权操作；一个dcim软件类别，无物理模型。",
+ "note": "一个在册dcim软件类别，DCIM/BMS/EPMS为有交集的职责说明，不是三套实装或串联跳点。TA18设施母图仅作被监测对象上下文；功能框、箭头与软件界面不构成新设备或物理线缆。不示伪实测数值、正常状态或已接入。信息采集、告警确认、设备写入与自动控制分别表达；可选操作须产品能力、配置、权限与现场控制设计，读取权限不等于写入。六站点权利独立，不由设备/软件许可证明。实际点位、协议、时效、告警规则、接口、许可和现场实施未知。软件有意不进3D，不是待建硬件。",
+ "labels": [
+  "01 设施上下文：沿用TA18通用八柜设施；不证明软件已接入、采集点位或现场安装",
+  "02 DCIM职责：基础设施可见性、告警分析与运维管理；不新增软件或硬件对象",
+  "03 BMS职责：楼宇环境和机电监督；设备本地控制与保护另有边界",
+  "04 EPMS职责：电力监测、告警、趋势与报告；查看、确认和修改配置权限不同",
+  "05 接口采集：纯逻辑功能节点；接口、点表与采样条件待核，不画网关或传感器实体",
+  "06 人员处置：研判、确认与记录；告警确认不等于故障排除，授权操作是另一个条件区"
+ ],
+ "related": [
+  {
+   "id": "TA-28-CONTEXT",
+   "title": "控制软件领域 · 非物理档案与设施上下文",
+   "image": "/bom3d.html?d=control"
+  },
+  {
+   "id": "TA-18",
+   "title": "设施装配上下文，不证明软件接入",
+   "image": "/bom3d.html"
+  },
+  {
+   "id": "TA-21",
+   "title": "六站点权利与设施边界",
+   "image": "/facility-atlas.html"
+  }
+ ]
+};
+
 const rackOverview = {
   id:'TA-13', title:'机柜整柜 · 安装分区与结构',
   image:'/assets/technical-atlas/rack-overview-v1.svg', preview:'/assets/technical-atlas/rack-overview-v1-preview.svg',
@@ -382,7 +417,7 @@ export function atlasCategoryNote(partId, {view} = {}) {
 }
 
 export function mountTechnicalAtlas(parent, partId, {view} = {}) {
-  const item = partId === 'facility-domain' && view === 'domain' ? facilityDomain : partId === 'power-domain' && view === 'domain' ? powerDomain : partId === 'thermal-domain' && view === 'domain' ? thermalDomain : partId === 'compute-domain' && view === 'domain' ? computeDomain : partId === 'network-domain' && view === 'domain' ? networkDomain : partId === 'storage-domain' && view === 'domain' ? storageDomain : partId === 'memory-domain' && view === 'domain' ? memoryDomain : ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
+  const item = partId === 'facility-domain' && view === 'domain' ? facilityDomain : partId === 'power-domain' && view === 'domain' ? powerDomain : partId === 'thermal-domain' && view === 'domain' ? thermalDomain : (partId === 'control-domain' || partId === 'dcim') && view === 'domain' ? controlDomain : partId === 'compute-domain' && view === 'domain' ? computeDomain : partId === 'network-domain' && view === 'domain' ? networkDomain : partId === 'storage-domain' && view === 'domain' ? storageDomain : partId === 'memory-domain' && view === 'domain' ? memoryDomain : ['system','scale'].includes(view) ? systemIllustrations[partId] || illustrations[partId] : view==='chip' && ['gpu','hbm'].includes(partId) ? chipPackage : partId === 'server' && view === 'plan' ? serverPlan : partId === 'campus-overview' && view === 'plan' ? campusPlan : partId === 'rack-frame' && view === 'exploded' ? rackExploded : partId === 'rack-frame' && view === 'overview' ? rackOverview : illustrations[partId];
   if (!item) return false;
   if (!document.querySelector('link[data-technical-atlas]')) {
     const stylesheet = document.createElement('link');

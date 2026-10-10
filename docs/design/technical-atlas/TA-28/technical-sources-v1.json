@@ -1,0 +1,50 @@
+{
+  "figure_id": "TA-28",
+  "sources": [
+    {
+      "title": "EcoStruxure IT Expert — official DCIM product overview",
+      "url": "https://www.se.com/uk/en/product-range/65972-ecostruxure-it-expert/",
+      "actual_read": "HTML substantive lines9–62 and FAQ153–158; page total193lines, via web open, not search-only.",
+      "supports": [
+        "One vendor DCIM example centralizes visibility for power/cooling/IT assets, device/environment alarms, reports and analysis.",
+        "Some software management capabilities include device discovery/configuration, user management and remote firmware deployment."
+      ],
+      "does_not_support": [
+        "Universal DCIM scope or a complete DCIM standard definition.",
+        "Actual site discovery, sensors, points, alarm values, polling interval/latency, connection state, installation or autonomous control.",
+        "All devices support remote firmware/configuration or every DCIM deployment supports identical write actions."
+      ],
+      "adopted_limit": "Only generic monitoring/alarms/analysis/management role and conditional optional operations. No AI, downtime prevention, sustainability/UPS health or real-time performance claims are adopted."
+    },
+    {
+      "title": "Johnson Controls — Data Center Building Controls",
+      "url": "https://www.johnsoncontrols.com/industries/data-centers/solutions/building-controls",
+      "actual_read": "HTML substantive lines312–393; page total516lines. Read monitoring/control at322, system description337, access/logs363, software monitor/command/report376, distributed controller381 and sensor-data collection393.",
+      "supports": [
+        "One BMS/BAS example includes environmental/connected-equipment monitoring, software commands and reporting; local controllers and sensors are separate from supervisory software.",
+        "Actual BMS offerings can include equipment control and automated response, with access-control/event-log capabilities."
+      ],
+      "does_not_support": [
+        "That a generic DCIM screen directly closes a plant loop or bypasses local controllers/protection.",
+        "Specific setpoints, controller algorithms, failover/redundancy, PUE/WUE values, safety/compliance, site topology or installed controllers/sensors."
+      ],
+      "adopted_limit": "Represent supervisory environmental/equipment role; if local control is referenced, use a separate conditional functional boundary, no new physical ID or unmodeled actuator geometry. Automation may exist in particular designs, but TA28 does not certify it."
+    },
+    {
+      "title": "Power Monitoring Expert 2024 — Default User Access Level Privileges",
+      "url": "https://product-help.schneider-electric.com/EcoStruxure/Power-Monitoring-Expert-2024/content/8_reference/webapps/usermanager/ref_dflt_privileges.htm",
+      "actual_read": "Full substantive HTML table lines27–115, page total122; original official URL redirects to canonical. Original/reference open returned actual text twice. One direct canonical re-open returned tool-access error, retained as failed read attempt, then reference re-open succeeded.",
+      "supports": [
+        "This power-monitoring software distinguishes application viewing, alarm acknowledgment, dashboard/trend/report work and configuration through permissions.",
+        "Alarm acknowledgment and view permissions differ; user-group application scope is an additional condition.",
+        "Device connection/configuration, UPS/generator configuration, Modbus gateway and notifications are separate gated functions in this example."
+      ],
+      "does_not_support": [
+        "That acknowledging an alarm fixes its physical cause, or that reading telemetry authorizes a device write.",
+        "A universal five-role system, an installed EPMS, all electric metrics/quality analysis, automatic breaker operation, point mapping or local control readiness."
+      ],
+      "adopted_limit": "Use electricity-focused monitoring/alarms/trends/reports as a functional lane; optional operations require product capability, integration and software permission. Do not label software credentials as six site rights."
+    }
+  ],
+  "scope": "Actual independent primary text read, generic software responsibilities only; not site implementation or verified reference pixels"
+}
