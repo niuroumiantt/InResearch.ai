@@ -32083,6 +32083,258 @@
         },
         "batch_id": "2592a0d9735684f02e90cf783c97426663bf0fa9f47a063129e209589ffde1a4"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1705eb1a6962d11da425d678698090a17af8ea329a98952a307aab476ac77bf7",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:51:claim:7:ev:0",
+      "locator": "page:52/chunk:51",
+      "object_ids": [
+        "system:power"
+      ],
+      "page_index": 51,
+      "question_ids": [],
+      "quote": "Data centres require highly reliable power, typically targeting 99.999% to 99.9999% uptime.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:57:49+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。该目标对当前OBJ-grid-performance工单具有实质但局部的贡献，可用于识别数据中心需求侧的可靠性要求。连续引文和相邻原生页明确区分电网可靠性、备用系统与现场发电；无敏感内容、真实冲突或替换提议，符合B级有限归属采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-grid-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.67,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6123f81199d4952ebf635ffdb14fac9c6f330ed673cf8d740f14d9cc87006c3a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70982,
+            "output_tokens": 2981,
+            "reasoning_output_tokens": 417
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.167,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "75c1f99b88a32743f401bdf2968fb7c9ac679ca9d91d8627b4c06d9b577e0bcd",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70272,
+              "output_tokens": 434,
+              "reasoning_output_tokens": 208
+            }
+          }
+        },
+        "batch_id": "0673934d9ef9028620ade84f7f36921a149c03e64a3eca04b6eba85b4aa194e1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1705eb1a6962d11da425d678698090a17af8ea329a98952a307aab476ac77bf7",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:51:claim:8:ev:0",
+      "locator": "page:52/chunk:51",
+      "object_ids": [
+        "site:grid"
+      ],
+      "page_index": 51,
+      "question_ids": [],
+      "quote": "In advanced\n                  economies, annual average outages can amount to just a few minutes in the most reliable\n                  systems but can extend to 5 to 10 hours in areas with weaker grids or higher exposure to\n                  natural disasters. Even in this worst-case scenario, this equates to reliability of between\n                  99.94% and 99.89%",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:57:49+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。年均停电时间、可靠性百分比及弱电网和自然灾害条件，直接部分支持当前OBJ-grid-performance工单的性能指标与适用条件研究。引文连续，原生上下文充分；没有A类触发条件，符合B级有限归属采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-grid-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.67,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6123f81199d4952ebf635ffdb14fac9c6f330ed673cf8d740f14d9cc87006c3a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70982,
+            "output_tokens": 2981,
+            "reasoning_output_tokens": 417
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.167,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "75c1f99b88a32743f401bdf2968fb7c9ac679ca9d91d8627b4c06d9b577e0bcd",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70272,
+              "output_tokens": 434,
+              "reasoning_output_tokens": 208
+            }
+          }
+        },
+        "batch_id": "0673934d9ef9028620ade84f7f36921a149c03e64a3eca04b6eba85b4aa194e1"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "1705eb1a6962d11da425d678698090a17af8ea329a98952a307aab476ac77bf7",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:51:claim:9:ev:0",
+      "locator": "page:52/chunk:51",
+      "object_ids": [
+        "site:grid",
+        "part:ups",
+        "chain:power/3"
+      ],
+      "page_index": 51,
+      "question_ids": [],
+      "quote": "grid-connected data centres can reach their reliability targets by\n                  complementing grid power with backup storage, through uninterrupted power supply (UPS)\n                  systems, and backup generators.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:57:49+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。该供电配合机制实质关联当前OBJ-grid-interfaces的上下游依赖，并对OBJ-grid-performance贡献可靠性实现路径。连续引文及相邻原生上下文足以支持限定归属的机制表述；没有敏感内容、真实冲突或替换提议，符合B级部分采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-grid-interfaces",
+          "Q-OBJ-grid-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.67,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6123f81199d4952ebf635ffdb14fac9c6f330ed673cf8d740f14d9cc87006c3a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70982,
+            "output_tokens": 2981,
+            "reasoning_output_tokens": 417
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.167,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "75c1f99b88a32743f401bdf2968fb7c9ac679ca9d91d8627b4c06d9b577e0bcd",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70272,
+              "output_tokens": 434,
+              "reasoning_output_tokens": 208
+            }
+          }
+        },
+        "batch_id": "0673934d9ef9028620ade84f7f36921a149c03e64a3eca04b6eba85b4aa194e1"
+      }
     }
   ],
   "statements": [
@@ -62511,6 +62763,310 @@
         "request_sha256": "98c1ffaf1f27d13356661c24cf70c5a5052b5572da98e7fb66955582fe4d48d0"
       },
       "object_mapping_check": "Nebius 是明确署名发言人的所属运营商，对应 actor:nebius。主张描述数据中心 GPU 作业所依赖的网络 fabric 整体协调与慢链路风险，实际范围对应 system:it 下的 system:network。虽然相邻语境点名 Spectrum-6，但本项没有把阻塞机制归于具体交换机部件，故不继承 part:network-switch 标签；GPU 仅为同步作业参与者，也不据此映射 GPU 产品性能。所选证据统一采用这一主张级范围，问题匹配仍保留。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:51:claim:7:ev:0"
+      ],
+      "id": "adoption:review:3cdf1be25ab6fbefdc9a2ade",
+      "kind": "author_claim",
+      "object_ids": [
+        "system:power"
+      ],
+      "question_ids": [
+        "OBJ-grid-performance"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》第52页指出，数据中心通常以99.999%至99.9999%的供电正常运行时间为目标。这是来源对典型供电可靠性目标的表述，不是电网或具体数据中心的实测表现，也不是本次审核的独立核证。所供原生文本未确立报告发表日期；该句未限定具体地区或项目阶段。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:57:49+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。该目标对当前OBJ-grid-performance工单具有实质但局部的贡献，可用于识别数据中心需求侧的可靠性要求。连续引文和相邻原生页明确区分电网可靠性、备用系统与现场发电；无敏感内容、真实冲突或替换提议，符合B级有限归属采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-grid-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.67,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6123f81199d4952ebf635ffdb14fac9c6f330ed673cf8d740f14d9cc87006c3a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70982,
+            "output_tokens": 2981,
+            "reasoning_output_tokens": 417
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.167,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "75c1f99b88a32743f401bdf2968fb7c9ac679ca9d91d8627b4c06d9b577e0bcd",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70272,
+              "output_tokens": 434,
+              "reasoning_output_tokens": 208
+            }
+          }
+        },
+        "batch_id": "0673934d9ef9028620ade84f7f36921a149c03e64a3eca04b6eba85b4aa194e1"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:51:claim:7"
+      ],
+      "limitations": "未提供目标的统计样本、适用标准、测量边界、统计周期或停电事件计入规则。不能将数据中心整体供电目标等同于电网单独供电的可靠性，也不能推定具体项目已达到目标。全文覆盖限于PDF原生文字，未完成图像审阅。",
+      "conflict_check": "所供已采用陈述涉及PJM资源充裕性建模、冬季失负荷小时数、容量评级及并网约束，与本条数据中心供电正常运行时间目标的对象和指标不同，未发现同口径重复或真实冲突。legacy三类筛选记录均为空，不代表完成外部反证检索。不修改既有结论。",
+      "gap_dependency_check": "仍需明确可靠性目标的标准来源、测量点、统计周期、停电定义及适用负载，并取得电网与备用系统分别贡献可靠性的运行证据。本条仅提供需求侧目标，不能回答可靠性如何测量及在哪些工况失效；问题和工单保持开放，不更新模型参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0673934d9ef9028620ade84f7f36921a149c03e64a3eca04b6eba85b4aa194e1",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "915346216b45f0f5fd8d35a1405d41d378e55da9629041707c48599e86a41cf5"
+      },
+      "object_mapping_check": "独立映射为system:power：其名称为“电”，所含链覆盖电网接入、发电与储能、UPS及配电，与数据中心供电整体的正常运行时间目标相符。该句没有将目标限定于site:grid所代表的电力配额与并网，也没有提供具体部件性能或数据中心其他系统结论，故不添加这些对象。所选证据统一使用此主张级范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:51:claim:8:ev:0"
+      ],
+      "id": "adoption:review:c12e2761b2ad5eb18fb4b57a",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:grid"
+      ],
+      "question_ids": [
+        "OBJ-grid-performance"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》第52页称，在发达经济体，最可靠电力系统的年均停电时间可仅为几分钟，而电网较弱或自然灾害暴露较高的地区可达5至10小时；IEA将后一情形对应的可靠性表述为99.94%至99.89%。这是来源对地区电网表现差异的概括，未经本次独立核验，不是具体地区或数据中心的测量结果。所供原生文本未确立报告发表日期或这些数值的观察年份。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:57:49+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。年均停电时间、可靠性百分比及弱电网和自然灾害条件，直接部分支持当前OBJ-grid-performance工单的性能指标与适用条件研究。引文连续，原生上下文充分；没有A类触发条件，符合B级有限归属采用要求。",
+        "workorder_ids": [
+          "Q-OBJ-grid-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.67,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6123f81199d4952ebf635ffdb14fac9c6f330ed673cf8d740f14d9cc87006c3a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70982,
+            "output_tokens": 2981,
+            "reasoning_output_tokens": 417
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.167,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "75c1f99b88a32743f401bdf2968fb7c9ac679ca9d91d8627b4c06d9b577e0bcd",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70272,
+              "output_tokens": 434,
+              "reasoning_output_tokens": 208
+            }
+          }
+        },
+        "batch_id": "0673934d9ef9028620ade84f7f36921a149c03e64a3eca04b6eba85b4aa194e1"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:51:claim:8"
+      ],
+      "limitations": "未列出国家、区域、供电层级、原始统计、样本范围或年均停电指标的计算方法。未说明计划停电、重大灾害事件或用户差异如何处理。“最差情形”仅限于原文所述比较，不能解释为全球可靠性下界。百分比保留来源的近似表述，不能作为具体场址的当前参数。",
+      "conflict_check": "已采用PJM冬季失负荷小时数变化是资源充裕性模型敏感性结果，本条是来源概括的年均停电时间，两者测量边界、条件和指标不同，不能直接比较或认定冲突。其他已采用队列及制度记录也不重复本条。legacy筛选记录为空，所供材料内未发现真实冲突；未进行外部反证检索，不覆盖既有结论。",
+      "gap_dependency_check": "仍需取得地区级原始停电统计，核对观察年份、指标定义、统计分母、重大事件处理和数据中心接入点条件，并区分电网停电与设施最终失供。本条仅贡献可靠性比较线索，不能完成测量方法与失效边界验证；问题及工单保持开放，不写入场址参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0673934d9ef9028620ade84f7f36921a149c03e64a3eca04b6eba85b4aa194e1",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "915346216b45f0f5fd8d35a1405d41d378e55da9629041707c48599e86a41cf5"
+      },
+      "object_mapping_check": "独立复核后映射site:grid，其“电力配额与并网”范围对应数据中心所接电网供电的可靠性条件。原文描述区域电网表现，没有具体UPS、发电设备或数据中心内部供电系统的性能证据，故不继承或扩展至这些对象。所选证据统一使用此主张级范围，原始标签保持不变。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:51:claim:9:ev:0"
+      ],
+      "id": "adoption:review:a508b8cad251056c15ab6117",
+      "kind": "author_claim",
+      "object_ids": [
+        "site:grid",
+        "part:ups",
+        "chain:power/3"
+      ],
+      "question_ids": [
+        "OBJ-grid-interfaces",
+        "OBJ-grid-performance"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "国际能源署（IEA）在《Key Questions on Energy and AI》第52页认为，并网数据中心可通过UPS系统提供的备用储能及备用发电机补充电网供电，以达到其可靠性目标。这是来源对供电配合机制的概括，不是具体项目已经达到目标的证明或本次审核的独立核证。该句未指定备用发电机的燃料或技术、具体地区或项目实施阶段；报告发表日期在所供原生文本中未确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T11:57:49+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原重要性6。该供电配合机制实质关联当前OBJ-grid-interfaces的上下游依赖，并对OBJ-grid-performance贡献可靠性实现路径。连续引文及相邻原生上下文足以支持限定归属的机制表述；没有敏感内容、真实冲突或替换提议，符合B级部分采用条件。",
+        "workorder_ids": [
+          "Q-OBJ-grid-interfaces",
+          "Q-OBJ-grid-performance"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 79.67,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "6123f81199d4952ebf635ffdb14fac9c6f330ed673cf8d740f14d9cc87006c3a",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 70982,
+            "output_tokens": 2981,
+            "reasoning_output_tokens": 417
+          }
+        },
+        "sampling": {
+          "cohort": 3,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 21.167,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "75c1f99b88a32743f401bdf2968fb7c9ac679ca9d91d8627b4c06d9b577e0bcd",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 70272,
+              "output_tokens": 434,
+              "reasoning_output_tokens": 208
+            }
+          }
+        },
+        "batch_id": "0673934d9ef9028620ade84f7f36921a149c03e64a3eca04b6eba85b4aa194e1"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:51:claim:9"
+      ],
+      "limitations": "未提供UPS和发电机型号、储能介质、容量、持续时间、冗余架构、切换条件、故障相关性或实测可靠性。不能据此保证任何配置都能达到目标，也不能将未指定技术的备用发电机认定为柴油机或燃气轮机。相邻现场燃机及专用柴油备用讨论不能补入本条。",
+      "conflict_check": "已采用PJM可送达性研究、并网迟缓和得州申请筛选陈述涉及不同环节，本条备用系统机制不消除这些接入与输送约束，未发现真实冲突或规范重复。DCD工作负载分配建议属于需求侧部署路径，也不重复本条。legacy筛选结果为空，不代表外部反证已检索；不替换既有结论。",
+      "gap_dependency_check": "接口问题仍需一次系统图、电压及容量边界、切换控制、接地与保护、并网和孤岛运行条件；性能问题仍需备用持续时间、启动及切换时间、维护和故障数据、共同失效场景与验收标准。本条只提供配合关系和机制线索，两个问题及工单保持开放，不更新配置或可靠性参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "0673934d9ef9028620ade84f7f36921a149c03e64a3eca04b6eba85b4aa194e1",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "915346216b45f0f5fd8d35a1405d41d378e55da9629041707c48599e86a41cf5"
+      },
+      "object_mapping_check": "独立映射site:grid以表示电网供电来源，part:ups以表示原文明确提及的UPS系统，chain:power/3以表示未指定技术的备用发电作用；后者名称为“发电与储能”，父节点为system:power。part:backup-power在对象契约中专指柴油发电机组，原文未指定柴油，故不选；也不由备用储能推定BESS、UPS电池介质或具体燃机。所选证据统一使用此主张级范围，原始标签保持不变。"
     }
   ],
   "answers": [],
