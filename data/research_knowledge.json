@@ -34311,6 +34311,174 @@
         },
         "batch_id": "65d7b1eeee43851d6c1b665151aa8347321eb07acc932283352d937370966828"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ec8305a1cee969d945d15ab700bb31ebc37630cf9b63a0d64842bdcf30ae5d08",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:86:claim:3:ev:0",
+      "locator": "page:86/chunk:86",
+      "object_ids": [],
+      "page_index": 85,
+      "question_ids": [
+        "NODE-workload-edge-placement"
+      ],
+      "quote": "Computational hardware, such as tensor\n                       processing units and neural processing units, is becoming increasingly available and\n                       efficient and is well suited for use in edge computing (i.e. computation performed on\n                       devices or on nearby servers). This is important for applications in which latency\n                       matters, such as autonomous driving.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:36:32+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文与完整物理AI上下文直接说明设备端或附近服务器的运行位置，以及时延敏感应用的定性需求，对两个当前开放工单具有实质但局部的贡献。未发现A类条件，可按B采用为限定的作者陈述。",
+        "workorder_ids": [
+          "Q-NODE-workload-edge-placement",
+          "Q-NODE-workload-edge-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.097,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7b51e1e9a747cb735be158a086c73f24e40382a533958df65ca6c0f1e1f1443f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53257,
+            "output_tokens": 2658,
+            "reasoning_output_tokens": 242
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.598,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "813ca5dae8c29314b9551f8b82843fc9ac6c54c2fbb8457186f015a4f02d964b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 52656,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 132
+            }
+          }
+        },
+        "batch_id": "fe8e982bc6b2904270b6b0f676d73dbc5c995ee587d1c45fcc91eb276a1028e2"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "ec8305a1cee969d945d15ab700bb31ebc37630cf9b63a0d64842bdcf30ae5d08",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:86:claim:4:ev:0",
+      "locator": "page:86/chunk:86",
+      "object_ids": [],
+      "page_index": 85,
+      "question_ids": [
+        "NODE-workload-edge-placement"
+      ],
+      "quote": "Software improvements have also enabled the\n                       use of smaller models that can run directly on devices.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:36:32+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。连续引文及邻接边缘计算定义充分支持限定的作者说明。较小模型直接在设备运行，对当前边缘部署工单及模型、运行工程影响资源配置的D2工单具有实质但局部的机制关系。未发现敏感、真实冲突、替换或其他A条件，可按B采用。",
+        "workorder_ids": [
+          "Q-NODE-workload-edge-placement",
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.097,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7b51e1e9a747cb735be158a086c73f24e40382a533958df65ca6c0f1e1f1443f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53257,
+            "output_tokens": 2658,
+            "reasoning_output_tokens": 242
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.598,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "813ca5dae8c29314b9551f8b82843fc9ac6c54c2fbb8457186f015a4f02d964b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 52656,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 132
+            }
+          }
+        },
+        "batch_id": "fe8e982bc6b2904270b6b0f676d73dbc5c995ee587d1c45fcc91eb276a1028e2"
+      }
     }
   ],
   "statements": [
@@ -66865,6 +67033,206 @@
         "request_sha256": "a9f74f75133a75d8afdec16dfda2ef866318f01d68c7e4233413700e0e9d4a6e"
       },
       "object_mapping_check": "独立依据主张选择system:power和site:grid：低碳能源供应直接涉及数据中心能源供给，协议条件处于电力容量配额分配背景。未披露发电设备、并网方式或配电拓扑，故不下沉到电力链条及部件；生物甲烷不自动证明天然气管道接入。裕廊岛选址不证明土地权利或许可范围。本项聚焦供能与配额条件，不继承文档层面的主体标签，尤其不将历史AirTrunk分配或合同中带印度地域限定的主体名称套入当前主张。所选证据统一采用上述主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:86:claim:3:ev:0"
+      ],
+      "id": "adoption:review:ef541f34f6ab885a096d0404",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-edge-placement",
+        "NODE-workload-edge-profile"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第86页讨论物理AI发展时称，张量处理单元和神经处理单元等计算硬件日益可获得且更高效，适用于边缘计算，即在设备或附近服务器上执行计算；作者指出，这对自动驾驶等重视时延的应用具有意义。这是来源作者的定性主张，发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:36:32+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性及评分均为6。连续引文与完整物理AI上下文直接说明设备端或附近服务器的运行位置，以及时延敏感应用的定性需求，对两个当前开放工单具有实质但局部的贡献。未发现A类条件，可按B采用为限定的作者陈述。",
+        "workorder_ids": [
+          "Q-NODE-workload-edge-placement",
+          "Q-NODE-workload-edge-profile"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.097,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7b51e1e9a747cb735be158a086c73f24e40382a533958df65ca6c0f1e1f1443f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53257,
+            "output_tokens": 2658,
+            "reasoning_output_tokens": 242
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.598,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "813ca5dae8c29314b9551f8b82843fc9ac6c54c2fbb8457186f015a4f02d964b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 52656,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 132
+            }
+          }
+        },
+        "batch_id": "fe8e982bc6b2904270b6b0f676d73dbc5c995ee587d1c45fcc91eb276a1028e2"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:86:claim:3"
+      ],
+      "limitations": "未指定芯片产品、效率指标、模型、计算量、内存、带宽、时延预算或可靠性要求，也未提供带工况的实测样本。附近服务器没有距离或地域定义；未明确训练阶段、调度方式、利用率、部署规模或项目状态。不能据此认证定制AI ASIC分类、具体硬件性能或实际部署结果。",
+      "conflict_check": "已采用的adoption:review:5e39b057e08ed580e80a92ef描述作者所称后训练负载对时延不敏感，本项讨论自动驾驶等物理AI运行应用，阶段及负载范围不同，不构成真实冲突。其余已采用模型机制陈述没有相同硬件适用性结论，也不构成重复。相关legacy筛选为空；检查限于所供记录，不替换已有结论。",
+      "gap_dependency_check": "对NODE-workload-edge-placement提供运行位置与时延约束的局部机制支持；对NODE-workload-edge-profile仅提供时延重要性的定性支持。仍需应用方或硬件开发方资料、模型与设备配置、端到端时延、可靠性和资源测量，以及调度、地域和利用率证据。两个问题保持开放，不据此填写资源参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fe8e982bc6b2904270b6b0f676d73dbc5c995ee587d1c45fcc91eb276a1028e2",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "745203c161d416c07a77be1d8ea65256e8c5257667dcc80cdd0b99dfea21d1d0"
+      },
+      "object_mapping_check": "原文范围是物理AI设备端和附近服务器的通用边缘计算。part:ai-asic属于数据中心计算链中的定制AI ASIC，不能仅凭TPU/NPU名称建立该分类与范围；附近服务器也未明确为part:server加速器服务器或part:general-server CPU节点。未指明允许的制造商，亦未建立与root或system:compute数据中心资产的直接关系，所选证据采用空对象范围，保留问题匹配。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:86:claim:4:ev:0"
+      ],
+      "id": "adoption:review:f4ef0fc308c8786ca2e8f85d",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-workload-edge-placement",
+        "NODE-demand-D2-conversion"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第86页讨论物理AI发展时称，软件改进使较小模型能够直接在设备上运行。这是来源作者对模型与运行位置关系的定性说明，发表时间未由所供原生文本确立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-10T13:36:32+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "保留原始重要性6。连续引文及邻接边缘计算定义充分支持限定的作者说明。较小模型直接在设备运行，对当前边缘部署工单及模型、运行工程影响资源配置的D2工单具有实质但局部的机制关系。未发现敏感、真实冲突、替换或其他A条件，可按B采用。",
+        "workorder_ids": [
+          "Q-NODE-workload-edge-placement",
+          "Q-NODE-demand-D2-conversion"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 80.097,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "7b51e1e9a747cb735be158a086c73f24e40382a533958df65ca6c0f1e1f1443f",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 0,
+            "input_tokens": 53257,
+            "output_tokens": 2658,
+            "reasoning_output_tokens": 242
+          }
+        },
+        "sampling": {
+          "cohort": 2,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": false,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.598,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "813ca5dae8c29314b9551f8b82843fc9ac6c54c2fbb8457186f015a4f02d964b",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8064,
+              "input_tokens": 52656,
+              "output_tokens": 422,
+              "reasoning_output_tokens": 132
+            }
+          }
+        },
+        "batch_id": "fe8e982bc6b2904270b6b0f676d73dbc5c995ee587d1c45fcc91eb276a1028e2"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:86:claim:4"
+      ],
+      "limitations": "未说明软件改进方式、模型名称、大小、精度、能力保持条件、设备规格或运行测量。未提供资源需求转换系数、时滞、地域及具体部署状态，也未说明训练是否在设备端完成。不能推出服务器需求、总算力或用电下降。",
+      "conflict_check": "已采用的专家稀疏度预测、Attention Residuals及QB机制涉及不同模型结构或运行流程，没有与本项相同的设备端运行结论。后训练灵活选址陈述讨论另一阶段，不否定物理AI设备端运行。未发现规范重复或真实冲突；相关legacy筛选为空，检查不代表完整外部反证搜索，不替换已有结论。",
+      "gap_dependency_check": "对NODE-workload-edge-placement提供设备端运行条件的局部支持；对NODE-demand-D2-conversion提供软件与模型变化影响运行位置的机制线索，尚未完成需求到算力、电力、网络和存储的转换。仍需开发方原始资料、可比模型质量、设备与工作负载测量、运行位置选择条件及需求变化验证。问题保持开放，不更新资源或容量参数。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "fe8e982bc6b2904270b6b0f676d73dbc5c995ee587d1c45fcc91eb276a1028e2",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "745203c161d416c07a77be1d8ea65256e8c5257667dcc80cdd0b99dfea21d1d0"
+      },
+      "object_mapping_check": "本项描述模型软件及物理AI设备端运行，没有对应允许的模型或边缘设备对象。system:control及chain:control/1限定于数据中心DCIM/BMS与固件，不能因出现软件改进而映射；root和system:compute亦没有直接范围证据。所选证据采用空对象范围，不因AI主题增加基础设施标签。"
     }
   ],
   "answers": [],
