@@ -238,8 +238,8 @@ function renderMap(){
  if(!geo)return;
  hideTooltip();
  if(!svg.querySelector('#map-land-layer')){
-  let land='';for(const f of geo.features){const g=f.geometry;if(!g||!['Polygon','MultiPolygon'].includes(g.type))continue;const polygons=g.type==='Polygon'?[g.coordinates]:g.coordinates;for(const polygon of polygons){let d='';for(const ring of polygon)d+=ring.map(([lo,la],i)=>`${i?'L':'M'}${xy(lo,la).map(n=>n.toFixed(1)).join(',')}`).join('')+'Z';land+=`<path class="land" d="${d}"/>${isHome?`<path class="land-texture" d="${d}"/>`:''}`;}}
-  svg.innerHTML=`<g id="map-land-layer">${isHome?atlasMaterial():''}${land}${atlasBackdrop()}</g><g id="map-news-layer"></g><g id="map-sites-layer"></g><g id="map-raw-layer"></g>`;
+  let land='';for(const f of geo.features){const g=f.geometry;if(!g||!['Polygon','MultiPolygon'].includes(g.type))continue;const polygons=g.type==='Polygon'?[g.coordinates]:g.coordinates;for(const polygon of polygons){let d='';for(const ring of polygon)d+=ring.map(([lo,la],i)=>`${i?'L':'M'}${xy(lo,la).map(n=>n.toFixed(1)).join(',')}`).join('')+'Z';land+=`<path class="land" d="${d}"/>`;}}
+  svg.innerHTML=`<g id="map-land-layer">${land}${atlasBackdrop()}</g><g id="map-news-layer"></g><g id="map-sites-layer"></g><g id="map-raw-layer"></g>`;
  }
  if(!data)return;
  const stage=params.get('stage'), rows=data.rows.filter(p=>!p.portfolio&&validCoordinates(p.coordinates));
@@ -275,9 +275,6 @@ function renderMap(){
   el.onclick=()=>{hideTooltip();hovering=false;clearTimeout(hoverTimer);activate();};el.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();hideTooltip();hovering=false;clearTimeout(hoverTimer);activate();}};
  }
  highlightMap();renderPopup();queueCachedFonts();
-}
-function atlasMaterial(){
- return `<defs><radialGradient id="atlas-ocean" cx="52%" cy="38%" r="75%"><stop stop-color="#123449"/><stop offset="1" stop-color="#061522"/></radialGradient><linearGradient id="atlas-land" x1="0" y1="0" x2="0.3" y2="1"><stop stop-color="#365d71"/><stop offset=".55" stop-color="#244455"/><stop offset="1" stop-color="#152b3e"/></linearGradient><pattern id="atlas-texture" width="5" height="5" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".55" fill="#9dd9df" opacity=".3"/></pattern></defs><rect class="atlas-ocean" width="1000" height="490" fill="url(#atlas-ocean)" aria-hidden="true"/>`;
 }
 function atlasBackdrop(){
  const lines=[];
