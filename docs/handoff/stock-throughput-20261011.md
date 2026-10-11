@@ -13,3 +13,9 @@ Spark qwen3.8:27b实测未重启或切换Reader：变压器3字段全对6.025秒
 Spark私有目录 /home/spark/.local/state/inresearch.ai/stock-throughput-20261011/ 保存native-review.json及qwen-trial*.json。M5候选暂在 /private/tmp/stock-throughput-candidates.json 与 stock-throughput-candidate-summary.json，须写入本机持久状态并补正式回执。原件不删除。
 
 唯一协调器stop-coordinator现由stock-throughput-20261011持有；先核既有PR742实际发布，再提交优化补丁；优化实际发布并预热缓存后提交纯追加研究批，核网站镜像/API/首页和Spark版本。完成实际验收后删除自己的标记，恢复原LaunchAgent，禁止留下暂停。主目录有旧任务不能动；仅使用本Codex管理工作树。新版本必须高于最新远程现行版本，保留并行首页/地图整改。
+
+## 第四批实际采用待发布
+
+2026-10-11T14:48:43.695887Z，35条已核来源的新观测经object_review.apply追加，隔离正式账本219条/44对象，新增6个对象。旧184条及38对象逐值不变；同一具名提案重放already_applied且字节不变。SHA/上下文/身份复验、追加和重放0.379秒，不包含此前语义核对。唯一公司使用在册delta-electronics，首次无效delta别名被身份检查在写入前拒绝。提案SHA ba54a23d5e7d3dfafa8c1f9921ca7631c510d2b7275124badb3e5d1d46177974；具名审核、原件引文、接收时间和回执留Spark私有目录。
+
+新增8种产品对象有观测，其中6种为新对象。10个原件、4个原生区间，披露与有效日期未知均留空。3个Micron空页待刷新，上两批累计10个待核字段未关闭。全文阅读完成与模型输入验证均新增0，171来源/17输入不据此关闭。源码提交、CI和合并不能替代本批网页219/44、35新ID、首页、公开字段边界、镜像与Spark实际重放回执。优化PR744先取得生产回执，再发布本资料批，最终状态继续查M5 stock-throughput-20261011/progress.json与acceptance.json。
