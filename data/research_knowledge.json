@@ -7559,6 +7559,63 @@
       "status": "candidate",
       "stored_path": "originals/ba/bac35a1d1045bc44cbcb340c9b00aab1b1efdedd8c1f63c07189d5e56f35c02a/dcd-bac35a1d1045bc44-Rowan secures -975 million financing for Maryland data center cam.html",
       "title": "Rowan secures $975 million financing for Maryland data center campus"
+    },
+    {
+      "acceptance": "candidate",
+      "content_sha256": "b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+      "coverage": {
+        "characters_read": 10890,
+        "characters_total": 10890,
+        "chunks_read": 2,
+        "chunks_total": 2,
+        "complete": true,
+        "pages_read": 1,
+        "pages_total": 1
+      },
+      "doc_id": "doc-b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+      "id": "doc-b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+      "library_path": "library/by-node/part-rack-system/2026_DCD（施耐德电气与 AMD 合作新闻稿，赞助内容_Schneider Electric and AMD collaborate to enable fast,__b37f1a45b7c7aef0.html",
+      "mapping_status": "candidate_mapped",
+      "model": {
+        "backend": "codex_cli",
+        "context": 65536,
+        "max_output_tokens": 8192,
+        "model": "gpt-6.1-sol",
+        "ocr_model": "",
+        "reasoning_effort": "medium",
+        "request_model": "gpt-6.1-sol",
+        "revision": ""
+      },
+      "object_ids": [
+        "actor:amd-instinct",
+        "actor:open-compute-project",
+        "actor:schneider-electric",
+        "chain:power/4",
+        "part:gpu",
+        "part:rack-system",
+        "system:facility",
+        "system:it"
+      ],
+      "question_ids": [],
+      "read_status": "complete",
+      "reading_revision_id": "rev-80794acb1b974736b71eb1bf0dd9efe4",
+      "report_sha256": "47eac481c61f0f015b0e4a18e8801f37a2db0f495cb329221bf3cd5e2f7c39e0",
+      "source_provenance": {
+        "batch": "dcd-20261009-m4-assist",
+        "input_sha256": "b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+        "method": "supplied_sidecar_sha_binding_v1",
+        "original_bytes_sha256": "b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+        "role": "downloaded_original",
+        "sidecar_sha256": "01a0e1ac0d8f1fbdc32660b1d78f3af5489f5859092a13748a2a46bc69178643",
+        "source_id": "dcd-b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+        "url": "https://www.datacenterdynamics.com/en/product-news/schneider-electric-and-amd-collaborate-to-enable-fast-resilient-and-efficient-amd-helios-rackscale-solution-cluster-deployment/",
+        "url_verification": "supplier_metadata_only_no_fetch"
+      },
+      "source_url": "https://www.datacenterdynamics.com/en/product-news/schneider-electric-and-amd-collaborate-to-enable-fast-resilient-and-efficient-amd-helios-rackscale-solution-cluster-deployment/",
+      "sources": [],
+      "status": "candidate",
+      "stored_path": "originals/b3/b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798/dcd-b37f1a45b7c7aef0-Schneider Electric and AMD collaborate to enable fast- resilient-.html",
+      "title": "Schneider Electric and AMD collaborate to enable fast, resilient, and efficient AMD Helios rackscale solution cluster deployment"
     }
   ],
   "evidence": [
@@ -55887,6 +55944,92 @@
           }
         },
         "batch_id": "f9e11eda496f3a99ad019a857ee6c40107d03b9f33c07ffca8b414341d190023"
+      }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "c67f8d9e2f5cc3e63bc8b9b088b1cb6e8aed83c14c1624f9dbed6c45d4d99a95",
+      "document_id": "doc-b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+      "id": "rev-80794acb1b974736b71eb1bf0dd9efe4:chunk:0:claim:4:ev:0",
+      "locator": "page:1/chunk:0",
+      "object_ids": [
+        "root",
+        "part:rack-system",
+        "actor:amd",
+        "actor:schneider-electric"
+      ],
+      "page_index": 0,
+      "question_ids": [],
+      "quote": "Through this collaboration, Schneider Electric and AMD have produced an industry-first, comprehensive, validated data center reference design for high-density AMD Helios clusters, with rack densities of up to 246 kW.",
+      "reading_revision_id": "rev-80794acb1b974736b71eb1bf0dd9efe4",
+      "source_sha256": "b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:48:23+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。连续原文及完整页面语境支持明确归因的参考设计规格，对当前M06-Q04的机柜功率密度研究提供一个具体设计点，具有实质性部分贡献。来源为合作方供稿的赞助新闻稿，采用范围仅限其作者主张。未发现敏感材料、同工况真实冲突、拟替换既有结论或其他A条件，符合B采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.879,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "b8700cc2d19167672ca9541836310044b852aca4e33891ec9d42dc450f780ae6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 45684,
+            "output_tokens": 1441,
+            "reasoning_output_tokens": 241
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 52.933,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "039cfa3089b58fd54daf2a5f1323e6b0adad4d3248f5638bb2c51c4b0fee23db",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 46462,
+              "output_tokens": 1100,
+              "reasoning_output_tokens": 806
+            }
+          }
+        },
+        "batch_id": "bdd7beba424246c8d2af5f2a80838704c82ed71c8a56be802d87f24182d9ca98"
       }
     }
   ],
@@ -108156,6 +108299,109 @@
         "request_sha256": "ee69a2979fd60d79f2662491637aca3ef82b2b6a450df9f35ebda2d53df98b39"
       },
       "object_mapping_check": "独立核对对象合同的名称、类型及父链：本条讨论工业领域专用模型及流程自动化，合同未提供对应模型或工业应用对象。root限定一座AI数据中心，system:compute及chain:compute/1属于其IT计算设施，system:control及chain:control/1限定DCIM/BMS与固件，均未被本条建立。工业环境的流程控制或供热制冷示例不能映射为数据中心控制或散热设施；原文亦未指认合同内企业。所选证据统一采用空对象范围，保留有效D2问题匹配，不继承Reader标签。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-b37f1a45b7c7aef0f89d876750a9b45225c8a8fda5ba93c00fb962a18dfcd798",
+      "evidence_ids": [
+        "rev-80794acb1b974736b71eb1bf0dd9efe4:chunk:0:claim:4:ev:0"
+      ],
+      "id": "adoption:review:c6e20bb527e51b66192c2f42",
+      "kind": "author_claim",
+      "object_ids": [
+        "root",
+        "part:rack-system",
+        "actor:amd",
+        "actor:schneider-electric"
+      ],
+      "question_ids": [
+        "M06-Q04"
+      ],
+      "reading_revision_id": "rev-80794acb1b974736b71eb1bf0dd9efe4",
+      "status": "adopted",
+      "text": "DCD于2026年9月28日刊登、标注Sponsored和By Press Release并注明由Schneider Electric与AMD供稿的文章称，双方已形成面向高密度AMD Helios集群的数据中心参考设计，机柜功率密度最高为246 kW。文章将该设计称为“经过验证”；这是供稿方对参考设计的主张，不构成当前独立认证或实际部署功率的确认。全文涵盖新建与高密度改造设计，但本项未指认具体地区、项目或建设及投运进度。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:48:23+00:00",
+        "decision": "adopted",
+        "score": 7,
+        "original_importance": 7,
+        "rationale": "原始重要性7，评分7。连续原文及完整页面语境支持明确归因的参考设计规格，对当前M06-Q04的机柜功率密度研究提供一个具体设计点，具有实质性部分贡献。来源为合作方供稿的赞助新闻稿，采用范围仅限其作者主张。未发现敏感材料、同工况真实冲突、拟替换既有结论或其他A条件，符合B采用条件；不回答或关闭问题。",
+        "workorder_ids": [
+          "Q-M06-Q04"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 52.879,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "b8700cc2d19167672ca9541836310044b852aca4e33891ec9d42dc450f780ae6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8832,
+            "input_tokens": 45684,
+            "output_tokens": 1441,
+            "reasoning_output_tokens": 241
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 52.933,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "039cfa3089b58fd54daf2a5f1323e6b0adad4d3248f5638bb2c51c4b0fee23db",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 8832,
+              "input_tokens": 46462,
+              "output_tokens": 1100,
+              "reasoning_output_tokens": 806
+            }
+          }
+        },
+        "batch_id": "bdd7beba424246c8d2af5f2a80838704c82ed71c8a56be802d87f24182d9ca98"
+      },
+      "source_candidate_ids": [
+        "rev-80794acb1b974736b71eb1bf0dd9efe4:chunk:0:claim:4"
+      ],
+      "limitations": "246 kW是参考设计所称的机柜功率密度上限，不是实际运行功耗、平均功率或已投运容量。所选引文未提供完整机柜配置、功率计量边界、运行负载、验证方法或独立测试结果；所链接RD121DS原始设计未在本包中提供。“经过验证”不能解释为现场验收或第三方认证，也不能据此量化供电、冷却设备需求或成本。",
+      "conflict_check": "legacy记录ms2601-amd-helios-rack-power保留摩根士丹利于2026年1月使用的260 kW/机柜路线图设计功率假设，用于OpenAI项目需求折算；本项是2026年9月合作方参考设计所称的最高246 kW。两者数值不同，但具体配置、功率边界及用途尚未建立一致性，不能据此认定同工况真实冲突，也不能用246 kW替换260 kW。现有已采用陈述讨论一般运行范围、密度驱动及电气和冷却约束，与本项特定参考设计规格不构成完整重复或明确矛盾。其他所供legacy记录属于设施资本支出及全球IT负载模型，口径不同。本检查限于所供记录，未完成外部全面反证检索。",
+      "gap_dependency_check": "本项仅补充M06-Q04的一个机柜设计密度点，未建立120 kW→600 kW→1 MW的时间序列，也未提供向M08/M09传导的可复查定量推导。仍需RD121DS原始设计、明确配置与功率边界、验证依据、更高密度阶段的直接来源及反证，并核对246 kW与legacy的260 kW假设之间的条件差异。问题保持开放，不更新模型参数、GW汇总、项目状态或研究骨架，不覆盖既有结论。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "bdd7beba424246c8d2af5f2a80838704c82ed71c8a56be802d87f24182d9ca98",
+        "source_report_sha256": "47eac481c61f0f015b0e4a18e8801f37a2db0f495cb329221bf3cd5e2f7c39e0",
+        "request_sha256": "319b9c1197fa880a04b361773b65a37f70a11bd529b259276f3c932e6d12ca94"
+      },
+      "object_mapping_check": "独立依据原文选择整体数据中心参考设计、计算链下的整机柜系统及两家合作主体：页面明确将Helios描述为fully integrated rack-scale AI solution，符合part:rack-system范围；综合数据中心参考设计对应root。合作主体为AMD，选择actor:amd，不由周边MI455X产品信息继承actor:amd-instinct。system:facility限定土地建筑及消防安防，不适用于此处泛称的数据中心设计；所选主张未描述具体UPS、配电或冷却接口，故不增加这些系统、链条或部件映射。所选证据统一采用上述主张级范围，原候选及证据标签保持不变。"
     }
   ],
   "answers": [],
