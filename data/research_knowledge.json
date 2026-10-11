@@ -55805,6 +55805,89 @@
         },
         "batch_id": "f8921cb6d0b0866a224d24daf8cc65e878da2c76c2953036a39cbcc7caacdb55"
       }
+    },
+    {
+      "acceptance": "adopted",
+      "chunk_sha256": "87870ce63a133b3a41018161ed446110376aada3ff5620b094978a820101a814",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "id": "rev-69defa266f8149faa73a64f216e2a70f:chunk:88:claim:5:ev:0",
+      "locator": "page:88/chunk:88",
+      "object_ids": [],
+      "page_index": 87,
+      "question_ids": [
+        "NODE-demand-D2-boundary"
+      ],
+      "quote": "However, the growth of physical AI is increasingly leading to more flexible and high-\n                  performing process automation, driven by the growth in domain-specific models.",
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "source_sha256": "a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "status": "adopted",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:43:47+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。领域专用模型与工业流程自动化能力的联系，实质匹配当前D2模型与权重产品能力范围工作单，可贡献局部证据。连续原文及相邻页语境充分，未识别敏感材料、真实冲突、替换或其他A条件，符合B类部分采用要求；不能据此认定完整产品或交易边界已建立。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.233,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "32de53f18a8d45629267f602aae6979c4390c8d8f296bb4bbd474234f42e1bd6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 34512,
+            "output_tokens": 1108,
+            "reasoning_output_tokens": 155
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.683,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "83d2a6f4721598324776a6f834e431bb7ab0599970729f53db37e7eeac126888",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35048,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 219
+            }
+          }
+        },
+        "batch_id": "f9e11eda496f3a99ad019a857ee6c40107d03b9f33c07ffca8b414341d190023"
+      }
     }
   ],
   "statements": [
@@ -107975,6 +108058,104 @@
         "request_sha256": "b88153141aeabd1eef221e6493efd0f94976c3a89ba08ddc8762c6891c28e721"
       },
       "object_mapping_check": "原文及相邻语境明确融资对象是一座可承载AI及HPC负载的TW1数据中心，支持合同中表示单座AI数据中心整体范围的root映射。融资未划分土地建筑、消防、电力、散热或IT资金用途，不映射system:facility或其他系统、链、设备及接入权。Empyrion Digital和玉山银行没有对应允许主体ID；AirTrunk仅属于另一个历史融资段落，不继承其标签。所选证据统一采用此审核后的主张级范围。"
+    },
+    {
+      "acceptance": "adopted",
+      "document_id": "doc-a3a47f07b35420e74b243878f631192b04788110db3c75275feb0fbdee7f4858",
+      "evidence_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:88:claim:5:ev:0"
+      ],
+      "id": "adoption:review:33d1f65f61554a9578fb9d0e",
+      "kind": "author_claim",
+      "object_ids": [],
+      "question_ids": [
+        "NODE-demand-D2-boundary"
+      ],
+      "reading_revision_id": "rev-69defa266f8149faa73a64f216e2a70f",
+      "status": "adopted",
+      "text": "IEA在《Key Questions on Energy and AI》第88页称，物理AI的发展正日益带来更灵活、性能更高的流程自动化，其驱动力是领域专用模型的增长。该陈述处于工业流程自动化语境，是IEA对模型能力及下游应用方向的定性主张，不构成当前效果的独立认证；来源发表时间、具体地域及项目部署阶段未建立。",
+      "review": {
+        "tier": "B",
+        "authority": "reviewer",
+        "by": "C3 core_review / codex_cli",
+        "at": "2026-10-11T16:43:47+00:00",
+        "decision": "adopted",
+        "score": 6,
+        "original_importance": 6,
+        "rationale": "原始重要性6，本次评分6。领域专用模型与工业流程自动化能力的联系，实质匹配当前D2模型与权重产品能力范围工作单，可贡献局部证据。连续原文及相邻页语境充分，未识别敏感材料、真实冲突、替换或其他A条件，符合B类部分采用要求；不能据此认定完整产品或交易边界已建立。",
+        "workorder_ids": [
+          "Q-NODE-demand-D2-boundary"
+        ],
+        "model_provenance": {
+          "actual": null,
+          "backend": "codex_cli",
+          "context": 196608,
+          "elapsed_seconds": 38.233,
+          "executor": "codex-cli",
+          "identity_source": "explicit_cli_request_not_provider_reported",
+          "input_sha256": "32de53f18a8d45629267f602aae6979c4390c8d8f296bb4bbd474234f42e1bd6",
+          "max_output_tokens": 8192,
+          "model": "gpt-6.1-sol",
+          "prompt_sha256": "f2f6a011e66343e3fa2850429430cfcdd46e190494e6d6fd9525680a6c05122d",
+          "reasoning_effort": "high",
+          "request_model": "gpt-6.1-sol",
+          "requested": "gpt-6.1-sol",
+          "revision": "",
+          "usage": {
+            "cache_write_input_tokens": 0,
+            "cached_input_tokens": 8064,
+            "input_tokens": 34512,
+            "output_tokens": 1108,
+            "reasoning_output_tokens": 155
+          }
+        },
+        "sampling": {
+          "cohort": 1,
+          "rate": 0.1,
+          "sample_size": 1,
+          "selected": true,
+          "result": "passed",
+          "model": {
+            "actual": null,
+            "backend": "codex_cli",
+            "context": 196608,
+            "elapsed_seconds": 22.683,
+            "executor": "codex-cli",
+            "identity_source": "explicit_cli_request_not_provider_reported",
+            "input_sha256": "83d2a6f4721598324776a6f834e431bb7ab0599970729f53db37e7eeac126888",
+            "max_output_tokens": 8192,
+            "model": "gpt-6.1-sol",
+            "prompt_sha256": "53fc864bebcf35bcc8fdaf6c5ed592cddc156e42db86f5fe28aabead908ea049",
+            "reasoning_effort": "high",
+            "request_model": "gpt-6.1-sol",
+            "requested": "gpt-6.1-sol",
+            "revision": "",
+            "usage": {
+              "cache_write_input_tokens": 0,
+              "cached_input_tokens": 0,
+              "input_tokens": 35048,
+              "output_tokens": 495,
+              "reasoning_output_tokens": 219
+            }
+          }
+        },
+        "batch_id": "f9e11eda496f3a99ad019a857ee6c40107d03b9f33c07ffca8b414341d190023"
+      },
+      "source_candidate_ids": [
+        "rev-69defa266f8149faa73a64f216e2a70f:chunk:88:claim:5"
+      ],
+      "limitations": "未指认具体模型、权重产品、版本、供应商或部署项目，未提供性能指标、比较基准、评测方法或因果验证。未说明权重交付、接口、许可、采购、收费及上下层交易关系，也没有算力或电力需求量化证据。全文覆盖限于PDF原生文本，未完成视觉复核；本条文字主张不依赖图表数值。",
+      "conflict_check": "所供已采用的世界基础模型陈述涉及模型定义及训练数据，材料科学陈述涉及Transformer架构的预测用途，均未重复或反驳本条领域专用模型与工业自动化的联系。所供legacy合同、事实及项目匹配记录均为空，不能据此声称已完成全面反证检索。检查范围内未发现真实冲突，不覆盖或替换既有结论。",
+      "gap_dependency_check": "本条仅部分支持D2中模型提供何种能力及其下游用途，尚不能回答购买何种产品、谁向谁交易或上下层职责如何划分。仍需具体模型与权重产品资料、许可和接口、采购及收费关系、适用条件、评测和反证。当前问题保持开放；不推定规模部署、需求增长，不更新模型参数、汇总GW或改变研究骨架。",
+      "source_time_status": "unknown unless original text establishes publication date",
+      "scope": "bounded attributed source statement; not current certification or IT GW",
+      "partial_support_only": true,
+      "audit_receipt": {
+        "batch_id": "f9e11eda496f3a99ad019a857ee6c40107d03b9f33c07ffca8b414341d190023",
+        "source_report_sha256": "1ba5423d8f3cdf79cb79350ab9f6c24d6dd7595a27c081bf41bd11c3222e0862",
+        "request_sha256": "ee69a2979fd60d79f2662491637aca3ef82b2b6a450df9f35ebda2d53df98b39"
+      },
+      "object_mapping_check": "独立核对对象合同的名称、类型及父链：本条讨论工业领域专用模型及流程自动化，合同未提供对应模型或工业应用对象。root限定一座AI数据中心，system:compute及chain:compute/1属于其IT计算设施，system:control及chain:control/1限定DCIM/BMS与固件，均未被本条建立。工业环境的流程控制或供热制冷示例不能映射为数据中心控制或散热设施；原文亦未指认合同内企业。所选证据统一采用空对象范围，保留有效D2问题匹配，不继承Reader标签。"
     }
   ],
   "answers": [],
