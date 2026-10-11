@@ -1704,3 +1704,8 @@ TA22/23真实5be58335/.61与精确9079镜像healthy，独立public-v3/public-v1�
 ### 2026-10-10 项目六项审查与研究控制室
 
 按用户授权进行架构/骨架/需求/数据库/供料/代码审查并整改。现行05采用来源生成的研究控制室与原运行计量，06供料映射及目标交付原则替代退役分类和全部Fetchspec包解释；09及长文交付指南统一Reader/editorial范围并修复facts CLI帮助。实施与证据见 docs/reviews/2026-10-10/project-audit/REVIEW.md。历史事实缺SHA、时效队列和未接能力如实保留，不伪造研究采用；实际上线另见阶段交接。原件、运行库与研究队列所有权保持。
+
+
+## 2026-10-11：四个独立采集仓库替代单fetchdata方案
+
+用户明确要求四队独立交给员工。fetchstat、fetchfilings、fetchreports、fetchquotes已创建公开仓库，各交README/任务书/统一候选合同/标准库采集器及8项测试；EIA、Microsoft、LBNL发布页、Lambda各完成一个真实原件和一条候选，离线校验及重放通过。LBNL PDF请求403只记录缺口；报价币种代码/地区未知不补造。仓库存在不等于生产接收，connection保持not_connected，不改171项缺口或17项模型验证。此前单fetchdata四目录建设安排被替代，兼容文档目录及合同名保持。

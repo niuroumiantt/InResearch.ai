@@ -1,6 +1,6 @@
 {
-  "version": "1.7",
-  "effective_at": "2026-10-10",
+  "version": "1.8",
+  "effective_at": "2026-10-11",
   "phase": "planning_live",
   "operating_plan": {
     "purpose": "从研究问题出发，先建立数据中心产品资料全景，再为关键产品线形成可复核的深度证据包。",
@@ -140,8 +140,8 @@
       "name": "fetchstat",
       "capability": "公共统计、费率表、税率与法规原文",
       "team": "fetchstat",
-      "kind": "proposed",
-      "repository": "fetchdata（待建）",
+      "kind": "existing_repo",
+      "repository": "https://github.com/niuroumiantt/fetchstat",
       "mapping": "部件与站点权利 × 统计/费率/时间变量",
       "layers": [
         3,
@@ -150,15 +150,25 @@
         5
       ],
       "acceptance": "地域、单位、统计期、方法、费率生效日与数据修订",
-      "connection": "not_connected"
+      "connection": "not_connected",
+      "bootstrap": {
+        "collector_smoke_passed": true,
+        "real_originals": 1,
+        "candidate_rows": 1,
+        "offline_valid": true,
+        "replay_verified": true,
+        "research_received": false,
+        "scheduled": false,
+        "employee_entry": "https://github.com/niuroumiantt/fetchstat/blob/main/README.md"
+      }
     },
     {
       "id": "fetchfilings",
       "name": "fetchfilings",
       "capability": "证券与公司披露、可持续报告、财报电话会",
       "team": "fetchfilings",
-      "kind": "proposed",
-      "repository": "fetchdata（待建）",
+      "kind": "existing_repo",
+      "repository": "https://github.com/niuroumiantt/fetchfilings",
       "mapping": "主体与项目 × 经营/时间/价格变量",
       "layers": [
         2,
@@ -167,15 +177,25 @@
         3
       ],
       "acceptance": "报告期、分部口径、原件、修订与附件",
-      "connection": "not_connected"
+      "connection": "not_connected",
+      "bootstrap": {
+        "collector_smoke_passed": true,
+        "real_originals": 1,
+        "candidate_rows": 1,
+        "offline_valid": true,
+        "replay_verified": true,
+        "research_received": false,
+        "scheduled": false,
+        "employee_entry": "https://github.com/niuroumiantt/fetchfilings/blob/main/README.md"
+      }
     },
     {
       "id": "fetchreports",
       "name": "fetchreports",
       "capability": "研报、指数、白皮书、论文与标准",
       "team": "fetchreports",
-      "kind": "proposed",
-      "repository": "fetchdata（待建）",
+      "kind": "existing_repo",
+      "repository": "https://github.com/niuroumiantt/fetchreports",
       "mapping": "骨架对象 × 研究问题与五类变量",
       "layers": [
         3,
@@ -184,15 +204,25 @@
         5
       ],
       "acceptance": "全文、作者、方法、图表、引用位置与版本",
-      "connection": "not_connected"
+      "connection": "not_connected",
+      "bootstrap": {
+        "collector_smoke_passed": true,
+        "real_originals": 1,
+        "candidate_rows": 1,
+        "offline_valid": true,
+        "replay_verified": true,
+        "research_received": false,
+        "scheduled": false,
+        "employee_entry": "https://github.com/niuroumiantt/fetchreports/blob/main/README.md"
+      }
     },
     {
       "id": "fetchquotes",
       "name": "fetchquotes",
       "capability": "报价与市场观察",
       "team": "fetchquotes",
-      "kind": "proposed",
-      "repository": "fetchdata（待建）",
+      "kind": "existing_repo",
+      "repository": "https://github.com/niuroumiantt/fetchquotes",
       "mapping": "部件与产品 × 价格/配置/时间变量",
       "layers": [
         3,
@@ -200,7 +230,17 @@
         5
       ],
       "acceptance": "配置、币种、地区、采样时间与全部费用；报价不等于成交",
-      "connection": "not_connected"
+      "connection": "not_connected",
+      "bootstrap": {
+        "collector_smoke_passed": true,
+        "real_originals": 1,
+        "candidate_rows": 1,
+        "offline_valid": true,
+        "replay_verified": true,
+        "research_received": false,
+        "scheduled": false,
+        "employee_entry": "https://github.com/niuroumiantt/fetchquotes/blob/main/README.md"
+      }
     },
     {
       "id": "local",
@@ -354,16 +394,40 @@
         "status": "existing"
       },
       {
-        "id": "fetchdata",
-        "url": null,
+        "id": "fetchstat",
+        "url": "https://github.com/niuroumiantt/fetchstat",
         "teams": [
-          "fetchstat",
-          "fetchfilings",
-          "fetchreports",
+          "fetchstat"
+        ],
+        "status": "existing",
+        "note": "Public source repository; first-source collection and offline replay passed, production reception/adoption/scheduling not yet connected."
+      },
+      {
+        "id": "fetchfilings",
+        "url": "https://github.com/niuroumiantt/fetchfilings",
+        "teams": [
+          "fetchfilings"
+        ],
+        "status": "existing",
+        "note": "Public source repository; first-source collection and offline replay passed, production reception/adoption/scheduling not yet connected."
+      },
+      {
+        "id": "fetchreports",
+        "url": "https://github.com/niuroumiantt/fetchreports",
+        "teams": [
+          "fetchreports"
+        ],
+        "status": "existing",
+        "note": "Public source repository; first-source collection and offline replay passed, production reception/adoption/scheduling not yet connected."
+      },
+      {
+        "id": "fetchquotes",
+        "url": "https://github.com/niuroumiantt/fetchquotes",
+        "teams": [
           "fetchquotes"
         ],
-        "status": "planned",
-        "note": "一个仓库、四队目录，共用内核、来源登记与包构建；员工任务入口 docs/guides/fetchdata/README.md。fetchdata-handoff/1 仅离线候选交换/联调，不是 Fetchspec 接收 API；四队未接通状态保持。"
+        "status": "existing",
+        "note": "Public source repository; first-source collection and offline replay passed, production reception/adoption/scheduling not yet connected."
       }
     ],
     "capability_map": {

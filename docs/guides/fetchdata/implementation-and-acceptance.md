@@ -1,42 +1,20 @@
 # 开发步骤、验收指标与交还清单
 
-## 代码骨架
+## 已建立的独立仓库
 
-```text
-fetchdata/
-  README.md
-  core/                     请求、来源身份、哈希、版本、包构建、台账
-  registry/sources.json      来源唯一归属
-  registry/metrics.json      指标名、单位、范围解释
-  teams/fetchstat/           各队配置、适配器、入口
-  teams/fetchfilings/
-  teams/fetchreports/
-  teams/fetchquotes/
-  tests/fixtures/            少量合成或可再分发的固定样例
-  scripts/                  离线验包与运维命令
-  deploy/                   每队独立任务配置；凭据不入库
-```
+fetchstat、fetchfilings、fetchreports、fetchquotes各一个仓库，入口及命令见[员工启动包](README.md)。每仓库：collector.py（下载/原件/打包）、adapter.py（固定字段）、helpers.py（原生解析）、sources.json（来源/日历）、validate_handoff.py（交换合同校验）、docs（任务/合同/真实验收）、tests（离线验收）。第一版核心只用Python标准库，不执行网页脚本、不调用模型。合同共用、部署独立；不得另造网站或冒充Fetchspec供应方。
 
-Python 公共内核用标准库；特殊 PDF/浏览器解析依赖由需要它的队隔离、锁版本并说明理由，不让所有下载器依赖浏览器。取文件与内容提取分开：同 SHA 不重复下载/提取，提取器更新可以复用原件重算派生记录。
-
-运行数据 `~/.local/share/fetchdata/`，日志和状态 `~/.local/state/fetchdata/`，源码 `~/code/fetchdata`。Spark 存量资料仍留原目录，不能擅自搬走/删除/改名。登记 `source_id → owner_team + execution_host + cadence + adapter + public_entry + last_attempt + last_success + next_due`，研究 target_id 作为可选优先级，不是来源开工许可。
-
-公司官方披露及 ESG 归 filings；学术/第三方研究及标准归 reports；官方地域统计/费率归 stat；商业报价归 quotes。同一 URL 由一个队取一次，其它队引用同一原件。inews 给新闻线索，不能四队各重新抓全部新闻；产品规格仍由 Fetchspec 主责。
-
-## 必须交出可直接执行的命令
-
-接口负责人在第 1 天统一下面命令及参数，四队实现一致接口。**以下是待建 fetchdata 的交付要求，当前 inresearch 不存在这些生产命令。**
+源码在 `~/code/<repo>`，运行数据在 `~/.local/share/<repo>/`，日志在 `~/.local/state/<repo>/`。已有Spark原件仍留原址，只读复用。本次是每队一个真实来源及一条候选的小闭环；生产接收、自动调度、多源并发和大文件流式扩批尚未验收。
 
 ```sh
-python3 -m fetchdata check-config --team fetchstat
-python3 -m fetchdata run --team fetchstat --source <source_id> --limit 3 --output <私有包目录>
-python3 -m fetchdata import-existing --team fetchstat --inventory <授权只读清单> --limit 3 --output <私有包目录>
-python3 -m fetchdata run --team fetchstat --incremental --output <私有包目录>
-python3 -m unittest discover -s tests
-python3 scripts/validate_collector_handoff.py <私有包目录>
+python3 collector.py check-config
+python3 collector.py run
+python3 collector.py run --existing /授权原件.html --provenance /真实原件台账记录
+python3 collector.py verify /实际交付目录
+python3 -m unittest discover -s tests -v
 ```
 
-其它队换 team 即可；说明运行所需 Python 版本、环境变量名、如何取得合法访问凭据、输出位置、退出码、重试/恢复方法。上传另走经联调的交付适配器，不预设一个不存在的 HTTP 接口。导入存量允许只读内容寻址引用，但第一批员工交还包要带用于验收的原件；实际 GB 级批量交付可在接收端验证已有 SHA 后复用，不二次搬运。
+每次请求限时30秒、最多3次、有界退避、20MiB上限、HTTPS来源域名限制。内容寻址保存版本；重放保留原包和首次取得记录。当前同仓库单进程运行，条件请求/分页/大文件/跨进程锁由扩展适配器另验，不能声称已具备整站采集。研究接收URL和凭据须真实联调，不能编造。按以下完整场景逐步补齐，已通过范围见各仓库 `docs/BOOTSTRAP_ACCEPTANCE.json`。
 
 ## 公共内核验收场景
 

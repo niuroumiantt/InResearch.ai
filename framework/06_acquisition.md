@@ -122,17 +122,17 @@ flowchart LR
  P --> Q
 ```
 
-采集任务必须绑定现行 `target_id`；可选 `question_id` 必须与目标节点及变量类一致。请求至少记录对象范围、要找什么、来源、时间与地域、证据要求、优先级和完成条件。请求 ID 与来源文档 ID 分开；一份材料可服务多个问题，多个来源可证明或反驳同一问题。归档一次、关系多挂，不为每个物理层级复制一份原文。
+模型定向派工必须绑定现行 `target_id`；此类派工的可选 `question_id` 必须与目标节点及变量类一致。一般来源发现和唯一对象信息交付允许目标为空，不以研究用途或全文阅读为前提。请求至少记录对象范围、要找什么、来源、时间与地域、证据要求、优先级和完成条件。请求 ID 与来源文档 ID 分开；一份材料可服务多个问题，多个来源可证明或反驳同一问题。归档一次、关系多挂，不为每个物理层级复制一份原文。
 
 研究问题定义研究需求；采集派工统一由 `tco_targets.json` 目标行细化，问题链接是检索导航而非语义闭环，不另写竞争性采集任务树。第一阶段 CLI 的 `--question` 会验证现行问题 ID 并登记 `top_down` 关联；未指定问题的线索保留为 bottom-up 待映射材料。实体词命中只是候选，不构成回答或采用。
 
-## 六队、三仓库与来源归属（2026-09-28 采用）
+## 六队、六仓库与来源归属（2026-10-11 更新）
 
 采集按来源机制分成六队，不按层分：fetchspec（厂商规格）、inews.today（新闻事件）、fetchstat（公共统计、费率表、税率与法规原文）、fetchfilings（证券与公司披露、可持续报告、财报电话会）、fetchreports（研报、指数、白皮书、论文与标准）、fetchquotes（报价与市场观察）。缺人时建队顺序 fetchstat → fetchfilings → fetchreports → fetchquotes；人员齐备可按同一公共内核并行建设四队，合并和发布仍只有一个负责人。六队的角度、素材、日历与执行机登记在 [五类变量目标清单](tco_targets.json)；能力标签与分队的对应关系登记在 `supply_contract.json` 的 `teams.capability_map`。数据中心经济模型的"三级、四段、五类变量、六队"骨架以 `docs/guides/model-governance-2026-09-27.{html,pdf}` 为已采用的设计快照（快照中称"五层"），可执行规则以本文件与目标清单为准。
 
 **2026-09-28 更名**：经济模型的五个变量类别改称**五类变量**（构成、运行、价格、时间、主体），不再称"五层"。五类互相正交，没有先后、层级或递推，一条数据只属一类；指导快照与历史记录中的"五层"按此阅读。2026-09-29 起 `tco_targets.json` 不再带 `layer` 键；inews 事件 feed 里的 `layer_tags` 仍是兼容名，含义是变量类别，随 feed 合同下次升版更名。`bom.json` 的 S1–S5（园区、建筑、机房、机柜、部件；2026-09-28 前写作 L1–L5）是部件"装在哪"的五个**尺度**，与变量类别无关。
 
-仓库只有三个：`inews.today`、`fetchspec` 保持；新建 `fetchdata` 一个仓库承载 fetchstat、fetchfilings、fetchreports、fetchquotes 四个分队目录，共用内核（条件请求、限速、SHA、包构建、运行台账、交付上传）、一张来源登记表与一个交付入口。存在不同协议、依赖或失败隔离需求时再拆，见 `docs/handoff/fetchdata-bootstrap.md`。`fetchdata` 建成前 `supply_contract.json` 中四个分队保持 `proposed`，不宣称已接通。
+用户于2026-10-11明确改为六个独立仓库：`inews.today`、`fetchspec`、`fetchstat`、`fetchfilings`、`fetchreports`、`fetchquotes`。替代此前一个fetchdata仓库四目录的建设安排；四队共用交换合同，不共用部署或采集进程。四个新公开仓库已各跑通一个真实来源、一个JSONL候选、离线校验及原件重放，员工可直接运行各仓库README。原件及运行库不进Git。仓库存在和采集冒烟不等于研究端已接通：`connection=not_connected`仍保留，171项需求及模型支持不因此完成。员工入口见 `docs/guides/fetchdata/README.md`；该文档目录与fetchdata-handoff/1合同名保留兼容，不表示还有fetchdata仓库。
 
 目标清单 `tco_targets.json` 自 2026-09-28 起由 `python3 manage.py targets --refresh` 生成，不手写：因子树登记的抓取条目各成一行，每个部件按自己的价格、供应商名单、交期各成一行（非成熟部件再加新闻事件行），站点权利按登记的变量类各成一行；改需求改因子树、部件表或权利表，不直接改清单。六队共同规则：模型需求派工只来自目标清单；一般来源发现、存量复用和唯一对象信息交付不以关联目标为前提，按本节来源归属及对象先入库规则执行。数字进观测候选、规格进参照候选、文本进材料档案再提取，正式采用另审。现有 Fetchspec 包及接收器只用于 Fetchspec；四队待建渠道的员工候选交换格式、源码要求和联调边界见[四队任务包](../docs/guides/fetchdata/README.md)，不得把离线验包当正式接收。模型任务写"披露类型 × 出版方类别 × 日历"，公司只是实例。供应中心实时投影 Fetchspec 目标，NVIDIA 产品规格库另显示其中点名 NVIDIA 的目标与部件数量；产品目录、目标和正式事实三种身份不得混同。**来源归属**：每个来源只属一个队、一台主执行机、一个日历；两队需要同一来源时由拥有方抓原件，另一方引用交付包；换主机等于结束旧任务、开新任务；接收端仍按 SHA 与来源身份去重。执行机沿用下节：API、EDGAR、RSS、固定表格与免费 PDF 由 AWS 持续采集，登录门户、注册下载与需浏览器渲染的价目页由 macmini 辅助，Spark 只做提取与模型分析。
 
@@ -140,7 +140,7 @@ flowchart LR
 
 目标行 `status` 从三态（sourced / assumed / needed）改为四态，加 `delivered`：某队已交付但尚未进入价格序列或指标的行。判定源必须在 Git 内可复现：规格行以产品资料库登记为准（`data/product_docs_plan.csv` 的 doc_id / source_url，或产品库索引入库）；新闻行与持有方行只认带 `origin_pointer` 的事件卡快照（`site_rights.companies` 只标"登记数"）；价格行以带 `target_id` 与 `variable_class` 的价格记录为准。只在运行库有的，页面标"运行库有 / Git 无"，不计 delivered。**回执进 Git 载体只有一条通道（2026-09-29）**：作者在 checkout 里跑 `python3 manage.py deliveries import --assignments <运行库导出的 data/assignments.json>`，把 `register_delivery` 写的交付指针逐条变成 `data/event_cards.json` 的事件卡（`target_id` + `origin_pointer`，公网 URL 或仓库内相对路径），重跑目标表，走 PR；`deliveries check` 校验卡片。不自动、不在网站上跑、幂等；进入 delivered 后仍不是序列，正式采用另走研究流程。三种载体里，`product_docs_plan.csv` 与 `prices.json` 同时是运行状态（storage_contract），线上写入不回 Git，同样只经作者 checkout 提交。四个待建队名下由 2026-09-27 人工定向抓取得到的行改标 `local` 队，在来源登记（`part_fetch.json`、`tco_factors.json`）里改，不改生成物。到期日历只对已接入的队显示；未建队的行显示"待建队"，不显示到期。生成行另写 `sourced_by`（registry = 人工登记的序列或指标；delivery = 队交付的载体）与 `team_state`（connected / not_connected，按 `supply_contract.json` 的 `connection`）；dashboard 格的状态在四态之外多一个 `registered`：只有我们自己登记的计数（部件数、产品线数、供应商数、持有方数）时用它，不算已采集。骨架补齐（03「骨架的三个补充」）后：每个物理部件多一行运行目标（`operation`，变量类 2：原厂额定功率、效率曲线、寿命与 MTBF 的规格/测试声明，保留型号、负载点和条件；现场 PUE、利用率与实耗不由规格采集认证；`part_fetch.json` 可登记出版方，未登记的沿用模板）；因子树的 `time.build` 生成工期、排队与审批三行；部件级与权利级目标行带建设阶段 `stage`（采集页默认排序）。派工按目标行 ID：采集页第一屏是目标表（六队卡、五系统 × 五类热图、目标行表），`/api/targets` 在服务端按角色过滤——实习生只见分配给自己的行；`assign` 用例带 `target_id`，`register_delivery(target_id, evidence_path)` 把交付指针记到 `data/assignments.json`；指针只是运行库登记，进入 `delivered` 仍看 Git 内载体，页面标"运行库有 / Git 无"。节点页每列有"→ 采集"链接按节点与列预筛，采集页每行链回节点页停在该列。
 
-inresearch 内置的 SEC 与 GPU 采集器于 2026-09-28 退役：`adapters.acquisition` 不再提供 `sec`、`gpu` 子命令，其实现由 Git 历史保留并作为 fetchfilings、fetchquotes 的种子迁入 `fetchdata`；采集台账中历史 `sec`、`gpu` 行只读保留，网页运维台账不再提供对应按钮。下文"SEC"与"GPU"两小节记录的口径要求（清单、原文与结构化事实分开；报价是低价样本不是成交价）继续对迁出后的分队有效。
+inresearch 内置的 SEC 与 GPU 采集器于 2026-09-28 退役：`adapters.acquisition` 不再提供 `sec`、`gpu` 子命令，其实现由 Git 历史保留并作为 fetchfilings、fetchquotes 的种子迁入独立采集仓库；采集台账中历史 `sec`、`gpu` 行只读保留，网页运维台账不再提供对应按钮。下文"SEC"与"GPU"两小节记录的口径要求（清单、原文与结构化事实分开；报价是低价样本不是成交价）继续对迁出后的分队有效。
 
 ### inews 两条线与"挑选在先，翻译在后"
 
@@ -156,7 +156,7 @@ inews.today 同时是采集队与媒体产品，拆成两条线，共享一个�
 | 层 | 责任与正式状态归属 |
 |---|---|
 | inews.today | 采集线：数据中心及 AI 产业生态新闻发现、聚类、打标与事件 feed（不翻译）；编辑线：配额选簇、正文、全文翻译与新闻产品。新闻数据库、编辑记录与账号由 inews 自己管理 |
-| 采集分队 | fetchspec 负责厂商规格；fetchstat、fetchfilings、fetchreports、fetchquotes 在 `fetchdata` 仓库内按目标清单采集、保存原件与版本、交付及补交 |
+| 采集分队 | fetchspec 负责厂商规格；fetchstat、fetchfilings、fetchreports、fetchquotes 在各自独立仓库按来源登记采集，模型派工另按目标清单、保存原件与版本、交付及补交 |
 | inresearch.ai | 五类变量目标清单与供应任务、接收与资料验收，研究侧原件与结构化数据、对象、问题、证据、口径、深读、采用与交付；本身不爬取，内置 SEC/GPU 采集器已退役 |
 | AWS | 新闻产品和研究网页；研究网页显示 Spark 的派生状态，不把网页按钮直接变成模型长任务 |
 | Spark | 交付原件的永久归档、采集台账、reader 台账、研究模型阅读、提取与翻译产物；不执行采集 |
@@ -235,9 +235,9 @@ inews 事件卡、退役前的 SEC 清单与 GPU 报价响应**不会自动投�
 
 | 阶段 | 范围与退出条件 |
 |---|---|
-| 1 · 基础实现（已完成，SEC/GPU 部分于 2026-09-28 移交 fetchdata） | 修复旧新闻目录契约、统一采集台账；新闻字段投影；失败明确；停止直接写正式价格；网页能查看 Spark 状态 |
+| 1 · 基础实现（已完成，SEC/GPU 部分于 2026-09-28 移交独立采集队） | 修复旧新闻目录契约、统一采集台账；新闻字段投影；失败明确；停止直接写正式价格；网页能查看 Spark 状态 |
 | 2 · 正文与翻译小闭环 | 选新闻原始出处和 SEC 章节小样本；保留原文/提取/译文三份关系；数字与覆盖率校验；从采集台账可靠 handoff 到 reader |
-| 3 · 持续运行 | 新闻增量接口与撤回传播；fetchdata 四队按目标清单日历运行，SEC 修订与附件、报价多来源可比面板归 fetchfilings、fetchquotes；定时、退避、断点、模型公平调度；运行监控区分新鲜度与成功数 |
+| 3 · 持续运行 | 新闻增量接口与撤回传播；四个独立采集仓库按来源日历运行，SEC 修订与附件、报价多来源可比面板归 fetchfilings、fetchquotes；定时、退避、断点、模型公平调度；运行监控区分新鲜度与成功数 |
 | 4 · 研究缺口驱动 | 对现行问题登记按证据类型与价值排优先级，补规格、标准、工程案例、区域电力/土地、供应商交付等；按骨架节点补齐五列与 3D 入口 |
 
 每阶段以实测结果验收，不把计划写成服务已运行。没有全文、没有有效报价、缺凭据、被源站拒绝分别展示。采集完成、深读完成、译文校验、C3 采用分别计量。

@@ -1,6 +1,6 @@
 # 当前研究与执行基准
 
-> CURRENT · 基准版本 2026.10.11.96
+> CURRENT · 基准版本 2026.10.11.97
 
 本页只定位当前规则与更新边界。实施细节进入各主题唯一源，发布过程进入 [决策记录](../docs/DECISIONS.md) 或交接；此前长篇阶段记录保留于 [历史快照](../docs/archive/2026-10-10/framework__CURRENT__before_reassessment.md)，不能作为当前执行指令。
 
@@ -18,7 +18,7 @@
 
 2026-10-11：园区信息入库与研究用途分离；来源与唯一园区明确即可逐条审核，研究目标可为空且不授予模型支持。存量和inews接收事件使用同一正式追加入口；缺项后补、冲突并列，首页按最近补充展示且保留实际信息时间。
 
-2026-10-11：四队员工任务包提供岗位目标、首批来源/指标、原生原件+JSONL候选、首周节奏及离线验包。一个fetchdata仓库四队独立运行；模型派工才需目标绑定，一般信息交付不需。任务包不能证明四队已接通，正式采用/上线另验。入口见[员工任务包](../docs/guides/fetchdata/README.md)。
+2026-10-11：四队员工任务包提供岗位目标、首批来源/指标、原生原件+JSONL候选、首周节奏及离线验包。四个独立仓库已各完成一条真实采集和离线重放；研究接收/采用仍需联调；模型派工才需目标绑定，一般信息交付不需。任务包不能证明四队已接通，正式采用/上线另验。入口见[员工任务包](../docs/guides/fetchdata/README.md)。
 
 ## 从哪里读当前规则
 
@@ -35,7 +35,7 @@
 | 全文阅读与采用 | [04 阅读标准](04_reading_scoring_standard.md) | reader catalog 为当前全文结果权威；workflow.reading_results 为 reader/L2 共同查询入口 |
 | 技术插图、爆炸/平面/剖面图的画法与逐张迁移 | [10 白底技术图册](10_visual_atlas.md) | visual_atlas.json（14张参考/配方）、visual_atlas_migration.json（逐项队列）、[迁移计划](../docs/design/technical-atlas/MIGRATION_PLAN.md) |
 | 全站界面、字体与外观 | [05 界面规范](05_interface_system.md) | web/components/site-shell.js、web/themes、web/assets/fonts（infra 字体包）、interface_manifest.json |
-| 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（六队、三仓库、来源归属）、[五类变量目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
+| 采集与翻译 | [06 采集规范](06_acquisition.md) | supply_contract.json（六队、六仓库、来源归属）、[五类变量目标清单](tco_targets.json)、workflow.supply、供应中心；inews 事件 feed 消费与 Fetchspec 接收台账；回执进 Git 载体只经 `manage.py deliveries import`（knowledge/deliveries.py）；inresearch 本身不爬取 |
 | 模型执行与客户端 | [08 模型执行](08_model_execution.md) | inresearch.adapters.models、deploy/models.json |
 | 软件职责与写入 | [09 软件契约](09_software_contracts.md) | 统一用例、结果投影、事务存储与 storage_contract 发布边界 |
 | 运行与部署 | [Spark 操作手册](../docs/local_reader/SPARK_OPERATIONS.md) | deploy/spark-reader/；本地开发见 docs/local_setup/README.md |
