@@ -353,6 +353,36 @@
       },
       "name": "MMS4X00-NM-T",
       "id": "product:8b2df5179367a5bba25a15f90fc67605"
+    },
+    "product:71a9e18a1ba42463fffd739116cc75ab": {
+      "type": "product",
+      "identity": {
+        "company_id": "siemens",
+        "model": "SIVACON S8plus",
+        "version": "not_disclosed"
+      },
+      "name": "SIVACON S8plus",
+      "id": "product:71a9e18a1ba42463fffd739116cc75ab"
+    },
+    "product:0d7211e210d932d59124acb82d85f042": {
+      "type": "product",
+      "identity": {
+        "company_id": "siemens",
+        "model": "NXAIR 17.5 kV / 40 kA",
+        "version": "not_disclosed"
+      },
+      "name": "NXAIR 17.5 kV / 40 kA",
+      "id": "product:0d7211e210d932d59124acb82d85f042"
+    },
+    "product:af67bed784480c26453f62715247a9c2": {
+      "type": "product",
+      "identity": {
+        "company_id": "siemens",
+        "model": "SIVACON 8PS LI",
+        "version": "not_disclosed"
+      },
+      "name": "SIVACON 8PS LI",
+      "id": "product:af67bed784480c26453f62715247a9c2"
     }
   },
   "records": [
@@ -8079,6 +8109,646 @@
       "recorded_at": "2026-10-11T12:21:55.250634+00:00",
       "proposal_sha256": "59ce071d7e897082abe0a31c8482394171d10a27c51ad09ea5925cc56ada5e82",
       "claim_sha256": "22418101412bd0f79c18a602212abd694e233c9f6885644e859f3e9d8c57ff66"
+    },
+    {
+      "metric": "lv_switchgear.depth",
+      "scope": {
+        "configuration": "SIVACON S8plus",
+        "condition": "SIVACON S8plus cubicle depth options, single-front and double-front arrangements",
+        "value_semantics": "Discrete manufacturer configuration options; not a continuous dimension interval."
+      },
+      "value": "single front 500, 600, 800; double front 1,000, 1,200 mm",
+      "unit": "mm",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:3f22dee2285b4a01c3c4af0f6a8f5974",
+      "object_id": "product:71a9e18a1ba42463fffd739116cc75ab",
+      "source": {
+        "sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+        "locator": "excerpt:page:41",
+        "quote": "single front 500, 600, 800; double front 1,000, 1,200 mm",
+        "context_sha256": "2c75c22d143346a0d36311e63ce62ec1eee4493a963dcb7101b5e97efdca62a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.505230+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "7a71d04d8697a0151923a4c5dc30c7cad1a5bc4aa4de6b076f0b556e2148dd33"
+    },
+    {
+      "metric": "lv_switchgear.height",
+      "scope": {
+        "configuration": "SIVACON S8plus",
+        "condition": "SIVACON S8plus cubicle height without base, two options; optional base adds 100 or 200 mm",
+        "value_semantics": "Discrete manufacturer configuration options; not a continuous dimension interval."
+      },
+      "value": "2,000, 2,200 mm",
+      "unit": "mm",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:bfa12b45056a19d605ece63b119d456b",
+      "object_id": "product:71a9e18a1ba42463fffd739116cc75ab",
+      "source": {
+        "sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+        "locator": "excerpt:page:41",
+        "quote": "2,000, 2,200 mm",
+        "context_sha256": "2c75c22d143346a0d36311e63ce62ec1eee4493a963dcb7101b5e97efdca62a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.505230+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "4566852b5f85439141961c0b2225260a6dca4f79b2107791fdc38a2a82610585"
+    },
+    {
+      "metric": "lv_switchgear.rated_current",
+      "scope": {
+        "configuration": "SIVACON S8plus",
+        "condition": "SIVACON S8plus, main busbars horizontal, rated current (maximum)"
+      },
+      "value": "up to 7,010 A",
+      "unit": "A",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:046776463e85f53eea4812c744c2832c",
+      "object_id": "product:71a9e18a1ba42463fffd739116cc75ab",
+      "source": {
+        "sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+        "locator": "excerpt:page:41",
+        "quote": "up to 7,010 A",
+        "context_sha256": "2c75c22d143346a0d36311e63ce62ec1eee4493a963dcb7101b5e97efdca62a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.505230+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "37d0b4bfebdd60e3648d32278e31f0e3cbd4547f6086a6c1656abd2622555891"
+    },
+    {
+      "metric": "lv_switchgear.rated_voltage",
+      "scope": {
+        "configuration": "SIVACON S8plus",
+        "condition": "SIVACON S8plus catalog p.41, rated operational voltage Ue of the main circuit at 50 Hz; the qualifier continues on the next printed line: and in-line design, fixed-mounted"
+      },
+      "value": "up to 690 V / up to 800 V for circuit-breaker design (FCB1)",
+      "unit": "V",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:781cc8cce42c2ac893e84e47190c6e5c",
+      "object_id": "product:71a9e18a1ba42463fffd739116cc75ab",
+      "source": {
+        "sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+        "locator": "excerpt:page:41",
+        "quote": "up to 690 V / up to 800 V for circuit-breaker design (FCB1)",
+        "context_sha256": "2c75c22d143346a0d36311e63ce62ec1eee4493a963dcb7101b5e97efdca62a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.505230+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "017bd4b0bbdb0a2ad80c523187deca79f62e44084952703deaa3d3c3530499be"
+    },
+    {
+      "metric": "lv_switchgear.short_time_withstand_current",
+      "scope": {
+        "configuration": "SIVACON S8plus",
+        "condition": "SIVACON S8plus, main busbars horizontal, rated short-time withstand current Icw (1 s); rated peak withstand current Ipk is up to 330 kA"
+      },
+      "value": "up to 150 kA, 1s",
+      "unit": "kA",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:fff9009ee6d370dceb062a6c0a18ebbd",
+      "object_id": "product:71a9e18a1ba42463fffd739116cc75ab",
+      "source": {
+        "sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+        "locator": "excerpt:page:41",
+        "quote": "up to 150 kA, 1s",
+        "context_sha256": "2c75c22d143346a0d36311e63ce62ec1eee4493a963dcb7101b5e97efdca62a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.505230+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "9c65d2e5c09e845e1ab1e1332e9d2cdd631d4decf67181835b8bfc89550f9078"
+    },
+    {
+      "metric": "lv_switchgear.width",
+      "scope": {
+        "configuration": "SIVACON S8plus",
+        "condition": "SIVACON S8plus cubicle width options",
+        "value_semantics": "Discrete manufacturer configuration options; not a continuous dimension interval."
+      },
+      "value": "200, 350, 400, 600, 800, 850, 1,000, 1,200, 1,400 mm",
+      "unit": "mm",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:80473186b2d90d3d7d644ee986678728",
+      "object_id": "product:71a9e18a1ba42463fffd739116cc75ab",
+      "source": {
+        "sha256": "6c2863ba5c5979dca8be934187624bf6a4a41531e7efdfa402728dbc7628f40f",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:6a019c8a-5065-4887-a19a-5a093d47ae4a/SIVACON-S8plus-Low-voltage-switchboard-EN-Online.pdf",
+        "locator": "excerpt:page:41",
+        "quote": "200, 350, 400, 600, 800, 850, 1,000, 1,200, 1,400 mm",
+        "context_sha256": "2c75c22d143346a0d36311e63ce62ec1eee4493a963dcb7101b5e97efdca62a9",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.505230+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "21f7e5d5965fe757316b0fa44d4166a36138fb87d734b47fe229cf0b2b24f7b1"
+    },
+    {
+      "metric": "mv_switchgear.height",
+      "scope": {
+        "configuration": "NXAIR 17.5 kV / 40 kA",
+        "condition": "NXAIR panel height H4 with optional arc absorber, 40 kA column; catalog applies H4 for 12 kV > 25 kA or generally for 17.5 kV (standard panel H1 is 2300 mm)",
+        "optional_equipment": "H4 includes optional arc absorber; number of absorbers depends on configuration. Standard H1 remains 2300 mm."
+      },
+      "value": "2500 mm",
+      "unit": "mm",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:cbfcd5a50e5e111419510a020b9b36d9",
+      "object_id": "product:0d7211e210d932d59124acb82d85f042",
+      "source": {
+        "sha256": "cbaf6cf16987f1befa2286ae70168bed439ee53aed27db2a42bdb5e6d2749845",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:14493ba2-f30a-4bf4-a8fe-c5e38c2c8f83/HA-25-73-EN.pdf",
+        "locator": "excerpt:page:41",
+        "quote": "2500 mm",
+        "context_sha256": "5855cc4e7001b0352008bdee370ad297b5f79bdfa3472982fb886efe247d873f",
+        "published_at": "2023",
+        "first_received_at": "2026-10-01T10:36:50.583925+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "b1ceabea7f4eebfc9c7767f90ce11ce635514726053b08f3e4d72e5501c7e331"
+    },
+    {
+      "metric": "mv_switchgear.rated_current",
+      "scope": {
+        "configuration": "NXAIR 17.5 kV / 40 kA",
+        "condition": "NXAIR, max. rated continuous current of the busbar (feeder with circuit-breaker also max. 4000 A)"
+      },
+      "value": "4000",
+      "unit": "A",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:61922e0d00fc6c98b7bb52fd2e355c42",
+      "object_id": "product:0d7211e210d932d59124acb82d85f042",
+      "source": {
+        "sha256": "cbaf6cf16987f1befa2286ae70168bed439ee53aed27db2a42bdb5e6d2749845",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:14493ba2-f30a-4bf4-a8fe-c5e38c2c8f83/HA-25-73-EN.pdf",
+        "locator": "excerpt:page:33",
+        "quote": "4000",
+        "context_sha256": "0fe3e82ba1b09d5504ec17fee6403683a5f9448c9ff98d4b2350d5570ec9b39c",
+        "published_at": "2023",
+        "first_received_at": "2026-10-01T10:36:50.583925+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "9bb40fd530ae199a906562585ee8175e80fb1c343f107dce40e5cd28862bcbed"
+    },
+    {
+      "metric": "mv_switchgear.rated_voltage",
+      "scope": {
+        "configuration": "NXAIR 17.5 kV / 40 kA",
+        "condition": "NXAIR up to 17.5 kV / 40 kA (catalog HA 25.73 p.33 Electrical data), 17.5 kV column of the 7.2 / 12 / 17.5 kV rated voltages"
+      },
+      "value": "17.5",
+      "unit": "kV",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:a4b37ef494c013cdfafa52bddf516028",
+      "object_id": "product:0d7211e210d932d59124acb82d85f042",
+      "source": {
+        "sha256": "cbaf6cf16987f1befa2286ae70168bed439ee53aed27db2a42bdb5e6d2749845",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:14493ba2-f30a-4bf4-a8fe-c5e38c2c8f83/HA-25-73-EN.pdf",
+        "locator": "excerpt:page:33",
+        "quote": "17.5",
+        "context_sha256": "0fe3e82ba1b09d5504ec17fee6403683a5f9448c9ff98d4b2350d5570ec9b39c",
+        "published_at": "2023",
+        "first_received_at": "2026-10-01T10:36:50.583925+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "e9311c224bf5f6a00737b69cbdc5102d4a581529117e5ce64116293d3fe3336f"
+    },
+    {
+      "metric": "mv_switchgear.short_circuit_breaking_current",
+      "scope": {
+        "configuration": "NXAIR 17.5 kV / 40 kA",
+        "condition": "NXAIR up to 40 kA, max. rated short-circuit breaking current, one value spanning the 7.2 / 12 / 17.5 kV columns"
+      },
+      "value": "40",
+      "unit": "kA",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:5cd19290552c53a82f26365282c0a977",
+      "object_id": "product:0d7211e210d932d59124acb82d85f042",
+      "source": {
+        "sha256": "cbaf6cf16987f1befa2286ae70168bed439ee53aed27db2a42bdb5e6d2749845",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:14493ba2-f30a-4bf4-a8fe-c5e38c2c8f83/HA-25-73-EN.pdf",
+        "locator": "excerpt:page:33",
+        "quote": "40",
+        "context_sha256": "0fe3e82ba1b09d5504ec17fee6403683a5f9448c9ff98d4b2350d5570ec9b39c",
+        "published_at": "2023",
+        "first_received_at": "2026-10-01T10:36:50.583925+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "f3e5345d4227b3d217b7fdc963ca887c1e4f01bbb57596bfff930d61d2b0e045"
+    },
+    {
+      "metric": "mv_switchgear.width",
+      "scope": {
+        "configuration": "NXAIR 17.5 kV / 40 kA",
+        "condition": "NXAIR circuit-breaker panel 4000 A, 40 kA short-time withstand column (p.41 Dimensions; the row label Width W, Circuit-breaker panel, disconnecting panel is printed on the 630 A line above)"
+      },
+      "value": "1000 mm",
+      "unit": "mm",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:e4b323dfdf742e630ce1d11e851d225f",
+      "object_id": "product:0d7211e210d932d59124acb82d85f042",
+      "source": {
+        "sha256": "cbaf6cf16987f1befa2286ae70168bed439ee53aed27db2a42bdb5e6d2749845",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:14493ba2-f30a-4bf4-a8fe-c5e38c2c8f83/HA-25-73-EN.pdf",
+        "locator": "excerpt:page:41",
+        "quote": "1000 mm",
+        "context_sha256": "5855cc4e7001b0352008bdee370ad297b5f79bdfa3472982fb886efe247d873f",
+        "published_at": "2023",
+        "first_received_at": "2026-10-01T10:36:50.583925+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "2fccb70670c3e2fc323088563c0d93c2f7254d8e6efd965a8e6ef8dc36fc20e8"
+    },
+    {
+      "metric": "busway.rated_current",
+      "scope": {
+        "configuration": "SIVACON 8PS LI",
+        "condition": "SIVACON 8PS LI system (brochure p.30), rated current InA range across the LI ratings",
+        "range_basis": "Manufacturer rated-current range across LI configurations; not measured operating current."
+      },
+      "value": {
+        "value_range": [
+          800,
+          6300
+        ]
+      },
+      "unit": "A",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:c1dd37b4020126f77edf6d2824e8c44e",
+      "object_id": "product:af67bed784480c26453f62715247a9c2",
+      "source": {
+        "sha256": "edfb4d17698cc3331e9eb8ed5a69832ab2e32d96c27eb8fb70d07c6f09c58de5",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:12a1aee3-0f28-4742-867f-4be5bb590591/Energy-and-data-successfully-put-on-track.pdf",
+        "locator": "excerpt:page:30",
+        "quote": "800 A to 6,300 A",
+        "context_sha256": "7ddcece245b016353ed77fde8ec29964442769c3f7b3868cfce51da3295d9aea",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.636566+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "080ac7bb535515c2a49756aa572482ce051741e31d5359d2981445f372adecd4"
+    },
+    {
+      "metric": "busway.rated_voltage",
+      "scope": {
+        "configuration": "SIVACON 8PS LI",
+        "condition": "SIVACON 8PS LI system, rated operational voltage Ue (rated insulation voltage Ui is also 1,000 V AC)"
+      },
+      "value": "1,000 V AC",
+      "unit": "V",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:89fb3ee6dc56e3e4f14c370bd76dc7fc",
+      "object_id": "product:af67bed784480c26453f62715247a9c2",
+      "source": {
+        "sha256": "edfb4d17698cc3331e9eb8ed5a69832ab2e32d96c27eb8fb70d07c6f09c58de5",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:12a1aee3-0f28-4742-867f-4be5bb590591/Energy-and-data-successfully-put-on-track.pdf",
+        "locator": "excerpt:page:30",
+        "quote": "1,000 V AC",
+        "context_sha256": "7ddcece245b016353ed77fde8ec29964442769c3f7b3868cfce51da3295d9aea",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.636566+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "51eba337ddd3e2d198c1eebd1efa322785e185fd84e61c1d8d4e601ba9ae0f76"
+    },
+    {
+      "metric": "busway.short_time_withstand_current",
+      "scope": {
+        "configuration": "SIVACON 8PS LI",
+        "condition": "SIVACON 8PS LI system, rated short-time withstand current Icw (1 s), maximum over the LI ratings"
+      },
+      "value": "Up to 150 kA",
+      "unit": "kA",
+      "kind": "reported",
+      "basis": "Archived manufacturer PDF; selected physical page, table heading, model column and qualifying footnotes reviewed. Ratings and configuration options are not site measurements. Unknown effective dates remain null.",
+      "effective_at": null,
+      "id": "observation:45521d614c10fdd30a892a84849d726b",
+      "object_id": "product:af67bed784480c26453f62715247a9c2",
+      "source": {
+        "sha256": "edfb4d17698cc3331e9eb8ed5a69832ab2e32d96c27eb8fb70d07c6f09c58de5",
+        "url": "https://assets.new.siemens.com/siemens/assets/api/uuid:12a1aee3-0f28-4742-867f-4be5bb590591/Energy-and-data-successfully-put-on-track.pdf",
+        "locator": "excerpt:page:30",
+        "quote": "Up to 150 kA",
+        "context_sha256": "7ddcece245b016353ed77fde8ec29964442769c3f7b3868cfce51da3295d9aea",
+        "published_at": null,
+        "first_received_at": "2026-10-01T10:36:50.636566+00:00"
+      },
+      "target_ids": [],
+      "review": {
+        "by": "Codex (native PDF page review in this session)",
+        "at": "2026-10-11T13:25:36.715103+00:00",
+        "score": 8,
+        "tier": "A",
+        "authority": "delegated_reviewer",
+        "decision": "adopted",
+        "public_fields_reviewed": true,
+        "rationale": "Visually reviewed archived physical PDF pages S8plus 41, NXAIR 33 and 41, LI 30 and checked native table labels and footnotes. S8plus voltage qualifier includes fixed-mounted in-line design, dimensions are discrete options, horizontal main-busbar Icw is 1 s. NXAIR uses 17.5 kV / 40 kA configuration; 4000 A busbar maximum, 1000 mm breaker-panel width at 4000 A / 40 kA, 2500 mm optional H4 arc absorber (not standard H1), breaking current distinct from withstand current. Native Siemens HA 25.73 footer establishes publication year 2023 only. LI current is the native 800–6300 A family range, Ue operational voltage distinct from Ui, Icw at 1 s. Missing effective dates remain null; first receiver timestamps remain receiver evidence. Public factual values and original URLs only via shared allowlist; original excerpts and audit remain private. Partial page review, not complete-document reading or model-input validation.",
+        "delegation": {
+          "delegate": "Codex (native PDF page review in this session)",
+          "granted_by": "niuroumiantt",
+          "granted_at": "2026-10-11",
+          "reference": "User authorized continuing actual stock expansion, named review/adoption and publication; hourly continuation automation-4.",
+          "scope": "new_or_supplemental_research"
+        }
+      },
+      "reviewed_at": "2026-10-11T13:25:36.715103+00:00",
+      "recorded_at": "2026-10-11T13:25:37.272930+00:00",
+      "proposal_sha256": "67bfd266e0c2c67078d15f46da3bf389023ec21f3b7cc3116a10b4c94ccc9d5c",
+      "claim_sha256": "20150782d0e6d54fac93bfd54fcd5898ebfaaa96f42bc212b545482556770e7e"
     }
   ]
 }
